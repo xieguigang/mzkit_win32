@@ -1481,6 +1481,10 @@
       <Project>{274a801c-2250-4474-99ee-0f714588d3f3}</Project>
       <Name>SDF.Extensions.NET5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\services\BioDeep\BioDeep.vbproj">
+      <Project>{04497d3c-ae08-4df2-be29-e5b572daa5b6}</Project>
+      <Name>BioDeep</Name>
+    </ProjectReference>
     <ProjectReference Include="..\services\ServiceHub\ServiceHub.vbproj">
       <Project>{54a151d4-f817-4fcf-aba1-66219b2b638c}</Project>
       <Name>ServiceHub</Name>
