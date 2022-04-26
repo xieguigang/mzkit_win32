@@ -130,9 +130,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Notification">
-      <HintPath>..\dist\System.Windows.Notification.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
