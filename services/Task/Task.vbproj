@@ -169,16 +169,13 @@
     <Compile Include="Properties\PlotProperty.vb" />
     <Compile Include="Properties\MsImageProperty.vb" />
     <Compile Include="Properties\RawFileProperty.vb" />
-    <Compile Include="Workspace\MZWork.vb" />
-    <Compile Include="Workspace\WorkspaceFile.vb" />
     <Compile Include="Workspace\ViewerProject.vb" />
     <Compile Include="DrawScatter.vb" />
     <Compile Include="NewsFeed.vb" />
     <Compile Include="Math.vb" />
     <Compile Include="MoleculeNetworking.vb" />
     <Compile Include="Properties\SpectrumProperty.vb" />
-    <Compile Include="Imports\Raw.vb" />
-    <Compile Include="Imports\ImportsRawData.vb" />
+    <Compile Include="Workspace\ImportsRawData.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
