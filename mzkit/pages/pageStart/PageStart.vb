@@ -56,6 +56,7 @@
 
 Imports System.ComponentModel
 Imports BioNovoGene.mzkit_win32.My
+Imports MZWork
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 

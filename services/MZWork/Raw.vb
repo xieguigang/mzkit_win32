@@ -94,8 +94,7 @@ Public Class Raw
     ''' <returns></returns>
     <MessagePackMember(4)> Public Property numOfScan2 As Integer
 
-    Friend loaded As mzPack
-
+    Dim loaded As mzPack
     Dim ms1 As Dictionary(Of String, ScanMS1)
     Dim ms2 As Dictionary(Of String, ScanMS2)
 
@@ -110,6 +109,10 @@ Public Class Raw
             Return cache.FileExists
         End Get
     End Property
+
+    Public Function GetLoadedMzpack() As mzPack
+        Return loaded
+    End Function
 
     Public Function GetSnapshot() As Image
         Return loaded.Thumbnail

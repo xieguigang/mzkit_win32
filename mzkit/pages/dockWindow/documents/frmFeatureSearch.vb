@@ -74,6 +74,7 @@ Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
+Imports MZWork
 Imports RibbonLib.Controls.Events
 Imports RibbonLib.Interop
 Imports Task
@@ -223,7 +224,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             MyApplication.host.ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
 
             ' scan节点
-            Dim raw As Task.Raw
+            Dim raw As MZWork.Raw
 
             If directRaw Is Nothing Then
                 raw = Globals.workspace.FindRawFile(parentFile)
@@ -287,7 +288,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             MyApplication.host.ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
 
             ' scan节点
-            Dim raw As Task.Raw
+            Dim raw As MZWork.Raw
 
             If directRaw Is Nothing Then
                 raw = Globals.workspace.FindRawFile(parentFile)

@@ -58,17 +58,16 @@
 
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII
-Imports BioNovoGene.Analytical.MassSpectrometry.Math.GCMS
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns
+Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
-Imports BioNovoGene.mzkit_win32.My
 Imports Task
 
 Public Class PageSpectrumSearch
@@ -174,7 +173,7 @@ Public Class PageSpectrumSearch
     End Sub
 
     Public Sub runSearch(Optional isotopic As IsotopeDistribution = Nothing)
-        Dim raws As IEnumerable(Of Task.Raw) = Globals.workspace.GetRawDataFiles
+        Dim raws As IEnumerable(Of MZWork.Raw) = Globals.workspace.GetRawDataFiles
         Dim progress As New frmTaskProgress
         Dim query As [Variant](Of LibraryMatrix, IsotopeDistribution)
 
@@ -194,7 +193,7 @@ Public Class PageSpectrumSearch
         TabControl1.SelectedTab = TabPage2
     End Sub
 
-    Private Sub SearchThread(query As [Variant](Of LibraryMatrix, IsotopeDistribution), raws As IEnumerable(Of Task.Raw), progress As frmTaskProgress)
+    Private Sub SearchThread(query As [Variant](Of LibraryMatrix, IsotopeDistribution), raws As IEnumerable(Of MZWork.Raw), progress As frmTaskProgress)
         Dim runSearchResult As IEnumerable(Of NamedCollection(Of AlignmentOutput))
 
         If query Like GetType(LibraryMatrix) Then
@@ -267,7 +266,7 @@ Public Class PageSpectrumSearch
         If cluster.ChildrenCount > 0 Then
             ' 选择的是一个文件节点
             Dim filePath As String = cluster.ToolTipText
-            Dim raw As Task.Raw = Globals.workspace.FindRawFile(filePath)
+            Dim raw As MZWork.Raw = Globals.workspace.FindRawFile(filePath)
 
             If Not raw Is Nothing Then
                 Call MyApplication.mzkitRawViewer.showScatter(raw, False, directSnapshot:=True, contour:=False)

@@ -69,6 +69,7 @@ Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports stdNum = System.Math
+Imports MZWork
 
 Public Module MoleculeNetworking
 

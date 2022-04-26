@@ -344,6 +344,10 @@
       <Project>{04497d3c-ae08-4df2-be29-e5b572daa5b6}</Project>
       <Name>BioDeep</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MZWork\MZWork.vbproj">
+      <Project>{0a48789b-a35c-49ba-8224-c604ad14f044}</Project>
+      <Name>MZWork</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

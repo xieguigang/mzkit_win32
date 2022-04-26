@@ -59,12 +59,12 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
+Imports BioNovoGene.mzkit_win32.My
+Imports ControlLibrary
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
-Imports BioNovoGene.mzkit_win32.My
-Imports Task
+Imports MZWork
 Imports WeifenLuo.WinFormsUI.Docking
-Imports ControlLibrary
 
 Public Class frmUntargettedViewer
 
@@ -223,7 +223,7 @@ Public Class frmUntargettedViewer
                 Call MyApplication.host.showStatusMessage($"View xic data for target ion mz=${mz}!")
             End If
 
-            Dim XIC As ChromatogramTick() = raw.loaded.GetXIC(mz, Tolerance.DeltaMass(0.01))
+            Dim XIC As ChromatogramTick() = raw.GetLoadedMzpack.GetXIC(mz, Tolerance.DeltaMass(0.01))
 
             Call MsSelector1.SetTIC(XIC)
             Call MsSelector1.RefreshRtRangeSelector()

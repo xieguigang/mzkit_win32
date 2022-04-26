@@ -57,6 +57,7 @@
 #End Region
 
 Imports System.ComponentModel
+Imports MZWork
 
 Public Class RawFileProperty
 

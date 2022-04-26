@@ -56,9 +56,10 @@
 Imports BioDeep
 Imports BioNovoGene.BioDeep.MetaDNA
 Imports BioNovoGene.BioDeep.MetaDNA.Infer
-Imports Microsoft.VisualBasic.My
 Imports BioNovoGene.mzkit_win32.DockSample
 Imports BioNovoGene.mzkit_win32.My
+Imports Microsoft.VisualBasic.My
+Imports MZWork
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 

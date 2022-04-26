@@ -76,6 +76,7 @@ Imports RibbonLib.Interop
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 Imports stdNum = System.Math
+Imports MZWork
 
 ''' <summary>
 ''' 显示一个workspace对象里面所包含有的文件列表
@@ -600,7 +601,11 @@ Public Class frmFileExplorer
 
                                     For Each node As TreeNode In treeView1.Nodes(0).Nodes
                                         Dim raw As Raw = node.Tag
-                                        Dim load As mzPack = raw.LoadMzpack(Sub(title, msg) MyApplication.host.showStatusMessage($"{title}: {msg}")).loaded
+                                        Dim load As mzPack = raw _
+                                            .LoadMzpack(Sub(title, msg)
+                                                            MyApplication.host.showStatusMessage($"{title}: {msg}")
+                                                        End Sub) _
+                                            .GetLoadedMzpack
                                         Dim basePeak As ms2 = load.GetBasePeak
 
                                         Call table.Invoke(
@@ -636,7 +641,7 @@ Public Class frmFileExplorer
             }
                 If save.ShowDialog = DialogResult.OK Then
                     Dim raw As Raw = DirectCast(node.Tag, Raw).LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache))
-                    Dim mzPack As mzPack = raw.loaded
+                    Dim mzPack As mzPack = raw.GetLoadedMzpack
 
                     Using file As Stream = save.FileName.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False),
                         writer As New mzXMLWriter({}, {}, {}, file)

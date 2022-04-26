@@ -76,6 +76,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
+Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Imaging
@@ -83,9 +84,8 @@ Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.Text.Xml.Models
-Imports BioNovoGene.mzkit_win32.My
+Imports MZWork
 Imports RibbonLib.Interop
-Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 Imports stdNum = System.Math
 
@@ -308,7 +308,7 @@ Public Class frmRawFeaturesList
 
         ElseIf Not e.Node.Tag Is Nothing Then
             ' scan节点
-            Dim raw As Task.Raw = CurrentRawFile
+            Dim raw As MZWork.Raw = CurrentRawFile
             Dim scanId As String = e.Node.Text
 
             Call MyApplication.host.mzkitTool.showSpectrum(scanId, raw)
@@ -365,7 +365,7 @@ Public Class frmRawFeaturesList
         End If
 
         ' scan节点
-        Dim raw As Task.Raw = CurrentRawFile
+        Dim raw As MZWork.Raw = CurrentRawFile
         Dim ppm As Double = MyApplication.host.GetPPMError()
         Dim plotTIC As NamedCollection(Of ChromatogramTick) = MyApplication.mzkitRawViewer.getXICMatrix(raw, treeView1.SelectedNode.Text, ppm, relativeInto:=False)
 
@@ -714,7 +714,8 @@ Public Class frmRawFeaturesList
             Return
         End If
 
-        Dim XIC = CurrentRawFile.LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache)).loaded.MS _
+        Dim XIC = CurrentRawFile.LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache)) _
+            .GetLoadedMzpack.MS _
             .Select(Function(scan) (scan.rt, scan.GetIntensity(mz, ppm))) _
             .Where(Function(p) p.Item2 > 0) _
             .OrderBy(Function(p) p.rt) _
@@ -767,7 +768,8 @@ Public Class frmRawFeaturesList
         End If
 
         Dim matched = CurrentRawFile _
-            .LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache)).loaded _
+            .LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache)) _
+            .GetLoadedMzpack _
             .MS _
             .Select(Function(i) i.products.SafeQuery) _
             .IteratesALL _
