@@ -93,6 +93,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0634CA80955D4C5F9F9A01618D063278"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_068A7C238A900044763E9FB397E22561"
         "OwnerKey" = "8:_B996598E8CFA411CB74725B5C88D2AF3"
         "MsmSig" = "8:_UNDEFINED"
@@ -177,6 +183,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_08EF6218F878448ABFA826398DDBBFB5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0BC38D1DD9A890CDBF4F51BE4AF7A253"
         "OwnerKey" = "8:_46B3ED6AC9A973E630B835A3B3EE6839"
         "MsmSig" = "8:_UNDEFINED"
@@ -243,12 +255,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_115D29F044154251A3F733F09DC11444"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_1248DC2BC1FF9AD573888FA9B46FCB67"
         "OwnerKey" = "8:_B996598E8CFA411CB74725B5C88D2AF3"
         "MsmSig" = "8:_UNDEFINED"
@@ -257,12 +263,6 @@
         {
         "MsmKey" = "8:_1248DC2BC1FF9AD573888FA9B46FCB67"
         "OwnerKey" = "8:_A47AD94B5D71F6C31CB945A72EBA0B50"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_12D94D123F5D439491EB64FB86D56F94"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -333,12 +333,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_1600D60F5FC94A798C0924A6D6BB092D"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_166DDC65758480BD1D607EF2BAA67BD9"
         "OwnerKey" = "8:_B4D4A2334A289C2E951CB7EA6704206E"
         "MsmSig" = "8:_UNDEFINED"
@@ -388,6 +382,12 @@
         "Entry"
         {
         "MsmKey" = "8:_196BBE1DDACE4FF9B570116FDDB824C6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_1C6B44E219A5442592DFA4228E71257A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -485,6 +485,12 @@
         {
         "MsmKey" = "8:_23652EC2E8394027DEBE9DD11C3D1E7C"
         "OwnerKey" = "8:_2EC090B94DDE99496CB8A1A05B226073"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_248FBE5CEA3A4DE98BF8D432B8CE545D"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -665,12 +671,6 @@
         {
         "MsmKey" = "8:_260B843C1F15C5DC5053E5AF4BA19E4E"
         "OwnerKey" = "8:_9C725B54C4BCB5DC3344991A927DBB23"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2678D360624B43C6A13792993397A065"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1011,12 +1011,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_43E2869A3FDB4EEFA2B3F9C7DA60185F"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_447622C8A12782CF6283905E0AAE2954"
         "OwnerKey" = "8:_C1434E5BFD92AA6A96DD25C6A317700A"
         "MsmSig" = "8:_UNDEFINED"
@@ -1341,12 +1335,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_49B4C59965B9449AB806EBC1F7E6D443"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_49DFEE88F54270FC2EB6D38F64AA3439"
         "OwnerKey" = "8:_BED525E9D824B0831FE5747C8CA12FE8"
         "MsmSig" = "8:_UNDEFINED"
@@ -1413,12 +1401,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_4D8428DB0D9142F7847475AE5E812F07"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_5294A800C63A48EA919A89A436523157"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1479,6 +1461,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_5CB585C60FB74066BEE3707F8DE8BB58"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_5F44344BA4425C1C821B0814D7A1E44A"
         "OwnerKey" = "8:_B996598E8CFA411CB74725B5C88D2AF3"
         "MsmSig" = "8:_UNDEFINED"
@@ -1533,7 +1521,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_6A22C8CD206E421796040BB3B0D7BA74"
+        "MsmKey" = "8:_6BABAE43130B4B73BD03B480D54BB1C2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6D341F03B1AE48BAADA0BEE23BBC3A72"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1569,7 +1563,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_6F76128ABC314A2F9E48A779FA0DF72D"
+        "MsmKey" = "8:_7126D2AB84D043BC9935CE3EDA5304BB"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1601,12 +1595,6 @@
         {
         "MsmKey" = "8:_75CA0A280E519106EC2DD975FE1BB9D6"
         "OwnerKey" = "8:_0F9C88B6C909A13114776B36FB1CDE62"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_75D833942F2044FD91191B2F56C3C196"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1649,6 +1637,12 @@
         {
         "MsmKey" = "8:_7DF47E441A757508451EF8FED2FCF91F"
         "OwnerKey" = "8:_B996598E8CFA411CB74725B5C88D2AF3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7E531E3ACC1F4957AC5066F79D212C66"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1823,12 +1817,6 @@
         {
         "MsmKey" = "8:_8A53DFDF0806E2350768BA6A29C20B13"
         "OwnerKey" = "8:_B996598E8CFA411CB74725B5C88D2AF3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8B97D76F1C0C44529E7A3BDA12B4F944"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2985,6 +2973,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_A94EA997BB25474D991C83C661F0F94C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_A9CFD017EFC525DA4E6F714306033D3B"
         "OwnerKey" = "8:_F71BAF14CCE76AD9212CA23F816C7CDF"
         "MsmSig" = "8:_UNDEFINED"
@@ -2993,6 +2987,18 @@
         {
         "MsmKey" = "8:_A9CFD017EFC525DA4E6F714306033D3B"
         "OwnerKey" = "8:_B996598E8CFA411CB74725B5C88D2AF3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AA396A2A6D4E42BFABD7B4239E535D88"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AB99666003D04479B76691E4ED6BA668"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -3029,6 +3035,12 @@
         {
         "MsmKey" = "8:_B368672CFA094497ACE62D75FBBBEDA6"
         "OwnerKey" = "8:_D754AE94383B9A013CA2E30F11C341F5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B47D785C2FD64F7AB2C74D60D958D064"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -3207,12 +3219,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_BFE6AA15BE0D4A51B05A6972A0779CDC"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_C0B8A6E3991C404FACA2D4AC4826D67B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -3233,6 +3239,12 @@
         {
         "MsmKey" = "8:_C1434E5BFD92AA6A96DD25C6A317700A"
         "OwnerKey" = "8:_B996598E8CFA411CB74725B5C88D2AF3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C2596DE4930B46A18B4288AF6CAF8DAF"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -3387,6 +3399,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_D9A95FB32595499E961B68BAAD09F095"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_DBEB42DE2FF2A619D19E2A8C1E91EFDB"
         "OwnerKey" = "8:_B996598E8CFA411CB74725B5C88D2AF3"
         "MsmSig" = "8:_UNDEFINED"
@@ -3443,12 +3461,6 @@
         {
         "MsmKey" = "8:_DCE1B6BA7518629E642694DCDE064712"
         "OwnerKey" = "8:_26E76901AF8031D24827702891805FA5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_DF9FE46C14F74105991CC249D47AB9E1"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -3563,12 +3575,6 @@
         {
         "MsmKey" = "8:_E4E76F1174AE9AFC1EE4B1BD16809117"
         "OwnerKey" = "8:_0226713ABFAE2D6380ECE8636BA7C3BE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E8F30781C6534412B6F7BAB088435AFE"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -3773,12 +3779,6 @@
         {
         "MsmKey" = "8:_F12934E68945C26FCC4E6C1FD93B957B"
         "OwnerKey" = "8:_B996598E8CFA411CB74725B5C88D2AF3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F3557531A44046308C6174BA30B1D127"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -5265,6 +5265,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0634CA80955D4C5F9F9A01618D063278"
+            {
+            "SourcePath" = "8:..\\rstudio\\serviceHub\\GCxGC-host.R"
+            "TargetName" = "8:GCxGC-host.R"
+            "Tag" = "8:"
+            "Folder" = "8:_CA4754A34356419AB8BE5CDAA7A85EBF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_068A7C238A900044763E9FB397E22561"
             {
             "AssemblyRegister" = "3:1"
@@ -5451,6 +5471,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_08EF6218F878448ABFA826398DDBBFB5"
+            {
+            "SourcePath" = "8:..\\rstudio\\demo\\MsImaging.R"
+            "TargetName" = "8:MsImaging.R"
+            "Tag" = "8:"
+            "Folder" = "8:_5668A7A697044A7E934407A5726CEE17"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0BC38D1DD9A890CDBF4F51BE4AF7A253"
             {
             "AssemblyRegister" = "3:1"
@@ -5575,26 +5615,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_115D29F044154251A3F733F09DC11444"
-            {
-            "SourcePath" = "8:..\\Pipeline\\MSI_bpcIons.R"
-            "TargetName" = "8:MSI_bpcIons.R"
-            "Tag" = "8:"
-            "Folder" = "8:_36421C210042444AB0ACDAA8AA48B0BB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1248DC2BC1FF9AD573888FA9B46FCB67"
             {
             "AssemblyRegister" = "3:1"
@@ -5626,26 +5646,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_12D94D123F5D439491EB64FB86D56F94"
-            {
-            "SourcePath" = "8:..\\Pipeline\\ServiceHub\\GCxGC-host.R"
-            "TargetName" = "8:GCxGC-host.R"
-            "Tag" = "8:"
-            "Folder" = "8:_CA4754A34356419AB8BE5CDAA7A85EBF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_133BDBFACA6AAB818D51C5F426E14AE0"
             {
             "AssemblyRegister" = "3:1"
@@ -5675,26 +5675,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1600D60F5FC94A798C0924A6D6BB092D"
-            {
-            "SourcePath" = "8:..\\Pipeline\\MSImaging\\singleIon.R"
-            "TargetName" = "8:singleIon.R"
-            "Tag" = "8:"
-            "Folder" = "8:_16365C4A2C244F07B642FF534A254CB2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_166DDC65758480BD1D607EF2BAA67BD9"
@@ -5785,6 +5765,26 @@
             "TargetName" = "8:man.pptx"
             "Tag" = "8:"
             "Folder" = "8:_DFC62C483790469DA2EF3F39E6499DDA"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1C6B44E219A5442592DFA4228E71257A"
+            {
+            "SourcePath" = "8:..\\rstudio\\pipeline\\MSImaging\\tripleIon.R"
+            "TargetName" = "8:tripleIon.R"
+            "Tag" = "8:"
+            "Folder" = "8:_16365C4A2C244F07B642FF534A254CB2"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -6014,6 +6014,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_248FBE5CEA3A4DE98BF8D432B8CE545D"
+            {
+            "SourcePath" = "8:..\\rstudio\\pipeline\\MSI_peaktable.R"
+            "TargetName" = "8:MSI_peaktable.R"
+            "Tag" = "8:"
+            "Folder" = "8:_36421C210042444AB0ACDAA8AA48B0BB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_251F221B59332F2E88CC6A7711683069"
             {
             "AssemblyRegister" = "3:1"
@@ -6156,26 +6176,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2678D360624B43C6A13792993397A065"
-            {
-            "SourcePath" = "8:Rstudio\\MsImaging.R"
-            "TargetName" = "8:MsImaging.R"
-            "Tag" = "8:"
-            "Folder" = "8:_5668A7A697044A7E934407A5726CEE17"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_26E76901AF8031D24827702891805FA5"
@@ -6723,26 +6723,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_43E2869A3FDB4EEFA2B3F9C7DA60185F"
-            {
-            "SourcePath" = "8:..\\Pipeline\\ServiceHub\\MSI-host.R"
-            "TargetName" = "8:MSI-host.R"
-            "Tag" = "8:"
-            "Folder" = "8:_CA4754A34356419AB8BE5CDAA7A85EBF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_447622C8A12782CF6283905E0AAE2954"
             {
             "AssemblyRegister" = "3:1"
@@ -6991,26 +6971,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_49B4C59965B9449AB806EBC1F7E6D443"
-            {
-            "SourcePath" = "8:Rstudio\\banner_prompt.cmd"
-            "TargetName" = "8:banner_prompt.cmd"
-            "Tag" = "8:"
-            "Folder" = "8:_C92ED253EBA545BC91633662D220EBC4"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_49DFEE88F54270FC2EB6D38F64AA3439"
             {
             "AssemblyRegister" = "3:1"
@@ -7153,26 +7113,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4D8428DB0D9142F7847475AE5E812F07"
-            {
-            "SourcePath" = "8:..\\Pipeline\\metadna.R"
-            "TargetName" = "8:metadna.R"
-            "Tag" = "8:"
-            "Folder" = "8:_36421C210042444AB0ACDAA8AA48B0BB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5294A800C63A48EA919A89A436523157"
@@ -7401,6 +7341,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5CB585C60FB74066BEE3707F8DE8BB58"
+            {
+            "SourcePath" = "8:..\\rstudio\\demo\\TIC_overlaps.R"
+            "TargetName" = "8:TIC_overlaps.R"
+            "Tag" = "8:"
+            "Folder" = "8:_5668A7A697044A7E934407A5726CEE17"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5F44344BA4425C1C821B0814D7A1E44A"
             {
             "AssemblyRegister" = "3:1"
@@ -7587,10 +7547,30 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6A22C8CD206E421796040BB3B0D7BA74"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6BABAE43130B4B73BD03B480D54BB1C2"
             {
-            "SourcePath" = "8:..\\Pipeline\\mzpack.R"
-            "TargetName" = "8:mzpack.R"
+            "SourcePath" = "8:..\\rstudio\\pipeline\\MSImaging\\singleIon.R"
+            "TargetName" = "8:singleIon.R"
+            "Tag" = "8:"
+            "Folder" = "8:_16365C4A2C244F07B642FF534A254CB2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6D341F03B1AE48BAADA0BEE23BBC3A72"
+            {
+            "SourcePath" = "8:..\\rstudio\\pipeline\\MSI_rbind.R"
+            "TargetName" = "8:MSI_rbind.R"
             "Tag" = "8:"
             "Folder" = "8:_36421C210042444AB0ACDAA8AA48B0BB"
             "Condition" = "8:"
@@ -7700,12 +7680,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6F76128ABC314A2F9E48A779FA0DF72D"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7126D2AB84D043BC9935CE3EDA5304BB"
             {
-            "SourcePath" = "8:Rstudio\\TIC_overlaps.R"
-            "TargetName" = "8:TIC_overlaps.R"
+            "SourcePath" = "8:..\\rstudio\\pipeline\\phenograph.R"
+            "TargetName" = "8:phenograph.R"
             "Tag" = "8:"
-            "Folder" = "8:_5668A7A697044A7E934407A5726CEE17"
+            "Folder" = "8:_36421C210042444AB0ACDAA8AA48B0BB"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -7820,26 +7800,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_75D833942F2044FD91191B2F56C3C196"
-            {
-            "SourcePath" = "8:..\\Pipeline\\MSI_rbind.R"
-            "TargetName" = "8:MSI_rbind.R"
-            "Tag" = "8:"
-            "Folder" = "8:_36421C210042444AB0ACDAA8AA48B0BB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_76105AD827854A37C3221C38319695F5"
@@ -7964,6 +7924,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7E531E3ACC1F4957AC5066F79D212C66"
+            {
+            "SourcePath" = "8:..\\rstudio\\pipeline\\ms1_contour.R"
+            "TargetName" = "8:ms1_contour.R"
+            "Tag" = "8:"
+            "Folder" = "8:_36421C210042444AB0ACDAA8AA48B0BB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_800A2877D8B5B069967DE9C273E4AFA0"
@@ -8165,26 +8145,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8B97D76F1C0C44529E7A3BDA12B4F944"
-            {
-            "SourcePath" = "8:..\\Pipeline\\MSI_peaktable.R"
-            "TargetName" = "8:MSI_peaktable.R"
-            "Tag" = "8:"
-            "Folder" = "8:_36421C210042444AB0ACDAA8AA48B0BB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8E91131355FD43858F154BCEBC5FA5FB"
@@ -8741,6 +8701,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A94EA997BB25474D991C83C661F0F94C"
+            {
+            "SourcePath" = "8:..\\rstudio\\banner_prompt.cmd"
+            "TargetName" = "8:banner_prompt.cmd"
+            "Tag" = "8:"
+            "Folder" = "8:_C92ED253EBA545BC91633662D220EBC4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A9CFD017EFC525DA4E6F714306033D3B"
             {
             "AssemblyRegister" = "3:1"
@@ -8770,6 +8750,46 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AA396A2A6D4E42BFABD7B4239E535D88"
+            {
+            "SourcePath" = "8:..\\rstudio\\pipeline\\metadna.R"
+            "TargetName" = "8:metadna.R"
+            "Tag" = "8:"
+            "Folder" = "8:_36421C210042444AB0ACDAA8AA48B0BB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AB99666003D04479B76691E4ED6BA668"
+            {
+            "SourcePath" = "8:..\\rstudio\\pipeline\\mzpack.R"
+            "TargetName" = "8:mzpack.R"
+            "Tag" = "8:"
+            "Folder" = "8:_36421C210042444AB0ACDAA8AA48B0BB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_ACED1A9EF97EB2A9157A37057A7FB39A"
@@ -8883,6 +8903,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B47D785C2FD64F7AB2C74D60D958D064"
+            {
+            "SourcePath" = "8:..\\rstudio\\pipeline\\MSI_bpcIons.R"
+            "TargetName" = "8:MSI_bpcIons.R"
+            "Tag" = "8:"
+            "Folder" = "8:_36421C210042444AB0ACDAA8AA48B0BB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B4D4A2334A289C2E951CB7EA6704206E"
@@ -9244,26 +9284,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BFE6AA15BE0D4A51B05A6972A0779CDC"
-            {
-            "SourcePath" = "8:..\\Pipeline\\ms1_contour.R"
-            "TargetName" = "8:ms1_contour.R"
-            "Tag" = "8:"
-            "Folder" = "8:_36421C210042444AB0ACDAA8AA48B0BB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C0B8A6E3991C404FACA2D4AC4826D67B"
             {
             "SourcePath" = "8:mzkit.zip"
@@ -9333,6 +9353,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C2596DE4930B46A18B4288AF6CAF8DAF"
+            {
+            "SourcePath" = "8:..\\rstudio\\pipeline\\buildMSIIndex.R"
+            "TargetName" = "8:buildMSIIndex.R"
+            "Tag" = "8:"
+            "Folder" = "8:_36421C210042444AB0ACDAA8AA48B0BB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C568B73A674D4537AF8DD91EF4F1B818"
@@ -9663,6 +9703,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D9A95FB32595499E961B68BAAD09F095"
+            {
+            "SourcePath" = "8:..\\rstudio\\serviceHub\\MSI-host.R"
+            "TargetName" = "8:MSI-host.R"
+            "Tag" = "8:"
+            "Folder" = "8:_CA4754A34356419AB8BE5CDAA7A85EBF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DBEB42DE2FF2A619D19E2A8C1E91EFDB"
             {
             "AssemblyRegister" = "3:1"
@@ -9723,26 +9783,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DF9FE46C14F74105991CC249D47AB9E1"
-            {
-            "SourcePath" = "8:..\\Pipeline\\buildMSIIndex.R"
-            "TargetName" = "8:buildMSIIndex.R"
-            "Tag" = "8:"
-            "Folder" = "8:_36421C210042444AB0ACDAA8AA48B0BB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DFDB1CEDB803F4FD763C979A2484496A"
@@ -9949,26 +9989,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E8F30781C6534412B6F7BAB088435AFE"
-            {
-            "SourcePath" = "8:..\\Pipeline\\MSImaging\\tripleIon.R"
-            "TargetName" = "8:tripleIon.R"
-            "Tag" = "8:"
-            "Folder" = "8:_16365C4A2C244F07B642FF534A254CB2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E97FDA6ABF86951DA3E0B98007187EAF"
@@ -10226,26 +10246,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F3557531A44046308C6174BA30B1D127"
-            {
-            "SourcePath" = "8:..\\Pipeline\\phenograph.R"
-            "TargetName" = "8:phenograph.R"
-            "Tag" = "8:"
-            "Folder" = "8:_36421C210042444AB0ACDAA8AA48B0BB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F3FF1C1CF06CFD2C6FFC990F26CA5FB8"
