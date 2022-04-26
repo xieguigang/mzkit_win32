@@ -283,9 +283,6 @@
     <Reference Include="Microsoft.VisualStudio.Windows.Form">
       <HintPath>..\dist\Microsoft.VisualStudio.Windows.Form.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Windows.FeatureAPI">
-      <HintPath>..\dist\Microsoft.Windows.FeatureAPI.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Windows.Ribbon">
       <HintPath>..\dist\Microsoft.Windows.Ribbon.dll</HintPath>
     </Reference>
@@ -1483,6 +1480,22 @@
     <ProjectReference Include="..\..\visualize\SDF.Extensions\SDF.Extensions.NET5.vbproj">
       <Project>{274a801c-2250-4474-99ee-0f714588d3f3}</Project>
       <Name>SDF.Extensions.NET5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\services\ServiceHub\ServiceHub.vbproj">
+      <Project>{54a151d4-f817-4fcf-aba1-66219b2b638c}</Project>
+      <Name>ServiceHub</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\services\Task\Task.vbproj">
+      <Project>{6e5bca87-358e-4ba5-b279-de17afa52c5c}</Project>
+      <Name>Task</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ux\ControlLibrary\ControlLibrary.vbproj">
+      <Project>{df66aa70-9ab9-48d0-b492-9d0e0482a651}</Project>
+      <Name>ControlLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ux\winux\Microsoft.Windows.FeatureAPI\Microsoft.Windows.FeatureAPI.vbproj">
+      <Project>{3d61f3a9-a8e0-4195-9133-6fd8e4b82d54}</Project>
+      <Name>Microsoft.Windows.FeatureAPI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
