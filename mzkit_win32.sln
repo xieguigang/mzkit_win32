@@ -31,14 +31,14 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ServiceHub", "ServiceHub\Se
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceHub", "ServiceHub", "{9958F5C7-C2D8-4BD7-AEE1-2706118E5F06}"
 	ProjectSection(SolutionItems) = preProject
-		Pipeline\ServiceHub\GCxGC-host.R = Pipeline\ServiceHub\GCxGC-host.R
-		Pipeline\ServiceHub\MSI-host.R = Pipeline\ServiceHub\MSI-host.R
+		rstudio\serviceHub\GCxGC-host.R = rstudio\serviceHub\GCxGC-host.R
+		rstudio\serviceHub\MSI-host.R = rstudio\serviceHub\MSI-host.R
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSImaging", "MSImaging", "{CBAE691F-FC0B-403D-9E47-A545E0E90C29}"
 	ProjectSection(SolutionItems) = preProject
-		Pipeline\MSImaging\singleIon.R = Pipeline\MSImaging\singleIon.R
-		Pipeline\MSImaging\tripleIon.R = Pipeline\MSImaging\tripleIon.R
+		rstudio\pipeline\MSImaging\singleIon.R = rstudio\pipeline\MSImaging\singleIon.R
+		rstudio\pipeline\MSImaging\tripleIon.R = rstudio\pipeline\MSImaging\tripleIon.R
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "framework", "framework", "{36F34509-2202-4F00-9443-A86A06384520}"
