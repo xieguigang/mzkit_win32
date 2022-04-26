@@ -1484,22 +1484,6 @@
       <Project>{274a801c-2250-4474-99ee-0f714588d3f3}</Project>
       <Name>SDF.Extensions.NET5</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BioDeep\BioDeep.vbproj">
-      <Project>{04497d3c-ae08-4df2-be29-e5b572daa5b6}</Project>
-      <Name>BioDeep</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ControlLibrary\ControlLibrary.vbproj">
-      <Project>{df66aa70-9ab9-48d0-b492-9d0e0482a651}</Project>
-      <Name>ControlLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ServiceHub\ServiceHub.vbproj">
-      <Project>{54a151d4-f817-4fcf-aba1-66219b2b638c}</Project>
-      <Name>ServiceHub</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Task\Task.vbproj">
-      <Project>{6e5bca87-358e-4ba5-b279-de17afa52c5c}</Project>
-      <Name>Task</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\RE4As8m.jpg" />
