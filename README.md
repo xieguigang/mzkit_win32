@@ -1,2 +1,5 @@
 # mzkit_win32
-source repository for the mzkit win32 desktop workbench
+
+Mzkit Windows Desktop Application
+
+[View Help Doc](man.pptx)
