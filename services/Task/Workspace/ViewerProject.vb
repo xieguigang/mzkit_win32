@@ -1,65 +1,66 @@
 ﻿#Region "Microsoft.VisualBasic::a3b25ed620aa69f50c53c4c5ec69a626, mzkit\src\mzkit\Task\Workspace\ViewerProject.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 162
-    '    Code Lines: 125
-    ' Comment Lines: 9
-    '   Blank Lines: 28
-    '     File Size: 5.62 KB
+' Summaries:
 
 
-    ' Class ViewerProject
-    ' 
-    '     Properties: Count, FilePath, MimeType, work
-    ' 
-    '     Function: FindRawFile, GetAutomationScripts, GetRawDataFiles, LoadWorkspace, (+2 Overloads) Save
-    '               SaveAs
-    ' 
-    '     Sub: Add
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 162
+'    Code Lines: 125
+' Comment Lines: 9
+'   Blank Lines: 28
+'     File Size: 5.62 KB
+
+
+' Class ViewerProject
+' 
+'     Properties: Count, FilePath, MimeType, work
+' 
+'     Function: FindRawFile, GetAutomationScripts, GetRawDataFiles, LoadWorkspace, (+2 Overloads) Save
+'               SaveAs
+' 
+'     Sub: Add
+' 
+' /********************************************************************************/
 
 #End Region
 
 Imports System.IO
 Imports System.Text
 Imports System.Threading
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.application.json
@@ -68,7 +69,7 @@ Imports Microsoft.VisualBasic.MIME.application.json.Javascript
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
 Imports Microsoft.VisualBasic.Text.Xml.Models
-Imports MZWork
+Imports MZWorkPack
 
 ''' <summary>
 ''' the mzkit workspace file

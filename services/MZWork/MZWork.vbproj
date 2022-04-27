@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>MZWork</RootNamespace>
+    <RootNamespace>MZWorkPack</RootNamespace>
     <TargetFrameworks>net6.0;net5.0;net48</TargetFrameworks>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <AssemblyName>Mzkit_win32.MZWork</AssemblyName>
@@ -15,6 +15,7 @@
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\Math\Math\Math.NET5.vbproj" />
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
     <ProjectReference Include="..\..\..\assembly\assembly\assembly-netcore5.vbproj" />
+    <ProjectReference Include="..\..\..\assembly\mzPackExtensions\mzPackExtensions.NET5.vbproj" />
     <ProjectReference Include="..\..\..\assembly\mzPack\mzpack.NET5.vbproj" />
     <ProjectReference Include="..\..\..\mzmath\ms2_math-core\mzmath-netcore5.vbproj" />
   </ItemGroup>

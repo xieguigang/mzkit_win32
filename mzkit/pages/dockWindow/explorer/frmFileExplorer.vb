@@ -117,7 +117,7 @@ Public Class frmFileExplorer
         End If
     End Function
 
-    Public Function CurrentRawFile() As Raw
+    Public Function CurrentRawFile() As MZWork.Raw
         If treeView1.SelectedNode Is Nothing Then
             Return Nothing
         ElseIf treeView1.SelectedNode.Tag Is Nothing Then
@@ -129,15 +129,15 @@ Public Class frmFileExplorer
         End If
     End Function
 
-    Public Iterator Function GetRawFiles() As IEnumerable(Of Raw)
+    Public Iterator Function GetRawFiles() As IEnumerable(Of MZWork.Raw)
         Dim rawList = treeView1.Nodes.Item(Scan0)
 
         For i As Integer = 0 To rawList.Nodes.Count - 1
-            Yield DirectCast(rawList.Nodes(i).Tag, Raw)
+            Yield DirectCast(rawList.Nodes(i).Tag, MZWork.Raw)
         Next
     End Function
 
-    Public Iterator Function GetSelectedRaws() As IEnumerable(Of Raw)
+    Public Iterator Function GetSelectedRaws() As IEnumerable(Of MZWork.Raw)
         If treeView1.Nodes.Count = 0 Then
             Return
         End If
@@ -151,7 +151,7 @@ Public Class frmFileExplorer
                 End If
             End If
 
-            Dim raw As Raw = rawList.Nodes(i).Tag
+            Dim raw As MZWork.Raw = rawList.Nodes(i).Tag
 
             Yield raw
         Next
@@ -231,7 +231,7 @@ Public Class frmFileExplorer
         End If
     End Sub
 
-    Public Sub addFileNode(newRaw As Raw)
+    Public Sub addFileNode(newRaw As MZWork.Raw)
         Me.Invoke(Sub()
                       Dim file As TreeNode = Globals.RawFileNodeTemplate(newRaw, targetRawMenu:=ctxMenuRawFile)
                       treeView1.Nodes(0).Nodes.Add(file)
@@ -248,7 +248,7 @@ Public Class frmFileExplorer
     ''' </summary>
     ''' <param name="fileName"></param>
     ''' <returns></returns>
-    Public Shared Function getRawCache(fileName As String, Optional titleTemplate$ = "Imports raw data [%s]", Optional cachePath As String = Nothing) As Raw
+    Public Shared Function getRawCache(fileName As String, Optional titleTemplate$ = "Imports raw data [%s]", Optional cachePath As String = Nothing) As MZWork.Raw
         Dim progress As New frmTaskProgress() With {.Text = sprintf(titleTemplate, fileName)}
         Dim showProgress As Action(Of String) = AddressOf progress.ShowProgressDetails
         Dim task As New Task.ImportsRawData(
@@ -273,7 +273,7 @@ Public Class frmFileExplorer
 
     Dim lockFileDelete As Boolean = False
 
-    Public Sub showRawFile(raw As Raw, XIC As Boolean, directSnapshot As Boolean, contour As Boolean)
+    Public Sub showRawFile(raw As MZWork.Raw, XIC As Boolean, directSnapshot As Boolean, contour As Boolean)
         If lockFileDelete Then
             Return
         ElseIf Not raw.cacheFileExists Then
@@ -293,8 +293,8 @@ Public Class frmFileExplorer
             Return
         End If
 
-        If TypeOf treeView1.SelectedNode.Tag Is Raw Then
-            Call showRawFile(DirectCast(treeView1.SelectedNode.Tag, Raw), XIC:=False, directSnapshot:=False, contour:=False)
+        If TypeOf treeView1.SelectedNode.Tag Is MZWork.Raw Then
+            Call showRawFile(DirectCast(treeView1.SelectedNode.Tag, MZWork.Raw), XIC:=False, directSnapshot:=False, contour:=False)
         End If
     End Sub
 
@@ -303,8 +303,8 @@ Public Class frmFileExplorer
             Return
         End If
 
-        If TypeOf treeView1.SelectedNode.Tag Is Raw Then
-            Call showRawFile(DirectCast(treeView1.SelectedNode.Tag, Raw), XIC:=True, directSnapshot:=False, contour:=False)
+        If TypeOf treeView1.SelectedNode.Tag Is MZWork.Raw Then
+            Call showRawFile(DirectCast(treeView1.SelectedNode.Tag, MZWork.Raw), XIC:=True, directSnapshot:=False, contour:=False)
         End If
     End Sub
 
@@ -331,8 +331,8 @@ Public Class frmFileExplorer
         '    treeView1.ContextMenuStrip = ContextMenuStrip2
         'End If
 
-        If TypeOf treeView1.SelectedNode.Tag Is Raw Then
-            Call showRawFile(DirectCast(treeView1.SelectedNode.Tag, Raw), XIC:=False, directSnapshot:=True, contour:=False)
+        If TypeOf treeView1.SelectedNode.Tag Is MZWork.Raw Then
+            Call showRawFile(DirectCast(treeView1.SelectedNode.Tag, MZWork.Raw), XIC:=False, directSnapshot:=True, contour:=False)
 
             '  treeView1.ContextMenuStrip = ContextMenuStrip1
 
@@ -432,7 +432,7 @@ Public Class frmFileExplorer
         End If
 
         For Each node As TreeNode In treeView1.Nodes(0).Nodes
-            If DirectCast(node.Tag, Raw).source.FileName = sourceName Then
+            If DirectCast(node.Tag, MZWork.Raw).source.FileName = sourceName Then
                 Return node
             End If
         Next
@@ -440,7 +440,7 @@ Public Class frmFileExplorer
         Return Nothing
     End Function
 
-    Public Function findRawFileNode(raw As Raw) As TreeNode
+    Public Function findRawFileNode(raw As MZWork.Raw) As TreeNode
         If treeView1.Nodes.Count = 0 Then
             Return Nothing
         End If
@@ -462,8 +462,8 @@ Public Class frmFileExplorer
 
         Dim fileName As String
 
-        If TypeOf node.Tag Is Raw Then
-            fileName = DirectCast(node.Tag, Raw).source.FileName
+        If TypeOf node.Tag Is MZWork.Raw Then
+            fileName = DirectCast(node.Tag, MZWork.Raw).source.FileName
         Else
             fileName = DirectCast(node.Tag, String).FileName
         End If
@@ -482,7 +482,7 @@ Public Class frmFileExplorer
         End If
 
         If opt = DialogResult.Yes Then
-            If TypeOf node.Tag Is Raw Then
+            If TypeOf node.Tag Is MZWork.Raw Then
                 treeView1.Nodes(0).Nodes.Remove(node)
             Else
                 treeView1.Nodes(1).Nodes.Remove(node)
@@ -506,7 +506,7 @@ Public Class frmFileExplorer
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
-        Dim raws As New List(Of Raw)
+        Dim raws As New List(Of MZWork.Raw)
 
         For Each node As TreeNode In treeView1.Nodes(0).Nodes
             raws.Add(node.Tag)
@@ -526,11 +526,11 @@ Public Class frmFileExplorer
     Private Sub OpenViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenViewerToolStripMenuItem.Click
         Dim node = treeView1.SelectedNode
 
-        If node Is Nothing OrElse TypeOf node.Tag IsNot Raw Then
+        If node Is Nothing OrElse TypeOf node.Tag IsNot MZWork.Raw Then
             Return
         End If
 
-        Dim raw As Raw = DirectCast(node.Tag, Raw).LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache))
+        Dim raw As MZWork.Raw = DirectCast(node.Tag, MZWork.Raw).LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache))
         Dim viewer = VisualStudio.ShowDocument(Of frmUntargettedViewer)()
 
         viewer.loadRaw(raw)
@@ -541,8 +541,8 @@ Public Class frmFileExplorer
             Return
         End If
 
-        If TypeOf treeView1.SelectedNode.Tag Is Raw Then
-            Call showRawFile(DirectCast(treeView1.SelectedNode.Tag, Raw), XIC:=False, directSnapshot:=False, contour:=True)
+        If TypeOf treeView1.SelectedNode.Tag Is MZWork.Raw Then
+            Call showRawFile(DirectCast(treeView1.SelectedNode.Tag, MZWork.Raw), XIC:=False, directSnapshot:=False, contour:=True)
         End If
     End Sub
 
@@ -556,7 +556,7 @@ Public Class frmFileExplorer
             If file.ShowDialog = DialogResult.OK Then
                 Call frmTaskProgress.LoadData(
                     streamLoad:=Function(msg)
-                                    Return MZWork.ExportWorkspace(
+                                    Return MZWorkPack.ExportWorkspace(
                                         workspace:=Globals.workspace.work,
                                         save:=file.FileName,
                                         msg:=msg
@@ -579,7 +579,7 @@ Public Class frmFileExplorer
                 Dim sourceFile As String = row("source")
                 Dim node = findRawFileNode(sourceFile)
 
-                Call showRawFile(DirectCast(node.Tag, Raw), XIC:=False, directSnapshot:=True, contour:=False)
+                Call showRawFile(DirectCast(node.Tag, MZWork.Raw), XIC:=False, directSnapshot:=True, contour:=False)
             End Sub
         table.LoadTable(
             Sub(grid)
@@ -600,7 +600,7 @@ Public Class frmFileExplorer
                                     Call Thread.Sleep(500)
 
                                     For Each node As TreeNode In treeView1.Nodes(0).Nodes
-                                        Dim raw As Raw = node.Tag
+                                        Dim raw As MZWork.Raw = node.Tag
                                         Dim load As mzPack = raw _
                                             .LoadMzpack(Sub(title, msg)
                                                             MyApplication.host.showStatusMessage($"{title}: {msg}")
@@ -633,14 +633,14 @@ Public Class frmFileExplorer
     Private Sub ConvertToMzXMLToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConvertToMzXMLToolStripMenuItem.Click
         Dim node = treeView1.SelectedNode
 
-        If node Is Nothing OrElse TypeOf node.Tag IsNot Raw Then
+        If node Is Nothing OrElse TypeOf node.Tag IsNot MZWork.Raw Then
             Return
         Else
             Using save As New SaveFileDialog With {
                 .Filter = "mzXML MsData(*.mzXML)|*.mzXML"
             }
                 If save.ShowDialog = DialogResult.OK Then
-                    Dim raw As Raw = DirectCast(node.Tag, Raw).LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache))
+                    Dim raw As MZWork.Raw = DirectCast(node.Tag, MZWork.Raw).LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache))
                     Dim mzPack As mzPack = raw.GetLoadedMzpack
 
                     Using file As Stream = save.FileName.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False),

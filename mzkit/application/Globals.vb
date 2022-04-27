@@ -62,8 +62,10 @@
 #End Region
 
 Imports System.Runtime.CompilerServices
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.sciexWiffReader
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM.Models
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
@@ -79,7 +81,7 @@ Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math.Distributions.BinBox
 Imports Microsoft.VisualBasic.Text.Xml.Models
-Imports MZWork
+Imports MZWorkPack
 Imports SMRUCC.genomics.Analysis.HTS.GSEA
 Imports SMRUCC.genomics.Assembly.KEGG.WebServices
 Imports Task
@@ -179,7 +181,7 @@ Module Globals
 
     <Extension>
     Public Sub SaveRawFileCache(explorer As TreeView, progress As Action(Of String))
-        Dim files As New List(Of MZWork.Raw)
+        Dim files As New List(Of Raw)
         Dim scripts As New List(Of String)
 
         If explorer.Nodes.Count > 0 Then
@@ -250,7 +252,7 @@ Module Globals
         End If
 
         Dim work As WorkspaceFile = frmTaskProgress.LoadData(
-            streamLoad:=Function(msg) Global.MZWork.ImportWorkspace(mzwork, msg),
+            streamLoad:=Function(msg) MZWorkPack.ImportWorkspace(mzwork, msg),
             info:="Loading MZKit workspace..."
         )
         Dim project As New ViewerProject With {

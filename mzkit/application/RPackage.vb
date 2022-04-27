@@ -1,60 +1,61 @@
 ﻿#Region "Microsoft.VisualBasic::39eae5479aa090eabe637e0474f9db14, mzkit\src\mzkit\mzkit\application\RPackage.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 142
-    '    Code Lines: 106
-    ' Comment Lines: 11
-    '   Blank Lines: 25
-    '     File Size: 6.04 KB
+' Summaries:
 
 
-    '     Class MyApplication
-    ' 
-    '         Constructor: (+1 Overloads) Sub New
-    '         Function: BPC, FilterMz, ListFiles, LoadAllMs2, rawDataFrame
-    '                   TIC, View
-    ' 
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 142
+'    Code Lines: 106
+' Comment Lines: 11
+'   Blank Lines: 25
+'     File Size: 6.04 KB
+
+
+'     Class MyApplication
+' 
+'         Constructor: (+1 Overloads) Sub New
+'         Function: BPC, FilterMz, ListFiles, LoadAllMs2, rawDataFrame
+'                   TIC, View
+' 
+' 
+' /********************************************************************************/
 
 #End Region
 
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Imaging
@@ -74,15 +75,15 @@ Namespace My
     Partial Class MyApplication
 
         Shared Sub New()
-            REnv.Object.Converts.makeDataframe.addHandler(GetType(Raw()), AddressOf rawDataFrame)
+            REnv.Object.Converts.makeDataframe.addHandler(GetType(MZWork.Raw()), AddressOf rawDataFrame)
         End Sub
 
-        Private Shared Function rawDataFrame(raws As Raw(), args As list, env As Environment) As dataframe
+        Private Shared Function rawDataFrame(raws As MZWork.Raw(), args As list, env As Environment) As dataframe
             Dim table As New dataframe With {.columns = New Dictionary(Of String, Array)}
 
-            table.columns(NameOf(Raw.source)) = raws.Select(Function(a) a.source).ToArray
-            table.columns(NameOf(Raw.rtmin)) = raws.Select(Function(a) a.rtmin).ToArray
-            table.columns(NameOf(Raw.rtmax)) = raws.Select(Function(a) a.rtmax).ToArray
+            table.columns(NameOf(MZWork.Raw.source)) = raws.Select(Function(a) a.source).ToArray
+            table.columns(NameOf(MZWork.Raw.rtmin)) = raws.Select(Function(a) a.rtmin).ToArray
+            table.columns(NameOf(MZWork.Raw.rtmax)) = raws.Select(Function(a) a.rtmax).ToArray
             table.columns("numOfScans") = raws.Select(Function(a) a.GetMs1Scans.Count).ToArray
             table.columns("mzPack") = raws.Select(Function(a) a.cache).ToArray
             table.columns("cache_size") = raws.Select(Function(a) StringFormats.Lanudry(a.GetCacheFileSize)).ToArray
@@ -121,7 +122,7 @@ Namespace My
         End Function
 
         <ExportAPI("ms2")>
-        Public Shared Function LoadAllMs2(raw As Raw, Optional env As Environment = Nothing) As ScanMS2()
+        Public Shared Function LoadAllMs2(raw As MZWork.Raw, Optional env As Environment = Nothing) As ScanMS2()
             If Not raw.isLoaded Then
                 Call raw.LoadMzpack(Sub(tag, msg) base.print($"{tag}. {msg}",, env))
             End If
@@ -130,7 +131,7 @@ Namespace My
         End Function
 
         <ExportAPI("TIC")>
-        Public Shared Function TIC(file As Raw) As dataframe
+        Public Shared Function TIC(file As MZWork.Raw) As dataframe
             Dim table As New dataframe With {.columns = New Dictionary(Of String, Array)}
             Dim ms1 = file.GetMs1Scans.OrderBy(Function(a) a.rt).ToArray
 
@@ -141,7 +142,7 @@ Namespace My
         End Function
 
         <ExportAPI("BPC")>
-        Public Shared Function BPC(file As Raw) As dataframe
+        Public Shared Function BPC(file As MZWork.Raw) As dataframe
             Dim table As New dataframe With {.columns = New Dictionary(Of String, Array)}
             Dim ms1 = file.GetMs1Scans.OrderBy(Function(a) a.rt).ToArray
 
@@ -157,8 +158,8 @@ Namespace My
         ''' <returns></returns>
         ''' 
         <ExportAPI("list.raw")>
-        Public Shared Function ListFiles() As Raw()
-            Dim list As New List(Of Raw)
+        Public Shared Function ListFiles() As MZWork.Raw()
+            Dim list As New List(Of MZWork.Raw)
             Dim fileNodes As TreeNode = WindowModules.fileExplorer.treeView1.Nodes(0)
 
             For Each raw As TreeNode In fileNodes.Nodes

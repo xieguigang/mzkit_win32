@@ -1,65 +1,66 @@
 ﻿#Region "Microsoft.VisualBasic::a5e9b66e1d576a5f5d204479c731f2b8, mzkit\src\mzkit\mzkit\pages\toolkit\PageMzkitTools.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 876
-    '    Code Lines: 665
-    ' Comment Lines: 56
-    '   Blank Lines: 155
-    '     File Size: 39.36 KB
+' Summaries:
 
 
-    ' Class PageMzkitTools
-    ' 
-    '     Function: getSelectedIonSpectrums, getXICMatrix, missingCacheFile, rawTIC, relativeInto
-    ' 
-    '     Sub: ClearToolStripMenuItem_Click, CustomTabControl1_TabClosing, DataGridView1_CellContentClick, ExportExactMassSearchTable, (+2 Overloads) MolecularNetworkingTool
-    '          PageMzkitTools_Load, PageMzkitTools_Resize, PictureBox1_DoubleClick, PictureBox1_MouseClick, PlotMatrx
-    '          PlotSpectrum, Ribbon_Load, SaveImageToolStripMenuItem_Click, SaveMatrixToolStripMenuItem_Click, (+2 Overloads) showAlignment
-    '          (+3 Overloads) showMatrix, (+2 Overloads) ShowMatrix, ShowMRMTIC, ShowPage, ShowPlotTweaks
-    '          showScatter, showSpectrum, ShowTabPage, showUVscans, ShowXIC
-    '          (+3 Overloads) TIC
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 876
+'    Code Lines: 665
+' Comment Lines: 56
+'   Blank Lines: 155
+'     File Size: 39.36 KB
+
+
+' Class PageMzkitTools
+' 
+'     Function: getSelectedIonSpectrums, getXICMatrix, missingCacheFile, rawTIC, relativeInto
+' 
+'     Sub: ClearToolStripMenuItem_Click, CustomTabControl1_TabClosing, DataGridView1_CellContentClick, ExportExactMassSearchTable, (+2 Overloads) MolecularNetworkingTool
+'          PageMzkitTools_Load, PageMzkitTools_Resize, PictureBox1_DoubleClick, PictureBox1_MouseClick, PlotMatrx
+'          PlotSpectrum, Ribbon_Load, SaveImageToolStripMenuItem_Click, SaveMatrixToolStripMenuItem_Click, (+2 Overloads) showAlignment
+'          (+3 Overloads) showMatrix, (+2 Overloads) ShowMatrix, ShowMRMTIC, ShowPage, ShowPlotTweaks
+'          showScatter, showSpectrum, ShowTabPage, showUVscans, ShowXIC
+'          (+3 Overloads) TIC
+' 
+' /********************************************************************************/
 
 #End Region
 
 Imports System.Threading
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
@@ -107,12 +108,12 @@ Public Class PageMzkitTools
         _ribbonExportDataContextMenuStrip = New ExportData(ribbon, RibbonItems.cmdContextMap)
     End Sub
 
-    Private Function missingCacheFile(raw As Raw) As DialogResult
+    Private Function missingCacheFile(raw As MZWork.Raw) As DialogResult
         Dim options As DialogResult = MessageBox.Show($"The specific raw data cache is missing, run imports again?{vbCrLf}{raw.source.GetFullPath}", $"[{raw.source.FileName}] Cache Not Found!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning)
         Dim fileExplorer = WindowModules.fileExplorer
 
         If options = DialogResult.OK Then
-            Dim newRaw As Raw = frmFileExplorer.getRawCache(raw.source)
+            Dim newRaw As MZWork.Raw = frmFileExplorer.getRawCache(raw.source)
 
             raw.cache = newRaw.cache
 
@@ -127,7 +128,7 @@ Public Class PageMzkitTools
         MyApplication.host.ShowPage(Me)
     End Sub
 
-    Public Sub showScatter(raw As Raw, XIC As Boolean, directSnapshot As Boolean, contour As Boolean)
+    Public Sub showScatter(raw As MZWork.Raw, XIC As Boolean, directSnapshot As Boolean, contour As Boolean)
         If Not raw.cacheFileExists Then
             MessageBox.Show("Sorry, can not view file data, the cache file is missing...", "Cache Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
@@ -230,7 +231,7 @@ Public Class PageMzkitTools
 
     Dim currentMatrix As [Variant](Of ms2(), ChromatogramTick())
 
-    Friend Sub showSpectrum(scanId As String, raw As Raw)
+    Friend Sub showSpectrum(scanId As String, raw As MZWork.Raw)
         If raw.cacheFileExists Then
             Dim prop As SpectrumProperty = Nothing
             Dim scanData As LibraryMatrix = raw.GetSpectrum(scanId, Globals.Settings.viewer.GetMethod, Sub(src, cache) frmFileExplorer.getRawCache(src,, cache), prop)
@@ -439,7 +440,7 @@ Public Class PageMzkitTools
         ShowTabPage(TabPage5)
     End Sub
 
-    Private Function rawTIC(raw As Raw, isBPC As Boolean) As NamedCollection(Of ChromatogramTick)
+    Private Function rawTIC(raw As MZWork.Raw, isBPC As Boolean) As NamedCollection(Of ChromatogramTick)
         Dim TIC As New NamedCollection(Of ChromatogramTick) With {
             .name = $"{If(isBPC, "BPC", "TIC")} [{raw.source.FileName}]",
             .value = raw.GetMs1Scans _
@@ -459,10 +460,10 @@ Public Class PageMzkitTools
         Return TIC
     End Function
 
-    Public Sub TIC(rawList As IEnumerable(Of Raw), Optional isBPC As Boolean = False)
+    Public Sub TIC(rawList As IEnumerable(Of MZWork.Raw), Optional isBPC As Boolean = False)
         Dim TICList As New List(Of NamedCollection(Of ChromatogramTick))
 
-        For Each raw As Raw In rawList
+        For Each raw As MZWork.Raw In rawList
             TICList.Add(rawTIC(raw, isBPC))
         Next
 
@@ -524,7 +525,7 @@ Public Class PageMzkitTools
     End Sub
 
     Public Sub TIC(isBPC As Boolean)
-        Dim rawList As Raw() = WindowModules.fileExplorer.GetSelectedRaws.ToArray
+        Dim rawList As MZWork.Raw() = WindowModules.fileExplorer.GetSelectedRaws.ToArray
 
         If rawList.Length = 0 Then
             MyApplication.host.showStatusMessage("No file data selected for TIC plot...")
@@ -821,7 +822,7 @@ Public Class PageMzkitTools
         Return MyApplication.host.ribbonItems.CheckBoxXICRelative.BooleanValue
     End Function
 
-    Friend Function getXICMatrix(raw As Raw, scanId As String, ppm As Double, relativeInto As Boolean) As NamedCollection(Of ChromatogramTick)
+    Friend Function getXICMatrix(raw As MZWork.Raw, scanId As String, ppm As Double, relativeInto As Boolean) As NamedCollection(Of ChromatogramTick)
         Dim ms2 As ScanMS2 = raw.FindMs2Scan(scanId)
         Dim name As String = raw.source.FileName
 
