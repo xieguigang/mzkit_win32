@@ -2739,6 +2739,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_9F0CDA2205BF4180A9AEF8B806A976A9"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_A00E68D60E7207D9BB7DD7C7A94CA40A"
         "OwnerKey" = "8:_66577D4C27D1D4993EE7C5C193605C57"
         "MsmSig" = "8:_UNDEFINED"
@@ -5173,8 +5179,8 @@
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:https://dotnet.microsoft.com/download/dotnet-core/[NetCoreVerMajorDotMinor]"
                 "IsNETCore" = "11:TRUE"
-                "Architecture" = "2:0"
-                "Runtime" = "2:0"
+                "Architecture" = "2:2"
+                "Runtime" = "2:2"
                 }
             }
         }
@@ -11270,7 +11276,21 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_7D50F48BDA2443F6BA7E600E675108FD"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_576B5E1F6CC34EBA9BCBAB29617CA3F7"
+            {
+            "Name" = "8:MZKit"
+            "Arguments" = "8:"
+            "Description" = "8:Start bionovogene mzkit"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_D377C6CC121745EBBE4A7D9EBCD045C9"
+            "Folder" = "8:_818F84AEFC9F4041843C3E3A332BA1CB"
+            "WorkingFolder" = "8:_DFC62C483790469DA2EF3F39E6499DDA"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_7B7480746B474618920F3814B9D0E210"
             {
             "Name" = "8:KEGGdraw"
             "Arguments" = "8:"
@@ -11278,7 +11298,35 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:"
+            "Target" = "8:_9F0CDA2205BF4180A9AEF8B806A976A9"
+            "Folder" = "8:_818F84AEFC9F4041843C3E3A332BA1CB"
+            "WorkingFolder" = "8:_DFC62C483790469DA2EF3F39E6499DDA"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_7E1027FF194D41AE9D20A69999170217"
+            {
+            "Name" = "8:MZKit"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_D377C6CC121745EBBE4A7D9EBCD045C9"
+            "Folder" = "8:_097A38B46B4D414495E9C073FDEAF059"
+            "WorkingFolder" = "8:_DFC62C483790469DA2EF3F39E6499DDA"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_96E7035215B94167A90AFF28B4CF6B34"
+            {
+            "Name" = "8:Developer Command Prompt for MZKit"
+            "Arguments" = "8:"
+            "Description" = "8:Command Prompt for run MZKit automation."
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_A94EA997BB25474D991C83C661F0F94C"
             "Folder" = "8:_818F84AEFC9F4041843C3E3A332BA1CB"
             "WorkingFolder" = "8:_DFC62C483790469DA2EF3F39E6499DDA"
             "Icon" = "8:"
@@ -11298,60 +11346,32 @@
             "Icon" = "8:_A8B8229CBDA14E548368809F42BDD363"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C6D803C4DBBB491CBBBAE1E9B109789B"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C3F1A749B3D84F8ABADE9D688E593858"
             {
-            "Name" = "8:Developer Command Prompt for MZKit"
-            "Arguments" = "8:--devtools"
-            "Description" = "8:Command Prompt for run MZKit automation."
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:"
-            "Folder" = "8:_818F84AEFC9F4041843C3E3A332BA1CB"
-            "WorkingFolder" = "8:_DFC62C483790469DA2EF3F39E6499DDA"
-            "Icon" = "8:_C0BD631BC8AB4561B20C204EB389A744"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C9B055A3E7BA416E9FD3368C9EB626AF"
-            {
-            "Name" = "8:User Manual.pptx"
+            "Name" = "8:man.pptx"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:"
+            "Target" = "8:_196BBE1DDACE4FF9B570116FDDB824C6"
             "Folder" = "8:_818F84AEFC9F4041843C3E3A332BA1CB"
             "WorkingFolder" = "8:_DFC62C483790469DA2EF3F39E6499DDA"
-            "Icon" = "8:_EE76CC6F1FA84E1ABB40372E8129583D"
+            "Icon" = "8:"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_CE95529F6CB745F392E1897682F71FBC"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F455FA4DD4C44F078BDDBA0A2179B47D"
             {
-            "Name" = "8:MZKit"
+            "Name" = "8:Reference.rtf"
             "Arguments" = "8:"
-            "Description" = "8:Start bionovogene mzkit"
+            "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:"
+            "Target" = "8:_96495213C1A54D4AAFE07D970EDF559C"
             "Folder" = "8:_818F84AEFC9F4041843C3E3A332BA1CB"
             "WorkingFolder" = "8:_DFC62C483790469DA2EF3F39E6499DDA"
-            "Icon" = "8:_4D2A46BE0F264185A26A6A7FC347EB26"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_D308A7E6D41B49E483BF1F82072FC01E"
-            {
-            "Name" = "8:Mzkit"
-            "Arguments" = "8:"
-            "Description" = "8:Start BioNovoGene Mzkit"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:"
-            "Folder" = "8:_097A38B46B4D414495E9C073FDEAF059"
-            "WorkingFolder" = "8:_DFC62C483790469DA2EF3F39E6499DDA"
-            "Icon" = "8:_4D2A46BE0F264185A26A6A7FC347EB26"
+            "Icon" = "8:"
             "Feature" = "8:"
             }
         }
@@ -11916,6 +11936,34 @@
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:PublishItems"
             "OutputProjectGuid" = "8:{38108F41-95AE-43CD-B429-958A8F1A406D}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_9F0CDA2205BF4180A9AEF8B806A976A9"
+            {
+            "SourcePath" = "8:..\\..\\visualize\\KCF\\KEGGdraw\\obj\\x64\\mzkit_win32\\net6.0\\apphost.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_DFC62C483790469DA2EF3F39E6499DDA"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:PublishItems"
+            "OutputProjectGuid" = "8:{B8650D5C-0E5F-489B-A127-3F5853AA1BF6}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {
