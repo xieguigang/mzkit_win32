@@ -348,3 +348,4 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+setup/Prerequisites/.NET Core 2.2/dotnet-runtime-2.2.6-win-x86.exe
