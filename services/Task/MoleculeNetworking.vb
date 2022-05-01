@@ -149,7 +149,7 @@ Public Module MoleculeNetworking
                 .Centroid(If(msLevel = 1, ms1diff, ms2diff), cutoff) _
                 .ToArray
         }
-        Dim pa As New PeakAnnotation(0.1)
+        Dim pa As New PeakAnnotation(0.05, isotopeFirst:=True)
 
         properties = New SpectrumProperty(scanId, raw.source.FileName, msLevel, attrs)
 
