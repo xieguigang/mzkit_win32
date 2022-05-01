@@ -6521,7 +6521,7 @@
             "SourcePath" = "8:..\\rstudio\\debug.cmd"
             "TargetName" = "8:debug.cmd"
             "Tag" = "8:"
-            "Folder" = "8:_DFC62C483790469DA2EF3F39E6499DDA"
+            "Folder" = "8:_3F77A7EE224041919130F0DBBA36A4C4"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -8412,7 +8412,7 @@
             "SourcePath" = "8:REnv.zip"
             "TargetName" = "8:REnv.zip"
             "Tag" = "8:"
-            "Folder" = "8:_C92ED253EBA545BC91633662D220EBC4"
+            "Folder" = "8:_BF8E5C5D10884509A3C269D9136D94A2"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -8884,7 +8884,7 @@
             "SourcePath" = "8:..\\rstudio\\banner_prompt.cmd"
             "TargetName" = "8:banner_prompt.cmd"
             "Tag" = "8:"
-            "Folder" = "8:_C92ED253EBA545BC91633662D220EBC4"
+            "Folder" = "8:_573E983279BA48808B5AF395ACBA0EA9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -9006,7 +9006,7 @@
             "SourcePath" = "8:MSImaging.zip"
             "TargetName" = "8:MSImaging.zip"
             "Tag" = "8:"
-            "Folder" = "8:_C92ED253EBA545BC91633662D220EBC4"
+            "Folder" = "8:_BF8E5C5D10884509A3C269D9136D94A2"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -9467,7 +9467,7 @@
             "SourcePath" = "8:mzkit.zip"
             "TargetName" = "8:mzkit.zip"
             "Tag" = "8:"
-            "Folder" = "8:_C92ED253EBA545BC91633662D220EBC4"
+            "Folder" = "8:_BF8E5C5D10884509A3C269D9136D94A2"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -10123,7 +10123,7 @@
             "SourcePath" = "8:ggplot.zip"
             "TargetName" = "8:ggplot.zip"
             "Tag" = "8:"
-            "Folder" = "8:_C92ED253EBA545BC91633662D220EBC4"
+            "Folder" = "8:_BF8E5C5D10884509A3C269D9136D94A2"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -10862,6 +10862,7 @@
             "IconIndex" = "3:0"
                 "Command"
                 {
+                "Command" = "8:_D377C6CC121745EBBE4A7D9EBCD045C9"
                 }
                 "Verbs"
                 {
@@ -10884,6 +10885,7 @@
             "IconIndex" = "3:0"
                 "Command"
                 {
+                "Command" = "8:_D377C6CC121745EBBE4A7D9EBCD045C9"
                 }
                 "Verbs"
                 {
@@ -11101,6 +11103,17 @@
                             "Condition" = "8:"
                             "Transitive" = "11:FALSE"
                             "Property" = "8:_26D3CDE81F2F43F188F4924E1CB81C34"
+                                "Folders"
+                                {
+                                }
+                            }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_BF8E5C5D10884509A3C269D9136D94A2"
+                            {
+                            "Name" = "8:Library"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_75B594D6C8ED4D0584254A7C699D0157"
                                 "Folders"
                                 {
                                 }
