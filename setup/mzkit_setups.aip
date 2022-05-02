@@ -66,10 +66,10 @@
     <ROW Directory="demo_Dir" Directory_Parent="APPDIR" DefaultDir="demo"/>
     <ROW Directory="documents_Dir" Directory_Parent="APPDIR" DefaultDir="DOCUME~1|documents"/>
     <ROW Directory="enUS_Dir" Directory_Parent="APPDIR" DefaultDir="en-US"/>
+    <ROW Directory="host_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="host"/>
     <ROW Directory="lib_6_Dir" Directory_Parent="unix_3_Dir" DefaultDir="lib"/>
     <ROW Directory="lib_7_Dir" Directory_Parent="win_3_Dir" DefaultDir="lib"/>
     <ROW Directory="library_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="library"/>
-    <ROW Directory="packages_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="packages"/>
     <ROW Directory="pipeline_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="pipeline"/>
     <ROW Directory="runtimes_3_Dir" Directory_Parent="bin_Dir" DefaultDir="runtimes"/>
     <ROW Directory="services_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="services"/>
@@ -80,19 +80,26 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="APPDIR" ComponentId="{69AA9FFE-67B1-456B-88EB-97D3D6C92AA7}" Directory_="APPDIR" Attributes="0"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.dll" ComponentId="{7703A1F3-D323-4C49-B302-B4C97B203A97}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.dll"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.dll_1" ComponentId="{92FB8640-32ED-41B1-9936-572F0A52E59B}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.d_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" ComponentId="{07CB1027-774E-42C2-A9E6-AAD59DE23921}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Plots.dll.config" Type="0"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.dll" ComponentId="{6429FDFD-3074-4FB1-A75B-3C700F8DA1B7}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.dll"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.dll_1" ComponentId="{D22DE678-E3D0-4483-AE6C-36B073B5F4FB}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.dll_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll" ComponentId="{48C0319C-3FD8-45F3-812F-9E25E8305B82}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.dll" ComponentId="{1DBB01B2-92A0-4EDB-B2B5-2CB7D778F01B}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.dll"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.dll_1" ComponentId="{66CE1E38-FE39-473C-AD21-28467D8BA2B3}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.dll_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.Extensions.dll" ComponentId="{5FCED42C-1DAF-489B-A5C5-4D73CF075D0E}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.Extensions.dl"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.Extensions.dll_1" ComponentId="{5768A473-EA2F-4F22-93A9-F2824EE3D55E}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.Extensions._1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.dll" ComponentId="{2C547063-A6AE-4A17-B213-EDA9281D2493}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.dll"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.dll_1" ComponentId="{7CE4AA99-4E96-43DF-8F4E-9124B619B359}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.dll_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.sciexWiffReader.dll" ComponentId="{F3CB4EBF-187F-4416-B4AD-DFC16B24D3D8}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.sciexWiffReader.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.dll" ComponentId="{B16621DE-0FEB-434B-968B-1DFD7C114CE0}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions.dll" ComponentId="{0D4C376C-5A09-415D-BEFE-B0EA19BA4411}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.Insilicon.dll" ComponentId="{DB51ADD5-4229-4CD9-AB97-3C9C7E986228}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.Insilicon.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.TargetedMetabolomics.dll" ComponentId="{4267F9F4-CE5B-4C2B-BCC1-E613CE849AE1}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.TargetedMetabolomics.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.dll" ComponentId="{24645E0D-2CF4-444A-8145-FEA462CDED12}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.dll"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.dll_1" ComponentId="{6F6AA3F0-274B-4DC8-B0CE-11FFD71894FB}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.dll_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.MsImaging.dll" ComponentId="{0DBC7051-6C22-436B-A5E1-554E16916C9B}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.MsImaging.dll"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.MsImaging.dll_1" ComponentId="{05B71849-FBDA-4F34-89F3-FD93D550D64F}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.MsImaging.dll_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Plots.dll" ComponentId="{45CDB707-0323-419D-A4B4-311F83E69C60}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Plots.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.RInterop.dll" ComponentId="{CA864AA4-B147-40E9-B248-ACC382756F5A}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.RInterop.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.dll" ComponentId="{2DC234EA-612E-4F17-A888-CFF852876ADF}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.dll"/>
@@ -136,26 +143,33 @@
     <ROW Component="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.dll_1" ComponentId="{54A08183-335A-419E-98D9-2E2C5A3B5FB5}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio._1"/>
     <ROW Component="Microsoft.VisualBasic.Data.BinaryData.dll" ComponentId="{25A480C0-3670-4750-A4BC-37FBB67D8404}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.BinaryData.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.BinaryData.dll_1" ComponentId="{4D775934-B9E6-4E9A-8E42-ECD113FA22EC}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.BinaryData.dll_1"/>
+    <ROW Component="Microsoft.VisualBasic.Data.BinaryData.dll_2" ComponentId="{A5FC1E1F-72B8-43BC-A479-21CD024D6BAE}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.BinaryData.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Data.Bootstrapping.Fittings.dll" ComponentId="{7DAE9D67-0782-4FB4-B999-C571AA74EA5F}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.Bootstrapping.Fittings.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.Bootstrapping.Fittings.dll_1" ComponentId="{AAC964A7-B1B7-4F9B-907E-477390C7C27D}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.Bootstrapping.Fittings.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Data.ChartPlots.Statistics.dll" ComponentId="{1DC9C55C-69AF-4105-98A9-2C1E2D2F0D9A}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.ChartPlots.Statistics.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.ChartPlots.Statistics.dll_1" ComponentId="{CCB2FEE9-FDE2-4FC9-AF5E-A4797ED8FB9F}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.ChartPlots.Statistics.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Data.ChartPlots.dll" ComponentId="{CCB83B14-58DA-4E1D-B4C2-1117393F5659}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.ChartPlots.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.ChartPlots.dll_1" ComponentId="{FD2B3F99-CCA9-4EA1-931C-965648FF5468}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.ChartPlots.dll_1"/>
+    <ROW Component="Microsoft.VisualBasic.Data.ChartPlots.dll_2" ComponentId="{997D439B-99F8-4557-9FC9-76C95D2D969C}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.ChartPlots.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Data.Framework.Extensions.dll" ComponentId="{902B3E26-6B07-42B0-82A6-278B4BCAB2AB}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.Framework.Extensions.dll"/>
+    <ROW Component="Microsoft.VisualBasic.Data.Framework.Extensions.dll_1" ComponentId="{6C440535-0563-44D3-8045-ED2CC9CD5C51}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.Framework.Extensions.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Data.Framework.dll" ComponentId="{03F87D61-08A8-4AE4-9D71-3B5771B3EDBE}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.Framework.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.Framework.dll_1" ComponentId="{9031EFF9-F117-4BA8-9B9C-83F6B6E4CCB5}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.Framework.dll_1"/>
+    <ROW Component="Microsoft.VisualBasic.Data.Framework.dll_2" ComponentId="{BF5250C0-A5AB-41E7-896C-1F2023B1F980}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.Framework.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Data.GraphQuery.dll" ComponentId="{45AF98D6-EB19-4082-9D0D-2381FBC604FB}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.GraphQuery.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.GraphQuery.dll_1" ComponentId="{C4A640A1-A92D-4B41-BD5B-7819E2ECC1BF}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.GraphQuery.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Data.GraphTheory.dll" ComponentId="{973A8FD6-7C85-42BE-AE8D-84AF9DEEE683}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.GraphTheory.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.GraphTheory.dll_1" ComponentId="{1734042F-59EB-4BFE-9EFF-B5DF77F11598}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.GraphTheory.dll_1"/>
+    <ROW Component="Microsoft.VisualBasic.Data.GraphTheory.dll_2" ComponentId="{CC5518BA-E33B-4D7B-8475-D37A68DB5138}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.GraphTheory.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Data.IO.MessagePack.dll" ComponentId="{0E2F72D4-567F-4100-A535-16173B02E3F5}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.IO.MessagePack.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.IO.MessagePack.dll_1" ComponentId="{B14DE2DC-072C-492C-A894-C5F401D82828}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.IO.MessagePack.dll_1"/>
+    <ROW Component="Microsoft.VisualBasic.Data.IO.MessagePack.dll_2" ComponentId="{896925F1-60F3-45FF-85EC-47896B86B612}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.IO.MessagePack.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Data.NLP.dll" ComponentId="{D5904542-9C07-4837-81AF-5F2324776F8C}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.NLP.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.Signal.IO.dll" ComponentId="{90F1C6D0-B289-47AD-AED8-DC6DDA631833}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.Signal.IO.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.Signal.IO.dll_1" ComponentId="{D76C3101-BF98-4444-A852-35E8FA7FC366}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.Signal.IO.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Data.Storage.dll" ComponentId="{4FC1ED14-BE83-4939-BC77-BA3BAF99E29E}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.Storage.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.Storage.dll_1" ComponentId="{44279858-9CC9-4B47-809B-C99FE5DE4D04}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.Storage.dll_1"/>
+    <ROW Component="Microsoft.VisualBasic.Data.Storage.dll_2" ComponentId="{ACDEE83C-ABC7-4D95-897C-43CB8E48835D}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.Storage.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Data.TrinityNLP.dll" ComponentId="{01372156-081B-4CD1-9B80-E82C9CFD3014}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.TrinityNLP.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.TrinityNLP.dll_1" ComponentId="{94E7B3F3-B0D3-43D3-B2E6-DBED91883D34}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.TrinityNLP.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Data.Wave.dll" ComponentId="{F8C3C5A3-C53A-494C-AE6C-698D0C0DCEDB}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.Wave.dll"/>
@@ -164,6 +178,7 @@
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.dll" ComponentId="{5FD2FD28-441D-49B4-9111-9F15ADE66E1E}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.dll_1" ComponentId="{579FF2AA-A5C4-4589-B9D9-0F9BD94B3E6F}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.dll" ComponentId="{5A84BB00-4530-4F45-936D-05282C6821CB}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.dll"/>
+    <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.dll_1" ComponentId="{4230EEFC-0ECE-4781-8C5A-BDE1459330E9}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.dll" ComponentId="{28464EFD-D16F-4BC3-B189-28C75B2EF45A}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.dll_1" ComponentId="{1797EAEB-0412-4C73-9180-99D7FC7A36CD}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Data.visualize.dll" ComponentId="{6EBC48E4-FC80-49DE-8829-28BA8AB7E9F6}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.visualize.dll"/>
@@ -171,9 +186,12 @@
     <ROW Component="Microsoft.VisualBasic.DataMining.BinaryTreeClustering.dll" ComponentId="{03F99A32-9567-4E43-8454-012301919AA3}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.BinaryTreeClustering.dll"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.BinaryTreeClustering.dll_1" ComponentId="{A04A3C98-1020-4C40-94CB-FE32A164D5E9}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.BinaryTreeClustering.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.DensityQuery.dll" ComponentId="{65841676-199E-450C-844D-07C22AB4E56C}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.DensityQuery.dll"/>
+    <ROW Component="Microsoft.VisualBasic.DataMining.DensityQuery.dll_1" ComponentId="{B92C3A4D-C4A4-4694-8CA2-E23864461A80}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.DensityQuery.dll_1"/>
+    <ROW Component="Microsoft.VisualBasic.DataMining.DensityQuery.dll_2" ComponentId="{E7A6A572-96B5-4C2D-A84D-F7835ACF8C02}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.DensityQuery.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.DynamicProgramming.dll" ComponentId="{20B0E66E-172C-4ECE-B7DD-CF312B8262A7}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.DynamicProgramming.dll"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.Framework.dll" ComponentId="{D72C5F8D-D9A7-4608-8574-36C12637D8CC}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.Framework.dll"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.Framework.dll_1" ComponentId="{C698F124-2A58-4287-AF3C-8FB146A8ADBC}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.Framework.dll_1"/>
+    <ROW Component="Microsoft.VisualBasic.DataMining.Framework.dll_2" ComponentId="{57A56BE6-2CCE-44D8-8093-6C6E61B6C90E}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.Framework.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.HiddenMarkovChain.dll" ComponentId="{0AC0701F-3125-405A-809D-859BA80394B1}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.HiddenMarkovChain.dll"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.HiddenMarkovChain.dll_1" ComponentId="{AFFBE121-ADC9-49E5-A84B-2760E5D38322}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.HiddenMarkovChain.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.HierarchicalClustering.dll" ComponentId="{F4BF156B-5A45-4F7F-9258-B5530C36E099}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.HierarchicalClustering.dll"/>
@@ -182,17 +200,23 @@
     <ROW Component="Microsoft.VisualBasic.DataMining.UMAP.dll_1" ComponentId="{2065705E-722C-4C3C-ABA6-41CBABB2D30F}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.UMAP.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.AVIMedia.dll" ComponentId="{0638C001-D7E7-4D76-8389-B7386E4A6687}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.AVIMedia.dll"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.PDF.dll" ComponentId="{3732B8B7-3607-4294-B63F-37373D15C622}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.PDF.dll"/>
+    <ROW Component="Microsoft.VisualBasic.Imaging.PDF.dll_1" ComponentId="{56AF92AC-986C-4CDB-84DB-F34A618A8E47}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.PDF.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.Physics.dll" ComponentId="{CD885ACD-1834-4CD8-B88E-D8EA98CD767C}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.Physics.dll"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.Physics.dll_1" ComponentId="{17BD0F62-AE6A-478E-8DBB-3632052F45BE}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.Physics.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.dll" ComponentId="{C4C77E41-682E-40B2-83FD-FEAF77AE0818}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.dll"/>
+    <ROW Component="Microsoft.VisualBasic.Imaging.dll_1" ComponentId="{495B5CF2-E123-4F73-BA62-B73F934866F7}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.dll_3" ComponentId="{12927EA3-E7BC-4D0B-B8DD-ADC4ADBB65C3}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.MIME.Html.dll" ComponentId="{C415DBB5-9F5C-429C-B53C-E92814DA6BF8}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.Html.dll"/>
+    <ROW Component="Microsoft.VisualBasic.MIME.Html.dll_1" ComponentId="{AA29E623-D964-4F33-A2A3-462BD8BCAC64}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.Html.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.MIME.Html.dll_3" ComponentId="{2E27DDF9-0526-49AB-80E9-8BA0F9787B05}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.Html.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.MIME.Office.Excel.dll" ComponentId="{E373A276-1ED2-430B-93A9-7B63C0951F32}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.Office.Excel.dll"/>
+    <ROW Component="Microsoft.VisualBasic.MIME.Office.Excel.dll_1" ComponentId="{D0FF264A-690B-4BCA-BE55-93E5D6A6D66B}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.Office.Excel.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.MIME.application.json.dll" ComponentId="{7C1E59DA-B410-4A9A-ABFE-A5BACA390AA9}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.json.dll"/>
     <ROW Component="Microsoft.VisualBasic.MIME.application.json.dll_1" ComponentId="{F8D44323-F4C5-4583-9CAC-47EE07B12323}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.json.dll_1"/>
+    <ROW Component="Microsoft.VisualBasic.MIME.application.json.dll_2" ComponentId="{C86476E6-E4A1-4F49-8CA8-2538F11CF43F}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.json.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.MIME.application.json.dll_4" ComponentId="{A0EA727E-83C3-4554-B87D-A1126B8BEF0B}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.json.dll_4"/>
     <ROW Component="Microsoft.VisualBasic.MIME.application.pdf.dll" ComponentId="{F8CE3C86-EC24-4A09-AD2F-D17FF27E7F3B}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.pdf.dll"/>
+    <ROW Component="Microsoft.VisualBasic.MIME.application.pdf.dll_1" ComponentId="{B6EF37DA-312F-454A-8F02-F5BF9E5B57B9}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.pdf.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.MIME.application.rdf_xml.dll" ComponentId="{2F0483A1-0CA3-4D47-A38D-F4C1D5FFBC7C}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.rdf_xml.dll"/>
     <ROW Component="Microsoft.VisualBasic.MIME.application.xml.dll" ComponentId="{56009D9E-1A6D-4AC5-ACFE-7DE572200F45}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.xml.dll"/>
     <ROW Component="Microsoft.VisualBasic.MIME.application.xml.dll_1" ComponentId="{5837E451-D2A8-40B4-AC09-D4ECEDFBACF2}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.xml.dll_1"/>
@@ -209,10 +233,13 @@
     <ROW Component="Microsoft.VisualBasic.MachineLearning.tSNE.dll" ComponentId="{E8BB8C74-B8D2-47DB-83D1-A90387B5A455}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.tSNE.dll"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.tSNE.dll_1" ComponentId="{1295C3D6-BC99-4A4B-A99D-1B181545002C}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.tSNE.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Math.Core.dll" ComponentId="{8F4A41DC-5D08-4BC4-BC06-2B2762B1E407}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Core.dll"/>
+    <ROW Component="Microsoft.VisualBasic.Math.Core.dll.config" ComponentId="{74299998-0189-4606-AD58-80B8747CDA1E}" Directory_="host_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Core.dll.config_1" Type="0"/>
+    <ROW Component="Microsoft.VisualBasic.Math.Core.dll_1" ComponentId="{E0BC1739-7B78-4D47-8B01-9384F25F7277}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Core.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Math.Core.dll_3" ComponentId="{5D14E30C-29DB-4A90-BAE3-8AC7991643A7}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Core.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.Math.DataFrame.dll" ComponentId="{38D1FAA6-CCD7-44F2-BE53-96806E0BBC27}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.DataFrame.dll"/>
     <ROW Component="Microsoft.VisualBasic.Math.DataFrame.dll_1" ComponentId="{93984DEE-FBCB-402B-AE6D-A6FDDD5AD652}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.DataFrame.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Math.Lambda.dll" ComponentId="{C04A3C96-73DE-4FB1-8F9C-1D5FA4278133}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Lambda.dll"/>
+    <ROW Component="Microsoft.VisualBasic.Math.Lambda.dll_1" ComponentId="{58585A86-84E4-4CDD-8BFF-7373910BCD2F}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Lambda.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.dll" ComponentId="{C1743B21-4A9C-4103-84B1-C8567243FC5C}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.dll"/>
     <ROW Component="Microsoft.VisualBasic.Math.ODEsSolver.dll" ComponentId="{C939EC15-B2C6-4A1D-B75C-50CA5765D902}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.ODEsSolver.dll"/>
     <ROW Component="Microsoft.VisualBasic.Math.ODEsSolver.dll_1" ComponentId="{86123D40-9E34-4197-9A40-1889E61AFA28}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.ODEsSolver.dll_1"/>
@@ -220,12 +247,15 @@
     <ROW Component="Microsoft.VisualBasic.Math.Randomizer.dll_1" ComponentId="{23AA77AF-C443-4C0E-9BA2-A4127F45B3F8}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Randomizer.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Math.SignalProcessing.dll" ComponentId="{ACD71010-50F1-4D61-A48F-AB92130BBE90}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.SignalProcessing.dll"/>
     <ROW Component="Microsoft.VisualBasic.Math.SignalProcessing.dll_1" ComponentId="{E1A868E7-DDD1-4966-B417-A2634005B6A5}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.SignalProcessing.dll_1"/>
+    <ROW Component="Microsoft.VisualBasic.Math.SignalProcessing.dll_2" ComponentId="{EF7FE512-4560-464C-A119-2F23BE86861A}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.SignalProcessing.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Math.Statistics.dll" ComponentId="{E264D8B4-FB6D-41E0-9BA5-FA8574BF8494}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Statistics.dll"/>
     <ROW Component="Microsoft.VisualBasic.Math.Statistics.dll_1" ComponentId="{3FF02F97-58A6-4A41-BA4C-6C7940EB3DB7}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Statistics.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Network.dll" ComponentId="{E7B6290F-FE7E-4D32-B00A-CFAE2FCF202B}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Network.dll"/>
     <ROW Component="Microsoft.VisualBasic.Network.dll_1" ComponentId="{2699EF41-F593-48FD-ACAD-37243E328CA6}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Network.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Network.dll_2" ComponentId="{1DB8E563-227E-4FA3-9A0D-9AA3E5589EBB}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Network.dll_2"/>
+    <ROW Component="Microsoft.VisualBasic.Network.dll_3" ComponentId="{5FF5726C-B283-4264-B5C4-03C0BC3708A1}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Network.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.dll" ComponentId="{967988B9-4DBB-4B4D-8AA8-A207F7C4D216}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll"/>
+    <ROW Component="Microsoft.VisualBasic.Runtime.dll_1" ComponentId="{B845645A-0FDE-45EB-844E-8C19C80BC12F}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.dll_3" ComponentId="{88CA8E66-2ACA-4476-AB60-1866194965C4}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.dll_4" ComponentId="{EEA1A22B-17CA-44DF-869E-49A98B8D7B96}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll_4"/>
     <ROW Component="Microsoft.VisualBasic.Windows.Forms.Console.dll" ComponentId="{66BFAC4E-7321-4D6E-A0DA-E80383C39C90}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Windows.Forms.Console.dll"/>
@@ -250,9 +280,11 @@
     <ROW Component="RData.dll_1" ComponentId="{44F1C35F-4436-447A-9E7A-54556EAA97C4}" Directory_="library_Dir" Attributes="256" KeyPath="RData.dll_1"/>
     <ROW Component="RDev.dll" ComponentId="{0D3D6DBF-651C-415A-BB48-352F23971A0D}" Directory_="APPDIR" Attributes="256" KeyPath="RDev.dll"/>
     <ROW Component="README.txt" ComponentId="{BC3C52BC-377D-4729-81AC-BA35EA59E7D5}" Directory_="APPDIR" Attributes="0" KeyPath="README.txt"/>
+    <ROW Component="REnv.dll" ComponentId="{680F61AC-8E8E-4ECB-842B-89136EAD0FF8}" Directory_="host_Dir" Attributes="256" KeyPath="REnv.dll"/>
     <ROW Component="REnv.dll_2" ComponentId="{8712527C-15DB-4642-878E-7DAF58663A01}" Directory_="library_Dir" Attributes="256" KeyPath="REnv.dll_2"/>
     <ROW Component="REnv.dll_3" ComponentId="{8AC4F6C4-2F77-4EF4-AC4F-BE56A26592DB}" Directory_="APPDIR" Attributes="256" KeyPath="REnv.dll_3"/>
     <ROW Component="REnv.dll_6" ComponentId="{0A6B97C1-64A8-4591-BBC7-A9C5D61245A7}" Directory_="bin_Dir" Attributes="256" KeyPath="REnv.dll_6"/>
+    <ROW Component="Rlapack.dll" ComponentId="{A63B02DA-E242-411A-A3E2-A7D860F42219}" Directory_="library_Dir" Attributes="256" KeyPath="Rlapack.dll"/>
     <ROW Component="Rscript.dll_3" ComponentId="{D0CCC07B-2407-4099-B543-F74EA74FFDEE}" Directory_="bin_Dir" Attributes="256" KeyPath="Rscript.dll_3"/>
     <ROW Component="Rscript.exe_5" ComponentId="{DD17189D-DC4C-4648-A10C-95064554E915}" Directory_="bin_Dir" Attributes="256" KeyPath="Rscript.exe_5"/>
     <ROW Component="Rserve.dll_1" ComponentId="{7EF98A11-0187-4874-8CC5-4383F445CB7C}" Directory_="bin_Dir" Attributes="256" KeyPath="Rserve.dll_1"/>
@@ -277,6 +309,7 @@
     <ROW Component="Sciex.FMan.dll" ComponentId="{CD8A1B9F-6A37-44EB-A37A-5D14849A9239}" Directory_="APPDIR" Attributes="0" KeyPath="Sciex.FMan.dll"/>
     <ROW Component="Sciex.Wiff.dll" ComponentId="{DD9300C2-7541-4107-BF9C-B03A310A1B3C}" Directory_="APPDIR" Attributes="0" KeyPath="Sciex.Wiff.dll"/>
     <ROW Component="ServiceHub.dll" ComponentId="{4369CD89-DD64-442D-A5B3-F0B82F6220EE}" Directory_="APPDIR" Attributes="256" KeyPath="ServiceHub.dll"/>
+    <ROW Component="ServiceHub.dll_1" ComponentId="{FF86F3AD-AB71-4FE2-95DF-A0B8B1EB1D2E}" Directory_="host_Dir" Attributes="256" KeyPath="ServiceHub.dll_1"/>
     <ROW Component="System.Buffers.dll_2" ComponentId="{7DB96DCA-7F1F-429B-B422-3FE24EAF0BE1}" Directory_="APPDIR" Attributes="0" KeyPath="System.Buffers.dll_2"/>
     <ROW Component="System.Composition.AttributedModel.dll_5" ComponentId="{70C3BA0B-E511-44E3-A094-E6F26D78DE66}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Composition.AttributedModel.dll_5"/>
     <ROW Component="System.Composition.AttributedModel.dll_6" ComponentId="{A661471E-2BF3-4B39-B488-F308BBFD4364}" Directory_="APPDIR" Attributes="0" KeyPath="System.Composition.AttributedModel.dll_6"/>
@@ -307,14 +340,16 @@
     <ROW Component="_Ex2_Orbitrap_CID.mzXML" ComponentId="{C52A99A4-9792-40B5-92C9-AF7714D8C19F}" Directory_="demo_Dir" Attributes="0" KeyPath="_Ex2_Orbitrap_CID.mzXML" Type="0"/>
     <ROW Component="banner_prompt.cmd" ComponentId="{538AFC26-B951-4603-B790-907AFED31DE5}" Directory_="bin_Dir" Attributes="0" KeyPath="banner_prompt.cmd"/>
     <ROW Component="base.1.0.0.nupkg" ComponentId="{82F8B08C-9A52-4FAE-9CDC-D2224EEF9671}" Directory_="library_Dir" Attributes="0" KeyPath="devkit.deps.json" Type="0"/>
+    <ROW Component="base.dll" ComponentId="{C1121744-3456-42C7-B265-6C0BAA8D950A}" Directory_="library_Dir" Attributes="256" KeyPath="base.dll"/>
     <ROW Component="biosample_quantification.nmrML" ComponentId="{6797762F-26CA-4D41-A12D-70B4679D666D}" Directory_="NMR_Dir" Attributes="0" KeyPath="biosample_quantification.nmrML" Type="0"/>
     <ROW Component="buildMSIIndex.R" ComponentId="{4CAB334A-A78A-445B-A09F-95533697E87E}" Directory_="pipeline_Dir" Attributes="0" KeyPath="buildMSIIndex.R" Type="0"/>
     <ROW Component="demo" ComponentId="{3814EF2E-1AF4-4908-916A-83B955835615}" Directory_="demo_Dir" Attributes="0"/>
     <ROW Component="devkit.dll" ComponentId="{33F7866A-7A44-4002-BE00-65345E428526}" Directory_="library_Dir" Attributes="256" KeyPath="devkit.dll"/>
+    <ROW Component="graphics.dll" ComponentId="{C18F0491-2D49-47F2-8A90-20FA11F25AD9}" Directory_="library_Dir" Attributes="256" KeyPath="graphics.dll"/>
+    <ROW Component="igraph.dll" ComponentId="{E5430D99-0D74-4969-BC24-2BF66F9FFBDF}" Directory_="library_Dir" Attributes="256" KeyPath="igraph.dll"/>
     <ROW Component="lib" ComponentId="{CC789FE2-1780-4E69-A8C1-0D220C091610}" Directory_="lib_6_Dir" Attributes="0"/>
     <ROW Component="lib_1" ComponentId="{322BBF93-CA5A-48EB-942B-E895BA64CDC5}" Directory_="lib_7_Dir" Attributes="0"/>
     <ROW Component="man.pptx" ComponentId="{C4ACBC7D-8438-41D9-AD59-9CA86D4EBA4B}" Directory_="documents_Dir" Attributes="0" KeyPath="man.pptx" Type="0"/>
-    <ROW Component="mzkit.zip" ComponentId="{6A43D986-D216-4195-B69A-EC675535C818}" Directory_="packages_Dir" Attributes="0" KeyPath="mzkit.zip" Type="0"/>
     <ROW Component="mzkit_win32.exe_1" ComponentId="{D1A9B7C2-509C-425B-AD9E-9C44DC837AD7}" Directory_="APPDIR" Attributes="256" KeyPath="mzkit_win32.exe_1"/>
     <ROW Component="mzkit_win32.resources.dll" ComponentId="{07088A7D-4893-4253-9A2A-E6C0AF73195D}" Directory_="enUS_Dir" Attributes="256" KeyPath="mzkit_win32.resources.dll"/>
     <ROW Component="mzkit_win32.resources.dll_1" ComponentId="{BF42566E-B837-4E29-845D-D598E82099BE}" Directory_="zhCN_Dir" Attributes="256" KeyPath="mzkit_win32.resources.dll_1"/>
@@ -500,7 +535,6 @@
     <ROW File="Sciex.FMan.dll" Component_="Sciex.FMan.dll" FileName="SCIEXF~1.DLL|Sciex.FMan.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Sciex.FMan.dll" SelfReg="false"/>
     <ROW File="Sciex.Wiff.dll" Component_="Sciex.Wiff.dll" FileName="SCIEXW~1.DLL|Sciex.Wiff.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Sciex.Wiff.dll" SelfReg="false"/>
     <ROW File="ServiceHub.dll" Component_="ServiceHub.dll" FileName="SERVIC~1.DLL|ServiceHub.dll" Attributes="0" SourcePath="..\..\..\dist\bin\ServiceHub.dll" SelfReg="false"/>
-    <ROW File="ServiceHub.dll.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="SERVIC~1.CON|ServiceHub.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\ServiceHub.dll.config" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.dll" Component_="SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.dll" FileName="SMRUCC~1.DLL|SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.dll" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.dll" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.Annotation.dll" Component_="SMRUCC.genomics.Annotation.dll" FileName="SMRUCC~2.DLL|SMRUCC.genomics.Annotation.dll" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Annotation.dll" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.Core.dll" Component_="SMRUCC.genomics.Core.dll" FileName="SMRUCC~3.DLL|SMRUCC.genomics.Core.dll" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Core.dll" SelfReg="false"/>
@@ -641,12 +675,52 @@
     <ROW File="snowFall.dll" Component_="snowFall.dll" FileName="snowFall.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\snowFall.dll" SelfReg="false"/>
     <ROW File="webKit.deps.json" Component_="base.1.0.0.nupkg" FileName="WEBKIT~1.JSO|webKit.deps.json" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\webKit.deps.json" SelfReg="false"/>
     <ROW File="webKit.dll" Component_="webKit.dll" FileName="webKit.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\webKit.dll" SelfReg="false"/>
-    <ROW File="mzkit.zip" Component_="mzkit.zip" FileName="mzkit.zip" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\packages\mzkit.zip" SelfReg="false"/>
-    <ROW File="MSImaging.zip" Component_="mzkit.zip" FileName="MSIMAG~1.ZIP|MSImaging.zip" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\packages\MSImaging.zip" SelfReg="false"/>
-    <ROW File="REnv.zip" Component_="mzkit.zip" FileName="REnv.zip" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\packages\REnv.zip" SelfReg="false"/>
-    <ROW File="GCModeller.zip" Component_="mzkit.zip" FileName="GCMODE~1.ZIP|GCModeller.zip" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\packages\GCModeller.zip" SelfReg="false"/>
-    <ROW File="ggplot.zip" Component_="mzkit.zip" FileName="ggplot.zip" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\packages\ggplot.zip" SelfReg="false"/>
-    <ROW File="markdown2pdf.zip" Component_="mzkit.zip" FileName="MARKDO~1.ZIP|markdown2pdf.zip" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\packages\markdown2pdf.zip" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.d_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.dll_1" FileName="BIONOV~1.DLL|BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.dll_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.dll_1" FileName="BIONOV~2.DLL|BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Assembly.dll_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.dll_1" FileName="BIONOV~3.DLL|BioNovoGene.Analytical.MassSpectrometry.Assembly.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.Assembly.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.dll_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.dll_1" FileName="BIONOV~4.DLL|BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.Extensions._1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.Extensions.dll_1" FileName="BIONOV~5.DLL|BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.Extensions.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.Extensions.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Math.dll_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Math.dll_1" FileName="BIONOV~6.DLL|BioNovoGene.Analytical.MassSpectrometry.Math.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.Math.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.MsImaging.dll_1" Component_="BioNovoGene.Analytical.MassSpectrometry.MsImaging.dll_1" FileName="BIONOV~7.DLL|BioNovoGene.Analytical.MassSpectrometry.MsImaging.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.MsImaging.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Data.BinaryData.dll_2" Component_="Microsoft.VisualBasic.Data.BinaryData.dll_2" FileName="MICROS~1.DLL|Microsoft.VisualBasic.Data.BinaryData.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Data.BinaryData.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Data.ChartPlots.dll_2" Component_="Microsoft.VisualBasic.Data.ChartPlots.dll_2" FileName="MICROS~2.DLL|Microsoft.VisualBasic.Data.ChartPlots.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Data.ChartPlots.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Data.Framework.dll_2" Component_="Microsoft.VisualBasic.Data.Framework.dll_2" FileName="MICROS~3.DLL|Microsoft.VisualBasic.Data.Framework.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Data.Framework.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Data.GraphTheory.dll_2" Component_="Microsoft.VisualBasic.Data.GraphTheory.dll_2" FileName="MICROS~4.DLL|Microsoft.VisualBasic.Data.GraphTheory.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Data.GraphTheory.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Data.IO.MessagePack.dll_2" Component_="Microsoft.VisualBasic.Data.IO.MessagePack.dll_2" FileName="MICROS~5.DLL|Microsoft.VisualBasic.Data.IO.MessagePack.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Data.IO.MessagePack.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Data.Storage.dll_2" Component_="Microsoft.VisualBasic.Data.Storage.dll_2" FileName="MICROS~6.DLL|Microsoft.VisualBasic.Data.Storage.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Data.Storage.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataMining.DensityQuery.dll_1" Component_="Microsoft.VisualBasic.DataMining.DensityQuery.dll_1" FileName="MICROS~7.DLL|Microsoft.VisualBasic.DataMining.DensityQuery.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.DataMining.DensityQuery.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataMining.Framework.dll_2" Component_="Microsoft.VisualBasic.DataMining.Framework.dll_2" FileName="MICROS~8.DLL|Microsoft.VisualBasic.DataMining.Framework.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.DataMining.Framework.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Imaging.dll_1" Component_="Microsoft.VisualBasic.Imaging.dll_1" FileName="MICROS~9.DLL|Microsoft.VisualBasic.Imaging.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Imaging.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Math.Core.dll_1" Component_="Microsoft.VisualBasic.Math.Core.dll_1" FileName="MICRO~10.DLL|Microsoft.VisualBasic.Math.Core.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Math.Core.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Math.Core.dll.config_1" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICROS~1.CON|Microsoft.VisualBasic.Math.Core.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Math.Core.dll.config" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Math.SignalProcessing.dll_2" Component_="Microsoft.VisualBasic.Math.SignalProcessing.dll_2" FileName="MICRO~11.DLL|Microsoft.VisualBasic.Math.SignalProcessing.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Math.SignalProcessing.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.MIME.application.json.dll_2" Component_="Microsoft.VisualBasic.MIME.application.json.dll_2" FileName="MICRO~12.DLL|Microsoft.VisualBasic.MIME.application.json.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.MIME.application.json.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.MIME.Html.dll_1" Component_="Microsoft.VisualBasic.MIME.Html.dll_1" FileName="MICRO~13.DLL|Microsoft.VisualBasic.MIME.Html.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.MIME.Html.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Network.dll_3" Component_="Microsoft.VisualBasic.Network.dll_3" FileName="MICRO~14.DLL|Microsoft.VisualBasic.Network.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Network.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Runtime.dll_1" Component_="Microsoft.VisualBasic.Runtime.dll_1" FileName="MICRO~15.DLL|Microsoft.VisualBasic.Runtime.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Runtime.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Runtime.dll.config_1" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICROS~2.CON|Microsoft.VisualBasic.Runtime.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Runtime.dll.config" SelfReg="false"/>
+    <ROW File="REnv.dll" Component_="REnv.dll" FileName="REnv.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\REnv.dll" SelfReg="false"/>
+    <ROW File="REnv.dll.config" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="RENVDL~1.CON|REnv.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\REnv.dll.config" SelfReg="false"/>
+    <ROW File="ServiceHub.deps.json" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="SERVIC~1.JSO|ServiceHub.deps.json" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ServiceHub.deps.json" SelfReg="false"/>
+    <ROW File="ServiceHub.dll_1" Component_="ServiceHub.dll_1" FileName="SERVIC~1.DLL|ServiceHub.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ServiceHub.dll" SelfReg="false"/>
+    <ROW File="base.deps.json" Component_="base.1.0.0.nupkg" FileName="BASEDE~1.JSO|base.deps.json" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\base.deps.json" SelfReg="false"/>
+    <ROW File="base.dll" Component_="base.dll" FileName="base.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\base.dll" SelfReg="false"/>
+    <ROW File="base.xml" Component_="base.1.0.0.nupkg" FileName="base.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\base.xml" SelfReg="false"/>
+    <ROW File="graphics.deps.json" Component_="base.1.0.0.nupkg" FileName="GRAPHI~1.JSO|graphics.deps.json" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\graphics.deps.json" SelfReg="false"/>
+    <ROW File="graphics.dll" Component_="graphics.dll" FileName="graphics.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\graphics.dll" SelfReg="false"/>
+    <ROW File="graphics.xml" Component_="base.1.0.0.nupkg" FileName="graphics.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\graphics.xml" SelfReg="false"/>
+    <ROW File="igraph.deps.json" Component_="base.1.0.0.nupkg" FileName="IGRAPH~1.JSO|igraph.deps.json" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\igraph.deps.json" SelfReg="false"/>
+    <ROW File="igraph.dll" Component_="igraph.dll" FileName="igraph.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\igraph.dll" SelfReg="false"/>
+    <ROW File="igraph.xml" Component_="base.1.0.0.nupkg" FileName="igraph.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\igraph.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Data.Framework.Extensions.dll_1" Component_="Microsoft.VisualBasic.Data.Framework.Extensions.dll_1" FileName="MICRO~41.DLL|Microsoft.VisualBasic.Data.Framework.Extensions.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Data.Framework.Extensions.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.dll_1" Component_="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.dll_1" FileName="MICRO~42.DLL|Microsoft.VisualBasic.Data.visualize.Network.Visualizer.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Data.visualize.Network.Visualizer.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataMining.DensityQuery.dll_2" Component_="Microsoft.VisualBasic.DataMining.DensityQuery.dll_2" FileName="MICRO~43.DLL|Microsoft.VisualBasic.DataMining.DensityQuery.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.DataMining.DensityQuery.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Imaging.PDF.dll_1" Component_="Microsoft.VisualBasic.Imaging.PDF.dll_1" FileName="MICRO~44.DLL|Microsoft.VisualBasic.Imaging.PDF.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Imaging.PDF.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Math.Lambda.dll_1" Component_="Microsoft.VisualBasic.Math.Lambda.dll_1" FileName="MICRO~45.DLL|Microsoft.VisualBasic.Math.Lambda.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Math.Lambda.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.MIME.application.pdf.dll_1" Component_="Microsoft.VisualBasic.MIME.application.pdf.dll_1" FileName="MICRO~46.DLL|Microsoft.VisualBasic.MIME.application.pdf.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.MIME.application.pdf.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.MIME.Office.Excel.dll_1" Component_="Microsoft.VisualBasic.MIME.Office.Excel.dll_1" FileName="MICRO~47.DLL|Microsoft.VisualBasic.MIME.Office.Excel.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.MIME.Office.Excel.dll" SelfReg="false"/>
+    <ROW File="Rlapack.deps.json" Component_="base.1.0.0.nupkg" FileName="RLAPAC~1.JSO|Rlapack.deps.json" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Rlapack.deps.json" SelfReg="false"/>
+    <ROW File="Rlapack.dll" Component_="Rlapack.dll" FileName="Rlapack.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Rlapack.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -1011,7 +1085,42 @@
     <ROW Feature_="MainFeature" Component_="SMRUCC.Language.CodeDom.dll"/>
     <ROW Feature_="MainFeature" Component_="snowFall.dll"/>
     <ROW Feature_="MainFeature" Component_="webKit.dll"/>
-    <ROW Feature_="MainFeature" Component_="mzkit.zip"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.Extensions.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.Math.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.MsImaging.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.BinaryData.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.ChartPlots.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.Framework.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.GraphTheory.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.IO.MessagePack.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.Storage.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataMining.DensityQuery.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataMining.Framework.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Imaging.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Core.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Core.dll.config"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.SignalProcessing.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MIME.application.json.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MIME.Html.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Network.dll_3"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Runtime.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="REnv.dll"/>
+    <ROW Feature_="MainFeature" Component_="ServiceHub.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="base.dll"/>
+    <ROW Feature_="MainFeature" Component_="graphics.dll"/>
+    <ROW Feature_="MainFeature" Component_="igraph.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.Framework.Extensions.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataMining.DensityQuery.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Imaging.PDF.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Lambda.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MIME.application.pdf.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MIME.Office.Excel.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Rlapack.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
