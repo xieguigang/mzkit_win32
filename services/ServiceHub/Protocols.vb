@@ -70,7 +70,7 @@ Public Module Protocols
         hostDll = $"{App.HOME}/Rstudio/host/ServiceHub.dll".GetFullPath
     End Sub
 
-    Private Function getArgumentString(debugPort As Integer?, heartbeats As Integer?) As String
+    Private Function getArgumentString(Rscript As String, debugPort As Integer?, heartbeats As Integer?) As String
         Dim args As New List(Of String)
 
         Call args.Add(Rscript.CLIPath)
@@ -87,11 +87,12 @@ Public Module Protocols
         Return args.JoinBy(" ")
     End Function
 
-    Public Function StartServer(ByRef service As Integer,
+    Public Function StartServer(Rscript As String,
+                                ByRef service As Integer,
                                 debugPort As Integer?,
                                 Optional heartbeats As Integer? = Nothing) As RunSlavePipeline
 
-        Dim cli As String = getArgumentString(debugPort, heartbeats)
+        Dim cli As String = getArgumentString(Rscript, debugPort, heartbeats)
         Dim pipeline As New RunSlavePipeline(Protocols.Rscript, cli)
         Dim tcpPort As Integer = -1
 
