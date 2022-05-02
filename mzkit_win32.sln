@@ -35071,8 +35071,8 @@ Global
 		{59127BCB-E898-4712-B51D-D967B10249C8}.mzkit_win32|Any CPU.Build.0 = Debug|Any CPU
 		{59127BCB-E898-4712-B51D-D967B10249C8}.mzkit_win32|ARM32.ActiveCfg = Debug|Any CPU
 		{59127BCB-E898-4712-B51D-D967B10249C8}.mzkit_win32|ARM32.Build.0 = Debug|Any CPU
-		{59127BCB-E898-4712-B51D-D967B10249C8}.mzkit_win32|x64.ActiveCfg = Debug|Any CPU
-		{59127BCB-E898-4712-B51D-D967B10249C8}.mzkit_win32|x64.Build.0 = Debug|Any CPU
+		{59127BCB-E898-4712-B51D-D967B10249C8}.mzkit_win32|x64.ActiveCfg = mzkit_win32|x64
+		{59127BCB-E898-4712-B51D-D967B10249C8}.mzkit_win32|x64.Build.0 = mzkit_win32|x64
 		{59127BCB-E898-4712-B51D-D967B10249C8}.mzkit_win32|x86.ActiveCfg = Debug|Any CPU
 		{59127BCB-E898-4712-B51D-D967B10249C8}.mzkit_win32|x86.Build.0 = Debug|Any CPU
 		{59127BCB-E898-4712-B51D-D967B10249C8}.mzkit|Any CPU.ActiveCfg = Debug|Any CPU
@@ -35375,6 +35375,7 @@ Global
 		..\..\..\GCModeller\src\runtime\sciBASIC#\www\Microsoft.VisualBasic.NETProtocol\TcpRequest\TcpRequest.projitems*{2cd05f2c-b62f-4859-844d-e2968d05b4ea}*SharedItemsImports = 4
 		..\..\..\GCModeller\src\R-sharp\Library\shares\R_graphic.interop\R_graphic.interop.projitems*{38108f41-95ae-43cd-b429-958a8f1a406d}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\R-sharp\Library\shares\R_graphic.interop\R_graphic.interop.projitems*{3d2bd8e4-57b1-409e-bc91-64f5ff8b1b6b}*SharedItemsImports = 5
+		..\..\Rscript\Library\mzkit.interopArguments\mzkit.interopArguments.projitems*{59127bcb-e898-4712-b51d-d967b10249c8}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\R-sharp\studio\Rstudio.common\Rstudio.common.projitems*{6faa9b4f-1a84-457a-9487-353fce469203}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\R-sharp\Library\shares\R_graphic.interop\R_graphic.interop.projitems*{7564935f-2822-4393-b4d0-42cdb2398bf4}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\R-sharp\Library\shares\JsonHelper\JsonHelper.projitems*{7825ed5b-ca14-49d0-a20a-7fb76c8cbbdd}*SharedItemsImports = 5
