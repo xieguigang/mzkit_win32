@@ -1,54 +1,54 @@
 ﻿#Region "Microsoft.VisualBasic::de663b645e54024d1f24dec77deaad1e, mzkit\src\mzkit\ServiceHub\Protocols.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 39
-    '    Code Lines: 31
-    ' Comment Lines: 0
-    '   Blank Lines: 8
-    '     File Size: 1.23 KB
+' Summaries:
 
 
-    ' Module Protocols
-    ' 
-    '     Function: StartServer
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 39
+'    Code Lines: 31
+' Comment Lines: 0
+'   Blank Lines: 8
+'     File Size: 1.23 KB
+
+
+' Module Protocols
+' 
+'     Function: StartServer
+' 
+' /********************************************************************************/
 
 #End Region
 
@@ -63,13 +63,35 @@ Public Module Protocols
     ''' the exe app path of the Rscript host
     ''' </summary>
     ReadOnly Rscript As String
+    ReadOnly hostDll As String
 
     Sub New()
         Rscript = $"{App.HOME}/Rstudio/bin/Rscript.exe".GetFullPath
+        hostDll = $"{App.HOME}/Rstudio/host/ServiceHub.dll".GetFullPath
     End Sub
 
-    Public Function StartServer(Rscript As String, ByRef service As Integer, debugPort As Integer?, Optional heartbeats As Integer? = Nothing) As RunSlavePipeline
-        Dim cli As String = If(debugPort Is Nothing, Rscript.CLIPath, $"{Rscript.CLIPath} --debug={debugPort}") ' --heartbeats={heartbeats}
+    Private Function getArgumentString(debugPort As Integer?, heartbeats As Integer?) As String
+        Dim args As New List(Of String)
+
+        Call args.Add(Rscript.CLIPath)
+        Call args.Add($"--attach {hostDll.CLIPath}")
+
+        If Not debugPort Is Nothing AndAlso debugPort > 0 Then
+            Call args.Add($"--debug={debugPort}")
+        End If
+
+        If Not heartbeats Is Nothing AndAlso heartbeats > 0 Then
+            ' Call args.Add($"--heartbeats={heartbeats}")
+        End If
+
+        Return args.JoinBy(" ")
+    End Function
+
+    Public Function StartServer(ByRef service As Integer,
+                                debugPort As Integer?,
+                                Optional heartbeats As Integer? = Nothing) As RunSlavePipeline
+
+        Dim cli As String = getArgumentString(debugPort, heartbeats)
         Dim pipeline As New RunSlavePipeline(Protocols.Rscript, cli)
         Dim tcpPort As Integer = -1
 
