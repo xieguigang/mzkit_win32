@@ -69,8 +69,6 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.ComponentModel
-Imports Microsoft.VisualBasic.Data.IO.MessagePack
-Imports Microsoft.VisualBasic.Data.IO.MessagePack.Serialization
 Imports Microsoft.VisualBasic.Data.IO.netCDF
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
@@ -80,7 +78,6 @@ Imports Microsoft.VisualBasic.Net.Protocols.Reflection
 Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic.Serialization.JSON
-Imports Task
 
 <Protocol(GetType(ServiceProtocol))>
 Public Class MSI : Implements ITaskDriver, IDisposable
@@ -130,7 +127,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             End Using
         End If
 
-        info = MsImageProperty.GetMSIInfo(MSI)
+        info = MSIProtocols.GetMSIInfo(MSI)
 
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
     End Function
@@ -150,7 +147,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             .ToArray
 
         MSI = New Drawer(allPixels.CreatePixelReader)
-        info = MsImageProperty.GetMSIInfo(MSI)
+        info = MSIProtocols.GetMSIInfo(MSI)
 
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
     End Function

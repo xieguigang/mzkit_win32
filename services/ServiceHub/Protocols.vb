@@ -56,13 +56,21 @@ Imports System.Threading
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.Linq
-Imports Task
 
 Public Module Protocols
 
+    ''' <summary>
+    ''' the exe app path of the Rscript host
+    ''' </summary>
+    ReadOnly Rscript As String
+
+    Sub New()
+        Rscript = $"{App.HOME}/Rstudio/bin/Rscript.exe".GetFullPath
+    End Sub
+
     Public Function StartServer(Rscript As String, ByRef service As Integer, debugPort As Integer?, Optional heartbeats As Integer? = Nothing) As RunSlavePipeline
         Dim cli As String = If(debugPort Is Nothing, Rscript.CLIPath, $"{Rscript.CLIPath} --debug={debugPort}") ' --heartbeats={heartbeats}
-        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Rscript.Path, cli)
+        Dim pipeline As New RunSlavePipeline(Protocols.Rscript, cli)
         Dim tcpPort As Integer = -1
 
         Call pipeline.CommandLine.__DEBUG_ECHO

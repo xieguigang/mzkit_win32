@@ -261,10 +261,6 @@
       <Project>{2ca6510f-eeed-406c-a14b-a675e093b327}</Project>
       <Name>MsImaging.NET5</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Task\Task.vbproj">
-      <Project>{6E5BCA87-358E-4BA5-B279-DE17AFA52C5C}</Project>
-      <Name>Task</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="..\..\..\..\Rscript\Library\mzkit.interopArguments\mzkit.interopArguments.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

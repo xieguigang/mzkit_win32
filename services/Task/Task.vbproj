@@ -366,6 +366,10 @@
       <Project>{0a48789b-a35c-49ba-8224-c604ad14f044}</Project>
       <Name>MZWork</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ServiceHub\ServiceHub.vbproj">
+      <Project>{54a151d4-f817-4fcf-aba1-66219b2b638c}</Project>
+      <Name>ServiceHub</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
