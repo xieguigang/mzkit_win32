@@ -31,10 +31,10 @@
     <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
     <ROW Property="PIDTemplate" Value="&lt;###-###-###&gt;"/>
-    <ROW Property="ProductCode" Value="1033:{D1C690E4-1AE2-4FE0-9180-001D517834C2} 2052:{D1C690E4-1AE2-4FE0-9180-001D517834C2} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{62022BE2-F3D1-4B78-A400-D354C0F2C272} 2052:{62022BE2-F3D1-4B78-A400-D354C0F2C272} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="mzkit_win32"/>
-    <ROW Property="ProductVersion" Value="3.2.156.997" Type="32"/>
+    <ROW Property="ProductVersion" Value="3.2.256.998" Type="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{B645400B-3918-41EF-9009-7ADDD81C84B4}"/>
