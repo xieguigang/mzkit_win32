@@ -71,6 +71,7 @@
     <ROW Directory="lib_6_Dir" Directory_Parent="unix_3_Dir" DefaultDir="lib"/>
     <ROW Directory="lib_7_Dir" Directory_Parent="win_3_Dir" DefaultDir="lib"/>
     <ROW Directory="library_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="library"/>
+    <ROW Directory="packages_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="packages"/>
     <ROW Directory="pipeline_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="pipeline"/>
     <ROW Directory="runtimes_3_Dir" Directory_Parent="bin_Dir" DefaultDir="runtimes"/>
     <ROW Directory="services_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="services"/>
@@ -315,6 +316,7 @@
     <ROW Component="lib" ComponentId="{CC789FE2-1780-4E69-A8C1-0D220C091610}" Directory_="lib_6_Dir" Attributes="0"/>
     <ROW Component="lib_1" ComponentId="{322BBF93-CA5A-48EB-942B-E895BA64CDC5}" Directory_="lib_7_Dir" Attributes="0"/>
     <ROW Component="man.pptx" ComponentId="{C4ACBC7D-8438-41D9-AD59-9CA86D4EBA4B}" Directory_="documents_Dir" Attributes="0" KeyPath="man.pptx" Type="0"/>
+    <ROW Component="mzkit.zip" ComponentId="{6A43D986-D216-4195-B69A-EC675535C818}" Directory_="packages_Dir" Attributes="0" KeyPath="mzkit.zip" Type="0"/>
     <ROW Component="mzkit_win32.exe_1" ComponentId="{D1A9B7C2-509C-425B-AD9E-9C44DC837AD7}" Directory_="APPDIR" Attributes="256" KeyPath="mzkit_win32.exe_1"/>
     <ROW Component="mzkit_win32.resources.dll" ComponentId="{07088A7D-4893-4253-9A2A-E6C0AF73195D}" Directory_="enUS_Dir" Attributes="256" KeyPath="mzkit_win32.resources.dll"/>
     <ROW Component="mzkit_win32.resources.dll_1" ComponentId="{BF42566E-B837-4E29-845D-D598E82099BE}" Directory_="zhCN_Dir" Attributes="256" KeyPath="mzkit_win32.resources.dll_1"/>
@@ -641,6 +643,12 @@
     <ROW File="snowFall.dll" Component_="snowFall.dll" FileName="snowFall.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\snowFall.dll" SelfReg="false"/>
     <ROW File="webKit.deps.json" Component_="base.1.0.0.nupkg" FileName="WEBKIT~1.JSO|webKit.deps.json" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\webKit.deps.json" SelfReg="false"/>
     <ROW File="webKit.dll" Component_="webKit.dll" FileName="webKit.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\webKit.dll" SelfReg="false"/>
+    <ROW File="mzkit.zip" Component_="mzkit.zip" FileName="mzkit.zip" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\packages\mzkit.zip" SelfReg="false"/>
+    <ROW File="MSImaging.zip" Component_="mzkit.zip" FileName="MSIMAG~1.ZIP|MSImaging.zip" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\packages\MSImaging.zip" SelfReg="false"/>
+    <ROW File="REnv.zip" Component_="mzkit.zip" FileName="REnv.zip" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\packages\REnv.zip" SelfReg="false"/>
+    <ROW File="GCModeller.zip" Component_="mzkit.zip" FileName="GCMODE~1.ZIP|GCModeller.zip" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\packages\GCModeller.zip" SelfReg="false"/>
+    <ROW File="ggplot.zip" Component_="mzkit.zip" FileName="ggplot.zip" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\packages\ggplot.zip" SelfReg="false"/>
+    <ROW File="markdown2pdf.zip" Component_="mzkit.zip" FileName="MARKDO~1.ZIP|markdown2pdf.zip" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\packages\markdown2pdf.zip" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -1010,6 +1018,7 @@
     <ROW Feature_="MainFeature" Component_="SMRUCC.Language.CodeDom.dll"/>
     <ROW Feature_="MainFeature" Component_="snowFall.dll"/>
     <ROW Feature_="MainFeature" Component_="webKit.dll"/>
+    <ROW Feature_="MainFeature" Component_="mzkit.zip"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
