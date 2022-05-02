@@ -367,7 +367,7 @@
       <Name>MZWork</Name>
     </ProjectReference>
     <ProjectReference Include="..\ServiceHub\ServiceHub.vbproj">
-      <Project>{54a151d4-f817-4fcf-aba1-66219b2b638c}</Project>
+      <Project>{59127bcb-e898-4712-b51d-d967b10249c8}</Project>
       <Name>ServiceHub</Name>
     </ProjectReference>
   </ItemGroup>
