@@ -350,9 +350,10 @@ Type 'q()' to quit R.
 
             Try
                 Call host.SaveSettings()
-                Call WindowModules.fileExplorer.SaveFileCache(Sub()
-                                                                  ' do nothing
-                                                              End Sub)
+                Call WindowModules.fileExplorer.SaveFileCache(
+                    Sub()
+                        ' do nothing
+                    End Sub)
             Catch ex As Exception
 
             End Try
