@@ -124,17 +124,13 @@ Public Module KEGGRepo
     End Function
 
     Private Function getMZKitPackage() As String
-        Dim filepath As String = $"{App.HOME}/Rstudio/mzkit.zip"
+        Dim filepath As String = $"{App.HOME}/Rstudio/packages/mzkit.zip"
 
         If Not filepath.FileExists Then
-            filepath = $"{App.HOME}/../../src\mzkit\setup/mzkit.zip"
-
-            If Not filepath.FileExists Then
-                Throw New FileNotFoundException(filepath)
-            End If
+            Throw New FileNotFoundException(filepath)
+        Else
+            Return filepath
         End If
-
-        Return filepath
     End Function
 
     Public Function RequestChebi() As MetaboliteAnnotation()
