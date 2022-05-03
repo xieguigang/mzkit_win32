@@ -111,8 +111,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConvertToMzPack.vb" />
-    <Compile Include="MSImagingRowBinds.vb" />
+    <Compile Include="Commands\ConvertToMzPack.vb" />
+    <Compile Include="Commands\MSImagingRowBinds.vb" />
     <Compile Include="Program.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
