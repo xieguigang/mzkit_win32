@@ -92,6 +92,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -110,6 +111,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConvertToMzPack.vb" />
     <Compile Include="MSImagingRowBinds.vb" />
     <Compile Include="Program.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -192,6 +194,18 @@
     <ProjectReference Include="..\..\mzmath\ms2_math-core\mzmath-netcore5.vbproj">
       <Project>{ab5fd86e-6da9-4f7c-8dce-17da85bc895d}</Project>
       <Name>mzmath-netcore5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\visualize\MsImaging\MsImaging.NET5.vbproj">
+      <Project>{2ca6510f-eeed-406c-a14b-a675e093b327}</Project>
+      <Name>MsImaging.NET5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\visualize\plot\MsPlot.NET5.vbproj">
+      <Project>{a27dc075-07ac-4d90-b1d5-0966925b5309}</Project>
+      <Name>MsPlot.NET5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\services\Task\Task.vbproj">
+      <Project>{6e5bca87-358e-4ba5-b279-de17afa52c5c}</Project>
+      <Name>Task</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
