@@ -12,8 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pipeline", "Pipeline", "{D0
 		rstudio\pipeline\ms1_contour.R = rstudio\pipeline\ms1_contour.R
 		rstudio\pipeline\MSI_bpcIons.R = rstudio\pipeline\MSI_bpcIons.R
 		rstudio\pipeline\MSI_peaktable.R = rstudio\pipeline\MSI_peaktable.R
-		rstudio\pipeline\MSI_rbind.R = rstudio\pipeline\MSI_rbind.R
-		rstudio\pipeline\mzpack.R = rstudio\pipeline\mzpack.R
 		rstudio\pipeline\phenograph.R = rstudio\pipeline\phenograph.R
 	EndProjectSection
 EndProject
