@@ -110,6 +110,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MSImagingRowBinds.vb" />
     <Compile Include="Program.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -148,6 +149,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data\BinaryData\BinaryData\binarydata-netcore5.vbproj">
+      <Project>{9efd79a7-b385-4d67-9d23-8940453e5d03}</Project>
+      <Name>binarydata-netcore5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\Math\Math\Math.NET5.vbproj">
       <Project>{eb3dd1ee-71a4-4d85-b494-ef075ad99098}</Project>
       <Name>Math.NET5</Name>
@@ -163,6 +168,10 @@
     <ProjectReference Include="..\..\assembly\BrukerDataReader\BrukerDataReader.NET5.vbproj">
       <Project>{eb682d7d-072f-4228-9aec-ae66e0440887}</Project>
       <Name>BrukerDataReader.NET5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\assembly\Comprehensive\Comprehensive.NET5.vbproj">
+      <Project>{5f23ce55-e4b2-4931-94db-1085ee7175c1}</Project>
+      <Name>Comprehensive.NET5</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\assembly\mzPackExtensions\mzPackExtensions.NET5.vbproj">
       <Project>{25c58b60-eff4-48a7-a48c-6bca408806f7}</Project>
