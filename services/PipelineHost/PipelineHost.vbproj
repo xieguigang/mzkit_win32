@@ -73,6 +73,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\R-sharp\R#\Rsharp-netcore5.vbproj" />
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
+    <ProjectReference Include="..\BioDeep\BioDeep.vbproj" />
   </ItemGroup>
 
 </Project>

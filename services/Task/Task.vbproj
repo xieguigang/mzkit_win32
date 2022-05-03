@@ -358,7 +358,7 @@
       <Name>MsPlot.NET5</Name>
     </ProjectReference>
     <ProjectReference Include="..\BioDeep\BioDeep.vbproj">
-      <Project>{04497d3c-ae08-4df2-be29-e5b572daa5b6}</Project>
+      <Project>{dcfa3211-c43b-40c3-a183-2d3d83b096e1}</Project>
       <Name>BioDeep</Name>
     </ProjectReference>
     <ProjectReference Include="..\MZWork\MZWork.vbproj">
