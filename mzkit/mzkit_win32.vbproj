@@ -1505,6 +1505,10 @@
       <Project>{0a48789b-a35c-49ba-8224-c604ad14f044}</Project>
       <Name>MZWork</Name>
     </ProjectReference>
+    <ProjectReference Include="..\services\PipelineHost\PipelineHost.vbproj">
+      <Project>{d2b96f8b-4538-497e-b10a-2325df053575}</Project>
+      <Name>PipelineHost</Name>
+    </ProjectReference>
     <ProjectReference Include="..\services\ServiceHub\ServiceHub.vbproj">
       <Project>{59127bcb-e898-4712-b51d-d967b10249c8}</Project>
       <Name>ServiceHub</Name>

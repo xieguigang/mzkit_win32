@@ -71,7 +71,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\GCModeller\core\Bio.Assembly\biocore-netcore5.vbproj" />
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\R-sharp\R#\Rsharp-netcore5.vbproj" />
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\repository\Bio.Repository\repository.NET5.vbproj" />
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data\DataFrame\dataframework-netcore5.vbproj" />
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Graph\graph-netcore5.vbproj" />
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\Math\Math\Math.NET5.vbproj" />
@@ -82,6 +84,7 @@
     <ProjectReference Include="..\..\..\assembly\assembly\assembly-netcore5.vbproj" />
     <ProjectReference Include="..\..\..\assembly\mzPackExtensions\mzPackExtensions.NET5.vbproj" />
     <ProjectReference Include="..\..\..\assembly\mzPack\mzpack.NET5.vbproj" />
+    <ProjectReference Include="..\..\..\metadb\Massbank\massbank.NET5.vbproj" />
     <ProjectReference Include="..\..\..\metadna\metaDNA\metaDNA.NET5.vbproj" />
     <ProjectReference Include="..\..\..\mzmath\ms2_math-core\mzmath-netcore5.vbproj" />
     <ProjectReference Include="..\..\..\visualize\MsImaging\MsImaging.NET5.vbproj" />

@@ -85,6 +85,7 @@ Imports MZWorkPack
 Imports SMRUCC.genomics.Analysis.HTS.GSEA
 Imports SMRUCC.genomics.Assembly.KEGG.WebServices
 Imports Task
+Imports PipelineHost
 Imports WeifenLuo.WinFormsUI.Docking
 Imports stdNum = System.Math
 

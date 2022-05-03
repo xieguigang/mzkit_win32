@@ -164,7 +164,6 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BioDeep\KEGGRepo.vb" />
     <Compile Include="IonLibrary.vb" />
     <Compile Include="GCMSQuantifyIon.vb" />
     <Compile Include="MetaDNASearch.vb" />

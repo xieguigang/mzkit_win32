@@ -67,7 +67,7 @@ Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports SMRUCC.genomics.Assembly.KEGG.WebServices
 Imports SMRUCC.genomics.Data.KEGG.Metabolism
 
-Module KEGGRepo
+Public Module KEGGRepo
 
     <Extension>
     Private Function unzip(file As Stream) As Stream

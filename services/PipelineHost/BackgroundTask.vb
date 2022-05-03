@@ -1,17 +1,8 @@
 ﻿Imports System.Drawing
 Imports System.IO
-Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
-Imports Microsoft.VisualBasic.CommandLine.Reflection
-Imports Microsoft.VisualBasic.Scripting.MetaData
-Imports System.Drawing
-Imports System.IO
 Imports System.Runtime.CompilerServices
-Imports System.Threading
 Imports BioDeep
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
-Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging
-Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
-Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
@@ -32,7 +23,6 @@ Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.My.FrameworkInternal
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Serialization.JSON
-' Imports SMRUCC.genomics.Analysis.Microarray.PhenoGraph
 Imports stdNum = System.Math
 
 <Package("BackgroundTask")>
