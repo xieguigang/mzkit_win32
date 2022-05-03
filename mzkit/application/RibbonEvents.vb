@@ -203,7 +203,6 @@ Module RibbonEvents
         StartInfo.EnvironmentVariables("RSTUDIO_HOME") = $"{App.HOME}/Rstudio/bin"
 
         cmdSession.StartInfo = StartInfo
-
         cmdSession.Start()
     End Sub
 
