@@ -1,56 +1,56 @@
 ﻿#Region "Microsoft.VisualBasic::8f29783761ba25785e2e473b80281f16, mzkit\src\mzkit\mzkit\forms\Task\RscriptProgressTask.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 103
-    '    Code Lines: 73
-    ' Comment Lines: 5
-    '   Blank Lines: 25
-    '     File Size: 5.05 KB
+' Summaries:
 
 
-    ' Class RscriptProgressTask
-    ' 
-    '     Function: CreateMSIIndex
-    ' 
-    '     Sub: CreateMSIPeakTable, CreateMSIRawFromRowBinds
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 103
+'    Code Lines: 73
+' Comment Lines: 5
+'   Blank Lines: 25
+'     File Size: 5.05 KB
+
+
+' Class RscriptProgressTask
+' 
+'     Function: CreateMSIIndex
+' 
+'     Sub: CreateMSIPeakTable, CreateMSIRawFromRowBinds
+' 
+' /********************************************************************************/
 
 #End Region
 
@@ -101,9 +101,8 @@ Public Class RscriptProgressTask
 
     Public Shared Sub CreateMSIRawFromRowBinds(files As String(), savefile As String)
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".input_files", sessionID:=App.PID.ToHexString, prefix:="CombineRowScans_")
-        Dim Rscript As String = RscriptPipelineTask.GetRScript("MSI_rbind.R")
-        Dim cli As String = $"""{Rscript}"" --files ""{tempfile}"" --save ""{savefile}"""
-        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Rscript.Path, cli)
+        Dim cli As String = PipelineTask.Task.GetMSIRowCombineCommandLine(tempfile, savefile)
+        Dim pipeline As New RunSlavePipeline(PipelineTask.Host, cli)
 
         Call files.SaveTo(tempfile, encoding:=Encodings.UTF8.CodePage)
 

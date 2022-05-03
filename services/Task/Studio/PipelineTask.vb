@@ -61,6 +61,12 @@ Public Class PipelineTask
 
     Public Shared ReadOnly Property Task As msconvert
 
+    Public Shared ReadOnly Property Host As String
+        Get
+            Return Task.Path
+        End Get
+    End Property
+
     Shared Sub New()
         Task = msconvert.FromEnvironment(App.HOME)
     End Sub
