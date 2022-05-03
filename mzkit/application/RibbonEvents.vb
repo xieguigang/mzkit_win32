@@ -209,7 +209,11 @@ Module RibbonEvents
     Const banner_script As String = "banner_prompt.cmd"
 
     Private Function getWelcomeScript() As String
-        Return MyApplication.CheckPkgFolder(banner_script) & "/" & banner_script
+        If AppEnvironment.IsDevelopmentMode Then
+            Return $"{App.HOME}/../../src\mzkit\rstudio\{banner_script}"
+        Else
+            Return $"{App.HOME}/Rstudio\bin\{banner_script}"
+        End If
     End Function
 
     Public Sub OpenWorkspace()
