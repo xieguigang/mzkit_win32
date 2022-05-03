@@ -359,3 +359,5 @@ setup/Setup Files/mzkit_setups.msi
 setup/Setup Files/mzkit_setups1.cab
 *.cab
 setup/Setup Files/Disk1/resource/setup.msi
+setup/Setup Files/resource/autorun.exe
+setup/Setup Files/resource/setup.msi
