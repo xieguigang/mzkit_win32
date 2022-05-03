@@ -9,8 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pipeline", "Pipeline", "{D0
 	ProjectSection(SolutionItems) = preProject
 		rstudio\pipeline\buildMSIIndex.R = rstudio\pipeline\buildMSIIndex.R
 		rstudio\pipeline\metadna.R = rstudio\pipeline\metadna.R
+		rstudio\pipeline\MS1deconv.R = rstudio\pipeline\MS1deconv.R
 		rstudio\pipeline\ms1_contour.R = rstudio\pipeline\ms1_contour.R
-		rstudio\pipeline\MSI_bpcIons.R = rstudio\pipeline\MSI_bpcIons.R
 		rstudio\pipeline\MSI_peaktable.R = rstudio\pipeline\MSI_peaktable.R
 		rstudio\pipeline\phenograph.R = rstudio\pipeline\phenograph.R
 	EndProjectSection
