@@ -78,7 +78,7 @@ Public Module DrawScatter
         Dim cacheRaw As String = raw.cache
         Dim output_cache As String = TempFileSystem.GetAppSysTempFile("__save.json", App.PID.ToHexString, "contour_layers_")
         Dim cli As String = $"""{RscriptPipelineTask.GetRScript("ms1_contour.R")}"" --mzPack ""{cacheRaw}"" --cache ""{output_cache}"""
-        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Rscript.Path, cli)
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
         Call cli.__DEBUG_ECHO
         Call pipeline.Run()

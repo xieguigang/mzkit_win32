@@ -93,7 +93,7 @@ Public Module Protocols
                                 Optional heartbeats As Integer? = Nothing) As RunSlavePipeline
 
         Dim cli As String = getArgumentString(Rscript, debugPort, heartbeats)
-        Dim pipeline As New RunSlavePipeline(Protocols.Rscript, cli)
+        Dim pipeline As New RunSlavePipeline(Protocols.Rscript, cli, workdir:=Protocols.Rscript.ParentPath)
         Dim tcpPort As Integer = -1
 
         Call pipeline.CommandLine.__DEBUG_ECHO

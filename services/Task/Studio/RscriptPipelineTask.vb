@@ -62,12 +62,24 @@ Public Class RscriptPipelineTask
 
     Friend Shared ReadOnly Rscript As Rscript = Rscript.FromEnvironment(App.HOME)
 
+    Public Shared ReadOnly Property Host As String
+        Get
+            Return Rscript.Path
+        End Get
+    End Property
+
+    Public Shared ReadOnly Property Root As String
+        Get
+            Return Host.ParentPath
+        End Get
+    End Property
+
     Public Shared Function GetRScript(filename As String) As String
         Dim filepath As String = $"{App.HOME}/Rstudio/pipeline/{filename}"
 
         ' product version
         If filepath.FileLength > 10 Then
-            Return filepath
+            Return filepath.GetFullPath
         End If
 
         ' development version

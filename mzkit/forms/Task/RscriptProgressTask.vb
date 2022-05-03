@@ -76,7 +76,7 @@ Public Class RscriptProgressTask
         Dim uid As String = ibd.UUID
         Dim cachefile As String = App.AppSystemTemp & "/MSI_imzML/" & uid
         Dim cli As String = $"""{Rscript}"" --imzML ""{imzML}"" --cache ""{cachefile}"""
-        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Rscript.Path, cli)
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
         If cachefile.FileLength > 1024 Then
             Return cachefile
@@ -130,7 +130,7 @@ Public Class RscriptProgressTask
     Public Shared Sub ExportSingleIonPlot(mz As Double, tolerance As String, saveAs As String)
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSImaging/singleIon.R")
         Dim cli As String = $"""{Rscript}"" --app {ServiceHub.appPort} --mzlist ""{mz}"" --save ""{saveAs}"" --mzdiff ""{tolerance}"""
-        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Rscript.Path, cli)
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
         Dim progress As New frmTaskProgress
 
         progress.ShowProgressTitle("Single Ion MSImaging", directAccess:=True)
@@ -160,7 +160,7 @@ Public Class RscriptProgressTask
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".json", App.PID.ToHexString, prefix:="MSI_regions__")
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSI_peaktable.R")
         Dim cli As String = $"""{Rscript}"" --raw ""{mzpack}"" --save ""{saveAs}"" --regions ""{tempfile}"""
-        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Rscript.Path, cli)
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
         Call data.GetJson.SaveTo(tempfile, encoding:=Encodings.UTF8.CodePage)
 

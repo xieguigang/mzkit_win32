@@ -71,7 +71,7 @@ Public Module MetaDNASearch
         Dim ssid As String = SingletonHolder(Of BioDeepSession).Instance.ssid
         Dim outputdir As String = TempFileSystem.GetAppSysTempFile("__save", App.PID.ToHexString, "metadna_")
         Dim cli As String = $"""{RscriptPipelineTask.GetRScript("metadna.R")}"" --biodeep_ssid ""{ssid}"" --raw ""{cacheRaw}"" --save ""{outputdir}"""
-        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Rscript.Path, cli)
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
         AddHandler pipeline.SetMessage, AddressOf println.Invoke
 
