@@ -1,4 +1,4 @@
-imports "task" from "Mzkit_win32.Task";
+imports "BackgroundTask" from "PipelineHost";
 imports "igraph" from "igraph";
 
 const raw as string       = ?"--raw"     || stop("missing of the raw data file for run MSI data analysis!");

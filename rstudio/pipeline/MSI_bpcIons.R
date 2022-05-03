@@ -1,2 +1,2 @@
-imports "task" from "Mzkit_win32.Task";
+imports "BackgroundTask" from "PipelineHost";
 
