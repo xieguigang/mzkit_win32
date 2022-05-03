@@ -186,7 +186,7 @@ Module RibbonEvents
     End Sub
 
     Friend Sub openCmd()
-        Static WorkingDirectory As String = App.HOME
+        Static WorkingDirectory As String = App.HOME & "/RStudio/bin"
 
         Dim exePath As String = Environment.SystemDirectory & "\cmd.exe"
         Dim StartInfo As New ProcessStartInfo(exePath)
@@ -200,6 +200,7 @@ Module RibbonEvents
         StartInfo.Arguments = $"/k CALL {getWelcomeScript.GetFullPath.CLIPath}"
         StartInfo.EnvironmentVariables("pkg_attach") = pkg_attach
         StartInfo.EnvironmentVariables("R_LIBS_USER") = MyApplication.R_LIBS_USER.GetDirectoryFullPath
+        StartInfo.EnvironmentVariables("RSTUDIO_HOME") = $"{App.HOME}/Rstudio/bin"
 
         cmdSession.StartInfo = StartInfo
 
