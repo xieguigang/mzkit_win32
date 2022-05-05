@@ -119,7 +119,17 @@ Module Actions
                  table.ViewRow =
                      Sub(row)
                          Dim id As String = row("term")
-                         Dim map As Map = mapIndex(id)
+                         Dim map As Map = mapIndex.TryGetValue(id)
+
+                         If map Is Nothing Then
+                             map = mapIndex.TryGetValue(id.Match("\d+"))
+                         End If
+
+                         If map Is Nothing Then
+                             Call MyApplication.host.warning($"No kegg pathway map available for reference id: {id}!")
+                             Return
+                         End If
+
                          Dim geneIds = row("geneIDs").ToString.StringSplit(",\s+").Select(Function(gid) New NamedValue(Of String)(gid, "blue")).ToArray
                          Dim image As String = ReportRender.Render(map, geneIds)
                          Dim temp As String = TempFileSystem.GetAppSysTempFile(".html", sessionID:=App.PID, prefix:="kegg_pathway")

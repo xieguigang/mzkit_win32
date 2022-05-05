@@ -80,7 +80,7 @@ Public Module MoleculeNetworking
                                           progressCallback As Action(Of String)) As IEnumerable(Of DataSet)
         Dim i As i32 = 1
 
-        For Each scan In ms2
+        For Each scan As PeakMs2 In ms2
             Dim scores = ms2 _
                 .Where(Function(a) Not a Is scan) _
                 .AsParallel _
@@ -270,14 +270,14 @@ Public Module MoleculeNetworking
 
                 If stdNum.Min(scores.forward, scores.reverse) >= dotcutoff Then
                     alignments += New AlignmentOutput With {
-                            .alignments = GlobalAlignment _
-                                .CreateAlignment(spectrum.ms2, ref, tolerance) _
-                                .ToArray,
-                            .forward = scores.forward,
-                            .reverse = scores.reverse,
-                            .query = New Meta With {.id = spectrum.name, .mz = Double.NaN, .scan_time = Double.NaN},
-                            .reference = New Meta With {.id = scanId, .mz = subject.parentMz, .scan_time = subject.rt}
-                        }
+                        .alignments = GlobalAlignment _
+                            .CreateAlignment(spectrum.ms2, ref, tolerance) _
+                            .ToArray,
+                        .forward = scores.forward,
+                        .reverse = scores.reverse,
+                        .query = New Meta With {.id = spectrum.name, .mz = Double.NaN, .scan_time = Double.NaN},
+                        .reference = New Meta With {.id = scanId, .mz = subject.parentMz, .scan_time = subject.rt}
+                    }
                 End If
             Next
         Next

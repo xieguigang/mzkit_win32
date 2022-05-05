@@ -1,4 +1,4 @@
-imports "task" from "Mzkit_win32.Task";
+imports "BackgroundTask" from "PipelineHost";
 
 # title: Build contour layers data cache
 # author: xieguigang <xie.guigang@gcmodeller.org>

@@ -1,4 +1,4 @@
-imports "task" from "Mzkit_win32.Task";
+imports "BackgroundTask" from "PipelineHost";
 
 require(JSON);
 require(graphics2D);
@@ -11,11 +11,14 @@ const raw      as string = ?"--raw"     || stop("a raw data file in mzpack forma
 const regions  as string = ?"--regions" || stop("a rectangle list data in json format should be provided!");
 const savepath as string = ?"--save"    || stop("A file path of the table data output must be provided!");
 
-const getRegions as function() {
-	const input   = json_decode(readText(regions));
-	const regions = lapply(input, r -> rect(r[1], r[2], r[3], r[4], float = FALSE));
-		
-	regions;
+#' get regions polygon data
+#' 
+const getRegions = function() {
+	regions
+	|> readText()
+	|> json_decode()
+	|> lapply(r -> rect(r[1], r[2], r[3], r[4], float = FALSE))
+	;
 }
 
 using savefile as file(savepath) {

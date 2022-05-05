@@ -1,4 +1,4 @@
-imports "task" from "Mzkit_win32.Task";
+imports "BackgroundTask" from "PipelineHost";
 
 # title: Build indexed MSI cache
 # author: xieguigang <xie.guigang@gcmodeller.org>

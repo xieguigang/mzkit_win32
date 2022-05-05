@@ -274,10 +274,12 @@ Type 'q()' to quit R.
             _REngine = RInterpreter.FromEnvironmentConfiguration(configs:=R_LIBS_USER)
 
             If REngine.globalEnvir.packages.AsEnumerable.Count = 0 Then
+                Dim Rhost As String = $"{App.HOME}/Rstudio/bin/R#.exe"
+
                 ' no packages ...
                 ' init R# engine environment
-                Call PipelineProcess.CreatePipeline($"{App.HOME}/R#.exe", $"--reset --R_LIBS_USER {R_LIBS_USER.CLIPath}").WaitForExit()
-                Call PipelineProcess.CreatePipeline($"{App.HOME}/R#.exe", $"--setup --R_LIBS_USER {R_LIBS_USER.CLIPath}").WaitForExit()
+                Call PipelineProcess.CreatePipeline(Rhost, $"--reset --R_LIBS_USER {R_LIBS_USER.CLIPath}").WaitForExit()
+                Call PipelineProcess.CreatePipeline(Rhost, $"--setup --R_LIBS_USER {R_LIBS_USER.CLIPath}").WaitForExit()
 
                 ' and then reload
                 _REngine = RInterpreter.FromEnvironmentConfiguration(configs:=R_LIBS_USER)
@@ -350,9 +352,10 @@ Type 'q()' to quit R.
 
             Try
                 Call host.SaveSettings()
-                Call WindowModules.fileExplorer.SaveFileCache(Sub()
-                                                                  ' do nothing
-                                                              End Sub)
+                Call WindowModules.fileExplorer.SaveFileCache(
+                    Sub()
+                        ' do nothing
+                    End Sub)
             Catch ex As Exception
 
             End Try
@@ -363,7 +366,7 @@ Type 'q()' to quit R.
         Friend Shared ReadOnly pkgs As String() = {"mzkit.zip", "REnv.zip", "ggplot.zip"}
 
         Public Shared Function CheckPkgFolder(ParamArray checkFiles As String()) As String
-            Dim dirRelease As String = $"{App.HOME}/Rstudio/"
+            Dim dirRelease As String = $"{App.HOME}/Rstudio/packages"
             Dim dirDev As String = $"{App.HOME}/../../src/mzkit/setup/"
             Dim dirDev2 As String = $"{App.HOME}/../../src/mzkit/setup/Rstudio"
 

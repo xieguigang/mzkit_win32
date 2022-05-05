@@ -348,3 +348,16 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+setup/Prerequisites/.NET Core 2.2/dotnet-runtime-2.2.6-win-x86.exe
+setup/Setup Files/Disk1/.NET Core 2.2/dotnet-runtime-2.2.6-win-x86.exe
+setup/Setup Files/Disk1/Cab1.cab
+setup/Setup Files/Disk1/mzkit_setups.exe
+setup/Setup Files/Disk1/mzkit_setups.msi
+setup/Setup Files/mzkit_setups.exe
+setup/Setup Files/.NET Core 2.2/dotnet-runtime-2.2.6-win-x86.exe
+setup/Setup Files/mzkit_setups.msi
+setup/Setup Files/mzkit_setups1.cab
+*.cab
+setup/Setup Files/Disk1/resource/setup.msi
+setup/Setup Files/resource/autorun.exe
+setup/Setup Files/resource/setup.msi

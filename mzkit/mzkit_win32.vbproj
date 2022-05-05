@@ -305,8 +305,8 @@
     <Reference Include="System.Resources.Extensions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Resources.Extensions.6.0.0\lib\net461\System.Resources.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.InteropServices.APIs">
       <HintPath>..\dist\System.Runtime.InteropServices.APIs.dll</HintPath>
@@ -1498,15 +1498,19 @@
       <Name>SDF.Extensions.NET5</Name>
     </ProjectReference>
     <ProjectReference Include="..\services\BioDeep\BioDeep.vbproj">
-      <Project>{04497d3c-ae08-4df2-be29-e5b572daa5b6}</Project>
+      <Project>{dcfa3211-c43b-40c3-a183-2d3d83b096e1}</Project>
       <Name>BioDeep</Name>
     </ProjectReference>
     <ProjectReference Include="..\services\MZWork\MZWork.vbproj">
       <Project>{0a48789b-a35c-49ba-8224-c604ad14f044}</Project>
       <Name>MZWork</Name>
     </ProjectReference>
+    <ProjectReference Include="..\services\PipelineHost\PipelineHost.vbproj">
+      <Project>{d2b96f8b-4538-497e-b10a-2325df053575}</Project>
+      <Name>PipelineHost</Name>
+    </ProjectReference>
     <ProjectReference Include="..\services\ServiceHub\ServiceHub.vbproj">
-      <Project>{54a151d4-f817-4fcf-aba1-66219b2b638c}</Project>
+      <Project>{59127bcb-e898-4712-b51d-d967b10249c8}</Project>
       <Name>ServiceHub</Name>
     </ProjectReference>
     <ProjectReference Include="..\services\Task\Task.vbproj">

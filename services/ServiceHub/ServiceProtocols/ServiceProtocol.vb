@@ -60,6 +60,8 @@
 
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
+Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.Parallel
 
@@ -86,6 +88,26 @@ Public Enum ServiceProtocol
 End Enum
 
 Public Module MSIProtocols
+
+    Public Function GetMSIInfo(render As Drawer) As Dictionary(Of String, String)
+        Dim uuid As String = ""
+        Dim fileSize As String = ""
+
+        If TypeOf render.pixelReader Is ReadIbd Then
+            uuid = DirectCast(render.pixelReader, ReadIbd).UUID
+            fileSize = DirectCast(render.pixelReader, ReadIbd) _
+                .ibd _
+                .size _
+                .DoCall(AddressOf StringFormats.Lanudry)
+        End If
+
+        Return New Dictionary(Of String, String) From {
+            {"scan_x", render.dimension.Width},
+            {"scan_y", render.dimension.Height},
+            {"uuid", uuid},
+            {"fileSize", fileSize}
+        }
+    End Function
 
     Public Function LoadPixels(mz As IEnumerable(Of Double), mzErr As Tolerance, handleServiceRequest As Func(Of RequestStream, RequestStream)) As PixelData()
         Dim config As New LayerLoader With {.mz = mz.ToArray, .method = If(TypeOf mzErr Is PPMmethod, "ppm", "da"), .mzErr = mzErr.DeltaTolerance}

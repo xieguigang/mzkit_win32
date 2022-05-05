@@ -101,9 +101,11 @@ Module ServiceHub
     ''' this method will close the engine at first
     ''' </summary>
     Public Sub StartMSIService()
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("../services/MSI-host.R")
+
         Call CloseMSIEngine()
 
-        MSI_pipe = Global.ServiceHub.Protocols.StartServer(RscriptPipelineTask.GetRScript("ServiceHub/MSI-host.R"), MSI_service, debugPort) ', HeartBeat.Start)
+        MSI_pipe = Global.ServiceHub.Protocols.StartServer(Rscript, MSI_service, debugPort) ', HeartBeat.Start)
 
         ' hook message event handler
         AddHandler MSI_pipe.SetMessage, AddressOf MSI_pipe_SetMessage
