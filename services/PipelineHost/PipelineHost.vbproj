@@ -65,7 +65,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='mzkit_win32|net6.0|x64'">
     <DocumentationFile>PipelineHost.xml</DocumentationFile>
-    <OutputPath>E:\mzkit\dist\bin\Rstudio\host\</OutputPath>
+    <OutputPath>../../../../dist\bin\Rstudio\host\</OutputPath>
     <RemoveIntegerChecks>true</RemoveIntegerChecks>
     <Optimize>false</Optimize>
     <DebugSymbols>true</DebugSymbols>

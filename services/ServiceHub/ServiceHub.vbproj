@@ -23,7 +23,7 @@
     <DebugType>full</DebugType>
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>E:\mzkit\dist\bin\Rstudio\host\</OutputPath>
+    <OutputPath>../../../../dist\bin\Rstudio\host\</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0|AnyCPU'">
