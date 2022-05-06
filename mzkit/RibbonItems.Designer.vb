@@ -166,6 +166,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonShowSpectrumSearchPage As UInteger = 1102
             Public Const cmdButtonViewSMILES As UInteger = 178
             Public Const cmdTargeted As UInteger = 99
+            Public Const cmdButtonLinearFitting As UInteger = 182
             Public Const cmdTabAbout As UInteger = 1020
             Public Const cmdGroupAboutActions As UInteger = 1047
             Public Const cmdTutorials As UInteger = 115
@@ -1098,6 +1099,12 @@ Namespace RibbonLib.Controls
                 Return _Targeted
             End Get
         End Property
+        Private _ButtonLinearFitting As RibbonButton
+        Public ReadOnly Property ButtonLinearFitting As RibbonButton
+            Get
+                Return _ButtonLinearFitting
+            End Get
+        End Property
         Private _TabAbout As RibbonTab
         Public ReadOnly Property TabAbout As RibbonTab
             Get
@@ -1350,6 +1357,7 @@ Namespace RibbonLib.Controls
             _ButtonShowSpectrumSearchPage = New RibbonButton(_ribbon, Cmd.cmdButtonShowSpectrumSearchPage)
             _ButtonViewSMILES = New RibbonButton(_ribbon, Cmd.cmdButtonViewSMILES)
             _Targeted = New RibbonButton(_ribbon, Cmd.cmdTargeted)
+            _ButtonLinearFitting = New RibbonButton(_ribbon, Cmd.cmdButtonLinearFitting)
             _TabAbout = New RibbonTab(_ribbon, Cmd.cmdTabAbout)
             _GroupAboutActions = New RibbonGroup(_ribbon, Cmd.cmdGroupAboutActions)
             _Tutorials = New RibbonButton(_ribbon, Cmd.cmdTutorials)
