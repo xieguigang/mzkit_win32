@@ -61,6 +61,7 @@ Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Text
+Imports PipelineHost
 Imports Task
 
 Public Class RscriptProgressTask
@@ -75,7 +76,7 @@ Public Class RscriptProgressTask
         Dim ibd As ibdReader = ibdReader.Open(imzML.ChangeSuffix("ibd"))
         Dim uid As String = ibd.UUID
         Dim cachefile As String = App.AppSystemTemp & "/MSI_imzML/" & uid
-        Dim cli As String = $"""{Rscript}"" --imzML ""{imzML}"" --cache ""{cachefile}"""
+        Dim cli As String = $"""{Rscript}"" --imzML ""{imzML}"" --cache ""{cachefile}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
         If cachefile.FileLength > 1024 Then
@@ -129,7 +130,7 @@ Public Class RscriptProgressTask
 
     Public Shared Sub ExportSingleIonPlot(mz As Double, tolerance As String, saveAs As String)
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSImaging/singleIon.R")
-        Dim cli As String = $"""{Rscript}"" --app {ServiceHub.appPort} --mzlist ""{mz}"" --save ""{saveAs}"" --mzdiff ""{tolerance}"""
+        Dim cli As String = $"""{Rscript}"" --app {ServiceHub.appPort} --mzlist ""{mz}"" --save ""{saveAs}"" --mzdiff ""{tolerance}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
         Dim progress As New frmTaskProgress
 
@@ -159,7 +160,7 @@ Public Class RscriptProgressTask
         Dim data As Dictionary(Of String, Integer()) = regions.ToDictionary(Function(r) $"{r.Left},{r.Top}", Function(r) {r.Left, r.Top, r.Width, r.Height})
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".json", App.PID.ToHexString, prefix:="MSI_regions__")
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSI_peaktable.R")
-        Dim cli As String = $"""{Rscript}"" --raw ""{mzpack}"" --save ""{saveAs}"" --regions ""{tempfile}"""
+        Dim cli As String = $"""{Rscript}"" --raw ""{mzpack}"" --save ""{saveAs}"" --regions ""{tempfile}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
         Call data.GetJson.SaveTo(tempfile, encoding:=Encodings.UTF8.CodePage)

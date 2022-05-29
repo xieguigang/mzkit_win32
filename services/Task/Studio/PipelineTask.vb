@@ -59,6 +59,10 @@ Imports Task.CLI
 ''' </summary>
 Public Class PipelineTask
 
+    ''' <summary>
+    ''' msconvert
+    ''' </summary>
+    ''' <returns></returns>
     Public Shared ReadOnly Property Task As msconvert
 
     Public Shared ReadOnly Property Host As String
