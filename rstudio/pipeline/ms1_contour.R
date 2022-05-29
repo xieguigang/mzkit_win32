@@ -11,4 +11,4 @@ const mzPack as string = ?"--mzPack" || stop("no raw data file provided!");
 const cache as string = ?"--cache" || stop("a cache file path must be provided!");
 
 sleep(1);
-task::Ms1Contour(mzPack, cache);
+BackgroundTask::Ms1Contour(mzPack, cache);

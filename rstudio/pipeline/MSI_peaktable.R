@@ -22,6 +22,6 @@ const getRegions = function() {
 }
 
 using savefile as file(savepath) {
-	task::MSI_peaktable(raw, getRegions(), savefile);
+	BackgroundTask::MSI_peaktable(raw, getRegions(), savefile);
 }
 

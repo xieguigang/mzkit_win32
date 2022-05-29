@@ -13,5 +13,5 @@ const ssid as string = ?"--biodeep_ssid" || stop("a session id for biodeep is re
 
 sleep(1);
 
-task::biodeep.session(ssid);
-task::metaDNA(raw, outputdir);
+BackgroundTask::biodeep.session(ssid);
+BackgroundTask::metaDNA(raw, outputdir);
