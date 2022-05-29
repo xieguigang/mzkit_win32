@@ -60,7 +60,7 @@ Imports Task.CLI
 
 Public Class RscriptPipelineTask
 
-    Friend Shared ReadOnly Rscript As Rscript = Rscript.FromEnvironment(App.HOME)
+    Friend Shared ReadOnly Rscript As Rscript = Rscript.FromEnvironment($"{App.HOME}/Rstudio/bin")
 
     Public Shared ReadOnly Property Host As String
         Get
