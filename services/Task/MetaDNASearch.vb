@@ -62,6 +62,7 @@ Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports PipelineHost
 
 Public Module MetaDNASearch
 
