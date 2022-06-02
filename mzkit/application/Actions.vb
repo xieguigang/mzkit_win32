@@ -65,6 +65,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports SMRUCC.genomics.Analysis.HTS.GSEA
 Imports SMRUCC.genomics.Assembly.KEGG.WebServices
 Imports SMRUCC.genomics.GCModeller.Workbench.KEGGReport
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 
 Public Delegate Sub TableAction(fieldName As String, data As Array, table As DataTable)
 
@@ -116,7 +117,52 @@ Module Actions
                     Dim formula As Formula = FormulaScanner.ScanFormula(getFormula.TextBox1.Text)
                     Dim ppm As Integer = getFormula.NumericUpDown1.Value
                     Dim adducts As MzCalculator() = getFormula.GetAdducts
+                    Dim mz As Double() = data.AsObjectEnumerator.Select(Function(o) Val(o)).ToArray
+                    Dim headers As New Dictionary(Of String, Type)
+                    Dim tblView = VisualStudio.ShowDocument(Of frmTableViewer)(title:=$"Formula Query[{formula}]")
+                    Dim rows As New List(Of (DataRow, MzCalculator, ppm As Double, mztarget As Double))
 
+                    headers.Add("mz_theoretical", GetType(Double))
+                    headers.Add("precursor_type", GetType(String))
+                    headers.Add("ppm", GetType(Double))
+
+                    For i As Integer = 0 To tbl.Columns.Count - 1
+                        headers.Add(tbl.Columns.Item(i).ColumnName, tbl.Columns.Item(i).DataType)
+                    Next
+
+                    For Each type As MzCalculator In adducts
+                        Dim mzTarget As Double = type.CalcMZ(formula.ExactMass)
+                        Dim query = mz _
+                            .Select(Function(mzi, idx) (PPMmethod.PPM(mzi, mzTarget), idx)) _
+                            .Where(Function(t) t.Item1 <= ppm) _
+                            .ToArray
+
+                        If query.Length > 0 Then
+                            For Each idx In query
+                                Dim row = tbl.Rows.Item(idx.idx)
+                                rows.Add((row, type, idx.Item1, mzTarget))
+                            Next
+                        End If
+                    Next
+
+                    Call tblView.LoadTable(
+                        Sub(subView)
+                            For Each field In headers
+                                Call subView.Columns.Add(field.Key, field.Value)
+                            Next
+
+                            For Each row In rows
+                                Dim values As New List(Of Object)
+                                Dim subData = row.Item1
+
+                                values.Add(row.mztarget)
+                                values.Add(row.Item2.ToString)
+                                values.Add(row.ppm)
+                                values.AddRange(subData.ItemArray)
+
+                                Call subView.Rows.Add(values.ToArray)
+                            Next
+                        End Sub)
                 End If
             End Sub)
     End Sub
