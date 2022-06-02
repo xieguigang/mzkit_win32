@@ -511,7 +511,6 @@
     <ROW Component="library" ComponentId="{7165AD75-FA2D-4513-8E69-E2CCE22396AC}" Directory_="library_Dir" Attributes="256"/>
     <ROW Component="man.pptx" ComponentId="{C4ACBC7D-8438-41D9-AD59-9CA86D4EBA4B}" Directory_="documents_Dir" Attributes="256" KeyPath="man.pptx" Type="0"/>
     <ROW Component="msconvert.exe" ComponentId="{73FC3022-DA01-4C58-9164-7FD222A7F468}" Directory_="APPDIR" Attributes="256" KeyPath="msconvert.exe"/>
-    <ROW Component="msconvert.xml" ComponentId="{313FD84B-0C76-4A2A-BF56-E162F454F754}" Directory_="APPDIR" Attributes="256" KeyPath="msconvert.xml"/>
     <ROW Component="mzkit_win32.exe_1" ComponentId="{D1A9B7C2-509C-425B-AD9E-9C44DC837AD7}" Directory_="APPDIR" Attributes="256" KeyPath="mzkit_win32.exe_1"/>
     <ROW Component="mzkit_win32.resources.dll" ComponentId="{07088A7D-4893-4253-9A2A-E6C0AF73195D}" Directory_="enUS_Dir" Attributes="256" KeyPath="mzkit_win32.resources.dll"/>
     <ROW Component="mzkit_win32.resources.dll_1" ComponentId="{BF42566E-B837-4E29-845D-D598E82099BE}" Directory_="zhCN_Dir" Attributes="256" KeyPath="mzkit_win32.resources.dll_1"/>
@@ -1034,7 +1033,6 @@
     <ROW File="BioDeep.dll.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="BIODEE~1.CON|BioDeep.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\BioDeep.dll.config" SelfReg="false"/>
     <ROW File="msconvert.exe" Component_="msconvert.exe" FileName="MSCONV~1.EXE|msconvert.exe" Attributes="0" SourcePath="..\..\..\dist\bin\msconvert.exe" SelfReg="false" DigSign="true"/>
     <ROW File="msconvert.exe.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MSCONV~1.CON|msconvert.exe.config" Attributes="0" SourcePath="..\..\..\dist\bin\msconvert.exe.config" SelfReg="false"/>
-    <ROW File="msconvert.xml" Component_="msconvert.xml" FileName="MSCONV~1.XML|msconvert.xml" Attributes="0" SourcePath="..\..\..\dist\bin\msconvert.xml" SelfReg="false"/>
     <ROW File="Mzkit_win32.Interaction.dll.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MZKIT_~3.CON|Mzkit_win32.Interaction.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.Interaction.dll.config" SelfReg="false"/>
     <ROW File="PipelineHost.dll" Component_="PipelineHost.dll" FileName="PIPELI~1.DLL|PipelineHost.dll" Attributes="0" SourcePath="..\..\..\dist\bin\PipelineHost.dll" SelfReg="false"/>
     <ROW File="BioDeep.dll_1" Component_="BioDeep.dll_1" FileName="BioDeep.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioDeep.dll" SelfReg="false"/>
@@ -1635,7 +1633,6 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="snowFall.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="webKit.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="PipelineHost.xml"/>
-    <ROW Feature_="VisualStudio_Diagnostic" Component_="msconvert.xml"/>
     <ROW Feature_="MainFeature" Component_="REnv.dll.config"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Runtime.dll.config_1"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.Wave.dll.config"/>
