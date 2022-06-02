@@ -71,7 +71,7 @@ Module DataControlHandler
     Public Sub SaveDataGrid(table As DataGridView, title$)
         Using file As New SaveFileDialog With {.Filter = "Excel Table(*.xls)|*.xls|Comma data sheet(*.csv)|*.csv"}
             If file.ShowDialog = DialogResult.OK Then
-                Using writeTsv As StreamWriter = file.FileName.OpenWriter(encoding:=Encodings.UTF8)
+                Using writeTsv As StreamWriter = file.FileName.OpenWriter(encoding:=Encodings.GB2312)
                     Call table.WriteTableToFile(writeTsv, sep:=If(file.FileName.ExtensionSuffix("csv"), ","c, ASCII.TAB))
                     Call MessageBox.Show(title.Replace("%s", file.FileName), "Export Table", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End Using
