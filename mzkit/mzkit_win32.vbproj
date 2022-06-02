@@ -407,6 +407,12 @@
     <Compile Include="forms\frmTweaks\frmTweaks.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\Inputs\SelectSheetName.Designer.vb">
+      <DependentUpon>SelectSheetName.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\SelectSheetName.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\ShowColumnStat.Designer.vb">
       <DependentUpon>ShowColumnStat.vb</DependentUpon>
     </Compile>
