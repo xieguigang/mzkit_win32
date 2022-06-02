@@ -1,7 +1,9 @@
 ﻿Imports BioNovoGene.mzkit_win32.My
 Imports ControlLibrary
 Imports Microsoft.VisualBasic.ComponentModel.Collection
+Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
+Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.MIME.Office
 
 Public Class SelectSheetName
@@ -45,6 +47,8 @@ Public Class SelectSheetName
 
         tblView.LoadTable(Sub(grid)
                               Dim numericFields As Index(Of String) = {"mz", "rt", "rtmin", "rtmax", "mzmin", "mzmax"}
+                              Dim schema As New List(Of Type)
+                              Dim i As i32 = Scan0
 
                               For Each name As String In dataframe.HeadTitles
                                   'If name Like numericFields Then
@@ -52,10 +56,25 @@ Public Class SelectSheetName
                                   'Else
                                   grid.Columns.Add(name, GetType(String))
                                   ' End If
+                                  Dim v As String() = dataframe.Column(++i).ToArray
+                                  Dim type As Type = v.SampleForType
+
+                                  Call schema.Add(type)
                               Next
 
                               For Each item As RowObject In dataframe.Rows
-                                  Dim values = item.Select(Function(str) CObj(str)).ToArray
+                                  Dim values = item _
+                                    .Select(Function(str, idx)
+                                                Select Case schema(idx)
+                                                    Case GetType(Double) : Return Val(str)
+                                                    Case GetType(Integer) : Return Integer.Parse(str)
+                                                    Case GetType(Boolean) : Return str.ParseBoolean
+                                                    Case GetType(Date) : Return str.ParseDate
+                                                    Case Else
+                                                        Return CObj(str)
+                                                End Select
+                                            End Function) _
+                                    .ToArray
                                   Dim row = grid.Rows.Add(values)
                               Next
                           End Sub)

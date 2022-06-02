@@ -88,6 +88,7 @@ Module Actions
     Sub New()
         Call registerMs1Search()
         Call registerKEGGEnrichment()
+        Call registerFormulaQuery()
     End Sub
 
     Private Sub registerMs1Search()
@@ -98,6 +99,13 @@ Module Actions
                  Call MyApplication.host.mzkitSearch.TabControl1.SelectTab(MyApplication.host.mzkitSearch.TabPage3)
                  Call MyApplication.host.ShowPage(MyApplication.host.mzkitSearch)
              End Sub)
+    End Sub
+
+    Private Sub registerFormulaQuery()
+        Call Register("Formula Query",
+            Sub(data)
+
+            End Sub)
     End Sub
 
     Private Sub registerKEGGEnrichment()
