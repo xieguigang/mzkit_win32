@@ -54,12 +54,13 @@ Public Class SelectSheetName
                                   'If name Like numericFields Then
                                   '    grid.Columns.Add(name, GetType(Double))
                                   'Else
-                                  grid.Columns.Add(name, GetType(String))
+
                                   ' End If
                                   Dim v As String() = dataframe.Column(++i).ToArray
                                   Dim type As Type = v.SampleForType
 
                                   Call schema.Add(type)
+                                  grid.Columns.Add(name, type)
                               Next
 
                               For Each item As RowObject In dataframe.Rows
