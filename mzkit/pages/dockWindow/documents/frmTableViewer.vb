@@ -336,4 +336,8 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference
             Return Nothing
         End If
     End Function
+
+    Private Sub ExportTableToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportTableToolStripMenuItem.Click
+        Call Me.SaveDocument()
+    End Sub
 End Class

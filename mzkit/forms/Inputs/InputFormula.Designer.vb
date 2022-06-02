@@ -32,12 +32,16 @@ Partial Class InputFormula
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.TextBox2)
+        Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.NumericUpDown1)
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.RadioButton2)
@@ -103,9 +107,9 @@ Partial Class InputFormula
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(19, 56)
+        Me.TextBox1.Location = New System.Drawing.Point(113, 27)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(241, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(147, 20)
         Me.TextBox1.TabIndex = 1
         '
         'Label1
@@ -135,6 +139,22 @@ Partial Class InputFormula
         Me.Button2.Text = "Cancel"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(16, 59)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(38, 13)
+        Me.Label4.TabIndex = 7
+        Me.Label4.Text = "Name:"
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(113, 56)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(147, 20)
+        Me.TextBox2.TabIndex = 8
+        '
         'InputFormula
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -162,4 +182,6 @@ Partial Class InputFormula
     Friend WithEvents Label2 As Label
     Friend WithEvents NumericUpDown1 As NumericUpDown
     Friend WithEvents Label3 As Label
+    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents Label4 As Label
 End Class

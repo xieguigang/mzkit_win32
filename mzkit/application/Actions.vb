@@ -55,6 +55,7 @@
 
 #End Region
 
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.My
@@ -65,7 +66,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports SMRUCC.genomics.Analysis.HTS.GSEA
 Imports SMRUCC.genomics.Assembly.KEGG.WebServices
 Imports SMRUCC.genomics.GCModeller.Workbench.KEGGReport
-Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
+Imports stdNum = System.Math
 
 Public Delegate Sub TableAction(fieldName As String, data As Array, table As DataTable)
 
@@ -115,6 +116,7 @@ Module Actions
 
                 If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
                     Dim formula As Formula = FormulaScanner.ScanFormula(getFormula.TextBox1.Text)
+                    Dim name As String = getFormula.TextBox2.Text
                     Dim ppm As Integer = getFormula.NumericUpDown1.Value
                     Dim adducts As MzCalculator() = getFormula.GetAdducts
                     Dim mz As Double() = data.AsObjectEnumerator.Select(Function(o) Val(o)).ToArray
@@ -125,9 +127,17 @@ Module Actions
                     headers.Add("mz_theoretical", GetType(Double))
                     headers.Add("precursor_type", GetType(String))
                     headers.Add("ppm", GetType(Double))
+                    headers.Add("name", GetType(String))
+                    headers.Add("formula", GetType(String))
 
                     For i As Integer = 0 To tbl.Columns.Count - 1
-                        headers.Add(tbl.Columns.Item(i).ColumnName, tbl.Columns.Item(i).DataType)
+                        Dim tag As String = tbl.Columns.Item(i).ColumnName
+
+                        If headers.ContainsKey(tag) Then
+                            tag = $"{tag}_1"
+                        End If
+
+                        headers.Add(tag, tbl.Columns.Item(i).DataType)
                     Next
 
                     For Each type As MzCalculator In adducts
@@ -155,9 +165,11 @@ Module Actions
                                 Dim values As New List(Of Object)
                                 Dim subData = row.Item1
 
-                                values.Add(row.mztarget)
+                                values.Add(stdNum.Round(row.mztarget, 4))
                                 values.Add(row.Item2.ToString)
-                                values.Add(row.ppm)
+                                values.Add(stdNum.Round(row.ppm))
+                                values.Add(name)
+                                values.Add(formula.EmpiricalFormula)
                                 values.AddRange(subData.ItemArray)
 
                                 Call subView.Rows.Add(values.ToArray)
