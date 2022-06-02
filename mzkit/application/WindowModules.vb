@@ -167,7 +167,8 @@ Friend MustInherit Class WindowModules
             "GC-MS / LC-MS/MS Targeted(*.mzML)|*.mzML",
             "Thermo Raw File(*.raw)|*.raw",
             "Ab Sciex Wiff(*.wiff)|*.wiff",
-            "R# Script(*.R)|*.R"
+            "R# Script(*.R)|*.R",
+            "Excel Table(*.csv;*.xlsx)|*.csv;*.xlsx"
         }
 
         Using file As New OpenFileDialog With {
