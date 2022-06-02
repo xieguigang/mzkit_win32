@@ -79,27 +79,34 @@ Module DataControlHandler
         End Using
     End Sub
 
+    ''' <summary>
+    ''' write table in tsv file format
+    ''' </summary>
+    ''' <param name="table"></param>
+    ''' <param name="writeTsv"></param>
     <Extension>
-    Public Sub WriteTableToFile(table As DataGridView, writeTsv As TextWriter)
+    Public Sub WriteTableToFile(table As DataGridView, writeTsv As TextWriter, Optional saveHeader As Boolean = True)
         Dim row As New List(Of String)
 
-        For i As Integer = 0 To table.Columns.Count - 1
-            row.Add(table.Columns(i).HeaderText)
-        Next
+        If saveHeader Then
+            For i As Integer = 0 To table.Columns.Count - 1
+                Call row.Add(table.Columns(i).HeaderText)
+            Next
 
-        writeTsv.WriteLine(row.PopAll.JoinBy(vbTab))
+            Call writeTsv.WriteLine(row.PopAll.JoinBy(vbTab))
+        End If
 
         For j As Integer = 0 To table.Rows.Count - 1
             Dim rowObj = table.Rows(j)
 
             For i As Integer = 0 To rowObj.Cells.Count - 1
-                row.Add(any.ToString(rowObj.Cells(i).Value))
+                Call row.Add(any.ToString(rowObj.Cells(i).Value))
             Next
 
-            writeTsv.WriteLine(row.PopAll.JoinBy(vbTab))
+            Call writeTsv.WriteLine(row.PopAll.JoinBy(vbTab))
         Next
 
-        writeTsv.Flush()
+        Call writeTsv.Flush()
     End Sub
 
     <Extension>

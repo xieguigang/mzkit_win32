@@ -340,4 +340,15 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference
     Private Sub ExportTableToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportTableToolStripMenuItem.Click
         Call Me.SaveDocument()
     End Sub
+
+    Private Sub CopyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyToolStripMenuItem.Click
+        Dim buffer As New StringBuilder
+
+        Using writer As New StringWriter(buffer)
+            Call AdvancedDataGridView1.WriteTableToFile(writer, saveHeader:=False)
+        End Using
+
+        Call Clipboard.Clear()
+        Call Clipboard.SetText(buffer.ToString)
+    End Sub
 End Class

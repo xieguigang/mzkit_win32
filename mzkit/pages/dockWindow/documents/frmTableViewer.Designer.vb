@@ -84,11 +84,12 @@ Partial Class frmTableViewer
         Me.VisualizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ActionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SendToREnvironmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ExportTableToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CopyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdvancedDataGridView1 = New Zuby.ADGV.AdvancedDataGridView()
         Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ExportTableToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,9 +97,9 @@ Partial Class frmTableViewer
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewToolStripMenuItem, Me.ToolStripMenuItem1, Me.VisualizeToolStripMenuItem, Me.ActionsToolStripMenuItem, Me.SendToREnvironmentToolStripMenuItem, Me.ToolStripMenuItem2, Me.ExportTableToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewToolStripMenuItem, Me.ToolStripMenuItem1, Me.VisualizeToolStripMenuItem, Me.ActionsToolStripMenuItem, Me.SendToREnvironmentToolStripMenuItem, Me.ToolStripMenuItem2, Me.ExportTableToolStripMenuItem, Me.CopyToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(204, 148)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(204, 170)
         '
         'ViewToolStripMenuItem
         '
@@ -129,6 +130,24 @@ Partial Class frmTableViewer
         Me.SendToREnvironmentToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
         Me.SendToREnvironmentToolStripMenuItem.Text = "Send To R# Environment"
         '
+        'ToolStripMenuItem2
+        '
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(200, 6)
+        '
+        'ExportTableToolStripMenuItem
+        '
+        Me.ExportTableToolStripMenuItem.Image = CType(resources.GetObject("ExportTableToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.ExportTableToolStripMenuItem.Name = "ExportTableToolStripMenuItem"
+        Me.ExportTableToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
+        Me.ExportTableToolStripMenuItem.Text = "Export Table"
+        '
+        'CopyToolStripMenuItem
+        '
+        Me.CopyToolStripMenuItem.Name = "CopyToolStripMenuItem"
+        Me.CopyToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
+        Me.CopyToolStripMenuItem.Text = "Copy"
+        '
         'AdvancedDataGridView1
         '
         Me.AdvancedDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -157,18 +176,6 @@ Partial Class frmTableViewer
         Me.AdvancedDataGridViewSearchToolBar1.TabIndex = 2
         Me.AdvancedDataGridViewSearchToolBar1.Text = "AdvancedDataGridViewSearchToolBar1"
         '
-        'ToolStripMenuItem2
-        '
-        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(200, 6)
-        '
-        'ExportTableToolStripMenuItem
-        '
-        Me.ExportTableToolStripMenuItem.Image = CType(resources.GetObject("ExportTableToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.ExportTableToolStripMenuItem.Name = "ExportTableToolStripMenuItem"
-        Me.ExportTableToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
-        Me.ExportTableToolStripMenuItem.Text = "Export Table"
-        '
         'frmTableViewer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -196,4 +203,5 @@ Partial Class frmTableViewer
     Friend WithEvents BindingSource1 As BindingSource
     Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
     Friend WithEvents ExportTableToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CopyToolStripMenuItem As ToolStripMenuItem
 End Class
