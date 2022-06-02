@@ -235,8 +235,11 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference
                                    Dim name As String = input.getTargetName
                                    Dim action As String = input.getActionName
                                    Dim data As Array = getFieldVector(name)
+                                   Dim source As BindingSource = AdvancedDataGridView1.DataSource
+                                   Dim dataset As DataSet = source.DataSource
+                                   Dim table As DataTable = dataset.Tables.Item(Scan0)
 
-                                   Call Actions.RunAction(action, name, data, AdvancedDataGridView1.DataSource)
+                                   Call Actions.RunAction(action, name, data, table)
                                End Sub, config:=takeActions)
     End Sub
 
