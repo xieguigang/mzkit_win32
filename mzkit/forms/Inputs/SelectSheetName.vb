@@ -9,7 +9,7 @@ Imports Microsoft.VisualBasic.MIME.Office
 Public Class SelectSheetName
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If Trim(ComboBox1.Text).StringEmpty Then
+        If Strings.Trim(ComboBox1.Text).StringEmpty Then
             MessageBox.Show("A table sheet name is required!", "No table sheet is selected", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
             DialogResult = DialogResult.OK
