@@ -1,5 +1,8 @@
 ﻿Imports BioNovoGene.mzkit_win32.My
 Imports ControlLibrary
+Imports Microsoft.VisualBasic.ComponentModel.Collection
+Imports Microsoft.VisualBasic.Data.csv.IO
+Imports Microsoft.VisualBasic.MIME.Office
 
 Public Class SelectSheetName
 
@@ -17,16 +20,44 @@ Public Class SelectSheetName
 
     Public Shared Sub OpenExcel(fileName As String)
         If fileName.ExtensionSuffix("csv") Then
+            Call showFile(File.Load(fileName), fileName.FileName)
         Else
             Dim getSheetName As New SelectSheetName
             Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
+            Dim names As String() = Excel.GetSheetNames(fileName)
+
+            For Each name As String In names
+                Call getSheetName.ComboBox1.Items.Add(name)
+            Next
 
             If mask.ShowDialogForm(getSheetName) = DialogResult.OK Then
                 Dim sheetName As String = getSheetName.ComboBox1.Text
+                Dim table = Excel.ReadTableAuto(fileName, sheetName:=sheetName)
 
+                Call showFile(table, $"{fileName.FileName}[{sheetName}]")
             End If
         End If
     End Sub
 
+    Private Shared Sub showFile(table As File, title As String)
+        Dim dataframe As DataFrame = DataFrame.CreateObject(table)
+        Dim tblView = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
 
+        tblView.LoadTable(Sub(grid)
+                              Dim numericFields As Index(Of String) = {"mz", "rt", "rtmin", "rtmax", "mzmin", "mzmax"}
+
+                              For Each name As String In dataframe.HeadTitles
+                                  'If name Like numericFields Then
+                                  '    grid.Columns.Add(name, GetType(Double))
+                                  'Else
+                                  grid.Columns.Add(name, GetType(String))
+                                  ' End If
+                              Next
+
+                              For Each item As RowObject In dataframe.Rows
+                                  Dim values = item.Select(Function(str) CObj(str)).ToArray
+                                  Dim row = grid.Rows.Add(values)
+                              Next
+                          End Sub)
+    End Sub
 End Class
