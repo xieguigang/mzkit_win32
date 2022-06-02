@@ -87,7 +87,6 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math.SignalProcessing
 Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Microsoft.VisualBasic.Text.Xml.Models
-Imports MZWork
 Imports RibbonLib
 Imports RibbonLib.Interop
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject

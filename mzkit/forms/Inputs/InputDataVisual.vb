@@ -123,6 +123,9 @@ Public Class InputDataVisual
             Case "BarPlot
 BoxPlot
 ViolinPlot"
+                Throw New NotImplementedException
+            Case Else
+                Throw New NotImplementedException
         End Select
 
         MyApplication.host.mzkitTool.PictureBox1.BackgroundImage = plot

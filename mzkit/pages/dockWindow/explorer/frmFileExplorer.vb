@@ -76,7 +76,6 @@ Imports RibbonLib.Interop
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 Imports stdNum = System.Math
-Imports MZWork
 
 ''' <summary>
 ''' 显示一个workspace对象里面所包含有的文件列表
