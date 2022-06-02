@@ -69,10 +69,10 @@ Module DataControlHandler
     ''' </param>
     <Extension>
     Public Sub SaveDataGrid(table As DataGridView, title$)
-        Using file As New SaveFileDialog With {.Filter = "Excel Table(*.xls)|*.xls"}
+        Using file As New SaveFileDialog With {.Filter = "Excel Table(*.xls)|*.xls|Comma data sheet(*.csv)|*.csv"}
             If file.ShowDialog = DialogResult.OK Then
-                Using writeTsv As StreamWriter = file.FileName.OpenWriter(encoding:=Encodings.UTF8WithoutBOM)
-                    Call table.WriteTableToFile(writeTsv)
+                Using writeTsv As StreamWriter = file.FileName.OpenWriter(encoding:=Encodings.UTF8)
+                    Call table.WriteTableToFile(writeTsv, sep:=If(file.FileName.ExtensionSuffix("csv"), ","c, ASCII.TAB))
                     Call MessageBox.Show(title.Replace("%s", file.FileName), "Export Table", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End Using
             End If
@@ -85,7 +85,10 @@ Module DataControlHandler
     ''' <param name="table"></param>
     ''' <param name="writeTsv"></param>
     <Extension>
-    Public Sub WriteTableToFile(table As DataGridView, writeTsv As TextWriter, Optional saveHeader As Boolean = True)
+    Public Sub WriteTableToFile(table As DataGridView, writeTsv As TextWriter,
+                                Optional saveHeader As Boolean = True,
+                                Optional sep As Char = ASCII.TAB)
+
         Dim row As New List(Of String)
 
         If saveHeader Then
@@ -93,7 +96,7 @@ Module DataControlHandler
                 Call row.Add(table.Columns(i).HeaderText)
             Next
 
-            Call writeTsv.WriteLine(row.PopAll.JoinBy(vbTab))
+            Call writeTsv.WriteLine(row.PopAll.JoinBy(sep))
         End If
 
         For j As Integer = 0 To table.Rows.Count - 1
@@ -103,7 +106,7 @@ Module DataControlHandler
                 Call row.Add(any.ToString(rowObj.Cells(i).Value))
             Next
 
-            Call writeTsv.WriteLine(row.PopAll.JoinBy(vbTab))
+            Call writeTsv.WriteLine(row.PopAll.JoinBy(sep))
         Next
 
         Call writeTsv.Flush()
