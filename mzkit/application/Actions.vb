@@ -1,61 +1,64 @@
 ﻿#Region "Microsoft.VisualBasic::295ba5f2f1918f08eb52f012f54d7943, mzkit\src\mzkit\mzkit\application\Actions.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 102
-    '    Code Lines: 88
-    ' Comment Lines: 0
-    '   Blank Lines: 14
-    '     File Size: 5.16 KB
+' Summaries:
 
 
-    ' Module Actions
-    ' 
-    '     Properties: allActions
-    ' 
-    '     Constructor: (+1 Overloads) Sub New
-    '     Sub: Register, registerKEGGEnrichment, registerMs1Search, RunAction
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 102
+'    Code Lines: 88
+' Comment Lines: 0
+'   Blank Lines: 14
+'     File Size: 5.16 KB
+
+
+' Module Actions
+' 
+'     Properties: allActions
+' 
+'     Constructor: (+1 Overloads) Sub New
+'     Sub: Register, registerKEGGEnrichment, registerMs1Search, RunAction
+' 
+' /********************************************************************************/
 
 #End Region
 
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
+Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.My
+Imports ControlLibrary
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Linq
@@ -63,9 +66,11 @@ Imports SMRUCC.genomics.Analysis.HTS.GSEA
 Imports SMRUCC.genomics.Assembly.KEGG.WebServices
 Imports SMRUCC.genomics.GCModeller.Workbench.KEGGReport
 
+Public Delegate Sub TableAction(fieldName As String, data As Array, table As DataTable)
+
 Module Actions
 
-    ReadOnly actions As New Dictionary(Of String, Action(Of Array))
+    ReadOnly actions As New Dictionary(Of String, TableAction)
 
     Public ReadOnly Property allActions As IEnumerable(Of String)
         Get
@@ -73,13 +78,13 @@ Module Actions
         End Get
     End Property
 
-    Public Sub Register(name As String, action As Action(Of Array))
+    Public Sub Register(name As String, action As TableAction)
         actions(name) = action
     End Sub
 
-    Public Sub RunAction(name As String, data As Array)
+    Public Sub RunAction(name As String, fieldName As String, data As Array, table As DataTable)
         If actions.ContainsKey(name) Then
-            Call actions(name)(data)
+            Call actions(name)(fieldName, data, table)
         Else
             Call MyApplication.host.warning($"missing action '{name}'!")
         End If
@@ -93,7 +98,7 @@ Module Actions
 
     Private Sub registerMs1Search()
         Call Register("Peak List Annotation",
-             Sub(data)
+             Sub(key, data, tbl)
                  MyApplication.host.mzkitSearch.TextBox3.Text = data.AsObjectEnumerator.JoinBy(vbCrLf)
 
                  Call MyApplication.host.mzkitSearch.TabControl1.SelectTab(MyApplication.host.mzkitSearch.TabPage3)
@@ -103,14 +108,22 @@ Module Actions
 
     Private Sub registerFormulaQuery()
         Call Register("Formula Query",
-            Sub(data)
+            Sub(key, data, tbl)
+                Dim getFormula As New InputFormula
+                Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
 
+                If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
+                    Dim formula As Formula = FormulaScanner.ScanFormula(getFormula.TextBox1.Text)
+                    Dim ppm As Integer = getFormula.NumericUpDown1.Value
+                    Dim adducts As MzCalculator() = getFormula.GetAdducts
+
+                End If
             End Sub)
     End Sub
 
     Private Sub registerKEGGEnrichment()
         Call Register("KEGG Enrichment",
-             Sub(data)
+             Sub(key, data, tbl)
                  Dim maps As Map() = Nothing
                  Dim kegg As Background = Globals.loadBackground(maps)
                  Dim enrich = frmTaskProgress.LoadData(

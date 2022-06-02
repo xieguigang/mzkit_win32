@@ -236,7 +236,7 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference
                                    Dim action As String = input.getActionName
                                    Dim data As Array = getFieldVector(name)
 
-                                   Call Actions.RunAction(action, data)
+                                   Call Actions.RunAction(action, name, data, AdvancedDataGridView1.DataSource)
                                End Sub, config:=takeActions)
     End Sub
 

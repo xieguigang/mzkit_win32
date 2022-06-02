@@ -407,6 +407,12 @@
     <Compile Include="forms\frmTweaks\frmTweaks.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\Inputs\InputFormula.Designer.vb">
+      <DependentUpon>InputFormula.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\InputFormula.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\SelectSheetName.Designer.vb">
       <DependentUpon>SelectSheetName.vb</DependentUpon>
     </Compile>
@@ -898,6 +904,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputFeatureFilter.zh-CN.resx">
       <DependentUpon>InputFeatureFilter.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\InputFormula.resx">
+      <DependentUpon>InputFormula.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputImageProcessor.resx">
       <DependentUpon>InputImageProcessor.vb</DependentUpon>
