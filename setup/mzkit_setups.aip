@@ -818,9 +818,11 @@
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.Extensions._3" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="BIONOV~1.CON|BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.Extensions.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.Extensions.dll.config" SelfReg="false"/>
     <ROW File="BioNovoGene.BioDeep.MSEngine.Mummichog.dll" Component_="BioNovoGene.BioDeep.MSEngine.Mummichog.dll" FileName="BIONO~12.DLL|BioNovoGene.BioDeep.MSEngine.Mummichog.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.BioDeep.MSEngine.Mummichog.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll" Component_="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll" FileName="MICRO~48.DLL|Microsoft.VisualBasic.Math.Statistics.ANOVA.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Math.Statistics.ANOVA.dll" SelfReg="false"/>
+    <ROW File="BioDeeplogo.png" Component_="S043.png" FileName="BIODEE~1.PNG|BioDeep-logo.png" Attributes="0" SourcePath="BioDeep-logo.png" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
+    <ROW MsiShortcutProperty="UninstallProductNameProductVersion0" Shortcut_="UninstallProductNameProductVersion" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AutorunComponent">
     <ROW VerbKey="0" Type="1" Order="0" Text="Install [|ProductName]"/>
@@ -868,6 +870,7 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
     <ROW Name="ExternalUICleaner.dll" SourcePath="&lt;AI_CUSTACTS&gt;ExternalUICleaner.dll"/>
     <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
+    <ROW Name="ShortcutFlags.dll" SourcePath="&lt;AI_CUSTACTS&gt;ShortcutFlags.dll"/>
     <ROW Name="ShowBackgroundImages.dll" SourcePath="&lt;AI_CUSTACTS&gt;ShowBackgroundImages.dll"/>
     <ROW Name="SoftwareDetector.dll" SourcePath="&lt;AI_CUSTACTS&gt;SoftwareDetector.dll"/>
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
@@ -914,6 +917,7 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_AppSearchEx" Type="1" Source="Prereq.dll" Target="DoAppSearchEx"/>
+    <ROW Action="AI_ApplyShortcutFlags" Type="3073" Source="ShortcutFlags.dll" Target="UpdateShortcutFlags" WithoutSeq="true"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
     <ROW Action="AI_DetectSoftware" Type="257" Source="SoftwareDetector.dll" Target="OnDetectSoftware"/>
@@ -924,6 +928,10 @@
     <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
     <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="[#mzkit_win32.exe_1]"/>
     <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
+    <ROW Action="AI_PinShortcuts" Type="1" Source="ShortcutFlags.dll" Target="PinShortcuts"/>
+    <ROW Action="AI_PinToStartScreen" Type="1025" Source="ShortcutFlags.dll" Target="PinToStartScreen" WithoutSeq="true"/>
+    <ROW Action="AI_PinToTaskbar" Type="1025" Source="ShortcutFlags.dll" Target="PinToTaskbar" WithoutSeq="true"/>
+    <ROW Action="AI_PrepareShortcutFlags" Type="1" Source="ShortcutFlags.dll" Target="PrepareActionData"/>
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH" Target="[AI_SETUPEXEPATH_ORIGINAL]"/>
     <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
     <ROW Action="AI_RemoveExternalUIStub" Type="1" Source="ExternalUICleaner.dll" Target="RemoveExternalUIStub"/>
@@ -933,6 +941,9 @@
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
     <ROW Action="AI_SetArpReadmeFile" Type="51" Source="ARPREADME" Target="[#README.txt]"/>
     <ROW Action="AI_StopImageSlideshow" Type="1" Source="ShowBackgroundImages.dll" Target="StopImageSlideshow" WithoutSeq="true"/>
+    <ROW Action="AI_UnpinFromStartScreen" Type="1025" Source="ShortcutFlags.dll" Target="UnpinFromStartScreen" WithoutSeq="true"/>
+    <ROW Action="AI_UnpinFromTaskbar" Type="1025" Source="ShortcutFlags.dll" Target="UnpinFromTaskbar" WithoutSeq="true"/>
+    <ROW Action="AI_UnpinShortcuts" Type="1" Source="ShortcutFlags.dll" Target="UnpinShortcuts"/>
     <ROW Action="AI_ViewReadme" Type="1" Source="aicustact.dll" Target="[#README.txt]"/>
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFiles64Folder][Manufacturer]\[ProductName]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]" MultiBuildTarget="DefaultBuild:[ProgramMenuFolder]\[Manufacturer]\[ProductName]"/>
@@ -1269,8 +1280,18 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="Flask.exe" SourcePath="..\mzkit\Flask.ico" Index="0"/>
+    <ROW Name="SystemFoldermsiexec.exe" SourcePath="&lt;AI_RES&gt;uninstall.ico" Index="0"/>
     <ROW Name="ext.exe" SourcePath="..\mzkit\application-x-mzpack.ico" Index="0"/>
     <ROW Name="vs.exe" SourcePath="..\mzkit\vs.ico" Index="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiIniFileComponent">
+    <ROW IniFile="IconFile" FileName="VISITH~1.URL|Visit Home Page.url" DirProperty="SHORTCUTDIR" Section="InternetShortcut" Key="IconFile" Value="[#mzkit_win32.exe_1]" Action="0" Component_="mzkit_win32.exe_1"/>
+    <ROW IniFile="IconIndex" FileName="VISITH~1.URL|Visit Home Page.url" DirProperty="SHORTCUTDIR" Section="InternetShortcut" Key="IconIndex" Value="0" Action="0" Component_="mzkit_win32.exe_1"/>
+    <ROW IniFile="ShowCommand" FileName="VISITH~1.URL|Visit Home Page.url" DirProperty="SHORTCUTDIR" Section="InternetShortcut" Key="ShowCommand" Value="3" Action="0" Component_="mzkit_win32.exe_1"/>
+    <ROW IniFile="URL" FileName="VISITH~1.URL|Visit Home Page.url" DirProperty="SHORTCUTDIR" Section="InternetShortcut" Key="URL" Value="https://mzkit.org/" Action="0" Component_="mzkit_win32.exe_1"/>
+    <ROW IniFile="URL_1" FileName="VISITB~1.URL|Visit BioDeep.url" DirProperty="SHORTCUTDIR" Section="InternetShortcut" Key="URL" Value="http://www.biodeep.cn/" Action="0" Component_="mzkit_win32.exe_1"/>
+    <ROW IniFile="WorkingDirectory" FileName="VISITH~1.URL|Visit Home Page.url" DirProperty="SHORTCUTDIR" Section="InternetShortcut" Key="WorkingDirectory" Value="[SHORTCUTDIR]" Action="0" Component_="mzkit_win32.exe_1"/>
+    <ROW IniFile="WorkingDirectory_1" FileName="VISITB~1.URL|Visit BioDeep.url" DirProperty="SHORTCUTDIR" Section="InternetShortcut" Key="WorkingDirectory" Value="[SHORTCUTDIR]" Action="0" Component_="mzkit_win32.exe_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
@@ -1284,6 +1305,9 @@
     <ROW Action="AI_SetArpReadmeFile" Condition="NOT Installed" Sequence="1001"/>
     <ROW Action="AI_GetArpIconPath" Sequence="1401"/>
     <ROW Action="AI_RemoveExternalUIStub" Condition="(REMOVE=&quot;ALL&quot;) AND ((VersionNT &gt; 500) OR((VersionNT = 500) AND (ServicePackLevel &gt;= 4)))" Sequence="1501"/>
+    <ROW Action="AI_PrepareShortcutFlags" Condition="(VersionNT &gt; 501) AND ((NOT Installed) OR (Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;)))" Sequence="4501"/>
+    <ROW Action="AI_PinShortcuts" Condition="(VersionNT &gt; 600) AND ((NOT Installed) OR (Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;)))" Sequence="6499"/>
+    <ROW Action="AI_UnpinShortcuts" Condition="(VersionNT &gt; 600) AND (REMOVE = &quot;ALL&quot;)" Sequence="3199"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
@@ -1343,6 +1367,7 @@
     <ROW Shortcut="MZKit_1" Directory_="DesktopFolder" Name="MZKit" Component_="mzkit_win32.exe_1" Target="[#mzkit_win32.exe_1]" Description="MZKit" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
     <ROW Shortcut="README" Directory_="SHORTCUTDIR" Name="README" Component_="README.txt" Target="[#README.txt]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
     <ROW Shortcut="RInterpreter" Directory_="SHORTCUTDIR" Name="R#INTE~1|R# Interpreter" Component_="R.exe_4" Target="[#R.exe_4]" Description="R# Interpreter" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="bin_Dir"/>
+    <ROW Shortcut="UninstallProductNameProductVersion" Directory_="SHORTCUTDIR" Name="UNINST~1.156|Uninstall [|ProductName] [|ProductVersion]" Component_="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll" Target="[SystemFolder]msiexec.exe" Arguments="/x [ProductCode]" Hotkey="0" Icon_="SystemFoldermsiexec.exe" IconIndex="0" ShowCmd="1" CustomFlags="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="azure"/>
