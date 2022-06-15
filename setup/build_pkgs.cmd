@@ -1,5 +1,6 @@
 @echo off
 
+SET msbuild_logger=%CD%
 SET drive=%~d0
 SET R_HOME=%drive%\GCModeller\src\R-sharp\App\net6.0
 SET Rscript="%R_HOME%/Rscript.exe"
@@ -7,7 +8,6 @@ SET REnv="%R_HOME%/R#.exe"
 SET pkg_repo=../../../dist\bin\Rstudio\packages
 SET GCModeller_src=%drive%\GCModeller\src
 SET mzkit_src=%drive%\mzkit\Rscript\Library
-SET msbuild_logger=%CD%
 
 goto :start_msbuild
 
@@ -30,9 +30,7 @@ echo " --> %CD%"
 
 dotnet msbuild ./%_sln% -target:Clean
 dotnet msbuild ./%_sln% -t:restore 
-dotnet msbuild ./%_sln% -t:Rebuild /p:Configuration="Rsharp_app_release" /p:Platform="x64" -detailedSummary:True -verbosity:minimal 
-
-REM > %logfile% & type %logfile%
+dotnet msbuild ./%_sln% -t:Rebuild /p:Configuration="Rsharp_app_release" /p:Platform="x64" -detailedSummary:True -verbosity:minimal > %logfile% & type %logfile%
 
 REM cd %base%
 
@@ -77,6 +75,8 @@ CALL :exec_msbuild "%mzkit_src%" "./mzkit.NET5.sln"
 :mzkit_pkg
 
 REM -------- end of run msbuild -----------
+
+cd %msbuild_logger%
 
 SET pkg=%pkg_repo%/mzkit.zip
 
