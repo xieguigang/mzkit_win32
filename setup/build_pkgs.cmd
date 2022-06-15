@@ -9,6 +9,10 @@ SET pkg_repo=../../../dist\bin\Rstudio\packages
 SET GCModeller_src=%drive%\GCModeller\src
 SET mzkit_src=%drive%\mzkit\Rscript\Library
 
+if "%1"=="--Rpackage" (
+	goto :jump_to_build_Rpackages
+)
+
 goto :start_msbuild
 
 REM ----===== msbuild function =====----
@@ -75,6 +79,8 @@ CALL :exec_msbuild "%mzkit_src%" "./mzkit.NET5.sln"
 :mzkit_pkg
 
 REM -------- end of run msbuild -----------
+
+:jump_to_build_Rpackages
 
 cd %msbuild_logger%
 
