@@ -819,6 +819,7 @@
     <ROW File="BioNovoGene.BioDeep.MSEngine.Mummichog.dll" Component_="BioNovoGene.BioDeep.MSEngine.Mummichog.dll" FileName="BIONO~12.DLL|BioNovoGene.BioDeep.MSEngine.Mummichog.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.BioDeep.MSEngine.Mummichog.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll" Component_="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll" FileName="MICRO~48.DLL|Microsoft.VisualBasic.Math.Statistics.ANOVA.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Math.Statistics.ANOVA.dll" SelfReg="false"/>
     <ROW File="BioDeeplogo.png" Component_="S043.png" FileName="BIODEE~1.PNG|BioDeep-logo.png" Attributes="0" SourcePath="BioDeep-logo.png" SelfReg="false"/>
+    <ROW File="banner_prompt.cmd" Component_="Flute.Http.xml" FileName="BANNER~1.CMD|banner_prompt.cmd" Attributes="0" SourcePath="..\rstudio\banner_prompt.cmd" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
