@@ -186,7 +186,7 @@ Module RibbonEvents
             Call MyApplication.host.warning("Peak finding application only works on the Chromatogram data matrix!")
         Else
             Dim app = VisualStudio.ShowDocument(Of frmPeakFinding)(DockState.Document, $"Peak Finding [{mzkitTool.matrixName}]")
-            app.LoadMatrix(DirectCast(matrix, ChromatogramTick()))
+            app.LoadMatrix(mzkitTool.matrixName, DirectCast(matrix, ChromatogramTick()))
         End If
     End Sub
 
