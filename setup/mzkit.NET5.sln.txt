@@ -390,3 +390,162 @@ D:\GCModeller\src\runtime\sciBASIC#\gr\network-visualization\Network.IO.Extensio
   Successfully created package 'D:\mzkit\src\assembly\mzPack\bin\x64\Rsharp_app_release\BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.2.33.516.9870.nupkg'.
   DensityQuery.NET5 -> D:\GCModeller\src\runtime\sciBASIC#\Data_science\DataMining\DensityQuery\bin\x64\Rsharp_app_release\net48\Microsoft.VisualBasic.DataMining.DensityQuery.dll
 D:\GCModeller\src\runtime\sciBASIC#\gr\network-visualization\Visualizer\Styling\CSS\StyleParser.vb(66,9): warning BC42105: Function 'ParseCSSStyles' doesn't return a value on all code paths. A null reference exception could occur at run time when the result is used. [D:\GCModeller\src\runtime\sciBASIC#\gr\network-visualization\Visualizer\networkVisualizer.NET5.vbproj]
+  networkVisualizer.NET5 -> D:\GCModeller\src\R-sharp\App\net5.0\Microsoft.VisualBasic.Data.visualize.Network.Visualizer.dll
+  KCFDraw.NET5 -> D:\mzkit\src\visualize\KCF\KCFDraw\bin\x64\Rsharp_app_release\net5.0\BioNovoGene.BioDeep.Chemistry.Model.KCFDrawing.dll
+  XrefEngine.NET5 -> D:\mzkit\src\metadb\XrefEngine\bin\x64\Rsharp_app_release\net5.0\BioNovoGene.BioDeep.Chemistry.XrefEngine.dll
+  hctree.NET5 -> D:\GCModeller\src\R-sharp\App\net48\Microsoft.VisualBasic.DataMining.HierarchicalClustering.dll
+  machine_learning-netcore5 -> D:\GCModeller\src\R-sharp\App\net48\Microsoft.VisualBasic.MachineLearning.dll
+D:\GCModeller\src\runtime\sciBASIC#\Data_science\Visualization\Plots-statistics\Heatmap\BubbleHeatmap.vb(87,17): warning BC42024: Unused local variable: 'valueRanges'. [D:\GCModeller\src\runtime\sciBASIC#\Data_science\Visualization\Plots-statistics\plots_extensions-netcore5.vbproj]
+  plots_extensions-netcore5 -> D:\GCModeller\src\R-sharp\App\net48\Microsoft.VisualBasic.Data.ChartPlots.Statistics.dll
+D:\GCModeller\src\GCModeller\core\Bio.Assembly\Assembly\KEGG\Web\Map\MapDownloader.vb(137,31): warning SYSLIB0014: 'Public Overloads Sub New()' is obsolete: 'WebRequest, HttpWebRequest, ServicePoint, and WebClient are obsolete. Use HttpClient instead.'. [D:\GCModeller\src\GCModeller\core\Bio.Assembly\biocore-netcore5.vbproj]
+D:\GCModeller\src\GCModeller\core\Bio.Assembly\Assembly\KEGG\DBGET\LinkDB\Module.vb(78,31): warning SYSLIB0014: 'Public Overloads Sub New()' is obsolete: 'WebRequest, HttpWebRequest, ServicePoint, and WebClient are obsolete. Use HttpClient instead.'. [D:\GCModeller\src\GCModeller\core\Bio.Assembly\biocore-netcore5.vbproj]
+  biocore-netcore5 -> D:\GCModeller\src\GCModeller\core\Bio.Assembly\bin\x64\Rsharp_app_release\net6.0\SMRUCC.genomics.Core.dll
+  network_graph-netcore5 -> D:\GCModeller\src\R-sharp\App\net6.0\Microsoft.VisualBasic.Data.visualize.Network.dll
+  plots-netcore5 -> D:\GCModeller\src\R-sharp\App\net6.0\Microsoft.VisualBasic.Data.ChartPlots.dll
+D:\GCModeller\src\runtime\sciBASIC#\gr\network-visualization\Network.IO.Extensions\IO\FileStream\MetaData.vb(71,9): warning BC42105: Function 'Union' doesn't return a value on all code paths. A null reference exception could occur at run time when the result is used. [D:\GCModeller\src\runtime\sciBASIC#\gr\network-visualization\Network.IO.Extensions\network_io-netcore5.vbproj]
+  DensityQuery.NET5 -> D:\GCModeller\src\runtime\sciBASIC#\Data_science\DataMining\DensityQuery\bin\x64\Rsharp_app_release\net5.0\Microsoft.VisualBasic.DataMining.DensityQuery.dll
+  network_io-netcore5 -> D:\GCModeller\src\R-sharp\App\net6.0\Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.dll
+  machine_learning-netcore5 -> D:\GCModeller\src\R-sharp\App\net5.0\Microsoft.VisualBasic.MachineLearning.dll
+  metaDNA_visual.NET5 -> D:\mzkit\src\metadna\MetaDNA_visual\bin\x64\Rsharp_app_release\net48\BioNovoGene.BioDeep.MetaDNA.Visual.dll
+  Fisher.NET5 -> D:\GCModeller\src\GCModeller\annotations\GSEA\FisherCore\bin\x64\Rsharp_app_release\net6.0\SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.dll
+D:\GCModeller\src\runtime\sciBASIC#\gr\network-visualization\Visualizer\Styling\CSS\StyleParser.vb(66,9): warning BC42105: Function 'ParseCSSStyles' doesn't return a value on all code paths. A null reference exception could occur at run time when the result is used. [D:\GCModeller\src\runtime\sciBASIC#\gr\network-visualization\Visualizer\networkVisualizer.NET5.vbproj]
+  networkVisualizer.NET5 -> D:\GCModeller\src\R-sharp\App\net6.0\Microsoft.VisualBasic.Data.visualize.Network.Visualizer.dll
+  Successfully created package 'D:\mzkit\src\metadb\FormulaSearch.Extensions\bin\x64\Rsharp_app_release\BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions.1.0.0.nupkg'.
+  KCF_IO.NET5 -> D:\mzkit\src\visualize\KCF\KCF.IO\bin\x64\Rsharp_app_release\net6.0\BioNovoGene.BioDeep.Chemistry.Model.dll
+  KCF_graph.NET5 -> D:\mzkit\src\visualize\KCF\KCF.Graph\bin\x64\Rsharp_app_release\net6.0\BioNovoGene.BioDeep.Chemistry.Model.Graph.dll
+  MsPlot.NET5 -> D:\mzkit\src\visualize\plot\bin\x64\Rsharp_app_release\net48\BioNovoGene.Analytical.MassSpectrometry.Plots.dll
+D:\GCModeller\src\R-sharp\studio\RData\obj\x64\Rsharp_app_release\net48\RData.NET5.AssemblyInfo.vb(18,59): warning BC42366: The specified version string does not conform to the recommended format - major.minor.build.revision [D:\GCModeller\src\R-sharp\studio\RData\RData.NET5.vbproj]
+D:\GCModeller\src\R-sharp\studio\RData\Convertor\Deserializer.vb(63,9): warning BC42105: Function 'ToObject' doesn't return a value on all code paths. A null reference exception could occur at run time when the result is used. [D:\GCModeller\src\R-sharp\studio\RData\RData.NET5.vbproj]
+  RData.NET5 -> D:\GCModeller\src\R-sharp\App\net48\RData.dll
+  KCFDraw.NET5 -> D:\mzkit\src\visualize\KCF\KCFDraw\bin\x64\Rsharp_app_release\net6.0\BioNovoGene.BioDeep.Chemistry.Model.KCFDrawing.dll
+D:\GCModeller\src\R-sharp\studio\RData\obj\x64\Rsharp_app_release\net6.0\RData.NET5.AssemblyInfo.vb(18,59): warning BC42366: The specified version string does not conform to the recommended format - major.minor.build.revision [D:\GCModeller\src\R-sharp\studio\RData\RData.NET5.vbproj]
+D:\GCModeller\src\R-sharp\studio\RData\Convertor\Deserializer.vb(63,9): warning BC42105: Function 'ToObject' doesn't return a value on all code paths. A null reference exception could occur at run time when the result is used. [D:\GCModeller\src\R-sharp\studio\RData\RData.NET5.vbproj]
+  RData.NET5 -> D:\GCModeller\src\R-sharp\App\net6.0\RData.dll
+  hctree.NET5 -> D:\GCModeller\src\R-sharp\App\net5.0\Microsoft.VisualBasic.DataMining.HierarchicalClustering.dll
+  hctree.NET5 -> D:\GCModeller\src\R-sharp\App\net6.0\Microsoft.VisualBasic.DataMining.HierarchicalClustering.dll
+  LoadR.NET5 -> D:\mzkit\src\assembly\LoadR.NET5\bin\x64\Rsharp_app_release\net48\BioNovoGene.Analytical.MassSpectrometry.RInterop.dll
+D:\GCModeller\src\runtime\sciBASIC#\Data_science\Visualization\Plots-statistics\Heatmap\BubbleHeatmap.vb(87,17): warning BC42024: Unused local variable: 'valueRanges'. [D:\GCModeller\src\runtime\sciBASIC#\Data_science\Visualization\Plots-statistics\plots_extensions-netcore5.vbproj]
+  LoadR.NET5 -> D:\mzkit\src\assembly\LoadR.NET5\bin\x64\Rsharp_app_release\net6.0\BioNovoGene.Analytical.MassSpectrometry.RInterop.dll
+  massbank.NET5 -> D:\mzkit\src\metadb\Massbank\bin\x64\Rsharp_app_release\net6.0\BioNovoGene.BioDeep.Chemistry.Massbank.dll
+  plots_extensions-netcore5 -> D:\GCModeller\src\R-sharp\App\net5.0\Microsoft.VisualBasic.Data.ChartPlots.Statistics.dll
+  signal_io-netcore5 -> D:\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\SignalProcessing\Signal.IO\bin\x64\Rsharp_app_release\net6.0\Microsoft.VisualBasic.Data.Signal.IO.dll
+  signal_io-netcore5 -> D:\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\SignalProcessing\Signal.IO\bin\x64\Rsharp_app_release\net48\Microsoft.VisualBasic.Data.Signal.IO.dll
+  MoNA.NET5 -> D:\mzkit\src\metadb\MoNA\bin\x64\Rsharp_app_release\net48\BioNovoGene.BioDeep.Chemistry.Massbank.MoNA.dll
+  SMILES.NET5 -> D:\mzkit\src\metadb\SMILES\bin\x64\Rsharp_app_release\net48\BioNovoGene.BioDeep.Chemoinformatics.SMILES.dll
+D:\GCModeller\src\runtime\sciBASIC#\Data_science\Visualization\Plots-statistics\Heatmap\BubbleHeatmap.vb(87,17): warning BC42024: Unused local variable: 'valueRanges'. [D:\GCModeller\src\runtime\sciBASIC#\Data_science\Visualization\Plots-statistics\plots_extensions-netcore5.vbproj]
+  Successfully created package 'D:\mzkit\src\assembly\mzPackExtensions\bin\x64\Rsharp_app_release\BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.Extensions.1.0.0.nupkg'.
+C:\Program Files\dotnet\sdk\6.0.300\Sdks\NuGet.Build.Tasks.Pack\buildCrossTargeting\NuGet.Build.Tasks.Pack.targets(221,5): warning NU5104: A stable release of a package should not have a prerelease dependency. Either modify the version spec of dependency "System.Drawing.Common [6.0.0-preview.6.21352.12, )" or update the version field in the nuspec. [D:\GCModeller\src\runtime\sciBASIC#\gr\Microsoft.VisualBasic.Imaging\imaging.NET5.vbproj]
+C:\Program Files\dotnet\sdk\6.0.300\Sdks\NuGet.Build.Tasks.Pack\buildCrossTargeting\NuGet.Build.Tasks.Pack.targets(221,5): warning NU5104: A stable release of a package should not have a prerelease dependency. Either modify the version spec of dependency "System.Drawing.Common [6.0.0-preview.6.21352.12, )" or update the version field in the nuspec. [D:\GCModeller\src\runtime\sciBASIC#\gr\Microsoft.VisualBasic.Imaging\imaging.NET5.vbproj]
+C:\Program Files\dotnet\sdk\6.0.300\Sdks\NuGet.Build.Tasks.Pack\buildCrossTargeting\NuGet.Build.Tasks.Pack.targets(221,5): warning NU5104: A stable release of a package should not have a prerelease dependency. Either modify the version spec of dependency "System.Drawing.Common [6.0.0-preview.6.21352.12, )" or update the version field in the nuspec. [D:\GCModeller\src\runtime\sciBASIC#\gr\Microsoft.VisualBasic.Imaging\imaging.NET5.vbproj]
+C:\Program Files\dotnet\sdk\6.0.300\Sdks\NuGet.Build.Tasks.Pack\buildCrossTargeting\NuGet.Build.Tasks.Pack.targets(221,5): warning NU5104: A stable release of a package should not have a prerelease dependency. Either modify the version spec of dependency "System.Drawing.Common [6.0.0-preview.6.21352.12, )" or update the version field in the nuspec. [D:\GCModeller\src\runtime\sciBASIC#\gr\Microsoft.VisualBasic.Imaging\imaging.NET5.vbproj]
+C:\Program Files\dotnet\sdk\6.0.300\Sdks\NuGet.Build.Tasks.Pack\buildCrossTargeting\NuGet.Build.Tasks.Pack.targets(221,5): warning NU5124: The license identifier 'GPL' is not recognized by the current toolset. [D:\GCModeller\src\runtime\sciBASIC#\gr\Microsoft.VisualBasic.Imaging\imaging.NET5.vbproj]
+  Successfully created package 'D:\GCModeller\src\runtime\sciBASIC#\gr\Microsoft.VisualBasic.Imaging\bin\x64\Rsharp_app_release\Microsoft.VisualBasic.Imaging.1.0.0.nupkg'.
+  signal_io-netcore5 -> D:\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\SignalProcessing\Signal.IO\bin\x64\Rsharp_app_release\net5.0\Microsoft.VisualBasic.Data.Signal.IO.dll
+  XrefEngine.NET5 -> D:\mzkit\src\metadb\XrefEngine\bin\x64\Rsharp_app_release\net6.0\BioNovoGene.BioDeep.Chemistry.XrefEngine.dll
+  SDF.Extensions.NET5 -> D:\mzkit\src\visualize\SDF.Extensions\bin\x64\Rsharp_app_release\net48\BioNovoGene.BioDeep.Chemoinformatics.SDF.Extensions.dll
+  Successfully created package 'D:\mzkit\src\assembly\LoadR.NET5\bin\x64\Rsharp_app_release\BioNovoGene.Analytical.MassSpectrometry.RInterop.1.0.0.nupkg'.
+  MoNA.NET5 -> D:\mzkit\src\metadb\MoNA\bin\x64\Rsharp_app_release\net5.0\BioNovoGene.BioDeep.Chemistry.Massbank.MoNA.dll
+  SMILES.NET5 -> D:\mzkit\src\metadb\SMILES\bin\x64\Rsharp_app_release\net5.0\BioNovoGene.BioDeep.Chemoinformatics.SMILES.dll
+  SDF.Extensions.NET5 -> D:\mzkit\src\visualize\SDF.Extensions\bin\x64\Rsharp_app_release\net5.0\BioNovoGene.BioDeep.Chemoinformatics.SDF.Extensions.dll
+  MoNA.NET5 -> D:\mzkit\src\metadb\MoNA\bin\x64\Rsharp_app_release\net6.0\BioNovoGene.BioDeep.Chemistry.Massbank.MoNA.dll
+  SMILES.NET5 -> D:\mzkit\src\metadb\SMILES\bin\x64\Rsharp_app_release\net6.0\BioNovoGene.BioDeep.Chemoinformatics.SMILES.dll
+  SDF.Extensions.NET5 -> D:\mzkit\src\visualize\SDF.Extensions\bin\x64\Rsharp_app_release\net6.0\BioNovoGene.BioDeep.Chemoinformatics.SDF.Extensions.dll
+  ms2_simulator.NET5 -> D:\mzkit\Rscript\Library\mzkit_app\assembly\net48\BioNovoGene.Analytical.MassSpectrometry.Math.Insilicon.dll
+  plots_extensions-netcore5 -> D:\GCModeller\src\R-sharp\App\net6.0\Microsoft.VisualBasic.Data.ChartPlots.Statistics.dll
+  MsPlot.NET5 -> D:\mzkit\src\visualize\plot\bin\x64\Rsharp_app_release\net6.0\BioNovoGene.Analytical.MassSpectrometry.Plots.dll
+  MsPlot.NET5 -> D:\mzkit\src\visualize\plot\bin\x64\Rsharp_app_release\net5.0\BioNovoGene.Analytical.MassSpectrometry.Plots.dll
+  ms2_simulator.NET5 -> D:\mzkit\Rscript\Library\mzkit_app\assembly\net5.0\BioNovoGene.Analytical.MassSpectrometry.Math.Insilicon.dll
+  metaDNA_visual.NET5 -> D:\mzkit\src\metadna\MetaDNA_visual\bin\x64\Rsharp_app_release\net5.0\BioNovoGene.BioDeep.MetaDNA.Visual.dll
+  Successfully created package 'D:\GCModeller\src\R-sharp\App\Microsoft.VisualBasic.Imaging.Physics.1.0.0.nupkg'.
+  ms2_simulator.NET5 -> D:\mzkit\Rscript\Library\mzkit_app\assembly\net6.0\BioNovoGene.Analytical.MassSpectrometry.Math.Insilicon.dll
+  MSEngine -> D:\mzkit\src\mzmath\MSEngine\bin\x64\Rsharp_app_release\net6.0\BioNovoGene.BioDeep.MSEngine.dll
+  quantify.NET5 -> D:\mzkit\Rscript\Library\mzkit_app\assembly\net5.0\mzkit.quantify.dll
+D:\GCModeller\src\GCModeller\core\Bio.Annotation\PTF\KOSelector.vb(54,9): warning BC42105: Function 'SelectMaps' doesn't return a value on all code paths. A null reference exception could occur at run time when the result is used. [D:\GCModeller\src\GCModeller\core\Bio.Annotation\annotation.NET5.vbproj]
+  Mummichog -> D:\mzkit\src\mzmath\Mummichog\bin\x64\Rsharp_app_release\net6.0\BioNovoGene.BioDeep.MSEngine.Mummichog.dll
+  annotation.NET5 -> D:\GCModeller\src\GCModeller\core\Bio.Annotation\bin\x64\Rsharp_app_release\net48\SMRUCC.genomics.Annotation.dll
+  Successfully created package 'D:\GCModeller\src\R-sharp\App\Microsoft.VisualBasic.DataMining.HierarchicalClustering.1.0.0.nupkg'.
+  MSEngine -> D:\mzkit\src\mzmath\MSEngine\bin\x64\Rsharp_app_release\net48\BioNovoGene.BioDeep.MSEngine.dll
+  Mummichog -> D:\mzkit\src\mzmath\Mummichog\bin\x64\Rsharp_app_release\net48\BioNovoGene.BioDeep.MSEngine.Mummichog.dll
+  repository.NET5 -> D:\GCModeller\src\workbench\pkg\assembly\net48\SMRUCC.genomics.Data.Repository.dll
+  metaDNA.NET5 -> D:\mzkit\src\metadna\metaDNA\bin\x64\Rsharp_app_release\net48\BioNovoGene.BioDeep.MetaDNA.dll
+  metaDNA.NET5 -> D:\mzkit\src\metadna\metaDNA\bin\x64\Rsharp_app_release\net6.0\BioNovoGene.BioDeep.MetaDNA.dll
+D:\GCModeller\src\GCModeller\core\Bio.Annotation\PTF\KOSelector.vb(54,9): warning BC42105: Function 'SelectMaps' doesn't return a value on all code paths. A null reference exception could occur at run time when the result is used. [D:\GCModeller\src\GCModeller\core\Bio.Annotation\annotation.NET5.vbproj]
+  annotation.NET5 -> D:\GCModeller\src\GCModeller\core\Bio.Annotation\bin\x64\Rsharp_app_release\net6.0\SMRUCC.genomics.Annotation.dll
+  metaDNA_visual.NET5 -> D:\mzkit\src\metadna\MetaDNA_visual\bin\x64\Rsharp_app_release\net6.0\BioNovoGene.BioDeep.MetaDNA.Visual.dll
+  quantify.NET5 -> D:\mzkit\Rscript\Library\mzkit_app\assembly\net48\mzkit.quantify.dll
+  MsImaging.NET5 -> D:\mzkit\src\visualize\MsImaging\bin\x64\Rsharp_app_release\net48\BioNovoGene.Analytical.MassSpectrometry.MsImaging.dll
+  Successfully created package 'D:\GCModeller\src\R-sharp\App\Microsoft.VisualBasic.MachineLearning.5.0.1.2389.nupkg'.
+  MSEngine -> D:\mzkit\src\mzmath\MSEngine\bin\x64\Rsharp_app_release\net5.0\BioNovoGene.BioDeep.MSEngine.dll
+  Mummichog -> D:\mzkit\src\mzmath\Mummichog\bin\x64\Rsharp_app_release\net5.0\BioNovoGene.BioDeep.MSEngine.Mummichog.dll
+  MsImaging.NET5 -> D:\mzkit\src\visualize\MsImaging\bin\x64\Rsharp_app_release\net5.0\BioNovoGene.Analytical.MassSpectrometry.MsImaging.dll
+  metaDNA.NET5 -> D:\mzkit\src\metadna\metaDNA\bin\x64\Rsharp_app_release\net5.0\BioNovoGene.BioDeep.MetaDNA.dll
+  repository.NET5 -> D:\GCModeller\src\workbench\pkg\assembly\net6.0\SMRUCC.genomics.Data.Repository.dll
+D:\GCModeller\src\GCModeller\core\Bio.Annotation\PTF\KOSelector.vb(54,9): warning BC42105: Function 'SelectMaps' doesn't return a value on all code paths. A null reference exception could occur at run time when the result is used. [D:\GCModeller\src\GCModeller\core\Bio.Annotation\annotation.NET5.vbproj]
+  annotation.NET5 -> D:\GCModeller\src\GCModeller\core\Bio.Annotation\bin\x64\Rsharp_app_release\net5.0\SMRUCC.genomics.Annotation.dll
+  Successfully created package 'D:\GCModeller\src\runtime\sciBASIC#\Data_science\DataMining\DensityQuery\bin\x64\Rsharp_app_release\Microsoft.VisualBasic.DataMining.DensityQuery.1.0.0.nupkg'.
+  repository.NET5 -> D:\GCModeller\src\workbench\pkg\assembly\net5.0\SMRUCC.genomics.Data.Repository.dll
+  mzDIA.NET5 -> D:\mzkit\Rscript\Library\mzkit_app\assembly\net48\mzDIA.dll
+  ProteoWizard.Interop.NET5 -> D:\mzkit\src\assembly\ProteoWizard.Interop\bin\x64\Rsharp_app_release\net48\ProteoWizard.Interop.dll
+  ProteoWizard.Interop.NET5 -> D:\mzkit\src\assembly\ProteoWizard.Interop\bin\x64\Rsharp_app_release\net6.0\ProteoWizard.Interop.dll
+  MsImaging.NET5 -> D:\mzkit\src\visualize\MsImaging\bin\x64\Rsharp_app_release\net6.0\BioNovoGene.Analytical.MassSpectrometry.MsImaging.dll
+  quantify.NET5 -> D:\mzkit\Rscript\Library\mzkit_app\assembly\net6.0\mzkit.quantify.dll
+  mzplot.NET5 -> D:\mzkit\Rscript\Library\mzkit_app\assembly\net5.0\mzplot.dll
+  AnnotationLibrary -> D:\mzkit\src\metadb\AnnotationLibrary\bin\x64\Rsharp_app_release\net48\BioNovoGene.BioDeep.MSEngine.AnnotationLibrary.dll
+  mzDIA.NET5 -> D:\mzkit\Rscript\Library\mzkit_app\assembly\net5.0\mzDIA.dll
+  Successfully created package 'D:\mzkit\src\visualize\plot\bin\x64\Rsharp_app_release\BioNovoGene.Analytical.MassSpectrometry.Plots.1.0.0.nupkg'.
+  AnnotationLibrary -> D:\mzkit\src\metadb\AnnotationLibrary\bin\x64\Rsharp_app_release\net6.0\BioNovoGene.BioDeep.MSEngine.AnnotationLibrary.dll
+  mzplot.NET5 -> D:\mzkit\Rscript\Library\mzkit_app\assembly\net48\mzplot.dll
+  ProteoWizard.Interop.NET5 -> D:\mzkit\src\assembly\ProteoWizard.Interop\bin\x64\Rsharp_app_release\net5.0\ProteoWizard.Interop.dll
+  mzplot.NET5 -> D:\mzkit\Rscript\Library\mzkit_app\assembly\net6.0\mzplot.dll
+  Successfully created package 'D:\mzkit\src\mzmath\MSEngine\bin\x64\Rsharp_app_release\BioNovoGene.BioDeep.MSEngine.1.0.0.nupkg'.
+  AnnotationLibrary -> D:\mzkit\src\metadb\AnnotationLibrary\bin\x64\Rsharp_app_release\net5.0\BioNovoGene.BioDeep.MSEngine.AnnotationLibrary.dll
+D:\GCModeller\src\R-sharp\studio\RData\obj\x64\Rsharp_app_release\net6.0-windows\RData.NET5.AssemblyInfo.vb(18,59): warning BC42366: The specified version string does not conform to the recommended format - major.minor.build.revision [D:\GCModeller\src\R-sharp\studio\RData\RData.NET5.vbproj]
+D:\GCModeller\src\R-sharp\studio\RData\Convertor\Deserializer.vb(63,9): warning BC42105: Function 'ToObject' doesn't return a value on all code paths. A null reference exception could occur at run time when the result is used. [D:\GCModeller\src\R-sharp\studio\RData\RData.NET5.vbproj]
+  RData.NET5 -> D:\GCModeller\src\R-sharp\App\net6.0-windows\RData.dll
+  mzDIA.NET5 -> D:\mzkit\Rscript\Library\mzkit_app\assembly\net6.0\mzDIA.dll
+  mzkit.NET5 -> D:\mzkit\Rscript\Library\mzkit_app\assembly\net48\mzkit.dll
+C:\Program Files\dotnet\sdk\6.0.300\Sdks\NuGet.Build.Tasks.Pack\buildCrossTargeting\NuGet.Build.Tasks.Pack.targets(221,5): warning NU5104: A stable release of a package should not have a prerelease dependency. Either modify the version spec of dependency "System.ComponentModel.Annotations [6.0.0-preview.4.21253.7, )" or update the version field in the nuspec. [D:\GCModeller\src\R-sharp\R#\Rsharp-netcore5.vbproj]
+C:\Program Files\dotnet\sdk\6.0.300\Sdks\NuGet.Build.Tasks.Pack\buildCrossTargeting\NuGet.Build.Tasks.Pack.targets(221,5): warning NU5104: A stable release of a package should not have a prerelease dependency. Either modify the version spec of dependency "System.ComponentModel.Annotations [6.0.0-preview.4.21253.7, )" or update the version field in the nuspec. [D:\GCModeller\src\R-sharp\R#\Rsharp-netcore5.vbproj]
+C:\Program Files\dotnet\sdk\6.0.300\Sdks\NuGet.Build.Tasks.Pack\buildCrossTargeting\NuGet.Build.Tasks.Pack.targets(221,5): warning NU5104: A stable release of a package should not have a prerelease dependency. Either modify the version spec of dependency "System.ComponentModel.Annotations [6.0.0-preview.4.21253.7, )" or update the version field in the nuspec. [D:\GCModeller\src\R-sharp\R#\Rsharp-netcore5.vbproj]
+  Successfully created package 'D:\GCModeller\src\R-sharp\App\REnv.5.1.3.5558.nupkg'.
+  Successfully created package 'D:\mzkit\src\metadna\MetaDNA_visual\bin\x64\Rsharp_app_release\BioNovoGene.BioDeep.MetaDNA.Visual.1.0.0.nupkg'.
+  Successfully created package 'D:\GCModeller\src\workbench\pkg\assembly\SMRUCC.genomics.Data.Repository.1.0.0.nupkg'.
+  Successfully created package 'D:\mzkit\src\metadb\XrefEngine\bin\x64\Rsharp_app_release\BioNovoGene.BioDeep.Chemistry.XrefEngine.1.0.0.nupkg'.
+  Successfully created package 'D:\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\SignalProcessing\Signal.IO\bin\x64\Rsharp_app_release\Microsoft.VisualBasic.Data.Signal.IO.1.0.0.nupkg'.
+  mzkit.NET5 -> D:\mzkit\Rscript\Library\mzkit_app\assembly\net5.0\mzkit.dll
+  mzkit.NET5 -> D:\mzkit\Rscript\Library\mzkit_app\assembly\net6.0\mzkit.dll
+  Successfully created package 'D:\mzkit\Rscript\Library\mzkit_app\assembly\mzkit.quantify.1.0.0.nupkg'.
+  Successfully created package 'D:\mzkit\src\visualize\KCF\KCFDraw\bin\x64\Rsharp_app_release\BioNovoGene.BioDeep.Chemistry.Model.KCFDrawing.1.0.0.nupkg'.
+  Successfully created package 'D:\mzkit\src\metadb\SMILES\bin\x64\Rsharp_app_release\BioNovoGene.BioDeep.Chemoinformatics.SMILES.1.0.0.nupkg'.
+  Successfully created package 'D:\mzkit\src\assembly\ProteoWizard.Interop\bin\x64\Rsharp_app_release\ProteoWizard.Interop.1.0.0.nupkg'.
+  Successfully created package 'D:\mzkit\src\visualize\KCF\KCF.IO\bin\x64\Rsharp_app_release\BioNovoGene.BioDeep.Chemistry.Model.1.0.0.nupkg'.
+  Successfully created package 'D:\mzkit\src\visualize\KCF\KCF.Graph\bin\x64\Rsharp_app_release\BioNovoGene.BioDeep.Chemistry.Model.Graph.1.0.0.nupkg'.
+  Successfully created package 'D:\GCModeller\src\R-sharp\App\Microsoft.VisualBasic.DataMining.Framework.1.0.0.nupkg'.
+  Successfully created package 'D:\mzkit\Rscript\Library\mzkit_app\assembly\BioNovoGene.Analytical.MassSpectrometry.Math.Insilicon.1.0.0.nupkg'.
+  Successfully created package 'D:\GCModeller\src\R-sharp\App\RData.1.0.0.nupkg'.
+  Successfully created package 'D:\mzkit\src\visualize\SDF.Extensions\bin\x64\Rsharp_app_release\BioNovoGene.BioDeep.Chemoinformatics.SDF.Extensions.1.0.0.nupkg'.
+  Successfully created package 'D:\mzkit\src\metadb\Massbank\bin\x64\Rsharp_app_release\BioNovoGene.BioDeep.Chemistry.Massbank.1.0.0.nupkg'.
+  Successfully created package 'D:\mzkit\src\metadb\MoNA\bin\x64\Rsharp_app_release\BioNovoGene.BioDeep.Chemistry.Massbank.MoNA.1.0.0.nupkg'.
+  Successfully created package 'D:\mzkit\src\assembly\ThermoRawFileReader\bin\x64\Rsharp_app_release\BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.1.0.0.nupkg'.
+  Successfully created package 'D:\mzkit\Rscript\Library\mzkit_app\assembly\mzplot.1.0.0.nupkg'.
+  Successfully created package 'D:\GCModeller\src\GCModeller\core\Bio.Annotation\bin\x64\Rsharp_app_release\SMRUCC.genomics.Annotation.1.0.0.nupkg'.
+  Successfully created package 'D:\GCModeller\src\R-sharp\App\Microsoft.VisualBasic.Data.IO.MessagePack.1.0.0.nupkg'.
+  Successfully created package 'D:\mzkit\src\metadb\AnnotationLibrary\bin\x64\Rsharp_app_release\BioNovoGene.BioDeep.MSEngine.AnnotationLibrary.1.0.0.nupkg'.
+  Successfully created package 'D:\mzkit\src\mzmath\Mummichog\bin\x64\Rsharp_app_release\BioNovoGene.BioDeep.MSEngine.Mummichog.1.0.0.nupkg'.
+  Successfully created package 'D:\GCModeller\src\R-sharp\App\Microsoft.VisualBasic.Data.GraphTheory.1.0.0.nupkg'.
+  Successfully created package 'D:\mzkit\Rscript\Library\mzkit_app\assembly\mzDIA.1.0.0.nupkg'.
+C:\Program Files\dotnet\sdk\6.0.300\Sdks\NuGet.Build.Tasks.Pack\buildCrossTargeting\NuGet.Build.Tasks.Pack.targets(221,5): warning NU5104: A stable release of a package should not have a prerelease dependency. Either modify the version spec of dependency "System.ComponentModel.Annotations [6.0.0-preview.4.21253.7, )" or update the version field in the nuspec. [D:\GCModeller\src\runtime\sciBASIC#\Data\DataFrame\dataframework-netcore5.vbproj]
+C:\Program Files\dotnet\sdk\6.0.300\Sdks\NuGet.Build.Tasks.Pack\buildCrossTargeting\NuGet.Build.Tasks.Pack.targets(221,5): warning NU5104: A stable release of a package should not have a prerelease dependency. Either modify the version spec of dependency "System.Data.DataSetExtensions [4.6.0-preview3.19128.7, )" or update the version field in the nuspec. [D:\GCModeller\src\runtime\sciBASIC#\Data\DataFrame\dataframework-netcore5.vbproj]
+C:\Program Files\dotnet\sdk\6.0.300\Sdks\NuGet.Build.Tasks.Pack\buildCrossTargeting\NuGet.Build.Tasks.Pack.targets(221,5): warning NU5104: A stable release of a package should not have a prerelease dependency. Either modify the version spec of dependency "System.ComponentModel.Annotations [6.0.0-preview.4.21253.7, )" or update the version field in the nuspec. [D:\GCModeller\src\runtime\sciBASIC#\Data\DataFrame\dataframework-netcore5.vbproj]
+C:\Program Files\dotnet\sdk\6.0.300\Sdks\NuGet.Build.Tasks.Pack\buildCrossTargeting\NuGet.Build.Tasks.Pack.targets(221,5): warning NU5104: A stable release of a package should not have a prerelease dependency. Either modify the version spec of dependency "System.Data.DataSetExtensions [4.6.0-preview3.19128.7, )" or update the version field in the nuspec. [D:\GCModeller\src\runtime\sciBASIC#\Data\DataFrame\dataframework-netcore5.vbproj]
+C:\Program Files\dotnet\sdk\6.0.300\Sdks\NuGet.Build.Tasks.Pack\buildCrossTargeting\NuGet.Build.Tasks.Pack.targets(221,5): warning NU5104: A stable release of a package should not have a prerelease dependency. Either modify the version spec of dependency "System.ComponentModel.Annotations [6.0.0-preview.4.21253.7, )" or update the version field in the nuspec. [D:\GCModeller\src\runtime\sciBASIC#\Data\DataFrame\dataframework-netcore5.vbproj]
+C:\Program Files\dotnet\sdk\6.0.300\Sdks\NuGet.Build.Tasks.Pack\buildCrossTargeting\NuGet.Build.Tasks.Pack.targets(221,5): warning NU5104: A stable release of a package should not have a prerelease dependency. Either modify the version spec of dependency "System.Data.DataSetExtensions [4.6.0-preview3.19128.7, )" or update the version field in the nuspec. [D:\GCModeller\src\runtime\sciBASIC#\Data\DataFrame\dataframework-netcore5.vbproj]
+  Successfully created package 'D:\GCModeller\src\R-sharp\App\Microsoft.VisualBasic.Data.Framework.5.0.123.nupkg'.
+C:\Program Files\dotnet\sdk\6.0.300\Sdks\NuGet.Build.Tasks.Pack\buildCrossTargeting\NuGet.Build.Tasks.Pack.targets(221,5): warning NU5104: A stable release of a package should not have a prerelease dependency. Either modify the version spec of dependency "System.Drawing.Common [6.0.0-preview.6.21352.12, )" or update the version field in the nuspec. [D:\GCModeller\src\runtime\sciBASIC#\mime\text%html\html_netcore5.vbproj]
+C:\Program Files\dotnet\sdk\6.0.300\Sdks\NuGet.Build.Tasks.Pack\buildCrossTargeting\NuGet.Build.Tasks.Pack.targets(221,5): warning NU5104: A stable release of a package should not have a prerelease dependency. Either modify the version spec of dependency "System.Drawing.Common [6.0.0-preview.6.21352.12, )" or update the version field in the nuspec. [D:\GCModeller\src\runtime\sciBASIC#\mime\text%html\html_netcore5.vbproj]
+C:\Program Files\dotnet\sdk\6.0.300\Sdks\NuGet.Build.Tasks.Pack\buildCrossTargeting\NuGet.Build.Tasks.Pack.targets(221,5): warning NU5104: A stable release of a package should not have a prerelease dependency. Either modify the version spec of dependency "System.Drawing.Common [6.0.0-preview.6.21352.12, )" or update the version field in the nuspec. [D:\GCModeller\src\runtime\sciBASIC#\mime\text%html\html_netcore5.vbproj]
+  Successfully created package 'D:\GCModeller\src\R-sharp\App\Microsoft.VisualBasic.MIME.Html.1.0.0.nupkg'.
+  Successfully created package 'D:\mzkit\src\visualize\MsImaging\bin\x64\Rsharp_app_release\BioNovoGene.Analytical.MassSpectrometry.MsImaging.1.0.0.nupkg'.
+  Successfully created package 'D:\mzkit\src\assembly\BrukerDataReader\bin\x64\Rsharp_app_release\BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.1.0.0.nupkg'.
+  Successfully created package 'D:\mzkit\src\metadna\metaDNA\bin\x64\Rsharp_app_release\BioNovoGene.BioDeep.MetaDNA.1.0.0.nupkg'.
+  Successfully created package 'D:\mzkit\Rscript\Library\mzkit_app\assembly\mzkit.1.0.0.nupkg'.
