@@ -720,7 +720,7 @@ Public Class PageMzkitTools
 
     Sub showMatrix(matrix As SSM2MatrixFragment(), name As String)
         Me.matrix = matrix
-        matrixName = name
+        Me.matrixName = name
 
         DataGridView1.Rows.Clear()
         DataGridView1.Columns.Clear()
@@ -737,7 +737,7 @@ Public Class PageMzkitTools
 
     Public Sub showMatrix(matrix As ChromatogramTick(), name As String)
         Me.matrix = matrix
-        matrixName = name
+        Me.matrixName = name
 
         DataGridView1.Rows.Clear()
         DataGridView1.Columns.Clear()

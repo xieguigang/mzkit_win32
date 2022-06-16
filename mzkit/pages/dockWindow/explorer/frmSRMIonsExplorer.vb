@@ -128,6 +128,9 @@ Public Class frmSRMIonsExplorer
         Call ApplyVsTheme(ContextMenuStrip1, ToolStrip1, ContextMenuStrip2, ContextMenuStrip3)
     End Sub
 
+    Dim TIC As ChromatogramTick()
+    Dim title As String
+
     Private Sub Win7StyleTreeView1_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles Win7StyleTreeView1.AfterSelect
         Dim ticks As ChromatogramTick()
 
@@ -140,6 +143,9 @@ Public Class frmSRMIonsExplorer
 
             Call VisualStudio.ShowProperties(proper)
         End If
+
+        TIC = ticks
+        title = e.Node.Text
 
         Call MyApplication.host.mzkitTool.ShowMRMTIC(e.Node.Text, ticks)
     End Sub
@@ -242,5 +248,12 @@ Public Class frmSRMIonsExplorer
         For Each node As TreeNode In Win7StyleTreeView1.Nodes
             node.Checked = False
         Next
+    End Sub
+
+    Private Sub PeakFindingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PeakFindingToolStripMenuItem.Click
+        If Not TIC.IsNullOrEmpty Then
+            Call MyApplication.host.mzkitTool.ShowMRMTIC(title, TIC)
+            Call RibbonEvents.CreatePeakFinding()
+        End If
     End Sub
 End Class

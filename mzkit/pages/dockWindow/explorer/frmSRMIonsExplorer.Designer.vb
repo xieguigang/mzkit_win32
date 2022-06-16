@@ -91,9 +91,13 @@ Partial Class frmSRMIonsExplorer
         Me.ClearIonSelectionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ClearFilesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Win7StyleTreeView1 = New Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView(Me.components)
+        Me.Win7StyleTreeView1 = New ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView(Me.components)
         Me.ContextMenuStrip3 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ImportsFilesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.SelectAllFilesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ClearFileSelectionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripSeparator()
         Me.ClearFilesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
@@ -101,10 +105,8 @@ Partial Class frmSRMIonsExplorer
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ShowTICOverlapToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ShowTICOverlap3DToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ClearFileSelectionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SelectAllFilesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripSeparator()
+        Me.PeakFindingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripSeparator()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.ContextMenuStrip3.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
@@ -115,61 +117,61 @@ Partial Class frmSRMIonsExplorer
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowTICOverlapToolStripMenuItem, Me.ShowTICOverlap3DToolStripMenuItem, Me.ToolStripMenuItem1, Me.SelectAllIonsToolStripMenuItem, Me.ClearIonSelectionsToolStripMenuItem, Me.ToolStripMenuItem2, Me.ClearFilesToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(192, 126)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(178, 126)
         '
         'ShowTICOverlapToolStripMenuItem
         '
         Me.ShowTICOverlapToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TICToolStripMenuItem, Me.BPCToolStripMenuItem})
         Me.ShowTICOverlapToolStripMenuItem.Image = CType(resources.GetObject("ShowTICOverlapToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ShowTICOverlapToolStripMenuItem.Name = "ShowTICOverlapToolStripMenuItem"
-        Me.ShowTICOverlapToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
+        Me.ShowTICOverlapToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
         Me.ShowTICOverlapToolStripMenuItem.Text = "Show Overlaps"
         '
         'TICToolStripMenuItem
         '
         Me.TICToolStripMenuItem.Name = "TICToolStripMenuItem"
-        Me.TICToolStripMenuItem.Size = New System.Drawing.Size(99, 22)
+        Me.TICToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.TICToolStripMenuItem.Text = "TIC"
         '
         'BPCToolStripMenuItem
         '
         Me.BPCToolStripMenuItem.Name = "BPCToolStripMenuItem"
-        Me.BPCToolStripMenuItem.Size = New System.Drawing.Size(99, 22)
+        Me.BPCToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.BPCToolStripMenuItem.Text = "BPC"
         '
         'ShowTICOverlap3DToolStripMenuItem
         '
         Me.ShowTICOverlap3DToolStripMenuItem.Name = "ShowTICOverlap3DToolStripMenuItem"
-        Me.ShowTICOverlap3DToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
+        Me.ShowTICOverlap3DToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
         Me.ShowTICOverlap3DToolStripMenuItem.Text = "Overlap In 3D"
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(188, 6)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(174, 6)
         '
         'SelectAllIonsToolStripMenuItem
         '
         Me.SelectAllIonsToolStripMenuItem.Name = "SelectAllIonsToolStripMenuItem"
-        Me.SelectAllIonsToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
+        Me.SelectAllIonsToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
         Me.SelectAllIonsToolStripMenuItem.Text = "Select All Ions"
         '
         'ClearIonSelectionsToolStripMenuItem
         '
         Me.ClearIonSelectionsToolStripMenuItem.Name = "ClearIonSelectionsToolStripMenuItem"
-        Me.ClearIonSelectionsToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
+        Me.ClearIonSelectionsToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
         Me.ClearIonSelectionsToolStripMenuItem.Text = "Clear Ion Selections"
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(188, 6)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(174, 6)
         '
         'ClearFilesToolStripMenuItem
         '
         Me.ClearFilesToolStripMenuItem.Image = CType(resources.GetObject("ClearFilesToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ClearFilesToolStripMenuItem.Name = "ClearFilesToolStripMenuItem"
-        Me.ClearFilesToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
+        Me.ClearFilesToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
         Me.ClearFilesToolStripMenuItem.Text = "Clear Files"
         '
         'Win7StyleTreeView1
@@ -193,20 +195,42 @@ Partial Class frmSRMIonsExplorer
         '
         Me.ContextMenuStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportsFilesToolStripMenuItem, Me.ToolStripMenuItem3, Me.SelectAllFilesToolStripMenuItem, Me.ClearFileSelectionsToolStripMenuItem, Me.ToolStripMenuItem4, Me.ClearFilesToolStripMenuItem1})
         Me.ContextMenuStrip3.Name = "ContextMenuStrip3"
-        Me.ContextMenuStrip3.Size = New System.Drawing.Size(192, 126)
+        Me.ContextMenuStrip3.Size = New System.Drawing.Size(179, 104)
         '
         'ImportsFilesToolStripMenuItem
         '
         Me.ImportsFilesToolStripMenuItem.Image = CType(resources.GetObject("ImportsFilesToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ImportsFilesToolStripMenuItem.Name = "ImportsFilesToolStripMenuItem"
-        Me.ImportsFilesToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
+        Me.ImportsFilesToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
         Me.ImportsFilesToolStripMenuItem.Text = "Imports Files"
+        '
+        'ToolStripMenuItem3
+        '
+        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(175, 6)
+        '
+        'SelectAllFilesToolStripMenuItem
+        '
+        Me.SelectAllFilesToolStripMenuItem.Name = "SelectAllFilesToolStripMenuItem"
+        Me.SelectAllFilesToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
+        Me.SelectAllFilesToolStripMenuItem.Text = "Select All Files"
+        '
+        'ClearFileSelectionsToolStripMenuItem
+        '
+        Me.ClearFileSelectionsToolStripMenuItem.Name = "ClearFileSelectionsToolStripMenuItem"
+        Me.ClearFileSelectionsToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
+        Me.ClearFileSelectionsToolStripMenuItem.Text = "Clear File Selections"
+        '
+        'ToolStripMenuItem4
+        '
+        Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(175, 6)
         '
         'ClearFilesToolStripMenuItem1
         '
         Me.ClearFilesToolStripMenuItem1.Image = CType(resources.GetObject("ClearFilesToolStripMenuItem1.Image"), System.Drawing.Image)
         Me.ClearFilesToolStripMenuItem1.Name = "ClearFilesToolStripMenuItem1"
-        Me.ClearFilesToolStripMenuItem1.Size = New System.Drawing.Size(191, 22)
+        Me.ClearFilesToolStripMenuItem1.Size = New System.Drawing.Size(178, 22)
         Me.ClearFilesToolStripMenuItem1.Text = "Clear Files"
         '
         'ImageList1
@@ -228,48 +252,37 @@ Partial Class frmSRMIonsExplorer
         'ToolStripLabel1
         '
         Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(72, 22)
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(64, 22)
         Me.ToolStripLabel1.Text = "MRM Ions:"
         '
         'ContextMenuStrip2
         '
-        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowTICOverlapToolStripMenuItem1, Me.ShowTICOverlap3DToolStripMenuItem1})
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowTICOverlapToolStripMenuItem1, Me.ShowTICOverlap3DToolStripMenuItem1, Me.ToolStripMenuItem5, Me.PeakFindingToolStripMenuItem})
         Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(201, 48)
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(185, 98)
         '
         'ShowTICOverlapToolStripMenuItem1
         '
         Me.ShowTICOverlapToolStripMenuItem1.Name = "ShowTICOverlapToolStripMenuItem1"
-        Me.ShowTICOverlapToolStripMenuItem1.Size = New System.Drawing.Size(200, 22)
+        Me.ShowTICOverlapToolStripMenuItem1.Size = New System.Drawing.Size(184, 22)
         Me.ShowTICOverlapToolStripMenuItem1.Text = "Show TIC Overlap"
         '
         'ShowTICOverlap3DToolStripMenuItem1
         '
         Me.ShowTICOverlap3DToolStripMenuItem1.Name = "ShowTICOverlap3DToolStripMenuItem1"
-        Me.ShowTICOverlap3DToolStripMenuItem1.Size = New System.Drawing.Size(200, 22)
+        Me.ShowTICOverlap3DToolStripMenuItem1.Size = New System.Drawing.Size(184, 22)
         Me.ShowTICOverlap3DToolStripMenuItem1.Text = "Show TIC Overlap 3D"
         '
-        'ToolStripMenuItem3
+        'PeakFindingToolStripMenuItem
         '
-        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(188, 6)
+        Me.PeakFindingToolStripMenuItem.Name = "PeakFindingToolStripMenuItem"
+        Me.PeakFindingToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
+        Me.PeakFindingToolStripMenuItem.Text = "Peak Finding"
         '
-        'ClearFileSelectionsToolStripMenuItem
+        'ToolStripMenuItem5
         '
-        Me.ClearFileSelectionsToolStripMenuItem.Name = "ClearFileSelectionsToolStripMenuItem"
-        Me.ClearFileSelectionsToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
-        Me.ClearFileSelectionsToolStripMenuItem.Text = "Clear File Selections"
-        '
-        'SelectAllFilesToolStripMenuItem
-        '
-        Me.SelectAllFilesToolStripMenuItem.Name = "SelectAllFilesToolStripMenuItem"
-        Me.SelectAllFilesToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
-        Me.SelectAllFilesToolStripMenuItem.Text = "Select All Files"
-        '
-        'ToolStripMenuItem4
-        '
-        Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
-        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(188, 6)
+        Me.ToolStripMenuItem5.Name = "ToolStripMenuItem5"
+        Me.ToolStripMenuItem5.Size = New System.Drawing.Size(181, 6)
         '
         'frmSRMIonsExplorer
         '
@@ -313,4 +326,6 @@ Partial Class frmSRMIonsExplorer
     Friend WithEvents SelectAllFilesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ClearFileSelectionsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem4 As ToolStripSeparator
+    Friend WithEvents ToolStripMenuItem5 As ToolStripSeparator
+    Friend WithEvents PeakFindingToolStripMenuItem As ToolStripMenuItem
 End Class
