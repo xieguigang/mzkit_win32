@@ -154,7 +154,7 @@ Public Module MoleculeNetworking
 
         properties = New SpectrumProperty(scanId, raw.source.FileName, msLevel, attrs)
 
-        If properties.precursorMz > 0 Then
+        If showAnnotation AndAlso properties.precursorMz > 0 Then
             scanData.ms2 = pa.RunAnnotation(properties.precursorMz, scanData.ms2).products
         End If
 
