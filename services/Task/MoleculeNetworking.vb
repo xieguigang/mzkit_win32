@@ -109,6 +109,7 @@ Public Module MoleculeNetworking
                                 scanId As String,
                                 cutoff As LowAbundanceTrimming,
                                 reload As Action(Of String, String),
+                                showAnnotation As Boolean,
                                 Optional ByRef properties As SpectrumProperty = Nothing) As LibraryMatrix
         Dim attrs As ScanMS2
         Dim msLevel As Integer

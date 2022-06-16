@@ -1483,6 +1483,10 @@
       <Project>{712e2304-2f25-4480-8a0b-6c7091136fb4}</Project>
       <Name>MSEngine</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\mzmath\Mummichog\Mummichog.vbproj">
+      <Project>{49f16938-4209-47a1-a1d5-b3de359c07eb}</Project>
+      <Name>Mummichog</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\mzmath\mz_deco\deconv.NET5.vbproj">
       <Project>{fd924bdc-104f-4210-ab34-38ddeaf081ad}</Project>
       <Name>deconv.NET5</Name>

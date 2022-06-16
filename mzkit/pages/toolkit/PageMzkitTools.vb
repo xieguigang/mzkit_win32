@@ -233,7 +233,8 @@ Public Class PageMzkitTools
     Friend Sub showSpectrum(scanId As String, raw As MZWork.Raw)
         If raw.cacheFileExists Then
             Dim prop As SpectrumProperty = Nothing
-            Dim scanData As LibraryMatrix = raw.GetSpectrum(scanId, Globals.Settings.viewer.GetMethod, Sub(src, cache) frmFileExplorer.getRawCache(src,, cache), prop)
+            Dim showAnnotation As Boolean = RibbonEvents.ribbonItems.CheckBoxShowMs2Fragment.BooleanValue
+            Dim scanData As LibraryMatrix = raw.GetSpectrum(scanId, Globals.Settings.viewer.GetMethod, Sub(src, cache) frmFileExplorer.getRawCache(src,, cache), showAnnotation, prop)
 
             If prop.msLevel = 1 AndAlso RibbonItems.CheckBoxShowKEGGAnnotation.BooleanValue Then
                 Call ConnectToBioDeep.OpenAdvancedFunction(
