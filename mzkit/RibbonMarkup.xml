@@ -2255,6 +2255,7 @@
         <String Id="578">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdCheckBoxShowMs2Fragment" Id="4" LabelTitle="Show Fragment Annotation" LabelDescription="Show Fragment Annotation" TooltipTitle="Show Fragment Annotation" TooltipDescription="Show Fragment Annotation" />
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2353,7 +2354,6 @@
         <TabGroup CommandName="cmdTabGroupTableTools">
           <Tab CommandName="cmdTabDesign" ApplicationModes="0,1">
             <Group CommandName="cmdGroupDesign" ApplicationModes="0,1">
-              <CheckBox CommandName="cmdCheckBoxShowKEGGAnnotation" />
               <Spinner CommandName="cmdPPMSpinner" />
               <Spinner CommandName="cmdXIC_PPMSpinner" />
             </Group>
@@ -2387,6 +2387,8 @@
               <Button CommandName="cmdButtonXIC" />
             </Group>
             <Group CommandName="cmdPlotOptions" ApplicationModes="0,1">
+              <CheckBox CommandName="cmdCheckBoxShowKEGGAnnotation" />
+              <CheckBox CommandName="cmdCheckBoxShowMs2Fragment" />
               <CheckBox CommandName="cmdCheckBoxXICRelative" />
             </Group>
             <Group CommandName="cmdTabReferenceLibrary" SizeDefinition="OneButton">

@@ -906,5 +906,10 @@
 #define cmdXIC_PPMSpinner_LabelTitle_RESID 576
 #define cmdXIC_PPMSpinner_LabelDescription_RESID 577
 #define cmdXIC_PPMSpinner_TooltipDescription_RESID 578
-#define InternalCmd2_LabelTitle_RESID 60114
-#define InternalCmd4_LabelTitle_RESID 60115
+#define cmdCheckBoxShowMs2Fragment 4 
+#define cmdCheckBoxShowMs2Fragment_LabelTitle_RESID 60114
+#define cmdCheckBoxShowMs2Fragment_LabelDescription_RESID 60115
+#define cmdCheckBoxShowMs2Fragment_TooltipTitle_RESID 60116
+#define cmdCheckBoxShowMs2Fragment_TooltipDescription_RESID 60117
+#define InternalCmd2_LabelTitle_RESID 60118
+#define InternalCmd4_LabelTitle_RESID 60119

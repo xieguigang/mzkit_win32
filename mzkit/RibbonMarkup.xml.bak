@@ -467,7 +467,7 @@
         <Image Id="81">Res/baobab.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonLinearFitting" Id="182" LabelTitle="Linear Fitting" LabelDescription="Open tool page to evaluate linear fitting" TooltipTitle="Linear Fitting" TooltipDescription="Linear Fitting">
+    <Command Name="cmdButtonLinearFitting" Id="182" LabelTitle="Linear Fitting" LabelDescription="Open tool page to evaluate linear fitting" TooltipTitle="Linear Fitting" TooltipDescription="Open tool page to evaluate linear fitting">
       <Command.SmallImages>
         <Image MinDPI="192">Res/office_chart_area_256px_540041_easyicon.net.bmp</Image>
       </Command.SmallImages>
@@ -2255,6 +2255,7 @@
         <String Id="578">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdCheckBoxShowMs2Fragment" Id="4" LabelTitle="Show Fragment Annotation" LabelDescription="Show Fragment Annotation" TooltipTitle="Show Fragment Annotation" TooltipDescription="Show Fragment Annotation" />
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2353,7 +2354,6 @@
         <TabGroup CommandName="cmdTabGroupTableTools">
           <Tab CommandName="cmdTabDesign" ApplicationModes="0,1">
             <Group CommandName="cmdGroupDesign" ApplicationModes="0,1">
-              <CheckBox CommandName="cmdCheckBoxShowKEGGAnnotation" />
               <Spinner CommandName="cmdPPMSpinner" />
               <Spinner CommandName="cmdXIC_PPMSpinner" />
             </Group>
@@ -2388,6 +2388,7 @@
             </Group>
             <Group CommandName="cmdPlotOptions" ApplicationModes="0,1">
               <CheckBox CommandName="cmdCheckBoxXICRelative" />
+              <CheckBox CommandName="cmdCheckBoxShowKEGGAnnotation" />
             </Group>
             <Group CommandName="cmdTabReferenceLibrary" SizeDefinition="OneButton">
               <Button CommandName="cmdOpenIonsLibrary" />

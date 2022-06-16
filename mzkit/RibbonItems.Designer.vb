@@ -46,7 +46,6 @@ Namespace RibbonLib.Controls
             Public Const cmdTabGroupTableTools As UInteger = 1031
             Public Const cmdTabDesign As UInteger = 1032
             Public Const cmdGroupDesign As UInteger = 1036
-            Public Const cmdCheckBoxShowKEGGAnnotation As UInteger = 153
             Public Const cmdPPMSpinner As UInteger = 1050
             Public Const cmdXIC_PPMSpinner As UInteger = 156
             Public Const cmdGroupShowViewer As UInteger = 1110
@@ -70,6 +69,8 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonTIC As UInteger = 1144
             Public Const cmdButtonXIC As UInteger = 1145
             Public Const cmdPlotOptions As UInteger = 97
+            Public Const cmdCheckBoxShowKEGGAnnotation As UInteger = 153
+            Public Const cmdCheckBoxShowMs2Fragment As UInteger = 4
             Public Const cmdCheckBoxXICRelative As UInteger = 96
             Public Const cmdTabReferenceLibrary As UInteger = 161
             Public Const cmdOpenIonsLibrary As UInteger = 159
@@ -379,12 +380,6 @@ Namespace RibbonLib.Controls
                 Return _GroupDesign
             End Get
         End Property
-        Private _CheckBoxShowKEGGAnnotation As RibbonCheckBox
-        Public ReadOnly Property CheckBoxShowKEGGAnnotation As RibbonCheckBox
-            Get
-                Return _CheckBoxShowKEGGAnnotation
-            End Get
-        End Property
         Private _PPMSpinner As RibbonSpinner
         Public ReadOnly Property PPMSpinner As RibbonSpinner
             Get
@@ -521,6 +516,18 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property PlotOptions As RibbonGroup
             Get
                 Return _PlotOptions
+            End Get
+        End Property
+        Private _CheckBoxShowKEGGAnnotation As RibbonCheckBox
+        Public ReadOnly Property CheckBoxShowKEGGAnnotation As RibbonCheckBox
+            Get
+                Return _CheckBoxShowKEGGAnnotation
+            End Get
+        End Property
+        Private _CheckBoxShowMs2Fragment As RibbonCheckBox
+        Public ReadOnly Property CheckBoxShowMs2Fragment As RibbonCheckBox
+            Get
+                Return _CheckBoxShowMs2Fragment
             End Get
         End Property
         Private _CheckBoxXICRelative As RibbonCheckBox
@@ -1237,7 +1244,6 @@ Namespace RibbonLib.Controls
             _TabGroupTableTools = New RibbonTabGroup(_ribbon, Cmd.cmdTabGroupTableTools)
             _TabDesign = New RibbonTab(_ribbon, Cmd.cmdTabDesign)
             _GroupDesign = New RibbonGroup(_ribbon, Cmd.cmdGroupDesign)
-            _CheckBoxShowKEGGAnnotation = New RibbonCheckBox(_ribbon, Cmd.cmdCheckBoxShowKEGGAnnotation)
             _PPMSpinner = New RibbonSpinner(_ribbon, Cmd.cmdPPMSpinner)
             _XIC_PPMSpinner = New RibbonSpinner(_ribbon, Cmd.cmdXIC_PPMSpinner)
             _GroupShowViewer = New RibbonGroup(_ribbon, Cmd.cmdGroupShowViewer)
@@ -1261,6 +1267,8 @@ Namespace RibbonLib.Controls
             _ButtonTIC = New RibbonButton(_ribbon, Cmd.cmdButtonTIC)
             _ButtonXIC = New RibbonButton(_ribbon, Cmd.cmdButtonXIC)
             _PlotOptions = New RibbonGroup(_ribbon, Cmd.cmdPlotOptions)
+            _CheckBoxShowKEGGAnnotation = New RibbonCheckBox(_ribbon, Cmd.cmdCheckBoxShowKEGGAnnotation)
+            _CheckBoxShowMs2Fragment = New RibbonCheckBox(_ribbon, Cmd.cmdCheckBoxShowMs2Fragment)
             _CheckBoxXICRelative = New RibbonCheckBox(_ribbon, Cmd.cmdCheckBoxXICRelative)
             _TabReferenceLibrary = New RibbonGroup(_ribbon, Cmd.cmdTabReferenceLibrary)
             _OpenIonsLibrary = New RibbonButton(_ribbon, Cmd.cmdOpenIonsLibrary)

@@ -49,7 +49,6 @@ namespace RibbonLib.Controls
             public const uint cmdTabGroupTableTools = 1031;
             public const uint cmdTabDesign = 1032;
             public const uint cmdGroupDesign = 1036;
-            public const uint cmdCheckBoxShowKEGGAnnotation = 153;
             public const uint cmdPPMSpinner = 1050;
             public const uint cmdXIC_PPMSpinner = 156;
             public const uint cmdGroupShowViewer = 1110;
@@ -73,6 +72,8 @@ namespace RibbonLib.Controls
             public const uint cmdButtonTIC = 1144;
             public const uint cmdButtonXIC = 1145;
             public const uint cmdPlotOptions = 97;
+            public const uint cmdCheckBoxShowKEGGAnnotation = 153;
+            public const uint cmdCheckBoxShowMs2Fragment = 4;
             public const uint cmdCheckBoxXICRelative = 96;
             public const uint cmdTabReferenceLibrary = 161;
             public const uint cmdOpenIonsLibrary = 159;
@@ -227,7 +228,6 @@ namespace RibbonLib.Controls
         public RibbonTabGroup TabGroupTableTools { get; private set; }
         public RibbonTab TabDesign { get; private set; }
         public RibbonGroup GroupDesign { get; private set; }
-        public RibbonCheckBox CheckBoxShowKEGGAnnotation { get; private set; }
         public RibbonSpinner PPMSpinner { get; private set; }
         public RibbonSpinner XIC_PPMSpinner { get; private set; }
         public RibbonGroup GroupShowViewer { get; private set; }
@@ -251,6 +251,8 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonTIC { get; private set; }
         public RibbonButton ButtonXIC { get; private set; }
         public RibbonGroup PlotOptions { get; private set; }
+        public RibbonCheckBox CheckBoxShowKEGGAnnotation { get; private set; }
+        public RibbonCheckBox CheckBoxShowMs2Fragment { get; private set; }
         public RibbonCheckBox CheckBoxXICRelative { get; private set; }
         public RibbonGroup TabReferenceLibrary { get; private set; }
         public RibbonButton OpenIonsLibrary { get; private set; }
@@ -400,7 +402,6 @@ namespace RibbonLib.Controls
             TabGroupTableTools = new RibbonTabGroup(ribbon, Cmd.cmdTabGroupTableTools);
             TabDesign = new RibbonTab(ribbon, Cmd.cmdTabDesign);
             GroupDesign = new RibbonGroup(ribbon, Cmd.cmdGroupDesign);
-            CheckBoxShowKEGGAnnotation = new RibbonCheckBox(ribbon, Cmd.cmdCheckBoxShowKEGGAnnotation);
             PPMSpinner = new RibbonSpinner(ribbon, Cmd.cmdPPMSpinner);
             XIC_PPMSpinner = new RibbonSpinner(ribbon, Cmd.cmdXIC_PPMSpinner);
             GroupShowViewer = new RibbonGroup(ribbon, Cmd.cmdGroupShowViewer);
@@ -424,6 +425,8 @@ namespace RibbonLib.Controls
             ButtonTIC = new RibbonButton(ribbon, Cmd.cmdButtonTIC);
             ButtonXIC = new RibbonButton(ribbon, Cmd.cmdButtonXIC);
             PlotOptions = new RibbonGroup(ribbon, Cmd.cmdPlotOptions);
+            CheckBoxShowKEGGAnnotation = new RibbonCheckBox(ribbon, Cmd.cmdCheckBoxShowKEGGAnnotation);
+            CheckBoxShowMs2Fragment = new RibbonCheckBox(ribbon, Cmd.cmdCheckBoxShowMs2Fragment);
             CheckBoxXICRelative = new RibbonCheckBox(ribbon, Cmd.cmdCheckBoxXICRelative);
             TabReferenceLibrary = new RibbonGroup(ribbon, Cmd.cmdTabReferenceLibrary);
             OpenIonsLibrary = new RibbonButton(ribbon, Cmd.cmdOpenIonsLibrary);
