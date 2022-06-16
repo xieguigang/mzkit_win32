@@ -378,7 +378,7 @@ Public Class frmRawFeaturesList
                 Return
             End If
         Else
-            Call MyApplication.mzkitRawViewer.showMatrix(plotTIC.value, Name)
+            Call MyApplication.mzkitRawViewer.showMatrix(plotTIC.value, plotTIC.name)
         End If
 
         Call MyApplication.mzkitRawViewer.ShowXIC(ppm, plotTIC, AddressOf GetXICCollection, raw.GetXICMaxYAxis)
