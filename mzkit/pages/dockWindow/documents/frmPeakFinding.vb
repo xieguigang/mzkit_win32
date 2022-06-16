@@ -116,8 +116,14 @@ Public Class frmPeakFinding
                 .name = peakROI.ToString,
                 .value = peakROI.ticks
             }
+            Dim background As New NamedCollection(Of ChromatogramTick) With {
+                .name = "Background",
+                .value = peakROI _
+                    .GetChromatogramData(matrix, 15) _
+                    .ToArray
+            }
 
-            Call plotMatrix(spline:=True, targetPeak)
+            Call plotMatrix(spline:=True, background, targetPeak)
             Call ShowMatrix(peakROI.ticks)
         End If
     End Sub
