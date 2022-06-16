@@ -503,6 +503,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\DemoItem.vb" />
+    <Compile Include="pages\dockWindow\documents\frmPeakFinding.Designer.vb">
+      <DependentUpon>frmPeakFinding.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pages\dockWindow\documents\frmPeakFinding.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\documents\frmSMILESViewer.Designer.vb">
       <DependentUpon>frmSMILESViewer.vb</DependentUpon>
     </Compile>
