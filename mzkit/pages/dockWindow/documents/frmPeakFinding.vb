@@ -21,14 +21,15 @@ Public Class frmPeakFinding
         Call InitPanel()
     End Sub
 
-    Private Sub plotMatrix(ParamArray result As NamedCollection(Of ChromatogramTick)())
+    Private Sub plotMatrix(spline As Boolean, ParamArray result As NamedCollection(Of ChromatogramTick)())
         Dim plot As Image = result _
             .TICplot(
                 intensityMax:=0,
                 isXIC:=True,
                 colorsSchema:=Globals.GetColors,
-                fillCurve:=Globals.Settings.viewer.fill,
-                gridFill:="white"
+                fillCurve:=True,
+                gridFill:="white",
+                spline:=If(spline, 3, 0)
             ).AsGDIImage
 
         PictureBox1.BackgroundImage = plot
@@ -75,7 +76,7 @@ Public Class frmPeakFinding
         Next
 
         Call ShowMatrix(matrix)
-        Call plotMatrix(New NamedCollection(Of ChromatogramTick)(rawName, matrix))
+        Call plotMatrix(spline:=False, New NamedCollection(Of ChromatogramTick)(rawName, matrix))
     End Sub
 
     Private Sub ShowMatrix(matrix As ChromatogramTick())
@@ -111,7 +112,12 @@ Public Class frmPeakFinding
             Dim row As DataGridViewRow = PeakListViewer.SelectedRows(0)
             Dim peakId As String = any.ToString(row.Cells.Item(0).Value)
             Dim peakROI As ROI = peakList(peakId)
+            Dim targetPeak As New NamedCollection(Of ChromatogramTick) With {
+                .name = peakROI.ToString,
+                .value = peakROI.ticks
+            }
 
+            Call plotMatrix(spline:=True, targetPeak)
             Call ShowMatrix(peakROI.ticks)
         End If
     End Sub
@@ -125,7 +131,7 @@ Public Class frmPeakFinding
                 .value = peakROI.ticks
             }
 
-            Call plotMatrix(New NamedCollection(Of ChromatogramTick)(rawName, matrix), targetPeak)
+            Call plotMatrix(spline:=False, New NamedCollection(Of ChromatogramTick)(rawName, matrix), targetPeak)
         End If
     End Sub
 End Class
