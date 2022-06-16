@@ -58,7 +58,7 @@ Partial Class frmPeakFinding
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.PeakMatrixViewer)
         Me.SplitContainer1.Size = New System.Drawing.Size(1238, 661)
-        Me.SplitContainer1.SplitterDistance = 835
+        Me.SplitContainer1.SplitterDistance = 977
         Me.SplitContainer1.TabIndex = 0
         '
         'SplitContainer2
@@ -75,8 +75,8 @@ Partial Class frmPeakFinding
         'SplitContainer2.Panel2
         '
         Me.SplitContainer2.Panel2.Controls.Add(Me.PeakListViewer)
-        Me.SplitContainer2.Size = New System.Drawing.Size(835, 661)
-        Me.SplitContainer2.SplitterDistance = 453
+        Me.SplitContainer2.Size = New System.Drawing.Size(977, 661)
+        Me.SplitContainer2.SplitterDistance = 437
         Me.SplitContainer2.TabIndex = 0
         '
         'PictureBox1
@@ -85,17 +85,18 @@ Partial Class frmPeakFinding
         Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(835, 453)
+        Me.PictureBox1.Size = New System.Drawing.Size(977, 437)
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
         'PeakListViewer
         '
         Me.PeakListViewer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.PeakListViewer.ContextMenuStrip = Me.ContextMenuStrip1
         Me.PeakListViewer.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PeakListViewer.Location = New System.Drawing.Point(0, 0)
         Me.PeakListViewer.Name = "PeakListViewer"
-        Me.PeakListViewer.Size = New System.Drawing.Size(835, 204)
+        Me.PeakListViewer.Size = New System.Drawing.Size(977, 220)
         Me.PeakListViewer.TabIndex = 0
         '
         'PeakMatrixViewer
@@ -104,19 +105,19 @@ Partial Class frmPeakFinding
         Me.PeakMatrixViewer.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PeakMatrixViewer.Location = New System.Drawing.Point(0, 0)
         Me.PeakMatrixViewer.Name = "PeakMatrixViewer"
-        Me.PeakMatrixViewer.Size = New System.Drawing.Size(399, 661)
+        Me.PeakMatrixViewer.Size = New System.Drawing.Size(257, 661)
         Me.PeakMatrixViewer.TabIndex = 0
         '
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 48)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(100, 26)
         '
         'ViewToolStripMenuItem
         '
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
-        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(99, 22)
         Me.ViewToolStripMenuItem.Text = "View"
         '
         'frmPeakFinding

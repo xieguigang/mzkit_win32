@@ -21,11 +21,8 @@ Public Class frmPeakFinding
         Call InitPanel()
     End Sub
 
-    Public Sub InitPanel()
-        Dim size As Size = PictureBox1.Size
-        Dim plot As Image = {
-            New NamedCollection(Of ChromatogramTick)(rawName, matrix)
-        } _
+    Private Sub plotMatrix(ParamArray result As NamedCollection(Of ChromatogramTick)())
+        Dim plot As Image = result _
             .TICplot(
                 intensityMax:=0,
                 isXIC:=True,
@@ -35,7 +32,9 @@ Public Class frmPeakFinding
             ).AsGDIImage
 
         PictureBox1.BackgroundImage = plot
+    End Sub
 
+    Public Sub InitPanel()
         ' do peak list finding
         Dim peakwidth As DoubleRange = getPeakwidth()
         Dim peakROIs As ROI() = matrix.Shadows.PopulateROI(
@@ -76,6 +75,7 @@ Public Class frmPeakFinding
         Next
 
         Call ShowMatrix(matrix)
+        Call plotMatrix(New NamedCollection(Of ChromatogramTick)(rawName, matrix))
     End Sub
 
     Private Sub ShowMatrix(matrix As ChromatogramTick())
@@ -108,12 +108,24 @@ Public Class frmPeakFinding
         If PeakListViewer.SelectedRows.Count <= 0 Then
             Call MyApplication.host.showStatusMessage("Please select a row data for view content!", My.Resources.StatusAnnotations_Warning_32xLG_color)
         Else
-            Dim obj As New Dictionary(Of String, Object)
             Dim row As DataGridViewRow = PeakListViewer.SelectedRows(0)
             Dim peakId As String = any.ToString(row.Cells.Item(0).Value)
             Dim peakROI As ROI = peakList(peakId)
 
             Call ShowMatrix(peakROI.ticks)
+        End If
+    End Sub
+
+    Private Sub PeakListViewer_RowStateChanged(sender As Object, e As DataGridViewRowStateChangedEventArgs) Handles PeakListViewer.RowStateChanged
+        If e.StateChanged = DataGridViewElementStates.Selected Then
+            Dim peakId As String = any.ToString(e.Row.Cells.Item(0).Value)
+            Dim peakROI As ROI = peakList(peakId)
+            Dim targetPeak As New NamedCollection(Of ChromatogramTick) With {
+                .name = peakROI.ToString,
+                .value = peakROI.ticks
+            }
+
+            Call plotMatrix(New NamedCollection(Of ChromatogramTick)(rawName, matrix), targetPeak)
         End If
     End Sub
 End Class
