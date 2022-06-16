@@ -26,8 +26,10 @@ Partial Class frmPeakFinding
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
+        Me.PeakListViewer = New System.Windows.Forms.DataGridView()
+        Me.PeakMatrixViewer = New System.Windows.Forms.DataGridView()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -37,8 +39,9 @@ Partial Class frmPeakFinding
         Me.SplitContainer2.Panel2.SuspendLayout()
         Me.SplitContainer2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PeakListViewer, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PeakMatrixViewer, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'SplitContainer1
@@ -53,7 +56,7 @@ Partial Class frmPeakFinding
         '
         'SplitContainer1.Panel2
         '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.DataGridView2)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.PeakMatrixViewer)
         Me.SplitContainer1.Size = New System.Drawing.Size(1238, 661)
         Me.SplitContainer1.SplitterDistance = 835
         Me.SplitContainer1.TabIndex = 0
@@ -71,7 +74,7 @@ Partial Class frmPeakFinding
         '
         'SplitContainer2.Panel2
         '
-        Me.SplitContainer2.Panel2.Controls.Add(Me.DataGridView1)
+        Me.SplitContainer2.Panel2.Controls.Add(Me.PeakListViewer)
         Me.SplitContainer2.Size = New System.Drawing.Size(835, 661)
         Me.SplitContainer2.SplitterDistance = 453
         Me.SplitContainer2.TabIndex = 0
@@ -86,23 +89,35 @@ Partial Class frmPeakFinding
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
-        'DataGridView1
+        'PeakListViewer
         '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView1.Location = New System.Drawing.Point(0, 0)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(835, 204)
-        Me.DataGridView1.TabIndex = 0
+        Me.PeakListViewer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.PeakListViewer.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PeakListViewer.Location = New System.Drawing.Point(0, 0)
+        Me.PeakListViewer.Name = "PeakListViewer"
+        Me.PeakListViewer.Size = New System.Drawing.Size(835, 204)
+        Me.PeakListViewer.TabIndex = 0
         '
-        'DataGridView2
+        'PeakMatrixViewer
         '
-        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView2.Location = New System.Drawing.Point(0, 0)
-        Me.DataGridView2.Name = "DataGridView2"
-        Me.DataGridView2.Size = New System.Drawing.Size(399, 661)
-        Me.DataGridView2.TabIndex = 0
+        Me.PeakMatrixViewer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.PeakMatrixViewer.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PeakMatrixViewer.Location = New System.Drawing.Point(0, 0)
+        Me.PeakMatrixViewer.Name = "PeakMatrixViewer"
+        Me.PeakMatrixViewer.Size = New System.Drawing.Size(399, 661)
+        Me.PeakMatrixViewer.TabIndex = 0
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 48)
+        '
+        'ViewToolStripMenuItem
+        '
+        Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
+        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ViewToolStripMenuItem.Text = "View"
         '
         'frmPeakFinding
         '
@@ -121,8 +136,9 @@ Partial Class frmPeakFinding
         CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer2.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PeakListViewer, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PeakMatrixViewer, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -130,6 +146,8 @@ Partial Class frmPeakFinding
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents SplitContainer2 As SplitContainer
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents DataGridView2 As DataGridView
+    Friend WithEvents PeakListViewer As DataGridView
+    Friend WithEvents PeakMatrixViewer As DataGridView
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
 End Class
