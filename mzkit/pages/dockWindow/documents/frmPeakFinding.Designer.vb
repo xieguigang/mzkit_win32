@@ -22,9 +22,17 @@ Partial Class frmPeakFinding
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
+        Me.SuspendLayout()
+        '
+        'frmPeakFinding
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Text = "Form1"
+        Me.ClientSize = New System.Drawing.Size(1059, 566)
+        Me.DoubleBuffered = True
+        Me.Name = "frmPeakFinding"
+        Me.ResumeLayout(False)
+
     End Sub
 End Class

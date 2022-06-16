@@ -977,6 +977,9 @@
     <EmbeddedResource Include="pages\dockWindow\documents\frmNetworkViewer.resx">
       <DependentUpon>frmNetworkViewer.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\documents\frmPeakFinding.resx">
+      <DependentUpon>frmPeakFinding.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frmQuantifyIons.resx">
       <DependentUpon>frmQuantifyIons.vb</DependentUpon>
     </EmbeddedResource>
