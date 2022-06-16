@@ -22,6 +22,7 @@ Public Class frmPeakFinding
     End Sub
 
     Private Sub plotMatrix(spline As Boolean, ParamArray result As NamedCollection(Of ChromatogramTick)())
+        Dim size As Size = PictureBox1.Size
         Dim plot As Image = result _
             .TICplot(
                 intensityMax:=0,
@@ -29,7 +30,8 @@ Public Class frmPeakFinding
                 colorsSchema:=Globals.GetColors,
                 fillCurve:=True,
                 gridFill:="white",
-                spline:=If(spline, 3, 0)
+                spline:=If(spline, 3, 0),
+                size:=$"{size.Width},{size.Height}"
             ).AsGDIImage
 
         PictureBox1.BackgroundImage = plot
@@ -139,5 +141,9 @@ Public Class frmPeakFinding
 
             Call plotMatrix(spline:=False, New NamedCollection(Of ChromatogramTick)(rawName, matrix), targetPeak)
         End If
+    End Sub
+
+    Private Sub frmPeakFinding_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Call ApplyVsTheme(ContextMenuStrip1)
     End Sub
 End Class

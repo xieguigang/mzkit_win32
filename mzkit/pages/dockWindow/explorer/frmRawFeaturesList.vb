@@ -798,6 +798,11 @@ Public Class frmRawFeaturesList
         Call LoadXICIons(matched)
     End Sub
 
+    Private Sub PeakFindingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PeakFindingToolStripMenuItem.Click
+        Call ShowXICToolStripMenuItem_Click()
+        Call RibbonEvents.CreatePeakFinding()
+    End Sub
+
     Private Sub treeView1_DragEnter(sender As Object, e As DragEventArgs) Handles treeView1.DragEnter
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             e.Effect = DragDropEffects.Copy

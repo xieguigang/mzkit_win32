@@ -176,7 +176,7 @@ Module RibbonEvents
         AddHandler ribbonItems.ButtonSystemDiagnosis.ExecuteEvent, Sub() Call CollectSystemInformation()
     End Sub
 
-    Private Sub CreatePeakFinding()
+    Friend Sub CreatePeakFinding()
         Dim mzkitTool = MyApplication.host.mzkitTool
         Dim matrix As Array = mzkitTool.matrix
 
