@@ -64,6 +64,7 @@ Namespace RibbonLib.Controls
             Public Const cmdGroupLayout As UInteger = 1037
             Public Const cmdButtonLayout1 As UInteger = 1043
             Public Const cmdButtonLayout2 As UInteger = 1044
+            Public Const cmdButtonPeakFinding As UInteger = 5
             Public Const cmdGroupChromatography As UInteger = 1141
             Public Const cmdButtonBPC As UInteger = 1143
             Public Const cmdButtonTIC As UInteger = 1144
@@ -486,6 +487,12 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonLayout2 As RibbonButton
             Get
                 Return _ButtonLayout2
+            End Get
+        End Property
+        Private _ButtonPeakFinding As RibbonButton
+        Public ReadOnly Property ButtonPeakFinding As RibbonButton
+            Get
+                Return _ButtonPeakFinding
             End Get
         End Property
         Private _GroupChromatography As RibbonGroup
@@ -1262,6 +1269,7 @@ Namespace RibbonLib.Controls
             _GroupLayout = New RibbonGroup(_ribbon, Cmd.cmdGroupLayout)
             _ButtonLayout1 = New RibbonButton(_ribbon, Cmd.cmdButtonLayout1)
             _ButtonLayout2 = New RibbonButton(_ribbon, Cmd.cmdButtonLayout2)
+            _ButtonPeakFinding = New RibbonButton(_ribbon, Cmd.cmdButtonPeakFinding)
             _GroupChromatography = New RibbonGroup(_ribbon, Cmd.cmdGroupChromatography)
             _ButtonBPC = New RibbonButton(_ribbon, Cmd.cmdButtonBPC)
             _ButtonTIC = New RibbonButton(_ribbon, Cmd.cmdButtonTIC)

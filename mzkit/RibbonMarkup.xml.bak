@@ -2256,6 +2256,14 @@
       </Command.TooltipDescription>
     </Command>
     <Command Name="cmdCheckBoxShowMs2Fragment" Id="4" LabelTitle="Show Fragment Annotation" LabelDescription="Show Fragment Annotation" TooltipTitle="Show Fragment Annotation" TooltipDescription="Show Fragment Annotation" />
+    <Command Name="cmdButtonPeakFinding" Id="5" LabelTitle="Peak Finding" LabelDescription="Peak Finding" TooltipTitle="Peak Finding" TooltipDescription="Peak Finding">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/edit-find.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/edit-find.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2380,6 +2388,7 @@
             <Group CommandName="cmdGroupLayout" ApplicationModes="0,1" SizeDefinition="TwoButtons">
               <Button CommandName="cmdButtonLayout1" />
               <Button CommandName="cmdButtonLayout2" />
+              <Button CommandName="cmdButtonPeakFinding" />
             </Group>
             <Group CommandName="cmdGroupChromatography" ApplicationModes="0,1" SizeDefinition="ThreeButtons">
               <Button CommandName="cmdButtonBPC" />
@@ -2387,8 +2396,9 @@
               <Button CommandName="cmdButtonXIC" />
             </Group>
             <Group CommandName="cmdPlotOptions" ApplicationModes="0,1">
-              <CheckBox CommandName="cmdCheckBoxXICRelative" />
               <CheckBox CommandName="cmdCheckBoxShowKEGGAnnotation" />
+              <CheckBox CommandName="cmdCheckBoxShowMs2Fragment" />
+              <CheckBox CommandName="cmdCheckBoxXICRelative" />
             </Group>
             <Group CommandName="cmdTabReferenceLibrary" SizeDefinition="OneButton">
               <Button CommandName="cmdOpenIonsLibrary" />

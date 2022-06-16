@@ -911,5 +911,12 @@
 #define cmdCheckBoxShowMs2Fragment_LabelDescription_RESID 60115
 #define cmdCheckBoxShowMs2Fragment_TooltipTitle_RESID 60116
 #define cmdCheckBoxShowMs2Fragment_TooltipDescription_RESID 60117
-#define InternalCmd2_LabelTitle_RESID 60118
-#define InternalCmd4_LabelTitle_RESID 60119
+#define cmdButtonPeakFinding 5 
+#define cmdButtonPeakFinding_LabelTitle_RESID 60118
+#define cmdButtonPeakFinding_LabelDescription_RESID 60119
+#define cmdButtonPeakFinding_TooltipTitle_RESID 60120
+#define cmdButtonPeakFinding_TooltipDescription_RESID 60121
+#define cmdButtonPeakFinding_SmallImages_192__RESID 60122
+#define cmdButtonPeakFinding_LargeImages_192__RESID 60123
+#define InternalCmd2_LabelTitle_RESID 60124
+#define InternalCmd4_LabelTitle_RESID 60125

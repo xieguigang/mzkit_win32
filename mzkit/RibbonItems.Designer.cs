@@ -67,6 +67,7 @@ namespace RibbonLib.Controls
             public const uint cmdGroupLayout = 1037;
             public const uint cmdButtonLayout1 = 1043;
             public const uint cmdButtonLayout2 = 1044;
+            public const uint cmdButtonPeakFinding = 5;
             public const uint cmdGroupChromatography = 1141;
             public const uint cmdButtonBPC = 1143;
             public const uint cmdButtonTIC = 1144;
@@ -246,6 +247,7 @@ namespace RibbonLib.Controls
         public RibbonGroup GroupLayout { get; private set; }
         public RibbonButton ButtonLayout1 { get; private set; }
         public RibbonButton ButtonLayout2 { get; private set; }
+        public RibbonButton ButtonPeakFinding { get; private set; }
         public RibbonGroup GroupChromatography { get; private set; }
         public RibbonButton ButtonBPC { get; private set; }
         public RibbonButton ButtonTIC { get; private set; }
@@ -420,6 +422,7 @@ namespace RibbonLib.Controls
             GroupLayout = new RibbonGroup(ribbon, Cmd.cmdGroupLayout);
             ButtonLayout1 = new RibbonButton(ribbon, Cmd.cmdButtonLayout1);
             ButtonLayout2 = new RibbonButton(ribbon, Cmd.cmdButtonLayout2);
+            ButtonPeakFinding = new RibbonButton(ribbon, Cmd.cmdButtonPeakFinding);
             GroupChromatography = new RibbonGroup(ribbon, Cmd.cmdGroupChromatography);
             ButtonBPC = new RibbonButton(ribbon, Cmd.cmdButtonBPC);
             ButtonTIC = new RibbonButton(ribbon, Cmd.cmdButtonTIC);

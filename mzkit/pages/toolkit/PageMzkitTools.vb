@@ -96,9 +96,7 @@ Imports stdNum = System.Math
 
 Public Class PageMzkitTools
 
-    Dim RibbonItems As RibbonItems
-    Dim matrix As Array
-
+    Friend matrix As Array
     Friend matrixName As String
 
     Friend _ribbonExportDataContextMenuStrip As ExportData
@@ -201,7 +199,6 @@ Public Class PageMzkitTools
 
     Private Sub PageMzkitTools_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim host = MyApplication.host
-        RibbonItems = host.ribbonItems
 
         ' Call InitializeFileTree()
         Call Globals.sharedProgressUpdater("Attatch Command Events...")

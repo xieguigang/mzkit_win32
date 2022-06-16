@@ -64,6 +64,7 @@ Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.RibbonLib.Controls
@@ -97,6 +98,7 @@ Module RibbonEvents
         AddHandler ribbonItems.ButtonCopyMatrix.ExecuteEvent, AddressOf CopyMatrix
         AddHandler ribbonItems.ButtonCopyPlot.ExecuteEvent, AddressOf CopyPlotImage
 
+        AddHandler ribbonItems.ButtonPeakFinding.ExecuteEvent, Sub(sender, e) Call CreatePeakFinding()
         AddHandler ribbonItems.ButtonMzCalculator.ExecuteEvent, Sub(sender, e) Call MyApplication.host.ShowPage(MyApplication.host.mzkitCalculator)
         AddHandler ribbonItems.ButtonSettings.ExecuteEvent, AddressOf ShowSettings
         AddHandler ribbonItems.ButtonMzSearch.ExecuteEvent, Sub(sender, e) Call MyApplication.host.ShowPage(MyApplication.host.mzkitSearch)
@@ -172,6 +174,20 @@ Module RibbonEvents
         AddHandler ribbonItems.ButtonDevTools.ExecuteEvent, Sub() Call openCmd()
         AddHandler ribbonItems.DOIReference.ExecuteEvent, Sub() Call New frmDOI().ShowDialog()
         AddHandler ribbonItems.ButtonSystemDiagnosis.ExecuteEvent, Sub() Call CollectSystemInformation()
+    End Sub
+
+    Private Sub CreatePeakFinding()
+        Dim mzkitTool = MyApplication.host.mzkitTool
+        Dim matrix As Array = mzkitTool.matrix
+
+        If matrix Is Nothing Then
+            Call MyApplication.host.warning("No chromatogram data is loaded into the MZKit data viewer!")
+        ElseIf Not TypeOf matrix Is ChromatogramTick() Then
+            Call MyApplication.host.warning("Peak finding application only works on the Chromatogram data matrix!")
+        Else
+            Dim app = VisualStudio.ShowDocument(Of frmPeakFinding)(DockState.Document, $"Peak Finding [{mzkitTool.matrixName}]")
+            app.LoadMatrix(DirectCast(matrix, ChromatogramTick()))
+        End If
     End Sub
 
     Private Sub CollectSystemInformation()
