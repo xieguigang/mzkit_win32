@@ -1,10 +1,12 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
+Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
+Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class frmPeakFinding
 
@@ -33,14 +35,6 @@ Public Class frmPeakFinding
             ).AsGDIImage
 
         PictureBox1.BackgroundImage = plot
-
-        PeakMatrixViewer.Columns.Clear()
-        PeakMatrixViewer.Columns.Add("Time", "Time")
-        PeakMatrixViewer.Columns.Add("Intensity", "Intensity")
-
-        For Each row As ChromatogramTick In matrix
-            Call PeakMatrixViewer.Rows.Add(row.Time, row.Intensity)
-        Next
 
         ' do peak list finding
         Dim peakwidth As DoubleRange = getPeakwidth()
@@ -80,6 +74,18 @@ Public Class frmPeakFinding
                 roi.snRatio
             )
         Next
+
+        Call ShowMatrix(matrix)
+    End Sub
+
+    Private Sub ShowMatrix(matrix As ChromatogramTick())
+        PeakMatrixViewer.Columns.Clear()
+        PeakMatrixViewer.Columns.Add("Time", "Time")
+        PeakMatrixViewer.Columns.Add("Intensity", "Intensity")
+
+        For Each row As ChromatogramTick In matrix
+            Call PeakMatrixViewer.Rows.Add(row.Time, row.Intensity)
+        Next
     End Sub
 
     Private Function getSnThreshold() As Double
@@ -99,8 +105,15 @@ Public Class frmPeakFinding
     End Sub
 
     Private Sub ViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewToolStripMenuItem.Click
-        Dim rows = PeakListViewer.SelectedRows
-        Dim rowId = rows.Item(Scan0)
+        If PeakListViewer.SelectedRows.Count <= 0 Then
+            Call MyApplication.host.showStatusMessage("Please select a row data for view content!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+        Else
+            Dim obj As New Dictionary(Of String, Object)
+            Dim row As DataGridViewRow = PeakListViewer.SelectedRows(0)
+            Dim peakId As String = any.ToString(row.Cells.Item(0).Value)
+            Dim peakROI As ROI = peakList(peakId)
 
+            Call ShowMatrix(peakROI.ticks)
+        End If
     End Sub
 End Class
