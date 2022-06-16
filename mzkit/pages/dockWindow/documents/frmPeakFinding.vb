@@ -13,6 +13,8 @@ Public Class frmPeakFinding
     Dim matrix As ChromatogramTick()
     Dim rawName As String
     Dim peakList As New Dictionary(Of String, ROI)
+    Dim plotMatrixList As NamedCollection(Of ChromatogramTick)()
+    Dim bspline As Boolean
 
     Public Sub LoadMatrix(title As String, data As IEnumerable(Of ChromatogramTick))
         Me.matrix = data.OrderBy(Function(t) t.Time).ToArray
@@ -31,9 +33,11 @@ Public Class frmPeakFinding
                 fillCurve:=True,
                 gridFill:="white",
                 spline:=If(spline, 3, 0),
-                size:=$"{size.Width},{size.Height}"
+                size:=$"{size.Width * 1.5},{size.Height * 1.5}"
             ).AsGDIImage
 
+        bspline = spline
+        plotMatrixList = result
         PictureBox1.BackgroundImage = plot
     End Sub
 
@@ -104,7 +108,7 @@ Public Class frmPeakFinding
     End Function
 
     Private Sub PictureBox1_Resize(sender As Object, e As EventArgs) Handles PictureBox1.Resize
-
+        Call plotMatrix(bspline, plotMatrixList)
     End Sub
 
     Private Sub ViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewToolStripMenuItem.Click
