@@ -108,7 +108,9 @@ Public Class frmPeakFinding
     End Function
 
     Private Sub PictureBox1_Resize(sender As Object, e As EventArgs) Handles PictureBox1.Resize
-        Call plotMatrix(bspline, plotMatrixList)
+        If Not plotMatrixList.IsNullOrEmpty Then
+            Call plotMatrix(bspline, plotMatrixList)
+        End If
     End Sub
 
     Private Sub ViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewToolStripMenuItem.Click
