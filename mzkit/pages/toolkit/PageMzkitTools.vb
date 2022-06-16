@@ -822,33 +822,43 @@ Public Class PageMzkitTools
         Return MyApplication.host.ribbonItems.CheckBoxXICRelative.BooleanValue
     End Function
 
+    ''' <summary>
+    ''' get XIC Chromatogram collection
+    ''' </summary>
+    ''' <param name="raw"></param>
+    ''' <param name="scanId"></param>
+    ''' <param name="ppm"></param>
+    ''' <param name="relativeInto"></param>
+    ''' <returns></returns>
     Friend Function getXICMatrix(raw As MZWork.Raw, scanId As String, ppm As Double, relativeInto As Boolean) As NamedCollection(Of ChromatogramTick)
         Dim ms2 As ScanMS2 = raw.FindMs2Scan(scanId)
         Dim name As String = raw.source.FileName
+        Dim ms1 As ScanMS1 = raw.GetMs1Scans.Where(Function(scan1) scan1.products.Any(Function(a) a.scan_id = scanId)).FirstOrDefault
 
         If ms2 Is Nothing OrElse ms2.parentMz = 0.0 Then
-            MyApplication.host.showStatusMessage("XIC plot is not avaliable for MS1 parent!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            MyApplication.host.showStatusMessage("XIC plot is not avaliable for MS1 parent scan!", My.Resources.StatusAnnotations_Warning_32xLG_color)
             Return Nothing
         Else
             MyApplication.host.showStatusMessage(name, Nothing)
         End If
 
-        Dim selectedIons = raw _
-            .GetMs2Scans _
-            .Where(Function(a) PPMmethod.PPM(a.parentMz, ms2.parentMz) <= ppm) _
-            .ToArray
-        Dim XIC As ChromatogramTick() = selectedIons _
+        Dim parentMz As Double = ms1.mz _
+            .Select(Function(mzi) (PPMmethod.PPM(mzi, ms2.parentMz), mzi)) _
+            .OrderBy(Function(a) a.Item1) _
+            .First _
+            .mzi
+        Dim mzdiff As Tolerance = PPMmethod.PPM(ppm)
+        Dim XIC As ChromatogramTick() = raw _
+            .GetMs1Scans _
             .Select(Function(a)
                         Return New ChromatogramTick With {
                             .Time = a.rt,
-                            .Intensity = a.intensity
+                            .Intensity = a.GetIntensity(ms2.parentMz, mzdiff)
                         }
                     End Function) _
             .ToArray
-        Dim mzmin = Aggregate ion In selectedIons Into Min(ion.parentMz)
-        Dim mzmax = Aggregate ion In selectedIons Into Max(ion.parentMz)
 
-        name = $"XIC [m/z={ms2.parentMz.ToString("F4")}] [mzmin={mzmin.ToString("F4")}, mzmax={mzmax.ToString("F4")}]"
+        name = $"XIC [m/z={parentMz.ToString("F4")}]"
 
         If Not relativeInto Then
             XIC = {
