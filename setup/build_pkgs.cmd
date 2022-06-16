@@ -115,3 +115,4 @@ SET pkg=%pkg_repo%/ggplot.zip
 %REnv% --install.packages %pkg%
 
 pause
+exit 0
