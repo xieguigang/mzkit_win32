@@ -139,6 +139,11 @@ Public Class frmPeakFinding
     Private Sub PeakListViewer_RowStateChanged(sender As Object, e As DataGridViewRowStateChangedEventArgs) Handles PeakListViewer.RowStateChanged
         If e.StateChanged = DataGridViewElementStates.Selected Then
             Dim peakId As String = any.ToString(e.Row.Cells.Item(0).Value)
+
+            If peakId.StringEmpty OrElse Not peakList.ContainsKey(peakId) Then
+                Return
+            End If
+
             Dim peakROI As ROI = peakList(peakId)
             Dim targetPeak As New NamedCollection(Of ChromatogramTick) With {
                 .name = peakROI.ToString,
