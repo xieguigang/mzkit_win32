@@ -123,8 +123,25 @@ Public Module KEGGRepo
         End Using
     End Function
 
-    Private Function getMZKitPackage() As String
-        Dim filepath As String = $"{App.HOME}/Rstudio/packages/mzkit.zip"
+    Public Function RequestKeggReactionNetwork() As Dictionary(Of String, Reaction)
+        Using zip As New ZipArchive(getMZKitPackage(pkg:="GCModeller").Open(FileMode.Open, doClear:=False))
+            Using pack As Stream = If(zip.GetEntry("data\kegg\reactions.zip"), zip.GetEntry("data/kegg/reactions.zip")).Open
+                Using innerZip As New ZipArchive(pack, ZipArchiveMode.Read)
+                    Using innerPack As Stream = innerZip.GetEntry("reactions.msgpack").Open
+                        Return KEGGReactionPack.ReadKeggDb(innerPack) _
+                            .GroupBy(Function(r) r.ID) _
+                            .ToDictionary(Function(r) r.Key,
+                                          Function(r)
+                                              Return r.First
+                                          End Function)
+                    End Using
+                End Using
+            End Using
+        End Using
+    End Function
+
+    Private Function getMZKitPackage(Optional pkg As String = "mzkit") As String
+        Dim filepath As String = $"{App.HOME}/Rstudio/packages/{pkg}.zip"
 
         If Not filepath.FileExists Then
             Throw New FileNotFoundException(filepath)

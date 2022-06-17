@@ -5,10 +5,13 @@ Imports BioDeep
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.BioDeep.MetaDNA
 Imports BioNovoGene.BioDeep.MetaDNA.Infer
+Imports BioNovoGene.BioDeep.MSEngine
+Imports BioNovoGene.BioDeep.MSEngine.Mummichog
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Data.csv
@@ -98,6 +101,40 @@ Module BackgroundTask
         SingletonHolder(Of BioDeepSession).Instance.ssid = ssid
     End Sub
 
+    <ExportAPI("Mummichog")>
+    Public Sub Mummichog(raw As String, outputdir As String)
+        Dim mzpack As mzPack
+
+        Using file As Stream = raw.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
+            mzpack = mzPack.ReadAll(file)
+        End Using
+
+        Dim println As Action(Of String) = AddressOf RunSlavePipeline.SendMessage
+        Dim keggCompounds = KEGGRepo.RequestKEGGcompounds(println)
+        Dim range As MzCalculator() = mzpack.getIonRange.Select(Function(adducts) Parser.ParseMzCalculator(adducts)).ToArray
+        Dim pool As IMzQuery = KEGGHandler.CreateIndex(keggCompounds, range, PPMmethod.PPM(20))
+        Dim init0 = pool.GetCandidateSet(peaks:=mzpack.GetMs2Peaks.Select(Function(p) p.mz)).ToArray
+        Dim models = KEGGRepo.RequestKEGGMaps.CreateBackground(KEGGRepo.RequestKeggReactionNetwork).ToArray
+        Dim result = init0.PeakListAnnotation(models, permutation:=1000)
+
+        Call result.GetJson.SaveTo($"{outputdir}/Mummichog.json")
+    End Sub
+
+    <Extension>
+    Private Function getIonRange(mzpack As mzPack) As String()
+        Dim ionMode As Integer = mzpack.MS _
+            .Select(Function(a) a.products) _
+            .IteratesALL _
+            .First _
+            .polarity
+
+        If ionMode = 1 Then
+            Return {"[M]+", "[M+H]+"}
+        Else
+            Return {"[M]-", "[M-H]-"}
+        End If
+    End Function
+
     ''' <summary>
     ''' 
     ''' </summary>
@@ -107,24 +144,12 @@ Module BackgroundTask
     Public Sub MetaDNASearch(raw As String, outputdir As String)
         Dim metaDNA As New Algorithm(Tolerance.PPM(20), 0.4, Tolerance.DeltaMass(0.3))
         Dim mzpack As mzPack
-        Dim range As String()
 
         Using file As Stream = raw.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
             mzpack = mzPack.ReadAll(file)
         End Using
 
-        Dim ionMode As Integer = mzpack.MS _
-            .Select(Function(a) a.products) _
-            .IteratesALL _
-            .First _
-            .polarity
-
-        If ionMode = 1 Then
-            range = {"[M]+", "[M+H]+"}
-        Else
-            range = {"[M]-", "[M-H]-"}
-        End If
-
+        Dim range As String() = mzpack.getIonRange
         Dim println As Action(Of String) = AddressOf RunSlavePipeline.SendMessage
         Dim infer As CandidateInfer() = metaDNA _
             .SetSearchRange(range) _

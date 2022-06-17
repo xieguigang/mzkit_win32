@@ -57,6 +57,7 @@ Imports BioDeep
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.BioDeep.MetaDNA
 Imports BioNovoGene.BioDeep.MetaDNA.Infer
+Imports BioNovoGene.BioDeep.MSEngine.Mummichog
 Imports BioNovoGene.mzkit_win32.DockSample
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.My
@@ -78,8 +79,61 @@ Public Class ConnectToBioDeep
         End If
     End Sub
 
+    Public Shared Sub RunMummichog(raw As Raw)
+        Call OpenAdvancedFunction(Sub() RunMummichogImpl(raw))
+    End Sub
+
     Public Shared Sub RunMetaDNA(raw As Raw)
         Call OpenAdvancedFunction(Sub() RunMetaDNAImpl(raw))
+    End Sub
+
+    Private Shared Sub RunMummichogImpl(raw As Raw)
+        ' work in background
+        Dim taskList As TaskListWindow = WindowModules.taskWin
+        Dim task As TaskUI = taskList.Add("Mummichog Annotation", raw.source.GetFullPath)
+        Dim log As OutputWindow = WindowModules.output
+        Dim println As Action(Of String) =
+            Sub(message)
+                Call task.ProgressMessage(message)
+                Call log.AppendMessage(message)
+            End Sub
+        Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)
+
+        table.DockState = DockState.Hidden
+        taskList.Show(MyApplication.host.dockPanel)
+
+        VisualStudio.Dock(taskList, DockState.DockBottom)
+
+        ' Call Alert.ShowSucess($"Imports raw data files in background,{vbCrLf}you can open [Task List] panel for view task progress.")
+        Call MyApplication.TaskQueue.AddToQueue(
+            Sub()
+                Dim result As ActivityEnrichment() = Nothing
+
+                Call task.Running()
+                Call MetaDNASearch.RunMummichogDIA(raw, println, result)
+                Call table.Invoke(Sub()
+                                      table.DockState = DockState.Document
+                                      table.Show(MyApplication.host.dockPanel)
+                                      table.TabText = $"[Mummichog] {raw.source.FileName}"
+                                  End Sub)
+
+                Call println("output result table")
+
+                Call table.Invoke(Sub() showTable(table, result))
+                Call table.Invoke(Sub()
+                                      ' Call ShowInferAlignment(table, result, infer)
+                                  End Sub)
+
+                Call println("Mummichog search job done!")
+                Call task.Finish()
+
+                Call MessageBox.Show(
+                    $"Mummichog search done!" & vbCrLf & $"Found {result.Length} network enrichment annotation hits.",
+                    "Mummichog Search",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                )
+            End Sub)
     End Sub
 
     Private Shared Sub RunMetaDNAImpl(raw As Raw)
@@ -151,6 +205,33 @@ Public Class ConnectToBioDeep
                                 Call MyApplication.host.showStatusMessage($"MS1 level metaDNA infer did'nt have MS/MS alignment data...")
                             End If
                         End Sub
+    End Sub
+
+    Private Shared Sub showTable(table As frmTableViewer, result As ActivityEnrichment())
+        Call table.LoadTable(
+            Sub(grid)
+                Call grid.Columns.Add("name", GetType(String))
+                Call grid.Columns.Add("description", GetType(String))
+                Call grid.Columns.Add("Q", GetType(Double))
+                Call grid.Columns.Add("input", GetType(Double))
+                Call grid.Columns.Add("background", GetType(Double))
+                Call grid.Columns.Add("activity", GetType(Double))
+                Call grid.Columns.Add("p-value", GetType(Double))
+                Call grid.Columns.Add("hits", GetType(String))
+
+                For Each line In result
+                    Call grid.Rows.Add(
+                        line.Name,
+                        line.Description,
+                        line.Q,
+                        line.Input,
+                        line.Background,
+                        line.Activity,
+                        line.Fisher.two_tail_pvalue,
+                        line.Hits.Select(Function(c) $"{c.unique_id} {c.precursorType}, m/z {c.mz.ToString("F4")}").JoinBy("; ")
+                    )
+                Next
+            End Sub)
     End Sub
 
     Private Shared Sub showTable(table As frmTableViewer, result As MetaDNAResult())

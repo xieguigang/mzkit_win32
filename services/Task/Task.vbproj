@@ -345,6 +345,10 @@
       <Project>{712e2304-2f25-4480-8a0b-6c7091136fb4}</Project>
       <Name>MSEngine</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\mzmath\Mummichog\Mummichog.vbproj">
+      <Project>{49f16938-4209-47a1-a1d5-b3de359c07eb}</Project>
+      <Name>Mummichog</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\mzmath\TargetedMetabolomics\Targetted.NET5.vbproj">
       <Project>{373f637b-cf9f-4179-a4b4-a8a76c3454b3}</Project>
       <Name>Targetted.NET5</Name>

@@ -90,6 +90,7 @@ Partial Class frmRawFeaturesList
         Me.ShowTICToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ShowXICToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.XICViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PeakFindingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ShowPropertiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
@@ -129,7 +130,7 @@ Partial Class frmRawFeaturesList
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.treeView1 = New ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView(Me.components)
-        Me.PeakFindingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MummichogToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -177,8 +178,14 @@ Partial Class frmRawFeaturesList
         'XICViewToolStripMenuItem
         '
         Me.XICViewToolStripMenuItem.Name = "XICViewToolStripMenuItem"
-        Me.XICViewToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.XICViewToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
         Me.XICViewToolStripMenuItem.Text = "XIC View"
+        '
+        'PeakFindingToolStripMenuItem
+        '
+        Me.PeakFindingToolStripMenuItem.Name = "PeakFindingToolStripMenuItem"
+        Me.PeakFindingToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
+        Me.PeakFindingToolStripMenuItem.Text = "Peak Finding"
         '
         'ShowPropertiesToolStripMenuItem
         '
@@ -201,7 +208,7 @@ Partial Class frmRawFeaturesList
         '
         'DIAAnnotationToolStripMenuItem
         '
-        Me.DIAAnnotationToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MolecularNetworkingToolStripMenuItem, Me.MetaDNASearchToolStripMenuItem})
+        Me.DIAAnnotationToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MolecularNetworkingToolStripMenuItem, Me.MummichogToolStripMenuItem, Me.MetaDNASearchToolStripMenuItem})
         Me.DIAAnnotationToolStripMenuItem.Name = "DIAAnnotationToolStripMenuItem"
         Me.DIAAnnotationToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.DIAAnnotationToolStripMenuItem.Text = "DIA Annotation"
@@ -451,15 +458,15 @@ Partial Class frmRawFeaturesList
         Me.treeView1.Size = New System.Drawing.Size(445, 425)
         Me.treeView1.TabIndex = 2
         '
-        'PeakFindingToolStripMenuItem
+        'MummichogToolStripMenuItem
         '
-        Me.PeakFindingToolStripMenuItem.Name = "PeakFindingToolStripMenuItem"
-        Me.PeakFindingToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.PeakFindingToolStripMenuItem.Text = "Peak Finding"
+        Me.MummichogToolStripMenuItem.Name = "MummichogToolStripMenuItem"
+        Me.MummichogToolStripMenuItem.Size = New System.Drawing.Size(192, 22)
+        Me.MummichogToolStripMenuItem.Text = "Mummichog"
         '
         'frmRawFeaturesList
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(445, 450)
         Me.Controls.Add(Me.treeView1)
@@ -520,4 +527,5 @@ Partial Class frmRawFeaturesList
     Friend WithEvents CopyIonsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripButton5 As ToolStripButton
     Friend WithEvents PeakFindingToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MummichogToolStripMenuItem As ToolStripMenuItem
 End Class

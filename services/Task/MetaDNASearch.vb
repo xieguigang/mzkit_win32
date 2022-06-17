@@ -57,6 +57,7 @@ Imports BioDeep
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.BioDeep.MetaDNA
 Imports BioNovoGene.BioDeep.MetaDNA.Infer
+Imports BioNovoGene.BioDeep.MSEngine.Mummichog
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.Data.csv
@@ -81,5 +82,20 @@ Public Module MetaDNASearch
 
         output = $"{outputdir}/metaDNA_annotation.csv".LoadCsv(Of MetaDNAResult)
         infer = $"{outputdir}/infer_network.json".LoadJsonFile(Of CandidateInfer())
+    End Sub
+
+    Public Sub RunMummichogDIA(raw As Raw, println As Action(Of String), ByRef output As ActivityEnrichment())
+        Dim cacheRaw As String = raw.cache
+        Dim ssid As String = SingletonHolder(Of BioDeepSession).Instance.ssid
+        Dim outputdir As String = TempFileSystem.GetAppSysTempFile("__save", App.PID.ToHexString, "Mummichog_")
+        Dim cli As String = $"""{RscriptPipelineTask.GetRScript("Mummichog.R")}"" --biodeep_ssid ""{ssid}"" --raw ""{cacheRaw}"" --save ""{outputdir}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+
+        AddHandler pipeline.SetMessage, AddressOf println.Invoke
+
+        Call cli.__DEBUG_ECHO
+        Call pipeline.Run()
+
+        output = $"{outputdir}/Mummichog.json".LoadJsonFile(Of ActivityEnrichment())
     End Sub
 End Module

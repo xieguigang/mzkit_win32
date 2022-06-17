@@ -803,6 +803,12 @@ Public Class frmRawFeaturesList
         Call RibbonEvents.CreatePeakFinding()
     End Sub
 
+    Private Sub MummichogToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MummichogToolStripMenuItem.Click
+        If Not CurrentRawFile Is Nothing Then
+            Call ConnectToBioDeep.RunMummichog(CurrentRawFile)
+        End If
+    End Sub
+
     Private Sub treeView1_DragEnter(sender As Object, e As DragEventArgs) Handles treeView1.DragEnter
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             e.Effect = DragDropEffects.Copy
