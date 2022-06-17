@@ -14,7 +14,7 @@ Public Class KEGGEnrichmentAction : Inherits ActionBase
         End Get
     End Property
 
-    Public Overrides Sub RunAction(fieldName As String, data As Array, table As DataTable)
+    Public Overrides Sub RunAction(fieldName As String, data As Array, tbl As DataTable)
         Dim maps As Map() = Nothing
         Dim kegg As Background = Globals.loadBackground(maps)
         Dim enrich = frmTaskProgress.LoadData(
