@@ -58,6 +58,7 @@ Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Data.ChartPlots
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
+Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 
@@ -118,6 +119,12 @@ Public Class InputDataVisual
             .AsObjectEnumerator _
             .Select(Function(xi) CDbl(xi)) _
             .ToArray
+        Dim size As String = MyApplication.host.mzkitTool.PictureBox1 _
+            .Size _
+            .Scale(1.5) _
+            .ToArray _
+            .JoinBy(",")
+        Dim padding As String = "padding:200px 300px 200px 200px;"
 
         Call grid.Rows.Clear()
         Call grid.Columns.Clear()
@@ -127,15 +134,13 @@ Public Class InputDataVisual
 
         Select Case ComboBox1.SelectedItem.ToString
             Case "Scatter"
-                plot = Scatter.Plot(getSerials(x, getVector), size:="2100,1800", drawLine:=False).AsGDIImage
+                plot = Scatter.Plot(getSerials(x, getVector), size:=size, drawLine:=False, padding:=padding).AsGDIImage
             Case "Line"
-                plot = Scatter.Plot(getSerials(x, getVector), size:="2100,1800", drawLine:=True).AsGDIImage
-            Case "BarPlot
-BoxPlot
-ViolinPlot"
+                plot = Scatter.Plot(getSerials(x, getVector), size:=size, drawLine:=True, padding:=padding).AsGDIImage
+            Case "BarPlot", "BoxPlot", "ViolinPlot"
                 Throw New NotImplementedException
             Case "Histogram"
-                plot = BarPlot.Histogram.Histogram.HistogramPlot(xvec, CSng((xvec.Max - xvec.Min) / 64), size:="2100,1800").AsGDIImage
+                plot = BarPlot.Histogram.Histogram.HistogramPlot(xvec, CSng((xvec.Max - xvec.Min) / 64), size:=size, padding:=padding).AsGDIImage
             Case Else
                 Throw New NotImplementedException
         End Select
