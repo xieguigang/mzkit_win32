@@ -93,12 +93,18 @@ Public Class InputDataVisual
         Dim idx As i32 = Scan0
 
         If colors.IsNullOrEmpty Then
-            colors = Designer.GetColors("paper", 12).Select(Function(c) c.ToHtmlColor).ToArray
+            colors = Designer.GetColors("paper", 12) _
+                .Select(Function(c) c.ToHtmlColor) _
+                .ToArray
         End If
 
         For Each name As String In GetY()
             Dim y As Array = getVector(name)
-            Dim points = x.AsObjectEnumerator.Select(Function(xi, i) New PointF(xi, y(i))).OrderByDescending(Function(p) p.X).ToArray
+            Dim points = x _
+                .AsObjectEnumerator _
+                .Select(Function(xi, i) New PointF(xi, y(i))) _
+                .OrderByDescending(Function(p) p.X) _
+                .ToArray
             Dim s = Scatter.FromPoints(points, lineColor:=colors(++idx))
 
             Yield s
