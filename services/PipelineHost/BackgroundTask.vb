@@ -174,8 +174,17 @@ Module BackgroundTask
     <ExportAPI("MS1deconv")>
     Public Function Deconv(raw As String, massdiff As Double) As PeakFeature()
         Dim pack As mzPack = mzPack.ReadAll(raw.Open)
+
+        Call RunSlavePipeline.SendMessage("get all scan data!")
+
         Dim scanPoints As ms1_scan() = pack.GetAllScanMs1().ToArray
+
+        Call RunSlavePipeline.SendMessage("create mass groups...")
+
         Dim massGroups = scanPoints.GetMzGroups(mzdiff:=DAmethod.DeltaMass(massdiff)).ToArray
+
+        Call RunSlavePipeline.SendMessage("Run peak finding for each XIC data...")
+
         Dim features = massGroups.DecoMzGroups({5, 20}).ToArray
 
         Return features

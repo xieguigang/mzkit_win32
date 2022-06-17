@@ -682,18 +682,18 @@ Public Class frmFileExplorer
             Dim mzpack As String = raw.cache
             Dim tempTable As String = TempFileSystem.GetAppSysTempFile(".csv", raw.cache.MD5, prefix:=$"{App.PID}_deconv_peaktable_")
             Dim cli As String = $"""{RscriptPipelineTask.GetRScript("MS1deconv.R")}"" --raw ""{mzpack}"" --save ""{tempTable}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
-            Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
-            Dim println As Action(Of String) = Sub(message)
-                                                   ' Call Task.ProgressMessage(message)
-                                                   ' Call Log.AppendMessage(message)
-                                               End Sub
+            Dim data As PeakFeature() = frmTaskProgress.LoadData(
+                    Function(println)
+                        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
-            AddHandler pipeline.SetMessage, AddressOf println.Invoke
+                        AddHandler pipeline.SetMessage, AddressOf println.Invoke
 
-            Call cli.__DEBUG_ECHO
-            Call pipeline.Run()
+                        Call cli.__DEBUG_ECHO
+                        Call pipeline.Run()
 
-            Dim data As PeakFeature() = tempTable.LoadCsv(Of PeakFeature)
+                        Return tempTable.LoadCsv(Of PeakFeature)
+                    End Function, title:="Run Ms1 Deconvolution", info:="deconvolution..")
+
             Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(title:=$"[{raw.source.FileName}]Peak Table")
 
             table.LoadTable(Sub(grid)
