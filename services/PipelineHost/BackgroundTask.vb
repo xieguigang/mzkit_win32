@@ -111,11 +111,19 @@ Module BackgroundTask
 
         Dim println As Action(Of String) = AddressOf RunSlavePipeline.SendMessage
         Dim keggCompounds = KEGGRepo.RequestKEGGcompounds(println)
-        Dim range As MzCalculator() = mzpack.getIonRange.Select(Function(adducts) Parser.ParseMzCalculator(adducts)).ToArray
+        Dim range As MzCalculator() = mzpack.getIonRange _
+            .Select(Function(adducts) Parser.ParseMzCalculator(adducts)) _
+            .ToArray
         Dim pool As IMzQuery = KEGGHandler.CreateIndex(keggCompounds, range, PPMmethod.PPM(20))
-        Dim init0 = pool.GetCandidateSet(peaks:=mzpack.GetMs2Peaks.Select(Function(p) p.mz)).ToArray
+        Dim mzInputs As Double() = mzpack.MS _
+            .Select(Function(i) i.mz) _
+            .IteratesALL _
+            .GroupBy(PPMmethod.PPM(20)) _
+            .Select(Function(a) Val(a.name)) _
+            .ToArray
+        Dim init0 = pool.GetCandidateSet(peaks:=mzInputs).ToArray
         Dim models = KEGGRepo.RequestKEGGMaps.CreateBackground(KEGGRepo.RequestKeggReactionNetwork).ToArray
-        Dim result = init0.PeakListAnnotation(models, permutation:=1000)
+        Dim result = init0.PeakListAnnotation(models, permutation:=100)
 
         Call result.GetJson.SaveTo($"{outputdir}/Mummichog.json")
     End Sub

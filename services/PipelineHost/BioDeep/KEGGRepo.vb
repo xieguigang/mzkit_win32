@@ -141,7 +141,15 @@ Public Module KEGGRepo
     End Function
 
     Private Function getMZKitPackage(Optional pkg As String = "mzkit") As String
-        Dim filepath As String = $"{App.HOME}/Rstudio/packages/{pkg}.zip"
+        Dim filepath As String = pkg
+
+        For Each dirLevel As String In {"", "../", "../../", "../../../", "../../../../"}
+            filepath = $"{App.HOME}/{dirLevel}Rstudio/packages/{pkg}.zip"
+
+            If filepath.FileExists Then
+                Return filepath
+            End If
+        Next
 
         If Not filepath.FileExists Then
             Throw New FileNotFoundException(filepath)
