@@ -68,10 +68,15 @@ Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzXML
+Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.mzkit_win32.My
+Imports Microsoft.VisualBasic.ApplicationServices
+Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
+Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Language.C
 Imports Microsoft.VisualBasic.Text
+Imports PipelineHost
 Imports RibbonLib.Interop
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
@@ -659,6 +664,69 @@ Public Class frmFileExplorer
                     Call MessageBox.Show("Convert to mzXML success!", "MZKit", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
             End Using
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' extract ms1 features from current raw data file
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub DeconvolutionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeconvolutionToolStripMenuItem.Click
+        Dim node = treeView1.SelectedNode
+
+        If node Is Nothing OrElse TypeOf node.Tag IsNot MZWork.Raw Then
+            Return
+        Else
+            Dim raw = DirectCast(node.Tag, MZWork.Raw)
+            Dim mzpack As String = raw.cache
+            Dim tempTable As String = TempFileSystem.GetAppSysTempFile(".csv", raw.cache.MD5, prefix:=$"{App.PID}_deconv_peaktable_")
+            Dim cli As String = $"""{RscriptPipelineTask.GetRScript("MS1deconv.R")}"" --raw ""{mzpack}"" --save ""{tempTable}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+            Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+            Dim println As Action(Of String) = Sub(message)
+                                                   ' Call Task.ProgressMessage(message)
+                                                   ' Call Log.AppendMessage(message)
+                                               End Sub
+
+            AddHandler pipeline.SetMessage, AddressOf println.Invoke
+
+            Call cli.__DEBUG_ECHO
+            Call pipeline.Run()
+
+            Dim data As PeakFeature() = tempTable.LoadCsv(Of PeakFeature)
+            Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(title:=$"[{raw.source.FileName}]Peak Table")
+
+            table.LoadTable(Sub(grid)
+                                grid.Columns.Add(NameOf(PeakFeature.xcms_id), GetType(String))
+                                grid.Columns.Add(NameOf(PeakFeature.mz), GetType(Double))
+                                grid.Columns.Add(NameOf(PeakFeature.rt), GetType(Double))
+                                grid.Columns.Add(NameOf(PeakFeature.rtmin), GetType(Double))
+                                grid.Columns.Add(NameOf(PeakFeature.rtmax), GetType(Double))
+                                grid.Columns.Add(NameOf(PeakFeature.maxInto), GetType(Double))
+                                grid.Columns.Add(NameOf(PeakFeature.nticks), GetType(Double))
+                                grid.Columns.Add(NameOf(PeakFeature.baseline), GetType(Double))
+                                grid.Columns.Add(NameOf(PeakFeature.noise), GetType(Double))
+                                grid.Columns.Add(NameOf(PeakFeature.area), GetType(Double))
+                                grid.Columns.Add(NameOf(PeakFeature.integration), GetType(Double))
+                                grid.Columns.Add(NameOf(PeakFeature.snRatio), GetType(Double))
+
+                                For Each item As PeakFeature In data
+                                    Call grid.Rows.Add(
+                                                item.xcms_id,
+                                                item.mz,
+                                                item.rt,
+                                                item.rtmin,
+                                                item.rtmax,
+                                                item.maxInto,
+                                                item.nticks,
+                                                item.baseline,
+                                                item.noise,
+                                                item.area,
+                                                item.integration,
+                                                item.snRatio
+                                             )
+                                Next
+                            End Sub)
         End If
     End Sub
 End Class
