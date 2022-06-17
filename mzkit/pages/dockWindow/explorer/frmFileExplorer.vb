@@ -713,17 +713,17 @@ Public Class frmFileExplorer
                                 For Each item As PeakFeature In data
                                     Call grid.Rows.Add(
                                                 item.xcms_id,
-                                                item.mz,
-                                                item.rt,
-                                                item.rtmin,
-                                                item.rtmax,
-                                                item.maxInto,
+                                                item.mz.ToString("F4"),
+                                                item.rt.ToString("F2"),
+                                                item.rtmin.ToString("F2"),
+                                                item.rtmax.ToString("F2"),
+                                                item.maxInto.ToString("G3"),
                                                 item.nticks,
-                                                item.baseline,
-                                                item.noise,
+                                                item.baseline.ToString("G3"),
+                                                item.noise.ToString("G3"),
                                                 item.area,
-                                                item.integration,
-                                                item.snRatio
+                                                item.integration.ToString("F2"),
+                                                item.snRatio.ToString("F4")
                                              )
                                 Next
                             End Sub)

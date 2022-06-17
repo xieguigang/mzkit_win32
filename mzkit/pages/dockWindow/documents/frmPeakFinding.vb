@@ -68,16 +68,16 @@ Public Class frmPeakFinding
 
             PeakListViewer.Rows.Add(
                 roi.ToString,
-                roi.time.Min,
-                roi.time.Max,
-                roi.rt,
-                roi.peakWidth,
-                roi.maxInto,
+                roi.time.Min.ToString("F2"),
+                roi.time.Max.ToString("F2"),
+                roi.rt.ToString("F2"),
+                roi.peakWidth.ToString("F2"),
+                roi.maxInto.ToString("G3"),
                 roi.ticks.Length,
-                roi.baseline,
-                roi.integration,
-                roi.noise,
-                roi.snRatio
+                roi.baseline.ToString("G3"),
+                roi.integration.ToString("F3"),
+                roi.noise.ToString("G3"),
+                roi.snRatio.ToString("F2")
             )
         Next
 
@@ -91,7 +91,7 @@ Public Class frmPeakFinding
         PeakMatrixViewer.Columns.Add("Intensity", "Intensity")
 
         For Each row As ChromatogramTick In matrix
-            Call PeakMatrixViewer.Rows.Add(row.Time, row.Intensity)
+            Call PeakMatrixViewer.Rows.Add(row.Time.ToString("F2"), row.Intensity)
         Next
     End Sub
 
