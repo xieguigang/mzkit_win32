@@ -1,56 +1,56 @@
 ﻿#Region "Microsoft.VisualBasic::35e892bfadafafab59e4e8d78773f46e, mzkit\src\mzkit\mzkit\forms\Inputs\InputDataVisual.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 83
-    '    Code Lines: 65
-    ' Comment Lines: 0
-    '   Blank Lines: 18
-    '     File Size: 2.87 KB
+' Summaries:
 
 
-    ' Class InputDataVisual
-    ' 
-    '     Function: getSerials, GetX, GetY
-    ' 
-    '     Sub: Button1_Click, Button2_Click, DoPlot, SetAxis
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 83
+'    Code Lines: 65
+' Comment Lines: 0
+'   Blank Lines: 18
+'     File Size: 2.87 KB
+
+
+' Class InputDataVisual
+' 
+'     Function: getSerials, GetX, GetY
+' 
+'     Sub: Button1_Click, Button2_Click, DoPlot, SetAxis
+' 
+' /********************************************************************************/
 
 #End Region
 
@@ -108,6 +108,10 @@ Public Class InputDataVisual
     Public Sub DoPlot(x As Array, getVector As Func(Of String, Array))
         Dim grid = MyApplication.host.mzkitTool.DataGridView1
         Dim plot As Image
+        Dim xvec As Double() = x _
+            .AsObjectEnumerator _
+            .Select(Function(xi) CDbl(xi)) _
+            .ToArray
 
         Call grid.Rows.Clear()
         Call grid.Columns.Clear()
@@ -124,6 +128,8 @@ Public Class InputDataVisual
 BoxPlot
 ViolinPlot"
                 Throw New NotImplementedException
+            Case "Histogram"
+                plot = BarPlot.Histogram.Histogram.HistogramPlot(xvec, CSng((xvec.Max - xvec.Min) / 64), size:="2100,1800").AsGDIImage
             Case Else
                 Throw New NotImplementedException
         End Select
@@ -138,5 +144,17 @@ ViolinPlot"
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Me.DialogResult = DialogResult.Cancel
+    End Sub
+
+    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
+        If ComboBox1.SelectedIndex > 0 Then
+            If ComboBox1.SelectedItem.ToString = "Histogram" Then
+                lblMsg.Text = "Histogram plot did'nt needs the data selection of Y data."
+            Else
+                lblMsg.Text = ""
+            End If
+        Else
+            lblMsg.Text = ""
+        End If
     End Sub
 End Class
