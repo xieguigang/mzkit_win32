@@ -174,7 +174,7 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference
 
                 For Each fieldRef As String In fields
                     Dim i As Integer = fieldNames.IndexOf(fieldRef)
-                    Dim array As Array = getFieldVector(i)
+                    Dim array As Array = AdvancedDataGridView1.getFieldVector(i)
 
                     Call table.add(fieldRef, array)
                 Next
@@ -183,29 +183,6 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference
                 Call VisualStudio.ShowRTerm()
             End Sub, config:=form)
     End Sub
-
-    Public Function getFieldVector(fieldRef As String) As Array
-        Dim fieldNames As New List(Of String)
-
-        For Each col As DataGridViewColumn In AdvancedDataGridView1.Columns
-            Call fieldNames.Add(col.Name)
-        Next
-
-        Dim i As Integer = fieldNames.IndexOf(fieldRef)
-        Dim vec = getFieldVector(i)
-
-        Return vec
-    End Function
-
-    Public Function getFieldVector(i As Integer) As Array
-        Dim array As New List(Of Object)
-
-        For Each row As DataGridViewRow In AdvancedDataGridView1.Rows
-            array.Add(row.Cells(i).Value)
-        Next
-
-        Return REnv.TryCastGenericArray(array.ToArray, MyApplication.REngine.globalEnvir)
-    End Function
 
     Public Function GetSchema() As Dictionary(Of String, Type)
         Dim schema As New Dictionary(Of String, Type)
@@ -223,7 +200,7 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference
         Call load.SetAxis(GetSchema)
         Call InputDialog.Input(
             Sub(creator)
-                Call creator.DoPlot(getFieldVector(creator.GetX), AddressOf getFieldVector)
+                Call creator.DoPlot(AdvancedDataGridView1.getFieldVector(creator.GetX), AddressOf AdvancedDataGridView1.getFieldVector)
             End Sub, config:=load)
     End Sub
 
@@ -234,7 +211,7 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference
         Call InputDialog.Input(Sub(input)
                                    Dim name As String = input.getTargetName
                                    Dim action As String = input.getActionName
-                                   Dim data As Array = getFieldVector(name)
+                                   Dim data As Array = AdvancedDataGridView1.getFieldVector(name)
                                    Dim source As BindingSource = AdvancedDataGridView1.DataSource
                                    Dim dataset As DataSet = source.DataSource
                                    Dim table As DataTable = dataset.Tables.Item(Scan0)

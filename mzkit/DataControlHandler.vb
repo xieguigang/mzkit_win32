@@ -1,64 +1,118 @@
 ﻿#Region "Microsoft.VisualBasic::82cb33f4d127560d66c1c4263033494b, mzkit\src\mzkit\mzkit\DataControlHandler.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 84
-    '    Code Lines: 60
-    ' Comment Lines: 7
-    '   Blank Lines: 17
-    '     File Size: 2.91 KB
+' Summaries:
 
 
-    ' Module DataControlHandler
-    ' 
-    '     Sub: PasteTextData, SaveDataGrid, WriteTableToFile
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 84
+'    Code Lines: 60
+' Comment Lines: 7
+'   Blank Lines: 17
+'     File Size: 2.91 KB
+
+
+' Module DataControlHandler
+' 
+'     Sub: PasteTextData, SaveDataGrid, WriteTableToFile
+' 
+' /********************************************************************************/
 
 #End Region
 
 Imports System.IO
 Imports System.Runtime.CompilerServices
+Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Text
 Imports any = Microsoft.VisualBasic.Scripting
+Imports REnv = SMRUCC.Rsharp.Runtime
 
 Module DataControlHandler
+
+    <Extension>
+    Public Function getFieldVector(table As DataTable, fieldRef As String) As Array
+        Dim fieldNames As New List(Of String)
+
+        For i As Integer = 0 To table.Columns.Count - 1
+            Dim tag As String = table.Columns.Item(i).ColumnName
+
+            fieldNames.Add(tag)
+        Next
+
+        Dim ordinal As Integer = fieldNames.IndexOf(fieldRef)
+        Dim vec = table.getFieldVector(ordinal)
+
+        Return vec
+    End Function
+
+    <Extension>
+    Public Function getFieldVector(table As DataTable, fieldRef As Integer) As Array
+        Dim array As New List(Of Object)
+
+        For index As Integer = 0 To table.Rows.Count - 1
+            Dim row = table.Rows.Item(index)
+            array.Add(row.Item(fieldRef))
+        Next
+
+        Return REnv.TryCastGenericArray(array.ToArray, MyApplication.REngine.globalEnvir)
+    End Function
+
+    <Extension>
+    Public Function getFieldVector(AdvancedDataGridView1 As DataGridView, fieldRef As String) As Array
+        Dim fieldNames As New List(Of String)
+
+        For Each col As DataGridViewColumn In AdvancedDataGridView1.Columns
+            Call fieldNames.Add(col.Name)
+        Next
+        Dim i As Integer = fieldNames.IndexOf(fieldRef)
+        Dim vec = AdvancedDataGridView1.getFieldVector(i)
+
+        Return vec
+    End Function
+
+    <Extension>
+    Public Function getFieldVector(AdvancedDataGridView1 As DataGridView, i As Integer) As Array
+        Dim array As New List(Of Object)
+
+        For Each row As DataGridViewRow In AdvancedDataGridView1.Rows
+            array.Add(row.Cells(i).Value)
+        Next
+
+        Return REnv.TryCastGenericArray(array.ToArray, MyApplication.REngine.globalEnvir)
+    End Function
 
     ''' <summary>
     ''' save data grid as excel table file
