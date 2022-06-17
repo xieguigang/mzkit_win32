@@ -105,8 +105,8 @@ Partial Class frmSRMIonsExplorer
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ShowTICOverlapToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ShowTICOverlap3DToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PeakFindingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripSeparator()
+        Me.PeakFindingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.ContextMenuStrip3.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
@@ -130,13 +130,13 @@ Partial Class frmSRMIonsExplorer
         'TICToolStripMenuItem
         '
         Me.TICToolStripMenuItem.Name = "TICToolStripMenuItem"
-        Me.TICToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.TICToolStripMenuItem.Size = New System.Drawing.Size(96, 22)
         Me.TICToolStripMenuItem.Text = "TIC"
         '
         'BPCToolStripMenuItem
         '
         Me.BPCToolStripMenuItem.Name = "BPCToolStripMenuItem"
-        Me.BPCToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BPCToolStripMenuItem.Size = New System.Drawing.Size(96, 22)
         Me.BPCToolStripMenuItem.Text = "BPC"
         '
         'ShowTICOverlap3DToolStripMenuItem
@@ -176,10 +176,10 @@ Partial Class frmSRMIonsExplorer
         '
         'Win7StyleTreeView1
         '
+        Me.Win7StyleTreeView1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Win7StyleTreeView1.CheckBoxes = True
         Me.Win7StyleTreeView1.ContextMenuStrip = Me.ContextMenuStrip3
         Me.Win7StyleTreeView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Win7StyleTreeView1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Win7StyleTreeView1.FullRowSelect = True
         Me.Win7StyleTreeView1.HotTracking = True
         Me.Win7StyleTreeView1.ImageIndex = 0
@@ -259,7 +259,7 @@ Partial Class frmSRMIonsExplorer
         '
         Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowTICOverlapToolStripMenuItem1, Me.ShowTICOverlap3DToolStripMenuItem1, Me.ToolStripMenuItem5, Me.PeakFindingToolStripMenuItem})
         Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(185, 98)
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(185, 76)
         '
         'ShowTICOverlapToolStripMenuItem1
         '
@@ -273,16 +273,16 @@ Partial Class frmSRMIonsExplorer
         Me.ShowTICOverlap3DToolStripMenuItem1.Size = New System.Drawing.Size(184, 22)
         Me.ShowTICOverlap3DToolStripMenuItem1.Text = "Show TIC Overlap 3D"
         '
+        'ToolStripMenuItem5
+        '
+        Me.ToolStripMenuItem5.Name = "ToolStripMenuItem5"
+        Me.ToolStripMenuItem5.Size = New System.Drawing.Size(181, 6)
+        '
         'PeakFindingToolStripMenuItem
         '
         Me.PeakFindingToolStripMenuItem.Name = "PeakFindingToolStripMenuItem"
         Me.PeakFindingToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
         Me.PeakFindingToolStripMenuItem.Text = "Peak Finding"
-        '
-        'ToolStripMenuItem5
-        '
-        Me.ToolStripMenuItem5.Name = "ToolStripMenuItem5"
-        Me.ToolStripMenuItem5.Size = New System.Drawing.Size(181, 6)
         '
         'frmSRMIonsExplorer
         '
