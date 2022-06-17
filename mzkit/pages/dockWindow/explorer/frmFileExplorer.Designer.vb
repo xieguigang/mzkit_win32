@@ -111,6 +111,7 @@ Partial Class frmFileExplorer
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
         Me.OpenViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ConvertToMzXMLToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeconvolutionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ctxMenuFiles.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.ctxMenuScript.SuspendLayout()
@@ -268,9 +269,9 @@ Partial Class frmFileExplorer
         '
         'ctxMenuRawFile
         '
-        Me.ctxMenuRawFile.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewSnapshotToolStripMenuItem, Me.ToolStripMenuItem3, Me.OpenViewerToolStripMenuItem, Me.ConvertToMzXMLToolStripMenuItem})
+        Me.ctxMenuRawFile.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewSnapshotToolStripMenuItem, Me.OpenViewerToolStripMenuItem, Me.ToolStripMenuItem3, Me.ConvertToMzXMLToolStripMenuItem, Me.DeconvolutionToolStripMenuItem})
         Me.ctxMenuRawFile.Name = "ctxMenuRawFile"
-        Me.ctxMenuRawFile.Size = New System.Drawing.Size(181, 98)
+        Me.ctxMenuRawFile.Size = New System.Drawing.Size(181, 120)
         '
         'ViewSnapshotToolStripMenuItem
         '
@@ -283,19 +284,19 @@ Partial Class frmFileExplorer
         'RawScatterToolStripMenuItem
         '
         Me.RawScatterToolStripMenuItem.Name = "RawScatterToolStripMenuItem"
-        Me.RawScatterToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
+        Me.RawScatterToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.RawScatterToolStripMenuItem.Text = "Raw Scatter"
         '
         'XICPeaksToolStripMenuItem
         '
         Me.XICPeaksToolStripMenuItem.Name = "XICPeaksToolStripMenuItem"
-        Me.XICPeaksToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
+        Me.XICPeaksToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.XICPeaksToolStripMenuItem.Text = "XIC Peaks"
         '
         'ContourPlotToolStripMenuItem
         '
         Me.ContourPlotToolStripMenuItem.Name = "ContourPlotToolStripMenuItem"
-        Me.ContourPlotToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
+        Me.ContourPlotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ContourPlotToolStripMenuItem.Text = "Contour Plot"
         '
         'ToolStripMenuItem3
@@ -315,6 +316,12 @@ Partial Class frmFileExplorer
         Me.ConvertToMzXMLToolStripMenuItem.Name = "ConvertToMzXMLToolStripMenuItem"
         Me.ConvertToMzXMLToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ConvertToMzXMLToolStripMenuItem.Text = "Convert To mzXML"
+        '
+        'DeconvolutionToolStripMenuItem
+        '
+        Me.DeconvolutionToolStripMenuItem.Name = "DeconvolutionToolStripMenuItem"
+        Me.DeconvolutionToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DeconvolutionToolStripMenuItem.Text = "Deconvolution"
         '
         'frmFileExplorer
         '
@@ -363,4 +370,5 @@ Partial Class frmFileExplorer
     Friend WithEvents ToolStripButton2 As ToolStripButton
     Friend WithEvents ShowSummaryToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ConvertToMzXMLToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DeconvolutionToolStripMenuItem As ToolStripMenuItem
 End Class

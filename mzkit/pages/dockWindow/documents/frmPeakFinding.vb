@@ -68,16 +68,16 @@ Public Class frmPeakFinding
 
             PeakListViewer.Rows.Add(
                 roi.ToString,
-                roi.time.Min,
-                roi.time.Max,
-                roi.rt,
-                roi.peakWidth,
-                roi.maxInto,
+                roi.time.Min.ToString("F2"),
+                roi.time.Max.ToString("F2"),
+                roi.rt.ToString("F2"),
+                roi.peakWidth.ToString("F2"),
+                roi.maxInto.ToString("G3"),
                 roi.ticks.Length,
-                roi.baseline,
-                roi.integration,
-                roi.noise,
-                roi.snRatio
+                roi.baseline.ToString("G3"),
+                roi.integration.ToString("F3"),
+                roi.noise.ToString("G3"),
+                roi.snRatio.ToString("F2")
             )
         Next
 
@@ -91,7 +91,7 @@ Public Class frmPeakFinding
         PeakMatrixViewer.Columns.Add("Intensity", "Intensity")
 
         For Each row As ChromatogramTick In matrix
-            Call PeakMatrixViewer.Rows.Add(row.Time, row.Intensity)
+            Call PeakMatrixViewer.Rows.Add(row.Time.ToString("F2"), row.Intensity)
         Next
     End Sub
 
@@ -139,6 +139,11 @@ Public Class frmPeakFinding
     Private Sub PeakListViewer_RowStateChanged(sender As Object, e As DataGridViewRowStateChangedEventArgs) Handles PeakListViewer.RowStateChanged
         If e.StateChanged = DataGridViewElementStates.Selected Then
             Dim peakId As String = any.ToString(e.Row.Cells.Item(0).Value)
+
+            If peakId.StringEmpty OrElse Not peakList.ContainsKey(peakId) Then
+                Return
+            End If
+
             Dim peakROI As ROI = peakList(peakId)
             Dim targetPeak As New NamedCollection(Of ChromatogramTick) With {
                 .name = peakROI.ToString,

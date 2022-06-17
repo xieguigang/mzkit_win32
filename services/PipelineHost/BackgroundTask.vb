@@ -34,7 +34,7 @@ Module BackgroundTask
 
     <ExportAPI("phenograph")>
     Public Function RunFeatureDetections(mzpackRaw As String, topN As Integer, dims As Integer, mzdiff As String) As NetworkGraph
-        Dim mzpack As mzPack = mzpack.Read(mzpackRaw, ignoreThumbnail:=True)
+        Dim mzpack As mzPack = mzPack.Read(mzpackRaw, ignoreThumbnail:=True)
         Dim mzErr As Tolerance = Tolerance.ParseScript(mzdiff)
         Dim intocutoff As New RelativeIntensityCutoff(0.01)
         Dim pixelsData = mzpack.MS _
@@ -110,7 +110,7 @@ Module BackgroundTask
         Dim range As String()
 
         Using file As Stream = raw.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
-            mzpack = mzpack.ReadAll(file)
+            mzpack = mzPack.ReadAll(file)
         End Using
 
         Dim ionMode As Integer = mzpack.MS _
@@ -170,6 +170,25 @@ Module BackgroundTask
     Public Sub formulaSearch()
 
     End Sub
+
+    <ExportAPI("MS1deconv")>
+    Public Function Deconv(raw As String, massdiff As Double) As PeakFeature()
+        Dim pack As mzPack = mzPack.ReadAll(raw.Open)
+
+        Call RunSlavePipeline.SendMessage("get all scan data!")
+
+        Dim scanPoints As ms1_scan() = pack.GetAllScanMs1().ToArray
+
+        Call RunSlavePipeline.SendMessage("create mass groups...")
+
+        Dim massGroups = scanPoints.GetMzGroups(mzdiff:=DAmethod.DeltaMass(massdiff)).ToArray
+
+        Call RunSlavePipeline.SendMessage("Run peak finding for each XIC data...")
+
+        Dim features = massGroups.DecoMzGroups({5, 20}).ToArray
+
+        Return features
+    End Function
 
     <ExportAPI("Ms1Contour")>
     Public Sub DrawMs1Contour(mzpackFile As String, cache As String)

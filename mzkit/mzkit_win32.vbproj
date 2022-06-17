@@ -365,6 +365,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="application\actions\ActionBase.vb" />
+    <Compile Include="application\actions\PeakFindingAction.vb" />
+    <Compile Include="application\actions\PeakAnnotationAction.vb" />
+    <Compile Include="application\actions\FormulaQueryAction.vb" />
+    <Compile Include="application\actions\KEGGEnrichmentAction.vb" />
     <Compile Include="application\ApplicationEvents.vb" />
     <Compile Include="application\CLI.vb" />
     <Compile Include="application\Actions.vb" />
@@ -405,6 +410,12 @@
       <DependentUpon>frmTweaks.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\frmTweaks\frmTweaks.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\Inputs\InputPeakTime.Designer.vb">
+      <DependentUpon>InputPeakTime.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\InputPeakTime.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\Inputs\InputFormula.Designer.vb">
@@ -925,6 +936,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputNetworkLayout.zh-CN.resx">
       <DependentUpon>InputNetworkLayout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\InputPeakTime.resx">
+      <DependentUpon>InputPeakTime.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputRSymbol.resx">
       <DependentUpon>InputRSymbol.vb</DependentUpon>
