@@ -83,7 +83,7 @@ Partial Class frmGCMSPeaks
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmGCMSPeaks))
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
-        Me.Win7StyleTreeView1 = New Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView(Me.components)
+        Me.Win7StyleTreeView1 = New ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView(Me.components)
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ImportsFilesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
@@ -105,14 +105,14 @@ Partial Class frmGCMSPeaks
         'ToolStripLabel1
         '
         Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(92, 22)
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(82, 22)
         Me.ToolStripLabel1.Text = "Feature Peaks:"
         '
         'Win7StyleTreeView1
         '
         Me.Win7StyleTreeView1.ContextMenuStrip = Me.ContextMenuStrip1
+        Me.Win7StyleTreeView1.Cursor = System.Windows.Forms.Cursors.Default
         Me.Win7StyleTreeView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Win7StyleTreeView1.Font = New System.Drawing.Font("Microsoft YaHei UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Win7StyleTreeView1.FullRowSelect = True
         Me.Win7StyleTreeView1.HotTracking = True
         Me.Win7StyleTreeView1.ImageIndex = 0
@@ -128,25 +128,25 @@ Partial Class frmGCMSPeaks
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportsFilesToolStripMenuItem, Me.ToolStripMenuItem1, Me.ShowPropertiesToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(172, 54)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(160, 54)
         '
         'ImportsFilesToolStripMenuItem
         '
         Me.ImportsFilesToolStripMenuItem.Image = CType(resources.GetObject("ImportsFilesToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ImportsFilesToolStripMenuItem.Name = "ImportsFilesToolStripMenuItem"
-        Me.ImportsFilesToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
+        Me.ImportsFilesToolStripMenuItem.Size = New System.Drawing.Size(159, 22)
         Me.ImportsFilesToolStripMenuItem.Text = "Imports Files"
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(168, 6)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(156, 6)
         '
         'ShowPropertiesToolStripMenuItem
         '
         Me.ShowPropertiesToolStripMenuItem.Image = CType(resources.GetObject("ShowPropertiesToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ShowPropertiesToolStripMenuItem.Name = "ShowPropertiesToolStripMenuItem"
-        Me.ShowPropertiesToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
+        Me.ShowPropertiesToolStripMenuItem.Size = New System.Drawing.Size(159, 22)
         Me.ShowPropertiesToolStripMenuItem.Text = "Show Properties"
         '
         'ImageList1
@@ -158,7 +158,7 @@ Partial Class frmGCMSPeaks
         '
         'frmGCMSPeaks
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(363, 533)
         Me.Controls.Add(Me.Win7StyleTreeView1)
