@@ -55,6 +55,7 @@
 
 #End Region
 
+Imports System.Runtime.CompilerServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
@@ -72,21 +73,26 @@ Public Delegate Sub TableAction(fieldName As String, data As Array, table As Dat
 
 Module Actions
 
-    ReadOnly actions As New Dictionary(Of String, TableAction)
+    ReadOnly actions As New Dictionary(Of String, (action As TableAction, desc As String))
 
-    Public ReadOnly Property allActions As IEnumerable(Of String)
+    Public ReadOnly Property allActions As IEnumerable(Of NamedValue(Of String))
         Get
-            Return actions.Keys
+            Return actions _
+                .Keys _
+                .Select(Function(ref)
+                            Return New NamedValue(Of String)(ref, actions(ref).desc)
+                        End Function)
         End Get
     End Property
 
-    Public Sub Register(name As String, action As TableAction)
-        actions(name) = action
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Sub Register(name As String, action As TableAction, description As String)
+        actions(name) = (action, description)
     End Sub
 
     Public Sub RunAction(name As String, fieldName As String, data As Array, table As DataTable)
         If actions.ContainsKey(name) Then
-            Call actions(name)(fieldName, data, table)
+            Call actions(name).action(fieldName, data, table)
         Else
             Call MyApplication.host.warning($"missing action '{name}'!")
         End If
@@ -98,6 +104,13 @@ Module Actions
         Call registerFormulaQuery()
     End Sub
 
+    Private Sub registerPeakFinding()
+        Call Register("Peak Finding",
+             Sub(key, data, tbl)
+
+             End Sub, "Do peak finding, the selected column data should be the signal intensity value.")
+    End Sub
+
     Private Sub registerMs1Search()
         Call Register("Peak List Annotation",
              Sub(key, data, tbl)
@@ -105,7 +118,7 @@ Module Actions
 
                  Call MyApplication.host.mzkitSearch.TabControl1.SelectTab(MyApplication.host.mzkitSearch.TabPage3)
                  Call MyApplication.host.ShowPage(MyApplication.host.mzkitSearch)
-             End Sub)
+             End Sub, "Run peak list annotation based on a given set of m/z data list.")
     End Sub
 
     Private Sub registerFormulaQuery()
@@ -176,7 +189,7 @@ Module Actions
                             Next
                         End Sub)
                 End If
-            End Sub)
+            End Sub, "Run formula query on a given set of m/z data list, the theoretically m/z is evaluated from the input formula data by combine different ion precursr and then match theoretical m/z with the input m/z set.")
     End Sub
 
     Private Sub registerKEGGEnrichment()
@@ -242,7 +255,7 @@ Module Actions
                                          )
                                      Next
                                  End Sub)
-             End Sub)
+             End Sub, "Run kegg enrichment on a given set of KEGG compound id list. The selected column field is the kegg compound id list.")
     End Sub
 
 End Module

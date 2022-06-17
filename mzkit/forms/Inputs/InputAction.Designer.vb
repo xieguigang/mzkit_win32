@@ -83,18 +83,20 @@ Partial Class InputAction
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.TextBox1)
         Me.GroupBox1.Controls.Add(Me.ComboBox2)
         Me.GroupBox1.Controls.Add(Me.ComboBox1)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 25)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(376, 150)
+        Me.GroupBox1.Size = New System.Drawing.Size(376, 178)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Select Action"
@@ -103,7 +105,7 @@ Partial Class InputAction
         '
         Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(144, 90)
+        Me.ComboBox2.Location = New System.Drawing.Point(144, 70)
         Me.ComboBox2.Name = "ComboBox2"
         Me.ComboBox2.Size = New System.Drawing.Size(180, 20)
         Me.ComboBox2.TabIndex = 3
@@ -112,7 +114,7 @@ Partial Class InputAction
         '
         Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(144, 47)
+        Me.ComboBox1.Location = New System.Drawing.Point(144, 34)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(180, 20)
         Me.ComboBox1.TabIndex = 2
@@ -120,7 +122,7 @@ Partial Class InputAction
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(26, 90)
+        Me.Label2.Location = New System.Drawing.Point(26, 70)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(89, 12)
         Me.Label2.TabIndex = 1
@@ -129,7 +131,7 @@ Partial Class InputAction
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(26, 47)
+        Me.Label1.Location = New System.Drawing.Point(26, 34)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(89, 12)
         Me.Label1.TabIndex = 0
@@ -137,7 +139,7 @@ Partial Class InputAction
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(287, 192)
+        Me.Button1.Location = New System.Drawing.Point(290, 196)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 1
@@ -146,12 +148,23 @@ Partial Class InputAction
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(168, 192)
+        Me.Button2.Location = New System.Drawing.Point(171, 196)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 2
         Me.Button2.Text = "Cancel"
         Me.Button2.UseVisualStyleBackColor = True
+        '
+        'TextBox1
+        '
+        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox1.Location = New System.Drawing.Point(28, 107)
+        Me.TextBox1.Multiline = True
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ReadOnly = True
+        Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBox1.Size = New System.Drawing.Size(325, 54)
+        Me.TextBox1.TabIndex = 4
         '
         'InputAction
         '
@@ -176,4 +189,5 @@ Partial Class InputAction
     Friend WithEvents Label1 As Label
     Friend WithEvents ComboBox2 As ComboBox
     Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents TextBox1 As TextBox
 End Class
