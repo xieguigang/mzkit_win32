@@ -121,8 +121,8 @@ Public Class InputDataVisual
             .ToArray
         Dim size As String = MyApplication.host.mzkitTool.PictureBox1 _
             .Size _
-            .Scale(1.5) _
-            .ToArray _
+            .Scale(1.75) _
+            .ToArray(reverse:=True) _
             .JoinBy(",")
         Dim padding As String = "padding:200px 300px 200px 200px;"
 
