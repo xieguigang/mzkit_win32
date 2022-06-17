@@ -66,6 +66,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
@@ -194,6 +195,8 @@ Public Class PageSpectrumSearch
         TabControl1.SelectedTab = TabPage2
     End Sub
 
+    Dim table As New List(Of EntityObject)
+
     Private Sub SearchThread(query As [Variant](Of LibraryMatrix, IsotopeDistribution), raws As IEnumerable(Of MZWork.Raw), progress As frmTaskProgress)
         Dim runSearchResult As IEnumerable(Of NamedCollection(Of AlignmentOutput))
 
@@ -218,6 +221,8 @@ Public Class PageSpectrumSearch
                         End Sub
             )
         End If
+
+        Call table.Clear()
 
         For Each fileSearch As NamedCollection(Of AlignmentOutput) In runSearchResult
             Dim fileRow As New TreeListViewItem With {
@@ -245,6 +250,17 @@ Public Class PageSpectrumSearch
                 alignRow.SubItems.Add(result.reference.scan_time)
 
                 fileRow.Items.Add(alignRow)
+
+                Call table.Add(New EntityObject With {
+                    .ID = fileSearch.name,
+                    .Properties = New Dictionary(Of String, String) From {
+                        {"reference", result.reference.id},
+                        {"forward", result.forward},
+                        {"reverse", result.reverse},
+                        {"mz", result.reference.mz},
+                        {"rt", result.reference.scan_time}
+                    }
+                })
             Next
 
             Me.Invoke(Sub() Call TreeListView1.Items.Add(fileRow))
@@ -280,5 +296,22 @@ Public Class PageSpectrumSearch
 
         host.mzkitTool.CustomTabControl1.SelectedTab = host.mzkitTool.TabPage5
         host.ShowPage(host.mzkitTool)
+    End Sub
+
+    Private Sub OpenInTableViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenInTableViewerToolStripMenuItem.Click
+        Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(title:="Spectrum Search Result")
+
+        table.LoadTable(Sub(grid)
+                            grid.Columns.Add("ID", GetType(String))
+                            grid.Columns.Add("reference_id", GetType(String))
+                            grid.Columns.Add("forward", GetType(Double))
+                            grid.Columns.Add("reverse", GetType(Double))
+                            grid.Columns.Add("m/z", GetType(Double))
+                            grid.Columns.Add("rt", GetType(Double))
+
+                            For Each item As EntityObject In Me.table
+                                Call grid.Rows.Add(item.ID, item("reference"), item("forward"), item("reverse"), item("mz"), item("rt"))
+                            Next
+                        End Sub)
     End Sub
 End Class
