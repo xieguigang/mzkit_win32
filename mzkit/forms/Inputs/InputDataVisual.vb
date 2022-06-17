@@ -92,12 +92,20 @@ Public Class InputDataVisual
     Private Iterator Function getSerials(x As Array, getVector As Func(Of String, Array)) As IEnumerable(Of SerialData)
         Dim colors As String() = Globals.Settings.viewer.colorSet
         Dim idx As i32 = Scan0
+        Dim grid = MyApplication.host.mzkitTool.DataGridView1
+        Dim getXName As String = GetX()
+        Dim yList As New List(Of Array)
 
         If colors.IsNullOrEmpty Then
             colors = Designer.GetColors("paper", 12) _
                 .Select(Function(c) c.ToHtmlColor) _
                 .ToArray
         End If
+
+        Call grid.Rows.Clear()
+        Call grid.Columns.Clear()
+
+        Call grid.Columns.Add(getXName, getXName)
 
         For Each name As String In GetY()
             Dim y As Array = getVector(name)
@@ -108,12 +116,24 @@ Public Class InputDataVisual
                 .ToArray
             Dim s = Scatter.FromPoints(points, lineColor:=colors(++idx))
 
+            Call grid.Columns.Add(name, name)
+            Call yList.Add(y)
+
             Yield s
         Next
+
+#Disable Warning
+        For i As Integer = 0 To x.Length - 1
+            Dim row As Object() = {x.GetValue(i)} _
+                .JoinIterates(yList.Select(Function(yi) yi.GetValue(i))) _
+                .ToArray
+
+            Call grid.Rows.Add(row)
+        Next
+#Enable Warning
     End Function
 
     Public Sub DoPlot(x As Array, getVector As Func(Of String, Array))
-        Dim grid = MyApplication.host.mzkitTool.DataGridView1
         Dim plot As Image
         Dim xvec As Double() = x _
             .AsObjectEnumerator _
@@ -125,12 +145,6 @@ Public Class InputDataVisual
             .ToArray(reverse:=True) _
             .JoinBy(",")
         Dim padding As String = "padding:200px 300px 200px 200px;"
-
-        Call grid.Rows.Clear()
-        Call grid.Columns.Clear()
-
-        Call grid.Columns.Add("X", "X")
-        Call grid.Columns.Add("Y", "Y")
 
         Select Case ComboBox1.SelectedItem.ToString
             Case "Scatter"
