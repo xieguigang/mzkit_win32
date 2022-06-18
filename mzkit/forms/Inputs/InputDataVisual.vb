@@ -99,7 +99,6 @@ Public Class InputDataVisual
         Dim grid = MyApplication.host.mzkitTool.DataGridView1
         Dim getXName As String = GetX()
         Dim yList As New List(Of Array)
-        Dim colorList As New List(Of NamedValue(Of Color))
         Dim samples As New List(Of BarDataSample)
 
         If colors.IsNullOrEmpty Then
@@ -108,19 +107,28 @@ Public Class InputDataVisual
                 .ToArray
         End If
 
+        Dim colorList As NamedValue(Of Color)() = Designer _
+            .CubicSpline(colors.Select(Function(c) c.TranslateColor), n:=x.Length) _
+            .Take(x.Length) _
+            .Select(Function(c, i)
+                        Return New NamedValue(Of Color) With {
+                            .Name = x(i),
+                            .Value = c
+                        }
+                    End Function) _
+            .ToArray
+
         Call grid.Rows.Clear()
         Call grid.Columns.Clear()
 
         Call grid.Columns.Add(getXName, getXName)
 
         For Each name As String In GetY()
-            colorList += New NamedValue(Of Color) With {.Name = name, .Value = colors(++idx).TranslateColor}
-
             Dim y As Array = getVector(name)
 
             yList.Add(y)
             samples += New BarDataSample With {
-                .data = y.AsObjectEnumerator.Select(Function(o) Val(o)).ToArray,
+                .data = y.AsObjectEnumerator.Take(x.Length).Select(Function(o) Val(o)).ToArray,
                 .tag = name
             }
         Next
