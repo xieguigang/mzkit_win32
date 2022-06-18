@@ -4,6 +4,7 @@ Imports Microsoft.VisualBasic.Serialization.JSON
 Public MustInherit Class SummaryPlot
 
     Public MustOverride ReadOnly Property requiredFields As Dictionary(Of String(), String)
+    Public MustOverride ReadOnly Property appName As String
 
     Public Shared ReadOnly Iterator Property PlotApps As IEnumerable(Of SummaryPlot)
         Get
@@ -11,7 +12,7 @@ Public MustInherit Class SummaryPlot
         End Get
     End Property
 
-    Public Function Test(fieldNames As String()) As Boolean
+    Public Function Test(fieldNames As IEnumerable(Of String)) As Boolean
         Dim nameIndex As Index(Of String) = fieldNames.Indexing
 
         For Each names As String() In requiredFields.Keys
