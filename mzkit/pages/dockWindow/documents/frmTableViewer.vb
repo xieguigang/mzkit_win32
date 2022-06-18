@@ -200,10 +200,14 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference
         Call load.SetAxis(GetSchema)
         Call InputDialog.Input(
             Sub(creator)
+                Dim binding As BindingSource = AdvancedDataGridView1.DataSource
+                Dim tableSet As DataSet = binding.DataSource
+                Dim table As DataTable = tableSet.Tables.Item(Scan0)
+
                 Call creator.DoPlot(
                     x:=AdvancedDataGridView1.getFieldVector(creator.GetX),
                     getVector:=AddressOf AdvancedDataGridView1.getFieldVector,
-                    table:=AdvancedDataGridView1.DataSource
+                    table:=table
                 )
             End Sub, config:=load)
     End Sub
