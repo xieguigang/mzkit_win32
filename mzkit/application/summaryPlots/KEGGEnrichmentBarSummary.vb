@@ -47,7 +47,7 @@ Public Class KEGGEnrichmentBarSummary : Inherits SummaryPlot
 
         Return profiles.ProfilesPlot(
             title:="KEGG Enrichment",
-            size:="2700,2100",
+            size:="2400,2000",
             tick:=-1,
             axisTitle:="-log10(pvalue)",
             labelRightAlignment:=False,
