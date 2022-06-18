@@ -186,10 +186,6 @@ Public Class InputDataVisual
 
     Public Sub DoPlot(x As Array, getVector As Func(Of String, Array))
         Dim plot As Image
-        Dim xvec As Double() = x _
-            .AsObjectEnumerator _
-            .Select(Function(xi) CDbl(xi)) _
-            .ToArray
         Dim size As String = MyApplication.host.mzkitTool.PictureBox1 _
             .Size _
             .Scale(1.75) _
@@ -216,6 +212,11 @@ Public Class InputDataVisual
             Case "BoxPlot", "ViolinPlot"
                 Throw New NotImplementedException
             Case "Histogram"
+                Dim xvec As Double() = x _
+                    .AsObjectEnumerator _
+                    .Select(Function(xi) CDbl(xi)) _
+                    .ToArray
+
                 plot = BarPlot.Histogram.Histogram.HistogramPlot(xvec, CSng((xvec.Max - xvec.Min) / 64), size:=size, padding:=padding).AsGDIImage
             Case Else
                 Throw New NotImplementedException
