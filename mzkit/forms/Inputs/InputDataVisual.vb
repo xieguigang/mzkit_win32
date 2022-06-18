@@ -64,6 +64,7 @@ Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Scripting.Runtime
+Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class InputDataVisual
 
@@ -162,6 +163,7 @@ Public Class InputDataVisual
             Dim y As Array = getVector(name)
             Dim points = x _
                 .AsObjectEnumerator _
+                .Take(x.Length - 1) _
                 .Select(Function(xi, i) New PointF(xi, y(i))) _
                 .OrderByDescending(Function(p) p.X) _
                 .ToArray
@@ -174,7 +176,7 @@ Public Class InputDataVisual
         Next
 
 #Disable Warning
-        For i As Integer = 0 To x.Length - 1
+        For i As Integer = 0 To x.Length - 2
             Dim row As Object() = {x.GetValue(i)} _
                 .JoinIterates(yList.Select(Function(yi) yi.GetValue(i))) _
                 .ToArray
@@ -193,13 +195,15 @@ Public Class InputDataVisual
             .JoinBy(",")
         Dim padding As String = "padding:200px 300px 200px 200px;"
 
+        ' Array.Resize(x, x.Length - 1)
+
         Select Case ComboBox1.SelectedItem.ToString
             Case "Scatter"
                 plot = Scatter.Plot(getSerials(x, getVector), size:=size, drawLine:=False, padding:=padding).AsGDIImage
             Case "Line"
                 plot = Scatter.Plot(getSerials(x, getVector), size:=size, drawLine:=True, padding:=padding).AsGDIImage
             Case "BarPlot"
-                Dim catNames As String() = x.AsObjectEnumerator().Select(Function(o) o.ToString).ToArray
+                Dim catNames As String() = x.AsObjectEnumerator().Take(x.Length - 1).Select(Function(o) any.ToString(o)).ToArray
 
                 plot = BarPlot.BarPlotAPI _
                     .Plot(
