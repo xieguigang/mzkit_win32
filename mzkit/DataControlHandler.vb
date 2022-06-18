@@ -82,7 +82,7 @@ Module DataControlHandler
     Public Function getFieldVector(table As DataTable, fieldRef As Integer) As Array
         Dim array As New List(Of Object)
 
-        For index As Integer = 0 To table.Rows.Count - 1
+        For index As Integer = 0 To table.Rows.Count - 2
             Dim row = table.Rows.Item(index)
             array.Add(row.Item(fieldRef))
         Next
