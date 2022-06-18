@@ -68,34 +68,67 @@ Public Class KEGGStatsAction : Inherits ActionBase
                               Return p.Value _
                                   .Intersect(collection:=cid) _
                                   .Distinct _
-                                  .Count
+                                  .ToArray
                           End Function)
-        Dim profileResult = GetProfileResultTable(profiles)
+        Dim profileResult = GetProfileResultTable(profiles.ToDictionary(Function(d) d.Key, Function(d) d.Value.Length), countMap:=False)
+        Dim mapHits = profiles.ToDictionary(Function(d) "map" & d.Key.Match("\d+"), Function(d) d.Value.JoinBy("; "))
+
+        For Each item In profileResult
+            item("hits") = mapHits.TryGetValue(item("mapid"))
+        Next
 
         Return profileResult
     End Function
 
     Private Function StatPathways(pid As String()) As EntityObject()
-        Return pid _
+        Dim data = pid _
             .GroupBy(Function(id) id) _
             .ToDictionary(Function(map) map.Key, Function(any) 1) _
-            .DoCall(AddressOf GetProfileResultTable)
+            .DoCall(Function(profile) GetProfileResultTable(profile, countMap:=True))
+        Dim category = data _
+            .GroupBy(Function(i) i("category")) _
+            .Select(Function(cat)
+                        Return New EntityObject With {
+                            .ID = cat.Key,
+                            .Properties = New Dictionary(Of String, String) From {
+                                {"class", cat.First.ItemValue("class")},
+                                {"hits", cat.Count},
+                                {"mapid", cat.Select(Function(i) i("mapid")).JoinBy("; ")}
+                            }
+                        }
+                    End Function) _
+            .ToArray
+
+        Return category
     End Function
 
-    Private Function GetProfileResultTable(profiles As Dictionary(Of String, Integer)) As EntityObject()
+    Private Function GetProfileResultTable(profiles As Dictionary(Of String, Integer), countMap As Boolean) As EntityObject()
         Return profiles _
             .AsNumeric _
             .KEGGCategoryProfiles _
             .Select(Function(category)
                         Return category.Value _
                             .Select(Function(term)
-                                        Return New EntityObject With {
-                                            .ID = term.Name,
-                                            .Properties = New Dictionary(Of String, String) From {
-                                                {"class", category.Key},
-                                                {"count", term.Value}
+                                        If countMap Then
+                                            Return New EntityObject With {
+                                                .ID = term.Name,
+                                                .Properties = New Dictionary(Of String, String) From {
+                                                    {"category", term.Description.GetTagValue(":").Name},
+                                                    {"class", category.Key},
+                                                    {"mapid", "map" & term.Description.GetTagValue(":").Value}
+                                                }
                                             }
-                                        }
+                                        Else
+                                            Return New EntityObject With {
+                                                .ID = term.Name,
+                                                .Properties = New Dictionary(Of String, String) From {
+                                                    {"category", term.Description.GetTagValue(":").Name},
+                                                    {"class", category.Key},
+                                                    {"mapid", "map" & term.Description.GetTagValue(":").Value},
+                                                    {"count", term.Value}
+                                                }
+                                            }
+                                        End If
                                     End Function)
                     End Function) _
             .IteratesALL _
