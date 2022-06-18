@@ -1,9 +1,10 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
-Imports BioNovoGene.mzkit_win32.My
-Imports ControlLibrary
+﻿Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Linq
-Imports WeifenLuo.WinFormsUI.Docking
+Imports Microsoft.VisualBasic.Scripting.Runtime
+Imports PipelineHost
+Imports SMRUCC.genomics.Assembly.KEGG.DBGET.BriteHEntry
+Imports SMRUCC.genomics.Assembly.KEGG.WebServices
 Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class KEGGStatsAction : Inherits ActionBase
@@ -47,11 +48,57 @@ Public Class KEGGStatsAction : Inherits ActionBase
     End Sub
 
     Private Function StatCompounds(cid As String()) As EntityObject()
+        Dim maps = KEGGRepo.RequestKEGGMaps _
+            .GroupBy(Function(map) map.id) _
+            .Select(Function(map) map.First) _
+            .ToArray
+        Dim pathways = maps.ToDictionary(
+            Function(m) m.id,
+            Function(m)
+                Return m.shapes _
+                    .Select(Function(a) a.IDVector) _
+                    .IteratesALL _
+                    .Distinct _
+                    .Where(Function(id) id.IsPattern("C\d+")) _
+                    .Indexing
+            End Function)
+        Dim profiles = pathways _
+            .ToDictionary(Function(p) p.Key,
+                          Function(p)
+                              Return p.Value _
+                                  .Intersect(collection:=cid) _
+                                  .Distinct _
+                                  .Count
+                          End Function)
+        Dim profileResult = GetProfileResultTable(profiles)
 
+        Return profileResult
     End Function
 
     Private Function StatPathways(pid As String()) As EntityObject()
-
+        Return pid _
+            .GroupBy(Function(id) id) _
+            .ToDictionary(Function(map) map.Key, Function(any) 1) _
+            .DoCall(AddressOf GetProfileResultTable)
     End Function
 
+    Private Function GetProfileResultTable(profiles As Dictionary(Of String, Integer)) As EntityObject()
+        Return profiles _
+            .AsNumeric _
+            .KEGGCategoryProfiles _
+            .Select(Function(category)
+                        Return category.Value _
+                            .Select(Function(term)
+                                        Return New EntityObject With {
+                                            .ID = term.Name,
+                                            .Properties = New Dictionary(Of String, String) From {
+                                                {"class", category.Key},
+                                                {"count", term.Value}
+                                            }
+                                        }
+                                    End Function)
+                    End Function) _
+            .IteratesALL _
+            .ToArray
+    End Function
 End Class
