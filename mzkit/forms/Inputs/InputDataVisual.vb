@@ -55,12 +55,15 @@
 #End Region
 
 Imports BioNovoGene.mzkit_win32.My
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.ChartPlots
+Imports Microsoft.VisualBasic.Data.ChartPlots.BarPlot.Data
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Scripting.Runtime
 
 Public Class InputDataVisual
 
@@ -87,6 +90,54 @@ Public Class InputDataVisual
         For Each check In CheckedListBox1.CheckedItems
             Yield check.ToString
         Next
+    End Function
+
+    Private Function getCategorySerials(x As String(), getVector As Func(Of String, Array)) As BarDataGroup
+        Dim colors As String() = Globals.Settings.viewer.colorSet
+        Dim idx As i32 = Scan0
+        Dim grid = MyApplication.host.mzkitTool.DataGridView1
+        Dim getXName As String = GetX()
+        Dim yList As New List(Of Array)
+        Dim colorList As New List(Of NamedValue(Of Color))
+        Dim samples As New List(Of BarDataSample)
+
+        If colors.IsNullOrEmpty Then
+            colors = Designer.GetColors("paper", 12) _
+                .Select(Function(c) c.ToHtmlColor) _
+                .ToArray
+        End If
+
+        Call grid.Rows.Clear()
+        Call grid.Columns.Clear()
+
+        Call grid.Columns.Add(getXName, getXName)
+
+        For Each name As String In GetY()
+            colorList += New NamedValue(Of Color) With {.Name = name, .Value = colors(++idx).TranslateColor}
+
+            Dim y As Array = getVector(name)
+
+            yList.Add(y)
+            samples += New BarDataSample With {
+                .data = y.AsObjectEnumerator.Select(Function(o) Val(o)).ToArray,
+                .tag = name
+            }
+        Next
+
+#Disable Warning
+        For i As Integer = 0 To x.Length - 1
+            Dim row As Object() = {x.GetValue(i)} _
+                .JoinIterates(yList.Select(Function(yi) yi.GetValue(i))) _
+                .ToArray
+
+            Call grid.Rows.Add(row)
+        Next
+#Enable Warning
+
+        Return New BarDataGroup With {
+            .Samples = samples.ToArray,
+            .Serials = colorList.ToArray
+        }
     End Function
 
     Private Iterator Function getSerials(x As Array, getVector As Func(Of String, Array)) As IEnumerable(Of SerialData)
@@ -151,7 +202,18 @@ Public Class InputDataVisual
                 plot = Scatter.Plot(getSerials(x, getVector), size:=size, drawLine:=False, padding:=padding).AsGDIImage
             Case "Line"
                 plot = Scatter.Plot(getSerials(x, getVector), size:=size, drawLine:=True, padding:=padding).AsGDIImage
-            Case "BarPlot", "BoxPlot", "ViolinPlot"
+            Case "BarPlot"
+                Dim catNames As String() = x.AsObjectEnumerator().Select(Function(o) o.ToString).ToArray
+
+                plot = BarPlot.BarPlotAPI _
+                    .Plot(
+                        data:=getCategorySerials(catNames, getVector),
+                        size:=size.SizeParser,
+                        padding:=padding
+                    ) _
+                    .AsGDIImage
+
+            Case "BoxPlot", "ViolinPlot"
                 Throw New NotImplementedException
             Case "Histogram"
                 plot = BarPlot.Histogram.Histogram.HistogramPlot(xvec, CSng((xvec.Max - xvec.Min) / 64), size:=size, padding:=padding).AsGDIImage
