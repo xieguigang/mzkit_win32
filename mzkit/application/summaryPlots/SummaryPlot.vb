@@ -1,4 +1,5 @@
 ﻿Imports Microsoft.VisualBasic.ComponentModel.Collection
+Imports Microsoft.VisualBasic.Serialization.JSON
 
 Public MustInherit Class SummaryPlot
 
@@ -26,5 +27,15 @@ Public MustInherit Class SummaryPlot
     End Function
 
     Public MustOverride Function Plot(table As DataTable) As Image
+
+    Protected Function getFieldVector(table As DataTable, aliasNames As String()) As Array
+        For Each name As String In aliasNames
+            If table.Columns.Contains(name) Then
+                Return table.getFieldVector(name)
+            End If
+        Next
+
+        Throw New InvalidProgramException(aliasNames.GetJson)
+    End Function
 
 End Class
