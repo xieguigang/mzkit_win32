@@ -134,7 +134,10 @@ Public Class InputDataVisual
 
             yList.Add(y)
             samples += New BarDataSample With {
-                .data = y.AsObjectEnumerator.Take(x.Length).Select(Function(o) Val(o)).ToArray,
+                .data = y.AsObjectEnumerator _
+                    .Take(x.Length) _
+                    .Select(Function(o) Val(o)) _
+                    .ToArray,
                 .tag = name
             }
         Next
@@ -240,7 +243,8 @@ Public Class InputDataVisual
                     .Plot(
                         data:=getCategorySerials(catNames, getVector),
                         size:=size.SizeParser,
-                        padding:=padding
+                        padding:=padding,
+                        dpi:=100
                     ) _
                     .AsGDIImage
 
