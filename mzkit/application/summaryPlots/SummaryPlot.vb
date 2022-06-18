@@ -5,6 +5,12 @@ Public MustInherit Class SummaryPlot
 
     Public MustOverride ReadOnly Property requiredFields As Dictionary(Of String(), String)
 
+    Public Shared ReadOnly Iterator Property PlotApps As IEnumerable(Of SummaryPlot)
+        Get
+            Yield New KEGGEnrichmentBarSummary
+        End Get
+    End Property
+
     Public Function Test(fieldNames As String()) As Boolean
         Dim nameIndex As Index(Of String) = fieldNames.Indexing
 

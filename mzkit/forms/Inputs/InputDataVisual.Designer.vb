@@ -258,18 +258,18 @@ Partial Class InputDataVisual
     Friend WithEvents Button2 As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents ListBox1 As ListBox
+    Private WithEvents ListBox1 As ListBox
     Friend WithEvents Label2 As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents ComboBox1 As ComboBox
-    Friend WithEvents CheckedListBox1 As CheckedListBox
+    Private WithEvents ComboBox1 As ComboBox
+    Private WithEvents CheckedListBox1 As CheckedListBox
     Friend WithEvents lblMsg As Label
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TabPage2 As TabPage
     Friend WithEvents Label5 As Label
     Friend WithEvents Label7 As Label
-    Friend WithEvents ComboBox2 As ComboBox
+    Private WithEvents ComboBox2 As ComboBox
     Friend WithEvents Label6 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents TextBox1 As TextBox
