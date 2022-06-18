@@ -200,8 +200,27 @@ Public Class InputDataVisual
 #Enable Warning
     End Function
 
-    Public Sub DoPlot(x As Array, getVector As Func(Of String, Array))
+    Public Sub DoPlot(x As Array, table As DataTable, getVector As Func(Of String, Array))
         Dim plot As Image
+
+        If (TabControl1.SelectedTab Is TabPage2) Then
+            plot = doSummaryPlot(table)
+        Else
+            plot = doGeneralPlot(x, getVector)
+        End If
+
+        MyApplication.host.mzkitTool.PictureBox1.BackgroundImage = plot
+        MyApplication.host.ShowMzkitToolkit()
+    End Sub
+
+    Private Function doSummaryPlot(table As DataTable) As Image
+        Dim name As String = ComboBox2.SelectedItem.ToString
+        Dim app As SummaryPlot = SummaryPlot.getApp(name)
+
+        Return app.Plot(table)
+    End Function
+
+    Private Function doGeneralPlot(x As Array, getVector As Func(Of String, Array)) As Image
         Dim size As String = MyApplication.host.mzkitTool.PictureBox1 _
             .Size _
             .Scale(1.75) _
@@ -209,17 +228,15 @@ Public Class InputDataVisual
             .JoinBy(",")
         Dim padding As String = "padding:200px 300px 200px 200px;"
 
-        ' Array.Resize(x, x.Length - 1)
-
         Select Case ComboBox1.SelectedItem.ToString
             Case "Scatter"
-                plot = Scatter.Plot(getSerials(x, getVector), size:=size, drawLine:=False, padding:=padding).AsGDIImage
+                Return Scatter.Plot(getSerials(x, getVector), size:=size, drawLine:=False, padding:=padding).AsGDIImage
             Case "Line"
-                plot = Scatter.Plot(getSerials(x, getVector), size:=size, drawLine:=True, padding:=padding).AsGDIImage
+                Return Scatter.Plot(getSerials(x, getVector), size:=size, drawLine:=True, padding:=padding).AsGDIImage
             Case "BarPlot"
                 Dim catNames As String() = x.AsObjectEnumerator().Take(x.Length - 1).Select(Function(o) any.ToString(o)).ToArray
 
-                plot = BarPlot.BarPlotAPI _
+                Return BarPlot.BarPlotAPI _
                     .Plot(
                         data:=getCategorySerials(catNames, getVector),
                         size:=size.SizeParser,
@@ -235,16 +252,25 @@ Public Class InputDataVisual
                     .Select(Function(xi) CDbl(xi)) _
                     .ToArray
 
-                plot = BarPlot.Histogram.Histogram.HistogramPlot(xvec, CSng((xvec.Max - xvec.Min) / 64), size:=size, padding:=padding).AsGDIImage
+                Return BarPlot.Histogram.Histogram.HistogramPlot(xvec, CSng((xvec.Max - xvec.Min) / 64), size:=size, padding:=padding).AsGDIImage
             Case Else
                 Throw New NotImplementedException
         End Select
-
-        MyApplication.host.mzkitTool.PictureBox1.BackgroundImage = plot
-        MyApplication.host.ShowMzkitToolkit()
-    End Sub
+    End Function
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        ' do data validation
+        If (TabControl1.SelectedTab Is TabPage2) Then
+            If ComboBox2.SelectedIndex = -1 Then
+                MessageBox.Show("Please select a summary data plot!", "Data visualization", buttons:=MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return
+            Else
+                ' check success
+            End If
+        Else
+
+        End If
+
         Me.DialogResult = DialogResult.OK
     End Sub
 
@@ -261,6 +287,12 @@ Public Class InputDataVisual
             End If
         Else
             lblMsg.Text = ""
+        End If
+    End Sub
+
+    Private Sub ComboBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox2.SelectedIndexChanged
+        If ComboBox2.SelectedIndex > -1 Then
+            TextBox1.Text = SummaryPlot.getApp(ComboBox2.SelectedItem.ToString).ToString
         End If
     End Sub
 End Class

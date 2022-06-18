@@ -33,6 +33,16 @@ Public MustInherit Class SummaryPlot
         Return True
     End Function
 
+    Public Shared Function getApp(name As String) As SummaryPlot
+        For Each app As SummaryPlot In PlotApps
+            If app.appName = name Then
+                Return app
+            End If
+        Next
+
+        Throw New KeyNotFoundException(name)
+    End Function
+
     Public MustOverride Function Plot(table As DataTable) As Image
 
     Protected Function getFieldVector(table As DataTable, aliasNames As String()) As Array
