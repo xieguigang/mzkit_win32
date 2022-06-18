@@ -43,11 +43,11 @@ Public Class KEGGEnrichmentBarSummary : Inherits SummaryPlot
             .Select(Function(o) -stdNum.Log10(Val(o))) _
             .ToArray
         Dim raw = term.SeqIterator.ToDictionary(Function(f) f.value, Function(i) pvalue(i))
-        Dim profiles = raw.DoKeggProfiles(4)
+        Dim profiles = raw.DoKeggProfiles(7)
 
         Return profiles.ProfilesPlot(
             title:="KEGG Enrichment",
-            size:="2700,2000",
+            size:="2700,2100",
             tick:=-1,
             axisTitle:="-log10(pvalue)",
             labelRightAlignment:=False,

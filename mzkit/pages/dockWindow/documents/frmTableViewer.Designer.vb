@@ -55,6 +55,7 @@
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmTableViewer
     Inherits DocumentWindow
+    ' Inherits Form
 
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()>
@@ -99,7 +100,7 @@ Partial Class frmTableViewer
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewToolStripMenuItem, Me.ToolStripMenuItem1, Me.VisualizeToolStripMenuItem, Me.ActionsToolStripMenuItem, Me.SendToREnvironmentToolStripMenuItem, Me.ToolStripMenuItem2, Me.ExportTableToolStripMenuItem, Me.CopyToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(204, 170)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(204, 148)
         '
         'ViewToolStripMenuItem
         '
@@ -184,6 +185,7 @@ Partial Class frmTableViewer
         Me.Controls.Add(Me.AdvancedDataGridView1)
         Me.Controls.Add(Me.AdvancedDataGridViewSearchToolBar1)
         Me.DoubleBuffered = True
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmTableViewer"
         Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
