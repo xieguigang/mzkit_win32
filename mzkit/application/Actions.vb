@@ -91,5 +91,6 @@ Module Actions
         Call Register("Formula Query", New FormulaQueryAction)
         Call Register("Peak Finding", New PeakFindingAction)
         Call Register("Peak List Annotation", New PeakAnnotationAction)
+        Call Register("KEGG Stats", New KEGGStatsAction)
     End Sub
 End Module

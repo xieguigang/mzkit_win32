@@ -366,6 +366,7 @@
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="application\actions\ActionBase.vb" />
+    <Compile Include="application\actions\KEGGStatsAction.vb" />
     <Compile Include="application\actions\PeakFindingAction.vb" />
     <Compile Include="application\actions\PeakAnnotationAction.vb" />
     <Compile Include="application\actions\FormulaQueryAction.vb" />
