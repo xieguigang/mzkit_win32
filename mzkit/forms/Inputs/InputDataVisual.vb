@@ -239,6 +239,8 @@ Public Class InputDataVisual
             Case "BarPlot"
                 Dim catNames As String() = x.AsObjectEnumerator().Take(x.Length - 1).Select(Function(o) any.ToString(o)).ToArray
 
+                padding = "padding:200px 600px 200px 200px;"
+
                 Return BarPlot.BarPlotAPI _
                     .Plot(
                         data:=getCategorySerials(catNames, getVector),
