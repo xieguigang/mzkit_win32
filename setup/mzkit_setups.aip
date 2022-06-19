@@ -104,6 +104,7 @@
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.dll_1" ComponentId="{7CE4AA99-4E96-43DF-8F4E-9124B619B359}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.dll_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.sciexWiffReader.dll" ComponentId="{F3CB4EBF-187F-4416-B4AD-DFC16B24D3D8}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.sciexWiffReader.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.dll" ComponentId="{B16621DE-0FEB-434B-968B-1DFD7C114CE0}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.dll"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.dll_1" ComponentId="{9986E7EB-8D23-45A2-B72D-D81A513273A6}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.dll_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions.dll" ComponentId="{0D4C376C-5A09-415D-BEFE-B0EA19BA4411}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.Insilicon.dll" ComponentId="{DB51ADD5-4229-4CD9-AB97-3C9C7E986228}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.Insilicon.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.TargetedMetabolomics.dll" ComponentId="{4267F9F4-CE5B-4C2B-BCC1-E613CE849AE1}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.TargetedMetabolomics.dll"/>
@@ -126,6 +127,7 @@
     <ROW Component="BioNovoGene.BioDeep.Chemoinformatics.dll" ComponentId="{8BB0D907-7ED6-4A5E-AFA4-965E0277CC6F}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.Chemoinformatics.dll"/>
     <ROW Component="BioNovoGene.BioDeep.Chemoinformatics.dll_1" ComponentId="{507FD05F-4311-4C58-BC0D-360D847DA596}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.BioDeep.Chemoinformatics.dll_1"/>
     <ROW Component="BioNovoGene.BioDeep.MSEngine.Mummichog.dll" ComponentId="{BF660001-0C67-4C2F-8582-EA4133BBCC31}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.BioDeep.MSEngine.Mummichog.dll"/>
+    <ROW Component="BioNovoGene.BioDeep.MSEngine.Mummichog.dll_1" ComponentId="{42C895F6-34A4-4F93-84E7-D696F1F19D94}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.MSEngine.Mummichog.dll_1"/>
     <ROW Component="BioNovoGene.BioDeep.MSEngine.dll" ComponentId="{34592B78-00DD-4DAB-AD16-45AC97403A40}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.MSEngine.dll"/>
     <ROW Component="BioNovoGene.BioDeep.MSEngine.dll_1" ComponentId="{16288244-C58E-4473-B241-1ADD6F638C27}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.BioDeep.MSEngine.dll_1"/>
     <ROW Component="BioNovoGene.BioDeep.MetaDNA.Visual.dll" ComponentId="{99ADFC45-FDD3-4983-BF14-8BD45E01E5C4}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.MetaDNA.Visual.dll"/>
@@ -328,6 +330,7 @@
     <ROW Component="S043.png" ComponentId="{5A800A56-B8EB-4C8C-92C5-CDB083ED51A9}" Directory_="NewFolder_1_Dir" Attributes="256" KeyPath="S043.png" Type="0"/>
     <ROW Component="SHORTCUTDIR" ComponentId="{EB965C6F-9D74-45CE-9B11-1E3643BB5B03}" Directory_="SHORTCUTDIR" Attributes="256"/>
     <ROW Component="SMRUCC.Language.CodeDom.dll" ComponentId="{1DC21DD8-7141-47A3-A390-F64F813172EE}" Directory_="library_Dir" Attributes="256" KeyPath="SMRUCC.Language.CodeDom.dll"/>
+    <ROW Component="SMRUCC.genomics.Analysis.HTS.DataFrame.dll" ComponentId="{3F761559-AB2C-49CB-A8DD-8E230FA32474}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.Analysis.HTS.DataFrame.dll"/>
     <ROW Component="SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.dll" ComponentId="{4FBA250B-D1E3-4DB8-8E7A-44B08D9C6AA4}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.dll"/>
     <ROW Component="SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.dll_1" ComponentId="{6B69DBD4-041E-4911-B286-16055D1A1291}" Directory_="host_Dir" Attributes="256" KeyPath="SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.dll_1"/>
     <ROW Component="SMRUCC.genomics.Annotation.dll" ComponentId="{75A82B33-8BA2-437B-9F78-BD82ED8EDD16}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.Annotation.dll"/>
@@ -336,7 +339,9 @@
     <ROW Component="SMRUCC.genomics.Core.dll_1" ComponentId="{867D8CD0-5641-4FB1-A5C7-C4C216B3D87F}" Directory_="host_Dir" Attributes="256" KeyPath="SMRUCC.genomics.Core.dll_1"/>
     <ROW Component="SMRUCC.genomics.Data.Repository.dll" ComponentId="{38781C8B-FD30-4959-91C7-ED3ECEE1547C}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.Data.Repository.dll"/>
     <ROW Component="SMRUCC.genomics.Data.Repository.dll_1" ComponentId="{8C8E37EB-0C1D-4EE2-90F8-261211A20832}" Directory_="host_Dir" Attributes="256" KeyPath="SMRUCC.genomics.Data.Repository.dll_1"/>
+    <ROW Component="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.dll" ComponentId="{48512001-A0AC-4221-BE04-E569820D8CE4}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.dll"/>
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.keggReport.dll" ComponentId="{FB6C7D69-45ED-429E-AE90-6A99C2F08469}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.keggReport.dll"/>
+    <ROW Component="SMRUCC.genomics.Visualize.Extensions.dll" ComponentId="{70360964-E7E5-4C17-88E6-D4C1589D4552}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.Visualize.Extensions.dll"/>
     <ROW Component="SMRUCC.genomics.foundation.OBO_Foundry.dll" ComponentId="{BF8661A5-F434-4D9E-902C-E50E1F97B156}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.foundation.OBO_Foundry.dll"/>
     <ROW Component="Sciex.Clearcore.FMan.dll" ComponentId="{DAAE4A1D-ED09-435A-BDDE-0E78B5A3B2C9}" Directory_="APPDIR" Attributes="256" KeyPath="Sciex.Clearcore.FMan.dll"/>
     <ROW Component="Sciex.Data.Processing.dll" ComponentId="{522DD82E-7494-44CE-B106-A16BDA17E216}" Directory_="APPDIR" Attributes="256" KeyPath="Sciex.Data.Processing.dll"/>
@@ -753,18 +758,6 @@
     <ROW File="System.Drawing.Common.dll" Component_="System.Drawing.Common.dll" FileName="SYSTEM~1.DLL|System.Drawing.Common.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\runtimes\unix\lib\net6.0\System.Drawing.Common.dll" SelfReg="false"/>
     <ROW File="Microsoft.Win32.SystemEvents.dll" Component_="Microsoft.Win32.SystemEvents.dll" FileName="MICROS~1.DLL|Microsoft.Win32.SystemEvents.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll" SelfReg="false"/>
     <ROW File="System.Drawing.Common.dll_1" Component_="System.Drawing.Common.dll_1" FileName="SYSTEM~1.DLL|System.Drawing.Common.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\runtimes\win\lib\net6.0\System.Drawing.Common.dll" SelfReg="false"/>
-    <ROW File="base.1.0.0.nupkg" Component_="base.1.0.0.nupkg" FileName="BASE10~1.NUP|base.1.0.0.nupkg" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\base.1.0.0.nupkg" SelfReg="false"/>
-    <ROW File="devkit.1.0.0.nupkg" Component_="base.1.0.0.nupkg" FileName="DEVKIT~1.NUP|devkit.1.0.0.nupkg" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\devkit.1.0.0.nupkg" SelfReg="false"/>
-    <ROW File="igraph.1.0.0.nupkg" Component_="base.1.0.0.nupkg" FileName="IGRAPH~1.NUP|igraph.1.0.0.nupkg" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\igraph.1.0.0.nupkg" SelfReg="false"/>
-    <ROW File="MLkit.1.0.0.nupkg" Component_="base.1.0.0.nupkg" FileName="MLKIT1~1.NUP|MLkit.1.0.0.nupkg" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\MLkit.1.0.0.nupkg" SelfReg="false"/>
-    <ROW File="njl.1.0.0.nupkg" Component_="base.1.0.0.nupkg" FileName="NJL100~1.NUP|njl.1.0.0.nupkg" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\njl.1.0.0.nupkg" SelfReg="false"/>
-    <ROW File="npy.1.0.0.nupkg" Component_="base.1.0.0.nupkg" FileName="NPY100~1.NUP|npy.1.0.0.nupkg" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\npy.1.0.0.nupkg" SelfReg="false"/>
-    <ROW File="nts.1.0.0.nupkg" Component_="base.1.0.0.nupkg" FileName="NTS100~1.NUP|nts.1.0.0.nupkg" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\nts.1.0.0.nupkg" SelfReg="false"/>
-    <ROW File="Rlapack.5.0.1.2389.nupkg" Component_="base.1.0.0.nupkg" FileName="RLAPAC~1.NUP|Rlapack.5.0.1.2389.nupkg" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Rlapack.5.0.1.2389.nupkg" SelfReg="false"/>
-    <ROW File="roxygenNet.1.0.0.nupkg" Component_="base.1.0.0.nupkg" FileName="ROXYGE~1.NUP|roxygenNet.1.0.0.nupkg" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\roxygenNet.1.0.0.nupkg" SelfReg="false"/>
-    <ROW File="Rstudio.1.0.0.nupkg" Component_="base.1.0.0.nupkg" FileName="RSTUDI~1.NUP|Rstudio.1.0.0.nupkg" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Rstudio.1.0.0.nupkg" SelfReg="false"/>
-    <ROW File="snowFall.1.0.0.nupkg" Component_="base.1.0.0.nupkg" FileName="SNOWFA~1.NUP|snowFall.1.0.0.nupkg" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\snowFall.1.0.0.nupkg" SelfReg="false"/>
-    <ROW File="webKit.1.0.0.nupkg" Component_="base.1.0.0.nupkg" FileName="WEBKIT~1.NUP|webKit.1.0.0.nupkg" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\webKit.1.0.0.nupkg" SelfReg="false"/>
     <ROW File="GCxGChost.R" Component_="GCxGChost.R" FileName="GCXGC-~1.R|GCxGC-host.R" Attributes="0" SourcePath="..\rstudio\services\GCxGC-host.R" SelfReg="false"/>
     <ROW File="MSIhost.R" Component_="GCxGChost.R" FileName="MSI-host.R" Attributes="0" SourcePath="..\rstudio\services\MSI-host.R" SelfReg="false"/>
     <ROW File="BioDeep.dll" Component_="BioDeep.dll" FileName="BioDeep.dll" Attributes="0" SourcePath="..\..\..\dist\bin\BioDeep.dll" SelfReg="false"/>
@@ -820,6 +813,13 @@
     <ROW File="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll" Component_="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll" FileName="MICRO~48.DLL|Microsoft.VisualBasic.Math.Statistics.ANOVA.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Math.Statistics.ANOVA.dll" SelfReg="false"/>
     <ROW File="BioDeeplogo.png" Component_="S043.png" FileName="BIODEE~1.PNG|BioDeep-logo.png" Attributes="0" SourcePath="BioDeep-logo.png" SelfReg="false"/>
     <ROW File="banner_prompt.cmd" Component_="Flute.Http.xml" FileName="BANNER~1.CMD|banner_prompt.cmd" Attributes="0" SourcePath="..\rstudio\banner_prompt.cmd" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.dll_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.dll_1" FileName="BIONO~13.DLL|BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.BioDeep.MSEngine.Mummichog.dll_1" Component_="BioNovoGene.BioDeep.MSEngine.Mummichog.dll_1" FileName="BIONO~29.DLL|BioNovoGene.BioDeep.MSEngine.Mummichog.dll" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.MSEngine.Mummichog.dll" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.Analysis.HTS.DataFrame.dll" Component_="SMRUCC.genomics.Analysis.HTS.DataFrame.dll" FileName="SMRUCC~7.DLL|SMRUCC.genomics.Analysis.HTS.DataFrame.dll" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Analysis.HTS.DataFrame.dll" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.dll" Component_="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.dll" FileName="SMRUCC~8.DLL|SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.dll" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.dll" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.Visualize.Extensions.dll" Component_="SMRUCC.genomics.Visualize.Extensions.dll" FileName="SMRUCC~9.DLL|SMRUCC.genomics.Visualize.Extensions.dll" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Visualize.Extensions.dll" SelfReg="false"/>
+    <ROW File="MS1deconv.R" Component_="buildMSIIndex.R" FileName="MS1DEC~1.R|MS1deconv.R" Attributes="0" SourcePath="..\rstudio\pipeline\MS1deconv.R" SelfReg="false"/>
+    <ROW File="Mummichog.R" Component_="buildMSIIndex.R" FileName="MUMMIC~1.R|Mummichog.R" Attributes="0" SourcePath="..\rstudio\pipeline\Mummichog.R" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -1275,6 +1275,11 @@
     <ROW Feature_="DemoScript" Component_="MsImaging.R_1"/>
     <ROW Feature_="MainFeature" Component_="BioNovoGene.BioDeep.MSEngine.Mummichog.dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.BioDeep.MSEngine.Mummichog.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.Analysis.HTS.DataFrame.dll"/>
+    <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.dll"/>
+    <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.Visualize.Extensions.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
