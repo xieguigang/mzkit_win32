@@ -261,6 +261,9 @@
     <Compile Include="ToolStripSpringTextBox.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ToolTipWithPictureOrGif.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Win7StyleTreeView.Designer.vb">
       <DependentUpon>Win7StyleTreeView.vb</DependentUpon>
     </Compile>
