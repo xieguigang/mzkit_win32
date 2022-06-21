@@ -345,8 +345,13 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
                 row.Clear()
                 row.Add(tag)
 
+                Dim i As i32 = 0
+
                 For Each cell As ListViewSubItem In feature.SubItems
-                    row.Add(cell.Text)
+                    If ++i <> 1 Then
+                        ' skip of add no-sense #num
+                        Call row.Add(cell.Text)
+                    End If
                 Next
 
                 Call file.Add(New RowObject(row))
