@@ -84,19 +84,20 @@ Partial Class frmNetworkViewer
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ShowLabelsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PhysicalEngineToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ConfigLayoutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.SnapshotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CopyNetworkVisualizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Canvas1 = New Microsoft.VisualBasic.Data.visualize.Network.Canvas.Canvas()
+        Me.ToolTipWithPictureOrGif1 = New ControlLibrary.Ligy.ToolTipWithPictureOrGif()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PinToolStripMenuItem, Me.ToolStripMenuItem2, Me.ShowLabelsToolStripMenuItem, Me.PhysicalEngineToolStripMenuItem, Me.ConfigLayoutToolStripMenuItem, Me.ToolStripMenuItem1, Me.SnapshotToolStripMenuItem, Me.CopyNetworkVisualizeToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PinToolStripMenuItem, Me.ToolStripMenuItem2, Me.ShowLabelsToolStripMenuItem, Me.PhysicalEngineToolStripMenuItem, Me.DToolStripMenuItem, Me.ConfigLayoutToolStripMenuItem, Me.ToolStripMenuItem1, Me.SnapshotToolStripMenuItem, Me.CopyNetworkVisualizeToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(199, 148)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(199, 170)
         '
         'PinToolStripMenuItem
         '
@@ -126,6 +127,13 @@ Partial Class frmNetworkViewer
         Me.PhysicalEngineToolStripMenuItem.Name = "PhysicalEngineToolStripMenuItem"
         Me.PhysicalEngineToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
         Me.PhysicalEngineToolStripMenuItem.Text = "Physical Engine (On)"
+
+        '
+        'DToolStripMenuItem
+        '
+        Me.DToolStripMenuItem.Name = "DToolStripMenuItem"
+        Me.DToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
+        Me.DToolStripMenuItem.Text = "3D"
         '
         'ConfigLayoutToolStripMenuItem
         '
@@ -137,6 +145,8 @@ Partial Class frmNetworkViewer
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         Me.ToolStripMenuItem1.Size = New System.Drawing.Size(195, 6)
+        Me.DToolStripMenuItem.CheckOnClick = True
+        Me.DToolStripMenuItem.Checked = False
         '
         'SnapshotToolStripMenuItem
         '
@@ -144,13 +154,7 @@ Partial Class frmNetworkViewer
         Me.SnapshotToolStripMenuItem.Name = "SnapshotToolStripMenuItem"
         Me.SnapshotToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
         Me.SnapshotToolStripMenuItem.Text = "Snapshot"
-        '
-        'CopyNetworkVisualizeToolStripMenuItem
-        '
-        Me.CopyNetworkVisualizeToolStripMenuItem.Name = "CopyNetworkVisualizeToolStripMenuItem"
-        Me.CopyNetworkVisualizeToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
-        Me.CopyNetworkVisualizeToolStripMenuItem.Text = "Copy Network Visualize"
-        '
+
         'Canvas1
         '
         Me.Canvas1.AutoRotate = True
@@ -166,13 +170,23 @@ Partial Class frmNetworkViewer
         Me.Canvas1.Size = New System.Drawing.Size(888, 520)
         Me.Canvas1.TabIndex = 1
         Me.Canvas1.ViewDistance = 0R
+
+        '
+        'CopyNetworkVisualizeToolStripMenuItem
+        '
+        Me.CopyNetworkVisualizeToolStripMenuItem.Name = "CopyNetworkVisualizeToolStripMenuItem"
+        Me.CopyNetworkVisualizeToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
+        Me.CopyNetworkVisualizeToolStripMenuItem.Text = "Copy Network Visualize"
+        '
+        'ToolTipWithPictureOrGif1
+        '
+        Me.ToolTipWithPictureOrGif1.OwnerDraw = True
         '
         'frmNetworkViewer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(888, 520)
-        Me.Controls.Add(Me.Canvas1)
         Me.DoubleBuffered = True
         Me.Name = "frmNetworkViewer"
         Me.ContextMenuStrip1.ResumeLayout(False)
@@ -190,4 +204,6 @@ Partial Class frmNetworkViewer
     Friend WithEvents CopyNetworkVisualizeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PinToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
+    Friend WithEvents DToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolTipWithPictureOrGif1 As ControlLibrary.Ligy.ToolTipWithPictureOrGif
 End Class

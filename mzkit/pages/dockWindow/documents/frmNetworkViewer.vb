@@ -148,8 +148,14 @@ Public Class frmNetworkViewer
             Dim MousePosition = Cursor.Position
             Dim msPlot As Image = getImage(target)
 
-            tt.Binding(Me, msPlot)
+            tt.Binding(Me.Canvas1, msPlot)
             tt.Show(target.data.label, win, MousePosition)
+        End If
+    End Sub
+
+    Private Sub DToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DToolStripMenuItem.Click
+        If Not Canvas1.Graph Is Nothing Then
+            Canvas1.Graph(space3D:=DToolStripMenuItem.Checked) = Canvas1.Graph
         End If
     End Sub
 End Class
