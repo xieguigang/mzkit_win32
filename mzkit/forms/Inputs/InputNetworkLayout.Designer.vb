@@ -86,37 +86,42 @@ Partial Class InputNetworkLayout
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.TrackBar1 = New System.Windows.Forms.TrackBar()
         Me.GroupBox1.SuspendLayout()
         CType(Me.damping, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repulsion, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.stiffness, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox2.SuspendLayout()
+        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
-        resources.ApplyResources(Me.GroupBox1, "GroupBox1")
         Me.GroupBox1.Controls.Add(Me.damping)
         Me.GroupBox1.Controls.Add(Me.repulsion)
         Me.GroupBox1.Controls.Add(Me.stiffness)
         Me.GroupBox1.Controls.Add(Me.Label8)
         Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Controls.Add(Me.Label6)
+        resources.ApplyResources(Me.GroupBox1, "GroupBox1")
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.TabStop = False
         '
         'damping
         '
-        resources.ApplyResources(Me.damping, "damping")
         Me.damping.DecimalPlaces = 2
         Me.damping.Increment = New Decimal(New Integer() {1, 0, 0, 131072})
+        resources.ApplyResources(Me.damping, "damping")
         Me.damping.Maximum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.damping.Name = "damping"
         Me.damping.Value = New Decimal(New Integer() {8, 0, 0, 65536})
         '
         'repulsion
         '
-        resources.ApplyResources(Me.repulsion, "repulsion")
         Me.repulsion.Increment = New Decimal(New Integer() {100, 0, 0, 0})
+        resources.ApplyResources(Me.repulsion, "repulsion")
         Me.repulsion.Maximum = New Decimal(New Integer() {20000, 0, 0, 0})
         Me.repulsion.Minimum = New Decimal(New Integer() {100, 0, 0, 0})
         Me.repulsion.Name = "repulsion"
@@ -124,9 +129,9 @@ Partial Class InputNetworkLayout
         '
         'stiffness
         '
-        resources.ApplyResources(Me.stiffness, "stiffness")
         Me.stiffness.DecimalPlaces = 2
         Me.stiffness.Increment = New Decimal(New Integer() {5, 0, 0, 0})
+        resources.ApplyResources(Me.stiffness, "stiffness")
         Me.stiffness.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.stiffness.Name = "stiffness"
         Me.stiffness.Value = New Decimal(New Integer() {80, 0, 0, 0})
@@ -158,10 +163,34 @@ Partial Class InputNetworkLayout
         Me.Button2.Name = "Button2"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.TrackBar1)
+        Me.GroupBox2.Controls.Add(Me.Label1)
+        resources.ApplyResources(Me.GroupBox2, "GroupBox2")
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.TabStop = False
+        '
+        'Label1
+        '
+        resources.ApplyResources(Me.Label1, "Label1")
+        Me.Label1.Name = "Label1"
+        '
+        'TrackBar1
+        '
+        Me.TrackBar1.LargeChange = 100
+        resources.ApplyResources(Me.TrackBar1, "TrackBar1")
+        Me.TrackBar1.Maximum = 1000
+        Me.TrackBar1.Minimum = -1000
+        Me.TrackBar1.Name = "TrackBar1"
+        Me.TrackBar1.SmallChange = 50
+        Me.TrackBar1.TickFrequency = 100
+        '
         'InputNetworkLayout
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.GroupBox1)
@@ -171,6 +200,9 @@ Partial Class InputNetworkLayout
         CType(Me.damping, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repulsion, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.stiffness, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
+        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -184,4 +216,7 @@ Partial Class InputNetworkLayout
     Friend WithEvents Label8 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents Label6 As Label
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents TrackBar1 As TrackBar
 End Class

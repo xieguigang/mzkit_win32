@@ -87,4 +87,8 @@ Public Class InputNetworkLayout
         stiffness.Value = args.Stiffness
         repulsion.Value = args.Repulsion
     End Sub
+
+    Private Sub TrackBar1_Scroll(sender As Object, e As EventArgs) Handles TrackBar1.Scroll
+
+    End Sub
 End Class

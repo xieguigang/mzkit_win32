@@ -96,6 +96,7 @@ Public Class frmNetworkViewer
         Call InputDialog.Input(Of InputNetworkLayout)(
             Sub(config)
                 Canvas1.SetFDGParams(Globals.Settings.network.layout)
+                Canvas1.ViewDistance = config.TrackBar1.Value
             End Sub)
     End Sub
 
