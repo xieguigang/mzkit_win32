@@ -81,12 +81,15 @@ Public Class frmSMILESViewer
             network.AddEdge(url)
         Next
 
-        Canvas1.Graph() = network
+        Canvas1.Graph(space3D:=True) = network
         Canvas1.ShowLabel = True
     End Sub
 
     Private Sub frmSMILESViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Canvas1.SetFDGParams(New ForceDirectedArgs With {.Repulsion = 10000.0!})
+        Canvas1.SetFDGParams(New ForceDirectedArgs With {.Repulsion = 100000.0!, .Damping = 0.85})
+
+        Text = "Molecule Drawer"
+        TabText = Text
     End Sub
 
     Private Sub Canvas1_Load(sender As Object, e As EventArgs) Handles Canvas1.Load

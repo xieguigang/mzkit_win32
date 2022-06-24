@@ -163,7 +163,7 @@ Partial Class frmSMILESViewer
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage1.Size = New System.Drawing.Size(1016, 724)
         Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "TabPage1"
+        Me.TabPage1.Text = "SMILES Drawer"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
         'TabPage2
@@ -177,7 +177,7 @@ Partial Class frmSMILESViewer
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage2.Size = New System.Drawing.Size(1016, 724)
         Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "TabPage2"
+        Me.TabPage2.Text = "KEGG Drawer"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
         'PictureBox1
