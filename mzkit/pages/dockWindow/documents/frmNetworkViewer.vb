@@ -59,6 +59,7 @@ Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.Data.visualize.Network.Graph
 Imports Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce
 Imports Microsoft.VisualBasic.Imaging
+Imports BioNovoGene.mzkit_win32.My
 
 Public Class frmNetworkViewer
 
@@ -93,11 +94,16 @@ Public Class frmNetworkViewer
     End Sub
 
     Private Sub ConfigLayoutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConfigLayoutToolStripMenuItem.Click
+        Dim settings As New InputNetworkLayout
+
+        settings.TrackBar1.Value = Canvas1.ViewDistance
+        MyApplication.LogText($"view distance: {Canvas1.ViewDistance}")
+
         Call InputDialog.Input(Of InputNetworkLayout)(
             Sub(config)
                 Canvas1.SetFDGParams(Globals.Settings.network.layout)
                 Canvas1.ViewDistance = config.TrackBar1.Value
-            End Sub)
+            End Sub, config:=settings)
     End Sub
 
     Private Sub ShowLabelsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowLabelsToolStripMenuItem.Click

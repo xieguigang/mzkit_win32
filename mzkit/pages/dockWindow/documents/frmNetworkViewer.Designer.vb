@@ -158,7 +158,7 @@ Partial Class frmNetworkViewer
 
         'Canvas1
         '
-        Me.Canvas1.AutoRotate = True
+        Me.Canvas1.AutoRotate = False
         Me.Canvas1.BackColor = System.Drawing.Color.FromArgb(CType(CType(223, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.Canvas1.ContextMenuStrip = Me.ContextMenuStrip1
         Me.Canvas1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -170,7 +170,7 @@ Partial Class frmNetworkViewer
         Me.Canvas1.ShowLabel = False
         Me.Canvas1.Size = New System.Drawing.Size(888, 520)
         Me.Canvas1.TabIndex = 1
-        Me.Canvas1.ViewDistance = -10.0R
+        Me.Canvas1.ViewDistance = -400.0R
 
         '
         'CopyNetworkVisualizeToolStripMenuItem
