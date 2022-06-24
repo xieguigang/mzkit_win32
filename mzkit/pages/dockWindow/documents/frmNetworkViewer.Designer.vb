@@ -55,6 +55,7 @@
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class frmNetworkViewer
     Inherits DocumentWindow
+    ' Inherits Form
 
     'Form 重写 Dispose，以清理组件列表。
     <System.Diagnostics.DebuggerNonUserCode()> _
