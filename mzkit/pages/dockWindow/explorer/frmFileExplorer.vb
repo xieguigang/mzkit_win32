@@ -729,4 +729,16 @@ Public Class frmFileExplorer
                             End Sub)
         End If
     End Sub
+
+    Private Sub MoleculeNetworkingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MoleculeNetworkingToolStripMenuItem.Click
+        Dim node = treeView1.SelectedNode
+
+        If node Is Nothing OrElse TypeOf node.Tag IsNot MZWork.Raw Then
+            Return
+        Else
+            Dim raw = DirectCast(node.Tag, MZWork.Raw)
+            Dim mzpackfile As String = raw.cache
+
+        End If
+    End Sub
 End Class

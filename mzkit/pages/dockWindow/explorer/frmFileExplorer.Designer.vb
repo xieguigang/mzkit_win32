@@ -108,10 +108,11 @@ Partial Class frmFileExplorer
         Me.RawScatterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.XICPeaksToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContourPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
         Me.OpenViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
         Me.ConvertToMzXMLToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeconvolutionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MoleculeNetworkingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ctxMenuFiles.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.ctxMenuScript.SuspendLayout()
@@ -269,63 +270,69 @@ Partial Class frmFileExplorer
         '
         'ctxMenuRawFile
         '
-        Me.ctxMenuRawFile.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewSnapshotToolStripMenuItem, Me.OpenViewerToolStripMenuItem, Me.ToolStripMenuItem3, Me.ConvertToMzXMLToolStripMenuItem, Me.DeconvolutionToolStripMenuItem})
+        Me.ctxMenuRawFile.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewSnapshotToolStripMenuItem, Me.OpenViewerToolStripMenuItem, Me.ToolStripMenuItem3, Me.ConvertToMzXMLToolStripMenuItem, Me.DeconvolutionToolStripMenuItem, Me.MoleculeNetworkingToolStripMenuItem})
         Me.ctxMenuRawFile.Name = "ctxMenuRawFile"
-        Me.ctxMenuRawFile.Size = New System.Drawing.Size(181, 120)
+        Me.ctxMenuRawFile.Size = New System.Drawing.Size(189, 142)
         '
         'ViewSnapshotToolStripMenuItem
         '
         Me.ViewSnapshotToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RawScatterToolStripMenuItem, Me.XICPeaksToolStripMenuItem, Me.ContourPlotToolStripMenuItem})
         Me.ViewSnapshotToolStripMenuItem.Image = CType(resources.GetObject("ViewSnapshotToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ViewSnapshotToolStripMenuItem.Name = "ViewSnapshotToolStripMenuItem"
-        Me.ViewSnapshotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ViewSnapshotToolStripMenuItem.Size = New System.Drawing.Size(188, 22)
         Me.ViewSnapshotToolStripMenuItem.Text = "View Snapshot"
         '
         'RawScatterToolStripMenuItem
         '
         Me.RawScatterToolStripMenuItem.Name = "RawScatterToolStripMenuItem"
-        Me.RawScatterToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.RawScatterToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
         Me.RawScatterToolStripMenuItem.Text = "Raw Scatter"
         '
         'XICPeaksToolStripMenuItem
         '
         Me.XICPeaksToolStripMenuItem.Name = "XICPeaksToolStripMenuItem"
-        Me.XICPeaksToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.XICPeaksToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
         Me.XICPeaksToolStripMenuItem.Text = "XIC Peaks"
         '
         'ContourPlotToolStripMenuItem
         '
         Me.ContourPlotToolStripMenuItem.Name = "ContourPlotToolStripMenuItem"
-        Me.ContourPlotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ContourPlotToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
         Me.ContourPlotToolStripMenuItem.Text = "Contour Plot"
-        '
-        'ToolStripMenuItem3
-        '
-        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(177, 6)
         '
         'OpenViewerToolStripMenuItem
         '
         Me.OpenViewerToolStripMenuItem.Image = CType(resources.GetObject("OpenViewerToolStripMenuItem.Image"), System.Drawing.Image)
         Me.OpenViewerToolStripMenuItem.Name = "OpenViewerToolStripMenuItem"
-        Me.OpenViewerToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.OpenViewerToolStripMenuItem.Size = New System.Drawing.Size(188, 22)
         Me.OpenViewerToolStripMenuItem.Text = "Open Viewer"
+        '
+        'ToolStripMenuItem3
+        '
+        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(185, 6)
         '
         'ConvertToMzXMLToolStripMenuItem
         '
         Me.ConvertToMzXMLToolStripMenuItem.Name = "ConvertToMzXMLToolStripMenuItem"
-        Me.ConvertToMzXMLToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ConvertToMzXMLToolStripMenuItem.Size = New System.Drawing.Size(188, 22)
         Me.ConvertToMzXMLToolStripMenuItem.Text = "Convert To mzXML"
         '
         'DeconvolutionToolStripMenuItem
         '
         Me.DeconvolutionToolStripMenuItem.Name = "DeconvolutionToolStripMenuItem"
-        Me.DeconvolutionToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DeconvolutionToolStripMenuItem.Size = New System.Drawing.Size(188, 22)
         Me.DeconvolutionToolStripMenuItem.Text = "Deconvolution"
+        '
+        'MoleculeNetworkingToolStripMenuItem
+        '
+        Me.MoleculeNetworkingToolStripMenuItem.Name = "MoleculeNetworkingToolStripMenuItem"
+        Me.MoleculeNetworkingToolStripMenuItem.Size = New System.Drawing.Size(188, 22)
+        Me.MoleculeNetworkingToolStripMenuItem.Text = "Molecule Networking"
         '
         'frmFileExplorer
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.treeView1)
@@ -371,4 +378,5 @@ Partial Class frmFileExplorer
     Friend WithEvents ShowSummaryToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ConvertToMzXMLToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DeconvolutionToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MoleculeNetworkingToolStripMenuItem As ToolStripMenuItem
 End Class

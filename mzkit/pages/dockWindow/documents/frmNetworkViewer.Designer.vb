@@ -170,7 +170,7 @@ Partial Class frmNetworkViewer
         Me.Canvas1.ShowLabel = False
         Me.Canvas1.Size = New System.Drawing.Size(888, 520)
         Me.Canvas1.TabIndex = 1
-        Me.Canvas1.ViewDistance = 0R
+        Me.Canvas1.ViewDistance = -10.0R
 
         '
         'CopyNetworkVisualizeToolStripMenuItem
@@ -188,6 +188,7 @@ Partial Class frmNetworkViewer
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(888, 520)
+        Me.Controls.Add(Canvas1)
         Me.DoubleBuffered = True
         Me.Name = "frmNetworkViewer"
         Me.ContextMenuStrip1.ResumeLayout(False)
