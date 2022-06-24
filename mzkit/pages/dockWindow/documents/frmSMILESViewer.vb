@@ -87,6 +87,8 @@ Public Class frmSMILESViewer
 
     Private Sub frmSMILESViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         Canvas1.SetFDGParams(New ForceDirectedArgs With {.Repulsion = 100000.0!, .Damping = 0.85})
+        Canvas1.ViewDistance = -450
+        Canvas1.AutoRotate = False
 
         Text = "Molecule Drawer"
         TabText = Text
