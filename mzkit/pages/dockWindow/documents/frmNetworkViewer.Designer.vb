@@ -90,6 +90,7 @@ Partial Class frmNetworkViewer
         Me.SnapshotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CopyNetworkVisualizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolTipWithPictureOrGif1 = New ControlLibrary.Ligy.ToolTipWithPictureOrGif()
+        Me.Canvas1 = New Microsoft.VisualBasic.Data.visualize.Network.Canvas.Canvas
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
