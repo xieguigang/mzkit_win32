@@ -54,18 +54,19 @@
 #End Region
 
 Imports System.ComponentModel
+Imports BioNovoGene.mzkit_win32.My
 Imports ControlLibrary.Ligy
 Imports Microsoft.VisualBasic.ApplicationServices
+Imports Microsoft.VisualBasic.Data.visualize.Network
+Imports Microsoft.VisualBasic.Data.visualize.Network.FileStream
 Imports Microsoft.VisualBasic.Data.visualize.Network.Graph
 Imports Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce
 Imports Microsoft.VisualBasic.Imaging
-Imports BioNovoGene.mzkit_win32.My
-Imports Microsoft.VisualBasic.Data.visualize.Network.FileStream
 
 Public Class frmNetworkViewer
 
-    Public getImage As Func(Of Node, Image)
-    Public showTarget As Action(Of Node)
+    Public getImage As Func(Of Graph.Node, Image)
+    Public showTarget As Action(Of Graph.Node)
 
     Private Sub frmNetworkViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         Text = "Network Canvas"
@@ -135,7 +136,7 @@ Public Class frmNetworkViewer
     End Sub
 
     Private Sub PinToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PinToolStripMenuItem.Click
-        Dim target As Node = Canvas1.GetTargetNode(PointToClient(Cursor.Position))
+        Dim target As Graph.Node = Canvas1.GetTargetNode(PointToClient(Cursor.Position))
 
         If Not target Is Nothing Then
             target.pinned = PinToolStripMenuItem.Checked
@@ -143,7 +144,7 @@ Public Class frmNetworkViewer
     End Sub
 
     Private Sub ContextMenuStrip1_Opening(sender As Object, e As CancelEventArgs) Handles ContextMenuStrip1.Opening
-        Dim target As Node = Canvas1.GetTargetNode(PointToClient(Cursor.Position))
+        Dim target As Graph.Node = Canvas1.GetTargetNode(PointToClient(Cursor.Position))
 
         If Not target Is Nothing Then
             PinToolStripMenuItem.Checked = target.pinned
@@ -151,7 +152,7 @@ Public Class frmNetworkViewer
     End Sub
 
     Private Sub Canvas1_MouseHover(sender As Object, e As EventArgs) Handles Canvas1.MouseHover
-        Dim target As Node = Canvas1.GetTargetNode(PointToClient(Cursor.Position))
+        Dim target As Graph.Node = Canvas1.GetTargetNode(PointToClient(Cursor.Position))
 
         If target IsNot Nothing AndAlso Not getImage Is Nothing Then
             ' display target ms plot
@@ -183,7 +184,7 @@ Public Class frmNetworkViewer
             mouseStatus.Text = $"[{pos.X},{pos.Y}]"
         End If
 
-        Dim target As Node = Canvas1.GetTargetNode(PointToClient(Cursor.Position))
+        Dim target As Graph.Node = Canvas1.GetTargetNode(PointToClient(Cursor.Position))
 
         If Not target Is Nothing Then
             graphStatus.Text = target.data.label
@@ -191,7 +192,7 @@ Public Class frmNetworkViewer
     End Sub
 
     Private Sub Canvas1_MouseClick(sender As Object, e As MouseEventArgs) Handles Canvas1.MouseClick
-        Dim target As Node = Canvas1.GetTargetNode(PointToClient(Cursor.Position))
+        Dim target As Graph.Node = Canvas1.GetTargetNode(PointToClient(Cursor.Position))
 
         If target IsNot Nothing AndAlso Not showTarget Is Nothing Then
             ' show target ms

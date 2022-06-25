@@ -221,7 +221,7 @@ Friend MustInherit Class WindowModules
               .Select(Function(str, idx)
                           Select Case schema(idx)
                               Case GetType(Double) : Return Val(str)
-                              Case GetType(Integer) : Return Integer.Parse(str)
+                              Case GetType(Integer) : Return str.ParseInteger
                               Case GetType(Boolean) : Return str.ParseBoolean
                               Case GetType(Date) : Return str.ParseDate
                               Case Else
