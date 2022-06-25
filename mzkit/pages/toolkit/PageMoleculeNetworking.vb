@@ -131,6 +131,11 @@ Public Class PageMoleculeNetworking
             l.data.style = New Pen(linkColor, linkWidth(l))
         Next
 
+        viewer.showTarget =
+            Sub(v)
+
+            End Sub
+
         Call viewer.SetGraph(graph, layout:=Globals.Settings.network.layout)
         Call viewer.Show(MyApplication.host.dockPanel)
     End Sub

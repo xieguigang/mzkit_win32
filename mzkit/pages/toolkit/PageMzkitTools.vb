@@ -63,6 +63,7 @@ Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
@@ -194,7 +195,7 @@ Public Class PageMzkitTools
         Me.matrixName = $"{raw.source.FileName}_{If(XIC, "XICPeaks", "rawscatter_2D")}"
 
         MyApplication.host.ShowPage(Me)
-        MyApplication.host.Invoke(Sub() RibbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.NotAvailable)
+        MyApplication.host.Invoke(Sub() ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.NotAvailable)
     End Sub
 
     Private Sub PageMzkitTools_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -233,7 +234,7 @@ Public Class PageMzkitTools
             Dim showAnnotation As Boolean = RibbonEvents.ribbonItems.CheckBoxShowMs2Fragment.BooleanValue
             Dim scanData As LibraryMatrix = raw.GetSpectrum(scanId, Globals.Settings.viewer.GetMethod, Sub(src, cache) frmFileExplorer.getRawCache(src,, cache), showAnnotation, prop)
 
-            If prop.msLevel = 1 AndAlso RibbonItems.CheckBoxShowKEGGAnnotation.BooleanValue Then
+            If prop.msLevel = 1 AndAlso ribbonItems.CheckBoxShowKEGGAnnotation.BooleanValue Then
                 Call ConnectToBioDeep.OpenAdvancedFunction(
                     Sub()
                         Dim mzdiff1 As Tolerance = Tolerance.DeltaMass(0.001)
@@ -578,13 +579,13 @@ Public Class PageMzkitTools
     ''' </summary>
     ''' <param name="progress"></param>
     ''' <param name="similarityCutoff"></param>
-    Friend Sub MolecularNetworkingTool(progress As frmTaskProgress, similarityCutoff As Double)
-        Thread.Sleep(1000)
+    Friend Sub MolecularNetworkingTool(progress As frmTaskProgress, similarityCutoff As Double, getSpectrum As Func(Of Action(Of String), IEnumerable(Of PeakMs2)))
+        Call Thread.Sleep(1000)
 
-        progress.ShowProgressTitle("Load Scan data")
-        progress.ShowProgressDetails("loading cache ms2 scan data...")
+        Call progress.ShowProgressTitle("Load Scan data")
+        Call progress.ShowProgressDetails("loading cache ms2 scan data...")
 
-        Dim raw As PeakMs2() = getSelectedIonSpectrums(AddressOf progress.ShowProgressTitle).ToArray
+        Dim raw As PeakMs2() = getSpectrum(AddressOf progress.ShowProgressTitle).ToArray
 
         If raw.Length = 0 Then
             MyApplication.host.showStatusMessage("No spectrum data, please select a file or some spectrum...", My.Resources.StatusAnnotations_Warning_32xLG_color)
@@ -788,6 +789,11 @@ Public Class PageMzkitTools
         ShowTabPage(TabPage5)
     End Sub
 
+    ''' <summary>
+    ''' get ms2 peaklist from the raw data file
+    ''' </summary>
+    ''' <param name="progress"></param>
+    ''' <returns></returns>
     Friend Iterator Function getSelectedIonSpectrums(progress As Action(Of String)) As IEnumerable(Of PeakMs2)
         Dim raw = WindowModules.rawFeaturesList.CurrentRawFile
 
@@ -800,19 +806,26 @@ Public Class PageMzkitTools
                 Call progress(guid)
             End If
 
-            Yield New PeakMs2 With {
-                .mz = info.parentMz,
-                .scan = info.scan_id,
-                .activation = info.activationMethod,
-                .collisionEnergy = info.collisionEnergy,
-                .file = raw.source.FileName,
-                .lib_guid = guid,
-                .mzInto = info.GetMs.ToArray,
-                .precursor_type = "n/a",
-                .rt = info.rt,
-                .intensity = info.intensity
-            }
+            Yield GetMs2Peak(info, raw)
         Next
+    End Function
+
+    Public Shared Function GetMs2Peak(info As ScanMS2, raw As Raw) As PeakMs2
+        Dim scanId As String = info.scan_id
+        Dim guid As String = $"{raw.source.FileName}#{scanId}"
+
+        Return New PeakMs2 With {
+            .mz = info.parentMz,
+            .scan = info.scan_id,
+            .activation = info.activationMethod,
+            .collisionEnergy = info.collisionEnergy,
+            .file = raw.source.FileName,
+            .lib_guid = guid,
+            .mzInto = info.GetMs.ToArray,
+            .precursor_type = "n/a",
+            .rt = info.rt,
+            .intensity = info.intensity
+        }
     End Function
 
     Private Function relativeInto() As Boolean
@@ -933,7 +946,7 @@ Public Class PageMzkitTools
     End Sub
 
     Public Sub ShowPlotTweaks()
-        RibbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
+        ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
         VisualStudio.Dock(WindowModules.plotParams, DockState.DockRight)
     End Sub
 

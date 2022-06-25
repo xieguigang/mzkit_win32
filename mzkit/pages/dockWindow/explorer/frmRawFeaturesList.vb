@@ -387,11 +387,16 @@ Public Class frmRawFeaturesList
     Private Sub MolecularNetworkingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MolecularNetworkingToolStripMenuItem.Click
         Dim similarityCutoff As Double = MyApplication.host.ribbonItems.SpinnerSimilarity.DecimalValue
         Dim progress As New frmTaskProgress
+        Dim page As PageMzkitTools = MyApplication.mzkitRawViewer
+        Dim task As ThreadStart =
+            Sub()
+                Call page.MolecularNetworkingTool(progress, similarityCutoff, AddressOf page.getSelectedIonSpectrums)
+            End Sub
 
         progress.ShowProgressTitle("Run molecular networking", directAccess:=True)
         progress.ShowProgressDetails("Initialized...", directAccess:=True)
 
-        Dim runTask As New Thread(Sub() Call MyApplication.mzkitRawViewer.MolecularNetworkingTool(progress, similarityCutoff))
+        Dim runTask As New Thread(task)
 
         runTask.Start()
         progress.ShowDialog()

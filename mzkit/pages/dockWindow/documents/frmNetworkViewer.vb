@@ -64,12 +64,16 @@ Imports BioNovoGene.mzkit_win32.My
 Public Class frmNetworkViewer
 
     Public getImage As Func(Of Node, Image)
+    Public showTarget As Action(Of Node)
 
     Private Sub frmNetworkViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         Text = "Network Canvas"
         TabText = "Network Canvas"
 
         Call ApplyVsTheme(ContextMenuStrip1)
+
+        ToolStripStatusLabel1.Text = ""
+        ToolStripStatusLabel2.Text = ""
     End Sub
 
     Public Sub SetGraph(g As NetworkGraph, layout As ForceDirectedArgs)
@@ -163,6 +167,34 @@ Public Class frmNetworkViewer
     Private Sub DToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DToolStripMenuItem.Click
         If Not Canvas1.Graph Is Nothing Then
             Canvas1.Graph(space3D:=DToolStripMenuItem.Checked) = Canvas1.Graph
+        End If
+    End Sub
+
+    Private Sub Canvas1_MouseMove(sender As Object, e As MouseEventArgs) Handles Canvas1.MouseMove
+        Dim mouseStatus = ToolStripStatusLabel1
+        Dim graphStatus = ToolStripStatusLabel2
+        Dim pos As Point = PointToClient(Cursor.Position)
+
+        If DToolStripMenuItem.Checked Then
+            ' 3d mode
+            mouseStatus.Text = $"[{pos.X},{pos.Y}] View distance: {Canvas1.ViewDistance}"
+        Else
+            mouseStatus.Text = $"[{pos.X},{pos.Y}]"
+        End If
+
+        Dim target As Node = Canvas1.GetTargetNode(PointToClient(Cursor.Position))
+
+        If Not target Is Nothing Then
+            graphStatus.Text = target.ToString
+        End If
+    End Sub
+
+    Private Sub Canvas1_MouseClick(sender As Object, e As MouseEventArgs) Handles Canvas1.MouseClick
+        Dim target As Node = Canvas1.GetTargetNode(PointToClient(Cursor.Position))
+
+        If target IsNot Nothing AndAlso Not showTarget Is Nothing Then
+            ' show target ms
+            Call showTarget(target)
         End If
     End Sub
 End Class

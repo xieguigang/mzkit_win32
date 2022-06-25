@@ -68,6 +68,7 @@ Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzXML
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.mzkit_win32.My
@@ -738,7 +739,29 @@ Public Class frmFileExplorer
         Else
             Dim raw = DirectCast(node.Tag, MZWork.Raw)
             Dim mzpackfile As String = raw.cache
+            Dim similarityCutoff As Double = MyApplication.host.ribbonItems.SpinnerSimilarity.DecimalValue
+            Dim progress As New frmTaskProgress
+            Dim page As PageMzkitTools = MyApplication.mzkitRawViewer
+            Dim getRaw As Func(Of Action(Of String), IEnumerable(Of PeakMs2)) =
+                Iterator Function(println)
+                    Dim mzpack As IEnumerable(Of ScanMS2) = raw.LoadMzpack(Sub(title, msg) println(msg)).GetMs2Scans
 
+                    For Each ms2 As ScanMS2 In mzpack
+                        Yield PageMzkitTools.GetMs2Peak(ms2, raw)
+                    Next
+                End Function
+            Dim task As ThreadStart =
+                Sub()
+                    Call page.MolecularNetworkingTool(progress, similarityCutoff, getRaw)
+                End Sub
+
+            progress.ShowProgressTitle("Run molecular networking", directAccess:=True)
+            progress.ShowProgressDetails("Initialized...", directAccess:=True)
+
+            Dim runTask As New Thread(task)
+
+            runTask.Start()
+            progress.ShowDialog()
         End If
     End Sub
 End Class
