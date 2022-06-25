@@ -820,6 +820,9 @@
     <ROW File="SMRUCC.genomics.Visualize.Extensions.dll" Component_="SMRUCC.genomics.Visualize.Extensions.dll" FileName="SMRUCC~9.DLL|SMRUCC.genomics.Visualize.Extensions.dll" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Visualize.Extensions.dll" SelfReg="false"/>
     <ROW File="MS1deconv.R" Component_="buildMSIIndex.R" FileName="MS1DEC~1.R|MS1deconv.R" Attributes="0" SourcePath="..\rstudio\pipeline\MS1deconv.R" SelfReg="false"/>
     <ROW File="Mummichog.R" Component_="buildMSIIndex.R" FileName="MUMMIC~1.R|Mummichog.R" Attributes="0" SourcePath="..\rstudio\pipeline\Mummichog.R" SelfReg="false"/>
+    <ROW File="ppmscan.CDF" Component_="_Ex2_Orbitrap_CID.mzXML" FileName="200PPM~1.CDF|200ppm-scan.CDF" Attributes="0" SourcePath="..\..\..\DATA\test\200ppm-scan.CDF" SelfReg="false"/>
+    <ROW File="chromatogram.csv" Component_="_Ex2_Orbitrap_CID.mzXML" FileName="CHROMA~1.CSV|chromatogram.csv" Attributes="0" SourcePath="..\..\..\DATA\test\chromatogram.csv" SelfReg="false"/>
+    <ROW File="tissue_morphology.cdf" Component_="_Ex2_Orbitrap_CID.mzXML" FileName="TISSUE~1.CDF|tissue_morphology.cdf" Attributes="0" SourcePath="..\..\..\DATA\test\tissue_morphology.cdf" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
