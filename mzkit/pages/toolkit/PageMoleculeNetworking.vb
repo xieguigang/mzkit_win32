@@ -114,11 +114,11 @@ Public Class PageMoleculeNetworking
         Call graph.ComputeNodeDegrees
 
         Dim minRadius As Single = Globals.Settings.network.nodeRadius.min
-        Dim degreeRange As New DoubleRange(graph.vertex.Select(Function(a) CDbl(a.degree.In + a.degree.Out)).ToArray)
+        Dim degreeRange As New DoubleRange(graph.vertex.Select(Function(a) (a.data.mass + 1) * (a.degree.In + a.degree.Out)).ToArray)
         Dim similarityRange As New DoubleRange(graph.graphEdges.Select(Function(a) a.weight).ToArray)
         Dim nodeRadiusRange As DoubleRange = Globals.Settings.network.nodeRadius.AsDoubleRange
         Dim linkWidthRange As DoubleRange = Globals.Settings.network.linkWidth.AsDoubleRange
-        Dim nodeRadius As Func(Of Graph.Node, Single) = Function(v) degreeRange.ScaleMapping(v.degree.In + v.degree.Out, nodeRadiusRange)
+        Dim nodeRadius As Func(Of Graph.Node, Single) = Function(v) degreeRange.ScaleMapping((v.degree.In + v.degree.Out) * (v.data.mass + 1), nodeRadiusRange)
         Dim linkWidth As Func(Of Graph.Edge, Single) = Function(l) similarityRange.ScaleMapping(l.weight, linkWidthRange)
         Dim nodeClusters = graph.vertex.Select(Function(a) a.data(NamesOf.REFLECTION_ID_MAPPING_NODETYPE)).Distinct.Indexing
         Dim colorSet As SolidBrush() = Designer.GetColors("Paper", nodeClusters.Count, alpha:=120).Select(Function(a) New SolidBrush(a)).ToArray
