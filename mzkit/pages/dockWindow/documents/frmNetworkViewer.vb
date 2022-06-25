@@ -54,6 +54,7 @@
 #End Region
 
 Imports System.ComponentModel
+Imports System.Text
 Imports BioNovoGene.mzkit_win32.My
 Imports ControlLibrary.Ligy
 Imports Microsoft.VisualBasic.ApplicationServices
@@ -62,6 +63,8 @@ Imports Microsoft.VisualBasic.Data.visualize.Network.FileStream
 Imports Microsoft.VisualBasic.Data.visualize.Network.Graph
 Imports Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce
 Imports Microsoft.VisualBasic.Imaging
+Imports SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML
+Imports SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File
 
 Public Class frmNetworkViewer
 
@@ -216,5 +219,23 @@ Public Class frmNetworkViewer
 
             Call WindowModules.ShowTable(nodes, "Node Metadata")
         End If
+    End Sub
+
+    Private Sub ExportCytoscapeToolStripMenuItem_DisplayStyleChanged(sender As Object, e As EventArgs) Handles ExportCytoscapeToolStripMenuItem.DisplayStyleChanged
+
+    End Sub
+
+    Private Sub ExportCytoscapeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportCytoscapeToolStripMenuItem.Click
+        If Canvas1.Graph Is Nothing Then
+            Return
+        End If
+
+        Using file As New SaveFileDialog With {.Filter = "Cytoscape Model(*.xgmml)|*.xgmml"}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim cy3 As XGMMLgraph = XGMMLgraph.CreateObject("", "", "")
+
+                Call RDFXml.WriteXml(cy3, Encoding.UTF8, path:=file.FileName)
+            End If
+        End Using
     End Sub
 End Class
