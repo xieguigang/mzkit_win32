@@ -82,7 +82,7 @@ Public Class PageMoleculeNetworking
     Dim g As NetworkGraph
     Dim rawMatrix As EntityClusterModel()
     Dim nodeInfo As Protocols
-    Dim rawLinks As Dictionary(Of String, Dictionary(Of String, (id$, forward#, reverse#)))
+    Dim rawLinks As Dictionary(Of String, LinkSet)
     Dim tooltip As New PlotTooltip
 
     Public Sub RenderNetwork()
@@ -161,7 +161,7 @@ Public Class PageMoleculeNetworking
 
     Public Sub loadNetwork(MN As IEnumerable(Of EntityClusterModel),
                            nodes As Protocols,
-                           rawLinks As Dictionary(Of String, Dictionary(Of String, (id$, forward#, reverse#))),
+                           rawLinks As Dictionary(Of String, LinkSet),
                            cutoff As Double)
 
         DataGridView1.Rows.Clear()
@@ -197,24 +197,32 @@ Public Class PageMoleculeNetworking
                     {"rtmax", rt.Max},
                     {"area", info.members.Sum(Function(a) a.Ms2Intensity)},
                     {"color", color}
-                }})
+                }
+            })
         Next
 
         Dim duplicatedEdges As New Index(Of String)
         Dim uniqueKey As String
+        Dim edgeProps As EdgeData
+        Dim score As (forward As Double, reverse As Double)
 
-        For Each row In rawMatrix
-            Dim rawLink = rawLinks(row.ID)
+        For Each row As EntityClusterModel In rawMatrix
+            Dim rawLink As LinkSet = rawLinks(row.ID)
 
             For Each link In row.Properties.Where(Function(l) l.Value >= cutoff AndAlso l.Key <> row.ID)
                 uniqueKey = {row.ID, link.Key}.OrderBy(Function(str) str).JoinBy(" vs ")
 
                 If Not uniqueKey Like duplicatedEdges Then
+                    score = rawLink(link.Key)
+                    edgeProps = New EdgeData With {
+                        .Properties = New Dictionary(Of String, String) From {
+                            {"forward", score.forward},
+                            {"reverse", score.reverse}
+                        }
+                    }
+
                     Call duplicatedEdges.Add(uniqueKey)
-                    Call g.CreateEdge(row.ID, link.Key, link.Value, New EdgeData With {.Properties = New Dictionary(Of String, String) From {
-                                      {"forward", rawLink.TryGetValue(link.Key).forward},
-                                      {"reverse", rawLink.TryGetValue(link.Key).reverse}
-                                 }})
+                    Call g.CreateEdge(row.ID, link.Key, link.Value, edgeProps)
                 End If
             Next
         Next

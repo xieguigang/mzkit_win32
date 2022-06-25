@@ -660,7 +660,7 @@ Public Class PageMzkitTools
             End If
 
             Dim clusters = net.ToKMeansModels.Kmeans(expected:=kn, debug:=False)
-            Dim rawLinks = links.ToDictionary(Function(a) a.Name, Function(a) a.Value)
+            Dim rawLinks = links.ToDictionary(Function(a) a.reference, Function(a) a)
 
             progress.ShowProgressDetails("initialize result output...")
 
