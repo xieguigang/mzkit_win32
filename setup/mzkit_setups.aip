@@ -20,7 +20,7 @@
     <ROW Property="AI_ThemeStyle" Value="head" MsiKey="AI_ThemeStyle"/>
     <ROW Property="AI_UNINSTALLER" Value="msiexec.exe"/>
     <ROW Property="ALLUSERS" Value="1"/>
-    <ROW Property="ARPCOMMENTS" Value="Data toolkits for processing NMR, MALDI MSI, LC-MS and GC-MS raw data, chemoinformatics data analysis and data visualization." ValueLocId="*"/>
+    <ROW Property="ARPCOMMENTS" Value="An open source data toolkits for processing NMR, MALDI MSI, LC-MS and GC-MS raw data, chemoinformatics data analysis and data visualization." ValueLocId="*"/>
     <ROW Property="ARPCONTACT" Value="market@bionovogene.com"/>
     <ROW Property="ARPHELPLINK" Value="https://mzkit.org/"/>
     <ROW Property="ARPHELPTELEPHONE" Value="0512-62959105"/>
@@ -34,10 +34,10 @@
     <ROW Property="CTRLS" Value="3"/>
     <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1033:{1F5F56C5-595E-4D4F-BB6E-94B27E6EE39F} 2052:{1F5F56C5-595E-4D4F-BB6E-94B27E6EE39F} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{CFCF0E53-31AA-4D49-B79F-3538C3EBEFCE} 2052:{CFCF0E53-31AA-4D49-B79F-3538C3EBEFCE} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="mzkit_win32"/>
-    <ROW Property="ProductVersion" Value="3.3.259.1564" Type="32"/>
+    <ROW Property="ProductVersion" Value="3.5.591.3364" Type="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{B645400B-3918-41EF-9009-7ADDD81C84B4}"/>
@@ -86,7 +86,7 @@
     <ROW Directory="zhCN_Dir" Directory_Parent="APPDIR" DefaultDir="zh-CN"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{E84AB304-A093-4A81-AD3D-2C551EEC9C0A}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{E5F168BA-3660-47A5-BABF-2BE245D4BBCF}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{69AA9FFE-67B1-456B-88EB-97D3D6C92AA7}" Directory_="APPDIR" Attributes="256"/>
     <ROW Component="BioDeep.dll" ComponentId="{2FECE77D-517F-47B1-97BA-15B1100BE489}" Directory_="APPDIR" Attributes="256" KeyPath="BioDeep.dll"/>
     <ROW Component="BioDeep.dll_1" ComponentId="{8274C55C-D52A-4F5B-A268-505929309095}" Directory_="host_Dir" Attributes="256" KeyPath="BioDeep.dll_1"/>
