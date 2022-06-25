@@ -1169,6 +1169,10 @@
       <Project>{494d50d9-fa36-455e-8ea0-103e1b162e3b}</Project>
       <Name>biocore-netcore5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\GCModeller\src\GCModeller\core\Bio.InteractionModel\InteractionModel.NET5.vbproj">
+      <Project>{ea88476c-7342-41b6-9a7a-bf1f3cea6b08}</Project>
+      <Name>InteractionModel.NET5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\GCModeller\foundation\OBO_Foundry\obo_foundry-netcore5.vbproj">
       <Project>{82c8e262-4e52-4c09-8865-ddbb5462fd66}</Project>
       <Name>obo_foundry-netcore5</Name>
@@ -1176,6 +1180,10 @@
     <ProjectReference Include="..\..\..\..\GCModeller\src\GCModeller\visualize\DataVisualizationExtensions\datavisual-netcore5.vbproj">
       <Project>{75d17b4d-db12-433a-82a6-25611b168ef9}</Project>
       <Name>datavisual-netcore5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\GCModeller\src\interops\visualize\Cytoscape\Cytoscape\Cytoscape.NET5.vbproj">
+      <Project>{46782b6a-a5ec-4e21-81d5-5cfbd49c2d5c}</Project>
+      <Name>Cytoscape.NET5</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\R-sharp\R#\Rsharp-netcore5.vbproj">
       <Project>{08ec0a71-809d-49d7-bac5-10e15665fade}</Project>
