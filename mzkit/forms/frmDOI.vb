@@ -62,10 +62,10 @@ Public Class frmDOI
     End Sub
 
     Private Sub frmDOI_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Dim file As String = $"{App.HOME}/Reference.rtf"
+        Dim file As String = $"{App.HOME}/documents/Reference.rtf"
 
         If Not file.FileExists Then
-            file = $"{App.HOME}/../../src/mzkit/Reference.rtf"
+            file = $"{App.HOME}/../../src/mzkit/extdata/Reference.rtf"
         End If
 
         RichTextBox1.Clear()
