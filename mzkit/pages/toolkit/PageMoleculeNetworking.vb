@@ -1,60 +1,63 @@
 ﻿#Region "Microsoft.VisualBasic::0d5250942a956247ab7c1c459936e338, mzkit\src\mzkit\mzkit\pages\toolkit\PageMoleculeNetworking.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 326
-    '    Code Lines: 262
-    ' Comment Lines: 7
-    '   Blank Lines: 57
-    '     File Size: 16.10 KB
+' Summaries:
 
 
-    ' Class PageMoleculeNetworking
-    ' 
-    '     Sub: DataGridView1_CellContentClick, loadNetwork, PageMoleculeNetworking_Load, PageMoleculeNetworking_VisibleChanged, RefreshNetwork
-    '          RenderNetwork, SaveImageToolStripMenuItem_Click, saveNetwork
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 326
+'    Code Lines: 262
+' Comment Lines: 7
+'   Blank Lines: 57
+'     File Size: 16.10 KB
+
+
+' Class PageMoleculeNetworking
+' 
+'     Sub: DataGridView1_CellContentClick, loadNetwork, PageMoleculeNetworking_Load, PageMoleculeNetworking_VisibleChanged, RefreshNetwork
+'          RenderNetwork, SaveImageToolStripMenuItem_Click, saveNetwork
+' 
+' /********************************************************************************/
 
 #End Region
 
 Imports System.Threading
 Imports System.Windows.Forms.ListViewItem
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking
@@ -75,6 +78,7 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Language
 Imports RibbonLib.Interop
+Imports WeifenLuo.WinFormsUI.Docking
 Imports stdNum = System.Math
 
 Public Class PageMoleculeNetworking
@@ -131,13 +135,58 @@ Public Class PageMoleculeNetworking
             l.data.style = New Pen(linkColor, linkWidth(l))
         Next
 
-        viewer.showTarget =
-            Sub(v)
-
-            End Sub
+        viewer.showTarget = AddressOf showCluster
 
         Call viewer.SetGraph(graph, layout:=Globals.Settings.network.layout)
         Call viewer.Show(MyApplication.host.dockPanel)
+    End Sub
+
+    Private Sub showCluster(v As Graph.Node)
+        Dim info As NetworkingNode = nodeInfo.Cluster(v.label)
+        Dim raw As PeakMs2() = info.members
+        Dim rt As Double() = raw.Select(Function(p) p.rt).ToArray
+        Dim ms1 As New ScanMS1 With {
+            .into = raw.Select(Function(p) p.intensity).ToArray,
+            .mz = raw.Select(Function(p) p.mz).ToArray,
+            .rt = rt.Average,
+            .scan_id = $"[MS1] {v.label}",
+            .TIC = .into.Sum,
+            .BPC = .into.Max,
+            .meta = New Dictionary(Of String, String),
+            .products = raw _
+                .Select(Function(r)
+                            Return New ScanMS2 With {
+                                .activationMethod = [Enum].Parse(GetType(mzData.ActivationMethods), r.activation),
+                                .centroided = True,
+                                .charge = 0,
+                                .collisionEnergy = r.collisionEnergy,
+                                .intensity = r.intensity,
+                                .into = r.mzInto.Select(Function(i) i.intensity).ToArray,
+                                .mz = r.mzInto.Select(Function(i) i.mz).ToArray,
+                                .parentMz = r.mz,
+                                .polarity = 0,
+                                .rt = r.rt,
+                                .scan_id = r.lib_guid
+                            }
+                        End Function) _
+                .ToArray
+        }
+        Dim fakePack As New mzPack With {
+            .Application = FileApplicationClass.LCMS,
+            .source = v.ToString,
+            .MS = {ms1}
+        }
+        Dim fakeRaw As New Raw(inMemory:=fakePack) With {
+            .cache = Nothing,
+            .numOfScan1 = 1,
+            .numOfScan2 = raw.Length,
+            .rtmax = rt.Max,
+            .rtmin = rt.Min,
+            .source = v.ToString
+        }
+
+        WindowModules.rawFeaturesList.LoadRaw(fakeRaw)
+        VisualStudio.Dock(WindowModules.rawFeaturesList, DockState.DockLeft)
     End Sub
 
     Public Sub RefreshNetwork()
@@ -181,13 +230,12 @@ Public Class PageMoleculeNetworking
 
         Me.rawLinks = rawLinks
 
-        For Each row In rawMatrix
+        For Each row As EntityClusterModel In rawMatrix
             Dim info As NetworkingNode = nodeInfo.Cluster(row.ID)
             Dim rt As Double() = info.members.Select(Function(a) a.rt).ToArray
             Dim maxrt As Double = info.members.OrderByDescending(Function(a) a.Ms2Intensity).First.rt
             Dim color As String = colorIndex.ComputeIfAbsent(row.Cluster, Function(cl) colors.Next)
-
-            g.CreateNode(row.ID, New NodeData With {
+            Dim node As Graph.Node = g.CreateNode(row.ID, New NodeData With {
                 .Properties = New Dictionary(Of String, String) From {
                     {NamesOf.REFLECTION_ID_MAPPING_NODETYPE, row.Cluster},
                     {"member_size", info.members.Length},
@@ -197,7 +245,11 @@ Public Class PageMoleculeNetworking
                     {"rtmax", rt.Max},
                     {"area", info.members.Sum(Function(a) a.Ms2Intensity)},
                     {"color", color}
-                }
+                },
+                .color = color.GetBrush,
+                .label = $"{row.ID} member_size:{info.members.Length}",
+                .mass = info.members.Length,
+                .origID = info.representation.name
             })
         Next
 

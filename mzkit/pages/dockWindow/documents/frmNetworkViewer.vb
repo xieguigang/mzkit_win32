@@ -185,7 +185,7 @@ Public Class frmNetworkViewer
         Dim target As Node = Canvas1.GetTargetNode(PointToClient(Cursor.Position))
 
         If Not target Is Nothing Then
-            graphStatus.Text = target.ToString
+            graphStatus.Text = target.data.label
         End If
     End Sub
 
