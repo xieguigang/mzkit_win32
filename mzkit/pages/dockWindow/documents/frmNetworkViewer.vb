@@ -63,6 +63,7 @@ Imports Microsoft.VisualBasic.Data.visualize.Network.FileStream
 Imports Microsoft.VisualBasic.Data.visualize.Network.Graph
 Imports Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce
 Imports Microsoft.VisualBasic.Imaging
+Imports SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.Serialization
 Imports SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML
 Imports SMRUCC.genomics.Visualize.Cytoscape.CytoscapeGraphView.XGMML.File
 
@@ -232,7 +233,10 @@ Public Class frmNetworkViewer
 
         Using file As New SaveFileDialog With {.Filter = "Cytoscape Model(*.xgmml)|*.xgmml"}
             If file.ShowDialog = DialogResult.OK Then
-                Dim cy3 As XGMMLgraph = XGMMLgraph.CreateObject("", "", "")
+                Dim g As NetworkGraph = Canvas1.Graph
+                Dim edges = g.CreateGraphTable({"*"}, False).ToArray
+                Dim nodes = g.CreateNodesMetaData({"*"}, False).ToArray
+                Dim cy3 As XGMMLgraph = ExportToFile.Export(nodes, edges, title:="View Network Graph")
 
                 Call RDFXml.WriteXml(cy3, Encoding.UTF8, path:=file.FileName)
             End If
