@@ -59,6 +59,7 @@ Imports BioNovoGene.mzkit_win32.My
 Imports ControlLibrary.Ligy
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.Data.visualize.Network
+Imports Microsoft.VisualBasic.Data.visualize.Network.Canvas
 Imports Microsoft.VisualBasic.Data.visualize.Network.FileStream
 Imports Microsoft.VisualBasic.Data.visualize.Network.Graph
 Imports Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce
@@ -121,9 +122,16 @@ Public Class frmNetworkViewer
     End Sub
 
     Private Sub SnapshotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SnapshotToolStripMenuItem.Click
-        Using file As New SaveFileDialog With {.Filter = "Image File(*.bmp)|*.bmp"}
+        Using file As New SaveFileDialog With {.Filter = "Image File(*.bmp)|*.bmp|Vector Image(*.svg)|*.svg"}
             If file.ShowDialog = DialogResult.OK Then
-                Call Canvas1.GetSnapshot.SaveAs(file.FileName)
+                If file.FileName.ExtensionSuffix("svg") Then
+                    Call Canvas1 _
+                        .WriteLayout _
+                        .ToSVG(size:=Size, viewDistance:=Canvas1.ViewDistance) _
+                        .SaveAsXml(file.FileName)
+                Else
+                    Call Canvas1.GetSnapshot.SaveAs(file.FileName)
+                End If
             End If
         End Using
     End Sub
