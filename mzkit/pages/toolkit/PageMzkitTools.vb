@@ -642,18 +642,9 @@ Public Class PageMzkitTools
 
         ' Call tree.doCluster(run)
         Dim links = protocol.RunProtocol(raw, progressMsg).ProduceNodes.Networking.ToArray
-        Dim net As IO.DataSet() = links _
-            .Select(Function(a)
-                        Return New IO.DataSet With {
-                            .ID = a.Name,
-                            .Properties = a.Value _
-                                .ToDictionary(Function(t) t.Key,
-                                                Function(t)
-                                                    Return stdNum.Min(t.Value.forward, t.Value.reverse)
-                                                End Function)
-                        }
-                    End Function) _
-            .ToArray   ' MoleculeNetworking.CreateMatrix(run, 0.8, Tolerance.DeltaMass(0.3), Sub(msg) progress.Invoke(Sub() progress.ShowProgressDetails ( msg)).ToArray
+        Dim net As IO.DataSet() = ProtocolPipeline _
+            .Networking(Of IO.DataSet)(links, Function(a, b) stdNum.Min(a, b)) _
+            .ToArray
 
         progress.ShowProgressDetails("run family clustering....")
 
