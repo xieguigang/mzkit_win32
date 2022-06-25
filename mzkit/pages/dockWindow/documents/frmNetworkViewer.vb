@@ -216,7 +216,7 @@ Public Class frmNetworkViewer
     Private Sub NodeMetadataToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NodeMetadataToolStripMenuItem.Click
         If Not Canvas1.Graph Is Nothing Then
             ' nodes table
-            Dim nodes = Canvas1.Graph.CreateNodesMetaData({"*"}, DToolStripMenuItem.Checked).ToArray
+            Dim nodes = Canvas1.WriteLayout.CreateNodesMetaData({"*"}, DToolStripMenuItem.Checked).ToArray
 
             Call WindowModules.ShowTable(nodes, "Node Metadata")
         End If
@@ -233,7 +233,7 @@ Public Class frmNetworkViewer
 
         Using file As New SaveFileDialog With {.Filter = "Cytoscape Model(*.xgmml)|*.xgmml"}
             If file.ShowDialog = DialogResult.OK Then
-                Dim g As NetworkGraph = Canvas1.Graph
+                Dim g As NetworkGraph = Canvas1.WriteLayout
                 Dim edges = g.CreateGraphTable({"*"}, False).ToArray
                 Dim nodes = g.CreateNodesMetaData({"*"}, False).ToArray
                 Dim cy3 As XGMMLgraph = ExportToFile.Export(nodes, edges, title:="View Network Graph")
