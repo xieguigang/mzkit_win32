@@ -229,7 +229,7 @@ Public Class PageMzkitTools
     Dim currentMatrix As [Variant](Of ms2(), ChromatogramTick())
 
     Friend Sub showSpectrum(scanId As String, raw As MZWork.Raw)
-        If raw.cacheFileExists Then
+        If raw.cacheFileExists OrElse raw.isInMemory Then
             Dim prop As SpectrumProperty = Nothing
             Dim showAnnotation As Boolean = RibbonEvents.ribbonItems.CheckBoxShowMs2Fragment.BooleanValue
             Dim scanData As LibraryMatrix = raw.GetSpectrum(scanId, Globals.Settings.viewer.GetMethod, Sub(src, cache) frmFileExplorer.getRawCache(src,, cache), showAnnotation, prop)
@@ -255,7 +255,7 @@ Public Class PageMzkitTools
                     End Sub)
             End If
 
-            showMatrix(scanData.ms2, scanId)
+            Call showMatrix(scanData.ms2, scanId)
 
             Dim title1$
             Dim title2$

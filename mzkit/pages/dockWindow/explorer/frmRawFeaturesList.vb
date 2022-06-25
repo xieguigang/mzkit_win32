@@ -430,7 +430,7 @@ Public Class frmRawFeaturesList
     Private Sub SearchFormulaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchFormulaToolStripMenuItem.Click
         Dim node = treeView1.SelectedNode
 
-        If Not node Is Nothing AndAlso CurrentRawFile.cacheFileExists Then
+        If Not node Is Nothing AndAlso (CurrentRawFile.cacheFileExists OrElse CurrentRawFile.isInMemory) Then
             Dim mz = CurrentRawFile.FindMs2Scan(node.Text)
 
             If Not mz Is Nothing AndAlso mz.parentMz > 0 Then
