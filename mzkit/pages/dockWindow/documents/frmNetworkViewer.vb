@@ -60,6 +60,7 @@ Imports Microsoft.VisualBasic.Data.visualize.Network.Graph
 Imports Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce
 Imports Microsoft.VisualBasic.Imaging
 Imports BioNovoGene.mzkit_win32.My
+Imports Microsoft.VisualBasic.Data.visualize.Network.FileStream
 
 Public Class frmNetworkViewer
 
@@ -195,6 +196,24 @@ Public Class frmNetworkViewer
         If target IsNot Nothing AndAlso Not showTarget Is Nothing Then
             ' show target ms
             Call showTarget(target)
+        End If
+    End Sub
+
+    Private Sub NetworkGraphToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NetworkGraphToolStripMenuItem.Click
+        If Not Canvas1.Graph Is Nothing Then
+            ' edge table
+            Dim edges = Canvas1.Graph.CreateGraphTable({"*"}, DToolStripMenuItem.Checked).ToArray
+
+            Call WindowModules.ShowTable(edges, "Network Graph")
+        End If
+    End Sub
+
+    Private Sub NodeMetadataToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NodeMetadataToolStripMenuItem.Click
+        If Not Canvas1.Graph Is Nothing Then
+            ' nodes table
+            Dim nodes = Canvas1.Graph.CreateNodesMetaData({"*"}, DToolStripMenuItem.Checked).ToArray
+
+            Call WindowModules.ShowTable(nodes, "Node Metadata")
         End If
     End Sub
 End Class

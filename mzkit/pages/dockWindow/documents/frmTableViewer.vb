@@ -66,10 +66,8 @@ Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
-Imports RibbonLib.Interop
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports Zuby.ADGV
-Imports REnv = SMRUCC.Rsharp.Runtime
 
 Public Class frmTableViewer : Implements ISaveHandle, IFileReference
 

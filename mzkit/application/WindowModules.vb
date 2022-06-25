@@ -58,6 +58,12 @@
 Imports BioNovoGene.mzkit_win32.DockSample
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.RibbonLib.Controls
+Imports Microsoft.VisualBasic.ComponentModel.Collection
+Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Data.csv
+Imports Microsoft.VisualBasic.Data.csv.IO
+Imports Microsoft.VisualBasic.Language
 Imports WeifenLuo.WinFormsUI.Docking
 
 Friend MustInherit Class WindowModules
@@ -178,5 +184,52 @@ Friend MustInherit Class WindowModules
                 Call MyApplication.host.OpenFile(file.FileName, showDocument:=True)
             End If
         End Using
+    End Sub
+
+    Public Shared Sub ShowTable(Of T As {INamedValue, DynamicPropertyBase(Of String)})(table As IEnumerable(Of T), title As String)
+        Call ShowTable(DataFrame.CreateObject(table.ToCsvDoc), title)
+    End Sub
+
+    Public Shared Sub ShowTable(dataframe As DataFrame, title As String)
+        Call VisualStudio _
+            .ShowDocument(Of frmTableViewer)(title:=title) _
+            .LoadTable(Sub(grid)
+                           Call loadInternal(grid, dataframe)
+                       End Sub)
+    End Sub
+
+    Private Shared Sub loadInternal(grid As DataTable, dataframe As DataFrame)
+        Dim numericFields As Index(Of String) = {"mz", "rt", "rtmin", "rtmax", "mzmin", "mzmax"}
+        Dim schema As New List(Of Type)
+        Dim i As i32 = Scan0
+
+        For Each name As String In dataframe.HeadTitles
+            'If name Like numericFields Then
+            '    grid.Columns.Add(name, GetType(Double))
+            'Else
+
+            ' End If
+            Dim v As String() = dataframe.Column(++i).ToArray
+            Dim type As Type = v.SampleForType
+
+            Call schema.Add(type)
+            grid.Columns.Add(name, type)
+        Next
+
+        For Each item As RowObject In dataframe.Rows
+            Dim values = item _
+              .Select(Function(str, idx)
+                          Select Case schema(idx)
+                              Case GetType(Double) : Return Val(str)
+                              Case GetType(Integer) : Return Integer.Parse(str)
+                              Case GetType(Boolean) : Return str.ParseBoolean
+                              Case GetType(Date) : Return str.ParseDate
+                              Case Else
+                                  Return CObj(str)
+                          End Select
+                      End Function) _
+              .ToArray
+            Dim row = grid.Rows.Add(values)
+        Next
     End Sub
 End Class

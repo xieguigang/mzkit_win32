@@ -42,42 +42,6 @@ Public Class SelectSheetName
     End Sub
 
     Private Shared Sub showFile(table As File, title As String)
-        Dim dataframe As DataFrame = DataFrame.CreateObject(table)
-        Dim tblView = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
-
-        tblView.LoadTable(Sub(grid)
-                              Dim numericFields As Index(Of String) = {"mz", "rt", "rtmin", "rtmax", "mzmin", "mzmax"}
-                              Dim schema As New List(Of Type)
-                              Dim i As i32 = Scan0
-
-                              For Each name As String In dataframe.HeadTitles
-                                  'If name Like numericFields Then
-                                  '    grid.Columns.Add(name, GetType(Double))
-                                  'Else
-
-                                  ' End If
-                                  Dim v As String() = dataframe.Column(++i).ToArray
-                                  Dim type As Type = v.SampleForType
-
-                                  Call schema.Add(type)
-                                  grid.Columns.Add(name, type)
-                              Next
-
-                              For Each item As RowObject In dataframe.Rows
-                                  Dim values = item _
-                                    .Select(Function(str, idx)
-                                                Select Case schema(idx)
-                                                    Case GetType(Double) : Return Val(str)
-                                                    Case GetType(Integer) : Return Integer.Parse(str)
-                                                    Case GetType(Boolean) : Return str.ParseBoolean
-                                                    Case GetType(Date) : Return str.ParseDate
-                                                    Case Else
-                                                        Return CObj(str)
-                                                End Select
-                                            End Function) _
-                                    .ToArray
-                                  Dim row = grid.Rows.Add(values)
-                              Next
-                          End Sub)
+        Call WindowModules.ShowTable(DataFrame.CreateObject(table), title)
     End Sub
 End Class

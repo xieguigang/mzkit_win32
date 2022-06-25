@@ -91,18 +91,21 @@ Partial Class frmNetworkViewer
         Me.CopyNetworkVisualizeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolTipWithPictureOrGif1 = New ControlLibrary.Ligy.ToolTipWithPictureOrGif()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.Canvas1 = New Microsoft.VisualBasic.Data.visualize.Network.Canvas.Canvas
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.Canvas1 = New Microsoft.VisualBasic.Data.visualize.Network.Canvas.Canvas
+        Me.OpenGraphTableToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NetworkGraphToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NodeMetadataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PinToolStripMenuItem, Me.ToolStripMenuItem2, Me.ShowLabelsToolStripMenuItem, Me.PhysicalEngineToolStripMenuItem, Me.DToolStripMenuItem, Me.ConfigLayoutToolStripMenuItem, Me.ToolStripMenuItem1, Me.SnapshotToolStripMenuItem, Me.CopyNetworkVisualizeToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PinToolStripMenuItem, Me.ToolStripMenuItem2, Me.ShowLabelsToolStripMenuItem, Me.PhysicalEngineToolStripMenuItem, Me.DToolStripMenuItem, Me.ConfigLayoutToolStripMenuItem, Me.ToolStripMenuItem1, Me.OpenGraphTableToolStripMenuItem, Me.SnapshotToolStripMenuItem, Me.CopyNetworkVisualizeToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(199, 170)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(199, 214)
         '
         'PinToolStripMenuItem
         '
@@ -163,6 +166,10 @@ Partial Class frmNetworkViewer
         Me.CopyNetworkVisualizeToolStripMenuItem.Name = "CopyNetworkVisualizeToolStripMenuItem"
         Me.CopyNetworkVisualizeToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
         Me.CopyNetworkVisualizeToolStripMenuItem.Text = "Copy Network Visualize"
+        '
+        'ToolTipWithPictureOrGif1
+        '
+        Me.ToolTipWithPictureOrGif1.OwnerDraw = True
 
         'Canvas1
         '
@@ -180,11 +187,6 @@ Partial Class frmNetworkViewer
         Me.Canvas1.TabIndex = 1
         Me.Canvas1.ViewDistance = -450.0R
 
-
-        '
-        'ToolTipWithPictureOrGif1
-        '
-        Me.ToolTipWithPictureOrGif1.OwnerDraw = True
         '
         'StatusStrip1
         '
@@ -206,6 +208,25 @@ Partial Class frmNetworkViewer
         Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
         Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(119, 17)
         Me.ToolStripStatusLabel2.Text = "ToolStripStatusLabel2"
+        '
+        'OpenGraphTableToolStripMenuItem
+        '
+        Me.OpenGraphTableToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NetworkGraphToolStripMenuItem, Me.NodeMetadataToolStripMenuItem})
+        Me.OpenGraphTableToolStripMenuItem.Name = "OpenGraphTableToolStripMenuItem"
+        Me.OpenGraphTableToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
+        Me.OpenGraphTableToolStripMenuItem.Text = "Open Graph Table"
+        '
+        'NetworkGraphToolStripMenuItem
+        '
+        Me.NetworkGraphToolStripMenuItem.Name = "NetworkGraphToolStripMenuItem"
+        Me.NetworkGraphToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.NetworkGraphToolStripMenuItem.Text = "Network Graph"
+        '
+        'NodeMetadataToolStripMenuItem
+        '
+        Me.NodeMetadataToolStripMenuItem.Name = "NodeMetadataToolStripMenuItem"
+        Me.NodeMetadataToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.NodeMetadataToolStripMenuItem.Text = "Node Metadata"
         '
         'frmNetworkViewer
         '
@@ -239,4 +260,7 @@ Partial Class frmNetworkViewer
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
     Friend WithEvents ToolStripStatusLabel2 As ToolStripStatusLabel
+    Friend WithEvents OpenGraphTableToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents NetworkGraphToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents NodeMetadataToolStripMenuItem As ToolStripMenuItem
 End Class
