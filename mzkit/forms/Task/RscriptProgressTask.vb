@@ -54,7 +54,9 @@
 
 #End Region
 
+Imports System.IO
 Imports System.Threading
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.SCiLSLab
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices
@@ -99,6 +101,30 @@ Public Class RscriptProgressTask
 
         Return cachefile
     End Function
+
+    Public Shared Sub ImportsSCiLSLab(msData As String, savefile As String)
+        Dim meta = PackFile.ParseHeader(msData.Open(FileMode.Open, doClear:=False, [readOnly]:=True))
+        Dim guid As String = meta.guid
+        Dim indexfile As String = msData.ParentPath _
+            .EnumerateFiles("*.csv") _
+            .Where(Function(path) path.GetFullPath <> msData.GetFullPath) _
+            .Where(Function(path)
+                       Dim indexmeta = PackFile.ParseHeader(path.Open(FileMode.Open, doClear:=False, [readOnly]:=True))
+                       Dim guid2 As String = indexmeta.guid
+
+                       Return guid = guid2
+                   End Function) _
+            .FirstOrDefault
+
+        If indexfile.StringEmpty Then
+            ' missing spot index file
+            MessageBox.Show("missing spot index file!", "Imports SCiLS Lab", buttons:=MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
+
+        Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".input_files", sessionID:=App.PID.ToHexString, prefix:="SCiLSLab_Imports_")
+
+    End Sub
 
     Public Shared Sub CreateMSIRawFromRowBinds(files As String(), savefile As String)
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".input_files", sessionID:=App.PID.ToHexString, prefix:="CombineRowScans_")

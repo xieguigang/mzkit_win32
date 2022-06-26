@@ -152,6 +152,7 @@ Module RibbonEvents
         AddHandler ribbonItems.ButtonMsImaging.ExecuteEvent, AddressOf showMsImaging
         AddHandler ribbonItems.ButtonOpenMSIRaw.ExecuteEvent, AddressOf OpenMSIRaw
         AddHandler ribbonItems.ButtonMSIRowScans.ExecuteEvent, AddressOf CombineRowScanTask
+        AddHandler ribbonItems.ButtonImportsSCiLSLab.ExecuteEvent, AddressOf ImportsSCiLSLab
         AddHandler ribbonItems.ButtonMsDemo.ExecuteEvent, Sub() WindowModules.msDemo.ShowPage()
         AddHandler ribbonItems.Targeted.ExecuteEvent, Sub() Call ConnectToBioDeep.OpenAdvancedFunction(AddressOf VisualStudio.ShowSingleDocument(Of frmTargetedQuantification))
 
@@ -300,6 +301,21 @@ Module RibbonEvents
                 }
                     If savefile.ShowDialog = DialogResult.OK Then
                         Call RscriptProgressTask.CreateMSIRawFromRowBinds(file.FileNames, savefile.FileName)
+                    End If
+                End Using
+            End If
+        End Using
+    End Sub
+
+    Public Sub ImportsSCiLSLab()
+        Using file As New OpenFileDialog With {.Filter = "SCiLS Lab Matrix Export(*.csv)|*.csv"}
+            If file.ShowDialog = DialogResult.OK Then
+                Using savefile As New SaveFileDialog With {
+                    .Filter = "BioNovoGene mzPack(*.mzPack)|*.mzPack",
+                    .Title = "Save MSI raw data file"
+                }
+                    If savefile.ShowDialog = DialogResult.OK Then
+                        Call RscriptProgressTask.ImportsSCiLSLab(file.FileName, savefile.FileName)
                     End If
                 End Using
             End If

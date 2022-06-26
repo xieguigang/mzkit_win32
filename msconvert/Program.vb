@@ -1,5 +1,7 @@
 ﻿Imports System.ComponentModel
+Imports System.IO
 Imports System.Threading
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports Microsoft.VisualBasic.CommandLine
 Imports Microsoft.VisualBasic.CommandLine.InteropService.SharedORM
 Imports Microsoft.VisualBasic.CommandLine.Reflection
@@ -45,4 +47,23 @@ Imports Microsoft.VisualBasic.CommandLine.Reflection
         Return 0
     End Function
 
+    <ExportAPI("/imports-SCiLSLab")>
+    <Usage("/imports-SCiLSLab --files <spot_files.txt> --save <MSI.mzPack>")>
+    Public Function ImportsSCiLSLab(args As CommandLine) As Integer
+        Dim files As String() = args("--files").ReadAllLines
+        Dim save As String = args("--save")
+        Dim msdata As String = files(Scan0)
+        Dim index As String = files(1)
+
+        Using msdatafile As Stream = msdata.Open(FileMode.Open, doClear:=False, [readOnly]:=True),
+            indexfile As Stream = index.Open(FileMode.Open, doClear:=False, [readOnly]:=True),
+            buffer As Stream = save.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
+
+            Call MSIRawPack _
+                .LoadMSIFromSCiLSLab(spots:=indexfile, msdata:=msdatafile) _
+                .Write(file:=buffer)
+        End Using
+
+        Return 0
+    End Function
 End Module
