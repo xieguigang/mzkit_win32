@@ -918,5 +918,12 @@
 #define cmdButtonPeakFinding_TooltipDescription_RESID 60121
 #define cmdButtonPeakFinding_SmallImages_192__RESID 60122
 #define cmdButtonPeakFinding_LargeImages_192__RESID 60123
-#define InternalCmd2_LabelTitle_RESID 60124
-#define InternalCmd4_LabelTitle_RESID 60125
+#define cmdButtonImportsSCiLSLab 185 
+#define cmdButtonImportsSCiLSLab_LabelTitle_RESID 60124
+#define cmdButtonImportsSCiLSLab_LabelDescription_RESID 60125
+#define cmdButtonImportsSCiLSLab_TooltipTitle_RESID 60126
+#define cmdButtonImportsSCiLSLab_TooltipDescription_RESID 60127
+#define cmdButtonImportsSCiLSLab_SmallImages_192__RESID 60128
+#define cmdButtonImportsSCiLSLab_LargeImages_192__RESID 60129
+#define InternalCmd2_LabelTitle_RESID 60130
+#define InternalCmd4_LabelTitle_RESID 60131

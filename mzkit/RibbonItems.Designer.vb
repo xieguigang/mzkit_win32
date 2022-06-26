@@ -120,6 +120,7 @@ Namespace RibbonLib.Controls
             Public Const cmdGroupMSIFile As UInteger = 122
             Public Const cmdButtonOpenMSIRaw As UInteger = 119
             Public Const cmdTabMSIFile As UInteger = 129
+            Public Const cmdButtonImportsSCiLSLab As UInteger = 185
             Public Const cmdButtonMSIRowScans As UInteger = 128
             Public Const cmdButtonExportMSIMzpack As UInteger = 127
             Public Const cmdPanelOptions As UInteger = 155
@@ -825,6 +826,12 @@ Namespace RibbonLib.Controls
                 Return _TabMSIFile
             End Get
         End Property
+        Private _ButtonImportsSCiLSLab As RibbonButton
+        Public ReadOnly Property ButtonImportsSCiLSLab As RibbonButton
+            Get
+                Return _ButtonImportsSCiLSLab
+            End Get
+        End Property
         Private _ButtonMSIRowScans As RibbonButton
         Public ReadOnly Property ButtonMSIRowScans As RibbonButton
             Get
@@ -1325,6 +1332,7 @@ Namespace RibbonLib.Controls
             _GroupMSIFile = New RibbonGroup(_ribbon, Cmd.cmdGroupMSIFile)
             _ButtonOpenMSIRaw = New RibbonButton(_ribbon, Cmd.cmdButtonOpenMSIRaw)
             _TabMSIFile = New RibbonGroup(_ribbon, Cmd.cmdTabMSIFile)
+            _ButtonImportsSCiLSLab = New RibbonButton(_ribbon, Cmd.cmdButtonImportsSCiLSLab)
             _ButtonMSIRowScans = New RibbonButton(_ribbon, Cmd.cmdButtonMSIRowScans)
             _ButtonExportMSIMzpack = New RibbonButton(_ribbon, Cmd.cmdButtonExportMSIMzpack)
             _PanelOptions = New RibbonGroup(_ribbon, Cmd.cmdPanelOptions)
