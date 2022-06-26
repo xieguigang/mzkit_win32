@@ -3,6 +3,7 @@ Imports System.IO
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports Microsoft.VisualBasic.CommandLine
+Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.CommandLine.InteropService.SharedORM
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 
@@ -60,7 +61,11 @@ Imports Microsoft.VisualBasic.CommandLine.Reflection
             buffer As Stream = save.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
 
             Call MSIRawPack _
-                .LoadMSIFromSCiLSLab(spots:=indexfile, msdata:=msdatafile) _
+                .LoadMSIFromSCiLSLab(
+                    spots:=indexfile,
+                    msdata:=msdatafile,
+                    println:=AddressOf RunSlavePipeline.SendMessage
+                ) _
                 .Write(file:=buffer)
         End Using
 
