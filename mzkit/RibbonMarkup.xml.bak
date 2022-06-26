@@ -2264,6 +2264,14 @@
         <Image MinDPI="192">Res/edit-find.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonImportsSCiLSLab" Id="185" LabelTitle="Imports SCiLS Lab" LabelDescription="Imports SCiLS Lab table data for MS-imaging in MZKit" TooltipTitle="Imports SCiLS Lab" TooltipDescription="Imports SCiLS Lab table data for MS-imaging in MZKit">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/SCiLSLab-Icon.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/SCiLSLab-Icon.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2385,7 +2393,7 @@
             </Group>
           </Tab>
           <Tab CommandName="cmdTabLayout" ApplicationModes="0,1">
-            <Group CommandName="cmdGroupLayout" ApplicationModes="0,1" SizeDefinition="TwoButtons">
+            <Group CommandName="cmdGroupLayout" ApplicationModes="0,1" SizeDefinition="ThreeButtons">
               <Button CommandName="cmdButtonLayout1" />
               <Button CommandName="cmdButtonLayout2" />
               <Button CommandName="cmdButtonPeakFinding" />
@@ -2476,7 +2484,8 @@
               <Button CommandName="cmdButtonOpenMSIRaw" />
               <Button CommandName="cmdButtonMsImaging" />
             </Group>
-            <Group CommandName="cmdTabMSIFile" ApplicationModes="0,1" SizeDefinition="TwoButtons">
+            <Group CommandName="cmdTabMSIFile" ApplicationModes="0,1" SizeDefinition="ThreeButtons">
+              <Button CommandName="cmdButtonImportsSCiLSLab" />
               <Button CommandName="cmdButtonMSIRowScans" />
               <Button CommandName="cmdButtonExportMSIMzpack" />
             </Group>
