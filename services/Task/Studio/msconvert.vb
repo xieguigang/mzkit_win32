@@ -19,7 +19,7 @@ Imports Microsoft.VisualBasic.ApplicationServices
 '  // 
 ' 
 ' 
-'  < msconvert.Program >
+'  < msconvert.Program 
 ' 
 ' 
 ' SYNOPSIS
@@ -27,8 +27,9 @@ Imports Microsoft.VisualBasic.ApplicationServices
 ' 
 ' All of the command that available in this program has been list below:
 ' 
-'  /mzPack:       Build mzPack cache
-'  /rowbinds:     Combine row scans to mzPack
+'  /imports-SCiLSLab:     
+'  /mzPack:               Build mzPack cach
+'  /rowbinds:             Combine row scans to mzPac
 ' 
 ' 
 ' ----------------------------------------------------------------------------------------------------
@@ -61,6 +62,29 @@ Public Class msconvert : Inherits InteropService
     Public Shared Function FromEnvironment(directory As String) As msconvert
           Return New msconvert(App:=directory & "/" & msconvert.App)
      End Function
+
+''' <summary>
+''' ```bash
+''' /imports-SCiLSLab --files &lt;spot_files.txt&gt; --save &lt;MSI.mzPack&gt;
+''' ```
+''' </summary>
+'''
+
+Public Function ImportsSCiLSLab(files As String, save As String) As Integer
+Dim cli = GetImportsSCiLSLabCommandLine(files:=files, save:=save, internal_pipelineMode:=True)
+    Dim proc As IIORedirectAbstract = RunDotNetApp(cli)
+    Return proc.Run()
+End Function
+Public Function GetImportsSCiLSLabCommandLine(files As String, save As String, Optional internal_pipelineMode As Boolean = True) As String
+    Dim CLI As New StringBuilder("/imports-SCiLSLab")
+    Call CLI.Append(" ")
+    Call CLI.Append("--files " & """" & files & """ ")
+    Call CLI.Append("--save " & """" & save & """ ")
+     Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
+
+
+Return CLI.ToString()
+End Function
 
 ''' <summary>
 ''' ```bash
@@ -117,4 +141,6 @@ Return CLI.ToString()
 End Function
 End Class
 End Namespace
+
+
 

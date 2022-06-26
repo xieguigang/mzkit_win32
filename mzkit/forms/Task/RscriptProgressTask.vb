@@ -123,7 +123,30 @@ Public Class RscriptProgressTask
         End If
 
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".input_files", sessionID:=App.PID.ToHexString, prefix:="SCiLSLab_Imports_")
+        Dim cli As String = PipelineTask.Task.GetImportsSCiLSLabCommandLine(tempfile, savefile)
+        Dim pipeline As New RunSlavePipeline(PipelineTask.Host, cli)
 
+        Call {msData, indexfile}.SaveTo(tempfile, encoding:=Encodings.UTF8.CodePage)
+
+        Dim progress As New frmTaskProgress
+
+        progress.ShowProgressTitle("Imports MSI Matrix...", directAccess:=True)
+        progress.ShowProgressDetails("Imports SCiLS Lab MSImaging matrix data into viewer workspace...", directAccess:=True)
+        progress.SetProgressMode()
+
+        Call MyApplication.LogText(pipeline.CommandLine)
+
+        AddHandler pipeline.SetMessage, AddressOf progress.ShowProgressDetails
+        AddHandler pipeline.SetProgress, AddressOf progress.SetProgress
+        AddHandler pipeline.Finish, Sub() progress.Invoke(Sub() progress.Close())
+
+        Call New Thread(AddressOf pipeline.Run).Start()
+        Call progress.ShowDialog()
+
+        If MessageBox.Show("MSI Raw Convert Job Done!" & vbCrLf & "Open MSI raw data file in MSI Viewer?", "MSI Viewer", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
+            Call RibbonEvents.showMsImaging()
+            Call WindowModules.viewer.loadimzML(savefile)
+        End If
     End Sub
 
     Public Shared Sub CreateMSIRawFromRowBinds(files As String(), savefile As String)
