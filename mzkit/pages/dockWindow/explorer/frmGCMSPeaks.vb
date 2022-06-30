@@ -229,4 +229,8 @@ Public Class frmGCMSPeaks
 
         Call MyApplication.host.mzkitTool.TIC(TICList.ToArray)
     End Sub
+
+    Private Sub ClearToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearToolStripMenuItem.Click
+        Call Win7StyleTreeView1.Nodes.Clear()
+    End Sub
 End Class
