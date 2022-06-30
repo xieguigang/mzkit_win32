@@ -212,4 +212,21 @@ Public Class frmGCMSPeaks
     Private Sub ShowPropertiesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowPropertiesToolStripMenuItem.Click
         Call VisualStudio.ShowPropertyWindow()
     End Sub
+
+    Private Sub TICOverlapsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TICOverlapsToolStripMenuItem.Click
+        Dim selected As New List(Of Raw)
+        Dim TICList As New List(Of NamedCollection(Of ChromatogramTick))
+
+        For i As Integer = 0 To Win7StyleTreeView1.Nodes.Count - 1
+            If Win7StyleTreeView1.Nodes.Item(i).Checked Then
+                Call selected.Add(Win7StyleTreeView1.Nodes.Item(i).Tag)
+            End If
+        Next
+
+        For Each raw As Raw In selected
+            TICList.Add(raw.GetTIC)
+        Next
+
+        Call MyApplication.host.mzkitTool.TIC(TICList.ToArray)
+    End Sub
 End Class
