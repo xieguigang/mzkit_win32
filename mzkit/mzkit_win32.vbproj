@@ -1221,9 +1221,17 @@
       <Project>{12d4ac8b-8b59-4137-ad0f-944068f7e347}</Project>
       <Name>datastorage-netcore5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data\BinaryData\HDSPack\HDSPack.vbproj">
+      <Project>{94f88528-276b-4e6f-afb6-870d5e367f6f}</Project>
+      <Name>HDSPack</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data\BinaryData\msgpack\msgpack-netcore5.vbproj">
       <Project>{84f10a06-0779-4480-abac-fac185d66693}</Project>
       <Name>msgpack-netcore5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data\BinaryData\netCDF\netCDF.vbproj">
+      <Project>{b6cdc844-f263-459b-9d42-1b917629dcae}</Project>
+      <Name>netCDF</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data\DataFrame.Extensions\DataFramework.Extensions-netcore5.vbproj">
       <Project>{ae0496a2-669c-4aa4-8d11-4db9e8e8cd98}</Project>
@@ -1292,6 +1300,10 @@
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\MachineLearning\xgboost\xgboost.vbproj">
       <Project>{ed692683-453b-4de1-b554-dbc183b453ad}</Project>
       <Name>xgboost</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\Math\ANOVA\ANOVA.vbproj">
+      <Project>{279cca72-f7c0-4ae4-b4d4-bf8f6a5c684c}</Project>
+      <Name>ANOVA</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\Math\DataFittings\linear-netcore5.vbproj">
       <Project>{0b7385ea-1cf7-4f83-aea0-668d2c6637ba}</Project>
