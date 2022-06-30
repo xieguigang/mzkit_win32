@@ -90,7 +90,7 @@ Public Class PageStart
 
     Private Sub PageStart_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         hideNewsFeeds()
-        BackgroundWorker.RunWorkerAsync()
+        ' BackgroundWorker.RunWorkerAsync()
     End Sub
 
     Private Sub hideNewsFeeds()
