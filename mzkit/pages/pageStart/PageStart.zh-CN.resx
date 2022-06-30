@@ -117,13 +117,42 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="PictureBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 10</value>
+  </data>
+  <data name="PictureBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1498, 47</value>
+  </data>
+  <data name="Panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 625</value>
+  </data>
+  <data name="Panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1498, 57</value>
+  </data>
+  <data name="FlowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>986, 110</value>
+  </data>
+  <data name="FlowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>471, 484</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="FlowLayoutPanel1.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="PictureBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>33, 20</value>
+  </data>
+  <data name="PictureBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>529, 178</value>
+  </data>
   <data name="ImageList1.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACa
-        BQAAAk1TRnQBSQFMAwEBAAEwAQEBMAEBARABAAEQAQAE/wEhAQAI/wFCAU0BNgcAATYDAAEoAwABQAMA
-        ARADAAEBAQABIAYAARAaAAF/AWwBKwH8AfMBrAETAf8B8wGsARMB/wHzAawBEwH/AfMBrAETAf8B8wGs
+        BQAAAk1TRnQBSQFMAwEBAAE4AQEBOAEBARABAAEQAQAE/wEhAQAI/wFCAU0BNgcAATYDAAEoAwABQAMA
+        ARADAAEBAQABIAYAARAaAAF+AWwBKwH8AfMBrAETAf8B8wGsARMB/wHzAawBEwH/AfMBrAETAf8B8wGs
         ARMB/wHzAawBEwH/AfMBrAETAf8B8wGsARMB/wgAAw8BFNAAAfMBrAETAf8B8wGsARMB/wHzAawBEwH/
         AfMBrAETAf8B8wGsARMB/wHzAawBEwH/AfMBrAETAf8B8wGsARMB/wHzAawBEwH/BAAB+wH8Af0B/wP1
         Af/QAAHzAawBEwH/AfMBrAETAf8B8wGsARMB/wHzAawBEwH/AfMBrAETAf8B8wGsARMB/wHzAawBEwH/
@@ -148,7 +177,9 @@
         AcABAwYAAcABAwYAAcABAwYAAcABAwYAAcABAwYAAcABBwYAAcABDwYAAfABHwYAAfgBPwYAAv8GAAs=
 </value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="LinkLabel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>110, 234</value>
+  </data>
   <data name="LinkLabel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>137, 20</value>
   </data>
@@ -290,11 +321,26 @@
         AElFTkSuQmCC
 </value>
   </data>
+  <data name="PictureBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>72, 223</value>
+  </data>
+  <data name="PictureBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 30</value>
+  </data>
+  <data name="LinkLabel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>989, 32</value>
+  </data>
   <data name="LinkLabel2.Size" type="System.Drawing.Size, System.Drawing">
     <value>471, 62</value>
   </data>
   <data name="LinkLabel2.Text" xml:space="preserve">
     <value>公司新闻                  </value>
+  </data>
+  <data name="LinkLabel2.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="Label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>140, 60</value>
   </data>
   <data name="PictureBox4.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -367,6 +413,15 @@
         wlm4C4cXfORvBjdEc3AnaBFeRBBSOnAVzsLdJcvPMAzDMAzDMAzDMAzDMAzDMAzDMAzDMAzDMAzDMAzD
         MAzDMAzDMIXlqKP+DxmMnUkhzZRTAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="PictureBox4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>72, 266</value>
+  </data>
+  <data name="PictureBox4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 30</value>
+  </data>
+  <data name="LinkLabel3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>110, 277</value>
   </data>
   <data name="LinkLabel3.Size" type="System.Drawing.Size, System.Drawing">
     <value>142, 20</value>
@@ -822,10 +877,25 @@
         7WBDJZML2N9pdK73gXWVjGH0yz//z/8HyC6Y3z8bsywAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="PictureBox5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>72, 309</value>
+  </data>
+  <data name="PictureBox5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 30</value>
+  </data>
+  <data name="LinkLabel4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>110, 320</value>
+  </data>
   <data name="LinkLabel4.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 20</value>
   </data>
   <data name="LinkLabel4.Text" xml:space="preserve">
     <value>访问BioDeep</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 12</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1498, 682</value>
   </data>
 </root>
