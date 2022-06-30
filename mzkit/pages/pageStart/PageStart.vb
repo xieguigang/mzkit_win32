@@ -94,13 +94,13 @@ Public Class PageStart
     End Sub
 
     Private Sub hideNewsFeeds()
-        LinkLabel2.Visible = False
-        FlowLayoutPanel1.Visible = False
+        'LinkLabel2.Visible = False
+        'FlowLayoutPanel1.Visible = False
     End Sub
 
     Private Sub showNewsFeeds()
-        LinkLabel2.Visible = True
-        FlowLayoutPanel1.Visible = True
+        'LinkLabel2.Visible = True
+        'FlowLayoutPanel1.Visible = True
     End Sub
 
     Private Sub BackgroundWorker_DoWork(sender As Object, e As DoWorkEventArgs) Handles BackgroundWorker.DoWork
@@ -111,21 +111,21 @@ Public Class PageStart
         End If
 
         Invoke(Sub()
-                   If news.Length = 0 Then
-                       hideNewsFeeds()
-                   Else
-                       showNewsFeeds()
-                   End If
+                   'If news.Length = 0 Then
+                   '    hideNewsFeeds()
+                   'Else
+                   '    showNewsFeeds()
+                   'End If
 
-                   For Each newsItem As NewsFeed In news
-                       Dim display As New NewsFeedDisplay
-                       FlowLayoutPanel1.Controls.Add(display)
-                       display.ShowNews(newsItem)
-                   Next
+                   'For Each newsItem As NewsFeed In news
+                   '    Dim display As New NewsFeedDisplay
+                   '    FlowLayoutPanel1.Controls.Add(display)
+                   '    display.ShowNews(newsItem)
+                   'Next
                End Sub)
     End Sub
 
-    Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
+    Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) 
         Process.Start("http://www.bionovogene.com/news/newsFeed.htm")
     End Sub
 
@@ -134,13 +134,13 @@ Public Class PageStart
     End Sub
 
     Private Sub PageStart_Resize(sender As Object, e As EventArgs) Handles Me.Resize
-        If Width < 955 Then
-            LinkLabel2.Visible = False
-            FlowLayoutPanel1.Visible = False
-        Else
-            LinkLabel2.Visible = True
-            FlowLayoutPanel1.Visible = True
-        End If
+        'If Width < 955 Then
+        '    LinkLabel2.Visible = False
+        '    FlowLayoutPanel1.Visible = False
+        'Else
+        '    LinkLabel2.Visible = True
+        '    FlowLayoutPanel1.Visible = True
+        'End If
     End Sub
 
     Private Sub LinkLabel3_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel3.LinkClicked

@@ -80,12 +80,10 @@ Partial Class PageStart
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PageStart))
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
-        Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.LinkLabel3 = New System.Windows.Forms.LinkLabel()
@@ -114,11 +112,6 @@ Partial Class PageStart
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.TabStop = False
         '
-        'FlowLayoutPanel1
-        '
-        resources.ApplyResources(Me.FlowLayoutPanel1, "FlowLayoutPanel1")
-        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        '
         'PictureBox2
         '
         resources.ApplyResources(Me.PictureBox2, "PictureBox2")
@@ -144,15 +137,6 @@ Partial Class PageStart
         resources.ApplyResources(Me.PictureBox3, "PictureBox3")
         Me.PictureBox3.Name = "PictureBox3"
         Me.PictureBox3.TabStop = False
-        '
-        'LinkLabel2
-        '
-        resources.ApplyResources(Me.LinkLabel2, "LinkLabel2")
-        Me.LinkLabel2.DisabledLinkColor = System.Drawing.Color.Silver
-        Me.LinkLabel2.LinkColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.LinkLabel2.Name = "LinkLabel2"
-        Me.LinkLabel2.TabStop = True
-        Me.LinkLabel2.VisitedLinkColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(104, Byte), Integer), CType(CType(189, Byte), Integer))
         '
         'Label1
         '
@@ -197,11 +181,9 @@ Partial Class PageStart
         Me.Controls.Add(Me.LinkLabel4)
         Me.Controls.Add(Me.PictureBox4)
         Me.Controls.Add(Me.LinkLabel3)
-        Me.Controls.Add(Me.LinkLabel2)
         Me.Controls.Add(Me.PictureBox3)
         Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.PictureBox2)
-        Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Controls.Add(Me.Label1)
         Me.DoubleBuffered = True
         Me.Name = "PageStart"
@@ -218,12 +200,10 @@ Partial Class PageStart
 
     Friend WithEvents Panel1 As Panel
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents LinkLabel1 As LinkLabel
     Friend WithEvents ImageList1 As ImageList
     Friend WithEvents PictureBox3 As PictureBox
-    Friend WithEvents LinkLabel2 As LinkLabel
     Friend WithEvents Label1 As Label
     Friend WithEvents PictureBox4 As PictureBox
     Friend WithEvents LinkLabel3 As LinkLabel
