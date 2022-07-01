@@ -1,9 +1,7 @@
 ﻿Imports BioNovoGene.mzkit_win32.My
 Imports ControlLibrary
-Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
-Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.MIME.Office
 
 Public Class SelectSheetName
@@ -41,7 +39,7 @@ Public Class SelectSheetName
         End If
     End Sub
 
-    Private Shared Sub showFile(table As File, title As String)
+    Public Shared Sub showFile(table As File, title As String)
         Call WindowModules.ShowTable(DataFrame.CreateObject(table), title)
     End Sub
 End Class

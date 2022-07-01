@@ -68,6 +68,7 @@
 
 Imports System.ComponentModel
 Imports System.IO
+Imports System.Text
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII
@@ -79,6 +80,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.mzkit_win32.My
+Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Imaging
@@ -89,6 +91,7 @@ Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports RibbonLib.Interop
 Imports WeifenLuo.WinFormsUI.Docking
 Imports stdNum = System.Math
+Imports Table = Microsoft.VisualBasic.Data.csv.IO.File
 
 Public Class frmRawFeaturesList
 
@@ -510,32 +513,41 @@ Public Class frmRawFeaturesList
             Using file As New SaveFileDialog With {.Filter = "Ion Table(*.csv)|*.csv", .FileName = "Ions_scan.csv"}
                 If file.ShowDialog = DialogResult.OK Then
                     Using outFile As StreamWriter = file.FileName.OpenWriter()
-                        Dim da03 As Tolerance = DAmethod.DeltaMass(0.3)
-                        Dim intocutoff As LowAbundanceTrimming = LowAbundanceTrimming.intoCutff
-
-                        Call outFile.WriteLine($"ID,mz,rt,rt(min),intensity,totalIons,Ion1:into,Ion2:into,Ion3:into,Ion4:into,Ion5:into")
-
-                        For Each peak As PeakMs2 In MyApplication.mzkitRawViewer.getSelectedIonSpectrums(Nothing)
-                            Dim id As String = If(CInt(peak.rt) = 0, $"M{CInt(peak.mz)}", $"M{CInt(peak.mz)}T{CInt(peak.rt)}")
-                            Dim mz As String = peak.mz.ToString("F4")
-                            Dim rt As String = peak.rt.ToString("F2")
-                            Dim rtmin As String = (peak.rt / 60).ToString("F1")
-                            Dim into As String = peak.intensity
-                            Dim TIC As Double = peak.mzInto.Sum(Function(i) i.intensity)
-                            Dim maxInto As Double = peak.mzInto.OrderByDescending(Function(i) i.intensity).FirstOrDefault?.intensity
-                            Dim ions As String() = peak.mzInto _
-                                .Centroid(da03, intocutoff) _
-                                .OrderByDescending(Function(m) m.intensity) _
-                                .Take(5) _
-                                .Select(Function(m) $"{m.mz.ToString("F4")}:{stdNum.Round(100 * m.intensity / maxInto)}") _
-                                .ToArray
-
-                            Call outFile.WriteLine({id, mz, rt, rtmin, into, TIC}.JoinIterates(ions).JoinBy(","))
-                        Next
+                        Call openIonTable(outFile)
                     End Using
                 End If
             End Using
         End If
+    End Sub
+
+    Private Sub openIonTable(outFile As TextWriter)
+        Dim da03 As Tolerance = DAmethod.DeltaMass(0.3)
+        Dim intocutoff As LowAbundanceTrimming = LowAbundanceTrimming.intoCutff
+
+        Call outFile.WriteLine($"ID,mz,rt,rt(min),intensity,totalIons,BasePeak,Ion2:into,Ion3:into,Ion4:into,Ion5:into")
+
+        For Each peak As PeakMs2 In MyApplication.mzkitRawViewer.getSelectedIonSpectrums(Nothing)
+            Dim id As String = If(CInt(peak.rt) = 0, $"M{CInt(peak.mz)}", $"M{CInt(peak.mz)}T{CInt(peak.rt)}")
+            Dim mz As String = peak.mz.ToString("F4")
+            Dim rt As String = peak.rt.ToString("F2")
+            Dim rtmin As String = (peak.rt / 60).ToString("F1")
+            Dim into As String = peak.intensity
+            Dim TIC As Double = peak.mzInto.Sum(Function(i) i.intensity)
+            Dim maxInto As Double = peak.mzInto _
+                .OrderByDescending(Function(i) i.intensity) _
+                .FirstOrDefault _
+               ?.intensity
+            Dim ions As String() = peak.mzInto _
+                .Centroid(da03, intocutoff) _
+                .OrderByDescending(Function(m) m.intensity) _
+                .Take(5) _
+                .Select(Function(m)
+                            Return $"{m.mz.ToString("F4")}:{stdNum.Round(100 * m.intensity / maxInto)}"
+                        End Function) _
+                .ToArray
+
+            Call outFile.WriteLine({id, mz, rt, rtmin, into, TIC}.JoinIterates(ions).JoinBy(","))
+        Next
     End Sub
 
     Private Sub IonSearchToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles IonSearchToolStripMenuItem.Click
@@ -812,6 +824,20 @@ Public Class frmRawFeaturesList
         If Not CurrentRawFile Is Nothing Then
             Call ConnectToBioDeep.RunMummichog(CurrentRawFile)
         End If
+    End Sub
+
+    Private Sub OpenInTableViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenInTableViewerToolStripMenuItem.Click
+        Dim sb As New StringBuilder
+
+        Using outFile As New StringWriter(sb)
+            Call openIonTable(outFile)
+            Call outFile.Flush()
+        End Using
+
+        Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".txt", sessionID:="ions_table_temp")
+
+        Call sb.ToString.SaveTo(tempfile)
+        Call SelectSheetName.showFile(Table.Load(tempfile), "MS2 Ion Table")
     End Sub
 
     Private Sub treeView1_DragEnter(sender As Object, e As DragEventArgs) Handles treeView1.DragEnter
