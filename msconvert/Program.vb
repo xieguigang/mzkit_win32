@@ -66,7 +66,7 @@ Imports Microsoft.VisualBasic.CommandLine.Reflection
                     msdata:=msdatafile,
                     println:=AddressOf RunSlavePipeline.SendMessage
                 ) _
-                .Write(file:=buffer)
+                .Write(file:=buffer, version:=2)
         End Using
 
         Return 0

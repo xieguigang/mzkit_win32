@@ -14,21 +14,22 @@ Module MSImagingRowBinds
         Return pip.MSICombineRowScans(cor, 0.05, progress:=AddressOf RunSlavePipeline.SendMessage)
     End Function
 
-    Private Sub combineRaw(files As String(), file As Stream)
-        Dim loadXRaw = Iterator Function() As IEnumerable(Of MSFileReader)
-                           For Each path As String In files
-                               If path.FileExists Then
-                                   Using raw As New MSFileReader(path)
-                                       Yield raw
-                                   End Using
+    Private Iterator Function loadXRaw(files As IEnumerable(Of String)) As IEnumerable(Of MSFileReader)
+        For Each path As String In files
+            If path.FileExists Then
+                Using raw As New MSFileReader(path)
+                    Yield raw
+                End Using
 
-                                   Call RunSlavePipeline.SendMessage($"Measuring MSI Information... {path.BaseName}")
-                               Else
-                                   Call RunSlavePipeline.SendMessage($"Missing file in path: '{path}'!")
-                               End If
-                           Next
-                       End Function
-        Dim correction As Correction = MSIMeasurement.Measure(loadXRaw()).GetCorrection
+                Call RunSlavePipeline.SendMessage($"Measuring MSI Information... {path.BaseName}")
+            Else
+                Call RunSlavePipeline.SendMessage($"Missing file in path: '{path}'!")
+            End If
+        Next
+    End Function
+
+    Private Sub combineRaw(files As String(), file As Stream)
+        Dim correction As Correction = MSIMeasurement.Measure(loadXRaw(files)).GetCorrection
 
         Call combineMzPack(
             Iterator Function() As IEnumerable(Of mzPack)
@@ -47,20 +48,21 @@ Module MSImagingRowBinds
                         Call RunSlavePipeline.SendProgress(CInt((++i / files.Length) * 100), $"Combine Raw Data Files... {path.BaseName}")
                     End Try
                 Next
-            End Function(), correction).Write(file)
+            End Function(), correction).Write(file, version:=2)
     End Sub
 
-    Private Sub combineMzPack(files As String(), file As Stream)
-        Dim loadRaw = Iterator Function() As IEnumerable(Of BinaryStreamReader)
-                          For Each path As String In files
-                              Using bin As New BinaryStreamReader(path)
-                                  Yield bin
-                              End Using
+    Private Iterator Function loadRaw(files As IEnumerable(Of String)) As IEnumerable(Of BinaryStreamReader)
+        For Each path As String In files
+            Using bin As New BinaryStreamReader(path)
+                Yield bin
+            End Using
 
-                              Call RunSlavePipeline.SendProgress(0, $"Measuring MSI Information... {path.BaseName}")
-                          Next
-                      End Function
-        Dim correction As Correction = MSIMeasurement.Measure(loadRaw()).GetCorrection
+            Call RunSlavePipeline.SendProgress(0, $"Measuring MSI Information... {path.BaseName}")
+        Next
+    End Function
+
+    Private Sub combineMzPack(files As String(), file As Stream)
+        Dim correction As Correction = MSIMeasurement.Measure(loadRaw(files)).GetCorrection
 
         Call combineMzPack(
             Iterator Function() As IEnumerable(Of mzPack)
@@ -72,12 +74,15 @@ Module MSImagingRowBinds
                         Yield mzPack.ReadAll(buffer, ignoreThumbnail:=True)
                     End Using
                 Next
-            End Function(), correction).Write(file)
+            End Function(), correction).Write(file, version:=2)
     End Sub
 
     <Extension>
     Public Sub MSI_rowbind(files As String(), save As String)
-        Dim exttype As String() = files.Select(Function(path) path.ExtensionSuffix.ToLower).Distinct.ToArray
+        Dim exttype As String() = (From path As String
+                                   In files
+                                   Select path.ExtensionSuffix.ToLower
+                                   Distinct).ToArray
 
         If exttype.Length > 1 Then
             Call RunSlavePipeline.SendMessage($"Multipe file type is not allowed!")

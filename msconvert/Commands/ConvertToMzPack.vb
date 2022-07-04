@@ -31,7 +31,7 @@ Module ConvertToMzPack
 
         Using file As Stream = cacheFile.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
             Call RunSlavePipeline.SendMessage("Write mzPack cache data...")
-            Call mzpack.Write(file)
+            Call mzpack.Write(file, version:=2)
         End Using
 
         Call Thread.Sleep(1500)
