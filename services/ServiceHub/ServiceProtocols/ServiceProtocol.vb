@@ -110,7 +110,11 @@ Public Module MSIProtocols
     End Function
 
     Public Function LoadPixels(mz As IEnumerable(Of Double), mzErr As Tolerance, handleServiceRequest As Func(Of RequestStream, RequestStream)) As PixelData()
-        Dim config As New LayerLoader With {.mz = mz.ToArray, .method = If(TypeOf mzErr Is PPMmethod, "ppm", "da"), .mzErr = mzErr.DeltaTolerance}
+        Dim config As New LayerLoader With {
+            .mz = mz.ToArray,
+            .method = If(TypeOf mzErr Is PPMmethod, "ppm", "da"),
+            .mzErr = mzErr.DeltaTolerance
+        }
         Dim configBytes As Byte() = BSON.GetBuffer(config.GetType.GetJsonElement(config, New JSONSerializerOptions)).ToArray
         Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.LoadMSILayers, configBytes))
 

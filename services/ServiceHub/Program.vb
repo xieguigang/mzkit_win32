@@ -87,9 +87,27 @@ Module Program
         End Select
     End Sub
 
+    ''' <summary>
+    ''' get MSI layer data for run MS-imaging rendering
+    ''' </summary>
+    ''' <param name="MSI_service">
+    ''' the background services TCP port
+    ''' </param>
+    ''' <param name="mz"></param>
+    ''' <param name="mzdiff"></param>
+    ''' <param name="env"></param>
+    ''' <returns>
+    ''' a vector of the pixel data, each element in this vector 
+    ''' that contains the [x,y] point and the corresponding 
+    ''' signal intensity value.
+    ''' </returns>
     <ExportAPI("getMSIData")>
     <RApiReturn(GetType(PixelData))>
-    Public Function getData(MSI_service As Integer, mz As Double(), mzdiff As Object, Optional env As Environment = Nothing) As Object
+    Public Function getData(MSI_service As Integer,
+                            mz As Double(),
+                            mzdiff As Object,
+                            Optional env As Environment = Nothing) As Object
+
         Dim mzErr = Math.getTolerance(mzdiff, env, [default]:="da:0.1")
 
         If mzErr Like GetType(Message) Then
