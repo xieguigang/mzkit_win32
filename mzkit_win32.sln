@@ -23,6 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceHub", "ServiceHub", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSImaging", "MSImaging", "{CBAE691F-FC0B-403D-9E47-A545E0E90C29}"
 	ProjectSection(SolutionItems) = preProject
+		rstudio\pipeline\MSImaging\HeatMapMatrix.R = rstudio\pipeline\MSImaging\HeatMapMatrix.R
 		rstudio\pipeline\MSImaging\singleIon.R = rstudio\pipeline\MSImaging\singleIon.R
 		rstudio\pipeline\MSImaging\tripleIon.R = rstudio\pipeline\MSImaging\tripleIon.R
 	EndProjectSection
