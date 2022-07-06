@@ -85,6 +85,7 @@ Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
+Imports Zuby.ADGV
 Imports File = Microsoft.VisualBasic.Data.csv.IO.File
 Imports stdNum = System.Math
 
@@ -142,7 +143,13 @@ Public Class frmMsImagingViewer
         Dim annotation As frmTableViewer = docs.Where(Function(t) t.AppSource Is GetType(PageMzSearch) AndAlso t.InstanceGuid = guid).FirstOrDefault
         Dim ions As New File
 
+        Call ions.Add({"mz", "name", "precursor_type", "pixels", "density"})
 
+        Dim mz As String()
+        Dim name As String()
+        Dim precursor_type As String()
+        Dim pixels As String()
+        Dim density As String()
 
         If ionStat Is Nothing Then
             MessageBox.Show("Please run ion feature stats at first!", "Heatmap Matrix Plot", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -150,7 +157,50 @@ Public Class frmMsImagingViewer
         ElseIf annotation Is Nothing Then
             MessageBox.Show("No ion annotation, the plot image will only display the m/z value!", "Heatmap Matrix Plot", MessageBoxButtons.OK, MessageBoxIcon.Warning)
 
+            ' no name and precursor type
+            mz = ionStat.AdvancedDataGridView1.getFieldVector("mz")
+            pixels = ionStat.AdvancedDataGridView1.getFieldVector("pixels")
+            density = ionStat.AdvancedDataGridView1.getFieldVector("density")
+            name = New String(mz.Length - 1) {}
+            precursor_type = New String(mz.Length - 1) {}
         Else
+            mz = annotation.AdvancedDataGridView1.getFieldVector("mz")
+            name = annotation.AdvancedDataGridView1.getFieldVector("name")
+            precursor_type = annotation.AdvancedDataGridView1.getFieldVector("precursor_type")
+
+            Dim mzRaw = ionStat.AdvancedDataGridView1.getFieldVector("mz")
+            Dim pixelsRaw = ionStat.AdvancedDataGridView1.getFieldVector("pixels")
+            Dim density2 = ionStat.AdvancedDataGridView1.getFieldVector("density")
+            Dim mzRawIndex As New Dictionary(Of String, Integer)
+
+            For i As Integer = 0 To mzRaw.Length - 1
+                mzRawIndex.Add(mzRaw(i), i)
+            Next
+
+            Dim index As New List(Of Integer)
+
+            For Each mzi As String In mz
+                index.Add(mzRawIndex(mzi))
+            Next
+
+            pixels = index.Select(Function(i) pixelsRaw(i)).ToArray
+            density = index.Select(Function(i) density2(i)).ToArray
+        End If
+
+        Dim getFormula As New InputMatrixIons
+        Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
+        Dim memoryData As New DataSet
+        Dim table As DataTable = memoryData.Tables.Add("memoryData")
+
+        For i As Integer = 0 To mz.Length - 1
+            Call table.Rows.Add({False, mz(i), name(i), precursor_type(i), pixels(i), density(i)})
+        Next
+
+        getFormula.BindingSource1.DataSource = memoryData
+        getFormula.BindingSource1.DataMember = table.TableName
+        getFormula.DataGridView1.DataSource = getFormula.BindingSource1
+
+        If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
 
         End If
     End Sub
