@@ -69,17 +69,17 @@ Imports Microsoft.VisualBasic.Text
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports Zuby.ADGV
 
-Public Class frmTableViewer : Implements ISaveHandle, IFileReference
+Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTraceback
 
     Public Property FilePath As String Implements IFileReference.FilePath
     Public Property ViewRow As Action(Of Dictionary(Of String, Object))
 
-    Public Property SourceName As String
+    Public Property SourceName As String Implements IDataTraceback.SourceName
     ''' <summary>
     ''' for raw data traceback
     ''' </summary>
     ''' <returns></returns>
-    Public Property InstanceGuid As String
+    Public Property InstanceGuid As String Implements IDataTraceback.InstanceGuid
 
     Public ReadOnly Property MimeType As ContentType() Implements IFileReference.MimeType
         Get
@@ -88,6 +88,8 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference
             }
         End Get
     End Property
+
+    Public Property AppSource As Type Implements IDataTraceback.AppSource
 
     Dim memoryData As New DataSet
 

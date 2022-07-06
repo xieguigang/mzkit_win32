@@ -530,6 +530,7 @@ Public Class PageMzSearch
 
         table.SourceName = SourceName
         table.InstanceGuid = InstanceGuid
+        table.AppSource = GetType(PageMzSearch)
 
         Call table.LoadTable(
             Sub(grid)

@@ -131,7 +131,22 @@ Public Class frmMsImagingViewer
     ''' 成像矩阵热图
     ''' </summary>
     Sub OpenHeatmapMatrixPlot()
+        ' check annotation data and ion data
+        Dim docs = MyApplication.host.dockPanel _
+            .Documents _
+            .Where(Function(tab) TypeOf tab Is frmTableViewer) _
+            .Select(Function(f) DirectCast(f, frmTableViewer)) _
+            .ToArray
+        Dim ionStat As frmTableViewer = docs.Where(Function(t) t.AppSource Is GetType(IonStat) AndAlso t.InstanceGuid = guid).FirstOrDefault
+        Dim annotation As frmTableViewer = docs.Where(Function(t) t.AppSource Is GetType(PageMzSearch) AndAlso t.InstanceGuid = guid).FirstOrDefault
 
+        If ionStat Is Nothing Then
+
+        ElseIf annotation Is Nothing Then
+
+        Else
+
+        End If
     End Sub
 
     Sub MSIFeatureDetections()
@@ -163,6 +178,7 @@ Public Class frmMsImagingViewer
         Dim title As String = If(FilePath.StringEmpty, "MS-Imaging Ion Stats", $"[{FilePath.FileName}]Ion Stats")
         Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
 
+        table.AppSource = GetType(IonStat)
         table.InstanceGuid = guid
         table.SourceName = FilePath.FileName Or "MS-Imaging".AsDefault
         table.ViewRow = Sub(row)

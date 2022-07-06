@@ -706,6 +706,7 @@
     <Compile Include="pages\dockWindow\tools\PropertyWindow.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="pages\IDataTraceback.vb" />
     <Compile Include="pages\pageStart\VideoCards.Designer.vb">
       <DependentUpon>VideoCards.vb</DependentUpon>
     </Compile>
