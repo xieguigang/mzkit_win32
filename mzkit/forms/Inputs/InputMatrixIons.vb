@@ -40,4 +40,26 @@ Public Class InputMatrixIons
     Private Sub InputMatrixIons_Load(sender As Object, e As EventArgs) Handles Me.Load
         ToolStripStatusLabel1.Text = "Please select 9 ions to visual data..."
     End Sub
+
+    Dim n As Integer = 0
+
+    Private Sub DataGridView1_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellValueChanged
+        If e.ColumnIndex = 0 Then
+            Dim r = DataGridView1.Rows(e.RowIndex)
+            Dim value As Boolean = r.Cells(e.ColumnIndex).Value
+            Dim size = Me.matrixSize
+
+            If value = True Then
+                n += 1
+            Else
+                n -= 1
+            End If
+
+            If n < 0 Then
+                n = 0
+            End If
+
+            ToolStripStatusLabel1.Text = $"there are {n}/{size.Width * size.Height} ions has been selected."
+        End If
+    End Sub
 End Class
