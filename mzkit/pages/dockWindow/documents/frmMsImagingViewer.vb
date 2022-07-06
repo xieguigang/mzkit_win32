@@ -212,7 +212,12 @@ Public Class frmMsImagingViewer
         If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
             Dim ionList = getFormula.GetSelectedIons.ToDictionary(Function(a) a.Name, Function(a) a.Value)
 
-            Call MyApplication.LogText($"Rendering for ion list in matrix style: " & ionList.GetJson)
+            Using file As New SaveFileDialog With {.Filter = "Plot image(*.png)|*.png"}
+                If file.ShowDialog = DialogResult.OK Then
+                    Call MyApplication.LogText($"Rendering for ion list in matrix style: " & ionList.GetJson)
+                    Call RscriptProgressTask.ExportHeatMapMatrixPlot(ionList, "da:0.1", file.FileName)
+                End If
+            End Using
         End If
     End Sub
 

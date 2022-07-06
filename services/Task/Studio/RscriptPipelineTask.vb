@@ -68,6 +68,10 @@ Public Class RscriptPipelineTask
         End Get
     End Property
 
+    ''' <summary>
+    ''' App.HOME/Rstudio/bin
+    ''' </summary>
+    ''' <returns></returns>
     Public Shared ReadOnly Property Root As String
         Get
             Return Host.ParentPath

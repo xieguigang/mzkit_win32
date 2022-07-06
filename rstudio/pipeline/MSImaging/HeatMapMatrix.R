@@ -18,3 +18,19 @@ const mzSet = mz
 ;
 
 str(mzSet);
+
+const images = lapply(mzSet, function(mz) {
+	mz = as.numeric(mz);
+
+    app::getMSIData(
+        MSI_service = appPort, 
+        mz          = mz, 
+        mzdiff      = mzdiff
+    );
+});
+
+bitmap(file = savefile, size = [3300, 2000]);
+
+
+
+dev.off();
