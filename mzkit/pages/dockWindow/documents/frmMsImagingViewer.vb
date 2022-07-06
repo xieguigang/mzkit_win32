@@ -96,6 +96,7 @@ Public Class frmMsImagingViewer
     Dim WithEvents checks As ToolStripMenuItem
     Dim WithEvents tweaks As PropertyGrid
     Dim rendering As Action
+    Dim guid As String
 
     Public ReadOnly Property MimeType As ContentType() Implements IFileReference.MimeType
         Get
@@ -162,6 +163,7 @@ Public Class frmMsImagingViewer
         Dim title As String = If(FilePath.StringEmpty, "MS-Imaging Ion Stats", $"[{FilePath.FileName}]Ion Stats")
         Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
 
+        table.InstanceGuid = guid
         table.SourceName = FilePath.FileName Or "MS-Imaging".AsDefault
         table.ViewRow = Sub(row)
                             Call renderByMzList({Val(row("mz"))})
@@ -331,6 +333,9 @@ Public Class frmMsImagingViewer
         If mask.ShowDialogForm(getSize) = DialogResult.OK Then
             Dim progress As New frmProgressSpinner
 
+            guid = file.MD5
+            FilePath = file
+
             Call WindowModules.viewer.Show(DockPanel)
             Call WindowModules.msImageParameters.Show(DockPanel)
             Call ServiceHub.StartMSIService()
@@ -362,12 +367,13 @@ Public Class frmMsImagingViewer
         Dim getSize As New InputMSIDimension
 
         If getSize.ShowDialog = DialogResult.OK Then
-
+            guid = file.MD5
         End If
     End Sub
 
     Public Sub loadimzML(file As String)
-        Call MyApplication.host.showMsImaging(imzML:=file)
+        MyApplication.host.showMsImaging(imzML:=file)
+        guid = file.MD5
     End Sub
 
     ''' <summary>
@@ -375,6 +381,8 @@ Public Class frmMsImagingViewer
     ''' </summary>
     ''' <param name="filePath"></param>
     Public Sub LoadRender(mzpack As String, filePath As String)
+        guid = $"{mzpack}+{filePath}".MD5
+
         Call frmTaskProgress.LoadData(
             Function(msg As Action(Of String))
                 Call ServiceHub.StartMSIService()

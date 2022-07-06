@@ -75,6 +75,11 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference
     Public Property ViewRow As Action(Of Dictionary(Of String, Object))
 
     Public Property SourceName As String
+    ''' <summary>
+    ''' for raw data traceback
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property InstanceGuid As String
 
     Public ReadOnly Property MimeType As ContentType() Implements IFileReference.MimeType
         Get
@@ -225,6 +230,8 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference
                                    Dim table As DataTable = dataset.Tables.Item(Scan0)
 
                                    table.Namespace = SourceName
+                                   table.Prefix = InstanceGuid
+
                                    Actions.RunAction(action, name, data, table)
                                End Sub, config:=takeActions)
     End Sub
