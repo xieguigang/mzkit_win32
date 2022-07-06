@@ -145,11 +145,11 @@ Public Class frmMsImagingViewer
 
         Call ions.Add({"mz", "name", "precursor_type", "pixels", "density"})
 
-        Dim mz As String()
+        Dim mz As Double()
         Dim name As String()
         Dim precursor_type As String()
-        Dim pixels As String()
-        Dim density As String()
+        Dim pixels As Integer()
+        Dim density As Double()
 
         If ionStat Is Nothing Then
             MessageBox.Show("Please run ion feature stats at first!", "Heatmap Matrix Plot", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -168,19 +168,19 @@ Public Class frmMsImagingViewer
             name = annotation.AdvancedDataGridView1.getFieldVector("name")
             precursor_type = annotation.AdvancedDataGridView1.getFieldVector("precursor_type")
 
-            Dim mzRaw = ionStat.AdvancedDataGridView1.getFieldVector("mz")
-            Dim pixelsRaw = ionStat.AdvancedDataGridView1.getFieldVector("pixels")
-            Dim density2 = ionStat.AdvancedDataGridView1.getFieldVector("density")
+            Dim mzRaw As Double() = ionStat.AdvancedDataGridView1.getFieldVector("mz")
+            Dim pixelsRaw As Integer() = ionStat.AdvancedDataGridView1.getFieldVector("pixels")
+            Dim density2 As Double() = ionStat.AdvancedDataGridView1.getFieldVector("density")
             Dim mzRawIndex As New Dictionary(Of String, Integer)
 
             For i As Integer = 0 To mzRaw.Length - 1
-                mzRawIndex.Add(mzRaw(i), i)
+                mzRawIndex.Add(mzRaw(i).ToString("F4"), i)
             Next
 
             Dim index As New List(Of Integer)
 
-            For Each mzi As String In mz
-                index.Add(mzRawIndex(mzi))
+            For Each mzi As Double In mz
+                index.Add(mzRawIndex(mzi.ToString("F4")))
             Next
 
             pixels = index.Select(Function(i) pixelsRaw(i)).ToArray
