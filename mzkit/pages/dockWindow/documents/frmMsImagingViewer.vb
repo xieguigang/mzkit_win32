@@ -85,6 +85,7 @@ Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
+Imports File = Microsoft.VisualBasic.Data.csv.IO.File
 Imports stdNum = System.Math
 
 Public Class frmMsImagingViewer
@@ -139,10 +140,15 @@ Public Class frmMsImagingViewer
             .ToArray
         Dim ionStat As frmTableViewer = docs.Where(Function(t) t.AppSource Is GetType(IonStat) AndAlso t.InstanceGuid = guid).FirstOrDefault
         Dim annotation As frmTableViewer = docs.Where(Function(t) t.AppSource Is GetType(PageMzSearch) AndAlso t.InstanceGuid = guid).FirstOrDefault
+        Dim ions As New File
+
+
 
         If ionStat Is Nothing Then
-
+            MessageBox.Show("Please run ion feature stats at first!", "Heatmap Matrix Plot", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
         ElseIf annotation Is Nothing Then
+            MessageBox.Show("No ion annotation, the plot image will only display the m/z value!", "Heatmap Matrix Plot", MessageBoxButtons.OK, MessageBoxIcon.Warning)
 
         Else
 
