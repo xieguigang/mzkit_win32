@@ -5,6 +5,7 @@ require(JSON);
 
 imports "app" from "ServiceHub";
 imports "MSI" from "mzkit";
+imports "MsImaging" from "mzplot";
 
 options(memory.load = "max");
 
