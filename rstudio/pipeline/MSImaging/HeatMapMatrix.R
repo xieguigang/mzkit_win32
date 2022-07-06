@@ -36,7 +36,7 @@ const images = lapply(mzSet, function(ion) {
     ion;
 });
 
-bitmap(file = savefile, size = size);
+bitmap(file = savefile, size = size, padding = [50, 300, 50, 50]);
 
 images |> PlotMSIMatrixHeatmap(
     layout        = [3,3],
