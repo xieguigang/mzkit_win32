@@ -69,10 +69,17 @@ Imports Microsoft.VisualBasic.Text
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports Zuby.ADGV
 
-Public Class frmTableViewer : Implements ISaveHandle, IFileReference
+Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTraceback
 
     Public Property FilePath As String Implements IFileReference.FilePath
     Public Property ViewRow As Action(Of Dictionary(Of String, Object))
+
+    Public Property SourceName As String Implements IDataTraceback.SourceName
+    ''' <summary>
+    ''' for raw data traceback
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property InstanceGuid As String Implements IDataTraceback.InstanceGuid
 
     Public ReadOnly Property MimeType As ContentType() Implements IFileReference.MimeType
         Get
@@ -81,6 +88,8 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference
             }
         End Get
     End Property
+
+    Public Property AppSource As Type Implements IDataTraceback.AppSource
 
     Dim memoryData As New DataSet
 
@@ -210,6 +219,8 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference
             End Sub, config:=load)
     End Sub
 
+    Public Shared ReadOnly TableGuid As New Dictionary(Of DataTable, String)
+
     Private Sub ActionsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ActionsToolStripMenuItem.Click
         Dim takeActions As New InputAction
 
@@ -222,7 +233,13 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference
                                    Dim dataset As DataSet = source.DataSource
                                    Dim table As DataTable = dataset.Tables.Item(Scan0)
 
-                                   Call Actions.RunAction(action, name, data, table)
+                                   table.Namespace = SourceName
+
+                                   SyncLock TableGuid
+                                       TableGuid(table) = InstanceGuid
+                                   End SyncLock
+
+                                   Actions.RunAction(action, name, data, table)
                                End Sub, config:=takeActions)
     End Sub
 
@@ -333,5 +350,9 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference
 
         Call Clipboard.Clear()
         Call Clipboard.SetText(buffer.ToString)
+    End Sub
+
+    Private Sub frmTableViewer_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+
     End Sub
 End Class

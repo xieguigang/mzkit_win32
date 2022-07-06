@@ -205,6 +205,37 @@ Public Class RscriptProgressTask
         End If
     End Sub
 
+    Public Shared Sub ExportHeatMapMatrixPlot(mzSet As Dictionary(Of String, Double), tolerance As String, saveAs As String)
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("MSImaging/HeatMapMatrix.R")
+        Dim mzfile As String = TempFileSystem.GetAppSysTempFile(".json", sessionID:=App.PID.ToHexString, prefix:="matrix_mzset___")
+        Dim cli As String = $"""{Rscript}"" --app {ServiceHub.appPort} --mzlist ""{mzfile}"" --save ""{saveAs}"" --mzdiff ""{tolerance}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+        Dim progress As New frmTaskProgress
+
+        Call mzSet.GetJson.SaveTo(mzfile)
+
+        progress.ShowProgressTitle("Single Ion MSImaging", directAccess:=True)
+        progress.ShowProgressDetails("Do plot of target ion m/z...", directAccess:=True)
+        progress.SetProgressMode()
+
+        Call MyApplication.LogText(pipeline.CommandLine)
+
+        AddHandler pipeline.SetMessage, AddressOf progress.ShowProgressDetails
+        AddHandler pipeline.SetProgress, AddressOf progress.SetProgress
+        AddHandler pipeline.Finish, Sub() progress.Invoke(Sub() progress.Close())
+
+        Call New Thread(AddressOf pipeline.Run).Start()
+        Call progress.ShowDialog()
+
+        If saveAs.FileExists Then
+            If MessageBox.Show("MSImaging matrix heatmap rendering job done!" & vbCrLf & "Open MSImaging result plot file?", "Open Image", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
+                Call Process.Start(saveAs.GetFullPath)
+            End If
+        Else
+            Call MessageBox.Show("MSImaging matrix heatmap rendering task error!", "Task Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+    End Sub
+
     Public Shared Sub CreateMSIPeakTable(regions As Rectangle(), mzpack As String, saveAs As String)
         Dim data As Dictionary(Of String, Integer()) = regions.ToDictionary(Function(r) $"{r.Left},{r.Top}", Function(r) {r.Left, r.Top, r.Width, r.Height})
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".json", App.PID.ToHexString, prefix:="MSI_regions__")

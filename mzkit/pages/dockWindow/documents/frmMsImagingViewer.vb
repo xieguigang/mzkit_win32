@@ -79,11 +79,15 @@ Imports ControlLibrary
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Scripting.Runtime
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
+Imports Zuby.ADGV
+Imports File = Microsoft.VisualBasic.Data.csv.IO.File
 Imports stdNum = System.Math
 
 Public Class frmMsImagingViewer
@@ -95,6 +99,7 @@ Public Class frmMsImagingViewer
     Dim WithEvents checks As ToolStripMenuItem
     Dim WithEvents tweaks As PropertyGrid
     Dim rendering As Action
+    Dim guid As String
 
     Public ReadOnly Property MimeType As ContentType() Implements IFileReference.MimeType
         Get
@@ -118,10 +123,102 @@ Public Class frmMsImagingViewer
         AddHandler RibbonEvents.ribbonItems.ButtonTogglePolygon.ExecuteEvent, Sub() Call TogglePolygonMode()
         AddHandler RibbonEvents.ribbonItems.ButtonMSICleanBackground.ExecuteEvent, Sub() Call cleanBackground()
         AddHandler RibbonEvents.ribbonItems.ButtonMSIRawIonStat.ExecuteEvent, Sub() Call DoIonStats()
+        AddHandler RibbonEvents.ribbonItems.ButtonMSIMatrixVisual.ExecuteEvent, Sub() Call OpenHeatmapMatrixPlot()
 
         Call ApplyVsTheme(ContextMenuStrip1)
         Call setupPolygonEditorButtons()
         Call PixelSelector1.ShowMessage("BioNovoGene MZKit MSImaging Viewer")
+    End Sub
+
+    ''' <summary>
+    ''' 成像矩阵热图
+    ''' </summary>
+    Sub OpenHeatmapMatrixPlot()
+        ' check annotation data and ion data
+        Dim docs = MyApplication.host.dockPanel _
+            .Documents _
+            .Where(Function(tab) TypeOf tab Is frmTableViewer) _
+            .Select(Function(f) DirectCast(f, frmTableViewer)) _
+            .ToArray
+        Dim ionStat As frmTableViewer = docs.Where(Function(t) t.AppSource Is GetType(IonStat) AndAlso t.InstanceGuid = guid).FirstOrDefault
+        Dim annotation As frmTableViewer = docs.Where(Function(t) t.AppSource Is GetType(PageMzSearch) AndAlso t.InstanceGuid = guid).FirstOrDefault
+        Dim ions As New File
+
+        Call ions.Add({"mz", "name", "precursor_type", "pixels", "density"})
+
+        Dim mz As Double()
+        Dim name As String()
+        Dim precursor_type As String()
+        Dim pixels As Integer()
+        Dim density As Double()
+
+        If ionStat Is Nothing Then
+            MessageBox.Show("Please run ion feature stats at first!", "Heatmap Matrix Plot", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        ElseIf annotation Is Nothing Then
+            MessageBox.Show("No ion annotation, the plot image will only display the m/z value!", "Heatmap Matrix Plot", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+
+            ' no name and precursor type
+            mz = ionStat.AdvancedDataGridView1.getFieldVector("mz")
+            pixels = ionStat.AdvancedDataGridView1.getFieldVector("pixels")
+            density = ionStat.AdvancedDataGridView1.getFieldVector("density")
+            name = New String(mz.Length - 1) {}
+            precursor_type = New String(mz.Length - 1) {}
+        Else
+            mz = annotation.AdvancedDataGridView1.getFieldVector("mz")
+            name = annotation.AdvancedDataGridView1.getFieldVector("name")
+            precursor_type = annotation.AdvancedDataGridView1.getFieldVector("precursorType")
+
+            Dim mzRaw As Double() = ionStat.AdvancedDataGridView1.getFieldVector("mz")
+            Dim pixelsRaw As Integer() = ionStat.AdvancedDataGridView1.getFieldVector("pixels")
+            Dim density2 As Double() = ionStat.AdvancedDataGridView1.getFieldVector("density")
+            Dim mzRawIndex As New Dictionary(Of String, Integer)
+
+            For i As Integer = 0 To mzRaw.Length - 1
+                mzRawIndex.Add(mzRaw(i).ToString("F4"), i)
+            Next
+
+            Dim index As New List(Of Integer)
+
+            For Each mzi As Double In mz
+                index.Add(mzRawIndex(mzi.ToString("F4")))
+            Next
+
+            pixels = index.Select(Function(i) pixelsRaw(i)).ToArray
+            density = index.Select(Function(i) density2(i)).ToArray
+        End If
+
+        Dim getFormula As New InputMatrixIons
+        Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
+        Dim memoryData As New DataSet
+        Dim table As DataTable = memoryData.Tables.Add("memoryData")
+
+        table.Columns.Add("select", GetType(Boolean))
+        table.Columns.Add("mz", GetType(Double))
+        table.Columns.Add("name", GetType(String))
+        table.Columns.Add("precursor_type", GetType(String))
+        table.Columns.Add("pixels", GetType(Integer))
+        table.Columns.Add("density", GetType(Double))
+
+        For i As Integer = 0 To mz.Length - 1
+            Call table.Rows.Add({False, mz(i), name(i), precursor_type(i), pixels(i), density(i)})
+        Next
+
+        getFormula.DataGridView1.Columns.Clear()
+        getFormula.BindingSource1.DataSource = memoryData
+        getFormula.BindingSource1.DataMember = table.TableName
+        getFormula.DataGridView1.DataSource = getFormula.BindingSource1
+
+        If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
+            Dim ionList = getFormula.GetSelectedIons.ToDictionary(Function(a) a.Name, Function(a) a.Value)
+
+            Using file As New SaveFileDialog With {.Filter = "Plot image(*.png)|*.png"}
+                If file.ShowDialog = DialogResult.OK Then
+                    Call MyApplication.LogText($"Rendering for ion list in matrix style: " & ionList.GetJson)
+                    Call RscriptProgressTask.ExportHeatMapMatrixPlot(ionList, "da:0.1", file.FileName)
+                End If
+            End Using
+        End If
     End Sub
 
     Sub MSIFeatureDetections()
@@ -150,8 +247,12 @@ Public Class frmMsImagingViewer
     End Sub
 
     Sub DoIonStats(ions As IonStat())
-        Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)
+        Dim title As String = If(FilePath.StringEmpty, "MS-Imaging Ion Stats", $"[{FilePath.FileName}]Ion Stats")
+        Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
 
+        table.AppSource = GetType(IonStat)
+        table.InstanceGuid = guid
+        table.SourceName = FilePath.FileName Or "MS-Imaging".AsDefault
         table.ViewRow = Sub(row)
                             Call renderByMzList({Val(row("mz"))})
                             Call Me.Activate()
@@ -320,6 +421,9 @@ Public Class frmMsImagingViewer
         If mask.ShowDialogForm(getSize) = DialogResult.OK Then
             Dim progress As New frmProgressSpinner
 
+            guid = file.MD5
+            FilePath = file
+
             Call WindowModules.viewer.Show(DockPanel)
             Call WindowModules.msImageParameters.Show(DockPanel)
             Call ServiceHub.StartMSIService()
@@ -351,12 +455,13 @@ Public Class frmMsImagingViewer
         Dim getSize As New InputMSIDimension
 
         If getSize.ShowDialog = DialogResult.OK Then
-
+            guid = file.MD5
         End If
     End Sub
 
     Public Sub loadimzML(file As String)
-        Call MyApplication.host.showMsImaging(imzML:=file)
+        MyApplication.host.showMsImaging(imzML:=file)
+        guid = file.MD5
     End Sub
 
     ''' <summary>
@@ -364,6 +469,8 @@ Public Class frmMsImagingViewer
     ''' </summary>
     ''' <param name="filePath"></param>
     Public Sub LoadRender(mzpack As String, filePath As String)
+        guid = $"{mzpack}+{filePath}".MD5
+
         Call frmTaskProgress.LoadData(
             Function(msg As Action(Of String))
                 Call ServiceHub.StartMSIService()
