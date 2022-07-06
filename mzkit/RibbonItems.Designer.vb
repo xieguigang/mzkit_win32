@@ -125,6 +125,8 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonExportMSIMzpack As UInteger = 127
             Public Const cmdPanelOptions As UInteger = 155
             Public Const cmdCheckBoxTrIQThreshold As UInteger = 154
+            Public Const cmdPanelMSIVisual As UInteger = 186
+            Public Const cmdButtonMSIMatrixVisual As UInteger = 187
             Public Const cmdTabMSIAnalysis As UInteger = 141
             Public Const cmdTabMSISnapshot As UInteger = 126
             Public Const cmdButtonMSIAverageIon As UInteger = 125
@@ -856,6 +858,18 @@ Namespace RibbonLib.Controls
                 Return _CheckBoxTrIQThreshold
             End Get
         End Property
+        Private _PanelMSIVisual As RibbonGroup
+        Public ReadOnly Property PanelMSIVisual As RibbonGroup
+            Get
+                Return _PanelMSIVisual
+            End Get
+        End Property
+        Private _ButtonMSIMatrixVisual As RibbonButton
+        Public ReadOnly Property ButtonMSIMatrixVisual As RibbonButton
+            Get
+                Return _ButtonMSIMatrixVisual
+            End Get
+        End Property
         Private _TabMSIAnalysis As RibbonTab
         Public ReadOnly Property TabMSIAnalysis As RibbonTab
             Get
@@ -1337,6 +1351,8 @@ Namespace RibbonLib.Controls
             _ButtonExportMSIMzpack = New RibbonButton(_ribbon, Cmd.cmdButtonExportMSIMzpack)
             _PanelOptions = New RibbonGroup(_ribbon, Cmd.cmdPanelOptions)
             _CheckBoxTrIQThreshold = New RibbonCheckBox(_ribbon, Cmd.cmdCheckBoxTrIQThreshold)
+            _PanelMSIVisual = New RibbonGroup(_ribbon, Cmd.cmdPanelMSIVisual)
+            _ButtonMSIMatrixVisual = New RibbonButton(_ribbon, Cmd.cmdButtonMSIMatrixVisual)
             _TabMSIAnalysis = New RibbonTab(_ribbon, Cmd.cmdTabMSIAnalysis)
             _TabMSISnapshot = New RibbonGroup(_ribbon, Cmd.cmdTabMSISnapshot)
             _ButtonMSIAverageIon = New RibbonButton(_ribbon, Cmd.cmdButtonMSIAverageIon)

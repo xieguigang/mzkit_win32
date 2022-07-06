@@ -74,6 +74,8 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference
     Public Property FilePath As String Implements IFileReference.FilePath
     Public Property ViewRow As Action(Of Dictionary(Of String, Object))
 
+    Public Property SourceName As String
+
     Public ReadOnly Property MimeType As ContentType() Implements IFileReference.MimeType
         Get
             Return {
@@ -222,7 +224,8 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference
                                    Dim dataset As DataSet = source.DataSource
                                    Dim table As DataTable = dataset.Tables.Item(Scan0)
 
-                                   Call Actions.RunAction(action, name, data, table)
+                                   table.Namespace = SourceName
+                                   Actions.RunAction(action, name, data, table)
                                End Sub, config:=takeActions)
     End Sub
 

@@ -2272,6 +2272,15 @@
         <Image MinDPI="192">Res/SCiLSLab-Icon.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdPanelMSIVisual" Id="186" LabelTitle="MS-Imaging Visual" />
+    <Command Name="cmdButtonMSIMatrixVisual" Id="187" LabelTitle="HeatMap Matrix" LabelDescription="Visual multiple ion in N * N matrix style" TooltipTitle="HeatMap Matrix" TooltipDescription="Visual multiple ion in N * N matrix style">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/view-dual.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="144">Res/view-dual.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2491,6 +2500,9 @@
             </Group>
             <Group CommandName="cmdPanelOptions" ApplicationModes="0,1">
               <CheckBox CommandName="cmdCheckBoxTrIQThreshold" />
+            </Group>
+            <Group CommandName="cmdPanelMSIVisual" SizeDefinition="OneButton">
+              <Button CommandName="cmdButtonMSIMatrixVisual" />
             </Group>
           </Tab>
           <Tab CommandName="cmdTabMSIAnalysis" ApplicationModes="0,1">

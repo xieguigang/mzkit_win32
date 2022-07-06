@@ -925,5 +925,14 @@
 #define cmdButtonImportsSCiLSLab_TooltipDescription_RESID 60127
 #define cmdButtonImportsSCiLSLab_SmallImages_192__RESID 60128
 #define cmdButtonImportsSCiLSLab_LargeImages_192__RESID 60129
-#define InternalCmd2_LabelTitle_RESID 60130
-#define InternalCmd4_LabelTitle_RESID 60131
+#define cmdPanelMSIVisual 186 
+#define cmdPanelMSIVisual_LabelTitle_RESID 60130
+#define cmdButtonMSIMatrixVisual 187 
+#define cmdButtonMSIMatrixVisual_LabelTitle_RESID 60131
+#define cmdButtonMSIMatrixVisual_LabelDescription_RESID 60132
+#define cmdButtonMSIMatrixVisual_TooltipTitle_RESID 60133
+#define cmdButtonMSIMatrixVisual_TooltipDescription_RESID 60134
+#define cmdButtonMSIMatrixVisual_SmallImages_192__RESID 60135
+#define cmdButtonMSIMatrixVisual_LargeImages_144__RESID 60136
+#define InternalCmd2_LabelTitle_RESID 60137
+#define InternalCmd4_LabelTitle_RESID 60138

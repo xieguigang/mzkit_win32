@@ -79,6 +79,7 @@ Imports ControlLibrary
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Scripting.Runtime
@@ -118,10 +119,18 @@ Public Class frmMsImagingViewer
         AddHandler RibbonEvents.ribbonItems.ButtonTogglePolygon.ExecuteEvent, Sub() Call TogglePolygonMode()
         AddHandler RibbonEvents.ribbonItems.ButtonMSICleanBackground.ExecuteEvent, Sub() Call cleanBackground()
         AddHandler RibbonEvents.ribbonItems.ButtonMSIRawIonStat.ExecuteEvent, Sub() Call DoIonStats()
+        AddHandler RibbonEvents.ribbonItems.ButtonMSIMatrixVisual.ExecuteEvent, Sub() Call OpenHeatmapMatrixPlot()
 
         Call ApplyVsTheme(ContextMenuStrip1)
         Call setupPolygonEditorButtons()
         Call PixelSelector1.ShowMessage("BioNovoGene MZKit MSImaging Viewer")
+    End Sub
+
+    ''' <summary>
+    ''' 成像矩阵热图
+    ''' </summary>
+    Sub OpenHeatmapMatrixPlot()
+
     End Sub
 
     Sub MSIFeatureDetections()
@@ -150,8 +159,10 @@ Public Class frmMsImagingViewer
     End Sub
 
     Sub DoIonStats(ions As IonStat())
-        Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)
+        Dim title As String = If(FilePath.StringEmpty, "MS-Imaging Ion Stats", $"[{FilePath.FileName}]Ion Stats")
+        Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
 
+        table.SourceName = FilePath.FileName Or "MS-Imaging".AsDefault
         table.ViewRow = Sub(row)
                             Call renderByMzList({Val(row("mz"))})
                             Call Me.Activate()

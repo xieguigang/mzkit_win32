@@ -86,6 +86,8 @@ Imports stdNum = System.Math
 
 Public Class PageMzSearch
 
+    Public Property SourceName As String
+
     Private Sub doExactMassSearch(mz As Double, ppm As Double)
         Dim progress As New frmTaskProgress
         Dim cancel As Value(Of Boolean) = False
@@ -522,7 +524,8 @@ Public Class PageMzSearch
             Call result.AddRange(anno)
         Next
 
-        Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)
+        Dim title As String = If(SourceName.StringEmpty, "Peak List Annotation", $"[{SourceName}] Peak List Annotation")
+        Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
 
         Call table.LoadTable(
             Sub(grid)

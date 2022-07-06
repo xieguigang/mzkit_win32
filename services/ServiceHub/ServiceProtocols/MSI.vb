@@ -109,20 +109,30 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Return socket.Run
     End Function
 
+    ''' <summary>
+    ''' load mzPack data
+    ''' </summary>
+    ''' <param name="request"></param>
+    ''' <param name="remoteAddress"></param>
+    ''' <returns></returns>
     <Protocol(ServiceProtocol.LoadMSI)>
     Public Function Load(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
         Dim filepath As String = request.GetString(Encoding.UTF8)
         Dim info As Dictionary(Of String, String)
 
         If filepath.ExtensionSuffix("cdf") Then
+            Call RunSlavePipeline.SendMessage($"read MSI layers from the cdf file!")
+
             Using cdf As New netCDFReader(filepath)
                 MSI = New Drawer(cdf.CreatePixelReader)
             End Using
         Else
             Dim mzpack As mzPack
 
+            Call RunSlavePipeline.SendMessage($"read MSI dataset from the mzPack raw data file!")
+
             Using file As Stream = filepath.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
-                mzpack = mzPack.ReadAll(file, ignoreThumbnail:=True).ScanMeltdown(gridSize:=10)
+                mzpack = mzPack.ReadAll(file, ignoreThumbnail:=True, verbose:=True, skipMsn:=True).ScanMeltdown(gridSize:=10)
                 MSI = New Drawer(mzpack)
             End Using
         End If
