@@ -21,8 +21,8 @@ str(mzSet);
 
 const size   = [2700, 2000];
 const images = lapply(mzSet, function(ion) {
-	mz = as.numeric(ion$mz);
-    layer = app::getMSIData(
+	let mz    = as.numeric(ion$mz);
+    let layer = app::getMSIData(
         MSI_service = appPort, 
         mz          = mz, 
         mzdiff      = mzdiff
