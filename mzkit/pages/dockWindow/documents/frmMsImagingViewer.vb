@@ -210,7 +210,18 @@ Public Class frmMsImagingViewer
         getFormula.DataGridView1.DataSource = getFormula.BindingSource1
 
         If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
-            Dim ionList = getFormula.GetSelectedIons.ToDictionary(Function(a) a.Name, Function(a) a.Value)
+            Dim ionList = getFormula _
+                .GetSelectedIons _
+                .ToDictionary(Function(a)
+                                  Return $"{a.Name} {a.Description} {a.Value.ToString("F4")}"
+                              End Function,
+                              Function(a)
+                                  Return New Dictionary(Of String, String) From {
+                                      {"mz", a.Value},
+                                      {"title", a.Name},
+                                      {"type", a.Description}
+                                  }
+                              End Function)
 
             Using file As New SaveFileDialog With {.Filter = "Plot image(*.png)|*.png"}
                 If file.ShowDialog = DialogResult.OK Then

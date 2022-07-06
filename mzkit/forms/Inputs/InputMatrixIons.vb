@@ -18,9 +18,7 @@ Public Class InputMatrixIons
 
         For i As Integer = 0 To selects.Length - 1
             If selects(i) Then
-                Dim str As String = $"{name(i)} {precursor(i)} {mz(i)}".Trim
-
-                Yield New NamedValue(Of Double)(str, mz(i))
+                Yield New NamedValue(Of Double)(name(i), mz(i), precursor(i))
 
                 j += 1
 
