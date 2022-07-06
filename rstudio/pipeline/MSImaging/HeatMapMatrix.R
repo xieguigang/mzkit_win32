@@ -1,9 +1,10 @@
-imports "app" from "ServiceHub";
-
 require(MSImaging);
 require(mzkit);
 require(ggplot);
 require(JSON);
+
+imports "app" from "ServiceHub";
+imports "MSI" from "mzkit";
 
 options(memory.load = "max");
 
