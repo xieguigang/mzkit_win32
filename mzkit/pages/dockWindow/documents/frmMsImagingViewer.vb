@@ -83,6 +83,7 @@ Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Scripting.Runtime
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 Imports Zuby.ADGV
@@ -166,7 +167,7 @@ Public Class frmMsImagingViewer
         Else
             mz = annotation.AdvancedDataGridView1.getFieldVector("mz")
             name = annotation.AdvancedDataGridView1.getFieldVector("name")
-            precursor_type = annotation.AdvancedDataGridView1.getFieldVector("precursor_type")
+            precursor_type = annotation.AdvancedDataGridView1.getFieldVector("precursorType")
 
             Dim mzRaw As Double() = ionStat.AdvancedDataGridView1.getFieldVector("mz")
             Dim pixelsRaw As Integer() = ionStat.AdvancedDataGridView1.getFieldVector("pixels")
@@ -192,16 +193,26 @@ Public Class frmMsImagingViewer
         Dim memoryData As New DataSet
         Dim table As DataTable = memoryData.Tables.Add("memoryData")
 
+        table.Columns.Add("select", GetType(Boolean))
+        table.Columns.Add("mz", GetType(Double))
+        table.Columns.Add("name", GetType(String))
+        table.Columns.Add("precursor_type", GetType(String))
+        table.Columns.Add("pixels", GetType(Integer))
+        table.Columns.Add("density", GetType(Double))
+
         For i As Integer = 0 To mz.Length - 1
             Call table.Rows.Add({False, mz(i), name(i), precursor_type(i), pixels(i), density(i)})
         Next
 
+        getFormula.DataGridView1.Columns.Clear()
         getFormula.BindingSource1.DataSource = memoryData
         getFormula.BindingSource1.DataMember = table.TableName
         getFormula.DataGridView1.DataSource = getFormula.BindingSource1
 
         If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
+            Dim ionList = getFormula.GetSelectedIons.ToDictionary(Function(a) a.Name, Function(a) a.Value)
 
+            Call MyApplication.LogText($"Rendering for ion list in matrix style: " & ionList.GetJson)
         End If
     End Sub
 

@@ -219,6 +219,8 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
             End Sub, config:=load)
     End Sub
 
+    Public Shared ReadOnly TableGuid As New Dictionary(Of DataTable, String)
+
     Private Sub ActionsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ActionsToolStripMenuItem.Click
         Dim takeActions As New InputAction
 
@@ -232,7 +234,10 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
                                    Dim table As DataTable = dataset.Tables.Item(Scan0)
 
                                    table.Namespace = SourceName
-                                   table.Prefix = InstanceGuid
+
+                                   SyncLock TableGuid
+                                       TableGuid(table) = InstanceGuid
+                                   End SyncLock
 
                                    Actions.RunAction(action, name, data, table)
                                End Sub, config:=takeActions)
@@ -345,5 +350,9 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
 
         Call Clipboard.Clear()
         Call Clipboard.SetText(buffer.ToString)
+    End Sub
+
+    Private Sub frmTableViewer_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+
     End Sub
 End Class
