@@ -125,6 +125,9 @@ Module ServiceHub
 
         If data Is Nothing Then
             Return {}
+        ElseIf data.IsHTTP_RFC Then
+            Call MyApplication.host.showStatusMessage(data.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Return {}
         Else
             Dim ions = BSON.Load(data).CreateObject(Of IonStat())
             Call MyApplication.LogText($"get ion stat table payload {StringFormats.Lanudry(data.ChunkBuffer.Length)}!")
@@ -187,6 +190,9 @@ Module ServiceHub
         If data Is Nothing Then
             Call MyApplication.host.warning($"Failure to load MS-imaging raw data file: {raw}...")
             Return Nothing
+        ElseIf data.IsHTTP_RFC Then
+            Call MyApplication.host.showStatusMessage(data.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Return Nothing
         End If
 
         Dim output As MsImageProperty = data _
@@ -218,6 +224,9 @@ Module ServiceHub
 
         If output Is Nothing Then
             Return Nothing
+        ElseIf output.IsHTTP_RFC Then
+            Call MyApplication.host.showStatusMessage(output.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Return Nothing
         Else
             Call MyApplication.LogText($"get pixel data payload {StringFormats.Lanudry(output.ChunkBuffer.Length)}!")
             Return InMemoryVectorPixel.ParseVector(output.ChunkBuffer).ToArray
@@ -232,6 +241,7 @@ Module ServiceHub
             Return Nothing
         ElseIf HTTP_RFC.RFC_OK <> output.Protocol AndAlso output.Protocol <> 0 Then
             Call MyApplication.host.showStatusMessage("MSI service backend panic.", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call MyApplication.LogText(output.GetUTF8String)
             Return Nothing
         Else
             Return InMemoryVectorPixel.Parse(output.ChunkBuffer)
@@ -242,6 +252,9 @@ Module ServiceHub
         Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.GetBasePeakMzList, {}))
 
         If data Is Nothing Then
+            Return {}
+        ElseIf data.IsHTTP_RFC Then
+            Call MyApplication.host.showStatusMessage(data.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
             Return {}
         Else
             Return data.GetDoubles
