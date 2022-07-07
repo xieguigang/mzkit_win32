@@ -1579,6 +1579,10 @@
       <Project>{274a801c-2250-4474-99ee-0f714588d3f3}</Project>
       <Name>SDF.Extensions.NET5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\mzblender\mzblender.vbproj">
+      <Project>{4de64f86-852f-4852-97d2-46c69faa8921}</Project>
+      <Name>mzblender</Name>
+    </ProjectReference>
     <ProjectReference Include="..\services\BioDeep\BioDeep.vbproj">
       <Project>{dcfa3211-c43b-40c3-a183-2d3d83b096e1}</Project>
       <Name>BioDeep</Name>

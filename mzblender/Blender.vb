@@ -1,6 +1,17 @@
-﻿Public Class Blender
+﻿Imports Task
 
-    Private Sub OpenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
+Public MustInherit Class Blender
 
-    End Sub
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="args">
+    ''' the image plot arguments
+    ''' </param>
+    ''' <param name="target">
+    ''' the size of the target control to show the rednering image result.
+    ''' </param>
+    ''' <returns></returns>
+    Public MustOverride Function Rendering(args As PlotProperty, target As Size) As Image
+
 End Class

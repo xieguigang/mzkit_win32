@@ -1,14 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <TargetFrameworks>net4.8;net6.0-windows</TargetFrameworks>
-    <StartupObject>Sub Main</StartupObject>
+    <StartupObject></StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
     <Platforms>AnyCPU;x64</Platforms>
     <Configurations>Debug;Release;mzkit_win32</Configurations>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <AssemblyName>mzblender</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net4.8|AnyCPU'">
@@ -62,6 +64,7 @@
     <ProjectReference Include="..\..\mzmath\ms2_math-core\mzmath-netcore5.vbproj" />
     <ProjectReference Include="..\..\visualize\MsImaging\MsImaging.NET5.vbproj" />
     <ProjectReference Include="..\services\ServiceHub\ServiceHub.vbproj" />
+    <ProjectReference Include="..\services\Task\Task.vbproj" />
     <ProjectReference Include="..\ux\ControlLibrary\ControlLibrary.vbproj" />
   </ItemGroup>
 
