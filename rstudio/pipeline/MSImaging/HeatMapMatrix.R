@@ -21,8 +21,9 @@ const mzSet = mz
 
 str(mzSet);
 
-const size   = [2700, 2000];
-const images = lapply(mzSet, function(ion) {
+const padding = [50, 350, 50, 50];
+const size    = [2700, 2000];
+const images  = lapply(mzSet, function(ion) {
 	let mz    = as.numeric(ion$mz);
     let layer = app::getMSIData(
         MSI_service = appPort, 
@@ -36,14 +37,19 @@ const images = lapply(mzSet, function(ion) {
     ion;
 });
 
-bitmap(file = savefile, size = size, padding = [50, 300, 50, 50]);
+bitmap(
+    file    = savefile,
+    size    = size, 
+    padding = `padding: ${canvasPadding[1]}px ${canvasPadding[2]}px ${canvasPadding[3]}px ${canvasPadding[4]}px;`, 
+    fill    = "black"
+);
 
 images |> PlotMSIMatrixHeatmap(
     layout        = [3,3],
-    colorSet      = "Jet",
+    colorSet      = "rainbow", # "viridis:turbo",
     MSI_TrIQ      = 0.8,
     size          = size, 
-    canvasPadding = [50, 300, 50, 50], 
+    canvasPadding = padding, 
     cellPadding   = [200, 100, 0, 100]
 );
 

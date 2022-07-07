@@ -22,7 +22,7 @@ Public Class InputMatrixIons
 
                 j += 1
 
-                If j = n Then
+                If j > n Then
                     Exit For
                 End If
             End If
@@ -44,7 +44,7 @@ Public Class InputMatrixIons
     Dim n As Integer = 0
 
     Private Sub DataGridView1_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellValueChanged
-        If e.ColumnIndex = 0 Then
+        If e.ColumnIndex = 0 AndAlso e.RowIndex >= 0 Then
             Dim r = DataGridView1.Rows(e.RowIndex)
             Dim value As Boolean = r.Cells(e.ColumnIndex).Value
             Dim size = Me.matrixSize
