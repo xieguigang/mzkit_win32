@@ -38,12 +38,16 @@ bitmap(file = savefile, size = [3300, 2000]) {
     # load mzpack/imzML raw data file
     # and config ggplot data source driver 
     # as MSImaging data reader
-    ggplot(, padding = "padding: 200px 600px 200px 250px;") 
-       # rendering of rgb channels ion m/z
-       + geom_red(mz = images[[1]], tolerance = "da:0.3")
-       + geom_green(mz = images[[2]], tolerance = "da:0.3")
-       + geom_blue(mz = images[[3]], tolerance = "da:0.3")
+
+    # rendering of rgb channels ion m/z
+    ggplot(MSIheatmap(
+        R = images[[1]], 
+        G = images[[2]], 
+        B = images[[3]]
+    ), padding = "padding: 200px 600px 200px 250px;") 
+       
 	   + theme(panel.background = "black")
+       + geom_msiheatmap()
 	   + MSI_knnfill()
        # add ggplot charting elements
        + ggtitle(`MS-Imaging of ${paste(mzlist, "+")}`)
