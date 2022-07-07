@@ -21,8 +21,8 @@ const mzSet = mz
 
 str(mzSet);
 
-const padding = [50, 350, 50, 50];
-const size    = [2700, 2000];
+const padding = [50, 450, 50, 50];
+const size    = [2800, 2100];
 const images  = lapply(mzSet, function(ion) {
 	let mz    = as.numeric(ion$mz);
     let layer = app::getMSIData(
