@@ -1,7 +1,7 @@
 @echo off
 
 SET R_HOME=../bin/
-SET R_ENV=%R_HOME%/R#.exe
+SET R_ENV="%R_HOME%/R#.exe"
 
 %R_ENV% --install.packages "./GCModeller.zip"
 %R_ENV% --install.packages "./ggplot.zip"
