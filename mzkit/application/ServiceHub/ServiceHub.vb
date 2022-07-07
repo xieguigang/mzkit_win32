@@ -253,6 +253,9 @@ Module ServiceHub
 
         If data Is Nothing Then
             Return {}
+        ElseIf data.IsHTTP_RFC Then
+            Call MyApplication.host.showStatusMessage(data.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Return {}
         Else
             Return PixelScanIntensity.Parse(data.ChunkBuffer)
         End If
