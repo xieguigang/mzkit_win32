@@ -1006,11 +1006,18 @@ Public Class frmMsImagingViewer
         If Not ServiceHub.MSIEngineRunning Then
             Call MyApplication.host.warning("You must load raw data file at first!")
             Return
+        ElseIf targetMz.IsNullOrEmpty Then
+            Call MyApplication.host.warning("No ion was selected to export MS-Imaging plot!")
+            Return
         End If
 
         Using file As New SaveFileDialog With {.Filter = "Plot Image(*.png)|*.png"}
             If file.ShowDialog = DialogResult.OK Then
-                Call RscriptProgressTask.ExportSingleIonPlot(targetMz(0), mzdiff.GetScript, saveAs:=file.FileName)
+                If targetMz.Length > 1 Then
+                    Call RscriptProgressTask.ExportRGBIonsPlot(targetMz, mzdiff.GetScript, saveAs:=file.FileName)
+                Else
+                    Call RscriptProgressTask.ExportSingleIonPlot(targetMz(0), mzdiff.GetScript, saveAs:=file.FileName)
+                End If
             End If
         End Using
     End Sub

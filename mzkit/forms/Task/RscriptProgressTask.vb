@@ -177,6 +177,34 @@ Public Class RscriptProgressTask
         End If
     End Sub
 
+    Public Shared Sub ExportRGBIonsPlot(mz As Double(), tolerance As String, saveAs As String)
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("MSImaging/tripleIon.R")
+        Dim cli As String = $"""{Rscript}"" --app {ServiceHub.appPort} --mzlist ""{mz}"" --save ""{saveAs}"" --mzdiff ""{tolerance}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+        Dim progress As New frmTaskProgress
+
+        progress.ShowProgressTitle("RGB Ions MS-Imaging", directAccess:=True)
+        progress.ShowProgressDetails("Do plot of target ion m/z set...", directAccess:=True)
+        progress.SetProgressMode()
+
+        Call MyApplication.LogText(pipeline.CommandLine)
+
+        AddHandler pipeline.SetMessage, AddressOf progress.ShowProgressDetails
+        AddHandler pipeline.SetProgress, AddressOf progress.SetProgress
+        AddHandler pipeline.Finish, Sub() progress.Invoke(Sub() progress.Close())
+
+        Call New Thread(AddressOf pipeline.Run).Start()
+        Call progress.ShowDialog()
+
+        If saveAs.FileExists Then
+            If MessageBox.Show("RGB Ions MS-Imaging Job Done!" & vbCrLf & "Open MSImaging result plot file?", "Open Image", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
+                Call Process.Start(saveAs.GetFullPath)
+            End If
+        Else
+            Call MessageBox.Show("RGB Ions MS-Imaging Task Error!", "Task Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+    End Sub
+
     Public Shared Sub ExportSingleIonPlot(mz As Double, tolerance As String, saveAs As String)
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSImaging/singleIon.R")
         Dim cli As String = $"""{Rscript}"" --app {ServiceHub.appPort} --mzlist ""{mz}"" --save ""{saveAs}"" --mzdiff ""{tolerance}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
