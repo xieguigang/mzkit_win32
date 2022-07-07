@@ -840,6 +840,8 @@
     <ROW File="Microsoft.VisualBasic.DataStorage.netCDF.dll_5" Component_="Microsoft.VisualBasic.DataStorage.netCDF.dll_5" FileName="MICRO~60.DLL|Microsoft.VisualBasic.DataStorage.netCDF.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.DataStorage.netCDF.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll_4" Component_="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll_4" FileName="MICRO~61.DLL|Microsoft.VisualBasic.Math.Statistics.ANOVA.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Statistics.ANOVA.dll" SelfReg="false"/>
     <ROW File="manzh.pptx" Component_="man.pptx" FileName="MAN-ZH~1.PPT|man-zh.pptx" Attributes="0" SourcePath="..\extdata\man-zh.pptx" SelfReg="false"/>
+    <ROW File="install_locals.cmd" Component_="GCModeller.zip" FileName="INSTAL~1.CMD|install_locals.cmd" Attributes="0" SourcePath="install_locals.cmd" SelfReg="false"/>
+    <ROW File="HeatMapMatrix.R" Component_="singleIon.R" FileName="HEATMA~1.R|HeatMapMatrix.R" Attributes="0" SourcePath="..\rstudio\pipeline\MSImaging\HeatMapMatrix.R" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
