@@ -50,7 +50,7 @@ bitmap(file = savefile, size = [3300, 2000]) {
        + geom_msiheatmap()
 	   + MSI_knnfill()
        # add ggplot charting elements
-       + ggtitle(`MS-Imaging of ${paste(mzlist, "+")}`)
+       + ggtitle(`MS-Imaging of ${paste(round(mzlist, 3), "+")}`)
        + labs(x = "Dimension(X)", y = "Dimension(Y)")
        + scale_x_continuous(labels = "F0")
        + scale_y_continuous(labels = "F0")
