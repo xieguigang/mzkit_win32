@@ -126,8 +126,6 @@ namespace RibbonLib.Controls
             public const uint cmdButtonImportsSCiLSLab = 185;
             public const uint cmdButtonMSIRowScans = 128;
             public const uint cmdButtonExportMSIMzpack = 127;
-            public const uint cmdPanelOptions = 155;
-            public const uint cmdCheckBoxTrIQThreshold = 154;
             public const uint cmdPanelMSIVisual = 186;
             public const uint cmdButtonMSIMatrixVisual = 187;
             public const uint cmdTabMSIAnalysis = 141;
@@ -309,8 +307,6 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonImportsSCiLSLab { get; private set; }
         public RibbonButton ButtonMSIRowScans { get; private set; }
         public RibbonButton ButtonExportMSIMzpack { get; private set; }
-        public RibbonGroup PanelOptions { get; private set; }
-        public RibbonCheckBox CheckBoxTrIQThreshold { get; private set; }
         public RibbonGroup PanelMSIVisual { get; private set; }
         public RibbonButton ButtonMSIMatrixVisual { get; private set; }
         public RibbonTab TabMSIAnalysis { get; private set; }
@@ -487,8 +483,6 @@ namespace RibbonLib.Controls
             ButtonImportsSCiLSLab = new RibbonButton(ribbon, Cmd.cmdButtonImportsSCiLSLab);
             ButtonMSIRowScans = new RibbonButton(ribbon, Cmd.cmdButtonMSIRowScans);
             ButtonExportMSIMzpack = new RibbonButton(ribbon, Cmd.cmdButtonExportMSIMzpack);
-            PanelOptions = new RibbonGroup(ribbon, Cmd.cmdPanelOptions);
-            CheckBoxTrIQThreshold = new RibbonCheckBox(ribbon, Cmd.cmdCheckBoxTrIQThreshold);
             PanelMSIVisual = new RibbonGroup(ribbon, Cmd.cmdPanelMSIVisual);
             ButtonMSIMatrixVisual = new RibbonButton(ribbon, Cmd.cmdButtonMSIMatrixVisual);
             TabMSIAnalysis = new RibbonTab(ribbon, Cmd.cmdTabMSIAnalysis);

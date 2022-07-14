@@ -2498,9 +2498,6 @@
               <Button CommandName="cmdButtonMSIRowScans" />
               <Button CommandName="cmdButtonExportMSIMzpack" />
             </Group>
-            <Group CommandName="cmdPanelOptions" ApplicationModes="0,1">
-              <CheckBox CommandName="cmdCheckBoxTrIQThreshold" />
-            </Group>
             <Group CommandName="cmdPanelMSIVisual" SizeDefinition="OneButton">
               <Button CommandName="cmdButtonMSIMatrixVisual" />
             </Group>
