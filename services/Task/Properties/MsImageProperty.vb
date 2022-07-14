@@ -126,7 +126,7 @@ Public Class MsImageProperty
     <Category("Intensity")> Public ReadOnly Property max As Double
 
     <Description("The TrIQ cutoff threshold, value in range of [0,1]")>
-    <Category("Intensity")> Public Property TrIQ As Double = 0.65
+    <Category("Intensity")> Public Property TrIQ As Double = 0.85
     <Description("Show the color map legend on the canvas display?")>
     <Category("Intensity")> Public Property showColorMap As Boolean = True
 
