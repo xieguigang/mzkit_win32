@@ -73,6 +73,7 @@
 Imports System.ComponentModel
 Imports System.Drawing
 Imports System.Drawing.Drawing2D
+Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
@@ -203,6 +204,18 @@ Public Class MsImageProperty
 
     '    Return colorMapLegend.Draw(New Size(600, 1500))
     'End Function
+
+    Public Shared Function Validation(p As MsImageProperty, e As PropertyValueChangedEventArgs) As String
+        If p.knn < 0 Then
+            p.knn = e.OldValue
+            Return "the knn range can not be negative value!"
+        ElseIf p.knn > 13 Then
+            p.knn = e.OldValue
+            Return "the knn range number is too large!"
+        End If
+
+        Return Nothing
+    End Function
 
     Public Sub SetIntensityMax(max As Double)
         _min = 0

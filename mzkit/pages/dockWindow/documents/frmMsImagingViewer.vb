@@ -847,7 +847,13 @@ Public Class frmMsImagingViewer
 
     Private Sub tweaks_PropertyValueChanged(s As Object, e As PropertyValueChangedEventArgs) Handles tweaks.PropertyValueChanged
         If Not rendering Is Nothing Then
-            Call rendering()
+            Dim reason As String = MsImageProperty.Validation(s, e)
+
+            If reason.StringEmpty Then
+                Call rendering()
+            Else
+                Call MessageBox.Show(reason, "MS-Imaging Viewer", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            End If
         Else
             Call MyApplication.host.showStatusMessage("No image for render...", My.Resources.StatusAnnotations_Warning_32xLG_color)
         End If
