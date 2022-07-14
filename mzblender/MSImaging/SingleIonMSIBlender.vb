@@ -1,29 +1,10 @@
-﻿Imports System.ComponentModel
-Imports System.IO
-Imports System.Threading
-Imports BioNovoGene.Analytical.MassSpectrometry
-Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
-Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
-Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
-Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
+﻿Imports BioNovoGene.Analytical.MassSpectrometry
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
-Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
-Imports BioNovoGene.mzkit_win32.My
-Imports ControlLibrary
-Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
-Imports Microsoft.VisualBasic.Language
-Imports Microsoft.VisualBasic.Linq
-Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Scripting.Runtime
-Imports Microsoft.VisualBasic.Serialization.JSON
-Imports mzblender
 Imports Task
-Imports WeifenLuo.WinFormsUI.Docking
-Imports File = Microsoft.VisualBasic.Data.csv.IO.File
-Imports stdNum = System.Math
 
 Public Class SingleIonMSIBlender : Inherits Blender
 
@@ -47,9 +28,8 @@ Public Class SingleIonMSIBlender : Inherits Blender
         pixelFilter = MsImaging.Drawer.ScalePixels(pixels, params.GetTolerance, cut:={0, 1})
         pixelFilter = MsImaging.Drawer.GetPixelsMatrix(pixelFilter)
 
-        Dim range As DoubleRange =
         Dim drawer As New PixelRender(heatmapRender:=False)
-        Dim image As Image = Drawer.RenderPixels(
+        Dim image As Image = drawer.RenderPixels(
             pixels:=pixelFilter,
             dimension:=dimensionSize,
             dimSize:=size.SizeParser,
