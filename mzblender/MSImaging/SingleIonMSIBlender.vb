@@ -13,6 +13,7 @@ Public Class SingleIonMSIBlender : Inherits Blender
     ReadOnly intensity As Double()
 
     Public ReadOnly Property range As DoubleRange
+    Public ReadOnly Property dotSize As New Size(3, 3)
 
     Sub New(layer As PixelData(), params As MsImageProperty)
         Me.layer = New SingleIonLayer With {.MSILayer = layer}
@@ -23,7 +24,7 @@ Public Class SingleIonMSIBlender : Inherits Blender
 
     Public Overrides Function Rendering(args As PlotProperty, target As Size) As Image
         Dim dimensionSize As New Size(params.scan_x, params.scan_y)
-        Dim size As String = "2,2"
+        Dim size As String = $"{dotSize.Width},{dotSize.Height}"
         Dim pixels As PixelData() = layer.MSILayer
         Dim pixelFilter As PixelData() = pixels
         Dim cut As Double = New TrIQThreshold(params.TrIQ) With {

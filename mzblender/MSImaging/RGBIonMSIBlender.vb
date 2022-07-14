@@ -2,6 +2,8 @@
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Driver
+Imports Microsoft.VisualBasic.Linq
 Imports Task
 
 Public Class RGBIonMSIBlender : Inherits Blender
@@ -10,12 +12,15 @@ Public Class RGBIonMSIBlender : Inherits Blender
     ReadOnly pixelSize$
     ReadOnly params As MsImageProperty
 
-    Public ReadOnly Property dotSize As New Size(2, 2)
+    Public ReadOnly Property dotSize As New Size(3, 3)
 
     Sub New(r As PixelData(), g As PixelData(), b As PixelData(), pixel_size As String, params As MsImageProperty)
-        Me.R = r
-        Me.G = g
-        Me.B = b
+        Dim joinX = r.JoinIterates(g).JoinIterates(b).Select(Function(i) i.x).Max
+        Dim joinY = r.JoinIterates(g).JoinIterates(b).Select(Function(i) i.y).Max
+
+        Me.R = KnnInterpolation.KnnFill(r, New Size(joinX, joinY), 6, 6).ToArray
+        Me.G = KnnInterpolation.KnnFill(g, New Size(joinX, joinY), 6, 6).ToArray
+        Me.B = KnnInterpolation.KnnFill(b, New Size(joinX, joinY), 6, 6).ToArray
         Me.pixelSize = pixel_size
         Me.params = params
     End Sub
