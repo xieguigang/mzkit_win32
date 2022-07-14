@@ -721,31 +721,19 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Function createRenderTask(R As PixelData(), G As PixelData(), B As PixelData(), pixelSize$) As Action
-        Dim dimensionSize As New Size(params.scan_x, params.scan_y)
-        Dim threshold As IThreshold = RibbonEvents.GetQuantizationThreshold
+        Dim blender As New RGBIonMSIBlender(R, G, B, pixelSize, params)
 
-        loadedPixels = R.JoinIterates(G).JoinIterates(B).ToArray
+        loadedPixels = R _
+            .JoinIterates(G) _
+            .JoinIterates(B) _
+            .ToArray
 
         Return Sub()
                    Call MyApplication.RegisterPlot(
                        Sub(args)
-                           Dim drawer As New PixelRender(heatmapRender:=False)
-                           Dim qr As Double = threshold(R.Select(Function(p) p.intensity).ToArray, params.maxCut)
-                           Dim qg As Double = threshold(G.Select(Function(p) p.intensity).ToArray, params.maxCut)
-                           Dim qb As Double = threshold(B.Select(Function(p) p.intensity).ToArray, params.maxCut)
+                           Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
 
-                           Dim dotSize As Size = New Size(2, 2)   ' pixelSize.SizeParser
-                           Dim image As Image = drawer.ChannelCompositions(
-                               R:=R, G:=G, B:=B,
-                               dimension:=dimensionSize,
-                               dimSize:=dotSize,
-                               scale:=params.scale,
-                               cut:=(New DoubleRange(0, qr), New DoubleRange(0, qg), New DoubleRange(0, qb)),
-                               background:=params.background.ToHtmlColor
-                           ).AsGDIImage
-                           Dim legend As Image = Nothing
-
-                           PixelSelector1.SetMsImagingOutput(image, dotSize, Nothing, Nothing, Nothing)
+                           PixelSelector1.SetMsImagingOutput(image, blender.dotSize, Nothing, Nothing, Nothing)
                            PixelSelector1.BackColor = params.background
                            PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
                        End Sub)

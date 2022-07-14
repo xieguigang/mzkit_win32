@@ -241,16 +241,6 @@ Module RibbonEvents
         End Using
     End Sub
 
-    Public Function GetQuantizationThreshold() As IThreshold
-        If ribbonItems.CheckBoxTrIQThreshold.BooleanValue Then
-            Static q1 As New TrIQThreshold
-            Return AddressOf q1.ThresholdValue
-        Else
-            Static q2 As New RankQuantileThreshold
-            Return AddressOf q2.ThresholdValue
-        End If
-    End Function
-
     Public Sub CopyPlotImage()
         Dim img As Image = MyApplication.host.mzkitTool.PictureBox1.BackgroundImage
 
