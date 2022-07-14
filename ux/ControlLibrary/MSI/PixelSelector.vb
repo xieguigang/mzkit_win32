@@ -1175,6 +1175,12 @@ Public Class PixelSelector
         End Get
     End Property
 
+    Public ReadOnly Property CanvasSize As Size
+        Get
+            Return picCanvas.Size
+        End Get
+    End Property
+
     Public Sub SetColorMapVisible(visible As Boolean)
         If range.IsNullOrEmpty AndAlso mapLevels = 0 Then
             ColorScaleMap1.Visible = False

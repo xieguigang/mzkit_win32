@@ -84,6 +84,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports mzblender
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 Imports File = Microsoft.VisualBasic.Data.csv.IO.File
@@ -652,25 +653,17 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Function registerSummaryRender(summary As IntensitySummary) As Action
-        Dim summaryLayer As PixelScanIntensity() = ServiceHub.LoadSummaryLayer(summary).KnnFill(6, 6).ToArray
-        Dim dimSize As New Size(params.scan_x, params.scan_y)
+        Dim summaryLayer As PixelScanIntensity() = ServiceHub.LoadSummaryLayer(summary)
         Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
+        Dim blender As New SummaryMSIBlender(summaryLayer, params)
 
         Return Sub()
                    Call MyApplication.RegisterPlot(
                        Sub(args)
-                           Dim dotSize As New Size(2, 2)
+                           Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
                            Dim mapLevels As Integer = params.mapLevels
-                           Dim image As Image = Drawer.RenderSummaryLayer(
-                               layer:=summaryLayer,
-                               dimension:=dimSize,
-                               colorSet:=params.colors.Description,
-                               pixelSize:=$"{dotSize.Width},{dotSize.Height}",
-                               mapLevels:=mapLevels
-                           ).AsGDIImage
-                           Dim legend As Image = Nothing ' If(ShowLegendToolStripMenuItem.Checked, params.RenderingColorMapLegend(summaryLayer), Nothing)
 
-                           PixelSelector1.SetMsImagingOutput(image, dotSize, params.colors, {range.Min, range.Max}, mapLevels)
+                           PixelSelector1.SetMsImagingOutput(image, blender.dotSize, params.colors, {range.Min, range.Max}, mapLevels)
                            PixelSelector1.BackColor = params.background
                            PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
                        End Sub)
