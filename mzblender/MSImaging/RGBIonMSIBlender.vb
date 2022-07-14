@@ -29,15 +29,14 @@ Public Class RGBIonMSIBlender : Inherits Blender
 
     Public Overrides Function Rendering(args As PlotProperty, target As Size) As Image
         Dim drawer As New PixelRender(heatmapRender:=False)
-        Dim q1 As New TrIQThreshold
-        Dim threshold As IThreshold = AddressOf q1.ThresholdValue
+        Dim q1 As New TrIQThreshold(params.TrIQ)
         Dim dimensionSize As New Size(params.scan_x, params.scan_y)
         Dim r = KnnInterpolation.KnnFill(Me.R, originalSize, params.knn, params.knn, params.knn_qcut)
         Dim g = KnnInterpolation.KnnFill(Me.G, originalSize, params.knn, params.knn, params.knn_qcut)
         Dim b = KnnInterpolation.KnnFill(Me.B, originalSize, params.knn, params.knn, params.knn_qcut)
-        Dim qr As Double = threshold(r.Select(Function(p) p.intensity).ToArray, params.TrIQ)
-        Dim qg As Double = threshold(g.Select(Function(p) p.intensity).ToArray, params.TrIQ)
-        Dim qb As Double = threshold(b.Select(Function(p) p.intensity).ToArray, params.TrIQ)
+        Dim qr As Double = q1.ThresholdValue(r.Select(Function(p) p.intensity).ToArray)
+        Dim qg As Double = q1.ThresholdValue(g.Select(Function(p) p.intensity).ToArray)
+        Dim qb As Double = q1.ThresholdValue(b.Select(Function(p) p.intensity).ToArray)
         Dim cutoff = (New DoubleRange(0, qr), New DoubleRange(0, qg), New DoubleRange(0, qb))
         Dim image As Image = drawer.ChannelCompositions(
             R:=r, G:=g, B:=b,
