@@ -807,54 +807,22 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Function createRenderTask(pixels As PixelData(), size$) As Action
+        Dim blender As New SingleIonMSIBlender(pixels, params)
+        Dim range As DoubleRange = blender.range
+
         loadedPixels = pixels
 
         Return Sub()
-                   Call MyApplication.RegisterPlot(Sub(args) Call Plot(args, pixels, size))
+                   Call MyApplication.RegisterPlot(
+                       Sub(args)
+                           Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
+
+                           PixelSelector1.SetMsImagingOutput(image, size.SizeParser, params.colors, {range.Min, range.Max}, params.mapLevels)
+                           PixelSelector1.BackColor = params.background
+                           PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
+                       End Sub)
                End Sub
     End Function
-
-    Private Sub Plot(args As PlotProperty, pixels As PixelData(), size$)
-        Dim dimensionSize As New Size(params.scan_x, params.scan_y)
-        Dim pixelFilter As PixelData() = (
-            From pm As PixelData
-            In pixels
-            Where pm.intensity >= params.lowerbound
-            Select If(pm.intensity > params.upperbound, New PixelData With {
-                .intensity = params.upperbound,
-                .level = pm.level,
-                .mz = pm.mz,
-                .x = pm.x,
-                .y = pm.y
-            }, pm)
-        ).ToArray
-
-        'If params.densityCut > 0 Then
-        '    pixelFilter = pixelFilter _
-        '        .DensityCut(qcut:=params.densityCut) _
-        '        .ToArray
-        'End If
-
-        pixelFilter = MsImaging.Drawer.ScalePixels(pixelFilter, params.GetTolerance, cut:={0, 1})
-        pixelFilter = MsImaging.Drawer.GetPixelsMatrix(pixelFilter)
-        size = "2,2"
-
-        Dim range As DoubleRange = pixelFilter.Select(Function(i) i.intensity).Range
-        Dim drawer As New PixelRender(heatmapRender:=False)
-        Dim image As Image = drawer.RenderPixels(
-            pixels:=pixelFilter,
-            dimension:=dimensionSize,
-            dimSize:=size.SizeParser,
-            mapLevels:=params.mapLevels,
-            colorSet:=params.colors.Description,
-            scale:=params.scale
-        ).AsGDIImage
-        Dim legend As Image = Nothing ' If(ShowLegendToolStripMenuItem.Checked, params.RenderingColorMapLegend(pixelFilter), Nothing)
-
-        PixelSelector1.SetMsImagingOutput(image, size.SizeParser, params.colors, {range.Min, range.Max}, params.mapLevels)
-        PixelSelector1.BackColor = params.background
-        PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
-    End Sub
 
     Protected Overrides Sub OpenContainingFolder()
         Call Process.Start(FilePath.ParentPath)
