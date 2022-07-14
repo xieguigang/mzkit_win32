@@ -846,7 +846,9 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub tweaks_PropertyValueChanged(s As Object, e As PropertyValueChangedEventArgs) Handles tweaks.PropertyValueChanged
-        If Not rendering Is Nothing Then
+        If e.ChangedItem.Label = "" Then
+            PixelSelector1.BackColor = params.background
+        ElseIf Not rendering Is Nothing Then
             Dim grid As PropertyGrid = DirectCast(s, PropertyGrid)
             Dim reason As String = MsImageProperty.Validation(grid.SelectedObject, e)
 
