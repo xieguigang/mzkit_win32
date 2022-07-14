@@ -847,7 +847,8 @@ Public Class frmMsImagingViewer
 
     Private Sub tweaks_PropertyValueChanged(s As Object, e As PropertyValueChangedEventArgs) Handles tweaks.PropertyValueChanged
         If Not rendering Is Nothing Then
-            Dim reason As String = MsImageProperty.Validation(s, e)
+            Dim grid As PropertyGrid = DirectCast(s, PropertyGrid)
+            Dim reason As String = MsImageProperty.Validation(grid.SelectedObject, e)
 
             If reason.StringEmpty Then
                 Call rendering()
