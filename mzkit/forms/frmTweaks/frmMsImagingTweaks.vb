@@ -1,61 +1,61 @@
 ﻿#Region "Microsoft.VisualBasic::a3c3a8a51471fa789759ba9dcba6b66e, mzkit\src\mzkit\mzkit\forms\frmTweaks\frmMsImagingTweaks.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 339
-    '    Code Lines: 258
-    ' Comment Lines: 23
-    '   Blank Lines: 58
-    '     File Size: 12.19 KB
+' Summaries:
 
 
-    ' Class frmMsImagingTweaks
-    ' 
-    '     Properties: Parameters
-    ' 
-    '     Function: GetSelectedIons
-    ' 
-    '     Sub: AddIonMzLayer, checkNode, ClearIons, frmMsImagingTweaks_Load, LoadBasePeakIonsToolStripMenuItem_Click
-    '          loadBasePeakMz, LoadPinnedIons, loadRenderFromCDF, PropertyGrid1_DragDrop, PropertyGrid1_DragEnter
-    '          RGBLayers, ToolStripButton1_Click, ToolStripButton2_Click, ToolStripSpringTextBox1_Click, uncheckNode
-    '          Win7StyleTreeView1_AfterCheck
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 339
+'    Code Lines: 258
+' Comment Lines: 23
+'   Blank Lines: 58
+'     File Size: 12.19 KB
+
+
+' Class frmMsImagingTweaks
+' 
+'     Properties: Parameters
+' 
+'     Function: GetSelectedIons
+' 
+'     Sub: AddIonMzLayer, checkNode, ClearIons, frmMsImagingTweaks_Load, LoadBasePeakIonsToolStripMenuItem_Click
+'          loadBasePeakMz, LoadPinnedIons, loadRenderFromCDF, PropertyGrid1_DragDrop, PropertyGrid1_DragEnter
+'          RGBLayers, ToolStripButton1_Click, ToolStripButton2_Click, ToolStripSpringTextBox1_Click, uncheckNode
+'          Win7StyleTreeView1_AfterCheck
+' 
+' /********************************************************************************/
 
 #End Region
 
@@ -70,6 +70,7 @@ Imports BioNovoGene.mzkit_win32.My
 Imports RibbonLib.Interop
 Imports Task
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
+Imports ControlLibrary
 
 Public Class frmMsImagingTweaks
 
@@ -103,24 +104,6 @@ UseCheckedList:
 
     Public Const Ion_Layers As String = "Ion Layers"
     Public Const Pinned_Pixels As String = "Pinned Pixels"
-
-    Shared ReadOnly channelNames As New Dictionary(Of String, String) From {
-        {"r", "Red"},
-        {"g", "Green"},
-        {"b", "Blue"}
-    }
-
-    ''' <summary>
-    ''' negative value or zero means no ion selected
-    ''' </summary>
-    ''' <remarks>
-    ''' [r,g,b] => m/z[]
-    ''' </remarks>
-    ReadOnly rgb As New Dictionary(Of String, TreeNode) From {
-        {"r", Nothing},
-        {"g", Nothing},
-        {"b", Nothing}
-    }
 
     Public ReadOnly Property Parameters As MsImageProperty
         Get
@@ -166,21 +149,7 @@ UseCheckedList:
             Return
         End If
 
-        checkedMz.Add(node)
-
-        If rgb.Any(Function(i) i.Value Is Nothing) Then
-            For Each C As KeyValuePair(Of String, TreeNode) In rgb.ToArray
-                If C.Value Is Nothing Then
-                    rgb(C.Key) = node
-
-                    If node.Text.IsNumeric OrElse node.Text.IsPattern(".+ \([rgb]\)") Then
-                        node.Text = $"{CDbl(node.Tag).ToString("F4")} ({channelNames(C.Key)})"
-                    End If
-
-                    Exit For
-                End If
-            Next
-        End If
+        Call checkedMz.Add(node)
     End Sub
 
     Private Sub uncheckNode(node As TreeNode)
@@ -194,13 +163,6 @@ UseCheckedList:
         End If
 
         checkedMz.Remove(node)
-
-        For Each C As KeyValuePair(Of String, TreeNode) In rgb.ToArray
-            If C.Value Is node Then
-                rgb(C.Key) = Nothing
-                node.Text = CDbl(node.Tag).ToString("F4")
-            End If
-        Next
     End Sub
 
     Private Sub Win7StyleTreeView1_AfterCheck(sender As Object, e As TreeViewEventArgs) Handles Win7StyleTreeView1.AfterCheck
@@ -285,19 +247,7 @@ UseCheckedList:
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub RGBLayers(sender As Object, e As EventArgs) Handles RenderLayerCompositionModeToolStripMenuItem.Click
-        Dim mz3 As Double() = New Double(2) {}
-
-        If rgb.All(Function(i) i.Value Is Nothing) Then
-            mz3 = {}
-        Else
-            Dim rgb As String() = {"r", "g", "b"}
-
-            For i As Integer = 0 To rgb.Length - 1
-                If Not Me.rgb(rgb(i)) Is Nothing Then
-                    mz3(i) = Me.rgb(rgb(i)).Tag
-                End If
-            Next
-        End If
+        Dim mz3 As Double() = GetSelectedIons.ToArray
 
         If mz3.Length = 0 Then
             Call MyApplication.host.showStatusMessage("no ions data...", My.Resources.StatusAnnotations_Warning_32xLG_color)
@@ -306,12 +256,26 @@ UseCheckedList:
             Return
         End If
 
-        Dim r As Double = mz3.ElementAtOrDefault(0, [default]:=-1)
-        Dim g As Double = mz3.ElementAtOrDefault(1, [default]:=-1)
-        Dim b As Double = mz3.ElementAtOrDefault(2, [default]:=-1)
-        Dim viewer = WindowModules.viewer
+        Dim getFormula As New InputIonRGB
+        Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
 
-        Call viewer.renderRGB(r, g, b)
+        For Each ion As Double In mz3
+            Dim ionStr As String = ion.ToString("F4")
+
+            Call getFormula.cR.Items.Add(ionStr)
+            Call getFormula.cG.Items.Add(ionStr)
+            Call getFormula.cB.Items.Add(ionStr)
+        Next
+
+        If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
+            Dim r As Double = getFormula.R
+            Dim g As Double = getFormula.G
+            Dim b As Double = getFormula.B
+            Dim viewer = WindowModules.viewer
+
+            Call viewer.renderRGB(r, g, b)
+            Call viewer.Show(MyApplication.host.dockPanel)
+        End If
     End Sub
 
     Private Sub PropertyGrid1_DragDrop(sender As Object, e As DragEventArgs) Handles PropertyGrid1.DragDrop

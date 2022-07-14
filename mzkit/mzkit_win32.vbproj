@@ -415,6 +415,12 @@
     <Compile Include="forms\frmTweaks\frmTweaks.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\Inputs\InputIonRGB.Designer.vb">
+      <DependentUpon>InputIonRGB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\InputIonRGB.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\InputMatrixIons.Designer.vb">
       <DependentUpon>InputMatrixIons.vb</DependentUpon>
     </Compile>
@@ -913,6 +919,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmUserAgreement.resx">
       <DependentUpon>frmUserAgreement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\InputIonRGB.resx">
+      <DependentUpon>InputIonRGB.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputAction.resx">
       <DependentUpon>InputAction.vb</DependentUpon>
