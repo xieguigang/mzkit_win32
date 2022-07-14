@@ -28,12 +28,13 @@ Public Class RGBIonMSIBlender : Inherits Blender
         Dim qr As Double = threshold(R.Select(Function(p) p.intensity).ToArray, params.TrIQ)
         Dim qg As Double = threshold(G.Select(Function(p) p.intensity).ToArray, params.TrIQ)
         Dim qb As Double = threshold(B.Select(Function(p) p.intensity).ToArray, params.TrIQ)
+        Dim cutoff = (New DoubleRange(0, qr), New DoubleRange(0, qg), New DoubleRange(0, qb))
         Dim image As Image = drawer.ChannelCompositions(
             R:=R, G:=G, B:=B,
             dimension:=dimensionSize,
             dimSize:=dotSize,
             scale:=params.scale,
-            cut:=(New DoubleRange(0, qr), New DoubleRange(0, qg), New DoubleRange(0, qb)),
+            cut:=cutoff,
             background:=params.background.ToHtmlColor
         ).AsGDIImage
 
