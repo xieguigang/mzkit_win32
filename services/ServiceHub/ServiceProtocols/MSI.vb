@@ -250,9 +250,13 @@ Public Class MSI : Implements ITaskDriver, IDisposable
     <Protocol(ServiceProtocol.LoadMSILayers)>
     Public Function GetMSILayers(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
         Dim config As LayerLoader = BSON.Load(request.ChunkBuffer).CreateObject(Of LayerLoader)
-        Dim layers As PixelData() = MSI.LoadPixels(config.mz, config.GetTolerance).ToArray
+        Dim layers As PixelData()
 
+        Call RunSlavePipeline.SendMessage($"configuration for load ion layers: {JsonContract.GetJson(config)}")
+
+        layers = MSI.LoadPixels(config.mz, config.GetTolerance).ToArray
         ' layers = KnnInterpolation.KnnFill(layers, MSI.dimension, dx:=3, dy:=3)
+        Call RunSlavePipeline.SendMessage($"get {layers.Length} pixels from the m/z matches!")
 
         Return New DataPipe(PixelData.GetBuffer(layers))
     End Function
