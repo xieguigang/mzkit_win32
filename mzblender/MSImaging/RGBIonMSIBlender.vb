@@ -11,6 +11,7 @@ Public Class RGBIonMSIBlender : Inherits Blender
     ReadOnly R As PixelData(), G As PixelData(), B As PixelData()
     ReadOnly pixelSize$
     ReadOnly params As MsImageProperty
+    ReadOnly originalSize As Size
 
     Public ReadOnly Property dotSize As New Size(3, 3)
 
@@ -18,9 +19,10 @@ Public Class RGBIonMSIBlender : Inherits Blender
         Dim joinX = r.JoinIterates(g).JoinIterates(b).Select(Function(i) i.x).Max
         Dim joinY = r.JoinIterates(g).JoinIterates(b).Select(Function(i) i.y).Max
 
-        Me.R = KnnInterpolation.KnnFill(r, New Size(joinX, joinY), 6, 6).ToArray
-        Me.G = KnnInterpolation.KnnFill(g, New Size(joinX, joinY), 6, 6).ToArray
-        Me.B = KnnInterpolation.KnnFill(b, New Size(joinX, joinY), 6, 6).ToArray
+        Me.originalSize = New Size(joinX, joinY)
+        Me.R = r
+        Me.G = g
+        Me.B = b
         Me.pixelSize = pixel_size
         Me.params = params
     End Sub
@@ -30,12 +32,15 @@ Public Class RGBIonMSIBlender : Inherits Blender
         Dim q1 As New TrIQThreshold
         Dim threshold As IThreshold = AddressOf q1.ThresholdValue
         Dim dimensionSize As New Size(params.scan_x, params.scan_y)
-        Dim qr As Double = threshold(R.Select(Function(p) p.intensity).ToArray, params.TrIQ)
-        Dim qg As Double = threshold(G.Select(Function(p) p.intensity).ToArray, params.TrIQ)
-        Dim qb As Double = threshold(B.Select(Function(p) p.intensity).ToArray, params.TrIQ)
+        Dim r = KnnInterpolation.KnnFill(Me.R, originalSize, params.knn, params.knn, params.knn_qcut)
+        Dim g = KnnInterpolation.KnnFill(Me.G, originalSize, params.knn, params.knn, params.knn_qcut)
+        Dim b = KnnInterpolation.KnnFill(Me.B, originalSize, params.knn, params.knn, params.knn_qcut)
+        Dim qr As Double = threshold(r.Select(Function(p) p.intensity).ToArray, params.TrIQ)
+        Dim qg As Double = threshold(g.Select(Function(p) p.intensity).ToArray, params.TrIQ)
+        Dim qb As Double = threshold(b.Select(Function(p) p.intensity).ToArray, params.TrIQ)
         Dim cutoff = (New DoubleRange(0, qr), New DoubleRange(0, qg), New DoubleRange(0, qb))
         Dim image As Image = drawer.ChannelCompositions(
-            R:=R, G:=G, B:=B,
+            R:=r, G:=g, B:=b,
             dimension:=dimensionSize,
             dimSize:=dotSize,
             scale:=params.scale,

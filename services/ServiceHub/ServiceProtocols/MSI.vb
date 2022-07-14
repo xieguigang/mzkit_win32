@@ -252,7 +252,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Dim config As LayerLoader = BSON.Load(request.ChunkBuffer).CreateObject(Of LayerLoader)
         Dim layers As PixelData() = MSI.LoadPixels(config.mz, config.GetTolerance).ToArray
 
-        layers = KnnInterpolation.KnnFill(layers, MSI.dimension, dx:=3, dy:=3)
+        ' layers = KnnInterpolation.KnnFill(layers, MSI.dimension, dx:=3, dy:=3)
 
         Return New DataPipe(PixelData.GetBuffer(layers))
     End Function

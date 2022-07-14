@@ -13,10 +13,12 @@ Public Class SummaryMSIBlender : Inherits Blender
 
     Public ReadOnly Property dotSize As New Size(3, 3)
 
-    Sub New(layer As PixelScanIntensity(), params As MsImageProperty)
+    Sub New(summaryLayer As PixelScanIntensity(), params As MsImageProperty)
         Me.params = params
-        Me.summaryLayer = layer.KnnFill(6, 6).ToArray
-        Me.intensity = layer.Select(Function(p) p.totalIon).ToArray
+        Me.summaryLayer = summaryLayer
+        Me.intensity = summaryLayer _
+            .Select(Function(p) p.totalIon) _
+            .ToArray
     End Sub
 
     Public Overrides Function Rendering(args As PlotProperty, target As Size) As Image
@@ -26,7 +28,7 @@ Public Class SummaryMSIBlender : Inherits Blender
             .levels = params.mapLevels
         }.ThresholdValue(intensity)
         Dim image As Image = Drawer.RenderSummaryLayer(
-            layer:=summaryLayer,
+            layer:=summaryLayer.KnnFill(params.knn, params.knn, params.knn_qcut).ToArray,
             dimension:=dimSize,
             colorSet:=params.colors.Description,
             pixelSize:=$"{dotSize.Width},{dotSize.Height}",

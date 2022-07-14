@@ -16,7 +16,13 @@ Public Class SingleIonMSIBlender : Inherits Blender
     Public ReadOnly Property dotSize As New Size(3, 3)
 
     Sub New(layer As PixelData(), params As MsImageProperty)
-        Me.layer = New SingleIonLayer With {.MSILayer = layer}
+        Me.layer = New SingleIonLayer With {
+            .MSILayer = layer,
+            .DimensionSize = New Size(
+                width:=layer.Select(Function(p) p.x).Max,
+                height:=layer.Select(Function(p) p.y).Max
+            )
+        }
         Me.params = params
         Me.intensity = layer.Select(Function(i) i.intensity).ToArray
         Me.range = intensity.Range
@@ -26,7 +32,7 @@ Public Class SingleIonMSIBlender : Inherits Blender
         Dim dimensionSize As New Size(params.scan_x, params.scan_y)
         Dim size As String = $"{dotSize.Width},{dotSize.Height}"
         Dim pixels As PixelData() = layer.MSILayer
-        Dim pixelFilter As PixelData() = pixels
+        Dim pixelFilter As PixelData() = KnnInterpolation.KnnFill(pixels, layer.DimensionSize, params.knn, params.knn, params.knn_qcut)
         Dim cut As Double = New TrIQThreshold(params.TrIQ) With {
             .levels = params.mapLevels
         }.ThresholdValue(intensity)
