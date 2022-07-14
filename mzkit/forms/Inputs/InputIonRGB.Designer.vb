@@ -88,7 +88,7 @@ Partial Class InputIonRGB
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.BackColor = System.Drawing.Color.Red
+        Me.Label6.BackColor = System.Drawing.Color.Blue
         Me.Label6.Location = New System.Drawing.Point(47, 132)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(53, 12)
@@ -98,7 +98,7 @@ Partial Class InputIonRGB
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.BackColor = System.Drawing.Color.Red
+        Me.Label5.BackColor = System.Drawing.Color.Green
         Me.Label5.Location = New System.Drawing.Point(47, 86)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(53, 12)
