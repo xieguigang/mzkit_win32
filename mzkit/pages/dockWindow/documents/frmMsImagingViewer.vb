@@ -66,13 +66,11 @@
 Imports System.ComponentModel
 Imports System.IO
 Imports System.Threading
-Imports BioNovoGene.Analytical.MassSpectrometry
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
-Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.mzkit_win32.My
 Imports ControlLibrary
@@ -100,6 +98,7 @@ Public Class frmMsImagingViewer
     Dim WithEvents tweaks As PropertyGrid
     Dim rendering As Action
     Dim guid As String
+    Dim blender As Blender
 
     Public ReadOnly Property MimeType As ContentType() Implements IFileReference.MimeType
         Get
@@ -657,6 +656,8 @@ Public Class frmMsImagingViewer
         Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
         Dim blender As New SummaryMSIBlender(summaryLayer, params)
 
+        Me.blender = blender
+
         Return Sub()
                    Call MyApplication.RegisterPlot(
                        Sub(args)
@@ -723,7 +724,8 @@ Public Class frmMsImagingViewer
     Private Function createRenderTask(R As PixelData(), G As PixelData(), B As PixelData(), pixelSize$) As Action
         Dim blender As New RGBIonMSIBlender(R, G, B, pixelSize, params)
 
-        loadedPixels = R _
+        Me.blender = blender
+        Me.loadedPixels = R _
             .JoinIterates(G) _
             .JoinIterates(B) _
             .ToArray
@@ -810,7 +812,8 @@ Public Class frmMsImagingViewer
         Dim blender As New SingleIonMSIBlender(pixels, params)
         Dim range As DoubleRange = blender.range
 
-        loadedPixels = pixels
+        Me.loadedPixels = pixels
+        Me.blender = blender
 
         Return Sub()
                    Call MyApplication.RegisterPlot(
@@ -846,7 +849,7 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub tweaks_PropertyValueChanged(s As Object, e As PropertyValueChangedEventArgs) Handles tweaks.PropertyValueChanged
-        If e.ChangedItem.Label = "" Then
+        If e.ChangedItem.Label.TextEquals("background") AndAlso (blender Is Nothing OrElse Not TypeOf blender Is RGBIonMSIBlender) Then
             PixelSelector1.BackColor = params.background
         ElseIf Not rendering Is Nothing Then
             Dim grid As PropertyGrid = DirectCast(s, PropertyGrid)
