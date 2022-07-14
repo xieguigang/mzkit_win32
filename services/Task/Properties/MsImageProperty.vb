@@ -97,31 +97,35 @@ End Enum
 
 Public Class MsImageProperty
 
+    <Description("The raw data file size.")>
     <Category("imzML")> Public ReadOnly Property fileSize As String
+    <Description("the unique guid of the target imzML file/mzPack/SCiLS csv data file.")>
     <Category("imzML")> Public ReadOnly Property UUID As String
+    <Description("The total pixel numbers in X axis.")>
     <Category("imzML")> Public ReadOnly Property scan_x As Integer
+    <Description("The total pixel numbers in Y axis.")>
     <Category("imzML")> Public ReadOnly Property scan_y As Integer
 
     <Category("Render")> Public Property background As Color
     <Category("Render")> <DisplayName("width")> Public Property pixel_width As Integer = 3
     <Category("Render")> <DisplayName("height")> Public Property pixel_height As Integer = 3
 
-    ' <Description("Log(e) transformation of the intensity value?")>
-    ' <Category("Render")> Public Property logE As Boolean = True
+    <Description("The scaled color set palette name.")>
     <Category("Render")> Public Property colors As ScalerPalette = ScalerPalette.viridis
+    <Description("the color depth levels of the color sequence which is generated from a specific scaler palette.")>
     <Category("Render")> Public Property mapLevels As Integer = 120
-    ' <Category("Render")> Public Property imageSmooth As SmoothFilters
-    <Category("Render")> Public Property scale As InterpolationMode = InterpolationMode.Bilinear
 
+    <Category("Render")> Public Property scale As InterpolationMode = InterpolationMode.Bilinear
+    <Description("The mass tolerance error threshold in delta dalton or ppm.")>
     <Category("Pixel M/z Data")> Public Property tolerance As Double = 0.1
     <Category("Pixel M/z Data")> Public Property method As ToleranceMethod = ToleranceMethod.Da
 
     <Category("Intensity")> Public ReadOnly Property min As Double
     <Category("Intensity")> Public ReadOnly Property max As Double
 
-    <Category("Intensity")> Public Property upperbound As Double
-    <Category("Intensity")> Public Property lowerbound As Double
-    <Category("Intensity")> Public Property maxCut As Double = 0.3
+    <Description("The TrIQ cutoff threshold, value in range of [0,1]")>
+    <Category("Intensity")> Public Property TrIQ As Double = 0.65
+    <Description("Show the color map legend on the canvas display?")>
     <Category("Intensity")> Public Property showColorMap As Boolean = True
 
     Sub New(render As Drawer)
@@ -201,9 +205,6 @@ Public Class MsImageProperty
     Public Sub SetIntensityMax(max As Double)
         _min = 0
         _max = max
-
-        lowerbound = 0
-        upperbound = stdNum.Round(max * maxCut, 1)
     End Sub
 
     Public Function GetTolerance() As Tolerance
