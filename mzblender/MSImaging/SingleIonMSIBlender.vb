@@ -25,12 +25,12 @@ Public Class SingleIonMSIBlender : Inherits Blender
         Dim dimensionSize As New Size(params.scan_x, params.scan_y)
         Dim size As String = "2,2"
         Dim pixels As PixelData() = layer.MSILayer
-        Dim pixelFilter As PixelData()
+        Dim pixelFilter As PixelData() = pixels
         Dim cut As Double = New TrIQThreshold(params.TrIQ) With {
             .levels = params.mapLevels
         }.ThresholdValue(intensity)
 
-        pixelFilter = MsImaging.Drawer.ScalePixels(pixels, params.GetTolerance, cut:={0, cut})
+        ' pixelFilter = MsImaging.Drawer.ScalePixels(pixels, params.GetTolerance, cut:={0, cut})
         pixelFilter = MsImaging.Drawer.GetPixelsMatrix(pixelFilter)
 
         Dim drawer As New PixelRender(heatmapRender:=False)
@@ -40,7 +40,8 @@ Public Class SingleIonMSIBlender : Inherits Blender
             dimSize:=size.SizeParser,
             mapLevels:=params.mapLevels,
             colorSet:=params.colors.Description,
-            scale:=params.scale
+            scale:=params.scale,
+            cutoff:={0, cut}
         ).AsGDIImage
 
         Return image
