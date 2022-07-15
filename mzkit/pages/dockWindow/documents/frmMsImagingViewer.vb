@@ -150,10 +150,22 @@ Public Class frmMsImagingViewer
         Dim precursor_type As String()
         Dim pixels As Integer()
         Dim density As Double()
+        Dim getFormula As New InputMatrixIons
+        Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
 
         If ionStat Is Nothing Then
-            MessageBox.Show("Please run ion feature stats at first!", "Heatmap Matrix Plot", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return
+            Call getFormula.LoadMetabolites()
+
+            If Not getFormula.ion_initialized Then
+                Return
+            Else
+                If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
+                    Call renderMatrixHeatmap(getFormula)
+                End If
+
+                Return
+            End If
+
         ElseIf annotation Is Nothing Then
             MessageBox.Show("No ion annotation, the plot image will only display the m/z value!", "Heatmap Matrix Plot", MessageBoxButtons.OK, MessageBoxIcon.Warning)
 
@@ -187,30 +199,33 @@ Public Class frmMsImagingViewer
             density = index.Select(Function(i) density2(i)).ToArray
         End If
 
-        Dim getFormula As New InputMatrixIons
-        Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
+        Call getFormula.Setup(mz, name, precursor_type, pixels, density)
 
         If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
-            Dim ionList = getFormula _
-                .GetSelectedIons _
-                .ToDictionary(Function(a)
-                                  Return $"{a.Name} {a.Description} {a.Value.ToString("F4")}"
-                              End Function,
-                              Function(a)
-                                  Return New Dictionary(Of String, String) From {
-                                      {"mz", a.Value},
-                                      {"title", a.Name},
-                                      {"type", a.Description}
-                                  }
-                              End Function)
-
-            Using file As New SaveFileDialog With {.Filter = "Plot image(*.png)|*.png"}
-                If file.ShowDialog = DialogResult.OK Then
-                    Call MyApplication.LogText($"Rendering for ion list in matrix style: " & ionList.GetJson)
-                    Call RscriptProgressTask.ExportHeatMapMatrixPlot(ionList, "da:0.1", file.FileName)
-                End If
-            End Using
+            Call renderMatrixHeatmap(getFormula)
         End If
+    End Sub
+
+    Private Sub renderMatrixHeatmap(getFormula As InputMatrixIons)
+        Dim ionList = getFormula _
+            .GetSelectedIons _
+            .ToDictionary(Function(a)
+                              Return $"{a.Name} {a.Description} {a.Value.ToString("F4")}"
+                          End Function,
+                          Function(a)
+                              Return New Dictionary(Of String, String) From {
+                                  {"mz", a.Value},
+                                  {"title", a.Name},
+                                  {"type", a.Description}
+                              }
+                          End Function)
+
+        Using file As New SaveFileDialog With {.Filter = "Plot image(*.png)|*.png"}
+            If file.ShowDialog = DialogResult.OK Then
+                Call MyApplication.LogText($"Rendering for ion list in matrix style: " & ionList.GetJson)
+                Call RscriptProgressTask.ExportHeatMapMatrixPlot(ionList, "da:0.1", file.FileName)
+            End If
+        End Using
     End Sub
 
     Sub MSIFeatureDetections()

@@ -72,7 +72,7 @@ Public Class InputMatrixIons
         End If
     End Sub
 
-    Dim ion_initialized As Boolean = False
+    Friend ion_initialized As Boolean = False
 
     Public Sub Setup(mz As Double(), name As String(), precursor_type As String(), pixels As Integer(), density As Double())
         Dim memoryData As New DataSet
