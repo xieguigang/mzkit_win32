@@ -92,6 +92,7 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
     Public Property AppSource As Type Implements IDataTraceback.AppSource
 
     Dim memoryData As New DataSet
+    Dim search As GridSearchHandler
 
     Public Sub LoadTable(apply As Action(Of DataTable))
         Dim table As DataTable = memoryData.Tables.Add("memoryData")
@@ -129,7 +130,10 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
         CopyFullPathToolStripMenuItem.Enabled = False
         OpenContainingFolderToolStripMenuItem.Enabled = False
 
+        search = New GridSearchHandler(AdvancedDataGridView1)
         TabText = "Table View"
+
+        AddHandler AdvancedDataGridViewSearchToolBar1.Search, AddressOf search.AdvancedDataGridViewSearchToolBar1_Search
 
         ApplyVsTheme(ContextMenuStrip1)
     End Sub
@@ -241,35 +245,6 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
 
                                    Actions.RunAction(action, name, data, table)
                                End Sub, config:=takeActions)
-    End Sub
-
-    Private Sub AdvancedDataGridViewSearchToolBar1_Search(sender As Object, e As AdvancedDataGridViewSearchToolBarSearchEventArgs) Handles AdvancedDataGridViewSearchToolBar1.Search
-        Dim restartsearch = True
-        Dim startColumn = 0
-        Dim startRow = 0
-
-        If Not e.FromBegin Then
-            Dim endcol = AdvancedDataGridView1.CurrentCell.ColumnIndex + 1 >= AdvancedDataGridView1.ColumnCount
-            Dim endrow = AdvancedDataGridView1.CurrentCell.RowIndex + 1 >= AdvancedDataGridView1.RowCount
-
-            If endcol AndAlso endrow Then
-                startColumn = AdvancedDataGridView1.CurrentCell.ColumnIndex
-                startRow = AdvancedDataGridView1.CurrentCell.RowIndex
-            Else
-                startColumn = If(endcol, 0, AdvancedDataGridView1.CurrentCell.ColumnIndex + 1)
-                startRow = AdvancedDataGridView1.CurrentCell.RowIndex + If(endcol, 1, 0)
-            End If
-        End If
-
-        Dim c = AdvancedDataGridView1.FindCell(e.ValueToSearch, If(e.ColumnToSearch IsNot Nothing, e.ColumnToSearch.Name, Nothing), startRow, startColumn, e.WholeWord, e.CaseSensitive)
-
-        If c Is Nothing AndAlso restartsearch Then
-            c = AdvancedDataGridView1.FindCell(e.ValueToSearch, If(e.ColumnToSearch IsNot Nothing, e.ColumnToSearch.Name, Nothing), 0, 0, e.WholeWord, e.CaseSensitive)
-        End If
-
-        If c IsNot Nothing Then
-            AdvancedDataGridView1.CurrentCell = c
-        End If
     End Sub
 
     Private Sub AdvancedDataGridView1_FilterStringChanged(sender As Object, e As AdvancedDataGridView.FilterEventArgs) Handles AdvancedDataGridView1.FilterStringChanged

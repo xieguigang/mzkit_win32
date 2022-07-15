@@ -11,11 +11,13 @@ Public Class InputMatrixIons
         End Get
     End Property
 
+    Dim search As GridSearchHandler
+
     Public Iterator Function GetSelectedIons() As IEnumerable(Of NamedValue(Of Double))
-        Dim mz As Double() = DataGridView1.getFieldVector("mz")
-        Dim name As Array = DataGridView1.getFieldVector("name")
-        Dim precursor As Array = DataGridView1.getFieldVector("precursor_type")
-        Dim selects As Boolean() = DataGridView1.getFieldVector("select")
+        Dim mz As Double() = AdvancedDataGridView1.getFieldVector("mz")
+        Dim name As Array = AdvancedDataGridView1.getFieldVector("name")
+        Dim precursor As Array = AdvancedDataGridView1.getFieldVector("precursor_type")
+        Dim selects As Boolean() = AdvancedDataGridView1.getFieldVector("select")
         Dim n As Integer = matrixSize.Width * matrixSize.Height
         Dim j As Integer = 1
 
@@ -42,13 +44,15 @@ Public Class InputMatrixIons
 
     Private Sub InputMatrixIons_Load(sender As Object, e As EventArgs) Handles Me.Load
         ToolStripStatusLabel1.Text = "Please select 9 ions to visual data..."
+        search = New GridSearchHandler(AdvancedDataGridView1)
+        AddHandler AdvancedDataGridViewSearchToolBar1.Search, AddressOf search.AdvancedDataGridViewSearchToolBar1_Search
     End Sub
 
     Dim n As Integer = 1
 
-    Private Sub DataGridView1_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellValueChanged
+    Private Sub DataGridView1_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs)
         If e.ColumnIndex = 0 AndAlso e.RowIndex >= 0 Then
-            Dim r = DataGridView1.Rows(e.RowIndex)
+            Dim r = AdvancedDataGridView1.Rows(e.RowIndex)
             Dim value As Boolean = r.Cells(e.ColumnIndex).Value
             Dim size = Me.matrixSize
             Dim total As Integer = size.Width * size.Height
@@ -91,10 +95,19 @@ Public Class InputMatrixIons
             table.Rows.Add({False, mz(i), name(i), precursor_type(i), pixels(i), density(i)})
         Next
 
-        DataGridView1.Columns.Clear()
+        Call Me.AdvancedDataGridView1.Columns.Clear()
+        Call Me.AdvancedDataGridView1.Rows.Clear()
+        Call AdvancedDataGridView1.SetDoubleBuffered()
+
+        For Each column As DataGridViewColumn In AdvancedDataGridView1.Columns
+            AdvancedDataGridView1.ShowMenuStrip(column)
+        Next
+
         BindingSource1.DataSource = memoryData
         BindingSource1.DataMember = table.TableName
-        DataGridView1.DataSource = BindingSource1
+
+        AdvancedDataGridView1.DataSource = BindingSource1
+        AdvancedDataGridViewSearchToolBar1.SetColumns(AdvancedDataGridView1.Columns)
     End Sub
 
     Public Sub LoadMetabolites() Handles LoadMetabolitesToolStripMenuItem.Click

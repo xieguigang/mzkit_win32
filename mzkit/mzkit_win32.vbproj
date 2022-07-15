@@ -385,6 +385,7 @@
     <Compile Include="application\settings\RawFileViewerSettings.vb" />
     <Compile Include="application\VisualStudio.vb" />
     <Compile Include="application\RPackage.vb" />
+    <Compile Include="GridSearchHandler.vb" />
     <Compile Include="forms\frmDOI.Designer.vb">
       <DependentUpon>frmDOI.vb</DependentUpon>
     </Compile>
