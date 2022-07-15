@@ -56,7 +56,8 @@ images |> PlotMSIMatrixHeatmap(
     size          = size, 
     canvasPadding = padding, 
     cellPadding   = [200, 100, 0, 100],
-    strict        = FALSE
+    strict        = FALSE,
+    gaussian      = 0
 );
 
 dev.off();
