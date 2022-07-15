@@ -50,7 +50,8 @@ images |> PlotMSIMatrixHeatmap(
     MSI_TrIQ      = 0.8,
     size          = size, 
     canvasPadding = padding, 
-    cellPadding   = [200, 100, 0, 100]
+    cellPadding   = [200, 100, 0, 100],
+    strict        = FALSE
 );
 
 dev.off();
