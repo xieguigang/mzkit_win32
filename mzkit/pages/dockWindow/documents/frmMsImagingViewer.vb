@@ -165,7 +165,7 @@ Public Class frmMsImagingViewer
                 Return
             Else
                 If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
-                    Call renderMatrixHeatmap(getFormula)
+                    ' Call renderMatrixHeatmap(getFormula)
                 End If
 
                 Return
@@ -207,11 +207,11 @@ Public Class frmMsImagingViewer
         Call getFormula.Setup(mz, name, precursor_type, pixels, density)
 
         If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
-            Call renderMatrixHeatmap(getFormula)
+            ' Call renderMatrixHeatmap(getFormula)
         End If
     End Sub
 
-    Private Sub renderMatrixHeatmap(getFormula As InputMatrixIons)
+    Friend Shared Sub renderMatrixHeatmap(getFormula As InputMatrixIons)
         Dim ionList = getFormula _
             .GetSelectedIons _
             .ToDictionary(Function(a)
@@ -228,7 +228,10 @@ Public Class frmMsImagingViewer
         Using file As New SaveFileDialog With {.Filter = "Plot image(*.png)|*.png"}
             If file.ShowDialog = DialogResult.OK Then
                 Call MyApplication.LogText($"Rendering for ion list in matrix style: " & ionList.GetJson)
-                Call RscriptProgressTask.ExportHeatMapMatrixPlot(ionList, "da:0.1", file.FileName)
+                Call getFormula.TextBox1.AppendText($"Rendering for ion list in matrix style: " & ionList.GetJson)
+                Call getFormula.TextBox1.AppendText(vbCrLf)
+                Call RscriptProgressTask.ExportHeatMapMatrixPlot(ionList, "da:0.1", file.FileName, debug:=AddressOf getFormula.TextBox1.AppendText)
+                Call getFormula.TextBox1.AppendText(vbCrLf)
             End If
         End Using
     End Sub

@@ -34,12 +34,13 @@ Public Class InputMatrixIons
         Next
     End Function
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        DialogResult = DialogResult.Cancel
-    End Sub
-
+    ''' <summary>
+    ''' 不进行窗口的隐藏，可以在弹出对话框后，进行不同离子的组合，产生多种组合形式下的绘图结果
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        DialogResult = DialogResult.OK
+        Call frmMsImagingViewer.renderMatrixHeatmap(Me)
     End Sub
 
     Private Sub InputMatrixIons_Load(sender As Object, e As EventArgs) Handles Me.Load
