@@ -18,6 +18,10 @@ const colorPalette as string = ?"--scaler" || "viridis:turbo";
 const mzSet = mz 
 |> readText() 
 |> json_decode()
+|> lapply(function(ion) {
+    ion$mz = round(as.numeric(ion$mz), 3);
+    ion;
+})
 ;
 
 str(mzSet);
