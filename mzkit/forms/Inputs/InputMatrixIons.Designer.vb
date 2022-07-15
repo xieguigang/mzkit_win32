@@ -28,6 +28,9 @@ Partial Class InputMatrixIons
         Me.AdvancedDataGridView1 = New Zuby.ADGV.AdvancedDataGridView()
         Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtRows = New System.Windows.Forms.TextBox()
         Me.txtColumns = New System.Windows.Forms.TextBox()
@@ -38,9 +41,8 @@ Partial Class InputMatrixIons
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoadMetabolitesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.txtMzdiff = New System.Windows.Forms.TextBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,6 +102,8 @@ Partial Class InputMatrixIons
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.txtMzdiff)
+        Me.TabPage2.Controls.Add(Me.Label4)
         Me.TabPage2.Controls.Add(Me.TextBox1)
         Me.TabPage2.Controls.Add(Me.Label3)
         Me.TabPage2.Controls.Add(Me.Label2)
@@ -113,6 +117,34 @@ Partial Class InputMatrixIons
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Settings"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(23, 94)
+        Me.TextBox1.Multiline = True
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ReadOnly = True
+        Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBox1.Size = New System.Drawing.Size(694, 204)
+        Me.TextBox1.TabIndex = 5
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(21, 70)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(77, 12)
+        Me.Label3.TabIndex = 4
+        Me.Label3.Text = "Command Log:"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(21, 22)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(89, 12)
+        Me.Label2.TabIndex = 3
+        Me.Label2.Text = "Matrix Layout:"
         '
         'Label1
         '
@@ -185,33 +217,22 @@ Partial Class InputMatrixIons
         Me.LoadMetabolitesToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
         Me.LoadMetabolitesToolStripMenuItem.Text = "Load Metabolites"
         '
-        'Label2
+        'Label4
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(21, 22)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(89, 12)
-        Me.Label2.TabIndex = 3
-        Me.Label2.Text = "Matrix Layout:"
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(21, 47)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(65, 12)
+        Me.Label4.TabIndex = 6
+        Me.Label4.Text = "Mass Diff:"
         '
-        'Label3
+        'txtMzdiff
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(21, 61)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(77, 12)
-        Me.Label3.TabIndex = 4
-        Me.Label3.Text = "Command Log:"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(23, 86)
-        Me.TextBox1.Multiline = True
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ReadOnly = True
-        Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBox1.Size = New System.Drawing.Size(694, 212)
-        Me.TextBox1.TabIndex = 5
+        Me.txtMzdiff.Location = New System.Drawing.Point(131, 44)
+        Me.txtMzdiff.Name = "txtMzdiff"
+        Me.txtMzdiff.Size = New System.Drawing.Size(97, 21)
+        Me.txtMzdiff.TabIndex = 7
+        Me.txtMzdiff.Text = "0.3"
         '
         'InputMatrixIons
         '
@@ -258,4 +279,6 @@ Partial Class InputMatrixIons
     Friend WithEvents Label2 As Label
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Label3 As Label
+    Friend WithEvents txtMzdiff As TextBox
+    Friend WithEvents Label4 As Label
 End Class

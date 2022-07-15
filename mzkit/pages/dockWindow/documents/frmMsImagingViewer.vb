@@ -230,7 +230,7 @@ Public Class frmMsImagingViewer
                 Call MyApplication.LogText($"Rendering for ion list in matrix style: " & ionList.GetJson)
                 Call getFormula.TextBox1.AppendText($"Rendering for ion list in matrix style: " & ionList.GetJson)
                 Call getFormula.TextBox1.AppendText(vbCrLf)
-                Call RscriptProgressTask.ExportHeatMapMatrixPlot(ionList, "da:0.1", file.FileName, debug:=AddressOf getFormula.TextBox1.AppendText)
+                Call RscriptProgressTask.ExportHeatMapMatrixPlot(ionList, $"da:{getFormula.txtMzdiff.Text}", file.FileName, debug:=AddressOf getFormula.TextBox1.AppendText)
                 Call getFormula.TextBox1.AppendText(vbCrLf)
             End If
         End Using
