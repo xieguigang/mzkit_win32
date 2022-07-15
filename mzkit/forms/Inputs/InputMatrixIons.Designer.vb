@@ -28,6 +28,8 @@ Partial Class InputMatrixIons
         Me.AdvancedDataGridView1 = New Zuby.ADGV.AdvancedDataGridView()
         Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.txtMzdiff = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -41,8 +43,7 @@ Partial Class InputMatrixIons
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoadMetabolitesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.txtMzdiff = New System.Windows.Forms.TextBox()
+        Me.ExportSingleIonsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -117,6 +118,23 @@ Partial Class InputMatrixIons
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Settings"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'txtMzdiff
+        '
+        Me.txtMzdiff.Location = New System.Drawing.Point(131, 44)
+        Me.txtMzdiff.Name = "txtMzdiff"
+        Me.txtMzdiff.Size = New System.Drawing.Size(97, 21)
+        Me.txtMzdiff.TabIndex = 7
+        Me.txtMzdiff.Text = "0.3"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(21, 47)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(65, 12)
+        Me.Label4.TabIndex = 6
+        Me.Label4.Text = "Mass Diff:"
         '
         'TextBox1
         '
@@ -200,13 +218,14 @@ Partial Class InputMatrixIons
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
         Me.MenuStrip1.Size = New System.Drawing.Size(766, 24)
         Me.MenuStrip1.TabIndex = 5
         Me.MenuStrip1.Text = "MenuStrip1"
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadMetabolitesToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadMetabolitesToolStripMenuItem, Me.ExportSingleIonsToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
@@ -217,22 +236,11 @@ Partial Class InputMatrixIons
         Me.LoadMetabolitesToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
         Me.LoadMetabolitesToolStripMenuItem.Text = "Load Metabolites"
         '
-        'Label4
+        'ExportSingleIonsToolStripMenuItem
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(21, 47)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(65, 12)
-        Me.Label4.TabIndex = 6
-        Me.Label4.Text = "Mass Diff:"
-        '
-        'txtMzdiff
-        '
-        Me.txtMzdiff.Location = New System.Drawing.Point(131, 44)
-        Me.txtMzdiff.Name = "txtMzdiff"
-        Me.txtMzdiff.Size = New System.Drawing.Size(97, 21)
-        Me.txtMzdiff.TabIndex = 7
-        Me.txtMzdiff.Text = "0.3"
+        Me.ExportSingleIonsToolStripMenuItem.Name = "ExportSingleIonsToolStripMenuItem"
+        Me.ExportSingleIonsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExportSingleIonsToolStripMenuItem.Text = "Export Single Ions"
         '
         'InputMatrixIons
         '
@@ -281,4 +289,5 @@ Partial Class InputMatrixIons
     Friend WithEvents Label3 As Label
     Friend WithEvents txtMzdiff As TextBox
     Friend WithEvents Label4 As Label
+    Friend WithEvents ExportSingleIonsToolStripMenuItem As ToolStripMenuItem
 End Class

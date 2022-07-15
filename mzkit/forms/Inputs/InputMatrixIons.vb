@@ -13,6 +13,10 @@ Public Class InputMatrixIons
 
     Dim search As GridSearchHandler
 
+    ''' <summary>
+    ''' [name => mz, description = precursor_type]
+    ''' </summary>
+    ''' <returns></returns>
     Public Iterator Function GetSelectedIons() As IEnumerable(Of NamedValue(Of Double))
         Dim mz As Double() = AdvancedDataGridView1.getFieldVector("mz")
         Dim name As Array = AdvancedDataGridView1.getFieldVector("name")
@@ -169,6 +173,18 @@ Public Class InputMatrixIons
                 Next
 
                 Call Setup(mzList.ToArray, nameList.ToArray, precursor_type.ToArray, pixels.ToArray, density.ToArray)
+            End If
+        End Using
+    End Sub
+
+    Private Sub ExportSingleIonsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportSingleIonsToolStripMenuItem.Click
+        Using folder As New FolderBrowserDialog With {.ShowNewFolderButton = True}
+            If folder.ShowDialog = DialogResult.OK Then
+                Dim mzdiff As String = $"da:{txtMzdiff.Text}"
+
+                For Each mz As NamedValue(Of Double) In GetSelectedIons()
+                    Call RscriptProgressTask.ExportSingleIonPlot(mz.Value, mzdiff, saveAs:=$"{folder.SelectedPath}/${mz.Value.ToString("F4")}.png", title:=$"{mz.Name} {mz.Description}")
+                Next
             End If
         End Using
     End Sub
