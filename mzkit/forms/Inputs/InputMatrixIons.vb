@@ -151,6 +151,8 @@ Public Class InputMatrixIons
                         Call pixels.Add(0)
                         Call density.Add(0)
                     Next
+
+                    i += 1
                 Next
 
                 Call Setup(mzList.ToArray, nameList.ToArray, precursor_type.ToArray, pixels.ToArray, density.ToArray)
