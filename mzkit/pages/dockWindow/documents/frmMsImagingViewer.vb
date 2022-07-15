@@ -189,24 +189,6 @@ Public Class frmMsImagingViewer
 
         Dim getFormula As New InputMatrixIons
         Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
-        Dim memoryData As New DataSet
-        Dim table As DataTable = memoryData.Tables.Add("memoryData")
-
-        table.Columns.Add("select", GetType(Boolean))
-        table.Columns.Add("mz", GetType(Double))
-        table.Columns.Add("name", GetType(String))
-        table.Columns.Add("precursor_type", GetType(String))
-        table.Columns.Add("pixels", GetType(Integer))
-        table.Columns.Add("density", GetType(Double))
-
-        For i As Integer = 0 To mz.Length - 1
-            Call table.Rows.Add({False, mz(i), name(i), precursor_type(i), pixels(i), density(i)})
-        Next
-
-        getFormula.DataGridView1.Columns.Clear()
-        getFormula.BindingSource1.DataSource = memoryData
-        getFormula.BindingSource1.DataMember = table.TableName
-        getFormula.DataGridView1.DataSource = getFormula.BindingSource1
 
         If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
             Dim ionList = getFormula _

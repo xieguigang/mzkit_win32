@@ -33,20 +33,24 @@ Partial Class InputMatrixIons
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtRows = New System.Windows.Forms.TextBox()
+        Me.txtColumns = New System.Windows.Forms.TextBox()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.txtColumns = New System.Windows.Forms.TextBox()
-        Me.txtRows = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LoadMetabolitesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'DataGridView1
@@ -59,7 +63,7 @@ Partial Class InputMatrixIons
         Me.DataGridView1.Location = New System.Drawing.Point(3, 3)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowTemplate.Height = 23
-        Me.DataGridView1.Size = New System.Drawing.Size(728, 335)
+        Me.DataGridView1.Size = New System.Drawing.Size(728, 309)
         Me.DataGridView1.TabIndex = 0
         '
         'Column1
@@ -96,10 +100,10 @@ Partial Class InputMatrixIons
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Location = New System.Drawing.Point(12, 12)
+        Me.TabControl1.Location = New System.Drawing.Point(12, 34)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(742, 367)
+        Me.TabControl1.Size = New System.Drawing.Size(742, 341)
         Me.TabControl1.TabIndex = 1
         '
         'TabPage1
@@ -108,7 +112,7 @@ Partial Class InputMatrixIons
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(734, 341)
+        Me.TabPage1.Size = New System.Drawing.Size(734, 315)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Select Ions"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -125,6 +129,31 @@ Partial Class InputMatrixIons
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Settings"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(126, 78)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(11, 12)
+        Me.Label1.TabIndex = 2
+        Me.Label1.Text = "x"
+        '
+        'txtRows
+        '
+        Me.txtRows.Location = New System.Drawing.Point(64, 70)
+        Me.txtRows.Name = "txtRows"
+        Me.txtRows.Size = New System.Drawing.Size(46, 21)
+        Me.txtRows.TabIndex = 1
+        Me.txtRows.Text = "3"
+        '
+        'txtColumns
+        '
+        Me.txtColumns.Location = New System.Drawing.Point(158, 70)
+        Me.txtColumns.Name = "txtColumns"
+        Me.txtColumns.Size = New System.Drawing.Size(46, 21)
+        Me.txtColumns.TabIndex = 0
+        Me.txtColumns.Text = "3"
         '
         'StatusStrip1
         '
@@ -159,30 +188,27 @@ Partial Class InputMatrixIons
         Me.Button2.Text = "Cancel"
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'txtColumns
+        'MenuStrip1
         '
-        Me.txtColumns.Location = New System.Drawing.Point(158, 70)
-        Me.txtColumns.Name = "txtColumns"
-        Me.txtColumns.Size = New System.Drawing.Size(46, 21)
-        Me.txtColumns.TabIndex = 0
-        Me.txtColumns.Text = "3"
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(766, 24)
+        Me.MenuStrip1.TabIndex = 5
+        Me.MenuStrip1.Text = "MenuStrip1"
         '
-        'txtRows
+        'FileToolStripMenuItem
         '
-        Me.txtRows.Location = New System.Drawing.Point(64, 70)
-        Me.txtRows.Name = "txtRows"
-        Me.txtRows.Size = New System.Drawing.Size(46, 21)
-        Me.txtRows.TabIndex = 1
-        Me.txtRows.Text = "3"
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadMetabolitesToolStripMenuItem})
+        Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
+        Me.FileToolStripMenuItem.Text = "File"
         '
-        'Label1
+        'LoadMetabolitesToolStripMenuItem
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(126, 78)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(11, 12)
-        Me.Label1.TabIndex = 2
-        Me.Label1.Text = "x"
+        Me.LoadMetabolitesToolStripMenuItem.Name = "LoadMetabolitesToolStripMenuItem"
+        Me.LoadMetabolitesToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.LoadMetabolitesToolStripMenuItem.Text = "Load Metabolites"
         '
         'InputMatrixIons
         '
@@ -192,7 +218,9 @@ Partial Class InputMatrixIons
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.StatusStrip1)
+        Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.TabControl1)
+        Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "InputMatrixIons"
         Me.Text = "MS-Imaging HeatMap Matrix"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -203,6 +231,8 @@ Partial Class InputMatrixIons
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -226,4 +256,7 @@ Partial Class InputMatrixIons
     Friend WithEvents txtRows As TextBox
     Friend WithEvents txtColumns As TextBox
     Friend WithEvents Label1 As Label
+    Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LoadMetabolitesToolStripMenuItem As ToolStripMenuItem
 End Class

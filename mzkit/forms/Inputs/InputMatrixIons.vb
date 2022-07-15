@@ -1,4 +1,6 @@
-﻿Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+﻿Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports DataFrame = Microsoft.VisualBasic.Data.csv.IO.DataFrame
 
 Public Class InputMatrixIons
 
@@ -70,7 +72,57 @@ Public Class InputMatrixIons
         End If
     End Sub
 
-    Private Sub DataGridView1_CellValuePushed(sender As Object, e As DataGridViewCellValueEventArgs) Handles DataGridView1.CellValuePushed
+    Dim ion_initialized As Boolean = False
 
+    Public Sub Setup(mz As Double(), name As String(), precursor_type As String(), pixels As Integer(), density As Double())
+        Dim memoryData As New DataSet
+        Dim table As DataTable = memoryData.Tables.Add("memoryData")
+
+        table.Columns.Add("select", GetType(Boolean))
+        table.Columns.Add("mz", GetType(Double))
+        table.Columns.Add("name", GetType(String))
+        table.Columns.Add("precursor_type", GetType(String))
+        table.Columns.Add("pixels", GetType(Integer))
+        table.Columns.Add("density", GetType(Double))
+
+        For i As Integer = 0 To mz.Length - 1
+            ion_initialized = True
+            table.Rows.Add({False, mz(i), name(i), precursor_type(i), pixels(i), density(i)})
+        Next
+
+        DataGridView1.Columns.Clear()
+        BindingSource1.DataSource = memoryData
+        BindingSource1.DataMember = table.TableName
+        DataGridView1.DataSource = BindingSource1
+    End Sub
+
+    Public Sub LoadMetabolites() Handles LoadMetabolitesToolStripMenuItem.Click
+        Using file As New OpenFileDialog With {.Filter = "Excel table(*.csv)|*.csv"}
+            If file.ShowDialog = DialogResult.OK Then
+                ' the fields is required:
+                '   name: the metabolite name
+                '   formula: the molecule formula for evaluate the exact mass
+                Dim data As DataFrame = DataFrame.Load(file.FileName)
+                Dim name_i As Integer = data.GetOrdinal("name")
+                Dim formula_i As Integer = data.GetOrdinal("formula")
+
+                If name_i = -1 Then
+                    MessageBox.Show("missing the metabolite 'name'!", "Load metabolites", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Return
+                ElseIf formula_i = -1 Then
+                    MessageBox.Show("missing the metabolite 'formula'!", "Load metabolites", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Return
+                End If
+
+                Dim name As String() = data.Column(name_i).ToArray
+                Dim formula As String() = data.Column(formula_i).ToArray
+                Dim exact_mass As Double() = formula _
+                    .Select(Function(f)
+                                Return FormulaScanner.ScanFormula(f).ExactMass
+                            End Function) _
+                    .ToArray
+
+            End If
+        End Using
     End Sub
 End Class
