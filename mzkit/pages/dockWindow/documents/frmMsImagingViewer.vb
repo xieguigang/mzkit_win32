@@ -133,6 +133,11 @@ Public Class frmMsImagingViewer
     ''' 成像矩阵热图
     ''' </summary>
     Sub OpenHeatmapMatrixPlot()
+        If Not ServiceHub.MSIEngineRunning Then
+            Call MyApplication.host.showStatusMessage("No MSI raw data was loaded!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Return
+        End If
+
         ' check annotation data and ion data
         Dim docs = MyApplication.host.dockPanel _
             .Documents _

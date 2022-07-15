@@ -1,4 +1,5 @@
-﻿Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
+﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
+Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports DataFrame = Microsoft.VisualBasic.Data.csv.IO.DataFrame
 
@@ -122,6 +123,24 @@ Public Class InputMatrixIons
                             End Function) _
                     .ToArray
 
+                Dim mzList As New List(Of Double)
+                Dim nameList As New List(Of String)
+                Dim precursor_type As New List(Of String)
+                Dim pixels As New List(Of Integer)
+                Dim density As New List(Of Double)
+                Dim i As Integer = 0
+
+                For Each mass As Double In exact_mass
+                    For Each type As MzCalculator In Provider.Positives
+                        Call mzList.Add(type.CalcMZ(mass))
+                        Call nameList.Add(name(i))
+                        Call precursor_type.Add(type.ToString)
+                        Call pixels.Add(0)
+                        Call density.Add(0)
+                    Next
+                Next
+
+                Call Setup(mzList.ToArray, nameList.ToArray, precursor_type.ToArray, pixels.ToArray, density.ToArray)
             End If
         End Using
     End Sub
