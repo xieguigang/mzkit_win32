@@ -52,7 +52,7 @@ bitmap(
 images |> PlotMSIMatrixHeatmap(
     layout        = [3,3],
     colorSet      = colorPalette,
-    MSI_TrIQ      = 0.8,
+    MSI_TrIQ      = 0.85,
     size          = size, 
     canvasPadding = padding, 
     cellPadding   = [200, 100, 0, 100],
