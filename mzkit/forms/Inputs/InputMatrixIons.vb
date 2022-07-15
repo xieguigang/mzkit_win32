@@ -40,7 +40,19 @@ Public Class InputMatrixIons
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Call frmMsImagingViewer.renderMatrixHeatmap(Me)
+        Dim nsize As Size = matrixSize
+        Dim n1 = GetSelectedIons.Count
+        Dim n2 = nsize.Width * nsize.Height
+
+        If n1 < n2 Then
+            MessageBox.Show($"the number of the selected ions({n1}) should be equals to or greater than the matrix layout size({n2})!",
+                            "Matrix Heatmap",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
+                        )
+        Else
+            Call frmMsImagingViewer.renderMatrixHeatmap(Me)
+        End If
     End Sub
 
     Private Sub InputMatrixIons_Load(sender As Object, e As EventArgs) Handles Me.Load
