@@ -28,7 +28,7 @@ const images  = lapply(mzlist, function(mz) {
         mz          = mz, 
         mzdiff      = mzdiff
     ) 
-    |> as.layer(context = mz)
+    |> as.layer(context = mz, strict = FALSE)
     |> knnFill()
     ;
 });

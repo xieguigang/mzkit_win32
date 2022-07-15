@@ -30,7 +30,7 @@ const images  = lapply(mzSet, function(ion) {
         mz          = mz, 
         mzdiff      = mzdiff
     ) 
-    |> as.layer(context = mz)
+    |> as.layer(context = mz, strict = FALSE)
     ;
 
     ion$layer = layer;
