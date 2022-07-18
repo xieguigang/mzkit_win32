@@ -372,7 +372,7 @@ Public Class frmRawFeaturesList
                     .Select(Function(s1)
                                 Return s1.GetMs _
                                     .OrderByDescending(Function(m1) m1.intensity) _
-                                    .Take(3)
+                                    .Take(5)
                             End Function) _
                     .IteratesALL,
                 da:=0.01,

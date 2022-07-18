@@ -201,13 +201,10 @@ Public Class frmUntargettedViewer
     End Sub
 
     Private Sub MsSelector1_XICSelector(rtmin As Double, rtmax As Double) Handles MsSelector1.XICSelector
-        Dim MS1 = raw.GetMs1Scans _
+        Dim MS1 As IEnumerable(Of ms2) = raw.GetMs1Scans _
             .Where(Function(m1) m1.rt >= rtmin AndAlso m1.rt <= rtmax) _
             .Select(Function(t) t.GetMs) _
-            .IteratesALL _
-            .ToArray _
-            .Centroid(Tolerance.DeltaMass(0.01), LowAbundanceTrimming.intoCutff) _
-            .ToArray
+            .IteratesALL
 
         Call SelectXICIon(raw, MS1, 0.01, apply:=Sub(mz1, xic)
                                                      Call MsSelector1.SetTIC(xic)
@@ -223,8 +220,11 @@ Public Class frmUntargettedViewer
 
         Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
         Dim getConfig As New InputXICTarget
+        Dim candidateSet = ms1.ToArray _
+            .Centroid(Tolerance.DeltaMass(0.01), LowAbundanceTrimming.intoCutff) _
+            .ToArray
 
-        Call getConfig.SetIons(ms1.Select(Function(i) i.mz).OrderBy(Function(i) i))
+        Call getConfig.SetIons(candidateSet.Select(Function(i) i.mz).OrderBy(Function(i) i))
 
         If mask.ShowDialogForm(getConfig) = DialogResult.OK Then
             Dim mz As Double = getConfig.XICTarget
