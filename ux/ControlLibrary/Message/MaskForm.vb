@@ -81,7 +81,7 @@ Public Class MaskForm
 
     Public Function ShowDialogForm(dialog As Form) As DialogResult
         Me.Show()
-        Me.TopMost = True
+        ' Me.TopMost = True
         Me.Activate()
         Me.BringToFront()
 
