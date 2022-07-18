@@ -155,6 +155,10 @@ Public Class frmTaskProgress
         Dim tmp As T
         Dim progress As New frmTaskProgress
 
+        If progress.ParentForm Is Nothing Then
+            progress.StartPosition = FormStartPosition.CenterScreen
+        End If
+
         Call New Thread(
             Sub()
                 Call Thread.Sleep(100)
