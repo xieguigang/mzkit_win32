@@ -124,10 +124,27 @@ Public Class frmMsImagingViewer
         AddHandler RibbonEvents.ribbonItems.ButtonMSIRawIonStat.ExecuteEvent, Sub() Call DoIonStats()
         AddHandler RibbonEvents.ribbonItems.ButtonMSIMatrixVisual.ExecuteEvent, Sub() Call OpenHeatmapMatrixPlot()
 
+        AddHandler RibbonEvents.ribbonItems.ButtonImportsTissueMorphology.ExecuteEvent, Sub() Call ImportsTissueMorphology()
+        AddHandler RibbonEvents.ribbonItems.ButtonExportRegions.ExecuteEvent, Sub() Call ExportRegions()
+
         Call ApplyVsTheme(ContextMenuStrip1)
         Call setupPolygonEditorButtons()
         Call PixelSelector1.ShowMessage("BioNovoGene MZKit MSImaging Viewer")
     End Sub
+
+#Region "Tissue Map"
+    Sub ImportsTissueMorphology()
+        Using file As New OpenFileDialog With {.Filter = "Tissue Morphology Matrix(*.cdf)|*.cdf"}
+            If file.ShowDialog = DialogResult.OK Then
+
+            End If
+        End Using
+    End Sub
+
+    Sub ExportRegions()
+
+    End Sub
+#End Region
 
     ''' <summary>
     ''' 成像矩阵热图
