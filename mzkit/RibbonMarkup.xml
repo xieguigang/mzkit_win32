@@ -2281,6 +2281,30 @@
         <Image MinDPI="144">Res/view-dual.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonImportsTissueMorphology" Id="188" LabelTitle="Imports Tissue Morphology" LabelDescription="Imports Tissue Morphology" TooltipTitle="Imports Tissue Morphology" TooltipDescription="Imports Tissue Morphology">
+      <Command.SmallImages>
+        <Image MinDPI="192">Resources/System-Map-icon.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Resources/System-Map-icon.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonExportRegions" Id="189" LabelTitle="Export Regions" LabelDescription="Export Regions" TooltipTitle="Export Regions" TooltipDescription="Export Regions">
+      <Command.SmallImages>
+        <Image MinDPI="192">Resources/emblem-downloads.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Resources/emblem-downloads.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonTissueMap" Id="190" LabelTitle="Tissue Map" LabelDescription="Tissue Map" TooltipTitle="Tissue Map" TooltipDescription="Tissue Map">
+      <Command.SmallImages>
+        <Image MinDPI="192">Resources/System-Map-icon.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Resources/System-Map-icon.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2508,12 +2532,16 @@
               <Button CommandName="cmdButtonMSIBasePeakIon" />
               <Button CommandName="cmdButtonMSITotalIon" />
             </Group>
-            <Group CommandName="cmdTabMenuMSIAnalysis" ApplicationModes="0,1" SizeDefinition="ThreeButtons">
+            <Group CommandName="cmdTabMenuMSIAnalysis" ApplicationModes="0,1" SizeDefinition="FourButtons">
               <DropDownButton CommandName="cmdButtonFeatureDetections">
                 <Button CommandName="cmdButtonMSIRawIonStat" />
                 <Button CommandName="cmdButtonMSICleanBackground" />
               </DropDownButton>
               <Button CommandName="cmdButtonExportSample" />
+              <DropDownButton CommandName="cmdButtonTissueMap">
+                <Button CommandName="cmdButtonImportsTissueMorphology" />
+                <Button CommandName="cmdButtonExportRegions" />
+              </DropDownButton>
               <ToggleButton CommandName="cmdButtonTogglePolygon" />
             </Group>
             <Group CommandName="cmdTabPolygonEditor" ApplicationModes="1">

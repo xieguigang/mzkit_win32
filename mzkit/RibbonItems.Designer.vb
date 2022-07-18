@@ -135,6 +135,9 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonMSIRawIonStat As UInteger = 166
             Public Const cmdButtonMSICleanBackground As UInteger = 167
             Public Const cmdButtonExportSample As UInteger = 135
+            Public Const cmdButtonTissueMap As UInteger = 190
+            Public Const cmdButtonImportsTissueMorphology As UInteger = 188
+            Public Const cmdButtonExportRegions As UInteger = 189
             Public Const cmdButtonTogglePolygon As UInteger = 140
             Public Const cmdTabPolygonEditor As UInteger = 144
             Public Const cmdButtonClosePolygonEditor As UInteger = 146
@@ -916,6 +919,24 @@ Namespace RibbonLib.Controls
                 Return _ButtonExportSample
             End Get
         End Property
+        Private _ButtonTissueMap As RibbonDropDownButton
+        Public ReadOnly Property ButtonTissueMap As RibbonDropDownButton
+            Get
+                Return _ButtonTissueMap
+            End Get
+        End Property
+        Private _ButtonImportsTissueMorphology As RibbonButton
+        Public ReadOnly Property ButtonImportsTissueMorphology As RibbonButton
+            Get
+                Return _ButtonImportsTissueMorphology
+            End Get
+        End Property
+        Private _ButtonExportRegions As RibbonButton
+        Public ReadOnly Property ButtonExportRegions As RibbonButton
+            Get
+                Return _ButtonExportRegions
+            End Get
+        End Property
         Private _ButtonTogglePolygon As RibbonToggleButton
         Public ReadOnly Property ButtonTogglePolygon As RibbonToggleButton
             Get
@@ -1347,6 +1368,9 @@ Namespace RibbonLib.Controls
             _ButtonMSIRawIonStat = New RibbonButton(_ribbon, Cmd.cmdButtonMSIRawIonStat)
             _ButtonMSICleanBackground = New RibbonButton(_ribbon, Cmd.cmdButtonMSICleanBackground)
             _ButtonExportSample = New RibbonButton(_ribbon, Cmd.cmdButtonExportSample)
+            _ButtonTissueMap = New RibbonDropDownButton(_ribbon, Cmd.cmdButtonTissueMap)
+            _ButtonImportsTissueMorphology = New RibbonButton(_ribbon, Cmd.cmdButtonImportsTissueMorphology)
+            _ButtonExportRegions = New RibbonButton(_ribbon, Cmd.cmdButtonExportRegions)
             _ButtonTogglePolygon = New RibbonToggleButton(_ribbon, Cmd.cmdButtonTogglePolygon)
             _TabPolygonEditor = New RibbonGroup(_ribbon, Cmd.cmdTabPolygonEditor)
             _ButtonClosePolygonEditor = New RibbonButton(_ribbon, Cmd.cmdButtonClosePolygonEditor)

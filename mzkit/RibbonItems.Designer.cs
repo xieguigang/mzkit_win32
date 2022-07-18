@@ -138,6 +138,9 @@ namespace RibbonLib.Controls
             public const uint cmdButtonMSIRawIonStat = 166;
             public const uint cmdButtonMSICleanBackground = 167;
             public const uint cmdButtonExportSample = 135;
+            public const uint cmdButtonTissueMap = 190;
+            public const uint cmdButtonImportsTissueMorphology = 188;
+            public const uint cmdButtonExportRegions = 189;
             public const uint cmdButtonTogglePolygon = 140;
             public const uint cmdTabPolygonEditor = 144;
             public const uint cmdButtonClosePolygonEditor = 146;
@@ -319,6 +322,9 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonMSIRawIonStat { get; private set; }
         public RibbonButton ButtonMSICleanBackground { get; private set; }
         public RibbonButton ButtonExportSample { get; private set; }
+        public RibbonDropDownButton ButtonTissueMap { get; private set; }
+        public RibbonButton ButtonImportsTissueMorphology { get; private set; }
+        public RibbonButton ButtonExportRegions { get; private set; }
         public RibbonToggleButton ButtonTogglePolygon { get; private set; }
         public RibbonGroup TabPolygonEditor { get; private set; }
         public RibbonButton ButtonClosePolygonEditor { get; private set; }
@@ -495,6 +501,9 @@ namespace RibbonLib.Controls
             ButtonMSIRawIonStat = new RibbonButton(ribbon, Cmd.cmdButtonMSIRawIonStat);
             ButtonMSICleanBackground = new RibbonButton(ribbon, Cmd.cmdButtonMSICleanBackground);
             ButtonExportSample = new RibbonButton(ribbon, Cmd.cmdButtonExportSample);
+            ButtonTissueMap = new RibbonDropDownButton(ribbon, Cmd.cmdButtonTissueMap);
+            ButtonImportsTissueMorphology = new RibbonButton(ribbon, Cmd.cmdButtonImportsTissueMorphology);
+            ButtonExportRegions = new RibbonButton(ribbon, Cmd.cmdButtonExportRegions);
             ButtonTogglePolygon = new RibbonToggleButton(ribbon, Cmd.cmdButtonTogglePolygon);
             TabPolygonEditor = new RibbonGroup(ribbon, Cmd.cmdTabPolygonEditor);
             ButtonClosePolygonEditor = new RibbonButton(ribbon, Cmd.cmdButtonClosePolygonEditor);
