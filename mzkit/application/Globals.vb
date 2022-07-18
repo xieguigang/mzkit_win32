@@ -510,6 +510,10 @@ Module Globals
             Next
         Next
 
+        If Not (rtmin < 0 OrElse rtmax > 10 ^ 100) Then
+            Call MyApplication.host.showStatusMessage($"Filter {rawFileNode.Nodes.Count} ms scan with RT range [{rtmin} sec, {rtmax} sec]!")
+        End If
+
         Dim UVscans As UVScan() = raw _
             .GetUVscans _
             .Where(Function(t)
