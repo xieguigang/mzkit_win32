@@ -88,6 +88,9 @@ Imports Task
 Imports PipelineHost
 Imports WeifenLuo.WinFormsUI.Docking
 Imports stdNum = System.Math
+Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
+Imports Microsoft.VisualBasic.My
+Imports Microsoft.VisualBasic.My.FrameworkInternal
 
 Module Globals
 
@@ -111,6 +114,7 @@ Module Globals
     Sub New()
         Settings = Settings.GetConfiguration()
 
+        Call FrameworkInternal.ConfigMemory(MemoryLoads.Max)
         Call LicenseFile.ApplyLicense()
     End Sub
 
@@ -479,6 +483,11 @@ Module Globals
         rawFileNode.Nodes.Clear()
 
         If Not raw.isLoaded Then
+            Call RunSlavePipeline.HookProgress(
+                Sub(pct, msg)
+                    Call Application.DoEvents()
+                    Call MyApplication.host.showStatusMessage($"{pct}/{msg}...")
+                End Sub)
             Call raw.LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache))
         End If
 
