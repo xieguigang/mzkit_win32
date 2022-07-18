@@ -364,7 +364,25 @@ Public Class frmRawFeaturesList
             MyApplication.host.showStatusMessage("No raw data file is selected!", My.Resources.StatusAnnotations_Warning_32xLG_color)
             Return
         ElseIf treeView1.SelectedNode Is Nothing OrElse treeView1.SelectedNode.Text Is Nothing Then
-            MyApplication.host.showStatusMessage("No ion data selected for create XIC plot!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call frmUntargettedViewer.SelectXICIon(
+                raw:=CurrentRawFile,
+                ms1:=CurrentRawFile _
+                    .GetLoadedMzpack _
+                    .MS _
+                    .Select(Function(s1)
+                                Return s1.GetMs _
+                                    .OrderByDescending(Function(m1) m1.intensity) _
+                                    .Take(3)
+                            End Function) _
+                    .IteratesALL,
+                da:=0.01,
+                apply:=Sub(mz, xic)
+                           Call MyApplication.mzkitRawViewer.showMatrix(xic, $"XIC, m/z={mz.ToString("F4")}")
+                           Call MyApplication.mzkitRawViewer.ShowXIC(15, New NamedCollection(Of ChromatogramTick)($"XIC, m/z={mz.ToString("F4")}", xic), AddressOf GetXICCollection, CurrentRawFile.GetXICMaxYAxis)
+                       End Sub,
+                cancel:=Sub()
+                            MyApplication.host.showStatusMessage("No ion data selected for create XIC plot!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                        End Sub)
             Return
         End If
 

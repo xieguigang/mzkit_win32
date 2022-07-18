@@ -209,10 +209,22 @@ Public Class frmUntargettedViewer
             .Centroid(Tolerance.DeltaMass(0.01), LowAbundanceTrimming.intoCutff) _
             .ToArray
 
+        Call SelectXICIon(raw, MS1, 0.01, apply:=Sub(mz1, xic)
+                                                     Call MsSelector1.SetTIC(xic)
+                                                     Call MsSelector1.RefreshRtRangeSelector()
+                                                 End Sub)
+    End Sub
+
+    Public Shared Sub SelectXICIon(raw As Raw,
+                                   ms1 As IEnumerable(Of ms2),
+                                   da As Double,
+                                   apply As Action(Of Double, ChromatogramTick()),
+                                   Optional cancel As Action = Nothing)
+
         Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
         Dim getConfig As New InputXICTarget
 
-        Call getConfig.SetIons(MS1.Select(Function(i) i.mz).OrderBy(Function(i) i))
+        Call getConfig.SetIons(ms1.Select(Function(i) i.mz).OrderBy(Function(i) i))
 
         If mask.ShowDialogForm(getConfig) = DialogResult.OK Then
             Dim mz As Double = getConfig.XICTarget
@@ -223,10 +235,14 @@ Public Class frmUntargettedViewer
                 Call MyApplication.host.showStatusMessage($"View xic data for target ion mz=${mz}!")
             End If
 
-            Dim XIC As ChromatogramTick() = raw.GetLoadedMzpack.GetXIC(mz, Tolerance.DeltaMass(0.01))
-
-            Call MsSelector1.SetTIC(XIC)
-            Call MsSelector1.RefreshRtRangeSelector()
+            Call raw _
+                .GetLoadedMzpack _
+                .GetXIC(mz, Tolerance.DeltaMass(da)) _
+                .DoCall(Sub(xic)
+                            Call apply(mz, xic)
+                        End Sub)
+        ElseIf Not cancel Is Nothing Then
+            Call cancel()
         End If
     End Sub
 End Class
