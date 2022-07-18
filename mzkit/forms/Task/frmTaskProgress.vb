@@ -156,7 +156,8 @@ Public Class frmTaskProgress
         Dim progress As New frmTaskProgress
 
         If progress.ParentForm Is Nothing Then
-            progress.StartPosition = FormStartPosition.CenterScreen
+            progress.StartPosition = FormStartPosition.Manual
+            progress.Location = WindowModules.CenterToMain(progress)
         End If
 
         Call New Thread(
