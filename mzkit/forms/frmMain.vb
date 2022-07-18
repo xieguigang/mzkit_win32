@@ -213,6 +213,7 @@ Public Class frmMain
 
             Call WindowModules.rawFeaturesList.LoadRaw(raw)
             Call VisualStudio.Dock(WindowModules.rawFeaturesList, DockState.DockLeft)
+            Call MyApplication.host.showStatusMessage($"Load {fileName} success!")
         Else
             Call WindowModules.fileExplorer.ImportsRaw(fileName)
         End If
