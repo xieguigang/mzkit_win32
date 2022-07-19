@@ -62,12 +62,13 @@ Module CLI
         MyApplication.afterLoad =
             Sub()
                 Select Case filepath.ExtensionSuffix.ToLower
-                    Case "mzpack"
+                    Case "mzpack", "raw"
                         MyApplication.host.OpenFile(filepath, showDocument:=True)
                         WindowModules.panelMain.Show(MyApplication.host.dockPanel)
                         WindowModules.panelMain.DockState = DockState.Document
                     Case "mzwork"
                         Globals.loadWorkspace(mzwork:=filepath, fromStartup:=True)
+
                 End Select
             End Sub
 
