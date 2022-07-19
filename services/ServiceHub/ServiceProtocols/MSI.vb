@@ -132,7 +132,21 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             Call RunSlavePipeline.SendMessage($"read MSI dataset from the mzPack raw data file!")
 
             Using file As Stream = filepath.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
-                mzpack = mzPack.ReadAll(file, ignoreThumbnail:=True, verbose:=True, skipMsn:=True).ScanMeltdown(gridSize:=10)
+                mzpack = mzPack.ReadAll(
+                    file:=file,
+                    ignoreThumbnail:=True,
+                    verbose:=True,
+                    skipMsn:=True
+                )
+
+                If Not mzpack.source.ExtensionSuffix("csv") Then
+                    ' skip for bruker data
+                    mzpack = mzpack.ScanMeltdown(
+                        gridSize:=10,
+                        println:=AddressOf RunSlavePipeline.SendMessage
+                    )
+                End If
+
                 MSI = New Drawer(mzpack)
             End Using
         End If
