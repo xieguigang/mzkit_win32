@@ -236,6 +236,12 @@ Public Class frmUntargettedViewer
                 Call MyApplication.host.showStatusMessage($"View xic data for target ion mz=${mz}!")
             End If
 
+            If Not raw.isLoaded Then
+                Call raw.LoadMzpack(Sub(title, msg)
+                                        Call MyApplication.host.showStatusMessage($"[{title}] {msg}")
+                                    End Sub)
+            End If
+
             Call raw _
                 .GetLoadedMzpack _
                 .GetXIC(mz, Tolerance.DeltaMass(da)) _
