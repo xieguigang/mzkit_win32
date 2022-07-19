@@ -230,6 +230,7 @@ Public Class frmUntargettedViewer
             Dim mz As Double = getConfig.XICTarget
 
             If mz <= 0.0 Then
+                Call MyApplication.host.showStatusMessage($"No target ion m/z was selected or invalid numeric text format!", My.Resources.StatusAnnotations_Warning_32xLG_color)
                 Return
             Else
                 Call MyApplication.host.showStatusMessage($"View xic data for target ion mz=${mz}!")
