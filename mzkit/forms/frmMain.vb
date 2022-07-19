@@ -207,6 +207,9 @@ Public Class frmMain
                .source = fileName
             }
 
+            MyApplication.host.showStatusMessage("Do mass calibration!")
+            mzPack = mzPack.MassCalibration(ppm:=20)
+
             Using temp As Stream = cacheFile.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
                 Call mzPack.Write(temp)
             End Using

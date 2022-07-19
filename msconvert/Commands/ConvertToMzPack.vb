@@ -29,6 +29,8 @@ Module ConvertToMzPack
             mzpack.Thumbnail = mzpack.DrawScatter
         End If
 
+        mzpack = mzpack.MassCalibration(ppm:=30)
+
         Using file As Stream = cacheFile.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
             Call RunSlavePipeline.SendMessage("Write mzPack cache data...")
             Call mzpack.Write(file, version:=2)
