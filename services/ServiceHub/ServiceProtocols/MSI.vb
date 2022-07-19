@@ -119,6 +119,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
     Public Function Load(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
         Dim filepath As String = request.GetString(Encoding.UTF8)
         Dim info As Dictionary(Of String, String)
+        Dim sourceName As String = filepath.FileName
 
         If filepath.ExtensionSuffix("cdf") Then
             Call RunSlavePipeline.SendMessage($"read MSI layers from the cdf file!")
@@ -138,6 +139,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
                     verbose:=True,
                     skipMsn:=True
                 )
+                sourceName = mzpack.source
 
                 If Not mzpack.source.ExtensionSuffix("csv") Then
                     ' skip for bruker data
@@ -152,6 +154,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         End If
 
         info = MSIProtocols.GetMSIInfo(MSI)
+        info!source = sourceName
 
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
     End Function

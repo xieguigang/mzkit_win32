@@ -27,8 +27,16 @@ Public Class SummaryMSIBlender : Inherits Blender
         Dim cut As Double = New TrIQThreshold(params.TrIQ) With {
             .levels = params.mapLevels
         }.ThresholdValue(intensity)
+        Dim layerData As PixelScanIntensity() = summaryLayer
+
+        If Not params.instrument.TextEquals("Bruker") Then
+            layerData = layerData _
+                .KnnFill(params.knn, params.knn, params.knn_qcut) _
+                .ToArray
+        End If
+
         Dim image As Image = Drawer.RenderSummaryLayer(
-            layer:=summaryLayer.KnnFill(params.knn, params.knn, params.knn_qcut).ToArray,
+            layer:=layerData,
             dimension:=dimSize,
             colorSet:=params.colors.Description,
             pixelSize:=$"{dotSize.Width},{dotSize.Height}",

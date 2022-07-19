@@ -100,12 +100,16 @@ Public Class MsImageProperty
 
     <Description("The raw data file size.")>
     <Category("imzML")> Public ReadOnly Property fileSize As String
+    <Category("imzML")> Public ReadOnly Property sourceFile As String
+
     <Description("the unique guid of the target imzML file/mzPack/SCiLS csv data file.")>
     <Category("imzML")> Public ReadOnly Property UUID As String
     <Description("The total pixel numbers in X axis.")>
     <Category("imzML")> Public ReadOnly Property scan_x As Integer
     <Description("The total pixel numbers in Y axis.")>
     <Category("imzML")> Public ReadOnly Property scan_y As Integer
+
+    Public ReadOnly Property instrument As String
 
     <Category("Render")> Public Property background As Color
     <Category("Render")> <DisplayName("width")> Public Property pixel_width As Integer = 3
@@ -153,6 +157,8 @@ Public Class MsImageProperty
         scan_y = Integer.Parse(info!scan_y)
         UUID = info!uuid
         fileSize = info!fileSize
+        sourceFile = info!source
+        instrument = If(sourceFile.ExtensionSuffix("csv"), "Bruker", "Thermo Fisher")
     End Sub
 
     Public Sub Reset(MsiDim As Size, UUID As String, fileSize As String)
@@ -220,6 +226,10 @@ Public Class MsImageProperty
     Public Sub SetIntensityMax(max As Double)
         _min = 0
         _max = max
+    End Sub
+
+    Public Sub SetInstrument(name As String)
+        _instrument = name
     End Sub
 
     Public Function GetTolerance() As Tolerance
