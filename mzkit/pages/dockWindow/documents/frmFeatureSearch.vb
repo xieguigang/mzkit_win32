@@ -94,6 +94,12 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
     Dim rangeMin As Double = 999999999
     Dim rangeMax As Double = -99999999999999
 
+    Public Sub AddEachFileMatch(addMatch As Action(Of Raw))
+        For Each file As Raw In directRaw
+            Call addMatch(file)
+        Next
+    End Sub
+
     Public Sub AddFileMatch(file As String, matches As ParentMatch())
         list1.Add((file, matches))
 
@@ -177,7 +183,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
         TreeListView1.Items.Add(row)
     End Sub
 
-    Friend directRaw As Raw
+    Friend directRaw As Raw()
 
     Public Property FilePath As String Implements IFileReference.FilePath
 
@@ -207,8 +213,8 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             Dim filePath As String = cluster.ToolTipText
             Dim raw As Raw
 
-            If Not directRaw Is Nothing Then
-                raw = directRaw
+            If Not directRaw.IsNullOrEmpty Then
+                raw = directRaw.First
             Else
                 raw = Globals.workspace.FindRawFile(filePath)
             End If
@@ -226,10 +232,10 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             ' scan节点
             Dim raw As Raw
 
-            If directRaw Is Nothing Then
+            If directRaw.IsNullOrEmpty Then
                 raw = Globals.workspace.FindRawFile(parentFile)
             Else
-                raw = directRaw
+                raw = directRaw.First
             End If
 
             Call MyApplication.host.mzkitTool.showSpectrum(scan_id, raw)
@@ -290,10 +296,10 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             ' scan节点
             Dim raw As Raw
 
-            If directRaw Is Nothing Then
+            If directRaw.IsNullOrEmpty Then
                 raw = Globals.workspace.FindRawFile(parentFile)
             Else
-                raw = directRaw
+                raw = directRaw.First
             End If
 
             Dim scan = raw.FindMs2Scan(scan_id)

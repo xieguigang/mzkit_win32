@@ -84,15 +84,24 @@ Module FeatureSearchHandler
         display.TabText = $"Search [{formula}]"
 
         If directRaw Then
-            display.directRaw = files.First
-            display.AddFileMatch(display.directRaw.source, MatchByFormula(formula, display.directRaw, ppm).ToArray)
+            display.directRaw = files.ToArray
+            display.AddEachFileMatch(
+                Sub(raw)
+                    Call display.AddFileMatch(
+                        file:=raw.source,
+                        matches:=MatchByFormula(formula, raw, ppm).ToArray
+                    )
+                End Sub)
         Else
             Call frmProgressSpinner.DoLoading(
                 Sub()
                     For Each file As MZWork.Raw In files
                         Dim result = MatchByFormula(formula, file, ppm).ToArray
 
-                        display.Invoke(Sub() display.AddFileMatch(file.source, result))
+                        display.Invoke(
+                            Sub()
+                                display.AddFileMatch(file.source, result)
+                            End Sub)
                     Next
                 End Sub)
         End If
@@ -146,8 +155,9 @@ Module FeatureSearchHandler
         Dim display As New frmFeatureSearch
 
         display.Show(MyApplication.host.dockPanel)
+        display.directRaw = raw.ToArray
 
-        For Each file As MZWork.Raw In raw
+        For Each file As MZWork.Raw In display.directRaw
             Dim result As ScanMS2() = file _
                 .LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache)) _
                 .GetMs2Scans _
