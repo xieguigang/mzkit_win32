@@ -94,7 +94,7 @@ Public Class BioDeepSession
         Dim result As JsonObject = Request(api:="http://my.biodeep.cn/services/session_info.vbs")
 
         If result.success Then
-            Return DirectCast(result!info, JsonObject).CreateObject(Of SessionInfo)
+            Return DirectCast(result!info, JsonObject).CreateObject(Of SessionInfo)(decodeMetachar:=True)
         Else
             Return Nothing
         End If
@@ -151,15 +151,15 @@ Public Class BioDeepSession
         Dim result As WebResponseResult = $"http://passport.biodeep.cn/passport/verify.vbs".POST(params:=post)
         Dim json As JsonObject = New JsonParser().OpenJSON(result.html)
 
-        If json!code.AsString <> 0 Then
+        If json!code.AsString(decodeMetachar:=True) <> 0 Then
             Call MessageBox.Show("Account not found or incorrect password...", "BioDeep Login", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
             ' session_id
             ' cookie_name
             json = json!debug
 
-            SingletonHolder(Of BioDeepSession).Instance.cookieName = json!cookie_name.AsString
-            SingletonHolder(Of BioDeepSession).Instance.ssid = json!session_id.AsString
+            SingletonHolder(Of BioDeepSession).Instance.cookieName = json!cookie_name.AsString(decodeMetachar:=True)
+            SingletonHolder(Of BioDeepSession).Instance.ssid = json!session_id.AsString(decodeMetachar:=True)
 
             Return SingletonHolder(Of BioDeepSession).Instance.ssid
         End If

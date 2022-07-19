@@ -129,7 +129,7 @@ Module ServiceHub
             Call MyApplication.host.showStatusMessage(data.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
             Return {}
         Else
-            Dim ions = BSON.Load(data).CreateObject(Of IonStat())
+            Dim ions = BSON.Load(data).CreateObject(Of IonStat())(decodeMetachar:=True)
             Call MyApplication.LogText($"get ion stat table payload {StringFormats.Lanudry(data.ChunkBuffer.Length)}!")
             Return ions
         End If

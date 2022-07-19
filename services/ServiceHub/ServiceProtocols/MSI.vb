@@ -249,7 +249,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
     ''' <returns></returns>
     <Protocol(ServiceProtocol.LoadMSILayers)>
     Public Function GetMSILayers(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
-        Dim config As LayerLoader = BSON.Load(request.ChunkBuffer).CreateObject(Of LayerLoader)
+        Dim config As LayerLoader = BSON.Load(request.ChunkBuffer).CreateObject(Of LayerLoader)(decodeMetachar:=True)
         Dim layers As PixelData()
         Dim mzdiff As Tolerance = config.GetTolerance
 

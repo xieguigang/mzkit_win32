@@ -180,7 +180,7 @@ Public Class ViewerProject : Implements ISaveHandle, IFileReference
             Try
                 workspace = rawBuffer _
                    .DoCall(AddressOf BSONFormat.Load) _
-                   .CreateObject(GetType(WorkspaceFile))
+                   .CreateObject(GetType(WorkspaceFile), decodeMetachar:=True)
             Catch ex As Exception
                 Call App.LogException(ex)
                 Call progress($"The workspace file is damaged, skip loading {cacheList}...")
