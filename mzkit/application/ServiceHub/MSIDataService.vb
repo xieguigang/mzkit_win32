@@ -100,30 +100,36 @@ Namespace ServiceHub
         ''' <summary>
         ''' --debug --port=33361
         ''' </summary>
-        Public debugPort As Integer?
+        Public Shared debugPort As Integer?
 
         ''' <summary>
         ''' this method will close the engine at first
         ''' </summary>
-        Public Sub StartMSIService()
+        Public Shared Function StartMSIService(ByRef hostOld As MSIDataService) As MSIDataService
             Dim Rscript As String = RscriptPipelineTask.GetRScript("../services/MSI-host.R")
 
-            Call CloseMSIEngine()
-            Call MyApplication.LogText($"Start background services: {Rscript}")
-
-            MSI_pipe = Global.ServiceHub.Protocols.StartServer(Rscript, MSI_service, debugPort) ', HeartBeat.Start)
-
-            ' hook message event handler
-            AddHandler MSI_pipe.SetMessage, AddressOf MSI_pipe_SetMessage
-
-            If MSI_service <= 0 Then
-                Call MyApplication.host.showStatusMessage("MS-Imaging service can not start!", My.Resources.StatusAnnotations_Warning_32xLG_color)
-            Else
-                Call MyApplication.LogText($"MS-Imaging service started!({MSI_service})")
+            If Not hostOld Is Nothing Then
+                Call hostOld.CloseMSIEngine()
             End If
 
-            MessageCallback = Nothing
-        End Sub
+            Call MyApplication.LogText($"Start background services: {Rscript}")
+
+            hostOld = New MSIDataService
+            hostOld.MSI_pipe = Global.ServiceHub.Protocols.StartServer(Rscript, hostOld.MSI_service, MSIDataService.debugPort) ', HeartBeat.Start)
+
+            ' hook message event handler
+            AddHandler hostOld.MSI_pipe.SetMessage, AddressOf hostOld.MSI_pipe_SetMessage
+
+            If hostOld.MSI_service <= 0 Then
+                Call MyApplication.host.showStatusMessage("MS-Imaging service can not start!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Else
+                Call MyApplication.LogText($"MS-Imaging service started!({hostOld.MSI_service})")
+            End If
+
+            hostOld.MessageCallback = Nothing
+
+            Return hostOld
+        End Function
 
         Public Function DoIonStats() As IonStat()
             Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.GetIonStatList, "read"))
