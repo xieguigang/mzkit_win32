@@ -491,6 +491,13 @@ Module Globals
             Call raw.LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache))
         End If
 
+        If raw.GetLoadedMzpack.Application = FileApplicationClass.MSImaging Then
+            If MessageBox.Show("It seems that current raw data file is used for MS-imaging, its may contains a lots of ms scans and takes a very long time to load, continute to process?",
+                               "Load MzPack Raw Data", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) <> DialogResult.Yes Then
+                Return
+            End If
+        End If
+
         For Each scan As ScanMS1 In raw.GetMs1Scans.Where(Function(t) t.rt >= rtmin AndAlso t.rt <= rtmax)
             Dim scanNode As New TreeNode(scan.scan_id) With {
                 .Tag = scan,
