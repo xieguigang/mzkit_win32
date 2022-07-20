@@ -99,7 +99,8 @@ Public Class frmMsImagingViewer
     Dim rendering As Action
     Dim guid As String
     Dim blender As Blender
-    Dim MSIservice As ServiceHub.MSIDataService
+
+    Friend MSIservice As ServiceHub.MSIDataService
 
     Public ReadOnly Property MimeType As ContentType() Implements IFileReference.MimeType
         Get
@@ -108,6 +109,10 @@ Public Class frmMsImagingViewer
             }
         End Get
     End Property
+
+    Public Sub StartMSIService()
+        Call ServiceHub.MSIDataService.StartMSIService(hostOld:=MSIservice)
+    End Sub
 
     Private Sub frmMsImagingViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         TabText = Text
@@ -147,7 +152,7 @@ Public Class frmMsImagingViewer
     End Sub
 #End Region
 
-    Private Function checkService() As Boolean
+    Public Function checkService() As Boolean
         If MSIservice Is Nothing OrElse Not MSIservice.MSIEngineRunning Then
             Call MyApplication.host.showStatusMessage("No MSI raw data was loaded!", My.Resources.StatusAnnotations_Warning_32xLG_color)
             Return False

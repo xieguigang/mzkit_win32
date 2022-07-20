@@ -345,10 +345,20 @@ Type 'q()' to quit R.
             MyApplication._host = host
         End Sub
 
+        Public Shared Sub CloseMSIEngine()
+            For Each doc In MyApplication.host.dockPanel.Documents
+                If TypeOf doc Is frmMsImagingViewer Then
+                    If Not DirectCast(doc, frmMsImagingViewer).MSIservice Is Nothing Then
+                        Call DirectCast(doc, frmMsImagingViewer).MSIservice.CloseMSIEngine()
+                    End If
+                End If
+            Next
+        End Sub
+
         Private Sub MyApplication_UnhandledException(sender As Object, e As UnhandledExceptionEventArgs) Handles Me.UnhandledException
             Call App.LogException(e.Exception)
             Call MessageBox.Show(e.Exception.ToString, "Unknown Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Call ServiceHub.CloseMSIEngine()
+            Call CloseMSIEngine()
 
             Try
                 Call host.SaveSettings()
@@ -442,7 +452,7 @@ Type 'q()' to quit R.
                 If cli.Name.FileExists Then
                     Call BioNovoGene.mzkit_win32.CLI.openRawFile(cli.Name, cli)
                 ElseIf cli.Name.TextEquals("--debug") Then
-                    ServiceHub.debugPort = cli.GetInt32("--port")
+                    ServiceHub.MSIDataService.debugPort = cli.GetInt32("--port")
                 ElseIf cli.Name.TextEquals("--devtools") Then
                     Call BioNovoGene.mzkit_win32.CLI.openDevTools()
                 End If
@@ -452,7 +462,7 @@ Type 'q()' to quit R.
         End Sub
 
         Private Sub MyApplication_Shutdown(sender As Object, e As EventArgs) Handles Me.Shutdown
-            Call ServiceHub.CloseMSIEngine()
+            Call CloseMSIEngine()
         End Sub
     End Class
 End Namespace
