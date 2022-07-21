@@ -56,10 +56,11 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonShowExplorer As UInteger = 1121
             Public Const cmdShowGCMSExplorer As UInteger = 113
             Public Const cmdShowMRMExplorer As UInteger = 118
-            Public Const cmdGCxGCViewer As UInteger = 179
-            Public Const cmdButtonMsImaging As UInteger = 1167
             Public Const cmdButtonShowSearchList As UInteger = 1122
             Public Const cmdButtonShowProperties As UInteger = 1123
+            Public Const cmdGroupShowComprehensive As UInteger = 191
+            Public Const cmdButtonMsImaging As UInteger = 1167
+            Public Const cmdGCxGCViewer As UInteger = 179
             Public Const cmdTabLayout As UInteger = 1035
             Public Const cmdGroupLayout As UInteger = 1037
             Public Const cmdButtonLayout1 As UInteger = 1043
@@ -445,18 +446,6 @@ Namespace RibbonLib.Controls
                 Return _ShowMRMExplorer
             End Get
         End Property
-        Private _GCxGCViewer As RibbonButton
-        Public ReadOnly Property GCxGCViewer As RibbonButton
-            Get
-                Return _GCxGCViewer
-            End Get
-        End Property
-        Private _ButtonMsImaging As RibbonButton
-        Public ReadOnly Property ButtonMsImaging As RibbonButton
-            Get
-                Return _ButtonMsImaging
-            End Get
-        End Property
         Private _ButtonShowSearchList As RibbonButton
         Public ReadOnly Property ButtonShowSearchList As RibbonButton
             Get
@@ -467,6 +456,24 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonShowProperties As RibbonButton
             Get
                 Return _ButtonShowProperties
+            End Get
+        End Property
+        Private _GroupShowComprehensive As RibbonGroup
+        Public ReadOnly Property GroupShowComprehensive As RibbonGroup
+            Get
+                Return _GroupShowComprehensive
+            End Get
+        End Property
+        Private _ButtonMsImaging As RibbonButton
+        Public ReadOnly Property ButtonMsImaging As RibbonButton
+            Get
+                Return _ButtonMsImaging
+            End Get
+        End Property
+        Private _GCxGCViewer As RibbonButton
+        Public ReadOnly Property GCxGCViewer As RibbonButton
+            Get
+                Return _GCxGCViewer
             End Get
         End Property
         Private _TabLayout As RibbonTab
@@ -1289,10 +1296,11 @@ Namespace RibbonLib.Controls
             _ButtonShowExplorer = New RibbonButton(_ribbon, Cmd.cmdButtonShowExplorer)
             _ShowGCMSExplorer = New RibbonButton(_ribbon, Cmd.cmdShowGCMSExplorer)
             _ShowMRMExplorer = New RibbonButton(_ribbon, Cmd.cmdShowMRMExplorer)
-            _GCxGCViewer = New RibbonButton(_ribbon, Cmd.cmdGCxGCViewer)
-            _ButtonMsImaging = New RibbonButton(_ribbon, Cmd.cmdButtonMsImaging)
             _ButtonShowSearchList = New RibbonButton(_ribbon, Cmd.cmdButtonShowSearchList)
             _ButtonShowProperties = New RibbonButton(_ribbon, Cmd.cmdButtonShowProperties)
+            _GroupShowComprehensive = New RibbonGroup(_ribbon, Cmd.cmdGroupShowComprehensive)
+            _ButtonMsImaging = New RibbonButton(_ribbon, Cmd.cmdButtonMsImaging)
+            _GCxGCViewer = New RibbonButton(_ribbon, Cmd.cmdGCxGCViewer)
             _TabLayout = New RibbonTab(_ribbon, Cmd.cmdTabLayout)
             _GroupLayout = New RibbonGroup(_ribbon, Cmd.cmdGroupLayout)
             _ButtonLayout1 = New RibbonButton(_ribbon, Cmd.cmdButtonLayout1)
