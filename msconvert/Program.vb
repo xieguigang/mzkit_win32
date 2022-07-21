@@ -54,20 +54,22 @@ Imports Microsoft.VisualBasic.CommandLine.Reflection
         Dim files As String() = args("--files").ReadAllLines
         Dim mzpack As mzPack
         Dim save As String = args("--save")
-        Dim msdata As String = files(Scan0)
-        Dim index As String = files(1)
+        Dim spotTuples = files _
+            .Select(Function(line)
+                        Dim parts = line.Split(CChar(vbTab))
+                        Dim index As String = parts(Scan0)
+                        Dim msdata As String = parts(1)
 
-        Using msdatafile As Stream = msdata.Open(FileMode.Open, doClear:=False, [readOnly]:=True),
-            indexfile As Stream = index.Open(FileMode.Open, doClear:=False, [readOnly]:=True),
-            buffer As Stream = save.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
+                        Return (index, msdata)
+                    End Function) _
+            .ToArray
+
+        Using buffer As Stream = save.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
             mzpack = MSIRawPack.LoadMSIFromSCiLSLab(
-                spots:=indexfile,
-                msdata:=msdatafile,
+                files:=spotTuples,
                 println:=AddressOf RunSlavePipeline.SendMessage
             )
-            ' mzpack.source = msdata.FileName
-
-            Call mzpack.Write(file:=buffer, version:=2)
+            mzpack.Write(file:=buffer, version:=2)
         End Using
 
         Return 0
