@@ -158,7 +158,7 @@ Public Class MsImageProperty
         UUID = info!uuid
         fileSize = info!fileSize
         sourceFile = info!source
-        instrument = If(sourceFile.ExtensionSuffix("csv"), "Bruker", "Thermo Fisher")
+        instrument = If(sourceFile.ExtensionSuffix("csv", "slx"), "Bruker", "Thermo Fisher")
     End Sub
 
     Public Sub Reset(MsiDim As Size, UUID As String, fileSize As String)
