@@ -65,7 +65,7 @@ Imports Microsoft.VisualBasic.CommandLine.Reflection
                 msdata:=msdatafile,
                 println:=AddressOf RunSlavePipeline.SendMessage
             )
-            mzpack.source = msdata.FileName
+            ' mzpack.source = msdata.FileName
 
             Call mzpack.Write(file:=buffer, version:=2)
         End Using

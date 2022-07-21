@@ -56,6 +56,7 @@
 
 Imports System.IO
 Imports System.Threading
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.SCiLSLab
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.mzkit_win32.My
@@ -102,23 +103,12 @@ Public Class RscriptProgressTask
         Return cachefile
     End Function
 
-    Public Shared Sub ImportsSCiLSLab(msData As String, savefile As String)
-        Dim meta = PackFile.ParseHeader(msData.Open(FileMode.Open, doClear:=False, [readOnly]:=True))
-        Dim guid As String = meta.guid
-        Dim indexfile As String = msData.ParentPath _
-            .EnumerateFiles("*.csv") _
-            .Where(Function(path) path.GetFullPath <> msData.GetFullPath) _
-            .Where(Function(path)
-                       Dim indexmeta = PackFile.ParseHeader(path.Open(FileMode.Open, doClear:=False, [readOnly]:=True))
-                       Dim guid2 As String = indexmeta.guid
+    Public Shared Sub ImportsSCiLSLab(msData As String(), savefile As String)
+        Dim tuples = SCiLSLab.CheckSpotFiles(msData).ToArray
 
-                       Return guid = guid2
-                   End Function) _
-            .FirstOrDefault
-
-        If indexfile.StringEmpty Then
+        If tuples.IsNullOrEmpty Then
             ' missing spot index file
-            MessageBox.Show("missing spot index file!", "Imports SCiLS Lab", buttons:=MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("invalid selected table data files!", "Imports SCiLS Lab", buttons:=MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
         End If
 
@@ -126,7 +116,11 @@ Public Class RscriptProgressTask
         Dim cli As String = PipelineTask.Task.GetImportsSCiLSLabCommandLine(tempfile, savefile)
         Dim pipeline As New RunSlavePipeline(PipelineTask.Host, cli)
 
-        Call {msData, indexfile}.SaveTo(tempfile, encoding:=Encodings.UTF8.CodePage)
+        Call tuples _
+            .Select(Function(t)
+                        Return {t.sportIndex, t.msData}.JoinBy(vbTab)
+                    End Function) _
+            .SaveTo(tempfile, encoding:=Encodings.UTF8.CodePage)
 
         Dim progress As New frmTaskProgress
 

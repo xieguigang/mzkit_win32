@@ -298,14 +298,17 @@ Module RibbonEvents
     End Sub
 
     Public Sub ImportsSCiLSLab()
-        Using file As New OpenFileDialog With {.Filter = "SCiLS Lab Matrix Export(*.csv)|*.csv"}
+        Using file As New OpenFileDialog With {
+            .Filter = "SCiLS Lab Matrix Export(*.csv)|*.csv",
+            .Multiselect = True
+        }
             If file.ShowDialog = DialogResult.OK Then
                 Using savefile As New SaveFileDialog With {
                     .Filter = "BioNovoGene mzPack(*.mzPack)|*.mzPack",
                     .Title = "Save MSI raw data file"
                 }
                     If savefile.ShowDialog = DialogResult.OK Then
-                        Call RscriptProgressTask.ImportsSCiLSLab(file.FileName, savefile.FileName)
+                        Call RscriptProgressTask.ImportsSCiLSLab(file.FileNames, savefile.FileName)
                     End If
                 End Using
             End If
