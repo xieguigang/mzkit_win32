@@ -100,6 +100,8 @@ Public Class frmMsImagingViewer
     Dim guid As String
     Dim blender As Blender
 
+    Friend MSIservice As ServiceHub.MSIDataService
+
     Public ReadOnly Property MimeType As ContentType() Implements IFileReference.MimeType
         Get
             Return {
@@ -107,6 +109,10 @@ Public Class frmMsImagingViewer
             }
         End Get
     End Property
+
+    Public Sub StartMSIService()
+        Call ServiceHub.MSIDataService.StartMSIService(hostOld:=MSIservice)
+    End Sub
 
     Private Sub frmMsImagingViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         TabText = Text
@@ -146,12 +152,20 @@ Public Class frmMsImagingViewer
     End Sub
 #End Region
 
+    Public Function checkService() As Boolean
+        If MSIservice Is Nothing OrElse Not MSIservice.MSIEngineRunning Then
+            Call MyApplication.host.showStatusMessage("No MSI raw data was loaded!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Return False
+        Else
+            Return True
+        End If
+    End Function
+
     ''' <summary>
     ''' 成像矩阵热图
     ''' </summary>
     Sub OpenHeatmapMatrixPlot()
-        If Not ServiceHub.MSIEngineRunning Then
-            Call MyApplication.host.showStatusMessage("No MSI raw data was loaded!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+        If Not checkService() Then
             Return
         End If
 
@@ -260,11 +274,15 @@ Public Class frmMsImagingViewer
     Sub DoIonStats()
         Dim progress As New frmProgressSpinner
 
+        If Not checkService() Then
+            Return
+        End If
+
         Call New Thread(
             Sub()
                 Call Thread.Sleep(500)
 
-                Dim ions As IonStat() = ServiceHub.DoIonStats
+                Dim ions As IonStat() = MSIservice.DoIonStats
 
                 If ions.IsNullOrEmpty Then
                     Call MyApplication.host.warning("No ions result...")
@@ -421,8 +439,7 @@ Public Class frmMsImagingViewer
     End Sub
 
     Sub exportMzPack()
-        If Not ServiceHub.MSIEngineRunning Then
-            Call MyApplication.host.showStatusMessage("No MSI raw data was loaded!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+        If Not checkService() Then
             Return
         End If
 
@@ -432,12 +449,12 @@ Public Class frmMsImagingViewer
 
                 Call frmTaskProgress.RunAction(
                     Sub(update)
-                        ServiceHub.MessageCallback = update
-                        ServiceHub.ExportMzpack(savefile:=fileName)
+                        MSIservice.MessageCallback = update
+                        MSIservice.ExportMzpack(savefile:=fileName)
                     End Sub, title:="Export mzPack data...", info:="Save mzPack!")
                 Call MessageBox.Show($"Export mzPack data at location: {vbCrLf}{fileName}!", "BioNovoGene MSI Viewer", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-                ServiceHub.MessageCallback = Nothing
+                MSIservice.MessageCallback = Nothing
             End If
         End Using
     End Sub
@@ -458,11 +475,11 @@ Public Class frmMsImagingViewer
 
             Call WindowModules.viewer.Show(DockPanel)
             Call WindowModules.msImageParameters.Show(DockPanel)
-            Call ServiceHub.StartMSIService()
+            Call ServiceHub.MSIDataService.StartMSIService(MSIservice)
 
             Call New Thread(
                 Sub()
-                    Dim info As MsImageProperty = ServiceHub.LoadMSI(file, getSize.Dims.SizeParser, Sub(msg) MyApplication.host.showStatusMessage(msg))
+                    Dim info As MsImageProperty = MSIservice.LoadMSI(file, getSize.Dims.SizeParser, Sub(msg) MyApplication.host.showStatusMessage(msg))
 
                     Call WindowModules.viewer.Invoke(Sub() Call LoadRender(info, file))
                     Call WindowModules.viewer.Invoke(Sub() WindowModules.viewer.DockState = DockState.Document)
@@ -505,8 +522,8 @@ Public Class frmMsImagingViewer
 
         Call frmTaskProgress.LoadData(
             Function(msg As Action(Of String))
-                Call ServiceHub.StartMSIService()
-                Call Me.Invoke(Sub() LoadRender(ServiceHub.LoadMSI(mzpack, msg), filePath))
+                Call ServiceHub.MSIDataService.StartMSIService(MSIservice)
+                Call Me.Invoke(Sub() LoadRender(MSIservice.LoadMSI(mzpack, msg), filePath))
 
                 Return 0
             End Function)
@@ -520,7 +537,7 @@ Public Class frmMsImagingViewer
 
             Call frmTaskProgress.LoadData(
                 Function(msg As Action(Of String))
-                    Dim info = ServiceHub.CutBackground
+                    Dim info = MSIservice.CutBackground
 
                     Call Me.Invoke(Sub() LoadRender(info, filePath))
                     Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
@@ -568,16 +585,13 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub showPixel(x As Integer, y As Integer) Handles PixelSelector1.SelectPixel
-        If Not ServiceHub.MSIEngineRunning Then
-            Call MyApplication.host.showStatusMessage("Please load image file at first!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+        If Not checkService() Then
             Return
-        Else
-            If WindowModules.MSIPixelProperty.DockState = DockState.Hidden Then
-                WindowModules.MSIPixelProperty.DockState = DockState.DockRight
-            End If
+        ElseIf WindowModules.MSIPixelProperty.DockState = DockState.Hidden Then
+            WindowModules.MSIPixelProperty.DockState = DockState.DockRight
         End If
 
-        Dim pixel As PixelScan = ServiceHub.GetPixel(x, y)
+        Dim pixel As PixelScan = MSIservice.GetPixel(x, y)
         Dim info As PixelProperty = Nothing
 
         If pixel Is Nothing Then
@@ -611,8 +625,7 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub PixelSelector1_SelectPixelRegion(region As Rectangle) Handles PixelSelector1.SelectPixelRegion
-        If Not ServiceHub.MSIEngineRunning Then
-            Call MyApplication.host.showStatusMessage("Please load image file at first!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+        If Not checkService() Then
             Return
         End If
 
@@ -632,7 +645,7 @@ Public Class frmMsImagingViewer
         Dim y1 As Integer = region.Top
         Dim x2 As Integer = region.Right
         Dim y2 As Integer = region.Bottom
-        Dim rangePixels As InMemoryVectorPixel() = ServiceHub _
+        Dim rangePixels As InMemoryVectorPixel() = MSIservice _
             .GetPixel(x1, y1, x2, y2) _
             .ToArray
 
@@ -658,8 +671,7 @@ Public Class frmMsImagingViewer
     End Sub
 
     Friend Sub RenderSummary(summary As IntensitySummary)
-        If Not ServiceHub.MSIEngineRunning Then
-            Call MyApplication.host.showStatusMessage("please load MSI raw data at first!")
+        If Not checkService() Then
             Return
         Else
             Call frmTaskProgress.RunAction(
@@ -674,7 +686,7 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Function registerSummaryRender(summary As IntensitySummary) As Action
-        Dim summaryLayer As PixelScanIntensity() = ServiceHub.LoadSummaryLayer(summary)
+        Dim summaryLayer As PixelScanIntensity() = MSIservice.LoadSummaryLayer(summary)
         Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
         Dim blender As New SummaryMSIBlender(summaryLayer, params)
 
@@ -718,7 +730,7 @@ Public Class frmMsImagingViewer
 
         Call New Thread(
             Sub()
-                Dim pixels As PixelData() = ServiceHub.LoadPixels(selectedMz, mzdiff)
+                Dim pixels As PixelData() = MSIservice.LoadPixels(selectedMz, mzdiff)
 
                 If pixels.IsNullOrEmpty Then
                     Call MyApplication.host.showStatusMessage($"No ion hits!", My.Resources.StatusAnnotations_Warning_32xLG_color)
@@ -784,7 +796,7 @@ Public Class frmMsImagingViewer
 
         Call New Thread(
             Sub()
-                Dim pixels As PixelData() = ServiceHub.LoadPixels(selectedMz, mzdiff)
+                Dim pixels As PixelData() = MSIservice.LoadPixels(selectedMz, mzdiff)
 
                 If pixels.IsNullOrEmpty Then
                     Call MyApplication.host.showStatusMessage("no pixel data...", My.Resources.StatusAnnotations_Warning_32xLG_color)
@@ -890,7 +902,7 @@ Public Class frmMsImagingViewer
     Private Sub frmMsImagingViewer_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         e.Cancel = True
 
-        If Not ServiceHub.MSIEngineRunning Then
+        If Not checkService() Then
             WindowModules.msImageParameters.DockState = DockState.Hidden
             WindowModules.msImageParameters.checkedMz.Clear()
             WindowModules.msImageParameters.Win7StyleTreeView1.Nodes.Clear()
@@ -906,7 +918,7 @@ Public Class frmMsImagingViewer
             WindowModules.msImageParameters.checkedMz.Clear()
             WindowModules.msImageParameters.Win7StyleTreeView1.Nodes.Clear()
 
-            ServiceHub.CloseMSIEngine()
+            MSIservice.CloseMSIEngine()
             Me.DockState = DockState.Hidden
         End If
     End Sub
@@ -938,10 +950,10 @@ Public Class frmMsImagingViewer
         Dim pos As Point = PixelSelector1.Pixel
         Dim pixel As PixelScan
 
-        If Not ServiceHub.MSIEngineRunning Then
+        If Not checkService() Then
             Return
         Else
-            pixel = ServiceHub.GetPixel(pos.X, pos.Y)
+            pixel = MSIservice.GetPixel(pos.X, pos.Y)
             pinedPixel = New LibraryMatrix With {
                 .ms2 = pixel?.GetMs,
                 .name = $"Select Pixel: [{pos.X},{pos.Y}]"
@@ -985,8 +997,7 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub ExportPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportPlotToolStripMenuItem.Click
-        If Not ServiceHub.MSIEngineRunning Then
-            Call MyApplication.host.warning("You must load raw data file at first!")
+        If Not checkService() Then
             Return
         ElseIf targetMz.IsNullOrEmpty Then
             Call MyApplication.host.warning("No ion was selected to export MS-Imaging plot!")

@@ -296,10 +296,10 @@ Public Class frmMain
 
         Call New Thread(
            Sub()
-               Call ServiceHub.StartMSIService()
+               Call WindowModules.viewer.StartMSIService()
                Call Thread.Sleep(100)
 
-               Dim dataPack = ServiceHub.LoadMSI(mzpack, Sub(msg) progress.ShowProgressDetails(msg))
+               Dim dataPack = WindowModules.viewer.MSIservice.LoadMSI(mzpack, Sub(msg) progress.ShowProgressDetails(msg))
 
                Call WindowModules.viewer.Invoke(Sub() WindowModules.viewer.LoadRender(dataPack, mzpack))
                Call Invoke(Sub() Text = $"BioNovoGene Mzkit [{WindowModules.viewer.Text} {mzpack.FileName}]")
@@ -626,7 +626,7 @@ Public Class frmMain
                 Call progress.Invoke(Sub() progress.Close())
             End Sub).Start()
 
-        Call ServiceHub.CloseMSIEngine()
+        Call MyApplication.CloseMSIEngine()
         Call progress.ShowDialog()
         ' Call App.Exit()
         Call Process.GetCurrentProcess.Kill()

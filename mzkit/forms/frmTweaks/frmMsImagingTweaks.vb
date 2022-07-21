@@ -330,7 +330,7 @@ UseCheckedList:
     Private Sub LoadBasePeakIonsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoadBasePeakIonsToolStripMenuItem.Click
         Call ClearIons()
 
-        If ServiceHub.MSIEngineRunning Then
+        If WindowModules.viewer.checkService Then
             Dim progress As New frmProgressSpinner
 
             Call New Thread(Sub()
@@ -346,7 +346,7 @@ UseCheckedList:
 
     Private Sub loadBasePeakMz()
         Dim layers As TreeNode = Win7StyleTreeView1.Nodes.Item(0)
-        Dim data As Double() = ServiceHub.LoadBasePeakMzList
+        Dim data As Double() = WindowModules.viewer.MSIservice.LoadBasePeakMzList
 
         For Each p As Double In data
             layers.Nodes.Add(p.ToString("F4")).Tag = p

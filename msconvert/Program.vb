@@ -24,10 +24,10 @@ Imports Microsoft.VisualBasic.CommandLine.Reflection
     <Description("Build mzPack cache")>
     <Argument("--raw", False, CLITypes.File, PipelineTypes.std_in, Description:="the file path of the mzML/mzXML/raw raw data file to create mzPack cache file.")>
     <Argument("--cache", False, CLITypes.File, PipelineTypes.std_out, Description:="the file path of the mzPack cache file.")>
-    <Usage("/mzPack --raw <filepath.mzXML> --cache <result.mzPack>")>
+    <Usage("/mzPack --raw <filepath.mzXML> [--cache <result.mzPack>]")>
     Public Function convertAnyRaw(args As CommandLine) As Integer
         Dim raw As String = args("--raw")
-        Dim cache As String = args("--cache")
+        Dim cache As String = args("--cache") Or raw.ChangeSuffix("mzPack")
 
         Call ConvertToMzPack.CreateMzpack(raw, cache)
 
