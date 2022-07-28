@@ -69,7 +69,7 @@ Public Class frmProgressSpinner
     <DebuggerStepThrough>
     Private Sub OnFrameChanged(o As Object, e As EventArgs)
         Me.Invalidate()
-
+        Application.DoEvents()
         ' BackgroundImage = theImage
     End Sub
 
@@ -101,8 +101,9 @@ Public Class frmProgressSpinner
         Dim spinner As New frmProgressSpinner
 
         Call New Thread(Sub()
+                            Call Thread.Sleep(500)
                             Call loading()
-                            Call spinner.Invoke(Sub() spinner.Close())
+                            Call spinner.CloseWindow()
                         End Sub).Start()
         Call spinner.ShowDialog()
     End Sub

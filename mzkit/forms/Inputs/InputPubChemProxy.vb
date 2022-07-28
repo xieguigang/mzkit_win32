@@ -58,6 +58,8 @@ Public Class InputPubChemProxy
             cid.SubItems.Add(metadata.formula)
             cid.SubItems.Add(metadata.exact_mass)
             cid.SubItems.Add(metadata.xref.CAS.Distinct.JoinBy("; "))
+
+            Call Application.DoEvents()
         Next
     End Sub
 
