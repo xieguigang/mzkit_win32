@@ -1,4 +1,5 @@
-﻿Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
+﻿Imports System.Threading
+Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
 Imports Microsoft.VisualBasic.Linq
 
@@ -68,16 +69,23 @@ Public Class InputPubChemProxy
     End Sub
 
     Private Sub setSelect()
+        For Each i As ListViewItem In ListView1.Items
+            i.Checked = False
+        Next
+
         For Each i As ListViewItem In ListView1.SelectedItems
             target = i.Text
+            i.Checked = True
             Exit For
         Next
 
         If Not target.StringEmpty Then
             Label2.Text = $"Select [{GetAnnotation.name}]"
 
-            Dim img = ImageFly.GetImage(target, size:="300,300", doBgTransparent:=False)
-            PictureBox1.BackgroundImage = img
+            Call New Thread(Sub()
+                                Dim img = ImageFly.GetImage(target, size:="300,300", doBgTransparent:=False)
+                                Call Me.Invoke(Sub() PictureBox1.BackgroundImage = img)
+                            End Sub).Start()
         End If
     End Sub
 
