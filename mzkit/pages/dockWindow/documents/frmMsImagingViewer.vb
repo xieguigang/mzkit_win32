@@ -68,10 +68,12 @@ Imports System.IO
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
+Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.My
 Imports ControlLibrary
 Imports Microsoft.VisualBasic.ComponentModel
@@ -146,7 +148,29 @@ Public Class frmMsImagingViewer
         If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
             If checkService() Then
                 Dim formula As String = getFormula.GetAnnotation.formula
+                Dim mass As Double = FormulaScanner.ScanFormula(formula).ExactMass
+                Dim progress As New frmProgressSpinner
+                ' evaluate m/z
+                Dim mz As Double() = Provider.Positives.Select(Function(t) t.CalcMZ(mass)).ToArray
 
+                Call New Thread(
+                    Sub()
+                        Call Thread.Sleep(500)
+
+                        Dim ions As IonStat() = MSIservice.DoIonStats(mz)
+
+                        If ions.IsNullOrEmpty Then
+                            Call MyApplication.host.warning("No ions result...")
+                        Else
+                            Call Me.Invoke(Sub()
+                                               Call DoIonStats(ions, getFormula.GetAnnotation.name, formula, Provider.Positives)
+                                           End Sub)
+                        End If
+
+                        Call progress.CloseWindow()
+                    End Sub).Start()
+
+                Call progress.ShowDialog()
             Else
                 Call MyApplication.host.showStatusMessage($"The MS-imaging backend services is not running for rendering {getFormula.GetAnnotation.name}!", My.Resources.StatusAnnotations_Warning_32xLG_color)
             End If
@@ -302,7 +326,7 @@ Public Class frmMsImagingViewer
                 If ions.IsNullOrEmpty Then
                     Call MyApplication.host.warning("No ions result...")
                 Else
-                    Call Me.Invoke(Sub() Call DoIonStats(ions))
+                    Call Me.Invoke(Sub() Call DoIonStats(ions, Nothing, Nothing, Nothing))
                 End If
 
                 Call progress.CloseWindow()
@@ -311,9 +335,10 @@ Public Class frmMsImagingViewer
         Call progress.ShowDialog()
     End Sub
 
-    Sub DoIonStats(ions As IonStat())
-        Dim title As String = If(FilePath.StringEmpty, "MS-Imaging Ion Stats", $"[{FilePath.FileName}]Ion Stats")
+    Private Sub DoIonStats(ions As IonStat(), name As String, formula As String, types As MzCalculator())
+        Dim title As String = If(FilePath.StringEmpty, "MS-Imaging Ion Stats", $"[{If(name, FilePath.FileName)}]Ion Stats")
         Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
+        Dim exactMass As Double
 
         table.AppSource = GetType(IonStat)
         table.InstanceGuid = guid
@@ -325,6 +350,13 @@ Public Class frmMsImagingViewer
         table.LoadTable(
             Sub(grid)
                 Call grid.Columns.Add("mz", GetType(Double))
+
+                If Not formula.StringEmpty Then
+                    exactMass = FormulaScanner.ScanFormula(formula).ExactMass
+
+                    Call grid.Columns.Add("precursor_type")
+                End If
+
                 Call grid.Columns.Add("pixels", GetType(Integer))
                 Call grid.Columns.Add("density", GetType(Double))
                 Call grid.Columns.Add("maxIntensity", GetType(Double))
@@ -336,18 +368,43 @@ Public Class frmMsImagingViewer
                 Call grid.Columns.Add("RSD", GetType(Double))
 
                 For Each ion As IonStat In ions.OrderByDescending(Function(i) i.pixels)
-                    Call grid.Rows.Add(
-                        ion.mz.ToString("F4"),
-                        ion.pixels,
-                        ion.density.ToString("F2"),
-                        stdNum.Round(ion.maxIntensity),
-                        ion.basePixelX,
-                        ion.basePixelY,
-                        stdNum.Round(ion.Q1Intensity),
-                        stdNum.Round(ion.Q2Intensity),
-                        stdNum.Round(ion.Q3Intensity),
-                        stdNum.Round(ion.RSD)
-                    )
+                    If Not formula.StringEmpty Then
+                        Dim typeName As String = "n/a"
+
+                        For Each type In types
+                            If stdNum.Abs(ion.mz - type.CalcMZ(exactMass)) <= 0.1 Then
+                                typeName = name & " " & type.ToString
+                                Exit For
+                            End If
+                        Next
+
+                        Call grid.Rows.Add(
+                            ion.mz.ToString("F4"),
+                            typeName,
+                            ion.pixels,
+                            ion.density.ToString("F2"),
+                            stdNum.Round(ion.maxIntensity),
+                            ion.basePixelX,
+                            ion.basePixelY,
+                            stdNum.Round(ion.Q1Intensity),
+                            stdNum.Round(ion.Q2Intensity),
+                            stdNum.Round(ion.Q3Intensity),
+                            stdNum.Round(ion.RSD)
+                        )
+                    Else
+                        Call grid.Rows.Add(
+                            ion.mz.ToString("F4"),
+                            ion.pixels,
+                            ion.density.ToString("F2"),
+                            stdNum.Round(ion.maxIntensity),
+                            ion.basePixelX,
+                            ion.basePixelY,
+                            stdNum.Round(ion.Q1Intensity),
+                            stdNum.Round(ion.Q2Intensity),
+                            stdNum.Round(ion.Q3Intensity),
+                            stdNum.Round(ion.RSD)
+                        )
+                    End If
 
                     Call Application.DoEvents()
                 Next
