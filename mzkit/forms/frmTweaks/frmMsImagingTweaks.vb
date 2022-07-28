@@ -198,7 +198,7 @@ UseCheckedList:
             Dim viewer = WindowModules.viewer
 
             If TypeOf viewer Is frmMsImagingViewer Then
-                Call DirectCast(viewer, frmMsImagingViewer).renderByMzList({mz})
+                Call DirectCast(viewer, frmMsImagingViewer).renderByMzList({mz}, Nothing)
             End If
         Else
             ' formula
