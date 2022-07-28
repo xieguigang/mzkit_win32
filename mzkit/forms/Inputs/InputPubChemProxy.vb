@@ -84,7 +84,11 @@ Public Class InputPubChemProxy
 
             Call New Thread(Sub()
                                 Dim img = ImageFly.GetImage(target, size:="300,300", doBgTransparent:=False)
-                                Call Me.Invoke(Sub() PictureBox1.BackgroundImage = img)
+
+                                Try
+                                    Call Me.Invoke(Sub() PictureBox1.BackgroundImage = img)
+                                Catch ex As Exception
+                                End Try
                             End Sub).Start()
         End If
     End Sub
