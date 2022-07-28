@@ -35,7 +35,9 @@ Partial Class InputPubChemProxy
         Me.Button3 = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -81,26 +83,31 @@ Partial Class InputPubChemProxy
         'ColumnHeader1
         '
         Me.ColumnHeader1.Text = "CID"
+        Me.ColumnHeader1.Width = 80
         '
         'ColumnHeader2
         '
         Me.ColumnHeader2.Text = "name"
+        Me.ColumnHeader2.Width = 160
         '
         'ColumnHeader3
         '
         Me.ColumnHeader3.Text = "formula"
+        Me.ColumnHeader3.Width = 80
         '
         'ColumnHeader4
         '
         Me.ColumnHeader4.Text = "exact mass"
+        Me.ColumnHeader4.Width = 75
         '
         'ColumnHeader5
         '
         Me.ColumnHeader5.Text = "CAS"
+        Me.ColumnHeader5.Width = 200
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(749, 456)
+        Me.Button2.Location = New System.Drawing.Point(568, 456)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 4
@@ -109,7 +116,7 @@ Partial Class InputPubChemProxy
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(646, 456)
+        Me.Button3.Location = New System.Drawing.Point(465, 456)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(75, 23)
         Me.Button3.TabIndex = 5
@@ -121,7 +128,7 @@ Partial Class InputPubChemProxy
         Me.GroupBox1.Controls.Add(Me.ListView1)
         Me.GroupBox1.Location = New System.Drawing.Point(24, 53)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(815, 387)
+        Me.GroupBox1.Size = New System.Drawing.Size(619, 387)
         Me.GroupBox1.TabIndex = 6
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "PubChem Results"
@@ -135,11 +142,21 @@ Partial Class InputPubChemProxy
         Me.Label2.TabIndex = 7
         Me.Label2.Text = "..."
         '
+        'PictureBox1
+        '
+        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox1.Location = New System.Drawing.Point(671, 53)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(153, 141)
+        Me.PictureBox1.TabIndex = 8
+        Me.PictureBox1.TabStop = False
+        '
         'InputPubChemProxy
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(863, 494)
+        Me.ClientSize = New System.Drawing.Size(1005, 494)
+        Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Button3)
@@ -150,6 +167,7 @@ Partial Class InputPubChemProxy
         Me.Name = "InputPubChemProxy"
         Me.Text = "PubChem Query"
         Me.GroupBox1.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -168,4 +186,5 @@ Partial Class InputPubChemProxy
     Friend WithEvents ColumnHeader4 As ColumnHeader
     Friend WithEvents ColumnHeader5 As ColumnHeader
     Friend WithEvents Label2 As Label
+    Friend WithEvents PictureBox1 As PictureBox
 End Class

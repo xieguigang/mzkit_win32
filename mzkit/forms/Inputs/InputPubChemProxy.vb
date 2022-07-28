@@ -68,13 +68,16 @@ Public Class InputPubChemProxy
     End Sub
 
     Private Sub setSelect()
-        For Each i In ListView1.SelectedItems
-            target = i.ToString
+        For Each i As ListViewItem In ListView1.SelectedItems
+            target = i.Text
             Exit For
         Next
 
         If Not target.StringEmpty Then
             Label2.Text = $"Select [{GetAnnotation.name}]"
+
+            Dim img = ImageFly.GetImage(target, size:="300,300", doBgTransparent:=False)
+            PictureBox1.BackgroundImage = img
         End If
     End Sub
 
