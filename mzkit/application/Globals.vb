@@ -111,6 +111,12 @@ Module Globals
         End Get
     End Property
 
+    Public ReadOnly Property pubchemWebCache As String
+        Get
+            Return Settings.pubchemWebCache
+        End Get
+    End Property
+
     Sub New()
         Settings = Settings.GetConfiguration()
 
