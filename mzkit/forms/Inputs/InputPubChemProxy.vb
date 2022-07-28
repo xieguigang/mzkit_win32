@@ -95,6 +95,10 @@ Public Class InputPubChemProxy
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        DialogResult = DialogResult.OK
+        If target.StringEmpty Then
+            MessageBox.Show("No metabolite is selected!", "PubChem Query", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Else
+            DialogResult = DialogResult.OK
+        End If
     End Sub
 End Class

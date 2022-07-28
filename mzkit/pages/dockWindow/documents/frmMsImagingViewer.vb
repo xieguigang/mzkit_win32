@@ -144,7 +144,10 @@ Public Class frmMsImagingViewer
         Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
 
         If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
-
+            If checkService() Then
+            Else
+                Call MyApplication.host.showStatusMessage($"The MS-imaging backend services is not running for rendering {getFormula.GetAnnotation.name}!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            End If
         End If
     End Sub
 

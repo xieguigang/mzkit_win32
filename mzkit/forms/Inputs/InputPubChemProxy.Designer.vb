@@ -75,7 +75,7 @@ Partial Class InputPubChemProxy
         Me.ListView1.HideSelection = False
         Me.ListView1.Location = New System.Drawing.Point(16, 23)
         Me.ListView1.Name = "ListView1"
-        Me.ListView1.Size = New System.Drawing.Size(784, 352)
+        Me.ListView1.Size = New System.Drawing.Size(603, 352)
         Me.ListView1.TabIndex = 3
         Me.ListView1.UseCompatibleStateImageBehavior = False
         Me.ListView1.View = System.Windows.Forms.View.Details
@@ -107,7 +107,7 @@ Partial Class InputPubChemProxy
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(568, 456)
+        Me.Button2.Location = New System.Drawing.Point(582, 456)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 4
@@ -116,7 +116,7 @@ Partial Class InputPubChemProxy
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(465, 456)
+        Me.Button3.Location = New System.Drawing.Point(487, 456)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(75, 23)
         Me.Button3.TabIndex = 5
@@ -128,26 +128,25 @@ Partial Class InputPubChemProxy
         Me.GroupBox1.Controls.Add(Me.ListView1)
         Me.GroupBox1.Location = New System.Drawing.Point(24, 53)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(619, 387)
+        Me.GroupBox1.Size = New System.Drawing.Size(633, 387)
         Me.GroupBox1.TabIndex = 6
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "PubChem Results"
         '
         'Label2
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(22, 461)
+        Me.Label2.Location = New System.Drawing.Point(24, 457)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(23, 12)
+        Me.Label2.Size = New System.Drawing.Size(447, 18)
         Me.Label2.TabIndex = 7
         Me.Label2.Text = "..."
         '
         'PictureBox1
         '
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox1.Location = New System.Drawing.Point(671, 53)
+        Me.PictureBox1.Location = New System.Drawing.Point(665, 61)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(153, 141)
+        Me.PictureBox1.Size = New System.Drawing.Size(203, 177)
         Me.PictureBox1.TabIndex = 8
         Me.PictureBox1.TabStop = False
         '
@@ -155,7 +154,7 @@ Partial Class InputPubChemProxy
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1005, 494)
+        Me.ClientSize = New System.Drawing.Size(878, 485)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.GroupBox1)
