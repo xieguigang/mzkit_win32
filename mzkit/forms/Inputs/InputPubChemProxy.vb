@@ -72,6 +72,10 @@ Public Class InputPubChemProxy
             target = i.ToString
             Exit For
         Next
+
+        If Not target.StringEmpty Then
+            Label2.Text = $"Select [{GetAnnotation.name}]"
+        End If
     End Sub
 
     Private Sub ListView1_DoubleClick(sender As Object, e As EventArgs) Handles ListView1.DoubleClick

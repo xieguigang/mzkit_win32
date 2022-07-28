@@ -26,14 +26,15 @@ Partial Class InputPubChemProxy
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.ListView1 = New System.Windows.Forms.ListView()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -77,6 +78,26 @@ Partial Class InputPubChemProxy
         Me.ListView1.UseCompatibleStateImageBehavior = False
         Me.ListView1.View = System.Windows.Forms.View.Details
         '
+        'ColumnHeader1
+        '
+        Me.ColumnHeader1.Text = "CID"
+        '
+        'ColumnHeader2
+        '
+        Me.ColumnHeader2.Text = "name"
+        '
+        'ColumnHeader3
+        '
+        Me.ColumnHeader3.Text = "formula"
+        '
+        'ColumnHeader4
+        '
+        Me.ColumnHeader4.Text = "exact mass"
+        '
+        'ColumnHeader5
+        '
+        Me.ColumnHeader5.Text = "CAS"
+        '
         'Button2
         '
         Me.Button2.Location = New System.Drawing.Point(749, 456)
@@ -105,31 +126,21 @@ Partial Class InputPubChemProxy
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "PubChem Results"
         '
-        'ColumnHeader1
+        'Label2
         '
-        Me.ColumnHeader1.Text = "CID"
-        '
-        'ColumnHeader2
-        '
-        Me.ColumnHeader2.Text = "name"
-        '
-        'ColumnHeader3
-        '
-        Me.ColumnHeader3.Text = "formula"
-        '
-        'ColumnHeader4
-        '
-        Me.ColumnHeader4.Text = "exact mass"
-        '
-        'ColumnHeader5
-        '
-        Me.ColumnHeader5.Text = "CAS"
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(22, 461)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(23, 12)
+        Me.Label2.TabIndex = 7
+        Me.Label2.Text = "..."
         '
         'InputPubChemProxy
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(863, 494)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
@@ -156,4 +167,5 @@ Partial Class InputPubChemProxy
     Friend WithEvents ColumnHeader3 As ColumnHeader
     Friend WithEvents ColumnHeader4 As ColumnHeader
     Friend WithEvents ColumnHeader5 As ColumnHeader
+    Friend WithEvents Label2 As Label
 End Class
