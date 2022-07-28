@@ -817,13 +817,13 @@ Public Class frmMsImagingViewer
                     Call Invoke(Sub() params.SetIntensityMax(maxInto))
                     Call Invoke(Sub() rendering = createRenderTask(Rpixels, Gpixels, Bpixels, size))
                     Call Invoke(rendering)
+                    Call MyApplication.host.showStatusMessage("Rendering Complete!", My.Resources.preferences_system_notifications)
                 End If
 
                 Call progress.Invoke(Sub() progress.Close())
             End Sub).Start()
 
         Call progress.ShowDialog()
-        Call MyApplication.host.showStatusMessage("Rendering Complete!", My.Resources.preferences_system_notifications)
         Call PixelSelector1.ShowMessage($"Render in RGB Channel Composition Mode: {selectedMz.Select(Function(d) stdNum.Round(d, 4)).JoinBy(", ")}")
     End Sub
 
@@ -887,13 +887,13 @@ Public Class frmMsImagingViewer
                     Call Invoke(Sub() params.SetIntensityMax(maxInto))
                     Call Invoke(Sub() rendering = createRenderTask(pixels, size))
                     Call Invoke(rendering)
+                    Call MyApplication.host.showStatusMessage("Rendering Complete!", My.Resources.preferences_system_notifications)
                 End If
 
                 Call progress.CloseWindow()
             End Sub).Start()
 
         Call progress.ShowDialog()
-        Call MyApplication.host.showStatusMessage("Rendering Complete!", My.Resources.preferences_system_notifications)
         Call PixelSelector1.ShowMessage($"Render in Layer Pixels Composition Mode: {selectedMz.Select(Function(d) stdNum.Round(d, 4)).JoinBy(", ")}")
     End Sub
 
