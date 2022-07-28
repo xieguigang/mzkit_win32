@@ -344,7 +344,14 @@ Public Class frmMsImagingViewer
         table.InstanceGuid = guid
         table.SourceName = FilePath.FileName Or "MS-Imaging".AsDefault
         table.ViewRow = Sub(row)
-                            Call renderByMzList({Val(row("mz"))})
+                            Dim namePlot As String = ""
+                            Dim mz As Double = Val(row("mz"))
+
+                            If Not formula.StringEmpty Then
+                                namePlot = $"{name} {row("precursor_type")} {mz.ToString("F4")}"
+                            End If
+
+                            Call renderByMzList({mz}, namePlot)
                             Call Me.Activate()
                         End Sub
         table.LoadTable(
@@ -373,7 +380,7 @@ Public Class frmMsImagingViewer
 
                         For Each type In types
                             If stdNum.Abs(ion.mz - type.CalcMZ(exactMass)) <= 0.1 Then
-                                typeName = name & " " & type.ToString
+                                typeName = type.ToString
                                 Exit For
                             End If
                         Next
@@ -652,7 +659,7 @@ Public Class frmMsImagingViewer
         If mz.Length = 0 Then
             Call MyApplication.host.showStatusMessage("No ions selected for rendering!", My.Resources.StatusAnnotations_Warning_32xLG_color)
         Else
-            Call renderByMzList(mz)
+            Call renderByMzList(mz, Nothing)
         End If
     End Sub
 
@@ -848,9 +855,8 @@ Public Class frmMsImagingViewer
                End Sub
     End Function
 
-    Friend Sub renderByMzList(mz As Double())
+    Friend Sub renderByMzList(mz As Double(), titleName As String)
         Dim selectedMz As New List(Of Double)
-        Dim progress As New frmProgressSpinner
         Dim size As String = $"{params.pixel_width},{params.pixel_height}"
 
         For i As Integer = 0 To mz.Length - 1
@@ -865,8 +871,9 @@ Public Class frmMsImagingViewer
 
         mzdiff = params.GetTolerance
         targetMz = selectedMz.ToArray
+        title = titleName
 
-        Call New Thread(
+        Call frmProgressSpinner.DoLoading(
             Sub()
                 Dim pixels As PixelData() = MSIservice.LoadPixels(selectedMz, mzdiff)
 
@@ -889,16 +896,14 @@ Public Class frmMsImagingViewer
                     Call Invoke(rendering)
                     Call MyApplication.host.showStatusMessage("Rendering Complete!", My.Resources.preferences_system_notifications)
                 End If
+            End Sub)
 
-                Call progress.CloseWindow()
-            End Sub).Start()
-
-        Call progress.ShowDialog()
         Call PixelSelector1.ShowMessage($"Render in Layer Pixels Composition Mode: {selectedMz.Select(Function(d) stdNum.Round(d, 4)).JoinBy(", ")}")
     End Sub
 
     Dim loadedPixels As PixelData()
     Dim targetMz As Double()
+    Dim title As String
     Dim mzdiff As Tolerance
 
     Public Sub renderByPixelsData(pixels As PixelData(), MsiDim As Size)
@@ -1088,7 +1093,12 @@ Public Class frmMsImagingViewer
                 If targetMz.Length > 1 Then
                     Call RscriptProgressTask.ExportRGBIonsPlot(targetMz, mzdiff.GetScript, saveAs:=file.FileName)
                 Else
-                    Call RscriptProgressTask.ExportSingleIonPlot(targetMz(0), mzdiff.GetScript, saveAs:=file.FileName)
+                    Call RscriptProgressTask.ExportSingleIonPlot(
+                        mz:=targetMz(0),
+                        tolerance:=mzdiff.GetScript,
+                        saveAs:=file.FileName,
+                        title:=title
+                    )
                 End If
             End If
         End Using

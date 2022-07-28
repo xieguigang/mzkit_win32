@@ -97,6 +97,10 @@ Public Class frmProgressSpinner
         TaskbarStatus.Stop()
     End Sub
 
+    ''' <summary>
+    ''' run task and then close the spinner dialog
+    ''' </summary>
+    ''' <param name="loading"></param>
     Public Shared Sub DoLoading(loading As Action)
         Dim spinner As New frmProgressSpinner
 
