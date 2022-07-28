@@ -385,6 +385,12 @@
     <Compile Include="application\settings\RawFileViewerSettings.vb" />
     <Compile Include="application\VisualStudio.vb" />
     <Compile Include="application\RPackage.vb" />
+    <Compile Include="forms\Inputs\InputPubChemProxy.Designer.vb">
+      <DependentUpon>InputPubChemProxy.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\InputPubChemProxy.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GridSearchHandler.vb" />
     <Compile Include="forms\frmDOI.Designer.vb">
       <DependentUpon>frmDOI.vb</DependentUpon>
@@ -962,6 +968,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputPeakTime.resx">
       <DependentUpon>InputPeakTime.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\InputPubChemProxy.resx">
+      <DependentUpon>InputPubChemProxy.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputRSymbol.resx">
       <DependentUpon>InputRSymbol.vb</DependentUpon>
