@@ -24,7 +24,13 @@ Public Class InputPubChemProxy
         Else
             Call cids.Clear()
             Call ListView1.Items.Clear()
-            Call doSearch(Strings.Trim(TextBox1.Text))
+            Call frmProgressSpinner _
+                .DoLoading(Sub()
+                               Call Me.Invoke(
+                                   Sub()
+                                       Call doSearch(Strings.Trim(TextBox1.Text))
+                                   End Sub)
+                           End Sub)
         End If
     End Sub
 
@@ -51,6 +57,7 @@ Public Class InputPubChemProxy
             cid.SubItems.Add(metadata.name)
             cid.SubItems.Add(metadata.formula)
             cid.SubItems.Add(metadata.exact_mass)
+            cid.SubItems.Add(metadata.xref.CAS.Distinct.JoinBy("; "))
         Next
     End Sub
 
