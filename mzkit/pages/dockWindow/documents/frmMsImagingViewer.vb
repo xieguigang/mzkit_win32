@@ -132,10 +132,20 @@ Public Class frmMsImagingViewer
 
         AddHandler RibbonEvents.ribbonItems.ButtonImportsTissueMorphology.ExecuteEvent, Sub() Call ImportsTissueMorphology()
         AddHandler RibbonEvents.ribbonItems.ButtonExportRegions.ExecuteEvent, Sub() Call ExportRegions()
+        AddHandler RibbonEvents.ribbonItems.ButtonMSISearchPubChem.ExecuteEvent, Sub() Call SearchPubChem()
 
         Call ApplyVsTheme(ContextMenuStrip1)
         Call setupPolygonEditorButtons()
         Call PixelSelector1.ShowMessage("BioNovoGene MZKit MSImaging Viewer")
+    End Sub
+
+    Sub SearchPubChem()
+        Dim getFormula As New InputPubChemProxy
+        Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
+
+        If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
+
+        End If
     End Sub
 
 #Region "Tissue Map"

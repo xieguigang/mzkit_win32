@@ -128,6 +128,7 @@ namespace RibbonLib.Controls
             public const uint cmdButtonMSIRowScans = 128;
             public const uint cmdButtonExportMSIMzpack = 127;
             public const uint cmdPanelMSIVisual = 186;
+            public const uint cmdButtonMSISearchPubChem = 192;
             public const uint cmdButtonMSIMatrixVisual = 187;
             public const uint cmdTabMSIAnalysis = 141;
             public const uint cmdTabMSISnapshot = 126;
@@ -313,6 +314,7 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonMSIRowScans { get; private set; }
         public RibbonButton ButtonExportMSIMzpack { get; private set; }
         public RibbonGroup PanelMSIVisual { get; private set; }
+        public RibbonButton ButtonMSISearchPubChem { get; private set; }
         public RibbonButton ButtonMSIMatrixVisual { get; private set; }
         public RibbonTab TabMSIAnalysis { get; private set; }
         public RibbonGroup TabMSISnapshot { get; private set; }
@@ -493,6 +495,7 @@ namespace RibbonLib.Controls
             ButtonMSIRowScans = new RibbonButton(ribbon, Cmd.cmdButtonMSIRowScans);
             ButtonExportMSIMzpack = new RibbonButton(ribbon, Cmd.cmdButtonExportMSIMzpack);
             PanelMSIVisual = new RibbonGroup(ribbon, Cmd.cmdPanelMSIVisual);
+            ButtonMSISearchPubChem = new RibbonButton(ribbon, Cmd.cmdButtonMSISearchPubChem);
             ButtonMSIMatrixVisual = new RibbonButton(ribbon, Cmd.cmdButtonMSIMatrixVisual);
             TabMSIAnalysis = new RibbonTab(ribbon, Cmd.cmdTabMSIAnalysis);
             TabMSISnapshot = new RibbonGroup(ribbon, Cmd.cmdTabMSISnapshot);

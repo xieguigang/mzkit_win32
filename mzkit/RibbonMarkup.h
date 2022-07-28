@@ -960,5 +960,12 @@
 #define cmdGroupShowComprehensive_LabelDescription_RESID 60156
 #define cmdGroupShowComprehensive_TooltipTitle_RESID 60157
 #define cmdGroupShowComprehensive_TooltipDescription_RESID 60158
-#define InternalCmd2_LabelTitle_RESID 60159
-#define InternalCmd4_LabelTitle_RESID 60160
+#define cmdButtonMSISearchPubChem 192 
+#define cmdButtonMSISearchPubChem_LabelTitle_RESID 60159
+#define cmdButtonMSISearchPubChem_LabelDescription_RESID 60160
+#define cmdButtonMSISearchPubChem_TooltipTitle_RESID 60161
+#define cmdButtonMSISearchPubChem_TooltipDescription_RESID 60162
+#define cmdButtonMSISearchPubChem_SmallImages_192__RESID 60163
+#define cmdButtonMSISearchPubChem_LargeImages_192__RESID 60164
+#define InternalCmd2_LabelTitle_RESID 60165
+#define InternalCmd4_LabelTitle_RESID 60166

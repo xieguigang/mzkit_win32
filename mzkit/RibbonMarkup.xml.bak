@@ -2306,6 +2306,14 @@
       </Command.TooltipDescription>
     </Command>
     <Command Name="cmdGroupShowComprehensive" Id="191" LabelTitle="Comprehensive Mass Spectrum" LabelDescription="Comprehensive Mass Spectrum" TooltipTitle="Comprehensive Mass Spectrum" TooltipDescription="Comprehensive Mass Spectrum" />
+    <Command Name="cmdButtonMSISearchPubChem" Id="192" LabelTitle="Search PubChem" LabelDescription="Search PubChem" TooltipTitle="Search PubChem" TooltipDescription="Search PubChem">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/tracker.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/tracker.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2524,7 +2532,8 @@
               <Button CommandName="cmdButtonMSIRowScans" />
               <Button CommandName="cmdButtonExportMSIMzpack" />
             </Group>
-            <Group CommandName="cmdPanelMSIVisual" SizeDefinition="OneButton">
+            <Group CommandName="cmdPanelMSIVisual" SizeDefinition="TwoButtons">
+              <Button CommandName="cmdButtonMSISearchPubChem" />
               <Button CommandName="cmdButtonMSIMatrixVisual" />
             </Group>
           </Tab>

@@ -125,6 +125,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonMSIRowScans As UInteger = 128
             Public Const cmdButtonExportMSIMzpack As UInteger = 127
             Public Const cmdPanelMSIVisual As UInteger = 186
+            Public Const cmdButtonMSISearchPubChem As UInteger = 192
             Public Const cmdButtonMSIMatrixVisual As UInteger = 187
             Public Const cmdTabMSIAnalysis As UInteger = 141
             Public Const cmdTabMSISnapshot As UInteger = 126
@@ -860,6 +861,12 @@ Namespace RibbonLib.Controls
                 Return _PanelMSIVisual
             End Get
         End Property
+        Private _ButtonMSISearchPubChem As RibbonButton
+        Public ReadOnly Property ButtonMSISearchPubChem As RibbonButton
+            Get
+                Return _ButtonMSISearchPubChem
+            End Get
+        End Property
         Private _ButtonMSIMatrixVisual As RibbonButton
         Public ReadOnly Property ButtonMSIMatrixVisual As RibbonButton
             Get
@@ -1365,6 +1372,7 @@ Namespace RibbonLib.Controls
             _ButtonMSIRowScans = New RibbonButton(_ribbon, Cmd.cmdButtonMSIRowScans)
             _ButtonExportMSIMzpack = New RibbonButton(_ribbon, Cmd.cmdButtonExportMSIMzpack)
             _PanelMSIVisual = New RibbonGroup(_ribbon, Cmd.cmdPanelMSIVisual)
+            _ButtonMSISearchPubChem = New RibbonButton(_ribbon, Cmd.cmdButtonMSISearchPubChem)
             _ButtonMSIMatrixVisual = New RibbonButton(_ribbon, Cmd.cmdButtonMSIMatrixVisual)
             _TabMSIAnalysis = New RibbonTab(_ribbon, Cmd.cmdTabMSIAnalysis)
             _TabMSISnapshot = New RibbonGroup(_ribbon, Cmd.cmdTabMSISnapshot)

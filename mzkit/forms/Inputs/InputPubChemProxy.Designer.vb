@@ -26,6 +26,8 @@ Partial Class InputPubChemProxy
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.ListView1 = New System.Windows.Forms.ListView()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
@@ -58,15 +60,35 @@ Partial Class InputPubChemProxy
         Me.ListView1.HideSelection = False
         Me.ListView1.Location = New System.Drawing.Point(24, 68)
         Me.ListView1.Name = "ListView1"
-        Me.ListView1.Size = New System.Drawing.Size(962, 447)
+        Me.ListView1.Size = New System.Drawing.Size(962, 391)
         Me.ListView1.TabIndex = 3
         Me.ListView1.UseCompatibleStateImageBehavior = False
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(879, 493)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 4
+        Me.Button2.Text = "Okey"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(776, 493)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(75, 23)
+        Me.Button3.TabIndex = 5
+        Me.Button3.Text = "Cancel"
+        Me.Button3.UseVisualStyleBackColor = True
         '
         'InputPubChemProxy
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1010, 541)
+        Me.Controls.Add(Me.Button3)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.ListView1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.TextBox1)
@@ -82,4 +104,6 @@ Partial Class InputPubChemProxy
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Button1 As Button
     Friend WithEvents ListView1 As ListView
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button3 As Button
 End Class

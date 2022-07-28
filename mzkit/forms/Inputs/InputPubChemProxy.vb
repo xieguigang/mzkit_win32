@@ -4,7 +4,14 @@ Imports Microsoft.VisualBasic.Linq
 
 Public Class InputPubChemProxy
 
-    ReadOnly cids As New Dictionary(Of String, MetaLib)
+    Dim cids As New Dictionary(Of String, MetaLib)
+    Dim target As String
+
+    Public ReadOnly Property GetAnnotation As MetaLib
+        Get
+            Return cids(target)
+        End Get
+    End Property
 
     ''' <summary>
     ''' do pubchem search
@@ -16,6 +23,7 @@ Public Class InputPubChemProxy
             Call MessageBox.Show("No query text input!", "PubChem Query", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         Else
             Call cids.Clear()
+            Call ListView1.Items.Clear()
             Call doSearch(Strings.Trim(TextBox1.Text))
         End If
     End Sub
@@ -37,6 +45,40 @@ Public Class InputPubChemProxy
             Dim metadata = compound.GetMetaInfo
 
             Call Me.cids.Add(id, metadata)
+
+            Dim cid = ListView1.Items.Add(id)
+
+            cid.SubItems.Add(metadata.name)
+            cid.SubItems.Add(metadata.formula)
+            cid.SubItems.Add(metadata.exact_mass)
         Next
+    End Sub
+
+    Private Sub ListView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListView1.SelectedIndexChanged
+        Call setSelect()
+    End Sub
+
+    Private Sub setSelect()
+        For Each i In ListView1.SelectedItems
+            target = i.ToString
+            Exit For
+        Next
+    End Sub
+
+    Private Sub ListView1_DoubleClick(sender As Object, e As EventArgs) Handles ListView1.DoubleClick
+        If ListView1.SelectedIndices.Count = 0 Then
+        Else
+            setSelect()
+            DialogResult = DialogResult.OK
+            Close()
+        End If
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        DialogResult = DialogResult.Cancel
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        DialogResult = DialogResult.OK
     End Sub
 End Class
