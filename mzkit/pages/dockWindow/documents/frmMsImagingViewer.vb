@@ -872,6 +872,13 @@ Public Class frmMsImagingViewer
 
                 If pixels.IsNullOrEmpty Then
                     Call MyApplication.host.showStatusMessage("no pixel data...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                    Call Invoke(Sub()
+                                    rendering = New Action(Sub()
+                                                           End Sub)
+                                End Sub)
+                    Call Invoke(Sub()
+                                    PixelSelector1.SetMsImagingOutput(New Bitmap(1, 1), New Size(1, 1), params.colors, {0, 1}, 1)
+                                End Sub)
                 Else
                     Dim maxInto As Double = Aggregate pm As PixelData
                                             In pixels
@@ -882,7 +889,7 @@ Public Class frmMsImagingViewer
                     Call Invoke(rendering)
                 End If
 
-                Call progress.Invoke(Sub() progress.Close())
+                Call progress.CloseWindow()
             End Sub).Start()
 
         Call progress.ShowDialog()
