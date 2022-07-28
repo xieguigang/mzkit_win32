@@ -181,8 +181,9 @@ Public Class MSI : Implements ITaskDriver, IDisposable
 
     <Protocol(ServiceProtocol.GetIonStatList)>
     Public Function GetIonStatList(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
+        Dim targetMz As Double() = request.GetUTF8String.LoadJSON(Of Double())
         Dim allPixels As PixelScan() = MSI.pixelReader.AllPixels.ToArray
-        Dim ions As IonStat() = IonStat.DoStat(allPixels).ToArray
+        Dim ions As IonStat() = IonStat.DoStat(allPixels, mz:=targetMz).ToArray
         Dim json As JsonElement = ions.GetType.GetJsonElement(ions, New JSONSerializerOptions With {.indent = False})
 
         Return New DataPipe(BSON.BSONFormat.SafeGetBuffer(json))

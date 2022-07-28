@@ -131,8 +131,8 @@ Namespace ServiceHub
             Return hostOld
         End Function
 
-        Public Function DoIonStats() As IonStat()
-            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.GetIonStatList, "read"))
+        Public Function DoIonStats(mz As Double()) As IonStat()
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.GetIonStatList, mz.GetJson(indent:=False, simpleDict:=True)))
 
             If data Is Nothing Then
                 Return {}

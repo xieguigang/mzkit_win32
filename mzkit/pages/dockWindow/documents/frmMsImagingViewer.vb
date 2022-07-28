@@ -145,6 +145,8 @@ Public Class frmMsImagingViewer
 
         If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
             If checkService() Then
+                Dim formula As String = getFormula.GetAnnotation.formula
+
             Else
                 Call MyApplication.host.showStatusMessage($"The MS-imaging backend services is not running for rendering {getFormula.GetAnnotation.name}!", My.Resources.StatusAnnotations_Warning_32xLG_color)
             End If
@@ -295,7 +297,7 @@ Public Class frmMsImagingViewer
             Sub()
                 Call Thread.Sleep(500)
 
-                Dim ions As IonStat() = MSIservice.DoIonStats
+                Dim ions As IonStat() = MSIservice.DoIonStats({})
 
                 If ions.IsNullOrEmpty Then
                     Call MyApplication.host.warning("No ions result...")
