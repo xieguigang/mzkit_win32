@@ -1,6 +1,6 @@
 # mzkit_win32
 
-Mzkit Windows Desktop Application
+Mzkit Windows Desktop Application, this source repository is a submodule of the mzkit project: https://github.com/xieguigang/mzkit
 
 ## Source development &amp; compile 
 
