@@ -139,6 +139,9 @@ Public Class frmMsImagingViewer
         Call ApplyVsTheme(ContextMenuStrip1)
         Call setupPolygonEditorButtons()
         Call PixelSelector1.ShowMessage("BioNovoGene MZKit MSImaging Viewer")
+
+        sampleRegions.Show(MyApplication.host.dockPanel)
+        sampleRegions.DockState = DockState.Hidden
     End Sub
 
     Sub SearchPubChem()
@@ -497,12 +500,21 @@ Public Class frmMsImagingViewer
         Call MyApplication.host.Ribbon1.SetModes(0)
     End Sub
 
+    ReadOnly sampleRegions As New MSIRegionSampleWindow
+
+    ''' <summary>
+    ''' turn on polygon editor mode
+    ''' </summary>
     Sub TogglePolygonMode()
         PixelSelector1.SelectPolygonMode = RibbonEvents.ribbonItems.ButtonTogglePolygon.BooleanValue
 
         If PixelSelector1.SelectPolygonMode Then
             Call MyApplication.host.Ribbon1.SetModes(1)
             Call MyApplication.host.showStatusMessage("Toggle edit polygon for your MS-imaging data!")
+
+            If sampleRegions.DockState = DockState.Hidden Then
+                sampleRegions.DockState = DockState.DockRight
+            End If
 
             PixelSelector1.Cursor = Cursors.Default
         Else
@@ -1055,8 +1067,6 @@ Public Class frmMsImagingViewer
     Private Sub ClearPinToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearToolStripMenuItem.Click
         pinedPixel = Nothing
     End Sub
-
-    Dim sampleRegions As New List(Of Rectangle)
 
     Private Sub ClearSamplesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearToolStripMenuItem1.Click
         sampleRegions.Clear()

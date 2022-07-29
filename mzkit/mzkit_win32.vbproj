@@ -676,6 +676,12 @@
     <Compile Include="pages\dockWindow\frmDemo.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="pages\dockWindow\properties\MSIRegionSampleWindow.Designer.vb">
+      <DependentUpon>MSIRegionSampleWindow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pages\dockWindow\properties\MSIRegionSampleWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\tools\AdjustParameters.Designer.vb">
       <DependentUpon>AdjustParameters.vb</DependentUpon>
     </Compile>
@@ -1082,6 +1088,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\frmVideoList.resx">
       <DependentUpon>frmVideoList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\properties\MSIRegionSampleWindow.resx">
+      <DependentUpon>MSIRegionSampleWindow.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\tools\AdjustParameters.resx">
       <DependentUpon>AdjustParameters.vb</DependentUpon>
