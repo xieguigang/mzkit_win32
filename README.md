@@ -2,7 +2,7 @@
 
 Mzkit Windows Desktop Application
 
-## Source development of MZKit
+## Source development &amp; compile 
 
 1. Git clone of source projects and all of the submodules inside the repository:
    + [MZKit](https://github.com/xieguigang/mzkit.git)
