@@ -59,6 +59,7 @@
     <ROW Directory="MSImaging_Dir" Directory_Parent="pipeline_Dir" DefaultDir="MSIMAG~1|MSImaging"/>
     <ROW Directory="NMR_Dir" Directory_Parent="demo_Dir" DefaultDir="NMR"/>
     <ROW Directory="NewFolder_1_Dir" Directory_Parent="APPDIR" DefaultDir="images"/>
+    <ROW Directory="NewFolder_2_Dir" Directory_Parent="documents_Dir" DefaultDir="THERMO~1|ThermoFisher"/>
     <ROW Directory="NewFolder_Dir" Directory_Parent="APPDIR" DefaultDir="tools"/>
     <ROW Directory="Rstudio_Dir" Directory_Parent="APPDIR" DefaultDir="Rstudio"/>
     <ROW Directory="S042_Processed_imzML1.1.1_Dir" Directory_Parent="demo_Dir" DefaultDir="S042_P~1.1|S042_Processed_imzML1.1.1"/>
@@ -322,6 +323,7 @@
     <ROW Component="REnv.dll_2" ComponentId="{8712527C-15DB-4642-878E-7DAF58663A01}" Directory_="library_Dir" Attributes="256" KeyPath="REnv.dll_2"/>
     <ROW Component="REnv.dll_3" ComponentId="{8AC4F6C4-2F77-4EF4-AC4F-BE56A26592DB}" Directory_="APPDIR" Attributes="256" KeyPath="REnv.dll_3"/>
     <ROW Component="REnv.dll_6" ComponentId="{0A6B97C1-64A8-4591-BBC7-A9C5D61245A7}" Directory_="bin_Dir" Attributes="256" KeyPath="REnv.dll_6"/>
+    <ROW Component="ReleaseNotes.docx" ComponentId="{C89F9217-25CE-46C6-92A0-E41CA58D8AEA}" Directory_="NewFolder_2_Dir" Attributes="0" KeyPath="ReleaseNotes.docx" Type="0"/>
     <ROW Component="Rlapack.dll" ComponentId="{A63B02DA-E242-411A-A3E2-A7D860F42219}" Directory_="library_Dir" Attributes="256" KeyPath="Rlapack.dll"/>
     <ROW Component="Rscript.dll_3" ComponentId="{D0CCC07B-2407-4099-B543-F74EA74FFDEE}" Directory_="bin_Dir" Attributes="256" KeyPath="Rscript.dll_3"/>
     <ROW Component="Rscript.exe_5" ComponentId="{DD17189D-DC4C-4648-A10C-95064554E915}" Directory_="bin_Dir" Attributes="256" KeyPath="Rscript.exe_5"/>
@@ -406,6 +408,7 @@
     <ROW Component="library" ComponentId="{7165AD75-FA2D-4513-8E69-E2CCE22396AC}" Directory_="library_Dir" Attributes="256"/>
     <ROW Component="man.pptx" ComponentId="{C4ACBC7D-8438-41D9-AD59-9CA86D4EBA4B}" Directory_="documents_Dir" Attributes="256" KeyPath="man.pptx" Type="0"/>
     <ROW Component="msconvert.exe" ComponentId="{73FC3022-DA01-4C58-9164-7FD222A7F468}" Directory_="APPDIR" Attributes="256" KeyPath="msconvert.exe"/>
+    <ROW Component="mzblender.dll" ComponentId="{E503A6AD-EF79-4FE6-866A-F8E3174C7810}" Directory_="APPDIR" Attributes="256" KeyPath="mzblender.dll"/>
     <ROW Component="mzkit_win32.exe_1" ComponentId="{D1A9B7C2-509C-425B-AD9E-9C44DC837AD7}" Directory_="APPDIR" Attributes="256" KeyPath="mzkit_win32.exe_1"/>
     <ROW Component="mzkit_win32.resources.dll" ComponentId="{07088A7D-4893-4253-9A2A-E6C0AF73195D}" Directory_="enUS_Dir" Attributes="256" KeyPath="mzkit_win32.resources.dll"/>
     <ROW Component="mzkit_win32.resources.dll_1" ComponentId="{BF42566E-B837-4E29-845D-D598E82099BE}" Directory_="zhCN_Dir" Attributes="256" KeyPath="mzkit_win32.resources.dll_1"/>
@@ -842,6 +845,15 @@
     <ROW File="manzh.pptx" Component_="man.pptx" FileName="MAN-ZH~1.PPT|man-zh.pptx" Attributes="0" SourcePath="..\extdata\man-zh.pptx" SelfReg="false"/>
     <ROW File="install_locals.cmd" Component_="GCModeller.zip" FileName="INSTAL~1.CMD|install_locals.cmd" Attributes="0" SourcePath="install_locals.cmd" SelfReg="false"/>
     <ROW File="HeatMapMatrix.R" Component_="singleIon.R" FileName="HEATMA~1.R|HeatMapMatrix.R" Attributes="0" SourcePath="..\rstudio\pipeline\MSImaging\HeatMapMatrix.R" SelfReg="false"/>
+    <ROW File="mzblender.dll" Component_="mzblender.dll" FileName="MZBLEN~1.DLL|mzblender.dll" Attributes="0" SourcePath="..\..\..\dist\bin\mzblender.dll" SelfReg="false"/>
+    <ROW File="ReleaseNotes.docx" Component_="ReleaseNotes.docx" FileName="RELEAS~1.DOC|ReleaseNotes.docx" Attributes="0" SourcePath="..\..\..\ThermoFisher\ReleaseNotes.docx" SelfReg="false"/>
+    <ROW File="ASMS_2018_RawFileReader.pptx" Component_="ReleaseNotes.docx" FileName="ASMS_2~1.PPT|ASMS_2018_RawFileReader.pptx" Attributes="0" SourcePath="..\..\..\ThermoFisher\docs\ASMS_2018_RawFileReader.pptx" SelfReg="false"/>
+    <ROW File="ASMS_2019_RawFileReader.pptx" Component_="ReleaseNotes.docx" FileName="ASMS_2~2.PPT|ASMS_2019_RawFileReader.pptx" Attributes="0" SourcePath="..\..\..\ThermoFisher\docs\ASMS_2019_RawFileReader.pptx" SelfReg="false"/>
+    <ROW File="BeyondMSFileReader_2016.pptx" Component_="ReleaseNotes.docx" FileName="BEYOND~1.PPT|BeyondMSFileReader_2016.pptx" Attributes="0" SourcePath="..\..\..\ThermoFisher\docs\BeyondMSFileReader_2016.pptx" SelfReg="false"/>
+    <ROW File="BeyondMSFileReader_2017.pptx" Component_="ReleaseNotes.docx" FileName="BEYOND~2.PPT|BeyondMSFileReader_2017.pptx" Attributes="0" SourcePath="..\..\..\ThermoFisher\docs\BeyondMSFileReader_2017.pptx" SelfReg="false"/>
+    <ROW File="TransitionMatrix.docx" Component_="ReleaseNotes.docx" FileName="TRANSI~1.DOC|TransitionMatrix.docx" Attributes="0" SourcePath="..\..\..\ThermoFisher\docs\TransitionMatrix.docx" SelfReg="false"/>
+    <ROW File="UsingNuGet.docx" Component_="ReleaseNotes.docx" FileName="USINGN~1.DOC|UsingNuGet.docx" Attributes="0" SourcePath="..\..\..\ThermoFisher\docs\UsingNuGet.docx" SelfReg="false"/>
+    <ROW File="UsingRawFileReader.docx" Component_="ReleaseNotes.docx" FileName="USINGR~1.DOC|UsingRawFileReader.docx" Attributes="0" SourcePath="..\..\..\ThermoFisher\docs\UsingRawFileReader.docx" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -1311,6 +1323,8 @@
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataStorage.netCDF.dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataStorage.HDSPack.dll_1"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataStorage.netCDF.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="mzblender.dll"/>
+    <ROW Feature_="MainFeature" Component_="ReleaseNotes.docx"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
