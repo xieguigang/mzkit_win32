@@ -206,6 +206,12 @@
     <Compile Include="ColorScaleMap.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="MSI\RegionSampleCard.Designer.vb">
+      <DependentUpon>RegionSampleCard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MSI\RegionSampleCard.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ToolStripTraceBarItem.vb">
       <SubType>Component</SubType>
     </Compile>
