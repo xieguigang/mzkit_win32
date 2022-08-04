@@ -1,7 +1,10 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports DataFrame = Microsoft.VisualBasic.Data.csv.IO.DataFrame
+Imports xlsx = Microsoft.VisualBasic.MIME.Office.Excel.File
+Imports stdNum = System.Math
 
 Public Class InputMatrixIons
 
@@ -127,13 +130,38 @@ Public Class InputMatrixIons
         AdvancedDataGridViewSearchToolBar1.SetColumns(AdvancedDataGridView1.Columns)
     End Sub
 
+    Private Function ReadTableAuto(fileName As String) As DataFrame
+        If fileName.ExtensionSuffix("csv") Then
+            Return DataFrame.Load(fileName)
+        Else
+#Disable Warning
+            Dim xlsx As xlsx = xlsx.Open(fileName)
+            Dim view As DataFrame = Nothing
+            Dim titles As Index(Of String)
+#Enable Warning
+
+            For Each name As String In xlsx.SheetNames
+                Dim sheet = xlsx.GetTable(name)
+
+                view = DataFrame.CreateObject(file:=sheet)
+                titles = view.HeadTitles.Indexing
+
+                If {"name", "formula"}.All(Function(str) str Like titles) Then
+                    Return view
+                End If
+            Next
+
+            Return view
+        End If
+    End Function
+
     Public Sub LoadMetabolites() Handles LoadMetabolitesToolStripMenuItem.Click
-        Using file As New OpenFileDialog With {.Filter = "Excel table(*.csv)|*.csv"}
+        Using file As New OpenFileDialog With {.Filter = "Excel table(*.xlsx;*.csv)|*.xlsx;*.csv"}
             If file.ShowDialog = DialogResult.OK Then
                 ' the fields is required:
                 '   name: the metabolite name
                 '   formula: the molecule formula for evaluate the exact mass
-                Dim data As DataFrame = DataFrame.Load(file.FileName)
+                Dim data As DataFrame = ReadTableAuto(file.FileName)
                 Dim name_i As Integer = data.GetOrdinal("name")
                 Dim formula_i As Integer = data.GetOrdinal("formula")
 
@@ -145,36 +173,82 @@ Public Class InputMatrixIons
                     Return
                 End If
 
-                Dim name As String() = data.Column(name_i).ToArray
-                Dim formula As String() = data.Column(formula_i).ToArray
-                Dim exact_mass As Double() = formula _
-                    .Select(Function(f)
-                                Return FormulaScanner.ScanFormula(f).ExactMass
-                            End Function) _
-                    .ToArray
+                Dim mzrange_i As Integer = data.GetOrdinal("mz", "m/z")
 
-                Dim mzList As New List(Of Double)
-                Dim nameList As New List(Of String)
-                Dim precursor_type As New List(Of String)
-                Dim pixels As New List(Of Integer)
-                Dim density As New List(Of Double)
-                Dim i As Integer = 0
-
-                For Each mass As Double In exact_mass
-                    For Each type As MzCalculator In Provider.Positives
-                        Call mzList.Add(type.CalcMZ(mass))
-                        Call nameList.Add(name(i))
-                        Call precursor_type.Add(type.ToString)
-                        Call pixels.Add(0)
-                        Call density.Add(0)
-                    Next
-
-                    i += 1
-                Next
-
-                Call Setup(mzList.ToArray, nameList.ToArray, precursor_type.ToArray, pixels.ToArray, density.ToArray)
+                If mzrange_i > -1 Then
+                    Call setupMzRange(data, name_i, formula_i, mzrange_i)
+                Else
+                    Call setupAllIons(data, name_i, formula_i)
+                End If
             End If
         End Using
+    End Sub
+
+    Private Sub setupMzRange(data As DataFrame, name_i As Integer, formula_i As Integer, mzrange_i As Integer)
+        Dim name As String() = data.Column(name_i).ToArray
+        Dim formula As String() = data.Column(formula_i).ToArray
+        Dim mzList As Double() = data.Column(mzrange_i).Select(Function(str) str.ParseDouble).ToArray
+        Dim exact_mass As Double() = formula _
+            .Select(Function(f)
+                        Return FormulaScanner.ScanFormula(f).ExactMass
+                    End Function) _
+            .ToArray
+
+        Dim precursor_type As New List(Of String)
+        Dim pixels As New List(Of Integer)
+        Dim density As New List(Of Double)
+
+        For i As Integer = 0 To name.Length - 1
+            Dim mzi As Double = mzList(i)
+            Dim mass As Double = exact_mass(i)
+            Dim d As Double = 999
+            Dim target As String = "n/a"
+
+            For Each type As MzCalculator In Provider.Positives
+                Dim mz_ref As Double = type.CalcMZ(mass)
+
+                If stdNum.Abs(mz_ref - mzi) < d Then
+                    target = type.ToString
+                    d = stdNum.Abs(mz_ref - mzi)
+                End If
+            Next
+
+            Call precursor_type.Add(target)
+            Call pixels.Add(0)
+            Call density.Add(0)
+        Next
+
+        Call Setup(mzList, name.ToArray, precursor_type.ToArray, pixels.ToArray, density.ToArray)
+    End Sub
+
+    Private Sub setupAllIons(data As DataFrame, name_i As Integer, formula_i As Integer)
+        Dim name As String() = data.Column(name_i).ToArray
+        Dim formula As String() = data.Column(formula_i).ToArray
+        Dim exact_mass As Double() = formula _
+            .Select(Function(f)
+                        Return FormulaScanner.ScanFormula(f).ExactMass
+                    End Function) _
+            .ToArray
+        Dim mzList As New List(Of Double)
+        Dim nameList As New List(Of String)
+        Dim precursor_type As New List(Of String)
+        Dim pixels As New List(Of Integer)
+        Dim density As New List(Of Double)
+        Dim i As Integer = 0
+
+        For Each mass As Double In exact_mass
+            For Each type As MzCalculator In Provider.Positives
+                Call mzList.Add(type.CalcMZ(mass))
+                Call nameList.Add(name(i))
+                Call precursor_type.Add(type.ToString)
+                Call pixels.Add(0)
+                Call density.Add(0)
+            Next
+
+            i += 1
+        Next
+
+        Call Setup(mzList.ToArray, nameList.ToArray, precursor_type.ToArray, pixels.ToArray, density.ToArray)
     End Sub
 
     Private Sub ExportSingleIonsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportSingleIonsToolStripMenuItem.Click
