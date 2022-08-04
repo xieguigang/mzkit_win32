@@ -88,6 +88,7 @@ Partial Class frmDemo
         Dim ListViewItem5 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("HR2MSI mouse urinary bladder S096 - Figure1", "HR2MSI mouse urinary bladder S096 - optical image.jpg")
         Dim ListViewItem6 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("mzPack DEMO", "D065.mzML_XICPeaks.png")
         Dim ListViewItem7 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("S043_Processed_imzML1.1.1.mzPack", "S043.png")
+        Dim ListViewItem8 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("FULL MS_centriod_CHCA_20210819-CleanSample-616x404", 8)
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDemo))
         Me.ListView1 = New System.Windows.Forms.ListView()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -125,7 +126,9 @@ Partial Class frmDemo
         ListViewItem5.Group = ListViewGroup1
         ListViewItem5.ToolTipText = "HR2MSI mouse urinary bladder S096 - Figure1"
         ListViewItem7.Group = ListViewGroup1
-        Me.ListView1.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1, ListViewItem2, ListViewItem3, ListViewItem4, ListViewItem5, ListViewItem6, ListViewItem7})
+        ListViewItem8.Group = ListViewGroup1
+        ListViewItem8.ToolTipText = "FULL MS_centriod_CHCA_20210819-CleanSample-616x404"
+        Me.ListView1.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1, ListViewItem2, ListViewItem3, ListViewItem4, ListViewItem5, ListViewItem6, ListViewItem7, ListViewItem8})
         Me.ListView1.LargeImageList = Me.ImageList1
         Me.ListView1.Location = New System.Drawing.Point(0, 0)
         Me.ListView1.MultiSelect = False
@@ -169,6 +172,7 @@ Partial Class frmDemo
         Me.ImageList1.Images.SetKeyName(5, "HR2MSI mouse urinary bladder S096 - optical image.jpg")
         Me.ImageList1.Images.SetKeyName(6, "S043.png")
         Me.ImageList1.Images.SetKeyName(7, "D065.mzML_XICPeaks.png")
+        Me.ImageList1.Images.SetKeyName(8, "Snapshot.png")
         '
         'PropertyGrid1
         '
@@ -180,7 +184,7 @@ Partial Class frmDemo
         '
         'frmDemo
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1045, 656)
         Me.Controls.Add(Me.ListView1)
