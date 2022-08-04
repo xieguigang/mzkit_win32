@@ -150,7 +150,7 @@ Blue: 741.5307(SM(34:1) [M+K]+)
             Case 7
 
                 info.Title = "FULL MS_centriod_CHCA_20210819-CleanSample-616x404.cdf"
-                info.Url = $"{App.HOME}/demo/FULL MS_centriod_CHCA_20210819-CleanSample-616x404.cdf".GetFullPath
+                info.Url = $"{App.HOME}/demo/PANOMIX/FULL MS_centriod_CHCA_20210819-CleanSample-616x404.cdf".GetFullPath
                 info.Information = "FULL MS_centriod_CHCA_20210819-CleanSample-616x404 from PANOMIX lab"
                 info.Application = "Mzkit MSI viewer"
 
@@ -254,7 +254,7 @@ Blue: 741.5307(SM(34:1) [M+K]+)
 
             Case 7
 
-                Dim demopath As String = $"{App.HOME}/demo/FULL MS_centriod_CHCA_20210819-CleanSample-616x404.cdf".GetFullPath
+                Dim demopath As String = $"{App.HOME}/demo/PANOMIX/FULL MS_centriod_CHCA_20210819-CleanSample-616x404.cdf".GetFullPath
 
                 If Not demopath.FileExists Then
                     MyApplication.host.showStatusMessage("the demo data file is missing!", My.Resources.StatusAnnotations_Warning_32xLG_color)
