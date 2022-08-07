@@ -284,6 +284,9 @@
     <EmbeddedResource Include="ColorScaleMap.resx">
       <DependentUpon>ColorScaleMap.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MSI\RegionSampleCard.resx">
+      <DependentUpon>RegionSampleCard.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MSSelector.en-US.resx">
       <DependentUpon>MSSelector.vb</DependentUpon>
     </EmbeddedResource>

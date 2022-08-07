@@ -107,7 +107,12 @@ Public Class frmMsImagingViewer
     Public ReadOnly Property MimeType As ContentType() Implements IFileReference.MimeType
         Get
             Return {
-                New ContentType With {.Details = "Image mzML", .FileExt = ".imzML", .MIMEType = "text/xml", .Name = "Image mzML"}
+                New ContentType With {
+                    .Details = "Image mzML",
+                    .FileExt = ".imzML",
+                    .MIMEType = "text/xml",
+                    .Name = "Image mzML"
+                }
             }
         End Get
     End Property
@@ -217,8 +222,18 @@ Public Class frmMsImagingViewer
             .Where(Function(tab) TypeOf tab Is frmTableViewer) _
             .Select(Function(f) DirectCast(f, frmTableViewer)) _
             .ToArray
-        Dim ionStat As frmTableViewer = docs.Where(Function(t) t.AppSource Is GetType(IonStat) AndAlso t.InstanceGuid = guid).FirstOrDefault
-        Dim annotation As frmTableViewer = docs.Where(Function(t) t.AppSource Is GetType(PageMzSearch) AndAlso t.InstanceGuid = guid).FirstOrDefault
+        Dim ionStat As frmTableViewer = docs _
+            .Where(Function(t)
+                       Return t.AppSource Is GetType(IonStat) AndAlso
+                              t.InstanceGuid = guid
+                   End Function) _
+            .FirstOrDefault
+        Dim annotation As frmTableViewer = docs _
+            .Where(Function(t)
+                       Return t.AppSource Is GetType(PageMzSearch) AndAlso
+                              t.InstanceGuid = guid
+                   End Function) _
+            .FirstOrDefault
         Dim ions As New File
 
         Call ions.Add({"mz", "name", "precursor_type", "pixels", "density"})
@@ -303,7 +318,12 @@ Public Class frmMsImagingViewer
                 Call MyApplication.LogText($"Rendering for ion list in matrix style: " & ionList.GetJson)
                 Call getFormula.TextBox1.AppendText($"Rendering for ion list in matrix style: " & ionList.GetJson)
                 Call getFormula.TextBox1.AppendText(vbCrLf)
-                Call RscriptProgressTask.ExportHeatMapMatrixPlot(ionList, $"da:{getFormula.txtMzdiff.Text}", file.FileName, debug:=AddressOf getFormula.TextBox1.AppendText)
+                Call RscriptProgressTask.ExportHeatMapMatrixPlot(
+                    mzSet:=ionList,
+                    tolerance:=$"da:{getFormula.txtMzdiff.Text}",
+                    saveAs:=file.FileName,
+                    debug:=AddressOf getFormula.TextBox1.AppendText
+                )
                 Call getFormula.TextBox1.AppendText(vbCrLf)
             End If
         End Using
