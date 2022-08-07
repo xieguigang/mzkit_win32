@@ -198,6 +198,11 @@ Public Class PageMzkitTools
         MyApplication.host.Invoke(Sub() ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.NotAvailable)
     End Sub
 
+    Public Sub ShowPlotImage(Rplot As Image)
+        PictureBox1.BackgroundImage = Rplot
+        MyApplication.host.ShowPage(Me)
+    End Sub
+
     Private Sub PageMzkitTools_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim host = MyApplication.host
 

@@ -62,9 +62,11 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
+Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Text
 Imports PipelineHost
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.DataFiles
 Imports Task
 
 Public Class RscriptProgressTask
@@ -292,4 +294,30 @@ Public Class RscriptProgressTask
             Call Process.Start(saveAs.GetFullPath)
         End If
     End Sub
+
+    Public Shared Function PlotStats(data As String, type As String, title As String) As Image
+        Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".json", App.PID.ToHexString, prefix:="MSI_regions__")
+        Dim imageOut As String = $"{tempfile.ParentPath}/Rplot.png"
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("ggplot/ggplot2.R")
+        Dim cli As String = $"""{Rscript}"" --data ""{tempfile}"" --save ""{imageOut}"" --title ""{title}"" --plot ""{type}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+        Dim progress As New frmTaskProgress
+
+        progress.ShowProgressTitle("Create MSI sampletable...", directAccess:=True)
+        progress.ShowProgressDetails("Loading MSI raw data file into viewer workspace...", directAccess:=True)
+        progress.SetProgressMode()
+
+        Call data.SaveTo(tempfile)
+        Call MyApplication.LogText(pipeline.CommandLine)
+        Call MyApplication.LogText(data)
+
+        AddHandler pipeline.SetMessage, AddressOf progress.ShowProgressDetails
+        AddHandler pipeline.SetProgress, AddressOf progress.SetProgress
+        AddHandler pipeline.Finish, Sub() progress.Invoke(Sub() progress.Close())
+
+        Call New Thread(AddressOf pipeline.Run).Start()
+        Call progress.ShowDialog()
+
+        Return imageOut.LoadImage
+    End Function
 End Class

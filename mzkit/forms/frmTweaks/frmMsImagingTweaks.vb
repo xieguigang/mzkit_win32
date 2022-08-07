@@ -71,6 +71,13 @@ Imports RibbonLib.Interop
 Imports Task
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports ControlLibrary
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
+Imports Microsoft.VisualBasic.Math.Distributions
+Imports Microsoft.VisualBasic.Data.GraphTheory
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.MIME.application.json.Javascript
+Imports Microsoft.VisualBasic.MIME.application.json
 
 Public Class frmMsImagingTweaks
 
@@ -360,5 +367,107 @@ UseCheckedList:
         Else
             ViewLayerButton.Text = "List formula ions at here"
         End If
+    End Sub
+
+    Private Sub BoxPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BoxPlotToolStripMenuItem.Click
+        Dim mz As Double
+        Dim data = getVector(mz)
+
+        If data Is Nothing Then
+            Return
+        Else
+            Call showPlot(data, "box", mz)
+        End If
+    End Sub
+
+    Private Function encodeJSON(data As Dictionary(Of String, NamedValue(Of Double()))) As String
+        Dim json As New JsonObject
+        Dim sample As JsonObject
+
+        For Each groupId As String In data.Keys
+            sample = New JsonObject
+            sample.Add("color", New JsonValue(data(groupId).Name))
+            sample.Add("data", New JsonArray(data(groupId).Value))
+            json.Add(groupId, sample)
+        Next
+
+        Return json.BuildJsonString
+    End Function
+
+    Private Function getVector(ByRef mz As Double) As Dictionary(Of String, NamedValue(Of Double()))
+        If viewer.sampleRegions.IsNullOrEmpty Then
+            Return Nothing
+        ElseIf Not viewer.checkService Then
+            Return Nothing
+        End If
+
+        mz = GetSelectedIons().FirstOrDefault
+
+        If mz <= 0 Then
+            Return Nothing
+        End If
+
+        Dim mzdiff = Tolerance.DeltaMass(0.01)
+        Dim layer = viewer.MSIservice.LoadPixels({mz}, mzdiff)
+
+        If layer.IsNullOrEmpty Then
+            Return Nothing
+        End If
+
+        Dim regions = viewer.sampleRegions.GetRegions(viewer.PixelSelector1.dimension_size).ToArray
+        Dim data As New Dictionary(Of String, NamedValue(Of Double()))
+        Dim n As Integer = 6
+        Dim matrix = Grid(Of PixelData).Create(layer, Function(i) New Point(i.x, i.y))
+
+        For Each region As TissueRegion In regions
+            Dim samples = Bootstraping.Samples(region.points, 16, bags:=n).ToArray
+            Dim vec = samples _
+                .AsParallel _
+                .Select(Function(pack)
+                            Dim subset = pack.value.Select(Function(pt) matrix.GetData(pt.X, pt.Y)).ToArray
+                            Dim d = subset.Select(Function(i) If(i Is Nothing, 0, i.intensity)).ToArray
+
+                            If d.Length = 0 Then
+                                Return 0
+                            Else
+                                Return d.Average
+                            End If
+                        End Function) _
+                .ToArray
+
+            data(region.label) = New NamedValue(Of Double())(region.color.ToHtmlColor, vec)
+        Next
+
+        Return data
+    End Function
+
+    Private Sub BarPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BarPlotToolStripMenuItem.Click
+        Dim mz As Double
+        Dim data = getVector(mz)
+
+        If data Is Nothing Then
+            Return
+        Else
+            Call showPlot(data, "bar", mz)
+        End If
+    End Sub
+
+    Private Sub ViolinPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViolinPlotToolStripMenuItem.Click
+        Dim mz As Double
+        Dim data = getVector(mz)
+
+        If data Is Nothing Then
+            Return
+        Else
+            Call showPlot(data, "violin", mz)
+        End If
+    End Sub
+
+    Private Sub showPlot(data As Dictionary(Of String, NamedValue(Of Double())), type As String, mz As Double)
+        Dim pack As String = encodeJSON(data)
+        Dim image = RscriptProgressTask.PlotStats(pack, type, title:=$"MZ: {mz.ToString("F4")}")
+
+        MyApplication.host.ShowMzkitToolkit()
+        MyApplication.host.mzkitTool.ShowPlotImage(image)
     End Sub
 End Class

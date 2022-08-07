@@ -78,6 +78,11 @@ Public Class RscriptPipelineTask
         End Get
     End Property
 
+    ''' <summary>
+    ''' find script in Rstudio pipeline folder
+    ''' </summary>
+    ''' <param name="filename"></param>
+    ''' <returns></returns>
     Public Shared Function GetRScript(filename As String) As String
         Dim filepath As String = $"{App.HOME}/Rstudio/pipeline/{filename}"
 

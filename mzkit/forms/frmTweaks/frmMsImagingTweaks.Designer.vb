@@ -101,6 +101,10 @@ Partial Class frmMsImagingTweaks
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
+        Me.ShowPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BoxPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BarPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViolinPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -121,9 +125,9 @@ Partial Class frmMsImagingTweaks
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RenderLayerCompositionModeToolStripMenuItem, Me.RenderingToolStripMenuItem, Me.ToolStripMenuItem1, Me.LoadBasePeakIonsToolStripMenuItem, Me.ToolStripMenuItem2, Me.ClearSelectionToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowPlotToolStripMenuItem, Me.RenderLayerCompositionModeToolStripMenuItem, Me.RenderingToolStripMenuItem, Me.ToolStripMenuItem1, Me.LoadBasePeakIonsToolStripMenuItem, Me.ToolStripMenuItem2, Me.ClearSelectionToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(262, 104)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(262, 148)
         '
         'RenderLayerCompositionModeToolStripMenuItem
         '
@@ -253,9 +257,34 @@ Partial Class frmMsImagingTweaks
         Me.ToolStripButton3.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton3.Text = "Clear Layers"
         '
+        'ShowPlotToolStripMenuItem
+        '
+        Me.ShowPlotToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BoxPlotToolStripMenuItem, Me.BarPlotToolStripMenuItem, Me.ViolinPlotToolStripMenuItem})
+        Me.ShowPlotToolStripMenuItem.Name = "ShowPlotToolStripMenuItem"
+        Me.ShowPlotToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
+        Me.ShowPlotToolStripMenuItem.Text = "Show Plot"
+        '
+        'BoxPlotToolStripMenuItem
+        '
+        Me.BoxPlotToolStripMenuItem.Name = "BoxPlotToolStripMenuItem"
+        Me.BoxPlotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BoxPlotToolStripMenuItem.Text = "Box Plot"
+        '
+        'BarPlotToolStripMenuItem
+        '
+        Me.BarPlotToolStripMenuItem.Name = "BarPlotToolStripMenuItem"
+        Me.BarPlotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BarPlotToolStripMenuItem.Text = "Bar Plot"
+        '
+        'ViolinPlotToolStripMenuItem
+        '
+        Me.ViolinPlotToolStripMenuItem.Name = "ViolinPlotToolStripMenuItem"
+        Me.ViolinPlotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ViolinPlotToolStripMenuItem.Text = "Violin Plot"
+        '
         'frmMsImagingTweaks
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(377, 554)
@@ -293,4 +322,8 @@ Partial Class frmMsImagingTweaks
     Friend WithEvents RenderLayerCompositionModeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LoadBasePeakIonsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
+    Friend WithEvents ShowPlotToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BoxPlotToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BarPlotToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ViolinPlotToolStripMenuItem As ToolStripMenuItem
 End Class

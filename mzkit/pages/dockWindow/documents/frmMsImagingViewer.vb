@@ -574,7 +574,7 @@ Public Class frmMsImagingViewer
         Call MyApplication.host.Ribbon1.SetModes(0)
     End Sub
 
-    ReadOnly sampleRegions As New MSIRegionSampleWindow
+    Friend ReadOnly sampleRegions As New MSIRegionSampleWindow
 
     ''' <summary>
     ''' turn on polygon editor mode

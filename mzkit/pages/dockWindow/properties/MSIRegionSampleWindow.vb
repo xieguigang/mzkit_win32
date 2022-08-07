@@ -61,10 +61,7 @@ Public Class MSIRegionSampleWindow
     Public Function ExportTissueMaps(dimension As Size, file As Stream) As Boolean
         Dim tissueMorphology As New List(Of TissueRegion)
 
-        For Each item As Control In FlowLayoutPanel1.Controls
-            Dim card = DirectCast(item, RegionSampleCard)
-            Dim region As TissueRegion = card.ExportTissueRegion(dimension)
-
+        For Each region As TissueRegion In GetRegions(dimension)
             Call tissueMorphology.Add(region)
         Next
 
@@ -77,6 +74,15 @@ Public Class MSIRegionSampleWindow
         canvas.tissue_layer = Nothing
         canvas.RedrawCanvas()
     End Sub
+
+    Public Iterator Function GetRegions(dimension As Size) As IEnumerable(Of TissueRegion)
+        For Each item As Control In FlowLayoutPanel1.Controls
+            Dim card = DirectCast(item, RegionSampleCard)
+            Dim region As TissueRegion = card.ExportTissueRegion(dimension)
+
+            Yield region
+        Next
+    End Function
 
     Public Sub RenderLayer(canvas As PixelSelector)
         Dim picCanvas As Size = canvas.Size
@@ -91,9 +97,7 @@ Public Class MSIRegionSampleWindow
         g.InterpolationMode = InterpolationMode.HighQualityBilinear
         g.Clear(Color.Transparent)
 
-        For Each item As Control In FlowLayoutPanel1.Controls
-            Dim card = DirectCast(item, RegionSampleCard)
-            Dim region As TissueRegion = card.ExportTissueRegion(dimension)
+        For Each region As TissueRegion In GetRegions(dimension)
             Dim fill As New SolidBrush(region.color.Alpha(255 * 0.9))
 
             For Each p As Point In region.points
