@@ -2,6 +2,7 @@
 Imports System.Drawing.Imaging
 Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
+Imports BioNovoGene.mzkit_win32.My
 Imports ControlLibrary
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.Imaging
@@ -152,6 +153,7 @@ Public Class MSIRegionSampleWindow
         }
             If file.ShowDialog = DialogResult.OK Then
                 Call ExportTissueMaps(dimension, file.OpenFile)
+                Call MyApplication.host.showStatusMessage("Sample tissue regions has been export to file success!")
             End If
         End Using
     End Sub
