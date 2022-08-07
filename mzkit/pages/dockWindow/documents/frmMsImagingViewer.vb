@@ -141,6 +141,22 @@ Public Class frmMsImagingViewer
         AddHandler RibbonEvents.ribbonItems.ButtonExportRegions.ExecuteEvent, Sub() Call ExportRegions()
         AddHandler RibbonEvents.ribbonItems.ButtonMSISearchPubChem.ExecuteEvent, Sub() Call SearchPubChem()
 
+        AddHandler RibbonEvents.ribbonItems.CheckShowMapLayer.ExecuteEvent,
+            Sub()
+                If RibbonEvents.ribbonItems.CheckShowMapLayer.BooleanValue Then
+                    Call sampleRegions.RenderLayer(PixelSelector1)
+                Else
+                    Call sampleRegions.ClearLayer(PixelSelector1)
+                End If
+            End Sub
+
+        AddHandler RibbonEvents.ribbonItems.ButtonShowMSISampleWindow.ExecuteEvent,
+            Sub()
+                If sampleRegions.DockState = DockState.Hidden Then
+                    sampleRegions.DockState = DockState.DockRight
+                End If
+            End Sub
+
         Call ApplyVsTheme(ContextMenuStrip1)
         Call setupPolygonEditorButtons()
         Call PixelSelector1.ShowMessage("BioNovoGene MZKit MSImaging Viewer")
@@ -195,7 +211,7 @@ Public Class frmMsImagingViewer
     End Sub
 
     Sub ExportRegions()
-
+        Call sampleRegions.SaveTissueMorphologyMatrix()
     End Sub
 #End Region
 

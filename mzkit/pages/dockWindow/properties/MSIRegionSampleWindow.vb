@@ -56,6 +56,14 @@ Public Class MSIRegionSampleWindow
             .WriteCDF(file)
     End Function
 
+    Public Sub ClearLayer(canvas As PixelSelector)
+
+    End Sub
+
+    Public Sub RenderLayer(canvas As PixelSelector)
+
+    End Sub
+
     Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
         If MessageBox.Show("All of the sample name and color will be generated with unique id fill?", "Tissue Map", buttons:=MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
             Dim i As i32 = 1
@@ -70,7 +78,7 @@ Public Class MSIRegionSampleWindow
         End If
     End Sub
 
-    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+    Public Sub SaveTissueMorphologyMatrix() Handles ToolStripButton1.Click
         Using file As New SaveFileDialog With {
             .Filter = "Tissue Morphology Matrix(*.cdf)|*.cdf"
         }

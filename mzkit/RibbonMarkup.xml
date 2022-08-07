@@ -2322,6 +2322,23 @@
         <Image>Res/RegistryEditor_5838_32x.bmp</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdCheckShowMapLayer" Id="194" LabelTitle="Show Map Layer" LabelDescription="Show Tissue Map Regions" TooltipTitle="Show Tissue Map Regions" TooltipDescription="Show Tissue Map Regions">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/insert-object.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="144">Res/insert-object.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonShowMSISampleWindow" Id="195" LabelTitle="Show Sample Window" LabelDescription="Show MSI Sample Window" TooltipTitle="Show MSI Sample Window" TooltipDescription="Show MSI Sample Window">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/pix.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/pix.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdGroupTissueMaps" Id="196" LabelTitle="Tissue Maps" LabelDescription="Tissue Maps" TooltipTitle="Tissue Maps" TooltipDescription="Tissue Maps" />
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2572,6 +2589,10 @@
               <ToggleButton CommandName="cmdButtonRemovePolygon" />
               <ToggleButton CommandName="cmdButtonShowPolygonVertexInfo" />
               <Button CommandName="cmdButtonNextPolygon" />
+            </Group>
+            <Group CommandName="cmdGroupTissueMaps" SizeDefinition="TwoButtons">
+              <ToggleButton CommandName="cmdCheckShowMapLayer" />
+              <Button CommandName="cmdButtonShowMSISampleWindow" />
             </Group>
           </Tab>
         </TabGroup>

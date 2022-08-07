@@ -150,6 +150,9 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonRemovePolygon As UInteger = 148
             Public Const cmdButtonShowPolygonVertexInfo As UInteger = 151
             Public Const cmdButtonNextPolygon As UInteger = 193
+            Public Const cmdGroupTissueMaps As UInteger = 196
+            Public Const cmdCheckShowMapLayer As UInteger = 194
+            Public Const cmdButtonShowMSISampleWindow As UInteger = 195
             Public Const cmdGroupKEGG As UInteger = 133
             Public Const cmdTabKEGG As UInteger = 132
             Public Const cmdTabGroupKEGG As UInteger = 134
@@ -1012,6 +1015,24 @@ Namespace RibbonLib.Controls
                 Return _ButtonNextPolygon
             End Get
         End Property
+        Private _GroupTissueMaps As RibbonGroup
+        Public ReadOnly Property GroupTissueMaps As RibbonGroup
+            Get
+                Return _GroupTissueMaps
+            End Get
+        End Property
+        Private _CheckShowMapLayer As RibbonToggleButton
+        Public ReadOnly Property CheckShowMapLayer As RibbonToggleButton
+            Get
+                Return _CheckShowMapLayer
+            End Get
+        End Property
+        Private _ButtonShowMSISampleWindow As RibbonButton
+        Public ReadOnly Property ButtonShowMSISampleWindow As RibbonButton
+            Get
+                Return _ButtonShowMSISampleWindow
+            End Get
+        End Property
         Private _GroupKEGG As RibbonTabGroup
         Public ReadOnly Property GroupKEGG As RibbonTabGroup
             Get
@@ -1404,6 +1425,9 @@ Namespace RibbonLib.Controls
             _ButtonRemovePolygon = New RibbonToggleButton(_ribbon, Cmd.cmdButtonRemovePolygon)
             _ButtonShowPolygonVertexInfo = New RibbonToggleButton(_ribbon, Cmd.cmdButtonShowPolygonVertexInfo)
             _ButtonNextPolygon = New RibbonButton(_ribbon, Cmd.cmdButtonNextPolygon)
+            _GroupTissueMaps = New RibbonGroup(_ribbon, Cmd.cmdGroupTissueMaps)
+            _CheckShowMapLayer = New RibbonToggleButton(_ribbon, Cmd.cmdCheckShowMapLayer)
+            _ButtonShowMSISampleWindow = New RibbonButton(_ribbon, Cmd.cmdButtonShowMSISampleWindow)
             _GroupKEGG = New RibbonTabGroup(_ribbon, Cmd.cmdGroupKEGG)
             _TabKEGG = New RibbonTab(_ribbon, Cmd.cmdTabKEGG)
             _TabGroupKEGG = New RibbonGroup(_ribbon, Cmd.cmdTabGroupKEGG)

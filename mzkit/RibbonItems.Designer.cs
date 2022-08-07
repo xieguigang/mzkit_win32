@@ -153,6 +153,9 @@ namespace RibbonLib.Controls
             public const uint cmdButtonRemovePolygon = 148;
             public const uint cmdButtonShowPolygonVertexInfo = 151;
             public const uint cmdButtonNextPolygon = 193;
+            public const uint cmdGroupTissueMaps = 196;
+            public const uint cmdCheckShowMapLayer = 194;
+            public const uint cmdButtonShowMSISampleWindow = 195;
             public const uint cmdGroupKEGG = 133;
             public const uint cmdTabKEGG = 132;
             public const uint cmdTabGroupKEGG = 134;
@@ -340,6 +343,9 @@ namespace RibbonLib.Controls
         public RibbonToggleButton ButtonRemovePolygon { get; private set; }
         public RibbonToggleButton ButtonShowPolygonVertexInfo { get; private set; }
         public RibbonButton ButtonNextPolygon { get; private set; }
+        public RibbonGroup GroupTissueMaps { get; private set; }
+        public RibbonToggleButton CheckShowMapLayer { get; private set; }
+        public RibbonButton ButtonShowMSISampleWindow { get; private set; }
         public RibbonTabGroup GroupKEGG { get; private set; }
         public RibbonTab TabKEGG { get; private set; }
         public RibbonGroup TabGroupKEGG { get; private set; }
@@ -522,6 +528,9 @@ namespace RibbonLib.Controls
             ButtonRemovePolygon = new RibbonToggleButton(ribbon, Cmd.cmdButtonRemovePolygon);
             ButtonShowPolygonVertexInfo = new RibbonToggleButton(ribbon, Cmd.cmdButtonShowPolygonVertexInfo);
             ButtonNextPolygon = new RibbonButton(ribbon, Cmd.cmdButtonNextPolygon);
+            GroupTissueMaps = new RibbonGroup(ribbon, Cmd.cmdGroupTissueMaps);
+            CheckShowMapLayer = new RibbonToggleButton(ribbon, Cmd.cmdCheckShowMapLayer);
+            ButtonShowMSISampleWindow = new RibbonButton(ribbon, Cmd.cmdButtonShowMSISampleWindow);
             GroupKEGG = new RibbonTabGroup(ribbon, Cmd.cmdGroupKEGG);
             TabKEGG = new RibbonTab(ribbon, Cmd.cmdTabKEGG);
             TabGroupKEGG = new RibbonGroup(ribbon, Cmd.cmdTabGroupKEGG);
