@@ -263,14 +263,15 @@ Public Class RscriptProgressTask
         End If
     End Sub
 
-    Public Shared Sub CreateMSIPeakTable(regions As Rectangle(), mzpack As String, saveAs As String)
-        Dim data As Dictionary(Of String, Integer()) = regions.ToDictionary(Function(r) $"{r.Left},{r.Top}", Function(r) {r.Left, r.Top, r.Width, r.Height})
-        Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".json", App.PID.ToHexString, prefix:="MSI_regions__")
+    Public Shared Sub CreateMSIPeakTable(regions As MSIRegionSampleWindow, mzpack As String, saveAs As String)
+        Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".cdf", App.PID.ToHexString, prefix:="MSI_regions__")
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSI_peaktable.R")
         Dim cli As String = $"""{Rscript}"" --raw ""{mzpack}"" --save ""{saveAs}"" --regions ""{tempfile}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
-        Call data.GetJson.SaveTo(tempfile, encoding:=Encodings.UTF8.CodePage)
+        Using buffer As Stream = tempfile.Open(FileMode.OpenOrCreate)
+            Call regions.ExportTissueMaps(regions.dimension, buffer)
+        End Using
 
         Dim progress As New frmTaskProgress
 

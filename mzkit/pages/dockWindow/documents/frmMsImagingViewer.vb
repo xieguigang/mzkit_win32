@@ -1150,7 +1150,7 @@ Public Class frmMsImagingViewer
         Else
             Using file As New SaveFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
                 If file.ShowDialog = DialogResult.OK Then
-                    Call RscriptProgressTask.CreateMSIPeakTable(sampleRegions.ToArray, mzpack:=FilePath, saveAs:=file.FileName)
+                    Call RscriptProgressTask.CreateMSIPeakTable(sampleRegions, mzpack:=FilePath, saveAs:=file.FileName)
                 End If
             End Using
         End If

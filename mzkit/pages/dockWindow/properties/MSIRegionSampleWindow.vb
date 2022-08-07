@@ -16,8 +16,8 @@ Public Class MSIRegionSampleWindow
         End Get
     End Property
 
-    Dim dimension As Size
-    Dim canvas As PixelSelector
+    Friend dimension As Size
+    Friend canvas As PixelSelector
 
     Friend Sub Clear()
         FlowLayoutPanel1.Controls.Clear()
