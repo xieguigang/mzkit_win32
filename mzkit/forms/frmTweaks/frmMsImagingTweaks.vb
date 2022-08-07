@@ -395,7 +395,7 @@ UseCheckedList:
     End Function
 
     Private Function getVector(ByRef mz As Double) As Dictionary(Of String, NamedValue(Of Double()))
-        If viewer.sampleRegions.IsNullOrEmpty Then
+        If viewer Is Nothing OrElse viewer.sampleRegions.IsNullOrEmpty Then
             Return Nothing
         ElseIf Not viewer.checkService Then
             Return Nothing
