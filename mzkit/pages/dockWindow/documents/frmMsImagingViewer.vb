@@ -73,6 +73,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.My
 Imports ControlLibrary
@@ -205,7 +206,10 @@ Public Class frmMsImagingViewer
     Sub ImportsTissueMorphology()
         Using file As New OpenFileDialog With {.Filter = "Tissue Morphology Matrix(*.cdf)|*.cdf"}
             If file.ShowDialog = DialogResult.OK Then
+                Dim tissues = file.OpenFile.ReadTissueMorphology.ToArray
 
+                sampleRegions.Clear()
+                sampleRegions.LoadTissueMaps(tissues, PixelSelector1)
             End If
         End Using
     End Sub

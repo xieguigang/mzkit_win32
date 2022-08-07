@@ -23,6 +23,21 @@ Public Class MSIRegionSampleWindow
         FlowLayoutPanel1.Controls.Clear()
     End Sub
 
+    Public Overloads Sub LoadTissueMaps(tissues As TissueRegion(), canvas As PixelSelector)
+        Me.canvas = canvas
+        Me.dimension = canvas.dimension_size
+
+        For Each region As TissueRegion In tissues
+            Dim card As New RegionSampleCard
+
+            Call card.SetPolygons(region.GetPolygons, callback:=AddressOf updateLayerRendering)
+            Call FlowLayoutPanel1.Controls.Add(card)
+
+            card.SampleColor = region.color
+            card.SampleInfo = region.label
+        Next
+    End Sub
+
     ''' <summary>
     ''' 某一个样本区域可能是由多个不连续的区域所组成的
     ''' </summary>
