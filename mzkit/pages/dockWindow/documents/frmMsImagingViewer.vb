@@ -1094,7 +1094,9 @@ Public Class frmMsImagingViewer
 
     Private Sub AddSampleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddSampleToolStripMenuItem.Click
         If PixelSelector1.HasRegionSelection Then
-            sampleRegions.Add(PixelSelector1.RegionSelectin)
+            sampleRegions.Add(PixelSelector1)
+        Else
+            Call MyApplication.host.showStatusMessage("No sample region was selected!", My.Resources.StatusAnnotations_Warning_32xLG_color)
         End If
     End Sub
 

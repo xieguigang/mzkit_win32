@@ -73,6 +73,7 @@ Imports ControlLibrary.PolygonEditor
 Imports Microsoft.VisualBasic.Imaging.BitmapImage
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Filters
+Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports stdNum = System.Math
 
 Public Class PixelSelector
@@ -83,7 +84,7 @@ Public Class PixelSelector
 
     Private menuOption As MenuOption = MenuOption.MoveComponent
     Private relation As Relation = Relation.None
-    Private polygons As List(Of Polygon) = New List(Of Polygon)()
+    Private polygons As New List(Of Polygon)()
     Private edgesInRelation As List(Of (Edge, Edge)) = New List(Of (Edge, Edge))()
     Private clickedEdges As List(Of Edge) = New List(Of Edge)()
     Private vertexCopy As List(Of Vertex) = New List(Of Vertex)()
@@ -103,6 +104,14 @@ Public Class PixelSelector
         ' Add any initialization after the InitializeComponent() call.
         picCanvas.BackgroundImageLayout = ImageLayout.Stretch
     End Sub
+
+    Public Iterator Function GetPolygons() As IEnumerable(Of Polygon2D)
+        For Each model As Polygon In polygons
+            Yield model.ToPixels
+        Next
+
+        Call polygons.Clear()
+    End Function
 
     'Sub polygonDemo()
     '    Dim predefinedVertices As List(Of Vertex) = New List(Of Vertex)(New Vertex() {New Vertex(268, 223), New Vertex(313, 340), New Vertex(442, 340), New Vertex(489, 221), New Vertex(380, 112)})
@@ -1250,7 +1259,8 @@ Public Class PixelSelector
 
     Public ReadOnly Property HasRegionSelection As Boolean
         Get
-            Return Not startPoint.IsEmpty OrElse endPoint.IsEmpty
+            ' Return Not startPoint.IsEmpty OrElse endPoint.IsEmpty
+            Return Not polygons.IsNullOrEmpty
         End Get
     End Property
 

@@ -1,4 +1,6 @@
-﻿Public Class RegionSampleCard
+﻿Imports Microsoft.VisualBasic.Imaging.Math2D
+
+Public Class RegionSampleCard
 
     Public ReadOnly Property SampleColor As Color
         Get
@@ -16,11 +18,17 @@
         End Get
     End Property
 
+    Dim regions As Polygon2D()
+
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
         Using color As New ColorDialog
             If color.ShowDialog = DialogResult.OK Then
                 PictureBox1.BackColor = color.Color
             End If
         End Using
+    End Sub
+
+    Public Sub SetPolygons(polygons As IEnumerable(Of Polygon2D))
+        regions = polygons.ToArray
     End Sub
 End Class
