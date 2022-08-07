@@ -65,6 +65,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.IndexedCache
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
@@ -127,6 +128,9 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             Using cdf As New netCDFReader(filepath)
                 MSI = New Drawer(cdf.CreatePixelReader)
             End Using
+        ElseIf filepath.ExtensionSuffix("mzImage") Then
+            Call RunSlavePipeline.SendMessage($"read MSI image file!")
+            Throw New NotImplementedException
         Else
             Dim mzpack As mzPack
 

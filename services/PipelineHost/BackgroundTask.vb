@@ -8,6 +8,8 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.IndexedCache
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
 Imports BioNovoGene.BioDeep.MetaDNA
 Imports BioNovoGene.BioDeep.MetaDNA.Infer
 Imports BioNovoGene.BioDeep.MSEngine
@@ -183,15 +185,21 @@ Module BackgroundTask
     ''' <param name="cacheFile"></param>
     <ExportAPI("cache.MSI")>
     Public Sub CreateMSIIndex(imzML As String, cacheFile As String)
+        Dim mzpack As mzPack
+
         RunSlavePipeline.SendProgress(0, "Create workspace cache file, wait for a while...")
 
-        Dim mzpack As mzPack = Converter.LoadimzML(imzML, AddressOf RunSlavePipeline.SendProgress)
+        If imzML.ExtensionSuffix("imzML") Then
+            mzpack = Converter.LoadimzML(imzML, AddressOf RunSlavePipeline.SendProgress)
+        Else
+            mzpack = mzPack.ReadAll(imzML.Open(FileMode.Open, doClear:=False, [readOnly]:=True))
+        End If
 
         Call RunSlavePipeline.SendProgress(100, "build pixels index...")
 
         Try
             Using temp As Stream = cacheFile.Open(FileMode.OpenOrCreate, doClear:=True)
-                Call mzpack.Write(temp)
+                Call XICPackWriter.IndexRawData(raw:=New ReadRawPack(mzpack), file:=temp)
             End Using
         Catch ex As Exception
         Finally
