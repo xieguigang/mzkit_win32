@@ -9,7 +9,9 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.IndexedCache
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.BioDeep.MetaDNA
 Imports BioNovoGene.BioDeep.MetaDNA.Infer
 Imports BioNovoGene.BioDeep.MSEngine
@@ -36,6 +38,13 @@ Module BackgroundTask
     Sub New()
         FrameworkInternal.ConfigMemory(MemoryLoads.Heavy)
     End Sub
+
+    <ExportAPI("read.tissue_regions")>
+    Public Function readTissues(file As String) As TissueRegion()
+        Using buffer As Stream = file.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
+            Return buffer.ReadTissueMorphology.ToArray
+        End Using
+    End Function
 
     <ExportAPI("phenograph")>
     Public Function RunFeatureDetections(mzpackRaw As String, topN As Integer, dims As Integer, mzdiff As String) As NetworkGraph
@@ -270,7 +279,7 @@ Module BackgroundTask
     End Sub
 
     <ExportAPI("MSI_peaktable")>
-    Public Sub ExportMSISampleTable(raw As String, regions As Rectangle(), save As Stream)
+    Public Sub ExportMSISampleTable(raw As String, regions As TissueRegion(), save As Stream)
         Dim data As New Dictionary(Of String, ms2())
 
         Call RunSlavePipeline.SendMessage("Initialize raw data file...")
@@ -279,11 +288,19 @@ Module BackgroundTask
         Dim ppm20 As Tolerance = Tolerance.PPM(20)
         Dim j As i32 = 1
         Dim regionId As String
+        Dim pixels As PixelScan()
 
-        For Each region As Rectangle In regions
-            regionId = $"region[{region.Left},{region.Top},{region.Width},{region.Height}]_{++j}"
-            RunSlavePipeline.SendProgress(j / regions.Length * 100, $"scan for region {regionId}... [{j}/{regions.Length}]")
-            data.Add(regionId, render.pixelReader.GetPixel(region).Select(Function(i) i.GetMs).IteratesALL.ToArray)
+        For Each region As TissueRegion In regions
+            RunSlavePipeline.SendProgress(j / regions.Length * 100, $"scan for region {region.label}... [{j}/{regions.Length}]")
+
+            regionId = region.label
+            pixels = region.points _
+                .Select(Function(p)
+                            Return render.pixelReader.GetPixel(p.X, p.Y)
+                        End Function) _
+                .Where(Function(p) Not p Is Nothing) _
+                .ToArray
+            data.Add(regionId, pixels.Select(Function(i) i.GetMs).IteratesALL.ToArray)
         Next
 
         Dim allMz As Double() = data.Values _

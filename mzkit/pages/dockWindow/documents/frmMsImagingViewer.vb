@@ -1164,7 +1164,7 @@ Public Class frmMsImagingViewer
 
     Private Sub exportMSISampleTable()
         If sampleRegions.IsNullOrEmpty Then
-            Call MyApplication.host.showStatusMessage("No sample dot!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call MyApplication.host.showStatusMessage("No sample spot regions!", My.Resources.StatusAnnotations_Warning_32xLG_color)
         Else
             Using file As New SaveFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
                 If file.ShowDialog = DialogResult.OK Then

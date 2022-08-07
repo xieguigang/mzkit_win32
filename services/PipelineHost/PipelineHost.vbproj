@@ -93,6 +93,7 @@
     <ProjectReference Include="..\..\..\mzmath\ms2_math-core\mzmath-netcore5.vbproj" />
     <ProjectReference Include="..\..\..\mzmath\mz_deco\deconv.NET5.vbproj" />
     <ProjectReference Include="..\..\..\visualize\MsImaging\MsImaging.NET5.vbproj" />
+    <ProjectReference Include="..\..\..\visualize\TissueMorphology\TissueMorphology.vbproj" />
     <ProjectReference Include="..\BioDeep\BioDeep.vbproj" />
   </ItemGroup>
 

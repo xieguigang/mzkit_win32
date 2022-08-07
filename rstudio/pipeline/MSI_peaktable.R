@@ -15,9 +15,7 @@ const savepath as string = ?"--save"    || stop("A file path of the table data o
 #' 
 const getRegions = function() {
 	regions
-	|> readText()
-	|> json_decode()
-	|> lapply(r -> rect(r[1], r[2], r[3], r[4], float = FALSE))
+	|> read.tissue_regions()
 	;
 }
 
