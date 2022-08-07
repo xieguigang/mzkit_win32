@@ -1,7 +1,10 @@
-﻿Imports System.IO
+﻿Imports System.Drawing.Drawing2D
+Imports System.Drawing.Imaging
+Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports ControlLibrary
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
+Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Language
 
@@ -57,11 +60,34 @@ Public Class MSIRegionSampleWindow
     End Function
 
     Public Sub ClearLayer(canvas As PixelSelector)
-
+        canvas.tissue_layer = Nothing
+        canvas.RedrawCanvas()
     End Sub
 
     Public Sub RenderLayer(canvas As PixelSelector)
+        Dim dotSize As New Size(3, 3)
+        Dim layer As New Bitmap(canvas.dimension_size.Width * 3, canvas.dimension_size.Height * 3, format:=PixelFormat.Format32bppArgb)
+        Dim g As Graphics = Graphics.FromImage(layer)
 
+        g.CompositingQuality = CompositingQuality.HighQuality
+        g.InterpolationMode = InterpolationMode.HighQualityBilinear
+        g.Clear(Color.Transparent)
+
+        For Each item As Control In FlowLayoutPanel1.Controls
+            Dim card = DirectCast(item, RegionSampleCard)
+            Dim region As TissueRegion = card.ExportTissueRegion(dimension)
+            Dim fill As New SolidBrush(region.color.Alpha(255 * 0.65))
+
+            For Each p As Point In region.points
+                Call g.FillRectangle(fill, New Rectangle(p, dotSize))
+            Next
+        Next
+
+        g.Flush()
+        g.Dispose()
+
+        canvas.tissue_layer = layer
+        canvas.RedrawCanvas()
     End Sub
 
     Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click

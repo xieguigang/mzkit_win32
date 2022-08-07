@@ -69,6 +69,7 @@
 
 #End Region
 
+Imports System.Drawing.Drawing2D
 Imports ControlLibrary.PolygonEditor
 Imports Microsoft.VisualBasic.Imaging.BitmapImage
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
@@ -1182,6 +1183,8 @@ Public Class PixelSelector
 
     Public ReadOnly Property dimension_size As Size
 
+    Public Property tissue_layer As Image
+
     ''' <summary>
     ''' 
     ''' </summary>
@@ -1259,9 +1262,28 @@ Public Class PixelSelector
         '    End Using
         'End If
 
+        If Not tissue_layer Is Nothing Then
+            Dim g As Graphics = Graphics.FromImage(image)
+
+            g.InterpolationMode = InterpolationMode.HighQualityBilinear
+            g.CompositingQuality = CompositingQuality.HighQuality
+
+            Call g.DrawImage(tissue_layer, 0, 0, image.Width, image.Height)
+            Call g.Flush()
+            Call g.Dispose()
+        End If
+
         picCanvas.BackgroundImage = image
+
         Me.oldBackColor = Me.BackColor
         Me.BackColor = backColor
+    End Sub
+
+    Public Sub RedrawCanvas()
+        Dim bmp As New Bitmap(orginal_image)
+        Dim color = oldBackColor
+
+        Call renderWithLegend(bmp, color)
     End Sub
 
     Dim oldBackColor As Color = Color.White
