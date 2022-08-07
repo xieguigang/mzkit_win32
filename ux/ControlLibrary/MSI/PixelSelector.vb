@@ -233,8 +233,14 @@ Public Class PixelSelector
     End Sub
 
     Private Sub AddVertex(ByVal e As Vertex)
-        Dim vertices As List(Of Vertex) = polygons(polygons.Count - 1).Vertices
-        Dim edges As List(Of Edge) = polygons(polygons.Count - 1).Edges
+        Dim lastPolygon As Polygon = polygons.LastOrDefault
+
+        If lastPolygon Is Nothing Then
+            Return
+        End If
+
+        Dim vertices As List(Of Vertex) = lastPolygon.Vertices
+        Dim edges As List(Of Edge) = lastPolygon.Edges
 
         If Me.FindVertex(CType(e, Vertex)).Vertex IsNot Nothing Then
             MessageBox.Show("Cannot place vertex on another vertex!")
