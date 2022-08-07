@@ -12,6 +12,11 @@ Public Class SummaryMSIBlender : Inherits Blender
     ReadOnly intensity As Double()
 
     Public ReadOnly Property dotSize As New Size(3, 3)
+    Public ReadOnly Property dimensions As Size
+        Get
+            Return New Size(params.scan_x, params.scan_y)
+        End Get
+    End Property
 
     Sub New(summaryLayer As PixelScanIntensity(), params As MsImageProperty)
         Me.params = params

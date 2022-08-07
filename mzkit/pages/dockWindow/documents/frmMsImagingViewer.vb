@@ -459,13 +459,17 @@ Public Class frmMsImagingViewer
         PixelSelector1.OnAddVertexMenuItemClick()
     End Sub
 
+    Private Sub StartNewPolygon()
+        Call MovePolygonMode()
+        Call AddNewPolygonMode()
+
+        ribbonItems.ButtonAddNewPolygon.BooleanValue = True
+    End Sub
+
     Sub setupPolygonEditorButtons()
         AddHandler ribbonItems.ButtonNextPolygon.ExecuteEvent,
             Sub()
-                Call MovePolygonMode()
-                Call AddNewPolygonMode()
-
-                ribbonItems.ButtonAddNewPolygon.BooleanValue = True
+                Call StartNewPolygon()
             End Sub
 
         AddHandler ribbonItems.ButtonMovePolygon.ExecuteEvent,
@@ -825,7 +829,7 @@ Public Class frmMsImagingViewer
                            Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
                            Dim mapLevels As Integer = params.mapLevels
 
-                           PixelSelector1.SetMsImagingOutput(image, blender.dotSize, params.colors, {range.Min, range.Max}, mapLevels)
+                           PixelSelector1.SetMsImagingOutput(image, blender.dimensions, params.colors, {range.Min, range.Max}, mapLevels)
                            PixelSelector1.BackColor = params.background
                            PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
                        End Sub)
@@ -896,7 +900,7 @@ Public Class frmMsImagingViewer
                        Sub(args)
                            Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
 
-                           PixelSelector1.SetMsImagingOutput(image, blender.dotSize, Nothing, Nothing, Nothing)
+                           PixelSelector1.SetMsImagingOutput(image, blender.dimensions, Nothing, Nothing, Nothing)
                            PixelSelector1.BackColor = params.background
                            PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
                        End Sub)
@@ -905,7 +909,7 @@ Public Class frmMsImagingViewer
 
     Friend Sub renderByMzList(mz As Double(), titleName As String)
         Dim selectedMz As New List(Of Double)
-        Dim size As String = $"{params.pixel_width},{params.pixel_height}"
+        Dim size As String = $"{params.scan_x},{params.scan_y}"
 
         For i As Integer = 0 To mz.Length - 1
             selectedMz.Add(Val(CStr(mz(i))))
@@ -932,7 +936,7 @@ Public Class frmMsImagingViewer
                                                            End Sub)
                                 End Sub)
                     Call Invoke(Sub()
-                                    PixelSelector1.SetMsImagingOutput(New Bitmap(1, 1), New Size(1, 1), params.colors, {0, 1}, 1)
+                                    PixelSelector1.SetMsImagingOutput(New Bitmap(1, 1), New Size(params.scan_x, params.scan_y), params.colors, {0, 1}, 1)
                                 End Sub)
                 Else
                     Dim maxInto As Double = Aggregate pm As PixelData
@@ -968,13 +972,19 @@ Public Class frmMsImagingViewer
         Call params.SetIntensityMax(Aggregate pm As PixelData In pixels Into Max(pm.intensity))
         Call params.Reset(MsiDim, "N/A", "N/A")
 
-        rendering = createRenderTask(pixels, $"{params.pixel_width},{params.pixel_height}")
+        rendering = createRenderTask(pixels, $"{params.scan_x},{params.scan_y}")
         rendering()
 
         Call MyApplication.host.showStatusMessage("Rendering Complete!", My.Resources.preferences_system_notifications)
     End Sub
 
-    Private Function createRenderTask(pixels As PixelData(), size$) As Action
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="pixels"></param>
+    ''' <param name="dimensions">the dimension size of the MSI raw data</param>
+    ''' <returns></returns>
+    Private Function createRenderTask(pixels As PixelData(), dimensions$) As Action
         Dim blender As New SingleIonMSIBlender(pixels, params)
         Dim range As DoubleRange = blender.range
 
@@ -986,7 +996,7 @@ Public Class frmMsImagingViewer
                        Sub(args)
                            Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
 
-                           PixelSelector1.SetMsImagingOutput(image, size.SizeParser, params.colors, {range.Min, range.Max}, params.mapLevels)
+                           PixelSelector1.SetMsImagingOutput(image, dimensions.SizeParser, params.colors, {range.Min, range.Max}, params.mapLevels)
                            PixelSelector1.BackColor = params.background
                            PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
                        End Sub)
@@ -1111,7 +1121,7 @@ Public Class frmMsImagingViewer
     Private Sub AddSampleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddSampleToolStripMenuItem.Click
         If PixelSelector1.HasRegionSelection Then
             Call sampleRegions.Add(PixelSelector1)
-            Call MovePolygonMode()
+            Call StartNewPolygon()
         Else
             Call MyApplication.host.showStatusMessage("No sample region was selected!", My.Resources.StatusAnnotations_Warning_32xLG_color)
         End If

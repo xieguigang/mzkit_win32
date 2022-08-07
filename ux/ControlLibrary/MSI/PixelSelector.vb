@@ -106,6 +106,9 @@ Public Class PixelSelector
     End Sub
 
     Public Iterator Function GetPolygons() As IEnumerable(Of Polygon2D)
+        Dim dims As Size = dimension
+        Dim canvas As Size = picCanvas.Size
+
         For Each model As Polygon In polygons
             Yield model.ToPixels
         Next
@@ -1204,8 +1207,18 @@ Public Class PixelSelector
         End If
     End Sub
 
-    Public Sub SetMsImagingOutput(value As Image, pixel_size As Size, colorMap As ScalerPalette, range As Double(), mapLevels As Integer)
-        Me.dimension = pixel_size
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="value"></param>
+    ''' <param name="dimension_size">
+    ''' the dimension size of the MSI raw data
+    ''' </param>
+    ''' <param name="colorMap"></param>
+    ''' <param name="range"></param>
+    ''' <param name="mapLevels"></param>
+    Public Sub SetMsImagingOutput(value As Image, dimension_size As Size, colorMap As ScalerPalette, range As Double(), mapLevels As Integer)
+        Me.dimension = dimension_size
         Me.orginal_image = value
         Me.range = range
         Me.mapLevels = mapLevels

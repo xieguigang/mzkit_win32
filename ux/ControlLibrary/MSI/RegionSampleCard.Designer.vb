@@ -35,9 +35,9 @@ Partial Class RegionSampleCard
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(58, 29)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(37, 13)
+        Me.Label1.Size = New System.Drawing.Size(49, 13)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Pixels:"
+        Me.Label1.Text = "Regions:"
         '
         'PictureBox1
         '

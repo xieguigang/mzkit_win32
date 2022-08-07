@@ -14,6 +14,11 @@ Public Class RGBIonMSIBlender : Inherits Blender
     ReadOnly originalSize As Size
 
     Public ReadOnly Property dotSize As New Size(3, 3)
+    Public ReadOnly Property dimensions As Size
+        Get
+            Return New Size(params.scan_x, params.scan_y)
+        End Get
+    End Property
 
     Sub New(r As PixelData(), g As PixelData(), b As PixelData(), pixel_size As String, params As MsImageProperty)
         Dim joinX = r.JoinIterates(g).JoinIterates(b).Select(Function(i) i.x).Max

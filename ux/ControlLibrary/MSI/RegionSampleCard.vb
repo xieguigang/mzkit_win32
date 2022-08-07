@@ -30,5 +30,6 @@ Public Class RegionSampleCard
 
     Public Sub SetPolygons(polygons As IEnumerable(Of Polygon2D))
         regions = polygons.ToArray
+        TextBox2.Text = regions.Length
     End Sub
 End Class
