@@ -6,18 +6,18 @@ const savefile as string = ?"--save" || stop("no output file!");
 const title_str as string = ?"--title" || stop("no title!");
 const plot_type as string = ?"--plot" || stop("should be one of the 'box', 'bar', 'violin'");
 
-myeloma = rawdata
+let myeloma = rawdata
 |> readText()
 |> json_decode()
 ;
 
-sample_color = lapply(myeloma, c -> c$color);
-sample_id = names(myeloma);
-group_id = [];
-group_data = [];
+let sample_color = lapply(myeloma, c -> c$color);
+let sample_id = names(myeloma);
+let group_id = [];
+let group_data = [];
 
 for(name in sample_id) {
-	part = myeloma[[name]];
+	let part = myeloma[[name]];
 	part = part$data;
 	
 	group_id = append(group_id, rep(name, length(part)));
@@ -29,7 +29,7 @@ myeloma = data.frame(
 	data = group_data
 );
 
-getGgplot = function() {
+const getGgplot = function() {
 	if (plot_type == "box") {
 		geom_boxplot(width = 0.65, alpha = 0.85, color = sample_color);
 	} else if (plot_type == "bar") {
@@ -39,7 +39,7 @@ getGgplot = function() {
 	}
 }
 
-plotGgplot = function() {
+const plotGgplot = function() {
 	ggplot(myeloma, aes(x = "sample_group", y = "data"))
 	# Add horizontal line at base mean 
 	+ geom_hline(yintercept = mean(group_data), linetype="dash", line.width = 6, color = "red")
