@@ -441,15 +441,19 @@ Public Class frmMsImagingViewer
             End Sub)
     End Sub
 
+    Private Sub MovePolygonMode()
+        ribbonItems.ButtonPolygonEditorMoveVertex.BooleanValue = False
+        ribbonItems.ButtonAddNewPolygon.BooleanValue = False
+        ribbonItems.ButtonPolygonDeleteVertex.BooleanValue = False
+        ribbonItems.ButtonRemovePolygon.BooleanValue = False
+
+        PixelSelector1.OnMovePolygonMenuItemClick()
+    End Sub
+
     Sub setupPolygonEditorButtons()
         AddHandler ribbonItems.ButtonMovePolygon.ExecuteEvent,
             Sub()
-                ribbonItems.ButtonPolygonEditorMoveVertex.BooleanValue = False
-                ribbonItems.ButtonAddNewPolygon.BooleanValue = False
-                ribbonItems.ButtonPolygonDeleteVertex.BooleanValue = False
-                ribbonItems.ButtonRemovePolygon.BooleanValue = False
-
-                PixelSelector1.OnMovePolygonMenuItemClick()
+                Call MovePolygonMode()
             End Sub
         AddHandler ribbonItems.ButtonPolygonEditorMoveVertex.ExecuteEvent,
             Sub()
@@ -1094,7 +1098,8 @@ Public Class frmMsImagingViewer
 
     Private Sub AddSampleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddSampleToolStripMenuItem.Click
         If PixelSelector1.HasRegionSelection Then
-            sampleRegions.Add(PixelSelector1)
+            Call sampleRegions.Add(PixelSelector1)
+            Call MovePolygonMode()
         Else
             Call MyApplication.host.showStatusMessage("No sample region was selected!", My.Resources.StatusAnnotations_Warning_32xLG_color)
         End If
