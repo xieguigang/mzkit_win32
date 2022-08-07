@@ -967,5 +967,12 @@
 #define cmdButtonMSISearchPubChem_TooltipDescription_RESID 60162
 #define cmdButtonMSISearchPubChem_SmallImages_192__RESID 60163
 #define cmdButtonMSISearchPubChem_LargeImages_192__RESID 60164
-#define InternalCmd2_LabelTitle_RESID 60165
-#define InternalCmd4_LabelTitle_RESID 60166
+#define cmdButtonNextPolygon 193 
+#define cmdButtonNextPolygon_LabelTitle_RESID 60165
+#define cmdButtonNextPolygon_LabelDescription_RESID 60166
+#define cmdButtonNextPolygon_TooltipTitle_RESID 60167
+#define cmdButtonNextPolygon_TooltipDescription_RESID 60168
+#define cmdButtonNextPolygon_SmallImages_192__RESID 60169
+#define cmdButtonNextPolygon_LargeImages_RESID 60170
+#define InternalCmd2_LabelTitle_RESID 60171
+#define InternalCmd4_LabelTitle_RESID 60172

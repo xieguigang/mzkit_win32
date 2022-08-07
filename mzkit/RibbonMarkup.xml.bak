@@ -2314,6 +2314,14 @@
         <Image MinDPI="192">Res/tracker.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonNextPolygon" Id="193" LabelTitle="Start Next Polygon" LabelDescription="Save current polygon and then start to create next polygon" TooltipTitle="Start Next Polygon" TooltipDescription="Save current polygon and then start to create next polygon">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/RegistryEditor_5838_32x.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image>Res/RegistryEditor_5838_32x.bmp</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>

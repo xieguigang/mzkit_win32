@@ -450,7 +450,24 @@ Public Class frmMsImagingViewer
         PixelSelector1.OnMovePolygonMenuItemClick()
     End Sub
 
+    Private Sub AddNewPolygonMode()
+        ribbonItems.ButtonMovePolygon.BooleanValue = False
+        ribbonItems.ButtonPolygonEditorMoveVertex.BooleanValue = False
+        ribbonItems.ButtonPolygonDeleteVertex.BooleanValue = False
+        ribbonItems.ButtonRemovePolygon.BooleanValue = False
+
+        PixelSelector1.OnAddVertexMenuItemClick()
+    End Sub
+
     Sub setupPolygonEditorButtons()
+        AddHandler ribbonItems.ButtonNextPolygon.ExecuteEvent,
+            Sub()
+                Call MovePolygonMode()
+                Call AddNewPolygonMode()
+
+                ribbonItems.ButtonAddNewPolygon.BooleanValue = True
+            End Sub
+
         AddHandler ribbonItems.ButtonMovePolygon.ExecuteEvent,
             Sub()
                 Call MovePolygonMode()
@@ -466,12 +483,7 @@ Public Class frmMsImagingViewer
             End Sub
         AddHandler ribbonItems.ButtonAddNewPolygon.ExecuteEvent,
             Sub()
-                ribbonItems.ButtonMovePolygon.BooleanValue = False
-                ribbonItems.ButtonPolygonEditorMoveVertex.BooleanValue = False
-                ribbonItems.ButtonPolygonDeleteVertex.BooleanValue = False
-                ribbonItems.ButtonRemovePolygon.BooleanValue = False
-
-                PixelSelector1.OnAddVertexMenuItemClick()
+                AddNewPolygonMode()
             End Sub
 
         AddHandler ribbonItems.ButtonClosePolygonEditor.ExecuteEvent,
