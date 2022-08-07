@@ -104,7 +104,7 @@ Module BackgroundTask
             .Where(Function(i) tolerance(mz, i.mz)) _
             .OrderByDescending(Function(a) a.intensity) _
             .Select(Function(a) a.intensity) _
-            .FirstOrDefault
+            .Average
     End Function
 
     <ExportAPI("biodeep.session")>
@@ -285,7 +285,7 @@ Module BackgroundTask
         Call RunSlavePipeline.SendMessage("Initialize raw data file...")
 
         Dim render As New Drawer(mzPack.ReadAll(raw.Open(FileMode.Open, doClear:=False, [readOnly]:=True), ignoreThumbnail:=True))
-        Dim ppm20 As Tolerance = Tolerance.PPM(20)
+        Dim ppm20 As Tolerance = Tolerance.DeltaMass(0.005)
         Dim j As i32 = 1
         Dim regionId As String
         Dim pixels As PixelScan()
@@ -317,7 +317,7 @@ Module BackgroundTask
             .AsParallel _
             .Select(Function(mz)
                         Return New DataSet With {
-                            .ID = $"MZ_{mz.ToString("F5")}",
+                            .ID = $"MZ_{mz.ToString("F3")}",
                             .Properties = data _
                                 .ToDictionary(Function(a) a.Key,
                                               Function(a)
