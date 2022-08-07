@@ -26,6 +26,7 @@ Public Class RegionSampleCard
     End Property
 
     Dim regions As Polygon2D()
+    Dim updateCallback As Action
 
     Public Function ExportTissueRegion(dimension As Size) As TissueRegion
         Dim x As New List(Of Integer)
@@ -57,12 +58,18 @@ Public Class RegionSampleCard
         Using color As New ColorDialog
             If color.ShowDialog = DialogResult.OK Then
                 PictureBox1.BackColor = color.Color
+                updateCallback()
             End If
         End Using
     End Sub
 
-    Public Sub SetPolygons(polygons As IEnumerable(Of Polygon2D))
+    Public Sub SetPolygons(polygons As IEnumerable(Of Polygon2D), callback As Action)
         regions = polygons.ToArray
         TextBox2.Text = regions.Length
+        updateCallback = callback
+    End Sub
+
+    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
+        updateCallback()
     End Sub
 End Class
