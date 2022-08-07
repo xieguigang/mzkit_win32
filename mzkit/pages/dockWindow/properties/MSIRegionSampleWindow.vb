@@ -93,7 +93,7 @@ Public Class MSIRegionSampleWindow
         For Each item As Control In FlowLayoutPanel1.Controls
             Dim card = DirectCast(item, RegionSampleCard)
             Dim region As TissueRegion = card.ExportTissueRegion(dimension)
-            Dim fill As New SolidBrush(region.color.Alpha(255 * 0.8))
+            Dim fill As New SolidBrush(region.color.Alpha(255 * 0.9))
 
             For Each p As Point In region.points
                 Call g.FillRectangle(fill, New Rectangle(p, dotSize))
