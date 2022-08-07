@@ -106,11 +106,8 @@ Public Class PixelSelector
     End Sub
 
     Public Iterator Function GetPolygons() As IEnumerable(Of Polygon2D)
-        Dim dims As Size = dimension
-        Dim canvas As Size = picCanvas.Size
-
         For Each model As Polygon In polygons
-            Yield model.ToPixels
+            Yield model.ToPixels(AddressOf getPoint)
         Next
 
         Call polygons.Clear()
@@ -1179,7 +1176,8 @@ Public Class PixelSelector
 
     Dim orginal_imageSize As Size
     Dim orginal_image As Image
-    Dim dimension As Size
+    Dim pixel_size As Size
+    Dim dimension_size As Size
     Dim range As Double()
     Dim mapLevels As Integer
 
@@ -1217,8 +1215,9 @@ Public Class PixelSelector
     ''' <param name="colorMap"></param>
     ''' <param name="range"></param>
     ''' <param name="mapLevels"></param>
-    Public Sub SetMsImagingOutput(value As Image, dimension_size As Size, colorMap As ScalerPalette, range As Double(), mapLevels As Integer)
-        Me.dimension = dimension_size
+    Public Sub SetMsImagingOutput(value As Image, dimension_size As Size, pixel_size As Size, colorMap As ScalerPalette, range As Double(), mapLevels As Integer)
+        Me.pixel_size = pixel_size
+        Me.dimension_size = dimension_size
         Me.orginal_image = value
         Me.range = range
         Me.mapLevels = mapLevels
@@ -1232,7 +1231,7 @@ Public Class PixelSelector
             ColorScaleMap1.mapLevels = mapLevels
         End If
 
-        If value IsNot Nothing AndAlso (dimension.Width = 0 OrElse dimension.Height = 0) Then
+        If value IsNot Nothing AndAlso (Me.pixel_size.Width = 0 OrElse Me.pixel_size.Height = 0) Then
             Throw New InvalidExpressionException("dimension size can not be ZERO!")
         End If
 
@@ -1241,8 +1240,8 @@ Public Class PixelSelector
         Else
             orginal_imageSize = value.Size
             orginal_imageSize = New Size With {
-                .Width = orginal_imageSize.Width / dimension.Width,
-                .Height = orginal_imageSize.Height / dimension.Height
+                .Width = orginal_imageSize.Width / Me.pixel_size.Width,
+                .Height = orginal_imageSize.Height / Me.pixel_size.Height
             }
         End If
 
@@ -1316,7 +1315,7 @@ Public Class PixelSelector
         drawing = True
         startPoint = e.Location
 
-        getPoint(e, xpoint, ypoint)
+        getPoint(New Point(e.X, e.Y), xpoint, ypoint)
         DrawSelectionBox(startPoint)
 
         rangeStart = New Point(xpoint, ypoint)
@@ -1330,7 +1329,7 @@ Public Class PixelSelector
             Dim xpoint = 0
             Dim ypoint = 0
 
-            getPoint(e, xpoint, ypoint)
+            getPoint(New Point(e.X, e.Y), xpoint, ypoint)
             ToolStripStatusLabel2.Text = $"[{xpoint}, {ypoint}]"
         End If
 
@@ -1344,7 +1343,13 @@ Public Class PixelSelector
         DrawSelectionBox(e.Location)
     End Sub
 
-    Private Sub getPoint(e As MouseEventArgs, ByRef xpoint As Integer, ByRef ypoint As Integer)
+    ''' <summary>
+    ''' transform scaler
+    ''' </summary>
+    ''' <param name="e"></param>
+    ''' <param name="xpoint"></param>
+    ''' <param name="ypoint"></param>
+    Private Sub getPoint(e As Point, ByRef xpoint As Integer, ByRef ypoint As Integer)
         Dim Pic_width = orginal_imageSize.Width / picCanvas.Width
         Dim Pic_height = orginal_imageSize.Height / picCanvas.Height
 
@@ -1362,7 +1367,7 @@ Public Class PixelSelector
             Dim xpoint = 0
             Dim ypoint = 0
 
-            getPoint(e, xpoint, ypoint)
+            getPoint(New Point(e.X, e.Y), xpoint, ypoint)
             ShowMessage(oldMessage)
 
             rangeEnd = New Point(xpoint, ypoint)
@@ -1378,7 +1383,7 @@ Public Class PixelSelector
         Dim xpoint = 0
         Dim ypoint = 0
 
-        Call getPoint(e, xpoint, ypoint)
+        Call getPoint(New Point(e.X, e.Y), xpoint, ypoint)
 
         _Pixel = New Point(xpoint, ypoint)
 

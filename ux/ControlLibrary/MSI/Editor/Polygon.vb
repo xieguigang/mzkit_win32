@@ -83,11 +83,21 @@ Namespace PolygonEditor
             Me.Edges = edges
         End Sub
 
-        Public Function ToPixels() As Polygon2D
-            Dim x As Double() = Vertices.Select(Function(v) CDbl(v.X)).ToArray
-            Dim y As Double() = Vertices.Select(Function(v) CDbl(v.Y)).ToArray
+        Public Function ToPixels(scaler As ScaleTransform) As Polygon2D
+            Dim x As New List(Of Double)
+            Dim y As New List(Of Double)
+            Dim xi, yi As Integer
 
-            Return New Polygon2D(x, y)
+            For Each v As Vertex In Vertices
+                Call scaler(New Point(v.X, v.Y), xi, yi)
+                Call x.Add(xi)
+                Call y.Add(yi)
+            Next
+
+            Return New Polygon2D(x.ToArray, y.ToArray)
         End Function
     End Class
+
+    Public Delegate Sub ScaleTransform(pt As Point, ByRef x As Integer, ByRef y As Integer)
+
 End Namespace
