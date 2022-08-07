@@ -27,8 +27,13 @@ Public Class RegionSampleCard
 
     Dim regions As Polygon2D()
     Dim updateCallback As Action
+    Dim tissue As TissueRegion
 
     Public Function ExportTissueRegion(dimension As Size) As TissueRegion
+        If Not tissue Is Nothing Then
+            Return tissue
+        End If
+
         Dim x As New List(Of Integer)
         Dim y As New List(Of Integer)
 
@@ -61,6 +66,11 @@ Public Class RegionSampleCard
                 updateCallback()
             End If
         End Using
+    End Sub
+
+    Public Sub SetPolygons(polygons As TissueRegion, callback As Action)
+        Me.tissue = polygons
+        Me.updateCallback = callback
     End Sub
 
     Public Sub SetPolygons(polygons As IEnumerable(Of Polygon2D), callback As Action)

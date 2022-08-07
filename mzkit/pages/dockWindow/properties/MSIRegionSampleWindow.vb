@@ -30,7 +30,7 @@ Public Class MSIRegionSampleWindow
         For Each region As TissueRegion In tissues
             Dim card As New RegionSampleCard
 
-            Call card.SetPolygons(region.GetPolygons, callback:=AddressOf updateLayerRendering)
+            Call card.SetPolygons(region, callback:=AddressOf updateLayerRendering)
             Call FlowLayoutPanel1.Controls.Add(card)
 
             card.SampleColor = region.color
@@ -93,7 +93,7 @@ Public Class MSIRegionSampleWindow
         For Each item As Control In FlowLayoutPanel1.Controls
             Dim card = DirectCast(item, RegionSampleCard)
             Dim region As TissueRegion = card.ExportTissueRegion(dimension)
-            Dim fill As New SolidBrush(region.color.Alpha(255 * 0.65))
+            Dim fill As New SolidBrush(region.color.Alpha(255 * 0.8))
 
             For Each p As Point In region.points
                 Call g.FillRectangle(fill, New Rectangle(p, dotSize))
