@@ -347,6 +347,10 @@
       <Project>{ab5fd86e-6da9-4f7c-8dce-17da85bc895d}</Project>
       <Name>mzmath-netcore5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\visualize\TissueMorphology\TissueMorphology.vbproj">
+      <Project>{560a9982-7d34-44c8-a0de-6b86e119247e}</Project>
+      <Name>TissueMorphology</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

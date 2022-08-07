@@ -1,24 +1,57 @@
-﻿Imports Microsoft.VisualBasic.Imaging.Math2D
+﻿Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
+Imports Microsoft.VisualBasic.Imaging.Math2D
 
 Public Class RegionSampleCard
 
-    Public ReadOnly Property SampleColor As Color
+    Public Property SampleColor As Color
         Get
             Return PictureBox1.BackColor
         End Get
+        Set(value As Color)
+            PictureBox1.BackColor = value
+        End Set
     End Property
 
     ''' <summary>
     ''' the name of the sample group
     ''' </summary>
     ''' <returns></returns>
-    Public ReadOnly Property SampleInfo As String
+    Public Property SampleInfo As String
         Get
             Return TextBox1.Text
         End Get
+        Set(value As String)
+            TextBox1.Text = value
+        End Set
     End Property
 
     Dim regions As Polygon2D()
+
+    Public Function ExportTissueRegion(dimension As Size) As TissueRegion
+        Dim x As New List(Of Integer)
+        Dim y As New List(Of Integer)
+
+        For i As Integer = 1 To dimension.Width
+            For j As Integer = 1 To dimension.Height
+#Disable Warning
+                If regions.Any(Function(r) r.inside(i, j)) Then
+                    x.Add(i)
+                    y.Add(j)
+                End If
+#Enable Warning
+            Next
+        Next
+
+        Return New TissueRegion With {
+            .color = SampleColor,
+            .label = SampleInfo,
+            .points = x _
+                .Select(Function(xi, i)
+                            Return New Point(xi, y(i))
+                        End Function) _
+                .ToArray
+        }
+    End Function
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
         Using color As New ColorDialog

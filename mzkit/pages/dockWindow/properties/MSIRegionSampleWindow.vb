@@ -1,4 +1,9 @@
-﻿Imports ControlLibrary
+﻿Imports System.IO
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
+Imports ControlLibrary
+Imports Microsoft.VisualBasic.ComponentModel.DataStructures
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
+Imports Microsoft.VisualBasic.Language
 
 Public Class MSIRegionSampleWindow
 
@@ -7,6 +12,8 @@ Public Class MSIRegionSampleWindow
             Return FlowLayoutPanel1.Controls.Count = 0
         End Get
     End Property
+
+    Dim dimension As Size
 
     Friend Sub Clear()
         FlowLayoutPanel1.Controls.Clear()
@@ -19,6 +26,7 @@ Public Class MSIRegionSampleWindow
         Dim card As New RegionSampleCard
 
         card.SetPolygons(selector.GetPolygons)
+        dimension = selector.dimension_size
 
         FlowLayoutPanel1.Controls.Add(card)
     End Sub
@@ -32,4 +40,43 @@ Public Class MSIRegionSampleWindow
     Friend Function ToArray() As Rectangle()
         Throw New NotImplementedException()
     End Function
+
+    Public Function ExportTissueMaps(dimension As Size, file As Stream) As Boolean
+        Dim tissueMorphology As New List(Of TissueRegion)
+
+        For Each item As Control In FlowLayoutPanel1.Controls
+            Dim card = DirectCast(item, RegionSampleCard)
+            Dim region As TissueRegion = card.ExportTissueRegion(dimension)
+
+            Call tissueMorphology.Add(region)
+        Next
+
+        Return tissueMorphology _
+            .ToArray _
+            .WriteCDF(file)
+    End Function
+
+    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+        If MessageBox.Show("All of the sample name and color will be generated with unique id fill?", "Tissue Map", buttons:=MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
+            Dim i As i32 = 1
+            Dim colors As LoopArray(Of Color) = Designer.GetColors("Paper", FlowLayoutPanel1.Controls.Count)
+
+            For Each item As Control In FlowLayoutPanel1.Controls
+                Dim card = DirectCast(item, RegionSampleCard)
+
+                card.SampleColor = ++colors
+                card.SampleInfo = $"region_{++i}"
+            Next
+        End If
+    End Sub
+
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        Using file As New SaveFileDialog With {
+            .Filter = "Tissue Morphology Matrix(*.cdf)|*.cdf"
+        }
+            If file.ShowDialog = DialogResult.OK Then
+                Call ExportTissueMaps(dimension, file.OpenFile)
+            End If
+        End Using
+    End Sub
 End Class

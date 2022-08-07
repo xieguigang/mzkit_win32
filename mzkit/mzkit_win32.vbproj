@@ -1607,6 +1607,10 @@
       <Project>{274a801c-2250-4474-99ee-0f714588d3f3}</Project>
       <Name>SDF.Extensions.NET5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\visualize\TissueMorphology\TissueMorphology.vbproj">
+      <Project>{560a9982-7d34-44c8-a0de-6b86e119247e}</Project>
+      <Name>TissueMorphology</Name>
+    </ProjectReference>
     <ProjectReference Include="..\mzblender\mzblender.vbproj">
       <Project>{4de64f86-852f-4852-97d2-46c69faa8921}</Project>
       <Name>mzblender</Name>

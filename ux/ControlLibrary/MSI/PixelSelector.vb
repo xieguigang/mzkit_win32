@@ -1177,9 +1177,10 @@ Public Class PixelSelector
     Dim orginal_imageSize As Size
     Dim orginal_image As Image
     Dim pixel_size As Size
-    Dim dimension_size As Size
     Dim range As Double()
     Dim mapLevels As Integer
+
+    Public ReadOnly Property dimension_size As Size
 
     ''' <summary>
     ''' 
@@ -1217,7 +1218,7 @@ Public Class PixelSelector
     ''' <param name="mapLevels"></param>
     Public Sub SetMsImagingOutput(value As Image, dimension_size As Size, pixel_size As Size, colorMap As ScalerPalette, range As Double(), mapLevels As Integer)
         Me.pixel_size = pixel_size
-        Me.dimension_size = dimension_size
+        Me._dimension_size = dimension_size
         Me.orginal_image = value
         Me.range = range
         Me.mapLevels = mapLevels
