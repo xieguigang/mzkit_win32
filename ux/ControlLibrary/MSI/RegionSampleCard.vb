@@ -31,7 +31,11 @@ Public Class RegionSampleCard
 
     Public Function ExportTissueRegion(dimension As Size) As TissueRegion
         If Not tissue Is Nothing Then
-            Return tissue
+            Return New TissueRegion With {
+                .color = SampleColor,
+                .label = SampleInfo,
+                .points = tissue.points
+            }
         End If
 
         Dim x As New List(Of Integer)
