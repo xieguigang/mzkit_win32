@@ -204,12 +204,26 @@ Public Class frmMsImagingViewer
 
 #Region "Tissue Map"
     Sub ImportsTissueMorphology()
+        If Not checkService() Then
+            Return
+        ElseIf PixelSelector1.dimension_size.IsEmpty Then
+            Call MyApplication.host.showStatusMessage("No ms-imaging rendering output!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Return
+        End If
+
         Using file As New OpenFileDialog With {.Filter = "Tissue Morphology Matrix(*.cdf)|*.cdf"}
             If file.ShowDialog = DialogResult.OK Then
                 Dim tissues = file.OpenFile.ReadTissueMorphology.ToArray
 
                 sampleRegions.Clear()
                 sampleRegions.LoadTissueMaps(tissues, PixelSelector1)
+                sampleRegions.RenderLayer(PixelSelector1)
+
+                RibbonEvents.ribbonItems.CheckShowMapLayer.BooleanValue = True
+
+                If sampleRegions.DockState = DockState.Hidden Then
+                    sampleRegions.DockState = DockState.DockRight
+                End If
             End If
         End Using
     End Sub
