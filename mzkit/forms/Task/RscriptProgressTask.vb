@@ -318,6 +318,10 @@ Public Class RscriptProgressTask
         Call New Thread(AddressOf pipeline.Run).Start()
         Call progress.ShowDialog()
 
-        Return imageOut.LoadImage
+        If Not imageOut.FileExists Then
+            Return Nothing
+        Else
+            Return imageOut.LoadImage
+        End If
     End Function
 End Class

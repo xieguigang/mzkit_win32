@@ -48,7 +48,7 @@ plotGgplot = function() {
 	+ ggtitle(title_str)
 	+ ylab("intensity")
 	+ xlab("")
-	+ scale_y_continuous(labels = "F0")
+	+ scale_y_continuous(labels = "G2")
 	+ stat_compare_means(method = "anova", label.y = 1600) # Add global annova p-value 
     + stat_compare_means(label = "p.signif", method = "t.test", ref.group = ".all.", hide.ns = TRUE)# Pairwise comparison against all
 	+ theme(
@@ -59,6 +59,6 @@ plotGgplot = function() {
 	;
 }
 
-bitmap(file = savefile, size = [1600, 800]) {
+bitmap(file = savefile, size = [1900, 1200]) {
 	plotGgplot();
 }
