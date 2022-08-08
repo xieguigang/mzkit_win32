@@ -40,9 +40,29 @@ Public Class KEGGEnrichmentBarSummary : Inherits SummaryPlot
         Dim term As String() = getFieldVector(table, {"term"}).AsObjectEnumerator.Select(AddressOf any.ToString).ToArray
         Dim pvalue As Double() = getFieldVector(table, {"pvalue"}) _
             .AsObjectEnumerator _
-            .Select(Function(o) -stdNum.Log10(Val(o))) _
+            .Select(Function(o)
+                        Return Val(o)
+                    End Function) _
             .ToArray
-        Dim raw = term.SeqIterator.ToDictionary(Function(f) f.value, Function(i) pvalue(i))
+
+        If pvalue.Length > 0 Then
+            pvalue = pvalue _
+                .Select(Function(p)
+                            If p <= 0 Then
+                                p = pvalue.Where(Function(pi) pi > 0).First
+                            End If
+
+                            Return -stdNum.Log10(p)
+                        End Function) _
+                .ToArray
+        End If
+
+        Dim raw As Dictionary(Of String, Double) = term _
+            .SeqIterator _
+            .ToDictionary(Function(f) f.value,
+                          Function(i)
+                              Return pvalue(i)
+                          End Function)
         Dim profiles = raw.DoKeggProfiles(7)
 
         Return profiles.ProfilesPlot(
