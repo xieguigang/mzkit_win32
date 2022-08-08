@@ -462,6 +462,7 @@ Public Class frmMsImagingViewer
                             ion.mz.ToString("F4"),
                             ion.pixels,
                             ion.density.ToString("F2"),
+                            (stdNum.Log(ion.pixels + 1) * ion.density).ToString("F2"),
                             stdNum.Round(ion.maxIntensity),
                             ion.basePixelX,
                             ion.basePixelY,
