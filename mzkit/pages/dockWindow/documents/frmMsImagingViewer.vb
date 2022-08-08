@@ -423,6 +423,7 @@ Public Class frmMsImagingViewer
 
                 Call grid.Columns.Add("pixels", GetType(Integer))
                 Call grid.Columns.Add("density", GetType(Double))
+                Call grid.Columns.Add("imaging_score", GetType(Double))
                 Call grid.Columns.Add("maxIntensity", GetType(Double))
                 Call grid.Columns.Add("basePixel.X", GetType(Integer))
                 Call grid.Columns.Add("basePixel.Y", GetType(Integer))
@@ -447,6 +448,7 @@ Public Class frmMsImagingViewer
                             typeName,
                             ion.pixels,
                             ion.density.ToString("F2"),
+                            (stdNum.Log(ion.pixels + 1) * ion.density).ToString("F2"),
                             stdNum.Round(ion.maxIntensity),
                             ion.basePixelX,
                             ion.basePixelY,
