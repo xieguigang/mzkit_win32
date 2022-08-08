@@ -201,9 +201,15 @@ Public Class RscriptProgressTask
         End If
     End Sub
 
-    Public Shared Sub ExportSingleIonPlot(mz As Double, tolerance As String, saveAs As String, Optional title As String = "")
+    Public Shared Sub ExportSingleIonPlot(mz As Double,
+                                          tolerance As String,
+                                          saveAs As String,
+                                          background As String,
+                                          colorSet As String,
+                                          Optional title As String = "")
+
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSImaging/singleIon.R")
-        Dim cli As String = $"""{Rscript}"" --app {WindowModules.viewer.MSIservice.appPort} --mzlist ""{mz}"" --save ""{saveAs}"" --mzdiff ""{tolerance}"" --title ""{title}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim cli As String = $"""{Rscript}"" --app {WindowModules.viewer.MSIservice.appPort} --mzlist ""{mz}"" --save ""{saveAs}"" --backcolor ""{background}"" --colors ""{colorSet}"" --mzdiff ""{tolerance}"" --title ""{title}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
         Dim progress As New frmTaskProgress
 

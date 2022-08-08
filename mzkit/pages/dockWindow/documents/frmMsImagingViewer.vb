@@ -1191,7 +1191,9 @@ Public Class frmMsImagingViewer
                         mz:=targetMz(0),
                         tolerance:=mzdiff.GetScript,
                         saveAs:=file.FileName,
-                        title:=title
+                        title:=title,
+                        background:=params.background.ToHtmlColor,
+                        colorSet:=params.colors.Description
                     )
                 End If
             End If

@@ -257,7 +257,14 @@ Public Class InputMatrixIons
                 Dim mzdiff As String = $"da:{txtMzdiff.Text}"
 
                 For Each mz As NamedValue(Of Double) In GetSelectedIons()
-                    Call RscriptProgressTask.ExportSingleIonPlot(mz.Value, mzdiff, saveAs:=$"{folder.SelectedPath}/${mz.Value.ToString("F4")}.png", title:=$"{mz.Name} {mz.Description}")
+                    Call RscriptProgressTask.ExportSingleIonPlot(
+                        mz:=mz.Value,
+                        tolerance:=mzdiff,
+                        saveAs:=$"{folder.SelectedPath}/${mz.Value.ToString("F4")}.png",
+                        title:=$"{mz.Name} {mz.Description}",
+                        background:="black",
+                        colorSet:="viridis:turbo"
+                    )
                 Next
             End If
         End Using
