@@ -5,6 +5,7 @@ require(mzkit);
 require(ggplot);
 
 options(memory.load = "max");
+options(strict = FALSE);
 
 const rawdata as string   = ?"--data"   || stop("no raw data provided!");
 const plot_type as string = ?"--plot"   || stop("should be one of the 'box', 'bar', 'violin'");
@@ -77,7 +78,7 @@ MSImaging::MSI_ionStatPlot(
     size           = [2400, 1000], 
     colorMap       = NULL, 
     MSI_colorset   = colorSet,
-    ggStatPlot     = getGgplot(), 
+    ggStatPlot     = getGgplot, 
     padding_top    = 150,
     padding_right  = 200,
     padding_bottom = 150,
