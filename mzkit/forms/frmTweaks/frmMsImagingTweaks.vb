@@ -465,7 +465,13 @@ UseCheckedList:
 
     Private Sub showPlot(data As Dictionary(Of String, NamedValue(Of Double())), type As String, mz As Double)
         Dim pack As String = encodeJSON(data)
-        Dim image = RscriptProgressTask.PlotStats(pack, type, title:=$"MZ: {mz.ToString("F4")}")
+        Dim image As Image
+
+        If AppendMSImagingToolStripMenuItem.Checked Then
+
+        Else
+            image = RscriptProgressTask.PlotStats(pack, type, title:=$"M/Z: {mz.ToString("F4")}")
+        End If
 
         If image Is Nothing Then
             MyApplication.host.showStatusMessage("Error while run ggplot...", My.Resources.StatusAnnotations_Warning_32xLG_color)
