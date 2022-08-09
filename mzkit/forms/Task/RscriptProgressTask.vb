@@ -192,7 +192,7 @@ Public Class RscriptProgressTask
         Call New Thread(AddressOf pipeline.Run).Start()
         Call progress.ShowDialog()
 
-        If saveAs.FileExists Then
+        If saveAs.FileExists(ZERO_Nonexists:=True) Then
             If MessageBox.Show("RGB Ions MS-Imaging Job Done!" & vbCrLf & "Open MSImaging result plot file?", "Open Image", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
                 Call Process.Start(saveAs.GetFullPath)
             End If
@@ -329,7 +329,7 @@ Public Class RscriptProgressTask
         Call New Thread(AddressOf pipeline.Run).Start()
         Call progress.ShowDialog()
 
-        If Not imageOut.FileExists Then
+        If Not imageOut.FileExists(ZERO_Nonexists:=True) Then
             Return Nothing
         Else
             Return imageOut.LoadImage
@@ -359,7 +359,7 @@ Public Class RscriptProgressTask
         Call New Thread(AddressOf pipeline.Run).Start()
         Call progress.ShowDialog()
 
-        If Not imageOut.FileExists Then
+        If Not imageOut.FileExists(ZERO_Nonexists:=True) Then
             Return Nothing
         Else
             Return imageOut.LoadImage
