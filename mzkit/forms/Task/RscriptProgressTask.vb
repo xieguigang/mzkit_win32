@@ -310,11 +310,11 @@ Public Class RscriptProgressTask
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".json", App.PID.ToHexString, prefix:="MSI_regions__")
         Dim imageOut As String = $"{tempfile.ParentPath}/Rplot.png"
         Dim Rscript As String = RscriptPipelineTask.GetRScript("ggplot/ggplot_ionStatMSI.R")
-        Dim cli As String = $"""{Rscript}"" --app {WindowModules.viewer.MSIservice.appPort} --mzlist ""{mz}"" --save ""{SaveAs()}"" --backcolor ""{background}"" --colors ""{colorSet}"" --mzdiff ""{tolerance}"" --data ""{tempfile}"" --save ""{imageOut}"" --title ""{title}"" --plot ""{type}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim cli As String = $"""{Rscript}"" --app {WindowModules.viewer.MSIservice.appPort} --mzlist ""{mz}"" --backcolor ""{background}"" --colors ""{colorSet}"" --mzdiff ""{tolerance}"" --data ""{tempfile}"" --save ""{imageOut}"" --title ""{title}"" --plot ""{type}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
         Dim progress As New frmTaskProgress
 
-        progress.ShowProgressTitle("Create MSI sampletable...", directAccess:=True)
+        progress.ShowProgressTitle("Create MSI sample table...", directAccess:=True)
         progress.ShowProgressDetails("Loading MSI raw data file into viewer workspace...", directAccess:=True)
         progress.SetProgressMode()
 
@@ -344,7 +344,7 @@ Public Class RscriptProgressTask
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
         Dim progress As New frmTaskProgress
 
-        progress.ShowProgressTitle("Create MSI sampletable...", directAccess:=True)
+        progress.ShowProgressTitle("Create MSI sample table...", directAccess:=True)
         progress.ShowProgressDetails("Loading MSI raw data file into viewer workspace...", directAccess:=True)
         progress.SetProgressMode()
 
