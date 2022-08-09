@@ -96,7 +96,6 @@ Public Class frmMsImagingViewer
 
     Public Property FilePath As String Implements IFileReference.FilePath
 
-    Dim params As MsImageProperty
     Dim WithEvents checks As ToolStripMenuItem
     Dim WithEvents tweaks As PropertyGrid
     Dim rendering As Action
@@ -104,6 +103,7 @@ Public Class frmMsImagingViewer
     Dim blender As Blender
 
     Friend MSIservice As ServiceHub.MSIDataService
+    Friend params As MsImageProperty
 
     Public ReadOnly Property MimeType As ContentType() Implements IFileReference.MimeType
         Get
@@ -995,6 +995,21 @@ Public Class frmMsImagingViewer
     Dim targetMz As Double()
     Dim title As String
     Dim mzdiff As Tolerance
+
+    ''' <summary>
+    ''' [mz:F3 => name]
+    ''' </summary>
+    Dim titles As New Dictionary(Of String, String)
+
+    Public Function GetTitle(mz As Double) As String
+        Dim key As String = mz.ToString("F3")
+
+        If titles.ContainsKey(key) Then
+            Return titles(key)
+        Else
+            Return $"M/Z: {key}"
+        End If
+    End Function
 
     Public Sub renderByPixelsData(pixels As PixelData(), MsiDim As Size)
         If params Is Nothing Then

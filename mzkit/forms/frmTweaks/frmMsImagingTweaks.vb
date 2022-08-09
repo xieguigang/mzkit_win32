@@ -466,9 +466,18 @@ UseCheckedList:
     Private Sub showPlot(data As Dictionary(Of String, NamedValue(Of Double())), type As String, mz As Double)
         Dim pack As String = encodeJSON(data)
         Dim image As Image
+        Dim mzdiff = viewer.params.GetTolerance
 
         If AppendMSImagingToolStripMenuItem.Checked Then
-
+            image = RscriptProgressTask.PlotSingleMSIStats(
+                data:=pack,
+                type:=type,
+                title:=viewer.GetTitle(mz),
+                mz:=mz,
+                tolerance:=mzdiff.GetScript,
+                background:=viewer.params.background.ToHtmlColor,
+                colorSet:=viewer.params.colors.Description
+            )
         Else
             image = RscriptProgressTask.PlotStats(pack, type, title:=$"M/Z: {mz.ToString("F4")}")
         End If
