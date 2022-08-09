@@ -479,7 +479,7 @@ UseCheckedList:
                 colorSet:=viewer.params.colors.Description
             )
         Else
-            image = RscriptProgressTask.PlotStats(pack, type, title:=$"M/Z: {mz.ToString("F4")}")
+            image = RscriptProgressTask.PlotStats(pack, type, title:=viewer.GetTitle(mz))
         End If
 
         If image Is Nothing Then

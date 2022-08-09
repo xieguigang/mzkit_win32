@@ -960,9 +960,8 @@ Public Class frmMsImagingViewer
         End If
 
         mzdiff = params.GetTolerance
-        targetMz = selectedMz.ToArray
-        title = titleName
 
+        Call SetTitle(selectedMz, titleName)
         Call frmProgressSpinner.DoLoading(
             Sub()
                 Dim pixels As PixelData() = MSIservice.LoadPixels(selectedMz, mzdiff)
@@ -1010,6 +1009,12 @@ Public Class frmMsImagingViewer
             Return $"M/Z: {key}"
         End If
     End Function
+
+    Private Sub SetTitle(mz As IEnumerable(Of Double), title As String)
+        Me.title = title
+        Me.targetMz = mz.ToArray
+        Me.titles(targetMz(Scan0).ToString("F3")) = title
+    End Sub
 
     Public Sub renderByPixelsData(pixels As PixelData(), MsiDim As Size)
         If params Is Nothing Then
