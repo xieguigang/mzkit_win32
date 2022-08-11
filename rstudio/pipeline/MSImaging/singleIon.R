@@ -11,6 +11,8 @@ const mz as string       = ?"--mzlist" || stop("target ions list must be provide
 const mzdiff as string   = ?"--mzdiff" || "da:0.1";
 const savefile as string = ?"--save"   || stop("A file path to save plot image must be specificed!");
 const title as string    = ?"--title"  || "";
+const bg as string       = ?"--backcolor" || "black";
+const colorSet as string = ?"--colors" || "viridis:turbo";
 const mzlist as double   = mz
 |> strsplit(",", fixed = TRUE)
 |> unlist()
@@ -37,7 +39,12 @@ bitmap(file = savefile, size = [3300, 2000]) {
     ) 
        # rendering of a single ion m/z
        # default color palette is Jet color set
-       + geom_msimaging(mz = mzlist[1], tolerance = mzdiff)
+       + geom_msimaging(
+		    mz        = mzlist[1], 
+			tolerance = mzdiff, 
+			color     = colorSet
+	   )
+	   + geom_MSIbackground(bg)
        # add ggplot charting elements
        + ggtitle(`MSImaging of ${ifelse(title == "", mz_tag, title)}`)
        + labs(x = "Dimension(X)", y = "Dimension(Y)")

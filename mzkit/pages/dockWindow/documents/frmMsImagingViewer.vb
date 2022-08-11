@@ -96,7 +96,6 @@ Public Class frmMsImagingViewer
 
     Public Property FilePath As String Implements IFileReference.FilePath
 
-    Dim params As MsImageProperty
     Dim WithEvents checks As ToolStripMenuItem
     Dim WithEvents tweaks As PropertyGrid
     Dim rendering As Action
@@ -104,6 +103,7 @@ Public Class frmMsImagingViewer
     Dim blender As Blender
 
     Friend MSIservice As ServiceHub.MSIDataService
+    Friend params As MsImageProperty
 
     Public ReadOnly Property MimeType As ContentType() Implements IFileReference.MimeType
         Get
@@ -423,6 +423,7 @@ Public Class frmMsImagingViewer
 
                 Call grid.Columns.Add("pixels", GetType(Integer))
                 Call grid.Columns.Add("density", GetType(Double))
+                Call grid.Columns.Add("imaging_score", GetType(Double))
                 Call grid.Columns.Add("maxIntensity", GetType(Double))
                 Call grid.Columns.Add("basePixel.X", GetType(Integer))
                 Call grid.Columns.Add("basePixel.Y", GetType(Integer))
@@ -447,6 +448,7 @@ Public Class frmMsImagingViewer
                             typeName,
                             ion.pixels,
                             ion.density.ToString("F2"),
+                            (stdNum.Log(ion.pixels + 1) * ion.density).ToString("F2"),
                             stdNum.Round(ion.maxIntensity),
                             ion.basePixelX,
                             ion.basePixelY,
@@ -460,6 +462,7 @@ Public Class frmMsImagingViewer
                             ion.mz.ToString("F4"),
                             ion.pixels,
                             ion.density.ToString("F2"),
+                            (stdNum.Log(ion.pixels + 1) * ion.density).ToString("F2"),
                             stdNum.Round(ion.maxIntensity),
                             ion.basePixelX,
                             ion.basePixelY,
@@ -957,9 +960,8 @@ Public Class frmMsImagingViewer
         End If
 
         mzdiff = params.GetTolerance
-        targetMz = selectedMz.ToArray
-        title = titleName
 
+        Call SetTitle(selectedMz, titleName)
         Call frmProgressSpinner.DoLoading(
             Sub()
                 Dim pixels As PixelData() = MSIservice.LoadPixels(selectedMz, mzdiff)
@@ -992,6 +994,27 @@ Public Class frmMsImagingViewer
     Dim targetMz As Double()
     Dim title As String
     Dim mzdiff As Tolerance
+
+    ''' <summary>
+    ''' [mz:F3 => name]
+    ''' </summary>
+    Dim titles As New Dictionary(Of String, String)
+
+    Public Function GetTitle(mz As Double) As String
+        Dim key As String = mz.ToString("F3")
+
+        If titles.ContainsKey(key) Then
+            Return titles(key)
+        Else
+            Return $"M/Z: {key}"
+        End If
+    End Function
+
+    Private Sub SetTitle(mz As IEnumerable(Of Double), title As String)
+        Me.title = title
+        Me.targetMz = mz.ToArray
+        Me.titles(targetMz(Scan0).ToString("F3")) = title
+    End Sub
 
     Public Sub renderByPixelsData(pixels As PixelData(), MsiDim As Size)
         If params Is Nothing Then
@@ -1191,7 +1214,9 @@ Public Class frmMsImagingViewer
                         mz:=targetMz(0),
                         tolerance:=mzdiff.GetScript,
                         saveAs:=file.FileName,
-                        title:=title
+                        title:=title,
+                        background:=params.background.ToHtmlColor,
+                        colorSet:=params.colors.Description
                     )
                 End If
             End If

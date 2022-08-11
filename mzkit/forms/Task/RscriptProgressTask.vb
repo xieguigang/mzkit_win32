@@ -192,7 +192,7 @@ Public Class RscriptProgressTask
         Call New Thread(AddressOf pipeline.Run).Start()
         Call progress.ShowDialog()
 
-        If saveAs.FileExists Then
+        If saveAs.FileExists(ZERO_Nonexists:=True) Then
             If MessageBox.Show("RGB Ions MS-Imaging Job Done!" & vbCrLf & "Open MSImaging result plot file?", "Open Image", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
                 Call Process.Start(saveAs.GetFullPath)
             End If
@@ -201,9 +201,15 @@ Public Class RscriptProgressTask
         End If
     End Sub
 
-    Public Shared Sub ExportSingleIonPlot(mz As Double, tolerance As String, saveAs As String, Optional title As String = "")
+    Public Shared Sub ExportSingleIonPlot(mz As Double,
+                                          tolerance As String,
+                                          saveAs As String,
+                                          background As String,
+                                          colorSet As String,
+                                          Optional title As String = "")
+
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSImaging/singleIon.R")
-        Dim cli As String = $"""{Rscript}"" --app {WindowModules.viewer.MSIservice.appPort} --mzlist ""{mz}"" --save ""{saveAs}"" --mzdiff ""{tolerance}"" --title ""{title}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim cli As String = $"""{Rscript}"" --app {WindowModules.viewer.MSIservice.appPort} --mzlist ""{mz}"" --save ""{saveAs}"" --backcolor ""{background}"" --colors ""{colorSet}"" --mzdiff ""{tolerance}"" --title ""{title}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
         Dim progress As New frmTaskProgress
 
@@ -295,15 +301,20 @@ Public Class RscriptProgressTask
         End If
     End Sub
 
-    Public Shared Function PlotStats(data As String, type As String, title As String) As Image
+    Public Shared Function PlotSingleMSIStats(data As String, type As String, title As String,
+                                              mz As Double,
+                                              tolerance As String,
+                                              background As String,
+                                              colorSet As String) As Image
+
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".json", App.PID.ToHexString, prefix:="MSI_regions__")
         Dim imageOut As String = $"{tempfile.ParentPath}/Rplot.png"
-        Dim Rscript As String = RscriptPipelineTask.GetRScript("ggplot/ggplot2.R")
-        Dim cli As String = $"""{Rscript}"" --data ""{tempfile}"" --save ""{imageOut}"" --title ""{title}"" --plot ""{type}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("ggplot/ggplot_ionStatMSI.R")
+        Dim cli As String = $"""{Rscript}"" --app {WindowModules.viewer.MSIservice.appPort} --mzlist ""{mz}"" --backcolor ""{background}"" --colors ""{colorSet}"" --mzdiff ""{tolerance}"" --data ""{tempfile}"" --save ""{imageOut}"" --title ""{title}"" --plot ""{type}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
         Dim progress As New frmTaskProgress
 
-        progress.ShowProgressTitle("Create MSI sampletable...", directAccess:=True)
+        progress.ShowProgressTitle("Create MSI sample table...", directAccess:=True)
         progress.ShowProgressDetails("Loading MSI raw data file into viewer workspace...", directAccess:=True)
         progress.SetProgressMode()
 
@@ -318,7 +329,37 @@ Public Class RscriptProgressTask
         Call New Thread(AddressOf pipeline.Run).Start()
         Call progress.ShowDialog()
 
-        If Not imageOut.FileExists Then
+        If Not imageOut.FileExists(ZERO_Nonexists:=True) Then
+            Return Nothing
+        Else
+            Return imageOut.LoadImage
+        End If
+    End Function
+
+    Public Shared Function PlotStats(data As String, type As String, title As String) As Image
+        Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".json", App.PID.ToHexString, prefix:="MSI_regions__")
+        Dim imageOut As String = $"{tempfile.ParentPath}/Rplot.png"
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("ggplot/ggplot2.R")
+        Dim cli As String = $"""{Rscript}"" --data ""{tempfile}"" --save ""{imageOut}"" --title ""{title}"" --plot ""{type}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+        Dim progress As New frmTaskProgress
+
+        progress.ShowProgressTitle("Create MSI sample table...", directAccess:=True)
+        progress.ShowProgressDetails("Loading MSI raw data file into viewer workspace...", directAccess:=True)
+        progress.SetProgressMode()
+
+        Call data.SaveTo(tempfile)
+        Call MyApplication.LogText(pipeline.CommandLine)
+        Call MyApplication.LogText(data)
+
+        AddHandler pipeline.SetMessage, AddressOf progress.ShowProgressDetails
+        AddHandler pipeline.SetProgress, AddressOf progress.SetProgress
+        AddHandler pipeline.Finish, Sub() progress.Invoke(Sub() progress.Close())
+
+        Call New Thread(AddressOf pipeline.Run).Start()
+        Call progress.ShowDialog()
+
+        If Not imageOut.FileExists(ZERO_Nonexists:=True) Then
             Return Nothing
         Else
             Return imageOut.LoadImage

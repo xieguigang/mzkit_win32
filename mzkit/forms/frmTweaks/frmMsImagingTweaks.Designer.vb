@@ -85,6 +85,10 @@ Partial Class frmMsImagingTweaks
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMsImagingTweaks))
         Me.PropertyGrid1 = New System.Windows.Forms.PropertyGrid()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ShowPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BoxPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BarPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViolinPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RenderLayerCompositionModeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RenderingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
@@ -101,10 +105,8 @@ Partial Class frmMsImagingTweaks
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
-        Me.ShowPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BoxPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BarPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ViolinPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.AppendMSImagingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -128,6 +130,31 @@ Partial Class frmMsImagingTweaks
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowPlotToolStripMenuItem, Me.RenderLayerCompositionModeToolStripMenuItem, Me.RenderingToolStripMenuItem, Me.ToolStripMenuItem1, Me.LoadBasePeakIonsToolStripMenuItem, Me.ToolStripMenuItem2, Me.ClearSelectionToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
         Me.ContextMenuStrip1.Size = New System.Drawing.Size(262, 148)
+        '
+        'ShowPlotToolStripMenuItem
+        '
+        Me.ShowPlotToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BoxPlotToolStripMenuItem, Me.BarPlotToolStripMenuItem, Me.ViolinPlotToolStripMenuItem, Me.ToolStripMenuItem3, Me.AppendMSImagingToolStripMenuItem})
+        Me.ShowPlotToolStripMenuItem.Name = "ShowPlotToolStripMenuItem"
+        Me.ShowPlotToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
+        Me.ShowPlotToolStripMenuItem.Text = "Show Plot"
+        '
+        'BoxPlotToolStripMenuItem
+        '
+        Me.BoxPlotToolStripMenuItem.Name = "BoxPlotToolStripMenuItem"
+        Me.BoxPlotToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.BoxPlotToolStripMenuItem.Text = "Box Plot"
+        '
+        'BarPlotToolStripMenuItem
+        '
+        Me.BarPlotToolStripMenuItem.Name = "BarPlotToolStripMenuItem"
+        Me.BarPlotToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.BarPlotToolStripMenuItem.Text = "Bar Plot"
+        '
+        'ViolinPlotToolStripMenuItem
+        '
+        Me.ViolinPlotToolStripMenuItem.Name = "ViolinPlotToolStripMenuItem"
+        Me.ViolinPlotToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.ViolinPlotToolStripMenuItem.Text = "Violin Plot"
         '
         'RenderLayerCompositionModeToolStripMenuItem
         '
@@ -257,34 +284,23 @@ Partial Class frmMsImagingTweaks
         Me.ToolStripButton3.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton3.Text = "Clear Layers"
         '
-        'ShowPlotToolStripMenuItem
+        'ToolStripMenuItem3
         '
-        Me.ShowPlotToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BoxPlotToolStripMenuItem, Me.BarPlotToolStripMenuItem, Me.ViolinPlotToolStripMenuItem})
-        Me.ShowPlotToolStripMenuItem.Name = "ShowPlotToolStripMenuItem"
-        Me.ShowPlotToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
-        Me.ShowPlotToolStripMenuItem.Text = "Show Plot"
+        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(182, 6)
         '
-        'BoxPlotToolStripMenuItem
+        'AppendMSImagingToolStripMenuItem
         '
-        Me.BoxPlotToolStripMenuItem.Name = "BoxPlotToolStripMenuItem"
-        Me.BoxPlotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.BoxPlotToolStripMenuItem.Text = "Box Plot"
-        '
-        'BarPlotToolStripMenuItem
-        '
-        Me.BarPlotToolStripMenuItem.Name = "BarPlotToolStripMenuItem"
-        Me.BarPlotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.BarPlotToolStripMenuItem.Text = "Bar Plot"
-        '
-        'ViolinPlotToolStripMenuItem
-        '
-        Me.ViolinPlotToolStripMenuItem.Name = "ViolinPlotToolStripMenuItem"
-        Me.ViolinPlotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ViolinPlotToolStripMenuItem.Text = "Violin Plot"
+        Me.AppendMSImagingToolStripMenuItem.Checked = True
+        Me.AppendMSImagingToolStripMenuItem.CheckOnClick = True
+        Me.AppendMSImagingToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.AppendMSImagingToolStripMenuItem.Name = "AppendMSImagingToolStripMenuItem"
+        Me.AppendMSImagingToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.AppendMSImagingToolStripMenuItem.Text = "Append MS-Imaging"
         '
         'frmMsImagingTweaks
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(377, 554)
@@ -326,4 +342,6 @@ Partial Class frmMsImagingTweaks
     Friend WithEvents BoxPlotToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BarPlotToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ViolinPlotToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem3 As ToolStripSeparator
+    Friend WithEvents AppendMSImagingToolStripMenuItem As ToolStripMenuItem
 End Class

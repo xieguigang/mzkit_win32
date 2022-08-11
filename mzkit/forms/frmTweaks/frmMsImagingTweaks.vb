@@ -310,6 +310,12 @@ UseCheckedList:
         End If
 
         Using cdf As New netCDFReader(firstFile)
+            If Not {"mz", "intensity", "x", "y"}.All(AddressOf cdf.dataVariableExists) Then
+                ' invalid format
+                Call MyApplication.host.showStatusMessage("Invalid cdf file format! [mz, intensity, x, y] data vector should exists inside this cdf file!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Return
+            End If
+
             size = cdf.GetMsiDimension
             pixels = cdf.LoadPixelsData.ToArray
             tolerance = cdf.GetMzTolerance
@@ -465,7 +471,22 @@ UseCheckedList:
 
     Private Sub showPlot(data As Dictionary(Of String, NamedValue(Of Double())), type As String, mz As Double)
         Dim pack As String = encodeJSON(data)
-        Dim image = RscriptProgressTask.PlotStats(pack, type, title:=$"MZ: {mz.ToString("F4")}")
+        Dim image As Image
+        Dim mzdiff = viewer.params.GetTolerance
+
+        If AppendMSImagingToolStripMenuItem.Checked Then
+            image = RscriptProgressTask.PlotSingleMSIStats(
+                data:=pack,
+                type:=type,
+                title:=viewer.GetTitle(mz),
+                mz:=mz,
+                tolerance:=mzdiff.GetScript,
+                background:=viewer.params.background.ToHtmlColor,
+                colorSet:=viewer.params.colors.Description
+            )
+        Else
+            image = RscriptProgressTask.PlotStats(pack, type, title:=viewer.GetTitle(mz))
+        End If
 
         If image Is Nothing Then
             MyApplication.host.showStatusMessage("Error while run ggplot...", My.Resources.StatusAnnotations_Warning_32xLG_color)
