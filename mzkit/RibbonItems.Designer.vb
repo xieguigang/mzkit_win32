@@ -136,6 +136,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonFeatureDetections As UInteger = 152
             Public Const cmdButtonMSIRawIonStat As UInteger = 166
             Public Const cmdButtonMSICleanBackground As UInteger = 167
+            Public Const cmdButtonMSISignalCorrection As UInteger = 197
             Public Const cmdButtonExportSample As UInteger = 135
             Public Const cmdButtonTissueMap As UInteger = 190
             Public Const cmdButtonImportsTissueMorphology As UInteger = 188
@@ -931,6 +932,12 @@ Namespace RibbonLib.Controls
                 Return _ButtonMSICleanBackground
             End Get
         End Property
+        Private _ButtonMSISignalCorrection As RibbonButton
+        Public ReadOnly Property ButtonMSISignalCorrection As RibbonButton
+            Get
+                Return _ButtonMSISignalCorrection
+            End Get
+        End Property
         Private _ButtonExportSample As RibbonButton
         Public ReadOnly Property ButtonExportSample As RibbonButton
             Get
@@ -1411,6 +1418,7 @@ Namespace RibbonLib.Controls
             _ButtonFeatureDetections = New RibbonDropDownButton(_ribbon, Cmd.cmdButtonFeatureDetections)
             _ButtonMSIRawIonStat = New RibbonButton(_ribbon, Cmd.cmdButtonMSIRawIonStat)
             _ButtonMSICleanBackground = New RibbonButton(_ribbon, Cmd.cmdButtonMSICleanBackground)
+            _ButtonMSISignalCorrection = New RibbonButton(_ribbon, Cmd.cmdButtonMSISignalCorrection)
             _ButtonExportSample = New RibbonButton(_ribbon, Cmd.cmdButtonExportSample)
             _ButtonTissueMap = New RibbonDropDownButton(_ribbon, Cmd.cmdButtonTissueMap)
             _ButtonImportsTissueMorphology = New RibbonButton(_ribbon, Cmd.cmdButtonImportsTissueMorphology)

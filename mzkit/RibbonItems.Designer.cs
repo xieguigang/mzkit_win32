@@ -139,6 +139,7 @@ namespace RibbonLib.Controls
             public const uint cmdButtonFeatureDetections = 152;
             public const uint cmdButtonMSIRawIonStat = 166;
             public const uint cmdButtonMSICleanBackground = 167;
+            public const uint cmdButtonMSISignalCorrection = 197;
             public const uint cmdButtonExportSample = 135;
             public const uint cmdButtonTissueMap = 190;
             public const uint cmdButtonImportsTissueMorphology = 188;
@@ -329,6 +330,7 @@ namespace RibbonLib.Controls
         public RibbonDropDownButton ButtonFeatureDetections { get; private set; }
         public RibbonButton ButtonMSIRawIonStat { get; private set; }
         public RibbonButton ButtonMSICleanBackground { get; private set; }
+        public RibbonButton ButtonMSISignalCorrection { get; private set; }
         public RibbonButton ButtonExportSample { get; private set; }
         public RibbonDropDownButton ButtonTissueMap { get; private set; }
         public RibbonButton ButtonImportsTissueMorphology { get; private set; }
@@ -514,6 +516,7 @@ namespace RibbonLib.Controls
             ButtonFeatureDetections = new RibbonDropDownButton(ribbon, Cmd.cmdButtonFeatureDetections);
             ButtonMSIRawIonStat = new RibbonButton(ribbon, Cmd.cmdButtonMSIRawIonStat);
             ButtonMSICleanBackground = new RibbonButton(ribbon, Cmd.cmdButtonMSICleanBackground);
+            ButtonMSISignalCorrection = new RibbonButton(ribbon, Cmd.cmdButtonMSISignalCorrection);
             ButtonExportSample = new RibbonButton(ribbon, Cmd.cmdButtonExportSample);
             ButtonTissueMap = new RibbonDropDownButton(ribbon, Cmd.cmdButtonTissueMap);
             ButtonImportsTissueMorphology = new RibbonButton(ribbon, Cmd.cmdButtonImportsTissueMorphology);
