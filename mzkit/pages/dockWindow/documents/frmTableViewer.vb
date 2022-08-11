@@ -1,68 +1,69 @@
 ﻿#Region "Microsoft.VisualBasic::09e529c89b620cda995388ea15f96330, mzkit\src\mzkit\mzkit\pages\dockWindow\documents\frmTableViewer.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 274
-    '    Code Lines: 198
-    ' Comment Lines: 8
-    '   Blank Lines: 68
-    '     File Size: 10.44 KB
+' Summaries:
 
 
-    ' Class frmTableViewer
-    ' 
-    '     Properties: FilePath, MimeType, ViewRow
-    ' 
-    '     Constructor: (+1 Overloads) Sub New
-    ' 
-    '     Function: getCurrentTable, (+2 Overloads) getFieldVector, GetSchema, (+2 Overloads) Save
-    ' 
-    '     Sub: ActionsToolStripMenuItem_Click, AdvancedDataGridView1_FilterStringChanged, AdvancedDataGridViewSearchToolBar1_Search, columnVectorStat, exportTableCDF
-    '          frmTableViewer_Activated, frmTableViewer_FormClosed, frmTableViewer_FormClosing, frmTableViewer_Load, LoadTable
-    '          resetFilter, SaveDocument, SendToREnvironmentToolStripMenuItem_Click, ViewToolStripMenuItem_Click, VisualizeToolStripMenuItem_Click
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 274
+'    Code Lines: 198
+' Comment Lines: 8
+'   Blank Lines: 68
+'     File Size: 10.44 KB
+
+
+' Class frmTableViewer
+' 
+'     Properties: FilePath, MimeType, ViewRow
+' 
+'     Constructor: (+1 Overloads) Sub New
+' 
+'     Function: getCurrentTable, (+2 Overloads) getFieldVector, GetSchema, (+2 Overloads) Save
+' 
+'     Sub: ActionsToolStripMenuItem_Click, AdvancedDataGridView1_FilterStringChanged, AdvancedDataGridViewSearchToolBar1_Search, columnVectorStat, exportTableCDF
+'          frmTableViewer_Activated, frmTableViewer_FormClosed, frmTableViewer_FormClosing, frmTableViewer_Load, LoadTable
+'          resetFilter, SaveDocument, SendToREnvironmentToolStripMenuItem_Click, ViewToolStripMenuItem_Click, VisualizeToolStripMenuItem_Click
+' 
+' /********************************************************************************/
 
 #End Region
 
 Imports System.IO
 Imports System.Text
 Imports BioNovoGene.mzkit_win32.My
+Imports ControlLibrary
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
@@ -134,8 +135,28 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
         TabText = "Table View"
 
         AddHandler AdvancedDataGridViewSearchToolBar1.Search, AddressOf search.AdvancedDataGridViewSearchToolBar1_Search
+        AddHandler ribbonItems.ButtonColumnStats.ExecuteEvent,
+            Sub()
+                Call DoTableSampleStats()
+            End Sub
 
         ApplyVsTheme(ContextMenuStrip1)
+    End Sub
+
+    Private Sub DoTableSampleStats()
+        Dim stats As New ShowColumnStat
+        Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
+
+        For Each column As DataGridViewColumn In AdvancedDataGridView1.Columns
+            Dim key As String = column.HeaderText
+            Dim vec = AdvancedDataGridView1.getFieldVector(key)
+
+            Call stats.vectors.Add(key, vec)
+        Next
+
+        If mask.ShowDialogForm(stats) = DialogResult.OK Then
+            'do nothing
+        End If
     End Sub
 
     Public Function Save(path As String, encoding As Encoding) As Boolean Implements ISaveHandle.Save
@@ -229,22 +250,23 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
         Dim takeActions As New InputAction
 
         Call takeActions.SetFields(GetSchema.Keys)
-        Call InputDialog.Input(Sub(input)
-                                   Dim name As String = input.getTargetName
-                                   Dim action As String = input.getActionName
-                                   Dim data As Array = AdvancedDataGridView1.getFieldVector(name)
-                                   Dim source As BindingSource = AdvancedDataGridView1.DataSource
-                                   Dim dataset As DataSet = source.DataSource
-                                   Dim table As DataTable = dataset.Tables.Item(Scan0)
+        Call InputDialog.Input(
+            Sub(input)
+                Dim name As String = input.getTargetName
+                Dim action As String = input.getActionName
+                Dim data As Array = AdvancedDataGridView1.getFieldVector(name)
+                Dim source As BindingSource = AdvancedDataGridView1.DataSource
+                Dim dataset As DataSet = source.DataSource
+                Dim table As DataTable = dataset.Tables.Item(Scan0)
 
-                                   table.Namespace = SourceName
+                table.Namespace = SourceName
 
-                                   SyncLock TableGuid
-                                       TableGuid(table) = InstanceGuid
-                                   End SyncLock
+                SyncLock TableGuid
+                    TableGuid(table) = InstanceGuid
+                End SyncLock
 
-                                   Actions.RunAction(action, name, data, table)
-                               End Sub, config:=takeActions)
+                Actions.RunAction(action, name, data, table)
+            End Sub, config:=takeActions)
     End Sub
 
     Private Sub AdvancedDataGridView1_FilterStringChanged(sender As Object, e As AdvancedDataGridView.FilterEventArgs) Handles AdvancedDataGridView1.FilterStringChanged
@@ -328,6 +350,10 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
     End Sub
 
     Private Sub frmTableViewer_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+
+    End Sub
+
+    Private Sub TransposeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TransposeToolStripMenuItem.Click
 
     End Sub
 End Class

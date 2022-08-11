@@ -52,6 +52,71 @@
 
 #End Region
 
+Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Math.Distributions
+
 Public Class ShowColumnStat
 
+    Friend vectors As New Dictionary(Of String, Array)
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Me.DialogResult = DialogResult.OK
+    End Sub
+
+    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
+        Dim key As String = ComboBox1.SelectedItem.ToString
+        Dim vec As Array = vectors(key)
+
+        If TypeOf vec Is String() OrElse TypeOf vec Is Char() Then
+            Dim chrs As String() = vec.AsObjectEnumerator.Select(Function(s) CStr(s)).ToArray
+            Dim factors = chrs.GroupBy(Function(c) c).ToArray
+
+            DataGridView1.Rows.Clear()
+
+            For Each factor In factors
+                DataGridView1.Rows.Add(factor.Key, factor.Count)
+            Next
+
+            DataGridView1.Rows.Add("size", chrs.Length)
+
+            ' plot bar plot to show counts
+
+        ElseIf TypeOf vec Is Boolean() Then
+            Dim flags As Boolean() = vec.AsObjectEnumerator.Select(Function(b) CBool(b)).ToArray
+            Dim groups = flags.GroupBy(Function(b) b).ToArray
+
+            DataGridView1.Rows.Clear()
+            DataGridView1.Rows.Add("True", groups.Where(Function(t) t.Key).Count)
+            DataGridView1.Rows.Add("False", groups.Where(Function(t) Not t.Key).Count)
+            DataGridView1.Rows.Add("size", flags.Length)
+
+            ' plot bar plot to show counts
+
+        ElseIf TypeOf vec Is Date() Then
+            ' do nothing?
+        Else
+            ' is numeric
+            Dim num As Double() = vec.AsObjectEnumerator.Select(Function(d) CDbl(d)).ToArray
+            Dim sample As New SampleDistribution(num)
+
+            DataGridView1.Rows.Clear()
+            DataGridView1.Rows.Add("mean", sample.average)
+            DataGridView1.Rows.Add("min", sample.min)
+            DataGridView1.Rows.Add("max", sample.max)
+            DataGridView1.Rows.Add("min(CI95%)", sample.CI95Range.Min)
+            DataGridView1.Rows.Add("max(CI95%)", sample.CI95Range.Max)
+            DataGridView1.Rows.Add("mode", sample.mode)
+            DataGridView1.Rows.Add("outlier lower bound", sample.outlierBoundary.Min)
+            DataGridView1.Rows.Add("outlier upper bound", sample.outlierBoundary.Max)
+            DataGridView1.Rows.Add("quantile 0%", sample.quantile(0))
+            DataGridView1.Rows.Add("quantile 25%", sample.quantile(1))
+            DataGridView1.Rows.Add("quantile 50%", sample.quantile(2))
+            DataGridView1.Rows.Add("quantile 75%", sample.quantile(3))
+            DataGridView1.Rows.Add("quantile 100%", sample.quantile(4))
+            DataGridView1.Rows.Add("size", sample.size)
+
+            ' plot violin plot of current data vector
+
+        End If
+    End Sub
 End Class

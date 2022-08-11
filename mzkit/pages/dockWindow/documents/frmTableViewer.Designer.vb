@@ -91,6 +91,7 @@ Partial Class frmTableViewer
         Me.AdvancedDataGridView1 = New Zuby.ADGV.AdvancedDataGridView()
         Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.TransposeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -98,12 +99,13 @@ Partial Class frmTableViewer
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewToolStripMenuItem, Me.ToolStripMenuItem1, Me.VisualizeToolStripMenuItem, Me.ActionsToolStripMenuItem, Me.SendToREnvironmentToolStripMenuItem, Me.ToolStripMenuItem2, Me.ExportTableToolStripMenuItem, Me.CopyToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewToolStripMenuItem, Me.ToolStripMenuItem1, Me.VisualizeToolStripMenuItem, Me.ActionsToolStripMenuItem, Me.SendToREnvironmentToolStripMenuItem, Me.ToolStripMenuItem2, Me.TransposeToolStripMenuItem, Me.CopyToolStripMenuItem, Me.ExportTableToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(204, 148)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(204, 192)
         '
         'ViewToolStripMenuItem
         '
+        Me.ViewToolStripMenuItem.Image = CType(resources.GetObject("ViewToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
         Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
         Me.ViewToolStripMenuItem.Text = "View"
@@ -115,12 +117,14 @@ Partial Class frmTableViewer
         '
         'VisualizeToolStripMenuItem
         '
+        Me.VisualizeToolStripMenuItem.Image = CType(resources.GetObject("VisualizeToolStripMenuItem.Image"), System.Drawing.Image)
         Me.VisualizeToolStripMenuItem.Name = "VisualizeToolStripMenuItem"
         Me.VisualizeToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
         Me.VisualizeToolStripMenuItem.Text = "Visualize"
         '
         'ActionsToolStripMenuItem
         '
+        Me.ActionsToolStripMenuItem.Image = CType(resources.GetObject("ActionsToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ActionsToolStripMenuItem.Name = "ActionsToolStripMenuItem"
         Me.ActionsToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
         Me.ActionsToolStripMenuItem.Text = "Actions"
@@ -145,6 +149,7 @@ Partial Class frmTableViewer
         '
         'CopyToolStripMenuItem
         '
+        Me.CopyToolStripMenuItem.Image = CType(resources.GetObject("CopyToolStripMenuItem.Image"), System.Drawing.Image)
         Me.CopyToolStripMenuItem.Name = "CopyToolStripMenuItem"
         Me.CopyToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
         Me.CopyToolStripMenuItem.Text = "Copy"
@@ -177,6 +182,12 @@ Partial Class frmTableViewer
         Me.AdvancedDataGridViewSearchToolBar1.TabIndex = 2
         Me.AdvancedDataGridViewSearchToolBar1.Text = "AdvancedDataGridViewSearchToolBar1"
         '
+        'TransposeToolStripMenuItem
+        '
+        Me.TransposeToolStripMenuItem.Name = "TransposeToolStripMenuItem"
+        Me.TransposeToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
+        Me.TransposeToolStripMenuItem.Text = "Transpose"
+        '
         'frmTableViewer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -206,4 +217,5 @@ Partial Class frmTableViewer
     Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
     Friend WithEvents ExportTableToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CopyToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TransposeToolStripMenuItem As ToolStripMenuItem
 End Class

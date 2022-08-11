@@ -90,6 +90,7 @@ Public Class MSIRegionSampleWindow
         Dim layer As New Bitmap(canvas.dimension_size.Width, canvas.dimension_size.Height, format:=PixelFormat.Format32bppArgb)
         Dim g As Graphics = Graphics.FromImage(layer)
         Dim dotSize As New Size(1, 1)
+        Dim alphaLevel As Double = Me.alpha / 100
 
         Me.canvas = canvas
 
@@ -98,7 +99,7 @@ Public Class MSIRegionSampleWindow
         g.Clear(Color.Transparent)
 
         For Each region As TissueRegion In GetRegions(dimension)
-            Dim fill As New SolidBrush(region.color.Alpha(255 * 0.9))
+            Dim fill As New SolidBrush(region.color.Alpha(255 * alphaLevel))
 
             For Each p As Point In region.points
                 Call g.FillRectangle(fill, New Rectangle(p, dotSize))
@@ -132,13 +133,13 @@ Public Class MSIRegionSampleWindow
     Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
         If MessageBox.Show("All of the sample name and color will be generated with unique id fill?", "Tissue Map", buttons:=MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
             Dim i As i32 = 1
-            Dim colors As LoopArray(Of Color) = Designer.GetColors("Paper", FlowLayoutPanel1.Controls.Count)
+            Dim colors As LoopArray(Of Color) = Designer.GetColors(colorSet, FlowLayoutPanel1.Controls.Count)
 
             For Each item As Control In FlowLayoutPanel1.Controls
                 Dim card = DirectCast(item, RegionSampleCard)
 
                 card.SampleColor = ++colors
-                card.SampleInfo = $"region_{++i}"
+                card.SampleInfo = $"{prefix}{++i}"
             Next
 
             Call updateLayerRendering()
@@ -160,5 +161,30 @@ Public Class MSIRegionSampleWindow
                 Call MyApplication.host.showStatusMessage("Sample tissue regions has been export to file success!")
             End If
         End Using
+    End Sub
+
+    Dim prefix As String = "region_"
+    Dim colorSet As String = "paper"
+    Dim alpha As Double = 80
+
+    ''' <summary>
+    ''' config alpha/prefix etc
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
+        Dim getFormula As New InputConfigTissueMap
+        Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
+
+        getFormula.AlphaLevel = alpha
+        getFormula.RegionPrefix = prefix
+
+        If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
+            prefix = getFormula.RegionPrefix
+            colorSet = getFormula.ColorSet
+            alpha = getFormula.AlphaLevel
+
+            Call updateLayerRendering()
+        End If
     End Sub
 End Class
