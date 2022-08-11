@@ -65,6 +65,8 @@ Imports System.Text
 Imports BioNovoGene.mzkit_win32.My
 Imports ControlLibrary
 Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
@@ -96,10 +98,17 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
     Dim search As GridSearchHandler
 
     Public Sub LoadTable(apply As Action(Of DataTable))
+        memoryData = New DataSet
+
         Dim table As DataTable = memoryData.Tables.Add("memoryData")
 
-        Call Me.AdvancedDataGridView1.Columns.Clear()
-        Call Me.AdvancedDataGridView1.Rows.Clear()
+        Try
+            Call Me.AdvancedDataGridView1.Columns.Clear()
+            Call Me.AdvancedDataGridView1.Rows.Clear()
+        Catch ex As Exception
+
+        End Try
+
         Call apply(table)
         Call AdvancedDataGridView1.SetDoubleBuffered()
 
@@ -148,9 +157,10 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
         Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
 
         For Each column As DataGridViewColumn In AdvancedDataGridView1.Columns
-            Dim key As String = column.HeaderText
+            Dim key As String = column.Name
             Dim vec = AdvancedDataGridView1.getFieldVector(key)
 
+            Call stats.ComboBox1.Items.Add(key)
             Call stats.vectors.Add(key, vec)
         Next
 
@@ -354,6 +364,43 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
     End Sub
 
     Private Sub TransposeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TransposeToolStripMenuItem.Click
+        Dim opt = MessageBox.Show("First column as new column names?", "Table Transpose", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information)
+        Dim oldCols = (From c As DataGridViewColumn In AdvancedDataGridView1.Columns Select c.Name).ToArray
+        Dim newCols As String()
+        Dim oldColList As NamedValue(Of Array)()
+        Dim nsize = AdvancedDataGridView1.Rows.Count - 1
 
+        If opt = DialogResult.Yes Then
+            newCols = AdvancedDataGridView1.getFieldVector(oldCols(Scan0))
+            oldColList = oldCols.Skip(1).Select(Function(name) New NamedValue(Of Array)(name, AdvancedDataGridView1.getFieldVector(name))).ToArray
+        ElseIf opt = DialogResult.No Then
+            newCols = AdvancedDataGridView1.Rows.Count.Sequence.Select(Function(i) $"v{i}").ToArray
+            oldColList = oldCols.Select(Function(name) New NamedValue(Of Array)(name, AdvancedDataGridView1.getFieldVector(name))).ToArray
+        Else
+            ' do nothing
+            Return
+        End If
+
+        ' AdvancedDataGridView1.Rows.Clear()
+
+        Call LoadTable(
+            Sub(grid)
+                grid.Columns.Clear()
+                grid.Columns.Add("Features", GetType(String))
+
+                For Each name As String In newCols
+                    grid.Columns.Add(name, GetType(Double))
+                Next
+
+                For i As Integer = 0 To oldColList.Length - 1
+                    Dim r As DataRow = grid.Rows.Add
+
+                    r(0) = oldCols(i)
+
+                    For j As Integer = 0 To nsize - 1
+                        r(j + 1) = oldColList(i).Value(j)
+                    Next
+                Next
+            End Sub)
     End Sub
 End Class

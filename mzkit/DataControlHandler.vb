@@ -90,6 +90,12 @@ Module DataControlHandler
         Return REnv.TryCastGenericArray(array.ToArray, MyApplication.REngine.globalEnvir)
     End Function
 
+    ''' <summary>
+    ''' found based on the <see cref="DataGridViewColumn.Name"/>
+    ''' </summary>
+    ''' <param name="AdvancedDataGridView1"></param>
+    ''' <param name="fieldRef"></param>
+    ''' <returns></returns>
     <Extension>
     Public Function getFieldVector(AdvancedDataGridView1 As DataGridView, fieldRef As String) As Array
         Dim fieldNames As New List(Of String)

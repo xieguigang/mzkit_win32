@@ -52,6 +52,12 @@
 
 #End Region
 
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Data.ChartPlots
+Imports Microsoft.VisualBasic.Data.ChartPlots.BarPlot
+Imports Microsoft.VisualBasic.Data.ChartPlots.BarPlot.Data
+Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math.Distributions
 
@@ -71,6 +77,10 @@ Public Class ShowColumnStat
             Dim chrs As String() = vec.AsObjectEnumerator.Select(Function(s) CStr(s)).ToArray
             Dim factors = chrs.GroupBy(Function(c) c).ToArray
 
+            If factors.Length = chrs.Length Then
+                Return
+            End If
+
             DataGridView1.Rows.Clear()
 
             For Each factor In factors
@@ -80,17 +90,38 @@ Public Class ShowColumnStat
             DataGridView1.Rows.Add("size", chrs.Length)
 
             ' plot bar plot to show counts
+            Dim serials = Designer.GetColors("paper", factors.Length).Select(Function(c, i) New NamedValue(Of Color)(factors(i).Key, c)).ToArray
+            Dim bar As New BarDataGroup With {
+                .Serials = serials,
+                .Samples = {New BarDataSample With {
+                    .tag = "Factors",
+                    .data = factors.Select(Function(f) CDbl(f.Count)).ToArray
+                }}
+            }
+
+            PictureBox1.BackgroundImage = bar.Plot(size:=New Size(2700, 2100), dpi:=300).AsGDIImage
 
         ElseIf TypeOf vec Is Boolean() Then
             Dim flags As Boolean() = vec.AsObjectEnumerator.Select(Function(b) CBool(b)).ToArray
             Dim groups = flags.GroupBy(Function(b) b).ToArray
+            Dim tcount = groups.Where(Function(t) t.Key).Count
+            Dim fcount = groups.Where(Function(t) Not t.Key).Count
 
             DataGridView1.Rows.Clear()
-            DataGridView1.Rows.Add("True", groups.Where(Function(t) t.Key).Count)
-            DataGridView1.Rows.Add("False", groups.Where(Function(t) Not t.Key).Count)
+            DataGridView1.Rows.Add("True", tcount)
+            DataGridView1.Rows.Add("False", fcount)
             DataGridView1.Rows.Add("size", flags.Length)
 
             ' plot bar plot to show counts
+            Dim bar As New BarDataGroup With {
+                .Serials = {New NamedValue(Of Color)("True", Color.Red), New NamedValue(Of Color)("False", Color.Blue)},
+                .Samples = {New BarDataSample With {
+                    .data = {tcount, fcount},
+                    .tag = "Flags"
+                }}
+            }
+
+            PictureBox1.BackgroundImage = bar.Plot(size:=New Size(2700, 2100), dpi:=300).AsGDIImage
 
         ElseIf TypeOf vec Is Date() Then
             ' do nothing?
@@ -116,7 +147,12 @@ Public Class ShowColumnStat
             DataGridView1.Rows.Add("size", sample.size)
 
             ' plot violin plot of current data vector
+            Dim data As New NamedCollection(Of Double) With {
+                .name = key,
+                .value = num
+            }
 
+            PictureBox1.BackgroundImage = ViolinPlot.Plot({data}, ppi:=300).AsGDIImage
         End If
     End Sub
 End Class
