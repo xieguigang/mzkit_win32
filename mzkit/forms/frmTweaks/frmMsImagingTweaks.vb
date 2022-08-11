@@ -310,6 +310,12 @@ UseCheckedList:
         End If
 
         Using cdf As New netCDFReader(firstFile)
+            If Not {"mz", "intensity", "x", "y"}.All(AddressOf cdf.dataVariableExists) Then
+                ' invalid format
+                Call MyApplication.host.showStatusMessage("Invalid cdf file format! [mz, intensity, x, y] data vector should exists inside this cdf file!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Return
+            End If
+
             size = cdf.GetMsiDimension
             pixels = cdf.LoadPixelsData.ToArray
             tolerance = cdf.GetMzTolerance
