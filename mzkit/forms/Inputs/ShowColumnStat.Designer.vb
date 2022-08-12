@@ -95,9 +95,9 @@ Partial Class ShowColumnStat
         Me.GroupBox1.Controls.Add(Me.PictureBox1)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.ComboBox1)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 11)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(762, 429)
+        Me.GroupBox1.Size = New System.Drawing.Size(1036, 569)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Sample Analysis"
@@ -106,9 +106,9 @@ Partial Class ShowColumnStat
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2})
-        Me.DataGridView1.Location = New System.Drawing.Point(18, 78)
+        Me.DataGridView1.Location = New System.Drawing.Point(18, 72)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(277, 329)
+        Me.DataGridView1.Size = New System.Drawing.Size(254, 482)
         Me.DataGridView1.TabIndex = 3
         '
         'Column1
@@ -126,18 +126,18 @@ Partial Class ShowColumnStat
         'PictureBox1
         '
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox1.Location = New System.Drawing.Point(316, 78)
+        Me.PictureBox1.Location = New System.Drawing.Point(278, 72)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(421, 329)
+        Me.PictureBox1.Size = New System.Drawing.Size(744, 482)
         Me.PictureBox1.TabIndex = 2
         Me.PictureBox1.TabStop = False
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(24, 36)
+        Me.Label1.Location = New System.Drawing.Point(24, 33)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(78, 13)
+        Me.Label1.Size = New System.Drawing.Size(89, 12)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Select Sample:"
         '
@@ -145,25 +145,25 @@ Partial Class ShowColumnStat
         '
         Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(119, 33)
+        Me.ComboBox1.Location = New System.Drawing.Point(119, 30)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(280, 21)
+        Me.ComboBox1.Size = New System.Drawing.Size(280, 20)
         Me.ComboBox1.TabIndex = 0
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(674, 457)
+        Me.Button1.Location = New System.Drawing.Point(943, 588)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.Size = New System.Drawing.Size(75, 21)
         Me.Button1.TabIndex = 1
         Me.Button1.Text = "OK"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'ShowColumnStat
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(789, 492)
+        Me.ClientSize = New System.Drawing.Size(1060, 619)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "ShowColumnStat"

@@ -152,7 +152,7 @@ Public Class ShowColumnStat
                 .value = num
             }
 
-            PictureBox1.BackgroundImage = ViolinPlot.Plot({data}, ppi:=300).AsGDIImage
+            PictureBox1.BackgroundImage = ViolinPlot.Plot({data}, yTickFormat:="G2", title:=key, ppi:=300).AsGDIImage
         End If
     End Sub
 End Class

@@ -197,4 +197,16 @@ Public Class MSIRegionSampleWindow
             Call updateLayerRendering()
         End If
     End Sub
+
+    Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
+        If MessageBox.Show(
+            text:="Will removes all sample regions?",
+            caption:="MSI Sample List",
+            buttons:=MessageBoxButtons.OKCancel,
+            icon:=MessageBoxIcon.Question) = DialogResult.OK Then
+
+            Call FlowLayoutPanel1.Controls.Clear()
+            Call updateLayerRendering()
+        End If
+    End Sub
 End Class
