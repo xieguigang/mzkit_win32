@@ -515,10 +515,10 @@ Public Class frmMain
                                 End Sub,
                     workdir:=script.ParentPath
                 )
-            End If
 
-            Globals.Settings.version = Globals.BuildTime
-            Globals.Settings.Save()
+                Globals.Settings.version = Globals.BuildTime
+                Globals.Settings.Save()
+            End If
         End If
     End Sub
 
