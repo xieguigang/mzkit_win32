@@ -37,7 +37,14 @@ Public Class MSIRegionSampleWindow
             card.Anchor = AnchorStyles.Left Or AnchorStyles.Right
             card.SampleColor = region.color
             card.SampleInfo = region.label
+
+            AddHandler card.RemoveSampleGroup, AddressOf removeSampleGroup
         Next
+    End Sub
+
+    Private Sub removeSampleGroup(polygon As RegionSampleCard)
+        Call FlowLayoutPanel1.Controls.Remove(polygon)
+        Call updateLayerRendering()
     End Sub
 
     ''' <summary>
