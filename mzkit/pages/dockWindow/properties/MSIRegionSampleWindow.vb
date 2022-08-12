@@ -34,6 +34,7 @@ Public Class MSIRegionSampleWindow
             Call card.SetPolygons(region, callback:=AddressOf updateLayerRendering)
             Call FlowLayoutPanel1.Controls.Add(card)
 
+            card.Anchor = AnchorStyles.Left Or AnchorStyles.Right
             card.SampleColor = region.color
             card.SampleInfo = region.label
         Next
