@@ -106,7 +106,7 @@ Namespace Configuration
             MRMLibfile = Nothing
             QuantifyIonLibfile = Nothing
             licensed = New Dictionary(Of String, Boolean)
-            version = ""
+            version = -1
             random = RandomASCIIString(8)
             biodeep = Nothing
 
