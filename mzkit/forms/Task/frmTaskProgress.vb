@@ -162,7 +162,7 @@ Public Class frmTaskProgress
 
         Call New Thread(
             Sub()
-                Call Thread.Sleep(100)
+                Call Thread.Sleep(300)
 
                 Call progress.ShowProgressTitle(title)
                 Call progress.ShowProgressDetails(info)
