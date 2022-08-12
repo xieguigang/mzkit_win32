@@ -873,6 +873,8 @@
     <ROW File="ggplot2.R" Component_="ggplot2.R" FileName="ggplot2.R" Attributes="0" SourcePath="..\rstudio\pipeline\ggplot\ggplot2.R" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology._1" Component_="BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.dll_1" FileName="BIONO~30.DLL|BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.dll" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.dll" SelfReg="false"/>
     <ROW File="tissue_morphology.cdf_1" Component_="FULLMS_centriod_CHCA_20210819CleanSample616x404.cdf" FileName="TISSUE~1.CDF|tissue_morphology.cdf" Attributes="0" SourcePath="..\..\..\DATA\test\PANOMIX\tissue_morphology.cdf" SelfReg="false"/>
+    <ROW File="pubchem.R" Component_="buildMSIIndex.R" FileName="pubchem.R" Attributes="0" SourcePath="..\rstudio\pipeline\pubchem.R" SelfReg="false"/>
+    <ROW File="ggplot_ionStatMSI.R" Component_="ggplot2.R" FileName="GGPLOT~1.R|ggplot_ionStatMSI.R" Attributes="0" SourcePath="..\rstudio\pipeline\ggplot\ggplot_ionStatMSI.R" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
