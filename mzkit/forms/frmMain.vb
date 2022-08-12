@@ -507,27 +507,39 @@ Public Class frmMain
             Dim script As String = $"{App.HOME}\Rstudio\packages\install_locals.cmd"
 
             If script.FileExists Then
-                Call frmTaskProgress.LoadData(
-                    streamLoad:=Function(log)
-                                    Call PipelineProcess.ExecSub(
-                                        app:="cmd.exe",
-                                        args:=script,
-                                        onReadLine:=Sub(line)
-                                                        Call MyApplication.LogText(line)
-                                                        Call log(line)
-                                                        Call Application.DoEvents()
-                                                    End Sub,
-                                        workdir:=script.ParentPath
-                                    )
+                'Call frmTaskProgress.LoadData(
+                '    streamLoad:=Function(log)
+                '                    Call PipelineProcess.ExecSub(
+                '                        app:="cmd.exe",
+                '                        args:=script,
+                '                        onReadLine:=Sub(line)
+                '                                        Call MyApplication.LogText(line)
+                '                                        Call log(line)
+                '                                        Call Application.DoEvents()
+                '                                    End Sub,
+                '                        workdir:=script.ParentPath
+                '                    )
 
-                                    Globals.Settings.version = Globals.BuildTime
-                                    Globals.Settings.Save()
+                '                    Globals.Settings.version = Globals.BuildTime
+                '                    Globals.Settings.Save()
 
-                                    Return Nothing
-                                End Function,
-                    title:="Install Local Packages...",
-                    info:="Install local packages into R# runtime..."
-                )
+                '                    Return Nothing
+                '                End Function,
+                '    title:="Install Local Packages...",
+                '    info:="Install local packages into R# runtime..."
+                ')
+                Dim task As New ProcessStartInfo With {
+                    .Arguments = script,
+                    .CreateNoWindow = False,
+                    .FileName = "cmd.exe",
+                    .UseShellExecute = False,
+                    .WindowStyle = ProcessWindowStyle.Normal
+                }
+
+                Call Process.Start(task)
+
+                Globals.Settings.version = Globals.BuildTime
+                Globals.Settings.Save()
             End If
         End If
     End Sub
