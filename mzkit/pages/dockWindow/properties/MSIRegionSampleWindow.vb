@@ -34,7 +34,7 @@ Public Class MSIRegionSampleWindow
             Call card.SetPolygons(region, callback:=AddressOf updateLayerRendering)
             Call FlowLayoutPanel1.Controls.Add(card)
 
-            card.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+            ' card.Anchor = AnchorStyles.Left Or AnchorStyles.Right
             card.SampleColor = region.color
             card.SampleInfo = region.label
 
@@ -58,6 +58,8 @@ Public Class MSIRegionSampleWindow
 
         Call card.SetPolygons(selector.GetPolygons, callback:=AddressOf updateLayerRendering)
         Call FlowLayoutPanel1.Controls.Add(card)
+
+        AddHandler card.RemoveSampleGroup, AddressOf removeSampleGroup
     End Sub
 
     Private Sub MSIRegionSampleWindow_Load(sender As Object, e As EventArgs) Handles Me.Load
