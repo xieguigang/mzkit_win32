@@ -529,7 +529,7 @@ Public Class frmMain
                 '    info:="Install local packages into R# runtime..."
                 ')
                 Dim task As New ProcessStartInfo With {
-                    .Arguments = $"/k CALL {script.GetFullPath.CLIPath}",
+                    .Arguments = $"/c CALL {script.GetFullPath.CLIPath}",
                     .CreateNoWindow = False,
                     .FileName = Environment.SystemDirectory & "\cmd.exe",
                     .UseShellExecute = False,
