@@ -118,7 +118,13 @@ Namespace Configuration
         End Function
 
         Public Shared Function GetConfiguration() As Settings
-            Dim config As Settings = configFile.LoadJsonFile(Of Settings)
+            Dim config As Settings
+
+            Try
+                config = configFile.LoadJsonFile(Of Settings)
+            Catch ex As Exception
+                config = Nothing
+            End Try
 
             If config Is Nothing Then
                 config = DefaultProfile()
