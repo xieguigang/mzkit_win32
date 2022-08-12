@@ -152,7 +152,16 @@ Public Class ShowColumnStat
                 .value = num
             }
 
-            PictureBox1.BackgroundImage = ViolinPlot.Plot({data}, yTickFormat:="G2", title:=key, ppi:=300).AsGDIImage
+            PictureBox1.BackgroundImage = ViolinPlot.Plot(
+                dataset:={data},
+                margin:="padding:300px 150px 500px 600px;",
+                yTickFormat:="G2",
+                title:=key,
+                ytickFontCSS:="font-style: normal; font-size: 20; font-family: " & FontFace.BookmanOldStyle & ";",
+                titleFontCSS:="font-style: strong; font-size: 48; font-family: " & FontFace.BookmanOldStyle & ";",
+                ppi:=300,
+                showStats:=False
+            ).AsGDIImage
         End If
     End Sub
 End Class
