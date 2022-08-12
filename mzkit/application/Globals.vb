@@ -91,6 +91,8 @@ Imports stdNum = System.Math
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.My.FrameworkInternal
+Imports Microsoft.VisualBasic.ApplicationServices.Development
+Imports Microsoft.VisualBasic.ValueTypes
 
 Module Globals
 
@@ -104,6 +106,18 @@ Module Globals
     Public ReadOnly Property Settings As Settings
 
     Public Property loadedSettings As Boolean = False
+
+    Public ReadOnly Property CurrentVersion As String
+        Get
+            Return GetType(Globals).Assembly.FromAssembly.AssemblyVersion
+        End Get
+    End Property
+
+    Public ReadOnly Property BuildTime As Double
+        Get
+            Return GetType(Globals).Assembly.FromAssembly.BuiltTime.UnixTimeStamp
+        End Get
+    End Property
 
     Public ReadOnly Property workspace As ViewerProject
         Get

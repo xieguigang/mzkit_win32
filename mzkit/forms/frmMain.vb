@@ -501,6 +501,25 @@ Public Class frmMain
         If Not MyApplication.afterLoad Is Nothing Then
             Call MyApplication.afterLoad()
         End If
+
+        If Globals.Settings.version < Globals.BuildTime Then
+            ' init
+            Dim script As String = $"{App.HOME}\Rstudio\packages\install_locals.cmd"
+
+            If script.FileExists Then
+                Call PipelineProcess.ExecSub(
+                    app:="cmd.exe",
+                    args:=script,
+                    onReadLine:=Sub(line)
+                                    Call MyApplication.LogText(line)
+                                End Sub,
+                    workdir:=script.ParentPath
+                )
+            End If
+
+            Globals.Settings.version = Globals.BuildTime
+            Globals.Settings.Save()
+        End If
     End Sub
 
     Private Sub InitializeFormulaProfile()

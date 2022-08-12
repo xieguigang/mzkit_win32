@@ -78,7 +78,7 @@ Namespace Configuration
         ''' current version that used for
         ''' </summary>
         ''' <returns></returns>
-        Public Property version As String
+        Public Property version As Double
 
         Public Property random As String
         Public Property recentFiles As String()
