@@ -78,6 +78,8 @@ Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
 Imports Microsoft.VisualBasic.MIME.application.json
+Imports Microsoft.VisualBasic.Data.ChartPlots.BarPlot.Histogram
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 
 Public Class frmMsImagingTweaks
 
@@ -401,22 +403,9 @@ UseCheckedList:
     End Function
 
     Private Function getVector(ByRef mz As Double) As Dictionary(Of String, NamedValue(Of Double()))
-        If viewer Is Nothing OrElse viewer.sampleRegions.IsNullOrEmpty Then
-            Return Nothing
-        ElseIf Not viewer.checkService Then
-            Return Nothing
-        End If
+        Dim layer = getLayer(mz, needsRegions:=True)
 
-        mz = GetSelectedIons().FirstOrDefault
-
-        If mz <= 0 Then
-            Return Nothing
-        End If
-
-        Dim mzdiff = Tolerance.DeltaMass(0.01)
-        Dim layer = viewer.MSIservice.LoadPixels({mz}, mzdiff)
-
-        If layer.IsNullOrEmpty Then
+        If layer Is Nothing Then
             Return Nothing
         End If
 
@@ -445,6 +434,29 @@ UseCheckedList:
         Next
 
         Return data
+    End Function
+
+    Private Function getLayer(ByRef mz As Double, needsRegions As Boolean) As PixelData()
+        If viewer Is Nothing OrElse (needsRegions AndAlso viewer.sampleRegions.IsNullOrEmpty) Then
+            Return Nothing
+        ElseIf Not viewer.checkService Then
+            Return Nothing
+        End If
+
+        mz = GetSelectedIons().FirstOrDefault
+
+        If mz <= 0 Then
+            Return Nothing
+        End If
+
+        Dim mzdiff = Tolerance.DeltaMass(0.01)
+        Dim layer = viewer.MSIservice.LoadPixels({mz}, mzdiff)
+
+        If layer.IsNullOrEmpty Then
+            Return Nothing
+        End If
+
+        Return layer
     End Function
 
     Private Sub BarPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BarPlotToolStripMenuItem.Click
@@ -490,6 +502,39 @@ UseCheckedList:
 
         If image Is Nothing Then
             MyApplication.host.showStatusMessage("Error while run ggplot...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+        Else
+            MyApplication.host.ShowMzkitToolkit()
+            MyApplication.host.mzkitTool.ShowPlotImage(image)
+        End If
+    End Sub
+
+    Private Sub IntensityHistogramToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles IntensityHistogramToolStripMenuItem.Click
+        Dim mz As Double
+        Dim layer = getLayer(mz, needsRegions:=False)
+
+        If layer Is Nothing Then
+            Return
+        End If
+
+        Dim allIntensity As Double() = layer.Select(Function(i) i.intensity).ToArray
+        Dim range As New DoubleRange(allIntensity)
+
+        If range.Length = 0 Then
+            Return
+        End If
+
+        Dim image As Image = allIntensity.HistogramPlot(
+            [step]:=range.Length / 50,
+            color:="skyblue",
+            padding:="padding: 100px 200px 300px 200px",
+            yLabel:="Number Of Pixels",
+            xLabel:="Intensity",
+            xTickFormat:="G2",
+            xlabelRotate:=45
+        ).AsGDIImage
+
+        If image Is Nothing Then
+            MyApplication.host.showStatusMessage("Error while run signal intensity histogram plot...", My.Resources.StatusAnnotations_Warning_32xLG_color)
         Else
             MyApplication.host.ShowMzkitToolkit()
             MyApplication.host.mzkitTool.ShowPlotImage(image)
