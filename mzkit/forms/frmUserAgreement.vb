@@ -57,7 +57,7 @@ Public Class frmUserAgreement
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.DialogResult = DialogResult.OK
 
-        Globals.Settings.licensed = True
+        Globals.Settings.licensed(Globals.CurrentVersion) = True
         Globals.Settings.Save()
 
         Call Close()

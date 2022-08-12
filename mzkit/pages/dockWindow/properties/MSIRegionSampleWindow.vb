@@ -34,9 +34,17 @@ Public Class MSIRegionSampleWindow
             Call card.SetPolygons(region, callback:=AddressOf updateLayerRendering)
             Call FlowLayoutPanel1.Controls.Add(card)
 
+            ' card.Anchor = AnchorStyles.Left Or AnchorStyles.Right
             card.SampleColor = region.color
             card.SampleInfo = region.label
+
+            AddHandler card.RemoveSampleGroup, AddressOf removeSampleGroup
         Next
+    End Sub
+
+    Private Sub removeSampleGroup(polygon As RegionSampleCard)
+        Call FlowLayoutPanel1.Controls.Remove(polygon)
+        Call updateLayerRendering()
     End Sub
 
     ''' <summary>
@@ -50,6 +58,8 @@ Public Class MSIRegionSampleWindow
 
         Call card.SetPolygons(selector.GetPolygons, callback:=AddressOf updateLayerRendering)
         Call FlowLayoutPanel1.Controls.Add(card)
+
+        AddHandler card.RemoveSampleGroup, AddressOf removeSampleGroup
     End Sub
 
     Private Sub MSIRegionSampleWindow_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -184,6 +194,18 @@ Public Class MSIRegionSampleWindow
             colorSet = getFormula.ColorSet
             alpha = getFormula.AlphaLevel
 
+            Call updateLayerRendering()
+        End If
+    End Sub
+
+    Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
+        If MessageBox.Show(
+            text:="Will removes all sample regions?",
+            caption:="MSI Sample List",
+            buttons:=MessageBoxButtons.OKCancel,
+            icon:=MessageBoxIcon.Question) = DialogResult.OK Then
+
+            Call FlowLayoutPanel1.Controls.Clear()
             Call updateLayerRendering()
         End If
     End Sub

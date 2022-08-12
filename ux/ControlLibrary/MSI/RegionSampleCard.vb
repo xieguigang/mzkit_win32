@@ -3,6 +3,8 @@ Imports Microsoft.VisualBasic.Imaging.Math2D
 
 Public Class RegionSampleCard
 
+    Public Event RemoveSampleGroup(card As RegionSampleCard)
+
     Public Property SampleColor As Color
         Get
             Return PictureBox1.BackColor
@@ -85,5 +87,15 @@ Public Class RegionSampleCard
 
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
         updateCallback()
+    End Sub
+
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+        If MessageBox.Show(text:="Going to remove current sample?",
+                           caption:="Group Sample",
+                           buttons:=MessageBoxButtons.OKCancel,
+                           icon:=MessageBoxIcon.Question) = DialogResult.OK Then
+
+            RaiseEvent RemoveSampleGroup(Me)
+        End If
     End Sub
 End Class

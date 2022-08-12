@@ -69,7 +69,16 @@ Namespace Configuration
         Public Property ui As UISettings
         Public Property viewer As RawFileViewerSettings
         Public Property network As NetworkArguments
-        Public Property licensed As Boolean = False
+        ''' <summary>
+        ''' license for each version?
+        ''' </summary>
+        ''' <returns></returns>
+        Public Property licensed As New Dictionary(Of String, Boolean)
+        ''' <summary>
+        ''' current version that used for
+        ''' </summary>
+        ''' <returns></returns>
+        Public Property version As Double
 
         Public Property random As String
         Public Property recentFiles As String()
@@ -96,7 +105,8 @@ Namespace Configuration
             workspaceFile = Nothing
             MRMLibfile = Nothing
             QuantifyIonLibfile = Nothing
-            licensed = False
+            licensed = New Dictionary(Of String, Boolean)
+            version = -1
             random = RandomASCIIString(8)
             biodeep = Nothing
 
@@ -108,7 +118,13 @@ Namespace Configuration
         End Function
 
         Public Shared Function GetConfiguration() As Settings
-            Dim config As Settings = configFile.LoadJsonFile(Of Settings)
+            Dim config As Settings
+
+            Try
+                config = configFile.LoadJsonFile(Of Settings)
+            Catch ex As Exception
+                config = Nothing
+            End Try
 
             If config Is Nothing Then
                 config = DefaultProfile()
