@@ -1,6 +1,6 @@
 @echo off
 
-REM git remote add gitlink https://gitlink.org.cn/xieguigang/mzkit.git
+REM git remote add gitlink https://gitlink.org.cn/xieguigang/mzkit_win32.git
 
 git pull local HEAD
 git pull gitee HEAD
