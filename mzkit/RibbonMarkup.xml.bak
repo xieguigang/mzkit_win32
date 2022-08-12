@@ -595,13 +595,13 @@
         <String Id="87">MS-Imaging Viewer</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="88">MS-Imaging Viewer</String>
+        <String Id="88">Open the MS-imaging viewer to view the comprehensive LC-MS spectrum data.</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
         <String Id="89">MS-Imaging Viewer</String>
       </Command.TooltipTitle>
       <Command.TooltipDescription>
-        <String Id="90">MS-Imaging Viewer</String>
+        <String Id="90">Open the MS-imaging viewer to view the comprehensive LC-MS spectrum data.</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
         <Image MinDPI="192">Res/system-software-update.png</Image>
