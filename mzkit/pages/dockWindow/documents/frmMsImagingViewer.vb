@@ -134,7 +134,8 @@ Public Class frmMsImagingViewer
         AddHandler RibbonEvents.ribbonItems.ButtonExportSample.ExecuteEvent, Sub() Call exportMSISampleTable()
         AddHandler RibbonEvents.ribbonItems.ButtonExportMSIMzpack.ExecuteEvent, Sub() Call exportMzPack()
         AddHandler RibbonEvents.ribbonItems.ButtonTogglePolygon.ExecuteEvent, Sub() Call TogglePolygonMode()
-        AddHandler RibbonEvents.ribbonItems.ButtonMSICleanBackground.ExecuteEvent, Sub() Call cleanBackground()
+        AddHandler RibbonEvents.ribbonItems.CleanBackgroundAutoReference.ExecuteEvent, Sub() Call cleanBackground(addReference:=False)
+        AddHandler RibbonEvents.ribbonItems.CleanBackgroundByReference.ExecuteEvent, Sub() Call cleanBackground(addReference:=True)
         AddHandler RibbonEvents.ribbonItems.ButtonMSIRawIonStat.ExecuteEvent, Sub() Call DoIonStats()
         AddHandler RibbonEvents.ribbonItems.ButtonMSIMatrixVisual.ExecuteEvent, Sub() Call OpenHeatmapMatrixPlot()
 
@@ -701,21 +702,37 @@ Public Class frmMsImagingViewer
             End Function)
     End Sub
 
-    Sub cleanBackground()
+    Sub cleanBackground(addReference As Boolean)
         If Me.FilePath.StringEmpty Then
             Call MyApplication.host.warning("Load MS-imaging raw data at first!")
         Else
             Dim filePath = Me.FilePath
 
-            Call frmTaskProgress.LoadData(
-                Function(msg As Action(Of String))
-                    Dim info = MSIservice.CutBackground
+            If addReference Then
+                Using file As New OpenFileDialog With {.Filter = "All raw data file(*.raw;*.mzML;*.mzPack)|*.raw;*.mzML;*.mzPack"}
+                    If file.ShowDialog = DialogResult.OK Then
+                        Call frmTaskProgress.LoadData(
+                            Function(msg As Action(Of String))
+                                Dim info = MSIservice.CutBackground(file.FileName)
 
-                    Call Me.Invoke(Sub() LoadRender(info, filePath))
-                    Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
+                                Call Me.Invoke(Sub() LoadRender(info, filePath))
+                                Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
 
-                    Return 0
-                End Function)
+                                Return 0
+                            End Function)
+                    End If
+                End Using
+            Else
+                Call frmTaskProgress.LoadData(
+                    Function(msg As Action(Of String))
+                        Dim info = MSIservice.CutBackground(Nothing)
+
+                        Call Me.Invoke(Sub() LoadRender(info, filePath))
+                        Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
+
+                        Return 0
+                    End Function)
+            End If
         End If
     End Sub
 

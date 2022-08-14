@@ -1528,9 +1528,9 @@
       <Project>{0d82246c-02c5-4f9e-a571-ea4fa2077059}</Project>
       <Name>sciexWiffReader</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\assembly\SpectrumTree\spectrumTree-netcore5.vbproj">
-      <Project>{589449b3-9524-46b5-8da9-d4653476156f}</Project>
-      <Name>spectrumTree-netcore5</Name>
+    <ProjectReference Include="..\..\assembly\SpectrumTree\spectrumTree.NETCore5.vbproj">
+      <Project>{d99285e0-574f-4302-a3fd-9d6c7f228937}</Project>
+      <Name>spectrumTree.NETCore5</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\assembly\ThermoRawFileReader\MSFileReader.NET5.vbproj">
       <Project>{eee7f7fd-963f-4696-a71f-df70086df3d3}</Project>
