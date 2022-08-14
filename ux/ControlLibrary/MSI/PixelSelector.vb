@@ -106,6 +106,10 @@ Public Class PixelSelector
         picCanvas.BackgroundImageLayout = ImageLayout.Stretch
     End Sub
 
+    ''' <summary>
+    ''' the polygon has already been transform and scaled
+    ''' </summary>
+    ''' <returns></returns>
     Public Iterator Function GetPolygons() As IEnumerable(Of Polygon2D)
         For Each model As Polygon In polygons
             Yield model.ToPixels(AddressOf getPoint)

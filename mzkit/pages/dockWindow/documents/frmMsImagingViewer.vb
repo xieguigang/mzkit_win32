@@ -233,6 +233,10 @@ Public Class frmMsImagingViewer
     End Sub
 #End Region
 
+    ''' <summary>
+    ''' check backend service and show warning message is not success
+    ''' </summary>
+    ''' <returns></returns>
     Public Function checkService() As Boolean
         If MSIservice Is Nothing OrElse Not MSIservice.MSIEngineRunning Then
             Call MyApplication.host.showStatusMessage("No MSI raw data was loaded!", My.Resources.StatusAnnotations_Warning_32xLG_color)
@@ -713,6 +717,25 @@ Public Class frmMsImagingViewer
                     Return 0
                 End Function)
         End If
+    End Sub
+
+    Private Sub ExtractRegionSampleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExtractRegionSampleToolStripMenuItem.Click
+        If Not checkService() Then
+            Return
+        End If
+
+        Dim regions = PixelSelector1.GetPolygons.ToArray
+
+        Call StartNewPolygon()
+        Call frmTaskProgress.LoadData(
+                Function(msg As Action(Of String))
+                    Dim info = MSIservice.ExtractRegionSample(regions, New Size(params.scan_x, params.scan_y))
+
+                    Call Me.Invoke(Sub() LoadRender(info, FilePath))
+                    Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
+
+                    Return 0
+                End Function)
     End Sub
 
     ''' <summary>
@@ -1258,4 +1281,6 @@ Public Class frmMsImagingViewer
 
         Call MyApplication.host.showStatusMessage("MS-imaging plot has been copied to the clipboard!")
     End Sub
+
+
 End Class
