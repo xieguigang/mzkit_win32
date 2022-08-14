@@ -173,8 +173,17 @@ Namespace ServiceHub
             Return MSIProtocols.LoadPixels(mz, mzErr, AddressOf handleServiceRequest)
         End Function
 
-        Public Function CutBackground() As MsImageProperty
-            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.CutBackground, Encoding.UTF8.GetBytes("1")))
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        ''' <param name="reference">
+        ''' if this parameter is missing, then means auto reference
+        ''' </param>
+        ''' <returns></returns>
+        Public Function CutBackground(reference As String) As MsImageProperty
+            Dim refdata As Byte() = If(reference.StringEmpty, New Byte() {0}, Encoding.UTF8.GetBytes(reference))
+            Dim payload As New RequestStream(MSI.Protocol, ServiceProtocol.CutBackground, refdata)
+            Dim data As RequestStream = handleServiceRequest(request:=payload)
             Dim output As MsImageProperty = data _
                 .GetString(Encoding.UTF8) _
                 .LoadJSON(Of Dictionary(Of String, String)) _

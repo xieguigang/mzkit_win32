@@ -2350,6 +2350,22 @@
         <String Id="578">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdCleanBackgroundByReference" Id="198" LabelTitle="Clean Background By Reference" LabelDescription="Clean background ions by a given blank reference raw data file" TooltipTitle="Clean Background By Reference" TooltipDescription="Clean background ions by a given blank reference raw data file">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/edit-cut.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="144">Res/edit-cut.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdCleanBackgroundAutoReference" Id="199" LabelTitle="Clean Background Auto Reference" LabelDescription="Clean Background Auto Reference" TooltipTitle="Clean Background Auto Reference" TooltipDescription="Clean Background Auto Reference">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/edit-cut.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="144">Res/edit-cut.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2582,7 +2598,10 @@
             <Group CommandName="cmdTabMenuMSIAnalysis" ApplicationModes="0,1" SizeDefinition="FourButtons">
               <DropDownButton CommandName="cmdButtonFeatureDetections">
                 <Button CommandName="cmdButtonMSIRawIonStat" />
-                <Button CommandName="cmdButtonMSICleanBackground" />
+                <DropDownButton CommandName="cmdButtonMSICleanBackground">
+                  <Button CommandName="cmdCleanBackgroundAutoReference" />
+                  <Button CommandName="cmdCleanBackgroundByReference" />
+                </DropDownButton>
                 <Button CommandName="cmdButtonMSISignalCorrection" />
               </DropDownButton>
               <Button CommandName="cmdButtonExportSample" />

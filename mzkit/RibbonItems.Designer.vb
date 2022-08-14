@@ -136,6 +136,8 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonFeatureDetections As UInteger = 152
             Public Const cmdButtonMSIRawIonStat As UInteger = 166
             Public Const cmdButtonMSICleanBackground As UInteger = 167
+            Public Const cmdCleanBackgroundAutoReference As UInteger = 199
+            Public Const cmdCleanBackgroundByReference As UInteger = 198
             Public Const cmdButtonMSISignalCorrection As UInteger = 197
             Public Const cmdButtonExportSample As UInteger = 135
             Public Const cmdButtonTissueMap As UInteger = 190
@@ -926,10 +928,22 @@ Namespace RibbonLib.Controls
                 Return _ButtonMSIRawIonStat
             End Get
         End Property
-        Private _ButtonMSICleanBackground As RibbonButton
-        Public ReadOnly Property ButtonMSICleanBackground As RibbonButton
+        Private _ButtonMSICleanBackground As RibbonDropDownButton
+        Public ReadOnly Property ButtonMSICleanBackground As RibbonDropDownButton
             Get
                 Return _ButtonMSICleanBackground
+            End Get
+        End Property
+        Private _CleanBackgroundAutoReference As RibbonButton
+        Public ReadOnly Property CleanBackgroundAutoReference As RibbonButton
+            Get
+                Return _CleanBackgroundAutoReference
+            End Get
+        End Property
+        Private _CleanBackgroundByReference As RibbonButton
+        Public ReadOnly Property CleanBackgroundByReference As RibbonButton
+            Get
+                Return _CleanBackgroundByReference
             End Get
         End Property
         Private _ButtonMSISignalCorrection As RibbonButton
@@ -1417,7 +1431,9 @@ Namespace RibbonLib.Controls
             _TabMenuMSIAnalysis = New RibbonGroup(_ribbon, Cmd.cmdTabMenuMSIAnalysis)
             _ButtonFeatureDetections = New RibbonDropDownButton(_ribbon, Cmd.cmdButtonFeatureDetections)
             _ButtonMSIRawIonStat = New RibbonButton(_ribbon, Cmd.cmdButtonMSIRawIonStat)
-            _ButtonMSICleanBackground = New RibbonButton(_ribbon, Cmd.cmdButtonMSICleanBackground)
+            _ButtonMSICleanBackground = New RibbonDropDownButton(_ribbon, Cmd.cmdButtonMSICleanBackground)
+            _CleanBackgroundAutoReference = New RibbonButton(_ribbon, Cmd.cmdCleanBackgroundAutoReference)
+            _CleanBackgroundByReference = New RibbonButton(_ribbon, Cmd.cmdCleanBackgroundByReference)
             _ButtonMSISignalCorrection = New RibbonButton(_ribbon, Cmd.cmdButtonMSISignalCorrection)
             _ButtonExportSample = New RibbonButton(_ribbon, Cmd.cmdButtonExportSample)
             _ButtonTissueMap = New RibbonDropDownButton(_ribbon, Cmd.cmdButtonTissueMap)

@@ -170,19 +170,30 @@ Public Class MSI : Implements ITaskDriver, IDisposable
     <Protocol(ServiceProtocol.CutBackground)>
     Public Function CutBackground(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
         Dim allPixels As PixelScan() = MSI.pixelReader.AllPixels.ToArray
-        Dim intensity As Double() = allPixels.Select(Function(d) d.GetMzIonIntensity).IteratesALL.ToArray
-        Dim q As Double = TrIQThreshold.TrIQThreshold(intensity, 0.7)
-        Dim cut As Double = intensity.Max * q
-        Dim info As Dictionary(Of String, String)
+        Dim reffile As String = If(request.ChunkBuffer.Length = 1 AndAlso request.ChunkBuffer(Scan0) = 0, Nothing, request.GetUTF8String)
 
-        allPixels = allPixels _
-            .Where(Function(i)
-                       Return i.GetMzIonIntensity.Max <= cut
-                   End Function) _
-            .ToArray
+        If reffile.StringEmpty Then
+            ' auto background remove by four corners
+            Dim intensity As Double() = allPixels _
+                .Select(Function(d) d.GetMzIonIntensity) _
+                .IteratesALL _
+                .ToArray
+            Dim q As Double = TrIQThreshold.TrIQThreshold(intensity, 0.7)
+            Dim cut As Double = intensity.Max * q
+            Dim info As Dictionary(Of String, String)
 
-        MSI = New Drawer(allPixels.CreatePixelReader)
-        info = MSIProtocols.GetMSIInfo(MSI)
+            allPixels = allPixels _
+                .Where(Function(i)
+                           Return i.GetMzIonIntensity.Max <= cut
+                       End Function) _
+                .ToArray
+
+            MSI = New Drawer(allPixels.CreatePixelReader)
+            info = MSIProtocols.GetMSIInfo(MSI)
+        Else
+            ' by a reference file, clean up background mz
+
+        End If
 
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
     End Function

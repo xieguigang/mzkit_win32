@@ -915,7 +915,7 @@
         <String Id="124">Reset</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="125">Reset Windows Layout</String>
+        <String Id="125">Reset All Windows Layout To Their Defaults.</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
         <String Id="126">Reset</String>
@@ -943,7 +943,7 @@
         <String Id="130">R# Terminal</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="131">Run R# Script</String>
+        <String Id="131">R# Scripting for Run Mzkit Automation Pipeline</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
         <String Id="132">Mzkit Automation</String>
@@ -963,7 +963,7 @@
         <String Id="136">Run</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="137">Run R# Script</String>
+        <String Id="137">Run R# script for mzkit Automation</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
         <String Id="138">Run</String>
@@ -980,7 +980,7 @@
         <String Id="141">Save</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="142">Save Current File</String>
+        <String Id="142">Save the current script file, image plot or application configuration.</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
         <String Id="143">Save (Ctrl+S)</String>
@@ -1000,7 +1000,7 @@
         <String Id="147">Save</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="148">Save R# Script</String>
+        <String Id="148">Save R# script for mzkit Automation</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
         <String Id="149">Save Script</String>
@@ -1020,7 +1020,7 @@
         <Image MinDPI="192">Res/application-x-object.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonSettings" Id="1051">
+    <Command Name="cmdButtonSettings" Id="1051" TooltipDescription="Mzkit Tools Configuration">
       <Command.LabelTitle>
         <String Id="152">Settings</String>
       </Command.LabelTitle>
@@ -1034,7 +1034,7 @@
         <Image Id="155">Res/applications-system.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonShowExplorer" Id="1121">
+    <Command Name="cmdButtonShowExplorer" Id="1121" TooltipDescription="Show Raw File Explorer">
       <Command.LabelTitle>
         <String Id="156">Explorer</String>
       </Command.LabelTitle>
@@ -1068,7 +1068,7 @@
         <Image Id="165">Res/preferences-system-notifications.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonShowMatrixViewer" Id="1112">
+    <Command Name="cmdButtonShowMatrixViewer" Id="1112" TooltipDescription="Show M/Z Data Matrix Viewer">
       <Command.LabelTitle>
         <String Id="166">Matrix</String>
       </Command.LabelTitle>
@@ -1130,7 +1130,7 @@
         <Image Id="551" MinDPI="144">Res/view-dual.png</Image>
       </Command.LargeHighContrastImages>
     </Command>
-    <Command Name="cmdButtonShowProperties" Id="1123">
+    <Command Name="cmdButtonShowProperties" Id="1123" TooltipDescription="Show M/Z Data Properties Viewer">
       <Command.LabelTitle>
         <String Id="174">Properties</String>
       </Command.LabelTitle>
@@ -1178,7 +1178,7 @@
         <Image Id="181">Res/folder-pictures.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonShowSpectrumSearchPage" Id="1102">
+    <Command Name="cmdButtonShowSpectrumSearchPage" Id="1102" TooltipTitle="Spectrum Similarity Search" TooltipDescription="Spectrum Similarity Search">
       <Command.LabelTitle>
         <String Id="182">Spectrum Search</String>
       </Command.LabelTitle>
@@ -1250,7 +1250,7 @@
         <String Id="478">Polygon Editor</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="479">Polygon editor for your MS-Imaging data</String>
+        <String Id="479">Polygon editor for your MS-Imaging data, create regions via polygon for extract expression data for downstream data analysis</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
         <String Id="480">Open Polygon Editor</String>
@@ -1696,7 +1696,7 @@
         <String Id="257">MRM Ions</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="258">MRM Ions Library</String>
+        <String Id="258">View and Edit LC-MS/MS MRM Ions Library</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
         <String Id="259">MRM Ions Library</String>
@@ -1771,7 +1771,7 @@
         <String Id="268">Quantify Ions</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="269">Quantify Ions Library</String>
+        <String Id="269">View and Edit GC-MS Quantify Ions Library</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
         <String Id="270">Quantify Ions Library</String>
@@ -1796,13 +1796,13 @@
         <String Id="597">Reference Library</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="598">Reference Library</String>
+        <String Id="598">View and edit of your ms2 spectrum reference library</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
         <String Id="599">Reference Library</String>
       </Command.TooltipTitle>
       <Command.TooltipDescription>
-        <String Id="600">Reference Library</String>
+        <String Id="600">View and edit of your ms2 spectrum reference library</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
         <Image Id="601" MinDPI="192">Res/application-vnd.oasis.opendocument.database.png</Image>
@@ -2349,6 +2349,22 @@
       <Command.TooltipDescription>
         <String Id="578">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdCleanBackgroundByReference" Id="198" LabelTitle="Clean Background By Reference" LabelDescription="Clean background ions by a given blank reference raw data file" TooltipTitle="Clean Background By Reference" TooltipDescription="Clean background ions by a given blank reference raw data file">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/edit-cut.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="144">Res/edit-cut.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdCleanBackgroundAutoReference" Id="199" LabelTitle="Clean Background Auto Reference" LabelDescription="Clean Background Auto Reference" TooltipTitle="Clean Background Auto Reference" TooltipDescription="Clean Background Auto Reference">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/edit-cut.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="144">Res/edit-cut.png</Image>
+      </Command.LargeImages>
     </Command>
   </Application.Commands>
   <Application.Views>
