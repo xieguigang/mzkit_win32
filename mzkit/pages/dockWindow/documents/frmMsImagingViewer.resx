@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="&gt;&gt;ToolStripMenuItem5.Name" xml:space="preserve">
+    <value>ToolStripMenuItem5</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="ContextMenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
     <value>182, 204</value>
@@ -712,9 +715,6 @@
   <data name="AddSampleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 22</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>700, 399</value>
-  </data>
   <data name="SaveImageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
   </data>
@@ -723,6 +723,9 @@
   </data>
   <data name="PixelSelector1.Size" type="System.Drawing.Size, System.Drawing">
     <value>700, 399</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItem5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ExportPlotToolStripMenuItem.Name" xml:space="preserve">
     <value>ExportPlotToolStripMenuItem</value>
@@ -745,6 +748,15 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;ExtractRegionSampleToolStripMenuItem.Name" xml:space="preserve">
+    <value>ExtractRegionSampleToolStripMenuItem</value>
+  </data>
+  <data name="ExportPlotToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 22</value>
+  </data>
+  <data name="&gt;&gt;ExtractRegionSampleToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>MS-Imaging Viewer</value>
   </data>
@@ -762,6 +774,9 @@
   </data>
   <data name="ExportPlotToolStripMenuItem.Text" xml:space="preserve">
     <value>Export Plot</value>
+  </data>
+  <data name="ExtractRegionSampleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 22</value>
   </data>
   <data name="ToolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
     <value>178, 6</value>
@@ -874,6 +889,9 @@
   </data>
   <data name="&gt;&gt;CopyImageToolStripMenuItem.Name" xml:space="preserve">
     <value>CopyImageToolStripMenuItem</value>
+  </data>
+  <data name="ToolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 6</value>
   </data>
   <data name="&gt;&gt;ImageProcessingToolStripMenuItem.Name" xml:space="preserve">
     <value>ImageProcessingToolStripMenuItem</value>
@@ -1464,8 +1482,8 @@
   <data name="&gt;&gt;ToolStripMenuItem3.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ExportPlotToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 22</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>700, 399</value>
   </data>
   <data name="&gt;&gt;SamplesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

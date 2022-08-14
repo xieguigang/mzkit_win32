@@ -57,7 +57,7 @@ Imports WeifenLuo.WinFormsUI.Docking
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmMsImagingViewer
     Inherits DocumentWindow
-    ' Inherits Form
+    'Inherits Form
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
@@ -96,6 +96,8 @@ Partial Class frmMsImagingViewer
         Me.ExportPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportMatrixToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PixelSelector1 = New ControlLibrary.PixelSelector()
+        Me.ExtractRegionSampleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripSeparator()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -104,6 +106,14 @@ Partial Class frmMsImagingViewer
         resources.ApplyResources(Me.ContextMenuStrip1, "ContextMenuStrip1")
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PinToolStripMenuItem, Me.ClearToolStripMenuItem, Me.ToolStripMenuItem1, Me.SamplesToolStripMenuItem, Me.ToolStripMenuItem2, Me.ImageProcessingToolStripMenuItem, Me.ToolStripMenuItem3, Me.SaveImageToolStripMenuItem, Me.CopyImageToolStripMenuItem, Me.ToolStripMenuItem4, Me.ExportPlotToolStripMenuItem, Me.ExportMatrixToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+
+        resources.ApplyResources(Me.PixelSelector1, "PixelSelector1")
+        Me.PixelSelector1.ContextMenuStrip = Me.ContextMenuStrip1
+        Me.PixelSelector1.Cursor = System.Windows.Forms.Cursors.Cross
+        Me.PixelSelector1.Name = "PixelSelector1"
+        Me.PixelSelector1.SelectPolygonMode = False
+        Me.PixelSelector1.ShowPointInform = True
+
         '
         'PinToolStripMenuItem
         '
@@ -123,7 +133,7 @@ Partial Class frmMsImagingViewer
         'SamplesToolStripMenuItem
         '
         resources.ApplyResources(Me.SamplesToolStripMenuItem, "SamplesToolStripMenuItem")
-        Me.SamplesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddSampleToolStripMenuItem, Me.ClearToolStripMenuItem1})
+        Me.SamplesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddSampleToolStripMenuItem, Me.ClearToolStripMenuItem1, Me.ToolStripMenuItem5, Me.ExtractRegionSampleToolStripMenuItem})
         Me.SamplesToolStripMenuItem.Name = "SamplesToolStripMenuItem"
         '
         'AddSampleToolStripMenuItem
@@ -176,14 +186,15 @@ Partial Class frmMsImagingViewer
         resources.ApplyResources(Me.ExportMatrixToolStripMenuItem, "ExportMatrixToolStripMenuItem")
         Me.ExportMatrixToolStripMenuItem.Name = "ExportMatrixToolStripMenuItem"
         '
-        'PixelSelector1
+        'ExtractRegionSampleToolStripMenuItem
         '
-        resources.ApplyResources(Me.PixelSelector1, "PixelSelector1")
-        Me.PixelSelector1.ContextMenuStrip = Me.ContextMenuStrip1
-        Me.PixelSelector1.Cursor = System.Windows.Forms.Cursors.Cross
-        Me.PixelSelector1.Name = "PixelSelector1"
-        Me.PixelSelector1.SelectPolygonMode = False
-        Me.PixelSelector1.ShowPointInform = True
+        resources.ApplyResources(Me.ExtractRegionSampleToolStripMenuItem, "ExtractRegionSampleToolStripMenuItem")
+        Me.ExtractRegionSampleToolStripMenuItem.Name = "ExtractRegionSampleToolStripMenuItem"
+        '
+        'ToolStripMenuItem5
+        '
+        resources.ApplyResources(Me.ToolStripMenuItem5, "ToolStripMenuItem5")
+        Me.ToolStripMenuItem5.Name = "ToolStripMenuItem5"
         '
         'frmMsImagingViewer
         '
@@ -212,4 +223,6 @@ Partial Class frmMsImagingViewer
     Friend WithEvents ToolStripMenuItem3 As ToolStripSeparator
     Friend WithEvents CopyImageToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem4 As ToolStripSeparator
+    Friend WithEvents ToolStripMenuItem5 As ToolStripSeparator
+    Friend WithEvents ExtractRegionSampleToolStripMenuItem As ToolStripMenuItem
 End Class
