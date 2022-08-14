@@ -751,6 +751,9 @@
   <data name="&gt;&gt;ExtractRegionSampleToolStripMenuItem.Name" xml:space="preserve">
     <value>ExtractRegionSampleToolStripMenuItem</value>
   </data>
+  <data name="ExtractRegionSampleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Extract Region Sample</value>
+  </data>
   <data name="ExportPlotToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 22</value>
   </data>
