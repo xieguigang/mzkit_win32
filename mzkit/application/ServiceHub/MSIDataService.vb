@@ -65,6 +65,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.Tcp
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
+Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.Net.Http
@@ -184,6 +185,25 @@ Namespace ServiceHub
             Dim refdata As Byte() = If(reference.StringEmpty, New Byte() {0}, Encoding.UTF8.GetBytes(reference))
             Dim payload As New RequestStream(MSI.Protocol, ServiceProtocol.CutBackground, refdata)
             Dim data As RequestStream = handleServiceRequest(request:=payload)
+            Dim output As MsImageProperty = data _
+                .GetString(Encoding.UTF8) _
+                .LoadJSON(Of Dictionary(Of String, String)) _
+                .DoCall(Function(info)
+                            Return New MsImageProperty(info)
+                        End Function)
+
+            Return output
+        End Function
+
+        Public Function ExtractRegionSample(regions As Polygon2D(), dims As Size) As MsImageProperty
+            Dim payload As New RegionLoader With {
+                .height = dims.Height,
+                .width = dims.Width,
+                .regions = regions
+            }
+            Dim buffer = BSON.GetBuffer(GetType(RegionLoader).GetJsonElement(payload, New JSONSerializerOptions))
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.ExtractRegionSample, buffer.ToArray))
+
             Dim output As MsImageProperty = data _
                 .GetString(Encoding.UTF8) _
                 .LoadJSON(Of Dictionary(Of String, String)) _

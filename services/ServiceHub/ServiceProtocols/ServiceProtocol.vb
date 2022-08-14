@@ -84,6 +84,7 @@ Public Enum ServiceProtocol
     GetPixelPolygon
     LoadSummaryLayer
     CutBackground
+    ExtractRegionSample
     ExitApp
 End Enum
 

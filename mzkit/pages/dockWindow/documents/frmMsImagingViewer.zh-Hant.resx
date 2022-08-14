@@ -458,6 +458,9 @@
         vwAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="AddSampleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 22</value>
+  </data>
   <data name="ClearToolStripMenuItem1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
@@ -478,6 +481,18 @@
         DCqOSksOPCx5xpsQRsgziotSWj2fL8xb88U5cWh/8t0Km2kqnlfrVpCGNs+UKVP+GUymX42OceOnZFA1
         AAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="ClearToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 22</value>
+  </data>
+  <data name="ToolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 6</value>
+  </data>
+  <data name="ExtractRegionSampleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 22</value>
+  </data>
+  <data name="ExtractRegionSampleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Extract Region Sample</value>
   </data>
   <data name="ImageProcessingToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1561,5 +1576,8 @@
         VNqQdqEpU6bShrQLTZkylTakXWjKlKm0Ie1CU6ZMpQ1pF5oyZSptSLvQlClTaUPahaZMmUob0i40ZcpU
         2pB2oSlTptKGtAtNmTKVNqRdaMqUqbQgeun/AGxxaCddwwQxAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="ContextMenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 226</value>
   </data>
 </root>

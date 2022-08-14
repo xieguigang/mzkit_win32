@@ -1628,4 +1628,7 @@
   <data name="ContextMenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 204</value>
   </data>
+    <data name="ExtractRegionSampleToolStripMenuItem.Text" xml:space="preserve">
+    <value>导出区域原始数据</value>
+  </data>
 </root>

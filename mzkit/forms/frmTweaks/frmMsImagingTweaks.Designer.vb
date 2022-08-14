@@ -89,6 +89,8 @@ Partial Class frmMsImagingTweaks
         Me.BoxPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BarPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViolinPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.AppendMSImagingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RenderLayerCompositionModeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RenderingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
@@ -105,8 +107,8 @@ Partial Class frmMsImagingTweaks
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
-        Me.AppendMSImagingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.IntensityHistogramToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripSeparator()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -133,7 +135,8 @@ Partial Class frmMsImagingTweaks
         '
         'ShowPlotToolStripMenuItem
         '
-        Me.ShowPlotToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BoxPlotToolStripMenuItem, Me.BarPlotToolStripMenuItem, Me.ViolinPlotToolStripMenuItem, Me.ToolStripMenuItem3, Me.AppendMSImagingToolStripMenuItem})
+        Me.ShowPlotToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BoxPlotToolStripMenuItem, Me.BarPlotToolStripMenuItem, Me.ViolinPlotToolStripMenuItem, Me.ToolStripMenuItem3, Me.IntensityHistogramToolStripMenuItem, Me.ToolStripMenuItem4, Me.AppendMSImagingToolStripMenuItem})
+        Me.ShowPlotToolStripMenuItem.Image = CType(resources.GetObject("ShowPlotToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ShowPlotToolStripMenuItem.Name = "ShowPlotToolStripMenuItem"
         Me.ShowPlotToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
         Me.ShowPlotToolStripMenuItem.Text = "Show Plot"
@@ -155,6 +158,21 @@ Partial Class frmMsImagingTweaks
         Me.ViolinPlotToolStripMenuItem.Name = "ViolinPlotToolStripMenuItem"
         Me.ViolinPlotToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
         Me.ViolinPlotToolStripMenuItem.Text = "Violin Plot"
+        '
+        'ToolStripMenuItem3
+        '
+        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(182, 6)
+        '
+        'AppendMSImagingToolStripMenuItem
+        '
+        Me.AppendMSImagingToolStripMenuItem.Checked = True
+        Me.AppendMSImagingToolStripMenuItem.CheckOnClick = True
+        Me.AppendMSImagingToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.AppendMSImagingToolStripMenuItem.Image = CType(resources.GetObject("AppendMSImagingToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.AppendMSImagingToolStripMenuItem.Name = "AppendMSImagingToolStripMenuItem"
+        Me.AppendMSImagingToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.AppendMSImagingToolStripMenuItem.Text = "Append MS-Imaging"
         '
         'RenderLayerCompositionModeToolStripMenuItem
         '
@@ -284,23 +302,21 @@ Partial Class frmMsImagingTweaks
         Me.ToolStripButton3.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton3.Text = "Clear Layers"
         '
-        'ToolStripMenuItem3
+        'IntensityHistogramToolStripMenuItem
         '
-        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(182, 6)
+        Me.IntensityHistogramToolStripMenuItem.Image = CType(resources.GetObject("IntensityHistogramToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.IntensityHistogramToolStripMenuItem.Name = "IntensityHistogramToolStripMenuItem"
+        Me.IntensityHistogramToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.IntensityHistogramToolStripMenuItem.Text = "Intensity Histogram"
         '
-        'AppendMSImagingToolStripMenuItem
+        'ToolStripMenuItem4
         '
-        Me.AppendMSImagingToolStripMenuItem.Checked = True
-        Me.AppendMSImagingToolStripMenuItem.CheckOnClick = True
-        Me.AppendMSImagingToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.AppendMSImagingToolStripMenuItem.Name = "AppendMSImagingToolStripMenuItem"
-        Me.AppendMSImagingToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
-        Me.AppendMSImagingToolStripMenuItem.Text = "Append MS-Imaging"
+        Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(182, 6)
         '
         'frmMsImagingTweaks
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(377, 554)
@@ -344,4 +360,6 @@ Partial Class frmMsImagingTweaks
     Friend WithEvents ViolinPlotToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem3 As ToolStripSeparator
     Friend WithEvents AppendMSImagingToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents IntensityHistogramToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem4 As ToolStripSeparator
 End Class

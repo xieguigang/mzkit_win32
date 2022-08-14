@@ -38,31 +38,9 @@ Public Class RegionSampleCard
                 .label = SampleInfo,
                 .points = tissue.points
             }
+        Else
+            Return regions.Geometry2D(dimension, SampleInfo, SampleColor)
         End If
-
-        Dim x As New List(Of Integer)
-        Dim y As New List(Of Integer)
-
-        For i As Integer = 1 To dimension.Width
-            For j As Integer = 1 To dimension.Height
-#Disable Warning
-                If regions.Any(Function(r) r.inside(i, j)) Then
-                    x.Add(i)
-                    y.Add(j)
-                End If
-#Enable Warning
-            Next
-        Next
-
-        Return New TissueRegion With {
-            .color = SampleColor,
-            .label = SampleInfo,
-            .points = x _
-                .Select(Function(xi, i)
-                            Return New Point(xi, y(i))
-                        End Function) _
-                .ToArray
-        }
     End Function
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
