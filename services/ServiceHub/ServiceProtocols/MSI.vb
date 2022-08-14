@@ -68,9 +68,11 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.IndexedCache
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.DataStorage.netCDF
+Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.MIME.application.json
@@ -163,6 +165,23 @@ Public Class MSI : Implements ITaskDriver, IDisposable
 
         info = MSIProtocols.GetMSIInfo(MSI)
         info!source = sourceName
+
+        Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
+    End Function
+
+    <Protocol(ServiceProtocol.ExtractRegionSample)>
+    Public Function ExtractRegionSample(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
+        Dim allPixels As PixelScan() = MSI.pixelReader.AllPixels.ToArray
+        Dim regions As RegionLoader = BSON.Load(request.ChunkBuffer) _
+            .CreateObject(Of RegionLoader)(decodeMetachar:=False)
+        Dim info As Dictionary(Of String, String)
+
+        allPixels = allPixels _
+            .Where(Function(i) regions.ContainsPixel(i.X, i.Y)) _
+            .ToArray
+
+        MSI = New Drawer(allPixels.CreatePixelReader)
+        info = MSIProtocols.GetMSIInfo(MSI)
 
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
     End Function
