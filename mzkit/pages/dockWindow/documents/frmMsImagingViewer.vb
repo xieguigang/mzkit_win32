@@ -1043,7 +1043,7 @@ Public Class frmMsImagingViewer
     Public Function GetTitle(mz As Double) As String
         Dim key As String = mz.ToString("F3")
 
-        If titles.ContainsKey(key) Then
+        If titles.ContainsKey(key) AndAlso Not titles(key).StringEmpty Then
             Return titles(key)
         Else
             Return $"M/Z: {key}"
