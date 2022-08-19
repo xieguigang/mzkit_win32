@@ -82,7 +82,6 @@ Partial Class PixelSelector
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.ColorScaleMap1 = New ControlLibrary.ColorScaleMap()
         CType(Me.picCanvas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -123,22 +122,10 @@ Partial Class PixelSelector
         '
         Me.Timer1.Enabled = True
         '
-        'ColorScaleMap1
-        '
-        Me.ColorScaleMap1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ColorScaleMap1.colorMap = Microsoft.VisualBasic.Imaging.Drawing2D.Colors.ScalerPalette.Jet
-        Me.ColorScaleMap1.Location = New System.Drawing.Point(432, 14)
-        Me.ColorScaleMap1.mapLevels = 30
-        Me.ColorScaleMap1.Name = "ColorScaleMap1"
-        Me.ColorScaleMap1.range = New Double() {0R, 1.0R}
-        Me.ColorScaleMap1.Size = New System.Drawing.Size(139, 32)
-        Me.ColorScaleMap1.TabIndex = 2
-        '
         'PixelSelector
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.ColorScaleMap1)
         Me.Controls.Add(Me.picCanvas)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Cursor = System.Windows.Forms.Cursors.Cross
@@ -157,5 +144,5 @@ Partial Class PixelSelector
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
     Friend WithEvents ToolStripStatusLabel2 As ToolStripStatusLabel
     Friend WithEvents Timer1 As Timer
-    Friend WithEvents ColorScaleMap1 As ColorScaleMap
+    ' Friend WithEvents ColorScaleMap1 As ColorScaleMap
 End Class
