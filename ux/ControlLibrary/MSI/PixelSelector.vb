@@ -1437,7 +1437,7 @@ Public Class PixelSelector
 
     Public cancelBlur As Boolean = False
 
-    Private Sub ToolStripSplitButton1_ButtonClick(sender As Object, e As EventArgs)
+    Private Sub ToolStripComboBox1_Click(sender As Object, e As EventArgs) Handles ToolStripComboBox1.Click
 
     End Sub
 
@@ -1478,5 +1478,9 @@ Public Class PixelSelector
         End If
 
         Call renderWithLegend(bmp, color)
+    End Sub
+
+    Private Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
+
     End Sub
 End Class
