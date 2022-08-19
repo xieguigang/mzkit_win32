@@ -24,12 +24,24 @@ Imports Microsoft.VisualBasic.CommandLine.Reflection
     <Description("Build mzPack cache")>
     <Argument("--raw", False, CLITypes.File, PipelineTypes.std_in, Description:="the file path of the mzML/mzXML/raw raw data file to create mzPack cache file.")>
     <Argument("--cache", False, CLITypes.File, PipelineTypes.std_out, Description:="the file path of the mzPack cache file.")>
-    <Usage("/mzPack --raw <filepath.mzXML> [--cache <result.mzPack>]")>
+    <Argument("/ver", True, CLITypes.Boolean, PipelineTypes.undefined,
+              AcceptTypes:={GetType(Boolean)},
+              Description:="the file format version of the generated mzpack data file")>
+    <Usage("/mzPack --raw <filepath.mzXML> [--cache <result.mzPack> /ver 2]")>
     Public Function convertAnyRaw(args As CommandLine) As Integer
         Dim raw As String = args("--raw")
         Dim cache As String = args("--cache") Or raw.ChangeSuffix("mzPack")
+        Dim ver As Integer = args("/ver") Or 2
 
-        Call ConvertToMzPack.CreateMzpack(raw, cache)
+        If raw.DirectoryExists Then
+            For Each file As String In raw.EnumerateFiles("*.raw")
+                Dim cachefile As String = $"{cache}/{file.BaseName}.mzPack"
+
+                Call ConvertToMzPack.CreateMzpack(file, cachefile, saveVer:=ver)
+            Next
+        Else
+            Call ConvertToMzPack.CreateMzpack(raw, cache, saveVer:=ver)
+        End If
 
         Return 0
     End Function

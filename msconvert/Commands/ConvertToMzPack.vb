@@ -13,7 +13,7 @@ Module ConvertToMzPack
     ''' </summary>
     ''' <param name="raw"></param>
     ''' <param name="cacheFile"></param>
-    Public Sub CreateMzpack(raw As String, cacheFile As String)
+    Public Sub CreateMzpack(raw As String, cacheFile As String, saveVer As Integer)
         Dim mzpack As mzPack
 
         If raw.ExtensionSuffix("raw") Then
@@ -29,11 +29,11 @@ Module ConvertToMzPack
             mzpack.Thumbnail = mzpack.DrawScatter
         End If
 
-        mzpack = mzpack.MassCalibration(da:=0.1)
+        ' mzpack = mzpack.MassCalibration(da:=0.1)
 
         Using file As Stream = cacheFile.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
             Call RunSlavePipeline.SendMessage("Write mzPack cache data...")
-            Call mzpack.Write(file, version:=2)
+            Call mzpack.Write(file, version:=saveVer)
         End Using
 
         Call Thread.Sleep(1500)
