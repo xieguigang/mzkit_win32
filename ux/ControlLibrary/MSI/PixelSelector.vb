@@ -1206,11 +1206,11 @@ Public Class PixelSelector
     End Property
 
     Public Sub SetColorMapVisible(visible As Boolean)
-        If range.IsNullOrEmpty AndAlso mapLevels = 0 Then
-            ColorScaleMap1.Visible = False
-        Else
-            ColorScaleMap1.Visible = visible
-        End If
+        'If range.IsNullOrEmpty AndAlso mapLevels = 0 Then
+        '    ColorScaleMap1.Visible = False
+        'Else
+        '    ColorScaleMap1.Visible = visible
+        'End If
     End Sub
 
     ''' <summary>
@@ -1230,14 +1230,14 @@ Public Class PixelSelector
         Me.range = range
         Me.mapLevels = mapLevels
 
-        If range.IsNullOrEmpty AndAlso mapLevels = 0 Then
-            ColorScaleMap1.Visible = False
-        Else
-            ColorScaleMap1.Visible = True
-            ColorScaleMap1.colorMap = colorMap
-            ColorScaleMap1.range = range
-            ColorScaleMap1.mapLevels = mapLevels
-        End If
+        'If range.IsNullOrEmpty AndAlso mapLevels = 0 Then
+        '    ColorScaleMap1.Visible = False
+        'Else
+        '    ColorScaleMap1.Visible = True
+        '    ColorScaleMap1.colorMap = colorMap
+        '    ColorScaleMap1.range = range
+        '    ColorScaleMap1.mapLevels = mapLevels
+        'End If
 
         If value IsNot Nothing AndAlso (Me.pixel_size.Width = 0 OrElse Me.pixel_size.Height = 0) Then
             Throw New InvalidExpressionException("dimension size can not be ZERO!")
@@ -1437,6 +1437,10 @@ Public Class PixelSelector
 
     Public cancelBlur As Boolean = False
 
+    Private Sub ToolStripComboBox1_Click(sender As Object, e As EventArgs) Handles ToolStripComboBox1.Click
+
+    End Sub
+
     ''' <summary>
     ''' 
     ''' </summary>
@@ -1474,5 +1478,9 @@ Public Class PixelSelector
         End If
 
         Call renderWithLegend(bmp, color)
+    End Sub
+
+    Private Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
+
     End Sub
 End Class
