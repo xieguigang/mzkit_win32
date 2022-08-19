@@ -6,16 +6,17 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Task
 
-Public Class SingleIonMSIBlender : Inherits Blender
+Public Class SingleIonMSIBlender : Inherits MSImagingBlender
 
     ReadOnly layer As SingleIonLayer
-    ReadOnly params As MsImageProperty
     ReadOnly intensity As Double()
 
     Public ReadOnly Property range As DoubleRange
     Public ReadOnly Property dotSize As New Size(3, 3)
 
     Sub New(layer As PixelData(), params As MsImageProperty)
+        Call MyBase.New(params)
+
         Me.layer = New SingleIonLayer With {
             .MSILayer = layer,
             .DimensionSize = New Size(
@@ -23,7 +24,6 @@ Public Class SingleIonMSIBlender : Inherits Blender
                 height:=layer.Select(Function(p) p.y).Max
             )
         }
-        Me.params = params
         Me.intensity = layer.Select(Function(i) i.intensity).ToArray
         Me.range = intensity.Range
     End Sub

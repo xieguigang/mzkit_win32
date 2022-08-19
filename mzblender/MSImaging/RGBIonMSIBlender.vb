@@ -6,11 +6,10 @@ Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Microsoft.VisualBasic.Linq
 Imports Task
 
-Public Class RGBIonMSIBlender : Inherits Blender
+Public Class RGBIonMSIBlender : Inherits MSImagingBlender
 
     ReadOnly R As PixelData(), G As PixelData(), B As PixelData()
     ReadOnly pixelSize$
-    ReadOnly params As MsImageProperty
     ReadOnly originalSize As Size
 
     Public ReadOnly Property dotSize As New Size(3, 3)
@@ -21,6 +20,8 @@ Public Class RGBIonMSIBlender : Inherits Blender
     End Property
 
     Sub New(r As PixelData(), g As PixelData(), b As PixelData(), pixel_size As String, params As MsImageProperty)
+        Call MyBase.New(params)
+
         Dim joinX = r.JoinIterates(g).JoinIterates(b).Select(Function(i) i.x).Max
         Dim joinY = r.JoinIterates(g).JoinIterates(b).Select(Function(i) i.y).Max
 
@@ -29,7 +30,6 @@ Public Class RGBIonMSIBlender : Inherits Blender
         Me.G = g
         Me.B = b
         Me.pixelSize = pixel_size
-        Me.params = params
     End Sub
 
     Public Overrides Function Rendering(args As PlotProperty, target As Size) As Image

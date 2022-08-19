@@ -5,10 +5,9 @@ Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
 Imports Task
 
-Public Class SummaryMSIBlender : Inherits Blender
+Public Class SummaryMSIBlender : Inherits MSImagingBlender
 
     ReadOnly summaryLayer As PixelScanIntensity()
-    ReadOnly params As MsImageProperty
     ReadOnly intensity As Double()
 
     Public ReadOnly Property dotSize As New Size(3, 3)
@@ -19,7 +18,8 @@ Public Class SummaryMSIBlender : Inherits Blender
     End Property
 
     Sub New(summaryLayer As PixelScanIntensity(), params As MsImageProperty)
-        Me.params = params
+        Call MyBase.New(params)
+
         Me.summaryLayer = summaryLayer
         Me.intensity = summaryLayer _
             .Select(Function(p) p.totalIon) _

@@ -106,6 +106,15 @@ Public Class PixelSelector
         picCanvas.BackgroundImageLayout = ImageLayout.Stretch
     End Sub
 
+    Public Sub LoadSampleTags(tags As IEnumerable(Of String))
+        Call ToolStripComboBox1.Items.Clear()
+        Call ToolStripComboBox1.Items.Add("*")
+
+        For Each tag As String In tags
+            Call ToolStripComboBox1.Items.Add(tag)
+        Next
+    End Sub
+
     ''' <summary>
     ''' the polygon has already been transform and scaled
     ''' </summary>
@@ -1480,7 +1489,11 @@ Public Class PixelSelector
         Call renderWithLegend(bmp, color)
     End Sub
 
-    Private Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
+    Public Event SelectSample(tag As String)
 
+    Private Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
+        Dim tag As String = ToolStripComboBox1.SelectedItem.ToString
+
+        RaiseEvent SelectSample(tag)
     End Sub
 End Class

@@ -100,7 +100,7 @@ Public Class frmMsImagingViewer
     Dim WithEvents tweaks As PropertyGrid
     Dim rendering As Action
     Dim guid As String
-    Dim blender As Blender
+    Dim blender As MSImagingBlender
 
     Friend MSIservice As ServiceHub.MSIDataService
     Friend params As MsImageProperty
@@ -1088,6 +1088,7 @@ Public Class frmMsImagingViewer
 
         Me.loadedPixels = pixels
         Me.blender = blender
+        Me.PixelSelector1.LoadSampleTags(pixels.Select(Function(i) i.sampleTag).Distinct)
 
         Return Sub()
                    Call MyApplication.RegisterPlot(
@@ -1299,5 +1300,12 @@ Public Class frmMsImagingViewer
         Call MyApplication.host.showStatusMessage("MS-imaging plot has been copied to the clipboard!")
     End Sub
 
-
+    Private Sub PixelSelector1_SelectSample(tag As String) Handles PixelSelector1.SelectSample
+        If blender Is Nothing Then
+            Return
+        Else
+            blender.sample_tag = tag
+            Call rendering()
+        End If
+    End Sub
 End Class
