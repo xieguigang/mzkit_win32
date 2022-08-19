@@ -31,7 +31,7 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
     Public Overrides Function Rendering(args As PlotProperty, target As Size) As Image
         Dim dimensionSize As New Size(params.scan_x, params.scan_y)
         Dim size As String = $"{dotSize.Width},{dotSize.Height}"
-        Dim pixels As PixelData() = layer.MSILayer
+        Dim pixels As PixelData() = TakePixels(layer.MSILayer)
         Dim pixelFilter As PixelData() = KnnInterpolation.KnnFill(pixels, layer.DimensionSize, params.knn, params.knn, params.knn_qcut)
         Dim cut As Double = New TrIQThreshold(params.TrIQ) With {
             .levels = params.mapLevels
