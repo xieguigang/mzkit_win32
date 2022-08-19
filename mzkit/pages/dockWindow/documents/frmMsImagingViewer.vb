@@ -1088,7 +1088,7 @@ Public Class frmMsImagingViewer
 
         Me.loadedPixels = pixels
         Me.blender = blender
-        Me.PixelSelector1.LoadSampleTags(pixels.Select(Function(i) i.sampleTag).Distinct)
+        Me.PixelSelector1.LoadSampleTags(pixels.Select(Function(i) i.sampleTag).Where(Function(str) Not str Is Nothing).Distinct)
 
         Return Sub()
                    Call MyApplication.RegisterPlot(
