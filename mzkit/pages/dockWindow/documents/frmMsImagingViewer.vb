@@ -899,6 +899,7 @@ Public Class frmMsImagingViewer
         Dim blender As New SummaryMSIBlender(summaryLayer, params)
 
         Me.blender = blender
+        Me.sampleRegions.SetBounds(summaryLayer.Select(Function(a) New Point(a.x, a.y)))
 
         Return Sub()
                    Call MyApplication.RegisterPlot(

@@ -21,9 +21,14 @@ Public Class MSIRegionSampleWindow
 
     Friend dimension As Size
     Friend canvas As PixelSelector
+    Friend sample_bounds As Point()
 
     Friend Sub Clear()
         FlowLayoutPanel1.Controls.Clear()
+    End Sub
+
+    Friend Overloads Sub SetBounds(pixels As IEnumerable(Of Point))
+        sample_bounds = pixels.ToArray
     End Sub
 
     Public Overloads Sub LoadTissueMaps(tissues As TissueRegion(), canvas As PixelSelector)
@@ -227,14 +232,23 @@ Public Class MSIRegionSampleWindow
         Dim x As New List(Of Double)
         Dim y As New List(Of Double)
 
-        For i As Integer = 0 To dimension.Width
-            For j As Integer = 0 To dimension.Height
-                If Not $"{i},{j}" Like tagged Then
-                    Call x.Add(i)
-                    Call y.Add(j)
+        If sample_bounds.IsNullOrEmpty Then
+            For i As Integer = 0 To dimension.Width
+                For j As Integer = 0 To dimension.Height
+                    If Not $"{i},{j}" Like tagged Then
+                        Call x.Add(i)
+                        Call y.Add(j)
+                    End If
+                Next
+            Next
+        Else
+            For Each p As Point In sample_bounds
+                If Not $"{p.X},{p.Y}" Like tagged Then
+                    Call x.Add(p.X)
+                    Call y.Add(p.Y)
                 End If
             Next
-        Next
+        End If
 
         Call Add({New Polygon2D(x.ToArray, y.ToArray)})
     End Sub
