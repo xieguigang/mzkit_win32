@@ -28,7 +28,10 @@ Public Class MSIRegionSampleWindow
     End Sub
 
     Friend Overloads Sub SetBounds(pixels As IEnumerable(Of Point))
-        sample_bounds = pixels.ToArray
+        sample_bounds = pixels _
+            .GroupBy(Function(a) $"{a.X},{a.Y}") _
+            .Select(Function(a) a.First) _
+            .ToArray
     End Sub
 
     Public Overloads Sub LoadTissueMaps(tissues As TissueRegion(), canvas As PixelSelector)
