@@ -36,9 +36,9 @@ Partial Class RegionSampleCard
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(58, 27)
+        Me.Label1.Location = New System.Drawing.Point(58, 29)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(53, 12)
+        Me.Label1.Size = New System.Drawing.Size(49, 13)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Regions:"
         '
@@ -46,7 +46,7 @@ Partial Class RegionSampleCard
         '
         Me.PictureBox1.Location = New System.Drawing.Point(3, 3)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(49, 65)
+        Me.PictureBox1.Size = New System.Drawing.Size(49, 70)
         Me.PictureBox1.TabIndex = 1
         Me.PictureBox1.TabStop = False
         '
@@ -55,7 +55,7 @@ Partial Class RegionSampleCard
         Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(58, 4)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(83, 12)
+        Me.Label2.Size = New System.Drawing.Size(77, 13)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Sample Group:"
         '
@@ -66,7 +66,7 @@ Partial Class RegionSampleCard
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TextBox1.Location = New System.Drawing.Point(141, 1)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(98, 21)
+        Me.TextBox1.Size = New System.Drawing.Size(98, 20)
         Me.TextBox1.TabIndex = 3
         '
         'TextBox2
@@ -74,18 +74,18 @@ Partial Class RegionSampleCard
         Me.TextBox2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox2.Location = New System.Drawing.Point(141, 24)
+        Me.TextBox2.Location = New System.Drawing.Point(141, 26)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.ReadOnly = True
-        Me.TextBox2.Size = New System.Drawing.Size(98, 21)
+        Me.TextBox2.Size = New System.Drawing.Size(98, 20)
         Me.TextBox2.TabIndex = 4
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(58, 47)
+        Me.Label3.Location = New System.Drawing.Point(58, 51)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(35, 12)
+        Me.Label3.Size = New System.Drawing.Size(32, 13)
         Me.Label3.TabIndex = 5
         Me.Label3.Text = "Area:"
         '
@@ -94,17 +94,17 @@ Partial Class RegionSampleCard
         Me.TextBox3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox3.Location = New System.Drawing.Point(141, 47)
+        Me.TextBox3.Location = New System.Drawing.Point(141, 51)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.ReadOnly = True
-        Me.TextBox3.Size = New System.Drawing.Size(98, 21)
+        Me.TextBox3.Size = New System.Drawing.Size(98, 20)
         Me.TextBox3.TabIndex = 6
         '
         'LinkLabel1
         '
         Me.LinkLabel1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Font = New System.Drawing.Font("宋体", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.LinkLabel1.Font = New System.Drawing.Font("SimSun", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.LinkLabel1.Location = New System.Drawing.Point(240, 4)
         Me.LinkLabel1.Name = "LinkLabel1"
         Me.LinkLabel1.Size = New System.Drawing.Size(15, 13)
@@ -114,7 +114,7 @@ Partial Class RegionSampleCard
         '
         'RegionSampleCard
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.TextBox3)
@@ -125,7 +125,7 @@ Partial Class RegionSampleCard
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Label1)
         Me.Name = "RegionSampleCard"
-        Me.Size = New System.Drawing.Size(258, 74)
+        Me.Size = New System.Drawing.Size(258, 80)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

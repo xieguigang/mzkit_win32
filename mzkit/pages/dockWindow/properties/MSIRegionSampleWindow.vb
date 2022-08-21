@@ -7,7 +7,9 @@ Imports ControlLibrary
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
+Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Linq
 
 Public Class MSIRegionSampleWindow
 
@@ -51,12 +53,16 @@ Public Class MSIRegionSampleWindow
     ''' 某一个样本区域可能是由多个不连续的区域所组成的
     ''' </summary>
     Friend Sub Add(selector As PixelSelector)
-        Dim card As New RegionSampleCard
-
         dimension = selector.dimension_size
         canvas = selector
 
-        Call card.SetPolygons(selector.GetPolygons, callback:=AddressOf updateLayerRendering)
+        Call Add(selector.GetPolygons)
+    End Sub
+
+    Private Sub Add(sample_group As IEnumerable(Of Polygon2D))
+        Dim card As New RegionSampleCard
+
+        Call card.SetPolygons(sample_group, callback:=AddressOf updateLayerRendering)
         Call FlowLayoutPanel1.Controls.Add(card)
 
         AddHandler card.RemoveSampleGroup, AddressOf removeSampleGroup
@@ -208,5 +214,28 @@ Public Class MSIRegionSampleWindow
             Call FlowLayoutPanel1.Controls.Clear()
             Call updateLayerRendering()
         End If
+    End Sub
+
+    Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
+        Dim polygons = GetRegions(dimension).ToArray
+        Dim tagged = polygons _
+            .Select(Function(p) p.points) _
+            .IteratesALL _
+            .Select(Function(a) $"{a.X},{a.Y}") _
+            .Distinct _
+            .Indexing
+        Dim x As New List(Of Double)
+        Dim y As New List(Of Double)
+
+        For i As Integer = 0 To dimension.Width
+            For j As Integer = 0 To dimension.Height
+                If Not $"{i},{j}" Like tagged Then
+                    Call x.Add(i)
+                    Call y.Add(j)
+                End If
+            Next
+        Next
+
+        Call Add({New Polygon2D(x.ToArray, y.ToArray)})
     End Sub
 End Class
