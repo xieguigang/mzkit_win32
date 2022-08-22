@@ -899,6 +899,7 @@ Public Class frmMsImagingViewer
         Dim blender As New SummaryMSIBlender(summaryLayer, params)
 
         Me.blender = blender
+        Me.sampleRegions.SetBounds(summaryLayer.Select(Function(a) New Point(a.x, a.y)))
 
         Return Sub()
                    Call MyApplication.RegisterPlot(
@@ -1069,6 +1070,7 @@ Public Class frmMsImagingViewer
 
         Call params.SetIntensityMax(Aggregate pm As PixelData In pixels Into Max(pm.intensity))
         Call params.Reset(MsiDim, "N/A", "N/A")
+        Call sampleRegions.SetBounds(pixels.Select(Function(a) New Point(a.x, a.y)))
 
         rendering = createRenderTask(pixels, $"{params.scan_x},{params.scan_y}")
         rendering()

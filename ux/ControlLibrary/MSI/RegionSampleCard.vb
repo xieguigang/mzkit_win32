@@ -76,4 +76,20 @@ Public Class RegionSampleCard
             RaiseEvent RemoveSampleGroup(Me)
         End If
     End Sub
+
+    Private Sub RegionSampleCard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
+
+    Private Sub RegionSampleCard_Click(sender As Object, e As EventArgs) Handles Me.Click
+
+    End Sub
+
+    Private Sub RegionSampleCard_GotFocus(sender As Object, e As EventArgs) Handles Me.GotFocus
+        Me.BorderStyle = BorderStyle.FixedSingle
+    End Sub
+
+    Private Sub RegionSampleCard_LostFocus(sender As Object, e As EventArgs) Handles Me.LostFocus
+        Me.BorderStyle = BorderStyle.None
+    End Sub
 End Class
