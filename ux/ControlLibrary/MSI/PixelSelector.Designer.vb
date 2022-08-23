@@ -94,9 +94,9 @@ Partial Class PixelSelector
         '
         Me.picCanvas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.picCanvas.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.picCanvas.Location = New System.Drawing.Point(0, 0)
+        Me.picCanvas.Location = New System.Drawing.Point(0, 25)
         Me.picCanvas.Name = "picCanvas"
-        Me.picCanvas.Size = New System.Drawing.Size(595, 344)
+        Me.picCanvas.Size = New System.Drawing.Size(595, 291)
         Me.picCanvas.TabIndex = 0
         Me.picCanvas.TabStop = False
         '
@@ -104,7 +104,7 @@ Partial Class PixelSelector
         '
         Me.StatusStrip1.BackColor = System.Drawing.Color.WhiteSmoke
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripStatusLabel2})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 344)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 316)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(595, 22)
         Me.StatusStrip1.TabIndex = 1
@@ -144,19 +144,20 @@ Partial Class PixelSelector
         'ToolStripComboBox1
         '
         Me.ToolStripComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ToolStripComboBox1.Items.AddRange(New Object() {"*"})
         Me.ToolStripComboBox1.Name = "ToolStripComboBox1"
         Me.ToolStripComboBox1.Size = New System.Drawing.Size(121, 25)
         '
         'PixelSelector
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.picCanvas)
+        Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Cursor = System.Windows.Forms.Cursors.Cross
         Me.Name = "PixelSelector"
-        Me.Size = New System.Drawing.Size(595, 366)
+        Me.Size = New System.Drawing.Size(595, 338)
         CType(Me.picCanvas, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()

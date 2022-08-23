@@ -70,12 +70,15 @@
 #End Region
 
 Imports System.Drawing.Drawing2D
+Imports System.Runtime.CompilerServices
 Imports ControlLibrary.PolygonEditor
 Imports Microsoft.VisualBasic.Imaging.BitmapImage
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Filters
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports stdNum = System.Math
+
+<Assembly: InternalsVisibleTo("mzkit_win32")>
 
 Public Class PixelSelector
 
@@ -1490,6 +1493,10 @@ Public Class PixelSelector
     End Sub
 
     Public Event SelectSample(tag As String)
+
+    Private Sub ToolStrip1_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles ToolStrip1.ItemClicked
+
+    End Sub
 
     Private Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
         Dim tag As String = ToolStripComboBox1.SelectedItem.ToString

@@ -159,7 +159,7 @@ Public Class frmMsImagingViewer
                 End If
             End Sub
 
-        Call ApplyVsTheme(ContextMenuStrip1)
+        Call ApplyVsTheme(ContextMenuStrip1, PixelSelector1.ToolStrip1)
         Call setupPolygonEditorButtons()
         Call PixelSelector1.ShowMessage("BioNovoGene MZKit MSImaging Viewer")
 
