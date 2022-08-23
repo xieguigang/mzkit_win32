@@ -53,8 +53,6 @@
 #End Region
 
 Imports System.Runtime.CompilerServices
-Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
-Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzXML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
@@ -88,7 +86,7 @@ Public Module MoleculeNetworking
                             Dim id As String = a.lib_guid
                             Dim score = GlobalAlignment.TwoDirectionSSM(scan.mzInto, a.mzInto, tolerance)
 
-                            Return (id, System.Math.Min(score.forward, score.reverse))
+                            Return (id, stdNum.Min(score.forward, score.reverse))
                         End Function) _
                 .ToArray
 
@@ -189,7 +187,9 @@ Public Module MoleculeNetworking
 
         For Each result As NamedCollection(Of AlignmentOutput) In files _
             .AsParallel _
-            .Select(Function(a) isotopic.alignSearch(a, tolerance, dotcutoff, reload))
+            .Select(Function(a)
+                        Return isotopic.alignSearch(a, tolerance, dotcutoff, reload)
+                    End Function)
 
             Call progress($"Spectrum search job done! [{result.name}]")
 
@@ -232,7 +232,9 @@ Public Module MoleculeNetworking
                     types = neg
                 End If
 
-                If Not types.Any(Function(a) stdNum.Abs(a.CalcMZ(isotopic.exactMass) - subject.parentMz) < 0.3) Then
+                If Not types.Any(Function(a)
+                                     Return stdNum.Abs(a.CalcMZ(isotopic.exactMass) - subject.parentMz) < 0.3
+                                 End Function) Then
                     Continue For
                 End If
 
@@ -276,8 +278,16 @@ Public Module MoleculeNetworking
                             .ToArray,
                         .forward = scores.forward,
                         .reverse = scores.reverse,
-                        .query = New Meta With {.id = spectrum.name, .mz = Double.NaN, .scan_time = Double.NaN},
-                        .reference = New Meta With {.id = scanId, .mz = subject.parentMz, .scan_time = subject.rt}
+                        .query = New Meta With {
+                            .id = spectrum.name,
+                            .mz = Double.NaN,
+                            .scan_time = Double.NaN
+                        },
+                        .reference = New Meta With {
+                            .id = scanId,
+                            .mz = subject.parentMz,
+                            .scan_time = subject.rt
+                        }
                     }
                 End If
             Next
