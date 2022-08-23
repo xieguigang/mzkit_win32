@@ -170,19 +170,19 @@ Public Class frmMsImagingViewer
     Sub TurnUpsideDown()
         If Not checkService() Then
             Return
+        ElseIf MessageBox.Show("This operation will makes the entire MSImaging plot upside down.", "MSI Data Services", buttons:=MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
+            Call frmTaskProgress.LoadData(
+                Function(msg As Action(Of String))
+                    Dim info = MSIservice.TurnUpsideDown
+
+                    If Not info Is Nothing Then
+                        Call Me.Invoke(Sub() LoadRender(info, FilePath))
+                        Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
+                    End If
+
+                    Return 0
+                End Function, taskAssign:=MSIservice.taskHost)
         End If
-
-        Call frmTaskProgress.LoadData(
-            Function(msg As Action(Of String))
-                Dim info = MSIservice.TurnUpsideDown
-
-                If Not info Is Nothing Then
-                    Call Me.Invoke(Sub() LoadRender(info, FilePath))
-                    Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
-                End If
-
-                Return 0
-            End Function, taskAssign:=MSIservice.taskHost)
     End Sub
 
     Sub SearchPubChem()
