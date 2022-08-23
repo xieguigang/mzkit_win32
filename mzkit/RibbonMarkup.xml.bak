@@ -2366,6 +2366,16 @@
         <Image MinDPI="144">Res/edit-cut.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdTabMSIOperations" Id="200" LabelTitle="Operations" LabelDescription="Operations" TooltipTitle="Operations" TooltipDescription="Operations" />
+    <Command Name="cmdGroupMSIOperations" Id="201" LabelTitle="Operations" LabelDescription="Operations" TooltipTitle="Operations" TooltipDescription="Operations" />
+    <Command Name="cmdButtonUpsideDown" Id="202" LabelTitle="Up side down" LabelDescription="Up side down" TooltipTitle="Up side down" TooltipDescription="Up side down">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2588,6 +2598,9 @@
               <Button CommandName="cmdButtonMSISearchPubChem" />
               <Button CommandName="cmdButtonMSIMatrixVisual" />
             </Group>
+            <Group CommandName="cmdGroupMSIOperations" SizeDefinition="OneButton">
+              <Button CommandName="cmdButtonUpsideDown" />
+            </Group>
           </Tab>
           <Tab CommandName="cmdTabMSIAnalysis" ApplicationModes="0,1">
             <Group CommandName="cmdTabMSISnapshot" ApplicationModes="0,1" SizeDefinition="ThreeButtons-OneBigAndTwoSmall">
@@ -2598,7 +2611,10 @@
             <Group CommandName="cmdTabMenuMSIAnalysis" ApplicationModes="0,1" SizeDefinition="FourButtons">
               <DropDownButton CommandName="cmdButtonFeatureDetections">
                 <Button CommandName="cmdButtonMSIRawIonStat" />
-                <Button CommandName="cmdButtonMSICleanBackground" />
+                <DropDownButton CommandName="cmdButtonMSICleanBackground">
+                  <Button CommandName="cmdCleanBackgroundAutoReference" />
+                  <Button CommandName="cmdCleanBackgroundByReference" />
+                </DropDownButton>
                 <Button CommandName="cmdButtonMSISignalCorrection" />
               </DropDownButton>
               <Button CommandName="cmdButtonExportSample" />

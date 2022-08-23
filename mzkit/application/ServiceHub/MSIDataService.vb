@@ -175,6 +175,24 @@ Namespace ServiceHub
             Return MSIProtocols.LoadPixels(mz, mzErr, AddressOf handleServiceRequest)
         End Function
 
+        Public Function TurnUpsideDown() As MsImageProperty
+            Dim op As Byte() = BitConverter.GetBytes(ServiceProtocol.UpsideDown)
+            Dim payload As New RequestStream(MSI.Protocol, ServiceProtocol.UpsideDown, op)
+            Dim data As RequestStream = handleServiceRequest(request:=payload)
+            Dim output As MsImageProperty = data _
+                .GetString(Encoding.UTF8) _
+                .LoadJSON(Of Dictionary(Of String, String)) _
+                .DoCall(Function(info)
+                            Try
+                                Return New MsImageProperty(info)
+                            Catch ex As Exception
+                                Return App.LogException(ex)
+                            End Try
+                        End Function)
+
+            Return output
+        End Function
+
         ''' <summary>
         ''' 
         ''' </summary>

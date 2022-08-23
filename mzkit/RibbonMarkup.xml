@@ -2366,6 +2366,16 @@
         <Image MinDPI="144">Res/edit-cut.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdTabMSIOperations" Id="200" LabelTitle="Operations" LabelDescription="Operations" TooltipTitle="Operations" TooltipDescription="Operations" />
+    <Command Name="cmdGroupMSIOperations" Id="201" LabelTitle="Operations" LabelDescription="Operations" TooltipTitle="Operations" TooltipDescription="Operations" />
+    <Command Name="cmdButtonUpsideDown" Id="202" LabelTitle="Up side down" LabelDescription="Turn the image data up side down" TooltipTitle="Up side down" TooltipDescription="Turn the image data up side down">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2587,6 +2597,9 @@
             <Group CommandName="cmdPanelMSIVisual" SizeDefinition="TwoButtons">
               <Button CommandName="cmdButtonMSISearchPubChem" />
               <Button CommandName="cmdButtonMSIMatrixVisual" />
+            </Group>
+            <Group CommandName="cmdGroupMSIOperations" SizeDefinition="OneButton">
+              <Button CommandName="cmdButtonUpsideDown" />
             </Group>
           </Tab>
           <Tab CommandName="cmdTabMSIAnalysis" ApplicationModes="0,1">

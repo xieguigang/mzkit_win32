@@ -200,6 +200,42 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
     End Function
 
+    <Protocol(ServiceProtocol.UpsideDown)>
+    Public Function TurnUpsideDown(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
+        Dim dims As Size = MSI.dimension
+        Dim allPixels As PixelScan() = MSI.pixelReader.AllPixels.ToArray
+        Dim turns = allPixels _
+            .Select(Function(p)
+                        Return New mzPackPixel(p.CreateMs1, p.X, dims.Height - p.Y + 1)
+                    End Function) _
+            .ToArray
+        Dim newpack As New ReadRawPack(turns, dims)
+        Dim info As Dictionary(Of String, String)
+
+        MSI = New Drawer(newpack)
+        info = MSIProtocols.GetMSIInfo(MSI)
+
+        Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
+    End Function
+
+    <Protocol(ServiceProtocol.Mirrors)>
+    Public Function TurnMirrors(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
+        Dim dims As Size = MSI.dimension
+        Dim allPixels As PixelScan() = MSI.pixelReader.AllPixels.ToArray
+        Dim turns = allPixels _
+            .Select(Function(p)
+                        Return New mzPackPixel(p.CreateMs1, dims.Width - p.X + 1, p.Y)
+                    End Function) _
+            .ToArray
+        Dim newpack As New ReadRawPack(turns, dims)
+        Dim info As Dictionary(Of String, String)
+
+        MSI = New Drawer(newpack)
+        info = MSIProtocols.GetMSIInfo(MSI)
+
+        Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
+    End Function
+
     <Protocol(ServiceProtocol.CutBackground)>
     Public Function CutBackground(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
         Dim allPixels As PixelScan() = MSI.pixelReader.AllPixels.ToArray
@@ -225,7 +261,9 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             Dim topLeft As PixelScan() = MSI.pixelReader.GetPixel(New Rectangle(0, 0, w, w)).ToArray
             Dim topRight As PixelScan() = MSI.pixelReader.GetPixel(New Rectangle(MSI.dimension.Width - w, 0, w, w)).ToArray
             Dim bottomLeft As PixelScan() = MSI.pixelReader.GetPixel(New Rectangle(0, MSI.dimension.Height - w, w, w)).ToArray
-            Dim bottomRight As PixelScan() = MSI.pixelReader.GetPixel(New Rectangle(MSI.dimension.Width - w, MSI.dimension.Height - w, w, w)).ToArray
+            Dim bottomRight As PixelScan() = MSI.pixelReader _
+                .GetPixel(New Rectangle(MSI.dimension.Width - w, MSI.dimension.Height - w, w, w)) _
+                .ToArray
 
             allMz = topLeft _
                 .JoinIterates(topRight) _

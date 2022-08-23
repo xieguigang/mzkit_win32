@@ -130,6 +130,8 @@ namespace RibbonLib.Controls
             public const uint cmdPanelMSIVisual = 186;
             public const uint cmdButtonMSISearchPubChem = 192;
             public const uint cmdButtonMSIMatrixVisual = 187;
+            public const uint cmdGroupMSIOperations = 201;
+            public const uint cmdButtonUpsideDown = 202;
             public const uint cmdTabMSIAnalysis = 141;
             public const uint cmdTabMSISnapshot = 126;
             public const uint cmdButtonMSIAverageIon = 125;
@@ -323,6 +325,8 @@ namespace RibbonLib.Controls
         public RibbonGroup PanelMSIVisual { get; private set; }
         public RibbonButton ButtonMSISearchPubChem { get; private set; }
         public RibbonButton ButtonMSIMatrixVisual { get; private set; }
+        public RibbonGroup GroupMSIOperations { get; private set; }
+        public RibbonButton ButtonUpsideDown { get; private set; }
         public RibbonTab TabMSIAnalysis { get; private set; }
         public RibbonGroup TabMSISnapshot { get; private set; }
         public RibbonButton ButtonMSIAverageIon { get; private set; }
@@ -511,6 +515,8 @@ namespace RibbonLib.Controls
             PanelMSIVisual = new RibbonGroup(ribbon, Cmd.cmdPanelMSIVisual);
             ButtonMSISearchPubChem = new RibbonButton(ribbon, Cmd.cmdButtonMSISearchPubChem);
             ButtonMSIMatrixVisual = new RibbonButton(ribbon, Cmd.cmdButtonMSIMatrixVisual);
+            GroupMSIOperations = new RibbonGroup(ribbon, Cmd.cmdGroupMSIOperations);
+            ButtonUpsideDown = new RibbonButton(ribbon, Cmd.cmdButtonUpsideDown);
             TabMSIAnalysis = new RibbonTab(ribbon, Cmd.cmdTabMSIAnalysis);
             TabMSISnapshot = new RibbonGroup(ribbon, Cmd.cmdTabMSISnapshot);
             ButtonMSIAverageIon = new RibbonButton(ribbon, Cmd.cmdButtonMSIAverageIon);
