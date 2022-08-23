@@ -157,7 +157,7 @@ Public Class MsImageProperty
         scan_y = Integer.Parse(info!scan_y)
         UUID = info!uuid
         fileSize = info!fileSize
-        sourceFile = info!source
+        sourceFile = info.TryGetValue("source", "in-memory sample")
         instrument = If(sourceFile.ExtensionSuffix("csv", "slx"), "Bruker", "Thermo Fisher")
     End Sub
 
