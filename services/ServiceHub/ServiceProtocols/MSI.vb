@@ -184,6 +184,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
 
         MSI = New Drawer(allPixels.CreatePixelReader)
         info = MSIProtocols.GetMSIInfo(MSI)
+        info!source = "in-memory<ExtractRegionSample>"
 
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
     End Function
