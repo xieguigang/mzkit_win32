@@ -205,6 +205,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Dim allPixels As PixelScan() = MSI.pixelReader.AllPixels.ToArray
         Dim reffile As String = If(request.ChunkBuffer.Length = 1 AndAlso request.ChunkBuffer(Scan0) = 0, Nothing, request.GetUTF8String)
         Dim info As Dictionary(Of String, String)
+        Dim allMz As Double()
 
         If reffile.StringEmpty Then
             ' auto background remove by four corners
@@ -221,11 +222,12 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             '           End Function) _
             '    .ToArray
             Dim w As Integer = 16
-            Dim topLeft As PixelScan() = MSI.pixelReader.GetPixel(New Rectangle(0, 0, w, w))
-            Dim topRight As PixelScan() = MSI.pixelReader.GetPixel(New Rectangle(MSI.dimension.Width - w, 0, w, w))
-            Dim bottomLeft As PixelScan() = MSI.pixelReader.GetPixel(New Rectangle(0, MSI.dimension.Height - w, w, w))
-            Dim bottomRight As PixelScan() = MSI.pixelReader.GetPixel(New Rectangle(MSI.dimension.Width - w, MSI.dimension.Height - w, w, w))
-            Dim allMz As Double() = topLeft _
+            Dim topLeft As PixelScan() = MSI.pixelReader.GetPixel(New Rectangle(0, 0, w, w)).ToArray
+            Dim topRight As PixelScan() = MSI.pixelReader.GetPixel(New Rectangle(MSI.dimension.Width - w, 0, w, w)).ToArray
+            Dim bottomLeft As PixelScan() = MSI.pixelReader.GetPixel(New Rectangle(0, MSI.dimension.Height - w, w, w)).ToArray
+            Dim bottomRight As PixelScan() = MSI.pixelReader.GetPixel(New Rectangle(MSI.dimension.Width - w, MSI.dimension.Height - w, w, w)).ToArray
+
+            allMz = topLeft _
                 .JoinIterates(topRight) _
                 .JoinIterates(bottomLeft) _
                 .JoinIterates(bottomRight) _
@@ -235,24 +237,25 @@ Public Class MSI : Implements ITaskDriver, IDisposable
                 .Centroid(Tolerance.DeltaMass(0.1), New RelativeIntensityCutoff(0.05)) _
                 .Select(Function(i) i.mz) _
                 .ToArray
-
-            MSI = New Drawer(allPixels.CreatePixelReader(excludesMz:=allMz))
-            info = MSIProtocols.GetMSIInfo(MSI)
         Else
             ' by a reference file, clean up background mz
             Dim stream = reffile.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
             Dim refdata As mzPack = mzPack.ReadAll(stream, ignoreThumbnail:=True, skipMsn:=True, verbose:=False)
-            Dim allMz As Double() = refdata.MS _
+
+            allMz = refdata.MS _
                 .Select(Function(i) i.GetMs) _
                 .IteratesALL _
                 .ToArray _
                 .Centroid(Tolerance.DeltaMass(0.1), New RelativeIntensityCutoff(0.05)) _
                 .Select(Function(i) i.mz) _
                 .ToArray
-
-            MSI = New Drawer(allPixels.CreatePixelReader(excludesMz:=allMz))
-            info = MSIProtocols.GetMSIInfo(MSI)
         End If
+
+        If allMz.Length > 0 Then
+            MSI = New Drawer(allPixels.CreatePixelReader(excludesMz:=allMz))
+        End If
+
+        info = MSIProtocols.GetMSIInfo(MSI)
 
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
     End Function
