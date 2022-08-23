@@ -9,6 +9,18 @@ Public Class RegionLoader
     Public Property width As Integer
     Public Property height As Integer
 
+    Public Function Reload() As RegionLoader
+        Return New RegionLoader With {
+            .height = height,
+            .width = width,
+            .regions = regions _
+                .Select(Function(r)
+                            Return New Polygon2D(r.xpoints, r.ypoints)
+                        End Function) _
+                .ToArray
+        }
+    End Function
+
     Public Function GetTissueMap(Optional label As String = "tissue_region", Optional color As String = "skyblue") As TissueRegion
         Return regions.Geometry2D(New Size(width, height), label, color.TranslateColor)
     End Function

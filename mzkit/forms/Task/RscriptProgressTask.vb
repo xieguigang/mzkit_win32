@@ -130,6 +130,7 @@ Public Class RscriptProgressTask
         progress.ShowProgressDetails("Imports SCiLS Lab MSImaging matrix data into viewer workspace...", directAccess:=True)
         progress.SetProgressMode()
 
+        Call WorkStudio.LogCommandLine(PipelineTask.Host, cli, App.CurrentDirectory)
         Call MyApplication.LogText(pipeline.CommandLine)
 
         AddHandler pipeline.SetMessage, AddressOf progress.ShowProgressDetails
@@ -158,6 +159,7 @@ Public Class RscriptProgressTask
         progress.ShowProgressDetails("Loading MSI raw data file into viewer workspace...", directAccess:=True)
         progress.SetProgressMode()
 
+        Call WorkStudio.LogCommandLine(PipelineTask.Host, cli, App.CurrentDirectory)
         Call MyApplication.LogText(pipeline.CommandLine)
 
         AddHandler pipeline.SetMessage, AddressOf progress.ShowProgressDetails
@@ -183,6 +185,7 @@ Public Class RscriptProgressTask
         progress.ShowProgressDetails("Do plot of target ion m/z set...", directAccess:=True)
         progress.SetProgressMode()
 
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call MyApplication.LogText(pipeline.CommandLine)
 
         AddHandler pipeline.SetMessage, AddressOf progress.ShowProgressDetails
@@ -217,6 +220,7 @@ Public Class RscriptProgressTask
         progress.ShowProgressDetails("Do plot of target ion m/z...", directAccess:=True)
         progress.SetProgressMode()
 
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call MyApplication.LogText(pipeline.CommandLine)
 
         AddHandler pipeline.SetMessage, AddressOf progress.ShowProgressDetails
@@ -252,6 +256,7 @@ Public Class RscriptProgressTask
         progress.ShowProgressDetails("Do plot of target ion m/z...", directAccess:=True)
         progress.SetProgressMode()
 
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call MyApplication.LogText(pipeline.CommandLine)
         Call debug(pipeline.CommandLine)
 
@@ -287,6 +292,7 @@ Public Class RscriptProgressTask
         progress.ShowProgressDetails("Loading MSI raw data file into viewer workspace...", directAccess:=True)
         progress.SetProgressMode()
 
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call MyApplication.LogText(pipeline.CommandLine)
 
         AddHandler pipeline.SetMessage, AddressOf progress.ShowProgressDetails
@@ -321,6 +327,7 @@ Public Class RscriptProgressTask
         Call data.SaveTo(tempfile)
         Call MyApplication.LogText(pipeline.CommandLine)
         Call MyApplication.LogText(data)
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
 
         AddHandler pipeline.SetMessage, AddressOf progress.ShowProgressDetails
         AddHandler pipeline.SetProgress, AddressOf progress.SetProgress
@@ -348,6 +355,7 @@ Public Class RscriptProgressTask
         progress.ShowProgressDetails("Loading MSI raw data file into viewer workspace...", directAccess:=True)
         progress.SetProgressMode()
 
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call data.SaveTo(tempfile)
         Call MyApplication.LogText(pipeline.CommandLine)
         Call MyApplication.LogText(data)

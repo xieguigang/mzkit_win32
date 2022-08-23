@@ -65,6 +65,12 @@ Imports Microsoft.VisualBasic.CommandLine.Reflection
 
     <ExportAPI("/imports-SCiLSLab")>
     <Usage("/imports-SCiLSLab --files <spot_files.txt> --save <MSI.mzPack>")>
+    <Argument("--files", False, CLITypes.File,
+              AcceptTypes:={GetType(String())},
+              Description:="a list of the csv data files, the spot index and
+              the mass data should be paired in this data file list. each line 
+              of this text file is a tuple of the spot index and the ms data, 
+              and the tuple data should be used the <TAB> as delimiter.")>
     Public Function ImportsSCiLSLab(args As CommandLine) As Integer
         Dim files As String() = args("--files").ReadAllLines
         Dim mzpack As mzPack

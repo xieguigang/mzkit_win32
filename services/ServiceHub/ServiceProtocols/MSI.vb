@@ -172,16 +172,29 @@ Public Class MSI : Implements ITaskDriver, IDisposable
     <Protocol(ServiceProtocol.ExtractRegionSample)>
     Public Function ExtractRegionSample(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
         Dim allPixels As PixelScan() = MSI.pixelReader.AllPixels.ToArray
-        Dim regions As RegionLoader = BSON.Load(request.ChunkBuffer) _
-            .CreateObject(Of RegionLoader)(decodeMetachar:=False)
+        Dim regions As RegionLoader = BSON _
+            .Load(request.ChunkBuffer) _
+            .CreateObject(Of RegionLoader)(decodeMetachar:=False) _
+            .Reload
         Dim info As Dictionary(Of String, String)
+        Dim minX As Integer
+        Dim minY As Integer
 
         allPixels = allPixels _
             .Where(Function(i) regions.ContainsPixel(i.X, i.Y)) _
             .ToArray
 
-        MSI = New Drawer(allPixels.CreatePixelReader)
+        If allPixels.Length > 0 Then
+            minX = allPixels.Select(Function(p) p.X).Min
+            minY = allPixels.Select(Function(p) p.Y).Min
+        Else
+            minX = 0
+            minY = 0
+        End If
+
+        MSI = New Drawer(allPixels.CreatePixelReader(-minX, -minY))
         info = MSIProtocols.GetMSIInfo(MSI)
+        info!source = "in-memory<ExtractRegionSample>"
 
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
     End Function
