@@ -190,6 +190,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
     Public Function CutBackground(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
         Dim allPixels As PixelScan() = MSI.pixelReader.AllPixels.ToArray
         Dim reffile As String = If(request.ChunkBuffer.Length = 1 AndAlso request.ChunkBuffer(Scan0) = 0, Nothing, request.GetUTF8String)
+        Dim info As Dictionary(Of String, String)
 
         If reffile.StringEmpty Then
             ' auto background remove by four corners
@@ -199,7 +200,6 @@ Public Class MSI : Implements ITaskDriver, IDisposable
                 .ToArray
             Dim q As Double = TrIQThreshold.TrIQThreshold(intensity, 0.7)
             Dim cut As Double = intensity.Max * q
-            Dim info As Dictionary(Of String, String)
 
             allPixels = allPixels _
                 .Where(Function(i)
@@ -211,6 +211,16 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             info = MSIProtocols.GetMSIInfo(MSI)
         Else
             ' by a reference file, clean up background mz
+            Dim stream = reffile.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
+            Dim refdata As mzPack = mzPack.ReadAll(stream, ignoreThumbnail:=True, skipMsn:=True, verbose:=False)
+            Dim allMz As Double() = refdata.MS _
+                .Select(Function(i) i.GetMs) _
+                .IteratesALL _
+                .ToArray _
+                .Centroid(Tolerance.DeltaMass(0.1), New RelativeIntensityCutoff(0.05)) _
+                .Select(Function(i) i.mz) _
+                .ToArray
+
 
         End If
 

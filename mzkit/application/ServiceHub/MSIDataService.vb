@@ -58,6 +58,7 @@
 #End Region
 
 Imports System.Text
+Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
@@ -189,7 +190,11 @@ Namespace ServiceHub
                 .GetString(Encoding.UTF8) _
                 .LoadJSON(Of Dictionary(Of String, String)) _
                 .DoCall(Function(info)
-                            Return New MsImageProperty(info)
+                            Try
+                                Return New MsImageProperty(info)
+                            Catch ex As Exception
+                                Return App.LogException(ex)
+                            End Try
                         End Function)
 
             Return output
@@ -345,6 +350,24 @@ Namespace ServiceHub
                 Call MyApplication.LogText(details)
             Else
                 Call MessageCallback(details)
+            End If
+        End Sub
+
+        ''' <summary>
+        ''' current task host
+        ''' </summary>
+        Public taskHost As Thread
+
+        Private Sub MSI_pipe_Finish(exitCode As Integer) Handles MSI_pipe.Finish
+            If exitCode <> 0 Then
+                MSI_pipe = Nothing
+                MSI_service = -1
+                taskHost.Abort()
+                MSI_pipe_SetMessage("the MS-imaging backend service panic...")
+                MyApplication.host.showStatusMessage("the MS-imaging backend service panic...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+
+                ' detach message event handler
+                RemoveHandler MSI_pipe.SetMessage, AddressOf MSI_pipe_SetMessage
             End If
         End Sub
     End Class

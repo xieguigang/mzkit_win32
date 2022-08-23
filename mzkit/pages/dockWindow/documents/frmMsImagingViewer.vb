@@ -719,7 +719,7 @@ Public Class frmMsImagingViewer
                                 Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
 
                                 Return 0
-                            End Function)
+                            End Function, taskAssign:=MSIservice.taskHost)
                     End If
                 End Using
             Else
@@ -727,11 +727,13 @@ Public Class frmMsImagingViewer
                     Function(msg As Action(Of String))
                         Dim info = MSIservice.CutBackground(Nothing)
 
-                        Call Me.Invoke(Sub() LoadRender(info, filePath))
-                        Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
+                        If Not info Is Nothing Then
+                            Call Me.Invoke(Sub() LoadRender(info, filePath))
+                            Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
+                        End If
 
                         Return 0
-                    End Function)
+                    End Function, taskAssign:=MSIservice.taskHost)
             End If
         End If
     End Sub
