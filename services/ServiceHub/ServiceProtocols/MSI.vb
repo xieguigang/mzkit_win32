@@ -57,6 +57,7 @@
 
 #End Region
 
+Imports System.Drawing
 Imports System.IO
 Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
@@ -207,20 +208,35 @@ Public Class MSI : Implements ITaskDriver, IDisposable
 
         If reffile.StringEmpty Then
             ' auto background remove by four corners
-            Dim intensity As Double() = allPixels _
-                .Select(Function(d) d.GetMzIonIntensity) _
+            'Dim intensity As Double() = allPixels _
+            '    .Select(Function(d) d.GetMzIonIntensity) _
+            '    .IteratesALL _
+            '    .ToArray
+            'Dim q As Double = TrIQThreshold.TrIQThreshold(intensity, 0.7)
+            'Dim cut As Double = intensity.Max * q
+
+            'allPixels = allPixels _
+            '    .Where(Function(i)
+            '               Return i.GetMzIonIntensity.Max <= cut
+            '           End Function) _
+            '    .ToArray
+            Dim w As Integer = 16
+            Dim topLeft As PixelScan() = MSI.pixelReader.GetPixel(New Rectangle(0, 0, w, w))
+            Dim topRight As PixelScan() = MSI.pixelReader.GetPixel(New Rectangle(MSI.dimension.Width - w, 0, w, w))
+            Dim bottomLeft As PixelScan() = MSI.pixelReader.GetPixel(New Rectangle(0, MSI.dimension.Height - w, w, w))
+            Dim bottomRight As PixelScan() = MSI.pixelReader.GetPixel(New Rectangle(MSI.dimension.Width - w, MSI.dimension.Height - w, w, w))
+            Dim allMz As Double() = topLeft _
+                .JoinIterates(topRight) _
+                .JoinIterates(bottomLeft) _
+                .JoinIterates(bottomRight) _
+                .Select(Function(p) p.GetMs) _
                 .IteratesALL _
-                .ToArray
-            Dim q As Double = TrIQThreshold.TrIQThreshold(intensity, 0.7)
-            Dim cut As Double = intensity.Max * q
-
-            allPixels = allPixels _
-                .Where(Function(i)
-                           Return i.GetMzIonIntensity.Max <= cut
-                       End Function) _
+                .ToArray _
+                .Centroid(Tolerance.DeltaMass(0.1), New RelativeIntensityCutoff(0.05)) _
+                .Select(Function(i) i.mz) _
                 .ToArray
 
-            MSI = New Drawer(allPixels.CreatePixelReader)
+            MSI = New Drawer(allPixels.CreatePixelReader(excludesMz:=allMz))
             info = MSIProtocols.GetMSIInfo(MSI)
         Else
             ' by a reference file, clean up background mz
@@ -234,7 +250,8 @@ Public Class MSI : Implements ITaskDriver, IDisposable
                 .Select(Function(i) i.mz) _
                 .ToArray
 
-
+            MSI = New Drawer(allPixels.CreatePixelReader(excludesMz:=allMz))
+            info = MSIProtocols.GetMSIInfo(MSI)
         End If
 
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
