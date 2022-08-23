@@ -172,8 +172,10 @@ Public Class MSI : Implements ITaskDriver, IDisposable
     <Protocol(ServiceProtocol.ExtractRegionSample)>
     Public Function ExtractRegionSample(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
         Dim allPixels As PixelScan() = MSI.pixelReader.AllPixels.ToArray
-        Dim regions As RegionLoader = BSON.Load(request.ChunkBuffer) _
-            .CreateObject(Of RegionLoader)(decodeMetachar:=False)
+        Dim regions As RegionLoader = BSON _
+            .Load(request.ChunkBuffer) _
+            .CreateObject(Of RegionLoader)(decodeMetachar:=False) _
+            .Reload
         Dim info As Dictionary(Of String, String)
 
         allPixels = allPixels _
