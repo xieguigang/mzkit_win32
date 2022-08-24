@@ -138,7 +138,7 @@ Public Class frmMsImagingViewer
         AddHandler RibbonEvents.ribbonItems.CleanBackgroundByReference.ExecuteEvent, Sub() Call cleanBackground(addReference:=True)
         AddHandler RibbonEvents.ribbonItems.ButtonMSIRawIonStat.ExecuteEvent, Sub() Call DoIonStats()
         AddHandler RibbonEvents.ribbonItems.ButtonMSIMatrixVisual.ExecuteEvent, Sub() Call OpenHeatmapMatrixPlot()
-
+        AddHandler RibbonEvents.ribbonItems.ButtonUpsideDown.ExecuteEvent, Sub() Call TurnUpsideDown()
         AddHandler RibbonEvents.ribbonItems.ButtonImportsTissueMorphology.ExecuteEvent, Sub() Call ImportsTissueMorphology()
         AddHandler RibbonEvents.ribbonItems.ButtonExportRegions.ExecuteEvent, Sub() Call ExportRegions()
         AddHandler RibbonEvents.ribbonItems.ButtonMSISearchPubChem.ExecuteEvent, Sub() Call SearchPubChem()
@@ -165,6 +165,24 @@ Public Class frmMsImagingViewer
 
         sampleRegions.Show(MyApplication.host.dockPanel)
         sampleRegions.DockState = DockState.Hidden
+    End Sub
+
+    Sub TurnUpsideDown()
+        If Not checkService() Then
+            Return
+        ElseIf MessageBox.Show("This operation will makes the entire MSImaging plot upside down.", "MSI Data Services", buttons:=MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
+            Call frmTaskProgress.LoadData(
+                Function(msg As Action(Of String))
+                    Dim info = MSIservice.TurnUpsideDown
+
+                    If Not info Is Nothing Then
+                        Call Me.Invoke(Sub() LoadRender(info, FilePath))
+                        Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
+                    End If
+
+                    Return 0
+                End Function, taskAssign:=MSIservice.taskHost)
+        End If
     End Sub
 
     Sub SearchPubChem()
@@ -703,9 +721,7 @@ Public Class frmMsImagingViewer
     End Sub
 
     Sub cleanBackground(addReference As Boolean)
-        If Me.FilePath.StringEmpty Then
-            Call MyApplication.host.warning("Load MS-imaging raw data at first!")
-        Else
+        If checkService() Then
             Dim filePath = Me.FilePath
 
             If addReference Then
@@ -719,7 +735,7 @@ Public Class frmMsImagingViewer
                                 Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
 
                                 Return 0
-                            End Function)
+                            End Function, taskAssign:=MSIservice.taskHost)
                     End If
                 End Using
             Else
@@ -727,11 +743,13 @@ Public Class frmMsImagingViewer
                     Function(msg As Action(Of String))
                         Dim info = MSIservice.CutBackground(Nothing)
 
-                        Call Me.Invoke(Sub() LoadRender(info, filePath))
-                        Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
+                        If Not info Is Nothing Then
+                            Call Me.Invoke(Sub() LoadRender(info, filePath))
+                            Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
+                        End If
 
                         Return 0
-                    End Function)
+                    End Function, taskAssign:=MSIservice.taskHost)
             End If
         End If
     End Sub

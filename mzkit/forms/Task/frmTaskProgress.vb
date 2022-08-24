@@ -151,16 +151,11 @@ Public Class frmTaskProgress
 
     Public Shared Function LoadData(Of T)(streamLoad As Func(Of Action(Of String), T),
                                           Optional title$ = "Loading data...",
-                                          Optional info$ = "Open a large raw data file...") As T
+                                          Optional info$ = "Open a large raw data file...",
+                                          Optional ByRef taskAssign As Thread = Nothing) As T
         Dim tmp As T
         Dim progress As New frmTaskProgress
-
-        If progress.ParentForm Is Nothing Then
-            progress.StartPosition = FormStartPosition.Manual
-            progress.Location = WindowModules.CenterToMain(progress)
-        End If
-
-        Call New Thread(
+        Dim task As ThreadStart =
             Sub()
                 Call Thread.Sleep(300)
 
@@ -170,7 +165,15 @@ Public Class frmTaskProgress
                 tmp = streamLoad(AddressOf progress.ShowProgressDetails)
 
                 Call progress.CloseWindow()
-            End Sub).Start()
+            End Sub
+
+        If progress.ParentForm Is Nothing Then
+            progress.StartPosition = FormStartPosition.Manual
+            progress.Location = WindowModules.CenterToMain(progress)
+        End If
+
+        taskAssign = New Thread(task)
+        taskAssign.Start()
 
         Call progress.ShowDialog()
 
