@@ -90,8 +90,8 @@ Public Class ElementProfile : Implements ISaveSettings, IPageSettings
     End Sub
 
     Public Sub ShowPage() Implements IPageSettings.ShowPage
-        Call MyApplication.host.ShowPage(MyApplication.host.mzkitSearch)
         Call MyApplication.host.ShowMzkitToolkit()
+        Call MyApplication.host.ShowPage(MyApplication.host.mzkitSearch)
     End Sub
 
     Private Sub loadPresetProfile(profile As SearchOption)

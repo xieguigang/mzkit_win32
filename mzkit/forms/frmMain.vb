@@ -738,9 +738,18 @@ Public Class frmMain
         TreeView1 = WindowModules.fileExplorer.treeView1
     End Sub
 
+    ''' <summary>
+    ''' this method always show the viewer page (reset the page view status)
+    ''' </summary>
+    ''' <remarks>
+    ''' + put this method call at last if want to show the plot viewer
+    ''' + put this method call at first if want to show the other tools page
+    ''' </remarks>
     Public Sub ShowMzkitToolkit()
         WindowModules.panelMain.Show(dockPanel)
         WindowModules.panelMain.DockState = DockState.Document
+
+        MyApplication.host.ShowPage(mzkitTool)
     End Sub
 
     Private Sub SetSchema(sender As Object, e As EventArgs)

@@ -321,7 +321,7 @@ UseCheckedList:
                     }
                     Dim Rplot As Image = LayerRender.Draw(regions, dims, alphaLevel:=1, dotSize:=3)
 
-                    Call MyApplication.host.mzkitTool.ShowPlotImage(Rplot)
+                    Call MyApplication.host.mzkitTool.ShowPlotImage(Rplot, ImageLayout.Zoom)
                     Call MyApplication.host.ShowMzkitToolkit()
                 Else
                     ' invalid format
@@ -516,8 +516,8 @@ UseCheckedList:
         If image Is Nothing Then
             MyApplication.host.showStatusMessage("Error while run ggplot...", My.Resources.StatusAnnotations_Warning_32xLG_color)
         Else
+            MyApplication.host.mzkitTool.ShowPlotImage(image, ImageLayout.Zoom)
             MyApplication.host.ShowMzkitToolkit()
-            MyApplication.host.mzkitTool.ShowPlotImage(image)
         End If
     End Sub
 
@@ -549,8 +549,8 @@ UseCheckedList:
         If image Is Nothing Then
             MyApplication.host.showStatusMessage("Error while run signal intensity histogram plot...", My.Resources.StatusAnnotations_Warning_32xLG_color)
         Else
+            MyApplication.host.mzkitTool.ShowPlotImage(image, ImageLayout.Zoom)
             MyApplication.host.ShowMzkitToolkit()
-            MyApplication.host.mzkitTool.ShowPlotImage(image)
         End If
     End Sub
 End Class
