@@ -232,7 +232,7 @@ Public Class frmMsImagingViewer
 
         Using file As New OpenFileDialog With {.Filter = "Tissue Morphology Matrix(*.cdf)|*.cdf"}
             If file.ShowDialog = DialogResult.OK Then
-                Dim tissues = file.OpenFile.ReadTissueMorphology.ToArray
+                Dim tissues = file.OpenFile.ReadTissueMorphology
 
                 sampleRegions.Clear()
                 sampleRegions.LoadTissueMaps(tissues, PixelSelector1)
