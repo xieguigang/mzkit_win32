@@ -22,7 +22,7 @@ Public Class KEGGStatsAction : Inherits ActionBase
             .ToArray
         Dim stats As EntityObject()
 
-        If keggId.All(Function(cid) cid.IsPattern("[CDG]\d+")) Then
+        If keggId.Any(Function(cid) cid.IsPattern("[CDG]\d+")) Then
             ' is the compound list
             stats = StatCompounds(keggId)
         Else
