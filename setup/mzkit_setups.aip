@@ -187,9 +187,13 @@
     <ROW Component="Microsoft.VisualBasic.Data.GraphTheory.dll" ComponentId="{973A8FD6-7C85-42BE-AE8D-84AF9DEEE683}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.GraphTheory.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.GraphTheory.dll_2" ComponentId="{CC5518BA-E33B-4D7B-8475-D37A68DB5138}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.GraphTheory.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Data.GraphTheory.dll_6" ComponentId="{AE459617-A4CD-4349-BD13-D7F1F6F353B9}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.GraphTheory.dll_6"/>
+    <ROW Component="Microsoft.VisualBasic.Data.IO.HDF5.dll" ComponentId="{983B3D42-91DD-4135-B265-2FA002C8D1F1}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.IO.HDF5.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.IO.MessagePack.dll" ComponentId="{0E2F72D4-567F-4100-A535-16173B02E3F5}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.IO.MessagePack.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.IO.MessagePack.dll_2" ComponentId="{896925F1-60F3-45FF-85EC-47896B86B612}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.IO.MessagePack.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Data.IO.MessagePack.dll_6" ComponentId="{011AC763-6668-4B24-A3FF-8008A8718E2D}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.IO.MessagePack.dll_6"/>
+    <ROW Component="Microsoft.VisualBasic.Data.IO.SQLite3.dll" ComponentId="{932A0387-29E4-4678-8531-2EA6E5A8F687}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.IO.SQLite3.dll"/>
+    <ROW Component="Microsoft.VisualBasic.Data.IO.SQLite3.dll_1" ComponentId="{B8958C1B-92AC-429D-9553-B872B7B17E85}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.IO.SQLite3.dll_1"/>
+    <ROW Component="Microsoft.VisualBasic.Data.IO.SQLite3.dll_2" ComponentId="{E0D20552-F9A5-4266-AF3B-84AA8CD69A62}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.IO.SQLite3.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Data.NLP.dll" ComponentId="{D5904542-9C07-4837-81AF-5F2324776F8C}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.NLP.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.Signal.IO.dll" ComponentId="{90F1C6D0-B289-47AD-AED8-DC6DDA631833}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.Signal.IO.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.Signal.IO.dll_5" ComponentId="{2B29FDFB-77E6-46FE-8F93-83CAD574678E}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.Signal.IO.dll_5"/>
@@ -257,6 +261,7 @@
     <ROW Component="Microsoft.VisualBasic.MIME.application.pdf.dll_3" ComponentId="{A4C194C2-61A4-44D3-B872-1D72C46F51C8}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.pdf.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.MIME.application.rdf_xml.dll" ComponentId="{2F0483A1-0CA3-4D47-A38D-F4C1D5FFBC7C}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.rdf_xml.dll"/>
     <ROW Component="Microsoft.VisualBasic.MIME.application.xml.dll" ComponentId="{56009D9E-1A6D-4AC5-ACFE-7DE572200F45}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.xml.dll"/>
+    <ROW Component="Microsoft.VisualBasic.MIME.application.xml.dll_1" ComponentId="{9953DC0F-930F-41F4-9360-0B29400BC38A}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.xml.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.MIME.application.xml.dll_5" ComponentId="{8FD210BD-BAB2-48B2-AEF8-27885BC2E0E4}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.xml.dll_5"/>
     <ROW Component="Microsoft.VisualBasic.MIME.text.markdown.dll" ComponentId="{BC0C9E16-1AC3-4DC1-8626-3ACBFC59E719}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.text.markdown.dll"/>
     <ROW Component="Microsoft.VisualBasic.MIME.text.markdown.dll_6" ComponentId="{8FC36F65-FB03-4888-A427-B32DA3D3E872}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.text.markdown.dll_6"/>
@@ -380,6 +385,7 @@
     <ROW Component="System.Composition.Runtime.dll_5" ComponentId="{E9986C9E-67C8-4126-A304-9A22D24A3BC7}" Directory_="bin_Dir" Attributes="256" KeyPath="System.Composition.Runtime.dll_5"/>
     <ROW Component="System.Composition.TypedParts.dll_1" ComponentId="{EC25EFC7-93B5-49B8-88AA-0A94ECE935F9}" Directory_="APPDIR" Attributes="256" KeyPath="System.Composition.TypedParts.dll_1"/>
     <ROW Component="System.Composition.TypedParts.dll_5" ComponentId="{A5991169-3FE4-471D-8B9F-A98B94120FF3}" Directory_="bin_Dir" Attributes="256" KeyPath="System.Composition.TypedParts.dll_5"/>
+    <ROW Component="System.Configuration.ConfigurationManager.dll" ComponentId="{D7AD2012-9C45-44E4-B2AD-16867A8B2B70}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Configuration.ConfigurationManager.dll"/>
     <ROW Component="System.Drawing.Common.dll" ComponentId="{FB8E0761-69C1-409A-88A5-A093F773D038}" Directory_="net6.0_Dir" Attributes="256" KeyPath="System.Drawing.Common.dll"/>
     <ROW Component="System.Drawing.Common.dll_1" ComponentId="{2FF8DA4A-840A-467F-A12A-2EA4332D2A6F}" Directory_="net6.0_1_Dir" Attributes="256" KeyPath="System.Drawing.Common.dll_1"/>
     <ROW Component="System.Drawing.Common.dll_13" ComponentId="{A0B052BB-0F1A-49F7-92B3-0AEEA2266322}" Directory_="bin_Dir" Attributes="256" KeyPath="System.Drawing.Common.dll_13"/>
@@ -390,8 +396,13 @@
     <ROW Component="System.Resources.Extensions.dll_6" ComponentId="{41686767-0A2C-4AD4-83C9-C7169E417F30}" Directory_="APPDIR" Attributes="256" KeyPath="System.Resources.Extensions.dll_6"/>
     <ROW Component="System.Runtime.CompilerServices.Unsafe.dll_4" ComponentId="{1AB38C3B-DC16-4FAA-884C-0EA9A2958257}" Directory_="APPDIR" Attributes="256" KeyPath="System.Runtime.CompilerServices.Unsafe.dll_4"/>
     <ROW Component="System.Runtime.InteropServices.APIs.dll" ComponentId="{BF0BD6B6-E64B-4ED7-90C6-A3900BC090AF}" Directory_="APPDIR" Attributes="256" KeyPath="System.Runtime.InteropServices.APIs.dll"/>
+    <ROW Component="System.Security.Cryptography.ProtectedData.dll" ComponentId="{2323932E-9916-4EFF-A541-795E27A82FF2}" Directory_="net6.0_1_Dir" Attributes="0" KeyPath="System.Security.Cryptography.ProtectedData.dll"/>
+    <ROW Component="System.Security.Cryptography.ProtectedData.dll_1" ComponentId="{D617D9A2-51AB-41ED-A5DA-2639F562B2AE}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Security.Cryptography.ProtectedData.dll_1"/>
+    <ROW Component="System.Security.Permissions.dll" ComponentId="{FFD3E0FD-C862-4860-92E8-65A5727CED20}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Security.Permissions.dll"/>
     <ROW Component="System.Text.Encoding.CodePages.dll_6" ComponentId="{3FCB4354-BF05-445A-9025-1CD26EA3D60D}" Directory_="APPDIR" Attributes="256" KeyPath="System.Text.Encoding.CodePages.dll_6"/>
     <ROW Component="System.Text.Encodings.Web.dll" ComponentId="{42FC3573-00B8-41B0-AE43-2052A550C455}" Directory_="APPDIR" Attributes="256" KeyPath="System.Text.Encodings.Web.dll"/>
+    <ROW Component="System.Windows.Extensions.dll" ComponentId="{867D6714-0E49-4401-81E8-29605B8BA165}" Directory_="net6.0_1_Dir" Attributes="0" KeyPath="System.Windows.Extensions.dll"/>
+    <ROW Component="System.Windows.Extensions.dll_1" ComponentId="{C47CF8DA-3F8F-49E1-97A9-9C55EAB1D8C0}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Windows.Extensions.dll_1"/>
     <ROW Component="System.Windows.Forms.DataGridView.dll" ComponentId="{0042629F-1D15-48FF-8D0A-6EF08F56381D}" Directory_="APPDIR" Attributes="256" KeyPath="System.Windows.Forms.DataGridView.dll"/>
     <ROW Component="System.Windows.Forms.TabControl.dll" ComponentId="{44DACCB1-A234-4C92-A226-ACA00CDC595D}" Directory_="APPDIR" Attributes="256" KeyPath="System.Windows.Forms.TabControl.dll"/>
     <ROW Component="System.Windows.Forms.ThemeColorPicker.dll" ComponentId="{B602F318-9812-49D7-8DCE-385FF4BAD8DF}" Directory_="APPDIR" Attributes="256" KeyPath="System.Windows.Forms.ThemeColorPicker.dll"/>
@@ -875,6 +886,17 @@
     <ROW File="tissue_morphology.cdf_1" Component_="FULLMS_centriod_CHCA_20210819CleanSample616x404.cdf" FileName="TISSUE~1.CDF|tissue_morphology.cdf" Attributes="0" SourcePath="..\..\..\DATA\test\PANOMIX\tissue_morphology.cdf" SelfReg="false"/>
     <ROW File="pubchem.R" Component_="buildMSIIndex.R" FileName="pubchem.R" Attributes="0" SourcePath="..\rstudio\pipeline\pubchem.R" SelfReg="false"/>
     <ROW File="ggplot_ionStatMSI.R" Component_="ggplot2.R" FileName="GGPLOT~1.R|ggplot_ionStatMSI.R" Attributes="0" SourcePath="..\rstudio\pipeline\ggplot\ggplot_ionStatMSI.R" SelfReg="false"/>
+    <ROW File="System.Security.Cryptography.ProtectedData.dll" Component_="System.Security.Cryptography.ProtectedData.dll" FileName="SYSTEM~2.DLL|System.Security.Cryptography.ProtectedData.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll" SelfReg="false"/>
+    <ROW File="System.Windows.Extensions.dll" Component_="System.Windows.Extensions.dll" FileName="SYSTEM~3.DLL|System.Windows.Extensions.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\runtimes\win\lib\net6.0\System.Windows.Extensions.dll" SelfReg="false"/>
+    <ROW File="System.Configuration.ConfigurationManager.dll" Component_="System.Configuration.ConfigurationManager.dll" FileName="SYSTEM~8.DLL|System.Configuration.ConfigurationManager.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\System.Configuration.ConfigurationManager.dll" SelfReg="false"/>
+    <ROW File="System.Security.Cryptography.ProtectedData.dll_1" Component_="System.Security.Cryptography.ProtectedData.dll_1" FileName="SYSTEM~9.DLL|System.Security.Cryptography.ProtectedData.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\System.Security.Cryptography.ProtectedData.dll" SelfReg="false"/>
+    <ROW File="System.Security.Permissions.dll" Component_="System.Security.Permissions.dll" FileName="SYSTE~10.DLL|System.Security.Permissions.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\System.Security.Permissions.dll" SelfReg="false"/>
+    <ROW File="System.Windows.Extensions.dll_1" Component_="System.Windows.Extensions.dll_1" FileName="SYSTE~11.DLL|System.Windows.Extensions.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\System.Windows.Extensions.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Data.IO.SQLite3.dll" Component_="Microsoft.VisualBasic.Data.IO.SQLite3.dll" FileName="MICRO~22.DLL|Microsoft.VisualBasic.Data.IO.SQLite3.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Data.IO.SQLite3.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.MIME.application.xml.dll_1" Component_="Microsoft.VisualBasic.MIME.application.xml.dll_1" FileName="MICRO~23.DLL|Microsoft.VisualBasic.MIME.application.xml.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.MIME.application.xml.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Data.IO.HDF5.dll" Component_="Microsoft.VisualBasic.Data.IO.HDF5.dll" FileName="MICRO~51.DLL|Microsoft.VisualBasic.Data.IO.HDF5.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Data.IO.HDF5.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Data.IO.SQLite3.dll_1" Component_="Microsoft.VisualBasic.Data.IO.SQLite3.dll_1" FileName="MICRO~52.DLL|Microsoft.VisualBasic.Data.IO.SQLite3.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Data.IO.SQLite3.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Data.IO.SQLite3.dll_2" Component_="Microsoft.VisualBasic.Data.IO.SQLite3.dll_2" FileName="MICRO~62.DLL|Microsoft.VisualBasic.Data.IO.SQLite3.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.IO.SQLite3.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -1356,6 +1378,17 @@
     <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.dll"/>
     <ROW Feature_="MainFeature" Component_="ggplot2.R"/>
     <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="System.Security.Cryptography.ProtectedData.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Windows.Extensions.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Configuration.ConfigurationManager.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Security.Cryptography.ProtectedData.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="System.Security.Permissions.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Windows.Extensions.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.IO.SQLite3.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MIME.application.xml.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.IO.HDF5.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.IO.SQLite3.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.IO.SQLite3.dll_2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
