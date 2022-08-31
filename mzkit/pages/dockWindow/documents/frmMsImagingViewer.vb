@@ -184,6 +184,7 @@ Public Class frmMsImagingViewer
                 End If
 
                 HEMap = New HEMapTools
+                HEMap.Show(VisualStudio.DockPanel)
                 VisualStudio.Dock(HEMap, DockState.DockRight)
             End If
         End Using
