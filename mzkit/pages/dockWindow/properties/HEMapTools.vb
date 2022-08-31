@@ -3,6 +3,7 @@ Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 
 Public Class HEMapTools
 
@@ -48,7 +49,14 @@ Public Class HEMapTools
     Private Sub ColorComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ColorComboBox1.SelectedIndexChanged
         If ColorComboBox1.SelectedIndex > -1 Then
             Dim color As Color = ColorComboBox1.SelectedItem
+            Dim key As String = color.ToHtmlColor
+            Dim layer As PixelData() = heatmap.GetHeatMapLayer(, channel:=key)
 
+            If layer.IsNullOrEmpty Then
+                Call MyApplication.host.warning($"No heatmap scanning result of '{key}', please run heatmap scanning and then try again...")
+            Else
+                Call WindowModules.viewer.BlendingHEMap(layer, hemap.Size)
+            End If
         End If
     End Sub
 

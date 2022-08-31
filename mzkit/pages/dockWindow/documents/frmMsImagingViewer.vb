@@ -80,6 +80,7 @@ Imports ControlLibrary
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Math2D.MarchingSquares
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
@@ -1146,6 +1147,25 @@ Public Class frmMsImagingViewer
         rendering()
 
         Call MyApplication.host.showStatusMessage("Rendering Complete!", My.Resources.preferences_system_notifications)
+    End Sub
+
+    Public Sub BlendingHEMap(layer As HeatMap.PixelData(), dimensions As Size)
+        Dim blender As New HeatMapBlender(layer, dimensions, params)
+
+        Me.blender = blender
+        Me.rendering =
+            Sub()
+                Call MyApplication.RegisterPlot(
+                    Sub(args)
+                        Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
+
+                        PixelSelector1.SetMsImagingOutput(image, dimensions, blender.dotsize, params.colors, {0, 1}, params.mapLevels)
+                        PixelSelector1.BackColor = params.background
+                        PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
+                    End Sub)
+            End Sub
+
+        Call rendering()
     End Sub
 
     ''' <summary>
