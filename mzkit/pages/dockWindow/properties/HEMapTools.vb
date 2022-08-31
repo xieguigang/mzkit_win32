@@ -61,13 +61,40 @@ Public Class HEMapTools
                 Call WindowModules.viewer.BlendingHEMap(layer, heatmap_dims)
 
                 Dim pixels = layer.Where(Function(p) p.Scale > 0).ToArray
-                Dim rsd As Double = If(pixels.Length = 0, 0, pixels.Select(Function(p) p.Scale).RSD)
+                Dim rsd As Double = layer.Select(Function(p) p.Scale).RSD
 
                 TextBox1.Text =
                     $"cells: {pixels.Length}/{layer.Length}" & vbCrLf &
                     $"RSD: {(rsd * 100).ToString("F2")}"
             End If
         End If
+    End Sub
+
+    ''' <summary>
+    ''' view all channels
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
+        If heatmap.IsNullOrEmpty Then
+            Call MyApplication.host.warning("No heatmap layer data was scanned!")
+            Return
+        End If
+
+        Dim layer As PixelData() = heatmap _
+            .Select(Function(p)
+                        Return New PixelData(p.ScaleX, p.ScaleY, p.layers.Values.Select(Function(a) a.Density).Max)
+                    End Function) _
+            .ToArray
+
+        Call WindowModules.viewer.BlendingHEMap(layer, heatmap_dims)
+
+        Dim pixels = layer.Where(Function(p) p.Scale > 0).ToArray
+        Dim rsd As Double = layer.Select(Function(p) p.Scale).RSD
+
+        TextBox1.Text =
+            $"cells: {pixels.Length}/{layer.Length}" & vbCrLf &
+            $"RSD: {(rsd * 100).ToString("F2")}"
     End Sub
 
     Private Sub hideBox()
@@ -187,14 +214,5 @@ Public Class HEMapTools
 
     Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
         WindowModules.viewer.PixelSelector1.SetMsImagingOutput(WindowModules.viewer.PixelSelector1.HEMap, WindowModules.viewer.PixelSelector1.HEMap.Size, New Size(1, 1), Drawing2D.Colors.ScalerPalette.Jet, {0, 255}, 120)
-    End Sub
-
-    ''' <summary>
-    ''' view all channels
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
-
     End Sub
 End Class
