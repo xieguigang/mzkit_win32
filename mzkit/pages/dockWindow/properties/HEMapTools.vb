@@ -144,6 +144,9 @@ Public Class HEMapTools
         WindowModules.viewer.DrawHeMapRegion = False
         WindowModules.viewer.StartNewPolygon()
         WindowModules.viewer.TogglePolygonMode()
+        ribbonItems.ButtonAddNewPolygon.BooleanValue = False
+        ' clear content
+        WindowModules.viewer.PixelSelector1.GetPolygons(popAll:=True).ToArray
     End Sub
 
     ''' <summary>
