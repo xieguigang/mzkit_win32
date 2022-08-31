@@ -46,6 +46,7 @@ Public Class HEMapTools
             Sub(x, y, pixel)
                 PictureBox1.BackColor = pixel
             End Sub
+        closePolygonEditor()
         GroupBox1.Visible = True
     End Sub
 
@@ -68,6 +69,8 @@ Public Class HEMapTools
                     $"RSD: {(rsd * 100).ToString("F2")}"
             End If
         End If
+
+        closePolygonEditor()
     End Sub
 
     ''' <summary>
@@ -131,6 +134,15 @@ Public Class HEMapTools
     ''' <param name="e"></param>
     Private Sub LinkLabel4_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel4.LinkClicked
         WindowModules.viewer.DrawHeMapRegion = True
+        RibbonEvents.ribbonItems.ButtonTogglePolygon.BooleanValue = True
+        WindowModules.viewer.TogglePolygonMode()
+        WindowModules.viewer.StartNewPolygon()
+    End Sub
+
+    Private Sub closePolygonEditor()
+        RibbonEvents.ribbonItems.ButtonTogglePolygon.BooleanValue = False
+        WindowModules.viewer.DrawHeMapRegion = False
+        WindowModules.viewer.StartNewPolygon()
         WindowModules.viewer.TogglePolygonMode()
     End Sub
 
@@ -145,6 +157,8 @@ Public Class HEMapTools
         If colors.IsNullOrEmpty Then
             Call MyApplication.host.warning("No color channels!")
             Return
+        Else
+            Call closePolygonEditor()
         End If
 
         Dim grid As Cell() = RscriptProgressTask.ScanBitmap(hemap, colors)

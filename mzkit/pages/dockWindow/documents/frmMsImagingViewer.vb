@@ -552,7 +552,7 @@ Public Class frmMsImagingViewer
         PixelSelector1.OnAddVertexMenuItemClick()
     End Sub
 
-    Private Sub StartNewPolygon()
+    Friend Sub StartNewPolygon()
         Call MovePolygonMode()
         Call AddNewPolygonMode()
 
