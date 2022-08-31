@@ -1150,6 +1150,10 @@ Public Class frmMsImagingViewer
     End Sub
 
     Public Sub BlendingHEMap(layer As HeatMap.PixelData(), dimensions As Size)
+        If params Is Nothing Then
+            params = MsImageProperty.Empty(dimensions)
+        End If
+
         Dim blender As New HeatMapBlender(layer, dimensions, params)
 
         Me.blender = blender

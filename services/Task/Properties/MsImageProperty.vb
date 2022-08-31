@@ -161,6 +161,18 @@ Public Class MsImageProperty
         instrument = If(sourceFile.ExtensionSuffix("csv", "slx"), "Bruker", "Thermo Fisher")
     End Sub
 
+    Public Shared Function Empty(dimension As Size) As MsImageProperty
+        Dim data As New Dictionary(Of String, String) From {
+            {"scan_x", dimension.Width},
+            {"scan_y", dimension.Height},
+            {"uuid", Now.ToString.MD5},
+            {"fileSize", "0B"},
+            {"source", "n/a"}
+        }
+
+        Return New MsImageProperty(data)
+    End Function
+
     Public Sub Reset(MsiDim As Size, UUID As String, fileSize As String)
         _scan_x = MsiDim.Width
         _scan_y = MsiDim.Height

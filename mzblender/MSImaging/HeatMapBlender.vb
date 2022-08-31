@@ -8,7 +8,7 @@ Public Class HeatMapBlender : Inherits MSImagingBlender
 
     Public ReadOnly Property dotsize As Size
         Get
-            Return New Size(params.pixel_width, params.pixel_height)
+            Return New Size(1, 1)
         End Get
     End Property
 
