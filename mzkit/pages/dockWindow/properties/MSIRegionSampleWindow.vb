@@ -111,27 +111,10 @@ Public Class MSIRegionSampleWindow
     Public Sub RenderLayer(canvas As PixelSelector)
         Dim picCanvas As Size = canvas.Size
         Dim layerSize As Size = canvas.dimension_size
-        Dim layer As New Bitmap(canvas.dimension_size.Width, canvas.dimension_size.Height, format:=PixelFormat.Format32bppArgb)
-        Dim g As Graphics = Graphics.FromImage(layer)
-        Dim dotSize As New Size(1, 1)
         Dim alphaLevel As Double = Me.alpha / 100
+        Dim layer As Image = LayerRender.Draw(GetRegions(dimension), layerSize, alphaLevel, dotSize:=1)
 
         Me.canvas = canvas
-
-        g.CompositingQuality = CompositingQuality.HighQuality
-        g.InterpolationMode = InterpolationMode.HighQualityBilinear
-        g.Clear(Color.Transparent)
-
-        For Each region As TissueRegion In GetRegions(dimension)
-            Dim fill As New SolidBrush(region.color.Alpha(255 * alphaLevel))
-
-            For Each p As Point In region.points
-                Call g.FillRectangle(fill, New Rectangle(p, dotSize))
-            Next
-        Next
-
-        g.Flush()
-        g.Dispose()
 
         canvas.tissue_layer = layer
         canvas.RedrawCanvas()

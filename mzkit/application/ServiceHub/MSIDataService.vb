@@ -378,14 +378,24 @@ Namespace ServiceHub
 
         Private Sub MSI_pipe_Finish(exitCode As Integer) Handles MSI_pipe.Finish
             If exitCode <> 0 Then
-                MSI_pipe = Nothing
-                MSI_service = -1
-                taskHost.Abort()
+                If taskHost IsNot Nothing Then
+                    Try
+                        Call taskHost.Abort()
+                    Catch ex As Exception
+
+                    End Try
+                End If
+
                 MSI_pipe_SetMessage("the MS-imaging backend service panic...")
                 MyApplication.host.showStatusMessage("the MS-imaging backend service panic...", My.Resources.StatusAnnotations_Warning_32xLG_color)
 
-                ' detach message event handler
-                RemoveHandler MSI_pipe.SetMessage, AddressOf MSI_pipe_SetMessage
+                If MSI_pipe IsNot Nothing Then
+                    ' detach message event handler
+                    RemoveHandler MSI_pipe.SetMessage, AddressOf MSI_pipe_SetMessage
+                End If
+
+                MSI_pipe = Nothing
+                MSI_service = -1
             End If
         End Sub
     End Class

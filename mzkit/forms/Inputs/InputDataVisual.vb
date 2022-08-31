@@ -212,7 +212,7 @@ Public Class InputDataVisual
             plot = doGeneralPlot(x, getVector)
         End If
 
-        MyApplication.host.mzkitTool.PictureBox1.BackgroundImage = plot
+        MyApplication.host.mzkitTool.ShowPlotImage(plot, ImageLayout.Zoom)
         MyApplication.host.ShowMzkitToolkit()
     End Sub
 

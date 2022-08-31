@@ -42,7 +42,7 @@ Module BackgroundTask
     <ExportAPI("read.tissue_regions")>
     Public Function readTissues(file As String) As TissueRegion()
         Using buffer As Stream = file.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
-            Return buffer.ReadTissueMorphology.ToArray
+            Return buffer.ReadTissueMorphology
         End Using
     End Function
 

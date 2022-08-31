@@ -116,7 +116,7 @@ Public Class MolecularNetworking : Implements ISaveSettings, IPageSettings
     End Sub
 
     Public Sub ShowPage() Implements IPageSettings.ShowPage
-        Call MyApplication.host.ShowPage(MyApplication.host.mzkitMNtools)
         Call MyApplication.host.ShowMzkitToolkit()
+        Call MyApplication.host.ShowPage(MyApplication.host.mzkitMNtools)
     End Sub
 End Class

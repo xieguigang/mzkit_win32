@@ -313,8 +313,21 @@ UseCheckedList:
 
         Using cdf As New netCDFReader(firstFile)
             If Not {"mz", "intensity", "x", "y"}.All(AddressOf cdf.dataVariableExists) Then
-                ' invalid format
-                Call MyApplication.host.showStatusMessage("Invalid cdf file format! [mz, intensity, x, y] data vector should exists inside this cdf file!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                If cdf.IsTissueMorphologyCDF Then
+                    Dim regions = cdf.ReadTissueMorphology.ToArray
+                    Dim dims As New Size With {
+                        .Width = regions.Select(Function(a) a.points.Select(Function(i) i.X)).IteratesALL.Max,
+                        .Height = regions.Select(Function(a) a.points.Select(Function(i) i.Y)).IteratesALL.Max
+                    }
+                    Dim Rplot As Image = LayerRender.Draw(regions, dims, alphaLevel:=1, dotSize:=3)
+
+                    Call MyApplication.host.mzkitTool.ShowPlotImage(Rplot, ImageLayout.Zoom)
+                    Call MyApplication.host.ShowMzkitToolkit()
+                Else
+                    ' invalid format
+                    Call MyApplication.host.showStatusMessage("Invalid cdf file format! [mz, intensity, x, y] data vector should exists inside this cdf file!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                End If
+
                 Return
             End If
 
@@ -503,8 +516,8 @@ UseCheckedList:
         If image Is Nothing Then
             MyApplication.host.showStatusMessage("Error while run ggplot...", My.Resources.StatusAnnotations_Warning_32xLG_color)
         Else
+            MyApplication.host.mzkitTool.ShowPlotImage(image, ImageLayout.Zoom)
             MyApplication.host.ShowMzkitToolkit()
-            MyApplication.host.mzkitTool.ShowPlotImage(image)
         End If
     End Sub
 
@@ -536,8 +549,8 @@ UseCheckedList:
         If image Is Nothing Then
             MyApplication.host.showStatusMessage("Error while run signal intensity histogram plot...", My.Resources.StatusAnnotations_Warning_32xLG_color)
         Else
+            MyApplication.host.mzkitTool.ShowPlotImage(image, ImageLayout.Zoom)
             MyApplication.host.ShowMzkitToolkit()
-            MyApplication.host.mzkitTool.ShowPlotImage(image)
         End If
     End Sub
 End Class
