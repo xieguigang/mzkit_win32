@@ -178,6 +178,8 @@ Public Class frmMsImagingViewer
                     If Not info Is Nothing Then
                         Call Me.Invoke(Sub() LoadRender(info, FilePath))
                         Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
+                        Call Me.Invoke(Sub() Call StartNewPolygon())
+                        Call Me.Invoke(Sub() Call sampleRegions.TurnUpsideDown(Me.PixelSelector1))
                     End If
 
                     Return 0

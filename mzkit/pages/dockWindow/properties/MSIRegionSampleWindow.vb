@@ -1,5 +1,6 @@
 ﻿Imports System.Drawing.Drawing2D
 Imports System.Drawing.Imaging
+Imports System.Globalization
 Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.mzkit_win32.My
@@ -32,6 +33,28 @@ Public Class MSIRegionSampleWindow
             .GroupBy(Function(a) $"{a.X},{a.Y}") _
             .Select(Function(a) a.First) _
             .ToArray
+    End Sub
+
+    Public Sub TurnUpsideDown(selector As PixelSelector)
+        dimension = selector.dimension_size
+        canvas = selector
+
+        For Each card As RegionSampleCard In FlowLayoutPanel1.Controls
+            If Not card.tissue Is Nothing Then
+                card.tissue.points = card.tissue.points _
+                    .Select(Function(p) New Point(p.X, dimension.Height - p.Y)) _
+                    .ToArray
+            Else
+                For Each region As Polygon2D In card.regions
+                    region.ypoints = region.ypoints _
+                        .Select(Function(y) dimension.Height - y) _
+                        .ToArray
+                    region.calculateBounds(region.xpoints, region.ypoints, region.length)
+                Next
+            End If
+        Next
+
+        Call updateLayerRendering()
     End Sub
 
     Public Overloads Sub LoadTissueMaps(tissues As TissueRegion(), canvas As PixelSelector)
