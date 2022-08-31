@@ -60,6 +60,7 @@
 #End Region
 
 Imports System.Threading
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
@@ -959,5 +960,36 @@ Public Class PageMzkitTools
             WindowModules.plotParams.params.width = .Width
             WindowModules.plotParams.params.height = .Height
         End With
+    End Sub
+
+    Private Sub SaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveToolStripMenuItem.Click
+        Call DataGridView1.SaveDataGrid("Export Matrix")
+    End Sub
+
+    Private Sub OpenInTableViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenInTableViewerToolStripMenuItem.Click
+        Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)
+        Dim matrix = DataGridView1
+
+        table.LoadTable(
+            Sub(grid)
+                For i As Integer = 0 To matrix.Columns.Count - 1
+                    Call grid.Columns.Add(matrix.Columns(i).HeaderText, GetType(Object))
+                Next
+
+                For j As Integer = 0 To matrix.Rows.Count - 1
+                    Dim rowObj = matrix.Rows(j)
+                    Dim row As New List(Of Object)
+
+                    For i As Integer = 0 To rowObj.Cells.Count - 1
+                        Call row.Add(rowObj.Cells(i).Value)
+                    Next
+
+                    If row.All(Function(o) o Is Nothing OrElse IsDBNull(o)) Then
+                        Continue For
+                    End If
+
+                    Call grid.Rows.Add(row.ToArray)
+                Next
+            End Sub)
     End Sub
 End Class

@@ -27,9 +27,9 @@ Public Class RegionSampleCard
         End Set
     End Property
 
-    Dim regions As Polygon2D()
-    Dim updateCallback As Action
-    Dim tissue As TissueRegion
+    Friend regions As Polygon2D()
+    Friend updateCallback As Action
+    Friend tissue As TissueRegion
 
     Public Function ExportTissueRegion(dimension As Size) As TissueRegion
         If Not tissue Is Nothing Then
@@ -64,7 +64,7 @@ Public Class RegionSampleCard
     End Sub
 
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
-        updateCallback()
+        ' updateCallback()
     End Sub
 
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked

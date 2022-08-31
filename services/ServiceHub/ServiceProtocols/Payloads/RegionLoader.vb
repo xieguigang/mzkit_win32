@@ -9,6 +9,15 @@ Public Class RegionLoader
     Public Property width As Integer
     Public Property height As Integer
 
+    Public ReadOnly Property empty As Boolean
+        Get
+            Return width = 0 OrElse
+                height = 0 OrElse
+                regions.IsNullOrEmpty OrElse
+                regions.All(Function(r) r.length = 0)
+        End Get
+    End Property
+
     Public Function Reload() As RegionLoader
         Return New RegionLoader With {
             .height = height,

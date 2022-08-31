@@ -85,11 +85,16 @@ Partial Class PageMzkitTools
         Me.CustomTabControl1 = New System.Windows.Forms.CustomTabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.OpenInTableViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CustomTabControl1.SuspendLayout()
         Me.TabPage5.SuspendLayout()
         Me.TabPage6.SuspendLayout()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'ImageList1
@@ -105,18 +110,19 @@ Partial Class PageMzkitTools
         Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PictureBox1.Location = New System.Drawing.Point(3, 3)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(1327, 477)
+        Me.PictureBox1.Size = New System.Drawing.Size(549, 451)
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.ContextMenuStrip = Me.ContextMenuStrip1
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.Location = New System.Drawing.Point(0, 0)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.Size = New System.Drawing.Size(1333, 483)
+        Me.DataGridView1.Size = New System.Drawing.Size(555, 457)
         Me.DataGridView1.TabIndex = 0
         '
         'CustomTabControl1
@@ -146,7 +152,7 @@ Partial Class PageMzkitTools
         Me.CustomTabControl1.Location = New System.Drawing.Point(0, 0)
         Me.CustomTabControl1.Name = "CustomTabControl1"
         Me.CustomTabControl1.SelectedIndex = 0
-        Me.CustomTabControl1.Size = New System.Drawing.Size(1341, 510)
+        Me.CustomTabControl1.Size = New System.Drawing.Size(563, 484)
         Me.CustomTabControl1.TabIndex = 14
         '
         'TabPage5
@@ -155,7 +161,7 @@ Partial Class PageMzkitTools
         Me.TabPage5.Location = New System.Drawing.Point(4, 23)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage5.Size = New System.Drawing.Size(1333, 483)
+        Me.TabPage5.Size = New System.Drawing.Size(555, 457)
         Me.TabPage5.TabIndex = 1
         Me.TabPage5.Text = "Plot Viewer"
         Me.TabPage5.UseVisualStyleBackColor = True
@@ -165,25 +171,51 @@ Partial Class PageMzkitTools
         Me.TabPage6.Controls.Add(Me.DataGridView1)
         Me.TabPage6.Location = New System.Drawing.Point(4, 23)
         Me.TabPage6.Name = "TabPage6"
-        Me.TabPage6.Size = New System.Drawing.Size(1333, 483)
+        Me.TabPage6.Size = New System.Drawing.Size(555, 457)
         Me.TabPage6.TabIndex = 2
         Me.TabPage6.Text = "Matrix Viewer"
         Me.TabPage6.UseVisualStyleBackColor = True
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenInTableViewerToolStripMenuItem, Me.ToolStripMenuItem1, Me.SaveToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(185, 76)
+        '
+        'OpenInTableViewerToolStripMenuItem
+        '
+        Me.OpenInTableViewerToolStripMenuItem.Image = CType(resources.GetObject("OpenInTableViewerToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.OpenInTableViewerToolStripMenuItem.Name = "OpenInTableViewerToolStripMenuItem"
+        Me.OpenInTableViewerToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
+        Me.OpenInTableViewerToolStripMenuItem.Text = "Open In Table Viewer"
+        '
+        'SaveToolStripMenuItem
+        '
+        Me.SaveToolStripMenuItem.Image = CType(resources.GetObject("SaveToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
+        Me.SaveToolStripMenuItem.Text = "Save"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(181, 6)
+        '
         'PageMzkitTools
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.Controls.Add(Me.CustomTabControl1)
         Me.DoubleBuffered = True
         Me.Name = "PageMzkitTools"
-        Me.Size = New System.Drawing.Size(1341, 510)
+        Me.Size = New System.Drawing.Size(563, 484)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.CustomTabControl1.ResumeLayout(False)
         Me.TabPage5.ResumeLayout(False)
         Me.TabPage6.ResumeLayout(False)
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -195,4 +227,8 @@ Partial Class PageMzkitTools
     Friend WithEvents CustomTabControl1 As CustomTabControl
     Friend WithEvents TabPage5 As TabPage
     Friend WithEvents TabPage6 As TabPage
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents OpenInTableViewerToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
+    Friend WithEvents SaveToolStripMenuItem As ToolStripMenuItem
 End Class

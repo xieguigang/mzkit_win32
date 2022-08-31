@@ -122,12 +122,14 @@ Public Class PixelSelector
     ''' the polygon has already been transform and scaled
     ''' </summary>
     ''' <returns></returns>
-    Public Iterator Function GetPolygons() As IEnumerable(Of Polygon2D)
+    Public Iterator Function GetPolygons(popAll As Boolean) As IEnumerable(Of Polygon2D)
         For Each model As Polygon In polygons
             Yield model.ToPixels(AddressOf getPoint)
         Next
 
-        Call polygons.Clear()
+        If popAll Then
+            Call polygons.Clear()
+        End If
     End Function
 
     'Sub polygonDemo()
