@@ -682,6 +682,12 @@
     <Compile Include="pages\dockWindow\frmDemo.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="pages\dockWindow\properties\HEMapTools.Designer.vb">
+      <DependentUpon>HEMapTools.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pages\dockWindow\properties\HEMapTools.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\properties\MSIRegionSampleWindow.Designer.vb">
       <DependentUpon>MSIRegionSampleWindow.vb</DependentUpon>
     </Compile>
@@ -1097,6 +1103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\frmVideoList.resx">
       <DependentUpon>frmVideoList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\properties\HEMapTools.resx">
+      <DependentUpon>HEMapTools.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\properties\MSIRegionSampleWindow.resx">
       <DependentUpon>MSIRegionSampleWindow.vb</DependentUpon>

@@ -105,6 +105,7 @@ Public Class frmMsImagingViewer
 
     Friend MSIservice As ServiceHub.MSIDataService
     Friend params As MsImageProperty
+    Friend HEMap As HEMapTools
 
     Public ReadOnly Property MimeType As ContentType() Implements IFileReference.MimeType
         Get
@@ -181,6 +182,9 @@ Public Class frmMsImagingViewer
                     ' just display hemap on the canvas
                     PixelSelector1.SetMsImagingOutput(PixelSelector1.HEMap, PixelSelector1.HEMap.Size, New Size(1, 1), Drawing2D.Colors.ScalerPalette.Jet, {0, 255}, 120)
                 End If
+
+                HEMap = New HEMapTools
+                VisualStudio.Dock(HEMap, DockState.DockRight)
             End If
         End Using
     End Sub
