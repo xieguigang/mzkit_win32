@@ -177,7 +177,7 @@ Public Class frmMsImagingViewer
             If file.ShowDialog = DialogResult.OK Then
                 PixelSelector1.HEMap = New Bitmap(file.FileName.LoadImage)
 
-                If Not blender Is Nothing Then
+                If blender IsNot Nothing AndAlso TypeOf blender IsNot HeatMapBlender Then
                     blender.HEMap = PixelSelector1.HEMap
                     rendering()
                 Else
