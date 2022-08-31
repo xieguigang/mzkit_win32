@@ -194,6 +194,9 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorComboBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="GCxGC\PeakSelector.Designer.vb">
       <DependentUpon>PeakSelector.vb</DependentUpon>
     </Compile>
