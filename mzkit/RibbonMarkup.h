@@ -1041,5 +1041,12 @@
 #define cmdButtonUpsideDown_TooltipDescription_RESID 60226
 #define cmdButtonUpsideDown_SmallImages_192__RESID 60227
 #define cmdButtonUpsideDown_LargeImages_192__RESID 60228
-#define InternalCmd2_LabelTitle_RESID 60229
-#define InternalCmd4_LabelTitle_RESID 60230
+#define cmdButtonLoadHEMap 203 
+#define cmdButtonLoadHEMap_LabelTitle_RESID 60229
+#define cmdButtonLoadHEMap_LabelDescription_RESID 60230
+#define cmdButtonLoadHEMap_TooltipTitle_RESID 60231
+#define cmdButtonLoadHEMap_TooltipDescription_RESID 60232
+#define cmdButtonLoadHEMap_SmallImages_192__RESID 60233
+#define cmdButtonLoadHEMap_LargeImages_192__RESID 60234
+#define InternalCmd2_LabelTitle_RESID 60235
+#define InternalCmd4_LabelTitle_RESID 60236
