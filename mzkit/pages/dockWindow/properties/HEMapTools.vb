@@ -152,10 +152,12 @@ Public Class HEMapTools
         If grid.IsNullOrEmpty Then
             MyApplication.host.warning("Heatmap scanning task error!")
         Else
-            heatmap = grid
+            heatmap = grid _
+                .Where(Function(i) polygons.Any(Function(r) r.inside(i.X, i.Y))) _
+                .ToArray
             heatmap_dims = New Size(
-                width:=(Aggregate cell In heatmap Into Max(cell.ScaleX)),
-                height:=(Aggregate cell In heatmap Into Max(cell.ScaleY))
+                width:=(Aggregate cell In grid Into Max(cell.ScaleX)),
+                height:=(Aggregate cell In grid Into Max(cell.ScaleY))
             )
         End If
     End Sub
