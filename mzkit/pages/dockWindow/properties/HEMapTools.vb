@@ -10,6 +10,7 @@ Public Class HEMapTools
     Dim polygons As New List(Of Polygon2D)
     Dim hemap As Bitmap
     Dim heatmap As Cell()
+    Dim heatmap_dims As Size
 
     Public Sub Add(regions As Polygon2D())
         polygons.AddRange(regions)
@@ -55,7 +56,7 @@ Public Class HEMapTools
             If layer.IsNullOrEmpty Then
                 Call MyApplication.host.warning($"No heatmap scanning result of '{key}', please run heatmap scanning and then try again...")
             Else
-                Call WindowModules.viewer.BlendingHEMap(layer, hemap.Size)
+                Call WindowModules.viewer.BlendingHEMap(layer, heatmap_dims)
             End If
         End If
     End Sub
@@ -116,6 +117,10 @@ Public Class HEMapTools
             MyApplication.host.warning("Heatmap scanning task error!")
         Else
             heatmap = grid
+            heatmap_dims = New Size(
+                width:=(Aggregate cell In heatmap Into Max(cell.X)),
+                height:=(Aggregate cell In heatmap Into Max(cell.Y))
+            )
         End If
     End Sub
 End Class
