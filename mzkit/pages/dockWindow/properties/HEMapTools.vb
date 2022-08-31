@@ -47,7 +47,7 @@ Public Class HEMapTools
     End Sub
 
     Private Sub ColorComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ColorComboBox1.SelectedIndexChanged
-        If ColorComboBox1.SelectedIndex > -1 Then
+        If ColorComboBox1.SelectedIndex > -1 AndAlso Not heatmap.IsNullOrEmpty Then
             Dim color As Color = ColorComboBox1.SelectedItem
             Dim key As String = color.ToHtmlColor
             Dim layer As PixelData() = heatmap.GetHeatMapLayer(, channel:=key)
