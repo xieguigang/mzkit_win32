@@ -173,7 +173,7 @@ Public Class frmMsImagingViewer
     Sub loadHEMap()
         Using file As New OpenFileDialog With {.Filter = "HE Stain Image(*.jpg;*.png;*.bmp)|*.jpg;*.png;*.bmp"}
             If file.ShowDialog = DialogResult.OK Then
-                PixelSelector1.HEMap = file.FileName.LoadImage
+                PixelSelector1.HEMap = New Bitmap(file.FileName.LoadImage)
 
                 If Not blender Is Nothing Then
                     blender.HEMap = PixelSelector1.HEMap
@@ -183,8 +183,12 @@ Public Class frmMsImagingViewer
                     PixelSelector1.SetMsImagingOutput(PixelSelector1.HEMap, PixelSelector1.HEMap.Size, New Size(1, 1), Drawing2D.Colors.ScalerPalette.Jet, {0, 255}, 120)
                 End If
 
-                HEMap = New HEMapTools
-                HEMap.Show(VisualStudio.DockPanel)
+                If HEMap Is Nothing Then
+                    HEMap = New HEMapTools
+                    HEMap.Show(VisualStudio.DockPanel)
+                    HEMap.DockState = DockState.Hidden
+                End If
+
                 VisualStudio.Dock(HEMap, DockState.DockRight)
             End If
         End Using
@@ -845,7 +849,13 @@ Public Class frmMsImagingViewer
         End If
     End Sub
 
-    Private Sub showPixel(x As Integer, y As Integer) Handles PixelSelector1.SelectPixel
+    Friend clickPixel As Action(Of Integer, Integer, Color)
+
+    Private Sub showPixel(x As Integer, y As Integer, color As Color) Handles PixelSelector1.SelectPixel
+        If Not clickPixel Is Nothing Then
+            clickPixel(x, y, color)
+            Return
+        End If
         If Not checkService() Then
             Return
         ElseIf WindowModules.MSIPixelProperty.DockState = DockState.Hidden Then
