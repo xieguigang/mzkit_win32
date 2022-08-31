@@ -226,9 +226,14 @@ Namespace ServiceHub
             }
             Dim buffer = BSON.GetBuffer(GetType(RegionLoader).GetJsonElement(payload, New JSONSerializerOptions))
             Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.ExtractRegionSample, buffer.ToArray))
+            Dim str As String = data.GetString(Encoding.UTF8)
 
-            Dim output As MsImageProperty = data _
-                .GetString(Encoding.UTF8) _
+            If str.StringEmpty OrElse Not str.StartsWith("{") Then
+                Call MyApplication.host.showStatusMessage(str, My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Return Nothing
+            End If
+
+            Dim output As MsImageProperty = str _
                 .LoadJSON(Of Dictionary(Of String, String)) _
                 .DoCall(Function(info)
                             Return New MsImageProperty(info)

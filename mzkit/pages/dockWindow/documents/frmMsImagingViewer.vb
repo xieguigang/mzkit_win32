@@ -80,6 +80,7 @@ Imports ControlLibrary
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.Math2D.MarchingSquares
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
@@ -761,12 +762,22 @@ Public Class frmMsImagingViewer
             Return
         End If
 
-        Dim regions = PixelSelector1.GetPolygons.ToArray
+        Dim regions = PixelSelector1 _
+            .GetPolygons(popAll:=False) _
+            .ToArray
 
-        Call StartNewPolygon()
+        If regions.Length = 0 Then
+            Call MyApplication.host.showStatusMessage("No region polygon data was found from polygon editor, draw some region polygon at first!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Return
+        End If
+
         Call frmTaskProgress.LoadData(
                 Function(msg As Action(Of String))
                     Dim info = MSIservice.ExtractRegionSample(regions, New Size(params.scan_x, params.scan_y))
+
+                    If info Is Nothing Then
+                        Return -1
+                    End If
 
                     Call Me.Invoke(Sub() LoadRender(info, FilePath))
                     Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))

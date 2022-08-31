@@ -181,6 +181,11 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Dim minX As Integer
         Dim minY As Integer
 
+        If regions.empty Then
+            Call RunSlavePipeline.SendMessage("No region data!")
+            Return New DataPipe("no region data!")
+        End If
+
         allPixels = allPixels _
             .Where(Function(i) regions.ContainsPixel(i.X, i.Y)) _
             .ToArray

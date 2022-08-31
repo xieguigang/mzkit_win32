@@ -87,7 +87,7 @@ Public Class MSIRegionSampleWindow
         dimension = selector.dimension_size
         canvas = selector
 
-        Call Add(selector.GetPolygons)
+        Call Add(selector.GetPolygons(popAll:=True))
     End Sub
 
     Private Sub Add(sample_group As IEnumerable(Of Polygon2D))
