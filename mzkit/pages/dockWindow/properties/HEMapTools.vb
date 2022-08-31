@@ -150,15 +150,26 @@ Public Class HEMapTools
                     Dim layers = heatmap(Scan0).layers.Keys.ToArray
 
                     If layers.Count > 0 Then
-                        line = line & "," & layers.Select(Function(t) $"{t}(pixels),{t}(density),{t}(ratio)").JoinBy(",")
+                        line = line &
+                            ",all(pixels),all(density),all(ratio)," &
+                            layers.Select(Function(t) $"{t}(pixels),{t}(density),{t}(ratio)").JoinBy(",")
                     End If
 
                     Call buffer.WriteLine(line)
 
                     For Each cell As Cell In heatmap
-                        line = {cell.X, cell.Y, cell.ScaleX, cell.ScaleY, cell.R, cell.G, cell.B, cell.Black.Pixels, cell.Black.Density, cell.Black.Ratio}.JoinBy(",")
+                        line = {
+                            cell.X, cell.Y, cell.ScaleX, cell.ScaleY,
+                            cell.R, cell.G, cell.B,
+                            cell.Black.Pixels, cell.Black.Density, cell.Black.Ratio
+                        }.JoinBy(",")
 
                         If layers.Count > 0 Then
+                            Dim allPixels = cell.layers.Values.Select(Function(a) a.Pixels).Max
+                            Dim allDensity = cell.layers.Values.Select(Function(a) a.Density).Max
+                            Dim allRatio = cell.layers.Values.Select(Function(a) a.Ratio).Max
+
+                            line = line & $",{allPixels},{allDensity},{allRatio}"
                             line = line & "," & layers _
                                 .Select(Function(t)
                                             Dim o = cell.layers(t)
@@ -176,5 +187,14 @@ Public Class HEMapTools
 
     Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
         WindowModules.viewer.PixelSelector1.SetMsImagingOutput(WindowModules.viewer.PixelSelector1.HEMap, WindowModules.viewer.PixelSelector1.HEMap.Size, New Size(1, 1), Drawing2D.Colors.ScalerPalette.Jet, {0, 255}, 120)
+    End Sub
+
+    ''' <summary>
+    ''' view all channels
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
+
     End Sub
 End Class
