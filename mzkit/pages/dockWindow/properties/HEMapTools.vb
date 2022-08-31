@@ -119,8 +119,8 @@ Public Class HEMapTools
         Else
             heatmap = grid
             heatmap_dims = New Size(
-                width:=(Aggregate cell In heatmap Into Max(cell.X)),
-                height:=(Aggregate cell In heatmap Into Max(cell.Y))
+                width:=(Aggregate cell In heatmap Into Max(cell.ScaleX)),
+                height:=(Aggregate cell In heatmap Into Max(cell.ScaleY))
             )
         End If
     End Sub
