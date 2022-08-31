@@ -143,6 +143,7 @@ Public Class frmMsImagingViewer
         AddHandler RibbonEvents.ribbonItems.ButtonImportsTissueMorphology.ExecuteEvent, Sub() Call ImportsTissueMorphology()
         AddHandler RibbonEvents.ribbonItems.ButtonExportRegions.ExecuteEvent, Sub() Call ExportRegions()
         AddHandler RibbonEvents.ribbonItems.ButtonMSISearchPubChem.ExecuteEvent, Sub() Call SearchPubChem()
+        AddHandler RibbonEvents.ribbonItems.ButtonLoadHEMap.ExecuteEvent, Sub() Call loadHEMap()
 
         AddHandler RibbonEvents.ribbonItems.CheckShowMapLayer.ExecuteEvent,
             Sub()
@@ -166,6 +167,22 @@ Public Class frmMsImagingViewer
 
         sampleRegions.Show(MyApplication.host.dockPanel)
         sampleRegions.DockState = DockState.Hidden
+    End Sub
+
+    Sub loadHEMap()
+        Using file As New OpenFileDialog With {.Filter = "HE Stain Image(*.jpg;*.png;*.bmp)|*.jpg;*.png;*.bmp"}
+            If file.ShowDialog = DialogResult.OK Then
+                PixelSelector1.HEMap = file.FileName.LoadImage
+
+                If Not blender Is Nothing Then
+                    blender.HEMap = PixelSelector1.HEMap
+                    rendering()
+                Else
+                    ' just display hemap on the canvas
+                    PixelSelector1.SetMsImagingOutput(PixelSelector1.HEMap, PixelSelector1.HEMap.Size, New Size(1, 1), Drawing2D.Colors.ScalerPalette.Jet, {0, 255}, 120)
+                End If
+            End If
+        End Using
     End Sub
 
     Sub TurnUpsideDown()

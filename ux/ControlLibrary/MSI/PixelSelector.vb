@@ -100,6 +100,8 @@ Public Class PixelSelector
     Private ismouseDown As Boolean = False
     Private algorithmIndex As Integer = 1
 
+    Public Property HEMap As Image
+
     Public Sub New()
 
         ' This call is required by the designer.
