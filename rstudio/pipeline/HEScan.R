@@ -11,7 +11,7 @@ const savejson as string = ?"--save"     || NULL;
 const layers as string   = strsplit(channels, "[;,\/]") |> unlist();
 const grid = map
 |> readImage()
-|> tissue::scan_tissue(colors = layers, tolerance = 30)
+|> tissue::scan_tissue(colors = layers, tolerance = 45)
 ;
 
 grid
