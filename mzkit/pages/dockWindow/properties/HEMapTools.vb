@@ -6,6 +6,7 @@ Public Class HEMapTools
 
     Private Sub HEMapTools_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TabText = "HEMap Tools"
+        hideBox()
     End Sub
 
     ''' <summary>
@@ -32,14 +33,18 @@ Public Class HEMapTools
         End If
     End Sub
 
+    Private Sub hideBox()
+        WindowModules.viewer.clickPixel = Nothing
+        GroupBox1.Visible = False
+    End Sub
+
     ''' <summary>
     ''' cancel
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub LinkLabel3_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel3.LinkClicked
-        WindowModules.viewer.clickPixel = Nothing
-        GroupBox1.Visible = False
+        Call hideBox()
     End Sub
 
     ''' <summary>
@@ -48,8 +53,7 @@ Public Class HEMapTools
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
-        WindowModules.viewer.clickPixel = Nothing
-        GroupBox1.Visible = False
+        Call hideBox()
 
         If Not PictureBox1.BackColor.IsTransparent Then
             Call ColorComboBox1.Items.Add(PictureBox1.BackColor)

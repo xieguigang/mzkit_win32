@@ -27,9 +27,9 @@ Partial Class HEMapTools
         Me.Label1 = New System.Windows.Forms.Label()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
         Me.LinkLabel3 = New System.Windows.Forms.LinkLabel()
+        Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -41,7 +41,7 @@ Partial Class HEMapTools
         Me.ColorComboBox1.FormattingEnabled = True
         Me.ColorComboBox1.Location = New System.Drawing.Point(77, 15)
         Me.ColorComboBox1.Name = "ColorComboBox1"
-        Me.ColorComboBox1.Size = New System.Drawing.Size(155, 21)
+        Me.ColorComboBox1.Size = New System.Drawing.Size(107, 21)
         Me.ColorComboBox1.TabIndex = 0
         '
         'Label1
@@ -70,38 +70,38 @@ Partial Class HEMapTools
         Me.GroupBox1.Controls.Add(Me.PictureBox1)
         Me.GroupBox1.Location = New System.Drawing.Point(15, 87)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(217, 100)
+        Me.GroupBox1.Size = New System.Drawing.Size(169, 100)
         Me.GroupBox1.TabIndex = 3
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Get Color Channel"
         '
-        'PictureBox1
+        'LinkLabel3
         '
-        Me.PictureBox1.Location = New System.Drawing.Point(14, 24)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(94, 65)
-        Me.PictureBox1.TabIndex = 0
-        Me.PictureBox1.TabStop = False
+        Me.LinkLabel3.AutoSize = True
+        Me.LinkLabel3.Location = New System.Drawing.Point(101, 65)
+        Me.LinkLabel3.Name = "LinkLabel3"
+        Me.LinkLabel3.Size = New System.Drawing.Size(40, 13)
+        Me.LinkLabel3.TabIndex = 2
+        Me.LinkLabel3.TabStop = True
+        Me.LinkLabel3.Text = "Cancel"
         '
         'LinkLabel2
         '
         Me.LinkLabel2.AutoSize = True
-        Me.LinkLabel2.Location = New System.Drawing.Point(129, 34)
+        Me.LinkLabel2.Location = New System.Drawing.Point(101, 35)
         Me.LinkLabel2.Name = "LinkLabel2"
         Me.LinkLabel2.Size = New System.Drawing.Size(22, 13)
         Me.LinkLabel2.TabIndex = 1
         Me.LinkLabel2.TabStop = True
         Me.LinkLabel2.Text = "OK"
         '
-        'LinkLabel3
+        'PictureBox1
         '
-        Me.LinkLabel3.AutoSize = True
-        Me.LinkLabel3.Location = New System.Drawing.Point(129, 64)
-        Me.LinkLabel3.Name = "LinkLabel3"
-        Me.LinkLabel3.Size = New System.Drawing.Size(40, 13)
-        Me.LinkLabel3.TabIndex = 2
-        Me.LinkLabel3.TabStop = True
-        Me.LinkLabel3.Text = "Cancel"
+        Me.PictureBox1.Location = New System.Drawing.Point(14, 24)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(81, 65)
+        Me.PictureBox1.TabIndex = 0
+        Me.PictureBox1.TabStop = False
         '
         'HEMapTools
         '
