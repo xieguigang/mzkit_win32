@@ -106,6 +106,7 @@ Public Class frmMsImagingViewer
     Friend MSIservice As ServiceHub.MSIDataService
     Friend params As MsImageProperty
     Friend HEMap As HEMapTools
+    Friend DrawHeMapRegion As Boolean = False
 
     Public ReadOnly Property MimeType As ContentType() Implements IFileReference.MimeType
         Get
@@ -187,6 +188,8 @@ Public Class frmMsImagingViewer
                     HEMap = New HEMapTools
                     HEMap.Show(VisualStudio.DockPanel)
                     HEMap.DockState = DockState.Hidden
+                Else
+                    HEMap.Clear()
                 End If
 
                 VisualStudio.Dock(HEMap, DockState.DockRight)
@@ -638,11 +641,15 @@ Public Class frmMsImagingViewer
         PixelSelector1.SelectPolygonMode = RibbonEvents.ribbonItems.ButtonTogglePolygon.BooleanValue
 
         If PixelSelector1.SelectPolygonMode Then
-            Call MyApplication.host.Ribbon1.SetModes(1)
-            Call MyApplication.host.showStatusMessage("Toggle edit polygon for your MS-imaging data!")
+            If Not DrawHeMapRegion Then
+                Call MyApplication.host.Ribbon1.SetModes(1)
+                Call MyApplication.host.showStatusMessage("Toggle edit polygon for your MS-imaging data!")
 
-            If sampleRegions.DockState = DockState.Hidden Then
-                sampleRegions.DockState = DockState.DockRight
+                If sampleRegions.DockState = DockState.Hidden Then
+                    sampleRegions.DockState = DockState.DockRight
+                End If
+            Else
+                Call MyApplication.host.showStatusMessage("Select region to analysis by draw a polygon!")
             End If
 
             PixelSelector1.Cursor = Cursors.Default
@@ -1284,7 +1291,16 @@ Public Class frmMsImagingViewer
 
     Private Sub AddSampleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddSampleToolStripMenuItem.Click
         If PixelSelector1.HasRegionSelection Then
-            Call sampleRegions.Add(PixelSelector1)
+            If Not DrawHeMapRegion Then
+                Call sampleRegions.Add(PixelSelector1)
+            Else
+                Dim regions = PixelSelector1 _
+                  .GetPolygons(popAll:=True) _
+                  .ToArray
+
+                Call HEMap.Add(regions)
+            End If
+
             Call StartNewPolygon()
         Else
             Call MyApplication.host.showStatusMessage("No sample region was selected!", My.Resources.StatusAnnotations_Warning_32xLG_color)

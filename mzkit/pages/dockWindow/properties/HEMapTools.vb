@@ -1,8 +1,22 @@
 ﻿Imports WeifenLuo.WinFormsUI.Docking
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Math2D
 
 Public Class HEMapTools
+
+    Dim polygons As New List(Of Polygon2D)
+
+    Public Sub Add(regions As Polygon2D())
+        polygons.AddRange(regions)
+        TextBox1.Text = $"mark {polygons.Count} polygon regions"
+    End Sub
+
+    Public Sub Clear()
+        Call ColorComboBox1.Items.Clear()
+        Call polygons.Clear()
+        Call hideBox()
+    End Sub
 
     Private Sub HEMapTools_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TabText = "HEMap Tools"
@@ -58,5 +72,24 @@ Public Class HEMapTools
         If Not PictureBox1.BackColor.IsTransparent Then
             Call ColorComboBox1.Items.Add(PictureBox1.BackColor)
         End If
+    End Sub
+
+    ''' <summary>
+    ''' set region
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub LinkLabel4_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel4.LinkClicked
+        WindowModules.viewer.DrawHeMapRegion = True
+        WindowModules.viewer.TogglePolygonMode()
+    End Sub
+
+    ''' <summary>
+    ''' exec
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub LinkLabel5_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel5.LinkClicked
+
     End Sub
 End Class

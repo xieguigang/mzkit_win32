@@ -30,6 +30,9 @@ Partial Class HEMapTools
         Me.LinkLabel3 = New System.Windows.Forms.LinkLabel()
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.LinkLabel4 = New System.Windows.Forms.LinkLabel()
+        Me.LinkLabel5 = New System.Windows.Forms.LinkLabel()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -68,7 +71,7 @@ Partial Class HEMapTools
         Me.GroupBox1.Controls.Add(Me.LinkLabel3)
         Me.GroupBox1.Controls.Add(Me.LinkLabel2)
         Me.GroupBox1.Controls.Add(Me.PictureBox1)
-        Me.GroupBox1.Location = New System.Drawing.Point(15, 87)
+        Me.GroupBox1.Location = New System.Drawing.Point(19, 134)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(169, 100)
         Me.GroupBox1.TabIndex = 3
@@ -103,15 +106,47 @@ Partial Class HEMapTools
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
+        'LinkLabel4
+        '
+        Me.LinkLabel4.AutoSize = True
+        Me.LinkLabel4.Location = New System.Drawing.Point(74, 83)
+        Me.LinkLabel4.Name = "LinkLabel4"
+        Me.LinkLabel4.Size = New System.Drawing.Size(101, 13)
+        Me.LinkLabel4.TabIndex = 4
+        Me.LinkLabel4.TabStop = True
+        Me.LinkLabel4.Text = "Set Analysis Region"
+        '
+        'LinkLabel5
+        '
+        Me.LinkLabel5.AutoSize = True
+        Me.LinkLabel5.Location = New System.Drawing.Point(74, 107)
+        Me.LinkLabel5.Name = "LinkLabel5"
+        Me.LinkLabel5.Size = New System.Drawing.Size(114, 13)
+        Me.LinkLabel5.TabIndex = 5
+        Me.LinkLabel5.TabStop = True
+        Me.LinkLabel5.Text = "Run Heatmap Analysis"
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(28, 143)
+        Me.TextBox1.Multiline = True
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ReadOnly = True
+        Me.TextBox1.Size = New System.Drawing.Size(156, 67)
+        Me.TextBox1.TabIndex = 6
+        '
         'HEMapTools
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(302, 454)
+        Me.Controls.Add(Me.LinkLabel5)
+        Me.Controls.Add(Me.LinkLabel4)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.ColorComboBox1)
+        Me.Controls.Add(Me.TextBox1)
         Me.DoubleBuffered = True
         Me.Name = "HEMapTools"
         Me.GroupBox1.ResumeLayout(False)
@@ -129,4 +164,7 @@ Partial Class HEMapTools
     Friend WithEvents LinkLabel3 As LinkLabel
     Friend WithEvents LinkLabel2 As LinkLabel
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents LinkLabel4 As LinkLabel
+    Friend WithEvents LinkLabel5 As LinkLabel
+    Friend WithEvents TextBox1 As TextBox
 End Class
