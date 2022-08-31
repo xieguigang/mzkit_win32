@@ -23,6 +23,7 @@ Partial Class HEMapTools
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(HEMapTools))
         Me.ColorComboBox1 = New ControlLibrary.ColorComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
@@ -33,8 +34,12 @@ Partial Class HEMapTools
         Me.LinkLabel4 = New System.Windows.Forms.LinkLabel()
         Me.LinkLabel5 = New System.Windows.Forms.LinkLabel()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.GroupBox1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'ColorComboBox1
@@ -42,7 +47,7 @@ Partial Class HEMapTools
         Me.ColorComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
         Me.ColorComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ColorComboBox1.FormattingEnabled = True
-        Me.ColorComboBox1.Location = New System.Drawing.Point(77, 15)
+        Me.ColorComboBox1.Location = New System.Drawing.Point(79, 44)
         Me.ColorComboBox1.Name = "ColorComboBox1"
         Me.ColorComboBox1.Size = New System.Drawing.Size(107, 21)
         Me.ColorComboBox1.TabIndex = 0
@@ -50,7 +55,7 @@ Partial Class HEMapTools
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 18)
+        Me.Label1.Location = New System.Drawing.Point(14, 47)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(54, 13)
         Me.Label1.TabIndex = 1
@@ -59,7 +64,7 @@ Partial Class HEMapTools
         'LinkLabel1
         '
         Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(74, 52)
+        Me.LinkLabel1.Location = New System.Drawing.Point(76, 81)
         Me.LinkLabel1.Name = "LinkLabel1"
         Me.LinkLabel1.Size = New System.Drawing.Size(68, 13)
         Me.LinkLabel1.TabIndex = 2
@@ -71,7 +76,7 @@ Partial Class HEMapTools
         Me.GroupBox1.Controls.Add(Me.LinkLabel3)
         Me.GroupBox1.Controls.Add(Me.LinkLabel2)
         Me.GroupBox1.Controls.Add(Me.PictureBox1)
-        Me.GroupBox1.Location = New System.Drawing.Point(19, 134)
+        Me.GroupBox1.Location = New System.Drawing.Point(21, 163)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(169, 100)
         Me.GroupBox1.TabIndex = 3
@@ -110,7 +115,7 @@ Partial Class HEMapTools
         'LinkLabel4
         '
         Me.LinkLabel4.AutoSize = True
-        Me.LinkLabel4.Location = New System.Drawing.Point(74, 83)
+        Me.LinkLabel4.Location = New System.Drawing.Point(76, 112)
         Me.LinkLabel4.Name = "LinkLabel4"
         Me.LinkLabel4.Size = New System.Drawing.Size(101, 13)
         Me.LinkLabel4.TabIndex = 4
@@ -120,7 +125,7 @@ Partial Class HEMapTools
         'LinkLabel5
         '
         Me.LinkLabel5.AutoSize = True
-        Me.LinkLabel5.Location = New System.Drawing.Point(74, 107)
+        Me.LinkLabel5.Location = New System.Drawing.Point(76, 136)
         Me.LinkLabel5.Name = "LinkLabel5"
         Me.LinkLabel5.Size = New System.Drawing.Size(114, 13)
         Me.LinkLabel5.TabIndex = 5
@@ -129,18 +134,46 @@ Partial Class HEMapTools
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(28, 143)
+        Me.TextBox1.Location = New System.Drawing.Point(30, 172)
         Me.TextBox1.Multiline = True
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
         Me.TextBox1.Size = New System.Drawing.Size(156, 67)
         Me.TextBox1.TabIndex = 6
         '
+        'ToolStrip1
+        '
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2})
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStrip1.Name = "ToolStrip1"
+        Me.ToolStrip1.Size = New System.Drawing.Size(252, 25)
+        Me.ToolStrip1.TabIndex = 7
+        Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton1.Text = "Load HEMap"
+        '
+        'ToolStripButton2
+        '
+        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
+        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton2.Name = "ToolStripButton2"
+        Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton2.Text = "Export Matrix"
+        '
         'HEMapTools
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(302, 454)
+        Me.ClientSize = New System.Drawing.Size(252, 454)
+        Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.LinkLabel5)
         Me.Controls.Add(Me.LinkLabel4)
         Me.Controls.Add(Me.GroupBox1)
@@ -153,6 +186,8 @@ Partial Class HEMapTools
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ToolStrip1.ResumeLayout(False)
+        Me.ToolStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -168,4 +203,7 @@ Partial Class HEMapTools
     Friend WithEvents LinkLabel4 As LinkLabel
     Friend WithEvents LinkLabel5 As LinkLabel
     Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents ToolStrip1 As ToolStrip
+    Friend WithEvents ToolStripButton1 As ToolStripButton
+    Friend WithEvents ToolStripButton2 As ToolStripButton
 End Class
