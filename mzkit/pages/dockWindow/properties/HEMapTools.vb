@@ -2,20 +2,25 @@
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Math2D
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 
 Public Class HEMapTools
 
     Dim polygons As New List(Of Polygon2D)
+    Dim hemap As Bitmap
+    Dim heatmap As Cell()
 
     Public Sub Add(regions As Polygon2D())
         polygons.AddRange(regions)
         TextBox1.Text = $"mark {polygons.Count} polygon regions"
     End Sub
 
-    Public Sub Clear()
+    Public Sub Clear(newMap As Bitmap)
         Call ColorComboBox1.Items.Clear()
         Call polygons.Clear()
         Call hideBox()
+
+        hemap = newMap
     End Sub
 
     Private Sub HEMapTools_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -90,6 +95,19 @@ Public Class HEMapTools
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub LinkLabel5_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel5.LinkClicked
+        Dim colors = ColorComboBox1.Colors.ToArray
 
+        If colors.IsNullOrEmpty Then
+            Call MyApplication.host.warning("No color channels!")
+            Return
+        End If
+
+        Dim grid As Cell() = RscriptProgressTask.ScanBitmap(hemap, colors)
+
+        If grid.IsNullOrEmpty Then
+            MyApplication.host.warning("Heatmap scanning task error!")
+        Else
+            heatmap = grid
+        End If
     End Sub
 End Class

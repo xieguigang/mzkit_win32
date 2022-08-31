@@ -188,9 +188,9 @@ Public Class frmMsImagingViewer
                     HEMap = New HEMapTools
                     HEMap.Show(VisualStudio.DockPanel)
                     HEMap.DockState = DockState.Hidden
-                Else
-                    HEMap.Clear()
                 End If
+
+                HEMap.Clear(PixelSelector1.HEMap)
 
                 VisualStudio.Dock(HEMap, DockState.DockRight)
             End If

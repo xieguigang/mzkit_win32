@@ -10,6 +10,14 @@ Public Class ColorComboBox : Inherits ComboBox
 
     End Sub
 
+    Public ReadOnly Iterator Property Colors As IEnumerable(Of Color)
+        Get
+            For i As Integer = 0 To Items.Count - 1
+                Yield DirectCast(Items(i), Color)
+            Next
+        End Get
+    End Property
+
     Private Sub ColorComboBox_DrawItem(sender As Object, e As DrawItemEventArgs) Handles Me.DrawItem
         e.DrawBackground()
         e.DrawFocusRectangle()

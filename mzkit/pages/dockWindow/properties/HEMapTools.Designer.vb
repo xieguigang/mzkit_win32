@@ -100,6 +100,7 @@ Partial Class HEMapTools
         '
         'PictureBox1
         '
+        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.PictureBox1.Location = New System.Drawing.Point(14, 24)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(81, 65)
