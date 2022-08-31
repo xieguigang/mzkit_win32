@@ -11,7 +11,10 @@ Public Class RegionLoader
 
     Public ReadOnly Property empty As Boolean
         Get
-            Return width = 0 OrElse height = 0 OrElse regions.IsNullOrEmpty
+            Return width = 0 OrElse
+                height = 0 OrElse
+                regions.IsNullOrEmpty OrElse
+                regions.All(Function(r) r.length = 0)
         End Get
     End Property
 
