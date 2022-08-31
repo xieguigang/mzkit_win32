@@ -960,4 +960,12 @@ Public Class PageMzkitTools
             WindowModules.plotParams.params.height = .Height
         End With
     End Sub
+
+    Private Sub SaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveToolStripMenuItem.Click
+
+    End Sub
+
+    Private Sub OpenInTableViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenInTableViewerToolStripMenuItem.Click
+
+    End Sub
 End Class
