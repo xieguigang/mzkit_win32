@@ -1153,6 +1153,7 @@ Public Class frmMsImagingViewer
         If params Is Nothing Then
             params = MsImageProperty.Empty(dimensions)
             WindowModules.msImageParameters.PropertyGrid1.SelectedObject = params
+            Me.tweaks = WindowModules.msImageParameters.PropertyGrid1
         End If
 
         Dim blender As New HeatMapBlender(layer, dimensions, params)

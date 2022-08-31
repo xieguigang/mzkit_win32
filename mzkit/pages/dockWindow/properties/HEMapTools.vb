@@ -5,6 +5,7 @@ Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports System.IO
+Imports Microsoft.VisualBasic.Math
 
 Public Class HEMapTools
 
@@ -58,6 +59,13 @@ Public Class HEMapTools
                 Call MyApplication.host.warning($"No heatmap scanning result of '{key}', please run heatmap scanning and then try again...")
             Else
                 Call WindowModules.viewer.BlendingHEMap(layer, heatmap_dims)
+
+                Dim pixels = layer.Where(Function(p) p.Scale > 0).ToArray
+                Dim rsd As Double = If(pixels.Length = 0, 0, pixels.Select(Function(p) p.Scale).RSD)
+
+                TextBox1.Text =
+                    $"cells: {pixels.Length}/{layer.Length}" & vbCrLf &
+                    $"RSD: {(rsd * 100).ToString("F2")}"
             End If
         End If
     End Sub
