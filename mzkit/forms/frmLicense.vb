@@ -62,10 +62,17 @@ Public Class frmLicense
     End Sub
 
     Private Sub frmLicense_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        TextBox1.Text = getLicenseFile.ReadAllText(throwEx:=False) Or "Missing LICENSE file!".AsDefault
+        TextBox1.Text = getLicenseText()
         Label4.Text = Label4.Text.Replace("%s", My.User.Name)
         Label6.Text = $"Built Time: {GetType(frmLicense).Assembly.FromAssembly.BuiltTime.ToString}"
     End Sub
+
+    Public Shared Function getLicenseText() As String
+        Dim text As String = getLicenseFile.ReadAllText(throwEx:=False) Or "Missing LICENSE file!".AsDefault
+        Dim normalize As String = text.LineTokens.JoinBy(vbCrLf)
+
+        Return normalize
+    End Function
 
     Public Shared Function getLicenseFile() As String
         Dim path As Value(Of String) = ""

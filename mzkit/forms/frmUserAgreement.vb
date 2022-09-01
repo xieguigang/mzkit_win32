@@ -71,6 +71,6 @@ Public Class frmUserAgreement
     End Sub
 
     Private Sub frmUserAgreement_Load(sender As Object, e As EventArgs) Handles Me.Load
-        TextBox1.Text = frmLicense.getLicenseFile.ReadAllText(throwEx:=False) Or "Missing LICENSE file!".AsDefault
+        TextBox1.Text = frmLicense.getLicenseText()
     End Sub
 End Class
