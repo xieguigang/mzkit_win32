@@ -150,7 +150,7 @@ Public Class SampleRegionMergeTool
     End Sub
 
     Private Sub AddSubRegionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddSubRegionToolStripMenuItem.Click
-        Dim p As Point = PointToClient(MousePosition)
+        Dim p As Point = PictureBox1.PointToClient(MousePosition)
         Dim px As Integer
         Dim py As Integer
 
