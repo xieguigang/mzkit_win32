@@ -6,7 +6,7 @@ Public MustInherit Class MSImagingBlender : Inherits Blender
     Protected ReadOnly params As MsImageProperty
 
     Public Property sample_tag As String
-
+    Public Property HEMap As Image
     Public ReadOnly Property showAllSample As Boolean
         Get
             Return sample_tag.StringEmpty OrElse sample_tag = "*"

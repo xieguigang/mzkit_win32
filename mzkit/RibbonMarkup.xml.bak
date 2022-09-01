@@ -2368,12 +2368,20 @@
     </Command>
     <Command Name="cmdTabMSIOperations" Id="200" LabelTitle="Operations" LabelDescription="Operations" TooltipTitle="Operations" TooltipDescription="Operations" />
     <Command Name="cmdGroupMSIOperations" Id="201" LabelTitle="Operations" LabelDescription="Operations" TooltipTitle="Operations" TooltipDescription="Operations" />
-    <Command Name="cmdButtonUpsideDown" Id="202" LabelTitle="Up side down" LabelDescription="Up side down" TooltipTitle="Up side down" TooltipDescription="Up side down">
+    <Command Name="cmdButtonUpsideDown" Id="202" LabelTitle="Up side down" LabelDescription="Turn the image data up side down" TooltipTitle="Up side down" TooltipDescription="Turn the image data up side down">
       <Command.SmallImages>
         <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
         <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonLoadHEMap" Id="203" LabelTitle="Load HEMap" LabelDescription="Load HEMap into MSi viewer to view image or do image overlaps with the MSImaging result" TooltipTitle="Load HEMap" TooltipDescription="Load HEMap into MSi viewer to view image or do image overlaps with the MSImaging result">
+      <Command.SmallImages>
+        <Image MinDPI="192">Resources/System-Map-icon.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Resources/System-Map-icon.png</Image>
       </Command.LargeImages>
     </Command>
   </Application.Commands>
@@ -2620,6 +2628,7 @@
               <Button CommandName="cmdButtonExportSample" />
               <DropDownButton CommandName="cmdButtonTissueMap">
                 <Button CommandName="cmdButtonImportsTissueMorphology" />
+                <Button CommandName="cmdButtonLoadHEMap" />
                 <Button CommandName="cmdButtonExportRegions" />
               </DropDownButton>
               <ToggleButton CommandName="cmdButtonTogglePolygon" />

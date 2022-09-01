@@ -59,6 +59,7 @@ Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.SCiLSLab
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
@@ -238,6 +239,42 @@ Public Class RscriptProgressTask
             Call MessageBox.Show("Single Ion MSImaging Task Error!", "Task Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
     End Sub
+
+    Public Shared Function ScanBitmap(bitmap As Bitmap, channels As IEnumerable(Of Color)) As Cell()
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("HEScan.R")
+        Dim imagetmp As String = TempFileSystem.GetAppSysTempFile(".png")
+        Dim jsontmp As String = TempFileSystem.GetAppSysTempFile(".heatmap")
+        Dim cli As String = $"""{Rscript}"" --bitmap ""{imagetmp}"" --channels {channels.Select(Function(c) c.ToHtmlColor).JoinBy(";")} --save ""{jsontmp}"""
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+        Dim progress As New frmTaskProgress
+
+        Call bitmap.SaveAs(imagetmp)
+
+        progress.ShowProgressTitle("Run Heatmap Scanning...", directAccess:=True)
+        progress.ShowProgressDetails("The image analysis may be takes a long time, please wait for a while...", directAccess:=True)
+        progress.SetProgressMode()
+
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
+        Call MyApplication.LogText(pipeline.CommandLine)
+
+        AddHandler pipeline.SetMessage, AddressOf progress.ShowProgressDetails
+        AddHandler pipeline.SetProgress, AddressOf progress.SetProgress
+        AddHandler pipeline.Finish, Sub() progress.Invoke(Sub() progress.Close())
+
+        Call New Thread(AddressOf pipeline.Run).Start()
+        Call progress.ShowDialog()
+
+        If jsontmp.FileExists Then
+            Try
+                Return jsontmp.LoadJsonFile(Of Cell())()
+            Catch ex As Exception
+                Return Nothing
+            End Try
+        Else
+            Call MessageBox.Show("Heatmap scanning Task Error!", "Task Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return Nothing
+        End If
+    End Function
 
     Public Shared Sub ExportHeatMapMatrixPlot(mzSet As Dictionary(Of String, Dictionary(Of String, String)),
                                               tolerance As String,

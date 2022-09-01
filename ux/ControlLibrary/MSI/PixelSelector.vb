@@ -82,7 +82,7 @@ Imports stdNum = System.Math
 
 Public Class PixelSelector
 
-    Public Event SelectPixel(x As Integer, y As Integer)
+    Public Event SelectPixel(x As Integer, y As Integer, pixel As Color)
     Public Event SelectPixelRegion(region As Rectangle)
     Public Event SelectPolygon(polygon As PointF())
 
@@ -99,6 +99,8 @@ Public Class PixelSelector
     Private mouse As Vertex = New Vertex()
     Private ismouseDown As Boolean = False
     Private algorithmIndex As Integer = 1
+
+    Public Property HEMap As Bitmap
 
     Public Sub New()
 
@@ -1399,6 +1401,21 @@ Public Class PixelSelector
         ypoint = e.Y * Pic_height
     End Sub
 
+    ''' <summary>
+    ''' transform scaler
+    ''' </summary>
+    ''' <param name="e"></param>
+    ''' <param name="xpoint"></param>
+    ''' <param name="ypoint"></param>
+    Private Sub getPoint(e As Point, orginal_imageSize As Size, ByRef xpoint As Integer, ByRef ypoint As Integer)
+        Dim Pic_width = orginal_imageSize.Width / picCanvas.Width
+        Dim Pic_height = orginal_imageSize.Height / picCanvas.Height
+
+        ' 得到图片上的坐标点
+        xpoint = e.X * Pic_width
+        ypoint = e.Y * Pic_height
+    End Sub
+
     Private Sub picCanvas_MouseUp(sender As Object, e As MouseEventArgs) Handles picCanvas.MouseUp
         If SelectPolygonMode Then
             Call OnBoardMouseUp()
@@ -1431,8 +1448,19 @@ Public Class PixelSelector
         If e.Button <> MouseButtons.Left Then
             Return
         Else
+            Dim color As Color = Nothing
+
             drawing = False
-            RaiseEvent SelectPixel(xpoint, ypoint)
+
+            If Not HEMap Is Nothing Then
+                Dim px As Integer = 0
+                Dim py As Integer = 0
+
+                getPoint(New Point(e.X, e.Y), HEMap.Size, px, py)
+                color = HEMap.GetPixel(px, py)
+            End If
+
+            RaiseEvent SelectPixel(xpoint, ypoint, color)
         End If
     End Sub
 

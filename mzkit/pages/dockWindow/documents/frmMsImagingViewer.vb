@@ -80,6 +80,7 @@ Imports ControlLibrary
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Math2D.MarchingSquares
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
@@ -105,6 +106,8 @@ Public Class frmMsImagingViewer
 
     Friend MSIservice As ServiceHub.MSIDataService
     Friend params As MsImageProperty
+    Friend HEMap As HEMapTools
+    Friend DrawHeMapRegion As Boolean = False
 
     Public ReadOnly Property MimeType As ContentType() Implements IFileReference.MimeType
         Get
@@ -143,6 +146,7 @@ Public Class frmMsImagingViewer
         AddHandler RibbonEvents.ribbonItems.ButtonImportsTissueMorphology.ExecuteEvent, Sub() Call ImportsTissueMorphology()
         AddHandler RibbonEvents.ribbonItems.ButtonExportRegions.ExecuteEvent, Sub() Call ExportRegions()
         AddHandler RibbonEvents.ribbonItems.ButtonMSISearchPubChem.ExecuteEvent, Sub() Call SearchPubChem()
+        AddHandler RibbonEvents.ribbonItems.ButtonLoadHEMap.ExecuteEvent, Sub() Call loadHEMap()
 
         AddHandler RibbonEvents.ribbonItems.CheckShowMapLayer.ExecuteEvent,
             Sub()
@@ -166,6 +170,32 @@ Public Class frmMsImagingViewer
 
         sampleRegions.Show(MyApplication.host.dockPanel)
         sampleRegions.DockState = DockState.Hidden
+    End Sub
+
+    Sub loadHEMap()
+        Using file As New OpenFileDialog With {.Filter = "HE Stain Image(*.jpg;*.png;*.bmp)|*.jpg;*.png;*.bmp"}
+            If file.ShowDialog = DialogResult.OK Then
+                PixelSelector1.HEMap = New Bitmap(file.FileName.LoadImage)
+
+                If blender IsNot Nothing AndAlso TypeOf blender IsNot HeatMapBlender Then
+                    blender.HEMap = PixelSelector1.HEMap
+                    rendering()
+                Else
+                    ' just display hemap on the canvas
+                    PixelSelector1.SetMsImagingOutput(PixelSelector1.HEMap, PixelSelector1.HEMap.Size, New Size(1, 1), Drawing2D.Colors.ScalerPalette.Jet, {0, 255}, 120)
+                End If
+
+                If HEMap Is Nothing Then
+                    HEMap = New HEMapTools
+                    HEMap.Show(VisualStudio.DockPanel)
+                    HEMap.DockState = DockState.Hidden
+                End If
+
+                HEMap.Clear(PixelSelector1.HEMap)
+
+                VisualStudio.Dock(HEMap, DockState.DockRight)
+            End If
+        End Using
     End Sub
 
     Sub TurnUpsideDown()
@@ -522,7 +552,7 @@ Public Class frmMsImagingViewer
         PixelSelector1.OnAddVertexMenuItemClick()
     End Sub
 
-    Private Sub StartNewPolygon()
+    Friend Sub StartNewPolygon()
         Call MovePolygonMode()
         Call AddNewPolygonMode()
 
@@ -612,11 +642,15 @@ Public Class frmMsImagingViewer
         PixelSelector1.SelectPolygonMode = RibbonEvents.ribbonItems.ButtonTogglePolygon.BooleanValue
 
         If PixelSelector1.SelectPolygonMode Then
-            Call MyApplication.host.Ribbon1.SetModes(1)
-            Call MyApplication.host.showStatusMessage("Toggle edit polygon for your MS-imaging data!")
+            If Not DrawHeMapRegion Then
+                Call MyApplication.host.Ribbon1.SetModes(1)
+                Call MyApplication.host.showStatusMessage("Toggle edit polygon for your MS-imaging data!")
 
-            If sampleRegions.DockState = DockState.Hidden Then
-                sampleRegions.DockState = DockState.DockRight
+                If sampleRegions.DockState = DockState.Hidden Then
+                    sampleRegions.DockState = DockState.DockRight
+                End If
+            Else
+                Call MyApplication.host.showStatusMessage("Select region to analysis by draw a polygon!")
             End If
 
             PixelSelector1.Cursor = Cursors.Default
@@ -823,7 +857,13 @@ Public Class frmMsImagingViewer
         End If
     End Sub
 
-    Private Sub showPixel(x As Integer, y As Integer) Handles PixelSelector1.SelectPixel
+    Friend clickPixel As Action(Of Integer, Integer, Color)
+
+    Private Sub showPixel(x As Integer, y As Integer, color As Color) Handles PixelSelector1.SelectPixel
+        If Not clickPixel Is Nothing Then
+            clickPixel(x, y, color)
+            Return
+        End If
         If Not checkService() Then
             Return
         ElseIf WindowModules.MSIPixelProperty.DockState = DockState.Hidden Then
@@ -1109,6 +1149,31 @@ Public Class frmMsImagingViewer
         Call MyApplication.host.showStatusMessage("Rendering Complete!", My.Resources.preferences_system_notifications)
     End Sub
 
+    Public Sub BlendingHEMap(layer As HeatMap.PixelData(), dimensions As Size)
+        If params Is Nothing Then
+            params = MsImageProperty.Empty(dimensions)
+            WindowModules.msImageParameters.PropertyGrid1.SelectedObject = params
+            Me.tweaks = WindowModules.msImageParameters.PropertyGrid1
+        End If
+
+        Dim blender As New HeatMapBlender(layer, dimensions, params)
+
+        Me.blender = blender
+        Me.rendering =
+            Sub()
+                Call MyApplication.RegisterPlot(
+                    Sub(args)
+                        Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
+
+                        PixelSelector1.SetMsImagingOutput(image, dimensions, blender.dotsize, params.colors, {0, 1}, params.mapLevels)
+                        PixelSelector1.BackColor = params.background
+                        PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
+                    End Sub)
+            End Sub
+
+        Call rendering()
+    End Sub
+
     ''' <summary>
     ''' 
     ''' </summary>
@@ -1252,7 +1317,16 @@ Public Class frmMsImagingViewer
 
     Private Sub AddSampleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddSampleToolStripMenuItem.Click
         If PixelSelector1.HasRegionSelection Then
-            Call sampleRegions.Add(PixelSelector1)
+            If Not DrawHeMapRegion Then
+                Call sampleRegions.Add(PixelSelector1)
+            Else
+                Dim regions = PixelSelector1 _
+                  .GetPolygons(popAll:=True) _
+                  .ToArray
+
+                Call HEMap.Add(regions)
+            End If
+
             Call StartNewPolygon()
         Else
             Call MyApplication.host.showStatusMessage("No sample region was selected!", My.Resources.StatusAnnotations_Warning_32xLG_color)
