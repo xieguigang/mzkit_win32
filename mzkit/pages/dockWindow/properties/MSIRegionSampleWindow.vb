@@ -276,7 +276,7 @@ Public Class MSIRegionSampleWindow
 
         If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
             ' update to new regions
-
+            Call LoadTissueMaps(getFormula.GetMergedRegions, canvas)
             Call updateLayerRendering()
         End If
     End Sub

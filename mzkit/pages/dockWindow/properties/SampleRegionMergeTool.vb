@@ -7,6 +7,10 @@ Public Class SampleRegionMergeTool
     Dim newRegions As New Dictionary(Of String, TissueRegion)
     Dim Rplot As Image
 
+    Public Function GetMergedRegions() As TissueRegion()
+        Return newRegions.Values.ToArray
+    End Function
+
     Public Sub LoadRegions(regions As TissueRegion())
         For Each r As TissueRegion In regions
             rawRegions(r.label) = r
