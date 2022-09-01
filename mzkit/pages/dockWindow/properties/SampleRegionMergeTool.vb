@@ -11,6 +11,7 @@ Public Class SampleRegionMergeTool
         For Each r As TissueRegion In regions
             rawRegions(r.label) = r
             newRegions(r.label) = r
+            ColorComboBox1.Items.Add(r)
         Next
 
         Call Rendering(regions)
@@ -52,6 +53,12 @@ Public Class SampleRegionMergeTool
 
     Private Sub SampleRegionMergeTool_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CheckedListBox1.Items.Clear()
+        CheckedListBox1.CheckOnClick = True
+
+        ColorComboBox1.getColor = Function(o) DirectCast(o, TissueRegion).color
+        ColorComboBox1.getLabel = Function(o) o.ToString
+
+        Clear()
     End Sub
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
@@ -92,18 +99,22 @@ Public Class SampleRegionMergeTool
             End If
         End If
 
-        CheckedListBox1.Items.Clear()
-        TextBox1.Clear()
-        PictureBox2.BackColor = Color.Black
+        Call Clear()
     End Sub
 
     ''' <summary>
     ''' clear
     ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    Private Sub LinkLabel3_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel3.LinkClicked
+    Private Sub Clear() Handles LinkLabel3.LinkClicked
         CheckedListBox1.Items.Clear()
+        TextBox1.Clear()
+        PictureBox2.BackColor = Color.Black
+
+        ColorComboBox1.Items.Clear()
+
+        For Each region As TissueRegion In newRegions.Values
+            Call ColorComboBox1.Items.Add(region)
+        Next
     End Sub
 
     ''' <summary>
@@ -149,8 +160,14 @@ Public Class SampleRegionMergeTool
         End Using
     End Sub
 
+    Dim pointTo As Point
+
+    Private Sub PictureBox1_MouseDown(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseDown
+        pointTo = PictureBox1.PointToClient(MousePosition)
+    End Sub
+
     Private Sub AddSubRegionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddSubRegionToolStripMenuItem.Click
-        Dim p As Point = PictureBox1.PointToClient(MousePosition)
+        Dim p As Point = pointTo
         Dim px As Integer
         Dim py As Integer
 
@@ -165,9 +182,24 @@ Public Class SampleRegionMergeTool
             Return
         ElseIf CheckedListBox1.Items.IndexOf(region) = -1 Then
             CheckedListBox1.Items.Add(region)
+            CheckedListBox1.SetItemChecked(CheckedListBox1.Items.Count - 1, True)
             Label1.Text = $"Add subregion {region}!"
         Else
             Label1.Text = $"Subregion {region} is already been added."
         End If
+
+        Call Clear()
+    End Sub
+
+    Private Sub PictureBox2_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox2.MouseMove
+        Label1.Text = "Click here to change new region color"
+    End Sub
+
+    Private Sub ColorComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ColorComboBox1.SelectedIndexChanged
+        If ColorComboBox1.SelectedIndex < 0 Then
+            Return
+        End If
+
+
     End Sub
 End Class
