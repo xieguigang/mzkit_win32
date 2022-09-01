@@ -124,6 +124,11 @@ Public Class MSIRegionSampleWindow
         canvas.RedrawCanvas()
     End Sub
 
+    ''' <summary>
+    ''' get raster pixels data of the polygon regions
+    ''' </summary>
+    ''' <param name="dimension"></param>
+    ''' <returns></returns>
     Public Iterator Function GetRegions(dimension As Size) As IEnumerable(Of TissueRegion)
         For Each item As Control In FlowLayoutPanel1.Controls
             Dim card = DirectCast(item, RegionSampleCard)
@@ -281,5 +286,27 @@ Public Class MSIRegionSampleWindow
             Call LoadTissueMaps(getFormula.GetMergedRegions, canvas)
             Call updateLayerRendering()
         End If
+    End Sub
+
+    ''' <summary>
+    ''' 上下翻转
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ToolStripButton7_Click(sender As Object, e As EventArgs) Handles ToolStripButton7.Click
+        Dim polygons As TissueRegion() = GetRegions(dimension).ToArray
+
+        polygons = polygons _
+            .Select(Function(r)
+                        r.points = r.points _
+                            .Select(Function(p) New Point(p.X, dimension.Height - p.Y)) _
+                            .ToArray
+                        Return r
+                    End Function) _
+            .ToArray
+
+        ' update to new regions
+        Call LoadTissueMaps(polygons, canvas)
+        Call updateLayerRendering()
     End Sub
 End Class

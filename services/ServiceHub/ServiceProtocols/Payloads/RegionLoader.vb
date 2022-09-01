@@ -31,7 +31,7 @@ Public Class RegionLoader
     End Function
 
     Public Function GetTissueMap(Optional label As String = "tissue_region", Optional color As String = "skyblue") As TissueRegion
-        Return regions.Geometry2D(New Size(width, height), label, color.TranslateColor)
+        Return regions.RasterGeometry2D(New Size(width, height), label, color.TranslateColor)
     End Function
 
     Public Function ContainsPixel(x As Integer, y As Integer) As Boolean
