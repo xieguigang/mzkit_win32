@@ -107,9 +107,9 @@ Partial Class frmUserAgreement
         Me.Label2.ForeColor = System.Drawing.Color.White
         Me.Label2.Location = New System.Drawing.Point(7, 138)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(302, 21)
+        Me.Label2.Size = New System.Drawing.Size(304, 21)
         Me.Label2.TabIndex = 1
-        Me.Label2.Text = "Copyright © 2021 MzKit, https://mzkit.org"
+        Me.Label2.Text = "Copyright © 2022 MZKit, https://mzkit.org"
         '
         'Label1
         '
