@@ -262,7 +262,22 @@ Public Class MSIRegionSampleWindow
         Call Add({New Polygon2D(x.ToArray, y.ToArray)})
     End Sub
 
+    ''' <summary>
+    ''' open merge tool
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub ToolStripButton6_Click(sender As Object, e As EventArgs) Handles ToolStripButton6.Click
+        Dim polygons = GetRegions(dimension).ToArray
+        Dim getFormula As New SampleRegionMergeTool
+        Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
 
+        Call getFormula.LoadRegions(polygons)
+
+        If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
+            ' update to new regions
+
+            Call updateLayerRendering()
+        End If
     End Sub
 End Class
