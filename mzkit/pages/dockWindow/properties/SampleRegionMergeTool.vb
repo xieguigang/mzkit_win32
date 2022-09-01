@@ -22,7 +22,21 @@ Public Class SampleRegionMergeTool
             .Width = regions.Select(Function(a) a.points.Select(Function(i) i.X)).IteratesALL.Max,
             .Height = regions.Select(Function(a) a.points.Select(Function(i) i.Y)).IteratesALL.Max
         }
-        Dim Rplot As Image = LayerRender.Draw(regions, dims, alphaLevel:=1, dotSize:=1)
+        Dim highlights As String() = Nothing
+
+        If ColorComboBox1.SelectedIndex > 0 Then
+            highlights = New String() {
+                DirectCast(ColorComboBox1.SelectedItem, TissueRegion).label
+            }
+        End If
+
+        Dim Rplot As Image = LayerRender.Draw(
+            regions:=regions,
+            layerSize:=dims,
+            alphaLevel:=1,
+            dotSize:=1,
+            highlights:=highlights
+        )
 
         Me.Rplot = Rplot
         Me.PictureBox1.BackgroundImage = Rplot
@@ -149,6 +163,7 @@ Public Class SampleRegionMergeTool
                 .ToArray
         }
 
+        Call Clear()
         Call Rendering(newRegions.Values.ToArray)
     End Sub
 
@@ -187,8 +202,6 @@ Public Class SampleRegionMergeTool
         Else
             Label1.Text = $"Subregion {region} is already been added."
         End If
-
-        Call Clear()
     End Sub
 
     Private Sub PictureBox2_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox2.MouseMove
@@ -200,6 +213,6 @@ Public Class SampleRegionMergeTool
             Return
         End If
 
-
+        Call Rendering(newRegions.Values.ToArray)
     End Sub
 End Class
