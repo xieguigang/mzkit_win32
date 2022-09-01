@@ -37,7 +37,7 @@ Partial Class SampleRegionMergeTool
         Me.GroupBox1.Controls.Add(Me.PictureBox1)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(634, 234)
+        Me.GroupBox1.Size = New System.Drawing.Size(634, 291)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Tissue Map Viewer"
@@ -46,15 +46,15 @@ Partial Class SampleRegionMergeTool
         '
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.PictureBox1.Cursor = System.Windows.Forms.Cursors.Cross
-        Me.PictureBox1.Location = New System.Drawing.Point(21, 21)
+        Me.PictureBox1.Location = New System.Drawing.Point(21, 18)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(592, 198)
+        Me.PictureBox1.Size = New System.Drawing.Size(592, 264)
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
         'GroupBox2
         '
-        Me.GroupBox2.Location = New System.Drawing.Point(12, 252)
+        Me.GroupBox2.Location = New System.Drawing.Point(12, 309)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(634, 199)
         Me.GroupBox2.TabIndex = 1
@@ -63,7 +63,7 @@ Partial Class SampleRegionMergeTool
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(547, 464)
+        Me.Button1.Location = New System.Drawing.Point(547, 521)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 2
@@ -72,7 +72,7 @@ Partial Class SampleRegionMergeTool
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(452, 464)
+        Me.Button2.Location = New System.Drawing.Point(452, 521)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 3
@@ -81,7 +81,7 @@ Partial Class SampleRegionMergeTool
         '
         'Label1
         '
-        Me.Label1.Location = New System.Drawing.Point(12, 475)
+        Me.Label1.Location = New System.Drawing.Point(12, 532)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(434, 24)
         Me.Label1.TabIndex = 4
@@ -91,7 +91,7 @@ Partial Class SampleRegionMergeTool
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(660, 499)
+        Me.ClientSize = New System.Drawing.Size(660, 553)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)

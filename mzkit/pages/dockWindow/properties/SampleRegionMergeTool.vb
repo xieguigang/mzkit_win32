@@ -12,7 +12,7 @@ Public Class SampleRegionMergeTool
             .Width = regions.Select(Function(a) a.points.Select(Function(i) i.X)).IteratesALL.Max,
             .Height = regions.Select(Function(a) a.points.Select(Function(i) i.Y)).IteratesALL.Max
         }
-        Dim Rplot As Image = LayerRender.Draw(regions, dims, alphaLevel:=1, dotSize:=3)
+        Dim Rplot As Image = LayerRender.Draw(regions, dims, alphaLevel:=1, dotSize:=1)
 
         For Each r As TissueRegion In regions
             rawRegions(r.label) = r
