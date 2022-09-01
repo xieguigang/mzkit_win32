@@ -61,6 +61,8 @@ Public Class MSIRegionSampleWindow
         Me.canvas = canvas
         Me.dimension = canvas.dimension_size
 
+        Call Clear()
+
         For Each region As TissueRegion In tissues
             Dim card As New RegionSampleCard
 
