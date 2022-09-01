@@ -15,7 +15,7 @@ Public Class SampleRegionMergeTool
         Dim Rplot As Image = LayerRender.Draw(regions, dims, alphaLevel:=1, dotSize:=3)
 
         For Each r As TissueRegion In regions
-            regions(r.label) = r
+            rawRegions(r.label) = r
             newRegions(r.label) = r
         Next
 
