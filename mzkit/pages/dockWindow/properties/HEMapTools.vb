@@ -62,7 +62,7 @@ Public Class HEMapTools
                 Call WindowModules.viewer.BlendingHEMap(layer, heatmap_dims)
 
                 Dim pixels = layer.Where(Function(p) p.Scale > 0).ToArray
-                Dim rsd As Double = layer.Select(Function(p) p.Scale).RSD
+                Dim rsd As Double = layer.RSD.Average
 
                 TextBox1.Text =
                     $"cells: {pixels.Length}/{layer.Length}" & vbCrLf &
@@ -93,7 +93,7 @@ Public Class HEMapTools
         Call WindowModules.viewer.BlendingHEMap(layer, heatmap_dims)
 
         Dim pixels = layer.Where(Function(p) p.Scale > 0).ToArray
-        Dim rsd As Double = layer.Select(Function(p) p.Scale).RSD
+        Dim rsd As Double = layer.RSD.Average
 
         TextBox1.Text =
             $"cells: {pixels.Length}/{layer.Length}" & vbCrLf &
