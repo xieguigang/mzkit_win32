@@ -142,7 +142,13 @@ Public Class MSIRegionSampleWindow
         Dim picCanvas As Size = canvas.Size
         Dim layerSize As Size = canvas.dimension_size
         Dim alphaLevel As Double = Me.alpha / 100
-        Dim layer As Image = LayerRender.Draw(GetRegions(dimension), layerSize, alphaLevel, dotSize:=1)
+        Dim tissueMaps = GetRegions(dimension).ToArray
+
+        If tissueMaps.IsNullOrEmpty Then
+            Return
+        End If
+
+        Dim layer As Image = LayerRender.Draw(tissueMaps, layerSize, alphaLevel, dotSize:=1)
 
         Me.canvas = canvas
 
@@ -276,6 +282,12 @@ Public Class MSIRegionSampleWindow
     ''' <param name="e"></param>
     Private Sub ToolStripButton6_Click(sender As Object, e As EventArgs) Handles ToolStripButton6.Click
         Dim polygons = GetRegions(dimension).ToArray
+
+        If polygons.IsNullOrEmpty Then
+            MessageBox.Show("No tissue map region polygon was found!", "Tissue Map Editor", buttons:=MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
         Dim getFormula As New SampleRegionMergeTool
         Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
 
@@ -295,6 +307,11 @@ Public Class MSIRegionSampleWindow
     ''' <param name="e"></param>
     Private Sub ToolStripButton7_Click(sender As Object, e As EventArgs) Handles ToolStripButton7.Click
         Dim polygons As TissueRegion() = GetRegions(dimension).ToArray
+
+        If polygons.IsNullOrEmpty Then
+            MyApplication.host.warning("No tissue map polygon region was found...")
+            Return
+        End If
 
         polygons = polygons _
             .Select(Function(r)
