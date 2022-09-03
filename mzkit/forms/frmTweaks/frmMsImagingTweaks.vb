@@ -315,6 +315,12 @@ UseCheckedList:
             If Not {"mz", "intensity", "x", "y"}.All(AddressOf cdf.dataVariableExists) Then
                 If cdf.IsTissueMorphologyCDF Then
                     Dim regions = cdf.ReadTissueMorphology.ToArray
+
+                    If regions.IsNullOrEmpty Then
+                        MessageBox.Show("No content data!", "Tissue map viewer", buttons:=MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        Return
+                    End If
+
                     Dim dims As Size = cdf.GetDimension
                     ' open tool and then save to sample regions?
                     Dim getFormula As New SampleRegionMergeTool
