@@ -291,7 +291,7 @@ Public Class MSIRegionSampleWindow
         Dim getFormula As New SampleRegionMergeTool
         Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
 
-        Call getFormula.LoadRegions(polygons)
+        Call getFormula.LoadRegions(polygons, dimension)
 
         If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
             ' update to new regions

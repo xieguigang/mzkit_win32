@@ -6,26 +6,24 @@ Public Class SampleRegionMergeTool
     Dim rawRegions As New Dictionary(Of String, TissueRegion)
     Dim newRegions As New Dictionary(Of String, TissueRegion)
     Dim Rplot As Image
+    Dim dims As Size
 
     Public Function GetMergedRegions() As TissueRegion()
         Return newRegions.Values.ToArray
     End Function
 
-    Public Sub LoadRegions(regions As TissueRegion())
+    Public Sub LoadRegions(regions As TissueRegion(), dims As Size)
         For Each r As TissueRegion In regions
             rawRegions(r.label) = r
             newRegions(r.label) = r
             ColorComboBox1.Items.Add(r)
         Next
 
-        Call Rendering(regions)
+        Me.dims = dims
+        Me.Rendering(regions)
     End Sub
 
     Private Sub Rendering(regions As TissueRegion())
-        Dim dims As New Size With {
-            .Width = regions.Select(Function(a) a.points.Select(Function(i) i.X)).IteratesALL.Max,
-            .Height = regions.Select(Function(a) a.points.Select(Function(i) i.Y)).IteratesALL.Max
-        }
         Dim highlights As String() = Nothing
 
         If ColorComboBox1.SelectedIndex > 0 Then
