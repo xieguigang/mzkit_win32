@@ -31,6 +31,11 @@ Public Class RegionSampleCard
     Friend updateCallback As Action
     Friend tissue As TissueRegion
 
+    ''' <summary>
+    ''' make polygon shape object raster matrix
+    ''' </summary>
+    ''' <param name="dimension"></param>
+    ''' <returns></returns>
     Public Function ExportTissueRegion(dimension As Size) As TissueRegion
         If Not tissue Is Nothing Then
             Return New TissueRegion With {
@@ -39,7 +44,7 @@ Public Class RegionSampleCard
                 .points = tissue.points
             }
         Else
-            Return regions.Geometry2D(dimension, SampleInfo, SampleColor)
+            Return regions.RasterGeometry2D(dimension, SampleInfo, SampleColor)
         End If
     End Function
 

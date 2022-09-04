@@ -315,10 +315,24 @@ UseCheckedList:
             If Not {"mz", "intensity", "x", "y"}.All(AddressOf cdf.dataVariableExists) Then
                 If cdf.IsTissueMorphologyCDF Then
                     Dim regions = cdf.ReadTissueMorphology.ToArray
-                    Dim dims As New Size With {
-                        .Width = regions.Select(Function(a) a.points.Select(Function(i) i.X)).IteratesALL.Max,
-                        .Height = regions.Select(Function(a) a.points.Select(Function(i) i.Y)).IteratesALL.Max
-                    }
+
+                    If regions.IsNullOrEmpty Then
+                        MessageBox.Show("No content data!", "Tissue map viewer", buttons:=MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        Return
+                    End If
+
+                    Dim dims As Size = cdf.GetDimension
+                    ' open tool and then save to sample regions?
+                    Dim getFormula As New SampleRegionMergeTool
+                    Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
+
+                    Call getFormula.LoadRegions(regions, dims)
+
+                    If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
+                        ' update to new regions
+                        regions = getFormula.GetMergedRegions
+                    End If
+
                     Dim Rplot As Image = LayerRender.Draw(regions, dims, alphaLevel:=1, dotSize:=3)
 
                     Call MyApplication.host.mzkitTool.ShowPlotImage(Rplot, ImageLayout.Zoom)

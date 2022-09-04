@@ -79,6 +79,7 @@ Imports BioNovoGene.mzkit_win32.My
 Imports ControlLibrary
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
+Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Language
@@ -265,6 +266,20 @@ Public Class frmMsImagingViewer
         Using file As New OpenFileDialog With {.Filter = "Tissue Morphology Matrix(*.cdf)|*.cdf"}
             If file.ShowDialog = DialogResult.OK Then
                 Dim tissues = file.OpenFile.ReadTissueMorphology
+                Dim dimension As Size = New netCDFReader(file.FileName).GetDimension
+                Dim checkSize As Boolean = True
+
+                If stdNum.Abs(PixelSelector1.dimension_size.Width - dimension.Width) > 5 Then
+                    checkSize = False
+                ElseIf stdNum.Abs(PixelSelector1.dimension_size.Height - dimension.Height) > 5 Then
+                    checkSize = False
+                End If
+
+                If Not checkSize Then
+                    If MessageBox.Show($"The dimension size of the tissue morphology map is very different {vbCrLf}with the MS-imaging dimension size, still going to run data imports?", "Import Tissue Morphology", buttons:=MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.No Then
+                        Return
+                    End If
+                End If
 
                 tissues = tissues _
                     .ScalePixels(PixelSelector1.dimension_size) _
