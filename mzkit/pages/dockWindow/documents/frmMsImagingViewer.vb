@@ -276,14 +276,20 @@ Public Class frmMsImagingViewer
                 End If
 
                 If Not checkSize Then
-                    If MessageBox.Show($"The dimension size of the tissue morphology map is very different {vbCrLf}with the MS-imaging dimension size, still going to run data imports?", "Import Tissue Morphology", buttons:=MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.No Then
+                    If MessageBox.Show(text:=$"The dimension size of the tissue morphology map is very different {vbCrLf}with the MS-imaging dimension size, auto scale of your tissue morphology map raster data?",
+                                       caption:="Import Tissue Morphology",
+                                       buttons:=MessageBoxButtons.YesNo,
+                                       icon:=MessageBoxIcon.Warning) = DialogResult.No Then
                         Return
                     End If
-                End If
 
-                tissues = tissues _
-                    .ScalePixels(PixelSelector1.dimension_size) _
-                    .ToArray
+                    tissues = tissues _
+                        .ScalePixels(
+                            newDims:=PixelSelector1.dimension_size,
+                            currentDims:=dimension
+                        ) _
+                        .ToArray
+                End If
 
                 sampleRegions.Clear()
                 sampleRegions.LoadTissueMaps(tissues, PixelSelector1)
