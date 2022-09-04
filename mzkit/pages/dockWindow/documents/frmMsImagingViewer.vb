@@ -81,7 +81,6 @@ Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
-Imports Microsoft.VisualBasic.Imaging.Drawing2D.Math2D.MarchingSquares
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
@@ -266,6 +265,10 @@ Public Class frmMsImagingViewer
         Using file As New OpenFileDialog With {.Filter = "Tissue Morphology Matrix(*.cdf)|*.cdf"}
             If file.ShowDialog = DialogResult.OK Then
                 Dim tissues = file.OpenFile.ReadTissueMorphology
+
+                tissues = tissues _
+                    .ScalePixels(PixelSelector1.dimension_size) _
+                    .ToArray
 
                 sampleRegions.Clear()
                 sampleRegions.LoadTissueMaps(tissues, PixelSelector1)
