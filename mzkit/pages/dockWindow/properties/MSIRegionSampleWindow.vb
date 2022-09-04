@@ -1,7 +1,4 @@
-﻿Imports System.Drawing.Drawing2D
-Imports System.Drawing.Imaging
-Imports System.Globalization
-Imports System.IO
+﻿Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.mzkit_win32.My
 Imports ControlLibrary
@@ -23,6 +20,7 @@ Public Class MSIRegionSampleWindow
     Friend dimension As Size
     Friend canvas As PixelSelector
     Friend sample_bounds As Point()
+    Friend importsFile As String
 
     Friend Sub Clear()
         FlowLayoutPanel1.Controls.Clear()
@@ -60,6 +58,7 @@ Public Class MSIRegionSampleWindow
     Public Overloads Sub LoadTissueMaps(tissues As TissueRegion(), canvas As PixelSelector)
         Me.canvas = canvas
         Me.dimension = canvas.dimension_size
+        Me.importsFile = $"Load {tissues.Length} tissue region maps!"
 
         Call Clear()
 
@@ -105,6 +104,10 @@ Public Class MSIRegionSampleWindow
         TabText = Text
 
         Call ApplyVsTheme(ToolStrip1)
+    End Sub
+
+    Public Sub ShowMessage(text As String)
+        Call Me.Invoke(Sub() ToolStripStatusLabel1.Text = text)
     End Sub
 
     Public Function ExportTissueMaps(dimension As Size, file As Stream) As Boolean
@@ -196,8 +199,12 @@ Public Class MSIRegionSampleWindow
     End Sub
 
     Public Sub SaveTissueMorphologyMatrix() Handles ToolStripButton1.Click
+        Dim importsDir As String = If(importsFile.StringEmpty, "", importsFile.ParentPath)
+
         Using file As New SaveFileDialog With {
-            .Filter = "Tissue Morphology Matrix(*.cdf)|*.cdf"
+            .Filter = "Tissue Morphology Matrix(*.cdf)|*.cdf",
+            .InitialDirectory = importsDir,
+            .FileName = importsFile
         }
             If file.ShowDialog = DialogResult.OK Then
                 Call ExportTissueMaps(dimension, file.OpenFile)

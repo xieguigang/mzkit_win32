@@ -266,8 +266,12 @@ Public Class frmMsImagingViewer
         Using file As New OpenFileDialog With {.Filter = "Tissue Morphology Matrix(*.cdf)|*.cdf"}
             If file.ShowDialog = DialogResult.OK Then
                 Dim tissues = file.OpenFile.ReadTissueMorphology
-                Dim dimension As Size = New netCDFReader(file.FileName).GetDimension
+                Dim dimension As Size
                 Dim checkSize As Boolean = True
+
+                Using cdffile As New netCDFReader(file.FileName)
+                    dimension = cdffile.GetDimension
+                End Using
 
                 If stdNum.Abs(PixelSelector1.dimension_size.Width - dimension.Width) > 5 Then
                     checkSize = False
@@ -294,6 +298,8 @@ Public Class frmMsImagingViewer
                 sampleRegions.Clear()
                 sampleRegions.LoadTissueMaps(tissues, PixelSelector1)
                 sampleRegions.RenderLayer(PixelSelector1)
+                sampleRegions.ShowMessage($"Tissue map {file.FileName.FileName} has been imported.")
+                sampleRegions.importsFile = file.FileName
 
                 RibbonEvents.ribbonItems.CheckShowMapLayer.BooleanValue = True
 
