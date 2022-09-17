@@ -89,6 +89,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math.SignalProcessing
 Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Microsoft.VisualBasic.Text.Xml.Models
+Imports mzblender
 Imports RibbonLib
 Imports RibbonLib.Interop
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
@@ -485,6 +486,8 @@ Public Class PageMzkitTools
             Return
         End If
 
+        Dim blender As New ChromatogramBlender(TICList)
+
         Call showMatrix(TICList(Scan0).value, TICList(Scan0).name)
 
         MyApplication.RegisterPlot(
@@ -505,21 +508,7 @@ Public Class PageMzkitTools
                     }.Plot($"{args.width},{args.height}", ppi:=100) _
                       .AsGDIImage
                 Else
-                    PictureBox1.BackgroundImage = ChromatogramPlot.TICplot(
-                        ionData:=TICList.ToArray,
-                        colorsSchema:=args.GetColorSetName,
-                        fillCurve:=Globals.Settings.viewer.fill,
-                        size:=$"{args.width},{args.height}",
-                        margin:=args.GetPadding.ToString,
-                        gridFill:=args.gridFill.ToHtmlColor,
-                        bg:=args.background.ToHtmlColor,
-                        showGrid:=args.show_grid,
-                        showLegends:=args.show_legend,
-                        showLabels:=args.show_tag,
-                        xlabel:=args.xlabel,
-                        ylabel:=args.ylabel,
-                        labelFontStyle:=New CSSFont(args.label_font).ToString
-                    ).AsGDIImage
+                    PictureBox1.BackgroundImage = blender.Rendering(args, PictureBox1.Size)
                 End If
             End Sub, width:=1600, height:=1200, showGrid:=True, padding:="padding:100px 100px 150px 200px;", showLegend:=Not d3, xlab:="Time (s)", ylab:="Intensity")
 
