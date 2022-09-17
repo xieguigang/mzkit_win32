@@ -732,38 +732,22 @@ Public Class PageMzkitTools
         Dim progress As New frmProgressSpinner
         Dim plotImage As Image = Nothing
         Dim relative As Boolean = relativeInto()
+        Dim XICPlot As New List(Of NamedCollection(Of ChromatogramTick))
 
-        Call New Thread(
+        Call frmProgressSpinner.DoLoading(
             Sub()
-                Dim XICPlot As New List(Of NamedCollection(Of ChromatogramTick))
-
                 If Not plotTIC.IsEmpty Then
                     XICPlot.Add(plotTIC)
                 End If
 
                 XICPlot.AddRange(getXICCollection(ppm))
+            End Sub)
 
-                If XICPlot.Count = 0 Then
-                    Call MyApplication.host.showStatusMessage("No XIC ions data for generate plot!", My.Resources.StatusAnnotations_Warning_32xLG_color)
-                Else
-                    plotImage = XICPlot _
-                        .ToArray _
-                        .TICplot(
-                            intensityMax:=If(relative, 0, maxY),
-                            isXIC:=True,
-                            colorsSchema:=Globals.GetColors,
-                            fillCurve:=Globals.Settings.viewer.fill,
-                            gridFill:="white"
-                        ).AsGDIImage
-                End If
-
-                Call progress.Invoke(Sub() progress.Close())
-            End Sub).Start()
-
-        progress.ShowDialog()
-
-        PictureBox1.BackgroundImage = plotImage
-        ShowTabPage(TabPage5)
+        If XICPlot.Count = 0 Then
+            Call MyApplication.host.showStatusMessage("No XIC ions data for generate plot!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+        Else
+            Call TIC(XICPlot, d3:=False)
+        End If
     End Sub
 
     ''' <summary>

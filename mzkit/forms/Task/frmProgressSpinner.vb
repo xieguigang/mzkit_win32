@@ -101,6 +101,9 @@ Public Class frmProgressSpinner
     ''' run task and then close the spinner dialog
     ''' </summary>
     ''' <param name="loading"></param>
+    ''' <remarks>
+    ''' 这个函数会阻塞线程
+    ''' </remarks>
     Public Shared Sub DoLoading(loading As Action)
         Dim spinner As New frmProgressSpinner
 
