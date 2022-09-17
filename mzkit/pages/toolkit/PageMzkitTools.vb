@@ -486,30 +486,19 @@ Public Class PageMzkitTools
             Return
         End If
 
-        Dim blender As New ChromatogramBlender(TICList)
+        Dim blender As Blender
+
+        If d3 Then
+            blender = New XIC3DBlender(TICList)
+        Else
+            blender = New ChromatogramBlender(TICList)
+        End If
 
         Call showMatrix(TICList(Scan0).value, TICList(Scan0).name)
 
         MyApplication.RegisterPlot(
             Sub(args)
-                If d3 Then
-                    PictureBox1.BackgroundImage = New ScanVisual3D(scans:=TICList, angle:=60, fillCurve:=True, fillAlpha:=120, drawParallelAxis:=True, theme:=New Theme With {
-                        .colorSet = args.GetColorSetName,
-                        .gridFill = args.gridFill.ToHtmlColor,
-                        .padding = args.GetPadding.ToString,
-                        .drawLegend = args.show_legend,
-                        .drawLabels = args.show_tag,
-                        .drawGrid = args.show_grid,
-                        .tagCSS = New CSSFont(args.label_font).ToString
-                    }) With {
-                        .xlabel = args.xlabel,
-                        .ylabel = args.ylabel,
-                        .main = args.title
-                    }.Plot($"{args.width},{args.height}", ppi:=100) _
-                      .AsGDIImage
-                Else
-                    PictureBox1.BackgroundImage = blender.Rendering(args, PictureBox1.Size)
-                End If
+                PictureBox1.BackgroundImage = blender.Rendering(args, PictureBox1.Size)
             End Sub, width:=1600, height:=1200, showGrid:=True, padding:="padding:100px 100px 150px 200px;", showLegend:=Not d3, xlab:="Time (s)", ylab:="Intensity")
 
         MyApplication.host.ShowPage(Me)
