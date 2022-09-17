@@ -27,7 +27,8 @@ Public Class ChromatogramBlender : Inherits Blender
             showLabels:=args.show_tag,
             xlabel:=args.xlabel,
             ylabel:=args.ylabel,
-            labelFontStyle:=New CSSFont(args.label_font).ToString
+            labelFontStyle:=New CSSFont(args.label_font).ToString,
+            labelLayoutTicks:=-1
         ).AsGDIImage
     End Function
 End Class
