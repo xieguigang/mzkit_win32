@@ -75,6 +75,7 @@ Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.MachineLearning.Data
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
@@ -307,7 +308,12 @@ Public Class MSI : Implements ITaskDriver, IDisposable
     Public Function GetIonColocalization(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
         Dim allPixels As PixelScan() = MSI.pixelReader.AllPixels.ToArray
         Dim clusters = allPixels.IonColocalization.ToArray
+        Dim buffer As New MemoryStream
 
+        Call LabeledData.SaveLabelData(clusters, buffer)
+        Call buffer.Flush()
+
+        Return New DataPipe(buffer)
     End Function
 
     <Protocol(ServiceProtocol.GetIonStatList)>

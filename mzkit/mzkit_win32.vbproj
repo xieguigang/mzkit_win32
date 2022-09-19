@@ -682,7 +682,6 @@
     <Compile Include="pages\dockWindow\frmDemo.vb">
       <SubType>Form</SubType>
     </Compile>
-
     <Compile Include="pages\dockWindow\properties\SampleRegionMergeTool.Designer.vb">
       <DependentUpon>SampleRegionMergeTool.vb</DependentUpon>
     </Compile>
@@ -693,7 +692,6 @@
       <DependentUpon>HEMapTools.vb</DependentUpon>
     </Compile>
     <Compile Include="pages\dockWindow\properties\HEMapTools.vb">
-
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\properties\MSIRegionSampleWindow.Designer.vb">
@@ -1347,6 +1345,10 @@
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Graph\graph-netcore5.vbproj">
       <Project>{c7f74294-cccb-4b65-809d-523074dfaf4d}</Project>
       <Name>graph-netcore5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\MachineLearning\MachineLearning.Data.Extensions\MachineLearning.Data.Extensions.vbproj">
+      <Project>{1bc4965a-ffed-4f97-8451-36778cb24e30}</Project>
+      <Name>MachineLearning.Data.Extensions</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\MachineLearning\MachineLearning\machine_learning-netcore5.vbproj">
       <Project>{b6005552-a627-4daa-8c53-627e595d5f63}</Project>
