@@ -139,11 +139,12 @@ namespace RibbonLib.Controls
             public const uint cmdButtonMSITotalIon = 123;
             public const uint cmdTabMenuMSIAnalysis = 142;
             public const uint cmdButtonFeatureDetections = 152;
+            public const uint cmdButtonMSISignalCorrection = 197;
+            public const uint cmdButtonIonCoLocalization = 204;
             public const uint cmdButtonMSIRawIonStat = 166;
             public const uint cmdButtonMSICleanBackground = 167;
             public const uint cmdCleanBackgroundAutoReference = 199;
             public const uint cmdCleanBackgroundByReference = 198;
-            public const uint cmdButtonMSISignalCorrection = 197;
             public const uint cmdButtonExportSample = 135;
             public const uint cmdButtonTissueMap = 190;
             public const uint cmdButtonImportsTissueMorphology = 188;
@@ -335,11 +336,12 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonMSITotalIon { get; private set; }
         public RibbonGroup TabMenuMSIAnalysis { get; private set; }
         public RibbonDropDownButton ButtonFeatureDetections { get; private set; }
+        public RibbonButton ButtonMSISignalCorrection { get; private set; }
+        public RibbonButton ButtonIonCoLocalization { get; private set; }
         public RibbonButton ButtonMSIRawIonStat { get; private set; }
         public RibbonDropDownButton ButtonMSICleanBackground { get; private set; }
         public RibbonButton CleanBackgroundAutoReference { get; private set; }
         public RibbonButton CleanBackgroundByReference { get; private set; }
-        public RibbonButton ButtonMSISignalCorrection { get; private set; }
         public RibbonButton ButtonExportSample { get; private set; }
         public RibbonDropDownButton ButtonTissueMap { get; private set; }
         public RibbonButton ButtonImportsTissueMorphology { get; private set; }
@@ -526,11 +528,12 @@ namespace RibbonLib.Controls
             ButtonMSITotalIon = new RibbonButton(ribbon, Cmd.cmdButtonMSITotalIon);
             TabMenuMSIAnalysis = new RibbonGroup(ribbon, Cmd.cmdTabMenuMSIAnalysis);
             ButtonFeatureDetections = new RibbonDropDownButton(ribbon, Cmd.cmdButtonFeatureDetections);
+            ButtonMSISignalCorrection = new RibbonButton(ribbon, Cmd.cmdButtonMSISignalCorrection);
+            ButtonIonCoLocalization = new RibbonButton(ribbon, Cmd.cmdButtonIonCoLocalization);
             ButtonMSIRawIonStat = new RibbonButton(ribbon, Cmd.cmdButtonMSIRawIonStat);
             ButtonMSICleanBackground = new RibbonDropDownButton(ribbon, Cmd.cmdButtonMSICleanBackground);
             CleanBackgroundAutoReference = new RibbonButton(ribbon, Cmd.cmdCleanBackgroundAutoReference);
             CleanBackgroundByReference = new RibbonButton(ribbon, Cmd.cmdCleanBackgroundByReference);
-            ButtonMSISignalCorrection = new RibbonButton(ribbon, Cmd.cmdButtonMSISignalCorrection);
             ButtonExportSample = new RibbonButton(ribbon, Cmd.cmdButtonExportSample);
             ButtonTissueMap = new RibbonDropDownButton(ribbon, Cmd.cmdButtonTissueMap);
             ButtonImportsTissueMorphology = new RibbonButton(ribbon, Cmd.cmdButtonImportsTissueMorphology);

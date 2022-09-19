@@ -1048,5 +1048,12 @@
 #define cmdButtonLoadHEMap_TooltipDescription_RESID 60232
 #define cmdButtonLoadHEMap_SmallImages_192__RESID 60233
 #define cmdButtonLoadHEMap_LargeImages_192__RESID 60234
-#define InternalCmd2_LabelTitle_RESID 60235
-#define InternalCmd4_LabelTitle_RESID 60236
+#define cmdButtonIonCoLocalization 204 
+#define cmdButtonIonCoLocalization_LabelTitle_RESID 60235
+#define cmdButtonIonCoLocalization_LabelDescription_RESID 60236
+#define cmdButtonIonCoLocalization_TooltipTitle_RESID 60237
+#define cmdButtonIonCoLocalization_TooltipDescription_RESID 60238
+#define cmdButtonIonCoLocalization_SmallImages_192__RESID 60239
+#define cmdButtonIonCoLocalization_LargeImages_192__RESID 60240
+#define InternalCmd2_LabelTitle_RESID 60241
+#define InternalCmd4_LabelTitle_RESID 60242

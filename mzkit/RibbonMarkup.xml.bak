@@ -2384,6 +2384,14 @@
         <Image MinDPI="192">Resources/System-Map-icon.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonIonCoLocalization" Id="204" LabelTitle="Co-Localization" LabelDescription="Check Ion co-localization" TooltipTitle="Check Ion co-localization" TooltipDescription="Check Ion co-localization">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/libreoffice-math.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/libreoffice-math.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
