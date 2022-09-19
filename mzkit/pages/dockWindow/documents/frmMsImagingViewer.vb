@@ -79,6 +79,7 @@ Imports BioNovoGene.mzkit_win32.My
 Imports ControlLibrary
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
+Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
@@ -147,6 +148,7 @@ Public Class frmMsImagingViewer
         AddHandler RibbonEvents.ribbonItems.ButtonExportRegions.ExecuteEvent, Sub() Call ExportRegions()
         AddHandler RibbonEvents.ribbonItems.ButtonMSISearchPubChem.ExecuteEvent, Sub() Call SearchPubChem()
         AddHandler RibbonEvents.ribbonItems.ButtonLoadHEMap.ExecuteEvent, Sub() Call loadHEMap()
+        AddHandler RibbonEvents.ribbonItems.ButtonIonCoLocalization.ExecuteEvent, Sub() Call DoIonColocalization()
 
         AddHandler RibbonEvents.ribbonItems.CheckShowMapLayer.ExecuteEvent,
             Sub()
@@ -451,6 +453,69 @@ Public Class frmMsImagingViewer
 
     Sub MSIFeatureDetections()
 
+    End Sub
+
+    Sub DoIonColocalization()
+        Dim progress As New frmProgressSpinner
+
+        If Not checkService() Then
+            Return
+        End If
+
+        Call New Thread(
+            Sub()
+                Call Thread.Sleep(500)
+
+                Dim ions As EntityClusterModel() = MSIservice.DoIonCoLocalization({})
+
+                If ions.IsNullOrEmpty Then
+                    Call MyApplication.host.warning("No ions result...")
+                Else
+                    Call Me.Invoke(Sub() Call ShowIonColocalization(ions))
+                End If
+
+                Call progress.CloseWindow()
+            End Sub).Start()
+
+        Call progress.ShowDialog()
+    End Sub
+
+    Private Sub ShowIonColocalization(ions As EntityClusterModel())
+        Dim title As String = If(FilePath.StringEmpty, "Ion Co-localization", $"[{If(Name, FilePath.FileName)}]Ion Co-localization")
+        Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
+        Dim blockNames As String() = ions(Scan0).Properties.Keys.ToArray
+
+        table.AppSource = GetType(EntityClusterModel)
+        table.InstanceGuid = guid
+        table.SourceName = FilePath.FileName Or "MS-Imaging".AsDefault
+        table.ViewRow = Sub(row)
+                            Dim namePlot As String = ""
+                            Dim mz As Double = Val(row("mz"))
+
+                            Call renderByMzList({mz}, namePlot)
+                            Call Me.Activate()
+                        End Sub
+
+        table.LoadTable(
+            Sub(grid)
+                Dim v As Object()
+
+                Call grid.Columns.Add("mz", GetType(Double))
+                Call grid.Columns.Add("pattern", GetType(String))
+
+                For Each name As String In blockNames
+                    Call grid.Columns.Add(name, GetType(Double))
+                Next
+
+                For Each ion As EntityClusterModel In ions
+                    v = New Object() {ion.ID, ion.Cluster} _
+                        .JoinIterates(blockNames.Select(Function(name) CObj(ion(name)))) _
+                        .ToArray
+
+                    Call grid.Rows.Add(v)
+                    Call Application.DoEvents()
+                Next
+            End Sub)
     End Sub
 
     Sub DoIonStats()

@@ -57,6 +57,7 @@
 
 #End Region
 
+Imports System.IO
 Imports System.Text
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
@@ -66,8 +67,10 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.Tcp
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
+Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.MachineLearning.Data
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Parallel
@@ -131,6 +134,21 @@ Namespace ServiceHub
             hostOld.MessageCallback = Nothing
 
             Return hostOld
+        End Function
+
+        Public Function DoIonCoLocalization(mz As Double()) As EntityClusterModel()
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.GetIonColocalization, mz.GetJson(indent:=False, simpleDict:=True)))
+
+            If data Is Nothing Then
+                Return {}
+            ElseIf data.IsHTTP_RFC Then
+                Call MyApplication.host.showStatusMessage(data.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Return {}
+            Else
+                Dim ions = LabeledData.LoadLabelData(New MemoryStream(data.ChunkBuffer)).ToArray
+                Call MyApplication.LogText($"get ion stat table payload {StringFormats.Lanudry(data.ChunkBuffer.Length)}!")
+                Return ions
+            End If
         End Function
 
         Public Function DoIonStats(mz As Double()) As IonStat()
