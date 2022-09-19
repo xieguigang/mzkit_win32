@@ -305,6 +305,8 @@ Public Class MSI : Implements ITaskDriver, IDisposable
 
     <Protocol(ServiceProtocol.GetIonColocalization)>
     Public Function GetIonColocalization(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
+        Dim allPixels As PixelScan() = MSI.pixelReader.AllPixels.ToArray
+        Dim clusters = allPixels.IonColocalization.ToArray
 
     End Function
 
