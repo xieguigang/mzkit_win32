@@ -78,6 +78,7 @@ Public Enum ServiceProtocol
     ExportMzpack
     LoadMSILayers
     GetIonStatList
+    GetIonColocalization
     GetBasePeakMzList
     GetPixel
     GetPixelRectangle

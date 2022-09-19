@@ -303,6 +303,11 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
     End Function
 
+    <Protocol(ServiceProtocol.GetIonColocalization)>
+    Public Function GetIonColocalization(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
+
+    End Function
+
     <Protocol(ServiceProtocol.GetIonStatList)>
     Public Function GetIonStatList(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
         Dim targetMz As Double() = request.GetUTF8String.LoadJSON(Of Double())
