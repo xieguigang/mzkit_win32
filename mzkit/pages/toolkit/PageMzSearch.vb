@@ -466,10 +466,12 @@ Public Class PageMzSearch
         CheckedListBox2.Items.Add("kegg")
         CheckedListBox2.Items.Add("lipidmaps")
         CheckedListBox2.Items.Add("chebi")
+        CheckedListBox2.Items.Add("metabolights")
 
         CheckedListBox2.SetItemChecked(0, True)
         CheckedListBox2.SetItemChecked(1, True)
         CheckedListBox2.SetItemChecked(2, True)
+        CheckedListBox2.SetItemChecked(3, True)
     End Sub
 
     Private Function getDatabase(name As String, ionMode As Integer, tolerance As Tolerance) As IMzQuery
@@ -479,7 +481,9 @@ Public Class PageMzSearch
             Case "lipidmaps"
                 Return Globals.LoadLipidMaps(AddressOf MyApplication.LogText, ionMode, tolerance)
             Case "chebi"
-                Return Globals.LoadChebi(AddressOf MyApplication.LogText, ionMode, tolerance)
+                Return Globals.LoadChEBI(AddressOf MyApplication.LogText, ionMode, tolerance)
+            Case "metabolights"
+                Return Globals.LoadMetabolights(AddressOf MyApplication.LogText, ionMode, tolerance)
             Case Else
                 Return Nothing
         End Select

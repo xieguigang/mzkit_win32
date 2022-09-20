@@ -144,10 +144,26 @@ Module Globals
         Return background
     End Function
 
-    Public Function LoadChebi(println As Action(Of String), mode As Integer, mzdiff As Tolerance) As MSSearch(Of MetaboliteAnnotation)
+    Public Function LoadChEBI(println As Action(Of String), mode As Integer, mzdiff As Tolerance) As MSSearch(Of MetaboliteAnnotation)
         Dim key As String = $"[{mzdiff.ToString}]{mode}"
 
         Static dataPack As MetaboliteAnnotation() = KEGGRepo.RequestChebi
+        Static cache As New Dictionary(Of String, MSSearch(Of MetaboliteAnnotation))
+
+        Return cache.ComputeIfAbsent(key,
+            lazyValue:=Function()
+                           If mode = 1 Then
+                               Return MSSearch(Of MetaboliteAnnotation).CreateIndex(dataPack, Provider.Positives.Where(Function(t) stdNum.Abs(t.charge) = 1).ToArray, mzdiff)
+                           Else
+                               Return MSSearch(Of MetaboliteAnnotation).CreateIndex(dataPack, Provider.Positives.Where(Function(t) stdNum.Abs(t.charge) = 1).ToArray, mzdiff)
+                           End If
+                       End Function)
+    End Function
+
+    Public Function LoadMetabolights(println As Action(Of String), mode As Integer, mzdiff As Tolerance) As MSSearch(Of MetaboliteAnnotation)
+        Dim key As String = $"[{mzdiff.ToString}]{mode}"
+
+        Static dataPack As MetaboliteAnnotation() = KEGGRepo.RequestMetabolights
         Static cache As New Dictionary(Of String, MSSearch(Of MetaboliteAnnotation))
 
         Return cache.ComputeIfAbsent(key,

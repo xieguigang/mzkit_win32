@@ -65,6 +65,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.My
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports SMRUCC.genomics.Assembly.KEGG.WebServices
+Imports SMRUCC.genomics.Data.GeneOntology.OBO
 Imports SMRUCC.genomics.Data.KEGG.Metabolism
 
 Public Module KEGGRepo
@@ -158,7 +159,7 @@ Public Module KEGGRepo
         End If
     End Function
 
-    Public Function RequestChebi() As MetaboliteAnnotation()
+    Public Function RequestMetabolights() As MetaboliteAnnotation()
         Using zip As New ZipArchive(getMZKitPackage.Open(FileMode.Open, doClear:=False))
             Using pack = If(zip.GetEntry("data\MetaboLights.csv"), zip.GetEntry("data/MetaboLights.csv")).Open
                 Dim packData As DataFrame = DataFrame.Load(pack)
@@ -178,6 +179,47 @@ Public Module KEGGRepo
                     .ToArray
             End Using
         End Using
+    End Function
+
+    Public Function RequestChebi() As MetaboliteAnnotation()
+        Dim filepath As String = ""
+
+        For Each dirLevel As String In {"", "../", "../../", "../../../", "../../../../"}
+            filepath = $"{App.HOME}/{dirLevel}Rstudio/data/chebi_lite.obo"
+
+            If filepath.FileExists Then
+                Exit For
+            End If
+
+            filepath = $"{App.HOME}/{dirLevel}src/mzkit/rstudio/data/chebi_lite.obo"
+
+            If filepath.FileExists Then
+                Exit For
+            End If
+        Next
+
+        If Not filepath.FileExists Then
+            Return {}
+        End If
+
+        Dim obo As GO_OBO = GO_OBO.LoadDocument(filepath)
+        Dim metabolites = obo.terms _
+            .Where(Function(t) t.property_value.Any(Function(p) p.StartsWith("formula"))) _
+            .Select(Function(t)
+                        Return New MetaboliteAnnotation With {
+                            .CommonName = t.name,
+                            .UniqueId = t.id,
+                            .Formula = t.property_value _
+                                .Where(Function(p) p.StartsWith("formula")) _
+                                .First _
+                                .Split(" "c)(1) _
+                                .Trim(""""c),
+                            .ExactMass = FormulaScanner.ScanFormula(.Formula).ExactMass
+                        }
+                    End Function) _
+            .ToArray
+
+        Return metabolites
     End Function
 
     Public Function RequestLipidMaps() As LipidMaps.MetaData()
