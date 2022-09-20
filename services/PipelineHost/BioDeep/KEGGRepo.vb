@@ -204,6 +204,7 @@ Public Module KEGGRepo
 
         Dim obo As GO_OBO = GO_OBO.LoadDocument(filepath)
         Dim metabolites = obo.terms _
+            .Where(Function(t) Not t.property_value.IsNullOrEmpty) _
             .Where(Function(t) t.property_value.Any(Function(p) p.StartsWith("formula"))) _
             .Select(Function(t)
                         Return New MetaboliteAnnotation With {
