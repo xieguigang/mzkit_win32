@@ -481,7 +481,7 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub ShowIonColocalization(ions As EntityClusterModel())
-        Dim title As String = If(FilePath.StringEmpty, "Ion Co-localization", $"[{If(Name, FilePath.FileName)}]Ion Co-localization")
+        Dim title As String = If(FilePath.StringEmpty, "Ion Co-localization", $"[{FilePath.FileName}]Ion Co-localization")
         Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
         Dim blockNames As String() = ions(Scan0).Properties.Keys.ToArray
 
