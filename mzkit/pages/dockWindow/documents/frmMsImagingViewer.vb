@@ -181,7 +181,7 @@ Public Class frmMsImagingViewer
 
     Sub MergeSlides()
         Using file As New OpenFileDialog With {
-            .Filter = "BioNovoGene mzPack(*.mzPack)|.mzPack",
+            .Filter = "BioNovoGene mzPack(*.mzPack)|*.mzPack",
             .Multiselect = True
         }
             If file.ShowDialog = DialogResult.OK Then
