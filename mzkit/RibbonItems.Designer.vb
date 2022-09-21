@@ -121,7 +121,9 @@ Namespace RibbonLib.Controls
             Public Const cmdGroupMSIFile As UInteger = 122
             Public Const cmdButtonOpenMSIRaw As UInteger = 119
             Public Const cmdTabMSIFile As UInteger = 129
+            Public Const cmdButtonImportsMSITable As UInteger = 205
             Public Const cmdButtonImportsSCiLSLab As UInteger = 185
+            Public Const cmdButtonImportsShimadzu As UInteger = 206
             Public Const cmdButtonMSIRowScans As UInteger = 128
             Public Const cmdButtonExportMSIMzpack As UInteger = 127
             Public Const cmdPanelMSIVisual As UInteger = 186
@@ -848,10 +850,22 @@ Namespace RibbonLib.Controls
                 Return _TabMSIFile
             End Get
         End Property
+        Private _ButtonImportsMSITable As RibbonDropDownButton
+        Public ReadOnly Property ButtonImportsMSITable As RibbonDropDownButton
+            Get
+                Return _ButtonImportsMSITable
+            End Get
+        End Property
         Private _ButtonImportsSCiLSLab As RibbonButton
         Public ReadOnly Property ButtonImportsSCiLSLab As RibbonButton
             Get
                 Return _ButtonImportsSCiLSLab
+            End Get
+        End Property
+        Private _ButtonImportsShimadzu As RibbonButton
+        Public ReadOnly Property ButtonImportsShimadzu As RibbonButton
+            Get
+                Return _ButtonImportsShimadzu
             End Get
         End Property
         Private _ButtonMSIRowScans As RibbonButton
@@ -1445,7 +1459,9 @@ Namespace RibbonLib.Controls
             _GroupMSIFile = New RibbonGroup(_ribbon, Cmd.cmdGroupMSIFile)
             _ButtonOpenMSIRaw = New RibbonButton(_ribbon, Cmd.cmdButtonOpenMSIRaw)
             _TabMSIFile = New RibbonGroup(_ribbon, Cmd.cmdTabMSIFile)
+            _ButtonImportsMSITable = New RibbonDropDownButton(_ribbon, Cmd.cmdButtonImportsMSITable)
             _ButtonImportsSCiLSLab = New RibbonButton(_ribbon, Cmd.cmdButtonImportsSCiLSLab)
+            _ButtonImportsShimadzu = New RibbonButton(_ribbon, Cmd.cmdButtonImportsShimadzu)
             _ButtonMSIRowScans = New RibbonButton(_ribbon, Cmd.cmdButtonMSIRowScans)
             _ButtonExportMSIMzpack = New RibbonButton(_ribbon, Cmd.cmdButtonExportMSIMzpack)
             _PanelMSIVisual = New RibbonGroup(_ribbon, Cmd.cmdPanelMSIVisual)

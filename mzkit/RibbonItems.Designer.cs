@@ -124,7 +124,9 @@ namespace RibbonLib.Controls
             public const uint cmdGroupMSIFile = 122;
             public const uint cmdButtonOpenMSIRaw = 119;
             public const uint cmdTabMSIFile = 129;
+            public const uint cmdButtonImportsMSITable = 205;
             public const uint cmdButtonImportsSCiLSLab = 185;
+            public const uint cmdButtonImportsShimadzu = 206;
             public const uint cmdButtonMSIRowScans = 128;
             public const uint cmdButtonExportMSIMzpack = 127;
             public const uint cmdPanelMSIVisual = 186;
@@ -321,7 +323,9 @@ namespace RibbonLib.Controls
         public RibbonGroup GroupMSIFile { get; private set; }
         public RibbonButton ButtonOpenMSIRaw { get; private set; }
         public RibbonGroup TabMSIFile { get; private set; }
+        public RibbonDropDownButton ButtonImportsMSITable { get; private set; }
         public RibbonButton ButtonImportsSCiLSLab { get; private set; }
+        public RibbonButton ButtonImportsShimadzu { get; private set; }
         public RibbonButton ButtonMSIRowScans { get; private set; }
         public RibbonButton ButtonExportMSIMzpack { get; private set; }
         public RibbonGroup PanelMSIVisual { get; private set; }
@@ -513,7 +517,9 @@ namespace RibbonLib.Controls
             GroupMSIFile = new RibbonGroup(ribbon, Cmd.cmdGroupMSIFile);
             ButtonOpenMSIRaw = new RibbonButton(ribbon, Cmd.cmdButtonOpenMSIRaw);
             TabMSIFile = new RibbonGroup(ribbon, Cmd.cmdTabMSIFile);
+            ButtonImportsMSITable = new RibbonDropDownButton(ribbon, Cmd.cmdButtonImportsMSITable);
             ButtonImportsSCiLSLab = new RibbonButton(ribbon, Cmd.cmdButtonImportsSCiLSLab);
+            ButtonImportsShimadzu = new RibbonButton(ribbon, Cmd.cmdButtonImportsShimadzu);
             ButtonMSIRowScans = new RibbonButton(ribbon, Cmd.cmdButtonMSIRowScans);
             ButtonExportMSIMzpack = new RibbonButton(ribbon, Cmd.cmdButtonExportMSIMzpack);
             PanelMSIVisual = new RibbonGroup(ribbon, Cmd.cmdPanelMSIVisual);

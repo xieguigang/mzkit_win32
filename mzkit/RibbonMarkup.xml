@@ -2392,6 +2392,22 @@
         <Image MinDPI="192">Res/libreoffice-math.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonImportsMSITable" Id="205" LabelTitle="Import MSI Table" LabelDescription="Import MSI Table" TooltipTitle="Import MSI Table" TooltipDescription="Import MSI Table">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/excel-icon.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/excel-icon.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonImportsShimadzu" Id="206" LabelTitle="Imports Shimadzu iMScope TRIO" LabelDescription="Imports Shimadzu iMScope TRIO" TooltipTitle="Imports Shimadzu iMScope TRIO" TooltipDescription="Imports Shimadzu iMScope TRIO">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/excel-icon.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/excel-icon.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2606,7 +2622,10 @@
               <Button CommandName="cmdButtonOpenMSIRaw" />
             </Group>
             <Group CommandName="cmdTabMSIFile" ApplicationModes="0,1" SizeDefinition="ThreeButtons">
-              <Button CommandName="cmdButtonImportsSCiLSLab" />
+              <DropDownButton CommandName="cmdButtonImportsMSITable">
+                <Button CommandName="cmdButtonImportsSCiLSLab" />
+                <Button CommandName="cmdButtonImportsShimadzu" />
+              </DropDownButton>
               <Button CommandName="cmdButtonMSIRowScans" />
               <Button CommandName="cmdButtonExportMSIMzpack" />
             </Group>
