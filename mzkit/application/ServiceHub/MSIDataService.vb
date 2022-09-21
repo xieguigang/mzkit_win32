@@ -347,13 +347,16 @@ Namespace ServiceHub
             End If
         End Function
 
-        Public Function LoadSummaryLayer(summary As IntensitySummary) As PixelScanIntensity()
+        Public Function LoadSummaryLayer(summary As IntensitySummary, ByRef panic As Boolean) As PixelScanIntensity()
             Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.LoadSummaryLayer, BitConverter.GetBytes(CInt(summary))))
+
+            panic = False
 
             If data Is Nothing Then
                 Return {}
             ElseIf data.IsHTTP_RFC Then
                 Call MyApplication.host.showStatusMessage(data.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
+                panic = True
                 Return {}
             Else
                 Return PixelScanIntensity.Parse(data.ChunkBuffer)

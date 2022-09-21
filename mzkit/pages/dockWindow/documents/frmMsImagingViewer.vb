@@ -1128,16 +1128,27 @@ Public Class frmMsImagingViewer
             Call frmTaskProgress.RunAction(
                 Sub()
                     Call Invoke(Sub() rendering = registerSummaryRender(summary))
-                    Call Invoke(rendering)
+
+                    If Not rendering Is Nothing Then
+                        Call Invoke(rendering)
+                    End If
                 End Sub, "Render MSI", $"Rendering MSI in {summary.Description} mode...")
         End If
 
-        Call MyApplication.host.showStatusMessage("Rendering Complete!", My.Resources.preferences_system_notifications)
-        Call PixelSelector1.ShowMessage($"Render MSI in {summary.Description} mode.")
+        If Not rendering Is Nothing Then
+            Call MyApplication.host.showStatusMessage("Rendering Complete!", My.Resources.preferences_system_notifications)
+            Call PixelSelector1.ShowMessage($"Render MSI in {summary.Description} mode.")
+        End If
     End Sub
 
     Private Function registerSummaryRender(summary As IntensitySummary) As Action
-        Dim summaryLayer As PixelScanIntensity() = MSIservice.LoadSummaryLayer(summary)
+        Dim panic As Boolean = False
+        Dim summaryLayer As PixelScanIntensity() = MSIservice.LoadSummaryLayer(summary, panic)
+
+        If panic Then
+            Return Nothing
+        End If
+
         Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
         Dim blender As New SummaryMSIBlender(summaryLayer, params)
 
