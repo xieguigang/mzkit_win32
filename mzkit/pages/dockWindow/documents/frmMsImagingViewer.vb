@@ -66,6 +66,8 @@
 Imports System.ComponentModel
 Imports System.IO
 Imports System.Threading
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
@@ -88,6 +90,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports Microsoft.VisualBasic.Text
 Imports mzblender
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
@@ -149,6 +152,7 @@ Public Class frmMsImagingViewer
         AddHandler RibbonEvents.ribbonItems.ButtonMSISearchPubChem.ExecuteEvent, Sub() Call SearchPubChem()
         AddHandler RibbonEvents.ribbonItems.ButtonLoadHEMap.ExecuteEvent, Sub() Call loadHEMap()
         AddHandler RibbonEvents.ribbonItems.ButtonIonCoLocalization.ExecuteEvent, Sub() Call DoIonColocalization()
+        AddHandler RibbonEvents.ribbonItems.ButtonImportsShimadzu.ExecuteEvent, Sub() Call convertShimadzuTable()
 
         AddHandler RibbonEvents.ribbonItems.CheckShowMapLayer.ExecuteEvent,
             Sub()
@@ -172,6 +176,40 @@ Public Class frmMsImagingViewer
 
         sampleRegions.Show(MyApplication.host.dockPanel)
         sampleRegions.DockState = DockState.Hidden
+    End Sub
+
+    Sub convertShimadzuTable()
+        Using file As New OpenFileDialog With {.Filter = "MSI Table(*.csv)|*.csv"}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim header As String = file.FileName.ReadFirstLine
+
+                If Not Shimadzu.CheckTableHeader(header.Split(ASCII.TAB, " "c, ","c)) Then
+                    MessageBox.Show("Invalid table file format!", "Import Shimadzu MSI Table", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Else
+                    Using savefile As New SaveFileDialog With {.Filter = "BioNovoGene mzPack(*.mzPack)|*.mzPack"}
+                        If savefile.ShowDialog = DialogResult.OK Then
+                            Call frmTaskProgress.LoadData(
+                                streamLoad:=Function(echo)
+                                                Dim raw As mzPack = Shimadzu.ImportsMzPack(
+                                                    file:=file.OpenFile,
+                                                    sample:=file.FileName.FileName,
+                                                    println:=echo
+                                                )
+
+                                                Return raw.Write(savefile.FileName.Open(FileMode.OpenOrCreate, doClear:=True), progress:=echo)
+                                            End Function,
+                                title:=$"Imports [{file.FileName}]"
+                            )
+
+                            If MessageBox.Show("MSI Raw Convert Job Done!" & vbCrLf & "Open MSI raw data file in MSI Viewer?", "MSI Viewer", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
+                                Call RibbonEvents.showMsImaging()
+                                Call WindowModules.viewer.loadimzML(savefile.FileName)
+                            End If
+                        End If
+                    End Using
+                End If
+            End If
+        End Using
     End Sub
 
     Sub loadHEMap()
