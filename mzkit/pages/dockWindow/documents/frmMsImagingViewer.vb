@@ -186,7 +186,10 @@ Public Class frmMsImagingViewer
                 If Not Shimadzu.CheckTableHeader(header.Split(ASCII.TAB, " "c, ","c)) Then
                     MessageBox.Show("Invalid table file format!", "Import Shimadzu MSI Table", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Else
-                    Using savefile As New SaveFileDialog With {.Filter = "BioNovoGene mzPack(*.mzPack)|*.mzPack"}
+                    Using savefile As New SaveFileDialog With {
+                        .Filter = "BioNovoGene mzPack(*.mzPack)|*.mzPack",
+                        .FileName = $"{file.FileName.BaseName}.mzPack"
+                    }
                         If savefile.ShowDialog = DialogResult.OK Then
                             Call frmTaskProgress.LoadData(
                                 streamLoad:=Function(echo)

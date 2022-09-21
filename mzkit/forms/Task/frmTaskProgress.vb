@@ -125,6 +125,7 @@ Public Class frmTaskProgress
             Invoke(Sub() Label1.Text = message)
         End If
 
+        Call Application.DoEvents()
         Call MyApplication.host.showStatusMessage(message)
     End Sub
 
