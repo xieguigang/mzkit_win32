@@ -2408,6 +2408,14 @@
         <Image MinDPI="192">Res/excel-icon.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonMergeMultipleMSISample" Id="207" LabelTitle="Merge Multiple MSI Sample" LabelDescription="Merge Multiple MSI Sample" TooltipTitle="Merge Multiple MSI Sample" TooltipDescription="Merge Multiple MSI Sample">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/osd-duplicate.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/osd-duplicate.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2633,8 +2641,9 @@
               <Button CommandName="cmdButtonMSISearchPubChem" />
               <Button CommandName="cmdButtonMSIMatrixVisual" />
             </Group>
-            <Group CommandName="cmdGroupMSIOperations" SizeDefinition="OneButton">
+            <Group CommandName="cmdGroupMSIOperations" SizeDefinition="TwoButtons">
               <Button CommandName="cmdButtonUpsideDown" />
+              <Button CommandName="cmdButtonMergeMultipleMSISample" />
             </Group>
           </Tab>
           <Tab CommandName="cmdTabMSIAnalysis" ApplicationModes="0,1">

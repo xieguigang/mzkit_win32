@@ -2408,6 +2408,14 @@
         <Image MinDPI="192">Res/excel-icon.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonMergeMultipleMSISample" Id="207" LabelTitle="Merge Multiple MSI Sample" LabelDescription="Merge Multiple MSI Sample" TooltipTitle="Merge Multiple MSI Sample" TooltipDescription="Merge Multiple MSI Sample">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/osd-duplicate.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/osd-duplicate.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2622,13 +2630,10 @@
               <Button CommandName="cmdButtonOpenMSIRaw" />
             </Group>
             <Group CommandName="cmdTabMSIFile" ApplicationModes="0,1" SizeDefinition="ThreeButtons">
-              <SplitButton CommandName="cmdButtonImportsMSITable">
-                <SplitButton.ButtonItem>
-                  <Button />
-                </SplitButton.ButtonItem>
+              <DropDownButton CommandName="cmdButtonImportsMSITable">
                 <Button CommandName="cmdButtonImportsSCiLSLab" />
                 <Button CommandName="cmdButtonImportsShimadzu" />
-              </SplitButton>
+              </DropDownButton>
               <Button CommandName="cmdButtonMSIRowScans" />
               <Button CommandName="cmdButtonExportMSIMzpack" />
             </Group>
@@ -2638,6 +2643,7 @@
             </Group>
             <Group CommandName="cmdGroupMSIOperations" SizeDefinition="OneButton">
               <Button CommandName="cmdButtonUpsideDown" />
+              <Button CommandName="cmdButtonMergeMultipleMSISample" />
             </Group>
           </Tab>
           <Tab CommandName="cmdTabMSIAnalysis" ApplicationModes="0,1">

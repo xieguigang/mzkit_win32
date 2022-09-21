@@ -131,6 +131,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonMSIMatrixVisual As UInteger = 187
             Public Const cmdGroupMSIOperations As UInteger = 201
             Public Const cmdButtonUpsideDown As UInteger = 202
+            Public Const cmdButtonMergeMultipleMSISample As UInteger = 207
             Public Const cmdTabMSIAnalysis As UInteger = 141
             Public Const cmdTabMSISnapshot As UInteger = 126
             Public Const cmdButtonMSIAverageIon As UInteger = 125
@@ -910,6 +911,12 @@ Namespace RibbonLib.Controls
                 Return _ButtonUpsideDown
             End Get
         End Property
+        Private _ButtonMergeMultipleMSISample As RibbonButton
+        Public ReadOnly Property ButtonMergeMultipleMSISample As RibbonButton
+            Get
+                Return _ButtonMergeMultipleMSISample
+            End Get
+        End Property
         Private _TabMSIAnalysis As RibbonTab
         Public ReadOnly Property TabMSIAnalysis As RibbonTab
             Get
@@ -1469,6 +1476,7 @@ Namespace RibbonLib.Controls
             _ButtonMSIMatrixVisual = New RibbonButton(_ribbon, Cmd.cmdButtonMSIMatrixVisual)
             _GroupMSIOperations = New RibbonGroup(_ribbon, Cmd.cmdGroupMSIOperations)
             _ButtonUpsideDown = New RibbonButton(_ribbon, Cmd.cmdButtonUpsideDown)
+            _ButtonMergeMultipleMSISample = New RibbonButton(_ribbon, Cmd.cmdButtonMergeMultipleMSISample)
             _TabMSIAnalysis = New RibbonTab(_ribbon, Cmd.cmdTabMSIAnalysis)
             _TabMSISnapshot = New RibbonGroup(_ribbon, Cmd.cmdTabMSISnapshot)
             _ButtonMSIAverageIon = New RibbonButton(_ribbon, Cmd.cmdButtonMSIAverageIon)
