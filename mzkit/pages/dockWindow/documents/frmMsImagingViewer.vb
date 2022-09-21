@@ -153,6 +153,7 @@ Public Class frmMsImagingViewer
         AddHandler RibbonEvents.ribbonItems.ButtonLoadHEMap.ExecuteEvent, Sub() Call loadHEMap()
         AddHandler RibbonEvents.ribbonItems.ButtonIonCoLocalization.ExecuteEvent, Sub() Call DoIonColocalization()
         AddHandler RibbonEvents.ribbonItems.ButtonImportsShimadzu.ExecuteEvent, Sub() Call convertShimadzuTable()
+        AddHandler RibbonEvents.ribbonItems.ButtonMergeMultipleMSISample.ExecuteEvent, Sub() Call MergeSlides()
 
         AddHandler RibbonEvents.ribbonItems.CheckShowMapLayer.ExecuteEvent,
             Sub()
@@ -176,6 +177,41 @@ Public Class frmMsImagingViewer
 
         sampleRegions.Show(MyApplication.host.dockPanel)
         sampleRegions.DockState = DockState.Hidden
+    End Sub
+
+    Sub MergeSlides()
+        Using file As New OpenFileDialog With {
+            .Filter = "BioNovoGene mzPack(*.mzPack)|.mzPack",
+            .Multiselect = True
+        }
+            If file.ShowDialog = DialogResult.OK Then
+                Dim files As String() = file.FileNames
+                Dim loadfiles As IEnumerable(Of mzPack) = files _
+                    .Select(Function(path)
+                                Return mzPack.ReadAll(
+                                    file:=path.Open(FileMode.Open, doClear:=False, [readOnly]:=True),
+                                    ignoreThumbnail:=True,
+                                    skipMsn:=True
+                                )
+                            End Function)
+
+                Using savefile As New SaveFileDialog With {.Filter = file.Filter}
+                    If savefile.ShowDialog = DialogResult.OK Then
+                        If frmTaskProgress.LoadData(Function(echo)
+                                                        Return loadfiles _
+                                                            .JoinMSISamples(println:=echo) _
+                                                            .Write(savefile.OpenFile, progress:=echo)
+                                                    End Function) Then
+
+                            If MessageBox.Show("MSI Raw Convert Job Done!" & vbCrLf & "Open MSI raw data file in MSI Viewer?", "MSI Viewer", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
+                                Call RibbonEvents.showMsImaging()
+                                Call WindowModules.viewer.loadimzML(savefile.FileName)
+                            End If
+                        End If
+                    End If
+                End Using
+            End If
+        End Using
     End Sub
 
     Sub convertShimadzuTable()
