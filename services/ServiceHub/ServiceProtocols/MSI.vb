@@ -83,6 +83,7 @@ Imports Microsoft.VisualBasic.Net.Protocols.Reflection
 Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports stdNum = System.Math
 
 <Protocol(GetType(ServiceProtocol))>
 Public Class MSI : Implements ITaskDriver, IDisposable
@@ -281,6 +282,25 @@ Public Class MSI : Implements ITaskDriver, IDisposable
                 .Centroid(Tolerance.DeltaMass(0.1), New RelativeIntensityCutoff(0.05)) _
                 .Select(Function(i) i.mz) _
                 .ToArray
+        ElseIf reffile.IsNumeric AndAlso Not reffile.FileExists Then
+            Dim mz As Double = Val(reffile)
+
+            allPixels = allPixels _
+                .Where(Function(p) p.HasAnyMzIon) _
+                .Where(Function(p)
+                           Dim m As ms2 = p _
+                               .GetMs _
+                               .OrderByDescending(Function(mi) mi.intensity) _
+                               .First
+
+                           Return stdNum.Abs(m.mz - mz) > 0.3
+                       End Function) _
+                .ToArray
+
+            MSI = New Drawer(allPixels.CreatePixelReader(excludesMz:=Nothing))
+            info = MSIProtocols.GetMSIInfo(MSI)
+
+            Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
         Else
             ' by a reference file, clean up background mz
             Dim stream = reffile.Open(FileMode.Open, doClear:=False, [readOnly]:=True)

@@ -941,6 +941,17 @@ Public Class frmMsImagingViewer
         If mask.ShowDialogForm(input) = DialogResult.OK Then
             Dim mz As Double = input.IonMz
 
+            Call frmTaskProgress.LoadData(
+                    Function(msg As Action(Of String))
+                        Dim info = MSIservice.CutBackground(mz.ToString)
+
+                        If Not info Is Nothing Then
+                            Call Me.Invoke(Sub() LoadRender(info, FilePath))
+                            Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
+                        End If
+
+                        Return 0
+                    End Function, taskAssign:=MSIservice.taskHost)
         End If
     End Sub
 
