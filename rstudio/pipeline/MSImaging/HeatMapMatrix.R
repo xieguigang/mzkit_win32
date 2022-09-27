@@ -14,6 +14,8 @@ const mz as string           = ?"--mzlist" || stop("target ions list must be pro
 const mzdiff as string       = ?"--mzdiff" || "da:0.1";
 const savefile as string     = ?"--save"   || stop("A file path to save plot image must be specificed!");
 const colorPalette as string = ?"--scaler" || "viridis:turbo";
+const size_str as string     = ?"--size"   || "2800,2100";
+const layout_str as string   = ?"--layout" || "3,3";
 
 const mzSet = mz 
 |> readText() 
@@ -27,7 +29,8 @@ const mzSet = mz
 str(mzSet);
 
 const padding = [50, 450, 50, 50];
-const size    = [2800, 2100];
+const layout  = strsplit(layout_str, ",") |> unlist() |> as.integer();
+const size    = strsplit(size_str, ",") |> unlist() |> as.integer();
 const images  = lapply(mzSet, function(ion) {
 	let mz    = as.numeric(ion$mz);
     let layer = app::getMSIData(
@@ -50,7 +53,7 @@ bitmap(
 );
 
 images |> PlotMSIMatrixHeatmap(
-    layout        = [3,3],
+    layout        = layout,
     colorSet      = colorPalette,
     MSI_TrIQ      = 0.85,
     size          = size, 

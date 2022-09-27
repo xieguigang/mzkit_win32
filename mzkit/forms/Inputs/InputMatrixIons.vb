@@ -3,14 +3,26 @@ Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports DataFrame = Microsoft.VisualBasic.Data.csv.IO.DataFrame
-Imports xlsx = Microsoft.VisualBasic.MIME.Office.Excel.File
 Imports stdNum = System.Math
+Imports xlsx = Microsoft.VisualBasic.MIME.Office.Excel.File
 
 Public Class InputMatrixIons
 
-    Public ReadOnly Property matrixSize As Size
+    Public ReadOnly Property MSILayout As Size
         Get
-            Return New Size(Integer.Parse(txtColumns.Text), Integer.Parse(txtRows.Text))
+            Return New Size(
+                width:=Integer.Parse(txtColumns.Text),
+                height:=Integer.Parse(txtRows.Text)
+            )
+        End Get
+    End Property
+
+    Public ReadOnly Property CanvasSize As Size
+        Get
+            Return New Size(
+                width:=Integer.Parse(TextBox2.Text),
+                height:=Integer.Parse(TextBox3.Text)
+            )
         End Get
     End Property
 
@@ -25,7 +37,7 @@ Public Class InputMatrixIons
         Dim name As Array = AdvancedDataGridView1.getFieldVector("name")
         Dim precursor As Array = AdvancedDataGridView1.getFieldVector("precursor_type")
         Dim selects As Boolean() = AdvancedDataGridView1.getFieldVector("select")
-        Dim n As Integer = matrixSize.Width * matrixSize.Height
+        Dim n As Integer = MSILayout.Width * MSILayout.Height
         Dim j As Integer = 1
 
         For i As Integer = 0 To selects.Length - 1
@@ -47,7 +59,7 @@ Public Class InputMatrixIons
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim nsize As Size = matrixSize
+        Dim nsize As Size = MSILayout
         Dim n1 = GetSelectedIons.Count
         Dim n2 = nsize.Width * nsize.Height
 
@@ -74,7 +86,7 @@ Public Class InputMatrixIons
         If e.ColumnIndex = 0 AndAlso e.RowIndex >= 0 Then
             Dim r = AdvancedDataGridView1.Rows(e.RowIndex)
             Dim value As Boolean = r.Cells(e.ColumnIndex).Value
-            Dim size = Me.matrixSize
+            Dim size = Me.MSILayout
             Dim total As Integer = size.Width * size.Height
 
             If value = True Then

@@ -44,6 +44,10 @@ Partial Class InputMatrixIons
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoadMetabolitesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportSingleIonsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,6 +107,10 @@ Partial Class InputMatrixIons
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.Label6)
+        Me.TabPage2.Controls.Add(Me.TextBox2)
+        Me.TabPage2.Controls.Add(Me.TextBox3)
+        Me.TabPage2.Controls.Add(Me.Label5)
         Me.TabPage2.Controls.Add(Me.txtMzdiff)
         Me.TabPage2.Controls.Add(Me.Label4)
         Me.TabPage2.Controls.Add(Me.TextBox1)
@@ -121,16 +129,16 @@ Partial Class InputMatrixIons
         '
         'txtMzdiff
         '
-        Me.txtMzdiff.Location = New System.Drawing.Point(131, 44)
+        Me.txtMzdiff.Location = New System.Drawing.Point(131, 73)
         Me.txtMzdiff.Name = "txtMzdiff"
-        Me.txtMzdiff.Size = New System.Drawing.Size(97, 21)
+        Me.txtMzdiff.Size = New System.Drawing.Size(53, 21)
         Me.txtMzdiff.TabIndex = 7
         Me.txtMzdiff.Text = "0.3"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(21, 47)
+        Me.Label4.Location = New System.Drawing.Point(21, 76)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(65, 12)
         Me.Label4.TabIndex = 6
@@ -138,18 +146,18 @@ Partial Class InputMatrixIons
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(23, 94)
+        Me.TextBox1.Location = New System.Drawing.Point(23, 134)
         Me.TextBox1.Multiline = True
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
         Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBox1.Size = New System.Drawing.Size(694, 204)
+        Me.TextBox1.Size = New System.Drawing.Size(694, 164)
         Me.TextBox1.TabIndex = 5
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(21, 70)
+        Me.Label3.Location = New System.Drawing.Point(21, 108)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(77, 12)
         Me.Label3.TabIndex = 4
@@ -233,7 +241,7 @@ Partial Class InputMatrixIons
         'LoadMetabolitesToolStripMenuItem
         '
         Me.LoadMetabolitesToolStripMenuItem.Name = "LoadMetabolitesToolStripMenuItem"
-        Me.LoadMetabolitesToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
+        Me.LoadMetabolitesToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.LoadMetabolitesToolStripMenuItem.Text = "Load Metabolites"
         '
         'ExportSingleIonsToolStripMenuItem
@@ -241,6 +249,40 @@ Partial Class InputMatrixIons
         Me.ExportSingleIonsToolStripMenuItem.Name = "ExportSingleIonsToolStripMenuItem"
         Me.ExportSingleIonsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ExportSingleIonsToolStripMenuItem.Text = "Export Single Ions"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(21, 49)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(77, 12)
+        Me.Label5.TabIndex = 8
+        Me.Label5.Text = "Canvas Size:"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(192, 55)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(11, 12)
+        Me.Label6.TabIndex = 11
+        Me.Label6.Text = "x"
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(131, 46)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(53, 21)
+        Me.TextBox2.TabIndex = 10
+        Me.TextBox2.Text = "2800"
+        '
+        'TextBox3
+        '
+        Me.TextBox3.Location = New System.Drawing.Point(209, 46)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(53, 21)
+        Me.TextBox3.TabIndex = 9
+        Me.TextBox3.Text = "2100"
         '
         'InputMatrixIons
         '
@@ -290,4 +332,8 @@ Partial Class InputMatrixIons
     Friend WithEvents txtMzdiff As TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents ExportSingleIonsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Label6 As Label
+    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents Label5 As Label
 End Class

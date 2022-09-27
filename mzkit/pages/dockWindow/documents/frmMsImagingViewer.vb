@@ -522,7 +522,10 @@ Public Class frmMsImagingViewer
                     mzSet:=ionList,
                     tolerance:=$"da:{getFormula.txtMzdiff.Text}",
                     saveAs:=file.FileName,
-                    debug:=AddressOf getFormula.TextBox1.AppendText
+                    debug:=AddressOf getFormula.TextBox1.AppendText,
+                    size:=getFormula.CanvasSize,
+                    layout:=getFormula.MSILayout，
+                    scaler:="viridis:turbo"
                 )
                 Call getFormula.TextBox1.AppendText(vbCrLf)
             End If

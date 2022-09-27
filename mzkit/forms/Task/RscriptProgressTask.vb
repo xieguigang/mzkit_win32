@@ -279,11 +279,22 @@ Public Class RscriptProgressTask
     Public Shared Sub ExportHeatMapMatrixPlot(mzSet As Dictionary(Of String, Dictionary(Of String, String)),
                                               tolerance As String,
                                               saveAs As String,
+                                              size As Size,
+                                              layout As Size,
+                                              scaler As String,
                                               debug As Action(Of String))
 
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSImaging/HeatMapMatrix.R")
         Dim mzfile As String = TempFileSystem.GetAppSysTempFile(".json", sessionID:=App.PID.ToHexString, prefix:="matrix_mzset___")
-        Dim cli As String = $"""{Rscript}"" --app {WindowModules.viewer.MSIservice.appPort} --mzlist ""{mzfile}"" --save ""{saveAs}"" --mzdiff ""{tolerance}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim cli As String = $"""{Rscript}"" 
+--app {WindowModules.viewer.MSIservice.appPort} 
+--mzlist ""{mzfile}"" 
+--size ""{New Integer() {size.Width, size.Height}.JoinBy(",")}""
+--layout ""{ New Integer() {layout.Width, layout.Height}.JoinBy(",")}""
+--scaler ""{scaler}""
+--save ""{saveAs}"" 
+--mzdiff ""{tolerance}"" 
+--SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
         Dim progress As New frmTaskProgress
 
