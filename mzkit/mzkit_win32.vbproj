@@ -957,6 +957,9 @@
     <EmbeddedResource Include="forms\frmUserAgreement.resx">
       <DependentUpon>frmUserAgreement.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\InputBasePeakIon.resx">
+      <DependentUpon>InputBasePeakIon.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputConfigTissueMap.resx">
       <DependentUpon>InputConfigTissueMap.vb</DependentUpon>
     </EmbeddedResource>

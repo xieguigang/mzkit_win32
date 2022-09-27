@@ -931,7 +931,17 @@ Public Class frmMsImagingViewer
     End Sub
 
     Sub cleanBackgroundByBasePeak()
+        If Not checkService() Then
+            Return
+        End If
 
+        Dim input As New InputBasePeakIon
+        Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
+
+        If mask.ShowDialogForm(input) = DialogResult.OK Then
+            Dim mz As Double = input.IonMz
+
+        End If
     End Sub
 
     Sub cleanBackground(addReference As Boolean)
