@@ -148,6 +148,7 @@ namespace RibbonLib.Controls
             public const uint cmdButtonMSICleanBackground = 167;
             public const uint cmdCleanBackgroundAutoReference = 199;
             public const uint cmdCleanBackgroundByReference = 198;
+            public const uint cmdCleanBackgroundByBasePeak = 208;
             public const uint cmdButtonExportSample = 135;
             public const uint cmdButtonTissueMap = 190;
             public const uint cmdButtonImportsTissueMorphology = 188;
@@ -348,6 +349,7 @@ namespace RibbonLib.Controls
         public RibbonDropDownButton ButtonMSICleanBackground { get; private set; }
         public RibbonButton CleanBackgroundAutoReference { get; private set; }
         public RibbonButton CleanBackgroundByReference { get; private set; }
+        public RibbonButton CleanBackgroundByBasePeak { get; private set; }
         public RibbonButton ButtonExportSample { get; private set; }
         public RibbonDropDownButton ButtonTissueMap { get; private set; }
         public RibbonButton ButtonImportsTissueMorphology { get; private set; }
@@ -543,6 +545,7 @@ namespace RibbonLib.Controls
             ButtonMSICleanBackground = new RibbonDropDownButton(ribbon, Cmd.cmdButtonMSICleanBackground);
             CleanBackgroundAutoReference = new RibbonButton(ribbon, Cmd.cmdCleanBackgroundAutoReference);
             CleanBackgroundByReference = new RibbonButton(ribbon, Cmd.cmdCleanBackgroundByReference);
+            CleanBackgroundByBasePeak = new RibbonButton(ribbon, Cmd.cmdCleanBackgroundByBasePeak);
             ButtonExportSample = new RibbonButton(ribbon, Cmd.cmdButtonExportSample);
             ButtonTissueMap = new RibbonDropDownButton(ribbon, Cmd.cmdButtonTissueMap);
             ButtonImportsTissueMorphology = new RibbonButton(ribbon, Cmd.cmdButtonImportsTissueMorphology);

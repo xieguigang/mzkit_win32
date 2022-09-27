@@ -144,6 +144,7 @@ Public Class frmMsImagingViewer
         AddHandler RibbonEvents.ribbonItems.ButtonTogglePolygon.ExecuteEvent, Sub() Call TogglePolygonMode()
         AddHandler RibbonEvents.ribbonItems.CleanBackgroundAutoReference.ExecuteEvent, Sub() Call cleanBackground(addReference:=False)
         AddHandler RibbonEvents.ribbonItems.CleanBackgroundByReference.ExecuteEvent, Sub() Call cleanBackground(addReference:=True)
+        AddHandler RibbonEvents.ribbonItems.CleanBackgroundByBasePeak.ExecuteEvent, Sub() Call cleanBackgroundByBasePeak()
         AddHandler RibbonEvents.ribbonItems.ButtonMSIRawIonStat.ExecuteEvent, Sub() Call DoIonStats()
         AddHandler RibbonEvents.ribbonItems.ButtonMSIMatrixVisual.ExecuteEvent, Sub() Call OpenHeatmapMatrixPlot()
         AddHandler RibbonEvents.ribbonItems.ButtonUpsideDown.ExecuteEvent, Sub() Call TurnUpsideDown()
@@ -927,6 +928,10 @@ Public Class frmMsImagingViewer
 
                 Return 0
             End Function)
+    End Sub
+
+    Sub cleanBackgroundByBasePeak()
+
     End Sub
 
     Sub cleanBackground(addReference As Boolean)

@@ -145,6 +145,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonMSICleanBackground As UInteger = 167
             Public Const cmdCleanBackgroundAutoReference As UInteger = 199
             Public Const cmdCleanBackgroundByReference As UInteger = 198
+            Public Const cmdCleanBackgroundByBasePeak As UInteger = 208
             Public Const cmdButtonExportSample As UInteger = 135
             Public Const cmdButtonTissueMap As UInteger = 190
             Public Const cmdButtonImportsTissueMorphology As UInteger = 188
@@ -995,6 +996,12 @@ Namespace RibbonLib.Controls
                 Return _CleanBackgroundByReference
             End Get
         End Property
+        Private _CleanBackgroundByBasePeak As RibbonButton
+        Public ReadOnly Property CleanBackgroundByBasePeak As RibbonButton
+            Get
+                Return _CleanBackgroundByBasePeak
+            End Get
+        End Property
         Private _ButtonExportSample As RibbonButton
         Public ReadOnly Property ButtonExportSample As RibbonButton
             Get
@@ -1490,6 +1497,7 @@ Namespace RibbonLib.Controls
             _ButtonMSICleanBackground = New RibbonDropDownButton(_ribbon, Cmd.cmdButtonMSICleanBackground)
             _CleanBackgroundAutoReference = New RibbonButton(_ribbon, Cmd.cmdCleanBackgroundAutoReference)
             _CleanBackgroundByReference = New RibbonButton(_ribbon, Cmd.cmdCleanBackgroundByReference)
+            _CleanBackgroundByBasePeak = New RibbonButton(_ribbon, Cmd.cmdCleanBackgroundByBasePeak)
             _ButtonExportSample = New RibbonButton(_ribbon, Cmd.cmdButtonExportSample)
             _ButtonTissueMap = New RibbonDropDownButton(_ribbon, Cmd.cmdButtonTissueMap)
             _ButtonImportsTissueMorphology = New RibbonButton(_ribbon, Cmd.cmdButtonImportsTissueMorphology)

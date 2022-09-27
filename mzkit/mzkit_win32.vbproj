@@ -385,6 +385,12 @@
     <Compile Include="application\settings\RawFileViewerSettings.vb" />
     <Compile Include="application\VisualStudio.vb" />
     <Compile Include="application\RPackage.vb" />
+    <Compile Include="forms\Inputs\InputBasePeakIon.Designer.vb">
+      <DependentUpon>InputBasePeakIon.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\InputBasePeakIon.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\InputConfigTissueMap.Designer.vb">
       <DependentUpon>InputConfigTissueMap.vb</DependentUpon>
     </Compile>

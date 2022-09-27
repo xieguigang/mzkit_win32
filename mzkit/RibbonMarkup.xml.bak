@@ -2416,6 +2416,14 @@
         <Image MinDPI="192">Res/osd-duplicate.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdCleanBackgroundByBasePeak" Id="208" LabelTitle="Clean Background By BasePeak Ion" LabelDescription="Clean Background By BasePeak Ion" TooltipTitle="Clean Background By BasePeak Ion" TooltipDescription="Clean Background By BasePeak Ion">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/edit-cut.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="144">Res/edit-cut.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2641,7 +2649,7 @@
               <Button CommandName="cmdButtonMSISearchPubChem" />
               <Button CommandName="cmdButtonMSIMatrixVisual" />
             </Group>
-            <Group CommandName="cmdGroupMSIOperations" SizeDefinition="OneButton">
+            <Group CommandName="cmdGroupMSIOperations" SizeDefinition="TwoButtons">
               <Button CommandName="cmdButtonUpsideDown" />
               <Button CommandName="cmdButtonMergeMultipleMSISample" />
             </Group>
