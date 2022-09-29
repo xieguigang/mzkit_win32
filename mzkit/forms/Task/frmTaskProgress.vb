@@ -153,7 +153,8 @@ Public Class frmTaskProgress
     Public Shared Function LoadData(Of T)(streamLoad As Func(Of Action(Of String), T),
                                           Optional title$ = "Loading data...",
                                           Optional info$ = "Open a large raw data file...",
-                                          Optional ByRef taskAssign As Thread = Nothing) As T
+                                          Optional ByRef taskAssign As Thread = Nothing,
+                                          Optional canbeCancel As Boolean = False) As T
         Dim tmp As T
         Dim progress As New frmTaskProgress
         Dim task As ThreadStart =
@@ -175,6 +176,19 @@ Public Class frmTaskProgress
 
         taskAssign = New Thread(task)
         taskAssign.Start()
+
+        If canbeCancel Then
+            Dim handle As Thread = taskAssign
+
+            progress.TaskCancel =
+                Sub()
+                    Try
+                        Call handle.Abort()
+                    Catch ex As Exception
+                        Call MyApplication.host.warning($"[{title}] task has been cancel.")
+                    End Try
+                End Sub
+        End If
 
         Call progress.ShowDialog()
 

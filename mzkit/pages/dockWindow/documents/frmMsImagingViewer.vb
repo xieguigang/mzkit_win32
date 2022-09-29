@@ -1018,7 +1018,7 @@ Public Class frmMsImagingViewer
                     Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
 
                     Return 0
-                End Function)
+                End Function, canbeCancel:=True)
     End Sub
 
     ''' <summary>
