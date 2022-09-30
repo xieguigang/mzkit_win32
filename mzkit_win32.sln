@@ -371,6 +371,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ggplot", "ggplot", "{3289E8
 	ProjectSection(SolutionItems) = preProject
 		rstudio\pipeline\ggplot\ggplot2.R = rstudio\pipeline\ggplot\ggplot2.R
 		rstudio\pipeline\ggplot\ggplot_ionStatMSI.R = rstudio\pipeline\ggplot\ggplot_ionStatMSI.R
+		rstudio\pipeline\ggplot\scatter3D.R = rstudio\pipeline\ggplot\scatter3D.R
 	EndProjectSection
 EndProject
 Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "MoleculeNetworking", "..\mzmath\MoleculeNetworking\MoleculeNetworking.vbproj", "{2F564806-DDAA-4539-92B3-DA63E055306D}"
