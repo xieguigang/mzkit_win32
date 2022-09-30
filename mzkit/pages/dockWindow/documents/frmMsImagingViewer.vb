@@ -725,6 +725,7 @@ Public Class frmMsImagingViewer
         ribbonItems.ButtonPolygonDeleteVertex.BooleanValue = False
         ribbonItems.ButtonRemovePolygon.BooleanValue = False
 
+        PixelSelector1.ShowPointInform = ribbonItems.ButtonShowPolygonVertexInfo.BooleanValue
         PixelSelector1.OnAddVertexMenuItemClick()
     End Sub
 
