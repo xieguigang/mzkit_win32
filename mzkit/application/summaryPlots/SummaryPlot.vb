@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic.ComponentModel.Collection
+﻿Imports System.Text
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Serialization.JSON
 
 Public MustInherit Class SummaryPlot
@@ -55,4 +56,14 @@ Public MustInherit Class SummaryPlot
         Throw New InvalidProgramException(aliasNames.GetJson)
     End Function
 
+    Public Overrides Function ToString() As String
+        Dim sb As New StringBuilder(appName & vbCrLf)
+        sb.AppendLine()
+
+        For Each item In requiredFields
+            Call sb.AppendLine($"{item.Key.JoinBy(", ")}: {item.Value}")
+        Next
+
+        Return sb.ToString
+    End Function
 End Class

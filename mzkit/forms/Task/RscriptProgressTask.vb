@@ -421,4 +421,34 @@ Public Class RscriptProgressTask
             Return imageOut.LoadImage
         End If
     End Function
+
+    Public Shared Function PlotScatter3DStats(data As String, title As String) As Image
+        Dim imageOut As String = $"{data.ParentPath}/Rplot.png"
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("ggplot/ggplot_scatter3D.R")
+        Dim cli As String = $"""{Rscript}"" --data ""{tempfile}"" --save ""{imageOut}"" --title ""{title}"" --plot ""{Type}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+        Dim progress As New frmTaskProgress
+
+        progress.ShowProgressTitle("Create MSI sample table...", directAccess:=True)
+        progress.ShowProgressDetails("Loading MSI raw data file into viewer workspace...", directAccess:=True)
+        progress.SetProgressMode()
+
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
+        Call data.SaveTo(tempfile)
+        Call MyApplication.LogText(pipeline.CommandLine)
+        Call MyApplication.LogText(data)
+
+        AddHandler pipeline.SetMessage, AddressOf progress.ShowProgressDetails
+        AddHandler pipeline.SetProgress, AddressOf progress.SetProgress
+        AddHandler pipeline.Finish, Sub() progress.Invoke(Sub() progress.Close())
+
+        Call New Thread(AddressOf pipeline.Run).Start()
+        Call progress.ShowDialog()
+
+        If Not imageOut.FileExists(ZERO_Nonexists:=True) Then
+            Return Nothing
+        Else
+            Return imageOut.LoadImage
+        End If
+    End Function
 End Class

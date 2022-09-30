@@ -25,17 +25,6 @@ Public Class KEGGEnrichmentBarSummary : Inherits SummaryPlot
         End Get
     End Property
 
-    Public Overrides Function ToString() As String
-        Dim sb As New StringBuilder(appName & vbCrLf)
-        sb.AppendLine()
-
-        For Each item In requiredFields
-            Call sb.AppendLine($"{item.Key.JoinBy(", ")}: {item.Value}")
-        Next
-
-        Return sb.ToString
-    End Function
-
     Public Overrides Function Plot(table As DataTable) As Image
         Dim term As String() = getFieldVector(table, {"term"}).AsObjectEnumerator.Select(AddressOf any.ToString).ToArray
         Dim pvalue As Double() = getFieldVector(table, {"pvalue"}) _
