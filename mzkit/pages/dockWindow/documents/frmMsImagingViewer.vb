@@ -992,6 +992,11 @@ Public Class frmMsImagingViewer
         End If
     End Sub
 
+    ''' <summary>
+    ''' 手动选择样本区域生成新的原始数据
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub ExtractRegionSampleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExtractRegionSampleToolStripMenuItem.Click
         If Not checkService() Then
             Return
@@ -1004,6 +1009,12 @@ Public Class frmMsImagingViewer
         If regions.Length = 0 Then
             Call MyApplication.host.showStatusMessage("No region polygon data was found from polygon editor, draw some region polygon at first!", My.Resources.StatusAnnotations_Warning_32xLG_color)
             Return
+        Else
+            PixelSelector1.ClearSelection()
+
+            If Not sampleRegions Is Nothing Then
+                sampleRegions.Clear()
+            End If
         End If
 
         Call frmTaskProgress.LoadData(
@@ -1034,6 +1045,12 @@ Public Class frmMsImagingViewer
         Me.params = info
         Me.tweaks = WindowModules.msImageParameters.PropertyGrid1
         Me.FilePath = filePath
+
+        PixelSelector1.ClearSelection()
+
+        If Not sampleRegions Is Nothing Then
+            sampleRegions.Clear()
+        End If
 
         WindowModules.msImageParameters.viewer = Me
         WindowModules.msImageParameters.PropertyGrid1.SelectedObject = params

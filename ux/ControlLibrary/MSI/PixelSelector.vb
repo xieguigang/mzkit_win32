@@ -1341,6 +1341,8 @@ Public Class PixelSelector
     Public Sub ClearSelection()
         startPoint = Nothing
         endPoint = Nothing
+        polygons.Clear()
+        GetPolygons(popAll:=True).ToArray()
     End Sub
 
     Sub canvasMouseDown(sender As Object, e As MouseEventArgs) Handles picCanvas.MouseDown
