@@ -253,6 +253,7 @@
     <ROW Component="Microsoft.VisualBasic.DataStorage.netCDF.dll_6" ComponentId="{27EACE95-983C-4F38-B938-CB940C9F2795}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.netCDF.dll_6"/>
     <ROW Component="Microsoft.VisualBasic.DeepLearning.dll" ComponentId="{29588059-A679-4BEB-AB39-1E3594F1FAF0}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DeepLearning.dll"/>
     <ROW Component="Microsoft.VisualBasic.DeepLearning.dll_1" ComponentId="{EB3AEB60-A7D1-4513-B859-8989762485D9}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DeepLearning.dll_1"/>
+    <ROW Component="Microsoft.VisualBasic.DeepLearning.dll_2" ComponentId="{520C8092-D752-4DC5-96B3-A8E01494C8A5}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.DeepLearning.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.AVIMedia.dll" ComponentId="{0638C001-D7E7-4D76-8389-B7386E4A6687}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.AVIMedia.dll"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.PDF.dll" ComponentId="{3732B8B7-3607-4294-B63F-37373D15C622}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.PDF.dll"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.PDF.dll_3" ComponentId="{07FB4A5F-B81B-4E49-BDB9-0E5B3E60D1DF}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.PDF.dll_3"/>
@@ -283,6 +284,7 @@
     <ROW Component="Microsoft.VisualBasic.MIME.text.markdown.dll_6" ComponentId="{8FC36F65-FB03-4888-A427-B32DA3D3E872}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.text.markdown.dll_6"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll" ComponentId="{2EF87FB8-D3D9-46CD-B66E-20E8C12F4477}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll_1" ComponentId="{BAD00D99-E1D8-449E-869B-AFAA8D2780F8}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll_1"/>
+    <ROW Component="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll_2" ComponentId="{E2A396C4-A465-4EA9-8BA2-89ED572A1E6A}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.Debugger.dll" ComponentId="{75429713-F3A4-45B3-8A35-63B11F3CA637}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.Debugger.dll"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.Debugger.dll_5" ComponentId="{614F640B-6711-4ECC-B3FA-6044ADB17907}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.Debugger.dll_5"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.dll" ComponentId="{3A4A1667-F9F8-43A8-9405-54392FBEC6AC}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.dll"/>
@@ -391,12 +393,14 @@
     <ROW Component="SMRUCC.genomics.Core.dll" ComponentId="{F37FC6A8-B651-449F-8C0F-7395B9AB15AB}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.Core.dll"/>
     <ROW Component="SMRUCC.genomics.Core.dll_1" ComponentId="{867D8CD0-5641-4FB1-A5C7-C4C216B3D87F}" Directory_="host_Dir" Attributes="256" KeyPath="SMRUCC.genomics.Core.dll_1"/>
     <ROW Component="SMRUCC.genomics.Data.GO_OWL.dll" ComponentId="{CAD09D36-EB84-41AE-8E81-CF3ADDD55C72}" Directory_="host_Dir" Attributes="256" KeyPath="SMRUCC.genomics.Data.GO_OWL.dll"/>
+    <ROW Component="SMRUCC.genomics.Data.GO_OWL.dll_1" ComponentId="{FF51D29F-4F0D-47A3-8BFF-2B8EFBC00797}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.Data.GO_OWL.dll_1"/>
     <ROW Component="SMRUCC.genomics.Data.Repository.dll" ComponentId="{38781C8B-FD30-4959-91C7-ED3ECEE1547C}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.Data.Repository.dll"/>
     <ROW Component="SMRUCC.genomics.Data.Repository.dll_1" ComponentId="{8C8E37EB-0C1D-4EE2-90F8-261211A20832}" Directory_="host_Dir" Attributes="256" KeyPath="SMRUCC.genomics.Data.Repository.dll_1"/>
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.dll" ComponentId="{48512001-A0AC-4221-BE04-E569820D8CE4}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.dll"/>
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.keggReport.dll" ComponentId="{FB6C7D69-45ED-429E-AE90-6A99C2F08469}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.keggReport.dll"/>
     <ROW Component="SMRUCC.genomics.InteractionModel.dll" ComponentId="{22934577-ADC6-43CA-9B10-30FD9C67643A}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.InteractionModel.dll"/>
     <ROW Component="SMRUCC.genomics.Model.Biopax_OWL.dll" ComponentId="{6F46E28F-2C81-473B-A27B-349BC80F308F}" Directory_="host_Dir" Attributes="256" KeyPath="SMRUCC.genomics.Model.Biopax_OWL.dll"/>
+    <ROW Component="SMRUCC.genomics.Model.Biopax_OWL.dll_1" ComponentId="{C6F12C6E-4E58-4555-9F40-EB070FE6F4CE}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.Model.Biopax_OWL.dll_1"/>
     <ROW Component="SMRUCC.genomics.Visualize.Cytoscape.dll" ComponentId="{BC8444A3-BFCD-4EA2-9BB9-B446645A3A1C}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.Visualize.Cytoscape.dll"/>
     <ROW Component="SMRUCC.genomics.Visualize.Extensions.dll" ComponentId="{70360964-E7E5-4C17-88E6-D4C1589D4552}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.Visualize.Extensions.dll"/>
     <ROW Component="SMRUCC.genomics.foundation.OBO_Foundry.dll" ComponentId="{BF8661A5-F434-4D9E-902C-E50E1F97B156}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.foundation.OBO_Foundry.dll"/>
@@ -1007,6 +1011,11 @@
     <ROW File="System.Security.Cryptography.ProtectedData.dll_5" Component_="System.Security.Cryptography.ProtectedData.dll_5" FileName="SYSTEM~9.DLL|System.Security.Cryptography.ProtectedData.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\System.Security.Cryptography.ProtectedData.dll" SelfReg="false"/>
     <ROW File="System.Security.Permissions.dll_3" Component_="System.Security.Permissions.dll_3" FileName="SYSTE~10.DLL|System.Security.Permissions.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\System.Security.Permissions.dll" SelfReg="false"/>
     <ROW File="System.Windows.Extensions.dll_5" Component_="System.Windows.Extensions.dll_5" FileName="SYSTE~11.DLL|System.Windows.Extensions.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\System.Windows.Extensions.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DeepLearning.dll_2" Component_="Microsoft.VisualBasic.DeepLearning.dll_2" FileName="MICRO~63.DLL|Microsoft.VisualBasic.DeepLearning.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.DeepLearning.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll_2" Component_="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll_2" FileName="MICRO~64.DLL|Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.Data.GO_OWL.dll_1" Component_="SMRUCC.genomics.Data.GO_OWL.dll_1" FileName="SMRUC~12.DLL|SMRUCC.genomics.Data.GO_OWL.dll" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Data.GO_OWL.dll" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.Model.Biopax_OWL.dll_1" Component_="SMRUCC.genomics.Model.Biopax_OWL.dll_1" FileName="SMRUC~13.DLL|SMRUCC.genomics.Model.Biopax_OWL.dll" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Model.Biopax_OWL.dll" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.Data.GO_OWL.dll.config_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="SMRUCC~1.CON|SMRUCC.genomics.Data.GO_OWL.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Data.GO_OWL.dll.config" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -1542,6 +1551,10 @@
     <ROW Feature_="MainFeature" Component_="System.Security.Cryptography.ProtectedData.dll_5"/>
     <ROW Feature_="MainFeature" Component_="System.Security.Permissions.dll_3"/>
     <ROW Feature_="MainFeature" Component_="System.Windows.Extensions.dll_5"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DeepLearning.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.Data.GO_OWL.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.Model.Biopax_OWL.dll_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
