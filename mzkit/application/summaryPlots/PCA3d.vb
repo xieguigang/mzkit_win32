@@ -41,14 +41,18 @@ Public Class PCA3d : Inherits SummaryPlot
                 })
         Next
 
-        If table.Columns.Contains("group") Then
-            Dim groups = getFieldVector(table, {"group"}) _
+        If table.Columns.Contains("group") OrElse table.Columns.Contains("pattern") Then
+            Dim groups = getFieldVector(table, {"group", "pattern"}) _
                 .AsObjectEnumerator _
                 .Select(Function(a) any.ToString(a)) _
                 .ToArray
 
             For i As Integer = 0 To data.Count - 1
                 data(i).Add("class", groups(i))
+            Next
+        Else
+            For i As Integer = 0 To data.Count - 1
+                data(i).Add("class", "n/a")
             Next
         End If
 
