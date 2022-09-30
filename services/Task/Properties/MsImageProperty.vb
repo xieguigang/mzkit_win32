@@ -138,7 +138,7 @@ Public Class MsImageProperty
     Sub New(render As Drawer)
         scan_x = render.dimension.Width
         scan_y = render.dimension.Height
-        background = Color.White
+        background = Color.Black
 
         If TypeOf render.pixelReader Is ReadIbd Then
             UUID = DirectCast(render.pixelReader, ReadIbd).UUID
@@ -176,7 +176,7 @@ Public Class MsImageProperty
     Public Sub Reset(MsiDim As Size, UUID As String, fileSize As String)
         _scan_x = MsiDim.Width
         _scan_y = MsiDim.Height
-        _background = Color.White
+        _background = Color.Black
         _UUID = UUID
         _fileSize = fileSize
     End Sub
