@@ -27,6 +27,7 @@ options(strict = FALSE);
 
 const matfile as string = ?"--matrix" || stop("no matrix data is provided!");
 const savepng as string = ?"--png" || `${dirname(matfile)}/plot_scatter3d.png`;
+const title as string   = ?"--title" || "Scatter Plot 3D";
 
 #region "read dataset"
 data = read.csv(matfile, row.names = 1);
@@ -50,7 +51,7 @@ bitmap(file = savepng, size = [1600, 1200]) {
       
       # use scatter points for visual our data
       + geom_point(aes(color = "class"), color = "paper", shape = "triangle", size = 20)   
-      + ggtitle("Scatter UMAP 3D")
+      + ggtitle(title)
       # use the default white theme from ggplot
       + theme_default()
 

@@ -425,16 +425,15 @@ Public Class RscriptProgressTask
     Public Shared Function PlotScatter3DStats(data As String, title As String) As Image
         Dim imageOut As String = $"{data.ParentPath}/Rplot.png"
         Dim Rscript As String = RscriptPipelineTask.GetRScript("ggplot/ggplot_scatter3D.R")
-        Dim cli As String = $"""{Rscript}"" --data ""{tempfile}"" --save ""{imageOut}"" --title ""{title}"" --plot ""{Type}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim cli As String = $"""{Rscript}"" --matrix ""{data}"" --png ""{imageOut}"" --title ""{title}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
         Dim progress As New frmTaskProgress
 
-        progress.ShowProgressTitle("Create MSI sample table...", directAccess:=True)
-        progress.ShowProgressDetails("Loading MSI raw data file into viewer workspace...", directAccess:=True)
+        progress.ShowProgressTitle("Create scatter 3d plot...", directAccess:=True)
+        progress.ShowProgressDetails("Run scater data plot and 3d rendering...", directAccess:=True)
         progress.SetProgressMode()
 
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
-        Call data.SaveTo(tempfile)
         Call MyApplication.LogText(pipeline.CommandLine)
         Call MyApplication.LogText(data)
 
