@@ -44,7 +44,7 @@ print(head(data));
 #' 
 ;
 
-bitmap(file = savepng, size = [1600, 1200]) {
+bitmap(file = savepng, size = [2400, 2200]) {
    #region "ggplot 3d"
    # create ggplot layers and tweaks via ggplot style options
    ggplot(data, aes(x = "X", y = "Y", z = "Z"), padding = "padding:250px 500px 100px 100px;")
