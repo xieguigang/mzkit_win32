@@ -56,6 +56,7 @@
 
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.Data.ChartPlots
 Imports Microsoft.VisualBasic.Data.ChartPlots.BarPlot.Data
 Imports Microsoft.VisualBasic.Imaging
@@ -71,9 +72,10 @@ Public Class InputDataVisual
     Dim fields As Dictionary(Of String, Type)
 
     Public Sub SetAxis(fields As Dictionary(Of String, Type))
-        For Each item In fields
+        For Each item As KeyValuePair(Of String, Type) In fields
             ListBox1.Items.Add(item.Key)
             CheckedListBox1.Items.Add(item.Key)
+            cbColorGroups.Items.Add(item.Key)
         Next
 
         ListBox1.SelectedIndex = 0
@@ -176,21 +178,63 @@ Public Class InputDataVisual
 
         Call grid.Columns.Add(getXName, getXName)
 
-        For Each name As String In GetY()
-            Dim y As Array = getVector(name)
-            Dim points = x _
-                .AsObjectEnumerator _
-                .Take(x.Length - 1) _
-                .Select(Function(xi, i) New PointF(xi, y(i))) _
-                .OrderByDescending(Function(p) p.X) _
-                .ToArray
-            Dim s = Scatter.FromPoints(points, lineColor:=colors(++idx))
+        Dim yNames = GetY.ToArray
 
-            Call grid.Columns.Add(name, name)
-            Call yList.Add(y)
+        If yNames.Length = 1 Then
+            Dim group_maps As New Dictionary(Of String, (List(Of PointF), String))
 
-            Yield s
-        Next
+            If cbColorGroups.SelectedIndex <> -1 Then
+                Dim tags As Array = getVector(any.ToString(cbColorGroups.SelectedItem))
+                Dim tag As String
+                Dim colorLoop As LoopArray(Of String) = colors
+                Dim y As Array = getVector(yNames(0))
+                Dim points = x _
+                    .AsObjectEnumerator _
+                    .Take(x.Length - 1) _
+                    .Select(Function(xi, i) New PointF(xi, y(i))) _
+                    .OrderByDescending(Function(p) p.X) _
+                    .ToArray
+                Dim obj As Object
+
+                For i As Integer = 0 To points.Length - 1
+                    obj = tags(i)
+                    tag = any.ToString(obj)
+
+                    If Not group_maps.ContainsKey(tag) Then
+                        group_maps(tag) = (New List(Of PointF), ++colorLoop)
+                    End If
+
+                    group_maps(tag).Item1.Add(points(i))
+                Next
+
+                For Each group In group_maps
+                    Dim s = Scatter.FromPoints(group.Value.Item1, lineColor:=group.Value.Item2)
+
+                    Call grid.Columns.Add(group.Key, group.Key)
+                    Call yList.Add(group.Value.Item1.Select(Function(p) p.Y).ToArray)
+
+                    Yield s
+                Next
+            Else
+                GoTo SingleS
+            End If
+        Else
+SingleS:    For Each name As String In GetY()
+                Dim y As Array = getVector(name)
+                Dim points = x _
+                    .AsObjectEnumerator _
+                    .Take(x.Length - 1) _
+                    .Select(Function(xi, i) New PointF(xi, y(i))) _
+                    .OrderByDescending(Function(p) p.X) _
+                    .ToArray
+                Dim s = Scatter.FromPoints(points, lineColor:=colors(++idx))
+
+                Call grid.Columns.Add(name, name)
+                Call yList.Add(y)
+
+                Yield s
+            Next
+        End If
 
 #Disable Warning
         For i As Integer = 0 To x.Length - 2
@@ -300,5 +344,9 @@ Public Class InputDataVisual
         If ComboBox2.SelectedIndex > -1 Then
             TextBox1.Text = SummaryPlot.getApp(ComboBox2.SelectedItem.ToString).ToString
         End If
+    End Sub
+
+    Private Sub cbColorGroups_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbColorGroups.SelectedIndexChanged
+
     End Sub
 End Class

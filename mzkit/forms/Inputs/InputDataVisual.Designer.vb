@@ -97,6 +97,8 @@ Partial Class InputDataVisual
         Me.Label7 = New System.Windows.Forms.Label()
         Me.ComboBox2 = New System.Windows.Forms.ComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.cbColorGroups = New System.Windows.Forms.ComboBox()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -105,6 +107,8 @@ Partial Class InputDataVisual
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.cbColorGroups)
+        Me.GroupBox1.Controls.Add(Me.Label9)
         Me.GroupBox1.Controls.Add(Me.lblMsg)
         Me.GroupBox1.Controls.Add(Me.CheckedListBox1)
         Me.GroupBox1.Controls.Add(Me.ComboBox1)
@@ -234,6 +238,19 @@ Partial Class InputDataVisual
         resources.ApplyResources(Me.Label6, "Label6")
         Me.Label6.Name = "Label6"
         '
+        'Label9
+        '
+        resources.ApplyResources(Me.Label9, "Label9")
+        Me.Label9.Name = "Label9"
+        '
+        'cbColorGroups
+        '
+        Me.cbColorGroups.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbColorGroups.FormattingEnabled = True
+        Me.cbColorGroups.Items.AddRange(New Object() {resources.GetString("cbColorGroups.Items"), resources.GetString("cbColorGroups.Items1"), resources.GetString("cbColorGroups.Items2"), resources.GetString("cbColorGroups.Items3"), resources.GetString("cbColorGroups.Items4"), resources.GetString("cbColorGroups.Items5")})
+        resources.ApplyResources(Me.cbColorGroups, "cbColorGroups")
+        Me.cbColorGroups.Name = "cbColorGroups"
+        '
         'InputDataVisual
         '
         resources.ApplyResources(Me, "$this")
@@ -273,4 +290,6 @@ Partial Class InputDataVisual
     Friend WithEvents Label6 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents TextBox1 As TextBox
+    Private WithEvents cbColorGroups As ComboBox
+    Friend WithEvents Label9 As Label
 End Class
