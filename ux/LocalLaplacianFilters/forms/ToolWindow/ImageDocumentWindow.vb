@@ -1,8 +1,9 @@
 ﻿Imports WeifenLuo.WinFormsUI.Docking
 
-
 Partial Public Class ImageDocumentWindow
     Inherits DockContent
+
+    Public Property Main As FormEditMain
 
     Public Sub New()
         InitializeComponent()
@@ -15,7 +16,7 @@ Partial Public Class ImageDocumentWindow
     End Sub
 
     Private Sub pictureBox1_DragDrop(ByVal sender As Object, ByVal e As DragEventArgs) Handles pictureBox1.DragDrop
-        TryOpen(CType(e.Data.GetData(DataFormats.FileDrop, True), String()))
+        Call Main.TryOpen(CType(e.Data.GetData(DataFormats.FileDrop, True), String()))
     End Sub
 
     Private Sub pictureBox1_DragEnter(ByVal sender As Object, ByVal e As DragEventArgs) Handles pictureBox1.DragEnter
@@ -27,7 +28,7 @@ Partial Public Class ImageDocumentWindow
     End Sub
 
     Private Sub pictureBox1_MouseDoubleClick(ByVal sender As Object, ByVal e As MouseEventArgs) Handles pictureBox1.MouseDoubleClick
-        openToolStripMenuItem_Click(sender, e)
+        Call Main.openToolStripMenuItem_Click(sender, e)
     End Sub
 End Class
 

@@ -25,11 +25,19 @@ Partial Public Class FormEditMain
     Private undo As Stack(Of Bitmap) = New Stack(Of Bitmap)()
     Private redo As Stack(Of Bitmap) = New Stack(Of Bitmap)()
     Private file As String()
-    Private hist As Integer()
-    Private mouse As Boolean
 
     Dim canvas As New ImageDocumentWindow
     Dim imageHistogram As New PropertyWindow
+
+    Public Property PictureImage As Image
+        Get
+            Return canvas.pictureBox1.Image
+        End Get
+        Set(value As Image)
+            canvas.pictureBox1.Image = value
+        End Set
+    End Property
+
 
 #End Region
 
@@ -103,11 +111,10 @@ Partial Public Class FormEditMain
         Return
     End Sub
 
-    Private Sub openToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles openToolStripMenuItem.Click
+    Public Sub openToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles openToolStripMenuItem.Click
         If openFile.ShowDialog() = DialogResult.OK Then
             TryOpen(openFile.FileNames)
         End If
-        Return
     End Sub
 
     Private Sub exposureFusionToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
@@ -116,12 +123,10 @@ Partial Public Class FormEditMain
 
     Private Sub reloadToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles reloadToolStripMenuItem.Click
         TryOpen(file)
-        Return
     End Sub
 
     Private Sub closeToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles closeToolStripMenuItem.Click
         TryOpen()
-        Return
     End Sub
 
     Private Sub saveToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles saveToolStripMenuItem.Click
@@ -167,7 +172,7 @@ Partial Public Class FormEditMain
 #End Region
 
 #Region "Private voids"
-    Private Sub TryOpen(ParamArray filenames As String())
+    Public Sub TryOpen(ParamArray filenames As String())
         ' length
         Dim length = filenames.Length
 
@@ -246,10 +251,9 @@ Partial Public Class FormEditMain
     Private Sub ClearStacks()
         undo.Clear()
         redo.Clear()
-
     End Sub
 
-    Private Sub Processor(ByVal bitmap As Bitmap, ByVal filter As Filter, ByVal Optional cache As Boolean = True)
+    Public Sub Processor(ByVal bitmap As Bitmap, ByVal filter As Filter, ByVal Optional cache As Boolean = True)
         ' check if null
         If bitmap IsNot Nothing Then
             MyBase.Cursor = Cursors.WaitCursor
@@ -264,12 +268,11 @@ Partial Public Class FormEditMain
             Image = If(filter IsNot Nothing, filter(bitmap), bitmap)
 
             ' settings
-            GetHistogram(Image)
-            ResetAdjustments()
-            pictureBox1.Image = Image
+            imageHistogram.GetHistogram(Image)
+            imageHistogram.ResetAdjustments()
+            PictureImage = Image
             MyBase.Cursor = Cursors.Arrow
         End If
-
     End Sub
 
     Private Sub Processor(ByVal bitmap As Bitmap(), ByVal filter As MultiFilter)
@@ -277,9 +280,9 @@ Partial Public Class FormEditMain
         If bitmap IsNot Nothing Then
             MyBase.Cursor = Cursors.WaitCursor
             Image = If(filter IsNot Nothing, filter(bitmap), Nothing) ' not implemented
-            GetHistogram(Image)
-            ResetAdjustments()
-            pictureBox1.Image = Image
+            imageHistogram.GetHistogram(Image)
+            imageHistogram.ResetAdjustments()
+            PictureImage = Image
             MyBase.Cursor = Cursors.Arrow
         End If
 
@@ -292,18 +295,18 @@ Partial Public Class FormEditMain
     Public Property Space As Space
     Public Function Apply(ByVal image As Bitmap) As Bitmap
         ' parsing
-        Dim saturation As Single = Integer.Parse(textBox1.Text)
-        Dim contrast = Single.Parse(textBox2.Text) / 100.0F
-        Dim brightness = Single.Parse(textBox5.Text) / 100.0F
-        Dim exposure = Single.Parse(textBox4.Text) / 100.0F
-        Dim gamma As Single = Math.Pow(2, -3 * Single.Parse(textBox3.Text) / 100.0F)
+        Dim saturation As Single = Integer.Parse(imageHistogram.textBox1.Text)
+        Dim contrast = Single.Parse(imageHistogram.textBox2.Text) / 100.0F
+        Dim brightness = Single.Parse(imageHistogram.textBox5.Text) / 100.0F
+        Dim exposure = Single.Parse(imageHistogram.textBox4.Text) / 100.0F
+        Dim gamma As Single = Math.Pow(2, -3 * Single.Parse(imageHistogram.textBox3.Text) / 100.0F)
 
         ' parameters
         scf.SetParams(saturation, contrast, brightness, exposure, gamma, Space)
 
         ' applying filter
         Dim filter = scf.Apply(image)
-        GetHistogram(filter)
+        imageHistogram.GetHistogram(filter)
         Return filter
     End Function
 
@@ -319,8 +322,8 @@ Partial Public Class FormEditMain
             Image = undo.Pop()
             redoToolStripMenuItem.Enabled = redo.Count > 0
             undoToolStripMenuItem.Enabled = undo.Count > 0
-            GetHistogram(Image)
-            pictureBox1.Image = Image
+            imageHistogram.GetHistogram(Image)
+            PictureImage = Image
         End If
 
     End Sub
@@ -330,8 +333,8 @@ Partial Public Class FormEditMain
             Image = redo.Pop()
             redoToolStripMenuItem.Enabled = redo.Count > 0
             undoToolStripMenuItem.Enabled = undo.Count > 0
-            GetHistogram(Image)
-            pictureBox1.Image = Image
+            imageHistogram.GetHistogram(Image)
+            PictureImage = Image
         End If
         Return
     End Sub

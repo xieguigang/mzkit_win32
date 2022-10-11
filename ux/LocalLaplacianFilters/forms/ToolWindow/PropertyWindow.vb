@@ -1,9 +1,11 @@
-﻿Imports Microsoft.VisualBasic.Devices
-Imports Microsoft.VisualBasic.Language
-Imports UMapx.Imaging
+﻿Imports UMapx.Imaging
 
-Partial Public Class PropertyWindow
-    Inherits ToolWindow
+Partial Public Class PropertyWindow : Inherits ToolWindow
+
+    Private hist As Integer()
+    Private mouse As Boolean
+
+    Public Property Main As FormEditMain
 
     Private Sub PropertyWindow_Load() Handles Me.Load
         ' histograms
@@ -42,7 +44,7 @@ Partial Public Class PropertyWindow
         AddHandler trackBar5.KeyDown, Sub(sender, e) CType(e, KeyEventArgs).Handled = True
     End Sub
 
-    Private Sub GetHistogram(ByVal image As Bitmap, ByVal Optional update As Boolean = True)
+    Public Sub GetHistogram(ByVal image As Bitmap, ByVal Optional update As Boolean = True)
         ' check null
         If image IsNot Nothing Then
             ' histograms: r, g, b
@@ -94,14 +96,13 @@ Partial Public Class PropertyWindow
         textBox2.Text = "0"
         textBox1.Text = "0"
 
-        pictureBox1.Image = Image
-
+        Main.PictureImage = Main.Image
     End Sub
 
     Public Sub DisposeControls()
         label4.Text = Nothing
         label8.Text = Nothing
-        pictureBox1.Image = Nothing
+        Main.PictureImage = Nothing
         histogram1.Values = Nothing
         histogram2.Values = Nothing
         histogram3.Values = Nothing
@@ -125,35 +126,35 @@ Partial Public Class PropertyWindow
             trackBar1.Value = 0
             trackBar1_Scroll(sender, e)
         End If
-        pictureBox1.Image = Apply(Image)
+        Main.PictureImage = Main.Apply(Main.Image)
     End Sub
     Private Sub trackBar2_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles trackBar2.MouseUp
         If e.Button = MouseButtons.Right Then
             trackBar2.Value = 0
             trackBar2_Scroll(sender, e)
         End If
-        pictureBox1.Image = Apply(Image)
+        Main.PictureImage = Main.Apply(Main.Image)
     End Sub
     Private Sub trackBar3_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles trackBar3.MouseUp
         If e.Button = MouseButtons.Right Then
             trackBar3.Value = 0
             trackBar3_Scroll(sender, e)
         End If
-        pictureBox1.Image = Apply(Image)
+        Main.PictureImage = Main.Apply(Main.Image)
     End Sub
     Private Sub trackBar4_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles trackBar4.MouseUp
         If e.Button = MouseButtons.Right Then
             trackBar4.Value = 0
             trackBar4_Scroll(sender, e)
         End If
-        pictureBox1.Image = Apply(Image)
+        Main.PictureImage = Main.Apply(Main.Image)
     End Sub
     Private Sub trackBar5_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles trackBar5.MouseUp
         If e.Button = MouseButtons.Right Then
             trackBar5.Value = 0
             trackBar5_Scroll(sender, e)
         End If
-        pictureBox1.Image = Apply(Image)
+        Main.PictureImage = Main.Apply(Main.Image)
     End Sub
 
     Private Sub trackBar1_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles trackBar1.Scroll
@@ -173,8 +174,7 @@ Partial Public Class PropertyWindow
     End Sub
 
     Private Sub button1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles button1.Click
-        Processor(CType(pictureBox1.Image, Bitmap), Nothing)
-
+        Main.Processor(CType(Main.PictureImage, Bitmap), Nothing)
     End Sub
     Private Sub button2_Click(ByVal sender As Object, ByVal e As EventArgs) Handles button2.Click
         ResetAdjustments()
@@ -183,7 +183,7 @@ Partial Public Class PropertyWindow
 
 #Region "Histogram"
     Private Sub comboBox2_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles comboBox2.SelectedIndexChanged
-        GetHistogram(Image, False)
+        GetHistogram(Main.Image, False)
     End Sub
 
     Private Sub checkBox1_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles checkBox1.CheckedChanged
