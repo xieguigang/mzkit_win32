@@ -1,28 +1,32 @@
 ﻿
 Partial Class PropertyWindow
-        ''' <summary>
-        ''' Required designer variable.
-        ''' </summary>
-        Private components As ComponentModel.IContainer = Nothing
+    ''' <summary>
+    ''' Required designer variable.
+    ''' </summary>
+    Private components As ComponentModel.IContainer = Nothing
 
     ''' <summary>
     ''' Clean up any resources being used.
     ''' </summary>
     ''' <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
-            If disposing AndAlso components IsNot Nothing Then
-                components.Dispose()
-            End If
+        If disposing AndAlso components IsNot Nothing Then
+            components.Dispose()
+        End If
 
-            MyBase.Dispose(disposing)
-        End Sub
+        MyBase.Dispose(disposing)
+    End Sub
+
+    Sub New()
+        Call InitializeComponent()
+    End Sub
 
 #Region "Windows Form Designer generated code"
-        ''' <summary>
-        ''' Required method for Designer support - do not modify
-        ''' the contents of this method with the code editor.
-        ''' </summary>
-        Private Sub InitializeComponent()
+    ''' <summary>
+    ''' Required method for Designer support - do not modify
+    ''' the contents of this method with the code editor.
+    ''' </summary>
+    Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PropertyWindow))
         Me.mainMenu1 = New System.Windows.Forms.MenuStrip()
         Me.menuItem1 = New System.Windows.Forms.ToolStripMenuItem()
