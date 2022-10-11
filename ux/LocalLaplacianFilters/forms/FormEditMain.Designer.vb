@@ -47,6 +47,7 @@ Partial Class FormEditMain
         Me.label1 = New System.Windows.Forms.Label()
         Me.VisualStudioToolStripExtender1 = New WeifenLuo.WinFormsUI.Docking.VisualStudioToolStripExtender(Me.components)
         Me.VS2015BlueTheme1 = New WeifenLuo.WinFormsUI.Docking.VS2015BlueTheme()
+        Me.VS2015LightTheme1 = New WeifenLuo.WinFormsUI.Docking.VS2015LightTheme()
         Me.menuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -262,6 +263,6 @@ Partial Class FormEditMain
     Friend WithEvents VS2015BlueTheme1 As WeifenLuo.WinFormsUI.Docking.VS2015BlueTheme
 
     Private WithEvents dockPanel As WeifenLuo.WinFormsUI.Docking.DockPanel
-
+    Friend WithEvents VS2015LightTheme1 As WeifenLuo.WinFormsUI.Docking.VS2015LightTheme
 End Class
 

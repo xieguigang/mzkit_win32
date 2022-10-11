@@ -1680,6 +1680,10 @@
       <Project>{df66aa70-9ab9-48d0-b492-9d0e0482a651}</Project>
       <Name>ControlLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ux\LocalLaplacianFilters\LocalLaplacianFilters.vbproj">
+      <Project>{1440c713-78b7-4d26-978c-d2789dda67ff}</Project>
+      <Name>LocalLaplacianFilters</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ux\winux\Microsoft.Windows.FeatureAPI\Microsoft.Windows.FeatureAPI.vbproj">
       <Project>{3d61f3a9-a8e0-4195-9133-6fd8e4b82d54}</Project>
       <Name>Microsoft.Windows.FeatureAPI</Name>

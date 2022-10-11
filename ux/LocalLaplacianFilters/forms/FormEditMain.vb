@@ -61,7 +61,7 @@ Partial Public Class FormEditMain
         form5.TopMost = True
 
         VisualStudioToolStripExtender1.DefaultRenderer = _toolStripProfessionalRenderer
-        dockPanel.Theme = VS2015BlueTheme1
+        dockPanel.Theme = VS2015LightTheme1
         dockPanel.ShowDocumentIcon = True
     End Sub
 
@@ -91,7 +91,7 @@ Partial Public Class FormEditMain
         imageHistogram.Show(dockPanel)
         imageHistogram.DockState = DockState.DockRight
 
-        Me.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2015, VS2015BlueTheme1)
+        Me.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2015, VS2015LightTheme1)
     End Sub
 
     Private Sub EnableVSRenderer(ByVal version As VisualStudioToolStripExtender.VsVersion, ByVal theme As ThemeBase)
