@@ -90,7 +90,7 @@ Partial Class PropertyWindow
         Me.textBox1.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.textBox1.BackColor = System.Drawing.Color.White
         Me.textBox1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.textBox1.Location = New System.Drawing.Point(244, 534)
+        Me.textBox1.Location = New System.Drawing.Point(241, 462)
         Me.textBox1.Name = "textBox1"
         Me.textBox1.ReadOnly = True
         Me.textBox1.Size = New System.Drawing.Size(36, 23)
@@ -103,7 +103,7 @@ Partial Class PropertyWindow
         Me.label16.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.label16.AutoSize = True
         Me.label16.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.label16.Location = New System.Drawing.Point(93, 514)
+        Me.label16.Location = New System.Drawing.Point(90, 442)
         Me.label16.Name = "label16"
         Me.label16.Size = New System.Drawing.Size(108, 15)
         Me.label16.TabIndex = 170
@@ -115,7 +115,7 @@ Partial Class PropertyWindow
         Me.button1.BackColor = System.Drawing.SystemColors.ControlLight
         Me.button1.Enabled = False
         Me.button1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.button1.Location = New System.Drawing.Point(22, 787)
+        Me.button1.Location = New System.Drawing.Point(19, 715)
         Me.button1.Name = "button1"
         Me.button1.Size = New System.Drawing.Size(126, 28)
         Me.button1.TabIndex = 169
@@ -140,7 +140,7 @@ Partial Class PropertyWindow
         Me.button2.BackColor = System.Drawing.SystemColors.ControlLight
         Me.button2.Enabled = False
         Me.button2.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.button2.Location = New System.Drawing.Point(153, 787)
+        Me.button2.Location = New System.Drawing.Point(150, 715)
         Me.button2.Name = "button2"
         Me.button2.Size = New System.Drawing.Size(126, 28)
         Me.button2.TabIndex = 168
@@ -152,7 +152,7 @@ Partial Class PropertyWindow
         Me.label12.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.label12.AutoSize = True
         Me.label12.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.label12.Location = New System.Drawing.Point(25, 733)
+        Me.label12.Location = New System.Drawing.Point(22, 661)
         Me.label12.Name = "label12"
         Me.label12.Size = New System.Drawing.Size(49, 15)
         Me.label12.TabIndex = 161
@@ -163,7 +163,7 @@ Partial Class PropertyWindow
         Me.label10.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.label10.AutoSize = True
         Me.label10.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.label10.Location = New System.Drawing.Point(25, 587)
+        Me.label10.Location = New System.Drawing.Point(22, 515)
         Me.label10.Name = "label10"
         Me.label10.Size = New System.Drawing.Size(52, 15)
         Me.label10.TabIndex = 167
@@ -174,7 +174,7 @@ Partial Class PropertyWindow
         Me.trackBar3.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.trackBar3.AutoSize = False
         Me.trackBar3.Enabled = False
-        Me.trackBar3.Location = New System.Drawing.Point(18, 756)
+        Me.trackBar3.Location = New System.Drawing.Point(15, 684)
         Me.trackBar3.Maximum = 100
         Me.trackBar3.Minimum = -100
         Me.trackBar3.Name = "trackBar3"
@@ -187,7 +187,7 @@ Partial Class PropertyWindow
         Me.trackBar2.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.trackBar2.AutoSize = False
         Me.trackBar2.Enabled = False
-        Me.trackBar2.Location = New System.Drawing.Point(22, 607)
+        Me.trackBar2.Location = New System.Drawing.Point(19, 535)
         Me.trackBar2.Maximum = 100
         Me.trackBar2.Minimum = -100
         Me.trackBar2.Name = "trackBar2"
@@ -200,7 +200,7 @@ Partial Class PropertyWindow
         Me.textBox3.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.textBox3.BackColor = System.Drawing.Color.White
         Me.textBox3.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.textBox3.Location = New System.Drawing.Point(244, 730)
+        Me.textBox3.Location = New System.Drawing.Point(241, 658)
         Me.textBox3.Name = "textBox3"
         Me.textBox3.ReadOnly = True
         Me.textBox3.Size = New System.Drawing.Size(36, 23)
@@ -213,7 +213,7 @@ Partial Class PropertyWindow
         Me.textBox2.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.textBox2.BackColor = System.Drawing.Color.White
         Me.textBox2.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.textBox2.Location = New System.Drawing.Point(244, 583)
+        Me.textBox2.Location = New System.Drawing.Point(241, 511)
         Me.textBox2.Name = "textBox2"
         Me.textBox2.ReadOnly = True
         Me.textBox2.Size = New System.Drawing.Size(36, 23)
@@ -226,7 +226,7 @@ Partial Class PropertyWindow
         Me.label13.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.label13.AutoSize = True
         Me.label13.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.label13.Location = New System.Drawing.Point(25, 686)
+        Me.label13.Location = New System.Drawing.Point(22, 614)
         Me.label13.Name = "label13"
         Me.label13.Size = New System.Drawing.Size(55, 15)
         Me.label13.TabIndex = 157
@@ -237,7 +237,7 @@ Partial Class PropertyWindow
         Me.label11.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.label11.AutoSize = True
         Me.label11.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.label11.Location = New System.Drawing.Point(25, 536)
+        Me.label11.Location = New System.Drawing.Point(22, 464)
         Me.label11.Name = "label11"
         Me.label11.Size = New System.Drawing.Size(61, 15)
         Me.label11.TabIndex = 164
@@ -248,7 +248,7 @@ Partial Class PropertyWindow
         Me.trackBar4.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.trackBar4.AutoSize = False
         Me.trackBar4.Enabled = False
-        Me.trackBar4.Location = New System.Drawing.Point(22, 707)
+        Me.trackBar4.Location = New System.Drawing.Point(19, 635)
         Me.trackBar4.Maximum = 50
         Me.trackBar4.Minimum = -50
         Me.trackBar4.Name = "trackBar4"
@@ -261,7 +261,7 @@ Partial Class PropertyWindow
         Me.trackBar1.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.trackBar1.AutoSize = False
         Me.trackBar1.Enabled = False
-        Me.trackBar1.Location = New System.Drawing.Point(22, 557)
+        Me.trackBar1.Location = New System.Drawing.Point(19, 485)
         Me.trackBar1.Maximum = 100
         Me.trackBar1.Minimum = -100
         Me.trackBar1.Name = "trackBar1"
@@ -274,7 +274,7 @@ Partial Class PropertyWindow
         Me.textBox4.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.textBox4.BackColor = System.Drawing.Color.White
         Me.textBox4.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.textBox4.Location = New System.Drawing.Point(244, 684)
+        Me.textBox4.Location = New System.Drawing.Point(241, 612)
         Me.textBox4.Name = "textBox4"
         Me.textBox4.ReadOnly = True
         Me.textBox4.Size = New System.Drawing.Size(36, 23)
@@ -287,7 +287,7 @@ Partial Class PropertyWindow
         Me.label14.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.label14.AutoSize = True
         Me.label14.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.label14.Location = New System.Drawing.Point(25, 636)
+        Me.label14.Location = New System.Drawing.Point(22, 564)
         Me.label14.Name = "label14"
         Me.label14.Size = New System.Drawing.Size(62, 15)
         Me.label14.TabIndex = 152
@@ -298,7 +298,7 @@ Partial Class PropertyWindow
         Me.checkBox1.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.checkBox1.AutoSize = True
         Me.checkBox1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.checkBox1.Location = New System.Drawing.Point(18, 190)
+        Me.checkBox1.Location = New System.Drawing.Point(19, 169)
         Me.checkBox1.Name = "checkBox1"
         Me.checkBox1.Size = New System.Drawing.Size(147, 19)
         Me.checkBox1.TabIndex = 141
@@ -310,7 +310,7 @@ Partial Class PropertyWindow
         Me.trackBar5.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.trackBar5.AutoSize = False
         Me.trackBar5.Enabled = False
-        Me.trackBar5.Location = New System.Drawing.Point(22, 658)
+        Me.trackBar5.Location = New System.Drawing.Point(19, 586)
         Me.trackBar5.Maximum = 100
         Me.trackBar5.Minimum = -100
         Me.trackBar5.Name = "trackBar5"
@@ -323,7 +323,7 @@ Partial Class PropertyWindow
         Me.textBox5.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.textBox5.BackColor = System.Drawing.Color.White
         Me.textBox5.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.textBox5.Location = New System.Drawing.Point(244, 633)
+        Me.textBox5.Location = New System.Drawing.Point(241, 561)
         Me.textBox5.Name = "textBox5"
         Me.textBox5.ReadOnly = True
         Me.textBox5.Size = New System.Drawing.Size(36, 23)
@@ -336,7 +336,7 @@ Partial Class PropertyWindow
         Me.label9.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.label9.AutoSize = True
         Me.label9.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.label9.Location = New System.Drawing.Point(139, 125)
+        Me.label9.Location = New System.Drawing.Point(140, 104)
         Me.label9.Name = "label9"
         Me.label9.Size = New System.Drawing.Size(62, 45)
         Me.label9.TabIndex = 158
@@ -348,7 +348,7 @@ Partial Class PropertyWindow
         Me.label8.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.label8.AutoSize = True
         Me.label8.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.label8.Location = New System.Drawing.Point(218, 125)
+        Me.label8.Location = New System.Drawing.Point(219, 104)
         Me.label8.Name = "label8"
         Me.label8.Size = New System.Drawing.Size(62, 45)
         Me.label8.TabIndex = 156
@@ -384,7 +384,7 @@ Partial Class PropertyWindow
         Me.label7.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.label7.AutoSize = True
         Me.label7.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.label7.Location = New System.Drawing.Point(14, 413)
+        Me.label7.Location = New System.Drawing.Point(15, 359)
         Me.label7.Name = "label7"
         Me.label7.Size = New System.Drawing.Size(75, 15)
         Me.label7.TabIndex = 147
@@ -396,7 +396,7 @@ Partial Class PropertyWindow
         Me.label3.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.label3.AutoSize = True
         Me.label3.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.label3.Location = New System.Drawing.Point(15, 125)
+        Me.label3.Location = New System.Drawing.Point(16, 104)
         Me.label3.Name = "label3"
         Me.label3.Size = New System.Drawing.Size(50, 60)
         Me.label3.TabIndex = 142
@@ -408,7 +408,7 @@ Partial Class PropertyWindow
         Me.label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.label4.AutoSize = True
         Me.label4.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.label4.Location = New System.Drawing.Point(82, 127)
+        Me.label4.Location = New System.Drawing.Point(83, 106)
         Me.label4.Name = "label4"
         Me.label4.Size = New System.Drawing.Size(50, 60)
         Me.label4.TabIndex = 143
@@ -419,7 +419,7 @@ Partial Class PropertyWindow
         Me.label6.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.label6.AutoSize = True
         Me.label6.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.label6.Location = New System.Drawing.Point(15, 312)
+        Me.label6.Location = New System.Drawing.Point(15, 276)
         Me.label6.Name = "label6"
         Me.label6.Size = New System.Drawing.Size(83, 15)
         Me.label6.TabIndex = 146
@@ -431,7 +431,7 @@ Partial Class PropertyWindow
         Me.label5.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.label5.AutoSize = True
         Me.label5.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.label5.Location = New System.Drawing.Point(14, 215)
+        Me.label5.Location = New System.Drawing.Point(15, 194)
         Me.label5.Name = "label5"
         Me.label5.Size = New System.Drawing.Size(72, 15)
         Me.label5.TabIndex = 145
@@ -442,9 +442,9 @@ Partial Class PropertyWindow
         '
         Me.histogram1.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.histogram1.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.histogram1.Location = New System.Drawing.Point(18, 39)
+        Me.histogram1.Location = New System.Drawing.Point(18, 44)
         Me.histogram1.Name = "histogram1"
-        Me.histogram1.Size = New System.Drawing.Size(258, 83)
+        Me.histogram1.Size = New System.Drawing.Size(258, 51)
         Me.histogram1.TabIndex = 140
         Me.histogram1.Text = "histogram1"
         Me.histogram1.Values = Nothing
@@ -453,9 +453,9 @@ Partial Class PropertyWindow
         '
         Me.histogram2.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.histogram2.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.histogram2.Location = New System.Drawing.Point(17, 233)
+        Me.histogram2.Location = New System.Drawing.Point(18, 212)
         Me.histogram2.Name = "histogram2"
-        Me.histogram2.Size = New System.Drawing.Size(258, 71)
+        Me.histogram2.Size = New System.Drawing.Size(258, 58)
         Me.histogram2.TabIndex = 148
         Me.histogram2.Text = "histogram2"
         Me.histogram2.Values = Nothing
@@ -464,9 +464,9 @@ Partial Class PropertyWindow
         '
         Me.histogram3.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.histogram3.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.histogram3.Location = New System.Drawing.Point(18, 330)
+        Me.histogram3.Location = New System.Drawing.Point(18, 294)
         Me.histogram3.Name = "histogram3"
-        Me.histogram3.Size = New System.Drawing.Size(258, 75)
+        Me.histogram3.Size = New System.Drawing.Size(258, 57)
         Me.histogram3.TabIndex = 151
         Me.histogram3.Text = "histogram3"
         Me.histogram3.Values = Nothing
@@ -475,9 +475,9 @@ Partial Class PropertyWindow
         '
         Me.histogram4.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.histogram4.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.histogram4.Location = New System.Drawing.Point(17, 431)
+        Me.histogram4.Location = New System.Drawing.Point(18, 377)
         Me.histogram4.Name = "histogram4"
-        Me.histogram4.Size = New System.Drawing.Size(258, 72)
+        Me.histogram4.Size = New System.Drawing.Size(258, 54)
         Me.histogram4.TabIndex = 153
         Me.histogram4.Text = "histogram4"
         Me.histogram4.Values = Nothing
@@ -485,7 +485,7 @@ Partial Class PropertyWindow
         'PropertyWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
-        Me.ClientSize = New System.Drawing.Size(300, 829)
+        Me.ClientSize = New System.Drawing.Size(300, 752)
         Me.Controls.Add(Me.textBox1)
         Me.Controls.Add(Me.label16)
         Me.Controls.Add(Me.button1)

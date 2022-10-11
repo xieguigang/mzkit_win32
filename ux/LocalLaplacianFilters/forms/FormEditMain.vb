@@ -40,7 +40,6 @@ Partial Public Class FormEditMain
         End Set
     End Property
 
-
 #End Region
 
 #Region "Form voids"
@@ -63,6 +62,7 @@ Partial Public Class FormEditMain
 
         VisualStudioToolStripExtender1.DefaultRenderer = _toolStripProfessionalRenderer
         dockPanel.Theme = VS2015BlueTheme1
+        dockPanel.ShowDocumentIcon = True
     End Sub
 
     Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
@@ -85,8 +85,8 @@ Partial Public Class FormEditMain
         comboBox1.SelectedIndex = 0
 
         canvas = New ImageDocumentWindow With {.Main = Me}
-        canvas.Show(dockPanel)
-        canvas.DockState = DockState.Document
+        'canvas.Show(dockPanel)
+        'canvas.DockState = DockState.Document
         imageHistogram = New PropertyWindow With {.Main = Me}
         imageHistogram.Show(dockPanel)
         imageHistogram.DockState = DockState.DockRight
@@ -205,6 +205,7 @@ Partial Public Class FormEditMain
                 Processor(Open(filenames(0)), Nothing, False)
                 file = New String() {filenames(0)}
                 Text = application & ": " & Path.GetFileName(file(0))
+                canvas.TabText = file(0).FileName
                 ActivateControls(True)
             Else
                 ' exposure fusion
@@ -252,6 +253,8 @@ Partial Public Class FormEditMain
         localLaplacianToolStripMenuItem.Enabled = enabled
 
         imageHistogram.ActivateControls(enabled)
+        canvas.Show(dockPanel)
+        canvas.DockState = DockState.Document
 
         ' stacks
         redoToolStripMenuItem.Enabled = False
@@ -262,8 +265,9 @@ Partial Public Class FormEditMain
         file = Nothing
         Image = Nothing
         Text = application
-
-        Call imageHistogram.DisposeControls()
+        canvas.TabText = ""
+        canvas.DockState = DockState.Hidden
+        imageHistogram.DisposeControls()
     End Sub
 
     Private Sub ClearStacks()
