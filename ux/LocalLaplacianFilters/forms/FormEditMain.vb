@@ -46,7 +46,8 @@ Partial Public Class FormEditMain
 
     Sub New(loadfile As String)
         Call Me.New()
-        Call TryOpen(loadfile)
+
+        file = {loadfile}
     End Sub
 
     Public Sub New()
@@ -98,6 +99,10 @@ Partial Public Class FormEditMain
         imageHistogram.DockState = DockState.DockRight
 
         Me.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2015, VS2015LightTheme1)
+
+        If Not file.IsNullOrEmpty Then
+            Call TryOpen(file(Scan0))
+        End If
     End Sub
 
     Private Sub EnableVSRenderer(ByVal version As VisualStudioToolStripExtender.VsVersion, ByVal theme As ThemeBase)
