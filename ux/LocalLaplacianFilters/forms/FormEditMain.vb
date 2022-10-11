@@ -27,6 +27,10 @@ Partial Public Class FormEditMain
     Private file As String()
     Private hist As Integer()
     Private mouse As Boolean
+
+    Dim canvas As New ImageDocumentWindow
+    Dim imageHistogram As New PropertyWindow
+
 #End Region
 
 #Region "Form voids"
@@ -46,38 +50,6 @@ Partial Public Class FormEditMain
         form4.Owner = Me
         form5.Owner = Me
         form5.TopMost = True
-
-        ' elements
-        pictureBox1.AllowDrop = True
-
-        ' histograms
-        histogram1.Color = Color.DarkGray
-        histogram1.AllowSelection = True
-
-        histogram2.Color = Color.IndianRed
-        histogram2.AllowSelection = False
-        histogram3.Color = Color.LightGreen
-        histogram3.AllowSelection = False
-        histogram4.Color = Color.CornflowerBlue
-        histogram4.AllowSelection = False
-
-        ' labels
-        label4.Text = Nothing
-        label8.Text = Nothing
-
-        ' trackbars
-
-        AddHandler trackBar1.MouseWheel, Sub(sender, e) CType(e, HandledMouseEventArgs).Handled = True
-        AddHandler trackBar2.MouseWheel, Sub(sender, e) CType(e, HandledMouseEventArgs).Handled = True
-        AddHandler trackBar3.MouseWheel, Sub(sender, e) CType(e, HandledMouseEventArgs).Handled = True
-        AddHandler trackBar4.MouseWheel, Sub(sender, e) CType(e, HandledMouseEventArgs).Handled = True
-        AddHandler trackBar5.MouseWheel, Sub(sender, e) CType(e, HandledMouseEventArgs).Handled = True
-        AddHandler trackBar1.KeyDown, Sub(sender, e) CType(e, KeyEventArgs).Handled = True
-        AddHandler trackBar2.KeyDown, Sub(sender, e) CType(e, KeyEventArgs).Handled = True
-        AddHandler trackBar3.KeyDown, Sub(sender, e) CType(e, KeyEventArgs).Handled = True
-        AddHandler trackBar4.KeyDown, Sub(sender, e) CType(e, KeyEventArgs).Handled = True
-        AddHandler trackBar5.KeyDown, Sub(sender, e) CType(e, KeyEventArgs).Handled = True
-
     End Sub
 
     Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
@@ -98,14 +70,6 @@ Partial Public Class FormEditMain
         comboBox1.Items.Add(Space.HSL)
         comboBox1.Items.Add(Space.Grayscale)
         comboBox1.SelectedIndex = 0
-
-        ' channels
-        comboBox2.Items.Add("Average")
-        comboBox2.Items.Add(RGBA.Red)
-        comboBox2.Items.Add(RGBA.Green)
-        comboBox2.Items.Add(RGBA.Blue)
-        comboBox2.SelectedIndex = 0
-        Return
     End Sub
 
     Private Sub Form1_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs) Handles Me.KeyDown
@@ -150,10 +114,6 @@ Partial Public Class FormEditMain
         openToolStripMenuItem_Click(sender, e)
     End Sub
 
-    Private Sub pictureBox1_MouseDoubleClick(ByVal sender As Object, ByVal e As MouseEventArgs) 
-        openToolStripMenuItem_Click(sender, e)
-    End Sub
-
     Private Sub reloadToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles reloadToolStripMenuItem.Click
         TryOpen(file)
         Return
@@ -171,24 +131,8 @@ Partial Public Class FormEditMain
         Return
     End Sub
 
-    Private Sub pictureBox1_DragDrop(ByVal sender As Object, ByVal e As DragEventArgs) 
-        TryOpen(CType(e.Data.GetData(DataFormats.FileDrop, True), String()))
-    End Sub
-
-    Private Sub pictureBox1_DragEnter(ByVal sender As Object, ByVal e As DragEventArgs) 
-        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
-            e.Effect = DragDropEffects.All
-        Else
-            e.Effect = DragDropEffects.None
-        End If
-    End Sub
-
     Private Sub aboutToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles aboutToolStripMenuItem.Click
         MessageBox.Show(Me, originals, application & ": About", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1)
-    End Sub
-
-    Private Sub exitToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
-        Me.Close()
     End Sub
 
     Private Sub enhancementToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles localLaplacianToolStripMenuItem.Click
@@ -219,44 +163,6 @@ Partial Public Class FormEditMain
 
     Private Sub comboBox1_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles comboBox1.SelectedIndexChanged
         Space = GetSpace(comboBox1.SelectedIndex)
-    End Sub
-#End Region
-
-#Region "Histogram"
-    Private Sub comboBox2_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) 
-        GetHistogram(Image, False)
-        Return
-    End Sub
-
-    Private Sub checkBox1_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) 
-        histogram4.IsLogarithmicView = checkBox1.Checked
-        histogram3.IsLogarithmicView = checkBox1.Checked
-        histogram2.IsLogarithmicView = checkBox1.Checked
-        histogram1.IsLogarithmicView = checkBox1.Checked
-        Return
-    End Sub
-
-    Private Sub histogram1_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) 
-        mouse = False
-        label8.Text = Nothing
-    End Sub
-    Private Sub histogram1_MouseDown(ByVal sender As Object, ByVal e As MouseEventArgs) Handles histogram1.MouseUp
-        mouse = True
-    End Sub
-    Private Sub histogram1_SelectionChanged(ByVal sender As Object, ByVal e As HistogramEventArgs) 
-        If mouse Then
-            Dim min = e.Min
-            Dim max = e.Max
-            Dim count = 0
-
-            ' count pixels
-            For i = min To max
-                count += hist(i)
-            Next
-
-            ' print
-            label8.Text = min.ToString() & "..." & max.ToString() & Microsoft.VisualBasic.Constants.vbLf & count.ToString() & Microsoft.VisualBasic.Constants.vbLf & (CSng(count) * 100 / Statistics.Sum(hist)).ToString("F2")
-        End If
     End Sub
 #End Region
 
@@ -322,93 +228,24 @@ Partial Public Class FormEditMain
         temperatureToolStripMenuItem.Enabled = enabled
         localLaplacianToolStripMenuItem.Enabled = enabled
 
-        ' scrolls
-        button2.Enabled = enabled
-        trackBar2.Enabled = enabled
-        trackBar3.Enabled = enabled
-        trackBar4.Enabled = enabled
-        trackBar5.Enabled = enabled
-        button1.Enabled = enabled
-        trackBar1.Enabled = enabled
+        imageHistogram.ActivateControls(enabled)
 
         ' stacks
         redoToolStripMenuItem.Enabled = False
         undoToolStripMenuItem.Enabled = False
     End Sub
 
-    Private Sub GetHistogram(ByVal image As Bitmap, ByVal Optional update As Boolean = True)
-        ' check null
-        If image IsNot Nothing Then
-            ' histograms: r, g, b
-            If update Then
-                histogram2.Values = image.Histogram(RGBA.Red)
-                histogram3.Values = image.Histogram(RGBA.Green)
-                histogram4.Values = image.Histogram(RGBA.Blue)
-            End If
-
-            ' comboBox2
-            Dim index = comboBox2.SelectedIndex
-
-            ' switch
-            Select Case index
-                Case 1
-                    hist = histogram2.Values
-                Case 2
-                    hist = histogram3.Values
-                Case 3
-                    hist = histogram4.Values
-                Case Else
-                    hist = image.Histogram
-            End Select
-
-            ' statistics
-            Dim pixels As Double = Statistics.Sum(hist)
-            Dim mean As Double = Statistics.Mean(hist)
-            Dim median = Statistics.Median(hist)
-            Dim std As Double = Statistics.StdDev(hist)
-
-            ' set main histogram
-            histogram1.Values = hist
-
-            ' label
-            label4.Text = mean.ToString("F2") & Microsoft.VisualBasic.Constants.vbLf & std.ToString("F2") & Microsoft.VisualBasic.Constants.vbLf & median & Microsoft.VisualBasic.Constants.vbLf & pixels
-        End If
-    End Sub
-
     Private Sub DisposeControls()
         file = Nothing
         Image = Nothing
         Text = application
-        label4.Text = Nothing
-        label8.Text = Nothing
-        pictureBox1.Image = Nothing
-        histogram1.Values = Nothing
-        histogram2.Values = Nothing
-        histogram3.Values = Nothing
-        histogram4.Values = Nothing
 
+        Call imageHistogram.DisposeControls()
     End Sub
 
     Private Sub ClearStacks()
         undo.Clear()
         redo.Clear()
-
-    End Sub
-
-    Private Sub ResetAdjustments()
-        trackBar5.Value = 0
-        trackBar4.Value = 0
-        trackBar3.Value = 0
-        trackBar2.Value = 0
-        trackBar1.Value = 0
-
-        textBox5.Text = "0"
-        textBox4.Text = "0"
-        textBox3.Text = "0"
-        textBox2.Text = "0"
-        textBox1.Text = "0"
-
-        pictureBox1.Image = Image
 
     End Sub
 
@@ -470,66 +307,7 @@ Partial Public Class FormEditMain
         Return filter
     End Function
 
-    Private Sub trackBar1_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) 
-        If e.Button = MouseButtons.Right Then
-            trackBar1.Value = 0
-            trackBar1_Scroll(sender, e)
-        End If
-        pictureBox1.Image = Apply(Image)
-    End Sub
-    Private Sub trackBar2_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) 
-        If e.Button = MouseButtons.Right Then
-            trackBar2.Value = 0
-            trackBar2_Scroll(sender, e)
-        End If
-        pictureBox1.Image = Apply(Image)
-    End Sub
-    Private Sub trackBar3_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) 
-        If e.Button = MouseButtons.Right Then
-            trackBar3.Value = 0
-            trackBar3_Scroll(sender, e)
-        End If
-        pictureBox1.Image = Apply(Image)
-    End Sub
-    Private Sub trackBar4_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) 
-        If e.Button = MouseButtons.Right Then
-            trackBar4.Value = 0
-            trackBar4_Scroll(sender, e)
-        End If
-        pictureBox1.Image = Apply(Image)
-    End Sub
-    Private Sub trackBar5_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) 
-        If e.Button = MouseButtons.Right Then
-            trackBar5.Value = 0
-            trackBar5_Scroll(sender, e)
-        End If
-        pictureBox1.Image = Apply(Image)
-    End Sub
 
-    Private Sub trackBar1_Scroll(ByVal sender As Object, ByVal e As EventArgs) 
-        textBox1.Text = trackBar1.Value.ToString()
-    End Sub
-    Private Sub trackBar2_Scroll(ByVal sender As Object, ByVal e As EventArgs) 
-        textBox2.Text = trackBar2.Value.ToString()
-    End Sub
-    Private Sub trackBar3_Scroll(ByVal sender As Object, ByVal e As EventArgs) 
-        textBox3.Text = trackBar3.Value.ToString()
-    End Sub
-    Private Sub trackBar4_Scroll(ByVal sender As Object, ByVal e As EventArgs) 
-        textBox4.Text = trackBar4.Value.ToString()
-    End Sub
-    Private Sub trackBar5_Scroll(ByVal sender As Object, ByVal e As EventArgs) 
-        textBox5.Text = trackBar5.Value.ToString()
-    End Sub
-
-    Private Sub button1_Click(ByVal sender As Object, ByVal e As EventArgs) 
-        Processor(CType(pictureBox1.Image, Bitmap), Nothing)
-
-    End Sub
-    Private Sub button2_Click(ByVal sender As Object, ByVal e As EventArgs) 
-        ResetAdjustments()
-
-    End Sub
 #End Region
 
 #Region "Edit"

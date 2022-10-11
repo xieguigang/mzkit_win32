@@ -56,7 +56,7 @@ Partial Class FormEditMain
         Me.menuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.fileToolStripMenuItem, Me.editToolStripMenuItem, Me.filterToolStripMenuItem, Me.programToolStripMenuItem})
         Me.menuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.menuStrip1.Name = "menuStrip1"
-        Me.menuStrip1.Size = New System.Drawing.Size(1355, 24)
+        Me.menuStrip1.Size = New System.Drawing.Size(1192, 24)
         Me.menuStrip1.TabIndex = 0
         Me.menuStrip1.Text = "menuStrip1"
         '
@@ -172,17 +172,18 @@ Partial Class FormEditMain
         '
         'dockPanel
         '
+        Me.dockPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dockPanel.DockBackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(57, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.dockPanel.DockBottomPortion = 150.0R
         Me.dockPanel.DockLeftPortion = 200.0R
         Me.dockPanel.DockRightPortion = 200.0R
         Me.dockPanel.DockTopPortion = 150.0R
         Me.dockPanel.Font = New System.Drawing.Font("Tahoma", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World, CType(0, Byte))
-        Me.dockPanel.Location = New System.Drawing.Point(94, 353)
+        Me.dockPanel.Location = New System.Drawing.Point(0, 24)
         Me.dockPanel.Name = "dockPanel"
         Me.dockPanel.RightToLeftLayout = True
         Me.dockPanel.ShowAutoHideContentOnHover = False
-        Me.dockPanel.Size = New System.Drawing.Size(1056, 506)
+        Me.dockPanel.Size = New System.Drawing.Size(1192, 216)
         Me.dockPanel.TabIndex = 0
         '
         'comboBox1
@@ -192,7 +193,7 @@ Partial Class FormEditMain
         Me.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboBox1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.comboBox1.FormattingEnabled = True
-        Me.comboBox1.Location = New System.Drawing.Point(933, 2)
+        Me.comboBox1.Location = New System.Drawing.Point(770, 2)
         Me.comboBox1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.comboBox1.Name = "comboBox1"
         Me.comboBox1.Size = New System.Drawing.Size(126, 23)
@@ -204,7 +205,7 @@ Partial Class FormEditMain
         Me.label1.AutoSize = True
         Me.label1.BackColor = System.Drawing.SystemColors.Control
         Me.label1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.label1.Location = New System.Drawing.Point(861, 5)
+        Me.label1.Location = New System.Drawing.Point(698, 5)
         Me.label1.Name = "label1"
         Me.label1.Size = New System.Drawing.Size(72, 15)
         Me.label1.TabIndex = 21
@@ -219,11 +220,11 @@ Partial Class FormEditMain
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
-        Me.ClientSize = New System.Drawing.Size(1355, 960)
+        Me.ClientSize = New System.Drawing.Size(1192, 240)
         Me.Controls.Add(Me.dockPanel)
+        Me.Controls.Add(Me.menuStrip1)
         Me.Controls.Add(Me.comboBox1)
         Me.Controls.Add(Me.label1)
-        Me.Controls.Add(Me.menuStrip1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.menuStrip1
         Me.Name = "FormEditMain"
