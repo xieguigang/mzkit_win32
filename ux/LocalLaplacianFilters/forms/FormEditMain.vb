@@ -7,12 +7,28 @@ Imports WeifenLuo.WinFormsUI.Docking
 
 Partial Public Class FormEditMain
     Inherits Form
+
 #Region "Constants"
     Const application As String = "Local Laplacian filters"
     Const formats As String = "BMP|*.bmp|" & "JPEG|*.jpg; *.jpeg|" & "PNG|*.png|" & "GIF|*.gif|" & "TIFF|*.tiff"
 
+    Const originals As String =
+"
+Invented by 
+Tom Mertens, Jan Kautz, Frank Van Reeth,
+Sylvain Paris, Samuel W. Hasinoff, Mathieu Aubry
+2007-2014 
 
-    Const originals As String = " Invented by " & Microsoft.VisualBasic.Constants.vbLf & " Tom Mertens, Jan Kautz, Frank Van Reeth," & Microsoft.VisualBasic.Constants.vbLf & " Sylvain Paris, Samuel W. Hasinoff, Mathieu Aubry" & Microsoft.VisualBasic.Constants.vbLf & " 2007-2014 " & Microsoft.VisualBasic.Constants.vbLf & Microsoft.VisualBasic.Constants.vbLf & " Developed by Valery Asiryan" & Microsoft.VisualBasic.Constants.vbLf & " 2019-2020 " & Microsoft.VisualBasic.Constants.vbLf & Microsoft.VisualBasic.Constants.vbLf & " Powered by UMapx.NET" & Microsoft.VisualBasic.Constants.vbLf & " Valery Asiryan" & Microsoft.VisualBasic.Constants.vbLf & " 2015-2020"
+Developed by Valery Asiryan
+2019-2020 
+
+Developed by Xieguigang<gg.xie@bionovogene.com>
+2022-
+
+Powered by UMapx.NET
+Valery Asiryan
+2015-2020
+"
 #End Region
 
 #Region "Private data"
