@@ -33,10 +33,13 @@ Namespace LaplacianHDR.Filters
                 ' MyBase.Rebuild = True
             End Set
         End Property
+
+#Disable Warning BC40004 ' 成员与基类型中的成员发生冲突，因此应声明为 "Shadows"
         ''' <summary>
         ''' Implements filter rebuilding.
         ''' </summary>
         Protected Overloads Overrides Sub Rebuild()
+#Enable Warning BC40004 ' 成员与基类型中的成员发生冲突，因此应声明为 "Shadows"
             Values = Gamma(g, 256)
         End Sub
 #End Region
@@ -56,6 +59,7 @@ Namespace LaplacianHDR.Filters
             Next
             Return table
         End Function
+
         ''' <summary>
         ''' Returns bilateral gamma function.
         ''' </summary>

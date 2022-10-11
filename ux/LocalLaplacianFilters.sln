@@ -33,8 +33,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4D059CE7-AA06-4E79-8AB5-E8202F934F29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4D059CE7-AA06-4E79-8AB5-E8202F934F29}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D059CE7-AA06-4E79-8AB5-E8202F934F29}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{4D059CE7-AA06-4E79-8AB5-E8202F934F29}.Debug|x64.Build.0 = Debug|Any CPU
+		{4D059CE7-AA06-4E79-8AB5-E8202F934F29}.Debug|x64.ActiveCfg = Debug|x64
+		{4D059CE7-AA06-4E79-8AB5-E8202F934F29}.Debug|x64.Build.0 = Debug|x64
 		{4D059CE7-AA06-4E79-8AB5-E8202F934F29}.gcmodeller_desktop|Any CPU.ActiveCfg = Debug|Any CPU
 		{4D059CE7-AA06-4E79-8AB5-E8202F934F29}.gcmodeller_desktop|Any CPU.Build.0 = Debug|Any CPU
 		{4D059CE7-AA06-4E79-8AB5-E8202F934F29}.gcmodeller_desktop|x64.ActiveCfg = Debug|Any CPU
@@ -45,8 +45,8 @@ Global
 		{4D059CE7-AA06-4E79-8AB5-E8202F934F29}.LipidSearch|x64.Build.0 = Debug|Any CPU
 		{4D059CE7-AA06-4E79-8AB5-E8202F934F29}.mzkit_win32|Any CPU.ActiveCfg = Debug|Any CPU
 		{4D059CE7-AA06-4E79-8AB5-E8202F934F29}.mzkit_win32|Any CPU.Build.0 = Debug|Any CPU
-		{4D059CE7-AA06-4E79-8AB5-E8202F934F29}.mzkit_win32|x64.ActiveCfg = Debug|Any CPU
-		{4D059CE7-AA06-4E79-8AB5-E8202F934F29}.mzkit_win32|x64.Build.0 = Debug|Any CPU
+		{4D059CE7-AA06-4E79-8AB5-E8202F934F29}.mzkit_win32|x64.ActiveCfg = mzkit_win32|x64
+		{4D059CE7-AA06-4E79-8AB5-E8202F934F29}.mzkit_win32|x64.Build.0 = mzkit_win32|x64
 		{4D059CE7-AA06-4E79-8AB5-E8202F934F29}.mzkit|Any CPU.ActiveCfg = Debug|Any CPU
 		{4D059CE7-AA06-4E79-8AB5-E8202F934F29}.mzkit|Any CPU.Build.0 = Debug|Any CPU
 		{4D059CE7-AA06-4E79-8AB5-E8202F934F29}.mzkit|x64.ActiveCfg = Debug|Any CPU

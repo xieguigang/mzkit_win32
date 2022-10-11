@@ -42,8 +42,8 @@ Namespace LaplacianHDR.Controls
         Private drawPen As Pen = New Pen(Color.Black)
 
         ' width and height of histogram's area
-        Private width As Integer
-        Private height As Integer
+        Private m_width As Integer
+        Private m_height As Integer
 
         ' mouse dragging with pressed button
         Private tracking As Boolean = False
@@ -230,9 +230,9 @@ Namespace LaplacianHDR.Controls
         Protected Overrides Sub OnPaint(ByVal pe As PaintEventArgs)
             Dim g = pe.Graphics
             ' drawing area's width and height
-            width = If(valuesField Is Nothing OrElse vertical = True, ClientRectangle.Width - 2, Math.Min(valuesField.Length, ClientRectangle.Width - 2))
+            m_width = If(valuesField Is Nothing OrElse vertical = True, ClientRectangle.Width - 2, Math.Min(valuesField.Length, ClientRectangle.Width - 2))
 
-            height = If(valuesField Is Nothing OrElse vertical = False, ClientRectangle.Height - 2, Math.Min(valuesField.Length, ClientRectangle.Height - 2))
+            m_height = If(valuesField Is Nothing OrElse vertical = False, ClientRectangle.Height - 2, Math.Min(valuesField.Length, ClientRectangle.Height - 2))
 
             Dim x = 1
             Dim y = 1
@@ -250,7 +250,7 @@ Namespace LaplacianHDR.Controls
                     Dim brush As Brush = New SolidBrush(Color.FromArgb(92, 92, 92))
 
                     If vertical Then
-                        g.FillRectangle(brush, x, y + start, width, Math.Abs(start - [stop]) + 1)
+                        g.FillRectangle(brush, x, y + start, m_width, Math.Abs(start - [stop]) + 1)
                     Else
                         g.FillRectangle(brush, x + start, y, Math.Abs(start - [stop]) + 1, height)
                     End If
@@ -259,10 +259,10 @@ Namespace LaplacianHDR.Controls
 
                 If max <> 0 Then
                     ' scaling factor
-                    Dim factor = If(vertical, width, height) / If(logarithmic, maxLogarithmic, max)
+                    Dim factor = If(vertical, m_width, height) / If(logarithmic, maxLogarithmic, max)
 
                     ' draw histogram
-                    Dim i = 0, len = If(vertical, height, width)
+                    Dim i = 0, len = If(vertical, height, m_width)
 
                     While i < len
                         If logarithmic Then
@@ -294,7 +294,7 @@ Namespace LaplacianHDR.Controls
                 Dim x = 1
                 Dim y = 1
 
-                If e.X >= x AndAlso e.Y >= y AndAlso e.X < x + width AndAlso e.Y < y + height Then
+                If e.X >= x AndAlso e.Y >= y AndAlso e.X < x + m_width AndAlso e.Y < y + height Then
                     ' start selection
                     tracking = True
                     start = If(vertical, e.Y - y, e.X - x)
@@ -320,7 +320,7 @@ Namespace LaplacianHDR.Controls
                 Dim y = 1
 
                 If Not tracking Then
-                    If e.X >= x AndAlso e.Y >= y AndAlso e.X < x + width AndAlso e.Y < y + height Then
+                    If e.X >= x AndAlso e.Y >= y AndAlso e.X < x + m_width AndAlso e.Y < y + height Then
                         over = True
 
                         ' moving over
@@ -342,7 +342,7 @@ Namespace LaplacianHDR.Controls
                     ' selecting region
                     [stop] = If(vertical, e.Y - y, e.X - x)
 
-                    [stop] = Math.Min([stop], If(vertical, height, width) - 1)
+                    [stop] = Math.Min([stop], If(vertical, height, m_width) - 1)
                     [stop] = Math.Max([stop], 0)
 
                     Invalidate()

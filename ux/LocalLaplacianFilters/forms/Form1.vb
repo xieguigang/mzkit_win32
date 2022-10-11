@@ -71,7 +71,8 @@ Namespace LaplacianHDR
             histogram4.AllowSelection = False
 
             ' labels
-            label4.Text = CSharpImpl.__Assign(label8.Text, Nothing)
+            label4.Text = Nothing
+            label8.Text = Nothing
 
             ' trackbars
             AddHandler trackBar1.MouseUp, New MouseEventHandler(AddressOf trackBar1_MouseUp)
@@ -243,7 +244,10 @@ Namespace LaplacianHDR
         End Sub
 
         Private Sub checkBox1_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs)
-            histogram1.IsLogarithmicView = CSharpImpl.__Assign(histogram2.IsLogarithmicView, CSharpImpl.__Assign(histogram3.IsLogarithmicView, CSharpImpl.__Assign(histogram4.IsLogarithmicView, checkBox1.Checked)))
+            histogram4.IsLogarithmicView = checkBox1.Checked
+            histogram3.IsLogarithmicView = checkBox1.Checked
+            histogram2.IsLogarithmicView = checkBox1.Checked
+            histogram1.IsLogarithmicView = checkBox1.Checked
             Return
         End Sub
 
@@ -324,16 +328,29 @@ Namespace LaplacianHDR
 
         Private Sub ActivateControls(ByVal enabled As Boolean)
             ' file
-            reloadToolStripMenuItem.Enabled = CSharpImpl.__Assign(closeToolStripMenuItem.Enabled, CSharpImpl.__Assign(saveToolStripMenuItem.Enabled, enabled))
+            saveToolStripMenuItem.Enabled = enabled
+            closeToolStripMenuItem.Enabled = enabled
+            reloadToolStripMenuItem.Enabled = enabled
 
             ' filters
-            localLaplacianToolStripMenuItem.Enabled = CSharpImpl.__Assign(temperatureToolStripMenuItem.Enabled, CSharpImpl.__Assign(exposureToolStripMenuItem.Enabled, CSharpImpl.__Assign(flipVerticalToolStripMenuItem.Enabled, CSharpImpl.__Assign(flipHorizontalToolStripMenuItem.Enabled, enabled))))
+            flipHorizontalToolStripMenuItem.Enabled = enabled
+            flipVerticalToolStripMenuItem.Enabled = enabled
+            exposureToolStripMenuItem.Enabled = enabled
+            temperatureToolStripMenuItem.Enabled = enabled
+            localLaplacianToolStripMenuItem.Enabled = enabled
 
             ' scrolls
-            trackBar1.Enabled = CSharpImpl.__Assign(trackBar2.Enabled, CSharpImpl.__Assign(trackBar3.Enabled, CSharpImpl.__Assign(trackBar4.Enabled, CSharpImpl.__Assign(trackBar5.Enabled, CSharpImpl.__Assign(button1.Enabled, CSharpImpl.__Assign(button2.Enabled, enabled))))))
+            button2.Enabled = enabled
+            trackBar2.Enabled = enabled
+            trackBar3.Enabled = enabled
+            trackBar4.Enabled = enabled
+            trackBar5.Enabled = enabled
+            button1.Enabled = enabled
+            trackBar1.Enabled = enabled
 
             ' stacks
-            undoToolStripMenuItem.Enabled = CSharpImpl.__Assign(redoToolStripMenuItem.Enabled, False)
+            redoToolStripMenuItem.Enabled = False
+            undoToolStripMenuItem.Enabled = False
 
             Return
         End Sub
@@ -400,9 +417,17 @@ Namespace LaplacianHDR
         End Sub
 
         Private Sub ResetAdjustments()
-            trackBar1.Value = CSharpImpl.__Assign(trackBar2.Value, CSharpImpl.__Assign(trackBar3.Value, CSharpImpl.__Assign(trackBar4.Value, CSharpImpl.__Assign(trackBar5.Value, 0))))
+            trackBar5.Value = 0
+            trackBar4.Value = 0
+            trackBar3.Value = 0
+            trackBar2.Value = 0
+            trackBar1.Value = 0
 
-            textBox1.Text = CSharpImpl.__Assign(textBox2.Text, CSharpImpl.__Assign(textBox3.Text, CSharpImpl.__Assign(textBox4.Text, CSharpImpl.__Assign(textBox5.Text, "0"))))
+            textBox5.Text = "0"
+            textBox4.Text = "0"
+            textBox3.Text = "0"
+            textBox2.Text = "0"
+            textBox1.Text = "0"
 
             pictureBox1.Image = Image
             Return
