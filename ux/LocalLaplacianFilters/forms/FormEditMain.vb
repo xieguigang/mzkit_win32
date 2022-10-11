@@ -35,7 +35,7 @@ Partial Public Class FormEditMain
 
         ' main
         Threading.Thread.CurrentThread.CurrentCulture = New CultureInfo("en-US")
-        AddHandler KeyDown, New KeyEventHandler(AddressOf Form1_KeyDown)
+
         KeyPreview = True
         Text = application
         Size = New Size(1280, 800)
@@ -49,16 +49,11 @@ Partial Public Class FormEditMain
 
         ' elements
         pictureBox1.AllowDrop = True
-        AddHandler pictureBox1.DragDrop, New DragEventHandler(AddressOf pictureBox1_DragDrop)
-        AddHandler pictureBox1.DragEnter, New DragEventHandler(AddressOf pictureBox1_DragEnter)
-        AddHandler pictureBox1.MouseDoubleClick, AddressOf pictureBox1_MouseDoubleClick
 
         ' histograms
         histogram1.Color = Color.DarkGray
         histogram1.AllowSelection = True
-        AddHandler histogram1.SelectionChanged, AddressOf histogram1_SelectionChanged
-        AddHandler histogram1.MouseDown, AddressOf histogram1_MouseDown
-        AddHandler histogram1.MouseUp, AddressOf histogram1_MouseUp
+
         histogram2.Color = Color.IndianRed
         histogram2.AllowSelection = False
         histogram3.Color = Color.LightGreen
@@ -71,11 +66,7 @@ Partial Public Class FormEditMain
         label8.Text = Nothing
 
         ' trackbars
-        AddHandler trackBar1.MouseUp, New MouseEventHandler(AddressOf trackBar1_MouseUp)
-        AddHandler trackBar2.MouseUp, New MouseEventHandler(AddressOf trackBar2_MouseUp)
-        AddHandler trackBar3.MouseUp, New MouseEventHandler(AddressOf trackBar3_MouseUp)
-        AddHandler trackBar4.MouseUp, New MouseEventHandler(AddressOf trackBar4_MouseUp)
-        AddHandler trackBar5.MouseUp, New MouseEventHandler(AddressOf trackBar5_MouseUp)
+
         AddHandler trackBar1.MouseWheel, Sub(sender, e) CType(e, HandledMouseEventArgs).Handled = True
         AddHandler trackBar2.MouseWheel, Sub(sender, e) CType(e, HandledMouseEventArgs).Handled = True
         AddHandler trackBar3.MouseWheel, Sub(sender, e) CType(e, HandledMouseEventArgs).Handled = True
@@ -86,10 +77,10 @@ Partial Public Class FormEditMain
         AddHandler trackBar3.KeyDown, Sub(sender, e) CType(e, KeyEventArgs).Handled = True
         AddHandler trackBar4.KeyDown, Sub(sender, e) CType(e, KeyEventArgs).Handled = True
         AddHandler trackBar5.KeyDown, Sub(sender, e) CType(e, KeyEventArgs).Handled = True
-        Return
+
     End Sub
 
-    Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         ' openfile
         openFile.Filter = formats & "|All supported formats|*.bmp; *.jpg; *.jpeg; *.png; *.tiff"
         openFile.FilterIndex = 6
@@ -117,7 +108,7 @@ Partial Public Class FormEditMain
         Return
     End Sub
 
-    Private Sub Form1_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs)
+    Private Sub Form1_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs) Handles Me.KeyDown
         ' hot keys
         If e.Control AndAlso e.KeyCode = Keys.O Then
             ' Stops other controls on the form receiving event.
@@ -148,7 +139,7 @@ Partial Public Class FormEditMain
         Return
     End Sub
 
-    Private Sub openToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub openToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles openToolStripMenuItem.Click
         If openFile.ShowDialog() = DialogResult.OK Then
             TryOpen(openFile.FileNames)
         End If
@@ -159,32 +150,32 @@ Partial Public Class FormEditMain
         openToolStripMenuItem_Click(sender, e)
     End Sub
 
-    Private Sub pictureBox1_MouseDoubleClick(ByVal sender As Object, ByVal e As MouseEventArgs)
+    Private Sub pictureBox1_MouseDoubleClick(ByVal sender As Object, ByVal e As MouseEventArgs) Handles pictureBox1.MouseDoubleClick
         openToolStripMenuItem_Click(sender, e)
     End Sub
 
-    Private Sub reloadToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub reloadToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles reloadToolStripMenuItem.Click
         TryOpen(file)
         Return
     End Sub
 
-    Private Sub closeToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub closeToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles closeToolStripMenuItem.Click
         TryOpen()
         Return
     End Sub
 
-    Private Sub saveToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub saveToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles saveToolStripMenuItem.Click
         If saveFile.ShowDialog() = DialogResult.OK Then
             TrySave(saveFile.FileName, saveFile.FilterIndex)
         End If
         Return
     End Sub
 
-    Private Sub pictureBox1_DragDrop(ByVal sender As Object, ByVal e As DragEventArgs)
+    Private Sub pictureBox1_DragDrop(ByVal sender As Object, ByVal e As DragEventArgs) Handles pictureBox1.DragDrop
         TryOpen(CType(e.Data.GetData(DataFormats.FileDrop, True), String()))
     End Sub
 
-    Private Sub pictureBox1_DragEnter(ByVal sender As Object, ByVal e As DragEventArgs)
+    Private Sub pictureBox1_DragEnter(ByVal sender As Object, ByVal e As DragEventArgs) Handles pictureBox1.DragEnter
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             e.Effect = DragDropEffects.All
         Else
@@ -192,15 +183,15 @@ Partial Public Class FormEditMain
         End If
     End Sub
 
-    Private Sub aboutToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub aboutToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles aboutToolStripMenuItem.Click
         MessageBox.Show(Me, originals, application & ": About", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1)
     End Sub
 
-    Private Sub exitToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
-        Call Windows.Forms.Application.Exit()
+    Private Sub exitToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles exitToolStripMenuItem.Click
+        Me.Close()
     End Sub
 
-    Private Sub enhancementToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub enhancementToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles localLaplacianToolStripMenuItem.Click
         form2.Image = Image
         form2.Space = Space
 
@@ -210,36 +201,34 @@ Partial Public Class FormEditMain
         Return
     End Sub
 
-    Private Sub temperatureToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub temperatureToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles temperatureToolStripMenuItem.Click
         form3.Image = Image
 
         If form3.ShowDialog() = DialogResult.OK Then
             Processor(Image, New Filter(AddressOf form3.Apply))
         End If
-        Return
     End Sub
 
-    Private Sub hslToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub hslToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles exposureToolStripMenuItem.Click
         form4.Image = Image
 
         If form4.ShowDialog() = DialogResult.OK Then
             Processor(Image, New Filter(AddressOf form4.Apply))
         End If
-        Return
     End Sub
 
-    Private Sub comboBox1_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub comboBox1_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles comboBox1.SelectedIndexChanged
         Space = GetSpace(comboBox1.SelectedIndex)
     End Sub
 #End Region
 
 #Region "Histogram"
-    Private Sub comboBox2_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub comboBox2_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles comboBox2.SelectedIndexChanged
         GetHistogram(Image, False)
         Return
     End Sub
 
-    Private Sub checkBox1_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub checkBox1_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles checkBox1.CheckedChanged
         histogram4.IsLogarithmicView = checkBox1.Checked
         histogram3.IsLogarithmicView = checkBox1.Checked
         histogram2.IsLogarithmicView = checkBox1.Checked
@@ -247,14 +236,14 @@ Partial Public Class FormEditMain
         Return
     End Sub
 
-    Private Sub histogram1_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs)
+    Private Sub histogram1_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles histogram1.MouseUp
         mouse = False
         label8.Text = Nothing
     End Sub
-    Private Sub histogram1_MouseDown(ByVal sender As Object, ByVal e As MouseEventArgs)
+    Private Sub histogram1_MouseDown(ByVal sender As Object, ByVal e As MouseEventArgs) Handles histogram1.MouseUp
         mouse = True
     End Sub
-    Private Sub histogram1_SelectionChanged(ByVal sender As Object, ByVal e As HistogramEventArgs)
+    Private Sub histogram1_SelectionChanged(ByVal sender As Object, ByVal e As HistogramEventArgs) Handles histogram1.SelectionChanged
         If mouse Then
             Dim min = e.Min
             Dim max = e.Max
@@ -307,7 +296,6 @@ Partial Public Class FormEditMain
         Catch exception As Exception
             MessageBox.Show(exception.Message, application & ": Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1)
         End Try
-        Return
     End Sub
 
     Private Sub TrySave(ByVal filename As String, ByVal index As Integer)
@@ -319,7 +307,6 @@ Partial Public Class FormEditMain
         Catch exception As Exception
             MessageBox.Show(exception.Message, application & ": Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1)
         End Try
-        Return
     End Sub
 
     Private Sub ActivateControls(ByVal enabled As Boolean)
@@ -347,8 +334,6 @@ Partial Public Class FormEditMain
         ' stacks
         redoToolStripMenuItem.Enabled = False
         undoToolStripMenuItem.Enabled = False
-
-        Return
     End Sub
 
     Private Sub GetHistogram(ByVal image As Bitmap, ByVal Optional update As Boolean = True)
@@ -388,8 +373,6 @@ Partial Public Class FormEditMain
             ' label
             label4.Text = mean.ToString("F2") & Microsoft.VisualBasic.Constants.vbLf & std.ToString("F2") & Microsoft.VisualBasic.Constants.vbLf & median & Microsoft.VisualBasic.Constants.vbLf & pixels
         End If
-
-        Return
     End Sub
 
     Private Sub DisposeControls()
@@ -403,13 +386,13 @@ Partial Public Class FormEditMain
         histogram2.Values = Nothing
         histogram3.Values = Nothing
         histogram4.Values = Nothing
-        Return
+
     End Sub
 
     Private Sub ClearStacks()
         undo.Clear()
         redo.Clear()
-        Return
+
     End Sub
 
     Private Sub ResetAdjustments()
@@ -426,7 +409,7 @@ Partial Public Class FormEditMain
         textBox1.Text = "0"
 
         pictureBox1.Image = Image
-        Return
+
     End Sub
 
     Private Sub Processor(ByVal bitmap As Bitmap, ByVal filter As Filter, ByVal Optional cache As Boolean = True)
@@ -449,7 +432,7 @@ Partial Public Class FormEditMain
             pictureBox1.Image = Image
             MyBase.Cursor = Cursors.Arrow
         End If
-        Return
+
     End Sub
 
     Private Sub Processor(ByVal bitmap As Bitmap(), ByVal filter As MultiFilter)
@@ -462,7 +445,7 @@ Partial Public Class FormEditMain
             pictureBox1.Image = Image
             MyBase.Cursor = Cursors.Arrow
         End If
-        Return
+
     End Sub
 #End Region
 
@@ -487,35 +470,35 @@ Partial Public Class FormEditMain
         Return filter
     End Function
 
-    Private Sub trackBar1_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs)
+    Private Sub trackBar1_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles trackBar1.MouseUp
         If e.Button = MouseButtons.Right Then
             trackBar1.Value = 0
             trackBar1_Scroll(sender, e)
         End If
         pictureBox1.Image = Apply(Image)
     End Sub
-    Private Sub trackBar2_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs)
+    Private Sub trackBar2_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles trackBar2.MouseUp
         If e.Button = MouseButtons.Right Then
             trackBar2.Value = 0
             trackBar2_Scroll(sender, e)
         End If
         pictureBox1.Image = Apply(Image)
     End Sub
-    Private Sub trackBar3_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs)
+    Private Sub trackBar3_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles trackBar3.MouseUp
         If e.Button = MouseButtons.Right Then
             trackBar3.Value = 0
             trackBar3_Scroll(sender, e)
         End If
         pictureBox1.Image = Apply(Image)
     End Sub
-    Private Sub trackBar4_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs)
+    Private Sub trackBar4_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles trackBar4.MouseUp
         If e.Button = MouseButtons.Right Then
             trackBar4.Value = 0
             trackBar4_Scroll(sender, e)
         End If
         pictureBox1.Image = Apply(Image)
     End Sub
-    Private Sub trackBar5_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs)
+    Private Sub trackBar5_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles trackBar5.MouseUp
         If e.Button = MouseButtons.Right Then
             trackBar5.Value = 0
             trackBar5_Scroll(sender, e)
@@ -523,36 +506,36 @@ Partial Public Class FormEditMain
         pictureBox1.Image = Apply(Image)
     End Sub
 
-    Private Sub trackBar1_Scroll(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub trackBar1_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles trackBar1.Scroll
         textBox1.Text = trackBar1.Value.ToString()
     End Sub
-    Private Sub trackBar2_Scroll(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub trackBar2_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles trackBar2.Scroll
         textBox2.Text = trackBar2.Value.ToString()
     End Sub
-    Private Sub trackBar3_Scroll(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub trackBar3_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles trackBar3.Scroll
         textBox3.Text = trackBar3.Value.ToString()
     End Sub
-    Private Sub trackBar4_Scroll(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub trackBar4_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles trackBar4.Scroll
         textBox4.Text = trackBar4.Value.ToString()
     End Sub
-    Private Sub trackBar5_Scroll(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub trackBar5_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles trackBar5.Scroll
         textBox5.Text = trackBar5.Value.ToString()
     End Sub
 
-    Private Sub button1_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub button1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles button1.Click
         Processor(CType(pictureBox1.Image, Bitmap), Nothing)
-        Return
+
     End Sub
-    Private Sub button2_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub button2_Click(ByVal sender As Object, ByVal e As EventArgs) Handles button2.Click
         ResetAdjustments()
-        Return
+
     End Sub
 #End Region
 
 #Region "Edit"
     Private flip As FlipFilter = New FlipFilter()
 
-    Private Sub undoToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub undoToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles undoToolStripMenuItem.Click
         If undoToolStripMenuItem.Enabled AndAlso undo.Count > 0 Then
             redo.Push(Image)
             Image = undo.Pop()
@@ -561,9 +544,9 @@ Partial Public Class FormEditMain
             GetHistogram(Image)
             pictureBox1.Image = Image
         End If
-        Return
+
     End Sub
-    Private Sub redoToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub redoToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles redoToolStripMenuItem.Click
         If redoToolStripMenuItem.Enabled AndAlso redo.Count > 0 Then
             undo.Push(Image)
             Image = redo.Pop()
@@ -575,22 +558,14 @@ Partial Public Class FormEditMain
         Return
     End Sub
 
-    Private Sub flipVerticalToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub flipVerticalToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles flipVerticalToolStripMenuItem.Click
         flip.SetParams(False, True)
         Processor(Image, New Filter(AddressOf flip.Apply))
     End Sub
-    Private Sub flipHorizontalToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub flipHorizontalToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles flipHorizontalToolStripMenuItem.Click
         flip.SetParams(True, False)
         Processor(Image, New Filter(AddressOf flip.Apply))
     End Sub
-
-    Private Class CSharpImpl
-        <Obsolete("Please refactor calling code to use normal Visual Basic assignment")>
-        Shared Function __Assign(Of T)(ByRef target As T, value As T) As T
-            target = value
-            Return value
-        End Function
-    End Class
 #End Region
 End Class
 

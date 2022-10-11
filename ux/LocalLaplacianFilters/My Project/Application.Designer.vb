@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.LaplacianHDR.Form1
+            Me.MainForm = Global.LaplacianHDR.FormEditMain
         End Sub
     End Class
 End Namespace
