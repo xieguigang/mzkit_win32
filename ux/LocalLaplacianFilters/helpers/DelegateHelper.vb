@@ -1,6 +1,5 @@
-﻿Imports System.Drawing
+﻿Namespace Helpers
 
-Namespace Helpers
 #Region "Delegates"
     ''' <summary>
     ''' Filter delegate.

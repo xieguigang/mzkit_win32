@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{1440C713-78B7-4D26-978C-D2789DDA67FF}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>LocalLaplacianFilters.My.MyApplication</StartupObject>
-    <RootNamespace>LocalLaplacianFilters</RootNamespace>
+    <StartupObject>LaplacianHDR.My.MyApplication</StartupObject>
+    <RootNamespace>LaplacianHDR</RootNamespace>
     <AssemblyName>LocalLaplacianFilters</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>

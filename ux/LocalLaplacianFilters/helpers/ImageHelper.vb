@@ -1,14 +1,14 @@
-﻿Imports System
-Imports System.Drawing
-Imports System.Drawing.Imaging
+﻿Imports System.Drawing.Imaging
 Imports System.IO
 Imports UMapx.Imaging
 
 Namespace Helpers
+
     ''' <summary>
     ''' Image helper class.
     ''' </summary>
     Public Module ImageHelper
+
 #Region "Static voids"
         ''' <summary>
         ''' Creates a bitmap from the file.
@@ -169,11 +169,11 @@ Namespace Helpers
         ''' <summary>
         ''' Minimum dimension.
         ''' </summary>
-        Private Const minDimension As Integer = 1e2
+        Private Const minDimension As Integer = 100.0
         ''' <summary>
         ''' Maximum dimension.
         ''' </summary>
-        Private Const maxDimension As Integer = 4e3
+        Private Const maxDimension As Integer = 4000.0
 #End Region
     End Module
 End Namespace

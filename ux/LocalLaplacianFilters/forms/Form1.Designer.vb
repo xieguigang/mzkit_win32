@@ -75,11 +75,11 @@
             Me.label9 = New System.Windows.Forms.Label()
             Me.label8 = New System.Windows.Forms.Label()
             Me.comboBox2 = New System.Windows.Forms.ComboBox()
-            Me.histogram1 = New LaplacianHDR.Controls.Histogram()
-            Me.histogram2 = New LaplacianHDR.Controls.Histogram()
-            Me.histogram3 = New LaplacianHDR.Controls.Histogram()
-            Me.histogram4 = New LaplacianHDR.Controls.Histogram()
-            Me.menuStrip1.SuspendLayout()
+        Me.histogram1 = New Histogram()
+        Me.histogram2 = New Histogram()
+        Me.histogram3 = New Histogram()
+        Me.histogram4 = New Histogram()
+        Me.menuStrip1.SuspendLayout()
             CType(Me.pictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.panel1.SuspendLayout()
             CType(Me.trackBar3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -785,11 +785,11 @@
         Private label6 As Windows.Forms.Label
         Private label7 As Windows.Forms.Label
         Private panel1 As Windows.Forms.Panel
-        Private histogram1 As Controls.Histogram
-        Private histogram2 As Controls.Histogram
-        Private histogram3 As Controls.Histogram
-        Private histogram4 As Controls.Histogram
-        Private comboBox2 As Windows.Forms.ComboBox
+    Private histogram1 As Histogram
+    Private histogram2 As Histogram
+    Private histogram3 As Histogram
+    Private histogram4 As Histogram
+    Private comboBox2 As Windows.Forms.ComboBox
         Private label8 As Windows.Forms.Label
         Private checkBox1 As Windows.Forms.CheckBox
         Private label9 As Windows.Forms.Label
