@@ -79,6 +79,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.My
 Imports ControlLibrary
+Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.DataMining.KMeans
@@ -1602,32 +1603,37 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub ImageProcessingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImageProcessingToolStripMenuItem.Click
-        Dim getConfig As New InputImageProcessor
-        Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
+        'Dim getConfig As New InputImageProcessor
+        'Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
 
-        If mask.ShowDialogForm(getConfig) = DialogResult.OK Then
-            Dim levels As Integer = CInt(getConfig.TrackBar1.Value)
-            Dim contract As Double = getConfig.TrackBar2.Value
+        'If mask.ShowDialogForm(getConfig) = DialogResult.OK Then
+        '    Dim levels As Integer = CInt(getConfig.TrackBar1.Value)
+        '    Dim contract As Double = getConfig.TrackBar2.Value
 
-            If levels > 0 OrElse contract <> 0.0 Then
-                Dim progress As New frmTaskProgress
+        '    If levels > 0 OrElse contract <> 0.0 Then
+        '        Dim progress As New frmTaskProgress
 
-                ' just exit image progress
-                progress.TaskCancel = Sub() PixelSelector1.cancelBlur = True
-                progress.ShowProgressTitle("Image Processing", True)
-                progress.ShowProgressDetails("Do gauss blur...", True)
-                progress.SetProgressMode()
+        '        ' just exit image progress
+        '        progress.TaskCancel = Sub() PixelSelector1.cancelBlur = True
+        '        progress.ShowProgressTitle("Image Processing", True)
+        '        progress.ShowProgressDetails("Do gauss blur...", True)
+        '        progress.SetProgressMode()
 
-                Call New Thread(Sub()
-                                    Call Thread.Sleep(1000)
-                                    Call progress.SetProgress(0, "Do gauss blur...")
-                                    Call Me.Invoke(Sub() PixelSelector1.doGauss(levels * 13, contract, Sub(p) progress.SetProgress(p, $"Do gauss blur... {p.ToString("F2")}%")))
-                                    Call progress.Invoke(Sub() progress.Close())
-                                End Sub).Start()
+        '        Call New Thread(Sub()
+        '                            Call Thread.Sleep(1000)
+        '                            Call progress.SetProgress(0, "Do gauss blur...")
+        '                            Call Me.Invoke(Sub() PixelSelector1.doGauss(levels * 13, contract, Sub(p) progress.SetProgress(p, $"Do gauss blur... {p.ToString("F2")}%")))
+        '                            Call progress.Invoke(Sub() progress.Close())
+        '                        End Sub).Start()
 
-                Call progress.ShowDialog()
-            End If
-        End If
+        '        Call progress.ShowDialog()
+        '    End If
+        'End If
+        Dim image As Image = PixelSelector1.MSImage
+        Dim file As String = TempFileSystem.GetAppSysTempFile(".app", sessionID:=App.PID, prefix:="saveimage___") & "/MSImaging.png"
+
+        Call image.SaveAs(file)
+        Call New LaplacianHDR.FormEditMain(loadfile:=file).ShowDialog()
     End Sub
 
     Private Sub CopyImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyImageToolStripMenuItem.Click

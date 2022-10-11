@@ -43,6 +43,12 @@ Partial Public Class FormEditMain
 #End Region
 
 #Region "Form voids"
+
+    Sub New(loadfile As String)
+        Call Me.New()
+        Call TryOpen(loadfile)
+    End Sub
+
     Public Sub New()
         InitializeComponent()
 
