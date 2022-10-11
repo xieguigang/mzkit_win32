@@ -69,8 +69,8 @@ Global
 		{9FD0355C-BABF-4720-A880-2842C50B6E9E}.Rsharp_app_release|x64.Build.0 = Rsharp_app_release|x64
 		{1440C713-78B7-4D26-978C-D2789DDA67FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1440C713-78B7-4D26-978C-D2789DDA67FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1440C713-78B7-4D26-978C-D2789DDA67FF}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{1440C713-78B7-4D26-978C-D2789DDA67FF}.Debug|x64.Build.0 = Debug|Any CPU
+		{1440C713-78B7-4D26-978C-D2789DDA67FF}.Debug|x64.ActiveCfg = Debug|x64
+		{1440C713-78B7-4D26-978C-D2789DDA67FF}.Debug|x64.Build.0 = Debug|x64
 		{1440C713-78B7-4D26-978C-D2789DDA67FF}.gcmodeller_desktop|Any CPU.ActiveCfg = Debug|Any CPU
 		{1440C713-78B7-4D26-978C-D2789DDA67FF}.gcmodeller_desktop|Any CPU.Build.0 = Debug|Any CPU
 		{1440C713-78B7-4D26-978C-D2789DDA67FF}.gcmodeller_desktop|x64.ActiveCfg = Debug|Any CPU

@@ -71,7 +71,7 @@ Public Class Histogram
     ''' </summary>
     ''' 
     ''' <remarks>In the case if mouse selection is allowed, the control will
-    ''' fire <seecref="SelectionChanged"/> and <seecref="PositionChanged"/> events
+    ''' fire <see cref="SelectionChanged"/> and <see cref="PositionChanged"/> events
     ''' and provide information about the selection.</remarks>
     ''' 
     <DefaultValue(False)>
@@ -130,7 +130,7 @@ Public Class Histogram
     ''' 
     ''' <remarks>Non-negative histogram values.</remarks>
     ''' 
-    ''' <exceptioncref="ArgumentException">Histogram values should be non-negative.</exception>
+    ''' <exception cref="ArgumentException">Histogram values should be non-negative.</exception>
     ''' 
     <Browsable(False)>
     Public Property Values As Integer()
@@ -164,9 +164,9 @@ Public Class Histogram
     ''' Mouse position changed event.
     ''' </summary>
     ''' 
-    ''' <remarks>The event is fired only if the <seecref="AllowSelection"/> property is set
-    ''' to true. The passed to event handler <seecref="HistogramEventArgs"/> class is initialized
-    ''' with <seecref="HistogramEventArgs.Position"/> property only, which is histogram value's
+    ''' <remarks>The event is fired only if the <see cref="AllowSelection"/> property is set
+    ''' to true. The passed to event handler <see cref="HistogramEventArgs"/> class is initialized
+    ''' with <see cref="HistogramEventArgs.Position"/> property only, which is histogram value's
     ''' index pointed by mouse.</remarks>
     ''' 
     Public Event PositionChanged As HistogramEventHandler
@@ -175,15 +175,15 @@ Public Class Histogram
     ''' Mouse selection changed event.
     ''' </summary>
     ''' 
-    ''' <remarks>The event is fired only if the <seecref="AllowSelection"/> property is set
-    ''' to true. The passed to event handler <seecref="HistogramEventArgs"/> class is initialized
-    ''' with <seecref="HistogramEventArgs.Min"/> and <seecref="HistogramEventArgs.Max"/> properties
+    ''' <remarks>The event is fired only if the <see cref="AllowSelection"/> property is set
+    ''' to true. The passed to event handler <see cref="HistogramEventArgs"/> class is initialized
+    ''' with <see cref="HistogramEventArgs.Min"/> and <see cref="HistogramEventArgs.Max"/> properties
     ''' only, which represent selection range - min and max indexes.</remarks>
     ''' 
     Public Event SelectionChanged As HistogramEventHandler
 
     ''' <summary>
-    ''' Initializes a new instance of the <seecref="Histogram"/> class.
+    ''' Initializes a new instance of the <see cref="Histogram"/> class.
     ''' </summary>
     ''' 
     Public Sub New()
@@ -365,7 +365,7 @@ Public Class HistogramEventArgs
     Private minField, maxField As Integer
 
     ''' <summary>
-    ''' Initializes a new instance of the <seecref="HistogramEventArgs"/> class.
+    ''' Initializes a new instance of the <see cref="HistogramEventArgs"/> class.
     ''' </summary>
     ''' 
     ''' <param name="pos">Histogram's index under mouse pointer.</param>
@@ -375,7 +375,7 @@ Public Class HistogramEventArgs
     End Sub
 
     ''' <summary>
-    ''' Initializes a new instance of the <seecref="HistogramEventArgs"/> class.
+    ''' Initializes a new instance of the <see cref="HistogramEventArgs"/> class.
     ''' </summary>
     ''' 
     ''' <param name="min">Min histogram's index in selection.</param>
