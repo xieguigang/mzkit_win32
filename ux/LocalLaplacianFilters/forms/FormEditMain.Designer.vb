@@ -42,7 +42,7 @@ Partial Class FormEditMain
         Me.temperatureToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.programToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.aboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.exitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.dockPanel = New WeifenLuo.WinFormsUI.Docking.DockPanel()
         Me.pictureBox1 = New System.Windows.Forms.PictureBox()
         Me.comboBox1 = New System.Windows.Forms.ComboBox()
         Me.label1 = New System.Windows.Forms.Label()
@@ -201,7 +201,7 @@ Partial Class FormEditMain
         '
         'programToolStripMenuItem
         '
-        Me.programToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.aboutToolStripMenuItem, Me.exitToolStripMenuItem})
+        Me.programToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.aboutToolStripMenuItem})
         Me.programToolStripMenuItem.Name = "programToolStripMenuItem"
         Me.programToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
         Me.programToolStripMenuItem.Text = "Program"
@@ -209,14 +209,24 @@ Partial Class FormEditMain
         'aboutToolStripMenuItem
         '
         Me.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem"
-        Me.aboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.aboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.aboutToolStripMenuItem.Text = "About"
         '
-        'exitToolStripMenuItem
+        'dockPanel
         '
-        Me.exitToolStripMenuItem.Name = "exitToolStripMenuItem"
-        Me.exitToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
-        Me.exitToolStripMenuItem.Text = "Exit"
+        Me.dockPanel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dockPanel.DockBackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(57, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.dockPanel.DockBottomPortion = 150.0R
+        Me.dockPanel.DockLeftPortion = 200.0R
+        Me.dockPanel.DockRightPortion = 200.0R
+        Me.dockPanel.DockTopPortion = 150.0R
+        Me.dockPanel.Font = New System.Drawing.Font("Tahoma", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World, CType(0, Byte))
+        Me.dockPanel.Location = New System.Drawing.Point(0, 24)
+        Me.dockPanel.Name = "dockPanel"
+        Me.dockPanel.RightToLeftLayout = True
+        Me.dockPanel.ShowAutoHideContentOnHover = False
+        Me.dockPanel.Size = New System.Drawing.Size(1355, 936)
+        Me.dockPanel.TabIndex = 0
         '
         'pictureBox1
         '
@@ -706,6 +716,7 @@ Partial Class FormEditMain
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(1355, 960)
         Me.Controls.Add(Me.panel1)
+        Me.Controls.Add(Me.dockPanel)
         Me.Controls.Add(Me.comboBox1)
         Me.Controls.Add(Me.label1)
         Me.Controls.Add(Me.pictureBox1)
@@ -742,7 +753,6 @@ Partial Class FormEditMain
     Private WithEvents temperatureToolStripMenuItem As Windows.Forms.ToolStripMenuItem
     Private WithEvents programToolStripMenuItem As Windows.Forms.ToolStripMenuItem
     Private WithEvents aboutToolStripMenuItem As Windows.Forms.ToolStripMenuItem
-    Private WithEvents exitToolStripMenuItem As Windows.Forms.ToolStripMenuItem
     Private WithEvents pictureBox1 As Windows.Forms.PictureBox
     Private WithEvents exposureToolStripMenuItem As Windows.Forms.ToolStripMenuItem
     Private WithEvents comboBox1 As Windows.Forms.ComboBox
@@ -789,5 +799,8 @@ Partial Class FormEditMain
     Private WithEvents flipHorizontalToolStripMenuItem As Windows.Forms.ToolStripMenuItem
     Friend WithEvents VisualStudioToolStripExtender1 As WeifenLuo.WinFormsUI.Docking.VisualStudioToolStripExtender
     Friend WithEvents VS2015BlueTheme1 As WeifenLuo.WinFormsUI.Docking.VS2015BlueTheme
+
+    Private WithEvents dockPanel As WeifenLuo.WinFormsUI.Docking.DockPanel
+
 End Class
 

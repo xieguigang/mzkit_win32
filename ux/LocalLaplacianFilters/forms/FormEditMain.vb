@@ -187,7 +187,7 @@ Partial Public Class FormEditMain
         MessageBox.Show(Me, originals, application & ": About", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1)
     End Sub
 
-    Private Sub exitToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles exitToolStripMenuItem.Click
+    Private Sub exitToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
         Me.Close()
     End Sub
 
