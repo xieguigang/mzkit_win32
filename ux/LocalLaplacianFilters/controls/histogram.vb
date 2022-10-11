@@ -3,7 +3,7 @@ Imports System.ComponentModel
 Imports System.Drawing
 Imports System.Windows.Forms
 
-Namespace LaplacianHDR.Controls
+
     ''' <summary>
     ''' Histogram control.
     ''' </summary>
@@ -423,4 +423,4 @@ Namespace LaplacianHDR.Controls
     ''' <param name="sender">Sender object.</param>
     ''' <param name="e">Event arguments.</param>
     Public Delegate Sub HistogramEventHandler(ByVal sender As Object, ByVal e As HistogramEventArgs)
-End Namespace
+

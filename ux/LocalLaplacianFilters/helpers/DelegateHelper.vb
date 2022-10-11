@@ -1,6 +1,6 @@
 ﻿Imports System.Drawing
 
-Namespace LaplacianHDR.Helpers
+Namespace Helpers
 #Region "Delegates"
     ''' <summary>
     ''' Filter delegate.

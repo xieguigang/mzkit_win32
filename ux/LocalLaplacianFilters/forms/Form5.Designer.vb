@@ -1,4 +1,4 @@
-﻿Namespace LaplacianHDR
+﻿
     Partial Class Form5
         ''' <summary>
         ''' Required designer variable.
@@ -120,4 +120,4 @@
         Private pictureBox1 As Windows.Forms.PictureBox
         Private button1 As Windows.Forms.Button
     End Class
-End Namespace
+

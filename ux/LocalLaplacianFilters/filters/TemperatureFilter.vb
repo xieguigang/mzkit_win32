@@ -1,7 +1,7 @@
 ﻿Imports System.Drawing
 Imports UMapx.Imaging
 
-Namespace LaplacianHDR.Filters
+Namespace Filters
     ''' <summary>
     ''' Defines temperature filter.
     ''' </summary>

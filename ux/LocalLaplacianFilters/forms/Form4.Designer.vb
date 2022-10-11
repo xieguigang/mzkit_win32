@@ -1,4 +1,4 @@
-﻿Namespace LaplacianHDR
+﻿
     Partial Class Form4
         ''' <summary>
         ''' Требуется переменная конструктора.
@@ -211,4 +211,4 @@
         Private trackBar3 As Windows.Forms.TrackBar
         Public textBox3 As Windows.Forms.TextBox
     End Class
-End Namespace
+

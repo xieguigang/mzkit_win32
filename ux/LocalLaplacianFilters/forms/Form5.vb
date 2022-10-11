@@ -4,7 +4,7 @@ Imports System.Drawing
 Imports System.Windows.Forms
 Imports UMapx.Imaging
 
-Namespace LaplacianHDR
+
     Public Partial Class Form5
         Inherits Form
 #Region "Private data"
@@ -62,4 +62,4 @@ Namespace LaplacianHDR
         End Sub
 #End Region
     End Class
-End Namespace
+

@@ -4,7 +4,7 @@ Imports System
 Imports System.Drawing
 Imports System.Windows.Forms
 
-Namespace LaplacianHDR
+
     Public Partial Class Form4
         Inherits Form
 #Region "Private data"
@@ -90,4 +90,4 @@ Namespace LaplacianHDR
         End Sub
 #End Region
     End Class
-End Namespace
+

@@ -4,7 +4,7 @@ Imports System.Drawing.Imaging
 Imports System.IO
 Imports UMapx.Imaging
 
-Namespace LaplacianHDR.Helpers
+Namespace Helpers
     ''' <summary>
     ''' Image helper class.
     ''' </summary>

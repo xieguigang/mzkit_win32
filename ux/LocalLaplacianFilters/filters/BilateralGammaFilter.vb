@@ -1,7 +1,7 @@
 ﻿Imports System
 Imports UMapx.Imaging
 
-Namespace LaplacianHDR.Filters
+Namespace Filters
     ''' <summary>
     ''' Defines bilateral gamma correction filter.
     ''' </summary>

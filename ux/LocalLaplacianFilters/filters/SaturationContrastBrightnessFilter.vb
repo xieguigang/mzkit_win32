@@ -1,7 +1,7 @@
 ﻿Imports System.Drawing
 Imports UMapx.Imaging
 
-Namespace LaplacianHDR.Filters
+Namespace Filters
     ''' <summary>
     ''' Defines saturation/contrast/exposure/gamma/brightess filter.
     ''' </summary>

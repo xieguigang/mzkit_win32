@@ -8,7 +8,7 @@ Imports System.IO
 Imports System.Windows.Forms
 Imports UMapx.Imaging
 
-Namespace LaplacianHDR
+
     Public Partial Class Form1
         Inherits Form
 #Region "Constants"
@@ -597,4 +597,4 @@ Namespace LaplacianHDR
         End Class
 #End Region
     End Class
-End Namespace
+

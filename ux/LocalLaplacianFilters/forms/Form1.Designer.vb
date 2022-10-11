@@ -1,4 +1,4 @@
-﻿Namespace LaplacianHDR
+﻿
     Partial Class Form1
         ''' <summary>
         ''' Требуется переменная конструктора.
@@ -818,4 +818,4 @@
         Private flipVerticalToolStripMenuItem As Windows.Forms.ToolStripMenuItem
         Private flipHorizontalToolStripMenuItem As Windows.Forms.ToolStripMenuItem
     End Class
-End Namespace
+

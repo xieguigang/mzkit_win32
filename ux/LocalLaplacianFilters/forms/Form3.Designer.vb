@@ -1,4 +1,4 @@
-﻿Namespace LaplacianHDR
+﻿
     Partial Class Form3
         ''' <summary>
         ''' Требуется переменная конструктора.
@@ -165,4 +165,4 @@
         Private pictureBox1 As Windows.Forms.PictureBox
         Private button1 As Windows.Forms.Button
     End Class
-End Namespace
+

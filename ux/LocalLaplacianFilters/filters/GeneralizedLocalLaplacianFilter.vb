@@ -2,7 +2,7 @@
 Imports UMapx.Imaging
 Imports UMapx.Transform
 
-Namespace LaplacianHDR.Filters
+Namespace Filters
     ''' <summary>
     ''' Defines generalized local Laplacian filter.
     ''' </summary>
