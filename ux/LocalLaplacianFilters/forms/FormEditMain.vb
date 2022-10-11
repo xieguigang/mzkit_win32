@@ -150,7 +150,7 @@ Partial Public Class FormEditMain
         openToolStripMenuItem_Click(sender, e)
     End Sub
 
-    Private Sub pictureBox1_MouseDoubleClick(ByVal sender As Object, ByVal e As MouseEventArgs) Handles pictureBox1.MouseDoubleClick
+    Private Sub pictureBox1_MouseDoubleClick(ByVal sender As Object, ByVal e As MouseEventArgs) 
         openToolStripMenuItem_Click(sender, e)
     End Sub
 
@@ -171,11 +171,11 @@ Partial Public Class FormEditMain
         Return
     End Sub
 
-    Private Sub pictureBox1_DragDrop(ByVal sender As Object, ByVal e As DragEventArgs) Handles pictureBox1.DragDrop
+    Private Sub pictureBox1_DragDrop(ByVal sender As Object, ByVal e As DragEventArgs) 
         TryOpen(CType(e.Data.GetData(DataFormats.FileDrop, True), String()))
     End Sub
 
-    Private Sub pictureBox1_DragEnter(ByVal sender As Object, ByVal e As DragEventArgs) Handles pictureBox1.DragEnter
+    Private Sub pictureBox1_DragEnter(ByVal sender As Object, ByVal e As DragEventArgs) 
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             e.Effect = DragDropEffects.All
         Else
@@ -223,12 +223,12 @@ Partial Public Class FormEditMain
 #End Region
 
 #Region "Histogram"
-    Private Sub comboBox2_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles comboBox2.SelectedIndexChanged
+    Private Sub comboBox2_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) 
         GetHistogram(Image, False)
         Return
     End Sub
 
-    Private Sub checkBox1_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles checkBox1.CheckedChanged
+    Private Sub checkBox1_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) 
         histogram4.IsLogarithmicView = checkBox1.Checked
         histogram3.IsLogarithmicView = checkBox1.Checked
         histogram2.IsLogarithmicView = checkBox1.Checked
@@ -236,14 +236,14 @@ Partial Public Class FormEditMain
         Return
     End Sub
 
-    Private Sub histogram1_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles histogram1.MouseUp
+    Private Sub histogram1_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) 
         mouse = False
         label8.Text = Nothing
     End Sub
     Private Sub histogram1_MouseDown(ByVal sender As Object, ByVal e As MouseEventArgs) Handles histogram1.MouseUp
         mouse = True
     End Sub
-    Private Sub histogram1_SelectionChanged(ByVal sender As Object, ByVal e As HistogramEventArgs) Handles histogram1.SelectionChanged
+    Private Sub histogram1_SelectionChanged(ByVal sender As Object, ByVal e As HistogramEventArgs) 
         If mouse Then
             Dim min = e.Min
             Dim max = e.Max
@@ -470,35 +470,35 @@ Partial Public Class FormEditMain
         Return filter
     End Function
 
-    Private Sub trackBar1_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles trackBar1.MouseUp
+    Private Sub trackBar1_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) 
         If e.Button = MouseButtons.Right Then
             trackBar1.Value = 0
             trackBar1_Scroll(sender, e)
         End If
         pictureBox1.Image = Apply(Image)
     End Sub
-    Private Sub trackBar2_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles trackBar2.MouseUp
+    Private Sub trackBar2_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) 
         If e.Button = MouseButtons.Right Then
             trackBar2.Value = 0
             trackBar2_Scroll(sender, e)
         End If
         pictureBox1.Image = Apply(Image)
     End Sub
-    Private Sub trackBar3_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles trackBar3.MouseUp
+    Private Sub trackBar3_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) 
         If e.Button = MouseButtons.Right Then
             trackBar3.Value = 0
             trackBar3_Scroll(sender, e)
         End If
         pictureBox1.Image = Apply(Image)
     End Sub
-    Private Sub trackBar4_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles trackBar4.MouseUp
+    Private Sub trackBar4_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) 
         If e.Button = MouseButtons.Right Then
             trackBar4.Value = 0
             trackBar4_Scroll(sender, e)
         End If
         pictureBox1.Image = Apply(Image)
     End Sub
-    Private Sub trackBar5_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles trackBar5.MouseUp
+    Private Sub trackBar5_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) 
         If e.Button = MouseButtons.Right Then
             trackBar5.Value = 0
             trackBar5_Scroll(sender, e)
@@ -506,27 +506,27 @@ Partial Public Class FormEditMain
         pictureBox1.Image = Apply(Image)
     End Sub
 
-    Private Sub trackBar1_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles trackBar1.Scroll
+    Private Sub trackBar1_Scroll(ByVal sender As Object, ByVal e As EventArgs) 
         textBox1.Text = trackBar1.Value.ToString()
     End Sub
-    Private Sub trackBar2_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles trackBar2.Scroll
+    Private Sub trackBar2_Scroll(ByVal sender As Object, ByVal e As EventArgs) 
         textBox2.Text = trackBar2.Value.ToString()
     End Sub
-    Private Sub trackBar3_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles trackBar3.Scroll
+    Private Sub trackBar3_Scroll(ByVal sender As Object, ByVal e As EventArgs) 
         textBox3.Text = trackBar3.Value.ToString()
     End Sub
-    Private Sub trackBar4_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles trackBar4.Scroll
+    Private Sub trackBar4_Scroll(ByVal sender As Object, ByVal e As EventArgs) 
         textBox4.Text = trackBar4.Value.ToString()
     End Sub
-    Private Sub trackBar5_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles trackBar5.Scroll
+    Private Sub trackBar5_Scroll(ByVal sender As Object, ByVal e As EventArgs) 
         textBox5.Text = trackBar5.Value.ToString()
     End Sub
 
-    Private Sub button1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles button1.Click
+    Private Sub button1_Click(ByVal sender As Object, ByVal e As EventArgs) 
         Processor(CType(pictureBox1.Image, Bitmap), Nothing)
 
     End Sub
-    Private Sub button2_Click(ByVal sender As Object, ByVal e As EventArgs) Handles button2.Click
+    Private Sub button2_Click(ByVal sender As Object, ByVal e As EventArgs) 
         ResetAdjustments()
 
     End Sub

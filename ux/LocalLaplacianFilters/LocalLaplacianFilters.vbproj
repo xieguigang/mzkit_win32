@@ -174,6 +174,24 @@
     <Compile Include="forms\FormExposureFusion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\ToolWindow\ImageDocumentWindow.Designer.vb">
+      <DependentUpon>ImageDocumentWindow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\ToolWindow\ImageDocumentWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\ToolWindow\PropertyWindow.Designer.vb">
+      <DependentUpon>PropertyWindow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\ToolWindow\PropertyWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\ToolWindow\ToolWindow.Designer.vb">
+      <DependentUpon>ToolWindow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\ToolWindow\ToolWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="helpers\DelegateHelper.vb" />
     <Compile Include="helpers\ImageHelper.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -209,6 +227,15 @@
     <EmbeddedResource Include="forms\FormExposureFusion.resx">
       <DependentUpon>FormExposureFusion.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\ToolWindow\ImageDocumentWindow.resx">
+      <DependentUpon>ImageDocumentWindow.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\ToolWindow\PropertyWindow.resx">
+      <DependentUpon>PropertyWindow.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\ToolWindow\ToolWindow.resx">
+      <DependentUpon>ToolWindow.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -238,5 +265,6 @@
   <ItemGroup>
     <Content Include="llflogo.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
