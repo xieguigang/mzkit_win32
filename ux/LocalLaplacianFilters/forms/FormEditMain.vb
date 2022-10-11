@@ -29,6 +29,8 @@ Partial Public Class FormEditMain
     Dim canvas As ImageDocumentWindow
     Dim imageHistogram As PropertyWindow
 
+    Private ReadOnly _toolStripProfessionalRenderer As ToolStripRenderer = New ToolStripProfessionalRenderer()
+
     Public Property PictureImage As Image
         Get
             Return canvas.pictureBox1.Image
@@ -58,6 +60,9 @@ Partial Public Class FormEditMain
         form4.Owner = Me
         form5.Owner = Me
         form5.TopMost = True
+
+        VisualStudioToolStripExtender1.DefaultRenderer = _toolStripProfessionalRenderer
+        dockPanel.Theme = VS2015BlueTheme1
     End Sub
 
     Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
@@ -85,6 +90,12 @@ Partial Public Class FormEditMain
         imageHistogram = New PropertyWindow With {.Main = Me}
         imageHistogram.Show(dockPanel)
         imageHistogram.DockState = DockState.DockRight
+
+        Me.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2015, VS2015BlueTheme1)
+    End Sub
+
+    Private Sub EnableVSRenderer(ByVal version As VisualStudioToolStripExtender.VsVersion, ByVal theme As ThemeBase)
+        VisualStudioToolStripExtender1.SetStyle(menuStrip1, version, theme)
     End Sub
 
     Private Sub Form1_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs) Handles Me.KeyDown
