@@ -199,7 +199,7 @@ Namespace LaplacianHDR.Controls
         ''' Dispose the object.
         ''' </summary>
         ''' 
-        ''' <paramname="disposing">Indicates if disposing was initiated manually.</param>
+        ''' <param name="disposing">Indicates if disposing was initiated manually.</param>
         ''' 
         Protected Overrides Sub Dispose(ByVal disposing As Boolean)
             If disposing Then
@@ -225,7 +225,7 @@ Namespace LaplacianHDR.Controls
         ''' Paint the control.
         ''' </summary>
         ''' 
-        ''' <paramname="pe">Data for Paint event.</param>
+        ''' <param name="pe">Data for Paint event.</param>
         ''' 
         Protected Overrides Sub OnPaint(ByVal pe As PaintEventArgs)
             Dim g = pe.Graphics
@@ -372,7 +372,7 @@ Namespace LaplacianHDR.Controls
         ''' Initializes a new instance of the <seecref="HistogramEventArgs"/> class.
         ''' </summary>
         ''' 
-        ''' <paramname="pos">Histogram's index under mouse pointer.</param>
+        ''' <param name="pos">Histogram's index under mouse pointer.</param>
         ''' 
         Public Sub New(ByVal pos As Integer)
             minField = pos
@@ -382,8 +382,8 @@ Namespace LaplacianHDR.Controls
         ''' Initializes a new instance of the <seecref="HistogramEventArgs"/> class.
         ''' </summary>
         ''' 
-        ''' <paramname="min">Min histogram's index in selection.</param>
-        ''' <paramname="max">Max histogram's index in selection.</param>
+        ''' <param name="min">Min histogram's index in selection.</param>
+        ''' <param name="max">Max histogram's index in selection.</param>
         ''' 
         Public Sub New(ByVal min As Integer, ByVal max As Integer)
             minField = min
@@ -420,7 +420,7 @@ Namespace LaplacianHDR.Controls
     ''' <summary>
     ''' Delegate for histogram events handlers.
     ''' </summary>
-    ''' <paramname="sender">Sender object.</param>
-    ''' <paramname="e">Event arguments.</param>
+    ''' <param name="sender">Sender object.</param>
+    ''' <param name="e">Event arguments.</param>
     Public Delegate Sub HistogramEventHandler(ByVal sender As Object, ByVal e As HistogramEventArgs)
 End Namespace

@@ -28,12 +28,12 @@ Namespace LaplacianHDR.Filters
         ''' <summary>
         ''' Sets filter params.
         ''' </summary>
-        ''' <paramname="saturation">Saturation</param>
-        ''' <paramname="contrast">Contrast</param>
-        ''' <paramname="brightness">Brightness</param>
-        ''' <paramname="exposure">Exposure</param>
-        ''' <paramname="gamma">Gamma</param>
-        ''' <paramname="space">Colorspace</param>
+        ''' <param name="saturation">Saturation</param>
+        ''' <param name="contrast">Contrast</param>
+        ''' <param name="brightness">Brightness</param>
+        ''' <param name="exposure">Exposure</param>
+        ''' <param name="gamma">Gamma</param>
+        ''' <param name="space">Colorspace</param>
         Public Sub SetParams(ByVal saturation As Single, ByVal contrast As Single, ByVal brightness As Single, ByVal exposure As Single, ByVal gamma As Single, ByVal space As Space)
             sc.Saturation = saturation
 
@@ -52,7 +52,7 @@ Namespace LaplacianHDR.Filters
         ''' <summary>
         ''' Applies filter to bitmap.
         ''' </summary>
-        ''' <paramname="image">Bitmap</param>
+        ''' <param name="image">Bitmap</param>
         ''' <returns>Bitmap</returns>
         Public Function Apply(ByVal image As Bitmap) As Bitmap
             Dim clone As Bitmap = CType(image.Clone(), Bitmap)

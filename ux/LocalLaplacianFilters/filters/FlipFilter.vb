@@ -20,8 +20,8 @@ Namespace LaplacianHDR.Filters
         ''' <summary>
         ''' Sets filter params.
         ''' </summary>
-        ''' <paramname="x">Flip X</param>
-        ''' <paramname="y">Flip Y</param>
+        ''' <param name="x">Flip X</param>
+        ''' <param name="y">Flip Y</param>
         Public Sub SetParams(ByVal x As Boolean, ByVal y As Boolean)
             flip.X = x
             flip.Y = y
@@ -29,7 +29,7 @@ Namespace LaplacianHDR.Filters
         ''' <summary>
         ''' Applies filter to bitmap.
         ''' </summary>
-        ''' <paramname="image">Bitmap</param>
+        ''' <param name="image">Bitmap</param>
         ''' <returns>Bitmap</returns>
         Public Function Apply(ByVal image As Bitmap) As Bitmap
             Dim clone As Bitmap = CType(image.Clone(), Bitmap)

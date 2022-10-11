@@ -25,13 +25,13 @@ Namespace LaplacianHDR.Filters
         ''' <summary>
         ''' Sets filter params.
         ''' </summary>
-        ''' <paramname="radius">Radius</param>
-        ''' <paramname="lightshadows">Lights and shadows</param>
-        ''' <paramname="sigma">Sigma</param>
-        ''' <paramname="discrets">Number of samples</param>
-        ''' <paramname="levels">Number of levels</param>
-        ''' <paramname="factor">Factor</param>
-        ''' <paramname="space">Colorspace</param>
+        ''' <param name="radius">Radius</param>
+        ''' <param name="lightshadows">Lights and shadows</param>
+        ''' <param name="sigma">Sigma</param>
+        ''' <param name="discrets">Number of samples</param>
+        ''' <param name="levels">Number of levels</param>
+        ''' <param name="factor">Factor</param>
+        ''' <param name="space">Colorspace</param>
         Public Sub SetParams(ByVal radius As Integer, ByVal lightshadows As Single, ByVal sigma As Single, ByVal discrets As Integer, ByVal levels As Integer, ByVal factor As Single, ByVal space As Space)
             bgc.Value = lightshadows
             bgc.Space = space
@@ -48,7 +48,7 @@ Namespace LaplacianHDR.Filters
         ''' <summary>
         ''' Applies filter to bitmap.
         ''' </summary>
-        ''' <paramname="image">Bitmap</param>
+        ''' <param name="image">Bitmap</param>
         ''' <returns>Bitmap</returns>
         Public Function Apply(ByVal image As Bitmap) As Bitmap
             Dim clone As Bitmap = CType(image.Clone(), Bitmap)

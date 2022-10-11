@@ -13,7 +13,7 @@ Namespace LaplacianHDR.Helpers
         ''' <summary>
         ''' Creates a bitmap from the file.
         ''' </summary>
-        ''' <paramname="filename">Filename</param>
+        ''' <param name="filename">Filename</param>
         ''' <returns>Bitmap</returns>
         Public Function Open(ByVal filename As String) As Bitmap
             Dim bitmap As Bitmap
@@ -37,7 +37,7 @@ Namespace LaplacianHDR.Helpers
         ''' <summary>
         ''' Returns bitmap array from the files.
         ''' </summary>
-        ''' <paramname="files">Files</param>
+        ''' <param name="files">Files</param>
         ''' <returns>Bitmap array</returns>
         Public Function Open(ByVal files As String()) As Bitmap()
             Dim length = files.Length
@@ -58,9 +58,9 @@ Namespace LaplacianHDR.Helpers
         ''' <summary>
         ''' Saves bitmap to the file.
         ''' </summary>
-        ''' <paramname="bitmap">Bitmap</param>
-        ''' <paramname="filename">Filename</param>
-        ''' <paramname="format">ImageFormat</param>
+        ''' <param name="bitmap">Bitmap</param>
+        ''' <param name="filename">Filename</param>
+        ''' <param name="format">ImageFormat</param>
         Public Sub Save(ByVal bitmap As Bitmap, ByVal filename As String, ByVal format As ImageFormat)
             Try
                 ' try to save image
@@ -76,7 +76,7 @@ Namespace LaplacianHDR.Helpers
         ''' <summary>
         ''' Returns image format.
         ''' </summary>
-        ''' <paramname="index">Index</param>
+        ''' <param name="index">Index</param>
         ''' <returns>Image format</returns>
         Public Function GetImageFormat(ByVal index As Integer) As ImageFormat
             Select Case index
@@ -95,7 +95,7 @@ Namespace LaplacianHDR.Helpers
         ''' <summary>
         ''' Returns colorspace.
         ''' </summary>
-        ''' <paramname="index">Index</param>
+        ''' <param name="index">Index</param>
         ''' <returns>Colorspace</returns>
         Public Function GetSpace(ByVal index As Integer) As Space
             Select Case index
@@ -112,8 +112,8 @@ Namespace LaplacianHDR.Helpers
         ''' <summary>
         ''' Returns cropped bitmap.
         ''' </summary>
-        ''' <paramname="bitmap">Bitmap</param>
-        ''' <paramname="box">Box size</param>
+        ''' <param name="bitmap">Bitmap</param>
+        ''' <param name="box">Box size</param>
         ''' <returns>Bitmap</returns>
         Public Function Crop(ByVal bitmap As Bitmap, ByVal box As Integer) As Bitmap
             Dim width = bitmap.Width
@@ -126,7 +126,7 @@ Namespace LaplacianHDR.Helpers
         ''' <summary>
         ''' Checks if bitmaps in array have the same sizes.
         ''' </summary>
-        ''' <paramname="bitmaps">Bitmap array</param>
+        ''' <param name="bitmaps">Bitmap array</param>
         ''' <returns>Boolean value</returns>
         Private Function AreEqualSizes(ParamArray bitmaps As Bitmap()) As Boolean
             Dim length = bitmaps.Length
@@ -149,8 +149,8 @@ Namespace LaplacianHDR.Helpers
         ''' <summary>
         ''' Checks bitmap sizes.
         ''' </summary>
-        ''' <paramname="width">Width</param>
-        ''' <paramname="height">Height</param>
+        ''' <param name="width">Width</param>
+        ''' <param name="height">Height</param>
         ''' <returns>Bool</returns>
         Private Function IsTrueSize(ByVal width As Integer, ByVal height As Integer) As Boolean
             ' check this
@@ -159,9 +159,9 @@ Namespace LaplacianHDR.Helpers
         ''' <summary>
         ''' Checks is value in range.
         ''' </summary>
-        ''' <paramname="x">Value</param>
-        ''' <paramname="min">Min</param>
-        ''' <paramname="max">Max</param>
+        ''' <param name="x">Value</param>
+        ''' <param name="min">Min</param>
+        ''' <param name="max">Max</param>
         ''' <returns>Bool</returns>
         Private Function IsRange(ByVal x As Integer, ByVal min As Integer, ByVal max As Integer) As Boolean
             Return x >= min AndAlso x <= max

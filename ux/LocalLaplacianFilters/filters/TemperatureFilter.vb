@@ -20,8 +20,8 @@ Namespace LaplacianHDR.Filters
         ''' <summary>
         ''' Sets filter params.
         ''' </summary>
-        ''' <paramname="temperature">Temperature</param>
-        ''' <paramname="strenght">Strength</param>
+        ''' <param name="temperature">Temperature</param>
+        ''' <param name="strenght">Strength</param>
         Public Sub SetParams(ByVal temperature As Single, ByVal strenght As Single)
             temp.Temperature = temperature
             temp.Strength = strenght
@@ -29,7 +29,7 @@ Namespace LaplacianHDR.Filters
         ''' <summary>
         ''' Applies filter to bitmap.
         ''' </summary>
-        ''' <paramname="image">Bitmap</param>
+        ''' <param name="image">Bitmap</param>
         ''' <returns>Bitmap</returns>
         Public Function Apply(ByVal image As Bitmap) As Bitmap
             Dim clone As Bitmap = CType(image.Clone(), Bitmap)

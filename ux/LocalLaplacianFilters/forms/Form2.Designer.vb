@@ -8,7 +8,7 @@
         ''' <summary>
         ''' Освободить все используемые ресурсы.
         ''' </summary>
-        ''' <paramname="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
+        ''' <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
         Protected Overrides Sub Dispose(ByVal disposing As Boolean)
             If disposing AndAlso components IsNot Nothing Then
                 components.Dispose()

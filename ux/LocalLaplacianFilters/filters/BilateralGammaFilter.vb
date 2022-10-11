@@ -15,8 +15,8 @@ Namespace LaplacianHDR.Filters
         ''' <summary>
         ''' Initializes bilateral gamma correction filter.
         ''' </summary>
-        ''' <paramname="g">Gamma</param>
-        ''' <paramname="space">Space</param>
+        ''' <param name="g">Gamma</param>
+        ''' <param name="space">Space</param>
         Public Sub New(ByVal g As Single, ByVal space As Space)
             Value = g
             MyBase.Space = space
@@ -45,8 +45,8 @@ Namespace LaplacianHDR.Filters
         ''' <summary>
         ''' Returns array of bilateral gamma filter.
         ''' </summary>
-        ''' <paramname="g">Gamma</param>
-        ''' <paramname="length">Length</param>
+        ''' <param name="g">Gamma</param>
+        ''' <param name="length">Length</param>
         ''' <returns>Array</returns>
         Public Shared Function Gamma(ByVal g As Single, ByVal length As Integer) As Single()
             Dim table = New Single(length - 1) {}
@@ -59,8 +59,8 @@ Namespace LaplacianHDR.Filters
         ''' <summary>
         ''' Returns bilateral gamma function.
         ''' </summary>
-        ''' <paramname="x">Argument</param>
-        ''' <paramname="g">Gamma</param>
+        ''' <param name="x">Argument</param>
+        ''' <param name="g">Gamma</param>
         ''' <returns>Double</returns>
         Public Shared Function Gamma(ByVal x As Single, ByVal g As Single) As Single
             Dim y, z, w As Double

@@ -20,9 +20,9 @@ Namespace LaplacianHDR.Filters
         ''' <summary>
         ''' Sets filter params.
         ''' </summary>
-        ''' <paramname="h">Hue</param>
-        ''' <paramname="s">Saturation</param>
-        ''' <paramname="l">Lightness</param>
+        ''' <param name="h">Hue</param>
+        ''' <param name="s">Saturation</param>
+        ''' <param name="l">Lightness</param>
         Public Sub SetParams(ByVal h As Single, ByVal s As Single, ByVal l As Single)
             hsl.Hue = h
             hsl.Saturation = s
@@ -31,7 +31,7 @@ Namespace LaplacianHDR.Filters
         ''' <summary>
         ''' Applies filter to bitmap.
         ''' </summary>
-        ''' <paramname="image">Bitmap</param>
+        ''' <param name="image">Bitmap</param>
         ''' <returns>Bitmap</returns>
         Public Function Apply(ByVal image As Bitmap) As Bitmap
             Dim clone As Bitmap = CType(image.Clone(), Bitmap)
