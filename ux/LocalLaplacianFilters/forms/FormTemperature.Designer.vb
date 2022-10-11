@@ -1,5 +1,5 @@
 ﻿
-    Partial Class Form3
+    Partial Class FormTemperature
         ''' <summary>
         ''' Требуется переменная конструктора.
         ''' </summary>
@@ -23,7 +23,7 @@
         ''' содержимое данного метода при помощи редактора кода.
         ''' </summary>
         Private Sub InitializeComponent()
-            Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(Form3))
+            Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(FormTemperature))
             label2 = New Windows.Forms.Label()
             trackBar2 = New Windows.Forms.TrackBar()
             textBox2 = New Windows.Forms.TextBox()

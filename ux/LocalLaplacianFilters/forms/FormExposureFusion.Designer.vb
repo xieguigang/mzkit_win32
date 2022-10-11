@@ -1,5 +1,5 @@
 ﻿
-    Partial Class Form5
+    Partial Class FormExposureFusion
         ''' <summary>
         ''' Required designer variable.
         ''' </summary>
@@ -23,7 +23,7 @@
         ''' the contents of this method with the code editor.
         ''' </summary>
         Private Sub InitializeComponent()
-            Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(Form5))
+            Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(FormExposureFusion))
             trackBar1 = New Windows.Forms.TrackBar()
             textBox2 = New Windows.Forms.TextBox()
             label1 = New Windows.Forms.Label()

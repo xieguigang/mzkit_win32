@@ -3,7 +3,7 @@ Imports LaplacianHDR.Helpers
 Imports UMapx.Imaging
 
 
-Partial Public Class Form2
+Partial Public Class FormEnhancement
     Inherits Form
 #Region "Private data"
     Private gllf As GeneralizedLocalLaplacianFilter = New GeneralizedLocalLaplacianFilter()

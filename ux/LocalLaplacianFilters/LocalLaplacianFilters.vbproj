@@ -138,34 +138,34 @@
     <Compile Include="filters\HueSaturationLightnessFilter.vb" />
     <Compile Include="filters\SaturationContrastBrightnessFilter.vb" />
     <Compile Include="filters\TemperatureFilter.vb" />
-    <Compile Include="forms\Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="forms\FormEditMain.Designer.vb">
+      <DependentUpon>FormEditMain.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Form1.vb">
+    <Compile Include="forms\FormEditMain.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Form2.Designer.vb">
-      <DependentUpon>Form2.vb</DependentUpon>
+    <Compile Include="forms\FormEnhancement.Designer.vb">
+      <DependentUpon>FormEnhancement.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Form2.vb">
+    <Compile Include="forms\FormEnhancement.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Form3.Designer.vb">
-      <DependentUpon>Form3.vb</DependentUpon>
+    <Compile Include="forms\FormTemperature.Designer.vb">
+      <DependentUpon>FormTemperature.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Form3.vb">
+    <Compile Include="forms\FormTemperature.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Form4.Designer.vb">
-      <DependentUpon>Form4.vb</DependentUpon>
+    <Compile Include="forms\FormAdjust.Designer.vb">
+      <DependentUpon>FormAdjust.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Form4.vb">
+    <Compile Include="forms\FormAdjust.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Form5.Designer.vb">
-      <DependentUpon>Form5.vb</DependentUpon>
+    <Compile Include="forms\FormExposureFusion.Designer.vb">
+      <DependentUpon>FormExposureFusion.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Form5.vb">
+    <Compile Include="forms\FormExposureFusion.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="helpers\DelegateHelper.vb" />
@@ -188,20 +188,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="forms\Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="forms\FormEditMain.resx">
+      <DependentUpon>FormEditMain.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\Form2.resx">
-      <DependentUpon>Form2.vb</DependentUpon>
+    <EmbeddedResource Include="forms\FormEnhancement.resx">
+      <DependentUpon>FormEnhancement.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\Form3.resx">
-      <DependentUpon>Form3.vb</DependentUpon>
+    <EmbeddedResource Include="forms\FormTemperature.resx">
+      <DependentUpon>FormTemperature.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\Form4.resx">
-      <DependentUpon>Form4.vb</DependentUpon>
+    <EmbeddedResource Include="forms\FormAdjust.resx">
+      <DependentUpon>FormAdjust.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\Form5.resx">
-      <DependentUpon>Form5.vb</DependentUpon>
+    <EmbeddedResource Include="forms\FormExposureFusion.resx">
+      <DependentUpon>FormExposureFusion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

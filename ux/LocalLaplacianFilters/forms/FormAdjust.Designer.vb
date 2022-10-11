@@ -1,5 +1,5 @@
 ﻿
-    Partial Class Form4
+    Partial Class FormAdjust
         ''' <summary>
         ''' Требуется переменная конструктора.
         ''' </summary>
@@ -23,7 +23,7 @@
         ''' содержимое данного метода при помощи редактора кода.
         ''' </summary>
         Private Sub InitializeComponent()
-            Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(Form4))
+            Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(FormAdjust))
             label2 = New Windows.Forms.Label()
             trackBar2 = New Windows.Forms.TrackBar()
             textBox2 = New Windows.Forms.TextBox()

@@ -5,7 +5,7 @@ Imports LaplacianHDR.Helpers
 Imports UMapx.Imaging
 
 
-Partial Public Class Form1
+Partial Public Class FormEditMain
     Inherits Form
 #Region "Constants"
     Const application As String = "Local Laplacian filters"
@@ -16,10 +16,10 @@ Partial Public Class Form1
 #End Region
 
 #Region "Private data"
-    Private form2 As Form2 = New Form2()
-    Private form3 As Form3 = New Form3()
-    Private form4 As Form4 = New Form4()
-    Private form5 As Form5 = New Form5()
+    Private form2 As FormEnhancement = New FormEnhancement()
+    Private form3 As FormTemperature = New FormTemperature()
+    Private form4 As FormAdjust = New FormAdjust()
+    Private form5 As FormExposureFusion = New FormExposureFusion()
     Private openFile As OpenFileDialog = New OpenFileDialog()
     Private saveFile As SaveFileDialog = New SaveFileDialog()
     Private undo As Stack(Of Bitmap) = New Stack(Of Bitmap)()

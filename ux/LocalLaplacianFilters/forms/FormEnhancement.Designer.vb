@@ -1,5 +1,5 @@
 ﻿
-    Partial Class Form2
+    Partial Class FormEnhancement
         ''' <summary>
         ''' Требуется переменная конструктора.
         ''' </summary>
@@ -23,7 +23,7 @@
         ''' содержимое данного метода при помощи редактора кода.
         ''' </summary>
         Private Sub InitializeComponent()
-            Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(Form2))
+            Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(FormEnhancement))
             button1 = New Windows.Forms.Button()
             pictureBox1 = New Windows.Forms.PictureBox()
             label1 = New Windows.Forms.Label()

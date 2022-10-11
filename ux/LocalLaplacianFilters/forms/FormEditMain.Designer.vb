@@ -1,5 +1,5 @@
 ﻿
-    Partial Class Form1
+    Partial Class FormEditMain
         ''' <summary>
         ''' Требуется переменная конструктора.
         ''' </summary>
@@ -23,7 +23,7 @@
         ''' содержимое данного метода при помощи редактора кода.
         ''' </summary>
         Private Sub InitializeComponent()
-            Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
+            Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEditMain))
             Me.menuStrip1 = New System.Windows.Forms.MenuStrip()
             Me.fileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
             Me.openToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()

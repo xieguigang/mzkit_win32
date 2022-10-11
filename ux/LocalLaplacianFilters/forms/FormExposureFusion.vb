@@ -2,7 +2,7 @@
 Imports UMapx.Imaging
 
 
-Partial Public Class Form5
+Partial Public Class FormExposureFusion
     Inherits Form
 #Region "Private data"
     Private fusion As ExposureFusion
