@@ -318,25 +318,25 @@
 
 #End Region
 
-    Private button1 As Windows.Forms.Button
-        Private pictureBox1 As Windows.Forms.PictureBox
-        Private label1 As Windows.Forms.Label
-        Private trackBar1 As Windows.Forms.TrackBar
-        Public textBox1 As Windows.Forms.TextBox
-        Private label2 As Windows.Forms.Label
-        Private trackBar2 As Windows.Forms.TrackBar
-        Public textBox2 As Windows.Forms.TextBox
-        Private label3 As Windows.Forms.Label
-        Private trackBar3 As Windows.Forms.TrackBar
-        Public textBox3 As Windows.Forms.TextBox
-        Private label4 As Windows.Forms.Label
-        Private trackBar4 As Windows.Forms.TrackBar
-        Public textBox4 As Windows.Forms.TextBox
-        Private label5 As Windows.Forms.Label
-        Private trackBar5 As Windows.Forms.TrackBar
-        Public textBox5 As Windows.Forms.TextBox
-        Private label6 As Windows.Forms.Label
-        Private trackBar6 As Windows.Forms.TrackBar
-        Public textBox6 As Windows.Forms.TextBox
-    End Class
+    Private WithEvents button1 As Windows.Forms.Button
+    Private WithEvents pictureBox1 As Windows.Forms.PictureBox
+    Private WithEvents label1 As Windows.Forms.Label
+    Private WithEvents trackBar1 As Windows.Forms.TrackBar
+    Public WithEvents textBox1 As Windows.Forms.TextBox
+    Private WithEvents label2 As Windows.Forms.Label
+    Private WithEvents trackBar2 As Windows.Forms.TrackBar
+    Public WithEvents textBox2 As Windows.Forms.TextBox
+    Private WithEvents label3 As Windows.Forms.Label
+    Private WithEvents trackBar3 As Windows.Forms.TrackBar
+    Public WithEvents textBox3 As Windows.Forms.TextBox
+    Private WithEvents label4 As Windows.Forms.Label
+    Private WithEvents trackBar4 As Windows.Forms.TrackBar
+    Public WithEvents textBox4 As Windows.Forms.TextBox
+    Private WithEvents label5 As Windows.Forms.Label
+    Private WithEvents trackBar5 As Windows.Forms.TrackBar
+    Public WithEvents textBox5 As Windows.Forms.TextBox
+    Private WithEvents label6 As Windows.Forms.Label
+    Private WithEvents trackBar6 As Windows.Forms.TrackBar
+    Public WithEvents textBox6 As Windows.Forms.TextBox
+End Class
 

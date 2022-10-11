@@ -152,13 +152,13 @@
 
 #End Region
 
-    Private label2 As Windows.Forms.Label
-        Private trackBar2 As Windows.Forms.TrackBar
-        Public textBox2 As Windows.Forms.TextBox
-        Private label1 As Windows.Forms.Label
-        Private trackBar1 As Windows.Forms.TrackBar
-        Public textBox1 As Windows.Forms.TextBox
-        Private pictureBox1 As Windows.Forms.PictureBox
-        Private button1 As Windows.Forms.Button
-    End Class
+    Private WithEvents label2 As Windows.Forms.Label
+    Private WithEvents trackBar2 As Windows.Forms.TrackBar
+    Public WithEvents textBox2 As Windows.Forms.TextBox
+    Private WithEvents label1 As Windows.Forms.Label
+    Private WithEvents trackBar1 As Windows.Forms.TrackBar
+    Public WithEvents textBox1 As Windows.Forms.TextBox
+    Private WithEvents pictureBox1 As Windows.Forms.PictureBox
+    Private WithEvents button1 As Windows.Forms.Button
+End Class
 

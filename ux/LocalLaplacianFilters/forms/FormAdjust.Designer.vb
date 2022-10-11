@@ -1,28 +1,28 @@
 ﻿
-    Partial Class FormAdjust
-        ''' <summary>
-        ''' Требуется переменная конструктора.
-        ''' </summary>
-        Private components As ComponentModel.IContainer = Nothing
+Partial Class FormAdjust
+    ''' <summary>
+    ''' Требуется переменная конструктора.
+    ''' </summary>
+    Private components As ComponentModel.IContainer = Nothing
 
-        ''' <summary>
-        ''' Освободить все используемые ресурсы.
-        ''' </summary>
-        ''' <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
-        Protected Overrides Sub Dispose(ByVal disposing As Boolean)
-            If disposing AndAlso components IsNot Nothing Then
-                components.Dispose()
-            End If
-            MyBase.Dispose(disposing)
-        End Sub
+    ''' <summary>
+    ''' Освободить все используемые ресурсы.
+    ''' </summary>
+    ''' <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        If disposing AndAlso components IsNot Nothing Then
+            components.Dispose()
+        End If
+        MyBase.Dispose(disposing)
+    End Sub
 
 #Region "Код, автоматически созданный конструктором форм Windows"
 
-        ''' <summary>
-        ''' Обязательный метод для поддержки конструктора - не изменяйте
-        ''' содержимое данного метода при помощи редактора кода.
-        ''' </summary>
-        Private Sub InitializeComponent()
+    ''' <summary>
+    ''' Обязательный метод для поддержки конструктора - не изменяйте
+    ''' содержимое данного метода при помощи редактора кода.
+    ''' </summary>
+    Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormAdjust))
         Me.label2 = New System.Windows.Forms.Label()
         Me.trackBar2 = New System.Windows.Forms.TrackBar()
@@ -194,16 +194,16 @@
     End Sub
 
 #End Region
-    Private label2 As Windows.Forms.Label
-        Private trackBar2 As Windows.Forms.TrackBar
-        Public textBox2 As Windows.Forms.TextBox
-        Private label1 As Windows.Forms.Label
-        Private trackBar1 As Windows.Forms.TrackBar
-        Public textBox1 As Windows.Forms.TextBox
-        Private pictureBox1 As Windows.Forms.PictureBox
-        Private button1 As Windows.Forms.Button
-        Private label3 As Windows.Forms.Label
-        Private trackBar3 As Windows.Forms.TrackBar
-        Public textBox3 As Windows.Forms.TextBox
-    End Class
+    Private WithEvents label2 As Windows.Forms.Label
+    Private WithEvents trackBar2 As Windows.Forms.TrackBar
+    Public WithEvents textBox2 As Windows.Forms.TextBox
+    Private WithEvents label1 As Windows.Forms.Label
+    Private WithEvents trackBar1 As Windows.Forms.TrackBar
+    Public WithEvents textBox1 As Windows.Forms.TextBox
+    Private WithEvents pictureBox1 As Windows.Forms.PictureBox
+    Private WithEvents button1 As Windows.Forms.Button
+    Private WithEvents label3 As Windows.Forms.Label
+    Private WithEvents trackBar3 As Windows.Forms.TrackBar
+    Public WithEvents textBox3 As Windows.Forms.TextBox
+End Class
 
