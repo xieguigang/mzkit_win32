@@ -3,7 +3,7 @@ Imports System.IO
 Imports LaplacianHDR.Filters
 Imports LaplacianHDR.Helpers
 Imports UMapx.Imaging
-
+Imports WeifenLuo.WinFormsUI.Docking
 
 Partial Public Class FormEditMain
     Inherits Form
@@ -26,8 +26,8 @@ Partial Public Class FormEditMain
     Private redo As Stack(Of Bitmap) = New Stack(Of Bitmap)()
     Private file As String()
 
-    Dim canvas As New ImageDocumentWindow
-    Dim imageHistogram As New PropertyWindow
+    Dim canvas As ImageDocumentWindow
+    Dim imageHistogram As PropertyWindow
 
     Public Property PictureImage As Image
         Get
@@ -78,6 +78,13 @@ Partial Public Class FormEditMain
         comboBox1.Items.Add(Space.HSL)
         comboBox1.Items.Add(Space.Grayscale)
         comboBox1.SelectedIndex = 0
+
+        canvas = New ImageDocumentWindow With {.Main = Me}
+        canvas.Show(dockPanel)
+        canvas.DockState = DockState.Document
+        imageHistogram = New PropertyWindow With {.Main = Me}
+        imageHistogram.Show(dockPanel)
+        imageHistogram.DockState = DockState.DockRight
     End Sub
 
     Private Sub Form1_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs) Handles Me.KeyDown
