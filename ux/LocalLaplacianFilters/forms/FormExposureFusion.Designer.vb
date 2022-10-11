@@ -23,98 +23,95 @@
         ''' the contents of this method with the code editor.
         ''' </summary>
         Private Sub InitializeComponent()
-            Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(FormExposureFusion))
-            trackBar1 = New Windows.Forms.TrackBar()
-            textBox2 = New Windows.Forms.TextBox()
-            label1 = New Windows.Forms.Label()
-            pictureBox1 = New Windows.Forms.PictureBox()
-            button1 = New Windows.Forms.Button()
-            CType(trackBar1, ComponentModel.ISupportInitialize).BeginInit()
-            CType(pictureBox1, ComponentModel.ISupportInitialize).BeginInit()
-            SuspendLayout()
-            ' 
-            ' trackBar1
-            ' 
-            trackBar1.AutoSize = False
-            trackBar1.Location = New Drawing.Point(3, 267)
-            trackBar1.Maximum = 90
-            trackBar1.Name = "trackBar1"
-            trackBar1.Size = New Drawing.Size(243, 26)
-            trackBar1.TabIndex = 28
-            trackBar1.TickStyle = Windows.Forms.TickStyle.None
-            trackBar1.Value = 45
-            AddHandler trackBar1.Scroll, New EventHandler(AddressOf trackBar1_Scroll)
-            ' 
-            ' textBox2
-            ' 
-            textBox2.BackColor = Drawing.Color.White
-            textBox2.Font = New Drawing.Font("Segoe UI", 9F, Drawing.FontStyle.Regular, Drawing.GraphicsUnit.Point, 204)
-            textBox2.Location = New Drawing.Point(201, 243)
-            textBox2.Name = "textBox2"
-            textBox2.ReadOnly = True
-            textBox2.Size = New Drawing.Size(36, 23)
-            textBox2.TabIndex = 27
-            textBox2.Text = "0.55"
-            ' 
-            ' label1
-            ' 
-            label1.AutoSize = True
-            label1.Font = New Drawing.Font("Segoe UI", 9F, Drawing.FontStyle.Regular, Drawing.GraphicsUnit.Point, 204)
-            label1.Location = New Drawing.Point(7, 246)
-            label1.Name = "label1"
-            label1.Size = New Drawing.Size(40, 15)
-            label1.TabIndex = 26
-            label1.Text = "Sigma"
-            ' 
-            ' pictureBox1
-            ' 
-            pictureBox1.BackColor = Drawing.SystemColors.ControlLight
-            pictureBox1.Location = New Drawing.Point(12, 12)
-            pictureBox1.Name = "pictureBox1"
-            pictureBox1.Size = New Drawing.Size(225, 225)
-            pictureBox1.SizeMode = Windows.Forms.PictureBoxSizeMode.CenterImage
-            pictureBox1.TabIndex = 23
-            pictureBox1.TabStop = False
-            ' 
-            ' button1
-            ' 
-            button1.BackColor = Drawing.SystemColors.ControlLight
-            button1.Font = New Drawing.Font("Segoe UI", 9F, Drawing.FontStyle.Regular, Drawing.GraphicsUnit.Point, 204)
-            button1.Location = New Drawing.Point(12, 299)
-            button1.Name = "button1"
-            button1.Size = New Drawing.Size(225, 28)
-            button1.TabIndex = 1
-            button1.Text = "Apply"
-            button1.UseVisualStyleBackColor = False
-            AddHandler button1.Click, New EventHandler(AddressOf button1_Click)
-            ' 
-            ' Form5
-            ' 
-            AutoScaleDimensions = New Drawing.SizeF(6F, 13F)
-            AutoScaleMode = Windows.Forms.AutoScaleMode.Font
-            ClientSize = New Drawing.Size(249, 339)
-            Controls.Add(trackBar1)
-            Controls.Add(textBox2)
-            Controls.Add(label1)
-            Controls.Add(pictureBox1)
-            Controls.Add(button1)
-            FormBorderStyle = Windows.Forms.FormBorderStyle.FixedSingle
-            '  Icon = CType(resources.GetObject("$this.Icon"), Drawing.Icon)
-            MaximizeBox = False
-            MinimizeBox = False
-            Name = "Form5"
-            StartPosition = Windows.Forms.FormStartPosition.CenterParent
-            Text = "Exposure fusion"
-            AddHandler Load, New EventHandler(AddressOf Form5_Load)
-            CType(trackBar1, ComponentModel.ISupportInitialize).EndInit()
-            CType(pictureBox1, ComponentModel.ISupportInitialize).EndInit()
-            ResumeLayout(False)
-            PerformLayout()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormExposureFusion))
+        Me.trackBar1 = New System.Windows.Forms.TrackBar()
+        Me.textBox2 = New System.Windows.Forms.TextBox()
+        Me.label1 = New System.Windows.Forms.Label()
+        Me.pictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.button1 = New System.Windows.Forms.Button()
+        CType(Me.trackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
+        '
+        'trackBar1
+        '
+        Me.trackBar1.AutoSize = False
+        Me.trackBar1.Location = New System.Drawing.Point(3, 267)
+        Me.trackBar1.Maximum = 90
+        Me.trackBar1.Name = "trackBar1"
+        Me.trackBar1.Size = New System.Drawing.Size(243, 26)
+        Me.trackBar1.TabIndex = 28
+        Me.trackBar1.TickStyle = System.Windows.Forms.TickStyle.None
+        Me.trackBar1.Value = 45
+        '
+        'textBox2
+        '
+        Me.textBox2.BackColor = System.Drawing.Color.White
+        Me.textBox2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.textBox2.Location = New System.Drawing.Point(201, 243)
+        Me.textBox2.Name = "textBox2"
+        Me.textBox2.ReadOnly = True
+        Me.textBox2.Size = New System.Drawing.Size(36, 23)
+        Me.textBox2.TabIndex = 27
+        Me.textBox2.Text = "0.55"
+        '
+        'label1
+        '
+        Me.label1.AutoSize = True
+        Me.label1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.label1.Location = New System.Drawing.Point(7, 246)
+        Me.label1.Name = "label1"
+        Me.label1.Size = New System.Drawing.Size(40, 15)
+        Me.label1.TabIndex = 26
+        Me.label1.Text = "Sigma"
+        '
+        'pictureBox1
+        '
+        Me.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.pictureBox1.Location = New System.Drawing.Point(12, 12)
+        Me.pictureBox1.Name = "pictureBox1"
+        Me.pictureBox1.Size = New System.Drawing.Size(225, 225)
+        Me.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.pictureBox1.TabIndex = 23
+        Me.pictureBox1.TabStop = False
+        '
+        'button1
+        '
+        Me.button1.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.button1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.button1.Location = New System.Drawing.Point(12, 299)
+        Me.button1.Name = "button1"
+        Me.button1.Size = New System.Drawing.Size(225, 28)
+        Me.button1.TabIndex = 1
+        Me.button1.Text = "Apply"
+        Me.button1.UseVisualStyleBackColor = False
+        '
+        'FormExposureFusion
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.ClientSize = New System.Drawing.Size(249, 339)
+        Me.Controls.Add(Me.trackBar1)
+        Me.Controls.Add(Me.textBox2)
+        Me.Controls.Add(Me.label1)
+        Me.Controls.Add(Me.pictureBox1)
+        Me.Controls.Add(Me.button1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
+        Me.Name = "FormExposureFusion"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.Text = "Exposure fusion"
+        CType(Me.trackBar1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
 
-        End Sub
+    End Sub
 
 #End Region
-        Private trackBar1 As Windows.Forms.TrackBar
+    Private trackBar1 As Windows.Forms.TrackBar
         Public textBox2 As Windows.Forms.TextBox
         Private label1 As Windows.Forms.Label
         Private pictureBox1 As Windows.Forms.PictureBox

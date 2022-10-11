@@ -24,6 +24,7 @@ Partial Class FormEditMain
     ''' </summary>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEditMain))
         Me.menuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.fileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.openToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -709,10 +710,11 @@ Partial Class FormEditMain
         Me.Controls.Add(Me.label1)
         Me.Controls.Add(Me.pictureBox1)
         Me.Controls.Add(Me.menuStrip1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.menuStrip1
         Me.Name = "FormEditMain"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Main"
+        Me.Text = "Image Editor"
         Me.menuStrip1.ResumeLayout(False)
         Me.menuStrip1.PerformLayout()
         CType(Me.pictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
