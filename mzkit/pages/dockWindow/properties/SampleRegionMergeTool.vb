@@ -1,4 +1,5 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
+Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 
 Public Class SampleRegionMergeTool
@@ -30,6 +31,15 @@ Public Class SampleRegionMergeTool
             highlights = New String() {
                 DirectCast(ColorComboBox1.SelectedItem, TissueRegion).label
             }
+        End If
+        If dims.IsEmpty Then
+            With regions _
+                .Select(Function(p) p.points) _
+                .IteratesALL _
+                .ToArray
+
+                dims = New Size(.X.Max, .Y.Max)
+            End With
         End If
 
         Dim Rplot As Image = LayerRender.Draw(
