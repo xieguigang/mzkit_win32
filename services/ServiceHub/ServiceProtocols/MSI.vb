@@ -172,6 +172,35 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
     End Function
 
+    <Protocol(ServiceProtocol.ExtractMultipleSampleRegions)>
+    Public Function ExtractMultipleSampleRegions(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
+        Dim allPixels As PixelScan() = MSI.pixelReader.AllPixels.ToArray
+        Dim samples = allPixels _
+            .GroupBy(Function(p) If(p.sampleTag.StringEmpty, "sample", p.sampleTag)) _
+            .ToArray
+        Dim regions = samples _
+            .ToDictionary(Function(a) a.Key,
+                          Function(a)
+                              Return a _
+                                  .Select(Function(p) New Point(p.X, p.Y)) _
+                                  .ToArray
+                          End Function)
+        Dim dims = MSI.dimension
+        Dim sampleRegions As New RegionLoader With {
+            .width = dims.Width,
+            .height = dims.Height,
+            .sample_tags = regions.Keys.ToArray,
+            .regions = .sample_tags _
+                .Select(Function(tag) New Polygon2D(regions(tag))) _
+                .ToArray
+        }
+        Dim json = GetType(RegionLoader).GetJsonElement(sampleRegions, New JSONSerializerOptions)
+
+        Using buffer = BSON.GetBuffer(json)
+            Return New DataPipe(buffer)
+        End Using
+    End Function
+
     <Protocol(ServiceProtocol.ExtractRegionSample)>
     Public Function ExtractRegionSample(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
         Dim allPixels As PixelScan() = MSI.pixelReader.AllPixels.ToArray

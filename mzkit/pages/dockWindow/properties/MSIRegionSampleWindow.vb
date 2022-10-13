@@ -8,6 +8,7 @@ Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
+Imports ServiceHub
 
 Public Class MSIRegionSampleWindow
 
@@ -21,6 +22,7 @@ Public Class MSIRegionSampleWindow
     Friend canvas As PixelSelector
     Friend sample_bounds As Point()
     Friend importsFile As String
+    Friend viewer As frmMsImagingViewer
 
     Friend Sub Clear()
         FlowLayoutPanel1.Controls.Clear()
@@ -91,14 +93,16 @@ Public Class MSIRegionSampleWindow
         Call Add(selector.GetPolygons(popAll:=True))
     End Sub
 
-    Private Sub Add(sample_group As IEnumerable(Of Polygon2D))
+    Private Function Add(sample_group As IEnumerable(Of Polygon2D)) As RegionSampleCard
         Dim card As New RegionSampleCard
 
         Call card.SetPolygons(sample_group, callback:=AddressOf updateLayerRendering)
         Call FlowLayoutPanel1.Controls.Add(card)
 
         AddHandler card.RemoveSampleGroup, AddressOf removeSampleGroup
-    End Sub
+
+        Return card
+    End Function
 
     Private Sub MSIRegionSampleWindow_Load(sender As Object, e As EventArgs) Handles Me.Load
         TabText = Text
@@ -176,16 +180,37 @@ Public Class MSIRegionSampleWindow
         Return New Point(xpoint, ypoint)
     End Function
 
+    ''' <summary>
+    ''' auto sampleinfo
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
-        If MessageBox.Show("All of the sample name and color will be generated with unique id fill?", "Tissue Map", buttons:=MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
-            Dim i As i32 = 1
-            Dim colors As LoopArray(Of Color) = Designer.GetColors(colorSet, FlowLayoutPanel1.Controls.Count)
+        Dim nsize As Integer = FlowLayoutPanel1.Controls.Count
 
-            For Each item As Control In FlowLayoutPanel1.Controls
-                Dim card = DirectCast(item, RegionSampleCard)
+        If nsize > 0 Then
+            If MessageBox.Show("All of the sample name and color will be generated with unique id fill?", "Tissue Map", buttons:=MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
+                Dim i As i32 = 1
+                Dim colors As LoopArray(Of Color) = Designer.GetColors(colorSet, nsize)
 
-                card.SampleColor = ++colors
-                card.SampleInfo = $"{prefix}{++i}"
+                For Each item As Control In FlowLayoutPanel1.Controls
+                    Dim card = DirectCast(item, RegionSampleCard)
+
+                    card.SampleColor = ++colors
+                    card.SampleInfo = $"{prefix}{++i}"
+                Next
+
+                Call updateLayerRendering()
+            End If
+        Else
+            Dim data As RegionLoader = viewer.ExtractMultipleSampleRegions
+            Dim colors As Color() = Designer.GetColors(colorSet, data.size)
+
+            For i As Integer = 0 To data.regions.Length - 1
+                Dim card = Me.Add({data.regions(i)})
+
+                card.SampleColor = colors(i)
+                card.SampleInfo = data.sample_tags(i)
             Next
 
             Call updateLayerRendering()

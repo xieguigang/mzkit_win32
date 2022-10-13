@@ -236,6 +236,25 @@ Namespace ServiceHub
             Return output
         End Function
 
+        Public Function ExtractMultipleSampleRegions() As RegionLoader
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.ExtractMultipleSampleRegions, "get"))
+
+            If data Is Nothing Then
+                Call MyApplication.host.warning($"Failure to load MS-imaging raw data sample regions...")
+                Return Nothing
+            ElseIf data.IsHTTP_RFC Then
+                Call MyApplication.host.showStatusMessage(data.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Return Nothing
+            End If
+
+            Dim regions As RegionLoader = BSON _
+               .Load(data.ChunkBuffer) _
+               .CreateObject(Of RegionLoader)(decodeMetachar:=False) _
+               .Reload
+
+            Return regions
+        End Function
+
         Public Function ExtractRegionSample(regions As Polygon2D(), dims As Size) As MsImageProperty
             Dim payload As New RegionLoader With {
                 .height = dims.Height,

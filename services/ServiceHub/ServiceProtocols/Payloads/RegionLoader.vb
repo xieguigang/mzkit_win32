@@ -9,6 +9,19 @@ Public Class RegionLoader
     Public Property width As Integer
     Public Property height As Integer
 
+    ''' <summary>
+    ''' this property value should be nothing or 
+    ''' size equals to the <see cref="regions"/>.
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property sample_tags As String()
+
+    Public ReadOnly Property size As Integer
+        Get
+            Return regions.TryCount
+        End Get
+    End Property
+
     Public ReadOnly Property empty As Boolean
         Get
             Return width = 0 OrElse
@@ -26,7 +39,8 @@ Public Class RegionLoader
                 .Select(Function(r)
                             Return New Polygon2D(r.xpoints, r.ypoints)
                         End Function) _
-                .ToArray
+                .ToArray,
+            .sample_tags = sample_tags
         }
     End Function
 

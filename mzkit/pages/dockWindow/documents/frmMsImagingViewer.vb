@@ -93,6 +93,7 @@ Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Text
 Imports mzblender
+Imports ServiceHub
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 Imports File = Microsoft.VisualBasic.Data.csv.IO.File
@@ -179,7 +180,16 @@ Public Class frmMsImagingViewer
 
         sampleRegions.Show(MyApplication.host.dockPanel)
         sampleRegions.DockState = DockState.Hidden
+        sampleRegions.viewer = Me
     End Sub
+
+    Public Function ExtractMultipleSampleRegions() As RegionLoader
+        If Not checkService() Then
+            Return Nothing
+        Else
+            Return MSIservice.ExtractMultipleSampleRegions
+        End If
+    End Function
 
     Sub MergeSlides()
         Using file As New OpenFileDialog With {

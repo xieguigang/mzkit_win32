@@ -88,6 +88,7 @@ Public Enum ServiceProtocol
     UpsideDown
     Mirrors
     ExtractRegionSample
+    ExtractMultipleSampleRegions
     ExitApp
 End Enum
 
