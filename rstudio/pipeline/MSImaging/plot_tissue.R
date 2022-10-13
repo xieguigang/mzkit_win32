@@ -15,7 +15,7 @@ print(data, max.print = 13);
 		
 const labels = unique(data[, "label"]);
 const colors = unique(data[, "color"]);
-const colorMaps = lapply(1:length(l), i -> colors[i], names = labels);
+const colorMaps = lapply(1:length(labels), i -> colors[i], names = labels);
 
 print("get unique color maps for each tissue region:");
 str(colorMaps);
