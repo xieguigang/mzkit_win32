@@ -190,8 +190,8 @@ Public Class frmMsImagingViewer
                 Dim files As String() = file.FileNames
                 Dim loadfiles As IEnumerable(Of mzPack) = files _
                     .Select(Function(path)
-                                Return mzPack.ReadAll(
-                                    file:=path.Open(FileMode.Open, doClear:=False, [readOnly]:=True),
+                                Return mzPack.Read(
+                                    filepath:=path,
                                     ignoreThumbnail:=True,
                                     skipMsn:=True
                                 )
