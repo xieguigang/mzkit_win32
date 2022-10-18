@@ -65,7 +65,7 @@ Module MSImagingRowBinds
         Dim i As i32 = 0
         Dim println As Action(Of String)
 
-        For Each wiff As String In files
+        For Each wiff As String In files ' .Take(3)
             Dim p As Integer = CInt((++i / files.Length) * 100)
 
             println = Sub(msg) RunSlavePipeline.SendProgress(p, $"[{wiff.BaseName}] {msg}")
