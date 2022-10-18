@@ -72,7 +72,7 @@ Module MSImagingRowBinds
             println($"Load wiff waw data files... {wiff.BaseName}")
 
             Dim wiffRaw As New sciexWiffReader.WiffScanFileReader(wiff)
-            Dim mzPack As mzPack = wiffRaw.LoadFromWiffRaw(println)
+            Dim mzPack As mzPack = wiffRaw.LoadFromWiffRaw(checkNoise:=False, println:=println)
 
             Call rawfiles.Add(mzPack)
         Next
