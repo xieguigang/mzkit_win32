@@ -10,10 +10,10 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("msconvert")>
 <Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("msconvert")>
-<Assembly: AssemblyCopyright("Copyright ©  2022")>
-<Assembly: AssemblyTrademark("")>
+<Assembly: AssemblyCompany("BioNovoGene")>
+<Assembly: AssemblyProduct("BioDeep")>
+<Assembly: AssemblyCopyright("Copyright © gg.xie@bionovogene.com 2022")>
+<Assembly: AssemblyTrademark("MZKit")>
 
 <Assembly: ComVisible(False)>
 

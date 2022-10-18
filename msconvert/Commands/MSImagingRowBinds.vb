@@ -66,11 +66,10 @@ Module MSImagingRowBinds
         Dim println As Action(Of String)
 
         For Each wiff As String In files
-            Call RunSlavePipeline.SendProgress(CInt((++i / files.Length) * 100), $"Load wiff waw data files... {wiff.BaseName}")
+            Dim p As Integer = CInt((++i / files.Length) * 100)
 
-            println = Sub(msg)
-                          Call RunSlavePipeline.SendProgress(CInt((++i / files.Length) * 100), $"[{wiff.BaseName}] {msg}")
-                      End Sub
+            println = Sub(msg) RunSlavePipeline.SendProgress(p, $"[{wiff.BaseName}] {msg}")
+            println($"Load wiff waw data files... {wiff.BaseName}")
 
             Dim wiffRaw As New sciexWiffReader.WiffScanFileReader(wiff)
             Dim mzPack As mzPack = wiffRaw.LoadFromWiffRaw(println)

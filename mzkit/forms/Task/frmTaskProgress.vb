@@ -77,8 +77,8 @@ Public Class frmTaskProgress
     Public Sub SetProgress(p As Integer)
         Call Invoke(
             Sub()
-                ProgressBar1.Value = p
-                TaskbarStatus.SetProgress(p)
+                ProgressBar1.Value = If(p > ProgressBar1.Maximum, p, ProgressBar1.Maximum)
+                TaskbarStatus.SetProgress(ProgressBar1.Value)
             End Sub)
     End Sub
 
@@ -90,9 +90,9 @@ Public Class frmTaskProgress
     Public Sub SetProgress(p As Integer, message As String)
         Call Invoke(
             Sub()
-                ProgressBar1.Value = p
+                ProgressBar1.Value = If(p > ProgressBar1.Maximum, p, ProgressBar1.Maximum)
                 Label1.Text = message
-                TaskbarStatus.SetProgress(p)
+                TaskbarStatus.SetProgress(ProgressBar1.Value)
             End Sub)
     End Sub
 
