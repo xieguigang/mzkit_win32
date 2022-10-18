@@ -11,7 +11,13 @@ Imports Microsoft.VisualBasic.Linq
 Module MSImagingRowBinds
 
     Private Function combineMzPack(pip As IEnumerable(Of mzPack), cor As Correction) As mzPack
-        Return pip.MSICombineRowScans(cor, 0.05, progress:=AddressOf RunSlavePipeline.SendMessage)
+        Return pip.MSICombineRowScans(
+            correction:=cor,
+            intocutoff:=0.0,
+            sumNorm:=False,
+            yscale:=1,
+            progress:=AddressOf RunSlavePipeline.SendMessage
+        )
     End Function
 
     Private Iterator Function loadXRaw(files As IEnumerable(Of String)) As IEnumerable(Of MSFileReader)
@@ -30,25 +36,51 @@ Module MSImagingRowBinds
 
     Private Sub combineRaw(files As String(), file As Stream)
         Dim correction As Correction = MSIMeasurement.Measure(loadXRaw(files)).GetCorrection
+        Call combineMzPack(LoadThermoRaw(files), correction).Write(file, version:=2)
+    End Sub
 
-        Call combineMzPack(
-            Iterator Function() As IEnumerable(Of mzPack)
-                Dim i As i32 = 0
+    Private Iterator Function LoadThermoRaw(files As String()) As IEnumerable(Of mzPack)
+        Dim i As i32 = 0
 
-                For Each path As String In files
-                    Dim raw As New MSFileReader(path)
-                    Dim cache As mzPack = raw.LoadFromXRaw
+        For Each path As String In files
+            Dim raw As New MSFileReader(path)
+            Dim cache As mzPack = raw.LoadFromXRaw
 
-                    Yield cache
+            Yield cache
 
-                    Try
-                        raw.Dispose()
-                    Catch ex As Exception
-                    Finally
-                        Call RunSlavePipeline.SendProgress(CInt((++i / files.Length) * 100), $"Combine Raw Data Files... {path.BaseName}")
-                    End Try
-                Next
-            End Function(), correction).Write(file, version:=2)
+            Try
+                raw.Dispose()
+            Catch ex As Exception
+            Finally
+                Call RunSlavePipeline.SendProgress(CInt((++i / files.Length) * 100), $"Combine Raw Data Files... {path.BaseName}")
+            End Try
+        Next
+    End Function
+
+    Private Sub combineWiffRaw(files As String(), file As Stream)
+        Dim rawfiles As New List(Of mzPack)
+        Dim i As i32 = 0
+        Dim println As Action(Of String)
+
+        For Each wiff As String In files
+            Call RunSlavePipeline.SendProgress(CInt((++i / files.Length) * 100), $"Load wiff waw data files... {wiff.BaseName}")
+
+            println = Sub(msg)
+                          Call RunSlavePipeline.SendProgress(CInt((++i / files.Length) * 100), $"[{wiff.BaseName}] {msg}")
+                      End Sub
+
+            Dim wiffRaw As New sciexWiffReader.WiffScanFileReader(wiff)
+            Dim mzPack As mzPack = wiffRaw.LoadFromWiffRaw(println)
+
+            Call rawfiles.Add(mzPack)
+        Next
+
+        Call RunSlavePipeline.SendMessage($"Measuring MSI Information...")
+
+        Dim correction As Correction = MSIMeasurement.Measure(rawfiles).GetCorrection
+
+        Call RunSlavePipeline.SendMessage($"Combine MS-imaging file!")
+        Call combineMzPack(rawfiles, correction).Write(file, version:=2)
     End Sub
 
     Private Iterator Function loadRaw(files As IEnumerable(Of String)) As IEnumerable(Of BinaryStreamReader)
@@ -93,6 +125,7 @@ Module MSImagingRowBinds
             Select Case exttype(Scan0)
                 Case "raw" : Call combineRaw(files, file)
                 Case "mzpack" : Call combineMzPack(files, file)
+                Case "wiff" : Call combineWiffRaw(files, file)
 
                 Case Else
                     Call RunSlavePipeline.SendMessage($"Unsupported file type: {exttype(Scan0)}!")
