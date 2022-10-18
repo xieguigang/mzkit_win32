@@ -285,9 +285,14 @@ Module RibbonEvents
             .Multiselect = True
         }
             If file.ShowDialog = DialogResult.OK Then
+                Dim baseDir As String = file.FileNames()(Scan0).ParentPath
+                Dim fileDirName As String = baseDir.BaseName
+
                 Using savefile As New SaveFileDialog With {
                     .Filter = "BioNovoGene mzPack(*.mzPack)|*.mzPack",
-                    .Title = "Save MSI raw data file"
+                    .Title = "Save MSI raw data file",
+                    .FileName = $"{fileDirName}.mzPack",
+                    .InitialDirectory = baseDir
                 }
                     If savefile.ShowDialog = DialogResult.OK Then
                         Call RscriptProgressTask.CreateMSIRawFromRowBinds(file.FileNames, savefile.FileName)
