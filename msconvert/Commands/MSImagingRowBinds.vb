@@ -7,16 +7,19 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Text.Patterns
 
 Module MSImagingRowBinds
 
-    Private Function combineMzPack(pip As IEnumerable(Of mzPack), cor As Correction) As mzPack
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Private Function combineMzPack(pip As IEnumerable(Of mzPack), labelPrefix As String, cor As Correction) As mzPack
         Return pip.MSICombineRowScans(
             correction:=cor,
             intocutoff:=0.0,
             sumNorm:=False,
             yscale:=1,
-            progress:=AddressOf RunSlavePipeline.SendMessage
+            progress:=AddressOf RunSlavePipeline.SendMessage,
+            labelPrefix:=labelPrefix
         )
     End Function
 
@@ -34,9 +37,9 @@ Module MSImagingRowBinds
         Next
     End Function
 
-    Private Sub combineRaw(files As String(), file As Stream)
+    Private Sub combineRaw(files As String(), labelPrefix As String, file As Stream)
         Dim correction As Correction = MSIMeasurement.Measure(loadXRaw(files)).GetCorrection
-        Call combineMzPack(LoadThermoRaw(files), correction).Write(file, version:=2)
+        Call combineMzPack(LoadThermoRaw(files), labelPrefix, correction).Write(file, version:=2)
     End Sub
 
     Private Iterator Function LoadThermoRaw(files As String()) As IEnumerable(Of mzPack)
@@ -57,7 +60,7 @@ Module MSImagingRowBinds
         Next
     End Function
 
-    Private Sub combineWiffRaw(files As String(), file As Stream)
+    Private Sub combineWiffRaw(files As String(), labelPrefix As String, file As Stream)
         Dim rawfiles As New List(Of mzPack)
         Dim i As i32 = 0
         Dim println As Action(Of String)
@@ -80,7 +83,7 @@ Module MSImagingRowBinds
         Dim correction As Correction = MSIMeasurement.Measure(rawfiles).GetCorrection
 
         Call RunSlavePipeline.SendMessage($"Combine MS-imaging file!")
-        Call combineMzPack(rawfiles, correction).Write(file, version:=2)
+        Call combineMzPack(rawfiles, labelPrefix, correction).Write(file, version:=2)
     End Sub
 
     Private Iterator Function loadRaw(files As IEnumerable(Of String)) As IEnumerable(Of BinaryStreamReader)
@@ -93,7 +96,7 @@ Module MSImagingRowBinds
         Next
     End Function
 
-    Private Sub combineMzPack(files As String(), file As Stream)
+    Private Sub combineMzPack(files As String(), labelPrefix As String, file As Stream)
         Dim correction As Correction = MSIMeasurement.Measure(loadRaw(files)).GetCorrection
 
         Call combineMzPack(
@@ -106,7 +109,7 @@ Module MSImagingRowBinds
                         Yield mzPack.ReadAll(buffer, ignoreThumbnail:=True)
                     End Using
                 Next
-            End Function(), correction).Write(file, version:=2)
+            End Function(), labelPrefix, correction).Write(file, version:=2)
     End Sub
 
     <Extension>
@@ -115,6 +118,7 @@ Module MSImagingRowBinds
                                    In files
                                    Select path.ExtensionSuffix.ToLower
                                    Distinct).ToArray
+        Dim sampleTag As New CommonTagParser(files.Select(Function(path) path.BaseName))
 
         If exttype.Length > 1 Then
             Call RunSlavePipeline.SendMessage($"Multipe file type is not allowed!")
@@ -123,9 +127,9 @@ Module MSImagingRowBinds
 
         Using file As FileStream = save.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
             Select Case exttype(Scan0)
-                Case "raw" : Call combineRaw(files, file)
-                Case "mzpack" : Call combineMzPack(files, file)
-                Case "wiff" : Call combineWiffRaw(files, file)
+                Case "raw" : Call combineRaw(files, sampleTag.LabelPrefix, file)
+                Case "mzpack" : Call combineMzPack(files, sampleTag.LabelPrefix, file)
+                Case "wiff" : Call combineWiffRaw(files, sampleTag.LabelPrefix, file)
 
                 Case Else
                     Call RunSlavePipeline.SendMessage($"Unsupported file type: {exttype(Scan0)}!")
