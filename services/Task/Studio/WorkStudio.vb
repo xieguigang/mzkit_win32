@@ -56,13 +56,11 @@ Imports Microsoft.VisualBasic.ApplicationServices.Debugging.Logging
 
 Public Class WorkStudio
 
-    Private Shared ReadOnly logfile As String = $"{App.ProductProgramData}/pipeline_calls_{Now.ToString("yyyy-MM")}.txt"
-    Private Shared ReadOnly log As LogFile
+    Shared ReadOnly logfile As String = $"{App.ProductProgramData}/pipeline_calls_{Now.ToString("yyyy-MM")}.txt"
 
-    Shared Sub New()
-        log = New LogFile(path:=logfile, autoFlush:=True, append:=True)
-        App.AddExitCleanHook(AddressOf log.Dispose)
-    End Sub
+    Private Shared Function CreateLogger() As LogFile
+        Return New LogFile(path:=logfile, autoFlush:=True, append:=True, appendHeader:=False)
+    End Function
 
     Public Shared Sub RunTaskScript(file As String, args As String)
         Call CommandLine.Call($"{App.HOME}/Rstudio/bin/R#.exe", args)
@@ -70,6 +68,9 @@ Public Class WorkStudio
 
     Public Shared Sub LogCommandLine(host As String, commandline As String, workdir As String)
         Dim logText As String = $"host: {host}{vbCrLf}arguments: {commandline}{vbCrLf}workdir: {workdir}"
-        Call log.log(MSG_TYPES.DEBUG, logText)
+
+        Using log As LogFile = CreateLogger()
+            Call log.log(MSG_TYPES.DEBUG, logText)
+        End Using
     End Sub
 End Class
