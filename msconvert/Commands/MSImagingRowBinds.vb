@@ -71,6 +71,7 @@ Module MSImagingRowBinds
             println = Sub(msg) RunSlavePipeline.SendProgress(p, $"[{wiff.BaseName}] {msg}")
             println($"Load wiff waw data files... {wiff.BaseName}")
 
+            ' 20221018 if check noise, then maybe loose too much ions
             Dim wiffRaw As New sciexWiffReader.WiffScanFileReader(wiff)
             Dim mzPack As mzPack = wiffRaw.LoadFromWiffRaw(checkNoise:=False, println:=println)
 
