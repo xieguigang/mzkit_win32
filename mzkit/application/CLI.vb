@@ -62,7 +62,7 @@ Module CLI
         MyApplication.afterLoad =
             Sub()
                 Select Case filepath.ExtensionSuffix.ToLower
-                    Case "mzpack", "raw"
+                    Case "mzpack", "raw", "msp"
                         MyApplication.host.OpenFile(filepath, showDocument:=True)
                         WindowModules.panelMain.Show(MyApplication.host.dockPanel)
                         WindowModules.panelMain.DockState = DockState.Document

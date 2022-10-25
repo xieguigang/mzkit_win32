@@ -185,7 +185,8 @@ Friend MustInherit Class WindowModules
             "Thermo Raw File(*.raw)|*.raw",
             "Ab Sciex Wiff(*.wiff)|*.wiff",
             "R# Script(*.R)|*.R",
-            "Excel Table(*.csv;*.xlsx)|*.csv;*.xlsx"
+            "Excel Table(*.csv;*.xlsx)|*.csv;*.xlsx",
+            "Open Source Spectrum(*.msp)|*.msp"
         }
 
         Using file As New OpenFileDialog With {
