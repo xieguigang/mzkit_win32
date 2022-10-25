@@ -214,8 +214,10 @@ Public Class frmFileExplorer
             Dim taskList As TaskListWindow = WindowModules.taskWin
             Dim task As TaskUI = taskList.Add("Imports Raw Data", fileName)
 
-            Call taskList.Show(MyApplication.host.dockPanel)
-            ' Call Alert.ShowSucess($"Imports raw data files in background,{vbCrLf}you can open [Task List] panel for view task progress.")
+            taskList.Show(MyApplication.host.dockPanel)
+            taskList.DockState = DockState.DockBottom
+
+            Call MyApplication.host.showStatusMessage($"Imports raw data file [{fileName.FileName}] in background, you can open [Task List] panel for view task progress.")
             Call MyApplication.TaskQueue.AddToQueue(
                 Sub()
                     Call task.Running()
