@@ -31,6 +31,8 @@ Module ConvertToMzPack
             Using msraw As New MSFileReader(raw)
                 mzpack = msraw.LoadFromXRaw(println)
             End Using
+        ElseIf raw.ExtensionSuffix("msp") Then
+            mzpack = Converter.LoadMsp(raw)
         Else
             mzpack = Converter.LoadRawFileAuto(raw, "ppm:20", , println)
         End If
