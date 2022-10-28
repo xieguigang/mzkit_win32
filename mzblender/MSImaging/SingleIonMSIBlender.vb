@@ -3,7 +3,6 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
-Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Task
 
 Public Class SingleIonMSIBlender : Inherits MSImagingBlender
@@ -43,12 +42,14 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
         Dim image As Image = drawer.RenderPixels(
             pixels:=pixelFilter,
             dimension:=dimensionSize,
-            dimSize:=dotSize,
+            dimSize:=Nothing,
             mapLevels:=params.mapLevels,
             colorSet:=params.colors.Description,
             scale:=params.scale,
             cutoff:={0, cut}
         ).AsGDIImage
+
+        image = hqx.HqxSharp.Scale4(New Bitmap(image))
 
         Return image
     End Function
