@@ -42,7 +42,6 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
         Dim image As Image = drawer.RenderPixels(
             pixels:=pixelFilter,
             dimension:=dimensionSize,
-            dimSize:=Nothing,
             mapLevels:=params.mapLevels,
             colorSet:=params.colors.Description,
             scale:=params.scale,
