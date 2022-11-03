@@ -2,7 +2,8 @@
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
-Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
+Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.hqx
 Imports Task
 
@@ -50,7 +51,7 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
             cutoff:={0, cut}
         ).AsGDIImage
 
-        image = New RasterScaler(image).Scale(hqx:=HqxScales.Hqx_4x)
+        image = New HeatMap.RasterScaler(image).Scale(hqx:=HqxScales.Hqx_4x)
 
         Return image
     End Function
