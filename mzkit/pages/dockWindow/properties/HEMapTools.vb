@@ -237,6 +237,12 @@ Public Class HEMapTools
     End Sub
 
     Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
-        WindowModules.viewer.PixelSelector1.SetMsImagingOutput(WindowModules.viewer.PixelSelector1.HEMap, WindowModules.viewer.PixelSelector1.HEMap.Size, New Size(1, 1), Drawing2D.Colors.ScalerPalette.Jet, {0, 255}, 120)
+        WindowModules.viewer.PixelSelector1.SetMsImagingOutput(
+            WindowModules.viewer.PixelSelector1.HEMap,
+            WindowModules.viewer.PixelSelector1.HEMap.Size,
+            Drawing2D.Colors.ScalerPalette.Jet,
+            {0, 255},
+            120
+        )
     End Sub
 End Class
