@@ -1235,8 +1235,6 @@ Public Class frmMsImagingViewer
             Return
         End If
 
-        Dim size As String = $"{params.pixel_width},{params.pixel_height}"
-
         If selectedMz.Count = 1 Then
             MyApplication.host.showStatusMessage($"Run MS-Image rendering for selected ion m/z {selectedMz(Scan0)}...")
         ElseIf selectedMz.Count > 1 Then
@@ -1264,7 +1262,7 @@ Public Class frmMsImagingViewer
                     Dim Bpixels = pixels.Where(Function(p) mzdiff(p.mz, b)).ToArray
 
                     Call Invoke(Sub() params.SetIntensityMax(maxInto))
-                    Call Invoke(Sub() rendering = createRenderTask(Rpixels, Gpixels, Bpixels, size))
+                    Call Invoke(Sub() rendering = createRenderTask(Rpixels, Gpixels, Bpixels))
                     Call Invoke(rendering)
                     Call MyApplication.host.showStatusMessage("Rendering Complete!", My.Resources.preferences_system_notifications)
                 End If
@@ -1276,8 +1274,8 @@ Public Class frmMsImagingViewer
         Call PixelSelector1.ShowMessage($"Render in RGB Channel Composition Mode: {selectedMz.Select(Function(d) stdNum.Round(d, 4)).JoinBy(", ")}")
     End Sub
 
-    Private Function createRenderTask(R As PixelData(), G As PixelData(), B As PixelData(), pixelSize$) As Action
-        Dim blender As New RGBIonMSIBlender(R, G, B, pixelSize, params)
+    Private Function createRenderTask(R As PixelData(), G As PixelData(), B As PixelData()) As Action
+        Dim blender As New RGBIonMSIBlender(R, G, B, params)
 
         Me.blender = blender
         Me.loadedPixels = R _
