@@ -44,7 +44,6 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
             layer:=layerData,
             dimension:=dimSize,
             colorSet:=params.colors.Description,
-            pixelSize:=Nothing,
             mapLevels:=mapLevels,
             cutoff:=New DoubleRange(0, cut)
         ).AsGDIImage

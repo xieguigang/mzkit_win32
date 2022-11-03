@@ -43,7 +43,6 @@ Public Class RGBIonMSIBlender : Inherits MSImagingBlender
         Dim image As Image = drawer.ChannelCompositions(
             R:=r, G:=g, B:=b,
             dimension:=dimensionSize,
-            dimSize:=Nothing,
             scale:=params.scale,
             cut:=cutoff,
             background:=params.background.ToHtmlColor
