@@ -66,7 +66,6 @@
     <ProjectReference Include="..\..\visualize\plot\MsPlot.NET5.vbproj" />
     <ProjectReference Include="..\services\Task\Task.vbproj" />
     <ProjectReference Include="..\ux\ControlLibrary\ControlLibrary.vbproj" />
-    <ProjectReference Include="..\ux\hqxSharp\hqxSharp.csproj" />
   </ItemGroup>
 
   <ItemGroup>
