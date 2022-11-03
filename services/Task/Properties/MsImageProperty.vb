@@ -79,6 +79,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.hqx
 Imports Microsoft.VisualBasic.Linq
 Imports ServiceHub
 Imports stdNum = System.Math
@@ -112,8 +113,9 @@ Public Class MsImageProperty
     Public ReadOnly Property instrument As String
 
     <Category("Render")> Public Property background As Color
-    <Category("Render")> <DisplayName("width")> Public Property pixel_width As Integer = 3
-    <Category("Render")> <DisplayName("height")> Public Property pixel_height As Integer = 3
+    <Category("Render")>
+    <Description("The level of Hqx pixel scaler algorithm.")>
+    Public Property Hqx As HqxScales = HqxScales.Hqx_2x
 
     <Description("The scaled color set palette name.")>
     <Category("Render")> Public Property colors As ScalerPalette = ScalerPalette.viridis

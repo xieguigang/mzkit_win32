@@ -4,7 +4,6 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
-Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.hqx
 Imports Task
 
 Public Class SummaryMSIBlender : Inherits MSImagingBlender
@@ -12,7 +11,6 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
     ReadOnly summaryLayer As PixelScanIntensity()
     ReadOnly intensity As Double()
 
-    Public ReadOnly Property dotSize As New Size(3, 3)
     Public ReadOnly Property dimensions As Size
         Get
             Return New Size(params.scan_x, params.scan_y)
@@ -51,7 +49,7 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
             cutoff:=New DoubleRange(0, cut)
         ).AsGDIImage
 
-        image = New RasterScaler(image).Scale(hqx:=HqxScales.Hqx_4x)
+        image = New RasterScaler(image).Scale(hqx:=params.Hqx)
 
         Return image
     End Function

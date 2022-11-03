@@ -3,24 +3,21 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
-Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.hqx
 Imports Microsoft.VisualBasic.Linq
 Imports Task
 
 Public Class RGBIonMSIBlender : Inherits MSImagingBlender
 
     ReadOnly R As PixelData(), G As PixelData(), B As PixelData()
-    ReadOnly pixelSize$
     ReadOnly originalSize As Size
 
-    Public ReadOnly Property dotSize As New Size(3, 3)
     Public ReadOnly Property dimensions As Size
         Get
             Return New Size(params.scan_x, params.scan_y)
         End Get
     End Property
 
-    Sub New(r As PixelData(), g As PixelData(), b As PixelData(), pixel_size As String, params As MsImageProperty)
+    Sub New(r As PixelData(), g As PixelData(), b As PixelData(), params As MsImageProperty)
         Call MyBase.New(params)
 
         Dim joinX = r.JoinIterates(g).JoinIterates(b).Select(Function(i) i.x).Max
@@ -30,7 +27,6 @@ Public Class RGBIonMSIBlender : Inherits MSImagingBlender
         Me.R = r
         Me.G = g
         Me.B = b
-        Me.pixelSize = pixel_size
     End Sub
 
     Public Overrides Function Rendering(args As PlotProperty, target As Size) As Image
@@ -53,7 +49,7 @@ Public Class RGBIonMSIBlender : Inherits MSImagingBlender
             background:=params.background.ToHtmlColor
         ).AsGDIImage
 
-        image = New HeatMap.RasterScaler(image).Scale(hqx:=HqxScales.Hqx_4x)
+        image = New HeatMap.RasterScaler(image).Scale(hqx:=params.Hqx)
 
         Return image
     End Function

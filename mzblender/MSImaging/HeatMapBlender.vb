@@ -6,12 +6,6 @@ Public Class HeatMapBlender : Inherits MSImagingBlender
     Dim layer As PixelData()
     Dim dimension As Size
 
-    Public ReadOnly Property dotsize As Size
-        Get
-            Return New Size(1, 1)
-        End Get
-    End Property
-
     Public Sub New(layer As PixelData(), dimension As Size, host As MsImageProperty)
         MyBase.New(host)
 
