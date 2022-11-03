@@ -1219,7 +1219,7 @@ Public Class frmMsImagingViewer
                            Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
                            Dim mapLevels As Integer = params.mapLevels
 
-                           PixelSelector1.SetMsImagingOutput(image, blender.dimensions, blender.dotSize, params.colors, {range.Min, range.Max}, mapLevels)
+                           PixelSelector1.SetMsImagingOutput(image, blender.dimensions, params.colors, {range.Min, range.Max}, mapLevels)
                            PixelSelector1.BackColor = params.background
                            PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
                        End Sub)
@@ -1288,7 +1288,7 @@ Public Class frmMsImagingViewer
                        Sub(args)
                            Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
 
-                           PixelSelector1.SetMsImagingOutput(image, blender.dimensions, blender.dotSize, Nothing, Nothing, Nothing)
+                           PixelSelector1.SetMsImagingOutput(image, blender.dimensions, Nothing, Nothing, Nothing)
                            PixelSelector1.BackColor = params.background
                            PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
                        End Sub)
@@ -1324,7 +1324,7 @@ Public Class frmMsImagingViewer
                                                            End Sub)
                                 End Sub)
                     Call Invoke(Sub()
-                                    PixelSelector1.SetMsImagingOutput(New Bitmap(1, 1), New Size(params.scan_x, params.scan_y), dotSize, params.colors, {0, 1}, 1)
+                                    PixelSelector1.SetMsImagingOutput(New Bitmap(1, 1), New Size(params.scan_x, params.scan_y), params.colors, {0, 1}, 1)
                                 End Sub)
                 Else
                     Dim maxInto As Double = Aggregate pm As PixelData
@@ -1404,7 +1404,7 @@ Public Class frmMsImagingViewer
                     Sub(args)
                         Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
 
-                        PixelSelector1.SetMsImagingOutput(image, dimensions, blender.dotsize, params.colors, {0, 1}, params.mapLevels)
+                        PixelSelector1.SetMsImagingOutput(image, dimensions, params.colors, {0, 1}, params.mapLevels)
                         PixelSelector1.BackColor = params.background
                         PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
                     End Sub)
@@ -1432,7 +1432,7 @@ Public Class frmMsImagingViewer
                        Sub(args)
                            Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
 
-                           PixelSelector1.SetMsImagingOutput(image, dimensions.SizeParser, blender.dotSize, params.colors, {range.Min, range.Max}, params.mapLevels)
+                           PixelSelector1.SetMsImagingOutput(image, dimensions.SizeParser, params.colors, {range.Min, range.Max}, params.mapLevels)
                            PixelSelector1.BackColor = params.background
                            PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
                        End Sub)

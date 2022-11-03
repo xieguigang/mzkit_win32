@@ -13,12 +13,6 @@ Public MustInherit Class MSImagingBlender : Inherits Blender
         End Get
     End Property
 
-    Public ReadOnly Property dotSize As Size
-        Get
-            Return New Size(params.Hqx, params.Hqx)
-        End Get
-    End Property
-
     Sub New(host As MsImageProperty)
         params = host
     End Sub

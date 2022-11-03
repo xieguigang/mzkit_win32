@@ -1239,8 +1239,8 @@ Public Class PixelSelector
     ''' <param name="colorMap"></param>
     ''' <param name="range"></param>
     ''' <param name="mapLevels"></param>
-    Public Sub SetMsImagingOutput(value As Image, dimension_size As Size, pixel_size As Size, colorMap As ScalerPalette, range As Double(), mapLevels As Integer)
-        Me.pixel_size = pixel_size
+    Public Sub SetMsImagingOutput(value As Image, dimension_size As Size, colorMap As ScalerPalette, range As Double(), mapLevels As Integer)
+        Me.pixel_size = New Size(value.Width / dimension_size.Width, value.Height / dimension_size.Height)
         Me._dimension_size = dimension_size
         Me.orginal_image = value
         Me.range = range
