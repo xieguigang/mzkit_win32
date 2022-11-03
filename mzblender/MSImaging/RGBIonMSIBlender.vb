@@ -2,6 +2,7 @@
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Microsoft.VisualBasic.Linq
 Imports Task
 
@@ -45,11 +46,13 @@ Public Class RGBIonMSIBlender : Inherits MSImagingBlender
         Dim image As Image = drawer.ChannelCompositions(
             R:=r, G:=g, B:=b,
             dimension:=dimensionSize,
-            dimSize:=dotSize,
+            dimSize:=Nothing,
             scale:=params.scale,
             cut:=cutoff,
             background:=params.background.ToHtmlColor
         ).AsGDIImage
+
+        image = New RasterScaler(image).Scale(hqx:=HqxScales.Hqx_4x)
 
         Return image
     End Function

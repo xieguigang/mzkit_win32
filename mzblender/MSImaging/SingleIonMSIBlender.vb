@@ -2,8 +2,8 @@
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
-Imports Microsoft.VisualBasic.Imaging
-Imports Microsoft.VisualBasic.Imaging.Filters
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.hqx
 Imports Task
 
 Public Class SingleIonMSIBlender : Inherits MSImagingBlender
@@ -28,10 +28,6 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
         Me.range = intensity.Range
     End Sub
 
-    Shared Sub New()
-        hqx.RgbYuv.Initialize()
-    End Sub
-
     Public Overrides Function Rendering(args As PlotProperty, target As Size) As Image
         Dim dimensionSize As New Size(params.scan_x, params.scan_y)
         Dim pixels As PixelData() = TakePixels(layer.MSILayer)
@@ -54,8 +50,7 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
             cutoff:={0, cut}
         ).AsGDIImage
 
-        image = GaussBlur.GaussBlur(GaussBlur.GaussBlur(GaussBlur.GaussBlur(New Bitmap(image))))
-        image = hqx.HqxSharp.Scale4(New Bitmap(image))
+        image = New RasterScaler(image).Scale(hqx:=HqxScales.Hqx_4x)
 
         Return image
     End Function

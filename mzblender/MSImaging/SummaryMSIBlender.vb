@@ -3,6 +3,8 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.hqx
 Imports Task
 
 Public Class SummaryMSIBlender : Inherits MSImagingBlender
@@ -44,10 +46,12 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
             layer:=layerData,
             dimension:=dimSize,
             colorSet:=params.colors.Description,
-            pixelSize:=$"{dotSize.Width},{dotSize.Height}",
+            pixelSize:=Nothing,
             mapLevels:=mapLevels,
             cutoff:=New DoubleRange(0, cut)
         ).AsGDIImage
+
+        image = New RasterScaler(image).Scale(hqx:=HqxScales.Hqx_4x)
 
         Return image
     End Function
