@@ -1,5 +1,6 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender.Scaler
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
@@ -31,20 +32,26 @@ Public Class RGBIonMSIBlender : Inherits MSImagingBlender
 
     Public Overrides Function Rendering(args As PlotProperty, target As Size) As Image
         Dim drawer As New PixelRender(heatmapRender:=False)
-        Dim q1 As New TrIQThreshold(params.TrIQ)
+        Dim filter = New TrIQScaler(params.TrIQ) _
+            .Then(New KNNScaler(params.knn, params.knn_qcut)) _
+            .Then(New SoftenScaler())
         Dim dimensionSize As New Size(params.scan_x, params.scan_y)
-        Dim r = KnnInterpolation.KnnFill(TakePixels(Me.R), originalSize, params.knn, params.knn, params.knn_qcut)
-        Dim g = KnnInterpolation.KnnFill(TakePixels(Me.G), originalSize, params.knn, params.knn, params.knn_qcut)
-        Dim b = KnnInterpolation.KnnFill(TakePixels(Me.B), originalSize, params.knn, params.knn, params.knn_qcut)
-        Dim qr As Double = q1.ThresholdValue(r.Select(Function(p) p.intensity).ToArray)
-        Dim qg As Double = q1.ThresholdValue(g.Select(Function(p) p.intensity).ToArray)
-        Dim qb As Double = q1.ThresholdValue(b.Select(Function(p) p.intensity).ToArray)
-        Dim cutoff = (New DoubleRange(0, qr), New DoubleRange(0, qg), New DoubleRange(0, qb))
+        Dim r = New SingleIonLayer With {.DimensionSize = dimensions, .MSILayer = TakePixels(Me.R)}
+        Dim g = New SingleIonLayer With {.DimensionSize = dimensions, .MSILayer = TakePixels(Me.G)}
+        Dim b = New SingleIonLayer With {.DimensionSize = dimensions, .MSILayer = TakePixels(Me.B)}
+
+        r = filter(r)
+        g = filter(g)
+        b = filter(b)
+
+        'Dim qr As Double = q1.ThresholdValue(r.Select(Function(p) p.intensity).ToArray)
+        'Dim qg As Double = q1.ThresholdValue(g.Select(Function(p) p.intensity).ToArray)
+        'Dim qb As Double = q1.ThresholdValue(b.Select(Function(p) p.intensity).ToArray)
+        'Dim cutoff = (New DoubleRange(0, qr), New DoubleRange(0, qg), New DoubleRange(0, qb))
         Dim image As Image = drawer.ChannelCompositions(
-            R:=r, G:=g, B:=b,
+            R:=r.MSILayer, G:=g.MSILayer, B:=b.MSILayer,
             dimension:=dimensionSize,
             scale:=params.scale,
-            cut:=cutoff,
             background:=params.background.ToHtmlColor
         ).AsGDIImage
 

@@ -1,6 +1,7 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender.Scaler
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
@@ -30,22 +31,27 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
     Public Overrides Function Rendering(args As PlotProperty, target As Size) As Image
         Dim dimensionSize As New Size(params.scan_x, params.scan_y)
         Dim pixels As PixelData() = TakePixels(layer.MSILayer)
-        Dim pixelFilter As PixelData() = KnnInterpolation.KnnFill(pixels, layer.DimensionSize, params.knn, params.knn, params.knn_qcut)
-        Dim cut As Double = New TrIQThreshold(params.TrIQ) With {
-            .levels = params.mapLevels
-        }.ThresholdValue(intensity)
+        ' denoise_scale() > TrIQ_scale(0.8) > knn_scale() > soften_scale()
+        Dim filter As RasterPipeline = New DenoiseScaler() _
+            .Then(New TrIQScaler(params.TrIQ)) _
+            .Then(New KNNScaler(params.knn, params.knn_qcut)) _
+            .Then(New SoftenScaler())
+        Dim pixelFilter As New SingleIonLayer With {.DimensionSize = layer.DimensionSize, .IonMz = -1, .MSILayer = pixels}
+        'Dim cut As Double = New TrIQThreshold(params.TrIQ) With {
+        '    .levels = params.mapLevels
+        '}.ThresholdValue(intensity)
+
 
         ' pixelFilter = MsImaging.Drawer.ScalePixels(pixels, params.GetTolerance, cut:={0, cut})
-        pixelFilter = MsImaging.Drawer.GetPixelsMatrix(pixelFilter)
+        pixelFilter = filter(pixelFilter)
 
         Dim drawer As New PixelRender(heatmapRender:=False)
         Dim image As Image = drawer.RenderPixels(
-            pixels:=pixelFilter,
+            pixels:=MsImaging.Drawer.GetPixelsMatrix(pixelFilter),
             dimension:=dimensionSize,
             mapLevels:=params.mapLevels,
             colorSet:=params.colors.Description,
-            scale:=params.scale,
-            cutoff:={0, cut}
+            scale:=params.scale
         ).AsGDIImage
 
         image = New HeatMap.RasterScaler(image).Scale(hqx:=params.Hqx)

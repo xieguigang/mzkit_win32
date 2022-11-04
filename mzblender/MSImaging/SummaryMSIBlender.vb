@@ -44,8 +44,7 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
             layer:=layerData,
             dimension:=dimSize,
             colorSet:=params.colors.Description,
-            mapLevels:=mapLevels,
-            cutoff:=New DoubleRange(0, cut)
+            mapLevels:=mapLevels
         ).AsGDIImage
 
         image = New RasterScaler(image).Scale(hqx:=params.Hqx)
