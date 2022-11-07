@@ -78,24 +78,12 @@ Partial Class frmHtmlViewer
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmHtmlViewer))
-        Me.WebBrowser1 = New System.Windows.Forms.WebBrowser()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SavePDFToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.WebView21 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Me.ContextMenuStrip1.SuspendLayout()
+        CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'WebBrowser1
-        '
-        Me.WebBrowser1.ContextMenuStrip = Me.ContextMenuStrip1
-        Me.WebBrowser1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.WebBrowser1.IsWebBrowserContextMenuEnabled = False
-        Me.WebBrowser1.Location = New System.Drawing.Point(0, 0)
-        Me.WebBrowser1.MinimumSize = New System.Drawing.Size(20, 20)
-        Me.WebBrowser1.Name = "WebBrowser1"
-        Me.WebBrowser1.ScriptErrorsSuppressed = True
-        Me.WebBrowser1.Size = New System.Drawing.Size(916, 587)
-        Me.WebBrowser1.TabIndex = 0
-        Me.WebBrowser1.Url = New System.Uri("https://mzkit.org/", System.UriKind.Absolute)
         '
         'ContextMenuStrip1
         '
@@ -110,20 +98,32 @@ Partial Class frmHtmlViewer
         Me.SavePDFToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
         Me.SavePDFToolStripMenuItem.Text = "Save PDF"
         '
+        'WebView21
+        '
+        Me.WebView21.AllowExternalDrop = True
+        Me.WebView21.CreationProperties = Nothing
+        Me.WebView21.DefaultBackgroundColor = System.Drawing.Color.White
+        Me.WebView21.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.WebView21.Location = New System.Drawing.Point(0, 0)
+        Me.WebView21.Name = "WebView21"
+        Me.WebView21.Size = New System.Drawing.Size(510, 323)
+        Me.WebView21.TabIndex = 1
+        Me.WebView21.ZoomFactor = 1.0R
+        '
         'frmHtmlViewer
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(916, 587)
-        Me.Controls.Add(Me.WebBrowser1)
+        Me.ClientSize = New System.Drawing.Size(510, 323)
+        Me.Controls.Add(Me.WebView21)
         Me.DoubleBuffered = True
         Me.Name = "frmHtmlViewer"
         Me.ContextMenuStrip1.ResumeLayout(False)
+        CType(Me.WebView21, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
-
-    Friend WithEvents WebBrowser1 As WebBrowser
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents SavePDFToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents WebView21 As Microsoft.Web.WebView2.WinForms.WebView2
 End Class

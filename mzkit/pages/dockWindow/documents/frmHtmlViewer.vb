@@ -1,65 +1,80 @@
 ﻿#Region "Microsoft.VisualBasic::e7d46a1e851208677fb39dec47cfa0d2, mzkit\src\mzkit\mzkit\pages\dockWindow\documents\frmHtmlViewer.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 77
-    '    Code Lines: 62
-    ' Comment Lines: 0
-    '   Blank Lines: 15
-    '     File Size: 2.54 KB
+' Summaries:
 
 
-    ' Class frmHtmlViewer
-    ' 
-    '     Sub: CopyFullPath, frmHtmlViewer_Load, LoadHtml, OpenContainingFolder, PDF
-    '          SaveDocument, WebBrowser1_DocumentCompleted
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 77
+'    Code Lines: 62
+' Comment Lines: 0
+'   Blank Lines: 15
+'     File Size: 2.54 KB
+
+
+' Class frmHtmlViewer
+' 
+'     Sub: CopyFullPath, frmHtmlViewer_Load, LoadHtml, OpenContainingFolder, PDF
+'          SaveDocument, WebBrowser1_DocumentCompleted
+' 
+' /********************************************************************************/
 
 #End Region
 
-Imports Microsoft.VisualBasic.ApplicationServices
+Imports System.ComponentModel
 Imports BioNovoGene.mzkit_win32.My
+Imports Microsoft.VisualBasic.ApplicationServices
+Imports Microsoft.VisualBasic.Net.Http
+Imports Microsoft.Web.WebView2.Core
+Imports WeifenLuo.WinFormsUI.Docking
 Imports WkHtmlToPdf.Arguments
 
 Public Class frmHtmlViewer
 
-    Dim url As String
+    Dim sourceURL As String
+
+    Sub New()
+
+        ' 此调用是设计器所必需的。
+        InitializeComponent()
+
+        ' 在 InitializeComponent() 调用之后添加任何初始化。
+        AutoScaleMode = AutoScaleMode.Dpi
+        DockAreas = DockAreas.Document Or DockAreas.Float
+        TabText = "Loading WebView2 App..."
+    End Sub
 
     Public Sub PDF(filepath As String)
         Static bin As String = Nothing
@@ -79,7 +94,7 @@ Public Class frmHtmlViewer
                 .Timeout = 60000,
                 .WkHtmlToPdfPath = bin
             }
-            Dim content As New PdfDocument With {.Url = {WebBrowser1.Url.OriginalString}}
+            Dim content As New PdfDocument With {.Url = {sourceURL}}
             Dim pdfFile As New PdfOutput With {.OutputFilePath = filepath}
 
             Call WkHtmlToPdf.PdfConvert.ConvertHtmlToPdf(content, pdfFile, env)
@@ -88,22 +103,50 @@ Public Class frmHtmlViewer
         End If
     End Sub
 
+    Public Sub DeveloperOptions(enable As Boolean)
+        WebView21.CoreWebView2.Settings.AreDevToolsEnabled = enable
+        WebView21.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = enable
+        WebView21.CoreWebView2.Settings.AreDefaultContextMenusEnabled = enable
+
+        If enable Then
+            Call MyApplication.host.showStatusMessage($"[{TabText}] WebView2 developer tools has been enable!")
+        End If
+    End Sub
+
+    Private Async Sub Init()
+        Dim userDataFolder = (App.ProductProgramData & "/.webView2_cache/").GetDirectoryFullPath
+        Dim env = Await CoreWebView2Environment.CreateAsync(Nothing, userDataFolder)
+
+        Call MyApplication.host.showStatusMessage($"set webview2 cache at '{userDataFolder}'.")
+
+        Await WebView21.EnsureCoreWebView2Async(env)
+    End Sub
+
+    Private Sub Wait()
+
+    End Sub
+
+    Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
+        ' WebView21.CoreWebView2.OpenDevToolsWindow()
+        Call WebView21.CoreWebView2.Navigate(sourceURL)
+        Call DeveloperOptions(enable:=False)
+    End Sub
+
     Public Sub LoadHtml(url As String)
-        Me.WebBrowser1.Navigate(url)
-        Me.url = url
+        Me.sourceURL = url
     End Sub
 
     Protected Overrides Sub CopyFullPath()
-        Call Clipboard.SetText(url)
+        Call Clipboard.SetText(sourceURL)
     End Sub
 
     Protected Overrides Sub OpenContainingFolder()
         Try
-            If url.FileExists Then
-                Call Process.Start(url.ParentPath)
+            If sourceURL.FileExists Then
+                Call Process.Start(sourceURL.ParentPath)
             End If
         Catch ex As Exception
-
+            MessageBox.Show("Document is not a local file...", "Web View2", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End Try
     End Sub
 
@@ -124,9 +167,34 @@ Public Class frmHtmlViewer
 
         TabText = "Document Viewer"
         Icon = My.Resources.IE
+
+        Init()
+        Wait()
     End Sub
 
-    Private Sub WebBrowser1_DocumentCompleted(sender As Object, e As WebBrowserDocumentCompletedEventArgs) Handles WebBrowser1.DocumentCompleted
-        TabText = WebBrowser1.DocumentTitle
+    Private Sub WebBrowser1_DocumentCompleted(sender As Object, e As WebBrowserDocumentCompletedEventArgs)
+        Me.Text = WebView21.CoreWebView2.DocumentTitle
+        Me.TabText = Me.Text
+    End Sub
+
+
+    ''' <summary>
+    ''' open external link in default webbrowser
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub WebView21_NavigationStarting(sender As Object, e As CoreWebView2NavigationStartingEventArgs) Handles WebView21.NavigationStarting
+        Dim url As New URL(e.Uri)
+
+        If url.hostName <> "127.0.0.1" AndAlso url.hostName <> "localhost" Then
+            e.Cancel = True
+            Process.Start(e.Uri)
+        End If
+    End Sub
+
+    Private Sub frmHtmlViewer_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        If MessageBox.Show("Close current app page?", "Workbench WebView", buttons:=MessageBoxButtons.OKCancel, icon:=MessageBoxIcon.Information) = DialogResult.Cancel Then
+            e.Cancel = True
+        End If
     End Sub
 End Class
