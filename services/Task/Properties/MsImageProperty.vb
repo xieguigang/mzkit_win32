@@ -125,6 +125,8 @@ Public Class MsImageProperty
     <Category("Render")> Public Property knn As Integer = 6
     <Category("Render")> Public Property knn_qcut As Double = 0.65
     <Category("Render")> Public Property scale As InterpolationMode = InterpolationMode.Bilinear
+    <Category("Render")> Public Property enableFilter As Boolean = True
+
     <Description("The mass tolerance error threshold in delta dalton or ppm.")>
     <Category("Pixel M/z Data")> Public Property tolerance As Double = 0.1
     <Category("Pixel M/z Data")> Public Property method As ToleranceMethod = ToleranceMethod.Da

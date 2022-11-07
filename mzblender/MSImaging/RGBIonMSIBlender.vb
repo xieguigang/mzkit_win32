@@ -40,9 +40,11 @@ Public Class RGBIonMSIBlender : Inherits MSImagingBlender
         Dim g = New SingleIonLayer With {.DimensionSize = dimensions, .MSILayer = TakePixels(Me.G)}
         Dim b = New SingleIonLayer With {.DimensionSize = dimensions, .MSILayer = TakePixels(Me.B)}
 
-        r = filter(r)
-        g = filter(g)
-        b = filter(b)
+        If params.enableFilter Then
+            r = filter(r)
+            g = filter(g)
+            b = filter(b)
+        End If
 
         'Dim qr As Double = q1.ThresholdValue(r.Select(Function(p) p.intensity).ToArray)
         'Dim qg As Double = q1.ThresholdValue(g.Select(Function(p) p.intensity).ToArray)

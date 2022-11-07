@@ -41,9 +41,10 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
         '    .levels = params.mapLevels
         '}.ThresholdValue(intensity)
 
-
-        ' pixelFilter = MsImaging.Drawer.ScalePixels(pixels, params.GetTolerance, cut:={0, cut})
-        pixelFilter = filter(pixelFilter)
+        If params.enableFilter Then
+            ' pixelFilter = MsImaging.Drawer.ScalePixels(pixels, params.GetTolerance, cut:={0, cut})
+            pixelFilter = filter(pixelFilter)
+        End If
 
         Dim drawer As New PixelRender(heatmapRender:=False)
         Dim image As Image = drawer.RenderPixels(
