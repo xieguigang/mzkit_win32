@@ -31,21 +31,25 @@ Public Class ShowMSIRowScanSummary
     End Sub
 
     Private Shared Function getMaxFile(files As String()) As Task(Of String)
-        Return New Task(Of String)(
+        Dim background = New Task(Of String)(
             Function()
                 Return files _
                     .OrderByDescending(Function(path) path.FileLength) _
                     .First
             End Function)
+        background.Start()
+        Return background
     End Function
 
     Private Shared Function MeasureWidth(fileName As String) As Task(Of Integer)
-        Return New Task(Of Integer)(
+        Dim background = New Task(Of Integer)(
             Function()
                 Dim Xraw As New MSFileReader(fileName)
                 Dim n As Integer = Xraw.ScanMax
 
                 Return n
             End Function)
+        background.Start()
+        Return background
     End Function
 End Class
