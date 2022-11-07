@@ -165,7 +165,7 @@ Public Class frmMain
             If fileName.FileLength > 4 * 1024 * 1024 Then
                 ' gcms un-targetted
                 ' needs to convert to mzPack and then do file open
-
+                Call WindowModules.fileExplorer.ImportsRaw(fileName)
             Else
                 Call ShowGCMSSIM(fileName, isBackground:=False, showExplorer:=showDocument)
             End If

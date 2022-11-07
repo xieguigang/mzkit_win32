@@ -196,6 +196,12 @@ Public Class frmFileExplorer
         Call ApplyVsTheme(ctxMenuFiles, ToolStrip1, ctxMenuScript, ctxMenuRawFile)
     End Sub
 
+    ''' <summary>
+    ''' this method switch to background task or UI foreground 
+    ''' task for imports data automatically based on the file
+    ''' extension suffix name.
+    ''' </summary>
+    ''' <param name="fileName"></param>
     Public Sub ImportsRaw(fileName As String)
         If treeView1.Nodes.Count = 0 Then
             Call Globals.InitExplorerUI(

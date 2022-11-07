@@ -88,11 +88,19 @@ Public Class ImportsRawData
         Return path
     End Function
 
+    Private Function getCliArguments() As String
+        If raw.source.ExtensionSuffix("cdf", "netcdf") Then
+            Return PipelineTask.Task.GetconvertGCMSCDFCommandLine(raw.source, raw.cache)
+        Else
+            Return PipelineTask.Task.GetconvertAnyRawCommandLine(raw.source, raw.cache)
+        End If
+    End Function
+
     ''' <summary>
     ''' msconvert
     ''' </summary>
     Public Sub RunImports()
-        Dim cli As String = PipelineTask.Task.GetconvertAnyRawCommandLine(raw.source, raw.cache)
+        Dim cli As String = getCliArguments()
         Dim pipeline As New RunSlavePipeline(PipelineTask.Host, cli)
 
         AddHandler pipeline.Finish, AddressOf success.Invoke
