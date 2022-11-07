@@ -23,15 +23,15 @@ Partial Class ShowMSIRowScanSummary
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
@@ -49,22 +49,14 @@ Partial Class ShowMSIRowScanSummary
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "MS-Imaging Dimensions"
         '
-        'Label1
+        'Label2
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(18, 31)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(179, 12)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Evaluated MSI Dimension size:"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(20, 70)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(81, 21)
-        Me.TextBox1.TabIndex = 1
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(116, 73)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(11, 12)
+        Me.Label2.TabIndex = 3
+        Me.Label2.Text = "x"
         '
         'TextBox2
         '
@@ -74,14 +66,22 @@ Partial Class ShowMSIRowScanSummary
         Me.TextBox2.Size = New System.Drawing.Size(82, 21)
         Me.TextBox2.TabIndex = 2
         '
-        'Label2
+        'TextBox1
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(116, 73)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(11, 12)
-        Me.Label2.TabIndex = 3
-        Me.Label2.Text = "x"
+        Me.TextBox1.Location = New System.Drawing.Point(20, 70)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ReadOnly = True
+        Me.TextBox1.Size = New System.Drawing.Size(81, 21)
+        Me.TextBox1.TabIndex = 1
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(18, 31)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(179, 12)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Evaluated MSI Dimension size:"
         '
         'Button1
         '
@@ -112,6 +112,14 @@ Partial Class ShowMSIRowScanSummary
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Config Parameters"
         '
+        'TextBox3
+        '
+        Me.TextBox3.Location = New System.Drawing.Point(191, 20)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(100, 21)
+        Me.TextBox3.TabIndex = 5
+        Me.TextBox3.Text = "0.001"
+        '
         'Label3
         '
         Me.Label3.AutoSize = True
@@ -120,14 +128,6 @@ Partial Class ShowMSIRowScanSummary
         Me.Label3.Size = New System.Drawing.Size(167, 12)
         Me.Label3.TabIndex = 4
         Me.Label3.Text = "Intensity Cutoff Threshold:"
-        '
-        'TextBox3
-        '
-        Me.TextBox3.Location = New System.Drawing.Point(191, 20)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(100, 21)
-        Me.TextBox3.TabIndex = 5
-        Me.TextBox3.Text = "0.0001"
         '
         'ShowMSIRowScanSummary
         '
