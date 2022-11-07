@@ -3,6 +3,7 @@ Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
+Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.Imaging
 Imports Task
 
@@ -15,6 +16,31 @@ Module ConvertToMzPack
                           skipThumbnail As Boolean,
                           Optional sleepTime As Double = 1500)
 
+        Dim mzpack As mzPack
+        Dim println As Action(Of String) = Nothing
+
+        If Not mute Then
+            println = AddressOf RunSlavePipeline.SendMessage
+        End If
+
+        Using gcms As New netCDFReader(raw)
+            mzpack = GCMSConvertor.ConvertGCMS(gcms, println)
+            mzpack.source = raw.FileName
+        End Using
+
+        Using file As Stream = cacheFile.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
+            If Not println Is Nothing Then
+                Call println("Write mzPack cache data...")
+            End If
+
+            Call mzpack.Write(file, version:=saveVer)
+        End Using
+
+        Call Thread.Sleep(sleepTime)
+
+        If Not println Is Nothing Then
+            Call println("Job Done!")
+        End If
     End Sub
 
     ''' <summary>
