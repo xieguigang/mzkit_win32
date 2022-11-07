@@ -147,9 +147,9 @@ Public Class RscriptProgressTask
         End If
     End Sub
 
-    Public Shared Sub CreateMSIRawFromRowBinds(files As String(), savefile As String)
+    Public Shared Sub CreateMSIRawFromRowBinds(files As String(), savefile As String, cutoff As Double)
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".input_files", sessionID:=App.PID.ToHexString, prefix:="CombineRowScans_")
-        Dim cli As String = PipelineTask.Task.GetMSIRowCombineCommandLine(tempfile, savefile)
+        Dim cli As String = PipelineTask.Task.GetMSIRowCombineCommandLine(tempfile, savefile, cutoff:=cutoff)
         Dim pipeline As New RunSlavePipeline(PipelineTask.Host, cli)
 
         Call files.SaveTo(tempfile, encoding:=Encodings.UTF8.CodePage)

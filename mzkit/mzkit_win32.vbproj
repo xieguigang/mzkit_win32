@@ -395,10 +395,10 @@
     <Compile Include="application\settings\RawFileViewerSettings.vb" />
     <Compile Include="application\VisualStudio.vb" />
     <Compile Include="application\RPackage.vb" />
-    <Compile Include="forms\Inputs\Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="forms\Inputs\ShowMSIRowScanSummary.Designer.vb">
+      <DependentUpon>ShowMSIRowScanSummary.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\Form1.vb">
+    <Compile Include="forms\Inputs\ShowMSIRowScanSummary.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\Inputs\InputBasePeakIon.Designer.vb">
@@ -1035,6 +1035,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\ShowColumnStat.resx">
       <DependentUpon>ShowColumnStat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\ShowMSIRowScanSummary.resx">
+      <DependentUpon>ShowMSIRowScanSummary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Task\frmProgressSpinner.resx">
       <DependentUpon>frmProgressSpinner.vb</DependentUpon>
