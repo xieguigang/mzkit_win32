@@ -162,7 +162,13 @@ Public Class frmMain
         ElseIf fileName.ExtensionSuffix("mzml") AndAlso RawScanParser.IsSIMData(fileName) Then
             Call ShowGCMSSIM(fileName, isBackground:=False, showExplorer:=showDocument)
         ElseIf fileName.ExtensionSuffix("cdf", "netcdf") Then
-            Call ShowGCMSSIM(fileName, isBackground:=False, showExplorer:=showDocument)
+            If fileName.FileLength > 4 * 1024 * 1024 Then
+                ' gcms un-targetted
+                ' needs to convert to mzPack and then do file open
+
+            Else
+                Call ShowGCMSSIM(fileName, isBackground:=False, showExplorer:=showDocument)
+            End If
         ElseIf fileName.ExtensionSuffix("mzpack") Then
             Dim raw As New Raw With {
                 .cache = fileName,

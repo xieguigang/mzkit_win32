@@ -49,6 +49,21 @@ Imports Microsoft.VisualBasic.CommandLine.Reflection
         Return 0
     End Function
 
+    <ExportAPI("/cdf_to_mzpack")>
+    <Description("Convert GCMS un-targetted CDF raw data file to mzPack.")>
+    <Usage("/cdf_to_mzpack --raw <filepath.cdf> [--cache <result.mzPack> /ver 2 /mute /no-thumbnail]")>
+    Public Function convertGCMSCDF(args As CommandLine) As Integer
+        Dim raw As String = args("--raw")
+        Dim cache As String = args("--cache") Or raw.ChangeSuffix("mzPack")
+        Dim ver As Integer = args("/ver") Or 2
+        Dim mute As Boolean = args("/mute")
+        Dim noSnapshot As Boolean = args("/no-thumbnail")
+
+        Call ConvertToMzPack.ConvertCDF(raw, cache, saveVer:=ver, mute:=mute, skipThumbnail:=noSnapshot)
+
+        Return 0
+    End Function
+
     <ExportAPI("/rowbinds")>
     <Description("Combine row scans to mzPack")>
     <Argument("--files", False, CLITypes.File, PipelineTypes.std_in, Description:="a temp file path that its content contains selected raw data file path for each row scans.")>

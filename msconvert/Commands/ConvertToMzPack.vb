@@ -8,6 +8,15 @@ Imports Task
 
 Module ConvertToMzPack
 
+    Public Sub ConvertCDF(raw As String,
+                          cacheFile As String,
+                          saveVer As Integer,
+                          mute As Boolean,
+                          skipThumbnail As Boolean,
+                          Optional sleepTime As Double = 1500)
+
+    End Sub
+
     ''' <summary>
     ''' convert any kind of raw data file as mzPack
     ''' </summary>
