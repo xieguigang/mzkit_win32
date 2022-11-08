@@ -91,6 +91,7 @@
     <ROW Directory="win_3_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="win"/>
     <ROW Directory="winx64_Dir" Directory_Parent="runtimes_Dir" DefaultDir="win-x64"/>
     <ROW Directory="zhCN_Dir" Directory_Parent="APPDIR" DefaultDir="zh-CN"/>
+    <ROW Directory="zhHant_Dir" Directory_Parent="APPDIR" DefaultDir="zh-Hant"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="AI_CustomARPName" ComponentId="{A5AA30CF-FD21-4F06-9A4E-6DE3B1A7E7DD}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
@@ -459,10 +460,14 @@
     <ROW Component="library" ComponentId="{7165AD75-FA2D-4513-8E69-E2CCE22396AC}" Directory_="library_Dir" Attributes="256"/>
     <ROW Component="man.pptx" ComponentId="{C4ACBC7D-8438-41D9-AD59-9CA86D4EBA4B}" Directory_="documents_Dir" Attributes="256" KeyPath="man.pptx" Type="0"/>
     <ROW Component="msconvert.exe" ComponentId="{73FC3022-DA01-4C58-9164-7FD222A7F468}" Directory_="APPDIR" Attributes="256" KeyPath="msconvert.exe"/>
+    <ROW Component="msconvertGUI.exe" ComponentId="{6C6CDC3F-C001-4B22-89D1-710DE6BA8317}" Directory_="APPDIR" Attributes="256" KeyPath="msconvertGUI.exe"/>
+    <ROW Component="msconvertGUI.resources.dll" ComponentId="{192DC6A5-65E9-4EE8-A369-07118C2B3EDE}" Directory_="zhCN_Dir" Attributes="256" KeyPath="msconvertGUI.resources.dll"/>
+    <ROW Component="msconvertGUI.resources.dll_1" ComponentId="{99725A07-C5DF-4C9B-8A99-7D8ABE8B6D4A}" Directory_="zhHant_Dir" Attributes="256" KeyPath="msconvertGUI.resources.dll_1"/>
     <ROW Component="mzblender.dll" ComponentId="{E503A6AD-EF79-4FE6-866A-F8E3174C7810}" Directory_="APPDIR" Attributes="256" KeyPath="mzblender.dll"/>
     <ROW Component="mzkit_win32.exe_1" ComponentId="{D1A9B7C2-509C-425B-AD9E-9C44DC837AD7}" Directory_="APPDIR" Attributes="256" KeyPath="mzkit_win32.exe_1"/>
     <ROW Component="mzkit_win32.resources.dll" ComponentId="{07088A7D-4893-4253-9A2A-E6C0AF73195D}" Directory_="enUS_Dir" Attributes="256" KeyPath="mzkit_win32.resources.dll"/>
     <ROW Component="mzkit_win32.resources.dll_1" ComponentId="{BF42566E-B837-4E29-845D-D598E82099BE}" Directory_="zhCN_Dir" Attributes="256" KeyPath="mzkit_win32.resources.dll_1"/>
+    <ROW Component="mzkit_win32.resources.dll_2" ComponentId="{11CB8308-0BDA-45A2-80B0-DCFEEDD84E65}" Directory_="zhHant_Dir" Attributes="256" KeyPath="mzkit_win32.resources.dll_2"/>
     <ROW Component="njl.dll" ComponentId="{EA76B011-5678-408C-A8ED-B55E34699377}" Directory_="library_Dir" Attributes="256" KeyPath="njl.dll"/>
     <ROW Component="npy.dll" ComponentId="{57A4DF98-6211-4C12-8590-541E4B27BC6C}" Directory_="library_Dir" Attributes="256" KeyPath="npy.dll"/>
     <ROW Component="nts.dll" ComponentId="{C3430FDE-A92A-4B60-AC18-9F8A223BF24A}" Directory_="library_Dir" Attributes="256" KeyPath="nts.dll"/>
@@ -961,6 +966,11 @@
     <ROW File="Microsoft.Web.WebView2.Wpf.dll" Component_="Microsoft.Web.WebView2.Wpf.dll" FileName="MICRO~67.DLL|Microsoft.Web.WebView2.Wpf.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.Web.WebView2.Wpf.dll" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.Data.Rhea.dll_1" Component_="SMRUCC.genomics.Data.Rhea.dll_1" FileName="SMRUC~14.DLL|SMRUCC.genomics.Data.Rhea.dll" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Data.Rhea.dll" SelfReg="false"/>
     <ROW File="WebView2Loader.dll" Component_="WebView2Loader.dll" FileName="WEBVIE~1.DLL|WebView2Loader.dll" Attributes="0" SourcePath="..\..\..\dist\bin\runtimes\win-x64\native\WebView2Loader.dll" SelfReg="false"/>
+    <ROW File="msconvertGUI.resources.dll" Component_="msconvertGUI.resources.dll" FileName="MSCONV~1.DLL|msconvertGUI.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\zh-CN\msconvertGUI.resources.dll" SelfReg="false"/>
+    <ROW File="msconvertGUI.resources.dll_1" Component_="msconvertGUI.resources.dll_1" FileName="MSCONV~1.DLL|msconvertGUI.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\zh-Hant\msconvertGUI.resources.dll" SelfReg="false"/>
+    <ROW File="mzkit_win32.resources.dll_2" Component_="mzkit_win32.resources.dll_2" FileName="MZKIT_~1.DLL|mzkit_win32.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\zh-Hant\mzkit_win32.resources.dll" SelfReg="false"/>
+    <ROW File="msconvertGUI.exe" Component_="msconvertGUI.exe" FileName="MSCONV~2.EXE|msconvertGUI.exe" Attributes="0" SourcePath="..\..\..\dist\bin\msconvertGUI.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="msconvertGUI.exe.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MSCONV~2.CON|msconvertGUI.exe.config" Attributes="0" SourcePath="..\..\..\dist\bin\msconvertGUI.exe.config" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -1479,6 +1489,10 @@
     <ROW Feature_="MainFeature" Component_="Microsoft.Web.WebView2.Wpf.dll"/>
     <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.Data.Rhea.dll_1"/>
     <ROW Feature_="MainFeature" Component_="WebView2Loader.dll"/>
+    <ROW Feature_="MainFeature" Component_="msconvertGUI.resources.dll"/>
+    <ROW Feature_="MainFeature" Component_="msconvertGUI.resources.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="mzkit_win32.resources.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="msconvertGUI.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
@@ -1607,5 +1621,6 @@
     <ROW Directory_="packages_Dir" SourcePath="..\..\..\dist\bin\Rstudio\packages" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="zhCN_Dir" SourcePath="..\..\..\dist\bin\zh-CN" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="enUS_Dir" SourcePath="..\..\..\dist\bin\en-US" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
+    <ROW Directory_="zhHant_Dir" SourcePath="..\..\..\dist\bin\zh-Hant" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
   </COMPONENT>
 </DOCUMENT>
