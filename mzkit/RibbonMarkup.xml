@@ -2424,6 +2424,22 @@
         <Image MinDPI="144">Res/edit-cut.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonMenuSearchTools" Id="209" LabelTitle="Search Tools" LabelDescription="Search Tools" TooltipTitle="Search Tools" TooltipDescription="Search Tools">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/application-x-rpm.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/application-x-rpm.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdMsconvertGUI" Id="210" LabelTitle="Msconvert GUI" LabelDescription="Msconvert GUI" TooltipTitle="Msconvert GUI" TooltipDescription="Msconvert GUI">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2746,10 +2762,13 @@
               <Scale Group="cmdGroupToolsActions" Size="Medium" />
             </ScalingPolicy>
           </Tab.ScalingPolicy>
-          <Group CommandName="cmdGroupToolsActions" ApplicationModes="0,1" SizeDefinition="FourButtons">
-            <Button CommandName="cmdButtonMzCalculator" />
-            <Button CommandName="cmdButtonMzSearch" />
-            <Button CommandName="cmdButtonShowSpectrumSearchPage" />
+          <Group CommandName="cmdGroupToolsActions" ApplicationModes="0,1" SizeDefinition="ThreeButtons">
+            <SplitButton CommandName="cmdButtonMenuSearchTools">
+              <Button CommandName="cmdButtonMzCalculator" />
+              <Button CommandName="cmdButtonMzSearch" />
+              <Button CommandName="cmdButtonShowSpectrumSearchPage" />
+            </SplitButton>
+            <Button CommandName="cmdMsconvertGUI" />
             <Button CommandName="cmdButtonViewSMILES" />
           </Group>
           <Group CommandName="cmdTabGroupTargeted" ApplicationModes="0,1" SizeDefinition="TwoButtons">

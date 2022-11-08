@@ -184,9 +184,11 @@ Namespace RibbonLib.Controls
             Public Const cmdLogInBioDeep As UInteger = 106
             Public Const cmdTabTools As UInteger = 1012
             Public Const cmdGroupToolsActions As UInteger = 1046
+            Public Const cmdButtonMenuSearchTools As UInteger = 209
             Public Const cmdButtonMzCalculator As UInteger = 1013
             Public Const cmdButtonMzSearch As UInteger = 1052
             Public Const cmdButtonShowSpectrumSearchPage As UInteger = 1102
+            Public Const cmdMsconvertGUI As UInteger = 210
             Public Const cmdButtonViewSMILES As UInteger = 178
             Public Const cmdTargeted As UInteger = 99
             Public Const cmdButtonLinearFitting As UInteger = 182
@@ -1230,6 +1232,12 @@ Namespace RibbonLib.Controls
                 Return _GroupToolsActions
             End Get
         End Property
+        Private _ButtonMenuSearchTools As RibbonSplitButton
+        Public ReadOnly Property ButtonMenuSearchTools As RibbonSplitButton
+            Get
+                Return _ButtonMenuSearchTools
+            End Get
+        End Property
         Private _ButtonMzCalculator As RibbonButton
         Public ReadOnly Property ButtonMzCalculator As RibbonButton
             Get
@@ -1246,6 +1254,12 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonShowSpectrumSearchPage As RibbonButton
             Get
                 Return _ButtonShowSpectrumSearchPage
+            End Get
+        End Property
+        Private _MsconvertGUI As RibbonButton
+        Public ReadOnly Property MsconvertGUI As RibbonButton
+            Get
+                Return _MsconvertGUI
             End Get
         End Property
         Private _ButtonViewSMILES As RibbonButton
@@ -1536,9 +1550,11 @@ Namespace RibbonLib.Controls
             _LogInBioDeep = New RibbonButton(_ribbon, Cmd.cmdLogInBioDeep)
             _TabTools = New RibbonTab(_ribbon, Cmd.cmdTabTools)
             _GroupToolsActions = New RibbonGroup(_ribbon, Cmd.cmdGroupToolsActions)
+            _ButtonMenuSearchTools = New RibbonSplitButton(_ribbon, Cmd.cmdButtonMenuSearchTools)
             _ButtonMzCalculator = New RibbonButton(_ribbon, Cmd.cmdButtonMzCalculator)
             _ButtonMzSearch = New RibbonButton(_ribbon, Cmd.cmdButtonMzSearch)
             _ButtonShowSpectrumSearchPage = New RibbonButton(_ribbon, Cmd.cmdButtonShowSpectrumSearchPage)
+            _MsconvertGUI = New RibbonButton(_ribbon, Cmd.cmdMsconvertGUI)
             _ButtonViewSMILES = New RibbonButton(_ribbon, Cmd.cmdButtonViewSMILES)
             _Targeted = New RibbonButton(_ribbon, Cmd.cmdTargeted)
             _ButtonLinearFitting = New RibbonButton(_ribbon, Cmd.cmdButtonLinearFitting)

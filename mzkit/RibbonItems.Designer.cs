@@ -187,9 +187,11 @@ namespace RibbonLib.Controls
             public const uint cmdLogInBioDeep = 106;
             public const uint cmdTabTools = 1012;
             public const uint cmdGroupToolsActions = 1046;
+            public const uint cmdButtonMenuSearchTools = 209;
             public const uint cmdButtonMzCalculator = 1013;
             public const uint cmdButtonMzSearch = 1052;
             public const uint cmdButtonShowSpectrumSearchPage = 1102;
+            public const uint cmdMsconvertGUI = 210;
             public const uint cmdButtonViewSMILES = 178;
             public const uint cmdTargeted = 99;
             public const uint cmdButtonLinearFitting = 182;
@@ -388,9 +390,11 @@ namespace RibbonLib.Controls
         public RibbonButton LogInBioDeep { get; private set; }
         public RibbonTab TabTools { get; private set; }
         public RibbonGroup GroupToolsActions { get; private set; }
+        public RibbonSplitButton ButtonMenuSearchTools { get; private set; }
         public RibbonButton ButtonMzCalculator { get; private set; }
         public RibbonButton ButtonMzSearch { get; private set; }
         public RibbonButton ButtonShowSpectrumSearchPage { get; private set; }
+        public RibbonButton MsconvertGUI { get; private set; }
         public RibbonButton ButtonViewSMILES { get; private set; }
         public RibbonButton Targeted { get; private set; }
         public RibbonButton ButtonLinearFitting { get; private set; }
@@ -584,9 +588,11 @@ namespace RibbonLib.Controls
             LogInBioDeep = new RibbonButton(ribbon, Cmd.cmdLogInBioDeep);
             TabTools = new RibbonTab(ribbon, Cmd.cmdTabTools);
             GroupToolsActions = new RibbonGroup(ribbon, Cmd.cmdGroupToolsActions);
+            ButtonMenuSearchTools = new RibbonSplitButton(ribbon, Cmd.cmdButtonMenuSearchTools);
             ButtonMzCalculator = new RibbonButton(ribbon, Cmd.cmdButtonMzCalculator);
             ButtonMzSearch = new RibbonButton(ribbon, Cmd.cmdButtonMzSearch);
             ButtonShowSpectrumSearchPage = new RibbonButton(ribbon, Cmd.cmdButtonShowSpectrumSearchPage);
+            MsconvertGUI = new RibbonButton(ribbon, Cmd.cmdMsconvertGUI);
             ButtonViewSMILES = new RibbonButton(ribbon, Cmd.cmdButtonViewSMILES);
             Targeted = new RibbonButton(ribbon, Cmd.cmdTargeted);
             ButtonLinearFitting = new RibbonButton(ribbon, Cmd.cmdButtonLinearFitting);
