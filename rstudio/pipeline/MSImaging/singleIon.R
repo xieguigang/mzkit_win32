@@ -44,6 +44,9 @@ bitmap(file = savefile, size = [3300, 2000]) {
 			tolerance = mzdiff, 
 			color     = colorSet
 	   )
+       + geom_MSIfilters(
+            denoise_scale() > TrIQ_scale(0.85) > knn_scale() > soften_scale()
+        )
 	   + geom_MSIbackground(bg)
        # add ggplot charting elements
        + ggtitle(`MSImaging of ${ifelse(title == "", mz_tag, title)}`)

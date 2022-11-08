@@ -48,7 +48,9 @@ bitmap(file = savefile, size = [3300, 2000]) {
        
 	   + theme(panel.background = "black")
        + geom_msiheatmap()
-	   + MSI_knnfill()
+	   + geom_MSIfilters(
+            denoise_scale() > TrIQ_scale(0.8) > knn_scale(knnFill, 0.5) > soften_scale()
+        )
        # add ggplot charting elements
        + ggtitle(`MS-Imaging of ${paste(round(mzlist, 3), "+")}`)
        + labs(x = "Dimension(X)", y = "Dimension(Y)")
