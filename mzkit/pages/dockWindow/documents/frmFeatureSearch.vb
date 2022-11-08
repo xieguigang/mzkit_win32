@@ -492,4 +492,21 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             Call progress.ShowDialog()
         End If
     End Sub
+
+    ''' <summary>
+    ''' do ms2 query of the mona database
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub SearchMoNAToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchMoNAToolStripMenuItem.Click
+        Call InputDialog.Input(Of InputMoNA)(
+            Sub(q)
+                If q.MoNA_id.StringEmpty Then
+                    Return
+                End If
+
+                Dim name As String = q.MoNA_id
+
+            End Sub)
+    End Sub
 End Class

@@ -395,6 +395,12 @@
     <Compile Include="application\settings\RawFileViewerSettings.vb" />
     <Compile Include="application\VisualStudio.vb" />
     <Compile Include="application\RPackage.vb" />
+    <Compile Include="forms\Inputs\InputMoNAHits.Designer.vb">
+      <DependentUpon>InputMoNAHits.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\InputMoNAHits.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\InputMoNA.Designer.vb">
       <DependentUpon>InputMoNA.vb</DependentUpon>
     </Compile>
@@ -1020,6 +1026,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputMatrixIons.resx">
       <DependentUpon>InputMatrixIons.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\InputMoNAHits.resx">
+      <DependentUpon>InputMoNAHits.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputNetworkLayout.resx">
       <DependentUpon>InputNetworkLayout.vb</DependentUpon>

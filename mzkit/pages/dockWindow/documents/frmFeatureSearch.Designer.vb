@@ -97,9 +97,10 @@ Partial Class frmFeatureSearch
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewXICToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
         Me.RunMs2ClusteringToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
+        Me.SearchMoNAToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -165,9 +166,9 @@ Partial Class frmFeatureSearch
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ApplyFeatureFilterToolStripMenuItem, Me.ToolStripMenuItem1, Me.ViewToolStripMenuItem, Me.ViewXICToolStripMenuItem, Me.ToolStripMenuItem2, Me.RunMs2ClusteringToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ApplyFeatureFilterToolStripMenuItem, Me.ToolStripMenuItem1, Me.ViewToolStripMenuItem, Me.ViewXICToolStripMenuItem, Me.ToolStripMenuItem2, Me.RunMs2ClusteringToolStripMenuItem, Me.SearchMoNAToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 126)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 148)
         '
         'ApplyFeatureFilterToolStripMenuItem
         '
@@ -195,13 +196,6 @@ Partial Class frmFeatureSearch
         Me.ViewXICToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ViewXICToolStripMenuItem.Text = "View XIC"
         '
-        'ImageList1
-        '
-        Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
-        Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
-        Me.ImageList1.Images.SetKeyName(0, "application-x-object.png")
-        Me.ImageList1.Images.SetKeyName(1, "application-vnd.oasis.opendocument.database.png")
-        '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
@@ -212,6 +206,20 @@ Partial Class frmFeatureSearch
         Me.RunMs2ClusteringToolStripMenuItem.Name = "RunMs2ClusteringToolStripMenuItem"
         Me.RunMs2ClusteringToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.RunMs2ClusteringToolStripMenuItem.Text = "Run Ms2 Clustering"
+        '
+        'ImageList1
+        '
+        Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
+        Me.ImageList1.Images.SetKeyName(0, "application-x-object.png")
+        Me.ImageList1.Images.SetKeyName(1, "application-vnd.oasis.opendocument.database.png")
+        '
+        'SearchMoNAToolStripMenuItem
+        '
+        Me.SearchMoNAToolStripMenuItem.Image = CType(resources.GetObject("SearchMoNAToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.SearchMoNAToolStripMenuItem.Name = "SearchMoNAToolStripMenuItem"
+        Me.SearchMoNAToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SearchMoNAToolStripMenuItem.Text = "Search MoNA"
         '
         'frmFeatureSearch
         '
@@ -245,4 +253,5 @@ Partial Class frmFeatureSearch
     Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
     Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
     Friend WithEvents RunMs2ClusteringToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SearchMoNAToolStripMenuItem As ToolStripMenuItem
 End Class
