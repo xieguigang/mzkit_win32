@@ -8,6 +8,8 @@
     <MyType>WindowsForms</MyType>
     <OutputPath>../../../dist\bin</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <Platforms>AnyCPU;x64</Platforms>
+    <Configurations>Debug;Release;mzkit_win32</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
