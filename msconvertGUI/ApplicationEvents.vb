@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic.ApplicationServices
+﻿Imports BackgroundTask = System.Threading.Tasks.Task
+Imports Task
 
 Namespace My
     ' The following events are available for MyApplication:
@@ -25,5 +26,35 @@ Namespace My
 
     Partial Friend Class MyApplication
 
+        Public Shared Function CreateTask(sourceRoot As String, raw As String, outputdir As String, display As TaskProgress) As ImportsRawData
+            Dim relpath As String = PathExtensions.RelativePath(sourceRoot, raw, appendParent:=False)
+            Dim outputfile As String = $"{outputdir}/{relpath.ChangeSuffix("mzPack")}"
+            Dim progress As Action(Of String) = AddressOf display.ShowMessage
+            Dim success As Action = Sub() display.ShowMessage("Done!")
+            Dim task As New ImportsRawData(raw, progress, success, cachePath:=outputfile)
+
+            Return task
+        End Function
+
+        Public Shared Function SubmitTask(source As String, output As String, main As FormMain) As BackgroundTask
+            Return New BackgroundTask(
+                Sub()
+                    Call task(source, output, main)
+                End Sub)
+        End Function
+
+        Private Shared Sub task(source As String, output As String, main As FormMain)
+            Dim files As String() = source.ListFiles("*.raw").ToArray
+
+            For Each file As String In files
+                Dim progress As New TaskProgress
+                progress.Label1.Text = file.FileName
+                progress.Label2.Text = "Pending"
+                Dim task As ImportsRawData = CreateTask(source, file, output, progress)
+
+                Call main.AddTask(progress)
+                Call BackgroundTask.Run(AddressOf task.RunImports)
+            Next
+        End Sub
     End Class
 End Namespace
