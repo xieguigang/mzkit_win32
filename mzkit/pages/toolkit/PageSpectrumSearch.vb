@@ -59,10 +59,12 @@
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
+Imports BioNovoGene.BioDeep.Chemistry
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
@@ -313,5 +315,17 @@ Public Class PageSpectrumSearch
                                 Call grid.Rows.Add(item.ID, item("reference"), item("forward"), item("reverse"), item("mz"), item("rt"))
                             Next
                         End Sub)
+    End Sub
+
+    Private Sub GetMoNAToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GetMoNAToolStripMenuItem.Click
+        InputDialog.Input(Of InputMoNA)(
+            Sub(input)
+                If Not input.MoNA_id.StringEmpty Then
+                    Dim data = WebJSON.GetJson(input.MoNA_id, cache:=$"{App.ProductProgramData}/.mona/")
+                    Dim matrix As LibraryMatrix = data.ParseMatrix
+
+                    Call loadMs2(matrix)
+                End If
+            End Sub)
     End Sub
 End Class

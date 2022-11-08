@@ -101,8 +101,9 @@ Partial Class PageSpectrumSearch
         Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ContextMenuStrip3 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewAlignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.OpenInTableViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
+        Me.GetMoNAToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -163,16 +164,16 @@ Partial Class PageSpectrumSearch
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PasteMgfTextToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PasteMgfTextToolStripMenuItem, Me.GetMoNAToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
         Me.ContextMenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(152, 26)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 70)
         '
         'PasteMgfTextToolStripMenuItem
         '
         Me.PasteMgfTextToolStripMenuItem.Image = CType(resources.GetObject("PasteMgfTextToolStripMenuItem.Image"), System.Drawing.Image)
         Me.PasteMgfTextToolStripMenuItem.Name = "PasteMgfTextToolStripMenuItem"
-        Me.PasteMgfTextToolStripMenuItem.Size = New System.Drawing.Size(151, 22)
+        Me.PasteMgfTextToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.PasteMgfTextToolStripMenuItem.Text = "Paste Mgf Text"
         '
         'PictureBox1
@@ -286,7 +287,7 @@ Partial Class PageSpectrumSearch
         Me.ContextMenuStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewAlignmentToolStripMenuItem, Me.OpenInTableViewerToolStripMenuItem})
         Me.ContextMenuStrip3.Name = "ContextMenuStrip3"
         Me.ContextMenuStrip3.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.ContextMenuStrip3.Size = New System.Drawing.Size(185, 70)
+        Me.ContextMenuStrip3.Size = New System.Drawing.Size(185, 48)
         '
         'ViewAlignmentToolStripMenuItem
         '
@@ -295,6 +296,13 @@ Partial Class PageSpectrumSearch
         Me.ViewAlignmentToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
         Me.ViewAlignmentToolStripMenuItem.Text = "View"
         '
+        'OpenInTableViewerToolStripMenuItem
+        '
+        Me.OpenInTableViewerToolStripMenuItem.Image = Global.BioNovoGene.mzkit_win32.My.Resources.Resources.preferences_system_notifications
+        Me.OpenInTableViewerToolStripMenuItem.Name = "OpenInTableViewerToolStripMenuItem"
+        Me.OpenInTableViewerToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
+        Me.OpenInTableViewerToolStripMenuItem.Text = "Open In Table Viewer"
+        '
         'ImageList1
         '
         Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
@@ -302,12 +310,11 @@ Partial Class PageSpectrumSearch
         Me.ImageList1.Images.SetKeyName(0, "folder-pictures.png")
         Me.ImageList1.Images.SetKeyName(1, "application-x-object.png")
         '
-        'OpenInTableViewerToolStripMenuItem
+        'GetMoNAToolStripMenuItem
         '
-        Me.OpenInTableViewerToolStripMenuItem.Image = Global.BioNovoGene.mzkit_win32.My.Resources.Resources.preferences_system_notifications
-        Me.OpenInTableViewerToolStripMenuItem.Name = "OpenInTableViewerToolStripMenuItem"
-        Me.OpenInTableViewerToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
-        Me.OpenInTableViewerToolStripMenuItem.Text = "Open In Table Viewer"
+        Me.GetMoNAToolStripMenuItem.Name = "GetMoNAToolStripMenuItem"
+        Me.GetMoNAToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.GetMoNAToolStripMenuItem.Text = "Get MoNA"
         '
         'PageSpectrumSearch
         '
@@ -353,4 +360,5 @@ Partial Class PageSpectrumSearch
     Friend WithEvents ViewAlignmentToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ImageList1 As ImageList
     Friend WithEvents OpenInTableViewerToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GetMoNAToolStripMenuItem As ToolStripMenuItem
 End Class
