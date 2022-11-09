@@ -73,6 +73,7 @@ Public Class MSIRegionSampleWindow
             ' card.Anchor = AnchorStyles.Left Or AnchorStyles.Right
             card.SampleColor = region.color
             card.SampleInfo = region.label
+            card.Anchor = AnchorStyles.Left Or AnchorStyles.Right
 
             AddHandler card.RemoveSampleGroup, AddressOf removeSampleGroup
         Next
@@ -96,8 +97,9 @@ Public Class MSIRegionSampleWindow
     Private Function Add(sample_group As IEnumerable(Of Polygon2D)) As RegionSampleCard
         Dim card As New RegionSampleCard
 
-        Call card.SetPolygons(sample_group, callback:=AddressOf updateLayerRendering)
-        Call FlowLayoutPanel1.Controls.Add(card)
+        card.SetPolygons(sample_group, callback:=AddressOf updateLayerRendering)
+        FlowLayoutPanel1.Controls.Add(card)
+        card.Anchor = AnchorStyles.Left Or AnchorStyles.Right
 
         AddHandler card.RemoveSampleGroup, AddressOf removeSampleGroup
 
@@ -358,4 +360,16 @@ Public Class MSIRegionSampleWindow
         Call LoadTissueMaps(polygons, canvas)
         Call updateLayerRendering()
     End Sub
+
+    'Private Sub MSIRegionSampleWindow_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+
+    'End Sub
+
+    'Private Sub FlowLayoutPanel1_Resize(sender As Object, e As EventArgs) Handles FlowLayoutPanel1.Resize
+    '    Dim newW As Integer = FlowLayoutPanel1.Width * 0.95
+
+    '    For Each card As RegionSampleCard In FlowLayoutPanel1.Controls
+    '        card.Width = newW
+    '    Next
+    'End Sub
 End Class
