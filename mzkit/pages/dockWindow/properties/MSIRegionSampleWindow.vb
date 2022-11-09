@@ -73,7 +73,6 @@ Public Class MSIRegionSampleWindow
             ' card.Anchor = AnchorStyles.Left Or AnchorStyles.Right
             card.SampleColor = region.color
             card.SampleInfo = region.label
-            card.Anchor = AnchorStyles.Left Or AnchorStyles.Right
 
             AddHandler card.RemoveSampleGroup, AddressOf removeSampleGroup
         Next
@@ -99,7 +98,6 @@ Public Class MSIRegionSampleWindow
 
         card.SetPolygons(sample_group, callback:=AddressOf updateLayerRendering)
         FlowLayoutPanel1.Controls.Add(card)
-        card.Anchor = AnchorStyles.Left Or AnchorStyles.Right
 
         AddHandler card.RemoveSampleGroup, AddressOf removeSampleGroup
 
@@ -365,11 +363,17 @@ Public Class MSIRegionSampleWindow
 
     'End Sub
 
-    'Private Sub FlowLayoutPanel1_Resize(sender As Object, e As EventArgs) Handles FlowLayoutPanel1.Resize
-    '    Dim newW As Integer = FlowLayoutPanel1.Width * 0.95
+    ''' <summary>
+    ''' the anchor is not wrking as expected, fallback to the
+    ''' resize event to handling card size updates.
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub FlowLayoutPanel1_Resize(sender As Object, e As EventArgs) Handles FlowLayoutPanel1.Resize
+        Dim newW As Integer = FlowLayoutPanel1.Width * 0.95
 
-    '    For Each card As RegionSampleCard In FlowLayoutPanel1.Controls
-    '        card.Width = newW
-    '    Next
-    'End Sub
+        For Each card As RegionSampleCard In FlowLayoutPanel1.Controls
+            card.Width = newW
+        Next
+    End Sub
 End Class
