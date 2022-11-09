@@ -191,6 +191,9 @@ Public Class frmMsImagingViewer
         End If
     End Function
 
+    ''' <summary>
+    ''' merge multiple sample files
+    ''' </summary>
     Sub MergeSlides()
         Using file As New OpenFileDialog With {
             .Filter = "BioNovoGene mzPack(*.mzPack)|*.mzPack",
