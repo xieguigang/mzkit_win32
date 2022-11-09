@@ -349,6 +349,10 @@ Public Class frmMsImagingViewer
     End Sub
 
 #Region "Tissue Map"
+
+    ''' <summary>
+    ''' imports tissue morphology cdf matrix or the phenograph spot dot plot
+    ''' </summary>
     Sub ImportsTissueMorphology()
         If Not checkService() Then
             Return
@@ -357,51 +361,63 @@ Public Class frmMsImagingViewer
             Return
         End If
 
-        Using file As New OpenFileDialog With {.Filter = "Tissue Morphology Matrix(*.cdf)|*.cdf"}
+        Using file As New OpenFileDialog With {.Filter = "Tissue Morphology Matrix(*.cdf)|*.cdf|Phenograph Spot Plot(*.csv)|*.csv"}
             If file.ShowDialog = DialogResult.OK Then
-                Dim tissues = file.OpenFile.ReadTissueMorphology
-                Dim dimension As Size
-                Dim checkSize As Boolean = True
+                If file.FileName.ExtensionSuffix("cdf") Then
+                    Call ImportsTissueMorphology(file.FileName, file.OpenFile)
+                Else
 
-                Using cdffile As New netCDFReader(file.FileName)
-                    dimension = cdffile.GetDimension
-                End Using
-
-                If stdNum.Abs(PixelSelector1.dimension_size.Width - dimension.Width) > 5 Then
-                    checkSize = False
-                ElseIf stdNum.Abs(PixelSelector1.dimension_size.Height - dimension.Height) > 5 Then
-                    checkSize = False
-                End If
-
-                If Not checkSize Then
-                    If MessageBox.Show(text:=$"The dimension size of the tissue morphology map is very different {vbCrLf}with the MS-imaging dimension size, auto scale of your tissue morphology map raster data?",
-                                       caption:="Import Tissue Morphology",
-                                       buttons:=MessageBoxButtons.YesNo,
-                                       icon:=MessageBoxIcon.Warning) = DialogResult.No Then
-                        Return
-                    End If
-
-                    tissues = tissues _
-                        .ScalePixels(
-                            newDims:=PixelSelector1.dimension_size,
-                            currentDims:=dimension
-                        ) _
-                        .ToArray
-                End If
-
-                sampleRegions.Clear()
-                sampleRegions.LoadTissueMaps(tissues, PixelSelector1)
-                sampleRegions.RenderLayer(PixelSelector1)
-                sampleRegions.ShowMessage($"Tissue map {file.FileName.FileName} has been imported.")
-                sampleRegions.importsFile = file.FileName
-
-                RibbonEvents.ribbonItems.CheckShowMapLayer.BooleanValue = True
-
-                If sampleRegions.DockState = DockState.Hidden Then
-                    sampleRegions.DockState = DockState.DockRight
                 End If
             End If
         End Using
+    End Sub
+
+    Private Sub ImportsPhenographSpotPlot(filepath As String)
+        Dim spots As PhenographSpot() = filepath.loadcsv(Of PhenographSpot)
+    End Sub
+
+    Private Sub ImportsTissueMorphology(filepath As String, file As Stream)
+        Dim tissues As TissueRegion() = file.ReadTissueMorphology
+        Dim dimension As Size
+        Dim checkSize As Boolean = True
+
+        Using cdffile As New netCDFReader(filepath)
+            dimension = cdffile.GetDimension
+        End Using
+
+        If stdNum.Abs(PixelSelector1.dimension_size.Width - dimension.Width) > 5 Then
+            checkSize = False
+        ElseIf stdNum.Abs(PixelSelector1.dimension_size.Height - dimension.Height) > 5 Then
+            checkSize = False
+        End If
+
+        If Not checkSize Then
+            If MessageBox.Show(text:=$"The dimension size of the tissue morphology map is very different {vbCrLf}with the MS-imaging dimension size, auto scale of your tissue morphology map raster data?",
+                               caption:="Import Tissue Morphology",
+                               buttons:=MessageBoxButtons.YesNo,
+                               icon:=MessageBoxIcon.Warning) = DialogResult.No Then
+                Return
+            End If
+
+            tissues = tissues _
+                .ScalePixels(
+                    newDims:=PixelSelector1.dimension_size,
+                    currentDims:=dimension
+                ) _
+                .ToArray
+        End If
+
+        sampleRegions.Clear()
+        sampleRegions.LoadTissueMaps(tissues, PixelSelector1)
+        sampleRegions.RenderLayer(PixelSelector1)
+        sampleRegions.ShowMessage($"Tissue map {filepath.FileName} has been imported.")
+        sampleRegions.importsFile = filepath
+
+        RibbonEvents.ribbonItems.CheckShowMapLayer.BooleanValue = True
+
+        If sampleRegions.DockState = DockState.Hidden Then
+            sampleRegions.DockState = DockState.DockRight
+        End If
     End Sub
 
     Sub ExportRegions()
