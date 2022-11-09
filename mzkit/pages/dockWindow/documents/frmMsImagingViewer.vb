@@ -82,12 +82,14 @@ Imports ControlLibrary
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
+Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.MIME.Office.Excel.XML.xl.worksheets
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Microsoft.VisualBasic.Serialization.JSON
@@ -366,14 +368,41 @@ Public Class frmMsImagingViewer
                 If file.FileName.ExtensionSuffix("cdf") Then
                     Call ImportsTissueMorphology(file.FileName, file.OpenFile)
                 Else
-
+                    Call ImportsPhenographSpotPlot(filepath:=file.FileName)
                 End If
             End If
         End Using
     End Sub
 
     Private Sub ImportsPhenographSpotPlot(filepath As String)
-        Dim spots As PhenographSpot() = filepath.loadcsv(Of PhenographSpot)
+        Dim spots As PhenographSpot() = filepath.LoadCsv(Of PhenographSpot).ToArray
+        Dim canvas As Size = PixelSelector1.dimension_size
+        Dim spot_pixels = spots.Select(Function(p) p.GetPixel).ToArray
+        Dim spot_dims As New Size(
+            width:=(Aggregate p In spot_pixels Into Max(p.X)),
+            height:=(Aggregate p In spot_pixels Into Max(p.Y))
+        )
+        Dim dot_size As Double = stdNum.Min(canvas.Width / spot_dims.Width, canvas.Height / spot_dims.Height)
+        Dim colors = PhenographSpot _
+            .GetSpotColorIndex(spots) _
+            .ToDictionary(Function(a) a.Key,
+                          Function(a)
+                              Return New SolidBrush(a.Value)
+                          End Function)
+
+        Using g As IGraphics = canvas.CreateGDIDevice(filled:=Color.Transparent)
+            For i As Integer = 0 To spots.Length - 1
+                Dim xy As Point = spot_pixels(i)
+                Dim color As Brush = colors(spots(i).phenograph_cluster)
+
+                Call g.DrawCircle(New PointF(xy.X, xy.Y), dot_size, color)
+            Next
+
+            Call g.Flush()
+
+            PixelSelector1.tissue_layer = DirectCast(g, Graphics2D).ImageResource
+            PixelSelector1.RedrawCanvas()
+        End Using
     End Sub
 
     Private Sub ImportsTissueMorphology(filepath As String, file As Stream)
