@@ -350,8 +350,13 @@ UseCheckedList:
             tolerance = cdf.GetMzTolerance
         End Using
 
-        viewer.LoadRender(firstFile, firstFile)
-        viewer.renderByPixelsData(pixels, size)
+        Call frmProgressSpinner.DoLoading(
+            Sub()
+                Call Me.Invoke(Sub()
+                                   viewer.LoadRender(firstFile, firstFile)
+                                   viewer.renderByPixelsData(pixels, size)
+                               End Sub)
+            End Sub)
 
         For Each mz As Double In pixels _
             .GroupBy(Function(p) p.mz, tolerance) _

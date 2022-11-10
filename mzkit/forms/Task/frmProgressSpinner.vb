@@ -1,58 +1,59 @@
 ﻿#Region "Microsoft.VisualBasic::6fef7c51950409b66f5caa6fcdb0a9ae, mzkit\src\mzkit\mzkit\forms\Task\frmProgressSpinner.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 58
-    '    Code Lines: 39
-    ' Comment Lines: 6
-    '   Blank Lines: 13
-    '     File Size: 1.91 KB
+' Summaries:
 
 
-    ' Class frmProgressSpinner
-    ' 
-    '     Sub: CloseWindow, DoLoading, frmProgressSpinner_Closed, frmProgressSpinner_Load, frmProgressSpinner_Paint
-    '          OnFrameChanged, RunAnimation
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 58
+'    Code Lines: 39
+' Comment Lines: 6
+'   Blank Lines: 13
+'     File Size: 1.91 KB
+
+
+' Class frmProgressSpinner
+' 
+'     Sub: CloseWindow, DoLoading, frmProgressSpinner_Closed, frmProgressSpinner_Load, frmProgressSpinner_Paint
+'          OnFrameChanged, RunAnimation
+' 
+' /********************************************************************************/
 
 #End Region
 
+Imports System.Runtime.CompilerServices
 Imports System.Threading
 
 Public Class frmProgressSpinner
@@ -106,15 +107,22 @@ Public Class frmProgressSpinner
     ''' </remarks>
     Public Shared Sub DoLoading(loading As Action)
         Dim spinner As New frmProgressSpinner
+        Dim task = getLoadingTask(loading, spinner)
 
-        Call New Thread(Sub()
-                            Call Thread.Sleep(500)
-                            Call loading()
-                            Call spinner.CloseWindow()
-                        End Sub).Start()
+        Call task.Start()
         Call spinner.ShowDialog()
     End Sub
 
+    Private Shared Function getLoadingTask(loading As Action, spinner As frmProgressSpinner) As Tasks.Task
+        Return New Tasks.Task(
+            Sub()
+                Call Thread.Sleep(500)
+                Call loading()
+                Call spinner.CloseWindow()
+            End Sub)
+    End Function
+
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Friend Sub CloseWindow()
         Call Invoke(Sub() Call Close())
     End Sub

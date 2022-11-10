@@ -1478,11 +1478,17 @@ Public Class frmMsImagingViewer
         Return Sub()
                    Call MyApplication.RegisterPlot(
                        Sub(args)
-                           Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
+                           Call frmProgressSpinner.DoLoading(
+                               Sub()
+                                   Call Me.Invoke(
+                                   Sub()
+                                       Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
 
-                           PixelSelector1.SetMsImagingOutput(image, dimensions.SizeParser, params.colors, {range.Min, range.Max}, params.mapLevels)
-                           PixelSelector1.BackColor = params.background
-                           PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
+                                       PixelSelector1.SetMsImagingOutput(image, dimensions.SizeParser, params.colors, {range.Min, range.Max}, params.mapLevels)
+                                       PixelSelector1.BackColor = params.background
+                                       PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
+                                   End Sub)
+                               End Sub)
                        End Sub)
                End Sub
     End Function
