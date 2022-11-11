@@ -30,10 +30,10 @@ Partial Class ShowMSIRowScanSummary
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -117,22 +117,12 @@ Partial Class ShowMSIRowScanSummary
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Config Parameters"
         '
-        'TextBox3
+        'TextBox4
         '
-        Me.TextBox3.Location = New System.Drawing.Point(191, 20)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(100, 21)
-        Me.TextBox3.TabIndex = 5
-        Me.TextBox3.Text = "0.001"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(18, 26)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(167, 12)
-        Me.Label3.TabIndex = 4
-        Me.Label3.Text = "Intensity Cutoff Threshold:"
+        Me.TextBox4.Location = New System.Drawing.Point(191, 54)
+        Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.Size = New System.Drawing.Size(100, 21)
+        Me.TextBox4.TabIndex = 7
         '
         'Label4
         '
@@ -143,12 +133,22 @@ Partial Class ShowMSIRowScanSummary
         Me.Label4.TabIndex = 6
         Me.Label4.Text = "Remove Matrix BasePeak:"
         '
-        'TextBox4
+        'TextBox3
         '
-        Me.TextBox4.Location = New System.Drawing.Point(191, 54)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(100, 21)
-        Me.TextBox4.TabIndex = 7
+        Me.TextBox3.Location = New System.Drawing.Point(191, 20)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(100, 21)
+        Me.TextBox3.TabIndex = 5
+        Me.TextBox3.Text = "0.05"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(18, 26)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(167, 12)
+        Me.Label3.TabIndex = 4
+        Me.Label3.Text = "Intensity Cutoff Threshold:"
         '
         'Label5
         '

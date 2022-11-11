@@ -1,6 +1,7 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader
 Imports Microsoft.VisualBasic.Math
+Imports stdNum = System.Math
 
 Public Class ShowMSIRowScanSummary
 
@@ -71,4 +72,16 @@ Public Class ShowMSIRowScanSummary
         background.Start()
         Return background
     End Function
+
+    Private Sub TextBox4_TextChanged(sender As Object, e As EventArgs) Handles TextBox4.TextChanged
+        If Val(TextBox4.Text) <= 0 Then
+            TextBox3.Text = stdNum.Min(0.001, Val(TextBox3.Text))
+        Else
+            TextBox3.Text = stdNum.Max(0.05, Val(TextBox3.Text))
+        End If
+    End Sub
+
+    Private Sub TextBox3_TextChanged(sender As Object, e As EventArgs) Handles TextBox3.TextChanged
+
+    End Sub
 End Class
