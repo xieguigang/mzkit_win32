@@ -192,7 +192,7 @@ End Function
 
 ''' <summary>
 ''' ```bash
-''' /rowbinds --files &lt;list.txt&gt; --save &lt;MSI.mzPack&gt; [/cutoff &lt;intensity_cutoff, default=0&gt;]
+''' /rowbinds --files &lt;list.txt&gt; --save &lt;MSI.mzPack&gt; [/cutoff &lt;intensity_cutoff, default=0&gt; /matrix_basePeak &lt;mz, default=0&gt;]
 ''' ```
 ''' Combine row scans to mzPack
 ''' </summary>
@@ -201,18 +201,21 @@ End Function
 ''' </param>
 ''' <param name="save"> a file path for export mzPack data file.
 ''' </param>
-Public Function MSIRowCombine(files As String, save As String, Optional cutoff As String = "0") As Integer
-Dim cli = GetMSIRowCombineCommandLine(files:=files, save:=save, cutoff:=cutoff, internal_pipelineMode:=True)
+Public Function MSIRowCombine(files As String, save As String, Optional cutoff As String = "0", Optional matrix_basepeak As String = "0") As Integer
+Dim cli = GetMSIRowCombineCommandLine(files:=files, save:=save, cutoff:=cutoff, matrix_basepeak:=matrix_basepeak, internal_pipelineMode:=True)
     Dim proc As IIORedirectAbstract = RunDotNetApp(cli)
     Return proc.Run()
 End Function
-Public Function GetMSIRowCombineCommandLine(files As String, save As String, Optional cutoff As String = "0", Optional internal_pipelineMode As Boolean = True) As String
+Public Function GetMSIRowCombineCommandLine(files As String, save As String, Optional cutoff As String = "0", Optional matrix_basepeak As String = "0", Optional internal_pipelineMode As Boolean = True) As String
     Dim CLI As New StringBuilder("/rowbinds")
     Call CLI.Append(" ")
     Call CLI.Append("--files " & """" & files & """ ")
     Call CLI.Append("--save " & """" & save & """ ")
     If Not cutoff.StringEmpty Then
             Call CLI.Append("/cutoff " & """" & cutoff & """ ")
+    End If
+    If Not matrix_basepeak.StringEmpty Then
+            Call CLI.Append("/matrix_basepeak " & """" & matrix_basepeak & """ ")
     End If
      Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 

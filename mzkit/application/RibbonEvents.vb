@@ -294,6 +294,7 @@ Module RibbonEvents
                 Call InputDialog.Input(
                     Sub(creator)
                         Dim cutoff As Double = creator.cutoff
+                        Dim basePeak As Double = creator.matrixMz
 
                         Using savefile As New SaveFileDialog With {
                             .Filter = "BioNovoGene mzPack(*.mzPack)|*.mzPack",
@@ -302,7 +303,12 @@ Module RibbonEvents
                             .InitialDirectory = baseDir
                         }
                             If savefile.ShowDialog = DialogResult.OK Then
-                                Call RscriptProgressTask.CreateMSIRawFromRowBinds(file.FileNames, savefile.FileName, cutoff)
+                                Call RscriptProgressTask.CreateMSIRawFromRowBinds(
+                                    files:=file.FileNames,
+                                    savefile:=savefile.FileName,
+                                    cutoff:=cutoff,
+                                    basePeak:=basePeak
+                                )
                             End If
                         End Using
                     End Sub, config:=load)

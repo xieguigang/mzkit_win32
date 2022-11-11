@@ -32,6 +32,9 @@ Partial Class ShowMSIRowScanSummary
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
@@ -103,6 +106,8 @@ Partial Class ShowMSIRowScanSummary
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.TextBox4)
+        Me.GroupBox2.Controls.Add(Me.Label4)
         Me.GroupBox2.Controls.Add(Me.TextBox3)
         Me.GroupBox2.Controls.Add(Me.Label3)
         Me.GroupBox2.Location = New System.Drawing.Point(12, 141)
@@ -129,11 +134,37 @@ Partial Class ShowMSIRowScanSummary
         Me.Label3.TabIndex = 4
         Me.Label3.Text = "Intensity Cutoff Threshold:"
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(20, 57)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(143, 12)
+        Me.Label4.TabIndex = 6
+        Me.Label4.Text = "Remove Matrix BasePeak:"
+        '
+        'TextBox4
+        '
+        Me.TextBox4.Location = New System.Drawing.Point(191, 54)
+        Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.Size = New System.Drawing.Size(100, 21)
+        Me.TextBox4.TabIndex = 7
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(12, 254)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(65, 12)
+        Me.Label5.TabIndex = 4
+        Me.Label5.Text = "Loading..."
+        '
         'ShowMSIRowScanSummary
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(344, 285)
+        Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
@@ -145,6 +176,7 @@ Partial Class ShowMSIRowScanSummary
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -158,4 +190,7 @@ Partial Class ShowMSIRowScanSummary
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents TextBox3 As TextBox
     Friend WithEvents Label3 As Label
+    Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label5 As Label
 End Class

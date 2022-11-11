@@ -71,13 +71,14 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
     <Description("Combine row scans to mzPack")>
     <Argument("--files", False, CLITypes.File, PipelineTypes.std_in, Description:="a temp file path that its content contains selected raw data file path for each row scans.")>
     <Argument("--save", False, CLITypes.File, PipelineTypes.std_in, Description:="a file path for export mzPack data file.")>
-    <Usage("/rowbinds --files <list.txt> --save <MSI.mzPack> [/cutoff <intensity_cutoff, default=0>]")>
+    <Usage("/rowbinds --files <list.txt> --save <MSI.mzPack> [/cutoff <intensity_cutoff, default=0> /matrix_basePeak <mz, default=0>]")>
     Public Function MSIRowCombine(args As CommandLine) As Integer
         Dim files As String() = args("--files").ReadAllLines
         Dim save As String = args("--save")
         Dim cutoff As Double = args("/cutoff") Or 0.0
+        Dim basePeak As Double = args("/matrix_basePeak") Or 0.0
 
-        Call MSImagingRowBinds.MSI_rowbind(files, save, cutoff)
+        Call MSImagingRowBinds.MSI_rowbind(files, save, cutoff, basePeak)
 
         Return 0
     End Function
