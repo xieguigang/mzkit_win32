@@ -99,7 +99,7 @@ Partial Class frmSMILESViewer
         'Button1
         '
         Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Button1.Location = New System.Drawing.Point(503, 508)
+        Me.Button1.Location = New System.Drawing.Point(503, 491)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 0
@@ -109,7 +109,7 @@ Partial Class frmSMILESViewer
         'TextBox1
         '
         Me.TextBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.TextBox1.Location = New System.Drawing.Point(24, 510)
+        Me.TextBox1.Location = New System.Drawing.Point(24, 493)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(473, 20)
         Me.TextBox1.TabIndex = 1
@@ -119,7 +119,7 @@ Partial Class frmSMILESViewer
         '
         Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(21, 485)
+        Me.Label1.Location = New System.Drawing.Point(21, 468)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(76, 13)
         Me.Label1.TabIndex = 2
@@ -133,7 +133,7 @@ Partial Class frmSMILESViewer
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1024, 573)
+        Me.TabControl1.Size = New System.Drawing.Size(951, 556)
         Me.TabControl1.TabIndex = 4
         '
         'TabPage1
@@ -145,7 +145,7 @@ Partial Class frmSMILESViewer
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1016, 547)
+        Me.TabPage1.Size = New System.Drawing.Size(943, 530)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "SMILES Drawer"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -160,7 +160,7 @@ Partial Class frmSMILESViewer
         Me.WebView21.DefaultBackgroundColor = System.Drawing.Color.White
         Me.WebView21.Location = New System.Drawing.Point(8, 6)
         Me.WebView21.Name = "WebView21"
-        Me.WebView21.Size = New System.Drawing.Size(1000, 467)
+        Me.WebView21.Size = New System.Drawing.Size(927, 450)
         Me.WebView21.TabIndex = 3
         Me.WebView21.ZoomFactor = 1.0R
         '
@@ -173,7 +173,7 @@ Partial Class frmSMILESViewer
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(1016, 547)
+        Me.TabPage2.Size = New System.Drawing.Size(943, 530)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "KEGG Drawer"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -186,14 +186,14 @@ Partial Class frmSMILESViewer
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.PictureBox1.Location = New System.Drawing.Point(353, 47)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(647, 631)
+        Me.PictureBox1.Size = New System.Drawing.Size(582, 419)
         Me.PictureBox1.TabIndex = 3
         Me.PictureBox1.TabStop = False
         '
         'Button2
         '
         Me.Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Button2.Location = New System.Drawing.Point(21, 693)
+        Me.Button2.Location = New System.Drawing.Point(20, 485)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 2
@@ -208,7 +208,7 @@ Partial Class frmSMILESViewer
         Me.TextBox2.Multiline = True
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBox2.Size = New System.Drawing.Size(339, 631)
+        Me.TextBox2.Size = New System.Drawing.Size(339, 419)
         Me.TextBox2.TabIndex = 1
         Me.TextBox2.Text = resources.GetString("TextBox2.Text")
         '
@@ -225,7 +225,7 @@ Partial Class frmSMILESViewer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1024, 573)
+        Me.ClientSize = New System.Drawing.Size(951, 556)
         Me.Controls.Add(Me.TabControl1)
         Me.DoubleBuffered = True
         Me.Name = "frmSMILESViewer"
