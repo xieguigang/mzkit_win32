@@ -25,4 +25,12 @@
         End If
     End Function
 
+    Public Function getWebViewFolder() As String
+        If IsDevelopmentMode Then
+            Return $"{App.HOME}/../../src/mzkit/webview/"
+        Else
+            Return $"{App.HOME}/WebView/"
+        End If
+    End Function
+
 End Module

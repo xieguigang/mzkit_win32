@@ -88,10 +88,12 @@ Partial Class frmSMILESViewer
         Me.Button2 = New System.Windows.Forms.Button()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.WebView21 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Button1
@@ -136,6 +138,7 @@ Partial Class frmSMILESViewer
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.WebView21)
         Me.TabPage1.Controls.Add(Me.Label1)
         Me.TabPage1.Controls.Add(Me.TextBox1)
         Me.TabPage1.Controls.Add(Me.Button1)
@@ -204,6 +207,17 @@ Partial Class frmSMILESViewer
         Me.Label2.TabIndex = 0
         Me.Label2.Text = "Input KCF data:"
         '
+        'WebView21
+        '
+        Me.WebView21.AllowExternalDrop = True
+        Me.WebView21.CreationProperties = Nothing
+        Me.WebView21.DefaultBackgroundColor = System.Drawing.Color.White
+        Me.WebView21.Location = New System.Drawing.Point(18, 17)
+        Me.WebView21.Name = "WebView21"
+        Me.WebView21.Size = New System.Drawing.Size(964, 333)
+        Me.WebView21.TabIndex = 3
+        Me.WebView21.ZoomFactor = 1.0R
+        '
         'frmSMILESViewer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -218,6 +232,7 @@ Partial Class frmSMILESViewer
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.WebView21, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -233,4 +248,5 @@ Partial Class frmSMILESViewer
     Friend WithEvents Button2 As Button
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents WebView21 As Microsoft.Web.WebView2.WinForms.WebView2
 End Class

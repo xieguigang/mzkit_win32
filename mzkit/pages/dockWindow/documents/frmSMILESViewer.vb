@@ -57,10 +57,25 @@ Imports BioNovoGene.BioDeep.Chemistry.Model.Drawing
 Imports BioNovoGene.BioDeep.Chemoinformatics.SDF
 Imports BioNovoGene.BioDeep.Chemoinformatics.SMILES
 Imports Microsoft.VisualBasic.Data.visualize.Network.Graph
-Imports Microsoft.VisualBasic.Data.visualize.Network.Layouts.SpringForce
 Imports Microsoft.VisualBasic.Imaging
+Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmSMILESViewer
+
+    Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        AutoScaleMode = AutoScaleMode.Dpi
+        DockAreas = DockAreas.Document Or DockAreas.Float
+        TabText = "Loading WebView2 App..."
+    End Sub
+
+    Private Function getViewerUrl() As String
+
+    End Function
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim smilesStr As String = Strings.Trim(TextBox1.Text)
@@ -81,25 +96,12 @@ Public Class frmSMILESViewer
             network.AddEdge(url)
         Next
 
-        Canvas1.Graph(space3D:=True) = network
-        Canvas1.ShowLabel = True
+
     End Sub
 
     Private Sub frmSMILESViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Canvas1.SetFDGParams(New ForceDirectedArgs With {.Repulsion = 100000.0!, .Damping = 0.85})
-        Canvas1.ViewDistance = -450
-        Canvas1.AutoRotate = False
-
         Text = "Molecule Drawer"
         TabText = Text
-    End Sub
-
-    Private Sub Canvas1_Load(sender As Object, e As EventArgs) Handles Canvas1.Load
-
-    End Sub
-
-    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
-
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
