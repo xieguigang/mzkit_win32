@@ -25,6 +25,10 @@
         End If
     End Function
 
+    ''' <summary>
+    ''' get web view html source file folder
+    ''' </summary>
+    ''' <returns></returns>
     Public Function getWebViewFolder() As String
         If IsDevelopmentMode Then
             Return $"{App.HOME}/../../src/mzkit/webview/"

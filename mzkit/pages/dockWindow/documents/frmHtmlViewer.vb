@@ -58,6 +58,7 @@ Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
+Imports Microsoft.Web.WebView2.WinForms
 Imports WeifenLuo.WinFormsUI.Docking
 Imports WkHtmlToPdf.Arguments
 
@@ -113,7 +114,7 @@ Public Class frmHtmlViewer
         End If
     End Sub
 
-    Private Async Sub Init()
+    Public Shared Async Sub Init(WebView21 As WebView2)
         Dim userDataFolder = (App.ProductProgramData & "/.webView2_cache/").GetDirectoryFullPath
         Dim env = Await CoreWebView2Environment.CreateAsync(Nothing, userDataFolder)
 
@@ -168,7 +169,7 @@ Public Class frmHtmlViewer
         TabText = "Document Viewer"
         Icon = My.Resources.IE
 
-        Init()
+        Init(WebView21)
         Wait()
     End Sub
 

@@ -83,23 +83,23 @@ Partial Class frmSMILESViewer
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.WebView21 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.WebView21 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
+        CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Button1
         '
         Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Button1.Location = New System.Drawing.Point(497, 396)
+        Me.Button1.Location = New System.Drawing.Point(503, 508)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 0
@@ -109,7 +109,7 @@ Partial Class frmSMILESViewer
         'TextBox1
         '
         Me.TextBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.TextBox1.Location = New System.Drawing.Point(18, 398)
+        Me.TextBox1.Location = New System.Drawing.Point(24, 510)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(473, 20)
         Me.TextBox1.TabIndex = 1
@@ -119,7 +119,7 @@ Partial Class frmSMILESViewer
         '
         Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(15, 373)
+        Me.Label1.Location = New System.Drawing.Point(21, 485)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(76, 13)
         Me.Label1.TabIndex = 2
@@ -150,6 +150,20 @@ Partial Class frmSMILESViewer
         Me.TabPage1.Text = "SMILES Drawer"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'WebView21
+        '
+        Me.WebView21.AllowExternalDrop = True
+        Me.WebView21.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.WebView21.CreationProperties = Nothing
+        Me.WebView21.DefaultBackgroundColor = System.Drawing.Color.White
+        Me.WebView21.Location = New System.Drawing.Point(8, 6)
+        Me.WebView21.Name = "WebView21"
+        Me.WebView21.Size = New System.Drawing.Size(1000, 467)
+        Me.WebView21.TabIndex = 3
+        Me.WebView21.ZoomFactor = 1.0R
+        '
         'TabPage2
         '
         Me.TabPage2.Controls.Add(Me.PictureBox1)
@@ -159,7 +173,7 @@ Partial Class frmSMILESViewer
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(1016, 724)
+        Me.TabPage2.Size = New System.Drawing.Size(1016, 547)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "KEGG Drawer"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -207,17 +221,6 @@ Partial Class frmSMILESViewer
         Me.Label2.TabIndex = 0
         Me.Label2.Text = "Input KCF data:"
         '
-        'WebView21
-        '
-        Me.WebView21.AllowExternalDrop = True
-        Me.WebView21.CreationProperties = Nothing
-        Me.WebView21.DefaultBackgroundColor = System.Drawing.Color.White
-        Me.WebView21.Location = New System.Drawing.Point(18, 17)
-        Me.WebView21.Name = "WebView21"
-        Me.WebView21.Size = New System.Drawing.Size(964, 333)
-        Me.WebView21.TabIndex = 3
-        Me.WebView21.ZoomFactor = 1.0R
-        '
         'frmSMILESViewer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -229,10 +232,10 @@ Partial Class frmSMILESViewer
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
+        CType(Me.WebView21, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.WebView21, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

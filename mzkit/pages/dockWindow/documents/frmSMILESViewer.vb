@@ -56,8 +56,11 @@ Imports BioNovoGene.BioDeep.Chemistry.Model
 Imports BioNovoGene.BioDeep.Chemistry.Model.Drawing
 Imports BioNovoGene.BioDeep.Chemoinformatics.SDF
 Imports BioNovoGene.BioDeep.Chemoinformatics.SMILES
-Imports Microsoft.VisualBasic.Data.visualize.Network.Graph
+Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Net.Http
+Imports Microsoft.Web.WebView2.Core
+Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmSMILESViewer
@@ -71,37 +74,68 @@ Public Class frmSMILESViewer
         AutoScaleMode = AutoScaleMode.Dpi
         DockAreas = DockAreas.Document Or DockAreas.Float
         TabText = "Loading WebView2 App..."
+        Button1.Enabled = False
     End Sub
 
     Private Function getViewerUrl() As String
-
+        Return AppEnvironment.getWebViewFolder & "/SMILES.html"
     End Function
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim smilesStr As String = Strings.Trim(TextBox1.Text)
         Dim graph As ChemicalFormula = ParseChain.ParseGraph(smilesStr)
-        Dim network As New NetworkGraph
+        Dim js As String = $"rendering('{smilesStr}');"
 
-        For Each v In graph.vertex
-            network.CreateNode(v.label, New NodeData With {.label = v.elementName, .color = Brushes.Black})
-        Next
-        For Each l In graph.graphEdges
-            Dim url = network.CreateEdge(
-                  u:=l.U.label,
-                  v:=l.V.label,
-                  weight:=l.bond
-              )
-
-            url.data.style = New Pen(Color.Red, 2)
-            network.AddEdge(url)
-        Next
-
-
+        WebView21.CoreWebView2.ExecuteScriptAsync(js)
     End Sub
 
     Private Sub frmSMILESViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Call frmHtmlViewer.Init(WebView21)
+        Call Wait()
+
         Text = "Molecule Drawer"
         TabText = Text
+    End Sub
+
+    Public Sub DeveloperOptions(enable As Boolean)
+        WebView21.CoreWebView2.Settings.AreDevToolsEnabled = enable
+        WebView21.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = enable
+        WebView21.CoreWebView2.Settings.AreDefaultContextMenusEnabled = enable
+        If enable Then
+            Call MyApplication.host.showStatusMessage($"[{TabText}] WebView2 developer tools has been enable!")
+        End If
+    End Sub
+
+    Private Sub Wait()
+
+    End Sub
+
+    Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
+
+        ' WebView21.CoreWebView2.OpenDevToolsWindow()
+        WebView21.CoreWebView2.Navigate(getViewerUrl)
+        Button1.Enabled = True
+
+        Call DeveloperOptions(enable:=True)
+    End Sub
+
+    Private Sub WebView21_NavigationCompleted(sender As Object, e As CoreWebView2NavigationCompletedEventArgs) Handles WebView21.NavigationCompleted
+        Me.Text = WebView21.CoreWebView2.DocumentTitle
+        Me.TabText = Me.Text
+    End Sub
+
+    ''' <summary>
+    ''' open external link in default webbrowser
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub WebView21_NavigationStarting(sender As Object, e As CoreWebView2NavigationStartingEventArgs) Handles WebView21.NavigationStarting
+        Dim url As New URL(e.Uri)
+
+        If url.hostName <> "127.0.0.1" AndAlso url.hostName <> "localhost" Then
+            e.Cancel = True
+            Process.Start(e.Uri)
+        End If
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
