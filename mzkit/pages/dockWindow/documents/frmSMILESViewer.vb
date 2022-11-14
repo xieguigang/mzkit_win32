@@ -83,8 +83,13 @@ Public Class frmSMILESViewer
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim smilesStr As String = Strings.Trim(TextBox1.Text)
-        Dim graph As ChemicalFormula = ParseChain.ParseGraph(smilesStr)
         Dim js As String = $"rendering('{smilesStr}');"
+
+        Try
+            Dim graph As ChemicalFormula = ParseChain.ParseGraph(smilesStr)
+        Catch ex As Exception
+
+        End Try
 
         WebView21.CoreWebView2.ExecuteScriptAsync(js)
     End Sub
