@@ -99,7 +99,7 @@ Partial Class frmSMILESViewer
         'Button1
         '
         Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Button1.Location = New System.Drawing.Point(503, 491)
+        Me.Button1.Location = New System.Drawing.Point(598, 450)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 0
@@ -109,17 +109,20 @@ Partial Class frmSMILESViewer
         'TextBox1
         '
         Me.TextBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.TextBox1.Location = New System.Drawing.Point(24, 493)
+        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBox1.Location = New System.Drawing.Point(24, 452)
+        Me.TextBox1.Multiline = True
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(473, 20)
+        Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBox1.Size = New System.Drawing.Size(568, 61)
         Me.TextBox1.TabIndex = 1
-        Me.TextBox1.Text = "CC(=O)OC1=CC=CC=C1C(=O)O"
+        Me.TextBox1.Text = resources.GetString("TextBox1.Text")
         '
         'Label1
         '
         Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(21, 468)
+        Me.Label1.Location = New System.Drawing.Point(22, 433)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(76, 13)
         Me.Label1.TabIndex = 2
@@ -160,7 +163,7 @@ Partial Class frmSMILESViewer
         Me.WebView21.DefaultBackgroundColor = System.Drawing.Color.White
         Me.WebView21.Location = New System.Drawing.Point(8, 6)
         Me.WebView21.Name = "WebView21"
-        Me.WebView21.Size = New System.Drawing.Size(927, 450)
+        Me.WebView21.Size = New System.Drawing.Size(927, 411)
         Me.WebView21.TabIndex = 3
         Me.WebView21.ZoomFactor = 1.0R
         '
