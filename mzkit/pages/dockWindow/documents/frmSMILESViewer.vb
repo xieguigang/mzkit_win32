@@ -52,6 +52,7 @@
 
 #End Region
 
+Imports System.Threading
 Imports BioNovoGene.BioDeep.Chemistry.Model
 Imports BioNovoGene.BioDeep.Chemistry.Model.Drawing
 Imports BioNovoGene.BioDeep.Chemoinformatics.SDF
@@ -131,6 +132,25 @@ Public Class frmSMILESViewer
         WebView22.CoreWebView2.Navigate(getKetcher)
 
         Call DeveloperOptions(WebView22, enable:=True)
+
+        'AddHandler WebView22.CoreWebView2.DownloadStarting,
+        '    Sub(s, evt)
+        '        ' Developer can obtain a deferral for the event so that the CoreWebView2
+        '        ' doesn't examine the properties we set on the event args until
+        '        ' after the deferral completes asynchronously.
+        '        Dim deferral As CoreWebView2Deferral = evt.GetDeferral()
+        '        ' We avoid potential reentrancy from running a message loop in the download
+        '        ' starting event handler by showing our download dialog later when we
+        '        ' complete the deferral asynchronously.
+        '        SynchronizationContext.Current.Post(
+        '            Sub()
+        '                Using deferral
+        '                    ' Hide the default download dialog.
+        '                    evt.Handled = True
+        '                    ' evt.DownloadOperation
+        '                End Using
+        '            End Sub, Nothing)
+        '    End Sub
     End Sub
 
     Private Sub WebView21_NavigationCompleted(sender As Object, e As CoreWebView2NavigationCompletedEventArgs) Handles WebView21.NavigationCompleted
@@ -165,5 +185,9 @@ Public Class frmSMILESViewer
         Dim visual As Image = model.Draw().AsGDIImage
 
         PictureBox1.BackgroundImage = visual
+    End Sub
+
+    Private Sub WebView22_WebMessageReceived(sender As Object, e As CoreWebView2WebMessageReceivedEventArgs) Handles WebView22.WebMessageReceived
+
     End Sub
 End Class
