@@ -52,17 +52,14 @@
 
 #End Region
 
-Imports System.Threading
 Imports BioNovoGene.BioDeep.Chemistry.Model
 Imports BioNovoGene.BioDeep.Chemistry.Model.Drawing
 Imports BioNovoGene.BioDeep.Chemoinformatics.SDF
 Imports BioNovoGene.BioDeep.Chemoinformatics.SMILES
-Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
 Imports Microsoft.Web.WebView2.WinForms
-Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmSMILESViewer
@@ -80,11 +77,11 @@ Public Class frmSMILESViewer
     End Sub
 
     Private Function getViewerUrl() As String
-        Return AppEnvironment.getWebViewFolder & "/SMILES.html"
+        Return $"http://127.0.0.1:{Globals.WebPort}/SMILES.html"
     End Function
 
     Private Function getKetcher() As String
-        Return AppEnvironment.getWebViewFolder & "/ketcher/index.html"
+        Return $"http://127.0.0.1:{Globals.WebPort}/ketcher/index.html"
     End Function
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
