@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>CFM_ID</RootNamespace>
+    <TargetFrameworks>net48;net6.0-windows</TargetFrameworks>
+    <Configurations>Debug;Release;Rsharp_app_release;mzkit_win32</Configurations>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Platforms>AnyCPU;ARM32;x64</Platforms>
+  </PropertyGroup>
+
+</Project>
