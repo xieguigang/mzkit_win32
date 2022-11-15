@@ -2454,6 +2454,20 @@
         <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
       </Command.LargeHighContrastImages>
     </Command>
+    <Command Name="cmdButtonCFMIDTool" Id="212" LabelTitle="CFM-ID Prediction" LabelDescription="CFM-ID Prediction" TooltipTitle="CFM-ID Prediction" TooltipDescription="CFM-ID Prediction">
+      <Command.SmallImages>
+        <Image MinDPI="192">Resources/Flask.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Resources/Flask.png</Image>
+      </Command.LargeImages>
+      <Command.SmallHighContrastImages>
+        <Image MinDPI="192">Resources/Flask.png</Image>
+      </Command.SmallHighContrastImages>
+      <Command.LargeHighContrastImages>
+        <Image MinDPI="192">Resources/Flask.png</Image>
+      </Command.LargeHighContrastImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2777,12 +2791,13 @@
               <Scale Group="cmdGroupToolsActions" Size="Medium" />
             </ScalingPolicy>
           </Tab.ScalingPolicy>
-          <Group CommandName="cmdGroupToolsActions" ApplicationModes="0,1" SizeDefinition="ThreeButtons">
+          <Group CommandName="cmdGroupToolsActions" ApplicationModes="0,1" SizeDefinition="FourButtons">
             <SplitButton CommandName="cmdButtonMenuSearchTools">
               <Button CommandName="cmdButtonMzCalculator" />
               <Button CommandName="cmdButtonMzSearch" />
               <Button CommandName="cmdButtonShowSpectrumSearchPage" />
             </SplitButton>
+            <Button CommandName="cmdButtonCFMIDTool" />
             <Button CommandName="cmdMsconvertGUI" />
             <Button CommandName="cmdButtonViewSMILES" />
           </Group>

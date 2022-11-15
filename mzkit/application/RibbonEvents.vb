@@ -175,6 +175,8 @@ Module RibbonEvents
         AddHandler ribbonItems.ButtonDevTools.ExecuteEvent, Sub() Call openCmd()
         AddHandler ribbonItems.DOIReference.ExecuteEvent, Sub() Call New frmDOI().ShowDialog()
         AddHandler ribbonItems.ButtonSystemDiagnosis.ExecuteEvent, Sub() Call CollectSystemInformation()
+
+        AddHandler ribbonItems.ButtonCFMIDTool.ExecuteEvent, Sub() Call OpenCFMIDTool(Nothing, Nothing)
     End Sub
 
     Friend Sub CreatePeakFinding()
@@ -189,6 +191,30 @@ Module RibbonEvents
             Dim app = VisualStudio.ShowDocument(Of frmPeakFinding)(DockState.Document, $"Peak Finding [{mzkitTool.matrixName}]")
             app.LoadMatrix(mzkitTool.matrixName, DirectCast(matrix, ChromatogramTick()))
         End If
+    End Sub
+
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="struct">
+    ''' molecule structrue string to run prediction
+    ''' </param>
+    ''' <param name="type">
+    ''' smiles/inchi
+    ''' </param>
+    Public Sub OpenCFMIDTool(struct As String, type As String)
+        Dim tool As New InputCFMIDTool
+
+        If Not (struct.StringEmpty OrElse type.StringEmpty) Then
+
+        End If
+
+        Call InputDialog.Input(
+            setConfig:=Sub(cfmid)
+
+                       End Sub,
+            config:=tool
+        )
     End Sub
 
     Private Sub CollectSystemInformation()

@@ -157,12 +157,17 @@ Public Class frmSMILESViewer
                     Case CoreWebView2DownloadState.InProgress
                     Case CoreWebView2DownloadState.Interrupted
                     Case CoreWebView2DownloadState.Completed
-                        If localfile.ExtensionSuffix("smi", "cxsmi") AndAlso MessageBox.Show(
-                            text:=$"A new molecule SMILES structre has been generated,{vbCrLf} do mass spectrum prediction of current molecule?",
-                            caption:="MZKit SMILES toolkit",
+                        If localfile.ExtensionSuffix("smi", "cxsmi", "inchi") AndAlso MessageBox.Show(
+                            text:=$"We check that a new molecule SMILES/InChi structre has been generated,{vbCrLf} do mass spectrum prediction of current molecule?",
+                            caption:="MZKit CFM-ID toolkit",
                             buttons:=MessageBoxButtons.YesNo,
                             icon:=MessageBoxIcon.Information
                         ) Then
+
+                            Dim type As String = If(localfile.ExtensionSuffix("inchi"), "inchi", "smiles")
+
+                            ' do cfm-id prediction
+                            Call OpenCFMIDTool(TextBox1.Text, type)
 
                         End If
                 End Select
@@ -201,5 +206,14 @@ Public Class frmSMILESViewer
         Dim visual As Image = model.Draw().AsGDIImage
 
         PictureBox1.BackgroundImage = visual
+    End Sub
+
+    ''' <summary>
+    ''' cfm-id prediction
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Call OpenCFMIDTool(TextBox1.Text, "smiles")
     End Sub
 End Class

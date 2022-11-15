@@ -395,6 +395,12 @@
     <Compile Include="application\settings\RawFileViewerSettings.vb" />
     <Compile Include="application\VisualStudio.vb" />
     <Compile Include="application\RPackage.vb" />
+    <Compile Include="forms\Inputs\InputCFMIDTool.Designer.vb">
+      <DependentUpon>InputCFMIDTool.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\InputCFMIDTool.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\InputMoNAHits.Designer.vb">
       <DependentUpon>InputMoNAHits.vb</DependentUpon>
     </Compile>
@@ -984,6 +990,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmUserAgreement.resx">
       <DependentUpon>frmUserAgreement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\InputCFMIDTool.resx">
+      <DependentUpon>InputCFMIDTool.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputMoNA.resx">
       <DependentUpon>InputMoNA.vb</DependentUpon>
