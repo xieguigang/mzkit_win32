@@ -167,8 +167,10 @@ Public Class frmSMILESViewer
                             Dim type As String = If(localfile.ExtensionSuffix("inchi"), "inchi", "smiles")
 
                             ' do cfm-id prediction
-                            Call OpenCFMIDTool(TextBox1.Text, type)
+                            TextBox1.Text = localfile.ReadAllText.Trim(" "c, vbCr, vbLf, vbTab)
 
+                            Call Button1_Click(Nothing, Nothing)
+                            Call OpenCFMIDTool(TextBox1.Text, type)
                         End If
                 End Select
             End Sub
