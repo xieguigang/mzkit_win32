@@ -31,7 +31,8 @@ Public Class Prediction
     ' suppress_exception (opt):
     ' Suppress exceptions so that the program returns normally even when it fails to produce a result (0 = OFF (default), 1 = ON).
 
-    ReadOnly appPath As String
+    Dim appPath As String
+    Dim current_task As String
 
     Sub New(app As String)
         Me.appPath = app
@@ -93,9 +94,9 @@ Public Class Prediction
         Call argv.AppendLine(output_filename.CLIPath)         ' <output_filename>
         Call argv.AppendLine(If(apply_post_processing, 1, 0)) ' <apply_post_processing>
 
-        Dim arguments As String = argv.ToString.TrimNewLine
+        current_task = argv.ToString.TrimNewLine
 
-        Call New IORedirectFile(appPath, arguments, win_os:=True).Run()
+        Call New IORedirectFile(appPath, current_task, win_os:=True).Run()
 
         If Not output_filename.FileExists(ZERO_Nonexists:=False) Then
             If suppress_exception Then
@@ -112,13 +113,13 @@ Public Class Prediction
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".txt", sessionID:=$"cfm_id-${App.PID.ToHexString}", prefix:="ms2_predictions")
         Dim uid As String = App.GetNextUniqueName("molecule_")
 
-        Call $"{uid} {input_smiles_or_inchi}".SaveTo(tempfile)
+        Call $"{uid} {input_smiles_or_inchi}".SaveTo(tempfile, encoding:=Encoding.ASCII)
 
         Return tempfile
     End Function
 
     Public Overrides Function ToString() As String
-        Return appPath
+        Return appPath & " " & current_task
     End Function
 
 End Class

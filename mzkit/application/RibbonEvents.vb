@@ -219,11 +219,13 @@ Module RibbonEvents
                            Dim param As String = cfmid.param_config
                            Dim model As String = cfmid.model
 
+                           Call MyApplication.host.showStatusMessage("Run cfm-id prediction for ms2 data!")
                            Call frmProgressSpinner.DoLoading(
                               Sub()
                                   result = app.PredictMs2(struct_str, param_filename:=model, config_filename:=param)
                               End Sub)
 
+                           Call MyApplication.host.showStatusMessage(app.ToString)
                            Call VisualStudio _
                               .ShowDocument(Of frmCFMIDOutputViewer) _
                               .SetCFMIDoutput(result)
