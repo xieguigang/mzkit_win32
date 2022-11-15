@@ -2,7 +2,24 @@
 
 Public Class InputCFMIDTool
 
-    Dim cfmid_folder As String
+    Friend cfmid_folder As String
+
+
+    Public ReadOnly Property struct As String
+        Get
+            Return TextBox1.Text
+        End Get
+    End Property
+    Public ReadOnly Property param_config As String
+        Get
+            Return TextBox2.Text
+        End Get
+    End Property
+    Public ReadOnly Property model As String
+        Get
+            Return TextBox3.Text
+        End Get
+    End Property
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Me.DialogResult = DialogResult.Cancel
@@ -69,6 +86,9 @@ Public Class InputCFMIDTool
     End Sub
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
+        If ListBox1.Items.Count = 0 Then
+            Return
+        End If
         If ListBox1.SelectedIndex = -1 Then
             ListBox1.SelectedIndex = 0
         End If
@@ -90,6 +110,10 @@ Public Class InputCFMIDTool
     End Sub
 
     Private Sub ListBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox2.SelectedIndexChanged
+        If ListBox2.Items.Count = 0 Then
+            Return
+        End If
+
         Dim folderName As String = ListBox1.SelectedItem.ToString
         Dim path As String = $"{cfmid_folder}/models/esi_msms_models/{folderName}"
         Dim modelfile As String = $"{path}/{ListBox2.SelectedItem}"

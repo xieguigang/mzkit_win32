@@ -63,6 +63,7 @@
 Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Text
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MSP
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
@@ -74,6 +75,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports RibbonLib
 Imports RibbonLib.Controls.Events
 Imports RibbonLib.Interop
+Imports SMRUCC.Rsharp.Runtime.Internal.Invokes
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 
@@ -205,12 +207,23 @@ Module RibbonEvents
     Public Sub OpenCFMIDTool(struct As String, type As String)
         Dim tool As New InputCFMIDTool
 
-        If Not (struct.StringEmpty OrElse type.StringEmpty) Then
-
+        If Not struct.StringEmpty Then
+            tool.TextBox1.Text = struct
         End If
 
         Call InputDialog.Input(
             setConfig:=Sub(cfmid)
+                           Dim app As New CFM_ID.Prediction($"{cfmid.cfmid_folder}/cfm-predict.exe")
+                           Dim result As MspData() = Nothing
+                           Dim struct_str As String = cfmid.struct
+                           Dim param As String = cfmid.param_config
+                           Dim model As String = cfmid.model
+
+                           Call frmProgressSpinner.DoLoading(
+                              Sub()
+                                  result = app.PredictMs2(struct_str, param_filename:=model, config_filename:=param)
+                              End Sub)
+
 
                        End Sub,
             config:=tool

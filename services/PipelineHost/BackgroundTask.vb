@@ -39,6 +39,12 @@ Module BackgroundTask
         FrameworkInternal.ConfigMemory(MemoryLoads.Heavy)
     End Sub
 
+    Public Function cfmidPredict() As Object
+        Dim cfmid As New CFM_ID.Prediction("")
+
+        Throw New NotImplementedException
+    End Function
+
     <ExportAPI("read.tissue_regions")>
     Public Function readTissues(file As String) As TissueRegion()
         Using buffer As Stream = file.Open(FileMode.Open, doClear:=False, [readOnly]:=True)

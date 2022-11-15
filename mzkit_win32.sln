@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pipeline", "Pipeline", "{D0E171FC-329C-486D-BB2F-98268C3FAF9E}"
 	ProjectSection(SolutionItems) = preProject
 		rstudio\pipeline\buildMSIIndex.R = rstudio\pipeline\buildMSIIndex.R
+		rstudio\pipeline\cfm-id.R = rstudio\pipeline\cfm-id.R
 		rstudio\pipeline\HEScan.R = rstudio\pipeline\HEScan.R
 		rstudio\pipeline\metadna.R = rstudio\pipeline\metadna.R
 		rstudio\pipeline\MS1deconv.R = rstudio\pipeline\MS1deconv.R
