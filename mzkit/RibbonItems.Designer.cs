@@ -144,6 +144,7 @@ namespace RibbonLib.Controls
             public const uint cmdButtonFeatureDetections = 152;
             public const uint cmdButtonMSISignalCorrection = 197;
             public const uint cmdButtonIonCoLocalization = 204;
+            public const uint cmdButtonCosHeatmap = 211;
             public const uint cmdButtonMSIRawIonStat = 166;
             public const uint cmdButtonMSICleanBackground = 167;
             public const uint cmdCleanBackgroundAutoReference = 199;
@@ -347,6 +348,7 @@ namespace RibbonLib.Controls
         public RibbonDropDownButton ButtonFeatureDetections { get; private set; }
         public RibbonButton ButtonMSISignalCorrection { get; private set; }
         public RibbonButton ButtonIonCoLocalization { get; private set; }
+        public RibbonButton ButtonCosHeatmap { get; private set; }
         public RibbonButton ButtonMSIRawIonStat { get; private set; }
         public RibbonDropDownButton ButtonMSICleanBackground { get; private set; }
         public RibbonButton CleanBackgroundAutoReference { get; private set; }
@@ -545,6 +547,7 @@ namespace RibbonLib.Controls
             ButtonFeatureDetections = new RibbonDropDownButton(ribbon, Cmd.cmdButtonFeatureDetections);
             ButtonMSISignalCorrection = new RibbonButton(ribbon, Cmd.cmdButtonMSISignalCorrection);
             ButtonIonCoLocalization = new RibbonButton(ribbon, Cmd.cmdButtonIonCoLocalization);
+            ButtonCosHeatmap = new RibbonButton(ribbon, Cmd.cmdButtonCosHeatmap);
             ButtonMSIRawIonStat = new RibbonButton(ribbon, Cmd.cmdButtonMSIRawIonStat);
             ButtonMSICleanBackground = new RibbonDropDownButton(ribbon, Cmd.cmdButtonMSICleanBackground);
             CleanBackgroundAutoReference = new RibbonButton(ribbon, Cmd.cmdCleanBackgroundAutoReference);

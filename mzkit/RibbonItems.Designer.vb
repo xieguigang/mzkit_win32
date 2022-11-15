@@ -141,6 +141,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonFeatureDetections As UInteger = 152
             Public Const cmdButtonMSISignalCorrection As UInteger = 197
             Public Const cmdButtonIonCoLocalization As UInteger = 204
+            Public Const cmdButtonCosHeatmap As UInteger = 211
             Public Const cmdButtonMSIRawIonStat As UInteger = 166
             Public Const cmdButtonMSICleanBackground As UInteger = 167
             Public Const cmdCleanBackgroundAutoReference As UInteger = 199
@@ -974,6 +975,12 @@ Namespace RibbonLib.Controls
                 Return _ButtonIonCoLocalization
             End Get
         End Property
+        Private _ButtonCosHeatmap As RibbonButton
+        Public ReadOnly Property ButtonCosHeatmap As RibbonButton
+            Get
+                Return _ButtonCosHeatmap
+            End Get
+        End Property
         Private _ButtonMSIRawIonStat As RibbonButton
         Public ReadOnly Property ButtonMSIRawIonStat As RibbonButton
             Get
@@ -1507,6 +1514,7 @@ Namespace RibbonLib.Controls
             _ButtonFeatureDetections = New RibbonDropDownButton(_ribbon, Cmd.cmdButtonFeatureDetections)
             _ButtonMSISignalCorrection = New RibbonButton(_ribbon, Cmd.cmdButtonMSISignalCorrection)
             _ButtonIonCoLocalization = New RibbonButton(_ribbon, Cmd.cmdButtonIonCoLocalization)
+            _ButtonCosHeatmap = New RibbonButton(_ribbon, Cmd.cmdButtonCosHeatmap)
             _ButtonMSIRawIonStat = New RibbonButton(_ribbon, Cmd.cmdButtonMSIRawIonStat)
             _ButtonMSICleanBackground = New RibbonDropDownButton(_ribbon, Cmd.cmdButtonMSICleanBackground)
             _CleanBackgroundAutoReference = New RibbonButton(_ribbon, Cmd.cmdCleanBackgroundAutoReference)

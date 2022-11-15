@@ -57,7 +57,7 @@ Imports WeifenLuo.WinFormsUI.Docking
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmMsImagingViewer
     Inherits DocumentWindow
-    ' Inherits Form
+    'Inherits Form
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)

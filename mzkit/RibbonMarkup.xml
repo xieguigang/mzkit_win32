@@ -2440,6 +2440,20 @@
         <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonCosHeatmap" Id="211" LabelTitle="Pixel Cosine Heatmap" LabelDescription="Pixel Cosine Heatmap" TooltipTitle="Pixel Cosine Heatmap" TooltipDescription="Pixel Cosine Heatmap">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
+      </Command.LargeImages>
+      <Command.SmallHighContrastImages>
+        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
+      </Command.SmallHighContrastImages>
+      <Command.LargeHighContrastImages>
+        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
+      </Command.LargeHighContrastImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2680,6 +2694,7 @@
               <DropDownButton CommandName="cmdButtonFeatureDetections">
                 <Button CommandName="cmdButtonMSISignalCorrection" />
                 <Button CommandName="cmdButtonIonCoLocalization" />
+                <Button CommandName="cmdButtonCosHeatmap" />
                 <Button CommandName="cmdButtonMSIRawIonStat" />
                 <DropDownButton CommandName="cmdButtonMSICleanBackground">
                   <Button CommandName="cmdCleanBackgroundAutoReference" />
