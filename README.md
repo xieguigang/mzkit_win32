@@ -19,3 +19,12 @@ Mzkit Windows Desktop Application, this source repository is a submodule of the 
    
 5. Finally build the installer package project:
    + open the project file in ``Advanced Installer`` in mzkit source folder: "src/mzkit/setup/mzkit_setups.aip"
+
+
+## Reference
+
+1. SMILES drawer: https://github.com/reymond-group/smilesDrawer, J. Chem. Inf. Model. 2018, 58, 1, 1–7 
+   Publication Date:December 19, 2017
+   https://doi.org/10.1021/acs.jcim.7b00425
+
+2. Chemical structure drawer: https://github.com/epam/ketcher 
