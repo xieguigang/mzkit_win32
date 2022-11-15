@@ -224,7 +224,9 @@ Module RibbonEvents
                                   result = app.PredictMs2(struct_str, param_filename:=model, config_filename:=param)
                               End Sub)
 
-
+                           Call VisualStudio _
+                              .ShowDocument(Of frmCFMIDOutputViewer) _
+                              .SetCFMIDoutput(result)
                        End Sub,
             config:=tool
         )
