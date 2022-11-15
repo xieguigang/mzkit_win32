@@ -162,6 +162,7 @@ Partial Class frmSMILESViewer
         '
         'Button3
         '
+        Me.Button3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Button3.Location = New System.Drawing.Point(598, 490)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(125, 23)
