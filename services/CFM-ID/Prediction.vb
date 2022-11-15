@@ -93,7 +93,9 @@ Public Class Prediction
         Call argv.AppendLine(output_filename.CLIPath)         ' <output_filename>
         Call argv.AppendLine(If(apply_post_processing, 1, 0)) ' <apply_post_processing>
 
-        Call New IORedirectFile(appPath, argv.ToString.TrimNewLine, win_os:=True).Run()
+        Dim arguments As String = argv.ToString.TrimNewLine
+
+        Call New IORedirectFile(appPath, arguments, win_os:=True).Run()
 
         If Not output_filename.FileExists(ZERO_Nonexists:=False) Then
             If suppress_exception Then
