@@ -89,11 +89,15 @@ Partial Class frmSMILESViewer
         Me.Button2 = New System.Windows.Forms.Button()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.WebView22 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage3.SuspendLayout()
+        CType(Me.WebView22, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Button1
@@ -124,7 +128,7 @@ Partial Class frmSMILESViewer
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(22, 433)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(76, 13)
+        Me.Label1.Size = New System.Drawing.Size(83, 12)
         Me.Label1.TabIndex = 2
         Me.Label1.Text = "Input SMILES:"
         '
@@ -132,6 +136,7 @@ Partial Class frmSMILESViewer
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
@@ -220,13 +225,36 @@ Partial Class frmSMILESViewer
         Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(19, 19)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(81, 13)
+        Me.Label2.Size = New System.Drawing.Size(95, 12)
         Me.Label2.TabIndex = 0
         Me.Label2.Text = "Input KCF data:"
         '
+        'TabPage3
+        '
+        Me.TabPage3.Controls.Add(Me.WebView22)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage3.Size = New System.Drawing.Size(943, 530)
+        Me.TabPage3.TabIndex = 2
+        Me.TabPage3.Text = "Ketcher"
+        Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'WebView22
+        '
+        Me.WebView22.AllowExternalDrop = True
+        Me.WebView22.CreationProperties = Nothing
+        Me.WebView22.DefaultBackgroundColor = System.Drawing.Color.White
+        Me.WebView22.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.WebView22.Location = New System.Drawing.Point(3, 3)
+        Me.WebView22.Name = "WebView22"
+        Me.WebView22.Size = New System.Drawing.Size(937, 524)
+        Me.WebView22.TabIndex = 0
+        Me.WebView22.ZoomFactor = 1.0R
+        '
         'frmSMILESViewer
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(951, 556)
         Me.Controls.Add(Me.TabControl1)
@@ -239,6 +267,8 @@ Partial Class frmSMILESViewer
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage3.ResumeLayout(False)
+        CType(Me.WebView22, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -255,4 +285,6 @@ Partial Class frmSMILESViewer
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents WebView21 As Microsoft.Web.WebView2.WinForms.WebView2
+    Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents WebView22 As Microsoft.Web.WebView2.WinForms.WebView2
 End Class

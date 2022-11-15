@@ -60,6 +60,7 @@ Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
+Imports Microsoft.Web.WebView2.WinForms
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 
@@ -81,6 +82,10 @@ Public Class frmSMILESViewer
         Return AppEnvironment.getWebViewFolder & "/SMILES.html"
     End Function
 
+    Private Function getKetcher() As String
+        Return AppEnvironment.getWebViewFolder & "/ketcher/index.html"
+    End Function
+
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim smilesStr As String = Strings.Trim(TextBox1.Text)
         Dim js As String = $"rendering('{smilesStr}');"
@@ -96,19 +101,17 @@ Public Class frmSMILESViewer
 
     Private Sub frmSMILESViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call frmHtmlViewer.Init(WebView21)
+        Call frmHtmlViewer.Init(WebView22)
         Call Wait()
 
         Text = "Molecule Drawer"
         TabText = Text
     End Sub
 
-    Public Sub DeveloperOptions(enable As Boolean)
+    Public Shared Sub DeveloperOptions(WebView21 As WebView2, enable As Boolean)
         WebView21.CoreWebView2.Settings.AreDevToolsEnabled = enable
         WebView21.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = enable
         WebView21.CoreWebView2.Settings.AreDefaultContextMenusEnabled = enable
-        If enable Then
-            Call MyApplication.host.showStatusMessage($"[{TabText}] WebView2 developer tools has been enable!")
-        End If
     End Sub
 
     Private Sub Wait()
@@ -116,12 +119,18 @@ Public Class frmSMILESViewer
     End Sub
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
-
         ' WebView21.CoreWebView2.OpenDevToolsWindow()
         WebView21.CoreWebView2.Navigate(getViewerUrl)
         Button1.Enabled = True
 
-        Call DeveloperOptions(enable:=True)
+        Call DeveloperOptions(WebView21, enable:=True)
+    End Sub
+
+    Private Sub WebView22_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView22.CoreWebView2InitializationCompleted
+        ' WebView21.CoreWebView2.OpenDevToolsWindow()
+        WebView22.CoreWebView2.Navigate(getKetcher)
+
+        Call DeveloperOptions(WebView22, enable:=True)
     End Sub
 
     Private Sub WebView21_NavigationCompleted(sender As Object, e As CoreWebView2NavigationCompletedEventArgs) Handles WebView21.NavigationCompleted
