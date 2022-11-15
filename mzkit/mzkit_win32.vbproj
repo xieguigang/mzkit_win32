@@ -582,6 +582,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\DemoItem.vb" />
+    <Compile Include="pages\dockWindow\documents\frmCFMIDOutputViewer.Designer.vb">
+      <DependentUpon>frmCFMIDOutputViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pages\dockWindow\documents\frmCFMIDOutputViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\documents\frmPeakFinding.Designer.vb">
       <DependentUpon>frmPeakFinding.vb</DependentUpon>
     </Compile>
@@ -1080,6 +1086,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\base\ToolWindow.resx">
       <DependentUpon>ToolWindow.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\documents\frmCFMIDOutputViewer.resx">
+      <DependentUpon>frmCFMIDOutputViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frmFeatureSearch.resx">
       <DependentUpon>frmFeatureSearch.vb</DependentUpon>

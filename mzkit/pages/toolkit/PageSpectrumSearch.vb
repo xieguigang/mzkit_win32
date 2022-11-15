@@ -328,4 +328,8 @@ Public Class PageSpectrumSearch
                 End If
             End Sub)
     End Sub
+
+    Private Sub TreeListView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TreeListView1.SelectedIndexChanged
+
+    End Sub
 End Class
