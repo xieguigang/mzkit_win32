@@ -76,6 +76,7 @@ Imports BioNovoGene.BioDeep.MSEngine
 Imports BioNovoGene.mzkit_win32.Configuration
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices.Development
+Imports Microsoft.VisualBasic.CommandLine
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Data.csv
@@ -99,12 +100,15 @@ Module Globals
     ''' 这个是未进行任何工作区保存所保存的一个默认的临时文件的位置
     ''' </summary>
     Friend ReadOnly defaultWorkspace As String = App.LocalData & "/.defaultWorkspace"
+    Friend ReadOnly localfs As Process
 
     Dim currentWorkspace As ViewerProject
 
     Public ReadOnly Property Settings As Settings
 
     Public Property loadedSettings As Boolean = False
+
+    Public ReadOnly Property WebPort As Integer = 36147
 
     Public ReadOnly Property CurrentVersion As String
         Get
@@ -132,6 +136,17 @@ Module Globals
 
     Sub New()
         Settings = Settings.GetConfiguration()
+        localfs = New Process With {
+            .StartInfo = New ProcessStartInfo With {
+                .FileName = $"{App.HOME}/Rstudio/bin/Rserve.exe",
+                .Arguments = $"--listen /wwwroot ""{AppEnvironment.getWebViewFolder}"" /port {WebPort}",
+                .CreateNoWindow = True,
+                .WindowStyle = ProcessWindowStyle.Hidden,
+                .UseShellExecute = True
+            }
+        }
+
+        Call localfs.Start()
 
         Call FrameworkInternal.ConfigMemory(MemoryLoads.Max)
         Call LicenseFile.ApplyLicense()

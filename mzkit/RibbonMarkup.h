@@ -1106,5 +1106,14 @@
 #define cmdButtonCosHeatmap_LargeImages_192__RESID 60282
 #define cmdButtonCosHeatmap_SmallHighContrastImages_192__RESID 60283
 #define cmdButtonCosHeatmap_LargeHighContrastImages_192__RESID 60284
-#define InternalCmd2_LabelTitle_RESID 60285
-#define InternalCmd4_LabelTitle_RESID 60286
+#define cmdButtonCFMIDTool 212 
+#define cmdButtonCFMIDTool_LabelTitle_RESID 60285
+#define cmdButtonCFMIDTool_LabelDescription_RESID 60286
+#define cmdButtonCFMIDTool_TooltipTitle_RESID 60287
+#define cmdButtonCFMIDTool_TooltipDescription_RESID 60288
+#define cmdButtonCFMIDTool_SmallImages_192__RESID 60289
+#define cmdButtonCFMIDTool_LargeImages_192__RESID 60290
+#define cmdButtonCFMIDTool_SmallHighContrastImages_192__RESID 60291
+#define cmdButtonCFMIDTool_LargeHighContrastImages_192__RESID 60292
+#define InternalCmd2_LabelTitle_RESID 60293
+#define InternalCmd4_LabelTitle_RESID 60294

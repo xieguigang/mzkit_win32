@@ -63,6 +63,7 @@
 Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Text
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MSP
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
@@ -74,6 +75,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports RibbonLib
 Imports RibbonLib.Controls.Events
 Imports RibbonLib.Interop
+Imports SMRUCC.Rsharp.Runtime.Internal.Invokes
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 
@@ -175,6 +177,8 @@ Module RibbonEvents
         AddHandler ribbonItems.ButtonDevTools.ExecuteEvent, Sub() Call openCmd()
         AddHandler ribbonItems.DOIReference.ExecuteEvent, Sub() Call New frmDOI().ShowDialog()
         AddHandler ribbonItems.ButtonSystemDiagnosis.ExecuteEvent, Sub() Call CollectSystemInformation()
+
+        AddHandler ribbonItems.ButtonCFMIDTool.ExecuteEvent, Sub() Call OpenCFMIDTool(Nothing, Nothing)
     End Sub
 
     Friend Sub CreatePeakFinding()
@@ -189,6 +193,45 @@ Module RibbonEvents
             Dim app = VisualStudio.ShowDocument(Of frmPeakFinding)(DockState.Document, $"Peak Finding [{mzkitTool.matrixName}]")
             app.LoadMatrix(mzkitTool.matrixName, DirectCast(matrix, ChromatogramTick()))
         End If
+    End Sub
+
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="struct">
+    ''' molecule structrue string to run prediction
+    ''' </param>
+    ''' <param name="type">
+    ''' smiles/inchi
+    ''' </param>
+    Public Sub OpenCFMIDTool(struct As String, type As String)
+        Dim tool As New InputCFMIDTool
+
+        If Not struct.StringEmpty Then
+            tool.TextBox1.Text = struct
+        End If
+
+        Call InputDialog.Input(
+            setConfig:=Sub(cfmid)
+                           Dim app As New CFM_ID.Prediction($"{cfmid.cfmid_folder}/cfm-predict.exe")
+                           Dim result As MspData() = Nothing
+                           Dim struct_str As String = cfmid.struct
+                           Dim param As String = cfmid.param_config
+                           Dim model As String = cfmid.model
+
+                           Call MyApplication.host.showStatusMessage("Run cfm-id prediction for ms2 data!")
+                           Call frmProgressSpinner.DoLoading(
+                              Sub()
+                                  result = app.PredictMs2(struct_str, param_filename:=model, config_filename:=param)
+                              End Sub)
+
+                           Call MyApplication.host.showStatusMessage(app.ToString)
+                           Call VisualStudio _
+                              .ShowDocument(Of frmCFMIDOutputViewer) _
+                              .SetCFMIDoutput(result)
+                       End Sub,
+            config:=tool
+        )
     End Sub
 
     Private Sub CollectSystemInformation()

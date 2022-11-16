@@ -189,6 +189,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonMzCalculator As UInteger = 1013
             Public Const cmdButtonMzSearch As UInteger = 1052
             Public Const cmdButtonShowSpectrumSearchPage As UInteger = 1102
+            Public Const cmdButtonCFMIDTool As UInteger = 212
             Public Const cmdMsconvertGUI As UInteger = 210
             Public Const cmdButtonViewSMILES As UInteger = 178
             Public Const cmdTargeted As UInteger = 99
@@ -1263,6 +1264,12 @@ Namespace RibbonLib.Controls
                 Return _ButtonShowSpectrumSearchPage
             End Get
         End Property
+        Private _ButtonCFMIDTool As RibbonButton
+        Public ReadOnly Property ButtonCFMIDTool As RibbonButton
+            Get
+                Return _ButtonCFMIDTool
+            End Get
+        End Property
         Private _MsconvertGUI As RibbonButton
         Public ReadOnly Property MsconvertGUI As RibbonButton
             Get
@@ -1562,6 +1569,7 @@ Namespace RibbonLib.Controls
             _ButtonMzCalculator = New RibbonButton(_ribbon, Cmd.cmdButtonMzCalculator)
             _ButtonMzSearch = New RibbonButton(_ribbon, Cmd.cmdButtonMzSearch)
             _ButtonShowSpectrumSearchPage = New RibbonButton(_ribbon, Cmd.cmdButtonShowSpectrumSearchPage)
+            _ButtonCFMIDTool = New RibbonButton(_ribbon, Cmd.cmdButtonCFMIDTool)
             _MsconvertGUI = New RibbonButton(_ribbon, Cmd.cmdMsconvertGUI)
             _ButtonViewSMILES = New RibbonButton(_ribbon, Cmd.cmdButtonViewSMILES)
             _Targeted = New RibbonButton(_ribbon, Cmd.cmdTargeted)

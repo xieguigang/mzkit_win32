@@ -52,16 +52,16 @@
 
 #End Region
 
+Imports System.Reflection
+Imports System.Threading
 Imports BioNovoGene.BioDeep.Chemistry.Model
 Imports BioNovoGene.BioDeep.Chemistry.Model.Drawing
 Imports BioNovoGene.BioDeep.Chemoinformatics.SDF
 Imports BioNovoGene.BioDeep.Chemoinformatics.SMILES
-Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
 Imports Microsoft.Web.WebView2.WinForms
-Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmSMILESViewer
@@ -79,11 +79,11 @@ Public Class frmSMILESViewer
     End Sub
 
     Private Function getViewerUrl() As String
-        Return AppEnvironment.getWebViewFolder & "/SMILES.html"
+        Return $"http://127.0.0.1:{Globals.WebPort}/SMILES.html"
     End Function
 
     Private Function getKetcher() As String
-        Return AppEnvironment.getWebViewFolder & "/ketcher/index.html"
+        Return $"http://127.0.0.1:{Globals.WebPort}/ketcher/index.html"
     End Function
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -131,6 +131,49 @@ Public Class frmSMILESViewer
         WebView22.CoreWebView2.Navigate(getKetcher)
 
         Call DeveloperOptions(WebView22, enable:=True)
+
+        AddHandler WebView22.CoreWebView2.DownloadStarting,
+            Sub(s, evt)
+                ' Developer can obtain a deferral for the event so that the CoreWebView2
+                ' doesn't examine the properties we set on the event args until
+                ' after the deferral completes asynchronously.
+                Dim deferral As CoreWebView2Deferral = evt.GetDeferral()
+                ' We avoid potential reentrancy from running a message loop in the download
+                ' starting event handler by showing our download dialog later when we
+                ' complete the deferral asynchronously.
+                SynchronizationContext.Current.Post(
+                    Sub()
+                        Using deferral
+                            UpdateProgress(evt.ResultFilePath, evt.DownloadOperation)
+                        End Using
+                    End Sub, Nothing)
+            End Sub
+    End Sub
+
+    Private Sub UpdateProgress(localfile As String, download As CoreWebView2DownloadOperation)
+        AddHandler download.StateChanged,
+            Sub(sender, e)
+                Select Case download.State
+                    Case CoreWebView2DownloadState.InProgress
+                    Case CoreWebView2DownloadState.Interrupted
+                    Case CoreWebView2DownloadState.Completed
+                        If localfile.ExtensionSuffix("smi", "cxsmi", "inchi") AndAlso MessageBox.Show(
+                            text:=$"We check that a new molecule SMILES/InChi structre has been generated,{vbCrLf} do mass spectrum prediction of current molecule?",
+                            caption:="MZKit CFM-ID toolkit",
+                            buttons:=MessageBoxButtons.YesNo,
+                            icon:=MessageBoxIcon.Information
+                        ) Then
+
+                            Dim type As String = If(localfile.ExtensionSuffix("inchi"), "inchi", "smiles")
+
+                            ' do cfm-id prediction
+                            TextBox1.Text = localfile.ReadAllText.Trim(" "c, vbCr, vbLf, vbTab)
+
+                            Call Button1_Click(Nothing, Nothing)
+                            Call OpenCFMIDTool(TextBox1.Text, type)
+                        End If
+                End Select
+            End Sub
     End Sub
 
     Private Sub WebView21_NavigationCompleted(sender As Object, e As CoreWebView2NavigationCompletedEventArgs) Handles WebView21.NavigationCompleted
@@ -165,5 +208,14 @@ Public Class frmSMILESViewer
         Dim visual As Image = model.Draw().AsGDIImage
 
         PictureBox1.BackgroundImage = visual
+    End Sub
+
+    ''' <summary>
+    ''' cfm-id prediction
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Call OpenCFMIDTool(TextBox1.Text, "smiles")
     End Sub
 End Class

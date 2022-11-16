@@ -192,6 +192,7 @@ namespace RibbonLib.Controls
             public const uint cmdButtonMzCalculator = 1013;
             public const uint cmdButtonMzSearch = 1052;
             public const uint cmdButtonShowSpectrumSearchPage = 1102;
+            public const uint cmdButtonCFMIDTool = 212;
             public const uint cmdMsconvertGUI = 210;
             public const uint cmdButtonViewSMILES = 178;
             public const uint cmdTargeted = 99;
@@ -396,6 +397,7 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonMzCalculator { get; private set; }
         public RibbonButton ButtonMzSearch { get; private set; }
         public RibbonButton ButtonShowSpectrumSearchPage { get; private set; }
+        public RibbonButton ButtonCFMIDTool { get; private set; }
         public RibbonButton MsconvertGUI { get; private set; }
         public RibbonButton ButtonViewSMILES { get; private set; }
         public RibbonButton Targeted { get; private set; }
@@ -595,6 +597,7 @@ namespace RibbonLib.Controls
             ButtonMzCalculator = new RibbonButton(ribbon, Cmd.cmdButtonMzCalculator);
             ButtonMzSearch = new RibbonButton(ribbon, Cmd.cmdButtonMzSearch);
             ButtonShowSpectrumSearchPage = new RibbonButton(ribbon, Cmd.cmdButtonShowSpectrumSearchPage);
+            ButtonCFMIDTool = new RibbonButton(ribbon, Cmd.cmdButtonCFMIDTool);
             MsconvertGUI = new RibbonButton(ribbon, Cmd.cmdMsconvertGUI);
             ButtonViewSMILES = new RibbonButton(ribbon, Cmd.cmdButtonViewSMILES);
             Targeted = new RibbonButton(ribbon, Cmd.cmdTargeted);

@@ -395,6 +395,12 @@
     <Compile Include="application\settings\RawFileViewerSettings.vb" />
     <Compile Include="application\VisualStudio.vb" />
     <Compile Include="application\RPackage.vb" />
+    <Compile Include="forms\Inputs\InputCFMIDTool.Designer.vb">
+      <DependentUpon>InputCFMIDTool.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\InputCFMIDTool.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\InputMoNAHits.Designer.vb">
       <DependentUpon>InputMoNAHits.vb</DependentUpon>
     </Compile>
@@ -576,6 +582,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\DemoItem.vb" />
+    <Compile Include="pages\dockWindow\documents\frmCFMIDOutputViewer.Designer.vb">
+      <DependentUpon>frmCFMIDOutputViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pages\dockWindow\documents\frmCFMIDOutputViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\documents\frmPeakFinding.Designer.vb">
       <DependentUpon>frmPeakFinding.vb</DependentUpon>
     </Compile>
@@ -985,6 +997,9 @@
     <EmbeddedResource Include="forms\frmUserAgreement.resx">
       <DependentUpon>frmUserAgreement.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\InputCFMIDTool.resx">
+      <DependentUpon>InputCFMIDTool.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputMoNA.resx">
       <DependentUpon>InputMoNA.vb</DependentUpon>
     </EmbeddedResource>
@@ -1071,6 +1086,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\base\ToolWindow.resx">
       <DependentUpon>ToolWindow.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\documents\frmCFMIDOutputViewer.resx">
+      <DependentUpon>frmCFMIDOutputViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frmFeatureSearch.resx">
       <DependentUpon>frmFeatureSearch.vb</DependentUpon>
@@ -1695,6 +1713,10 @@
     <ProjectReference Include="..\services\BioDeep\BioDeep.vbproj">
       <Project>{dcfa3211-c43b-40c3-a183-2d3d83b096e1}</Project>
       <Name>BioDeep</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\services\CFM-ID\CFM-ID.vbproj">
+      <Project>{aa94821a-2199-48b9-81d3-8ca0a7a575ec}</Project>
+      <Name>CFM-ID</Name>
     </ProjectReference>
     <ProjectReference Include="..\services\MZWork\MZWork.vbproj">
       <Project>{0a48789b-a35c-49ba-8224-c604ad14f044}</Project>
