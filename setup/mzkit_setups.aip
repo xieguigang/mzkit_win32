@@ -33,10 +33,10 @@
     <ROW Property="CTRLS" Value="3"/>
     <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1033:{6FC8CE85-3FBE-4D18-9467-9072F2C35665} 2052:{6FC8CE85-3FBE-4D18-9467-9072F2C35665} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{39654D7F-BA90-4169-A39A-260EEC68A25D} 2052:{39654D7F-BA90-4169-A39A-260EEC68A25D} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="mzkit_win32"/>
-    <ROW Property="ProductVersion" Value="3.5.679.8971" Type="32"/>
+    <ROW Property="ProductVersion" Value="3.6.729.1547" Type="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{B645400B-3918-41EF-9009-7ADDD81C84B4}"/>
@@ -112,7 +112,7 @@
     <ROW Directory="zhHant_Dir" Directory_Parent="APPDIR" DefaultDir="zh-Hant"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{A5AA30CF-FD21-4F06-9A4E-6DE3B1A7E7DD}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{9995CEAF-04B8-4A9B-9164-2861C4CECF46}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{69AA9FFE-67B1-456B-88EB-97D3D6C92AA7}" Directory_="APPDIR" Attributes="256"/>
     <ROW Component="BioDeep.dll" ComponentId="{2FECE77D-517F-47B1-97BA-15B1100BE489}" Directory_="APPDIR" Attributes="256" KeyPath="BioDeep.dll"/>
     <ROW Component="BioDeep.dll_1" ComponentId="{8274C55C-D52A-4F5B-A268-505929309095}" Directory_="host_Dir" Attributes="256" KeyPath="BioDeep.dll_1"/>
@@ -161,6 +161,8 @@
     <ROW Component="BioNovoGene.BioDeep.MetaDNA.Visual.dll" ComponentId="{99ADFC45-FDD3-4983-BF14-8BD45E01E5C4}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.MetaDNA.Visual.dll"/>
     <ROW Component="BioNovoGene.BioDeep.MetaDNA.dll" ComponentId="{8C7B7B69-437B-4C53-977C-84FAB4A93D8C}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.MetaDNA.dll"/>
     <ROW Component="BioNovoGene.BioDeep.MetaDNA.dll_1" ComponentId="{06908418-6BCC-442A-B4C5-355239118597}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.BioDeep.MetaDNA.dll_1"/>
+    <ROW Component="CFMID.dll" ComponentId="{CF2350BF-9E18-47D6-9618-D5D3A3AFE43F}" Directory_="host_Dir" Attributes="256" KeyPath="CFMID.dll"/>
+    <ROW Component="CFMID.dll_1" ComponentId="{D4B2FDC4-F0BF-400F-A00A-A5DD67AD52EA}" Directory_="APPDIR" Attributes="256" KeyPath="CFMID.dll_1"/>
     <ROW Component="Centos.dll" ComponentId="{A7076283-F550-491D-96A6-AA2CCA5D6A7C}" Directory_="APPDIR" Attributes="256" KeyPath="Centos.dll"/>
     <ROW Component="Clearcore2.Compression.dll" ComponentId="{0F6616D8-9FB4-4A8F-80F3-2FFA7882602A}" Directory_="APPDIR" Attributes="256" KeyPath="Clearcore2.Compression.dll"/>
     <ROW Component="Clearcore2.Data.AnalystDataProvider.dll" ComponentId="{00856820-9BA0-4DD4-AEED-5AAB9F44B468}" Directory_="APPDIR" Attributes="256" KeyPath="Clearcore2.Data.AnalystDataProvider.dll"/>
@@ -491,6 +493,7 @@
     <ROW Component="install_locals.cmd" ComponentId="{7A6DCF88-DE75-4942-A2E1-16C51C260C94}" Directory_="packages_Dir" Attributes="0" KeyPath="install_locals.cmd"/>
     <ROW Component="library" ComponentId="{7165AD75-FA2D-4513-8E69-E2CCE22396AC}" Directory_="library_Dir" Attributes="256"/>
     <ROW Component="logo.png" ComponentId="{17087220-5093-40F8-9F73-BC58242E5BC4}" Directory_="webview_Dir" Attributes="0" KeyPath="logo.png" Type="0"/>
+    <ROW Component="lpsolve55.dll" ComponentId="{0CF01530-6BAB-4BBC-A0D5-C7705FE256D0}" Directory_="cfmid2_Dir" Attributes="0" KeyPath="lpsolve55.dll"/>
     <ROW Component="main.22c72ca0.js" ComponentId="{47D9DFF7-0AB7-4F7F-BE9A-B66F90D71B82}" Directory_="js_Dir" Attributes="0" KeyPath="main.22c72ca0.js" Type="0"/>
     <ROW Component="main.8e693d51.css" ComponentId="{99C9E0DD-D558-41AF-9127-CF1488436BB0}" Directory_="css_Dir" Attributes="0" KeyPath="main.8e693d51.css" Type="0"/>
     <ROW Component="man.pptx" ComponentId="{C4ACBC7D-8438-41D9-AD59-9CA86D4EBA4B}" Directory_="documents_Dir" Attributes="256" KeyPath="man.pptx" Type="0"/>
@@ -1108,6 +1111,10 @@
     <ROW File="msmpisetup.exe" Component_="msmpisetup.exe" FileName="MSMPIS~1.EXE|msmpisetup.exe" Attributes="0" SourcePath="..\dist\cfm-id2\msmpisetup.exe" SelfReg="false"/>
     <ROW File="README.md" Component_="ISOTOPE.DAT" FileName="README.md" Attributes="0" SourcePath="..\dist\cfm-id2\README.md" SelfReg="false"/>
     <ROW File="README.txt_2" Component_="ISOTOPE.DAT" FileName="README.txt" Attributes="0" SourcePath="..\dist\cfm-id2\README.txt" SelfReg="false"/>
+    <ROW File="CFMID.dll" Component_="CFMID.dll" FileName="CFM-ID.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\CFM-ID.dll" SelfReg="false"/>
+    <ROW File="lpsolve55.dll" Component_="lpsolve55.dll" FileName="LPSOLV~1.DLL|lpsolve55.dll" Attributes="0" SourcePath="..\dist\cfm-id2\lpsolve55.dll" SelfReg="false"/>
+    <ROW File="CFMID.dll_1" Component_="CFMID.dll_1" FileName="CFM-ID.dll" Attributes="0" SourcePath="..\..\..\dist\bin\CFM-ID.dll" SelfReg="false"/>
+    <ROW File="cfmid.R" Component_="buildMSIIndex.R" FileName="cfm-id.R" Attributes="0" SourcePath="..\rstudio\pipeline\cfm-id.R" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -1656,6 +1663,9 @@
     <ROW Feature_="MainFeature" Component_="model33.txt"/>
     <ROW Feature_="MainFeature" Component_="model43.txt"/>
     <ROW Feature_="MainFeature" Component_="msmpisetup.exe"/>
+    <ROW Feature_="MainFeature" Component_="CFMID.dll"/>
+    <ROW Feature_="MainFeature" Component_="lpsolve55.dll"/>
+    <ROW Feature_="MainFeature" Component_="CFMID.dll_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
