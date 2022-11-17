@@ -47,11 +47,11 @@ Public Module Utils
             spot = matrix.expression(i)
             point = spatial(spot.geneID)
             metadata = New Dictionary(Of String, String) From {
-                {"X", point.X},
-                {"Y", point.Y}
+                {"x", point.X},
+                {"y", point.Y}
             }
 
-            For j As Integer = 0 To spot.experiments(i)
+            For j As Integer = 0 To geneID.Length - 1
                 If spot.experiments(j) > 0 Then
                     Call metadata.Add(j, geneID(j))
                     Call mz.Add(j)
@@ -68,10 +68,11 @@ Public Module Utils
 
             Call mz.Clear()
             Call into.Clear()
+            Call ms.Add(scan)
         Next
 
         Return New mzPack With {
-            .MS = ms.ToArray,
+            .MS = ms.ToArray.ScalePixels(flip:=False),
             .source = matrix.tag,
             .Application = FileApplicationClass.MSImaging
         }
