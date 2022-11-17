@@ -71,6 +71,14 @@ Public Module Utils
             Call ms.Add(scan)
         Next
 
+        Dim p As Point() = ms.Select(Function(s) s.GetMSIPixel).ToArray
+        p = STImaging.Render.ScaleSpots(p)
+
+        For i As Integer = 0 To p.Length - 1
+            ms(i).meta!x = p(i).X
+            ms(i).meta!y = p(i).Y
+        Next
+
         Return New mzPack With {
             .MS = ms.ToArray.ScalePixels(flip:=False),
             .source = matrix.tag,
