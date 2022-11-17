@@ -55,6 +55,7 @@
 #End Region
 
 Imports System.ComponentModel
+Imports System.Runtime.InteropServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Net.Http
@@ -63,6 +64,23 @@ Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class PageStart
+
+    ' 所有需要在JavaScript环境中暴露的对象
+    ' 都需要标记上下面的两个自定义属性
+    <ClassInterface(ClassInterfaceType.AutoDual)>
+    <ComVisible(True)>
+    Public Class LinkActions
+
+        Public Sub ViewRawDataFile()
+            Call PageStart.ViewRawDataFile()
+        End Sub
+
+        Public Shared Sub OpenRterm()
+            ' 打开R终端页面
+            Call RibbonEvents.CreateNewScript(Nothing, Nothing)
+        End Sub
+
+    End Class
 
     Dim WithEvents BackgroundWorker As New BackgroundWorker
 
@@ -77,6 +95,7 @@ Public Class PageStart
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
         ' WebView21.CoreWebView2.OpenDevToolsWindow()
+        Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", New LinkActions)
         Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Globals.WebPort}/")
         Call DeveloperOptions(enable:=True)
     End Sub
@@ -87,7 +106,7 @@ Public Class PageStart
         WebView21.CoreWebView2.Settings.AreDefaultContextMenusEnabled = enable
     End Sub
 
-    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
+    Public Shared Sub ViewRawDataFile()
         Dim fileExplorer = WindowModules.fileExplorer
 
         WindowModules.fileExplorer.DockState = DockState.DockLeft
@@ -167,10 +186,6 @@ Public Class PageStart
         Process.Start("http://www.bionovogene.com/news/newsFeed.htm")
     End Sub
 
-    Private Sub LinkLabel4_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
-        Process.Start("http://www.biodeep.cn/")
-    End Sub
-
     Private Sub PageStart_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         'If Width < 955 Then
         '    LinkLabel2.Visible = False
@@ -181,12 +196,7 @@ Public Class PageStart
         'End If
     End Sub
 
-    Private Sub LinkLabel3_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
-        ' 打开R终端页面
-        RibbonEvents.CreateNewScript(Nothing, Nothing)
-    End Sub
-
-    Private Sub PageStart_DragDrop(sender As Object, e As DragEventArgs) Handles Me.DragDrop
+    Private Sub PageStart_DragDrop(sender As Object, e As DragEventArgs) Handles Me.DragDrop, WebView21.DragDrop
         Dim files() As String = e.Data.GetData(DataFormats.FileDrop)
         Dim firstFile As String = files.ElementAtOrDefault(Scan0)
 
@@ -207,7 +217,7 @@ Public Class PageStart
         End If
     End Sub
 
-    Private Sub PageStart_DragEnter(sender As Object, e As DragEventArgs) Handles Me.DragEnter
+    Private Sub PageStart_DragEnter(sender As Object, e As DragEventArgs) Handles Me.DragEnter, WebView21.DragEnter
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             e.Effect = DragDropEffects.Copy
         End If

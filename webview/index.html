@@ -10,6 +10,10 @@
 
     <title>BioNovoGene MZKit</title>
 
+    <script>
+        let mzkit = window.chrome.webview.hostObjects.mzkit;
+    </script>
+
     <style type="text/css">
         ul,
         li {
@@ -73,9 +77,11 @@
         <div style="height: 10px;"></div>
 
         <ul>
-            <li><img class="icon" src="./images/tracker.png" /><a href="http://v2.biodeep.cn/home">View Raw Data
+            <li><img class="icon" src="./images/tracker.png" />
+                <a href="#" onclick="mzkit.ViewRawDataFile();">View Raw Data
                     File</a></li>
-            <li><img class="icon" src="./images/Terminal.png" /><a href="http://v2.biodeep.cn/home">R# Script
+            <li><img class="icon" src="./images/Terminal.png" />
+                <a href="#" onclick="mzkit.OpenRterm();">R# Script
                     Automation</a></li>
             <li><img class="icon" src="./favicon.png" /><a href="http://v2.biodeep.cn/home">Visit BioDeep</a>
             </li>

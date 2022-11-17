@@ -8,6 +8,7 @@ SET REnv="%R_HOME%/R#.exe"
 SET pkg_repo=../../../dist\bin\Rstudio\packages
 SET GCModeller_src=%drive%\GCModeller\src
 SET mzkit_src=%drive%\mzkit\Rscript\Library
+SET erica_src=%drive%\Erica
 
 if "%1"=="--Rpackage" (
 	goto :jump_to_build_Rpackages
@@ -58,6 +59,10 @@ SET jump=renv
 CALL :exec_msbuild "%GCModeller_src%/R-sharp" "./R_system.NET5.sln"
 :renv
 
+SET jump=erica
+CALL :exec_msbuild "%erica_src%/src" "./Erica.sln"
+:erica
+
 SET jump=reportKit
 CALL :exec_msbuild "%GCModeller_src%/workbench/markdown2pdf/src" "./reportKit.NET5.sln"
 :reportKit
@@ -83,6 +88,11 @@ REM -------- end of run msbuild -----------
 :jump_to_build_Rpackages
 
 cd %msbuild_logger%
+
+SET pkg=%pkg_repo%/Erica.zip
+
+%Rscript% --build /src %erica_src% /save %pkg% --skip-src-build
+%REnv% --install.packages %pkg%
 
 SET pkg=%pkg_repo%/mzkit.zip
 
