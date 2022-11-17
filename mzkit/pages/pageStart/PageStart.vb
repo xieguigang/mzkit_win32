@@ -75,7 +75,7 @@ Public Class PageStart
             Call PageStart.ViewRawDataFile()
         End Sub
 
-        Public Shared Sub OpenRterm()
+        Public Sub OpenRterm()
             ' 打开R终端页面
             Call RibbonEvents.CreateNewScript(Nothing, Nothing)
         End Sub
