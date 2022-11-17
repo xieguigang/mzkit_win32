@@ -71,12 +71,14 @@ Public Module Utils
             Call ms.Add(scan)
         Next
 
-        Dim p As Point() = ms.Select(Function(s) s.GetMSIPixel).ToArray
-        p = STImaging.Render.ScaleSpots(p)
+        Dim pixels As Point() = ms _
+            .Select(Function(s) s.GetMSIPixel) _
+            .ToArray _
+            .DoCall(AddressOf STImaging.Render.ScaleSpots)
 
-        For i As Integer = 0 To p.Length - 1
-            ms(i).meta!x = p(i).X
-            ms(i).meta!y = p(i).Y
+        For i As Integer = 0 To pixels.Length - 1
+            ms(i).meta!x = pixels(i).X
+            ms(i).meta!y = pixels(i).Y
         Next
 
         Return New mzPack With {
