@@ -130,7 +130,7 @@ Public Class frmHtmlViewer
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
         ' WebView21.CoreWebView2.OpenDevToolsWindow()
         Call WebView21.CoreWebView2.Navigate(sourceURL)
-        Call DeveloperOptions(enable:=False)
+        Call DeveloperOptions(enable:=True)
     End Sub
 
     Public Sub LoadHtml(url As String)

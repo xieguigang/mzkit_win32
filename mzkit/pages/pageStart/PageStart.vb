@@ -78,7 +78,7 @@ Public Class PageStart
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
         ' WebView21.CoreWebView2.OpenDevToolsWindow()
         Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Globals.WebPort}/")
-        Call DeveloperOptions(enable:=False)
+        Call DeveloperOptions(enable:=True)
     End Sub
 
     Public Sub DeveloperOptions(enable As Boolean)
