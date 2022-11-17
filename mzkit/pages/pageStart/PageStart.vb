@@ -57,6 +57,8 @@
 Imports System.ComponentModel
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.mzkit_win32.My
+Imports Microsoft.VisualBasic.Net.Http
+Imports Microsoft.Web.WebView2.Core
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 
@@ -64,7 +66,28 @@ Public Class PageStart
 
     Dim WithEvents BackgroundWorker As New BackgroundWorker
 
-    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+    Sub New()
+
+        ' 此调用是设计器所必需的。
+        InitializeComponent()
+
+        ' 在 InitializeComponent() 调用之后添加任何初始化。
+        AutoScaleMode = AutoScaleMode.Dpi
+    End Sub
+
+    Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
+        ' WebView21.CoreWebView2.OpenDevToolsWindow()
+        Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Globals.WebPort}/")
+        Call DeveloperOptions(enable:=False)
+    End Sub
+
+    Public Sub DeveloperOptions(enable As Boolean)
+        WebView21.CoreWebView2.Settings.AreDevToolsEnabled = enable
+        WebView21.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = enable
+        WebView21.CoreWebView2.Settings.AreDefaultContextMenusEnabled = enable
+    End Sub
+
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
         Dim fileExplorer = WindowModules.fileExplorer
 
         WindowModules.fileExplorer.DockState = DockState.DockLeft
@@ -88,8 +111,23 @@ Public Class PageStart
         MyApplication.host.ShowMzkitToolkit()
     End Sub
 
+    ''' <summary>
+    ''' open external link in default webbrowser
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub WebView21_NavigationStarting(sender As Object, e As CoreWebView2NavigationStartingEventArgs) Handles WebView21.NavigationStarting
+        Dim url As New URL(e.Uri)
+
+        If url.hostName <> "127.0.0.1" AndAlso url.hostName <> "localhost" Then
+            e.Cancel = True
+            Process.Start(e.Uri)
+        End If
+    End Sub
+
     Private Sub PageStart_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         hideNewsFeeds()
+        frmHtmlViewer.Init(WebView21)
         ' BackgroundWorker.RunWorkerAsync()
     End Sub
 
@@ -125,11 +163,11 @@ Public Class PageStart
                End Sub)
     End Sub
 
-    Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) 
+    Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
         Process.Start("http://www.bionovogene.com/news/newsFeed.htm")
     End Sub
 
-    Private Sub LinkLabel4_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel4.LinkClicked
+    Private Sub LinkLabel4_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
         Process.Start("http://www.biodeep.cn/")
     End Sub
 
@@ -143,7 +181,7 @@ Public Class PageStart
         'End If
     End Sub
 
-    Private Sub LinkLabel3_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel3.LinkClicked
+    Private Sub LinkLabel3_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
         ' 打开R终端页面
         RibbonEvents.CreateNewScript(Nothing, Nothing)
     End Sub
