@@ -30,6 +30,8 @@ Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.My.FrameworkInternal
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports SMRUCC.genomics.Analysis.HTS.DataFrame
+Imports STImaging
 Imports stdNum = System.Math
 
 <Package("BackgroundTask")>
@@ -38,6 +40,11 @@ Module BackgroundTask
     Sub New()
         FrameworkInternal.ConfigMemory(MemoryLoads.Heavy)
     End Sub
+
+    <ExportAPI("ST_spaceranger.mzpack")>
+    Public Function convertMzPack(spots As SpaceSpot(), matrix As Matrix) As mzPack
+        Return spots.ST_spacerangerToMzPack(matrix)
+    End Function
 
     Public Function cfmidPredict() As Object
         Dim cfmid As New CFM_ID.Prediction("")

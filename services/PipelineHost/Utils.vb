@@ -1,7 +1,11 @@
-﻿Imports System.Runtime.CompilerServices
+﻿Imports System.Drawing
+Imports System.Runtime.CompilerServices
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports Microsoft.VisualBasic.Linq
+Imports SMRUCC.genomics.Analysis.HTS.DataFrame
+Imports STImaging
 
 Public Module Utils
 
@@ -20,5 +24,56 @@ Public Module Utils
                     End Function) _
             .IteratesALL _
             .ToArray
+    End Function
+
+    <Extension>
+    Public Function ST_spacerangerToMzPack(spots As SpaceSpot(), matrix As Matrix) As mzPack
+        Dim ms As New List(Of ScanMS1)
+        Dim spatial As Dictionary(Of String, Point) = spots _
+            .ToDictionary(Function(p) p.barcode,
+                          Function(p)
+                              Return p.GetPoint
+                          End Function)
+        Dim spot As DataFrameRow
+        Dim point As Point
+        Dim scan As ScanMS1
+        Dim mz As New List(Of Double)
+        Dim anno As New List(Of String)
+        Dim into As New List(Of Double)
+        Dim metadata As Dictionary(Of String, String)
+        Dim geneID As String() = matrix.sampleID
+
+        For i As Integer = 0 To spots.Length - 1
+            spot = matrix.expression(i)
+            point = spatial(spot.geneID)
+            metadata = New Dictionary(Of String, String) From {
+                {"X", point.X},
+                {"Y", point.Y}
+            }
+
+            For j As Integer = 0 To spot.experiments(i)
+                If spot.experiments(j) > 0 Then
+                    Call metadata.Add(j, geneID(j))
+                    Call mz.Add(j)
+                    Call into.Add(spot.experiments(j))
+                End If
+            Next
+
+            scan = New ScanMS1 With {
+                .mz = mz.ToArray,
+                .into = into.ToArray,
+                .scan_id = $"[MS1] [{point.X},{point.Y}] {spot.geneID}",
+                .meta = metadata
+            }
+
+            Call mz.Clear()
+            Call into.Clear()
+        Next
+
+        Return New mzPack With {
+            .MS = ms.ToArray,
+            .source = matrix.tag,
+            .Application = FileApplicationClass.MSImaging
+        }
     End Function
 End Module
