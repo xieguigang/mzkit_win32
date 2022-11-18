@@ -220,7 +220,8 @@ Module BackgroundTask
 
         Try
             Using temp As Stream = cacheFile.Open(FileMode.OpenOrCreate, doClear:=True)
-                Call XICPackWriter.IndexRawData(raw:=New ReadRawPack(mzpack), file:=temp)
+                '    Call XICPackWriter.IndexRawData(raw:=New ReadRawPack(mzpack), file:=temp)
+                Call mzpack.Write(temp, progress:=AddressOf RunSlavePipeline.SendMessage)
             End Using
         Catch ex As Exception
         Finally

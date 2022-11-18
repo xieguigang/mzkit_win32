@@ -65,11 +65,8 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
-Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
-Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.IndexedCache
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
-Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.DataStorage.netCDF
@@ -136,6 +133,10 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         ElseIf filepath.ExtensionSuffix("mzImage") Then
             Call RunSlavePipeline.SendMessage($"read MSI image file!")
             Throw New NotImplementedException
+        ElseIf filepath.ExtensionSuffix("imzml") Then
+            Dim mzPack = Converter.LoadimzML(filepath, AddressOf RunSlavePipeline.SendProgress)
+            mzPack.source = filepath.FileName
+            MSI = New Drawer(mzPack)
         Else
             Dim mzpack As mzPack
 
