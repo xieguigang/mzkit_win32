@@ -67,8 +67,8 @@ Namespace My
                         progress.Label1.Text = file.FileName
                         progress.Label2.Text = "Pending"
                         Dim task As ImportsRawData = CreateTask(source, file, output, progress)
-
-                        Call main.AddTask(progress)
+                        task.arguments = main.arguments
+                        main.AddTask(progress)
                         Call BackgroundTask.Run(AddressOf task.RunImports)
                     Next
                 Case BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache.FileApplicationClass.MSImaging
@@ -76,8 +76,8 @@ Namespace My
                     progress.Label1.Text = source.GetDirectoryFullPath
                     progress.Label2.Text = "Pending"
                     Dim task As ImportsRawData = CreateMSImagingTask(source, output, main, progress)
-
-                    Call main.AddTask(progress)
+                    task.arguments = main.arguments
+                    main.AddTask(progress)
                     Call BackgroundTask.Run(AddressOf task.RunImports)
                 Case Else
                     Throw New NotImplementedException(main.CurrentTask.Description)
@@ -92,7 +92,8 @@ Namespace My
             Dim progress As Action(Of String) = AddressOf display.ShowMessage
             Dim success As Action = Sub() display.ShowMessage("Done!")
             Dim task As New ImportsRawData(source, progress, success, cachePath:=outputfile) With {
-                .protocol = BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache.FileApplicationClass.MSImaging
+                .protocol = BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache.FileApplicationClass.MSImaging,
+                .arguments = main.arguments
             }
 
             Return task

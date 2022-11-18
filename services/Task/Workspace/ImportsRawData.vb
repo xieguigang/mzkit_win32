@@ -73,6 +73,7 @@ Public Class ImportsRawData
 
     Public ReadOnly Property raw As MZWork.Raw
 
+    Public Property arguments As Dictionary(Of String, String)
     Public Property protocol As FileApplicationClass = FileApplicationClass.LCMS
 
     Sub New(file As String, progress As Action(Of String), finished As Action, Optional cachePath As String = Nothing)
@@ -93,7 +94,15 @@ Public Class ImportsRawData
         Return path
     End Function
 
+    Public Shared Function EnumerateRawtDataFiles(sourceFolder As String) As IEnumerable(Of String)
+        Return ls - l - r - {"*.raw", "*.wiff", "*.mzpack", "*.mzml", "*.mzxml"} <= sourceFolder
+    End Function
+
     Private Function getCliArguments() As String
+        If arguments Is Nothing Then
+            arguments = New Dictionary(Of String, String)
+        End If
+
         Select Case protocol
             Case FileApplicationClass.LCMS, FileApplicationClass.GCMS, FileApplicationClass.GCxGC
                 If raw.source.ExtensionSuffix("cdf", "netcdf") Then
@@ -102,16 +111,18 @@ Public Class ImportsRawData
                     Return PipelineTask.Task.GetconvertAnyRawCommandLine(raw.source, raw.cache)
                 End If
             Case FileApplicationClass.MSImaging
-                Dim rawfiles As String() = (ls - l - r - {"*.raw", "*.wiff", "*.mzpack", "*.mzml", "*.mzxml"} <= raw.source).ToArray
+                Dim rawfiles As String() = EnumerateRawtDataFiles(raw.source).ToArray
                 Dim tempfile As String = TempFileSystem.GetAppSysTempFile("/", sessionID:=App.PID.ToHexString, prefix:="ms-imaging_raw") & $"/{raw.source.BaseName}.txt"
+                Dim cutoff As String = arguments.TryGetValue("cutoff", [default]:="0")
+                Dim matrix_basepeak As String = arguments.TryGetValue("matrix_basepeak", [default]:="0")
 
                 Call rawfiles.SaveTo(tempfile)
 
                 If raw.cache.ExtensionSuffix("imzml") Then
                     ' do row combines and then convert to imzml
-                    Return PipelineTask.Task.GetMSIToimzMLCommandLine(tempfile, raw.cache)
+                    Return PipelineTask.Task.GetMSIToimzMLCommandLine(tempfile, raw.cache, cutoff, matrix_basepeak)
                 Else
-                    Return PipelineTask.Task.GetMSIRowCombineCommandLine(tempfile, raw.cache)
+                    Return PipelineTask.Task.GetMSIRowCombineCommandLine(tempfile, raw.cache, cutoff, matrix_basepeak)
                 End If
             Case Else
                 Throw New NotImplementedException(protocol.Description)

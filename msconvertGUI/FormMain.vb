@@ -1,9 +1,12 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
+Imports CommonDialogs
 Imports msconvertGUI.My
+Imports Task
 
 Public Class FormMain
 
     Public Property CurrentTask As FileApplicationClass = FileApplicationClass.LCMS
+    Public Property arguments As New Dictionary(Of String, String)
 
     ''' <summary>
     ''' start run task
@@ -21,6 +24,30 @@ Public Class FormMain
 
         Dim source As String = TextBox1.Text
         Dim output As String = TextBox2.Text
+
+        If CurrentTask = FileApplicationClass.MSImaging Then
+            Dim cancel As Boolean = False
+            Dim baseDir As String = source
+            Dim fileDirName As String = baseDir.BaseName
+            Dim load As New ShowMSIRowScanSummary With {
+                .files = ImportsRawData.EnumerateRawtDataFiles(source).ToArray
+            }
+
+            arguments = New Dictionary(Of String, String)
+
+            Call InputDialog.Input(
+                Sub(creator)
+                    Dim cutoff As Double = creator.cutoff
+                    Dim basePeak As Double = creator.matrixMz
+
+                    Call arguments.Add("cutoff", cutoff)
+                    Call arguments.Add("matrix_basepeak", basePeak)
+                End Sub, cancel:=Sub() cancel = True, config:=load)
+
+            If cancel Then
+                Return
+            End If
+        End If
 
         Call MyApplication.SubmitTask(source, output, Me).Start()
     End Sub
