@@ -60,7 +60,9 @@
 
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
+Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
+Imports Microsoft.VisualBasic.Language.UnixBash
 
 Public Class ImportsRawData
 
@@ -100,11 +102,16 @@ Public Class ImportsRawData
                     Return PipelineTask.Task.GetconvertAnyRawCommandLine(raw.source, raw.cache)
                 End If
             Case FileApplicationClass.MSImaging
+                Dim rawfiles As String() = (ls - l - r - {"*.raw", "*.wiff", "*.mzpack", "*.mzml", "*.mzxml"} <= raw.source).ToArray
+                Dim tempfile As String = TempFileSystem.GetAppSysTempFile("/", sessionID:=App.PID.ToHexString, prefix:="ms-imaging_raw") & $"/{raw.source.BaseName}.txt"
+
+                Call rawfiles.SaveTo(tempfile)
+
                 If raw.cache.ExtensionSuffix("imzml") Then
                     ' do row combines and then convert to imzml
-
+                    Return PipelineTask.Task.GetMSIToimzMLCommandLine(tempfile, raw.cache)
                 Else
-                    Return PipelineTask.Task.GetMSIRowCombineCommandLine()
+                    Return PipelineTask.Task.GetMSIRowCombineCommandLine(tempfile, raw.cache)
                 End If
             Case Else
                 Throw New NotImplementedException(protocol.Description)
