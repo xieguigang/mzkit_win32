@@ -1,11 +1,15 @@
 ﻿Imports System.ComponentModel
+Imports System.Drawing
 Imports System.IO
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports Microsoft.VisualBasic.CommandLine
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.CommandLine.InteropService.SharedORM
 Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.My.FrameworkInternal
 
@@ -78,7 +82,39 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
         Dim cutoff As Double = args("/cutoff") Or 0.0
         Dim basePeak As Double = args("/matrix_basePeak") Or 0.0
 
-        Call MSImagingRowBinds.MSI_rowbind(files, save, cutoff, basePeak)
+        Using file As FileStream = save.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
+            Dim buffer As mzPack = MSImagingRowBinds.MSI_rowbind(files, cutoff, basePeak)
+            Call buffer.Write(file, version:=2)
+        End Using
+
+        Return 0
+    End Function
+
+    <ExportAPI("/imzml")>
+    <Description("Convert raw data file to imzML file.")>
+    <Usage("/imzml --file <source.data> --save <file.imzML> [/cutoff <intensity_cutoff, default=0> /matrix_basePeak <mz, default=0>]")>
+    Public Function MSIToimzML(args As CommandLine) As Integer
+        Dim files As String() = args("--file").ReadAllLines
+        Dim save As String = args("--save")
+        Dim cutoff As Double = args("/cutoff") Or 0.0
+        Dim basePeak As Double = args("/matrix_basePeak") Or 0.0
+        Dim mzpack As mzPack = MSImagingRowBinds.MSI_rowbind(files, cutoff, basePeak)
+        Dim polygon As New Polygon2D(mzpack.MS.Select(Function(scan) scan.GetMSIPixel))
+        Dim dimsize As New Size(
+            width:=polygon.xpoints.Max,
+            height:=polygon.ypoints.Max
+        )
+
+        Using writer As imzML.mzPackWriter = imzML.mzPackWriter _
+            .OpenOutput(save) _
+            .SetMSImagingParameters(dimsize, 17) _
+            .SetSourceLocation(files(Scan0)) _
+            .SetSpectrumParameters(1)
+
+            For Each scan As ScanMS1 In mzpack.MS
+                Call writer.WriteScan(scan)
+            Next
+        End Using
 
         Return 0
     End Function

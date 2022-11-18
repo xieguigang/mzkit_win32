@@ -59,6 +59,7 @@
 #End Region
 
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 
 Public Class ImportsRawData
@@ -69,6 +70,8 @@ Public Class ImportsRawData
     ReadOnly success As Action
 
     Public ReadOnly Property raw As MZWork.Raw
+
+    Public Property protocol As FileApplicationClass = FileApplicationClass.LCMS
 
     Sub New(file As String, progress As Action(Of String), finished As Action, Optional cachePath As String = Nothing)
         source = file
@@ -89,11 +92,23 @@ Public Class ImportsRawData
     End Function
 
     Private Function getCliArguments() As String
-        If raw.source.ExtensionSuffix("cdf", "netcdf") Then
-            Return PipelineTask.Task.GetconvertGCMSCDFCommandLine(raw.source, raw.cache)
-        Else
-            Return PipelineTask.Task.GetconvertAnyRawCommandLine(raw.source, raw.cache)
-        End If
+        Select Case protocol
+            Case FileApplicationClass.LCMS, FileApplicationClass.GCMS, FileApplicationClass.GCxGC
+                If raw.source.ExtensionSuffix("cdf", "netcdf") Then
+                    Return PipelineTask.Task.GetconvertGCMSCDFCommandLine(raw.source, raw.cache)
+                Else
+                    Return PipelineTask.Task.GetconvertAnyRawCommandLine(raw.source, raw.cache)
+                End If
+            Case FileApplicationClass.MSImaging
+                If raw.cache.ExtensionSuffix("imzml") Then
+                    ' do row combines and then convert to imzml
+
+                Else
+                    Return PipelineTask.Task.GetMSIRowCombineCommandLine()
+                End If
+            Case Else
+                Throw New NotImplementedException(protocol.Description)
+        End Select
     End Function
 
     ''' <summary>

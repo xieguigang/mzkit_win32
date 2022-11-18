@@ -43,10 +43,12 @@ Public Class MSImagingRowBinds
         Next
     End Function
 
-    Private Sub combineRaw(files As String(), file As Stream)
+    Private Function combineRaw(files As String()) As mzPack
         Dim correction As Correction = MSIMeasurement.Measure(loadXRaw(files)).GetCorrection
-        Call combineMzPack(LoadThermoRaw(files), correction).Write(file, version:=2)
-    End Sub
+        Dim mzpack As mzPack = combineMzPack(LoadThermoRaw(files), correction)
+
+        Return mzpack
+    End Function
 
     Private Function CutBasePeak(raw As mzPack) As mzPack
         If basePeak <= 0 Then
@@ -86,7 +88,7 @@ Public Class MSImagingRowBinds
         Next
     End Function
 
-    Private Sub combineWiffRaw(files As String(), file As Stream)
+    Private Function combineWiffRaw(files As String()) As mzPack
         Dim rawfiles As New List(Of mzPack)
         Dim i As i32 = 0
         Dim println As Action(Of String)
@@ -109,8 +111,9 @@ Public Class MSImagingRowBinds
         Dim correction As Correction = MSIMeasurement.Measure(rawfiles).GetCorrection
 
         Call RunSlavePipeline.SendMessage($"Combine MS-imaging file!")
-        Call combineMzPack(rawfiles, correction).Write(file, version:=2)
-    End Sub
+
+        Return combineMzPack(rawfiles, correction)
+    End Function
 
     Private Iterator Function loadRaw(files As IEnumerable(Of String)) As IEnumerable(Of BinaryStreamReader)
         For Each path As String In files
@@ -122,10 +125,10 @@ Public Class MSImagingRowBinds
         Next
     End Function
 
-    Private Sub combineMzPack(files As String(), file As Stream)
+    Private Function combineMzPack(files As String()) As mzPack
         Dim correction As Correction = MSIMeasurement.Measure(loadRaw(files)).GetCorrection
 
-        Call combineMzPack(
+        Return combineMzPack(
             Iterator Function() As IEnumerable(Of mzPack)
                 Dim i As i32 = 0
 
@@ -135,10 +138,10 @@ Public Class MSImagingRowBinds
                         Yield CutBasePeak(mzPack.ReadAll(buffer, ignoreThumbnail:=True))
                     End Using
                 Next
-            End Function(), correction).Write(file, version:=2)
-    End Sub
+            End Function(), correction)
+    End Function
 
-    Public Shared Sub MSI_rowbind(files As String(), save As String, cutoff As Double, basePeak As Double)
+    Public Shared Function MSI_rowbind(files As String(), cutoff As Double, basePeak As Double) As mzPack
         Dim exttype As String() = (From path As String
                                    In files
                                    Select path.ExtensionSuffix.ToLower
@@ -152,18 +155,17 @@ Public Class MSImagingRowBinds
 
         If exttype.Length > 1 Then
             Call RunSlavePipeline.SendMessage($"Multipe file type is not allowed!")
-            Return
+            Return Nothing
         End If
 
-        Using file As FileStream = save.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
-            Select Case exttype(Scan0)
-                Case "raw" : Call union.combineRaw(files, file)
-                Case "mzpack" : Call union.combineMzPack(files, file)
-                Case "wiff" : Call union.combineWiffRaw(files, file)
+        Select Case exttype(Scan0)
+            Case "raw" : Return union.combineRaw(files)
+            Case "mzpack" : Return union.combineMzPack(files)
+            Case "wiff" : Return union.combineWiffRaw(files)
 
-                Case Else
-                    Call RunSlavePipeline.SendMessage($"Unsupported file type: {exttype(Scan0)}!")
-            End Select
-        End Using
-    End Sub
+            Case Else
+                Call RunSlavePipeline.SendMessage($"Unsupported file type: {exttype(Scan0)}!")
+                Return Nothing
+        End Select
+    End Function
 End Class

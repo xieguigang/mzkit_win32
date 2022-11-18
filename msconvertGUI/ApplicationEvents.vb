@@ -1,5 +1,5 @@
-﻿Imports BackgroundTask = System.Threading.Tasks.Task
-Imports Task
+﻿Imports Task
+Imports BackgroundTask = System.Threading.Tasks.Task
 
 Namespace My
     ' The following events are available for MyApplication:
@@ -26,12 +26,26 @@ Namespace My
 
     Partial Friend Class MyApplication
 
-        Public Shared Function CreateTask(sourceRoot As String, raw As String, outputdir As String, display As TaskProgress) As ImportsRawData
+        ''' <summary>
+        ''' convert LCMS/GCMS raw data files in folder batch
+        ''' </summary>
+        ''' <param name="sourceRoot"></param>
+        ''' <param name="raw"></param>
+        ''' <param name="outputdir"></param>
+        ''' <param name="display"></param>
+        ''' <returns></returns>
+        Public Shared Function CreateTask(sourceRoot As String,
+                                          raw As String,
+                                          outputdir As String,
+                                          display As TaskProgress) As ImportsRawData
+
             Dim relpath As String = PathExtensions.RelativePath(sourceRoot, raw, appendParent:=False)
             Dim outputfile As String = $"{outputdir}/{relpath.ChangeSuffix("mzPack")}"
             Dim progress As Action(Of String) = AddressOf display.ShowMessage
             Dim success As Action = Sub() display.ShowMessage("Done!")
-            Dim task As New ImportsRawData(raw, progress, success, cachePath:=outputfile)
+            Dim task As New ImportsRawData(raw, progress, success, cachePath:=outputfile) With {
+                .protocol = BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache.FileApplicationClass.LCMS
+            }
 
             Return task
         End Function
@@ -46,15 +60,42 @@ Namespace My
         Private Shared Sub task(source As String, output As String, main As FormMain)
             Dim files As String() = source.ListFiles("*.raw").ToArray
 
-            For Each file As String In files
-                Dim progress As New TaskProgress
-                progress.Label1.Text = file.FileName
-                progress.Label2.Text = "Pending"
-                Dim task As ImportsRawData = CreateTask(source, file, output, progress)
+            Select Case main.CurrentTask
+                Case BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache.FileApplicationClass.LCMS
+                    For Each file As String In files
+                        Dim progress As New TaskProgress
+                        progress.Label1.Text = file.FileName
+                        progress.Label2.Text = "Pending"
+                        Dim task As ImportsRawData = CreateTask(source, file, output, progress)
 
-                Call main.AddTask(progress)
-                Call BackgroundTask.Run(AddressOf task.RunImports)
-            Next
+                        Call main.AddTask(progress)
+                        Call BackgroundTask.Run(AddressOf task.RunImports)
+                    Next
+                Case BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache.FileApplicationClass.MSImaging
+                    Dim progress As New TaskProgress
+                    progress.Label1.Text = source.GetDirectoryFullPath
+                    progress.Label2.Text = "Pending"
+                    Dim task As ImportsRawData = CreateMSImagingTask(source, output, main, progress)
+
+                    Call main.AddTask(progress)
+                    Call BackgroundTask.Run(AddressOf task.RunImports)
+                Case Else
+                    Throw New NotImplementedException(main.CurrentTask.Description)
+            End Select
         End Sub
+
+        Public Shared Function CreateMSImagingTask(source As String,
+                                                   outputfile As String,
+                                                   main As FormMain,
+                                                   display As TaskProgress) As ImportsRawData
+
+            Dim progress As Action(Of String) = AddressOf display.ShowMessage
+            Dim success As Action = Sub() display.ShowMessage("Done!")
+            Dim task As New ImportsRawData(source, progress, success, cachePath:=outputfile) With {
+                .protocol = BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache.FileApplicationClass.MSImaging
+            }
+
+            Return task
+        End Function
     End Class
 End Namespace

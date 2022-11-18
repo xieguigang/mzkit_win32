@@ -37,9 +37,13 @@ Partial Class FormMain
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.DropDownButton1 = New ControlLibrary.DropDownButton()
+        Me.DropDownMenu1 = New ControlLibrary.DropDownMenu()
+        Me.ExportMSImagingFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        Me.DropDownMenu1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Button1
@@ -114,6 +118,7 @@ Partial Class FormMain
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.DropDownButton1)
         Me.GroupBox1.Controls.Add(Me.TextBox2)
         Me.GroupBox1.Controls.Add(Me.Button1)
         Me.GroupBox1.Controls.Add(Me.TextBox1)
@@ -122,6 +127,24 @@ Partial Class FormMain
         resources.ApplyResources(Me.GroupBox1, "GroupBox1")
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.TabStop = False
+        '
+        'DropDownButton1
+        '
+        Me.DropDownButton1.DropDownMenu = Me.DropDownMenu1
+        resources.ApplyResources(Me.DropDownButton1, "DropDownButton1")
+        Me.DropDownButton1.Name = "DropDownButton1"
+        '
+        'DropDownMenu1
+        '
+        Me.DropDownMenu1.DropDownButton = Me.DropDownButton1
+        Me.DropDownMenu1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportMSImagingFileToolStripMenuItem})
+        Me.DropDownMenu1.Name = "DropDownMenu1"
+        resources.ApplyResources(Me.DropDownMenu1, "DropDownMenu1")
+        '
+        'ExportMSImagingFileToolStripMenuItem
+        '
+        Me.ExportMSImagingFileToolStripMenuItem.Name = "ExportMSImagingFileToolStripMenuItem"
+        resources.ApplyResources(Me.ExportMSImagingFileToolStripMenuItem, "ExportMSImagingFileToolStripMenuItem")
         '
         'FormMain
         '
@@ -141,6 +164,7 @@ Partial Class FormMain
         Me.MenuStrip1.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.DropDownMenu1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -160,4 +184,7 @@ Partial Class FormMain
     Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents DropDownButton1 As ControlLibrary.DropDownButton
+    Friend WithEvents DropDownMenu1 As ControlLibrary.DropDownMenu
+    Friend WithEvents ExportMSImagingFileToolStripMenuItem As ToolStripMenuItem
 End Class

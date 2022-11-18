@@ -1,6 +1,9 @@
-﻿Imports msconvertGUI.My
+﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
+Imports msconvertGUI.My
 
 Public Class FormMain
+
+    Public Property CurrentTask As FileApplicationClass = FileApplicationClass.LCMS
 
     ''' <summary>
     ''' start run task
@@ -51,15 +54,27 @@ Public Class FormMain
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Private Sub Button2_Click(sender As Object, e As EventArgs) 
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles DropDownButton1.Click
         Using folder As New FolderBrowserDialog
             If folder.ShowDialog = DialogResult.OK Then
                 TextBox2.Text = folder.SelectedPath
+                CurrentTask = FileApplicationClass.LCMS
             End If
         End Using
     End Sub
 
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
         Call App.Exit()
+    End Sub
+
+    Private Sub ExportMSImagingFileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportMSImagingFileToolStripMenuItem.Click
+        Using file As New SaveFileDialog With {
+            .Filter = "BioNovoGene mzPack Binary Stream(*.mzPack)|*.mzPack|Imaging mzML(*.imzML)|*.imzML"
+        }
+            If file.ShowDialog = DialogResult.OK Then
+                TextBox2.Text = file.FileName
+                CurrentTask = FileApplicationClass.MSImaging
+            End If
+        End Using
     End Sub
 End Class
