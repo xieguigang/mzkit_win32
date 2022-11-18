@@ -200,15 +200,21 @@
     <Compile Include="GCxGC\PeakSelector.Designer.vb">
       <DependentUpon>PeakSelector.vb</DependentUpon>
     </Compile>
-    <Compile Include="GCxGC\PeakSelector.vb" />
+    <Compile Include="GCxGC\PeakSelector.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ColorScaleMap.Designer.vb">
       <DependentUpon>ColorScaleMap.vb</DependentUpon>
     </Compile>
-    <Compile Include="ColorScaleMap.vb" />
+    <Compile Include="ColorScaleMap.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="MSI\RegionSampleCard.Designer.vb">
       <DependentUpon>RegionSampleCard.vb</DependentUpon>
     </Compile>
-    <Compile Include="MSI\RegionSampleCard.vb" />
+    <Compile Include="MSI\RegionSampleCard.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ToolStripTraceBarItem.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -234,15 +240,21 @@
     <Compile Include="MSI\PixelSelector.Designer.vb">
       <DependentUpon>PixelSelector.vb</DependentUpon>
     </Compile>
-    <Compile Include="MSI\PixelSelector.vb" />
+    <Compile Include="MSI\PixelSelector.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="RtRangeSelector.Designer.vb">
       <DependentUpon>RtRangeSelector.vb</DependentUpon>
     </Compile>
-    <Compile Include="RtRangeSelector.vb" />
+    <Compile Include="RtRangeSelector.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="MSSelector.Designer.vb">
       <DependentUpon>MSSelector.vb</DependentUpon>
     </Compile>
-    <Compile Include="MSSelector.vb" />
+    <Compile Include="MSSelector.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ToggleSlider.Designer.vb">
       <DependentUpon>ToggleSlider.vb</DependentUpon>
     </Compile>
