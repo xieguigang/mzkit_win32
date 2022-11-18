@@ -111,6 +111,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InputDialog.Designer.vb">
+      <DependentUpon>InputDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InputDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputDialogs\ShowMSIRowScanSummary.Designer.vb">
+      <DependentUpon>ShowMSIRowScanSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InputDialogs\ShowMSIRowScanSummary.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MaskForm.Designer.vb">
       <DependentUpon>MaskForm.vb</DependentUpon>
     </Compile>
@@ -135,6 +147,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="InputDialog.resx">
+      <DependentUpon>InputDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputDialogs\ShowMSIRowScanSummary.resx">
+      <DependentUpon>ShowMSIRowScanSummary.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
