@@ -58,4 +58,8 @@ Public Class FormMain
             End If
         End Using
     End Sub
+
+    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
+        Call App.Exit()
+    End Sub
 End Class
