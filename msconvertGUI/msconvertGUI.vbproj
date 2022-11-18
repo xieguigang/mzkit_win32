@@ -23,6 +23,7 @@
     <ProjectReference Include="..\..\assembly\ThermoRawFileReader\MSFileReader.NET5.vbproj" />
     <ProjectReference Include="..\services\Task\Task.vbproj" />
     <ProjectReference Include="..\ux\CommonDialogs\CommonDialogs.vbproj" />
+    <ProjectReference Include="..\ux\ControlLibrary\ControlLibrary.vbproj" />
   </ItemGroup>
 
   <ItemGroup>

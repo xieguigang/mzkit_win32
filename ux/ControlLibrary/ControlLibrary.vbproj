@@ -200,21 +200,15 @@
     <Compile Include="GCxGC\PeakSelector.Designer.vb">
       <DependentUpon>PeakSelector.vb</DependentUpon>
     </Compile>
-    <Compile Include="GCxGC\PeakSelector.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="GCxGC\PeakSelector.vb" />
     <Compile Include="ColorScaleMap.Designer.vb">
       <DependentUpon>ColorScaleMap.vb</DependentUpon>
     </Compile>
-    <Compile Include="ColorScaleMap.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="ColorScaleMap.vb" />
     <Compile Include="MSI\RegionSampleCard.Designer.vb">
       <DependentUpon>RegionSampleCard.vb</DependentUpon>
     </Compile>
-    <Compile Include="MSI\RegionSampleCard.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="MSI\RegionSampleCard.vb" />
     <Compile Include="ToolStripTraceBarItem.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -240,21 +234,15 @@
     <Compile Include="MSI\PixelSelector.Designer.vb">
       <DependentUpon>PixelSelector.vb</DependentUpon>
     </Compile>
-    <Compile Include="MSI\PixelSelector.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="MSI\PixelSelector.vb" />
     <Compile Include="RtRangeSelector.Designer.vb">
       <DependentUpon>RtRangeSelector.vb</DependentUpon>
     </Compile>
-    <Compile Include="RtRangeSelector.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="RtRangeSelector.vb" />
     <Compile Include="MSSelector.Designer.vb">
       <DependentUpon>MSSelector.vb</DependentUpon>
     </Compile>
-    <Compile Include="MSSelector.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="MSSelector.vb" />
     <Compile Include="ToggleSlider.Designer.vb">
       <DependentUpon>ToggleSlider.vb</DependentUpon>
     </Compile>
@@ -273,6 +261,16 @@
     <Compile Include="Win7StyleTreeView.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="WinForms\CommandLinkButton.Designer.vb">
+      <DependentUpon>CommandLinkButton.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\CommandLinkButton.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WinForms\DropDownButton.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WinForms\NativeToolStripRenderer.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="GCxGC\PeakSelector.resx">

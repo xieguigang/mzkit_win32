@@ -51,7 +51,7 @@ Public Class FormMain
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As Object, e As EventArgs) 
         Using folder As New FolderBrowserDialog
             If folder.ShowDialog = DialogResult.OK Then
                 TextBox2.Text = folder.SelectedPath
