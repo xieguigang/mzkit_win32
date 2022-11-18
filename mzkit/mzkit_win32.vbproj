@@ -1734,6 +1734,10 @@
       <Project>{6e5bca87-358e-4ba5-b279-de17afa52c5c}</Project>
       <Name>Task</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ux\CommonDialogs\CommonDialogs.vbproj">
+      <Project>{13685719-56a6-44f9-99a2-47cb79d29a57}</Project>
+      <Name>CommonDialogs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ux\ControlLibrary\ControlLibrary.vbproj">
       <Project>{df66aa70-9ab9-48d0-b492-9d0e0482a651}</Project>
       <Name>ControlLibrary</Name>
