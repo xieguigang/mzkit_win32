@@ -75,15 +75,18 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
     <Description("Combine row scans to mzPack")>
     <Argument("--files", False, CLITypes.File, PipelineTypes.std_in, Description:="a temp file path that its content contains selected raw data file path for each row scans.")>
     <Argument("--save", False, CLITypes.File, PipelineTypes.std_in, Description:="a file path for export mzPack data file.")>
-    <Usage("/rowbinds --files <list.txt> --save <MSI.mzPack> [/cutoff <intensity_cutoff, default=0> /matrix_basePeak <mz, default=0>]")>
+    <Usage("/rowbinds --files <list.txt> --save <MSI.mzPack> [/cutoff <intensity_cutoff, default=0> /matrix_basePeak <mz, default=0> /resolution <default=17>]")>
     Public Function MSIRowCombine(args As CommandLine) As Integer
         Dim files As String() = args("--files").ReadAllLines
         Dim save As String = args("--save")
         Dim cutoff As Double = args("/cutoff") Or 0.0
         Dim basePeak As Double = args("/matrix_basePeak") Or 0.0
+        Dim res As Double = args("/resolution") Or 17.0
 
         Using file As FileStream = save.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
             Dim buffer As mzPack = MSImagingRowBinds.MSI_rowbind(files, cutoff, basePeak)
+
+            Call buffer.metadata.Add("resolution", res)
             Call buffer.Write(file, version:=2)
         End Using
 
@@ -92,7 +95,7 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
 
     <ExportAPI("/imzml")>
     <Description("Convert raw data file to imzML file.")>
-    <Usage("/imzml --file <source.data> --save <file.imzML> [/cutoff <intensity_cutoff, default=0> /matrix_basePeak <mz, default=0>]")>
+    <Usage("/imzml --file <source.data> --save <file.imzML> [/cutoff <intensity_cutoff, default=0> /matrix_basePeak <mz, default=0> /resolution <default=17>]")>
     Public Function MSIToimzML(args As CommandLine) As Integer
         Dim files As String() = args("--file").ReadAllLines
         Dim save As String = args("--save")
@@ -104,10 +107,11 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
             width:=polygon.xpoints.Max,
             height:=polygon.ypoints.Max
         )
+        Dim res As Double = args("/resolution") Or 17.0
 
         Using writer As imzML.mzPackWriter = imzML.mzPackWriter _
             .OpenOutput(save) _
-            .SetMSImagingParameters(dimsize, 17) _
+            .SetMSImagingParameters(dimsize, res) _
             .SetSourceLocation(files(Scan0)) _
             .SetSpectrumParameters(1)
 
