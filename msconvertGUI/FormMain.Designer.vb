@@ -85,36 +85,36 @@ Partial Class FormMain
         '
         'StatusStrip1
         '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripProgressBar1})
         resources.ApplyResources(Me.StatusStrip1, "StatusStrip1")
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripProgressBar1})
         Me.StatusStrip1.Name = "StatusStrip1"
         '
         'ToolStripStatusLabel1
         '
-        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
         resources.ApplyResources(Me.ToolStripStatusLabel1, "ToolStripStatusLabel1")
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
         '
         'ToolStripProgressBar1
         '
-        Me.ToolStripProgressBar1.Name = "ToolStripProgressBar1"
         resources.ApplyResources(Me.ToolStripProgressBar1, "ToolStripProgressBar1")
+        Me.ToolStripProgressBar1.Name = "ToolStripProgressBar1"
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
         resources.ApplyResources(Me.MenuStrip1, "MenuStrip1")
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
         Me.MenuStrip1.Name = "MenuStrip1"
         '
         'ToolStripMenuItem1
         '
+        resources.ApplyResources(Me.ToolStripMenuItem1, "ToolStripMenuItem1")
         Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExitToolStripMenuItem})
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        resources.ApplyResources(Me.ToolStripMenuItem1, "ToolStripMenuItem1")
         '
         'ExitToolStripMenuItem
         '
-        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
         resources.ApplyResources(Me.ExitToolStripMenuItem, "ExitToolStripMenuItem")
+        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
         '
         'GroupBox1
         '
@@ -136,15 +136,15 @@ Partial Class FormMain
         '
         'DropDownMenu1
         '
+        resources.ApplyResources(Me.DropDownMenu1, "DropDownMenu1")
         Me.DropDownMenu1.DropDownButton = Me.DropDownButton1
         Me.DropDownMenu1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportMSImagingFileToolStripMenuItem})
         Me.DropDownMenu1.Name = "DropDownMenu1"
-        resources.ApplyResources(Me.DropDownMenu1, "DropDownMenu1")
         '
         'ExportMSImagingFileToolStripMenuItem
         '
-        Me.ExportMSImagingFileToolStripMenuItem.Name = "ExportMSImagingFileToolStripMenuItem"
         resources.ApplyResources(Me.ExportMSImagingFileToolStripMenuItem, "ExportMSImagingFileToolStripMenuItem")
+        Me.ExportMSImagingFileToolStripMenuItem.Name = "ExportMSImagingFileToolStripMenuItem"
         '
         'FormMain
         '

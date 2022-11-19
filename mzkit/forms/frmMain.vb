@@ -491,6 +491,7 @@ Public Class frmMain
         Timer1.Start()
         ToolStripProgressBar1.Value = 0
         ToolStripProgressBar1.Maximum = 0
+        InputDialog.MyApplicationHost = Me
 
         Dim text As New StringBuilder
 
