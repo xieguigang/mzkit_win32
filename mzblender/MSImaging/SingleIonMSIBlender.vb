@@ -12,7 +12,7 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
 
     ReadOnly layer As SingleIonLayer
     ReadOnly intensity As Double()
-    ReadOnly TIC As PixelScanIntensity()
+    ReadOnly TIC As Image
 
     Public ReadOnly Property range As DoubleRange
 
@@ -22,11 +22,11 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
         Me.layer = New SingleIonLayer With {
             .MSILayer = layer,
             .DimensionSize = New Size(
-                width:=layer.Select(Function(p) p.x).Max,
-                height:=layer.Select(Function(p) p.y).Max
+                width:=params.scan_x,
+                height:=params.scan_y
             )
         }
-        Me.TIC = TIC
+        Me.TIC = SummaryMSIBlender.Rendering(TIC, Me.layer.DimensionSize, "gray", 250)
         Me.intensity = layer.Select(Function(i) i.intensity).ToArray
         Me.range = intensity.Range
     End Sub
@@ -57,6 +57,15 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
             colorSet:=params.colors.Description,
             scale:=params.scale
         ).AsGDIImage
+
+        If params.overlap_TIC AndAlso Not TIC Is Nothing Then
+            Using g As IGraphics = New Size(image.Width, image.Height).CreateGDIDevice
+                Call g.DrawImage(TIC, New Rectangle(New Point(0, 0), g.Size))
+                Call g.DrawImageUnscaled(image, 0, 0)
+
+                image = DirectCast(g, Graphics2D).ImageResource
+            End Using
+        End If
 
         image = New HeatMap.RasterScaler(image).Scale(hqx:=params.Hqx)
 

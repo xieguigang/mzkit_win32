@@ -1,7 +1,6 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
-Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Task
@@ -48,6 +47,10 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
                                                dimensions As Size,
                                                color As String,
                                                mapLevels As Integer) As Image
+        If layerData.IsNullOrEmpty Then
+            Return Nothing
+        End If
+
         Return Drawer.RenderSummaryLayer(
             layer:=layerData,
             dimension:=dimensions,

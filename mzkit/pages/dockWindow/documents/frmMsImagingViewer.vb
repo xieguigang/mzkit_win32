@@ -1326,7 +1326,7 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Function createRenderTask(R As PixelData(), G As PixelData(), B As PixelData()) As Action
-        Dim blender As New RGBIonMSIBlender(R, G, B, params)
+        Dim blender As New RGBIonMSIBlender(R, G, B, TIC, params)
 
         Me.blender = blender
         Me.loadedPixels = R _
@@ -1471,7 +1471,7 @@ Public Class frmMsImagingViewer
     ''' <param name="dimensions">the dimension size of the MSI raw data</param>
     ''' <returns></returns>
     Private Function createRenderTask(pixels As PixelData(), dimensions$) As Action
-        Dim blender As New SingleIonMSIBlender(pixels, params)
+        Dim blender As New SingleIonMSIBlender(pixels, TIC, params)
         Dim range As DoubleRange = blender.range
 
         Me.loadedPixels = pixels
