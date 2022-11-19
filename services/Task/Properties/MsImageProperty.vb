@@ -82,7 +82,6 @@ Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.hqx
 Imports Microsoft.VisualBasic.Linq
 Imports ServiceHub
-Imports stdNum = System.Math
 
 Public Enum SmoothFilters
     None
@@ -109,6 +108,20 @@ Public Class MsImageProperty
     <Category("imzML")> Public ReadOnly Property scan_x As Integer
     <Description("The total pixel numbers in Y axis.")>
     <Category("imzML")> Public ReadOnly Property scan_y As Integer
+    <Description("The scan resolution size of each pixel.")>
+    <Category("imzML")> Public Property resolution As Double
+
+    Public ReadOnly Property physical_width As String
+        Get
+            Return ((scan_x * resolution) / 1000).ToString("F2") & "mm"
+        End Get
+    End Property
+
+    Public ReadOnly Property physical_height As String
+        Get
+            Return ((scan_y * resolution) / 1000).ToString("F2") & "mm"
+        End Get
+    End Property
 
     Public ReadOnly Property instrument As String
 
@@ -122,10 +135,11 @@ Public Class MsImageProperty
     <Description("the color depth levels of the color sequence which is generated from a specific scaler palette.")>
     <Category("Render")> Public Property mapLevels As Integer = 120
     <Description("knn fill range for the pixel data")>
-    <Category("Render")> Public Property knn As Integer = 6
+    <Category("Render")> Public Property knn As Integer = 3
     <Category("Render")> Public Property knn_qcut As Double = 0.65
     <Category("Render")> Public Property scale As InterpolationMode = InterpolationMode.Bilinear
     <Category("Render")> Public Property enableFilter As Boolean = True
+    ' <Category("Render")> Public Property overlap_TIC As Boolean = True
 
     <Description("The mass tolerance error threshold in delta dalton or ppm.")>
     <Category("Pixel M/z Data")> Public Property tolerance As Double = 0.1
@@ -143,6 +157,7 @@ Public Class MsImageProperty
         scan_x = render.dimension.Width
         scan_y = render.dimension.Height
         background = Color.Black
+        resolution = render.pixelReader.resolution
 
         If TypeOf render.pixelReader Is ReadIbd Then
             UUID = DirectCast(render.pixelReader, ReadIbd).UUID
@@ -154,6 +169,8 @@ Public Class MsImageProperty
     End Sub
 
     Sub New()
+        background = Color.Black
+        resolution = 17
     End Sub
 
     Sub New(info As Dictionary(Of String, String))
@@ -163,6 +180,8 @@ Public Class MsImageProperty
         fileSize = info!fileSize
         sourceFile = info.TryGetValue("source", "in-memory sample")
         instrument = If(sourceFile.ExtensionSuffix("csv", "slx"), "Bruker", "Thermo Fisher")
+        resolution = info.TryGetValue("resolution", [default]:=17)
+        background = Color.Black
     End Sub
 
     Public Shared Function Empty(dimension As Size) As MsImageProperty
@@ -171,18 +190,20 @@ Public Class MsImageProperty
             {"scan_y", dimension.Height},
             {"uuid", Now.ToString.MD5},
             {"fileSize", "0B"},
-            {"source", "n/a"}
+            {"source", "n/a"},
+            {"resolution", 17}
         }
 
         Return New MsImageProperty(data)
     End Function
 
-    Public Sub Reset(MsiDim As Size, UUID As String, fileSize As String)
+    Public Sub Reset(MsiDim As Size, UUID As String, fileSize As String, resolution As Double)
         _scan_x = MsiDim.Width
         _scan_y = MsiDim.Height
         _background = Color.Black
         _UUID = UUID
         _fileSize = fileSize
+        _resolution = resolution
     End Sub
 
     Public Shared Function GetMSIInfo(render As Drawer) As Dictionary(Of String, String)

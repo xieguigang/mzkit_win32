@@ -1,7 +1,6 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
-Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Task
@@ -28,7 +27,6 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
 
     Public Overrides Function Rendering(args As PlotProperty, target As Size) As Image
         Dim mapLevels As Integer = params.mapLevels
-        Dim dimSize As New Size(params.scan_x, params.scan_y)
         Dim cut As Double = New TrIQThreshold(params.TrIQ) With {
             .levels = params.mapLevels
         }.ThresholdValue(intensity)
@@ -40,15 +38,24 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
                 .ToArray
         End If
 
-        Dim image As Image = Drawer.RenderSummaryLayer(
+        Dim image As Image = Rendering(layerData, dimensions, params.colors.Description, mapLevels)
+        image = New RasterScaler(image).Scale(hqx:=params.Hqx)
+        Return image
+    End Function
+
+    Public Overloads Shared Function Rendering(layerData As PixelScanIntensity(),
+                                               dimensions As Size,
+                                               color As String,
+                                               mapLevels As Integer) As Image
+        If layerData.IsNullOrEmpty Then
+            Return Nothing
+        End If
+
+        Return Drawer.RenderSummaryLayer(
             layer:=layerData,
-            dimension:=dimSize,
-            colorSet:=params.colors.Description,
+            dimension:=dimensions,
+            colorSet:=color,
             mapLevels:=mapLevels
         ).AsGDIImage
-
-        image = New RasterScaler(image).Scale(hqx:=params.Hqx)
-
-        Return image
     End Function
 End Class

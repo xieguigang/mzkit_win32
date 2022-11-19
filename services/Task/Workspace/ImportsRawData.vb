@@ -59,7 +59,10 @@
 #End Region
 
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
+Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
+Imports Microsoft.VisualBasic.Language.UnixBash
 
 Public Class ImportsRawData
 
@@ -69,6 +72,9 @@ Public Class ImportsRawData
     ReadOnly success As Action
 
     Public ReadOnly Property raw As MZWork.Raw
+
+    Public Property arguments As Dictionary(Of String, String)
+    Public Property protocol As FileApplicationClass = FileApplicationClass.LCMS
 
     Sub New(file As String, progress As Action(Of String), finished As Action, Optional cachePath As String = Nothing)
         source = file
@@ -88,12 +94,41 @@ Public Class ImportsRawData
         Return path
     End Function
 
+    Public Shared Function EnumerateRawtDataFiles(sourceFolder As String) As IEnumerable(Of String)
+        ' Return ls - l - r - {"*.raw", "*.wiff", "*.mzpack", "*.mzml", "*.mzxml"} <= sourceFolder
+        Return ls - l - r - "*.raw" <= sourceFolder
+    End Function
+
     Private Function getCliArguments() As String
-        If raw.source.ExtensionSuffix("cdf", "netcdf") Then
-            Return PipelineTask.Task.GetconvertGCMSCDFCommandLine(raw.source, raw.cache)
-        Else
-            Return PipelineTask.Task.GetconvertAnyRawCommandLine(raw.source, raw.cache)
+        If arguments Is Nothing Then
+            arguments = New Dictionary(Of String, String)
         End If
+
+        Select Case protocol
+            Case FileApplicationClass.LCMS, FileApplicationClass.GCMS, FileApplicationClass.GCxGC
+                If raw.source.ExtensionSuffix("cdf", "netcdf") Then
+                    Return PipelineTask.Task.GetconvertGCMSCDFCommandLine(raw.source, raw.cache)
+                Else
+                    Return PipelineTask.Task.GetconvertAnyRawCommandLine(raw.source, raw.cache)
+                End If
+            Case FileApplicationClass.MSImaging
+                Dim rawfiles As String() = EnumerateRawtDataFiles(raw.source).ToArray
+                Dim tempfile As String = TempFileSystem.GetAppSysTempFile("/", sessionID:=App.PID.ToHexString, prefix:="ms-imaging_raw") & $"/{raw.source.BaseName}.txt"
+                Dim cutoff As String = arguments.TryGetValue("cutoff", [default]:="0")
+                Dim matrix_basepeak As String = arguments.TryGetValue("matrix_basepeak", [default]:="0")
+                Dim resolution As String = arguments.TryGetValue("resolution", [default]:=17)
+
+                Call rawfiles.SaveTo(tempfile)
+
+                If raw.cache.ExtensionSuffix("imzml") Then
+                    ' do row combines and then convert to imzml
+                    Return PipelineTask.Task.GetMSIToimzMLCommandLine(tempfile, raw.cache, cutoff, matrix_basepeak, resolution)
+                Else
+                    Return PipelineTask.Task.GetMSIRowCombineCommandLine(tempfile, raw.cache, cutoff, matrix_basepeak, resolution)
+                End If
+            Case Else
+                Throw New NotImplementedException(protocol.Description)
+        End Select
     End Function
 
     ''' <summary>

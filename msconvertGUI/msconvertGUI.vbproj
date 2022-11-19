@@ -20,7 +20,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
+    <ProjectReference Include="..\..\assembly\ThermoRawFileReader\MSFileReader.NET5.vbproj" />
     <ProjectReference Include="..\services\Task\Task.vbproj" />
+    <ProjectReference Include="..\ux\CommonDialogs\CommonDialogs.vbproj" />
+    <ProjectReference Include="..\ux\ControlLibrary\ControlLibrary.vbproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -119,51 +119,39 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="Label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 12</value>
+    <value>161, 12</value>
   </data>
   <data name="Label1.Text" xml:space="preserve">
-    <value>原始文件夹：</value>
-  </data>
-  <data name="Label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 12</value>
-  </data>
-  <data name="Label2.Text" xml:space="preserve">
-    <value>输出文件夹：</value>
-  </data>
-  <data name="Button3.Text" xml:space="preserve">
-    <value>开始</value>
-  </data>
-  <data name="ToolStripStatusLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 17</value>
-  </data>
-  <data name="ToolStripStatusLabel1.Text" xml:space="preserve">
-    <value>已准备就绪！</value>
-  </data>
-  <data name="ExitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
-  </data>
-  <data name="ExitToolStripMenuItem.Text" xml:space="preserve">
-    <value>关闭</value>
-  </data>
-  <data name="ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 20</value>
-  </data>
-  <data name="ToolStripMenuItem1.Text" xml:space="preserve">
-    <value>文件</value>
-  </data>
-  <data name="ExportMSImagingFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
-  </data>
-  <data name="ExportMSImagingFileToolStripMenuItem.Text" xml:space="preserve">
-    <value>导出质谱成像数据文件</value>
-  </data>
-  <data name="DropDownMenu1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 26</value>
+    <value>自动计算出的画布扫描大小：</value>
   </data>
   <data name="GroupBox1.Text" xml:space="preserve">
-    <value>质谱原始数据文件</value>
+    <value>质谱成像扫描大小</value>
+  </data>
+  <data name="Button1.Text" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="Button2.Text" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 57</value>
+  </data>
+  <data name="Label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 12</value>
+  </data>
+  <data name="Label4.Text" xml:space="preserve">
+    <value>移除基质离子：</value>
+  </data>
+  <data name="Label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>173, 12</value>
+  </data>
+  <data name="Label3.Text" xml:space="preserve">
+    <value>移除低丰度离子的响应度阈值：</value>
+  </data>
+  <data name="GroupBox2.Text" xml:space="preserve">
+    <value>参数配置</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>MZKit原始数据文件格式转换工具</value>
+    <value>转换质谱成像行扫描数据</value>
   </data>
 </root>

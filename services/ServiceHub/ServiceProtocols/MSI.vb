@@ -65,11 +65,8 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
-Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
-Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.IndexedCache
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
-Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.DataStorage.netCDF
@@ -136,6 +133,10 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         ElseIf filepath.ExtensionSuffix("mzImage") Then
             Call RunSlavePipeline.SendMessage($"read MSI image file!")
             Throw New NotImplementedException
+        ElseIf filepath.ExtensionSuffix("imzml") Then
+            Dim mzPack = Converter.LoadimzML(filepath, AddressOf RunSlavePipeline.SendProgress)
+            mzPack.source = filepath.FileName
+            MSI = New Drawer(mzPack)
         Else
             Dim mzpack As mzPack
 
@@ -245,7 +246,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
                         Return New mzPackPixel(p.CreateMs1, p.X, dims.Height - p.Y + 1)
                     End Function) _
             .ToArray
-        Dim newpack As New ReadRawPack(turns, dims)
+        Dim newpack As New ReadRawPack(turns, dims, MSI.pixelReader.resolution)
         Dim info As Dictionary(Of String, String)
 
         MSI = New Drawer(newpack)
@@ -263,7 +264,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
                         Return New mzPackPixel(p.CreateMs1, dims.Width - p.X + 1, p.Y)
                     End Function) _
             .ToArray
-        Dim newpack As New ReadRawPack(turns, dims)
+        Dim newpack As New ReadRawPack(turns, dims, MSI.pixelReader.resolution)
         Dim info As Dictionary(Of String, String)
 
         MSI = New Drawer(newpack)
@@ -490,10 +491,9 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         For Each px As PixelScan In MSI.pixelReader.AllPixels
             Dim mz As ms2 = px.GetMs.OrderByDescending(Function(a) a.intensity).FirstOrDefault
 
-            pointTagged.Add((px.X, px.Y, mz))
-
             If Not mz Is Nothing Then
-                data.Add(mz)
+                Call data.Add(mz)
+                Call pointTagged.Add((px.X, px.Y, mz))
             End If
         Next
 

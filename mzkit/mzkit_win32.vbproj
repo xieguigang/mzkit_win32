@@ -360,6 +360,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Import Include="CommonDialogs" />
     <Import Include="Microsoft.VisualBasic" />
     <Import Include="System" />
     <Import Include="System.Collections" />
@@ -411,12 +412,6 @@
       <DependentUpon>InputMoNA.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\Inputs\InputMoNA.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\Inputs\ShowMSIRowScanSummary.Designer.vb">
-      <DependentUpon>ShowMSIRowScanSummary.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\Inputs\ShowMSIRowScanSummary.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\Inputs\InputBasePeakIon.Designer.vb">
@@ -520,12 +515,6 @@
       <DependentUpon>InputRSymbol.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\Inputs\InputRSymbol.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\Inputs\InputDialog.Designer.vb">
-      <DependentUpon>InputDialog.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\Inputs\InputDialog.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\Inputs\InputNetworkLayout.Designer.vb">
@@ -1021,9 +1010,6 @@
     <EmbeddedResource Include="forms\Inputs\InputDataVisual.zh-CN.resx">
       <DependentUpon>InputDataVisual.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputDialog.resx">
-      <DependentUpon>InputDialog.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputFeatureFilter.resx">
       <DependentUpon>InputFeatureFilter.vb</DependentUpon>
     </EmbeddedResource>
@@ -1068,9 +1054,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\ShowColumnStat.resx">
       <DependentUpon>ShowColumnStat.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\ShowMSIRowScanSummary.resx">
-      <DependentUpon>ShowMSIRowScanSummary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Task\frmProgressSpinner.resx">
       <DependentUpon>frmProgressSpinner.vb</DependentUpon>
@@ -1733,6 +1716,10 @@
     <ProjectReference Include="..\services\Task\Task.vbproj">
       <Project>{6e5bca87-358e-4ba5-b279-de17afa52c5c}</Project>
       <Name>Task</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ux\CommonDialogs\CommonDialogs.vbproj">
+      <Project>{13685719-56a6-44f9-99a2-47cb79d29a57}</Project>
+      <Name>CommonDialogs</Name>
     </ProjectReference>
     <ProjectReference Include="..\ux\ControlLibrary\ControlLibrary.vbproj">
       <Project>{df66aa70-9ab9-48d0-b492-9d0e0482a651}</Project>

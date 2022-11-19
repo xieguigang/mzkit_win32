@@ -111,6 +111,7 @@ Public Class frmMsImagingViewer
     Dim rendering As Action
     Dim guid As String
     Dim blender As MSImagingBlender
+    Dim TIC As PixelScanIntensity()
 
     Friend MSIservice As ServiceHub.MSIDataService
     Friend params As MsImageProperty
@@ -1253,6 +1254,8 @@ Public Class frmMsImagingViewer
 
         If panic Then
             Return Nothing
+        Else
+            TIC = summaryLayer
         End If
 
         Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
@@ -1323,7 +1326,7 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Function createRenderTask(R As PixelData(), G As PixelData(), B As PixelData()) As Action
-        Dim blender As New RGBIonMSIBlender(R, G, B, params)
+        Dim blender As New RGBIonMSIBlender(R, G, B, TIC, params)
 
         Me.blender = blender
         Me.loadedPixels = R _
@@ -1427,7 +1430,7 @@ Public Class frmMsImagingViewer
         End If
 
         Call params.SetIntensityMax(Aggregate pm As PixelData In pixels Into Max(pm.intensity))
-        Call params.Reset(MsiDim, "N/A", "N/A")
+        Call params.Reset(MsiDim, "N/A", "N/A", 17)
         Call sampleRegions.SetBounds(pixels.Select(Function(a) New Point(a.x, a.y)))
 
         rendering = createRenderTask(pixels, $"{params.scan_x},{params.scan_y}")
@@ -1468,7 +1471,7 @@ Public Class frmMsImagingViewer
     ''' <param name="dimensions">the dimension size of the MSI raw data</param>
     ''' <returns></returns>
     Private Function createRenderTask(pixels As PixelData(), dimensions$) As Action
-        Dim blender As New SingleIonMSIBlender(pixels, params)
+        Dim blender As New SingleIonMSIBlender(pixels, TIC, params)
         Dim range As DoubleRange = blender.range
 
         Me.loadedPixels = pixels

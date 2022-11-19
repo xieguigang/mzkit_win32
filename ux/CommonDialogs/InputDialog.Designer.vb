@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::550657bf8171b5c30c90c819bbec8f7f, mzkit\src\mzkit\ControlLibrary\Message\MaskForm.Designer.vb"
+﻿#Region "Microsoft.VisualBasic::7734f79e7de18132f6faa8a35a136319, mzkit\src\mzkit\mzkit\forms\Inputs\InputDialog.Designer.vb"
 
     ' Author:
     ' 
@@ -37,14 +37,14 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 30
-    '    Code Lines: 22
-    ' Comment Lines: 5
-    '   Blank Lines: 3
-    '     File Size: 1.15 KB
+    '   Total Lines: 42
+    '    Code Lines: 30
+    ' Comment Lines: 8
+    '   Blank Lines: 4
+    '     File Size: 1.58 KB
 
 
-    ' Class MaskForm
+    ' Class InputDialog
     ' 
     '     Sub: Dispose, InitializeComponent
     ' 
@@ -53,7 +53,7 @@
 #End Region
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class MaskForm
+Partial Class InputDialog
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -76,9 +76,21 @@ Partial Class MaskForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        components = New System.ComponentModel.Container
+        Me.SuspendLayout()
+        '
+        'InputDialog
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.BackColor = System.Drawing.Color.White
+        Me.ClientSize = New System.Drawing.Size(509, 305)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
+        Me.Name = "InputDialog"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Form1"
+        Me.ResumeLayout(False)
+
     End Sub
 End Class
