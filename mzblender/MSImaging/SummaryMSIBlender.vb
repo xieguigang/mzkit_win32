@@ -1,6 +1,7 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender.Scaler
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Task
@@ -27,16 +28,28 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
 
     Public Overrides Function Rendering(args As PlotProperty, target As Size) As Image
         Dim mapLevels As Integer = params.mapLevels
-        Dim cut As Double = New TrIQThreshold(params.TrIQ) With {
-            .levels = params.mapLevels
-        }.ThresholdValue(intensity)
         Dim layerData As PixelScanIntensity() = summaryLayer
+        Dim filter As RasterPipeline = New DenoiseScaler() _
+            .Then(New TrIQScaler(params.TrIQ))
 
         If Not params.instrument.TextEquals("Bruker") Then
-            layerData = layerData _
-                .KnnFill(params.knn, params.knn, params.knn_qcut) _
-                .ToArray
+            filter = filter.Then(New KNNScaler(params.knn, params.knn_qcut)).Then(New SoftenScaler())
+        Else
+            filter = filter.Then(New SoftenScaler())
         End If
+
+        Dim pixelDatas = layerData _
+            .Select(Function(p)
+                        Return New BioNovoGene.Analytical.MassSpectrometry.MsImaging.PixelData With {.x = p.x, .y = p.y, .intensity = p.totalIon}
+                    End Function) _
+            .ToArray
+        Dim pixelFilter As New SingleIonLayer With {.DimensionSize = dimensions, .IonMz = -1, .MSILayer = pixelDatas}
+
+        If params.enableFilter Then
+            pixelFilter = filter(pixelFilter)
+        End If
+
+        layerData = pixelFilter.MSILayer.Select(Function(p) New PixelScanIntensity With {.x = p.x, .y = p.y, .totalIon = p.intensity}).ToArray
 
         Dim image As Image = Rendering(layerData, dimensions, params.colors.Description, mapLevels)
         image = New RasterScaler(image).Scale(hqx:=params.Hqx)
