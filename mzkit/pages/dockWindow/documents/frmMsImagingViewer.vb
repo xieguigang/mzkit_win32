@@ -111,6 +111,7 @@ Public Class frmMsImagingViewer
     Dim rendering As Action
     Dim guid As String
     Dim blender As MSImagingBlender
+    Dim TIC As PixelScanIntensity()
 
     Friend MSIservice As ServiceHub.MSIDataService
     Friend params As MsImageProperty
@@ -1253,6 +1254,8 @@ Public Class frmMsImagingViewer
 
         If panic Then
             Return Nothing
+        Else
+            TIC = summaryLayer
         End If
 
         Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range

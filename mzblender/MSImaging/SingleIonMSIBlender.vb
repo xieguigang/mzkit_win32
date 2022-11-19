@@ -1,4 +1,5 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender.Scaler
@@ -11,10 +12,11 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
 
     ReadOnly layer As SingleIonLayer
     ReadOnly intensity As Double()
+    ReadOnly TIC As PixelScanIntensity()
 
     Public ReadOnly Property range As DoubleRange
 
-    Sub New(layer As PixelData(), params As MsImageProperty)
+    Sub New(layer As PixelData(), TIC As PixelScanIntensity(), params As MsImageProperty)
         Call MyBase.New(params)
 
         Me.layer = New SingleIonLayer With {
@@ -24,6 +26,7 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
                 height:=layer.Select(Function(p) p.y).Max
             )
         }
+        Me.TIC = TIC
         Me.intensity = layer.Select(Function(i) i.intensity).ToArray
         Me.range = intensity.Range
     End Sub

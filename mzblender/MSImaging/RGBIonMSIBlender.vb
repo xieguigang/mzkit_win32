@@ -1,4 +1,5 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
+﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender.Scaler
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
@@ -11,6 +12,7 @@ Public Class RGBIonMSIBlender : Inherits MSImagingBlender
 
     ReadOnly R As PixelData(), G As PixelData(), B As PixelData()
     ReadOnly originalSize As Size
+    ReadOnly TIC As PixelScanIntensity()
 
     Public ReadOnly Property dimensions As Size
         Get
@@ -18,12 +20,13 @@ Public Class RGBIonMSIBlender : Inherits MSImagingBlender
         End Get
     End Property
 
-    Sub New(r As PixelData(), g As PixelData(), b As PixelData(), params As MsImageProperty)
+    Sub New(r As PixelData(), g As PixelData(), b As PixelData(), TIC As PixelScanIntensity(), params As MsImageProperty)
         Call MyBase.New(params)
 
         Dim joinX = r.JoinIterates(g).JoinIterates(b).Select(Function(i) i.x).Max
         Dim joinY = r.JoinIterates(g).JoinIterates(b).Select(Function(i) i.y).Max
 
+        Me.TIC = TIC
         Me.originalSize = New Size(joinX, joinY)
         Me.R = r
         Me.G = g

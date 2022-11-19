@@ -139,6 +139,7 @@ Public Class MsImageProperty
     <Category("Render")> Public Property knn_qcut As Double = 0.65
     <Category("Render")> Public Property scale As InterpolationMode = InterpolationMode.Bilinear
     <Category("Render")> Public Property enableFilter As Boolean = True
+    <Category("Render")> Public Property overlap_TIC As Boolean = True
 
     <Description("The mass tolerance error threshold in delta dalton or ppm.")>
     <Category("Pixel M/z Data")> Public Property tolerance As Double = 0.1
