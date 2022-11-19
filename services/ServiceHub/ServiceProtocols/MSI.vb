@@ -246,7 +246,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
                         Return New mzPackPixel(p.CreateMs1, p.X, dims.Height - p.Y + 1)
                     End Function) _
             .ToArray
-        Dim newpack As New ReadRawPack(turns, dims)
+        Dim newpack As New ReadRawPack(turns, dims, MSI.pixelReader.resolution)
         Dim info As Dictionary(Of String, String)
 
         MSI = New Drawer(newpack)
@@ -264,7 +264,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
                         Return New mzPackPixel(p.CreateMs1, dims.Width - p.X + 1, p.Y)
                     End Function) _
             .ToArray
-        Dim newpack As New ReadRawPack(turns, dims)
+        Dim newpack As New ReadRawPack(turns, dims, MSI.pixelReader.resolution)
         Dim info As Dictionary(Of String, String)
 
         MSI = New Drawer(newpack)
