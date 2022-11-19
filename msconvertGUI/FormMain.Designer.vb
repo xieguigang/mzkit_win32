@@ -118,20 +118,20 @@ Partial Class FormMain
         '
         'GroupBox1
         '
+        resources.ApplyResources(Me.GroupBox1, "GroupBox1")
         Me.GroupBox1.Controls.Add(Me.DropDownButton1)
         Me.GroupBox1.Controls.Add(Me.TextBox2)
         Me.GroupBox1.Controls.Add(Me.Button1)
         Me.GroupBox1.Controls.Add(Me.TextBox1)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.Label2)
-        resources.ApplyResources(Me.GroupBox1, "GroupBox1")
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.TabStop = False
         '
         'DropDownButton1
         '
-        Me.DropDownButton1.DropDownMenu = Me.DropDownMenu1
         resources.ApplyResources(Me.DropDownButton1, "DropDownButton1")
+        Me.DropDownButton1.DropDownMenu = Me.DropDownMenu1
         Me.DropDownButton1.Name = "DropDownButton1"
         '
         'DropDownMenu1

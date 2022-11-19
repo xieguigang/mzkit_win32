@@ -104,4 +104,8 @@ Public Class FormMain
             End If
         End Using
     End Sub
+
+    Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles Me.Load
+        InputDialog.MyApplicationHost = Me
+    End Sub
 End Class

@@ -59,6 +59,11 @@ Public Class InputDialog
     Public Shared Sub Input(Of Form As {New, InputDialog})(setConfig As Action(Of Form),
                                                            Optional cancel As Action = Nothing,
                                                            Optional config As Form = Nothing)
+
+        If MyApplicationHost Is Nothing Then
+            Throw New NullReferenceException("the required main form is nothing!")
+        End If
+
         Dim getConfig As Form = If(config, New Form)
         Dim mask As New MaskForm(MyApplicationHost.Location, MyApplicationHost.Size)
 
