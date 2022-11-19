@@ -491,10 +491,9 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         For Each px As PixelScan In MSI.pixelReader.AllPixels
             Dim mz As ms2 = px.GetMs.OrderByDescending(Function(a) a.intensity).FirstOrDefault
 
-            pointTagged.Add((px.X, px.Y, mz))
-
             If Not mz Is Nothing Then
-                data.Add(mz)
+                Call data.Add(mz)
+                Call pointTagged.Add((px.X, px.Y, mz))
             End If
         Next
 
