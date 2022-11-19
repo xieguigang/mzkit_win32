@@ -15,7 +15,7 @@ Public Class HeatMapBlender : Inherits MSImagingBlender
     End Sub
 
     Public Overrides Function Rendering(args As PlotProperty, target As Size) As Image
-        Dim blender As New PixelRender(params.colors.Description, params.mapLevels, defaultColor:=params.background)
+        Dim blender As New Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.PixelRender(params.colors.Description, params.mapLevels, defaultColor:=params.background)
         Dim img As Image = blender.RenderRasterImage(layer, dimension, fillRect:=True)
 
         If params.showPhysicalRuler Then
