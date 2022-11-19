@@ -110,7 +110,8 @@ Public Module MSIProtocols
             {"scan_x", render.dimension.Width},
             {"scan_y", render.dimension.Height},
             {"uuid", uuid},
-            {"fileSize", fileSize}
+            {"fileSize", fileSize},
+            {"resolution", render.pixelReader.resolution}
         }
     End Function
 
