@@ -95,7 +95,8 @@ Public Class ImportsRawData
     End Function
 
     Public Shared Function EnumerateRawtDataFiles(sourceFolder As String) As IEnumerable(Of String)
-        Return ls - l - r - {"*.raw", "*.wiff", "*.mzpack", "*.mzml", "*.mzxml"} <= sourceFolder
+        ' Return ls - l - r - {"*.raw", "*.wiff", "*.mzpack", "*.mzml", "*.mzxml"} <= sourceFolder
+        Return ls - l - r - "*.raw" <= sourceFolder
     End Function
 
     Private Function getCliArguments() As String
@@ -115,14 +116,15 @@ Public Class ImportsRawData
                 Dim tempfile As String = TempFileSystem.GetAppSysTempFile("/", sessionID:=App.PID.ToHexString, prefix:="ms-imaging_raw") & $"/{raw.source.BaseName}.txt"
                 Dim cutoff As String = arguments.TryGetValue("cutoff", [default]:="0")
                 Dim matrix_basepeak As String = arguments.TryGetValue("matrix_basepeak", [default]:="0")
+                Dim resolution As String = arguments.TryGetValue("resolution", [default]:=17)
 
                 Call rawfiles.SaveTo(tempfile)
 
                 If raw.cache.ExtensionSuffix("imzml") Then
                     ' do row combines and then convert to imzml
-                    Return PipelineTask.Task.GetMSIToimzMLCommandLine(tempfile, raw.cache, cutoff, matrix_basepeak)
+                    Return PipelineTask.Task.GetMSIToimzMLCommandLine(tempfile, raw.cache, cutoff, matrix_basepeak, resolution)
                 Else
-                    Return PipelineTask.Task.GetMSIRowCombineCommandLine(tempfile, raw.cache, cutoff, matrix_basepeak)
+                    Return PipelineTask.Task.GetMSIRowCombineCommandLine(tempfile, raw.cache, cutoff, matrix_basepeak, resolution)
                 End If
             Case Else
                 Throw New NotImplementedException(protocol.Description)

@@ -147,10 +147,16 @@ Public Class RscriptProgressTask
         End If
     End Sub
 
-    Public Shared Sub CreateMSIRawFromRowBinds(files As String(), savefile As String, cutoff As Double, basePeak As Double)
+    Public Shared Sub CreateMSIRawFromRowBinds(files As String(), savefile As String, cutoff As Double, basePeak As Double, resoltuion As Double)
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".input_files", sessionID:=App.PID.ToHexString, prefix:="CombineRowScans_")
-        Dim cli As String = PipelineTask.Task.GetMSIRowCombineCommandLine(tempfile, savefile, cutoff:=cutoff, matrix_basepeak:=basePeak)
-        Dim pipeline As New RunSlavePipeline(PipelineTask.Host, cli)
+        Dim commandline As String = PipelineTask.Task.GetMSIRowCombineCommandLine(
+            files:=tempfile,
+            save:=savefile,
+            cutoff:=cutoff,
+            matrix_basepeak:=basePeak,
+            resolution:=resoltuion
+        )
+        Dim pipeline As New RunSlavePipeline(PipelineTask.Host, commandline)
 
         Call files.SaveTo(tempfile, encoding:=Encodings.UTF8.CodePage)
 
@@ -160,7 +166,7 @@ Public Class RscriptProgressTask
         progress.ShowProgressDetails("Loading MSI raw data file into viewer workspace...", directAccess:=True)
         progress.SetProgressMode()
 
-        Call WorkStudio.LogCommandLine(PipelineTask.Host, cli, App.CurrentDirectory)
+        Call WorkStudio.LogCommandLine(PipelineTask.Host, commandline, App.CurrentDirectory)
         Call MyApplication.LogText(pipeline.CommandLine)
 
         AddHandler pipeline.SetMessage, AddressOf progress.ShowProgressDetails

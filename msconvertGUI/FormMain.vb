@@ -37,11 +37,13 @@ Public Class FormMain
 
             Call InputDialog.Input(
                 Sub(creator)
-                    Dim cutoff As Double = creator.cutoff
                     Dim basePeak As Double = creator.matrixMz
+                    Dim cutoff As Double = creator.cutoff
 
+                    Call arguments.Add("resolution", creator.resolution)
                     Call arguments.Add("cutoff", cutoff)
                     Call arguments.Add("matrix_basepeak", basePeak)
+
                 End Sub, cancel:=Sub() cancel = True, config:=load)
 
             If cancel Then

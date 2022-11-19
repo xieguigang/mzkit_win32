@@ -343,6 +343,7 @@ Module RibbonEvents
                     Sub(creator)
                         Dim cutoff As Double = creator.cutoff
                         Dim basePeak As Double = creator.matrixMz
+                        Dim res As Double = creator.resolution
 
                         Using savefile As New SaveFileDialog With {
                             .Filter = "BioNovoGene mzPack(*.mzPack)|*.mzPack",
@@ -355,7 +356,8 @@ Module RibbonEvents
                                     files:=file.FileNames,
                                     savefile:=savefile.FileName,
                                     cutoff:=cutoff,
-                                    basePeak:=basePeak
+                                    basePeak:=basePeak,
+                                    resoltuion:=res
                                 )
                             End If
                         End Using

@@ -19,6 +19,12 @@ Public Class ShowMSIRowScanSummary
         End Get
     End Property
 
+    Public ReadOnly Property resolution As Double
+        Get
+            Return Val(TextBox5.Text)
+        End Get
+    End Property
+
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Me.DialogResult = DialogResult.Cancel
     End Sub
@@ -82,6 +88,10 @@ Public Class ShowMSIRowScanSummary
     End Sub
 
     Private Sub TextBox3_TextChanged(sender As Object, e As EventArgs) Handles TextBox3.TextChanged
+
+    End Sub
+
+    Private Sub TextBox5_TextChanged(sender As Object, e As EventArgs) Handles TextBox5.TextChanged
 
     End Sub
 End Class

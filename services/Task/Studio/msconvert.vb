@@ -141,18 +141,30 @@ End Function
 
 ''' <summary>
 ''' ```bash
-''' /imzml --file &lt;source.data&gt; --save &lt;file.imzML&gt; [/cutoff &lt;intensity_cutoff, default=0&gt; /matrix_basePeak &lt;mz, default=0&gt;]
+''' /imzml --file &lt;source.data&gt; --save &lt;file.imzML&gt; [/cutoff &lt;intensity_cutoff, default=0&gt; /matrix_basePeak &lt;mz, default=0&gt; /resolution &lt;default=17&gt;]
 ''' ```
 ''' Convert raw data file to imzML file.
 ''' </summary>
 '''
 
-Public Function MSIToimzML(file As String, save As String, Optional cutoff As String = "0", Optional matrix_basepeak As String = "0") As Integer
-Dim cli = GetMSIToimzMLCommandLine(file:=file, save:=save, cutoff:=cutoff, matrix_basepeak:=matrix_basepeak, internal_pipelineMode:=True)
+Public Function MSIToimzML(file As String, 
+                              save As String, 
+                              Optional cutoff As String = "0", 
+                              Optional matrix_basepeak As String = "0", 
+                              Optional resolution As String = "17") As Integer
+Dim cli = GetMSIToimzMLCommandLine(file:=file, 
+                              save:=save, 
+                              cutoff:=cutoff, 
+                              matrix_basepeak:=matrix_basepeak, 
+                              resolution:=resolution, internal_pipelineMode:=True)
     Dim proc As IIORedirectAbstract = RunDotNetApp(cli)
     Return proc.Run()
 End Function
-Public Function GetMSIToimzMLCommandLine(file As String, save As String, Optional cutoff As String = "0", Optional matrix_basepeak As String = "0", Optional internal_pipelineMode As Boolean = True) As String
+Public Function GetMSIToimzMLCommandLine(file As String, 
+                              save As String, 
+                              Optional cutoff As String = "0", 
+                              Optional matrix_basepeak As String = "0", 
+                              Optional resolution As String = "17", Optional internal_pipelineMode As Boolean = True) As String
     Dim CLI As New StringBuilder("/imzml")
     Call CLI.Append(" ")
     Call CLI.Append("--file " & """" & file & """ ")
@@ -162,6 +174,9 @@ Public Function GetMSIToimzMLCommandLine(file As String, save As String, Optiona
     End If
     If Not matrix_basepeak.StringEmpty Then
             Call CLI.Append("/matrix_basepeak " & """" & matrix_basepeak & """ ")
+    End If
+    If Not resolution.StringEmpty Then
+            Call CLI.Append("/resolution " & """" & resolution & """ ")
     End If
      Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
@@ -223,7 +238,7 @@ End Function
 
 ''' <summary>
 ''' ```bash
-''' /rowbinds --files &lt;list.txt&gt; --save &lt;MSI.mzPack&gt; [/cutoff &lt;intensity_cutoff, default=0&gt; /matrix_basePeak &lt;mz, default=0&gt;]
+''' /rowbinds --files &lt;list.txt&gt; --save &lt;MSI.mzPack&gt; [/cutoff &lt;intensity_cutoff, default=0&gt; /matrix_basePeak &lt;mz, default=0&gt; /resolution &lt;default=17&gt;]
 ''' ```
 ''' Combine row scans to mzPack
 ''' </summary>
@@ -232,12 +247,24 @@ End Function
 ''' </param>
 ''' <param name="save"> a file path for export mzPack data file.
 ''' </param>
-Public Function MSIRowCombine(files As String, save As String, Optional cutoff As String = "0", Optional matrix_basepeak As String = "0") As Integer
-Dim cli = GetMSIRowCombineCommandLine(files:=files, save:=save, cutoff:=cutoff, matrix_basepeak:=matrix_basepeak, internal_pipelineMode:=True)
+Public Function MSIRowCombine(files As String, 
+                                 save As String, 
+                                 Optional cutoff As String = "0", 
+                                 Optional matrix_basepeak As String = "0", 
+                                 Optional resolution As String = "17") As Integer
+Dim cli = GetMSIRowCombineCommandLine(files:=files, 
+                                 save:=save, 
+                                 cutoff:=cutoff, 
+                                 matrix_basepeak:=matrix_basepeak, 
+                                 resolution:=resolution, internal_pipelineMode:=True)
     Dim proc As IIORedirectAbstract = RunDotNetApp(cli)
     Return proc.Run()
 End Function
-Public Function GetMSIRowCombineCommandLine(files As String, save As String, Optional cutoff As String = "0", Optional matrix_basepeak As String = "0", Optional internal_pipelineMode As Boolean = True) As String
+Public Function GetMSIRowCombineCommandLine(files As String, 
+                                 save As String, 
+                                 Optional cutoff As String = "0", 
+                                 Optional matrix_basepeak As String = "0", 
+                                 Optional resolution As String = "17", Optional internal_pipelineMode As Boolean = True) As String
     Dim CLI As New StringBuilder("/rowbinds")
     Call CLI.Append(" ")
     Call CLI.Append("--files " & """" & files & """ ")
@@ -247,6 +274,9 @@ Public Function GetMSIRowCombineCommandLine(files As String, save As String, Opt
     End If
     If Not matrix_basepeak.StringEmpty Then
             Call CLI.Append("/matrix_basepeak " & """" & matrix_basepeak & """ ")
+    End If
+    If Not resolution.StringEmpty Then
+            Call CLI.Append("/resolution " & """" & resolution & """ ")
     End If
      Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
