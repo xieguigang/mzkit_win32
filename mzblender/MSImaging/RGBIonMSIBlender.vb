@@ -26,7 +26,7 @@ Public Class RGBIonMSIBlender : Inherits MSImagingBlender
         Dim joinX = r.JoinIterates(g).JoinIterates(b).Select(Function(i) i.x).Max
         Dim joinY = r.JoinIterates(g).JoinIterates(b).Select(Function(i) i.y).Max
 
-        Me.TIC = SummaryMSIBlender.Rendering(TIC, New Size(params.scan_x, params.scan_y), "gray", 250)
+        ' Me.TIC = SummaryMSIBlender.Rendering(TIC, New Size(params.scan_x, params.scan_y), "gray", 250)
         Me.originalSize = New Size(joinX, joinY)
         Me.R = r
         Me.G = g
@@ -60,14 +60,14 @@ Public Class RGBIonMSIBlender : Inherits MSImagingBlender
             background:="transparent"
         ).AsGDIImage
 
-        If params.overlap_TIC AndAlso Not TIC Is Nothing Then
-            Using canvas As IGraphics = New Size(image.Width, image.Height).CreateGDIDevice
-                Call canvas.DrawImage(TIC, New Rectangle(New Point(0, 0), canvas.Size))
-                Call canvas.DrawImageUnscaled(image, 0, 0)
+        'If params.overlap_TIC AndAlso Not TIC Is Nothing Then
+        '    Using canvas As IGraphics = New Size(image.Width, image.Height).CreateGDIDevice
+        '        Call canvas.DrawImage(TIC, New Rectangle(New Point(0, 0), canvas.Size))
+        '        Call canvas.DrawImageUnscaled(image, 0, 0)
 
-                image = DirectCast(canvas, Graphics2D).ImageResource
-            End Using
-        End If
+        '        image = DirectCast(canvas, Graphics2D).ImageResource
+        '    End Using
+        'End If
 
         image = New HeatMap.RasterScaler(image).Scale(hqx:=params.Hqx)
 
