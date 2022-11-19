@@ -108,4 +108,8 @@ Public Class FormMain
     Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles Me.Load
         InputDialog.MyApplicationHost = Me
     End Sub
+
+    Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
+
+    End Sub
 End Class
