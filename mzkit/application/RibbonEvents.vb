@@ -179,6 +179,11 @@ Module RibbonEvents
         AddHandler ribbonItems.ButtonSystemDiagnosis.ExecuteEvent, Sub() Call CollectSystemInformation()
 
         AddHandler ribbonItems.ButtonCFMIDTool.ExecuteEvent, Sub() Call OpenCFMIDTool(Nothing, Nothing)
+        AddHandler ribbonItems.MsconvertGUI.ExecuteEvent, Sub() Call openMsconvertTool()
+    End Sub
+
+    Private Sub openMsconvertTool()
+        Call Process.Start($"{App.HOME}/msconvertGUI.exe")
     End Sub
 
     Friend Sub CreatePeakFinding()
