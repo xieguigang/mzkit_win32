@@ -80,10 +80,12 @@
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\x64\mzkit_win32\</OutputPath>
     <DocumentationFile>Mzkit_win32.CommonDialogs.xml</DocumentationFile>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
+    <RemoveIntegerChecks>true</RemoveIntegerChecks>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -152,6 +154,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InputDialogs\ShowMSIRowScanSummary.resx">
       <DependentUpon>ShowMSIRowScanSummary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputDialogs\ShowMSIRowScanSummary.zh-CN.resx">
+      <DependentUpon>ShowMSIRowScanSummary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MaskForm.resx">
+      <DependentUpon>MaskForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
