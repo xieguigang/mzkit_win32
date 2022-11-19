@@ -41,9 +41,9 @@ Partial Class FormMain
         Me.ExportMSImagingFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -87,36 +87,36 @@ Partial Class FormMain
         '
         'StatusStrip1
         '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripProgressBar1})
         resources.ApplyResources(Me.StatusStrip1, "StatusStrip1")
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripProgressBar1})
         Me.StatusStrip1.Name = "StatusStrip1"
         '
         'ToolStripStatusLabel1
         '
-        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
         resources.ApplyResources(Me.ToolStripStatusLabel1, "ToolStripStatusLabel1")
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
         '
         'ToolStripProgressBar1
         '
-        Me.ToolStripProgressBar1.Name = "ToolStripProgressBar1"
         resources.ApplyResources(Me.ToolStripProgressBar1, "ToolStripProgressBar1")
+        Me.ToolStripProgressBar1.Name = "ToolStripProgressBar1"
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
         resources.ApplyResources(Me.MenuStrip1, "MenuStrip1")
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
         Me.MenuStrip1.Name = "MenuStrip1"
         '
         'ToolStripMenuItem1
         '
+        resources.ApplyResources(Me.ToolStripMenuItem1, "ToolStripMenuItem1")
         Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExitToolStripMenuItem})
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        resources.ApplyResources(Me.ToolStripMenuItem1, "ToolStripMenuItem1")
         '
         'ExitToolStripMenuItem
         '
-        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
         resources.ApplyResources(Me.ExitToolStripMenuItem, "ExitToolStripMenuItem")
+        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
         '
         'GroupBox1
         '
@@ -138,15 +138,15 @@ Partial Class FormMain
         '
         'DropDownMenu1
         '
+        resources.ApplyResources(Me.DropDownMenu1, "DropDownMenu1")
         Me.DropDownMenu1.DropDownButton = Me.DropDownButton1
         Me.DropDownMenu1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportMSImagingFileToolStripMenuItem})
         Me.DropDownMenu1.Name = "DropDownMenu1"
-        resources.ApplyResources(Me.DropDownMenu1, "DropDownMenu1")
         '
         'ExportMSImagingFileToolStripMenuItem
         '
-        Me.ExportMSImagingFileToolStripMenuItem.Name = "ExportMSImagingFileToolStripMenuItem"
         resources.ApplyResources(Me.ExportMSImagingFileToolStripMenuItem, "ExportMSImagingFileToolStripMenuItem")
+        Me.ExportMSImagingFileToolStripMenuItem.Name = "ExportMSImagingFileToolStripMenuItem"
         '
         'TabControl1
         '
@@ -158,15 +158,21 @@ Partial Class FormMain
         '
         'TabPage1
         '
-        Me.TabPage1.Controls.Add(Me.ListBox1)
         resources.ApplyResources(Me.TabPage1, "TabPage1")
+        Me.TabPage1.Controls.Add(Me.ListBox1)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'ListBox1
+        '
+        resources.ApplyResources(Me.ListBox1, "ListBox1")
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.Name = "ListBox1"
+        '
         'TabPage2
         '
-        Me.TabPage2.Controls.Add(Me.FlowLayoutPanel1)
         resources.ApplyResources(Me.TabPage2, "TabPage2")
+        Me.TabPage2.Controls.Add(Me.FlowLayoutPanel1)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
@@ -174,12 +180,6 @@ Partial Class FormMain
         '
         resources.ApplyResources(Me.FlowLayoutPanel1, "FlowLayoutPanel1")
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        '
-        'ListBox1
-        '
-        resources.ApplyResources(Me.ListBox1, "ListBox1")
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Name = "ListBox1"
         '
         'FormMain
         '
