@@ -60,6 +60,7 @@
 
 Imports System.ComponentModel
 Imports System.Drawing
+Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.MIME.Html.CSS
@@ -107,6 +108,10 @@ Public Class PlotProperty
 
     Public Function GetPadding() As Padding
         Return New Padding(padding_left, padding_top, padding_right, padding_bottom)
+    End Function
+
+    Public Function GetTheme() As Theme
+        Return New Theme
     End Function
 
 End Class

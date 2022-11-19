@@ -53,6 +53,11 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
 
         Dim image As Image = Rendering(layerData, dimensions, params.colors.Description, mapLevels)
         image = New RasterScaler(image).Scale(hqx:=params.Hqx)
+
+        If params.showPhysicalRuler Then
+            Call New Ruler(args.GetTheme).DrawOnImage(image, dimensions, Color.White, params.resolution)
+        End If
+
         Return image
     End Function
 
