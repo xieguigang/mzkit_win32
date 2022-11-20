@@ -65,9 +65,21 @@
             height: 51px;
         }
     </style>
+	
+	<script type="text/javascript">
+function drop(event) {
+    event.preventDefault()
+    event.stopPropagation()
+    // just a name, not a physical local file path
+	// alert(event.dataTransfer.files[0].name)  // ...files[0].name
+}
+function dragover(event) {
+    event.preventDefault()
+}
+</script>
 </head>
 
-<body>
+<body ondragover="dragover(event)" ondrop="drop(event)">
     <div class="main" style="margin-left: 20px;">
 
         <div style="height: 50px;"></div>
