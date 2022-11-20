@@ -264,7 +264,7 @@ Public Class PixelSelector
         Dim edges As List(Of Edge) = lastPolygon.Edges
 
         If Me.FindVertex(CType(e, Vertex)).Vertex IsNot Nothing Then
-            MessageBox.Show("Cannot place vertex on another vertex!")
+            Call ShowMessage("Cannot place vertex on another vertex!")
             Return
         End If
 
@@ -304,7 +304,7 @@ Public Class PixelSelector
         If vertexToRemove Is Nothing Then Return
 
         If polygon.Vertices.Count = 3 Then
-            MessageBox.Show("A polygon has to have at least 3 vertices!")
+            Call ShowMessage("A polygon has to have at least 3 vertices!")
             Return
         End If
 
@@ -476,7 +476,7 @@ Public Class PixelSelector
 
     Private Sub HalveEdge(ByVal polygon As Polygon, ByVal edge As Edge, ByVal i As Integer)
         If Me.CalculateLength(edge) < 6 Then
-            MessageBox.Show("Edge is too small to halve")
+            Call ShowMessage("Edge is too small to halve")
             Return
         End If
 
@@ -670,7 +670,7 @@ Public Class PixelSelector
                             If movingPolygon.HasEdge(clickedEdges(0)) Then
                                 clickedEdges.Add(edge)
                             Else
-                                MessageBox.Show("Cannot add relation between edges from" & " different polygons!")
+                                Call ShowMessage("Cannot add relation between edges from" & " different polygons!")
                             End If
                         End If
 
@@ -896,7 +896,7 @@ Public Class PixelSelector
 
     Private Function IsLastPolygonCorrect() As Boolean
         If polygons.Count > 0 AndAlso polygons(polygons.Count - 1).Vertices.Count < 3 AndAlso polygons(polygons.Count - 1).Vertices.Count > 0 Then
-            MessageBox.Show("A figure has to have more than 2 vertices - deleting last polygon")
+            Call ShowMessage("A figure has to have more than 2 vertices - deleting last polygon")
             polygons.RemoveAt(polygons.Count - 1)
             RepaintPolygon()
             Dim vertices As List(Of Vertex) = New List(Of Vertex)()
@@ -909,7 +909,7 @@ Public Class PixelSelector
     End Function
 
     Private Sub InvalidPolygonError()
-        MessageBox.Show("Couldn't preserve relations while moving polygon - " & "restoring last correct position")
+        Call ShowMessage("Couldn't preserve relations while moving polygon - " & "restoring last correct position")
         ismouseDown = False
         movingVertex = Nothing
         movingEdge = Nothing
@@ -1053,13 +1053,13 @@ Public Class PixelSelector
 
         Select Case algorithmIndex
             Case 0
-                MessageBox.Show("Drawing with Bresenham algorithm")
+                Call ShowMessage("Drawing with Bresenham algorithm")
             Case 1
-                MessageBox.Show("Drawing with library algorithm")
+                Call ShowMessage("Drawing with library algorithm")
             Case 2
-                MessageBox.Show("Drawing with antialiasing algorithm")
+                Call ShowMessage("Drawing with antialiasing algorithm")
             Case 3
-                MessageBox.Show("Drawing with Symmetric Bresenham algorithm")
+                Call ShowMessage("Drawing with Symmetric Bresenham algorithm")
         End Select
 
         RepaintPolygon()
