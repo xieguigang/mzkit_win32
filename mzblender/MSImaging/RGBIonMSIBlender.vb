@@ -71,6 +71,10 @@ Public Class RGBIonMSIBlender : Inherits MSImagingBlender
 
         image = New HeatMap.RasterScaler(image).Scale(hqx:=params.Hqx)
 
+        If params.showPhysicalRuler Then
+            Call New Ruler(args.GetTheme).DrawOnImage(image, dimensions, Color.White, params.resolution)
+        End If
+
         Return image
     End Function
 End Class

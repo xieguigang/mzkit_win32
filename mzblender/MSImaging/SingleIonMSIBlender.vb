@@ -15,6 +15,11 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
     ReadOnly TIC As Image
 
     Public ReadOnly Property range As DoubleRange
+    Public ReadOnly Property dimensionSize As Size
+        Get
+            Return New Size(params.scan_x, params.scan_y)
+        End Get
+    End Property
 
     Sub New(layer As PixelData(), TIC As PixelScanIntensity(), params As MsImageProperty)
         Call MyBase.New(params)
@@ -32,7 +37,6 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
     End Sub
 
     Public Overrides Function Rendering(args As PlotProperty, target As Size) As Image
-        Dim dimensionSize As New Size(params.scan_x, params.scan_y)
         Dim pixels As PixelData() = TakePixels(layer.MSILayer)
         ' denoise_scale() > TrIQ_scale(0.8) > knn_scale() > soften_scale()
         Dim filter As RasterPipeline = New DenoiseScaler() _
@@ -68,6 +72,10 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
         'End If
 
         image = New HeatMap.RasterScaler(image).Scale(hqx:=params.Hqx)
+
+        If params.showPhysicalRuler Then
+            Call New Ruler(args.GetTheme).DrawOnImage(image, dimensionSize, Color.White, params.resolution)
+        End If
 
         Return image
     End Function

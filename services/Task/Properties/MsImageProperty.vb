@@ -133,13 +133,13 @@ Public Class MsImageProperty
     <Description("The scaled color set palette name.")>
     <Category("Render")> Public Property colors As ScalerPalette = ScalerPalette.viridis
     <Description("the color depth levels of the color sequence which is generated from a specific scaler palette.")>
-    <Category("Render")> Public Property mapLevels As Integer = 120
+    <Category("Render")> Public Property mapLevels As Integer = 250
     <Description("knn fill range for the pixel data")>
     <Category("Render")> Public Property knn As Integer = 3
     <Category("Render")> Public Property knn_qcut As Double = 0.65
     <Category("Render")> Public Property scale As InterpolationMode = InterpolationMode.Bilinear
     <Category("Render")> Public Property enableFilter As Boolean = True
-    ' <Category("Render")> Public Property overlap_TIC As Boolean = True
+    <Category("Render")> Public Property showPhysicalRuler As Boolean = True
 
     <Description("The mass tolerance error threshold in delta dalton or ppm.")>
     <Category("Pixel M/z Data")> Public Property tolerance As Double = 0.1
