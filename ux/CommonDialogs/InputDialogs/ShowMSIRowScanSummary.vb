@@ -45,6 +45,7 @@ Public Class ShowMSIRowScanSummary
         Me.Invoke(Sub() TextBox2.Text = files.Length.ToString)
         Me.Invoke(Sub() TextBox4.Text = w.basePeak)
         Me.Invoke(Sub() Label5.Text = "Done!")
+        Me.Invoke(Sub() Button1.Enabled = True)
     End Sub
 
     Private Shared Function getMaxFile(files As String()) As Task(Of String)
