@@ -61,6 +61,7 @@
 
 #End Region
 
+Imports System.Net
 Imports System.Runtime.CompilerServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
@@ -147,9 +148,31 @@ Module Globals
         }
 
         Call localfs.Start()
+        Call App.AddExitCleanHook(AddressOf shutdownHttpWeb)
 
         Call FrameworkInternal.ConfigMemory(MemoryLoads.Max)
         Call LicenseFile.ApplyLicense()
+    End Sub
+
+    Private Sub shutdownHttpWeb()
+        Try
+            Dim url = $"https://127.0.0.1:{WebPort}/ctrl/kill"
+            Dim httpRequest = CType(WebRequest.Create(url), HttpWebRequest)
+
+            httpRequest.Method = "OPTIONS"
+            httpRequest.Headers("Access-Control-Request-Method") = "POST"
+            httpRequest.Headers("Access-Control-Request-Headers") = "content-type"
+
+            Dim httpResponse = CType(httpRequest.GetResponse, HttpWebResponse)
+
+            Using streamReader = New StreamReader(httpResponse.GetResponseStream())
+                Call Console.WriteLine(streamReader.ReadToEnd)
+            End Using
+
+            Console.WriteLine(httpResponse.StatusCode)
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Public Function loadBackground(Optional ByRef maps As Map() = Nothing) As Background
@@ -582,9 +605,7 @@ Module Globals
             WindowModules.UVScansList.DockState = DockState.DockLeftAutoHide
             WindowModules.UVScansList.Win7StyleTreeView1.Nodes.Clear()
             WindowModules.UVScansList.Clear()
-
             hasUVscans = True
-
             For Each scan As DataBinBox(Of UVScan) In CutBins _
                 .FixedWidthBins(UVscans, 99, Function(x) x.scan_time) _
                 .Where(Function(b) b.Count > 0)
@@ -641,7 +662,7 @@ Module Globals
     <Extension>
     Public Function GetXICMaxYAxis(raw As Raw) As Double
         Dim XIC As Double() = raw _
-            .GetMs2Scans _
+.GetMs2Scans _
             .Select(Function(a) a.intensity) _
             .ToArray
 
