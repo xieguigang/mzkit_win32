@@ -2,6 +2,7 @@
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Linq
+Imports PipelineHost
 Imports SMRUCC.genomics.Analysis.HTS.GSEA
 Imports SMRUCC.genomics.Assembly.KEGG.WebServices
 Imports SMRUCC.genomics.GCModeller.Workbench.KEGGReport
@@ -16,7 +17,7 @@ Public Class KEGGEnrichmentAction : Inherits ActionBase
 
     Public Overrides Sub RunAction(fieldName As String, data As Array, tbl As DataTable)
         Dim maps As Map() = Nothing
-        Dim kegg As Background = Globals.loadBackground(maps)
+        Dim kegg As Background = KEGGRepo.loadBackground(maps)
         Dim enrich = frmTaskProgress.LoadData(
                     Function(msg)
                         Dim all = kegg.Enrichment(data.AsObjectEnumerator.Where(Function(c) Not c Is Nothing).Select(Function(c) c.ToString), outputAll:=True, showProgress:=True, doProgress:=msg).ToArray
