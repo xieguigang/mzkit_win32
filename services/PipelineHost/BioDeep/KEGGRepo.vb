@@ -60,9 +60,11 @@ Imports BioDeep
 Imports BioNovoGene.BioDeep.Chemistry
 Imports BioNovoGene.BioDeep.Chemoinformatics
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
+Imports BioNovoGene.BioDeep.MetaDNA
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.My
+Imports SMRUCC.genomics.Analysis.HTS.GSEA
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports SMRUCC.genomics.Assembly.KEGG.WebServices
 Imports SMRUCC.genomics.Data.GeneOntology.OBO
@@ -114,6 +116,13 @@ Public Module KEGGRepo
                 Return KEGGCompoundPack.ReadKeggDb(pack)
             End Using
         End Using
+    End Function
+
+    Public Function loadBackground(Optional ByRef maps As Map() = Nothing) As Background
+        Dim background As Background
+        maps = KEGGRepo.RequestKEGGMaps
+        background = MSJointConnection.ImportsBackground(maps)
+        Return background
     End Function
 
     Public Function RequestKEGGMaps() As Map()

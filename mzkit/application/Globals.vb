@@ -61,6 +61,7 @@
 
 #End Region
 
+Imports System.IO
 Imports System.Net
 Imports System.Runtime.CompilerServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
@@ -77,7 +78,6 @@ Imports BioNovoGene.BioDeep.MSEngine
 Imports BioNovoGene.mzkit_win32.Configuration
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices.Development
-Imports Microsoft.VisualBasic.CommandLine
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Data.csv
@@ -90,7 +90,6 @@ Imports Microsoft.VisualBasic.ValueTypes
 Imports MZWorkPack
 Imports PipelineHost
 Imports SMRUCC.genomics.Analysis.HTS.GSEA
-Imports SMRUCC.genomics.Assembly.KEGG.WebServices
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 Imports stdNum = System.Math
@@ -174,13 +173,6 @@ Module Globals
 
         End Try
     End Sub
-
-    Public Function loadBackground(Optional ByRef maps As Map() = Nothing) As Background
-        maps = KEGGRepo.RequestKEGGMaps
-        Dim background = MSJointConnection.ImportsBackground(maps)
-
-        Return background
-    End Function
 
     Public Function LoadChEBI(println As Action(Of String), mode As Integer, mzdiff As Tolerance) As MSSearch(Of MetaboliteAnnotation)
         Dim key As String = $"[{mzdiff.ToString}]{mode}"
