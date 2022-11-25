@@ -145,6 +145,9 @@ Public Class MsImageProperty
     <Category("Pixel M/z Data")> Public Property tolerance As Double = 0.1
     <Category("Pixel M/z Data")> Public Property method As ToleranceMethod = ToleranceMethod.Da
 
+    <Category("Intensity")> Public ReadOnly Property basePeak_x As Integer
+    <Category("Intensity")> Public ReadOnly Property basePeak_y As Integer
+
     <Category("Intensity")> Public ReadOnly Property min As Double
     <Category("Intensity")> Public ReadOnly Property max As Double
 
@@ -260,9 +263,11 @@ Public Class MsImageProperty
         Return Nothing
     End Function
 
-    Public Sub SetIntensityMax(max As Double)
+    Public Sub SetIntensityMax(max As Double, basePeak_xy As Point)
         _min = 0
         _max = max
+        _basePeak_x = basePeak_xy.X
+        _basePeak_y = basePeak_xy.Y
     End Sub
 
     Public Sub SetInstrument(name As String)
