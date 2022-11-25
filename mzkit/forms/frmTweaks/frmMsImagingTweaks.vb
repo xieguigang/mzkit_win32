@@ -434,9 +434,11 @@ UseCheckedList:
     End Function
 
     Private Function getVector(ByRef mz As Double) As Dictionary(Of String, NamedValue(Of Double()))
-        Dim layer = getLayer(mz, needsRegions:=True)
+        Dim errMsg As String = Nothing
+        Dim layer = getLayer(mz, needsRegions:=True, msg:=errMsg)
 
         If layer Is Nothing Then
+            Call MyApplication.host.warning($"No ion layer data for ${mz.ToString("F4")}: {errMsg}")
             Return Nothing
         End If
 
@@ -469,27 +471,31 @@ UseCheckedList:
         Return data
     End Function
 
-    Private Function getLayer(ByRef mz As Double, needsRegions As Boolean) As PixelData()
+    Private Function getLayer(ByRef mz As Double, needsRegions As Boolean, ByRef msg$) As PixelData()
         If viewer Is Nothing OrElse (needsRegions AndAlso viewer.sampleRegions.IsNullOrEmpty) Then
+            msg = "No tissue region data was provided!"
             Return Nothing
         ElseIf Not viewer.checkService Then
+            msg = "You must start the MS-imaging data services backend at first!"
             Return Nothing
         End If
 
         mz = GetSelectedIons().FirstOrDefault
 
         If mz <= 0 Then
+            msg = "No ions m/z is selected!"
             Return Nothing
         End If
 
         Dim mzdiff = Tolerance.DeltaMass(0.01)
-        Dim layer = viewer.MSIservice.LoadPixels({mz}, mzdiff)
+        Dim layer As PixelData() = viewer.MSIservice.LoadPixels({mz}, mzdiff)
 
         If layer.IsNullOrEmpty Then
+            msg = "ion layer is empty!"
             Return Nothing
+        Else
+            Return layer
         End If
-
-        Return layer
     End Function
 
     Private Sub BarPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BarPlotToolStripMenuItem.Click
@@ -543,9 +549,11 @@ UseCheckedList:
 
     Private Sub IntensityHistogramToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles IntensityHistogramToolStripMenuItem.Click
         Dim mz As Double
-        Dim layer = getLayer(mz, needsRegions:=False)
+        Dim errMsg As String = Nothing
+        Dim layer = getLayer(mz, needsRegions:=False, msg:=errMsg)
 
         If layer Is Nothing Then
+            Call MyApplication.host.warning($"No ion layer data for ${mz.ToString("F4")}: {errMsg}")
             Return
         End If
 
