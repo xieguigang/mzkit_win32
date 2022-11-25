@@ -61,25 +61,24 @@
 
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
+Imports BioNovoGene.mzkit_win32.My
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
+Imports Microsoft.VisualBasic.Data.ChartPlots.BarPlot.Histogram
+Imports Microsoft.VisualBasic.Data.GraphTheory
 Imports Microsoft.VisualBasic.DataStorage.netCDF
+Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
-Imports BioNovoGene.mzkit_win32.My
+Imports Microsoft.VisualBasic.Math.Distributions
+Imports Microsoft.VisualBasic.MIME.application.json
+Imports Microsoft.VisualBasic.MIME.application.json.Javascript
 Imports RibbonLib.Interop
 Imports Task
-Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
-Imports ControlLibrary
-Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
-Imports Microsoft.VisualBasic.Math.Distributions
-Imports Microsoft.VisualBasic.Data.GraphTheory
-Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
-Imports Microsoft.VisualBasic.Imaging
-Imports Microsoft.VisualBasic.MIME.application.json.Javascript
-Imports Microsoft.VisualBasic.MIME.application.json
-Imports Microsoft.VisualBasic.Data.ChartPlots.BarPlot.Histogram
-Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 
 Public Class frmMsImagingTweaks
 
@@ -443,11 +442,13 @@ UseCheckedList:
 
         Dim regions = viewer.sampleRegions.GetRegions(viewer.PixelSelector1.dimension_size).ToArray
         Dim data As New Dictionary(Of String, NamedValue(Of Double()))
-        Dim n As Integer = 6
+        Dim n As Integer = 32
         Dim matrix = Grid(Of PixelData).Create(layer, Function(i) New Point(i.x, i.y))
 
         For Each region As TissueRegion In regions
-            Dim samples = Bootstraping.Samples(region.points, 16, bags:=n).ToArray
+            Dim A As Integer = region.points.Length
+            Dim Nsize As Integer = A / 4
+            Dim samples = Bootstraping.Samples(region.points, Nsize, bags:=n).ToArray
             Dim vec = samples _
                 .AsParallel _
                 .Select(Function(pack)
@@ -457,7 +458,7 @@ UseCheckedList:
                             If d.Length = 0 Then
                                 Return 0
                             Else
-                                Return d.Average
+                                Return d.Sum / A
                             End If
                         End Function) _
                 .ToArray
