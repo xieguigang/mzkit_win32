@@ -61,7 +61,11 @@ Namespace PolygonEditor
 
     Friend Class Vertex
 
-        Public Property Edges As List(Of Edge) '0 - in, 1 - out
+        ''' <summary>
+        ''' 0 - in, 1 - out
+        ''' </summary>
+        ''' <returns></returns>
+        Public Property Edges As List(Of Edge)
 
         Public Function GetInEdge() As Edge
             Return If(Edges(0).From Is Me, Edges(1), Edges(0))
@@ -73,21 +77,21 @@ Namespace PolygonEditor
 
         Public Property Coord As Point
             Get
-                Return coordField
+                Return m_coordXY
             End Get
             Set(value As Point)
-                coordField = value
+                m_coordXY = value
             End Set
         End Property
 
-        Private coordField As Point
+        Private m_coordXY As Point
 
         Public Property X As Integer
             Get
-                Return Coord.X
+                Return m_coordXY.X
             End Get
             Set(value As Integer)
-                coordField.X = value
+                m_coordXY.X = value
             End Set
         End Property
 
@@ -96,7 +100,7 @@ Namespace PolygonEditor
                 Return Coord.Y
             End Get
             Set(value As Integer)
-                coordField.Y = value
+                m_coordXY.Y = value
             End Set
         End Property
 
