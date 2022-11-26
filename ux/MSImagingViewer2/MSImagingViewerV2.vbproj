@@ -122,9 +122,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewerCtrl\ColorScaler.Designer.vb">
+      <DependentUpon>ColorScaler.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ViewerCtrl\ColorScaler.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ViewerCtrl\ColorScaler.resx">
+      <DependentUpon>ColorScaler.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewerCtrl\KP-ImageViewerV2.resx">
       <DependentUpon>KP-ImageViewerV2.vb</DependentUpon>
     </EmbeddedResource>
