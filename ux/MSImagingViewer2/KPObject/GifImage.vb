@@ -3,6 +3,7 @@ Imports System.Drawing
 Imports System.Drawing.Imaging
 
 Public Class GifImage
+
     Private KpViewer As KpImageViewer
     Private gif As Image
     Private dimension As FrameDimension
@@ -10,7 +11,7 @@ Public Class GifImage
     Private rotationField As Integer = 0
     Private currentFrameBmp As Bitmap = Nothing
 
-    Public Sub New(ByVal KpViewer As KpImageViewer, ByVal img As Image)
+    Public Sub New(KpViewer As KpImageViewer, img As Image)
         Me.KpViewer = KpViewer
         gif = img
         dimension = New FrameDimension(gif.FrameDimensionsList(0))
@@ -37,7 +38,7 @@ Public Class GifImage
         End Get
     End Property
 
-    Public Sub Rotate(ByVal rotation As Integer)
+    Public Sub Rotate(rotation As Integer)
         rotationField = (rotationField + rotation) Mod 360
     End Sub
 
@@ -45,7 +46,7 @@ Public Class GifImage
         gif.Dispose()
     End Sub
 
-    Private Sub OnFrameChanged(ByVal o As Object, ByVal e As EventArgs)
+    Private Sub OnFrameChanged(o As Object, e As EventArgs)
         currentFrameBmp = CType(gif, Bitmap)
 
         KpViewer.InvalidatePanel()

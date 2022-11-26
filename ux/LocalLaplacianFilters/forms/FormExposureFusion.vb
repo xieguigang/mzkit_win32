@@ -17,7 +17,7 @@ Partial Public Class FormExposureFusion
         AddHandler trackBar1.KeyDown, Sub(sender, e) CType(e, KeyEventArgs).Handled = True
     End Sub
 
-    Private Sub Form5_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
+    Private Sub Form5_Load(sender As Object, e As EventArgs) Handles Me.Load
         pictureBox1.Image = Apply(imagesField)
     End Sub
 
@@ -27,7 +27,7 @@ Partial Public Class FormExposureFusion
     End Function
 
     Public Property Images As Bitmap()
-        Set(ByVal value As Bitmap())
+        Set(value As Bitmap())
             Dim length = value.Length
             imagesField = New Bitmap(length - 1) {}
 
@@ -40,17 +40,17 @@ Partial Public Class FormExposureFusion
         End Get
     End Property
 
-    Private Sub button1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles button1.Click
+    Private Sub button1_Click(sender As Object, e As EventArgs) Handles button1.Click
         DialogResult = DialogResult.OK
     End Sub
 #End Region
 
 #Region "TrackBars"
-    Private Sub trackBar1_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles trackBar1.Scroll
+    Private Sub trackBar1_Scroll(sender As Object, e As EventArgs) Handles trackBar1.Scroll
         textBox2.Text = (trackBar1.Value / 100.0 + 0.1).ToString()
     End Sub
 
-    Private Sub trackBar1_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles trackBar1.MouseUp
+    Private Sub trackBar1_MouseUp(sender As Object, e As MouseEventArgs) Handles trackBar1.MouseUp
         If e.Button = MouseButtons.Right Then
             trackBar1.Value = 45
             trackBar1_Scroll(sender, e)

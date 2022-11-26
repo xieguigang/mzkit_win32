@@ -13,7 +13,7 @@ Public Enum KpZoom
     Public Partial Class KpImageViewer
         Inherits UserControl
         <DllImport("user32.dll")>
-        Private Shared Function GetKeyState(ByVal key As Integer) As Short
+        Private Shared Function GetKeyState(key As Integer) As Short
         End Function
 
         Private drawEngine As KP_DrawEngine
@@ -31,17 +31,17 @@ Public Enum KpZoom
         Private grabCursor As Cursor = Nothing
         Private dragCursor As Cursor = Nothing
 
-        Public Delegate Sub ImageViewerRotationEventHandler(ByVal sender As Object, ByVal e As ImageViewerRotationEventArgs)
+        Public Delegate Sub ImageViewerRotationEventHandler(sender As Object, e As ImageViewerRotationEventArgs)
         Public Event AfterRotation As ImageViewerRotationEventHandler
 
-        Protected Overridable Sub OnRotation(ByVal e As ImageViewerRotationEventArgs)
+        Protected Overridable Sub OnRotation(e As ImageViewerRotationEventArgs)
             RaiseEvent AfterRotation(Me, e)
         End Sub
 
-        Public Delegate Sub ImageViewerZoomEventHandler(ByVal sender As Object, ByVal e As ImageViewerZoomEventArgs)
+        Public Delegate Sub ImageViewerZoomEventHandler(sender As Object, e As ImageViewerZoomEventArgs)
         Public Event AfterZoom As ImageViewerZoomEventHandler
 
-        Protected Overridable Sub OnZoom(ByVal e As ImageViewerZoomEventArgs)
+        Protected Overridable Sub OnZoom(e As ImageViewerZoomEventArgs)
             RaiseEvent AfterZoom(Me, e)
         End Sub
 
@@ -53,7 +53,7 @@ Public Enum KpZoom
             Get
                 Return animationEnabled
             End Get
-            Set(ByVal value As Boolean)
+            Set(value As Boolean)
                 animationEnabled = value
 
                 If drawing IsNot Nothing Then
@@ -64,7 +64,7 @@ Public Enum KpZoom
             End Set
         End Property
 
-        Private Function IsKeyPressed(ByVal key As Integer) As Boolean
+        Private Function IsKeyPressed(key As Integer) As Boolean
             Dim keyPressed = False
             Dim result = GetKeyState(key)
 
@@ -88,7 +88,7 @@ Public Enum KpZoom
             Get
                 Return btnOpen.Visible
             End Get
-            Set(ByVal value As Boolean)
+            Set(value As Boolean)
                 If value Then
                     btnOpen.Show()
 
@@ -118,7 +118,7 @@ Public Enum KpZoom
             Get
                 Return btnPreview.Visible
             End Get
-            Set(ByVal value As Boolean)
+            Set(value As Boolean)
                 If value Then
                     If btnOpen.Visible = True Then
                         ' Making sure it's aligned properly
@@ -139,7 +139,7 @@ Public Enum KpZoom
             Get
                 Return MyBase.AllowDrop
             End Get
-            Set(ByVal value As Boolean)
+            Set(value As Boolean)
                 pbFull.AllowDrop = value
                 MyBase.AllowDrop = value
             End Set
@@ -167,7 +167,7 @@ Public Enum KpZoom
             Get
                 Return panelMenu.BackColor
             End Get
-            Set(ByVal value As Color)
+            Set(value As Color)
                 panelMenu.BackColor = value
                 panelPreview.BackColor = value
                 panelNavigation.BackColor = value
@@ -178,7 +178,7 @@ Public Enum KpZoom
             Get
                 Return panelMenu.BackColor
             End Get
-            Set(ByVal value As Color)
+            Set(value As Color)
                 panelMenu.BackColor = value
             End Set
         End Property
@@ -187,7 +187,7 @@ Public Enum KpZoom
             Get
                 Return panelNavigation.BackColor
             End Get
-            Set(ByVal value As Color)
+            Set(value As Color)
                 panelNavigation.BackColor = value
             End Set
         End Property
@@ -196,7 +196,7 @@ Public Enum KpZoom
             Get
                 Return panelPreview.BackColor
             End Get
-            Set(ByVal value As Color)
+            Set(value As Color)
                 panelPreview.BackColor = value
             End Set
         End Property
@@ -205,7 +205,7 @@ Public Enum KpZoom
             Get
                 Return lblNavigation.ForeColor
             End Get
-            Set(ByVal value As Color)
+            Set(value As Color)
                 lblNavigation.ForeColor = value
             End Set
         End Property
@@ -214,7 +214,7 @@ Public Enum KpZoom
             Get
                 Return lblPreview.ForeColor
             End Get
-            Set(ByVal value As Color)
+            Set(value As Color)
                 lblPreview.ForeColor = value
                 lblNavigation.ForeColor = value
             End Set
@@ -224,7 +224,7 @@ Public Enum KpZoom
             Get
                 Return lblPreview.ForeColor
             End Get
-            Set(ByVal value As Color)
+            Set(value As Color)
                 lblPreview.ForeColor = value
             End Set
         End Property
@@ -233,7 +233,7 @@ Public Enum KpZoom
             Get
                 Return pbFull.BackColor
             End Get
-            Set(ByVal value As Color)
+            Set(value As Color)
                 pbFull.BackColor = value
             End Set
         End Property
@@ -242,13 +242,13 @@ Public Enum KpZoom
             Get
                 Return lblPreview.Text
             End Get
-            Set(ByVal value As String)
+            Set(value As String)
                 lblPreview.Text = value
             End Set
         End Property
 
         Public WriteOnly Property ImagePath As String
-            Set(ByVal value As String)
+            Set(value As String)
                 drawing.ImagePath = value
 
                 UpdatePanels(True)
@@ -260,7 +260,7 @@ Public Enum KpZoom
             Get
                 Return drawing.Image
             End Get
-            Set(ByVal value As Bitmap)
+            Set(value As Bitmap)
                 drawing.Image = value
 
                 UpdatePanels(True)
@@ -272,7 +272,7 @@ Public Enum KpZoom
             Get
                 Return drawing.Rotation
             End Get
-            Set(ByVal value As Integer)
+            Set(value As Integer)
                 ' Making sure the rotation is 0, 90, 180 or 270 degrees!
                 If value = 90 OrElse value = 180 OrElse value = 270 OrElse value = 0 Then
                     drawing.Rotation = value
@@ -325,7 +325,7 @@ Public Enum KpZoom
             Get
                 Return showPreviewField
             End Get
-            Set(ByVal value As Boolean)
+            Set(value As Boolean)
                 If showPreviewField <> value Then
                     showPreviewField = value
                     Preview()
@@ -392,7 +392,7 @@ Public Enum KpZoom
             Focus()
         End Sub
 
-        Private Sub KP_ImageViewerV2_Load(ByVal sender As Object, ByVal e As EventArgs)
+        Private Sub KP_ImageViewerV2_Load(sender As Object, e As EventArgs)
             ' Loop for ComboBox Items! Increments by 25%
             Dim z = 0.25
 
@@ -434,13 +434,13 @@ Public Enum KpZoom
             End If
         End Sub
 
-        Private Sub KP_ImageViewerV2_Resize(ByVal sender As Object, ByVal e As EventArgs)
+        Private Sub KP_ImageViewerV2_Resize(sender As Object, e As EventArgs)
             InitControl()
             drawing.AvoidOutOfScreen()
             UpdatePanels(True)
         End Sub
 
-        Private Sub pbFull_Paint(ByVal sender As Object, ByVal e As PaintEventArgs)
+        Private Sub pbFull_Paint(sender As Object, e As PaintEventArgs)
             ' Can I double buffer?
             If drawEngine.CanDoubleBuffer() Then
                 ' Yes I can!
@@ -458,7 +458,7 @@ Public Enum KpZoom
             End If
         End Sub
 
-        Private Sub pbFull_MouseDown(ByVal sender As Object, ByVal e As MouseEventArgs)
+        Private Sub pbFull_MouseDown(sender As Object, e As MouseEventArgs)
             If e.Button = MouseButtons.Left Then
                 ' Left Shift or Right Shift pressed? Or is select mode one?
                 If IsKeyPressed(&HA0) OrElse IsKeyPressed(&HA1) OrElse selectMode = True Then
@@ -486,7 +486,7 @@ Public Enum KpZoom
             End If
         End Sub
 
-        Private Sub pbFull_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs)
+        Private Sub pbFull_MouseUp(sender As Object, e As MouseEventArgs)
             ' Am i dragging or selecting?
             If shiftSelecting = True Then
                 ' Calculate my selection rectangle
@@ -522,7 +522,7 @@ Public Enum KpZoom
             End If
         End Sub
 
-        Private Sub pbFull_MouseMove(ByVal sender As Object, ByVal e As MouseEventArgs)
+        Private Sub pbFull_MouseMove(sender As Object, e As MouseEventArgs)
             ' Am I dragging or selecting?
             If shiftSelecting = True Then
                 ' Keep selecting
@@ -561,7 +561,7 @@ Public Enum KpZoom
             End If
         End Sub
 
-        Private Sub KP_ImageViewerV2_MouseWheel(ByVal sender As Object, ByVal e As MouseEventArgs)
+        Private Sub KP_ImageViewerV2_MouseWheel(sender As Object, e As MouseEventArgs)
             drawing.Scroll(sender, e)
 
             If drawing.Image IsNot Nothing Then
@@ -575,7 +575,7 @@ Public Enum KpZoom
             UpdatePanels(True)
         End Sub
 
-        Private Sub btnOpen_Click(ByVal sender As Object, ByVal e As EventArgs)
+        Private Sub btnOpen_Click(sender As Object, e As EventArgs)
             Dim openFileDialog As OpenFileDialog = New OpenFileDialog()
 
             openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.gif;*.bmp;*.png;*.tif;*.tiff;*.wmf;*.emf|JPEG Files (*.jpg)|*.jpg;*.jpeg|GIF Files (*.gif)|*.gif|BMP Files (*.bmp)|*.bmp|PNG Files (*.png)|*.png|TIF files (*.tif;*.tiff)|*.tif;*.tiff|EMF/WMF Files (*.wmf;*.emf)|*.wmf;*.emf|All files (*.*)|*.*"
@@ -587,7 +587,7 @@ Public Enum KpZoom
             UpdatePanels(True)
         End Sub
 
-        Private Sub btnRotate270_Click(ByVal sender As Object, ByVal e As EventArgs)
+        Private Sub btnRotate270_Click(sender As Object, e As EventArgs)
             If drawing IsNot Nothing Then
                 drawing.Rotate270()
 
@@ -598,7 +598,7 @@ Public Enum KpZoom
             End If
         End Sub
 
-        Private Sub btnRotate90_Click(ByVal sender As Object, ByVal e As EventArgs)
+        Private Sub btnRotate90_Click(sender As Object, e As EventArgs)
             If drawing IsNot Nothing Then
                 drawing.Rotate90()
 
@@ -642,7 +642,7 @@ Public Enum KpZoom
             End If
         End Sub
 
-        Private Sub btnZoomOut_Click(ByVal sender As Object, ByVal e As EventArgs)
+        Private Sub btnZoomOut_Click(sender As Object, e As EventArgs)
             drawing.ZoomOut()
 
             ' AfterZoom Event
@@ -652,7 +652,7 @@ Public Enum KpZoom
             UpdatePanels(True)
         End Sub
 
-        Private Sub btnZoomIn_Click(ByVal sender As Object, ByVal e As EventArgs)
+        Private Sub btnZoomIn_Click(sender As Object, e As EventArgs)
             drawing.ZoomIn()
 
             ' AfterZoom Event
@@ -662,12 +662,12 @@ Public Enum KpZoom
             UpdatePanels(True)
         End Sub
 
-        Private Sub btnFitToScreen_Click(ByVal sender As Object, ByVal e As EventArgs)
+        Private Sub btnFitToScreen_Click(sender As Object, e As EventArgs)
             drawing.FitToScreen()
             UpdatePanels(True)
         End Sub
 
-        Private Sub cbZoom_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs)
+        Private Sub cbZoom_SelectedIndexChanged(sender As Object, e As EventArgs)
             Dim zoom = (cbZoom.SelectedIndex + 1) * 0.25
             Dim originalZoom = drawing.Zoom
 
@@ -686,7 +686,7 @@ Public Enum KpZoom
             End If
         End Sub
 
-        Private Sub UpdatePanels(ByVal updatePreview As Boolean)
+        Private Sub UpdatePanels(updatePreview As Boolean)
             If drawing.CurrentSize.Width > 0 AndAlso drawing.OriginalSize.Width > 0 Then
                 ' Make sure panel is up to date
                 pbFull.Refresh()
@@ -750,7 +750,7 @@ Public Enum KpZoom
             End If
         End Sub
 
-        Private Sub pbPanel_MouseDown(ByVal sender As Object, ByVal e As MouseEventArgs)
+        Private Sub pbPanel_MouseDown(sender As Object, e As MouseEventArgs)
             If panelDragging = False Then
                 drawing.JumpToOrigin(e.X, e.Y, pbPanel.Width, pbPanel.Height, pbFull.Width, pbFull.Height)
                 UpdatePanels(True)
@@ -759,12 +759,12 @@ Public Enum KpZoom
             End If
         End Sub
 
-        Private Sub pbFull_MouseDoubleClick(ByVal sender As Object, ByVal e As MouseEventArgs)
+        Private Sub pbFull_MouseDoubleClick(sender As Object, e As MouseEventArgs)
             drawing.JumpToOrigin(e.X + (drawing.BoundingBox.X - drawing.BoundingBox.X * 2), e.Y + (drawing.BoundingBox.Y - drawing.BoundingBox.Y * 2), pbFull.Width, pbFull.Height)
             UpdatePanels(True)
         End Sub
 
-        Private Sub pbFull_MouseHover(ByVal sender As Object, ByVal e As EventArgs)
+        Private Sub pbFull_MouseHover(sender As Object, e As EventArgs)
             ' Left shift or Right shift!
             If IsKeyPressed(&HA0) OrElse IsKeyPressed(&HA1) Then
                 ' Fancy cursor
@@ -777,26 +777,26 @@ Public Enum KpZoom
             End If
         End Sub
 
-        Private Sub KpImageViewer_Click(ByVal sender As Object, ByVal e As EventArgs)
+        Private Sub KpImageViewer_Click(sender As Object, e As EventArgs)
             FocusOnMe()
         End Sub
 
-        Private Sub pbFull_Click(ByVal sender As Object, ByVal e As EventArgs)
+        Private Sub pbFull_Click(sender As Object, e As EventArgs)
             FocusOnMe()
         End Sub
 
-        Private Sub pbPanel_MouseMove(ByVal sender As Object, ByVal e As MouseEventArgs)
+        Private Sub pbPanel_MouseMove(sender As Object, e As MouseEventArgs)
             If panelDragging Then
                 drawing.JumpToOrigin(e.X, e.Y, pbPanel.Width, pbPanel.Height, pbFull.Width, pbFull.Height)
                 UpdatePanels(True)
             End If
         End Sub
 
-        Private Sub pbPanel_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs)
+        Private Sub pbPanel_MouseUp(sender As Object, e As MouseEventArgs)
             panelDragging = False
         End Sub
 
-        Private Sub pbFull_MouseEnter(ByVal sender As Object, ByVal e As EventArgs)
+        Private Sub pbFull_MouseEnter(sender As Object, e As EventArgs)
             If IsKeyPressed(&HA0) OrElse IsKeyPressed(&HA1) OrElse selectMode = True Then
                 pbFull.Cursor = Cursors.Cross
             Else
@@ -806,11 +806,11 @@ Public Enum KpZoom
             End If
         End Sub
 
-        Private Sub pbFull_MouseLeave(ByVal sender As Object, ByVal e As EventArgs)
+        Private Sub pbFull_MouseLeave(sender As Object, e As EventArgs)
             pbFull.Cursor = Cursors.Default
         End Sub
 
-        Private Sub btnPreview_Click(ByVal sender As Object, ByVal e As EventArgs)
+        Private Sub btnPreview_Click(sender As Object, e As EventArgs)
             If ShowPreview Then
                 ShowPreview = False
             Else
@@ -818,7 +818,7 @@ Public Enum KpZoom
             End If
         End Sub
 
-        Private Sub cbZoom_KeyPress(ByVal sender As Object, ByVal e As KeyPressEventArgs)
+        Private Sub cbZoom_KeyPress(sender As Object, e As KeyPressEventArgs)
             Try
                 ' If it's not a digit, delete or backspace then make sure the input is being handled with. (Suppressed)
                 If Not Char.IsDigit(e.KeyChar) AndAlso Asc(e.KeyChar) <> Keys.Delete AndAlso Asc(e.KeyChar) <> Keys.Back Then
@@ -848,7 +848,7 @@ Public Enum KpZoom
             End Try
         End Sub
 
-        Private Function CalculateReversibleRectangle(ByVal ptSelectStart As Point, ByVal ptSelectEnd As Point) As Rectangle
+        Private Function CalculateReversibleRectangle(ptSelectStart As Point, ptSelectEnd As Point) As Rectangle
             Dim rect As Rectangle = New Rectangle()
 
             ptSelectStart = pbFull.PointToScreen(ptSelectStart)
@@ -872,12 +872,12 @@ Public Enum KpZoom
             Return rect
         End Function
 
-        Private Sub DrawReversibleRectangle(ByVal rect As Rectangle)
+        Private Sub DrawReversibleRectangle(rect As Rectangle)
             pbFull.Refresh()
             ControlPaint.DrawReversibleFrame(rect, Color.LightGray, FrameStyle.Dashed)
         End Sub
 
-        Private Sub pbFull_DragDrop(ByVal sender As Object, ByVal e As DragEventArgs)
+        Private Sub pbFull_DragDrop(sender As Object, e As DragEventArgs)
             Try
                 ' Get The file(s) you dragged into an array. (We'll just pick the first image anyway)
                 Dim FileList = CType(e.Data.GetData(DataFormats.FileDrop, False), String())
@@ -910,7 +910,7 @@ Public Enum KpZoom
             End Try
         End Sub
 
-        Private Sub pbFull_DragEnter(ByVal sender As Object, ByVal e As DragEventArgs)
+        Private Sub pbFull_DragEnter(sender As Object, e As DragEventArgs)
             Try
                 If e.Data.GetDataPresent(DataFormats.FileDrop) Then
                     ' Drop the file
@@ -924,7 +924,7 @@ Public Enum KpZoom
             End Try
         End Sub
 
-        Private Sub btnMode_Click(ByVal sender As Object, ByVal e As EventArgs)
+        Private Sub btnMode_Click(sender As Object, e As EventArgs)
             If selectMode = False Then
                 selectMode = True
                 ' btnMode.Image = Properties.Resources.btnDrag
@@ -934,7 +934,7 @@ Public Enum KpZoom
             End If
         End Sub
 
-        Private Sub btnNext_Click(ByVal sender As Object, ByVal e As EventArgs)
+        Private Sub btnNext_Click(sender As Object, e As EventArgs)
             drawing.NextPage()
             tbNavigation.Text = (drawing.CurrentPage + 1).ToString()
 
@@ -942,7 +942,7 @@ Public Enum KpZoom
             UpdatePanels(True)
         End Sub
 
-        Private Sub btnBack_Click(ByVal sender As Object, ByVal e As EventArgs)
+        Private Sub btnBack_Click(sender As Object, e As EventArgs)
             drawing.PreviousPage()
             tbNavigation.Text = (drawing.CurrentPage + 1).ToString()
 
@@ -950,7 +950,7 @@ Public Enum KpZoom
             UpdatePanels(True)
         End Sub
 
-        Private Sub tbNavigation_KeyPress(ByVal sender As Object, ByVal e As KeyPressEventArgs)
+        Private Sub tbNavigation_KeyPress(sender As Object, e As KeyPressEventArgs)
             Try
                 ' If it's not a digit, delete or backspace then make sure the input is being handled with. (Suppressed)
                 If Not Char.IsDigit(e.KeyChar) AndAlso Asc(e.KeyChar) <> Keys.Delete AndAlso Asc(e.KeyChar) <> Keys.Back Then
@@ -988,7 +988,7 @@ Public Enum KpZoom
             End Get
         End Property
 
-        Public Sub New(ByVal rotation As Integer)
+        Public Sub New(rotation As Integer)
             rotationField = rotation
         End Sub
     End Class
@@ -1009,7 +1009,7 @@ Public Class ImageViewerZoomEventArgs
         End Get
     End Property
 
-    Public Sub New(ByVal zoom As Double, ByVal inOut As KpZoom)
+    Public Sub New(zoom As Double, inOut As KpZoom)
         zoomField = Convert.ToInt32(Math.Round(zoom * 100, 0))
         inOutField = inOut
     End Sub

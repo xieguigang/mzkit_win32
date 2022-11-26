@@ -38,7 +38,7 @@ Friend Class NativeToolStripRenderer
     Inherits ToolStripSystemRenderer
     Private renderer As VisualStyleRenderer
 
-    Public Sub New(ByVal theme As ToolbarTheme)
+    Public Sub New(theme As ToolbarTheme)
         Me.Theme = theme
     End Sub
 
@@ -56,7 +56,7 @@ Friend Class NativeToolStripRenderer
         End Structure
 
         <DllImport("uxtheme.dll")>
-        Public Shared Function GetThemeMargins(ByVal hTheme As IntPtr, ByVal hdc As IntPtr, ByVal iPartId As Integer, ByVal iStateId As Integer, ByVal iPropId As Integer, ByVal rect As IntPtr, <Out> ByRef pMargins As MARGINS) As Integer
+        Public Shared Function GetThemeMargins(hTheme As IntPtr, hdc As IntPtr, iPartId As Integer, iStateId As Integer, iPropId As Integer, rect As IntPtr, <Out> ByRef pMargins As MARGINS) As Integer
         End Function
     End Class
 
@@ -132,7 +132,7 @@ Friend Class NativeToolStripRenderer
 
     Private Shared ReadOnly RebarBackground As Integer = 6
 
-    Private Function GetThemeMargins(ByVal dc As IDeviceContext, ByVal marginType As MarginTypes) As Padding
+    Private Function GetThemeMargins(dc As IDeviceContext, marginType As MarginTypes) As Padding
         Dim margins As NativeMethods.MARGINS
         Try
             Dim hDC As IntPtr = dc.GetHdc()
@@ -143,7 +143,7 @@ Friend Class NativeToolStripRenderer
         End Try
     End Function
 
-    Private Shared Function GetItemState(ByVal item As ToolStripItem) As Integer
+    Private Shared Function GetItemState(item As ToolStripItem) As Integer
         Dim hot = item.Selected
 
         If item.IsOnDropDown Then
@@ -193,7 +193,7 @@ Friend Class NativeToolStripRenderer
         End Get
     End Property
 
-    Private Function Subclass(ByVal element As VisualStyleElement) As VisualStyleElement
+    Private Function Subclass(element As VisualStyleElement) As VisualStyleElement
         Return VisualStyleElement.CreateElement(SubclassPrefix & element.ClassName, element.Part, element.State)
     End Function
 
@@ -206,7 +206,7 @@ Friend Class NativeToolStripRenderer
     End Function
 
     ' Gives parented ToolStrips a transparent background.
-    Protected Overrides Sub Initialize(ByVal toolStrip As ToolStrip)
+    Protected Overrides Sub Initialize(toolStrip As ToolStrip)
         If TypeOf toolStrip.Parent Is ToolStripPanel Then toolStrip.BackColor = Color.Transparent
 
         MyBase.Initialize(toolStrip)
@@ -216,7 +216,7 @@ Friend Class NativeToolStripRenderer
     ' that the ToolStrip is not passed to the Initialize method. ToolStripPanels, however, are. So we can 
     ' simply initialize it here too, and this should guarantee that the ToolStrip is initialized at least 
     ' once. Hopefully it isn't any more complicated than this.
-    Protected Overrides Sub InitializePanel(ByVal toolStripPanel As ToolStripPanel)
+    Protected Overrides Sub InitializePanel(toolStripPanel As ToolStripPanel)
         For Each control As Control In toolStripPanel.Controls
             If TypeOf control Is ToolStrip Then Initialize(CType(control, ToolStrip))
         Next
@@ -224,7 +224,7 @@ Friend Class NativeToolStripRenderer
         MyBase.InitializePanel(toolStripPanel)
     End Sub
 
-    Protected Overrides Sub OnRenderToolStripBorder(ByVal e As ToolStripRenderEventArgs)
+    Protected Overrides Sub OnRenderToolStripBorder(e As ToolStripRenderEventArgs)
         If EnsureRenderer() Then
             renderer.SetParameters(MenuClass, MenuParts.PopupBorders, 0)
             If e.ToolStrip.IsDropDown Then
@@ -246,7 +246,7 @@ Friend Class NativeToolStripRenderer
         End If
     End Sub
 
-    Private Function GetBackgroundRectangle(ByVal item As ToolStripItem) As Rectangle
+    Private Function GetBackgroundRectangle(item As ToolStripItem) As Rectangle
         If Not item.IsOnDropDown Then Return New Rectangle(New Point(), item.Bounds.Size)
 
         ' For a drop-down menu item, the background rectangles of the items should be touching vertically.
@@ -263,7 +263,7 @@ Friend Class NativeToolStripRenderer
         Return rect
     End Function
 
-    Protected Overrides Sub OnRenderMenuItemBackground(ByVal e As ToolStripItemRenderEventArgs)
+    Protected Overrides Sub OnRenderMenuItemBackground(e As ToolStripItemRenderEventArgs)
         If EnsureRenderer() Then
             Dim partID As Integer = If(e.Item.IsOnDropDown, MenuParts.PopupItem, MenuParts.BarItem)
             renderer.SetParameters(MenuClass, partID, GetItemState(e.Item))
@@ -275,7 +275,7 @@ Friend Class NativeToolStripRenderer
         End If
     End Sub
 
-    Protected Overrides Sub OnRenderToolStripPanelBackground(ByVal e As ToolStripPanelRenderEventArgs)
+    Protected Overrides Sub OnRenderToolStripPanelBackground(e As ToolStripPanelRenderEventArgs)
         If EnsureRenderer() Then
             ' Draw the background using Rebar & RP_BACKGROUND (or, if that is not available, fall back to
             ' Rebar.Band.Normal)
@@ -296,7 +296,7 @@ Friend Class NativeToolStripRenderer
     End Sub
 
     ' Render the background of an actual menu bar, dropdown menu or toolbar.
-    Protected Overrides Sub OnRenderToolStripBackground(ByVal e As ToolStripRenderEventArgs)
+    Protected Overrides Sub OnRenderToolStripBackground(e As ToolStripRenderEventArgs)
         If EnsureRenderer() Then
             If e.ToolStrip.IsDropDown Then
                 renderer.SetParameters(MenuClass, MenuParts.PopupBackground, 0)
@@ -331,7 +331,7 @@ Friend Class NativeToolStripRenderer
 
     ' The only purpose of this override is to change the arrow colour.
     ' It's OK to just draw over the default arrow since we also pass down arrow drawing to the system renderer.
-    Protected Overrides Sub OnRenderSplitButtonBackground(ByVal e As ToolStripItemRenderEventArgs)
+    Protected Overrides Sub OnRenderSplitButtonBackground(e As ToolStripItemRenderEventArgs)
         If EnsureRenderer() Then
             Dim sb = CType(e.Item, ToolStripSplitButton)
             MyBase.OnRenderSplitButtonBackground(e)
@@ -343,19 +343,19 @@ Friend Class NativeToolStripRenderer
         End If
     End Sub
 
-    Private Function GetItemTextColor(ByVal item As ToolStripItem) As Color
+    Private Function GetItemTextColor(item As ToolStripItem) As Color
         Dim partId As Integer = If(item.IsOnDropDown, MenuParts.PopupItem, MenuParts.BarItem)
         renderer.SetParameters(MenuClass, partId, GetItemState(item))
         Return renderer.GetColor(ColorProperty.TextColor)
     End Function
 
-    Protected Overrides Sub OnRenderItemText(ByVal e As ToolStripItemTextRenderEventArgs)
+    Protected Overrides Sub OnRenderItemText(e As ToolStripItemTextRenderEventArgs)
         If EnsureRenderer() Then e.TextColor = GetItemTextColor(e.Item)
 
         MyBase.OnRenderItemText(e)
     End Sub
 
-    Protected Overrides Sub OnRenderImageMargin(ByVal e As ToolStripRenderEventArgs)
+    Protected Overrides Sub OnRenderImageMargin(e As ToolStripRenderEventArgs)
         If EnsureRenderer() Then
             If e.ToolStrip.IsDropDown Then
                 renderer.SetParameters(MenuClass, MenuParts.PopupGutter, 0)
@@ -383,7 +383,7 @@ Friend Class NativeToolStripRenderer
         End If
     End Sub
 
-    Protected Overrides Sub OnRenderSeparator(ByVal e As ToolStripSeparatorRenderEventArgs)
+    Protected Overrides Sub OnRenderSeparator(e As ToolStripSeparatorRenderEventArgs)
         If e.ToolStrip.IsDropDown AndAlso EnsureRenderer() Then
             renderer.SetParameters(MenuClass, MenuParts.PopupSeparator, 0)
             Dim rect As Rectangle = New Rectangle(e.ToolStrip.DisplayRectangle.Left, 0, e.ToolStrip.DisplayRectangle.Width, e.Item.Height)
@@ -393,7 +393,7 @@ Friend Class NativeToolStripRenderer
         End If
     End Sub
 
-    Protected Overrides Sub OnRenderItemCheck(ByVal e As ToolStripItemImageRenderEventArgs)
+    Protected Overrides Sub OnRenderItemCheck(e As ToolStripItemImageRenderEventArgs)
         If EnsureRenderer() Then
             Dim bgRect = GetBackgroundRectangle(e.Item)
             bgRect.Width = bgRect.Height
@@ -417,14 +417,14 @@ Friend Class NativeToolStripRenderer
         End If
     End Sub
 
-    Protected Overrides Sub OnRenderArrow(ByVal e As ToolStripArrowRenderEventArgs)
+    Protected Overrides Sub OnRenderArrow(e As ToolStripArrowRenderEventArgs)
         ' The default renderer will draw an arrow for us (the UXTheme API seems not to have one for all directions),
         ' but it will get the colour wrong in many cases. The text colour is probably the best colour to use.
         If EnsureRenderer() Then e.ArrowColor = GetItemTextColor(e.Item)
         MyBase.OnRenderArrow(e)
     End Sub
 
-    Protected Overrides Sub OnRenderOverflowButtonBackground(ByVal e As ToolStripItemRenderEventArgs)
+    Protected Overrides Sub OnRenderOverflowButtonBackground(e As ToolStripItemRenderEventArgs)
         If EnsureRenderer() Then
             ' BrowserTabBar::Rebar draws the chevron using the default background. Odd.
             Dim rebarClass = Me.RebarClass

@@ -67,7 +67,7 @@ Module TaskBarWindow
             .ToArray
     End Function
 
-    Friend Sub preview_TabbedThumbnailActivated(ByVal sender As Object, ByVal e As TabbedThumbnailEventArgs)
+    Friend Sub preview_TabbedThumbnailActivated(sender As Object, e As TabbedThumbnailEventArgs)
         ' User selected a tab via the thumbnail preview
         ' Select the corresponding control in our app
         For Each page As DocumentWindow In GetTabPages()
@@ -84,7 +84,7 @@ Module TaskBarWindow
         End If
     End Sub
 
-    Friend Sub preview_TabbedThumbnailClosed(ByVal sender As Object, ByVal e As TabbedThumbnailClosedEventArgs)
+    Friend Sub preview_TabbedThumbnailClosed(sender As Object, e As TabbedThumbnailClosedEventArgs)
         Dim pageClosed As DocumentWindow = Nothing
 
         ' Find the tabpage that was "closed" by the user (via the taskbar tabbed thumbnail)
@@ -115,7 +115,7 @@ Module TaskBarWindow
         End If
     End Sub
 
-    Friend Sub preview_TabbedThumbnailMaximized(ByVal sender As Object, ByVal e As TabbedThumbnailEventArgs)
+    Friend Sub preview_TabbedThumbnailMaximized(sender As Object, e As TabbedThumbnailEventArgs)
         ' User clicked on the maximize button on the thumbnail's context menu
         ' Maximize the app
         MyApplication.host.WindowState = FormWindowState.Maximized
@@ -128,7 +128,7 @@ Module TaskBarWindow
         End If
     End Sub
 
-    Friend Sub preview_TabbedThumbnailMinimized(ByVal sender As Object, ByVal e As TabbedThumbnailEventArgs)
+    Friend Sub preview_TabbedThumbnailMinimized(sender As Object, e As TabbedThumbnailEventArgs)
         ' User clicked on the minimize button on the thumbnail's context menu
         ' Minimize the app
         MyApplication.host.WindowState = FormWindowState.Minimized
@@ -138,7 +138,7 @@ Module TaskBarWindow
     ''' Helper method to update the thumbnail preview for a given tab page.
     ''' </summary>
     ''' <param name="tabPage"></param>
-    Friend Sub UpdatePreviewBitmap(ByVal tabPage As DocumentWindow)
+    Friend Sub UpdatePreviewBitmap(tabPage As DocumentWindow)
         If tabPage IsNot Nothing Then
             Dim preview As TabbedThumbnail = TaskbarManager.Instance.TabbedThumbnail.GetThumbnailPreview(tabPage)
 

@@ -111,7 +111,7 @@ Public Class KP_DrawObject
         Get
             Return rotationField
         End Get
-        Set(ByVal value As Integer)
+        Set(value As Integer)
             ' Making sure that the rotation is only 0, 90, 180 or 270 degrees!
             If value = 90 OrElse value = 180 OrElse value = 270 OrElse value = 0 Then
                 rotationField = value
@@ -119,7 +119,7 @@ Public Class KP_DrawObject
         End Set
     End Property
 
-    Public Function GetPage(ByVal pageNumber As Integer) As Bitmap
+    Public Function GetPage(pageNumber As Integer) As Bitmap
         If multiBmp Is Nothing Then
             Return Nothing
         End If
@@ -182,7 +182,7 @@ Public Class KP_DrawObject
                 Return bmp
             End If
         End Get
-        Set(ByVal value As Bitmap)
+        Set(value As Bitmap)
             Try
                 If value IsNot Nothing Then
                     currentPageField = 0
@@ -271,7 +271,7 @@ Public Class KP_DrawObject
     End Property
 
     Public WriteOnly Property ImagePath As String
-        Set(ByVal value As String)
+        Set(value As String)
             Try
                 ' No memory leaks here!
                 If bmp IsNot Nothing Then
@@ -368,7 +368,7 @@ Public Class KP_DrawObject
         End Set
     End Property
 
-    Public Sub New(ByVal KpViewer As KpImageViewer, ByVal bmp As Bitmap)
+    Public Sub New(KpViewer As KpImageViewer, bmp As Bitmap)
         Try
             Me.KpViewer = KpViewer
 
@@ -383,7 +383,7 @@ Public Class KP_DrawObject
         End Try
     End Sub
 
-    Private Function GetCodec(ByVal type As String) As ImageCodecInfo
+    Private Function GetCodec(type As String) As ImageCodecInfo
         Dim info As ImageCodecInfo() = ImageCodecInfo.GetImageEncoders()
 
         For i = 0 To info.Length - 1
@@ -395,7 +395,7 @@ Public Class KP_DrawObject
         Return Nothing
     End Function
 
-    Public Sub SetPage(ByVal page As Integer)
+    Public Sub SetPage(page As Integer)
         Dim p = page - 1
 
         Try
@@ -473,7 +473,7 @@ Public Class KP_DrawObject
         End Try
     End Sub
 
-    Public Sub New(ByVal KpViewer As KpImageViewer)
+    Public Sub New(KpViewer As KpImageViewer)
         Try
             Me.KpViewer = KpViewer
             ' Initial dragging to false and No image.
@@ -486,7 +486,7 @@ Public Class KP_DrawObject
         End Try
     End Sub
 
-    Public Shared Sub UpdatePanelsize(ByVal w As Integer, ByVal h As Integer)
+    Public Shared Sub UpdatePanelsize(w As Integer, h As Integer)
         Try
             ' Making sure panel size stays the same
             panelWidth = w
@@ -496,7 +496,7 @@ Public Class KP_DrawObject
         End Try
     End Sub
 
-    Public Shared Sub UpdatePreviewPanelsize(ByVal w As Integer, ByVal h As Integer)
+    Public Shared Sub UpdatePreviewPanelsize(w As Integer, h As Integer)
         Try
             ' Making sure preview panel size stays the same
             previewPanelWidth = w
@@ -614,7 +614,7 @@ Public Class KP_DrawObject
         End Try
     End Sub
 
-    Private Function RotateCenter(ByVal bmpSrc As Bitmap, ByVal theta As Single) As Bitmap
+    Private Function RotateCenter(bmpSrc As Bitmap, theta As Single) As Bitmap
         Dim mRotate As Matrix = New Matrix()
         mRotate.Translate(bmpSrc.Width / -2, bmpSrc.Height / -2, MatrixOrder.Append)
         mRotate.RotateAt(theta, New Point(0, 0), MatrixOrder.Append)
@@ -640,7 +640,7 @@ Public Class KP_DrawObject
         End Using
     End Function
 
-    Private Shared Function RotateBoundingBox(ByVal img As Image, ByVal matrix As Matrix) As Rectangle
+    Private Shared Function RotateBoundingBox(img As Image, matrix As Matrix) As Rectangle
         Dim gu As GraphicsUnit = New GraphicsUnit()
         Dim rImg = Rectangle.Round(img.GetBounds(gu))
 
@@ -696,7 +696,7 @@ Public Class KP_DrawObject
         Return bmp
     End Function
 
-    Public Sub ZoomToSelection(ByVal selection As Rectangle, ByVal ptPbFull As Point)
+    Public Sub ZoomToSelection(selection As Rectangle, ptPbFull As Point)
         Dim x = selection.X - ptPbFull.X
         Dim y = selection.Y - ptPbFull.Y
         Dim width = selection.Width
@@ -744,7 +744,7 @@ Public Class KP_DrawObject
         End If
     End Sub
 
-    Public Sub JumpToOrigin(ByVal x As Integer, ByVal y As Integer, ByVal width As Integer, ByVal height As Integer, ByVal pWidth As Integer, ByVal pHeight As Integer)
+    Public Sub JumpToOrigin(x As Integer, y As Integer, width As Integer, height As Integer, pWidth As Integer, pHeight As Integer)
         Try
             Dim zoom = boundingRect.Width / width
 
@@ -763,7 +763,7 @@ Public Class KP_DrawObject
         End Try
     End Sub
 
-    Public Sub JumpToOrigin(ByVal x As Integer, ByVal y As Integer, ByVal width As Integer, ByVal height As Integer)
+    Public Sub JumpToOrigin(x As Integer, y As Integer, width As Integer, height As Integer)
         Try
             boundingRect.X = x - width / 2 - (x - width / 2) * 2
             boundingRect.Y = y - height / 2 - (y - height / 2) * 2
@@ -774,7 +774,7 @@ Public Class KP_DrawObject
         End Try
     End Sub
 
-    Public Function PointToOrigin(ByVal x As Integer, ByVal y As Integer, ByVal width As Integer, ByVal height As Integer) As Point
+    Public Function PointToOrigin(x As Integer, y As Integer, width As Integer, height As Integer) As Point
         Try
             Dim zoomX = width / boundingRect.Width
             Dim zoomY = height / boundingRect.Height
@@ -854,7 +854,7 @@ Public Class KP_DrawObject
         End Try
     End Sub
 
-    Public Sub SetZoom(ByVal z As Double)
+    Public Sub SetZoom(z As Double)
         Try
             If Image IsNot Nothing Then
                 zoomField = z
@@ -869,7 +869,7 @@ Public Class KP_DrawObject
         End Try
     End Sub
 
-    Public Sub Scroll(ByVal sender As Object, ByVal e As Windows.Forms.MouseEventArgs)
+    Public Sub Scroll(sender As Object, e As Windows.Forms.MouseEventArgs)
         Try
             If Image IsNot Nothing Then
                 If e.Delta < 0 Then
@@ -942,7 +942,7 @@ Public Class KP_DrawObject
         End Try
     End Sub
 
-    Public Sub Drag(ByVal pt As Point)
+    Public Sub Drag(pt As Point)
         Try
             If Image IsNot Nothing Then
                 If dragging = True Then
@@ -982,7 +982,7 @@ Public Class KP_DrawObject
         End Try
     End Sub
 
-    Public Sub BeginDrag(ByVal pt As Point)
+    Public Sub BeginDrag(pt As Point)
         Try
             If Image IsNot Nothing Then
                 ' Initial drag position
@@ -1005,7 +1005,7 @@ Public Class KP_DrawObject
         End Try
     End Sub
 
-    Public Sub Draw(ByVal g As Graphics)
+    Public Sub Draw(g As Graphics)
         Try
             If multiFrame = True Then
                 If gifBmp.CurrentFrame IsNot Nothing Then

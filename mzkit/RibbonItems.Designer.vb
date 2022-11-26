@@ -1391,7 +1391,7 @@ Namespace RibbonLib.Controls
             End Get
         End Property
 
-        Public Sub New(ByVal ribbon As Ribbon)
+        Public Sub New(ribbon As Ribbon)
             If ribbon Is Nothing Then
                 Throw New ArgumentNullException(NameOf(ribbon), "Parameter is Nothing")
             End If

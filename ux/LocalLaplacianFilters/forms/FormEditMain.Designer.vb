@@ -9,7 +9,7 @@ Partial Class FormEditMain
     ''' Освободить все используемые ресурсы.
     ''' </summary>
     ''' <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
-    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+    Protected Overrides Sub Dispose(disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
         End If

@@ -75,7 +75,7 @@ Namespace PolygonEditor
             Get
                 Return coordField
             End Get
-            Set(ByVal value As Point)
+            Set(value As Point)
                 coordField = value
             End Set
         End Property
@@ -86,7 +86,7 @@ Namespace PolygonEditor
             Get
                 Return Coord.X
             End Get
-            Set(ByVal value As Integer)
+            Set(value As Integer)
                 coordField.X = value
             End Set
         End Property
@@ -95,7 +95,7 @@ Namespace PolygonEditor
             Get
                 Return Coord.Y
             End Get
-            Set(ByVal value As Integer)
+            Set(value As Integer)
                 coordField.Y = value
             End Set
         End Property
@@ -105,7 +105,7 @@ Namespace PolygonEditor
             Coord = New Point()
         End Sub
 
-        Public Sub New(ByVal X As Integer, ByVal Y As Integer)
+        Public Sub New(X As Integer, Y As Integer)
             Coord = New Point(X, Y)
             Edges = New List(Of Edge)()
         End Sub

@@ -57,7 +57,7 @@ Public Class Histogram
         Get
             Return colorField
         End Get
-        Set(ByVal value As Color)
+        Set(value As Color)
             colorField = value
 
             drawPen.Dispose()
@@ -79,7 +79,7 @@ Public Class Histogram
         Get
             Return allowSelectionField
         End Get
-        Set(ByVal value As Boolean)
+        Set(value As Boolean)
             allowSelectionField = value
         End Set
     End Property
@@ -98,7 +98,7 @@ Public Class Histogram
         Get
             Return logarithmic
         End Get
-        Set(ByVal value As Boolean)
+        Set(value As Boolean)
             logarithmic = value
             Invalidate()
         End Set
@@ -118,7 +118,7 @@ Public Class Histogram
         Get
             Return vertical
         End Get
-        Set(ByVal value As Boolean)
+        Set(value As Boolean)
             vertical = value
             Invalidate()
         End Set
@@ -137,7 +137,7 @@ Public Class Histogram
         Get
             Return valuesField
         End Get
-        Set(ByVal value As Integer())
+        Set(value As Integer())
             valuesField = value
 
             If valuesField IsNot Nothing Then
@@ -197,7 +197,7 @@ Public Class Histogram
     ''' 
     ''' <param name="disposing">Indicates if disposing was initiated manually.</param>
     ''' 
-    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+    Protected Overrides Sub Dispose(disposing As Boolean)
         If disposing Then
             blackPen.Dispose()
             whitePen.Dispose()
@@ -223,7 +223,7 @@ Public Class Histogram
     ''' 
     ''' <param name="pe">Data for Paint event.</param>
     ''' 
-    Protected Overrides Sub OnPaint(ByVal pe As PaintEventArgs)
+    Protected Overrides Sub OnPaint(pe As PaintEventArgs)
         Dim g = pe.Graphics
         ' drawing area's width and height
         m_width = If(valuesField Is Nothing OrElse vertical = True, ClientRectangle.Width - 2, Math.Min(valuesField.Length, ClientRectangle.Width - 2))
@@ -285,7 +285,7 @@ Public Class Histogram
     End Sub
 
     ' On mouse down
-    Private Sub Histogram_MouseDown(ByVal sender As Object, ByVal e As MouseEventArgs)
+    Private Sub Histogram_MouseDown(sender As Object, e As MouseEventArgs)
         If allowSelectionField AndAlso valuesField IsNot Nothing Then
             Dim x = 1
             Dim y = 1
@@ -300,7 +300,7 @@ Public Class Histogram
     End Sub
 
     ' On mouse up
-    Private Sub Histogram_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs)
+    Private Sub Histogram_MouseUp(sender As Object, e As MouseEventArgs)
         If tracking Then
             ' stop selection
             tracking = False
@@ -310,7 +310,7 @@ Public Class Histogram
     End Sub
 
     ' On mouse move
-    Private Sub Histogram_MouseMove(ByVal sender As Object, ByVal e As MouseEventArgs)
+    Private Sub Histogram_MouseMove(sender As Object, e As MouseEventArgs)
         If allowSelectionField AndAlso valuesField IsNot Nothing Then
             Dim x = 1
             Dim y = 1
@@ -350,7 +350,7 @@ Public Class Histogram
     End Sub
 
     ' On mouse leave
-    Private Sub Histogram_MouseLeave(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub Histogram_MouseLeave(sender As Object, e As EventArgs)
         If allowSelectionField AndAlso valuesField IsNot Nothing AndAlso Not tracking Then
             ' notify parent
             RaiseEvent PositionChanged(Me, New HistogramEventArgs(-1))
@@ -370,7 +370,7 @@ Public Class HistogramEventArgs
     ''' 
     ''' <param name="pos">Histogram's index under mouse pointer.</param>
     ''' 
-    Public Sub New(ByVal pos As Integer)
+    Public Sub New(pos As Integer)
         minField = pos
     End Sub
 
@@ -381,7 +381,7 @@ Public Class HistogramEventArgs
     ''' <param name="min">Min histogram's index in selection.</param>
     ''' <param name="max">Max histogram's index in selection.</param>
     ''' 
-    Public Sub New(ByVal min As Integer, ByVal max As Integer)
+    Public Sub New(min As Integer, max As Integer)
         minField = min
         maxField = max
     End Sub
@@ -418,5 +418,5 @@ End Class
 ''' </summary>
 ''' <param name="sender">Sender object.</param>
 ''' <param name="e">Event arguments.</param>
-Public Delegate Sub HistogramEventHandler(ByVal sender As Object, ByVal e As HistogramEventArgs)
+Public Delegate Sub HistogramEventHandler(sender As Object, e As HistogramEventArgs)
 

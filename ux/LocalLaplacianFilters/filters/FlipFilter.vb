@@ -22,7 +22,7 @@ Namespace Filters
         ''' </summary>
         ''' <param name="x">Flip X</param>
         ''' <param name="y">Flip Y</param>
-        Public Sub SetParams(ByVal x As Boolean, ByVal y As Boolean)
+        Public Sub SetParams(x As Boolean, y As Boolean)
             flip.X = x
             flip.Y = y
         End Sub
@@ -31,7 +31,7 @@ Namespace Filters
         ''' </summary>
         ''' <param name="image">Bitmap</param>
         ''' <returns>Bitmap</returns>
-        Public Function Apply(ByVal image As Bitmap) As Bitmap
+        Public Function Apply(image As Bitmap) As Bitmap
             Dim clone As Bitmap = CType(image.Clone(), Bitmap)
             flip.Apply(clone)
             Return clone

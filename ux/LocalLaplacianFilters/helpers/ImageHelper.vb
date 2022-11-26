@@ -15,7 +15,7 @@ Namespace Helpers
         ''' </summary>
         ''' <param name="filename">Filename</param>
         ''' <returns>Bitmap</returns>
-        Public Function Open(ByVal filename As String) As Bitmap
+        Public Function Open(filename As String) As Bitmap
             Dim bitmap As Bitmap
             Try
                 ' try to open image
@@ -39,7 +39,7 @@ Namespace Helpers
         ''' </summary>
         ''' <param name="files">Files</param>
         ''' <returns>Bitmap array</returns>
-        Public Function Open(ByVal files As String()) As Bitmap()
+        Public Function Open(files As String()) As Bitmap()
             Dim length = files.Length
             If length = 0 Then
                 Return Nothing
@@ -61,7 +61,7 @@ Namespace Helpers
         ''' <param name="bitmap">Bitmap</param>
         ''' <param name="filename">Filename</param>
         ''' <param name="format">ImageFormat</param>
-        Public Sub Save(ByVal bitmap As Bitmap, ByVal filename As String, ByVal format As ImageFormat)
+        Public Sub Save(bitmap As Bitmap, filename As String, format As ImageFormat)
             Try
                 ' try to save image
                 Dim stream As Stream = New FileStream(filename, FileMode.OpenOrCreate)
@@ -78,7 +78,7 @@ Namespace Helpers
         ''' </summary>
         ''' <param name="index">Index</param>
         ''' <returns>Image format</returns>
-        Public Function GetImageFormat(ByVal index As Integer) As ImageFormat
+        Public Function GetImageFormat(index As Integer) As ImageFormat
             Select Case index
                 Case 1
                     Return ImageFormat.Bmp
@@ -97,7 +97,7 @@ Namespace Helpers
         ''' </summary>
         ''' <param name="index">Index</param>
         ''' <returns>Colorspace</returns>
-        Public Function GetSpace(ByVal index As Integer) As Space
+        Public Function GetSpace(index As Integer) As Space
             Select Case index
                 Case 0
                     Return Space.YCbCr
@@ -115,7 +115,7 @@ Namespace Helpers
         ''' <param name="bitmap">Bitmap</param>
         ''' <param name="box">Box size</param>
         ''' <returns>Bitmap</returns>
-        Public Function Crop(ByVal bitmap As Bitmap, ByVal box As Integer) As Bitmap
+        Public Function Crop(bitmap As Bitmap, box As Integer) As Bitmap
             Dim width = bitmap.Width
             Dim height = bitmap.Height
             Dim min = Math.Min(width, height)
@@ -152,7 +152,7 @@ Namespace Helpers
         ''' <param name="width">Width</param>
         ''' <param name="height">Height</param>
         ''' <returns>Bool</returns>
-        Private Function IsTrueSize(ByVal width As Integer, ByVal height As Integer) As Boolean
+        Private Function IsTrueSize(width As Integer, height As Integer) As Boolean
             ' check this
             Return IsRange(width, minDimension, maxDimension) AndAlso IsRange(height, minDimension, maxDimension)
         End Function
@@ -163,7 +163,7 @@ Namespace Helpers
         ''' <param name="min">Min</param>
         ''' <param name="max">Max</param>
         ''' <returns>Bool</returns>
-        Private Function IsRange(ByVal x As Integer, ByVal min As Integer, ByVal max As Integer) As Boolean
+        Private Function IsRange(x As Integer, min As Integer, max As Integer) As Boolean
             Return x >= min AndAlso x <= max
         End Function
         ''' <summary>

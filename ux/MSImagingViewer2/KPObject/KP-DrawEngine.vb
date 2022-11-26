@@ -35,7 +35,7 @@ Friend Class KP_DrawEngine
         End Try
     End Sub
 
-    Public Function CreateDoubleBuffer(ByVal g As Graphics, ByVal width As Integer, ByVal height As Integer, ByVal previewWidth As Integer, ByVal previewHeight As Integer) As Boolean
+    Public Function CreateDoubleBuffer(g As Graphics, width As Integer, height As Integer, previewWidth As Integer, previewHeight As Integer) As Boolean
         Try
             KP_DrawObject.UpdatePanelsize(width, height)
             KP_DrawObject.UpdatePreviewPanelsize(previewWidth, previewHeight)
@@ -65,7 +65,7 @@ Friend Class KP_DrawEngine
         End Try
     End Function
 
-    Public Sub Render(ByVal g As Graphics)
+    Public Sub Render(g As Graphics)
         Try
             If memoryBitmap IsNot Nothing Then
                 g.DrawImage(memoryBitmap, New Rectangle(0, 0, width, height), 0, 0, width, height, GraphicsUnit.Pixel)

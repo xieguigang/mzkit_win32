@@ -34,7 +34,7 @@ Namespace Filters
         ''' <param name="exposure">Exposure</param>
         ''' <param name="gamma">Gamma</param>
         ''' <param name="space">Colorspace</param>
-        Public Sub SetParams(ByVal saturation As Single, ByVal contrast As Single, ByVal brightness As Single, ByVal exposure As Single, ByVal gamma As Single, ByVal space As Space)
+        Public Sub SetParams(saturation As Single, contrast As Single, brightness As Single, exposure As Single, gamma As Single, space As Space)
             sc.Saturation = saturation
 
             ce.Contrast = contrast
@@ -54,7 +54,7 @@ Namespace Filters
         ''' </summary>
         ''' <param name="image">Bitmap</param>
         ''' <returns>Bitmap</returns>
-        Public Function Apply(ByVal image As Bitmap) As Bitmap
+        Public Function Apply(image As Bitmap) As Bitmap
             Dim clone As Bitmap = CType(image.Clone(), Bitmap)
 
             If sc.Saturation <> 0 Then sc.Apply(clone)

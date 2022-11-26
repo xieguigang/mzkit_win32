@@ -22,7 +22,7 @@ Namespace Filters
         ''' </summary>
         ''' <param name="temperature">Temperature</param>
         ''' <param name="strenght">Strength</param>
-        Public Sub SetParams(ByVal temperature As Single, ByVal strenght As Single)
+        Public Sub SetParams(temperature As Single, strenght As Single)
             temp.Temperature = temperature
             temp.Strength = strenght
         End Sub
@@ -31,7 +31,7 @@ Namespace Filters
         ''' </summary>
         ''' <param name="image">Bitmap</param>
         ''' <returns>Bitmap</returns>
-        Public Function Apply(ByVal image As Bitmap) As Bitmap
+        Public Function Apply(image As Bitmap) As Bitmap
             Dim clone As Bitmap = CType(image.Clone(), Bitmap)
 
             If temp.Strength <> 0 Then

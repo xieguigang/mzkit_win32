@@ -76,22 +76,22 @@ Namespace SmileWei.EmbeddedApp
 
 #Region "Win32 API"
         <DllImport("user32.dll", EntryPoint:="GetWindowThreadProcessId", SetLastError:=True, CharSet:=CharSet.Unicode, ExactSpelling:=True, CallingConvention:=CallingConvention.StdCall)>
-        Public Shared Function GetWindowThreadProcessId(ByVal hWnd As Long, ByVal lpdwProcessId As Long) As Long
+        Public Shared Function GetWindowThreadProcessId(hWnd As Long, lpdwProcessId As Long) As Long
         End Function
 
         <DllImport("user32.dll", SetLastError:=True)>
-        Public Shared Function FindWindow(ByVal lpClassName As String, ByVal lpWindowName As String) As IntPtr
+        Public Shared Function FindWindow(lpClassName As String, lpWindowName As String) As IntPtr
         End Function
 
         <DllImport("user32.dll", SetLastError:=True)>
-        Public Shared Function SetParent(ByVal hWndChild As IntPtr, ByVal hWndNewParent As IntPtr) As Integer
+        Public Shared Function SetParent(hWndChild As IntPtr, hWndNewParent As IntPtr) As Integer
         End Function
 
         <DllImport("user32.dll", EntryPoint:="GetWindowLongA", SetLastError:=True)>
-        Public Shared Function GetWindowLong(ByVal hwnd As IntPtr, ByVal nIndex As Integer) As Long
+        Public Shared Function GetWindowLong(hwnd As IntPtr, nIndex As Integer) As Long
         End Function
 
-        Public Shared Function SetWindowLong(ByVal hWnd As HandleRef, ByVal nIndex As Integer, ByVal dwNewLong As Integer) As IntPtr
+        Public Shared Function SetWindowLong(hWnd As HandleRef, nIndex As Integer, dwNewLong As Integer) As IntPtr
             If IntPtr.Size = 4 Then
                 Return SetWindowLongPtr32(hWnd, nIndex, dwNewLong)
             End If
@@ -100,23 +100,23 @@ Namespace SmileWei.EmbeddedApp
         End Function
 
         <DllImport("user32.dll", EntryPoint:="SetWindowLong", CharSet:=CharSet.Auto)>
-        Public Shared Function SetWindowLongPtr32(ByVal hWnd As HandleRef, ByVal nIndex As Integer, ByVal dwNewLong As Integer) As IntPtr
+        Public Shared Function SetWindowLongPtr32(hWnd As HandleRef, nIndex As Integer, dwNewLong As Integer) As IntPtr
         End Function
 
         <DllImport("user32.dll", EntryPoint:="SetWindowLongPtr", CharSet:=CharSet.Auto)>
-        Public Shared Function SetWindowLongPtr64(ByVal hWnd As HandleRef, ByVal nIndex As Integer, ByVal dwNewLong As Integer) As IntPtr
+        Public Shared Function SetWindowLongPtr64(hWnd As HandleRef, nIndex As Integer, dwNewLong As Integer) As IntPtr
         End Function
 
         <DllImport("user32.dll", SetLastError:=True)>
-        Public Shared Function SetWindowPos(ByVal hwnd As IntPtr, ByVal hWndInsertAfter As Long, ByVal x As Long, ByVal y As Long, ByVal cx As Long, ByVal cy As Long, ByVal wFlags As Long) As Long
+        Public Shared Function SetWindowPos(hwnd As IntPtr, hWndInsertAfter As Long, x As Long, y As Long, cx As Long, cy As Long, wFlags As Long) As Long
         End Function
 
         <DllImport("user32.dll", SetLastError:=True)>
-        Public Shared Function MoveWindow(ByVal hwnd As IntPtr, ByVal x As Integer, ByVal y As Integer, ByVal cx As Integer, ByVal cy As Integer, ByVal repaint As Boolean) As Boolean
+        Public Shared Function MoveWindow(hwnd As IntPtr, x As Integer, y As Integer, cx As Integer, cy As Integer, repaint As Boolean) As Boolean
         End Function
 
         <DllImport("user32.dll", EntryPoint:="PostMessageA", SetLastError:=True)>
-        Public Shared Function PostMessage(ByVal hwnd As IntPtr, ByVal Msg As UInteger, ByVal wParam As UInteger, ByVal lParam As UInteger) As Boolean
+        Public Shared Function PostMessage(hwnd As IntPtr, Msg As UInteger, wParam As UInteger, lParam As UInteger) As Boolean
         End Function
 
         ''' <summary>
@@ -135,7 +135,7 @@ Namespace SmileWei.EmbeddedApp
         ''' </summary>
         ''' <param name="errCode">系统错误码</param>
         ''' <returns></returns>
-        Public Shared Function GetLastErrorString(ByVal errCode As Integer) As String
+        Public Shared Function GetLastErrorString(errCode As Integer) As String
             Dim tempptr = IntPtr.Zero
             Dim msg As String = Nothing
             FormatMessage(&H1300, tempptr, errCode, 0, msg, 255, tempptr)
@@ -143,11 +143,11 @@ Namespace SmileWei.EmbeddedApp
         End Function
 
         <DllImport("Kernel32.dll")>
-        Public Shared Function FormatMessage(ByVal flag As Integer, ByRef source As IntPtr, ByVal msgid As Integer, ByVal langid As Integer, ByRef buf As String, ByVal size As Integer, ByRef args As IntPtr) As Integer
+        Public Shared Function FormatMessage(flag As Integer, ByRef source As IntPtr, msgid As Integer, langid As Integer, ByRef buf As String, size As Integer, ByRef args As IntPtr) As Integer
         End Function
 
         <DllImport("user32.dll", SetLastError:=True)>
-        Public Shared Function GetParent(ByVal hwnd As IntPtr) As IntPtr
+        Public Shared Function GetParent(hwnd As IntPtr) As IntPtr
         End Function
         '''' <summary>
         '''' ShellExecute(IntPtr.Zero, "Open", "C:/Program Files/TTPlayer/TTPlayer.exe", "", "", 1);
@@ -171,7 +171,7 @@ Namespace SmileWei.EmbeddedApp
         '[DllImport("kernel32.dll")]
         'public static extern int OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId); 
         <DllImport("user32.dll", EntryPoint:="ShowWindow", SetLastError:=True)>
-        Public Shared Function ShowWindow(ByVal hWnd As IntPtr, ByVal nCmdShow As Integer) As Boolean
+        Public Shared Function ShowWindow(hWnd As IntPtr, nCmdShow As Integer) As Boolean
         End Function
 
         Public Const SWP_NOOWNERZORDER As Integer = &H200

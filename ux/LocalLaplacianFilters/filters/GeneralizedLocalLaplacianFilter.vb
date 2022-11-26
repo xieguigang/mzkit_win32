@@ -32,7 +32,7 @@ Namespace Filters
         ''' <param name="levels">Number of levels</param>
         ''' <param name="factor">Factor</param>
         ''' <param name="space">Colorspace</param>
-        Public Sub SetParams(ByVal radius As Integer, ByVal lightshadows As Single, ByVal sigma As Single, ByVal discrets As Integer, ByVal levels As Integer, ByVal factor As Single, ByVal space As Space)
+        Public Sub SetParams(radius As Integer, lightshadows As Single, sigma As Single, discrets As Integer, levels As Integer, factor As Single, space As Space)
             bgc.Value = lightshadows
             bgc.Space = space
 
@@ -50,7 +50,7 @@ Namespace Filters
         ''' </summary>
         ''' <param name="image">Bitmap</param>
         ''' <returns>Bitmap</returns>
-        Public Function Apply(ByVal image As Bitmap) As Bitmap
+        Public Function Apply(image As Bitmap) As Bitmap
             Dim clone As Bitmap = CType(image.Clone(), Bitmap)
 
             If bgc.Value <> 1 Then bgc.Apply(clone)

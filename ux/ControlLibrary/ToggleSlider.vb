@@ -81,7 +81,7 @@ Partial Public Class ToggleSlider
         Get
             Return Checked_bool
         End Get
-        Set(ByVal value As Boolean)
+        Set(value As Boolean)
             Checked_bool = value
             Invalidate()
         End Set
@@ -93,7 +93,7 @@ Partial Public Class ToggleSlider
         Get
             Return ToggleColorDisabled_Color
         End Get
-        Set(ByVal value As Color)
+        Set(value As Color)
             ToggleColorDisabled_Color = value
             Invalidate()
         End Set
@@ -105,7 +105,7 @@ Partial Public Class ToggleSlider
         Get
             Return Bar_Color
         End Get
-        Set(ByVal value As Color)
+        Set(value As Color)
             Bar_Color = value
             Invalidate()
         End Set
@@ -127,7 +127,7 @@ Partial Public Class ToggleSlider
     Private circlecolor_ As Color = New Color()
     Private animating_ As Boolean = False
 
-    Protected Overrides Sub OnPaint(ByVal pevent As PaintEventArgs)
+    Protected Overrides Sub OnPaint(pevent As PaintEventArgs)
         If init_ = True Then
             circlecolor_ = ToggleColorDisabled_Color
         End If
@@ -150,7 +150,7 @@ Partial Public Class ToggleSlider
         SetStyle(ControlStyles.SupportsTransparentBackColor, True)
     End Sub
 
-    Private Sub ToggleSlider_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub ToggleSlider_Click(sender As Object, e As EventArgs)
         Animate()
     End Sub
 
@@ -162,7 +162,7 @@ Partial Public Class ToggleSlider
         animating_ = True
     End Sub
 
-    Private Sub Timer1_Tick(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs)
         Dim circle_size As Size = New Size(Convert.ToInt32(MyBase.Font.SizeInPoints * 5), Convert.ToInt32(MyBase.Font.SizeInPoints * 5))
 
         If Checked_bool = True Then
@@ -190,7 +190,7 @@ Partial Public Class ToggleSlider
         End If
     End Sub
 
-    Public Shared Function RoundedRect(ByVal c As Color, ByVal g As Graphics, ByVal bounds As Rectangle, ByVal radius As Integer) As GraphicsPath
+    Public Shared Function RoundedRect(c As Color, g As Graphics, bounds As Rectangle, radius As Integer) As GraphicsPath
         Dim diameter = radius * 2
         Dim size As Size = New Size(diameter, diameter)
         Dim arc As Rectangle = New Rectangle(bounds.Location, size)

@@ -44,7 +44,7 @@ Partial Public Class PropertyWindow : Inherits ToolWindow
         AddHandler trackBar5.KeyDown, Sub(sender, e) CType(e, KeyEventArgs).Handled = True
     End Sub
 
-    Public Sub GetHistogram(ByVal image As Bitmap, ByVal Optional update As Boolean = True)
+    Public Sub GetHistogram(image As Bitmap, Optional update As Boolean = True)
         ' check null
         If image IsNot Nothing Then
             ' histograms: r, g, b
@@ -109,7 +109,7 @@ Partial Public Class PropertyWindow : Inherits ToolWindow
         histogram4.Values = Nothing
     End Sub
 
-    Public Sub ActivateControls(ByVal enabled As Boolean)
+    Public Sub ActivateControls(enabled As Boolean)
 
         ' scrolls
         button2.Enabled = enabled
@@ -121,35 +121,35 @@ Partial Public Class PropertyWindow : Inherits ToolWindow
         trackBar1.Enabled = enabled
     End Sub
 
-    Private Sub trackBar1_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles trackBar1.MouseUp
+    Private Sub trackBar1_MouseUp(sender As Object, e As MouseEventArgs) Handles trackBar1.MouseUp
         If e.Button = MouseButtons.Right Then
             trackBar1.Value = 0
             trackBar1_Scroll(sender, e)
         End If
         Main.PictureImage = Main.Apply(Main.Image)
     End Sub
-    Private Sub trackBar2_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles trackBar2.MouseUp
+    Private Sub trackBar2_MouseUp(sender As Object, e As MouseEventArgs) Handles trackBar2.MouseUp
         If e.Button = MouseButtons.Right Then
             trackBar2.Value = 0
             trackBar2_Scroll(sender, e)
         End If
         Main.PictureImage = Main.Apply(Main.Image)
     End Sub
-    Private Sub trackBar3_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles trackBar3.MouseUp
+    Private Sub trackBar3_MouseUp(sender As Object, e As MouseEventArgs) Handles trackBar3.MouseUp
         If e.Button = MouseButtons.Right Then
             trackBar3.Value = 0
             trackBar3_Scroll(sender, e)
         End If
         Main.PictureImage = Main.Apply(Main.Image)
     End Sub
-    Private Sub trackBar4_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles trackBar4.MouseUp
+    Private Sub trackBar4_MouseUp(sender As Object, e As MouseEventArgs) Handles trackBar4.MouseUp
         If e.Button = MouseButtons.Right Then
             trackBar4.Value = 0
             trackBar4_Scroll(sender, e)
         End If
         Main.PictureImage = Main.Apply(Main.Image)
     End Sub
-    Private Sub trackBar5_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles trackBar5.MouseUp
+    Private Sub trackBar5_MouseUp(sender As Object, e As MouseEventArgs) Handles trackBar5.MouseUp
         If e.Button = MouseButtons.Right Then
             trackBar5.Value = 0
             trackBar5_Scroll(sender, e)
@@ -157,36 +157,36 @@ Partial Public Class PropertyWindow : Inherits ToolWindow
         Main.PictureImage = Main.Apply(Main.Image)
     End Sub
 
-    Private Sub trackBar1_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles trackBar1.Scroll
+    Private Sub trackBar1_Scroll(sender As Object, e As EventArgs) Handles trackBar1.Scroll
         textBox1.Text = trackBar1.Value.ToString()
     End Sub
-    Private Sub trackBar2_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles trackBar2.Scroll
+    Private Sub trackBar2_Scroll(sender As Object, e As EventArgs) Handles trackBar2.Scroll
         textBox2.Text = trackBar2.Value.ToString()
     End Sub
-    Private Sub trackBar3_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles trackBar3.Scroll
+    Private Sub trackBar3_Scroll(sender As Object, e As EventArgs) Handles trackBar3.Scroll
         textBox3.Text = trackBar3.Value.ToString()
     End Sub
-    Private Sub trackBar4_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles trackBar4.Scroll
+    Private Sub trackBar4_Scroll(sender As Object, e As EventArgs) Handles trackBar4.Scroll
         textBox4.Text = trackBar4.Value.ToString()
     End Sub
-    Private Sub trackBar5_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles trackBar5.Scroll
+    Private Sub trackBar5_Scroll(sender As Object, e As EventArgs) Handles trackBar5.Scroll
         textBox5.Text = trackBar5.Value.ToString()
     End Sub
 
-    Private Sub button1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles button1.Click
+    Private Sub button1_Click(sender As Object, e As EventArgs) Handles button1.Click
         Main.Processor(CType(Main.PictureImage, Bitmap), Nothing)
     End Sub
-    Private Sub button2_Click(ByVal sender As Object, ByVal e As EventArgs) Handles button2.Click
+    Private Sub button2_Click(sender As Object, e As EventArgs) Handles button2.Click
         ResetAdjustments()
 
     End Sub
 
 #Region "Histogram"
-    Private Sub comboBox2_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles comboBox2.SelectedIndexChanged
+    Private Sub comboBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles comboBox2.SelectedIndexChanged
         GetHistogram(Main.Image, False)
     End Sub
 
-    Private Sub checkBox1_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles checkBox1.CheckedChanged
+    Private Sub checkBox1_CheckedChanged(sender As Object, e As EventArgs) Handles checkBox1.CheckedChanged
         histogram4.IsLogarithmicView = checkBox1.Checked
         histogram3.IsLogarithmicView = checkBox1.Checked
         histogram2.IsLogarithmicView = checkBox1.Checked
@@ -194,14 +194,14 @@ Partial Public Class PropertyWindow : Inherits ToolWindow
         Return
     End Sub
 
-    Private Sub histogram1_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles histogram1.MouseUp
+    Private Sub histogram1_MouseUp(sender As Object, e As MouseEventArgs) Handles histogram1.MouseUp
         Mouse = False
         label8.Text = Nothing
     End Sub
-    Private Sub histogram1_MouseDown(ByVal sender As Object, ByVal e As MouseEventArgs) Handles histogram1.MouseDown
+    Private Sub histogram1_MouseDown(sender As Object, e As MouseEventArgs) Handles histogram1.MouseDown
         Mouse = True
     End Sub
-    Private Sub histogram1_SelectionChanged(ByVal sender As Object, ByVal e As HistogramEventArgs) Handles histogram1.SelectionChanged
+    Private Sub histogram1_SelectionChanged(sender As Object, e As HistogramEventArgs) Handles histogram1.SelectionChanged
         If Mouse Then
             Dim min = e.Min
             Dim max = e.Max

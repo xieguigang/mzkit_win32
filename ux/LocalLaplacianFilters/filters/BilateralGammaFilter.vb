@@ -17,7 +17,7 @@ Namespace Filters
         ''' </summary>
         ''' <param name="g">Gamma</param>
         ''' <param name="space">Space</param>
-        Public Sub New(ByVal g As Single, ByVal space As Space)
+        Public Sub New(g As Single, space As Space)
             Value = g
             MyBase.Space = space
         End Sub
@@ -28,7 +28,7 @@ Namespace Filters
             Get
                 Return g
             End Get
-            Set(ByVal value As Single)
+            Set(value As Single)
                 g = value
                 ' MyBase.Rebuild = True
             End Set
@@ -51,7 +51,7 @@ Namespace Filters
         ''' <param name="g">Gamma</param>
         ''' <param name="length">Length</param>
         ''' <returns>Array</returns>
-        Public Shared Function Gamma(ByVal g As Single, ByVal length As Integer) As Single()
+        Public Shared Function Gamma(g As Single, length As Integer) As Single()
             Dim table = New Single(length - 1) {}
 
             For x = 0 To length - 1
@@ -66,7 +66,7 @@ Namespace Filters
         ''' <param name="x">Argument</param>
         ''' <param name="g">Gamma</param>
         ''' <returns>Double</returns>
-        Public Shared Function Gamma(ByVal x As Single, ByVal g As Single) As Single
+        Public Shared Function Gamma(x As Single, g As Single) As Single
             Dim y, z, w As Double
 
             ' highlights

@@ -253,7 +253,7 @@ Public Class PixelSelector
         RepaintPolygon()
     End Sub
 
-    Private Sub AddVertex(ByVal e As Vertex)
+    Private Sub AddVertex(e As Vertex)
         Dim lastPolygon As Polygon = polygons.LastOrDefault
 
         If lastPolygon Is Nothing Then
@@ -293,7 +293,7 @@ Public Class PixelSelector
         RepaintPolygon()
     End Sub
 
-    Private Sub RemoveVertex(ByVal soughtVertex As Vertex)
+    Private Sub RemoveVertex(soughtVertex As Vertex)
         Dim vertexToRemove As Vertex = Nothing, polygon As Polygon = Nothing
 
         With Me.FindVertex(soughtVertex)
@@ -339,7 +339,7 @@ Public Class PixelSelector
         RepaintPolygon()
     End Sub
 
-    Private Sub RemovePolygon(ByVal polygon As Polygon)
+    Private Sub RemovePolygon(polygon As Polygon)
         polygons.Remove(polygon)
 
         For Each edge In polygon.Edges
@@ -349,7 +349,7 @@ Public Class PixelSelector
         RepaintPolygon()
     End Sub
 
-    Private Sub RemoveRelation(ByVal edge As Edge)
+    Private Sub RemoveRelation(edge As Edge)
         If Not edgesInRelation.Remove((edge, edge.InRelation)) Then edgesInRelation.Remove((edge.InRelation, edge))
         edge.InRelation.Relation = Relation.None
         edge.Relation = Relation.None
@@ -357,7 +357,7 @@ Public Class PixelSelector
         edge.InRelation = Nothing
     End Sub
 
-    Private Sub EqualEdges(ByVal edge1 As Edge, ByVal edge2 As Edge, ByVal Optional staticPoint As Vertex = Nothing)
+    Private Sub EqualEdges(edge1 As Edge, edge2 As Edge, Optional staticPoint As Vertex = Nothing)
         edge1.Relation = Relation.Equality
         edge2.Relation = Relation.Equality
         edge1.InRelation = edge2
@@ -411,7 +411,7 @@ Public Class PixelSelector
         RepaintPolygon()
     End Sub
 
-    Private Sub PerpendiculateEdges(ByVal edge1 As Edge, ByVal edge2 As Edge, ByVal staticPoint As Vertex)
+    Private Sub PerpendiculateEdges(edge1 As Edge, edge2 As Edge, staticPoint As Vertex)
         edge1.Relation = Relation.Perpendicular
         edge2.Relation = Relation.Perpendicular
         edge1.InRelation = edge2
@@ -474,7 +474,7 @@ Public Class PixelSelector
         RepaintPolygon()
     End Sub
 
-    Private Sub HalveEdge(ByVal polygon As Polygon, ByVal edge As Edge, ByVal i As Integer)
+    Private Sub HalveEdge(polygon As Polygon, edge As Edge, i As Integer)
         If Me.CalculateLength(edge) < 6 Then
             Call ShowMessage("Edge is too small to halve")
             Return
@@ -501,7 +501,7 @@ Public Class PixelSelector
         RepaintPolygon()
     End Sub
 
-    Private Function FindVertex(ByVal soughtVertex As Vertex) As (Vertex As Vertex, Polygon As Polygon)
+    Private Function FindVertex(soughtVertex As Vertex) As (Vertex As Vertex, Polygon As Polygon)
         For Each polygon In polygons
 
             For Each vertex In polygon.Vertices
@@ -512,7 +512,7 @@ Public Class PixelSelector
         Return (Nothing, Nothing)
     End Function
 
-    Private Function FindEdge(ByVal soughtEdge As Vertex) As (edge As Edge, Polygon As Polygon)
+    Private Function FindEdge(soughtEdge As Vertex) As (edge As Edge, Polygon As Polygon)
         For Each polygon In polygons
 
             For Each edge In polygon.Edges
@@ -523,7 +523,7 @@ Public Class PixelSelector
         Return (Nothing, Nothing)
     End Function
 
-    Private Function FindEdgeWithIndex(ByVal soughtEdge As Vertex) As (Edge, Polygon, Integer)
+    Private Function FindEdgeWithIndex(soughtEdge As Vertex) As (Edge, Polygon, Integer)
         For Each polygon In polygons
             Dim i = 0
 
@@ -536,7 +536,7 @@ Public Class PixelSelector
         Return (Nothing, Nothing, -1)
     End Function
 
-    Private Function CorrectClockwise(ByVal e As Edge) As Boolean
+    Private Function CorrectClockwise(e As Edge) As Boolean
         Dim edge = e
         Dim iter = 0
 
@@ -574,7 +574,7 @@ Public Class PixelSelector
         Return If(iter = movingPolygon.Edges.Count + 1, False, True)
     End Function
 
-    Private Function CorrectCounterclockwise(ByVal e As Edge) As Boolean
+    Private Function CorrectCounterclockwise(e As Edge) As Boolean
         Dim edge = e
         Dim iter = 0
 
@@ -612,7 +612,7 @@ Public Class PixelSelector
         Return If(iter = movingPolygon.Edges.Count + 1, False, True)
     End Function
 
-    Private Sub MoveVertex(ByVal vertex As Vertex, ByVal x As Integer, ByVal y As Integer)
+    Private Sub MoveVertex(vertex As Vertex, x As Integer, y As Integer)
         Dim edge1 = vertex.GetInEdge()
         Dim edge2 = vertex.GetOutEdge()
         Dim oldLength1 = Me.CalculateLength(edge1)
@@ -627,13 +627,13 @@ Public Class PixelSelector
         RepaintPolygon()
     End Sub
 
-    Private Sub MoveEdge(ByVal edge As Edge, ByVal x As Integer, ByVal y As Integer)
+    Private Sub MoveEdge(edge As Edge, x As Integer, y As Integer)
         edge.From.Coord = New Point(edge.From.X + x, edge.From.Y + y)
         edge.To.Coord = New Point(edge.To.X + x, edge.To.Y + y)
         RepaintPolygon()
     End Sub
 
-    Private Sub MovePolygon(ByVal vertices As List(Of Vertex), ByVal x As Integer, ByVal y As Integer)
+    Private Sub MovePolygon(vertices As List(Of Vertex), x As Integer, y As Integer)
         For Each vertex In vertices
             vertex.Coord = New Point(vertex.X + x, vertex.Y + y)
         Next
@@ -641,7 +641,7 @@ Public Class PixelSelector
         RepaintPolygon()
     End Sub
 
-    Private Sub OnBoadMouseClick(ByVal sender As Object, ByVal e As MouseEventArgs) Handles picCanvas.MouseClick
+    Private Sub OnBoadMouseClick(sender As Object, e As MouseEventArgs) Handles picCanvas.MouseClick
         If Not SelectPolygonMode Then
             Call clickGetPoint(e)
         Else
@@ -716,7 +716,7 @@ Public Class PixelSelector
         End If
     End Sub
 
-    Private Sub OnBoadMouseDown(ByVal sender As Object, ByVal e As MouseEventArgs) Handles picCanvas.MouseDown
+    Private Sub OnBoadMouseDown(sender As Object, e As MouseEventArgs) Handles picCanvas.MouseDown
         If Not SelectPolygonMode Then
             Return
         End If
@@ -752,7 +752,7 @@ Public Class PixelSelector
         End If
     End Sub
 
-    Private Sub OnBoardMouseMove(ByVal sender As Object, ByVal e As MouseEventArgs) Handles picCanvas.MouseMove
+    Private Sub OnBoardMouseMove(sender As Object, e As MouseEventArgs) Handles picCanvas.MouseMove
         If Not SelectPolygonMode Then
             Return
         End If
@@ -794,7 +794,7 @@ Public Class PixelSelector
 
     Public Property ShowPointInform As Boolean = True
 
-    Private Sub OnBoardPaint(ByVal sender As Object, ByVal e As PaintEventArgs) Handles picCanvas.Paint
+    Private Sub OnBoardPaint(sender As Object, e As PaintEventArgs) Handles picCanvas.Paint
         If polygons.Count = 0 Then
             Return
         End If
@@ -925,13 +925,13 @@ Public Class PixelSelector
         mouse = New Vertex()
     End Sub
 
-    Private Function BelongsToCircle(ByVal vertex As Vertex, ByVal circle As Vertex) As Boolean
+    Private Function BelongsToCircle(vertex As Vertex, circle As Vertex) As Boolean
         Dim d = Math.Sqrt((vertex.X - circle.Coord.X) * (vertex.X - circle.Coord.X) + (vertex.Y - circle.Y) * (vertex.Y - circle.Y))
         If d <= 3 Then Return True
         Return False
     End Function
 
-    Private Function BelongsToSegment(ByVal vertex As Vertex, ByVal segment As Edge) As Boolean
+    Private Function BelongsToSegment(vertex As Vertex, segment As Edge) As Boolean
         Dim x As Integer = vertex.Coord.X
         Dim y As Integer = vertex.Y
         Dim ax As Integer = segment.From.Coord.X
@@ -950,7 +950,7 @@ Public Class PixelSelector
         Return False
     End Function
 
-    Private Function ArePerpendicular(ByVal edge1 As Edge, ByVal edge2 As Edge) As Boolean
+    Private Function ArePerpendicular(edge1 As Edge, edge2 As Edge) As Boolean
         Dim a1, a2 As Double
 
         If Me.CalculateLength(edge1) = 0 Then
@@ -996,7 +996,7 @@ Public Class PixelSelector
         End If
     End Function
 
-    Private Function AreEqual(ByVal edge1 As Edge, ByVal edge2 As Edge) As Boolean
+    Private Function AreEqual(edge1 As Edge, edge2 As Edge) As Boolean
         If Me.CalculateLength(edge1) = 0 Then
             edge1.From.X += 1
             edge1.To.Y += 1
@@ -1010,11 +1010,11 @@ Public Class PixelSelector
         Return Math.Abs(Me.CalculateLength(edge1) - Me.CalculateLength(edge2)) <= 1
     End Function
 
-    Private Function CalculateLength(ByVal e As Edge) As Integer
+    Private Function CalculateLength(e As Edge) As Integer
         Return Math.Sqrt(Math.Abs(e.To.Y - e.From.Y) * Math.Abs(e.To.Y - e.From.Y) + Math.Abs(e.To.X - e.From.Coord.X) * Math.Abs(e.To.Coord.X - e.From.Coord.X))
     End Function
 
-    Private Sub Bresenham(ByVal edge As Edge, ByVal graphics As Graphics, ByVal brush As Brush)
+    Private Sub Bresenham(edge As Edge, graphics As Graphics, brush As Brush)
         Dim x0 As Integer = edge.From.X
         Dim y0 As Integer = edge.From.Y
         Dim x1 As Integer = edge.To.X
@@ -1065,24 +1065,24 @@ Public Class PixelSelector
         RepaintPolygon()
     End Sub
 
-    Private Function Ipart(ByVal x As Double) As Integer
+    Private Function Ipart(x As Double) As Integer
         Return x
     End Function
 
-    Private Function Round(ByVal x As Double) As Integer
+    Private Function Round(x As Double) As Integer
         Return Ipart(x + 0.5)
     End Function
 
-    Public Shared Function Frac(ByVal x As Double) As Double
+    Public Shared Function Frac(x As Double) As Double
         If x < 0 Then Return 1 - (x - Math.Floor(x))
         Return x - Math.Floor(x)
     End Function
 
-    Private Function RFrac(ByVal x As Double) As Double
+    Private Function RFrac(x As Double) As Double
         Return 1 - Frac(x)
     End Function
 
-    Private Sub Plot(ByVal g As Graphics, ByVal x As Double, ByVal y As Double, ByVal c As Double, ByVal main As Color)
+    Private Sub Plot(g As Graphics, x As Double, y As Double, c As Double, main As Color)
         Dim alpha As Integer = c * 255
         If alpha > 255 Then alpha = 255
         If alpha < 0 Then alpha = 0
@@ -1090,7 +1090,7 @@ Public Class PixelSelector
         g.FillRectangle(New SolidBrush(color), CInt(x), CInt(y), 1, 1)
     End Sub
 
-    Private Sub AntialiasingWU(ByVal edge As Edge, ByVal graphics As Graphics, ByVal color As Color)
+    Private Sub AntialiasingWU(edge As Edge, graphics As Graphics, color As Color)
         Dim x0 As Double = edge.From.X
         Dim y0 As Double = edge.From.Y
         Dim x1 As Double = edge.To.X
@@ -1157,7 +1157,7 @@ Public Class PixelSelector
         End If
     End Sub
 
-    Private Sub BresenhamSymmetric(ByVal edge As Edge, ByVal graphics As Graphics, ByVal brush As Brush)
+    Private Sub BresenhamSymmetric(edge As Edge, graphics As Graphics, brush As Brush)
         Dim x0 As Integer = edge.From.X
         Dim y0 As Integer = edge.From.Y
         Dim x1 As Integer = edge.To.X

@@ -11,7 +11,7 @@ Public Class DropDownButton
         Native
     End Enum
 
-    Public Delegate Sub DropDownItemHandler(ByVal sender As Object, ByVal e As DropDownItemEventArgs)
+    Public Delegate Sub DropDownItemHandler(sender As Object, e As DropDownItemEventArgs)
     ''' <summary>
     ''' Occurs when the button is clicked.
     ''' </summary>
@@ -34,11 +34,11 @@ Public Class DropDownButton
 
 #Region "Events"
 
-    Private Sub DropDownMenu_ItemAdded(ByVal sender As Object, ByVal e As ToolStripItemEventArgs)
+    Private Sub DropDownMenu_ItemAdded(sender As Object, e As ToolStripItemEventArgs)
         If TryCast(sender, DropDownMenu).DropDownButton Is Me Then Invalidate()
     End Sub
 
-    Private Sub DropDownMenu_ItemClicked(ByVal sender As Object, ByVal e As ToolStripItemClickedEventArgs)
+    Private Sub DropDownMenu_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs)
         If TryCast(sender, DropDownMenu).DropDownButton Is Me Then
             p_DropDownSelectedItem = p_DropDownMenu.Items.IndexOf(e.ClickedItem)
             TryCast(sender, DropDownMenu).Close(ToolStripDropDownCloseReason.ItemClicked)
@@ -47,13 +47,13 @@ Public Class DropDownButton
         End If
     End Sub
 
-    Private Sub DropDownMenu_ItemRemoved(ByVal sender As Object, ByVal e As ToolStripItemEventArgs)
+    Private Sub DropDownMenu_ItemRemoved(sender As Object, e As ToolStripItemEventArgs)
         If TryCast(sender, DropDownMenu).DropDownButton Is Me Then
             Invalidate()
         End If
     End Sub
 
-    Private Sub DropDownButton_TextChanged(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub DropDownButton_TextChanged(sender As Object, e As EventArgs)
         Invalidate()
     End Sub
 
@@ -81,7 +81,7 @@ Public Class DropDownButton
         Get
             Return p_DropDownMenu
         End Get
-        Set(ByVal value As DropDownMenu)
+        Set(value As DropDownMenu)
             If p_DropDownMenu IsNot Nothing Then
                 p_DropDownMenu.DropDownButton = Nothing
                 p_DropDownMenu.Renderer = Nothing
@@ -113,7 +113,7 @@ Public Class DropDownButton
         Get
             Return p_DropDownSelectedItem
         End Get
-        Set(ByVal value As Integer)
+        Set(value As Integer)
             p_DropDownSelectedItem = value
             Invalidate()
         End Set
@@ -127,7 +127,7 @@ Public Class DropDownButton
         Get
             Return p_Renderer
         End Get
-        Set(ByVal value As Renderers)
+        Set(value As Renderers)
             If p_DropDownMenu IsNot Nothing Then
                 p_DropDownMenu.Renderer = If(value = Renderers.Default, Nothing, New NativeToolStripRenderer(New ToolbarTheme()))
             End If
@@ -137,11 +137,11 @@ Public Class DropDownButton
 
 #End Region
 
-    Protected Overrides Function IsInputKey(ByVal keyData As Keys) As Boolean
+    Protected Overrides Function IsInputKey(keyData As Keys) As Boolean
         Return keyData.Equals(Keys.Down) OrElse MyBase.IsInputKey(keyData)
     End Function
 
-    Protected Overrides Sub OnClick(ByVal e As EventArgs)
+    Protected Overrides Sub OnClick(e As EventArgs)
         ' The actual drop down button has it's own event.
         If dropDownState = ComboBoxState.Pressed Then Return
 
@@ -157,20 +157,20 @@ Public Class DropDownButton
         p_DropDownMenu.Items(p_DropDownSelectedItem).PerformClick()
     End Sub
 
-    Protected Overridable Sub OnDropDownClicked(ByVal e As EventArgs)
+    Protected Overridable Sub OnDropDownClicked(e As EventArgs)
         RaiseEvent DropDownClicked(Me, e)
     End Sub
 
-    Protected Overridable Sub OnDropDownItemClicked(ByVal e As DropDownItemEventArgs)
+    Protected Overridable Sub OnDropDownItemClicked(e As DropDownItemEventArgs)
         RaiseEvent DropDownItemClicked(Me, e)
     End Sub
 
-    Protected Overrides Sub OnGotFocus(ByVal e As EventArgs)
+    Protected Overrides Sub OnGotFocus(e As EventArgs)
         Invalidate()
         MyBase.OnGotFocus(e)
     End Sub
 
-    Protected Overrides Sub OnKeyDown(ByVal e As KeyEventArgs)
+    Protected Overrides Sub OnKeyDown(e As KeyEventArgs)
         If e.KeyCode = Keys.Down Then
             ShowContextMenuStrip(True)
         ElseIf e.KeyCode = Keys.Enter Then
@@ -184,12 +184,12 @@ Public Class DropDownButton
         MyBase.OnKeyDown(e)
     End Sub
 
-    Protected Overrides Sub OnLostFocus(ByVal e As EventArgs)
+    Protected Overrides Sub OnLostFocus(e As EventArgs)
         Invalidate()
         MyBase.OnLostFocus(e)
     End Sub
 
-    Protected Overrides Sub OnMouseDown(ByVal e As MouseEventArgs)
+    Protected Overrides Sub OnMouseDown(e As MouseEventArgs)
         If e.Button = MouseButtons.Left Then
             If dropDownRect.Contains(e.Location) Then
                 buttonState = PushButtonState.Normal
@@ -207,14 +207,14 @@ Public Class DropDownButton
         MyBase.OnMouseDown(e)
     End Sub
 
-    Protected Overrides Sub OnMouseLeave(ByVal e As EventArgs)
+    Protected Overrides Sub OnMouseLeave(e As EventArgs)
         buttonState = PushButtonState.Normal
         dropDownState = ComboBoxState.Normal
         Invalidate()
         MyBase.OnMouseLeave(e)
     End Sub
 
-    Protected Overrides Sub OnMouseMove(ByVal e As MouseEventArgs)
+    Protected Overrides Sub OnMouseMove(e As MouseEventArgs)
         If dropDownRect.Contains(e.Location) AndAlso pushedState <> 2 Then
             If Not (buttonState = PushButtonState.Normal AndAlso dropDownState = ComboBoxState.Hot) Then
                 buttonState = PushButtonState.Normal
@@ -232,7 +232,7 @@ Public Class DropDownButton
         MyBase.OnMouseMove(e)
     End Sub
 
-    Protected Overrides Sub OnMouseUp(ByVal e As MouseEventArgs)
+    Protected Overrides Sub OnMouseUp(e As MouseEventArgs)
         If dropDownRect.Contains(e.Location) Then
             If pushedState = 1 Then ShowContextMenuStrip()
 
@@ -251,7 +251,7 @@ Public Class DropDownButton
         MyBase.OnMouseUp(e)
     End Sub
 
-    Protected Overrides Sub OnPaint(ByVal e As PaintEventArgs)
+    Protected Overrides Sub OnPaint(e As PaintEventArgs)
         Dim rect = DisplayRectangle
         Dim rectText = DisplayRectangle
         Dim stringFormat As StringFormat = New StringFormat() With {
@@ -301,7 +301,7 @@ Public Class DropDownButton
         MyBase.OnPaint(e)
     End Sub
 
-    Private Sub DrawVisualStyle(ByVal g As Graphics, ByVal rect As Rectangle, ByVal dropDownRect As Rectangle, ByVal Optional focused As Boolean = False)
+    Private Sub DrawVisualStyle(g As Graphics, rect As Rectangle, dropDownRect As Rectangle, Optional focused As Boolean = False)
         Dim focus = ShowFocusCues AndAlso Me.Focused
 
         If IsWinXP() Then
@@ -335,7 +335,7 @@ Public Class DropDownButton
         End If
     End Sub
 
-    Private Sub DrawPreVistaStyle(ByVal g As Graphics, ByVal rect As Rectangle, ByVal state As ButtonState, ByVal dropDownRect As Rectangle, ByVal dropDownState As ButtonState)
+    Private Sub DrawPreVistaStyle(g As Graphics, rect As Rectangle, state As ButtonState, dropDownRect As Rectangle, dropDownState As ButtonState)
         Dim newDropDownRect = dropDownRect
         newDropDownRect.Y -= 2
         newDropDownRect.Height += 3
@@ -359,7 +359,7 @@ Public Class DropDownButton
     ''' Shows the DropDownButton at the button.
     ''' </summary>
     ''' <param name="selectFirstItem">Selects the first item so arrow keys can be used.</param>
-    Public Sub ShowContextMenuStrip(ByVal Optional selectFirstItem As Boolean = False)
+    Public Sub ShowContextMenuStrip(Optional selectFirstItem As Boolean = False)
         If p_DropDownMenu Is Nothing Then Return
 
         Dim width = p_DropDownMenu.Width
@@ -386,7 +386,7 @@ Public Class DropDownItemEventArgs
     ''' </summary>
     Public Property ItemIndex As Integer
 
-    Public Sub New(ByVal item As ToolStripItem, ByVal index As Integer)
+    Public Sub New(item As ToolStripItem, index As Integer)
         Me.Item = item
         ItemIndex = index
     End Sub

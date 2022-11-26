@@ -33,7 +33,7 @@ Namespace Ligy
         ''' </summary>
         ''' <param name="sender"></param>
         ''' <param name="e"></param>
-        Private Sub CustomToolTip_Popup(ByVal sender As Object, ByVal e As PopupEventArgs)
+        Private Sub CustomToolTip_Popup(sender As Object, e As PopupEventArgs)
             e.ToolTipSize = _showImage.Size
         End Sub
 
@@ -42,7 +42,7 @@ Namespace Ligy
         ''' </summary>
         ''' <param name="sender"></param>
         ''' <param name="e"></param>
-        Private Sub CustomToolTip_Draw(ByVal sender As Object, ByVal e As DrawToolTipEventArgs)
+        Private Sub CustomToolTip_Draw(sender As Object, e As DrawToolTipEventArgs)
             If _showImage Is Nothing Then
                 Throw New Exception("图片不能为空!")
             End If
@@ -75,7 +75,7 @@ Namespace Ligy
         ''' </summary>
         ''' <param name="ctrl">控件</param>
         ''' <param name="image">图片</param>
-        Public Sub Binding(ByVal ctrl As Control, ByVal image As Image, Optional title As String = "Tooltip")
+        Public Sub Binding(ctrl As Control, image As Image, Optional title As String = "Tooltip")
             _showImage = image
             'whatever you set 
             SetToolTip(ctrl, title)

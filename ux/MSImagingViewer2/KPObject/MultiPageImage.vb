@@ -1,7 +1,7 @@
 ﻿Imports System.Drawing
 
 Public Class MultiPageImage
-    Public Sub New(ByVal image As Bitmap)
+    Public Sub New(image As Bitmap)
         Me.Image = image
         currentPage = 0
     End Sub
@@ -20,7 +20,7 @@ Public Class MultiPageImage
         Get
             Return bmp
         End Get
-        Set(ByVal value As Bitmap)
+        Set(value As Bitmap)
             If imageField IsNot Nothing Then
                 imageField.Dispose()
                 imageField = Nothing
@@ -49,7 +49,7 @@ Public Class MultiPageImage
         End Get
     End Property
 
-    Public Sub Rotate(ByVal rotation As Integer)
+    Public Sub Rotate(rotation As Integer)
         If rotation = 90 OrElse rotation = 180 OrElse rotation = 270 OrElse rotation = 0 Then
             rotationField = rotation
 
@@ -63,7 +63,7 @@ Public Class MultiPageImage
         End If
     End Sub
 
-    Public Sub SetPage(ByVal pageNumber As Integer)
+    Public Sub SetPage(pageNumber As Integer)
         If imageField IsNot Nothing Then
             If currentPage <> pageNumber Then
                 Dim pages = imageField.GetFrameCount(Imaging.FrameDimension.Page)
@@ -83,7 +83,7 @@ Public Class MultiPageImage
         End If
     End Sub
 
-    Public Function GetBitmap(ByVal pageNumber As Integer) As Bitmap
+    Public Function GetBitmap(pageNumber As Integer) As Bitmap
         If imageField Is Nothing Then
             Return Nothing
         End If

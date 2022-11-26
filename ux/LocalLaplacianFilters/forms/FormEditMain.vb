@@ -88,7 +88,7 @@ Valery Asiryan
         dockPanel.ShowDocumentIcon = True
     End Sub
 
-    Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         ' openfile
         openFile.Filter = formats & "|All supported formats|*.bmp; *.jpg; *.jpeg; *.png; *.tiff"
         openFile.FilterIndex = 6
@@ -121,11 +121,11 @@ Valery Asiryan
         End If
     End Sub
 
-    Private Sub EnableVSRenderer(ByVal version As VisualStudioToolStripExtender.VsVersion, ByVal theme As ThemeBase)
+    Private Sub EnableVSRenderer(version As VisualStudioToolStripExtender.VsVersion, theme As ThemeBase)
         VisualStudioToolStripExtender1.SetStyle(menuStrip1, version, theme)
     End Sub
 
-    Private Sub Form1_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs) Handles Me.KeyDown
+    Private Sub Form1_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
         ' hot keys
         If e.Control AndAlso e.KeyCode = Keys.O Then
             ' Stops other controls on the form receiving event.
@@ -156,36 +156,36 @@ Valery Asiryan
         Return
     End Sub
 
-    Public Sub openToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles openToolStripMenuItem.Click
+    Public Sub openToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles openToolStripMenuItem.Click
         If openFile.ShowDialog() = DialogResult.OK Then
             TryOpen(openFile.FileNames)
         End If
     End Sub
 
-    Private Sub exposureFusionToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub exposureFusionToolStripMenuItem_Click(sender As Object, e As EventArgs)
         openToolStripMenuItem_Click(sender, e)
     End Sub
 
-    Private Sub reloadToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles reloadToolStripMenuItem.Click
+    Private Sub reloadToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles reloadToolStripMenuItem.Click
         TryOpen(file)
     End Sub
 
-    Private Sub closeToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles closeToolStripMenuItem.Click
+    Private Sub closeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles closeToolStripMenuItem.Click
         TryOpen()
     End Sub
 
-    Private Sub saveToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles saveToolStripMenuItem.Click
+    Private Sub saveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles saveToolStripMenuItem.Click
         If saveFile.ShowDialog() = DialogResult.OK Then
             TrySave(saveFile.FileName, saveFile.FilterIndex)
         End If
         Return
     End Sub
 
-    Private Sub aboutToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles aboutToolStripMenuItem.Click
+    Private Sub aboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles aboutToolStripMenuItem.Click
         MessageBox.Show(Me, originals, application & ": About", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1)
     End Sub
 
-    Private Sub enhancementToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles localLaplacianToolStripMenuItem.Click
+    Private Sub enhancementToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles localLaplacianToolStripMenuItem.Click
         form2.Image = Image
         form2.Space = Space
 
@@ -195,7 +195,7 @@ Valery Asiryan
         Return
     End Sub
 
-    Private Sub temperatureToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles temperatureToolStripMenuItem.Click
+    Private Sub temperatureToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles temperatureToolStripMenuItem.Click
         form3.Image = Image
 
         If form3.ShowDialog() = DialogResult.OK Then
@@ -203,7 +203,7 @@ Valery Asiryan
         End If
     End Sub
 
-    Private Sub hslToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles exposureToolStripMenuItem.Click
+    Private Sub hslToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles exposureToolStripMenuItem.Click
         form4.Image = Image
 
         If form4.ShowDialog() = DialogResult.OK Then
@@ -211,7 +211,7 @@ Valery Asiryan
         End If
     End Sub
 
-    Private Sub comboBox1_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles comboBox1.SelectedIndexChanged
+    Private Sub comboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles comboBox1.SelectedIndexChanged
         Space = GetSpace(comboBox1.SelectedIndex)
     End Sub
 #End Region
@@ -255,7 +255,7 @@ Valery Asiryan
         End Try
     End Sub
 
-    Private Sub TrySave(ByVal filename As String, ByVal index As Integer)
+    Private Sub TrySave(filename As String, index As Integer)
         ' try to save
         Try
             Save(Image, filename, GetImageFormat(index))
@@ -266,7 +266,7 @@ Valery Asiryan
         End Try
     End Sub
 
-    Private Sub ActivateControls(ByVal enabled As Boolean)
+    Private Sub ActivateControls(enabled As Boolean)
         ' file
         saveToolStripMenuItem.Enabled = enabled
         closeToolStripMenuItem.Enabled = enabled
@@ -302,7 +302,7 @@ Valery Asiryan
         redo.Clear()
     End Sub
 
-    Public Sub Processor(ByVal bitmap As Bitmap, ByVal filter As Filter, ByVal Optional cache As Boolean = True)
+    Public Sub Processor(bitmap As Bitmap, filter As Filter, Optional cache As Boolean = True)
         ' check if null
         If bitmap IsNot Nothing Then
             MyBase.Cursor = Cursors.WaitCursor
@@ -324,7 +324,7 @@ Valery Asiryan
         End If
     End Sub
 
-    Private Sub Processor(ByVal bitmap As Bitmap(), ByVal filter As MultiFilter)
+    Private Sub Processor(bitmap As Bitmap(), filter As MultiFilter)
         ' check if null
         If bitmap IsNot Nothing Then
             MyBase.Cursor = Cursors.WaitCursor
@@ -342,7 +342,7 @@ Valery Asiryan
     Private scf As SaturationContrastBrightnessFilter = New SaturationContrastBrightnessFilter()
     Public Property Image As Bitmap
     Public Property Space As Space
-    Public Function Apply(ByVal image As Bitmap) As Bitmap
+    Public Function Apply(image As Bitmap) As Bitmap
         ' parsing
         Dim saturation As Single = Integer.Parse(imageHistogram.textBox1.Text)
         Dim contrast = Single.Parse(imageHistogram.textBox2.Text) / 100.0F
@@ -365,7 +365,7 @@ Valery Asiryan
 #Region "Edit"
     Private flip As FlipFilter = New FlipFilter()
 
-    Private Sub undoToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles undoToolStripMenuItem.Click
+    Private Sub undoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles undoToolStripMenuItem.Click
         If undoToolStripMenuItem.Enabled AndAlso undo.Count > 0 Then
             redo.Push(Image)
             Image = undo.Pop()
@@ -376,7 +376,7 @@ Valery Asiryan
         End If
 
     End Sub
-    Private Sub redoToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles redoToolStripMenuItem.Click
+    Private Sub redoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles redoToolStripMenuItem.Click
         If redoToolStripMenuItem.Enabled AndAlso redo.Count > 0 Then
             undo.Push(Image)
             Image = redo.Pop()
@@ -388,11 +388,11 @@ Valery Asiryan
         Return
     End Sub
 
-    Private Sub flipVerticalToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles flipVerticalToolStripMenuItem.Click
+    Private Sub flipVerticalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles flipVerticalToolStripMenuItem.Click
         flip.SetParams(False, True)
         Processor(Image, New Filter(AddressOf flip.Apply))
     End Sub
-    Private Sub flipHorizontalToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles flipHorizontalToolStripMenuItem.Click
+    Private Sub flipHorizontalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles flipHorizontalToolStripMenuItem.Click
         flip.SetParams(True, False)
         Processor(Image, New Filter(AddressOf flip.Apply))
     End Sub

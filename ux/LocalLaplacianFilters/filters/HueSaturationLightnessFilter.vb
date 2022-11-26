@@ -23,7 +23,7 @@ Namespace Filters
         ''' <param name="h">Hue</param>
         ''' <param name="s">Saturation</param>
         ''' <param name="l">Lightness</param>
-        Public Sub SetParams(ByVal h As Single, ByVal s As Single, ByVal l As Single)
+        Public Sub SetParams(h As Single, s As Single, l As Single)
             hsl.Hue = h
             hsl.Saturation = s
             hsl.Lightness = l
@@ -33,7 +33,7 @@ Namespace Filters
         ''' </summary>
         ''' <param name="image">Bitmap</param>
         ''' <returns>Bitmap</returns>
-        Public Function Apply(ByVal image As Bitmap) As Bitmap
+        Public Function Apply(image As Bitmap) As Bitmap
             Dim clone As Bitmap = CType(image.Clone(), Bitmap)
             hsl.Apply(clone)
             Return clone

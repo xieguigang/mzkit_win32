@@ -21,11 +21,11 @@ Partial Public Class FormAdjust
         AddHandler trackBar3.KeyDown, Sub(sender, e) CType(e, KeyEventArgs).Handled = True
     End Sub
 
-    Private Sub Form4_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
+    Private Sub Form4_Load(sender As Object, e As EventArgs) Handles Me.Load
         pictureBox1.Image = Apply(imageField)
     End Sub
 
-    Public Function Apply(ByVal image As Bitmap) As Bitmap
+    Public Function Apply(image As Bitmap) As Bitmap
         ' parsing
         Dim h = Single.Parse(textBox1.Text)
         Dim s = Single.Parse(textBox2.Text) / 100.0F
@@ -37,7 +37,7 @@ Partial Public Class FormAdjust
     End Function
 
     Public Property Image As Bitmap
-        Set(ByVal value As Bitmap)
+        Set(value As Bitmap)
             imageField = Crop(value, pictureBox1.Width)
             pictureBox1.Image = imageField
         End Set
@@ -46,37 +46,37 @@ Partial Public Class FormAdjust
         End Get
     End Property
 
-    Private Sub button1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles button1.Click
+    Private Sub button1_Click(sender As Object, e As EventArgs) Handles button1.Click
         DialogResult = DialogResult.OK
     End Sub
 #End Region
 
 #Region "TrackBars"
-    Private Sub trackBar1_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles trackBar1.Scroll
+    Private Sub trackBar1_Scroll(sender As Object, e As EventArgs) Handles trackBar1.Scroll
         textBox1.Text = trackBar1.Value.ToString()
     End Sub
-    Private Sub trackBar2_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles trackBar2.Scroll
+    Private Sub trackBar2_Scroll(sender As Object, e As EventArgs) Handles trackBar2.Scroll
         textBox2.Text = trackBar2.Value.ToString()
     End Sub
-    Private Sub trackBar3_Scroll(ByVal sender As Object, ByVal e As EventArgs) Handles trackBar3.Scroll
+    Private Sub trackBar3_Scroll(sender As Object, e As EventArgs) Handles trackBar3.Scroll
         textBox3.Text = trackBar3.Value.ToString()
     End Sub
 
-    Private Sub trackBar1_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles trackBar1.MouseUp
+    Private Sub trackBar1_MouseUp(sender As Object, e As MouseEventArgs) Handles trackBar1.MouseUp
         If e.Button = MouseButtons.Right Then
             trackBar1.Value = 0
             trackBar1_Scroll(sender, e)
         End If
         pictureBox1.Image = Apply(imageField)
     End Sub
-    Private Sub trackBar2_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles trackBar2.MouseUp
+    Private Sub trackBar2_MouseUp(sender As Object, e As MouseEventArgs) Handles trackBar2.MouseUp
         If e.Button = MouseButtons.Right Then
             trackBar2.Value = 0
             trackBar2_Scroll(sender, e)
         End If
         pictureBox1.Image = Apply(imageField)
     End Sub
-    Private Sub trackBar3_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles trackBar3.MouseUp
+    Private Sub trackBar3_MouseUp(sender As Object, e As MouseEventArgs) Handles trackBar3.MouseUp
         If e.Button = MouseButtons.Right Then
             trackBar3.Value = 0
             trackBar3_Scroll(sender, e)

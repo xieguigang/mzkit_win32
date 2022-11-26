@@ -70,7 +70,7 @@ Namespace PolygonEditor
             Edges = New List(Of Edge)()
         End Sub
 
-        Public Function HasEdge(ByVal e As Edge) As Boolean
+        Public Function HasEdge(e As Edge) As Boolean
             For Each edge In Edges
                 If edge Is e Then Return True
             Next
@@ -78,7 +78,7 @@ Namespace PolygonEditor
             Return False
         End Function
 
-        Public Sub New(ByVal vertices As List(Of Vertex), ByVal edges As List(Of Edge))
+        Public Sub New(vertices As List(Of Vertex), edges As List(Of Edge))
             Me.Vertices = vertices
             Me.Edges = edges
         End Sub
