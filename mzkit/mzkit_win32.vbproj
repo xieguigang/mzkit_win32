@@ -1729,6 +1729,10 @@
       <Project>{1440c713-78b7-4d26-978c-d2789dda67ff}</Project>
       <Name>LocalLaplacianFilters</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ux\MSImagingViewer2\MSImagingViewerV2.vbproj">
+      <Project>{daf59cb6-ccd9-0fc6-1b8c-a3cdcd5ce92d}</Project>
+      <Name>MSImagingViewerV2</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ux\winux\Microsoft.Windows.FeatureAPI\Microsoft.Windows.FeatureAPI.vbproj">
       <Project>{3d61f3a9-a8e0-4195-9133-6fd8e4b82d54}</Project>
       <Name>Microsoft.Windows.FeatureAPI</Name>
