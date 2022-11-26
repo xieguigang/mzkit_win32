@@ -4,13 +4,13 @@ Imports System.Runtime.InteropServices
 ' General Information about an assembly is controlled through the following 
 ' set of attributes. Change these attribute values to modify the information
 ' associated with an assembly.
-<Assembly: AssemblyTitle("KP-ImageViewerV2")>
-<Assembly: AssemblyDescription("")>
+<Assembly: AssemblyTitle("MSImagingViewerV2")>
+<Assembly: AssemblyDescription("Image Viewer UserControl(https://www.codeproject.com/Articles/71225/Image-Viewer-UserControl), Rewrite for MS-Imaging View")>
 <Assembly: AssemblyConfiguration("")>
-<Assembly: AssemblyCompany("Kaiwa-Projects")>
-<Assembly: AssemblyProduct("KP-ImageViewerV2")>
-<Assembly: AssemblyCopyright("Copyright © Kaiwa-Projects 2011")>
-<Assembly: AssemblyTrademark("")>
+<Assembly: AssemblyCompany("Kaiwa-Projects/BioNovoGene Corporation")>
+<Assembly: AssemblyProduct("mzkit_win32")>
+<Assembly: AssemblyCopyright("Copyright © Kaiwa-Projects 2011; xieguigang<gg.xie@bionovogene.com>; BioNovoGene Corporation")>
+<Assembly: AssemblyTrademark("MZKit")>
 <Assembly: AssemblyCulture("")>
 
 ' Setting ComVisible to false makes the types in this assembly not visible 

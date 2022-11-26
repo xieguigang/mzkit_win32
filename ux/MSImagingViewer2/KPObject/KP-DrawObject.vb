@@ -1,10 +1,10 @@
-﻿Imports System
-Imports System.Drawing
-Imports System.IO
-Imports System.Drawing.Imaging
+﻿Imports System.Drawing
 Imports System.Drawing.Drawing2D
+Imports System.Drawing.Imaging
+Imports System.IO
 
 Public Class KP_DrawObject
+
     Private KpViewer As KpImageViewer
     Private boundingRect As Rectangle
     Private dragPoint As Point
@@ -185,78 +185,7 @@ Public Class KP_DrawObject
         Set(value As Bitmap)
             Try
                 If value IsNot Nothing Then
-                    currentPageField = 0
-
-                    ' No memory leaks here!
-                    If bmp IsNot Nothing Then
-                        bmp.Dispose()
-                        bmp = Nothing
-                    End If
-
-                    If multiBmp IsNot Nothing Then
-                        multiBmp.Dispose()
-                        multiBmp = Nothing
-                    End If
-
-                    Try
-                        Dim gifDimension As FrameDimension = New FrameDimension(value.FrameDimensionsList(0))
-                        Dim gifFrames = value.GetFrameCount(gifDimension)
-
-                        If gifFrames > 1 Then
-                            multiFrame = True
-                        Else
-                            multiFrame = False
-                        End If
-
-                        If Not multiFrame Then
-                            'Gets the total number of frames in the .tiff file
-                            pagesField = value.GetFrameCount(FrameDimension.Page)
-                            If pagesField > 1 Then
-                                multiPageField = True
-                            Else
-                                multiPageField = False
-                            End If
-                        End If
-
-                    Catch
-                        multiPageField = False
-                        pagesField = 1
-                    End Try
-
-                    If multiFrame = True Then
-                        gifBmp = New GifImage(KpViewer, value)
-                    ElseIf multiPageField = True Then
-                        bmp = Nothing
-
-                        multiBmp = New MultiPageImage(value)
-                    Else
-                        bmp = value
-                        multiBmp = Nothing
-                    End If
-
-                    ' Initial rotation adjustments
-                    If rotationField <> 0 Then
-                        If rotationField = 180 Then
-                            Image.RotateFlip(RotateFlipType.Rotate180FlipNone)
-                            boundingRect = New Rectangle(0, 0, ImageWidth * zoomField, ImageHeight * zoomField)
-                        Else
-                            If rotationField = 90 Then
-                                Image.RotateFlip(RotateFlipType.Rotate90FlipNone)
-                            ElseIf rotationField = 270 Then
-                                Image.RotateFlip(RotateFlipType.Rotate270FlipNone)
-                            End If
-
-                            ' Flip the X and Y values
-                            boundingRect = New Rectangle(0, 0, ImageHeight * zoomField, ImageWidth * zoomField)
-                        End If
-                    Else
-                        Image.RotateFlip(RotateFlipType.RotateNoneFlipNone)
-                        boundingRect = New Rectangle(0, 0, ImageWidth * zoomField, ImageHeight * zoomField)
-                    End If
-
-                    zoomField = 1.0
-                    bmpPreview = CreatePreviewImage()
-                    FitToScreen()
+                    Call setImageValue(value)
                 End If
             Catch ex As Exception
                 Windows.Forms.MessageBox.Show("ImageViewer error: " & ex.ToString())
@@ -264,11 +193,154 @@ Public Class KP_DrawObject
         End Set
     End Property
 
+    Private Sub setImageValue(value As Bitmap)
+        currentPageField = 0
+
+        ' No memory leaks here!
+        If bmp IsNot Nothing Then
+            bmp.Dispose()
+            bmp = Nothing
+        End If
+
+        If multiBmp IsNot Nothing Then
+            multiBmp.Dispose()
+            multiBmp = Nothing
+        End If
+
+        Try
+            Dim gifDimension As FrameDimension = New FrameDimension(value.FrameDimensionsList(0))
+            Dim gifFrames = value.GetFrameCount(gifDimension)
+
+            If gifFrames > 1 Then
+                multiFrame = True
+            Else
+                multiFrame = False
+            End If
+
+            If Not multiFrame Then
+                'Gets the total number of frames in the .tiff file
+                pagesField = value.GetFrameCount(FrameDimension.Page)
+                If pagesField > 1 Then
+                    multiPageField = True
+                Else
+                    multiPageField = False
+                End If
+            End If
+
+        Catch
+            multiPageField = False
+            pagesField = 1
+        End Try
+
+        If multiFrame = True Then
+            gifBmp = New GifImage(KpViewer, value)
+        ElseIf multiPageField = True Then
+            bmp = Nothing
+
+            multiBmp = New MultiPageImage(value)
+        Else
+            bmp = value
+            multiBmp = Nothing
+        End If
+
+        ' Initial rotation adjustments
+        If rotationField <> 0 Then
+            If rotationField = 180 Then
+                Image.RotateFlip(RotateFlipType.Rotate180FlipNone)
+                boundingRect = New Rectangle(0, 0, ImageWidth * zoomField, ImageHeight * zoomField)
+            Else
+                If rotationField = 90 Then
+                    Image.RotateFlip(RotateFlipType.Rotate90FlipNone)
+                ElseIf rotationField = 270 Then
+                    Image.RotateFlip(RotateFlipType.Rotate270FlipNone)
+                End If
+
+                ' Flip the X and Y values
+                boundingRect = New Rectangle(0, 0, ImageHeight * zoomField, ImageWidth * zoomField)
+            End If
+        Else
+            Image.RotateFlip(RotateFlipType.RotateNoneFlipNone)
+            boundingRect = New Rectangle(0, 0, ImageWidth * zoomField, ImageHeight * zoomField)
+        End If
+
+        zoomField = 1.0
+        bmpPreview = CreatePreviewImage()
+        FitToScreen()
+    End Sub
+
     Public ReadOnly Property PreviewImage As Image
         Get
             Return bmpPreview
         End Get
     End Property
+
+    Private Sub setImageFilePath(value As String, temp As Bitmap)
+        currentPageField = 0
+
+        Try
+            Dim extension = Path.GetExtension(value)
+
+            If Equals(extension, ".gif") Then
+                Dim gifDimension As FrameDimension = New FrameDimension(temp.FrameDimensionsList(0))
+                Dim gifFrames = temp.GetFrameCount(gifDimension)
+
+                If gifFrames > 1 Then
+                    multiFrame = True
+                Else
+                    multiFrame = False
+                End If
+            Else
+                multiFrame = False
+
+                'Gets the total number of frames in the .tiff file
+                pagesField = temp.GetFrameCount(FrameDimension.Page)
+                If pagesField > 1 Then
+                    multiPageField = True
+                Else
+                    multiPageField = False
+                End If
+            End If
+
+        Catch
+            multiPageField = False
+            pagesField = 1
+        End Try
+
+        If multiFrame = True Then
+            gifBmp = New GifImage(KpViewer, temp)
+        ElseIf multiPageField = True Then
+            bmp = Nothing
+
+            multiBmp = New MultiPageImage(temp)
+        Else
+            bmp = temp
+            multiBmp = Nothing
+        End If
+
+        ' Initial rotation
+        If rotationField <> 0 Then
+            If rotationField = 180 Then
+                Image.RotateFlip(RotateFlipType.Rotate180FlipNone)
+                boundingRect = New Rectangle(0, 0, ImageWidth * zoomField, ImageHeight * zoomField)
+            Else
+                If rotationField = 90 Then
+                    Image.RotateFlip(RotateFlipType.Rotate90FlipNone)
+                ElseIf rotationField = 270 Then
+                    Image.RotateFlip(RotateFlipType.Rotate270FlipNone)
+                End If
+
+                ' Flipping X and Y values!
+                boundingRect = New Rectangle(0, 0, ImageHeight * zoomField, ImageWidth * zoomField)
+            End If
+        Else
+            Image.RotateFlip(RotateFlipType.RotateNoneFlipNone)
+            boundingRect = New Rectangle(0, 0, ImageWidth * zoomField, ImageHeight * zoomField)
+        End If
+
+        zoomField = 1.0
+        bmpPreview = CreatePreviewImage()
+        FitToScreen()
+    End Sub
 
     Public WriteOnly Property ImagePath As String
         Set(value As String)
@@ -296,71 +368,7 @@ Public Class KP_DrawObject
                 End Try
 
                 If temp IsNot Nothing Then
-                    currentPageField = 0
-
-                    Try
-                        Dim extension = Path.GetExtension(value)
-
-                        If Equals(extension, ".gif") Then
-                            Dim gifDimension As FrameDimension = New FrameDimension(temp.FrameDimensionsList(0))
-                            Dim gifFrames = temp.GetFrameCount(gifDimension)
-
-                            If gifFrames > 1 Then
-                                multiFrame = True
-                            Else
-                                multiFrame = False
-                            End If
-                        Else
-                            multiFrame = False
-
-                            'Gets the total number of frames in the .tiff file
-                            pagesField = temp.GetFrameCount(FrameDimension.Page)
-                            If pagesField > 1 Then
-                                multiPageField = True
-                            Else
-                                multiPageField = False
-                            End If
-                        End If
-
-                    Catch
-                        multiPageField = False
-                        pagesField = 1
-                    End Try
-
-                    If multiFrame = True Then
-                        gifBmp = New GifImage(KpViewer, temp)
-                    ElseIf multiPageField = True Then
-                        bmp = Nothing
-
-                        multiBmp = New MultiPageImage(temp)
-                    Else
-                        bmp = temp
-                        multiBmp = Nothing
-                    End If
-
-                    ' Initial rotation
-                    If rotationField <> 0 Then
-                        If rotationField = 180 Then
-                            Image.RotateFlip(RotateFlipType.Rotate180FlipNone)
-                            boundingRect = New Rectangle(0, 0, ImageWidth * zoomField, ImageHeight * zoomField)
-                        Else
-                            If rotationField = 90 Then
-                                Image.RotateFlip(RotateFlipType.Rotate90FlipNone)
-                            ElseIf rotationField = 270 Then
-                                Image.RotateFlip(RotateFlipType.Rotate270FlipNone)
-                            End If
-
-                            ' Flipping X and Y values!
-                            boundingRect = New Rectangle(0, 0, ImageHeight * zoomField, ImageWidth * zoomField)
-                        End If
-                    Else
-                        Image.RotateFlip(RotateFlipType.RotateNoneFlipNone)
-                        boundingRect = New Rectangle(0, 0, ImageWidth * zoomField, ImageHeight * zoomField)
-                    End If
-
-                    zoomField = 1.0
-                    bmpPreview = CreatePreviewImage()
-                    FitToScreen()
+                    Call setImageFilePath(value, temp)
                 End If
             Catch ex As Exception
                 Windows.Forms.MessageBox.Show("ImageViewer error: " & ex.ToString())
@@ -650,7 +658,12 @@ Public Class KP_DrawObject
         Dim bottomRight As Point = New Point(rImg.Right, rImg.Bottom)
         Dim bottomLeft As Point = New Point(rImg.Left, rImg.Bottom)
         Dim points = New Point() {topLeft, topRight, bottomRight, bottomLeft}
-        Dim gp As GraphicsPath = New GraphicsPath(points, New Byte() {PathPointType.Start, PathPointType.Line, PathPointType.Line, PathPointType.Line})
+        Dim gp As New GraphicsPath(points, New Byte() {
+             PathPointType.Start,
+             PathPointType.Line,
+             PathPointType.Line,
+             PathPointType.Line
+        })
         gp.Transform(matrix)
         Return Rectangle.Round(gp.GetBounds())
     End Function
