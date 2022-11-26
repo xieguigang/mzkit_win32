@@ -71,17 +71,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GifImage.vb" />
-    <Compile Include="KP-DrawEngine.vb" />
-    <Compile Include="KP-DrawObject.vb" />
-    <Compile Include="KP-ImageViewerV2.vb">
+    <Compile Include="KPObject\GifImage.vb" />
+    <Compile Include="KPObject\KP-DrawEngine.vb" />
+    <Compile Include="KPObject\KP-DrawObject.vb" />
+    <Compile Include="ViewerCtrl\KP-ImageViewerV2.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="KP-ImageViewerV2.Designer.vb">
+    <Compile Include="ViewerCtrl\KP-ImageViewerV2.Designer.vb">
       <DependentUpon>KP-ImageViewerV2.vb</DependentUpon>
     </Compile>
-    <Compile Include="MultiPageImage.vb" />
-    <Compile Include="PanelDoubleBuffered.vb">
+    <Compile Include="KPObject\MultiPageImage.vb" />
+    <Compile Include="ViewerCtrl\PanelDoubleBuffered.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.vb" />
@@ -93,7 +93,7 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="KP-ImageViewerV2.resx">
+    <EmbeddedResource Include="ViewerCtrl\KP-ImageViewerV2.resx">
       <DependentUpon>KP-ImageViewerV2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -164,6 +164,12 @@
     <Import Include="System.Collections.Generic" />
     <Import Include="System.Windows.Forms" />
     <Import Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj">
+      <Project>{dee82853-4241-4f24-a096-12923c664369}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
