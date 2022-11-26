@@ -24,278 +24,240 @@
     ''' the contents of this method with the code editor.
     ''' </summary>
     Private Sub InitializeComponent()
-        panelPreview = New Windows.Forms.Panel()
-        lblPreview = New Windows.Forms.Label()
-        panelMenu = New Windows.Forms.Panel()
-        btnMode = New Windows.Forms.Button()
-        btnPreview = New Windows.Forms.Button()
-        cbZoom = New Windows.Forms.ComboBox()
-        btnFitToScreen = New Windows.Forms.Button()
-        btnZoomIn = New Windows.Forms.Button()
-        btnZoomOut = New Windows.Forms.Button()
-        btnRotate270 = New Windows.Forms.Button()
-        btnRotate90 = New Windows.Forms.Button()
-        btnOpen = New Windows.Forms.Button()
-        panelNavigation = New Windows.Forms.Panel()
-        lblNavigation = New Windows.Forms.Label()
-        tbNavigation = New Windows.Forms.TextBox()
-        btnBack = New Windows.Forms.Button()
-        btnNext = New Windows.Forms.Button()
-        pbPanel = New Windows.Forms.PictureBox()
-        pbFull = New PanelDoubleBuffered()
-        panelPreview.SuspendLayout()
-        panelMenu.SuspendLayout()
-        panelNavigation.SuspendLayout()
-        CType(pbPanel, ComponentModel.ISupportInitialize).BeginInit()
-        SuspendLayout()
-        ' 
-        ' panelPreview
-        ' 
-        panelPreview.Anchor = Windows.Forms.AnchorStyles.Top Or Windows.Forms.AnchorStyles.Right
-        panelPreview.BackColor = System.Drawing.Color.LightSteelBlue
-        panelPreview.BorderStyle = Windows.Forms.BorderStyle.FixedSingle
-        panelPreview.Controls.Add(lblPreview)
-        panelPreview.Location = New Drawing.Point(301, 3)
-        panelPreview.Name = "panelPreview"
-        panelPreview.Size = New Drawing.Size(150, 29)
-        panelPreview.TabIndex = 12
-        ' 
-        ' lblPreview
-        ' 
-        lblPreview.AutoSize = True
-        lblPreview.Font = New Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0)
-        lblPreview.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        lblPreview.Location = New Drawing.Point(3, 4)
-        lblPreview.Name = "lblPreview"
-        lblPreview.Size = New Drawing.Size(59, 18)
-        lblPreview.TabIndex = 0
-        lblPreview.Text = "Preview"
-        ' 
-        ' panelMenu
-        ' 
-        panelMenu.Anchor = Windows.Forms.AnchorStyles.Top Or Windows.Forms.AnchorStyles.Left Or Windows.Forms.AnchorStyles.Right
-        panelMenu.BackColor = System.Drawing.Color.LightSteelBlue
-        panelMenu.BorderStyle = Windows.Forms.BorderStyle.FixedSingle
-        panelMenu.Controls.Add(btnMode)
-        panelMenu.Controls.Add(btnPreview)
-        panelMenu.Controls.Add(cbZoom)
-        panelMenu.Controls.Add(btnFitToScreen)
-        panelMenu.Controls.Add(btnZoomIn)
-        panelMenu.Controls.Add(btnZoomOut)
-        panelMenu.Controls.Add(btnRotate270)
-        panelMenu.Controls.Add(btnRotate90)
-        panelMenu.Controls.Add(btnOpen)
-        panelMenu.Location = New Drawing.Point(2, 3)
-        panelMenu.Name = "panelMenu"
-        panelMenu.Size = New Drawing.Size(295, 29)
-        panelMenu.TabIndex = 11
-        ' 
-        ' btnMode
-        ' 
-        '  btnMode.Image = Global.KaiwaProjects.Properties.Resources.btnSelect
-        btnMode.Location = New Drawing.Point(142, 1)
-        btnMode.Name = "btnMode"
-        btnMode.Size = New Drawing.Size(25, 25)
-        btnMode.TabIndex = 16
-        btnMode.UseVisualStyleBackColor = True
-        AddHandler btnMode.Click, New EventHandler(AddressOf btnMode_Click)
-        ' 
-        ' btnPreview
-        ' 
-        ' btnPreview.Image = Global.KaiwaProjects.Properties.Resources.btnPreview
-        btnPreview.Location = New Drawing.Point(198, 1)
-        btnPreview.Name = "btnPreview"
-        btnPreview.Size = New Drawing.Size(25, 25)
-        btnPreview.TabIndex = 15
-        btnPreview.UseVisualStyleBackColor = True
-        btnPreview.Visible = False
-        AddHandler btnPreview.Click, New EventHandler(AddressOf btnPreview_Click)
-        ' 
-        ' cbZoom
-        ' 
-        cbZoom.Anchor = Windows.Forms.AnchorStyles.Top Or Windows.Forms.AnchorStyles.Right
-        cbZoom.FormattingEnabled = True
-        cbZoom.Location = New Drawing.Point(228, 3)
-        cbZoom.Name = "cbZoom"
-        cbZoom.Size = New Drawing.Size(62, 21)
-        cbZoom.TabIndex = 14
-        AddHandler cbZoom.SelectedIndexChanged, New EventHandler(AddressOf cbZoom_SelectedIndexChanged)
-        AddHandler cbZoom.KeyPress, New Windows.Forms.KeyPressEventHandler(AddressOf cbZoom_KeyPress)
-        ' 
-        ' btnFitToScreen
-        ' 
-        ' btnFitToScreen.Image = Global.KaiwaProjects.Properties.Resources.btnFitToScreen
-        btnFitToScreen.Location = New Drawing.Point(58, 1)
-        btnFitToScreen.Name = "btnFitToScreen"
-        btnFitToScreen.Size = New Drawing.Size(25, 25)
-        btnFitToScreen.TabIndex = 13
-        btnFitToScreen.UseVisualStyleBackColor = True
-        AddHandler btnFitToScreen.Click, New EventHandler(AddressOf btnFitToScreen_Click)
-        ' 
-        ' btnZoomIn
-        ' 
-        ' btnZoomIn.Image = Global.KaiwaProjects.Properties.Resources.btnZoomIn
-        btnZoomIn.Location = New Drawing.Point(2, 1)
-        btnZoomIn.Name = "btnZoomIn"
-        btnZoomIn.Size = New Drawing.Size(25, 25)
-        btnZoomIn.TabIndex = 12
-        btnZoomIn.UseVisualStyleBackColor = True
-        AddHandler btnZoomIn.Click, New EventHandler(AddressOf btnZoomIn_Click)
-        ' 
-        ' btnZoomOut
-        ' 
-        ' btnZoomOut.Image = Global.KaiwaProjects.Properties.Resources.btnZoomOut
-        btnZoomOut.Location = New Drawing.Point(30, 1)
-        btnZoomOut.Name = "btnZoomOut"
-        btnZoomOut.Size = New Drawing.Size(25, 25)
-        btnZoomOut.TabIndex = 11
-        btnZoomOut.UseVisualStyleBackColor = True
-        AddHandler btnZoomOut.Click, New EventHandler(AddressOf btnZoomOut_Click)
-        ' 
-        ' btnRotate270
-        ' 
-        ' btnRotate270.Image = Global.KaiwaProjects.Properties.Resources.btnRotate270
-        btnRotate270.Location = New Drawing.Point(86, 1)
-        btnRotate270.Name = "btnRotate270"
-        btnRotate270.Size = New Drawing.Size(25, 25)
-        btnRotate270.TabIndex = 10
-        btnRotate270.UseVisualStyleBackColor = True
-        AddHandler btnRotate270.Click, New EventHandler(AddressOf btnRotate270_Click)
-        ' 
-        ' btnRotate90
-        ' 
-        ' btnRotate90.Image = Global.KaiwaProjects.Properties.Resources.btnRotate90
-        btnRotate90.Location = New Drawing.Point(114, 1)
-        btnRotate90.Name = "btnRotate90"
-        btnRotate90.Size = New Drawing.Size(25, 25)
-        btnRotate90.TabIndex = 9
-        btnRotate90.UseVisualStyleBackColor = True
-        AddHandler btnRotate90.Click, New EventHandler(AddressOf btnRotate90_Click)
-        ' 
-        ' btnOpen
-        ' 
-        ' btnOpen.Image = Global.KaiwaProjects.Properties.Resources.btnOpen
-        btnOpen.Location = New Drawing.Point(170, 1)
-        btnOpen.Name = "btnOpen"
-        btnOpen.Size = New Drawing.Size(25, 25)
-        btnOpen.TabIndex = 8
-        btnOpen.UseVisualStyleBackColor = True
-        btnOpen.Visible = False
-        AddHandler btnOpen.Click, New EventHandler(AddressOf btnOpen_Click)
-        ' 
-        ' panelNavigation
-        ' 
-        panelNavigation.Anchor = Windows.Forms.AnchorStyles.Top Or Windows.Forms.AnchorStyles.Right
-        panelNavigation.BackColor = System.Drawing.Color.LightSteelBlue
-        panelNavigation.BorderStyle = Windows.Forms.BorderStyle.FixedSingle
-        panelNavigation.Controls.Add(lblNavigation)
-        panelNavigation.Controls.Add(tbNavigation)
-        panelNavigation.Controls.Add(btnBack)
-        panelNavigation.Controls.Add(btnNext)
-        panelNavigation.Location = New Drawing.Point(301, 157)
-        panelNavigation.Name = "panelNavigation"
-        panelNavigation.Size = New Drawing.Size(150, 29)
-        panelNavigation.TabIndex = 13
-        panelNavigation.Visible = False
-        ' 
-        ' lblNavigation
-        ' 
-        lblNavigation.AutoSize = True
-        lblNavigation.Font = New Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0)
-        lblNavigation.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        lblNavigation.Location = New Drawing.Point(41, 5)
-        lblNavigation.Name = "lblNavigation"
-        lblNavigation.Size = New Drawing.Size(24, 18)
-        lblNavigation.TabIndex = 1
-        lblNavigation.Text = "/ 0"
-        ' 
-        ' tbNavigation
-        ' 
-        tbNavigation.Location = New Drawing.Point(4, 4)
-        tbNavigation.Name = "tbNavigation"
-        tbNavigation.Size = New Drawing.Size(33, 20)
-        tbNavigation.TabIndex = 19
-        tbNavigation.Text = "0"
-        tbNavigation.TextAlign = Windows.Forms.HorizontalAlignment.Center
-        AddHandler tbNavigation.KeyPress, New Windows.Forms.KeyPressEventHandler(AddressOf tbNavigation_KeyPress)
-        ' 
-        ' btnBack
-        ' 
-        ' btnBack.Image = Global.KaiwaProjects.Properties.Resources.btnBack
-        btnBack.Location = New Drawing.Point(93, 1)
-        btnBack.Name = "btnBack"
-        btnBack.Size = New Drawing.Size(25, 25)
-        btnBack.TabIndex = 18
-        btnBack.UseVisualStyleBackColor = True
-        AddHandler btnBack.Click, New EventHandler(AddressOf btnBack_Click)
-        ' 
-        ' btnNext
-        ' 
-        ' btnNext.Image = Global.KaiwaProjects.Properties.Resources.btnNext
-        btnNext.Location = New Drawing.Point(121, 1)
-        btnNext.Name = "btnNext"
-        btnNext.Size = New Drawing.Size(25, 25)
-        btnNext.TabIndex = 17
-        btnNext.UseVisualStyleBackColor = True
-        AddHandler btnNext.Click, New EventHandler(AddressOf btnNext_Click)
-        ' 
-        ' pbPanel
-        ' 
-        pbPanel.Anchor = Windows.Forms.AnchorStyles.Top Or Windows.Forms.AnchorStyles.Right
-        pbPanel.Location = New Drawing.Point(302, 36)
-        pbPanel.Name = "pbPanel"
-        pbPanel.Size = New Drawing.Size(148, 117)
-        pbPanel.SizeMode = Windows.Forms.PictureBoxSizeMode.Zoom
-        pbPanel.TabIndex = 10
-        pbPanel.TabStop = False
-        AddHandler pbPanel.MouseDown, New Windows.Forms.MouseEventHandler(AddressOf pbPanel_MouseDown)
-        AddHandler pbPanel.MouseMove, New Windows.Forms.MouseEventHandler(AddressOf pbPanel_MouseMove)
-        AddHandler pbPanel.MouseUp, New Windows.Forms.MouseEventHandler(AddressOf pbPanel_MouseUp)
-        ' 
-        ' pbFull
-        ' 
-        pbFull.Anchor = Windows.Forms.AnchorStyles.Top Or Windows.Forms.AnchorStyles.Bottom Or Windows.Forms.AnchorStyles.Left Or Windows.Forms.AnchorStyles.Right
-        pbFull.BackColor = System.Drawing.SystemColors.ControlLight
-        pbFull.BorderStyle = Windows.Forms.BorderStyle.FixedSingle
-        pbFull.Location = New Drawing.Point(2, 36)
-        pbFull.Name = "pbFull"
-        pbFull.Size = New Drawing.Size(295, 271)
-        pbFull.TabIndex = 13
-        AddHandler pbFull.Click, New EventHandler(AddressOf pbFull_Click)
-        AddHandler pbFull.DragDrop, New Windows.Forms.DragEventHandler(AddressOf pbFull_DragDrop)
-        AddHandler pbFull.DragEnter, New Windows.Forms.DragEventHandler(AddressOf pbFull_DragEnter)
-        AddHandler pbFull.Paint, New Windows.Forms.PaintEventHandler(AddressOf pbFull_Paint)
-        AddHandler pbFull.MouseDoubleClick, New Windows.Forms.MouseEventHandler(AddressOf pbFull_MouseDoubleClick)
-        AddHandler pbFull.MouseDown, New Windows.Forms.MouseEventHandler(AddressOf pbFull_MouseDown)
-        AddHandler pbFull.MouseEnter, New EventHandler(AddressOf pbFull_MouseEnter)
-        AddHandler pbFull.MouseLeave, New EventHandler(AddressOf pbFull_MouseLeave)
-        AddHandler pbFull.MouseHover, New EventHandler(AddressOf pbFull_MouseHover)
-        AddHandler pbFull.MouseMove, New Windows.Forms.MouseEventHandler(AddressOf pbFull_MouseMove)
-        AddHandler pbFull.MouseUp, New Windows.Forms.MouseEventHandler(AddressOf pbFull_MouseUp)
-        ' 
-        ' KpImageViewer
-        ' 
-        AutoScaleDimensions = New Drawing.SizeF(6.0F, 13.0F)
-        AutoScaleMode = Windows.Forms.AutoScaleMode.Font
-        Controls.Add(panelNavigation)
-        Controls.Add(pbFull)
-        Controls.Add(panelPreview)
-        Controls.Add(panelMenu)
-        Controls.Add(pbPanel)
-        MinimumSize = New Drawing.Size(454, 157)
-        Name = "KpImageViewer"
-        Size = New Drawing.Size(454, 310)
-        AddHandler Load, New EventHandler(AddressOf KP_ImageViewerV2_Load)
-        AddHandler Click, New EventHandler(AddressOf KpImageViewer_Click)
-        AddHandler MouseWheel, New Windows.Forms.MouseEventHandler(AddressOf KP_ImageViewerV2_MouseWheel)
-        AddHandler Resize, New EventHandler(AddressOf KP_ImageViewerV2_Resize)
-        panelPreview.ResumeLayout(False)
-        panelPreview.PerformLayout()
-        panelMenu.ResumeLayout(False)
-        panelNavigation.ResumeLayout(False)
-        panelNavigation.PerformLayout()
-        CType(pbPanel, ComponentModel.ISupportInitialize).EndInit()
-        ResumeLayout(False)
+        Me.panelPreview = New System.Windows.Forms.Panel()
+        Me.lblPreview = New System.Windows.Forms.Label()
+        Me.panelMenu = New System.Windows.Forms.Panel()
+        Me.btnMode = New System.Windows.Forms.Button()
+        Me.btnPreview = New System.Windows.Forms.Button()
+        Me.cbZoom = New System.Windows.Forms.ComboBox()
+        Me.btnFitToScreen = New System.Windows.Forms.Button()
+        Me.btnZoomIn = New System.Windows.Forms.Button()
+        Me.btnZoomOut = New System.Windows.Forms.Button()
+        Me.btnRotate270 = New System.Windows.Forms.Button()
+        Me.btnRotate90 = New System.Windows.Forms.Button()
+        Me.btnOpen = New System.Windows.Forms.Button()
+        Me.panelNavigation = New System.Windows.Forms.Panel()
+        Me.lblNavigation = New System.Windows.Forms.Label()
+        Me.tbNavigation = New System.Windows.Forms.TextBox()
+        Me.btnBack = New System.Windows.Forms.Button()
+        Me.btnNext = New System.Windows.Forms.Button()
+        Me.pbPanel = New System.Windows.Forms.PictureBox()
+        Me.pbFull = New Mzkit_win32.MSImagingViewerV2.PanelDoubleBuffered()
+        Me.panelPreview.SuspendLayout()
+        Me.panelMenu.SuspendLayout()
+        Me.panelNavigation.SuspendLayout()
+        CType(Me.pbPanel, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
+        '
+        'panelPreview
+        '
+        Me.panelPreview.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.panelPreview.BackColor = System.Drawing.Color.LightSteelBlue
+        Me.panelPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.panelPreview.Controls.Add(Me.lblPreview)
+        Me.panelPreview.Location = New System.Drawing.Point(301, 3)
+        Me.panelPreview.Name = "panelPreview"
+        Me.panelPreview.Size = New System.Drawing.Size(150, 29)
+        Me.panelPreview.TabIndex = 12
+        '
+        'lblPreview
+        '
+        Me.lblPreview.AutoSize = True
+        Me.lblPreview.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPreview.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.lblPreview.Location = New System.Drawing.Point(3, 4)
+        Me.lblPreview.Name = "lblPreview"
+        Me.lblPreview.Size = New System.Drawing.Size(59, 18)
+        Me.lblPreview.TabIndex = 0
+        Me.lblPreview.Text = "Preview"
+        '
+        'panelMenu
+        '
+        Me.panelMenu.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.panelMenu.BackColor = System.Drawing.Color.LightSteelBlue
+        Me.panelMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.panelMenu.Controls.Add(Me.btnMode)
+        Me.panelMenu.Controls.Add(Me.btnPreview)
+        Me.panelMenu.Controls.Add(Me.cbZoom)
+        Me.panelMenu.Controls.Add(Me.btnFitToScreen)
+        Me.panelMenu.Controls.Add(Me.btnZoomIn)
+        Me.panelMenu.Controls.Add(Me.btnZoomOut)
+        Me.panelMenu.Controls.Add(Me.btnRotate270)
+        Me.panelMenu.Controls.Add(Me.btnRotate90)
+        Me.panelMenu.Controls.Add(Me.btnOpen)
+        Me.panelMenu.Location = New System.Drawing.Point(2, 3)
+        Me.panelMenu.Name = "panelMenu"
+        Me.panelMenu.Size = New System.Drawing.Size(295, 29)
+        Me.panelMenu.TabIndex = 11
+        '
+        'btnMode
+        '
+        Me.btnMode.Location = New System.Drawing.Point(142, 1)
+        Me.btnMode.Name = "btnMode"
+        Me.btnMode.Size = New System.Drawing.Size(25, 25)
+        Me.btnMode.TabIndex = 16
+        Me.btnMode.UseVisualStyleBackColor = True
+        '
+        'btnPreview
+        '
+        Me.btnPreview.Location = New System.Drawing.Point(198, 1)
+        Me.btnPreview.Name = "btnPreview"
+        Me.btnPreview.Size = New System.Drawing.Size(25, 25)
+        Me.btnPreview.TabIndex = 15
+        Me.btnPreview.UseVisualStyleBackColor = True
+        Me.btnPreview.Visible = False
+        '
+        'cbZoom
+        '
+        Me.cbZoom.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbZoom.FormattingEnabled = True
+        Me.cbZoom.Location = New System.Drawing.Point(228, 3)
+        Me.cbZoom.Name = "cbZoom"
+        Me.cbZoom.Size = New System.Drawing.Size(62, 21)
+        Me.cbZoom.TabIndex = 14
+        '
+        'btnFitToScreen
+        '
+        Me.btnFitToScreen.Location = New System.Drawing.Point(58, 1)
+        Me.btnFitToScreen.Name = "btnFitToScreen"
+        Me.btnFitToScreen.Size = New System.Drawing.Size(25, 25)
+        Me.btnFitToScreen.TabIndex = 13
+        Me.btnFitToScreen.UseVisualStyleBackColor = True
+        '
+        'btnZoomIn
+        '
+        Me.btnZoomIn.Location = New System.Drawing.Point(2, 1)
+        Me.btnZoomIn.Name = "btnZoomIn"
+        Me.btnZoomIn.Size = New System.Drawing.Size(25, 25)
+        Me.btnZoomIn.TabIndex = 12
+        Me.btnZoomIn.UseVisualStyleBackColor = True
+        '
+        'btnZoomOut
+        '
+        Me.btnZoomOut.Location = New System.Drawing.Point(30, 1)
+        Me.btnZoomOut.Name = "btnZoomOut"
+        Me.btnZoomOut.Size = New System.Drawing.Size(25, 25)
+        Me.btnZoomOut.TabIndex = 11
+        Me.btnZoomOut.UseVisualStyleBackColor = True
+        '
+        'btnRotate270
+        '
+        Me.btnRotate270.Location = New System.Drawing.Point(86, 1)
+        Me.btnRotate270.Name = "btnRotate270"
+        Me.btnRotate270.Size = New System.Drawing.Size(25, 25)
+        Me.btnRotate270.TabIndex = 10
+        Me.btnRotate270.UseVisualStyleBackColor = True
+        '
+        'btnRotate90
+        '
+        Me.btnRotate90.Location = New System.Drawing.Point(114, 1)
+        Me.btnRotate90.Name = "btnRotate90"
+        Me.btnRotate90.Size = New System.Drawing.Size(25, 25)
+        Me.btnRotate90.TabIndex = 9
+        Me.btnRotate90.UseVisualStyleBackColor = True
+        '
+        'btnOpen
+        '
+        Me.btnOpen.Location = New System.Drawing.Point(170, 1)
+        Me.btnOpen.Name = "btnOpen"
+        Me.btnOpen.Size = New System.Drawing.Size(25, 25)
+        Me.btnOpen.TabIndex = 8
+        Me.btnOpen.UseVisualStyleBackColor = True
+        Me.btnOpen.Visible = False
+        '
+        'panelNavigation
+        '
+        Me.panelNavigation.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.panelNavigation.BackColor = System.Drawing.Color.LightSteelBlue
+        Me.panelNavigation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.panelNavigation.Controls.Add(Me.lblNavigation)
+        Me.panelNavigation.Controls.Add(Me.tbNavigation)
+        Me.panelNavigation.Controls.Add(Me.btnBack)
+        Me.panelNavigation.Controls.Add(Me.btnNext)
+        Me.panelNavigation.Location = New System.Drawing.Point(301, 157)
+        Me.panelNavigation.Name = "panelNavigation"
+        Me.panelNavigation.Size = New System.Drawing.Size(150, 29)
+        Me.panelNavigation.TabIndex = 13
+        Me.panelNavigation.Visible = False
+        '
+        'lblNavigation
+        '
+        Me.lblNavigation.AutoSize = True
+        Me.lblNavigation.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblNavigation.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.lblNavigation.Location = New System.Drawing.Point(41, 5)
+        Me.lblNavigation.Name = "lblNavigation"
+        Me.lblNavigation.Size = New System.Drawing.Size(24, 18)
+        Me.lblNavigation.TabIndex = 1
+        Me.lblNavigation.Text = "/ 0"
+        '
+        'tbNavigation
+        '
+        Me.tbNavigation.Location = New System.Drawing.Point(4, 4)
+        Me.tbNavigation.Name = "tbNavigation"
+        Me.tbNavigation.Size = New System.Drawing.Size(33, 20)
+        Me.tbNavigation.TabIndex = 19
+        Me.tbNavigation.Text = "0"
+        Me.tbNavigation.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'btnBack
+        '
+        Me.btnBack.Location = New System.Drawing.Point(93, 1)
+        Me.btnBack.Name = "btnBack"
+        Me.btnBack.Size = New System.Drawing.Size(25, 25)
+        Me.btnBack.TabIndex = 18
+        Me.btnBack.UseVisualStyleBackColor = True
+        '
+        'btnNext
+        '
+        Me.btnNext.Location = New System.Drawing.Point(121, 1)
+        Me.btnNext.Name = "btnNext"
+        Me.btnNext.Size = New System.Drawing.Size(25, 25)
+        Me.btnNext.TabIndex = 17
+        Me.btnNext.UseVisualStyleBackColor = True
+        '
+        'pbPanel
+        '
+        Me.pbPanel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pbPanel.Location = New System.Drawing.Point(302, 36)
+        Me.pbPanel.Name = "pbPanel"
+        Me.pbPanel.Size = New System.Drawing.Size(148, 117)
+        Me.pbPanel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbPanel.TabIndex = 10
+        Me.pbPanel.TabStop = False
+        '
+        'pbFull
+        '
+        Me.pbFull.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pbFull.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.pbFull.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pbFull.Location = New System.Drawing.Point(2, 36)
+        Me.pbFull.Name = "pbFull"
+        Me.pbFull.Size = New System.Drawing.Size(295, 271)
+        Me.pbFull.TabIndex = 13
+        '
+        'KpImageViewer
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.panelNavigation)
+        Me.Controls.Add(Me.pbFull)
+        Me.Controls.Add(Me.panelPreview)
+        Me.Controls.Add(Me.panelMenu)
+        Me.Controls.Add(Me.pbPanel)
+        Me.MinimumSize = New System.Drawing.Size(454, 157)
+        Me.Name = "KpImageViewer"
+        Me.Size = New System.Drawing.Size(454, 310)
+        Me.panelPreview.ResumeLayout(False)
+        Me.panelPreview.PerformLayout()
+        Me.panelMenu.ResumeLayout(False)
+        Me.panelNavigation.ResumeLayout(False)
+        Me.panelNavigation.PerformLayout()
+        CType(Me.pbPanel, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
 
     End Sub
 

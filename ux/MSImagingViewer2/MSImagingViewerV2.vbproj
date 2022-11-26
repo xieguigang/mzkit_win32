@@ -103,6 +103,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KPObject\KpZoom.vb" />
     <Compile Include="KPObject\GifImage.vb" />
     <Compile Include="KPObject\KP-DrawEngine.vb" />
     <Compile Include="KPObject\KP-DrawObject.vb" />
