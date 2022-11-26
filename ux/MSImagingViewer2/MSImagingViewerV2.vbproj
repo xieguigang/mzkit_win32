@@ -107,6 +107,8 @@
     <Compile Include="KPObject\GifImage.vb" />
     <Compile Include="KPObject\KP-DrawEngine.vb" />
     <Compile Include="KPObject\KP-DrawObject.vb" />
+    <Compile Include="ViewerCtrl\Events\ImageViewerZoomEventArgs.vb" />
+    <Compile Include="ViewerCtrl\Events\ImageViewerRotationEventArgs.vb" />
     <Compile Include="ViewerCtrl\KP-ImageViewerV2.vb">
       <SubType>UserControl</SubType>
     </Compile>
