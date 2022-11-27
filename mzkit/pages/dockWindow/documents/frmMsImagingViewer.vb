@@ -273,11 +273,15 @@ Public Class frmMsImagingViewer
     End Sub
 
     Sub loadHEMap()
-        Using file As New OpenFileDialog With {.Filter = "HE Stain Image(*.jpg;*.png;*.bmp)|*.jpg;*.png;*.bmp|HE Scalar Mapping Matrix(*.csv)|*.csv"}
+        Using file As New OpenFileDialog With {
+            .Filter = "HE Stain Image(*.jpg;*.png;*.bmp)|*.jpg;*.png;*.bmp|HE Scalar Mapping Matrix(*.csv)|*.csv"
+        }
             If file.ShowDialog = DialogResult.OK Then
-                Call loadHEMapImage(New Bitmap(file.FileName.LoadImage))
-            Else
-                Call loadHEMapMatrix(file.FileName)
+                If file.FileName.ExtensionSuffix("csv") Then
+                    Call loadHEMapMatrix(file.FileName)
+                Else
+                    Call loadHEMapImage(New Bitmap(file.FileName.LoadImage))
+                End If
             End If
         End Using
     End Sub
