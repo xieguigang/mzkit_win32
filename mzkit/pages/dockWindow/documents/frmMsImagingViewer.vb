@@ -64,6 +64,7 @@
 #End Region
 
 Imports System.ComponentModel
+Imports System.Drawing.Drawing2D
 Imports System.IO
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
@@ -78,7 +79,6 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.My
-Imports ControlLibrary
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
@@ -88,15 +88,17 @@ Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.hqx
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
-Imports Microsoft.VisualBasic.MIME.Office.Excel.XML.xl.worksheets
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Text
 Imports mzblender
 Imports ServiceHub
+Imports SMRUCC.genomics.Assembly.Uniprot.XML
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 Imports File = Microsoft.VisualBasic.Data.csv.IO.File
@@ -273,7 +275,7 @@ Public Class frmMsImagingViewer
     Sub loadHEMap()
         Using file As New OpenFileDialog With {.Filter = "HE Stain Image(*.jpg;*.png;*.bmp)|*.jpg;*.png;*.bmp|HE Scalar Mapping Matrix(*.csv)|*.csv"}
             If file.ShowDialog = DialogResult.OK Then
-                Call loadHEMapImage(file.FileName)
+                Call loadHEMapImage(New Bitmap(file.FileName.LoadImage))
             Else
                 Call loadHEMapMatrix(file.FileName)
             End If
@@ -299,18 +301,50 @@ Public Class frmMsImagingViewer
             Return
         End If
 
+        Dim input As New InputDataFieldName
+        input.AddItems(From str As String In table.HeadTitles Where str <> "x" AndAlso str <> "y")
 
+        InputDialog.Input(
+            Sub(config)
+                Dim field As String = config.GetInputFieldName
+                Dim x As Integer() = table.GetColumnValues("x").Select(AddressOf Integer.Parse).ToArray
+                Dim y As Integer() = table.GetColumnValues("y").Select(AddressOf Integer.Parse).ToArray
+                Dim data As Double() = table.GetColumnValues(field).Select(AddressOf Double.Parse).ToArray
+                Dim layer As New SingleIonLayer With {
+                    .IonMz = field,
+                    .DimensionSize = New Size(params.scan_x, params.scan_y),
+                    .MSILayer = data.Select(Function(v, i) New PixelData(x(i), y(i), v)).ToArray
+                }
+                Dim argv As New MsImageProperty With {
+                    .background = Color.Transparent,
+                    .colors = ScalerPalette.viridis,
+                    .enableFilter = False,
+                    .Hqx = HqxScales.Hqx_4x,
+                    .mapLevels = 255,
+                    .scale = InterpolationMode.HighQualityBicubic,
+                    .showColorMap = False,
+                    .showPhysicalRuler = False,
+                    .TrIQ = 1,
+                    .resolution = 17,
+                    .knn = 0,
+                    .knn_qcut = 1
+                }
+                Dim blender As New SingleIonMSIBlender(layer.MSILayer, Nothing, argv)
+                Dim HEMap As Image = blender.Rendering(Nothing, Nothing)
+
+                Call loadHEMapImage(HEMap)
+            End Sub, config:=input)
     End Sub
 
-    Private Sub loadHEMapImage(fileName As String)
-        PixelSelector1.HEMap = New Bitmap(fileName)
+    Private Sub loadHEMapImage(HEMapImg As Bitmap)
+        PixelSelector1.HEMap = HEMapImg
 
         If blender IsNot Nothing AndAlso TypeOf blender IsNot HeatMapBlender Then
             blender.HEMap = PixelSelector1.HEMap
             rendering()
         Else
             ' just display hemap on the canvas
-            PixelSelector1.SetMsImagingOutput(PixelSelector1.HEMap, PixelSelector1.HEMap.Size, Drawing2D.Colors.ScalerPalette.Jet, {0, 255}, 120)
+            PixelSelector1.SetMsImagingOutput(PixelSelector1.HEMap, PixelSelector1.HEMap.Size, ScalerPalette.Jet, {0, 255}, 120)
         End If
 
         If HEMap Is Nothing Then

@@ -13,6 +13,7 @@ Public MustInherit Class MSImagingBlender : Inherits Blender
         End Get
     End Property
 
+    <DebuggerStepThrough>
     Sub New(host As MsImageProperty)
         params = host
     End Sub
