@@ -216,10 +216,6 @@ Public Class MsImageProperty
         _resolution = resolution
     End Sub
 
-    Public Shared Function GetMSIInfo(render As Drawer) As Dictionary(Of String, String)
-        Return MSIProtocols.GetMSIInfo(render)
-    End Function
-
     'Public Function Smooth(img As Bitmap) As Bitmap
     '    If imageSmooth = SmoothFilters.None Then
     '        Return img
