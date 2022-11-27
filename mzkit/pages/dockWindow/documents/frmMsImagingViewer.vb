@@ -83,6 +83,7 @@ Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.csv
+Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.Imaging
@@ -270,29 +271,57 @@ Public Class frmMsImagingViewer
     End Sub
 
     Sub loadHEMap()
-        Using file As New OpenFileDialog With {.Filter = "HE Stain Image(*.jpg;*.png;*.bmp)|*.jpg;*.png;*.bmp"}
+        Using file As New OpenFileDialog With {.Filter = "HE Stain Image(*.jpg;*.png;*.bmp)|*.jpg;*.png;*.bmp|HE Scalar Mapping Matrix(*.csv)|*.csv"}
             If file.ShowDialog = DialogResult.OK Then
-                PixelSelector1.HEMap = New Bitmap(file.FileName.LoadImage)
-
-                If blender IsNot Nothing AndAlso TypeOf blender IsNot HeatMapBlender Then
-                    blender.HEMap = PixelSelector1.HEMap
-                    rendering()
-                Else
-                    ' just display hemap on the canvas
-                    PixelSelector1.SetMsImagingOutput(PixelSelector1.HEMap, PixelSelector1.HEMap.Size, Drawing2D.Colors.ScalerPalette.Jet, {0, 255}, 120)
-                End If
-
-                If HEMap Is Nothing Then
-                    HEMap = New HEMapTools
-                    HEMap.Show(VisualStudio.DockPanel)
-                    HEMap.DockState = DockState.Hidden
-                End If
-
-                HEMap.Clear(PixelSelector1.HEMap)
-
-                VisualStudio.Dock(HEMap, DockState.DockRight)
+                Call loadHEMapImage(file.FileName)
+            Else
+                Call loadHEMapMatrix(file.FileName)
             End If
         End Using
+    End Sub
+
+    ''' <summary>
+    ''' [x,y] should be exists in the matrix, and then other
+    ''' field will be mapping value to the color scaler.
+    ''' </summary>
+    ''' <param name="fileName"></param>
+    Private Sub loadHEMapMatrix(fileName As String)
+        Dim file = Microsoft.VisualBasic.Data.csv.IO.File.Load(fileName)
+        Dim table = DataFrame.CreateObject(file)
+
+        If table.GetOrdinal("x") = -1 OrElse table.GetOrdinal("y") = -1 Then
+            MessageBox.Show(
+                text:="We are unable to load your HE-stain mapping matrix due to the reason of missing pixel 'x' and 'y' fields!",
+                caption:="Load HE-stain Mapping Error",
+                buttons:=MessageBoxButtons.OK,
+                icon:=MessageBoxIcon.Error
+            )
+            Return
+        End If
+
+
+    End Sub
+
+    Private Sub loadHEMapImage(fileName As String)
+        PixelSelector1.HEMap = New Bitmap(fileName)
+
+        If blender IsNot Nothing AndAlso TypeOf blender IsNot HeatMapBlender Then
+            blender.HEMap = PixelSelector1.HEMap
+            rendering()
+        Else
+            ' just display hemap on the canvas
+            PixelSelector1.SetMsImagingOutput(PixelSelector1.HEMap, PixelSelector1.HEMap.Size, Drawing2D.Colors.ScalerPalette.Jet, {0, 255}, 120)
+        End If
+
+        If HEMap Is Nothing Then
+            HEMap = New HEMapTools
+            HEMap.Show(VisualStudio.DockPanel)
+            HEMap.DockState = DockState.Hidden
+        End If
+
+        HEMap.Clear(PixelSelector1.HEMap)
+
+        VisualStudio.Dock(HEMap, DockState.DockRight)
     End Sub
 
     Sub TurnUpsideDown()

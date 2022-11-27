@@ -60,22 +60,7 @@ Public Class ShowMSIRowScanSummary
     End Function
 
     Private Shared Function MeasureWidth(fileName As String) As Task(Of (n As Integer, basePeak As Double))
-        Dim background = New Task(Of (n As Integer, basePeak As Double))(
-            Function()
-                Dim Xraw As New MSFileReader(fileName)
-                Dim n As Integer = Xraw.ScanMax
-                Dim allscans = New XRawStream(Xraw).StreamTo
-                Dim basePeak As Double = allscans.MS _
-                    .Select(Function(a) a.GetMs.OrderByDescending(Function(i) i.intensity).FirstOrDefault) _
-                    .Where(Function(mzi) Not mzi Is Nothing) _
-                    .GroupBy(Function(x) x.mz, offsets:=0.3) _
-                    .OrderByDescending(Function(ni) ni.Length) _
-                    .First _
-                    .name _
-                    .ParseDouble
-
-                Return (n, basePeak)
-            End Function)
+        Dim background = New Task(Of (n As Integer, basePeak As Double))(Function() CheckMatrixBaseIon(fileName))
         background.Start()
         Return background
     End Function

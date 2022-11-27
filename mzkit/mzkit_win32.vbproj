@@ -529,12 +529,6 @@
     <Compile Include="forms\Inputs\InputXICTarget.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Inputs\InputImageProcessor.Designer.vb">
-      <DependentUpon>InputImageProcessor.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\Inputs\InputImageProcessor.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="forms\Inputs\InputFeatureFilter.Designer.vb">
       <DependentUpon>InputFeatureFilter.vb</DependentUpon>
     </Compile>
@@ -1018,12 +1012,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputFormula.resx">
       <DependentUpon>InputFormula.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputImageProcessor.resx">
-      <DependentUpon>InputImageProcessor.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputImageProcessor.zh-CN.resx">
-      <DependentUpon>InputImageProcessor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputMatrixIons.resx">
       <DependentUpon>InputMatrixIons.vb</DependentUpon>
