@@ -94,35 +94,42 @@ End Enum
 
 Public Module MSIProtocols
 
-    Public Function GetMSIInfo(render As Drawer) As Dictionary(Of String, String)
+    Public Function GetMSIInfo(render As MSI) As Dictionary(Of String, String)
         Dim uuid As String = ""
         Dim fileSize As String = ""
 
-        If TypeOf render.pixelReader Is ReadIbd Then
-            uuid = DirectCast(render.pixelReader, ReadIbd).UUID
-            fileSize = DirectCast(render.pixelReader, ReadIbd) _
+        If TypeOf render.MSI.pixelReader Is ReadIbd Then
+            uuid = DirectCast(render.MSI.pixelReader, ReadIbd).UUID
+            fileSize = DirectCast(render.MSI.pixelReader, ReadIbd) _
                 .ibd _
                 .size _
                 .DoCall(AddressOf StringFormats.Lanudry)
         End If
 
         Return New Dictionary(Of String, String) From {
-            {"scan_x", render.dimension.Width},
-            {"scan_y", render.dimension.Height},
+            {"scan_x", render.metadata.scan_x},
+            {"scan_y", render.metadata.scan_y},
             {"uuid", uuid},
             {"fileSize", fileSize},
-            {"resolution", render.pixelReader.resolution}
+            {"resolution", render.metadata.resolution}
         }
     End Function
 
-    Public Function LoadPixels(mz As IEnumerable(Of Double), mzErr As Tolerance, handleServiceRequest As Func(Of RequestStream, RequestStream)) As PixelData()
+    Public Function LoadPixels(mz As IEnumerable(Of Double),
+                               mzErr As Tolerance,
+                               handleServiceRequest As Func(Of RequestStream, RequestStream)) As PixelData()
+
         Dim config As New LayerLoader With {
             .mz = mz.ToArray,
             .method = If(TypeOf mzErr Is PPMmethod, "ppm", "da"),
             .mzErr = mzErr.DeltaTolerance
         }
         Dim configBytes As Byte() = BSON.GetBuffer(config.GetType.GetJsonElement(config, New JSONSerializerOptions)).ToArray
-        Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.LoadMSILayers, configBytes))
+        Dim data As RequestStream = handleServiceRequest(New RequestStream(
+            protocolCategory:=MSI.Protocol,
+            protocol:=ServiceProtocol.LoadMSILayers,
+            buffer:=configBytes
+        ))
 
         If data Is Nothing Then
             Return {}

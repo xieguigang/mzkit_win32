@@ -61,7 +61,9 @@ Imports System.Drawing
 Imports System.IO
 Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
@@ -69,6 +71,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Linq
@@ -88,7 +91,12 @@ Public Class MSI : Implements ITaskDriver, IDisposable
     Public Shared ReadOnly Property Protocol As Long = New ProtocolAttribute(GetType(ServiceProtocol)).EntryPoint
 
     Dim socket As TcpServicesSocket
-    Dim MSI As Drawer
+
+    Friend MSI As Drawer
+    ' only updates when the file load function invoke
+    ' which it means the session changed
+    Friend metadata As Metadata
+    Friend sourceName As String
 
     Private disposedValue As Boolean
 
@@ -122,13 +130,24 @@ Public Class MSI : Implements ITaskDriver, IDisposable
     Public Function Load(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
         Dim filepath As String = request.GetString(Encoding.UTF8)
         Dim info As Dictionary(Of String, String)
-        Dim sourceName As String = filepath.FileName
+
+        sourceName = filepath.FileName
 
         If filepath.ExtensionSuffix("cdf") Then
             Call RunSlavePipeline.SendMessage($"read MSI layers from the cdf file!")
 
             Using cdf As New netCDFReader(filepath)
-                MSI = New Drawer(cdf.CreatePixelReader)
+                Dim readRawPack As ReadRawPack = cdf.CreatePixelReader
+
+                MSI = New Drawer(readRawPack)
+                metadata = New Metadata With {
+                    .resolution = readRawPack.resolution,
+                    .scan_x = readRawPack.dimension.Width,
+                    .scan_y = readRawPack.dimension.Height,
+                    .mass_range = New DoubleRange(
+                        vector:=readRawPack.GetScans.Select(Function(scan) scan.mz).IteratesALL
+                    )
+                }
             End Using
         ElseIf filepath.ExtensionSuffix("mzImage") Then
             Call RunSlavePipeline.SendMessage($"read MSI image file!")
@@ -137,6 +156,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             Dim mzPack = Converter.LoadimzML(filepath, AddressOf RunSlavePipeline.SendProgress)
             mzPack.source = filepath.FileName
             MSI = New Drawer(mzPack)
+            metadata = mzPack.GetMSIMetadata
         Else
             Dim mzpack As mzPack
 
@@ -150,6 +170,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
                     skipMsn:=True
                 )
                 sourceName = mzpack.source
+                metadata = mzpack.GetMSIMetadata
 
                 If Not mzpack.source.ExtensionSuffix("csv") Then
                     Call RunSlavePipeline.SendMessage("make bugs fixed for RT pixel correction!")
@@ -167,7 +188,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             End Using
         End If
 
-        info = MSIProtocols.GetMSIInfo(MSI)
+        info = MSIProtocols.GetMSIInfo(Me)
         info!source = sourceName
 
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
@@ -231,7 +252,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         End If
 
         MSI = New Drawer(allPixels.CreatePixelReader(-minX, -minY))
-        info = MSIProtocols.GetMSIInfo(MSI)
+        info = MSIProtocols.GetMSIInfo(Me)
         info!source = "in-memory<ExtractRegionSample>"
 
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
@@ -250,7 +271,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Dim info As Dictionary(Of String, String)
 
         MSI = New Drawer(newpack)
-        info = MSIProtocols.GetMSIInfo(MSI)
+        info = MSIProtocols.GetMSIInfo(Me)
 
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
     End Function
@@ -268,7 +289,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Dim info As Dictionary(Of String, String)
 
         MSI = New Drawer(newpack)
-        info = MSIProtocols.GetMSIInfo(MSI)
+        info = MSIProtocols.GetMSIInfo(Me)
 
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
     End Function
@@ -328,7 +349,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
                 .ToArray
 
             MSI = New Drawer(allPixels.CreatePixelReader(excludesMz:=Nothing))
-            info = MSIProtocols.GetMSIInfo(MSI)
+            info = MSIProtocols.GetMSIInfo(Me)
 
             Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
         Else
@@ -349,7 +370,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             MSI = New Drawer(allPixels.CreatePixelReader(excludesMz:=allMz))
         End If
 
-        info = MSIProtocols.GetMSIInfo(MSI)
+        info = MSIProtocols.GetMSIInfo(Me)
 
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
     End Function
@@ -371,7 +392,9 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Dim targetMz As Double() = request.GetUTF8String.LoadJSON(Of Double())
         Dim allPixels As PixelScan() = MSI.pixelReader.AllPixels.ToArray
         Dim ions As IonStat() = IonStat.DoStat(allPixels, mz:=targetMz).ToArray
-        Dim json As JsonElement = ions.GetType.GetJsonElement(ions, New JSONSerializerOptions With {.indent = False})
+        Dim json As JsonElement = ions _
+            .GetType _
+            .GetJsonElement(ions, New JSONSerializerOptions With {.indent = False})
 
         Return New DataPipe(BSON.BSONFormat.SafeGetBuffer(json))
     End Function
@@ -425,7 +448,10 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             Call New mzPack With {
                 .MS = DirectCast(reader, ReadRawPack) _
                     .GetScans _
-                    .ToArray
+                    .ToArray,
+                .source = sourceName,
+                .metadata = metadata.GetMetadata,
+                .Application = FileApplicationClass.MSImaging
             }.Write(buffer, progress:=AddressOf RunSlavePipeline.SendMessage)
         End Using
 
@@ -483,13 +509,21 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Return New DataPipe(byts)
     End Function
 
+    ''' <summary>
+    ''' get BPC ion set from all pixels
+    ''' </summary>
+    ''' <param name="request"></param>
+    ''' <param name="remoteAddress"></param>
+    ''' <returns></returns>
     <Protocol(ServiceProtocol.GetBasePeakMzList)>
     Public Function GetBPCIons(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
         Dim data As New List(Of ms2)
         Dim pointTagged As New List(Of (X!, Y!, mz As ms2))
 
         For Each px As PixelScan In MSI.pixelReader.AllPixels
-            Dim mz As ms2 = px.GetMs.OrderByDescending(Function(a) a.intensity).FirstOrDefault
+            Dim mz As ms2 = px.GetMs _
+                .OrderByDescending(Function(a) a.intensity) _
+                .FirstOrDefault
 
             If Not mz Is Nothing Then
                 Call data.Add(mz)
