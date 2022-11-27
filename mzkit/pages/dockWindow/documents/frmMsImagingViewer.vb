@@ -340,7 +340,13 @@ Public Class frmMsImagingViewer
                 Dim blender As New SingleIonMSIBlender(layer.MSILayer, Nothing, argv)
                 Dim HEMap As Image = blender.Rendering(Nothing, Nothing)
 
-                Call loadHEMapImage(HEMap)
+                If Me.blender IsNot Nothing AndAlso TypeOf Me.blender IsNot HeatMapBlender Then
+                    ' draw and overlaps on the MS-imaging rendering for CAD analysis
+                    PixelSelector1.tissue_layer = HEMap
+                    PixelSelector1.RedrawCanvas()
+                Else
+                    Call loadHEMapImage(HEMap)
+                End If
             End Sub, config:=input)
     End Sub
 
