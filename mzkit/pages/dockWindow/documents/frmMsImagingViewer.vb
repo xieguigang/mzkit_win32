@@ -314,10 +314,14 @@ Public Class frmMsImagingViewer
                 Dim x As Integer() = table.GetColumnValues("x").Select(AddressOf Integer.Parse).ToArray
                 Dim y As Integer() = table.GetColumnValues("y").Select(AddressOf Integer.Parse).ToArray
                 Dim data As Double() = table.GetColumnValues(field).Select(AddressOf Double.Parse).ToArray
+                Dim scan_x As Integer = If(params Is Nothing, x.Max, params.scan_x)
+                Dim scan_y As Integer = If(params Is Nothing, y.Max, params.scan_y)
                 Dim layer As New SingleIonLayer With {
                     .IonMz = field,
-                    .DimensionSize = New Size(params.scan_x, params.scan_y),
-                    .MSILayer = data.Select(Function(v, i) New PixelData(x(i), y(i), v)).ToArray
+                    .DimensionSize = New Size(scan_x, scan_y),
+                    .MSILayer = data _
+                        .Select(Function(v, i) New PixelData(x(i), y(i), v)) _
+                        .ToArray
                 }
                 Dim argv As New MsImageProperty With {
                     .background = Color.Transparent,
