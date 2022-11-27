@@ -323,7 +323,7 @@ Public Class frmMsImagingViewer
                         .Select(Function(v, i) New PixelData(x(i), y(i), v)) _
                         .ToArray
                 }
-                Dim argv As New MsImageProperty With {
+                Dim argv As New MsImageProperty(scan_x, scan_y) With {
                     .background = Color.Transparent,
                     .colors = ScalerPalette.viridis,
                     .enableFilter = False,
