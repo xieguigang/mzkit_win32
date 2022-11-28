@@ -56,6 +56,7 @@
 
 #End Region
 
+Imports System.Drawing
 Imports Microsoft.VisualBasic.Imaging.Math2D
 
 Namespace PolygonEditor

@@ -69,13 +69,15 @@
 
 #End Region
 
+Imports System.Data
+Imports System.Drawing
 Imports System.Drawing.Drawing2D
 Imports System.Runtime.CompilerServices
-Imports ControlLibrary.PolygonEditor
 Imports Microsoft.VisualBasic.Imaging.BitmapImage
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Filters
 Imports Microsoft.VisualBasic.Imaging.Math2D
+Imports Mzkit_win32.MSImagingViewerV2.PolygonEditor
 Imports stdNum = System.Math
 
 <Assembly: InternalsVisibleTo("mzkit_win32")>
@@ -849,12 +851,12 @@ Public Class PixelSelector
             Dim bitmap As Bitmap
 
             If e1.Relation = Relation.Equality Then
-                bitmap = New Bitmap(My.Resources.Equals_sign)
+                bitmap = New Bitmap(Global.Mzkit_win32.MSImagingViewerV2.Resources.Equals_sign)
                 g.DrawString($"({equal})", New Font("Arial", 8), Brushes.Black, x1 + 10, y1 - 8)
                 g.DrawString($"({equal})", New Font("Arial", 8), Brushes.Black, x2 + 10, y2 - 8)
                 equal += 1
             Else
-                bitmap = New Bitmap(My.Resources.perpendicular_mathematical_symbol)
+                bitmap = New Bitmap(Global.Mzkit_win32.MSImagingViewerV2.Resources.perpendicular_mathematical_symbol)
                 g.DrawString($"({perpendicular})", New Font("Arial", 8), Brushes.Black, x1 + 10, y1 - 8)
                 g.DrawString($"({perpendicular})", New Font("Arial", 8), Brushes.Black, x2 + 10, y2 - 8)
                 perpendicular += 1
@@ -1239,7 +1241,12 @@ Public Class PixelSelector
     ''' <param name="colorMap"></param>
     ''' <param name="range"></param>
     ''' <param name="mapLevels"></param>
-    Public Sub SetMsImagingOutput(value As Image, dimension_size As Size, colorMap As ScalerPalette, range As Double(), mapLevels As Integer)
+    Public Sub SetMsImagingOutput(value As Image,
+                                  dimension_size As Size,
+                                  colorMap As ScalerPalette,
+                                  range As Double(),
+                                  mapLevels As Integer)
+
         Me.pixel_size = New Size(value.Width / dimension_size.Width, value.Height / dimension_size.Height)
         Me._dimension_size = dimension_size
         Me.orginal_image = value

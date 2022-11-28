@@ -168,4 +168,24 @@ Friend Module Resources
             Return CType(obj,System.Drawing.Bitmap)
         End Get
     End Property
+    
+    '''<summary>
+    '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+    '''</summary>
+    Friend ReadOnly Property Equals_sign() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("Equals_sign", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+    '''</summary>
+    Friend ReadOnly Property perpendicular_mathematical_symbol() As System.Drawing.Bitmap
+        Get
+            Dim obj As Object = ResourceManager.GetObject("perpendicular_mathematical_symbol", resourceCulture)
+            Return CType(obj,System.Drawing.Bitmap)
+        End Get
+    End Property
 End Module

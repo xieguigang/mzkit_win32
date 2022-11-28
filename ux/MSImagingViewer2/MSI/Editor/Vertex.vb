@@ -57,6 +57,8 @@
 #End Region
 
 
+Imports System.Drawing
+
 Namespace PolygonEditor
 
     Friend Class Vertex

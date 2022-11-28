@@ -1,4 +1,5 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
+﻿Imports System.Drawing
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.Imaging.Math2D
 
 Public Class RegionSampleCard
@@ -39,8 +40,8 @@ Public Class RegionSampleCard
     Public Function ExportTissueRegion(dimension As Size) As TissueRegion
         If Not tissue Is Nothing Then
             Return New TissueRegion With {
-                .color = SampleColor,
-                .label = SampleInfo,
+                .Color = SampleColor,
+                .Label = SampleInfo,
                 .points = tissue.points
             }
         Else
