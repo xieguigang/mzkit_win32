@@ -390,7 +390,14 @@ Public Class frmMsImagingViewer
             rendering()
         Else
             ' just display hemap on the canvas
-            PixelSelector1.SetMsImagingOutput(PixelSelector1.MSICanvas.HEMap, PixelSelector1.MSICanvas.HEMap.Size, params.background, ScalerPalette.Jet, {0, 255}, 120)
+            PixelSelector1.SetMsImagingOutput(
+                PixelSelector1.MSICanvas.HEMap,
+                PixelSelector1.MSICanvas.HEMap.Size,
+                Color.Black,
+                ScalerPalette.Jet,
+                {0, 255},
+                120
+            )
         End If
 
         If HEMap Is Nothing Then
