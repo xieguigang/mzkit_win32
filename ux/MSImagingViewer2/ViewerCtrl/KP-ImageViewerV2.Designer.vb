@@ -188,15 +188,15 @@
         Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(57, 17)
         Me.ToolStripStatusLabel2.Text = "[n/a, n/a]"
         '
-        'PixelSelector1
+        'MSICanvas
         '
         Me.MSICanvas.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.MSICanvas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.MSICanvas.HEMap = Nothing
-        Me.MSICanvas.Location = New System.Drawing.Point(571, 401)
-        Me.MSICanvas.Name = "PixelSelector1"
+        Me.MSICanvas.Location = New System.Drawing.Point(311, 401)
+        Me.MSICanvas.Name = "MSICanvas"
         Me.MSICanvas.SelectPolygonMode = False
         Me.MSICanvas.ShowPointInform = False
         Me.MSICanvas.Size = New System.Drawing.Size(10, 10)
