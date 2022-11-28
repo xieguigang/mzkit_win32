@@ -611,29 +611,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
         UpdatePanels(True)
     End Sub
 
-    Private Sub btnRotate270_Click(sender As Object, e As EventArgs) Handles ToolStripButtonRotate270.Click
-        If drawing IsNot Nothing Then
-            drawing.Rotate270()
-
-            ' AfterRotation Event
-            OnRotation(New ImageViewerRotationEventArgs(drawing.Rotation))
-            UpdatePanels(True)
-            ToggleMultiPage()
-        End If
-    End Sub
-
-    Private Sub btnRotate90_Click(sender As Object, e As EventArgs) Handles ToolStripButtonRotate90.Click
-        If drawing IsNot Nothing Then
-            drawing.Rotate90()
-
-            ' AfterRotation Event
-            OnRotation(New ImageViewerRotationEventArgs(drawing.Rotation))
-            UpdatePanels(True)
-            ToggleMultiPage()
-        End If
-    End Sub
-
-    Public Sub Rotate90()
+    Public Sub Rotate90() Handles ToolStripButtonRotate90.Click
         If drawing IsNot Nothing Then
             drawing.Rotate90()
 
@@ -655,7 +633,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
         End If
     End Sub
 
-    Public Sub Rotate270()
+    Public Sub Rotate270() Handles ToolStripButtonRotate270.Click
         If drawing IsNot Nothing Then
             drawing.Rotate270()
 
@@ -776,7 +754,14 @@ Partial Public Class KpImageViewer : Inherits UserControl
 
     Private Sub pbPanel_MouseDown(sender As Object, e As MouseEventArgs) Handles pbPanelAirscape.MouseDown
         If panelDragging = False Then
-            drawing.JumpToOrigin(e.X, e.Y, pbPanelAirscape.Width, pbPanelAirscape.Height, pbFull.Width, pbFull.Height)
+            drawing.JumpToOrigin(
+                e.X,
+                e.Y,
+                pbPanelAirscape.Width,
+                pbPanelAirscape.Height,
+                pbFull.Width,
+                pbFull.Height
+            )
             UpdatePanels(True)
 
             panelDragging = True
@@ -784,7 +769,13 @@ Partial Public Class KpImageViewer : Inherits UserControl
     End Sub
 
     Private Sub pbFull_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles pbFull.MouseDoubleClick
-        drawing.JumpToOrigin(e.X + (drawing.BoundingBox.X - drawing.BoundingBox.X * 2), e.Y + (drawing.BoundingBox.Y - drawing.BoundingBox.Y * 2), pbFull.Width, pbFull.Height)
+        drawing.JumpToOrigin(
+            e.X + (drawing.BoundingBox.X - drawing.BoundingBox.X * 2),
+            e.Y + (drawing.BoundingBox.Y - drawing.BoundingBox.Y * 2),
+            pbFull.Width,
+            pbFull.Height
+        )
+
         UpdatePanels(True)
     End Sub
 
@@ -1019,6 +1010,8 @@ Partial Public Class KpImageViewer : Inherits UserControl
         MSICanvas.Size = New Size(Me.Width, Me.Height - ToolStrip1.Height - StatusStrip1.Height)
         MSICanvas.BringToFront()
         MSICanvas.Visible = True
+
+        Call ShowMessage("Ready!")
     End Sub
 
     Public Sub SetColorMapVisible(visible As Boolean)
