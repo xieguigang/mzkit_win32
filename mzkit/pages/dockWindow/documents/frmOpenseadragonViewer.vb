@@ -1,9 +1,10 @@
 ﻿Imports System.ComponentModel
 Imports BioNovoGene.mzkit_win32.My
-Imports BioNovoGene.mzkit_win32.PageStart
 Imports Microsoft.VisualBasic.ApplicationServices
+Imports Microsoft.VisualBasic.FileIO
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.MSImagingViewerV2.DeepZoomBuilder
+Imports Task
 
 Public Class frmOpenseadragonViewer
 
@@ -14,20 +15,28 @@ Public Class frmOpenseadragonViewer
 
     Public ReadOnly Property sourceURL As String
         Get
-            Return $"http://127.0.0.1:{Globals.WebPort}/openseadragon.html"
+            Return $"http://127.0.0.1:{webPort}/openseadragon.html"
         End Get
     End Property
 
     Public Sub LoadSlide(tiff As String)
+        dzi = TempFileSystem.GetAppSysTempFile(".dzi", sessionID:=App.PID.ToHexString.MD5.Substring(2, 6) & "-" & tiff.BaseName, prefix:="deep_zoom_")
+
         If tiff.ExtensionSuffix("xml", "dzi") Then
-            dzi = tiff
+            Call tiff.ReadAllText.SaveTo(dzi)
+            Call New Directory($"{tiff.ParentPath}/{tiff.BaseName}_files/").CopyTo(dzi.ParentPath & $"/{dzi.BaseName}_files/")
         Else
-            dzi = TempFileSystem.GetAppSysTempFile(".dzi", sessionID:=App.PID.ToHexString.MD5.Substring(2, 6) & "-" & tiff.BaseName, prefix:="deep_zoom_")
             Call New DeepZoomCreator().CreateSingleComposition(tiff, dzi, ImageType.Jpeg)
         End If
 
         Call startHttp()
+        Call copyHtmls()
         Call frmHtmlViewer.Init(Me.WebView21)
+    End Sub
+
+    Private Sub copyHtmls()
+        Call $"{AppEnvironment.getWebViewFolder}/openseadragon.html".ReadAllText.SaveTo($"{dzi.ParentPath}/openseadragon.html")
+        Call New Directory($"{AppEnvironment.getWebViewFolder}/openseadragon/").CopyTo($"{dzi.ParentPath}/openseadragon/")
     End Sub
 
     Private Sub startHttp()
