@@ -441,7 +441,7 @@ UseCheckedList:
         End If
 
         Dim regions As TissueRegion() = viewer.sampleRegions _
-            .GetRegions(viewer.PixelSelector1.dimension_size) _
+            .GetRegions(viewer.PixelSelector1.MSICanvas.dimension_size) _
             .ToArray
 
         Return SampleData.ExtractSample(layer, regions, n:=32, coverage:=0.35)

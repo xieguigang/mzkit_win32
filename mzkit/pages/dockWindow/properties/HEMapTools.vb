@@ -146,7 +146,7 @@ Public Class HEMapTools
         WindowModules.viewer.TogglePolygonMode()
         ribbonItems.ButtonAddNewPolygon.BooleanValue = False
         ' clear content
-        WindowModules.viewer.PixelSelector1.GetPolygons(popAll:=True).ToArray
+        WindowModules.viewer.PixelSelector1.MSICanvas.GetPolygons(popAll:=True).ToArray
     End Sub
 
     ''' <summary>
@@ -237,9 +237,9 @@ Public Class HEMapTools
     End Sub
 
     Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
-        WindowModules.viewer.PixelSelector1.SetMsImagingOutput(
-            WindowModules.viewer.PixelSelector1.HEMap,
-            WindowModules.viewer.PixelSelector1.HEMap.Size,
+        WindowModules.viewer.PixelSelector1.MSICanvas.SetMsImagingOutput(
+            WindowModules.viewer.PixelSelector1.MSICanvas.HEMap,
+            WindowModules.viewer.PixelSelector1.MSICanvas.HEMap.Size,
             Drawing2D.Colors.ScalerPalette.Jet,
             {0, 255},
             120
