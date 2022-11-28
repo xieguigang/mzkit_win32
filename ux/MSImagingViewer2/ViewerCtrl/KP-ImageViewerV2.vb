@@ -107,6 +107,10 @@ Partial Public Class KpImageViewer : Inherits UserControl
     '    End Set
     'End Property
 
+    ''' <summary>
+    ''' show preview button visible 
+    ''' </summary>
+    ''' <returns></returns>
     Public Property PreviewButton As Boolean
         Get
             Return ToolStripButtonPreview.Visible
@@ -228,14 +232,11 @@ Partial Public Class KpImageViewer : Inherits UserControl
     '    End Set
     'End Property
 
-    Private WriteOnly Property ImagePath As String
-        Set(value As String)
-            drawing.ImagePath = value
-
-            UpdatePanels(True)
-            ToggleMultiPage()
-        End Set
-    End Property
+    Public Sub OpenImageFile(value As String)
+        drawing.OpenImageByPath(value)
+        UpdatePanels(True)
+        ToggleMultiPage()
+    End Sub
 
     ''' <summary>
     ''' set image on viewer for show to user
@@ -605,7 +606,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
         openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.gif;*.bmp;*.png;*.tif;*.tiff;*.wmf;*.emf|JPEG Files (*.jpg)|*.jpg;*.jpeg|GIF Files (*.gif)|*.gif|BMP Files (*.bmp)|*.bmp|PNG Files (*.png)|*.png|TIF files (*.tif;*.tiff)|*.tif;*.tiff|EMF/WMF Files (*.wmf;*.emf)|*.wmf;*.emf|All files (*.*)|*.*"
 
         If openFileDialog.ShowDialog(Me) = DialogResult.OK Then
-            ImagePath = openFileDialog.FileName
+            OpenImageFile(openFileDialog.FileName)
         End If
 
         UpdatePanels(True)

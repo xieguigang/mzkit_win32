@@ -342,39 +342,37 @@ Public Class KP_DrawObject
         FitToScreen()
     End Sub
 
-    Public WriteOnly Property ImagePath As String
-        Set(value As String)
+    Public Sub OpenImageByPath(value As String)
+        Try
+            ' No memory leaks here!
+            If bmp IsNot Nothing Then
+                bmp.Dispose()
+                bmp = Nothing
+            End If
+
+            If multiBmp IsNot Nothing Then
+                multiBmp.Dispose()
+                multiBmp = Nothing
+            End If
+
+            Dim temp As Bitmap = Nothing
+
+            ' Make sure it does not crash on incorrect image formats
             Try
-                ' No memory leaks here!
-                If bmp IsNot Nothing Then
-                    bmp.Dispose()
-                    bmp = Nothing
-                End If
-
-                If multiBmp IsNot Nothing Then
-                    multiBmp.Dispose()
-                    multiBmp = Nothing
-                End If
-
-                Dim temp As Bitmap = Nothing
-
-                ' Make sure it does not crash on incorrect image formats
-                Try
-                    'temp = (Bitmap)Bitmap.FromFile(value);
-                    temp = New Bitmap(value)
-                Catch
-                    temp = Nothing
-                    Windows.Forms.MessageBox.Show("ImageViewer error: Incorrect image format!")
-                End Try
-
-                If temp IsNot Nothing Then
-                    Call setImageFilePath(value, temp)
-                End If
-            Catch ex As Exception
-                Windows.Forms.MessageBox.Show("ImageViewer error: " & ex.ToString())
+                'temp = (Bitmap)Bitmap.FromFile(value);
+                temp = New Bitmap(value)
+            Catch
+                temp = Nothing
+                Windows.Forms.MessageBox.Show("ImageViewer error: Incorrect image format!")
             End Try
-        End Set
-    End Property
+
+            If temp IsNot Nothing Then
+                Call setImageFilePath(value, temp)
+            End If
+        Catch ex As Exception
+            Windows.Forms.MessageBox.Show("ImageViewer error: " & ex.ToString())
+        End Try
+    End Sub
 
     Public Sub New(KpViewer As KpImageViewer, bmp As Bitmap)
         Try

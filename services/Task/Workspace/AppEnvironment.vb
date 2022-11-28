@@ -37,4 +37,11 @@
         End If
     End Function
 
+    Public Function GetNdpiTools() As String
+        If AppEnvironment.IsDevelopmentMode Then
+            Return $"{App.HOME}/../../src/mzkit/dist/ndpitools/".GetDirectoryFullPath
+        Else
+            Return $"{App.HOME}/tools/ndpitools/".GetDirectoryFullPath
+        End If
+    End Function
 End Module

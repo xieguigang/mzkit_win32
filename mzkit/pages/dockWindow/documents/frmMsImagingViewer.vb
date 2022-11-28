@@ -86,6 +86,7 @@ Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.DataStorage.netCDF
+Imports Microsoft.VisualBasic.FileIO
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
@@ -281,11 +282,31 @@ Public Class frmMsImagingViewer
 
     Sub loadHEMap()
         Using file As New OpenFileDialog With {
-            .Filter = "HE Stain Image(*.jpg;*.png;*.bmp)|*.jpg;*.png;*.bmp|HE Scalar Mapping Matrix(*.csv)|*.csv"
+            .Filter = "HE Stain Image(*.jpg;*.png;*.bmp;*.tif)|*.jpg;*.png;*.bmp;*.tif|HE Scalar Mapping Matrix(*.csv)|*.csv|Hamamatsu slide scanner pathology image(*.ndpi)|*.ndpi"
         }
             If file.ShowDialog = DialogResult.OK Then
                 If file.FileName.ExtensionSuffix("csv") Then
                     Call loadHEMapMatrix(file.FileName)
+                ElseIf file.FileName.ExtensionSuffix("ndpi") Then
+                    ' do convert and then load the raw tiff image
+                    Dim ndpitools As String = $"{AppEnvironment.GetNdpiTools}/ndpi2tiff.exe"
+                    Dim tiff As String
+
+                    Using workdir As New TemporaryEnvironment(file.FileName.ParentPath)
+                        Dim invoke As New Process With {
+                            .StartInfo = New ProcessStartInfo With {
+                                .FileName = ndpitools,
+                                .Arguments = $"""./{file.FileName.FileName}"",0",
+                                .CreateNoWindow = True
+                            }
+                        }
+
+                        tiff = $"{file.FileName.ParentPath}/{file.FileName.FileName},0.tif"
+                    End Using
+
+                    PixelSelector1.OpenImageFile(tiff)
+                    PixelSelector1.PreviewButton = True
+                    PixelSelector1.ShowPreview = True
                 Else
                     Call loadHEMapImage(New Bitmap(file.FileName.LoadImage))
                 End If
