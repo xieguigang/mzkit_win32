@@ -307,6 +307,10 @@ Public Class frmMsImagingViewer
                     PixelSelector1.OpenImageFile(tiff)
                     PixelSelector1.PreviewButton = True
                     PixelSelector1.ShowPreview = True
+                ElseIf file.FileName.ExtensionSuffix("tif", "tiff") Then
+                    PixelSelector1.OpenImageFile(tiff)
+                    PixelSelector1.PreviewButton = True
+                    PixelSelector1.ShowPreview = True
                 Else
                     Call loadHEMapImage(New Bitmap(file.FileName.LoadImage))
                 End If
