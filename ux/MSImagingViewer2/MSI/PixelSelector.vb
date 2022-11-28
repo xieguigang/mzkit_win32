@@ -73,9 +73,7 @@ Imports System.Data
 Imports System.Drawing
 Imports System.Drawing.Drawing2D
 Imports System.Runtime.CompilerServices
-Imports Microsoft.VisualBasic.Imaging.BitmapImage
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
-Imports Microsoft.VisualBasic.Imaging.Filters
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Mzkit_win32.MSImagingViewerV2.PolygonEditor
 Imports stdNum = System.Math
@@ -103,7 +101,11 @@ Public Class PixelSelector
     Private algorithmIndex As Integer = 1
 
     Public Property HEMap As Bitmap
-    Public Property ViewerHost As KpImageViewer
+    Public ReadOnly Property ViewerHost As KpImageViewer
+        Get
+            Return Me.Parent
+        End Get
+    End Property
 
     Public Sub New()
 
@@ -627,7 +629,7 @@ Public Class PixelSelector
         RepaintPolygon()
     End Sub
 
-    Private Sub OnBoadMouseClick(sender As Object, e As MouseEventArgs)
+    Private Sub OnBoadMouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseClick
         If Not SelectPolygonMode Then
             Call clickGetPoint(e)
         Else
@@ -702,7 +704,7 @@ Public Class PixelSelector
         End If
     End Sub
 
-    Private Sub OnBoadMouseDown(sender As Object, e As MouseEventArgs)
+    Private Sub OnBoadMouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
         If Not SelectPolygonMode Then
             Return
         End If
@@ -738,7 +740,7 @@ Public Class PixelSelector
         End If
     End Sub
 
-    Private Sub OnBoardMouseMove(sender As Object, e As MouseEventArgs)
+    Private Sub OnBoardMouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
         If Not SelectPolygonMode Then
             Return
         End If
@@ -780,7 +782,7 @@ Public Class PixelSelector
 
     Public Property ShowPointInform As Boolean = True
 
-    Private Sub OnBoardPaint(sender As Object, e As PaintEventArgs)
+    Private Sub OnBoardPaint(sender As Object, e As PaintEventArgs) Handles Me.Paint
         If polygons.Count = 0 Then
             Return
         End If
@@ -1033,7 +1035,7 @@ Public Class PixelSelector
     ''' <summary>
     ''' change polygon algorithm
     ''' </summary>
-    Public Sub toolStripMenuItem1_Click()
+    Public Sub ChangePolygonAlgorithm()
         If Not IsLastPolygonCorrect() Then Return
         algorithmIndex = (algorithmIndex + 1) Mod 4
 
@@ -1401,7 +1403,7 @@ Public Class PixelSelector
         ypoint = e.Y * Pic_height
     End Sub
 
-    Private Sub picCanvas_MouseUp(sender As Object, e As MouseEventArgs)
+    Private Sub picCanvas_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
         If SelectPolygonMode Then
             Call OnBoardMouseUp()
         ElseIf Not drawing Then
@@ -1447,54 +1449,5 @@ Public Class PixelSelector
 
             RaiseEvent SelectPixel(xpoint, ypoint, color)
         End If
-    End Sub
-
-    Public cancelBlur As Boolean = False
-
-    ''' <summary>
-    ''' 
-    ''' </summary>
-    ''' <param name="level"></param>
-    ''' <param name="progress">[0,1]</param>
-    Public Sub doGauss(level As Integer, contrast As Double, progress As Action(Of Double))
-        If orginal_image Is Nothing Then
-            Return
-        End If
-
-        Dim bmp As New Bitmap(orginal_image)
-        Dim color As Color = Me.oldBackColor
-
-        cancelBlur = False
-
-        If contrast <> 0 Then
-            Call BitmapScale.AdjustContrast(bmp, contrast)
-        End If
-
-        If level > 0 Then
-            color = Color.Black
-            renderWithLegend(orginal_image, color)
-
-            For i As Integer = 0 To level
-                bmp = GaussBlur.GaussBlur(bmp)
-                progress(i / level * 100)
-                Me.BackgroundImage = bmp
-
-                If cancelBlur Then
-                    Exit For
-                End If
-
-                Call Application.DoEvents()
-            Next
-        End If
-
-        Call renderWithLegend(bmp, color)
-    End Sub
-
-    Public Event SelectSample(tag As String)
-
-    Friend Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs)
-        Dim tag As String = ToolStripComboBox1.SelectedItem.ToString
-
-        RaiseEvent SelectSample(tag)
     End Sub
 End Class

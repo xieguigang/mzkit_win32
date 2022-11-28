@@ -77,54 +77,41 @@ Partial Public Class KpImageViewer : Inherits UserControl
         Return keyPressed
     End Function
 
-    Public Property OpenButton As Boolean
-        Get
-            Return btnOpen.Visible
-        End Get
-        Set(value As Boolean)
-            If value Then
-                btnOpen.Show()
+    'Public Property OpenButton As Boolean
+    '    Get
+    '        Return btnOpen.Visible
+    '    End Get
+    '    Set(value As Boolean)
+    '        If value Then
+    '            btnOpen.Show()
 
-                If btnOpen.Visible = True Then
-                    ' Making sure it's aligned properly
-                    btnPreview.Location = New Point(198, btnPreview.Location.Y)
-                Else
-                    ' Making sure it's aligned properly
-                    btnPreview.Location = New Point(btnOpen.Location.X, btnPreview.Location.Y)
-                End If
-            Else
-                btnOpen.Hide()
+    '            If btnOpen.Visible = True Then
+    '                ' Making sure it's aligned properly
+    '                btnPreview.Location = New Point(198, btnPreview.Location.Y)
+    '            Else
+    '                ' Making sure it's aligned properly
+    '                btnPreview.Location = New Point(btnOpen.Location.X, btnPreview.Location.Y)
+    '            End If
+    '        Else
+    '            btnOpen.Hide()
 
-                If btnOpen.Visible = True Then
-                    ' Making sure it's aligned properly
-                    btnPreview.Location = New Point(198, btnPreview.Location.Y)
-                Else
-                    ' Making sure it's aligned properly
-                    btnPreview.Location = New Point(btnOpen.Location.X, btnPreview.Location.Y)
-                End If
-            End If
-        End Set
-    End Property
-
+    '            If btnOpen.Visible = True Then
+    '                ' Making sure it's aligned properly
+    '                btnPreview.Location = New Point(198, btnPreview.Location.Y)
+    '            Else
+    '                ' Making sure it's aligned properly
+    '                btnPreview.Location = New Point(btnOpen.Location.X, btnPreview.Location.Y)
+    '            End If
+    '        End If
+    '    End Set
+    'End Property
 
     Public Property PreviewButton As Boolean
         Get
-            Return btnPreview.Visible
+            Return ToolStripButtonPreview.Visible
         End Get
         Set(value As Boolean)
-            If value Then
-                If btnOpen.Visible = True Then
-                    ' Making sure it's aligned properly
-                    btnPreview.Location = New Point(198, btnPreview.Location.Y)
-                Else
-                    ' Making sure it's aligned properly
-                    btnPreview.Location = New Point(btnOpen.Location.X, btnPreview.Location.Y)
-                End If
-
-                btnPreview.Show()
-            Else
-                btnPreview.Hide()
-            End If
+            ToolStripButtonPreview.Visible = value
         End Set
     End Property
 
@@ -156,71 +143,71 @@ Partial Public Class KpImageViewer : Inherits UserControl
         End Get
     End Property
 
-    Public Property MenuColor As Color
-        Get
-            Return panelMenu.BackColor
-        End Get
-        Set(value As Color)
-            panelMenu.BackColor = value
-            panelPreview.BackColor = value
-            panelNavigation.BackColor = value
-        End Set
-    End Property
+    'Public Property MenuColor As Color
+    '    Get
+    '        Return panelMenu.BackColor
+    '    End Get
+    '    Set(value As Color)
+    '        panelMenu.BackColor = value
+    '        panelPreview.BackColor = value
+    '        panelNavigation.BackColor = value
+    '    End Set
+    'End Property
 
-    Public Property MenuPanelColor As Color
-        Get
-            Return panelMenu.BackColor
-        End Get
-        Set(value As Color)
-            panelMenu.BackColor = value
-        End Set
-    End Property
+    'Public Property MenuPanelColor As Color
+    '    Get
+    '        Return panelMenu.BackColor
+    '    End Get
+    '    Set(value As Color)
+    '        panelMenu.BackColor = value
+    '    End Set
+    'End Property
 
-    Public Property NavigationPanelColor As Color
-        Get
-            Return panelNavigation.BackColor
-        End Get
-        Set(value As Color)
-            panelNavigation.BackColor = value
-        End Set
-    End Property
+    'Public Property NavigationPanelColor As Color
+    '    Get
+    '        Return panelNavigation.BackColor
+    '    End Get
+    '    Set(value As Color)
+    '        panelNavigation.BackColor = value
+    '    End Set
+    'End Property
 
-    Public Property PreviewPanelColor As Color
-        Get
-            Return panelPreview.BackColor
-        End Get
-        Set(value As Color)
-            panelPreview.BackColor = value
-        End Set
-    End Property
+    'Public Property PreviewPanelColor As Color
+    '    Get
+    '        Return panelPreview.BackColor
+    '    End Get
+    '    Set(value As Color)
+    '        panelPreview.BackColor = value
+    '    End Set
+    'End Property
 
-    Public Property NavigationTextColor As Color
-        Get
-            Return lblNavigation.ForeColor
-        End Get
-        Set(value As Color)
-            lblNavigation.ForeColor = value
-        End Set
-    End Property
+    'Public Property NavigationTextColor As Color
+    '    Get
+    '        Return lblNavigation.ForeColor
+    '    End Get
+    '    Set(value As Color)
+    '        lblNavigation.ForeColor = value
+    '    End Set
+    'End Property
 
-    Public Property TextColor As Color
-        Get
-            Return lblPreview.ForeColor
-        End Get
-        Set(value As Color)
-            lblPreview.ForeColor = value
-            lblNavigation.ForeColor = value
-        End Set
-    End Property
+    'Public Property TextColor As Color
+    '    Get
+    '        Return lblPreview.ForeColor
+    '    End Get
+    '    Set(value As Color)
+    '        lblPreview.ForeColor = value
+    '        lblNavigation.ForeColor = value
+    '    End Set
+    'End Property
 
-    Public Property PreviewTextColor As Color
-        Get
-            Return lblPreview.ForeColor
-        End Get
-        Set(value As Color)
-            lblPreview.ForeColor = value
-        End Set
-    End Property
+    'Public Property PreviewTextColor As Color
+    '    Get
+    '        Return lblPreview.ForeColor
+    '    End Get
+    '    Set(value As Color)
+    '        lblPreview.ForeColor = value
+    '    End Set
+    'End Property
 
     Public Property BackgroundColor As Color
         Get
@@ -231,14 +218,14 @@ Partial Public Class KpImageViewer : Inherits UserControl
         End Set
     End Property
 
-    Public Property PreviewText As String
-        Get
-            Return lblPreview.Text
-        End Get
-        Set(value As String)
-            lblPreview.Text = value
-        End Set
-    End Property
+    'Public Property PreviewText As String
+    '    Get
+    '        Return lblPreview.Text
+    '    End Get
+    '    Set(value As String)
+    '        lblPreview.Text = value
+    '    End Set
+    'End Property
 
     Public WriteOnly Property ImagePath As String
         Set(value As String)
@@ -279,30 +266,32 @@ Partial Public Class KpImageViewer : Inherits UserControl
 
         If showPreviewField <> pbPanel.Visible Then
             If showPreviewField = False Then
-                panelPreview.Hide()
+                ' panelPreview.Hide()
                 pbPanel.Hide()
 
-                pbFull.Width = pbFull.Width + (4 + panelPreview.Width)
+                ' pbFull.Width = pbFull.Width + (4 + panelPreview.Width)
 
                 If drawing.MultiPage Then
-                    panelNavigation.Location = panelPreview.Location
+                    ' panelNavigation.Location = panelPreview.Location
                 Else
-                    panelMenu.Width = pbFull.Width
+                    ' panelMenu.Width = pbFull.Width
                 End If
 
                 InitControl()
                 drawing.AvoidOutOfScreen()
                 pbFull.Refresh()
             Else
-                panelPreview.Show()
+                ' panelPreview.Show()
                 pbPanel.Show()
 
-                pbFull.Width = pbFull.Width - (4 + panelPreview.Width)
+                ' pbFull.Width = pbFull.Width - (4 + panelPreview.Width)
 
                 If drawing.MultiPage Then
-                    panelNavigation.Location = New Point(panelPreview.Location.X, pbPanel.Location.Y + (pbPanel.Size.Height + 5))
+                    'panelNavigation.Location = New Point(
+                    '    panelPreview.Location.X, 
+                    '    pbPanel.Location.Y + (pbPanel.Size.Height + 5))
                 Else
-                    panelMenu.Width = pbFull.Width
+                    'panelMenu.Width = pbFull.Width
                 End If
 
                 InitControl()
@@ -390,41 +379,44 @@ Partial Public Class KpImageViewer : Inherits UserControl
         Dim z = 0.25
 
         While z <= 4.0
-            cbZoom.Items.Add(z * 100 & "%")
+            ToolStripComboBoxZoom.Items.Add(z * 100 & "%")
             z = z + 0.25
         End While
 
-        cbZoom.SelectedIndex = 3
+        ToolStripComboBoxZoom.SelectedIndex = 3
     End Sub
 
     Private Sub ToggleMultiPage()
-        If drawing.MultiPage Then
-            If Not showPreviewField Then
-                panelNavigation.Location = panelPreview.Location
+        '    If drawing.MultiPage Then
+        '        If Not showPreviewField Then
+        '            panelNavigation.Location = panelPreview.Location
 
-                panelMenu.Width = panelPreview.Right - 2 - (4 + panelPreview.Width)
-                pbFull.Width = panelPreview.Right - 2
-            Else
-                panelNavigation.Location = New Point(panelPreview.Location.X, pbPanel.Location.Y + (pbPanel.Size.Height + 5))
+        '            panelMenu.Width = panelPreview.Right - 2 - (4 + panelPreview.Width)
+        '            pbFull.Width = panelPreview.Right - 2
+        '        Else
+        '            panelNavigation.Location = New Point(
+        '                panelPreview.Location.X,
+        '                pbPanel.Location.Y + (pbPanel.Size.Height + 5)
+        '            )
 
-                panelMenu.Width = panelPreview.Right - 2 - (4 + panelPreview.Width)
-                pbFull.Width = panelPreview.Right - 2 - (4 + panelPreview.Width)
-            End If
+        '            panelMenu.Width = panelPreview.Right - 2 - (4 + panelPreview.Width)
+        '            pbFull.Width = panelPreview.Right - 2 - (4 + panelPreview.Width)
+        '        End If
 
-            panelNavigation.Show()
-            lblNavigation.Text = "/ " & drawing.Pages.ToString()
-            tbNavigation.Text = (drawing.CurrentPage + 1).ToString()
-        Else
-            If Not showPreviewField Then
-                panelMenu.Width = panelPreview.Right - 2
-            Else
-                panelMenu.Width = pbFull.Width
-            End If
+        '        panelNavigation.Show()
+        '        lblNavigation.Text = "/ " & drawing.Pages.ToString()
+        '        tbNavigation.Text = (drawing.CurrentPage + 1).ToString()
+        '    Else
+        '        If Not showPreviewField Then
+        '            panelMenu.Width = panelPreview.Right - 2
+        '        Else
+        '            panelMenu.Width = pbFull.Width
+        '        End If
 
-            panelNavigation.Hide()
-            lblNavigation.Text = "/ 0"
-            tbNavigation.Text = "0"
-        End If
+        '        panelNavigation.Hide()
+        '        lblNavigation.Text = "/ 0"
+        '        tbNavigation.Text = "0"
+        '    End If
     End Sub
 
     Private Sub KP_ImageViewerV2_Resize(sender As Object, e As EventArgs)
@@ -661,7 +653,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
     End Sub
 
     Private Sub cbZoom_SelectedIndexChanged(sender As Object, e As EventArgs)
-        Dim zoom = (cbZoom.SelectedIndex + 1) * 0.25
+        Dim zoom = (ToolStripComboBoxZoom.SelectedIndex + 1) * 0.25
         Dim originalZoom = drawing.Zoom
 
         If drawing.Zoom <> zoom Then
@@ -688,7 +680,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
             Dim zoom = Math.Round(drawing.CurrentSize.Width / drawing.OriginalSize.Width, 2)
 
             ' Display zoom in percentages
-            cbZoom.Text = zoom * 100 & "%"
+            ToolStripComboBoxZoom.Text = zoom * 100 & "%"
 
             If updatePreview AndAlso drawing.PreviewImage IsNot Nothing AndAlso pbPanel.Visible = True Then
                 ' No memory leaks here
@@ -820,7 +812,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
                     Dim zoom = 0
 
                     ' Make sure the percent sign is out of the cbZoom.Text
-                    Integer.TryParse(cbZoom.Text.Replace("%", ""), zoom)
+                    Integer.TryParse(ToolStripComboBoxZoom.Text.Replace("%", ""), zoom)
 
                     ' If zoom is higher than zero
                     If zoom > 0 Then
@@ -829,8 +821,6 @@ Partial Public Class KpImageViewer : Inherits UserControl
 
                         drawing.SetZoom(zoomDouble)
                         UpdatePanels(True)
-
-                        btnZoomIn.Focus()
                     End If
                 End If
 
@@ -874,7 +864,6 @@ Partial Public Class KpImageViewer : Inherits UserControl
         Try
             ' Get The file(s) you dragged into an array. (We'll just pick the first image anyway)
             Dim FileList = CType(e.Data.GetData(DataFormats.FileDrop, False), String())
-
             Dim newBmp As Image = Nothing
 
             For f = 0 To FileList.Length - 1
@@ -883,7 +872,16 @@ Partial Public Class KpImageViewer : Inherits UserControl
                     Dim ext As String = Path.GetExtension(FileList(f)).ToLower()
 
                     ' Checking the extensions to be Image formats
-                    If Equals(ext, ".jpg") OrElse Equals(ext, ".jpeg") OrElse Equals(ext, ".gif") OrElse Equals(ext, ".wmf") OrElse Equals(ext, ".emf") OrElse Equals(ext, ".bmp") OrElse Equals(ext, ".png") OrElse Equals(ext, ".tif") OrElse Equals(ext, ".tiff") Then
+                    If Equals(ext, ".jpg") OrElse
+                        Equals(ext, ".jpeg") OrElse
+                        Equals(ext, ".gif") OrElse
+                        Equals(ext, ".wmf") OrElse
+                        Equals(ext, ".emf") OrElse
+                        Equals(ext, ".bmp") OrElse
+                        Equals(ext, ".png") OrElse
+                        Equals(ext, ".tif") OrElse
+                        Equals(ext, ".tiff") Then
+
                         Try
                             ' Try to load it into a bitmap
                             'newBmp = Bitmap.FromFile(FileList[f]);
@@ -927,48 +925,57 @@ Partial Public Class KpImageViewer : Inherits UserControl
         End If
     End Sub
 
-    Private Sub btnNext_Click(sender As Object, e As EventArgs)
-        drawing.NextPage()
-        tbNavigation.Text = (drawing.CurrentPage + 1).ToString()
+    'Private Sub btnNext_Click(sender As Object, e As EventArgs)
+    '    drawing.NextPage()
+    '    tbNavigation.Text = (drawing.CurrentPage + 1).ToString()
 
-        pbFull.Refresh()
-        UpdatePanels(True)
-    End Sub
+    '    pbFull.Refresh()
+    '    UpdatePanels(True)
+    'End Sub
 
-    Private Sub btnBack_Click(sender As Object, e As EventArgs)
-        drawing.PreviousPage()
-        tbNavigation.Text = (drawing.CurrentPage + 1).ToString()
+    'Private Sub btnBack_Click(sender As Object, e As EventArgs)
+    '    drawing.PreviousPage()
+    '    tbNavigation.Text = (drawing.CurrentPage + 1).ToString()
 
-        pbFull.Refresh()
-        UpdatePanels(True)
-    End Sub
+    '    pbFull.Refresh()
+    '    UpdatePanels(True)
+    'End Sub
 
-    Private Sub tbNavigation_KeyPress(sender As Object, e As KeyPressEventArgs)
-        Try
-            ' If it's not a digit, delete or backspace then make sure the input is being handled with. (Suppressed)
-            If Not Char.IsDigit(e.KeyChar) AndAlso Asc(e.KeyChar) <> Keys.Delete AndAlso Asc(e.KeyChar) <> Keys.Back Then
-                ' If enter is pressed apply the entered zoom
-                If Asc(e.KeyChar) = Keys.Return Then
-                    Dim page = 0
+    'Private Sub tbNavigation_KeyPress(sender As Object, e As KeyPressEventArgs)
+    '    Try
+    '        ' If it's not a digit, delete or backspace then make sure the input is being handled with. (Suppressed)
+    '        If Not Char.IsDigit(e.KeyChar) AndAlso Asc(e.KeyChar) <> Keys.Delete AndAlso Asc(e.KeyChar) <> Keys.Back Then
+    '            ' If enter is pressed apply the entered zoom
+    '            If Asc(e.KeyChar) = Keys.Return Then
+    '                Dim page = 0
 
-                    Integer.TryParse(tbNavigation.Text, page)
+    '                Integer.TryParse(tbNavigation.Text, page)
 
-                    ' If zoom is higher than zero
-                    If page > 0 AndAlso page <= drawing.Pages Then
-                        drawing.SetPage(page)
-                        UpdatePanels(True)
+    '                ' If zoom is higher than zero
+    '                If page > 0 AndAlso page <= drawing.Pages Then
+    '                    drawing.SetPage(page)
+    '                    UpdatePanels(True)
 
-                        btnZoomIn.Focus()
-                    Else
-                        tbNavigation.Text = drawing.CurrentPage.ToString()
-                    End If
-                End If
+    '                    btnZoomIn.Focus()
+    '                Else
+    '                    tbNavigation.Text = drawing.CurrentPage.ToString()
+    '                End If
+    '            End If
 
-                e.Handled = True
-            End If
-        Catch ex As Exception
-            MessageBox.Show("ImageViewer error: " & ex.ToString())
-        End Try
+    '            e.Handled = True
+    '        End If
+    '    Catch ex As Exception
+    '        MessageBox.Show("ImageViewer error: " & ex.ToString())
+    '    End Try
+    'End Sub
+
+    Public Event SelectSample(tag As String)
+
+    Private Sub ToolStripComboBox1_Click(sender As Object, e As EventArgs) Handles ToolStripComboBox1.Click
+        Dim tagObj As Object = ToolStripComboBox1.SelectedItem
+        Dim tag As String = tagObj.ToString
+
+        RaiseEvent SelectSample(tag)
     End Sub
 End Class
 
