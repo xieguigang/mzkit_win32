@@ -1,10 +1,9 @@
-﻿Imports System
-Imports System.IO
-Imports System.Windows.Media.Imaging
-Imports Path = System.IO.Path
+﻿Imports System.IO
 Imports System.Windows
 Imports System.Windows.Media
+Imports System.Windows.Media.Imaging
 Imports System.Xml.Linq
+Imports Path = System.IO.Path
 
 Namespace DeepZoomBuilder
     Public Enum ImageType
@@ -12,6 +11,11 @@ Namespace DeepZoomBuilder
         Jpeg
     End Enum
 
+    ''' <summary>
+    ''' A very quick and simple app which generates a deep zoom image from a source image.
+    ''' 
+    ''' > https://github.com/JimLynn/DeepZoomBuilder
+    ''' </summary>
     Public Class DeepZoomCreator
         ''' <summary>
         ''' Default public constructor
