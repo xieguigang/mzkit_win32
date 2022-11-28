@@ -957,10 +957,10 @@ Partial Public Class KpImageViewer : Inherits UserControl
     Private Sub btnMode_Click(sender As Object, e As EventArgs) Handles ToolStripButtonMode.Click
         If selectMode = False Then
             selectMode = True
-            ToolStripButtonMode.Image = Global.Mzkit_win32.MSImagingViewerV2.Resources.btnDrag
+            ToolStripButtonMode.Image = Global.Mzkit_win32.MSImagingViewerV2.Resources.btnSelect
         Else
             selectMode = False
-            ToolStripButtonMode.Image = Global.Mzkit_win32.MSImagingViewerV2.Resources.btnSelect
+            ToolStripButtonMode.Image = Global.Mzkit_win32.MSImagingViewerV2.Resources.btnDrag
         End If
     End Sub
 

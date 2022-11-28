@@ -153,6 +153,7 @@
         '
         'ToolStripButtonPreview
         '
+        Me.ToolStripButtonPreview.CheckOnClick = True
         Me.ToolStripButtonPreview.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.ToolStripButtonPreview.Image = Global.Mzkit_win32.MSImagingViewerV2.Resources.btnPreview
         Me.ToolStripButtonPreview.ImageTransparentColor = System.Drawing.Color.Magenta
