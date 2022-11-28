@@ -80,6 +80,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic.Windows.Forms
+Imports Mzkit_win32.MSImagingViewerV2.DeepZoomBuilder
 Imports RDev
 Imports SMRUCC.Rsharp.Interpreter
 Imports SMRUCC.Rsharp.Runtime
@@ -455,6 +456,12 @@ Type 'q()' to quit R.
                     ServiceHub.MSIDataService.debugPort = cli.GetInt32("--port")
                 ElseIf cli.Name.TextEquals("--devtools") Then
                     Call BioNovoGene.mzkit_win32.CLI.openDevTools()
+                ElseIf cli.Name.TextEquals("--deep_zoom") Then
+                    Dim img As String = cli.GetString("--image")
+                    Dim tool As New DeepZoomCreator()
+                    Dim dzi As String = img.ChangeSuffix("dzi")
+
+                    Call tool.CreateSingleComposition(img, dzi, ImageType.Jpeg)
                 End If
             End If
 

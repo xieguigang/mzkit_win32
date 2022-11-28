@@ -1,7 +1,7 @@
 ﻿Imports System.ComponentModel
+Imports System.Threading
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices
-Imports Microsoft.VisualBasic.FileIO
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.MSImagingViewerV2.DeepZoomBuilder
 Imports Task
@@ -10,7 +10,7 @@ Public Class frmOpenseadragonViewer
 
     Dim dzi As String
     Dim localfs As Process
-    Dim webPort As Integer
+    Dim webPort As Integer = -1
     Dim sourcefile As String
 
     Public ReadOnly Property sourceURL As String
@@ -18,6 +18,15 @@ Public Class frmOpenseadragonViewer
             Return $"http://127.0.0.1:{webPort}/openseadragon.html"
         End Get
     End Property
+
+    Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        AutoScaleMode = AutoScaleMode.Dpi
+    End Sub
 
     Public Sub LoadSlide(tiff As String)
         If tiff.ExtensionSuffix("xml", "dzi") Then
@@ -28,7 +37,6 @@ Public Class frmOpenseadragonViewer
         End If
 
         Call startHttp()
-        Call frmHtmlViewer.Init(Me.WebView21)
     End Sub
 
     Private Sub startHttp()
@@ -36,7 +44,7 @@ Public Class frmOpenseadragonViewer
         localfs = New Process With {
             .StartInfo = New ProcessStartInfo With {
                 .FileName = $"{App.HOME}/Rstudio/bin/Rserve.exe",
-                .Arguments = $"--listen /wwwroot ""{dzi.ParentPath}"" --attach ""{dzi.ParentPath}"" /port {webPort}",
+                .Arguments = $"--listen /wwwroot ""{AppEnvironment.getWebViewFolder}"" --attach ""{dzi.ParentPath}"" /port {webPort}",
                 .CreateNoWindow = True,
                 .WindowStyle = ProcessWindowStyle.Hidden,
                 .UseShellExecute = True
@@ -51,6 +59,11 @@ Public Class frmOpenseadragonViewer
     End Sub
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
+        Do While webPort <= 0
+            Call Application.DoEvents()
+            Call Thread.Sleep(10)
+        Loop
+
         Call WebView21.CoreWebView2.AddHostObjectToScript("dzi", $"http://127.0.0.1:{webPort}/{dzi.FileName}")
         Call WebView21.CoreWebView2.Navigate(sourceURL)
         Call DeveloperOptions(enable:=True)
@@ -64,5 +77,9 @@ Public Class frmOpenseadragonViewer
         If enable Then
             Call MyApplication.host.showStatusMessage($"[{TabText}] WebView2 developer tools has been enable!")
         End If
+    End Sub
+
+    Private Sub frmOpenseadragonViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
+        frmHtmlViewer.Init(Me.WebView21)
     End Sub
 End Class

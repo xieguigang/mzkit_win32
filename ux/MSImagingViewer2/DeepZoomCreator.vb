@@ -27,9 +27,9 @@ Namespace DeepZoomBuilder
         ''' <summary>
         ''' Create a deep zoom image from a single source image
         ''' </summary>
-        ''' <paramname="sourceImage"> Source image path</param>
-        ''' <paramname="destinationImage"> Destination path (must be .dzi or .xml)</param>
-        Public Sub CreateSingleComposition(ByVal sourceImage As String, ByVal destinationImage As String, ByVal type As ImageType)
+        ''' <param name="sourceImage"> Source image path</param>
+        ''' <param name="destinationImage"> Destination path (must be .dzi or .xml)</param>
+        Public Sub CreateSingleComposition(sourceImage As String, destinationImage As String, type As ImageType)
             imageType = type
             Dim source = sourceImage
             Dim destDirectory = Path.GetDirectoryName(destinationImage)
@@ -60,14 +60,18 @@ Namespace DeepZoomBuilder
 
             ' Get the bounding rectangle of the source image, for clipping
             Dim MainRect As Rect = New Rect(0, 0, img.PixelWidth, img.PixelHeight)
-            For j = 0 To maxrows
-                For i = 0 To maxcols
+            For j As Integer = 0 To maxrows
+                For i As Integer = 0 To maxcols
                     ' Calculate the bounds of the tile
                     ' including a 1 pixel overlap each side
                     Dim smallrect As Rect = New Rect(CDbl(i * 256) - 1, CDbl(j * 256) - 1, 258.0, 258.0)
 
                     ' Adjust for the rectangles at the edges by intersecting
                     smallrect.Intersect(MainRect)
+
+                    If smallrect.IsEmpty Then
+                        Continue For
+                    End If
 
                     ' We want a RenderTargetBitmap to render this tile into
                     ' Create one with the dimensions of this tile
@@ -131,9 +135,9 @@ Namespace DeepZoomBuilder
         ''' <summary>
         ''' Save the output bitmap as either Png or Jpeg
         ''' </summary>
-        ''' <paramname="outbmp"> Bitmap to save</param>
-        ''' <paramname="destination"> Path to save to, without the file extension</param>
-        Private Sub EncodeBitmap(ByVal outbmp As RenderTargetBitmap, ByVal destination As String)
+        ''' <param name="outbmp"> Bitmap to save</param>
+        ''' <param name="destination"> Path to save to, without the file extension</param>
+        Private Sub EncodeBitmap(outbmp As RenderTargetBitmap, destination As String)
             If imageType = ImageType.Png Then
                 Dim encoder As PngBitmapEncoder = New PngBitmapEncoder()
                 encoder.Frames.Add(BitmapFrame.Create(outbmp))
@@ -158,13 +162,13 @@ Namespace DeepZoomBuilder
         ''' <summary>
         ''' Render the subtiles given a fully rendered top-level
         ''' </summary>
-        ''' <paramname="subfiles"> Path to the xxx_files directory</param>
-        ''' <paramname="imageWidth"> Width of the source image</param>
-        ''' <paramname="imageHeight"> Height of the source image</param>
-        ''' <paramname="maxlevel"> Top level of the tileset</param>
-        ''' <paramname="desiredlevel"> Level we want to render. Note it requires
+        ''' <param name="subfiles"> Path to the xxx_files directory</param>
+        ''' <param name="imageWidth"> Width of the source image</param>
+        ''' <param name="imageHeight"> Height of the source image</param>
+        ''' <param name="maxlevel"> Top level of the tileset</param>
+        ''' <param name="desiredlevel"> Level we want to render. Note it requires
         ''' that the level above this has already been rendered.</param>
-        Private Sub RenderSubtiles(ByVal subfiles As String, ByVal imageWidth As Double, ByVal imageHeight As Double, ByVal maxlevel As Integer, ByVal desiredlevel As Integer)
+        Private Sub RenderSubtiles(subfiles As String, imageWidth As Double, imageHeight As Double, maxlevel As Integer, desiredlevel As Integer)
             Dim formatextension = ".png"
             If imageType = ImageType.Jpeg Then
                 formatextension = ".jpg"
@@ -236,10 +240,10 @@ Namespace DeepZoomBuilder
         ''' <summary>
         ''' Get the bounds of the given tile rectangle
         ''' </summary>
-        ''' <paramname="x"> x index of the tile</param>
-        ''' <paramname="y"> y index of the tile</param>
+        ''' <param name="x"> x index of the tile</param>
+        ''' <param name="y"> y index of the tile</param>
         ''' <returns>Bounding rectangle for the tile at the given indices</returns>
-        Private Shared Function GetTileRectangle(ByVal x As Integer, ByVal y As Integer) As Rect
+        Private Shared Function GetTileRectangle(x As Integer, y As Integer) As Rect
             Dim rect As Rect = New Rect(256 * x - 1, 256 * y - 1, 258, 258)
             If x = 0 Then
                 rect.X = 0
@@ -257,10 +261,10 @@ Namespace DeepZoomBuilder
         ''' Render the given tile rectangle, shrunk down by half to fit the next
         ''' lower level
         ''' </summary>
-        ''' <paramname="context"> DrawingContext for the DrawingVisual to render into</param>
-        ''' <paramname="path"> path to the tile we're rendering</param>
-        ''' <paramname="rect"> Rectangle to render this tile.</param>
-        Private Sub RenderTile(ByVal context As DrawingContext, ByVal path As String, ByVal rect As Rect)
+        ''' <param name="context"> DrawingContext for the DrawingVisual to render into</param>
+        ''' <param name="path"> path to the tile we're rendering</param>
+        ''' <param name="rect"> Rectangle to render this tile.</param>
+        Private Sub RenderTile(context As DrawingContext, path As String, rect As Rect)
             If File.Exists(path) Then
                 Dim img As BitmapImage = New BitmapImage(New Uri(path))
                 rect = New Rect(rect.X / 2.0, rect.Y / 2.0, img.PixelWidth / 2.0, img.PixelHeight / 2.0)
