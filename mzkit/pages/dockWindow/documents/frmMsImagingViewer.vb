@@ -98,7 +98,6 @@ Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Text
 Imports mzblender
 Imports ServiceHub
-Imports SMRUCC.genomics.Assembly.Uniprot.XML
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 Imports File = Microsoft.VisualBasic.Data.csv.IO.File
@@ -167,9 +166,9 @@ Public Class frmMsImagingViewer
         AddHandler RibbonEvents.ribbonItems.CheckShowMapLayer.ExecuteEvent,
             Sub()
                 If RibbonEvents.ribbonItems.CheckShowMapLayer.BooleanValue Then
-                    Call sampleRegions.RenderLayer(PixelSelector1)
+                    Call sampleRegions.RenderLayer(PixelSelector1.MSICanvas)
                 Else
-                    Call sampleRegions.ClearLayer(PixelSelector1)
+                    Call sampleRegions.ClearLayer(PixelSelector1.MSICanvas)
                 End If
             End Sub
 
@@ -224,7 +223,11 @@ Public Class frmMsImagingViewer
                                                             .Write(savefile.OpenFile, progress:=echo)
                                                     End Function) Then
 
-                            If MessageBox.Show("MSI Raw Convert Job Done!" & vbCrLf & "Open MSI raw data file in MSI Viewer?", "MSI Viewer", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
+                            If MessageBox.Show("MSI Raw Convert Job Done!" & vbCrLf & "Open MSI raw data file in MSI Viewer?",
+                                               "MSI Viewer",
+                                               MessageBoxButtons.YesNo,
+                                               MessageBoxIcon.Information) = DialogResult.Yes Then
+
                                 Call RibbonEvents.showMsImaging()
                                 Call WindowModules.viewer.loadimzML(savefile.FileName)
                             End If
@@ -261,7 +264,11 @@ Public Class frmMsImagingViewer
                                 title:=$"Imports [{file.FileName}]"
                             )
 
-                            If MessageBox.Show("MSI Raw Convert Job Done!" & vbCrLf & "Open MSI raw data file in MSI Viewer?", "MSI Viewer", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
+                            If MessageBox.Show("MSI Raw Convert Job Done!" & vbCrLf & "Open MSI raw data file in MSI Viewer?",
+                                               "MSI Viewer",
+                                               MessageBoxButtons.YesNo,
+                                               MessageBoxIcon.Information) = DialogResult.Yes Then
+
                                 Call RibbonEvents.showMsImaging()
                                 Call WindowModules.viewer.loadimzML(savefile.FileName)
                             End If
@@ -342,8 +349,8 @@ Public Class frmMsImagingViewer
 
                 If Me.blender IsNot Nothing AndAlso TypeOf Me.blender IsNot HeatMapBlender Then
                     ' draw and overlaps on the MS-imaging rendering for CAD analysis
-                    PixelSelector1.tissue_layer = HEMap
-                    PixelSelector1.RedrawCanvas()
+                    PixelSelector1.MSICanvas.tissue_layer = HEMap
+                    PixelSelector1.MSICanvas.RedrawCanvas()
                 Else
                     Call loadHEMapImage(HEMap)
                 End If
@@ -351,14 +358,14 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub loadHEMapImage(HEMapImg As Bitmap)
-        PixelSelector1.HEMap = HEMapImg
+        PixelSelector1.MSICanvas.HEMap = HEMapImg
 
         If blender IsNot Nothing AndAlso TypeOf blender IsNot HeatMapBlender Then
-            blender.HEMap = PixelSelector1.HEMap
+            blender.HEMap = PixelSelector1.MSICanvas.HEMap
             rendering()
         Else
             ' just display hemap on the canvas
-            PixelSelector1.SetMsImagingOutput(PixelSelector1.HEMap, PixelSelector1.HEMap.Size, ScalerPalette.Jet, {0, 255}, 120)
+            PixelSelector1.MSICanvas.SetMsImagingOutput(PixelSelector1.MSICanvas.HEMap, PixelSelector1.MSICanvas.HEMap.Size, ScalerPalette.Jet, {0, 255}, 120)
         End If
 
         If HEMap Is Nothing Then
@@ -367,7 +374,7 @@ Public Class frmMsImagingViewer
             HEMap.DockState = DockState.Hidden
         End If
 
-        HEMap.Clear(PixelSelector1.HEMap)
+        HEMap.Clear(PixelSelector1.MSICanvas.HEMap)
 
         VisualStudio.Dock(HEMap, DockState.DockRight)
     End Sub
@@ -384,7 +391,7 @@ Public Class frmMsImagingViewer
                         Call Me.Invoke(Sub() LoadRender(info, FilePath))
                         Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
                         Call Me.Invoke(Sub() Call StartNewPolygon())
-                        Call Me.Invoke(Sub() Call sampleRegions.TurnUpsideDown(Me.PixelSelector1))
+                        Call Me.Invoke(Sub() Call sampleRegions.TurnUpsideDown(PixelSelector1.MSICanvas))
                     End If
 
                     Return 0
@@ -436,12 +443,14 @@ Public Class frmMsImagingViewer
     Sub ImportsTissueMorphology()
         If Not checkService() Then
             Return
-        ElseIf PixelSelector1.dimension_size.IsEmpty Then
+        ElseIf PixelSelector1.MSICanvas.dimension_size.IsEmpty Then
             Call MyApplication.host.showStatusMessage("No ms-imaging rendering output!", My.Resources.StatusAnnotations_Warning_32xLG_color)
             Return
         End If
 
-        Using file As New OpenFileDialog With {.Filter = "Tissue Morphology Matrix(*.cdf)|*.cdf|Phenograph Spot Plot(*.csv)|*.csv"}
+        Using file As New OpenFileDialog With {
+            .Filter = "Tissue Morphology Matrix(*.cdf)|*.cdf|Phenograph Spot Plot(*.csv)|*.csv"
+        }
             If file.ShowDialog = DialogResult.OK Then
                 If file.FileName.ExtensionSuffix("cdf") Then
                     Call ImportsTissueMorphology(file.FileName, file.OpenFile)
@@ -454,7 +463,7 @@ Public Class frmMsImagingViewer
 
     Private Sub ImportsPhenographSpotPlot(filepath As String)
         Dim spots As PhenographSpot() = filepath.LoadCsv(Of PhenographSpot).ToArray
-        Dim canvas As Size = PixelSelector1.dimension_size
+        Dim canvas As Size = PixelSelector1.MSICanvas.dimension_size
         Dim spot_pixels = spots.Select(Function(p) p.GetPixel).ToArray
         Dim spot_dims As New Size(
             width:=(Aggregate p In spot_pixels Into Max(p.X)),
@@ -478,8 +487,8 @@ Public Class frmMsImagingViewer
 
             Call g.Flush()
 
-            PixelSelector1.tissue_layer = DirectCast(g, Graphics2D).ImageResource
-            PixelSelector1.RedrawCanvas()
+            PixelSelector1.MSICanvas.tissue_layer = DirectCast(g, Graphics2D).ImageResource
+            PixelSelector1.MSICanvas.RedrawCanvas()
         End Using
     End Sub
 
@@ -492,9 +501,9 @@ Public Class frmMsImagingViewer
             dimension = cdffile.GetDimension
         End Using
 
-        If stdNum.Abs(PixelSelector1.dimension_size.Width - dimension.Width) > 5 Then
+        If stdNum.Abs(PixelSelector1.MSICanvas.dimension_size.Width - dimension.Width) > 5 Then
             checkSize = False
-        ElseIf stdNum.Abs(PixelSelector1.dimension_size.Height - dimension.Height) > 5 Then
+        ElseIf stdNum.Abs(PixelSelector1.MSICanvas.dimension_size.Height - dimension.Height) > 5 Then
             checkSize = False
         End If
 
@@ -508,15 +517,15 @@ Public Class frmMsImagingViewer
 
             tissues = tissues _
                 .ScalePixels(
-                    newDims:=PixelSelector1.dimension_size,
+                    newDims:=PixelSelector1.MSICanvas.dimension_size,
                     currentDims:=dimension
                 ) _
                 .ToArray
         End If
 
         sampleRegions.Clear()
-        sampleRegions.LoadTissueMaps(tissues, PixelSelector1)
-        sampleRegions.RenderLayer(PixelSelector1)
+        sampleRegions.LoadTissueMaps(tissues, PixelSelector1.MSICanvas)
+        sampleRegions.RenderLayer(PixelSelector1.MSICanvas)
         sampleRegions.ShowMessage($"Tissue map {filepath.FileName} has been imported.")
         sampleRegions.importsFile = filepath
 
@@ -853,7 +862,7 @@ Public Class frmMsImagingViewer
         ribbonItems.ButtonPolygonDeleteVertex.BooleanValue = False
         ribbonItems.ButtonRemovePolygon.BooleanValue = False
 
-        PixelSelector1.OnMovePolygonMenuItemClick()
+        PixelSelector1.MSICanvas.OnMovePolygonMenuItemClick()
     End Sub
 
     Private Sub AddNewPolygonMode()
@@ -863,7 +872,7 @@ Public Class frmMsImagingViewer
         ribbonItems.ButtonRemovePolygon.BooleanValue = False
 
         PixelSelector1.ShowPointInform = ribbonItems.ButtonShowPolygonVertexInfo.BooleanValue
-        PixelSelector1.OnAddVertexMenuItemClick()
+        PixelSelector1.MSICanvas.OnAddVertexMenuItemClick()
     End Sub
 
     Friend Sub StartNewPolygon()
@@ -890,7 +899,7 @@ Public Class frmMsImagingViewer
                 ribbonItems.ButtonPolygonDeleteVertex.BooleanValue = False
                 ribbonItems.ButtonRemovePolygon.BooleanValue = False
 
-                PixelSelector1.OnMoveComponentMenuItemClick()
+                PixelSelector1.MSICanvas.OnMoveComponentMenuItemClick()
             End Sub
         AddHandler ribbonItems.ButtonAddNewPolygon.ExecuteEvent,
             Sub()
@@ -920,7 +929,7 @@ Public Class frmMsImagingViewer
                 ribbonItems.ButtonAddNewPolygon.BooleanValue = False
                 ribbonItems.ButtonRemovePolygon.BooleanValue = False
 
-                PixelSelector1.OnRemoveVertexMenuItemClick()
+                PixelSelector1.MSICanvas.OnRemoveVertexMenuItemClick()
             End Sub
 
         AddHandler ribbonItems.ButtonRemovePolygon.ExecuteEvent,
@@ -930,7 +939,7 @@ Public Class frmMsImagingViewer
                 ribbonItems.ButtonAddNewPolygon.BooleanValue = False
                 ribbonItems.ButtonPolygonDeleteVertex.BooleanValue = False
 
-                PixelSelector1.OnRemovePolygonMenuItemClick()
+                PixelSelector1.MSICanvas.OnRemovePolygonMenuItemClick()
             End Sub
 
         AddHandler ribbonItems.ButtonShowPolygonVertexInfo.ExecuteEvent,
@@ -1347,8 +1356,8 @@ Public Class frmMsImagingViewer
                            Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
                            Dim mapLevels As Integer = params.mapLevels
 
-                           PixelSelector1.SetMsImagingOutput(image, blender.dimensions, params.colors, {range.Min, range.Max}, mapLevels)
-                           PixelSelector1.BackColor = params.background
+                           PixelSelector1.MSICanvas.SetMsImagingOutput(image, blender.dimensions, params.colors, {range.Min, range.Max}, mapLevels)
+                           PixelSelector1.MSICanvas.BackColor = params.background
                            PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
                        End Sub)
                End Sub
@@ -1415,8 +1424,8 @@ Public Class frmMsImagingViewer
                        Sub(args)
                            Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
 
-                           PixelSelector1.SetMsImagingOutput(image, blender.dimensions, Nothing, Nothing, Nothing)
-                           PixelSelector1.BackColor = params.background
+                           PixelSelector1.MSICanvas.SetMsImagingOutput(image, blender.dimensions, Nothing, Nothing, Nothing)
+                           PixelSelector1.MSICanvas.BackColor = params.background
                            PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
                        End Sub)
                End Sub
@@ -1451,7 +1460,7 @@ Public Class frmMsImagingViewer
                                                            End Sub)
                                 End Sub)
                     Call Invoke(Sub()
-                                    PixelSelector1.SetMsImagingOutput(New Bitmap(1, 1), New Size(params.scan_x, params.scan_y), params.colors, {0, 1}, 1)
+                                    PixelSelector1.MSICanvas.SetMsImagingOutput(New Bitmap(1, 1), New Size(params.scan_x, params.scan_y), params.colors, {0, 1}, 1)
                                 End Sub)
                 Else
                     Dim base = pixels.OrderByDescending(Function(p) p.intensity).FirstOrDefault
@@ -1532,8 +1541,8 @@ Public Class frmMsImagingViewer
                     Sub(args)
                         Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
 
-                        PixelSelector1.SetMsImagingOutput(image, dimensions, params.colors, {0, 1}, params.mapLevels)
-                        PixelSelector1.BackColor = params.background
+                        PixelSelector1.MSICanvas.SetMsImagingOutput(image, dimensions, params.colors, {0, 1}, params.mapLevels)
+                        PixelSelector1.MSICanvas.BackColor = params.background
                         PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
                     End Sub)
             End Sub
@@ -1553,7 +1562,7 @@ Public Class frmMsImagingViewer
 
         Me.loadedPixels = pixels
         Me.blender = blender
-        Me.PixelSelector1.LoadSampleTags(pixels.Select(Function(i) i.sampleTag).Where(Function(str) Not str Is Nothing).Distinct)
+        Me.PixelSelector1.MSICanvas.LoadSampleTags(pixels.Select(Function(i) i.sampleTag).Where(Function(str) Not str Is Nothing).Distinct)
 
         Return Sub()
                    Call MyApplication.RegisterPlot(
@@ -1564,8 +1573,8 @@ Public Class frmMsImagingViewer
                                    Sub()
                                        Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
 
-                                       PixelSelector1.SetMsImagingOutput(image, dimensions.SizeParser, params.colors, {range.Min, range.Max}, params.mapLevels)
-                                       PixelSelector1.BackColor = params.background
+                                       PixelSelector1.MSICanvas.SetMsImagingOutput(image, dimensions.SizeParser, params.colors, {range.Min, range.Max}, params.mapLevels)
+                                       PixelSelector1.MSICanvas.BackColor = params.background
                                        PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
                                    End Sub)
                                End Sub)
@@ -1596,7 +1605,7 @@ Public Class frmMsImagingViewer
 
     Private Sub tweaks_PropertyValueChanged(s As Object, e As PropertyValueChangedEventArgs) Handles tweaks.PropertyValueChanged
         If e.ChangedItem.Label.TextEquals("background") AndAlso (blender Is Nothing OrElse Not TypeOf blender Is RGBIonMSIBlender) Then
-            PixelSelector1.BackColor = params.background
+            PixelSelector1.MSICanvas.BackColor = params.background
         ElseIf Not rendering Is Nothing Then
             Dim grid As PropertyGrid = DirectCast(s, PropertyGrid)
             Dim reason As String = MsImageProperty.Validation(grid.SelectedObject, e)
@@ -1620,11 +1629,15 @@ Public Class frmMsImagingViewer
             WindowModules.msImageParameters.Win7StyleTreeView1.Nodes.Clear()
 
             Me.DockState = DockState.Hidden
-
             Return
+        Else
+
         End If
 
-        If MessageBox.Show("Going to close current MS-imaging viewer?", FilePath.FileName, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = DialogResult.Cancel Then
+        If MessageBox.Show("Going to close current MS-imaging viewer?",
+                           FilePath.FileName,
+                           MessageBoxButtons.OKCancel,
+                           MessageBoxIcon.Question) = DialogResult.Cancel Then
         Else
             WindowModules.msImageParameters.DockState = DockState.Hidden
             WindowModules.msImageParameters.checkedMz.Clear()
@@ -1659,7 +1672,7 @@ Public Class frmMsImagingViewer
     Dim pinedPixel As LibraryMatrix
 
     Private Sub PinToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PinToolStripMenuItem.Click
-        Dim pos As Point = PixelSelector1.Pixel
+        Dim pos As Point = PixelSelector1.MSICanvas.Pixel
         Dim pixel As PixelScan
 
         If Not checkService() Then
@@ -1689,11 +1702,11 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub AddSampleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddSampleToolStripMenuItem.Click
-        If PixelSelector1.HasRegionSelection Then
+        If PixelSelector1.MSICanvas.HasRegionSelection Then
             If Not DrawHeMapRegion Then
-                Call sampleRegions.Add(PixelSelector1)
+                Call sampleRegions.Add(PixelSelector1.MSICanvas)
             Else
-                Dim regions = PixelSelector1 _
+                Dim regions = PixelSelector1.MSICanvas _
                   .GetPolygons(popAll:=True) _
                   .ToArray
 

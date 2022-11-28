@@ -1192,16 +1192,6 @@ Public Class PixelSelector
     ''' <summary>
     ''' 
     ''' </summary>
-    ''' <returns></returns>
-    Public ReadOnly Property MSImage As Image
-        Get
-            Return Me.BackgroundImage
-        End Get
-    End Property
-
-    ''' <summary>
-    ''' 
-    ''' </summary>
     ''' <param name="value"></param>
     ''' <param name="dimension_size">
     ''' the dimension size of the MSI raw data

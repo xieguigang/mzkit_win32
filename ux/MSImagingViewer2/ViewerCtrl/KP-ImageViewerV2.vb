@@ -339,6 +339,12 @@ Partial Public Class KpImageViewer : Inherits UserControl
         End Get
     End Property
 
+    Public ReadOnly Property MSImage As Image
+        Get
+            Return MSICanvas.BackgroundImage
+        End Get
+    End Property
+
     Public Sub New()
         ' DrawEngine & DrawObject initiralization
         drawEngine = New KP_DrawEngine()
@@ -996,6 +1002,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
     Public Event SelectSample(tag As String)
     Public Event SelectPixelRegion(region As Rectangle)
     Public Event SelectPixel(x As Integer, y As Integer, color As Color)
+    Public Event SelectPolygon(polygon() As PointF)
 
     Private Sub ToolStripComboBox1_Click(sender As Object, e As EventArgs) Handles ToolStripComboBox1.Click
         Dim tagObj As Object = ToolStripComboBox1.SelectedItem
@@ -1024,6 +1031,10 @@ Partial Public Class KpImageViewer : Inherits UserControl
 
     Private Sub PixelSelector1_SelectPixel(x As Integer, y As Integer, pixel As Color) Handles MSICanvas.SelectPixel
         RaiseEvent SelectPixel(x, y, pixel)
+    End Sub
+
+    Private Sub MSICanvas_SelectPolygon(polygon() As PointF) Handles MSICanvas.SelectPolygon
+        RaiseEvent SelectPolygon(polygon)
     End Sub
 End Class
 
