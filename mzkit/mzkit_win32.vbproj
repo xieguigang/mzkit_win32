@@ -571,6 +571,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\DemoItem.vb" />
+    <Compile Include="pages\dockWindow\documents\frmOpenseadragonViewer.Designer.vb">
+      <DependentUpon>frmOpenseadragonViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pages\dockWindow\documents\frmOpenseadragonViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\documents\frmCFMIDOutputViewer.Designer.vb">
       <DependentUpon>frmCFMIDOutputViewer.vb</DependentUpon>
     </Compile>
@@ -1093,6 +1099,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frmNetworkViewer.resx">
       <DependentUpon>frmNetworkViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\documents\frmOpenseadragonViewer.resx">
+      <DependentUpon>frmOpenseadragonViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frmPeakFinding.resx">
       <DependentUpon>frmPeakFinding.vb</DependentUpon>
