@@ -40,7 +40,7 @@ Public Class frmOpenseadragonViewer
     End Sub
 
     Private Sub startHttp()
-        webPort = Net.Tcp.GetFirstAvailablePort(6000)
+        webPort = Net.Tcp.GetFirstAvailablePort(6001)
         localfs = New Process With {
             .StartInfo = New ProcessStartInfo With {
                 .FileName = $"{App.HOME}/Rstudio/bin/Rserve.exe",

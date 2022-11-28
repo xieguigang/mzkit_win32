@@ -6,6 +6,7 @@ Imports System.Xml.Linq
 Imports Path = System.IO.Path
 
 Namespace DeepZoomBuilder
+
     Public Enum ImageType
         Png
         Jpeg
@@ -114,9 +115,17 @@ Namespace DeepZoomBuilder
                 format = "jpg"
             End If
 
-            Dim dzi As XElement = New XElement("Image", New XAttribute("TileSize", 256), New XAttribute("Overlap", 1), New XAttribute("Format", format), New XElement("Size", New XAttribute("Width", dWidth), New XAttribute("Height", dHeight)), New XElement("DisplayRects", New XElement("DisplayRect", New XAttribute("MinLevel", 1), New XAttribute("MaxLevel", MaxLevel), New XElement("Rect", New XAttribute("X", 0), New XAttribute("Y", 0), New XAttribute("Width", dWidth), New XAttribute("Height", dHeight))))) ' xmlns="http://schemas.microsoft.com/deepzoom/2008">
-            dzi.Save(destinationImage)
+            Dim dzi As New DeepZoomImage With {
+                .TileSize = 256,
+                .Overlap = 1,
+                .Format = format,
+                .Size = New ImageSize With {.Width = dWidth, .Height = dHeight},
+                .DisplayRects = {
+                    New DisplayRect With {.MinLevel = 1, .MaxLevel = MaxLevel, .Rect = New TileRect With {.X = 0, .Y = 0, .Width = dWidth, .Height = dHeight}}
+                }
+            }
 
+            dzi.GetXml.SaveTo(destinationImage)
         End Sub
 
         ''' <summary>
