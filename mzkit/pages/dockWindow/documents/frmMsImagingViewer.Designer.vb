@@ -96,7 +96,7 @@ Partial Class frmMsImagingViewer
         Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExportPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportMatrixToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PixelSelector1 = New PixelSelector()
+        Me.PixelSelector1 = New KpImageViewer()
         Me.ExtractRegionSampleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripSeparator()
         Me.ContextMenuStrip1.SuspendLayout()
@@ -212,7 +212,7 @@ Partial Class frmMsImagingViewer
     Friend WithEvents SaveImageToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExportMatrixToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
-    Friend WithEvents PixelSelector1 As PixelSelector
+    Friend WithEvents PixelSelector1 As KpImageViewer
     Friend WithEvents PinToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
     Friend WithEvents ExportPlotToolStripMenuItem As ToolStripMenuItem

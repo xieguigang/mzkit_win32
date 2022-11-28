@@ -1199,12 +1199,6 @@ Public Class PixelSelector
         End Get
     End Property
 
-    Public ReadOnly Property CanvasSize As Size
-        Get
-            Return Me.Size
-        End Get
-    End Property
-
     ''' <summary>
     ''' 
     ''' </summary>

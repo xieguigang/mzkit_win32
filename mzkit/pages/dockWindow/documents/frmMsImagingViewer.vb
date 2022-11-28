@@ -1140,7 +1140,7 @@ Public Class frmMsImagingViewer
             Return
         End If
 
-        Dim regions = PixelSelector1 _
+        Dim regions = PixelSelector1.MSICanvas _
             .GetPolygons(popAll:=False) _
             .ToArray
 
@@ -1148,7 +1148,7 @@ Public Class frmMsImagingViewer
             Call MyApplication.host.showStatusMessage("No region polygon data was found from polygon editor, draw some region polygon at first!", My.Resources.StatusAnnotations_Warning_32xLG_color)
             Return
         Else
-            PixelSelector1.ClearSelection()
+            PixelSelector1.MSICanvas.ClearSelection()
 
             If Not sampleRegions Is Nothing Then
                 sampleRegions.Clear()
@@ -1184,7 +1184,7 @@ Public Class frmMsImagingViewer
         Me.tweaks = WindowModules.msImageParameters.PropertyGrid1
         Me.FilePath = filePath
 
-        PixelSelector1.ClearSelection()
+        PixelSelector1.MSICanvas.ClearSelection()
 
         If Not sampleRegions Is Nothing Then
             sampleRegions.Clear()

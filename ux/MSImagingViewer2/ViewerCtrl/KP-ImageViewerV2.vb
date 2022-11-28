@@ -315,6 +315,30 @@ Partial Public Class KpImageViewer : Inherits UserControl
         End Set
     End Property
 
+    Public Property SelectPolygonMode As Boolean
+        Get
+            Return MSICanvas.SelectPolygonMode
+        End Get
+        Set(value As Boolean)
+            MSICanvas.SelectPolygonMode = value
+        End Set
+    End Property
+
+    Public Property ShowPointInform As Boolean
+        Get
+            Return MSICanvas.ShowPointInform
+        End Get
+        Set(value As Boolean)
+            MSICanvas.ShowPointInform = value
+        End Set
+    End Property
+
+    Public ReadOnly Property CanvasSize As Size
+        Get
+            Return MSICanvas.Size
+        End Get
+    End Property
+
     Public Sub New()
         ' DrawEngine & DrawObject initiralization
         drawEngine = New KP_DrawEngine()
@@ -970,6 +994,8 @@ Partial Public Class KpImageViewer : Inherits UserControl
     'End Sub
 
     Public Event SelectSample(tag As String)
+    Public Event SelectPixelRegion(region As Rectangle)
+    Public Event SelectPixel(x As Integer, y As Integer, color As Color)
 
     Private Sub ToolStripComboBox1_Click(sender As Object, e As EventArgs) Handles ToolStripComboBox1.Click
         Dim tagObj As Object = ToolStripComboBox1.SelectedItem
@@ -979,9 +1005,25 @@ Partial Public Class KpImageViewer : Inherits UserControl
     End Sub
 
     Private Sub KpImageViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
-        PixelSelector1.ViewerHost = Me
-        PixelSelector1.Location = pbFull.Location
-        PixelSelector1.Size = pbFull.Size
+        MSICanvas.ViewerHost = Me
+        MSICanvas.Location = pbFull.Location
+        MSICanvas.Size = pbFull.Size
+    End Sub
+
+    Public Sub SetColorMapVisible(visible As Boolean)
+        ' Throw New NotImplementedException()
+    End Sub
+
+    Public Sub ShowMessage(text As String)
+        ToolStripStatusLabel1.Text = text
+    End Sub
+
+    Private Sub PixelSelector1_SelectPixelRegion(region As Rectangle) Handles MSICanvas.SelectPixelRegion
+        RaiseEvent SelectPixelRegion(region)
+    End Sub
+
+    Private Sub PixelSelector1_SelectPixel(x As Integer, y As Integer, pixel As Color) Handles MSICanvas.SelectPixel
+        RaiseEvent SelectPixel(x, y, pixel)
     End Sub
 End Class
 
