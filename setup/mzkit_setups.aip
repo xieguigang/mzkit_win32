@@ -33,10 +33,10 @@
     <ROW Property="CTRLS" Value="3"/>
     <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1033:{39654D7F-BA90-4169-A39A-260EEC68A25D} 2052:{39654D7F-BA90-4169-A39A-260EEC68A25D} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{B34EB119-5265-4AF8-AB1B-F620C94D391B} 2052:{B34EB119-5265-4AF8-AB1B-F620C94D391B} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="mzkit_win32"/>
-    <ROW Property="ProductVersion" Value="3.6.729.1547" Type="32"/>
+    <ROW Property="ProductVersion" Value="3.6.766.9641" Type="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{B645400B-3918-41EF-9009-7ADDD81C84B4}"/>
@@ -97,6 +97,7 @@
     <ROW Directory="metab_se_cfm_Dir" Directory_Parent="esi_msms_models_Dir" DefaultDir="METAB_~2|metab_se_cfm"/>
     <ROW Directory="models_Dir" Directory_Parent="cfmid2_Dir" DefaultDir="models"/>
     <ROW Directory="native_Dir" Directory_Parent="winx64_Dir" DefaultDir="native"/>
+    <ROW Directory="ndpitools_Dir" Directory_Parent="NewFolder_Dir" DefaultDir="NDPITO~1|ndpitools"/>
     <ROW Directory="negative_metab_se_cfm_Dir" Directory_Parent="esi_msms_models_Dir" DefaultDir="NEGATI~1|negative_metab_se_cfm"/>
     <ROW Directory="net6.0_1_Dir" Directory_Parent="lib_7_Dir" DefaultDir="net6.0"/>
     <ROW Directory="net6.0_5_Dir" Directory_Parent="lib_2_Dir" DefaultDir="net6.0"/>
@@ -123,7 +124,7 @@
     <ROW Directory="zhHant_Dir" Directory_Parent="APPDIR" DefaultDir="zh-Hant"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{9995CEAF-04B8-4A9B-9164-2861C4CECF46}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{AD3106AE-C5DA-4452-A690-893B487224BD}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{69AA9FFE-67B1-456B-88EB-97D3D6C92AA7}" Directory_="APPDIR" Attributes="256"/>
     <ROW Component="BioDeep.dll" ComponentId="{2FECE77D-517F-47B1-97BA-15B1100BE489}" Directory_="APPDIR" Attributes="256" KeyPath="BioDeep.dll"/>
     <ROW Component="BioDeep.dll_1" ComponentId="{8274C55C-D52A-4F5B-A268-505929309095}" Directory_="host_Dir" Attributes="256" KeyPath="BioDeep.dll_1"/>
@@ -377,6 +378,7 @@
     <ROW Component="Mzkit_win32.Interaction.dll" ComponentId="{303DC4C7-EFA1-45CA-BEC6-28E8565DC608}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.Interaction.dll"/>
     <ROW Component="Mzkit_win32.Interaction.resources.dll" ComponentId="{3035B09F-2371-402C-9D04-D341E03835AB}" Directory_="enUS_Dir" Attributes="256" KeyPath="Mzkit_win32.Interaction.resources.dll"/>
     <ROW Component="Mzkit_win32.Interaction.resources.dll_1" ComponentId="{7FF290C8-A166-47BC-B831-B31802DC747D}" Directory_="zhCN_Dir" Attributes="256" KeyPath="Mzkit_win32.Interaction.resources.dll_1"/>
+    <ROW Component="Mzkit_win32.MSImagingViewerV2.dll" ComponentId="{97B8F2A2-5753-454D-B986-A059D567878D}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.MSImagingViewerV2.dll"/>
     <ROW Component="Mzkit_win32.MZWork.dll" ComponentId="{CA533875-0725-4A8A-BF60-77B9E122EEDF}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.MZWork.dll"/>
     <ROW Component="Mzkit_win32.Task.dll" ComponentId="{E48415AB-DFC6-4244-8328-F0FCB60E6602}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.Task.dll"/>
     <ROW Component="Parallel.dll" ComponentId="{825C390A-5E2B-4B80-987C-C6A8D79EA9BF}" Directory_="APPDIR" Attributes="256" KeyPath="Parallel.dll"/>
@@ -499,6 +501,7 @@
     <ROW Component="WkHtmlToPdf.CLI.InteropService.dll" ComponentId="{6F546340-6C18-4CE9-B774-345B01929B9D}" Directory_="APPDIR" Attributes="256" KeyPath="WkHtmlToPdf.CLI.InteropService.dll"/>
     <ROW Component="_Ex2_Orbitrap_CID.mzXML" ComponentId="{C52A99A4-9792-40B5-92C9-AF7714D8C19F}" Directory_="demo_Dir" Attributes="256" KeyPath="_Ex2_Orbitrap_CID.mzXML" Type="0"/>
     <ROW Component="appletouchicon.png" ComponentId="{70EC3DFD-410C-46C2-844B-59AAF64E1752}" Directory_="ketcher_Dir" Attributes="0" KeyPath="appletouchicon.png" Type="0"/>
+    <ROW Component="article_diagnostic_pathology.pdf" ComponentId="{A62F48F3-C8F4-412B-BD5F-EB6F8727F9A2}" Directory_="ndpitools_Dir" Attributes="0" KeyPath="article_diagnostic_pathology.pdf" Type="0"/>
     <ROW Component="base.deps.json" ComponentId="{954CDACD-2410-4584-BB91-98C0782548B3}" Directory_="library_Dir" Attributes="0" KeyPath="base.deps.json" Type="0"/>
     <ROW Component="base.dll" ComponentId="{CE725451-82E3-43CF-9CED-9EA3FC09BB45}" Directory_="library_Dir" Attributes="256" KeyPath="base.dll"/>
     <ROW Component="biosample_quantification.nmrML" ComponentId="{6797762F-26CA-4D41-A12D-70B4679D666D}" Directory_="NMR_Dir" Attributes="256" KeyPath="biosample_quantification.nmrML" Type="0"/>
@@ -546,6 +549,13 @@
     <ROW Component="mzkit_win32.resources.dll" ComponentId="{07088A7D-4893-4253-9A2A-E6C0AF73195D}" Directory_="enUS_Dir" Attributes="256" KeyPath="mzkit_win32.resources.dll"/>
     <ROW Component="mzkit_win32.resources.dll_1" ComponentId="{BF42566E-B837-4E29-845D-D598E82099BE}" Directory_="zhCN_Dir" Attributes="256" KeyPath="mzkit_win32.resources.dll_1"/>
     <ROW Component="mzkit_win32.resources.dll_2" ComponentId="{11CB8308-0BDA-45A2-80B0-DCFEEDD84E65}" Directory_="zhHant_Dir" Attributes="256" KeyPath="mzkit_win32.resources.dll_2"/>
+    <ROW Component="ndpi2tiff.exe" ComponentId="{2A64A9AF-F880-4144-83EF-8FEFB57AFA2D}" Directory_="ndpitools_Dir" Attributes="256" KeyPath="ndpi2tiff.exe"/>
+    <ROW Component="ndpisplit.exe" ComponentId="{B2D15C0E-E5A8-4E45-A9CF-2F958FB54A99}" Directory_="ndpitools_Dir" Attributes="256" KeyPath="ndpisplit.exe"/>
+    <ROW Component="ndpisplitm.exe" ComponentId="{4D3E844D-4332-4CA1-8BF8-490A5C6A973A}" Directory_="ndpitools_Dir" Attributes="256" KeyPath="ndpisplitm.exe"/>
+    <ROW Component="ndpisplitmJ.exe" ComponentId="{622B52D3-A721-49C4-9092-883C19EE2362}" Directory_="ndpitools_Dir" Attributes="256" KeyPath="ndpisplitmJ.exe"/>
+    <ROW Component="ndpisplits.exe" ComponentId="{A750B522-44B0-4D72-905E-D212C7C68DEF}" Directory_="ndpitools_Dir" Attributes="256" KeyPath="ndpisplits.exe"/>
+    <ROW Component="ndpisplitsm.exe" ComponentId="{2BF8BA74-59D1-4D3E-8FF1-1F18ABFAF40A}" Directory_="ndpitools_Dir" Attributes="256" KeyPath="ndpisplitsm.exe"/>
+    <ROW Component="ndpisplitsmJ.exe" ComponentId="{95F9635F-BA5E-43FB-B40D-D2B54F58C6DC}" Directory_="ndpitools_Dir" Attributes="256" KeyPath="ndpisplitsmJ.exe"/>
     <ROW Component="njl.dll" ComponentId="{EA76B011-5678-408C-A8ED-B55E34699377}" Directory_="library_Dir" Attributes="256" KeyPath="njl.dll"/>
     <ROW Component="npy.dll" ComponentId="{57A4DF98-6211-4C12-8590-541E4B27BC6C}" Directory_="library_Dir" Attributes="256" KeyPath="npy.dll"/>
     <ROW Component="nts.dll" ComponentId="{C3430FDE-A92A-4B60-AC18-9F8A223BF24A}" Directory_="library_Dir" Attributes="256" KeyPath="nts.dll"/>
@@ -1189,6 +1199,17 @@
     <ROW File="HDF.PInvoke.Core.dll.config_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="HDFPIN~1.CON|HDF.PInvoke.Core.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\HDF.PInvoke.Core.dll.config" SelfReg="false"/>
     <ROW File="Mzkit_win32.CommonDialogs.dll.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MZKIT_~4.CON|Mzkit_win32.CommonDialogs.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.CommonDialogs.dll.config" SelfReg="false"/>
     <ROW File="msconvertGUI.resources.dll_2" Component_="msconvertGUI.resources.dll_2" FileName="MSCONV~1.DLL|msconvertGUI.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\ja-JP\msconvertGUI.resources.dll" SelfReg="false"/>
+    <ROW File="echarts.min.js" Component_="smilesdrawer.min.js" FileName="ECHART~1.JS|echarts.min.js" Attributes="0" SourcePath="..\webview\vendor\echarts.min.js" SelfReg="false"/>
+    <ROW File="article_diagnostic_pathology.pdf" Component_="article_diagnostic_pathology.pdf" FileName="ARTICL~1.PDF|article_diagnostic_pathology.pdf" Attributes="0" SourcePath="..\dist\ndpitools\article_diagnostic_pathology.pdf" SelfReg="false"/>
+    <ROW File="ndpi2tiff.exe" Component_="ndpi2tiff.exe" FileName="NDPI2T~1.EXE|ndpi2tiff.exe" Attributes="0" SourcePath="..\dist\ndpitools\ndpi2tiff.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="ndpisplitm.exe" Component_="ndpisplitm.exe" FileName="NDPISP~1.EXE|ndpisplit-m.exe" Attributes="0" SourcePath="..\dist\ndpitools\ndpisplit-m.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="ndpisplitmJ.exe" Component_="ndpisplitmJ.exe" FileName="NDPISP~2.EXE|ndpisplit-mJ.exe" Attributes="0" SourcePath="..\dist\ndpitools\ndpisplit-mJ.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="ndpisplitsm.exe" Component_="ndpisplitsm.exe" FileName="NDPISP~3.EXE|ndpisplit-s-m.exe" Attributes="0" SourcePath="..\dist\ndpitools\ndpisplit-s-m.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="ndpisplitsmJ.exe" Component_="ndpisplitsmJ.exe" FileName="NDPISP~4.EXE|ndpisplit-s-mJ.exe" Attributes="0" SourcePath="..\dist\ndpitools\ndpisplit-s-mJ.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="ndpisplits.exe" Component_="ndpisplits.exe" FileName="NDPISP~5.EXE|ndpisplit-s.exe" Attributes="0" SourcePath="..\dist\ndpitools\ndpisplit-s.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="ndpisplit.exe" Component_="ndpisplit.exe" FileName="NDPISP~6.EXE|ndpisplit.exe" Attributes="0" SourcePath="..\dist\ndpitools\ndpisplit.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="readme.txt_3" Component_="article_diagnostic_pathology.pdf" FileName="readme.txt" Attributes="0" SourcePath="..\dist\ndpitools\readme.txt" SelfReg="false"/>
+    <ROW File="Mzkit_win32.MSImagingViewerV2.dll" Component_="Mzkit_win32.MSImagingViewerV2.dll" FileName="MZKIT_~5.DLL|Mzkit_win32.MSImagingViewerV2.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.MSImagingViewerV2.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -1767,6 +1788,15 @@
     <ROW Feature_="MainFeature" Component_="System.Drawing.Common.dll_7"/>
     <ROW Feature_="MainFeature" Component_="System.Security.Cryptography.ProtectedData.dll_4"/>
     <ROW Feature_="MainFeature" Component_="System.Windows.Extensions.dll_4"/>
+    <ROW Feature_="MainFeature" Component_="Mzkit_win32.MSImagingViewerV2.dll"/>
+    <ROW Feature_="MainFeature" Component_="article_diagnostic_pathology.pdf"/>
+    <ROW Feature_="MainFeature" Component_="ndpi2tiff.exe"/>
+    <ROW Feature_="MainFeature" Component_="ndpisplitm.exe"/>
+    <ROW Feature_="MainFeature" Component_="ndpisplitmJ.exe"/>
+    <ROW Feature_="MainFeature" Component_="ndpisplitsm.exe"/>
+    <ROW Feature_="MainFeature" Component_="ndpisplitsmJ.exe"/>
+    <ROW Feature_="MainFeature" Component_="ndpisplits.exe"/>
+    <ROW Feature_="MainFeature" Component_="ndpisplit.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
@@ -1879,12 +1909,14 @@
     <ROW Extension_="mzWork" Component_="mzkit_win32.exe_1" Verb="open" Sequence="1" Command="&amp;Open" Argument="&quot;%1&quot;"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.PreReqComponent">
+    <ROW PrereqKey="AF4EF7137AE24E488A4E128FD1B89507" DisplayName="Microsoft Edge WebView2 Runtime (web installer)" VersionMin="106.0" SetupFileUrl="https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/ce863ccd-72e9-4860-8e42-e34355ba5c63/MicrosoftEdgeWebView2RuntimeInstallerX64.exe" Location="1" ExactSize="1781528" WinNTVersions="Windows Vista x86, Windows Server 2008 x86, Windows 8 x86" WinNT64Versions="Windows Vista x64, Windows Server 2008 x64, Windows 8 x64" Operator="1" NoUiComLine="/silent /install" Options="y" MD5="b97ff6d43d00ae1df8b45f13c3348c0e" TargetName="WebView2"/>
     <ROW PrereqKey="B96F93FA27E74B02866727AAE83982D0" DisplayName=".NET Framework 4.8" SetupFileUrl="https://download.visualstudio.microsoft.com/download/pr/7afca223-55d2-470a-8edc-6a1739ae3252/abd170b4b0ec15ad0222a809b761a036/ndp48-x86-x64-allos-enu.exe" Location="1" ExactSize="72721568" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" WinNT64Versions="Windows Vista x64, Windows Server 2008 x64, Windows 7 RTM x64, Windows Server 2008 R2 RTM x64, Windows 8 x64" Operator="1" NoUiComLine="/q /norestart" Options="xy" MD5="4e7a8586d06ce1f8cebac0d4bc379e16" TargetName=".NET Framework 4.8"/>
     <ROW PrereqKey="C6F7BF650B714DC58735D62C12F214E4" DisplayName=".NET Runtime 6.0.0 x64" VersionMin="6.0" SetupFileUrl="https://download.visualstudio.microsoft.com/download/pr/b9cfdb9e-d5cd-4024-b318-00390b729d2f/65690f2440f40654898020cdfffa1050/dotnet-runtime-6.0.0-win-x64.exe" Location="1" ExactSize="28180712" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" WinNT64Versions="Windows Vista x64, Windows Server 2008 x64, Windows 7 RTM x64, Windows Server 2008 R2 x64, Windows 8 x64, Windows Server 2012 x64, Windows 10 version 1507 x64, Windows 10 version 1511 x64" Operator="1" NoUiComLine="/q /norestart" Options="y" MD5="7ec466a9808697c935bd0525a922beca" TargetName=".NET 6.0"/>
     <ROW PrereqKey="FAC9C433D3044829E6669A2C6FF54E6" DisplayName=".NET Desktop Runtime 6.0.0 x64" VersionMin="6.0" SetupFileUrl="https://download.visualstudio.microsoft.com/download/pr/a865ccae-2219-4184-bcd6-0178dc580589/ba452d37e8396b7a49a9adc0e1a07e87/windowsdesktop-runtime-6.0.0-win-x64.exe" Location="1" ExactSize="56998736" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" WinNT64Versions="Windows Vista x64, Windows Server 2008 x64, Windows 7 RTM x64, Windows Server 2008 R2 x64, Windows 8 x64, Windows Server 2012 x64, Windows 10 version 1507 x64, Windows 10 version 1511 x64" Operator="1" NoUiComLine="/q /norestart" Options="xy" MD5="d1dc0ee5484261983c1f63f179905f3a" TargetName=".NET 6.0"/>
-    <ATTRIBUTE name="PrereqsOrder" value="B96F93FA27E74B02866727AAE83982D0 FAC9C433D3044829E6669A2C6FF54E6 C6F7BF650B714DC58735D62C12F214E4"/>
+    <ATTRIBUTE name="PrereqsOrder" value="B96F93FA27E74B02866727AAE83982D0 FAC9C433D3044829E6669A2C6FF54E6 C6F7BF650B714DC58735D62C12F214E4 AF4EF7137AE24E488A4E128FD1B89507"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.PreReqSearchComponent">
+    <ROW SearchKey="AF4EF7137AE24E488A4E128FD1B89507pv" Prereq="AF4EF7137AE24E488A4E128FD1B89507" SearchType="2" SearchString="HKLM\SOFTWARE\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}\pv" VerMin="96.0.1054.43" Order="1" Property="PreReqSearch_AF4EF7137AE24E488A4E12"/>
     <ROW SearchKey="B96F93FA27E74B02866727AAE83982D0Release" Prereq="B96F93FA27E74B02866727AAE83982D0" SearchType="9" SearchString="HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\Release" RefContent="G528048" Order="1" Property="PreReqSearch_B96F93FA27E74B02866727"/>
     <ROW SearchKey="C6F7BF650B714DC58735D62C12F214E4Mic" Prereq="C6F7BF650B714DC58735D62C12F214E4" SearchType="12" SearchString="HKLM\SOFTWARE\dotnet\Setup\InstalledVersions\x64\sharedfx\Microsoft.NETCore.App" VerMin="6.0.0" Order="1" Property="PreReqSearch_C6F7BF650B714DC58735D6"/>
     <ROW SearchKey="FAC9C433D3044829E6669A2C6FF54E6Micr" Prereq="FAC9C433D3044829E6669A2C6FF54E6" SearchType="0" SearchString="[ProgramFiles64Folder]dotnet\shared\Microsoft.WindowsDesktop.App\6.0.0\Microsoft.WindowsDesktop.App.runtimeconfig.json" Order="1" Property="PreReqSearch_FAC9C433D3044829E6669A"/>
@@ -1908,5 +1940,6 @@
     <ROW Directory_="demo_1_Dir" SourcePath="..\rstudio\demo" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="data_Dir" SourcePath="..\rstudio\data" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="jaJP_Dir" SourcePath="..\..\..\dist\bin\ja-JP" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
+    <ROW Directory_="ndpitools_Dir" SourcePath="..\dist\ndpitools" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
   </COMPONENT>
 </DOCUMENT>

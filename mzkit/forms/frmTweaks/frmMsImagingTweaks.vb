@@ -69,12 +69,10 @@ Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots.BarPlot.Histogram
-Imports Microsoft.VisualBasic.Data.GraphTheory
 Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
-Imports Microsoft.VisualBasic.Math.Distributions
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
 Imports RibbonLib.Interop
@@ -435,40 +433,18 @@ UseCheckedList:
 
     Private Function getVector(ByRef mz As Double) As Dictionary(Of String, NamedValue(Of Double()))
         Dim errMsg As String = Nothing
-        Dim layer = getLayer(mz, needsRegions:=True, msg:=errMsg)
+        Dim layer As PixelData() = getLayer(mz, needsRegions:=True, msg:=errMsg)
 
         If layer Is Nothing Then
             Call MyApplication.host.warning($"No ion layer data for ${mz.ToString("F4")}: {errMsg}")
             Return Nothing
         End If
 
-        Dim regions = viewer.sampleRegions.GetRegions(viewer.PixelSelector1.dimension_size).ToArray
-        Dim data As New Dictionary(Of String, NamedValue(Of Double()))
-        Dim n As Integer = 32
-        Dim matrix = Grid(Of PixelData).Create(layer, Function(i) New Point(i.x, i.y))
+        Dim regions As TissueRegion() = viewer.sampleRegions _
+            .GetRegions(viewer.PixelSelector1.MSICanvas.dimension_size) _
+            .ToArray
 
-        For Each region As TissueRegion In regions
-            Dim A As Integer = region.points.Length
-            Dim Nsize As Integer = A / 4
-            Dim samples = Bootstraping.Samples(region.points, Nsize, bags:=n).ToArray
-            Dim vec = samples _
-                .AsParallel _
-                .Select(Function(pack)
-                            Dim subset = pack.value.Select(Function(pt) matrix.GetData(pt.X, pt.Y)).ToArray
-                            Dim d = subset.Select(Function(i) If(i Is Nothing, 0, i.intensity)).ToArray
-
-                            If d.Length = 0 Then
-                                Return 0
-                            Else
-                                Return d.Sum / A
-                            End If
-                        End Function) _
-                .ToArray
-
-            data(region.label) = New NamedValue(Of Double())(region.color.ToHtmlColor, vec)
-        Next
-
-        Return data
+        Return SampleData.ExtractSample(layer, regions, n:=32, coverage:=0.35)
     End Function
 
     Private Function getLayer(ByRef mz As Double, needsRegions As Boolean, ByRef msg$) As PixelData()

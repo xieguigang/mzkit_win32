@@ -187,6 +187,13 @@ Public Class MsImageProperty
         background = Color.Black
     End Sub
 
+    Sub New(scan_x As Integer, scan_y As Integer)
+        Call Me.New
+
+        Me.scan_x = scan_x
+        Me.scan_y = scan_y
+    End Sub
+
     Public Shared Function Empty(dimension As Size) As MsImageProperty
         Dim data As New Dictionary(Of String, String) From {
             {"scan_x", dimension.Width},
@@ -208,10 +215,6 @@ Public Class MsImageProperty
         _fileSize = fileSize
         _resolution = resolution
     End Sub
-
-    Public Shared Function GetMSIInfo(render As Drawer) As Dictionary(Of String, String)
-        Return MSIProtocols.GetMSIInfo(render)
-    End Function
 
     'Public Function Smooth(img As Bitmap) As Bitmap
     '    If imageSmooth = SmoothFilters.None Then

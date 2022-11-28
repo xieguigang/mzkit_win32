@@ -75,13 +75,32 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
     <Description("Combine row scans to mzPack")>
     <Argument("--files", False, CLITypes.File, PipelineTypes.std_in, Description:="a temp file path that its content contains selected raw data file path for each row scans.")>
     <Argument("--save", False, CLITypes.File, PipelineTypes.std_in, Description:="a file path for export mzPack data file.")>
-    <Usage("/rowbinds --files <list.txt> --save <MSI.mzPack> [/cutoff <intensity_cutoff, default=0> /matrix_basePeak <mz, default=0> /resolution <default=17>]")>
+    <Usage("/rowbinds --files <list.txt/directory_path> --save <MSI.mzPack> [/scan <default=raw> /cutoff <intensity_cutoff, default=0> /matrix_basePeak <mz, default=0> /resolution <default=17>]")>
+    <Argument("/scan", True, CLITypes.String, Description:="This parameter only works for the directory input file. used as the file extension suffix for scan in the target directory.")>
+    <Argument("/matrix_basePeak", True, CLITypes.Double, Description:="zero or negative value means no removes of the matrix base ion, and the value of this parameter can also be 'auto', means auto check the matrix base ion.")>
     Public Function MSIRowCombine(args As CommandLine) As Integer
-        Dim files As String() = args("--files").ReadAllLines
-        Dim save As String = args("--save")
+        Dim inputfile As String = args <= "--files"
+        Dim scanExt As String = args <= "/scan"
+        Dim files As String() = If(inputfile.FileExists, inputfile.ReadAllLines, inputfile.EnumerateFiles($"*.{scanExt}").ToArray)
+        Dim save As String = args("--save") Or (inputfile.ParentPath & "/" & inputfile.BaseName & ".mzPack")
         Dim cutoff As Double = args("/cutoff") Or 0.0
-        Dim basePeak As Double = args("/matrix_basePeak") Or 0.0
+        Dim matrixBase As String = args <= "/matrix_basePeak"
+        Dim basePeak As Double = 0.0
         Dim res As Double = args("/resolution") Or 17.0
+
+        Call Console.WriteLine(save)
+
+        If matrixBase.IsNumeric Then
+            basePeak = Val(matrixBase)
+        ElseIf matrixBase.TextEquals("auto") Then
+            ' measure ion by auto method
+            Dim maxFile As String = files _
+                .OrderByDescending(Function(path) path.FileLength) _
+                .First
+            Dim check = CheckMatrixBaseIon(maxFile)
+
+            basePeak = check.ion
+        End If
 
         Using file As FileStream = save.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
             Dim buffer As mzPack = MSImagingRowBinds.MSI_rowbind(files, cutoff, basePeak)
