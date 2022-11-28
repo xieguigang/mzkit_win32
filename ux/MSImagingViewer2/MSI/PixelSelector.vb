@@ -643,7 +643,7 @@ Public Class PixelSelector
         RepaintPolygon()
     End Sub
 
-    Private Sub OnBoadMouseClick(sender As Object, e As MouseEventArgs) Handles picCanvas.MouseClick
+    Private Sub OnBoadMouseClick(sender As Object, e As MouseEventArgs)
         If Not SelectPolygonMode Then
             Call clickGetPoint(e)
         Else
@@ -718,7 +718,7 @@ Public Class PixelSelector
         End If
     End Sub
 
-    Private Sub OnBoadMouseDown(sender As Object, e As MouseEventArgs) Handles picCanvas.MouseDown
+    Private Sub OnBoadMouseDown(sender As Object, e As MouseEventArgs)
         If Not SelectPolygonMode Then
             Return
         End If
@@ -754,7 +754,7 @@ Public Class PixelSelector
         End If
     End Sub
 
-    Private Sub OnBoardMouseMove(sender As Object, e As MouseEventArgs) Handles picCanvas.MouseMove
+    Private Sub OnBoardMouseMove(sender As Object, e As MouseEventArgs)
         If Not SelectPolygonMode Then
             Return
         End If
@@ -796,7 +796,7 @@ Public Class PixelSelector
 
     Public Property ShowPointInform As Boolean = True
 
-    Private Sub OnBoardPaint(sender As Object, e As PaintEventArgs) Handles picCanvas.Paint
+    Private Sub OnBoardPaint(sender As Object, e As PaintEventArgs)
         If polygons.Count = 0 Then
             Return
         End If
@@ -1425,7 +1425,7 @@ Public Class PixelSelector
         ypoint = e.Y * Pic_height
     End Sub
 
-    Private Sub picCanvas_MouseUp(sender As Object, e As MouseEventArgs) Handles picCanvas.MouseUp
+    Private Sub picCanvas_MouseUp(sender As Object, e As MouseEventArgs)
         If SelectPolygonMode Then
             Call OnBoardMouseUp()
         ElseIf Not drawing Then
@@ -1488,7 +1488,7 @@ Public Class PixelSelector
 
     Public cancelBlur As Boolean = False
 
-    Private Sub ToolStripComboBox1_Click(sender As Object, e As EventArgs) Handles ToolStripComboBox1.Click
+    Private Sub ToolStripComboBox1_Click(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -1533,11 +1533,11 @@ Public Class PixelSelector
 
     Public Event SelectSample(tag As String)
 
-    Private Sub ToolStrip1_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles ToolStrip1.ItemClicked
+    Private Sub ToolStrip1_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs)
 
     End Sub
 
-    Private Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
+    Private Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs)
         Dim tag As String = ToolStripComboBox1.SelectedItem.ToString
 
         RaiseEvent SelectSample(tag)

@@ -24,6 +24,7 @@
     ''' the contents of this method with the code editor.
     ''' </summary>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.pbPanel = New System.Windows.Forms.PictureBox()
         Me.pbFull = New Mzkit_win32.MSImagingViewerV2.PanelDoubleBuffered()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
@@ -41,6 +42,7 @@
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         CType(Me.pbPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pbFull.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
@@ -50,7 +52,7 @@
         'pbPanel
         '
         Me.pbPanel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.pbPanel.Location = New System.Drawing.Point(444, 62)
+        Me.pbPanel.Location = New System.Drawing.Point(485, 3)
         Me.pbPanel.Name = "pbPanel"
         Me.pbPanel.Size = New System.Drawing.Size(148, 108)
         Me.pbPanel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -184,6 +186,10 @@
         Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(57, 17)
         Me.ToolStripStatusLabel2.Text = "[n/a, n/a]"
         '
+        'Timer1
+        '
+        Me.Timer1.Enabled = True
+        '
         'KpImageViewer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -223,4 +229,5 @@
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
     Friend WithEvents ToolStripStatusLabel2 As ToolStripStatusLabel
+    Friend WithEvents Timer1 As Timer
 End Class
