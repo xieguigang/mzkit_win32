@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports BioNovoGene.mzkit_win32.My
+Imports BioNovoGene.mzkit_win32.PageStart
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.MSImagingViewerV2.DeepZoomBuilder
@@ -49,6 +50,7 @@ Public Class frmOpenseadragonViewer
     End Sub
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
+        Call WebView21.CoreWebView2.AddHostObjectToScript("dzi", $"http://127.0.0.1:{webPort}/{dzi.FileName}")
         Call WebView21.CoreWebView2.Navigate(sourceURL)
         Call DeveloperOptions(enable:=True)
     End Sub

@@ -1,0 +1,29 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+    <div id="seadragon-viewer" class="openseadragon" style="width:800px; height:600px;"></div>
+    <script src="./openseadragon/openseadragon.min.js"></script>
+
+    <script type="text/javascript">
+        var dzi_src = window.chrome.webview.hostObjects.dzi;
+
+        console.log(dzi_src);
+
+        OpenSeadragon({
+            id: "example-xmlhttprequest-for-dzi",
+            prefixUrl: "/openseadragon/images/",
+            tileSources: [
+                dzi_src
+            ]
+        });
+    </script>
+
+    </div>
+</body>
+
+</html>
