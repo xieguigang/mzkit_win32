@@ -1009,13 +1009,6 @@ Partial Public Class KpImageViewer : Inherits UserControl
     Public Event SelectPixel(x As Integer, y As Integer, color As Color)
     Public Event SelectPolygon(polygon() As PointF)
 
-    Private Sub ToolStripComboBox1_Click(sender As Object, e As EventArgs) Handles ToolStripComboBox1.Click
-        Dim tagObj As Object = ToolStripComboBox1.SelectedItem
-        Dim tag As String = tagObj.ToString
-
-        RaiseEvent SelectSample(tag)
-    End Sub
-
     Private Sub KpImageViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         MSICanvas.ViewerHost = Me
         MSICanvas.Location = pbFull.Location
@@ -1049,6 +1042,13 @@ Partial Public Class KpImageViewer : Inherits UserControl
         MSICanvas.BackColor = background
 
         Me.Image = New Bitmap(image)
+    End Sub
+
+    Private Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
+        Dim tagObj As Object = ToolStripComboBox1.SelectedItem
+        Dim tag As String = tagObj.ToString
+
+        RaiseEvent SelectSample(tag)
     End Sub
 End Class
 
