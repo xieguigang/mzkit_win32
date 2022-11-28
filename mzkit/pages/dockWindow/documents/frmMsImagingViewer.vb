@@ -282,7 +282,7 @@ Public Class frmMsImagingViewer
 
     Sub loadHEMap()
         Using file As New OpenFileDialog With {
-            .Filter = "HE Stain Image(*.jpg;*.png;*.bmp;*.tif)|*.jpg;*.png;*.bmp;*.tif|HE Scalar Mapping Matrix(*.csv)|*.csv|Hamamatsu slide scanner pathology image(*.ndpi)|*.ndpi"
+            .Filter = "HE Stain Image(*.jpg;*.png;*.bmp;*.tif)|*.jpg;*.png;*.bmp;*.tif|HE Scalar Mapping Matrix(*.csv)|*.csv|Hamamatsu slide scanner pathology image(*.ndpi)|*.ndpi|Deep Zoom Pathology Slide(*.dzi)|*.dzi"
         }
             If file.ShowDialog = DialogResult.OK Then
                 If file.FileName.ExtensionSuffix("csv") Then
@@ -308,7 +308,7 @@ Public Class frmMsImagingViewer
                     'PixelSelector1.PreviewButton = True
                     'PixelSelector1.ShowPreview = True
                     Call VisualStudio.ShowDocument(Of frmOpenseadragonViewer)(, title:=tiff.FileName).LoadSlide(tiff)
-                ElseIf file.FileName.ExtensionSuffix("tif", "tiff") Then
+                ElseIf file.FileName.ExtensionSuffix("tif", "tiff", "dzi") Then
                     'PixelSelector1.OpenImageFile(file.FileName)
                     'PixelSelector1.PreviewButton = True
                     'PixelSelector1.ShowPreview = True
