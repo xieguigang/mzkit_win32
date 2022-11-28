@@ -115,7 +115,7 @@
       <DependentUpon>PixelSelector.vb</DependentUpon>
     </Compile>
     <Compile Include="MSI\PixelSelector.vb">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="MSI\RegionSampleCard.Designer.vb">
       <DependentUpon>RegionSampleCard.vb</DependentUpon>

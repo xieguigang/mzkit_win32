@@ -103,6 +103,7 @@ Public Class PixelSelector
     Private algorithmIndex As Integer = 1
 
     Public Property HEMap As Bitmap
+    Public Property ViewerHost As KpImageViewer
 
     Public Sub New()
 
@@ -110,15 +111,15 @@ Public Class PixelSelector
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
-        picCanvas.BackgroundImageLayout = ImageLayout.Stretch
+        Me.BackgroundImageLayout = ImageLayout.Stretch
     End Sub
 
     Public Sub LoadSampleTags(tags As IEnumerable(Of String))
-        Call ToolStripComboBox1.Items.Clear()
-        Call ToolStripComboBox1.Items.Add("*")
+        Call ViewerHost.ToolStripComboBox1.Items.Clear()
+        Call ViewerHost.ToolStripComboBox1.Items.Add("*")
 
         For Each tag As String In tags
-            Call ToolStripComboBox1.Items.Add(tag)
+            Call ViewerHost.ToolStripComboBox1.Items.Add(tag)
         Next
     End Sub
 
@@ -135,23 +136,6 @@ Public Class PixelSelector
             Call polygons.Clear()
         End If
     End Function
-
-    'Sub polygonDemo()
-    '    Dim predefinedVertices As List(Of Vertex) = New List(Of Vertex)(New Vertex() {New Vertex(268, 223), New Vertex(313, 340), New Vertex(442, 340), New Vertex(489, 221), New Vertex(380, 112)})
-    '    Dim predefinedEdges As List(Of Edge) = New List(Of Edge)()
-
-    '    For i = 0 To 5 - 1
-    '        predefinedEdges.Add(New Edge(predefinedVertices(i), predefinedVertices((i + 1) Mod 5)))
-    '    Next
-
-    '    Me.EqualEdges(predefinedEdges(0), predefinedEdges(2), predefinedEdges(CInt(0)).From)
-    '    Me.PerpendiculateEdges(predefinedEdges(3), predefinedEdges(4), predefinedEdges(CInt(3)).From)
-    '    polygons.Add(New Polygon(predefinedVertices, predefinedEdges))
-    '    edgesInRelation.Add((predefinedEdges(0), predefinedEdges(2)))
-    '    edgesInRelation.Add((predefinedEdges(3), predefinedEdges(4)))
-
-    '    RepaintPolygon()
-    'End Sub
 
 #Region "Polygon Editor"
     ''' <summary>
@@ -869,9 +853,9 @@ Public Class PixelSelector
 
     Private Sub DrawSelectionBox(g As Graphics)
         If (endPoint.X < 0) Then endPoint.X = 0
-        If (endPoint.X >= picCanvas.Width) Then endPoint.X = picCanvas.Width - 1
+        If (endPoint.X >= Me.Width) Then endPoint.X = Me.Width - 1
         If (endPoint.Y < 0) Then endPoint.Y = 0
-        If (endPoint.Y >= picCanvas.Height) Then endPoint.Y = picCanvas.Height - 1
+        If (endPoint.Y >= Me.Height) Then endPoint.Y = Me.Height - 1
 
         ' Draw the selection area.
         Dim x = Math.Min(startPoint.X, endPoint.X)
@@ -889,11 +873,11 @@ Public Class PixelSelector
     Private Sub DrawSelectionBox(end_point As Point)
         ' Save the end point.
         endPoint = end_point
-        picCanvas.Invalidate()
+        Me.Invalidate()
     End Sub
 
     Private Sub RepaintPolygon()
-        picCanvas.Invalidate()
+        Me.Invalidate()
     End Sub
 
     Private Function IsLastPolygonCorrect() As Boolean
@@ -1213,23 +1197,15 @@ Public Class PixelSelector
     ''' <returns></returns>
     Public ReadOnly Property MSImage As Image
         Get
-            Return picCanvas.BackgroundImage
+            Return Me.BackgroundImage
         End Get
     End Property
 
     Public ReadOnly Property CanvasSize As Size
         Get
-            Return picCanvas.Size
+            Return Me.Size
         End Get
     End Property
-
-    Public Sub SetColorMapVisible(visible As Boolean)
-        'If range.IsNullOrEmpty AndAlso mapLevels = 0 Then
-        '    ColorScaleMap1.Visible = False
-        'Else
-        '    ColorScaleMap1.Visible = visible
-        'End If
-    End Sub
 
     ''' <summary>
     ''' 
@@ -1300,7 +1276,7 @@ Public Class PixelSelector
             Call g.Dispose()
         End If
 
-        picCanvas.BackgroundImage = image
+        Me.BackgroundImage = image
 
         Me.oldBackColor = Me.BackColor
         Me.BackColor = backColor
@@ -1317,7 +1293,7 @@ Public Class PixelSelector
     Dim oldMessage As String = "MSI Viewer"
 
     Public Sub ShowMessage(text As String)
-        ToolStripStatusLabel1.Text = text
+        ViewerHost.ToolStripStatusLabel1.Text = text
     End Sub
 
     Dim drawing As Boolean = False
@@ -1352,7 +1328,7 @@ Public Class PixelSelector
         GetPolygons(popAll:=True).ToArray()
     End Sub
 
-    Sub canvasMouseDown(sender As Object, e As MouseEventArgs) Handles picCanvas.MouseDown
+    Sub canvasMouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
         If e.Button <> MouseButtons.Left Then
             If e.Button = MouseButtons.Right Then
                 drawing = False
@@ -1372,17 +1348,17 @@ Public Class PixelSelector
 
         rangeStart = New Point(xpoint, ypoint)
 
-        oldMessage = ToolStripStatusLabel1.Text
+        oldMessage = ViewerHost.ToolStripStatusLabel1.Text
         ShowMessage("Select Pixels By Range.")
     End Sub
 
-    Private Sub picCanvas_MouseMove(sender As Object, e As MouseEventArgs) Handles picCanvas.MouseMove
-        If Not picCanvas.BackgroundImage Is Nothing Then
+    Private Sub picCanvas_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
+        If Not Me.BackgroundImage Is Nothing Then
             Dim xpoint = 0
             Dim ypoint = 0
 
             getPoint(New Point(e.X, e.Y), xpoint, ypoint)
-            ToolStripStatusLabel2.Text = $"[{xpoint}, {ypoint}]"
+            ViewerHost.ToolStripStatusLabel2.Text = $"[{xpoint}, {ypoint}]"
         End If
 
         If Not drawing Then
@@ -1402,8 +1378,8 @@ Public Class PixelSelector
     ''' <param name="xpoint"></param>
     ''' <param name="ypoint"></param>
     Private Sub getPoint(e As Point, ByRef xpoint As Integer, ByRef ypoint As Integer)
-        Dim Pic_width = orginal_imageSize.Width / picCanvas.Width
-        Dim Pic_height = orginal_imageSize.Height / picCanvas.Height
+        Dim Pic_width = orginal_imageSize.Width / Me.Width
+        Dim Pic_height = orginal_imageSize.Height / Me.Height
 
         ' 得到图片上的坐标点
         xpoint = e.X * Pic_width
@@ -1417,8 +1393,8 @@ Public Class PixelSelector
     ''' <param name="xpoint"></param>
     ''' <param name="ypoint"></param>
     Private Sub getPoint(e As Point, orginal_imageSize As Size, ByRef xpoint As Integer, ByRef ypoint As Integer)
-        Dim Pic_width = orginal_imageSize.Width / picCanvas.Width
-        Dim Pic_height = orginal_imageSize.Height / picCanvas.Height
+        Dim Pic_width = orginal_imageSize.Width / Me.Width
+        Dim Pic_height = orginal_imageSize.Height / Me.Height
 
         ' 得到图片上的坐标点
         xpoint = e.X * Pic_width
@@ -1473,24 +1449,7 @@ Public Class PixelSelector
         End If
     End Sub
 
-    Private Sub PixelSelector_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Timer1.Enabled = True
-        Timer1.Start()
-
-        Call SetColorMapVisible(visible:=False)
-    End Sub
-
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        If HasRegionSelection Then
-            ' DrawSelectionBox(endPoint, False)
-        End If
-    End Sub
-
     Public cancelBlur As Boolean = False
-
-    Private Sub ToolStripComboBox1_Click(sender As Object, e As EventArgs)
-
-    End Sub
 
     ''' <summary>
     ''' 
@@ -1518,7 +1477,7 @@ Public Class PixelSelector
             For i As Integer = 0 To level
                 bmp = GaussBlur.GaussBlur(bmp)
                 progress(i / level * 100)
-                picCanvas.BackgroundImage = bmp
+                Me.BackgroundImage = bmp
 
                 If cancelBlur Then
                     Exit For
@@ -1533,11 +1492,7 @@ Public Class PixelSelector
 
     Public Event SelectSample(tag As String)
 
-    Private Sub ToolStrip1_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs)
-
-    End Sub
-
-    Private Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs)
+    Friend Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs)
         Dim tag As String = ToolStripComboBox1.SelectedItem.ToString
 
         RaiseEvent SelectSample(tag)
