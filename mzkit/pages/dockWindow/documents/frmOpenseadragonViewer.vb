@@ -20,23 +20,15 @@ Public Class frmOpenseadragonViewer
     End Property
 
     Public Sub LoadSlide(tiff As String)
-        dzi = TempFileSystem.GetAppSysTempFile(".dzi", sessionID:=App.PID.ToHexString.MD5.Substring(2, 6) & "-" & tiff.BaseName, prefix:="deep_zoom_")
-
         If tiff.ExtensionSuffix("xml", "dzi") Then
-            Call tiff.ReadAllText.SaveTo(dzi)
-            Call New Directory($"{tiff.ParentPath}/{tiff.BaseName}_files/").CopyTo(dzi.ParentPath & $"/{dzi.BaseName}_files/")
+            dzi = tiff
         Else
+            dzi = TempFileSystem.GetAppSysTempFile(".dzi", sessionID:=App.PID.ToHexString.MD5.Substring(2, 6) & "-" & tiff.BaseName, prefix:="deep_zoom_")
             Call New DeepZoomCreator().CreateSingleComposition(tiff, dzi, ImageType.Jpeg)
         End If
 
         Call startHttp()
-        Call copyHtmls()
         Call frmHtmlViewer.Init(Me.WebView21)
-    End Sub
-
-    Private Sub copyHtmls()
-        Call $"{AppEnvironment.getWebViewFolder}/openseadragon.html".ReadAllText.SaveTo($"{dzi.ParentPath}/openseadragon.html")
-        Call New Directory($"{AppEnvironment.getWebViewFolder}/openseadragon/").CopyTo($"{dzi.ParentPath}/openseadragon/")
     End Sub
 
     Private Sub startHttp()
@@ -44,7 +36,7 @@ Public Class frmOpenseadragonViewer
         localfs = New Process With {
             .StartInfo = New ProcessStartInfo With {
                 .FileName = $"{App.HOME}/Rstudio/bin/Rserve.exe",
-                .Arguments = $"--listen /wwwroot ""{dzi.ParentPath}"" /port {webPort}",
+                .Arguments = $"--listen /wwwroot ""{dzi.ParentPath}"" --attach ""{dzi.ParentPath}"" /port {webPort}",
                 .CreateNoWindow = True,
                 .WindowStyle = ProcessWindowStyle.Hidden,
                 .UseShellExecute = True
@@ -68,6 +60,7 @@ Public Class frmOpenseadragonViewer
         WebView21.CoreWebView2.Settings.AreDevToolsEnabled = enable
         WebView21.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = enable
         WebView21.CoreWebView2.Settings.AreDefaultContextMenusEnabled = enable
+
         If enable Then
             Call MyApplication.host.showStatusMessage($"[{TabText}] WebView2 developer tools has been enable!")
         End If
