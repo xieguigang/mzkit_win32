@@ -304,13 +304,15 @@ Public Class frmMsImagingViewer
                         tiff = $"{file.FileName.ParentPath}/{file.FileName.FileName},0.tif"
                     End Using
 
-                    PixelSelector1.OpenImageFile(tiff)
-                    PixelSelector1.PreviewButton = True
-                    PixelSelector1.ShowPreview = True
+                    'PixelSelector1.OpenImageFile(tiff)
+                    'PixelSelector1.PreviewButton = True
+                    'PixelSelector1.ShowPreview = True
+                    Call VisualStudio.ShowDocument(Of frmOpenseadragonViewer)(, title:=tiff.FileName).LoadSlide(tiff)
                 ElseIf file.FileName.ExtensionSuffix("tif", "tiff") Then
-                    PixelSelector1.OpenImageFile(file.FileName)
-                    PixelSelector1.PreviewButton = True
-                    PixelSelector1.ShowPreview = True
+                    'PixelSelector1.OpenImageFile(file.FileName)
+                    'PixelSelector1.PreviewButton = True
+                    'PixelSelector1.ShowPreview = True
+                    Call VisualStudio.ShowDocument(Of frmOpenseadragonViewer)(, title:=file.FileName.FileName).LoadSlide(file.FileName)
                 Else
                     Call loadHEMapImage(New Bitmap(file.FileName.LoadImage))
                 End If
