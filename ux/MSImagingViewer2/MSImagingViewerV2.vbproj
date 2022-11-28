@@ -207,7 +207,10 @@
     <Import Include="Microsoft.VisualBasic" />
     <Import Include="System" />
     <Import Include="System.Collections.Generic" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Media" />
     <Import Include="System.Windows.Forms" />
+    <Import Include="System.Windows.Markup" />
     <Import Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
