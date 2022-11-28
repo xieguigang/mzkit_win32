@@ -2,6 +2,7 @@
 Imports System.IO
 Imports System.Reflection
 Imports System.Runtime.InteropServices
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 
 Partial Public Class KpImageViewer : Inherits UserControl
 
@@ -236,6 +237,10 @@ Partial Public Class KpImageViewer : Inherits UserControl
         End Set
     End Property
 
+    ''' <summary>
+    ''' set image on viewer for show to user
+    ''' </summary>
+    ''' <returns></returns>
     Public Property Image As Bitmap
         Get
             Return drawing.Image
@@ -1015,6 +1020,8 @@ Partial Public Class KpImageViewer : Inherits UserControl
         MSICanvas.ViewerHost = Me
         MSICanvas.Location = pbFull.Location
         MSICanvas.Size = pbFull.Size
+        MSICanvas.BringToFront()
+        MSICanvas.Visible = True
     End Sub
 
     Public Sub SetColorMapVisible(visible As Boolean)
@@ -1035,6 +1042,13 @@ Partial Public Class KpImageViewer : Inherits UserControl
 
     Private Sub MSICanvas_SelectPolygon(polygon() As PointF) Handles MSICanvas.SelectPolygon
         RaiseEvent SelectPolygon(polygon)
+    End Sub
+
+    Public Sub SetMsImagingOutput(image As Image, scan_dimension As Size, background As Color, colorSet As ScalerPalette, range() As Double, mapLevels As Integer)
+        MSICanvas.SetMsImagingOutput(image, scan_dimension)
+        MSICanvas.BackColor = background
+
+        Me.Image = New Bitmap(image)
     End Sub
 End Class
 

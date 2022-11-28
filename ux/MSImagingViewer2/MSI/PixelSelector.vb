@@ -1182,8 +1182,6 @@ Public Class PixelSelector
     Dim orginal_imageSize As Size
     Dim orginal_image As Image
     Dim pixel_size As Size
-    Dim range As Double()
-    Dim mapLevels As Integer
 
     Public ReadOnly Property dimension_size As Size
 
@@ -1196,20 +1194,12 @@ Public Class PixelSelector
     ''' <param name="dimension_size">
     ''' the dimension size of the MSI raw data
     ''' </param>
-    ''' <param name="colorMap"></param>
     ''' <param name="range"></param>
     ''' <param name="mapLevels"></param>
-    Public Sub SetMsImagingOutput(value As Image,
-                                  dimension_size As Size,
-                                  colorMap As ScalerPalette,
-                                  range As Double(),
-                                  mapLevels As Integer)
-
+    Public Sub SetMsImagingOutput(value As Image, dimension_size As Size)
         Me.pixel_size = New Size(value.Width / dimension_size.Width, value.Height / dimension_size.Height)
         Me._dimension_size = dimension_size
         Me.orginal_image = value
-        Me.range = range
-        Me.mapLevels = mapLevels
 
         'If range.IsNullOrEmpty AndAlso mapLevels = 0 Then
         '    ColorScaleMap1.Visible = False

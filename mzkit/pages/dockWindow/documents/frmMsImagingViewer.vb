@@ -365,7 +365,7 @@ Public Class frmMsImagingViewer
             rendering()
         Else
             ' just display hemap on the canvas
-            PixelSelector1.MSICanvas.SetMsImagingOutput(PixelSelector1.MSICanvas.HEMap, PixelSelector1.MSICanvas.HEMap.Size, ScalerPalette.Jet, {0, 255}, 120)
+            PixelSelector1.SetMsImagingOutput(PixelSelector1.MSICanvas.HEMap, PixelSelector1.MSICanvas.HEMap.Size, params.background, ScalerPalette.Jet, {0, 255}, 120)
         End If
 
         If HEMap Is Nothing Then
@@ -1356,8 +1356,7 @@ Public Class frmMsImagingViewer
                            Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
                            Dim mapLevels As Integer = params.mapLevels
 
-                           PixelSelector1.MSICanvas.SetMsImagingOutput(image, blender.dimensions, params.colors, {range.Min, range.Max}, mapLevels)
-                           PixelSelector1.MSICanvas.BackColor = params.background
+                           PixelSelector1.SetMsImagingOutput(image, blender.dimensions, params.background, params.colors, {range.Min, range.Max}, mapLevels)
                            PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
                        End Sub)
                End Sub
@@ -1424,8 +1423,7 @@ Public Class frmMsImagingViewer
                        Sub(args)
                            Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
 
-                           PixelSelector1.MSICanvas.SetMsImagingOutput(image, blender.dimensions, Nothing, Nothing, Nothing)
-                           PixelSelector1.MSICanvas.BackColor = params.background
+                           PixelSelector1.SetMsImagingOutput(image, blender.dimensions, params.background, Nothing, Nothing, Nothing)
                            PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
                        End Sub)
                End Sub
@@ -1460,7 +1458,14 @@ Public Class frmMsImagingViewer
                                                            End Sub)
                                 End Sub)
                     Call Invoke(Sub()
-                                    PixelSelector1.MSICanvas.SetMsImagingOutput(New Bitmap(1, 1), New Size(params.scan_x, params.scan_y), params.colors, {0, 1}, 1)
+                                    PixelSelector1.SetMsImagingOutput(
+                                        New Bitmap(1, 1),
+                                        New Size(params.scan_x, params.scan_y),
+                                        params.background,
+                                        params.colors,
+                                        {0, 1},
+                                        1
+                                    )
                                 End Sub)
                 Else
                     Dim base = pixels.OrderByDescending(Function(p) p.intensity).FirstOrDefault
@@ -1541,8 +1546,7 @@ Public Class frmMsImagingViewer
                     Sub(args)
                         Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
 
-                        PixelSelector1.MSICanvas.SetMsImagingOutput(image, dimensions, params.colors, {0, 1}, params.mapLevels)
-                        PixelSelector1.MSICanvas.BackColor = params.background
+                        PixelSelector1.SetMsImagingOutput(image, dimensions, params.background, params.colors, {0, 1}, params.mapLevels)
                         PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
                     End Sub)
             End Sub
@@ -1573,8 +1577,7 @@ Public Class frmMsImagingViewer
                                    Sub()
                                        Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
 
-                                       PixelSelector1.MSICanvas.SetMsImagingOutput(image, dimensions.SizeParser, params.colors, {range.Min, range.Max}, params.mapLevels)
-                                       PixelSelector1.MSICanvas.BackColor = params.background
+                                       PixelSelector1.SetMsImagingOutput(image, dimensions.SizeParser, params.background, params.colors, {range.Min, range.Max}, params.mapLevels)
                                        PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
                                    End Sub)
                                End Sub)
