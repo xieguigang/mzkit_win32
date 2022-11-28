@@ -21,7 +21,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
     Private ptSelectionEnd As Point = New Point()
 
     Private panelDragging As Boolean = False
-    Private showPreviewField As Boolean = True
+    Private m_showPreviews As Boolean = True
     Private grabCursor As Cursor = Nothing
     Private dragCursor As Cursor = Nothing
 
@@ -269,10 +269,12 @@ Partial Public Class KpImageViewer : Inherits UserControl
         ' Hide preview panel mechanics
         ' Making sure that UpdatePanels doesn't get called when it's hidden!
 
-        If showPreviewField <> pbPanel.Visible Then
-            If showPreviewField = False Then
+        If m_showPreviews <> pbPanelAirscape.Visible Then
+            If m_showPreviews = False Then
                 ' panelPreview.Hide()
-                pbPanel.Hide()
+                pbPanelAirscape.Hide()
+                pbFull.Hide()
+                MSICanvas.Show()
 
                 ' pbFull.Width = pbFull.Width + (4 + panelPreview.Width)
 
@@ -287,7 +289,9 @@ Partial Public Class KpImageViewer : Inherits UserControl
                 pbFull.Refresh()
             Else
                 ' panelPreview.Show()
-                pbPanel.Show()
+                pbPanelAirscape.Show()
+                pbFull.Show()
+                MSICanvas.Hide()
 
                 ' pbFull.Width = pbFull.Width - (4 + panelPreview.Width)
 
@@ -310,11 +314,11 @@ Partial Public Class KpImageViewer : Inherits UserControl
 
     Public Property ShowPreview As Boolean
         Get
-            Return showPreviewField
+            Return m_showPreviews
         End Get
         Set(value As Boolean)
-            If showPreviewField <> value Then
-                showPreviewField = value
+            If m_showPreviews <> value Then
+                m_showPreviews = value
                 Preview()
             End If
         End Set
@@ -401,7 +405,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
 
     Public Sub InitControl()
         ' Make sure panel is DoubleBuffering
-        drawEngine.CreateDoubleBuffer(pbFull.CreateGraphics(), pbFull.Size.Width, pbFull.Size.Height, pbPanel.Size.Width, pbPanel.Size.Height)
+        drawEngine.CreateDoubleBuffer(pbFull.CreateGraphics(), pbFull.Size.Width, pbFull.Size.Height, pbPanelAirscape.Size.Width, pbPanelAirscape.Size.Height)
     End Sub
 
     Private Sub FocusOnMe()
@@ -717,7 +721,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
             ' Display zoom in percentages
             ToolStripComboBoxZoom.Text = zoom * 100 & "%"
 
-            If updatePreview AndAlso drawing.PreviewImage IsNot Nothing AndAlso pbPanel.Visible = True Then
+            If updatePreview AndAlso drawing.PreviewImage IsNot Nothing AndAlso pbPanelAirscape.Visible = True Then
                 ' No memory leaks here
                 If previewField IsNot Nothing Then
                     previewField.Dispose()
@@ -728,8 +732,8 @@ Partial Public Class KpImageViewer : Inherits UserControl
                 previewField = New Bitmap(drawing.PreviewImage.Size.Width, drawing.PreviewImage.Size.Height)
 
                 ' Make sure panel is the same size as the bitmap
-                If pbPanel.Size <> drawing.PreviewImage.Size Then
-                    pbPanel.Size = drawing.PreviewImage.Size
+                If pbPanelAirscape.Size <> drawing.PreviewImage.Size Then
+                    pbPanelAirscape.Size = drawing.PreviewImage.Size
                 End If
 
                 ' New Graphics from the new bitmap we created (Empty)
@@ -765,14 +769,14 @@ Partial Public Class KpImageViewer : Inherits UserControl
                 End Using
 
                 ' Display the bitmap
-                pbPanel.Image = previewField
+                pbPanelAirscape.Image = previewField
             End If
         End If
     End Sub
 
-    Private Sub pbPanel_MouseDown(sender As Object, e As MouseEventArgs) Handles pbPanel.MouseDown
+    Private Sub pbPanel_MouseDown(sender As Object, e As MouseEventArgs) Handles pbPanelAirscape.MouseDown
         If panelDragging = False Then
-            drawing.JumpToOrigin(e.X, e.Y, pbPanel.Width, pbPanel.Height, pbFull.Width, pbFull.Height)
+            drawing.JumpToOrigin(e.X, e.Y, pbPanelAirscape.Width, pbPanelAirscape.Height, pbFull.Width, pbFull.Height)
             UpdatePanels(True)
 
             panelDragging = True
@@ -805,14 +809,14 @@ Partial Public Class KpImageViewer : Inherits UserControl
         FocusOnMe()
     End Sub
 
-    Private Sub pbPanel_MouseMove(sender As Object, e As MouseEventArgs) Handles pbPanel.MouseMove
+    Private Sub pbPanel_MouseMove(sender As Object, e As MouseEventArgs) Handles pbPanelAirscape.MouseMove
         If panelDragging Then
-            drawing.JumpToOrigin(e.X, e.Y, pbPanel.Width, pbPanel.Height, pbFull.Width, pbFull.Height)
+            drawing.JumpToOrigin(e.X, e.Y, pbPanelAirscape.Width, pbPanelAirscape.Height, pbFull.Width, pbFull.Height)
             UpdatePanels(True)
         End If
     End Sub
 
-    Private Sub pbPanel_MouseUp(sender As Object, e As MouseEventArgs) Handles pbPanel.MouseUp
+    Private Sub pbPanel_MouseUp(sender As Object, e As MouseEventArgs) Handles pbPanelAirscape.MouseUp
         panelDragging = False
     End Sub
 

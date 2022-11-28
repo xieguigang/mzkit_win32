@@ -24,7 +24,7 @@
     ''' the contents of this method with the code editor.
     ''' </summary>
     Private Sub InitializeComponent()
-        Me.pbPanel = New System.Windows.Forms.PictureBox()
+        Me.pbPanelAirscape = New System.Windows.Forms.PictureBox()
         Me.pbFull = New Mzkit_win32.MSImagingViewerV2.PanelDoubleBuffered()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
@@ -42,22 +42,22 @@
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.MSICanvas = New Mzkit_win32.MSImagingViewerV2.PixelSelector()
-        CType(Me.pbPanel, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbPanelAirscape, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pbFull.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.MSICanvas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'pbPanel
+        'pbPanelAirscape
         '
-        Me.pbPanel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.pbPanel.Location = New System.Drawing.Point(485, 3)
-        Me.pbPanel.Name = "pbPanel"
-        Me.pbPanel.Size = New System.Drawing.Size(148, 108)
-        Me.pbPanel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.pbPanel.TabIndex = 10
-        Me.pbPanel.TabStop = False
+        Me.pbPanelAirscape.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pbPanelAirscape.Location = New System.Drawing.Point(485, 3)
+        Me.pbPanelAirscape.Name = "pbPanelAirscape"
+        Me.pbPanelAirscape.Size = New System.Drawing.Size(148, 108)
+        Me.pbPanelAirscape.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbPanelAirscape.TabIndex = 10
+        Me.pbPanelAirscape.TabStop = False
         '
         'pbFull
         '
@@ -66,7 +66,7 @@
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pbFull.BackColor = System.Drawing.SystemColors.ControlLight
         Me.pbFull.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pbFull.Controls.Add(Me.pbPanel)
+        Me.pbFull.Controls.Add(Me.pbPanelAirscape)
         Me.pbFull.Location = New System.Drawing.Point(0, 25)
         Me.pbFull.Name = "pbFull"
         Me.pbFull.Size = New System.Drawing.Size(638, 370)
@@ -216,7 +216,7 @@
         Me.MinimumSize = New System.Drawing.Size(454, 145)
         Me.Name = "KpImageViewer"
         Me.Size = New System.Drawing.Size(638, 417)
-        CType(Me.pbPanel, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbPanelAirscape, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pbFull.ResumeLayout(False)
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
@@ -229,7 +229,11 @@
     End Sub
 
 #End Region
-    Private WithEvents pbPanel As Windows.Forms.PictureBox
+
+    ''' <summary>
+    ''' 鸟瞰图
+    ''' </summary>
+    Private WithEvents pbPanelAirscape As Windows.Forms.PictureBox
     Private WithEvents pbFull As PanelDoubleBuffered
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents ToolStripLabel1 As ToolStripLabel
