@@ -101,11 +101,7 @@ Public Class PixelSelector
     Private algorithmIndex As Integer = 1
 
     Public Property HEMap As Bitmap
-    Public ReadOnly Property ViewerHost As KpImageViewer
-        Get
-            Return Me.Parent
-        End Get
-    End Property
+    Public Property ViewerHost As KpImageViewer
 
     Public Sub New()
 

@@ -41,10 +41,12 @@
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.PixelSelector1 = New Mzkit_win32.MSImagingViewerV2.PixelSelector()
         CType(Me.pbPanel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pbFull.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
+        CType(Me.PixelSelector1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pbPanel
@@ -59,10 +61,12 @@
         '
         'pbFull
         '
+        Me.pbFull.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pbFull.BackColor = System.Drawing.SystemColors.ControlLight
         Me.pbFull.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pbFull.Controls.Add(Me.pbPanel)
-        Me.pbFull.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pbFull.Location = New System.Drawing.Point(0, 25)
         Me.pbFull.Name = "pbFull"
         Me.pbFull.Size = New System.Drawing.Size(638, 370)
@@ -184,10 +188,28 @@
         Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(57, 17)
         Me.ToolStripStatusLabel2.Text = "[n/a, n/a]"
         '
+        'PixelSelector1
+        '
+        Me.PixelSelector1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PixelSelector1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.PixelSelector1.HEMap = Nothing
+        Me.PixelSelector1.Location = New System.Drawing.Point(571, 401)
+        Me.PixelSelector1.Name = "PixelSelector1"
+        Me.PixelSelector1.SelectPolygonMode = False
+        Me.PixelSelector1.ShowPointInform = False
+        Me.PixelSelector1.Size = New System.Drawing.Size(10, 10)
+        Me.PixelSelector1.TabIndex = 11
+        Me.PixelSelector1.TabStop = False
+        Me.PixelSelector1.tissue_layer = Nothing
+        Me.PixelSelector1.ViewerHost = Nothing
+        '
         'KpImageViewer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.PixelSelector1)
         Me.Controls.Add(Me.pbFull)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.ToolStrip1)
@@ -200,6 +222,7 @@
         Me.ToolStrip1.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        CType(Me.PixelSelector1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -223,4 +246,5 @@
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
     Friend WithEvents ToolStripStatusLabel2 As ToolStripStatusLabel
+    Friend WithEvents PixelSelector1 As PixelSelector
 End Class

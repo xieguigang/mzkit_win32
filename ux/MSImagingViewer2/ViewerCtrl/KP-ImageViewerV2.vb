@@ -977,6 +977,12 @@ Partial Public Class KpImageViewer : Inherits UserControl
 
         RaiseEvent SelectSample(tag)
     End Sub
+
+    Private Sub KpImageViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
+        PixelSelector1.ViewerHost = Me
+        PixelSelector1.Location = pbFull.Location
+        PixelSelector1.Size = pbFull.Size
+    End Sub
 End Class
 
 
