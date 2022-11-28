@@ -107,6 +107,22 @@
     <Compile Include="KPObject\GifImage.vb" />
     <Compile Include="KPObject\KP-DrawEngine.vb" />
     <Compile Include="KPObject\KP-DrawObject.vb" />
+    <Compile Include="MSI\Editor\Constants.vb" />
+    <Compile Include="MSI\Editor\Edge.vb" />
+    <Compile Include="MSI\Editor\Polygon.vb" />
+    <Compile Include="MSI\Editor\Vertex.vb" />
+    <Compile Include="MSI\PixelSelector.Designer.vb">
+      <DependentUpon>PixelSelector.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MSI\PixelSelector.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MSI\RegionSampleCard.Designer.vb">
+      <DependentUpon>RegionSampleCard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MSI\RegionSampleCard.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ViewerCtrl\Events\ImageViewerZoomEventArgs.vb" />
     <Compile Include="ViewerCtrl\Events\ImageViewerRotationEventArgs.vb" />
     <Compile Include="ViewerCtrl\KP-ImageViewerV2.vb">
@@ -134,6 +150,12 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="MSI\PixelSelector.resx">
+      <DependentUpon>PixelSelector.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MSI\RegionSampleCard.resx">
+      <DependentUpon>RegionSampleCard.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewerCtrl\ColorScaler.resx">
       <DependentUpon>ColorScaler.vb</DependentUpon>
     </EmbeddedResource>

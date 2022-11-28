@@ -203,19 +203,9 @@
     <Compile Include="GCxGC\PeakSelector.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MSI\RegionSampleCard.Designer.vb">
-      <DependentUpon>RegionSampleCard.vb</DependentUpon>
-    </Compile>
-    <Compile Include="MSI\RegionSampleCard.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="ToolStripTraceBarItem.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="MSI\Editor\Edge.vb" />
-    <Compile Include="MSI\Editor\Constants.vb" />
-    <Compile Include="MSI\Editor\Polygon.vb" />
-    <Compile Include="MSI\Editor\Vertex.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
@@ -230,12 +220,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <Compile Include="MSI\PixelSelector.Designer.vb">
-      <DependentUpon>PixelSelector.vb</DependentUpon>
-    </Compile>
-    <Compile Include="MSI\PixelSelector.vb">
-      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="RtRangeSelector.Designer.vb">
       <DependentUpon>RtRangeSelector.vb</DependentUpon>
@@ -282,9 +266,6 @@
     <EmbeddedResource Include="GCxGC\PeakSelector.resx">
       <DependentUpon>PeakSelector.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MSI\RegionSampleCard.resx">
-      <DependentUpon>RegionSampleCard.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MSSelector.en-US.resx">
       <DependentUpon>MSSelector.vb</DependentUpon>
     </EmbeddedResource>
@@ -296,9 +277,6 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MSI\PixelSelector.resx">
-      <DependentUpon>PixelSelector.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RtRangeSelector.en-US.resx">
       <DependentUpon>RtRangeSelector.vb</DependentUpon>
