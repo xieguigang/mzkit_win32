@@ -229,8 +229,8 @@
     End Sub
 
 #End Region
-    Private pbPanel As Windows.Forms.PictureBox
-    Private pbFull As PanelDoubleBuffered
+    Private WithEvents pbPanel As Windows.Forms.PictureBox
+    Private WithEvents pbFull As PanelDoubleBuffered
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents ToolStripLabel1 As ToolStripLabel
     Friend WithEvents ToolStripComboBox1 As ToolStripComboBox

@@ -228,7 +228,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
     '    End Set
     'End Property
 
-    Public WriteOnly Property ImagePath As String
+    Private WriteOnly Property ImagePath As String
         Set(value As String)
             drawing.ImagePath = value
 
@@ -409,7 +409,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
         Focus()
     End Sub
 
-    Private Sub KP_ImageViewerV2_Load(sender As Object, e As EventArgs)
+    Private Sub KP_ImageViewerV2_Load(sender As Object, e As EventArgs) Handles Me.Load
         ' Loop for ComboBox Items! Increments by 25%
         Dim z = 0.25
 
@@ -454,13 +454,13 @@ Partial Public Class KpImageViewer : Inherits UserControl
         '    End If
     End Sub
 
-    Private Sub KP_ImageViewerV2_Resize(sender As Object, e As EventArgs)
+    Private Sub KP_ImageViewerV2_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         InitControl()
         drawing.AvoidOutOfScreen()
         UpdatePanels(True)
     End Sub
 
-    Private Sub pbFull_Paint(sender As Object, e As PaintEventArgs)
+    Private Sub pbFull_Paint(sender As Object, e As PaintEventArgs) Handles pbFull.Paint
         ' Can I double buffer?
         If drawEngine.CanDoubleBuffer() Then
             ' Yes I can!
@@ -478,7 +478,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
         End If
     End Sub
 
-    Private Sub pbFull_MouseDown(sender As Object, e As MouseEventArgs)
+    Private Sub pbFull_MouseDown(sender As Object, e As MouseEventArgs) Handles pbFull.MouseDown
         If e.Button = MouseButtons.Left Then
             ' Left Shift or Right Shift pressed? Or is select mode one?
             If IsKeyPressed(&HA0) OrElse IsKeyPressed(&HA1) OrElse selectMode = True Then
@@ -506,7 +506,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
         End If
     End Sub
 
-    Private Sub pbFull_MouseUp(sender As Object, e As MouseEventArgs)
+    Private Sub pbFull_MouseUp(sender As Object, e As MouseEventArgs) Handles pbFull.MouseUp
         ' Am i dragging or selecting?
         If shiftSelecting = True Then
             ' Calculate my selection rectangle
@@ -542,7 +542,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
         End If
     End Sub
 
-    Private Sub pbFull_MouseMove(sender As Object, e As MouseEventArgs)
+    Private Sub pbFull_MouseMove(sender As Object, e As MouseEventArgs) Handles pbFull.MouseMove
         ' Am I dragging or selecting?
         If shiftSelecting = True Then
             ' Keep selecting
@@ -581,7 +581,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
         End If
     End Sub
 
-    Private Sub KP_ImageViewerV2_MouseWheel(sender As Object, e As MouseEventArgs)
+    Private Sub KP_ImageViewerV2_MouseWheel(sender As Object, e As MouseEventArgs) Handles Me.MouseWheel
         drawing.Scroll(sender, e)
 
         If drawing.Image IsNot Nothing Then
@@ -607,7 +607,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
         UpdatePanels(True)
     End Sub
 
-    Private Sub btnRotate270_Click(sender As Object, e As EventArgs)
+    Private Sub btnRotate270_Click(sender As Object, e As EventArgs) Handles ToolStripButtonRotate270.Click
         If drawing IsNot Nothing Then
             drawing.Rotate270()
 
@@ -618,7 +618,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
         End If
     End Sub
 
-    Private Sub btnRotate90_Click(sender As Object, e As EventArgs)
+    Private Sub btnRotate90_Click(sender As Object, e As EventArgs) Handles ToolStripButtonRotate90.Click
         If drawing IsNot Nothing Then
             drawing.Rotate90()
 
@@ -662,7 +662,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
         End If
     End Sub
 
-    Private Sub btnZoomOut_Click(sender As Object, e As EventArgs)
+    Private Sub btnZoomOut_Click(sender As Object, e As EventArgs) Handles ToolStripButtonZoomOut.Click
         drawing.ZoomOut()
 
         ' AfterZoom Event
@@ -672,7 +672,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
         UpdatePanels(True)
     End Sub
 
-    Private Sub btnZoomIn_Click(sender As Object, e As EventArgs)
+    Private Sub btnZoomIn_Click(sender As Object, e As EventArgs) Handles ToolStripButtonZoomIn.Click
         drawing.ZoomIn()
 
         ' AfterZoom Event
@@ -682,12 +682,12 @@ Partial Public Class KpImageViewer : Inherits UserControl
         UpdatePanels(True)
     End Sub
 
-    Private Sub btnFitToScreen_Click(sender As Object, e As EventArgs)
+    Private Sub btnFitToScreen_Click(sender As Object, e As EventArgs) Handles ToolStripButtonFitToScreen.Click
         drawing.FitToScreen()
         UpdatePanels(True)
     End Sub
 
-    Private Sub cbZoom_SelectedIndexChanged(sender As Object, e As EventArgs)
+    Private Sub cbZoom_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ToolStripComboBoxZoom.SelectedIndexChanged
         Dim zoom = (ToolStripComboBoxZoom.SelectedIndex + 1) * 0.25
         Dim originalZoom = drawing.Zoom
 
@@ -770,7 +770,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
         End If
     End Sub
 
-    Private Sub pbPanel_MouseDown(sender As Object, e As MouseEventArgs)
+    Private Sub pbPanel_MouseDown(sender As Object, e As MouseEventArgs) Handles pbPanel.MouseDown
         If panelDragging = False Then
             drawing.JumpToOrigin(e.X, e.Y, pbPanel.Width, pbPanel.Height, pbFull.Width, pbFull.Height)
             UpdatePanels(True)
@@ -779,12 +779,12 @@ Partial Public Class KpImageViewer : Inherits UserControl
         End If
     End Sub
 
-    Private Sub pbFull_MouseDoubleClick(sender As Object, e As MouseEventArgs)
+    Private Sub pbFull_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles pbFull.MouseDoubleClick
         drawing.JumpToOrigin(e.X + (drawing.BoundingBox.X - drawing.BoundingBox.X * 2), e.Y + (drawing.BoundingBox.Y - drawing.BoundingBox.Y * 2), pbFull.Width, pbFull.Height)
         UpdatePanels(True)
     End Sub
 
-    Private Sub pbFull_MouseHover(sender As Object, e As EventArgs)
+    Private Sub pbFull_MouseHover(sender As Object, e As EventArgs) Handles pbFull.MouseHover
         ' Left shift or Right shift!
         If IsKeyPressed(&HA0) OrElse IsKeyPressed(&HA1) Then
             ' Fancy cursor
@@ -797,26 +797,26 @@ Partial Public Class KpImageViewer : Inherits UserControl
         End If
     End Sub
 
-    Private Sub KpImageViewer_Click(sender As Object, e As EventArgs)
+    Private Sub KpImageViewer_Click(sender As Object, e As EventArgs) Handles Me.Click
         FocusOnMe()
     End Sub
 
-    Private Sub pbFull_Click(sender As Object, e As EventArgs)
+    Private Sub pbFull_Click(sender As Object, e As EventArgs) Handles pbFull.Click
         FocusOnMe()
     End Sub
 
-    Private Sub pbPanel_MouseMove(sender As Object, e As MouseEventArgs)
+    Private Sub pbPanel_MouseMove(sender As Object, e As MouseEventArgs) Handles pbPanel.MouseMove
         If panelDragging Then
             drawing.JumpToOrigin(e.X, e.Y, pbPanel.Width, pbPanel.Height, pbFull.Width, pbFull.Height)
             UpdatePanels(True)
         End If
     End Sub
 
-    Private Sub pbPanel_MouseUp(sender As Object, e As MouseEventArgs)
+    Private Sub pbPanel_MouseUp(sender As Object, e As MouseEventArgs) Handles pbPanel.MouseUp
         panelDragging = False
     End Sub
 
-    Private Sub pbFull_MouseEnter(sender As Object, e As EventArgs)
+    Private Sub pbFull_MouseEnter(sender As Object, e As EventArgs) Handles pbFull.MouseEnter
         If IsKeyPressed(&HA0) OrElse IsKeyPressed(&HA1) OrElse selectMode = True Then
             pbFull.Cursor = Cursors.Cross
         Else
@@ -826,11 +826,11 @@ Partial Public Class KpImageViewer : Inherits UserControl
         End If
     End Sub
 
-    Private Sub pbFull_MouseLeave(sender As Object, e As EventArgs)
+    Private Sub pbFull_MouseLeave(sender As Object, e As EventArgs) Handles pbFull.MouseLeave
         pbFull.Cursor = Cursors.Default
     End Sub
 
-    Private Sub btnPreview_Click(sender As Object, e As EventArgs)
+    Private Sub btnPreview_Click(sender As Object, e As EventArgs) Handles ToolStripButtonPreview.Click
         If ShowPreview Then
             ShowPreview = False
         Else
@@ -838,7 +838,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
         End If
     End Sub
 
-    Private Sub cbZoom_KeyPress(sender As Object, e As KeyPressEventArgs)
+    Private Sub cbZoom_KeyPress(sender As Object, e As KeyPressEventArgs) Handles ToolStripComboBoxZoom.KeyPress
         Try
             ' If it's not a digit, delete or backspace then make sure the input is being handled with. (Suppressed)
             If Not Char.IsDigit(e.KeyChar) AndAlso Asc(e.KeyChar) <> Keys.Delete AndAlso Asc(e.KeyChar) <> Keys.Back Then
@@ -867,7 +867,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
     End Sub
 
     Private Function CalculateReversibleRectangle(ptSelectStart As Point, ptSelectEnd As Point) As Rectangle
-        Dim rect As Rectangle = New Rectangle()
+        Dim rect As New Rectangle()
 
         ptSelectStart = pbFull.PointToScreen(ptSelectStart)
         ptSelectEnd = pbFull.PointToScreen(ptSelectEnd)
@@ -950,13 +950,13 @@ Partial Public Class KpImageViewer : Inherits UserControl
         End Try
     End Sub
 
-    Private Sub btnMode_Click(sender As Object, e As EventArgs)
+    Private Sub btnMode_Click(sender As Object, e As EventArgs) Handles ToolStripButtonMode.Click
         If selectMode = False Then
             selectMode = True
-            ' btnMode.Image = Properties.Resources.btnDrag
+            ToolStripButtonMode.Image = Global.Mzkit_win32.MSImagingViewerV2.Resources.btnDrag
         Else
             selectMode = False
-            '  btnMode.Image = Properties.Resources.btnSelect
+            ToolStripButtonMode.Image = Global.Mzkit_win32.MSImagingViewerV2.Resources.btnSelect
         End If
     End Sub
 
@@ -1037,7 +1037,11 @@ Partial Public Class KpImageViewer : Inherits UserControl
         RaiseEvent SelectPolygon(polygon)
     End Sub
 
-    Public Sub SetMsImagingOutput(image As Image, scan_dimension As Size, background As Color, colorSet As ScalerPalette, range() As Double, mapLevels As Integer)
+    Public Sub SetMsImagingOutput(image As Image, scan_dimension As Size, background As Color,
+                                  colorSet As ScalerPalette,
+                                  range() As Double,
+                                  mapLevels As Integer)
+
         MSICanvas.SetMsImagingOutput(image, scan_dimension)
         MSICanvas.BackColor = background
 
