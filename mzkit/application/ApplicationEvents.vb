@@ -462,6 +462,7 @@ Type 'q()' to quit R.
                     Dim dzi As String = img.ChangeSuffix("dzi")
 
                     Call tool.CreateSingleComposition(img, dzi, ImageType.Jpeg)
+                    End
                 End If
             End If
 
