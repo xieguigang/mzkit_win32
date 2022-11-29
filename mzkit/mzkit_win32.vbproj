@@ -571,6 +571,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\DemoItem.vb" />
+    <Compile Include="pages\dockWindow\documents\TissueSlideHandler.vb" />
     <Compile Include="pages\dockWindow\documents\frmOpenseadragonViewer.Designer.vb">
       <DependentUpon>frmOpenseadragonViewer.vb</DependentUpon>
     </Compile>

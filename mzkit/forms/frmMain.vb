@@ -153,6 +153,10 @@ Public Class frmMain
         If fileName.ExtensionSuffix("R") Then
             Call WindowModules.fileExplorer.AddScript(fileName.GetFullPath)
             Call openRscript(fileName)
+        ElseIf fileName.ExtensionSuffix("tif", "dzi") Then
+            Call TissueSlideHandler.OpenTifFile(fileName)
+        ElseIf fileName.ExtensionSuffix("ndpi") Then
+            Call TissueSlideHandler.OpenNdpiFile(fileName)
         ElseIf fileName.ExtensionSuffix("csv", "xlsx") Then
             Call SelectSheetName.OpenExcel(fileName)
         ElseIf fileName.ExtensionSuffix("imzML") Then
