@@ -83,6 +83,7 @@
     <ROW Directory="esi_msms_models_Dir" Directory_Parent="models_Dir" DefaultDir="ESI_MS~1|esi_msms_models"/>
     <ROW Directory="ggplot_Dir" Directory_Parent="pipeline_Dir" DefaultDir="ggplot"/>
     <ROW Directory="host_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="host"/>
+    <ROW Directory="images_1_Dir" Directory_Parent="openseadragon_Dir" DefaultDir="images"/>
     <ROW Directory="images_Dir" Directory_Parent="webview_Dir" DefaultDir="images"/>
     <ROW Directory="jaJP_Dir" Directory_Parent="APPDIR" DefaultDir="ja-JP"/>
     <ROW Directory="js_Dir" Directory_Parent="static_Dir" DefaultDir="js"/>
@@ -103,6 +104,7 @@
     <ROW Directory="net6.0_5_Dir" Directory_Parent="lib_2_Dir" DefaultDir="net6.0"/>
     <ROW Directory="net6.0_6_Dir" Directory_Parent="lib_3_Dir" DefaultDir="net6.0"/>
     <ROW Directory="net6.0_Dir" Directory_Parent="lib_6_Dir" DefaultDir="net6.0"/>
+    <ROW Directory="openseadragon_Dir" Directory_Parent="webview_Dir" DefaultDir="OPENSE~1|openseadragon"/>
     <ROW Directory="packages_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="packages"/>
     <ROW Directory="peptide_ce_cfm_Dir" Directory_Parent="esi_msms_models_Dir" DefaultDir="PEPTID~1|peptide_ce_cfm"/>
     <ROW Directory="peptide_se_cfm_Dir" Directory_Parent="esi_msms_models_Dir" DefaultDir="PEPTID~2|peptide_se_cfm"/>
@@ -506,11 +508,13 @@
     <ROW Component="base.dll" ComponentId="{CE725451-82E3-43CF-9CED-9EA3FC09BB45}" Directory_="library_Dir" Attributes="256" KeyPath="base.dll"/>
     <ROW Component="biosample_quantification.nmrML" ComponentId="{6797762F-26CA-4D41-A12D-70B4679D666D}" Directory_="NMR_Dir" Attributes="256" KeyPath="biosample_quantification.nmrML" Type="0"/>
     <ROW Component="buildMSIIndex.R" ComponentId="{4CAB334A-A78A-445B-A09F-95533697E87E}" Directory_="pipeline_Dir" Attributes="256" KeyPath="buildMSIIndex.R" Type="0"/>
+    <ROW Component="button_grouphover.png" ComponentId="{46570993-00D4-4376-AF2E-BCD9CBED38EF}" Directory_="images_1_Dir" Attributes="0" KeyPath="button_grouphover.png" Type="0"/>
     <ROW Component="cfmannotate.exe" ComponentId="{004078A1-4B62-480C-960B-D4E24F99CE8D}" Directory_="cfmid2_Dir" Attributes="0" KeyPath="cfmannotate.exe"/>
     <ROW Component="cfmid.exe" ComponentId="{703C5741-27ED-4477-A85F-B7975C12857B}" Directory_="cfmid2_Dir" Attributes="0" KeyPath="cfmid.exe"/>
     <ROW Component="cfmidprecomputed.exe" ComponentId="{D1D3461F-67D4-4BB3-A0E4-5A5BB2B71865}" Directory_="cfmid2_Dir" Attributes="0" KeyPath="cfmidprecomputed.exe"/>
     <ROW Component="cfmpredict.exe" ComponentId="{0927518D-9A31-4BC6-8196-AB568B10ABE6}" Directory_="cfmid2_Dir" Attributes="0" KeyPath="cfmpredict.exe"/>
     <ROW Component="cfmtrain.exe" ComponentId="{1F24F529-801B-4238-9D16-33FBC4BD42DE}" Directory_="cfmid2_Dir" Attributes="0" KeyPath="cfmtrain.exe"/>
+    <ROW Component="changelog.txt" ComponentId="{3FAED94B-6433-47EB-961E-2436C4E61825}" Directory_="openseadragon_Dir" Attributes="0" KeyPath="changelog.txt" Type="0"/>
     <ROW Component="chebi_lite.obo" ComponentId="{F06AF326-68FE-455D-A085-4C6A69857DEE}" Directory_="data_Dir" Attributes="0" KeyPath="chebi_lite.obo" Type="0"/>
     <ROW Component="computestats.exe" ComponentId="{296261EB-CFAB-43E9-941B-C9D73E7DC7B3}" Directory_="cfmid2_Dir" Attributes="0" KeyPath="computestats.exe"/>
     <ROW Component="demo" ComponentId="{3814EF2E-1AF4-4908-916A-83B955835615}" Directory_="demo_Dir" Attributes="256"/>
@@ -1210,6 +1214,50 @@
     <ROW File="ndpisplit.exe" Component_="ndpisplit.exe" FileName="NDPISP~6.EXE|ndpisplit.exe" Attributes="0" SourcePath="..\dist\ndpitools\ndpisplit.exe" SelfReg="false" DigSign="true"/>
     <ROW File="readme.txt_3" Component_="article_diagnostic_pathology.pdf" FileName="readme.txt" Attributes="0" SourcePath="..\dist\ndpitools\readme.txt" SelfReg="false"/>
     <ROW File="Mzkit_win32.MSImagingViewerV2.dll" Component_="Mzkit_win32.MSImagingViewerV2.dll" FileName="MZKIT_~5.DLL|Mzkit_win32.MSImagingViewerV2.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.MSImagingViewerV2.dll" SelfReg="false"/>
+    <ROW File="changelog.txt" Component_="changelog.txt" FileName="CHANGE~1.TXT|changelog.txt" Attributes="0" SourcePath="..\webview\openseadragon\changelog.txt" SelfReg="false"/>
+    <ROW File="button_grouphover.png" Component_="button_grouphover.png" FileName="BUTTON~1.PNG|button_grouphover.png" Attributes="0" SourcePath="..\webview\openseadragon\images\button_grouphover.png" SelfReg="false"/>
+    <ROW File="button_hover.png" Component_="button_grouphover.png" FileName="BUTTON~2.PNG|button_hover.png" Attributes="0" SourcePath="..\webview\openseadragon\images\button_hover.png" SelfReg="false"/>
+    <ROW File="button_pressed.png" Component_="button_grouphover.png" FileName="BUTTON~3.PNG|button_pressed.png" Attributes="0" SourcePath="..\webview\openseadragon\images\button_pressed.png" SelfReg="false"/>
+    <ROW File="button_rest.png" Component_="button_grouphover.png" FileName="BUTTON~4.PNG|button_rest.png" Attributes="0" SourcePath="..\webview\openseadragon\images\button_rest.png" SelfReg="false"/>
+    <ROW File="flip_grouphover.png" Component_="button_grouphover.png" FileName="FLIP_G~1.PNG|flip_grouphover.png" Attributes="0" SourcePath="..\webview\openseadragon\images\flip_grouphover.png" SelfReg="false"/>
+    <ROW File="flip_hover.png" Component_="button_grouphover.png" FileName="FLIP_H~1.PNG|flip_hover.png" Attributes="0" SourcePath="..\webview\openseadragon\images\flip_hover.png" SelfReg="false"/>
+    <ROW File="flip_pressed.png" Component_="button_grouphover.png" FileName="FLIP_P~1.PNG|flip_pressed.png" Attributes="0" SourcePath="..\webview\openseadragon\images\flip_pressed.png" SelfReg="false"/>
+    <ROW File="flip_rest.png" Component_="button_grouphover.png" FileName="FLIP_R~1.PNG|flip_rest.png" Attributes="0" SourcePath="..\webview\openseadragon\images\flip_rest.png" SelfReg="false"/>
+    <ROW File="fullpage_grouphover.png" Component_="button_grouphover.png" FileName="FULLPA~1.PNG|fullpage_grouphover.png" Attributes="0" SourcePath="..\webview\openseadragon\images\fullpage_grouphover.png" SelfReg="false"/>
+    <ROW File="fullpage_hover.png" Component_="button_grouphover.png" FileName="FULLPA~2.PNG|fullpage_hover.png" Attributes="0" SourcePath="..\webview\openseadragon\images\fullpage_hover.png" SelfReg="false"/>
+    <ROW File="fullpage_pressed.png" Component_="button_grouphover.png" FileName="FULLPA~3.PNG|fullpage_pressed.png" Attributes="0" SourcePath="..\webview\openseadragon\images\fullpage_pressed.png" SelfReg="false"/>
+    <ROW File="fullpage_rest.png" Component_="button_grouphover.png" FileName="FULLPA~4.PNG|fullpage_rest.png" Attributes="0" SourcePath="..\webview\openseadragon\images\fullpage_rest.png" SelfReg="false"/>
+    <ROW File="home_grouphover.png" Component_="button_grouphover.png" FileName="HOME_G~1.PNG|home_grouphover.png" Attributes="0" SourcePath="..\webview\openseadragon\images\home_grouphover.png" SelfReg="false"/>
+    <ROW File="home_hover.png" Component_="button_grouphover.png" FileName="HOME_H~1.PNG|home_hover.png" Attributes="0" SourcePath="..\webview\openseadragon\images\home_hover.png" SelfReg="false"/>
+    <ROW File="home_pressed.png" Component_="button_grouphover.png" FileName="HOME_P~1.PNG|home_pressed.png" Attributes="0" SourcePath="..\webview\openseadragon\images\home_pressed.png" SelfReg="false"/>
+    <ROW File="home_rest.png" Component_="button_grouphover.png" FileName="HOME_R~1.PNG|home_rest.png" Attributes="0" SourcePath="..\webview\openseadragon\images\home_rest.png" SelfReg="false"/>
+    <ROW File="next_grouphover.png" Component_="button_grouphover.png" FileName="NEXT_G~1.PNG|next_grouphover.png" Attributes="0" SourcePath="..\webview\openseadragon\images\next_grouphover.png" SelfReg="false"/>
+    <ROW File="next_hover.png" Component_="button_grouphover.png" FileName="NEXT_H~1.PNG|next_hover.png" Attributes="0" SourcePath="..\webview\openseadragon\images\next_hover.png" SelfReg="false"/>
+    <ROW File="next_pressed.png" Component_="button_grouphover.png" FileName="NEXT_P~1.PNG|next_pressed.png" Attributes="0" SourcePath="..\webview\openseadragon\images\next_pressed.png" SelfReg="false"/>
+    <ROW File="next_rest.png" Component_="button_grouphover.png" FileName="NEXT_R~1.PNG|next_rest.png" Attributes="0" SourcePath="..\webview\openseadragon\images\next_rest.png" SelfReg="false"/>
+    <ROW File="previous_grouphover.png" Component_="button_grouphover.png" FileName="PREVIO~1.PNG|previous_grouphover.png" Attributes="0" SourcePath="..\webview\openseadragon\images\previous_grouphover.png" SelfReg="false"/>
+    <ROW File="previous_hover.png" Component_="button_grouphover.png" FileName="PREVIO~2.PNG|previous_hover.png" Attributes="0" SourcePath="..\webview\openseadragon\images\previous_hover.png" SelfReg="false"/>
+    <ROW File="previous_pressed.png" Component_="button_grouphover.png" FileName="PREVIO~3.PNG|previous_pressed.png" Attributes="0" SourcePath="..\webview\openseadragon\images\previous_pressed.png" SelfReg="false"/>
+    <ROW File="previous_rest.png" Component_="button_grouphover.png" FileName="PREVIO~4.PNG|previous_rest.png" Attributes="0" SourcePath="..\webview\openseadragon\images\previous_rest.png" SelfReg="false"/>
+    <ROW File="rotateleft_grouphover.png" Component_="button_grouphover.png" FileName="ROTATE~1.PNG|rotateleft_grouphover.png" Attributes="0" SourcePath="..\webview\openseadragon\images\rotateleft_grouphover.png" SelfReg="false"/>
+    <ROW File="rotateleft_hover.png" Component_="button_grouphover.png" FileName="ROTATE~2.PNG|rotateleft_hover.png" Attributes="0" SourcePath="..\webview\openseadragon\images\rotateleft_hover.png" SelfReg="false"/>
+    <ROW File="rotateleft_pressed.png" Component_="button_grouphover.png" FileName="ROTATE~3.PNG|rotateleft_pressed.png" Attributes="0" SourcePath="..\webview\openseadragon\images\rotateleft_pressed.png" SelfReg="false"/>
+    <ROW File="rotateleft_rest.png" Component_="button_grouphover.png" FileName="ROTATE~4.PNG|rotateleft_rest.png" Attributes="0" SourcePath="..\webview\openseadragon\images\rotateleft_rest.png" SelfReg="false"/>
+    <ROW File="rotateright_grouphover.png" Component_="button_grouphover.png" FileName="ROTATE~5.PNG|rotateright_grouphover.png" Attributes="0" SourcePath="..\webview\openseadragon\images\rotateright_grouphover.png" SelfReg="false"/>
+    <ROW File="rotateright_hover.png" Component_="button_grouphover.png" FileName="ROTATE~6.PNG|rotateright_hover.png" Attributes="0" SourcePath="..\webview\openseadragon\images\rotateright_hover.png" SelfReg="false"/>
+    <ROW File="rotateright_pressed.png" Component_="button_grouphover.png" FileName="ROTATE~7.PNG|rotateright_pressed.png" Attributes="0" SourcePath="..\webview\openseadragon\images\rotateright_pressed.png" SelfReg="false"/>
+    <ROW File="rotateright_rest.png" Component_="button_grouphover.png" FileName="ROTATE~8.PNG|rotateright_rest.png" Attributes="0" SourcePath="..\webview\openseadragon\images\rotateright_rest.png" SelfReg="false"/>
+    <ROW File="zoomin_grouphover.png" Component_="button_grouphover.png" FileName="ZOOMIN~1.PNG|zoomin_grouphover.png" Attributes="0" SourcePath="..\webview\openseadragon\images\zoomin_grouphover.png" SelfReg="false"/>
+    <ROW File="zoomin_hover.png" Component_="button_grouphover.png" FileName="ZOOMIN~2.PNG|zoomin_hover.png" Attributes="0" SourcePath="..\webview\openseadragon\images\zoomin_hover.png" SelfReg="false"/>
+    <ROW File="zoomin_pressed.png" Component_="button_grouphover.png" FileName="ZOOMIN~3.PNG|zoomin_pressed.png" Attributes="0" SourcePath="..\webview\openseadragon\images\zoomin_pressed.png" SelfReg="false"/>
+    <ROW File="zoomin_rest.png" Component_="button_grouphover.png" FileName="ZOOMIN~4.PNG|zoomin_rest.png" Attributes="0" SourcePath="..\webview\openseadragon\images\zoomin_rest.png" SelfReg="false"/>
+    <ROW File="zoomout_grouphover.png" Component_="button_grouphover.png" FileName="ZOOMOU~1.PNG|zoomout_grouphover.png" Attributes="0" SourcePath="..\webview\openseadragon\images\zoomout_grouphover.png" SelfReg="false"/>
+    <ROW File="zoomout_hover.png" Component_="button_grouphover.png" FileName="ZOOMOU~2.PNG|zoomout_hover.png" Attributes="0" SourcePath="..\webview\openseadragon\images\zoomout_hover.png" SelfReg="false"/>
+    <ROW File="zoomout_pressed.png" Component_="button_grouphover.png" FileName="ZOOMOU~3.PNG|zoomout_pressed.png" Attributes="0" SourcePath="..\webview\openseadragon\images\zoomout_pressed.png" SelfReg="false"/>
+    <ROW File="zoomout_rest.png" Component_="button_grouphover.png" FileName="ZOOMOU~4.PNG|zoomout_rest.png" Attributes="0" SourcePath="..\webview\openseadragon\images\zoomout_rest.png" SelfReg="false"/>
+    <ROW File="LICENSE.txt_1" Component_="changelog.txt" FileName="LICENSE.txt" Attributes="0" SourcePath="..\webview\openseadragon\LICENSE.txt" SelfReg="false"/>
+    <ROW File="openseadragon.min.js" Component_="changelog.txt" FileName="OPENSE~1.JS|openseadragon.min.js" Attributes="0" SourcePath="..\webview\openseadragon\openseadragon.min.js" SelfReg="false"/>
+    <ROW File="openseadragon.html" Component_="logo.png" FileName="OPENSE~1.HTM|openseadragon.html" Attributes="0" SourcePath="..\webview\openseadragon.html" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -1797,6 +1845,8 @@
     <ROW Feature_="MainFeature" Component_="ndpisplitsmJ.exe"/>
     <ROW Feature_="MainFeature" Component_="ndpisplits.exe"/>
     <ROW Feature_="MainFeature" Component_="ndpisplit.exe"/>
+    <ROW Feature_="MainFeature" Component_="changelog.txt"/>
+    <ROW Feature_="MainFeature" Component_="button_grouphover.png"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
