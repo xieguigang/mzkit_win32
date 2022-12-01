@@ -48,7 +48,7 @@ Partial Class SpatialTile
         Me.ContextMenuStrip = Me.ContextMenuStrip1
         Me.DoubleBuffered = True
         Me.Name = "SpatialTile"
-        Me.Size = New System.Drawing.Size(309, 304)
+        Me.Size = New System.Drawing.Size(142, 186)
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 

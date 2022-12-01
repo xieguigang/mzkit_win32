@@ -1837,11 +1837,10 @@ Public Class frmMsImagingViewer
                 Dim spots As SpaceSpot() = ST_spaceranger _
                     .LoadTissueSpots(file.FileName.ReadAllLines) _
                     .ToArray
-                Dim matrix As PixelData() = spots.GetPixels.ToArray
-                Dim tile As New SpatialTile
 
-                Call tile.ShowMatrix(matrix)
-
+                Call PixelSelector1 _
+                    .MSICanvas _
+                    .AddSpatialTile(spots.GetPixels)
             End If
         End Using
     End Sub

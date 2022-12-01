@@ -73,7 +73,7 @@ Imports System.Data
 Imports System.Drawing
 Imports System.Drawing.Drawing2D
 Imports System.Runtime.CompilerServices
-Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Mzkit_win32.MSImagingViewerV2.PolygonEditor
 Imports stdNum = System.Math
@@ -119,6 +119,13 @@ Public Class PixelSelector
         For Each tag As String In tags
             Call ViewerHost.ToolStripComboBox1.Items.Add(tag)
         Next
+    End Sub
+
+    Public Sub AddSpatialTile(matrix As IEnumerable(Of PixelData))
+        Dim tile As New SpatialTile
+
+        Call tile.ShowMatrix(matrix)
+        Call Me.Controls.Add(tile)
     End Sub
 
     ''' <summary>
