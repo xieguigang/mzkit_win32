@@ -11,7 +11,7 @@ Public Class SpatialTile
 
     Dim spatialMatrix As PixelData()
     Dim colors As ScalerPalette = ScalerPalette.turbo
-    Dim radius As Integer = 100
+    Dim radius As Integer = 1
     Dim dimensions As Size
     Dim offset As Point
     Dim moveTile As Boolean = False
