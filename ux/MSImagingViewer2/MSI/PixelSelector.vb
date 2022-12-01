@@ -1201,8 +1201,6 @@ Public Class PixelSelector
     ''' <param name="dimension_size">
     ''' the dimension size of the MSI raw data
     ''' </param>
-    ''' <param name="range"></param>
-    ''' <param name="mapLevels"></param>
     Public Sub SetMsImagingOutput(value As Image, dimension_size As Size)
         Me.pixel_size = New Size(value.Width / dimension_size.Width, value.Height / dimension_size.Height)
         Me._dimension_size = dimension_size
