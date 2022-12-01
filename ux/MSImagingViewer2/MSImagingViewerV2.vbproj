@@ -178,6 +178,9 @@
     <EmbeddedResource Include="MSI\InputSpotRadius.resx">
       <DependentUpon>InputSpotRadius.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MSI\InputSpotRadius.zh-CN.resx">
+      <DependentUpon>InputSpotRadius.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MSI\PixelSelector.resx">
       <DependentUpon>PixelSelector.vb</DependentUpon>
     </EmbeddedResource>
