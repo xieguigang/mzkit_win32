@@ -88,6 +88,8 @@ Partial Class frmMsImagingViewer
         Me.SamplesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddSampleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ClearToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ExtractRegionSampleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ImageProcessingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
@@ -96,25 +98,17 @@ Partial Class frmMsImagingViewer
         Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExportPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportMatrixToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PixelSelector1 = New KpImageViewer()
-        Me.ExtractRegionSampleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripSeparator()
+        Me.PixelSelector1 = New mzkit_win32.MSImagingViewerV2.KpImageViewer()
+        Me.ToolStripMenuItem6 = New System.Windows.Forms.ToolStripSeparator()
+        Me.AddSpatialTileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'ContextMenuStrip1
         '
-        resources.ApplyResources(Me.ContextMenuStrip1, "ContextMenuStrip1")
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PinToolStripMenuItem, Me.ClearToolStripMenuItem, Me.ToolStripMenuItem1, Me.SamplesToolStripMenuItem, Me.ToolStripMenuItem2, Me.ImageProcessingToolStripMenuItem, Me.ToolStripMenuItem3, Me.SaveImageToolStripMenuItem, Me.CopyImageToolStripMenuItem, Me.ToolStripMenuItem4, Me.ExportPlotToolStripMenuItem, Me.ExportMatrixToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-
-        resources.ApplyResources(Me.PixelSelector1, "PixelSelector1")
-        Me.PixelSelector1.ContextMenuStrip = Me.ContextMenuStrip1
-        Me.PixelSelector1.Cursor = System.Windows.Forms.Cursors.Cross
-        Me.PixelSelector1.Name = "PixelSelector1"
-        Me.PixelSelector1.SelectPolygonMode = False
-        Me.PixelSelector1.ShowPointInform = True
-
+        resources.ApplyResources(Me.ContextMenuStrip1, "ContextMenuStrip1")
         '
         'PinToolStripMenuItem
         '
@@ -128,14 +122,14 @@ Partial Class frmMsImagingViewer
         '
         'ToolStripMenuItem1
         '
-        resources.ApplyResources(Me.ToolStripMenuItem1, "ToolStripMenuItem1")
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        resources.ApplyResources(Me.ToolStripMenuItem1, "ToolStripMenuItem1")
         '
         'SamplesToolStripMenuItem
         '
-        resources.ApplyResources(Me.SamplesToolStripMenuItem, "SamplesToolStripMenuItem")
-        Me.SamplesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddSampleToolStripMenuItem, Me.ClearToolStripMenuItem1, Me.ToolStripMenuItem5, Me.ExtractRegionSampleToolStripMenuItem})
+        Me.SamplesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddSampleToolStripMenuItem, Me.ClearToolStripMenuItem1, Me.ToolStripMenuItem5, Me.ExtractRegionSampleToolStripMenuItem, Me.ToolStripMenuItem6, Me.AddSpatialTileToolStripMenuItem})
         Me.SamplesToolStripMenuItem.Name = "SamplesToolStripMenuItem"
+        resources.ApplyResources(Me.SamplesToolStripMenuItem, "SamplesToolStripMenuItem")
         '
         'AddSampleToolStripMenuItem
         '
@@ -147,10 +141,20 @@ Partial Class frmMsImagingViewer
         resources.ApplyResources(Me.ClearToolStripMenuItem1, "ClearToolStripMenuItem1")
         Me.ClearToolStripMenuItem1.Name = "ClearToolStripMenuItem1"
         '
+        'ToolStripMenuItem5
+        '
+        Me.ToolStripMenuItem5.Name = "ToolStripMenuItem5"
+        resources.ApplyResources(Me.ToolStripMenuItem5, "ToolStripMenuItem5")
+        '
+        'ExtractRegionSampleToolStripMenuItem
+        '
+        Me.ExtractRegionSampleToolStripMenuItem.Name = "ExtractRegionSampleToolStripMenuItem"
+        resources.ApplyResources(Me.ExtractRegionSampleToolStripMenuItem, "ExtractRegionSampleToolStripMenuItem")
+        '
         'ToolStripMenuItem2
         '
-        resources.ApplyResources(Me.ToolStripMenuItem2, "ToolStripMenuItem2")
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        resources.ApplyResources(Me.ToolStripMenuItem2, "ToolStripMenuItem2")
         '
         'ImageProcessingToolStripMenuItem
         '
@@ -159,8 +163,8 @@ Partial Class frmMsImagingViewer
         '
         'ToolStripMenuItem3
         '
-        resources.ApplyResources(Me.ToolStripMenuItem3, "ToolStripMenuItem3")
         Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+        resources.ApplyResources(Me.ToolStripMenuItem3, "ToolStripMenuItem3")
         '
         'SaveImageToolStripMenuItem
         '
@@ -174,8 +178,8 @@ Partial Class frmMsImagingViewer
         '
         'ToolStripMenuItem4
         '
-        resources.ApplyResources(Me.ToolStripMenuItem4, "ToolStripMenuItem4")
         Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
+        resources.ApplyResources(Me.ToolStripMenuItem4, "ToolStripMenuItem4")
         '
         'ExportPlotToolStripMenuItem
         '
@@ -184,18 +188,33 @@ Partial Class frmMsImagingViewer
         '
         'ExportMatrixToolStripMenuItem
         '
-        resources.ApplyResources(Me.ExportMatrixToolStripMenuItem, "ExportMatrixToolStripMenuItem")
         Me.ExportMatrixToolStripMenuItem.Name = "ExportMatrixToolStripMenuItem"
+        resources.ApplyResources(Me.ExportMatrixToolStripMenuItem, "ExportMatrixToolStripMenuItem")
         '
-        'ExtractRegionSampleToolStripMenuItem
+        'PixelSelector1
         '
-        resources.ApplyResources(Me.ExtractRegionSampleToolStripMenuItem, "ExtractRegionSampleToolStripMenuItem")
-        Me.ExtractRegionSampleToolStripMenuItem.Name = "ExtractRegionSampleToolStripMenuItem"
+        Me.PixelSelector1.BackgroundColor = System.Drawing.SystemColors.ControlLight
+        Me.PixelSelector1.ContextMenuStrip = Me.ContextMenuStrip1
+        Me.PixelSelector1.Cursor = System.Windows.Forms.Cursors.Cross
+        resources.ApplyResources(Me.PixelSelector1, "PixelSelector1")
+        Me.PixelSelector1.GifAnimation = False
+        Me.PixelSelector1.Image = Nothing
+        Me.PixelSelector1.Name = "PixelSelector1"
+        Me.PixelSelector1.PreviewButton = True
+        Me.PixelSelector1.Rotation = 0
+        Me.PixelSelector1.SelectPolygonMode = False
+        Me.PixelSelector1.ShowPointInform = True
+        Me.PixelSelector1.ShowPreview = True
         '
-        'ToolStripMenuItem5
+        'ToolStripMenuItem6
         '
-        resources.ApplyResources(Me.ToolStripMenuItem5, "ToolStripMenuItem5")
-        Me.ToolStripMenuItem5.Name = "ToolStripMenuItem5"
+        Me.ToolStripMenuItem6.Name = "ToolStripMenuItem6"
+        resources.ApplyResources(Me.ToolStripMenuItem6, "ToolStripMenuItem6")
+        '
+        'AddSpatialTileToolStripMenuItem
+        '
+        Me.AddSpatialTileToolStripMenuItem.Name = "AddSpatialTileToolStripMenuItem"
+        resources.ApplyResources(Me.AddSpatialTileToolStripMenuItem, "AddSpatialTileToolStripMenuItem")
         '
         'frmMsImagingViewer
         '
@@ -226,4 +245,6 @@ Partial Class frmMsImagingViewer
     Friend WithEvents ToolStripMenuItem4 As ToolStripSeparator
     Friend WithEvents ToolStripMenuItem5 As ToolStripSeparator
     Friend WithEvents ExtractRegionSampleToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem6 As ToolStripSeparator
+    Friend WithEvents AddSpatialTileToolStripMenuItem As ToolStripMenuItem
 End Class

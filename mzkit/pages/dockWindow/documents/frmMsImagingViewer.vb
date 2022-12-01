@@ -90,6 +90,7 @@ Imports Microsoft.VisualBasic.FileIO
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.hqx
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
@@ -98,7 +99,9 @@ Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Text
 Imports mzblender
+Imports Mzkit_win32.MSImagingViewerV2
 Imports ServiceHub
+Imports STImaging
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 Imports File = Microsoft.VisualBasic.Data.csv.IO.File
@@ -1823,5 +1826,23 @@ Public Class frmMsImagingViewer
             blender.sample_tag = tag
             Call rendering()
         End If
+    End Sub
+
+    Private Sub AddSpatialTileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddSpatialTileToolStripMenuItem.Click
+        Using file As New OpenFileDialog With {
+            .Filter = "Space Ranger Spots(*.csv)|*.csv",
+            .Title = "Open a new tissue positions list"
+        }
+            If file.ShowDialog = DialogResult.OK Then
+                Dim spots As SpaceSpot() = ST_spaceranger _
+                    .LoadTissueSpots(file.FileName.ReadAllLines) _
+                    .ToArray
+                Dim matrix As PixelData() = spots.GetPixels.ToArray
+                Dim tile As New SpatialTile
+
+                Call tile.ShowMatrix(matrix)
+
+            End If
+        End Using
     End Sub
 End Class
