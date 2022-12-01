@@ -1,4 +1,5 @@
-﻿Imports System.Drawing
+﻿Imports System.ComponentModel
+Imports System.Drawing
 Imports CommonDialogs
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
@@ -10,11 +11,54 @@ Public Class SpatialTile
 
     Dim spatialMatrix As PixelData()
     Dim colors As ScalerPalette = ScalerPalette.turbo
-    Dim radius As Integer = 10
+    Dim radius As Integer = 100
     Dim dimensions As Size
     Dim offset As Point
     Dim moveTile As Boolean = False
     Dim p As Point
+
+    Private Const WS_EX_TRANSPARENT As Integer = &H20
+
+    Private m_opacity As Integer = 50
+
+    <DefaultValue(50)>
+    Public Property Opacity() As Integer
+        Get
+            Return Me.m_opacity
+        End Get
+        Set
+            If Value < 0 OrElse Value > 100 Then
+                Throw New ArgumentException("value must be between 0 and 100")
+            End If
+
+            Me.m_opacity = Value
+        End Set
+    End Property
+
+    Protected Overrides ReadOnly Property CreateParams() As CreateParams
+        Get
+            Dim cpar As CreateParams = MyBase.CreateParams
+            cpar.ExStyle = cpar.ExStyle Or WS_EX_TRANSPARENT
+            Return cpar
+        End Get
+    End Property
+
+    Sub New()
+
+        ' 此调用是设计器所必需的。
+        InitializeComponent()
+
+        ' 在 InitializeComponent() 调用之后添加任何初始化。
+        SetStyle(ControlStyles.Opaque, True)
+    End Sub
+
+    Protected Overrides Sub OnPaint(e As PaintEventArgs)
+        Using brush = New SolidBrush(Color.FromArgb(Me.Opacity * 255 / 100, Me.BackColor))
+            e.Graphics.FillRectangle(brush, Me.ClientRectangle)
+        End Using
+
+        MyBase.OnPaint(e)
+    End Sub
 
     Public Sub ShowMatrix(matrix As IEnumerable(Of PixelData))
         Me.spatialMatrix = matrix.ToArray
@@ -69,12 +113,14 @@ Public Class SpatialTile
     End Sub
 
     Private Sub SpatialTile_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
+        Me.SuspendLayout()
         moveTile = True
         p = Cursor.Position
     End Sub
 
     Private Sub SpatialTile_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
         moveTile = False
+        Me.ResumeLayout()
     End Sub
 
     Private Sub SpatialTile_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
@@ -86,15 +132,8 @@ Public Class SpatialTile
 
     Dim allowResize As Boolean = False
 
-    Private Sub SpatialTile_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
-
-    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
-
-    End Sub
-
     Private Sub PictureBox1_MouseUp(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseUp
+        Me.ResumeLayout()
         allowResize = False
     End Sub
 
@@ -105,6 +144,7 @@ Public Class SpatialTile
     End Sub
 
     Private Sub PictureBox1_MouseDown(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseDown
+        Me.SuspendLayout()
         allowResize = True
     End Sub
 End Class

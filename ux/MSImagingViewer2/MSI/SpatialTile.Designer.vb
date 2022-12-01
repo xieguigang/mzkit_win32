@@ -57,6 +57,7 @@ Partial Class SpatialTile
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.DeepSkyBlue
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ContextMenuStrip = Me.ContextMenuStrip1
         Me.Controls.Add(Me.PictureBox1)
