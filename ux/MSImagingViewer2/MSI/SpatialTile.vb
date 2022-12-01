@@ -13,6 +13,8 @@ Public Class SpatialTile
     Dim radius As Integer = 10
     Dim dimensions As Size
     Dim offset As Point
+    Dim moveTile As Boolean = False
+    Dim p As Point
 
     Public Sub ShowMatrix(matrix As IEnumerable(Of PixelData))
         Me.spatialMatrix = matrix.ToArray
@@ -64,5 +66,45 @@ Public Class SpatialTile
 
             Me.BackgroundImage = g.ImageResource
         End Using
+    End Sub
+
+    Private Sub SpatialTile_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
+        moveTile = True
+        p = Cursor.Position
+    End Sub
+
+    Private Sub SpatialTile_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
+        moveTile = False
+    End Sub
+
+    Private Sub SpatialTile_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
+        If moveTile Then
+            Me.Location = New Point(Me.Left + Cursor.Position.X - p.X, Me.Top + Cursor.Position.Y - p.Y)
+            p = Cursor.Position
+        End If
+    End Sub
+
+    Dim allowResize As Boolean = False
+
+    Private Sub SpatialTile_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
+
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+
+    End Sub
+
+    Private Sub PictureBox1_MouseUp(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseUp
+        allowResize = False
+    End Sub
+
+    Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
+        If allowResize Then
+            Me.Size = New Size(PictureBox1.Left + e.X, PictureBox1.Top + e.Y)
+        End If
+    End Sub
+
+    Private Sub PictureBox1_MouseDown(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseDown
+        allowResize = True
     End Sub
 End Class
