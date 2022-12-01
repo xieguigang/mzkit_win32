@@ -4,17 +4,33 @@ Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
+Imports Microsoft.VisualBasic.Imaging.Math2D
 
 Public Class SpatialTile
 
     Dim spatialMatrix As PixelData()
-    Dim colors As ScalerPalette
+    Dim colors As ScalerPalette = ScalerPalette.turbo
     Dim radius As Integer = 10
     Dim dimensions As Size
+    Dim offset As Point
 
-    Public Sub ShowMatrix(dims As Size, matrix As IEnumerable(Of PixelData))
-        Me.dimensions = dims
+    Public Sub ShowMatrix(matrix As IEnumerable(Of PixelData))
         Me.spatialMatrix = matrix.ToArray
+
+        Dim polygon As New Polygon2D(Me.spatialMatrix.Select(Function(t) New Point(t.X, t.Y)))
+
+        Me.dimensions = New Size(polygon.xpoints.Max, polygon.ypoints.Max)
+        Me.offset = New Point(polygon.xpoints.Min, polygon.ypoints.Min)
+        Me.spatialMatrix = Me.spatialMatrix _
+            .Select(Function(p)
+                        Return New PixelData(p.X - offset.X, p.Y - offset.Y, p.Scale)
+                    End Function) _
+            .ToArray
+
+        polygon = New Polygon2D(Me.spatialMatrix.Select(Function(t) New Point(t.X, t.Y)))
+        dimensions = New Size(polygon.xpoints.Max, polygon.ypoints.Max)
+
+        Call Plot()
     End Sub
 
     Private Sub AdjustRadius() Handles AdjustRadiusToolStripMenuItem.Click
@@ -28,6 +44,9 @@ Public Class SpatialTile
             End Sub,, config:=input)
     End Sub
 
+    ''' <summary>
+    ''' do matrix rendering and then show plot image
+    ''' </summary>
     Public Sub Plot()
         Dim colors As SolidBrush() = Designer _
             .GetColors(Me.colors.Description, 24) _

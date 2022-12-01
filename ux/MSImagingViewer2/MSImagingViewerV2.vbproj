@@ -127,7 +127,9 @@
     <Compile Include="MSI\InputSpotRadius.Designer.vb">
       <DependentUpon>InputSpotRadius.vb</DependentUpon>
     </Compile>
-    <Compile Include="MSI\InputSpotRadius.vb" />
+    <Compile Include="MSI\InputSpotRadius.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MSI\PixelSelector.Designer.vb">
       <DependentUpon>PixelSelector.vb</DependentUpon>
     </Compile>
