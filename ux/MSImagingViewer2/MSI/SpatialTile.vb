@@ -53,7 +53,7 @@ Public Class SpatialTile
             .Select(Function(c) New SolidBrush(c)) _
             .ToArray
         Dim range As New DoubleRange(spatialMatrix.Select(Function(i) i.Scale))
-        Dim index As New DoubleRange(0, colors.Length)
+        Dim index As New DoubleRange(0, colors.Length - 1)
 
         Using g As Graphics2D = dimensions.CreateGDIDevice(filled:=Color.Transparent)
             For Each spot As PixelData In spatialMatrix
