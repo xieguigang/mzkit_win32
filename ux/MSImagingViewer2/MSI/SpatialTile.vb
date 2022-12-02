@@ -106,7 +106,7 @@ Public Class SpatialTile
             RaiseEvent GetSpatialMetabolismPoint(smXY, smX, smY)
 
             Call PixelSelector.getPoint(New Point(e.X, e.Y), dimensions, Me.Size, x, y)
-            Call ToolTip1.SetToolTip(Me, $"[ST: ({x},{y})] ~ [SM: ({smX},{smY})]")
+            Call ToolTip1.SetToolTip(Me, $"[ST: ({x + offset.X},{y + offset.Y})] ~ [SM: ({smX},{smY})]")
         End If
     End Sub
 
@@ -162,6 +162,10 @@ Public Class SpatialTile
                     Call pixels.Add(New Point(smX, smY))
                 Next
             Next
+
+            pixels = pixels _
+                .Distinct _
+                .AsList
 
             Yield New SpatialMapping With {
                 .STX = spot.X + offset.X,
