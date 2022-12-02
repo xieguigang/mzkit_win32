@@ -1,10 +1,13 @@
 ﻿Imports System.ComponentModel
 Imports System.Drawing
+Imports System.Runtime.InteropServices
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports CommonDialogs
 Imports Microsoft.VisualBasic.ApplicationServices.Development.XmlDoc.Serialization
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Microsoft.VisualBasic.Imaging.Math2D
+Imports Microsoft.VisualBasic.Text.Xml.Models
 
 Public Class SpatialTile
 
@@ -127,12 +130,47 @@ Public Class SpatialTile
     End Sub
 
     Private Sub ExportSpatialMappingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportSpatialMappingToolStripMenuItem.Click
-        Using file As New SaveFileDialog With {.Filter = "Spatial Mapping Matrix(*.cdf)|*.cdf"}
+        Using file As New SaveFileDialog With {.Filter = "Spatial Mapping Matrix(*.xml)|*.xml"}
             If file.ShowDialog = DialogResult.OK Then
-
+                Call New XmlList(Of SpatialMapping) With {
+                    .items = GetMapping.ToArray
+                } _
+                .GetXml _
+                .SaveTo(file.FileName)
             End If
         End Using
     End Sub
+
+    Private Iterator Function GetMapping() As IEnumerable(Of SpatialMapping)
+        Dim radiusX = Me.Width / dimensions.Width / 2
+        Dim radiusY = Me.Height / dimensions.Height / 2
+        Dim left = Me.Left
+        Dim top = Me.Top
+
+        For Each spot As PixelData In spatialMatrix
+            ' translate to control client XY
+            Dim clientXY As New Point With {.X = spot.X * radiusX * 2, .Y = spot.Y * radiusY * 2}
+            Dim pixels As New List(Of Point)
+
+            For x As Integer = clientXY.X - radiusX To clientXY.X + radiusX
+                For y As Integer = clientXY.Y - radiusY To clientXY.Y + radiusY
+                    Dim SMXY As New Point(clientXY.X + left, clientXY.Y + top)
+                    Dim smX, smY As Integer
+
+                    RaiseEvent GetSpatialMetabolismPoint(SMXY, smX, smY)
+
+                    Call pixels.Add(New Point(smX, smY))
+                Next
+            Next
+
+            Yield New SpatialMapping With {
+                .STX = spot.X + offset.X,
+                .STY = spot.Y + offset.Y,
+                .SMX = pixels.Select(Function(p) p.X).ToArray,
+                .SMY = pixels.Select(Function(p) p.Y).ToArray
+            }
+        Next
+    End Function
 
     Private Sub LoadTissueImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoadTissueImageToolStripMenuItem.Click
         Using file As New OpenFileDialog With {.Filter = "Raster Image(*.jpg;*.png;*.bmp)|*.jpg;*.png;*.bmp"}
