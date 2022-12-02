@@ -1,9 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.Drawing
-Imports CommonDialogs
-Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
-Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Microsoft.VisualBasic.Imaging.Math2D
 
@@ -124,6 +121,7 @@ Public Class SpatialTile
         Using file As New OpenFileDialog With {.Filter = "Raster Image(*.jpg;*.png;*.bmp)|*.jpg;*.png;*.bmp"}
             If file.ShowDialog = DialogResult.OK Then
                 Me.BackgroundImage = file.FileName.LoadImage
+                Me.Refresh()
             End If
         End Using
     End Sub

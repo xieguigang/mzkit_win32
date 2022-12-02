@@ -178,6 +178,9 @@
     <EmbeddedResource Include="MSI\SpatialTile.resx">
       <DependentUpon>SpatialTile.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MSI\SpatialTile.zh-CN.resx">
+      <DependentUpon>SpatialTile.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewerCtrl\ColorScaler.resx">
       <DependentUpon>ColorScaler.vb</DependentUpon>
     </EmbeddedResource>

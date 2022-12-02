@@ -23,55 +23,49 @@ Partial Class SpatialTile
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SpatialTile))
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.LoadTissueImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.ExportSpatialMappingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ContextMenuStrip1
         '
+        resources.ApplyResources(Me.ContextMenuStrip1, "ContextMenuStrip1")
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadTissueImageToolStripMenuItem, Me.ExportSpatialMappingToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(198, 70)
         '
         'LoadTissueImageToolStripMenuItem
         '
+        resources.ApplyResources(Me.LoadTissueImageToolStripMenuItem, "LoadTissueImageToolStripMenuItem")
         Me.LoadTissueImageToolStripMenuItem.Name = "LoadTissueImageToolStripMenuItem"
-        Me.LoadTissueImageToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
-        Me.LoadTissueImageToolStripMenuItem.Text = "Load Tissue Image"
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox1.BackColor = System.Drawing.Color.Black
-        Me.PictureBox1.Cursor = System.Windows.Forms.Cursors.SizeNWSE
-        Me.PictureBox1.Location = New System.Drawing.Point(167, 187)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(6, 6)
-        Me.PictureBox1.TabIndex = 1
-        Me.PictureBox1.TabStop = False
         '
         'ExportSpatialMappingToolStripMenuItem
         '
+        resources.ApplyResources(Me.ExportSpatialMappingToolStripMenuItem, "ExportSpatialMappingToolStripMenuItem")
         Me.ExportSpatialMappingToolStripMenuItem.Name = "ExportSpatialMappingToolStripMenuItem"
-        Me.ExportSpatialMappingToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
-        Me.ExportSpatialMappingToolStripMenuItem.Text = "Export Spatial Mapping"
+        '
+        'PictureBox1
+        '
+        resources.ApplyResources(Me.PictureBox1, "PictureBox1")
+        Me.PictureBox1.BackColor = System.Drawing.Color.Black
+        Me.PictureBox1.Cursor = System.Windows.Forms.Cursors.SizeNWSE
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.TabStop = False
         '
         'SpatialTile
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
+        resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DeepSkyBlue
-        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ContextMenuStrip = Me.ContextMenuStrip1
         Me.Controls.Add(Me.PictureBox1)
         Me.Cursor = System.Windows.Forms.Cursors.NoMove2D
         Me.DoubleBuffered = True
         Me.Name = "SpatialTile"
-        Me.Size = New System.Drawing.Size(172, 192)
         Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
