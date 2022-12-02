@@ -1,6 +1,7 @@
 ﻿Imports System.Drawing
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports CommonDialogs
+Imports Microsoft.VisualBasic.ApplicationServices.Development.XmlDoc.Serialization
 Imports Microsoft.VisualBasic.Data.GraphTheory
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.BitmapImage
@@ -96,6 +97,7 @@ Public Class SpatialTile
     Private Sub SpatialTile_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
         moveTile = False
         Me.ResumeLayout()
+        Me.CanvasOnPaintBackground()
     End Sub
 
     Public Event GetSpatialMetabolismPoint(smXY As Point, ByRef x As Integer, ByRef y As Integer)
@@ -144,6 +146,7 @@ Public Class SpatialTile
     Private Sub PictureBox1_MouseUp(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseUp
         Me.ResumeLayout()
         allowResize = False
+        Me.CanvasOnPaintBackground()
     End Sub
 
     Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
@@ -209,11 +212,15 @@ Public Class SpatialTile
         Next
     End Function
 
+    Dim imageLoad As Boolean = False
+
     Private Sub LoadTissueImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoadTissueImageToolStripMenuItem.Click
         Using file As New OpenFileDialog With {.Filter = "Raster Image(*.jpg;*.png;*.bmp)|*.jpg;*.png;*.bmp"}
             If file.ShowDialog = DialogResult.OK Then
                 Me.BackgroundImage = file.FileName.LoadImage
                 Me.Refresh()
+
+                imageLoad = True
             End If
         End Using
     End Sub
@@ -227,37 +234,47 @@ Public Class SpatialTile
             End Sub,, config:=input)
     End Sub
 
-    '''' <summary>
-    '''' make this spatial tile transparent
-    '''' </summary>
-    'Private Sub CanvasOnPaintBackground()
-    '    If Me.Parent IsNot Nothing Then
-    '        Dim index = Me.Parent.Controls.GetChildIndex(Me)
-    '        Dim g As Graphics2D = Me.Size.CreateGDIDevice
+    ''' <summary>
+    ''' make this spatial tile transparent
+    ''' </summary>
+    Private Sub CanvasOnPaintBackground()
+        If Me.Parent IsNot Nothing Then
+            Dim index = Me.Parent.Controls.GetChildIndex(Me)
+            Dim g As Graphics2D = Me.Size.CreateGDIDevice
 
-    '        For i As Integer = Me.Parent.Controls.Count - 1 To index Step -1
-    '            Dim c = Me.Parent.Controls(i)
+            For i As Integer = Me.Parent.Controls.Count - 1 To index Step -1
+                Dim c = Me.Parent.Controls(i)
 
-    '            If c.Bounds.IntersectsWith(Bounds) AndAlso c.Visible Then
+                If c.Bounds.IntersectsWith(Bounds) AndAlso c.Visible Then
 
-    '                Using bmp = New Bitmap(c.Width, c.Height, g.Graphics)
-    '                    c.DrawToBitmap(bmp, c.ClientRectangle)
-    '                    g.TranslateTransform(c.Left - Left, c.Top - Top)
-    '                    bmp.AdjustContrast(-10)
-    '                    g.DrawImageUnscaled(bmp, Point.Empty)
-    '                    g.TranslateTransform(Left - c.Left, Top - c.Top)
-    '                End Using
-    '            End If
-    '        Next
+                    Using bmp = New Bitmap(c.Width, c.Height, g.Graphics)
+                        c.DrawToBitmap(bmp, c.ClientRectangle)
+                        g.TranslateTransform(c.Left - Left, c.Top - Top)
+                        bmp.AdjustContrast(-10)
+                        g.DrawImageUnscaled(bmp, Point.Empty)
+                        g.TranslateTransform(Left - c.Left, Top - c.Top)
+                    End Using
+                End If
+            Next
 
-    '        g.Flush()
-    '        ' PictureBox2.BackgroundImage = g.ImageResource
-    '        g.Dispose()
-    '    End If
-    'End Sub
+            g.Flush()
+            Me.BackgroundImage = g.ImageResource
+            g.Dispose()
+        End If
+    End Sub
 
     Private Sub SpatialTile_Load(sender As Object, e As EventArgs) Handles Me.Load
         ' PictureBox2.onDraw = AddressOf CanvasOnPaintBackground
         ' PictureBox2.Refresh()
+        Call CanvasOnPaintBackground()
+    End Sub
+
+    Private Sub RemoveTissueImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RemoveTissueImageToolStripMenuItem.Click
+        Me.CanvasOnPaintBackground()
+        imageLoad = False
+    End Sub
+
+    Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
+
     End Sub
 End Class

@@ -32,20 +32,23 @@ Partial Class SpatialTile
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.RemoveTissueImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadTissueImageToolStripMenuItem, Me.EditLabelToolStripMenuItem, Me.ToolStripMenuItem1, Me.ExportSpatialMappingToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadTissueImageToolStripMenuItem, Me.RemoveTissueImageToolStripMenuItem, Me.ToolStripMenuItem2, Me.EditLabelToolStripMenuItem, Me.ToolStripMenuItem1, Me.DeleteToolStripMenuItem, Me.ExportSpatialMappingToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
         resources.ApplyResources(Me.ContextMenuStrip1, "ContextMenuStrip1")
         '
         'LoadTissueImageToolStripMenuItem
         '
-        Me.LoadTissueImageToolStripMenuItem.Name = "LoadTissueImageToolStripMenuItem"
         resources.ApplyResources(Me.LoadTissueImageToolStripMenuItem, "LoadTissueImageToolStripMenuItem")
+        Me.LoadTissueImageToolStripMenuItem.Name = "LoadTissueImageToolStripMenuItem"
         '
         'EditLabelToolStripMenuItem
         '
@@ -59,8 +62,8 @@ Partial Class SpatialTile
         '
         'ExportSpatialMappingToolStripMenuItem
         '
-        Me.ExportSpatialMappingToolStripMenuItem.Name = "ExportSpatialMappingToolStripMenuItem"
         resources.ApplyResources(Me.ExportSpatialMappingToolStripMenuItem, "ExportSpatialMappingToolStripMenuItem")
+        Me.ExportSpatialMappingToolStripMenuItem.Name = "ExportSpatialMappingToolStripMenuItem"
         '
         'ToolTip1
         '
@@ -80,6 +83,21 @@ Partial Class SpatialTile
         Me.PictureBox1.Cursor = System.Windows.Forms.Cursors.SizeNWSE
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.TabStop = False
+        '
+        'RemoveTissueImageToolStripMenuItem
+        '
+        resources.ApplyResources(Me.RemoveTissueImageToolStripMenuItem, "RemoveTissueImageToolStripMenuItem")
+        Me.RemoveTissueImageToolStripMenuItem.Name = "RemoveTissueImageToolStripMenuItem"
+        '
+        'ToolStripMenuItem2
+        '
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        resources.ApplyResources(Me.ToolStripMenuItem2, "ToolStripMenuItem2")
+        '
+        'DeleteToolStripMenuItem
+        '
+        resources.ApplyResources(Me.DeleteToolStripMenuItem, "DeleteToolStripMenuItem")
+        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
         '
         'SpatialTile
         '
@@ -106,4 +124,7 @@ Partial Class SpatialTile
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents Label1 As Label
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents RemoveTissueImageToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
+    Friend WithEvents DeleteToolStripMenuItem As ToolStripMenuItem
 End Class
