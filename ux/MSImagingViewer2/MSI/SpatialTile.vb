@@ -275,7 +275,11 @@ Public Class SpatialTile
             End If
         Next
 
-        g.DrawRectangle(New Pen(Brushes.White, 2) With {.DashStyle = DashStyle.Dash}, New RectangleF(New PointF(1, 1), Me.Size.SizeF))
+        Dim size As Size = Me.Size
+        size = New Size(size.Width - 4, size.Height - 4)
+
+        g.ResetTransform()
+        g.DrawRectangle(New Pen(Brushes.White, 2) With {.DashStyle = DashStyle.Dash}, New Rectangle(New Point(2, 2), size))
         g.Flush()
 
         Me.BackgroundImage = g.ImageResource
