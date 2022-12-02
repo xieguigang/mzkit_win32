@@ -116,6 +116,7 @@
   <ItemGroup>
     <Compile Include="DeepZoomCreator.vb" />
     <Compile Include="DeepZoomImage.vb" />
+    <Compile Include="App.vb" />
     <Compile Include="KPObject\KpZoom.vb" />
     <Compile Include="KPObject\GifImage.vb" />
     <Compile Include="KPObject\KP-DrawEngine.vb" />

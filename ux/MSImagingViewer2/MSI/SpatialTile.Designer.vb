@@ -1,6 +1,6 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class SpatialTile
-    Inherits PictureBox
+    Inherits PanelDoubleBuffered
 
     'UserControl 重写释放以清理组件列表。
     <System.Diagnostics.DebuggerNonUserCode()> _
@@ -34,6 +34,7 @@ Partial Class SpatialTile
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ContextMenuStrip1
@@ -82,18 +83,16 @@ Partial Class SpatialTile
         '
         'SpatialTile
         '
-        resources.ApplyResources(Me, "$this")
-
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        resources.ApplyResources(Me, "$this")
         Me.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ContextMenuStrip = Me.ContextMenuStrip1
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.PictureBox1)
         Me.Cursor = System.Windows.Forms.Cursors.NoMove2D
-        Me.DoubleBuffered = True
-        Me.Name = "SpatialTile"
         Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

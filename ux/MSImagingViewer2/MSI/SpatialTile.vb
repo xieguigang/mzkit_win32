@@ -49,13 +49,13 @@ Public Class SpatialTile
         SetStyle(ControlStyles.Opaque, True)
     End Sub
 
-    Protected Overrides Sub OnPaint(e As PaintEventArgs)
-        Using brush = New SolidBrush(Color.FromArgb(Me.Opacity * 255 / 100, Me.BackColor))
-            e.Graphics.FillRectangle(brush, Me.ClientRectangle)
-        End Using
+    'Protected Overrides Sub OnPaint(e As PaintEventArgs)
+    '    Using brush = New SolidBrush(Color.FromArgb(Me.Opacity * 255 / 100, Me.BackColor))
+    '        e.Graphics.FillRectangle(brush, Me.ClientRectangle)
+    '    End Using
 
-        MyBase.OnPaint(e)
-    End Sub
+    '    MyBase.OnPaint(e)
+    'End Sub
 
     Public Sub ShowMatrix(matrix As IEnumerable(Of PixelData))
         Me.spatialMatrix = matrix.ToArray
@@ -92,6 +92,7 @@ Public Class SpatialTile
         If moveTile Then
             Me.Location = New Point(Me.Left + Cursor.Position.X - p.X, Me.Top + Cursor.Position.Y - p.Y)
             p = Cursor.Position
+            Me.Invalidate()
         Else
             ' show tooltip information
             Dim x As Integer, y As Integer
@@ -116,6 +117,7 @@ Public Class SpatialTile
     Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
         If allowResize Then
             Me.Size = New Size(PictureBox1.Left + e.X, PictureBox1.Top + e.Y)
+            Me.Invalidate()
         End If
     End Sub
 
@@ -141,7 +143,7 @@ Public Class SpatialTile
         End Using
     End Sub
 
-    Private Sub EditLabelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditLabelToolStripMenuItem.Click
+    Private Sub EditLabelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditLabelToolStripMenuItem.Click, Label1.Click
         Dim input As New InputLabelText With {.Label = Label1.Text}
 
         Call InputDialog.Input(
