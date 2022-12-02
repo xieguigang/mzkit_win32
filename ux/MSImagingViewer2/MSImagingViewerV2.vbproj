@@ -149,6 +149,12 @@
     <Compile Include="MSI\SpatialTile.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="MSI\UserControl1.Designer.vb">
+      <DependentUpon>UserControl1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MSI\UserControl1.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ViewerCtrl\Events\ImageViewerZoomEventArgs.vb" />
     <Compile Include="ViewerCtrl\Events\ImageViewerRotationEventArgs.vb" />
     <Compile Include="ViewerCtrl\KP-ImageViewerV2.vb">
@@ -190,6 +196,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MSI\SpatialTile.zh-CN.resx">
       <DependentUpon>SpatialTile.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MSI\UserControl1.resx">
+      <DependentUpon>UserControl1.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewerCtrl\ColorScaler.resx">
       <DependentUpon>ColorScaler.vb</DependentUpon>
