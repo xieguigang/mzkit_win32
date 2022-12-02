@@ -82,7 +82,7 @@ Public Class SpatialTile
         polygon = New Polygon2D(spatialMatrix.Select(Function(t) New Point(t.px, t.py)))
 
         Me.dimensions = New Size(polygon.xpoints.Max, polygon.ypoints.Max)
-        Me.spatialMatrix = Grid(Of SpaceSpot).Create(spatialMatrix, Function(spot) spot.GetPoint)
+        Me.spatialMatrix = Grid(Of SpaceSpot).Create(spatialMatrix, Function(spot) spot.px, Function(spot) spot.py)
     End Sub
 
 
