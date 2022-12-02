@@ -126,6 +126,8 @@ Public Class PixelSelector
 
         Call tile.ShowMatrix(matrix)
         Call Me.Controls.Add(tile)
+
+        AddHandler tile.GetSpatialMetabolismPoint, AddressOf getPoint
     End Sub
 
     ''' <summary>

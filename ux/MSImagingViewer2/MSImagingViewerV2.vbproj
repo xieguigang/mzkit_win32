@@ -124,6 +124,12 @@
     <Compile Include="MSI\Editor\Edge.vb" />
     <Compile Include="MSI\Editor\Polygon.vb" />
     <Compile Include="MSI\Editor\Vertex.vb" />
+    <Compile Include="MSI\InputLabelText.Designer.vb">
+      <DependentUpon>InputLabelText.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MSI\InputLabelText.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MSI\PixelSelector.Designer.vb">
       <DependentUpon>PixelSelector.vb</DependentUpon>
     </Compile>
@@ -140,7 +146,7 @@
       <DependentUpon>SpatialTile.vb</DependentUpon>
     </Compile>
     <Compile Include="MSI\SpatialTile.vb">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ViewerCtrl\Events\ImageViewerZoomEventArgs.vb" />
     <Compile Include="ViewerCtrl\Events\ImageViewerRotationEventArgs.vb" />
@@ -169,6 +175,9 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="MSI\InputLabelText.resx">
+      <DependentUpon>InputLabelText.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MSI\PixelSelector.resx">
       <DependentUpon>PixelSelector.vb</DependentUpon>
     </EmbeddedResource>
@@ -280,6 +289,10 @@
     <ProjectReference Include="..\..\..\visualize\TissueMorphology\TissueMorphology.vbproj">
       <Project>{560a9982-7d34-44c8-a0de-6b86e119247e}</Project>
       <Name>TissueMorphology</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonDialogs\CommonDialogs.vbproj">
+      <Project>{13685719-56a6-44f9-99a2-47cb79d29a57}</Project>
+      <Name>CommonDialogs</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

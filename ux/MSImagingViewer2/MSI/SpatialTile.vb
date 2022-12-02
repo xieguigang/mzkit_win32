@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.Drawing
+Imports CommonDialogs
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Microsoft.VisualBasic.Imaging.Math2D
@@ -84,6 +85,8 @@ Public Class SpatialTile
         Me.ResumeLayout()
     End Sub
 
+    Public Event GetSpatialMetabolismPoint(smXY As Point, ByRef x As Integer, ByRef y As Integer)
+
     Private Sub SpatialTile_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
         If moveTile Then
             Me.Location = New Point(Me.Left + Cursor.Position.X - p.X, Me.Top + Cursor.Position.Y - p.Y)
@@ -91,9 +94,14 @@ Public Class SpatialTile
         Else
             ' show tooltip information
             Dim x As Integer, y As Integer
+            Dim smX As Integer
+            Dim smY As Integer
+            Dim smXY As New Point(Left + e.X, Top + e.Y)
+
+            RaiseEvent GetSpatialMetabolismPoint(smXY, smX, smY)
 
             Call PixelSelector.getPoint(New Point(e.X, e.Y), dimensions, Me.Size, x, y)
-            Call ToolTip1.SetToolTip(Me, $"[X={x}, Y={y}]")
+            Call ToolTip1.SetToolTip(Me, $"[ST: ({x},{y})] ~ [SM: ({smX},{smY})]")
         End If
     End Sub
 
@@ -130,5 +138,14 @@ Public Class SpatialTile
                 Me.Refresh()
             End If
         End Using
+    End Sub
+
+    Private Sub EditLabelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditLabelToolStripMenuItem.Click
+        Dim input As New InputLabelText With {.Label = Label1.Text}
+
+        Call InputDialog.Input(
+            Sub(config)
+                Label1.Text = config.Label
+            End Sub,, config:=input)
     End Sub
 End Class
