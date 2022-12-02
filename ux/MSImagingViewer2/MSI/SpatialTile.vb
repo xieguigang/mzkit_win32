@@ -242,45 +242,46 @@ Public Class SpatialTile
     ''' make this spatial tile transparent
     ''' </summary>
     Private Sub CanvasOnPaintBackground()
-        If Me.Parent IsNot Nothing Then
-            Dim index = Me.Parent.Controls.GetChildIndex(Me) - 1
-            Dim g As Graphics2D = Me.Size.CreateGDIDevice
+        If Me.Parent Is Nothing Then Return
 
-            Me.Visible = False
+        Dim index = Me.Parent.Controls.GetChildIndex(Me) - 1
+        Dim g As Graphics2D = Me.Size.CreateGDIDevice
 
-            For i As Integer = Me.Parent.Controls.Count - 1 To index Step -1
-                Dim c As Control
+        Me.Visible = False
 
-                If i < 0 Then
-                    c = Me.Parent
-                Else
-                    c = Me.Parent.Controls(i)
-                End If
+        For i As Integer = Me.Parent.Controls.Count - 1 To index Step -1
+            Dim c As Control
 
-                If c Is Me Then
-                    Continue For
-                End If
+            If i < 0 Then
+                c = Me.Parent
+            Else
+                c = Me.Parent.Controls(i)
+            End If
 
-                If c.Bounds.IntersectsWith(Bounds) AndAlso c.Visible Then
-                    Dim clientRect As Rectangle = c.ClientRectangle
-                    ' clientRect = New Rectangle(clientRect.X, clientRect.Y - DrawOffset, clientRect.Width, clientRect.Height)
-                    Using bmp = New Bitmap(c.Width, c.Height, g.Graphics)
-                        c.DrawToBitmap(bmp, clientRect)
-                        g.TranslateTransform(c.Left - Left, c.Top - Top - DrawOffset)
-                        bmp.AdjustContrast(-30)
-                        g.DrawImageUnscaled(bmp, Point.Empty)
-                        g.TranslateTransform(Left - c.Left, Top - c.Top - DrawOffset)
-                    End Using
-                End If
-            Next
+            If c Is Me Then
+                Continue For
+            End If
 
-            g.DrawRectangle(New Pen(Brushes.Black, 2) With {.DashStyle = DashStyle.Dash}, New Rectangle(New Point, Me.Size))
-            g.Flush()
-            Me.BackgroundImage = g.ImageResource
-            g.Dispose()
+            If c.Bounds.IntersectsWith(Bounds) AndAlso c.Visible Then
+                Dim clientRect As Rectangle = c.ClientRectangle
+                ' clientRect = New Rectangle(clientRect.X, clientRect.Y - DrawOffset, clientRect.Width, clientRect.Height)
+                Using bmp = New Bitmap(c.Width, c.Height, g.Graphics)
+                    c.DrawToBitmap(bmp, clientRect)
+                    g.TranslateTransform(c.Left - Left, c.Top - Top - DrawOffset)
+                    bmp.AdjustContrast(-30)
+                    g.DrawImageUnscaled(bmp, Point.Empty)
+                    g.TranslateTransform(Left - c.Left, Top - c.Top - DrawOffset)
+                End Using
+            End If
+        Next
 
-            Me.Visible = True
-        End If
+        g.DrawRectangle(New Pen(Brushes.White, 2) With {.DashStyle = DashStyle.Dash}, New RectangleF(New PointF(1, 1), Me.Size.SizeF))
+        g.Flush()
+
+        Me.BackgroundImage = g.ImageResource
+        Me.Visible = True
+
+        g.Dispose()
     End Sub
 
     Private Sub SpatialTile_Load(sender As Object, e As EventArgs) Handles Me.Load
