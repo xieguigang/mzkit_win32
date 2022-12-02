@@ -70,12 +70,13 @@ Partial Class SpatialTile
         'Label1
         '
         resources.ApplyResources(Me.Label1, "Label1")
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.Label1.Name = "Label1"
         '
         'PictureBox1
         '
         resources.ApplyResources(Me.PictureBox1, "PictureBox1")
-        Me.PictureBox1.BackColor = System.Drawing.Color.Black
+        Me.PictureBox1.BackColor = System.Drawing.Color.Red
         Me.PictureBox1.Cursor = System.Windows.Forms.Cursors.SizeNWSE
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.TabStop = False
