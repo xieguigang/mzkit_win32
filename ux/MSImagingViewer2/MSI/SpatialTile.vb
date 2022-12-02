@@ -1,6 +1,7 @@
 ﻿Imports System.ComponentModel
 Imports System.Drawing
 Imports CommonDialogs
+Imports Microsoft.VisualBasic.ApplicationServices.Development.XmlDoc.Serialization
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Microsoft.VisualBasic.Imaging.Math2D
@@ -147,5 +148,32 @@ Public Class SpatialTile
             Sub(config)
                 Label1.Text = config.Label
             End Sub,, config:=input)
+    End Sub
+
+    ''' <summary>
+    ''' make this spatial tile transparent
+    ''' </summary>
+    ''' <param name="e"></param>
+    Protected Overrides Sub OnPaintBackground(e As PaintEventArgs)
+        MyBase.OnPaintBackground(e)
+
+        Dim g = e.Graphics
+
+        If Me.Parent IsNot Nothing Then
+            Dim index = Parent.Controls.GetChildIndex(Me)
+            For i As Integer = Parent.Controls.Count - 1 To index Step -1
+                Dim c = Parent.Controls(i)
+                If (c.Bounds.IntersectsWith(Bounds) AndAlso c.Visible) Then
+
+                    Using bmp = New Bitmap(c.Width, c.Height, g)
+
+                        c.DrawToBitmap(bmp, c.ClientRectangle)
+                        g.TranslateTransform(c.Left - Left, c.Top - Top)
+                        g.DrawImageUnscaled(bmp, Point.Empty)
+                        g.TranslateTransform(Left - c.Left, Top - c.Top)
+                    End Using
+                End If
+            Next
+        End If
     End Sub
 End Class
