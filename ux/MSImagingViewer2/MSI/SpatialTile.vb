@@ -52,13 +52,13 @@ Public Class SpatialTile
         SetStyle(ControlStyles.Opaque, True)
     End Sub
 
-    'Protected Overrides Sub OnPaint(e As PaintEventArgs)
-    '    Using brush = New SolidBrush(Color.FromArgb(Me.Opacity * 255 / 100, Me.BackColor))
-    '        e.Graphics.FillRectangle(brush, Me.ClientRectangle)
-    '    End Using
+    Protected Overrides Sub OnPaintBackground(e As PaintEventArgs)
+        Using brush = New SolidBrush(Color.FromArgb(Me.Opacity * 255 / 100, Me.BackColor))
+            e.Graphics.FillRectangle(brush, Me.ClientRectangle)
+        End Using
 
-    '    MyBase.OnPaint(e)
-    'End Sub
+        MyBase.OnPaintBackground(e)
+    End Sub
 
     Public Sub ShowMatrix(matrix As IEnumerable(Of SpaceSpot))
         Dim spatialMatrix = matrix.ToArray
@@ -99,6 +99,14 @@ Public Class SpatialTile
     End Sub
 
     Public Event GetSpatialMetabolismPoint(smXY As Point, ByRef x As Integer, ByRef y As Integer)
+    Public Event ClickSpatialMetabolismPixel(smXY As Point, ByRef x As Integer, ByRef y As Integer)
+
+    Private Sub SpatialTile_MouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseClick
+        Dim smXY As New Point(Left + e.X, Top + e.Y)
+        Dim smX, smY As Integer
+
+        RaiseEvent ClickSpatialMetabolismPixel(smXY, smX, smY)
+    End Sub
 
     Private Sub SpatialTile_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
         If moveTile Then
@@ -217,30 +225,30 @@ Public Class SpatialTile
             End Sub,, config:=input)
     End Sub
 
-    ''' <summary>
-    ''' make this spatial tile transparent
-    ''' </summary>
-    ''' <param name="e"></param>
-    Protected Overrides Sub OnPaintBackground(e As PaintEventArgs)
-        MyBase.OnPaintBackground(e)
+    '''' <summary>
+    '''' make this spatial tile transparent
+    '''' </summary>
+    '''' <param name="e"></param>
+    'Protected Overrides Sub OnPaintBackground(e As PaintEventArgs)
+    '    MyBase.OnPaintBackground(e)
 
-        Dim g = e.Graphics
+    '    Dim g = e.Graphics
 
-        If Me.Parent IsNot Nothing Then
-            Dim index = Parent.Controls.GetChildIndex(Me)
-            For i As Integer = Parent.Controls.Count - 1 To index Step -1
-                Dim c = Parent.Controls(i)
-                If (c.Bounds.IntersectsWith(Bounds) AndAlso c.Visible) Then
+    '    If Me.Parent IsNot Nothing Then
+    '        Dim index = Parent.Controls.GetChildIndex(Me)
+    '        For i As Integer = Parent.Controls.Count - 1 To index Step -1
+    '            Dim c = Parent.Controls(i)
+    '            If (c.Bounds.IntersectsWith(Bounds) AndAlso c.Visible) Then
 
-                    Using bmp = New Bitmap(c.Width, c.Height, g)
+    '                Using bmp = New Bitmap(c.Width, c.Height, g)
 
-                        c.DrawToBitmap(bmp, c.ClientRectangle)
-                        g.TranslateTransform(c.Left - Left, c.Top - Top)
-                        g.DrawImageUnscaled(bmp, Point.Empty)
-                        g.TranslateTransform(Left - c.Left, Top - c.Top)
-                    End Using
-                End If
-            Next
-        End If
-    End Sub
+    '                    c.DrawToBitmap(bmp, c.ClientRectangle)
+    '                    g.TranslateTransform(c.Left - Left, c.Top - Top)
+    '                    g.DrawImageUnscaled(bmp, Point.Empty)
+    '                    g.TranslateTransform(Left - c.Left, Top - c.Top)
+    '                End Using
+    '            End If
+    '        Next
+    '    End If
+    'End Sub
 End Class

@@ -129,6 +129,7 @@ Public Class PixelSelector
         Call Me.Controls.Add(tile)
 
         AddHandler tile.GetSpatialMetabolismPoint, AddressOf getPoint
+        AddHandler tile.ClickSpatialMetabolismPixel, Sub(e, ByRef px, ByRef py) Call clickGetPoint(e)
     End Sub
 
     ''' <summary>
@@ -1416,6 +1417,15 @@ Public Class PixelSelector
     End Sub
 
     Public ReadOnly Property Pixel As Point
+
+    Private Sub clickGetPoint(e As Point)
+        Dim xpoint = 0
+        Dim ypoint = 0
+
+        Call getPoint(New Point(e.X, e.Y), xpoint, ypoint)
+        _Pixel = New Point(xpoint, ypoint)
+        RaiseEvent SelectPixel(xpoint, ypoint, Nothing)
+    End Sub
 
     Private Sub clickGetPoint(e As MouseEventArgs)
         Dim xpoint = 0
