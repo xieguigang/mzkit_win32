@@ -246,6 +246,10 @@ Public Class SpatialTile
             For i As Integer = Me.Parent.Controls.Count - 1 To index Step -1
                 Dim c = Me.Parent.Controls(i)
 
+                If c Is Me Then
+                    Continue For
+                End If
+
                 If c.Bounds.IntersectsWith(Bounds) AndAlso c.Visible Then
 
                     Using bmp = New Bitmap(c.Width, c.Height, g.Graphics)
@@ -257,6 +261,14 @@ Public Class SpatialTile
                     End Using
                 End If
             Next
+
+            Using bmp = New Bitmap(Parent.Width, Parent.Height, g.Graphics)
+                Parent.DrawToBitmap(bmp, Parent.ClientRectangle)
+                g.TranslateTransform(Parent.Left - Left, Parent.Top - Top)
+                bmp.AdjustContrast(-10)
+                g.DrawImageUnscaled(bmp, Point.Empty)
+                g.TranslateTransform(Left - Parent.Left, Top - Parent.Top)
+            End Using
 
             g.Flush()
             Me.BackgroundImage = g.ImageResource
