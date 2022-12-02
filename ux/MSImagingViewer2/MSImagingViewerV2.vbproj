@@ -125,6 +125,9 @@
     <Compile Include="MSI\Editor\Edge.vb" />
     <Compile Include="MSI\Editor\Polygon.vb" />
     <Compile Include="MSI\Editor\Vertex.vb" />
+    <Compile Include="MSI\CustomDrawPictureBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MSI\InputLabelText.Designer.vb">
       <DependentUpon>InputLabelText.vb</DependentUpon>
     </Compile>

@@ -1,5 +1,4 @@
-﻿Imports System.ComponentModel
-Imports System.Drawing
+﻿Imports System.Drawing
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports CommonDialogs
 Imports Microsoft.VisualBasic.Data.GraphTheory
@@ -18,31 +17,31 @@ Public Class SpatialTile
     Dim moveTile As Boolean = False
     Dim p As Point
 
-    Private Const WS_EX_TRANSPARENT As Integer = &H20
+    'Private Const WS_EX_TRANSPARENT As Integer = &H20
 
-    Private m_opacity As Integer = 50
+    'Private m_opacity As Integer = 50
 
-    <DefaultValue(50)>
-    Public Property Opacity() As Integer
-        Get
-            Return Me.m_opacity
-        End Get
-        Set
-            If Value < 0 OrElse Value > 100 Then
-                Throw New ArgumentException("value must be between 0 and 100")
-            End If
+    '<DefaultValue(50)>
+    'Public Property Opacity() As Integer
+    '    Get
+    '        Return Me.m_opacity
+    '    End Get
+    '    Set
+    '        If Value < 0 OrElse Value > 100 Then
+    '            Throw New ArgumentException("value must be between 0 and 100")
+    '        End If
 
-            Me.m_opacity = Value
-        End Set
-    End Property
+    '        Me.m_opacity = Value
+    '    End Set
+    'End Property
 
-    Protected Overrides ReadOnly Property CreateParams() As CreateParams
-        Get
-            Dim cpar As CreateParams = MyBase.CreateParams
-            cpar.ExStyle = cpar.ExStyle Or WS_EX_TRANSPARENT
-            Return cpar
-        End Get
-    End Property
+    'Protected Overrides ReadOnly Property CreateParams() As CreateParams
+    '    Get
+    '        Dim cpar As CreateParams = MyBase.CreateParams
+    '        cpar.ExStyle = cpar.ExStyle Or WS_EX_TRANSPARENT
+    '        Return cpar
+    '    End Get
+    'End Property
 
     Sub New()
 
@@ -50,7 +49,7 @@ Public Class SpatialTile
         InitializeComponent()
 
         ' 在 InitializeComponent() 调用之后添加任何初始化。
-        SetStyle(ControlStyles.Opaque, True)
+        ' SetStyle(ControlStyles.Opaque, True)
     End Sub
 
     'Protected Overrides Sub OnPaintBackground(e As PaintEventArgs)
@@ -88,13 +87,13 @@ Public Class SpatialTile
     End Sub
 
 
-    Private Sub SpatialTile_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
+    Private Sub SpatialTile_MouseDown(sender As Object, e As MouseEventArgs) Handles PictureBox2.MouseDown
         Me.SuspendLayout()
         moveTile = True
         p = Cursor.Position
     End Sub
 
-    Private Sub SpatialTile_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
+    Private Sub SpatialTile_MouseUp(sender As Object, e As MouseEventArgs) Handles PictureBox2.MouseUp
         moveTile = False
         Me.ResumeLayout()
     End Sub
@@ -102,19 +101,19 @@ Public Class SpatialTile
     Public Event GetSpatialMetabolismPoint(smXY As Point, ByRef x As Integer, ByRef y As Integer)
     Public Event ClickSpatialMetabolismPixel(smXY As Point, ByRef x As Integer, ByRef y As Integer)
 
-    Private Sub SpatialTile_MouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseClick
+    Private Sub SpatialTile_MouseClick(sender As Object, e As MouseEventArgs) Handles PictureBox2.MouseClick
         Dim smXY As New Point(Left + e.X, Top + e.Y)
         Dim smX, smY As Integer
 
         RaiseEvent ClickSpatialMetabolismPixel(smXY, smX, smY)
     End Sub
 
-    Private Sub SpatialTile_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
+    Private Sub SpatialTile_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox2.MouseMove
         If moveTile Then
             Me.Location = New Point(Me.Left + Cursor.Position.X - p.X, Me.Top + Cursor.Position.Y - p.Y)
             p = Cursor.Position
             ' Me.Invalidate()
-            PictureBox2.Invalidate()
+            Call PictureBox2.Refresh()
         Else
             ' show tooltip information
             Dim x As Integer, y As Integer
@@ -136,7 +135,7 @@ Public Class SpatialTile
                 barcode = spot.barcode
             End If
 
-            Call ToolTip1.SetToolTip(Me, $"[STdata spot: ({x + offset.X},{y + offset.Y}) {barcode}] -> [MALDI pixel: ({smX},{smY})]")
+            Call ToolTip1.SetToolTip(PictureBox2, $"[STdata spot: ({x + offset.X},{y + offset.Y}) {barcode}] -> [MALDI pixel: ({smX},{smY})]")
         End If
     End Sub
 
@@ -151,7 +150,7 @@ Public Class SpatialTile
         If allowResize Then
             Me.Size = New Size(PictureBox1.Left + e.X, PictureBox1.Top + e.Y)
             ' Me.Invalidate()
-            PictureBox2.Invalidate()
+            Call PictureBox2.Refresh()
         End If
     End Sub
 
@@ -241,7 +240,6 @@ Public Class SpatialTile
                 If c.Bounds.IntersectsWith(Bounds) AndAlso c.Visible Then
 
                     Using bmp = New Bitmap(c.Width, c.Height, g)
-
                         c.DrawToBitmap(bmp, c.ClientRectangle)
                         g.TranslateTransform(c.Left - Left, c.Top - Top)
                         bmp.AdjustContrast(-10)
@@ -251,18 +249,10 @@ Public Class SpatialTile
                 End If
             Next
         End If
-
-
-    End Sub
-
-    Private Sub PictureBox2_Validating() Handles PictureBox2.Validating
-        Dim g = PictureBox2.CreateGraphics
-
-        Call CanvasOnPaintBackground(g)
-        Call PictureBox2.Refresh()
     End Sub
 
     Private Sub SpatialTile_Load(sender As Object, e As EventArgs) Handles Me.Load
-        PictureBox2_Validating()
+        PictureBox2.onDraw = AddressOf CanvasOnPaintBackground
+        PictureBox2.Refresh()
     End Sub
 End Class
