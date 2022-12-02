@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.Drawing
+Imports System.Drawing.Drawing2D
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports CommonDialogs
 Imports Microsoft.VisualBasic.ApplicationServices.Development.XmlDoc.Serialization
@@ -262,17 +263,18 @@ Public Class SpatialTile
 
                 If c.Bounds.IntersectsWith(Bounds) AndAlso c.Visible Then
                     Dim clientRect As Rectangle = c.ClientRectangle
-                    clientRect = New Rectangle(clientRect.X, clientRect.Y - DrawOffset, clientRect.Width, clientRect.Height)
+                    ' clientRect = New Rectangle(clientRect.X, clientRect.Y - DrawOffset, clientRect.Width, clientRect.Height)
                     Using bmp = New Bitmap(c.Width, c.Height, g.Graphics)
                         c.DrawToBitmap(bmp, clientRect)
-                        g.TranslateTransform(c.Left - Left, c.Top - Top)
+                        g.TranslateTransform(c.Left - Left, c.Top - Top - DrawOffset)
                         bmp.AdjustContrast(-30)
                         g.DrawImageUnscaled(bmp, Point.Empty)
-                        g.TranslateTransform(Left - c.Left, Top - c.Top)
+                        g.TranslateTransform(Left - c.Left, Top - c.Top - DrawOffset)
                     End Using
                 End If
             Next
 
+            g.DrawRectangle(New Pen(Brushes.Black, 2) With {.DashStyle = DashStyle.Dash}, New Rectangle(New Point, Me.Size))
             g.Flush()
             Me.BackgroundImage = g.ImageResource
             g.Dispose()
