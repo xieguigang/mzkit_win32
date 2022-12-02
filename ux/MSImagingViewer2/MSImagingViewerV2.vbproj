@@ -124,12 +124,6 @@
     <Compile Include="MSI\Editor\Edge.vb" />
     <Compile Include="MSI\Editor\Polygon.vb" />
     <Compile Include="MSI\Editor\Vertex.vb" />
-    <Compile Include="MSI\InputSpotRadius.Designer.vb">
-      <DependentUpon>InputSpotRadius.vb</DependentUpon>
-    </Compile>
-    <Compile Include="MSI\InputSpotRadius.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="MSI\PixelSelector.Designer.vb">
       <DependentUpon>PixelSelector.vb</DependentUpon>
     </Compile>
@@ -175,12 +169,6 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MSI\InputSpotRadius.resx">
-      <DependentUpon>InputSpotRadius.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MSI\InputSpotRadius.zh-CN.resx">
-      <DependentUpon>InputSpotRadius.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MSI\PixelSelector.resx">
       <DependentUpon>PixelSelector.vb</DependentUpon>
     </EmbeddedResource>
@@ -289,10 +277,6 @@
     <ProjectReference Include="..\..\..\visualize\TissueMorphology\TissueMorphology.vbproj">
       <Project>{560a9982-7d34-44c8-a0de-6b86e119247e}</Project>
       <Name>TissueMorphology</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CommonDialogs\CommonDialogs.vbproj">
-      <Project>{13685719-56a6-44f9-99a2-47cb79d29a57}</Project>
-      <Name>CommonDialogs</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -24,23 +24,24 @@ Partial Class SpatialTile
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.AdjustRadiusToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LoadTissueImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.ExportSpatialMappingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdjustRadiusToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadTissueImageToolStripMenuItem, Me.ExportSpatialMappingToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(147, 26)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(198, 70)
         '
-        'AdjustRadiusToolStripMenuItem
+        'LoadTissueImageToolStripMenuItem
         '
-        Me.AdjustRadiusToolStripMenuItem.Name = "AdjustRadiusToolStripMenuItem"
-        Me.AdjustRadiusToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
-        Me.AdjustRadiusToolStripMenuItem.Text = "Adjust Radius"
+        Me.LoadTissueImageToolStripMenuItem.Name = "LoadTissueImageToolStripMenuItem"
+        Me.LoadTissueImageToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.LoadTissueImageToolStripMenuItem.Text = "Load Tissue Image"
         '
         'PictureBox1
         '
@@ -52,6 +53,12 @@ Partial Class SpatialTile
         Me.PictureBox1.Size = New System.Drawing.Size(6, 6)
         Me.PictureBox1.TabIndex = 1
         Me.PictureBox1.TabStop = False
+        '
+        'ExportSpatialMappingToolStripMenuItem
+        '
+        Me.ExportSpatialMappingToolStripMenuItem.Name = "ExportSpatialMappingToolStripMenuItem"
+        Me.ExportSpatialMappingToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.ExportSpatialMappingToolStripMenuItem.Text = "Export Spatial Mapping"
         '
         'SpatialTile
         '
@@ -72,6 +79,7 @@ Partial Class SpatialTile
     End Sub
 
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
-    Friend WithEvents AdjustRadiusToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LoadTissueImageToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents ExportSpatialMappingToolStripMenuItem As ToolStripMenuItem
 End Class

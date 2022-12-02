@@ -10,8 +10,6 @@ Imports Microsoft.VisualBasic.Imaging.Math2D
 Public Class SpatialTile
 
     Dim spatialMatrix As PixelData()
-    Dim colors As ScalerPalette = ScalerPalette.turbo
-    Dim radius As Integer = 1
     Dim dimensions As Size
     Dim offset As Point
     Dim moveTile As Boolean = False
@@ -75,42 +73,8 @@ Public Class SpatialTile
 
         polygon = New Polygon2D(Me.spatialMatrix.Select(Function(t) New Point(t.X, t.Y)))
         dimensions = New Size(polygon.xpoints.Max, polygon.ypoints.Max)
-
-        Call Plot()
     End Sub
 
-    Private Sub AdjustRadius() Handles AdjustRadiusToolStripMenuItem.Click
-        Dim input As New InputSpotRadius
-        input.TextBox1.Text = radius
-
-        InputDialog.Input(
-            Sub(config)
-                radius = Val(config.TextBox1.Text)
-                Plot()
-            End Sub,, config:=input)
-    End Sub
-
-    ''' <summary>
-    ''' do matrix rendering and then show plot image
-    ''' </summary>
-    Public Sub Plot()
-        Dim colors As SolidBrush() = Designer _
-            .GetColors(Me.colors.Description, 24) _
-            .Select(Function(c) New SolidBrush(c)) _
-            .ToArray
-        Dim range As New DoubleRange(spatialMatrix.Select(Function(i) i.Scale))
-        Dim index As New DoubleRange(0, colors.Length - 1)
-
-        Using g As Graphics2D = dimensions.CreateGDIDevice(filled:=Color.Transparent)
-            For Each spot As PixelData In spatialMatrix
-                Call g.DrawCircle(New Point(spot.X, spot.Y), radius, colors(CInt(range.ScaleMapping(spot.Scale, index))))
-            Next
-
-            Call g.Flush()
-
-            Me.BackgroundImage = g.ImageResource
-        End Using
-    End Sub
 
     Private Sub SpatialTile_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
         Me.SuspendLayout()
@@ -146,5 +110,21 @@ Public Class SpatialTile
     Private Sub PictureBox1_MouseDown(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseDown
         Me.SuspendLayout()
         allowResize = True
+    End Sub
+
+    Private Sub ExportSpatialMappingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportSpatialMappingToolStripMenuItem.Click
+        Using file As New SaveFileDialog With {.Filter = "Spatial Mapping Matrix(*.cdf)|*.cdf"}
+            If file.ShowDialog = DialogResult.OK Then
+
+            End If
+        End Using
+    End Sub
+
+    Private Sub LoadTissueImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoadTissueImageToolStripMenuItem.Click
+        Using file As New OpenFileDialog With {.Filter = "Raster Image(*.jpg;*.png;*.bmp)|*.jpg;*.png;*.bmp"}
+            If file.ShowDialog = DialogResult.OK Then
+                Me.BackgroundImage = file.FileName.LoadImage
+            End If
+        End Using
     End Sub
 End Class
