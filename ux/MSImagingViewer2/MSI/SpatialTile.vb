@@ -1,18 +1,16 @@
 ﻿Imports System.ComponentModel
 Imports System.Drawing
-Imports System.Runtime.InteropServices
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports CommonDialogs
-Imports Microsoft.VisualBasic.ApplicationServices.Development.XmlDoc.Serialization
+Imports Microsoft.VisualBasic.Data.GraphTheory
 Imports Microsoft.VisualBasic.Imaging
-Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports STImaging
 
 Public Class SpatialTile
 
-    Dim spatialMatrix As SpaceSpot()
+    Dim spatialMatrix As Grid(Of SpaceSpot)
     Dim dimensions As Size
     Dim offset As Point
     Dim moveTile As Boolean = False
@@ -62,13 +60,13 @@ Public Class SpatialTile
     'End Sub
 
     Public Sub ShowMatrix(matrix As IEnumerable(Of SpaceSpot))
-        Me.spatialMatrix = matrix.ToArray
-
-        Dim polygon As New Polygon2D(Me.spatialMatrix.Select(Function(t) New Point(t.px, t.py)))
+        Dim spatialMatrix = matrix.ToArray
+        Dim polygon As New Polygon2D(spatialMatrix.Select(Function(t) New Point(t.px, t.py)))
 
         Me.dimensions = New Size(polygon.xpoints.Max, polygon.ypoints.Max)
         Me.offset = New Point(polygon.xpoints.Min, polygon.ypoints.Min)
-        Me.spatialMatrix = Me.spatialMatrix _
+
+        spatialMatrix = spatialMatrix _
             .Select(Function(p)
                         Return New SpaceSpot With {
                             .px = p.px - offset.X,
@@ -81,8 +79,10 @@ Public Class SpatialTile
                     End Function) _
             .ToArray
 
-        polygon = New Polygon2D(Me.spatialMatrix.Select(Function(t) New Point(t.px, t.py)))
-        dimensions = New Size(polygon.xpoints.Max, polygon.ypoints.Max)
+        polygon = New Polygon2D(spatialMatrix.Select(Function(t) New Point(t.px, t.py)))
+
+        Me.dimensions = New Size(polygon.xpoints.Max, polygon.ypoints.Max)
+        Me.spatialMatrix = Grid(Of SpaceSpot).Create(spatialMatrix, Function(spot) spot.GetPoint)
     End Sub
 
 
@@ -110,11 +110,22 @@ Public Class SpatialTile
             Dim smX As Integer
             Dim smY As Integer
             Dim smXY As New Point(Left + e.X, Top + e.Y)
+            Dim barcode As String
+            Dim spot As SpaceSpot
 
             RaiseEvent GetSpatialMetabolismPoint(smXY, smX, smY)
 
             Call PixelSelector.getPoint(New Point(e.X, e.Y), dimensions, Me.Size, x, y)
-            Call ToolTip1.SetToolTip(Me, $"[ST: ({x + offset.X},{y + offset.Y})] ~ [SM: ({smX},{smY})]")
+
+            spot = spatialMatrix.GetData(x, y)
+
+            If spot Is Nothing Then
+                barcode = "<missing_barcode>"
+            Else
+                barcode = spot.barcode
+            End If
+
+            Call ToolTip1.SetToolTip(Me, $"[STdata spot: ({x + offset.X},{y + offset.Y}) {barcode}] -> [MALDI pixel: ({smX},{smY})]")
         End If
     End Sub
 
@@ -155,7 +166,7 @@ Public Class SpatialTile
         Dim left = Me.Left
         Dim top = Me.Top
 
-        For Each spot As SpaceSpot In spatialMatrix
+        For Each spot As SpaceSpot In spatialMatrix.EnumerateData
             ' translate to control client XY
             Dim clientXY As New Point With {.X = spot.px * radiusX * 2, .Y = spot.py * radiusY * 2}
             Dim pixels As New List(Of Point)
