@@ -87,13 +87,13 @@ Public Class SpatialTile
     End Sub
 
 
-    Private Sub SpatialTile_MouseDown(sender As Object, e As MouseEventArgs) Handles PictureBox2.MouseDown
+    Private Sub SpatialTile_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
         Me.SuspendLayout()
         moveTile = True
         p = Cursor.Position
     End Sub
 
-    Private Sub SpatialTile_MouseUp(sender As Object, e As MouseEventArgs) Handles PictureBox2.MouseUp
+    Private Sub SpatialTile_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
         moveTile = False
         Me.ResumeLayout()
     End Sub
@@ -101,14 +101,14 @@ Public Class SpatialTile
     Public Event GetSpatialMetabolismPoint(smXY As Point, ByRef x As Integer, ByRef y As Integer)
     Public Event ClickSpatialMetabolismPixel(smXY As Point, ByRef x As Integer, ByRef y As Integer)
 
-    Private Sub SpatialTile_MouseClick(sender As Object, e As MouseEventArgs) Handles PictureBox2.MouseClick
+    Private Sub SpatialTile_MouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseClick
         Dim smXY As New Point(Left + e.X, Top + e.Y)
         Dim smX, smY As Integer
 
         RaiseEvent ClickSpatialMetabolismPixel(smXY, smX, smY)
     End Sub
 
-    Private Sub SpatialTile_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox2.MouseMove
+    Private Sub SpatialTile_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
         If moveTile Then
             Me.Location = New Point(Me.Left + Cursor.Position.X - p.X, Me.Top + Cursor.Position.Y - p.Y)
             p = Cursor.Position
@@ -135,7 +135,7 @@ Public Class SpatialTile
                 barcode = spot.barcode
             End If
 
-            Call ToolTip1.SetToolTip(PictureBox2, $"[STdata spot: ({x + offset.X},{y + offset.Y}) {barcode}] -> [MALDI pixel: ({smX},{smY})]")
+            Call ToolTip1.SetToolTip(Me, $"[STdata spot: ({x + offset.X},{y + offset.Y}) {barcode}] -> [MALDI pixel: ({smX},{smY})]")
         End If
     End Sub
 
@@ -227,34 +227,34 @@ Public Class SpatialTile
             End Sub,, config:=input)
     End Sub
 
-    ''' <summary>
-    ''' make this spatial tile transparent
-    ''' </summary>
-    Private Sub CanvasOnPaintBackground()
-        If Me.Parent IsNot Nothing Then
-            Dim index = Me.Parent.Controls.GetChildIndex(Me)
-            Dim g As Graphics2D = Me.Size.CreateGDIDevice
+    '''' <summary>
+    '''' make this spatial tile transparent
+    '''' </summary>
+    'Private Sub CanvasOnPaintBackground()
+    '    If Me.Parent IsNot Nothing Then
+    '        Dim index = Me.Parent.Controls.GetChildIndex(Me)
+    '        Dim g As Graphics2D = Me.Size.CreateGDIDevice
 
-            For i As Integer = Me.Parent.Controls.Count - 1 To index Step -1
-                Dim c = Me.Parent.Controls(i)
+    '        For i As Integer = Me.Parent.Controls.Count - 1 To index Step -1
+    '            Dim c = Me.Parent.Controls(i)
 
-                If c.Bounds.IntersectsWith(Bounds) AndAlso c.Visible Then
+    '            If c.Bounds.IntersectsWith(Bounds) AndAlso c.Visible Then
 
-                    Using bmp = New Bitmap(c.Width, c.Height, g.Graphics)
-                        c.DrawToBitmap(bmp, c.ClientRectangle)
-                        g.TranslateTransform(c.Left - Left, c.Top - Top)
-                        bmp.AdjustContrast(-10)
-                        g.DrawImageUnscaled(bmp, Point.Empty)
-                        g.TranslateTransform(Left - c.Left, Top - c.Top)
-                    End Using
-                End If
-            Next
+    '                Using bmp = New Bitmap(c.Width, c.Height, g.Graphics)
+    '                    c.DrawToBitmap(bmp, c.ClientRectangle)
+    '                    g.TranslateTransform(c.Left - Left, c.Top - Top)
+    '                    bmp.AdjustContrast(-10)
+    '                    g.DrawImageUnscaled(bmp, Point.Empty)
+    '                    g.TranslateTransform(Left - c.Left, Top - c.Top)
+    '                End Using
+    '            End If
+    '        Next
 
-            g.Flush()
-            PictureBox2.BackgroundImage = g.ImageResource
-            g.Dispose()
-        End If
-    End Sub
+    '        g.Flush()
+    '        ' PictureBox2.BackgroundImage = g.ImageResource
+    '        g.Dispose()
+    '    End If
+    'End Sub
 
     Private Sub SpatialTile_Load(sender As Object, e As EventArgs) Handles Me.Load
         ' PictureBox2.onDraw = AddressOf CanvasOnPaintBackground
