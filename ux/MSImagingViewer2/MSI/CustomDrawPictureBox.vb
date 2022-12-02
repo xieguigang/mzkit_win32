@@ -7,7 +7,7 @@ Public Class CustomDrawPictureBox : Inherits PictureBox
     Protected Overrides Sub OnPaint(pe As PaintEventArgs)
         MyBase.OnPaint(pe)
 
-        If onDraw Is Nothing Then
+        If Not onDraw Is Nothing Then
             Call onDraw(pe.Graphics)
         End If
     End Sub
