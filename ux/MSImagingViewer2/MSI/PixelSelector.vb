@@ -1366,12 +1366,27 @@ Public Class PixelSelector
     ''' <summary>
     ''' transform scaler
     ''' </summary>
-    ''' <param name="e"></param>
-    ''' <param name="xpoint"></param>
-    ''' <param name="ypoint"></param>
-    Private Sub getPoint(e As Point, orginal_imageSize As Size, ByRef xpoint As Integer, ByRef ypoint As Integer)
-        Dim Pic_width = orginal_imageSize.Width / Me.Width
-        Dim Pic_height = orginal_imageSize.Height / Me.Height
+    ''' <param name="e">
+    ''' the mouse cursor position from the mouse move event argument
+    ''' </param>
+    ''' <param name="xpoint">
+    ''' x on the mapping dimension
+    ''' </param>
+    ''' <param name="ypoint">
+    ''' y on the mapping dimension
+    ''' </param>
+    ''' <param name="orginal_imageSize">
+    ''' the dimension of the spatial region
+    ''' </param>
+    ''' <param name="ctrl">
+    ''' the size of the canvas control
+    ''' </param>
+    Public Shared Sub getPoint(e As Point, orginal_imageSize As Size, ctrl As Size,
+                               ByRef xpoint As Integer,
+                               ByRef ypoint As Integer)
+
+        Dim Pic_width As Double = orginal_imageSize.Width / ctrl.Width
+        Dim Pic_height As Double = orginal_imageSize.Height / ctrl.Height
 
         ' 得到图片上的坐标点
         xpoint = e.X * Pic_width
@@ -1418,7 +1433,7 @@ Public Class PixelSelector
                 Dim px As Integer = 0
                 Dim py As Integer = 0
 
-                getPoint(New Point(e.X, e.Y), HEMap.Size, px, py)
+                getPoint(New Point(e.X, e.Y), HEMap.Size, Me.Size, px, py)
                 color = HEMap.GetPixel(px, py)
             End If
 

@@ -88,6 +88,12 @@ Public Class SpatialTile
         If moveTile Then
             Me.Location = New Point(Me.Left + Cursor.Position.X - p.X, Me.Top + Cursor.Position.Y - p.Y)
             p = Cursor.Position
+        Else
+            ' show tooltip information
+            Dim x As Integer, y As Integer
+
+            Call PixelSelector.getPoint(New Point(e.X, e.Y), dimensions, Me.Size, x, y)
+            Call ToolTip1.SetToolTip(Me, $"[X={x}, Y={y}]")
         End If
     End Sub
 
