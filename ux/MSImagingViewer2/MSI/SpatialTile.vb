@@ -19,6 +19,8 @@ Public Class SpatialTile
     Dim moveTile As Boolean = False
     Dim p As Point
 
+    Public Property DrawOffset As Integer = 25
+
     'Private Const WS_EX_TRANSPARENT As Integer = &H20
 
     'Private m_opacity As Integer = 50
@@ -259,11 +261,12 @@ Public Class SpatialTile
                 End If
 
                 If c.Bounds.IntersectsWith(Bounds) AndAlso c.Visible Then
-
+                    Dim clientRect As Rectangle = c.ClientRectangle
+                    clientRect = New Rectangle(clientRect.X, clientRect.Y - DrawOffset, clientRect.Width, clientRect.Height)
                     Using bmp = New Bitmap(c.Width, c.Height, g.Graphics)
-                        c.DrawToBitmap(bmp, c.ClientRectangle)
+                        c.DrawToBitmap(bmp, clientRect)
                         g.TranslateTransform(c.Left - Left, c.Top - Top)
-                        bmp.AdjustContrast(-10)
+                        bmp.AdjustContrast(-30)
                         g.DrawImageUnscaled(bmp, Point.Empty)
                         g.TranslateTransform(Left - c.Left, Top - c.Top)
                     End Using
