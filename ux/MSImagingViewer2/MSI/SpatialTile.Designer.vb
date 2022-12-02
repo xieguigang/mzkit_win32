@@ -32,7 +32,7 @@ Partial Class SpatialTile
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox2 = New CustomDrawPictureBox()
+        Me.PictureBox2 = New Mzkit_win32.MSImagingViewerV2.CustomDrawPictureBox()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,7 +85,7 @@ Partial Class SpatialTile
         '
         'PictureBox2
         '
-        ' resources.ApplyResources(Me.PictureBox2, "PictureBox2")
+        resources.ApplyResources(Me.PictureBox2, "PictureBox2")
         Me.PictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.PictureBox2.ContextMenuStrip = Me.ContextMenuStrip1
         Me.PictureBox2.Name = "PictureBox2"
