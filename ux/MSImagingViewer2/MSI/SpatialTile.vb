@@ -113,7 +113,7 @@ Public Class SpatialTile
             Me.Location = New Point(Me.Left + Cursor.Position.X - p.X, Me.Top + Cursor.Position.Y - p.Y)
             p = Cursor.Position
             ' Me.Invalidate()
-            Call PictureBox2.Refresh()
+            ' Call PictureBox2.Refresh()
         Else
             ' show tooltip information
             Dim x As Integer, y As Integer
@@ -150,7 +150,7 @@ Public Class SpatialTile
         If allowResize Then
             Me.Size = New Size(PictureBox1.Left + e.X, PictureBox1.Top + e.Y)
             ' Me.Invalidate()
-            Call PictureBox2.Refresh()
+            ' Call PictureBox2.Refresh()
         End If
     End Sub
 
@@ -230,16 +230,17 @@ Public Class SpatialTile
     ''' <summary>
     ''' make this spatial tile transparent
     ''' </summary>
-    Private Sub CanvasOnPaintBackground(g As Graphics)
+    Private Sub CanvasOnPaintBackground()
         If Me.Parent IsNot Nothing Then
             Dim index = Me.Parent.Controls.GetChildIndex(Me)
+            Dim g As Graphics2D = Me.Size.CreateGDIDevice
 
             For i As Integer = Me.Parent.Controls.Count - 1 To index Step -1
                 Dim c = Me.Parent.Controls(i)
 
                 If c.Bounds.IntersectsWith(Bounds) AndAlso c.Visible Then
 
-                    Using bmp = New Bitmap(c.Width, c.Height, g)
+                    Using bmp = New Bitmap(c.Width, c.Height, g.Graphics)
                         c.DrawToBitmap(bmp, c.ClientRectangle)
                         g.TranslateTransform(c.Left - Left, c.Top - Top)
                         bmp.AdjustContrast(-10)
@@ -248,11 +249,15 @@ Public Class SpatialTile
                     End Using
                 End If
             Next
+
+            g.Flush()
+            PictureBox2.BackgroundImage = g.ImageResource
+            g.Dispose()
         End If
     End Sub
 
     Private Sub SpatialTile_Load(sender As Object, e As EventArgs) Handles Me.Load
-        PictureBox2.onDraw = AddressOf CanvasOnPaintBackground
-        PictureBox2.Refresh()
+        ' PictureBox2.onDraw = AddressOf CanvasOnPaintBackground
+        ' PictureBox2.Refresh()
     End Sub
 End Class

@@ -32,7 +32,7 @@ Partial Class SpatialTile
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox2 = New Mzkit_win32.MSImagingViewerV2.CustomDrawPictureBox()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,5 +118,5 @@ Partial Class SpatialTile
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents Label1 As Label
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents PictureBox2 As CustomDrawPictureBox
+    Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
 End Class
