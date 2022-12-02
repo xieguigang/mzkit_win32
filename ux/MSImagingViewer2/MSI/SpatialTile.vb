@@ -169,7 +169,7 @@ Public Class SpatialTile
     Private Sub ExportSpatialMappingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportSpatialMappingToolStripMenuItem.Click
         Using file As New SaveFileDialog With {.Filter = "Spatial Mapping Matrix(*.xml)|*.xml"}
             If file.ShowDialog = DialogResult.OK Then
-                Call New XmlList(Of SpatialMapping) With {
+                Call New XmlList(Of SpotMapping) With {
                     .items = GetMapping.ToArray
                 } _
                 .GetXml _
@@ -178,7 +178,7 @@ Public Class SpatialTile
         End Using
     End Sub
 
-    Private Iterator Function GetMapping() As IEnumerable(Of SpatialMapping)
+    Private Iterator Function GetMapping() As IEnumerable(Of SpotMapping)
         Dim radiusX = Me.Width / dimensions.Width / 2
         Dim radiusY = Me.Height / dimensions.Height / 2
         Dim left = Me.Left
@@ -204,7 +204,7 @@ Public Class SpatialTile
                 .Distinct _
                 .AsList
 
-            Yield New SpatialMapping With {
+            Yield New SpotMapping With {
                 .STX = spot.px + offset.X,
                 .STY = spot.py + offset.Y,
                 .SMX = pixels.Select(Function(p) p.X).ToArray,

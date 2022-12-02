@@ -26,15 +26,15 @@ Partial Class SpatialTile
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SpatialTile))
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.LoadTissueImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RemoveTissueImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
         Me.EditLabelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportSpatialMappingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.RemoveTissueImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -50,6 +50,16 @@ Partial Class SpatialTile
         resources.ApplyResources(Me.LoadTissueImageToolStripMenuItem, "LoadTissueImageToolStripMenuItem")
         Me.LoadTissueImageToolStripMenuItem.Name = "LoadTissueImageToolStripMenuItem"
         '
+        'RemoveTissueImageToolStripMenuItem
+        '
+        resources.ApplyResources(Me.RemoveTissueImageToolStripMenuItem, "RemoveTissueImageToolStripMenuItem")
+        Me.RemoveTissueImageToolStripMenuItem.Name = "RemoveTissueImageToolStripMenuItem"
+        '
+        'ToolStripMenuItem2
+        '
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        resources.ApplyResources(Me.ToolStripMenuItem2, "ToolStripMenuItem2")
+        '
         'EditLabelToolStripMenuItem
         '
         Me.EditLabelToolStripMenuItem.Name = "EditLabelToolStripMenuItem"
@@ -59,6 +69,11 @@ Partial Class SpatialTile
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         resources.ApplyResources(Me.ToolStripMenuItem1, "ToolStripMenuItem1")
+        '
+        'DeleteToolStripMenuItem
+        '
+        resources.ApplyResources(Me.DeleteToolStripMenuItem, "DeleteToolStripMenuItem")
+        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
         '
         'ExportSpatialMappingToolStripMenuItem
         '
@@ -73,7 +88,7 @@ Partial Class SpatialTile
         'Label1
         '
         resources.ApplyResources(Me.Label1, "Label1")
-        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.Label1.ForeColor = System.Drawing.Color.DodgerBlue
         Me.Label1.Name = "Label1"
         '
         'PictureBox1
@@ -83,21 +98,6 @@ Partial Class SpatialTile
         Me.PictureBox1.Cursor = System.Windows.Forms.Cursors.SizeNWSE
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.TabStop = False
-        '
-        'RemoveTissueImageToolStripMenuItem
-        '
-        resources.ApplyResources(Me.RemoveTissueImageToolStripMenuItem, "RemoveTissueImageToolStripMenuItem")
-        Me.RemoveTissueImageToolStripMenuItem.Name = "RemoveTissueImageToolStripMenuItem"
-        '
-        'ToolStripMenuItem2
-        '
-        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        resources.ApplyResources(Me.ToolStripMenuItem2, "ToolStripMenuItem2")
-        '
-        'DeleteToolStripMenuItem
-        '
-        resources.ApplyResources(Me.DeleteToolStripMenuItem, "DeleteToolStripMenuItem")
-        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
         '
         'SpatialTile
         '
