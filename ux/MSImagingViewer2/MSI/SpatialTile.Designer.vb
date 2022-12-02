@@ -1,6 +1,6 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class SpatialTile
-    Inherits PanelDoubleBuffered
+    Inherits Control
 
     'UserControl 重写释放以清理组件列表。
     <System.Diagnostics.DebuggerNonUserCode()> _
@@ -85,7 +85,7 @@ Partial Class SpatialTile
         '
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         resources.ApplyResources(Me, "$this")
-        Me.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+
         Me.ContextMenuStrip = Me.ContextMenuStrip1
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.PictureBox1)
