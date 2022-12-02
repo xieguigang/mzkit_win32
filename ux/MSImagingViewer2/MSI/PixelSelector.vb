@@ -76,6 +76,7 @@ Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Mzkit_win32.MSImagingViewerV2.PolygonEditor
+Imports STImaging
 Imports stdNum = System.Math
 
 <Assembly: InternalsVisibleTo("mzkit_win32")>
@@ -121,7 +122,7 @@ Public Class PixelSelector
         Next
     End Sub
 
-    Public Sub AddSpatialTile(matrix As IEnumerable(Of PixelData))
+    Public Sub AddSpatialTile(matrix As IEnumerable(Of SpaceSpot))
         Dim tile As New SpatialTile
 
         Call tile.ShowMatrix(matrix)

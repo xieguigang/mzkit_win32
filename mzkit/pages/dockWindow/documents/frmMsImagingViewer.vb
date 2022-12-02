@@ -1837,7 +1837,7 @@ Public Class frmMsImagingViewer
 
                 Call PixelSelector1 _
                     .MSICanvas _
-                    .AddSpatialTile(spots.GetPixels)
+                    .AddSpatialTile(spots)
             End If
         End Using
     End Sub

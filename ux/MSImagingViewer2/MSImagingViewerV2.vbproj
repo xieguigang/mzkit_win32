@@ -271,6 +271,10 @@
     <Import Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Erica\src\STImaging\STImaging.vbproj">
+      <Project>{5f242bb6-da7d-4e08-b4a9-3405f361a35b}</Project>
+      <Name>STImaging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\Math\Math\Math.NET5.vbproj">
       <Project>{eb3dd1ee-71a4-4d85-b494-ef075ad99098}</Project>
       <Name>Math.NET5</Name>

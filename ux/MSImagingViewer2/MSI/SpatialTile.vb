@@ -8,10 +8,11 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Text.Xml.Models
+Imports STImaging
 
 Public Class SpatialTile
 
-    Dim spatialMatrix As PixelData()
+    Dim spatialMatrix As SpaceSpot()
     Dim dimensions As Size
     Dim offset As Point
     Dim moveTile As Boolean = False
@@ -60,20 +61,27 @@ Public Class SpatialTile
     '    MyBase.OnPaint(e)
     'End Sub
 
-    Public Sub ShowMatrix(matrix As IEnumerable(Of PixelData))
+    Public Sub ShowMatrix(matrix As IEnumerable(Of SpaceSpot))
         Me.spatialMatrix = matrix.ToArray
 
-        Dim polygon As New Polygon2D(Me.spatialMatrix.Select(Function(t) New Point(t.X, t.Y)))
+        Dim polygon As New Polygon2D(Me.spatialMatrix.Select(Function(t) New Point(t.px, t.py)))
 
         Me.dimensions = New Size(polygon.xpoints.Max, polygon.ypoints.Max)
         Me.offset = New Point(polygon.xpoints.Min, polygon.ypoints.Min)
         Me.spatialMatrix = Me.spatialMatrix _
             .Select(Function(p)
-                        Return New PixelData(p.X - offset.X, p.Y - offset.Y, p.Scale)
+                        Return New SpaceSpot With {
+                            .px = p.px - offset.X,
+                            .py = p.py - offset.Y,
+                            .flag = p.flag,
+                            .barcode = p.barcode,
+                            .x = p.x,
+                            .y = p.y
+                        }
                     End Function) _
             .ToArray
 
-        polygon = New Polygon2D(Me.spatialMatrix.Select(Function(t) New Point(t.X, t.Y)))
+        polygon = New Polygon2D(Me.spatialMatrix.Select(Function(t) New Point(t.px, t.py)))
         dimensions = New Size(polygon.xpoints.Max, polygon.ypoints.Max)
     End Sub
 
@@ -147,9 +155,9 @@ Public Class SpatialTile
         Dim left = Me.Left
         Dim top = Me.Top
 
-        For Each spot As PixelData In spatialMatrix
+        For Each spot As SpaceSpot In spatialMatrix
             ' translate to control client XY
-            Dim clientXY As New Point With {.X = spot.X * radiusX * 2, .Y = spot.Y * radiusY * 2}
+            Dim clientXY As New Point With {.X = spot.px * radiusX * 2, .Y = spot.py * radiusY * 2}
             Dim pixels As New List(Of Point)
 
             For x As Integer = clientXY.X - radiusX To clientXY.X + radiusX
@@ -168,10 +176,13 @@ Public Class SpatialTile
                 .AsList
 
             Yield New SpatialMapping With {
-                .STX = spot.X + offset.X,
-                .STY = spot.Y + offset.Y,
+                .STX = spot.px + offset.X,
+                .STY = spot.py + offset.Y,
                 .SMX = pixels.Select(Function(p) p.X).ToArray,
-                .SMY = pixels.Select(Function(p) p.Y).ToArray
+                .SMY = pixels.Select(Function(p) p.Y).ToArray,
+                .barcode = spot.barcode,
+                .flag = spot.flag,
+                .physicalXY = {spot.x, spot.y}
             }
         Next
     End Function
