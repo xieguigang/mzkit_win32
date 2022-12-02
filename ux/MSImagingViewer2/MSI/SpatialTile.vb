@@ -113,7 +113,8 @@ Public Class SpatialTile
         If moveTile Then
             Me.Location = New Point(Me.Left + Cursor.Position.X - p.X, Me.Top + Cursor.Position.Y - p.Y)
             p = Cursor.Position
-            Me.Invalidate()
+            ' Me.Invalidate()
+            PictureBox2.Invalidate()
         Else
             ' show tooltip information
             Dim x As Integer, y As Integer
@@ -149,7 +150,8 @@ Public Class SpatialTile
     Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
         If allowResize Then
             Me.Size = New Size(PictureBox1.Left + e.X, PictureBox1.Top + e.Y)
-            Me.Invalidate()
+            ' Me.Invalidate()
+            PictureBox2.Invalidate()
         End If
     End Sub
 
@@ -229,17 +231,12 @@ Public Class SpatialTile
     ''' <summary>
     ''' make this spatial tile transparent
     ''' </summary>
-    ''' <param name="e"></param>
-    Protected Overrides Sub OnPaintBackground(e As PaintEventArgs)
-        MyBase.OnPaintBackground(e)
-
-        Dim g = e.Graphics
-
+    Private Sub CanvasOnPaintBackground(g As Graphics)
         If Me.Parent IsNot Nothing Then
-            Dim index = Parent.Controls.GetChildIndex(Me)
+            Dim index = Me.Parent.Controls.GetChildIndex(Me)
 
-            For i As Integer = Parent.Controls.Count - 1 To index Step -1
-                Dim c = Parent.Controls(i)
+            For i As Integer = Me.Parent.Controls.Count - 1 To index Step -1
+                Dim c = Me.Parent.Controls(i)
 
                 If c.Bounds.IntersectsWith(Bounds) AndAlso c.Visible Then
 
@@ -256,5 +253,16 @@ Public Class SpatialTile
         End If
 
 
+    End Sub
+
+    Private Sub PictureBox2_Validating() Handles PictureBox2.Validating
+        Dim g = PictureBox2.CreateGraphics
+
+        Call CanvasOnPaintBackground(g)
+        Call PictureBox2.Refresh()
+    End Sub
+
+    Private Sub SpatialTile_Load(sender As Object, e As EventArgs) Handles Me.Load
+        PictureBox2_Validating()
     End Sub
 End Class
