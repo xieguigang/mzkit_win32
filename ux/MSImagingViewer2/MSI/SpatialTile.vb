@@ -240,11 +240,19 @@ Public Class SpatialTile
     ''' </summary>
     Private Sub CanvasOnPaintBackground()
         If Me.Parent IsNot Nothing Then
-            Dim index = Me.Parent.Controls.GetChildIndex(Me)
+            Dim index = Me.Parent.Controls.GetChildIndex(Me) - 1
             Dim g As Graphics2D = Me.Size.CreateGDIDevice
 
+            Me.Visible = False
+
             For i As Integer = Me.Parent.Controls.Count - 1 To index Step -1
-                Dim c = Me.Parent.Controls(i)
+                Dim c As Control
+
+                If i < 0 Then
+                    c = Me.Parent
+                Else
+                    c = Me.Parent.Controls(i)
+                End If
 
                 If c Is Me Then
                     Continue For
@@ -262,17 +270,11 @@ Public Class SpatialTile
                 End If
             Next
 
-            Using bmp = New Bitmap(Parent.Width, Parent.Height, g.Graphics)
-                Parent.DrawToBitmap(bmp, Parent.ClientRectangle)
-                g.TranslateTransform(Parent.Left - Left, Parent.Top - Top)
-                bmp.AdjustContrast(-10)
-                g.DrawImageUnscaled(bmp, Point.Empty)
-                g.TranslateTransform(Left - Parent.Left, Top - Parent.Top)
-            End Using
-
             g.Flush()
             Me.BackgroundImage = g.ImageResource
             g.Dispose()
+
+            Me.Visible = True
         End If
     End Sub
 
