@@ -154,7 +154,7 @@ Public Class SpatialTile
 
             For x As Integer = clientXY.X - radiusX To clientXY.X + radiusX
                 For y As Integer = clientXY.Y - radiusY To clientXY.Y + radiusY
-                    Dim SMXY As New Point(clientXY.X + left, clientXY.Y + top)
+                    Dim SMXY As New Point(x + left, y + top)
                     Dim smX, smY As Integer
 
                     RaiseEvent GetSpatialMetabolismPoint(SMXY, smX, smY)
