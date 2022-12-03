@@ -109,6 +109,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.ThemeColorPicker">
+      <HintPath>..\..\dist\System.Windows.Forms.ThemeColorPicker.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="WindowsBase" />
@@ -125,6 +128,12 @@
     <Compile Include="MSI\Editor\Edge.vb" />
     <Compile Include="MSI\Editor\Polygon.vb" />
     <Compile Include="MSI\Editor\Vertex.vb" />
+    <Compile Include="MSI\InputSpotColor.Designer.vb">
+      <DependentUpon>InputSpotColor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MSI\InputSpotColor.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MSI\InputLabelText.Designer.vb">
       <DependentUpon>InputLabelText.vb</DependentUpon>
     </Compile>
@@ -178,6 +187,9 @@
   <ItemGroup>
     <EmbeddedResource Include="MSI\InputLabelText.resx">
       <DependentUpon>InputLabelText.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MSI\InputSpotColor.resx">
+      <DependentUpon>InputSpotColor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MSI\PixelSelector.resx">
       <DependentUpon>PixelSelector.vb</DependentUpon>

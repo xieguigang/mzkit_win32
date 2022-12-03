@@ -238,11 +238,11 @@ Public Class SpatialTile
 
     Public Property SpotColor As Color = Color.Red
 
-    Private Sub onDrawSpots(g As Graphics2D)
+    Private Sub onDrawSpots(g As Graphics2D, alpha As Integer)
         Dim d As New SizeF(g.Width / dimensions.Width, g.Height / dimensions.Height)
         Dim r As New SizeF(d.Width / 2, d.Height / 2)
-        Dim black As New SolidBrush(Color.Black.Alpha(120))
-        Dim red As New SolidBrush(SpotColor.Alpha(120))
+        Dim black As New SolidBrush(Color.Black.Alpha(alpha))
+        Dim red As New SolidBrush(SpotColor.Alpha(alpha))
 
         ' draw spatial matrix
         For Each spot As SpaceSpot In spatialMatrix.EnumerateData
@@ -305,9 +305,12 @@ Public Class SpatialTile
 
             g.ResetTransform()
             g.DrawRectangle(New Pen(Brushes.White, 2) With {.DashStyle = DashStyle.Dash}, New Rectangle(New Point(2, 2), size))
+
+            onDrawSpots(g, 150)
+        Else
+            onDrawSpots(g, 60)
         End If
 
-        onDrawSpots(g)
         g.Flush()
 
         Me.BackgroundImage = g.ImageResource
@@ -334,6 +337,10 @@ Public Class SpatialTile
     End Sub
 
     Private Sub SetSpotColorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetSpotColorToolStripMenuItem.Click
-
+        Call InputDialog.Input(Of InputSpotColor)(
+            Sub(cnfig)
+                Me.SpotColor = cnfig.SpotColor
+                Me.CanvasOnPaintBackground()
+            End Sub)
     End Sub
 End Class
