@@ -1604,6 +1604,10 @@
       <Project>{c6d266df-b35f-480b-acb0-15c7d2882769}</Project>
       <Name>mzpack.NET5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\assembly\NMRFidTool\NMRFidTool.vbproj">
+      <Project>{78648b07-df37-45fe-bb9f-46327ff15d6f}</Project>
+      <Name>NMRFidTool</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\assembly\sciexWiffReader\sciexWiffReader.vbproj">
       <Project>{0d82246c-02c5-4f9e-a571-ea4fa2077059}</Project>
       <Name>sciexWiffReader</Name>
