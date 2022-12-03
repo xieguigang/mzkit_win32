@@ -5,6 +5,7 @@ Imports WeifenLuo.WinFormsUI.Docking
 Public Class frmNmrSpectrumExplorer
 
     Dim nmrML As nmrML.XML
+    Dim annotation As Dictionary(Of String, atomAssignment)
 
     ''' <summary>
     ''' load data and show explorer
@@ -19,10 +20,18 @@ Public Class frmNmrSpectrumExplorer
         Dim file = Win7StyleTreeView1.Nodes.Add(xml.FileName)
 
         nmrML = nmrfile
+        annotation = New Dictionary(Of String, atomAssignment)
+
+        For Each anno In nmrfile.spectrumAnnotationList.atomAssignment
+            annotation.Add(anno.spectrumRef, anno)
+        Next
 
         For Each data As spectrumList In spectrums
-            Dim spectrumNode = file.Nodes.Add(data.ToString)
-            spectrumNode.Tag = data
+            For Each sp In data.spectrum1D
+                Dim name As String = annotation(sp.id).chemicalCompound.identifierList.identifier.First.name
+                Dim spectrumNode = file.Nodes.Add(name)
+                spectrumNode.Tag = data
+            Next
         Next
 
         VisualStudio.Dock(Me, DockState.DockLeft)
