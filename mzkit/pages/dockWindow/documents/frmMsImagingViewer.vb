@@ -86,7 +86,6 @@ Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.DataStorage.netCDF
-Imports Microsoft.VisualBasic.FileIO
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
@@ -99,6 +98,7 @@ Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Text
 Imports mzblender
 Imports ServiceHub
+Imports STImaging
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 Imports File = Microsoft.VisualBasic.Data.csv.IO.File
@@ -288,31 +288,12 @@ Public Class frmMsImagingViewer
                 If file.FileName.ExtensionSuffix("csv") Then
                     Call loadHEMapMatrix(file.FileName)
                 ElseIf file.FileName.ExtensionSuffix("ndpi") Then
-                    ' do convert and then load the raw tiff image
-                    Dim ndpitools As String = $"{AppEnvironment.GetNdpiTools}/ndpi2tiff.exe"
-                    Dim tiff As String
-
-                    Using workdir As New TemporaryEnvironment(file.FileName.ParentPath)
-                        Dim invoke As New Process With {
-                            .StartInfo = New ProcessStartInfo With {
-                                .FileName = ndpitools,
-                                .Arguments = $"""./{file.FileName.FileName}"",0",
-                                .CreateNoWindow = True
-                            }
-                        }
-
-                        tiff = $"{file.FileName.ParentPath}/{file.FileName.FileName},0.tif"
-                    End Using
-
-                    'PixelSelector1.OpenImageFile(tiff)
-                    'PixelSelector1.PreviewButton = True
-                    'PixelSelector1.ShowPreview = True
-                    Call VisualStudio.ShowDocument(Of frmOpenseadragonViewer)(, title:=tiff.FileName).LoadSlide(tiff)
+                    Call TissueSlideHandler.OpenNdpiFile(file.FileName)
                 ElseIf file.FileName.ExtensionSuffix("tif", "tiff", "dzi") Then
                     'PixelSelector1.OpenImageFile(file.FileName)
                     'PixelSelector1.PreviewButton = True
                     'PixelSelector1.ShowPreview = True
-                    Call VisualStudio.ShowDocument(Of frmOpenseadragonViewer)(, title:=file.FileName.FileName).LoadSlide(file.FileName)
+                    Call TissueSlideHandler.OpenTifFile(file.FileName)
                 Else
                     Call loadHEMapImage(New Bitmap(file.FileName.LoadImage))
                 End If
@@ -1842,5 +1823,22 @@ Public Class frmMsImagingViewer
             blender.sample_tag = tag
             Call rendering()
         End If
+    End Sub
+
+    Private Sub AddSpatialTileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddSpatialTileToolStripMenuItem.Click
+        Using file As New OpenFileDialog With {
+            .Filter = "Space Ranger Spots(*.csv)|*.csv",
+            .Title = "Open a new tissue positions list"
+        }
+            If file.ShowDialog = DialogResult.OK Then
+                Dim spots As SpaceSpot() = ST_spaceranger _
+                    .LoadTissueSpots(file.FileName.ReadAllLines) _
+                    .ToArray
+
+                Call PixelSelector1 _
+                    .MSICanvas _
+                    .AddSpatialTile(spots)
+            End If
+        End Using
     End Sub
 End Class

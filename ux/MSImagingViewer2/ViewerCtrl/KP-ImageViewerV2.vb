@@ -1007,7 +1007,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
 
     Private Sub KpImageViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         MSICanvas.ViewerHost = Me
-        MSICanvas.Location = pbFull.Location
+        MSICanvas.Location = New Point(0, ToolStrip1.Height)
         MSICanvas.Size = New Size(Me.Width, Me.Height - ToolStrip1.Height - StatusStrip1.Height)
         MSICanvas.BringToFront()
         MSICanvas.Visible = True

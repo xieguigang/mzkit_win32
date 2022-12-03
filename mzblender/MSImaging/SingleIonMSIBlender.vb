@@ -43,7 +43,11 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
             .Then(New TrIQScaler(params.TrIQ)) _
             .Then(New KNNScaler(params.knn, params.knn_qcut)) _
             .Then(New SoftenScaler())
-        Dim pixelFilter As New SingleIonLayer With {.DimensionSize = layer.DimensionSize, .IonMz = -1, .MSILayer = pixels}
+        Dim pixelFilter As New SingleIonLayer With {
+            .DimensionSize = layer.DimensionSize,
+            .IonMz = -1,
+            .MSILayer = pixels
+        }
         'Dim cut As Double = New TrIQThreshold(params.TrIQ) With {
         '    .levels = params.mapLevels
         '}.ThresholdValue(intensity)

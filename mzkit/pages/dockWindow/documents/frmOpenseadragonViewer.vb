@@ -52,6 +52,7 @@ Public Class frmOpenseadragonViewer
         }
 
         Call localfs.Start()
+        Call App.AddExitCleanHook(Sub() Call localfs.Kill())
     End Sub
 
     Private Sub frmOpenseadragonViewer_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing

@@ -109,6 +109,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.ThemeColorPicker">
+      <HintPath>..\..\dist\System.Windows.Forms.ThemeColorPicker.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="WindowsBase" />
@@ -116,6 +119,7 @@
   <ItemGroup>
     <Compile Include="DeepZoomCreator.vb" />
     <Compile Include="DeepZoomImage.vb" />
+    <Compile Include="App.vb" />
     <Compile Include="KPObject\KpZoom.vb" />
     <Compile Include="KPObject\GifImage.vb" />
     <Compile Include="KPObject\KP-DrawEngine.vb" />
@@ -124,6 +128,18 @@
     <Compile Include="MSI\Editor\Edge.vb" />
     <Compile Include="MSI\Editor\Polygon.vb" />
     <Compile Include="MSI\Editor\Vertex.vb" />
+    <Compile Include="MSI\InputSpotColor.Designer.vb">
+      <DependentUpon>InputSpotColor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MSI\InputSpotColor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MSI\InputLabelText.Designer.vb">
+      <DependentUpon>InputLabelText.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MSI\InputLabelText.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MSI\PixelSelector.Designer.vb">
       <DependentUpon>PixelSelector.vb</DependentUpon>
     </Compile>
@@ -134,6 +150,12 @@
       <DependentUpon>RegionSampleCard.vb</DependentUpon>
     </Compile>
     <Compile Include="MSI\RegionSampleCard.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MSI\SpatialTile.Designer.vb">
+      <DependentUpon>SpatialTile.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MSI\SpatialTile.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ViewerCtrl\Events\ImageViewerZoomEventArgs.vb" />
@@ -163,11 +185,23 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="MSI\InputLabelText.resx">
+      <DependentUpon>InputLabelText.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MSI\InputSpotColor.resx">
+      <DependentUpon>InputSpotColor.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MSI\PixelSelector.resx">
       <DependentUpon>PixelSelector.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MSI\RegionSampleCard.resx">
       <DependentUpon>RegionSampleCard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MSI\SpatialTile.resx">
+      <DependentUpon>SpatialTile.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MSI\SpatialTile.zh-CN.resx">
+      <DependentUpon>SpatialTile.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewerCtrl\ColorScaler.resx">
       <DependentUpon>ColorScaler.vb</DependentUpon>
@@ -249,6 +283,14 @@
     <Import Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Erica\src\STImaging\STImaging.vbproj">
+      <Project>{5f242bb6-da7d-4e08-b4a9-3405f361a35b}</Project>
+      <Name>STImaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Graph\graph-netcore5.vbproj">
+      <Project>{c7f74294-cccb-4b65-809d-523074dfaf4d}</Project>
+      <Name>graph-netcore5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\Math\Math\Math.NET5.vbproj">
       <Project>{eb3dd1ee-71a4-4d85-b494-ef075ad99098}</Project>
       <Name>Math.NET5</Name>
@@ -268,6 +310,10 @@
     <ProjectReference Include="..\..\..\visualize\TissueMorphology\TissueMorphology.vbproj">
       <Project>{560a9982-7d34-44c8-a0de-6b86e119247e}</Project>
       <Name>TissueMorphology</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonDialogs\CommonDialogs.vbproj">
+      <Project>{13685719-56a6-44f9-99a2-47cb79d29a57}</Project>
+      <Name>CommonDialogs</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -22,11 +22,22 @@
                 prefixUrl: "/openseadragon/images/",
                 tileSources: [
                     dzi
-                ]
+                ],
+				showNavigator:  true,
+				navigatorPosition:   "BOTTOM_RIGHT",
+				// Initial rotation angle
+				degrees: 0,
+				// Show rotation buttons
+				showRotationControl: true,
+				// Enable touch rotation on tactile devices
+				gestureSettingsTouch: {
+					pinchRotate: true
+				}
             });
         }
 
         load();
+		// document.getElementById('contentDiv').querySelector('.openseadragon-canvas').focus();
     </script>
 
     </div>

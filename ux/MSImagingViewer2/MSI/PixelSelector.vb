@@ -73,9 +73,10 @@ Imports System.Data
 Imports System.Drawing
 Imports System.Drawing.Drawing2D
 Imports System.Runtime.CompilerServices
-Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Mzkit_win32.MSImagingViewerV2.PolygonEditor
+Imports STImaging
 Imports stdNum = System.Math
 
 <Assembly: InternalsVisibleTo("mzkit_win32")>
@@ -119,6 +120,16 @@ Public Class PixelSelector
         For Each tag As String In tags
             Call ViewerHost.ToolStripComboBox1.Items.Add(tag)
         Next
+    End Sub
+
+    Public Sub AddSpatialTile(matrix As IEnumerable(Of SpaceSpot))
+        Dim tile As New SpatialTile
+
+        Call tile.ShowMatrix(matrix)
+        Call Me.Controls.Add(tile)
+
+        AddHandler tile.GetSpatialMetabolismPoint, AddressOf getPoint
+        AddHandler tile.ClickSpatialMetabolismPixel, Sub(e, ByRef px, ByRef py) Call clickGetPoint(e)
     End Sub
 
     ''' <summary>
@@ -1194,8 +1205,6 @@ Public Class PixelSelector
     ''' <param name="dimension_size">
     ''' the dimension size of the MSI raw data
     ''' </param>
-    ''' <param name="range"></param>
-    ''' <param name="mapLevels"></param>
     Public Sub SetMsImagingOutput(value As Image, dimension_size As Size)
         Me.pixel_size = New Size(value.Width / dimension_size.Width, value.Height / dimension_size.Height)
         Me._dimension_size = dimension_size
@@ -1361,12 +1370,27 @@ Public Class PixelSelector
     ''' <summary>
     ''' transform scaler
     ''' </summary>
-    ''' <param name="e"></param>
-    ''' <param name="xpoint"></param>
-    ''' <param name="ypoint"></param>
-    Private Sub getPoint(e As Point, orginal_imageSize As Size, ByRef xpoint As Integer, ByRef ypoint As Integer)
-        Dim Pic_width = orginal_imageSize.Width / Me.Width
-        Dim Pic_height = orginal_imageSize.Height / Me.Height
+    ''' <param name="e">
+    ''' the mouse cursor position from the mouse move event argument
+    ''' </param>
+    ''' <param name="xpoint">
+    ''' x on the mapping dimension
+    ''' </param>
+    ''' <param name="ypoint">
+    ''' y on the mapping dimension
+    ''' </param>
+    ''' <param name="orginal_imageSize">
+    ''' the dimension of the spatial region
+    ''' </param>
+    ''' <param name="ctrl">
+    ''' the size of the canvas control
+    ''' </param>
+    Public Shared Sub getPoint(e As Point, orginal_imageSize As Size, ctrl As Size,
+                               ByRef xpoint As Integer,
+                               ByRef ypoint As Integer)
+
+        Dim Pic_width As Double = orginal_imageSize.Width / ctrl.Width
+        Dim Pic_height As Double = orginal_imageSize.Height / ctrl.Height
 
         ' 得到图片上的坐标点
         xpoint = e.X * Pic_width
@@ -1394,6 +1418,15 @@ Public Class PixelSelector
 
     Public ReadOnly Property Pixel As Point
 
+    Private Sub clickGetPoint(e As Point)
+        Dim xpoint = 0
+        Dim ypoint = 0
+
+        Call getPoint(New Point(e.X, e.Y), xpoint, ypoint)
+        _Pixel = New Point(xpoint, ypoint)
+        RaiseEvent SelectPixel(xpoint, ypoint, Nothing)
+    End Sub
+
     Private Sub clickGetPoint(e As MouseEventArgs)
         Dim xpoint = 0
         Dim ypoint = 0
@@ -1413,7 +1446,7 @@ Public Class PixelSelector
                 Dim px As Integer = 0
                 Dim py As Integer = 0
 
-                getPoint(New Point(e.X, e.Y), HEMap.Size, px, py)
+                getPoint(New Point(e.X, e.Y), HEMap.Size, Me.Size, px, py)
                 color = HEMap.GetPixel(px, py)
             End If
 

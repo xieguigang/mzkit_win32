@@ -119,6 +119,12 @@
     <Compile Include="InputDialog.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="InputDialogs\InputSpotRadius.Designer.vb">
+      <DependentUpon>InputSpotRadius.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InputDialogs\InputSpotRadius.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="InputDialogs\ShowMSIRowScanSummary.Designer.vb">
       <DependentUpon>ShowMSIRowScanSummary.vb</DependentUpon>
     </Compile>
@@ -151,6 +157,12 @@
   <ItemGroup>
     <EmbeddedResource Include="InputDialog.resx">
       <DependentUpon>InputDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputDialogs\InputSpotRadius.resx">
+      <DependentUpon>InputSpotRadius.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputDialogs\InputSpotRadius.zh-CN.resx">
+      <DependentUpon>InputSpotRadius.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputDialogs\ShowMSIRowScanSummary.resx">
       <DependentUpon>ShowMSIRowScanSummary.vb</DependentUpon>

@@ -187,7 +187,8 @@ Friend MustInherit Class WindowModules
             "Ab Sciex Wiff(*.wiff)|*.wiff",
             "R# Script(*.R)|*.R",
             "Excel Table(*.csv;*.xlsx)|*.csv;*.xlsx",
-            "Open Source Spectrum(*.msp)|*.msp"
+            "Open Source Spectrum(*.msp)|*.msp",
+            "Virtual Pathology Slide(*.tif;*.dzi;*.ndpi)|*.tif;*.dzi;*.ndpi"
         }
 
         Using file As New OpenFileDialog With {

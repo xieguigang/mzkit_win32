@@ -53,14 +53,10 @@
 #End Region
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class PixelSelector : Inherits PictureBox
+Partial Class PixelSelector : Inherits PanelDoubleBuffered
     Private components As System.ComponentModel.IContainer
 
     Private Sub InitializeComponent()
-        CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SuspendLayout()
-        CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ResumeLayout(False)
 
     End Sub
 End Class

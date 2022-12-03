@@ -168,6 +168,7 @@ Module Globals
                 Call Console.WriteLine(streamReader.ReadToEnd)
             End Using
 
+            Call localfs.Kill()
             Console.WriteLine(httpResponse.StatusCode)
         Catch ex As Exception
 
