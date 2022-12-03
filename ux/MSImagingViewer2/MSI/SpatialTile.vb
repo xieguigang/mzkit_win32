@@ -236,7 +236,7 @@ Public Class SpatialTile
             End Sub,, config:=input)
     End Sub
 
-    Public Property SpotColor As Color
+    Public Property SpotColor As Color = Color.Red
 
     Private Sub onDrawSpots(g As Graphics2D)
         Dim d As New SizeF(g.Width / dimensions.Width, g.Height / dimensions.Height)
@@ -269,7 +269,7 @@ Public Class SpatialTile
             g = Me.Size.CreateGDIDevice
         End If
 
-        If Me.Parent IsNot Nothing AndAlso imageLoad IsNot Nothing Then
+        If Me.Parent IsNot Nothing AndAlso imageLoad Is Nothing Then
             Dim index = Me.Parent.Controls.GetChildIndex(Me) - 1
 
             Me.Visible = False
