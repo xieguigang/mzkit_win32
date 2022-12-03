@@ -52,7 +52,7 @@ Public Class frmNmrSpectrumExplorer
             Dim data = spectrum.spectrum1D(Scan0)
             Dim sw = nmrML.acquisition.First.acquisition1D.SW
             Dim matrix = data.ParseMatrix(SW:=sw)
-            matrix.name = e.Node.Text
+            matrix.name = $"NMR {e.Node.Text}"
 
             Call frmProgressSpinner.DoLoading(
                 Sub()
