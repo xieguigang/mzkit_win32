@@ -214,7 +214,7 @@ Public Class SpatialTile
         Next
     End Function
 
-    Dim imageLoad As Boolean = False
+    Dim imageLoad As Image = Nothing
 
     Private Sub LoadTissueImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoadTissueImageToolStripMenuItem.Click
         Using file As New OpenFileDialog With {.Filter = "Raster Image(*.jpg;*.png;*.bmp)|*.jpg;*.png;*.bmp"}
@@ -222,7 +222,7 @@ Public Class SpatialTile
                 Me.BackgroundImage = file.FileName.LoadImage
                 Me.Refresh()
 
-                imageLoad = True
+                imageLoad = file.FileName.LoadImage
             End If
         End Using
     End Sub
@@ -236,54 +236,13 @@ Public Class SpatialTile
             End Sub,, config:=input)
     End Sub
 
-    ''' <summary>
-    ''' make this spatial tile transparent
-    ''' </summary>
-    Private Sub CanvasOnPaintBackground()
-        If Me.Parent Is Nothing Then Return
-        If imageLoad Then Return
+    Public Property SpotColor As Color
 
-        Dim index = Me.Parent.Controls.GetChildIndex(Me) - 1
-        Dim g As Graphics2D = Me.Size.CreateGDIDevice
-
-        Me.Visible = False
-
-        For i As Integer = Me.Parent.Controls.Count - 1 To index Step -1
-            Dim c As Control
-
-            If i < 0 Then
-                c = Me.Parent
-            Else
-                c = Me.Parent.Controls(i)
-            End If
-
-            If c Is Me Then
-                Continue For
-            End If
-
-            If c.Bounds.IntersectsWith(Bounds) AndAlso c.Visible Then
-                Dim clientRect As Rectangle = c.ClientRectangle
-                ' clientRect = New Rectangle(clientRect.X, clientRect.Y - DrawOffset, clientRect.Width, clientRect.Height)
-                Using bmp = New Bitmap(c.Width, c.Height, g.Graphics)
-                    c.DrawToBitmap(bmp, clientRect)
-                    g.TranslateTransform(c.Left - Left, c.Top - Top - DrawOffset)
-                    bmp.AdjustContrast(-30)
-                    g.DrawImageUnscaled(bmp, Point.Empty)
-                    g.TranslateTransform(Left - c.Left, Top - c.Top - DrawOffset)
-                End Using
-            End If
-        Next
-
-        Dim size As Size = Me.Size
-        size = New Size(size.Width - 4, size.Height - 4)
-
-        g.ResetTransform()
-        g.DrawRectangle(New Pen(Brushes.White, 2) With {.DashStyle = DashStyle.Dash}, New Rectangle(New Point(2, 2), size))
-
-        Dim d As New Size(Me.Width / dimensions.Width, Me.Height / dimensions.Height)
-        Dim r As New Size(d.Width / 2, d.Height / 2)
+    Private Sub onDrawSpots(g As Graphics2D)
+        Dim d As New SizeF(g.Width / dimensions.Width, g.Height / dimensions.Height)
+        Dim r As New SizeF(d.Width / 2, d.Height / 2)
         Dim black As New SolidBrush(Color.Black.Alpha(120))
-        Dim red As New SolidBrush(Color.Red.Alpha(120))
+        Dim red As New SolidBrush(SpotColor.Alpha(120))
 
         ' draw spatial matrix
         For Each spot As SpaceSpot In spatialMatrix.EnumerateData
@@ -291,12 +250,64 @@ Public Class SpatialTile
             Dim y = spot.py * d.Height
 
             If spot.flag = 0 Then
-                Call g.DrawCircle(New PointF(x, y), r.Width, black)
+                Call g.FillEllipse(black, New RectangleF(New PointF(x, y), d))
             Else
-                Call g.DrawCircle(New PointF(x, y), r.Width, red)
+                Call g.FillEllipse(red, New RectangleF(New PointF(x, y), d))
             End If
         Next
+    End Sub
 
+    ''' <summary>
+    ''' make this spatial tile transparent
+    ''' </summary>
+    Private Sub CanvasOnPaintBackground()
+        Dim g As Graphics2D
+
+        If imageLoad IsNot Nothing Then
+            g = New Graphics2D(New Bitmap(imageLoad))
+        Else
+            g = Me.Size.CreateGDIDevice
+        End If
+
+        If Me.Parent IsNot Nothing AndAlso imageLoad IsNot Nothing Then
+            Dim index = Me.Parent.Controls.GetChildIndex(Me) - 1
+
+            Me.Visible = False
+
+            For i As Integer = Me.Parent.Controls.Count - 1 To index Step -1
+                Dim c As Control
+
+                If i < 0 Then
+                    c = Me.Parent
+                Else
+                    c = Me.Parent.Controls(i)
+                End If
+
+                If c Is Me Then
+                    Continue For
+                End If
+
+                If c.Bounds.IntersectsWith(Bounds) AndAlso c.Visible Then
+                    Dim clientRect As Rectangle = c.ClientRectangle
+                    ' clientRect = New Rectangle(clientRect.X, clientRect.Y - DrawOffset, clientRect.Width, clientRect.Height)
+                    Using bmp = New Bitmap(c.Width, c.Height, g.Graphics)
+                        c.DrawToBitmap(bmp, clientRect)
+                        g.TranslateTransform(c.Left - Left, c.Top - Top - DrawOffset)
+                        bmp.AdjustContrast(-30)
+                        g.DrawImageUnscaled(bmp, Point.Empty)
+                        g.TranslateTransform(Left - c.Left, Top - c.Top - DrawOffset)
+                    End Using
+                End If
+            Next
+
+            Dim size As Size = Me.Size
+            size = New Size(size.Width - 4, size.Height - 4)
+
+            g.ResetTransform()
+            g.DrawRectangle(New Pen(Brushes.White, 2) With {.DashStyle = DashStyle.Dash}, New Rectangle(New Point(2, 2), size))
+        End If
+
+        onDrawSpots(g)
         g.Flush()
 
         Me.BackgroundImage = g.ImageResource
@@ -312,13 +323,17 @@ Public Class SpatialTile
     End Sub
 
     Private Sub RemoveTissueImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RemoveTissueImageToolStripMenuItem.Click
+        imageLoad = Nothing
         Me.CanvasOnPaintBackground()
-        imageLoad = False
     End Sub
 
     Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
         If Not Parent Is Nothing Then
             Call Parent.Controls.Remove(Me)
         End If
+    End Sub
+
+    Private Sub SetSpotColorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetSpotColorToolStripMenuItem.Click
+
     End Sub
 End Class

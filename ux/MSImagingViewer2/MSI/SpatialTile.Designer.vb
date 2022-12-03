@@ -35,13 +35,14 @@ Partial Class SpatialTile
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.SetSpotColorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadTissueImageToolStripMenuItem, Me.RemoveTissueImageToolStripMenuItem, Me.ToolStripMenuItem2, Me.EditLabelToolStripMenuItem, Me.ToolStripMenuItem1, Me.DeleteToolStripMenuItem, Me.ExportSpatialMappingToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadTissueImageToolStripMenuItem, Me.RemoveTissueImageToolStripMenuItem, Me.ToolStripMenuItem2, Me.EditLabelToolStripMenuItem, Me.SetSpotColorToolStripMenuItem, Me.ToolStripMenuItem1, Me.DeleteToolStripMenuItem, Me.ExportSpatialMappingToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
         resources.ApplyResources(Me.ContextMenuStrip1, "ContextMenuStrip1")
         '
@@ -99,6 +100,11 @@ Partial Class SpatialTile
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.TabStop = False
         '
+        'SetSpotColorToolStripMenuItem
+        '
+        Me.SetSpotColorToolStripMenuItem.Name = "SetSpotColorToolStripMenuItem"
+        resources.ApplyResources(Me.SetSpotColorToolStripMenuItem, "SetSpotColorToolStripMenuItem")
+        '
         'SpatialTile
         '
         resources.ApplyResources(Me, "$this")
@@ -127,4 +133,5 @@ Partial Class SpatialTile
     Friend WithEvents RemoveTissueImageToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
     Friend WithEvents DeleteToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SetSpotColorToolStripMenuItem As ToolStripMenuItem
 End Class
