@@ -98,6 +98,21 @@ Public Class PlotProperty
     ''' <returns></returns>
     <Browsable(False)> Public Property colorSet As String
 
+    Public Function GetTheme() As Theme
+        Return New Theme With {
+            .padding = $"padding: {padding_top}px {padding_right}px {padding_bottom}px {padding_left}px;",
+            .colorSet = GetColorSetName(),
+            .pointSize = point_size,
+            .drawGrid = show_grid,
+            .background = background.ToHtmlColor,
+            .drawLegend = show_legend,
+            .tagCSS = New CSSFont(label_font).ToString,
+            .legendLabelCSS = New CSSFont(legend_font).ToString,
+            .axisLabelCSS = New CSSFont(axis_label_font).ToString,
+            .gridFill = gridFill.ToHtmlColor
+        }
+    End Function
+
     Public Function GetColorSetName() As String
         If colors = CategoryPalettes.NA Then
             Return colorSet
@@ -108,10 +123,6 @@ Public Class PlotProperty
 
     Public Function GetPadding() As Padding
         Return New Padding(padding_left, padding_top, padding_right, padding_bottom)
-    End Function
-
-    Public Function GetTheme() As Theme
-        Return New Theme
     End Function
 
 End Class
