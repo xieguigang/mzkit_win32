@@ -1,5 +1,6 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.nmrML
+Imports BioNovoGene.mzkit_win32.My
 Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmNmrSpectrumExplorer
@@ -51,8 +52,10 @@ Public Class frmNmrSpectrumExplorer
             Dim data = spectrum.spectrum1D(Scan0)
             Dim sw = nmrML.acquisition.First.acquisition1D.SW
             Dim matrix = data.ParseMatrix(SW:=sw)
+            matrix.name = e.Node.Text
 
-
+            MyApplication.host.mzkitTool.showMatrix(matrix.ms2, matrix.name, nmr:=True)
+            MyApplication.host.mzkitTool.PlotSpectrum(matrix, focusOn:=True, nmr:=True)
         End If
     End Sub
 End Class
