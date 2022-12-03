@@ -1,15 +1,12 @@
-﻿Imports System.ComponentModel
-Imports System.Drawing
+﻿Imports System.Drawing
 Imports System.Drawing.Drawing2D
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports CommonDialogs
-Imports Microsoft.VisualBasic.ApplicationServices.Development.XmlDoc.Serialization
 Imports Microsoft.VisualBasic.Data.GraphTheory
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.BitmapImage
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Linq
-Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports STImaging
 
 Public Class SpatialTile
@@ -244,6 +241,7 @@ Public Class SpatialTile
     ''' </summary>
     Private Sub CanvasOnPaintBackground()
         If Me.Parent Is Nothing Then Return
+        If imageLoad Then Return
 
         Dim index = Me.Parent.Controls.GetChildIndex(Me) - 1
         Dim g As Graphics2D = Me.Size.CreateGDIDevice
@@ -281,6 +279,24 @@ Public Class SpatialTile
 
         g.ResetTransform()
         g.DrawRectangle(New Pen(Brushes.White, 2) With {.DashStyle = DashStyle.Dash}, New Rectangle(New Point(2, 2), size))
+
+        Dim d As New Size(Me.Width / dimensions.Width, Me.Height / dimensions.Height)
+        Dim r As New Size(d.Width / 2, d.Height / 2)
+        Dim black As New SolidBrush(Color.Black.Alpha(120))
+        Dim red As New SolidBrush(Color.Red.Alpha(120))
+
+        ' draw spatial matrix
+        For Each spot As SpaceSpot In spatialMatrix.EnumerateData
+            Dim x = spot.px * d.Width
+            Dim y = spot.py * d.Height
+
+            If spot.flag = 0 Then
+                Call g.DrawCircle(New PointF(x, y), r.Width, black)
+            Else
+                Call g.DrawCircle(New PointF(x, y), r.Width, red)
+            End If
+        Next
+
         g.Flush()
 
         Me.BackgroundImage = g.ImageResource
