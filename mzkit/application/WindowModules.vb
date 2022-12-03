@@ -182,6 +182,7 @@ Friend MustInherit Class WindowModules
             "Image mzML(*.imzML)|*.imzML",
             "GC-MS Targeted(*.cdf)|*.cdf;*.netcdf",
             "GC-MS / LC-MS/MS Targeted(*.mzML)|*.mzML",
+            "NMR data(*.nmrML)|*.nmrML",
             "Thermo Raw File(*.raw)|*.raw",
             "Ab Sciex Wiff(*.wiff)|*.wiff",
             "R# Script(*.R)|*.R",
