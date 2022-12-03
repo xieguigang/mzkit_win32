@@ -54,8 +54,11 @@ Public Class frmNmrSpectrumExplorer
             Dim matrix = data.ParseMatrix(SW:=sw)
             matrix.name = e.Node.Text
 
-            MyApplication.host.mzkitTool.showMatrix(matrix.ms2, matrix.name, nmr:=True)
-            MyApplication.host.mzkitTool.PlotSpectrum(matrix, focusOn:=True, nmr:=True)
+            Call frmProgressSpinner.DoLoading(
+                Sub()
+                    MyApplication.host.mzkitTool.showMatrix(matrix.ms2, matrix.name, nmr:=True)
+                    MyApplication.host.mzkitTool.PlotSpectrum(matrix, focusOn:=True, nmr:=True)
+                End Sub)
         End If
     End Sub
 End Class
