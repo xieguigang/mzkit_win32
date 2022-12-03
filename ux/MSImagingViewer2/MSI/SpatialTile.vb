@@ -86,6 +86,19 @@ Public Class SpatialTile
 
         Me.dimensions = New Size(polygon.xpoints.Max, polygon.ypoints.Max)
         Me.spatialMatrix = Grid(Of SpaceSpot).Create(spatialMatrix, Function(spot) spot.px, Function(spot) spot.py)
+
+        spatialMatrix = spatialMatrix _
+            .Select(Function(p)
+                        Return New SpaceSpot With {
+                            .px = p.px,
+                            .py = dimensions.Height - p.py,
+                            .flag = p.flag,
+                            .barcode = p.barcode,
+                            .x = p.x,
+                            .y = p.y
+                        }
+                    End Function) _
+            .ToArray
     End Sub
 
 
