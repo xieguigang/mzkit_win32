@@ -89,6 +89,7 @@ Friend MustInherit Class WindowModules
     Friend Shared ReadOnly GCMSPeaks As New frmGCMSPeaks
     Friend Shared ReadOnly parametersTool As New AdjustParameters
     Friend Shared ReadOnly MSIPixelProperty As New MSIPixelPropertyWindow
+    Friend Shared ReadOnly nmrSpectrums As New frmNmrSpectrumExplorer
 
     Public Shared ReadOnly Property ribbon As RibbonItems
         Get
@@ -140,6 +141,9 @@ Friend MustInherit Class WindowModules
 
         GCMSPeaks.Show(dockPanel)
         GCMSPeaks.DockState = DockState.Hidden
+
+        nmrSpectrums.Show(dockPanel)
+        nmrSpectrums.DockState = DockState.Hidden
 
         MRMIons.Show(dockPanel)
         MRMIons.DockState = DockState.Hidden

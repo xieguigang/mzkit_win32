@@ -688,6 +688,12 @@
     <Compile Include="pages\dockWindow\documents\frmGCMS_CDFExplorer.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="pages\dockWindow\explorer\frmNmrSpectrumExplorer.Designer.vb">
+      <DependentUpon>frmNmrSpectrumExplorer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pages\dockWindow\explorer\frmNmrSpectrumExplorer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\explorer\frmGCMSPeaks.Designer.vb">
       <DependentUpon>frmGCMSPeaks.vb</DependentUpon>
     </Compile>
@@ -1142,6 +1148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\explorer\frmGCMSPeaks.resx">
       <DependentUpon>frmGCMSPeaks.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\explorer\frmNmrSpectrumExplorer.resx">
+      <DependentUpon>frmNmrSpectrumExplorer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\explorer\frmRawFeaturesList.resx">
       <DependentUpon>frmRawFeaturesList.vb</DependentUpon>
