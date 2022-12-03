@@ -298,7 +298,7 @@ Public Class PageMzkitTools
 
                   If nmr Then
                       PictureBox1.BackgroundImage = New NMRSpectrum(scanData, args.GetTheme) _
-                         .Plot(New Size(args.width, args.height), dpi:=100) _
+                         .Plot(New Size(args.width, args.height), dpi:=150) _
                          .AsGDIImage
                   Else
                       PictureBox1.BackgroundImage = PeakAssign.DrawSpectrumPeaks(
@@ -315,7 +315,7 @@ Public Class PageMzkitTools
               End Sub,
           width:=2100,
           height:=1200,
-          padding:=If(nmr, "padding: 300px 600px 350px 100px;", "padding: 100px 30px 50px 100px;"),
+          padding:=If(nmr, "padding: 200px 400px 200px 50px;", "padding: 100px 30px 50px 100px;"),
           bg:="white",
           title:=scanData.name,
           xlab:=If(nmr, "ppm", "M/z ratio"),
