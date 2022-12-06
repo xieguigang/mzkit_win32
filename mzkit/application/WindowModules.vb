@@ -89,6 +89,7 @@ Friend MustInherit Class WindowModules
     Friend Shared ReadOnly GCMSPeaks As New frmGCMSPeaks
     Friend Shared ReadOnly parametersTool As New AdjustParameters
     Friend Shared ReadOnly MSIPixelProperty As New MSIPixelPropertyWindow
+    Friend Shared ReadOnly nmrSpectrums As New frmNmrSpectrumExplorer
 
     Public Shared ReadOnly Property ribbon As RibbonItems
         Get
@@ -141,6 +142,9 @@ Friend MustInherit Class WindowModules
         GCMSPeaks.Show(dockPanel)
         GCMSPeaks.DockState = DockState.Hidden
 
+        nmrSpectrums.Show(dockPanel)
+        nmrSpectrums.DockState = DockState.Hidden
+
         MRMIons.Show(dockPanel)
         MRMIons.DockState = DockState.Hidden
 
@@ -182,6 +186,7 @@ Friend MustInherit Class WindowModules
             "Image mzML(*.imzML)|*.imzML",
             "GC-MS Targeted(*.cdf)|*.cdf;*.netcdf",
             "GC-MS / LC-MS/MS Targeted(*.mzML)|*.mzML",
+            "NMR data(*.nmrML)|*.nmrML",
             "Thermo Raw File(*.raw)|*.raw",
             "Ab Sciex Wiff(*.wiff)|*.wiff",
             "R# Script(*.R)|*.R",

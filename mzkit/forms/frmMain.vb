@@ -161,6 +161,8 @@ Public Class frmMain
             Call SelectSheetName.OpenExcel(fileName)
         ElseIf fileName.ExtensionSuffix("imzML") Then
             Call showMsImaging(fileName)
+        ElseIf fileName.ExtensionSuffix("nmrml") Then
+            Call WindowModules.nmrSpectrums.LoadNmr(fileName)
         ElseIf fileName.ExtensionSuffix("mzml") AndAlso RawScanParser.IsMRMData(fileName) Then
             Call ShowMRMIons(fileName)
         ElseIf fileName.ExtensionSuffix("mzml") AndAlso RawScanParser.IsSIMData(fileName) Then

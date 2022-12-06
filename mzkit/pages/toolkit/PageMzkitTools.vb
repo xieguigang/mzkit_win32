@@ -283,28 +283,45 @@ Public Class PageMzkitTools
         End If
     End Sub
 
-    Public Sub PlotSpectrum(scanData As LibraryMatrix, Optional focusOn As Boolean = True)
+    ''' <summary>
+    ''' plot spectrum matrix
+    ''' </summary>
+    ''' <param name="scanData"></param>
+    ''' <param name="focusOn">
+    ''' show the canvas page after data plot is done?
+    ''' </param>
+    ''' <param name="nmr"></param>
+    Public Sub PlotSpectrum(scanData As LibraryMatrix, Optional focusOn As Boolean = True, Optional nmr As Boolean = False)
         Call MyApplication.RegisterPlot(
               Sub(args)
                   scanData.name = args.title
-                  PictureBox1.BackgroundImage = PeakAssign.DrawSpectrumPeaks(
-                          scanData,
-                          padding:=args.GetPadding.ToString,
-                          bg:=args.background.ToHtmlColor,
-                          size:=$"{args.width},{args.height}",
-                          labelIntensity:=If(args.show_tag, 0.25, 100),
-                          gridFill:=args.gridFill.ToHtmlColor,
-                          barStroke:=$"stroke: steelblue; stroke-width: {args.line_width}px; stroke-dash: solid;"
-                      ) _
-                      .AsGDIImage
+
+                  If nmr Then
+                      PictureBox1.BackgroundImage = New NMRSpectrum(scanData, args.GetTheme) With {
+                        .main = args.title
+                      } _
+                         .Plot(New Size(args.width, args.height), dpi:=150) _
+                         .AsGDIImage
+                  Else
+                      PictureBox1.BackgroundImage = PeakAssign.DrawSpectrumPeaks(
+                        scanData,
+                        padding:=args.GetPadding.ToString,
+                        bg:=args.background.ToHtmlColor,
+                        size:=$"{args.width},{args.height}",
+                        labelIntensity:=If(args.show_tag, 0.25, 100),
+                        gridFill:=args.gridFill.ToHtmlColor,
+                        barStroke:=$"stroke: steelblue; stroke-width: {args.line_width}px; stroke-dash: solid;"
+                    ) _
+                    .AsGDIImage
+                  End If
               End Sub,
           width:=2100,
           height:=1200,
-          padding:="padding: 100px 30px 50px 100px;",
+          padding:=If(nmr, "padding: 200px 50px 200px 50px;", "padding: 100px 30px 50px 100px;"),
           bg:="white",
           title:=scanData.name,
-          xlab:="M/z ratio",
-          ylab:="Relative Intensity (%)"
+          xlab:=If(nmr, "ppm", "M/z ratio"),
+          ylab:=If(nmr, "intensity", "Relative Intensity (%)")
       )
 
         If focusOn Then
@@ -666,7 +683,12 @@ Public Class PageMzkitTools
         End If
     End Sub
 
-    Sub showMatrix(matrix As ms2(), name As String)
+    ''' <summary>
+    ''' load matrix data into the data grid
+    ''' </summary>
+    ''' <param name="matrix"></param>
+    ''' <param name="name"></param>
+    Sub showMatrix(matrix As ms2(), name As String, Optional nmr As Boolean = False)
         Me.matrix = matrix
 
         matrixName = name
@@ -674,24 +696,34 @@ Public Class PageMzkitTools
         DataGridView1.Rows.Clear()
         DataGridView1.Columns.Clear()
 
-        DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "m/z"})
-        DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "intensity"})
-        DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "relative"})
-        DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "annotation"})
+        If nmr Then
+            DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "ppm"})
+            DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "intensity"})
 
-        Dim max As Double
-
-        If matrix.Length = 0 Then
-            max = 0
-            Call MyApplication.host.showStatusMessage($"'{name}' didn't contains any data...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            For Each tick As ms2 In matrix
+                DataGridView1.Rows.Add({tick.mz, tick.intensity})
+                Application.DoEvents()
+            Next
         Else
-            max = matrix.Select(Function(a) a.intensity).Max
-        End If
+            DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "m/z"})
+            DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "intensity"})
+            DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "relative"})
+            DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "annotation"})
 
-        For Each tick As ms2 In matrix
-            DataGridView1.Rows.Add({tick.mz, tick.intensity, CInt(tick.intensity / max * 100), tick.Annotation})
-            Application.DoEvents()
-        Next
+            Dim max As Double
+
+            If matrix.Length = 0 Then
+                max = 0
+                Call MyApplication.host.showStatusMessage($"'{name}' didn't contains any data...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Else
+                max = matrix.Select(Function(a) a.intensity).Max
+            End If
+
+            For Each tick As ms2 In matrix
+                DataGridView1.Rows.Add({tick.mz, tick.intensity, CInt(tick.intensity / max * 100), tick.Annotation})
+                Application.DoEvents()
+            Next
+        End If
     End Sub
 
     Sub showMatrix(matrix As SSM2MatrixFragment(), name As String)
