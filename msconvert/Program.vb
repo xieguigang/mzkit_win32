@@ -3,6 +3,7 @@ Imports System.Drawing
 Imports System.IO
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports Microsoft.VisualBasic.CommandLine
@@ -53,6 +54,16 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
         End If
 
         Return 0
+    End Function
+
+    <ExportAPI("/3d-imaging")>
+    <Description("Convert 3D ms-imaging raw data file to mzPack.")>
+    <Usage("/3d-imaging --raw <raw_data_file.imzML> [--cache <output.mzPack>]")>
+    Public Function convert3DMsImaging(args As CommandLine) As Integer
+        Dim raw As String = args <= "--raw"
+        Dim output As String = args("--cache") Or $"{raw.TrimSuffix}.mzPack"
+
+        Return Imports3DMSI.FileConvert(raw, output).CLICode
     End Function
 
     <ExportAPI("/cdf_to_mzpack")>
