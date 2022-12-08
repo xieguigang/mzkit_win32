@@ -162,21 +162,21 @@ Public Class SpatialTile
 
     Dim allowResize As Boolean = False
 
-    Private Sub PictureBox1_MouseUp(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseUp
+    Private Sub PictureBox1_MouseUp(sender As Object, e As MouseEventArgs) Handles AnchorResize.MouseUp
         Me.ResumeLayout()
         allowResize = False
         Me.CanvasOnPaintBackground()
     End Sub
 
-    Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
+    Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles AnchorResize.MouseMove
         If allowResize Then
-            Me.Size = New Size(PictureBox1.Left + e.X, PictureBox1.Top + e.Y)
+            Me.Size = New Size(AnchorResize.Left + e.X, AnchorResize.Top + e.Y)
             ' Me.Invalidate()
             ' Call PictureBox2.Refresh()
         End If
     End Sub
 
-    Private Sub PictureBox1_MouseDown(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseDown
+    Private Sub PictureBox1_MouseDown(sender As Object, e As MouseEventArgs) Handles AnchorResize.MouseDown
         Me.SuspendLayout()
         allowResize = True
     End Sub
@@ -375,5 +375,9 @@ Public Class SpatialTile
                 End If
             End If
         End If
+    End Sub
+
+    Private Sub RotateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RotateToolStripMenuItem.Click
+
     End Sub
 End Class

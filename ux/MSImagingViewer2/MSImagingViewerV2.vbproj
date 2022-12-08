@@ -128,6 +128,12 @@
     <Compile Include="MSI\Editor\Edge.vb" />
     <Compile Include="MSI\Editor\Polygon.vb" />
     <Compile Include="MSI\Editor\Vertex.vb" />
+    <Compile Include="MSI\InputRotateMatrix.Designer.vb">
+      <DependentUpon>InputRotateMatrix.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MSI\InputRotateMatrix.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MSI\InputSpotColor.Designer.vb">
       <DependentUpon>InputSpotColor.vb</DependentUpon>
     </Compile>
@@ -187,6 +193,9 @@
   <ItemGroup>
     <EmbeddedResource Include="MSI\InputLabelText.resx">
       <DependentUpon>InputLabelText.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MSI\InputRotateMatrix.resx">
+      <DependentUpon>InputRotateMatrix.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MSI\InputSpotColor.resx">
       <DependentUpon>InputSpotColor.vb</DependentUpon>

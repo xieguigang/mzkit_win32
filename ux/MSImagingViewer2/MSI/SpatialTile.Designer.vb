@@ -29,20 +29,21 @@ Partial Class SpatialTile
         Me.RemoveTissueImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
         Me.EditLabelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SetSpotColorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportSpatialMappingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.SetSpotColorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AnchorResize = New System.Windows.Forms.PictureBox()
+        Me.RotateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.AnchorResize, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadTissueImageToolStripMenuItem, Me.RemoveTissueImageToolStripMenuItem, Me.ToolStripMenuItem2, Me.EditLabelToolStripMenuItem, Me.SetSpotColorToolStripMenuItem, Me.ToolStripMenuItem1, Me.DeleteToolStripMenuItem, Me.ExportSpatialMappingToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadTissueImageToolStripMenuItem, Me.RemoveTissueImageToolStripMenuItem, Me.ToolStripMenuItem2, Me.EditLabelToolStripMenuItem, Me.RotateToolStripMenuItem, Me.SetSpotColorToolStripMenuItem, Me.ToolStripMenuItem1, Me.DeleteToolStripMenuItem, Me.ExportSpatialMappingToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
         resources.ApplyResources(Me.ContextMenuStrip1, "ContextMenuStrip1")
         '
@@ -65,6 +66,11 @@ Partial Class SpatialTile
         '
         Me.EditLabelToolStripMenuItem.Name = "EditLabelToolStripMenuItem"
         resources.ApplyResources(Me.EditLabelToolStripMenuItem, "EditLabelToolStripMenuItem")
+        '
+        'SetSpotColorToolStripMenuItem
+        '
+        Me.SetSpotColorToolStripMenuItem.Name = "SetSpotColorToolStripMenuItem"
+        resources.ApplyResources(Me.SetSpotColorToolStripMenuItem, "SetSpotColorToolStripMenuItem")
         '
         'ToolStripMenuItem1
         '
@@ -92,18 +98,18 @@ Partial Class SpatialTile
         Me.Label1.ForeColor = System.Drawing.Color.DodgerBlue
         Me.Label1.Name = "Label1"
         '
-        'PictureBox1
+        'AnchorResize
         '
-        resources.ApplyResources(Me.PictureBox1, "PictureBox1")
-        Me.PictureBox1.BackColor = System.Drawing.Color.Red
-        Me.PictureBox1.Cursor = System.Windows.Forms.Cursors.SizeNWSE
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.TabStop = False
+        resources.ApplyResources(Me.AnchorResize, "AnchorResize")
+        Me.AnchorResize.BackColor = System.Drawing.Color.Red
+        Me.AnchorResize.Cursor = System.Windows.Forms.Cursors.SizeNWSE
+        Me.AnchorResize.Name = "AnchorResize"
+        Me.AnchorResize.TabStop = False
         '
-        'SetSpotColorToolStripMenuItem
+        'RotateToolStripMenuItem
         '
-        Me.SetSpotColorToolStripMenuItem.Name = "SetSpotColorToolStripMenuItem"
-        resources.ApplyResources(Me.SetSpotColorToolStripMenuItem, "SetSpotColorToolStripMenuItem")
+        Me.RotateToolStripMenuItem.Name = "RotateToolStripMenuItem"
+        resources.ApplyResources(Me.RotateToolStripMenuItem, "RotateToolStripMenuItem")
         '
         'SpatialTile
         '
@@ -111,12 +117,12 @@ Partial Class SpatialTile
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ContextMenuStrip = Me.ContextMenuStrip1
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.AnchorResize)
         Me.Cursor = System.Windows.Forms.Cursors.Hand
         Me.DoubleBuffered = True
         Me.Name = "SpatialTile"
         Me.ContextMenuStrip1.ResumeLayout(False)
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.AnchorResize, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -129,9 +135,10 @@ Partial Class SpatialTile
     Friend WithEvents ExportSpatialMappingToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents Label1 As Label
-    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents AnchorResize As PictureBox
     Friend WithEvents RemoveTissueImageToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
     Friend WithEvents DeleteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SetSpotColorToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents RotateToolStripMenuItem As ToolStripMenuItem
 End Class
