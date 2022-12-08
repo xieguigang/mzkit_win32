@@ -139,7 +139,7 @@ Module Globals
         localfs = New Process With {
             .StartInfo = New ProcessStartInfo With {
                 .FileName = $"{App.HOME}/Rstudio/bin/Rserve.exe",
-                .Arguments = $"--listen /wwwroot ""{AppEnvironment.getWebViewFolder}"" /port {WebPort}",
+                .Arguments = $"--listen /wwwroot ""{AppEnvironment.getWebViewFolder}"" /port {WebPort} --parent={App.PID}",
                 .CreateNoWindow = True,
                 .WindowStyle = ProcessWindowStyle.Hidden,
                 .UseShellExecute = True
