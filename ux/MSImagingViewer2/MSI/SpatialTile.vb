@@ -361,4 +361,19 @@ Public Class SpatialTile
                 Me.CanvasOnPaintBackground()
             End Sub)
     End Sub
+
+    Private Sub SpatialTile_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        If e.KeyCode = Keys.Delete Then
+            If Not Parent Is Nothing Then
+                If MessageBox.Show($"Going to remove current spatial tile({Label1.Text})?",
+                                   $"Spatial Tile Mapping Tool",
+                                   buttons:=MessageBoxButtons.OKCancel,
+                                   icon:=MessageBoxIcon.Question
+                    ) = DialogResult.OK Then
+
+                    Call Parent.Controls.Remove(Me)
+                End If
+            End If
+        End If
+    End Sub
 End Class
