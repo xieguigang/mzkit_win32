@@ -231,6 +231,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             .CreateObject(Of RegionLoader)(decodeMetachar:=False) _
             .Reload
         Dim info As Dictionary(Of String, String)
+        Dim resize_canvas As Boolean = False
         Dim minX As Integer
         Dim minY As Integer
 
@@ -243,7 +244,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
                 .ToArray
         End If
 
-        If allPixels.Length > 0 Then
+        If resize_canvas AndAlso allPixels.Length > 0 Then
             minX = allPixels.Select(Function(p) p.X).Min
             minY = allPixels.Select(Function(p) p.Y).Min
         Else
@@ -251,7 +252,19 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             minY = 0
         End If
 
-        MSI = New Drawer(allPixels.CreatePixelReader(-minX, -minY))
+        ' 20221208 due to the reason of keeps the image position correctly
+        ' when do ms-imagin rendering
+        ' so the pixel location and the dimension size no changes
+        ' set offset [x, y] to zero
+        ' then the image of the target sample will keeps in its original location
+        MSI = New Drawer(allPixels.CreatePixelReader(offsetX:=-minX, offsetY:=-minY))
+
+        If resize_canvas Then
+            ' andalso update the dimension size in metadata
+            metadata.scan_x = MSI.dimension.Width
+            metadata.scan_y = MSI.dimension.Height
+        End If
+
         info = MSIProtocols.GetMSIInfo(Me)
         info!source = "in-memory<ExtractRegionSample>"
 
