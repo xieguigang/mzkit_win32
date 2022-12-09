@@ -49,5 +49,6 @@ Public Class InputRotateMatrix
         ' offset is always zero after rotation
         Tile.offset = New Point
         Tile.CanvasOnPaintBackground()
+        Tile.buildGrid()
     End Sub
 End Class

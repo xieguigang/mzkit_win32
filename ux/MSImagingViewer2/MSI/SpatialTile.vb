@@ -119,13 +119,16 @@ Public Class SpatialTile
             .ToArray
         rotationMatrix = spatialMatrix
 
+        Call buildGrid()
+    End Sub
+
+    Friend Sub buildGrid()
         Me.spatialMatrix = Grid(Of SpaceSpot).Create(
-            data:=spatialMatrix,
+            data:=rotationMatrix,
             getX:=Function(spot) spot.px,
             getY:=Function(spot) spot.py
         )
     End Sub
-
 
     Private Sub SpatialTile_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
         Me.SuspendLayout()
@@ -164,8 +167,10 @@ Public Class SpatialTile
             Dim barcode As String
             Dim spot As SpaceSpot
 
+            ' get pixel in SMdata
             RaiseEvent GetSpatialMetabolismPoint(smXY, smX, smY)
 
+            ' get spot in STdata
             Call PixelSelector.getPoint(New Point(e.X, e.Y), dimensions, Me.Size, x, y)
 
             spot = spatialMatrix.GetData(x, y)
@@ -298,7 +303,14 @@ Public Class SpatialTile
     Private Sub drawControl(c As Control, g As Graphics2D)
         If c.Bounds.IntersectsWith(Bounds) AndAlso c.Visible Then
             Dim clientRect As Rectangle = c.ClientRectangle
-            ' clientRect = New Rectangle(clientRect.X, clientRect.Y - DrawOffset, clientRect.Width, clientRect.Height)
+
+            'clientRect = New Rectangle(
+            '    x:=clientRect.X,
+            '    y:=clientRect.Y + 2 * DrawOffset,
+            '    width:=clientRect.Width,
+            '    height:=clientRect.Height - 2 * DrawOffset
+            ')
+
             Using bmp = New Bitmap(c.Width, c.Height, g.Graphics)
                 c.DrawToBitmap(bmp, clientRect)
                 g.TranslateTransform(c.Left - Left, c.Top - Top - DrawOffset)
@@ -332,7 +344,8 @@ Public Class SpatialTile
                 Dim c As Control
 
                 If i < 0 Then
-                    c = Me.Parent
+                    '  c = Me.Parent
+                    Exit For
                 Else
                     c = Me.Parent.Controls(i)
                 End If
