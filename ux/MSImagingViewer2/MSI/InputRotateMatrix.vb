@@ -1,5 +1,6 @@
 ﻿Imports System.Drawing
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
+Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Math
 
 Public Class InputRotateMatrix
@@ -11,7 +12,11 @@ Public Class InputRotateMatrix
         Dim matrix = Tile.spatialSpots
         Dim spots = matrix.Select(Function(s) New PointF(s.px, s.py)).ToArray
         Dim r As Double = angle.ToRadians
-        Dim center As New PointF
+        Dim polygon As New Polygon2D(spots)
+        Dim center As New PointF With {
+            .X = polygon.xpoints.Average,
+            .Y = polygon.ypoints.Average
+        }
 
         spots = spots.Rotate(center, alpha:=r)
 

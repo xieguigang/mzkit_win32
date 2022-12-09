@@ -65,7 +65,7 @@ Public Class SpatialTile
     'End Sub
 
     Public Sub ShowMatrix(matrix As IEnumerable(Of SpaceSpot))
-        Dim spatialMatrix = matrix.ToArray
+        Dim spatialMatrix = matrix.Where(Function(s) s.flag > 0).ToArray
         Dim polygon As New Polygon2D(spatialMatrix.Select(Function(t) New Point(t.px, t.py)))
 
         Me.dimensions = New Size(polygon.xpoints.Max, polygon.ypoints.Max)
