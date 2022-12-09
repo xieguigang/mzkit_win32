@@ -17,6 +17,8 @@ Public Class SpatialTile
     Dim moveTile As Boolean = False
     Dim p As Point
 
+    Friend spatialSpots As SpaceSpot()
+
     Public Property DrawOffset As Integer = 25
 
     'Private Const WS_EX_TRANSPARENT As Integer = &H20
@@ -98,6 +100,7 @@ Public Class SpatialTile
                         }
                     End Function) _
             .ToArray
+        spatialSpots = spatialMatrix
 
         Me.spatialMatrix = Grid(Of SpaceSpot).Create(
             data:=spatialMatrix,
@@ -278,7 +281,7 @@ Public Class SpatialTile
     ''' <summary>
     ''' make this spatial tile transparent
     ''' </summary>
-    Private Sub CanvasOnPaintBackground()
+    Friend Sub CanvasOnPaintBackground()
         Dim g As Graphics2D
 
         If imageLoad IsNot Nothing Then
