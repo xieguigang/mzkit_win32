@@ -74,6 +74,7 @@ Public Module Protocols
         Dim args As New List(Of String)
 
         Call args.Add(Rscript.CLIPath)
+        Call args.Add($"--master {App.PID}")
         Call args.Add($"--SetDllDirectory {hostDll.ParentPath.CLIPath}")
 
         If Not debugPort Is Nothing AndAlso debugPort > 0 Then
