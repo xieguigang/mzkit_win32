@@ -12,8 +12,6 @@ Imports STImaging
 Public Class SpatialTile
 
     Dim spatialMatrix As Grid(Of SpaceSpot)
-    Dim dimensions As Size
-    Dim offset As Point
     Dim moveTile As Boolean = False
     Dim p As Point
 
@@ -25,6 +23,9 @@ Public Class SpatialTile
     ''' keeps the reference of the spot object to <see cref="spatialMatrix"/>. 
     ''' </summary>
     Friend rotationMatrix As SpaceSpot()
+    Friend dimensions As Size
+    Friend offset_origin As Point
+    Friend offset As Point
 
     Public Property DrawOffset As Integer = 25
 
@@ -77,6 +78,7 @@ Public Class SpatialTile
 
         Me.dimensions = New Size(polygon.xpoints.Max, polygon.ypoints.Max)
         Me.offset = New Point(polygon.xpoints.Min, polygon.ypoints.Min)
+        Me.offset_origin = Me.offset
 
         spatialMatrix = spatialMatrix _
             .Select(Function(p)
@@ -218,7 +220,7 @@ Public Class SpatialTile
         Dim left = Me.Left
         Dim top = Me.Top
 
-        For Each spot As SpaceSpot In spatialMatrix.EnumerateData
+        For Each spot As SpaceSpot In rotationMatrix
             ' translate to control client XY
             Dim clientXY As New Point With {.X = spot.px * radiusX * 2, .Y = spot.py * radiusY * 2}
             Dim pixels As New List(Of Point)
@@ -281,7 +283,7 @@ Public Class SpatialTile
         Dim red As New SolidBrush(SpotColor.Alpha(alpha))
 
         ' draw spatial matrix
-        For Each spot As SpaceSpot In spatialMatrix.EnumerateData
+        For Each spot As SpaceSpot In rotationMatrix
             Dim x = spot.px * d.Width
             Dim y = spot.py * d.Height
 

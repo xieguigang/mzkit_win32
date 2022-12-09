@@ -25,18 +25,29 @@ Public Class InputRotateMatrix
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Tile.offset = Tile.offset_origin
+        ' raw is zero based
+        ' after minus the origin offset value
         Call updateCanvas(Tile.rotationRaw)
     End Sub
 
     Private Sub updateCanvas(matrix As PointF())
         Dim spots = Tile.rotationMatrix
+        Dim poly As New Polygon2D(matrix)
+        Dim left As Double = poly.xpoints.Min
+        Dim top As Double = poly.ypoints.Min
 
         For i As Integer = 0 To matrix.Length - 1
-            spots(i).px = matrix(i).X
-            spots(i).py = matrix(i).Y
+            spots(i).px = matrix(i).X - left
+            spots(i).py = matrix(i).Y - top
         Next
 
+        poly = New Polygon2D(spots.Select(Function(s) New PointF(s.px, s.py)).ToArray)
+
         ' update plot
-        Call Tile.CanvasOnPaintBackground()
+        Tile.dimensions = New Size(poly.xpoints.Max, poly.ypoints.Max)
+        ' offset is always zero after rotation
+        Tile.offset = New Point
+        Tile.CanvasOnPaintBackground()
     End Sub
 End Class
