@@ -17,7 +17,14 @@ Public Class SpatialTile
     Dim moveTile As Boolean = False
     Dim p As Point
 
-    Friend spatialSpots As SpaceSpot()
+    ''' <summary>
+    ''' a copy of the spots data object.
+    ''' </summary>
+    Friend rotationRaw As PointF()
+    ''' <summary>
+    ''' keeps the reference of the spot object to <see cref="spatialMatrix"/>. 
+    ''' </summary>
+    Friend rotationMatrix As SpaceSpot()
 
     Public Property DrawOffset As Integer = 25
 
@@ -100,7 +107,15 @@ Public Class SpatialTile
                         }
                     End Function) _
             .ToArray
-        spatialSpots = spatialMatrix
+        rotationRaw = spatialMatrix _
+            .Select(Function(s)
+                        Return New PointF With {
+                            .X = s.px,
+                            .Y = s.py
+                        }
+                    End Function) _
+            .ToArray
+        rotationMatrix = spatialMatrix
 
         Me.spatialMatrix = Grid(Of SpaceSpot).Create(
             data:=spatialMatrix,
