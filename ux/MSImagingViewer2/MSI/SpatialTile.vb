@@ -378,6 +378,13 @@ Public Class SpatialTile
     End Sub
 
     Private Sub RotateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RotateToolStripMenuItem.Click
+        Dim setAngle As New InputRotateMatrix With {.Tile = Me}
 
+        Call InputDialog.Input(
+            setConfig:=Sub(config)
+                           ' just do nothing
+                       End Sub,
+            config:=setAngle
+        )
     End Sub
 End Class
