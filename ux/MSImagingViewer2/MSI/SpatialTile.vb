@@ -295,6 +295,20 @@ Public Class SpatialTile
         Next
     End Sub
 
+    Private Sub drawControl(c As Control, g As Graphics2D)
+        If c.Bounds.IntersectsWith(Bounds) AndAlso c.Visible Then
+            Dim clientRect As Rectangle = c.ClientRectangle
+            ' clientRect = New Rectangle(clientRect.X, clientRect.Y - DrawOffset, clientRect.Width, clientRect.Height)
+            Using bmp = New Bitmap(c.Width, c.Height, g.Graphics)
+                c.DrawToBitmap(bmp, clientRect)
+                g.TranslateTransform(c.Left - Left, c.Top - Top - DrawOffset)
+                bmp.AdjustContrast(-30)
+                g.DrawImageUnscaled(bmp, Point.Empty)
+                g.TranslateTransform(Left - c.Left, Top - c.Top - DrawOffset)
+            End Using
+        End If
+    End Sub
+
     ''' <summary>
     ''' make this spatial tile transparent
     ''' </summary>
@@ -312,6 +326,8 @@ Public Class SpatialTile
 
             Me.Visible = False
 
+            Call drawControl(Parent, g)
+
             For i As Integer = Me.Parent.Controls.Count - 1 To index Step -1
                 Dim c As Control
 
@@ -323,18 +339,8 @@ Public Class SpatialTile
 
                 If c Is Me Then
                     Continue For
-                End If
-
-                If c.Bounds.IntersectsWith(Bounds) AndAlso c.Visible Then
-                    Dim clientRect As Rectangle = c.ClientRectangle
-                    ' clientRect = New Rectangle(clientRect.X, clientRect.Y - DrawOffset, clientRect.Width, clientRect.Height)
-                    Using bmp = New Bitmap(c.Width, c.Height, g.Graphics)
-                        c.DrawToBitmap(bmp, clientRect)
-                        g.TranslateTransform(c.Left - Left, c.Top - Top - DrawOffset)
-                        bmp.AdjustContrast(-30)
-                        g.DrawImageUnscaled(bmp, Point.Empty)
-                        g.TranslateTransform(Left - c.Left, Top - c.Top - DrawOffset)
-                    End Using
+                Else
+                    Call drawControl(c, g)
                 End If
             Next
 
