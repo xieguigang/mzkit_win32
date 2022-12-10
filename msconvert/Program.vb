@@ -4,6 +4,7 @@ Imports System.IO
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging.MALDI_3D
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports Microsoft.VisualBasic.CommandLine
@@ -58,12 +59,18 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
 
     <ExportAPI("/3d-imaging")>
     <Description("Convert 3D ms-imaging raw data file to mzPack.")>
-    <Usage("/3d-imaging --raw <raw_data_file.imzML> [--cache <output.mzPack>]")>
+    <Usage("/3d-imaging --raw <raw_data_file.imzML> [--cache <output.mzPack/output.ply>]")>
     Public Function convert3DMsImaging(args As CommandLine) As Integer
         Dim raw As String = args <= "--raw"
         Dim output As String = args("--cache") Or $"{raw.TrimSuffix}.mzPack"
 
-        Return Imports3DMSI.FileConvert(raw, output).CLICode
+        Select Case output.ExtensionSuffix.ToLower
+            Case "mzpack" : Return Imports3DMSI.FileConvert(raw, output).CLICode
+            Case "ply" : Return MALDIPointCloud.FileConvert(raw, output).CLICode
+            Case Else
+                Call Console.WriteLine($"Target file format '{output.ExtensionSuffix}' is not yet supported!")
+                Return 500
+        End Select
     End Function
 
     <ExportAPI("/cdf_to_mzpack")>
