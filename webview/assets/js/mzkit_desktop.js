@@ -1,3 +1,11 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 /// <reference path="../d/three/index.d.ts" />
 var apps;
 (function (apps) {
@@ -47,25 +55,8 @@ var apps;
             this.light.position.set(1, 1, 1);
             this.scene.add(this.light);
         }
-        initModel() {
-            //轴辅助 （每一个轴的长度）
-            var object = new THREE.AxesHelper(500);
-            this.scene.add(object);
-            //创建THREE.PointCloud粒子的容器
-            var geometry = new THREE.Geometry();
-            //创建THREE.PointCloud纹理
-            var material = new THREE.PointCloudMaterial({ size: 4, vertexColors: true, color: 0xffffff });
-            //循环将粒子的颜色和位置添加到网格当中
-            for (var x = -5; x <= 5; x++) {
-                for (var y = -5; y <= 5; y++) {
-                    var particle = new THREE.Vector3(x * 10, y * 10, 0);
-                    geometry.vertices.push(particle);
-                    geometry.colors.push(new THREE.Color(+three_app.randomColor()));
-                }
-            }
-            //实例化THREE.PointCloud
-            var cloud = new THREE.PointCloud(geometry, material);
-            this.scene.add(cloud);
+        initModel(model) {
+            model.loadPointCloudModel(this);
         }
         //随机生成颜色
         static randomColor() {
@@ -95,15 +86,30 @@ var apps;
             requestAnimationFrame(() => this.animate());
         }
         init() {
-            this.initRender();
-            this.initScene();
-            this.initCamera();
-            this.initLight();
-            this.initModel();
-            this.initControls();
-            this.initStats();
-            this.animate();
+            const vm = this;
+            app.desktop.mzkit
+                .get_3d_MALDI_url()
+                .then(function (url) {
+                return __awaiter(this, void 0, void 0, function* () {
+                    url = yield url;
+                    vm.setup_device(url);
+                });
+            });
             window.onresize = () => this.onWindowResize();
+        }
+        setup_device(url) {
+            const vm = this;
+            HttpHelpers.getBlob(url, function (buffer) {
+                const model = new ModelReader(buffer);
+                vm.initRender();
+                vm.initScene();
+                vm.initCamera();
+                vm.initLight();
+                vm.initModel(model);
+                vm.initControls();
+                vm.initStats();
+                vm.animate();
+            });
         }
     }
     apps.three_app = three_app;
@@ -114,6 +120,7 @@ var app;
 (function (app) {
     var desktop;
     (function (desktop) {
+        desktop.mzkit = window.chrome.webview.hostObjects.mzkit;
         function run() {
             Router.AddAppHandler(new apps.three_app());
             Router.RunApp();
@@ -123,4 +130,73 @@ var app;
 })(app || (app = {}));
 $ts.mode = Modes.debug;
 $ts(app.desktop.run);
+/**
+ * Read of 3d model file blob
+*/
+class ModelReader {
+    /**
+     * @param bin the data should be in network byte order
+    */
+    constructor(bin) {
+        this.bin = bin;
+        this.pointCloud = [];
+        this.palette = [];
+        // npoints
+        let view = new DataView(bin, 0, 8);
+        let npoints = view.getInt32(0);
+        // ncolors
+        let ncolors = view.getInt32(4);
+        // html color literal string array
+        // is fixed size         
+        // #rrggbb   
+        let colorEnds = 8 + ncolors * 7;
+        let stringBuf = bin.slice(8, colorEnds);
+        let strings = String.fromCharCode.apply(null, stringBuf);
+        for (let i = 0; i < ncolors; i++) {
+            this.palette.push(strings.substring(i * 7, (i + 1) * 7));
+        }
+        view = new DataView(bin, colorEnds);
+        for (let i = 0; i < npoints; i++) {
+            let offset = i * (8 + 8 + 8 + 8 + 4);
+            let x = view.getFloat64(offset);
+            let y = view.getFloat64(offset + 8);
+            let z = view.getFloat64(offset + 16);
+            let data = view.getFloat64(offset + 24);
+            let clr = view.getInt32(offset + 32);
+            this.pointCloud.push({
+                x: x, y: y, z: z,
+                intensity: data,
+                color: this.palette[clr]
+            });
+        }
+    }
+    loadPointCloudModel(canvas) {
+        //轴辅助 （每一个轴的长度）
+        var object = new THREE.AxesHelper(500);
+        //创建THREE.PointCloud粒子的容器
+        var geometry = new THREE.Geometry();
+        //创建THREE.PointCloud纹理
+        var material = new THREE.PointCloudMaterial({
+            size: 4,
+            vertexColors: true,
+            color: 0xffffff
+        });
+        canvas.scene.add(object);
+        //循环将粒子的颜色和位置添加到网格当中
+        // for (var x = -5; x <= 5; x++) {
+        //     for (var y = -5; y <= 5; y++) {
+        //         var particle = new THREE.Vector3(x * 10, y * 10, 0);
+        //         geometry.vertices.push(particle);
+        //         geometry.colors.push(new THREE.Color(+three_app.randomColor()));
+        //     }
+        // }
+        for (let point of this.pointCloud) {
+            var particle = new THREE.Vector3(point.x, point.y, point.z);
+            geometry.vertices.push(particle);
+            geometry.colors.push(new THREE.Color(point.color));
+        }
+        //实例化THREE.PointCloud
+        canvas.scene.add(new THREE.PointCloud(geometry, material));
+    }
+}
 //# sourceMappingURL=mzkit_desktop.js.map

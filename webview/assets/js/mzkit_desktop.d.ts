@@ -3,9 +3,9 @@
 declare namespace apps {
     class three_app extends Bootstrap {
         readonly appName: string;
+        scene: THREE.Scene;
         private renderer;
         private camera;
-        private scene;
         private light;
         private stats;
         private controls;
@@ -21,8 +21,33 @@ declare namespace apps {
         private onWindowResize;
         private animate;
         protected init(): void;
+        private setup_device;
     }
 }
 declare namespace app.desktop {
+    const mzkit: mzkit_desktop;
+    interface mzkit_desktop {
+        get_3d_MALDI_url(): Promise<string>;
+    }
     function run(): void;
+}
+/**
+ * Read of 3d model file blob
+*/
+declare class ModelReader {
+    private bin;
+    private pointCloud;
+    private palette;
+    /**
+     * @param bin the data should be in network byte order
+    */
+    constructor(bin: Uint8Array);
+    loadPointCloudModel(canvas: apps.three_app): void;
+}
+interface pointCloud {
+    x: number;
+    y: number;
+    z: number;
+    intensity: number;
+    color: number | string;
 }

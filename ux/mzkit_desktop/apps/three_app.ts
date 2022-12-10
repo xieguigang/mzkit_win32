@@ -8,9 +8,10 @@ namespace apps {
             return "3d_three";
         }
 
+        public scene: THREE.Scene;
+
         private renderer;
         private camera;
-        private scene;
         private light;
         //初始化性能插件
         private stats;
@@ -67,30 +68,8 @@ namespace apps {
             this.scene.add(this.light);
         }
 
-        private initModel() {
-            //轴辅助 （每一个轴的长度）
-            var object = new THREE.AxesHelper(500);
-
-            this.scene.add(object);
-
-            //创建THREE.PointCloud粒子的容器
-            var geometry = new THREE.Geometry();
-            //创建THREE.PointCloud纹理
-            var material = new THREE.PointCloudMaterial({ size: 4, vertexColors: true, color: 0xffffff });
-
-            //循环将粒子的颜色和位置添加到网格当中
-            for (var x = -5; x <= 5; x++) {
-                for (var y = -5; y <= 5; y++) {
-                    var particle = new THREE.Vector3(x * 10, y * 10, 0);
-                    geometry.vertices.push(particle);
-                    geometry.colors.push(new THREE.Color(+three_app.randomColor()));
-                }
-            }
-
-            //实例化THREE.PointCloud
-            var cloud = new THREE.PointCloud(geometry, material);
-
-            this.scene.add(cloud);
+        private initModel(model: ModelReader) {
+            model.loadPointCloudModel(this);
         }
 
         //随机生成颜色
@@ -130,16 +109,33 @@ namespace apps {
         }
 
         protected init(): void {
-            this.initRender();
-            this.initScene();
-            this.initCamera();
-            this.initLight();
-            this.initModel();
-            this.initControls();
-            this.initStats();
-            this.animate();
+            const vm = this;
+
+            app.desktop.mzkit
+                .get_3d_MALDI_url()
+                .then(async function (url) {
+                    url = await url;
+                    vm.setup_device(url);
+                });
 
             window.onresize = () => this.onWindowResize();
+        }
+
+        private setup_device(url: string) {
+            const vm = this;
+
+            HttpHelpers.getBlob(url, function (buffer) {
+                const model = new ModelReader(buffer);
+
+                vm.initRender();
+                vm.initScene();
+                vm.initCamera();
+                vm.initLight();
+                vm.initModel(model);
+                vm.initControls();
+                vm.initStats();
+                vm.animate();
+            });
         }
     }
 }
