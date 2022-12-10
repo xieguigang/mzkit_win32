@@ -9976,7 +9976,12 @@ var HttpHelpers;
         /**
          * 传统的表单post格式
         */
-        www: "application/x-www-form-urlencoded"
+        www: "application/x-www-form-urlencoded",
+        /**
+         * ascii char bytes
+        */
+        blob: "text/plain; charset=x-user-defined",
+        binary: "application/octet-stream"
     };
     function measureContentType(obj) {
         if (obj instanceof FormData) {
@@ -9991,6 +9996,33 @@ var HttpHelpers;
         }
     }
     HttpHelpers.measureContentType = measureContentType;
+    /**
+     * Receiving binary data in older browsers
+    */
+    function binaryToBlob(data) {
+        var l = data.length, arr = new Uint8Array(l);
+        for (var i = 0; i < l; i++) {
+            arr[i] = data.charCodeAt(i) & 0xff; // 扔掉的高位字节 (f7)
+        }
+        return new Blob([arr], { type: HttpHelpers.contentTypes.binary });
+    }
+    HttpHelpers.binaryToBlob = binaryToBlob;
+    ;
+    function getBlob(url, callback) {
+        var oReq = new XMLHttpRequest();
+        oReq.open("GET", url, true);
+        oReq.responseType = "arraybuffer";
+        oReq.onload = function (oEvent) {
+            var arrayBuffer = oReq.response; // 注意：不是 oReq.responseText
+            if (arrayBuffer) {
+                var byteArray = new Uint8Array(arrayBuffer);
+                var blob = new Blob([byteArray], { type: HttpHelpers.contentTypes.binary });
+                callback(blob);
+            }
+        };
+        oReq.send(null);
+    }
+    HttpHelpers.getBlob = getBlob;
     /**
      * 这个函数只会返回200成功代码的响应内容，对于其他的状态代码都会返回null
      * (这个函数是同步方式的)
@@ -10013,7 +10045,8 @@ var HttpHelpers;
      *
      * @param callback ``callback(http.responseText, http.status)``
     */
-    function GetAsyn(url, callback) {
+    function GetAsyn(url, callback, mime_overrides) {
+        if (mime_overrides === void 0) { mime_overrides = null; }
         var http = new XMLHttpRequest();
         http.open("GET", url, true);
         http.onreadystatechange = function () {
@@ -10025,6 +10058,9 @@ var HttpHelpers;
                 callback(http.response || http.responseText, http.status, contentType);
             }
         };
+        if (!Strings.Empty(mime_overrides)) {
+            http.overrideMimeType(mime_overrides);
+        }
         http.send(null);
     }
     HttpHelpers.GetAsyn = GetAsyn;
