@@ -71,7 +71,9 @@ Public Class frm3DMALDIViewer
     End Sub
 
     Private Sub frm3DMALDIViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
-        frmHtmlViewer.Init(Me.WebView21)
+        Me.startHttp()
         Me.TabText = Me.Text
+
+        Call frmHtmlViewer.Init(Me.WebView21)
     End Sub
 End Class
