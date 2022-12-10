@@ -180,10 +180,19 @@ class ModelReader {
         const x = new data.NumericRange($ts(v.x).Min(), $ts(v.x).Max());
         const y = new data.NumericRange($ts(v.y).Min(), $ts(v.y).Max());
         const z = new data.NumericRange($ts(v.z).Min(), $ts(v.z).Max());
+        const rad = 45 * Math.PI / 180;
+        const cosa = Math.cos(rad);
+        const sina = Math.sin(rad);
+        let Xn = 0;
+        let Zn = 0;
         for (let point of this.pointCloud) {
             point.x = x.ScaleMapping(point.x, cubic);
             point.y = y.ScaleMapping(point.y, cubic);
             point.z = z.ScaleMapping(point.z, cubic);
+            Zn = point.z * cosa - point.x * sina;
+            Xn = point.z * sina + point.x * cosa;
+            point.x = Xn;
+            point.z = Zn;
         }
     }
     centroid() {
@@ -213,8 +222,9 @@ class ModelReader {
         };
     }
     loadPointCloudModel(canvas) {
-        //轴辅助 （每一个轴的长度）
-        // var object = new THREE.AxesHelper(500);
+        // 轴辅助 （每一个轴的长度）
+        // 红色代表 X 轴. 绿色代表 Y 轴. 蓝色代表 Z 轴.
+        var object = new THREE.AxesHelper(300);
         //创建THREE.PointCloud粒子的容器
         var geometry = new THREE.Geometry();
         //创建THREE.PointCloud纹理
@@ -223,7 +233,7 @@ class ModelReader {
             vertexColors: true,
             color: 0xffffff
         });
-        // canvas.scene.add(object);
+        canvas.scene.add(object);
         //循环将粒子的颜色和位置添加到网格当中
         // for (var x = -5; x <= 5; x++) {
         //     for (var y = -5; y <= 5; y++) {
