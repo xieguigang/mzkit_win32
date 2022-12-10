@@ -25,6 +25,14 @@
         End If
     End Function
 
+    Public Function get3DMALDIDemoFolder() As String
+        If IsDevelopmentMode Then
+            Return $"{App.HOME}/../../src/mzkit/extdata/3D-MALDI"
+        Else
+            Return $"{App.HOME}/demo/3D-MALDI/"
+        End If
+    End Function
+
     ''' <summary>
     ''' get web view html source file folder
     ''' </summary>

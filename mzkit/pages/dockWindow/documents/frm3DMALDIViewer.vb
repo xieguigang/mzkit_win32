@@ -1,6 +1,7 @@
 ﻿Imports System.ComponentModel
 Imports System.Threading
 Imports BioNovoGene.mzkit_win32.My
+Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.Web.WebView2.Core
 Imports Task
 
@@ -35,7 +36,7 @@ Public Class frm3DMALDIViewer
         localfs = New Process With {
             .StartInfo = New ProcessStartInfo With {
                 .FileName = $"{App.HOME}/Rstudio/bin/Rserve.exe",
-                .Arguments = $"--listen /wwwroot ""{AppEnvironment.getWebViewFolder}"" /port {webPort} --parent={App.PID}",
+                .Arguments = $"--listen /wwwroot ""{AppEnvironment.getWebViewFolder}"" /port {webPort} --parent={App.PID} --attach {AppEnvironment.get3DMALDIDemoFolder.GetDirectoryFullPath.CLIPath}",
                 .CreateNoWindow = True,
                 .WindowStyle = ProcessWindowStyle.Hidden,
                 .UseShellExecute = True
