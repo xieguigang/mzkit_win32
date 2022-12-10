@@ -16,18 +16,6 @@ namespace apps {
         private stats;
         //用户交互插件 鼠标左键按住旋转，右键按住平移，滚轮缩放
         private controls;
-        //生成gui设置配置项
-        private gui;
-
-        private initGui() {
-            //声明一个保存需求修改的相关数据的对象
-            this.gui = {
-
-            };
-
-            var datGui = new dat.GUI();
-            //将设置属性添加到gui当中，gui.add(对象，属性，最小值，最大值）
-        }
 
         private initControls() {
             this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
@@ -149,7 +137,6 @@ namespace apps {
             this.initModel();
             this.initControls();
             this.initStats();
-            this.initGui();
             this.animate();
 
             window.onresize = () => this.onWindowResize();

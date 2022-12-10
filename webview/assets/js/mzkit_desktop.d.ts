@@ -9,8 +9,6 @@ declare namespace apps {
         private light;
         private stats;
         private controls;
-        private gui;
-        private initGui;
         private initControls;
         private initStats;
         private initRender;

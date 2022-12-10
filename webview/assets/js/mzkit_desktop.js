@@ -5,12 +5,6 @@ var apps;
         get appName() {
             return "3d_three";
         }
-        initGui() {
-            //声明一个保存需求修改的相关数据的对象
-            this.gui = {};
-            var datGui = new dat.GUI();
-            //将设置属性添加到gui当中，gui.add(对象，属性，最小值，最大值）
-        }
         initControls() {
             this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
             // 如果使用animate方法时，将此函数删除
@@ -108,7 +102,6 @@ var apps;
             this.initModel();
             this.initControls();
             this.initStats();
-            this.initGui();
             this.animate();
             window.onresize = () => this.onWindowResize();
         }
