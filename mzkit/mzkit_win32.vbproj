@@ -571,6 +571,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\DemoItem.vb" />
+    <Compile Include="pages\dockWindow\documents\frm3DMALDIViewer.Designer.vb">
+      <DependentUpon>frm3DMALDIViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pages\dockWindow\documents\frm3DMALDIViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\documents\TissueSlideHandler.vb" />
     <Compile Include="pages\dockWindow\documents\frmOpenseadragonViewer.Designer.vb">
       <DependentUpon>frmOpenseadragonViewer.vb</DependentUpon>
@@ -1079,6 +1085,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\base\ToolWindow.resx">
       <DependentUpon>ToolWindow.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\documents\frm3DMALDIViewer.resx">
+      <DependentUpon>frm3DMALDIViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frmCFMIDOutputViewer.resx">
       <DependentUpon>frmCFMIDOutputViewer.vb</DependentUpon>
@@ -1792,6 +1801,7 @@
     <None Include="Res\Search.ico" />
     <None Include="Resources\logging.ico" />
     <None Include="Resources\xobject.ico" />
+    <None Include="Resources\3d-object.ico" />
     <Content Include="RibbonMarkup.h" />
     <Content Include="RibbonMarkup.xml" />
     <None Include="Resources\header-foreground-image.png" />
