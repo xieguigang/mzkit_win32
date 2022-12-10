@@ -70,17 +70,17 @@ class ModelReader {
 
     public loadPointCloudModel(canvas: apps.three_app) {
         //轴辅助 （每一个轴的长度）
-        var object = new THREE.AxesHelper(500);
+        // var object = new THREE.AxesHelper(500);
         //创建THREE.PointCloud粒子的容器
         var geometry = new THREE.Geometry();
         //创建THREE.PointCloud纹理
         var material = new THREE.PointCloudMaterial(<any>{
-            size: 4,
+            size: 1,
             vertexColors: true,
             color: 0xffffff
         });
 
-        canvas.scene.add(object);
+        // canvas.scene.add(object);
 
         //循环将粒子的颜色和位置添加到网格当中
         // for (var x = -5; x <= 5; x++) {
