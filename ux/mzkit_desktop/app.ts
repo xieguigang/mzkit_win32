@@ -1,4 +1,4 @@
-///<reference path="">
+/// <reference path="../../webview/assets/js/linq.d.ts">
 
 namespace app.desktop {
 
@@ -7,5 +7,5 @@ namespace app.desktop {
     }
 }
 
-$ts.mode 
+$ts.mode = Modes.debug; 
 $ts(app.desktop.run);
