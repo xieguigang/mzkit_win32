@@ -6,6 +6,9 @@ class ModelReader {
     private pointCloud: pointCloud[] = [];
     private palette: string[] = [];
 
+    /**
+     * @param bin the data should be in network byte order
+    */
     public constructor(private bin: Uint8Array) {
         // npoints
         let view = new DataView(bin, 0, 8);
