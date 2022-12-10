@@ -59,7 +59,7 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
 
     <ExportAPI("/3d-imaging")>
     <Description("Convert 3D ms-imaging raw data file to mzPack.")>
-    <Usage("/3d-imaging --raw <raw_data_file.imzML> [--cache <output.mzPack/output.ply>]")>
+    <Usage("/3d-imaging --raw <raw_data_file.imzML> [--cache <output.mzPack/output.ply/output.heap>]")>
     Public Function convert3DMsImaging(args As CommandLine) As Integer
         Dim raw As String = args <= "--raw"
         Dim output As String = args("--cache") Or $"{raw.TrimSuffix}.mzPack"
@@ -67,6 +67,18 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
         Select Case output.ExtensionSuffix.ToLower
             Case "mzpack" : Return Imports3DMSI.FileConvert(raw, output).CLICode
             Case "ply" : Return MALDIPointCloud.FileConvert(raw, output).CLICode
+            Case "heap"
+                Dim cachefile As String = output.ChangeSuffix("heatmap_cache")
+
+                If raw.ExtensionSuffix("imzml") Then
+                    Call MALDIPointCloud.SaveCache(raw, cachefile)
+                Else
+                    cachefile = raw
+                End If
+
+                Call MALDIPointCloud.ExportHeatMapModel(cachefile, output)
+
+                Return 0
             Case Else
                 Call Console.WriteLine($"Target file format '{output.ExtensionSuffix}' is not yet supported!")
                 Return 500
