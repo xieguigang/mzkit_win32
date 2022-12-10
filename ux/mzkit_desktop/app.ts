@@ -1,4 +1,4 @@
-/// <reference path="../../webview/assets/js/linq.d.ts">
+/// <reference path="./linq.d.ts">
 
 namespace app.desktop {
 
