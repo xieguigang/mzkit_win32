@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "module": "amd",
+    "target": "es6",
+    "lib": [ "dom", "es6", "dom.iterable", "scripthost" ],
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "../../webview/assets/js/",
+    "outFile": "../../webview/assets/js/mzkit_desktop.js",
+    "declaration": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
