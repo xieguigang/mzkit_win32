@@ -59,6 +59,7 @@ class ModelReader {
 
         let Xn = 0;
         let Zn = 0;
+        let f = Math.pow(10, 15);
 
         for (let point of this.pointCloud) {
             point.x = x.ScaleMapping(point.x, cubic);
@@ -69,7 +70,7 @@ class ModelReader {
             Xn = point.z * sina + point.x * cosa;
 
             point.x = Xn;
-            point.z = Zn;
+            point.z = Zn * f;
         }
     }
 
