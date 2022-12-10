@@ -48,6 +48,7 @@ namespace apps {
             this.renderer = new THREE.WebGLRenderer({ antialias: true });
             //renderer.setClearColor(new THREE.Color(0xEEEEEE, 1.0)); //设置背景颜色
             this.renderer.setSize(window.innerWidth, window.innerHeight);
+            
             document.body.appendChild(this.renderer.domElement);
         }
 

@@ -30,9 +30,9 @@ class ModelReader {
 
         for (let i = 0; i < npoints; i++) {
             let offset = i * (8 + 8 + 8 + 8 + 4);
-            let x = view.getFloat64(offset) / 1000;
-            let y = view.getFloat64(offset + 8) / 1000;
-            let z = view.getFloat64(offset + 16) / 1000;
+            let x = view.getFloat64(offset) / 10;
+            let y = view.getFloat64(offset + 8) / 10;
+            let z = view.getFloat64(offset + 16) / 10;
             let data = view.getFloat64(offset + 24);
             let clr = view.getInt32(offset + 32);
 
@@ -44,9 +44,37 @@ class ModelReader {
         }
 
         this.centroid();
+        this.cubic_scale();
+    }
+
+    private cubic_scale() {
+        const v = this.getVector3();
+        const cubic = new data.NumericRange(-100, 100);
+        const x = new data.NumericRange($ts(v.x).Min(), $ts(v.x).Max());
+        const y = new data.NumericRange($ts(v.y).Min(), $ts(v.y).Max());
+        const z = new data.NumericRange($ts(v.z).Min(), $ts(v.z).Max());
+
+        for (let point of this.pointCloud) {
+            point.x = x.ScaleMapping(point.x, cubic);
+            point.y = y.ScaleMapping(point.y, cubic);
+            point.z = z.ScaleMapping(point.z, cubic);
+        }
     }
 
     private centroid() {
+        const v = this.getVector3();
+        const offset_x = $ts(v.x).Sum() / this.pointCloud.length;
+        const offset_y = $ts(v.y).Sum() / this.pointCloud.length;
+        const offset_z = $ts(v.z).Sum() / this.pointCloud.length;
+
+        for (let point of this.pointCloud) {
+            point.x = point.x - offset_x;
+            point.y = point.y - offset_y;
+            point.z = point.z - offset_z;
+        }
+    }
+
+    private getVector3() {
         const x: number[] = [];
         const y: number[] = [];
         const z: number[] = [];
@@ -57,15 +85,11 @@ class ModelReader {
             z.push(point.z);
         }
 
-        const offset_x = $ts(x).Sum() / this.pointCloud.length;
-        const offset_y = $ts(y).Sum() / this.pointCloud.length;
-        const offset_z = $ts(z).Sum() / this.pointCloud.length;
-
-        for (let point of this.pointCloud) {
-            point.x = point.x - offset_x;
-            point.y = point.y - offset_y;
-            point.z = point.z - offset_z;
-        }
+        return {
+            x: x,
+            y: y,
+            z: z
+        };
     }
 
     public loadPointCloudModel(canvas: apps.three_app) {
@@ -75,7 +99,7 @@ class ModelReader {
         var geometry = new THREE.Geometry();
         //创建THREE.PointCloud纹理
         var material = new THREE.PointCloudMaterial(<any>{
-            size: 1,
+            size: 0.5,
             vertexColors: true,
             color: 0xffffff
         });
