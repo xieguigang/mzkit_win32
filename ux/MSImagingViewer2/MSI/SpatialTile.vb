@@ -12,10 +12,20 @@ Imports STImaging
 Public Class SpatialTile
 
     Dim spatialMatrix As Grid(Of SpaceSpot)
-    Dim dimensions As Size
-    Dim offset As Point
     Dim moveTile As Boolean = False
     Dim p As Point
+
+    ''' <summary>
+    ''' a copy of the spots data object.
+    ''' </summary>
+    Friend rotationRaw As PointF()
+    ''' <summary>
+    ''' keeps the reference of the spot object to <see cref="spatialMatrix"/>. 
+    ''' </summary>
+    Friend rotationMatrix As SpaceSpot()
+    Friend dimensions As Size
+    Friend offset_origin As Point
+    Friend offset As Point
 
     Public Property DrawOffset As Integer = 25
 
@@ -63,11 +73,12 @@ Public Class SpatialTile
     'End Sub
 
     Public Sub ShowMatrix(matrix As IEnumerable(Of SpaceSpot))
-        Dim spatialMatrix = matrix.ToArray
+        Dim spatialMatrix = matrix.Where(Function(s) s.flag > 0).ToArray
         Dim polygon As New Polygon2D(spatialMatrix.Select(Function(t) New Point(t.px, t.py)))
 
         Me.dimensions = New Size(polygon.xpoints.Max, polygon.ypoints.Max)
         Me.offset = New Point(polygon.xpoints.Min, polygon.ypoints.Min)
+        Me.offset_origin = Me.offset
 
         spatialMatrix = spatialMatrix _
             .Select(Function(p)
@@ -98,14 +109,26 @@ Public Class SpatialTile
                         }
                     End Function) _
             .ToArray
+        rotationRaw = spatialMatrix _
+            .Select(Function(s)
+                        Return New PointF With {
+                            .X = s.px,
+                            .Y = s.py
+                        }
+                    End Function) _
+            .ToArray
+        rotationMatrix = spatialMatrix
 
+        Call buildGrid()
+    End Sub
+
+    Friend Sub buildGrid()
         Me.spatialMatrix = Grid(Of SpaceSpot).Create(
-            data:=spatialMatrix,
+            data:=rotationMatrix,
             getX:=Function(spot) spot.px,
             getY:=Function(spot) spot.py
         )
     End Sub
-
 
     Private Sub SpatialTile_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
         Me.SuspendLayout()
@@ -144,8 +167,10 @@ Public Class SpatialTile
             Dim barcode As String
             Dim spot As SpaceSpot
 
+            ' get pixel in SMdata
             RaiseEvent GetSpatialMetabolismPoint(smXY, smX, smY)
 
+            ' get spot in STdata
             Call PixelSelector.getPoint(New Point(e.X, e.Y), dimensions, Me.Size, x, y)
 
             spot = spatialMatrix.GetData(x, y)
@@ -162,21 +187,21 @@ Public Class SpatialTile
 
     Dim allowResize As Boolean = False
 
-    Private Sub PictureBox1_MouseUp(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseUp
+    Private Sub PictureBox1_MouseUp(sender As Object, e As MouseEventArgs) Handles AnchorResize.MouseUp
         Me.ResumeLayout()
         allowResize = False
         Me.CanvasOnPaintBackground()
     End Sub
 
-    Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
+    Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles AnchorResize.MouseMove
         If allowResize Then
-            Me.Size = New Size(PictureBox1.Left + e.X, PictureBox1.Top + e.Y)
+            Me.Size = New Size(AnchorResize.Left + e.X, AnchorResize.Top + e.Y)
             ' Me.Invalidate()
             ' Call PictureBox2.Refresh()
         End If
     End Sub
 
-    Private Sub PictureBox1_MouseDown(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseDown
+    Private Sub PictureBox1_MouseDown(sender As Object, e As MouseEventArgs) Handles AnchorResize.MouseDown
         Me.SuspendLayout()
         allowResize = True
     End Sub
@@ -200,7 +225,7 @@ Public Class SpatialTile
         Dim left = Me.Left
         Dim top = Me.Top
 
-        For Each spot As SpaceSpot In spatialMatrix.EnumerateData
+        For Each spot As SpaceSpot In rotationMatrix
             ' translate to control client XY
             Dim clientXY As New Point With {.X = spot.px * radiusX * 2, .Y = spot.py * radiusY * 2}
             Dim pixels As New List(Of Point)
@@ -263,7 +288,7 @@ Public Class SpatialTile
         Dim red As New SolidBrush(SpotColor.Alpha(alpha))
 
         ' draw spatial matrix
-        For Each spot As SpaceSpot In spatialMatrix.EnumerateData
+        For Each spot As SpaceSpot In rotationMatrix
             Dim x = spot.px * d.Width
             Dim y = spot.py * d.Height
 
@@ -275,10 +300,31 @@ Public Class SpatialTile
         Next
     End Sub
 
+    Private Sub drawControl(c As Control, g As Graphics2D)
+        If c.Bounds.IntersectsWith(Bounds) AndAlso c.Visible Then
+            Dim clientRect As Rectangle = c.ClientRectangle
+
+            'clientRect = New Rectangle(
+            '    x:=clientRect.X,
+            '    y:=clientRect.Y + 2 * DrawOffset,
+            '    width:=clientRect.Width,
+            '    height:=clientRect.Height - 2 * DrawOffset
+            ')
+
+            Using bmp = New Bitmap(c.Width, c.Height, g.Graphics)
+                c.DrawToBitmap(bmp, clientRect)
+                g.TranslateTransform(c.Left - Left, c.Top - Top - DrawOffset)
+                bmp.AdjustContrast(-30)
+                g.DrawImageUnscaled(bmp, Point.Empty)
+                g.TranslateTransform(Left - c.Left, Top - c.Top - DrawOffset)
+            End Using
+        End If
+    End Sub
+
     ''' <summary>
     ''' make this spatial tile transparent
     ''' </summary>
-    Private Sub CanvasOnPaintBackground()
+    Friend Sub CanvasOnPaintBackground()
         Dim g As Graphics2D
 
         If imageLoad IsNot Nothing Then
@@ -292,29 +338,22 @@ Public Class SpatialTile
 
             Me.Visible = False
 
+            Call drawControl(Parent, g)
+
             For i As Integer = Me.Parent.Controls.Count - 1 To index Step -1
                 Dim c As Control
 
                 If i < 0 Then
-                    c = Me.Parent
+                    '  c = Me.Parent
+                    Exit For
                 Else
                     c = Me.Parent.Controls(i)
                 End If
 
                 If c Is Me Then
                     Continue For
-                End If
-
-                If c.Bounds.IntersectsWith(Bounds) AndAlso c.Visible Then
-                    Dim clientRect As Rectangle = c.ClientRectangle
-                    ' clientRect = New Rectangle(clientRect.X, clientRect.Y - DrawOffset, clientRect.Width, clientRect.Height)
-                    Using bmp = New Bitmap(c.Width, c.Height, g.Graphics)
-                        c.DrawToBitmap(bmp, clientRect)
-                        g.TranslateTransform(c.Left - Left, c.Top - Top - DrawOffset)
-                        bmp.AdjustContrast(-30)
-                        g.DrawImageUnscaled(bmp, Point.Empty)
-                        g.TranslateTransform(Left - c.Left, Top - c.Top - DrawOffset)
-                    End Using
+                Else
+                    Call drawControl(c, g)
                 End If
             Next
 
@@ -375,5 +414,16 @@ Public Class SpatialTile
                 End If
             End If
         End If
+    End Sub
+
+    Private Sub RotateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RotateToolStripMenuItem.Click
+        Dim setAngle As New InputRotateMatrix With {.Tile = Me}
+
+        Call InputDialog.Input(
+            setConfig:=Sub(config)
+                           ' just do nothing
+                       End Sub,
+            config:=setAngle
+        )
     End Sub
 End Class

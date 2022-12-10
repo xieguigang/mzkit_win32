@@ -33,10 +33,10 @@
     <ROW Property="CTRLS" Value="3"/>
     <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1033:{BFFC8077-627C-4B04-BFEA-7AD513C225BB} 2052:{BFFC8077-627C-4B04-BFEA-7AD513C225BB} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{9FE0F01C-17B4-47D1-840A-5CE62EB03807} 2052:{9FE0F01C-17B4-47D1-840A-5CE62EB03807} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="mzkit_win32"/>
-    <ROW Property="ProductVersion" Value="3.6.768.9649" Type="32"/>
+    <ROW Property="ProductVersion" Value="3.6.789.1258" Type="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{B645400B-3918-41EF-9009-7ADDD81C84B4}"/>
@@ -158,7 +158,7 @@
     <ROW Directory="zhHant_Dir" Directory_Parent="APPDIR" DefaultDir="zh-Hant"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{B5933C9A-5983-494A-BD32-C548B4FE2BDC}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{66E94B10-7236-40EE-9F5E-C72EF64BEA09}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{69AA9FFE-67B1-456B-88EB-97D3D6C92AA7}" Directory_="APPDIR" Attributes="256"/>
     <ROW Component="BioDeep.dll" ComponentId="{2FECE77D-517F-47B1-97BA-15B1100BE489}" Directory_="APPDIR" Attributes="256" KeyPath="BioDeep.dll"/>
     <ROW Component="BioDeep.dll_1" ComponentId="{8274C55C-D52A-4F5B-A268-505929309095}" Directory_="host_Dir" Attributes="256" KeyPath="BioDeep.dll_1"/>
@@ -189,6 +189,7 @@
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Plots.dll" ComponentId="{45CDB707-0323-419D-A4B4-311F83E69C60}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Plots.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.RInterop.dll" ComponentId="{CA864AA4-B147-40E9-B248-ACC382756F5A}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.RInterop.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.dll" ComponentId="{2DC234EA-612E-4F17-A888-CFF852876ADF}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.dll"/>
+    <ROW Component="BioNovoGene.Analytical.NMRFidTool.dll" ComponentId="{3F919F39-896E-46D3-A244-EB2785562AAB}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.NMRFidTool.dll"/>
     <ROW Component="BioNovoGene.BioDeep.Chemistry.Massbank.MoNA.dll" ComponentId="{E5DEF814-9250-4AFC-92C0-B6DBBDA884FC}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.Chemistry.Massbank.MoNA.dll"/>
     <ROW Component="BioNovoGene.BioDeep.Chemistry.Massbank.dll" ComponentId="{5819F861-26A4-426F-B5D9-1094B76E55FB}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.Chemistry.Massbank.dll"/>
     <ROW Component="BioNovoGene.BioDeep.Chemistry.Massbank.dll_1" ComponentId="{8149604E-09D5-4D54-82FD-5D9E7328E7DC}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.BioDeep.Chemistry.Massbank.dll_1"/>
@@ -244,6 +245,7 @@
     <ROW Component="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.dll" ComponentId="{6D27B998-7C7B-4FDF-9B61-64583344D9EA}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.dl"/>
     <ROW Component="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.dll_5" ComponentId="{7FD551D9-5C8B-4731-B2D7-70734DE23995}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio._9"/>
     <ROW Component="Microsoft.VisualBasic.Data.BinaryData.dll" ComponentId="{25A480C0-3670-4750-A4BC-37FBB67D8404}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.BinaryData.dll"/>
+    <ROW Component="Microsoft.VisualBasic.Data.BinaryData.dll_1" ComponentId="{CFDD704D-FAF8-4958-A312-A9FCE6B13001}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.BinaryData.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Data.BinaryData.dll_2" ComponentId="{A5FC1E1F-72B8-43BC-A479-21CD024D6BAE}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.BinaryData.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Data.BinaryData.dll_6" ComponentId="{D688F6B7-CF53-44B8-97DE-2005983EE84B}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.BinaryData.dll_6"/>
     <ROW Component="Microsoft.VisualBasic.Data.Bootstrapping.Fittings.dll" ComponentId="{7DAE9D67-0782-4FB4-B999-C571AA74EA5F}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.Bootstrapping.Fittings.dll"/>
@@ -267,6 +269,7 @@
     <ROW Component="Microsoft.VisualBasic.Data.IO.HDF5.dll" ComponentId="{983B3D42-91DD-4135-B265-2FA002C8D1F1}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.IO.HDF5.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.IO.HDF5.dll_1" ComponentId="{8BA1344B-C52B-418D-BEE9-85F8C5934416}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.IO.HDF5.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Data.IO.MessagePack.dll" ComponentId="{0E2F72D4-567F-4100-A535-16173B02E3F5}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.IO.MessagePack.dll"/>
+    <ROW Component="Microsoft.VisualBasic.Data.IO.MessagePack.dll_1" ComponentId="{C12F917F-5C9D-4EC0-8303-E93BAE72D4AD}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.IO.MessagePack.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Data.IO.MessagePack.dll_2" ComponentId="{896925F1-60F3-45FF-85EC-47896B86B612}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.IO.MessagePack.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Data.IO.MessagePack.dll_6" ComponentId="{011AC763-6668-4B24-A3FF-8008A8718E2D}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.IO.MessagePack.dll_6"/>
     <ROW Component="Microsoft.VisualBasic.Data.IO.SQLite3.dll" ComponentId="{932A0387-29E4-4678-8531-2EA6E5A8F687}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.IO.SQLite3.dll"/>
@@ -414,9 +417,12 @@
     <ROW Component="Mzkit_win32.Interaction.resources.dll" ComponentId="{3035B09F-2371-402C-9D04-D341E03835AB}" Directory_="enUS_Dir" Attributes="256" KeyPath="Mzkit_win32.Interaction.resources.dll"/>
     <ROW Component="Mzkit_win32.Interaction.resources.dll_1" ComponentId="{7FF290C8-A166-47BC-B831-B31802DC747D}" Directory_="zhCN_Dir" Attributes="256" KeyPath="Mzkit_win32.Interaction.resources.dll_1"/>
     <ROW Component="Mzkit_win32.MSImagingViewerV2.dll" ComponentId="{97B8F2A2-5753-454D-B986-A059D567878D}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.MSImagingViewerV2.dll"/>
+    <ROW Component="Mzkit_win32.MSImagingViewerV2.resources.dll" ComponentId="{CEE28641-2E31-43F7-8D23-780412E79094}" Directory_="zhCN_Dir" Attributes="256" KeyPath="Mzkit_win32.MSImagingViewerV2.resources.dll"/>
     <ROW Component="Mzkit_win32.MZWork.dll" ComponentId="{CA533875-0725-4A8A-BF60-77B9E122EEDF}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.MZWork.dll"/>
     <ROW Component="Mzkit_win32.Task.dll" ComponentId="{E48415AB-DFC6-4244-8328-F0FCB60E6602}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.Task.dll"/>
     <ROW Component="Parallel.dll" ComponentId="{825C390A-5E2B-4B80-987C-C6A8D79EA9BF}" Directory_="APPDIR" Attributes="256" KeyPath="Parallel.dll"/>
+    <ROW Component="Parallel.dll_1" ComponentId="{3FE33655-CC52-499A-A95C-5E214C9F788C}" Directory_="bin_Dir" Attributes="256" KeyPath="Parallel.dll_1"/>
+    <ROW Component="Parallel.dll_2" ComponentId="{ACE6ED6E-E9AD-46A0-B09A-169C1D31AC8D}" Directory_="host_Dir" Attributes="256" KeyPath="Parallel.dll_2"/>
     <ROW Component="Parallel.dll_5" ComponentId="{3916ADE2-2A32-4BAE-B730-84EBCAB773EA}" Directory_="library_Dir" Attributes="256" KeyPath="Parallel.dll_5"/>
     <ROW Component="PipelineHost.dll" ComponentId="{C6AEE233-38F4-4AC3-8F59-25714596C997}" Directory_="APPDIR" Attributes="256" KeyPath="PipelineHost.dll"/>
     <ROW Component="PipelineHost.dll_1" ComponentId="{785A238A-FB35-4A1E-B8FE-0A6DF30F6C52}" Directory_="host_Dir" Attributes="256" KeyPath="PipelineHost.dll_1"/>
@@ -506,6 +512,7 @@
     <ROW Component="System.Drawing.Common.dll_6" ComponentId="{083D5E00-FE17-4B71-A4D0-95EA081B63F4}" Directory_="net6.0_5_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_6"/>
     <ROW Component="System.Drawing.Common.dll_7" ComponentId="{B389A7C3-8AE2-44AB-A5C1-45523D2203C0}" Directory_="net6.0_6_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_7"/>
     <ROW Component="System.Memory.dll_2" ComponentId="{37EBBB97-6017-46E4-AC04-AD3FB3EB9131}" Directory_="APPDIR" Attributes="256" KeyPath="System.Memory.dll_2"/>
+    <ROW Component="System.Numerics.Tensors.dll" ComponentId="{C303739F-A4A8-4A4E-B6B0-3664F41949EB}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Numerics.Tensors.dll"/>
     <ROW Component="System.Numerics.Vectors.dll_2" ComponentId="{3D47FC0B-6349-41D3-92EC-307A6F2D8E41}" Directory_="APPDIR" Attributes="256" KeyPath="System.Numerics.Vectors.dll_2"/>
     <ROW Component="System.Resources.Extensions.dll_5" ComponentId="{7EC4EF76-1BA4-4D1F-A6ED-3632F865E587}" Directory_="bin_Dir" Attributes="256" KeyPath="System.Resources.Extensions.dll_5"/>
     <ROW Component="System.Resources.Extensions.dll_6" ComponentId="{41686767-0A2C-4AD4-83C9-C7169E417F30}" Directory_="APPDIR" Attributes="256" KeyPath="System.Resources.Extensions.dll_6"/>
@@ -4634,6 +4641,13 @@
     <ROW File="_1.jpg_141" Component_="_0.jpg_28" FileName="0_1.jpg" Attributes="0" SourcePath="..\extdata\deep_zoom_image\Ultivue-IA-Main_waifu2x_art_scale_files\9\0_1.jpg" SelfReg="false"/>
     <ROW File="_0.jpg_160" Component_="_0.jpg_28" FileName="1_0.jpg" Attributes="0" SourcePath="..\extdata\deep_zoom_image\Ultivue-IA-Main_waifu2x_art_scale_files\9\1_0.jpg" SelfReg="false"/>
     <ROW File="_1.jpg_142" Component_="_0.jpg_28" FileName="1_1.jpg" Attributes="0" SourcePath="..\extdata\deep_zoom_image\Ultivue-IA-Main_waifu2x_art_scale_files\9\1_1.jpg" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Data.BinaryData.dll_1" Component_="Microsoft.VisualBasic.Data.BinaryData.dll_1" FileName="MICROS~6.DLL|Microsoft.VisualBasic.Data.BinaryData.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Microsoft.VisualBasic.Data.BinaryData.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Data.IO.MessagePack.dll_1" Component_="Microsoft.VisualBasic.Data.IO.MessagePack.dll_1" FileName="MICROS~7.DLL|Microsoft.VisualBasic.Data.IO.MessagePack.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Microsoft.VisualBasic.Data.IO.MessagePack.dll" SelfReg="false"/>
+    <ROW File="Parallel.dll_1" Component_="Parallel.dll_1" FileName="Parallel.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Parallel.dll" SelfReg="false"/>
+    <ROW File="System.Numerics.Tensors.dll" Component_="System.Numerics.Tensors.dll" FileName="SYSTE~12.DLL|System.Numerics.Tensors.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\System.Numerics.Tensors.dll" SelfReg="false"/>
+    <ROW File="Parallel.dll_2" Component_="Parallel.dll_2" FileName="Parallel.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Parallel.dll" SelfReg="false"/>
+    <ROW File="Mzkit_win32.MSImagingViewerV2.resources.dll" Component_="Mzkit_win32.MSImagingViewerV2.resources.dll" FileName="MZKIT_~4.DLL|Mzkit_win32.MSImagingViewerV2.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\zh-CN\Mzkit_win32.MSImagingViewerV2.resources.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.NMRFidTool.dll" Component_="BioNovoGene.Analytical.NMRFidTool.dll" FileName="BIONO~31.DLL|BioNovoGene.Analytical.NMRFidTool.dll" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.NMRFidTool.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -5253,6 +5267,13 @@
     <ROW Feature_="MainFeature" Component_="_0.jpg_26"/>
     <ROW Feature_="MainFeature" Component_="_0.jpg_27"/>
     <ROW Feature_="MainFeature" Component_="_0.jpg_28"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.BinaryData.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.IO.MessagePack.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Parallel.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="System.Numerics.Tensors.dll"/>
+    <ROW Feature_="MainFeature" Component_="Parallel.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Mzkit_win32.MSImagingViewerV2.resources.dll"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.NMRFidTool.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>

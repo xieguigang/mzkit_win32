@@ -124,7 +124,7 @@
   <data name="LoadTissueImageToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DgAACw4BQL7hQQAAAAd0SU1FB+MKDQkyBAESqBcAABn5SURBVHhe7Z0JtFxlYccvhCRAICSAhLBv1QCy
+        DAAACwwBP0AiyAAAAAd0SU1FB+MKDQkyBAESqBcAABn5SURBVHhe7Z0JtFxlYccvhCRAICSAhLBv1QCy
         GAsoEVQElAAVFEHoEcXS7YhoBaHlCAIuR20PNCI9PSqrUCpoq2ItaFuVgFBBCU+WAM4BfSo8llfFsBiW
         199v3ptznnGSvG3uLPf/y/mdmcybme+b+93vu99+ixBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQggh
         hBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQggh
@@ -247,7 +247,7 @@
   <data name="RemoveTissueImageToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DgAACw4BQL7hQQAAAAd0SU1FB+MKDQk0CrDwIpYAACTMSURBVHhe7d0HmLV3WefxWQs9iPQuZZfmUjYI
+        DAAACwwBP0AiyAAAAAd0SU1FB+MKDQk0CrDwIpYAACTMSURBVHhe7d0HmLV3WefxWQs9iPQuZZfmUjYI
         SkdCpJdA6GIARQUSYAEJy0ULIiu6ggisu9TIJuCCBAMuUjSUEGBpoZeE0BaRjkSaBMj+PmEerpM3583M
         mfOcM2dmfr/r+l7vXPOe87R57n+57/t//9eqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
         qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
@@ -421,6 +421,12 @@
   </data>
   <data name="EditLabelToolStripMenuItem.Text" xml:space="preserve">
     <value>Edit Label</value>
+  </data>
+  <data name="RotateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>197, 22</value>
+  </data>
+  <data name="RotateToolStripMenuItem.Text" xml:space="preserve">
+    <value>Rotate</value>
   </data>
   <data name="SetSpotColorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>197, 22</value>
@@ -970,7 +976,7 @@
     <value>Export Spatial Mapping</value>
   </data>
   <data name="ContextMenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>198, 170</value>
+    <value>198, 192</value>
   </data>
   <data name="&gt;&gt;ContextMenuStrip1.Name" xml:space="preserve">
     <value>ContextMenuStrip1</value>
@@ -1019,34 +1025,34 @@
   <data name="&gt;&gt;Label1.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <metadata name="PictureBox1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="AnchorResize.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="PictureBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="AnchorResize.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
-  <data name="PictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="AnchorResize.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="PictureBox1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="AnchorResize.Location" type="System.Drawing.Point, System.Drawing">
     <value>158, 171</value>
   </data>
-  <data name="PictureBox1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="AnchorResize.Size" type="System.Drawing.Size, System.Drawing">
     <value>8, 8</value>
   </data>
-  <data name="PictureBox1.TabIndex" type="System.Int32, mscorlib">
+  <data name="AnchorResize.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;PictureBox1.Name" xml:space="preserve">
-    <value>PictureBox1</value>
+  <data name="&gt;&gt;AnchorResize.Name" xml:space="preserve">
+    <value>AnchorResize</value>
   </data>
-  <data name="&gt;&gt;PictureBox1.Type" xml:space="preserve">
+  <data name="&gt;&gt;AnchorResize.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;PictureBox1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;AnchorResize.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;PictureBox1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;AnchorResize.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -1091,6 +1097,12 @@
   <data name="&gt;&gt;EditLabelToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;SetSpotColorToolStripMenuItem.Name" xml:space="preserve">
+    <value>SetSpotColorToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;SetSpotColorToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;ToolStripMenuItem1.Name" xml:space="preserve">
     <value>ToolStripMenuItem1</value>
   </data>
@@ -1115,10 +1127,10 @@
   <data name="&gt;&gt;ToolTip1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;SetSpotColorToolStripMenuItem.Name" xml:space="preserve">
-    <value>SetSpotColorToolStripMenuItem</value>
+  <data name="&gt;&gt;RotateToolStripMenuItem.Name" xml:space="preserve">
+    <value>RotateToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;SetSpotColorToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;RotateToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

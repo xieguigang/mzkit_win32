@@ -65,11 +65,6 @@ Imports SMRUCC.Rsharp.Runtime.Interop
 <Package("app")>
 Module Program
 
-    <ExportAPI("listen.heartbeat")>
-    Public Sub ListenHeartBeat(port As Integer)
-        Call HeartBeat.Start(port)
-    End Sub
-
     ''' <summary>
     ''' 
     ''' </summary>
@@ -78,10 +73,13 @@ Module Program
     ''' --debug 33361
     ''' </param>
     <ExportAPI("run")>
-    Public Sub Main(Optional service As String = "MS-Imaging", Optional debugPort As Integer? = Nothing)
+    Public Sub Main(Optional service As String = "MS-Imaging",
+                    Optional debugPort As Integer? = Nothing,
+                    Optional masetrPID As String = Nothing)
+
         Select Case service.ToLower
             Case "ms-imaging"
-                Call New MSI(debugPort).Run()
+                Call New MSI(debugPort, masetrPID).Run()
             Case Else
 
         End Select
