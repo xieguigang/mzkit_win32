@@ -3,7 +3,7 @@ var apps;
 (function (apps) {
     class three_app extends Bootstrap {
         get appName() {
-            return "3d/three";
+            return "3d_three";
         }
         initGui() {
             //声明一个保存需求修改的相关数据的对象

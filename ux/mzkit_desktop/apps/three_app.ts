@@ -5,7 +5,7 @@ namespace apps {
     export class three_app extends Bootstrap {
 
         public get appName(): string {
-            return "3d/three";
+            return "3d_three";
         }
 
         private renderer;
