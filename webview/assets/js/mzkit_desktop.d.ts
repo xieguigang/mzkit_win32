@@ -42,6 +42,7 @@ declare class ModelReader {
      * @param bin the data should be in network byte order
     */
     constructor(bin: Uint8Array);
+    private centroid;
     loadPointCloudModel(canvas: apps.three_app): void;
 }
 interface pointCloud {

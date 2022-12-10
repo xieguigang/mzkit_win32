@@ -69,6 +69,9 @@ namespace apps {
         }
 
         private initModel(model: ModelReader) {
+            console.log("load 3d point cloud model!");
+            console.log(model);
+
             model.loadPointCloudModel(this);
         }
 

@@ -56,6 +56,8 @@ var apps;
             this.scene.add(this.light);
         }
         initModel(model) {
+            console.log("load 3d point cloud model!");
+            console.log(model);
             model.loadPointCloudModel(this);
         }
         //随机生成颜色
@@ -158,9 +160,9 @@ class ModelReader {
         view = new DataView(bin.buffer, colorEnds);
         for (let i = 0; i < npoints; i++) {
             let offset = i * (8 + 8 + 8 + 8 + 4);
-            let x = view.getFloat64(offset);
-            let y = view.getFloat64(offset + 8);
-            let z = view.getFloat64(offset + 16);
+            let x = view.getFloat64(offset) / 1000;
+            let y = view.getFloat64(offset + 8) / 1000;
+            let z = view.getFloat64(offset + 16) / 1000;
             let data = view.getFloat64(offset + 24);
             let clr = view.getInt32(offset + 32);
             this.pointCloud.push({
@@ -168,6 +170,25 @@ class ModelReader {
                 intensity: data,
                 color: this.palette[clr]
             });
+        }
+        this.centroid();
+    }
+    centroid() {
+        const x = [];
+        const y = [];
+        const z = [];
+        for (let point of this.pointCloud) {
+            x.push(point.x);
+            y.push(point.y);
+            z.push(point.z);
+        }
+        const offset_x = $ts(x).Sum() / this.pointCloud.length;
+        const offset_y = $ts(y).Sum() / this.pointCloud.length;
+        const offset_z = $ts(z).Sum() / this.pointCloud.length;
+        for (let point of this.pointCloud) {
+            point.x = point.x - offset_x;
+            point.y = point.y - offset_y;
+            point.z = point.z - offset_z;
         }
     }
     loadPointCloudModel(canvas) {
