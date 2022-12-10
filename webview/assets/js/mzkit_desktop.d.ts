@@ -1,8 +1,5 @@
-/// <reference path="../../../ux/mzkit_desktop/d/linq.d.ts" />
 /// <reference path="../../../ux/mzkit_desktop/d/three/index.d.ts" />
-declare namespace app.desktop {
-    function run(): void;
-}
+/// <reference path="../../../ux/mzkit_desktop/d/linq.d.ts" />
 declare namespace apps {
     class three_app extends Bootstrap {
         readonly appName: string;
@@ -27,4 +24,7 @@ declare namespace apps {
         private animate;
         protected init(): void;
     }
+}
+declare namespace app.desktop {
+    function run(): void;
 }

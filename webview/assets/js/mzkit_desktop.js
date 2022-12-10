@@ -1,16 +1,3 @@
-/// <reference path="./d/linq.d.ts" />
-var app;
-(function (app) {
-    var desktop;
-    (function (desktop) {
-        function run() {
-            Router.AddAppHandler(new apps.three_app());
-        }
-        desktop.run = run;
-    })(desktop = app.desktop || (app.desktop = {}));
-})(app || (app = {}));
-$ts.mode = Modes.debug;
-$ts(app.desktop.run);
 /// <reference path="../d/three/index.d.ts" />
 var apps;
 (function (apps) {
@@ -128,4 +115,18 @@ var apps;
     }
     apps.three_app = three_app;
 })(apps || (apps = {}));
+/// <reference path="./d/linq.d.ts" />
+/// <reference path="./apps/three_app.ts" />
+var app;
+(function (app) {
+    var desktop;
+    (function (desktop) {
+        function run() {
+            Router.AddAppHandler(new apps.three_app());
+        }
+        desktop.run = run;
+    })(desktop = app.desktop || (app.desktop = {}));
+})(app || (app = {}));
+$ts.mode = Modes.debug;
+$ts(app.desktop.run);
 //# sourceMappingURL=mzkit_desktop.js.map

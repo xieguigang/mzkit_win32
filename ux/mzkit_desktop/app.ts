@@ -1,4 +1,5 @@
 /// <reference path="./d/linq.d.ts" />
+/// <reference path="./apps/three_app.ts" />
 
 namespace app.desktop {
 
