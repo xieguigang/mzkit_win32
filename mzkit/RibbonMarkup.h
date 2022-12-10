@@ -1115,5 +1115,12 @@
 #define cmdButtonCFMIDTool_LargeImages_192__RESID 60290
 #define cmdButtonCFMIDTool_SmallHighContrastImages_192__RESID 60291
 #define cmdButtonCFMIDTool_LargeHighContrastImages_192__RESID 60292
-#define InternalCmd2_LabelTitle_RESID 60293
-#define InternalCmd4_LabelTitle_RESID 60294
+#define cmdView3DMALDI 213 
+#define cmdView3DMALDI_LabelTitle_RESID 60293
+#define cmdView3DMALDI_LabelDescription_RESID 60294
+#define cmdView3DMALDI_TooltipTitle_RESID 60295
+#define cmdView3DMALDI_TooltipDescription_RESID 60296
+#define cmdView3DMALDI_SmallImages_192__RESID 60297
+#define cmdView3DMALDI_LargeImages_192__RESID 60298
+#define InternalCmd2_LabelTitle_RESID 60299
+#define InternalCmd4_LabelTitle_RESID 60300

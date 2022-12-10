@@ -180,6 +180,11 @@ Module RibbonEvents
 
         AddHandler ribbonItems.ButtonCFMIDTool.ExecuteEvent, Sub() Call OpenCFMIDTool(Nothing, Nothing)
         AddHandler ribbonItems.MsconvertGUI.ExecuteEvent, Sub() Call openMsconvertTool()
+        AddHandler ribbonItems.View3DMALDI.ExecuteEvent, Sub() Call open3dMALDIViewer()
+    End Sub
+
+    Private Sub open3dMALDIViewer()
+        Call VisualStudio.ShowDocument(Of frm3DMALDIViewer)()
     End Sub
 
     Private Sub openMsconvertTool()

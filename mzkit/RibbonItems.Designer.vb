@@ -60,6 +60,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonShowProperties As UInteger = 1123
             Public Const cmdGroupShowComprehensive As UInteger = 191
             Public Const cmdButtonMsImaging As UInteger = 1167
+            Public Const cmdView3DMALDI As UInteger = 213
             Public Const cmdGCxGCViewer As UInteger = 179
             Public Const cmdTabLayout As UInteger = 1035
             Public Const cmdGroupLayout As UInteger = 1037
@@ -488,6 +489,12 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonMsImaging As RibbonButton
             Get
                 Return _ButtonMsImaging
+            End Get
+        End Property
+        Private _View3DMALDI As RibbonButton
+        Public ReadOnly Property View3DMALDI As RibbonButton
+            Get
+                Return _View3DMALDI
             End Get
         End Property
         Private _GCxGCViewer As RibbonButton
@@ -1440,6 +1447,7 @@ Namespace RibbonLib.Controls
             _ButtonShowProperties = New RibbonButton(_ribbon, Cmd.cmdButtonShowProperties)
             _GroupShowComprehensive = New RibbonGroup(_ribbon, Cmd.cmdGroupShowComprehensive)
             _ButtonMsImaging = New RibbonButton(_ribbon, Cmd.cmdButtonMsImaging)
+            _View3DMALDI = New RibbonButton(_ribbon, Cmd.cmdView3DMALDI)
             _GCxGCViewer = New RibbonButton(_ribbon, Cmd.cmdGCxGCViewer)
             _TabLayout = New RibbonTab(_ribbon, Cmd.cmdTabLayout)
             _GroupLayout = New RibbonGroup(_ribbon, Cmd.cmdGroupLayout)

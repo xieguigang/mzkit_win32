@@ -2468,6 +2468,14 @@
         <Image MinDPI="192">Resources/Flask.png</Image>
       </Command.LargeHighContrastImages>
     </Command>
+    <Command Name="cmdView3DMALDI" Id="213" LabelTitle="View 3D MALDI" LabelDescription="View 3D MALDI" TooltipTitle="View 3D MALDI" TooltipDescription="View 3D MALDI">
+      <Command.SmallImages>
+        <Image MinDPI="192">Resources/3d-object.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Resources/3d-object.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2585,8 +2593,9 @@
               <Button CommandName="cmdButtonShowSearchList" />
               <Button CommandName="cmdButtonShowProperties" />
             </Group>
-            <Group CommandName="cmdGroupShowComprehensive" SizeDefinition="TwoButtons">
+            <Group CommandName="cmdGroupShowComprehensive" SizeDefinition="ThreeButtons">
               <Button CommandName="cmdButtonMsImaging" />
+              <Button CommandName="cmdView3DMALDI" />
               <Button CommandName="cmdGCxGCViewer" />
             </Group>
           </Tab>
