@@ -123,6 +123,7 @@ var app;
     (function (desktop) {
         function run() {
             Router.AddAppHandler(new apps.three_app());
+            Router.RunApp();
         }
         desktop.run = run;
     })(desktop = app.desktop || (app.desktop = {}));

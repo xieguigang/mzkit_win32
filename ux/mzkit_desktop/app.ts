@@ -5,6 +5,8 @@ namespace app.desktop {
 
     export function run() {
         Router.AddAppHandler(new apps.three_app());
+
+        Router.RunApp();
     }
 }
 
