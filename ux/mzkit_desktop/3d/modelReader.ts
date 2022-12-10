@@ -11,7 +11,7 @@ class ModelReader {
     */
     public constructor(private bin: Uint8Array) {
         // npoints
-        let view = new DataView(bin, 0, 8);
+        let view = new DataView(bin.buffer, 0, 8);
         let npoints = view.getInt32(0);
         // ncolors
         let ncolors = view.getInt32(4);
@@ -26,7 +26,7 @@ class ModelReader {
             this.palette.push(strings.substring(i * 7, (i + 1) * 7));
         }
 
-        view = new DataView(bin, colorEnds);
+        view = new DataView(bin.buffer, colorEnds);
 
         for (let i = 0; i < npoints; i++) {
             let offset = i * (8 + 8 + 8 + 8 + 4);
