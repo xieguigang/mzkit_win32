@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.Runtime.InteropServices
 Imports System.Threading
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices
@@ -7,9 +8,26 @@ Imports Task
 
 Public Class frm3DMALDIViewer
 
-    Dim sourceMALDI As String
+    <ClassInterface(ClassInterfaceType.AutoDual)>
+    <ComVisible(True)>
+    Public Class MALDISource
+
+        Public Property source As String
+
+        ReadOnly host As frm3DMALDIViewer
+
+        Sub New(host As frm3DMALDIViewer)
+            Me.host = host
+        End Sub
+
+        Public Function get_3d_MALDI_url() As String
+            Return $"http://127.0.0.1:{host.webPort}/{source.FileName}"
+        End Function
+    End Class
+
     Dim localfs As Process
     Dim webPort As Integer = -1
+    Dim sourceMALDI As New MALDISource(Me)
 
     Public ReadOnly Property sourceURL As String
         Get
@@ -24,11 +42,12 @@ Public Class frm3DMALDIViewer
 
         ' Add any initialization after the InitializeComponent() call.
         AutoScaleMode = AutoScaleMode.Dpi
+        sourceMALDI.source = AppEnvironment.get3DMALDIDemoFolder & "/3DMouseKidney.maldi"
     End Sub
 
     Public Sub LoadModel(maldi As String)
-        sourceMALDI = maldi
-
+        sourceMALDI.source = maldi
+        WebView21.Reload()
     End Sub
 
     Private Sub startHttp()
@@ -36,7 +55,7 @@ Public Class frm3DMALDIViewer
         localfs = New Process With {
             .StartInfo = New ProcessStartInfo With {
                 .FileName = $"{App.HOME}/Rstudio/bin/Rserve.exe",
-                .Arguments = $"--listen /wwwroot ""{AppEnvironment.getWebViewFolder}"" /port {webPort} --parent={App.PID} --attach {AppEnvironment.get3DMALDIDemoFolder.GetDirectoryFullPath.CLIPath}",
+                .Arguments = $"--listen /wwwroot ""{AppEnvironment.getWebViewFolder}"" /port {webPort} --parent={App.PID} --attach {sourceMALDI.source.ParentPath.CLIPath}",
                 .CreateNoWindow = True,
                 .WindowStyle = ProcessWindowStyle.Hidden,
                 .UseShellExecute = True
@@ -57,6 +76,7 @@ Public Class frm3DMALDIViewer
             Call Thread.Sleep(10)
         Loop
 
+        Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", sourceMALDI)
         Call WebView21.CoreWebView2.Navigate(sourceURL)
         Call DeveloperOptions(enable:=True)
     End Sub
