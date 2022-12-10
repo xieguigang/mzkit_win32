@@ -42,7 +42,7 @@ Public Class frm3DMALDIViewer
 
         ' Add any initialization after the InitializeComponent() call.
         AutoScaleMode = AutoScaleMode.Dpi
-        sourceMALDI.source = AppEnvironment.get3DMALDIDemoFolder & "/3DMouseKidney.maldi"
+        sourceMALDI.source = AppEnvironment.get3DMALDIDemoFolder.GetDirectoryFullPath & "/3DMouseKidney.maldi"
     End Sub
 
     Public Sub LoadModel(maldi As String)
