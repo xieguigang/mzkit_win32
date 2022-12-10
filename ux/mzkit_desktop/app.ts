@@ -1,4 +1,4 @@
-///<reference path="./linq.d.ts">
+/// <reference path="./d/linq.d.ts" />
 
 namespace app.desktop {
 
