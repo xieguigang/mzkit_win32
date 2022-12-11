@@ -89,7 +89,6 @@ var apps;
                         vm.setup_device(url);
                     });
                 });
-                $ts("#init-logo").hide();
             }
             else {
                 $ts("#init-logo").show();
@@ -108,6 +107,7 @@ var apps;
                 vm.initControls();
                 vm.initStats();
                 vm.animate();
+                $ts("#init-logo").hide();
             });
         }
         open_model_onclick() {

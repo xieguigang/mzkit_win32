@@ -108,8 +108,6 @@ namespace apps {
                         url = await url;
                         vm.setup_device(url);
                     });
-
-                $ts("#init-logo").hide();
             } else {
                 $ts("#init-logo").show();
             }
@@ -131,6 +129,8 @@ namespace apps {
                 vm.initControls();
                 vm.initStats();
                 vm.animate();
+                
+                $ts("#init-logo").hide();
             });
         }
 
