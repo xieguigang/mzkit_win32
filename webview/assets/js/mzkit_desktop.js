@@ -89,6 +89,15 @@ var apps;
                         vm.setup_device(url);
                     });
                 });
+                three_app.open = function () {
+                    app.desktop.mzkit
+                        .open_MALDI_model()
+                        .then(function () {
+                        return __awaiter(this, void 0, void 0, function* () {
+                            vm.init();
+                        });
+                    });
+                };
             }
             else {
                 $ts("#init-logo").show();
@@ -98,26 +107,21 @@ var apps;
         setup_device(url) {
             const vm = this;
             HttpHelpers.getBlob(url, function (buffer) {
-                const model = new ModelReader(buffer);
-                vm.initRender();
-                vm.initScene();
-                vm.initCamera();
-                vm.initLight();
-                vm.initModel(model);
-                vm.initControls();
-                vm.initStats();
-                vm.animate();
-                $ts("#init-logo").hide();
-            });
-        }
-        open_model_onclick() {
-            const vm = this;
-            app.desktop.mzkit
-                .open_MALDI_model()
-                .then(function () {
-                return __awaiter(this, void 0, void 0, function* () {
-                    vm.init();
-                });
+                try {
+                    const model = new ModelReader(buffer);
+                    vm.initRender();
+                    vm.initScene();
+                    vm.initCamera();
+                    vm.initLight();
+                    vm.initModel(model);
+                    vm.initControls();
+                    vm.initStats();
+                    vm.animate();
+                    $ts("#init-logo").hide();
+                }
+                catch (_a) {
+                    // do nothing
+                }
             });
         }
     }

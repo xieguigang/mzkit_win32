@@ -25,15 +25,11 @@ Public Class frm3DMALDIViewer
         End Function
 
         Public Sub open_MALDI_model()
-            Try
-                Using file As New OpenFileDialog With {.Filter = "3D MALDI model(*.maldi)|*.maldi"}
-                    If file.ShowDialog = DialogResult.OK Then
-                        Me.source = file.FileName
-                    End If
-                End Using
-            Catch ex As Exception
-
-            End Try
+            Using file As New OpenFileDialog With {.Filter = "3D MALDI model(*.maldi)|*.maldi"}
+                If file.ShowDialog = DialogResult.OK Then
+                    Me.source = file.FileName
+                End If
+            End Using
         End Sub
     End Class
 

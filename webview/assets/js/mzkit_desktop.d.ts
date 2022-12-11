@@ -21,7 +21,7 @@ declare namespace apps {
         private animate;
         protected init(): void;
         private setup_device;
-        open_model_onclick(): void;
+        static open: Delegate.Action;
     }
 }
 declare namespace app.desktop {

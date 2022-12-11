@@ -108,6 +108,14 @@ namespace apps {
                         url = await url;
                         vm.setup_device(url);
                     });
+
+                three_app.open = function () {
+                    app.desktop.mzkit
+                        .open_MALDI_model()
+                        .then(async function () {
+                            vm.init();
+                        });
+                }
             } else {
                 $ts("#init-logo").show();
             }
@@ -119,29 +127,25 @@ namespace apps {
             const vm = this;
 
             HttpHelpers.getBlob(url, function (buffer) {
-                const model = new ModelReader(buffer);
+                try {
+                    const model = new ModelReader(buffer);
 
-                vm.initRender();
-                vm.initScene();
-                vm.initCamera();
-                vm.initLight();
-                vm.initModel(model);
-                vm.initControls();
-                vm.initStats();
-                vm.animate();
-                
-                $ts("#init-logo").hide();
+                    vm.initRender();
+                    vm.initScene();
+                    vm.initCamera();
+                    vm.initLight();
+                    vm.initModel(model);
+                    vm.initControls();
+                    vm.initStats();
+                    vm.animate();
+
+                    $ts("#init-logo").hide();
+                } catch {
+                    // do nothing
+                }
             });
         }
 
-        public open_model_onclick() {
-            const vm = this;
-
-            app.desktop.mzkit
-                .open_MALDI_model()
-                .then(async function () {
-                    vm.init();
-                });
-        }
+        public static open: Delegate.Action;
     }
 }
