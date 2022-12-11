@@ -16,7 +16,6 @@ declare namespace apps {
         private initScene;
         private initLight;
         private initModel;
-        private static randomColor;
         private render;
         private onWindowResize;
         private animate;
@@ -53,4 +52,10 @@ interface pointCloud {
     z: number;
     intensity: number;
     color: number | string;
+}
+declare namespace apps {
+    class home extends Bootstrap {
+        readonly appName: string;
+        protected init(): void;
+    }
 }

@@ -44,7 +44,7 @@ class ModelReader {
         }
 
         this.centroid();
-        this.cubic_scale();
+        // this.cubic_scale();
     }
 
     private cubic_scale() {

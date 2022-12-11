@@ -60,15 +60,6 @@ var apps;
             console.log(model);
             model.loadPointCloudModel(this);
         }
-        //随机生成颜色
-        static randomColor() {
-            var arrHex = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"], strHex = "0x", index;
-            for (var i = 0; i < 6; i++) {
-                index = Math.round(Math.random() * 15);
-                strHex += arrHex[index];
-            }
-            return strHex;
-        }
         render() {
             this.renderer.render(this.scene, this.camera);
         }
@@ -89,14 +80,20 @@ var apps;
         }
         init() {
             const vm = this;
-            app.desktop.mzkit
-                .get_3d_MALDI_url()
-                .then(function (url) {
-                return __awaiter(this, void 0, void 0, function* () {
-                    url = yield url;
-                    vm.setup_device(url);
+            if (app.desktop.mzkit) {
+                app.desktop.mzkit
+                    .get_3d_MALDI_url()
+                    .then(function (url) {
+                    return __awaiter(this, void 0, void 0, function* () {
+                        url = yield url;
+                        vm.setup_device(url);
+                    });
                 });
-            });
+                $ts("#init-logo").hide();
+            }
+            else {
+                $ts("#init-logo").show();
+            }
             window.onresize = () => this.onWindowResize();
         }
         setup_device(url) {
@@ -122,7 +119,15 @@ var app;
 (function (app) {
     var desktop;
     (function (desktop) {
-        desktop.mzkit = window.chrome.webview.hostObjects.mzkit;
+        desktop.mzkit = getHostObject();
+        function getHostObject() {
+            try {
+                return window.chrome.webview.hostObjects.mzkit;
+            }
+            catch (_a) {
+                return null;
+            }
+        }
         function run() {
             Router.AddAppHandler(new apps.three_app());
             Router.RunApp();
@@ -172,7 +177,7 @@ class ModelReader {
             });
         }
         this.centroid();
-        this.cubic_scale();
+        // this.cubic_scale();
     }
     cubic_scale() {
         const v = this.getVector3();
@@ -252,4 +257,17 @@ class ModelReader {
         canvas.scene.add(new THREE.PointCloud(geometry, material));
     }
 }
+/// <reference path="../d/linq.d.ts" />
+var apps;
+(function (apps) {
+    class home extends Bootstrap {
+        get appName() {
+            return "home";
+        }
+        init() {
+            // throw new Error("Method not implemented.");
+        }
+    }
+    apps.home = home;
+})(apps || (apps = {}));
 //# sourceMappingURL=mzkit_desktop.js.map

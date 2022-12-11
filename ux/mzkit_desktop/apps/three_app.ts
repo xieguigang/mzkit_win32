@@ -76,20 +76,6 @@ namespace apps {
             model.loadPointCloudModel(this);
         }
 
-        //随机生成颜色
-        private static randomColor() {
-            var arrHex = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"],
-                strHex = "0x",
-                index;
-
-            for (var i = 0; i < 6; i++) {
-                index = Math.round(Math.random() * 15);
-                strHex += arrHex[index];
-            }
-
-            return strHex;
-        }
-
         private render() {
             this.renderer.render(this.scene, this.camera);
         }
@@ -115,12 +101,18 @@ namespace apps {
         protected init(): void {
             const vm = this;
 
-            app.desktop.mzkit
-                .get_3d_MALDI_url()
-                .then(async function (url) {
-                    url = await url;
-                    vm.setup_device(url);
-                });
+            if (app.desktop.mzkit) {
+                app.desktop.mzkit
+                    .get_3d_MALDI_url()
+                    .then(async function (url) {
+                        url = await url;
+                        vm.setup_device(url);
+                    });
+
+                $ts("#init-logo").hide();
+            } else {
+                $ts("#init-logo").show();
+            }
 
             window.onresize = () => this.onWindowResize();
         }

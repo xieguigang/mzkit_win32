@@ -3,7 +3,15 @@
 
 namespace app.desktop {
 
-    export const mzkit: mzkit_desktop = (<any>window).chrome.webview.hostObjects.mzkit;
+    export const mzkit: mzkit_desktop = getHostObject();
+
+    function getHostObject() {
+        try {
+            return (<any>window).chrome.webview.hostObjects.mzkit;
+        } catch {
+            return null;
+        }        
+    }
 
     export interface mzkit_desktop {
         get_3d_MALDI_url(): Promise<string>;
