@@ -21,12 +21,14 @@ declare namespace apps {
         private animate;
         protected init(): void;
         private setup_device;
+        open_model_onclick(): void;
     }
 }
 declare namespace app.desktop {
     const mzkit: mzkit_desktop;
     interface mzkit_desktop {
         get_3d_MALDI_url(): Promise<string>;
+        open_MALDI_model(): any;
     }
     function run(): void;
 }

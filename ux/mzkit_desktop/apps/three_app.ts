@@ -48,7 +48,7 @@ namespace apps {
             this.renderer = new THREE.WebGLRenderer({ antialias: true });
             //renderer.setClearColor(new THREE.Color(0xEEEEEE, 1.0)); //设置背景颜色
             this.renderer.setSize(window.innerWidth, window.innerHeight);
-            
+
             document.body.appendChild(this.renderer.domElement);
         }
 
@@ -132,6 +132,16 @@ namespace apps {
                 vm.initStats();
                 vm.animate();
             });
+        }
+
+        public open_model_onclick() {
+            const vm = this;
+
+            app.desktop.mzkit
+                .open_MALDI_model()
+                .then(async function () {
+                    vm.init();
+                });
         }
     }
 }

@@ -15,6 +15,7 @@ namespace app.desktop {
 
     export interface mzkit_desktop {
         get_3d_MALDI_url(): Promise<string>;
+        open_MALDI_model();
     }
 
     export function run() {

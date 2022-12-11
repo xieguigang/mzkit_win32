@@ -110,6 +110,16 @@ var apps;
                 vm.animate();
             });
         }
+        open_model_onclick() {
+            const vm = this;
+            app.desktop.mzkit
+                .open_MALDI_model()
+                .then(function () {
+                return __awaiter(this, void 0, void 0, function* () {
+                    vm.init();
+                });
+            });
+        }
     }
     apps.three_app = three_app;
 })(apps || (apps = {}));
