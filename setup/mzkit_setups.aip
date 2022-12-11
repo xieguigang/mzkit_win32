@@ -19,7 +19,7 @@
     <ROW Property="AI_ThemeStyle" Value="head" MsiKey="AI_ThemeStyle"/>
     <ROW Property="AI_UNINSTALLER" Value="msiexec.exe"/>
     <ROW Property="ALLUSERS" Value="1"/>
-    <ROW Property="ARPCOMMENTS" Value="An open source data toolkits for processing NMR, MALDI MSI, LC-MS and GC-MS raw data, chemoinformatics data analysis and data visualization." ValueLocId="*"/>
+    <ROW Property="ARPCOMMENTS" Value="Data toolkits for processing NMR, MALDI MSI, MALDI single cell, LC-MS and GC-MS raw data, chemoinformatics data analysis and data visualization." ValueLocId="*"/>
     <ROW Property="ARPCONTACT" Value="market@bionovogene.com"/>
     <ROW Property="ARPHELPLINK" Value="https://mzkit.org/"/>
     <ROW Property="ARPHELPTELEPHONE" Value="0512-62959105"/>
@@ -99,6 +99,7 @@
     <ROW Directory="__8_Dir" Directory_Parent="CMU1.ndpi1_files_Dir" DefaultDir="3"/>
     <ROW Directory="__9_Dir" Directory_Parent="CMU1.ndpi1_files_Dir" DefaultDir="4"/>
     <ROW Directory="__Dir" Directory_Parent="CMU1.ndpi1_files_Dir" DefaultDir="0"/>
+    <ROW Directory="assets_Dir" Directory_Parent="webview_Dir" DefaultDir="assets"/>
     <ROW Directory="bin32_Dir" Directory_Parent="host_Dir" DefaultDir="bin32"/>
     <ROW Directory="bin64_Dir" Directory_Parent="host_Dir" DefaultDir="bin64"/>
     <ROW Directory="bin_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="bin"/>
@@ -116,8 +117,9 @@
     <ROW Directory="ggplot_Dir" Directory_Parent="pipeline_Dir" DefaultDir="ggplot"/>
     <ROW Directory="host_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="host"/>
     <ROW Directory="images_1_Dir" Directory_Parent="openseadragon_Dir" DefaultDir="images"/>
-    <ROW Directory="images_Dir" Directory_Parent="webview_Dir" DefaultDir="images"/>
+    <ROW Directory="images_2_Dir" Directory_Parent="assets_Dir" DefaultDir="images"/>
     <ROW Directory="jaJP_Dir" Directory_Parent="APPDIR" DefaultDir="ja-JP"/>
+    <ROW Directory="js_1_Dir" Directory_Parent="assets_Dir" DefaultDir="js"/>
     <ROW Directory="js_Dir" Directory_Parent="static_Dir" DefaultDir="js"/>
     <ROW Directory="ketcher_Dir" Directory_Parent="webview_Dir" DefaultDir="ketcher"/>
     <ROW Directory="lib_2_Dir" Directory_Parent="unix_1_Dir" DefaultDir="lib"/>
@@ -147,6 +149,7 @@
     <ROW Directory="services_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="services"/>
     <ROW Directory="static_Dir" Directory_Parent="ketcher_Dir" DefaultDir="static"/>
     <ROW Directory="templates_Dir" Directory_Parent="ketcher_Dir" DefaultDir="TEMPLA~1|templates"/>
+    <ROW Directory="three_Dir" Directory_Parent="vendor_Dir" DefaultDir="three"/>
     <ROW Directory="unix_1_Dir" Directory_Parent="runtimes_2_Dir" DefaultDir="unix"/>
     <ROW Directory="unix_3_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="unix"/>
     <ROW Directory="vendor_Dir" Directory_Parent="webview_Dir" DefaultDir="vendor"/>
@@ -586,8 +589,11 @@
     <ROW Component="changelog.txt" ComponentId="{3FAED94B-6433-47EB-961E-2436C4E61825}" Directory_="openseadragon_Dir" Attributes="0" KeyPath="changelog.txt" Type="0"/>
     <ROW Component="chebi_lite.obo" ComponentId="{F06AF326-68FE-455D-A085-4C6A69857DEE}" Directory_="data_Dir" Attributes="0" KeyPath="chebi_lite.obo" Type="0"/>
     <ROW Component="computestats.exe" ComponentId="{296261EB-CFAB-43E9-941B-C9D73E7DC7B3}" Directory_="cfmid2_Dir" Attributes="0" KeyPath="computestats.exe"/>
+    <ROW Component="d_canvas.css" ComponentId="{E4FEA481-6A27-4C89-8E04-CE8A30D2C92F}" Directory_="assets_Dir" Attributes="0" KeyPath="d_canvas.css" Type="0"/>
+    <ROW Component="dat.gui.min.js" ComponentId="{670EC0D5-BB06-4530-AF70-3C54DE4B329E}" Directory_="three_Dir" Attributes="0" KeyPath="dat.gui.min.js" Type="0"/>
     <ROW Component="demo" ComponentId="{3814EF2E-1AF4-4908-916A-83B955835615}" Directory_="demo_Dir" Attributes="256"/>
     <ROW Component="devkit.dll" ComponentId="{80218546-A076-4BAB-8073-8B2AA5A22589}" Directory_="library_Dir" Attributes="256" KeyPath="devkit.dll"/>
+    <ROW Component="dobject.png" ComponentId="{862F9866-255E-491A-A672-52C864F669DB}" Directory_="images_2_Dir" Attributes="0" KeyPath="dobject.png" Type="0"/>
     <ROW Component="fg.sdf" ComponentId="{B49B414E-0355-487C-9F47-4EF018D7C3A8}" Directory_="templates_Dir" Attributes="0" KeyPath="fg.sdf" Type="0"/>
     <ROW Component="fraggraphgen.exe" ComponentId="{F8375977-6A1E-4A75-B017-7F23BEF9BF89}" Directory_="cfmid2_Dir" Attributes="0" KeyPath="fraggraphgen.exe"/>
     <ROW Component="ggplot2.R" ComponentId="{023AC957-2102-4B0E-BC0F-DB37073393BD}" Directory_="ggplot_Dir" Attributes="0" KeyPath="ggplot2.R" Type="0"/>
@@ -596,10 +602,10 @@
     <ROW Component="hdf5.dll_1" ComponentId="{63977075-690E-4D84-BF5C-C893BC183C48}" Directory_="bin64_Dir" Attributes="256" KeyPath="hdf5.dll_1"/>
     <ROW Component="hdf5_hl.dll" ComponentId="{D0F53FE1-1C23-4C87-B4D0-E6BAA1ED0716}" Directory_="bin32_Dir" Attributes="0" KeyPath="hdf5_hl.dll"/>
     <ROW Component="hdf5_hl.dll_1" ComponentId="{33FF0BDC-B836-4298-A836-D0920F950922}" Directory_="bin64_Dir" Attributes="256" KeyPath="hdf5_hl.dll_1"/>
-    <ROW Component="headerbackgroundimage.png" ComponentId="{5177915F-27A8-4C94-BF9A-38DDBF4F8322}" Directory_="images_Dir" Attributes="0" KeyPath="headerbackgroundimage.png" Type="0"/>
     <ROW Component="igraph.dll" ComponentId="{0F05D7C2-03D4-4C28-B43F-470D8F511F82}" Directory_="library_Dir" Attributes="256" KeyPath="igraph.dll"/>
     <ROW Component="install_locals.cmd" ComponentId="{7A6DCF88-DE75-4942-A2E1-16C51C260C94}" Directory_="packages_Dir" Attributes="0" KeyPath="install_locals.cmd"/>
     <ROW Component="library" ComponentId="{7165AD75-FA2D-4513-8E69-E2CCE22396AC}" Directory_="library_Dir" Attributes="256"/>
+    <ROW Component="linq.d.ts" ComponentId="{1F9C0D72-4086-4153-8444-6C2A25C52E5B}" Directory_="js_1_Dir" Attributes="0" KeyPath="linq.d.ts" Type="0"/>
     <ROW Component="logo.png" ComponentId="{17087220-5093-40F8-9F73-BC58242E5BC4}" Directory_="webview_Dir" Attributes="0" KeyPath="logo.png" Type="0"/>
     <ROW Component="lpsolve55.dll" ComponentId="{0CF01530-6BAB-4BBC-A0D5-C7705FE256D0}" Directory_="cfmid2_Dir" Attributes="0" KeyPath="lpsolve55.dll"/>
     <ROW Component="main.22c72ca0.js" ComponentId="{47D9DFF7-0AB7-4F7F-BE9A-B66F90D71B82}" Directory_="js_Dir" Attributes="0" KeyPath="main.22c72ca0.js" Type="0"/>
@@ -1243,12 +1249,6 @@
     <ROW File="STImaging.dll" Component_="STImaging.dll" FileName="STIMAG~1.DLL|STImaging.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\STImaging.dll" SelfReg="false"/>
     <ROW File="STRaid.dll" Component_="STRaid.dll" FileName="STRaid.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\STRaid.dll" SelfReg="false"/>
     <ROW File="favicon.png" Component_="logo.png" FileName="favicon.png" Attributes="0" SourcePath="..\webview\favicon.png" SelfReg="false"/>
-    <ROW File="headerbackgroundimage.png" Component_="headerbackgroundimage.png" FileName="HEADER~1.PNG|header-background-image.png" Attributes="0" SourcePath="..\webview\images\header-background-image.png" SelfReg="false"/>
-    <ROW File="headerforegroundimage.png" Component_="headerbackgroundimage.png" FileName="HEADER~2.PNG|header-foreground-image.png" Attributes="0" SourcePath="..\webview\images\header-foreground-image.png" SelfReg="false"/>
-    <ROW File="Home_Logo.png" Component_="headerbackgroundimage.png" FileName="HOME_L~1.PNG|Home_Logo.png" Attributes="0" SourcePath="..\webview\images\Home_Logo.png" SelfReg="false"/>
-    <ROW File="Home_Logo_Link.png" Component_="headerbackgroundimage.png" FileName="HOME_L~2.PNG|Home_Logo_Link.png" Attributes="0" SourcePath="..\webview\images\Home_Logo_Link.png" SelfReg="false"/>
-    <ROW File="Terminal.png" Component_="headerbackgroundimage.png" FileName="Terminal.png" Attributes="0" SourcePath="..\webview\images\Terminal.png" SelfReg="false"/>
-    <ROW File="tracker.png" Component_="headerbackgroundimage.png" FileName="tracker.png" Attributes="0" SourcePath="..\webview\images\tracker.png" SelfReg="false"/>
     <ROW File="index.html_1" Component_="logo.png" FileName="INDEX~1.HTM|index.html" Attributes="0" SourcePath="..\webview\index.html" SelfReg="false"/>
     <ROW File="hdf5.dll" Component_="hdf5.dll" FileName="hdf5.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\bin32\hdf5.dll" SelfReg="false"/>
     <ROW File="hdf5_hl.dll" Component_="hdf5_hl.dll" FileName="hdf5_hl.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\bin32\hdf5_hl.dll" SelfReg="false"/>
@@ -4648,6 +4648,24 @@
     <ROW File="Parallel.dll_2" Component_="Parallel.dll_2" FileName="Parallel.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Parallel.dll" SelfReg="false"/>
     <ROW File="Mzkit_win32.MSImagingViewerV2.resources.dll" Component_="Mzkit_win32.MSImagingViewerV2.resources.dll" FileName="MZKIT_~4.DLL|Mzkit_win32.MSImagingViewerV2.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\zh-CN\Mzkit_win32.MSImagingViewerV2.resources.dll" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.NMRFidTool.dll" Component_="BioNovoGene.Analytical.NMRFidTool.dll" FileName="BIONO~31.DLL|BioNovoGene.Analytical.NMRFidTool.dll" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.NMRFidTool.dll" SelfReg="false"/>
+    <ROW File="dmaldi.html" Component_="logo.png" FileName="3D-MAL~1.HTM|3d-maldi.html" Attributes="0" SourcePath="..\webview\3d-maldi.html" SelfReg="false"/>
+    <ROW File="d_canvas.css" Component_="d_canvas.css" FileName="3D_CAN~1.CSS|3d_canvas.css" Attributes="0" SourcePath="..\webview\assets\3d_canvas.css" SelfReg="false"/>
+    <ROW File="home.css" Component_="d_canvas.css" FileName="home.css" Attributes="0" SourcePath="..\webview\assets\home.css" SelfReg="false"/>
+    <ROW File="dobject.png" Component_="dobject.png" FileName="3D-OBJ~1.PNG|3d-object.png" Attributes="0" SourcePath="..\webview\assets\images\3d-object.png" SelfReg="false"/>
+    <ROW File="headerbackgroundimage.png_1" Component_="dobject.png" FileName="HEADER~1.PNG|header-background-image.png" Attributes="0" SourcePath="..\webview\assets\images\header-background-image.png" SelfReg="false"/>
+    <ROW File="headerforegroundimage.png_1" Component_="dobject.png" FileName="HEADER~2.PNG|header-foreground-image.png" Attributes="0" SourcePath="..\webview\assets\images\header-foreground-image.png" SelfReg="false"/>
+    <ROW File="Home_Logo.png_1" Component_="dobject.png" FileName="HOME_L~1.PNG|Home_Logo.png" Attributes="0" SourcePath="..\webview\assets\images\Home_Logo.png" SelfReg="false"/>
+    <ROW File="Home_Logo_Link.png_1" Component_="dobject.png" FileName="HOME_L~2.PNG|Home_Logo_Link.png" Attributes="0" SourcePath="..\webview\assets\images\Home_Logo_Link.png" SelfReg="false"/>
+    <ROW File="Terminal.png_1" Component_="dobject.png" FileName="Terminal.png" Attributes="0" SourcePath="..\webview\assets\images\Terminal.png" SelfReg="false"/>
+    <ROW File="tracker.png_1" Component_="dobject.png" FileName="tracker.png" Attributes="0" SourcePath="..\webview\assets\images\tracker.png" SelfReg="false"/>
+    <ROW File="linq.d.ts" Component_="linq.d.ts" FileName="LINQD~1.TS|linq.d.ts" Attributes="0" SourcePath="..\webview\assets\js\linq.d.ts" SelfReg="false"/>
+    <ROW File="linq.js" Component_="linq.d.ts" FileName="linq.js" Attributes="0" SourcePath="..\webview\assets\js\linq.js" SelfReg="false"/>
+    <ROW File="mzkit_desktop.d.ts" Component_="linq.d.ts" FileName="MZKIT_~1.TS|mzkit_desktop.d.ts" Attributes="0" SourcePath="..\webview\assets\js\mzkit_desktop.d.ts" SelfReg="false"/>
+    <ROW File="mzkit_desktop.js" Component_="linq.d.ts" FileName="MZKIT_~1.JS|mzkit_desktop.js" Attributes="0" SourcePath="..\webview\assets\js\mzkit_desktop.js" SelfReg="false"/>
+    <ROW File="dat.gui.min.js" Component_="dat.gui.min.js" FileName="DATGUI~1.JS|dat.gui.min.js" Attributes="0" SourcePath="..\webview\vendor\three\dat.gui.min.js" SelfReg="false"/>
+    <ROW File="OrbitControls.js" Component_="dat.gui.min.js" FileName="ORBITC~1.JS|OrbitControls.js" Attributes="0" SourcePath="..\webview\vendor\three\OrbitControls.js" SelfReg="false"/>
+    <ROW File="stats.min.js" Component_="dat.gui.min.js" FileName="STATSM~1.JS|stats.min.js" Attributes="0" SourcePath="..\webview\vendor\three\stats.min.js" SelfReg="false"/>
+    <ROW File="three.min.js" Component_="dat.gui.min.js" FileName="THREEM~1.JS|three.min.js" Attributes="0" SourcePath="..\webview\vendor\three\three.min.js" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -5212,7 +5230,6 @@
     <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.dll_1"/>
     <ROW Feature_="MainFeature" Component_="STImaging.dll"/>
     <ROW Feature_="MainFeature" Component_="STRaid.dll"/>
-    <ROW Feature_="MainFeature" Component_="headerbackgroundimage.png"/>
     <ROW Feature_="MainFeature" Component_="hdf5.dll"/>
     <ROW Feature_="MainFeature" Component_="hdf5_hl.dll"/>
     <ROW Feature_="MainFeature" Component_="szip.dll"/>
@@ -5274,6 +5291,10 @@
     <ROW Feature_="MainFeature" Component_="Parallel.dll_2"/>
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.MSImagingViewerV2.resources.dll"/>
     <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.NMRFidTool.dll"/>
+    <ROW Feature_="MainFeature" Component_="d_canvas.css"/>
+    <ROW Feature_="MainFeature" Component_="dobject.png"/>
+    <ROW Feature_="MainFeature" Component_="linq.d.ts"/>
+    <ROW Feature_="MainFeature" Component_="dat.gui.min.js"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
