@@ -281,6 +281,11 @@ Public Class SpatialTile
 
     Public Property SpotColor As Color = Color.Red
 
+    ''' <summary>
+    ''' draw on the matrix of <see cref="rotationMatrix"/>
+    ''' </summary>
+    ''' <param name="g"></param>
+    ''' <param name="alpha"></param>
     Private Sub onDrawSpots(g As Graphics2D, alpha As Integer)
         Dim d As New SizeF(g.Width / dimensions.Width, g.Height / dimensions.Height)
         Dim r As New SizeF(d.Width / 2, d.Height / 2)
@@ -324,6 +329,9 @@ Public Class SpatialTile
     ''' <summary>
     ''' make this spatial tile transparent
     ''' </summary>
+    ''' <remarks>
+    ''' spot matrix is draw on <see cref="rotationMatrix"/>
+    ''' </remarks>
     Friend Sub CanvasOnPaintBackground()
         Dim g As Graphics2D
 

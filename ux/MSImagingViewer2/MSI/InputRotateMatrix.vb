@@ -59,7 +59,9 @@ Public Class InputRotateMatrix
     ''' <param name="e"></param>
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         ' to array for break the reference
-        Dim matrix = Tile.rotationRaw.ToArray
+        Dim matrix As PointF() = Tile.rotationMatrix _
+            .Select(Function(s) New PointF(s.px, s.py)) _
+            .ToArray
         Dim dims = Tile.dimensions
 
         For i As Integer = 0 To matrix.Length - 1
