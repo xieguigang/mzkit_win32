@@ -428,6 +428,15 @@
   <data name="RotateToolStripMenuItem.Text" xml:space="preserve">
     <value>Rotate</value>
   </data>
+  <data name="KeepAspectRatioToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>197, 22</value>
+  </data>
+  <data name="KeepAspectRatioToolStripMenuItem.Text" xml:space="preserve">
+    <value>Keep Aspect Ratio</value>
+  </data>
+  <data name="KeepAspectRatioToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Keeps aspect ratio when resize the spatial tile</value>
+  </data>
   <data name="SetSpotColorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>197, 22</value>
   </data>
@@ -976,7 +985,7 @@
     <value>Export Spatial Mapping</value>
   </data>
   <data name="ContextMenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>198, 192</value>
+    <value>198, 214</value>
   </data>
   <data name="&gt;&gt;ContextMenuStrip1.Name" xml:space="preserve">
     <value>ContextMenuStrip1</value>
@@ -1097,6 +1106,12 @@
   <data name="&gt;&gt;EditLabelToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;RotateToolStripMenuItem.Name" xml:space="preserve">
+    <value>RotateToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;RotateToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;SetSpotColorToolStripMenuItem.Name" xml:space="preserve">
     <value>SetSpotColorToolStripMenuItem</value>
   </data>
@@ -1127,10 +1142,10 @@
   <data name="&gt;&gt;ToolTip1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;RotateToolStripMenuItem.Name" xml:space="preserve">
-    <value>RotateToolStripMenuItem</value>
+  <data name="&gt;&gt;KeepAspectRatioToolStripMenuItem.Name" xml:space="preserve">
+    <value>KeepAspectRatioToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;RotateToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;KeepAspectRatioToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

@@ -195,7 +195,16 @@ Public Class SpatialTile
 
     Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles AnchorResize.MouseMove
         If allowResize Then
-            Me.Size = New Size(AnchorResize.Left + e.X, AnchorResize.Top + e.Y)
+            If KeepAspectRatioToolStripMenuItem.Checked Then
+                Dim ratio As Double = Me.Size.Width / Me.Size.Height
+                Dim newH As Integer = AnchorResize.Top + e.Y
+                Dim newW As Integer = newH * ratio
+
+                Me.Size = New Size(newW, newH)
+            Else
+                Me.Size = New Size(AnchorResize.Left + e.X, AnchorResize.Top + e.Y)
+            End If
+
             ' Me.Invalidate()
             ' Call PictureBox2.Refresh()
         End If
@@ -459,5 +468,9 @@ Public Class SpatialTile
                        End Sub,
             config:=setAngle
         )
+    End Sub
+
+    Private Sub KeepAspectRatioToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles KeepAspectRatioToolStripMenuItem.Click
+
     End Sub
 End Class

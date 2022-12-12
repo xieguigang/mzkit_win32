@@ -29,6 +29,7 @@ Partial Class SpatialTile
         Me.RemoveTissueImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
         Me.EditLabelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RotateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SetSpotColorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -36,14 +37,14 @@ Partial Class SpatialTile
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.Label1 = New System.Windows.Forms.Label()
         Me.AnchorResize = New System.Windows.Forms.PictureBox()
-        Me.RotateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.KeepAspectRatioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.AnchorResize, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadTissueImageToolStripMenuItem, Me.RemoveTissueImageToolStripMenuItem, Me.ToolStripMenuItem2, Me.EditLabelToolStripMenuItem, Me.RotateToolStripMenuItem, Me.SetSpotColorToolStripMenuItem, Me.ToolStripMenuItem1, Me.DeleteToolStripMenuItem, Me.ExportSpatialMappingToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadTissueImageToolStripMenuItem, Me.RemoveTissueImageToolStripMenuItem, Me.ToolStripMenuItem2, Me.EditLabelToolStripMenuItem, Me.RotateToolStripMenuItem, Me.KeepAspectRatioToolStripMenuItem, Me.SetSpotColorToolStripMenuItem, Me.ToolStripMenuItem1, Me.DeleteToolStripMenuItem, Me.ExportSpatialMappingToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
         resources.ApplyResources(Me.ContextMenuStrip1, "ContextMenuStrip1")
         '
@@ -66,6 +67,11 @@ Partial Class SpatialTile
         '
         Me.EditLabelToolStripMenuItem.Name = "EditLabelToolStripMenuItem"
         resources.ApplyResources(Me.EditLabelToolStripMenuItem, "EditLabelToolStripMenuItem")
+        '
+        'RotateToolStripMenuItem
+        '
+        Me.RotateToolStripMenuItem.Name = "RotateToolStripMenuItem"
+        resources.ApplyResources(Me.RotateToolStripMenuItem, "RotateToolStripMenuItem")
         '
         'SetSpotColorToolStripMenuItem
         '
@@ -106,10 +112,11 @@ Partial Class SpatialTile
         Me.AnchorResize.Name = "AnchorResize"
         Me.AnchorResize.TabStop = False
         '
-        'RotateToolStripMenuItem
+        'KeepAspectRatioToolStripMenuItem
         '
-        Me.RotateToolStripMenuItem.Name = "RotateToolStripMenuItem"
-        resources.ApplyResources(Me.RotateToolStripMenuItem, "RotateToolStripMenuItem")
+        Me.KeepAspectRatioToolStripMenuItem.CheckOnClick = True
+        Me.KeepAspectRatioToolStripMenuItem.Name = "KeepAspectRatioToolStripMenuItem"
+        resources.ApplyResources(Me.KeepAspectRatioToolStripMenuItem, "KeepAspectRatioToolStripMenuItem")
         '
         'SpatialTile
         '
@@ -141,4 +148,5 @@ Partial Class SpatialTile
     Friend WithEvents DeleteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SetSpotColorToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RotateToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents KeepAspectRatioToolStripMenuItem As ToolStripMenuItem
 End Class
