@@ -51,4 +51,21 @@ Public Class InputRotateMatrix
         Tile.CanvasOnPaintBackground()
         Tile.buildGrid()
     End Sub
+
+    ''' <summary>
+    ''' mirror
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        ' to array for break the reference
+        Dim matrix = Tile.rotationRaw.ToArray
+        Dim dims = Tile.dimensions
+
+        For i As Integer = 0 To matrix.Length - 1
+            matrix(i) = New PointF(dims.Width - matrix(i).X, matrix(i).Y)
+        Next
+
+        Call updateCanvas(matrix)
+    End Sub
 End Class
