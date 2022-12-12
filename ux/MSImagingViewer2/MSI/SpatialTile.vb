@@ -2,6 +2,7 @@
 Imports System.Drawing.Drawing2D
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports CommonDialogs
+Imports Microsoft.VisualBasic.ApplicationServices.Development.XmlDoc.Serialization
 Imports Microsoft.VisualBasic.Data.GraphTheory
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.BitmapImage
@@ -420,6 +421,32 @@ Public Class SpatialTile
 
                     Call Parent.Controls.Remove(Me)
                 End If
+            End If
+        Else
+            If e.KeyCode = Keys.Up OrElse
+                e.KeyCode = Keys.Down OrElse
+                e.KeyCode = Keys.Left OrElse
+                e.KeyCode = Keys.Right OrElse
+                e.KeyCode = Keys.Add OrElse
+                e.KeyCode = Keys.Subtract Then
+
+                If e.KeyCode = Keys.Up Then
+                    Me.Location = New Point(Me.Left, Me.Top - 3)
+                ElseIf e.KeyCode = Keys.Down Then
+                    Me.Location = New Point(Me.Left, Me.Top + 3)
+                ElseIf e.KeyCode = Keys.Left Then
+                    Me.Location = New Point(Me.Left - 3, Me.Top)
+                ElseIf e.KeyCode = Keys.Right Then
+                    Me.Location = New Point(Me.Left + 3, Me.Top)
+                ElseIf e.KeyCode = Keys.Add Then
+                    Me.Size = New Size(Me.Size.Width + 3, Me.Size.Height + 3)
+                    Me.Location = New Point(Me.Left - 1, Me.Top - 1)
+                ElseIf e.KeyCode = Keys.Subtract Then
+                    Me.Size = New Size(Me.Size.Width - 3, Me.Size.Height - 3)
+                    Me.Location = New Point(Me.Left + 1, Me.Top + 1)
+                End If
+
+                Call Me.CanvasOnPaintBackground()
             End If
         End If
     End Sub
