@@ -6,6 +6,7 @@ Imports Microsoft.VisualBasic.Data.GraphTheory
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.BitmapImage
 Imports Microsoft.VisualBasic.Imaging.Math2D
+Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports STImaging
 
@@ -15,6 +16,7 @@ Public Class SpatialTile
     Dim moveTile As Boolean = False
     Dim p As Point
 
+    Friend transforms As New List(Of Transform)
     ''' <summary>
     ''' a copy of the spots data object.
     ''' </summary>
@@ -220,7 +222,8 @@ Public Class SpatialTile
             If file.ShowDialog = DialogResult.OK Then
                 Call New SpatialMapping With {
                     .spots = GetMapping.ToArray,
-                    .label = Label1.Text
+                    .label = Label1.Text,
+                    .transform = transforms
                 } _
                 .GetXml _
                 .SaveTo(file.FileName)
@@ -233,11 +236,13 @@ Public Class SpatialTile
         Dim radiusY = Me.Height / dimensions.Height / 2
         Dim left = Me.Left
         Dim top = Me.Top
+        Dim i As i32 = Scan0
 
         For Each spot As SpaceSpot In rotationMatrix
             ' translate to control client XY
-            Dim clientXY As New Point With {.X = spot.px * radiusX * 2, .Y = spot.py * radiusY * 2}
+            Dim clientXY As New PointF With {.X = spot.px * radiusX * 2, .Y = spot.py * radiusY * 2}
             Dim pixels As New List(Of Point)
+            Dim originalSpot As PointF = rotationRaw(++i)
 
             For x As Integer = clientXY.X - radiusX To clientXY.X + radiusX
                 For y As Integer = clientXY.Y - radiusY To clientXY.Y + radiusY
@@ -261,7 +266,8 @@ Public Class SpatialTile
                 .SMY = pixels.Select(Function(p) p.Y).ToArray,
                 .barcode = spot.barcode,
                 .flag = spot.flag,
-                .physicalXY = {spot.x, spot.y}
+                .physicalXY = {spot.x, spot.y},
+                .spotXY = {originalSpot.X, originalSpot.Y}
             }
         Next
     End Function
@@ -436,15 +442,23 @@ Public Class SpatialTile
                 e.KeyCode = Keys.Left OrElse
                 e.KeyCode = Keys.Right OrElse
                 e.KeyCode = Keys.Add OrElse
-                e.KeyCode = Keys.Subtract Then
+                e.KeyCode = Keys.Subtract OrElse
+                e.KeyCode = Keys.W OrElse
+                e.KeyCode = Keys.NumPad8 OrElse
+                e.KeyCode = Keys.S OrElse
+                e.KeyCode = Keys.NumPad2 OrElse
+                e.KeyCode = Keys.A OrElse
+                e.KeyCode = Keys.NumPad4 OrElse
+                e.KeyCode = Keys.D OrElse
+                e.KeyCode = Keys.NumPad6 Then
 
-                If e.KeyCode = Keys.Up Then
+                If e.KeyCode = Keys.Up OrElse e.KeyCode = Keys.W OrElse e.KeyCode = Keys.NumPad8 Then
                     Me.Location = New Point(Me.Left, Me.Top - 3)
-                ElseIf e.KeyCode = Keys.Down Then
+                ElseIf e.KeyCode = Keys.Down OrElse e.KeyCode = Keys.S OrElse e.KeyCode = Keys.NumPad2 Then
                     Me.Location = New Point(Me.Left, Me.Top + 3)
-                ElseIf e.KeyCode = Keys.Left Then
+                ElseIf e.KeyCode = Keys.Left OrElse e.KeyCode = Keys.A OrElse e.KeyCode = Keys.NumPad4 Then
                     Me.Location = New Point(Me.Left - 3, Me.Top)
-                ElseIf e.KeyCode = Keys.Right Then
+                ElseIf e.KeyCode = Keys.Right OrElse e.KeyCode = Keys.D OrElse e.KeyCode = Keys.NumPad6 Then
                     Me.Location = New Point(Me.Left + 3, Me.Top)
                 ElseIf e.KeyCode = Keys.Add Then
                     Me.Size = New Size(Me.Size.Width + 3, Me.Size.Height + 3)

@@ -1,4 +1,5 @@
 ﻿Imports System.Drawing
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Math
@@ -17,6 +18,7 @@ Public Class InputRotateMatrix
             .Y = polygon.ypoints.Average
         }
 
+        Call Tile.transforms.Add(New Transform With {.op = Transform.Operation.Rotate, .argument = angle})
         Call updateCanvas(matrix.Rotate(center, alpha:=r))
     End Sub
 
@@ -26,6 +28,8 @@ Public Class InputRotateMatrix
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Tile.offset = Tile.offset_origin
+        Tile.transforms.Clear()
+
         ' raw is zero based
         ' after minus the origin offset value
         Call updateCanvas(Tile.rotationRaw)
@@ -68,6 +72,7 @@ Public Class InputRotateMatrix
             matrix(i) = New PointF(dims.Width - matrix(i).X, matrix(i).Y)
         Next
 
+        Call Tile.transforms.Add(New Transform With {.op = Transform.Operation.Mirror})
         Call updateCanvas(matrix)
     End Sub
 End Class
