@@ -73,6 +73,8 @@ Imports System.Data
 Imports System.Drawing
 Imports System.Drawing.Drawing2D
 Imports System.Runtime.CompilerServices
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
+Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Mzkit_win32.MSImagingViewerV2.PolygonEditor
@@ -120,6 +122,27 @@ Public Class PixelSelector
         For Each tag As String In tags
             Call ViewerHost.ToolStripComboBox1.Items.Add(tag)
         Next
+    End Sub
+
+    Public Sub AddSpatialMapping(map As SpatialMapping)
+        Dim tile As New SpatialTile
+        Dim rect = map.GetSpatialMetabolismRectangle
+        Dim offset As Point = rect.Location.ToPoint
+        Dim x, y As Integer
+
+        Call tile.ShowMatrix(map)
+        Call Me.Controls.Add(tile)
+        ' reverse scaler mapping
+        Call getPoint(offset, Me.Size, dimension_size, x, y)
+
+        tile.Location = New Point(x, y)
+        offset = New Point(rect.Right, rect.Bottom)
+
+        Call getPoint(offset, Me.Size, dimension_size, x, y)
+        tile.Size = New Size(stdNum.Abs(x - tile.Location.X), stdNum.Abs(y - tile.Location.Y))
+
+        AddHandler tile.GetSpatialMetabolismPoint, AddressOf getPoint
+        AddHandler tile.ClickSpatialMetabolismPixel, Sub(e, ByRef px, ByRef py) Call clickGetPoint(e)
     End Sub
 
     Public Sub AddSpatialTile(matrix As IEnumerable(Of SpaceSpot))

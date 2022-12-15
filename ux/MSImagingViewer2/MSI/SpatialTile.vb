@@ -74,6 +74,23 @@ Public Class SpatialTile
     '    MyBase.OnPaintBackground(e)
     'End Sub
 
+    Public Sub ShowMatrix(matrix As SpatialMapping)
+        Dim spots = matrix.spots _
+            .Select(Function(p)
+                        Return New SpaceSpot With {
+                            .barcode = p.barcode,
+                            .flag = p.flag,
+                            .px = p.STX,
+                            .py = p.STY,
+                            .x = p.physicalXY(0),
+                            .y = p.physicalXY(1)
+                        }
+                    End Function) _
+            .ToArray
+
+        Call ShowMatrix(spots)
+    End Sub
+
     Public Sub ShowMatrix(matrix As IEnumerable(Of SpaceSpot))
         Dim spatialMatrix = matrix.Where(Function(s) s.flag > 0).ToArray
         Dim polygon As New Polygon2D(spatialMatrix.Select(Function(t) New Point(t.px, t.py)))

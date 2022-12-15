@@ -1827,17 +1827,25 @@ Public Class frmMsImagingViewer
 
     Private Sub AddSpatialTileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddSpatialTileToolStripMenuItem.Click
         Using file As New OpenFileDialog With {
-            .Filter = "Space Ranger Spots(*.csv)|*.csv",
+            .Filter = "10X Space Ranger Spots(*.csv)|*.csv|MZKit Spatial Mapping(*.xml)|*.xml",
             .Title = "Open a new tissue positions list"
         }
             If file.ShowDialog = DialogResult.OK Then
-                Dim spots As SpaceSpot() = ST_spaceranger _
-                    .LoadTissueSpots(file.FileName.ReadAllLines) _
-                    .ToArray
+                If file.FileName.ExtensionSuffix("csv") Then
+                    Dim spots As SpaceSpot() = ST_spaceranger _
+                        .LoadTissueSpots(file.FileName.ReadAllLines) _
+                        .ToArray
 
-                Call PixelSelector1 _
-                    .MSICanvas _
-                    .AddSpatialTile(spots)
+                    Call PixelSelector1 _
+                        .MSICanvas _
+                        .AddSpatialTile(spots)
+                Else
+                    Dim maps As SpatialMapping = file.FileName.LoadXml(Of SpatialMapping)
+
+                    Call PixelSelector1 _
+                        .MSICanvas _
+                        .AddSpatialMapping(maps)
+                End If
             End If
         End Using
     End Sub
