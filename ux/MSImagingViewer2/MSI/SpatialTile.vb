@@ -89,6 +89,7 @@ Public Class SpatialTile
             .ToArray
 
         Me.Label1.Text = matrix.label
+        Me.SpotColor = matrix.color.TranslateColor
 
         Call ShowMatrix(spots)
     End Sub
@@ -242,7 +243,8 @@ Public Class SpatialTile
                 Call New SpatialMapping With {
                     .spots = GetMapping.ToArray,
                     .label = Label1.Text,
-                    .transform = transforms
+                    .transform = transforms,
+                    .color = SpotColor.ToHtmlColor
                 } _
                 .GetXml _
                 .SaveTo(file.FileName)
