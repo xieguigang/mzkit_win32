@@ -30,6 +30,7 @@
     <ROW Property="AiFeatIcoDemoScript" Value="vs.exe" Type="8"/>
     <ROW Property="AiFeatIcoMainFeature" Value="Flask.exe" Type="8"/>
     <ROW Property="AiFeatIcoVisualStudio_Diagnostic" Value="ext.exe" Type="8"/>
+    <ROW Property="AiWinUI" MultiBuildValue="DefaultBuild:1"/>
     <ROW Property="CTRLS" Value="3"/>
     <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
@@ -329,6 +330,7 @@
     <ROW Component="Microsoft.VisualBasic.DeepLearning.dll_1" ComponentId="{EB3AEB60-A7D1-4513-B859-8989762485D9}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DeepLearning.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.DeepLearning.dll_2" ComponentId="{520C8092-D752-4DC5-96B3-A8E01494C8A5}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.DeepLearning.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.AVIMedia.dll" ComponentId="{0638C001-D7E7-4D76-8389-B7386E4A6687}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.AVIMedia.dll"/>
+    <ROW Component="Microsoft.VisualBasic.Imaging.Landscape.dll" ComponentId="{84A585A7-C4E7-4550-8103-E82FAAEDD74E}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.Landscape.dll"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.PDF.dll" ComponentId="{3732B8B7-3607-4294-B63F-37373D15C622}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.PDF.dll"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.PDF.dll_3" ComponentId="{07FB4A5F-B81B-4E49-BDB9-0E5B3E60D1DF}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.PDF.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.Physics.dll" ComponentId="{CD885ACD-1834-4CD8-B88E-D8EA98CD767C}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.Physics.dll"/>
@@ -4666,6 +4668,7 @@
     <ROW File="OrbitControls.js" Component_="dat.gui.min.js" FileName="ORBITC~1.JS|OrbitControls.js" Attributes="0" SourcePath="..\webview\vendor\three\OrbitControls.js" SelfReg="false"/>
     <ROW File="stats.min.js" Component_="dat.gui.min.js" FileName="STATSM~1.JS|stats.min.js" Attributes="0" SourcePath="..\webview\vendor\three\stats.min.js" SelfReg="false"/>
     <ROW File="three.min.js" Component_="dat.gui.min.js" FileName="THREEM~1.JS|three.min.js" Attributes="0" SourcePath="..\webview\vendor\three\three.min.js" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Imaging.Landscape.dll" Component_="Microsoft.VisualBasic.Imaging.Landscape.dll" FileName="MICRO~31.DLL|Microsoft.VisualBasic.Imaging.Landscape.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Imaging.Landscape.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -5295,6 +5298,7 @@
     <ROW Feature_="MainFeature" Component_="dobject.png"/>
     <ROW Feature_="MainFeature" Component_="linq.d.ts"/>
     <ROW Feature_="MainFeature" Component_="dat.gui.min.js"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Imaging.Landscape.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
