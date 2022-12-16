@@ -88,6 +88,8 @@ Public Class SpatialTile
                     End Function) _
             .ToArray
 
+        Me.Label1.Text = matrix.label
+
         Call ShowMatrix(spots)
     End Sub
 
