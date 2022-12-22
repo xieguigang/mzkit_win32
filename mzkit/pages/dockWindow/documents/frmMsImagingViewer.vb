@@ -207,21 +207,24 @@ Public Class frmMsImagingViewer
         }
             If file.ShowDialog = DialogResult.OK Then
                 Dim files As String() = file.FileNames
-                Dim loadfiles As IEnumerable(Of mzPack) = files _
-                    .Select(Function(path)
-                                Return mzPack.Read(
-                                    filepath:=path,
-                                    ignoreThumbnail:=True,
-                                    skipMsn:=True
-                                )
-                            End Function)
+                'Dim loadfiles As IEnumerable(Of mzPack) = files _
+                '    .Select(Function(path)
+                '                Return mzPack.Read(
+                '                    filepath:=path,
+                '                    ignoreThumbnail:=True,
+                '                    skipMsn:=True
+                '                )
+                '            End Function)
 
                 Using savefile As New SaveFileDialog With {.Filter = file.Filter}
                     If savefile.ShowDialog = DialogResult.OK Then
                         If frmTaskProgress.LoadData(Function(echo)
-                                                        Return loadfiles _
-                                                            .JoinMSISamples(println:=echo) _
-                                                            .Write(savefile.OpenFile, progress:=echo)
+                                                        'Return loadfiles _
+                                                        '    .JoinMSISamples(println:=echo) _
+                                                        '    .Write(savefile.OpenFile, progress:=echo)
+                                                        Call RscriptProgressTask.MergeMultipleSlides(files, Nothing, savefile.FileName, True, echo)
+
+                                                        Return True
                                                     End Function) Then
 
                             If MessageBox.Show("MSI Raw Convert Job Done!" & vbCrLf & "Open MSI raw data file in MSI Viewer?",

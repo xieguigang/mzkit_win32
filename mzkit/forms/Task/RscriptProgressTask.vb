@@ -106,6 +106,24 @@ Public Class RscriptProgressTask
         Return cachefile
     End Function
 
+    Public Shared Sub MergeMultipleSlides(msData As String(), layoutData As String, savefile As String, fileName_tag As Boolean, echo As Action(Of String))
+        Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".input_files", sessionID:=App.PID.ToHexString, prefix:="merge_slides_")
+        Dim layoutfile As String = TempFileSystem.GetAppSysTempFile(".input_files", sessionID:=App.PID.ToHexString, prefix:="slide_layout_")
+        Dim cli As String = PipelineTask.Task.GetJoinSlidesCommandLine(tempfile, layoutfile, savefile, fileName_tag)
+
+        Call msData.SaveTo(tempfile)
+        Call layoutData.SaveTo(layoutfile)
+
+        Dim pipeline As New RunSlavePipeline(PipelineTask.Host, cli)
+
+        Call WorkStudio.LogCommandLine(PipelineTask.Host, cli, App.CurrentDirectory)
+        Call MyApplication.LogText(pipeline.CommandLine)
+
+        AddHandler pipeline.SetMessage, Sub(msg) echo(msg)
+
+        Call pipeline.Run()
+    End Sub
+
     Public Shared Sub ImportsSCiLSLab(msData As String(), savefile As String)
         Dim tuples = SCiLSLab.CheckSpotFiles(msData).ToArray
 
