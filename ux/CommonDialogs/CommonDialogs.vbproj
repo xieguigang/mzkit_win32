@@ -119,6 +119,12 @@
     <Compile Include="InputDialog.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="InputDialogs\InputMSISlideLayout.Designer.vb">
+      <DependentUpon>InputMSISlideLayout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InputDialogs\InputMSISlideLayout.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="InputDialogs\InputSpotRadius.Designer.vb">
       <DependentUpon>InputSpotRadius.vb</DependentUpon>
     </Compile>
@@ -157,6 +163,9 @@
   <ItemGroup>
     <EmbeddedResource Include="InputDialog.resx">
       <DependentUpon>InputDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputDialogs\InputMSISlideLayout.resx">
+      <DependentUpon>InputMSISlideLayout.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputDialogs\InputSpotRadius.resx">
       <DependentUpon>InputSpotRadius.vb</DependentUpon>

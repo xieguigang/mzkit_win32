@@ -218,24 +218,33 @@ Public Class frmMsImagingViewer
 
                 Using savefile As New SaveFileDialog With {.Filter = file.Filter}
                     If savefile.ShowDialog = DialogResult.OK Then
-                        If frmTaskProgress.LoadData(Function(echo)
-                                                        'Return loadfiles _
-                                                        '    .JoinMSISamples(println:=echo) _
-                                                        '    .Write(savefile.OpenFile, progress:=echo)
-                                                        Call RscriptProgressTask.MergeMultipleSlides(files, Nothing, savefile.FileName, True, echo)
 
-                                                        Return True
-                                                    End Function) Then
+                        Dim input As New InputMSISlideLayout With {
+                            .layoutData = files.Select(AddressOf BaseName).JoinBy(","),
+                            .useFileNameAsSourceTag = True
+                        }
 
-                            If MessageBox.Show("MSI Raw Convert Job Done!" & vbCrLf & "Open MSI raw data file in MSI Viewer?",
-                                               "MSI Viewer",
-                                               MessageBoxButtons.YesNo,
-                                               MessageBoxIcon.Information) = DialogResult.Yes Then
+                        Call InputDialog.Input(Of InputMSISlideLayout)(
+                            Sub(config)
+                                If frmTaskProgress.LoadData(Function(echo)
+                                                                'Return loadfiles _
+                                                                '    .JoinMSISamples(println:=echo) _
+                                                                '    .Write(savefile.OpenFile, progress:=echo)
+                                                                Call RscriptProgressTask.MergeMultipleSlides(files, Nothing, savefile.FileName, True, echo)
 
-                                Call RibbonEvents.showMsImaging()
-                                Call WindowModules.viewer.loadimzML(savefile.FileName)
-                            End If
-                        End If
+                                                                Return True
+                                                            End Function) Then
+
+                                    If MessageBox.Show("MSI Raw Convert Job Done!" & vbCrLf & "Open MSI raw data file in MSI Viewer?",
+                                                       "MSI Viewer",
+                                                       MessageBoxButtons.YesNo,
+                                                       MessageBoxIcon.Information) = DialogResult.Yes Then
+
+                                        Call RibbonEvents.showMsImaging()
+                                        Call WindowModules.viewer.loadimzML(savefile.FileName)
+                                    End If
+                                End If
+                            End Sub,, config:=input)
                     End If
                 End Using
             End If
