@@ -101,6 +101,23 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
         Return 0
     End Function
 
+    <ExportAPI("/join_slides")>
+    <Description("Join multiple slides into one slide mzpack raw data file")>
+    <Usage("/join_slides --files <filelist.txt> --layout <layout.txt> [--save <union.mzPack> --filename-as-source-tag]")>
+    Public Function JoinSlides(args As CommandLine) As Integer
+        Dim files As String = args <= "--files"
+        Dim layout As String = args <= "--layout"
+        Dim save As String = args("--save") Or files.ChangeSuffix(".mzPack")
+        Dim tagfileName As Boolean = args("--filename-as-source-tag")
+        Dim union As mzPack = MergeSlides.JoinDataSet(files.IterateAllLines, layout.ReadAllText, tagfileName)
+
+        Using buf As Stream = save.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
+            Call union.Write(buf, progress:=AddressOf RunSlavePipeline.SendMessage)
+        End Using
+
+        Return True
+    End Function
+
     <ExportAPI("/rowbinds")>
     <Description("Combine row scans to mzPack")>
     <Argument("--files", False, CLITypes.File, PipelineTypes.std_in, Description:="a temp file path that its content contains selected raw data file path for each row scans.")>
