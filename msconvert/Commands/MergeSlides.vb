@@ -62,8 +62,12 @@ Public Module MergeSlides
         Dim relativePos As Boolean = True
         Dim norm As Boolean = True
         Dim println As Action(Of String) = AddressOf RunSlavePipeline.SendMessage
+        Dim scan_x As Integer
+        Dim scan_y As Integer
 
         For Each row As String() In layout
+            Dim maxHeight As Double = averageHeight
+
             For Each col As String In row
                 If col.IsPattern("\s+") Then
                     ' is a blank space, just offset the box
@@ -71,6 +75,7 @@ Public Module MergeSlides
                 Else
                     Dim sample As mzPack = raw(col)
                     Dim sample_shape = polygons(col)
+                    Dim rect As RectangleF = sample_shape.GetRectangle
 
                     union.JoinOneSample(
                         shape:=sample_shape,
@@ -81,20 +86,36 @@ Public Module MergeSlides
                         norm:=norm,
                         println:=println
                     )
-                    left += padding.Width * 2 + (
-                        sample_shape.xpoints.Max - sample_shape.xpoints.Min
-                    )
+                    left += padding.Width * 2 + rect.Width
+
+                    If rect.Height > maxHeight Then
+                        maxHeight = rect.Height
+                    End If
                 End If
             Next
 
+            If left > scan_x Then
+                scan_x = left
+            End If
+
             ' offset the top
-            top += padding.Height + averageHeight
+            top += padding.Height + maxHeight
+            ' reset left offset
+            left = padding.Width
+
+            If top > scan_y Then
+                scan_y = top
+            End If
         Next
 
         Return New mzPack With {
             .MS = union.ToArray,
             .Application = FileApplicationClass.MSImaging,
-            .source = raw.Keys.JoinBy("+")
+            .source = raw.Keys.JoinBy("+"),
+            .metadata = New Dictionary(Of String, String) From {
+                {"scan_x", scan_x + padding.Width},
+                {"scan_y", scan_y + padding.Height}
+            }
         }
     End Function
 End Module
