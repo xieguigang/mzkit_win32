@@ -70,8 +70,18 @@ Public Module MergeSlides
                     Dim sample As mzPack = raw(col)
                     Dim sample_shape = polygons(col)
 
-                    union.JoinOneSample(shape:=sample_shape, sample:=sample, left, relativePos, norm, println)
-                    left += padding.Width * 2 + (sample_shape.xpoints.Max - sample_shape.xpoints.Min)
+                    union.JoinOneSample(
+                        shape:=sample_shape,
+                        sample:=sample,
+                        left:=left,
+                        top:=top,
+                        relativePos:=relativePos,
+                        norm:=norm,
+                        println:=println
+                    )
+                    left += padding.Width * 2 + (
+                        sample_shape.xpoints.Max - sample_shape.xpoints.Min
+                    )
                 End If
             Next
 
