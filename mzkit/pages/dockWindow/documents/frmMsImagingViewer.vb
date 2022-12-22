@@ -230,7 +230,7 @@ Public Class frmMsImagingViewer
                                                                 'Return loadfiles _
                                                                 '    .JoinMSISamples(println:=echo) _
                                                                 '    .Write(savefile.OpenFile, progress:=echo)
-                                                                Call RscriptProgressTask.MergeMultipleSlides(files, Nothing, savefile.FileName, True, echo)
+                                                                Call RscriptProgressTask.MergeMultipleSlides(files, config.layoutData, savefile.FileName, config.useFileNameAsSourceTag, echo)
 
                                                                 Return True
                                                             End Function) Then
