@@ -27,9 +27,11 @@ Imports Microsoft.VisualBasic.ApplicationServices
 ' 
 ' All of the command that available in this program has been list below:
 ' 
+'  /3d-imaging:           Convert 3D ms-imaging raw data file to mzPack
 '  /cdf_to_mzpack:        Convert GCMS un-targetted CDF raw data file to mzPack
 '  /imports-SCiLSLab:     
 '  /imzml:                Convert raw data file to imzML file
+'  /join_slides:          Join multiple slides into one slide mzpack raw data file
 '  /mzPack:               Build mzPack cache
 '  /rowbinds:             Combine row scans to mzPack
 ' 
@@ -64,6 +66,32 @@ Public Class msconvert : Inherits InteropService
     Public Shared Function FromEnvironment(directory As String) As msconvert
           Return New msconvert(App:=directory & "/" & msconvert.App)
      End Function
+
+''' <summary>
+''' ```bash
+''' /3d-imaging --raw &lt;raw_data_file.imzML&gt; [--cache &lt;output.mzPack/output.ply/output.heap&gt;]
+''' ```
+''' Convert 3D ms-imaging raw data file to mzPack.
+''' </summary>
+'''
+
+Public Function convert3DMsImaging(raw As String, Optional cache As String = "") As Integer
+Dim cli = Getconvert3DMsImagingCommandLine(raw:=raw, cache:=cache, internal_pipelineMode:=True)
+    Dim proc As IIORedirectAbstract = RunDotNetApp(cli)
+    Return proc.Run()
+End Function
+Public Function Getconvert3DMsImagingCommandLine(raw As String, Optional cache As String = "", Optional internal_pipelineMode As Boolean = True) As String
+    Dim CLI As New StringBuilder("/3d-imaging")
+    Call CLI.Append(" ")
+    Call CLI.Append("--raw " & """" & raw & """ ")
+    If Not cache.StringEmpty Then
+            Call CLI.Append("--cache " & """" & cache & """ ")
+    End If
+     Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
+
+
+Return CLI.ToString()
+End Function
 
 ''' <summary>
 ''' ```bash
@@ -186,6 +214,36 @@ End Function
 
 ''' <summary>
 ''' ```bash
+''' /join_slides --files &lt;filelist.txt&gt; --layout &lt;layout.txt&gt; [--save &lt;union.mzPack&gt; --filename-as-source-tag]
+''' ```
+''' Join multiple slides into one slide mzpack raw data file
+''' </summary>
+'''
+
+Public Function JoinSlides(files As String, layout As String, Optional save As String = "", Optional filename_as_source_tag As Boolean = False) As Integer
+Dim cli = GetJoinSlidesCommandLine(files:=files, layout:=layout, save:=save, filename_as_source_tag:=filename_as_source_tag, internal_pipelineMode:=True)
+    Dim proc As IIORedirectAbstract = RunDotNetApp(cli)
+    Return proc.Run()
+End Function
+Public Function GetJoinSlidesCommandLine(files As String, layout As String, Optional save As String = "", Optional filename_as_source_tag As Boolean = False, Optional internal_pipelineMode As Boolean = True) As String
+    Dim CLI As New StringBuilder("/join_slides")
+    Call CLI.Append(" ")
+    Call CLI.Append("--files " & """" & files & """ ")
+    Call CLI.Append("--layout " & """" & layout & """ ")
+    If Not save.StringEmpty Then
+            Call CLI.Append("--save " & """" & save & """ ")
+    End If
+    If filename_as_source_tag Then
+        Call CLI.Append("--filename-as-source-tag ")
+    End If
+     Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
+
+
+Return CLI.ToString()
+End Function
+
+''' <summary>
+''' ```bash
 ''' /mzPack --raw &lt;filepath.mzXML&gt; [--cache &lt;result.mzPack&gt; /ver 2 /mute /no-thumbnail]
 ''' ```
 ''' Build mzPack cache
@@ -238,7 +296,7 @@ End Function
 
 ''' <summary>
 ''' ```bash
-''' /rowbinds --files &lt;list.txt&gt; --save &lt;MSI.mzPack&gt; [/cutoff &lt;intensity_cutoff, default=0&gt; /matrix_basePeak &lt;mz, default=0&gt; /resolution &lt;default=17&gt;]
+''' /rowbinds --files &lt;list.txt/directory_path&gt; --save &lt;MSI.mzPack&gt; [/scan &lt;default=raw&gt; /cutoff &lt;intensity_cutoff, default=0&gt; /matrix_basePeak &lt;mz, default=0&gt; /resolution &lt;default=17&gt;]
 ''' ```
 ''' Combine row scans to mzPack
 ''' </summary>
@@ -247,13 +305,19 @@ End Function
 ''' </param>
 ''' <param name="save"> a file path for export mzPack data file.
 ''' </param>
+''' <param name="scan"> This parameter only works for the directory input file. used as the file extension suffix for scan in the target directory.
+''' </param>
+''' <param name="matrix_basePeak"> zero or negative value means no removes of the matrix base ion, and the value of this parameter can also be &apos;auto&apos;, means auto check the matrix base ion.
+''' </param>
 Public Function MSIRowCombine(files As String, 
                                  save As String, 
+                                 Optional scan As String = "raw", 
                                  Optional cutoff As String = "0", 
                                  Optional matrix_basepeak As String = "0", 
                                  Optional resolution As String = "17") As Integer
 Dim cli = GetMSIRowCombineCommandLine(files:=files, 
                                  save:=save, 
+                                 scan:=scan, 
                                  cutoff:=cutoff, 
                                  matrix_basepeak:=matrix_basepeak, 
                                  resolution:=resolution, internal_pipelineMode:=True)
@@ -262,6 +326,7 @@ Dim cli = GetMSIRowCombineCommandLine(files:=files,
 End Function
 Public Function GetMSIRowCombineCommandLine(files As String, 
                                  save As String, 
+                                 Optional scan As String = "raw", 
                                  Optional cutoff As String = "0", 
                                  Optional matrix_basepeak As String = "0", 
                                  Optional resolution As String = "17", Optional internal_pipelineMode As Boolean = True) As String
@@ -269,6 +334,9 @@ Public Function GetMSIRowCombineCommandLine(files As String,
     Call CLI.Append(" ")
     Call CLI.Append("--files " & """" & files & """ ")
     Call CLI.Append("--save " & """" & save & """ ")
+    If Not scan.StringEmpty Then
+            Call CLI.Append("/scan " & """" & scan & """ ")
+    End If
     If Not cutoff.StringEmpty Then
             Call CLI.Append("/cutoff " & """" & cutoff & """ ")
     End If
