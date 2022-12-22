@@ -3,7 +3,6 @@ Imports System.Drawing
 Imports System.IO
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
-Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging.MALDI_3D
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
@@ -22,6 +21,7 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
 
     Sub New()
         Call Thread.Sleep(2000)
+        Call FrameworkInternal.ConfigMemory(load:=MemoryLoads.Max)
     End Sub
 
     Public Function Main() As Integer
@@ -95,7 +95,6 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
         Dim mute As Boolean = args("/mute")
         Dim noSnapshot As Boolean = args("/no-thumbnail")
 
-        Call FrameworkInternal.ConfigMemory(load:=MemoryLoads.Max)
         Call ConvertToMzPack.ConvertCDF(raw, cache, saveVer:=ver, mute:=mute, skipThumbnail:=noSnapshot)
 
         Return 0
