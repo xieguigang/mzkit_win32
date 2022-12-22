@@ -13,6 +13,8 @@ Public Module MergeSlides
         Dim rawfiles As Dictionary(Of String, mzPack) = file _
             .ToDictionary(Function(path) path.BaseName,
                           Function(path)
+                              Call RunSlavePipeline.SendMessage($"read {path}...")
+
                               Using buf As Stream = path.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
                                   Dim data = mzPack.ReadAll(buf, ignoreThumbnail:=True, skipMsn:=True)
                                   If fileNameAsSourceTag Then
