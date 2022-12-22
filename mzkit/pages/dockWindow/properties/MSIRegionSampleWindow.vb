@@ -58,6 +58,10 @@ Public Class MSIRegionSampleWindow
     End Sub
 
     Public Overloads Sub LoadTissueMaps(tissues As TissueRegion(), canvas As PixelSelector)
+        If canvas Is Nothing Then
+            canvas = WindowModules.viewer.PixelSelector1.MSICanvas
+        End If
+
         Me.canvas = canvas
         Me.dimension = canvas.dimension_size
         Me.importsFile = $"Load {tissues.Length} tissue region maps!"
