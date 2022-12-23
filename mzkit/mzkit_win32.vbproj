@@ -1690,6 +1690,10 @@
       <Project>{fd924bdc-104f-4210-ab34-38ddeaf081ad}</Project>
       <Name>deconv.NET5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\mzmath\SingleCells\SingleCells.vbproj">
+      <Project>{4c675f81-51c0-4164-8dad-e38b953990a8}</Project>
+      <Name>SingleCells</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\mzmath\TargetedMetabolomics\Targetted.NET5.vbproj">
       <Project>{373f637b-cf9f-4179-a4b4-a8a76c3454b3}</Project>
       <Name>Targetted.NET5</Name>
