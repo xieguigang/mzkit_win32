@@ -95,10 +95,10 @@ Public Class SpatialTile
         Me.Label1.Text = matrix.label
         Me.SpotColor = matrix.color.TranslateColor
 
-        Call ShowMatrix(spots)
+        Call ShowMatrix(spots, flip:=False)
     End Sub
 
-    Public Sub ShowMatrix(matrix As IEnumerable(Of SpaceSpot))
+    Public Sub ShowMatrix(matrix As IEnumerable(Of SpaceSpot), Optional flip As Boolean = True)
         Dim spatialMatrix = matrix.Where(Function(s) s.flag > 0).ToArray
         Dim polygon As New Polygon2D(spatialMatrix.Select(Function(t) New Point(t.px, t.py)))
 
@@ -126,8 +126,8 @@ Public Class SpatialTile
         spatialMatrix = spatialMatrix _
             .Select(Function(p)
                         Return New SpaceSpot With {
-                            .px = dimensions.Width - p.px,
-                            .py = dimensions.Height - p.py,
+                            .px = If(flip, dimensions.Width - p.px, p.px),
+                            .py = If(flip, dimensions.Height - p.py, p.py),
                             .flag = p.flag,
                             .barcode = p.barcode,
                             .x = p.x,
