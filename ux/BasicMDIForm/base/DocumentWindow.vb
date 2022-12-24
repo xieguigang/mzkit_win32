@@ -58,10 +58,18 @@ Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class DocumentWindow
 
-    Friend WithEvents VS2015LightTheme1 As New VS2015LightTheme
-    Friend WithEvents VisualStudioToolStripExtender1 As VisualStudioToolStripExtender
+    Protected Friend WithEvents VS2015LightTheme1 As New VS2015LightTheme
+    Protected Friend WithEvents VisualStudioToolStripExtender1 As VisualStudioToolStripExtender
 
     Public Event CloseDocument()
+
+    Public Function GetVS2015LightTheme1() As VS2015LightTheme
+        Return VS2015LightTheme1
+    End Function
+
+    Public Function GetVisualStudioToolStripExtender1() As VisualStudioToolStripExtender
+        Return VisualStudioToolStripExtender1
+    End Function
 
     Protected Sub ApplyVsTheme(ParamArray items As ToolStrip())
         For Each item In items
