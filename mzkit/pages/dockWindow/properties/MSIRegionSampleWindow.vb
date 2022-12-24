@@ -7,6 +7,7 @@ Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Mzkit_win32.MSImagingViewerV2
 Imports ServiceHub
 

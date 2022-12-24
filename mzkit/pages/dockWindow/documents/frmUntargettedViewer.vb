@@ -61,9 +61,9 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports BioNovoGene.mzkit_win32.My
-Imports ControlLibrary
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmUntargettedViewer

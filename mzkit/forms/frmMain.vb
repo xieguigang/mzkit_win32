@@ -84,6 +84,7 @@ Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib
 Imports RibbonLib.Interop
 Imports WeifenLuo.WinFormsUI.Docking

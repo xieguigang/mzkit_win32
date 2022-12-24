@@ -97,6 +97,7 @@ Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Text
 Imports mzblender
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports ServiceHub
 Imports STImaging
 Imports Task

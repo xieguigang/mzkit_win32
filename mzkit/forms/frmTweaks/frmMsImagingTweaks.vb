@@ -75,6 +75,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Interop
 Imports Task
 
