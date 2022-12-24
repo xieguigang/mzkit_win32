@@ -29,6 +29,7 @@ Public Class HEMapTools
 
     Private Sub HEMapTools_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TabText = "HEMap Tools"
+        ApplyVsTheme(ToolStrip1)
         hideBox()
     End Sub
 
