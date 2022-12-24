@@ -18,12 +18,16 @@ Public Class SpatialTile
 
     Friend transforms As New List(Of Transform)
     ''' <summary>
-    ''' a copy of the spots data object.
+    ''' a copy of the spots data object. keeps the original raw 
+    ''' layout information about the spatial polygon
     ''' </summary>
     Friend rotationRaw As PointF()
     ''' <summary>
     ''' keeps the reference of the spot object to <see cref="spatialMatrix"/>. 
     ''' </summary>
+    ''' <remarks>
+    ''' the spot point data for rendering onto the canvas after the data rotation
+    ''' </remarks>
     Friend rotationMatrix As SpaceSpot()
     Friend dimensions As Size
     Friend offset_origin As Point

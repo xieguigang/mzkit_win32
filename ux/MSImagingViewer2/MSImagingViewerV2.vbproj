@@ -206,6 +206,9 @@
     <EmbeddedResource Include="MSI\RegionSampleCard.resx">
       <DependentUpon>RegionSampleCard.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MSI\RegionSampleCard.zh-CN.resx">
+      <DependentUpon>RegionSampleCard.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MSI\SpatialTile.resx">
       <DependentUpon>SpatialTile.vb</DependentUpon>
     </EmbeddedResource>
