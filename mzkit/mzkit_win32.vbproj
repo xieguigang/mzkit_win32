@@ -465,7 +465,9 @@
     <Compile Include="forms\frmTweaks\frmTweaks.Designer.vb">
       <DependentUpon>frmTweaks.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmTweaks\frmTweaks.vb" />
+    <Compile Include="forms\frmTweaks\frmTweaks.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\InputIonRGB.Designer.vb">
       <DependentUpon>InputIonRGB.vb</DependentUpon>
     </Compile>
@@ -566,11 +568,15 @@
     <Compile Include="pages\dockWindow\documents\frmOpenseadragonViewer.Designer.vb">
       <DependentUpon>frmOpenseadragonViewer.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmOpenseadragonViewer.vb" />
+    <Compile Include="pages\dockWindow\documents\frmOpenseadragonViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\documents\frmCFMIDOutputViewer.Designer.vb">
       <DependentUpon>frmCFMIDOutputViewer.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmCFMIDOutputViewer.vb" />
+    <Compile Include="pages\dockWindow\documents\frmCFMIDOutputViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\documents\frmPeakFinding.Designer.vb">
       <DependentUpon>frmPeakFinding.vb</DependentUpon>
     </Compile>
@@ -580,7 +586,9 @@
     <Compile Include="pages\dockWindow\documents\frmSMILESViewer.Designer.vb">
       <DependentUpon>frmSMILESViewer.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmSMILESViewer.vb" />
+    <Compile Include="pages\dockWindow\documents\frmSMILESViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\documents\frmNetworkViewer.Designer.vb">
       <DependentUpon>frmNetworkViewer.vb</DependentUpon>
     </Compile>
@@ -590,7 +598,9 @@
     <Compile Include="pages\dockWindow\documents\frmGCxGCViewer.Designer.vb">
       <DependentUpon>frmGCxGCViewer.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmGCxGCViewer.vb" />
+    <Compile Include="pages\dockWindow\documents\frmGCxGCViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\InputMSIDimension.Designer.vb">
       <DependentUpon>InputMSIDimension.vb</DependentUpon>
     </Compile>
@@ -600,7 +610,9 @@
     <Compile Include="pages\dockWindow\documents\frmSeeMs.Designer.vb">
       <DependentUpon>frmSeeMs.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmSeeMs.vb" />
+    <Compile Include="pages\dockWindow\documents\frmSeeMs.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\documents\QuantifyParameters.vb" />
     <Compile Include="pages\dockWindow\documents\frmTableViewer.Designer.vb">
       <DependentUpon>frmTableViewer.vb</DependentUpon>
@@ -611,7 +623,9 @@
     <Compile Include="pages\dockWindow\documents\frmUntargettedViewer.Designer.vb">
       <DependentUpon>frmUntargettedViewer.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmUntargettedViewer.vb" />
+    <Compile Include="pages\dockWindow\documents\frmUntargettedViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\documents\frmHtmlViewer.Designer.vb">
       <DependentUpon>frmHtmlViewer.vb</DependentUpon>
     </Compile>
@@ -627,7 +641,9 @@
     <Compile Include="pages\dockWindow\documents\frmQuantifyIons.Designer.vb">
       <DependentUpon>frmQuantifyIons.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmQuantifyIons.vb" />
+    <Compile Include="pages\dockWindow\documents\frmQuantifyIons.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\documents\frmTargetedQuantification.Designer.vb">
       <DependentUpon>frmTargetedQuantification.vb</DependentUpon>
     </Compile>
@@ -649,11 +665,15 @@
     <Compile Include="pages\dockWindow\documents\frmFeatureSearch.Designer.vb">
       <DependentUpon>frmFeatureSearch.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmFeatureSearch.vb" />
+    <Compile Include="pages\dockWindow\documents\frmFeatureSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\documents\frmPlotViewer.Designer.vb">
       <DependentUpon>frmPlotViewer.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmPlotViewer.vb" />
+    <Compile Include="pages\dockWindow\documents\frmPlotViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\documents\FeatureSearchHandler.vb" />
     <Compile Include="pages\dockWindow\documents\frmGCMS_CDFExplorer.Designer.vb">
       <DependentUpon>frmGCMS_CDFExplorer.vb</DependentUpon>
@@ -664,15 +684,21 @@
     <Compile Include="pages\dockWindow\explorer\frmNmrSpectrumExplorer.Designer.vb">
       <DependentUpon>frmNmrSpectrumExplorer.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\explorer\frmNmrSpectrumExplorer.vb" />
+    <Compile Include="pages\dockWindow\explorer\frmNmrSpectrumExplorer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\explorer\frmGCMSPeaks.Designer.vb">
       <DependentUpon>frmGCMSPeaks.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\explorer\frmGCMSPeaks.vb" />
+    <Compile Include="pages\dockWindow\explorer\frmGCMSPeaks.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\explorer\frmSRMIonsExplorer.Designer.vb">
       <DependentUpon>frmSRMIonsExplorer.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\explorer\frmSRMIonsExplorer.vb" />
+    <Compile Include="pages\dockWindow\explorer\frmSRMIonsExplorer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\explorer\frmUVScans.Designer.vb">
       <DependentUpon>frmUVScans.vb</DependentUpon>
     </Compile>
@@ -682,11 +708,15 @@
     <Compile Include="pages\dockWindow\explorer\frmTreeExplorer.Designer.vb">
       <DependentUpon>frmTreeExplorer.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\explorer\frmTreeExplorer.vb" />
+    <Compile Include="pages\dockWindow\explorer\frmTreeExplorer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\frmVideoList.Designer.vb">
       <DependentUpon>frmVideoList.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\frmVideoList.vb" />
+    <Compile Include="pages\dockWindow\frmVideoList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\frmDemo.Designer.vb">
       <DependentUpon>frmDemo.vb</DependentUpon>
     </Compile>
@@ -702,11 +732,15 @@
     <Compile Include="pages\dockWindow\properties\HEMapTools.Designer.vb">
       <DependentUpon>HEMapTools.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\properties\HEMapTools.vb" />
+    <Compile Include="pages\dockWindow\properties\HEMapTools.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\properties\MSIRegionSampleWindow.Designer.vb">
       <DependentUpon>MSIRegionSampleWindow.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\properties\MSIRegionSampleWindow.vb" />
+    <Compile Include="pages\dockWindow\properties\MSIRegionSampleWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\tools\AdjustParameters.Designer.vb">
       <DependentUpon>AdjustParameters.vb</DependentUpon>
     </Compile>
@@ -722,16 +756,22 @@
     <Compile Include="pages\dockWindow\properties\MSIPixelPropertyWindow.Designer.vb">
       <DependentUpon>MSIPixelPropertyWindow.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\properties\MSIPixelPropertyWindow.vb" />
+    <Compile Include="pages\dockWindow\properties\MSIPixelPropertyWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\tools\TaskUI.vb" />
     <Compile Include="pages\dockWindow\tools\TaskListWindow.Designer.vb">
       <DependentUpon>TaskListWindow.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\tools\TaskListWindow.vb" />
+    <Compile Include="pages\dockWindow\tools\TaskListWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\tools\OutputWindow.Designer.vb">
       <DependentUpon>OutputWindow.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\tools\OutputWindow.vb" />
+    <Compile Include="pages\dockWindow\tools\OutputWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\explorer\frmRawFeaturesList.Designer.vb">
       <DependentUpon>frmRawFeaturesList.vb</DependentUpon>
     </Compile>
@@ -741,7 +781,9 @@
     <Compile Include="pages\dockWindow\explorer\frmFileExplorer.Designer.vb">
       <DependentUpon>frmFileExplorer.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\explorer\frmFileExplorer.vb" />
+    <Compile Include="pages\dockWindow\explorer\frmFileExplorer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\tools\PropertyWindow.designer.vb">
       <DependentUpon>PropertyWindow.vb</DependentUpon>
     </Compile>
@@ -771,11 +813,15 @@
     <Compile Include="pages\dockWindow\documents\frmRsharp.Designer.vb">
       <DependentUpon>frmRsharp.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmRsharp.vb" />
+    <Compile Include="pages\dockWindow\documents\frmRsharp.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\frmSettings.Designer.vb">
       <DependentUpon>frmSettings.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\frmSettings.vb" />
+    <Compile Include="pages\dockWindow\frmSettings.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\frmStartPage.Designer.vb">
       <DependentUpon>frmStartPage.vb</DependentUpon>
     </Compile>
@@ -785,7 +831,9 @@
     <Compile Include="pages\dockWindow\frmDockDocument.Designer.vb">
       <DependentUpon>frmDockDocument.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\frmDockDocument.vb" />
+    <Compile Include="pages\dockWindow\frmDockDocument.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\pageStart\NewsFeedDisplay.Designer.vb">
       <DependentUpon>NewsFeedDisplay.vb</DependentUpon>
     </Compile>
