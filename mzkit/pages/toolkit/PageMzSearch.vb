@@ -449,7 +449,7 @@ Public Class PageMzSearch
 
         Dim searchPage As New frmSpectrumSearch
 
-        searchPage.Show(MyApplication.host.dockPanel)
+        searchPage.Show(MyApplication.host.m_dockPanel)
         searchPage.page.loadMs2(isotope.GetMS)
         searchPage.page.runSearch(isotope)
     End Sub

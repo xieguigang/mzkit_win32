@@ -106,7 +106,7 @@ Public Class frmRScriptEdit
         If Not e.Cancel Then
             RibbonEvents.scriptFiles.Remove(Me)
 
-            If Not MyApplication.host.dockPanel.Documents.Where(Function(d) TypeOf d Is frmRScriptEdit).Any Then
+            If Not MyApplication.host.m_dockPanel.Documents.Where(Function(d) TypeOf d Is frmRScriptEdit).Any Then
                 MyApplication.host.ribbonItems.TabGroupRscriptTools.ContextAvailable = ContextAvailability.NotAvailable
             End If
         End If

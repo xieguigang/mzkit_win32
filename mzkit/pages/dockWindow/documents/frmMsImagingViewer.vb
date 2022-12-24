@@ -184,7 +184,7 @@ Public Class frmMsImagingViewer
         Call setupPolygonEditorButtons()
         Call PixelSelector1.ShowMessage("BioNovoGene MZKit MSImaging Viewer")
 
-        sampleRegions.Show(MyApplication.host.dockPanel)
+        sampleRegions.Show(MyApplication.host.m_dockPanel)
         sampleRegions.DockState = DockState.Hidden
         sampleRegions.viewer = Me
     End Sub
@@ -590,7 +590,7 @@ Public Class frmMsImagingViewer
         End If
 
         ' check annotation data and ion data
-        Dim docs = MyApplication.host.dockPanel _
+        Dim docs = MyApplication.host.m_dockPanel _
             .Documents _
             .Where(Function(tab) TypeOf tab Is frmTableViewer) _
             .Select(Function(f) DirectCast(f, frmTableViewer)) _

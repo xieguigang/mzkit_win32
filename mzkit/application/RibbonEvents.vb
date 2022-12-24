@@ -110,7 +110,7 @@ Module RibbonEvents
         AddHandler ribbonItems.ButtonDropB.ExecuteEvent, Sub(sender, e) MyApplication.host.ShowPage(MyApplication.host.mzkitCalculator)
         AddHandler ribbonItems.ButtonFormulaSearch.ExecuteEvent, Sub(sender, e) MyApplication.host.ShowPage(MyApplication.host.mzkitSearch)
         AddHandler ribbonItems.ButtonDropD.ExecuteEvent, Sub(sender, e) MyApplication.host.ShowPage(MyApplication.host.mzkitMNtools)
-        AddHandler ribbonItems.ButtonShowSpectrumSearchPage.ExecuteEvent, Sub(sender, e) Call New frmSpectrumSearch().Show(MyApplication.host.dockPanel)
+        AddHandler ribbonItems.ButtonShowSpectrumSearchPage.ExecuteEvent, Sub(sender, e) Call New frmSpectrumSearch().Show(MyApplication.host.m_dockPanel)
 
         AddHandler ribbonItems.ButtonCalculatorExport.ExecuteEvent, Sub(sender, e) Call MyApplication.host.mzkitCalculator.ExportToolStripMenuItem_Click()
         AddHandler ribbonItems.ButtonExactMassSearchExport.ExecuteEvent, Sub(sender, e) Call MyApplication.host.mzkitTool.ExportExactMassSearchTable()
@@ -509,7 +509,7 @@ Module RibbonEvents
     End Sub
 
     Friend Sub RunCurrentScript(sender As Object, e As ExecuteEventArgs)
-        Dim active = MyApplication.host.dockPanel.ActiveDocument
+        Dim active = MyApplication.host.m_dockPanel.ActiveDocument
 
         If Not active Is Nothing AndAlso TypeOf CObj(active) Is frmRScriptEdit Then
             Dim editor = DirectCast(CObj(active), frmRScriptEdit)
@@ -530,7 +530,7 @@ Module RibbonEvents
     Public Sub CreateNewScript(sender As Object, e As ExecuteEventArgs)
         Dim newScript As New frmRScriptEdit
 
-        newScript.Show(MyApplication.host.dockPanel)
+        newScript.Show(MyApplication.host.m_dockPanel)
         newScript.DockState = DockState.Document
         newScript.Text = "New R# Script"
 
@@ -540,26 +540,26 @@ Module RibbonEvents
     End Sub
 
     Private Sub showRTerm(sender As Object, e As ExecuteEventArgs)
-        WindowModules.RtermPage.Show(MyApplication.host.dockPanel)
+        WindowModules.RtermPage.Show(MyApplication.host.m_dockPanel)
         WindowModules.RtermPage.DockState = DockState.Document
 
         MyApplication.host.Text = $"BioNovoGene Mzkit [{  WindowModules.RtermPage.Text}]"
     End Sub
 
     Private Sub ShowSettings(sender As Object, e As ExecuteEventArgs)
-        WindowModules.settingsPage.Show(MyApplication.host.dockPanel)
+        WindowModules.settingsPage.Show(MyApplication.host.m_dockPanel)
         WindowModules.settingsPage.DockState = DockState.Document
 
         MyApplication.host.Text = $"BioNovoGene Mzkit [{WindowModules.settingsPage.Text}]"
     End Sub
 
     Private Sub ShowExplorer(sender As Object, e As ExecuteEventArgs)
-        WindowModules.fileExplorer.Show(MyApplication.host.dockPanel)
+        WindowModules.fileExplorer.Show(MyApplication.host.m_dockPanel)
         WindowModules.fileExplorer.DockState = DockState.DockLeft
     End Sub
 
     Private Sub ShowSearchList(sender As Object, e As ExecuteEventArgs)
-        WindowModules.rawFeaturesList.Show(MyApplication.host.dockPanel)
+        WindowModules.rawFeaturesList.Show(MyApplication.host.m_dockPanel)
         WindowModules.rawFeaturesList.DockState = DockState.DockLeft
     End Sub
 
@@ -568,7 +568,7 @@ Module RibbonEvents
     End Sub
 
     Private Sub showLoggingWindow(sender As Object, e As ExecuteEventArgs)
-        WindowModules.output.Show(MyApplication.host.dockPanel)
+        WindowModules.output.Show(MyApplication.host.m_dockPanel)
         WindowModules.output.DockState = DockState.DockBottom
     End Sub
 
@@ -577,7 +577,7 @@ Module RibbonEvents
             WindowModules.startPage = New frmStartPage
         End If
 
-        WindowModules.startPage.Show(MyApplication.host.dockPanel)
+        WindowModules.startPage.Show(MyApplication.host.m_dockPanel)
         WindowModules.startPage.DockState = DockState.Document
 
         MyApplication.host.Text = $"BioNovoGene Mzkit [{WindowModules.startPage.Text}]"

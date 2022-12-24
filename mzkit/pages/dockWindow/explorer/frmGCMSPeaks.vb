@@ -145,7 +145,7 @@ Public Class frmGCMSPeaks
             Dim explorer = Me.gcmsRaw(DirectCast(parent.Tag, Raw).fileName.GetFullPath)
 
             Call explorer.RtRangeSelector1_RangeSelect(rtRange.Min, rtRange.Max)
-            Call explorer.Show(MyApplication.host.dockPanel)
+            Call explorer.Show(MyApplication.host.m_dockPanel)
             Call explorer.SetRange(rtRange.Min, rtRange.Max)
 
             Call VisualStudio.ShowProperties(proper)
@@ -195,7 +195,7 @@ Public Class frmGCMSPeaks
                         Dim taskList As TaskListWindow = WindowModules.taskWin
                         Dim task As TaskUI = taskList.Add("Imports Raw Data", path)
 
-                        Call taskList.Show(MyApplication.host.dockPanel)
+                        Call taskList.Show(MyApplication.host.m_dockPanel)
                         ' Call Alert.ShowSucess($"Imports raw data files in background,{vbCrLf}you can open [Task List] panel for view task progress.")
                         Call MyApplication.TaskQueue.AddToQueue(
                             Sub()

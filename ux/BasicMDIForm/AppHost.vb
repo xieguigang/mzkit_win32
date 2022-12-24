@@ -7,6 +7,7 @@ Public Interface AppHost
 
     ReadOnly Property DockPanel As DockPanel
 
-    Property WindowState As FormWindowState
+    Sub SetWindowState(stat As FormWindowState)
+    Function GetWindowState() As FormWindowState
 
 End Interface

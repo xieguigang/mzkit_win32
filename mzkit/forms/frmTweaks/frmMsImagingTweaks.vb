@@ -280,7 +280,7 @@ UseCheckedList:
             Dim viewer = WindowModules.viewer
 
             Call viewer.renderRGB(r, g, b)
-            Call viewer.Show(MyApplication.host.dockPanel)
+            Call viewer.Show(MyApplication.host.m_dockPanel)
         End If
     End Sub
 

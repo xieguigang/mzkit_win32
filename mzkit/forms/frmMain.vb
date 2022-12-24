@@ -83,11 +83,12 @@ Imports Microsoft.VisualBasic.Emit.Delegates
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
+Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib
 Imports RibbonLib.Interop
 Imports WeifenLuo.WinFormsUI.Docking
 
-Public Class frmMain
+Public Class frmMain : Implements AppHost
 
     Friend mzkitTool As New PageMzkitTools With {.Text = "Raw File Viewer"}
     Friend mzkitSearch As New PageMzSearch With {.Text = "M/Z Formula De-novo Search"}
@@ -120,7 +121,7 @@ Public Class frmMain
         page.Visible = True
         page.Show()
 
-        WindowModules.panelMain.Show(dockPanel)
+        WindowModules.panelMain.Show(m_dockPanel)
     End Sub
 
     Public Sub ShowMRMIons(file As String)
@@ -241,7 +242,7 @@ Public Class frmMain
 
         scriptFiles.Add(newScript)
 
-        newScript.Show(dockPanel)
+        newScript.Show(m_dockPanel)
         newScript.DockState = DockState.Document
         newScript.LoadScript(fileName)
     End Sub
@@ -273,6 +274,7 @@ Public Class frmMain
         InitializeComponent()
 
         Call MyApplication.RegisterHost(Me)
+        Call Workbench.Hook(Me)
 
         ' 在 InitializeComponent() 调用之后添加任何初始化。
         ribbonItems = New RibbonItems(Ribbon1)
@@ -282,8 +284,8 @@ Public Class frmMain
     End Sub
 
     Friend Sub showMsImaging(imzML As String)
-        WindowModules.viewer.Show(dockPanel)
-        WindowModules.msImageParameters.Show(dockPanel)
+        WindowModules.viewer.Show(m_dockPanel)
+        WindowModules.msImageParameters.Show(m_dockPanel)
 
         If imzML.ExtensionSuffix("mzpack") Then
             Call showMzPackMSI(imzML)
@@ -322,7 +324,7 @@ Public Class frmMain
     End Sub
 
     Friend Sub saveCurrentScript()
-        Dim active = dockPanel.ActiveDocument
+        Dim active = m_dockPanel.ActiveDocument
 
         If Not active Is Nothing AndAlso TypeOf CObj(active) Is frmRScriptEdit Then
             Call SaveScript(DirectCast(CObj(active), frmRScriptEdit))
@@ -352,7 +354,7 @@ Public Class frmMain
     End Sub
 
     Friend Sub saveCurrentFile()
-        Dim active = dockPanel.ActiveDocument
+        Dim active = m_dockPanel.ActiveDocument
 
         If Not active Is Nothing Then
             Call saveCurrentDocument(active)
@@ -487,7 +489,7 @@ Public Class frmMain
 
         splashScreen.UpdateInformation("Fetch news from bionovogene...")
 
-        WindowModules.startPage.Show(MyApplication.host.dockPanel)
+        WindowModules.startPage.Show(MyApplication.host.m_dockPanel)
 
         splashScreen.UpdateInformation("Initialize of the R# automation scripting engine...")
 
@@ -718,32 +720,39 @@ Public Class frmMain
 
 #Region "vs2015"
 
-    Friend WithEvents dockPanel As New DockPanel
+    Dim WithEvents m_dockPanel As New DockPanel
+
     Private vS2015LightTheme1 As New VS2015LightTheme
     Private vsToolStripExtender1 As New VisualStudioToolStripExtender
     Private ReadOnly _toolStripProfessionalRenderer As New ToolStripProfessionalRenderer()
+
+    Public ReadOnly Property DockPanel As DockPanel Implements AppHost.DockPanel
+        Get
+            Return m_dockPanel
+        End Get
+    End Property
 
     Public Sub ShowPropertyWindow()
         VisualStudio.Dock(WindowModules.propertyWin, DockState.DockRight)
     End Sub
 
     Private Sub initializeVSPanel()
-        PanelBase.Controls.Add(Me.dockPanel)
-        dockPanel.ShowDocumentIcon = True
+        PanelBase.Controls.Add(Me.m_dockPanel)
+        m_dockPanel.ShowDocumentIcon = True
 
-        Me.dockPanel.Dock = DockStyle.Fill
-        Me.dockPanel.DockBackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(57, Byte), Integer), CType(CType(85, Byte), Integer))
-        Me.dockPanel.DockBottomPortion = 150.0R
-        Me.dockPanel.DockLeftPortion = 200.0R
-        Me.dockPanel.DockRightPortion = 200.0R
-        Me.dockPanel.DockTopPortion = 150.0R
-        Me.dockPanel.Font = New System.Drawing.Font("Tahoma", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World, CType(0, Byte))
+        Me.m_dockPanel.Dock = DockStyle.Fill
+        Me.m_dockPanel.DockBackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(57, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.m_dockPanel.DockBottomPortion = 150.0R
+        Me.m_dockPanel.DockLeftPortion = 200.0R
+        Me.m_dockPanel.DockRightPortion = 200.0R
+        Me.m_dockPanel.DockTopPortion = 150.0R
+        Me.m_dockPanel.Font = New System.Drawing.Font("Tahoma", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World, CType(0, Byte))
 
-        Me.dockPanel.Name = "dockPanel"
-        Me.dockPanel.RightToLeftLayout = True
-        Me.dockPanel.ShowAutoHideContentOnHover = False
+        Me.m_dockPanel.Name = "dockPanel"
+        Me.m_dockPanel.RightToLeftLayout = True
+        Me.m_dockPanel.ShowAutoHideContentOnHover = False
 
-        Me.dockPanel.TabIndex = 0
+        Me.m_dockPanel.TabIndex = 0
 
         Call SetSchema(Nothing, Nothing)
         Call WindowModules.initializeVSPanel()
@@ -759,7 +768,7 @@ Public Class frmMain
     ''' + put this method call at first if want to show the other tools page
     ''' </remarks>
     Public Sub ShowMzkitToolkit()
-        WindowModules.panelMain.Show(dockPanel)
+        WindowModules.panelMain.Show(m_dockPanel)
         WindowModules.panelMain.DockState = DockState.Document
 
         MyApplication.host.ShowPage(mzkitTool)
@@ -773,15 +782,15 @@ Public Class frmMain
         '    dockPanel.Theme = vS2015BlueTheme1
         '    EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2015, vS2015BlueTheme1)
         'ElseIf sender Is menuItemSchemaVS2015Light Then
-        dockPanel.Theme = vS2015LightTheme1
+        m_dockPanel.Theme = vS2015LightTheme1
         EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2015, vS2015LightTheme1)
         'ElseIf sender Is menuItemSchemaVS2015Dark Then
         'dockPanel.Theme = vS2015DarkTheme1
         'EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2015, vS2015DarkTheme1)
         'End If
 
-        If dockPanel.Theme.ColorPalette IsNot Nothing Then
-            StatusStrip.BackColor = dockPanel.Theme.ColorPalette.MainWindowStatusBarDefault.Background
+        If m_dockPanel.Theme.ColorPalette IsNot Nothing Then
+            StatusStrip.BackColor = m_dockPanel.Theme.ColorPalette.MainWindowStatusBarDefault.Background
         End If
     End Sub
 
@@ -837,18 +846,26 @@ Public Class frmMain
         Call VisualStudio.Dock(WindowModules.taskWin, DockState.DockBottom)
     End Sub
 
-    Private Sub dockPanel_ActiveDocumentChanged(sender As Object, e As EventArgs) Handles dockPanel.ActiveDocumentChanged
-        If TypeOf dockPanel.ActiveDocument Is frmTableViewer Then
+    Private Sub dockPanel_ActiveDocumentChanged(sender As Object, e As EventArgs) Handles m_dockPanel.ActiveDocumentChanged
+        If TypeOf m_dockPanel.ActiveDocument Is frmTableViewer Then
             ribbonItems.TableGroup.ContextAvailable = ContextAvailability.Active
         Else
             ribbonItems.TableGroup.ContextAvailable = ContextAvailability.NotAvailable
         End If
-        If TypeOf dockPanel.ActiveDocument Is frmMsImagingViewer Then
+        If TypeOf m_dockPanel.ActiveDocument Is frmMsImagingViewer Then
             ribbonItems.TabGroupMSI.ContextAvailable = ContextAvailability.Active
         Else
             ribbonItems.TabGroupMSI.ContextAvailable = ContextAvailability.NotAvailable
         End If
     End Sub
 #End Region
+
+    Public Sub SetWindowState(stat As FormWindowState) Implements AppHost.SetWindowState
+        WindowState = stat
+    End Sub
+
+    Public Function GetWindowState() As FormWindowState Implements AppHost.GetWindowState
+        Return WindowState
+    End Function
 
 End Class

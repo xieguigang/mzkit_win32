@@ -936,7 +936,7 @@ Public Class PageMzkitTools
             CustomTabControl1.Controls.Add(tabpage)
         End If
 
-        WindowModules.panelMain.Show(MyApplication.host.dockPanel)
+        WindowModules.panelMain.Show(MyApplication.host.m_dockPanel)
 
         CustomTabControl1.SelectedTab = tabpage
         tabpage.Visible = True

@@ -154,7 +154,7 @@ Module FeatureSearchHandler
         Dim tolerance As Tolerance = Tolerance.PPM(ppm)
         Dim display As New frmFeatureSearch
 
-        display.Show(MyApplication.host.dockPanel)
+        display.Show(MyApplication.host.m_dockPanel)
         display.directRaw = raw.ToArray
 
         For Each file As MZWork.Raw In display.directRaw
