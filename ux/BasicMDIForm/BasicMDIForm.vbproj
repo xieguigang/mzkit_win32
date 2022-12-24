@@ -142,6 +142,18 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AppHost.vb" />
+    <Compile Include="dialogs\InputDialog.Designer.vb">
+      <DependentUpon>InputDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dialogs\InputDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dialogs\MaskForm.Designer.vb">
+      <DependentUpon>MaskForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dialogs\MaskForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="plugin\MZKitPlugin.vb" />
     <Compile Include="plugin\frmPluginMgr.Designer.vb">
       <DependentUpon>frmPluginMgr.vb</DependentUpon>
@@ -175,6 +187,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="base\ToolWindow.resx">
       <DependentUpon>ToolWindow.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dialogs\InputDialog.resx">
+      <DependentUpon>InputDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dialogs\MaskForm.resx">
+      <DependentUpon>MaskForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

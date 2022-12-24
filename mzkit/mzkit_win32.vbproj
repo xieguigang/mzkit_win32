@@ -398,45 +398,31 @@
     <Compile Include="forms\Inputs\InputDataFieldName.Designer.vb">
       <DependentUpon>InputDataFieldName.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputDataFieldName.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="forms\Inputs\InputDataFieldName.vb" />
     <Compile Include="forms\Inputs\InputCFMIDTool.Designer.vb">
       <DependentUpon>InputCFMIDTool.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputCFMIDTool.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="forms\Inputs\InputCFMIDTool.vb" />
     <Compile Include="forms\Inputs\InputMoNAHits.Designer.vb">
       <DependentUpon>InputMoNAHits.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputMoNAHits.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="forms\Inputs\InputMoNAHits.vb" />
     <Compile Include="forms\Inputs\InputMoNA.Designer.vb">
       <DependentUpon>InputMoNA.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputMoNA.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="forms\Inputs\InputMoNA.vb" />
     <Compile Include="forms\Inputs\InputBasePeakIon.Designer.vb">
       <DependentUpon>InputBasePeakIon.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputBasePeakIon.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="forms\Inputs\InputBasePeakIon.vb" />
     <Compile Include="forms\Inputs\InputConfigTissueMap.Designer.vb">
       <DependentUpon>InputConfigTissueMap.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputConfigTissueMap.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="forms\Inputs\InputConfigTissueMap.vb" />
     <Compile Include="forms\Inputs\InputPubChemProxy.Designer.vb">
       <DependentUpon>InputPubChemProxy.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputPubChemProxy.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="forms\Inputs\InputPubChemProxy.vb" />
     <Compile Include="GridSearchHandler.vb" />
     <Compile Include="forms\frmDOI.Designer.vb">
       <DependentUpon>frmDOI.vb</DependentUpon>
@@ -471,63 +457,43 @@
     <Compile Include="forms\Inputs\InputIonRGB.Designer.vb">
       <DependentUpon>InputIonRGB.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputIonRGB.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="forms\Inputs\InputIonRGB.vb" />
     <Compile Include="forms\Inputs\InputMatrixIons.Designer.vb">
       <DependentUpon>InputMatrixIons.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputMatrixIons.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="forms\Inputs\InputMatrixIons.vb" />
     <Compile Include="forms\Inputs\InputPeakTime.Designer.vb">
       <DependentUpon>InputPeakTime.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputPeakTime.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="forms\Inputs\InputPeakTime.vb" />
     <Compile Include="forms\Inputs\InputFormula.Designer.vb">
       <DependentUpon>InputFormula.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputFormula.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="forms\Inputs\InputFormula.vb" />
     <Compile Include="forms\Inputs\SelectSheetName.Designer.vb">
       <DependentUpon>SelectSheetName.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\SelectSheetName.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="forms\Inputs\SelectSheetName.vb" />
     <Compile Include="forms\Inputs\ShowColumnStat.Designer.vb">
       <DependentUpon>ShowColumnStat.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\ShowColumnStat.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="forms\Inputs\ShowColumnStat.vb" />
     <Compile Include="forms\Inputs\InputAction.Designer.vb">
       <DependentUpon>InputAction.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputAction.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="forms\Inputs\InputAction.vb" />
     <Compile Include="forms\Inputs\InputDataVisual.Designer.vb">
       <DependentUpon>InputDataVisual.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputDataVisual.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="forms\Inputs\InputDataVisual.vb" />
     <Compile Include="forms\Inputs\InputRSymbol.Designer.vb">
       <DependentUpon>InputRSymbol.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputRSymbol.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="forms\Inputs\InputRSymbol.vb" />
     <Compile Include="forms\Inputs\InputNetworkLayout.Designer.vb">
       <DependentUpon>InputNetworkLayout.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputNetworkLayout.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="forms\Inputs\InputNetworkLayout.vb" />
     <Compile Include="forms\Inputs\InputXICTarget.Designer.vb">
       <DependentUpon>InputXICTarget.vb</DependentUpon>
     </Compile>
@@ -726,9 +692,7 @@
     <Compile Include="pages\dockWindow\properties\SampleRegionMergeTool.Designer.vb">
       <DependentUpon>SampleRegionMergeTool.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\properties\SampleRegionMergeTool.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="pages\dockWindow\properties\SampleRegionMergeTool.vb" />
     <Compile Include="pages\dockWindow\properties\HEMapTools.Designer.vb">
       <DependentUpon>HEMapTools.vb</DependentUpon>
     </Compile>

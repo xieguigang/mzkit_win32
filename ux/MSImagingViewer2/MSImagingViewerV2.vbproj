@@ -131,21 +131,15 @@
     <Compile Include="MSI\InputRotateMatrix.Designer.vb">
       <DependentUpon>InputRotateMatrix.vb</DependentUpon>
     </Compile>
-    <Compile Include="MSI\InputRotateMatrix.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="MSI\InputRotateMatrix.vb" />
     <Compile Include="MSI\InputSpotColor.Designer.vb">
       <DependentUpon>InputSpotColor.vb</DependentUpon>
     </Compile>
-    <Compile Include="MSI\InputSpotColor.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="MSI\InputSpotColor.vb" />
     <Compile Include="MSI\InputLabelText.Designer.vb">
       <DependentUpon>InputLabelText.vb</DependentUpon>
     </Compile>
-    <Compile Include="MSI\InputLabelText.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="MSI\InputLabelText.vb" />
     <Compile Include="MSI\PixelSelector.Designer.vb">
       <DependentUpon>PixelSelector.vb</DependentUpon>
     </Compile>

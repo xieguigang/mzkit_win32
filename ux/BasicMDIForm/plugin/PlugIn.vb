@@ -12,7 +12,7 @@ Public MustInherit Class Plugin
     ''' <summary>
     ''' run this plugin
     ''' </summary>
-    Public MustOverride Sub Init(println As Action(Of String))
+    Public MustOverride Function Init(println As Action(Of String)) As Boolean
 
     Public Shared Sub LoadPlugins(dir As String, println As Action(Of String))
         Dim files As String() = dir.EnumerateFiles("*.dll").ToArray
@@ -39,8 +39,13 @@ Public MustInherit Class Plugin
                         Continue For
                     End If
 
-                    Call plugin.Init(println)
-                    Call MZKitPlugin.Registry.Add(plugin.Name, plugin)
+                    Try
+                        If plugin.Init(println) Then
+                            Call MZKitPlugin.Registry.Add(plugin.Name, plugin)
+                        End If
+                    Catch ex As Exception
+                        Call println($"Load plugin error: {ex.Message}")
+                    End Try
                 End If
             Next
         Next

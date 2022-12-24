@@ -113,36 +113,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InputDialog.Designer.vb">
-      <DependentUpon>InputDialog.vb</DependentUpon>
-    </Compile>
-    <Compile Include="InputDialog.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="InputDialogs\InputMSISlideLayout.Designer.vb">
       <DependentUpon>InputMSISlideLayout.vb</DependentUpon>
     </Compile>
-    <Compile Include="InputDialogs\InputMSISlideLayout.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="InputDialogs\InputMSISlideLayout.vb" />
     <Compile Include="InputDialogs\InputSpotRadius.Designer.vb">
       <DependentUpon>InputSpotRadius.vb</DependentUpon>
     </Compile>
-    <Compile Include="InputDialogs\InputSpotRadius.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="InputDialogs\InputSpotRadius.vb" />
     <Compile Include="InputDialogs\ShowMSIRowScanSummary.Designer.vb">
       <DependentUpon>ShowMSIRowScanSummary.vb</DependentUpon>
     </Compile>
-    <Compile Include="InputDialogs\ShowMSIRowScanSummary.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MaskForm.Designer.vb">
-      <DependentUpon>MaskForm.vb</DependentUpon>
-    </Compile>
-    <Compile Include="MaskForm.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="InputDialogs\ShowMSIRowScanSummary.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -161,9 +143,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="InputDialog.resx">
-      <DependentUpon>InputDialog.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="InputDialogs\InputMSISlideLayout.resx">
       <DependentUpon>InputMSISlideLayout.vb</DependentUpon>
     </EmbeddedResource>
@@ -178,9 +157,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InputDialogs\ShowMSIRowScanSummary.zh-CN.resx">
       <DependentUpon>ShowMSIRowScanSummary.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MaskForm.resx">
-      <DependentUpon>MaskForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -225,6 +201,10 @@
     <ProjectReference Include="..\..\..\mzmath\ms2_math-core\mzmath-netcore5.vbproj">
       <Project>{ab5fd86e-6da9-4f7c-8dce-17da85bc895d}</Project>
       <Name>mzmath-netcore5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BasicMDIForm\BasicMDIForm.vbproj">
+      <Project>{51c55c5c-2f21-4e9f-aa8d-3664135758b7}</Project>
+      <Name>BasicMDIForm</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
