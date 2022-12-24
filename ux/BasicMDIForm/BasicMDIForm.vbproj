@@ -127,6 +127,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="base\DocumentWindow.Designer.vb">
+      <DependentUpon>DocumentWindow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="base\DocumentWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="base\ToolWindow.Designer.vb">
+      <DependentUpon>ToolWindow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="base\ToolWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -150,8 +162,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="TaskbarWindow.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="base\DocumentWindow.resx">
+      <DependentUpon>DocumentWindow.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="base\ToolWindow.resx">
+      <DependentUpon>ToolWindow.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
