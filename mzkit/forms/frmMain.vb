@@ -720,7 +720,7 @@ Public Class frmMain : Implements AppHost
 
 #Region "vs2015"
 
-    Dim WithEvents m_dockPanel As New DockPanel
+    Friend WithEvents m_dockPanel As New DockPanel
 
     Private vS2015LightTheme1 As New VS2015LightTheme
     Private vsToolStripExtender1 As New VisualStudioToolStripExtender
