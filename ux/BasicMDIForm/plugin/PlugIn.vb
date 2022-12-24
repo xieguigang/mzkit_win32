@@ -45,6 +45,7 @@ Public MustInherit Class Plugin
                         End If
                     Catch ex As Exception
                         Call println($"Load plugin error: {ex.Message}")
+                        Call App.LogException(ex)
                     End Try
                 End If
             Next
