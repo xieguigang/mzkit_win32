@@ -1,9 +1,11 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class InputCFMIDTool
     Inherits InputDialog
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +22,7 @@ Partial Class InputCFMIDTool
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()

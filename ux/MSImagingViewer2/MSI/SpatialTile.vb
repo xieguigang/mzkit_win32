@@ -8,6 +8,7 @@ Imports Microsoft.VisualBasic.Imaging.BitmapImage
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports STImaging
 
 Public Class SpatialTile
