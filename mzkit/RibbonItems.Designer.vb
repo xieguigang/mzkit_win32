@@ -184,6 +184,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonResetLayout As UInteger = 1019
             Public Const cmdTabGroupBioDeep As UInteger = 105
             Public Const cmdLogInBioDeep As UInteger = 106
+            Public Const cmdButtonPluginManager As UInteger = 214
             Public Const cmdTabTools As UInteger = 1012
             Public Const cmdGroupToolsActions As UInteger = 1046
             Public Const cmdButtonMenuSearchTools As UInteger = 209
@@ -1235,6 +1236,12 @@ Namespace RibbonLib.Controls
                 Return _LogInBioDeep
             End Get
         End Property
+        Private _ButtonPluginManager As RibbonButton
+        Public ReadOnly Property ButtonPluginManager As RibbonButton
+            Get
+                Return _ButtonPluginManager
+            End Get
+        End Property
         Private _TabTools As RibbonTab
         Public ReadOnly Property TabTools As RibbonTab
             Get
@@ -1571,6 +1578,7 @@ Namespace RibbonLib.Controls
             _ButtonResetLayout = New RibbonButton(_ribbon, Cmd.cmdButtonResetLayout)
             _TabGroupBioDeep = New RibbonGroup(_ribbon, Cmd.cmdTabGroupBioDeep)
             _LogInBioDeep = New RibbonButton(_ribbon, Cmd.cmdLogInBioDeep)
+            _ButtonPluginManager = New RibbonButton(_ribbon, Cmd.cmdButtonPluginManager)
             _TabTools = New RibbonTab(_ribbon, Cmd.cmdTabTools)
             _GroupToolsActions = New RibbonGroup(_ribbon, Cmd.cmdGroupToolsActions)
             _ButtonMenuSearchTools = New RibbonSplitButton(_ribbon, Cmd.cmdButtonMenuSearchTools)

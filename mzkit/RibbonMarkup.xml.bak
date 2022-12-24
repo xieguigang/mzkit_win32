@@ -2476,6 +2476,14 @@
         <Image MinDPI="192">Resources/3d-object.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonPluginManager" Id="214" LabelTitle="Plugin Manager" LabelDescription="Plugin Manager" TooltipTitle="Plugin Manager" TooltipDescription="Plugin Manager">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/application-x-rpm.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/application-x-rpm.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2787,8 +2795,9 @@
             <Button CommandName="cmdButtonShowLogWindow" />
             <Button CommandName="cmdButtonResetLayout" />
           </Group>
-          <Group CommandName="cmdTabGroupBioDeep" ApplicationModes="0,1" SizeDefinition="OneButton">
+          <Group CommandName="cmdTabGroupBioDeep" ApplicationModes="0,1" SizeDefinition="TwoButtons">
             <Button CommandName="cmdLogInBioDeep" />
+            <Button CommandName="cmdButtonPluginManager" />
           </Group>
         </Tab>
         <Tab CommandName="cmdTabTools" ApplicationModes="0,1">
