@@ -35,7 +35,12 @@ Public MustInherit Class Plugin
                     Dim obj As Object = Activator.CreateInstance(type)
                     Dim plugin As Plugin = DirectCast(obj, Plugin)
 
+                    If MZKitPlugin.Registry.ContainsKey(plugin.Name) Then
+                        Continue For
+                    End If
+
                     Call plugin.Init(println)
+                    Call MZKitPlugin.Registry.Add(plugin.Name, plugin)
                 End If
             Next
         Next

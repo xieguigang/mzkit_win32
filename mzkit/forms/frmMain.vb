@@ -508,6 +508,12 @@ Public Class frmMain : Implements AppHost
         End Using
 
         Call MyApplication.LogText(text.ToString)
+        Call Plugin.LoadPlugins(
+            dir:=$"{App.HOME}/plugins",
+            println:=Sub(msg)
+                         Call MyApplication.LogText(msg)
+                         Call splashScreen.UpdateInformation(msg)
+                     End Sub)
 
         splashScreen.UpdateInformation("Ready!")
         showStatusMessage("Ready!")
