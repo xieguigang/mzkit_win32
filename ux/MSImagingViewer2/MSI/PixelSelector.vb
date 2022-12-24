@@ -124,6 +124,10 @@ Public Class PixelSelector
         Next
     End Sub
 
+    ''' <summary>
+    ''' adjust the location and size automatically
+    ''' </summary>
+    ''' <param name="map"></param>
     Public Sub AddSpatialMapping(map As SpatialMapping)
         Dim tile As New SpatialTile
         Dim rect = map.GetSpatialMetabolismRectangle
@@ -145,7 +149,7 @@ Public Class PixelSelector
         AddHandler tile.ClickSpatialMetabolismPixel, Sub(e, ByRef px, ByRef py) Call clickGetPoint(e)
     End Sub
 
-    Public Sub AddSpatialTile(matrix As IEnumerable(Of SpaceSpot))
+    Public Function AddSpatialTile(matrix As IEnumerable(Of SpaceSpot)) As SpatialTile
         Dim tile As New SpatialTile
 
         Call tile.ShowMatrix(matrix)
@@ -153,7 +157,9 @@ Public Class PixelSelector
 
         AddHandler tile.GetSpatialMetabolismPoint, AddressOf getPoint
         AddHandler tile.ClickSpatialMetabolismPixel, Sub(e, ByRef px, ByRef py) Call clickGetPoint(e)
-    End Sub
+
+        Return tile
+    End Function
 
     ''' <summary>
     ''' the polygon has already been transform and scaled

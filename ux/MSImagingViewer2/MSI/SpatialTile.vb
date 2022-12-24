@@ -146,6 +146,7 @@ Public Class SpatialTile
         rotationMatrix = spatialMatrix
 
         Call buildGrid()
+        Call CanvasOnPaintBackground()
     End Sub
 
     Friend Sub buildGrid()

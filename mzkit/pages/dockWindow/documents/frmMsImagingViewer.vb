@@ -1847,10 +1847,12 @@ Public Class frmMsImagingViewer
                     Dim spots As SpaceSpot() = ST_spaceranger _
                         .LoadTissueSpots(file.FileName.ReadAllLines) _
                         .ToArray
-
-                    Call PixelSelector1 _
+                    Dim tile = PixelSelector1 _
                         .MSICanvas _
                         .AddSpatialTile(spots)
+
+                    ' move the spatial tile to the mouse location
+                    tile.Location = PixelSelector1.MSICanvas.PointToClient(Cursor.Position)
                 Else
                     Dim maps As SpatialMapping = file.FileName.LoadXml(Of SpatialMapping)
 
