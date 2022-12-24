@@ -10,9 +10,9 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("BasicMDIForm")>
 <Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("微软中国")>
+<Assembly: AssemblyCompany("PANOMIX")>
 <Assembly: AssemblyProduct("BasicMDIForm")>
-<Assembly: AssemblyCopyright("Copyright © 微软中国 2022")>
+<Assembly: AssemblyCopyright("Copyright © PANOMIX 2022")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
