@@ -106,6 +106,13 @@ Public Class VisualStudio
         propertyWin.propertyGrid.Refresh()
     End Sub
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <typeparam name="T"></typeparam>
+    ''' <param name="showExplorer">
+    ''' do specific callback from this parameter delegate if the pointer value is nothing nothing
+    ''' </param>
     Public Shared Sub ShowSingleDocument(Of T As {New, DockContent})(Optional showExplorer As Action = Nothing)
         Dim DockPanel As DockPanel = MyApplication.host.m_dockPanel
         Dim targeted As T = DockPanel.Documents _

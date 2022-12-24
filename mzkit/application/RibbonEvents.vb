@@ -72,6 +72,7 @@ Imports BioNovoGene.mzkit_win32.RibbonLib.Controls
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.Emit.Delegates
 Imports Microsoft.VisualBasic.Linq
+Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib
 Imports RibbonLib.Controls.Events
 Imports RibbonLib.Interop
@@ -170,6 +171,7 @@ Module RibbonEvents
 
         AddHandler ribbonItems.Tutorials.ExecuteEvent, Sub() Call VisualStudio.ShowSingleDocument(Of frmVideoList)()
         AddHandler ribbonItems.ButtonViewSMILES.ExecuteEvent, Sub() Call VisualStudio.ShowSingleDocument(Of frmSMILESViewer)()
+        AddHandler ribbonItems.ButtonPluginManager.ExecuteEvent, Sub() Call VisualStudio.ShowSingleDocument(Of frmPluginMgr)()
 
         AddHandler ribbonItems.AdjustParameters.ExecuteEvent, Sub() Call VisualStudio.Dock(WindowModules.parametersTool, DockState.DockRight)
         AddHandler ribbonItems.ImportsMzwork.ExecuteEvent, Sub() Call OpenWorkspace()
