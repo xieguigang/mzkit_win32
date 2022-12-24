@@ -76,15 +76,22 @@ Namespace CommonDialogs
         'Do not modify it using the code editor.
         <System.Diagnostics.DebuggerStepThrough()>
         Private Sub InitializeComponent()
+            Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MaskForm))
             Me.SuspendLayout()
             '
             'MaskForm
             '
-            Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
+            resources.ApplyResources(Me, "$this")
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.ClientSize = New System.Drawing.Size(639, 388)
+            Me.BackColor = System.Drawing.Color.Black
+            Me.ControlBox = False
+            Me.DoubleBuffered = True
+            Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+            Me.MaximizeBox = False
+            Me.MinimizeBox = False
             Me.Name = "MaskForm"
-            Me.Text = "Form1"
+            Me.ShowIcon = False
+            Me.ShowInTaskbar = False
             Me.ResumeLayout(False)
 
         End Sub

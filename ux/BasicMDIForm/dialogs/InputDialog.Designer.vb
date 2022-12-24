@@ -76,20 +76,18 @@ Namespace CommonDialogs
         'Do not modify it using the code editor.
         <System.Diagnostics.DebuggerStepThrough()>
         Private Sub InitializeComponent()
+            Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(InputDialog))
             Me.SuspendLayout()
             '
             'InputDialog
             '
-            Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
+            resources.ApplyResources(Me, "$this")
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackColor = System.Drawing.Color.White
-            Me.ClientSize = New System.Drawing.Size(509, 305)
             Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
             Me.MaximizeBox = False
             Me.MinimizeBox = False
             Me.Name = "InputDialog"
-            Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-            Me.Text = "Form1"
             Me.ResumeLayout(False)
 
         End Sub

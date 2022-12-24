@@ -191,7 +191,16 @@
     <EmbeddedResource Include="dialogs\InputDialog.resx">
       <DependentUpon>InputDialog.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="dialogs\InputDialog.zh-Hans.resx">
+      <DependentUpon>InputDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dialogs\MaskForm.en-US.resx">
+      <DependentUpon>MaskForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="dialogs\MaskForm.resx">
+      <DependentUpon>MaskForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dialogs\MaskForm.zh-Hans.resx">
       <DependentUpon>MaskForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
