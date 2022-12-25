@@ -10,16 +10,16 @@ Public Module ExportApis
 #Region "mzkit_win32 api function pointers"
     Friend _openMSImagingFile As Action(Of String)
     Friend _openMSImagingViewer As Action
-    Friend _getHEMapTool As Func(Of Form)
+    Friend _getHEMapTool As Func(Of ToolStripWindow)
 #End Region
 
-    Public Event OpenHEMapTool(tool As Form)
+    Public Event OpenHEMapTool(tool As ToolStripWindow)
 
-    Friend Sub _openHEMapTool(tool As Form)
+    Friend Sub _openHEMapTool(tool As ToolStripWindow)
         RaiseEvent OpenHEMapTool(tool)
     End Sub
 
-    Public Function GetHEMapTool() As Form
+    Public Function GetHEMapTool() As ToolStripWindow
         If _getHEMapTool Is Nothing Then
             Return MZKitWorkbenchIsNotRunning()
         Else
