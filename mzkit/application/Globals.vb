@@ -87,6 +87,7 @@ Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.My.FrameworkInternal
 Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports Microsoft.VisualBasic.ValueTypes
+Imports Mzkit_win32.BasicMDIForm
 Imports MZWorkPack
 Imports PipelineHost
 Imports SMRUCC.genomics.Analysis.HTS.GSEA
@@ -322,7 +323,7 @@ Module Globals
             End If
         End If
 
-        Dim work As WorkspaceFile = frmTaskProgress.LoadData(
+        Dim work As WorkspaceFile = TaskProgress.LoadData(
             streamLoad:=Function(msg) MZWorkPack.ImportWorkspace(mzwork, msg),
             info:="Loading MZKit workspace..."
         )

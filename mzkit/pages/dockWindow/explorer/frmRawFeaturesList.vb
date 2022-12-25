@@ -88,6 +88,7 @@ Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.Text.Xml.Models
+Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Interop
 Imports WeifenLuo.WinFormsUI.Docking
 Imports stdNum = System.Math
@@ -407,7 +408,7 @@ Public Class frmRawFeaturesList
 
     Private Sub MolecularNetworkingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MolecularNetworkingToolStripMenuItem.Click
         Dim similarityCutoff As Double = MyApplication.host.ribbonItems.SpinnerSimilarity.DecimalValue
-        Dim progress As New frmTaskProgress
+        Dim progress As New TaskProgress
         Dim page As PageMzkitTools = MyApplication.mzkitRawViewer
         Dim task As ThreadStart =
             Sub()

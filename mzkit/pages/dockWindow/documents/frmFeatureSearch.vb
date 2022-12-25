@@ -74,6 +74,7 @@ Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
+Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Controls.Events
 Imports RibbonLib.Interop
@@ -478,7 +479,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             Next
 
             Dim peaksData As PeakMs2() = parents.Select(Function(p) p.ToMs2).ToArray
-            Dim progress As New frmTaskProgress
+            Dim progress As New TaskProgress
 
             progress.ShowProgressTitle("Build Molecular Networking...", directAccess:=True)
             progress.ShowProgressDetails("Run ms2 clustering!", directAccess:=True)

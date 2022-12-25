@@ -2,6 +2,7 @@
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
 Imports Microsoft.VisualBasic.Linq
+Imports Mzkit_win32.BasicMDIForm
 
 Public Class InputPubChemProxy
 
@@ -25,7 +26,7 @@ Public Class InputPubChemProxy
         Else
             Call cids.Clear()
             Call ListView1.Items.Clear()
-            Call frmProgressSpinner _
+            Call ProgressSpinner _
                 .DoLoading(Sub()
                                Call Me.Invoke(
                                    Sub()

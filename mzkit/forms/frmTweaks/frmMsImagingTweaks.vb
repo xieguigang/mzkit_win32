@@ -75,6 +75,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
+Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Interop
 Imports Task
@@ -348,7 +349,7 @@ UseCheckedList:
             tolerance = cdf.GetMzTolerance
         End Using
 
-        Call frmProgressSpinner.DoLoading(
+        Call ProgressSpinner.DoLoading(
             Sub()
                 Call Me.Invoke(Sub()
                                    viewer.LoadRender(firstFile, firstFile)
@@ -376,7 +377,7 @@ UseCheckedList:
         Call ClearIons()
 
         If WindowModules.viewer.checkService Then
-            Dim progress As New frmProgressSpinner
+            Dim progress As New ProgressSpinner
 
             Call New Thread(Sub()
                                 Call Me.Invoke(Sub() Call loadBasePeakMz())

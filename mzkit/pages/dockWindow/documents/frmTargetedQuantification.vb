@@ -1,65 +1,65 @@
 ﻿#Region "Microsoft.VisualBasic::f6e50c5ca8e25ec192141f4521d1c52e, mzkit\src\mzkit\mzkit\pages\dockWindow\documents\frmTargetedQuantification.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 1145
-    '    Code Lines: 901
-    ' Comment Lines: 30
-    '   Blank Lines: 214
-    '     File Size: 48.07 KB
+' Summaries:
 
 
-    ' Class frmTargetedQuantification
-    ' 
-    '     Function: createGCMSLinears, createLinear, createMRMLinears, GetContentTable, GetGCMSFeatureReader
-    '               GetGCMSFeatures, GetScans, GetStandardReference, GetTableLevelKeys, isValidLinearRow
-    '               linearProfileNames, LoadGCMSIonLibrary, unifyGetStandards
-    ' 
-    '     Sub: applyNewParameters, DataGridView1_CellDoubleClick, DataGridView1_CellEndEdit, DataGridView1_DragDrop, DataGridView1_DragEnter
-    '          DataGridView1_DragOver, DataGridView1_KeyDown, DeleteIonFeatureToolStripMenuItem_Click, deleteProfiles, doLoadSampleFiles
-    '          ExportImageToolStripMenuItem_Click, ExportLinearTableToolStripMenuItem_Click, ExportTableToolStripMenuItem_Click, frmTargetedQuantification_Closed, frmTargetedQuantification_FormClosing
-    '          frmTargetedQuantification_Load, ImportsLinearReferenceToolStripMenuItem_Click, loadGCMSReference, loadLinearRaw, loadLinears
-    '          loadMRMReference, loadReferenceData, loadSampleFiles, LoadSamplesToolStripMenuItem_Click, reload
-    '          reloadProfileNames, runLinearFileImports, SaveAsToolStripMenuItem_Click, SaveDocument, saveLinearPack
-    '          saveLinearsTable, SetGCMSKeys, SetMRMKeys, showIonPeaksTable, showLinear
-    '          showQuanifyTable, showRawXTable, ToolStripComboBox2_SelectedIndexChanged, unifyLoadLinears, ViewLinearReportToolStripMenuItem_Click
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 1145
+'    Code Lines: 901
+' Comment Lines: 30
+'   Blank Lines: 214
+'     File Size: 48.07 KB
+
+
+' Class frmTargetedQuantification
+' 
+'     Function: createGCMSLinears, createLinear, createMRMLinears, GetContentTable, GetGCMSFeatureReader
+'               GetGCMSFeatures, GetScans, GetStandardReference, GetTableLevelKeys, isValidLinearRow
+'               linearProfileNames, LoadGCMSIonLibrary, unifyGetStandards
+' 
+'     Sub: applyNewParameters, DataGridView1_CellDoubleClick, DataGridView1_CellEndEdit, DataGridView1_DragDrop, DataGridView1_DragEnter
+'          DataGridView1_DragOver, DataGridView1_KeyDown, DeleteIonFeatureToolStripMenuItem_Click, deleteProfiles, doLoadSampleFiles
+'          ExportImageToolStripMenuItem_Click, ExportLinearTableToolStripMenuItem_Click, ExportTableToolStripMenuItem_Click, frmTargetedQuantification_Closed, frmTargetedQuantification_FormClosing
+'          frmTargetedQuantification_Load, ImportsLinearReferenceToolStripMenuItem_Click, loadGCMSReference, loadLinearRaw, loadLinears
+'          loadMRMReference, loadReferenceData, loadSampleFiles, LoadSamplesToolStripMenuItem_Click, reload
+'          reloadProfileNames, runLinearFileImports, SaveAsToolStripMenuItem_Click, SaveDocument, saveLinearPack
+'          saveLinearsTable, SetGCMSKeys, SetMRMKeys, showIonPeaksTable, showLinear
+'          showQuanifyTable, showRawXTable, ToolStripComboBox2_SelectedIndexChanged, unifyLoadLinears, ViewLinearReportToolStripMenuItem_Click
+' 
+' /********************************************************************************/
 
 #End Region
 
@@ -78,6 +78,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM.Data
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM.Models
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
+Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.Bootstrapping
@@ -89,7 +90,7 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
-Imports BioNovoGene.mzkit_win32.My
+Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Controls.Events
 Imports RibbonLib.Interop
 Imports SMRUCC.Rsharp.Runtime.Components
@@ -442,7 +443,7 @@ Public Class frmTargetedQuantification
 
         Dim file As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & $"/mzkit/linears/{profileName}.linearPack"
 
-        Call frmTaskProgress.RunAction(
+        Call TaskProgress.RunAction(
             Sub()
                 Call Me.Invoke(Sub() Call saveLinearPack(profileName, file))
                 Call Me.Invoke(Sub() Call reloadProfileNames())
@@ -454,7 +455,7 @@ Public Class frmTargetedQuantification
     Private Sub SaveAsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveAsToolStripMenuItem.Click
         Using savefile As New SaveFileDialog With {.Title = "Select location for save linear pack data.", .Filter = "Mzkit Linear Models(*.linearPack)|*.linearPack"}
             If savefile.ShowDialog = DialogResult.OK Then
-                Call frmTaskProgress.RunAction(
+                Call TaskProgress.RunAction(
                     Sub()
                         Call Me.Invoke(Sub() saveLinearPack(savefile.FileName.BaseName, savefile.FileName))
                     End Sub, "Save Linear Reference Models", "...")

@@ -2,6 +2,7 @@
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Linq
+Imports Mzkit_win32.BasicMDIForm
 Imports PipelineHost
 Imports SMRUCC.genomics.Analysis.HTS.GSEA
 Imports SMRUCC.genomics.Assembly.KEGG.WebServices
@@ -18,14 +19,14 @@ Public Class KEGGEnrichmentAction : Inherits ActionBase
     Public Overrides Sub RunAction(fieldName As String, data As Array, tbl As DataTable)
         Dim maps As Map() = Nothing
         Dim kegg As Background = KEGGRepo.loadBackground(maps)
-        Dim enrich = frmTaskProgress.LoadData(
-                    Function(msg)
-                        Dim all = kegg.Enrichment(data.AsObjectEnumerator.Where(Function(c) Not c Is Nothing).Select(Function(c) c.ToString), outputAll:=True, showProgress:=True, doProgress:=msg).ToArray
-                        Call msg("Do FDR...")
-                        Dim fdr = all.FDRCorrection.OrderBy(Function(p) p.pvalue).ToArray
+        Dim enrich = TaskProgress.LoadData(
+            Function(msg)
+                Dim all = kegg.Enrichment(data.AsObjectEnumerator.Where(Function(c) Not c Is Nothing).Select(Function(c) c.ToString), outputAll:=True, showProgress:=True, doProgress:=msg).ToArray
+                Call msg("Do FDR...")
+                Dim fdr = all.FDRCorrection.OrderBy(Function(p) p.pvalue).ToArray
 
-                        Return fdr
-                    End Function, title:="Run KEGG Enrichment", info:="Run fisher test...")
+                Return fdr
+            End Function, title:="Run KEGG Enrichment", info:="Run fisher test...")
         Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(title:="KEGG Enrichment Result")
         Dim mapIndex = maps.ToDictionary(Function(m) m.id)
 

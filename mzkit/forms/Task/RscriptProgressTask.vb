@@ -57,7 +57,6 @@
 Imports System.IO
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader
-Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.SCiLSLab
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.mzkit_win32.My
@@ -66,8 +65,8 @@ Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Text
+Imports Mzkit_win32.BasicMDIForm
 Imports PipelineHost
-Imports SMRUCC.genomics.Assembly.MetaCyc.File.DataFiles
 Imports Task
 
 Public Class RscriptProgressTask
@@ -89,7 +88,7 @@ Public Class RscriptProgressTask
             Return cachefile
         End If
 
-        Dim progress As New frmTaskProgress
+        Dim progress As New TaskProgress
 
         progress.ShowProgressTitle("Open imzML...", directAccess:=True)
         progress.ShowProgressDetails("Loading MSI raw data file into viewer workspace...", directAccess:=True)
@@ -143,7 +142,7 @@ Public Class RscriptProgressTask
                     End Function) _
             .SaveTo(tempfile, encoding:=Encodings.UTF8.CodePage)
 
-        Dim progress As New frmTaskProgress
+        Dim progress As New TaskProgress
 
         progress.ShowProgressTitle("Imports MSI Matrix...", directAccess:=True)
         progress.ShowProgressDetails("Imports SCiLS Lab MSImaging matrix data into viewer workspace...", directAccess:=True)
@@ -178,7 +177,7 @@ Public Class RscriptProgressTask
 
         Call files.SaveTo(tempfile, encoding:=Encodings.UTF8.CodePage)
 
-        Dim progress As New frmTaskProgress
+        Dim progress As New TaskProgress
 
         progress.ShowProgressTitle("Convert MSI Raw...", directAccess:=True)
         progress.ShowProgressDetails("Loading MSI raw data file into viewer workspace...", directAccess:=True)
@@ -204,7 +203,7 @@ Public Class RscriptProgressTask
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSImaging/tripleIon.R")
         Dim cli As String = $"""{Rscript}"" --app {WindowModules.viewer.MSIservice.appPort} --mzlist ""{mz.JoinBy(",")}"" --save ""{saveAs}"" --mzdiff ""{tolerance}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
-        Dim progress As New frmTaskProgress
+        Dim progress As New TaskProgress
 
         progress.ShowProgressTitle("RGB Ions MS-Imaging", directAccess:=True)
         progress.ShowProgressDetails("Do plot of target ion m/z set...", directAccess:=True)
@@ -239,7 +238,7 @@ Public Class RscriptProgressTask
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSImaging/singleIon.R")
         Dim cli As String = $"""{Rscript}"" --app {WindowModules.viewer.MSIservice.appPort} --mzlist ""{mz}"" --save ""{saveAs}"" --backcolor ""{background}"" --colors ""{colorSet}"" --mzdiff ""{tolerance}"" --title ""{title}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
-        Dim progress As New frmTaskProgress
+        Dim progress As New TaskProgress
 
         progress.ShowProgressTitle("Single Ion MSImaging", directAccess:=True)
         progress.ShowProgressDetails("Do plot of target ion m/z...", directAccess:=True)
@@ -270,7 +269,7 @@ Public Class RscriptProgressTask
         Dim jsontmp As String = TempFileSystem.GetAppSysTempFile(".heatmap")
         Dim cli As String = $"""{Rscript}"" --bitmap ""{imagetmp}"" --channels {channels.Select(Function(c) c.ToHtmlColor).JoinBy(";")} --save ""{jsontmp}"""
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
-        Dim progress As New frmTaskProgress
+        Dim progress As New TaskProgress
 
         Call bitmap.SaveAs(imagetmp)
 
@@ -320,7 +319,7 @@ Public Class RscriptProgressTask
 --mzdiff ""{tolerance}"" 
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
-        Dim progress As New frmTaskProgress
+        Dim progress As New TaskProgress
 
         Call mzSet.GetJson.SaveTo(mzfile)
 
@@ -358,7 +357,7 @@ Public Class RscriptProgressTask
             Call regions.ExportTissueMaps(regions.dimension, buffer)
         End Using
 
-        Dim progress As New frmTaskProgress
+        Dim progress As New TaskProgress
 
         progress.ShowProgressTitle("Create MSI sampletable...", directAccess:=True)
         progress.ShowProgressDetails("Loading MSI raw data file into viewer workspace...", directAccess:=True)
@@ -390,7 +389,7 @@ Public Class RscriptProgressTask
         Dim Rscript As String = RscriptPipelineTask.GetRScript("ggplot/ggplot_ionStatMSI.R")
         Dim cli As String = $"""{Rscript}"" --app {WindowModules.viewer.MSIservice.appPort} --mzlist ""{mz}"" --backcolor ""{background}"" --colors ""{colorSet}"" --mzdiff ""{tolerance}"" --data ""{tempfile}"" --save ""{imageOut}"" --title ""{title}"" --plot ""{type}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
-        Dim progress As New frmTaskProgress
+        Dim progress As New TaskProgress
 
         progress.ShowProgressTitle("Create MSI sample table...", directAccess:=True)
         progress.ShowProgressDetails("Loading MSI raw data file into viewer workspace...", directAccess:=True)
@@ -421,7 +420,7 @@ Public Class RscriptProgressTask
         Dim Rscript As String = RscriptPipelineTask.GetRScript("ggplot/ggplot2.R")
         Dim cli As String = $"""{Rscript}"" --data ""{tempfile}"" --save ""{imageOut}"" --title ""{title}"" --plot ""{type}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
-        Dim progress As New frmTaskProgress
+        Dim progress As New TaskProgress
 
         progress.ShowProgressTitle("Create MSI sample table...", directAccess:=True)
         progress.ShowProgressDetails("Loading MSI raw data file into viewer workspace...", directAccess:=True)
@@ -451,7 +450,7 @@ Public Class RscriptProgressTask
         Dim Rscript As String = RscriptPipelineTask.GetRScript("ggplot/ggplot_scatter3D.R")
         Dim cli As String = $"""{Rscript}"" --matrix ""{data}"" --png ""{imageOut}"" --title ""{title}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
-        Dim progress As New frmTaskProgress
+        Dim progress As New TaskProgress
 
         progress.ShowProgressTitle("Create scatter 3d plot...", directAccess:=True)
         progress.ShowProgressDetails("Run scater data plot and 3d rendering...", directAccess:=True)

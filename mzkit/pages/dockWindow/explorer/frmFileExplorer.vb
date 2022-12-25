@@ -77,6 +77,7 @@ Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Language.C
 Imports Microsoft.VisualBasic.Text
+Imports Mzkit_win32.BasicMDIForm
 Imports PipelineHost
 Imports RibbonLib.Interop
 Imports Task
@@ -262,7 +263,7 @@ Public Class frmFileExplorer
     ''' <param name="fileName"></param>
     ''' <returns></returns>
     Public Shared Function getRawCache(fileName As String, Optional titleTemplate$ = "Imports raw data [%s]", Optional cachePath As String = Nothing) As MZWork.Raw
-        Dim progress As New frmTaskProgress() With {.Text = sprintf(titleTemplate, fileName)}
+        Dim progress As New TaskProgress() With {.Text = sprintf(titleTemplate, fileName)}
         Dim showProgress As Action(Of String) = AddressOf progress.ShowProgressDetails
         Dim task As New Task.ImportsRawData(
             file:=fileName,
@@ -573,7 +574,7 @@ Public Class frmFileExplorer
     Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
         Using file As New SaveFileDialog With {.Filter = "MZkit workspace(*.mzWork)|*.mzWork"}
             If file.ShowDialog = DialogResult.OK Then
-                Call frmTaskProgress.LoadData(
+                Call TaskProgress.LoadData(
                     streamLoad:=Function(msg)
                                     Return MZWorkPack.ExportWorkspace(
                                         workspace:=Globals.workspace.work,
@@ -591,7 +592,7 @@ Public Class frmFileExplorer
 
     Private Sub ShowSummaryToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowSummaryToolStripMenuItem.Click
         Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)
-        Dim spinner As New frmProgressSpinner
+        Dim spinner As New ProgressSpinner
 
         table.ViewRow =
             Sub(row)
@@ -665,7 +666,7 @@ Public Class frmFileExplorer
                     Using file As Stream = save.FileName.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False),
                         writer As New mzXMLWriter({}, {}, {}, file)
 
-                        Call frmTaskProgress _
+                        Call TaskProgress _
                             .LoadData(
                                 streamLoad:=Function(s)
                                                 Call writer.WriteData(mzPack.MS, print:=s)
@@ -697,7 +698,7 @@ Public Class frmFileExplorer
             Dim mzpack As String = raw.cache
             Dim tempTable As String = TempFileSystem.GetAppSysTempFile(".csv", raw.cache.MD5, prefix:=$"{App.PID}_deconv_peaktable_")
             Dim cli As String = $"""{RscriptPipelineTask.GetRScript("MS1deconv.R")}"" --raw ""{mzpack}"" --save ""{tempTable}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
-            Dim data As PeakFeature() = frmTaskProgress.LoadData(
+            Dim data As PeakFeature() = TaskProgress.LoadData(
                     Function(println)
                         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
@@ -754,7 +755,7 @@ Public Class frmFileExplorer
             Dim raw = DirectCast(node.Tag, MZWork.Raw)
             Dim mzpackfile As String = raw.cache
             Dim similarityCutoff As Double = MyApplication.host.ribbonItems.SpinnerSimilarity.DecimalValue
-            Dim progress As New frmTaskProgress
+            Dim progress As New TaskProgress
             Dim page As PageMzkitTools = MyApplication.mzkitRawViewer
             Dim getRaw As Func(Of Action(Of String), IEnumerable(Of PeakMs2)) =
                 Iterator Function(println)

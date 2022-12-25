@@ -1,57 +1,57 @@
 ﻿#Region "Microsoft.VisualBasic::9c5002c067d9b9c698dba1775621ae8a, mzkit\src\mzkit\mzkit\pages\dockWindow\documents\frmGCMS_CDFExplorer.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 94
-    '    Code Lines: 76
-    ' Comment Lines: 0
-    '   Blank Lines: 18
-    '     File Size: 3.41 KB
+' Summaries:
 
 
-    ' Class frmGCMS_CDFExplorer
-    ' 
-    '     Function: loadCDF
-    ' 
-    '     Sub: CopyFullPath, frmGCMS_CDFExplorer_Closing, frmGCMS_CDFExplorer_Load, loadCDF, OpenContainingFolder
-    '          RtRangeSelector1_RangeSelect, SetRange
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 94
+'    Code Lines: 76
+' Comment Lines: 0
+'   Blank Lines: 18
+'     File Size: 3.41 KB
+
+
+' Class frmGCMS_CDFExplorer
+' 
+'     Function: loadCDF
+' 
+'     Sub: CopyFullPath, frmGCMS_CDFExplorer_Closing, frmGCMS_CDFExplorer_Load, loadCDF, OpenContainingFolder
+'          RtRangeSelector1_RangeSelect, SetRange
+' 
+' /********************************************************************************/
 
 #End Region
 
@@ -63,6 +63,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.Imaging
+Imports Mzkit_win32.BasicMDIForm
 Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmGCMS_CDFExplorer
@@ -74,7 +75,7 @@ Public Class frmGCMS_CDFExplorer
 
         If file.ExtensionSuffix("cdf") Then
             If file.FileLength > 1024 * 512 AndAlso Not isBackground Then
-                gcms = frmTaskProgress.LoadData(Function() netCDFReader.Open(file).ReadData(showSummary:=False), info:=file.GetFullPath)
+                gcms = TaskProgress.LoadData(Function() netCDFReader.Open(file).ReadData(showSummary:=False), info:=file.GetFullPath)
             Else
                 gcms = netCDFReader.Open(file).ReadData(showSummary:=False)
             End If

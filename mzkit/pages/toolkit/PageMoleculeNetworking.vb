@@ -77,6 +77,7 @@ Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Language
+Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Interop
 Imports WeifenLuo.WinFormsUI.Docking
 Imports stdNum = System.Math
@@ -196,7 +197,7 @@ Public Class PageMoleculeNetworking
         End If
 
         Dim similarityCutoff As Double = MyApplication.host.ribbonItems.SpinnerSimilarity.DecimalValue
-        Dim buzy As New frmProgressSpinner
+        Dim buzy As New ProgressSpinner
 
         Call New Thread(Sub()
                             Call Thread.Sleep(500)

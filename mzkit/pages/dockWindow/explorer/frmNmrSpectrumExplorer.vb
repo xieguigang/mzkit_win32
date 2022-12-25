@@ -1,6 +1,7 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.nmrML
 Imports BioNovoGene.mzkit_win32.My
+Imports Mzkit_win32.BasicMDIForm
 Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmNmrSpectrumExplorer
@@ -54,7 +55,7 @@ Public Class frmNmrSpectrumExplorer
             Dim matrix = data.ParseMatrix(SW:=sw)
             matrix.name = $"NMR {e.Node.Text}"
 
-            Call frmProgressSpinner.DoLoading(
+            Call ProgressSpinner.DoLoading(
                 Sub()
                     MyApplication.host.mzkitTool.showMatrix(matrix.ms2, matrix.name, nmr:=True)
                     MyApplication.host.mzkitTool.PlotSpectrum(matrix, focusOn:=True, nmr:=True)

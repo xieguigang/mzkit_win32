@@ -60,6 +60,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Linq
+Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Interop
 Imports Task
 
@@ -93,7 +94,7 @@ Module FeatureSearchHandler
                     )
                 End Sub)
         Else
-            Call frmProgressSpinner.DoLoading(
+            Call ProgressSpinner.DoLoading(
                 Sub()
                     For Each file As MZWork.Raw In files
                         Dim result = MatchByFormula(formula, file, ppm).ToArray
