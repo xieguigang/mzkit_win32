@@ -181,7 +181,7 @@ Module RibbonEvents
         AddHandler ribbonItems.DOIReference.ExecuteEvent, Sub() Call New frmDOI().ShowDialog()
         AddHandler ribbonItems.ButtonSystemDiagnosis.ExecuteEvent, Sub() Call CollectSystemInformation()
 
-        AddHandler ribbonItems.ButtonCFMIDTool.ExecuteEvent, Sub() Call OpenCFMIDTool(Nothing, Nothing)
+        AddHandler ribbonItems.ButtonCFMIDTool.ExecuteEvent, Sub() Call OpenCFMIDTool(Nothing)
         AddHandler ribbonItems.MsconvertGUI.ExecuteEvent, Sub() Call openMsconvertTool()
         AddHandler ribbonItems.View3DMALDI.ExecuteEvent, Sub() Call open3dMALDIViewer()
     End Sub
@@ -189,6 +189,7 @@ Module RibbonEvents
     Sub New()
         ExportApis._openMSImagingFile = AddressOf OpenMSIRaw
         ExportApis._openMSImagingViewer = AddressOf showMsImaging
+        ExportApis._openCFMIDTool = AddressOf OpenCFMIDTool
     End Sub
 
     Private Sub open3dMALDIViewer()
@@ -219,10 +220,7 @@ Module RibbonEvents
     ''' <param name="struct">
     ''' molecule structrue string to run prediction
     ''' </param>
-    ''' <param name="type">
-    ''' smiles/inchi
-    ''' </param>
-    Public Sub OpenCFMIDTool(struct As String, type As String)
+    Public Sub OpenCFMIDTool(struct As String)
         Dim tool As New InputCFMIDTool
 
         If Not struct.StringEmpty Then

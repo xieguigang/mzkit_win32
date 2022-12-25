@@ -170,7 +170,7 @@ Public Class frmSMILESViewer
                             TextBox1.Text = localfile.ReadAllText.Trim(" "c, vbCr, vbLf, vbTab)
 
                             Call Button1_Click(Nothing, Nothing)
-                            Call OpenCFMIDTool(TextBox1.Text, type)
+                            Call OpenCFMIDTool(TextBox1.Text)
                         End If
                 End Select
             End Sub
@@ -216,6 +216,6 @@ Public Class frmSMILESViewer
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        Call OpenCFMIDTool(TextBox1.Text, "smiles")
+        Call OpenCFMIDTool(TextBox1.Text)
     End Sub
 End Class

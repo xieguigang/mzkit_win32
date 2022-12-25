@@ -12,9 +12,18 @@ Public Module ExportApis
     Friend _openMSImagingViewer As Action
     Friend _getHEMapTool As Func(Of ToolStripWindow)
     Friend _getHEMapImage As Func(Of Bitmap)
+    Friend _openCFMIDTool As Action(Of String)
 #End Region
 
     Public Event OpenHEMapTool(tool As ToolStripWindow)
+
+    Friend Sub OpenCFMIDTool(struct As String)
+        If _openCFMIDTool Is Nothing Then
+            Call MZKitWorkbenchIsNotRunning()
+        Else
+            Call _openCFMIDTool(struct)
+        End If
+    End Sub
 
     Friend Sub _openHEMapTool(tool As ToolStripWindow)
         RaiseEvent OpenHEMapTool(tool)
