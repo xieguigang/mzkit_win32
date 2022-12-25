@@ -286,7 +286,7 @@ Type 'q()' to quit R.
                 _REngine = RInterpreter.FromEnvironmentConfiguration(configs:=R_LIBS_USER)
 
                 ' install the required packages
-                Call InstallPackageRelease()
+                Call VisualStudio.InstallInternalRPackages()
             End If
 
             _REngine.strict = False
@@ -389,20 +389,6 @@ Type 'q()' to quit R.
                 Return dirDev2
             End If
         End Function
-
-        Public Shared Sub InstallPackageRelease()
-            Dim dir As String = CheckPkgFolder(pkgs)
-
-            For Each fileName As String In pkgs
-                Dim file As String = $"{dir}/{fileName}"
-
-                If file.FileExists Then
-                    Call REngine.Invoke("install.packages", {file}, REngine.globalEnvir)
-                Else
-                    host.showStatusMessage($"missing R# package release file: '{fileName}'!", My.Resources.StatusAnnotations_Warning_32xLG_color)
-                End If
-            Next
-        End Sub
 
         Friend Shared afterLoad As Action
 

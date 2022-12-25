@@ -66,7 +66,6 @@ Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MSP
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
-Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.RibbonLib.Controls
 Imports Microsoft.VisualBasic.ApplicationServices
@@ -77,7 +76,6 @@ Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib
 Imports RibbonLib.Controls.Events
 Imports RibbonLib.Interop
-Imports SMRUCC.Rsharp.Runtime.Internal.Invokes
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 
@@ -166,7 +164,7 @@ Module RibbonEvents
 
         AddHandler ribbonItems.LogInBioDeep.ExecuteEvent, Sub() Call New frmLogin().ShowDialog()
 
-        AddHandler ribbonItems.ButtonInstallMzkitPackage.ExecuteEvent, AddressOf MyApplication.InstallPackageRelease
+        AddHandler ribbonItems.ButtonInstallMzkitPackage.ExecuteEvent, AddressOf VisualStudio.InstallInternalRPackages
         AddHandler ribbonItems.ShowGCMSExplorer.ExecuteEvent, Sub() Call VisualStudio.Dock(WindowModules.GCMSPeaks, DockState.DockLeft)
         AddHandler ribbonItems.ShowMRMExplorer.ExecuteEvent, Sub() Call VisualStudio.Dock(WindowModules.MRMIons, DockState.DockLeft)
 

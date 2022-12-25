@@ -59,6 +59,7 @@
 #End Region
 
 Imports BioNovoGene.mzkit_win32.My
+Imports Microsoft.VisualBasic.ApplicationServices
 Imports Mzkit_win32.BasicMDIForm
 Imports WeifenLuo.WinFormsUI.Docking
 
@@ -155,5 +156,51 @@ Public Class VisualStudio
         WindowModules.RtermPage.DockState = DockState.Document
 
         MyApplication.host.Text = $"BioNovoGene Mzkit [{WindowModules.RtermPage.Text}]"
+    End Sub
+
+    ''' <summary>
+    ''' init
+    ''' </summary>
+    Public Shared Sub InstallInternalRPackages()
+        Dim script As String = $"{App.HOME}\Rstudio\packages\install_locals.cmd"
+
+        If Not script.FileExists Then
+            Return
+        End If
+
+        'Call frmTaskProgress.LoadData(
+        '    streamLoad:=Function(log)
+        '                    Call PipelineProcess.ExecSub(
+        '                        app:="cmd.exe",
+        '                        args:=script,
+        '                        onReadLine:=Sub(line)
+        '                                        Call MyApplication.LogText(line)
+        '                                        Call log(line)
+        '                                        Call Application.DoEvents()
+        '                                    End Sub,
+        '                        workdir:=script.ParentPath
+        '                    )
+
+        '                    Globals.Settings.version = Globals.BuildTime
+        '                    Globals.Settings.Save()
+
+        '                    Return Nothing
+        '                End Function,
+        '    title:="Install Local Packages...",
+        '    info:="Install local packages into R# runtime..."
+        ')
+        Dim task As New ProcessStartInfo With {
+            .Arguments = $"/c CALL {script.GetFullPath.CLIPath}",
+            .CreateNoWindow = False,
+            .FileName = Environment.SystemDirectory & "\cmd.exe",
+            .UseShellExecute = False,
+            .WindowStyle = ProcessWindowStyle.Normal,
+            .WorkingDirectory = script.ParentPath
+        }
+
+        Call Process.Start(task)
+
+        Globals.Settings.version = Globals.BuildTime
+        Globals.Settings.Save()
     End Sub
 End Class

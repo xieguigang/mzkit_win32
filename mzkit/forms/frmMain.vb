@@ -65,6 +65,7 @@
 
 Imports System.ComponentModel
 Imports System.IO
+Imports System.Runtime.CompilerServices
 Imports System.Text
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
@@ -147,6 +148,7 @@ Public Class frmMain : Implements AppHost
         End If
     End Sub
 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Friend Sub warning(v As String) Implements AppHost.Warning
         Call showStatusMessage(v, My.Resources.StatusAnnotations_Warning_32xLG_color)
     End Sub
@@ -525,45 +527,7 @@ Public Class frmMain : Implements AppHost
         End If
 
         If Globals.Settings.version < Globals.BuildTime Then
-            ' init
-            Dim script As String = $"{App.HOME}\Rstudio\packages\install_locals.cmd"
-
-            If script.FileExists Then
-                'Call frmTaskProgress.LoadData(
-                '    streamLoad:=Function(log)
-                '                    Call PipelineProcess.ExecSub(
-                '                        app:="cmd.exe",
-                '                        args:=script,
-                '                        onReadLine:=Sub(line)
-                '                                        Call MyApplication.LogText(line)
-                '                                        Call log(line)
-                '                                        Call Application.DoEvents()
-                '                                    End Sub,
-                '                        workdir:=script.ParentPath
-                '                    )
-
-                '                    Globals.Settings.version = Globals.BuildTime
-                '                    Globals.Settings.Save()
-
-                '                    Return Nothing
-                '                End Function,
-                '    title:="Install Local Packages...",
-                '    info:="Install local packages into R# runtime..."
-                ')
-                Dim task As New ProcessStartInfo With {
-                    .Arguments = $"/c CALL {script.GetFullPath.CLIPath}",
-                    .CreateNoWindow = False,
-                    .FileName = Environment.SystemDirectory & "\cmd.exe",
-                    .UseShellExecute = False,
-                    .WindowStyle = ProcessWindowStyle.Normal,
-                    .WorkingDirectory = script.ParentPath
-                }
-
-                Call Process.Start(task)
-
-                Globals.Settings.version = Globals.BuildTime
-                Globals.Settings.Save()
-            End If
+            Call VisualStudio.InstallInternalRPackages()
         End If
     End Sub
 
