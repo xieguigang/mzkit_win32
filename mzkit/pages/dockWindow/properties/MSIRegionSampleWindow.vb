@@ -381,4 +381,14 @@ Public Class MSIRegionSampleWindow
             card.Width = newW
         Next
     End Sub
+
+    Public Function GetTissueTag(x As Integer, y As Integer) As String
+        For Each card As RegionSampleCard In FlowLayoutPanel1.Controls
+            If card.PixelPointInside(x, y) Then
+                Return card.SampleInfo
+            End If
+        Next
+
+        Return Nothing
+    End Function
 End Class

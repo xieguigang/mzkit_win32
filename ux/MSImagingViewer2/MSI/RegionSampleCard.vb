@@ -32,6 +32,24 @@ Public Class RegionSampleCard
     Friend updateCallback As Action
     Friend tissue As TissueRegion
 
+    Public Function PixelPointInside(x As Integer, y As Integer) As Boolean
+        If regions.IsNullOrEmpty Then
+            If tissue Is Nothing Then
+                Return False
+            Else
+                Return tissue.IsInside(x, y)
+            End If
+        Else
+            For Each r As Polygon2D In regions
+                If r.inside(x, y) Then
+                    Return True
+                End If
+            Next
+
+            Return False
+        End If
+    End Function
+
     ''' <summary>
     ''' make polygon shape object raster matrix
     ''' </summary>

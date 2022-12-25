@@ -170,7 +170,16 @@ Public Class SpatialTile
         Me.CanvasOnPaintBackground()
     End Sub
 
-    Public Event GetSpatialMetabolismPoint(smXY As Point, ByRef x As Integer, ByRef y As Integer)
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="smXY">XY on SMdata imaging view</param>
+    ''' <param name="x">the scan x of the SMdata</param>
+    ''' <param name="y">the scan y of the SMdata</param>
+    ''' <param name="tissueMorphology">
+    ''' the tissue morphology tag data of current point x,y
+    ''' </param>
+    Public Event GetSpatialMetabolismPoint(smXY As Point, ByRef x As Integer, ByRef y As Integer, ByRef tissueMorphology As String)
     Public Event ClickSpatialMetabolismPixel(smXY As Point, ByRef x As Integer, ByRef y As Integer)
 
     Private Sub SpatialTile_MouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseClick
@@ -194,9 +203,10 @@ Public Class SpatialTile
             Dim smXY As New Point(Left + e.X, Top + e.Y)
             Dim barcode As String
             Dim spot As SpaceSpot
+            Dim tag As String = Nothing
 
             ' get pixel in SMdata
-            RaiseEvent GetSpatialMetabolismPoint(smXY, smX, smY)
+            RaiseEvent GetSpatialMetabolismPoint(smXY, smX, smY, tag)
 
             ' get spot in STdata
             Call PixelSelector.getPoint(New Point(e.X, e.Y), dimensions, Me.Size, x, y)
@@ -209,7 +219,11 @@ Public Class SpatialTile
                 barcode = spot.barcode
             End If
 
-            Call ToolTip1.SetToolTip(Me, $"[STdata spot: ({x + offset.X},{y + offset.Y}) {barcode}] -> [MALDI pixel: ({smX},{smY})]")
+            If tag.StringEmpty Then
+                Call ToolTip1.SetToolTip(Me, $"[STdata spot: ({x + offset.X},{y + offset.Y}) {barcode}] -> [MALDI pixel: ({smX},{smY})]")
+            Else
+                Call ToolTip1.SetToolTip(Me, $"[STdata spot: ({x + offset.X},{y + offset.Y}) {barcode}] -> [MALDI pixel: ({smX},{smY})@{tag}]")
+            End If
         End If
     End Sub
 
@@ -270,14 +284,17 @@ Public Class SpatialTile
             Dim clientXY As New PointF With {.X = spot.px * radiusX * 2, .Y = spot.py * radiusY * 2}
             Dim pixels As New List(Of Point)
             Dim originalSpot As PointF = rotationRaw(++i)
+            Dim tags As New List(Of String)
 
             For x As Integer = clientXY.X - radiusX To clientXY.X + radiusX
                 For y As Integer = clientXY.Y - radiusY To clientXY.Y + radiusY
                     Dim SMXY As New Point(x + left, y + top)
                     Dim smX, smY As Integer
+                    Dim tag As String = Nothing
 
-                    RaiseEvent GetSpatialMetabolismPoint(SMXY, smX, smY)
+                    RaiseEvent GetSpatialMetabolismPoint(SMXY, smX, smY, tag)
 
+                    Call tags.Add(tag)
                     Call pixels.Add(New Point(smX, smY))
                 Next
             Next
@@ -294,7 +311,13 @@ Public Class SpatialTile
                 .barcode = spot.barcode,
                 .flag = spot.flag,
                 .physicalXY = {spot.x, spot.y},
-                .spotXY = {originalSpot.X, originalSpot.Y}
+                .spotXY = {originalSpot.X, originalSpot.Y},
+                .TissueMorphology = tags _
+                    .Where(Function(a) Not a.StringEmpty) _
+                    .GroupBy(Function(tag) tag) _
+                    .OrderByDescending(Function(g) g.Count) _
+                    .FirstOrDefault _
+                   ?.Key
             }
         Next
     End Function

@@ -1257,6 +1257,10 @@ Public Class frmMsImagingViewer
 
     Friend clickPixel As Action(Of Integer, Integer, Color)
 
+    Private Sub PixelSelector1_GetPixelTissueMorphology(x As Integer, y As Integer, ByRef tag As String) Handles PixelSelector1.GetPixelTissueMorphology
+        tag = sampleRegions.GetTissueTag(x, y)
+    End Sub
+
     Private Sub showPixel(x As Integer, y As Integer, color As Color) Handles PixelSelector1.SelectPixel
         If Not clickPixel Is Nothing Then
             clickPixel(x, y, color)

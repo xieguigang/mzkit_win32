@@ -75,7 +75,6 @@ Imports System.Drawing.Drawing2D
 Imports System.Runtime.CompilerServices
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.Imaging
-Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Mzkit_win32.MSImagingViewerV2.PolygonEditor
 Imports STImaging
@@ -88,6 +87,7 @@ Public Class PixelSelector
     Public Event SelectPixel(x As Integer, y As Integer, pixel As Color)
     Public Event SelectPixelRegion(region As Rectangle)
     Public Event SelectPolygon(polygon As PointF())
+    Public Event GetPixelTissueMorphology(x As Integer, y As Integer, ByRef tag As String)
 
     Private menuOption As MenuOption = MenuOption.MoveComponent
     Private relation As Relation = Relation.None
@@ -1379,6 +1379,18 @@ Public Class PixelSelector
         End If
 
         DrawSelectionBox(e.Location)
+    End Sub
+
+    ''' <summary>
+    ''' transform scaler
+    ''' </summary>
+    ''' <param name="e"></param>
+    ''' <param name="xpoint"></param>
+    ''' <param name="ypoint"></param>
+    Private Sub getPoint(e As Point, ByRef xpoint As Integer, ByRef ypoint As Integer, ByRef tag As String)
+        Call getPoint(e, xpoint, ypoint)
+
+        RaiseEvent GetPixelTissueMorphology(xpoint, ypoint, tag)
     End Sub
 
     ''' <summary>

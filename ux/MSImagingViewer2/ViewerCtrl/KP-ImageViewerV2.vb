@@ -1004,6 +1004,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
     Public Event SelectPixelRegion(region As Rectangle)
     Public Event SelectPixel(x As Integer, y As Integer, color As Color)
     Public Event SelectPolygon(polygon() As PointF)
+    Public Event GetPixelTissueMorphology(x As Integer, y As Integer, ByRef tag As String)
 
     Private Sub KpImageViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         MSICanvas.ViewerHost = Me
@@ -1051,6 +1052,10 @@ Partial Public Class KpImageViewer : Inherits UserControl
         Dim tag As String = tagObj.ToString
 
         RaiseEvent SelectSample(tag)
+    End Sub
+
+    Private Sub MSICanvas_GetPixelTissueMorphology(x As Integer, y As Integer, ByRef tag As String) Handles MSICanvas.GetPixelTissueMorphology
+        RaiseEvent GetPixelTissueMorphology(x, y, tag)
     End Sub
 End Class
 
