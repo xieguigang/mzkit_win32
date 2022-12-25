@@ -543,12 +543,6 @@
     <Compile Include="forms\Task\MSSearchTask.vb" />
     <Compile Include="forms\Task\TaskbarStatus.vb" />
     <Compile Include="forms\Task\RscriptProgressTask.vb" />
-    <Compile Include="forms\Task\frmProgressSpinner.Designer.vb">
-      <DependentUpon>frmProgressSpinner.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\Task\frmProgressSpinner.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="forms\frmLicense.Designer.vb">
       <DependentUpon>frmLicense.vb</DependentUpon>
     </Compile>
@@ -904,12 +898,6 @@
     <Compile Include="forms\frmMain.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Task\frmTaskProgress.Designer.vb">
-      <DependentUpon>frmTaskProgress.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\Task\frmTaskProgress.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="forms\frmSplashScreen.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -1057,9 +1045,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\ShowColumnStat.resx">
       <DependentUpon>ShowColumnStat.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\Task\frmProgressSpinner.resx">
-      <DependentUpon>frmProgressSpinner.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmTweaks\frmMsImagingTweaks.resx">
       <DependentUpon>frmMsImagingTweaks.vb</DependentUpon>
@@ -1216,9 +1201,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\toolkit\PageMzSearch.resx">
       <DependentUpon>PageMzSearch.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\Task\frmTaskProgress.resx">
-      <DependentUpon>frmTaskProgress.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmSplashScreen.resx">
       <DependentUpon>frmSplashScreen.vb</DependentUpon>

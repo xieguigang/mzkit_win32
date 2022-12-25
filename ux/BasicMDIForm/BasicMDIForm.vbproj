@@ -148,6 +148,18 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AppHost.vb" />
+    <Compile Include="buzyIndicator\frmProgressSpinner.Designer.vb">
+      <DependentUpon>frmProgressSpinner.vb</DependentUpon>
+    </Compile>
+    <Compile Include="buzyIndicator\frmProgressSpinner.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="buzyIndicator\frmTaskProgress.Designer.vb">
+      <DependentUpon>frmTaskProgress.vb</DependentUpon>
+    </Compile>
+    <Compile Include="buzyIndicator\frmTaskProgress.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="dialogs\InputDialog.Designer.vb">
       <DependentUpon>InputDialog.vb</DependentUpon>
     </Compile>
@@ -197,6 +209,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="base\ToolWindow.resx">
       <DependentUpon>ToolWindow.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="buzyIndicator\frmProgressSpinner.resx">
+      <DependentUpon>frmProgressSpinner.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="buzyIndicator\frmTaskProgress.resx">
+      <DependentUpon>frmTaskProgress.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="dialogs\InputDialog.resx">
       <DependentUpon>InputDialog.vb</DependentUpon>
