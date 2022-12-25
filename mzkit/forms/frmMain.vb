@@ -703,6 +703,12 @@ Public Class frmMain : Implements AppHost
         End Get
     End Property
 
+    Private ReadOnly Property AppHost_ClientRectangle As Rectangle Implements AppHost.ClientRectangle
+        Get
+            Return New Rectangle(Location, Size)
+        End Get
+    End Property
+
     Public Sub ShowPropertyWindow()
         VisualStudio.Dock(WindowModules.propertyWin, DockState.DockRight)
     End Sub

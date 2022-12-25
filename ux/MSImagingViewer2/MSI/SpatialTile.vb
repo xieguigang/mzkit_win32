@@ -8,6 +8,7 @@ Imports Microsoft.VisualBasic.Imaging.BitmapImage
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
+Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports STImaging
 
@@ -260,14 +261,17 @@ Public Class SpatialTile
     Private Sub ExportSpatialMappingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportSpatialMappingToolStripMenuItem.Click
         Using file As New SaveFileDialog With {.Filter = "Spatial Mapping Matrix(*.xml)|*.xml", .FileName = $"{Label1.Text}.xml"}
             If file.ShowDialog = DialogResult.OK Then
-                Call New SpatialMapping With {
-                    .spots = GetMapping.ToArray,
-                    .label = Label1.Text,
-                    .transform = transforms,
-                    .color = SpotColor.ToHtmlColor
-                } _
-                .GetXml _
-                .SaveTo(file.FileName)
+                Call frmProgressSpinner.DoLoading(
+                    Sub()
+                        Call New SpatialMapping With {
+                            .spots = GetMapping.ToArray,
+                            .label = Label1.Text,
+                            .transform = transforms,
+                            .color = SpotColor.ToHtmlColor
+                        } _
+                        .GetXml _
+                        .SaveTo(file.FileName)
+                    End Sub)
             End If
         End Using
     End Sub
