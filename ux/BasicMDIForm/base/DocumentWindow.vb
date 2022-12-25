@@ -54,15 +54,22 @@
 #End Region
 
 Imports Microsoft.Windows.Taskbar
-Imports BioNovoGene.mzkit_win32.My
 Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class DocumentWindow
 
-    Friend WithEvents VS2015LightTheme1 As New VS2015LightTheme
-    Friend WithEvents VisualStudioToolStripExtender1 As VisualStudioToolStripExtender
+    Protected Friend WithEvents VS2015LightTheme1 As New VS2015LightTheme
+    Protected Friend WithEvents VisualStudioToolStripExtender1 As VisualStudioToolStripExtender
 
     Public Event CloseDocument()
+
+    Public Function GetVS2015LightTheme1() As VS2015LightTheme
+        Return VS2015LightTheme1
+    End Function
+
+    Public Function GetVisualStudioToolStripExtender1() As VisualStudioToolStripExtender
+        Return VisualStudioToolStripExtender1
+    End Function
 
     Protected Sub ApplyVsTheme(ParamArray items As ToolStrip())
         For Each item In items
@@ -111,7 +118,7 @@ Public Class DocumentWindow
     End Sub
 
     Private Sub CloseAllButThisToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloseAllButThisToolStripMenuItem.Click
-        For Each tab As IDockContent In MyApplication.host.dockPanel.Documents.ToArray
+        For Each tab As IDockContent In Workbench.AppHost.DockPanel.Documents.ToArray
             If Not TypeOf tab Is ToolWindow Then
                 If Not tab Is Me Then
                     Call DirectCast(tab, Form).Close()
@@ -121,7 +128,7 @@ Public Class DocumentWindow
     End Sub
 
     Private Sub CloseAllDocumentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloseAllDocumentsToolStripMenuItem.Click
-        For Each tab As IDockContent In MyApplication.host.dockPanel.Documents.ToArray
+        For Each tab As IDockContent In Workbench.AppHost.DockPanel.Documents.ToArray
             If Not TypeOf tab Is ToolWindow Then
                 Call DirectCast(tab, Form).Close()
             End If

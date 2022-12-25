@@ -97,6 +97,8 @@ Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Text
 Imports mzblender
+Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports ServiceHub
 Imports STImaging
 Imports Task
@@ -184,7 +186,7 @@ Public Class frmMsImagingViewer
         Call setupPolygonEditorButtons()
         Call PixelSelector1.ShowMessage("BioNovoGene MZKit MSImaging Viewer")
 
-        sampleRegions.Show(MyApplication.host.dockPanel)
+        sampleRegions.Show(MyApplication.host.m_dockPanel)
         sampleRegions.DockState = DockState.Hidden
         sampleRegions.viewer = Me
     End Sub
@@ -207,32 +209,44 @@ Public Class frmMsImagingViewer
         }
             If file.ShowDialog = DialogResult.OK Then
                 Dim files As String() = file.FileNames
-                Dim loadfiles As IEnumerable(Of mzPack) = files _
-                    .Select(Function(path)
-                                Return mzPack.Read(
-                                    filepath:=path,
-                                    ignoreThumbnail:=True,
-                                    skipMsn:=True
-                                )
-                            End Function)
+                'Dim loadfiles As IEnumerable(Of mzPack) = files _
+                '    .Select(Function(path)
+                '                Return mzPack.Read(
+                '                    filepath:=path,
+                '                    ignoreThumbnail:=True,
+                '                    skipMsn:=True
+                '                )
+                '            End Function)
 
                 Using savefile As New SaveFileDialog With {.Filter = file.Filter}
                     If savefile.ShowDialog = DialogResult.OK Then
-                        If frmTaskProgress.LoadData(Function(echo)
-                                                        Return loadfiles _
-                                                            .JoinMSISamples(println:=echo) _
-                                                            .Write(savefile.OpenFile, progress:=echo)
-                                                    End Function) Then
 
-                            If MessageBox.Show("MSI Raw Convert Job Done!" & vbCrLf & "Open MSI raw data file in MSI Viewer?",
-                                               "MSI Viewer",
-                                               MessageBoxButtons.YesNo,
-                                               MessageBoxIcon.Information) = DialogResult.Yes Then
+                        Dim input As New InputMSISlideLayout With {
+                            .layoutData = files.Select(AddressOf BaseName).JoinBy(","),
+                            .useFileNameAsSourceTag = True
+                        }
 
-                                Call RibbonEvents.showMsImaging()
-                                Call WindowModules.viewer.loadimzML(savefile.FileName)
-                            End If
-                        End If
+                        Call InputDialog.Input(Of InputMSISlideLayout)(
+                            Sub(config)
+                                If frmTaskProgress.LoadData(Function(echo)
+                                                                'Return loadfiles _
+                                                                '    .JoinMSISamples(println:=echo) _
+                                                                '    .Write(savefile.OpenFile, progress:=echo)
+                                                                Call RscriptProgressTask.MergeMultipleSlides(files, config.layoutData, savefile.FileName, config.useFileNameAsSourceTag, echo)
+
+                                                                Return True
+                                                            End Function) Then
+
+                                    If MessageBox.Show("MSI Raw Convert Job Done!" & vbCrLf & "Open MSI raw data file in MSI Viewer?",
+                                                       "MSI Viewer",
+                                                       MessageBoxButtons.YesNo,
+                                                       MessageBoxIcon.Information) = DialogResult.Yes Then
+
+                                        Call RibbonEvents.showMsImaging()
+                                        Call WindowModules.viewer.loadimzML(savefile.FileName)
+                                    End If
+                                End If
+                            End Sub,, config:=input)
                     End If
                 End Using
             End If
@@ -387,6 +401,10 @@ Public Class frmMsImagingViewer
             HEMap = New HEMapTools
             HEMap.Show(VisualStudio.DockPanel)
             HEMap.DockState = DockState.Hidden
+
+            ExportApis._openHEMapTool(tool:=HEMap)
+            ExportApis._getHEMapTool = Function() HEMap
+            ExportApis._getHEMapImage = Function() PixelSelector1.MSICanvas.HEMap
         End If
 
         HEMap.Clear(PixelSelector1.MSICanvas.HEMap)
@@ -578,7 +596,7 @@ Public Class frmMsImagingViewer
         End If
 
         ' check annotation data and ion data
-        Dim docs = MyApplication.host.dockPanel _
+        Dim docs = MyApplication.host.m_dockPanel _
             .Documents _
             .Where(Function(tab) TypeOf tab Is frmTableViewer) _
             .Select(Function(f) DirectCast(f, frmTableViewer)) _
@@ -1839,10 +1857,12 @@ Public Class frmMsImagingViewer
                     Dim spots As SpaceSpot() = ST_spaceranger _
                         .LoadTissueSpots(file.FileName.ReadAllLines) _
                         .ToArray
-
-                    Call PixelSelector1 _
+                    Dim tile = PixelSelector1 _
                         .MSICanvas _
                         .AddSpatialTile(spots)
+
+                    ' move the spatial tile to the mouse location
+                    tile.Location = PixelSelector1.MSICanvas.PointToClient(Cursor.Position)
                 Else
                     Dim maps As SpatialMapping = file.FileName.LoadXml(Of SpatialMapping)
 

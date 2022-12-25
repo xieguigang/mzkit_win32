@@ -274,7 +274,7 @@ Module Globals
         Dim opened As New List(Of String)
         Dim unsaved As New List(Of NamedValue)
 
-        For Each doc As IDockContent In MyApplication.host.dockPanel.Documents
+        For Each doc As IDockContent In MyApplication.host.m_dockPanel.Documents
             If TypeOf doc Is frmRScriptEdit Then
                 opened.Add(DirectCast(doc, frmRScriptEdit).scriptFile)
 

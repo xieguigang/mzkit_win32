@@ -187,7 +187,7 @@ Namespace My
             If TypeOf x Is Image Then
                 Dim viewer As New frmPlotViewer With {.TabText = "View Image"}
 
-                viewer.Show(MyApplication.host.dockPanel)
+                viewer.Show(MyApplication.host.m_dockPanel)
                 viewer.DockState = DockState.Document
             Else
                 Return Internal.debug.stop(New InvalidProgramException, env)

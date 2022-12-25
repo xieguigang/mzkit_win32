@@ -40,7 +40,7 @@ Public Class frmCFMIDOutputViewer
         Dim searchPage As New frmSpectrumSearch
         Dim msp As MspData = cluster.Tag
 
-        searchPage.Show(MyApplication.host.dockPanel)
+        searchPage.Show(MyApplication.host.m_dockPanel)
         searchPage.page.loadMs2(msp.Peaks)
         searchPage.page.runSearch()
     End Sub

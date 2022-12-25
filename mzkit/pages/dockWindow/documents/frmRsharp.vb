@@ -93,7 +93,7 @@ Public Class frmRsharp
     End Sub
 
     Public Sub ShowPage()
-        Me.Show(MyApplication.host.dockPanel)
+        Me.Show(MyApplication.host.m_dockPanel)
         DockState = DockState.Document
     End Sub
 

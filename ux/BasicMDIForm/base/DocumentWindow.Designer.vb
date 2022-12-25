@@ -167,14 +167,15 @@ Partial Class DocumentWindow
 
     End Sub
 
-    Friend WithEvents DockContextMenuStrip1 As ContextMenuStrip
-    Friend WithEvents SaveDocumentToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents CloseToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents CloseAllDocumentsToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents CloseAllButThisToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents seperatorLine1 As ToolStripSeparator
-    Friend WithEvents CopyFullPathToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents OpenContainingFolderToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents seperatorLine2 As ToolStripSeparator
-    Friend WithEvents FloatToolStripMenuItem As ToolStripMenuItem
+    Protected Friend WithEvents DockContextMenuStrip1 As ContextMenuStrip
+    Protected Friend WithEvents SaveDocumentToolStripMenuItem As ToolStripMenuItem
+    Protected Friend WithEvents CloseToolStripMenuItem As ToolStripMenuItem
+    Protected Friend WithEvents CloseAllDocumentsToolStripMenuItem As ToolStripMenuItem
+    Protected Friend WithEvents CloseAllButThisToolStripMenuItem As ToolStripMenuItem
+    Protected Friend WithEvents seperatorLine1 As ToolStripSeparator
+    Protected Friend WithEvents CopyFullPathToolStripMenuItem As ToolStripMenuItem
+    Protected Friend WithEvents OpenContainingFolderToolStripMenuItem As ToolStripMenuItem
+    Protected Friend WithEvents seperatorLine2 As ToolStripSeparator
+    Protected Friend WithEvents FloatToolStripMenuItem As ToolStripMenuItem
+
 End Class

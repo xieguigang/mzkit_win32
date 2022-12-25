@@ -75,6 +75,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Interop
 Imports Task
 
@@ -280,7 +281,7 @@ UseCheckedList:
             Dim viewer = WindowModules.viewer
 
             Call viewer.renderRGB(r, g, b)
-            Call viewer.Show(MyApplication.host.dockPanel)
+            Call viewer.Show(MyApplication.host.m_dockPanel)
         End If
     End Sub
 

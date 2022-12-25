@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::2a2051f5d5cfcae3f58f6f8ceb194065, mzkit\src\mzkit\mzkit\forms\Inputs\InputDialog.vb"
+﻿#Region "Microsoft.VisualBasic::ebcb768b9e3995ca55b1c4ecba3ac80d, mzkit\src\mzkit\ControlLibrary\Message\MaskForm.vb"
 
 ' Author:
 ' 
@@ -37,41 +37,60 @@
 
 ' Code Statistics:
 
-'   Total Lines: 19
-'    Code Lines: 15
-' Comment Lines: 0
-'   Blank Lines: 4
-'     File Size: 731.00 B
+'   Total Lines: 34
+'    Code Lines: 22
+' Comment Lines: 2
+'   Blank Lines: 10
+'     File Size: 877.00 B
 
 
-' Class InputDialog
+' Class MaskForm
 ' 
-'     Sub: Input
+'     Constructor: (+1 Overloads) Sub New
+'     Function: ShowDialogForm
 ' 
 ' /********************************************************************************/
 
 #End Region
 
-Public Class InputDialog
+Namespace CommonDialogs
 
-    Public Shared Property MyApplicationHost As Form
+    Public Class MaskForm
 
-    Public Shared Sub Input(Of Form As {New, InputDialog})(setConfig As Action(Of Form),
-                                                           Optional cancel As Action = Nothing,
-                                                           Optional config As Form = Nothing)
+        Sub New(point As Point, size As Size)
 
-        If MyApplicationHost Is Nothing Then
-            Throw New NullReferenceException("the required main form is nothing!")
-        End If
+            ' This call is required by the designer.
+            InitializeComponent()
 
-        Dim getConfig As Form = If(config, New Form)
-        Dim mask As New MaskForm(MyApplicationHost.Location, MyApplicationHost.Size)
+            ' Add any initialization after the InitializeComponent() call.
 
-        If mask.ShowDialogForm(getConfig) = DialogResult.OK Then
-            Call setConfig(getConfig)
-        ElseIf Not cancel Is Nothing Then
-            Call cancel()
-        End If
-    End Sub
+            Opacity = 0.5
+            BackColor = Color.LightGray
+            FormBorderStyle = FormBorderStyle.None
+            StartPosition = FormStartPosition.Manual
 
-End Class
+            Dim dx As Integer = 7
+            Dim dy As Integer = 7
+
+            Me.Location = New Point(point.X + dx, point.Y)
+            Me.Size = New Size(size.Width - dx * 2, size.Height - dy)
+
+            Me.Text = ""
+            Me.ShowInTaskbar = False
+            Me.ShowIcon = False
+
+        End Sub
+
+        Public Function ShowDialogForm(dialog As Form) As DialogResult
+            Me.Show()
+            ' Me.TopMost = True
+            Me.Activate()
+            Me.BringToFront()
+
+            Dim result = dialog.ShowDialog
+            Me.Close()
+            Return result
+        End Function
+
+    End Class
+End Namespace

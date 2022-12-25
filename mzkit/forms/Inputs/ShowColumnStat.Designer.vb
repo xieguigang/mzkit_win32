@@ -52,6 +52,8 @@
 
 #End Region
 
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class ShowColumnStat
     Inherits InputDialog

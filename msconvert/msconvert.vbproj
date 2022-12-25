@@ -114,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\ConvertToMzPack.vb" />
+    <Compile Include="Commands\MergeSlides.vb" />
     <Compile Include="Commands\MSImagingRowBinds.vb" />
     <Compile Include="Program.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

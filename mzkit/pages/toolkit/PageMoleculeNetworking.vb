@@ -138,7 +138,7 @@ Public Class PageMoleculeNetworking
         viewer.showTarget = AddressOf showCluster
 
         Call viewer.SetGraph(graph, layout:=Globals.Settings.network.layout)
-        Call viewer.Show(MyApplication.host.dockPanel)
+        Call viewer.Show(MyApplication.host.m_dockPanel)
     End Sub
 
     Private Sub showCluster(v As Graph.Node)

@@ -112,7 +112,7 @@ Friend MustInherit Class WindowModules
     End Function
 
     Public Shared Sub initializeVSPanel()
-        Dim dockPanel As DockPanel = MyApplication.host.dockPanel
+        Dim dockPanel As DockPanel = MyApplication.host.m_dockPanel
 
         output.Show(dockPanel)
         MyApplication.RegisterOutput(output)

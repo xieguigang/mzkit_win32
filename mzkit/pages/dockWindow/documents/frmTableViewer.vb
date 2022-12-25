@@ -63,12 +63,12 @@
 Imports System.IO
 Imports System.Text
 Imports BioNovoGene.mzkit_win32.My
-Imports ControlLibrary
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports Zuby.ADGV
 
@@ -337,8 +337,8 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
     End Sub
 
     Private Shared Function getCurrentTable() As frmTableViewer
-        If TypeOf MyApplication.host.dockPanel.ActiveDocument Is frmTableViewer Then
-            Return MyApplication.host.dockPanel.ActiveDocument
+        If TypeOf MyApplication.host.m_dockPanel.ActiveDocument Is frmTableViewer Then
+            Return MyApplication.host.m_dockPanel.ActiveDocument
         Else
             Return Nothing
         End If

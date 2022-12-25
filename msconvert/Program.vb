@@ -3,7 +3,6 @@ Imports System.Drawing
 Imports System.IO
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
-Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging.MALDI_3D
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
@@ -22,6 +21,7 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
 
     Sub New()
         Call Thread.Sleep(2000)
+        Call FrameworkInternal.ConfigMemory(load:=MemoryLoads.Max)
     End Sub
 
     Public Function Main() As Integer
@@ -95,10 +95,26 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
         Dim mute As Boolean = args("/mute")
         Dim noSnapshot As Boolean = args("/no-thumbnail")
 
-        Call FrameworkInternal.ConfigMemory(load:=MemoryLoads.Max)
         Call ConvertToMzPack.ConvertCDF(raw, cache, saveVer:=ver, mute:=mute, skipThumbnail:=noSnapshot)
 
         Return 0
+    End Function
+
+    <ExportAPI("/join_slides")>
+    <Description("Join multiple slides into one slide mzpack raw data file")>
+    <Usage("/join_slides --files <filelist.txt> --layout <layout.txt> [--save <union.mzPack> --filename-as-source-tag]")>
+    Public Function JoinSlides(args As CommandLine) As Integer
+        Dim files As String = args <= "--files"
+        Dim layout As String = args <= "--layout"
+        Dim save As String = args("--save") Or files.ChangeSuffix(".mzPack")
+        Dim tagfileName As Boolean = args("--filename-as-source-tag")
+        Dim union As mzPack = MergeSlides.JoinDataSet(files.IterateAllLines, layout.ReadAllText, tagfileName)
+
+        Using buf As Stream = save.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
+            Call union.Write(buf, progress:=AddressOf RunSlavePipeline.SendMessage)
+        End Using
+
+        Return True
     End Function
 
     <ExportAPI("/rowbinds")>

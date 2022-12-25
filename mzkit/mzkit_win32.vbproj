@@ -392,7 +392,6 @@
     <Compile Include="application\summaryPlots\KEGGEnrichmentBarSummary.vb" />
     <Compile Include="application\summaryPlots\SummaryPlot.vb" />
     <Compile Include="application\WindowModules.vb" />
-    <Compile Include="application\TaskbarWindow.vb" />
     <Compile Include="application\settings\RawFileViewerSettings.vb" />
     <Compile Include="application\VisualStudio.vb" />
     <Compile Include="application\RPackage.vb" />
@@ -558,18 +557,6 @@
     </Compile>
     <Compile Include="forms\ISplashScreenUpdater.vb" />
     <Compile Include="pages\ConnectToBioDeep.vb" />
-    <Compile Include="pages\dockWindow\base\DocumentWindow.Designer.vb">
-      <DependentUpon>DocumentWindow.vb</DependentUpon>
-    </Compile>
-    <Compile Include="pages\dockWindow\base\DocumentWindow.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="pages\dockWindow\base\ToolWindow.Designer.vb">
-      <DependentUpon>ToolWindow.vb</DependentUpon>
-    </Compile>
-    <Compile Include="pages\dockWindow\base\ToolWindow.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="pages\dockWindow\DemoItem.vb" />
     <Compile Include="pages\dockWindow\documents\frm3DMALDIViewer.Designer.vb">
       <DependentUpon>frm3DMALDIViewer.vb</DependentUpon>
@@ -1079,12 +1066,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmTweaks\frmTweaks.resx">
       <DependentUpon>frmTweaks.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\base\DocumentWindow.resx">
-      <DependentUpon>DocumentWindow.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\base\ToolWindow.resx">
-      <DependentUpon>ToolWindow.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frm3DMALDIViewer.resx">
       <DependentUpon>frm3DMALDIViewer.vb</DependentUpon>
@@ -1690,6 +1671,10 @@
       <Project>{fd924bdc-104f-4210-ab34-38ddeaf081ad}</Project>
       <Name>deconv.NET5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\mzmath\SingleCells\SingleCells.vbproj">
+      <Project>{4c675f81-51c0-4164-8dad-e38b953990a8}</Project>
+      <Name>SingleCells</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\mzmath\TargetedMetabolomics\Targetted.NET5.vbproj">
       <Project>{373f637b-cf9f-4179-a4b4-a8a76c3454b3}</Project>
       <Name>Targetted.NET5</Name>
@@ -1749,6 +1734,10 @@
     <ProjectReference Include="..\services\Task\Task.vbproj">
       <Project>{6e5bca87-358e-4ba5-b279-de17afa52c5c}</Project>
       <Name>Task</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ux\BasicMDIForm\BasicMDIForm.vbproj">
+      <Project>{51c55c5c-2f21-4e9f-aa8d-3664135758b7}</Project>
+      <Name>BasicMDIForm</Name>
     </ProjectReference>
     <ProjectReference Include="..\ux\CommonDialogs\CommonDialogs.vbproj">
       <Project>{13685719-56a6-44f9-99a2-47cb79d29a57}</Project>

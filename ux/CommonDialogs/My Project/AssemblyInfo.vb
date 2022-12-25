@@ -9,10 +9,10 @@ Imports System.Runtime.InteropServices
 '查看程序集特性的值
 
 <Assembly: AssemblyTitle("CommonDialogs")>
-<Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("微软中国")>
+<Assembly: AssemblyDescription("Common dialogs that may shares between multiple application")>
+<Assembly: AssemblyCompany("BioNovoGene")>
 <Assembly: AssemblyProduct("CommonDialogs")>
-<Assembly: AssemblyCopyright("Copyright © 微软中国 2022")>
+<Assembly: AssemblyCopyright("Copyright © mzkit 2022")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>

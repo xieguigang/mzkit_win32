@@ -100,7 +100,7 @@ Public Class ConnectToBioDeep
         Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)
 
         table.DockState = DockState.Hidden
-        taskList.Show(MyApplication.host.dockPanel)
+        taskList.Show(MyApplication.host.m_dockPanel)
 
         VisualStudio.Dock(taskList, DockState.DockBottom)
 
@@ -113,7 +113,7 @@ Public Class ConnectToBioDeep
                 Call MetaDNASearch.RunMummichogDIA(raw, println, result)
                 Call table.Invoke(Sub()
                                       table.DockState = DockState.Document
-                                      table.Show(MyApplication.host.dockPanel)
+                                      table.Show(MyApplication.host.m_dockPanel)
                                       table.TabText = $"[Mummichog] {raw.source.FileName}"
                                   End Sub)
 
@@ -149,7 +149,7 @@ Public Class ConnectToBioDeep
         Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)
 
         table.DockState = DockState.Hidden
-        taskList.Show(MyApplication.host.dockPanel)
+        taskList.Show(MyApplication.host.m_dockPanel)
 
         VisualStudio.Dock(taskList, DockState.DockBottom)
 
@@ -163,7 +163,7 @@ Public Class ConnectToBioDeep
                 Call MetaDNASearch.RunDIA(raw, println, result, infer)
                 Call table.Invoke(Sub()
                                       table.DockState = DockState.Document
-                                      table.Show(MyApplication.host.dockPanel)
+                                      table.Show(MyApplication.host.m_dockPanel)
                                       table.TabText = $"[MetaDNA] {raw.source.FileName}"
                                   End Sub)
 

@@ -596,7 +596,7 @@ Public Class frmRawFeaturesList
         Dim ms2 As ScanMS2 = currentScan
         Dim searchPage As New frmSpectrumSearch
 
-        searchPage.Show(MyApplication.host.dockPanel)
+        searchPage.Show(MyApplication.host.m_dockPanel)
         searchPage.page.loadMs2(ms2.GetMs)
         searchPage.page.runSearch()
     End Sub

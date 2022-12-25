@@ -66,16 +66,16 @@ Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MSP
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
-Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.RibbonLib.Controls
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.Emit.Delegates
 Imports Microsoft.VisualBasic.Linq
+Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib
 Imports RibbonLib.Controls.Events
 Imports RibbonLib.Interop
-Imports SMRUCC.Rsharp.Runtime.Internal.Invokes
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 
@@ -110,7 +110,7 @@ Module RibbonEvents
         AddHandler ribbonItems.ButtonDropB.ExecuteEvent, Sub(sender, e) MyApplication.host.ShowPage(MyApplication.host.mzkitCalculator)
         AddHandler ribbonItems.ButtonFormulaSearch.ExecuteEvent, Sub(sender, e) MyApplication.host.ShowPage(MyApplication.host.mzkitSearch)
         AddHandler ribbonItems.ButtonDropD.ExecuteEvent, Sub(sender, e) MyApplication.host.ShowPage(MyApplication.host.mzkitMNtools)
-        AddHandler ribbonItems.ButtonShowSpectrumSearchPage.ExecuteEvent, Sub(sender, e) Call New frmSpectrumSearch().Show(MyApplication.host.dockPanel)
+        AddHandler ribbonItems.ButtonShowSpectrumSearchPage.ExecuteEvent, Sub(sender, e) Call New frmSpectrumSearch().Show(MyApplication.host.DockPanel)
 
         AddHandler ribbonItems.ButtonCalculatorExport.ExecuteEvent, Sub(sender, e) Call MyApplication.host.mzkitCalculator.ExportToolStripMenuItem_Click()
         AddHandler ribbonItems.ButtonExactMassSearchExport.ExecuteEvent, Sub(sender, e) Call MyApplication.host.mzkitTool.ExportExactMassSearchTable()
@@ -164,12 +164,13 @@ Module RibbonEvents
 
         AddHandler ribbonItems.LogInBioDeep.ExecuteEvent, Sub() Call New frmLogin().ShowDialog()
 
-        AddHandler ribbonItems.ButtonInstallMzkitPackage.ExecuteEvent, AddressOf MyApplication.InstallPackageRelease
+        AddHandler ribbonItems.ButtonInstallMzkitPackage.ExecuteEvent, AddressOf VisualStudio.InstallInternalRPackages
         AddHandler ribbonItems.ShowGCMSExplorer.ExecuteEvent, Sub() Call VisualStudio.Dock(WindowModules.GCMSPeaks, DockState.DockLeft)
         AddHandler ribbonItems.ShowMRMExplorer.ExecuteEvent, Sub() Call VisualStudio.Dock(WindowModules.MRMIons, DockState.DockLeft)
 
         AddHandler ribbonItems.Tutorials.ExecuteEvent, Sub() Call VisualStudio.ShowSingleDocument(Of frmVideoList)()
         AddHandler ribbonItems.ButtonViewSMILES.ExecuteEvent, Sub() Call VisualStudio.ShowSingleDocument(Of frmSMILESViewer)()
+        AddHandler ribbonItems.ButtonPluginManager.ExecuteEvent, Sub() Call VisualStudio.ShowSingleDocument(Of frmPluginMgr)()
 
         AddHandler ribbonItems.AdjustParameters.ExecuteEvent, Sub() Call VisualStudio.Dock(WindowModules.parametersTool, DockState.DockRight)
         AddHandler ribbonItems.ImportsMzwork.ExecuteEvent, Sub() Call OpenWorkspace()
@@ -178,9 +179,15 @@ Module RibbonEvents
         AddHandler ribbonItems.DOIReference.ExecuteEvent, Sub() Call New frmDOI().ShowDialog()
         AddHandler ribbonItems.ButtonSystemDiagnosis.ExecuteEvent, Sub() Call CollectSystemInformation()
 
-        AddHandler ribbonItems.ButtonCFMIDTool.ExecuteEvent, Sub() Call OpenCFMIDTool(Nothing, Nothing)
+        AddHandler ribbonItems.ButtonCFMIDTool.ExecuteEvent, Sub() Call OpenCFMIDTool(Nothing)
         AddHandler ribbonItems.MsconvertGUI.ExecuteEvent, Sub() Call openMsconvertTool()
         AddHandler ribbonItems.View3DMALDI.ExecuteEvent, Sub() Call open3dMALDIViewer()
+    End Sub
+
+    Sub New()
+        ExportApis._openMSImagingFile = AddressOf OpenMSIRaw
+        ExportApis._openMSImagingViewer = AddressOf showMsImaging
+        ExportApis._openCFMIDTool = AddressOf OpenCFMIDTool
     End Sub
 
     Private Sub open3dMALDIViewer()
@@ -211,10 +218,7 @@ Module RibbonEvents
     ''' <param name="struct">
     ''' molecule structrue string to run prediction
     ''' </param>
-    ''' <param name="type">
-    ''' smiles/inchi
-    ''' </param>
-    Public Sub OpenCFMIDTool(struct As String, type As String)
+    Public Sub OpenCFMIDTool(struct As String)
         Dim tool As New InputCFMIDTool
 
         If Not struct.StringEmpty Then
@@ -395,16 +399,22 @@ Module RibbonEvents
             .Title = "Open MS-imaging Raw Data File"
         }
             If file.ShowDialog = DialogResult.OK Then
-                Call showMsImaging()
-
-                Select Case file.FileName.ExtensionSuffix.ToLower
-                    Case "raw" : Call WindowModules.viewer.loadRaw(file.FileName)
-                    Case "mzml" : Call WindowModules.viewer.loadmzML(file.FileName)
-                    Case "imzml", "mzpack" : Call WindowModules.viewer.loadimzML(file.FileName)
-                    Case "cdf" : Call WindowModules.msImageParameters.loadRenderFromCDF(file.FileName)
-                End Select
+                Call OpenMSIRaw(file.FileName)
             End If
         End Using
+    End Sub
+
+    Public Sub OpenMSIRaw(file As String)
+        Call showMsImaging()
+
+        Select Case file.ExtensionSuffix.ToLower
+            Case "raw" : Call WindowModules.viewer.loadRaw(file)
+            Case "mzml" : Call WindowModules.viewer.loadmzML(file)
+            Case "imzml", "mzpack" : Call WindowModules.viewer.loadimzML(file)
+            Case "cdf" : Call WindowModules.msImageParameters.loadRenderFromCDF(file)
+            Case Else
+                Call Workbench.AppHost.Warning($"File type(*.{file.ExtensionSuffix}) is not yet supported!")
+        End Select
     End Sub
 
     Public Sub showMsImaging()
@@ -509,7 +519,7 @@ Module RibbonEvents
     End Sub
 
     Friend Sub RunCurrentScript(sender As Object, e As ExecuteEventArgs)
-        Dim active = MyApplication.host.dockPanel.ActiveDocument
+        Dim active = MyApplication.host.m_dockPanel.ActiveDocument
 
         If Not active Is Nothing AndAlso TypeOf CObj(active) Is frmRScriptEdit Then
             Dim editor = DirectCast(CObj(active), frmRScriptEdit)
@@ -530,7 +540,7 @@ Module RibbonEvents
     Public Sub CreateNewScript(sender As Object, e As ExecuteEventArgs)
         Dim newScript As New frmRScriptEdit
 
-        newScript.Show(MyApplication.host.dockPanel)
+        newScript.Show(MyApplication.host.m_dockPanel)
         newScript.DockState = DockState.Document
         newScript.Text = "New R# Script"
 
@@ -540,26 +550,26 @@ Module RibbonEvents
     End Sub
 
     Private Sub showRTerm(sender As Object, e As ExecuteEventArgs)
-        WindowModules.RtermPage.Show(MyApplication.host.dockPanel)
+        WindowModules.RtermPage.Show(MyApplication.host.m_dockPanel)
         WindowModules.RtermPage.DockState = DockState.Document
 
         MyApplication.host.Text = $"BioNovoGene Mzkit [{  WindowModules.RtermPage.Text}]"
     End Sub
 
     Private Sub ShowSettings(sender As Object, e As ExecuteEventArgs)
-        WindowModules.settingsPage.Show(MyApplication.host.dockPanel)
+        WindowModules.settingsPage.Show(MyApplication.host.m_dockPanel)
         WindowModules.settingsPage.DockState = DockState.Document
 
         MyApplication.host.Text = $"BioNovoGene Mzkit [{WindowModules.settingsPage.Text}]"
     End Sub
 
     Private Sub ShowExplorer(sender As Object, e As ExecuteEventArgs)
-        WindowModules.fileExplorer.Show(MyApplication.host.dockPanel)
+        WindowModules.fileExplorer.Show(MyApplication.host.m_dockPanel)
         WindowModules.fileExplorer.DockState = DockState.DockLeft
     End Sub
 
     Private Sub ShowSearchList(sender As Object, e As ExecuteEventArgs)
-        WindowModules.rawFeaturesList.Show(MyApplication.host.dockPanel)
+        WindowModules.rawFeaturesList.Show(MyApplication.host.m_dockPanel)
         WindowModules.rawFeaturesList.DockState = DockState.DockLeft
     End Sub
 
@@ -568,7 +578,7 @@ Module RibbonEvents
     End Sub
 
     Private Sub showLoggingWindow(sender As Object, e As ExecuteEventArgs)
-        WindowModules.output.Show(MyApplication.host.dockPanel)
+        WindowModules.output.Show(MyApplication.host.m_dockPanel)
         WindowModules.output.DockState = DockState.DockBottom
     End Sub
 
@@ -577,7 +587,7 @@ Module RibbonEvents
             WindowModules.startPage = New frmStartPage
         End If
 
-        WindowModules.startPage.Show(MyApplication.host.dockPanel)
+        WindowModules.startPage.Show(MyApplication.host.m_dockPanel)
         WindowModules.startPage.DockState = DockState.Document
 
         MyApplication.host.Text = $"BioNovoGene Mzkit [{WindowModules.startPage.Text}]"

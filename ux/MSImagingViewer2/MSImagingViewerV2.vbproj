@@ -206,6 +206,9 @@
     <EmbeddedResource Include="MSI\RegionSampleCard.resx">
       <DependentUpon>RegionSampleCard.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MSI\RegionSampleCard.zh-CN.resx">
+      <DependentUpon>RegionSampleCard.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MSI\SpatialTile.resx">
       <DependentUpon>SpatialTile.vb</DependentUpon>
     </EmbeddedResource>
@@ -319,6 +322,10 @@
     <ProjectReference Include="..\..\..\visualize\TissueMorphology\TissueMorphology.vbproj">
       <Project>{560a9982-7d34-44c8-a0de-6b86e119247e}</Project>
       <Name>TissueMorphology</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BasicMDIForm\BasicMDIForm.vbproj">
+      <Project>{51c55c5c-2f21-4e9f-aa8d-3664135758b7}</Project>
+      <Name>BasicMDIForm</Name>
     </ProjectReference>
     <ProjectReference Include="..\CommonDialogs\CommonDialogs.vbproj">
       <Project>{13685719-56a6-44f9-99a2-47cb79d29a57}</Project>

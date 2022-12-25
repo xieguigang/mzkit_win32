@@ -220,7 +220,7 @@ Public Class frmFileExplorer
             Dim taskList As TaskListWindow = WindowModules.taskWin
             Dim task As TaskUI = taskList.Add("Imports Raw Data", fileName)
 
-            taskList.Show(MyApplication.host.dockPanel)
+            taskList.Show(MyApplication.host.m_dockPanel)
             taskList.DockState = DockState.DockBottom
 
             Call MyApplication.host.showStatusMessage($"Imports raw data file [{fileName.FileName}] in background, you can open [Task List] panel for view task progress.")
@@ -367,7 +367,7 @@ Public Class frmFileExplorer
             '  treeView1.ContextMenuStrip = ContextMenuStrip2
 
             If Not script Is Nothing Then
-                script.Show(MyApplication.host.dockPanel)
+                script.Show(MyApplication.host.m_dockPanel)
                 MyApplication.host.Text = $"BioNovoGene Mzkit [{path.GetFullPath}]"
             ElseIf path.FileExists Then
                 ' 脚本文件还没有被打开

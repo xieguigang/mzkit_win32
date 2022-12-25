@@ -8,6 +8,7 @@ Imports Microsoft.VisualBasic.Imaging.BitmapImage
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports STImaging
 
 Public Class SpatialTile
@@ -18,12 +19,16 @@ Public Class SpatialTile
 
     Friend transforms As New List(Of Transform)
     ''' <summary>
-    ''' a copy of the spots data object.
+    ''' a copy of the spots data object. keeps the original raw 
+    ''' layout information about the spatial polygon
     ''' </summary>
     Friend rotationRaw As PointF()
     ''' <summary>
     ''' keeps the reference of the spot object to <see cref="spatialMatrix"/>. 
     ''' </summary>
+    ''' <remarks>
+    ''' the spot point data for rendering onto the canvas after the data rotation
+    ''' </remarks>
     Friend rotationMatrix As SpaceSpot()
     Friend dimensions As Size
     Friend offset_origin As Point
@@ -91,10 +96,10 @@ Public Class SpatialTile
         Me.Label1.Text = matrix.label
         Me.SpotColor = matrix.color.TranslateColor
 
-        Call ShowMatrix(spots)
+        Call ShowMatrix(spots, flip:=False)
     End Sub
 
-    Public Sub ShowMatrix(matrix As IEnumerable(Of SpaceSpot))
+    Public Sub ShowMatrix(matrix As IEnumerable(Of SpaceSpot), Optional flip As Boolean = True)
         Dim spatialMatrix = matrix.Where(Function(s) s.flag > 0).ToArray
         Dim polygon As New Polygon2D(spatialMatrix.Select(Function(t) New Point(t.px, t.py)))
 
@@ -122,8 +127,8 @@ Public Class SpatialTile
         spatialMatrix = spatialMatrix _
             .Select(Function(p)
                         Return New SpaceSpot With {
-                            .px = dimensions.Width - p.px,
-                            .py = dimensions.Height - p.py,
+                            .px = If(flip, dimensions.Width - p.px, p.px),
+                            .py = If(flip, dimensions.Height - p.py, p.py),
                             .flag = p.flag,
                             .barcode = p.barcode,
                             .x = p.x,
@@ -142,6 +147,7 @@ Public Class SpatialTile
         rotationMatrix = spatialMatrix
 
         Call buildGrid()
+        Call CanvasOnPaintBackground()
     End Sub
 
     Friend Sub buildGrid()

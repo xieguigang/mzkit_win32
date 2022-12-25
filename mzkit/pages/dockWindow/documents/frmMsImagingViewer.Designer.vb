@@ -52,8 +52,8 @@
 
 #End Region
 
+Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.MSImagingViewerV2
-Imports WeifenLuo.WinFormsUI.Docking
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmMsImagingViewer
