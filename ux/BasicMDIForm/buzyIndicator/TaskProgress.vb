@@ -56,9 +56,8 @@
 #End Region
 
 Imports System.Threading
-Imports BioNovoGene.mzkit_win32.My
 
-Public Class frmTaskProgress
+Public Class TaskProgress
 
     Dim dialogClosed As Boolean = False
 
@@ -156,7 +155,7 @@ Public Class frmTaskProgress
                                           Optional ByRef taskAssign As Thread = Nothing,
                                           Optional canbeCancel As Boolean = False) As T
         Dim tmp As T
-        Dim progress As New frmTaskProgress
+        Dim progress As New TaskProgress
         Dim task As ThreadStart =
             Sub()
                 Call Thread.Sleep(300)
@@ -196,7 +195,7 @@ Public Class frmTaskProgress
     End Function
 
     Public Shared Sub RunAction(run As Action(Of Action(Of String)), Optional title$ = "Loading data...", Optional info$ = "Open a large raw data file...")
-        Dim progress As New frmTaskProgress
+        Dim progress As New TaskProgress
 
         Call New Thread(
             Sub()

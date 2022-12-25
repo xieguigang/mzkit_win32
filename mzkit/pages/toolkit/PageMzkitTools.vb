@@ -146,7 +146,7 @@ Public Class PageMzkitTools
             ElseIf contour Then
                 colorSet = "Jet"
 
-                Dim spinner As New frmProgressSpinner
+                Dim spinner As New ProgressSpinner
                 Dim task As New Thread(
                     Sub()
                         data = raw.GetContourData
@@ -165,7 +165,7 @@ Public Class PageMzkitTools
 
             Call MyApplication.RegisterPlot(
                 Sub(args)
-                    Dim spinner As New frmProgressSpinner
+                    Dim spinner As New ProgressSpinner
                     Dim task As New Thread(
                         Sub()
                             Dim image As Image
@@ -247,7 +247,7 @@ Public Class PageMzkitTools
                     Sub()
                         Dim mzdiff1 As Tolerance = Tolerance.DeltaMass(0.001)
                         Dim mode As String = scanData.name.Match("[+-]")
-                        Dim kegg As MSJointConnection = frmTaskProgress.LoadData(Function() Globals.LoadKEGG(AddressOf MyApplication.LogText, If(mode = "+", 1, -1), mzdiff1), info:="Load KEGG repository data...")
+                        Dim kegg As MSJointConnection = TaskProgress.LoadData(Function() Globals.LoadKEGG(AddressOf MyApplication.LogText, If(mode = "+", 1, -1), mzdiff1), info:="Load KEGG repository data...")
                         Dim anno As MzQuery() = kegg.SetAnnotation(scanData.mz)
                         Dim mzdiff As Tolerance = Tolerance.DeltaMass(0.05)
                         Dim compound As Compound
@@ -581,7 +581,7 @@ Public Class PageMzkitTools
     ''' </summary>
     ''' <param name="progress"></param>
     ''' <param name="similarityCutoff"></param>
-    Friend Sub MolecularNetworkingTool(progress As frmTaskProgress, similarityCutoff As Double, getSpectrum As Func(Of Action(Of String), IEnumerable(Of PeakMs2)))
+    Friend Sub MolecularNetworkingTool(progress As TaskProgress, similarityCutoff As Double, getSpectrum As Func(Of Action(Of String), IEnumerable(Of PeakMs2)))
         Call Thread.Sleep(1000)
 
         Call progress.ShowProgressTitle("Load Scan data")
@@ -598,7 +598,7 @@ Public Class PageMzkitTools
         Call progress.Invoke(Sub() progress.Close())
     End Sub
 
-    Friend Sub MolecularNetworkingTool(raw As PeakMs2(), progress As frmTaskProgress, similarityCutoff As Double)
+    Friend Sub MolecularNetworkingTool(raw As PeakMs2(), progress As TaskProgress, similarityCutoff As Double)
         Dim protocol As New Protocols(
             ms1_tolerance:=Tolerance.PPM(15),
             ms2_tolerance:=Tolerance.DeltaMass(0.3),
@@ -760,12 +760,12 @@ Public Class PageMzkitTools
     End Sub
 
     Public Sub ShowXIC(ppm As Double, plotTIC As NamedCollection(Of ChromatogramTick), getXICCollection As Func(Of Double, IEnumerable(Of NamedCollection(Of ChromatogramTick))), maxY As Double)
-        Dim progress As New frmProgressSpinner
+        Dim progress As New ProgressSpinner
         Dim plotImage As Image = Nothing
         Dim relative As Boolean = relativeInto()
         Dim XICPlot As New List(Of NamedCollection(Of ChromatogramTick))
 
-        Call frmProgressSpinner.DoLoading(
+        Call ProgressSpinner.DoLoading(
             Sub()
                 If Not plotTIC.IsEmpty Then
                     XICPlot.Add(plotTIC)

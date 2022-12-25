@@ -53,7 +53,7 @@
 #End Region
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmTaskProgress
+Partial Class TaskProgress
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.

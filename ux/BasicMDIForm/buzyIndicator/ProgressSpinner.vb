@@ -56,7 +56,7 @@
 Imports System.Runtime.CompilerServices
 Imports System.Threading
 
-Public Class frmProgressSpinner
+Public Class ProgressSpinner
 
     Dim theImage As Image = My.Resources.spinner
 
@@ -106,14 +106,14 @@ Public Class frmProgressSpinner
     ''' 这个函数会阻塞线程
     ''' </remarks>
     Public Shared Sub DoLoading(loading As Action)
-        Dim spinner As New frmProgressSpinner
+        Dim spinner As New ProgressSpinner
         Dim task = getLoadingTask(loading, spinner)
 
         Call task.Start()
         Call spinner.ShowDialog()
     End Sub
 
-    Private Shared Function getLoadingTask(loading As Action, spinner As frmProgressSpinner) As Tasks.Task
+    Private Shared Function getLoadingTask(loading As Action, spinner As ProgressSpinner) As Tasks.Task
         Return New Tasks.Task(
             Sub()
                 Call Thread.Sleep(500)

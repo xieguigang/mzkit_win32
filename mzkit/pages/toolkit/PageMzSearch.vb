@@ -91,7 +91,7 @@ Public Class PageMzSearch
     Public Property InstanceGuid As String
 
     Private Sub doExactMassSearch(mz As Double, ppm As Double)
-        Dim progress As New frmTaskProgress
+        Dim progress As New TaskProgress
         Dim cancel As Value(Of Boolean) = False
 
         progress.TaskCancel = Sub() cancel.Value = True
@@ -106,7 +106,7 @@ Public Class PageMzSearch
     End Sub
 
     Public Sub doMzSearch(mz As Double, charge As Integer, ionMode As Integer)
-        Dim progress As New frmTaskProgress
+        Dim progress As New TaskProgress
         Dim cancel As Value(Of Boolean) = False
 
         progress.TaskCancel = Sub() cancel.Value = True
@@ -181,7 +181,7 @@ Public Class PageMzSearch
         End Select
     End Function
 
-    Private Sub runSearchInternal(mz As Double, charge As Integer, ionMode As Integer, progress As frmTaskProgress, cancel As Value(Of Boolean))
+    Private Sub runSearchInternal(mz As Double, charge As Integer, ionMode As Integer, progress As TaskProgress, cancel As Value(Of Boolean))
         Thread.Sleep(100)
         progress.ShowProgressTitle("initialize workspace...")
 
@@ -209,7 +209,7 @@ Public Class PageMzSearch
         Call progress.Invoke(Sub() Call progress.Close())
     End Sub
 
-    Private Sub runSearchInternal(exact_mass As Double, ppm As Double, progress As frmTaskProgress, cancel As Value(Of Boolean))
+    Private Sub runSearchInternal(exact_mass As Double, ppm As Double, progress As TaskProgress, cancel As Value(Of Boolean))
         Thread.Sleep(100)
         progress.ShowProgressTitle("initialize workspace...")
 
@@ -509,7 +509,7 @@ Public Class PageMzSearch
         For Each mode As String In modes
             Dim modeValue As Integer = Provider.ParseIonMode(mode)
 
-            keggMeta = frmTaskProgress.LoadData(
+            keggMeta = TaskProgress.LoadData(
                 Function(print)
                     Dim database As New DBPool
 
@@ -521,7 +521,7 @@ Public Class PageMzSearch
                     Return database
                 End Function, info:="Load annotation database repository data...")
 
-            Dim anno As NamedCollection(Of MzQuery)() = frmTaskProgress.LoadData(
+            Dim anno As NamedCollection(Of MzQuery)() = TaskProgress.LoadData(
                 streamLoad:=Function(print) keggMeta.MSetAnnotation(mzset, print).ToArray,
                 title:="Peak List Annotation",
                 info:="Run ms1 peak list data annotation..."

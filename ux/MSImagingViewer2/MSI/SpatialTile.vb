@@ -1,7 +1,6 @@
 ﻿Imports System.Drawing
 Imports System.Drawing.Drawing2D
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
-Imports CommonDialogs
 Imports Microsoft.VisualBasic.Data.GraphTheory
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.BitmapImage
@@ -261,7 +260,7 @@ Public Class SpatialTile
     Private Sub ExportSpatialMappingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportSpatialMappingToolStripMenuItem.Click
         Using file As New SaveFileDialog With {.Filter = "Spatial Mapping Matrix(*.xml)|*.xml", .FileName = $"{Label1.Text}.xml"}
             If file.ShowDialog = DialogResult.OK Then
-                Call frmProgressSpinner.DoLoading(
+                Call ProgressSpinner.DoLoading(
                     Sub()
                         Call New SpatialMapping With {
                             .spots = GetMapping.ToArray,

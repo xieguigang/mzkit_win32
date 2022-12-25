@@ -234,7 +234,7 @@ Module RibbonEvents
                            Dim model As String = cfmid.model
 
                            Call MyApplication.host.showStatusMessage("Run cfm-id prediction for ms2 data!")
-                           Call frmProgressSpinner.DoLoading(
+                           Call ProgressSpinner.DoLoading(
                               Sub()
                                   result = app.PredictMs2(struct_str, param_filename:=model, config_filename:=param)
                               End Sub)

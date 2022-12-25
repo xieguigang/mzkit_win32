@@ -228,7 +228,7 @@ Public Class frmMsImagingViewer
 
                         Call InputDialog.Input(Of InputMSISlideLayout)(
                             Sub(config)
-                                If frmTaskProgress.LoadData(Function(echo)
+                                If TaskProgress.LoadData(Function(echo)
                                                                 'Return loadfiles _
                                                                 '    .JoinMSISamples(println:=echo) _
                                                                 '    .Write(savefile.OpenFile, progress:=echo)
@@ -266,7 +266,7 @@ Public Class frmMsImagingViewer
                         .FileName = $"{file.FileName.BaseName}.mzPack"
                     }
                         If savefile.ShowDialog = DialogResult.OK Then
-                            Call frmTaskProgress.LoadData(
+                            Call TaskProgress.LoadData(
                                 streamLoad:=Function(echo)
                                                 Dim raw As mzPack = Shimadzu.ImportsMzPack(
                                                     file:=file.OpenFile,
@@ -416,7 +416,7 @@ Public Class frmMsImagingViewer
         If Not checkService() Then
             Return
         ElseIf MessageBox.Show("This operation will makes the entire MSImaging plot upside down.", "MSI Data Services", buttons:=MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
-            Call frmTaskProgress.LoadData(
+            Call TaskProgress.LoadData(
                 Function(msg As Action(Of String))
                     Dim info = MSIservice.TurnUpsideDown
 
@@ -440,7 +440,7 @@ Public Class frmMsImagingViewer
             If checkService() Then
                 Dim formula As String = getFormula.GetAnnotation.formula
                 Dim mass As Double = FormulaScanner.ScanFormula(formula).ExactMass
-                Dim progress As New frmProgressSpinner
+                Dim progress As New ProgressSpinner
                 ' evaluate m/z
                 Dim mz As Double() = Provider.Positives.Select(Function(t) t.CalcMZ(mass)).ToArray
 
@@ -716,7 +716,7 @@ Public Class frmMsImagingViewer
     End Sub
 
     Sub DoIonColocalization()
-        Dim progress As New frmProgressSpinner
+        Dim progress As New ProgressSpinner
 
         If Not checkService() Then
             Return
@@ -779,7 +779,7 @@ Public Class frmMsImagingViewer
     End Sub
 
     Sub DoIonStats()
-        Dim progress As New frmProgressSpinner
+        Dim progress As New ProgressSpinner
 
         If Not checkService() Then
             Return
@@ -1031,7 +1031,7 @@ Public Class frmMsImagingViewer
             If file.ShowDialog = DialogResult.OK Then
                 Dim fileName As String = file.FileName
 
-                Call frmTaskProgress.RunAction(
+                Call TaskProgress.RunAction(
                     Sub(update)
                         MSIservice.MessageCallback = update
                         MSIservice.ExportMzpack(savefile:=fileName)
@@ -1052,7 +1052,7 @@ Public Class frmMsImagingViewer
         Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
 
         If mask.ShowDialogForm(getSize) = DialogResult.OK Then
-            Dim progress As New frmProgressSpinner
+            Dim progress As New ProgressSpinner
 
             guid = file.MD5
             FilePath = file
@@ -1104,7 +1104,7 @@ Public Class frmMsImagingViewer
     Public Sub LoadRender(mzpack As String, filePath As String)
         guid = $"{mzpack}+{filePath}".MD5
 
-        Call frmTaskProgress.LoadData(
+        Call TaskProgress.LoadData(
             Function(msg As Action(Of String))
                 Call ServiceHub.MSIDataService.StartMSIService(MSIservice)
                 Call Me.Invoke(Sub() LoadRender(MSIservice.LoadMSI(mzpack, msg), filePath))
@@ -1124,7 +1124,7 @@ Public Class frmMsImagingViewer
         If mask.ShowDialogForm(input) = DialogResult.OK Then
             Dim mz As Double = input.IonMz
 
-            Call frmTaskProgress.LoadData(
+            Call TaskProgress.LoadData(
                     Function(msg As Action(Of String))
                         Dim info = MSIservice.CutBackground(mz.ToString)
 
@@ -1145,7 +1145,7 @@ Public Class frmMsImagingViewer
             If addReference Then
                 Using file As New OpenFileDialog With {.Filter = "All raw data file(*.raw;*.mzML;*.mzPack)|*.raw;*.mzML;*.mzPack"}
                     If file.ShowDialog = DialogResult.OK Then
-                        Call frmTaskProgress.LoadData(
+                        Call TaskProgress.LoadData(
                             Function(msg As Action(Of String))
                                 Dim info = MSIservice.CutBackground(file.FileName)
 
@@ -1157,7 +1157,7 @@ Public Class frmMsImagingViewer
                     End If
                 End Using
             Else
-                Call frmTaskProgress.LoadData(
+                Call TaskProgress.LoadData(
                     Function(msg As Action(Of String))
                         Dim info = MSIservice.CutBackground(Nothing)
 
@@ -1197,7 +1197,7 @@ Public Class frmMsImagingViewer
             End If
         End If
 
-        Call frmTaskProgress.LoadData(
+        Call TaskProgress.LoadData(
                 Function(msg As Action(Of String))
                     Dim info = MSIservice.ExtractRegionSample(regions, New Size(params.scan_x, params.scan_y))
 
@@ -1310,7 +1310,7 @@ Public Class frmMsImagingViewer
             Return
         End If
 
-        Dim progress As New frmProgressSpinner
+        Dim progress As New ProgressSpinner
 
         Call New Thread(
             Sub()
@@ -1355,7 +1355,7 @@ Public Class frmMsImagingViewer
         If Not checkService() Then
             Return
         Else
-            Call frmTaskProgress.RunAction(
+            Call TaskProgress.RunAction(
                 Sub()
                     Call Invoke(Sub() rendering = registerSummaryRender(summary))
 
@@ -1401,7 +1401,7 @@ Public Class frmMsImagingViewer
 
     Friend Sub renderRGB(r As Double, g As Double, b As Double)
         Dim selectedMz As Double() = {r, g, b}.Where(Function(mz) mz > 0).ToArray
-        Dim progress As New frmProgressSpinner
+        Dim progress As New ProgressSpinner
 
         If params Is Nothing Then
             Call MyApplication.host.warning("No MS-imaging data is loaded yet!")
@@ -1484,7 +1484,7 @@ Public Class frmMsImagingViewer
         mzdiff = params.GetTolerance
 
         Call SetTitle(selectedMz, titleName)
-        Call frmProgressSpinner.DoLoading(
+        Call ProgressSpinner.DoLoading(
             Sub()
                 Dim pixels As PixelData() = MSIservice.LoadPixels(selectedMz, mzdiff)
 
@@ -1608,7 +1608,7 @@ Public Class frmMsImagingViewer
         Return Sub()
                    Call MyApplication.RegisterPlot(
                        Sub(args)
-                           Call frmProgressSpinner.DoLoading(
+                           Call ProgressSpinner.DoLoading(
                                Sub()
                                    Call Me.Invoke(
                                    Sub()

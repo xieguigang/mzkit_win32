@@ -180,7 +180,7 @@ Public Class PageSpectrumSearch
 
     Public Sub runSearch(Optional isotopic As IsotopeDistribution = Nothing)
         Dim raws As IEnumerable(Of MZWork.Raw) = Globals.workspace.GetRawDataFiles
-        Dim progress As New frmTaskProgress
+        Dim progress As New TaskProgress
         Dim query As [Variant](Of LibraryMatrix, IsotopeDistribution)
 
         If isotopic Is Nothing Then
@@ -201,7 +201,7 @@ Public Class PageSpectrumSearch
 
     Dim table As New List(Of EntityObject)
 
-    Private Sub SearchThread(query As [Variant](Of LibraryMatrix, IsotopeDistribution), raws As IEnumerable(Of MZWork.Raw), progress As frmTaskProgress)
+    Private Sub SearchThread(query As [Variant](Of LibraryMatrix, IsotopeDistribution), raws As IEnumerable(Of MZWork.Raw), progress As TaskProgress)
         Dim runSearchResult As IEnumerable(Of NamedCollection(Of AlignmentOutput))
 
         If query Like GetType(LibraryMatrix) Then

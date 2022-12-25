@@ -193,7 +193,7 @@ Public Class frmMain : Implements AppHost
             Call VisualStudio.Dock(WindowModules.rawFeaturesList, DockState.DockLeft)
         ElseIf fileName.ExtensionSuffix("wiff") Then
             Dim wiffRaw As New sciexWiffReader.WiffScanFileReader(fileName)
-            Dim mzPack As mzPack = frmTaskProgress.LoadData(Function(println) wiffRaw.LoadFromWiffRaw(checkNoise:=True, println))
+            Dim mzPack As mzPack = TaskProgress.LoadData(Function(println) wiffRaw.LoadFromWiffRaw(checkNoise:=True, println))
             Dim cacheFile As String = TempFileSystem.GetAppSysTempFile(".mzPack", App.PID.ToHexString, "WiffRawFile_")
             Dim raw As New Raw With {
                .cache = cacheFile,
@@ -212,7 +212,7 @@ Public Class frmMain : Implements AppHost
             Call VisualStudio.Dock(WindowModules.rawFeaturesList, DockState.DockLeft)
         ElseIf fileName.ExtensionSuffix("raw") Then
             Dim Xraw As New MSFileReader(fileName)
-            Dim mzPack As mzPack = frmTaskProgress.LoadData(Function(println) Xraw.LoadFromXRaw(println))
+            Dim mzPack As mzPack = TaskProgress.LoadData(Function(println) Xraw.LoadFromXRaw(println))
             Dim cacheFile As String = TempFileSystem.GetAppSysTempFile(".mzPack", App.PID.ToHexString, "MSRawFile_")
             Dim raw As New Raw With {
                .cache = cacheFile,
@@ -306,7 +306,7 @@ Public Class frmMain : Implements AppHost
     End Sub
 
     Friend Sub showMzPackMSI(mzpack As String)
-        Dim progress As New frmTaskProgress
+        Dim progress As New TaskProgress
 
         Call progress.ShowProgressTitle("Open mzPack for MSI...", directAccess:=True)
         Call progress.ShowProgressDetails("Loading MSI raw data file into viewer workspace...", directAccess:=True)
@@ -632,7 +632,7 @@ Public Class frmMain : Implements AppHost
     End Sub
 
     Private Sub frmMain_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-        Dim progress As New frmTaskProgress
+        Dim progress As New TaskProgress
 
         progress.ShowProgressTitle("App Exit...", directAccess:=True)
         progress.ShowProgressDetails("Save raw data file viewer workspace...", directAccess:=True)
