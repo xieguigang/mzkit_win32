@@ -97,6 +97,7 @@ Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Text
 Imports mzblender
+Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports ServiceHub
 Imports STImaging
@@ -400,6 +401,8 @@ Public Class frmMsImagingViewer
             HEMap = New HEMapTools
             HEMap.Show(VisualStudio.DockPanel)
             HEMap.DockState = DockState.Hidden
+
+            ExportApis._getHEMapTool = Function() HEMap
         End If
 
         HEMap.Clear(PixelSelector1.MSICanvas.HEMap)

@@ -186,6 +186,11 @@ Module RibbonEvents
         AddHandler ribbonItems.View3DMALDI.ExecuteEvent, Sub() Call open3dMALDIViewer()
     End Sub
 
+    Sub New()
+        ExportApis._openMSImagingFile = AddressOf OpenMSIRaw
+        ExportApis._openMSImagingViewer = AddressOf showMsImaging
+    End Sub
+
     Private Sub open3dMALDIViewer()
         Call VisualStudio.ShowDocument(Of frm3DMALDIViewer)()
     End Sub
@@ -398,16 +403,22 @@ Module RibbonEvents
             .Title = "Open MS-imaging Raw Data File"
         }
             If file.ShowDialog = DialogResult.OK Then
-                Call showMsImaging()
-
-                Select Case file.FileName.ExtensionSuffix.ToLower
-                    Case "raw" : Call WindowModules.viewer.loadRaw(file.FileName)
-                    Case "mzml" : Call WindowModules.viewer.loadmzML(file.FileName)
-                    Case "imzml", "mzpack" : Call WindowModules.viewer.loadimzML(file.FileName)
-                    Case "cdf" : Call WindowModules.msImageParameters.loadRenderFromCDF(file.FileName)
-                End Select
+                Call OpenMSIRaw(file.FileName)
             End If
         End Using
+    End Sub
+
+    Public Sub OpenMSIRaw(file As String)
+        Call showMsImaging()
+
+        Select Case file.ExtensionSuffix.ToLower
+            Case "raw" : Call WindowModules.viewer.loadRaw(file)
+            Case "mzml" : Call WindowModules.viewer.loadmzML(file)
+            Case "imzml", "mzpack" : Call WindowModules.viewer.loadimzML(file)
+            Case "cdf" : Call WindowModules.msImageParameters.loadRenderFromCDF(file)
+            Case Else
+                Call Workbench.AppHost.Warning($"File type(*.{file.ExtensionSuffix}) is not yet supported!")
+        End Select
     End Sub
 
     Public Sub showMsImaging()
