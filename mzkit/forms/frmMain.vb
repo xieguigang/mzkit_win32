@@ -147,7 +147,7 @@ Public Class frmMain : Implements AppHost
         End If
     End Sub
 
-    Friend Sub warning(v As String)
+    Friend Sub warning(v As String) Implements AppHost.Warning
         Call showStatusMessage(v, My.Resources.StatusAnnotations_Warning_32xLG_color)
     End Sub
 
@@ -596,7 +596,7 @@ Public Class frmMain : Implements AppHost
     ''' </summary>
     ''' <param name="message"></param>
     ''' <param name="icon"></param>
-    Sub showStatusMessage(message As String, Optional icon As Image = Nothing)
+    Sub showStatusMessage(message As String, Optional icon As Image = Nothing) Implements AppHost.StatusMessage
         MyApplication.host.Invoke(
             Sub()
                 If icon Is Nothing Then
