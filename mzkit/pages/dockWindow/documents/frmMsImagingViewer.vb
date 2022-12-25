@@ -402,6 +402,7 @@ Public Class frmMsImagingViewer
             HEMap.Show(VisualStudio.DockPanel)
             HEMap.DockState = DockState.Hidden
 
+            ExportApis._openHEMapTool(tool:=HEMap)
             ExportApis._getHEMapTool = Function() HEMap
         End If
 
