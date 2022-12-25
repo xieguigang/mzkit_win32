@@ -192,6 +192,9 @@
     <EmbeddedResource Include="base\DocumentWindow.resx">
       <DependentUpon>DocumentWindow.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="base\ToolStripWindow.resx">
+      <DependentUpon>ToolStripWindow.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="base\ToolWindow.resx">
       <DependentUpon>ToolWindow.vb</DependentUpon>
     </EmbeddedResource>

@@ -197,43 +197,47 @@ Public Class HEMapTools
 
         Using file As New SaveFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
             If file.ShowDialog = DialogResult.OK Then
-                Using buffer As New StreamWriter(file.OpenFile)
-                    Dim line As String = "X,Y,ScaleX,ScaleY,R,G,B,black(pixels),black(density),black(ratio)"
-                    Dim layers = heatmap(Scan0).layers.Keys.ToArray
-
-                    If layers.Count > 0 Then
-                        line = line &
-                            ",all(pixels),all(density),all(ratio)," &
-                            layers.Select(Function(t) $"{t}(pixels),{t}(density),{t}(ratio)").JoinBy(",")
-                    End If
-
-                    Call buffer.WriteLine(line)
-
-                    For Each cell As Cell In heatmap
-                        line = {
-                            cell.X, cell.Y, cell.ScaleX, cell.ScaleY,
-                            cell.R, cell.G, cell.B,
-                            cell.Black.Pixels, cell.Black.Density, cell.Black.Ratio
-                        }.JoinBy(",")
-
-                        If layers.Count > 0 Then
-                            Dim allPixels = cell.layers.Values.Select(Function(a) a.Pixels).Max
-                            Dim allDensity = cell.layers.Values.Select(Function(a) a.Density).Max
-                            Dim allRatio = cell.layers.Values.Select(Function(a) a.Ratio).Max
-
-                            line = line & $",{allPixels},{allDensity},{allRatio}"
-                            line = line & "," & layers _
-                                .Select(Function(t)
-                                            Dim o = cell.layers(t)
-                                            Return $"{o.Pixels},{o.Density},{o.Ratio}"
-                                        End Function) _
-                                .JoinBy(",")
-                        End If
-
-                        Call buffer.WriteLine(line)
-                    Next
-                End Using
+                Call ExportTable(file.FileName)
             End If
+        End Using
+    End Sub
+
+    Private Sub ExportTable(file As String)
+        Using buffer As New StreamWriter(file.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
+            Dim line As String = "X,Y,ScaleX,ScaleY,R,G,B,black(pixels),black(density),black(ratio)"
+            Dim layers = heatmap(Scan0).layers.Keys.ToArray
+
+            If layers.Count > 0 Then
+                line = line &
+                    ",all(pixels),all(density),all(ratio)," &
+                    layers.Select(Function(t) $"{t}(pixels),{t}(density),{t}(ratio)").JoinBy(",")
+            End If
+
+            Call buffer.WriteLine(line)
+
+            For Each cell As Cell In heatmap
+                line = {
+                    cell.X, cell.Y, cell.ScaleX, cell.ScaleY,
+                    cell.R, cell.G, cell.B,
+                    cell.Black.Pixels, cell.Black.Density, cell.Black.Ratio
+                }.JoinBy(",")
+
+                If layers.Count > 0 Then
+                    Dim allPixels = cell.layers.Values.Select(Function(a) a.Pixels).Max
+                    Dim allDensity = cell.layers.Values.Select(Function(a) a.Density).Max
+                    Dim allRatio = cell.layers.Values.Select(Function(a) a.Ratio).Max
+
+                    line = line & $",{allPixels},{allDensity},{allRatio}"
+                    line = line & "," & layers _
+                        .Select(Function(t)
+                                    Dim o = cell.layers(t)
+                                    Return $"{o.Pixels},{o.Density},{o.Ratio}"
+                                End Function) _
+                        .JoinBy(",")
+                End If
+
+                Call buffer.WriteLine(line)
+            Next
         End Using
     End Sub
 
