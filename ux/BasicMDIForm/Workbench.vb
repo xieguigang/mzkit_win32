@@ -30,4 +30,15 @@ Public NotInheritable Class Workbench
         End If
     End Sub
 
+    Public Shared Function CenterToMain(target As Form) As Point
+        Dim rect As Rectangle = AppHost.ClientRectangle
+        Dim sizeBack = rect.Size
+        Dim posBase = rect.Location
+        Dim sizeFore = target.Size
+
+        Return New Point(
+            posBase.X + (sizeBack.Width - sizeFore.Width) / 2,
+            posBase.Y + (sizeBack.Height - sizeFore.Height) / 2
+        )
+    End Function
 End Class

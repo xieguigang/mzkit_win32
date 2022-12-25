@@ -181,6 +181,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="plugin\PlugIn.vb" />
+    <Compile Include="TaskbarStatus.vb" />
     <Compile Include="Workbench.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -258,6 +259,9 @@
       <Project>{dee82853-4241-4f24-a096-12923c664369}</Project>
       <Name>Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spinner.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

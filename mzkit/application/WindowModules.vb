@@ -100,17 +100,6 @@ Friend MustInherit Class WindowModules
     Private Sub New()
     End Sub
 
-    Public Shared Function CenterToMain(target As Form) As Point
-        Dim sizeBack = MyApplication.host.Size
-        Dim posBase = MyApplication.host.Location
-        Dim sizeFore = target.Size
-
-        Return New Point(
-            posBase.X + (sizeBack.Width - sizeFore.Width) / 2,
-            posBase.Y + (sizeBack.Height - sizeFore.Height) / 2
-        )
-    End Function
-
     Public Shared Sub initializeVSPanel()
         Dim dockPanel As DockPanel = MyApplication.host.m_dockPanel
 

@@ -126,7 +126,7 @@ Public Class frmTaskProgress
         End If
 
         Call Application.DoEvents()
-        Call MyApplication.host.showStatusMessage(message)
+        Call Workbench.StatusMessage(message)
     End Sub
 
     Private Sub frmTaskProgress_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
@@ -171,7 +171,7 @@ Public Class frmTaskProgress
 
         If progress.ParentForm Is Nothing Then
             progress.StartPosition = FormStartPosition.Manual
-            progress.Location = WindowModules.CenterToMain(progress)
+            progress.Location = Workbench.CenterToMain(progress)
         End If
 
         taskAssign = New Thread(task)
@@ -185,7 +185,7 @@ Public Class frmTaskProgress
                     Try
                         Call handle.Abort()
                     Catch ex As Exception
-                        Call MyApplication.host.warning($"[{title}] task has been cancel.")
+                        Call Workbench.Warning($"[{title}] task has been cancel.")
                     End Try
                 End Sub
         End If

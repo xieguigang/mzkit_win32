@@ -6,6 +6,7 @@ Imports WeifenLuo.WinFormsUI.Docking
 Public Interface AppHost
 
     ReadOnly Property DockPanel As DockPanel
+    ReadOnly Property ClientRectangle As Rectangle
 
     Sub SetWindowState(stat As FormWindowState)
     Sub Warning(msg As String)
