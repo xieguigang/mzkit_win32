@@ -264,14 +264,17 @@ Public Class SpatialTile
             Dim clientXY As New PointF With {.X = spot.px * radiusX * 2, .Y = spot.py * radiusY * 2}
             Dim pixels As New List(Of Point)
             Dim originalSpot As PointF = rotationRaw(++i)
+            Dim tags As New List(Of String)
 
             For x As Integer = clientXY.X - radiusX To clientXY.X + radiusX
                 For y As Integer = clientXY.Y - radiusY To clientXY.Y + radiusY
                     Dim SMXY As New Point(x + left, y + top)
                     Dim smX, smY As Integer
+                    Dim tag As String
 
-                    RaiseEvent GetSpatialMetabolismPoint(SMXY, smX, smY)
+                    RaiseEvent GetSpatialMetabolismPoint(SMXY, smX, smY, tag)
 
+                    Call tags.Add(tag)
                     Call pixels.Add(New Point(smX, smY))
                 Next
             Next
@@ -288,7 +291,13 @@ Public Class SpatialTile
                 .barcode = spot.barcode,
                 .flag = spot.flag,
                 .physicalXY = {spot.x, spot.y},
-                .spotXY = {originalSpot.X, originalSpot.Y}
+                .spotXY = {originalSpot.X, originalSpot.Y},
+                .TissueMorphology = tags _
+                    .Where(Function(a) Not a.StringEmpty) _
+                    .GroupBy(Function(tag) tag) _
+                    .OrderByDescending(Function(g) g.Count) _
+                    .FirstOrDefault _
+                   ?.Key
             }
         Next
     End Function
