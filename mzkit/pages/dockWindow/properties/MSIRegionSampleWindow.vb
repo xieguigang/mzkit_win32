@@ -7,6 +7,7 @@ Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.MachineLearning.Darwinism.DifferentialEvolution
 Imports Mzkit_win32.MSImagingViewerV2
 Imports ServiceHub
 
@@ -376,4 +377,14 @@ Public Class MSIRegionSampleWindow
             card.Width = newW
         Next
     End Sub
+
+    Public Function GetTissueTag(x As Integer, y As Integer) As String
+        For Each card As RegionSampleCard In FlowLayoutPanel1.Controls
+            If card.PixelPointInside(x, y) Then
+                Return card.SampleInfo
+            End If
+        Next
+
+        Return Nothing
+    End Function
 End Class

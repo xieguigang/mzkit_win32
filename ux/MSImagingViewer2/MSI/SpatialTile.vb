@@ -284,7 +284,7 @@ Public Class SpatialTile
                 For y As Integer = clientXY.Y - radiusY To clientXY.Y + radiusY
                     Dim SMXY As New Point(x + left, y + top)
                     Dim smX, smY As Integer
-                    Dim tag As String
+                    Dim tag As String = Nothing
 
                     RaiseEvent GetSpatialMetabolismPoint(SMXY, smX, smY, tag)
 
