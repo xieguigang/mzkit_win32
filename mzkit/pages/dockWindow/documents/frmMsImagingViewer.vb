@@ -404,6 +404,7 @@ Public Class frmMsImagingViewer
 
             ExportApis._openHEMapTool(tool:=HEMap)
             ExportApis._getHEMapTool = Function() HEMap
+            ExportApis._getHEMapImage = Function() PixelSelector1.MSICanvas.HEMap
         End If
 
         HEMap.Clear(PixelSelector1.MSICanvas.HEMap)
