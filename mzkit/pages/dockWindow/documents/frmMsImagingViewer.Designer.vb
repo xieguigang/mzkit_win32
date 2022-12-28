@@ -204,7 +204,7 @@ Partial Class frmMsImagingViewer
         Me.PixelSelector1.Rotation = 0
         Me.PixelSelector1.SelectPolygonMode = False
         Me.PixelSelector1.ShowPointInform = True
-        Me.PixelSelector1.ShowPreview = True
+        Me.PixelSelector1.ShowPreview = False
         '
         'ToolStripMenuItem6
         '

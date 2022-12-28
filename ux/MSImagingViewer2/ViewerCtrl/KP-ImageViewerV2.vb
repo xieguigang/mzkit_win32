@@ -310,6 +310,14 @@ Partial Public Class KpImageViewer : Inherits UserControl
 
                 UpdatePanels(True)
             End If
+
+            ToolStripButtonZoomIn.Enabled = m_showPreviews
+            ToolStripButtonZoomOut.Enabled = m_showPreviews
+            ToolStripButtonRotate270.Enabled = m_showPreviews
+            ToolStripButtonRotate90.Enabled = m_showPreviews
+            ToolStripButtonFitToScreen.Enabled = m_showPreviews
+            ToolStripButtonMode.Enabled = m_showPreviews
+            ToolStripComboBoxZoom.Enabled = m_showPreviews
         End If
     End Sub
 
@@ -827,11 +835,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
     End Sub
 
     Private Sub btnPreview_Click(sender As Object, e As EventArgs) Handles ToolStripButtonPreview.Click
-        If ShowPreview Then
-            ShowPreview = False
-        Else
-            ShowPreview = True
-        End If
+        ShowPreview = Not ShowPreview
     End Sub
 
     Private Sub cbZoom_KeyPress(sender As Object, e As KeyPressEventArgs) Handles ToolStripComboBoxZoom.KeyPress
