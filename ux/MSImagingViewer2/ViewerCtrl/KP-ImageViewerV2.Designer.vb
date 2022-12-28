@@ -43,9 +43,11 @@
         Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.MSICanvas = New Mzkit_win32.MSImagingViewerV2.PixelSelector()
         CType(Me.pbPanelAirscape, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbFull, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pbFull.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
+        CType(Me.MSICanvas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pbPanelAirscape
@@ -201,7 +203,6 @@
         Me.MSICanvas.ShowPointInform = False
         Me.MSICanvas.Size = New System.Drawing.Size(10, 10)
         Me.MSICanvas.TabIndex = 11
-        Me.MSICanvas.TabStop = False
         Me.MSICanvas.tissue_layer = Nothing
         Me.MSICanvas.ViewerHost = Nothing
         '
@@ -217,12 +218,13 @@
         Me.Name = "KpImageViewer"
         Me.Size = New System.Drawing.Size(638, 417)
         CType(Me.pbPanelAirscape, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbFull, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pbFull.ResumeLayout(False)
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
-
+        CType(Me.MSICanvas, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

@@ -21,7 +21,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
     Private ptSelectionEnd As Point = New Point()
 
     Private panelDragging As Boolean = False
-    Private m_showPreviews As Boolean = True
+    Private m_showPreviews As Boolean = False
     Private grabCursor As Cursor = Nothing
     Private dragCursor As Cursor = Nothing
 
