@@ -1,13 +1,21 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports CommonDialogs
 Imports msconvertGUI.My
+Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Task
 
-Public Class FormMain
+Public Class FormMain : Implements AppHost
 
     Public Property CurrentTask As FileApplicationClass = FileApplicationClass.LCMS
     Public Property arguments As New Dictionary(Of String, String)
+
+    Public ReadOnly Property DockPanel As Global.WeifenLuo.WinFormsUI.Docking.DockPanel Implements AppHost.DockPanel
+    Private ReadOnly Property AppHost_ClientRectangle As Rectangle Implements AppHost.ClientRectangle
+        Get
+            Return New Rectangle(Location, Size)
+        End Get
+    End Property
 
     ''' <summary>
     ''' start run task
@@ -108,11 +116,35 @@ Public Class FormMain
         End Using
     End Sub
 
-    Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles Me.Load
-        InputDialog.MyApplicationHost = Me
-    End Sub
-
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
 
+    End Sub
+
+    Public Sub SetWindowState(stat As FormWindowState) Implements AppHost.SetWindowState
+        WindowState = stat
+    End Sub
+
+    Public Sub Warning(msg As String) Implements AppHost.Warning
+
+    End Sub
+
+    Public Sub StatusMessage(msg As String, Optional icon As Image = Nothing) Implements AppHost.StatusMessage
+
+    End Sub
+
+    Public Function GetWindowState() As FormWindowState Implements AppHost.GetWindowState
+        Return WindowState
+    End Function
+
+    Public Function GetDesktopLocation() As Point Implements AppHost.GetDesktopLocation
+        Return Location
+    End Function
+
+    Public Function GetClientSize() As Size Implements AppHost.GetClientSize
+        Return Size
+    End Function
+
+    Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Workbench.Hook(Me)
     End Sub
 End Class
