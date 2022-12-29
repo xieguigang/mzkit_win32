@@ -22,7 +22,7 @@ Public Class KEGGEnrichmentAction : Inherits ActionBase
         Dim enrich = TaskProgress.LoadData(
             Function(msg)
                 Dim all = kegg.Enrichment(data.AsObjectEnumerator.Where(Function(c) Not c Is Nothing).Select(Function(c) c.ToString), outputAll:=True, showProgress:=True, doProgress:=msg).ToArray
-                Call msg("Do FDR...")
+                Call msg.SetInfo("Do FDR...")
                 Dim fdr = all.FDRCorrection.OrderBy(Function(p) p.pvalue).ToArray
 
                 Return fdr
