@@ -507,7 +507,6 @@ Public Class frmMain : Implements AppHost
         Timer1.Start()
         ToolStripProgressBar1.Value = 0
         ToolStripProgressBar1.Maximum = 0
-        InputDialog.MyApplicationHost = Me
 
         Dim text As New StringBuilder
 
@@ -637,31 +636,24 @@ Public Class frmMain : Implements AppHost
     End Sub
 
     Private Sub frmMain_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-        Dim progress As New TaskProgress
-
-        progress.ShowProgressTitle("App Exit...", directAccess:=True)
-        progress.ShowProgressDetails("Save raw data file viewer workspace...", directAccess:=True)
-
         Globals.sharedProgressUpdater =
             Sub()
                 ' do nothing
             End Sub
 
-        Call New Thread(
-            Sub()
-                Call Thread.Sleep(100)
-                Call WindowModules.fileExplorer.Invoke(
-                    Sub()
-                        WindowModules.fileExplorer.SaveFileCache(AddressOf progress.ShowProgressDetails)
-                    End Sub)
-                Call progress.ShowProgressDetails("Save app settings...")
-                Call Invoke(Sub() Call SaveSettings())
-                Call progress.Invoke(Sub() progress.Close())
-            End Sub).Start()
-
         Call MyApplication.CloseMSIEngine()
-        Call progress.ShowDialog()
-        ' Call App.Exit()
+        Call TaskProgress.RunAction(
+            run:=Sub(p)
+                     Call WindowModules.fileExplorer.Invoke(
+                        Sub()
+                            WindowModules.fileExplorer.SaveFileCache(AddressOf p.SetInfo)
+                        End Sub)
+                     Call p.SetInfo("Save app settings...")
+                     Call Invoke(Sub() Call SaveSettings())
+                 End Sub,
+            title:="App Exit...",
+            info:="Save raw data file viewer workspace...")
+
         Call Process.GetCurrentProcess.Kill()
     End Sub
 

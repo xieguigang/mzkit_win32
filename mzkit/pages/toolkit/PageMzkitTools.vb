@@ -598,7 +598,7 @@ Public Class PageMzkitTools
         Call progress.Invoke(Sub() progress.Close())
     End Sub
 
-    Friend Sub MolecularNetworkingTool(raw As PeakMs2(), progress As TaskProgress, similarityCutoff As Double)
+    Friend Sub MolecularNetworkingTool(raw As PeakMs2(), progress As ITaskProgress, similarityCutoff As Double)
         Dim protocol As New Protocols(
             ms1_tolerance:=Tolerance.PPM(15),
             ms2_tolerance:=Tolerance.DeltaMass(0.3),
@@ -606,7 +606,7 @@ Public Class PageMzkitTools
             treeSimilar:=Globals.Settings.network.treeNodeSimilar,
             intoCutoff:=Globals.Settings.viewer.GetMethod
         )
-        Dim progressMsg As Action(Of String) = AddressOf progress.ShowProgressTitle
+        Dim progressMsg As Action(Of String) = AddressOf progress.SetTitle
 
         ' filter empty spectrum
         raw = (From r As PeakMs2 In raw Where Not r.mzInto.IsNullOrEmpty).ToArray
@@ -640,7 +640,7 @@ Public Class PageMzkitTools
         '    Next
         'End Using
 
-        progress.ShowProgressTitle("run molecular networking....")
+        progress.SetTitle("run molecular networking....")
 
         ' Call tree.doCluster(run)
         Dim links = protocol.RunProtocol(raw, progressMsg).ProduceNodes.Networking.ToArray
@@ -648,7 +648,7 @@ Public Class PageMzkitTools
             .Networking(Of IO.DataSet)(links, Function(a, b) stdNum.Min(a, b)) _
             .ToArray
 
-        progress.ShowProgressDetails("run family clustering....")
+        progress.SetTitle("run family clustering....")
 
         If net.Length < 3 Then
             Call MyApplication.host.showStatusMessage("the ions data is not enough for create network!", My.Resources.StatusAnnotations_Warning_32xLG_color)
@@ -664,7 +664,7 @@ Public Class PageMzkitTools
             Dim clusters = net.ToKMeansModels.Kmeans(expected:=kn, debug:=False)
             Dim rawLinks = links.ToDictionary(Function(a) a.reference, Function(a) a)
 
-            progress.ShowProgressDetails("initialize result output...")
+            progress.SetInfo("initialize result output...")
 
             MyApplication.host.Invoke(
                 Sub()

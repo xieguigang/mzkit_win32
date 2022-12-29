@@ -201,7 +201,7 @@ Public Class PageSpectrumSearch
 
     Dim table As New List(Of EntityObject)
 
-    Private Sub SearchThread(query As [Variant](Of LibraryMatrix, IsotopeDistribution), raws As IEnumerable(Of MZWork.Raw), progress As TaskProgress)
+    Private Sub SearchThread(query As [Variant](Of LibraryMatrix, IsotopeDistribution), raws As IEnumerable(Of MZWork.Raw), progress As ITaskProgress)
         Dim runSearchResult As IEnumerable(Of NamedCollection(Of AlignmentOutput))
 
         If query Like GetType(LibraryMatrix) Then
@@ -209,7 +209,7 @@ Public Class PageSpectrumSearch
                 files:=raws,
                 tolerance:=Tolerance.DeltaMass(0.3),
                 dotcutoff:=0.8,
-                progress:=AddressOf progress.ShowProgressDetails,
+                progress:=AddressOf progress.SetInfo,
                 reload:=Sub(src, cache)
                             frmFileExplorer.getRawCache(src,, cache)
                         End Sub
@@ -219,7 +219,7 @@ Public Class PageSpectrumSearch
                 files:=raws,
                 tolerance:=Tolerance.DeltaMass(0.05),
                 dotcutoff:=0.3,
-                progress:=AddressOf progress.ShowProgressDetails,
+                progress:=AddressOf progress.SetInfo,
                 reload:=Sub(src, cache)
                             frmFileExplorer.getRawCache(src,, cache)
                         End Sub
