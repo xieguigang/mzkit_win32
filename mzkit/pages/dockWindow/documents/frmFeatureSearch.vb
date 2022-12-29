@@ -479,18 +479,14 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             Next
 
             Dim peaksData As PeakMs2() = parents.Select(Function(p) p.ToMs2).ToArray
-            Dim progress As New TaskProgress
 
-            progress.ShowProgressTitle("Build Molecular Networking...", directAccess:=True)
-            progress.ShowProgressDetails("Run ms2 clustering!", directAccess:=True)
-
-            Call New Thread(Sub()
-                                Call Thread.Sleep(500)
-                                Call MyApplication.host.mzkitTool.MolecularNetworkingTool(peaksData, progress, 0.8)
-                                Call progress.Invoke(Sub() progress.Close())
-                            End Sub).Start()
-
-            Call progress.ShowDialog()
+            Call TaskProgress.RunAction(
+                run:=Sub(p)
+                         Call MyApplication.host.mzkitTool.MolecularNetworkingTool(peaksData, p, 0.8)
+                     End Sub,
+                title:="Build Molecular Networking...",
+                info:="Run ms2 clustering!"
+            )
         End If
     End Sub
 
