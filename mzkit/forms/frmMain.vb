@@ -850,4 +850,11 @@ Public Class frmMain : Implements AppHost
         Return WindowState
     End Function
 
+    Public Function GetDesktopLocation() As Point Implements AppHost.GetDesktopLocation
+        Return Me.Location
+    End Function
+
+    Public Function GetClientSize() As Size Implements AppHost.GetClientSize
+        Return Me.Size
+    End Function
 End Class
