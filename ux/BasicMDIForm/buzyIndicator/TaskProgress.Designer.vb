@@ -98,6 +98,7 @@ Partial Class TaskProgress
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(662, 94)
+        Me.ControlBox = False
         Me.Controls.Add(Me.WebView21)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.MaximizeBox = False

@@ -127,6 +127,10 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
         e.Graphics.DrawRectangle(New Pen(Color.Black, 1), New Rectangle(0, 0, Width - 1, Height - 1))
     End Sub
 
+    Private Sub WebView21_Paint(sender As Object, e As PaintEventArgs) Handles WebView21.Paint
+        e.Graphics.DrawRectangle(New Pen(Color.Black, 1), New Rectangle(0, 0, Width - 1, Height - 1))
+    End Sub
+
     Private Sub ShowProgressTitle(title As String) Implements ITaskProgress.SetTitle
         If Not dialogClosed Then
             Invoke(Sub()
@@ -270,4 +274,6 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
     Private Sub WebView21_NavigationCompleted(sender As Object, e As CoreWebView2NavigationCompletedEventArgs) Handles WebView21.NavigationCompleted
         webkitLoaded = True
     End Sub
+
+
 End Class
