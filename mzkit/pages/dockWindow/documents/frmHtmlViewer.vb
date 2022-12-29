@@ -59,6 +59,7 @@ Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
 Imports Microsoft.Web.WebView2.WinForms
+Imports Mzkit_win32.BasicMDIForm
 Imports WeifenLuo.WinFormsUI.Docking
 Imports WkHtmlToPdf.Arguments
 
@@ -104,33 +105,10 @@ Public Class frmHtmlViewer
         End If
     End Sub
 
-    Public Sub DeveloperOptions(enable As Boolean)
-        WebView21.CoreWebView2.Settings.AreDevToolsEnabled = enable
-        WebView21.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = enable
-        WebView21.CoreWebView2.Settings.AreDefaultContextMenusEnabled = enable
-
-        If enable Then
-            Call MyApplication.host.showStatusMessage($"[{TabText}] WebView2 developer tools has been enable!")
-        End If
-    End Sub
-
-    Public Shared Async Sub Init(WebView21 As WebView2)
-        Dim userDataFolder = (App.ProductProgramData & "/.webView2_cache/").GetDirectoryFullPath
-        Dim env = Await CoreWebView2Environment.CreateAsync(Nothing, userDataFolder)
-
-        Call MyApplication.host.showStatusMessage($"set webview2 cache at '{userDataFolder}'.")
-
-        Await WebView21.EnsureCoreWebView2Async(env)
-    End Sub
-
-    Private Sub Wait()
-
-    End Sub
-
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
         ' WebView21.CoreWebView2.OpenDevToolsWindow()
         Call WebView21.CoreWebView2.Navigate(sourceURL)
-        Call DeveloperOptions(enable:=True)
+        Call WebKit.DeveloperOptions(WebView21, enable:=True)
     End Sub
 
     Public Sub LoadHtml(url As String)
@@ -169,8 +147,7 @@ Public Class frmHtmlViewer
         TabText = "Document Viewer"
         Icon = My.Resources.IE
 
-        Init(WebView21)
-        Wait()
+        WebKit.Init(WebView21)
     End Sub
 
     Private Sub WebBrowser1_DocumentCompleted(sender As Object, e As WebBrowserDocumentCompletedEventArgs)

@@ -1,61 +1,63 @@
 ﻿#Region "Microsoft.VisualBasic::f352aacddb5d9ad2191c6c8ef7ce4a75, mzkit\src\mzkit\mzkit\forms\Task\frmTaskProgress.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 164
-    '    Code Lines: 120
-    ' Comment Lines: 9
-    '   Blank Lines: 35
-    '     File Size: 5.21 KB
+' Summaries:
 
 
-    ' Class frmTaskProgress
-    ' 
-    '     Function: (+2 Overloads) LoadData
-    ' 
-    '     Sub: CloseWindow, frmImportTaskProgress_Paint, frmTaskProgress_Closed, frmTaskProgress_KeyDown, frmTaskProgress_Load
-    '          RunAction, (+2 Overloads) SetProgress, SetProgressMode, ShowProgressDetails, ShowProgressTitle
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 164
+'    Code Lines: 120
+' Comment Lines: 9
+'   Blank Lines: 35
+'     File Size: 5.21 KB
+
+
+' Class frmTaskProgress
+' 
+'     Function: (+2 Overloads) LoadData
+' 
+'     Sub: CloseWindow, frmImportTaskProgress_Paint, frmTaskProgress_Closed, frmTaskProgress_KeyDown, frmTaskProgress_Load
+'          RunAction, (+2 Overloads) SetProgress, SetProgressMode, ShowProgressDetails, ShowProgressTitle
+' 
+' /********************************************************************************/
 
 #End Region
 
 Imports System.Threading
+Imports Microsoft.VisualBasic.Serialization.JSON
+Imports Microsoft.Web.WebView2.Core
 
 Public Class TaskProgress
 
@@ -63,9 +65,16 @@ Public Class TaskProgress
 
     Public TaskCancel As Action
 
+    Sub New()
+
+        ' 此调用是设计器所必需的。
+        InitializeComponent()
+
+        ' 在 InitializeComponent() 调用之后添加任何初始化。
+        AutoScaleMode = AutoScaleMode.Dpi
+    End Sub
+
     Public Sub SetProgressMode()
-        ProgressBar1.Maximum = 100
-        ProgressBar1.Style = ProgressBarStyle.Continuous
         TaskbarStatus.SetProgress(0)
     End Sub
 
@@ -76,8 +85,9 @@ Public Class TaskProgress
     Public Sub SetProgress(p As Integer)
         Call Invoke(
             Sub()
-                ProgressBar1.Value = If(p > ProgressBar1.Maximum, p, ProgressBar1.Maximum)
-                TaskbarStatus.SetProgress(ProgressBar1.Value)
+                Dim ProgressValue = If(p < 100, p, 100)
+                WebView21.CoreWebView2.ExecuteScriptAsync($"document.querySelector('#progress_val').innerHTML = {ProgressValue};")
+                TaskbarStatus.SetProgress(ProgressValue)
             End Sub)
     End Sub
 
@@ -89,9 +99,14 @@ Public Class TaskProgress
     Public Sub SetProgress(p As Integer, message As String)
         Call Invoke(
             Sub()
-                ProgressBar1.Value = If(p > ProgressBar1.Maximum, p, ProgressBar1.Maximum)
-                Label1.Text = message
-                TaskbarStatus.SetProgress(ProgressBar1.Value)
+                Dim ProgressValue = If(p < 100, p, 100)
+                Dim json As String = message.GetJson
+
+                WebView21.CoreWebView2.ExecuteScriptAsync($"
+document.querySelector('#progress_val').innerHTML = {ProgressValue};
+document.querySelector('#info').innerHTML = JSON.parse('{message}');
+")
+                TaskbarStatus.SetProgress(ProgressValue)
             End Sub)
     End Sub
 
@@ -101,51 +116,62 @@ Public Class TaskProgress
 
     Public Sub ShowProgressTitle(title As String, Optional directAccess As Boolean = False)
         If directAccess Then
-            If TaskCancel Is Nothing Then
-                Label2.Text = title
-            Else
-                Label2.Text = $"{title} [Press ESC for cancel task]"
+            If Not TaskCancel Is Nothing Then
+                title = $"{title} [Press ESC for cancel task]"
             End If
+
+            WebView21.CoreWebView2.ExecuteScriptAsync($"document.querySelector('#title').innerHTML = JSON.parse('{title.GetJson}');")
         ElseIf Not dialogClosed Then
             Invoke(Sub()
+                       Dim title_str As String
+
                        If TaskCancel Is Nothing Then
-                           Label2.Text = title
+                           title_str = title
                        Else
-                           Label2.Text = $"{title} [Press ESC for cancel task]"
+                           title_str = $"{title} [Press ESC for cancel task]"
                        End If
+
+                       WebView21.CoreWebView2.ExecuteScriptAsync($"document.querySelector('#title').innerHTML = JSON.parse('{title_str.GetJson}');")
                    End Sub)
         End If
     End Sub
 
     Public Sub ShowProgressDetails(message As String, Optional directAccess As Boolean = False)
         If directAccess Then
-            Label1.Text = message
+            WebView21.CoreWebView2.ExecuteScriptAsync($"document.querySelector('#info').innerHTML = JSON.parse('{message.GetJson}');")
         ElseIf Not dialogClosed Then
-            Invoke(Sub() Label1.Text = message)
+            Invoke(Sub()
+                       WebView21.CoreWebView2.ExecuteScriptAsync($"document.querySelector('#info').innerHTML = JSON.parse('{message.GetJson}');")
+                   End Sub)
         End If
 
         Call Application.DoEvents()
         Call Workbench.StatusMessage(message)
     End Sub
 
-    Private Sub frmTaskProgress_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+    Private Sub frmTaskProgress_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown, WebView21.KeyDown
         If TaskCancel Is Nothing Then
             Return
         End If
 
-        SyncLock Label1
-            SyncLock Label2
-                If e.KeyCode = Keys.Escape Then
-                    Label2.Text = "Task Cancel..."
-                    dialogClosed = True
-                    TaskCancel()
-                End If
-            End SyncLock
+        SyncLock WebView21
+            If e.KeyCode = Keys.Escape Then
+                WebView21.CoreWebView2.ExecuteScriptAsync($"document.querySelector('#title').innerHTML = 'Task Cancel...';")
+                dialogClosed = True
+                TaskCancel()
+            End If
         End SyncLock
+    End Sub
+
+    Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
+        ' WebView21.CoreWebView2.OpenDevToolsWindow()
+        Call WebView21.CoreWebView2.NavigateToString(My.Resources.progress_bar)
+        Call WebKit.DeveloperOptions(WebView21, enable:=False)
     End Sub
 
     Private Sub frmTaskProgress_Load(sender As Object, e As EventArgs) Handles Me.Load
         DoubleBuffered = True
+        WebKit.Init(WebView21)
         TaskbarStatus.SetLoopStatus()
     End Sub
 
