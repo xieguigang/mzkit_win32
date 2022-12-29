@@ -243,6 +243,7 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
         }
         Dim mask As New MaskForm(Workbench.AppHost.GetDesktopLocation, Workbench.AppHost.GetClientSize)
 
+        Call progress.SetProgressMode()
         Call New Thread(
             Sub()
                 Do While Not progress.webkitLoaded

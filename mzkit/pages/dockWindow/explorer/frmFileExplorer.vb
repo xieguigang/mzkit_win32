@@ -263,21 +263,19 @@ Public Class frmFileExplorer
     ''' <param name="fileName"></param>
     ''' <returns></returns>
     Public Shared Function getRawCache(fileName As String, Optional titleTemplate$ = "Imports raw data [%s]", Optional cachePath As String = Nothing) As MZWork.Raw
-        Dim progress As New TaskProgress() With {.Text = sprintf(titleTemplate, fileName)}
-        Dim showProgress As Action(Of String) = AddressOf progress.ShowProgressDetails
-        Dim task As New Task.ImportsRawData(
-            file:=fileName,
-            progress:=showProgress,
-            finished:=Sub() Call progress.Invoke(Sub() progress.Close()),
-            cachePath:=cachePath
-        )
+        Call Workbench.StatusMessage("Run Raw Data Imports")
 
-        Call MyApplication.host.showStatusMessage("Run Raw Data Imports")
-        Call progress.ShowProgressTitle(progress.Text, directAccess:=True)
-        Call New Thread(AddressOf task.RunImports).Start()
-        Call progress.ShowDialog()
+        Return TaskProgress.LoadData(Function(p)
+                                         Dim task As New Task.ImportsRawData(
+                                             file:=fileName,
+                                             progress:=AddressOf p.SetInfo,
+                                             finished:=AddressOf p.TaskFinish,
+                                             cachePath:=cachePath
+                                         )
 
-        Return task.raw
+                                         task.RunImports()
+                                         Return task.raw
+                                     End Function, title:=sprintf(titleTemplate, fileName))
     End Function
 
 
