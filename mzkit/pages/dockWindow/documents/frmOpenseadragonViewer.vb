@@ -3,6 +3,7 @@ Imports System.Threading
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.Web.WebView2.Core
+Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.MSImagingViewerV2.DeepZoomBuilder
 Imports Task
 
@@ -81,6 +82,6 @@ Public Class frmOpenseadragonViewer
     End Sub
 
     Private Sub frmOpenseadragonViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
-        frmHtmlViewer.Init(Me.WebView21)
+        WebKit.Init(Me.WebView21)
     End Sub
 End Class

@@ -4,6 +4,7 @@ Imports System.Threading
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.Web.WebView2.Core
+Imports Mzkit_win32.BasicMDIForm
 Imports Task
 
 Public Class frm3DMALDIViewer
@@ -103,6 +104,6 @@ Public Class frm3DMALDIViewer
         Me.startHttp()
         Me.TabText = Me.Text
 
-        Call frmHtmlViewer.Init(Me.WebView21)
+        Call WebKit.Init(Me.WebView21)
     End Sub
 End Class

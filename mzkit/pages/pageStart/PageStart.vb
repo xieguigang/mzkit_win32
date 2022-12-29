@@ -60,6 +60,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
+Imports Mzkit_win32.BasicMDIForm
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 
@@ -146,7 +147,7 @@ Public Class PageStart
 
     Private Sub PageStart_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         hideNewsFeeds()
-        frmHtmlViewer.Init(WebView21)
+        WebKit.Init(WebView21)
         ' BackgroundWorker.RunWorkerAsync()
     End Sub
 

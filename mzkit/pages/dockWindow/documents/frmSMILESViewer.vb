@@ -62,6 +62,7 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
 Imports Microsoft.Web.WebView2.WinForms
+Imports Mzkit_win32.BasicMDIForm
 Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmSMILESViewer
@@ -100,8 +101,8 @@ Public Class frmSMILESViewer
     End Sub
 
     Private Sub frmSMILESViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Call frmHtmlViewer.Init(WebView21)
-        Call frmHtmlViewer.Init(WebView22)
+        Call WebKit.Init(WebView21)
+        Call WebKit.Init(WebView22)
         Call Wait()
 
         Text = "Molecule Drawer"
