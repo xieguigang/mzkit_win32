@@ -230,21 +230,19 @@ Public Class RscriptProgressTask
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSImaging/singleIon.R")
         Dim cli As String = $"""{Rscript}"" --app {WindowModules.viewer.MSIservice.appPort} --mzlist ""{mz}"" --save ""{saveAs}"" --backcolor ""{background}"" --colors ""{colorSet}"" --mzdiff ""{tolerance}"" --title ""{title}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
-        Dim progress As New TaskProgress
-
-        progress.ShowProgressTitle("Single Ion MSImaging", directAccess:=True)
-        progress.ShowProgressDetails("Do plot of target ion m/z...", directAccess:=True)
-        progress.SetProgressMode()
 
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call MyApplication.LogText(pipeline.CommandLine)
+        Call TaskProgress.RunAction(run:=Sub(p)
+                                             p.SetProgressMode()
 
-        AddHandler pipeline.SetMessage, AddressOf progress.ShowProgressDetails
-        AddHandler pipeline.SetProgress, AddressOf progress.SetProgress
-        AddHandler pipeline.Finish, Sub() progress.Invoke(Sub() progress.Close())
+                                             AddHandler pipeline.SetMessage, AddressOf p.SetInfo
+                                             AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                                             AddHandler pipeline.Finish, AddressOf p.TaskFinish
 
-        Call New Thread(AddressOf pipeline.Run).Start()
-        Call progress.ShowDialog()
+                                             Call pipeline.Run()
+
+                                         End Sub, title:="Single Ion MSImaging", info:="Do plot of target ion m/z...")
 
         If saveAs.FileExists Then
             If MessageBox.Show("Single Ion MSImaging Job Done!" & vbCrLf & "Open MSImaging result plot file?", "Open Image", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
@@ -261,23 +259,21 @@ Public Class RscriptProgressTask
         Dim jsontmp As String = TempFileSystem.GetAppSysTempFile(".heatmap")
         Dim cli As String = $"""{Rscript}"" --bitmap ""{imagetmp}"" --channels {channels.Select(Function(c) c.ToHtmlColor).JoinBy(";")} --save ""{jsontmp}"""
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
-        Dim progress As New TaskProgress
 
         Call bitmap.SaveAs(imagetmp)
-
-        progress.ShowProgressTitle("Run Heatmap Scanning...", directAccess:=True)
-        progress.ShowProgressDetails("The image analysis may be takes a long time, please wait for a while...", directAccess:=True)
-        progress.SetProgressMode()
-
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call MyApplication.LogText(pipeline.CommandLine)
 
-        AddHandler pipeline.SetMessage, AddressOf progress.ShowProgressDetails
-        AddHandler pipeline.SetProgress, AddressOf progress.SetProgress
-        AddHandler pipeline.Finish, Sub() progress.Invoke(Sub() progress.Close())
+        Call TaskProgress.RunAction(run:=Sub(p)
+                                             p.SetProgressMode()
 
-        Call New Thread(AddressOf pipeline.Run).Start()
-        Call progress.ShowDialog()
+                                             AddHandler pipeline.SetMessage, AddressOf p.SetInfo
+                                             AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                                             AddHandler pipeline.Finish, AddressOf p.TaskFinish
+
+                                             Call pipeline.Run()
+
+                                         End Sub, title:="Run Heatmap Scanning...", info:="The image analysis may be takes a long time, please wait for a while...")
 
         If jsontmp.FileExists Then
             Try
@@ -311,24 +307,21 @@ Public Class RscriptProgressTask
 --mzdiff ""{tolerance}"" 
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
-        Dim progress As New TaskProgress
 
         Call mzSet.GetJson.SaveTo(mzfile)
-
-        progress.ShowProgressTitle("Single Ion MSImaging", directAccess:=True)
-        progress.ShowProgressDetails("Do plot of target ion m/z...", directAccess:=True)
-        progress.SetProgressMode()
-
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call MyApplication.LogText(pipeline.CommandLine)
         Call debug(pipeline.CommandLine)
 
-        AddHandler pipeline.SetMessage, AddressOf progress.ShowProgressDetails
-        AddHandler pipeline.SetProgress, AddressOf progress.SetProgress
-        AddHandler pipeline.Finish, Sub() progress.Invoke(Sub() progress.Close())
+        Call TaskProgress.RunAction(run:=Sub(p)
+                                             p.SetProgressMode()
 
-        Call New Thread(AddressOf pipeline.Run).Start()
-        Call progress.ShowDialog()
+                                             AddHandler pipeline.SetMessage, AddressOf p.SetInfo
+                                             AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                                             AddHandler pipeline.Finish, AddressOf p.TaskFinish
+
+                                             Call pipeline.Run()
+                                         End Sub, title:="Single Ion MSImaging", info:="Do plot of target ion m/z...")
 
         If saveAs.FileExists Then
             If MessageBox.Show("MSImaging matrix heatmap rendering job done!" & vbCrLf & "Open MSImaging result plot file?", "Open Image", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then

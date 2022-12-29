@@ -311,7 +311,7 @@ Public Class frmMain : Implements AppHost
                      Call WindowModules.viewer.StartMSIService()
                      Call Thread.Sleep(100)
 
-                     Dim dataPack = WindowModules.viewer.MSIservice.LoadMSI(mzpack, Sub(msg) Progress.ShowProgressDetails(msg))
+                     Dim dataPack = WindowModules.viewer.MSIservice.LoadMSI(mzpack, AddressOf p.SetInfo)
 
                      Call WindowModules.viewer.Invoke(Sub() WindowModules.viewer.LoadRender(dataPack, mzpack))
                      Call Invoke(Sub() Text = $"BioNovoGene Mzkit [{WindowModules.viewer.Text} {mzpack.FileName}]")
