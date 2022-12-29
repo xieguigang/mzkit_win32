@@ -34,10 +34,10 @@
     <ROW Property="CTRLS" Value="3"/>
     <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1033:{9FE0F01C-17B4-47D1-840A-5CE62EB03807} 2052:{9FE0F01C-17B4-47D1-840A-5CE62EB03807} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{A5AB98E7-34E4-4789-9936-65760BC784FA} 2052:{A5AB98E7-34E4-4789-9936-65760BC784FA} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="mzkit_win32"/>
-    <ROW Property="ProductVersion" Value="3.6.789.1258" Type="32"/>
+    <ROW Property="ProductVersion" Value="3.6.839.9658" Type="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{B645400B-3918-41EF-9009-7ADDD81C84B4}"/>
@@ -162,7 +162,7 @@
     <ROW Directory="zhHant_Dir" Directory_Parent="APPDIR" DefaultDir="zh-Hant"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{66E94B10-7236-40EE-9F5E-C72EF64BEA09}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{97E81446-0280-4608-B46E-4CBA8BBA5666}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{69AA9FFE-67B1-456B-88EB-97D3D6C92AA7}" Directory_="APPDIR" Attributes="256"/>
     <ROW Component="BioDeep.dll" ComponentId="{2FECE77D-517F-47B1-97BA-15B1100BE489}" Directory_="APPDIR" Attributes="256" KeyPath="BioDeep.dll"/>
     <ROW Component="BioDeep.dll_1" ComponentId="{8274C55C-D52A-4F5B-A268-505929309095}" Directory_="host_Dir" Attributes="256" KeyPath="BioDeep.dll_1"/>
@@ -192,6 +192,8 @@
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.MsImaging.dll_1" ComponentId="{05B71849-FBDA-4F34-89F3-FD93D550D64F}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.MsImaging.dll_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Plots.dll" ComponentId="{45CDB707-0323-419D-A4B4-311F83E69C60}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Plots.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.RInterop.dll" ComponentId="{CA864AA4-B147-40E9-B248-ACC382756F5A}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.RInterop.dll"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll" ComponentId="{218DE230-12BA-4FA1-A8A3-FF8587D19380}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll_1" ComponentId="{F17BBE73-D0A6-4611-90E3-8A52F4EBD373}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.dll" ComponentId="{2DC234EA-612E-4F17-A888-CFF852876ADF}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.dll"/>
     <ROW Component="BioNovoGene.Analytical.NMRFidTool.dll" ComponentId="{3F919F39-896E-46D3-A244-EB2785562AAB}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.NMRFidTool.dll"/>
     <ROW Component="BioNovoGene.BioDeep.Chemistry.Massbank.MoNA.dll" ComponentId="{E5DEF814-9250-4AFC-92C0-B6DBBDA884FC}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.Chemistry.Massbank.MoNA.dll"/>
@@ -331,6 +333,7 @@
     <ROW Component="Microsoft.VisualBasic.DeepLearning.dll_2" ComponentId="{520C8092-D752-4DC5-96B3-A8E01494C8A5}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.DeepLearning.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.AVIMedia.dll" ComponentId="{0638C001-D7E7-4D76-8389-B7386E4A6687}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.AVIMedia.dll"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.Landscape.dll" ComponentId="{84A585A7-C4E7-4550-8103-E82FAAEDD74E}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.Landscape.dll"/>
+    <ROW Component="Microsoft.VisualBasic.Imaging.Landscape.dll_1" ComponentId="{8CC04CB6-B091-42A5-8D03-9E140DBD1566}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.Landscape.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.PDF.dll" ComponentId="{3732B8B7-3607-4294-B63F-37373D15C622}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.PDF.dll"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.PDF.dll_3" ComponentId="{07FB4A5F-B81B-4E49-BDB9-0E5B3E60D1DF}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.PDF.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.Physics.dll" ComponentId="{CD885ACD-1834-4CD8-B88E-D8EA98CD767C}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.Physics.dll"/>
@@ -416,6 +419,8 @@
     <ROW Component="Microsoft.Windows.Ribbon.dll" ComponentId="{ACD1A2A4-798D-41B7-802A-0A07A618CCBB}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.Windows.Ribbon.dll"/>
     <ROW Component="MsImaging.R" ComponentId="{20B324EF-2327-49DF-9121-DB6CAA676EDB}" Directory_="demo_1_Dir" Attributes="256" KeyPath="TIC_overlaps.R" Type="0"/>
     <ROW Component="MsImaging.R_1" ComponentId="{78C43444-BFA7-4CA4-9460-DD70EB774491}" Directory_="demo_1_Dir" Attributes="0" KeyPath="MsImaging.R"/>
+    <ROW Component="Mzkit_win32.BasicMDIForm.dll" ComponentId="{5EF8B31A-7AD6-4999-943D-BB8DBF0385FE}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.BasicMDIForm.dll"/>
+    <ROW Component="Mzkit_win32.BasicMDIForm.resources.dll" ComponentId="{A96B063C-1B50-4C74-B5DE-71856A0F9C69}" Directory_="enUS_Dir" Attributes="256" KeyPath="Mzkit_win32.BasicMDIForm.resources.dll"/>
     <ROW Component="Mzkit_win32.CommonDialogs.dll" ComponentId="{CBA97253-FD26-4BEF-A1C1-A4A9B24FCBB3}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.CommonDialogs.dll"/>
     <ROW Component="Mzkit_win32.CommonDialogs.resources.dll" ComponentId="{3E516B1D-6AEE-4740-8AB4-721591425407}" Directory_="zhCN_Dir" Attributes="256" KeyPath="Mzkit_win32.CommonDialogs.resources.dll"/>
     <ROW Component="Mzkit_win32.Interaction.dll" ComponentId="{303DC4C7-EFA1-45CA-BEC6-28E8565DC608}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.Interaction.dll"/>
@@ -4669,6 +4674,12 @@
     <ROW File="stats.min.js" Component_="dat.gui.min.js" FileName="STATSM~1.JS|stats.min.js" Attributes="0" SourcePath="..\webview\vendor\three\stats.min.js" SelfReg="false"/>
     <ROW File="three.min.js" Component_="dat.gui.min.js" FileName="THREEM~1.JS|three.min.js" Attributes="0" SourcePath="..\webview\vendor\three\three.min.js" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Imaging.Landscape.dll" Component_="Microsoft.VisualBasic.Imaging.Landscape.dll" FileName="MICRO~31.DLL|Microsoft.VisualBasic.Imaging.Landscape.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Imaging.Landscape.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll" Component_="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll" FileName="BIONO~15.DLL|BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll" SelfReg="false"/>
+    <ROW File="Mzkit_win32.BasicMDIForm.resources.dll" Component_="Mzkit_win32.BasicMDIForm.resources.dll" FileName="MZKIT_~3.DLL|Mzkit_win32.BasicMDIForm.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\en-US\Mzkit_win32.BasicMDIForm.resources.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll_1" Component_="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll_1" FileName="BIONO~32.DLL|BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Imaging.Landscape.dll_1" Component_="Microsoft.VisualBasic.Imaging.Landscape.dll_1" FileName="MICRO~68.DLL|Microsoft.VisualBasic.Imaging.Landscape.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Imaging.Landscape.dll" SelfReg="false"/>
+    <ROW File="Mzkit_win32.BasicMDIForm.dll" Component_="Mzkit_win32.BasicMDIForm.dll" FileName="MZKIT_~6.DLL|Mzkit_win32.BasicMDIForm.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.BasicMDIForm.dll" SelfReg="false"/>
+    <ROW File="Mzkit_win32.BasicMDIForm.dll.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MZKIT_~5.CON|Mzkit_win32.BasicMDIForm.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.BasicMDIForm.dll.config" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -5299,6 +5310,11 @@
     <ROW Feature_="MainFeature" Component_="linq.d.ts"/>
     <ROW Feature_="MainFeature" Component_="dat.gui.min.js"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Imaging.Landscape.dll"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll"/>
+    <ROW Feature_="MainFeature" Component_="Mzkit_win32.BasicMDIForm.resources.dll"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Imaging.Landscape.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Mzkit_win32.BasicMDIForm.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
