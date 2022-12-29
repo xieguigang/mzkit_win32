@@ -61,6 +61,32 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  查找类似 &lt;!DOCTYPE html&gt;
+        '''&lt;html lang=&quot;en&quot;&gt;
+        '''
+        '''&lt;head&gt;
+        '''    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+        '''    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot;&gt;
+        '''    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+        '''    &lt;title&gt;Pure CSS Animated Progress Bar Example&lt;/title&gt;
+        '''
+        '''    &lt;meta name=&quot;author&quot; content=&quot;Codeconvey&quot; /&gt;
+        '''
+        '''    &lt;!-- Progress bar CSS --&gt;
+        '''    &lt;style type=&quot;text/css&quot;&gt;
+        '''        .bg {
+        '''            background-color: #fff;
+        '''            width: 400px;
+        '''            height: 30px;
+        '''            mar [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''</summary>
+        Friend ReadOnly Property progress_bar() As String
+            Get
+                Return ResourceManager.GetString("progress_bar", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  查找 System.Drawing.Bitmap 类型的本地化资源。
         '''</summary>
         Friend ReadOnly Property spinner() As System.Drawing.Bitmap
