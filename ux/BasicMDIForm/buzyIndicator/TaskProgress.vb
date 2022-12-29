@@ -61,7 +61,18 @@ Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 
-Public Class TaskProgress
+Public Interface ITaskProgress
+
+    Sub SetProgressMode()
+    Sub SetProgress(p As Integer)
+    Sub SetProgress(p As Integer, msg As String)
+    Sub SetTitle(title As String)
+    Sub SetInfo(message As String)
+    Sub TaskFinish()
+
+End Interface
+
+Public Class TaskProgress : Implements ITaskProgress
 
     Dim dialogClosed As Boolean = False
 
@@ -76,7 +87,7 @@ Public Class TaskProgress
         AutoScaleMode = AutoScaleMode.Dpi
     End Sub
 
-    Public Sub SetProgressMode()
+    Public Sub SetProgressMode() Implements ITaskProgress.SetProgressMode
         TaskbarStatus.SetProgress(0)
     End Sub
 
@@ -84,7 +95,7 @@ Public Class TaskProgress
     ''' 
     ''' </summary>
     ''' <param name="p">[0,100]</param>
-    Public Sub SetProgress(p As Integer)
+    Public Sub SetProgress(p As Integer) Implements ITaskProgress.SetProgress
         Call Invoke(
             Sub()
                 Dim ProgressValue = If(p < 100, p, 100)
@@ -98,7 +109,7 @@ Public Class TaskProgress
     ''' </summary>
     ''' <param name="p">[0,100]</param>
     ''' <param name="message"></param>
-    Public Sub SetProgress(p As Integer, message As String)
+    Public Sub SetProgress(p As Integer, message As String) Implements ITaskProgress.SetProgress
         Call Invoke(
             Sub()
                 Dim ProgressValue = If(p < 100, p, 100)
@@ -116,7 +127,7 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
         e.Graphics.DrawRectangle(New Pen(Color.Black, 1), New Rectangle(0, 0, Width - 1, Height - 1))
     End Sub
 
-    Private Sub ShowProgressTitle(title As String)
+    Private Sub ShowProgressTitle(title As String) Implements ITaskProgress.SetTitle
         If Not dialogClosed Then
             Invoke(Sub()
                        Dim title_str As String
@@ -135,7 +146,7 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
     Dim titleDirect As String
     Dim messageDirect As String
 
-    Private Sub ShowProgressDetails(message As String)
+    Private Sub ShowProgressDetails(message As String) Implements ITaskProgress.SetInfo
         If Not dialogClosed Then
             Invoke(Sub()
                        WebView21.CoreWebView2.ExecuteScriptAsync($"document.querySelector('#info').innerHTML = JSON.parse('{message.GetJson}');")
@@ -174,7 +185,7 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
 
     Dim webkitLoaded As Boolean = False
 
-    Public Shared Function LoadData(Of T)(streamLoad As Func(Of Action(Of String), T),
+    Public Shared Function LoadData(Of T)(streamLoad As Func(Of ITaskProgress, T),
                                           Optional title$ = "Loading data...",
                                           Optional info$ = "Open a large raw data file...",
                                           Optional ByRef taskAssign As Thread = Nothing,
@@ -191,7 +202,7 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
                 Call progress.ShowProgressTitle(title)
                 Call progress.ShowProgressDetails(info)
 
-                tmp = streamLoad(AddressOf progress.ShowProgressDetails)
+                tmp = streamLoad(progress)
 
                 Call progress.CloseWindow()
             End Sub
@@ -222,8 +233,14 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
         Return tmp
     End Function
 
-    Public Shared Sub RunAction(run As Action(Of Action(Of String)), Optional title$ = "Loading data...", Optional info$ = "Open a large raw data file...")
-        Dim progress As New TaskProgress
+    Public Shared Sub RunAction(run As Action(Of ITaskProgress),
+                                Optional title$ = "Loading data...",
+                                Optional info$ = "Open a large raw data file...",
+                                Optional cancel As Action = Nothing)
+
+        Dim progress As New TaskProgress With {
+            .TaskCancel = cancel
+        }
         Dim mask As New MaskForm(Workbench.AppHost.GetDesktopLocation, Workbench.AppHost.GetClientSize)
 
         Call New Thread(
@@ -234,16 +251,14 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
 
                 Call progress.ShowProgressTitle(title)
                 Call progress.ShowProgressDetails(info)
-
-                Call run(AddressOf progress.ShowProgressDetails)
-
-                Call progress.Invoke(Sub() progress.Close())
+                Call run(progress)
+                Call progress.CloseWindow()
             End Sub).Start()
 
         Call mask.ShowDialogForm(progress)
     End Sub
 
-    Public Sub CloseWindow()
+    Public Sub CloseWindow() Implements ITaskProgress.TaskFinish
         Call Me.Invoke(Sub() Call Me.Close())
     End Sub
 

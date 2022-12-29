@@ -59,7 +59,6 @@
 #End Region
 
 Imports System.Drawing.Drawing2D
-Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
@@ -91,33 +90,29 @@ Public Class PageMzSearch
     Public Property InstanceGuid As String
 
     Private Sub doExactMassSearch(mz As Double, ppm As Double)
-        Dim progress As New TaskProgress
         Dim cancel As Value(Of Boolean) = False
 
-        progress.TaskCancel = Sub() cancel.Value = True
-        progress.ShowProgressTitle("Do M/z Search", directAccess:=True)
-        progress.ShowProgressDetails("Initialized...", directAccess:=True)
-
-        Call New Thread(
-            Sub()
-                Call runSearchInternal(mz, ppm, progress, cancel)
-            End Sub).Start()
-        Call progress.ShowDialog()
+        Call TaskProgress.RunAction(
+            run:=Sub(p)
+                     Call runSearchInternal(mz, ppm, progress:=p, cancel)
+                 End Sub,
+            title:="Do M/z Search",
+            info:="Initialized...",
+            cancel:=Sub() cancel.Value = True
+        )
     End Sub
 
     Public Sub doMzSearch(mz As Double, charge As Integer, ionMode As Integer)
-        Dim progress As New TaskProgress
         Dim cancel As Value(Of Boolean) = False
 
-        progress.TaskCancel = Sub() cancel.Value = True
-        progress.ShowProgressTitle("Do M/z Search", directAccess:=True)
-        progress.ShowProgressDetails("Initialized...", directAccess:=True)
-
-        Call New Thread(
-            Sub()
-                Call runSearchInternal(mz, charge, ionMode, progress, cancel)
-            End Sub).Start()
-        Call progress.ShowDialog()
+        Call TaskProgress.RunAction(
+            run:=Sub(p)
+                     Call runSearchInternal(mz, charge, ionMode, p, cancel)
+                 End Sub,
+            title:="Do M/z Search",
+            info:="Initialized...",
+            cancel:=Sub() cancel.Value = True
+        )
     End Sub
 
     Public Function GetFormulaSearchProfileName() As FormulaSearchProfiles
@@ -181,56 +176,46 @@ Public Class PageMzSearch
         End Select
     End Function
 
-    Private Sub runSearchInternal(mz As Double, charge As Integer, ionMode As Integer, progress As TaskProgress, cancel As Value(Of Boolean))
-        Thread.Sleep(100)
-        progress.ShowProgressTitle("initialize workspace...")
+    Private Sub runSearchInternal(mz As Double, charge As Integer, ionMode As Integer, progress As ITaskProgress, cancel As Value(Of Boolean))
+        progress.SetTitle("initialize workspace...")
 
         Dim config As PrecursorSearchSettings = Globals.Settings.precursor_search
         Dim opts = DirectCast(Invoke(Function() GetProfile()), SearchOption).AdjustPpm(config.ppm)
         Dim oMwtWin As New PrecursorIonSearch(
             opts:=opts,
-            progress:=AddressOf progress.ShowProgressDetails,
-            precursorTypeProgress:=AddressOf progress.ShowProgressTitle
+            progress:=AddressOf progress.SetInfo,
+            precursorTypeProgress:=AddressOf progress.SetTitle
         )
 
         oMwtWin.AddPrecursorTypeRanges(config.precursor_types)
 
-        progress.ShowProgressTitle("running formula search...")
+        progress.SetTitle("running formula search...")
 
         Dim searchResults = oMwtWin.SearchByPrecursorMz(mz, charge, ionMode, cancel).ToArray
 
-        progress.ShowProgressTitle("output search result...")
-        MyApplication.host.Invoke(
-            Sub()
-                MyApplication.host.ToolStripStatusLabel1.Text = $"Run formula search for m/z {mz} with tolerance error {config.ppm} ppm, have {searchResults.Length} formula found!"
-            End Sub)
+        progress.SetTitle("output search result...")
+        Workbench.StatusMessage($"Run formula search for m/z {mz} with tolerance error {config.ppm} ppm, have {searchResults.Length} formula found!")
 
         Call Me.Invoke(Sub() Call ShowFormulaFinderResults(searchResults))
-        Call progress.Invoke(Sub() Call progress.Close())
     End Sub
 
-    Private Sub runSearchInternal(exact_mass As Double, ppm As Double, progress As TaskProgress, cancel As Value(Of Boolean))
-        Thread.Sleep(100)
-        progress.ShowProgressTitle("initialize workspace...")
+    Private Sub runSearchInternal(exact_mass As Double, ppm As Double, progress As ITaskProgress, cancel As Value(Of Boolean))
+        progress.SetInfo("initialize workspace...")
 
         Dim opts = DirectCast(Invoke(Function() GetProfile()), SearchOption).AdjustPpm(ppm)
         Dim oMwtWin As New FormulaSearch(
             opts:=opts,
-            progress:=AddressOf progress.ShowProgressDetails
+            progress:=AddressOf progress.SetInfo
         )
 
-        progress.ShowProgressTitle("running formula search...")
+        progress.SetTitle("running formula search...")
 
         Dim searchResults = oMwtWin.SearchByExactMass(exact_mass, cancel:=cancel).ToArray
 
-        progress.ShowProgressTitle("output search result...")
-        MyApplication.host.Invoke(
-            Sub()
-                MyApplication.host.ToolStripStatusLabel1.Text = $"Run formula search for exact mass {exact_mass} with tolerance error {ppm} ppm, have {searchResults.Length} formula found!"
-            End Sub)
+        progress.SetTitle("output search result...")
+        Workbench.StatusMessage($"Run formula search for exact mass {exact_mass} with tolerance error {ppm} ppm, have {searchResults.Length} formula found!")
 
         Call Me.Invoke(Sub() Call ShowFormulaFinderResults(searchResults))
-        Call progress.Invoke(Sub() Call progress.Close())
     End Sub
 
     Private Sub ShowFormulaFinderResults(lstResults As IEnumerable(Of PrecursorIonComposition))

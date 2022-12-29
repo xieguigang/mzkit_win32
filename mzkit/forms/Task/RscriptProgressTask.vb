@@ -86,21 +86,18 @@ Public Class RscriptProgressTask
 
         If cachefile.FileLength > 1024 Then
             Return cachefile
+        Else
+            Call MyApplication.LogText(pipeline.CommandLine)
+            Call TaskProgress.RunAction(
+                Sub(p)
+                    p.SetProgressMode()
+
+                    AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                    AddHandler pipeline.Finish, AddressOf p.TaskFinish
+
+                    Call pipeline.Run()
+                End Sub, title:="Open imzML...", info:="Loading MSI raw data file into viewer workspace...")
         End If
-
-        Dim progress As New TaskProgress
-
-        progress.ShowProgressTitle("Open imzML...", directAccess:=True)
-        progress.ShowProgressDetails("Loading MSI raw data file into viewer workspace...", directAccess:=True)
-        progress.SetProgressMode()
-
-        Call MyApplication.LogText(pipeline.CommandLine)
-
-        AddHandler pipeline.SetProgress, AddressOf progress.SetProgress
-        AddHandler pipeline.Finish, Sub() progress.Invoke(Sub() progress.Close())
-
-        Call New Thread(AddressOf pipeline.Run).Start()
-        Call progress.ShowDialog()
 
         Return cachefile
     End Function
@@ -142,21 +139,20 @@ Public Class RscriptProgressTask
                     End Function) _
             .SaveTo(tempfile, encoding:=Encodings.UTF8.CodePage)
 
-        Dim progress As New TaskProgress
-
-        progress.ShowProgressTitle("Imports MSI Matrix...", directAccess:=True)
-        progress.ShowProgressDetails("Imports SCiLS Lab MSImaging matrix data into viewer workspace...", directAccess:=True)
-        progress.SetProgressMode()
-
         Call WorkStudio.LogCommandLine(PipelineTask.Host, cli, App.CurrentDirectory)
         Call MyApplication.LogText(pipeline.CommandLine)
+        Call TaskProgress.RunAction(
+            run:=Sub(p)
+                     p.SetProgressMode()
 
-        AddHandler pipeline.SetMessage, AddressOf progress.ShowProgressDetails
-        AddHandler pipeline.SetProgress, AddressOf progress.SetProgress
-        AddHandler pipeline.Finish, Sub() progress.Invoke(Sub() progress.Close())
+                     AddHandler pipeline.SetMessage, AddressOf p.SetInfo
+                     AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                     AddHandler pipeline.Finish, AddressOf p.TaskFinish
 
-        Call New Thread(AddressOf pipeline.Run).Start()
-        Call progress.ShowDialog()
+                     Call pipeline.Run()
+                 End Sub,
+            title:="Imports MSI Matrix...",
+            info:="Imports SCiLS Lab MSImaging matrix data into viewer workspace...")
 
         If MessageBox.Show("MSI Raw Convert Job Done!" & vbCrLf & "Open MSI raw data file in MSI Viewer?", "MSI Viewer", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
             Call RibbonEvents.showMsImaging()
@@ -176,22 +172,18 @@ Public Class RscriptProgressTask
         Dim pipeline As New RunSlavePipeline(PipelineTask.Host, commandline)
 
         Call files.SaveTo(tempfile, encoding:=Encodings.UTF8.CodePage)
-
-        Dim progress As New TaskProgress
-
-        progress.ShowProgressTitle("Convert MSI Raw...", directAccess:=True)
-        progress.ShowProgressDetails("Loading MSI raw data file into viewer workspace...", directAccess:=True)
-        progress.SetProgressMode()
-
         Call WorkStudio.LogCommandLine(PipelineTask.Host, commandline, App.CurrentDirectory)
         Call MyApplication.LogText(pipeline.CommandLine)
+        Call TaskProgress.RunAction(run:=Sub(p)
+                                             p.SetProgressMode()
 
-        AddHandler pipeline.SetMessage, AddressOf progress.ShowProgressDetails
-        AddHandler pipeline.SetProgress, AddressOf progress.SetProgress
-        AddHandler pipeline.Finish, Sub() progress.Invoke(Sub() progress.Close())
+                                             AddHandler pipeline.SetMessage, AddressOf p.SetInfo
+                                             AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                                             AddHandler pipeline.Finish, AddressOf p.TaskFinish
 
-        Call New Thread(AddressOf pipeline.Run).Start()
-        Call progress.ShowDialog()
+                                             Call pipeline.Run()
+
+                                         End Sub, title:="Convert MSI Raw...", info:="Loading MSI raw data file into viewer workspace...")
 
         If MessageBox.Show("MSI Raw Convert Job Done!" & vbCrLf & "Open MSI raw data file in MSI Viewer?", "MSI Viewer", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
             Call RibbonEvents.showMsImaging()
