@@ -702,7 +702,7 @@ Public Class frmFileExplorer
                     Function(println)
                         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
-                        AddHandler pipeline.SetMessage, AddressOf println.Invoke
+                        AddHandler pipeline.SetMessage, AddressOf println.SetInfo
 
                         Call cli.__DEBUG_ECHO
                         Call pipeline.Run()
@@ -728,19 +728,19 @@ Public Class frmFileExplorer
 
                                 For Each item As PeakFeature In data
                                     Call grid.Rows.Add(
-                                                item.xcms_id,
-                                                item.mz.ToString("F4"),
-                                                item.rt.ToString("F2"),
-                                                item.rtmin.ToString("F2"),
-                                                item.rtmax.ToString("F2"),
-                                                item.maxInto.ToString("G3"),
-                                                item.nticks,
-                                                item.baseline.ToString("G3"),
-                                                item.noise.ToString("G3"),
-                                                item.area,
-                                                item.integration.ToString("F2"),
-                                                item.snRatio.ToString("F4")
-                                             )
+                                        item.xcms_id,
+                                        item.mz.ToString("F4"),
+                                        item.rt.ToString("F2"),
+                                        item.rtmin.ToString("F2"),
+                                        item.rtmax.ToString("F2"),
+                                        item.maxInto.ToString("G3"),
+                                        item.nticks,
+                                        item.baseline.ToString("G3"),
+                                        item.noise.ToString("G3"),
+                                        item.area,
+                                        item.integration.ToString("F2"),
+                                        item.snRatio.ToString("F4")
+                                    )
                                 Next
                             End Sub)
         End If
@@ -755,7 +755,6 @@ Public Class frmFileExplorer
             Dim raw = DirectCast(node.Tag, MZWork.Raw)
             Dim mzpackfile As String = raw.cache
             Dim similarityCutoff As Double = MyApplication.host.ribbonItems.SpinnerSimilarity.DecimalValue
-            Dim progress As New TaskProgress
             Dim page As PageMzkitTools = MyApplication.mzkitRawViewer
             Dim getRaw As Func(Of Action(Of String), IEnumerable(Of PeakMs2)) =
                 Iterator Function(println)
@@ -765,18 +764,14 @@ Public Class frmFileExplorer
                         Yield PageMzkitTools.GetMs2Peak(ms2, raw)
                     Next
                 End Function
-            Dim task As ThreadStart =
-                Sub()
-                    Call page.MolecularNetworkingTool(progress, similarityCutoff, getRaw)
-                End Sub
 
-            progress.ShowProgressTitle("Run molecular networking", directAccess:=True)
-            progress.ShowProgressDetails("Initialized...", directAccess:=True)
-
-            Dim runTask As New Thread(task)
-
-            runTask.Start()
-            progress.ShowDialog()
+            Call TaskProgress.RunAction(
+                run:=Sub(p)
+                         Call page.MolecularNetworkingTool(p, similarityCutoff, getRaw)
+                     End Sub,
+                title:="Run molecular networking",
+                info:="Initialized..."
+            )
         End If
     End Sub
 End Class

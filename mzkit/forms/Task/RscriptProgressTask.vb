@@ -412,23 +412,22 @@ Public Class RscriptProgressTask
         Dim Rscript As String = RscriptPipelineTask.GetRScript("ggplot/ggplot2.R")
         Dim cli As String = $"""{Rscript}"" --data ""{tempfile}"" --save ""{imageOut}"" --title ""{title}"" --plot ""{type}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
-        Dim progress As New TaskProgress
-
-        progress.ShowProgressTitle("Create MSI sample table...", directAccess:=True)
-        progress.ShowProgressDetails("Loading MSI raw data file into viewer workspace...", directAccess:=True)
-        progress.SetProgressMode()
 
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call data.SaveTo(tempfile)
         Call MyApplication.LogText(pipeline.CommandLine)
         Call MyApplication.LogText(data)
+        Call TaskProgress.RunAction(
+            run:=Sub(p)
+                     p.SetProgressMode()
 
-        AddHandler pipeline.SetMessage, AddressOf progress.ShowProgressDetails
-        AddHandler pipeline.SetProgress, AddressOf progress.SetProgress
-        AddHandler pipeline.Finish, Sub() progress.Invoke(Sub() progress.Close())
+                     AddHandler pipeline.SetMessage, AddressOf p.SetInfo
+                     AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                     AddHandler pipeline.Finish, AddressOf p.TaskFinish
 
-        Call New Thread(AddressOf pipeline.Run).Start()
-        Call progress.ShowDialog()
+                     Call pipeline.Run()
+
+                 End Sub, title:="Create MSI sample table...", info:="Loading MSI raw data file into viewer workspace...")
 
         If Not imageOut.FileExists(ZERO_Nonexists:=True) Then
             Return Nothing
@@ -442,22 +441,20 @@ Public Class RscriptProgressTask
         Dim Rscript As String = RscriptPipelineTask.GetRScript("ggplot/ggplot_scatter3D.R")
         Dim cli As String = $"""{Rscript}"" --matrix ""{data}"" --png ""{imageOut}"" --title ""{title}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
-        Dim progress As New TaskProgress
-
-        progress.ShowProgressTitle("Create scatter 3d plot...", directAccess:=True)
-        progress.ShowProgressDetails("Run scater data plot and 3d rendering...", directAccess:=True)
-        progress.SetProgressMode()
 
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call MyApplication.LogText(pipeline.CommandLine)
         Call MyApplication.LogText(data)
+        Call TaskProgress.RunAction(
+            run:=Sub(p)
+                     p.SetProgressMode()
 
-        AddHandler pipeline.SetMessage, AddressOf progress.ShowProgressDetails
-        AddHandler pipeline.SetProgress, AddressOf progress.SetProgress
-        AddHandler pipeline.Finish, Sub() progress.Invoke(Sub() progress.Close())
+                     AddHandler pipeline.SetMessage, AddressOf p.SetInfo
+                     AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                     AddHandler pipeline.Finish, AddressOf p.TaskFinish
 
-        Call New Thread(AddressOf pipeline.Run).Start()
-        Call progress.ShowDialog()
+                     Call pipeline.Run()
+                 End Sub, title:="Create scatter 3d plot...", info:="Run scater data plot and 3d rendering...")
 
         If Not imageOut.FileExists(ZERO_Nonexists:=True) Then
             Return Nothing

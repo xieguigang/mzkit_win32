@@ -581,21 +581,19 @@ Public Class PageMzkitTools
     ''' </summary>
     ''' <param name="progress"></param>
     ''' <param name="similarityCutoff"></param>
-    Friend Sub MolecularNetworkingTool(progress As TaskProgress, similarityCutoff As Double, getSpectrum As Func(Of Action(Of String), IEnumerable(Of PeakMs2)))
+    Friend Sub MolecularNetworkingTool(progress As ITaskProgress, similarityCutoff As Double, getSpectrum As Func(Of Action(Of String), IEnumerable(Of PeakMs2)))
         Call Thread.Sleep(1000)
 
-        Call progress.ShowProgressTitle("Load Scan data")
-        Call progress.ShowProgressDetails("loading cache ms2 scan data...")
+        Call progress.SetTitle("Load Scan data")
+        Call progress.SetInfo("loading cache ms2 scan data...")
 
-        Dim raw As PeakMs2() = getSpectrum(AddressOf progress.ShowProgressTitle).ToArray
+        Dim raw As PeakMs2() = getSpectrum(AddressOf progress.SetTitle).ToArray
 
         If raw.Length = 0 Then
             MyApplication.host.showStatusMessage("No spectrum data, please select a file or some spectrum...", My.Resources.StatusAnnotations_Warning_32xLG_color)
         Else
             Call MolecularNetworkingTool(raw, progress, similarityCutoff)
         End If
-
-        Call progress.Invoke(Sub() progress.Close())
     End Sub
 
     Friend Sub MolecularNetworkingTool(raw As PeakMs2(), progress As ITaskProgress, similarityCutoff As Double)

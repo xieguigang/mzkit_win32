@@ -180,7 +180,6 @@ Public Class PageSpectrumSearch
 
     Public Sub runSearch(Optional isotopic As IsotopeDistribution = Nothing)
         Dim raws As IEnumerable(Of MZWork.Raw) = Globals.workspace.GetRawDataFiles
-        Dim progress As New TaskProgress
         Dim query As [Variant](Of LibraryMatrix, IsotopeDistribution)
 
         If isotopic Is Nothing Then
@@ -189,12 +188,11 @@ Public Class PageSpectrumSearch
             query = isotopic
         End If
 
-        progress.ShowProgressTitle("Run spectrum similarity search...", directAccess:=True)
-        progress.ShowProgressDetails("Running...", directAccess:=True)
-
         Call TreeListView1.Items.Clear()
-        Call New Thread(Sub() Call SearchThread(query, raws, progress)).Start()
-        Call progress.ShowDialog()
+        Call TaskProgress.RunAction(
+            run:=Sub(p)
+                     Call SearchThread(query, raws, p)
+                 End Sub, title:="Run spectrum similarity search...", info:="Running...")
 
         TabControl1.SelectedTab = TabPage2
     End Sub
@@ -270,8 +268,7 @@ Public Class PageSpectrumSearch
             Me.Invoke(Sub() Call TreeListView1.Items.Add(fileRow))
         Next
 
-        Call progress.ShowProgressDetails("Search job done!")
-        Call progress.Invoke(Sub() Call progress.Close())
+        Call progress.SetInfo("Search job done!")
     End Sub
 
     Private Sub ViewAlignmentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewAlignmentToolStripMenuItem.Click

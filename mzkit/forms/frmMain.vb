@@ -306,29 +306,16 @@ Public Class frmMain : Implements AppHost
     End Sub
 
     Friend Sub showMzPackMSI(mzpack As String)
-        Call TaskProgress.RunAction(Sub()
+        Call TaskProgress.RunAction(
+            run:=Sub(p)
+                     Call WindowModules.viewer.StartMSIService()
+                     Call Thread.Sleep(100)
 
-                                    End Sub)
+                     Dim dataPack = WindowModules.viewer.MSIservice.LoadMSI(mzpack, Sub(msg) Progress.ShowProgressDetails(msg))
 
-
-        Dim progress As New TaskProgress
-
-        Call progress.ShowProgressTitle("Open mzPack for MSI...", directAccess:=True)
-        Call progress.ShowProgressDetails("Loading MSI raw data file into viewer workspace...", directAccess:=True)
-
-        Call New Thread(
-           Sub()
-               Call WindowModules.viewer.StartMSIService()
-               Call Thread.Sleep(100)
-
-               Dim dataPack = WindowModules.viewer.MSIservice.LoadMSI(mzpack, Sub(msg) progress.ShowProgressDetails(msg))
-
-               Call WindowModules.viewer.Invoke(Sub() WindowModules.viewer.LoadRender(dataPack, mzpack))
-               Call Invoke(Sub() Text = $"BioNovoGene Mzkit [{WindowModules.viewer.Text} {mzpack.FileName}]")
-               Call progress.CloseWindow()
-           End Sub).Start()
-
-        Call progress.ShowDialog()
+                     Call WindowModules.viewer.Invoke(Sub() WindowModules.viewer.LoadRender(dataPack, mzpack))
+                     Call Invoke(Sub() Text = $"BioNovoGene Mzkit [{WindowModules.viewer.Text} {mzpack.FileName}]")
+                 End Sub, title:="Open mzPack for MSI...", info:="Loading MSI raw data file into viewer workspace...")
     End Sub
 
     Friend Sub saveCurrentScript()
