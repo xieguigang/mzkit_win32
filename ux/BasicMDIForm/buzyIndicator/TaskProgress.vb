@@ -55,9 +55,11 @@
 
 #End Region
 
+Imports System.ComponentModel
 Imports System.Threading
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.Web.WebView2.Core
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 
 Public Class TaskProgress
 
@@ -114,14 +116,8 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
         e.Graphics.DrawRectangle(New Pen(Color.Black, 1), New Rectangle(0, 0, Width - 1, Height - 1))
     End Sub
 
-    Public Sub ShowProgressTitle(title As String, Optional directAccess As Boolean = False)
-        If directAccess Then
-            If Not TaskCancel Is Nothing Then
-                title = $"{title} [Press ESC for cancel task]"
-            End If
-
-            WebView21.CoreWebView2.ExecuteScriptAsync($"document.querySelector('#title').innerHTML = JSON.parse('{title.GetJson}');")
-        ElseIf Not dialogClosed Then
+    Private Sub ShowProgressTitle(title As String)
+        If Not dialogClosed Then
             Invoke(Sub()
                        Dim title_str As String
 
@@ -136,10 +132,11 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
         End If
     End Sub
 
-    Public Sub ShowProgressDetails(message As String, Optional directAccess As Boolean = False)
-        If directAccess Then
-            WebView21.CoreWebView2.ExecuteScriptAsync($"document.querySelector('#info').innerHTML = JSON.parse('{message.GetJson}');")
-        ElseIf Not dialogClosed Then
+    Dim titleDirect As String
+    Dim messageDirect As String
+
+    Private Sub ShowProgressDetails(message As String)
+        If Not dialogClosed Then
             Invoke(Sub()
                        WebView21.CoreWebView2.ExecuteScriptAsync($"document.querySelector('#info').innerHTML = JSON.parse('{message.GetJson}');")
                    End Sub)
@@ -175,6 +172,8 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
         TaskbarStatus.SetLoopStatus()
     End Sub
 
+    Dim webkitLoaded As Boolean = False
+
     Public Shared Function LoadData(Of T)(streamLoad As Func(Of Action(Of String), T),
                                           Optional title$ = "Loading data...",
                                           Optional info$ = "Open a large raw data file...",
@@ -182,9 +181,12 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
                                           Optional canbeCancel As Boolean = False) As T
         Dim tmp As T
         Dim progress As New TaskProgress
+        Dim mask As New MaskForm(Workbench.AppHost.GetDesktopLocation, Workbench.AppHost.GetClientSize)
         Dim task As ThreadStart =
             Sub()
-                Call Thread.Sleep(300)
+                Do While Not progress.webkitLoaded
+                    Call Thread.Sleep(30)
+                Loop
 
                 Call progress.ShowProgressTitle(title)
                 Call progress.ShowProgressDetails(info)
@@ -215,17 +217,20 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
                 End Sub
         End If
 
-        Call progress.ShowDialog()
+        Call mask.ShowDialogForm(progress)
 
         Return tmp
     End Function
 
     Public Shared Sub RunAction(run As Action(Of Action(Of String)), Optional title$ = "Loading data...", Optional info$ = "Open a large raw data file...")
         Dim progress As New TaskProgress
+        Dim mask As New MaskForm(Workbench.AppHost.GetDesktopLocation, Workbench.AppHost.GetClientSize)
 
         Call New Thread(
             Sub()
-                Call Thread.Sleep(100)
+                Do While Not progress.webkitLoaded
+                    Call Thread.Sleep(30)
+                Loop
 
                 Call progress.ShowProgressTitle(title)
                 Call progress.ShowProgressDetails(info)
@@ -235,14 +240,18 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
                 Call progress.Invoke(Sub() progress.Close())
             End Sub).Start()
 
-        Call progress.ShowDialog()
-    End Sub
-
-    Private Sub frmTaskProgress_Closed(sender As Object, e As EventArgs) Handles Me.Closed
-        TaskbarStatus.Stop()
+        Call mask.ShowDialogForm(progress)
     End Sub
 
     Public Sub CloseWindow()
         Call Me.Invoke(Sub() Call Me.Close())
+    End Sub
+
+    Private Sub TaskProgress_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        TaskbarStatus.Stop()
+    End Sub
+
+    Private Sub WebView21_NavigationCompleted(sender As Object, e As CoreWebView2NavigationCompletedEventArgs) Handles WebView21.NavigationCompleted
+        webkitLoaded = True
     End Sub
 End Class

@@ -13,5 +13,7 @@ Public Interface AppHost
     Sub StatusMessage(msg As String, Optional icon As Image = Nothing)
 
     Function GetWindowState() As FormWindowState
+    Function GetDesktopLocation() As Point
+    Function GetClientSize() As Size
 
 End Interface

@@ -306,6 +306,11 @@ Public Class frmMain : Implements AppHost
     End Sub
 
     Friend Sub showMzPackMSI(mzpack As String)
+        Call TaskProgress.RunAction(Sub()
+
+                                    End Sub)
+
+
         Dim progress As New TaskProgress
 
         Call progress.ShowProgressTitle("Open mzPack for MSI...", directAccess:=True)

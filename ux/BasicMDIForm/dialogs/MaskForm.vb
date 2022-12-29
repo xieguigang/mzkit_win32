@@ -91,6 +91,5 @@ Namespace CommonDialogs
             Me.Close()
             Return result
         End Function
-
     End Class
 End Namespace

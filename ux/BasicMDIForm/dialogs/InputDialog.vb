@@ -56,18 +56,16 @@ Namespace CommonDialogs
 
     Public Class InputDialog
 
-        Public Shared Property MyApplicationHost As Form
-
         Public Shared Sub Input(Of Form As {New, InputDialog})(setConfig As Action(Of Form),
                                                            Optional cancel As Action = Nothing,
                                                            Optional config As Form = Nothing)
 
-            If MyApplicationHost Is Nothing Then
+            If Workbench.AppHost Is Nothing Then
                 Throw New NullReferenceException("the required main form is nothing!")
             End If
 
             Dim getConfig As Form = If(config, New Form)
-            Dim mask As New MaskForm(MyApplicationHost.Location, MyApplicationHost.Size)
+            Dim mask As New MaskForm(Workbench.AppHost.GetDesktopLocation, Workbench.AppHost.GetClientSize)
 
             If mask.ShowDialogForm(getConfig) = DialogResult.OK Then
                 Call setConfig(getConfig)
