@@ -377,14 +377,10 @@ UseCheckedList:
         Call ClearIons()
 
         If WindowModules.viewer.checkService Then
-            Dim progress As New ProgressSpinner
-
-            Call New Thread(Sub()
-                                Call Me.Invoke(Sub() Call loadBasePeakMz())
-                                Call progress.Invoke(Sub() progress.Close())
-                            End Sub).Start()
-
-            Call progress.ShowDialog()
+            ProgressSpinner.DoLoading(
+                Sub()
+                    Call Me.Invoke(Sub() Call loadBasePeakMz())
+                End Sub)
         Else
             Call MyApplication.host.showStatusMessage("No MSI raw data file was loaded!", My.Resources.StatusAnnotations_Warning_32xLG_color)
         End If

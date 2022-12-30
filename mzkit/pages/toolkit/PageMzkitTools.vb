@@ -146,15 +146,10 @@ Public Class PageMzkitTools
             ElseIf contour Then
                 colorSet = "Jet"
 
-                Dim spinner As New ProgressSpinner
-                Dim task As New Thread(
+                Call ProgressSpinner.DoLoading(
                     Sub()
                         data = raw.GetContourData
-                        spinner.Invoke(Sub() Call spinner.Close())
                     End Sub)
-
-                Call task.Start()
-                Call spinner.ShowDialog()
 
                 width = 3600
                 height = 2700
@@ -165,31 +160,26 @@ Public Class PageMzkitTools
 
             Call MyApplication.RegisterPlot(
                 Sub(args)
-                    Dim spinner As New ProgressSpinner
-                    Dim task As New Thread(
-                        Sub()
-                            Dim image As Image
+                    Call ProgressSpinner.DoLoading(Sub()
+                                                       Dim image As Image
 
-                            If contour Then
-                                image = data.Plot(
+                                                       If contour Then
+                                                           image = data.Plot(
                                     size:=$"{args.width},{args.height}",
                                     padding:=args.GetPadding.ToString,
                                     colorSet:=args.GetColorSetName,
                                     ppi:=200,
                                     legendTitle:=args.legend_title
                                 ).AsGDIImage
-                            ElseIf XIC Then
-                                image = raw.Draw3DPeaks(colorSet:=args.GetColorSetName, size:=$"{args.width},{args.height}", args.GetPadding.ToString)
-                            Else
-                                image = raw.DrawScatter(colorSet:=args.GetColorSetName)
-                            End If
+                                                       ElseIf XIC Then
+                                                           image = raw.Draw3DPeaks(colorSet:=args.GetColorSetName, size:=$"{args.width},{args.height}", args.GetPadding.ToString)
+                                                       Else
+                                                           image = raw.DrawScatter(colorSet:=args.GetColorSetName)
+                                                       End If
 
-                            Me.Invoke(Sub() PictureBox1.BackgroundImage = image)
-                            spinner.Invoke(Sub() Call spinner.Close())
-                        End Sub)
+                                                       Me.Invoke(Sub() PictureBox1.BackgroundImage = image)
+                                                   End Sub)
 
-                    Call task.Start()
-                    Call spinner.ShowDialog()
                 End Sub, colorSet:=colorSet, width:=width, height:=height, padding:=padding, legendTitle:="Levels")
         End If
 
@@ -758,7 +748,7 @@ Public Class PageMzkitTools
     End Sub
 
     Public Sub ShowXIC(ppm As Double, plotTIC As NamedCollection(Of ChromatogramTick), getXICCollection As Func(Of Double, IEnumerable(Of NamedCollection(Of ChromatogramTick))), maxY As Double)
-        Dim progress As New ProgressSpinner
+
         Dim plotImage As Image = Nothing
         Dim relative As Boolean = relativeInto()
         Dim XICPlot As New List(Of NamedCollection(Of ChromatogramTick))

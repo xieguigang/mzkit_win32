@@ -590,7 +590,6 @@ Public Class frmFileExplorer
 
     Private Sub ShowSummaryToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowSummaryToolStripMenuItem.Click
         Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)
-        Dim spinner As New ProgressSpinner
 
         table.ViewRow =
             Sub(row)
@@ -614,19 +613,19 @@ Public Class frmFileExplorer
                     Return
                 End If
 
-                Call New Thread(Sub()
-                                    Call Thread.Sleep(500)
+                Call ProgressSpinner.DoLoading(Sub()
+                                                   Call Thread.Sleep(500)
 
-                                    For Each node As TreeNode In treeView1.Nodes(0).Nodes
-                                        Dim raw As MZWork.Raw = node.Tag
-                                        Dim load As mzPack = raw _
+                                                   For Each node As TreeNode In treeView1.Nodes(0).Nodes
+                                                       Dim raw As MZWork.Raw = node.Tag
+                                                       Dim load As mzPack = raw _
                                             .LoadMzpack(Sub(title, msg)
                                                             MyApplication.host.showStatusMessage($"{title}: {msg}")
                                                         End Sub) _
                                             .GetLoadedMzpack
-                                        Dim basePeak As ms2 = load.GetBasePeak
+                                                       Dim basePeak As ms2 = load.GetBasePeak
 
-                                        Call table.Invoke(
+                                                       Call table.Invoke(
                                             Sub()
                                                 Call grid.Rows.Add(
                                                     node.Text,
@@ -639,12 +638,9 @@ Public Class frmFileExplorer
                                                     If(basePeak Is Nothing, 0, stdNum.Round(basePeak.intensity))
                                                 )
                                             End Sub)
-                                    Next
+                                                   Next
 
-                                    Call spinner.CloseWindow()
-                                End Sub).Start()
-
-                Call spinner.ShowDialog()
+                                               End Sub)
             End Sub)
     End Sub
 

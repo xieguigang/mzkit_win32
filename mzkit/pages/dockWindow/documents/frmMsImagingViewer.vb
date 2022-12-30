@@ -440,14 +440,11 @@ Public Class frmMsImagingViewer
             If checkService() Then
                 Dim formula As String = getFormula.GetAnnotation.formula
                 Dim mass As Double = FormulaScanner.ScanFormula(formula).ExactMass
-                Dim progress As New ProgressSpinner
                 ' evaluate m/z
                 Dim mz As Double() = Provider.Positives.Select(Function(t) t.CalcMZ(mass)).ToArray
 
-                Call New Thread(
+                ProgressSpinner.DoLoading(
                     Sub()
-                        Call Thread.Sleep(500)
-
                         Dim ions As IonStat() = MSIservice.DoIonStats(mz)
 
                         If ions.IsNullOrEmpty Then
@@ -457,13 +454,9 @@ Public Class frmMsImagingViewer
                                                Call DoIonStats(ions, getFormula.GetAnnotation.name, formula, Provider.Positives)
                                            End Sub)
                         End If
-
-                        Call progress.CloseWindow()
-                    End Sub).Start()
-
-                Call progress.ShowDialog()
+                    End Sub)
             Else
-                Call MyApplication.host.showStatusMessage($"The MS-imaging backend services is not running for rendering {getFormula.GetAnnotation.name}!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Call Workbench.StatusMessage($"The MS-imaging backend services is not running for rendering {getFormula.GetAnnotation.name}!", My.Resources.StatusAnnotations_Warning_32xLG_color)
             End If
         End If
     End Sub
@@ -716,13 +709,11 @@ Public Class frmMsImagingViewer
     End Sub
 
     Sub DoIonColocalization()
-        Dim progress As New ProgressSpinner
-
         If Not checkService() Then
             Return
         End If
 
-        Call New Thread(
+        Call ProgressSpinner.DoLoading(
             Sub()
                 Call Thread.Sleep(500)
 
@@ -733,11 +724,7 @@ Public Class frmMsImagingViewer
                 Else
                     Call Me.Invoke(Sub() Call ShowIonColocalization(ions))
                 End If
-
-                Call progress.CloseWindow()
-            End Sub).Start()
-
-        Call progress.ShowDialog()
+            End Sub)
     End Sub
 
     Private Sub ShowIonColocalization(ions As EntityClusterModel())
@@ -779,13 +766,11 @@ Public Class frmMsImagingViewer
     End Sub
 
     Sub DoIonStats()
-        Dim progress As New ProgressSpinner
-
         If Not checkService() Then
             Return
         End If
 
-        Call New Thread(
+        Call ProgressSpinner.DoLoading(
             Sub()
                 Call Thread.Sleep(500)
 
@@ -796,11 +781,7 @@ Public Class frmMsImagingViewer
                 Else
                     Call Me.Invoke(Sub() Call DoIonStats(ions, Nothing, Nothing, Nothing))
                 End If
-
-                Call progress.CloseWindow()
-            End Sub).Start()
-
-        Call progress.ShowDialog()
+            End Sub)
     End Sub
 
     Private Sub DoIonStats(ions As IonStat(), name As String, formula As String, types As MzCalculator())
@@ -1052,8 +1033,6 @@ Public Class frmMsImagingViewer
         Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
 
         If mask.ShowDialogForm(getSize) = DialogResult.OK Then
-            Dim progress As New ProgressSpinner
-
             guid = file.MD5
             FilePath = file
 
@@ -1061,24 +1040,20 @@ Public Class frmMsImagingViewer
             Call WindowModules.msImageParameters.Show(DockPanel)
             Call ServiceHub.MSIDataService.StartMSIService(MSIservice)
 
-            Call New Thread(
+            Call ProgressSpinner.DoLoading(
                 Sub()
                     Dim info As MsImageProperty = MSIservice.LoadMSI(file, getSize.Dims.SizeParser, Sub(msg) MyApplication.host.showStatusMessage(msg))
 
                     Call WindowModules.viewer.Invoke(Sub() Call LoadRender(info, file))
                     Call WindowModules.viewer.Invoke(Sub() WindowModules.viewer.DockState = DockState.Document)
 
-                    Call progress.CloseWindow()
-
                     MyApplication.host.Invoke(
                         Sub()
                             MyApplication.host.Text = $"BioNovoGene Mzkit [{WindowModules.viewer.Text} {file.FileName}]"
                         End Sub)
-                End Sub).Start()
+                End Sub)
 
             WindowModules.msImageParameters.DockState = DockState.DockLeft
-
-            Call progress.ShowDialog()
         Else
             Call MyApplication.host.showStatusMessage("User cancel load MSI raw data file...")
         End If
@@ -1310,15 +1285,10 @@ Public Class frmMsImagingViewer
             Return
         End If
 
-        Dim progress As New ProgressSpinner
-
-        Call New Thread(
+        Call ProgressSpinner.DoLoading(
             Sub()
                 Call ShowRegion(region)
-                Call progress.Invoke(Sub() progress.Close())
-            End Sub).Start()
-
-        Call progress.ShowDialog()
+            End Sub)
     End Sub
 
     Private Sub ShowRegion(region As Rectangle)
@@ -1401,7 +1371,6 @@ Public Class frmMsImagingViewer
 
     Friend Sub renderRGB(r As Double, g As Double, b As Double)
         Dim selectedMz As Double() = {r, g, b}.Where(Function(mz) mz > 0).ToArray
-        Dim progress As New ProgressSpinner
 
         If params Is Nothing Then
             Call MyApplication.host.warning("No MS-imaging data is loaded yet!")
@@ -1420,7 +1389,7 @@ Public Class frmMsImagingViewer
         mzdiff = params.GetTolerance
         targetMz = selectedMz
 
-        Call New Thread(
+        Call ProgressSpinner.DoLoading(
             Sub()
                 Dim pixels As PixelData() = MSIservice.LoadPixels(selectedMz, mzdiff)
 
@@ -1438,11 +1407,8 @@ Public Class frmMsImagingViewer
                     Call Invoke(rendering)
                     Call MyApplication.host.showStatusMessage("Rendering Complete!", My.Resources.preferences_system_notifications)
                 End If
+            End Sub)
 
-                Call progress.Invoke(Sub() progress.Close())
-            End Sub).Start()
-
-        Call progress.ShowDialog()
         Call PixelSelector1.ShowMessage($"Render in RGB Channel Composition Mode: {selectedMz.Select(Function(d) stdNum.Round(d, 4)).JoinBy(", ")}")
     End Sub
 

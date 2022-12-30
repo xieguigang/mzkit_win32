@@ -197,16 +197,14 @@ Public Class PageMoleculeNetworking
         End If
 
         Dim similarityCutoff As Double = MyApplication.host.ribbonItems.SpinnerSimilarity.DecimalValue
-        Dim buzy As New ProgressSpinner
 
-        Call New Thread(Sub()
-                            Call Thread.Sleep(500)
-                            Call Me.Invoke(Sub() loadNetwork(rawMatrix, nodeInfo, rawLinks, similarityCutoff))
-                            Call buzy.Invoke(Sub() buzy.Close())
+        Call ProgressSpinner.DoLoading(
+            Sub()
+                Call Thread.Sleep(500)
+                Call Me.Invoke(Sub() loadNetwork(rawMatrix, nodeInfo, rawLinks, similarityCutoff))
 
-                            MyApplication.host.showStatusMessage($"Refresh network with new similarity filter {similarityCutoff} success!")
-                        End Sub).Start()
-        Call buzy.ShowDialog()
+                Workbench.StatusMessage($"Refresh network with new similarity filter {similarityCutoff} success!")
+            End Sub)
     End Sub
 
     Public Sub loadNetwork(MN As IEnumerable(Of EntityClusterModel),

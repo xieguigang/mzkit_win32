@@ -55,6 +55,7 @@
 
 Imports System.Runtime.CompilerServices
 Imports System.Threading
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 
 Public Class ProgressSpinner
 
@@ -107,10 +108,11 @@ Public Class ProgressSpinner
     ''' </remarks>
     Public Shared Sub DoLoading(loading As Action)
         Dim spinner As New ProgressSpinner
+        Dim mask As New MaskForm(Workbench.AppHost.GetDesktopLocation, Workbench.AppHost.GetClientSize)
         Dim task = getLoadingTask(loading, spinner)
 
         Call task.Start()
-        Call spinner.ShowDialog()
+        Call mask.ShowDialogForm(spinner)
     End Sub
 
     Private Shared Function getLoadingTask(loading As Action, spinner As ProgressSpinner) As Tasks.Task
