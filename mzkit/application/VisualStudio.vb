@@ -58,6 +58,7 @@
 
 #End Region
 
+Imports System.Runtime.CompilerServices
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Mzkit_win32.BasicMDIForm
@@ -74,28 +75,12 @@ Public Class VisualStudio
     Sub New()
     End Sub
 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Sub Dock(win As ToolWindow, prefer As DockState)
-        Select Case win.DockState
-            Case DockState.Hidden, DockState.Unknown
-                win.DockState = prefer
-            Case DockState.Float, DockState.Document,
-                 DockState.DockTop,
-                 DockState.DockRight,
-                 DockState.DockLeft,
-                 DockState.DockBottom
-
-                ' do nothing 
-            Case DockState.DockBottomAutoHide
-                win.DockState = DockState.DockBottom
-            Case DockState.DockLeftAutoHide
-                win.DockState = DockState.DockLeft
-            Case DockState.DockRightAutoHide
-                win.DockState = DockState.DockRight
-            Case DockState.DockTopAutoHide
-                win.DockState = DockState.DockTop
-        End Select
+        Call Workbench.Dock(win, prefer)
     End Sub
 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Sub ShowPropertyWindow()
         Call Dock(WindowModules.propertyWin, DockState.DockRight)
     End Sub
@@ -114,22 +99,10 @@ Public Class VisualStudio
     ''' <param name="showExplorer">
     ''' do specific callback from this parameter delegate if the pointer value is nothing nothing
     ''' </param>
+    ''' 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Sub ShowSingleDocument(Of T As {New, DockContent})(Optional showExplorer As Action = Nothing)
-        Dim DockPanel As DockPanel = MyApplication.host.m_dockPanel
-        Dim targeted As T = DockPanel.Documents _
-            .Where(Function(doc) TypeOf doc Is T) _
-            .FirstOrDefault
-
-        If targeted Is Nothing Then
-            targeted = New T
-        End If
-
-        If Not showExplorer Is Nothing Then
-            Call showExplorer()
-        End If
-
-        targeted.Show(DockPanel)
-        targeted.DockState = DockState.Document
+        Call Workbench.ShowSingleDocument(Of T)(showExplorer)
     End Sub
 
     ''' <summary>
@@ -137,18 +110,11 @@ Public Class VisualStudio
     ''' </summary>
     ''' <typeparam name="T"></typeparam>
     ''' <returns></returns>
+    ''' 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Function ShowDocument(Of T As {New, DocumentWindow})(Optional status As DockState = DockState.Document,
                                                                        Optional title As String = Nothing) As T
-        Dim newDoc As New T()
-
-        newDoc.Show(MyApplication.host.m_dockPanel)
-        newDoc.DockState = status
-
-        If Not title.StringEmpty Then
-            newDoc.TabText = title
-        End If
-
-        Return newDoc
+        Return Workbench.ShowDocument(Of T)(status, title)
     End Function
 
     Public Shared Sub ShowRTerm()

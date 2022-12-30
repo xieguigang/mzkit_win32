@@ -1,4 +1,5 @@
 Imports System.Runtime.CompilerServices
+Imports WeifenLuo.WinFormsUI.Docking
 
 Public NotInheritable Class Workbench
 
@@ -40,5 +41,71 @@ Public NotInheritable Class Workbench
             posBase.X + (sizeBack.Width - sizeFore.Width) / 2,
             posBase.Y + (sizeBack.Height - sizeFore.Height) / 2
         )
+    End Function
+
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <typeparam name="T"></typeparam>
+    ''' <param name="showExplorer">
+    ''' do specific callback from this parameter delegate if the pointer value is nothing nothing
+    ''' </param>
+    Public Shared Sub ShowSingleDocument(Of T As {New, DockContent})(Optional showExplorer As Action = Nothing)
+        Dim DockPanel As DockPanel = AppHost.DockPanel
+        Dim targeted As T = DockPanel.Documents _
+            .Where(Function(doc) TypeOf doc Is T) _
+            .FirstOrDefault
+
+        If targeted Is Nothing Then
+            targeted = New T
+        End If
+
+        If Not showExplorer Is Nothing Then
+            Call showExplorer()
+        End If
+
+        targeted.Show(DockPanel)
+        targeted.DockState = DockState.Document
+    End Sub
+
+    Public Shared Sub Dock(win As ToolWindow, prefer As DockState)
+        Select Case win.DockState
+            Case DockState.Hidden, DockState.Unknown
+                win.DockState = prefer
+            Case DockState.Float, DockState.Document,
+                 DockState.DockTop,
+                 DockState.DockRight,
+                 DockState.DockLeft,
+                 DockState.DockBottom
+
+                ' do nothing 
+            Case DockState.DockBottomAutoHide
+                win.DockState = DockState.DockBottom
+            Case DockState.DockLeftAutoHide
+                win.DockState = DockState.DockLeft
+            Case DockState.DockRightAutoHide
+                win.DockState = DockState.DockRight
+            Case DockState.DockTopAutoHide
+                win.DockState = DockState.DockTop
+        End Select
+    End Sub
+
+    ''' <summary>
+    ''' create a new document tab page
+    ''' </summary>
+    ''' <typeparam name="T"></typeparam>
+    ''' <returns></returns>
+    Public Shared Function ShowDocument(Of T As {New, DocumentWindow})(Optional status As DockState = DockState.Document,
+                                                                       Optional title As String = Nothing) As T
+        Dim newDoc As New T()
+
+        newDoc.Show(AppHost.DockPanel)
+        newDoc.DockState = status
+
+        If Not title.StringEmpty Then
+            newDoc.TabText = title
+        End If
+
+        Return newDoc
     End Function
 End Class
