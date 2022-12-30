@@ -13,6 +13,7 @@ Public MustInherit Class Plugin
     ''' run this plugin
     ''' </summary>
     Public MustOverride Function Init(println As Action(Of String)) As Boolean
+    Public MustOverride Sub Exec()
 
     Public Shared Sub LoadPlugins(dir As String, println As Action(Of String))
         Dim files As String() = dir.EnumerateFiles("*.dll").ToArray
