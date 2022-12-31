@@ -25,8 +25,8 @@ namespace apps {
                         vm.addPlugin(mgr, plugin);
                     }
 
-                    $ts.select(".deactive").ForEach(e => vm.setPluginStatus(e, "disable"));
-                    $ts.select(".edit").ForEach(e => vm.setPluginStatus(e, "active"));
+                    $ts.select(".deactive").onClick(e => vm.setPluginStatus(e, "disable"));
+                    $ts.select(".edit").onClick(e => vm.setPluginStatus(e, "active"));
                     $ts.select(".delete");
                 });
         }

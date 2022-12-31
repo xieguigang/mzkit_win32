@@ -421,8 +421,8 @@ var apps;
                                     plugin = list_1[_i];
                                     vm.addPlugin(mgr, plugin);
                                 }
-                                $ts.select(".deactive").ForEach(function (e) { return vm.setPluginStatus(e, "disable"); });
-                                $ts.select(".edit").ForEach(function (e) { return vm.setPluginStatus(e, "active"); });
+                                $ts.select(".deactive").onClick(function (e) { return vm.setPluginStatus(e, "disable"); });
+                                $ts.select(".edit").onClick(function (e) { return vm.setPluginStatus(e, "active"); });
                                 $ts.select(".delete");
                                 return [2 /*return*/];
                         }

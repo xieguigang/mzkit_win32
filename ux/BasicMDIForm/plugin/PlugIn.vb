@@ -32,7 +32,7 @@ Public MustInherit Class Plugin
     End Function
 
     Public Shared Sub LoadPlugins(println As Action(Of String))
-        Dim files As String() = $"{App.HOME}/plugins".EnumerateFiles("*.dll").JoinIterates($"{App.LocalData}/plugins/").ToArray
+        Dim files As String() = $"{App.HOME}/plugins".EnumerateFiles("*.dll").JoinIterates($"{App.LocalData}/plugins/".EnumerateFiles("*.dll")).ToArray
         Dim loaded As Index(Of String) = New String() {}
         Dim registry As RegistryFile = RegistryFile.LoadRegistry
         Dim hashlist = registry.plugins.ToDictionary(Function(p) p.id)
