@@ -89,6 +89,7 @@ Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports Microsoft.VisualBasic.ValueTypes
 Imports Mzkit_win32.BasicMDIForm
 Imports MZWorkPack
+Imports Parallel
 Imports PipelineHost
 Imports SMRUCC.genomics.Analysis.HTS.GSEA
 Imports Task
@@ -109,7 +110,7 @@ Module Globals
 
     Public Property loadedSettings As Boolean = False
 
-    Public ReadOnly Property WebPort As Integer = 36147
+    Public ReadOnly Property WebPort As Integer = IPCSocket.GetFirstAvailablePort
 
     Public ReadOnly Property CurrentVersion As String
         Get
