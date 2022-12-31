@@ -16,9 +16,13 @@ Public Class PluginMgr
         If Not plugin Is Nothing Then
             plugin.status = status
         End If
+
+        Call registry.Save()
     End Sub
 
     Public Function GetPlugins() As String
+        ' reload and then returns the registry list data
+        registry = RegistryFile.LoadRegistry
         Return registry.plugins.GetJson
     End Function
 

@@ -1,7 +1,10 @@
-﻿Imports Microsoft.Web.WebView2.Core
+﻿Imports System.ComponentModel
+Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
 
 Public Class frmPluginMgr
+
+    Dim registry As PluginMgr = PluginMgr.Load
 
     Sub New()
 
@@ -17,10 +20,12 @@ Public Class frmPluginMgr
     End Sub
 
     Private Sub InitializationCompleted() Handles WebView21.CoreWebView2InitializationCompleted
-        Dim registry = PluginMgr.Load
-
         Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", registry)
         Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Globals.WebPort}/pluginManager.html")
         Call WebKit.DeveloperOptions(WebView21, enable:=True)
+    End Sub
+
+    Private Sub frmPluginMgr_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        Call registry.Save()
     End Sub
 End Class
