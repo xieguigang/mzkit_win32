@@ -29,6 +29,10 @@ declare namespace app.desktop {
     interface mzkit_desktop {
         get_3d_MALDI_url(): Promise<string>;
         open_MALDI_model(): any;
+        Save(): void;
+        InstallLocal(): void;
+        SetStatus(id: string, status: string): void;
+        GetPlugins(): Promise<string>;
     }
     function run(): void;
 }
@@ -56,6 +60,12 @@ interface pointCloud {
     color: number | string;
 }
 declare namespace apps {
+    class clusterViewer extends Bootstrap {
+        readonly appName: string;
+        protected init(): void;
+    }
+}
+declare namespace apps {
     class home extends Bootstrap {
         readonly appName: string;
         protected init(): void;
@@ -65,5 +75,15 @@ declare namespace apps {
     class pluginMgr extends Bootstrap {
         readonly appName: string;
         protected init(): void;
+        private addPlugin;
+    }
+    interface plugin {
+        id: string;
+        name: string;
+        desc: string;
+        ver: string;
+        author: string;
+        url: string;
+        status: "active" | "disable" | "incompatible";
     }
 }

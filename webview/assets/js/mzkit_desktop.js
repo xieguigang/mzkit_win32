@@ -146,6 +146,7 @@ var app;
             Router.AddAppHandler(new apps.home());
             Router.AddAppHandler(new apps.pluginMgr());
             Router.AddAppHandler(new apps.three_app());
+            Router.AddAppHandler(new apps.clusterViewer());
             Router.RunApp();
         }
         desktop.run = run;
@@ -273,6 +274,19 @@ class ModelReader {
         canvas.scene.add(new THREE.PointCloud(geometry, material));
     }
 }
+var apps;
+(function (apps) {
+    class clusterViewer extends Bootstrap {
+        get appName() {
+            return "clusterViewer";
+        }
+        ;
+        init() {
+            // throw new Error("Method not implemented.");
+        }
+    }
+    apps.clusterViewer = clusterViewer;
+})(apps || (apps = {}));
 /// <reference path="../d/linq.d.ts" />
 var apps;
 (function (apps) {
@@ -294,8 +308,62 @@ var apps;
         }
         ;
         init() {
+            const vm = this;
+            app.desktop.mzkit
+                .GetPlugins()
+                .then(function (json) {
+                return __awaiter(this, void 0, void 0, function* () {
+                    const list = JSON.parse(yield json);
+                    const mgr = $ts("#plugin-list").clear();
+                    for (let plugin of list) {
+                        vm.addPlugin(mgr, plugin);
+                    }
+                });
+            });
+        }
+        addPlugin(mgr, plugin) {
         }
     }
     apps.pluginMgr = pluginMgr;
+    const template = `
+    <tr class="inactive">
+    <th scope="row" class="check-column">
+        <input type="checkbox" name="check_plugins" >
+    </th>
+    <td class="plugin-title column-primary">
+        <strong>{$name}</strong>
+        <div class="row-actions visible">
+            <span class="activate">
+                <a href=""
+                    id="activate-akismet" class="edit"
+                    aria-label="Activate Akismet Anti-Spam">Activate</a> |
+            </span>
+            <span class="delete">
+                <a href=""
+                    id="delete-akismet" class="delete" aria-label="Delete Akismet Anti-Spam">Delete</a>
+            </span>
+        </div>
+
+    </td>
+    <td class="column-description desc">
+        <div class="plugin-description">
+            <p>
+                {$desc}
+            </p>
+        </div>
+        <div class="inactive second plugin-version-author-uri">
+            Version {$ver} | By
+            <a href="#">{$author}</a> |
+            <a href="{$url}"
+                class="thickbox open-plugin-details-modal"
+                aria-label="More information about Akismet Anti-Spam"
+                data-title="Akismet Anti-Spam">View details</a>
+        </div>
+    </td>
+    <td class="column-auto-updates">
+        {$usage_stat}
+    </td>
+</tr>
+    `;
 })(apps || (apps = {}));
 //# sourceMappingURL=mzkit_desktop.js.map

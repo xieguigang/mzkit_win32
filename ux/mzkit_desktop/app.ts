@@ -14,8 +14,15 @@ namespace app.desktop {
     }
 
     export interface mzkit_desktop {
+        // 3d maldi model viewer
         get_3d_MALDI_url(): Promise<string>;
         open_MALDI_model();
+
+        // plugin manager
+        Save(): void;
+        InstallLocal(): void;
+        SetStatus(id: string, status: string): void;
+        GetPlugins(): Promise<string>;
     }
 
     export function run() {
@@ -23,6 +30,7 @@ namespace app.desktop {
         Router.AddAppHandler(new apps.pluginMgr());
 
         Router.AddAppHandler(new apps.three_app());
+        Router.AddAppHandler(new apps.clusterViewer());
 
         Router.RunApp();
     }
