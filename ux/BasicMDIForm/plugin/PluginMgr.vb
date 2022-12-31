@@ -1,5 +1,6 @@
 ﻿Imports System.Runtime.InteropServices
 Imports System.Xml.Serialization
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Text.Xml.Models
 
 <ClassInterface(ClassInterfaceType.AutoDual)>
@@ -16,7 +17,7 @@ Public Class PluginMgr : Inherits ListOf(Of PluginMetadata)
     End Sub
 
     Public Function GetPlugins() As String
-
+        Return plugins.GetJson
     End Function
 
     Public Sub InstallLocal()
