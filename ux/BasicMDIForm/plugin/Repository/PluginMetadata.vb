@@ -1,11 +1,12 @@
 ﻿
 Imports System.Runtime.InteropServices
+Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 
 <ClassInterface(ClassInterfaceType.AutoDual)>
 <ComVisible(True)>
-Public Class PluginMetadata
+Public Class PluginMetadata : Implements INamedValue
 
-    Public Property id As String
+    Public Property id As String Implements INamedValue.Key
     Public Property name As String
     Public Property desc As String
     Public Property ver As String

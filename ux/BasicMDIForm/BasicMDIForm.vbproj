@@ -183,7 +183,8 @@
     <Compile Include="dialogs\MaskForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="plugin\PluginMetadata.vb" />
+    <Compile Include="plugin\Repository\RegistryFile.vb" />
+    <Compile Include="plugin\Repository\PluginMetadata.vb" />
     <Compile Include="plugin\PluginMgr.vb" />
     <Compile Include="WebKit.vb" />
     <Compile Include="plugin\ExportApis.vb" />

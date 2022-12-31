@@ -5,17 +5,15 @@ Imports Microsoft.VisualBasic.Text.Xml.Models
 
 <ClassInterface(ClassInterfaceType.AutoDual)>
 <ComVisible(True)>
-Public Class PluginMgr : Inherits ListOf(Of PluginMetadata)
+Public Class PluginMgr
 
-    <XmlElement>
-    Public Property plugins As PluginMetadata()
+    Dim registry As RegistryFile
 
-    Shared ReadOnly defaultLocation As String
+    Private Sub New()
+    End Sub
 
     Public Sub SetStatus(id As String, status As String)
-        Dim plugin As PluginMetadata = plugins _
-            .Where(Function(a) a.id = id) _
-            .FirstOrDefault
+        Dim plugin As PluginMetadata = registry(id)
 
         If Not plugin Is Nothing Then
             plugin.status = status
@@ -23,7 +21,7 @@ Public Class PluginMgr : Inherits ListOf(Of PluginMetadata)
     End Sub
 
     Public Function GetPlugins() As String
-        Return plugins.GetJson
+        Return registry.plugins.GetJson
     End Function
 
     Public Sub InstallLocal()
@@ -35,23 +33,15 @@ Public Class PluginMgr : Inherits ListOf(Of PluginMetadata)
     End Sub
 
     Public Sub Save()
-        Call Me.GetXml.SaveTo(defaultLocation)
+        Call registry.Save()
     End Sub
 
-    Protected Overrides Function getSize() As Integer
-        Return plugins.TryCount
-    End Function
-
-    Protected Overrides Function getCollection() As IEnumerable(Of PluginMetadata)
-        Return plugins
-    End Function
-
     Public Shared Function Load() As PluginMgr
-        Dim registry = defaultLocation.LoadXml(Of PluginMgr)(throwEx:=False)
+        Dim registry = RegistryFile.defaultLocation.LoadXml(Of RegistryFile)(throwEx:=False)
         If registry Is Nothing Then
-            registry = New PluginMgr With {.plugins = {}}
+            registry = New RegistryFile With {.plugins = {}}
             registry.Save()
         End If
-        Return registry
+        Return New PluginMgr With {.registry = registry}
     End Function
 End Class
