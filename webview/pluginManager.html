@@ -7,7 +7,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
 
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.png" />
-    <link rel="stylesheet" href="./assets/home.css" type="text/css">
+    <link rel="stylesheet" href="./assets/plugin_mgr.css" type="text/css">
 
     <title>BioNovoGene MZKit</title>
 
@@ -32,15 +32,1301 @@
 
         <div style="height: 20px;"></div>
 
-        <div style="font-size: 3em; font-weight: bold;">
-            Plugin Manager
+        <div>
+            <div style="font-size: 2em; font-weight: bold;">
+                Plugins &nbsp; <a href="#" id="install_local" class="page-title-action">Install Local</a>
+            </div>
+
+            <ul class="subsubsub">
+                <li class="all"><a href="#" class="current" aria-current="page">All <span class="count">(33)</span></a>
+                    |
+                </li>
+                <li class="active"><a href="#">Active <span class="count">(27)</span></a> |
+                </li>
+                <li class="inactive"><a href="#">Inactive <span class="count">(6)</span></a> |
+                </li>
+                <li class="auto-update-enabled"><a href="#">Auto-updates Enabled <span class="count">(2)</span></a> |
+                </li>
+                <li class="auto-update-disabled"><a href="#">Auto-updates Disabled <span class="count">(31)</span></a>
+                </li>
+            </ul>
         </div>
 
-        <div style="height: 10px;"></div>
+        <br />
 
-        <div id="plugins">
+        <table class="wp-list-table widefat plugins" style="width: 100%; text-align: left;">
+            <thead>
+                <tr>
+                    <td id="cb" class="manage-column column-cb check-column"><label class="screen-reader-text"
+                            for="cb-select-all-1">Select All</label><input id="cb-select-all-1" type="checkbox"></td>
+                    <th scope="col" id="name" class="manage-column column-name column-primary">Plugin</th>
+                    <th scope="col" id="description" class="manage-column column-description">Description</th>
+                    <th scope="col" id="auto-updates" class="manage-column column-auto-updates">Automatic Updates</th>
+                </tr>
+            </thead>
 
-        </div>
+            <tbody id="the-list">
+                <tr class="inactive" data-slug="akismet" data-plugin="akismet/akismet.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_1a03f1c70286d2ea118f953c968249d2">Select Akismet Anti-Spam</label><input
+                            type="checkbox" name="checked[]" value="akismet/akismet.php"
+                            id="checkbox_1a03f1c70286d2ea118f953c968249d2"></th>
+                    <td class="plugin-title column-primary"><strong>Akismet Anti-Spam</strong>
+                        <div class="row-actions visible"><span class="activate"><a
+                                    href="plugins.php?action=activate&amp;plugin=akismet%2Fakismet.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=d2ae195082"
+                                    id="activate-akismet" class="edit"
+                                    aria-label="Activate Akismet Anti-Spam">Activate</a> | </span><span
+                                class="delete"><a
+                                    href="plugins.php?action=delete-selected&amp;checked%5B0%5D=akismet%2Fakismet.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=eb7e211529"
+                                    id="delete-akismet" class="delete"
+                                    aria-label="Delete Akismet Anti-Spam">Delete</a></span></div><button type="button"
+                            class="toggle-row"><span class="screen-reader-text">Show more details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>Used by millions, Akismet is quite possibly the best way in the world to <strong>protect
+                                    your blog from spam</strong>. It keeps your site protected even while you sleep. To
+                                get started: activate the Akismet plugin and then go to your Akismet Settings page to
+                                set up your API key.</p>
+                        </div>
+                        <div class="inactive second plugin-version-author-uri">Version 5.0.2 | By <a
+                                href="https://automattic.com/wordpress-plugins/">Automattic</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=akismet&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about Akismet Anti-Spam"
+                                data-title="Akismet Anti-Spam">View details</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=akismet%2Fakismet.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="inactive is-uninstallable" data-slug="all-in-one-seo-pack"
+                    data-plugin="all-in-one-seo-pack/all_in_one_seo_pack.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_07b95b67cae87afa4939008dbf832b83">Select All in One SEO</label><input
+                            type="checkbox" name="checked[]" value="all-in-one-seo-pack/all_in_one_seo_pack.php"
+                            id="checkbox_07b95b67cae87afa4939008dbf832b83"></th>
+                    <td class="plugin-title column-primary"><strong>All in One SEO</strong>
+                        <div class="row-actions visible"><span class="activate"><a
+                                    href="plugins.php?action=activate&amp;plugin=all-in-one-seo-pack%2Fall_in_one_seo_pack.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=50cd563569"
+                                    id="activate-all-in-one-seo-pack" class="edit"
+                                    aria-label="Activate All in One SEO">Activate</a> | </span><span class="delete"><a
+                                    href="plugins.php?action=delete-selected&amp;checked%5B0%5D=all-in-one-seo-pack%2Fall_in_one_seo_pack.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=eb7e211529"
+                                    id="delete-all-in-one-seo-pack" class="delete"
+                                    aria-label="Delete All in One SEO">Delete</a></span></div><button type="button"
+                            class="toggle-row"><span class="screen-reader-text">Show more details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>SEO for WordPress. Features like XML Sitemaps, SEO for custom post types, SEO for blogs,
+                                business sites, ecommerce sites, and much more. More than 100 million downloads since
+                                2007.</p>
+                        </div>
+                        <div class="inactive is-uninstallable second plugin-version-author-uri">Version 4.2.8 | By <a
+                                href="https://aioseo.com/">All in One SEO Team</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=all-in-one-seo-pack&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about All in One SEO" data-title="All in One SEO">View
+                                details</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=all-in-one-seo-pack%2Fall_in_one_seo_pack.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active" data-slug="code-prettify" data-plugin="code-prettify/code-prettify.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_c9aa7acc49ffcc8b3e8783205653100b">Select Code Prettify</label><input
+                            type="checkbox" name="checked[]" value="code-prettify/code-prettify.php"
+                            id="checkbox_c9aa7acc49ffcc8b3e8783205653100b"></th>
+                    <td class="plugin-title column-primary"><strong>Code Prettify</strong>
+                        <div class="row-actions visible"><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=code-prettify%2Fcode-prettify.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=5ed0c4d809"
+                                    id="deactivate-code-prettify"
+                                    aria-label="Deactivate Code Prettify">Deactivate</a></span></div><button
+                            type="button" class="toggle-row"><span class="screen-reader-text">Show more
+                                details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>Automatic code syntax highlighter</p>
+                        </div>
+                        <div class="active second plugin-version-author-uri">Version 1.5.1 | By <a
+                                href="https://kaspars.net">Kaspars Dambis</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=code-prettify&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about Code Prettify" data-title="Code Prettify">View
+                                details</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=code-prettify%2Fcode-prettify.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active" data-slug="colibri-page-builder"
+                    data-plugin="colibri-page-builder/colibri-page-builder.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_8c72f5ba9e1a0271adad2f14ca87b4a1">Select Colibri Page Builder</label><input
+                            type="checkbox" name="checked[]" value="colibri-page-builder/colibri-page-builder.php"
+                            id="checkbox_8c72f5ba9e1a0271adad2f14ca87b4a1"></th>
+                    <td class="plugin-title column-primary"><strong>Colibri Page Builder</strong>
+                        <div class="row-actions visible"><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=colibri-page-builder%2Fcolibri-page-builder.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=dd5576ac27"
+                                    id="deactivate-colibri-page-builder"
+                                    aria-label="Deactivate Colibri Page Builder">Deactivate</a></span></div><button
+                            type="button" class="toggle-row"><span class="screen-reader-text">Show more
+                                details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>Colibri Page Builder adds drag and drop page builder functionality to the ColibriWP
+                                theme.</p>
+                        </div>
+                        <div class="active second plugin-version-author-uri">Version 1.0.223 | By ExtendThemes | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=colibri-page-builder&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about Colibri Page Builder"
+                                data-title="Colibri Page Builder">View details</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=colibri-page-builder%2Fcolibri-page-builder.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active" data-slug="cookie-notice" data-plugin="cookie-notice/cookie-notice.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_eff62dc5941abdcc5f75d42e7a56c8dc">Select Cookie Notice &amp; Compliance for
+                            GDPR / CCPA</label><input type="checkbox" name="checked[]"
+                            value="cookie-notice/cookie-notice.php" id="checkbox_eff62dc5941abdcc5f75d42e7a56c8dc"></th>
+                    <td class="plugin-title column-primary"><strong>Cookie Notice &amp; Compliance for GDPR /
+                            CCPA</strong>
+                        <div class="row-actions visible"><span class="0"><a
+                                    href="https://stack.xieguigang.me/wp-admin/admin.php?page=cookie-notice">Settings</a>
+                                | </span><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=cookie-notice%2Fcookie-notice.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=07001889f6"
+                                    id="deactivate-cookie-notice"
+                                    aria-label="Deactivate Cookie Notice &amp; Compliance for GDPR / CCPA"
+                                    class="cn-deactivate-plugin-modal">Deactivate</a> | </span><span class="1"><a
+                                    href="https://stack.xieguigang.me/wp-admin/admin.php?page=cookie-notice&amp;welcome=1"
+                                    style="color: #20C19E; font-weight: bold;">Free Upgrade</a></span></div><button
+                            type="button" class="toggle-row"><span class="screen-reader-text">Show more
+                                details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>Cookie Notice allows you to you elegantly inform users that your site uses cookies and
+                                helps you comply with GDPR, CCPA and other data privacy laws.</p>
+                        </div>
+                        <div class="active second plugin-version-author-uri">Version 2.4.4 | By <a
+                                href="https://hu-manity.co/">Hu-manity.co</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=cookie-notice&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about Cookie Notice &amp; Compliance for GDPR / CCPA"
+                                data-title="Cookie Notice &amp; Compliance for GDPR / CCPA">View details</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=cookie-notice%2Fcookie-notice.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active is-uninstallable" data-slug="easy-fancybox"
+                    data-plugin="easy-fancybox/easy-fancybox.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_f49e5d210d247c627500c85d68d9e444">Select Easy FancyBox</label><input
+                            type="checkbox" name="checked[]" value="easy-fancybox/easy-fancybox.php"
+                            id="checkbox_f49e5d210d247c627500c85d68d9e444"></th>
+                    <td class="plugin-title column-primary"><strong>Easy FancyBox</strong>
+                        <div class="row-actions visible"><span class="0"><a
+                                    href="https://stack.xieguigang.me/wp-admin/options-media.php#fancybox">Settings</a>
+                                | </span><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=easy-fancybox%2Feasy-fancybox.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=245069dc8d"
+                                    id="deactivate-easy-fancybox"
+                                    aria-label="Deactivate Easy FancyBox">Deactivate</a></span></div><button
+                            type="button" class="toggle-row"><span class="screen-reader-text">Show more
+                                details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>Easily enable the FancyBox jQuery light box on all media file links. Also supports
+                                iframe, inline content and well known video hosts.</p>
+                        </div>
+                        <div class="active is-uninstallable second plugin-version-author-uri">Version 1.9.5 | By <a
+                                href="http://status301.net/">RavanH</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=easy-fancybox&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about Easy FancyBox" data-title="Easy FancyBox">View
+                                details</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=easy-fancybox%2Feasy-fancybox.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active" data-slug="easy-location" data-plugin="esay-location/easy-location.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_32077beb596e547b220cc98a6d08e00c">Select Easy Location</label><input
+                            type="checkbox" name="checked[]" value="esay-location/easy-location.php"
+                            id="checkbox_32077beb596e547b220cc98a6d08e00c"></th>
+                    <td class="plugin-title column-primary"><strong>Easy Location</strong>
+                        <div class="row-actions visible"><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=esay-location%2Feasy-location.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=c01b6fa9a5"
+                                    id="deactivate-easy-location"
+                                    aria-label="Deactivate Easy Location">Deactivate</a></span></div><button
+                            type="button" class="toggle-row"><span class="screen-reader-text">Show more
+                                details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>Easy Location</p>
+                        </div>
+                        <div class="active second plugin-version-author-uri">Version 1.0.1 | By <a
+                                href="https://fatesinger.com">Bigfa</a> | <a href="https://fatesinger.com"
+                                aria-label="Visit plugin site for Easy Location">Visit plugin site</a></div>
+                    </td>
+                    <td class="column-auto-updates"><span class="label"></span>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active" data-slug="easy-media-download" data-plugin="easy-media-download/main.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_be4a788d3a0f34e1ded35f00e526c757">Select Easy Media Download</label><input
+                            type="checkbox" name="checked[]" value="easy-media-download/main.php"
+                            id="checkbox_be4a788d3a0f34e1ded35f00e526c757"></th>
+                    <td class="plugin-title column-primary"><strong>Easy Media Download</strong>
+                        <div class="row-actions visible"><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=easy-media-download%2Fmain.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=31f6b7bfdd"
+                                    id="deactivate-easy-media-download"
+                                    aria-label="Deactivate Easy Media Download">Deactivate</a> | </span><span
+                                class="0"><a
+                                    href="options-general.php?page=easy-media-download-settings">Settings</a></span>
+                        </div><button type="button" class="toggle-row"><span class="screen-reader-text">Show more
+                                details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>Easily embed download buttons for your digital media files</p>
+                        </div>
+                        <div class="active second plugin-version-author-uri">Version 1.1.8 | By <a
+                                href="https://noorsplugin.com/">naa986</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=easy-media-download&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about Easy Media Download"
+                                data-title="Easy Media Download">View details</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=easy-media-download%2Fmain.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active" data-slug="easy-table-of-contents"
+                    data-plugin="easy-table-of-contents/easy-table-of-contents.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_a2174c3e6fe8a87ea59263378b41d9ad">Select Easy Table of Contents</label><input
+                            type="checkbox" name="checked[]" value="easy-table-of-contents/easy-table-of-contents.php"
+                            id="checkbox_a2174c3e6fe8a87ea59263378b41d9ad"></th>
+                    <td class="plugin-title column-primary"><strong>Easy Table of Contents</strong>
+                        <div class="row-actions visible"><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=easy-table-of-contents%2Feasy-table-of-contents.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=cc08fe697a"
+                                    id="deactivate-easy-table-of-contents"
+                                    aria-label="Deactivate Easy Table of Contents">Deactivate</a> | </span><span
+                                class="0"><a
+                                    href="https://stack.xieguigang.me/wp-admin/options-general.php?page=table-of-contents">Settings</a>
+                                |<a href="https://tocwp.com/contact/" target="_blank"> Support</a> |<a
+                                    href="https://tocwp.com/pricing/" target="_blank"> Upgrade</a> |<a
+                                    href="https://tocwp.com/" target="_blank"> Website</a></span></div><button
+                            type="button" class="toggle-row"><span class="screen-reader-text">Show more
+                                details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>Adds a user friendly and fully automatic way to create and display a table of contents
+                                generated from the page content.</p>
+                        </div>
+                        <div class="active second plugin-version-author-uri">Version 2.0.40 | By <a
+                                href="https://tocwp.com/">Magazine3</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=easy-table-of-contents&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about Easy Table of Contents"
+                                data-title="Easy Table of Contents">View details</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=easy-table-of-contents%2Feasy-table-of-contents.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active" data-slug="embed-block-for-github"
+                    data-plugin="embed-block-for-github/embed-block-for-github.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_561db4fde0b138db299a742008d41575">Select Embed Block for GitHub</label><input
+                            type="checkbox" name="checked[]" value="embed-block-for-github/embed-block-for-github.php"
+                            id="checkbox_561db4fde0b138db299a742008d41575"></th>
+                    <td class="plugin-title column-primary"><strong>Embed Block for GitHub</strong>
+                        <div class="row-actions visible"><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=embed-block-for-github%2Fembed-block-for-github.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=fae2a7c35c"
+                                    id="deactivate-embed-block-for-github"
+                                    aria-label="Deactivate Embed Block for GitHub">Deactivate</a></span></div><button
+                            type="button" class="toggle-row"><span class="screen-reader-text">Show more
+                                details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>Easily embed GitHub repositories in Gutenberg Editor.</p>
+                        </div>
+                        <div class="active second plugin-version-author-uri">Version 0.3 | By <a
+                                href="https://jeanbaptisteaudras.com">audrasjb</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=embed-block-for-github&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about Embed Block for GitHub"
+                                data-title="Embed Block for GitHub">View details</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=embed-block-for-github%2Fembed-block-for-github.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active" data-slug="foobox-image-lightbox"
+                    data-plugin="foobox-image-lightbox/foobox-free.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_bbc00c473ac5fc0d232c18c8f0e0d4dc">Select FooBox Image Lightbox</label><input
+                            type="checkbox" name="checked[]" value="foobox-image-lightbox/foobox-free.php"
+                            id="checkbox_bbc00c473ac5fc0d232c18c8f0e0d4dc"></th>
+                    <td class="plugin-title column-primary"><strong>FooBox Image Lightbox</strong>
+                        <div class="row-actions visible"><span class="upgrade"><a
+                                    href="https://stack.xieguigang.me/wp-admin/admin.php?billing_cycle=annual&amp;page=foobox-image-lightbox-pricing">Upgrade</a>
+                                | </span><span class="opt-in-or-opt-out foobox-image-lightbox"><a href="#">Opt Out</a> |
+                            </span><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=foobox-image-lightbox%2Ffoobox-free.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=2c30c73acc"
+                                    id="deactivate-foobox-image-lightbox"
+                                    aria-label="Deactivate FooBox Image Lightbox">Deactivate</a><i class="fs-module-id"
+                                    data-module-id="374"></i></span></div><button type="button" class="toggle-row"><span
+                                class="screen-reader-text">Show more details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>The best responsive lightbox for WordPress.</p>
+                        </div>
+                        <div class="active second plugin-version-author-uri">Version 2.7.17 | By <a
+                                href="http://fooplugins.com">FooPlugins</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=foobox-image-lightbox&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about FooBox Image Lightbox"
+                                data-title="FooBox Image Lightbox">View details</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=foobox-image-lightbox%2Ffoobox-free.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active" data-slug="foogallery" data-plugin="foogallery/foogallery.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_0135e056a4919bcfe954aa0cbe589e65">Select FooGallery</label><input
+                            type="checkbox" name="checked[]" value="foogallery/foogallery.php"
+                            id="checkbox_0135e056a4919bcfe954aa0cbe589e65"></th>
+                    <td class="plugin-title column-primary"><strong>FooGallery</strong>
+                        <div class="row-actions visible"><span class="upgrade"><a
+                                    href="https://stack.xieguigang.me/wp-admin/edit.php?post_type=foogallery&amp;billing_cycle=annual&amp;page=foogallery-pricing">Upgrade</a>
+                                | </span><span class="opt-in-or-opt-out foogallery"><a href="#">Opt Out</a> |
+                            </span><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=foogallery%2Ffoogallery.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=104b36fe8b"
+                                    id="deactivate-foogallery" aria-label="Deactivate FooGallery">Deactivate</a><i
+                                    class="fs-module-id" data-module-id="843"></i> | </span><span class="0"><a
+                                    href="https://stack.xieguigang.me/wp-admin/edit.php?post_type=foogallery&amp;page=foogallery-settings"><b>Settings</b></a>
+                                | </span><span class="1"><a
+                                    href="https://stack.xieguigang.me/wp-admin/edit.php?post_type=foogallery&amp;page=foogallery-help"><b>Help</b></a></span>
+                        </div><button type="button" class="toggle-row"><span class="screen-reader-text">Show more
+                                details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>FooGallery is the most intuitive and extensible gallery management tool ever created for
+                                WordPress</p>
+                        </div>
+                        <div class="active second plugin-version-author-uri">Version 2.2.26 | By <a
+                                href="https://fooplugins.com">FooPlugins</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=foogallery&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about FooGallery" data-title="FooGallery">View details</a>
+                        </div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=foogallery%2Ffoogallery.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active is-uninstallable" data-slug="ga-google-analytics"
+                    data-plugin="ga-google-analytics/ga-google-analytics.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_66d54d2ca3e5cfad429bf434fe3145e5">Select GA Google Analytics</label><input
+                            type="checkbox" name="checked[]" value="ga-google-analytics/ga-google-analytics.php"
+                            id="checkbox_66d54d2ca3e5cfad429bf434fe3145e5"></th>
+                    <td class="plugin-title column-primary"><strong>GA Google Analytics</strong>
+                        <div class="row-actions visible"><span class="0"><a target="_blank" rel="noopener noreferrer"
+                                    href="https://plugin-planet.com/ga-google-analytics-pro/?plugin" title="Get GA Pro!"
+                                    style="font-weight:bold;">Go&nbsp;Pro</a> | </span><span class="1"><a
+                                    href="https://stack.xieguigang.me/wp-admin/options-general.php?page=ga-google-analytics">Settings</a>
+                                | </span><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=ga-google-analytics%2Fga-google-analytics.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=f8ca46339d"
+                                    id="deactivate-ga-google-analytics"
+                                    aria-label="Deactivate GA Google Analytics">Deactivate</a></span></div><button
+                            type="button" class="toggle-row"><span class="screen-reader-text">Show more
+                                details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>Adds your Google Analytics Tracking Code to your WordPress site.</p>
+                        </div>
+                        <div class="active is-uninstallable second plugin-version-author-uri">Version 20221016 | By <a
+                                href="https://plugin-planet.com/">Jeff Starr</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=ga-google-analytics&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about GA Google Analytics"
+                                data-title="GA Google Analytics">View details</a> | <a target="_blank"
+                                rel="noopener noreferrer" href="https://perishablepress.com/google-analytics-plugin/"
+                                title="Plugin Homepage">Homepage</a> | <a target="_blank" rel="noopener noreferrer"
+                                href="https://wordpress.org/support/plugin/ga-google-analytics/reviews/?rate=5#new-post"
+                                title="Click here to rate and review this plugin on WordPress.org">Rate this
+                                plugin&nbsp;»</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=ga-google-analytics%2Fga-google-analytics.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active" data-slug="github-embed" data-plugin="github-embed/github-embed.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_764ee03e5acabd0d0fb8e8aa10ff148e">Select Github Embed</label><input
+                            type="checkbox" name="checked[]" value="github-embed/github-embed.php"
+                            id="checkbox_764ee03e5acabd0d0fb8e8aa10ff148e"></th>
+                    <td class="plugin-title column-primary"><strong>Github Embed</strong>
+                        <div class="row-actions visible"><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=github-embed%2Fgithub-embed.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=ec2217e911"
+                                    id="deactivate-github-embed"
+                                    aria-label="Deactivate Github Embed">Deactivate</a></span></div><button
+                            type="button" class="toggle-row"><span class="screen-reader-text">Show more
+                                details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>Paste the URL to a Github project into your posts or pages, and have the project
+                                information pulled in and displayed automatically</p>
+                        </div>
+                        <div class="active second plugin-version-author-uri">Version 2.1.0 | By <a
+                                href="https://www.ademti-software.co.uk/">Ademti Software Ltd.</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=github-embed&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about Github Embed" data-title="Github Embed">View
+                                details</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=github-embed%2Fgithub-embed.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="inactive is-uninstallable" data-slug="google-analytics-for-wordpress"
+                    data-plugin="google-analytics-for-wordpress/googleanalytics.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_974388b53b1fd3be69646411f0af4789">Select Google Analytics for WordPress by
+                            MonsterInsights</label><input type="checkbox" name="checked[]"
+                            value="google-analytics-for-wordpress/googleanalytics.php"
+                            id="checkbox_974388b53b1fd3be69646411f0af4789"></th>
+                    <td class="plugin-title column-primary"><strong>Google Analytics for WordPress by
+                            MonsterInsights</strong>
+                        <div class="row-actions visible"><span class="activate"><a
+                                    href="plugins.php?action=activate&amp;plugin=google-analytics-for-wordpress%2Fgoogleanalytics.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=2654d0ec79"
+                                    id="activate-google-analytics-for-wordpress" class="edit"
+                                    aria-label="Activate Google Analytics for WordPress by MonsterInsights">Activate</a>
+                                | </span><span class="delete"><a
+                                    href="plugins.php?action=delete-selected&amp;checked%5B0%5D=google-analytics-for-wordpress%2Fgoogleanalytics.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=eb7e211529"
+                                    id="delete-google-analytics-for-wordpress" class="delete"
+                                    aria-label="Delete Google Analytics for WordPress by MonsterInsights">Delete</a></span>
+                        </div><button type="button" class="toggle-row"><span class="screen-reader-text">Show more
+                                details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>The best Google Analytics plugin for WordPress. See how visitors find and use your
+                                website, so you can keep them coming back.</p>
+                        </div>
+                        <div class="inactive is-uninstallable second plugin-version-author-uri">Version 8.11.0 | By <a
+                                href="https://www.monsterinsights.com/lite/?utm_source=liteplugin&amp;utm_medium=pluginheader&amp;utm_campaign=authoruri&amp;utm_content=7%2E0%2E0">MonsterInsights</a>
+                            | <a href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=google-analytics-for-wordpress&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about Google Analytics for WordPress by MonsterInsights"
+                                data-title="Google Analytics for WordPress by MonsterInsights">View details</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=google-analytics-for-wordpress%2Fgoogleanalytics.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active" data-slug="google-sitemap-generator"
+                    data-plugin="google-sitemap-generator/sitemap.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_d3e7311d20ccd459ef1ade2a522ccfe6">Select Google XML Sitemaps</label><input
+                            type="checkbox" name="checked[]" value="google-sitemap-generator/sitemap.php"
+                            id="checkbox_d3e7311d20ccd459ef1ade2a522ccfe6"></th>
+                    <td class="plugin-title column-primary"><strong>Google XML Sitemaps</strong>
+                        <div class="row-actions visible"><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=google-sitemap-generator%2Fsitemap.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=7f2dfc7ede"
+                                    id="deactivate-google-sitemap-generator"
+                                    aria-label="Deactivate Google XML Sitemaps">Deactivate</a></span></div><button
+                            type="button" class="toggle-row"><span class="screen-reader-text">Show more
+                                details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>This plugin improves SEO using sitemaps for best indexation by search engines like
+                                Google, Bing, Yahoo and others.</p>
+                        </div>
+                        <div class="active second plugin-version-author-uri">Version 4.1.7 | By <a
+                                href="https://acutollo.com/">Auctollo</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=google-sitemap-generator&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about Google XML Sitemaps"
+                                data-title="Google XML Sitemaps">View details</a> | <a
+                                href="options-general.php?page=google-sitemap-generator/sitemap.php">Settings</a> | <a
+                                href="http://www.arnebrachhold.de/redir/sitemap-plist-faq/">FAQ</a> | <a
+                                href="http://www.arnebrachhold.de/redir/sitemap-plist-support/">Support</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=disable-auto-update&amp;plugin=google-sitemap-generator%2Fsitemap.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="disable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Disable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="inactive" data-slug="hello-dolly" data-plugin="hello.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_86d67fa5699ad8207570ec9a4315af2c">Select Hello Dolly</label><input
+                            type="checkbox" name="checked[]" value="hello.php"
+                            id="checkbox_86d67fa5699ad8207570ec9a4315af2c"></th>
+                    <td class="plugin-title column-primary"><strong>Hello Dolly</strong>
+                        <div class="row-actions visible"><span class="activate"><a
+                                    href="plugins.php?action=activate&amp;plugin=hello.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=3bc1799e44"
+                                    id="activate-hello-dolly" class="edit"
+                                    aria-label="Activate Hello Dolly">Activate</a> | </span><span class="delete"><a
+                                    href="plugins.php?action=delete-selected&amp;checked%5B0%5D=hello.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=eb7e211529"
+                                    id="delete-hello-dolly" class="delete"
+                                    aria-label="Delete Hello Dolly">Delete</a></span></div><button type="button"
+                            class="toggle-row"><span class="screen-reader-text">Show more details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>This is not just a plugin, it symbolizes the hope and enthusiasm of an entire generation
+                                summed up in two words sung most famously by Louis Armstrong: Hello, Dolly. When
+                                activated you will randomly see a lyric from Hello, Dolly in the upper right of your
+                                admin screen on every page.</p>
+                        </div>
+                        <div class="inactive second plugin-version-author-uri">Version 1.7.2 | By <a
+                                href="http://ma.tt/">Matt Mullenweg</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=hello-dolly&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about Hello Dolly" data-title="Hello Dolly">View
+                                details</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=hello.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active is-uninstallable" data-slug="jetpack" data-plugin="jetpack/jetpack.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_697351d7e6d218434abfaeb0364e39ca">Select Jetpack</label><input type="checkbox"
+                            name="checked[]" value="jetpack/jetpack.php" id="checkbox_697351d7e6d218434abfaeb0364e39ca">
+                    </th>
+                    <td class="plugin-title column-primary"><strong>Jetpack</strong>
+                        <div class="row-actions visible"><span class="settings"><a
+                                    href="https://stack.xieguigang.me/wp-admin/admin.php?page=jetpack#/settings">Settings</a>
+                                | </span><span class="support"><a
+                                    href="https://stack.xieguigang.me/wp-admin/admin.php?page=jetpack-debugger">Support</a>
+                                | </span><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=jetpack%2Fjetpack.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=0649afa962"
+                                    id="deactivate-jetpack" aria-label="Deactivate Jetpack"
+                                    title="Deactivate Jetpack">Deactivate</a></span></div><button type="button"
+                            class="toggle-row"><span class="screen-reader-text">Show more details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>Security, performance, and marketing tools made by WordPress experts. Jetpack keeps your
+                                site protected so you can focus on more important things.</p>
+                        </div>
+                        <div class="active is-uninstallable second plugin-version-author-uri">Version 11.6 | By <a
+                                href="https://jetpack.com">Automattic</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=jetpack&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal" aria-label="More information about Jetpack"
+                                data-title="Jetpack">View details</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=jetpack%2Fjetpack.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active" data-slug="post-views-counter"
+                    data-plugin="post-views-counter/post-views-counter.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_577b2e00a1fa8a6f0799a86973eb1e89">Select Post Views Counter</label><input
+                            type="checkbox" name="checked[]" value="post-views-counter/post-views-counter.php"
+                            id="checkbox_577b2e00a1fa8a6f0799a86973eb1e89"></th>
+                    <td class="plugin-title column-primary"><strong>Post Views Counter</strong>
+                        <div class="row-actions visible"><span class="0"><a
+                                    href="https://stack.xieguigang.me/wp-admin/options-general.php?page=post-views-counter">Settings</a>
+                                | </span><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=post-views-counter%2Fpost-views-counter.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=d671ff4767"
+                                    id="deactivate-post-views-counter"
+                                    aria-label="Deactivate Post Views Counter">Deactivate</a></span></div><button
+                            type="button" class="toggle-row"><span class="screen-reader-text">Show more
+                                details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>Post Views Counter allows you to display how many times a post, page or custom post type
+                                had been viewed in a simple, fast and reliable way.</p>
+                        </div>
+                        <div class="active second plugin-version-author-uri">Version 1.3.12 | By <a
+                                href="http://www.dfactory.co/">Digital Factory</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=post-views-counter&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about Post Views Counter"
+                                data-title="Post Views Counter">View details</a> | <a
+                                href="http://www.dfactory.co/support/forum/post-views-counter/"
+                                target="_blank">Support</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=post-views-counter%2Fpost-views-counter.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active" data-slug="reading-time-wp" data-plugin="reading-time-wp/rt-reading-time.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_91d1c91908fb9546dfb55650f01da511">Select Reading Time WP</label><input
+                            type="checkbox" name="checked[]" value="reading-time-wp/rt-reading-time.php"
+                            id="checkbox_91d1c91908fb9546dfb55650f01da511"></th>
+                    <td class="plugin-title column-primary"><strong>Reading Time WP</strong>
+                        <div class="row-actions visible"><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=reading-time-wp%2Frt-reading-time.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=bf29a9054a"
+                                    id="deactivate-reading-time-wp"
+                                    aria-label="Deactivate Reading Time WP">Deactivate</a></span></div><button
+                            type="button" class="toggle-row"><span class="screen-reader-text">Show more
+                                details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>Add an estimated reading time to your posts.</p>
+                        </div>
+                        <div class="active second plugin-version-author-uri">Version 2.0.12 | By <a
+                                href="https://jasonyingling.me">Jason Yingling</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=reading-time-wp&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about Reading Time WP" data-title="Reading Time WP">View
+                                details</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=reading-time-wp%2Frt-reading-time.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="inactive is-uninstallable" data-slug="recent-posts-widget-with-thumbnails"
+                    data-plugin="recent-posts-widget-with-thumbnails/recent-posts-widget-with-thumbnails.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_bc06cc7ac53f5c988af77f693a492443">Select Recent Posts Widget With
+                            Thumbnails</label><input type="checkbox" name="checked[]"
+                            value="recent-posts-widget-with-thumbnails/recent-posts-widget-with-thumbnails.php"
+                            id="checkbox_bc06cc7ac53f5c988af77f693a492443"></th>
+                    <td class="plugin-title column-primary"><strong>Recent Posts Widget With Thumbnails</strong>
+                        <div class="row-actions visible"><span class="activate"><a
+                                    href="plugins.php?action=activate&amp;plugin=recent-posts-widget-with-thumbnails%2Frecent-posts-widget-with-thumbnails.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=2aa2c8de96"
+                                    id="activate-recent-posts-widget-with-thumbnails" class="edit"
+                                    aria-label="Activate Recent Posts Widget With Thumbnails">Activate</a> |
+                            </span><span class="delete"><a
+                                    href="plugins.php?action=delete-selected&amp;checked%5B0%5D=recent-posts-widget-with-thumbnails%2Frecent-posts-widget-with-thumbnails.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=eb7e211529"
+                                    id="delete-recent-posts-widget-with-thumbnails" class="delete"
+                                    aria-label="Delete Recent Posts Widget With Thumbnails">Delete</a></span></div>
+                        <button type="button" class="toggle-row"><span class="screen-reader-text">Show more
+                                details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>Small and fast plugin to display in the sidebar a list of linked titles and thumbnails of
+                                the most recent postings</p>
+                        </div>
+                        <div class="inactive is-uninstallable second plugin-version-author-uri">Version 7.1.1 | By <a
+                                href="https://www.kybernetik-services.com/?utm_source=wordpress_org&amp;utm_medium=plugin&amp;utm_campaign=recent-posts-widget-with-thumbnails&amp;utm_content=author">Kybernetik
+                                Services</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=recent-posts-widget-with-thumbnails&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about Recent Posts Widget With Thumbnails"
+                                data-title="Recent Posts Widget With Thumbnails">View details</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=recent-posts-widget-with-thumbnails%2Frecent-posts-widget-with-thumbnails.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active" data-slug="simple-share-buttons-adder"
+                    data-plugin="simple-share-buttons-adder/simple-share-buttons-adder.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_4547984507d2296fd77690769765290c">Select Simple Share Buttons
+                            Adder</label><input type="checkbox" name="checked[]"
+                            value="simple-share-buttons-adder/simple-share-buttons-adder.php"
+                            id="checkbox_4547984507d2296fd77690769765290c"></th>
+                    <td class="plugin-title column-primary"><strong>Simple Share Buttons Adder</strong>
+                        <div class="row-actions visible"><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=simple-share-buttons-adder%2Fsimple-share-buttons-adder.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=6ef059a4ec"
+                                    id="deactivate-simple-share-buttons-adder"
+                                    aria-label="Deactivate Simple Share Buttons Adder">Deactivate</a> | </span><span
+                                class="0"><a
+                                    href="https://stack.xieguigang.me/wp-admin/options-general.php?page=simple-share-buttons-adder">Settings</a></span>
+                        </div><button type="button" class="toggle-row"><span class="screen-reader-text">Show more
+                                details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>A simple plugin that enables you to add share buttons to all of your posts and/or pages.
+                            </p>
+                        </div>
+                        <div class="active second plugin-version-author-uri">Version 8.4.4 | By <a
+                                href="https://simplesharebuttons.com">Simple Share Buttons</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=simple-share-buttons-adder&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about Simple Share Buttons Adder"
+                                data-title="Simple Share Buttons Adder">View details</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=simple-share-buttons-adder%2Fsimple-share-buttons-adder.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active is-uninstallable" data-slug="google-site-kit"
+                    data-plugin="google-site-kit/google-site-kit.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_1a60a0f6ed28b8f79a635ab5a9979e82">Select Site Kit by Google</label><input
+                            type="checkbox" name="checked[]" value="google-site-kit/google-site-kit.php"
+                            id="checkbox_1a60a0f6ed28b8f79a635ab5a9979e82"></th>
+                    <td class="plugin-title column-primary"><strong>Site Kit by Google</strong>
+                        <div class="row-actions visible"><span class="0"><a
+                                    href="https://stack.xieguigang.me/wp-admin/admin.php?page=googlesitekit-settings">Settings</a>
+                                | </span><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=google-site-kit%2Fgoogle-site-kit.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=dc2703d9e5"
+                                    id="deactivate-google-site-kit"
+                                    aria-label="Deactivate Site Kit by Google">Deactivate</a></span></div><button
+                            type="button" class="toggle-row"><span class="screen-reader-text">Show more
+                                details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>Site Kit is a one-stop solution for WordPress users to use everything Google has to offer
+                                to make them successful on the web.</p>
+                        </div>
+                        <div class="active is-uninstallable second plugin-version-author-uri">Version 1.90.1 | By <a
+                                href="https://opensource.google.com">Google</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=google-site-kit&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about Site Kit by Google"
+                                data-title="Site Kit by Google">View details</a> | <a
+                                href="https://wordpress.org/support/plugin/google-site-kit/reviews/#new-post">Rate Site
+                                Kit</a> | <a
+                                href="https://wordpress.org/support/plugin/google-site-kit/#new-post">Support</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=google-site-kit%2Fgoogle-site-kit.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active is-uninstallable" data-slug="starbox" data-plugin="starbox/starbox.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_cb4348625b60b9ef2ad185b54c15537c">Select StarBox</label><input type="checkbox"
+                            name="checked[]" value="starbox/starbox.php" id="checkbox_cb4348625b60b9ef2ad185b54c15537c">
+                    </th>
+                    <td class="plugin-title column-primary"><strong>StarBox</strong>
+                        <div class="row-actions visible"><span class="0"><a
+                                    href="https://stack.xieguigang.me/wp-admin/admin.php?page=abh_settings">Settings</a>
+                                | </span><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=starbox%2Fstarbox.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=e22fd2afbd"
+                                    id="deactivate-starbox" aria-label="Deactivate StarBox">Deactivate</a></span></div>
+                        <button type="button" class="toggle-row"><span class="screen-reader-text">Show more
+                                details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>Starbox is the Author Box for Humans. Professional Themes to choose from, HTML5, Social
+                                Media Profiles, Google Authorship</p>
+                        </div>
+                        <div class="active is-uninstallable second plugin-version-author-uri">Version 3.4.5 | By <a
+                                href="https://www.squirrly.co/wordpress-seo-by-squirrly">Squirrly UK</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=starbox&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal" aria-label="More information about StarBox"
+                                data-title="StarBox">View details</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=starbox%2Fstarbox.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active is-uninstallable" data-slug="super-progressive-web-apps"
+                    data-plugin="super-progressive-web-apps/superpwa.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_9174797eaf7412ef562771c44f5a9a0a">Select Super Progressive Web
+                            Apps</label><input type="checkbox" name="checked[]"
+                            value="super-progressive-web-apps/superpwa.php"
+                            id="checkbox_9174797eaf7412ef562771c44f5a9a0a"></th>
+                    <td class="plugin-title column-primary"><strong>Super Progressive Web Apps</strong>
+                        <div class="row-actions visible"><span class="settings"><a
+                                    href="https://stack.xieguigang.me/wp-admin/admin.php?page=superpwa">Settings</a> |
+                            </span><span class="upgrade"><a
+                                    href="https://stack.xieguigang.me/wp-admin/admin.php?page=superpwa-upgrade">Upgrade
+                                    to Pro</a> | </span><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=super-progressive-web-apps%2Fsuperpwa.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=4760d5d4d8"
+                                    id="deactivate-super-progressive-web-apps"
+                                    aria-label="Deactivate Super Progressive Web Apps">Deactivate</a></span></div>
+                        <button type="button" class="toggle-row"><span class="screen-reader-text">Show more
+                                details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>Convert your WordPress website into a Progressive Web App</p>
+                        </div>
+                        <div class="active is-uninstallable second plugin-version-author-uri">Version 2.2.11 | By <a
+                                href="https://profiles.wordpress.org/superpwa/">SuperPWA</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=super-progressive-web-apps&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about Super Progressive Web Apps"
+                                data-title="Super Progressive Web Apps">View details</a> | <a
+                                href="https://superpwa.com/?utm_source=superpwa-plugin&amp;utm_medium=plugin_row_meta"
+                                target="_blank">Demo</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=disable-auto-update&amp;plugin=super-progressive-web-apps%2Fsuperpwa.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="disable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Disable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active" data-slug="updraftplus" data-plugin="updraftplus/updraftplus.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_bf56e642ca600350ed9de11946e754d3">Select UpdraftPlus -
+                            Backup/Restore</label><input type="checkbox" name="checked[]"
+                            value="updraftplus/updraftplus.php" id="checkbox_bf56e642ca600350ed9de11946e754d3"></th>
+                    <td class="plugin-title column-primary"><strong>UpdraftPlus - Backup/Restore</strong>
+                        <div class="row-actions visible"><span class="0"><a href="https://updraftplus.com/"
+                                    target="_blank">Premium / Pro Support</a> | </span><span class="1"><a
+                                    href="https://stack.xieguigang.me/wp-admin/options-general.php?page=updraftplus"
+                                    class="js-updraftplus-settings">Settings</a> | </span><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=updraftplus%2Fupdraftplus.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=cfec19ccff"
+                                    id="deactivate-updraftplus"
+                                    aria-label="Deactivate UpdraftPlus - Backup/Restore">Deactivate</a> | </span><span
+                                class="updraftplus_tour"><a
+                                    href="https://stack.xieguigang.me/wp-admin/options-general.php?page=updraftplus&amp;updraftplus_tour=1"
+                                    class="js-updraftplus-tour">Take Tour</a></span></div><button type="button"
+                            class="toggle-row"><span class="screen-reader-text">Show more details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>Backup and restore: take backups locally, or backup to Amazon S3, Dropbox, Google Drive,
+                                Rackspace, (S)FTP, WebDAV &amp; email, on automatic schedules.</p>
+                        </div>
+                        <div class="active second plugin-version-author-uri">Version 1.22.24 | By <a
+                                href="https://updraftplus.com">UpdraftPlus.Com, DavidAnderson</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=updraftplus&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about UpdraftPlus - Backup/Restore"
+                                data-title="UpdraftPlus - Backup/Restore">View details</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=updraftplus%2Fupdraftplus.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active" data-slug="wp-attachments" data-plugin="wp-attachments/wp-attachments.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_62e4fba2e8ecd7641040931dc4eb26f5">Select WP Attachments</label><input
+                            type="checkbox" name="checked[]" value="wp-attachments/wp-attachments.php"
+                            id="checkbox_62e4fba2e8ecd7641040931dc4eb26f5"></th>
+                    <td class="plugin-title column-primary"><strong>WP Attachments</strong>
+                        <div class="row-actions visible"><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=wp-attachments%2Fwp-attachments.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=5500fae541"
+                                    id="deactivate-wp-attachments"
+                                    aria-label="Deactivate WP Attachments">Deactivate</a></span></div><button
+                            type="button" class="toggle-row"><span class="screen-reader-text">Show more
+                                details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>Powerful solution to manage and show your WordPress media in posts and pages</p>
+                        </div>
+                        <div class="active second plugin-version-author-uri">Version 5.0.5 | By <a
+                                href="https://www.marcomilesi.com">Marco Milesi</a> | <a
+                                href="https://wordpress.org/plugins/wp-attachments"
+                                aria-label="Visit plugin site for WP Attachments">Visit plugin site</a></div>
+                    </td>
+                    <td class="column-auto-updates"><span class="label"></span>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active is-uninstallable" data-slug="wp-githuber-md"
+                    data-plugin="wp-githuber-md/githuber-md.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_5e3ef544764f4cf9865cb26a55cc44e2">Select WP Githuber MD</label><input
+                            type="checkbox" name="checked[]" value="wp-githuber-md/githuber-md.php"
+                            id="checkbox_5e3ef544764f4cf9865cb26a55cc44e2"></th>
+                    <td class="plugin-title column-primary"><strong>WP Githuber MD</strong>
+                        <div class="row-actions visible"><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=wp-githuber-md%2Fgithuber-md.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=469a45cbe0"
+                                    id="deactivate-wp-githuber-md" aria-label="Deactivate WP Githuber MD">Deactivate</a>
+                                | </span><span class="0"><a
+                                    href="https://stack.xieguigang.me/wp-admin/options-general.php?page=githuber-md">Settings</a></span>
+                        </div><button type="button" class="toggle-row"><span class="screen-reader-text">Show more
+                                details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>An all-in-one Markdown plugin for your WordPress sites.</p>
+                        </div>
+                        <div class="active is-uninstallable second plugin-version-author-uri">Version 1.16.1 | By <a
+                                href="https://terryl.in/">Terry Lin</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=wp-githuber-md&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about WP Githuber MD" data-title="WP Githuber MD">View
+                                details</a> | <a href="https://github.com/terrylinooo/githuber-md" target="_blank">View
+                                GitHub project</a> | <a href="https://github.com/terrylinooo/githuber-md/issues"
+                                target="_blank">Report issues</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=wp-githuber-md%2Fgithuber-md.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active" data-slug="wp-maximum-upload-file-size"
+                    data-plugin="wp-maximum-upload-file-size/wp-maximum-upload-file-size.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_7df8293a1459875f7db5636b2ce8e701">Select Wp Maximum Upload File
+                            Size</label><input type="checkbox" name="checked[]"
+                            value="wp-maximum-upload-file-size/wp-maximum-upload-file-size.php"
+                            id="checkbox_7df8293a1459875f7db5636b2ce8e701"></th>
+                    <td class="plugin-title column-primary"><strong>Wp Maximum Upload File Size</strong>
+                        <div class="row-actions visible"><span class="0"><a
+                                    href="https://stack.xieguigang.me/wp-admin/upload.php?page=upload_max_file_size"
+                                    title="Adjust Max File Upload Size Settings">Settings</a> | </span><span
+                                class="deactivate"><a class="wp-maximum-upload-file-size-deactivate-link"
+                                    href="plugins.php?action=deactivate&amp;plugin=wp-maximum-upload-file-size%2Fwp-maximum-upload-file-size.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=052f0d828a"
+                                    id="deactivate-wp-maximum-upload-file-size"
+                                    aria-label="Deactivate Wp Maximum Upload File Size">Deactivate</a></span></div>
+                        <button type="button" class="toggle-row"><span class="screen-reader-text">Show more
+                                details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>Wp Maximum Upload File Size will increase upload limit with one click. you can easily
+                                increase upload file size according to your need.</p>
+                        </div>
+                        <div class="active second plugin-version-author-uri">Version 1.0.9 | By <a
+                                href="https://codepopular.com">CodePopular</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=wp-maximum-upload-file-size&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about Wp Maximum Upload File Size"
+                                data-title="Wp Maximum Upload File Size">View details</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=wp-maximum-upload-file-size%2Fwp-maximum-upload-file-size.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active" data-slug="wp-statistics" data-plugin="wp-statistics/wp-statistics.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_490116a10b72359dca9d1101c51af265">Select WP Statistics</label><input
+                            type="checkbox" name="checked[]" value="wp-statistics/wp-statistics.php"
+                            id="checkbox_490116a10b72359dca9d1101c51af265"></th>
+                    <td class="plugin-title column-primary"><strong>WP Statistics</strong>
+                        <div class="row-actions visible"><span class="0"><a
+                                    href="https://stack.xieguigang.me/wp-admin/admin.php?page=wps_settings_page">Settings</a>
+                                | </span><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=wp-statistics%2Fwp-statistics.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=6407f0677c"
+                                    id="deactivate-wp-statistics"
+                                    aria-label="Deactivate WP Statistics">Deactivate</a></span></div><button
+                            type="button" class="toggle-row"><span class="screen-reader-text">Show more
+                                details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>This plugin gives you the complete information on your website's visitors.</p>
+                        </div>
+                        <div class="active second plugin-version-author-uri">Version 13.2.10 | By <a
+                                href="https://veronalabs.com/">VeronaLabs</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=wp-statistics&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about WP Statistics" data-title="WP Statistics">View
+                                details</a> | <a href="http://wordpress.org/plugins/wp-statistics/" target="_blank"
+                                title="Click here to visit the plugin on WordPress.org">Visit WordPress.org page</a> |
+                            <a href="https://wordpress.org/support/plugin/wp-statistics/reviews/?rate=5#new-post"
+                                target="_blank" title="Click here to rate and review this plugin on WordPress.org">Rate
+                                this plugin</a>
+                        </div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=wp-statistics%2Fwp-statistics.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active is-uninstallable" data-slug="wp-postviews"
+                    data-plugin="wp-postviews/wp-postviews.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_fbf3466e16ec7520521ec78de7548667">Select WP-PostViews</label><input
+                            type="checkbox" name="checked[]" value="wp-postviews/wp-postviews.php"
+                            id="checkbox_fbf3466e16ec7520521ec78de7548667"></th>
+                    <td class="plugin-title column-primary"><strong>WP-PostViews</strong>
+                        <div class="row-actions visible"><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=wp-postviews%2Fwp-postviews.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=55954a7f0d"
+                                    id="deactivate-wp-postviews"
+                                    aria-label="Deactivate WP-PostViews">Deactivate</a></span></div><button
+                            type="button" class="toggle-row"><span class="screen-reader-text">Show more
+                                details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>Enables you to display how many times a post/page had been viewed.</p>
+                        </div>
+                        <div class="active is-uninstallable second plugin-version-author-uri">Version 1.76.1 | By <a
+                                href="https://lesterchan.net">Lester 'GaMerZ' Chan</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=wp-postviews&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about WP-PostViews" data-title="WP-PostViews">View
+                                details</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=wp-postviews%2Fwp-postviews.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="inactive is-uninstallable" data-slug="wpforms-lite" data-plugin="wpforms-lite/wpforms.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_067a15d05a991c3c22e9a404da6bcf0a">Select WPForms Lite</label><input
+                            type="checkbox" name="checked[]" value="wpforms-lite/wpforms.php"
+                            id="checkbox_067a15d05a991c3c22e9a404da6bcf0a"></th>
+                    <td class="plugin-title column-primary"><strong>WPForms Lite</strong>
+                        <div class="row-actions visible"><span class="activate"><a
+                                    href="plugins.php?action=activate&amp;plugin=wpforms-lite%2Fwpforms.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=fab861a31a"
+                                    id="activate-wpforms-lite" class="edit"
+                                    aria-label="Activate WPForms Lite">Activate</a> | </span><span class="delete"><a
+                                    href="plugins.php?action=delete-selected&amp;checked%5B0%5D=wpforms-lite%2Fwpforms.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=eb7e211529"
+                                    id="delete-wpforms-lite" class="delete"
+                                    aria-label="Delete WPForms Lite">Delete</a></span></div><button type="button"
+                            class="toggle-row"><span class="screen-reader-text">Show more details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>Beginner friendly WordPress contact form plugin. Use our Drag &amp; Drop form builder to
+                                create your WordPress forms.</p>
+                        </div>
+                        <div class="inactive is-uninstallable second plugin-version-author-uri">Version 1.7.8 | By <a
+                                href="https://wpforms.com">WPForms</a> | <a
+                                href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=wpforms-lite&amp;TB_iframe=true&amp;width=772&amp;height=361"
+                                class="thickbox open-plugin-details-modal"
+                                aria-label="More information about WPForms Lite" data-title="WPForms Lite">View
+                                details</a></div>
+                    </td>
+                    <td class="column-auto-updates"><a
+                            href="plugins.php?action=enable-auto-update&amp;plugin=wpforms-lite%2Fwpforms.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
+                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button"><span
+                                class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
+                                class="label">Enable auto-updates</span></a>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="active" data-slug="%e5%8d%9a%e5%ae%a2%e7%a4%be%e4%ba%a4%e5%88%86%e4%ba%ab%e7%bb%84%e4%bb%b6"
+                    data-plugin="donate-with-qrcode/index.php">
+                    <th scope="row" class="check-column"><label class="screen-reader-text"
+                            for="checkbox_5f6b23496d4b6cb799fcfd5422d4e545">Select 博客社交分享组件</label><input
+                            type="checkbox" name="checked[]" value="donate-with-qrcode/index.php"
+                            id="checkbox_5f6b23496d4b6cb799fcfd5422d4e545"></th>
+                    <td class="plugin-title column-primary"><strong>博客社交分享组件</strong>
+                        <div class="row-actions visible"><span class="0"><a
+                                    href="https://stack.xieguigang.me/wp-admin/options-general.php?page=dwqr_pack">设置</a>
+                                | </span><span class="deactivate"><a
+                                    href="plugins.php?action=deactivate&amp;plugin=donate-with-qrcode%2Findex.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=23f1596a05"
+                                    id="deactivate-%e5%8d%9a%e5%ae%a2%e7%a4%be%e4%ba%a4%e5%88%86%e4%ba%ab%e7%bb%84%e4%bb%b6"
+                                    aria-label="Deactivate 博客社交分享组件">Deactivate</a></span></div><button type="button"
+                            class="toggle-row"><span class="screen-reader-text">Show more details</span></button>
+                    </td>
+                    <td class="column-description desc">
+                        <div class="plugin-description">
+                            <p>博客社交分享组件是一款整合了网站打赏，文章点赞，微海报及文章社交分享功能插件。插件为读者提供点赞、微海报和社交分享功能，激励网站访客互动，提升WordPress博客文章传播；同时方便访客通过二维码打赏（捐赠）站长以鼓励站长继续创作贡献。
+                            </p>
+                        </div>
+                        <div class="active second plugin-version-author-uri">Version 1.4.5 | By <a
+                                href="http://www.wbolt.com/">wbolt team</a> | <a
+                                href="http://wordpress.org/plugins/donate-with-qrcode/"
+                                aria-label="Visit plugin site for 博客社交分享组件">Visit plugin site</a> | <a
+                                href="https://www.wbolt.com/plugins/dwq" target="_blank">插件主页</a> | <a
+                                href="https://www.wbolt.com/dwq-plugin-documentation.html" target="_blank">FAQ</a> | <a
+                                href="https://wordpress.org/support/plugin/donate-with-qrcode/" target="_blank">反馈</a>
+                        </div>
+                    </td>
+                    <td class="column-auto-updates"><span class="label"></span>
+                        <div class="notice notice-error notice-alt inline hidden">
+                            <p></p>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td class="manage-column column-cb check-column"><label class="screen-reader-text"
+                            for="cb-select-all-2">Select All</label><input id="cb-select-all-2" type="checkbox"></td>
+                    <th scope="col" class="manage-column column-name column-primary">Plugin</th>
+                    <th scope="col" class="manage-column column-description">Description</th>
+                    <th scope="col" class="manage-column column-auto-updates">Automatic Updates</th>
+                </tr>
+            </tfoot>
+
+        </table>
     </div>
 </body>
 
