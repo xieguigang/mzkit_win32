@@ -49,9 +49,13 @@
                 <li class="inactive">
                     <a href="#">Inactive <span class="count">(6)</span></a>
                 </li>
+                <li class="incompatible">
+                    <a href="#">Incompatible <span class="count">(6)</span></a>
+                </li>
             </ul>
         </div>
 
+        <br />
         <br />
 
         <table class="wp-list-table widefat plugins" style="width: 100%; text-align: left;">
@@ -68,107 +72,15 @@
             </thead>
 
             <tbody id="plugin-list">
-                <tr class="inactive" data-slug="akismet" data-plugin="akismet/akismet.php">
-                    <th scope="row" class="check-column">
-                        <label class="screen-reader-text" for="checkbox_1a03f1c70286d2ea118f953c968249d2">Select Akismet
-                            Anti-Spam</label>
-                        <input type="checkbox" name="checked[]" value="akismet/akismet.php"
-                            id="checkbox_1a03f1c70286d2ea118f953c968249d2">
-                    </th>
-                    <td class="plugin-title column-primary">
-                        <strong>Akismet Anti-Spam</strong>
-                        <div class="row-actions visible">
-                            <span class="activate">
-                                <a href="plugins.php?action=activate&amp;plugin=akismet%2Fakismet.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=d2ae195082"
-                                    id="activate-akismet" class="edit"
-                                    aria-label="Activate Akismet Anti-Spam">Activate</a> |
-                            </span>
-                            <span class="delete">
-                                <a href="plugins.php?action=delete-selected&amp;checked%5B0%5D=akismet%2Fakismet.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=eb7e211529"
-                                    id="delete-akismet" class="delete" aria-label="Delete Akismet Anti-Spam">Delete</a>
-                            </span>
-                        </div>
 
-                    </td>
-                    <td class="column-description desc">
-                        <div class="plugin-description">
-                            <p>
-                                Used by millions, Akismet is quite possibly the best way in the world to
-                                <strong>
-                                    protect
-                                    your blog from spam
-                                </strong>. It keeps your site protected even while you sleep. To
-                                get started: activate the Akismet plugin and then go to your Akismet Settings page to
-                                set up your API key.
-                            </p>
-                        </div>
-                        <div class="inactive second plugin-version-author-uri">
-                            Version 5.0.2 | By
-                            <a href="https://automattic.com/wordpress-plugins/">Automattic</a> |
-                            <a href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=akismet&amp;TB_iframe=true&amp;width=772&amp;height=361"
-                                class="thickbox open-plugin-details-modal"
-                                aria-label="More information about Akismet Anti-Spam"
-                                data-title="Akismet Anti-Spam">View details</a>
-                        </div>
-                    </td>
-                    <td class="column-auto-updates">
-                        <a href="plugins.php?action=enable-auto-update&amp;plugin=akismet%2Fakismet.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
-                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button">
-                            <span class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
-                                class="label">Enable auto-updates</span>
-                        </a>
-                        <div class="notice notice-error notice-alt inline hidden">
-                            <p></p>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr class="active" data-slug="code-prettify" data-plugin="code-prettify/code-prettify.php">
-                    <th scope="row" class="check-column">
-                        <label class="screen-reader-text" for="checkbox_c9aa7acc49ffcc8b3e8783205653100b">Select Code
-                            Prettify</label>
-                        <input type="checkbox" name="checked[]" value="code-prettify/code-prettify.php"
-                            id="checkbox_c9aa7acc49ffcc8b3e8783205653100b">
-                    </th>
-                    <td class="plugin-title column-primary">
-                        <strong>Code Prettify</strong>
-                        <div class="row-actions visible">
-                            <span class="deactivate">
-                                <a href="plugins.php?action=deactivate&amp;plugin=code-prettify%2Fcode-prettify.php&amp;plugin_status=all&amp;paged=1&amp;s&amp;_wpnonce=5ed0c4d809"
-                                    id="deactivate-code-prettify" aria-label="Deactivate Code Prettify">Deactivate</a>
-                            </span>
-                        </div>
-
-                    </td>
-                    <td class="column-description desc">
-                        <div class="plugin-description">
-                            <p>Automatic code syntax highlighter</p>
-                        </div>
-                        <div class="active second plugin-version-author-uri">
-                            Version 1.5.1 | By
-                            <a href="https://kaspars.net">Kaspars Dambis</a> |
-                            <a href="https://stack.xieguigang.me/wp-admin/plugin-install.php?tab=plugin-information&amp;plugin=code-prettify&amp;TB_iframe=true&amp;width=772&amp;height=361"
-                                class="thickbox open-plugin-details-modal"
-                                aria-label="More information about Code Prettify" data-title="Code Prettify">
-                                View
-                                details
-                            </a>
-                        </div>
-                    </td>
-                    <td class="column-auto-updates">
-                        <a href="plugins.php?action=enable-auto-update&amp;plugin=code-prettify%2Fcode-prettify.php&amp;paged=1&amp;plugin_status=all&amp;_wpnonce=ef38d73e43"
-                            class="toggle-auto-update aria-button-if-js" data-wp-action="enable" role="button">
-                            <span class="dashicons dashicons-update spin hidden" aria-hidden="true"></span><span
-                                class="label">Enable auto-updates</span>
-                        </a>
-                        <div class="notice notice-error notice-alt inline hidden">
-                            <p></p>
-                        </div>
-                    </td>
-                </tr>
             </tbody>
-
         </table>
+    </div>
+
+    <div style="height: 20px;"></div>
+
+    <div style="width: 100%; text-align: center;">
+        <strong>MZKit App Store (<a href="https://apps.mzkit.org/">apps.mzkit.org</a>)</strong>
     </div>
 </body>
 

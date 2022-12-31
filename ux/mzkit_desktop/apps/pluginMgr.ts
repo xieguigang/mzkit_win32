@@ -30,22 +30,24 @@ namespace apps {
         private addPlugin(mgr: HTMLElement, plugin: plugin) {
             const type: string = (plugin.status == "disable" || plugin.status == "incompatible") ? "inactive" : "active";
             const row = $ts("<tr>", { class: type });
+            const action: string = type == "active" ? `<span class="deactivate">
+            <a href="#">Deactivate</a>
+        </span>` : `<span class="activate">
+        <a href="#" class="edit">Activate</a> |
+    </span>
+    <span class="delete">
+        <a href="#" class="delete">Delete</a>
+    </span>`;
             const html: string = `
             
             <th scope="row" class="check-column">
-                <input type="checkbox" name="check_plugins" >
+                <input type="checkbox" name="check_plugins" />
             </th>
             <td class="plugin-title column-primary">
                 <strong>${plugin.name}</strong>
                 <div class="row-actions visible">
-                    <span class="activate">
-                        <a href="#" class="edit">Activate</a> |
-                    </span>
-                    <span class="delete">
-                        <a href="#" class="delete">Delete</a>
-                    </span>
-                </div>
-        
+                    ${action}
+                </div>        
             </td>
             <td class="column-description desc">
                 <div class="plugin-description">
