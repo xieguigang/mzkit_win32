@@ -9,8 +9,6 @@ Imports System.Reflection
 <AttributeUsage(AttributeTargets.Assembly, AllowMultiple:=False)>
 Public Class MZKitPlugin : Inherits Attribute
 
-    Public Shared ReadOnly Property Registry As New Dictionary(Of String, Plugin)
-
     Public Overrides Function ToString() As String
         Dim asm As Assembly = [GetType].Assembly
         Dim dll As String = asm.Location.FileName

@@ -1,7 +1,5 @@
 ﻿Imports System.Runtime.InteropServices
-Imports System.Xml.Serialization
 Imports Microsoft.VisualBasic.Serialization.JSON
-Imports Microsoft.VisualBasic.Text.Xml.Models
 
 <ClassInterface(ClassInterfaceType.AutoDual)>
 <ComVisible(True)>
@@ -37,11 +35,6 @@ Public Class PluginMgr
     End Sub
 
     Public Shared Function Load() As PluginMgr
-        Dim registry = RegistryFile.defaultLocation.LoadXml(Of RegistryFile)(throwEx:=False)
-        If registry Is Nothing Then
-            registry = New RegistryFile With {.plugins = {}}
-            registry.Save()
-        End If
-        Return New PluginMgr With {.registry = registry}
+        Return New PluginMgr With {.registry = RegistryFile.LoadRegistry}
     End Function
 End Class
