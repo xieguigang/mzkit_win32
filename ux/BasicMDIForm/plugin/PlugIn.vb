@@ -1,6 +1,7 @@
 Imports System.Reflection
 Imports Microsoft.VisualBasic.ApplicationServices.Development
 Imports Microsoft.VisualBasic.ComponentModel.Collection
+Imports Microsoft.VisualBasic.Linq
 
 ''' <summary>
 ''' the mzkit plugin model abstract
@@ -30,8 +31,8 @@ Public MustInherit Class Plugin
         }
     End Function
 
-    Public Shared Sub LoadPlugins(dir As String, println As Action(Of String))
-        Dim files As String() = dir.EnumerateFiles("*.dll").ToArray
+    Public Shared Sub LoadPlugins(println As Action(Of String))
+        Dim files As String() = $"{App.HOME}/plugins".EnumerateFiles("*.dll").JoinIterates($"{App.LocalData}/plugins/").ToArray
         Dim loaded As Index(Of String) = New String() {}
         Dim registry As RegistryFile = RegistryFile.LoadRegistry
         Dim hashlist = registry.plugins.ToDictionary(Function(p) p.id)

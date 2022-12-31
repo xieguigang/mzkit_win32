@@ -75,6 +75,7 @@ declare namespace apps {
     class pluginMgr extends Bootstrap {
         readonly appName: string;
         protected init(): void;
+        private setPluginStatus;
         private addPlugin;
         install_local_onclick(): void;
     }

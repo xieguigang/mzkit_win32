@@ -421,17 +421,24 @@ var apps;
                                     plugin = list_1[_i];
                                     vm.addPlugin(mgr, plugin);
                                 }
+                                $ts.select(".deactive").ForEach(function (e) { return vm.setPluginStatus(e, "disable"); });
+                                $ts.select(".edit").ForEach(function (e) { return vm.setPluginStatus(e, "active"); });
+                                $ts.select(".delete");
                                 return [2 /*return*/];
                         }
                     });
                 });
             });
         };
+        pluginMgr.prototype.setPluginStatus = function (e, stat) {
+            app.desktop.mzkit.SetStatus(e.getAttribute("data"), stat);
+            location.reload();
+        };
         pluginMgr.prototype.addPlugin = function (mgr, plugin) {
             var type = (plugin.status == "disable" || plugin.status == "incompatible") ? "inactive" : "active";
             var row = $ts("<tr>", { class: type });
-            var action = type == "active" ? "<span class=\"deactivate\">\n            <a href=\"#\">Deactivate</a>\n        </span>" : "<span class=\"activate\">\n        <a href=\"#\" class=\"edit\">Activate</a> |\n    </span>\n    <span class=\"delete\">\n        <a href=\"#\" class=\"delete\">Delete</a>\n    </span>";
-            var html = "\n            \n            <th scope=\"row\" class=\"check-column\">\n                <input type=\"checkbox\" name=\"check_plugins\" />\n            </th>\n            <td class=\"plugin-title column-primary\">\n                <strong>" + plugin.name + "</strong>\n                <div class=\"row-actions visible\">\n                    " + action + "\n                </div>        \n            </td>\n            <td class=\"column-description desc\">\n                <div class=\"plugin-description\">\n                    <p>\n                        " + plugin.desc + "\n                    </p>\n                </div>\n                <div class=\"" + type + " second plugin-version-author-uri\">\n                    Version " + plugin.ver + " | By\n                    <a href=\"#\">" + plugin.author + "</a> |\n                    <a href=\"" + plugin.url + "\" class=\"thickbox open-plugin-details-modal\">View details</a>\n                </div>\n            </td>\n            <td class=\"column-auto-updates\">\n                {$usage_stat}\n            </td>     \n            ";
+            var action = type == "active" ? "<span class=\"deactivate\">\n            <a href=\"#\" class=\"deactive\" data=\"" + plugin.id + "\">Deactivate</a>\n        </span>" : "<span class=\"activate\">\n        <a href=\"#\" class=\"edit\" data=\"" + plugin.id + "\">Activate</a> <!--|\n    </span>\n    <span class=\"delete\">\n        <a href=\"#\" class=\"delete\" data=\"" + plugin.id + "\">Delete</a>\n    </span>-->";
+            var html = "\n            \n            <th scope=\"row\" class=\"check-column\">\n                <input type=\"checkbox\" name=\"check_plugins\" />\n            </th>\n            <td class=\"plugin-title column-primary\">\n                <strong>" + plugin.name + "</strong>\n                <div class=\"row-actions visible\">\n                    " + action + "\n                </div>        \n            </td>\n            <td class=\"column-description desc\">\n                <div class=\"plugin-description\">\n                    <p>\n                        " + plugin.desc + "\n                    </p>\n                </div>\n                <div class=\"" + type + " second plugin-version-author-uri\">\n                    Version " + plugin.ver + " | By\n                    <a href=\"#\">" + plugin.author + "</a> |\n                    <a href=\"" + plugin.url + "\" class=\"thickbox open-plugin-details-modal\">View details</a>\n                </div>\n            </td>\n            <td class=\"column-auto-updates\">\n                \n            </td>     \n            ";
             mgr.appendChild(row.display(html));
         };
         pluginMgr.prototype.install_local_onclick = function () {

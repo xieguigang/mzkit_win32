@@ -25,7 +25,11 @@ Public Class PluginMgr
     Public Sub InstallLocal()
         Using file As New OpenFileDialog With {.Filter = "MZKit plugin(*.dll)|*.dll"}
             If file.ShowDialog = DialogResult.OK Then
+                Call file.FileName.FileCopy($"{App.LocalData}/plugins/{file.FileName.FileName}")
+                Call registry.Save()
+                Call Plugin.LoadPlugins(println:=AddressOf Workbench.StatusMessage)
 
+                registry = RegistryFile.LoadRegistry
             End If
         End Using
     End Sub

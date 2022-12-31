@@ -24,20 +24,29 @@ namespace apps {
                     for (let plugin of list) {
                         vm.addPlugin(mgr, plugin);
                     }
+
+                    $ts.select(".deactive").ForEach(e => vm.setPluginStatus(e, "disable"));
+                    $ts.select(".edit").ForEach(e => vm.setPluginStatus(e, "active"));
+                    $ts.select(".delete");
                 });
+        }
+
+        private setPluginStatus(e: HTMLElement, stat: string) {
+            app.desktop.mzkit.SetStatus(e.getAttribute("data"), stat);
+            location.reload();
         }
 
         private addPlugin(mgr: HTMLElement, plugin: plugin) {
             const type: string = (plugin.status == "disable" || plugin.status == "incompatible") ? "inactive" : "active";
             const row = $ts("<tr>", { class: type });
             const action: string = type == "active" ? `<span class="deactivate">
-            <a href="#">Deactivate</a>
+            <a href="#" class="deactive" data="${plugin.id}">Deactivate</a>
         </span>` : `<span class="activate">
-        <a href="#" class="edit">Activate</a> |
+        <a href="#" class="edit" data="${plugin.id}">Activate</a> <!--|
     </span>
     <span class="delete">
-        <a href="#" class="delete">Delete</a>
-    </span>`;
+        <a href="#" class="delete" data="${plugin.id}">Delete</a>
+    </span>-->`;
             const html: string = `
             
             <th scope="row" class="check-column">
@@ -62,7 +71,7 @@ namespace apps {
                 </div>
             </td>
             <td class="column-auto-updates">
-                {$usage_stat}
+                
             </td>     
             `;
 
