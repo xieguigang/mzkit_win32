@@ -360,3 +360,13 @@ textarea {
 * {
     box-sizing: border-box;
 }
+
+.column-primary {
+    width: 16%;
+}
+
+.wp-list-table.plugins .plugin-title,
+.wp-list-table.plugins .theme-title {
+    padding-right: 12px;
+    white-space: nowrap;
+}

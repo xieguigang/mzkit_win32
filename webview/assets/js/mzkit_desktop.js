@@ -284,4 +284,16 @@ var apps;
     }
     apps.home = home;
 })(apps || (apps = {}));
+var apps;
+(function (apps) {
+    class pluginMgr extends Bootstrap {
+        get appName() {
+            return "pluginMgr";
+        }
+        ;
+        init() {
+        }
+    }
+    apps.pluginMgr = pluginMgr;
+})(apps || (apps = {}));
 //# sourceMappingURL=mzkit_desktop.js.map

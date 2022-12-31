@@ -61,3 +61,9 @@ declare namespace apps {
         protected init(): void;
     }
 }
+declare namespace apps {
+    class pluginMgr extends Bootstrap {
+        readonly appName: string;
+        protected init(): void;
+    }
+}
