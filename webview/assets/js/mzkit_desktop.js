@@ -323,6 +323,9 @@ var apps;
         }
         addPlugin(mgr, plugin) {
         }
+        install_local_onclick() {
+            app.desktop.mzkit.InstallLocal();
+        }
     }
     apps.pluginMgr = pluginMgr;
     const template = `

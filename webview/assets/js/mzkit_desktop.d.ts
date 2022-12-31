@@ -76,6 +76,7 @@ declare namespace apps {
         readonly appName: string;
         protected init(): void;
         private addPlugin;
+        install_local_onclick(): void;
     }
     interface plugin {
         id: string;

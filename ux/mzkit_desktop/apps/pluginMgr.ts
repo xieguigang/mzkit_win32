@@ -24,6 +24,10 @@ namespace apps {
         private addPlugin(mgr: HTMLElement, plugin: plugin) {
 
         }
+
+        public install_local_onclick() {
+            app.desktop.mzkit.InstallLocal();
+        }
     }
 
     export interface plugin {
