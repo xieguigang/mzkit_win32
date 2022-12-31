@@ -428,6 +428,10 @@ var apps;
             });
         };
         pluginMgr.prototype.addPlugin = function (mgr, plugin) {
+            var type = (plugin.status == "disable" || plugin.status == "incompatible") ? "inactive" : "active";
+            var row = $ts("<tr>", { class: type });
+            var html = "\n            \n            <th scope=\"row\" class=\"check-column\">\n                <input type=\"checkbox\" name=\"check_plugins\" >\n            </th>\n            <td class=\"plugin-title column-primary\">\n                <strong>" + plugin.name + "</strong>\n                <div class=\"row-actions visible\">\n                    <span class=\"activate\">\n                        <a href=\"#\" class=\"edit\">Activate</a> |\n                    </span>\n                    <span class=\"delete\">\n                        <a href=\"#\" class=\"delete\">Delete</a>\n                    </span>\n                </div>\n        \n            </td>\n            <td class=\"column-description desc\">\n                <div class=\"plugin-description\">\n                    <p>\n                        " + plugin.desc + "\n                    </p>\n                </div>\n                <div class=\"" + type + " second plugin-version-author-uri\">\n                    Version " + plugin.ver + " | By\n                    <a href=\"#\">" + plugin.author + "</a> |\n                    <a href=\"" + plugin.url + "\" class=\"thickbox open-plugin-details-modal\">View details</a>\n                </div>\n            </td>\n            <td class=\"column-auto-updates\">\n                {$usage_stat}\n            </td>     \n            ";
+            mgr.appendChild(row.display(html));
         };
         pluginMgr.prototype.install_local_onclick = function () {
             app.desktop.mzkit.InstallLocal();
@@ -435,6 +439,5 @@ var apps;
         return pluginMgr;
     }(Bootstrap));
     apps.pluginMgr = pluginMgr;
-    var template = "\n    <tr class=\"inactive\">\n    <th scope=\"row\" class=\"check-column\">\n        <input type=\"checkbox\" name=\"check_plugins\" >\n    </th>\n    <td class=\"plugin-title column-primary\">\n        <strong>{$name}</strong>\n        <div class=\"row-actions visible\">\n            <span class=\"activate\">\n                <a href=\"\"\n                    id=\"activate-akismet\" class=\"edit\"\n                    aria-label=\"Activate Akismet Anti-Spam\">Activate</a> |\n            </span>\n            <span class=\"delete\">\n                <a href=\"\"\n                    id=\"delete-akismet\" class=\"delete\" aria-label=\"Delete Akismet Anti-Spam\">Delete</a>\n            </span>\n        </div>\n\n    </td>\n    <td class=\"column-description desc\">\n        <div class=\"plugin-description\">\n            <p>\n                {$desc}\n            </p>\n        </div>\n        <div class=\"inactive second plugin-version-author-uri\">\n            Version {$ver} | By\n            <a href=\"#\">{$author}</a> |\n            <a href=\"{$url}\"\n                class=\"thickbox open-plugin-details-modal\"\n                aria-label=\"More information about Akismet Anti-Spam\"\n                data-title=\"Akismet Anti-Spam\">View details</a>\n        </div>\n    </td>\n    <td class=\"column-auto-updates\">\n        {$usage_stat}\n    </td>\n</tr>\n    ";
 })(apps || (apps = {}));
 //# sourceMappingURL=mzkit_desktop.js.map

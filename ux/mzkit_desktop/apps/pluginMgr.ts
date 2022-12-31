@@ -28,7 +28,43 @@ namespace apps {
         }
 
         private addPlugin(mgr: HTMLElement, plugin: plugin) {
+            const type: string = (plugin.status == "disable" || plugin.status == "incompatible") ? "inactive" : "active";
+            const row = $ts("<tr>", { class: type });
+            const html: string = `
+            
+            <th scope="row" class="check-column">
+                <input type="checkbox" name="check_plugins" >
+            </th>
+            <td class="plugin-title column-primary">
+                <strong>${plugin.name}</strong>
+                <div class="row-actions visible">
+                    <span class="activate">
+                        <a href="#" class="edit">Activate</a> |
+                    </span>
+                    <span class="delete">
+                        <a href="#" class="delete">Delete</a>
+                    </span>
+                </div>
+        
+            </td>
+            <td class="column-description desc">
+                <div class="plugin-description">
+                    <p>
+                        ${plugin.desc}
+                    </p>
+                </div>
+                <div class="${type} second plugin-version-author-uri">
+                    Version ${plugin.ver} | By
+                    <a href="#">${plugin.author}</a> |
+                    <a href="${plugin.url}" class="thickbox open-plugin-details-modal">View details</a>
+                </div>
+            </td>
+            <td class="column-auto-updates">
+                {$usage_stat}
+            </td>     
+            `;
 
+            mgr.appendChild(row.display(html));
         }
 
         public install_local_onclick() {
@@ -45,45 +81,4 @@ namespace apps {
         url: string;
         status: "active" | "disable" | "incompatible"
     }
-
-    const template: string = `
-    <tr class="inactive">
-    <th scope="row" class="check-column">
-        <input type="checkbox" name="check_plugins" >
-    </th>
-    <td class="plugin-title column-primary">
-        <strong>{$name}</strong>
-        <div class="row-actions visible">
-            <span class="activate">
-                <a href=""
-                    id="activate-akismet" class="edit"
-                    aria-label="Activate Akismet Anti-Spam">Activate</a> |
-            </span>
-            <span class="delete">
-                <a href=""
-                    id="delete-akismet" class="delete" aria-label="Delete Akismet Anti-Spam">Delete</a>
-            </span>
-        </div>
-
-    </td>
-    <td class="column-description desc">
-        <div class="plugin-description">
-            <p>
-                {$desc}
-            </p>
-        </div>
-        <div class="inactive second plugin-version-author-uri">
-            Version {$ver} | By
-            <a href="#">{$author}</a> |
-            <a href="{$url}"
-                class="thickbox open-plugin-details-modal"
-                aria-label="More information about Akismet Anti-Spam"
-                data-title="Akismet Anti-Spam">View details</a>
-        </div>
-    </td>
-    <td class="column-auto-updates">
-        {$usage_stat}
-    </td>
-</tr>
-    `;
 }
