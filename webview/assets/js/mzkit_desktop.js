@@ -143,6 +143,8 @@ var app;
             }
         }
         function run() {
+            Router.AddAppHandler(new apps.home());
+            Router.AddAppHandler(new apps.pluginMgr());
             Router.AddAppHandler(new apps.three_app());
             Router.RunApp();
         }

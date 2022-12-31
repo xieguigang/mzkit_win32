@@ -10,7 +10,7 @@ namespace app.desktop {
             return (<any>window).chrome.webview.hostObjects.mzkit;
         } catch {
             return null;
-        }        
+        }
     }
 
     export interface mzkit_desktop {
@@ -19,6 +19,9 @@ namespace app.desktop {
     }
 
     export function run() {
+        Router.AddAppHandler(new apps.home());
+        Router.AddAppHandler(new apps.pluginMgr());
+
         Router.AddAppHandler(new apps.three_app());
 
         Router.RunApp();
