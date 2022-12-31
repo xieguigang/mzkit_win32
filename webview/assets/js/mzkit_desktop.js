@@ -405,15 +405,18 @@ var apps;
                 .GetPlugins()
                 .then(function (json) {
                 return __awaiter(this, void 0, void 0, function () {
-                    var list, _a, _b, mgr, _i, list_1, plugin;
-                    return __generator(this, function (_c) {
-                        switch (_c.label) {
-                            case 0:
-                                _b = (_a = JSON).parse;
-                                return [4 /*yield*/, json];
+                    var json_str, list, mgr, _i, list_1, plugin;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0: return [4 /*yield*/, json];
                             case 1:
-                                list = _b.apply(_a, [_c.sent()]);
+                                json_str = _a.sent();
+                                list = JSON.parse(json_str);
                                 mgr = $ts("#plugin-list").clear();
+                                console.log("get plugin list:");
+                                console.table(list);
+                                console.log("json string source:");
+                                console.log(json_str);
                                 for (_i = 0, list_1 = list; _i < list_1.length; _i++) {
                                     plugin = list_1[_i];
                                     vm.addPlugin(mgr, plugin);

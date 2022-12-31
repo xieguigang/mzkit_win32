@@ -12,8 +12,14 @@ namespace apps {
             app.desktop.mzkit
                 .GetPlugins()
                 .then(async function (json) {
-                    const list: plugin[] = JSON.parse(await json);
+                    const json_str: string = await json;
+                    const list: plugin[] = JSON.parse(json_str);
                     const mgr: HTMLElement = $ts("#plugin-list").clear();
+
+                    console.log("get plugin list:");
+                    console.table(list);
+                    console.log("json string source:");
+                    console.log(json_str);
 
                     for (let plugin of list) {
                         vm.addPlugin(mgr, plugin);

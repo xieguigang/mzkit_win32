@@ -7,7 +7,7 @@ Public Class RegistryFile : Inherits ListOf(Of PluginMetadata)
     <XmlElement>
     Public Property plugins As PluginMetadata()
 
-    Friend Shared ReadOnly defaultLocation As String
+    Friend Shared ReadOnly defaultLocation As String = App.LocalData & "/plugins.xml"
 
     Default Friend ReadOnly Property GetElementById(id As String) As PluginMetadata
         Get
