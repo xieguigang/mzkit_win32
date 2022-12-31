@@ -1,4 +1,5 @@
-﻿Imports Microsoft.Web.WebView2.Core
+﻿Imports BioNovoGene.mzkit_win32.PageStart
+Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
 
 Public Class frmPluginMgr
@@ -17,8 +18,8 @@ Public Class frmPluginMgr
     End Sub
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
-        ' WebView21.CoreWebView2.OpenDevToolsWindow()
-        Call WebView21.CoreWebView2.Navigate("")
+        Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", New LinkActions)
+        Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Globals.WebPort}/pluginManager.html")
         Call WebKit.DeveloperOptions(WebView21, enable:=True)
     End Sub
 End Class
