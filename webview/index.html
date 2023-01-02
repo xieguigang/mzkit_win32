@@ -5,26 +5,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="app" content="home">
 
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.png" />
-	<link rel="stylesheet" href="./assets/home.css" type="text/css">
- 
+    <link rel="stylesheet" href="./assets/home.css" type="text/css">
+
     <title>BioNovoGene MZKit</title>
 
     <script src="./assets/js/linq.js"></script>
-    <script src="./assets/js/mzkit_desktop.js"></script>	
-	<script type="text/javascript">
-		function drop(event) {
-			event.preventDefault()
-			event.stopPropagation()
-			// just a name, not a physical local file path
-			// alert(event.dataTransfer.files[0].name)  // ...files[0].name
-		}
-		
-		function dragover(event) {
-			event.preventDefault()
-		}
-	</script>
+    <script src="./assets/js/mzkit_desktop.js"></script>
+    <script type="text/javascript">
+        function drop(event) {
+            event.preventDefault()
+            event.stopPropagation()
+            // just a name, not a physical local file path
+            // alert(event.dataTransfer.files[0].name)  // ...files[0].name
+        }
+
+        function dragover(event) {
+            event.preventDefault()
+        }
+    </script>
 </head>
 
 <body ondragover="dragover(event)" ondrop="drop(event)">
@@ -39,10 +40,12 @@
         <ul>
             <li><img class="icon" src="./assets/images/tracker.png" />
                 <a href="#" onclick="app.desktop.mzkit.ViewRawDataFile();">View Raw Data
-                    File</a></li>
+                    File</a>
+            </li>
             <li><img class="icon" src="./assets/images/Terminal.png" />
                 <a href="#" onclick="app.desktop.mzkit.OpenRterm();">R# Script
-                    Automation</a></li>
+                    Automation</a>
+            </li>
             <li><img class="icon" src="./favicon.png" /><a href="http://v2.biodeep.cn/home">Visit BioDeep</a>
             </li>
         </ul>

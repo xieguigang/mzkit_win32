@@ -557,6 +557,12 @@
     <Compile Include="pages\dockWindow\documents\frm3DMALDIViewer.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="pages\dockWindow\documents\frmPluginMgr.Designer.vb">
+      <DependentUpon>frmPluginMgr.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pages\dockWindow\documents\frmPluginMgr.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\documents\TissueSlideHandler.vb" />
     <Compile Include="pages\dockWindow\documents\frmOpenseadragonViewer.Designer.vb">
       <DependentUpon>frmOpenseadragonViewer.vb</DependentUpon>
@@ -827,12 +833,6 @@
     <Compile Include="pages\dockWindow\frmDockDocument.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\pageStart\NewsFeedDisplay.Designer.vb">
-      <DependentUpon>NewsFeedDisplay.vb</DependentUpon>
-    </Compile>
-    <Compile Include="pages\pageStart\NewsFeedDisplay.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="pages\Settings\AppConfig.Designer.vb">
       <DependentUpon>AppConfig.vb</DependentUpon>
     </Compile>
@@ -848,12 +848,6 @@
       <DependentUpon>RawFileViewer.vb</DependentUpon>
     </Compile>
     <Compile Include="pages\Settings\RawFileViewer.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="pages\pageStart\PageStart.Designer.vb">
-      <DependentUpon>PageStart.vb</DependentUpon>
-    </Compile>
-    <Compile Include="pages\pageStart\PageStart.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="pages\Settings\PlotConfig.Designer.vb">
@@ -1087,6 +1081,9 @@
     <EmbeddedResource Include="pages\dockWindow\documents\frmPeakFinding.resx">
       <DependentUpon>frmPeakFinding.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\documents\frmPluginMgr.resx">
+      <DependentUpon>frmPluginMgr.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frmQuantifyIons.resx">
       <DependentUpon>frmQuantifyIons.vb</DependentUpon>
     </EmbeddedResource>
@@ -1177,9 +1174,6 @@
     <EmbeddedResource Include="pages\dockWindow\tools\TaskListWindow.resx">
       <DependentUpon>TaskListWindow.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pages\pageStart\PageStart.zh-CN.resx">
-      <DependentUpon>PageStart.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="pages\pageStart\VideoCards.resx">
       <DependentUpon>VideoCards.vb</DependentUpon>
     </EmbeddedResource>
@@ -1226,12 +1220,6 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
-    <EmbeddedResource Include="pages\pageStart\NewsFeedDisplay.resx">
-      <DependentUpon>NewsFeedDisplay.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="pages\pageStart\PageStart.resx">
-      <DependentUpon>PageStart.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="pages\Settings\AppConfig.resx">
       <DependentUpon>AppConfig.vb</DependentUpon>
     </EmbeddedResource>

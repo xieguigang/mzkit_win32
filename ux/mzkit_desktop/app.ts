@@ -10,16 +10,27 @@ namespace app.desktop {
             return (<any>window).chrome.webview.hostObjects.mzkit;
         } catch {
             return null;
-        }        
+        }
     }
 
     export interface mzkit_desktop {
+        // 3d maldi model viewer
         get_3d_MALDI_url(): Promise<string>;
         open_MALDI_model();
+
+        // plugin manager
+        Save(): void;
+        InstallLocal(): void;
+        SetStatus(id: string, status: string): void;
+        GetPlugins(): Promise<string>;
     }
 
     export function run() {
+        Router.AddAppHandler(new apps.home());
+        Router.AddAppHandler(new apps.pluginMgr());
+
         Router.AddAppHandler(new apps.three_app());
+        Router.AddAppHandler(new apps.clusterViewer());
 
         Router.RunApp();
     }

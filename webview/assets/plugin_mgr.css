@@ -1,0 +1,372 @@
+body {
+    background: #f0f0f1;
+    color: #3c434a;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-size: 13px;
+    line-height: 1.4em;
+    min-width: 600px;
+}
+
+.page-title-action {
+    margin-left: 0;
+    padding: 4px 8px;
+    position: relative;
+    top: -3px;
+    text-decoration: none;
+    border: 1px solid #2271b1;
+    border-radius: 2px;
+    text-shadow: none;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: normal;
+    color: #2271b1;
+    background: #f6f7f7;
+    cursor: pointer;
+    outline: 0;
+}
+
+.subsubsub {
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 0;
+    font-size: 13px;
+    float: left;
+    color: #646970;
+}
+
+.subsubsub li {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+}
+
+table.widefat {
+    background: #fff;
+}
+
+table.widefat {
+    border: 1px solid #c3c4c7;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 4%);
+}
+
+.plugins thead td.check-column {
+    padding-left: 6px;
+}
+
+.widefat tfoot td.check-column,
+.widefat thead td.check-column {
+    padding-top: 4px;
+    vertical-align: middle;
+}
+
+.updates-table tbody td.check-column,
+.widefat tbody th.check-column,
+.widefat tfoot td.check-column,
+.widefat thead td.check-column {
+    padding: 11px 0 0 3px;
+}
+
+.widefat .check-column {
+    width: 2.2em;
+    padding: 6px 0 25px;
+    vertical-align: top;
+}
+
+.widefat tfoot tr td,
+.widefat tfoot tr th,
+.widefat thead tr td,
+.widefat thead tr th {
+    color: #2c3338;
+}
+
+.widefat tfoot td,
+.widefat th,
+.widefat thead td {
+    font-weight: 400;
+}
+
+#nav-menu-footer,
+#nav-menu-header,
+#your-profile #rich_editing,
+.checkbox,
+.control-section .accordion-section-title,
+.menu-item-handle,
+.postbox .hndle,
+.side-info,
+.sidebar-name,
+.stuffbox .hndle,
+.widefat tfoot td,
+.widefat tfoot th,
+.widefat thead td,
+.widefat thead th,
+.widget .widget-top {
+    line-height: 1.4em;
+}
+
+.widefat tfoot td,
+.widefat th,
+.widefat thead td {
+    text-align: left;
+    line-height: 1.3em;
+    font-size: 14px;
+}
+
+.widefat thead td,
+.widefat thead th {
+    border-bottom: 1px solid #c3c4c7;
+}
+
+.plugins,
+.plugins td,
+.plugins th {
+    color: #000;
+}
+
+
+.plugins,
+.plugins td,
+.plugins th {
+    color: #000;
+}
+
+.widefat {
+    border-spacing: 0;
+    width: 100%;
+    clear: both;
+    margin: 0;
+}
+
+.plugins tr {
+    background: #fff;
+}
+
+.screen-reader-text,
+.screen-reader-text span,
+.ui-helper-hidden-accessible {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    -webkit-clip-path: inset(50%);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap: normal !important;
+}
+
+.widefat thead td input {
+    margin: 0 0 0 8px;
+    padding: 0;
+    vertical-align: text-top;
+}
+
+.wp-admin p input[type=checkbox],
+.wp-admin p input[type=radio],
+td>input[type=checkbox] {
+    margin-top: 0;
+}
+
+input[type=checkbox],
+input[type=radio] {
+    border: 1px solid #8c8f94;
+    border-radius: 4px;
+    background: #fff;
+    color: #50575e;
+    clear: none;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 0;
+    height: 1rem;
+    margin: -0.25rem 0.25rem 0 0;
+    outline: 0;
+    padding: 0 !important;
+    text-align: center;
+    vertical-align: middle;
+    width: 1rem;
+    min-width: 1rem;
+    -webkit-appearance: none;
+    box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+    transition: .05s border-color ease-in-out;
+}
+
+.widefat * {
+    word-wrap: break-word;
+}
+
+input,
+select {
+    margin: 0 1px;
+}
+
+input,
+textarea {
+    font-size: 14px;
+}
+
+button,
+input,
+select,
+textarea {
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+.plugins .column-auto-updates {
+    width: 14.2em;
+}
+
+.plugins tbody,
+.plugins tbody th.check-column {
+    padding: 8px 0 0 2px;
+}
+
+.plugins tr {
+    background: #fff;
+}
+
+.plugins .active th.check-column {
+    border-left: 4px solid #72aee6;
+}
+
+.plugins tbody,
+.plugins tbody th.check-column {
+    padding: 8px 0 0 2px;
+}
+
+.plugins .active th,
+.plugins .inactive td,
+.plugins .inactive th,
+.upgrade .plugins td,
+.upgrade .plugins th {
+    box-shadow: inset 0 -1px 0 rgb(0 0 0 / 10%);
+}
+
+.plugins .active td,
+.plugins .active th {
+    background-color: #f0f6fc;
+}
+
+.plugins .active td,
+.plugins .active th,
+.plugins .inactive td,
+.plugins .inactive th {
+    padding: 10px 9px;
+}
+
+.widefat .check-column {
+    width: 2.2em;
+    padding: 6px 0 25px;
+    vertical-align: top;
+}
+
+.plugins,
+.plugins td,
+.plugins th {
+    color: #000;
+}
+
+.widefat tfoot td,
+.widefat th,
+.widefat thead td {
+    font-weight: 400;
+}
+
+.widefat td,
+.widefat th {
+    color: #50575e;
+}
+
+.widefat tfoot td,
+.widefat th,
+.widefat thead td {
+    text-align: left;
+    line-height: 1.3em;
+    font-size: 14px;
+}
+
+.plugins .inactive th.check-column,
+.plugins tfoot td.check-column,
+.plugins thead td.check-column {
+    padding-left: 6px;
+}
+
+.plugins tbody,
+.plugins tbody th.check-column {
+    padding: 8px 0 0 2px;
+}
+
+.plugin-install #the-list td,
+.plugins .active td,
+.plugins .active th,
+.plugins .inactive td,
+.plugins .inactive th,
+.upgrade .plugins td,
+.upgrade .plugins th {
+    box-shadow: inset 0 -1px 0 rgb(0 0 0 / 10%);
+}
+
+.plugins .active td,
+.plugins .active th,
+.plugins .inactive td,
+.plugins .inactive th {
+    padding: 10px 9px;
+}
+
+.widefat .check-column {
+    width: 2.2em;
+    padding: 6px 0 25px;
+    vertical-align: top;
+}
+
+.plugins,
+.plugins td,
+.plugins th {
+    color: #000;
+}
+
+.widefat tfoot td,
+.widefat th,
+.widefat thead td {
+    font-weight: 400;
+}
+
+.widefat td,
+.widefat th {
+    color: #50575e;
+}
+
+.widefat tfoot td,
+.widefat th,
+.widefat thead td {
+    text-align: left;
+    line-height: 1.3em;
+    font-size: 14px;
+}
+
+.widefat td,
+.widefat th {
+    padding: 8px 10px;
+}
+
+.widefat * {
+    word-wrap: break-word;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.column-primary {
+    width: 16%;
+}
+
+.wp-list-table.plugins .plugin-title,
+.wp-list-table.plugins .theme-title {
+    padding-right: 12px;
+    white-space: nowrap;
+}
