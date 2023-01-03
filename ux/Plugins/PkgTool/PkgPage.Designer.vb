@@ -1,7 +1,7 @@
 ﻿Imports Mzkit_win32.BasicMDIForm
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class Form1
+Partial Class PkgPage
     Inherits DocumentWindow
 
     'Form 重写 Dispose，以清理组件列表。

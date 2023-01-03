@@ -27,7 +27,7 @@ Public Class PkgPlugin : Inherits Plugin
     End Property
 
     Public Overrides Sub Exec()
-        Call Workbench.ShowSingleDocument(Of Form1)()
+        Call Workbench.ShowSingleDocument(Of PkgPage)()
     End Sub
 
     Public Overrides Function Init(println As Action(Of String)) As Boolean
