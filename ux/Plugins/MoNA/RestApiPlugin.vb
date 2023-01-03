@@ -26,6 +26,10 @@ Public Class RestApiPlugin : Inherits Plugin
         End Get
     End Property
 
+    Public Overrides Sub Exec()
+
+    End Sub
+
     Public Overrides Function Init(println As Action(Of String)) As Boolean
         Return True
     End Function
