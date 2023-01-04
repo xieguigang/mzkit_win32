@@ -38,7 +38,9 @@ namespace apps {
 
             console.log(`Build plugin package: ${dir}!`);
 
-            app.desktop.mzkit.BuildPkg(dir);
+            app.desktop.mzkit.BuildPkg(dir).then(async function (flag) {
+                flag = await flag;
+            });
         }
     }
 }

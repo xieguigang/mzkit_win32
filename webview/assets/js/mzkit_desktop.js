@@ -510,7 +510,18 @@ var apps;
             var vm = this;
             var dir = $input("#dir").value.toString();
             console.log("Build plugin package: " + dir + "!");
-            app.desktop.mzkit.BuildPkg(dir);
+            app.desktop.mzkit.BuildPkg(dir).then(function (flag) {
+                return __awaiter(this, void 0, void 0, function () {
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0: return [4 /*yield*/, flag];
+                            case 1:
+                                flag = _a.sent();
+                                return [2 /*return*/];
+                        }
+                    });
+                });
+            });
         };
         return pluginPkg;
     }(Bootstrap));
