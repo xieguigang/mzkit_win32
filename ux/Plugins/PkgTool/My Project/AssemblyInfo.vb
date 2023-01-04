@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 '查看程序集特性的值
 
-<Assembly: AssemblyTitle("PkgTool")>
+<Assembly: AssemblyTitle("MZKit plugin package tool")>
 <Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("微软中国")>
+<Assembly: AssemblyCompany("PANOMIX")>
 <Assembly: AssemblyProduct("PkgTool")>
-<Assembly: AssemblyCopyright("Copyright © 微软中国 2023")>
+<Assembly: AssemblyCopyright("Copyright © PANOMIX 2023")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
