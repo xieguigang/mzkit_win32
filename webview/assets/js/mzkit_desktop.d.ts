@@ -36,7 +36,7 @@ declare namespace app.desktop {
         Exec(id: string): void;
         SelectFolder(): Promise<string>;
         GetFiles(dir: string): Promise<string>;
-        Build(folder: string): Promise<boolean>;
+        BuildPkg(folder: string): Promise<boolean>;
     }
     function run(): void;
 }

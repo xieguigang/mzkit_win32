@@ -34,11 +34,11 @@ namespace apps {
 
         public build_onclick() {
             const vm = this;
-            const dir: string = $input("#dir").value;
+            const dir: string = $input("#dir").value.toString();
 
             console.log(`Build plugin package: ${dir}!`);
 
-            app.desktop.mzkit.Build(dir);
+            app.desktop.mzkit.BuildPkg(dir);
         }
     }
 }

@@ -25,7 +25,15 @@ Public Class PkgPage
             Return dir.ListFiles().ToArray.GetJson
         End Function
 
-        Public Function Build(folder As String) As Boolean
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        ''' <param name="folder"></param>
+        ''' <returns></returns>
+        ''' <remarks>
+        ''' Build is a key word? 
+        ''' </remarks>
+        Public Function BuildPkg(folder As String) As Boolean
             Dim pkg = PluginPkg.FromAppReleaseDirectory(folder)
 
             Using pkgFile As New SaveFileDialog With {

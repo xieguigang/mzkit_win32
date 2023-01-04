@@ -508,9 +508,9 @@ var apps;
         };
         pluginPkg.prototype.build_onclick = function () {
             var vm = this;
-            var dir = $input("#dir").value;
+            var dir = $input("#dir").value.toString();
             console.log("Build plugin package: " + dir + "!");
-            app.desktop.mzkit.Build(dir);
+            app.desktop.mzkit.BuildPkg(dir);
         };
         return pluginPkg;
     }(Bootstrap));
