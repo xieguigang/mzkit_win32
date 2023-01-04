@@ -27,7 +27,7 @@ namespace app.desktop {
 
         // plugin creator
         SelectFolder(): Promise<string>;
-        GetFiles(dir: string): Promise<string[]>;
+        GetFiles(dir: string): Promise<string>;
         Build(folder: string): Promise<boolean>;
     }
 

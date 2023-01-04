@@ -1,15 +1,15 @@
 ﻿Imports System.IO
 Imports System.IO.Compression
 Imports System.Runtime.InteropServices
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.Web.WebView2.Core
-Imports Microsoft.Win32
 Imports Mzkit_win32.BasicMDIForm
 
 Public Class PkgPage
 
     <ClassInterface(ClassInterfaceType.AutoDual)>
     <ComVisible(True)>
-    Private Class pluginCreator
+    Public Class pluginCreator
 
         Public Function SelectFolder() As String
             Using folder As New FolderBrowserDialog
@@ -21,8 +21,8 @@ Public Class PkgPage
             End Using
         End Function
 
-        Public Function GetFiles(dir As String) As String()
-            Return dir.ListFiles().ToArray
+        Public Function GetFiles(dir As String) As String
+            Return dir.ListFiles().ToArray.GetJson
         End Function
 
         Public Function Build(folder As String) As Boolean
