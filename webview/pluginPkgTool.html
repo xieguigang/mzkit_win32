@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="app" content="pluginMgr">
+
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.png" />
+    <link rel="stylesheet" href="./assets/plugin_mgr.css" type="text/css">
+
+    <title>BioNovoGene MZKit</title>
+
+    <script src="./assets/js/linq.js"></script>
+    <script src="./assets/js/mzkit_desktop.js"></script>
+    <script type="text/javascript">
+        function drop(event) {
+            event.preventDefault()
+            event.stopPropagation()
+            // just a name, not a physical local file path
+            // alert(event.dataTransfer.files[0].name)  // ...files[0].name
+        }
+
+        function dragover(event) {
+            event.preventDefault()
+        }
+    </script>
+</head>
+
+<body ondragover="dragover(event)" ondrop="drop(event)">
+    <div class="main" style="margin-left: 20px;">
+
+        <div style="height: 20px;"></div>
+
+        <div>
+            <div style="font-size: 2em; font-weight: bold;">
+                Make MZKit Plugin Package
+            </div>          
+        </div>
+
+        <br />
+        <br />
+
+        <div>
+			<div>
+				<input type="text" id="dir" />
+				<button id="selectFolder">Select Folder</button>
+			</div>
+		</div>
+    </div>
+
+    <div style="height: 20px;"></div>
+
+    <div style="width: 100%; text-align: center;">
+        <strong>MZKit App Store (<a href="https://apps.mzkit.org/">apps.mzkit.org</a>)</strong>
+    </div>
+</body>
+
+</html>
