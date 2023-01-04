@@ -34,6 +34,9 @@ declare namespace app.desktop {
         SetStatus(id: string, status: string): void;
         GetPlugins(): Promise<string>;
         Exec(id: string): void;
+        SelectFolder(): Promise<string>;
+        GetFiles(dir: string): Promise<string[]>;
+        Build(folder: string): Promise<boolean>;
     }
     function run(): void;
 }
@@ -88,5 +91,13 @@ declare namespace apps {
         author: string;
         url: string;
         status: "active" | "disable" | "incompatible";
+    }
+}
+declare namespace apps {
+    class pluginPkg extends Bootstrap {
+        get appName(): string;
+        protected init(): void;
+        dir_onchange(value: string): void;
+        selectFolder_onclick(): void;
     }
 }

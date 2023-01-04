@@ -57,7 +57,7 @@ Public NotInheritable Class Workbench
     ''' <param name="showExplorer">
     ''' do specific callback from this parameter delegate if the pointer value is nothing nothing
     ''' </param>
-    Public Shared Sub ShowSingleDocument(Of T As {New, DockContent})(Optional showExplorer As Action = Nothing)
+    Public Shared Function ShowSingleDocument(Of T As {New, DockContent})(Optional showExplorer As Action = Nothing) As T
         Dim DockPanel As DockPanel = AppHost.DockPanel
         Dim targeted As T = DockPanel.Documents _
             .Where(Function(doc) TypeOf doc Is T) _
@@ -73,7 +73,9 @@ Public NotInheritable Class Workbench
 
         targeted.Show(DockPanel)
         targeted.DockState = DockState.Document
-    End Sub
+
+        Return targeted
+    End Function
 
     Public Shared Sub Dock(win As ToolWindow, prefer As DockState)
         Select Case win.DockState

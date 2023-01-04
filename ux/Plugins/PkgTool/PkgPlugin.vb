@@ -1,5 +1,8 @@
+Imports System.Runtime.InteropServices
 Imports Mzkit_win32.BasicMDIForm
 
+<ClassInterface(ClassInterfaceType.AutoDual)>
+<ComVisible(True)>
 Public Class PkgPlugin : Inherits Plugin
 
     Public Overrides ReadOnly Property guid As Guid

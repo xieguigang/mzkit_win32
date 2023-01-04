@@ -24,6 +24,11 @@ namespace app.desktop {
         SetStatus(id: string, status: string): void;
         GetPlugins(): Promise<string>;
         Exec(id: string): void;
+
+        // plugin creator
+        SelectFolder(): Promise<string>;
+        GetFiles(dir: string): Promise<string[]>;
+        Build(folder: string): Promise<boolean>;
     }
 
     export function run() {

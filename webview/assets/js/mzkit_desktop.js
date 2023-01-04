@@ -449,4 +449,47 @@ var apps;
     }(Bootstrap));
     apps.pluginMgr = pluginMgr;
 })(apps || (apps = {}));
+var apps;
+(function (apps) {
+    var pluginPkg = /** @class */ (function (_super) {
+        __extends(pluginPkg, _super);
+        function pluginPkg() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        Object.defineProperty(pluginPkg.prototype, "appName", {
+            get: function () {
+                return "pluginPkg";
+            },
+            enumerable: true,
+            configurable: true
+        });
+        ;
+        pluginPkg.prototype.init = function () {
+            // throw new Error("Method not implemented.");
+        };
+        pluginPkg.prototype.dir_onchange = function (value) {
+            console.log(value);
+        };
+        pluginPkg.prototype.selectFolder_onclick = function () {
+            var vm = this;
+            app.desktop.mzkit.SelectFolder().then(function (dir) {
+                return __awaiter(this, void 0, void 0, function () {
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0: return [4 /*yield*/, dir];
+                            case 1:
+                                dir = _a.sent();
+                                if (!Strings.Empty(dir)) {
+                                    vm.dir_onchange(dir);
+                                }
+                                return [2 /*return*/];
+                        }
+                    });
+                });
+            });
+        };
+        return pluginPkg;
+    }(Bootstrap));
+    apps.pluginPkg = pluginPkg;
+})(apps || (apps = {}));
 //# sourceMappingURL=mzkit_desktop.js.map
