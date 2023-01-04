@@ -21,7 +21,7 @@ Public Class frmPluginMgr
 
     Private Sub InitializationCompleted() Handles WebView21.CoreWebView2InitializationCompleted
         Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", registry)
-        Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Globals.WebPort}/pluginManager.html")
+        Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Workbench.WebPort}/pluginManager.html")
         Call WebKit.DeveloperOptions(WebView21, enable:=True)
     End Sub
 

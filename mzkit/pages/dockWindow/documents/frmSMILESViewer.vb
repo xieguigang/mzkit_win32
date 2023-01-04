@@ -80,11 +80,11 @@ Public Class frmSMILESViewer
     End Sub
 
     Private Function getViewerUrl() As String
-        Return $"http://127.0.0.1:{Globals.WebPort}/SMILES.html"
+        Return $"http://127.0.0.1:{Workbench.WebPort}/SMILES.html"
     End Function
 
     Private Function getKetcher() As String
-        Return $"http://127.0.0.1:{Globals.WebPort}/ketcher/index.html"
+        Return $"http://127.0.0.1:{Workbench.WebPort}/ketcher/index.html"
     End Function
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click

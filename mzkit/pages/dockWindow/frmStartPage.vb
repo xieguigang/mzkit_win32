@@ -110,7 +110,7 @@ Public Class frmStartPage
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
         ' WebView21.CoreWebView2.OpenDevToolsWindow()
         Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", New LinkActions)
-        Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Globals.WebPort}/")
+        Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Workbench.WebPort}/")
         Call DeveloperOptions(enable:=True)
     End Sub
 
