@@ -31,5 +31,12 @@ namespace apps {
                 }
             })
         }
+
+        public build_onclick() {
+            const vm = this;
+            const dir: string = $input("#dir").value;
+
+            app.desktop.mzkit.Build(dir);
+        }
     }
 }

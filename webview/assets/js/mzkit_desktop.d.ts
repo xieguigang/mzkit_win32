@@ -99,5 +99,6 @@ declare namespace apps {
         protected init(): void;
         dir_onchange(value: string): void;
         selectFolder_onclick(): void;
+        build_onclick(): void;
     }
 }

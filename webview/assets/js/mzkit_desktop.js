@@ -506,6 +506,11 @@ var apps;
                 });
             });
         };
+        pluginPkg.prototype.build_onclick = function () {
+            var vm = this;
+            var dir = $input("#dir").value;
+            app.desktop.mzkit.Build(dir);
+        };
         return pluginPkg;
     }(Bootstrap));
     apps.pluginPkg = pluginPkg;
