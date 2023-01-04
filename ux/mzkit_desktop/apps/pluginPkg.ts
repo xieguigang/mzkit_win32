@@ -36,6 +36,8 @@ namespace apps {
             const vm = this;
             const dir: string = $input("#dir").value;
 
+            console.log(`Build plugin package: ${dir}!`);
+
             app.desktop.mzkit.Build(dir);
         }
     }

@@ -509,6 +509,7 @@ var apps;
         pluginPkg.prototype.build_onclick = function () {
             var vm = this;
             var dir = $input("#dir").value;
+            console.log("Build plugin package: " + dir + "!");
             app.desktop.mzkit.Build(dir);
         };
         return pluginPkg;
