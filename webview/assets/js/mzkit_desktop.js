@@ -470,6 +470,22 @@ var apps;
         };
         pluginPkg.prototype.dir_onchange = function (value) {
             console.log(value);
+            app.desktop.mzkit.GetFiles(value).then(function (json) {
+                return __awaiter(this, void 0, void 0, function () {
+                    var files, _a, _b;
+                    return __generator(this, function (_c) {
+                        switch (_c.label) {
+                            case 0:
+                                _b = (_a = JSON).parse;
+                                return [4 /*yield*/, json];
+                            case 1:
+                                files = _b.apply(_a, [_c.sent()]);
+                                console.log(files);
+                                return [2 /*return*/];
+                        }
+                    });
+                });
+            });
         };
         pluginPkg.prototype.selectFolder_onclick = function () {
             var vm = this;
@@ -481,6 +497,7 @@ var apps;
                             case 1:
                                 dir = _a.sent();
                                 if (!Strings.Empty(dir)) {
+                                    $input("#dir").value = dir;
                                     vm.dir_onchange(dir);
                                 }
                                 return [2 /*return*/];

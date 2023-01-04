@@ -12,6 +12,11 @@ namespace apps {
 
         public dir_onchange(value: string) {
             console.log(value);
+            app.desktop.mzkit.GetFiles(value).then(async function (json) {
+                const files = JSON.parse(await json);
+
+                console.log(files);
+            });
         }
 
         public selectFolder_onclick() {
@@ -21,6 +26,7 @@ namespace apps {
                 dir = await dir;
 
                 if (!Strings.Empty(dir)) {
+                    $input("#dir").value = dir;
                     vm.dir_onchange(dir);
                 }
             })
