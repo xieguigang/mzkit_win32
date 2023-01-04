@@ -34,6 +34,7 @@ namespace app.desktop {
     export function run() {
         Router.AddAppHandler(new apps.home());
         Router.AddAppHandler(new apps.pluginMgr());
+        Router.AddAppHandler(new apps.pluginPkg());
 
         Router.AddAppHandler(new apps.three_app());
         Router.AddAppHandler(new apps.clusterViewer());

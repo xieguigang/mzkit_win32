@@ -66,6 +66,6 @@ Public Class PkgPage
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
         Call SetObject(New pluginCreator)
         Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Workbench.WebPort}/pluginPkgTool.html")
-        Call WebKit.DeveloperOptions(WebView21, enable:=False)
+        Call WebKit.DeveloperOptions(WebView21, enable:=True)
     End Sub
 End Class
