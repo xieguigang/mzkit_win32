@@ -1,9 +1,16 @@
 Imports System.Runtime.CompilerServices
+Imports Microsoft.VisualBasic.Net.Tcp
 Imports WeifenLuo.WinFormsUI.Docking
 
 Public NotInheritable Class Workbench
 
     Public Shared ReadOnly Property AppHost As AppHost
+
+    ''' <summary>
+    ''' local http port for the ui view
+    ''' </summary>
+    ''' <returns></returns>
+    Public Shared ReadOnly Property WebPort As Integer = TCPExtensions.GetFirstAvailablePort(-1)
 
     Private Sub New()
     End Sub

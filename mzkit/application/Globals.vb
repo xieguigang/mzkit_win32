@@ -110,8 +110,6 @@ Module Globals
 
     Public Property loadedSettings As Boolean = False
 
-    Public ReadOnly Property WebPort As Integer = IPCSocket.GetFirstAvailablePort
-
     Public ReadOnly Property CurrentVersion As String
         Get
             Return GetType(Globals).Assembly.FromAssembly.AssemblyVersion
@@ -141,7 +139,7 @@ Module Globals
         localfs = New Process With {
             .StartInfo = New ProcessStartInfo With {
                 .FileName = $"{App.HOME}/Rstudio/bin/Rserve.exe",
-                .Arguments = $"--listen /wwwroot ""{AppEnvironment.getWebViewFolder}"" /port {WebPort} --parent={App.PID}",
+                .Arguments = $"--listen /wwwroot ""{AppEnvironment.getWebViewFolder}"" /port {Workbench.WebPort} --parent={App.PID}",
                 .CreateNoWindow = True,
                 .WindowStyle = ProcessWindowStyle.Hidden,
                 .UseShellExecute = True
@@ -157,7 +155,7 @@ Module Globals
 
     Private Sub shutdownHttpWeb()
         Try
-            Dim url = $"https://127.0.0.1:{WebPort}/ctrl/kill"
+            Dim url = $"https://127.0.0.1:{Workbench.WebPort}/ctrl/kill"
             Dim httpRequest = CType(WebRequest.Create(url), HttpWebRequest)
 
             httpRequest.Method = "OPTIONS"
