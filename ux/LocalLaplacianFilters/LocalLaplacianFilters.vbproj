@@ -121,8 +121,7 @@
       <HintPath>..\..\dist\ThemeVS2015.dll</HintPath>
     </Reference>
     <Reference Include="UMapx, Version=5.2.4.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UMapx.5.2.4.8\lib\netstandard2.0\UMapx.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\UMapx.5.2.4.5\lib\netstandard2.0\UMapx.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
