@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports System.IO.Compression
+Imports System.Reflection
 
 Public Class PluginPkg
 
@@ -37,7 +38,39 @@ Public Class PluginPkg
     End Function
 
     Public Shared Function FromAppReleaseDirectory(dir As String) As PluginPkg
+        Dim files As String() = dir.ListFiles.ToArray
+        Dim plugin As Plugin = Nothing
 
+        For Each path As String In files
+            If path.ExtensionSuffix("dll") Then
+                Dim asm As Assembly = Assembly.LoadFile(path.GetFullPath)
+
+                If Not MZKitPlugin.GetFlag(asm) Then
+                    Continue For
+                Else
+                    Dim pluginType As Type = asm.ExportedTypes _
+                        .Where(Function(type) type.IsInheritsFrom(GetType(Plugin))) _
+                        .FirstOrDefault
+
+                    If Not pluginType Is Nothing Then
+                        plugin = Activator.CreateInstance(pluginType)
+                        Exit For
+                    End If
+                End If
+            End If
+        Next
+
+        If plugin Is Nothing Then
+            Return Nothing
+        Else
+            Return New PluginPkg With {
+                .assets = files.ToArray,
+                .Description = plugin.Description,
+                .guid = plugin.guid.ToString,
+                .Link = plugin.Link,
+                .Name = plugin.Name
+            }
+        End If
     End Function
 
 End Class
