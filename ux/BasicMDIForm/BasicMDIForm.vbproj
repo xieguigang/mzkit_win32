@@ -115,6 +115,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -183,6 +184,7 @@
     <Compile Include="dialogs\MaskForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="plugin\PluginPkg.vb" />
     <Compile Include="plugin\Repository\RegistryFile.vb" />
     <Compile Include="plugin\Repository\PluginMetadata.vb" />
     <Compile Include="plugin\PluginMgr.vb" />
