@@ -61,6 +61,7 @@ Public MustInherit Class Plugin
                         Continue For
                     Else
                         loaded.Add(pluginData.id)
+                        MZKitPlugin.InMemoryLoaderRegistry(pluginData.id) = plugin
 
                         If Not hashlist.ContainsKey(pluginData.id) Then
                             Call hashlist.Add(pluginData.id, pluginData)

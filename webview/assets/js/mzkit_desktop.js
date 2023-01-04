@@ -4,7 +4,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -12,10 +12,11 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -438,7 +439,7 @@ var apps;
             var type = (plugin.status == "disable" || plugin.status == "incompatible") ? "inactive" : "active";
             var row = $ts("<tr>", { class: type });
             var action = type == "active" ? "<span class=\"deactivate\">\n            <a href=\"#\" class=\"deactive\" data=\"" + plugin.id + "\">Deactivate</a>\n        </span>" : "<span class=\"activate\">\n        <a href=\"#\" class=\"edit\" data=\"" + plugin.id + "\">Activate</a> <!--|\n    </span>\n    <span class=\"delete\">\n        <a href=\"#\" class=\"delete\" data=\"" + plugin.id + "\">Delete</a>\n    </span>-->";
-            var html = "\n            \n            <th scope=\"row\" class=\"check-column\">\n                <input type=\"checkbox\" name=\"check_plugins\" />\n            </th>\n            <td class=\"plugin-title column-primary\">\n                <strong>" + plugin.name + "</strong>\n                <div class=\"row-actions visible\">\n                    " + action + "\n                </div>        \n            </td>\n            <td class=\"column-description desc\">\n                <div class=\"plugin-description\">\n                    <p>\n                        " + plugin.desc + "\n                    </p>\n                </div>\n                <div class=\"" + type + " second plugin-version-author-uri\">\n                    Version " + plugin.ver + " | By\n                    <a href=\"#\">" + plugin.author + "</a> |\n                    <a href=\"" + plugin.url + "\" class=\"thickbox open-plugin-details-modal\">View details</a>\n                </div>\n            </td>\n            <td class=\"column-auto-updates\">\n                \n            </td>     \n            ";
+            var html = "\n            \n            <th scope=\"row\" class=\"check-column\">\n                <input type=\"checkbox\" name=\"check_plugins\" />\n            </th>\n            <td class=\"plugin-title column-primary\">\n                <strong><a href=\"#\" onclick=\"app.desktop.mzkit.Exec('" + plugin.id + "')\">" + plugin.name + "</a></strong>\n                <div class=\"row-actions visible\">\n                    " + action + "\n                </div>        \n            </td>\n            <td class=\"column-description desc\">\n                <div class=\"plugin-description\">\n                    <p>\n                        " + plugin.desc + "\n                    </p>\n                </div>\n                <div class=\"" + type + " second plugin-version-author-uri\">\n                    Version " + plugin.ver + " | By\n                    <a href=\"#\">" + plugin.author + "</a> |\n                    <a href=\"" + plugin.url + "\" class=\"thickbox open-plugin-details-modal\">View details</a>\n                </div>\n            </td>\n            <td class=\"column-auto-updates\">\n                \n            </td>     \n            ";
             mgr.appendChild(row.display(html));
         };
         pluginMgr.prototype.install_local_onclick = function () {

@@ -53,7 +53,7 @@ namespace apps {
                 <input type="checkbox" name="check_plugins" />
             </th>
             <td class="plugin-title column-primary">
-                <strong>${plugin.name}</strong>
+                <strong><a href="#" onclick="app.desktop.mzkit.Exec('${plugin.id}')">${plugin.name}</a></strong>
                 <div class="row-actions visible">
                     ${action}
                 </div>        

@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.InteropServices
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports Microsoft.VisualBasic.Serialization.JSON
 
 <ClassInterface(ClassInterfaceType.AutoDual)>
@@ -25,6 +26,14 @@ Public Class PluginMgr
         registry = RegistryFile.LoadRegistry
         Return registry.plugins.GetJson
     End Function
+
+    Public Sub Exec(id As String)
+        Dim plugin As Plugin = MZKitPlugin.InMemoryLoaderRegistry.TryGetValue(id)
+
+        If Not plugin Is Nothing Then
+            Call plugin.Exec()
+        End If
+    End Sub
 
     Public Sub InstallLocal()
         Using file As New OpenFileDialog With {.Filter = "MZKit plugin(*.dll)|*.dll"}

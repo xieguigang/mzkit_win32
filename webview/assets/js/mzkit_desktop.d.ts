@@ -2,7 +2,7 @@
 /// <reference path="../../../ux/mzkit_desktop/d/linq.d.ts" />
 declare namespace apps {
     class three_app extends Bootstrap {
-        readonly appName: string;
+        get appName(): string;
         scene: THREE.Scene;
         private renderer;
         private camera;
@@ -33,6 +33,7 @@ declare namespace app.desktop {
         InstallLocal(): void;
         SetStatus(id: string, status: string): void;
         GetPlugins(): Promise<string>;
+        Exec(id: string): void;
     }
     function run(): void;
 }
@@ -61,19 +62,19 @@ interface pointCloud {
 }
 declare namespace apps {
     class clusterViewer extends Bootstrap {
-        readonly appName: string;
+        get appName(): string;
         protected init(): void;
     }
 }
 declare namespace apps {
     class home extends Bootstrap {
-        readonly appName: string;
+        get appName(): string;
         protected init(): void;
     }
 }
 declare namespace apps {
     class pluginMgr extends Bootstrap {
-        readonly appName: string;
+        get appName(): string;
         protected init(): void;
         private setPluginStatus;
         private addPlugin;

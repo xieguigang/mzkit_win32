@@ -23,6 +23,7 @@ namespace app.desktop {
         InstallLocal(): void;
         SetStatus(id: string, status: string): void;
         GetPlugins(): Promise<string>;
+        Exec(id: string): void;
     }
 
     export function run() {
