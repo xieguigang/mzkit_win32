@@ -9,11 +9,9 @@
     <ROW Property="AI_FrameBtnsColor" Value="powderblue" MsiKey="AI_FrameBtnsColor"/>
     <ROW Property="AI_FrameColor" Value="powderblue" MsiKey="AI_FrameColor"/>
     <ROW Property="AI_ImagesColor" Value="powderblue" MsiKey="AI_ImagesColor"/>
-    <ROW Property="AI_PREDEF_LCONDS_PROPS" Value="AI_DETECTED_DOTNET_VERSION;AI_DETECTED_SCREEN_RESOLUTION_X;AI_DETECTED_SCREEN_RESOLUTION_Y;AI_DETECTED_COLOR_QUALITY;AI_DETECTED_PENDING_REBOOT;AI_DETECTED_PHYSICAL_MEMORY;AI_DETECTED_DOTNET_CORE_VERSION"/>
+    <ROW Property="AI_PREDEF_LCONDS_PROPS" Value="AI_DETECTED_DOTNET_VERSION;AI_DETECTED_SCREEN_RESOLUTION_X;AI_DETECTED_SCREEN_RESOLUTION_Y;AI_DETECTED_COLOR_QUALITY;AI_DETECTED_PENDING_REBOOT;AI_DETECTED_PHYSICAL_MEMORY"/>
     <ROW Property="AI_PRODUCTNAME_ARP" Value="mzkit_win32"/>
     <ROW Property="AI_REQUIRED_COLOR_QUALITY" MultiBuildValue="DefaultBuild:32" ValueLocId="-"/>
-    <ROW Property="AI_REQUIRED_DOTNET_CORE_DISPLAY" MultiBuildValue="DefaultBuild:6.0" ValueLocId="-"/>
-    <ROW Property="AI_REQUIRED_DOTNET_CORE_VERSION" MultiBuildValue="DefaultBuild:6.0" ValueLocId="-"/>
     <ROW Property="AI_REQUIRED_DOTNET_DISPLAY" MultiBuildValue="DefaultBuild:4.8" ValueLocId="-"/>
     <ROW Property="AI_REQUIRED_DOTNET_VERSION" MultiBuildValue="DefaultBuild:4.8" ValueLocId="-"/>
     <ROW Property="AI_REQUIRED_PHYSICAL_MEMORY" MultiBuildValue="DefaultBuild:2048" ValueLocId="-"/>
@@ -36,6 +34,7 @@
     <ROW Property="AiFeatIcoVisualStudio_Diagnostic" Value="ext.exe" Type="8"/>
     <ROW Property="AiWinUI" MultiBuildValue="DefaultBuild:1"/>
     <ROW Property="CTRLS" Value="3"/>
+    <ROW Property="IAgree" Value="Yes" Type="4"/>
     <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
     <ROW Property="ProductCode" Value="1033:{92CD05AE-A5D1-4C04-98CE-78FA7270C3CD} 2052:{92CD05AE-A5D1-4C04-98CE-78FA7270C3CD} " Type="16"/>
@@ -4756,6 +4755,7 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
     <ROW Dialog_="LicenseAgreementDlg" Control="AgreementText" Type="ScrollableText" X="55" Y="110" Width="372" Height="180" Attributes="3" Property="EulaRead" Text="..\extdata\Reference.rtf" Order="800" MsiKey="LicenseAgreementDlg#AgreementText"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control="EulaAgreeCheckBox" Type="CheckBox" X="55" Y="300" Width="230" Height="13" Attributes="1" Property="IAgree" Text="I &amp;accept the terms of this agreement." Order="1000" TextLocId="Azure.Control.Text.LicenseAgreementDlg#EulaAgreeCheckBox" MsiKey="LicenseAgreementDlg#EulaAgreeCheckBox"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
     <ROW Dialog_="WelcomePrereqDlg" Control_="Next" Event="NewDialog" Argument="PrerequisitesDlg" Condition="AI_BOOTSTRAPPER" Ordering="1"/>
@@ -5388,7 +5388,6 @@
     <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] cannot be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="AI_DETECTED_COLOR_QUALITY &gt;= AI_REQUIRED_COLOR_QUALITY" Description="[ProductName] cannot be installed on systems with color quality lower than [AI_REQUIRED_COLOR_QUALITY] bits." DescriptionLocId="AI.LaunchCondition.ColorDepth" IsPredefined="true" Builds="DefaultBuild"/>
-    <ROW Condition="AI_DETECTED_DOTNET_CORE_VERSION &gt;= AI_REQUIRED_DOTNET_CORE_VERSION" Description="[ProductName] cannot be installed on systems with .NET Core version lower than [AI_REQUIRED_DOTNET_CORE_DISPLAY]." DescriptionLocId="AI.LaunchCondition.DotNETCore" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="AI_DETECTED_DOTNET_VERSION &gt;= AI_REQUIRED_DOTNET_VERSION" Description="[ProductName] cannot be installed on systems with .NET Framework version lower than [AI_REQUIRED_DOTNET_DISPLAY]." DescriptionLocId="AI.LaunchCondition.DotNET" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="AI_DETECTED_PHYSICAL_MEMORY &gt;= AI_REQUIRED_PHYSICAL_MEMORY" Description="[ProductName] cannot be installed on systems with less physical memory than [AI_REQUIRED_PHYSICAL_MEMORY] MB." DescriptionLocId="AI.LaunchCondition.RAM" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="NOT AI_DETECTED_PENDING_REBOOT" Description="[ProductName] cannot be installed on systems that require a reboot. Please reboot the system and rerun the installer." DescriptionLocId="AI.LaunchCondition.PendingReboot" IsPredefined="true" Builds="DefaultBuild"/>
