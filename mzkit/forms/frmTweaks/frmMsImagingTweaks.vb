@@ -59,7 +59,6 @@
 
 #End Region
 
-Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
@@ -79,6 +78,7 @@ Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Interop
 Imports Task
+Imports TaskStream
 
 Public Class frmMsImagingTweaks
 

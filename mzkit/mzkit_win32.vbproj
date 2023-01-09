@@ -1704,6 +1704,10 @@
       <Project>{59127bcb-e898-4712-b51d-d967b10249c8}</Project>
       <Name>ServiceHub</Name>
     </ProjectReference>
+    <ProjectReference Include="..\services\TaskStream\TaskStream.vbproj">
+      <Project>{3a645206-5ee9-4aa6-9dbb-c4cc18636fc5}</Project>
+      <Name>TaskStream</Name>
+    </ProjectReference>
     <ProjectReference Include="..\services\Task\Task.vbproj">
       <Project>{6e5bca87-358e-4ba5-b279-de17afa52c5c}</Project>
       <Name>Task</Name>
