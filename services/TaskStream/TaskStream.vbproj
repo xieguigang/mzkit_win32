@@ -80,6 +80,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="RscriptProgressTask.vb" />
+    <Compile Include="Studio\msconvert.vb" />
+    <Compile Include="Studio\PipelineTask.vb" />
+    <Compile Include="Studio\Rscript.vb" />
+    <Compile Include="Studio\RscriptPipelineTask.vb" />
+    <Compile Include="Studio\WorkStudio.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
