@@ -85,7 +85,7 @@ Namespace ServiceHub
     ''' <summary>
     ''' service client for ms-imaging backend
     ''' </summary>
-    Public Class MSIDataService
+    Public Class MSIDataService : Implements MSIServicePlugin
 
         Dim WithEvents MSI_pipe As RunSlavePipeline
         Dim MSI_service As Integer = -1
@@ -109,34 +109,39 @@ Namespace ServiceHub
         ''' </summary>
         Public Shared debugPort As Integer?
 
+        Shared Sub New()
+            MSImagingServiceModule.StartEngine = Sub() Call StartMSIService(Nothing)
+        End Sub
+
         ''' <summary>
         ''' this method will close the engine at first
         ''' </summary>
-        Public Shared Function StartMSIService(ByRef hostOld As MSIDataService) As MSIDataService
+        Public Shared Function StartMSIService(ByRef hostReference As MSIDataService) As MSIDataService
             Dim Rscript As String = RscriptPipelineTask.GetRScript("../services/MSI-host.R")
 
-            If Not hostOld Is Nothing Then
-                Call hostOld.CloseMSIEngine()
+            If Not hostReference Is Nothing Then
+                Call hostReference.CloseMSIEngine()
             End If
 
             Call MyApplication.LogText($"Start background services: {Rscript}")
 
-            hostOld = New MSIDataService
-            hostOld.MSI_pipe = Global.ServiceHub.Protocols.StartServer(Rscript, hostOld.MSI_service, MSIDataService.debugPort) ', HeartBeat.Start)
+            hostReference = New MSIDataService
+            hostReference.MSI_pipe = Global.ServiceHub.Protocols.StartServer(Rscript, hostReference.MSI_service, MSIDataService.debugPort) ', HeartBeat.Start)
 
             ' hook message event handler
-            AddHandler hostOld.MSI_pipe.SetMessage, AddressOf hostOld.MSI_pipe_SetMessage
+            AddHandler hostReference.MSI_pipe.SetMessage, AddressOf hostReference.MSI_pipe_SetMessage
 
-            If hostOld.MSI_service <= 0 Then
+            If hostReference.MSI_service <= 0 Then
                 Call MyApplication.host.showStatusMessage("MS-Imaging service can not start!", My.Resources.StatusAnnotations_Warning_32xLG_color)
             Else
-                Call MyApplication.LogText($"MS-Imaging service started!({hostOld.MSI_service})")
+                Call MyApplication.LogText($"MS-Imaging service started!({hostReference.MSI_service})")
             End If
 
-            hostOld.MessageCallback = Nothing
-            Workbench.SetMSIServicesAppPort(appPort:=hostOld.appPort)
+            hostReference.MessageCallback = Nothing
+            Workbench.SetMSIServicesAppPort(appPort:=hostReference.appPort)
+            MSImagingServiceModule.ServiceEngine = hostReference
 
-            Return hostOld
+            Return hostReference
         End Function
 
         Public Function DoIonCoLocalization(mz As Double()) As EntityClusterModel()
@@ -168,6 +173,10 @@ Namespace ServiceHub
                 Return ions
             End If
         End Function
+
+        Private Sub LoadMSIRawDataFile(filepath As String, message As Action(Of String)) Implements MSIServicePlugin.LoadMSIRawDataFile
+            Call LoadMSI(filepath, message)
+        End Sub
 
         ''' <summary>
         ''' load MS-imaging raw data file

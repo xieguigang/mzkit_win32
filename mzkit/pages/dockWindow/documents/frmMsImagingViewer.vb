@@ -139,7 +139,7 @@ Public Class frmMsImagingViewer
     End Property
 
     Public Sub StartMSIService()
-        Call ServiceHub.MSIDataService.StartMSIService(hostOld:=MSIservice)
+        Call ServiceHub.MSIDataService.StartMSIService(hostReference:=MSIservice)
     End Sub
 
     Private Sub frmMsImagingViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
