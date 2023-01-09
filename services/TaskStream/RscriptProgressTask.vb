@@ -61,10 +61,12 @@ Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Serialization.JSON
-Imports Microsoft.VisualBasic.Text
 Imports Mzkit_win32.BasicMDIForm
 
-Public Class RscriptProgressTask
+Public NotInheritable Class RscriptProgressTask
+
+    Private Sub New()
+    End Sub
 
     ''' <summary>
     ''' convert imzML to mzpack
@@ -83,115 +85,20 @@ Public Class RscriptProgressTask
         Else
             Call Workbench.LogText(pipeline.CommandLine)
             Call TaskProgress.RunAction(
-                Sub(p)
-                    p.SetProgressMode()
+                run:=Sub(p)
+                         p.SetProgressMode()
 
-                    AddHandler pipeline.SetProgress, AddressOf p.SetProgress
-                    AddHandler pipeline.Finish, AddressOf p.TaskFinish
+                         AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                         AddHandler pipeline.Finish, AddressOf p.TaskFinish
 
-                    Call pipeline.Run()
-                End Sub, title:="Open imzML...", info:="Loading MSI raw data file into viewer workspace...")
+                         Call pipeline.Run()
+                     End Sub,
+                title:="Open imzML...",
+                info:="Loading MSI raw data file into viewer workspace...")
         End If
 
         Return cachefile
     End Function
-
-    Public Shared Sub MergeMultipleSlides(msData As String(),
-                                          layoutData As String,
-                                          savefile As String,
-                                          fileName_tag As Boolean,
-                                          echo As Action(Of String))
-
-        Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".input_files", sessionID:=App.PID.ToHexString, prefix:="merge_slides_")
-        Dim layoutfile As String = TempFileSystem.GetAppSysTempFile(".input_files", sessionID:=App.PID.ToHexString, prefix:="slide_layout_")
-        Dim cli As String = PipelineTask.Task.GetJoinSlidesCommandLine(tempfile, layoutfile, savefile, fileName_tag)
-
-        Call msData.SaveTo(tempfile)
-        Call layoutData.SaveTo(layoutfile)
-
-        Dim pipeline As New RunSlavePipeline(PipelineTask.Host, cli)
-
-        Call WorkStudio.LogCommandLine(PipelineTask.Host, cli, App.CurrentDirectory)
-        Call Workbench.LogText(pipeline.CommandLine)
-
-        AddHandler pipeline.SetMessage, Sub(msg) echo(msg)
-
-        Call pipeline.Run()
-    End Sub
-
-    Public Shared Sub ImportsSCiLSLab(msData As (sportIndex$, msData$)(), savefile As String, loadCallback As Action(Of String))
-        Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".input_files", sessionID:=App.PID.ToHexString, prefix:="SCiLSLab_Imports_")
-        Dim cli As String = PipelineTask.Task.GetImportsSCiLSLabCommandLine(tempfile, savefile)
-        Dim pipeline As New RunSlavePipeline(PipelineTask.Host, cli)
-
-        Call msData _
-            .Select(Function(t)
-                        Return {t.sportIndex, t.msData}.JoinBy(vbTab)
-                    End Function) _
-            .SaveTo(tempfile, encoding:=Encodings.UTF8.CodePage)
-
-        Call WorkStudio.LogCommandLine(PipelineTask.Host, cli, App.CurrentDirectory)
-        Call Workbench.LogText(pipeline.CommandLine)
-        Call TaskProgress.RunAction(
-            run:=Sub(p)
-                     p.SetProgressMode()
-
-                     AddHandler pipeline.SetMessage, AddressOf p.SetInfo
-                     AddHandler pipeline.SetProgress, AddressOf p.SetProgress
-                     AddHandler pipeline.Finish, AddressOf p.TaskFinish
-
-                     Call pipeline.Run()
-                 End Sub,
-            title:="Imports MSI Matrix...",
-            info:="Imports SCiLS Lab MSImaging matrix data into viewer workspace...")
-
-        If MessageBox.Show("MSI Raw Convert Job Done!" & vbCrLf & "Open MSI raw data file in MSI Viewer?",
-                           "MSI Viewer",
-                           MessageBoxButtons.YesNo,
-                           MessageBoxIcon.Information) = DialogResult.Yes Then
-
-            Call loadCallback(savefile)
-        End If
-    End Sub
-
-    Public Shared Sub CreateMSIRawFromRowBinds(files As String(), savefile As String,
-                                               cutoff As Double,
-                                               basePeak As Double,
-                                               resoltuion As Double,
-                                               loadCallback As Action(Of String))
-
-        Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".input_files", sessionID:=App.PID.ToHexString, prefix:="CombineRowScans_")
-        Dim commandline As String = PipelineTask.Task.GetMSIRowCombineCommandLine(
-            files:=tempfile,
-            save:=savefile,
-            cutoff:=cutoff,
-            matrix_basepeak:=basePeak,
-            resolution:=resoltuion
-        )
-        Dim pipeline As New RunSlavePipeline(PipelineTask.Host, commandline)
-
-        Call files.SaveTo(tempfile, encoding:=Encodings.UTF8.CodePage)
-        Call WorkStudio.LogCommandLine(PipelineTask.Host, commandline, App.CurrentDirectory)
-        Call Workbench.LogText(pipeline.CommandLine)
-        Call TaskProgress.RunAction(run:=Sub(p)
-                                             p.SetProgressMode()
-
-                                             AddHandler pipeline.SetMessage, AddressOf p.SetInfo
-                                             AddHandler pipeline.SetProgress, AddressOf p.SetProgress
-                                             AddHandler pipeline.Finish, AddressOf p.TaskFinish
-
-                                             Call pipeline.Run()
-
-                                         End Sub, title:="Convert MSI Raw...", info:="Loading MSI raw data file into viewer workspace...")
-
-        If MessageBox.Show("MSI Raw Convert Job Done!" & vbCrLf & "Open MSI raw data file in MSI Viewer?",
-                           "MSI Viewer",
-                           MessageBoxButtons.YesNo,
-                           MessageBoxIcon.Information) = DialogResult.Yes Then
-
-            Call loadCallback(savefile)
-        End If
-    End Sub
 
     Public Shared Sub ExportRGBIonsPlot(mz As Double(), tolerance As String, saveAs As String)
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSImaging/tripleIon.R")
@@ -200,14 +107,16 @@ Public Class RscriptProgressTask
 
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call Workbench.LogText(pipeline.CommandLine)
-        Call TaskProgress.RunAction(run:=Sub(p)
-                                             AddHandler pipeline.SetMessage, AddressOf p.SetInfo
-                                             AddHandler pipeline.SetProgress, AddressOf p.SetProgress
-                                             AddHandler pipeline.Finish, AddressOf p.TaskFinish
+        Call TaskProgress.RunAction(
+            run:=Sub(p)
+                     AddHandler pipeline.SetMessage, AddressOf p.SetInfo
+                     AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                     AddHandler pipeline.Finish, AddressOf p.TaskFinish
 
-                                             Call pipeline.Run()
-
-                                         End Sub, title:="RGB Ions MS-Imaging", info:="Do plot of target ion m/z set...")
+                     Call pipeline.Run()
+                 End Sub,
+            title:="RGB Ions MS-Imaging",
+            info:="Do plot of target ion m/z set...")
 
         If saveAs.FileExists(ZERO_Nonexists:=True) Then
             If MessageBox.Show("RGB Ions MS-Imaging Job Done!" & vbCrLf & "Open MSImaging result plot file?", "Open Image", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
@@ -270,16 +179,19 @@ Public Class RscriptProgressTask
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call Workbench.LogText(pipeline.CommandLine)
 
-        Call TaskProgress.RunAction(run:=Sub(p)
-                                             p.SetProgressMode()
+        Call TaskProgress.RunAction(
+            run:=Sub(p)
+                     p.SetProgressMode()
 
-                                             AddHandler pipeline.SetMessage, AddressOf p.SetInfo
-                                             AddHandler pipeline.SetProgress, AddressOf p.SetProgress
-                                             AddHandler pipeline.Finish, AddressOf p.TaskFinish
+                     AddHandler pipeline.SetMessage, AddressOf p.SetInfo
+                     AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                     AddHandler pipeline.Finish, AddressOf p.TaskFinish
 
-                                             Call pipeline.Run()
+                     Call pipeline.Run()
 
-                                         End Sub, title:="Run Heatmap Scanning...", info:="The image analysis may be takes a long time, please wait for a while...")
+                 End Sub,
+            title:="Run Heatmap Scanning...",
+            info:="The image analysis may be takes a long time, please wait for a while...")
 
         If jsontmp.FileExists Then
             Try
@@ -320,18 +232,25 @@ Public Class RscriptProgressTask
         Call Workbench.LogText(pipeline.CommandLine)
         Call debug(pipeline.CommandLine)
 
-        Call TaskProgress.RunAction(run:=Sub(p)
-                                             p.SetProgressMode()
+        Call TaskProgress.RunAction(
+            run:=Sub(p)
+                     p.SetProgressMode()
 
-                                             AddHandler pipeline.SetMessage, AddressOf p.SetInfo
-                                             AddHandler pipeline.SetProgress, AddressOf p.SetProgress
-                                             AddHandler pipeline.Finish, AddressOf p.TaskFinish
+                     AddHandler pipeline.SetMessage, AddressOf p.SetInfo
+                     AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                     AddHandler pipeline.Finish, AddressOf p.TaskFinish
 
-                                             Call pipeline.Run()
-                                         End Sub, title:="Single Ion MSImaging", info:="Do plot of target ion m/z...")
+                     Call pipeline.Run()
+                 End Sub,
+            title:="Single Ion MSImaging",
+            info:="Do plot of target ion m/z...")
 
         If saveAs.FileExists Then
-            If MessageBox.Show("MSImaging matrix heatmap rendering job done!" & vbCrLf & "Open MSImaging result plot file?", "Open Image", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
+            If MessageBox.Show("MSImaging matrix heatmap rendering job done!" & vbCrLf & "Open MSImaging result plot file?",
+                               "Open Image",
+                               MessageBoxButtons.YesNo,
+                               MessageBoxIcon.Information) = DialogResult.Yes Then
+
                 Call Process.Start(saveAs.GetFullPath)
             End If
         Else
@@ -351,16 +270,22 @@ Public Class RscriptProgressTask
 
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call Workbench.LogText(pipeline.CommandLine)
-        Call TaskProgress.RunAction(run:=Sub(p)
-                                             AddHandler pipeline.SetMessage, AddressOf p.SetInfo
-                                             AddHandler pipeline.SetProgress, AddressOf p.SetProgress
-                                             AddHandler pipeline.Finish, AddressOf p.TaskFinish
+        Call TaskProgress.RunAction(
+            run:=Sub(p)
+                     AddHandler pipeline.SetMessage, AddressOf p.SetInfo
+                     AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                     AddHandler pipeline.Finish, AddressOf p.TaskFinish
 
-                                             Call pipeline.Run()
+                     Call pipeline.Run()
+                 End Sub,
+            title:="Create MSI sampletable...",
+            info:="Loading MSI raw data file into viewer workspace...")
 
-                                         End Sub, title:="Create MSI sampletable...", info:="Loading MSI raw data file into viewer workspace...")
+        If MessageBox.Show("Export MSI sampletable Job Done!" & vbCrLf & "Open MSI sample table data file?",
+                           "Open Excel",
+                           MessageBoxButtons.YesNo,
+                           MessageBoxIcon.Information) = DialogResult.Yes Then
 
-        If MessageBox.Show("Export MSI sampletable Job Done!" & vbCrLf & "Open MSI sample table data file?", "Open Excel", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
             Call Process.Start(saveAs.GetFullPath)
         End If
     End Sub
@@ -423,7 +348,9 @@ Public Class RscriptProgressTask
 
                      Call pipeline.Run()
 
-                 End Sub, title:="Create MSI sample table...", info:="Loading MSI raw data file into viewer workspace...")
+                 End Sub,
+            title:="Create MSI sample table...",
+            info:="Loading MSI raw data file into viewer workspace...")
 
         If Not imageOut.FileExists(ZERO_Nonexists:=True) Then
             Return Nothing
@@ -450,7 +377,9 @@ Public Class RscriptProgressTask
                      AddHandler pipeline.Finish, AddressOf p.TaskFinish
 
                      Call pipeline.Run()
-                 End Sub, title:="Create scatter 3d plot...", info:="Run scater data plot and 3d rendering...")
+                 End Sub,
+            title:="Create scatter 3d plot...",
+            info:="Run scater data plot and 3d rendering...")
 
         If Not imageOut.FileExists(ZERO_Nonexists:=True) Then
             Return Nothing
