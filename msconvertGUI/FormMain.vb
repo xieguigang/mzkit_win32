@@ -147,4 +147,8 @@ Public Class FormMain : Implements AppHost
     Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles Me.Load
         Workbench.Hook(Me)
     End Sub
+
+    Public Sub LogText(text As String) Implements AppHost.LogText
+
+    End Sub
 End Class

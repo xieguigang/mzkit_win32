@@ -85,9 +85,9 @@ Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Mzkit_win32.BasicMDIForm
-Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib
 Imports RibbonLib.Interop
+Imports TaskStream
 Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmMain : Implements AppHost
@@ -835,4 +835,8 @@ Public Class frmMain : Implements AppHost
     Public Function GetClientSize() As Size Implements AppHost.GetClientSize
         Return Me.Size
     End Function
+
+    Public Sub LogText(msg As String) Implements AppHost.LogText
+        MyApplication.LogForm.AppendMessage(msg)
+    End Sub
 End Class
