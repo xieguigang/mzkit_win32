@@ -1136,5 +1136,15 @@
 #define cmdXIC_PPMSpinner_LabelTitle_RESID 576
 #define cmdXIC_PPMSpinner_LabelDescription_RESID 577
 #define cmdXIC_PPMSpinner_TooltipDescription_RESID 578
-#define InternalCmd2_LabelTitle_RESID 60311
-#define InternalCmd4_LabelTitle_RESID 60312
+#define cmdTabAppStore 216 
+#define cmdTabAppStore_LabelTitle_RESID 60311
+#define cmdTabAppStore_LabelDescription_RESID 60312
+#define cmdTabAppStore_TooltipTitle_RESID 60313
+#define cmdTabAppStore_TooltipDescription_RESID 60314
+#define cmdTabGroupAppStore 217 
+#define cmdTabGroupAppStore_LabelTitle_RESID 60315
+#define cmdTabGroupAppStore_LabelDescription_RESID 60316
+#define cmdTabGroupAppStore_TooltipTitle_RESID 60317
+#define cmdTabGroupAppStore_TooltipDescription_RESID 60318
+#define InternalCmd2_LabelTitle_RESID 60319
+#define InternalCmd4_LabelTitle_RESID 60320

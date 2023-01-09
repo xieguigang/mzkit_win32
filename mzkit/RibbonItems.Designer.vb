@@ -184,8 +184,9 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonShowLogWindow As UInteger = 1109
             Public Const cmdButtonResetLayout As UInteger = 1019
             Public Const cmdTabGroupBioDeep As UInteger = 105
-            Public Const cmdButtonPluginManager As UInteger = 214
             Public Const cmdLogInBioDeep As UInteger = 106
+            Public Const cmdTabGroupAppStore As UInteger = 217
+            Public Const cmdButtonPluginManager As UInteger = 214
             Public Const cmdTabTools As UInteger = 1012
             Public Const cmdGroupToolsActions As UInteger = 1046
             Public Const cmdButtonMenuSearchTools As UInteger = 209
@@ -1237,16 +1238,22 @@ Namespace RibbonLib.Controls
                 Return _TabGroupBioDeep
             End Get
         End Property
-        Private _ButtonPluginManager As RibbonButton
-        Public ReadOnly Property ButtonPluginManager As RibbonButton
-            Get
-                Return _ButtonPluginManager
-            End Get
-        End Property
         Private _LogInBioDeep As RibbonButton
         Public ReadOnly Property LogInBioDeep As RibbonButton
             Get
                 Return _LogInBioDeep
+            End Get
+        End Property
+        Private _TabGroupAppStore As RibbonGroup
+        Public ReadOnly Property TabGroupAppStore As RibbonGroup
+            Get
+                Return _TabGroupAppStore
+            End Get
+        End Property
+        Private _ButtonPluginManager As RibbonButton
+        Public ReadOnly Property ButtonPluginManager As RibbonButton
+            Get
+                Return _ButtonPluginManager
             End Get
         End Property
         Private _TabTools As RibbonTab
@@ -1585,8 +1592,9 @@ Namespace RibbonLib.Controls
             _ButtonShowLogWindow = New RibbonButton(_ribbon, Cmd.cmdButtonShowLogWindow)
             _ButtonResetLayout = New RibbonButton(_ribbon, Cmd.cmdButtonResetLayout)
             _TabGroupBioDeep = New RibbonGroup(_ribbon, Cmd.cmdTabGroupBioDeep)
-            _ButtonPluginManager = New RibbonButton(_ribbon, Cmd.cmdButtonPluginManager)
             _LogInBioDeep = New RibbonButton(_ribbon, Cmd.cmdLogInBioDeep)
+            _TabGroupAppStore = New RibbonGroup(_ribbon, Cmd.cmdTabGroupAppStore)
+            _ButtonPluginManager = New RibbonButton(_ribbon, Cmd.cmdButtonPluginManager)
             _TabTools = New RibbonTab(_ribbon, Cmd.cmdTabTools)
             _GroupToolsActions = New RibbonGroup(_ribbon, Cmd.cmdGroupToolsActions)
             _ButtonMenuSearchTools = New RibbonSplitButton(_ribbon, Cmd.cmdButtonMenuSearchTools)

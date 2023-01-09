@@ -2492,6 +2492,8 @@
         <String Id="578">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdTabAppStore" Id="216" LabelTitle="App Store" LabelDescription="App Store" TooltipTitle="App Store" TooltipDescription="App Store" />
+    <Command Name="cmdTabGroupAppStore" Id="217" LabelTitle="App Store" LabelDescription="App Store" TooltipTitle="App Store" TooltipDescription="App Store" />
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2805,9 +2807,11 @@
             <Button CommandName="cmdButtonShowLogWindow" />
             <Button CommandName="cmdButtonResetLayout" />
           </Group>
-          <Group CommandName="cmdTabGroupBioDeep" ApplicationModes="0,1" SizeDefinition="TwoButtons">
-            <Button CommandName="cmdButtonPluginManager" />
+          <Group CommandName="cmdTabGroupBioDeep" ApplicationModes="0,1" SizeDefinition="OneButton">
             <Button CommandName="cmdLogInBioDeep" />
+          </Group>
+          <Group CommandName="cmdTabGroupAppStore" SizeDefinition="OneButton">
+            <Button CommandName="cmdButtonPluginManager" />
           </Group>
         </Tab>
         <Tab CommandName="cmdTabTools" ApplicationModes="0,1">

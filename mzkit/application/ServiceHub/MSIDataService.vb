@@ -178,9 +178,17 @@ Namespace ServiceHub
         Private Sub LoadMSIRawDataFile(filepath As String, message As Action(Of String)) Implements MSIServicePlugin.LoadMSIRawDataFile
             Dim dataPack = LoadMSI(filepath, message)
 
-            Call RibbonEvents.showMsImaging()
-            Call WindowModules.viewer.Invoke(Sub() WindowModules.viewer.LoadRender(dataPack, filepath))
-            Call MyApplication.host.Invoke(Sub() MyApplication.host.Text = $"BioNovoGene Mzkit [{WindowModules.viewer.Text} {filepath.FileName}]")
+            Try
+                ' 20230110 there is some UI bug
+                ' that calling from the plugin module
+                ' so, comment these code lines
+                '
+                'Call RibbonEvents.showMsImaging()
+                'Call WindowModules.viewer.Invoke(Sub() WindowModules.viewer.LoadRender(dataPack, filepath))
+                'Call MyApplication.host.Invoke(Sub() MyApplication.host.Text = $"BioNovoGene Mzkit [{WindowModules.viewer.Text} {filepath.FileName}]")
+            Catch ex As Exception
+
+            End Try
         End Sub
 
         ''' <summary>

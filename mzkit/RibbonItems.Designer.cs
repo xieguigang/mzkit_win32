@@ -187,8 +187,9 @@ namespace RibbonLib.Controls
             public const uint cmdButtonShowLogWindow = 1109;
             public const uint cmdButtonResetLayout = 1019;
             public const uint cmdTabGroupBioDeep = 105;
-            public const uint cmdButtonPluginManager = 214;
             public const uint cmdLogInBioDeep = 106;
+            public const uint cmdTabGroupAppStore = 217;
+            public const uint cmdButtonPluginManager = 214;
             public const uint cmdTabTools = 1012;
             public const uint cmdGroupToolsActions = 1046;
             public const uint cmdButtonMenuSearchTools = 209;
@@ -395,8 +396,9 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonShowLogWindow { get; private set; }
         public RibbonButton ButtonResetLayout { get; private set; }
         public RibbonGroup TabGroupBioDeep { get; private set; }
-        public RibbonButton ButtonPluginManager { get; private set; }
         public RibbonButton LogInBioDeep { get; private set; }
+        public RibbonGroup TabGroupAppStore { get; private set; }
+        public RibbonButton ButtonPluginManager { get; private set; }
         public RibbonTab TabTools { get; private set; }
         public RibbonGroup GroupToolsActions { get; private set; }
         public RibbonSplitButton ButtonMenuSearchTools { get; private set; }
@@ -598,8 +600,9 @@ namespace RibbonLib.Controls
             ButtonShowLogWindow = new RibbonButton(ribbon, Cmd.cmdButtonShowLogWindow);
             ButtonResetLayout = new RibbonButton(ribbon, Cmd.cmdButtonResetLayout);
             TabGroupBioDeep = new RibbonGroup(ribbon, Cmd.cmdTabGroupBioDeep);
-            ButtonPluginManager = new RibbonButton(ribbon, Cmd.cmdButtonPluginManager);
             LogInBioDeep = new RibbonButton(ribbon, Cmd.cmdLogInBioDeep);
+            TabGroupAppStore = new RibbonGroup(ribbon, Cmd.cmdTabGroupAppStore);
+            ButtonPluginManager = new RibbonButton(ribbon, Cmd.cmdButtonPluginManager);
             TabTools = new RibbonTab(ribbon, Cmd.cmdTabTools);
             GroupToolsActions = new RibbonGroup(ribbon, Cmd.cmdGroupToolsActions);
             ButtonMenuSearchTools = new RibbonSplitButton(ribbon, Cmd.cmdButtonMenuSearchTools);
