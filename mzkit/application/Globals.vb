@@ -89,10 +89,10 @@ Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports Microsoft.VisualBasic.ValueTypes
 Imports Mzkit_win32.BasicMDIForm
 Imports MZWorkPack
-Imports Parallel
 Imports PipelineHost
 Imports SMRUCC.genomics.Analysis.HTS.GSEA
 Imports Task
+Imports Task.Container
 Imports WeifenLuo.WinFormsUI.Docking
 Imports stdNum = System.Math
 

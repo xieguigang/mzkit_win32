@@ -1,5 +1,5 @@
 Imports Microsoft.VisualBasic.FileIO
-Imports Task
+Imports Task.Container
 
 Public Module TissueSlideHandler
 

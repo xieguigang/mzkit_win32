@@ -5,7 +5,7 @@ Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.MSImagingViewerV2.DeepZoomBuilder
-Imports Task
+Imports Task.Container
 
 Public Class frmOpenseadragonViewer
 

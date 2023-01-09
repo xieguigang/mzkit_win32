@@ -77,6 +77,7 @@ Imports RibbonLib
 Imports RibbonLib.Controls.Events
 Imports RibbonLib.Interop
 Imports Task
+Imports Task.Container
 Imports WeifenLuo.WinFormsUI.Docking
 
 Module RibbonEvents
