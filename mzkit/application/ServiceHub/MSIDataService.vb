@@ -170,8 +170,17 @@ Namespace ServiceHub
             End If
         End Function
 
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        ''' <param name="filepath">should be a mzPack file, not working for other data format</param>
+        ''' <param name="message"></param>
         Private Sub LoadMSIRawDataFile(filepath As String, message As Action(Of String)) Implements MSIServicePlugin.LoadMSIRawDataFile
-            Call LoadMSI(filepath, message)
+            Dim dataPack = LoadMSI(filepath, message)
+
+            Call RibbonEvents.showMsImaging()
+            Call WindowModules.viewer.Invoke(Sub() WindowModules.viewer.LoadRender(dataPack, filepath))
+            Call MyApplication.host.Invoke(Sub() MyApplication.host.Text = $"BioNovoGene Mzkit [{WindowModules.viewer.Text} {filepath.FileName}]")
         End Sub
 
         ''' <summary>
