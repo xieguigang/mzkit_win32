@@ -438,6 +438,7 @@
     <ROW Component="Mzkit_win32.MSImagingViewerV2.resources.dll" ComponentId="{CEE28641-2E31-43F7-8D23-780412E79094}" Directory_="zhCN_Dir" Attributes="256" KeyPath="Mzkit_win32.MSImagingViewerV2.resources.dll"/>
     <ROW Component="Mzkit_win32.MZWork.dll" ComponentId="{CA533875-0725-4A8A-BF60-77B9E122EEDF}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.MZWork.dll"/>
     <ROW Component="Mzkit_win32.Task.dll" ComponentId="{E48415AB-DFC6-4244-8328-F0FCB60E6602}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.Task.dll"/>
+    <ROW Component="Mzkit_win32.TaskStream.dll" ComponentId="{8A695FC5-7913-4078-BFF9-90253CCD38BA}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.TaskStream.dll"/>
     <ROW Component="Parallel.dll" ComponentId="{825C390A-5E2B-4B80-987C-C6A8D79EA9BF}" Directory_="APPDIR" Attributes="256" KeyPath="Parallel.dll"/>
     <ROW Component="Parallel.dll_1" ComponentId="{3FE33655-CC52-499A-A95C-5E214C9F788C}" Directory_="bin_Dir" Attributes="256" KeyPath="Parallel.dll_1"/>
     <ROW Component="Parallel.dll_2" ComponentId="{ACE6ED6E-E9AD-46A0-B09A-169C1D31AC8D}" Directory_="host_Dir" Attributes="256" KeyPath="Parallel.dll_2"/>
@@ -4697,6 +4698,7 @@
     <ROW File="PkgTool.dll" Component_="PkgTool.dll" FileName="PkgTool.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\PkgTool.dll" SelfReg="false"/>
     <ROW File="PkgTool.dll.config" Component_="Microsoft.VisualBasic.Runtime.dll.config" FileName="PKGTOO~1.CON|PkgTool.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\PkgTool.dll.config" SelfReg="false"/>
     <ROW File="Mzkit_win32.BasicMDIForm.resources.dll_1" Component_="Mzkit_win32.BasicMDIForm.resources.dll_1" FileName="MZKIT_~1.DLL|Mzkit_win32.BasicMDIForm.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\zh-Hans\Mzkit_win32.BasicMDIForm.resources.dll" SelfReg="false"/>
+    <ROW File="Mzkit_win32.TaskStream.dll" Component_="Mzkit_win32.TaskStream.dll" FileName="MZKIT_~7.DLL|Mzkit_win32.TaskStream.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.TaskStream.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -5337,6 +5339,7 @@
     <ROW Feature_="MainFeature" Component_="PkgTool.dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Runtime.dll.config"/>
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.BasicMDIForm.resources.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Mzkit_win32.TaskStream.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
