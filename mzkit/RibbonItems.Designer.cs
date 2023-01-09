@@ -62,6 +62,7 @@ namespace RibbonLib.Controls
             public const uint cmdButtonShowSearchList = 1122;
             public const uint cmdButtonShowProperties = 1123;
             public const uint cmdGroupShowComprehensive = 191;
+            public const uint cmdMALDIViewer = 215;
             public const uint cmdButtonMsImaging = 1167;
             public const uint cmdView3DMALDI = 213;
             public const uint cmdGCxGCViewer = 179;
@@ -186,8 +187,8 @@ namespace RibbonLib.Controls
             public const uint cmdButtonShowLogWindow = 1109;
             public const uint cmdButtonResetLayout = 1019;
             public const uint cmdTabGroupBioDeep = 105;
-            public const uint cmdLogInBioDeep = 106;
             public const uint cmdButtonPluginManager = 214;
+            public const uint cmdLogInBioDeep = 106;
             public const uint cmdTabTools = 1012;
             public const uint cmdGroupToolsActions = 1046;
             public const uint cmdButtonMenuSearchTools = 209;
@@ -269,6 +270,7 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonShowSearchList { get; private set; }
         public RibbonButton ButtonShowProperties { get; private set; }
         public RibbonGroup GroupShowComprehensive { get; private set; }
+        public RibbonDropDownButton MALDIViewer { get; private set; }
         public RibbonButton ButtonMsImaging { get; private set; }
         public RibbonButton View3DMALDI { get; private set; }
         public RibbonButton GCxGCViewer { get; private set; }
@@ -393,8 +395,8 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonShowLogWindow { get; private set; }
         public RibbonButton ButtonResetLayout { get; private set; }
         public RibbonGroup TabGroupBioDeep { get; private set; }
-        public RibbonButton LogInBioDeep { get; private set; }
         public RibbonButton ButtonPluginManager { get; private set; }
+        public RibbonButton LogInBioDeep { get; private set; }
         public RibbonTab TabTools { get; private set; }
         public RibbonGroup GroupToolsActions { get; private set; }
         public RibbonSplitButton ButtonMenuSearchTools { get; private set; }
@@ -471,6 +473,7 @@ namespace RibbonLib.Controls
             ButtonShowSearchList = new RibbonButton(ribbon, Cmd.cmdButtonShowSearchList);
             ButtonShowProperties = new RibbonButton(ribbon, Cmd.cmdButtonShowProperties);
             GroupShowComprehensive = new RibbonGroup(ribbon, Cmd.cmdGroupShowComprehensive);
+            MALDIViewer = new RibbonDropDownButton(ribbon, Cmd.cmdMALDIViewer);
             ButtonMsImaging = new RibbonButton(ribbon, Cmd.cmdButtonMsImaging);
             View3DMALDI = new RibbonButton(ribbon, Cmd.cmdView3DMALDI);
             GCxGCViewer = new RibbonButton(ribbon, Cmd.cmdGCxGCViewer);
@@ -595,8 +598,8 @@ namespace RibbonLib.Controls
             ButtonShowLogWindow = new RibbonButton(ribbon, Cmd.cmdButtonShowLogWindow);
             ButtonResetLayout = new RibbonButton(ribbon, Cmd.cmdButtonResetLayout);
             TabGroupBioDeep = new RibbonGroup(ribbon, Cmd.cmdTabGroupBioDeep);
-            LogInBioDeep = new RibbonButton(ribbon, Cmd.cmdLogInBioDeep);
             ButtonPluginManager = new RibbonButton(ribbon, Cmd.cmdButtonPluginManager);
+            LogInBioDeep = new RibbonButton(ribbon, Cmd.cmdLogInBioDeep);
             TabTools = new RibbonTab(ribbon, Cmd.cmdTabTools);
             GroupToolsActions = new RibbonGroup(ribbon, Cmd.cmdGroupToolsActions);
             ButtonMenuSearchTools = new RibbonSplitButton(ribbon, Cmd.cmdButtonMenuSearchTools);

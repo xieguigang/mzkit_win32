@@ -59,6 +59,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonShowSearchList As UInteger = 1122
             Public Const cmdButtonShowProperties As UInteger = 1123
             Public Const cmdGroupShowComprehensive As UInteger = 191
+            Public Const cmdMALDIViewer As UInteger = 215
             Public Const cmdButtonMsImaging As UInteger = 1167
             Public Const cmdView3DMALDI As UInteger = 213
             Public Const cmdGCxGCViewer As UInteger = 179
@@ -183,8 +184,8 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonShowLogWindow As UInteger = 1109
             Public Const cmdButtonResetLayout As UInteger = 1019
             Public Const cmdTabGroupBioDeep As UInteger = 105
-            Public Const cmdLogInBioDeep As UInteger = 106
             Public Const cmdButtonPluginManager As UInteger = 214
+            Public Const cmdLogInBioDeep As UInteger = 106
             Public Const cmdTabTools As UInteger = 1012
             Public Const cmdGroupToolsActions As UInteger = 1046
             Public Const cmdButtonMenuSearchTools As UInteger = 209
@@ -484,6 +485,12 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property GroupShowComprehensive As RibbonGroup
             Get
                 Return _GroupShowComprehensive
+            End Get
+        End Property
+        Private _MALDIViewer As RibbonDropDownButton
+        Public ReadOnly Property MALDIViewer As RibbonDropDownButton
+            Get
+                Return _MALDIViewer
             End Get
         End Property
         Private _ButtonMsImaging As RibbonButton
@@ -1230,16 +1237,16 @@ Namespace RibbonLib.Controls
                 Return _TabGroupBioDeep
             End Get
         End Property
-        Private _LogInBioDeep As RibbonButton
-        Public ReadOnly Property LogInBioDeep As RibbonButton
-            Get
-                Return _LogInBioDeep
-            End Get
-        End Property
         Private _ButtonPluginManager As RibbonButton
         Public ReadOnly Property ButtonPluginManager As RibbonButton
             Get
                 Return _ButtonPluginManager
+            End Get
+        End Property
+        Private _LogInBioDeep As RibbonButton
+        Public ReadOnly Property LogInBioDeep As RibbonButton
+            Get
+                Return _LogInBioDeep
             End Get
         End Property
         Private _TabTools As RibbonTab
@@ -1453,6 +1460,7 @@ Namespace RibbonLib.Controls
             _ButtonShowSearchList = New RibbonButton(_ribbon, Cmd.cmdButtonShowSearchList)
             _ButtonShowProperties = New RibbonButton(_ribbon, Cmd.cmdButtonShowProperties)
             _GroupShowComprehensive = New RibbonGroup(_ribbon, Cmd.cmdGroupShowComprehensive)
+            _MALDIViewer = New RibbonDropDownButton(_ribbon, Cmd.cmdMALDIViewer)
             _ButtonMsImaging = New RibbonButton(_ribbon, Cmd.cmdButtonMsImaging)
             _View3DMALDI = New RibbonButton(_ribbon, Cmd.cmdView3DMALDI)
             _GCxGCViewer = New RibbonButton(_ribbon, Cmd.cmdGCxGCViewer)
@@ -1577,8 +1585,8 @@ Namespace RibbonLib.Controls
             _ButtonShowLogWindow = New RibbonButton(_ribbon, Cmd.cmdButtonShowLogWindow)
             _ButtonResetLayout = New RibbonButton(_ribbon, Cmd.cmdButtonResetLayout)
             _TabGroupBioDeep = New RibbonGroup(_ribbon, Cmd.cmdTabGroupBioDeep)
-            _LogInBioDeep = New RibbonButton(_ribbon, Cmd.cmdLogInBioDeep)
             _ButtonPluginManager = New RibbonButton(_ribbon, Cmd.cmdButtonPluginManager)
+            _LogInBioDeep = New RibbonButton(_ribbon, Cmd.cmdLogInBioDeep)
             _TabTools = New RibbonTab(_ribbon, Cmd.cmdTabTools)
             _GroupToolsActions = New RibbonGroup(_ribbon, Cmd.cmdGroupToolsActions)
             _ButtonMenuSearchTools = New RibbonSplitButton(_ribbon, Cmd.cmdButtonMenuSearchTools)

@@ -112,6 +112,20 @@
         <Image Id="26">Res/excel-icon.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonCFMIDTool" Id="212" LabelTitle="CFM-ID Prediction" LabelDescription="CFM-ID Prediction" TooltipTitle="CFM-ID Prediction" TooltipDescription="CFM-ID Prediction">
+      <Command.SmallImages>
+        <Image MinDPI="192">Resources/Flask.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Resources/Flask.png</Image>
+      </Command.LargeImages>
+      <Command.SmallHighContrastImages>
+        <Image MinDPI="192">Resources/Flask.png</Image>
+      </Command.SmallHighContrastImages>
+      <Command.LargeHighContrastImages>
+        <Image MinDPI="192">Resources/Flask.png</Image>
+      </Command.LargeHighContrastImages>
+    </Command>
     <Command Name="cmdButtonClosePolygonEditor" Id="146">
       <Command.LabelTitle>
         <String Id="506">Close</String>
@@ -199,6 +213,20 @@
       <Command.LargeImages>
         <Image Id="459" MinDPI="144">Res/edit-paste.png</Image>
       </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonCosHeatmap" Id="211" LabelTitle="Pixel Cosine Heatmap" LabelDescription="Pixel Cosine Heatmap" TooltipTitle="Pixel Cosine Heatmap" TooltipDescription="Pixel Cosine Heatmap">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
+      </Command.LargeImages>
+      <Command.SmallHighContrastImages>
+        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
+      </Command.SmallHighContrastImages>
+      <Command.LargeHighContrastImages>
+        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
+      </Command.LargeHighContrastImages>
     </Command>
     <Command Name="cmdButtonDevTools" Id="168" LabelTitle="Developer CommandLine Tools" LabelDescription="Developer CommandLine Tools" TooltipTitle="Developer CommandLine Tools" TooltipDescription="Developer CommandLine Tools">
       <Command.SmallImages>
@@ -411,6 +439,14 @@
         <Image Id="63">Res/excel-icon.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonImportsMSITable" Id="205" LabelTitle="Import MSI Table" LabelDescription="Import MSI Table" TooltipTitle="Import MSI Table" TooltipDescription="Import MSI Table">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/excel-icon.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/excel-icon.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdButtonImportsRawFiles" Id="1017">
       <Command.LabelTitle>
         <String Id="64">Imports Raw Files in Batch</String>
@@ -439,6 +475,14 @@
         <Image MinDPI="192">Res/SCiLSLab-Icon.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonImportsShimadzu" Id="206" LabelTitle="Imports Shimadzu iMScope TRIO" LabelDescription="Imports Shimadzu iMScope TRIO" TooltipTitle="Imports Shimadzu iMScope TRIO" TooltipDescription="Imports Shimadzu iMScope TRIO">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/excel-icon.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/excel-icon.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdButtonImportsTissueMorphology" Id="188" LabelTitle="Imports Tissue Morphology" LabelDescription="Imports Tissue Morphology" TooltipTitle="Imports Tissue Morphology" TooltipDescription="Imports Tissue Morphology">
       <Command.SmallImages>
         <Image MinDPI="192">Resources/System-Map-icon.png</Image>
@@ -465,6 +509,14 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image Id="75" MinDPI="192">Res/applications-utilities.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonIonCoLocalization" Id="204" LabelTitle="Co-Localization" LabelDescription="Check Ion co-localization" TooltipTitle="Check Ion co-localization" TooltipDescription="Check Ion co-localization">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/libreoffice-math.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/libreoffice-math.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonLayout1" Id="1043">
@@ -497,6 +549,30 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image MinDPI="192">Res/office_chart_area_256px_540041_easyicon.net.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonLoadHEMap" Id="203" LabelTitle="Load HEMap" LabelDescription="Load HEMap into MSi viewer to view image or do image overlaps with the MSImaging result" TooltipTitle="Load HEMap" TooltipDescription="Load HEMap into MSi viewer to view image or do image overlaps with the MSImaging result">
+      <Command.SmallImages>
+        <Image MinDPI="192">Resources/System-Map-icon.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Resources/System-Map-icon.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonMenuSearchTools" Id="209" LabelTitle="Search Tools" LabelDescription="Search Tools" TooltipTitle="Search Tools" TooltipDescription="Search Tools">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/application-x-rpm.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/application-x-rpm.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonMergeMultipleMSISample" Id="207" LabelTitle="Merge Multiple MSI Sample" LabelDescription="Merge Multiple MSI Sample" TooltipTitle="Merge Multiple MSI Sample" TooltipDescription="Merge Multiple MSI Sample">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/osd-duplicate.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/osd-duplicate.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonMovePolygon" Id="147">
@@ -811,6 +887,14 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image MinDPI="192">Res/edit-find.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonPluginManager" Id="214" LabelTitle="Plugin Manager" LabelDescription="Plugin Manager" TooltipTitle="Plugin Manager" TooltipDescription="Plugin Manager">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/application-x-rpm.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/application-x-rpm.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonPolygonDeleteVertex" Id="150">
@@ -1285,6 +1369,14 @@
         <Image Id="202">Res/applications-utilities.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonUpsideDown" Id="202" LabelTitle="Up side down" LabelDescription="Turn the image data up side down" TooltipTitle="Up side down" TooltipDescription="Turn the image data up side down">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdButtonViewKEGGNetwork" Id="131">
       <Command.LabelTitle>
         <String Id="430">KEGG Network</String>
@@ -1391,6 +1483,30 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image MinDPI="144">Res/insert-object.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdCleanBackgroundAutoReference" Id="199" LabelTitle="Clean Background Auto Reference" LabelDescription="Clean Background Auto Reference" TooltipTitle="Clean Background Auto Reference" TooltipDescription="Clean Background Auto Reference">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/edit-cut.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="144">Res/edit-cut.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdCleanBackgroundByBasePeak" Id="208" LabelTitle="Clean Background By BasePeak Ion" LabelDescription="Clean Background By BasePeak Ion" TooltipTitle="Clean Background By BasePeak Ion" TooltipDescription="Clean Background By BasePeak Ion">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/edit-cut.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="144">Res/edit-cut.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdCleanBackgroundByReference" Id="198" LabelTitle="Clean Background By Reference" LabelDescription="Clean background ions by a given blank reference raw data file" TooltipTitle="Clean Background By Reference" TooltipDescription="Clean background ions by a given blank reference raw data file">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/edit-cut.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="144">Res/edit-cut.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdComboFormulaSearchProfile3" Id="1099" />
@@ -1557,6 +1673,7 @@
         <String Id="385">MS Imaging</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdGroupMSIOperations" Id="201" LabelTitle="Operations" LabelDescription="Operations" TooltipTitle="Operations" TooltipDescription="Operations" />
     <Command Name="cmdGroupNetwork" Id="1083">
       <Command.LabelTitle>
         <String Id="235">Network Result</String>
@@ -1577,7 +1694,7 @@
         <String Id="238">Scripting</String>
       </Command.LabelTitle>
     </Command>
-    <Command Name="cmdGroupShowComprehensive" Id="191" LabelTitle="Comprehensive Mass Spectrum" LabelDescription="Comprehensive Mass Spectrum" TooltipTitle="Comprehensive Mass Spectrum" TooltipDescription="Comprehensive Mass Spectrum" />
+    <Command Name="cmdGroupShowComprehensive" Id="191" LabelTitle="Comprehensive Spectrum" LabelDescription="Comprehensive Mass Spectrum Data Viewer" TooltipTitle="Comprehensive Mass Spectrum Data Viewer" TooltipDescription="Comprehensive Mass Spectrum Data Viewer" />
     <Command Name="cmdGroupShowDockWindows" Id="1120">
       <Command.LabelTitle>
         <String Id="239">Mass Spectrum Windows</String>
@@ -1661,6 +1778,14 @@
         <Image Id="254" MinDPI="192">Res/BioDeep.bmp</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdMALDIViewer" Id="215" LabelTitle="MALDI Viewer" LabelDescription="Viewer of the MALDI comprehensive mass spectrum raw data file" TooltipTitle="Viewer of the MALDI comprehensive mass spectrum raw data file" TooltipDescription="Viewer of the MALDI comprehensive mass spectrum raw data file">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/folder-pictures.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/folder-pictures.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdMenuGroupExit" Id="1006">
       <Command.LabelTitle>
         <String Id="255">Exit Menu</String>
@@ -1709,6 +1834,14 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image Id="262" MinDPI="144">Res/application-vnd.oasis.opendocument.database.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdMsconvertGUI" Id="210" LabelTitle="Msconvert GUI" LabelDescription="Msconvert GUI" TooltipTitle="Msconvert GUI" TooltipDescription="Msconvert GUI">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdOpenIonsLibrary" Id="159">
@@ -2148,6 +2281,7 @@
         <String Id="423">MSI File</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdTabMSIOperations" Id="200" LabelTitle="Operations" LabelDescription="Operations" TooltipTitle="Operations" TooltipDescription="Operations" />
     <Command Name="cmdTabMSIPage" Id="121">
       <Command.LabelTitle>
         <String Id="378">MSI</String>
@@ -2323,6 +2457,14 @@
         <Image Id="367" MinDPI="192">Res/applications-system.bmp</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdView3DMALDI" Id="213" LabelTitle="View 3D MALDI" LabelDescription="View 3D MALDI" TooltipTitle="View 3D MALDI" TooltipDescription="View 3D MALDI">
+      <Command.SmallImages>
+        <Image MinDPI="192">Resources/3d-object.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Resources/3d-object.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdWWWBack" Id="170" LabelTitle="Back" LabelDescription="Back" TooltipTitle="Back" TooltipDescription="Back">
       <Command.SmallImages>
         <Image MinDPI="192">Res/edit-undo.png</Image>
@@ -2349,140 +2491,6 @@
       <Command.TooltipDescription>
         <String Id="578">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
-    </Command>
-    <Command Name="cmdCleanBackgroundByReference" Id="198" LabelTitle="Clean Background By Reference" LabelDescription="Clean background ions by a given blank reference raw data file" TooltipTitle="Clean Background By Reference" TooltipDescription="Clean background ions by a given blank reference raw data file">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/edit-cut.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="144">Res/edit-cut.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdCleanBackgroundAutoReference" Id="199" LabelTitle="Clean Background Auto Reference" LabelDescription="Clean Background Auto Reference" TooltipTitle="Clean Background Auto Reference" TooltipDescription="Clean Background Auto Reference">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/edit-cut.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="144">Res/edit-cut.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdTabMSIOperations" Id="200" LabelTitle="Operations" LabelDescription="Operations" TooltipTitle="Operations" TooltipDescription="Operations" />
-    <Command Name="cmdGroupMSIOperations" Id="201" LabelTitle="Operations" LabelDescription="Operations" TooltipTitle="Operations" TooltipDescription="Operations" />
-    <Command Name="cmdButtonUpsideDown" Id="202" LabelTitle="Up side down" LabelDescription="Turn the image data up side down" TooltipTitle="Up side down" TooltipDescription="Turn the image data up side down">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonLoadHEMap" Id="203" LabelTitle="Load HEMap" LabelDescription="Load HEMap into MSi viewer to view image or do image overlaps with the MSImaging result" TooltipTitle="Load HEMap" TooltipDescription="Load HEMap into MSi viewer to view image or do image overlaps with the MSImaging result">
-      <Command.SmallImages>
-        <Image MinDPI="192">Resources/System-Map-icon.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Resources/System-Map-icon.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonIonCoLocalization" Id="204" LabelTitle="Co-Localization" LabelDescription="Check Ion co-localization" TooltipTitle="Check Ion co-localization" TooltipDescription="Check Ion co-localization">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/libreoffice-math.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/libreoffice-math.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonImportsMSITable" Id="205" LabelTitle="Import MSI Table" LabelDescription="Import MSI Table" TooltipTitle="Import MSI Table" TooltipDescription="Import MSI Table">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/excel-icon.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/excel-icon.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonImportsShimadzu" Id="206" LabelTitle="Imports Shimadzu iMScope TRIO" LabelDescription="Imports Shimadzu iMScope TRIO" TooltipTitle="Imports Shimadzu iMScope TRIO" TooltipDescription="Imports Shimadzu iMScope TRIO">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/excel-icon.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/excel-icon.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonMergeMultipleMSISample" Id="207" LabelTitle="Merge Multiple MSI Sample" LabelDescription="Merge Multiple MSI Sample" TooltipTitle="Merge Multiple MSI Sample" TooltipDescription="Merge Multiple MSI Sample">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/osd-duplicate.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/osd-duplicate.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdCleanBackgroundByBasePeak" Id="208" LabelTitle="Clean Background By BasePeak Ion" LabelDescription="Clean Background By BasePeak Ion" TooltipTitle="Clean Background By BasePeak Ion" TooltipDescription="Clean Background By BasePeak Ion">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/edit-cut.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="144">Res/edit-cut.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonMenuSearchTools" Id="209" LabelTitle="Search Tools" LabelDescription="Search Tools" TooltipTitle="Search Tools" TooltipDescription="Search Tools">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/application-x-rpm.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/application-x-rpm.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdMsconvertGUI" Id="210" LabelTitle="Msconvert GUI" LabelDescription="Msconvert GUI" TooltipTitle="Msconvert GUI" TooltipDescription="Msconvert GUI">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonCosHeatmap" Id="211" LabelTitle="Pixel Cosine Heatmap" LabelDescription="Pixel Cosine Heatmap" TooltipTitle="Pixel Cosine Heatmap" TooltipDescription="Pixel Cosine Heatmap">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
-      </Command.LargeImages>
-      <Command.SmallHighContrastImages>
-        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
-      </Command.SmallHighContrastImages>
-      <Command.LargeHighContrastImages>
-        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
-      </Command.LargeHighContrastImages>
-    </Command>
-    <Command Name="cmdButtonCFMIDTool" Id="212" LabelTitle="CFM-ID Prediction" LabelDescription="CFM-ID Prediction" TooltipTitle="CFM-ID Prediction" TooltipDescription="CFM-ID Prediction">
-      <Command.SmallImages>
-        <Image MinDPI="192">Resources/Flask.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Resources/Flask.png</Image>
-      </Command.LargeImages>
-      <Command.SmallHighContrastImages>
-        <Image MinDPI="192">Resources/Flask.png</Image>
-      </Command.SmallHighContrastImages>
-      <Command.LargeHighContrastImages>
-        <Image MinDPI="192">Resources/Flask.png</Image>
-      </Command.LargeHighContrastImages>
-    </Command>
-    <Command Name="cmdView3DMALDI" Id="213" LabelTitle="View 3D MALDI" LabelDescription="View 3D MALDI" TooltipTitle="View 3D MALDI" TooltipDescription="View 3D MALDI">
-      <Command.SmallImages>
-        <Image MinDPI="192">Resources/3d-object.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Resources/3d-object.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonPluginManager" Id="214" LabelTitle="Plugin Manager" LabelDescription="Plugin Manager" TooltipTitle="Plugin Manager" TooltipDescription="Plugin Manager">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/application-x-rpm.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/application-x-rpm.png</Image>
-      </Command.LargeImages>
     </Command>
   </Application.Commands>
   <Application.Views>
@@ -2601,9 +2609,11 @@
               <Button CommandName="cmdButtonShowSearchList" />
               <Button CommandName="cmdButtonShowProperties" />
             </Group>
-            <Group CommandName="cmdGroupShowComprehensive" SizeDefinition="ThreeButtons">
-              <Button CommandName="cmdButtonMsImaging" />
-              <Button CommandName="cmdView3DMALDI" />
+            <Group CommandName="cmdGroupShowComprehensive" SizeDefinition="TwoButtons">
+              <DropDownButton CommandName="cmdMALDIViewer">
+                <Button CommandName="cmdButtonMsImaging" />
+                <Button CommandName="cmdView3DMALDI" />
+              </DropDownButton>
               <Button CommandName="cmdGCxGCViewer" />
             </Group>
           </Tab>
@@ -2796,8 +2806,8 @@
             <Button CommandName="cmdButtonResetLayout" />
           </Group>
           <Group CommandName="cmdTabGroupBioDeep" ApplicationModes="0,1" SizeDefinition="TwoButtons">
-            <Button CommandName="cmdLogInBioDeep" />
             <Button CommandName="cmdButtonPluginManager" />
+            <Button CommandName="cmdLogInBioDeep" />
           </Group>
         </Tab>
         <Tab CommandName="cmdTabTools" ApplicationModes="0,1">
