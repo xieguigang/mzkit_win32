@@ -77,7 +77,11 @@ Public NotInheritable Class RscriptProgressTask
         Dim Rscript As String = RscriptPipelineTask.GetRScript("buildMSIIndex.R")
         Dim uid As String = getGuid(imzML.ChangeSuffix("ibd"))
         Dim cachefile As String = App.AppSystemTemp & "/MSI_imzML/" & uid
-        Dim cli As String = $"""{Rscript}"" --imzML ""{imzML}"" --cache ""{cachefile}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim cli As String = $"""{Rscript}"" 
+--imzML ""{imzML}"" 
+--cache ""{cachefile}"" 
+--SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
+"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
         If cachefile.FileLength > 1024 Then
@@ -102,7 +106,13 @@ Public NotInheritable Class RscriptProgressTask
 
     Public Shared Sub ExportRGBIonsPlot(mz As Double(), tolerance As String, saveAs As String)
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSImaging/tripleIon.R")
-        Dim cli As String = $"""{Rscript}"" --app {Workbench.MSIServiceAppPort} --mzlist ""{mz.JoinBy(",")}"" --save ""{saveAs}"" --mzdiff ""{tolerance}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim cli As String = $"""{Rscript}"" 
+--app {Workbench.MSIServiceAppPort} 
+--mzlist ""{mz.JoinBy(",")}"" 
+--save ""{saveAs}"" 
+--mzdiff ""{tolerance}"" 
+--SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
+"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
@@ -119,7 +129,11 @@ Public NotInheritable Class RscriptProgressTask
             info:="Do plot of target ion m/z set...")
 
         If saveAs.FileExists(ZERO_Nonexists:=True) Then
-            If MessageBox.Show("RGB Ions MS-Imaging Job Done!" & vbCrLf & "Open MSImaging result plot file?", "Open Image", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
+            If MessageBox.Show("RGB Ions MS-Imaging Job Done!" & vbCrLf & "Open MSImaging result plot file?",
+                               "Open Image",
+                               MessageBoxButtons.YesNo,
+                               MessageBoxIcon.Information) = DialogResult.Yes Then
+
                 Call Process.Start(saveAs.GetFullPath)
             End If
         Else
@@ -135,24 +149,40 @@ Public NotInheritable Class RscriptProgressTask
                                           Optional title As String = "")
 
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSImaging/singleIon.R")
-        Dim cli As String = $"""{Rscript}"" --app {Workbench.MSIServiceAppPort} --mzlist ""{mz}"" --save ""{saveAs}"" --backcolor ""{background}"" --colors ""{colorSet}"" --mzdiff ""{tolerance}"" --title ""{title}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim cli As String = $"""{Rscript}"" 
+--app {Workbench.MSIServiceAppPort} 
+--mzlist ""{mz}"" 
+--save ""{saveAs}"" 
+--backcolor ""{background}"" 
+--colors ""{colorSet}"" 
+--mzdiff ""{tolerance}"" 
+--title ""{title}"" 
+--SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
+"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call Workbench.LogText(pipeline.CommandLine)
-        Call TaskProgress.RunAction(run:=Sub(p)
-                                             p.SetProgressMode()
+        Call TaskProgress.RunAction(
+            run:=Sub(p)
+                     p.SetProgressMode()
 
-                                             AddHandler pipeline.SetMessage, AddressOf p.SetInfo
-                                             AddHandler pipeline.SetProgress, AddressOf p.SetProgress
-                                             AddHandler pipeline.Finish, AddressOf p.TaskFinish
+                     AddHandler pipeline.SetMessage, AddressOf p.SetInfo
+                     AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                     AddHandler pipeline.Finish, AddressOf p.TaskFinish
 
-                                             Call pipeline.Run()
+                     Call pipeline.Run()
 
-                                         End Sub, title:="Single Ion MSImaging", info:="Do plot of target ion m/z...")
+                 End Sub,
+            title:="Single Ion MSImaging",
+            info:="Do plot of target ion m/z...")
 
         If saveAs.FileExists Then
-            If MessageBox.Show("Single Ion MSImaging Job Done!" & vbCrLf & "Open MSImaging result plot file?", "Open Image", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
+            If MessageBox.Show("Single Ion MSImaging Job Done!" & vbCrLf & "Open MSImaging result plot file?",
+                               "Open Image",
+                               MessageBoxButtons.YesNo,
+                               MessageBoxIcon.Information) = DialogResult.Yes Then
+
                 Call Process.Start(saveAs.GetFullPath)
             End If
         Else
@@ -172,7 +202,11 @@ Public NotInheritable Class RscriptProgressTask
         Dim Rscript As String = RscriptPipelineTask.GetRScript("HEScan.R")
         Dim imagetmp As String = TempFileSystem.GetAppSysTempFile(".png")
         Dim jsontmp As String = TempFileSystem.GetAppSysTempFile(".heatmap")
-        Dim cli As String = $"""{Rscript}"" --bitmap ""{imagetmp}"" --channels {channels.Select(Function(c) c.ToHtmlColor).JoinBy(";")} --save ""{jsontmp}"""
+        Dim cli As String = $"""{Rscript}"" 
+--bitmap ""{imagetmp}"" 
+--channels {channels.Select(Function(c) c.ToHtmlColor).JoinBy(";")} 
+--save ""{jsontmp}""
+"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
         Call bitmap.SaveAs(imagetmp)
@@ -261,7 +295,12 @@ Public NotInheritable Class RscriptProgressTask
     Public Shared Sub CreateMSIPeakTable(mzpack As String, saveAs As String, exportTissueMaps As Action(Of Stream))
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".cdf", App.PID.ToHexString, prefix:="MSI_regions__")
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSI_peaktable.R")
-        Dim cli As String = $"""{Rscript}"" --raw ""{mzpack}"" --save ""{saveAs}"" --regions ""{tempfile}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim cli As String = $"""{Rscript}"" 
+--raw ""{mzpack}"" 
+--save ""{saveAs}"" 
+--regions ""{tempfile}"" 
+--SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
+"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
         Using buffer As Stream = tempfile.Open(FileMode.OpenOrCreate)
@@ -299,7 +338,18 @@ Public NotInheritable Class RscriptProgressTask
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".json", App.PID.ToHexString, prefix:="MSI_regions__")
         Dim imageOut As String = $"{tempfile.ParentPath}/Rplot.png"
         Dim Rscript As String = RscriptPipelineTask.GetRScript("ggplot/ggplot_ionStatMSI.R")
-        Dim cli As String = $"""{Rscript}"" --app {Workbench.MSIServiceAppPort} --mzlist ""{mz}"" --backcolor ""{background}"" --colors ""{colorSet}"" --mzdiff ""{tolerance}"" --data ""{tempfile}"" --save ""{imageOut}"" --title ""{title}"" --plot ""{type}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim cli As String = $"""{Rscript}"" 
+--app {Workbench.MSIServiceAppPort} 
+--mzlist ""{mz}"" 
+--backcolor ""{background}""
+--colors ""{colorSet}"" 
+--mzdiff ""{tolerance}"" 
+--data ""{tempfile}"" 
+--save ""{imageOut}"" 
+--title ""{title}"" 
+--plot ""{type}"" 
+--SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
+"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
         Call data.SaveTo(tempfile)
@@ -331,7 +381,13 @@ Public NotInheritable Class RscriptProgressTask
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".json", App.PID.ToHexString, prefix:="MSI_regions__")
         Dim imageOut As String = $"{tempfile.ParentPath}/Rplot.png"
         Dim Rscript As String = RscriptPipelineTask.GetRScript("ggplot/ggplot2.R")
-        Dim cli As String = $"""{Rscript}"" --data ""{tempfile}"" --save ""{imageOut}"" --title ""{title}"" --plot ""{type}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim cli As String = $"""{Rscript}"" 
+--data ""{tempfile}"" 
+--save ""{imageOut}"" 
+--title ""{title}"" 
+--plot ""{type}"" 
+--SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
+"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
@@ -362,7 +418,12 @@ Public NotInheritable Class RscriptProgressTask
     Public Shared Function PlotScatter3DStats(data As String, title As String) As Image
         Dim imageOut As String = $"{data.ParentPath}/Rplot.png"
         Dim Rscript As String = RscriptPipelineTask.GetRScript("ggplot/ggplot_scatter3D.R")
-        Dim cli As String = $"""{Rscript}"" --matrix ""{data}"" --png ""{imageOut}"" --title ""{title}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim cli As String = $"""{Rscript}"" 
+--matrix ""{data}"" 
+--png ""{imageOut}"" 
+--title ""{title}"" 
+--SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
+"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
