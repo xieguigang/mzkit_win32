@@ -674,7 +674,7 @@
         <String Id="88">Open the MS-imaging viewer to view the comprehensive LC-MS spectrum data.</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
-        <String Id="89">MS-Imaging Viewer</String>
+        <String Id="89">Viewer of the MALDI comprehensive mass spectrum raw data file</String>
       </Command.TooltipTitle>
       <Command.TooltipDescription>
         <String Id="90">Open the MS-imaging viewer to view the comprehensive LC-MS spectrum data.</String>
@@ -1836,7 +1836,7 @@
         <Image Id="262" MinDPI="144">Res/application-vnd.oasis.opendocument.database.bmp</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdMsconvertGUI" Id="210" LabelTitle="Msconvert GUI" LabelDescription="Msconvert GUI" TooltipTitle="Msconvert GUI" TooltipDescription="Msconvert GUI">
+    <Command Name="cmdMsconvertGUI" Id="210" LabelTitle="Msconvert GUI" LabelDescription="Launch the MZKit MsConvert GUI Tools for convert MS raw data files" TooltipTitle="Msconvert GUI" TooltipDescription="Msconvert GUI">
       <Command.SmallImages>
         <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
       </Command.SmallImages>
@@ -2457,7 +2457,7 @@
         <Image Id="367" MinDPI="192">Res/applications-system.bmp</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdView3DMALDI" Id="213" LabelTitle="View 3D MALDI" LabelDescription="View 3D MALDI" TooltipTitle="View 3D MALDI" TooltipDescription="View 3D MALDI">
+    <Command Name="cmdView3DMALDI" Id="213" LabelTitle="View 3D MALDI" LabelDescription="View 3D tissue scanning model which is extract from the MALDI 3d scan experiment" TooltipTitle="View 3D tissue scanning model which is extract from the MALDI 3d scan experiment" TooltipDescription="View 3D tissue scanning model which is extract from the MALDI 3d scan experiment">
       <Command.SmallImages>
         <Image MinDPI="192">Resources/3d-object.png</Image>
       </Command.SmallImages>
