@@ -109,10 +109,6 @@ Namespace ServiceHub
         ''' </summary>
         Public Shared debugPort As Integer?
 
-        Shared Sub New()
-            MSImagingServiceModule.StartEngine = Sub() Call StartMSIService(Nothing)
-        End Sub
-
         ''' <summary>
         ''' this method will close the engine at first
         ''' </summary>

@@ -77,6 +77,7 @@ Imports BioNovoGene.BioDeep.MetaDNA
 Imports BioNovoGene.BioDeep.MSEngine
 Imports BioNovoGene.mzkit_win32.Configuration
 Imports BioNovoGene.mzkit_win32.My
+Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Microsoft.VisualBasic.ApplicationServices.Development
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.ComponentModel.Collection
@@ -151,6 +152,9 @@ Module Globals
 
         Call FrameworkInternal.ConfigMemory(MemoryLoads.Max)
         Call LicenseFile.ApplyLicense()
+
+        ' initialize for external plugin module
+        MSImagingServiceModule.StartEngine = Sub() Call MSIDataService.StartMSIService(Nothing)
     End Sub
 
     Private Sub shutdownHttpWeb()
