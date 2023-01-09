@@ -59,6 +59,7 @@ Imports Microsoft.VisualBasic.ApplicationServices.Development
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.CommandLine
+Imports Mzkit_win32.BasicMDIForm.Container
 
 Public Class frmSplashScreen
 
@@ -96,8 +97,10 @@ Public Class frmSplashScreen
         If (Not isAboutScreen) AndAlso (Not Globals.Settings.licensed.TryGetValue(Globals.CurrentVersion)) Then
             Globals.loadedSettings = True
 
-            If New frmUserAgreement().ShowDialog() = DialogResult.Cancel Then
-                App.Exit()
+            If Not AppEnvironment.IsDevelopmentMode Then
+                If New frmUserAgreement().ShowDialog() = DialogResult.Cancel Then
+                    App.Exit()
+                End If
             End If
 
             Globals.loadedSettings = False
