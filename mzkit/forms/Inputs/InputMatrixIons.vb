@@ -2,6 +2,7 @@
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Mzkit_win32.BasicMDIForm
 Imports DataFrame = Microsoft.VisualBasic.Data.csv.IO.DataFrame
 Imports stdNum = System.Math
 Imports xlsx = Microsoft.VisualBasic.MIME.Office.Excel.File
