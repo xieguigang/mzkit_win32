@@ -366,8 +366,8 @@ Public NotInheritable Class RscriptProgressTask
                      Call pipeline.Run()
 
                  End Sub,
-            title:="Create MSI sample table...",
-            info:="Loading MSI raw data file into viewer workspace..."
+            title:="Plot Single MSI Ion",
+            info:=$"Plot({type}) for target ion: {title}, m/z={mz}"
         )
 
         If Not imageOut.FileExists(ZERO_Nonexists:=True) Then
