@@ -32,8 +32,18 @@ Public MustInherit Class Plugin
         }
     End Function
 
+    Private Shared Iterator Function PopulateDllFiles() As IEnumerable(Of String())
+        Yield $"{App.HOME}/plugins".EnumerateFiles("*.dll").ToArray
+        Yield $"{App.LocalData}/plugins/".EnumerateFiles("*.dll").ToArray
+
+        ' plugins_test used for test the internal plugin development
+        If Container.AppEnvironment.IsDevelopmentMode Then
+            Yield $"{App.HOME}/plugins_test".EnumerateFiles("*.dll").ToArray
+        End If
+    End Function
+
     Public Shared Sub LoadPlugins(println As Action(Of String))
-        Dim files As String() = $"{App.HOME}/plugins".EnumerateFiles("*.dll").JoinIterates($"{App.LocalData}/plugins/".EnumerateFiles("*.dll")).ToArray
+        Dim files As String() = PopulateDllFiles.IteratesALL.ToArray
         Dim loaded As Index(Of String) = New String() {}
         Dim registry As RegistryFile = RegistryFile.LoadRegistry
         Dim hashlist = registry.plugins.ToDictionary(Function(p) p.id)

@@ -275,6 +275,7 @@
   <ItemGroup>
     <None Include="Resources\progress-bar.html" />
   </ItemGroup>
+  <Import Project="..\..\services\mzkit_win32.envir\mzkit_win32.envir.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="..\..\packages\Microsoft.Web.WebView2.1.0.1462.37\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\..\packages\Microsoft.Web.WebView2.1.0.1462.37\build\Microsoft.Web.WebView2.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
