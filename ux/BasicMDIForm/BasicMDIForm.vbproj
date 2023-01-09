@@ -117,6 +117,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataGridView">
+      <HintPath>..\..\dist\System.Windows.Forms.DataGridView.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -184,6 +187,7 @@
     <Compile Include="dialogs\MaskForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GridSearchHandler.vb" />
     <Compile Include="plugin\PluginPkg.vb" />
     <Compile Include="plugin\Repository\RegistryFile.vb" />
     <Compile Include="plugin\Repository\PluginMetadata.vb" />

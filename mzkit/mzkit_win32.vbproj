@@ -443,7 +443,6 @@
     <Compile Include="forms\Inputs\InputPubChemProxy.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GridSearchHandler.vb" />
     <Compile Include="forms\frmDOI.Designer.vb">
       <DependentUpon>frmDOI.vb</DependentUpon>
     </Compile>
