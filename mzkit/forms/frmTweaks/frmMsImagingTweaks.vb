@@ -429,6 +429,11 @@ UseCheckedList:
         Return json.BuildJsonString
     End Function
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="mz"></param>
+    ''' <returns>[region_label => [color => expression_vector]]</returns>
     Private Function getVector(ByRef mz As Double) As Dictionary(Of String, NamedValue(Of Double()))
         Dim errMsg As String = Nothing
         Dim layer As PixelData() = getLayer(mz, needsRegions:=True, msg:=errMsg)
@@ -494,6 +499,12 @@ UseCheckedList:
         End If
     End Sub
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="data">[region_label => [color => expression_vector]]</param>
+    ''' <param name="type">bar/box/violin</param>
+    ''' <param name="mz"></param>
     Private Sub showPlot(data As Dictionary(Of String, NamedValue(Of Double())), type As String, mz As Double)
         Dim pack As String = encodeJSON(data)
         Dim image As Image
