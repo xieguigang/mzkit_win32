@@ -230,14 +230,23 @@ Public Class frmMsImagingViewer
 
                         Call InputDialog.Input(Of InputMSISlideLayout)(
                             Sub(config)
-                                If TaskProgress.LoadData(Function(echo)
-                                                             'Return loadfiles _
-                                                             '    .JoinMSISamples(println:=echo) _
-                                                             '    .Write(savefile.OpenFile, progress:=echo)
-                                                             Call RscriptProgressTask.MergeMultipleSlides(files, config.layoutData, savefile.FileName, config.useFileNameAsSourceTag, echo)
+                                If TaskProgress.LoadData(
+                                    streamLoad:=Function(echo)
+                                                    'Return loadfiles _
+                                                    '    .JoinMSISamples(println:=echo) _
+                                                    '    .Write(savefile.OpenFile, progress:=echo)
+                                                    Call MSConvertTask.MergeMultipleSlides(
+                                                        msData:=files,
+                                                        layoutData:=config.layoutData,
+                                                        savefile:=savefile.FileName,
+                                                        fileName_tag:=config.useFileNameAsSourceTag,
+                                                        echo:=echo
+                                                    )
 
-                                                             Return True
-                                                         End Function) Then
+                                                    Return True
+                                                End Function,
+                                    title:="Merge Multiple Slides",
+                                    info:="Load MS-Imaging slide files...") Then
 
                                     If MessageBox.Show("MSI Raw Convert Job Done!" & vbCrLf & "Open MSI raw data file in MSI Viewer?",
                                                        "MSI Viewer",
@@ -276,7 +285,10 @@ Public Class frmMsImagingViewer
                                                     println:=echo
                                                 )
 
-                                                Return raw.Write(savefile.FileName.Open(FileMode.OpenOrCreate, doClear:=True), progress:=echo)
+                                                Return raw.Write(
+                                                    file:=savefile.FileName.Open(FileMode.OpenOrCreate, doClear:=True),
+                                                    progress:=echo
+                                                )
                                             End Function,
                                 title:=$"Imports [{file.FileName}]"
                             )

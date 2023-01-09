@@ -364,7 +364,7 @@ Module RibbonEvents
                             .InitialDirectory = baseDir
                         }
                             If savefile.ShowDialog = DialogResult.OK Then
-                                Call RscriptProgressTask.CreateMSIRawFromRowBinds(
+                                Call MSConvertTask.CreateMSIRawFromRowBinds(
                                     files:=file.FileNames,
                                     savefile:=savefile.FileName,
                                     cutoff:=cutoff,
@@ -402,7 +402,7 @@ Module RibbonEvents
                             Return
                         End If
 
-                        Call RscriptProgressTask.ImportsSCiLSLab(
+                        Call MSConvertTask.ImportsSCiLSLab(
                             msData:=tuples,
                             savefile:=savefile.FileName,
                             loadCallback:=Sub(filepath)
