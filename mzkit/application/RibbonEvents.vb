@@ -64,6 +64,7 @@ Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MSP
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.mzkit_win32.My
@@ -78,6 +79,7 @@ Imports RibbonLib.Controls.Events
 Imports RibbonLib.Interop
 Imports Task
 Imports Task.Container
+Imports TaskStream
 Imports WeifenLuo.WinFormsUI.Docking
 
 Module RibbonEvents
@@ -367,7 +369,11 @@ Module RibbonEvents
                                     savefile:=savefile.FileName,
                                     cutoff:=cutoff,
                                     basePeak:=basePeak,
-                                    resoltuion:=res
+                                    resoltuion:=res,
+                                    loadCallback:=Sub(filepath)
+                                                      Call RibbonEvents.showMsImaging()
+                                                      Call WindowModules.viewer.loadimzML(filepath)
+                                                  End Sub
                                 )
                             End If
                         End Using
@@ -387,7 +393,22 @@ Module RibbonEvents
                     .Title = "Save MSI raw data file"
                 }
                     If savefile.ShowDialog = DialogResult.OK Then
-                        Call RscriptProgressTask.ImportsSCiLSLab(file.FileNames, savefile.FileName)
+                        Dim msData As String() = file.FileNames
+                        Dim tuples = SCiLSLab.CheckSpotFiles(msData).ToArray
+
+                        If tuples.IsNullOrEmpty Then
+                            ' missing spot index file
+                            MessageBox.Show("invalid selected table data files!", "Imports SCiLS Lab", buttons:=MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return
+                        End If
+
+                        Call RscriptProgressTask.ImportsSCiLSLab(
+                            msData:=tuples,
+                            savefile:=savefile.FileName,
+                            loadCallback:=Sub(filepath)
+                                              Call RibbonEvents.showMsImaging()
+                                              Call WindowModules.viewer.loadimzML(filepath)
+                                          End Sub)
                     End If
                 End Using
             End If

@@ -10,5 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AppEnvironment.vb" />
+    <Compile Include="$(MSBuildThisFileDirectory)TaskEngine.vb" />
   </ItemGroup>
 </Project>

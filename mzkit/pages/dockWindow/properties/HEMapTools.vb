@@ -6,6 +6,8 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports System.IO
 Imports Microsoft.VisualBasic.Math
+Imports TaskStream
+Imports Microsoft.VisualBasic.Serialization.JSON
 
 Public Class HEMapTools
 
@@ -165,7 +167,7 @@ Public Class HEMapTools
             Call closePolygonEditor()
         End If
 
-        Dim grid As Cell() = RscriptProgressTask.ScanBitmap(hemap, colors)
+        Dim grid As Cell() = RscriptProgressTask.ScanBitmap(hemap, colors).LoadJSON(Of Cell())(throwEx:=False)
 
         If grid.IsNullOrEmpty Then
             MyApplication.host.warning("Heatmap scanning task error!")

@@ -11,8 +11,14 @@ Public NotInheritable Class Workbench
     ''' </summary>
     ''' <returns></returns>
     Public Shared ReadOnly Property WebPort As Integer = TCPExtensions.GetFirstAvailablePort(-1)
+    Public Shared ReadOnly Property MSIServiceAppPort As Integer
 
     Private Sub New()
+    End Sub
+
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Shared Sub SetMSIServicesAppPort(appPort As Integer)
+        _MSIServiceAppPort = appPort
     End Sub
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>

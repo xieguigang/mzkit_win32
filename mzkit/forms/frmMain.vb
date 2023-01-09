@@ -293,7 +293,14 @@ Public Class frmMain : Implements AppHost
         If imzML.ExtensionSuffix("mzpack") Then
             Call showMzPackMSI(imzML)
         Else
-            Dim cachefile As String = RscriptProgressTask.CreateMSIIndex(imzML)
+            Dim cachefile As String = RscriptProgressTask.CreateMSIIndex(
+                imzML:=imzML,
+                getGuid:=Function(filepath)
+                             Dim ibd As ibdReader = ibdReader.Open(filepath.ChangeSuffix("ibd"))
+                             Dim guid As String = ibd.UUID
+
+                             Return guid
+                         End Function)
 
             WindowModules.viewer.LoadRender(cachefile, imzML)
 

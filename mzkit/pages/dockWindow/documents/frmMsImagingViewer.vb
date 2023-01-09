@@ -100,8 +100,10 @@ Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports ServiceHub
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.DataFiles
 Imports STImaging
 Imports Task
+Imports TaskStream
 Imports WeifenLuo.WinFormsUI.Docking
 Imports File = Microsoft.VisualBasic.Data.csv.IO.File
 Imports stdNum = System.Math
@@ -229,13 +231,13 @@ Public Class frmMsImagingViewer
                         Call InputDialog.Input(Of InputMSISlideLayout)(
                             Sub(config)
                                 If TaskProgress.LoadData(Function(echo)
-                                                                'Return loadfiles _
-                                                                '    .JoinMSISamples(println:=echo) _
-                                                                '    .Write(savefile.OpenFile, progress:=echo)
-                                                                Call RscriptProgressTask.MergeMultipleSlides(files, config.layoutData, savefile.FileName, config.useFileNameAsSourceTag, echo)
+                                                             'Return loadfiles _
+                                                             '    .JoinMSISamples(println:=echo) _
+                                                             '    .Write(savefile.OpenFile, progress:=echo)
+                                                             Call RscriptProgressTask.MergeMultipleSlides(files, config.layoutData, savefile.FileName, config.useFileNameAsSourceTag, echo)
 
-                                                                Return True
-                                                            End Function) Then
+                                                             Return True
+                                                         End Function) Then
 
                                     If MessageBox.Show("MSI Raw Convert Job Done!" & vbCrLf & "Open MSI raw data file in MSI Viewer?",
                                                        "MSI Viewer",
@@ -1731,7 +1733,12 @@ Public Class frmMsImagingViewer
         Else
             Using file As New SaveFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
                 If file.ShowDialog = DialogResult.OK Then
-                    Call RscriptProgressTask.CreateMSIPeakTable(sampleRegions, mzpack:=FilePath, saveAs:=file.FileName)
+                    Call RscriptProgressTask.CreateMSIPeakTable(
+                        mzpack:=FilePath,
+                        saveAs:=file.FileName,
+                        exportTissueMaps:=Sub(buffer)
+                                              Call sampleRegions.ExportTissueMaps(sampleRegions.dimension, buffer)
+                                          End Sub)
                 End If
             End Using
         End If

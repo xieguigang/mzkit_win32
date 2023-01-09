@@ -75,8 +75,10 @@ Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports Mzkit_win32.BasicMDIForm
 Imports ServiceHub
 Imports Task
+Imports TaskStream
 
 Namespace ServiceHub
 
@@ -132,6 +134,7 @@ Namespace ServiceHub
             End If
 
             hostOld.MessageCallback = Nothing
+            Workbench.SetMSIServicesAppPort(appPort:=hostOld.appPort)
 
             Return hostOld
         End Function
