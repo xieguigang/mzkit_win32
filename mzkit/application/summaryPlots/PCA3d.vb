@@ -2,6 +2,7 @@
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Linq
+Imports TaskStream
 Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class PCA3d : Inherits SummaryPlot

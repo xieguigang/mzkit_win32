@@ -355,6 +355,10 @@
       <Project>{a27dc075-07ac-4d90-b1d5-0966925b5309}</Project>
       <Name>MsPlot.NET5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ux\BasicMDIForm\BasicMDIForm.vbproj">
+      <Project>{51c55c5c-2f21-4e9f-aa8d-3664135758b7}</Project>
+      <Name>BasicMDIForm</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BioDeep\BioDeep.vbproj">
       <Project>{dcfa3211-c43b-40c3-a183-2d3d83b096e1}</Project>
       <Name>BioDeep</Name>
@@ -370,6 +374,10 @@
     <ProjectReference Include="..\ServiceHub\ServiceHub.vbproj">
       <Project>{59127bcb-e898-4712-b51d-d967b10249c8}</Project>
       <Name>ServiceHub</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskStream\TaskStream.vbproj">
+      <Project>{3a645206-5ee9-4aa6-9dbb-c4cc18636fc5}</Project>
+      <Name>TaskStream</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

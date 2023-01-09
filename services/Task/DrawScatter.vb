@@ -70,6 +70,7 @@ Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.Math.Quantile
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports PipelineHost
+Imports TaskStream
 
 Public Module DrawScatter
 

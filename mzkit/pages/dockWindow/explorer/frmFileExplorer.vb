@@ -78,9 +78,9 @@ Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Language.C
 Imports Microsoft.VisualBasic.Text
 Imports Mzkit_win32.BasicMDIForm
-Imports PipelineHost
 Imports RibbonLib.Interop
 Imports Task
+Imports TaskStream
 Imports WeifenLuo.WinFormsUI.Docking
 Imports stdNum = System.Math
 
@@ -691,7 +691,7 @@ Public Class frmFileExplorer
             Dim raw = DirectCast(node.Tag, MZWork.Raw)
             Dim mzpack As String = raw.cache
             Dim tempTable As String = TempFileSystem.GetAppSysTempFile(".csv", raw.cache.MD5, prefix:=$"{App.PID}_deconv_peaktable_")
-            Dim cli As String = $"""{RscriptPipelineTask.GetRScript("MS1deconv.R")}"" --raw ""{mzpack}"" --save ""{tempTable}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+            Dim cli As String = $"""{RscriptPipelineTask.GetRScript("MS1deconv.R")}"" --raw ""{mzpack}"" --save ""{tempTable}"" --SetDllDirectory {Task.TaskEngine.hostDll.ParentPath.CLIPath}"
             Dim data As PeakFeature() = TaskProgress.LoadData(
                     Function(println)
                         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
