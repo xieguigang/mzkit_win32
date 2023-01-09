@@ -54,7 +54,9 @@
 
 #End Region
 
+Imports System.Drawing
 Imports System.IO
+Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
@@ -86,7 +88,7 @@ Public Class RscriptProgressTask
         If cachefile.FileLength > 1024 Then
             Return cachefile
         Else
-            Call MyApplication.LogText(pipeline.CommandLine)
+            Call Workbench.LogText(pipeline.CommandLine)
             Call TaskProgress.RunAction(
                 Sub(p)
                     p.SetProgressMode()
@@ -112,7 +114,7 @@ Public Class RscriptProgressTask
         Dim pipeline As New RunSlavePipeline(PipelineTask.Host, cli)
 
         Call WorkStudio.LogCommandLine(PipelineTask.Host, cli, App.CurrentDirectory)
-        Call MyApplication.LogText(pipeline.CommandLine)
+        Call Workbench.LogText(pipeline.CommandLine)
 
         AddHandler pipeline.SetMessage, Sub(msg) echo(msg)
 
@@ -139,7 +141,7 @@ Public Class RscriptProgressTask
             .SaveTo(tempfile, encoding:=Encodings.UTF8.CodePage)
 
         Call WorkStudio.LogCommandLine(PipelineTask.Host, cli, App.CurrentDirectory)
-        Call MyApplication.LogText(pipeline.CommandLine)
+        Call Workbench.LogText(pipeline.CommandLine)
         Call TaskProgress.RunAction(
             run:=Sub(p)
                      p.SetProgressMode()
@@ -172,7 +174,7 @@ Public Class RscriptProgressTask
 
         Call files.SaveTo(tempfile, encoding:=Encodings.UTF8.CodePage)
         Call WorkStudio.LogCommandLine(PipelineTask.Host, commandline, App.CurrentDirectory)
-        Call MyApplication.LogText(pipeline.CommandLine)
+        Call Workbench.LogText(pipeline.CommandLine)
         Call TaskProgress.RunAction(run:=Sub(p)
                                              p.SetProgressMode()
 
@@ -196,7 +198,7 @@ Public Class RscriptProgressTask
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
-        Call MyApplication.LogText(pipeline.CommandLine)
+        Call Workbench.LogText(pipeline.CommandLine)
         Call TaskProgress.RunAction(run:=Sub(p)
                                              AddHandler pipeline.SetMessage, AddressOf p.SetInfo
                                              AddHandler pipeline.SetProgress, AddressOf p.SetProgress
@@ -227,7 +229,7 @@ Public Class RscriptProgressTask
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
-        Call MyApplication.LogText(pipeline.CommandLine)
+        Call Workbench.LogText(pipeline.CommandLine)
         Call TaskProgress.RunAction(run:=Sub(p)
                                              p.SetProgressMode()
 
@@ -257,7 +259,7 @@ Public Class RscriptProgressTask
 
         Call bitmap.SaveAs(imagetmp)
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
-        Call MyApplication.LogText(pipeline.CommandLine)
+        Call Workbench.LogText(pipeline.CommandLine)
 
         Call TaskProgress.RunAction(run:=Sub(p)
                                              p.SetProgressMode()
@@ -305,7 +307,7 @@ Public Class RscriptProgressTask
 
         Call mzSet.GetJson.SaveTo(mzfile)
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
-        Call MyApplication.LogText(pipeline.CommandLine)
+        Call Workbench.LogText(pipeline.CommandLine)
         Call debug(pipeline.CommandLine)
 
         Call TaskProgress.RunAction(run:=Sub(p)
@@ -338,7 +340,7 @@ Public Class RscriptProgressTask
         End Using
 
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
-        Call MyApplication.LogText(pipeline.CommandLine)
+        Call Workbench.LogText(pipeline.CommandLine)
         Call TaskProgress.RunAction(run:=Sub(p)
                                              AddHandler pipeline.SetMessage, AddressOf p.SetInfo
                                              AddHandler pipeline.SetProgress, AddressOf p.SetProgress
@@ -366,8 +368,8 @@ Public Class RscriptProgressTask
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
         Call data.SaveTo(tempfile)
-        Call MyApplication.LogText(pipeline.CommandLine)
-        Call MyApplication.LogText(data)
+        Call Workbench.LogText(pipeline.CommandLine)
+        Call Workbench.LogText(data)
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
 
         Call TaskProgress.RunAction(run:=Sub(p)
@@ -395,8 +397,8 @@ Public Class RscriptProgressTask
 
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call data.SaveTo(tempfile)
-        Call MyApplication.LogText(pipeline.CommandLine)
-        Call MyApplication.LogText(data)
+        Call Workbench.LogText(pipeline.CommandLine)
+        Call Workbench.LogText(data)
         Call TaskProgress.RunAction(
             run:=Sub(p)
                      p.SetProgressMode()
@@ -423,8 +425,8 @@ Public Class RscriptProgressTask
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
-        Call MyApplication.LogText(pipeline.CommandLine)
-        Call MyApplication.LogText(data)
+        Call Workbench.LogText(pipeline.CommandLine)
+        Call Workbench.LogText(data)
         Call TaskProgress.RunAction(
             run:=Sub(p)
                      p.SetProgressMode()

@@ -52,7 +52,7 @@
 
 #End Region
 
-Imports Task.CLI
+Imports TaskStream.CLI
 
 ''' <summary>
 ''' 通过Rscript的命令行来执行比较耗时的后台任务

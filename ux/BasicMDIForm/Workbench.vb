@@ -20,6 +20,14 @@ Public NotInheritable Class Workbench
         _AppHost = host
     End Sub
 
+    ''' <summary>
+    ''' write text to the log output window
+    ''' </summary>
+    ''' <param name="text"></param>
+    Public Shared Sub LogText(text As String)
+        Call AppHost.LogText(text)
+    End Sub
+
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Sub Warning(msg As String)
         If AppHost Is Nothing Then
