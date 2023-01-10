@@ -116,12 +116,20 @@ Public Class ProgressSpinner
     End Sub
 
     Private Shared Function getLoadingTask(loading As Action, spinner As ProgressSpinner) As Tasks.Task
-        Return New Tasks.Task(
+        Dim run As Action =
             Sub()
                 Call Thread.Sleep(500)
-                Call loading()
+
+                Try
+                    Call loading()
+                Catch ex As Exception
+                    Call App.LogException(ex)
+                End Try
+
                 Call spinner.CloseWindow()
-            End Sub)
+            End Sub
+
+        Return New Task(run)
     End Function
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>

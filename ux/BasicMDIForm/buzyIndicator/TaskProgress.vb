@@ -215,9 +215,17 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
                 Call progress.ShowProgressTitle(title)
                 Call progress.ShowProgressDetails(info)
 
-                tmp = streamLoad(progress)
-
-                Call progress.CloseWindow()
+                Try
+                    tmp = Nothing
+                    tmp = streamLoad(progress)
+                Catch ex As Exception
+                    Call App.LogException(ex)
+                    Call progress.ShowProgressTitle("Task Error!")
+                    Call progress.ShowProgressDetails(ex.Message)
+                    Call Thread.Sleep(3 * 1000)
+                Finally
+                    Call progress.CloseWindow()
+                End Try
             End Sub
 
         If progress.ParentForm Is Nothing Then
@@ -265,8 +273,17 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
 
                 Call progress.ShowProgressTitle(title)
                 Call progress.ShowProgressDetails(info)
-                Call run(progress)
-                Call progress.CloseWindow()
+
+                Try
+                    Call run(progress)
+                Catch ex As Exception
+                    Call App.LogException(ex)
+                    Call progress.ShowProgressTitle("Task Error!")
+                    Call progress.ShowProgressDetails(ex.Message)
+                    Call Thread.Sleep(3 * 1000)
+                Finally
+                    Call progress.CloseWindow()
+                End Try
             End Sub).Start()
 
         Call mask.ShowDialogForm(progress)
