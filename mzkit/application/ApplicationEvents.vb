@@ -338,6 +338,10 @@ Type 'q()' to quit R.
             Call cancel.Set()
         End Sub
 
+        ''' <summary>
+        ''' writeline to the log output window
+        ''' </summary>
+        ''' <param name="msg"></param>
         Public Overloads Shared Sub LogText(msg As String)
             LogForm.AppendMessage(msg)
         End Sub

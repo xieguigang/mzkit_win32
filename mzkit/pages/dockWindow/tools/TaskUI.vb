@@ -56,6 +56,9 @@
 
 Imports BioNovoGene.mzkit_win32.My
 
+''' <summary>
+''' just provides the UI update interface to the task worker
+''' </summary>
 Public Class TaskUI
 
     Dim window As TaskListWindow

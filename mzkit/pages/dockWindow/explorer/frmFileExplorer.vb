@@ -234,6 +234,7 @@ Public Class frmFileExplorer
                         progress:=Sub(msg)
                                       ' do nothing
                                       Call task.ProgressMessage(msg)
+                                      Call MyApplication.LogText(msg)
                                   End Sub,
                         finished:=Sub()
                                       Call task.Finish()
