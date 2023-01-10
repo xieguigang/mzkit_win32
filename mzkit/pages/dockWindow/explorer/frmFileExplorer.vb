@@ -577,7 +577,7 @@ Public Class frmFileExplorer
                                     Return MZWorkPack.ExportWorkspace(
                                         workspace:=Globals.workspace.work,
                                         save:=file.FileName,
-                                        msg:=msg
+                                        msg:=AddressOf msg.SetInfo
                                     )
                                 End Function,
                     title:="Save Workspace",
