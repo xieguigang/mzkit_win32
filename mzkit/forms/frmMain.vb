@@ -322,7 +322,9 @@ Public Class frmMain : Implements AppHost
 
                      Call WindowModules.viewer.Invoke(Sub() WindowModules.viewer.LoadRender(dataPack, mzpack))
                      Call Invoke(Sub() Text = $"BioNovoGene Mzkit [{WindowModules.viewer.Text} {mzpack.FileName}]")
-                 End Sub, title:="Open mzPack for MSI...", info:="Loading MSI raw data file into viewer workspace...")
+                 End Sub,
+            title:="Open mzPack for MSI...",
+            info:="Loading MSI raw data file into viewer workspace...")
     End Sub
 
     Friend Sub saveCurrentScript()

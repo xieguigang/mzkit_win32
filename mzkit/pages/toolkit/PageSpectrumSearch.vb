@@ -192,7 +192,9 @@ Public Class PageSpectrumSearch
         Call TaskProgress.RunAction(
             run:=Sub(p)
                      Call SearchThread(query, raws, p)
-                 End Sub, title:="Run spectrum similarity search...", info:="Running...")
+                 End Sub,
+            title:="Run spectrum similarity search...",
+            info:="Running...")
 
         TabControl1.SelectedTab = TabPage2
     End Sub

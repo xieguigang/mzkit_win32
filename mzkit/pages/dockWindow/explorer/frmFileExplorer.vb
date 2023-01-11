@@ -266,17 +266,20 @@ Public Class frmFileExplorer
     Public Shared Function getRawCache(fileName As String, Optional titleTemplate$ = "Imports raw data [%s]", Optional cachePath As String = Nothing) As MZWork.Raw
         Call Workbench.StatusMessage("Run Raw Data Imports")
 
-        Return TaskProgress.LoadData(Function(p)
-                                         Dim task As New Task.ImportsRawData(
-                                             file:=fileName,
-                                             progress:=AddressOf p.SetInfo,
-                                             finished:=AddressOf p.TaskFinish,
-                                             cachePath:=cachePath
-                                         )
+        Return TaskProgress.LoadData(
+            streamLoad:=Function(p)
+                            Dim task As New Task.ImportsRawData(
+                                file:=fileName,
+                                progress:=AddressOf p.SetInfo,
+                                finished:=AddressOf p.TaskFinish,
+                                cachePath:=cachePath
+                            )
 
-                                         task.RunImports()
-                                         Return task.raw
-                                     End Function, title:=sprintf(titleTemplate, fileName))
+                            task.RunImports()
+                            Return task.raw
+                        End Function,
+            title:=sprintf(titleTemplate, fileName)
+        )
     End Function
 
 
@@ -663,7 +666,7 @@ Public Class frmFileExplorer
 
                         Call TaskProgress _
                             .LoadData(
-                                streamLoad:=Function(s)
+                                streamLoad:=Function(s As Action(Of String))
                                                 Call writer.WriteData(mzPack.MS, print:=s)
                                                 Return True
                                             End Function,
@@ -694,16 +697,18 @@ Public Class frmFileExplorer
             Dim tempTable As String = TempFileSystem.GetAppSysTempFile(".csv", raw.cache.MD5, prefix:=$"{App.PID}_deconv_peaktable_")
             Dim cli As String = $"""{RscriptPipelineTask.GetRScript("MS1deconv.R")}"" --raw ""{mzpack}"" --save ""{tempTable}"" --SetDllDirectory {Task.TaskEngine.hostDll.ParentPath.CLIPath}"
             Dim data As PeakFeature() = TaskProgress.LoadData(
-                    Function(println)
-                        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+                streamLoad:=Function(println)
+                                Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
-                        AddHandler pipeline.SetMessage, AddressOf println.SetInfo
+                                AddHandler pipeline.SetMessage, AddressOf println.SetInfo
 
-                        Call cli.__DEBUG_ECHO
-                        Call pipeline.Run()
+                                Call cli.__DEBUG_ECHO
+                                Call pipeline.Run()
 
-                        Return tempTable.LoadCsv(Of PeakFeature)
-                    End Function, title:="Run Ms1 Deconvolution", info:="deconvolution..")
+                                Return tempTable.LoadCsv(Of PeakFeature)
+                            End Function,
+                title:="Run Ms1 Deconvolution",
+                info:="deconvolution..")
 
             Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(title:=$"[{raw.source.FileName}]Peak Table")
 

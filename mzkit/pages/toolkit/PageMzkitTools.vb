@@ -237,7 +237,15 @@ Public Class PageMzkitTools
                     Sub()
                         Dim mzdiff1 As Tolerance = Tolerance.DeltaMass(0.001)
                         Dim mode As String = scanData.name.Match("[+-]")
-                        Dim kegg As MSJointConnection = TaskProgress.LoadData(Function() Globals.LoadKEGG(AddressOf MyApplication.LogText, If(mode = "+", 1, -1), mzdiff1), info:="Load KEGG repository data...")
+                        Dim kegg As MSJointConnection = TaskProgress.LoadData(
+                            streamLoad:=Function(echo As Action(Of String))
+                                            Return Globals.LoadKEGG(Sub(print)
+                                                                        MyApplication.LogText(print)
+                                                                        echo(print)
+                                                                    End Sub, If(mode = "+", 1, -1), mzdiff1)
+                                        End Function,
+                            info:="Load KEGG repository data..."
+                        )
                         Dim anno As MzQuery() = kegg.SetAnnotation(scanData.mz)
                         Dim mzdiff As Tolerance = Tolerance.DeltaMass(0.05)
                         Dim compound As Compound

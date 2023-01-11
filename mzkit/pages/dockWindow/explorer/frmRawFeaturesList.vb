@@ -413,7 +413,9 @@ Public Class frmRawFeaturesList
         Call TaskProgress.RunAction(
             run:=Sub(p)
                      Call page.MolecularNetworkingTool(p, similarityCutoff, AddressOf page.getSelectedIonSpectrums)
-                 End Sub, title:="Run molecular networking", info:="Initialized...")
+                 End Sub,
+            title:="Run molecular networking",
+            info:="Initialized...")
     End Sub
 
     Private Sub CustomToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CustomToolStripMenuItem.Click

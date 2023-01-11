@@ -287,7 +287,7 @@ Public Class frmMsImagingViewer
 
                                                 Return raw.Write(
                                                     file:=savefile.FileName.Open(FileMode.OpenOrCreate, doClear:=True),
-                                                    progress:=echo
+                                                    progress:=echo.Echo
                                                 )
                                             End Function,
                                 title:=$"Imports [{file.FileName}]"
@@ -1028,7 +1028,7 @@ Public Class frmMsImagingViewer
 
                 Call TaskProgress.RunAction(
                     Sub(update)
-                        MSIservice.MessageCallback = update
+                        MSIservice.MessageCallback = update.Echo
                         MSIservice.ExportMzpack(savefile:=fileName)
                     End Sub, title:="Export mzPack data...", info:="Save mzPack!")
                 Call MessageBox.Show($"Export mzPack data at location: {vbCrLf}{fileName}!", "BioNovoGene MSI Viewer", MessageBoxButtons.OK, MessageBoxIcon.Information)

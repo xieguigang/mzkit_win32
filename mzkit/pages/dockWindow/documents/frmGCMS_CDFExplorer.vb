@@ -75,7 +75,12 @@ Public Class frmGCMS_CDFExplorer
 
         If file.ExtensionSuffix("cdf") Then
             If file.FileLength > 1024 * 512 AndAlso Not isBackground Then
-                gcms = TaskProgress.LoadData(Function() netCDFReader.Open(file).ReadData(showSummary:=False), info:=file.GetFullPath)
+                gcms = TaskProgress.LoadData(
+                    streamLoad:=Function(print As Action(Of String))
+                                    Return netCDFReader.Open(file).ReadData(showSummary:=False)
+                                End Function,
+                    info:=file.GetFullPath
+                )
             Else
                 gcms = netCDFReader.Open(file).ReadData(showSummary:=False)
             End If

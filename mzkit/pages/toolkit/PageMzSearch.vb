@@ -507,7 +507,7 @@ Public Class PageMzSearch
                 End Function, info:="Load annotation database repository data...")
 
             Dim anno As NamedCollection(Of MzQuery)() = TaskProgress.LoadData(
-                streamLoad:=Function(print) keggMeta.MSetAnnotation(mzset, print).ToArray,
+                streamLoad:=Function(print As Action(Of String)) keggMeta.MSetAnnotation(mzset, print).ToArray,
                 title:="Peak List Annotation",
                 info:="Run ms1 peak list data annotation..."
             )
