@@ -775,6 +775,7 @@ Public Class frmMain : Implements AppHost
     End Sub
 
     Dim mzkitApp As Process = Process.GetCurrentProcess()
+    Public Event ResizeForm As AppHost.ResizeFormEventHandler Implements AppHost.ResizeForm
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         ToolStripStatusLabel3.Text = $"Memory: {StringFormats.Lanudry(mzkitApp.WorkingSet64)}"
@@ -807,6 +808,8 @@ Public Class frmMain : Implements AppHost
     Private Sub frmMain_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         Ribbon1.Update()
         Ribbon1.Refresh()
+
+        RaiseEvent ResizeForm(Location, Size)
     End Sub
 
     Private Sub ToolStripStatusLabel4_Click(sender As Object, e As EventArgs) Handles ToolStripStatusLabel4.Click

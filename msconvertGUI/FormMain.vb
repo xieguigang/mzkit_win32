@@ -148,7 +148,13 @@ Public Class FormMain : Implements AppHost
         Workbench.Hook(Me)
     End Sub
 
+    Public Event ResizeForm As AppHost.ResizeFormEventHandler Implements AppHost.ResizeForm
+
     Public Sub LogText(text As String) Implements AppHost.LogText
 
+    End Sub
+
+    Private Sub FormMain_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+        RaiseEvent ResizeForm(Location, Size)
     End Sub
 End Class
