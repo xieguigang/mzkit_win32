@@ -134,27 +134,6 @@ Public Class VisualStudio
             Return
         End If
 
-        'Call frmTaskProgress.LoadData(
-        '    streamLoad:=Function(log)
-        '                    Call PipelineProcess.ExecSub(
-        '                        app:="cmd.exe",
-        '                        args:=script,
-        '                        onReadLine:=Sub(line)
-        '                                        Call MyApplication.LogText(line)
-        '                                        Call log(line)
-        '                                        Call Application.DoEvents()
-        '                                    End Sub,
-        '                        workdir:=script.ParentPath
-        '                    )
-
-        '                    Globals.Settings.version = Globals.BuildTime
-        '                    Globals.Settings.Save()
-
-        '                    Return Nothing
-        '                End Function,
-        '    title:="Install Local Packages...",
-        '    info:="Install local packages into R# runtime..."
-        ')
         Dim task As New ProcessStartInfo With {
             .Arguments = $"/c CALL {script.GetFullPath.CLIPath}",
             .CreateNoWindow = False,

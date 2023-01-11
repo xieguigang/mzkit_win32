@@ -9,6 +9,14 @@ Public NotInheritable Class MSConvertTask
     Private Sub New()
     End Sub
 
+    ''' <summary>
+    ''' merge multiple slide sample
+    ''' </summary>
+    ''' <param name="msData"></param>
+    ''' <param name="layoutData"></param>
+    ''' <param name="savefile"></param>
+    ''' <param name="fileName_tag"></param>
+    ''' <param name="echo"></param>
     Public Shared Sub MergeMultipleSlides(msData As String(),
                                           layoutData As String,
                                           savefile As String,

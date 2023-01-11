@@ -240,7 +240,7 @@ Public Class frmMsImagingViewer
                                                         layoutData:=config.layoutData,
                                                         savefile:=savefile.FileName,
                                                         fileName_tag:=config.useFileNameAsSourceTag,
-                                                        echo:=echo
+                                                        echo:=AddressOf echo.SetInfo
                                                     )
 
                                                     Return True
@@ -282,7 +282,7 @@ Public Class frmMsImagingViewer
                                                 Dim raw As mzPack = Shimadzu.ImportsMzPack(
                                                     file:=file.OpenFile,
                                                     sample:=file.FileName.FileName,
-                                                    println:=echo
+                                                    println:=echo.Echo
                                                 )
 
                                                 Return raw.Write(
@@ -431,7 +431,7 @@ Public Class frmMsImagingViewer
             Return
         ElseIf MessageBox.Show("This operation will makes the entire MSImaging plot upside down.", "MSI Data Services", buttons:=MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
             Call TaskProgress.LoadData(
-                Function(msg As Action(Of String))
+                Function(msg As ITaskProgress)
                     Dim info = MSIservice.TurnUpsideDown
 
                     If Not info Is Nothing Then
@@ -1094,9 +1094,9 @@ Public Class frmMsImagingViewer
         guid = $"{mzpack}+{filePath}".MD5
 
         Call TaskProgress.LoadData(
-            Function(msg As Action(Of String))
+            Function(msg As ITaskProgress)
                 Call ServiceHub.MSIDataService.StartMSIService(MSIservice)
-                Call Me.Invoke(Sub() LoadRender(MSIservice.LoadMSI(mzpack, msg), filePath))
+                Call Me.Invoke(Sub() LoadRender(MSIservice.LoadMSI(mzpack, msg.Echo), filePath))
 
                 Return 0
             End Function)

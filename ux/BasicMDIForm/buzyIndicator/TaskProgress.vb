@@ -198,6 +198,16 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
 
     Dim webkitLoaded As Boolean = False
 
+    Public Shared Function LoadData(Of T)(streamLoad As Func(Of Action(Of String), T),
+                                          Optional title$ = "Loading data...",
+                                          Optional info$ = "Open a large raw data file...",
+                                          Optional ByRef taskAssign As Thread = Nothing,
+                                          Optional canbeCancel As Boolean = False) As T
+        Return LoadData(Function(task)
+                            Return streamLoad(task.Echo)
+                        End Function, title, info, taskAssign, canbeCancel)
+    End Function
+
     Public Shared Function LoadData(Of T)(streamLoad As Func(Of ITaskProgress, T),
                                           Optional title$ = "Loading data...",
                                           Optional info$ = "Open a large raw data file...",

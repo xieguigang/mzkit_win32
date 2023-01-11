@@ -21,7 +21,12 @@ Public Class KEGGEnrichmentAction : Inherits ActionBase
         Dim kegg As Background = KEGGRepo.loadBackground(maps)
         Dim enrich = TaskProgress.LoadData(
             Function(msg)
-                Dim all = kegg.Enrichment(data.AsObjectEnumerator.Where(Function(c) Not c Is Nothing).Select(Function(c) c.ToString), outputAll:=True, showProgress:=True, doProgress:=msg).ToArray
+                Dim all = kegg.Enrichment(
+                    list:=data.AsObjectEnumerator.Where(Function(c) Not c Is Nothing).Select(Function(c) c.ToString),
+                    outputAll:=True,
+                    showProgress:=True,
+                    doProgress:=msg.Echo
+                ).ToArray
                 Call msg.SetInfo("Do FDR...")
                 Dim fdr = all.FDRCorrection.OrderBy(Function(p) p.pvalue).ToArray
 

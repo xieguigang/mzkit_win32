@@ -327,7 +327,7 @@ Module Globals
         End If
 
         Dim work As WorkspaceFile = TaskProgress.LoadData(
-            streamLoad:=Function(msg) MZWorkPack.ImportWorkspace(mzwork, msg),
+            streamLoad:=Function(msg) MZWorkPack.ImportWorkspace(mzwork, msg.Echo),
             info:="Loading MZKit workspace..."
         )
         Dim project As New ViewerProject With {
