@@ -265,7 +265,7 @@ UseCheckedList:
         End If
 
         Dim getFormula As New InputIonRGB
-        Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
+        Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
 
         For Each ion As Double In mz3
             Dim ionStr As String = ion.ToString("F4")
@@ -323,7 +323,7 @@ UseCheckedList:
                     Dim dims As Size = cdf.GetDimension
                     ' open tool and then save to sample regions?
                     Dim getFormula As New SampleRegionMergeTool
-                    Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
+                    Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
 
                     Call getFormula.LoadRegions(regions, dims)
 

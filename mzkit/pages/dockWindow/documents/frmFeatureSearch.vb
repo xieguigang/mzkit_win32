@@ -379,7 +379,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
 
     Private Sub ApplyFeatureFilterToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ApplyFeatureFilterToolStripMenuItem.Click
         Dim getFilters As New InputFeatureFilter
-        Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
+        Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
 
         If rtmin.IsNaNImaginary Then
             rtmin = rangeMin

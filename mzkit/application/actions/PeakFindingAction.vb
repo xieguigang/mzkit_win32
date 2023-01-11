@@ -14,7 +14,7 @@ Public Class PeakFindingAction : Inherits ActionBase
 
     Public Overrides Sub RunAction(fieldName As String, data As Array, table As DataTable)
         Dim getFormula As New InputPeakTime
-        Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
+        Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
 
         For i As Integer = 0 To table.Columns.Count - 1
             Dim tag As String = table.Columns.Item(i).ColumnName

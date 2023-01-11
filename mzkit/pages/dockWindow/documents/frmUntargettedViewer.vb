@@ -218,7 +218,7 @@ Public Class frmUntargettedViewer
                                    apply As Action(Of Double, ChromatogramTick()),
                                    Optional cancel As Action = Nothing)
 
-        Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
+        Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
         Dim getConfig As New InputXICTarget
         Dim candidateSet = ms1.ToArray _
             .Centroid(Tolerance.DeltaMass(0.01), LowAbundanceTrimming.intoCutff) _

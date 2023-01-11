@@ -155,7 +155,7 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
 
     Private Sub DoTableSampleStats()
         Dim stats As New ShowColumnStat
-        Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
+        Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
 
         For Each column As DataGridViewColumn In AdvancedDataGridView1.Columns
             Dim key As String = column.Name

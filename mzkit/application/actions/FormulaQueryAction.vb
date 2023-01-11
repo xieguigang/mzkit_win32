@@ -16,7 +16,7 @@ Public Class FormulaQueryAction : Inherits ActionBase
 
     Public Overrides Sub RunAction(fieldName As String, data As Array, tbl As DataTable)
         Dim getFormula As New InputFormula
-        Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
+        Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
 
         If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
             Dim formula As Formula = FormulaScanner.ScanFormula(getFormula.TextBox1.Text)

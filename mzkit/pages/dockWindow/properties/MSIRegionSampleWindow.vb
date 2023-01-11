@@ -254,7 +254,7 @@ Public Class MSIRegionSampleWindow
     ''' <param name="e"></param>
     Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
         Dim getFormula As New InputConfigTissueMap
-        Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
+        Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
 
         getFormula.AlphaLevel = alpha
         getFormula.RegionPrefix = prefix
@@ -326,7 +326,7 @@ Public Class MSIRegionSampleWindow
         End If
 
         Dim getFormula As New SampleRegionMergeTool
-        Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
+        Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
 
         Call getFormula.LoadRegions(polygons, dimension)
 

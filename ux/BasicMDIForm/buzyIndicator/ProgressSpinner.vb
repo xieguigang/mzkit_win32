@@ -108,7 +108,7 @@ Public Class ProgressSpinner
     ''' </remarks>
     Public Shared Sub DoLoading(loading As Action)
         Dim spinner As New ProgressSpinner
-        Dim mask As New MaskForm(Workbench.AppHost.GetDesktopLocation, Workbench.AppHost.GetClientSize)
+        Dim mask As MaskForm = MaskForm.CreateMask(Workbench.AppHost)
         Dim task = getLoadingTask(loading, spinner)
 
         Call task.Start()

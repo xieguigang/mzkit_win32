@@ -205,7 +205,7 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
                                           Optional canbeCancel As Boolean = False) As T
         Dim tmp As T
         Dim progress As New TaskProgress
-        Dim mask As New MaskForm(Workbench.AppHost.GetDesktopLocation, Workbench.AppHost.GetClientSize)
+        Dim mask As MaskForm = MaskForm.CreateMask(Workbench.AppHost)
         Dim task As ThreadStart =
             Sub()
                 Do While Not progress.webkitLoaded
@@ -262,7 +262,7 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
         Dim progress As New TaskProgress With {
             .TaskCancel = cancel
         }
-        Dim mask As New MaskForm(Workbench.AppHost.GetDesktopLocation, Workbench.AppHost.GetClientSize)
+        Dim mask As MaskForm = MaskForm.CreateMask(Workbench.AppHost)
 
         Call progress.SetProgressMode()
         Call New Thread(

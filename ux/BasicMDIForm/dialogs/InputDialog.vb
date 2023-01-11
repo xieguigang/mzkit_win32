@@ -65,7 +65,7 @@ Namespace CommonDialogs
             End If
 
             Dim getConfig As Form = If(config, New Form)
-            Dim mask As New MaskForm(Workbench.AppHost.GetDesktopLocation, Workbench.AppHost.GetClientSize)
+            Dim mask As MaskForm = MaskForm.CreateMask(Workbench.AppHost)
 
             If mask.ShowDialogForm(getConfig) = DialogResult.OK Then
                 Call setConfig(getConfig)

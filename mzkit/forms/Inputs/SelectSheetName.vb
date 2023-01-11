@@ -23,7 +23,7 @@ Public Class SelectSheetName
             Call showFile(File.Load(fileName), fileName.FileName)
         Else
             Dim getSheetName As New SelectSheetName
-            Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
+            Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
             Dim names As String() = Excel.GetSheetNames(fileName)
 
             For Each name As String In names

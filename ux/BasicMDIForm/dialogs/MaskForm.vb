@@ -57,7 +57,7 @@ Namespace CommonDialogs
 
     Public Class MaskForm
 
-        Sub New(point As Point, size As Size)
+        Private Sub New(point As Point, size As Size)
 
             ' This call is required by the designer.
             InitializeComponent()
@@ -90,6 +90,26 @@ Namespace CommonDialogs
             Dim result = dialog.ShowDialog
             Me.Close()
             Return result
+        End Function
+
+        Private Sub handleHostResize(location As Point, size As Size)
+            Me.Size = size
+            Me.Location = location
+        End Sub
+
+        Public Shared Function CreateMask(frm As Form) As MaskForm
+            Dim mask As New MaskForm(frm.Location, frm.Size)
+            AddHandler frm.Resize,
+                Sub()
+                    Call mask.handleHostResize(frm.Location, frm.Size)
+                End Sub
+            Return mask
+        End Function
+
+        Public Shared Function CreateMask(host As AppHost) As MaskForm
+            Dim mask As New MaskForm(host.GetDesktopLocation, host.GetClientSize)
+            AddHandler host.ResizeForm, AddressOf mask.handleHostResize
+            Return mask
         End Function
     End Class
 End Namespace

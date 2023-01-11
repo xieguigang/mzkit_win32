@@ -448,7 +448,7 @@ Public Class frmMsImagingViewer
 
     Sub SearchPubChem()
         Dim getFormula As New InputPubChemProxy
-        Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
+        Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
 
         If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
             If checkService() Then
@@ -630,7 +630,7 @@ Public Class frmMsImagingViewer
         Dim pixels As Integer()
         Dim density As Double()
         Dim getFormula As New InputMatrixIons
-        Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
+        Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
 
         If ionStat Is Nothing Then
             Call getFormula.LoadMetabolites()
@@ -1044,7 +1044,7 @@ Public Class frmMsImagingViewer
     ''' <param name="file"></param>
     Public Sub loadRaw(file As String)
         Dim getSize As New InputMSIDimension
-        Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
+        Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
 
         If mask.ShowDialogForm(getSize) = DialogResult.OK Then
             guid = file.MD5
@@ -1108,7 +1108,7 @@ Public Class frmMsImagingViewer
         End If
 
         Dim input As New InputBasePeakIon
-        Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
+        Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
 
         If mask.ShowDialogForm(input) = DialogResult.OK Then
             Dim mz As Double = input.IonMz
@@ -1783,32 +1783,6 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub ImageProcessingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImageProcessingToolStripMenuItem.Click
-        'Dim getConfig As New InputImageProcessor
-        'Dim mask As New MaskForm(MyApplication.host.Location, MyApplication.host.Size)
-
-        'If mask.ShowDialogForm(getConfig) = DialogResult.OK Then
-        '    Dim levels As Integer = CInt(getConfig.TrackBar1.Value)
-        '    Dim contract As Double = getConfig.TrackBar2.Value
-
-        '    If levels > 0 OrElse contract <> 0.0 Then
-        '        Dim progress As New frmTaskProgress
-
-        '        ' just exit image progress
-        '        progress.TaskCancel = Sub() PixelSelector1.cancelBlur = True
-        '        progress.ShowProgressTitle("Image Processing", True)
-        '        progress.ShowProgressDetails("Do gauss blur...", True)
-        '        progress.SetProgressMode()
-
-        '        Call New Thread(Sub()
-        '                            Call Thread.Sleep(1000)
-        '                            Call progress.SetProgress(0, "Do gauss blur...")
-        '                            Call Me.Invoke(Sub() PixelSelector1.doGauss(levels * 13, contract, Sub(p) progress.SetProgress(p, $"Do gauss blur... {p.ToString("F2")}%")))
-        '                            Call progress.Invoke(Sub() progress.Close())
-        '                        End Sub).Start()
-
-        '        Call progress.ShowDialog()
-        '    End If
-        'End If
         Dim image As Image = PixelSelector1.MSImage
         Dim file As String = TempFileSystem.GetAppSysTempFile(".app", sessionID:=App.PID, prefix:="saveimage___") & "/MSImaging.png"
 
