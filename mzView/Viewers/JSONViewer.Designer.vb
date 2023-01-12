@@ -23,7 +23,9 @@ Partial Class JSONViewer
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(JSONViewer))
         Me.Win7StyleTreeView1 = New ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView(Me.components)
+        Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.SuspendLayout()
         '
         'Win7StyleTreeView1
@@ -32,11 +34,21 @@ Partial Class JSONViewer
         Me.Win7StyleTreeView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Win7StyleTreeView1.Font = New System.Drawing.Font("微软雅黑", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Win7StyleTreeView1.HotTracking = True
+        Me.Win7StyleTreeView1.ImageIndex = 0
+        Me.Win7StyleTreeView1.ImageList = Me.ImageList1
         Me.Win7StyleTreeView1.Location = New System.Drawing.Point(0, 0)
         Me.Win7StyleTreeView1.Name = "Win7StyleTreeView1"
+        Me.Win7StyleTreeView1.SelectedImageIndex = 0
         Me.Win7StyleTreeView1.ShowLines = False
         Me.Win7StyleTreeView1.Size = New System.Drawing.Size(480, 372)
         Me.Win7StyleTreeView1.TabIndex = 0
+        '
+        'ImageList1
+        '
+        Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
+        Me.ImageList1.Images.SetKeyName(0, "folder-documents.png")
+        Me.ImageList1.Images.SetKeyName(1, "application-x-object.png")
         '
         'JSONViewer
         '
@@ -50,4 +62,5 @@ Partial Class JSONViewer
     End Sub
 
     Friend WithEvents Win7StyleTreeView1 As ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView
+    Friend WithEvents ImageList1 As ImageList
 End Class

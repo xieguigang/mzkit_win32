@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic.DataStorage.HDSPack
+﻿Imports System.IO
+Imports Microsoft.VisualBasic.DataStorage.HDSPack
 Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
@@ -30,6 +31,8 @@ Public Class FormMain
         Dim tree = Win7StyleTreeView1.Nodes.Add(mzpack.ToString)
         Dim root = mzpack.superBlock
 
+        tree.ImageIndex = 0
+
         Call TaskProgress.RunAction(
             run:=Sub(msg)
                      Call loadTree(tree, root, msg.Echo, 0)
@@ -45,9 +48,11 @@ Public Class FormMain
         For Each item As StreamObject In dir.files
             Dim current_dir = tree.Nodes.Add(item.fileName)
             current_dir.Tag = item
+            current_dir.ImageIndex = 1
 
             If TypeOf item Is StreamGroup Then
                 Call Application.DoEvents()
+                current_dir.ImageIndex = 0
 
                 If depth < 2 Then
                     Call echo(item.ToString)
@@ -82,9 +87,20 @@ Public Class FormMain
 
                 DirectCast(showViewer("json"), JSONViewer).LoadJSON(json)
             Case "bson"
+                Using buf As Stream = mzpack.OpenBlock(data)
+                    Dim json As JsonElement = BSON.Load(buf)
+                    DirectCast(showViewer("json"), JSONViewer).LoadJSON(json)
+                End Using
             Case "txt"
                 Dim text As String = mzpack.ReadText(data.referencePath.ToString)
                 DirectCast(showViewer("txt"), TextViewer).LoadText(text)
+            Case "png", "jpg", "jpeg", "bmp", "tiff"
+                Using buf As Stream = mzpack.OpenBlock(data)
+                    Dim img As Image = Image.FromStream(buf)
+                    Dim pic As PictureBox = showViewer("png")
+
+                    pic.BackgroundImage = img
+                End Using
             Case Else
                 ' do nothing
         End Select
@@ -102,9 +118,18 @@ Public Class FormMain
     End Function
 
     Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Dim img As New PictureBox
+
+        img.BackgroundImageLayout = ImageLayout.Zoom
+
         viewers.Add("json", New JSONViewer)
         viewers.Add("bson", New JSONViewer)
         viewers.Add("txt", New TextViewer)
+        viewers.Add("png", img)
+        viewers.Add("jpg", img)
+        viewers.Add("jpeg", img)
+        viewers.Add("bmp", img)
+        viewers.Add("tiff", img)
 
         For Each viewer In viewers.Values
             SplitContainer1.Panel2.Controls.Add(viewer)
