@@ -117,17 +117,32 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
         Return True
     End Function
 
+    Private Function getRowFiles(inputfile As String, scanExt As String) As IEnumerable(Of String)
+        If inputfile.FileExists Then
+            Return inputfile.ReadAllLines _
+                .Select(Function(path) Strings.Trim(path).Trim(""""c)) _
+                .Where(Function(str)
+                           Return Not str.StringEmpty
+                       End Function)
+        Else
+            Return inputfile.EnumerateFiles($"*.{scanExt}")
+        End If
+    End Function
+
     <ExportAPI("/rowbinds")>
     <Description("Combine row scans to mzPack")>
     <Argument("--files", False, CLITypes.File, PipelineTypes.std_in, Description:="a temp file path that its content contains selected raw data file path for each row scans.")>
     <Argument("--save", False, CLITypes.File, PipelineTypes.std_in, Description:="a file path for export mzPack data file.")>
     <Usage("/rowbinds --files <list.txt/directory_path> --save <MSI.mzPack> [/scan <default=raw> /cutoff <intensity_cutoff, default=0> /matrix_basePeak <mz, default=0> /resolution <default=17>]")>
-    <Argument("/scan", True, CLITypes.String, Description:="This parameter only works for the directory input file. used as the file extension suffix for scan in the target directory.")>
+    <Argument("/scan", True, CLITypes.String,
+              Description:="This parameter only works for the directory input file. 
+              used as the file extension suffix for scan in the target directory. 
+              value for this argument could be: wiff, raw, mzML, mzXML, mzPack.")>
     <Argument("/matrix_basePeak", True, CLITypes.Double, Description:="zero or negative value means no removes of the matrix base ion, and the value of this parameter can also be 'auto', means auto check the matrix base ion.")>
     Public Function MSIRowCombine(args As CommandLine) As Integer
         Dim inputfile As String = args <= "--files"
         Dim scanExt As String = args <= "/scan"
-        Dim files As String() = If(inputfile.FileExists, inputfile.ReadAllLines, inputfile.EnumerateFiles($"*.{scanExt}").ToArray)
+        Dim files As String() = getRowFiles(inputfile, scanExt).ToArray
         Dim save As String = args("--save") Or (inputfile.ParentPath & "/" & inputfile.BaseName & ".mzPack")
         Dim cutoff As Double = args("/cutoff") Or 0.0
         Dim matrixBase As String = args <= "/matrix_basePeak"
