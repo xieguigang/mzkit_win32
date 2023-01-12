@@ -35,7 +35,8 @@ Public Class FormMain
                      Call loadTree(tree, root, msg.Echo)
                  End Sub,
             title:="Parse mzPack Tree",
-            info:="Parse file..."
+            info:="Parse file...",
+            host:=Me
         )
         Call Workbench.StatusMessage("Parse mzPack success!")
     End Sub

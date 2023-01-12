@@ -267,7 +267,8 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
     Public Shared Sub RunAction(run As Action(Of ITaskProgress),
                                 Optional title$ = "Loading data...",
                                 Optional info$ = "Open a large raw data file...",
-                                Optional cancel As Action = Nothing)
+                                Optional cancel As Action = Nothing,
+                                Optional host As Control = Nothing)
 
         Dim progress As New TaskProgress With {
             .TaskCancel = cancel
@@ -285,7 +286,11 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
                 Call progress.ShowProgressDetails(info)
 
                 Try
-                    Call run(progress)
+                    If host Is Nothing Then
+                        Call run(progress)
+                    Else
+                        Call host.Invoke(Sub() Call run(progress))
+                    End If
                 Catch ex As Exception
                     Call App.LogException(ex)
                     Call progress.ShowProgressTitle("Task Error!")
