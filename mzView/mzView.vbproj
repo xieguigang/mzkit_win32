@@ -2,10 +2,15 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows;net48</TargetFramework>
-    <StartupObject>Sub Main</StartupObject>
+    <TargetFrameworks>net48</TargetFrameworks>
+    <StartupObject>mzView.My.MyApplication</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
+    <AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
+    <Title>mzPack File Explorer</Title>
+    <Authors>xieguigang</Authors>
+    <Company>PANOMIX</Company>
+    <Description>View the data contents inside a specific mzPack raw data file</Description>
   </PropertyGroup>
 
   <ItemGroup>
