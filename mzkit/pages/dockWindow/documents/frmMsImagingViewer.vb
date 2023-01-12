@@ -1819,9 +1819,14 @@ Public Class frmMsImagingViewer
                     Dim tile = PixelSelector1 _
                         .MSICanvas _
                         .AddSpatialTile(spots)
-
                     ' move the spatial tile to the mouse location
-                    tile.Location = PixelSelector1.MSICanvas.PointToClient(Cursor.Position)
+                    Dim tilePos = PixelSelector1.MSICanvas.PointToClient(Cursor.Position)
+
+                    tilePos = New Point With {
+                        .X = If(tilePos.X < 0, 0, tilePos.X),
+                        .Y = If(tilePos.Y < 0, 0, tilePos.Y)
+                    }
+                    tile.Location = tilePos
                 Else
                     Dim maps As SpatialMapping = file.FileName.LoadXml(Of SpatialMapping)
 
