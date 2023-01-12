@@ -1,6 +1,11 @@
 ﻿Imports System.IO
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
+Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
+Imports Microsoft.VisualBasic.Data.IO
 Imports Microsoft.VisualBasic.DataStorage.HDSPack
 Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
+Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
 Imports Mzkit_win32.BasicMDIForm
@@ -87,20 +92,32 @@ Public Class FormMain
 
                 DirectCast(showViewer("json"), JSONViewer).LoadJSON(json)
             Case "bson"
-                Using buf As Stream = mzpack.OpenBlock(data)
-                    Dim json As JsonElement = BSON.Load(buf)
-                    DirectCast(showViewer("json"), JSONViewer).LoadJSON(json)
-                End Using
+                Dim buf As Stream = mzpack.OpenBlock(data)
+                Dim json As JsonElement = BSON.Load(buf)
+
+                DirectCast(showViewer("json"), JSONViewer).LoadJSON(json)
+            Case "mz"
+                Dim buffer As Stream = mzpack.OpenBlock(data)
+                Dim reader As New BinaryDataReader(buffer) With {.ByteOrder = ByteOrder.LittleEndian}
+                Dim ms1 As New ScanMS1
+
+                ' required of read the metadata
+                Call Serialization.ReadScan1(ms1, file:=reader, readmeta:=True)
+
+                Dim mat As New LibraryMatrix With {.ms2 = ms1.GetMs.ToArray, .name = ms1.scan_id}
+                Dim img As Image = PeakAssign.DrawSpectrumPeaks(mat).AsGDIImage
+                Dim pic As PictureBox = showViewer("png")
+
+                pic.BackgroundImage = img
             Case "txt"
                 Dim text As String = mzpack.ReadText(data.referencePath.ToString)
                 DirectCast(showViewer("txt"), TextViewer).LoadText(text)
             Case "png", "jpg", "jpeg", "bmp", "tiff"
-                Using buf As Stream = mzpack.OpenBlock(data)
-                    Dim img As Image = Image.FromStream(buf)
-                    Dim pic As PictureBox = showViewer("png")
+                Dim buf As Stream = mzpack.OpenBlock(data)
+                Dim img As Image = Image.FromStream(buf)
+                Dim pic As PictureBox = showViewer("png")
 
-                    pic.BackgroundImage = img
-                End Using
+                pic.BackgroundImage = img
             Case Else
                 ' do nothing
         End Select
