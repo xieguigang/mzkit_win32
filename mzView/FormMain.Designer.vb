@@ -28,14 +28,17 @@ Partial Class FormMain
         Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.Win7StyleTreeView1 = New ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView(Me.components)
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -57,7 +60,7 @@ Partial Class FormMain
         'OpenToolStripMenuItem
         '
         Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(108, 22)
         Me.OpenToolStripMenuItem.Text = "Open"
         '
         'ToolStripMenuItem1
@@ -71,6 +74,12 @@ Partial Class FormMain
         Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(108, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
+        'AboutToolStripMenuItem
+        '
+        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(55, 21)
+        Me.AboutToolStripMenuItem.Text = "About"
+        '
         'StatusStrip1
         '
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 428)
@@ -78,12 +87,6 @@ Partial Class FormMain
         Me.StatusStrip1.Size = New System.Drawing.Size(800, 22)
         Me.StatusStrip1.TabIndex = 1
         Me.StatusStrip1.Text = "StatusStrip1"
-        '
-        'AboutToolStripMenuItem
-        '
-        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(55, 21)
-        Me.AboutToolStripMenuItem.Text = "About"
         '
         'SplitContainer1
         '
@@ -100,6 +103,7 @@ Partial Class FormMain
         '
         'Win7StyleTreeView1
         '
+        Me.Win7StyleTreeView1.ContextMenuStrip = Me.ContextMenuStrip1
         Me.Win7StyleTreeView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Win7StyleTreeView1.HotTracking = True
         Me.Win7StyleTreeView1.Location = New System.Drawing.Point(0, 0)
@@ -107,6 +111,18 @@ Partial Class FormMain
         Me.Win7StyleTreeView1.ShowLines = False
         Me.Win7StyleTreeView1.Size = New System.Drawing.Size(266, 403)
         Me.Win7StyleTreeView1.TabIndex = 0
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 48)
+        '
+        'ViewToolStripMenuItem
+        '
+        Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
+        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ViewToolStripMenuItem.Text = "View"
         '
         'FormMain
         '
@@ -125,6 +141,7 @@ Partial Class FormMain
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -139,4 +156,6 @@ Partial Class FormMain
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents Win7StyleTreeView1 As ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
 End Class
