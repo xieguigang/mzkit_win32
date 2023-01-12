@@ -2,6 +2,7 @@
 Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
+Imports Mzkit_win32.BasicMDIForm
 
 Public Class FormMain
 
@@ -29,17 +30,25 @@ Public Class FormMain
         Dim tree = Win7StyleTreeView1.Nodes.Add(mzpack.ToString)
         Dim root = mzpack.superBlock
 
-        Call loadTree(tree, root)
+        Call TaskProgress.RunAction(
+            run:=Sub(msg)
+                     Call loadTree(tree, root, msg.Echo)
+                 End Sub,
+            title:="Parse mzPack Tree",
+            info:="Parse file..."
+        )
+        Call Workbench.StatusMessage("Parse mzPack success!")
     End Sub
 
-    Private Sub loadTree(tree As TreeNode, dir As StreamGroup)
+    Private Sub loadTree(tree As TreeNode, dir As StreamGroup, echo As Action(Of String))
         For Each item As StreamObject In dir.files
             Dim current_dir = tree.Nodes.Add(item.fileName)
             current_dir.Tag = item
 
             If TypeOf item Is StreamGroup Then
                 Call Application.DoEvents()
-                Call loadTree(current_dir, item)
+                Call echo(item.ToString)
+                Call loadTree(current_dir, item, echo)
             End If
         Next
     End Sub

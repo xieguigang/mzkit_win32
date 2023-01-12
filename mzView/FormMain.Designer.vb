@@ -31,7 +31,6 @@ Partial Class FormMain
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.Win7StyleTreeView1 = New ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView(Me.components)
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -82,14 +81,6 @@ Partial Class FormMain
         Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(55, 21)
         Me.AboutToolStripMenuItem.Text = "About"
         '
-        'StatusStrip1
-        '
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 428)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(800, 22)
-        Me.StatusStrip1.TabIndex = 1
-        Me.StatusStrip1.Text = "StatusStrip1"
-        '
         'SplitContainer1
         '
         Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -99,7 +90,7 @@ Partial Class FormMain
         'SplitContainer1.Panel1
         '
         Me.SplitContainer1.Panel1.Controls.Add(Me.Win7StyleTreeView1)
-        Me.SplitContainer1.Size = New System.Drawing.Size(800, 403)
+        Me.SplitContainer1.Size = New System.Drawing.Size(800, 425)
         Me.SplitContainer1.SplitterDistance = 266
         Me.SplitContainer1.TabIndex = 2
         '
@@ -113,7 +104,7 @@ Partial Class FormMain
         Me.Win7StyleTreeView1.Location = New System.Drawing.Point(0, 0)
         Me.Win7StyleTreeView1.Name = "Win7StyleTreeView1"
         Me.Win7StyleTreeView1.ShowLines = False
-        Me.Win7StyleTreeView1.Size = New System.Drawing.Size(266, 403)
+        Me.Win7StyleTreeView1.Size = New System.Drawing.Size(266, 425)
         Me.Win7StyleTreeView1.TabIndex = 0
         '
         'ContextMenuStrip1
@@ -134,11 +125,12 @@ Partial Class FormMain
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.SplitContainer1)
-        Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.MenuStrip1)
+        Me.DoubleBuffered = True
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "FormMain"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.TabPageContextMenuStrip = Me.DockContextMenuStrip1
         Me.Text = "mzPack Data Viewer"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
@@ -156,7 +148,6 @@ Partial Class FormMain
     Friend WithEvents OpenToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
     Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents Win7StyleTreeView1 As ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView
