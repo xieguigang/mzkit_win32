@@ -1,4 +1,6 @@
-﻿Public Class Plugin : Inherits Mzkit_win32.BasicMDIForm.Plugin
+﻿Imports Mzkit_win32.BasicMDIForm
+
+Public Class Plugin : Inherits Mzkit_win32.BasicMDIForm.Plugin
 
     Public Overrides ReadOnly Property guid As Guid
         Get
@@ -25,7 +27,7 @@
     End Property
 
     Public Overrides Sub Exec()
-
+        Call Workbench.ShowSingleDocument(Of FormMain)()
     End Sub
 
     Public Overrides Function Init(println As Action(Of String)) As Boolean
