@@ -107,6 +107,6 @@ Public Class FormMain
             viewer.Visible = False
         Next
 
-        Call ApplyVsTheme(MenuStrip1, ContextMenuStrip1, StatusStrip1)
+        Call ApplyVsTheme(MenuStrip1, ContextMenuStrip1)
     End Sub
 End Class
