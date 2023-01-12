@@ -101,7 +101,7 @@ Public Class MSImagingRowBinds
 
             ' 20221018 if check noise, then maybe loose too much ions
             Dim wiffRaw As New sciexWiffReader.WiffScanFileReader(wiff)
-            Dim mzPack As mzPack = wiffRaw.LoadFromWiffRaw(checkNoise:=False, println:=println)
+            Dim mzPack As mzPack = wiffRaw.LoadFromWiffRaw(checkNoise:=True, println:=println)
 
             Call rawfiles.Add(CutBasePeak(mzPack))
         Next
