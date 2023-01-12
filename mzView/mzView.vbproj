@@ -5,12 +5,13 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{8B3076CB-9F31-4190-8FF2-ADF4DAB5DA82}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <StartupObject>mzView.My.MyApplication</StartupObject>
+    <OutputType>Library</OutputType>
+    <StartupObject>
+    </StartupObject>
     <RootNamespace>mzView</RootNamespace>
     <AssemblyName>mzView</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>WindowsForms</MyType>
+    <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -90,6 +91,10 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.Windows.Form, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dist\Microsoft.VisualStudio.Windows.Form.dll</HintPath>
+    </Reference>
     <Reference Include="Mzkit_win32.Interaction">
       <HintPath>..\ux\ControlLibrary\obj\x64\mzkit_win32\Mzkit_win32.Interaction.dll</HintPath>
     </Reference>
@@ -118,6 +123,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Plugin.vb" />
     <Compile Include="FormMain.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +131,7 @@
       <DependentUpon>FormMain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="zzz.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -141,10 +148,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="JSONViewer.Designer.vb">
+    <Compile Include="Viewers\JSONViewer.Designer.vb">
       <DependentUpon>JSONViewer.vb</DependentUpon>
     </Compile>
-    <Compile Include="JSONViewer.vb">
+    <Compile Include="Viewers\JSONViewer.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Viewers\TextViewer.Designer.vb">
+      <DependentUpon>TextViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Viewers\TextViewer.vb">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
@@ -152,7 +165,7 @@
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="JSONViewer.resx">
+    <EmbeddedResource Include="Viewers\JSONViewer.resx">
       <DependentUpon>JSONViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -160,6 +173,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewers\TextViewer.resx">
+      <DependentUpon>TextViewer.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -190,6 +206,10 @@
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\mime\application%25json\JSON-netcore5.vbproj">
       <Project>{e907b484-44f0-41f6-97c7-297451fa05ee}</Project>
       <Name>JSON-netcore5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ux\BasicMDIForm\BasicMDIForm.vbproj">
+      <Project>{51c55c5c-2f21-4e9f-aa8d-3664135758b7}</Project>
+      <Name>BasicMDIForm</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

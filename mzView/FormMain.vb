@@ -68,6 +68,9 @@ Public Class FormMain
 
                 DirectCast(showViewer("json"), JSONViewer).LoadJSON(json)
             Case "bson"
+            Case "txt"
+                Dim text As String = mzpack.ReadText(data.referencePath.ToString)
+                DirectCast(showViewer("txt"), TextViewer).LoadText(text)
             Case Else
                 ' do nothing
         End Select
@@ -87,11 +90,14 @@ Public Class FormMain
     Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles Me.Load
         viewers.Add("json", New JSONViewer)
         viewers.Add("bson", New JSONViewer)
+        viewers.Add("txt", New TextViewer)
 
         For Each viewer In viewers.Values
             SplitContainer1.Panel2.Controls.Add(viewer)
             viewer.Dock = DockStyle.Fill
             viewer.Visible = False
         Next
+
+        Call ApplyVsTheme(MenuStrip1, ContextMenuStrip1, StatusStrip1)
     End Sub
 End Class
