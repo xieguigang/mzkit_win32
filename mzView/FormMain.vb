@@ -32,7 +32,7 @@ Public Class FormMain
 
         Call TaskProgress.RunAction(
             run:=Sub(msg)
-                     Call loadTree(tree, root, msg.Echo)
+                     Call loadTree(tree, root, msg.Echo, 0)
                  End Sub,
             title:="Parse mzPack Tree",
             info:="Parse file...",
@@ -41,15 +41,19 @@ Public Class FormMain
         Call Workbench.StatusMessage("Parse mzPack success!")
     End Sub
 
-    Private Sub loadTree(tree As TreeNode, dir As StreamGroup, echo As Action(Of String))
+    Private Sub loadTree(tree As TreeNode, dir As StreamGroup, echo As Action(Of String), depth As Integer)
         For Each item As StreamObject In dir.files
             Dim current_dir = tree.Nodes.Add(item.fileName)
             current_dir.Tag = item
 
             If TypeOf item Is StreamGroup Then
                 Call Application.DoEvents()
-                Call echo(item.ToString)
-                Call loadTree(current_dir, item, echo)
+
+                If depth < 2 Then
+                    Call echo(item.ToString)
+                End If
+
+                Call loadTree(current_dir, item, echo, depth + 1)
             End If
         Next
     End Sub
