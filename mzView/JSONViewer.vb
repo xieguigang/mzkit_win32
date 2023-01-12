@@ -1,29 +1,31 @@
-﻿Imports Microsoft.VisualBasic.MIME.application.json.Javascript
+﻿Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.MIME.application.json.Javascript
 
 Public Class JSONViewer
 
     Public Sub LoadJSON(json As JsonElement)
         Win7StyleTreeView1.Nodes.Clear()
         Dim root = Win7StyleTreeView1.Nodes.Add("/")
-        loadTree(json, root)
+        loadTree(json, root, "")
     End Sub
 
-    Private Sub loadTree(json As JsonElement, tree As TreeNode)
+    Private Sub loadTree(json As JsonElement, tree As TreeNode, prefix As String)
         If TypeOf json Is JsonArray Then
             Dim arr = DirectCast(json, JsonArray)
-            Dim vec = tree.Nodes.Add($"array[{arr.Length}]")
+            Dim vec = tree.Nodes.Add($"{prefix}array[{arr.Length}]")
+            Dim i As i32 = 0
 
             For Each item In arr
-                Call loadTree(item, vec)
+                Call loadTree(item, vec, $"[{++i}]: ")
             Next
         ElseIf TypeOf json Is JsonValue Then
-            tree.Nodes.Add(json.ToString)
+            tree.Nodes.Add($"{prefix}{json.ToString}")
         ElseIf TypeOf json Is JsonObject Then
             Dim obj = DirectCast(json, JsonObject)
-            Dim list = tree.Nodes.Add($"object")
+            Dim list = tree.Nodes.Add($"{prefix}object")
 
             For Each tuple In obj
-                Call loadTree(tuple.Value, list)
+                Call loadTree(tuple.Value, list, $"'{tuple.Name}': ")
             Next
         End If
     End Sub

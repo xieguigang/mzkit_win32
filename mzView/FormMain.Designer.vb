@@ -103,8 +103,10 @@ Partial Class FormMain
         '
         'Win7StyleTreeView1
         '
+        Me.Win7StyleTreeView1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Win7StyleTreeView1.ContextMenuStrip = Me.ContextMenuStrip1
         Me.Win7StyleTreeView1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Win7StyleTreeView1.Font = New System.Drawing.Font("微软雅黑", 10.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Win7StyleTreeView1.HotTracking = True
         Me.Win7StyleTreeView1.Location = New System.Drawing.Point(0, 0)
         Me.Win7StyleTreeView1.Name = "Win7StyleTreeView1"
@@ -116,12 +118,12 @@ Partial Class FormMain
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 48)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(104, 26)
         '
         'ViewToolStripMenuItem
         '
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
-        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
         Me.ViewToolStripMenuItem.Text = "View"
         '
         'FormMain

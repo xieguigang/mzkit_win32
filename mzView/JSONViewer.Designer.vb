@@ -28,7 +28,9 @@ Partial Class JSONViewer
         '
         'Win7StyleTreeView1
         '
+        Me.Win7StyleTreeView1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Win7StyleTreeView1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Win7StyleTreeView1.Font = New System.Drawing.Font("微软雅黑", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Win7StyleTreeView1.HotTracking = True
         Me.Win7StyleTreeView1.Location = New System.Drawing.Point(0, 0)
         Me.Win7StyleTreeView1.Name = "Win7StyleTreeView1"
