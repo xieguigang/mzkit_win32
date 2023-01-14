@@ -7,6 +7,7 @@ Public Class JSONViewer
         Win7StyleTreeView1.Nodes.Clear()
         Dim root = Win7StyleTreeView1.Nodes.Add("/")
         root.ImageIndex = 0
+        root.SelectedImageIndex = 0
         loadTree(json, root, "")
     End Sub
 
@@ -17,12 +18,16 @@ Public Class JSONViewer
             Dim i As i32 = 0
 
             vec.ImageIndex = 0
+            vec.SelectedImageIndex = 0
 
             For Each item In arr
                 Call loadTree(item, vec, $"[{++i}]: ")
             Next
         ElseIf TypeOf json Is JsonValue Then
-            tree.Nodes.Add($"{prefix}{json.ToString}").ImageIndex = 1
+            Dim node = tree.Nodes.Add($"{prefix}{json.ToString}")
+
+            node.ImageIndex = 1
+            node.SelectedImageIndex = 1
         ElseIf TypeOf json Is JsonObject Then
             Dim obj = DirectCast(json, JsonObject)
             Dim list = tree.Nodes.Add($"{prefix}object")

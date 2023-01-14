@@ -58,7 +58,9 @@ Public Class FormMain
 
             If TypeOf item Is StreamGroup Then
                 Call Application.DoEvents()
+
                 current_dir.ImageIndex = 0
+                current_dir.SelectedImageIndex = 0
 
                 If depth < 2 Then
                     Call echo(item.ToString)
@@ -114,7 +116,7 @@ Public Class FormMain
                 Call Serialization.ReadScan1(ms1, file:=reader, readmeta:=True)
 
                 Dim mat As New LibraryMatrix With {.ms2 = ms1.GetMs.ToArray, .name = ms1.scan_id}
-                Dim img As Image = PeakAssign.DrawSpectrumPeaks(mat, size:="1920,1080", padding:="").AsGDIImage
+                Dim img As Image = PeakAssign.DrawSpectrumPeaks(mat, size:="1920,1080").AsGDIImage
                 Dim pic As PictureBox = showViewer("png")
 
                 pic.BackgroundImage = img
