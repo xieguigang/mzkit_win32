@@ -8,6 +8,7 @@ Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Mzkit_win32.BasicMDIForm
 
 Public Class FormMain
@@ -15,19 +16,13 @@ Public Class FormMain
     Dim mzpack As StreamPack
     Dim viewers As New Dictionary(Of String, Control)
 
-    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
-        Me.Close()
-    End Sub
-
-    Private Sub Form1_Closed(sender As Object, e As EventArgs) Handles Me.Closed
-        App.Exit(0)
-    End Sub
-
-    Private Sub OpenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
+    Private Sub OpenToolStripMenuItem_Click()
         Using file As New OpenFileDialog With {.Filter = "mzPack Data File(*.mzPack)|*.mzPack"}
             If file.ShowDialog = DialogResult.OK Then
                 mzpack = New StreamPack(file.FileName, [readonly]:=True)
-                loadTree()
+                Win7StyleTreeView1.Nodes.Clear()
+
+                Call loadTree()
             End If
         End Using
     End Sub
@@ -35,12 +30,17 @@ Public Class FormMain
     Private Sub loadTree()
         Dim tree = Win7StyleTreeView1.Nodes.Add(mzpack.ToString)
         Dim root = mzpack.superBlock
+        Dim multiple_samples As Boolean = Not mzpack _
+            .ReadText("/.etc/sample_tags.json") _
+            .LoadJSON(Of String()) _
+            .IsNullOrEmpty
 
         tree.ImageIndex = 0
+        tree.SelectedImageIndex = 0
 
         Call TaskProgress.RunAction(
             run:=Sub(msg)
-                     Call loadTree(tree, root, msg.Echo, 0)
+                     Call loadTree(tree, root, msg.Echo, depth:=If(multiple_samples, 0, 1))
                  End Sub,
             title:="Parse mzPack Tree",
             info:="Parse file...",
@@ -54,6 +54,7 @@ Public Class FormMain
             Dim current_dir = tree.Nodes.Add(item.fileName)
             current_dir.Tag = item
             current_dir.ImageIndex = 1
+            current_dir.SelectedImageIndex = 1
 
             If TypeOf item Is StreamGroup Then
                 Call Application.DoEvents()
@@ -69,8 +70,10 @@ Public Class FormMain
     End Sub
 
     Private Sub ViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewToolStripMenuItem.Click
-        Dim node As TreeNode = Win7StyleTreeView1.SelectedNode
+        Call OpenAndView(Win7StyleTreeView1.SelectedNode, Nothing)
+    End Sub
 
+    Private Sub OpenAndView(node As TreeNode, type As String)
         If node Is Nothing Then
             Return
         End If
@@ -83,9 +86,15 @@ Public Class FormMain
 
         If Not TypeOf data Is StreamBlock Then
             Return
+        Else
+            If type.StringEmpty Then
+                type = data.referencePath.ToString.ExtensionSuffix.ToLower
+            Else
+                type = type.ToLower
+            End If
         End If
 
-        Select Case data.referencePath.ToString.ExtensionSuffix.ToLower
+        Select Case type
             Case "json"
                 Dim text As String = mzpack.ReadText(data.referencePath.ToString)
                 Dim json As JsonElement = JsonParser.Parse(text)
@@ -105,7 +114,7 @@ Public Class FormMain
                 Call Serialization.ReadScan1(ms1, file:=reader, readmeta:=True)
 
                 Dim mat As New LibraryMatrix With {.ms2 = ms1.GetMs.ToArray, .name = ms1.scan_id}
-                Dim img As Image = PeakAssign.DrawSpectrumPeaks(mat, size:="1920,1080").AsGDIImage
+                Dim img As Image = PeakAssign.DrawSpectrumPeaks(mat, size:="1920,1080", padding:="").AsGDIImage
                 Dim pic As PictureBox = showViewer("png")
 
                 pic.BackgroundImage = img
@@ -138,6 +147,7 @@ Public Class FormMain
         Dim img As New PictureBox
 
         img.BackgroundImageLayout = ImageLayout.Zoom
+        HookOpen = AddressOf OpenToolStripMenuItem_Click
 
         viewers.Add("json", New JSONViewer)
         viewers.Add("bson", New JSONViewer)
@@ -154,6 +164,27 @@ Public Class FormMain
             viewer.Visible = False
         Next
 
-        Call ApplyVsTheme(MenuStrip1, ContextMenuStrip1)
+        Call ApplyVsTheme(ContextMenuStrip1)
+    End Sub
+
+    Private Sub CopyFullPathToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles CopyFullPathToolStripMenuItem1.Click
+        Dim node As TreeNode = Win7StyleTreeView1.SelectedNode
+
+        If node Is Nothing Then
+            Return
+        End If
+
+        Dim data As StreamObject = node.Tag
+
+        If data Is Nothing Then
+            Return
+        Else
+            Call Clipboard.Clear()
+            Call Clipboard.SetText(data.referencePath.ToString)
+        End If
+    End Sub
+
+    Private Sub ViewAsTextToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewAsTextToolStripMenuItem.Click
+        Call OpenAndView(Win7StyleTreeView1.SelectedNode, "txt")
     End Sub
 End Class

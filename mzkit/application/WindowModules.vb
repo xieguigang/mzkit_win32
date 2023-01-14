@@ -64,6 +64,7 @@ Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Language
+Imports Mzkit_win32.BasicMDIForm
 Imports WeifenLuo.WinFormsUI.Docking
 
 Friend MustInherit Class WindowModules
@@ -169,6 +170,16 @@ Friend MustInherit Class WindowModules
     End Sub
 
     Public Shared Sub OpenFile()
+        Dim doc As IDockContent = MyApplication.host.DockPanel.ActiveDocument
+
+        If TypeOf doc Is DocumentWindow AndAlso DirectCast(doc, DocumentWindow).HookOpen IsNot Nothing Then
+            Call DirectCast(doc, DocumentWindow).HookOpen()
+        Else
+            Call openFileDefault()
+        End If
+    End Sub
+
+    Private Shared Sub openFileDefault()
         Dim filters As String() = {
             "All Raw Data Files(*.mzXML;*.mzML;*.mzPack;*.imzML;*.cdf;*.netcdf;*.raw;*.wiff)|*.mzXML;*.mzML;*.mzPack;*.imzML;*.cdf;*.netcdf;*.raw;*.wiff",
             "Untargetted Raw Data(*.mzXML;*.mzML;*.mzPack)|*.mzXML;*.mzML;*.mzPack",

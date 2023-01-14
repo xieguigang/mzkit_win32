@@ -63,6 +63,8 @@ Public Class DocumentWindow
 
     Public Event CloseDocument()
 
+    Public HookOpen As Action
+
     Public Function GetVS2015LightTheme1() As VS2015LightTheme
         Return VS2015LightTheme1
     End Function
