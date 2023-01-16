@@ -154,7 +154,7 @@ Module Globals
         Call LicenseFile.ApplyLicense()
 
         ' initialize for external plugin module
-        MSImagingServiceModule.StartEngine = Sub() Call MSIDataService.StartMSIService(Nothing)
+        MSImagingServiceModule.m_StartEngine = Sub() Call MSIDataService.StartMSIService(Nothing)
     End Sub
 
     Private Sub shutdownHttpWeb()
