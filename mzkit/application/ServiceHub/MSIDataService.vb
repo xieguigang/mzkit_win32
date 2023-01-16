@@ -407,7 +407,7 @@ Namespace ServiceHub
             End If
         End Function
 
-        Public Sub CloseMSIEngine()
+        Public Sub CloseMSIEngine() Implements MSIServicePlugin.CloseEngine
             If MSI_service > 0 Then
                 Dim request As New RequestStream(MSI.Protocol, ServiceProtocol.ExitApp, Encoding.UTF8.GetBytes("shut down!"))
 

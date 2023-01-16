@@ -8,5 +8,6 @@
     ''' </param>
     ''' <param name="message"></param>
     Sub LoadMSIRawDataFile(filepath As String, message As Action(Of String))
+    Sub CloseEngine()
 
 End Interface
