@@ -198,21 +198,59 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
 
     Dim webkitLoaded As Boolean = False
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <typeparam name="T"></typeparam>
+    ''' <param name="streamLoad"></param>
+    ''' <param name="title"></param>
+    ''' <param name="info"></param>
+    ''' <param name="taskAssign"></param>
+    ''' <param name="canbeCancel"></param>
+    ''' <param name="host">
+    ''' run the <paramref name="streamLoad"/> function pointer via <see cref="Form.Invoke([Delegate])"/>
+    ''' if the host form is found, due to the reason of run <paramref name="streamLoad"/> from a new 
+    ''' thread. 
+    ''' </param>
+    ''' <returns></returns>
     Public Shared Function LoadData(Of T)(streamLoad As Func(Of Action(Of String), T),
                                           Optional title$ = "Loading data...",
                                           Optional info$ = "Open a large raw data file...",
                                           Optional ByRef taskAssign As Thread = Nothing,
-                                          Optional canbeCancel As Boolean = False) As T
+                                          Optional canbeCancel As Boolean = False,
+                                          Optional host As Control = Nothing) As T
         Return LoadData(Function(task)
                             Return streamLoad(task.Echo)
-                        End Function, title, info, taskAssign, canbeCancel)
+                        End Function, title, info, taskAssign,
+                                      canbeCancel:=canbeCancel,
+                                      host:=host)
     End Function
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <typeparam name="T"></typeparam>
+    ''' <param name="streamLoad">
+    ''' the method we call from is from a new thread, so if the actions
+    ''' in this function pointer contains the UI update code, it should
+    ''' be call via the <see cref="Form.Invoke([Delegate])"/> method.
+    ''' </param>
+    ''' <param name="title"></param>
+    ''' <param name="info"></param>
+    ''' <param name="taskAssign"></param>
+    ''' <param name="canbeCancel"></param>
+    ''' <param name="host">
+    ''' run the <paramref name="streamLoad"/> function pointer via <see cref="Form.Invoke([Delegate])"/>
+    ''' if the host form is found, due to the reason of run <paramref name="streamLoad"/> from a new 
+    ''' thread. 
+    ''' </param>
+    ''' <returns></returns>
     Public Shared Function LoadData(Of T)(streamLoad As Func(Of ITaskProgress, T),
                                           Optional title$ = "Loading data...",
                                           Optional info$ = "Open a large raw data file...",
                                           Optional ByRef taskAssign As Thread = Nothing,
-                                          Optional canbeCancel As Boolean = False) As T
+                                          Optional canbeCancel As Boolean = False,
+                                          Optional host As Control = Nothing) As T
         Dim tmp As T
         Dim progress As New TaskProgress
         Dim mask As MaskForm = MaskForm.CreateMask(Workbench.AppHost)
@@ -227,7 +265,12 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
 
                 Try
                     tmp = Nothing
-                    tmp = streamLoad(progress)
+
+                    If host Is Nothing Then
+                        tmp = streamLoad(progress)
+                    Else
+                        tmp = host.Invoke(Function() streamLoad(progress))
+                    End If
                 Catch ex As Exception
                     Call App.LogException(ex)
                     Call progress.ShowProgressTitle("Task Error!")
@@ -264,6 +307,18 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
         Return tmp
     End Function
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="run"></param>
+    ''' <param name="title"></param>
+    ''' <param name="info"></param>
+    ''' <param name="cancel"></param>
+    ''' <param name="host">
+    ''' run the <paramref name="run"/> function pointer via <see cref="Form.Invoke([Delegate])"/>
+    ''' if the host form is found, due to the reason of run <paramref name="run"/> action from 
+    ''' a new thread. 
+    ''' </param>
     Public Shared Sub RunAction(run As Action(Of ITaskProgress),
                                 Optional title$ = "Loading data...",
                                 Optional info$ = "Open a large raw data file...",
@@ -315,6 +370,5 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
     Private Sub WebView21_NavigationCompleted(sender As Object, e As CoreWebView2NavigationCompletedEventArgs) Handles WebView21.NavigationCompleted
         webkitLoaded = True
     End Sub
-
 
 End Class
