@@ -163,6 +163,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AppHost.vb" />
+    <Compile Include="buzyIndicator\ITaskProgress.vb" />
     <Compile Include="buzyIndicator\Extensions.vb" />
     <Compile Include="buzyIndicator\ProgressSpinner.Designer.vb">
       <DependentUpon>ProgressSpinner.vb</DependentUpon>

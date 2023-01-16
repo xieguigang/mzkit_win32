@@ -61,26 +61,6 @@ Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 
-Public Interface ITaskProgress
-
-    Sub SetProgressMode()
-    ''' <summary>
-    ''' 
-    ''' </summary>
-    ''' <param name="p">[0,100]</param>
-    Sub SetProgress(p As Integer)
-    ''' <summary>
-    ''' 
-    ''' </summary>
-    ''' <param name="p">[0,100]</param>
-    ''' <param name="msg"></param>
-    Sub SetProgress(p As Integer, msg As String)
-    Sub SetTitle(title As String)
-    Sub SetInfo(message As String)
-    Sub TaskFinish()
-
-End Interface
-
 Public Class TaskProgress : Implements ITaskProgress
 
     Dim dialogClosed As Boolean = False
@@ -360,7 +340,11 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
     End Sub
 
     Public Sub CloseWindow() Implements ITaskProgress.TaskFinish
-        Call Me.Invoke(Sub() Call Me.Close())
+        Try
+            Call Me.Invoke(Sub() Call Me.Close())
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub TaskProgress_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing

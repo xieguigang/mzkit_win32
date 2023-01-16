@@ -134,6 +134,10 @@ Public Class ProgressSpinner
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Friend Sub CloseWindow()
-        Call Invoke(Sub() Call Close())
+        Try
+            Call Invoke(Sub() Call Close())
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class
