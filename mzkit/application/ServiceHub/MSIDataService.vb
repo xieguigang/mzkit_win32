@@ -195,6 +195,13 @@ Namespace ServiceHub
             hostReference.MessageCallback = Nothing
             Workbench.SetMSIServicesAppPort(appPort:=hostReference.appPort)
             MSImagingServiceModule.ServiceEngine = hostReference
+            ServiceHub.Manager.Hub.RegisterSingle(New Manager.Service With {
+                 .name = "MS-Imaging Background Data",
+                 .description = "Handling of the data processing for the large scale MS-imaging raw data",
+                 .isAlive = True,
+                 .port = hostReference.MSI_service,
+                 .PID = hostReference.MSI_pipe.Process.Id
+            })
 
             Return hostReference
         End Function

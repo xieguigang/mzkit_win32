@@ -1,6 +1,7 @@
 ﻿Imports System.ComponentModel
 Imports System.Threading
 Imports BioNovoGene.mzkit_win32.My
+Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
@@ -51,6 +52,14 @@ Public Class frmOpenseadragonViewer
                 .UseShellExecute = True
             }
         }
+
+        Call ServiceHub.Manager.Hub.Register(New Manager.Service With {
+            .name = "Open seadragon",
+            .description = "Http services for host the deep zoom image for open seadragon viewer",
+            .isAlive = True,
+            .PID = localfs.Id,
+            .port = webPort
+        })
 
         Call localfs.Start()
         Call App.AddExitCleanHook(Sub() Call localfs.Kill())

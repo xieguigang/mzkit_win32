@@ -88,6 +88,14 @@ Public Module Protocols
         Return args.JoinBy(" ")
     End Function
 
+    ''' <summary>
+    ''' folk a new task process in a new thread
+    ''' </summary>
+    ''' <param name="Rscript"></param>
+    ''' <param name="service"></param>
+    ''' <param name="debugPort"></param>
+    ''' <param name="heartbeats"></param>
+    ''' <returns></returns>
     Public Function StartServer(Rscript As String,
                                 ByRef service As Integer,
                                 debugPort As Integer?,
