@@ -364,6 +364,7 @@ Type 'q()' to quit R.
             Call App.LogException(e.Exception)
             Call MessageBox.Show(e.Exception.ToString, "Unknown Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Call CloseMSIEngine()
+            Call ServiceHub.Manager.Shutdown()
 
             Try
                 Call host.SaveSettings()
@@ -461,6 +462,7 @@ Type 'q()' to quit R.
 
         Private Sub MyApplication_Shutdown(sender As Object, e As EventArgs) Handles Me.Shutdown
             Call CloseMSIEngine()
+            Call ServiceHub.Manager.Shutdown()
         End Sub
     End Class
 End Namespace

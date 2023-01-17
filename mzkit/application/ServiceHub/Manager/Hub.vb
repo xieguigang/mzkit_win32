@@ -59,5 +59,18 @@
             Call list.Add(item:=svr)
         End Sub
 
+        ''' <summary>
+        ''' try to shutdown all registered service process
+        ''' </summary>
+        Public Sub Shutdown()
+            For Each item As Service In list
+                Try
+                    Call Process.GetProcessById(item.PID).Kill()
+                Catch ex As Exception
+                    ' just ignores the process kill error
+                End Try
+            Next
+        End Sub
+
     End Module
 End Namespace
