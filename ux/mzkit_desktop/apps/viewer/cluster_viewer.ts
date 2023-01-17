@@ -1,4 +1,4 @@
-namespace apps {
+namespace apps.viewer {
 
     export class clusterViewer extends Bootstrap {
 

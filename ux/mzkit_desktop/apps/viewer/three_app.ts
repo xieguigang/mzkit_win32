@@ -1,6 +1,6 @@
 /// <reference path="../../d/three/index.d.ts" />
 
-namespace apps {
+namespace apps.viewer {
 
     export class three_app extends Bootstrap {
 

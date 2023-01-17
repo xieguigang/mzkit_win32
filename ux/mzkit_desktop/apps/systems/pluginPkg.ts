@@ -1,4 +1,4 @@
-namespace apps {
+namespace apps.systems {
 
     export class pluginPkg extends Bootstrap {
 

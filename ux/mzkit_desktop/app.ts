@@ -34,13 +34,13 @@ namespace app.desktop {
     export function run() {
         // mzkit system pages
         Router.AddAppHandler(new apps.home());
-        Router.AddAppHandler(new apps.pluginMgr());
-        Router.AddAppHandler(new apps.pluginPkg());
-        Router.AddAppHandler(new apps.servicesManager());
+        Router.AddAppHandler(new apps.systems.pluginMgr());
+        Router.AddAppHandler(new apps.systems.pluginPkg());
+        Router.AddAppHandler(new apps.systems.servicesManager());
 
         // data analysis & data visualization
-        Router.AddAppHandler(new apps.three_app());
-        Router.AddAppHandler(new apps.clusterViewer());
+        Router.AddAppHandler(new apps.viewer.three_app());
+        Router.AddAppHandler(new apps.viewer.clusterViewer());
 
         Router.RunApp();
     }
