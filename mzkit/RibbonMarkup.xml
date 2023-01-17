@@ -2494,6 +2494,14 @@
         <String Id="578">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdButtonConnectMSIService" Id="218" LabelTitle="Connect Cloud" LabelDescription="Connect MSI Data Service" TooltipTitle="Connect MSI Data Service" TooltipDescription="Connect the MSI data service on another remote data analysis server or the service from the MZKit cloud studio">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/folder-publicshare.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/folder-publicshare.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2707,8 +2715,9 @@
         </TabGroup>
         <TabGroup CommandName="cmdTabGroupMSI">
           <Tab CommandName="cmdTabMSIPage" ApplicationModes="0,1">
-            <Group CommandName="cmdGroupMSIFile" ApplicationModes="0,1" SizeDefinition="OneButton">
+            <Group CommandName="cmdGroupMSIFile" ApplicationModes="0,1" SizeDefinition="TwoButtons">
               <Button CommandName="cmdButtonOpenMSIRaw" />
+              <Button CommandName="cmdButtonConnectMSIService" />
             </Group>
             <Group CommandName="cmdTabMSIFile" ApplicationModes="0,1" SizeDefinition="ThreeButtons">
               <DropDownButton CommandName="cmdButtonImportsMSITable">

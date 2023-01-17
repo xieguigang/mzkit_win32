@@ -125,6 +125,7 @@ namespace RibbonLib.Controls
             public const uint cmdTabMSIPage = 121;
             public const uint cmdGroupMSIFile = 122;
             public const uint cmdButtonOpenMSIRaw = 119;
+            public const uint cmdButtonConnectMSIService = 218;
             public const uint cmdTabMSIFile = 129;
             public const uint cmdButtonImportsMSITable = 205;
             public const uint cmdButtonImportsSCiLSLab = 185;
@@ -334,6 +335,7 @@ namespace RibbonLib.Controls
         public RibbonTab TabMSIPage { get; private set; }
         public RibbonGroup GroupMSIFile { get; private set; }
         public RibbonButton ButtonOpenMSIRaw { get; private set; }
+        public RibbonButton ButtonConnectMSIService { get; private set; }
         public RibbonGroup TabMSIFile { get; private set; }
         public RibbonDropDownButton ButtonImportsMSITable { get; private set; }
         public RibbonButton ButtonImportsSCiLSLab { get; private set; }
@@ -538,6 +540,7 @@ namespace RibbonLib.Controls
             TabMSIPage = new RibbonTab(ribbon, Cmd.cmdTabMSIPage);
             GroupMSIFile = new RibbonGroup(ribbon, Cmd.cmdGroupMSIFile);
             ButtonOpenMSIRaw = new RibbonButton(ribbon, Cmd.cmdButtonOpenMSIRaw);
+            ButtonConnectMSIService = new RibbonButton(ribbon, Cmd.cmdButtonConnectMSIService);
             TabMSIFile = new RibbonGroup(ribbon, Cmd.cmdTabMSIFile);
             ButtonImportsMSITable = new RibbonDropDownButton(ribbon, Cmd.cmdButtonImportsMSITable);
             ButtonImportsSCiLSLab = new RibbonButton(ribbon, Cmd.cmdButtonImportsSCiLSLab);
