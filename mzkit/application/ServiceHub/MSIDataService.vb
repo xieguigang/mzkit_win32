@@ -72,6 +72,7 @@ Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MachineLearning.Data
 Imports Microsoft.VisualBasic.MIME.application.json
+Imports Microsoft.VisualBasic.Net
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic.Serialization.JSON
@@ -88,7 +89,20 @@ Namespace ServiceHub
     Public Class MSIDataService : Implements MSIServicePlugin
 
         Dim WithEvents MSI_pipe As RunSlavePipeline
+
+        ''' <summary>
+        ''' tcp port to the MSI data services
+        ''' </summary>
         Dim MSI_service As Integer = -1
+        ''' <summary>
+        ''' the tcp ip of the MSI data services, default value is localhost services
+        ''' </summary>
+        Dim server As String = "127.0.0.1"
+
+        ''' <summary>
+        ''' current task host
+        ''' </summary>
+        Public taskHost As Thread
 
         Public ReadOnly Property MSIEngineRunning As Boolean
             Get
@@ -102,12 +116,46 @@ Namespace ServiceHub
             End Get
         End Property
 
+        Public ReadOnly Property endPoint As IPEndPoint
+            Get
+                Return New IPEndPoint(server, appPort)
+            End Get
+        End Property
+
         Public MessageCallback As Action(Of String)
 
         ''' <summary>
         ''' --debug --port=33361
         ''' </summary>
         Public Shared debugPort As Integer?
+
+        ''' <summary>
+        ''' is the data services running on a cloud server?
+        ''' </summary>
+        ''' <returns></returns>
+        Public ReadOnly Property IsCloudBackend As Boolean
+            Get
+                ' 在这里不可以根据ip是否为localhost或者127.0.0.1来判断
+                ' 因为可能会出现本机上不同进程的后台任务的程序调试分析的情形
+                Return taskHost Is Nothing OrElse MSI_pipe Is Nothing
+            End Get
+        End Property
+
+        Public Shared Function ConnectCloud(ByRef hostReference As MSIDataService, ip As String, port As Integer) As MSIDataService
+            If Not hostReference Is Nothing Then
+                Call hostReference.CloseMSIEngine()
+            End If
+
+            hostReference = New MSIDataService() With {
+                .MessageCallback = Nothing,
+                .MSI_pipe = Nothing,
+                .MSI_service = port,
+                .server = ip,
+                .taskHost = Nothing
+            }
+
+            Return hostReference
+        End Function
 
         ''' <summary>
         ''' this method will close the engine at first
@@ -440,11 +488,6 @@ Namespace ServiceHub
                 Call MessageCallback(details)
             End If
         End Sub
-
-        ''' <summary>
-        ''' current task host
-        ''' </summary>
-        Public taskHost As Thread
 
         Private Sub MSI_pipe_Finish(exitCode As Integer) Handles MSI_pipe.Finish
             If exitCode <> 0 Then
