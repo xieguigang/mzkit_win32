@@ -155,6 +155,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="InputDialogs\InputCloudEndPoint.resx">
+      <DependentUpon>InputCloudEndPoint.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InputDialogs\InputMSISlideLayout.resx">
       <DependentUpon>InputMSISlideLayout.vb</DependentUpon>
     </EmbeddedResource>
