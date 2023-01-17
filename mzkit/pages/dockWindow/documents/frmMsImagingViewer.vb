@@ -79,6 +79,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.My
+Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
@@ -196,7 +197,30 @@ Public Class frmMsImagingViewer
     End Sub
 
     Public Sub ConnectToCloud()
+        Call InputDialog.Input(Of InputCloudEndPoint)(
+            Sub(config)
+                Me.MSIservice = MSIDataService.ConnectCloud(Me.MSIservice, config.IP, config.Port)
 
+                Call WindowModules.viewer.Show(DockPanel)
+                Call WindowModules.msImageParameters.Show(DockPanel)
+
+                Dim info As MsImageProperty
+
+                Try
+                    info = MSIservice.GetMSIInformationMetadata
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message, "MZKit Cloud", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return
+                End Try
+
+                Call LoadRender(info, "MZKit_Cloud")
+
+                WindowModules.viewer.DockState = DockState.Document
+                MyApplication.host.Text = $"BioNovoGene Mzkit [{WindowModules.viewer.Text} {info.sourceFile}]"
+                WindowModules.msImageParameters.DockState = DockState.DockLeft
+
+                Call RenderSummary(IntensitySummary.BasePeak)
+            End Sub)
     End Sub
 
     Public Function ExtractMultipleSampleRegions() As RegionLoader
@@ -1208,7 +1232,7 @@ Public Class frmMsImagingViewer
     End Sub
 
     ''' <summary>
-    ''' load mzpack into MSI engine services
+    ''' set parameters and initialize of the UI
     ''' </summary>
     ''' <param name="filePath"></param>
     Public Sub LoadRender(info As MsImageProperty, filePath As String)

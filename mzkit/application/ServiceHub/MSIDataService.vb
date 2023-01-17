@@ -141,6 +141,13 @@ Namespace ServiceHub
             End Get
         End Property
 
+        ''' <summary>
+        ''' just create a data service object
+        ''' </summary>
+        ''' <param name="hostReference"></param>
+        ''' <param name="ip"></param>
+        ''' <param name="port"></param>
+        ''' <returns></returns>
         Public Shared Function ConnectCloud(ByRef hostReference As MSIDataService, ip As String, port As Integer) As MSIDataService
             If Not hostReference Is Nothing Then
                 Call hostReference.CloseMSIEngine()
@@ -242,6 +249,18 @@ Namespace ServiceHub
 
             End Try
         End Sub
+
+        Public Function GetMSIInformationMetadata() As MsImageProperty
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.GetMSIInformationMetadata, Encoding.UTF8.GetBytes("test")))
+            Dim output As MsImageProperty = data _
+                .GetString(Encoding.UTF8) _
+                .LoadJSON(Of Dictionary(Of String, String)) _
+                .DoCall(Function(info)
+                            Return New MsImageProperty(info)
+                        End Function)
+
+            Return output
+        End Function
 
         ''' <summary>
         ''' load MS-imaging raw data file

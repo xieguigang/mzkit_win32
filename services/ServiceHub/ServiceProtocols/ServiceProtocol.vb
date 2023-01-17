@@ -74,6 +74,7 @@ Public Enum ServiceProtocol
     ''' load MSI engine from thermo raw
     ''' </summary>
     LoadThermoRawMSI
+    GetMSIInformationMetadata
     UnloadMSI
     ExportMzpack
     LoadMSILayers

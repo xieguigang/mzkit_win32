@@ -272,6 +272,17 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
     End Function
 
+    <Protocol(ServiceProtocol.GetMSIInformationMetadata)>
+    Public Function GetMSIInformationMetadata(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
+        Dim info = MSIProtocols.GetMSIInfo(Me)
+
+        If info.TryGetValue("source").StringEmpty Then
+            info!source = "no-data"
+        End If
+
+        Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
+    End Function
+
     <Protocol(ServiceProtocol.UpsideDown)>
     Public Function TurnUpsideDown(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
         Dim dims As Size = MSI.dimension
