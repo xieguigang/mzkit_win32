@@ -154,6 +154,10 @@ Namespace ServiceHub
                 .taskHost = Nothing
             }
 
+            Call MyApplication.LogText($"Connect to the MS-Imaging cloud service!({hostReference.endPoint.ToString})")
+            Workbench.SetMSIServicesAppPort(appPort:=hostReference.appPort)
+            MSImagingServiceModule.ServiceEngine = hostReference
+
             Return hostReference
         End Function
 
@@ -366,10 +370,10 @@ Namespace ServiceHub
             MessageCallback = Nothing
 
             If data Is Nothing Then
-                Call MyApplication.host.warning($"Failure to load MS-imaging raw data file: {raw}...")
+                Call Workbench.Warning($"Failure to load MS-imaging raw data file: {raw}...")
                 Return Nothing
             ElseIf data.IsHTTP_RFC Then
-                Call MyApplication.host.showStatusMessage(data.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Call Workbench.StatusMessage(data.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
                 Return Nothing
             End If
 
@@ -383,12 +387,17 @@ Namespace ServiceHub
             Return output
         End Function
 
+        ''' <summary>
+        ''' core method for handling the tcp network data protocol
+        ''' </summary>
+        ''' <param name="request"></param>
+        ''' <returns></returns>
         Private Function handleServiceRequest(request As RequestStream) As RequestStream
             If MSI_service <= 0 Then
-                Call MyApplication.host.showStatusMessage("MS-imaging services is not started yet!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Call Workbench.StatusMessage("MS-imaging services is not started yet!", My.Resources.StatusAnnotations_Warning_32xLG_color)
                 Return Nothing
             Else
-                Return New TcpRequest("localhost", MSI_service).SendMessage(request)
+                Return New TcpRequest(endPoint).SendMessage(request)
             End If
         End Function
 
@@ -447,7 +456,7 @@ Namespace ServiceHub
             If data Is Nothing Then
                 Return {}
             ElseIf data.IsHTTP_RFC Then
-                Call MyApplication.host.showStatusMessage(data.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Call Workbench.StatusMessage(data.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
                 panic = True
                 Return {}
             Else
@@ -456,7 +465,7 @@ Namespace ServiceHub
         End Function
 
         Public Sub CloseMSIEngine() Implements MSIServicePlugin.CloseEngine
-            If MSI_service > 0 Then
+            If MSI_service > 0 AndAlso Not IsCloudBackend Then
                 Dim request As New RequestStream(MSI.Protocol, ServiceProtocol.ExitApp, Encoding.UTF8.GetBytes("shut down!"))
 
                 Call handleServiceRequest(request)
