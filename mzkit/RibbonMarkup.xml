@@ -2502,6 +2502,14 @@
         <String Id="578">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdButtonOpenServicesMgr" Id="219" LabelTitle="Services Manager" LabelDescription="Open services manager page for view all of the running MZKit data background services progress." TooltipTitle="Open services manager page for view all of the running MZKit data background services progress." TooltipDescription="Open services manager page for view all of the running MZKit data background services progress.">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/document-open-recent.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/document-open-recent.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2810,11 +2818,12 @@
             <Button CommandName="cmdButtonOpenRaw" />
             <Button CommandName="cmdButtonSave" />
           </Group>
-          <Group CommandName="cmdTabGroupWindowTools" ApplicationModes="0,1" SizeDefinition="FourButtons">
-            <Button CommandName="cmdButtonRsharp" />
+          <Group CommandName="cmdTabGroupWindowTools" ApplicationModes="0,1" SizeDefinition="FiveButtons">
             <Button CommandName="cmdButtonShowStartPage" />
+            <Button CommandName="cmdButtonRsharp" />
             <Button CommandName="cmdButtonShowLogWindow" />
             <Button CommandName="cmdButtonResetLayout" />
+            <Button CommandName="cmdButtonOpenServicesMgr" />
           </Group>
           <Group CommandName="cmdTabGroupBioDeep" ApplicationModes="0,1" SizeDefinition="OneButton">
             <Button CommandName="cmdLogInBioDeep" />

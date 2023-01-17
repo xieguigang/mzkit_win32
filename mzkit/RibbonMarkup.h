@@ -1153,5 +1153,12 @@
 #define cmdXIC_PPMSpinner_LabelTitle_RESID 576
 #define cmdXIC_PPMSpinner_LabelDescription_RESID 577
 #define cmdXIC_PPMSpinner_TooltipDescription_RESID 578
-#define InternalCmd2_LabelTitle_RESID 60327
-#define InternalCmd4_LabelTitle_RESID 60328
+#define cmdButtonOpenServicesMgr 219 
+#define cmdButtonOpenServicesMgr_LabelTitle_RESID 60327
+#define cmdButtonOpenServicesMgr_LabelDescription_RESID 60328
+#define cmdButtonOpenServicesMgr_TooltipTitle_RESID 60329
+#define cmdButtonOpenServicesMgr_TooltipDescription_RESID 60330
+#define cmdButtonOpenServicesMgr_SmallImages_192__RESID 60331
+#define cmdButtonOpenServicesMgr_LargeImages_192__RESID 60332
+#define InternalCmd2_LabelTitle_RESID 60333
+#define InternalCmd4_LabelTitle_RESID 60334

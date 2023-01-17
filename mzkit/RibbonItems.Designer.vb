@@ -184,6 +184,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonShowStartPage As UInteger = 1108
             Public Const cmdButtonShowLogWindow As UInteger = 1109
             Public Const cmdButtonResetLayout As UInteger = 1019
+            Public Const cmdButtonOpenServicesMgr As UInteger = 219
             Public Const cmdTabGroupBioDeep As UInteger = 105
             Public Const cmdLogInBioDeep As UInteger = 106
             Public Const cmdTabGroupAppStore As UInteger = 217
@@ -1239,6 +1240,12 @@ Namespace RibbonLib.Controls
                 Return _ButtonResetLayout
             End Get
         End Property
+        Private _ButtonOpenServicesMgr As RibbonButton
+        Public ReadOnly Property ButtonOpenServicesMgr As RibbonButton
+            Get
+                Return _ButtonOpenServicesMgr
+            End Get
+        End Property
         Private _TabGroupBioDeep As RibbonGroup
         Public ReadOnly Property TabGroupBioDeep As RibbonGroup
             Get
@@ -1599,6 +1606,7 @@ Namespace RibbonLib.Controls
             _ButtonShowStartPage = New RibbonButton(_ribbon, Cmd.cmdButtonShowStartPage)
             _ButtonShowLogWindow = New RibbonButton(_ribbon, Cmd.cmdButtonShowLogWindow)
             _ButtonResetLayout = New RibbonButton(_ribbon, Cmd.cmdButtonResetLayout)
+            _ButtonOpenServicesMgr = New RibbonButton(_ribbon, Cmd.cmdButtonOpenServicesMgr)
             _TabGroupBioDeep = New RibbonGroup(_ribbon, Cmd.cmdTabGroupBioDeep)
             _LogInBioDeep = New RibbonButton(_ribbon, Cmd.cmdLogInBioDeep)
             _TabGroupAppStore = New RibbonGroup(_ribbon, Cmd.cmdTabGroupAppStore)

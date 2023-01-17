@@ -560,10 +560,10 @@
     <Compile Include="pages\dockWindow\documents\frm3DMALDIViewer.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmPluginMgr.Designer.vb">
+    <Compile Include="pages\dockWindow\systems\frmPluginMgr.Designer.vb">
       <DependentUpon>frmPluginMgr.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmPluginMgr.vb">
+    <Compile Include="pages\dockWindow\systems\frmPluginMgr.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\documents\TissueSlideHandler.vb" />
@@ -616,10 +616,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\documents\QuantifyParameters.vb" />
-    <Compile Include="pages\dockWindow\documents\frmTableViewer.Designer.vb">
+    <Compile Include="pages\dockWindow\systems\frmTableViewer.Designer.vb">
       <DependentUpon>frmTableViewer.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmTableViewer.vb">
+    <Compile Include="pages\dockWindow\systems\frmTableViewer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\documents\frmUntargettedViewer.Designer.vb">
@@ -628,10 +628,10 @@
     <Compile Include="pages\dockWindow\documents\frmUntargettedViewer.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmHtmlViewer.Designer.vb">
+    <Compile Include="pages\dockWindow\systems\frmHtmlViewer.Designer.vb">
       <DependentUpon>frmHtmlViewer.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmHtmlViewer.vb">
+    <Compile Include="pages\dockWindow\systems\frmHtmlViewer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\documents\frmMRMLibrary.Designer.vb">
@@ -806,16 +806,16 @@
     <Compile Include="pages\toolkit\contextMenu\ExportData.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmRScriptEdit.Designer.vb">
+    <Compile Include="pages\dockWindow\systems\frmRScriptEdit.Designer.vb">
       <DependentUpon>frmRScriptEdit.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmRScriptEdit.vb">
+    <Compile Include="pages\dockWindow\systems\frmRScriptEdit.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmRsharp.Designer.vb">
+    <Compile Include="pages\dockWindow\systems\frmRsharp.Designer.vb">
       <DependentUpon>frmRsharp.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frmRsharp.vb">
+    <Compile Include="pages\dockWindow\systems\frmRsharp.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\frmSettings.Designer.vb">
@@ -1060,7 +1060,7 @@
     <EmbeddedResource Include="pages\dockWindow\documents\frmGCxGCViewer.resx">
       <DependentUpon>frmGCxGCViewer.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\documents\frmHtmlViewer.resx">
+    <EmbeddedResource Include="pages\dockWindow\systems\frmHtmlViewer.resx">
       <DependentUpon>frmHtmlViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frmMRMLibrary.resx">
@@ -1084,13 +1084,13 @@
     <EmbeddedResource Include="pages\dockWindow\documents\frmPeakFinding.resx">
       <DependentUpon>frmPeakFinding.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\documents\frmPluginMgr.resx">
+    <EmbeddedResource Include="pages\dockWindow\systems\frmPluginMgr.resx">
       <DependentUpon>frmPluginMgr.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frmQuantifyIons.resx">
       <DependentUpon>frmQuantifyIons.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\documents\frmRScriptEdit.resx">
+    <EmbeddedResource Include="pages\dockWindow\systems\frmRScriptEdit.resx">
       <DependentUpon>frmRScriptEdit.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frmPlotViewer.resx">
@@ -1105,7 +1105,7 @@
     <EmbeddedResource Include="pages\dockWindow\documents\frmSMILESViewer.resx">
       <DependentUpon>frmSMILESViewer.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\documents\frmTableViewer.resx">
+    <EmbeddedResource Include="pages\dockWindow\systems\frmTableViewer.resx">
       <DependentUpon>frmTableViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frmTargetedQuantification.resx">
@@ -1168,7 +1168,7 @@
     <EmbeddedResource Include="pages\dockWindow\tools\PropertyWindow.resx">
       <DependentUpon>PropertyWindow.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\documents\frmRsharp.resx">
+    <EmbeddedResource Include="pages\dockWindow\systems\frmRsharp.resx">
       <DependentUpon>frmRsharp.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\frmStartPage.resx">

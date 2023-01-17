@@ -187,6 +187,7 @@ namespace RibbonLib.Controls
             public const uint cmdButtonShowStartPage = 1108;
             public const uint cmdButtonShowLogWindow = 1109;
             public const uint cmdButtonResetLayout = 1019;
+            public const uint cmdButtonOpenServicesMgr = 219;
             public const uint cmdTabGroupBioDeep = 105;
             public const uint cmdLogInBioDeep = 106;
             public const uint cmdTabGroupAppStore = 217;
@@ -397,6 +398,7 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonShowStartPage { get; private set; }
         public RibbonButton ButtonShowLogWindow { get; private set; }
         public RibbonButton ButtonResetLayout { get; private set; }
+        public RibbonButton ButtonOpenServicesMgr { get; private set; }
         public RibbonGroup TabGroupBioDeep { get; private set; }
         public RibbonButton LogInBioDeep { get; private set; }
         public RibbonGroup TabGroupAppStore { get; private set; }
@@ -602,6 +604,7 @@ namespace RibbonLib.Controls
             ButtonShowStartPage = new RibbonButton(ribbon, Cmd.cmdButtonShowStartPage);
             ButtonShowLogWindow = new RibbonButton(ribbon, Cmd.cmdButtonShowLogWindow);
             ButtonResetLayout = new RibbonButton(ribbon, Cmd.cmdButtonResetLayout);
+            ButtonOpenServicesMgr = new RibbonButton(ribbon, Cmd.cmdButtonOpenServicesMgr);
             TabGroupBioDeep = new RibbonGroup(ribbon, Cmd.cmdTabGroupBioDeep);
             LogInBioDeep = new RibbonButton(ribbon, Cmd.cmdLogInBioDeep);
             TabGroupAppStore = new RibbonGroup(ribbon, Cmd.cmdTabGroupAppStore);
