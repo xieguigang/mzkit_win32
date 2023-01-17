@@ -168,6 +168,8 @@ Public Class frmMsImagingViewer
         AddHandler RibbonEvents.ribbonItems.ButtonImportsShimadzu.ExecuteEvent, Sub() Call convertShimadzuTable()
         AddHandler RibbonEvents.ribbonItems.ButtonMergeMultipleMSISample.ExecuteEvent, Sub() Call MergeSlides()
 
+        AddHandler RibbonEvents.ribbonItems.ButtonConnectMSIService.ExecuteEvent, Sub() Call ConnectToCloud()
+
         AddHandler RibbonEvents.ribbonItems.CheckShowMapLayer.ExecuteEvent,
             Sub()
                 If RibbonEvents.ribbonItems.CheckShowMapLayer.BooleanValue Then
@@ -191,6 +193,10 @@ Public Class frmMsImagingViewer
         sampleRegions.Show(MyApplication.host.m_dockPanel)
         sampleRegions.DockState = DockState.Hidden
         sampleRegions.viewer = Me
+    End Sub
+
+    Public Sub ConnectToCloud()
+
     End Sub
 
     Public Function ExtractMultipleSampleRegions() As RegionLoader
