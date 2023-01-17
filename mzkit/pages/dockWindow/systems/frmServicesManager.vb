@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.InteropServices
+Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
 
@@ -29,7 +30,7 @@ Public Class frmServicesManager
     Public Class ServicesManager
 
         Public Function GetServicesList() As String
-            Return "[]"
+            Return ServiceHub.Manager.Hub.ServicesList.ToArray.GetJson
         End Function
     End Class
 End Class

@@ -390,6 +390,7 @@
     <Compile Include="application\ApplicationEvents.vb" />
     <Compile Include="application\CLI.vb" />
     <Compile Include="application\Actions.vb" />
+    <Compile Include="application\ServiceHub\Manager\Hub.vb" />
     <Compile Include="application\ServiceHub\Manager\Service.vb" />
     <Compile Include="application\ServiceHub\MSIDataService.vb" />
     <Compile Include="application\RibbonEvents.vb" />

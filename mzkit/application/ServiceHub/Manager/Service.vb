@@ -7,7 +7,7 @@
         Public Property port As Integer
         Public Property PID As Integer
         Public Property cpu As Double
-        Public Property mem As Double
+        Public Property mem As Long
         Public Property isAlive As Boolean
 
     End Class
