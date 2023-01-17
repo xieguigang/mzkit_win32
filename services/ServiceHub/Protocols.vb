@@ -116,7 +116,7 @@ Public Module Protocols
                 End If
             End Sub
 
-        Call New Thread(AddressOf pipeline.Run).Start()
+        Call pipeline.Start()
 
         For i As Integer = 0 To 1000
             service = tcpPort
