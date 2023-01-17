@@ -150,7 +150,7 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
                 Call DoTableSampleStats()
             End Sub
 
-        ApplyVsTheme(ContextMenuStrip1)
+        ApplyVsTheme(ContextMenuStrip1, AdvancedDataGridViewSearchToolBar1)
     End Sub
 
     Private Sub DoTableSampleStats()

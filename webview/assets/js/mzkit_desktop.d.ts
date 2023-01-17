@@ -1,6 +1,6 @@
 /// <reference path="../../../ux/mzkit_desktop/d/three/index.d.ts" />
 /// <reference path="../../../ux/mzkit_desktop/d/linq.d.ts" />
-declare namespace apps {
+declare namespace apps.viewer {
     class three_app extends Bootstrap {
         get appName(): string;
         scene: THREE.Scene;
@@ -37,6 +37,7 @@ declare namespace app.desktop {
         SelectFolder(): Promise<string>;
         GetFiles(dir: string): Promise<string>;
         BuildPkg(folder: string): Promise<boolean>;
+        GetServicesList(): Promise<string>;
     }
     function run(): void;
 }
@@ -64,18 +65,12 @@ interface pointCloud {
     color: number | string;
 }
 declare namespace apps {
-    class clusterViewer extends Bootstrap {
-        get appName(): string;
-        protected init(): void;
-    }
-}
-declare namespace apps {
     class home extends Bootstrap {
         get appName(): string;
         protected init(): void;
     }
 }
-declare namespace apps {
+declare namespace apps.systems {
     class pluginMgr extends Bootstrap {
         get appName(): string;
         protected init(): void;
@@ -93,12 +88,35 @@ declare namespace apps {
         status: "active" | "disable" | "incompatible";
     }
 }
-declare namespace apps {
+declare namespace apps.systems {
     class pluginPkg extends Bootstrap {
         get appName(): string;
         protected init(): void;
         dir_onchange(value: string): void;
         selectFolder_onclick(): void;
         build_onclick(): void;
+    }
+}
+declare namespace apps.systems {
+    class servicesManager extends Bootstrap {
+        get appName(): string;
+        protected init(): void;
+        private startUpdateTask;
+        private loadServicesList;
+    }
+    interface Service {
+        name: string;
+        description: string;
+        port: number;
+        PID: number;
+        cpu: number;
+        mem: number;
+        isAlive: boolean;
+    }
+}
+declare namespace apps.viewer {
+    class clusterViewer extends Bootstrap {
+        get appName(): string;
+        protected init(): void;
     }
 }

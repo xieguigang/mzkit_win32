@@ -390,7 +390,7 @@
     <Compile Include="application\ApplicationEvents.vb" />
     <Compile Include="application\CLI.vb" />
     <Compile Include="application\Actions.vb" />
-    <Compile Include="application\ServiceHub\HeartBeat.vb" />
+    <Compile Include="application\ServiceHub\Manager\Service.vb" />
     <Compile Include="application\ServiceHub\MSIDataService.vb" />
     <Compile Include="application\RibbonEvents.vb" />
     <Compile Include="application\settings\Languages.vb" />
@@ -616,6 +616,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\documents\QuantifyParameters.vb" />
+    <Compile Include="pages\dockWindow\systems\frmServicesManager.Designer.vb">
+      <DependentUpon>frmServicesManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pages\dockWindow\systems\frmServicesManager.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\systems\frmTableViewer.Designer.vb">
       <DependentUpon>frmTableViewer.vb</DependentUpon>
     </Compile>
@@ -1104,6 +1110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frmSMILESViewer.resx">
       <DependentUpon>frmSMILESViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\systems\frmServicesManager.resx">
+      <DependentUpon>frmServicesManager.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\systems\frmTableViewer.resx">
       <DependentUpon>frmTableViewer.vb</DependentUpon>

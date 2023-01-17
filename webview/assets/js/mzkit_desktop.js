@@ -47,150 +47,153 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-/// <reference path="../d/three/index.d.ts" />
+/// <reference path="../../d/three/index.d.ts" />
 var apps;
 (function (apps) {
-    var three_app = /** @class */ (function (_super) {
-        __extends(three_app, _super);
-        function three_app() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        Object.defineProperty(three_app.prototype, "appName", {
-            get: function () {
-                return "3d_three";
-            },
-            enumerable: true,
-            configurable: true
-        });
-        three_app.prototype.initControls = function () {
-            this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
-            // 如果使用animate方法时，将此函数删除
-            //controls.addEventListener( 'change', render );
-            // 使动画循环使用时阻尼或自转 意思是否有惯性
-            this.controls.enableDamping = true;
-            //动态阻尼系数 就是鼠标拖拽旋转灵敏度
-            //controls.dampingFactor = 0.25;
-            //是否可以缩放
-            this.controls.enableZoom = true;
-            //是否自动旋转
-            this.controls.autoRotate = false;
-            //设置相机距离原点的最远距离
-            this.controls.minDistance = 20;
-            //设置相机距离原点的最远距离
-            this.controls.maxDistance = 10000;
-            //是否开启右键拖拽
-            this.controls.enablePan = true;
-        };
-        three_app.prototype.initStats = function () {
-            this.stats = new Stats();
-            document.body.appendChild(this.stats.dom);
-        };
-        three_app.prototype.initRender = function () {
-            this.renderer = new THREE.WebGLRenderer({ antialias: true });
-            //renderer.setClearColor(new THREE.Color(0xEEEEEE, 1.0)); //设置背景颜色
-            this.renderer.setSize(window.innerWidth, window.innerHeight);
-            document.body.appendChild(this.renderer.domElement);
-        };
-        three_app.prototype.initCamera = function () {
-            this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
-            this.camera.position.set(0, 0, 200);
-        };
-        three_app.prototype.initScene = function () {
-            this.scene = new THREE.Scene();
-        };
-        three_app.prototype.initLight = function () {
-            this.scene.add(new THREE.AmbientLight(0x404040));
-            this.light = new THREE.DirectionalLight(0xffffff);
-            this.light.position.set(1, 1, 1);
-            this.scene.add(this.light);
-        };
-        three_app.prototype.initModel = function (model) {
-            console.log("load 3d point cloud model!");
-            console.log(model);
-            model.loadPointCloudModel(this);
-        };
-        three_app.prototype.render = function () {
-            this.renderer.render(this.scene, this.camera);
-        };
-        //窗口变动触发的函数
-        three_app.prototype.onWindowResize = function () {
-            this.camera.aspect = window.innerWidth / window.innerHeight;
-            this.camera.updateProjectionMatrix();
-            this.render();
-            this.renderer.setSize(window.innerWidth, window.innerHeight);
-        };
-        three_app.prototype.animate = function () {
-            var _this = this;
-            //更新控制器
-            this.controls.update();
-            this.render();
-            //更新性能插件
-            this.stats.update();
-            requestAnimationFrame(function () { return _this.animate(); });
-        };
-        three_app.prototype.init = function () {
-            var _this = this;
-            var vm = this;
-            if (app.desktop.mzkit) {
-                app.desktop.mzkit
-                    .get_3d_MALDI_url()
-                    .then(function (url) {
-                    return __awaiter(this, void 0, void 0, function () {
-                        return __generator(this, function (_a) {
-                            switch (_a.label) {
-                                case 0: return [4 /*yield*/, url];
-                                case 1:
-                                    url = _a.sent();
-                                    vm.setup_device(url);
-                                    return [2 /*return*/];
-                            }
-                        });
-                    });
-                });
-                three_app.open = function () {
+    var viewer;
+    (function (viewer) {
+        var three_app = /** @class */ (function (_super) {
+            __extends(three_app, _super);
+            function three_app() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            Object.defineProperty(three_app.prototype, "appName", {
+                get: function () {
+                    return "3d_three";
+                },
+                enumerable: true,
+                configurable: true
+            });
+            three_app.prototype.initControls = function () {
+                this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
+                // 如果使用animate方法时，将此函数删除
+                //controls.addEventListener( 'change', render );
+                // 使动画循环使用时阻尼或自转 意思是否有惯性
+                this.controls.enableDamping = true;
+                //动态阻尼系数 就是鼠标拖拽旋转灵敏度
+                //controls.dampingFactor = 0.25;
+                //是否可以缩放
+                this.controls.enableZoom = true;
+                //是否自动旋转
+                this.controls.autoRotate = false;
+                //设置相机距离原点的最远距离
+                this.controls.minDistance = 20;
+                //设置相机距离原点的最远距离
+                this.controls.maxDistance = 10000;
+                //是否开启右键拖拽
+                this.controls.enablePan = true;
+            };
+            three_app.prototype.initStats = function () {
+                this.stats = new Stats();
+                document.body.appendChild(this.stats.dom);
+            };
+            three_app.prototype.initRender = function () {
+                this.renderer = new THREE.WebGLRenderer({ antialias: true });
+                //renderer.setClearColor(new THREE.Color(0xEEEEEE, 1.0)); //设置背景颜色
+                this.renderer.setSize(window.innerWidth, window.innerHeight);
+                document.body.appendChild(this.renderer.domElement);
+            };
+            three_app.prototype.initCamera = function () {
+                this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
+                this.camera.position.set(0, 0, 200);
+            };
+            three_app.prototype.initScene = function () {
+                this.scene = new THREE.Scene();
+            };
+            three_app.prototype.initLight = function () {
+                this.scene.add(new THREE.AmbientLight(0x404040));
+                this.light = new THREE.DirectionalLight(0xffffff);
+                this.light.position.set(1, 1, 1);
+                this.scene.add(this.light);
+            };
+            three_app.prototype.initModel = function (model) {
+                console.log("load 3d point cloud model!");
+                console.log(model);
+                model.loadPointCloudModel(this);
+            };
+            three_app.prototype.render = function () {
+                this.renderer.render(this.scene, this.camera);
+            };
+            //窗口变动触发的函数
+            three_app.prototype.onWindowResize = function () {
+                this.camera.aspect = window.innerWidth / window.innerHeight;
+                this.camera.updateProjectionMatrix();
+                this.render();
+                this.renderer.setSize(window.innerWidth, window.innerHeight);
+            };
+            three_app.prototype.animate = function () {
+                var _this = this;
+                //更新控制器
+                this.controls.update();
+                this.render();
+                //更新性能插件
+                this.stats.update();
+                requestAnimationFrame(function () { return _this.animate(); });
+            };
+            three_app.prototype.init = function () {
+                var _this = this;
+                var vm = this;
+                if (app.desktop.mzkit) {
                     app.desktop.mzkit
-                        .open_MALDI_model()
-                        .then(function () {
+                        .get_3d_MALDI_url()
+                        .then(function (url) {
                         return __awaiter(this, void 0, void 0, function () {
                             return __generator(this, function (_a) {
-                                vm.init();
-                                return [2 /*return*/];
+                                switch (_a.label) {
+                                    case 0: return [4 /*yield*/, url];
+                                    case 1:
+                                        url = _a.sent();
+                                        vm.setup_device(url);
+                                        return [2 /*return*/];
+                                }
                             });
                         });
                     });
-                };
-            }
-            else {
-                $ts("#init-logo").show();
-            }
-            window.onresize = function () { return _this.onWindowResize(); };
-        };
-        three_app.prototype.setup_device = function (url) {
-            var vm = this;
-            HttpHelpers.getBlob(url, function (buffer) {
-                try {
-                    var model = new ModelReader(buffer);
-                    vm.initRender();
-                    vm.initScene();
-                    vm.initCamera();
-                    vm.initLight();
-                    vm.initModel(model);
-                    vm.initControls();
-                    vm.initStats();
-                    vm.animate();
-                    $ts("#init-logo").hide();
+                    three_app.open = function () {
+                        app.desktop.mzkit
+                            .open_MALDI_model()
+                            .then(function () {
+                            return __awaiter(this, void 0, void 0, function () {
+                                return __generator(this, function (_a) {
+                                    vm.init();
+                                    return [2 /*return*/];
+                                });
+                            });
+                        });
+                    };
                 }
-                catch (_a) {
-                    // do nothing
+                else {
+                    $ts("#init-logo").show();
                 }
-            });
-        };
-        return three_app;
-    }(Bootstrap));
-    apps.three_app = three_app;
+                window.onresize = function () { return _this.onWindowResize(); };
+            };
+            three_app.prototype.setup_device = function (url) {
+                var vm = this;
+                HttpHelpers.getBlob(url, function (buffer) {
+                    try {
+                        var model = new ModelReader(buffer);
+                        vm.initRender();
+                        vm.initScene();
+                        vm.initCamera();
+                        vm.initLight();
+                        vm.initModel(model);
+                        vm.initControls();
+                        vm.initStats();
+                        vm.animate();
+                        $ts("#init-logo").hide();
+                    }
+                    catch (_a) {
+                        // do nothing
+                    }
+                });
+            };
+            return three_app;
+        }(Bootstrap));
+        viewer.three_app = three_app;
+    })(viewer = apps.viewer || (apps.viewer = {}));
 })(apps || (apps = {}));
 /// <reference path="./d/linq.d.ts" />
-/// <reference path="./apps/three_app.ts" />
+/// <reference path="./apps/viewer/three_app.ts" />
 var app;
 (function (app) {
     var desktop;
@@ -205,11 +208,14 @@ var app;
             }
         }
         function run() {
+            // mzkit system pages
             Router.AddAppHandler(new apps.home());
-            Router.AddAppHandler(new apps.pluginMgr());
-            Router.AddAppHandler(new apps.pluginPkg());
-            Router.AddAppHandler(new apps.three_app());
-            Router.AddAppHandler(new apps.clusterViewer());
+            Router.AddAppHandler(new apps.systems.pluginMgr());
+            Router.AddAppHandler(new apps.systems.pluginPkg());
+            Router.AddAppHandler(new apps.systems.servicesManager());
+            // data analysis & data visualization
+            Router.AddAppHandler(new apps.viewer.three_app());
+            Router.AddAppHandler(new apps.viewer.clusterViewer());
             Router.RunApp();
         }
         desktop.run = run;
@@ -342,28 +348,6 @@ var ModelReader = /** @class */ (function () {
     };
     return ModelReader;
 }());
-var apps;
-(function (apps) {
-    var clusterViewer = /** @class */ (function (_super) {
-        __extends(clusterViewer, _super);
-        function clusterViewer() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        Object.defineProperty(clusterViewer.prototype, "appName", {
-            get: function () {
-                return "clusterViewer";
-            },
-            enumerable: true,
-            configurable: true
-        });
-        ;
-        clusterViewer.prototype.init = function () {
-            // throw new Error("Method not implemented.");
-        };
-        return clusterViewer;
-    }(Bootstrap));
-    apps.clusterViewer = clusterViewer;
-})(apps || (apps = {}));
 /// <reference path="../d/linq.d.ts" />
 var apps;
 (function (apps) {
@@ -388,143 +372,224 @@ var apps;
 })(apps || (apps = {}));
 var apps;
 (function (apps) {
-    var pluginMgr = /** @class */ (function (_super) {
-        __extends(pluginMgr, _super);
-        function pluginMgr() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        Object.defineProperty(pluginMgr.prototype, "appName", {
-            get: function () {
-                return "pluginMgr";
-            },
-            enumerable: true,
-            configurable: true
-        });
-        ;
-        pluginMgr.prototype.init = function () {
-            var vm = this;
-            app.desktop.mzkit
-                .GetPlugins()
-                .then(function (json) {
-                return __awaiter(this, void 0, void 0, function () {
-                    var json_str, list, mgr, _i, list_1, plugin;
-                    return __generator(this, function (_a) {
-                        switch (_a.label) {
-                            case 0: return [4 /*yield*/, json];
-                            case 1:
-                                json_str = _a.sent();
-                                list = JSON.parse(json_str);
-                                mgr = $ts("#plugin-list").clear();
-                                console.log("get plugin list:");
-                                console.table(list);
-                                console.log("json string source:");
-                                console.log(json_str);
-                                for (_i = 0, list_1 = list; _i < list_1.length; _i++) {
-                                    plugin = list_1[_i];
-                                    vm.addPlugin(mgr, plugin);
-                                }
-                                $ts.select(".deactive").onClick(function (e) { return vm.setPluginStatus(e, "disable"); });
-                                $ts.select(".edit").onClick(function (e) { return vm.setPluginStatus(e, "active"); });
-                                $ts.select(".delete");
-                                return [2 /*return*/];
-                        }
+    var systems;
+    (function (systems) {
+        var pluginMgr = /** @class */ (function (_super) {
+            __extends(pluginMgr, _super);
+            function pluginMgr() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            Object.defineProperty(pluginMgr.prototype, "appName", {
+                get: function () {
+                    return "pluginMgr";
+                },
+                enumerable: true,
+                configurable: true
+            });
+            ;
+            pluginMgr.prototype.init = function () {
+                var vm = this;
+                app.desktop.mzkit
+                    .GetPlugins()
+                    .then(function (json) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var json_str, list, mgr, _i, list_1, plugin;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, json];
+                                case 1:
+                                    json_str = _a.sent();
+                                    list = JSON.parse(json_str);
+                                    mgr = $ts("#plugin-list").clear();
+                                    console.log("get plugin list:");
+                                    console.table(list);
+                                    console.log("json string source:");
+                                    console.log(json_str);
+                                    for (_i = 0, list_1 = list; _i < list_1.length; _i++) {
+                                        plugin = list_1[_i];
+                                        vm.addPlugin(mgr, plugin);
+                                    }
+                                    $ts.select(".deactive").onClick(function (e) { return vm.setPluginStatus(e, "disable"); });
+                                    $ts.select(".edit").onClick(function (e) { return vm.setPluginStatus(e, "active"); });
+                                    $ts.select(".delete");
+                                    return [2 /*return*/];
+                            }
+                        });
                     });
                 });
-            });
-        };
-        pluginMgr.prototype.setPluginStatus = function (e, stat) {
-            app.desktop.mzkit.SetStatus(e.getAttribute("data"), stat);
-            location.reload();
-        };
-        pluginMgr.prototype.addPlugin = function (mgr, plugin) {
-            var type = (plugin.status == "disable" || plugin.status == "incompatible") ? "inactive" : "active";
-            var row = $ts("<tr>", { class: type });
-            var action = type == "active" ? "<span class=\"deactivate\">\n            <a href=\"#\" class=\"deactive\" data=\"" + plugin.id + "\">Deactivate</a>\n        </span>" : "<span class=\"activate\">\n        <a href=\"#\" class=\"edit\" data=\"" + plugin.id + "\">Activate</a> <!--|\n    </span>\n    <span class=\"delete\">\n        <a href=\"#\" class=\"delete\" data=\"" + plugin.id + "\">Delete</a>\n    </span>-->";
-            var html = "\n            \n            <th scope=\"row\" class=\"check-column\">\n                <input type=\"checkbox\" name=\"check_plugins\" />\n            </th>\n            <td class=\"plugin-title column-primary\">\n                <strong><a href=\"#\" onclick=\"app.desktop.mzkit.Exec('" + plugin.id + "')\">" + plugin.name + "</a></strong>\n                <div class=\"row-actions visible\">\n                    " + action + "\n                </div>        \n            </td>\n            <td class=\"column-description desc\">\n                <div class=\"plugin-description\">\n                    <p>\n                        " + plugin.desc + "\n                    </p>\n                </div>\n                <div class=\"" + type + " second plugin-version-author-uri\">\n                    Version " + plugin.ver + " | By\n                    <a href=\"#\">" + plugin.author + "</a> |\n                    <a href=\"" + plugin.url + "\" class=\"thickbox open-plugin-details-modal\">View details</a>\n                </div>\n            </td>\n            <td class=\"column-auto-updates\">\n                \n            </td>     \n            ";
-            mgr.appendChild(row.display(html));
-        };
-        pluginMgr.prototype.install_local_onclick = function () {
-            app.desktop.mzkit.InstallLocal();
-        };
-        return pluginMgr;
-    }(Bootstrap));
-    apps.pluginMgr = pluginMgr;
+            };
+            pluginMgr.prototype.setPluginStatus = function (e, stat) {
+                app.desktop.mzkit.SetStatus(e.getAttribute("data"), stat);
+                location.reload();
+            };
+            pluginMgr.prototype.addPlugin = function (mgr, plugin) {
+                var type = (plugin.status == "disable" || plugin.status == "incompatible") ? "inactive" : "active";
+                var row = $ts("<tr>", { class: type });
+                var action = type == "active" ? "<span class=\"deactivate\">\n            <a href=\"#\" class=\"deactive\" data=\"" + plugin.id + "\">Deactivate</a>\n        </span>" : "<span class=\"activate\">\n        <a href=\"#\" class=\"edit\" data=\"" + plugin.id + "\">Activate</a> <!--|\n    </span>\n    <span class=\"delete\">\n        <a href=\"#\" class=\"delete\" data=\"" + plugin.id + "\">Delete</a>\n    </span>-->";
+                var html = "\n            \n            <th scope=\"row\" class=\"check-column\">\n                <input type=\"checkbox\" name=\"check_plugins\" />\n            </th>\n            <td class=\"plugin-title column-primary\">\n                <strong><a href=\"#\" onclick=\"app.desktop.mzkit.Exec('" + plugin.id + "')\">" + plugin.name + "</a></strong>\n                <div class=\"row-actions visible\">\n                    " + action + "\n                </div>        \n            </td>\n            <td class=\"column-description desc\">\n                <div class=\"plugin-description\">\n                    <p>\n                        " + plugin.desc + "\n                    </p>\n                </div>\n                <div class=\"" + type + " second plugin-version-author-uri\">\n                    Version " + plugin.ver + " | By\n                    <a href=\"#\">" + plugin.author + "</a> |\n                    <a href=\"" + plugin.url + "\" class=\"thickbox open-plugin-details-modal\">View details</a>\n                </div>\n            </td>\n            <td class=\"column-auto-updates\">\n                \n            </td>     \n            ";
+                mgr.appendChild(row.display(html));
+            };
+            pluginMgr.prototype.install_local_onclick = function () {
+                app.desktop.mzkit.InstallLocal();
+            };
+            return pluginMgr;
+        }(Bootstrap));
+        systems.pluginMgr = pluginMgr;
+    })(systems = apps.systems || (apps.systems = {}));
 })(apps || (apps = {}));
 var apps;
 (function (apps) {
-    var pluginPkg = /** @class */ (function (_super) {
-        __extends(pluginPkg, _super);
-        function pluginPkg() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        Object.defineProperty(pluginPkg.prototype, "appName", {
-            get: function () {
-                return "pluginPkg";
-            },
-            enumerable: true,
-            configurable: true
-        });
-        ;
-        pluginPkg.prototype.init = function () {
-            // throw new Error("Method not implemented.");
-        };
-        pluginPkg.prototype.dir_onchange = function (value) {
-            console.log(value);
-            app.desktop.mzkit.GetFiles(value).then(function (json) {
-                return __awaiter(this, void 0, void 0, function () {
-                    var files, _a, _b;
-                    return __generator(this, function (_c) {
-                        switch (_c.label) {
-                            case 0:
-                                _b = (_a = JSON).parse;
-                                return [4 /*yield*/, json];
-                            case 1:
-                                files = _b.apply(_a, [_c.sent()]);
-                                console.log(files);
-                                return [2 /*return*/];
-                        }
+    var systems;
+    (function (systems) {
+        var pluginPkg = /** @class */ (function (_super) {
+            __extends(pluginPkg, _super);
+            function pluginPkg() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            Object.defineProperty(pluginPkg.prototype, "appName", {
+                get: function () {
+                    return "pluginPkg";
+                },
+                enumerable: true,
+                configurable: true
+            });
+            ;
+            pluginPkg.prototype.init = function () {
+                // throw new Error("Method not implemented.");
+            };
+            pluginPkg.prototype.dir_onchange = function (value) {
+                console.log(value);
+                app.desktop.mzkit.GetFiles(value).then(function (json) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var files, _a, _b;
+                        return __generator(this, function (_c) {
+                            switch (_c.label) {
+                                case 0:
+                                    _b = (_a = JSON).parse;
+                                    return [4 /*yield*/, json];
+                                case 1:
+                                    files = _b.apply(_a, [_c.sent()]);
+                                    console.log(files);
+                                    return [2 /*return*/];
+                            }
+                        });
                     });
                 });
-            });
-        };
-        pluginPkg.prototype.selectFolder_onclick = function () {
-            var vm = this;
-            app.desktop.mzkit.SelectFolder().then(function (dir) {
-                return __awaiter(this, void 0, void 0, function () {
-                    return __generator(this, function (_a) {
-                        switch (_a.label) {
-                            case 0: return [4 /*yield*/, dir];
-                            case 1:
-                                dir = _a.sent();
-                                if (!Strings.Empty(dir)) {
-                                    $input("#dir").value = dir;
-                                    vm.dir_onchange(dir);
-                                }
-                                return [2 /*return*/];
-                        }
+            };
+            pluginPkg.prototype.selectFolder_onclick = function () {
+                var vm = this;
+                app.desktop.mzkit.SelectFolder().then(function (dir) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, dir];
+                                case 1:
+                                    dir = _a.sent();
+                                    if (!Strings.Empty(dir)) {
+                                        $input("#dir").value = dir;
+                                        vm.dir_onchange(dir);
+                                    }
+                                    return [2 /*return*/];
+                            }
+                        });
                     });
                 });
-            });
-        };
-        pluginPkg.prototype.build_onclick = function () {
-            var vm = this;
-            var dir = $input("#dir").value.toString();
-            console.log("Build plugin package: " + dir + "!");
-            app.desktop.mzkit.BuildPkg(dir).then(function (flag) {
-                return __awaiter(this, void 0, void 0, function () {
-                    return __generator(this, function (_a) {
-                        switch (_a.label) {
-                            case 0: return [4 /*yield*/, flag];
-                            case 1:
-                                flag = _a.sent();
-                                return [2 /*return*/];
-                        }
+            };
+            pluginPkg.prototype.build_onclick = function () {
+                var vm = this;
+                var dir = $input("#dir").value.toString();
+                console.log("Build plugin package: " + dir + "!");
+                app.desktop.mzkit.BuildPkg(dir).then(function (flag) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, flag];
+                                case 1:
+                                    flag = _a.sent();
+                                    return [2 /*return*/];
+                            }
+                        });
                     });
                 });
+            };
+            return pluginPkg;
+        }(Bootstrap));
+        systems.pluginPkg = pluginPkg;
+    })(systems = apps.systems || (apps.systems = {}));
+})(apps || (apps = {}));
+var apps;
+(function (apps) {
+    var systems;
+    (function (systems) {
+        var servicesManager = /** @class */ (function (_super) {
+            __extends(servicesManager, _super);
+            function servicesManager() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            Object.defineProperty(servicesManager.prototype, "appName", {
+                get: function () {
+                    return "mzkit/services";
+                },
+                enumerable: true,
+                configurable: true
             });
-        };
-        return pluginPkg;
-    }(Bootstrap));
-    apps.pluginPkg = pluginPkg;
+            ;
+            servicesManager.prototype.init = function () {
+                var _this = this;
+                setInterval(function () { return _this.startUpdateTask(); }, 1000);
+            };
+            servicesManager.prototype.startUpdateTask = function () {
+                var vm = this;
+                app.desktop.mzkit
+                    .GetServicesList()
+                    .then(function (json) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var fetch, list;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, json];
+                                case 1:
+                                    fetch = _a.sent();
+                                    list = JSON.parse(fetch);
+                                    vm.loadServicesList(list);
+                                    return [2 /*return*/];
+                            }
+                        });
+                    });
+                });
+            };
+            servicesManager.prototype.loadServicesList = function (list) {
+                $ts("#services-list").clear();
+                $ts.appendTable(list, "#services-list", null, { class: [] });
+            };
+            return servicesManager;
+        }(Bootstrap));
+        systems.servicesManager = servicesManager;
+    })(systems = apps.systems || (apps.systems = {}));
+})(apps || (apps = {}));
+var apps;
+(function (apps) {
+    var viewer;
+    (function (viewer) {
+        var clusterViewer = /** @class */ (function (_super) {
+            __extends(clusterViewer, _super);
+            function clusterViewer() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            Object.defineProperty(clusterViewer.prototype, "appName", {
+                get: function () {
+                    return "clusterViewer";
+                },
+                enumerable: true,
+                configurable: true
+            });
+            ;
+            clusterViewer.prototype.init = function () {
+                // throw new Error("Method not implemented.");
+            };
+            return clusterViewer;
+        }(Bootstrap));
+        viewer.clusterViewer = clusterViewer;
+    })(viewer = apps.viewer || (apps.viewer = {}));
 })(apps || (apps = {}));
 //# sourceMappingURL=mzkit_desktop.js.map

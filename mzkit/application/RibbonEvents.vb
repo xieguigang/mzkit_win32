@@ -185,6 +185,8 @@ Module RibbonEvents
         AddHandler ribbonItems.ButtonCFMIDTool.ExecuteEvent, Sub() Call OpenCFMIDTool(Nothing)
         AddHandler ribbonItems.MsconvertGUI.ExecuteEvent, Sub() Call openMsconvertTool()
         AddHandler ribbonItems.View3DMALDI.ExecuteEvent, Sub() Call open3dMALDIViewer()
+
+        AddHandler ribbonItems.ButtonOpenServicesMgr.ExecuteEvent, Sub() Call VisualStudio.ShowSingleDocument(Of frmServicesManager)()
     End Sub
 
     Sub New()

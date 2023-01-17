@@ -29,6 +29,9 @@ namespace app.desktop {
         SelectFolder(): Promise<string>;
         GetFiles(dir: string): Promise<string>;
         BuildPkg(folder: string): Promise<boolean>;
+
+        // ServicesManager
+        GetServicesList(): Promise<string>;
     }
 
     export function run() {
