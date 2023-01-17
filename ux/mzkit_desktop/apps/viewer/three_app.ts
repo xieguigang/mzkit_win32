@@ -1,4 +1,4 @@
-/// <reference path="../d/three/index.d.ts" />
+/// <reference path="../../d/three/index.d.ts" />
 
 namespace apps {
 

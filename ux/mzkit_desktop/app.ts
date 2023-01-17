@@ -1,5 +1,5 @@
 /// <reference path="./d/linq.d.ts" />
-/// <reference path="./apps/three_app.ts" />
+/// <reference path="./apps/viewer/three_app.ts" />
 
 namespace app.desktop {
 
@@ -32,10 +32,13 @@ namespace app.desktop {
     }
 
     export function run() {
+        // mzkit system pages
         Router.AddAppHandler(new apps.home());
         Router.AddAppHandler(new apps.pluginMgr());
         Router.AddAppHandler(new apps.pluginPkg());
+        Router.AddAppHandler(new apps.servicesManager());
 
+        // data analysis & data visualization
         Router.AddAppHandler(new apps.three_app());
         Router.AddAppHandler(new apps.clusterViewer());
 
