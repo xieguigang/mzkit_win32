@@ -352,6 +352,14 @@
       </Command.LargeImages>
     </Command>
     <Command Name="cmdGroupShowComprehensive" Id="191" LabelTitle="Comprehensive Spectrum" LabelDescription="Comprehensive Mass Spectrum Data Viewer" TooltipTitle="Comprehensive Mass Spectrum Data Viewer" TooltipDescription="Comprehensive Mass Spectrum Data Viewer" />
+    <Command Name="cmdButtonConnectMSIService" Id="218" LabelTitle="Connect Cloud" LabelDescription="Connect MSI Data Service" TooltipTitle="Connect MSI Data Service" TooltipDescription="Connect the MSI data service on another remote data analysis server or the service from the MZKit cloud studio">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/folder-publicshare.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/folder-publicshare.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdGroupCopyData" Id="139">
       <Command.LabelTitle>
         <String Id="472">Copy Data</String>
@@ -1491,10 +1499,10 @@
         <String Id="112">Open an existing raw data file or R# script file.</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="113">Res/folder-publicshare.png</Image>
+        <Image MinDPI="192">Res/folder-pictures.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="114">Res/folder-publicshare.png</Image>
+        <Image MinDPI="192">Res/folder-pictures.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdOpenIonsLibrary" Id="159">
@@ -1519,16 +1527,16 @@
     </Command>
     <Command Name="cmdButtonOpenMSIRaw" Id="119">
       <Command.LabelTitle>
-        <String Id="368">Open MSI File</String>
+        <String Id="368">Open</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="369">Open MSI Raw Data File</String>
+        <String Id="369">Open the open source MS-Imaging raw data file</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
-        <String Id="370">Open MSI Raw Data File</String>
+        <String Id="370">Open the open source MS-Imaging raw data file</String>
       </Command.TooltipTitle>
       <Command.TooltipDescription>
-        <String Id="371">Open MSI Raw Data File</String>
+        <String Id="371">Open the open source MS-Imaging raw data file</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
         <Image Id="372" MinDPI="192">Res/folder-documents.bmp</Image>
@@ -2493,14 +2501,6 @@
       <Command.TooltipDescription>
         <String Id="578">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
-    </Command>
-    <Command Name="cmdButtonConnectMSIService" Id="218" LabelTitle="Connect Cloud" LabelDescription="Connect MSI Data Service" TooltipTitle="Connect MSI Data Service" TooltipDescription="Connect the MSI data service on another remote data analysis server or the service from the MZKit cloud studio">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/folder-publicshare.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/folder-publicshare.png</Image>
-      </Command.LargeImages>
     </Command>
   </Application.Commands>
   <Application.Views>
