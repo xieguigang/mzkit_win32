@@ -401,6 +401,12 @@
     <Compile Include="application\settings\RawFileViewerSettings.vb" />
     <Compile Include="application\VisualStudio.vb" />
     <Compile Include="application\RPackage.vb" />
+    <Compile Include="forms\Inputs\ShowTissueData.Designer.vb">
+      <DependentUpon>ShowTissueData.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\ShowTissueData.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\Input3DScatter.Designer.vb">
       <DependentUpon>Input3DScatter.vb</DependentUpon>
     </Compile>
@@ -1068,6 +1074,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmTweaks\frmTweaks.resx">
       <DependentUpon>frmTweaks.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\ShowTissueData.resx">
+      <DependentUpon>ShowTissueData.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frm3DMALDIViewer.resx">
       <DependentUpon>frm3DMALDIViewer.vb</DependentUpon>
