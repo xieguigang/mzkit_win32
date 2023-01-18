@@ -555,6 +555,12 @@
     <Compile Include="forms\ISplashScreenUpdater.vb" />
     <Compile Include="pages\ConnectToBioDeep.vb" />
     <Compile Include="pages\dockWindow\DemoItem.vb" />
+    <Compile Include="pages\dockWindow\documents\Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pages\dockWindow\documents\Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\documents\frm3DMALDIViewer.Designer.vb">
       <DependentUpon>frm3DMALDIViewer.vb</DependentUpon>
     </Compile>
@@ -567,7 +573,7 @@
     <Compile Include="pages\dockWindow\systems\frmPluginMgr.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\TissueSlideHandler.vb" />
+    <Compile Include="pages\dockWindow\documents\Models\TissueSlideHandler.vb" />
     <Compile Include="pages\dockWindow\documents\frmOpenseadragonViewer.Designer.vb">
       <DependentUpon>frmOpenseadragonViewer.vb</DependentUpon>
     </Compile>
@@ -616,7 +622,7 @@
     <Compile Include="pages\dockWindow\documents\frmSeeMs.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\QuantifyParameters.vb" />
+    <Compile Include="pages\dockWindow\documents\Models\QuantifyParameters.vb" />
     <Compile Include="pages\dockWindow\systems\frmServicesManager.Designer.vb">
       <DependentUpon>frmServicesManager.vb</DependentUpon>
     </Compile>
@@ -683,7 +689,7 @@
     <Compile Include="pages\dockWindow\documents\frmPlotViewer.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\FeatureSearchHandler.vb" />
+    <Compile Include="pages\dockWindow\documents\Models\FeatureSearchHandler.vb" />
     <Compile Include="pages\dockWindow\documents\frmGCMS_CDFExplorer.Designer.vb">
       <DependentUpon>frmGCMS_CDFExplorer.vb</DependentUpon>
     </Compile>
