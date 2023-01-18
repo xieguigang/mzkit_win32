@@ -92,5 +92,6 @@ Module Actions
         Call Register("Peak Finding", New PeakFindingAction)
         Call Register("Peak List Annotation", New PeakAnnotationAction)
         Call Register("KEGG Stats", New KEGGStatsAction)
+        Call Register("View 3D Scatter", New ViewScatter3DAction)
     End Sub
 End Module
