@@ -555,16 +555,14 @@
     <Compile Include="forms\ISplashScreenUpdater.vb" />
     <Compile Include="pages\ConnectToBioDeep.vb" />
     <Compile Include="pages\dockWindow\DemoItem.vb" />
-    <Compile Include="pages\dockWindow\documents\Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
-    </Compile>
-    <Compile Include="pages\dockWindow\documents\Form1.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="pages\dockWindow\documents\frm3DMALDIViewer.Designer.vb">
       <DependentUpon>frm3DMALDIViewer.vb</DependentUpon>
     </Compile>
     <Compile Include="pages\dockWindow\documents\frm3DMALDIViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pages\dockWindow\documents\frm3DScatterPlotView.Designer.vb" />
+    <Compile Include="pages\dockWindow\documents\frm3DScatterPlotView.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\systems\frmPluginMgr.Designer.vb">
