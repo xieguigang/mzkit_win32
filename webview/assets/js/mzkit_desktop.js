@@ -609,8 +609,8 @@ var apps;
                 panel.appendElement($ts("<p>").display(cpu.svr.Description));
                 panel.appendElement($ts("<p>").display(cpu.svr.StartTime));
                 if (this.refresh) {
-                    this.cpu_chart.plot({ x: x, y: cpu.Counter });
-                    this.mem_chart.plot({ x: x, y: mem.Counter });
+                    this.cpu_chart.plot({ x: x, y: cpu.Counter, title: "Performance Counter (CPU history)" });
+                    this.mem_chart.plot({ x: x, y: mem.Counter, title: "Performance Counter (Memory history)" });
                 }
                 else {
                     this.cpu_chart.chartObj.setOption({ series: [{ data: servicesManager.history(x, cpu.Counter) }] });
@@ -628,7 +628,7 @@ var apps;
             servicesManager.counterChart = function (data) {
                 return {
                     title: {
-                        text: 'Performance Counter'
+                        text: data.title
                     },
                     xAxis: {
                         type: 'value',
@@ -648,7 +648,8 @@ var apps;
                             name: 'Performance Counter',
                             type: 'line',
                             showSymbol: false,
-                            data: servicesManager.history(data.x, data.y)
+                            data: servicesManager.history(data.x, data.y),
+                            areaStyle: {}
                         }
                     ]
                 };

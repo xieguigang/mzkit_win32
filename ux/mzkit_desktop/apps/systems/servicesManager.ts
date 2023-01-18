@@ -6,6 +6,7 @@ namespace apps.systems {
     }
 
     export interface counterData {
+        title: string;
         x: number[];
         y: number[];
     }
@@ -94,8 +95,8 @@ namespace apps.systems {
             panel.appendElement($ts("<p>").display(cpu.svr.StartTime));
 
             if (this.refresh) {
-                this.cpu_chart.plot(<counterData>{ x: x, y: cpu.Counter });
-                this.mem_chart.plot(<counterData>{ x: x, y: mem.Counter });
+                this.cpu_chart.plot(<counterData>{ x: x, y: cpu.Counter, title: "Performance Counter (CPU history)" });
+                this.mem_chart.plot(<counterData>{ x: x, y: mem.Counter, title: "Performance Counter (Memory history)" });
             } else {
                 this.cpu_chart.chartObj.setOption({ series: [{ data: servicesManager.history(x, cpu.Counter) }] });
                 this.mem_chart.chartObj.setOption({ series: [{ data: servicesManager.history(x, mem.Counter) }] });
@@ -117,7 +118,7 @@ namespace apps.systems {
         private static counterChart(data: counterData): plot.histogram_options {
             return <plot.histogram_options><any>{
                 title: {
-                    text: 'Performance Counter'
+                    text: data.title
                 },
                 xAxis: {
                     type: 'value',
@@ -137,7 +138,8 @@ namespace apps.systems {
                         name: 'Performance Counter',
                         type: 'line',
                         showSymbol: false,
-                        data: servicesManager.history(data.x, data.y)
+                        data: servicesManager.history(data.x, data.y),
+                        areaStyle: {}
                     }
                 ]
             };

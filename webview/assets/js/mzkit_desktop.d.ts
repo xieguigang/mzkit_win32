@@ -103,6 +103,7 @@ declare namespace apps.systems {
         Counter: number[];
     }
     interface counterData {
+        title: string;
         x: number[];
         y: number[];
     }
