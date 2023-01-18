@@ -54,18 +54,18 @@
 
 #End Region
 
-Imports System.ComponentModel
 Imports Mzkit_win32.BasicMDIForm
 
 Namespace DockSample
     Partial Public Class OutputWindow
         Inherits ToolWindow
 
+        Dim current As TextBox
+
         Public Sub New()
             InitializeComponent()
 
             DoubleBuffered = True
-
             Me.ToolStripComboBox1.SelectedIndex = 0
         End Sub
 
@@ -96,10 +96,14 @@ Namespace DockSample
                 textBox2.Hide()
                 textBox1.Show()
                 textBox1.Dock = DockStyle.Fill
+
+                current = textBox1
             Else
                 textBox1.Hide()
                 textBox2.Show()
                 textBox2.Dock = DockStyle.Fill
+
+                current = textBox2
             End If
         End Sub
 
@@ -113,6 +117,23 @@ Namespace DockSample
         Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
             textBox1.Clear()
             textBox2.Clear()
+        End Sub
+
+        Private Sub ToolStripComboBox1_Click(sender As Object, e As EventArgs) Handles ToolStripComboBox1.Click
+
+        End Sub
+
+        Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+            Clipboard.Clear()
+            Clipboard.SetText(current.Text)
+        End Sub
+
+        Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
+            Using file As New SaveFileDialog With {.Filter = "Text File(*.txt)|*.txt"}
+                If file.ShowDialog = DialogResult.OK Then
+                    Call current.Text.SaveTo(file.FileName)
+                End If
+            End Using
         End Sub
     End Class
 End Namespace

@@ -87,6 +87,9 @@ Namespace DockSample
             Me.ToolStripComboBox1 = New System.Windows.Forms.ToolStripComboBox()
             Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
             Me.Panel1 = New System.Windows.Forms.Panel()
+            Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
+            Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
+            Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
             Me.ToolStrip1.SuspendLayout()
             Me.Panel1.SuspendLayout()
             Me.SuspendLayout()
@@ -113,7 +116,7 @@ Namespace DockSample
             '
             'ToolStrip1
             '
-            Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.ToolStripComboBox1, Me.ToolStripButton1})
+            Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.ToolStripComboBox1, Me.ToolStripButton2, Me.ToolStripButton3, Me.ToolStripSeparator1, Me.ToolStripButton1})
             Me.ToolStrip1.Location = New System.Drawing.Point(0, 2)
             Me.ToolStrip1.Name = "ToolStrip1"
             Me.ToolStrip1.Size = New System.Drawing.Size(653, 25)
@@ -140,7 +143,7 @@ Namespace DockSample
             Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
             Me.ToolStripButton1.Name = "ToolStripButton1"
             Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
-            Me.ToolStripButton1.Text = "Clear All"
+            Me.ToolStripButton1.Text = "Clear All Output"
             '
             'Panel1
             '
@@ -151,6 +154,29 @@ Namespace DockSample
             Me.Panel1.Name = "Panel1"
             Me.Panel1.Size = New System.Drawing.Size(653, 345)
             Me.Panel1.TabIndex = 3
+            '
+            'ToolStripButton2
+            '
+            Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+            Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
+            Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
+            Me.ToolStripButton2.Name = "ToolStripButton2"
+            Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
+            Me.ToolStripButton2.Text = "Copy"
+            '
+            'ToolStripButton3
+            '
+            Me.ToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+            Me.ToolStripButton3.Image = CType(resources.GetObject("ToolStripButton3.Image"), System.Drawing.Image)
+            Me.ToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta
+            Me.ToolStripButton3.Name = "ToolStripButton3"
+            Me.ToolStripButton3.Size = New System.Drawing.Size(23, 22)
+            Me.ToolStripButton3.Text = "Save"
+            '
+            'ToolStripSeparator1
+            '
+            Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+            Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
             '
             'OutputWindow
             '
@@ -181,5 +207,8 @@ Namespace DockSample
         Friend WithEvents ToolStripButton1 As ToolStripButton
         Friend WithEvents ToolStripComboBox1 As ToolStripComboBox
         Friend WithEvents Panel1 As Panel
+        Friend WithEvents ToolStripButton2 As ToolStripButton
+        Friend WithEvents ToolStripButton3 As ToolStripButton
+        Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     End Class
 End Namespace
