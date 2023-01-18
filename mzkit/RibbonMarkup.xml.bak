@@ -2510,6 +2510,14 @@
         <Image MinDPI="192">Res/document-open-recent.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdShowTissueData" Id="220" LabelTitle="Show Tissue Data" LabelDescription="Show Tissue Data" TooltipTitle="Show Tissue Data" TooltipDescription="Show Tissue Data">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/application-x-object.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/application-x-object.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2767,6 +2775,7 @@
                 <Button CommandName="cmdButtonImportsTissueMorphology" />
                 <Button CommandName="cmdButtonLoadHEMap" />
                 <Button CommandName="cmdButtonExportRegions" />
+                <Button CommandName="cmdShowTissueData" />
               </DropDownButton>
               <ToggleButton CommandName="cmdButtonTogglePolygon" />
             </Group>

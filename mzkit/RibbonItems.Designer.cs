@@ -158,6 +158,7 @@ namespace RibbonLib.Controls
             public const uint cmdButtonImportsTissueMorphology = 188;
             public const uint cmdButtonLoadHEMap = 203;
             public const uint cmdButtonExportRegions = 189;
+            public const uint cmdShowTissueData = 220;
             public const uint cmdButtonTogglePolygon = 140;
             public const uint cmdTabPolygonEditor = 144;
             public const uint cmdButtonClosePolygonEditor = 146;
@@ -369,6 +370,7 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonImportsTissueMorphology { get; private set; }
         public RibbonButton ButtonLoadHEMap { get; private set; }
         public RibbonButton ButtonExportRegions { get; private set; }
+        public RibbonButton ShowTissueData { get; private set; }
         public RibbonToggleButton ButtonTogglePolygon { get; private set; }
         public RibbonGroup TabPolygonEditor { get; private set; }
         public RibbonButton ButtonClosePolygonEditor { get; private set; }
@@ -575,6 +577,7 @@ namespace RibbonLib.Controls
             ButtonImportsTissueMorphology = new RibbonButton(ribbon, Cmd.cmdButtonImportsTissueMorphology);
             ButtonLoadHEMap = new RibbonButton(ribbon, Cmd.cmdButtonLoadHEMap);
             ButtonExportRegions = new RibbonButton(ribbon, Cmd.cmdButtonExportRegions);
+            ShowTissueData = new RibbonButton(ribbon, Cmd.cmdShowTissueData);
             ButtonTogglePolygon = new RibbonToggleButton(ribbon, Cmd.cmdButtonTogglePolygon);
             TabPolygonEditor = new RibbonGroup(ribbon, Cmd.cmdTabPolygonEditor);
             ButtonClosePolygonEditor = new RibbonButton(ribbon, Cmd.cmdButtonClosePolygonEditor);
