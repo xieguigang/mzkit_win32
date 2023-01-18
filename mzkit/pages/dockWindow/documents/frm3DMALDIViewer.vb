@@ -2,6 +2,7 @@
 Imports System.Runtime.InteropServices
 Imports System.Threading
 Imports BioNovoGene.mzkit_win32.My
+Imports BioNovoGene.mzkit_win32.ServiceHub.Manager
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
@@ -73,6 +74,17 @@ Public Class frm3DMALDIViewer
 
         Call localfs.Start()
         Call App.AddExitCleanHook(Sub() Call localfs.Kill())
+        Call Hub.Register(New Service With {
+            .CPU = 0,
+            .Name = "MALDI scan in 3D",
+            .Description = "Host the 3d model data read/loading from the local filesystem, and then rendering on the 3d model viewer.",
+            .isAlive = True,
+            .Memory = 0,
+            .PID = localfs.Id,
+            .Port = webPort,
+            .Protocol = "HTTP 1.0",
+            .StartTime = Now.ToString
+        })
     End Sub
 
     Private Sub frm3DMALDIViewer_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
