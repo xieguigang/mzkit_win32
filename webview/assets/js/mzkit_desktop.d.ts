@@ -106,13 +106,13 @@ declare namespace apps.systems {
         private static styleEachRow;
     }
     interface Service {
-        name: string;
-        description: string;
-        port: number;
+        Name: string;
+        Description: string;
+        Port: number;
         PID: number;
-        cpu: number;
-        mem: number | string;
-        isAlive: boolean;
+        CPU: number;
+        Memory: number | string;
+        isAlive: boolean | string;
     }
 }
 declare namespace apps.viewer {

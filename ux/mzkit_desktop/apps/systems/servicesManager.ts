@@ -26,6 +26,7 @@ namespace apps.systems {
         private loadServicesList(list: Service[]) {
             for (let svr of list) {
                 svr.Memory = Strings.Lanudry(<number>svr.Memory);
+                svr.isAlive = svr.isAlive ? "Running" : "Stopped";
             }
 
             $ts("#num-svr").display(list.length.toString());
@@ -34,7 +35,7 @@ namespace apps.systems {
         }
 
         private static styleEachRow(svr: Service, row: HTMLTableRowElement) {
-            if (!svr.isAlive) {
+            if (!(svr.isAlive == "Running")) {
                 row.classList.add("disabled");
             }
         }
@@ -47,7 +48,7 @@ namespace apps.systems {
         PID: number;
         CPU: number;
         Memory: number | string;
-        isAlive: boolean;
+        isAlive: boolean | string;
     }
 
 }
