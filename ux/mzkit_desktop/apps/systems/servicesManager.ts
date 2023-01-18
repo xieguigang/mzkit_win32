@@ -25,7 +25,13 @@ namespace apps.systems {
 
         private loadServicesList(list: Service[]) {
             $ts("#services-list").clear();
-            $ts.appendTable(list, "#services-list", null, { class: [] });
+            $ts.appendTable(list, "#services-list", null, { class: [] }, servicesManager.styleEachRow);
+        }
+
+        private static styleEachRow(svr: Service, row: HTMLTableRowElement) {
+            if (!svr.isAlive) {
+                row.classList.add("disabled");
+            }
         }
     }
 

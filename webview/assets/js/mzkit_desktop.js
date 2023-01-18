@@ -560,7 +560,12 @@ var apps;
             };
             servicesManager.prototype.loadServicesList = function (list) {
                 $ts("#services-list").clear();
-                $ts.appendTable(list, "#services-list", null, { class: [] });
+                $ts.appendTable(list, "#services-list", null, { class: [] }, servicesManager.styleEachRow);
+            };
+            servicesManager.styleEachRow = function (svr, row) {
+                if (!svr.isAlive) {
+                    row.classList.add("disabled");
+                }
             };
             return servicesManager;
         }(Bootstrap));

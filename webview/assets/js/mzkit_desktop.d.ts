@@ -103,6 +103,7 @@ declare namespace apps.systems {
         protected init(): void;
         private startUpdateTask;
         private loadServicesList;
+        private static styleEachRow;
     }
     interface Service {
         name: string;
