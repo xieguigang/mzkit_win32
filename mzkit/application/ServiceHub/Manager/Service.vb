@@ -2,12 +2,14 @@
 
     Public Class Service
 
-        Public Property name As String
-        Public Property description As String
-        Public Property port As Integer
         Public Property PID As Integer
-        Public Property cpu As Double
-        Public Property mem As Long
+        Public Property Name As String
+        Public Property Description As String
+        Public Property Port As Integer
+        Public Property Protocol As String
+        Public Property StartTime As String
+        Public Property CPU As Double
+        Public Property Memory As Long
         Public Property isAlive As Boolean
 
     End Class

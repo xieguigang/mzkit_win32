@@ -25,9 +25,10 @@ namespace apps.systems {
 
         private loadServicesList(list: Service[]) {
             for (let svr of list) {
-                svr.mem = Strings.Lanudry(<number>svr.mem);
+                svr.Memory = Strings.Lanudry(<number>svr.Memory);
             }
 
+            $ts("#num-svr").display(list.length.toString());
             $ts("#services-list").clear();
             $ts.appendTable(list, "#services-list", null, { class: [] }, servicesManager.styleEachRow);
         }
@@ -40,12 +41,12 @@ namespace apps.systems {
     }
 
     export interface Service {
-        name: string;
-        description: string;
-        port: number;
+        Name: string;
+        Description: string;
+        Port: number;
         PID: number;
-        cpu: number;
-        mem: number | string;
+        CPU: number;
+        Memory: number | string;
         isAlive: boolean;
     }
 

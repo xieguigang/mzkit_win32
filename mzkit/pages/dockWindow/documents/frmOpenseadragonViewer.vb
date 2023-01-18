@@ -55,13 +55,16 @@ Public Class frmOpenseadragonViewer
 
         Call localfs.Start()
         Call App.AddExitCleanHook(Sub() Call localfs.Kill())
-
         Call ServiceHub.Manager.Hub.Register(New Manager.Service With {
-            .name = "Open seadragon",
-            .description = "Http services for host the deep zoom image for open seadragon viewer",
+            .Name = "Open seadragon",
+            .Description = "Http services for host the deep zoom image for open seadragon viewer",
             .isAlive = True,
             .PID = localfs.Id,
-            .port = webPort
+            .Port = webPort,
+            .CPU = 0,
+            .Memory = 0,
+            .Protocol = "HTTP 1.0",
+            .StartTime = Now.ToString
         })
     End Sub
 

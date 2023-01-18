@@ -22,24 +22,30 @@
 
                 If p Is Nothing Then
                     Yield New Service With {
-                        .description = item.description,
-                        .name = item.name,
+                        .Description = item.Description,
+                        .Name = item.Name,
                         .PID = item.PID,
                         .isAlive = False,
-                        .port = item.port
+                        .Port = item.Port,
+                        .StartTime = item.StartTime,
+                        .Protocol = item.Protocol,
+                        .CPU = 0,
+                        .Memory = 0
                     }
                 Else
                     Yield New Service With {
-                        .description = item.description,
-                        .name = item.name,
+                        .Description = item.Description,
+                        .Name = item.Name,
                         .PID = item.PID,
-                        .port = item.port,
+                        .Port = item.Port,
                         .isAlive = p.HasExited,
-                        .cpu = p.TotalProcessorTime.TotalMilliseconds - item.cpu,
-                        .mem = p.WorkingSet64
+                        .CPU = p.TotalProcessorTime.TotalMilliseconds - item.CPU,
+                        .Memory = p.WorkingSet64,
+                        .Protocol = item.Protocol,
+                        .StartTime = item.StartTime
                     }
 
-                    item.cpu = p.TotalProcessorTime.TotalMilliseconds
+                    item.CPU = p.TotalProcessorTime.TotalMilliseconds
                 End If
             Next
         End Function
@@ -50,7 +56,7 @@
 
         Public Sub RegisterSingle(svr As Service)
             For Each item In list.ToArray
-                If item.name = svr.name Then
+                If item.Name = svr.Name Then
                     list.Remove(item)
                     Exit For
                 End If

@@ -150,11 +150,13 @@ Module Globals
         Call localfs.Start()
         Call App.AddExitCleanHook(AddressOf shutdownHttpWeb)
         Call ServiceHub.Manager.Hub.Register(New Manager.Service With {
-            .name = "Local FileSystem",
-            .description = "Http services for host MZKit webview pages",
+            .Name = "Local FileSystem",
+            .Description = "Http services for host MZKit webview pages",
             .isAlive = True,
             .PID = localfs.Id,
-            .port = Workbench.WebPort
+            .Port = Workbench.WebPort,
+            .Protocol = "HTTP 1.0",
+            .StartTime = Now.ToString
         })
 
         Call FrameworkInternal.ConfigMemory(MemoryLoads.Max)
