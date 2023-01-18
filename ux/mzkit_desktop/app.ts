@@ -49,5 +49,5 @@ namespace app.desktop {
     }
 }
 
-$ts.mode = Modes.debug;
+$ts.mode = Modes.development;
 $ts(app.desktop.run);

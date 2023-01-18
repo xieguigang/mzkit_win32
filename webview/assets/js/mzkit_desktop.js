@@ -47,6 +47,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
 /// <reference path="../../d/three/index.d.ts" />
 var apps;
 (function (apps) {
@@ -221,7 +228,7 @@ var app;
         desktop.run = run;
     })(desktop = app.desktop || (app.desktop = {}));
 })(app || (app = {}));
-$ts.mode = Modes.debug;
+$ts.mode = Modes.development;
 $ts(app.desktop.run);
 /**
  * Read of 3d model file blob
@@ -524,7 +531,10 @@ var apps;
         var servicesManager = /** @class */ (function (_super) {
             __extends(servicesManager, _super);
             function servicesManager() {
-                return _super !== null && _super.apply(this, arguments) || this;
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.cpu = new Dictionary();
+                _this.memory = new Dictionary();
+                return _this;
             }
             Object.defineProperty(servicesManager.prototype, "appName", {
                 get: function () {
@@ -552,6 +562,7 @@ var apps;
                                     fetch = _a.sent();
                                     list = JSON.parse(fetch);
                                     vm.loadServicesList(list);
+                                    vm.onDraw();
                                     return [2 /*return*/];
                             }
                         });
@@ -559,19 +570,47 @@ var apps;
                 });
             };
             servicesManager.prototype.loadServicesList = function (list) {
+                var vm = this;
                 for (var _i = 0, list_2 = list; _i < list_2.length; _i++) {
                     var svr = list_2[_i];
+                    var id = "P" + svr.PID;
+                    if (!vm.cpu.ContainsKey(id)) {
+                        vm.cpu.Add(id, { svr: svr, Counter: [] });
+                        vm.memory.Add(id, { svr: svr, Counter: [] });
+                    }
+                    if (svr.isAlive) {
+                        vm.cpu.Item(id).Counter.push(svr.CPU);
+                        vm.memory.Item(id).Counter.push(svr.Memory);
+                    }
                     svr.Memory = Strings.Lanudry(svr.Memory);
                     svr.isAlive = svr.isAlive ? "Running" : "Stopped";
                 }
                 $ts("#num-svr").display(list.length.toString());
                 $ts("#services-list").clear();
-                $ts.appendTable(list, "#services-list", null, { class: [] }, servicesManager.styleEachRow);
+                $ts.appendTable(list, "#services-list", null, { class: [] }, function (o, r) { return vm.styleEachRow(o, r); });
             };
-            servicesManager.styleEachRow = function (svr, row) {
+            servicesManager.prototype.onDraw = function () {
+                var vm = this;
+                if (!vm.plot) {
+                    return;
+                }
+                var cpu = vm.plot.cpu;
+                var mem = vm.plot.memory;
+                var x = __spreadArrays(cpu.Counter).map(function (_, index) { return index + 1; });
+            };
+            servicesManager.prototype.styleEachRow = function (svr, row) {
+                var vm = this;
                 if (!(svr.isAlive == "Running")) {
                     row.classList.add("disabled");
                 }
+                row.onclick = function () {
+                    var id = "P" + svr.PID;
+                    var cpu = vm.cpu.Item(id);
+                    var mem = vm.memory.Item(id);
+                    vm.plot = { cpu: cpu, memory: mem };
+                    // draw echart
+                    vm.onDraw();
+                };
             };
             return servicesManager;
         }(Bootstrap));

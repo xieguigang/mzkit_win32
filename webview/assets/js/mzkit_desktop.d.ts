@@ -98,12 +98,20 @@ declare namespace apps.systems {
     }
 }
 declare namespace apps.systems {
+    interface perfermanceCount {
+        svr: Service;
+        Counter: number[];
+    }
     class servicesManager extends Bootstrap {
         get appName(): string;
+        readonly cpu: Dictionary<perfermanceCount>;
+        readonly memory: Dictionary<perfermanceCount>;
+        private plot;
         protected init(): void;
         private startUpdateTask;
         private loadServicesList;
-        private static styleEachRow;
+        private onDraw;
+        private styleEachRow;
     }
     interface Service {
         Name: string;

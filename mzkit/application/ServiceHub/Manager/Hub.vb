@@ -38,7 +38,7 @@
                         .Name = item.Name,
                         .PID = item.PID,
                         .Port = item.Port,
-                        .isAlive = p.HasExited,
+                        .isAlive = Not p.HasExited,
                         .CPU = p.TotalProcessorTime.TotalMilliseconds - item.CPU,
                         .Memory = p.WorkingSet64,
                         .Protocol = item.Protocol,

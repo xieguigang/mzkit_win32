@@ -1,9 +1,22 @@
 namespace apps.systems {
 
+    export interface perfermanceCount {
+        svr: Service;
+        Counter: number[];
+    }
+
     export class servicesManager extends Bootstrap {
 
         public get appName(): string {
             return "mzkit/services";
+        };
+
+        readonly cpu = new Dictionary<perfermanceCount>();
+        readonly memory = new Dictionary<perfermanceCount>();
+
+        private plot: {
+            cpu: perfermanceCount,
+            memory: perfermanceCount
         };
 
         protected init(): void {
@@ -20,23 +33,62 @@ namespace apps.systems {
                     const list: Service[] = JSON.parse(fetch);
 
                     vm.loadServicesList(list);
+                    vm.onDraw();
                 });
         }
 
         private loadServicesList(list: Service[]) {
+            const vm = this;
+
             for (let svr of list) {
+                const id = `P${svr.PID}`;
+
+                if (!vm.cpu.ContainsKey(id)) {
+                    vm.cpu.Add(id, <perfermanceCount>{ svr: svr, Counter: [] });
+                    vm.memory.Add(id, <perfermanceCount>{ svr: svr, Counter: [] });
+                }
+
+                if (svr.isAlive) {
+                    vm.cpu.Item(id).Counter.push(svr.CPU);
+                    vm.memory.Item(id).Counter.push(<number>svr.Memory);
+                }
+
                 svr.Memory = Strings.Lanudry(<number>svr.Memory);
                 svr.isAlive = svr.isAlive ? "Running" : "Stopped";
             }
 
             $ts("#num-svr").display(list.length.toString());
             $ts("#services-list").clear();
-            $ts.appendTable(list, "#services-list", null, { class: [] }, servicesManager.styleEachRow);
+            $ts.appendTable(list, "#services-list", null, { class: [] }, (o, r) => vm.styleEachRow(o, r));
         }
 
-        private static styleEachRow(svr: Service, row: HTMLTableRowElement) {
+        private onDraw() {
+            const vm = this;
+
+            if (!vm.plot) {
+                return;
+            }
+
+            const cpu = vm.plot.cpu;
+            const mem = vm.plot.memory;
+            const x: number[] = [...cpu.Counter].map((_, index) => index + 1);
+        }
+
+        private styleEachRow(svr: Service, row: HTMLTableRowElement) {
+            const vm = this;
+
             if (!(svr.isAlive == "Running")) {
                 row.classList.add("disabled");
+            }
+
+            row.onclick = function () {
+                const id: string = `P${svr.PID}`;
+                const cpu = vm.cpu.Item(id);
+                const mem = vm.memory.Item(id);
+
+                vm.plot = { cpu: cpu, memory: mem };
+                // draw echart
+                vm.onDraw();
             }
         }
     }
