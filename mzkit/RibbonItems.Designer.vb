@@ -155,6 +155,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonImportsTissueMorphology As UInteger = 188
             Public Const cmdButtonLoadHEMap As UInteger = 203
             Public Const cmdButtonExportRegions As UInteger = 189
+            Public Const cmdShowTissueData As UInteger = 220
             Public Const cmdButtonTogglePolygon As UInteger = 140
             Public Const cmdTabPolygonEditor As UInteger = 144
             Public Const cmdButtonClosePolygonEditor As UInteger = 146
@@ -1066,6 +1067,12 @@ Namespace RibbonLib.Controls
                 Return _ButtonExportRegions
             End Get
         End Property
+        Private _ShowTissueData As RibbonButton
+        Public ReadOnly Property ShowTissueData As RibbonButton
+            Get
+                Return _ShowTissueData
+            End Get
+        End Property
         Private _ButtonTogglePolygon As RibbonToggleButton
         Public ReadOnly Property ButtonTogglePolygon As RibbonToggleButton
             Get
@@ -1577,6 +1584,7 @@ Namespace RibbonLib.Controls
             _ButtonImportsTissueMorphology = New RibbonButton(_ribbon, Cmd.cmdButtonImportsTissueMorphology)
             _ButtonLoadHEMap = New RibbonButton(_ribbon, Cmd.cmdButtonLoadHEMap)
             _ButtonExportRegions = New RibbonButton(_ribbon, Cmd.cmdButtonExportRegions)
+            _ShowTissueData = New RibbonButton(_ribbon, Cmd.cmdShowTissueData)
             _ButtonTogglePolygon = New RibbonToggleButton(_ribbon, Cmd.cmdButtonTogglePolygon)
             _TabPolygonEditor = New RibbonGroup(_ribbon, Cmd.cmdTabPolygonEditor)
             _ButtonClosePolygonEditor = New RibbonButton(_ribbon, Cmd.cmdButtonClosePolygonEditor)

@@ -1160,5 +1160,12 @@
 #define cmdButtonOpenServicesMgr_TooltipDescription_RESID 60330
 #define cmdButtonOpenServicesMgr_SmallImages_192__RESID 60331
 #define cmdButtonOpenServicesMgr_LargeImages_192__RESID 60332
-#define InternalCmd2_LabelTitle_RESID 60333
-#define InternalCmd4_LabelTitle_RESID 60334
+#define cmdShowTissueData 220 
+#define cmdShowTissueData_LabelTitle_RESID 60333
+#define cmdShowTissueData_LabelDescription_RESID 60334
+#define cmdShowTissueData_TooltipTitle_RESID 60335
+#define cmdShowTissueData_TooltipDescription_RESID 60336
+#define cmdShowTissueData_SmallImages_192__RESID 60337
+#define cmdShowTissueData_LargeImages_192__RESID 60338
+#define InternalCmd2_LabelTitle_RESID 60339
+#define InternalCmd4_LabelTitle_RESID 60340
