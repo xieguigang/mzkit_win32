@@ -1,5 +1,3 @@
-import { CompressedPixelFormat } from "three";
-
 namespace apps.systems {
 
     export interface perfermanceCount {

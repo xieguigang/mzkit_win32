@@ -524,161 +524,157 @@ var apps;
         systems.pluginPkg = pluginPkg;
     })(systems = apps.systems || (apps.systems = {}));
 })(apps || (apps = {}));
-define("apps/systems/servicesManager", ["require", "exports"], function (require, exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var apps;
-    (function (apps) {
-        var systems;
-        (function (systems) {
-            var servicesManager = /** @class */ (function (_super) {
-                __extends(servicesManager, _super);
-                function servicesManager() {
-                    var _this = _super !== null && _super.apply(this, arguments) || this;
-                    _this.cpu = new Dictionary();
-                    _this.memory = new Dictionary();
-                    return _this;
-                }
-                Object.defineProperty(servicesManager.prototype, "appName", {
-                    get: function () {
-                        return "mzkit/services";
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                ;
-                servicesManager.prototype.init = function () {
-                    var _this = this;
-                    this.startUpdateTask();
-                    setInterval(function () { return _this.startUpdateTask(); }, 1500);
-                };
-                /**
-                 * on update a frame display
-                */
-                servicesManager.prototype.startUpdateTask = function () {
-                    var vm = this;
-                    app.desktop.mzkit
-                        .GetServicesList()
-                        .then(function (json) {
-                        return __awaiter(this, void 0, void 0, function () {
-                            var fetch, list;
-                            return __generator(this, function (_a) {
-                                switch (_a.label) {
-                                    case 0: return [4 /*yield*/, json];
-                                    case 1:
-                                        fetch = _a.sent();
-                                        list = JSON.parse(fetch);
-                                        vm.loadServicesList(list);
-                                        vm.onDraw();
-                                        return [2 /*return*/];
-                                }
-                            });
+var apps;
+(function (apps) {
+    var systems;
+    (function (systems) {
+        var servicesManager = /** @class */ (function (_super) {
+            __extends(servicesManager, _super);
+            function servicesManager() {
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.cpu = new Dictionary();
+                _this.memory = new Dictionary();
+                return _this;
+            }
+            Object.defineProperty(servicesManager.prototype, "appName", {
+                get: function () {
+                    return "mzkit/services";
+                },
+                enumerable: true,
+                configurable: true
+            });
+            ;
+            servicesManager.prototype.init = function () {
+                var _this = this;
+                this.startUpdateTask();
+                setInterval(function () { return _this.startUpdateTask(); }, 1500);
+            };
+            /**
+             * on update a frame display
+            */
+            servicesManager.prototype.startUpdateTask = function () {
+                var vm = this;
+                app.desktop.mzkit
+                    .GetServicesList()
+                    .then(function (json) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var fetch, list;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, json];
+                                case 1:
+                                    fetch = _a.sent();
+                                    list = JSON.parse(fetch);
+                                    vm.loadServicesList(list);
+                                    vm.onDraw();
+                                    return [2 /*return*/];
+                            }
                         });
                     });
-                };
-                servicesManager.prototype.loadServicesList = function (list) {
-                    var vm = this;
-                    for (var _i = 0, list_2 = list; _i < list_2.length; _i++) {
-                        var svr = list_2[_i];
-                        var id = "P" + svr.PID;
-                        if (!vm.cpu.ContainsKey(id)) {
-                            vm.cpu.Add(id, { svr: svr, Counter: [] });
-                            vm.memory.Add(id, { svr: svr, Counter: [] });
+                });
+            };
+            servicesManager.prototype.loadServicesList = function (list) {
+                var vm = this;
+                for (var _i = 0, list_2 = list; _i < list_2.length; _i++) {
+                    var svr = list_2[_i];
+                    var id = "P" + svr.PID;
+                    if (!vm.cpu.ContainsKey(id)) {
+                        vm.cpu.Add(id, { svr: svr, Counter: [] });
+                        vm.memory.Add(id, { svr: svr, Counter: [] });
+                    }
+                    if (svr.isAlive) {
+                        vm.cpu.Item(id).Counter.push(svr.CPU);
+                        vm.memory.Item(id).Counter.push(svr.Memory);
+                    }
+                    svr.Memory = Strings.Lanudry(svr.Memory);
+                    svr.isAlive = svr.isAlive ? "Running" : "Stopped";
+                }
+                $ts("#num-svr").display(list.length.toString());
+                $ts("#services-list").clear();
+                $ts.appendTable(list, "#services-list", null, { class: [] }, function (o, r) { return vm.styleEachRow(o, r); });
+            };
+            servicesManager.prototype.onDraw = function () {
+                var vm = this;
+                if (!vm.plot) {
+                    return;
+                }
+                else if (!(vm.cpu_chart && vm.mem_chart)) {
+                    return;
+                }
+                var cpu = vm.plot.cpu;
+                var mem = vm.plot.memory;
+                var panel = $ts("#service-info").clear();
+                var x = __spreadArrays(cpu.Counter).map(function (_, index) { return index + 1; });
+                panel.display($ts("<h3>").display(cpu.svr.Name));
+                panel.appendElement($ts("<p>").display(cpu.svr.Description));
+                panel.appendElement($ts("<p>").display(cpu.svr.StartTime));
+                if (this.refresh) {
+                    this.cpu_chart.plot({ x: x, y: cpu.Counter });
+                    this.mem_chart.plot({ x: x, y: mem.Counter });
+                }
+                else {
+                    this.cpu_chart.chartObj.setOption({ series: [{ data: servicesManager.history(x, cpu.Counter) }] });
+                    this.mem_chart.chartObj.setOption({ series: [{ data: servicesManager.history(x, mem.Counter) }] });
+                }
+                this.refresh = false;
+            };
+            servicesManager.history = function (x, y) {
+                var bars = [];
+                for (var i = 0; i < x.length; i++) {
+                    bars.push([x[i], y[i]]);
+                }
+                return bars;
+            };
+            servicesManager.counterChart = function (data) {
+                return {
+                    xAxis: {
+                        type: 'category',
+                        data: data.x
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [
+                        {
+                            data: data.y,
+                            type: 'bar'
                         }
-                        if (svr.isAlive) {
-                            vm.cpu.Item(id).Counter.push(svr.CPU);
-                            vm.memory.Item(id).Counter.push(svr.Memory);
-                        }
-                        svr.Memory = Strings.Lanudry(svr.Memory);
-                        svr.isAlive = svr.isAlive ? "Running" : "Stopped";
-                    }
-                    $ts("#num-svr").display(list.length.toString());
-                    $ts("#services-list").clear();
-                    $ts.appendTable(list, "#services-list", null, { class: [] }, function (o, r) { return vm.styleEachRow(o, r); });
+                    ]
                 };
-                servicesManager.prototype.onDraw = function () {
-                    var vm = this;
-                    if (!vm.plot) {
-                        return;
-                    }
-                    else if (!(vm.cpu_chart && vm.mem_chart)) {
-                        return;
-                    }
-                    var cpu = vm.plot.cpu;
-                    var mem = vm.plot.memory;
-                    var panel = $ts("#service-info").clear();
-                    var x = __spreadArrays(cpu.Counter).map(function (_, index) { return index + 1; });
-                    panel.display($ts("<h3>").display(cpu.svr.Name));
-                    panel.appendElement($ts("<p>").display(cpu.svr.Description));
-                    panel.appendElement($ts("<p>").display(cpu.svr.StartTime));
-                    if (this.refresh) {
-                        this.cpu_chart.plot({ x: x, y: cpu.Counter });
-                        this.mem_chart.plot({ x: x, y: mem.Counter });
-                    }
-                    else {
-                        this.cpu_chart.chartObj.setOption({ series: [{ data: servicesManager.history(x, cpu.Counter) }] });
-                        this.mem_chart.chartObj.setOption({ series: [{ data: servicesManager.history(x, mem.Counter) }] });
-                    }
-                    this.refresh = false;
-                };
-                servicesManager.history = function (x, y) {
-                    var bars = [];
-                    for (var i = 0; i < x.length; i++) {
-                        bars.push([x[i], y[i]]);
-                    }
-                    return bars;
-                };
-                servicesManager.counterChart = function (data) {
-                    return {
-                        xAxis: {
-                            type: 'category',
-                            data: data.x
-                        },
-                        yAxis: {
-                            type: 'value'
-                        },
-                        series: [
-                            {
-                                data: data.y,
-                                type: 'bar'
-                            }
-                        ]
-                    };
-                };
-                servicesManager.prototype.updatePlotHost = function () {
-                    this.cpu_chart = new plot.histogramPlot(servicesManager.counterChart, "cpu-history");
-                    this.mem_chart = new plot.histogramPlot(servicesManager.counterChart, "mem-history");
-                };
-                servicesManager.prototype.styleEachRow = function (svr, row) {
-                    var vm = this;
-                    if (!(svr.isAlive == "Running")) {
-                        row.classList.add("disabled");
-                    }
-                    row.onclick = function () {
-                        var id = "P" + svr.PID;
-                        var cpu = vm.cpu.Item(id);
-                        var mem = vm.memory.Item(id);
-                        if (vm.plot) {
-                            if (vm.plot.cpu.svr.PID != cpu.svr.PID) {
-                                // create new plot
-                                vm.updatePlotHost();
-                            }
-                        }
-                        else {
+            };
+            servicesManager.prototype.updatePlotHost = function () {
+                this.cpu_chart = new plot.histogramPlot(servicesManager.counterChart, "cpu-history");
+                this.mem_chart = new plot.histogramPlot(servicesManager.counterChart, "mem-history");
+            };
+            servicesManager.prototype.styleEachRow = function (svr, row) {
+                var vm = this;
+                if (!(svr.isAlive == "Running")) {
+                    row.classList.add("disabled");
+                }
+                row.onclick = function () {
+                    var id = "P" + svr.PID;
+                    var cpu = vm.cpu.Item(id);
+                    var mem = vm.memory.Item(id);
+                    if (vm.plot) {
+                        if (vm.plot.cpu.svr.PID != cpu.svr.PID) {
                             // create new plot
                             vm.updatePlotHost();
                         }
-                        vm.plot = { cpu: cpu, memory: mem };
-                        // draw echart
-                        vm.onDraw();
-                    };
+                    }
+                    else {
+                        // create new plot
+                        vm.updatePlotHost();
+                    }
+                    vm.plot = { cpu: cpu, memory: mem };
+                    // draw echart
+                    vm.onDraw();
                 };
-                return servicesManager;
-            }(Bootstrap));
-            systems.servicesManager = servicesManager;
-        })(systems = apps.systems || (apps.systems = {}));
-    })(apps || (apps = {}));
-});
+            };
+            return servicesManager;
+        }(Bootstrap));
+        systems.servicesManager = servicesManager;
+    })(systems = apps.systems || (apps.systems = {}));
+})(apps || (apps = {}));
 var apps;
 (function (apps) {
     var viewer;

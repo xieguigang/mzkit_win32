@@ -97,7 +97,46 @@ declare namespace apps.systems {
         build_onclick(): void;
     }
 }
-declare module "apps/systems/servicesManager" { }
+declare namespace apps.systems {
+    interface perfermanceCount {
+        svr: Service;
+        Counter: number[];
+    }
+    interface counterData {
+        x: number[];
+        y: number[];
+    }
+    class servicesManager extends Bootstrap {
+        get appName(): string;
+        readonly cpu: Dictionary<perfermanceCount>;
+        readonly memory: Dictionary<perfermanceCount>;
+        private plot;
+        protected init(): void;
+        /**
+         * on update a frame display
+        */
+        private startUpdateTask;
+        private loadServicesList;
+        private cpu_chart;
+        private mem_chart;
+        private refresh;
+        private onDraw;
+        private static history;
+        private static counterChart;
+        private updatePlotHost;
+        private styleEachRow;
+    }
+    interface Service {
+        Name: string;
+        Description: string;
+        Port: number;
+        PID: number;
+        CPU: number;
+        Memory: number | string;
+        isAlive: boolean | string;
+        StartTime: string;
+    }
+}
 declare namespace apps.viewer {
     class clusterViewer extends Bootstrap {
         get appName(): string;
