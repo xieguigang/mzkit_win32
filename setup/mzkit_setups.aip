@@ -4702,6 +4702,11 @@
     <ROW File="Mzkit_win32.TaskStream.dll" Component_="Mzkit_win32.TaskStream.dll" FileName="MZKIT_~7.DLL|Mzkit_win32.TaskStream.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.TaskStream.dll" SelfReg="false"/>
     <ROW File="mzView.dll" Component_="mzView.dll" FileName="mzView.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\mzView.dll" SelfReg="false"/>
     <ROW File="mzView.dll.config" Component_="Microsoft.VisualBasic.Runtime.dll.config" FileName="MZVIEW~1.CON|mzView.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\mzView.dll.config" SelfReg="false"/>
+    <ROW File="dscatter.html" Component_="logo.png" FileName="3D-SCA~1.HTM|3d-scatter.html" Attributes="0" SourcePath="..\webview\3d-scatter.html" SelfReg="false"/>
+    <ROW File="echartstypes.js" Component_="linq.d.ts" FileName="ECHART~1.JS|echarts@types.js" Attributes="0" SourcePath="..\webview\assets\js\echarts@types.js" SelfReg="false"/>
+    <ROW File="services_manager.css" Component_="d_canvas.css" FileName="SERVIC~1.CSS|services_manager.css" Attributes="0" SourcePath="..\webview\assets\services_manager.css" SelfReg="false"/>
+    <ROW File="servicesManager.html" Component_="logo.png" FileName="SERVIC~1.HTM|servicesManager.html" Attributes="0" SourcePath="..\webview\servicesManager.html" SelfReg="false"/>
+    <ROW File="echartsgl.min.js" Component_="smilesdrawer.min.js" FileName="ECHART~2.JS|echarts-gl.min.js" Attributes="0" SourcePath="..\webview\vendor\echarts-gl.min.js" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
