@@ -276,6 +276,8 @@ Public Class MSI : Implements ITaskDriver, IDisposable
     Public Function GetMSIInformationMetadata(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
         Dim info = MSIProtocols.GetMSIInfo(Me)
 
+        Call RunSlavePipeline.SendMessage($"A remote client({remoteAddress.ToString}) connect to this background data service as the cloud service host!")
+
         If info.TryGetValue("source").StringEmpty Then
             info!source = "no-data"
         End If
@@ -416,7 +418,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
     Public Function GetIonStatList(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
         Dim targetMz As Double() = request.GetUTF8String.LoadJSON(Of Double())
         Dim allPixels As PixelScan() = MSI.pixelReader.AllPixels.ToArray
-        Dim ions As IonStat() = IonStat.DoStat(allPixels, mz:=targetMz).ToArray
+        Dim ions As IonStat() = IonStat.DoStat(allPixels, mz:=targetMz, parallel:=True).ToArray
         Dim json As JsonElement = ions _
             .GetType _
             .GetJsonElement(ions, New JSONSerializerOptions With {.indent = False})
