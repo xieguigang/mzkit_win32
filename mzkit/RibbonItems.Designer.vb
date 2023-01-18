@@ -155,7 +155,6 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonImportsTissueMorphology As UInteger = 188
             Public Const cmdButtonLoadHEMap As UInteger = 203
             Public Const cmdButtonExportRegions As UInteger = 189
-            Public Const cmdShowTissueData As UInteger = 220
             Public Const cmdButtonTogglePolygon As UInteger = 140
             Public Const cmdTabPolygonEditor As UInteger = 144
             Public Const cmdButtonClosePolygonEditor As UInteger = 146
@@ -169,6 +168,7 @@ Namespace RibbonLib.Controls
             Public Const cmdGroupTissueMaps As UInteger = 196
             Public Const cmdCheckShowMapLayer As UInteger = 194
             Public Const cmdButtonShowMSISampleWindow As UInteger = 195
+            Public Const cmdShowTissueData As UInteger = 220
             Public Const cmdGroupKEGG As UInteger = 133
             Public Const cmdTabKEGG As UInteger = 132
             Public Const cmdTabGroupKEGG As UInteger = 134
@@ -1067,12 +1067,6 @@ Namespace RibbonLib.Controls
                 Return _ButtonExportRegions
             End Get
         End Property
-        Private _ShowTissueData As RibbonButton
-        Public ReadOnly Property ShowTissueData As RibbonButton
-            Get
-                Return _ShowTissueData
-            End Get
-        End Property
         Private _ButtonTogglePolygon As RibbonToggleButton
         Public ReadOnly Property ButtonTogglePolygon As RibbonToggleButton
             Get
@@ -1149,6 +1143,12 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonShowMSISampleWindow As RibbonButton
             Get
                 Return _ButtonShowMSISampleWindow
+            End Get
+        End Property
+        Private _ShowTissueData As RibbonButton
+        Public ReadOnly Property ShowTissueData As RibbonButton
+            Get
+                Return _ShowTissueData
             End Get
         End Property
         Private _GroupKEGG As RibbonTabGroup
@@ -1584,7 +1584,6 @@ Namespace RibbonLib.Controls
             _ButtonImportsTissueMorphology = New RibbonButton(_ribbon, Cmd.cmdButtonImportsTissueMorphology)
             _ButtonLoadHEMap = New RibbonButton(_ribbon, Cmd.cmdButtonLoadHEMap)
             _ButtonExportRegions = New RibbonButton(_ribbon, Cmd.cmdButtonExportRegions)
-            _ShowTissueData = New RibbonButton(_ribbon, Cmd.cmdShowTissueData)
             _ButtonTogglePolygon = New RibbonToggleButton(_ribbon, Cmd.cmdButtonTogglePolygon)
             _TabPolygonEditor = New RibbonGroup(_ribbon, Cmd.cmdTabPolygonEditor)
             _ButtonClosePolygonEditor = New RibbonButton(_ribbon, Cmd.cmdButtonClosePolygonEditor)
@@ -1598,6 +1597,7 @@ Namespace RibbonLib.Controls
             _GroupTissueMaps = New RibbonGroup(_ribbon, Cmd.cmdGroupTissueMaps)
             _CheckShowMapLayer = New RibbonToggleButton(_ribbon, Cmd.cmdCheckShowMapLayer)
             _ButtonShowMSISampleWindow = New RibbonButton(_ribbon, Cmd.cmdButtonShowMSISampleWindow)
+            _ShowTissueData = New RibbonButton(_ribbon, Cmd.cmdShowTissueData)
             _GroupKEGG = New RibbonTabGroup(_ribbon, Cmd.cmdGroupKEGG)
             _TabKEGG = New RibbonTab(_ribbon, Cmd.cmdTabKEGG)
             _TabGroupKEGG = New RibbonGroup(_ribbon, Cmd.cmdTabGroupKEGG)

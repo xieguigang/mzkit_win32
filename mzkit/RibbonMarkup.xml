@@ -2775,7 +2775,6 @@
                 <Button CommandName="cmdButtonImportsTissueMorphology" />
                 <Button CommandName="cmdButtonLoadHEMap" />
                 <Button CommandName="cmdButtonExportRegions" />
-                <Button CommandName="cmdShowTissueData" />
               </DropDownButton>
               <ToggleButton CommandName="cmdButtonTogglePolygon" />
             </Group>
@@ -2789,9 +2788,10 @@
               <ToggleButton CommandName="cmdButtonShowPolygonVertexInfo" />
               <Button CommandName="cmdButtonNextPolygon" />
             </Group>
-            <Group CommandName="cmdGroupTissueMaps" SizeDefinition="TwoButtons">
+            <Group CommandName="cmdGroupTissueMaps" SizeDefinition="ThreeButtons">
               <ToggleButton CommandName="cmdCheckShowMapLayer" />
               <Button CommandName="cmdButtonShowMSISampleWindow" />
+              <Button CommandName="cmdShowTissueData" />
             </Group>
           </Tab>
         </TabGroup>

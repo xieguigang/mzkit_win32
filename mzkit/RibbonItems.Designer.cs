@@ -158,7 +158,6 @@ namespace RibbonLib.Controls
             public const uint cmdButtonImportsTissueMorphology = 188;
             public const uint cmdButtonLoadHEMap = 203;
             public const uint cmdButtonExportRegions = 189;
-            public const uint cmdShowTissueData = 220;
             public const uint cmdButtonTogglePolygon = 140;
             public const uint cmdTabPolygonEditor = 144;
             public const uint cmdButtonClosePolygonEditor = 146;
@@ -172,6 +171,7 @@ namespace RibbonLib.Controls
             public const uint cmdGroupTissueMaps = 196;
             public const uint cmdCheckShowMapLayer = 194;
             public const uint cmdButtonShowMSISampleWindow = 195;
+            public const uint cmdShowTissueData = 220;
             public const uint cmdGroupKEGG = 133;
             public const uint cmdTabKEGG = 132;
             public const uint cmdTabGroupKEGG = 134;
@@ -370,7 +370,6 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonImportsTissueMorphology { get; private set; }
         public RibbonButton ButtonLoadHEMap { get; private set; }
         public RibbonButton ButtonExportRegions { get; private set; }
-        public RibbonButton ShowTissueData { get; private set; }
         public RibbonToggleButton ButtonTogglePolygon { get; private set; }
         public RibbonGroup TabPolygonEditor { get; private set; }
         public RibbonButton ButtonClosePolygonEditor { get; private set; }
@@ -384,6 +383,7 @@ namespace RibbonLib.Controls
         public RibbonGroup GroupTissueMaps { get; private set; }
         public RibbonToggleButton CheckShowMapLayer { get; private set; }
         public RibbonButton ButtonShowMSISampleWindow { get; private set; }
+        public RibbonButton ShowTissueData { get; private set; }
         public RibbonTabGroup GroupKEGG { get; private set; }
         public RibbonTab TabKEGG { get; private set; }
         public RibbonGroup TabGroupKEGG { get; private set; }
@@ -577,7 +577,6 @@ namespace RibbonLib.Controls
             ButtonImportsTissueMorphology = new RibbonButton(ribbon, Cmd.cmdButtonImportsTissueMorphology);
             ButtonLoadHEMap = new RibbonButton(ribbon, Cmd.cmdButtonLoadHEMap);
             ButtonExportRegions = new RibbonButton(ribbon, Cmd.cmdButtonExportRegions);
-            ShowTissueData = new RibbonButton(ribbon, Cmd.cmdShowTissueData);
             ButtonTogglePolygon = new RibbonToggleButton(ribbon, Cmd.cmdButtonTogglePolygon);
             TabPolygonEditor = new RibbonGroup(ribbon, Cmd.cmdTabPolygonEditor);
             ButtonClosePolygonEditor = new RibbonButton(ribbon, Cmd.cmdButtonClosePolygonEditor);
@@ -591,6 +590,7 @@ namespace RibbonLib.Controls
             GroupTissueMaps = new RibbonGroup(ribbon, Cmd.cmdGroupTissueMaps);
             CheckShowMapLayer = new RibbonToggleButton(ribbon, Cmd.cmdCheckShowMapLayer);
             ButtonShowMSISampleWindow = new RibbonButton(ribbon, Cmd.cmdButtonShowMSISampleWindow);
+            ShowTissueData = new RibbonButton(ribbon, Cmd.cmdShowTissueData);
             GroupKEGG = new RibbonTabGroup(ribbon, Cmd.cmdGroupKEGG);
             TabKEGG = new RibbonTab(ribbon, Cmd.cmdTabKEGG);
             TabGroupKEGG = new RibbonGroup(ribbon, Cmd.cmdTabGroupKEGG);
