@@ -55,6 +55,7 @@
 #End Region
 
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Mzkit_win32.BasicMDIForm
 
 Public Class InputAction
 
