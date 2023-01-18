@@ -111,7 +111,7 @@ declare namespace apps.systems {
         port: number;
         PID: number;
         cpu: number;
-        mem: number;
+        mem: number | string;
         isAlive: boolean;
     }
 }

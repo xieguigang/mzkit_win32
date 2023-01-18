@@ -559,6 +559,10 @@ var apps;
                 });
             };
             servicesManager.prototype.loadServicesList = function (list) {
+                for (var _i = 0, list_2 = list; _i < list_2.length; _i++) {
+                    var svr = list_2[_i];
+                    svr.mem = Strings.Lanudry(svr.mem);
+                }
                 $ts("#services-list").clear();
                 $ts.appendTable(list, "#services-list", null, { class: [] }, servicesManager.styleEachRow);
             };

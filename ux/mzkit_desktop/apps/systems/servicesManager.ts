@@ -24,6 +24,10 @@ namespace apps.systems {
         }
 
         private loadServicesList(list: Service[]) {
+            for (let svr of list) {
+                svr.mem = Strings.Lanudry(<number>svr.mem);
+            }
+
             $ts("#services-list").clear();
             $ts.appendTable(list, "#services-list", null, { class: [] }, servicesManager.styleEachRow);
         }
@@ -41,7 +45,7 @@ namespace apps.systems {
         port: number;
         PID: number;
         cpu: number;
-        mem: number;
+        mem: number | string;
         isAlive: boolean;
     }
 
