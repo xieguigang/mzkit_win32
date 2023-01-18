@@ -18,6 +18,10 @@ namespace app.desktop {
         get_3d_MALDI_url(): Promise<string>;
         open_MALDI_model();
 
+        // 3d scatter model viewer
+        GetScatter(): Promise<string>;
+        Click(tag: string);
+
         // plugin manager
         Save(): void;
         InstallLocal(): void;

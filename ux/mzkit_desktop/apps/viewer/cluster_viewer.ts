@@ -1,5 +1,8 @@
 namespace apps.viewer {
 
+    /**
+     * UMAPPoint
+    */
     export interface scatterPoint {
         x: number;
         y: number;
@@ -8,12 +11,12 @@ namespace apps.viewer {
         /**
          * which cluster(color) that current spot it belongs to
         */
-        cluster: string;
+        class: string;
 
         /**
          * label id of current spot
         */
-        id: string;
+        label: string;
     }
 
     /**
@@ -26,11 +29,21 @@ namespace apps.viewer {
         };
 
         protected init(): void {
-            // throw new Error("Method not implemented.");
+            app.desktop.mzkit.GetScatter()
+                .then(async function (data) {
+                    const json: string = await data;
+                    const scatter: scatterPoint[] = JSON.parse(json);
+
+                    if (isNullOrEmpty(scatter)) {
+                        clusterViewer.render3DScatter([]);
+                    } else {
+                        clusterViewer.render3DScatter(scatter);
+                    }
+                });
         }
 
         public static render3DScatter(dataset: scatterPoint[]) {
-
+            const clusters = $from(dataset).GroupBy(a => a.class);
         }
     }
 }

@@ -29,6 +29,8 @@ declare namespace app.desktop {
     interface mzkit_desktop {
         get_3d_MALDI_url(): Promise<string>;
         open_MALDI_model(): any;
+        GetScatter(): Promise<string>;
+        Click(tag: string): any;
         Save(): void;
         InstallLocal(): void;
         SetStatus(id: string, status: string): void;
@@ -139,8 +141,28 @@ declare namespace apps.systems {
     }
 }
 declare namespace apps.viewer {
+    /**
+     * UMAPPoint
+    */
+    interface scatterPoint {
+        x: number;
+        y: number;
+        z: number;
+        /**
+         * which cluster(color) that current spot it belongs to
+        */
+        class: string;
+        /**
+         * label id of current spot
+        */
+        label: string;
+    }
+    /**
+     * #viewer
+    */
     class clusterViewer extends Bootstrap {
         get appName(): string;
         protected init(): void;
+        static render3DScatter(dataset: scatterPoint[]): void;
     }
 }

@@ -692,6 +692,9 @@ var apps;
 (function (apps) {
     var viewer;
     (function (viewer) {
+        /**
+         * #viewer
+        */
         var clusterViewer = /** @class */ (function (_super) {
             __extends(clusterViewer, _super);
             function clusterViewer() {
@@ -706,7 +709,30 @@ var apps;
             });
             ;
             clusterViewer.prototype.init = function () {
-                // throw new Error("Method not implemented.");
+                app.desktop.mzkit.GetScatter()
+                    .then(function (data) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var json, scatter;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, data];
+                                case 1:
+                                    json = _a.sent();
+                                    scatter = JSON.parse(json);
+                                    if (isNullOrEmpty(scatter)) {
+                                        clusterViewer.render3DScatter([]);
+                                    }
+                                    else {
+                                        clusterViewer.render3DScatter(scatter);
+                                    }
+                                    return [2 /*return*/];
+                            }
+                        });
+                    });
+                });
+            };
+            clusterViewer.render3DScatter = function (dataset) {
+                var clusters = $from(dataset).GroupBy(function (a) { return a.class; });
             };
             return clusterViewer;
         }(Bootstrap));
