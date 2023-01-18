@@ -1,4 +1,6 @@
-﻿Public Class ViewScatter3DAction : Inherits ActionBase
+﻿Imports Mzkit_win32.BasicMDIForm
+
+Public Class ViewScatter3DAction : Inherits ActionBase
 
     Public Overrides ReadOnly Property Description As String
         Get

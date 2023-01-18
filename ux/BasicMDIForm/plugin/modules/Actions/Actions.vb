@@ -56,14 +56,13 @@
 #End Region
 
 Imports System.Runtime.CompilerServices
-Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 
-Module Actions
+Public NotInheritable Class Actions
 
-    ReadOnly actions As New Dictionary(Of String, ActionBase)
+    Shared ReadOnly actions As New Dictionary(Of String, ActionBase)
 
-    Public ReadOnly Property allActions As IEnumerable(Of NamedValue(Of String))
+    Public Shared ReadOnly Property allActions As IEnumerable(Of NamedValue(Of String))
         Get
             Return actions _
                 .Keys _
@@ -73,25 +72,23 @@ Module Actions
         End Get
     End Property
 
-    <MethodImpl(MethodImplOptions.AggressiveInlining)>
-    Public Sub Register(name As String, action As ActionBase)
-        actions(name) = action
+    Private Sub New()
     End Sub
 
-    Public Sub RunAction(name As String, fieldName As String, data As Array, table As DataTable)
-        If actions.ContainsKey(name) Then
-            Call actions(name).RunAction(fieldName, data, table)
-        Else
-            Call MyApplication.host.warning($"missing action '{name}'!")
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Shared Sub Register(name As String, action As ActionBase, Optional println As Action(Of String) = Nothing)
+        actions(name) = action
+
+        If Not println Is Nothing Then
+            Call println($"register_action: {name}")
         End If
     End Sub
 
-    Sub New()
-        Call Register("KEGG Enrichment", New KEGGEnrichmentAction)
-        Call Register("Formula Query", New FormulaQueryAction)
-        Call Register("Peak Finding", New PeakFindingAction)
-        Call Register("Peak List Annotation", New PeakAnnotationAction)
-        Call Register("KEGG Stats", New KEGGStatsAction)
-        Call Register("View 3D Scatter", New ViewScatter3DAction)
+    Public Shared Sub RunAction(name As String, fieldName As String, data As Array, table As DataTable)
+        If actions.ContainsKey(name) Then
+            Call actions(name).RunAction(fieldName, data, table)
+        Else
+            Call Workbench.Warning($"missing action '{name}'!")
+        End If
     End Sub
-End Module
+End Class

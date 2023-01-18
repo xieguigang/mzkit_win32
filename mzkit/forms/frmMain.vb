@@ -510,6 +510,10 @@ Public Class frmMain : Implements AppHost
             Call GetType(MyApplication).Assembly.FromAssembly.AppSummary("Welcome to the BioNovoGene M/z Data Toolkit!", "", output)
         End Using
 
+        Call splashScreen.UpdateInformation("Do register actions...")
+        Call Thread.Sleep(100)
+        Call Globals.RegisterActions(AddressOf splashScreen.UpdateInformation)
+
         Call MyApplication.LogText(text.ToString)
         Call Plugin.LoadPlugins(
             println:=Sub(msg)

@@ -166,6 +166,15 @@ Module Globals
         MSImagingServiceModule.m_StartEngine = Sub() Call MSIDataService.StartMSIService(Nothing)
     End Sub
 
+    Public Sub RegisterActions(println As Action(Of String))
+        Call Actions.Register("KEGG Enrichment", New KEGGEnrichmentAction, println)
+        Call Actions.Register("Formula Query", New FormulaQueryAction, println)
+        Call Actions.Register("Peak Finding", New PeakFindingAction, println)
+        Call Actions.Register("Peak List Annotation", New PeakAnnotationAction, println)
+        Call Actions.Register("KEGG Stats", New KEGGStatsAction, println)
+        Call Actions.Register("View 3D Scatter", New ViewScatter3DAction, println)
+    End Sub
+
     Private Sub shutdownHttpWeb()
         Try
             Dim url = $"https://127.0.0.1:{Workbench.WebPort}/ctrl/kill"

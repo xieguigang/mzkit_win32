@@ -381,7 +381,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="application\actions\ActionBase.vb" />
     <Compile Include="application\actions\KEGGStatsAction.vb" />
     <Compile Include="application\actions\PeakFindingAction.vb" />
     <Compile Include="application\actions\PeakAnnotationAction.vb" />
@@ -390,7 +389,6 @@
     <Compile Include="application\actions\ViewScatter3DAction.vb" />
     <Compile Include="application\ApplicationEvents.vb" />
     <Compile Include="application\CLI.vb" />
-    <Compile Include="application\Actions.vb" />
     <Compile Include="application\ServiceHub\Manager\Hub.vb" />
     <Compile Include="application\ServiceHub\Manager\Service.vb" />
     <Compile Include="application\ServiceHub\MSIDataService.vb" />

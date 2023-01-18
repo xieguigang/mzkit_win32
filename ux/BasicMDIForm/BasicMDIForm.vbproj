@@ -191,6 +191,8 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GridSearchHandler.vb" />
+    <Compile Include="plugin\modules\Actions\ActionBase.vb" />
+    <Compile Include="plugin\modules\Actions\Actions.vb" />
     <Compile Include="plugin\modules\MSImagingServiceModule.vb" />
     <Compile Include="plugin\PluginPkg.vb" />
     <Compile Include="plugin\Repository\RegistryFile.vb" />
@@ -283,6 +285,7 @@
   <ItemGroup>
     <None Include="Resources\progress-bar.html" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="..\..\services\mzkit_win32.envir\mzkit_win32.envir.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="..\..\packages\Microsoft.Web.WebView2.1.0.1462.37\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\..\packages\Microsoft.Web.WebView2.1.0.1462.37\build\Microsoft.Web.WebView2.targets')" />
