@@ -603,6 +603,7 @@ Public Class frmMsImagingViewer
 
         Using file
             tissues = New netCDFReader(file).ReadTissueMorphology.ToArray
+            file.Seek(Scan0, SeekOrigin.Begin)
             umap3D = New netCDFReader(file).ReadUMAP.ToArray
         End Using
 
