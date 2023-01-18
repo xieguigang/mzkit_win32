@@ -1,10 +1,17 @@
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    }
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -440,7 +447,7 @@ var Enumerable;
     */
     function OrderBy(source, key) {
         // array clone
-        var clone = source.slice();
+        var clone = __spreadArrays(source);
         clone.sort(function (a, b) {
             // a - b
             return key(a) - key(b);
@@ -634,7 +641,7 @@ var IEnumerator = /** @class */ (function (_super) {
      * 在明确类型信息的情况下进行强制类型转换
     */
     IEnumerator.prototype.ctype = function () {
-        return new IEnumerator(this.sequence.slice());
+        return new IEnumerator(__spreadArrays(this.sequence));
     };
     IEnumerator.getArray = function (source) {
         if (!source) {
@@ -643,10 +650,10 @@ var IEnumerator = /** @class */ (function (_super) {
         else if (Array.isArray(source)) {
             // 2018-07-31 为了防止外部修改source导致sequence数组被修改
             // 在这里进行数组复制，防止出现这种情况
-            return source.slice();
+            return __spreadArrays(source);
         }
         else {
-            return source.sequence.slice();
+            return __spreadArrays(source.sequence);
         }
     };
     IEnumerator.prototype.indexOf = function (x) {
@@ -1063,7 +1070,7 @@ var IEnumerator = /** @class */ (function (_super) {
     IEnumerator.prototype.ToArray = function (clone) {
         if (clone === void 0) { clone = true; }
         if (clone) {
-            return this.sequence.slice();
+            return __spreadArrays(this.sequence);
         }
         else {
             return this.sequence;
@@ -3483,9 +3490,10 @@ var DOM;
      *    + 如果这个参数不为空值，则会显示这个参数所指定的列出来
      *    + 可以通过``map [propertyName => display title]``来控制表头的标题输出
     */
-    function CreateHTMLTableNode(rows, headers, attrs) {
+    function CreateHTMLTableNode(rows, headers, attrs, foreachRow) {
         if (headers === void 0) { headers = null; }
         if (attrs === void 0) { attrs = null; }
+        if (foreachRow === void 0) { foreachRow = null; }
         var thead = $ts("<tr>");
         var tbody = $ts("<tbody>");
         var fields;
@@ -3499,6 +3507,9 @@ var DOM;
             var tr = $ts("<tr>");
             // 在这里将会控制列的显示
             fields.forEach(function (m) { return tr.appendChild($ts("<td>").display(r[m.key])); });
+            if (foreachRow) {
+                foreachRow(r, tr);
+            }
             return tr;
         };
         if (Array.isArray(rows)) {
@@ -3522,9 +3533,10 @@ var DOM;
      * @param div 新生成的table将会被添加在这个div之中，应该是一个带有``#``符号的节点id查询表达式
      * @param attrs ``<table>``的属性值，包括id，class等
     */
-    function AddHTMLTable(rows, div, headers, attrs) {
+    function AddHTMLTable(rows, div, headers, attrs, foreachRow) {
         if (headers === void 0) { headers = null; }
         if (attrs === void 0) { attrs = null; }
+        if (foreachRow === void 0) { foreachRow = null; }
         var id = Strings.Trim(div, "#") + "-table";
         if (attrs) {
             if (!attrs.id) {
@@ -3534,7 +3546,7 @@ var DOM;
         else {
             attrs = { id: id };
         }
-        $ts(div).appendChild(CreateHTMLTableNode(rows, headers, attrs));
+        $ts(div).appendChild(CreateHTMLTableNode(rows, headers, attrs, foreachRow));
     }
     DOM.AddHTMLTable = AddHTMLTable;
     /**
@@ -7797,11 +7809,18 @@ var Base64;
     /**
      * 将base64字符串解码为字节数组->普通数组
      */
-    function bytes_decode(str) {
+    function bytes_decode(str, size) {
+        if (size === void 0) { size = null; }
         var arr = [];
         var base64 = new Uint8Array(decode_rawBuffer(str));
         var view = new DataView(base64.buffer);
         var num = base64.length / 8;
+        if (!isNullOrUndefined(size)) {
+            if (num != parseInt(size.toString())) {
+                console.log(str);
+                throw "invalid base64 string, decode size(" + num + ") is not equals to the size(" + size + ") verification!";
+            }
+        }
         for (var i = 0; i < num; i++) {
             arr.push(view.getFloat64(i * 8));
         }
@@ -8785,7 +8804,7 @@ var Framework;
                 array = data.ToArray();
             }
             else if (type.isArray) {
-                array = data.slice();
+                array = __spreadArrays(data);
             }
             else {
                 var x = data;
@@ -8865,16 +8884,16 @@ var TypeScript;
         garbageCollect.handler = getHandler();
         function getHandler() {
             if (typeof window.require === "function") {
-                var require_1 = window.require;
+                var require = window.require;
                 try {
-                    require_1("v8").setFlagsFromString('--expose_gc');
+                    require("v8").setFlagsFromString('--expose_gc');
                     if (window.global != null) {
-                        var global_1 = window.global;
-                        if (typeof global_1.gc == "function") {
-                            return global_1.gc;
+                        var global = window.global;
+                        if (typeof global.gc == "function") {
+                            return global.gc;
                         }
                     }
-                    var vm = require_1("vm");
+                    var vm = require("vm");
                     if (vm != null) {
                         if (typeof vm.runInNewContext == "function") {
                             var k = vm.runInNewContext("gc");
@@ -8909,9 +8928,9 @@ var TypeScript;
             //    }
             //}
             if (typeof window.global !== 'undefined') {
-                var global_2 = window.global;
-                if (global_2.gc) {
-                    return global_2.gc;
+                var global = window.global;
+                if (global.gc) {
+                    return global.gc;
                 }
             }
             //if (typeof Duktape == 'object') {
@@ -10444,7 +10463,7 @@ var csv;
              * 因为这个属性会返回这个行的数组值的复制对象
             */
             get: function () {
-                return this.sequence.slice();
+                return __spreadArrays(this.sequence);
             },
             enumerable: true,
             configurable: true
