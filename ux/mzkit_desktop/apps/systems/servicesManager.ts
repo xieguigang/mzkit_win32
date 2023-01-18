@@ -116,25 +116,37 @@ namespace apps.systems {
 
         private static counterChart(data: counterData): plot.histogram_options {
             return <plot.histogram_options><any>{
+                title: {
+                    text: 'Performance Counter'
+                },
                 xAxis: {
-                    type: 'category',
-                    data: data.x
+                    type: 'value',
+                    splitLine: {
+                        show: true
+                    }
                 },
                 yAxis: {
-                    type: 'value'
+                    type: 'value',
+                    boundaryGap: [0, '100%'],
+                    splitLine: {
+                        show: true
+                    }
                 },
                 series: [
                     {
-                        data: data.y,
-                        type: 'bar'
+                        name: 'Performance Counter',
+                        type: 'line',
+                        showSymbol: false,
+                        data: servicesManager.history(data.x, data.y)
                     }
                 ]
-            }
+            };
         }
 
         private updatePlotHost() {
             this.cpu_chart = new plot.histogramPlot<counterData>(servicesManager.counterChart, "cpu-history");
             this.mem_chart = new plot.histogramPlot<counterData>(servicesManager.counterChart, "mem-history");
+            this.refresh = true;
         }
 
         private styleEachRow(svr: Service, row: HTMLTableRowElement) {

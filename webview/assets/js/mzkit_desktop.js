@@ -627,17 +627,28 @@ var apps;
             };
             servicesManager.counterChart = function (data) {
                 return {
+                    title: {
+                        text: 'Performance Counter'
+                    },
                     xAxis: {
-                        type: 'category',
-                        data: data.x
+                        type: 'value',
+                        splitLine: {
+                            show: true
+                        }
                     },
                     yAxis: {
-                        type: 'value'
+                        type: 'value',
+                        boundaryGap: [0, '100%'],
+                        splitLine: {
+                            show: true
+                        }
                     },
                     series: [
                         {
-                            data: data.y,
-                            type: 'bar'
+                            name: 'Performance Counter',
+                            type: 'line',
+                            showSymbol: false,
+                            data: servicesManager.history(data.x, data.y)
                         }
                     ]
                 };
@@ -645,6 +656,7 @@ var apps;
             servicesManager.prototype.updatePlotHost = function () {
                 this.cpu_chart = new plot.histogramPlot(servicesManager.counterChart, "cpu-history");
                 this.mem_chart = new plot.histogramPlot(servicesManager.counterChart, "mem-history");
+                this.refresh = true;
             };
             servicesManager.prototype.styleEachRow = function (svr, row) {
                 var vm = this;
