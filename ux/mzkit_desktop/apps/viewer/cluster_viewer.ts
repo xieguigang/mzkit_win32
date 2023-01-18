@@ -19,6 +19,11 @@ namespace apps.viewer {
         label: string;
     }
 
+    export interface cluster_data {
+        cluster: number | string;
+        scatter: number[][];
+    }
+
     /**
      * #viewer
     */
@@ -43,7 +48,62 @@ namespace apps.viewer {
         }
 
         public static render3DScatter(dataset: scatterPoint[]) {
-            const clusters = $from(dataset).GroupBy(a => a.class);
+            const clusters: cluster_data[] = [];
+
+            for (let group of $from(dataset).GroupBy(a => a.class).ToArray()) {
+                const matrix: number[][] = [];
+                const id: string = group.Key;
+
+                for (let i of group.ToArray()) {
+                    matrix.push([i.x, i.y, i.z]);
+                }
+
+                clusters.push({
+                    cluster: id,
+                    scatter: matrix
+                });
+            }
+
+            const render = new gl_plot.scatter3d<cluster_data[]>(
+                clusterViewer.load_cluster,
+                "viewer"
+            );
+
+            render.plot(clusters);
         }
+
+        public static load_cluster(data: cluster_data[]): gl_plot.scatter3d_options {
+            const paper = echart_app.paper;
+            const scatter3D = $from(data)
+                .Select(function (r) {
+                    return <gl_plot.gl_scatter_data>{
+                        type: 'scatter3D',
+                        name: `cluster_${r.cluster}`,
+                        symbolSize: 3,
+                        dimensions: [
+                            'x',
+                            'y',
+                            'z'
+                        ],
+                        data: r.scatter,
+                        symbol: 'triangle',
+                        itemStyle: {
+                            // borderWidth: 0.5,
+                            color: paper[parseInt(r.cluster.toString())],
+                            // borderColor: 'rgba(255,255,255,0.8)'//边框样式
+                        }
+                    };
+                })
+                .ToArray();
+
+            return {
+                grid3D: {},
+                xAxis3D: { type: 'value', name: 'x' },
+                yAxis3D: { type: 'value', name: 'y' },
+                zAxis3D: { type: 'value', name: 'z' },
+                series: scatter3D
+            };
+        }
+
     }
 }
