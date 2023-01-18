@@ -732,7 +732,52 @@ var apps;
                 });
             };
             clusterViewer.render3DScatter = function (dataset) {
-                var clusters = $from(dataset).GroupBy(function (a) { return a.class; });
+                var clusters = [];
+                for (var _i = 0, _a = $from(dataset).GroupBy(function (a) { return a.class; }).ToArray(); _i < _a.length; _i++) {
+                    var group = _a[_i];
+                    var matrix = [];
+                    var id = group.Key;
+                    for (var _b = 0, _c = group.ToArray(); _b < _c.length; _b++) {
+                        var i = _c[_b];
+                        matrix.push([i.x, i.y, i.z]);
+                    }
+                    clusters.push({
+                        cluster: id,
+                        scatter: matrix
+                    });
+                }
+                var render = new gl_plot.scatter3d(clusterViewer.load_cluster, "viewer");
+                render.plot(clusters);
+            };
+            clusterViewer.load_cluster = function (data) {
+                var paper = echart_app.paper;
+                var scatter3D = $from(data)
+                    .Select(function (r) {
+                    return {
+                        type: 'scatter3D',
+                        name: "cluster_" + r.cluster,
+                        symbolSize: 3,
+                        dimensions: [
+                            'x',
+                            'y',
+                            'z'
+                        ],
+                        data: r.scatter,
+                        symbol: 'triangle',
+                        itemStyle: {
+                            // borderWidth: 0.5,
+                            color: paper[parseInt(r.cluster.toString())],
+                        }
+                    };
+                })
+                    .ToArray();
+                return {
+                    grid3D: {},
+                    xAxis3D: { type: 'value', name: 'x' },
+                    yAxis3D: { type: 'value', name: 'y' },
+                    zAxis3D: { type: 'value', name: 'z' },
+                    series: scatter3D
+                };
             };
             return clusterViewer;
         }(Bootstrap));
