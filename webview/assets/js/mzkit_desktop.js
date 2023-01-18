@@ -546,8 +546,12 @@ var apps;
             ;
             servicesManager.prototype.init = function () {
                 var _this = this;
-                setInterval(function () { return _this.startUpdateTask(); }, 1000);
+                this.startUpdateTask();
+                setInterval(function () { return _this.startUpdateTask(); }, 1500);
             };
+            /**
+             * on update a frame display
+            */
             servicesManager.prototype.startUpdateTask = function () {
                 var vm = this;
                 app.desktop.mzkit
@@ -597,6 +601,10 @@ var apps;
                 var cpu = vm.plot.cpu;
                 var mem = vm.plot.memory;
                 var x = __spreadArrays(cpu.Counter).map(function (_, index) { return index + 1; });
+                var panel = $ts("#service-info").clear();
+                panel.display($ts("<h3>").display(cpu.svr.Name));
+                panel.appendElement($ts("<p>").display(cpu.svr.Description));
+                panel.appendElement($ts("<p>").display(cpu.svr.StartTime));
             };
             servicesManager.prototype.styleEachRow = function (svr, row) {
                 var vm = this;

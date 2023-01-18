@@ -12,8 +12,11 @@
 
     <title>BioNovoGene MZKit</title>
 
-    <script src="./assets/js/linq.js"></script>
-    <script src="./assets/js/mzkit_desktop.js"></script>
+    <script type="text/javascript" src="./vendor/echarts.min.js"></script>
+    <script type="text/javascript" src="./assets/js/linq.js"></script>
+    <script type="text/javascript" src="./assets/js/echarts@types.js"></script>
+    <script type="text/javascript" src="./assets/js/mzkit_desktop.js"></script>
+
     <script type="text/javascript">
         function drop(event) {
             event.preventDefault()
@@ -31,7 +34,7 @@
 <body ondragover="dragover(event)" ondrop="drop(event)" style=" background: white;">
     <div class="main" style="margin-left: 20px; background: white;">
 
-        <div style="height: 20px;"></div>
+        <div style="height: 15px;"></div>
 
         <div>
             <div style="font-size: 2em; font-weight: bold; margin-left: 5%; margin-top: 2%;">
@@ -46,6 +49,10 @@
         </div>
 
         <div id="services-list">
+
+        </div>
+
+        <div id="service-info">
 
         </div>
     </div>

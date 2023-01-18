@@ -20,9 +20,13 @@ namespace apps.systems {
         };
 
         protected init(): void {
-            setInterval(() => this.startUpdateTask(), 1000);
+            this.startUpdateTask();
+            setInterval(() => this.startUpdateTask(), 1500);
         }
 
+        /**
+         * on update a frame display
+        */
         private startUpdateTask() {
             const vm = this;
 
@@ -72,6 +76,11 @@ namespace apps.systems {
             const cpu = vm.plot.cpu;
             const mem = vm.plot.memory;
             const x: number[] = [...cpu.Counter].map((_, index) => index + 1);
+            const panel = $ts("#service-info").clear();
+
+            panel.display($ts("<h3>").display(cpu.svr.Name));
+            panel.appendElement($ts("<p>").display(cpu.svr.Description));
+            panel.appendElement($ts("<p>").display(cpu.svr.StartTime));
         }
 
         private styleEachRow(svr: Service, row: HTMLTableRowElement) {
@@ -101,6 +110,7 @@ namespace apps.systems {
         CPU: number;
         Memory: number | string;
         isAlive: boolean | string;
+        StartTime: string;
     }
 
 }

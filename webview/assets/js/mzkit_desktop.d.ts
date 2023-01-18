@@ -108,6 +108,9 @@ declare namespace apps.systems {
         readonly memory: Dictionary<perfermanceCount>;
         private plot;
         protected init(): void;
+        /**
+         * on update a frame display
+        */
         private startUpdateTask;
         private loadServicesList;
         private onDraw;
@@ -121,6 +124,7 @@ declare namespace apps.systems {
         CPU: number;
         Memory: number | string;
         isAlive: boolean | string;
+        StartTime: string;
     }
 }
 declare namespace apps.viewer {
