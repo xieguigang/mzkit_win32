@@ -17,10 +17,8 @@ Public Class PeakFindingAction : Inherits ActionBase
         Dim getFormula As New InputPeakTime
         Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
 
-        For i As Integer = 0 To table.Columns.Count - 1
-            Dim tag As String = table.Columns.Item(i).ColumnName
-
-            getFormula.ComboBox1.Items.Add(tag)
+        For Each tag As String In GetFieldNames(table)
+            Call getFormula.ComboBox1.Items.Add(tag)
         Next
 
         If mask.ShowDialogForm(getFormula) = DialogResult.OK Then

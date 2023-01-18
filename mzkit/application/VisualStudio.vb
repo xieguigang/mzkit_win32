@@ -117,6 +117,18 @@ Public Class VisualStudio
         Return Workbench.ShowDocument(Of T)(status, title)
     End Function
 
+    Public Shared Sub ShowDocument(doc As DocumentWindow,
+                                   Optional status As DockState = DockState.Document,
+                                   Optional title As String = Nothing)
+
+        doc.Show(Workbench.AppHost.DockPanel)
+        doc.DockState = status
+
+        If Not title.StringEmpty Then
+            doc.TabText = title
+        End If
+    End Sub
+
     Public Shared Sub ShowRTerm()
         WindowModules.RtermPage.Show(MyApplication.host.m_dockPanel)
         WindowModules.RtermPage.DockState = DockState.Document

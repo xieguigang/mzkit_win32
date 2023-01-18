@@ -401,6 +401,12 @@
     <Compile Include="application\settings\RawFileViewerSettings.vb" />
     <Compile Include="application\VisualStudio.vb" />
     <Compile Include="application\RPackage.vb" />
+    <Compile Include="forms\Inputs\Input3DScatter.Designer.vb">
+      <DependentUpon>Input3DScatter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\Input3DScatter.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\InputDataFieldName.Designer.vb">
       <DependentUpon>InputDataFieldName.vb</DependentUpon>
     </Compile>
@@ -987,6 +993,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmUserAgreement.resx">
       <DependentUpon>frmUserAgreement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\Input3DScatter.resx">
+      <DependentUpon>Input3DScatter.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputDataFieldName.resx">
       <DependentUpon>InputDataFieldName.vb</DependentUpon>
