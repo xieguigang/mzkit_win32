@@ -24,7 +24,10 @@ Public Class PeakFindingAction : Inherits ActionBase
 
         If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
             Dim TimeName As String = getFormula.TimeField
-            Dim intensityValue As Double() = data.AsObjectEnumerator().Select(Function(oi) CType(oi, Double)).ToArray
+            Dim intensityValue As Double() = data _
+                .AsObjectEnumerator() _
+                .Select(Function(oi) CType(oi, Double)) _
+                .ToArray
             Dim timeVal As Double()
 
             If TimeName.StringEmpty Then

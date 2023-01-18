@@ -387,6 +387,7 @@
     <Compile Include="application\actions\PeakAnnotationAction.vb" />
     <Compile Include="application\actions\FormulaQueryAction.vb" />
     <Compile Include="application\actions\KEGGEnrichmentAction.vb" />
+    <Compile Include="application\actions\ViewScatter3DAction.vb" />
     <Compile Include="application\ApplicationEvents.vb" />
     <Compile Include="application\CLI.vb" />
     <Compile Include="application\Actions.vb" />
