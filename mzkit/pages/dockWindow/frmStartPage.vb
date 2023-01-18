@@ -84,6 +84,12 @@ Public Class frmStartPage
 
     Dim WithEvents BackgroundWorker As New BackgroundWorker
 
+    Public ReadOnly Property sourceURL As String
+        Get
+            Return $"http://127.0.0.1:{Workbench.WebPort}/"
+        End Get
+    End Property
+
     Sub New()
 
         ' This call is required by the designer.
@@ -110,7 +116,7 @@ Public Class frmStartPage
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
         ' WebView21.CoreWebView2.OpenDevToolsWindow()
         Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", New LinkActions)
-        Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Workbench.WebPort}/")
+        Call WebView21.CoreWebView2.Navigate(sourceURL)
         Call DeveloperOptions(enable:=True)
     End Sub
 
