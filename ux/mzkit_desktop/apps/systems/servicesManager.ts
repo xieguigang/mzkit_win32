@@ -1,8 +1,15 @@
+import { CompressedPixelFormat } from "three";
+
 namespace apps.systems {
 
     export interface perfermanceCount {
         svr: Service;
         Counter: number[];
+    }
+
+    export interface counterData {
+        x: number[];
+        y: number[];
     }
 
     export class servicesManager extends Bootstrap {
@@ -66,21 +73,70 @@ namespace apps.systems {
             $ts.appendTable(list, "#services-list", null, { class: [] }, (o, r) => vm.styleEachRow(o, r));
         }
 
+        private cpu_chart: plot.histogramPlot<counterData>;
+        private mem_chart: plot.histogramPlot<counterData>;
+        private refresh: boolean;
+
         private onDraw() {
             const vm = this;
 
             if (!vm.plot) {
                 return;
+            } else if (!(vm.cpu_chart && vm.mem_chart)) {
+                return;
             }
 
             const cpu = vm.plot.cpu;
             const mem = vm.plot.memory;
-            const x: number[] = [...cpu.Counter].map((_, index) => index + 1);
             const panel = $ts("#service-info").clear();
+            const x: number[] = [...cpu.Counter].map((_, index) => index + 1);
 
             panel.display($ts("<h3>").display(cpu.svr.Name));
             panel.appendElement($ts("<p>").display(cpu.svr.Description));
             panel.appendElement($ts("<p>").display(cpu.svr.StartTime));
+
+            if (this.refresh) {
+                this.cpu_chart.plot(<counterData>{ x: x, y: cpu.Counter });
+                this.mem_chart.plot(<counterData>{ x: x, y: mem.Counter });
+            } else {
+                this.cpu_chart.chartObj.setOption({ series: [{ data: servicesManager.history(x, cpu.Counter) }] });
+                this.mem_chart.chartObj.setOption({ series: [{ data: servicesManager.history(x, mem.Counter) }] });
+            }
+
+            this.refresh = false;
+        }
+
+        private static history(x: number[], y: number[]): number[][] {
+            const bars: number[][] = [];
+
+            for (let i = 0; i < x.length; i++) {
+                bars.push([x[i], y[i]]);
+            }
+
+            return bars;
+        }
+
+        private static counterChart(data: counterData): plot.histogram_options {
+            return <plot.histogram_options><any>{
+                xAxis: {
+                    type: 'category',
+                    data: data.x
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [
+                    {
+                        data: data.y,
+                        type: 'bar'
+                    }
+                ]
+            }
+        }
+
+        private updatePlotHost() {
+            this.cpu_chart = new plot.histogramPlot<counterData>(servicesManager.counterChart, "cpu-history");
+            this.mem_chart = new plot.histogramPlot<counterData>(servicesManager.counterChart, "mem-history");
         }
 
         private styleEachRow(svr: Service, row: HTMLTableRowElement) {
@@ -94,6 +150,16 @@ namespace apps.systems {
                 const id: string = `P${svr.PID}`;
                 const cpu = vm.cpu.Item(id);
                 const mem = vm.memory.Item(id);
+
+                if (vm.plot) {
+                    if (vm.plot.cpu.svr.PID != cpu.svr.PID) {
+                        // create new plot
+                        vm.updatePlotHost();
+                    }
+                } else {
+                    // create new plot
+                    vm.updatePlotHost();
+                }
 
                 vm.plot = { cpu: cpu, memory: mem };
                 // draw echart
