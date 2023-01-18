@@ -1064,6 +1064,9 @@
     <EmbeddedResource Include="pages\dockWindow\documents\frm3DMALDIViewer.resx">
       <DependentUpon>frm3DMALDIViewer.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\documents\frm3DScatterPlotView.resx">
+      <DependentUpon>frm3DScatterPlotView.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frmCFMIDOutputViewer.resx">
       <DependentUpon>frmCFMIDOutputViewer.vb</DependentUpon>
     </EmbeddedResource>
