@@ -170,6 +170,7 @@ Public Class frmMsImagingViewer
         AddHandler RibbonEvents.ribbonItems.ButtonMergeMultipleMSISample.ExecuteEvent, Sub() Call MergeSlides()
 
         AddHandler RibbonEvents.ribbonItems.ButtonConnectMSIService.ExecuteEvent, Sub() Call ConnectToCloud()
+        AddHandler RibbonEvents.ribbonItems.ShowTissueData.ExecuteEvent, Sub() Call ShowTissueData()
 
         AddHandler RibbonEvents.ribbonItems.CheckShowMapLayer.ExecuteEvent,
             Sub()
@@ -194,6 +195,34 @@ Public Class frmMsImagingViewer
         sampleRegions.Show(MyApplication.host.m_dockPanel)
         sampleRegions.DockState = DockState.Hidden
         sampleRegions.viewer = Me
+    End Sub
+
+    Dim umap3D As UMAPPoint()
+
+    Public Sub ShowTissueData()
+        Dim summary As New ShowTissueData
+
+        If umap3D.IsNullOrEmpty Then
+            MessageBox.Show(
+                text:="No tissue cluster data was loaded, run imports of tissue morphology data at first.",
+                caption:="View Scatter 3D",
+                buttons:=MessageBoxButtons.OK,
+                icon:=MessageBoxIcon.Information
+            )
+
+            Return
+        End If
+
+        Call summary.SetTissueClusters(umap3D)
+        Call InputDialog.Input(
+            setConfig:=Sub(cfg)
+                           Dim viewer As New frm3DScatterPlotView
+
+                           Call viewer.LoadScatter(umap3D, Nothing)
+                           Call VisualStudio.ShowDocument(viewer)
+                       End Sub,
+            config:=summary
+        )
     End Sub
 
     Public Sub ConnectToCloud()
@@ -562,10 +591,20 @@ Public Class frmMsImagingViewer
         End Using
     End Sub
 
+    ''' <summary>
+    ''' load pipeline cdf file output
+    ''' </summary>
+    ''' <param name="filepath"></param>
+    ''' <param name="file"></param>
     Private Sub ImportsTissueMorphology(filepath As String, file As Stream)
-        Dim tissues As TissueRegion() = file.ReadTissueMorphology
+        Dim tissues As TissueRegion()
         Dim dimension As Size
         Dim checkSize As Boolean = True
+
+        Using file
+            tissues = New netCDFReader(file).ReadTissueMorphology.ToArray
+            umap3D = New netCDFReader(file).ReadUMAP.ToArray
+        End Using
 
         Using cdffile As New netCDFReader(filepath)
             dimension = cdffile.GetDimension
@@ -582,6 +621,7 @@ Public Class frmMsImagingViewer
                                caption:="Import Tissue Morphology",
                                buttons:=MessageBoxButtons.YesNo,
                                icon:=MessageBoxIcon.Warning) = DialogResult.No Then
+                umap3D = Nothing
                 Return
             End If
 
