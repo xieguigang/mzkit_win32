@@ -3,9 +3,12 @@ Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging.Math2D
+Imports Microsoft.VisualBasic.Linq
 
 Public Module MergeSlides
 
@@ -64,6 +67,9 @@ Public Module MergeSlides
         Dim println As Action(Of String) = AddressOf RunSlavePipeline.SendMessage
         Dim scan_x As Integer
         Dim scan_y As Integer
+        Dim mzmin As New List(Of Double)
+        Dim mzmax As New List(Of Double)
+        Dim res As New List(Of Double)
 
         For Each row As String() In layout
             Dim maxHeight As Double = averageHeight
@@ -88,6 +94,21 @@ Public Module MergeSlides
                     )
                     left += padding.Width * 2 + rect.Width
 
+                    With sample.MS _
+                        .Select(Function(i) i.mz) _
+                        .IteratesALL _
+                        .ToArray
+
+                        If .Length > 0 Then
+                            mzmin.Add(.Min)
+                            mzmax.Add(.Max)
+                        End If
+                    End With
+
+                    If Not sample.metadata.IsNullOrEmpty Then
+                        res.Add(sample.metadata.TryGetValue("resolution", [default]:=17))
+                    End If
+
                     If rect.Height > maxHeight Then
                         maxHeight = rect.Height
                     End If
@@ -108,14 +129,20 @@ Public Module MergeSlides
             End If
         Next
 
+        Dim poly As New Polygon2D(union.Select(Function(i) i.GetMSIPixel))
+        Dim metadata As New Metadata With {
+            .[class] = FileApplicationClass.MSImaging.ToString,
+            .mass_range = New DoubleRange(mzmin.Min, mzmax.Max),
+            .resolution = res.Average,
+            .scan_x = poly.width + padding.Width,
+            .scan_y = poly.height + padding.Height
+        }
+
         Return New mzPack With {
             .MS = union.ToArray,
             .Application = FileApplicationClass.MSImaging,
             .source = raw.Keys.JoinBy("+"),
-            .metadata = New Dictionary(Of String, String) From {
-                {"scan_x", scan_x + padding.Width},
-                {"scan_y", scan_y + padding.Height}
-            }
+            .metadata = metadata.GetMetadata
         }
     End Function
 End Module
