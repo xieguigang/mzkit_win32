@@ -395,6 +395,9 @@ Type 'q()' to quit R.
             End If
         End Function
 
+        ''' <summary>
+        ''' apply for handling of the application commandline arguments
+        ''' </summary>
         Friend Shared afterLoad As Action
 
         <DllImport("kernel32.dll", CharSet:=CharSet.Unicode, SetLastError:=True)>

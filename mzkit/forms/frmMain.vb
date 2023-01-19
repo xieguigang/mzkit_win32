@@ -523,7 +523,7 @@ Public Class frmMain : Implements AppHost
 
         splashScreen.UpdateInformation("Ready!")
         showStatusMessage("Ready!")
-        splashScreen.Invoke(Sub() Call splashScreen.Close())
+        splashScreen.CloseWindow()
 
         If Not MyApplication.afterLoad Is Nothing Then
             Call MyApplication.afterLoad()
