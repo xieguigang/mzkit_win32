@@ -4691,7 +4691,6 @@
     <ROW File="Microsoft.VisualBasic.Imaging.Landscape.dll_1" Component_="Microsoft.VisualBasic.Imaging.Landscape.dll_1" FileName="MICRO~68.DLL|Microsoft.VisualBasic.Imaging.Landscape.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Imaging.Landscape.dll" SelfReg="false"/>
     <ROW File="Mzkit_win32.BasicMDIForm.dll" Component_="Mzkit_win32.BasicMDIForm.dll" FileName="MZKIT_~6.DLL|Mzkit_win32.BasicMDIForm.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.BasicMDIForm.dll" SelfReg="false"/>
     <ROW File="Mzkit_win32.BasicMDIForm.dll.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MZKIT_~5.CON|Mzkit_win32.BasicMDIForm.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.BasicMDIForm.dll.config" SelfReg="false"/>
-    <ROW File="mzkit_desktop.js.map" Component_="linq.d.ts" FileName="MZKIT_~1.MAP|mzkit_desktop.js.map" Attributes="0" SourcePath="..\webview\assets\js\mzkit_desktop.js.map" SelfReg="false"/>
     <ROW File="plugin_mgr.css" Component_="d_canvas.css" FileName="PLUGIN~1.CSS|plugin_mgr.css" Attributes="0" SourcePath="..\webview\assets\plugin_mgr.css" SelfReg="false"/>
     <ROW File="pluginManager.html" Component_="logo.png" FileName="PLUGIN~1.HTM|pluginManager.html" Attributes="0" SourcePath="..\webview\pluginManager.html" SelfReg="false"/>
     <ROW File="pluginPkgTool.html" Component_="logo.png" FileName="PLUGIN~2.HTM|pluginPkgTool.html" Attributes="0" SourcePath="..\webview\pluginPkgTool.html" SelfReg="false"/>
@@ -4707,6 +4706,7 @@
     <ROW File="services_manager.css" Component_="d_canvas.css" FileName="SERVIC~1.CSS|services_manager.css" Attributes="0" SourcePath="..\webview\assets\services_manager.css" SelfReg="false"/>
     <ROW File="servicesManager.html" Component_="logo.png" FileName="SERVIC~1.HTM|servicesManager.html" Attributes="0" SourcePath="..\webview\servicesManager.html" SelfReg="false"/>
     <ROW File="echartsgl.min.js" Component_="smilesdrawer.min.js" FileName="ECHART~2.JS|echarts-gl.min.js" Attributes="0" SourcePath="..\webview\vendor\echarts-gl.min.js" SelfReg="false"/>
+    <ROW File="mzkit_desktop.js.map" Component_="linq.d.ts" FileName="MZKIT_~1.MAP|mzkit_desktop.js.map" Attributes="0" SourcePath="..\webview\assets\js\mzkit_desktop.js.map" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -5496,5 +5496,6 @@
     <ROW Directory_="ndpitools_Dir" SourcePath="..\dist\ndpitools" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="plugins_Dir" SourcePath="..\..\..\dist\bin\plugins" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|\en-US|\zh-Hans|runtimes|*.xml|*.pdb|Microsoft.VisualBasic.Runtime.*|/ThemeVS2015.*|System.Numerics.Vectors.*|Mzkit_win32.BasicMDIForm.*|Microsoft.*|\zh-CN|/BioNovoGene.*|/ThermoFisher.*|/System.*|/REnv.*|Mzkit_.*|Mzkit_win32.Interaction.dll" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="zhHans_Dir" SourcePath="..\..\..\dist\bin\zh-Hans" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
+    <ROW Directory_="js_1_Dir" SourcePath="..\webview\assets\js" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|/*.map" ExcludeFlags="6" FileAddOptions="4"/>
   </COMPONENT>
 </DOCUMENT>
