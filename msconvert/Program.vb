@@ -176,13 +176,14 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
 
     <ExportAPI("/imzml")>
     <Description("Convert raw data file to imzML file.")>
-    <Usage("/imzml --file <source.data> --save <file.imzML> [/cutoff <intensity_cutoff, default=0> /matrix_basePeak <mz, default=0> /resolution <default=17>]")>
+    <Usage("/imzml --file <source.data> --save <file.imzML> [/TIC_norm /cutoff <intensity_cutoff, default=0> /matrix_basePeak <mz, default=0> /resolution <default=17>]")>
     Public Function MSIToimzML(args As CommandLine) As Integer
         Dim files As String() = args("--file").ReadAllLines
         Dim save As String = args("--save")
         Dim cutoff As Double = args("/cutoff") Or 0.0
         Dim basePeak As Double = args("/matrix_basePeak") Or 0.0
-        Dim mzpack As mzPack = MSImagingRowBinds.MSI_rowbind(files, cutoff, basePeak)
+        Dim norm As Boolean = args("/TIC_norm")
+        Dim mzpack As mzPack = MSImagingRowBinds.MSI_rowbind(files, cutoff, basePeak, norm)
         Dim polygon As New Polygon2D(mzpack.MS.Select(Function(scan) scan.GetMSIPixel))
         Dim dimsize As New Size(
             width:=polygon.xpoints.Max,
