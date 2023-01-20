@@ -133,7 +133,7 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
     <Description("Combine row scans to mzPack")>
     <Argument("--files", False, CLITypes.File, PipelineTypes.std_in, Description:="a temp file path that its content contains selected raw data file path for each row scans.")>
     <Argument("--save", False, CLITypes.File, PipelineTypes.std_in, Description:="a file path for export mzPack data file.")>
-    <Usage("/rowbinds --files <list.txt/directory_path> --save <MSI.mzPack> [/scan <default=raw> /cutoff <intensity_cutoff, default=0> /matrix_basePeak <mz, default=0> /resolution <default=17>]")>
+    <Usage("/rowbinds --files <list.txt/directory_path> --save <MSI.mzPack> [/TIC_norm /scan <default=raw> /cutoff <intensity_cutoff, default=0> /matrix_basePeak <mz, default=0> /resolution <default=17>]")>
     <Argument("/scan", True, CLITypes.String,
               Description:="This parameter only works for the directory input file. 
               used as the file extension suffix for scan in the target directory. 
@@ -148,6 +148,7 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
         Dim matrixBase As String = args <= "/matrix_basePeak"
         Dim basePeak As Double = 0.0
         Dim res As Double = args("/resolution") Or 17.0
+        Dim norm As Boolean = args("/TIC_norm")
 
         Call Console.WriteLine(save)
 
@@ -164,7 +165,7 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
         End If
 
         Using file As FileStream = save.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
-            Dim buffer As mzPack = MSImagingRowBinds.MSI_rowbind(files, cutoff, basePeak)
+            Dim buffer As mzPack = MSImagingRowBinds.MSI_rowbind(files, cutoff, basePeak, norm)
 
             Call buffer.metadata.Add("resolution", res)
             Call buffer.Write(file, version:=2)

@@ -15,13 +15,14 @@ Public Class MSImagingRowBinds
     Dim cutoff As Double
     Dim basePeak As Double
     Dim labelPrefix As String
+    Dim norm As Boolean = True
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Private Function combineMzPack(pip As IEnumerable(Of mzPack), cor As Correction) As mzPack
         Return pip.MSICombineRowScans(
             correction:=cor,
             intocutoff:=cutoff,
-            sumNorm:=True,
+            sumNorm:=norm,
             yscale:=1,
             progress:=AddressOf RunSlavePipeline.SendMessage,
             labelPrefix:=labelPrefix
@@ -140,7 +141,7 @@ Public Class MSImagingRowBinds
             End Function(), correction)
     End Function
 
-    Public Shared Function MSI_rowbind(files As String(), cutoff As Double, basePeak As Double) As mzPack
+    Public Shared Function MSI_rowbind(files As String(), cutoff As Double, basePeak As Double, norm As Boolean) As mzPack
         Dim exttype As String() = (From path As String
                                    In files
                                    Select path.ExtensionSuffix.ToLower
@@ -149,7 +150,8 @@ Public Class MSImagingRowBinds
         Dim union As New MSImagingRowBinds With {
             .basePeak = basePeak,
             .cutoff = cutoff,
-            .labelPrefix = sampleTag.LabelPrefix
+            .labelPrefix = sampleTag.LabelPrefix,
+            .norm = norm
         }
 
         If exttype.Length > 1 Then
