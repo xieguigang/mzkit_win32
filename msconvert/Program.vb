@@ -167,8 +167,8 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
         Using file As FileStream = save.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
             Dim buffer As mzPack = MSImagingRowBinds.MSI_rowbind(files, cutoff, basePeak, norm)
 
-            Call buffer.metadata.Add("resolution", res)
-            Call buffer.Write(file, version:=2)
+            buffer.metadata!resolution = res
+            buffer.Write(file, version:=2)
         End Using
 
         Return 0
