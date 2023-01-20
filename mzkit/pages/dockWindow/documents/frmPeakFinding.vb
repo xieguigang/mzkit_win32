@@ -1,8 +1,11 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
+﻿Imports System.IO
+Imports System.Text
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
+Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
@@ -155,6 +158,88 @@ Public Class frmPeakFinding
     End Sub
 
     Private Sub frmPeakFinding_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Call ApplyVsTheme(ContextMenuStrip1)
+        Call ApplyVsTheme(ContextMenuStrip1, ContextMenuStrip2, ToolStrip1)
     End Sub
+
+    ''' <summary>
+    ''' open table file and imports for peak finding analysis
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        Using file As New OpenFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim data = file.FileName.LoadCsv(Of ChromatogramTick)()
+
+                Call LoadMatrix(file.FileName.FileName, data)
+            End If
+        End Using
+    End Sub
+
+    ''' <summary>
+    ''' save as excel table file
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+        Call PeakListViewer.SaveDataGrid(rawName)
+    End Sub
+
+    ''' <summary>
+    ''' copy as table
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
+        Dim sb As New StringBuilder
+        Dim text As New StringWriter(sb)
+
+        Call PeakListViewer.WriteTableToFile(text)
+        Call text.Flush()
+        Call Clipboard.Clear()
+        Call Clipboard.SetText(sb.ToString)
+    End Sub
+
+    ''' <summary>
+    ''' send to table viewer
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
+        Call DataControlHandler.OpenInTableViewer(matrix:=PeakListViewer)
+    End Sub
+
+    ''' <summary>
+    ''' save peaks
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub SaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveToolStripMenuItem.Click
+        Call PeakMatrixViewer.SaveDataGrid(rawName)
+    End Sub
+
+    ''' <summary>
+    ''' copy peaks
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub CopyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyToolStripMenuItem.Click
+        Dim sb As New StringBuilder
+        Dim text As New StringWriter(sb)
+
+        Call PeakMatrixViewer.WriteTableToFile(text)
+        Call text.Flush()
+        Call Clipboard.Clear()
+        Call Clipboard.SetText(sb.ToString)
+    End Sub
+
+    ''' <summary>
+    ''' send peak table to table viewer
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub SendToTableViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendToTableViewerToolStripMenuItem.Click
+        Call DataControlHandler.OpenInTableViewer(matrix:=PeakMatrixViewer)
+    End Sub
+
 End Class
