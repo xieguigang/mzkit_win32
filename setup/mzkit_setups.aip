@@ -61,6 +61,7 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
     <ROW Directory="CMU1.ndpi1_files_Dir" Directory_Parent="deep_zoom_image_Dir" DefaultDir="CMU-1~1.NDP|CMU-1.ndpi,1_files"/>
+    <ROW Directory="CommonAppDataFolder" Directory_Parent="TARGETDIR" DefaultDir="COMMON~1|CommonAppDataFolder" IsPseudoRoot="1"/>
     <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
     <ROW Directory="DevTools_Dir" Directory_Parent="SHORTCUTDIR" DefaultDir="DevTools"/>
     <ROW Directory="MSImaging_Dir" Directory_Parent="pipeline_Dir" DefaultDir="MSIMAG~1|MSImaging"/>
@@ -148,6 +149,7 @@
     <ROW Directory="peptide_se_cfm_Dir" Directory_Parent="esi_msms_models_Dir" DefaultDir="PEPTID~2|peptide_se_cfm"/>
     <ROW Directory="pipeline_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="pipeline"/>
     <ROW Directory="plugins_Dir" Directory_Parent="APPDIR" DefaultDir="plugins"/>
+    <ROW Directory="regid.201301.com.panomix_Dir" Directory_Parent="CommonAppDataFolder" DefaultDir="REGID2~1.PAN|regid.2013-01.com.panomix"/>
     <ROW Directory="runtimes_2_Dir" Directory_Parent="host_Dir" DefaultDir="runtimes"/>
     <ROW Directory="runtimes_3_Dir" Directory_Parent="bin_Dir" DefaultDir="runtimes"/>
     <ROW Directory="runtimes_Dir" Directory_Parent="APPDIR" DefaultDir="runtimes"/>
@@ -658,6 +660,7 @@
     <ROW Component="npy.dll" ComponentId="{57A4DF98-6211-4C12-8590-541E4B27BC6C}" Directory_="library_Dir" Attributes="256" KeyPath="npy.dll"/>
     <ROW Component="nts.dll" ComponentId="{C3430FDE-A92A-4B60-AC18-9F8A223BF24A}" Directory_="library_Dir" Attributes="256" KeyPath="nts.dll"/>
     <ROW Component="overlay.8faf238632c16c841197.svg" ComponentId="{32B72F33-C12E-48A2-AAE3-72C56C369022}" Directory_="media_Dir" Attributes="0" KeyPath="overlay.8faf238632c16c841197.svg" Type="0"/>
+    <ROW Component="regid.201301.com.panomix" ComponentId="{63A0ED36-59FE-437D-ABA9-2A17B9A3A3F0}" Directory_="regid.201301.com.panomix_Dir" Attributes="0"/>
     <ROW Component="roxygenNet.dll" ComponentId="{E0E9A75E-58C3-4143-B990-88737EBD1D95}" Directory_="library_Dir" Attributes="256" KeyPath="roxygenNet.dll"/>
     <ROW Component="signalKit.dll" ComponentId="{E647E3F5-5C3F-454E-917D-71D0B35C97B8}" Directory_="library_Dir" Attributes="256" KeyPath="signalKit.dll"/>
     <ROW Component="singleIon.R" ComponentId="{0C305F69-B9FA-4837-B2A8-D98DC523124F}" Directory_="MSImaging_Dir" Attributes="256" KeyPath="singleIon.R" Type="0"/>
@@ -4759,6 +4762,14 @@
     <ROW Fragment="WelcomeDlg.aip" Path="&lt;AI_THEMES&gt;azure\fragments\WelcomeDlg.aip"/>
     <ROW Fragment="WelcomePrereqDlg.aip" Path="&lt;AI_THEMES&gt;azure\fragments\WelcomePrereqDlg.aip"/>
   </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiActionTextComponent">
+    <ROW Action="AI_XmlCommit" Description="Committing XML file configurations." DescriptionLocId="ActionText.Description.AI_XmlCommit" Template="Committing XML file configurations." TemplateLocId="ActionText.Template.AI_XmlCommit"/>
+    <ROW Action="AI_XmlConfig" Description="Executing XML file configurations" DescriptionLocId="ActionText.Description.AI_XmlConfig" Template="Configuring XML file: &quot;[1]&quot;" TemplateLocId="ActionText.Template.AI_XmlConfig"/>
+    <ROW Action="AI_XmlInstall" Description="Generating actions to configure XML files" DescriptionLocId="ActionText.Description.AI_XmlInstall"/>
+    <ROW Action="AI_XmlRemove" Description="Executing XML file configurations" DescriptionLocId="ActionText.Description.AI_XmlRemove" Template="Configuring XML file: &quot;[1]&quot;" TemplateLocId="ActionText.Template.AI_XmlRemove"/>
+    <ROW Action="AI_XmlRollback" Description="Rolling back XML file configurations." DescriptionLocId="ActionText.Description.AI_XmlRollback" Template="Rolling back XML file configurations." TemplateLocId="ActionText.Template.AI_XmlRollback"/>
+    <ROW Action="AI_XmlUninstall" Description="Generating actions to configure XML files" DescriptionLocId="ActionText.Description.AI_XmlUninstall"/>
+  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
     <ROW Name="ExternalUICleaner.dll" SourcePath="&lt;AI_CUSTACTS&gt;ExternalUICleaner.dll"/>
     <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
@@ -4767,6 +4778,7 @@
     <ROW Name="SoftwareDetector.dll" SourcePath="&lt;AI_CUSTACTS&gt;SoftwareDetector.dll"/>
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
     <ROW Name="viewer.exe" SourcePath="&lt;AI_CUSTACTS&gt;viewer.exe"/>
+    <ROW Name="xmlCfg.dll" SourcePath="&lt;AI_CUSTACTS&gt;xmlCfg.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
     <ROW Dialog_="LicenseAgreementDlg" Control="AgreementText" Type="ScrollableText" X="55" Y="110" Width="372" Height="180" Attributes="3" Property="EulaRead" Text="..\extdata\Reference.rtf" Order="800" MsiKey="LicenseAgreementDlg#AgreementText"/>
@@ -4809,11 +4821,14 @@
     <ROW Directory_="Rstudio_Dir" Component_="Rstudio" ManualDelete="true"/>
     <ROW Directory_="library_Dir" Component_="library" ManualDelete="true"/>
     <ROW Directory_="DevTools_Dir" Component_="DevTools" ManualDelete="false"/>
+    <ROW Directory_="regid.201301.com.panomix_Dir" Component_="regid.201301.com.panomix" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_AppSearchEx" Type="1" Source="Prereq.dll" Target="DoAppSearchEx"/>
     <ROW Action="AI_ApplyShortcutFlags" Type="3073" Source="ShortcutFlags.dll" Target="UpdateShortcutFlags" WithoutSeq="true"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DATA_SETTER" Type="51" Source="CustomActionData" Target="[~]"/>
+    <ROW Action="AI_DATA_SETTER_1" Type="51" Source="CustomActionData" Target="[~]"/>
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
     <ROW Action="AI_DetectSoftware" Type="257" Source="SoftwareDetector.dll" Target="OnDetectSoftware"/>
     <ROW Action="AI_DoRemoveExternalUIStub" Type="3585" Source="ExternalUICleaner.dll" Target="DoRemoveExternalUIStub" WithoutSeq="true"/>
@@ -4840,6 +4855,12 @@
     <ROW Action="AI_UnpinFromTaskbar" Type="1025" Source="ShortcutFlags.dll" Target="UnpinFromTaskbar" WithoutSeq="true"/>
     <ROW Action="AI_UnpinShortcuts" Type="1" Source="ShortcutFlags.dll" Target="UnpinShortcuts"/>
     <ROW Action="AI_ViewReadme" Type="1" Source="aicustact.dll" Target="[#README.txt]"/>
+    <ROW Action="AI_XmlCommit" Type="11777" Source="xmlCfg.dll" Target="OnXmlCommit" WithoutSeq="true"/>
+    <ROW Action="AI_XmlConfig" Type="11265" Source="xmlCfg.dll" Target="OnXmlConfig" WithoutSeq="true"/>
+    <ROW Action="AI_XmlInstall" Type="1" Source="xmlCfg.dll" Target="OnXmlInstall" AdditionalSeq="AI_DATA_SETTER"/>
+    <ROW Action="AI_XmlRemove" Type="11265" Source="xmlCfg.dll" Target="OnXmlRemove" WithoutSeq="true"/>
+    <ROW Action="AI_XmlRollback" Type="11521" Source="xmlCfg.dll" Target="OnXmlRollback" WithoutSeq="true"/>
+    <ROW Action="AI_XmlUninstall" Type="1" Source="xmlCfg.dll" Target="OnXmlUninstall" AdditionalSeq="AI_DATA_SETTER_1"/>
     <ROW Action="OpenUrl" Type="66" Source="viewer.exe" Target="https://mzkit.org/" Options="1"/>
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFiles64Folder][Manufacturer]\[ProductName]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]" MultiBuildTarget="DefaultBuild:[ProgramMenuFolder]\[Manufacturer]\[ProductName]"/>
@@ -5352,6 +5373,7 @@
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.TaskStream.dll"/>
     <ROW Feature_="MainFeature" Component_="mzView.dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Windows.Forms.DataValidation.dll"/>
+    <ROW Feature_="MainFeature" Component_="regid.201301.com.panomix"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
@@ -5388,6 +5410,10 @@
     <ROW Action="AI_PinShortcuts" Condition="(VersionNT &gt; 600) AND ((NOT Installed) OR (Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;)))" Sequence="6499"/>
     <ROW Action="AI_UnpinShortcuts" Condition="(VersionNT &gt; 600) AND (REMOVE = &quot;ALL&quot;)" Sequence="3199"/>
     <ROW Action="OpenUrl" Sequence="6601"/>
+    <ROW Action="AI_XmlInstall" Condition="(REMOVE &lt;&gt; &quot;ALL&quot;)" Sequence="5102"/>
+    <ROW Action="AI_DATA_SETTER" Condition="(REMOVE &lt;&gt; &quot;ALL&quot;)" Sequence="5101"/>
+    <ROW Action="AI_XmlUninstall" Condition="(REMOVE)" Sequence="3102"/>
+    <ROW Action="AI_DATA_SETTER_1" Condition="(REMOVE)" Sequence="3101"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
@@ -5477,6 +5503,10 @@
     <ROW SearchKey="C6F7BF650B714DC58735D62C12F214E4Mic" Prereq="C6F7BF650B714DC58735D62C12F214E4" SearchType="12" SearchString="HKLM\SOFTWARE\dotnet\Setup\InstalledVersions\x64\sharedfx\Microsoft.NETCore.App" VerMin="6.0.0" Order="1" Property="PreReqSearch_C6F7BF650B714DC58735D6"/>
     <ROW SearchKey="FAC9C433D3044829E6669A2C6FF54E6Micr" Prereq="FAC9C433D3044829E6669A2C6FF54E6" SearchType="0" SearchString="[ProgramFiles64Folder]dotnet\shared\Microsoft.WindowsDesktop.App\6.0.0\Microsoft.WindowsDesktop.App.runtimeconfig.json" Order="1" Property="PreReqSearch_FAC9C433D3044829E6669A"/>
   </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.SoftwareIdentificationComponent">
+    <ATTRIBUTE name="LocalFile" value="regid.199509.com.example_ProductNam"/>
+    <ATTRIBUTE name="SystemFile" value="regid.199509.com.example_ProductN_1"/>
+  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.SynchronizedFolderComponent">
     <ROW Directory_="bin_Dir" SourcePath="..\..\..\dist\bin\Rstudio\bin" Feature="MainFeature" IncludePattern="*.exe|*.dll|*.json|*.config|*.cmd|*.bat|*.txt" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|\net48|\net5.0|\net7.0|\net7.0-windows" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="host_Dir" SourcePath="..\..\..\dist\bin\Rstudio\host" Feature="MainFeature" IncludePattern="*.exe|*.dll|*.config|*.json" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
@@ -5500,5 +5530,44 @@
     <ROW Directory_="plugins_Dir" SourcePath="..\..\..\dist\bin\plugins" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|\en-US|\zh-Hans|runtimes|*.xml|*.pdb|Microsoft.VisualBasic.Runtime.*|/ThemeVS2015.*|System.Numerics.Vectors.*|Mzkit_win32.BasicMDIForm.*|Microsoft.*|\zh-CN|/BioNovoGene.*|/ThermoFisher.*|/System.*|/REnv.*|Mzkit_.*|Mzkit_win32.Interaction.dll" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="zhHans_Dir" SourcePath="..\..\..\dist\bin\zh-Hans" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="js_1_Dir" SourcePath="..\webview\assets\js" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|/*.map" ExcludeFlags="6" FileAddOptions="4"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.XmlAttributeComponent">
+    <ROW XmlAttribute="xmlnsds" XmlElement="swidsoftware_identification_tag" Name="xmlns:ds" Flags="14" Order="0" Value="http://www.w3.org/2000/09/xmldsig#"/>
+    <ROW XmlAttribute="xmlnsswid" XmlElement="swidsoftware_identification_tag" Name="xmlns:swid" Flags="14" Order="1" Value="http://standards.iso.org/iso/19770/-2/2008/schema.xsd"/>
+    <ROW XmlAttribute="xmlnsxsi" XmlElement="swidsoftware_identification_tag" Name="xmlns:xsi" Flags="14" Order="2" Value="http://www.w3.org/2001/XMLSchema-instance"/>
+    <ROW XmlAttribute="xsischemaLocation" XmlElement="swidsoftware_identification_tag" Name="xsi:schemaLocation" Flags="14" Order="3" Value="http://standards.iso.org/iso/19770/-2/2008/schema.xsd software_identification_tag.xsd"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.XmlElementComponent">
+    <ROW XmlElement="swidbuild" ParentElement="swidnumeric" Name="swid:build" Condition="1" Order="2" Flags="14" Text="9" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidchannel_name" ParentElement="swidlicense_linkage" Name="swid:channel_name" Condition="1" Order="1" Flags="14" Text="Standard(Community Edition)" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidchannel_type" ParentElement="swidlicense_linkage" Name="swid:channel_type" Condition="1" Order="0" Flags="14" Text="Retail" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidcustomer_type" ParentElement="swidlicense_linkage" Name="swid:customer_type" Condition="1" Order="2" Flags="14" Text="Academic" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidentitlement_required_indicator" ParentElement="swidsoftware_identification_tag" Name="swid:entitlement_required_indicator" Condition="1" Order="0" Flags="14" Text="true" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidlicense_linkage" ParentElement="swidsoftware_identification_tag" Name="swid:license_linkage" Condition="1" Order="8" Flags="14" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidmajor" ParentElement="swidnumeric" Name="swid:major" Condition="1" Order="0" Flags="14" Text="4" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidminor" ParentElement="swidnumeric" Name="swid:minor" Condition="1" Order="1" Flags="14" Text="1" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidname" ParentElement="swidproduct_version" Name="swid:name" Condition="1" Order="0" Flags="14" Text="[ProductVersion]" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidname_7" ParentElement="swidsoftware_creator" Name="swid:name" Condition="1" Order="0" Flags="14" Text="[Manufacturer]" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidname_8" ParentElement="swidsoftware_licensor" Name="swid:name" Condition="1" Order="0" Flags="14" Text="[Manufacturer]" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidname_9" ParentElement="swidtag_creator" Name="swid:name" Condition="1" Order="0" Flags="14" Text="[Manufacturer]" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidnumeric" ParentElement="swidproduct_version" Name="swid:numeric" Condition="1" Order="1" Flags="14" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidproduct_title" ParentElement="swidsoftware_identification_tag" Name="swid:product_title" Condition="1" Order="1" Flags="14" Text="[ProductName]" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidproduct_version" ParentElement="swidsoftware_identification_tag" Name="swid:product_version" Condition="1" Order="2" Flags="14" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidregid" ParentElement="swidsoftware_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2013-01.com.panomix" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidregid_5" ParentElement="swidsoftware_licensor" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2019-11.org.mzkit" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidregid_6" ParentElement="swidtag_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.1995-09.me.xieguigang,gg.xie@bionovogene.com" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="5689" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidserial_number" ParentElement="swidsoftware_identification_tag" Name="swid:serial_number" Condition="1" Order="7" Flags="14" Text="[PIDKEY]" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidsoftware_creator" ParentElement="swidsoftware_identification_tag" Name="swid:software_creator" Condition="1" Order="3" Flags="14" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidsoftware_id" ParentElement="swidsoftware_identification_tag" Name="swid:software_id" Condition="1" Order="5" Flags="14" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidsoftware_identification_tag" Name="swid:software_identification_tag" Condition="1" Order="0" Flags="14" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidsoftware_licensor" ParentElement="swidsoftware_identification_tag" Name="swid:software_licensor" Condition="1" Order="4" Flags="14" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidtag_creator" ParentElement="swidsoftware_identification_tag" Name="swid:tag_creator" Condition="1" Order="6" Flags="14" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidtag_creator_regid" ParentElement="swidsoftware_id" Name="swid:tag_creator_regid" Condition="1" Order="1" Flags="14" Text="regid.1995-09.me.xieguigang,gg.xie@bionovogene.com" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidunique_id" ParentElement="swidsoftware_id" Name="swid:unique_id" Condition="1" Order="0" Flags="14" Text="[ProductName]" UpdateIndexInParent="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.XmlFileComponent">
+    <ROW XmlFile="regid.199509.com.example_ProductN_1" FileName="REGID1~1.SWI|regid.1995-09.me.xieguigang,gg.xie@bionovogene.com_[|ProductName].swidtag" DirProperty="regid.201301.com.panomix_Dir" Component="ProductInformation" RootElement="swidsoftware_identification_tag" Flags="153" Version="1.0" Encoding="UTF-8" IndentUnits="2"/>
+    <ROW XmlFile="regid.199509.com.example_ProductNam" FileName="REGID1~1.SWI|regid.1995-09.me.xieguigang,gg.xie@bionovogene.com_[|ProductName].swidtag" DirProperty="APPDIR" Component="ProductInformation" RootElement="swidsoftware_identification_tag" Flags="153" Version="1.0" Encoding="UTF-8" IndentUnits="2"/>
   </COMPONENT>
 </DOCUMENT>
