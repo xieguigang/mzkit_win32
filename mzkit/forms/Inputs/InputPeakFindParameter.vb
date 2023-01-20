@@ -1,4 +1,5 @@
 ﻿Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Microsoft.VisualBasic.Windows.Forms.DataValidation
 
 Public Class InputPeakFindParameter : Inherits InputDialog
 
@@ -21,11 +22,11 @@ Public Class InputPeakFindParameter : Inherits InputDialog
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -92,28 +93,12 @@ Public Class InputPeakFindParameter : Inherits InputDialog
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Arguments"
         '
-        'NumericUpDown1
+        'TextBox3
         '
-        Me.NumericUpDown1.Increment = New Decimal(New Integer() {5, 0, 0, 131072})
-        Me.NumericUpDown1.Location = New System.Drawing.Point(160, 29)
-        Me.NumericUpDown1.Maximum = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.NumericUpDown1.Name = "NumericUpDown1"
-        Me.NumericUpDown1.Size = New System.Drawing.Size(135, 21)
-        Me.NumericUpDown1.TabIndex = 5
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(160, 61)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(56, 21)
-        Me.TextBox1.TabIndex = 6
-        '
-        'TextBox2
-        '
-        Me.TextBox2.Location = New System.Drawing.Point(239, 61)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(56, 21)
-        Me.TextBox2.TabIndex = 7
+        Me.TextBox3.Location = New System.Drawing.Point(160, 92)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(135, 21)
+        Me.TextBox3.TabIndex = 9
         '
         'Label4
         '
@@ -124,12 +109,28 @@ Public Class InputPeakFindParameter : Inherits InputDialog
         Me.Label4.TabIndex = 8
         Me.Label4.Text = "-"
         '
-        'TextBox3
+        'TextBox2
         '
-        Me.TextBox3.Location = New System.Drawing.Point(160, 92)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(135, 21)
-        Me.TextBox3.TabIndex = 9
+        Me.TextBox2.Location = New System.Drawing.Point(239, 61)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(56, 21)
+        Me.TextBox2.TabIndex = 7
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(160, 61)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(56, 21)
+        Me.TextBox1.TabIndex = 6
+        '
+        'NumericUpDown1
+        '
+        Me.NumericUpDown1.Increment = New Decimal(New Integer() {5, 0, 0, 131072})
+        Me.NumericUpDown1.Location = New System.Drawing.Point(160, 29)
+        Me.NumericUpDown1.Maximum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.NumericUpDown1.Name = "NumericUpDown1"
+        Me.NumericUpDown1.Size = New System.Drawing.Size(135, 21)
+        Me.NumericUpDown1.TabIndex = 5
         '
         'InputPeakFindParameter
         '
@@ -152,9 +153,14 @@ Public Class InputPeakFindParameter : Inherits InputDialog
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim peakMin = TextBox1.ValidateDouble
+        Dim peakMax = TextBox2.validatedouble
+        Dim SN = TextBox3.validatedouble
 
-
-
-        Me.DialogResult = DialogResult.OK
+        If {peakMin, peakMax, SN}.Any Then
+            Return
+        Else
+            Me.DialogResult = DialogResult.OK
+        End If
     End Sub
 End Class
