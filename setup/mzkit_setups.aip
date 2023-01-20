@@ -413,6 +413,7 @@
     <ROW Component="Microsoft.VisualBasic.Runtime.dll_12" ComponentId="{FEF2956E-48B4-44EA-A58C-2A76B5EEA671}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll_12"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.dll_4" ComponentId="{EEA1A22B-17CA-44DF-869E-49A98B8D7B96}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll_4"/>
     <ROW Component="Microsoft.VisualBasic.Windows.Forms.Console.dll" ComponentId="{66BFAC4E-7321-4D6E-A0DA-E80383C39C90}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Windows.Forms.Console.dll"/>
+    <ROW Component="Microsoft.VisualBasic.Windows.Forms.DataValidation.dll" ComponentId="{CAE24AF6-7012-4899-98DB-30E10197A174}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Windows.Forms.DataValidation.dll"/>
     <ROW Component="Microsoft.VisualStudio.WinForm.TextEditor.dll" ComponentId="{0C364B3F-E8F1-41E9-BFA7-5861AE34EAB7}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualStudio.WinForm.TextEditor.dll"/>
     <ROW Component="Microsoft.VisualStudio.Windows.Form.dll" ComponentId="{65896CF6-C03F-4522-A38F-2AAD3ECEC5A2}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualStudio.Windows.Form.dll"/>
     <ROW Component="Microsoft.Web.WebView2.Core.dll" ComponentId="{51C0CC6C-B2CC-490B-B7F3-5C38F97AE13F}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Web.WebView2.Core.dll"/>
@@ -4707,6 +4708,7 @@
     <ROW File="servicesManager.html" Component_="logo.png" FileName="SERVIC~1.HTM|servicesManager.html" Attributes="0" SourcePath="..\webview\servicesManager.html" SelfReg="false"/>
     <ROW File="echartsgl.min.js" Component_="smilesdrawer.min.js" FileName="ECHART~2.JS|echarts-gl.min.js" Attributes="0" SourcePath="..\webview\vendor\echarts-gl.min.js" SelfReg="false"/>
     <ROW File="mzkit_desktop.js.map" Component_="linq.d.ts" FileName="MZKIT_~1.MAP|mzkit_desktop.js.map" Attributes="0" SourcePath="..\webview\assets\js\mzkit_desktop.js.map" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Windows.Forms.DataValidation.dll" Component_="Microsoft.VisualBasic.Windows.Forms.DataValidation.dll" FileName="MICRO~69.DLL|Microsoft.VisualBasic.Windows.Forms.DataValidation.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Windows.Forms.DataValidation.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -5349,6 +5351,7 @@
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.BasicMDIForm.resources.dll_1"/>
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.TaskStream.dll"/>
     <ROW Feature_="MainFeature" Component_="mzView.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Windows.Forms.DataValidation.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
