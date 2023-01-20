@@ -169,7 +169,7 @@ Namespace CLI
 
         ''' <summary>
         ''' ```bash
-        ''' /imzml --file &lt;source.data&gt; --save &lt;file.imzML&gt; [/cutoff &lt;intensity_cutoff, default=0&gt; /matrix_basePeak &lt;mz, default=0&gt; /resolution &lt;default=17&gt;]
+        ''' /imzml --file &lt;source.data&gt; --save &lt;file.imzML&gt; [/TIC_norm /cutoff &lt;intensity_cutoff, default=0&gt; /matrix_basePeak &lt;mz, default=0&gt; /resolution &lt;default=17&gt;]
         ''' ```
         ''' Convert raw data file to imzML file.
         ''' </summary>
@@ -179,12 +179,14 @@ Namespace CLI
                                       save As String,
                                       Optional cutoff As String = "0",
                                       Optional matrix_basepeak As String = "0",
-                                      Optional resolution As String = "17") As Integer
+                                      Optional resolution As String = "17",
+                                      Optional tic_norm As Boolean = False) As Integer
             Dim cli = GetMSIToimzMLCommandLine(file:=file,
                                           save:=save,
                                           cutoff:=cutoff,
                                           matrix_basepeak:=matrix_basepeak,
-                                          resolution:=resolution, internal_pipelineMode:=True)
+                                          resolution:=resolution,
+                                          tic_norm:=tic_norm, internal_pipelineMode:=True)
             Dim proc As IIORedirectAbstract = RunDotNetApp(cli)
             Return proc.Run()
         End Function
@@ -192,7 +194,8 @@ Namespace CLI
                                       save As String,
                                       Optional cutoff As String = "0",
                                       Optional matrix_basepeak As String = "0",
-                                      Optional resolution As String = "17", Optional internal_pipelineMode As Boolean = True) As String
+                                      Optional resolution As String = "17",
+                                      Optional tic_norm As Boolean = False, Optional internal_pipelineMode As Boolean = True) As String
             Dim CLI As New StringBuilder("/imzml")
             Call CLI.Append(" ")
             Call CLI.Append("--file " & """" & file & """ ")
@@ -205,6 +208,9 @@ Namespace CLI
             End If
             If Not resolution.StringEmpty Then
                 Call CLI.Append("/resolution " & """" & resolution & """ ")
+            End If
+            If tic_norm Then
+                Call CLI.Append("/tic_norm ")
             End If
             Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
@@ -296,7 +302,7 @@ Namespace CLI
 
         ''' <summary>
         ''' ```bash
-        ''' /rowbinds --files &lt;list.txt/directory_path&gt; --save &lt;MSI.mzPack&gt; [/scan &lt;default=raw&gt; /cutoff &lt;intensity_cutoff, default=0&gt; /matrix_basePeak &lt;mz, default=0&gt; /resolution &lt;default=17&gt;]
+        ''' /rowbinds --files &lt;list.txt/directory_path&gt; --save &lt;MSI.mzPack&gt; [/TIC_norm /scan &lt;default=raw&gt; /cutoff &lt;intensity_cutoff, default=0&gt; /matrix_basePeak &lt;mz, default=0&gt; /resolution &lt;default=17&gt;]
         ''' ```
         ''' Combine row scans to mzPack
         ''' </summary>
@@ -305,7 +311,9 @@ Namespace CLI
         ''' </param>
         ''' <param name="save"> a file path for export mzPack data file.
         ''' </param>
-        ''' <param name="scan"> This parameter only works for the directory input file. used as the file extension suffix for scan in the target directory.
+        ''' <param name="scan"> This parameter only works for the directory input file. 
+        '''               used as the file extension suffix for scan in the target directory. 
+        '''               value for this argument could be: wiff, raw, mzML, mzXML, mzPack.
         ''' </param>
         ''' <param name="matrix_basePeak"> zero or negative value means no removes of the matrix base ion, and the value of this parameter can also be &apos;auto&apos;, means auto check the matrix base ion.
         ''' </param>
@@ -314,13 +322,15 @@ Namespace CLI
                                          Optional scan As String = "raw",
                                          Optional cutoff As String = "0",
                                          Optional matrix_basepeak As String = "0",
-                                         Optional resolution As String = "17") As Integer
+                                         Optional resolution As String = "17",
+                                         Optional tic_norm As Boolean = False) As Integer
             Dim cli = GetMSIRowCombineCommandLine(files:=files,
                                              save:=save,
                                              scan:=scan,
                                              cutoff:=cutoff,
                                              matrix_basepeak:=matrix_basepeak,
-                                             resolution:=resolution, internal_pipelineMode:=True)
+                                             resolution:=resolution,
+                                             tic_norm:=tic_norm, internal_pipelineMode:=True)
             Dim proc As IIORedirectAbstract = RunDotNetApp(cli)
             Return proc.Run()
         End Function
@@ -329,7 +339,8 @@ Namespace CLI
                                          Optional scan As String = "raw",
                                          Optional cutoff As String = "0",
                                          Optional matrix_basepeak As String = "0",
-                                         Optional resolution As String = "17", Optional internal_pipelineMode As Boolean = True) As String
+                                         Optional resolution As String = "17",
+                                         Optional tic_norm As Boolean = False, Optional internal_pipelineMode As Boolean = True) As String
             Dim CLI As New StringBuilder("/rowbinds")
             Call CLI.Append(" ")
             Call CLI.Append("--files " & """" & files & """ ")
@@ -345,6 +356,9 @@ Namespace CLI
             End If
             If Not resolution.StringEmpty Then
                 Call CLI.Append("/resolution " & """" & resolution & """ ")
+            End If
+            If tic_norm Then
+                Call CLI.Append("/tic_norm ")
             End If
             Call CLI.Append($"/@set --internal_pipeline={internal_pipelineMode.ToString.ToUpper()} ")
 
