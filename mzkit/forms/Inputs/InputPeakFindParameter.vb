@@ -99,6 +99,7 @@ Public Class InputPeakFindParameter : Inherits InputDialog
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(135, 21)
         Me.TextBox3.TabIndex = 9
+        Me.TextBox3.Text = "1"
         '
         'Label4
         '
@@ -115,6 +116,7 @@ Public Class InputPeakFindParameter : Inherits InputDialog
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(56, 21)
         Me.TextBox2.TabIndex = 7
+        Me.TextBox2.Text = "15"
         '
         'TextBox1
         '
@@ -122,6 +124,7 @@ Public Class InputPeakFindParameter : Inherits InputDialog
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(56, 21)
         Me.TextBox1.TabIndex = 6
+        Me.TextBox1.Text = "3"
         '
         'NumericUpDown1
         '
@@ -131,6 +134,7 @@ Public Class InputPeakFindParameter : Inherits InputDialog
         Me.NumericUpDown1.Name = "NumericUpDown1"
         Me.NumericUpDown1.Size = New System.Drawing.Size(135, 21)
         Me.NumericUpDown1.TabIndex = 5
+        Me.NumericUpDown1.Value = New Decimal(New Integer() {65, 0, 0, 131072})
         '
         'InputPeakFindParameter
         '
@@ -148,18 +152,35 @@ Public Class InputPeakFindParameter : Inherits InputDialog
 
     End Sub
 
+    Friend args As New frmPeakFinding.PeakFindingParameter
+
+    Public Sub SetArguments(args As frmPeakFinding.PeakFindingParameter)
+        If Not args Is Nothing Then
+            Me.args = args
+
+            TextBox1.Text = args.peakwidth.Min
+            TextBox2.Text = args.peakwidth.Max
+            TextBox3.Text = args.SN
+            NumericUpDown1.Value = args.baseline
+        End If
+    End Sub
+
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Me.DialogResult = DialogResult.Cancel
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim peakMin = TextBox1.ValidateDouble
-        Dim peakMax = TextBox2.validatedouble
-        Dim SN = TextBox3.validatedouble
+        Dim peakMax = TextBox2.ValidateDouble
+        Dim SN = TextBox3.ValidateDouble
 
-        If {peakMin, peakMax, SN}.Any Then
+        If {peakMin, peakMax, SN}.Any(Function(a) a Is Nothing) Then
             Return
         Else
+            args.SN = SN
+            args.peakwidth = {peakMin.Value, peakMax.Value}
+            args.baseline = NumericUpDown1.Value
+
             Me.DialogResult = DialogResult.OK
         End If
     End Sub

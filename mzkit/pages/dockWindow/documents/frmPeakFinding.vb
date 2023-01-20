@@ -9,6 +9,7 @@ Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class frmPeakFinding
@@ -64,6 +65,7 @@ Public Class frmPeakFinding
             ) _
             .ToArray
 
+        PeakListViewer.Rows.Clear()
         PeakListViewer.Columns.Clear()
         PeakListViewer.Columns.Add("ROI", "ROI")
         PeakListViewer.Columns.Add("rtmin", "rtmin")
@@ -255,6 +257,9 @@ Public Class frmPeakFinding
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
+        Dim cfg As New InputPeakFindParameter
 
+        Call cfg.SetArguments(args)
+        Call InputDialog.Input(Sub(config) Call InitPanel(), config:=cfg)
     End Sub
 End Class
