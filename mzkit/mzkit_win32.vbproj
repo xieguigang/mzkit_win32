@@ -401,10 +401,7 @@
     <Compile Include="application\settings\RawFileViewerSettings.vb" />
     <Compile Include="application\VisualStudio.vb" />
     <Compile Include="application\RPackage.vb" />
-    <Compile Include="forms\Inputs\Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\Inputs\Form1.vb">
+    <Compile Include="forms\Inputs\InputPeakFindParameter.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\Inputs\ShowTissueData.Designer.vb">
@@ -1056,6 +1053,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputNetworkLayout.zh-CN.resx">
       <DependentUpon>InputNetworkLayout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\InputPeakFindParameter.resx">
+      <DependentUpon>InputPeakFindParameter.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputPeakTime.resx">
       <DependentUpon>InputPeakTime.vb</DependentUpon>
