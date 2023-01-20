@@ -8,11 +8,11 @@ Public Class InputPeakFindParameter : Inherits InputDialog
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents NumericUpDown1 As NumericUpDown
     Friend WithEvents Label4 As Label
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents NumericUpDown1 As NumericUpDown
     Friend WithEvents GroupBox1 As GroupBox
 
     Private Sub InitializeComponent()
@@ -128,13 +128,12 @@ Public Class InputPeakFindParameter : Inherits InputDialog
         '
         'NumericUpDown1
         '
-        Me.NumericUpDown1.Increment = New Decimal(New Integer() {5, 0, 0, 131072})
+        Me.NumericUpDown1.Increment = New Decimal(New Integer() {5, 0, 0, 0})
         Me.NumericUpDown1.Location = New System.Drawing.Point(160, 29)
-        Me.NumericUpDown1.Maximum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.NumericUpDown1.Name = "NumericUpDown1"
         Me.NumericUpDown1.Size = New System.Drawing.Size(135, 21)
         Me.NumericUpDown1.TabIndex = 5
-        Me.NumericUpDown1.Value = New Decimal(New Integer() {65, 0, 0, 131072})
+        Me.NumericUpDown1.Value = New Decimal(New Integer() {65, 0, 0, 0})
         '
         'InputPeakFindParameter
         '
@@ -152,6 +151,10 @@ Public Class InputPeakFindParameter : Inherits InputDialog
 
     End Sub
 
+    Sub New()
+        Call InitializeComponent()
+    End Sub
+
     Friend args As New frmPeakFinding.PeakFindingParameter
 
     Public Sub SetArguments(args As frmPeakFinding.PeakFindingParameter)
@@ -161,7 +164,7 @@ Public Class InputPeakFindParameter : Inherits InputDialog
             TextBox1.Text = args.peakwidth.Min
             TextBox2.Text = args.peakwidth.Max
             TextBox3.Text = args.SN
-            NumericUpDown1.Value = args.baseline
+            NumericUpDown1.Value = args.baseline * 100
         End If
     End Sub
 
@@ -171,15 +174,15 @@ Public Class InputPeakFindParameter : Inherits InputDialog
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim peakMin = TextBox1.ValidateDouble
-        Dim peakMax = TextBox2.ValidateDouble
-        Dim SN = TextBox3.ValidateDouble
+        Dim peakMax = TextBox2.ValidateDouble(pip:=peakMin)
+        Dim SN = TextBox3.ValidateDouble(pip:=peakMax)
 
         If {peakMin, peakMax, SN}.Any(Function(a) a Is Nothing) Then
             Return
         Else
             args.SN = SN
             args.peakwidth = {peakMin.Value, peakMax.Value}
-            args.baseline = NumericUpDown1.Value
+            args.baseline = NumericUpDown1.Value / 100
 
             Me.DialogResult = DialogResult.OK
         End If

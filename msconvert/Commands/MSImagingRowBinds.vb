@@ -5,7 +5,6 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
-Imports Microsoft.VisualBasic.DataStorage.netCDF.Components
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Text.Patterns
@@ -22,7 +21,7 @@ Public Class MSImagingRowBinds
         Return pip.MSICombineRowScans(
             correction:=cor,
             intocutoff:=cutoff,
-            sumNorm:=False,
+            sumNorm:=True,
             yscale:=1,
             progress:=AddressOf RunSlavePipeline.SendMessage,
             labelPrefix:=labelPrefix
