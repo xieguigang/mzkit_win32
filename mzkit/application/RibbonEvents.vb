@@ -372,6 +372,7 @@ Module RibbonEvents
                                     cutoff:=cutoff,
                                     basePeak:=basePeak,
                                     resoltuion:=res,
+                                    norm:=creator.norm,
                                     loadCallback:=Sub(filepath)
                                                       Call RibbonEvents.showMsImaging()
                                                       Call WindowModules.viewer.loadimzML(filepath)

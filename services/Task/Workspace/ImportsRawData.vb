@@ -118,14 +118,15 @@ Public Class ImportsRawData
                 Dim cutoff As String = arguments.TryGetValue("cutoff", [default]:="0")
                 Dim matrix_basepeak As String = arguments.TryGetValue("matrix_basepeak", [default]:="0")
                 Dim resolution As String = arguments.TryGetValue("resolution", [default]:=17)
+                Dim norm As Boolean = arguments.TryGetValue("norm", [default]:=True).ParseBoolean
 
                 Call rawfiles.SaveTo(tempfile)
 
                 If raw.cache.ExtensionSuffix("imzml") Then
                     ' do row combines and then convert to imzml
-                    Return PipelineTask.Task.GetMSIToimzMLCommandLine(tempfile, raw.cache, cutoff, matrix_basepeak, resolution)
+                    Return PipelineTask.Task.GetMSIToimzMLCommandLine(tempfile, raw.cache, cutoff, matrix_basepeak, resolution, tic_norm:=norm)
                 Else
-                    Return PipelineTask.Task.GetMSIRowCombineCommandLine(tempfile, raw.cache, cutoff, matrix_basepeak, resolution)
+                    Return PipelineTask.Task.GetMSIRowCombineCommandLine(tempfile, raw.cache, cutoff, matrix_basepeak, resolution, tic_norm:=norm)
                 End If
             Case Else
                 Throw New NotImplementedException(protocol.Description)

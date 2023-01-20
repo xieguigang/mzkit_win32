@@ -1,6 +1,5 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
-Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader
-Imports Microsoft.VisualBasic.Math
+Imports Microsoft.VisualBasic.Windows.Forms.DataValidation
 Imports stdNum = System.Math
 
 Public Class ShowMSIRowScanSummary
@@ -25,11 +24,25 @@ Public Class ShowMSIRowScanSummary
         End Get
     End Property
 
+    Public ReadOnly Property norm As Boolean
+        Get
+            Return CheckBox1.Checked
+        End Get
+    End Property
+
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Me.DialogResult = DialogResult.Cancel
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim res = TextBox5.ValidateDouble
+        Dim into = TextBox3.ValidateDouble(pip:=res)
+        Dim ion = TextBox4.ValidateDouble(pip:=into)
+
+        If {res, into, ion}.Any(Function(i) i Is Nothing) Then
+            Return
+        End If
+
         Me.DialogResult = DialogResult.OK
     End Sub
 

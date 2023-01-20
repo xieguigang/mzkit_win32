@@ -79,6 +79,7 @@ Public NotInheritable Class MSConvertTask
                                                cutoff As Double,
                                                basePeak As Double,
                                                resoltuion As Double,
+                                               norm As Boolean,
                                                loadCallback As Action(Of String))
 
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".input_files", sessionID:=App.PID.ToHexString, prefix:="CombineRowScans_")
@@ -87,7 +88,8 @@ Public NotInheritable Class MSConvertTask
             save:=savefile,
             cutoff:=cutoff,
             matrix_basepeak:=basePeak,
-            resolution:=resoltuion
+            resolution:=resoltuion,
+            tic_norm:=norm
         )
         Dim pipeline As New RunSlavePipeline(PipelineTask.Host, commandline)
 

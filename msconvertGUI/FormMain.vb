@@ -52,6 +52,7 @@ Public Class FormMain : Implements AppHost
                     Call arguments.Add("resolution", creator.resolution)
                     Call arguments.Add("cutoff", cutoff)
                     Call arguments.Add("matrix_basepeak", basePeak)
+                    Call arguments.Add("norm", creator.norm)
 
                 End Sub, cancel:=Sub() cancel = True, config:=load)
 
