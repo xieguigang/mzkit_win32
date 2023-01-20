@@ -1773,6 +1773,10 @@
       <Project>{daf59cb6-ccd9-0fc6-1b8c-a3cdcd5ce92d}</Project>
       <Name>MSImagingViewerV2</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ux\winux\DataValidation\DataValidation.vbproj">
+      <Project>{be119982-49e0-45e8-b26a-3efc1bd32610}</Project>
+      <Name>DataValidation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ux\winux\Microsoft.Windows.FeatureAPI\Microsoft.Windows.FeatureAPI.vbproj">
       <Project>{3d61f3a9-a8e0-4195-9133-6fd8e4b82d54}</Project>
       <Name>Microsoft.Windows.FeatureAPI</Name>
