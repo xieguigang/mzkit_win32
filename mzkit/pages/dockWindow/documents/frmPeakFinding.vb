@@ -13,15 +13,23 @@ Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class frmPeakFinding
 
+    ''' <summary>
+    ''' raw peaks data
+    ''' </summary>
     Dim matrix As ChromatogramTick()
     Dim rawName As String
     Dim peakList As New Dictionary(Of String, ROI)
     Dim plotMatrixList As NamedCollection(Of ChromatogramTick)()
     Dim bspline As Boolean
+    Dim args As New PeakFindingParameter
 
-    Public Sub LoadMatrix(title As String, data As IEnumerable(Of ChromatogramTick))
+    Public Sub LoadMatrix(title As String, data As IEnumerable(Of ChromatogramTick), Optional args As PeakFindingParameter = Nothing)
         Me.matrix = data.OrderBy(Function(t) t.Time).ToArray
         Me.rawName = title
+
+        If Not args Is Nothing Then
+            Me.args = args
+        End If
 
         Call InitPanel()
     End Sub
@@ -46,12 +54,15 @@ Public Class frmPeakFinding
 
     Public Sub InitPanel()
         ' do peak list finding
-        Dim peakwidth As DoubleRange = getPeakwidth()
-        Dim peakROIs As ROI() = matrix.Shadows.PopulateROI(
-            peakwidth:=peakwidth,
-            baselineQuantile:=getBaseline,
-            snThreshold:=getSnThreshold
-        ).ToArray
+        Dim peakwidth As DoubleRange = args.peakwidth
+        Dim peakROIs As ROI() = matrix _
+            .Shadows _
+            .PopulateROI(
+                peakwidth:=peakwidth,
+                baselineQuantile:=args.baseline,
+                snThreshold:=args.SN
+            ) _
+            .ToArray
 
         PeakListViewer.Columns.Clear()
         PeakListViewer.Columns.Add("ROI", "ROI")
@@ -98,17 +109,13 @@ Public Class frmPeakFinding
         Next
     End Sub
 
-    Private Function getSnThreshold() As Double
-        Return 1
-    End Function
+    Public Class PeakFindingParameter
 
-    Private Function getBaseline() As Double
-        Return 0.65
-    End Function
+        Public SN As Double = 1
+        Public baseline As Double = 0.65
+        Public peakwidth As Double() = {3, 15}
 
-    Private Function getPeakwidth() As DoubleRange
-        Return New DoubleRange(3, 15)
-    End Function
+    End Class
 
     Private Sub PictureBox1_Resize(sender As Object, e As EventArgs) Handles PictureBox1.Resize
         If Not plotMatrixList.IsNullOrEmpty Then
@@ -242,4 +249,12 @@ Public Class frmPeakFinding
         Call DataControlHandler.OpenInTableViewer(matrix:=PeakMatrixViewer)
     End Sub
 
+    ''' <summary>
+    ''' config of the new parameters
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
+
+    End Sub
 End Class

@@ -401,6 +401,12 @@
     <Compile Include="application\settings\RawFileViewerSettings.vb" />
     <Compile Include="application\VisualStudio.vb" />
     <Compile Include="application\RPackage.vb" />
+    <Compile Include="forms\Inputs\Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\ShowTissueData.Designer.vb">
       <DependentUpon>ShowTissueData.vb</DependentUpon>
     </Compile>

@@ -32,18 +32,21 @@ Partial Class frmPeakFinding
         Me.PeakListViewer = New System.Windows.Forms.DataGridView()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PeakMatrixViewer = New System.Windows.Forms.DataGridView()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.PeakMatrixViewer = New System.Windows.Forms.DataGridView()
+        Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.CopyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SendToTableViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -55,8 +58,8 @@ Partial Class frmPeakFinding
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PeakListViewer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
-        CType(Me.PeakMatrixViewer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
+        CType(Me.PeakMatrixViewer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip2.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -73,8 +76,8 @@ Partial Class frmPeakFinding
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.PeakMatrixViewer)
-        Me.SplitContainer1.Size = New System.Drawing.Size(771, 544)
-        Me.SplitContainer1.SplitterDistance = 608
+        Me.SplitContainer1.Size = New System.Drawing.Size(1052, 576)
+        Me.SplitContainer1.SplitterDistance = 829
         Me.SplitContainer1.TabIndex = 0
         '
         'SplitContainer2
@@ -92,8 +95,8 @@ Partial Class frmPeakFinding
         '
         Me.SplitContainer2.Panel2.Controls.Add(Me.PeakListViewer)
         Me.SplitContainer2.Panel2.Controls.Add(Me.ToolStrip1)
-        Me.SplitContainer2.Size = New System.Drawing.Size(608, 544)
-        Me.SplitContainer2.SplitterDistance = 359
+        Me.SplitContainer2.Size = New System.Drawing.Size(829, 576)
+        Me.SplitContainer2.SplitterDistance = 380
         Me.SplitContainer2.TabIndex = 0
         '
         'PictureBox1
@@ -102,7 +105,7 @@ Partial Class frmPeakFinding
         Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(608, 359)
+        Me.PictureBox1.Size = New System.Drawing.Size(829, 380)
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
@@ -113,7 +116,7 @@ Partial Class frmPeakFinding
         Me.PeakListViewer.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PeakListViewer.Location = New System.Drawing.Point(0, 25)
         Me.PeakListViewer.Name = "PeakListViewer"
-        Me.PeakListViewer.Size = New System.Drawing.Size(608, 156)
+        Me.PeakListViewer.Size = New System.Drawing.Size(829, 167)
         Me.PeakListViewer.TabIndex = 0
         '
         'ContextMenuStrip1
@@ -128,30 +131,14 @@ Partial Class frmPeakFinding
         Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(99, 22)
         Me.ViewToolStripMenuItem.Text = "View"
         '
-        'PeakMatrixViewer
-        '
-        Me.PeakMatrixViewer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.PeakMatrixViewer.ContextMenuStrip = Me.ContextMenuStrip2
-        Me.PeakMatrixViewer.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PeakMatrixViewer.Location = New System.Drawing.Point(0, 0)
-        Me.PeakMatrixViewer.Name = "PeakMatrixViewer"
-        Me.PeakMatrixViewer.Size = New System.Drawing.Size(159, 544)
-        Me.PeakMatrixViewer.TabIndex = 0
-        '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripSeparator1, Me.ToolStripButton2, Me.ToolStripButton3, Me.ToolStripButton4})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.ToolStripButton1, Me.ToolStripSeparator1, Me.ToolStripButton2, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripSeparator2, Me.ToolStripButton5})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(608, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(829, 25)
         Me.ToolStrip1.TabIndex = 1
         Me.ToolStrip1.Text = "ToolStrip1"
-        '
-        'ContextMenuStrip2
-        '
-        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SaveToolStripMenuItem, Me.ToolStripMenuItem1, Me.CopyToolStripMenuItem, Me.SendToTableViewerToolStripMenuItem})
-        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(184, 76)
         '
         'ToolStripButton1
         '
@@ -161,6 +148,11 @@ Partial Class frmPeakFinding
         Me.ToolStripButton1.Name = "ToolStripButton1"
         Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton1.Text = "Open"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
         'ToolStripButton2
         '
@@ -189,16 +181,32 @@ Partial Class frmPeakFinding
         Me.ToolStripButton4.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton4.Text = "Send To Table View"
         '
-        'ToolStripSeparator1
+        'PeakMatrixViewer
         '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
+        Me.PeakMatrixViewer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.PeakMatrixViewer.ContextMenuStrip = Me.ContextMenuStrip2
+        Me.PeakMatrixViewer.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PeakMatrixViewer.Location = New System.Drawing.Point(0, 0)
+        Me.PeakMatrixViewer.Name = "PeakMatrixViewer"
+        Me.PeakMatrixViewer.Size = New System.Drawing.Size(219, 576)
+        Me.PeakMatrixViewer.TabIndex = 0
+        '
+        'ContextMenuStrip2
+        '
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SaveToolStripMenuItem, Me.ToolStripMenuItem1, Me.CopyToolStripMenuItem, Me.SendToTableViewerToolStripMenuItem})
+        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(184, 76)
         '
         'SaveToolStripMenuItem
         '
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
         Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
         Me.SaveToolStripMenuItem.Text = "Save"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(180, 6)
         '
         'CopyToolStripMenuItem
         '
@@ -212,16 +220,31 @@ Partial Class frmPeakFinding
         Me.SendToTableViewerToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
         Me.SendToTableViewerToolStripMenuItem.Text = "Send To Table Viewer"
         '
-        'ToolStripMenuItem1
+        'ToolStripButton5
         '
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(180, 6)
+        Me.ToolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton5.Image = CType(resources.GetObject("ToolStripButton5.Image"), System.Drawing.Image)
+        Me.ToolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton5.Name = "ToolStripButton5"
+        Me.ToolStripButton5.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton5.Text = "Adjust Parameters"
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
+        '
+        'ToolStripLabel1
+        '
+        Me.ToolStripLabel1.Name = "ToolStripLabel1"
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(90, 22)
+        Me.ToolStripLabel1.Text = "Open Table File:"
         '
         'frmPeakFinding
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(771, 544)
+        Me.ClientSize = New System.Drawing.Size(1052, 576)
         Me.Controls.Add(Me.SplitContainer1)
         Me.DoubleBuffered = True
         Me.Name = "frmPeakFinding"
@@ -238,9 +261,9 @@ Partial Class frmPeakFinding
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PeakListViewer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
-        CType(Me.PeakMatrixViewer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
+        CType(Me.PeakMatrixViewer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -264,4 +287,7 @@ Partial Class frmPeakFinding
     Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
     Friend WithEvents CopyToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SendToTableViewerToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripLabel1 As ToolStripLabel
+    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
+    Friend WithEvents ToolStripButton5 As ToolStripButton
 End Class
