@@ -23,22 +23,64 @@ img {
 	margin-left: 20px;
 }
 
-li {
+a {
+	color: blue;
+}
+
+.main-left {
+	float: left;
+	width: 50%;
+}
+
+.main-left li {
 	overflow: hidden;
 	margin-bottom: 10px;
 	height: 32px;
 	line-height: 32px;
 }
 
-.icon {
+.main-left .icon {
 	width: 32px;
 	height: 32px;
 	float: left;
 	margin-right: 10px;
 }
 
-a {
-	color: blue;
+.main-right {
+	float: right;
+	width: 50%;
+	height: calc(100vh - 280px);
+	overflow-y: scroll;
+}
+
+.main-right li {
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+
+.main-right li .news-pic {
+	width: 285px;
+	height: 121px;
+	border-radius: 10px;
+	float: left;
+	display: block;
+}
+
+.main-right li .news-txt {
+	width: calc(100% - 300px);
+	height: 121px;
+	margin-left: 10px;
+	float: right;
+}
+
+.main-right li .news-txt span {
+	font-size: 14px;
+	margin: 10px 0;
+}
+
+.main-right li .news-txt a {
+	display: block;
+	color: #333;
 }
 
 .foot {

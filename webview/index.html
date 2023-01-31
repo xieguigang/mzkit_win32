@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./assets/home.css" type="text/css">
 
     <title>BioNovoGene MZKit</title>
+    <script src="./assets/js/jquery.min.js"></script>
 
     <script src="./assets/js/linq.js"></script>
     <script src="./assets/js/mzkit_desktop.js"></script>
@@ -30,25 +31,30 @@
 
 <body ondragover="dragover(event)" ondrop="drop(event)">
     <div class="main" style="margin-left: 20px;">
+        <div class="main-left">
 
-        <div style="height: 50px;"></div>
+            <div style="height: 50px;"></div>
 
-        <img class="logo" src="./assets/images/Home_Logo_Link.png" />
+            <img class="logo" src="./assets/images/Home_Logo_Link.png" />
 
-        <div style="height: 10px;"></div>
+            <div style="height: 10px;"></div>
 
-        <ul>
-            <li><img class="icon" src="./assets/images/tracker.png" />
-                <a href="#" onclick="app.desktop.mzkit.ViewRawDataFile();">View Raw Data
-                    File</a>
-            </li>
-            <li><img class="icon" src="./assets/images/Terminal.png" />
-                <a href="#" onclick="app.desktop.mzkit.OpenRterm();">R# Script
-                    Automation</a>
-            </li>
-            <li><img class="icon" src="./favicon.png" /><a href="http://v2.biodeep.cn/home">Visit BioDeep</a>
-            </li>
-        </ul>
+            <ul>
+                <li><img class="icon" src="./assets/images/tracker.png" />
+                    <a href="#" onclick="app.desktop.mzkit.ViewRawDataFile();">View Raw Data
+                        File</a>
+                </li>
+                <li><img class="icon" src="./assets/images/Terminal.png" />
+                    <a href="#" onclick="app.desktop.mzkit.OpenRterm();">R# Script
+                        Automation</a>
+                </li>
+                <li><img class="icon" src="./favicon.png" /><a href="http://v2.biodeep.cn/home">Visit BioDeep</a>
+                </li>
+            </ul>
+        </div>
+        <div class="main-right">
+            <ul id="newsList"></ul>
+        </div>
     </div>
 
     <div style="width:100%;text-align: right; position: absolute; bottom: 80px; right: 20px;">
@@ -62,5 +68,7 @@
         <div class="footpic"></div>
     </div>
 </body>
+
+<script src="./assets/js/index.js"></script>
 
 </html>
