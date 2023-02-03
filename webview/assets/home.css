@@ -29,7 +29,7 @@ a {
 
 .main-left {
 	float: left;
-	width: 50%;
+	width: 60%;
 }
 
 .main-left li {
@@ -48,27 +48,27 @@ a {
 
 .main-right {
 	float: right;
-	width: 50%;
+	width: 40%;
 	height: calc(100vh - 280px);
 	overflow-y: scroll;
 }
 
 .main-right li {
 	overflow: hidden;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .main-right li .news-pic {
-	width: 285px;
-	height: 121px;
+	width: 200px;
+	height: 100px;
 	border-radius: 10px;
 	float: left;
 	display: block;
 }
 
 .main-right li .news-txt {
-	width: calc(100% - 300px);
-	height: 121px;
+	width: calc(100% - 215px);
+	height: 95px;
 	margin-left: 10px;
 	float: right;
 }
