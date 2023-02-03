@@ -67,9 +67,18 @@ interface pointCloud {
     color: number | string;
 }
 declare namespace apps {
+    const biodeep_classroom: string;
+    const biodeep_viewVideo: string;
+    interface video {
+        imgUrl: string;
+        id: string;
+        title: string;
+        createTime: string;
+    }
     class home extends Bootstrap {
         get appName(): string;
         protected init(): void;
+        private showClassRoom;
     }
 }
 declare namespace apps.systems {

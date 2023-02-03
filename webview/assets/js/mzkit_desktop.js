@@ -358,6 +358,8 @@ var ModelReader = /** @class */ (function () {
 /// <reference path="../d/linq.d.ts" />
 var apps;
 (function (apps) {
+    apps.biodeep_classroom = 'http://v2.biodeep.cn/api/nmdx-cloud-basic/km-curriculum-info/cloud/list?pageNo=1&pageSize=12&sort=new';
+    apps.biodeep_viewVideo = 'http://v2.biodeep.cn/class/detail?id=%s&page=class';
     var home = /** @class */ (function (_super) {
         __extends(home, _super);
         function home() {
@@ -371,7 +373,24 @@ var apps;
             configurable: true
         });
         home.prototype.init = function () {
-            // throw new Error("Method not implemented.");
+            var _this = this;
+            $ts.getText(apps.biodeep_classroom, function (text) { return _this.showClassRoom(JSON.parse(text)); });
+        };
+        home.prototype.showClassRoom = function (res) {
+            var success = res.success, result = res.result;
+            var newsList = $ts("#newsList");
+            if (!(success && result)) {
+                return newsList.hide();
+            }
+            else {
+                // newsList.show();
+            }
+            for (var _i = 0, _a = result.records; _i < _a.length; _i++) {
+                var item = _a[_i];
+                var liItem = "\n                    <img class=\"news-pic\" src=\"" + item.imgUrl + "\" />\n                    <div class=\"news-txt\">\n                        <a href=\"" + sprintf(apps.biodeep_viewVideo, item.id) + "\">" + item.title + "</a>\n                        <span>" + item.createTime + "</span>\n                    </div>";
+                var li = $ts("<li>").display(liItem);
+                newsList.appendElement(li);
+            }
         };
         return home;
     }(Bootstrap));
