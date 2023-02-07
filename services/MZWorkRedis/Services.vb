@@ -49,6 +49,20 @@ Public Class Service : Implements IDisposable
         Return New Service(port)
     End Function
 
+    <Protocol(Protocols.GetValue)>
+    Public Function GetValue(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
+        Dim key As String = request.GetUTF8String.Trim
+
+        If Not redisObjs.ContainsKey(key) Then
+            Return New DataPipe(NetResponse.RFC_NOT_FOUND)
+        End If
+
+        Dim redisObj As UnmanageMemoryRegion = redisObjs(key)
+        Dim json As String = redisObj.GetJson
+
+        Return New DataPipe(json)
+    End Function
+
     <Protocol(Protocols.LoadMzPack)>
     Public Function LoadMzPack(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
         Dim path As String = request.GetUTF8String.Trim
