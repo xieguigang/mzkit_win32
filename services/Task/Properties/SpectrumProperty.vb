@@ -65,6 +65,7 @@ Imports System.ComponentModel
 Imports System.Text
 Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports Microsoft.VisualBasic.Math.Information
 Imports Microsoft.VisualBasic.Math.LinearAlgebra
@@ -129,8 +130,6 @@ Public Class SpectrumProperty : Implements ICopyProperties
         Dim ms2 As ms2() = attrs.GetMs.ToArray
 
         If ms2.Length > 0 Then
-            Dim v As New Vector(From mzi As ms2 In ms2 Select mzi.intensity)
-
             With ms2.OrderByDescending(Function(i) i.intensity).First
                 basePeakMz = stdNum.Round(.mz, 4)
                 maxIntensity = .intensity.ToString("G4")
@@ -138,12 +137,20 @@ Public Class SpectrumProperty : Implements ICopyProperties
 
             totalIons = (Aggregate i In ms2 Into Sum(i.intensity)).ToString("G4")
             n_fragments = ms2.Length
-            spectrum_entropy = (v / v.Max).ShannonEntropy
+            spectrum_entropy = 0
 
             With ms2.Select(Function(i) i.mz).ToArray
                 lowMass = stdNum.Round(.Min, 4)
                 highMass = stdNum.Round(.Max, 4)
             End With
+        End If
+
+        If msLevel > 1 AndAlso ms2.Length > 0 Then
+            Dim v As New Vector(From mzi As ms2
+                                In ms2.Centroid(Tolerance.DeltaMass(0.3), New RelativeIntensityCutoff(0.05))
+                                Select mzi.intensity)
+
+            spectrum_entropy = (v / v.Max).ShannonEntropy
         End If
 
         Me.rawfile = rawfile
