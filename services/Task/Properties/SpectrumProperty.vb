@@ -150,7 +150,7 @@ Public Class SpectrumProperty : Implements ICopyProperties
                                 In ms2.Centroid(Tolerance.DeltaMass(0.3), New RelativeIntensityCutoff(0.05))
                                 Select mzi.intensity)
 
-            spectrum_entropy = (v / v.Max).ShannonEntropy
+            spectrum_entropy = (v / v.Sum).ShannonEntropy
         End If
 
         Me.rawfile = rawfile
