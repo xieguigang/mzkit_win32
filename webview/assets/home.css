@@ -29,7 +29,7 @@ a {
 
 .main-left {
 	float: left;
-	width: 60%;
+	width: 65%;
 }
 
 .main-left li {
@@ -48,7 +48,7 @@ a {
 
 .main-right {
 	float: right;
-	width: 40%;
+	width: 35%;
 	height: calc(100vh - 280px);
 	overflow-y: scroll;
 }
