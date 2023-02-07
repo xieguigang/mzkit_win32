@@ -3,4 +3,5 @@
     SetValue
     DeleteValue
     UpdateValue
+    LoadMzPack
 End Enum
