@@ -66,6 +66,8 @@ Imports System.Text
 Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
+Imports Microsoft.VisualBasic.Math.Information
+Imports Microsoft.VisualBasic.Math.LinearAlgebra
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports stdNum = System.Math
 
@@ -91,6 +93,9 @@ Public Class SpectrumProperty : Implements ICopyProperties
     <Category("MSn")> Public ReadOnly Property collisionEnergy As String
     <Description("Current ion scan is in centroid mode? False means in profile mode.")>
     <Category("MSn")> Public ReadOnly Property centroided As String
+
+    <Description("spectral entropy for centroid spectrum[Li, Y., Kind, T., Folz, J. et al. Spectral entropy outperforms MS/MS dot product similarity for small-molecule compound identification. Nat Methods 18, 1524–1531 (2021).]")>
+    Public ReadOnly Property spectrum_entropy As Double
 
     <Category("Product Ions")>
     Public ReadOnly Property basePeakMz As Double
@@ -124,6 +129,8 @@ Public Class SpectrumProperty : Implements ICopyProperties
         Dim ms2 As ms2() = attrs.GetMs.ToArray
 
         If ms2.Length > 0 Then
+            Dim v As New Vector(From mzi As ms2 In ms2 Select mzi.intensity)
+
             With ms2.OrderByDescending(Function(i) i.intensity).First
                 basePeakMz = stdNum.Round(.mz, 4)
                 maxIntensity = .intensity.ToString("G4")
@@ -131,6 +138,7 @@ Public Class SpectrumProperty : Implements ICopyProperties
 
             totalIons = (Aggregate i In ms2 Into Sum(i.intensity)).ToString("G4")
             n_fragments = ms2.Length
+            spectrum_entropy = (v / v.Max).ShannonEntropy
 
             With ms2.Select(Function(i) i.mz).ToArray
                 lowMass = stdNum.Round(.Min, 4)
@@ -167,6 +175,7 @@ Public Class SpectrumProperty : Implements ICopyProperties
         Call text.AppendLine($"n_fragments{vbTab}{n_fragments}")
         Call text.AppendLine($"lowMass{vbTab}{lowMass}")
         Call text.AppendLine($"highMass{vbTab}{highMass}")
+        Call text.AppendLine($"spectrum_entropy{vbTab}{spectrum_entropy}")
 
         Call Clipboard.Clear()
         Call Clipboard.SetText(text.ToString)
