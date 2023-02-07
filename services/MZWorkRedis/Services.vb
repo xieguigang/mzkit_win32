@@ -3,8 +3,9 @@ Imports System.Runtime.CompilerServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
+Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
-Imports Microsoft.VisualBasic.Net.Http
+Imports Microsoft.VisualBasic.Net.HTTP
 Imports Microsoft.VisualBasic.Net.Protocols.Reflection
 Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Parallel
@@ -75,6 +76,7 @@ Public Class Service : Implements IDisposable
         Using file As Stream = path.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
             Dim mzpack As mzPack = mzPack.ReadAll(file)
             Dim base As String = path.FileName
+            Dim i As Integer = 0
 
             For Each scan As ScanMS1 In mzpack.MS
                 Dim key As String = $"{base}#{scan.scan_id}"
@@ -96,7 +98,12 @@ Public Class Service : Implements IDisposable
                 End If
 
                 Call keys1.Add(key)
-                Call RunSlavePipeline.SendMessage($"[redis_add] {key}")
+
+                If CInt(i / mzpack.MS.Length * 100) Mod 5 = 0 Then
+                    Call RunSlavePipeline.SendProgress(i / mzpack.MS.Length, $"[redis_add] {key}")
+                End If
+
+                i += 1
             Next
         End Using
 
