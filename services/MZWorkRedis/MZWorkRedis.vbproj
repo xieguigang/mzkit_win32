@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <RootNamespace>MZWorkRedis</RootNamespace>
@@ -12,7 +12,11 @@
     <Title>MZKit Workbench In-memory Storage Services</Title>
     <OutputPath>../../../../dist\bin\Rstudio\host\</OutputPath>
   </PropertyGroup>
-
+  
+  <PropertyGroup Condition=" '$(Configuration)|$(TargetFramework)' == 'mzkit_win32|net6.0-windows' ">
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\R-sharp\R#\Rsharp-netcore5.vbproj" />
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\Darwinism\Parallel\parallel-netcore5.vbproj" />
