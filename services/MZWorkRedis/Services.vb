@@ -83,12 +83,20 @@ Public Class Service : Implements IDisposable
                 For Each ms2 As ScanMS2 In scan.products.SafeQuery
                     Dim key2 As String = $"{base}#{ms2.scan_id}"
 
+                    If MapObject.Exists(key2) Then
+                        Continue For
+                    End If
+
                     keys2.Add(key2)
                     redisObjs.Add(key2, MapObject.FromObject(ms2, hMemP:=key2))
                 Next
 
-                keys1.Add(key)
-                redisObjs.Add(key, MapObject.FromObject(RedisScan1.FromData(scan, keys2), key))
+                If Not MapObject.Exists(key) Then
+                    redisObjs.Add(key, MapObject.FromObject(RedisScan1.FromData(scan, keys2), key))
+                End If
+
+                Call keys1.Add(key)
+                Call RunSlavePipeline.SendMessage($"[redis_add] {key}")
             Next
         End Using
 
