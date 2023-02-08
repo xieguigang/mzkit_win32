@@ -56,6 +56,7 @@
 
 Imports System.Drawing
 Imports System.IO
+Imports System.Text
 Imports System.Windows.Forms
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
@@ -448,4 +449,31 @@ Public NotInheritable Class RscriptProgressTask
             Return imageOut.LoadImage
         End If
     End Function
+
+    Public Shared Sub RunRScriptPipeline(name As String, args As Dictionary(Of String, String), title As String, desc As String)
+        Dim Rscript As String = RscriptPipelineTask.GetRScript(name)
+        Dim cli As New StringBuilder(Rscript)
+
+        For Each arg In args
+            Call cli.AppendLine($"{arg.Key} ""{arg.Value}""")
+        Next
+
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli.ToString, workdir:=RscriptPipelineTask.Root)
+
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli.ToString, RscriptPipelineTask.Root)
+        Call Workbench.LogText(pipeline.CommandLine)
+
+        Call TaskProgress.RunAction(
+            run:=Sub(p)
+                     p.SetProgressMode()
+
+                     AddHandler pipeline.SetMessage, AddressOf p.SetInfo
+                     AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                     AddHandler pipeline.Finish, AddressOf p.TaskFinish
+
+                     Call pipeline.Run()
+                 End Sub,
+            title:=title, info:=desc
+        )
+    End Sub
 End Class
