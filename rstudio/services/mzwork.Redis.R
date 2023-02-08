@@ -5,10 +5,10 @@ imports "RedisApp" from "MZWorkRedis";
 
 [@info "the tcp port for run debugging in VisualStudio."]
 [@type "integer"]
-const debugPort as string  = ?"--port"   || NULL;
+const debugPort as string = ?"--port"   || NULL;
 [@info "the PID of the master process."]
 [@type "integer"]
-const master as string     = ?"--master" || NULL;
+const master as string    = ?"--master" || NULL;
 
 options(memory.load = "max");
 
