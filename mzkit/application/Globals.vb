@@ -161,6 +161,7 @@ Module Globals
 
         Call FrameworkInternal.ConfigMemory(MemoryLoads.Max)
         Call LicenseFile.ApplyLicense()
+        Call RedisService.Start()
 
         ' initialize for external plugin module
         MSImagingServiceModule.m_StartEngine = Sub() Call MSIDataService.StartMSIService(Nothing)

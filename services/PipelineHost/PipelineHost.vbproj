@@ -11,7 +11,7 @@
     <Platforms>AnyCPU;ARM32;x64</Platforms>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)|$(TargetFramework)' == 'mzkit_win32|net6.0' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(TargetFramework)' == 'mzkit_win32|net6.0-windows' ">
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
@@ -63,7 +63,7 @@
     <DocumentationFile>PipelineHost.xml</DocumentationFile>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='mzkit_win32|net6.0|x64'">
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='mzkit_win32|net6.0-windows|x64'">
     <DocumentationFile>PipelineHost.xml</DocumentationFile>
     <OutputPath>../../../../dist\bin\Rstudio\host\</OutputPath>
     <RemoveIntegerChecks>true</RemoveIntegerChecks>

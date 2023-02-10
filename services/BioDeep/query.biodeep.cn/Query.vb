@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::e6dc82b7766146d453ea96c19c4f5ad5, mzkit\src\mzkit\BioDeep\query.biodeep.cn\Query.vb"
+﻿#Region "Microsoft.VisualBasic::dc71cf0e74a3b2a6a2a8864c0973f79c, mzkit\src\mzkit\services\BioDeep\query.biodeep.cn\Query.vb"
 
     ' Author:
     ' 
@@ -41,7 +41,7 @@
     '    Code Lines: 2
     ' Comment Lines: 0
     '   Blank Lines: 1
-    '     File Size: 26.00 B
+    '     File Size: 24 B
 
 
     ' Module Query
