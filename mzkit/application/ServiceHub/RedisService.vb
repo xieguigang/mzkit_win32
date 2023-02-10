@@ -8,6 +8,9 @@ Imports TaskStream
 ''' </summary>
 Public NotInheritable Class RedisService
 
+    Private Sub New()
+    End Sub
+
     Public Shared Sub Start()
         Dim Rscript As String = RscriptPipelineTask.GetRScript("../services/mzwork.Redis.R")
         Dim port As Integer = Net.Tcp.GetFirstAvailablePort(15003)

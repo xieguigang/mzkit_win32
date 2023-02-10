@@ -389,6 +389,7 @@
     <Compile Include="application\actions\ViewScatter3DAction.vb" />
     <Compile Include="application\ApplicationEvents.vb" />
     <Compile Include="application\CLI.vb" />
+    <Compile Include="application\ServiceHub\RenderService.vb" />
     <Compile Include="application\ServiceHub\RedisService.vb" />
     <Compile Include="application\ServiceHub\Manager\Hub.vb" />
     <Compile Include="application\ServiceHub\Manager\Service.vb" />
