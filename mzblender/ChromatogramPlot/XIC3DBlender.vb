@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::baf9bbe88667c6e02f512291b04f8cb4, mzkit\src\mzkit\mzblender\ChromatogramPlot\XIC3DBlender.vb"
+﻿#Region "Microsoft.VisualBasic::1a601b59c24b9c61fa31563b83dca299, mzkit\src\mzkit\mzblender\ChromatogramPlot\XIC3DBlender.vb"
 
     ' Author:
     ' 
@@ -87,4 +87,3 @@ Public Class XIC3DBlender : Inherits Blender
             .AsGDIImage
     End Function
 End Class
-

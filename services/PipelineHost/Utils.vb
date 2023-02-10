@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::2f0add3176838cf304226fc0d582eb10, mzkit\src\mzkit\services\PipelineHost\Utils.vb"
+﻿#Region "Microsoft.VisualBasic::934792fd0478867f4700a2341119a837, mzkit\src\mzkit\services\PipelineHost\Utils.vb"
 
     ' Author:
     ' 
@@ -142,4 +142,3 @@ Public Module Utils
         }
     End Function
 End Module
-

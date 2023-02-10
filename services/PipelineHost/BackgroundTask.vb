@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::e79ae05d40c3bf36ca6d1f3aaa974fde, mzkit\src\mzkit\services\PipelineHost\BackgroundTask.vb"
+﻿#Region "Microsoft.VisualBasic::77d0d884bd140d9c4590f9af8ffc4248, mzkit\src\mzkit\services\PipelineHost\BackgroundTask.vb"
 
     ' Author:
     ' 
@@ -411,4 +411,3 @@ Module BackgroundTask
         Call file.Flush()
     End Sub
 End Module
-

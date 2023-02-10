@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::fb491b2cdf70109817df11a49e45682f, mzkit\src\mzkit\services\MZWorkRedis\Services.vb"
+﻿#Region "Microsoft.VisualBasic::9da321b9095319678f2c231b2feb409e, mzkit\src\mzkit\services\MZWorkRedis\Services.vb"
 
     ' Author:
     ' 
@@ -196,4 +196,3 @@ Public Class Service : Implements IDisposable
         GC.SuppressFinalize(Me)
     End Sub
 End Class
-

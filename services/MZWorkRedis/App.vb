@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::12d665907f77a3e13f6f178ac407920c, mzkit\src\mzkit\services\MZWorkRedis\App.vb"
+﻿#Region "Microsoft.VisualBasic::2a0590810a4991c205aa04bb0bff7ef9, mzkit\src\mzkit\services\MZWorkRedis\App.vb"
 
     ' Author:
     ' 
@@ -127,4 +127,3 @@ Public Module App
         End If
     End Function
 End Module
-

@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::0528b33787569a576b14466c31cd5e1b, mzkit\src\mzkit\mzblender\MSImaging\MSImagingBlender.vb"
+﻿#Region "Microsoft.VisualBasic::606f2d5195ea118b1e9209f51d7483f4, mzkit\src\mzkit\mzblender\MSImaging\MSImagingBlender.vb"
 
     ' Author:
     ' 
@@ -95,4 +95,3 @@ Public MustInherit Class MSImagingBlender : Inherits Blender
         Return Rendering(args, target)
     End Function
 End Class
-

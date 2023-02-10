@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::3f6a7a0ed2ef9a58f6f9693fd348f6ba, mzkit\src\mzkit\mzblender\MSImaging\SingleIonMSIBlender.vb"
+﻿#Region "Microsoft.VisualBasic::434bd1bc910e4973b6ef264f49501733, mzkit\src\mzkit\mzblender\MSImaging\SingleIonMSIBlender.vb"
 
     ' Author:
     ' 
@@ -141,4 +141,3 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
         Return image
     End Function
 End Class
-

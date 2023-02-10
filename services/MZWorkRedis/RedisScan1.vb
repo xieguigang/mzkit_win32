@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::83c3dd173f96bf69fdf6e5f9e41139cd, mzkit\src\mzkit\services\MZWorkRedis\RedisScan1.vb"
+﻿#Region "Microsoft.VisualBasic::5483d9697b0581729ac08b27421dbe79, mzkit\src\mzkit\services\MZWorkRedis\RedisScan1.vb"
 
     ' Author:
     ' 
@@ -91,4 +91,3 @@ Public Class RedisScan1 : Inherits MSScan
         }
     End Function
 End Class
-

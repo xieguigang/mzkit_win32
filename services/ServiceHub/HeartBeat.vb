@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::34e0fb49b17e0c8a65204091d4da10b0, mzkit\src\mzkit\services\ServiceHub\HeartBeat.vb"
+﻿#Region "Microsoft.VisualBasic::4fb6dd776b035f4e0515e5d5f4786ca1, mzkit\src\mzkit\services\ServiceHub\HeartBeat.vb"
 
     ' Author:
     ' 
@@ -41,7 +41,7 @@
     '    Code Lines: 28
     ' Comment Lines: 0
     '   Blank Lines: 9
-    '     File Size: 901 B
+    '     File Size: 900 B
 
 
     ' Module HeartBeat
@@ -89,4 +89,3 @@ Module HeartBeat
         Call service.Dispose()
     End Sub
 End Module
-

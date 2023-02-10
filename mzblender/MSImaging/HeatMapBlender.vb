@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::516762851ec6ca3d7f1697e6d781296b, mzkit\src\mzkit\mzblender\MSImaging\HeatMapBlender.vb"
+﻿#Region "Microsoft.VisualBasic::84027bdcf3215e8f40137a9633077c9e, mzkit\src\mzkit\mzblender\MSImaging\HeatMapBlender.vb"
 
     ' Author:
     ' 
@@ -41,7 +41,7 @@
     '    Code Lines: 20
     ' Comment Lines: 0
     '   Blank Lines: 7
-    '     File Size: 976 B
+    '     File Size: 975 B
 
 
     ' Class HeatMapBlender
@@ -80,4 +80,3 @@ Public Class HeatMapBlender : Inherits MSImagingBlender
         Return img
     End Function
 End Class
-

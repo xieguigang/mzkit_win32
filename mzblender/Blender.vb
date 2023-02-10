@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::99a7dc4bf70892401bf8c1ea56760b55, mzkit\src\mzkit\mzblender\Blender.vb"
+﻿#Region "Microsoft.VisualBasic::36878de3152d66afec778efe5e3ca52b, mzkit\src\mzkit\mzblender\Blender.vb"
 
     ' Author:
     ' 
@@ -41,7 +41,7 @@
     '    Code Lines: 4
     ' Comment Lines: 10
     '   Blank Lines: 3
-    '     File Size: 440 B
+    '     File Size: 438 B
 
 
     ' Class Blender
@@ -69,4 +69,3 @@ Public MustInherit Class Blender
     Public MustOverride Function Rendering(args As PlotProperty, target As Size) As Image
 
 End Class
-

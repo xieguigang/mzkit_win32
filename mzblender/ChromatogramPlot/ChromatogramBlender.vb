@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::4359139c06c31612cdf760ddc2ef2ec4, mzkit\src\mzkit\mzblender\ChromatogramPlot\ChromatogramBlender.vb"
+﻿#Region "Microsoft.VisualBasic::9abc9ac48d547195ce6cdb0c3c786c52, mzkit\src\mzkit\mzblender\ChromatogramPlot\ChromatogramBlender.vb"
 
     ' Author:
     ' 
@@ -87,4 +87,3 @@ Public Class ChromatogramBlender : Inherits Blender
         ).AsGDIImage
     End Function
 End Class
-

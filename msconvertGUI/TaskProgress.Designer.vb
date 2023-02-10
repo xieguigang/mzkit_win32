@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::cb8ff7e4e3b9ebe9bd8d60006e26af8f, mzkit\src\mzkit\msconvertGUI\TaskProgress.Designer.vb"
+﻿#Region "Microsoft.VisualBasic::355a6d482ef258a32e1dcdd3189827af, mzkit\src\mzkit\msconvertGUI\TaskProgress.Designer.vb"
 
     ' Author:
     ' 
@@ -124,4 +124,3 @@ Partial Class TaskProgress
     Friend WithEvents ProgressBar1 As ProgressBar
     Friend WithEvents Label2 As Label
 End Class
-

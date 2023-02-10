@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::f8ac285604747d44bd82a647ac399ba3, mzkit\src\mzkit\services\ServiceHub\ServiceProtocols\Payloads\RegionLoader.vb"
+﻿#Region "Microsoft.VisualBasic::c3b308fe066672061a5d64bc4713d281, mzkit\src\mzkit\services\ServiceHub\ServiceProtocols\Payloads\RegionLoader.vb"
 
     ' Author:
     ' 
@@ -109,4 +109,3 @@ Public Class RegionLoader
         Return regions.Any(Function(r) r.inside(x, y))
     End Function
 End Class
-

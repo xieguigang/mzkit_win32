@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::9e31e0dbee96e6ec4da14860d062a4ea, mzkit\src\mzkit\msconvertGUI\ApplicationEvents.vb"
+﻿#Region "Microsoft.VisualBasic::0f305755a76e7b59afb456ce471d4d48, mzkit\src\mzkit\msconvertGUI\ApplicationEvents.vb"
 
     ' Author:
     ' 
@@ -157,4 +157,3 @@ Namespace My
         End Function
     End Class
 End Namespace
-

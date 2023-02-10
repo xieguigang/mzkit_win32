@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::76b0be2beed850729416a42d7bb98fcd, mzkit\src\mzkit\services\MZWorkRedis\Protocols.vb"
+﻿#Region "Microsoft.VisualBasic::feb30412011e430d44309390b6e1ff80, mzkit\src\mzkit\services\MZWorkRedis\Protocols.vb"
 
     ' Author:
     ' 
@@ -41,7 +41,7 @@
     '    Code Lines: 7
     ' Comment Lines: 0
     '   Blank Lines: 0
-    '     File Size: 111 B
+    '     File Size: 109 B
 
 
     ' Enum Protocols
@@ -63,4 +63,3 @@ Public Enum Protocols
     UpdateValue
     LoadMzPack
 End Enum
-

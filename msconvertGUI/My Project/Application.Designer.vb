@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::75edec24c7a1a0cc736165250121c78a, mzkit\src\mzkit\msconvertGUI\My Project\Application.Designer.vb"
+﻿#Region "Microsoft.VisualBasic::4edff83a089e8476c1bfa1f13881a71d, mzkit\src\mzkit\msconvertGUI\My Project\Application.Designer.vb"
 
     ' Author:
     ' 
@@ -91,4 +91,3 @@ Namespace My
         End Sub
     End Class
 End Namespace
-

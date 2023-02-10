@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::db477f1fb81d494c9898e15eb05e4f69, mzkit\src\mzkit\msconvertGUI\TaskProgress.vb"
+﻿#Region "Microsoft.VisualBasic::7325fc802fd5c9ad9371f472c3fb5797, mzkit\src\mzkit\msconvertGUI\TaskProgress.vb"
 
     ' Author:
     ' 
@@ -41,7 +41,7 @@
     '    Code Lines: 9
     ' Comment Lines: 0
     '   Blank Lines: 5
-    '     File Size: 349 B
+    '     File Size: 347 B
 
 
     ' Class TaskProgress
@@ -66,4 +66,3 @@ Public Class TaskProgress
         Call Me.Invoke(Sub() Label2.Text = msg)
     End Sub
 End Class
-

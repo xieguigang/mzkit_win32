@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::6e14a98a4b6ff8906e5197e4f5afaa68, mzkit\src\mzkit\msconvertGUI\FormMain.vb"
+﻿#Region "Microsoft.VisualBasic::24ff52798900922cfc0be134101b248d, mzkit\src\mzkit\msconvertGUI\FormMain.vb"
 
     ' Author:
     ' 
@@ -219,4 +219,3 @@ Public Class FormMain : Implements AppHost
         RaiseEvent ResizeForm(Location, Size)
     End Sub
 End Class
-

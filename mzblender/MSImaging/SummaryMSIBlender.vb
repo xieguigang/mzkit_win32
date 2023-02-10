@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::27c399f8594ea44742f6a1314b5cad1d, mzkit\src\mzkit\mzblender\MSImaging\SummaryMSIBlender.vb"
+﻿#Region "Microsoft.VisualBasic::d8ffd9045e6fbfc35c97031d815d0a0d, mzkit\src\mzkit\mzblender\MSImaging\SummaryMSIBlender.vb"
 
     ' Author:
     ' 
@@ -134,4 +134,3 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
         ).AsGDIImage
     End Function
 End Class
-
