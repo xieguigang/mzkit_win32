@@ -783,7 +783,7 @@ Public Class PageMzkitTools
     ''' <param name="progress"></param>
     ''' <returns></returns>
     Friend Iterator Function getSelectedIonSpectrums(progress As Action(Of String)) As IEnumerable(Of PeakMs2)
-        Dim raw = WindowModules.rawFeaturesList.CurrentRawFile
+        Dim raw = WindowModules.rawFeaturesList.CurrentOpenedFile
 
         For Each ionNode As TreeNode In WindowModules.rawFeaturesList.GetSelectedNodes.Where(Function(a) TypeOf a.Tag Is ScanMS2)
             Dim scanId As String = ionNode.Text

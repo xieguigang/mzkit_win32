@@ -69,7 +69,6 @@
 Imports System.ComponentModel
 Imports System.IO
 Imports System.Text
-Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
@@ -96,7 +95,11 @@ Imports Table = Microsoft.VisualBasic.Data.csv.IO.File
 
 Public Class frmRawFeaturesList
 
-    Public ReadOnly Property CurrentRawFile As Raw
+    ''' <summary>
+    ''' current opened mzpack raw data file
+    ''' </summary>
+    ''' <returns></returns>
+    Public ReadOnly Property CurrentOpenedFile As Raw
 
     Sub New()
 
@@ -143,25 +146,25 @@ Public Class frmRawFeaturesList
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
-        If CurrentRawFile Is Nothing Then
+        If CurrentOpenedFile Is Nothing Then
             Call MyApplication.host.showStatusMessage("No raw data file was loaded!", My.Resources.StatusAnnotations_Warning_32xLG_color)
         Else
-            Call loadInternal(CurrentRawFile, Double.MinValue, Double.MaxValue)
+            Call loadInternal(CurrentOpenedFile, Double.MinValue, Double.MaxValue)
         End If
     End Sub
 
     Private Sub loadInternal(raw As Raw, rtmin As Double, rtmax As Double)
         Dim hasUVscans As Boolean = False
 
-        If (Not CurrentRawFile Is Nothing) AndAlso (Not raw Is CurrentRawFile) Then
-            CurrentRawFile.UnloadMzpack()
+        If (Not CurrentOpenedFile Is Nothing) AndAlso (Not raw Is CurrentOpenedFile) Then
+            CurrentOpenedFile.UnloadMzpack()
         End If
 
         Me.rtmin = rtmin
         Me.rtmax = rtmax
 
         XICViewToolStripMenuItem.Checked = False
-        _CurrentRawFile = raw
+        _CurrentOpenedFile = raw
         treeView1.loadRawFile(raw, hasUVscans, rtmin, rtmax)
         checked.Clear()
 
@@ -172,7 +175,7 @@ Public Class frmRawFeaturesList
 
     Public Sub LoadRaw(raw As Raw, Optional rtmin As Double = Double.MinValue, Optional rtmax As Double = Double.MaxValue)
         ' skip of reload identical files
-        If raw Is CurrentRawFile AndAlso rtmin = Me.rtmin AndAlso rtmax = Me.rtmax Then
+        If raw Is CurrentOpenedFile AndAlso rtmin = Me.rtmin AndAlso rtmax = Me.rtmax Then
             Return
         Else
             loadInternal(raw, rtmin, rtmax)
@@ -185,7 +188,7 @@ Public Class frmRawFeaturesList
             .Select(Function(a) DirectCast(a.Tag, ScanMS2)) _
             .GroupBy(Function(a) a.parentMz, Tolerance.DeltaMass(0.3)) _
             .ToArray
-        Dim raw As Raw = CurrentRawFile
+        Dim raw As Raw = CurrentOpenedFile
 
         For Each scanId In scans.Select(Function(a) a.First.scan_id)
             Yield MyApplication.mzkitRawViewer.getXICMatrix(raw, scanId, ppm, relativeInto:=False)
@@ -281,8 +284,8 @@ Public Class frmRawFeaturesList
     Private Sub DeleteFileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteFileToolStripMenuItem.Click
         Dim fileExplorer = WindowModules.fileExplorer
 
-        If fileExplorer.deleteFileNode(fileExplorer.findRawFileNode(CurrentRawFile), confirmDialog:=True) = DialogResult.Yes Then
-            _CurrentRawFile = Nothing
+        If fileExplorer.deleteFileNode(fileExplorer.findRawFileNode(CurrentOpenedFile), confirmDialog:=True) = DialogResult.Yes Then
+            _CurrentOpenedFile = Nothing
             treeView1.Nodes.Clear()
             checked.Clear()
         End If
@@ -313,14 +316,14 @@ Public Class frmRawFeaturesList
 
         ElseIf Not e.Node.Tag Is Nothing Then
             ' scan节点
-            Dim raw As MZWork.Raw = CurrentRawFile
+            Dim raw As MZWork.Raw = CurrentOpenedFile
             Dim scanId As String = e.Node.Text
 
             Call MyApplication.host.mzkitTool.showSpectrum(scanId, raw)
         End If
 
         Call MyApplication.host.mzkitTool.ShowPage()
-        Call WindowModules.fileExplorer.UpdateMainTitle(CurrentRawFile.source)
+        Call WindowModules.fileExplorer.UpdateMainTitle(CurrentOpenedFile.source)
     End Sub
 
     Private Sub CollapseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CollapseToolStripMenuItem.Click
@@ -342,14 +345,14 @@ Public Class frmRawFeaturesList
     End Sub
 
     Private Sub ShowTICToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowTICToolStripMenuItem.Click
-        If Not CurrentRawFile Is Nothing Then
-            Call MyApplication.host.mzkitTool.TIC({CurrentRawFile}, isBPC:=False)
+        If Not CurrentOpenedFile Is Nothing Then
+            Call MyApplication.host.mzkitTool.TIC({CurrentOpenedFile}, isBPC:=False)
         End If
     End Sub
 
     Private Sub ShowBPCToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowBPCToolStripMenuItem.Click
-        If Not CurrentRawFile Is Nothing Then
-            Call MyApplication.host.mzkitTool.TIC({CurrentRawFile}, isBPC:=True)
+        If Not CurrentOpenedFile Is Nothing Then
+            Call MyApplication.host.mzkitTool.TIC({CurrentOpenedFile}, isBPC:=True)
         End If
     End Sub
 
@@ -361,13 +364,13 @@ Public Class frmRawFeaturesList
                 MyApplication.host.showStatusMessage("Show XIC plot for too many ions has been cancel!")
                 Return
             End If
-        ElseIf CurrentRawFile Is Nothing Then
+        ElseIf CurrentOpenedFile Is Nothing Then
             MyApplication.host.showStatusMessage("No raw data file is selected!", My.Resources.StatusAnnotations_Warning_32xLG_color)
             Return
         ElseIf treeView1.SelectedNode Is Nothing OrElse treeView1.SelectedNode.Text Is Nothing Then
             Call frmUntargettedViewer.SelectXICIon(
-                raw:=CurrentRawFile,
-                ms1:=CurrentRawFile _
+                raw:=CurrentOpenedFile,
+                ms1:=CurrentOpenedFile _
                     .GetLoadedMzpack _
                     .MS _
                     .Select(Function(s1)
@@ -379,7 +382,7 @@ Public Class frmRawFeaturesList
                 da:=0.01,
                 apply:=Sub(mz, xic)
                            Call MyApplication.mzkitRawViewer.showMatrix(xic, $"XIC, m/z={mz.ToString("F4")}")
-                           Call MyApplication.mzkitRawViewer.ShowXIC(15, New NamedCollection(Of ChromatogramTick)($"XIC, m/z={mz.ToString("F4")}", xic), AddressOf GetXICCollection, CurrentRawFile.GetXICMaxYAxis)
+                           Call MyApplication.mzkitRawViewer.ShowXIC(15, New NamedCollection(Of ChromatogramTick)($"XIC, m/z={mz.ToString("F4")}", xic), AddressOf GetXICCollection, CurrentOpenedFile.GetXICMaxYAxis)
                        End Sub,
                 cancel:=Sub()
                             MyApplication.host.showStatusMessage("No ion data selected for create XIC plot!", My.Resources.StatusAnnotations_Warning_32xLG_color)
@@ -388,7 +391,7 @@ Public Class frmRawFeaturesList
         End If
 
         ' scan节点
-        Dim raw As MZWork.Raw = CurrentRawFile
+        Dim raw As MZWork.Raw = CurrentOpenedFile
         Dim ppm As Double = MyApplication.host.GetPPMError()
         Dim plotTIC As NamedCollection(Of ChromatogramTick) = MyApplication.mzkitRawViewer.getXICMatrix(raw, treeView1.SelectedNode.Text, ppm, relativeInto:=False)
 
@@ -446,8 +449,8 @@ Public Class frmRawFeaturesList
     Private Sub SearchFormulaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchFormulaToolStripMenuItem.Click
         Dim node = treeView1.SelectedNode
 
-        If Not node Is Nothing AndAlso (CurrentRawFile.cacheFileExists OrElse CurrentRawFile.isInMemory) Then
-            Dim mz = CurrentRawFile.FindMs2Scan(node.Text)
+        If Not node Is Nothing AndAlso (CurrentOpenedFile.cacheFileExists OrElse CurrentOpenedFile.isInMemory) Then
+            Dim mz = CurrentOpenedFile.FindMs2Scan(node.Text)
 
             If Not mz Is Nothing AndAlso mz.parentMz > 0 Then
                 Dim charge As Double = mz.charge
@@ -570,14 +573,14 @@ Public Class frmRawFeaturesList
             Return
         End If
 
-        Call FeatureSearchHandler.SearchByMz(DirectCast(currentScan, ScanMS2).parentMz, {CurrentRawFile}, True)
+        Call FeatureSearchHandler.SearchByMz(DirectCast(currentScan, ScanMS2).parentMz, {CurrentOpenedFile}, True)
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
-        If CurrentRawFile Is Nothing Then
+        If CurrentOpenedFile Is Nothing Then
             Call MyApplication.host.showStatusMessage("please load a raw data file at first!", My.Resources.StatusAnnotations_Warning_32xLG_color)
         Else
-            Call FeatureSearchHandler.SearchByMz(Strings.Trim(ToolStripSpringTextBox1.Text), {CurrentRawFile}, True)
+            Call FeatureSearchHandler.SearchByMz(Strings.Trim(ToolStripSpringTextBox1.Text), {CurrentOpenedFile}, True)
         End If
     End Sub
 
@@ -607,23 +610,23 @@ Public Class frmRawFeaturesList
         Call MyApplication.host.ShowPropertyWindow()
         Call MyApplication.host.mzkitTool.ShowPage()
 
-        WindowModules.fileExplorer.UpdateMainTitle(CurrentRawFile.source)
+        WindowModules.fileExplorer.UpdateMainTitle(CurrentOpenedFile.source)
     End Sub
 
     Private Sub OpenViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenViewerToolStripMenuItem.Click
-        If Not CurrentRawFile Is Nothing Then
-            Call VisualStudio.ShowDocument(Of frmUntargettedViewer)().loadRaw(CurrentRawFile)
+        If Not CurrentOpenedFile Is Nothing Then
+            Call VisualStudio.ShowDocument(Of frmUntargettedViewer)().loadRaw(CurrentOpenedFile)
         End If
     End Sub
 
     Private Sub MetaDNASearchToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MetaDNASearchToolStripMenuItem.Click
-        If Not CurrentRawFile Is Nothing Then
-            Call ConnectToBioDeep.RunMetaDNA(CurrentRawFile)
+        If Not CurrentOpenedFile Is Nothing Then
+            Call ConnectToBioDeep.RunMetaDNA(CurrentOpenedFile)
         End If
     End Sub
 
     Private Sub ExportMzPackToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportMzPackToolStripMenuItem.Click
-        If CurrentRawFile Is Nothing Then
+        If CurrentOpenedFile Is Nothing Then
             Return
         End If
 
@@ -632,7 +635,7 @@ Public Class frmRawFeaturesList
             .Filter = "BioNovoGene mzPack(*.mzPack)|*.mzPack"
         }
             If file.ShowDialog = DialogResult.OK Then
-                CurrentRawFile.SaveAs(file.FileName)
+                CurrentOpenedFile.SaveAs(file.FileName)
             End If
         End Using
     End Sub
@@ -643,17 +646,17 @@ Public Class frmRawFeaturesList
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub XICViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles XICViewToolStripMenuItem.Click
-        If CurrentRawFile Is Nothing Then
+        If CurrentOpenedFile Is Nothing Then
             Return
         ElseIf XICViewToolStripMenuItem.Checked Then
             ' switch back to MS scan groups
             XICViewToolStripMenuItem.Checked = False
 
             treeView1.Nodes.Clear()
-            treeView1.loadRawFile(CurrentRawFile, False, rtmin, rtmax)
+            treeView1.loadRawFile(CurrentOpenedFile, False, rtmin, rtmax)
             checked.Clear()
         Else
-            Call CurrentRawFile _
+            Call CurrentOpenedFile _
                 .GetMs2Scans _
                 .Where(Function(t) t.rt >= rtmin AndAlso t.rt <= rtmax) _
                 .DoCall(AddressOf LoadXICIons)
@@ -690,7 +693,7 @@ Public Class frmRawFeaturesList
         If mz = 0.0 Then
             Call MyApplication.host.showStatusMessage($"M/z value expression '{ToolStripSpringTextBox1.Text}' is not a valid number expression, please input a valid m/z value...", My.Resources.StatusAnnotations_Warning_32xLG_color)
             Return False
-        ElseIf CurrentRawFile Is Nothing Then
+        ElseIf CurrentOpenedFile Is Nothing Then
             Call MyApplication.host.showStatusMessage("Please load a raw data file at first!", My.Resources.StatusAnnotations_Warning_32xLG_color)
             Return False
         End If
@@ -706,7 +709,7 @@ Public Class frmRawFeaturesList
             Return
         End If
 
-        Dim Ms2 = CurrentRawFile.LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache)) _
+        Dim Ms2 = CurrentOpenedFile.LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache)) _
             .GetMs2Scans _
             .Where(Function(m)
                        Return PPMmethod.PPM(m.parentMz, mz) <= ppm
@@ -745,7 +748,7 @@ Public Class frmRawFeaturesList
             Return
         End If
 
-        Dim XIC = CurrentRawFile.LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache)) _
+        Dim XIC = CurrentOpenedFile.LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache)) _
             .GetLoadedMzpack.MS _
             .Select(Function(scan) (scan.rt, scan.GetIntensity(mz, ppm))) _
             .Where(Function(p) p.Item2 > 0) _
@@ -793,12 +796,12 @@ Public Class frmRawFeaturesList
         Dim ms2 As Double = Val(ToolStripSpringTextBox1.Text)
         Dim test As Tolerance = Tolerance.DeltaMass(0.05)
 
-        If CurrentRawFile Is Nothing Then
+        If CurrentOpenedFile Is Nothing Then
             Call MyApplication.host.warning("Open a raw data file at first!")
             Return
         End If
 
-        Dim matched = CurrentRawFile _
+        Dim matched = CurrentOpenedFile _
             .LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache)) _
             .GetLoadedMzpack _
             .MS _
@@ -834,8 +837,8 @@ Public Class frmRawFeaturesList
     End Sub
 
     Private Sub MummichogToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MummichogToolStripMenuItem.Click
-        If Not CurrentRawFile Is Nothing Then
-            Call ConnectToBioDeep.RunMummichog(CurrentRawFile)
+        If Not CurrentOpenedFile Is Nothing Then
+            Call ConnectToBioDeep.RunMummichog(CurrentOpenedFile)
         End If
     End Sub
 

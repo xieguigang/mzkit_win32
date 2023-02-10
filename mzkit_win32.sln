@@ -47419,11 +47419,13 @@ Global
 		..\..\..\GCModeller\src\runtime\sciBASIC#\www\Microsoft.VisualBasic.NETProtocol\TcpRequest\TcpRequest.projitems*{2cd05f2c-b62f-4859-844d-e2968d05b4ea}*SharedItemsImports = 4
 		..\..\..\GCModeller\src\R-sharp\Library\shares\dataframeHelper\dataframeHelper.projitems*{32bde5fc-000b-43af-beae-3af8b18b2036}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\R-sharp\Library\shares\R_graphic.interop\R_graphic.interop.projitems*{38108f41-95ae-43cd-b429-958a8f1a406d}*SharedItemsImports = 5
+		..\..\..\GCModeller\src\R-sharp\Library\shares\symbolic\symbolic.projitems*{38108f41-95ae-43cd-b429-958a8f1a406d}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\R-sharp\Library\shares\R_graphic.interop\R_graphic.interop.projitems*{3d2bd8e4-57b1-409e-bc91-64f5ff8b1b6b}*SharedItemsImports = 5
 		services\mzkit_win32.envir\mzkit_win32.envir.projitems*{51c55c5c-2f21-4e9f-aa8d-3664135758b7}*SharedItemsImports = 4
 		..\..\Rscript\Library\mzkit.interopArguments\mzkit.interopArguments.projitems*{59127bcb-e898-4712-b51d-d967b10249c8}*SharedItemsImports = 5
 		services\mzkit_win32.envir\mzkit_win32.envir.projitems*{6e5bca87-358e-4ba5-b279-de17afa52c5c}*SharedItemsImports = 4
 		..\..\..\GCModeller\src\R-sharp\Library\shares\R_graphic.interop\R_graphic.interop.projitems*{7564935f-2822-4393-b4d0-42cdb2398bf4}*SharedItemsImports = 5
+		..\..\..\GCModeller\src\R-sharp\Library\shares\xgboostDataSet_helper\xgboostDataSet_helper.projitems*{7564935f-2822-4393-b4d0-42cdb2398bf4}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\R-sharp\Library\shares\dataframeHelper\dataframeHelper.projitems*{7825ed5b-ca14-49d0-a20a-7fb76c8cbbdd}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\R-sharp\Library\shares\JsonHelper\JsonHelper.projitems*{7825ed5b-ca14-49d0-a20a-7fb76c8cbbdd}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\runtime\sciBASIC#\www\Microsoft.VisualBasic.NETProtocol\TcpRequest\TcpRequest.projitems*{7df565ae-6e7a-4667-ab6d-9908acbeed8b}*SharedItemsImports = 13

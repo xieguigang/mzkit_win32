@@ -221,7 +221,7 @@ Public Class frmStartPage
 
             If firstFile.ExtensionSuffix("raw", "wiff", "msp") Then
                 Call MyApplication.host.OpenFile(firstFile, showDocument:=True)
-                Call VisualStudio.ShowDocument(Of frmUntargettedViewer)().loadRaw(WindowModules.rawFeaturesList.CurrentRawFile)
+                Call VisualStudio.ShowDocument(Of frmUntargettedViewer)().loadRaw(WindowModules.rawFeaturesList.CurrentOpenedFile)
             Else
                 Dim page As frmSeeMs = VisualStudio.ShowDocument(Of frmSeeMs)
 
