@@ -17,7 +17,7 @@ Public Class FormMain
     Dim viewers As New Dictionary(Of String, Control)
 
     Private Sub OpenToolStripMenuItem_Click()
-        Using file As New OpenFileDialog With {.Filter = "mzPack Data File(*.mzPack)|*.mzPack"}
+        Using file As New OpenFileDialog With {.Filter = "mzPack Data File(*.mzPack)|*.mzPack|All File Formats(*.*)|*.*"}
             If file.ShowDialog = DialogResult.OK Then
                 mzpack = New StreamPack(file.FileName, [readonly]:=True)
                 Win7StyleTreeView1.Nodes.Clear()

@@ -219,6 +219,10 @@
       <Project>{e907b484-44f0-41f6-97c7-297451fa05ee}</Project>
       <Name>JSON-netcore5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\mime\application%25xml\xml-netcore5.vbproj">
+      <Project>{8e7661e0-eedc-4641-bad0-3d6d99e7d7fc}</Project>
+      <Name>xml-netcore5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\assembly\assembly\assembly-netcore5.vbproj">
       <Project>{5dce233f-c0e1-41b8-827a-872b0c8cc3bc}</Project>
       <Name>assembly-netcore5</Name>
