@@ -8,6 +8,7 @@ Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
+Imports Microsoft.VisualBasic.MIME.application.xml
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Mzkit_win32.BasicMDIForm
 
@@ -107,6 +108,11 @@ Public Class FormMain
                 Dim json As JsonElement = BSON.Load(buf)
 
                 DirectCast(showViewer("json"), JSONViewer).LoadJSON(json)
+            Case "xml"
+                Dim text As String = mzpack.ReadText(data.referencePath.ToString)
+                Dim xml As XmlElement = XmlElement.ParseXmlText(text)
+
+                DirectCast(showViewer("xml"), XmlViewer).LoadXmlDocument(xml)
             Case "mz"
                 Dim buffer As Stream = mzpack.OpenBlock(data)
                 Dim reader As New BinaryDataReader(buffer) With {.ByteOrder = ByteOrder.LittleEndian}
@@ -153,6 +159,7 @@ Public Class FormMain
 
         viewers.Add("json", New JSONViewer)
         viewers.Add("bson", New JSONViewer)
+        viewers.Add("xml", New XmlViewer)
         viewers.Add("txt", New TextViewer)
         viewers.Add("png", img)
         viewers.Add("jpg", img)

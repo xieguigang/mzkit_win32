@@ -131,6 +131,12 @@
       <DependentUpon>FormMain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Viewers\XmlViewer.Designer.vb">
+      <DependentUpon>XmlViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Viewers\XmlViewer.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="zzz.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -176,6 +182,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Viewers\TextViewer.resx">
       <DependentUpon>TextViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewers\XmlViewer.resx">
+      <DependentUpon>XmlViewer.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
