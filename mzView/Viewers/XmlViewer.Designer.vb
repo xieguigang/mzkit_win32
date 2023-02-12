@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class UserControl1
+Partial Class XmlViewer
     Inherits System.Windows.Forms.UserControl
 
     'UserControl 重写释放以清理组件列表。

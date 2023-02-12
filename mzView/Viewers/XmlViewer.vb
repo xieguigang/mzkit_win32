@@ -1,3 +1,3 @@
-﻿Public Class UserControl1
+﻿Public Class XmlViewer
 
 End Class
