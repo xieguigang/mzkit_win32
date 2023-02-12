@@ -14,8 +14,36 @@ Public Class XmlViewer
     Private Sub loadTree(xml As XmlElement, tree As TreeNode, prefix As String)
         Dim isArray As Boolean = Not xml.elements.IsNullOrEmpty
 
+        If Not xml.comment.StringEmpty Then
+            Dim node = tree.Nodes.Add($"# Comment: {xml.comment}")
+
+            node.ImageIndex = 1
+            node.SelectedImageIndex = 1
+        End If
+
+        If Not xml.namespace.StringEmpty Then
+            Dim node = tree.Nodes.Add($"# namespace: {xml.namespace}")
+
+            node.ImageIndex = 1
+            node.SelectedImageIndex = 1
+        End If
+
+        If Not xml.attributes.IsNullOrEmpty Then
+            Dim attrs = tree.Nodes.Add($"{prefix} attributes")
+
+            attrs.ImageIndex = 0
+            attrs.SelectedImageIndex = 0
+
+            For Each attr As KeyValuePair(Of String, String) In xml.attributes
+                Dim node = tree.Nodes.Add($"{attr.Key}: {attr.Value}")
+
+                node.ImageIndex = 1
+                node.SelectedImageIndex = 1
+            Next
+        End If
+
         If isArray Then
-            Dim arr = xml.elements
+            Dim arr As XmlElement() = xml.elements
             Dim vec = tree.Nodes.Add($"{prefix}array[{arr.Length}]")
             Dim i As i32 = 0
 
@@ -26,7 +54,7 @@ Public Class XmlViewer
                 Call loadTree(item, vec, $"[{++i}]: ")
             Next
         Else
-            Dim node = tree.Nodes.Add($"{prefix}{xml.ToString}")
+            Dim node = tree.Nodes.Add($"{prefix}{xml.text}")
 
             node.ImageIndex = 1
             node.SelectedImageIndex = 1
