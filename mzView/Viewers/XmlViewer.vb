@@ -15,7 +15,7 @@ Public Class XmlViewer
         Dim isArray As Boolean = Not xml.elements.IsNullOrEmpty
 
         If Not xml.comment.StringEmpty Then
-            Dim node = tree.Nodes.Add($"# Comment: {xml.comment}")
+            Dim node = tree.Nodes.Add($"# Comment: {xml.comment.TrimNewLine}")
 
             node.ImageIndex = 1
             node.SelectedImageIndex = 1
@@ -35,7 +35,7 @@ Public Class XmlViewer
             attrs.SelectedImageIndex = 0
 
             For Each attr As KeyValuePair(Of String, String) In xml.attributes
-                Dim node = tree.Nodes.Add($"{attr.Key}: {attr.Value}")
+                Dim node = attrs.Nodes.Add($"{attr.Key}: {attr.Value}")
 
                 node.ImageIndex = 1
                 node.SelectedImageIndex = 1
@@ -51,7 +51,7 @@ Public Class XmlViewer
             vec.SelectedImageIndex = 0
 
             For Each item In arr
-                Call loadTree(item, vec, $"[{++i}]: ")
+                Call loadTree(item, vec.Nodes.Add($"[{++i}] {item.name}: "), "")
             Next
         Else
             Dim node = tree.Nodes.Add($"{prefix}{xml.text}")
