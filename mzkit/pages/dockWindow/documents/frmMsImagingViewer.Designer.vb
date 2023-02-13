@@ -100,7 +100,7 @@ Partial Class frmMsImagingViewer
         Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExportPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportMatrixToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PixelSelector1 = New mzkit_win32.MSImagingViewerV2.KpImageViewer()
+        Me.PixelSelector1 = New Global.Mzkit_win32.MSImagingViewerV2.KpImageViewer()
         Me.RemoveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.ContextMenuStrip1.SuspendLayout()
