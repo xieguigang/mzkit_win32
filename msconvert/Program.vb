@@ -6,6 +6,9 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging.MALDI_3D
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.DataObjects
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports Microsoft.VisualBasic.CommandLine
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.CommandLine.InteropService.SharedORM
@@ -20,12 +23,47 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
 <CLI> Module Program
 
     Sub New()
-        Call Thread.Sleep(2000)
+        Call Thread.Sleep(1000)
         Call FrameworkInternal.ConfigMemory(load:=MemoryLoads.Max)
     End Sub
 
     Public Function Main() As Integer
         Return GetType(Program).RunCLI(App.CommandLine)
+    End Function
+
+    <ExportAPI("/check-ion-mode")>
+    <Description("Check ion mode of the ms raw data file, the ion mode value will be print on the console stdout: 1 means positive, -1 means negative, 0 means pos+neg mixed scan data.")>
+    <Usage("/check-ion-mode --raw <filepath.raw>")>
+    Public Function checkIonMode(args As CommandLine) As Integer
+        Dim raw As String = args("--raw")
+
+        Using msraw As New MSFileReader(raw)
+            Dim ions As New List(Of IonModes)
+            Dim options As ThermoReaderOptions = msraw.InitReader()
+            Dim rt As Double = Nothing
+            Dim scanInfo As SingleScanInfo
+
+            For i As Integer = options.MinScan To options.MaxScan
+                scanInfo = msraw.GetScanInfo(scanNumber:=i)
+                ions.Add(scanInfo.IonMode)
+            Next
+
+            Dim groups = ions.GroupBy(Function(i) i).ToArray
+
+            If groups.Length = 1 Then
+                If groups(Scan0).Key = IonModes.Positive Then
+                    Call Console.WriteLine(1)
+                ElseIf groups(scan0).Key = IonModes.Negative Then
+                    Call Console.WriteLine(-1)
+                Else
+                    Call Console.WriteLine(0)
+                End If
+            Else
+                Call Console.WriteLine(0)
+            End If
+        End Using
+
+        Return True
     End Function
 
     <ExportAPI("/mzPack")>
