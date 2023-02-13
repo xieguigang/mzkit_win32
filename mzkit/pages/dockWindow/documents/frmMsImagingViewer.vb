@@ -1908,4 +1908,44 @@ Public Class frmMsImagingViewer
             End If
         End Using
     End Sub
+
+    ''' <summary>
+    ''' remove region
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub RemoveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RemoveToolStripMenuItem.Click
+        If Not checkService() Then
+            Return
+        End If
+
+        Dim regions = PixelSelector1.MSICanvas _
+            .GetPolygons(popAll:=False) _
+            .ToArray
+
+        If regions.Length = 0 Then
+            Call Workbench.Warning("No region polygon data was found from polygon editor, draw some region polygon at first!")
+            Return
+        Else
+            PixelSelector1.MSICanvas.ClearSelection()
+
+            If Not sampleRegions Is Nothing Then
+                sampleRegions.Clear()
+            End If
+        End If
+
+        Call TaskProgress.LoadData(
+                Function(msg As Action(Of String))
+                    Dim info = MSIservice.DeleteRegionDataPolygon(regions, New Size(params.scan_x, params.scan_y))
+
+                    If info Is Nothing Then
+                        Return -1
+                    End If
+
+                    Call Me.Invoke(Sub() LoadRender(info, FilePath))
+                    Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
+
+                    Return 0
+                End Function, canbeCancel:=True)
+    End Sub
 End Class

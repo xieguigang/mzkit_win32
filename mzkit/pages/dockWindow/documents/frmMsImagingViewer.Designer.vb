@@ -90,6 +90,8 @@ Partial Class frmMsImagingViewer
         Me.ClearToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExtractRegionSampleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem6 = New System.Windows.Forms.ToolStripSeparator()
+        Me.AddSpatialTileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ImageProcessingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
@@ -98,9 +100,9 @@ Partial Class frmMsImagingViewer
         Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExportPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportMatrixToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PixelSelector1 = New KpImageViewer()
-        Me.ToolStripMenuItem6 = New System.Windows.Forms.ToolStripSeparator()
-        Me.AddSpatialTileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PixelSelector1 = New mzkit_win32.MSImagingViewerV2.KpImageViewer()
+        Me.RemoveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -127,7 +129,7 @@ Partial Class frmMsImagingViewer
         '
         'SamplesToolStripMenuItem
         '
-        Me.SamplesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddSampleToolStripMenuItem, Me.ClearToolStripMenuItem1, Me.ToolStripMenuItem5, Me.ExtractRegionSampleToolStripMenuItem, Me.ToolStripMenuItem6, Me.AddSpatialTileToolStripMenuItem})
+        Me.SamplesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddSampleToolStripMenuItem, Me.ClearToolStripMenuItem1, Me.ToolStripMenuItem5, Me.ExtractRegionSampleToolStripMenuItem, Me.RemoveToolStripMenuItem, Me.ToolStripMenuItem6, Me.AddSpatialTileToolStripMenuItem})
         Me.SamplesToolStripMenuItem.Name = "SamplesToolStripMenuItem"
         resources.ApplyResources(Me.SamplesToolStripMenuItem, "SamplesToolStripMenuItem")
         '
@@ -150,6 +152,16 @@ Partial Class frmMsImagingViewer
         '
         Me.ExtractRegionSampleToolStripMenuItem.Name = "ExtractRegionSampleToolStripMenuItem"
         resources.ApplyResources(Me.ExtractRegionSampleToolStripMenuItem, "ExtractRegionSampleToolStripMenuItem")
+        '
+        'ToolStripMenuItem6
+        '
+        Me.ToolStripMenuItem6.Name = "ToolStripMenuItem6"
+        resources.ApplyResources(Me.ToolStripMenuItem6, "ToolStripMenuItem6")
+        '
+        'AddSpatialTileToolStripMenuItem
+        '
+        Me.AddSpatialTileToolStripMenuItem.Name = "AddSpatialTileToolStripMenuItem"
+        resources.ApplyResources(Me.AddSpatialTileToolStripMenuItem, "AddSpatialTileToolStripMenuItem")
         '
         'ToolStripMenuItem2
         '
@@ -206,15 +218,11 @@ Partial Class frmMsImagingViewer
         Me.PixelSelector1.ShowPointInform = True
         Me.PixelSelector1.ShowPreview = False
         '
-        'ToolStripMenuItem6
+        'RemoveToolStripMenuItem
         '
-        Me.ToolStripMenuItem6.Name = "ToolStripMenuItem6"
-        resources.ApplyResources(Me.ToolStripMenuItem6, "ToolStripMenuItem6")
-        '
-        'AddSpatialTileToolStripMenuItem
-        '
-        Me.AddSpatialTileToolStripMenuItem.Name = "AddSpatialTileToolStripMenuItem"
-        resources.ApplyResources(Me.AddSpatialTileToolStripMenuItem, "AddSpatialTileToolStripMenuItem")
+        Me.RemoveToolStripMenuItem.AutoToolTip = True
+        Me.RemoveToolStripMenuItem.Name = "RemoveToolStripMenuItem"
+        resources.ApplyResources(Me.RemoveToolStripMenuItem, "RemoveToolStripMenuItem")
         '
         'frmMsImagingViewer
         '
@@ -223,6 +231,7 @@ Partial Class frmMsImagingViewer
         Me.Controls.Add(Me.PixelSelector1)
         Me.DoubleBuffered = True
         Me.Name = "frmMsImagingViewer"
+        Me.TabPageContextMenuStrip = Me.DockContextMenuStrip1
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -247,4 +256,6 @@ Partial Class frmMsImagingViewer
     Friend WithEvents ExtractRegionSampleToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem6 As ToolStripSeparator
     Friend WithEvents AddSpatialTileToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents RemoveToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolTip1 As ToolTip
 End Class

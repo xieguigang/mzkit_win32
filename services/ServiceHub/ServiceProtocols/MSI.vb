@@ -228,13 +228,18 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         End Using
     End Function
 
-    <Protocol(ServiceProtocol.ExtractRegionSample)>
-    Public Function ExtractRegionSample(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
-        Dim allPixels As PixelScan() = MSI.pixelReader.AllPixels.ToArray
+    <Protocol(ServiceProtocol.DeleteRegion)>
+    Public Function DeleteRegion(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
         Dim regions As RegionLoader = BSON _
             .Load(request.ChunkBuffer) _
             .CreateObject(Of RegionLoader)(decodeMetachar:=False) _
             .Reload
+
+        Return RegionFilter(regions, flag:=False)
+    End Function
+
+    Private Function RegionFilter(regions As RegionLoader, flag As Boolean) As BufferPipe
+        Dim allPixels As PixelScan() = MSI.pixelReader.AllPixels.ToArray
         Dim info As Dictionary(Of String, String)
         Dim resize_canvas As Boolean = False
         Dim minX As Integer
@@ -245,7 +250,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             Return New DataPipe("no region data!")
         Else
             allPixels = allPixels _
-                .Where(Function(i) regions.ContainsPixel(i.X, i.Y)) _
+                .Where(Function(i) regions.ContainsPixel(i.X, i.Y) = flag) _
                 .ToArray
         End If
 
@@ -274,6 +279,16 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         info!source = "in-memory<ExtractRegionSample>"
 
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
+    End Function
+
+    <Protocol(ServiceProtocol.ExtractRegionSample)>
+    Public Function ExtractRegionSample(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
+        Dim regions As RegionLoader = BSON _
+            .Load(request.ChunkBuffer) _
+            .CreateObject(Of RegionLoader)(decodeMetachar:=False) _
+            .Reload
+
+        Return RegionFilter(regions, flag:=True)
     End Function
 
     <Protocol(ServiceProtocol.GetMSIInformationMetadata)>

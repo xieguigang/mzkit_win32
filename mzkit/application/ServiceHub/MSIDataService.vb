@@ -362,6 +362,30 @@ Namespace ServiceHub
             Return regions
         End Function
 
+        Public Function DeleteRegionDataPolygon(regions As Polygon2D(), dims As Size) As MsImageProperty
+            Dim payload As New RegionLoader With {
+                .height = dims.Height,
+                .width = dims.Width,
+                .regions = regions
+            }
+            Dim buffer = BSON.GetBuffer(GetType(RegionLoader).GetJsonElement(payload, New JSONSerializerOptions))
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.DeleteRegion, buffer.ToArray))
+            Dim str As String = data.GetString(Encoding.UTF8)
+
+            If str.StringEmpty OrElse Not str.StartsWith("{") Then
+                Call Workbench.Warning(str)
+                Return Nothing
+            End If
+
+            Dim output As MsImageProperty = str _
+                .LoadJSON(Of Dictionary(Of String, String)) _
+                .DoCall(Function(info)
+                            Return New MsImageProperty(info)
+                        End Function)
+
+            Return output
+        End Function
+
         Public Function ExtractRegionSample(regions As Polygon2D(), dims As Size) As MsImageProperty
             Dim payload As New RegionLoader With {
                 .height = dims.Height,

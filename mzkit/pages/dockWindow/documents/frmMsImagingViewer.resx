@@ -117,8 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="VS2015LightTheme1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>202, 17</value>
+  </metadata>
   <metadata name="ContextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
+    <value>365, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="PinToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -511,6 +514,15 @@
   </data>
   <data name="ExtractRegionSampleToolStripMenuItem.Text" xml:space="preserve">
     <value>Extract Region Sample</value>
+  </data>
+  <data name="RemoveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 22</value>
+  </data>
+  <data name="RemoveToolStripMenuItem.Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="RemoveToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Remove the selected region from sample</value>
   </data>
   <data name="ToolStripMenuItem6.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 6</value>
@@ -1666,7 +1678,7 @@
     <value>454, 145</value>
   </data>
   <data name="PixelSelector1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>3524, 1061</value>
+    <value>484, 285</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="PixelSelector1.TabIndex" type="System.Int32, mscorlib">
@@ -1682,8 +1694,11 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;PixelSelector1.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
+  <metadata name="ToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>522, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -1691,13 +1706,19 @@
     <value>6, 12</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>3524, 1061</value>
+    <value>484, 285</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>48, 22, 48, 22</value>
+    <value>768, 176, 768, 176</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>MS-Imaging Viewer</value>
+  </data>
+  <data name="&gt;&gt;VS2015LightTheme1.Name" xml:space="preserve">
+    <value>VS2015LightTheme1</value>
+  </data>
+  <data name="&gt;&gt;VS2015LightTheme1.Type" xml:space="preserve">
+    <value>WeifenLuo.WinFormsUI.Docking.VS2015LightTheme, ThemeVS2015, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481</value>
   </data>
   <data name="&gt;&gt;PinToolStripMenuItem.Name" xml:space="preserve">
     <value>PinToolStripMenuItem</value>
@@ -1745,6 +1766,18 @@
     <value>ExtractRegionSampleToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;ExtractRegionSampleToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItem6.Name" xml:space="preserve">
+    <value>ToolStripMenuItem6</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItem6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AddSpatialTileToolStripMenuItem.Name" xml:space="preserve">
+    <value>AddSpatialTileToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;AddSpatialTileToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ToolStripMenuItem2.Name" xml:space="preserve">
@@ -1795,22 +1828,22 @@
   <data name="&gt;&gt;ExportMatrixToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;ToolStripMenuItem6.Name" xml:space="preserve">
-    <value>ToolStripMenuItem6</value>
+  <data name="&gt;&gt;RemoveToolStripMenuItem.Name" xml:space="preserve">
+    <value>RemoveToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;ToolStripMenuItem6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;AddSpatialTileToolStripMenuItem.Name" xml:space="preserve">
-    <value>AddSpatialTileToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;AddSpatialTileToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;RemoveToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolTip1.Name" xml:space="preserve">
+    <value>ToolTip1</value>
+  </data>
+  <data name="&gt;&gt;ToolTip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>frmMsImagingViewer</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>BioNovoGene.mzkit_win32.DocumentWindow, mzkit_win32, Version=1.32.8370.32288, Culture=neutral, PublicKeyToken=null</value>
+    <value>Mzkit_win32.BasicMDIForm.DocumentWindow, Mzkit_win32.BasicMDIForm, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

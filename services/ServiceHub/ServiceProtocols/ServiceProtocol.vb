@@ -93,6 +93,7 @@ Public Enum ServiceProtocol
     CutBackground
     UpsideDown
     Mirrors
+    DeleteRegion
     ExtractRegionSample
     ExtractMultipleSampleRegions
     ExitApp
