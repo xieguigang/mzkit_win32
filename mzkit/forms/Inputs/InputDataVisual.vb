@@ -236,15 +236,19 @@ SingleS:    For Each name As String In GetY()
             Next
         End If
 
+        If yList.All(Function(yi) yi.Length = x.Length) Then
 #Disable Warning
-        For i As Integer = 0 To x.Length - 2
-            Dim row As Object() = {x.GetValue(i)} _
+            ' 20230216
+            ' 如果y group的每组元素的数量和x都一样，才显示绘图矩阵
+            For i As Integer = 0 To x.Length - 2
+                Dim row As Object() = {x.GetValue(i)} _
                 .JoinIterates(yList.Select(Function(yi) yi.GetValue(i))) _
                 .ToArray
 
-            Call grid.Rows.Add(row)
-        Next
+                Call grid.Rows.Add(row)
+            Next
 #Enable Warning
+        End If
     End Function
 
     Public Sub DoPlot(x As Array, table As DataTable, getVector As Func(Of String, Array))
