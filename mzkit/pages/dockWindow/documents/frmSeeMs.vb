@@ -53,6 +53,7 @@
 #End Region
 
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData
+Imports BioNovoGene.Analytical.MassSpectrometry.SignalReader
 
 Public Class frmSeeMs
 

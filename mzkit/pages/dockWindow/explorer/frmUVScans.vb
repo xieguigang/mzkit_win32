@@ -57,11 +57,12 @@
 
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.UV
+Imports BioNovoGene.Analytical.MassSpectrometry.SignalReader.UVSpectroscopyReader
+Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math.SignalProcessing
-Imports BioNovoGene.mzkit_win32.My
 Imports Task
 
 Public Class frmUVScans
