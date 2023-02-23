@@ -1627,6 +1627,10 @@
       <Project>{0d82246c-02c5-4f9e-a571-ea4fa2077059}</Project>
       <Name>sciexWiffReader</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\assembly\SignalReader\SignalReader.vbproj">
+      <Project>{4491210e-d07d-409b-8028-43e8256c93e0}</Project>
+      <Name>SignalReader</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\assembly\SpectrumTree\spectrumTree.NETCore5.vbproj">
       <Project>{d99285e0-574f-4302-a3fd-9d6c7f228937}</Project>
       <Name>spectrumTree.NETCore5</Name>
