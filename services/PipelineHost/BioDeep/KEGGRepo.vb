@@ -180,7 +180,7 @@ Public Module KEGGRepo
                 Return id _
                     .Select(Function(ref, i)
                                 Return New MetaboliteAnnotation With {
-                                    .UniqueId = ref,
+                                    .Id = ref,
                                     .CommonName = name(i),
                                     .Formula = formula(i),
                                     .ExactMass = FormulaScanner.EvaluateExactMass(.Formula)
@@ -219,7 +219,7 @@ Public Module KEGGRepo
             .Select(Function(t)
                         Return New MetaboliteAnnotation With {
                             .CommonName = t.name,
-                            .UniqueId = t.id,
+                            .Id = t.id,
                             .Formula = t.property_value _
                                 .Where(Function(p) p.StartsWith("formula")) _
                                 .First _

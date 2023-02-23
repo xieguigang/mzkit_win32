@@ -307,6 +307,10 @@
       <Project>{0d82246c-02c5-4f9e-a571-ea4fa2077059}</Project>
       <Name>sciexWiffReader</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\assembly\SignalReader\SignalReader.vbproj">
+      <Project>{4491210e-d07d-409b-8028-43e8256c93e0}</Project>
+      <Name>SignalReader</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\assembly\ThermoRawFileReader\MSFileReader.NET5.vbproj">
       <Project>{eee7f7fd-963f-4696-a71f-df70086df3d3}</Project>
       <Name>MSFileReader.NET5</Name>
@@ -342,6 +346,10 @@
     <ProjectReference Include="..\..\..\mzmath\Mummichog\Mummichog.vbproj">
       <Project>{49f16938-4209-47a1-a1d5-b3de359c07eb}</Project>
       <Name>Mummichog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\mzmath\mz_deco\deconv.NET5.vbproj">
+      <Project>{fd924bdc-104f-4210-ab34-38ddeaf081ad}</Project>
+      <Name>deconv.NET5</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\mzmath\TargetedMetabolomics\Targetted.NET5.vbproj">
       <Project>{373f637b-cf9f-4179-a4b4-a8a76c3454b3}</Project>

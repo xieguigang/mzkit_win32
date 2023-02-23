@@ -57,6 +57,7 @@
 
 Imports System.ComponentModel
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
+Imports BioNovoGene.Analytical.MassSpectrometry.SignalReader.UVSpectroscopyReader
 Imports Microsoft.VisualBasic.Math.SignalProcessing
 Imports Microsoft.VisualBasic.Math.SignalProcessing.PeakFinding
 

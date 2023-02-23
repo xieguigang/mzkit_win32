@@ -327,6 +327,10 @@
       <Project>{ab5fd86e-6da9-4f7c-8dce-17da85bc895d}</Project>
       <Name>mzmath-netcore5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\mzmath\mz_deco\deconv.NET5.vbproj">
+      <Project>{fd924bdc-104f-4210-ab34-38ddeaf081ad}</Project>
+      <Name>deconv.NET5</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
