@@ -12,7 +12,7 @@ Public Class frmTextDialog
         InitializeComponent()
 
         ' 在 InitializeComponent() 调用之后添加任何初始化。
-        Controls.Add(htmlViewer)
+        Panel1.Controls.Add(htmlViewer)
     End Sub
 
     Public Sub ShowText(text As String)

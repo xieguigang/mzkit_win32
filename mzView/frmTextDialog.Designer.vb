@@ -25,13 +25,15 @@ Partial Class frmTextDialog : Inherits InputDialog
     Private Sub InitializeComponent()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'TextBox1
         '
         Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox1.Location = New System.Drawing.Point(0, 20)
+        Me.TextBox1.Location = New System.Drawing.Point(0, 0)
         Me.TextBox1.Multiline = True
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both
@@ -49,20 +51,31 @@ Partial Class frmTextDialog : Inherits InputDialog
         Me.ComboBox1.Size = New System.Drawing.Size(584, 20)
         Me.ComboBox1.TabIndex = 1
         '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.TextBox1)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel1.Location = New System.Drawing.Point(0, 20)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(584, 385)
+        Me.Panel1.TabIndex = 2
+        '
         'frmTextDialog
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(584, 405)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.ComboBox1)
         Me.Name = "frmTextDialog"
         Me.Text = "Form1"
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents Panel1 As Panel
 End Class
