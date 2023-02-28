@@ -30,11 +30,12 @@ Partial Class frmTextDialog : Inherits InputDialog
         'TextBox1
         '
         Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox1.Location = New System.Drawing.Point(0, 172)
+        Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox1.Location = New System.Drawing.Point(0, 20)
         Me.TextBox1.Multiline = True
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.TextBox1.Size = New System.Drawing.Size(584, 233)
+        Me.TextBox1.Size = New System.Drawing.Size(584, 385)
         Me.TextBox1.TabIndex = 0
         '
         'ComboBox1
@@ -53,8 +54,8 @@ Partial Class frmTextDialog : Inherits InputDialog
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(584, 405)
-        Me.Controls.Add(Me.ComboBox1)
         Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.ComboBox1)
         Me.Name = "frmTextDialog"
         Me.Text = "Form1"
         Me.ResumeLayout(False)
