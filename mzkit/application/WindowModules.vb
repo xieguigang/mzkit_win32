@@ -192,6 +192,7 @@ Friend MustInherit Class WindowModules
             "R# Script(*.R)|*.R",
             "Excel Table(*.csv;*.xlsx)|*.csv;*.xlsx",
             "Open Source Spectrum(*.msp)|*.msp",
+            "Raman spectroscopy(*.txt)|*.txt",
             "Virtual Pathology Slide(*.tif;*.dzi;*.ndpi)|*.tif;*.dzi;*.ndpi"
         }
 

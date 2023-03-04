@@ -69,10 +69,13 @@ Imports System.Runtime.CompilerServices
 Imports System.Text
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
+Imports BioNovoGene.Analytical.MassSpectrometry.SignalReader
 Imports BioNovoGene.mzkit_win32.Configuration
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.RibbonLib.Controls
@@ -80,6 +83,7 @@ Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ApplicationServices.Development
 Imports Microsoft.VisualBasic.CommandLine
 Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Emit.Delegates
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
@@ -153,6 +157,14 @@ Public Class frmMain : Implements AppHost
         Call showStatusMessage(v, My.Resources.StatusAnnotations_Warning_32xLG_color)
     End Sub
 
+    Private Sub showRamanSpectrumData(file As String)
+        Dim data = Raman.FileReader.ParseTextFile(file)
+        Dim sig = New NamedCollection(Of ChromatogramTick)("Raman Spectroscopy", data.ToChromatogram)
+
+        Call mzkitTool.TIC({sig}, d3:=False, xlab:="Raman Shift [cm-1]")
+        Call mzkitTool.ShowPage()
+    End Sub
+
     Public Sub OpenFile(fileName As String, showDocument As Boolean)
         If fileName.ExtensionSuffix("R") Then
             Call WindowModules.fileExplorer.AddScript(fileName.GetFullPath)
@@ -163,6 +175,8 @@ Public Class frmMain : Implements AppHost
             Call TissueSlideHandler.OpenNdpiFile(fileName)
         ElseIf fileName.ExtensionSuffix("csv", "xlsx") Then
             Call SelectSheetName.OpenExcel(fileName)
+        ElseIf fileName.ExtensionSuffix("txt") Then
+            Call showRamanSpectrumData(fileName)
         ElseIf fileName.ExtensionSuffix("imzML") Then
             Call showMsImaging(fileName)
         ElseIf fileName.ExtensionSuffix("nmrml") Then

@@ -328,7 +328,7 @@ Public Class PageMzkitTools
         End If
     End Sub
 
-    Public Sub PlotMatrx(title1$, title2$, scanData As LibraryMatrix, Optional focusOn As Boolean = True)
+    Public Sub PlotMatrix(title1$, title2$, scanData As LibraryMatrix, Optional focusOn As Boolean = True)
         Call MyApplication.RegisterPlot(
             Sub(args)
                 PictureBox1.BackgroundImage = scanData _
@@ -491,7 +491,7 @@ Public Class PageMzkitTools
         Call TIC(TICList.ToArray)
     End Sub
 
-    Public Sub TIC(TICList As NamedCollection(Of ChromatogramTick)(), Optional d3 As Boolean = False)
+    Public Sub TIC(TICList As NamedCollection(Of ChromatogramTick)(), Optional d3 As Boolean = False, Optional xlab$ = "Time (s)", Optional ylab$ = "Intensity")
         If TICList.IsNullOrEmpty Then
             MyApplication.host.showStatusMessage("no chromatogram data!", My.Resources.StatusAnnotations_Warning_32xLG_color)
             Return
@@ -513,7 +513,7 @@ Public Class PageMzkitTools
         MyApplication.RegisterPlot(
             Sub(args)
                 PictureBox1.BackgroundImage = blender.Rendering(args, PictureBox1.Size)
-            End Sub, width:=1600, height:=1200, showGrid:=True, padding:="padding:100px 100px 150px 200px;", showLegend:=Not d3, xlab:="Time (s)", ylab:="Intensity")
+            End Sub, width:=1600, height:=1200, showGrid:=True, padding:="padding:100px 100px 150px 200px;", showLegend:=Not d3, xlab:=xlab, ylab:=ylab)
 
         MyApplication.host.ShowPage(Me)
     End Sub
