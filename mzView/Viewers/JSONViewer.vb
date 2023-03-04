@@ -1,5 +1,6 @@
 ﻿Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 
 Public Class JSONViewer
 
@@ -37,6 +38,31 @@ Public Class JSONViewer
             For Each tuple In obj
                 Call loadTree(tuple.Value, list, $"'{tuple.Name}': ")
             Next
+        End If
+    End Sub
+
+    Private Sub Win7StyleTreeView1_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles Win7StyleTreeView1.AfterSelect
+
+    End Sub
+
+    Private Sub Win7StyleTreeView1_DoubleClick(sender As Object, e As EventArgs) Handles Win7StyleTreeView1.DoubleClick
+        Dim node As TreeNode = Win7StyleTreeView1.SelectedNode
+
+        If node Is Nothing Then
+            Return
+        End If
+
+        If node.Nodes.Count = 0 Then
+            Dim text As String = node.Text
+            Dim config As New frmTextDialog
+
+            config.ShowText(text)
+
+            Call InputDialog.Input(
+                setConfig:=Sub(any)
+                               ' do nothing
+                           End Sub,
+                config:=config)
         End If
     End Sub
 End Class

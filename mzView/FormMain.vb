@@ -1,7 +1,9 @@
 ﻿Imports System.IO
+Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
+Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.Data.IO
 Imports Microsoft.VisualBasic.DataStorage.HDSPack
 Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
@@ -135,6 +137,12 @@ Public Class FormMain
                 Dim pic As PictureBox = showViewer("png")
 
                 pic.BackgroundImage = img
+            Case "html", "htm"
+                Dim text As String = mzpack.ReadText(data.referencePath.ToString)
+                Dim tmp As String = TempFileSystem.GetAppSysTempFile(ext:=".html")
+
+                Call text.SaveTo(tmp, Encoding.UTF8)
+                Call DirectCast(showViewer("html"), HtmlViewer).LoadPage(tmp)
             Case Else
                 ' do nothing
         End Select
@@ -153,6 +161,7 @@ Public Class FormMain
 
     Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim img As New PictureBox
+        Dim html As New HtmlViewer
 
         img.BackgroundImageLayout = ImageLayout.Zoom
         HookOpen = AddressOf OpenToolStripMenuItem_Click
@@ -166,6 +175,8 @@ Public Class FormMain
         viewers.Add("jpeg", img)
         viewers.Add("bmp", img)
         viewers.Add("tiff", img)
+        viewers.Add("htm", html)
+        viewers.Add("html", html)
 
         For Each viewer In viewers.Values
             SplitContainer1.Panel2.Controls.Add(viewer)
@@ -195,5 +206,9 @@ Public Class FormMain
 
     Private Sub ViewAsTextToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewAsTextToolStripMenuItem.Click
         Call OpenAndView(Win7StyleTreeView1.SelectedNode, "txt")
+    End Sub
+
+    Private Sub ViewAsHtmlToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewAsHtmlToolStripMenuItem.Click
+        Call OpenAndView(Win7StyleTreeView1.SelectedNode, "html")
     End Sub
 End Class

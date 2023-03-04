@@ -113,6 +113,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InputDialogs\InputSingleIonMSIExport.Designer.vb">
+      <DependentUpon>InputSingleIonMSIExport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InputDialogs\InputSingleIonMSIExport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="InputDialogs\InputCloudEndPoint.Designer.vb">
       <DependentUpon>InputCloudEndPoint.vb</DependentUpon>
     </Compile>
@@ -160,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InputDialogs\InputMSISlideLayout.resx">
       <DependentUpon>InputMSISlideLayout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputDialogs\InputSingleIonMSIExport.resx">
+      <DependentUpon>InputSingleIonMSIExport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputDialogs\InputSpotRadius.resx">
       <DependentUpon>InputSpotRadius.vb</DependentUpon>

@@ -30,10 +30,11 @@ Partial Class FormMain
         Me.Win7StyleTreeView1 = New ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView(Me.components)
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CopyFullPathToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.ViewAsTextToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.CopyFullPathToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
+        Me.ViewAsHtmlToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
@@ -71,15 +72,26 @@ Partial Class FormMain
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewToolStripMenuItem, Me.ViewAsTextToolStripMenuItem, Me.ToolStripMenuItem2, Me.CopyFullPathToolStripMenuItem1})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewToolStripMenuItem, Me.ViewAsTextToolStripMenuItem, Me.ViewAsHtmlToolStripMenuItem, Me.ToolStripMenuItem2, Me.CopyFullPathToolStripMenuItem1})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 98)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 120)
         '
         'ViewToolStripMenuItem
         '
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
         Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ViewToolStripMenuItem.Text = "View"
+        '
+        'ViewAsTextToolStripMenuItem
+        '
+        Me.ViewAsTextToolStripMenuItem.Name = "ViewAsTextToolStripMenuItem"
+        Me.ViewAsTextToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ViewAsTextToolStripMenuItem.Text = "View As text"
+        '
+        'ToolStripMenuItem2
+        '
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(177, 6)
         '
         'CopyFullPathToolStripMenuItem1
         '
@@ -94,16 +106,11 @@ Partial Class FormMain
         Me.ImageList1.Images.SetKeyName(0, "folder-documents.png")
         Me.ImageList1.Images.SetKeyName(1, "application-x-object.png")
         '
-        'ViewAsTextToolStripMenuItem
+        'ViewAsHtmlToolStripMenuItem
         '
-        Me.ViewAsTextToolStripMenuItem.Name = "ViewAsTextToolStripMenuItem"
-        Me.ViewAsTextToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ViewAsTextToolStripMenuItem.Text = "View As text"
-        '
-        'ToolStripMenuItem2
-        '
-        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(177, 6)
+        Me.ViewAsHtmlToolStripMenuItem.Name = "ViewAsHtmlToolStripMenuItem"
+        Me.ViewAsHtmlToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ViewAsHtmlToolStripMenuItem.Text = "View As html"
         '
         'FormMain
         '
@@ -131,4 +138,5 @@ Partial Class FormMain
     Friend WithEvents CopyFullPathToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents ViewAsTextToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
+    Friend WithEvents ViewAsHtmlToolStripMenuItem As ToolStripMenuItem
 End Class

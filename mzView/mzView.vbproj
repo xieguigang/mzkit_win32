@@ -16,6 +16,8 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -97,6 +99,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\dist\Microsoft.VisualStudio.Windows.Form.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.1462.37, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.1462.37\lib\net45\Microsoft.Web.WebView2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.WinForms, Version=1.0.1462.37, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.1462.37\lib\net45\Microsoft.Web.WebView2.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.1462.37, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.1462.37\lib\net45\Microsoft.Web.WebView2.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="Mzkit_win32.Interaction">
       <HintPath>..\ux\ControlLibrary\obj\x64\mzkit_win32\Mzkit_win32.Interaction.dll</HintPath>
     </Reference>
@@ -132,6 +143,18 @@
     <Compile Include="FormMain.Designer.vb">
       <DependentUpon>FormMain.vb</DependentUpon>
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTextDialog.Designer.vb">
+      <DependentUpon>frmTextDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmTextDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Viewers\HtmlViewer.Designer.vb">
+      <DependentUpon>HtmlViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Viewers\HtmlViewer.vb">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Viewers\XmlViewer.Designer.vb">
       <DependentUpon>XmlViewer.vb</DependentUpon>
@@ -173,6 +196,12 @@
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmTextDialog.resx">
+      <DependentUpon>frmTextDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewers\HtmlViewer.resx">
+      <DependentUpon>HtmlViewer.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Viewers\JSONViewer.resx">
       <DependentUpon>JSONViewer.vb</DependentUpon>
     </EmbeddedResource>
@@ -200,6 +229,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data\BinaryData\BinaryData\binarydata-netcore5.vbproj">
@@ -251,5 +281,15 @@
       <Name>BasicMDIForm</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="..\packages\Microsoft.Web.WebView2.1.0.1462.37\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.1462.37\build\Microsoft.Web.WebView2.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Web.WebView2.1.0.1462.37\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebView2.1.0.1462.37\build\Microsoft.Web.WebView2.targets'))" />
+  </Target>
 </Project>
