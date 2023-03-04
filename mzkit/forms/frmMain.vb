@@ -160,6 +160,7 @@ Public Class frmMain : Implements AppHost
     Private Sub showRamanSpectrumData(file As String)
         Dim data = Raman.FileReader.ParseTextFile(file)
         Dim sig = New NamedCollection(Of ChromatogramTick)("Raman Spectroscopy", data.ToChromatogram)
+        Dim obj = DynamicType.Create(data.Comments.JoinIterates(data.DetailedInformation).JoinIterates(data.MeasurementInformation).ToDictionary(Function(a) a.Key, Function(a) CObj(a.Value)))
 
         Call mzkitTool.TIC({sig}, d3:=False, xlab:="Raman Shift [cm-1]")
         Call mzkitTool.ShowPage()
