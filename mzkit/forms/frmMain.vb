@@ -164,6 +164,7 @@ Public Class frmMain : Implements AppHost
 
         Call mzkitTool.TIC({sig}, d3:=False, xlab:="Raman Shift [cm-1]")
         Call mzkitTool.ShowPage()
+        Call VisualStudio.ShowProperties(obj)
     End Sub
 
     Public Sub OpenFile(fileName As String, showDocument As Boolean)
