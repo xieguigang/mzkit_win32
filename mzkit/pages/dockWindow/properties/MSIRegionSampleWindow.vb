@@ -128,7 +128,7 @@ Public Class MSIRegionSampleWindow
 
         Return tissueMorphology _
             .ToArray _
-            .WriteCDF(file)
+            .WriteCDF(file, dimension)
     End Function
 
     Public Sub ClearLayer(canvas As PixelSelector)
