@@ -199,6 +199,8 @@
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.MsImaging.dll_1" ComponentId="{05B71849-FBDA-4F34-89F3-FD93D550D64F}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.MsImaging.dll_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Plots.dll" ComponentId="{45CDB707-0323-419D-A4B4-311F83E69C60}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Plots.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.RInterop.dll" ComponentId="{CA864AA4-B147-40E9-B248-ACC382756F5A}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.RInterop.dll"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll" ComponentId="{140AB497-DBC8-4A65-8E9A-C4813B1ACD85}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll_1" ComponentId="{48FCE6BD-78C3-4E55-9062-DB3F53A50C3A}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll" ComponentId="{218DE230-12BA-4FA1-A8A3-FF8587D19380}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll_1" ComponentId="{F17BBE73-D0A6-4611-90E3-8A52F4EBD373}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.dll" ComponentId="{2DC234EA-612E-4F17-A888-CFF852876ADF}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.dll"/>
@@ -661,6 +663,7 @@
     <ROW Component="npy.dll" ComponentId="{57A4DF98-6211-4C12-8590-541E4B27BC6C}" Directory_="library_Dir" Attributes="256" KeyPath="npy.dll"/>
     <ROW Component="nts.dll" ComponentId="{C3430FDE-A92A-4B60-AC18-9F8A223BF24A}" Directory_="library_Dir" Attributes="256" KeyPath="nts.dll"/>
     <ROW Component="overlay.8faf238632c16c841197.svg" ComponentId="{32B72F33-C12E-48A2-AAE3-72C56C369022}" Directory_="media_Dir" Attributes="0" KeyPath="overlay.8faf238632c16c841197.svg" Type="0"/>
+    <ROW Component="plot_cdf_tic.R" ComponentId="{13B35F62-267C-4998-9FC5-3F3394BCA9E3}" Directory_="demo_1_Dir" Attributes="0" KeyPath="plot_cdf_tic.R" Type="0"/>
     <ROW Component="regid.201301.com.panomix" ComponentId="{63A0ED36-59FE-437D-ABA9-2A17B9A3A3F0}" Directory_="regid.201301.com.panomix_Dir" Attributes="0"/>
     <ROW Component="roxygenNet.dll" ComponentId="{E0E9A75E-58C3-4143-B990-88737EBD1D95}" Directory_="library_Dir" Attributes="256" KeyPath="roxygenNet.dll"/>
     <ROW Component="signalKit.dll" ComponentId="{E647E3F5-5C3F-454E-917D-71D0B35C97B8}" Directory_="library_Dir" Attributes="256" KeyPath="signalKit.dll"/>
@@ -4719,6 +4722,9 @@
     <ROW File="mzblender.exe" Component_="mzblender.exe" FileName="MZBLEN~1.EXE|mzblender.exe" Attributes="0" SourcePath="..\..\..\dist\bin\mzblender.exe" SelfReg="false" DigSign="true"/>
     <ROW File="mzblender.exe.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MZBLEN~1.CON|mzblender.exe.config" Attributes="0" SourcePath="..\..\..\dist\bin\mzblender.exe.config" SelfReg="false"/>
     <ROW File="mzkit_desktop.js.map" Component_="linq.d.ts" FileName="MZKIT_~1.MAP|mzkit_desktop.js.map" Attributes="0" SourcePath="..\webview\assets\js\mzkit_desktop.js.map" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll" Component_="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll" FileName="BIONO~16.DLL|BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll" SelfReg="false"/>
+    <ROW File="plot_cdf_tic.R" Component_="plot_cdf_tic.R" FileName="PLOT_C~1.R|plot_cdf_tic.R" Attributes="0" SourcePath="..\rstudio\demo\plot_cdf_tic.R" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll_1" Component_="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll_1" FileName="BIONO~33.DLL|BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -5382,6 +5388,9 @@
     <ROW Feature_="MainFeature" Component_="regid.201301.com.panomix"/>
     <ROW Feature_="MainFeature" Component_="MZWorkRedis.dll"/>
     <ROW Feature_="MainFeature" Component_="mzblender.exe"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll"/>
+    <ROW Feature_="MainFeature" Component_="plot_cdf_tic.R"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
