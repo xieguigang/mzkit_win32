@@ -211,4 +211,49 @@ Public Class FormMain
     Private Sub ViewAsHtmlToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewAsHtmlToolStripMenuItem.Click
         Call OpenAndView(Win7StyleTreeView1.SelectedNode, "html")
     End Sub
+
+    Private Sub ExportAsFileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportAsFileToolStripMenuItem.Click
+        Dim node = Win7StyleTreeView1.SelectedNode
+
+        If node Is Nothing Then
+            Return
+        End If
+
+        Dim data As StreamObject = node.Tag
+
+        If data Is Nothing OrElse TypeOf data Is StreamGroup Then
+            Return
+        End If
+
+        Using file As New SaveFileDialog With {.FileName = data.referencePath.ToString.FileName}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim buf = mzpack.OpenBlock(data)
+
+                Call buf.Seek(Scan0, SeekOrigin.Begin)
+
+                Using output As Stream = file.FileName.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
+                    Call buf.CopyTo(output)
+                    Call output.Flush()
+                End Using
+
+                MessageBox.Show($"Export file success!", "Export As File", buttons:=MessageBoxButtons.OK, icon:=MessageBoxIcon.Information)
+            End If
+        End Using
+    End Sub
+
+    Private Sub ShowSummaryToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowSummaryToolStripMenuItem.Click
+        Dim node = Win7StyleTreeView1.SelectedNode
+
+        If node Is Nothing Then
+            Return
+        End If
+
+        Dim data As StreamObject = node.Tag
+
+        If data Is Nothing Then
+            Return
+        Else
+            MessageBox.Show(data.ToString, "File Info", buttons:=MessageBoxButtons.OK, icon:=MessageBoxIcon.Information)
+        End If
+    End Sub
 End Class
