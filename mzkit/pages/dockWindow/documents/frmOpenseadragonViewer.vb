@@ -74,7 +74,7 @@ Public Class frmOpenseadragonViewer
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
         Do While webPort <= 0
-            Call Application.DoEvents()
+            Call System.Windows.Forms.Application.DoEvents()
             Call Thread.Sleep(10)
         Loop
 

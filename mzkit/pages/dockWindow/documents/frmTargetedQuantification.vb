@@ -969,7 +969,7 @@ Public Class frmTargetedQuantification
         For Each file As NamedValue(Of String) In files
             Call MyApplication.host.showStatusMessage($"open raw data file '{file.Value}'...")
             Call MyApplication.host.OpenFile(file.Value, showDocument:=linearPack Is Nothing)
-            Call Application.DoEvents()
+            Call System.Windows.Forms.Application.DoEvents()
         Next
 
         ' and then do quantify if the linear is exists

@@ -45,6 +45,8 @@ Public Class FormVault
             If allMass.Length Mod (++i) = 0 Then
                 Call println(mass.ToString)
             End If
+
+            Call Application.DoEvents()
         Next
     End Sub
 

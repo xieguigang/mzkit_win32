@@ -60,7 +60,7 @@ Public Class FormMain
             current_dir.SelectedImageIndex = 1
 
             If TypeOf item Is StreamGroup Then
-                Call Application.DoEvents()
+                Call System.Windows.Forms.Application.DoEvents()
 
                 current_dir.ImageIndex = 0
                 current_dir.SelectedImageIndex = 0

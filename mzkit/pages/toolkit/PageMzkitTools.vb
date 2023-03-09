@@ -699,7 +699,7 @@ Public Class PageMzkitTools
 
             For Each tick As ms2 In matrix
                 DataGridView1.Rows.Add({tick.mz, tick.intensity})
-                Application.DoEvents()
+                System.Windows.Forms.Application.DoEvents()
             Next
         Else
             DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "m/z"})
@@ -718,7 +718,7 @@ Public Class PageMzkitTools
 
             For Each tick As ms2 In matrix
                 DataGridView1.Rows.Add({tick.mz, tick.intensity, CInt(tick.intensity / max * 100), tick.Annotation})
-                Application.DoEvents()
+                System.Windows.Forms.Application.DoEvents()
             Next
         End If
     End Sub

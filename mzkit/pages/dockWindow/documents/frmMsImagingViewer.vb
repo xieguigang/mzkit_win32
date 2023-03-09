@@ -845,7 +845,7 @@ Public Class frmMsImagingViewer
                         .ToArray
 
                     Call grid.Rows.Add(v)
-                    Call Application.DoEvents()
+                    Call System.Windows.Forms.Application.DoEvents()
                 Next
             End Sub)
     End Sub
@@ -950,7 +950,7 @@ Public Class frmMsImagingViewer
                         )
                     End If
 
-                    Call Application.DoEvents()
+                    Call System.Windows.Forms.Application.DoEvents()
                 Next
             End Sub)
     End Sub
