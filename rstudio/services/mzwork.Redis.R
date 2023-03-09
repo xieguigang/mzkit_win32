@@ -12,4 +12,4 @@ const master as string    = ?"--master" || NULL;
 
 options(memory.load = "max");
 
-RedisApp::run(as.integer(debugPort));
+RedisApp::run(as.integer(debugPort), as.integer(master));

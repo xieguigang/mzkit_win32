@@ -87,8 +87,8 @@ Imports Microsoft.VisualBasic.Net.Protocols.Reflection
 Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports Parallel
 Imports stdNum = System.Math
-Imports HeartBeatA = Parallel.Utils
 
 <Protocol(GetType(ServiceProtocol))>
 Public Class MSI : Implements ITaskDriver, IDisposable
@@ -118,7 +118,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Me.socket.ResponseHandler = AddressOf New ProtocolHandler(Me, debug:=Not debugPort Is Nothing).HandleRequest
 
         Call RunSlavePipeline.SendMessage($"socket={TcpPort}")
-        Call HeartBeatA.BindToMaster(masterPid, Me)
+        Call BackgroundTaskUtils.BindToMaster(masterPid, Me)
     End Sub
 
     Public Function Run() As Integer Implements ITaskDriver.Run

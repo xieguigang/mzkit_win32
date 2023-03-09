@@ -106,8 +106,10 @@ Public Class Service : Implements IDisposable
     End Function
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
-    Public Shared Function Start(port As Integer) As Service
-        Return New Service(port)
+    Public Shared Function Start(port As Integer, master As Integer) As Service
+        Dim svr As New Service(port)
+        Call BackgroundTaskUtils.BindToMaster(master, kill:=svr)
+        Return svr
     End Function
 
     <Protocol(Protocols.GetValue)>

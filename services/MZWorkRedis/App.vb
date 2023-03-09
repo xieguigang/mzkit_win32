@@ -65,8 +65,8 @@ Imports Parallel
 Public Module App
 
     <ExportAPI("run")>
-    Public Function Start(port As Integer) As Boolean
-        Return Service.Start(port).Run
+    Public Function Start(port As Integer, masterPid As Integer) As Boolean
+        Return Service.Start(port, masterPid).Run
     End Function
 
     ''' <summary>

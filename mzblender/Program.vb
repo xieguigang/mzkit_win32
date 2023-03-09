@@ -18,7 +18,7 @@ Public Module Program
         Dim localhost As New Service(port)
 
         If master > 0 Then
-            Call Utils.BindToMaster(parentId:=master, kill:=localhost)
+            Call BackgroundTaskUtils.BindToMaster(parentId:=master, kill:=localhost)
         End If
 
         Return localhost.Run

@@ -21,6 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceHub", "ServiceHub", 
 	ProjectSection(SolutionItems) = preProject
 		rstudio\services\GCxGC-host.R = rstudio\services\GCxGC-host.R
 		rstudio\services\MSI-host.R = rstudio\services\MSI-host.R
+		rstudio\services\mzwork.Redis.R = rstudio\services\mzwork.Redis.R
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSImaging", "MSImaging", "{CBAE691F-FC0B-403D-9E47-A545E0E90C29}"
