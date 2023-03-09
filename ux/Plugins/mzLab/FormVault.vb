@@ -36,7 +36,7 @@ Public Class FormVault
     Private Sub loadMetabolites(fileName As String, println As Action(Of String))
         Dim tree = Win7StyleTreeView1.Nodes.Add(stdlib.ToString)
         Dim allMass = stdlib.LoadMass.ToArray
-        Dim i As i32 = 0
+        Dim i As i32 = 1
 
         For Each mass As MassIndex In allMass
             Dim metabolite = tree.Nodes.Add(mass.name & $" [{mass.size} spectrum]")
