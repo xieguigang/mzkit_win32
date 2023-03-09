@@ -53,6 +53,8 @@ Public Class FormVault
 
         Text = "Library Viewer"
         TabText = Text
+
+        Call ApplyVsTheme(ContextMenuStrip1)
     End Sub
 
     Private Sub Win7StyleTreeView1_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles Win7StyleTreeView1.AfterSelect

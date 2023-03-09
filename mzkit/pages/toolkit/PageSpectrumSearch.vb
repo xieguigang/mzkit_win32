@@ -76,7 +76,10 @@ Imports Task
 
 Public Class PageSpectrumSearch
 
+    Dim spectrum_Name As String
+
     Private Sub DataGridView1_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellEndEdit
+        spectrum_Name = "custom spectrum"
         Call refreshPreviews()
     End Sub
 
@@ -93,7 +96,7 @@ Public Class PageSpectrumSearch
         Return New LibraryMatrix With {
             .centroid = True,
             .ms2 = ms2.Where(Function(a) a.mz > 0).ToArray,
-            .name = "custom spectrum"
+            .name = spectrum_Name
         }
     End Function
 
@@ -137,12 +140,13 @@ Public Class PageSpectrumSearch
         If ion Is Nothing OrElse ion.Peaks.IsNullOrEmpty Then
             Call MyApplication.host.showStatusMessage("invalid mgf text format!", My.Resources.StatusAnnotations_Warning_32xLG_color)
         Else
-            Call loadMs2(ion.Peaks)
+            Call loadMs2(ion.Peaks, ion.Title)
         End If
     End Sub
 
-    Public Sub loadMs2(products As IEnumerable(Of ms2))
+    Public Sub loadMs2(products As IEnumerable(Of ms2), Optional name As String = "custom spectrum")
         DataGridView1.Rows.Clear()
+        spectrum_Name = If(name.StringEmpty, "custom spectrum", name)
 
         For Each ms2 As ms2 In products
             DataGridView1.Rows.Add(ms2.mz, ms2.intensity)
@@ -323,7 +327,7 @@ Public Class PageSpectrumSearch
                     Dim data = WebJSON.GetJson(input.MoNA_id, cache:=$"{App.ProductProgramData}/.mona/")
                     Dim matrix As LibraryMatrix = data.ParseMatrix
 
-                    Call loadMs2(matrix)
+                    Call loadMs2(matrix, matrix.name)
                 End If
             End Sub)
     End Sub

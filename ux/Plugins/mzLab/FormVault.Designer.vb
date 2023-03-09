@@ -92,10 +92,11 @@ Partial Class FormVault : Inherits DocumentWindow
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SearchInSampleToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(170, 26)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 48)
         '
         'SearchInSampleToolStripMenuItem
         '
+        Me.SearchInSampleToolStripMenuItem.Image = CType(resources.GetObject("SearchInSampleToolStripMenuItem.Image"), System.Drawing.Image)
         Me.SearchInSampleToolStripMenuItem.Name = "SearchInSampleToolStripMenuItem"
         Me.SearchInSampleToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.SearchInSampleToolStripMenuItem.Text = "Search In Samples"

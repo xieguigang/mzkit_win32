@@ -65,9 +65,9 @@ Public Class frmSpectrumSearch : Implements SpectrumSearchPage
         End If
 
         If TypeOf ms2 Is PeakMs2 Then
-            Call page.loadMs2(DirectCast(ms2, PeakMs2).mzInto)
+            Call page.loadMs2(DirectCast(ms2, PeakMs2).mzInto, DirectCast(ms2, PeakMs2).lib_guid)
         ElseIf TypeOf ms2 Is LibraryMatrix Then
-            Call page.loadMs2(DirectCast(ms2, LibraryMatrix).ms2)
+            Call page.loadMs2(DirectCast(ms2, LibraryMatrix).ms2, DirectCast(ms2, LibraryMatrix).name)
         ElseIf TypeOf ms2 Is ms2() Then
             Call page.loadMs2(DirectCast(ms2, ms2()))
         Else
