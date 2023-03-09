@@ -31,6 +31,6 @@ Public Class Plugin : Inherits Mzkit_win32.BasicMDIForm.Plugin
     End Sub
 
     Public Overrides Function Init(println As Action(Of String)) As Boolean
-
+        Return True
     End Function
 End Class

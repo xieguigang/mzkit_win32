@@ -1,4 +1,5 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.PackLib
+Imports Mzkit_win32.BasicMDIForm
 
 Public Class FormVault
 
@@ -14,20 +15,41 @@ Public Class FormVault
                 stdlib = New SpectrumReader(file.OpenFile)
                 Win7StyleTreeView1.Nodes.Clear()
 
-                Call loadMetabolites()
+                Call TaskProgress.RunAction(
+                    run:=Sub(msg)
+                             Call loadMetabolites(msg.Echo)
+                         End Sub,
+                    title:="Parse Library Tree",
+                    info:="Parse the raw reference spectrum library file...",
+                    host:=Me
+                )
+                Call Workbench.StatusMessage("Parse Reference Spectrum Library Success!")
             End If
         End Using
     End Sub
 
-    Private Sub loadMetabolites()
+    Private Sub loadMetabolites(println As Action(Of String))
         Dim tree = Win7StyleTreeView1.Nodes.Add(stdlib.ToString)
 
         For Each mass As MassIndex In stdlib.LoadMass
-            Call tree.Nodes.Add(mass.name & $" [{mass.size} spectrum]")
+            Dim metabolite = tree.Nodes.Add(mass.name & $" [{mass.size} spectrum]")
+            metabolite.Tag = mass
+
+            For Each i As Integer In mass.spectrum
+                Dim pointer = metabolite.Nodes.Add(stdlib.Libname(i))
+                pointer.Tag = i
+                pointer.ImageIndex = 1
+                pointer.SelectedImageIndex = 1
+            Next
+
+            Call println(mass.ToString)
         Next
     End Sub
 
     Private Sub FormVault_Load(sender As Object, e As EventArgs) Handles Me.Load
         HookOpen = AddressOf OpenDatabase
+
+        Text = "Library Viewer"
+        TabText = Text
     End Sub
 End Class
