@@ -1,5 +1,7 @@
 ﻿Imports BioNovoGene.mzkit_win32.ServiceHub.Manager
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
+Imports Microsoft.VisualBasic.Net.Tcp
+Imports Microsoft.VisualBasic.Parallel
 
 Public NotInheritable Class RenderService
 
@@ -13,7 +15,11 @@ Public NotInheritable Class RenderService
         Dim localhost As New RunSlavePipeline(slave.Path, args, workdir:=App.HOME)
         Dim background As Process = localhost.Start()
 
-        Call App.AddExitCleanHook(Sub() Call background.Kill())
+        Call App.AddExitCleanHook(
+            Sub()
+                Call Shutdown(port)
+                Call background.Kill()
+            End Sub)
         Call Hub.Register(New Service With {
             .CPU = 0,
             .Name = "Data Visualization &amp; Rendering",
@@ -25,5 +31,10 @@ Public NotInheritable Class RenderService
             .Protocol = "TCP",
             .StartTime = Now.ToString
         })
+    End Sub
+
+    Private Shared Sub Shutdown(port As Integer)
+        Dim req As New RequestStream(mzblender.Service.protocolHandle, mzblender.Protocol.Shutdown, "exit")
+        Call New TcpRequest(port).SendMessage(req)
     End Sub
 End Class

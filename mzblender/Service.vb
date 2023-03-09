@@ -1,16 +1,29 @@
-﻿Imports Microsoft.VisualBasic.Net.Tcp
+﻿Imports Microsoft.VisualBasic.Net.Protocols.Reflection
+Imports Microsoft.VisualBasic.Net.Tcp
+Imports Microsoft.VisualBasic.Parallel
+Imports TcpEndPoint = System.Net.IPEndPoint
 
+<Protocol(GetType(Protocol))>
 Public Class Service : Implements IDisposable
 
     Dim disposedValue As Boolean
     Dim socket As TcpServicesSocket
 
+    Public Shared ReadOnly protocolHandle As Long = ProtocolAttribute.GetProtocolCategory(GetType(Protocol)).EntryPoint
+
     Sub New(port As Integer)
         socket = New TcpServicesSocket(port)
+        socket.ResponseHandler = AddressOf New ProtocolHandler(Me).HandleRequest
     End Sub
 
     Public Function Run() As Integer
         Return socket.Run
+    End Function
+
+    <Protocol(Protocol.Shutdown)>
+    Public Function Shutdown(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
+        Call Me.Dispose()
+        Return New DataPipe("OK!")
     End Function
 
     Protected Overridable Sub Dispose(disposing As Boolean)
