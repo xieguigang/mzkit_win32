@@ -1,4 +1,7 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.PackLib
+﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
+Imports BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.PackLib
+Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
+Imports Microsoft.VisualBasic.Imaging
 Imports Mzkit_win32.BasicMDIForm
 
 Public Class FormVault
@@ -51,5 +54,29 @@ Public Class FormVault
 
         Text = "Library Viewer"
         TabText = Text
+    End Sub
+
+    Private Sub Win7StyleTreeView1_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles Win7StyleTreeView1.AfterSelect
+
+    End Sub
+
+    Private Sub Win7StyleTreeView1_MouseClick(sender As Object, e As MouseEventArgs) Handles Win7StyleTreeView1.MouseClick
+        Dim node = Win7StyleTreeView1.SelectedNode
+
+        If node Is Nothing OrElse node.Tag Is Nothing Then
+            Return
+        End If
+
+        If TypeOf node.Tag Is MassIndex Then
+            Return
+        End If
+
+        Dim p As Integer = node.Tag
+        Dim spectrum As PeakMs2 = SpectrumReader.GetSpectrum(stdlib.GetSpectrum(p))
+        Dim mat As New LibraryMatrix With {.ms2 = spectrum.mzInto, .name = $"{spectrum.lib_guid} {spectrum.mz}@{spectrum.rt}"}
+        Dim img As Image = PeakAssign.DrawSpectrumPeaks(mat, size:="1920,1080").AsGDIImage
+        Dim pic As PictureBox = PictureBox1
+
+        pic.BackgroundImage = img
     End Sub
 End Class

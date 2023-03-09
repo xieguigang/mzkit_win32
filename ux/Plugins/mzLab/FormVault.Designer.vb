@@ -26,8 +26,8 @@ Partial Class FormVault : Inherits DocumentWindow
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormVault))
         Me.Win7StyleTreeView1 = New ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView(Me.components)
-        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -49,6 +49,13 @@ Partial Class FormVault : Inherits DocumentWindow
         Me.Win7StyleTreeView1.Size = New System.Drawing.Size(306, 554)
         Me.Win7StyleTreeView1.TabIndex = 1
         '
+        'ImageList1
+        '
+        Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
+        Me.ImageList1.Images.SetKeyName(0, "folder-documents.png")
+        Me.ImageList1.Images.SetKeyName(1, "application-x-object.png")
+        '
         'SplitContainer1
         '
         Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -65,13 +72,6 @@ Partial Class FormVault : Inherits DocumentWindow
         Me.SplitContainer1.Size = New System.Drawing.Size(919, 554)
         Me.SplitContainer1.SplitterDistance = 306
         Me.SplitContainer1.TabIndex = 2
-        '
-        'ImageList1
-        '
-        Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
-        Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
-        Me.ImageList1.Images.SetKeyName(0, "folder-documents.png")
-        Me.ImageList1.Images.SetKeyName(1, "application-x-object.png")
         '
         'PictureBox1
         '
