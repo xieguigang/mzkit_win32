@@ -433,10 +433,9 @@ Public Class PageMzSearch
             Return
         End If
 
-        Dim searchPage As New frmSpectrumSearch
+        Dim searchPage As frmSpectrumSearch = VisualStudio.ShowDocument(Of frmSpectrumSearch)
 
-        searchPage.Show(MyApplication.host.m_dockPanel)
-        searchPage.page.loadMs2(isotope.GetMS)
+        searchPage.LoadMs2(isotope.GetMS.ToArray)
         searchPage.page.runSearch(isotope)
     End Sub
 

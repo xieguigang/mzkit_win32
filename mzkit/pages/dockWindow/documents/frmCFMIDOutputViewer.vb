@@ -1,6 +1,7 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MSP
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.mzkit_win32.My
+Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmCFMIDOutputViewer
 
@@ -37,12 +38,11 @@ Public Class frmCFMIDOutputViewer
             cluster = TreeListView1.SelectedItems(0)
         End If
 
-        Dim searchPage As New frmSpectrumSearch
+        Dim searchPage As frmSpectrumSearch = VisualStudio.ShowDocument(Of frmSpectrumSearch)(DockState.Document)
         Dim msp As MspData = cluster.Tag
 
-        searchPage.Show(MyApplication.host.m_dockPanel)
-        searchPage.page.loadMs2(msp.Peaks)
-        searchPage.page.runSearch()
+        Call searchPage.LoadMs2(msp.Peaks)
+        Call searchPage.RunSearch()
     End Sub
 
     ''' <summary>

@@ -592,11 +592,10 @@ Public Class frmRawFeaturesList
         End If
 
         Dim ms2 As ScanMS2 = currentScan
-        Dim searchPage As New frmSpectrumSearch
+        Dim searchPage As frmSpectrumSearch = VisualStudio.ShowDocument(Of frmSpectrumSearch)
 
-        searchPage.Show(MyApplication.host.m_dockPanel)
-        searchPage.page.loadMs2(ms2.GetMs)
-        searchPage.page.runSearch()
+        searchPage.LoadMs2(ms2.GetMs.ToArray)
+        searchPage.RunSearch()
     End Sub
 
     Private Sub ShowPropertiesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowPropertiesToolStripMenuItem.Click

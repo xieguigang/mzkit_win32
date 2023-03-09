@@ -1,60 +1,83 @@
 ﻿#Region "Microsoft.VisualBasic::62feaec406808c4fef9fbe2e53a492e9, mzkit\src\mzkit\mzkit\pages\dockWindow\documents\frmSpectrumSearch.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 12
-    '    Code Lines: 9
-    ' Comment Lines: 0
-    '   Blank Lines: 3
-    '     File Size: 362.00 B
+' Summaries:
 
 
-    ' Class frmSpectrumSearch
-    ' 
-    '     Sub: frmSpectrumSearch_Load
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 12
+'    Code Lines: 9
+' Comment Lines: 0
+'   Blank Lines: 3
+'     File Size: 362.00 B
+
+
+' Class frmSpectrumSearch
+' 
+'     Sub: frmSpectrumSearch_Load
+' 
+' /********************************************************************************/
 
 #End Region
 
-Public Class frmSpectrumSearch
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
+Imports Mzkit_win32.BasicMDIForm
 
-    Friend page As New PageSpectrumSearch With {.Text = "Spectrum Similarity Search"}
+Public Class frmSpectrumSearch : Implements SpectrumSearchPage
+
+    Friend ReadOnly page As New PageSpectrumSearch With {.Text = "Spectrum Similarity Search"}
+
+    Public Sub LoadMs2(ms2 As Object) Implements SpectrumSearchPage.LoadMs2
+        If ms2 Is Nothing Then
+            Return
+        End If
+
+        If TypeOf ms2 Is PeakMs2 Then
+            Call page.loadMs2(DirectCast(ms2, PeakMs2).mzInto)
+        ElseIf TypeOf ms2 Is LibraryMatrix Then
+            Call page.loadMs2(DirectCast(ms2, LibraryMatrix).ms2)
+        ElseIf TypeOf ms2 Is ms2() Then
+            Call page.loadMs2(DirectCast(ms2, ms2()))
+        Else
+            Throw New NotImplementedException(ms2.GetType.FullName)
+        End If
+    End Sub
+
+    Public Sub RunSearch() Implements SpectrumSearchPage.RunSearch
+        Call page.runSearch()
+    End Sub
 
     Private Sub frmSpectrumSearch_Load(sender As Object, e As EventArgs) Handles Me.Load
         Controls.Add(page)

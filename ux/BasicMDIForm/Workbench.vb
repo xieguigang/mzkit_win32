@@ -118,9 +118,18 @@ Public NotInheritable Class Workbench
     ''' </summary>
     ''' <typeparam name="T"></typeparam>
     ''' <returns></returns>
+    ''' 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Function ShowDocument(Of T As {New, DocumentWindow})(Optional status As DockState = DockState.Document,
                                                                        Optional title As String = Nothing) As T
-        Dim newDoc As New T()
+        Return ShowDocument(GetType(T), status, title)
+    End Function
+
+    Public Shared Function ShowDocument(docType As Type,
+                                        Optional status As DockState = DockState.Document,
+                                        Optional title As String = Nothing) As DocumentWindow
+
+        Dim newDoc As DocumentWindow = Activator.CreateInstance(docType)
 
         newDoc.Show(AppHost.DockPanel)
         newDoc.DockState = status

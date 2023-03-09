@@ -7,6 +7,7 @@ Imports Mzkit_win32.BasicMDIForm
 Public Class FormVault
 
     Dim stdlib As SpectrumReader
+    Dim spectrum As PeakMs2
 
     Public Sub OpenDatabase()
         Using file As New OpenFileDialog With {.Filter = "any file(*.*)|*.*"}
@@ -75,8 +76,19 @@ Public Class FormVault
         Dim spectrum As PeakMs2 = SpectrumReader.GetSpectrum(stdlib.GetSpectrum(p))
         Dim mat As New LibraryMatrix With {.ms2 = spectrum.mzInto, .name = $"{spectrum.lib_guid} {spectrum.mz}@{spectrum.rt}"}
         Dim img As Image = PeakAssign.DrawSpectrumPeaks(mat, size:="1920,1080").AsGDIImage
-        Dim pic As PictureBox = PictureBox1
 
-        pic.BackgroundImage = img
+        Me.spectrum = spectrum
+        Me.PictureBox1.BackgroundImage = img
+    End Sub
+
+    Private Sub SearchInSampleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchInSampleToolStripMenuItem.Click
+        If spectrum Is Nothing Then
+            Return
+        End If
+
+        Dim doc As SpectrumSearchPage = SpectrumSearchModule.ShowDocument
+
+        Call doc.LoadMs2(spectrum)
+        Call doc.RunSearch()
     End Sub
 End Class
