@@ -10,10 +10,10 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("mzLab")>
 <Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("微软中国")>
+<Assembly: AssemblyCompany("BioNovoGene")>
 <Assembly: AssemblyProduct("mzLab")>
-<Assembly: AssemblyCopyright("Copyright © 微软中国 2023")>
-<Assembly: AssemblyTrademark("")>
+<Assembly: AssemblyCopyright("Copyright © xieguigang<gg.xie@bionovogene.com>, PANOMIX 2023, All Rights Reserved.")>
+<Assembly: AssemblyTrademark("MZKit")>
 
 <Assembly: ComVisible(False)>
 
