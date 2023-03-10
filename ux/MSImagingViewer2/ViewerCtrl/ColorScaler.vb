@@ -1,5 +1,6 @@
 ﻿Imports System.Drawing
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
+Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 
@@ -7,10 +8,11 @@ Public Class ColorScaler
 
     Dim colorSet As ScalerPalette = ScalerPalette.FlexImaging
     Dim mapLevels As Integer = 200
+    Dim intensityMax As Double = 10 ^ 6
 
     Public ReadOnly Property ColorBarWidth As Integer
         Get
-            Return Width - 40
+            Return Width - 25
         End Get
     End Property
 
@@ -58,13 +60,20 @@ Public Class ColorScaler
         End Set
     End Property
 
-    Private Sub updateColors()
-        Me.BackgroundImage = DrawByColors(Designer.GetColors(ScalerPalette.Gray.Description, mapLevels))
-        PictureBox1.BackgroundImage = DrawByColors(Designer.GetColors(colorSet.Description, mapLevels))
+    Public Sub SetIntensityMax(max As Double)
+        intensityMax = max
     End Sub
 
-    Private Function DrawByColors(colors As Color()) As Image
-        Dim d As Double = Height / colors.Length
+    Private Sub updateColors()
+        Dim axisTicks = New DoubleRange(0, intensityMax).CreateAxisTicks
+
+        Me.BackgroundImage = DrawByColors(Designer.GetColors(ScalerPalette.Gray.Description, mapLevels), Nothing)
+        PictureBox1.BackgroundImage = DrawByColors(Designer.GetColors(colorSet.Description, mapLevels), axisTicks)
+    End Sub
+
+    Private Function DrawByColors(colors As Color(), axisTicks As Double()) As Image
+        Dim height As Double = Me.Height
+        Dim d As Double = height / colors.Length
         Dim w As Double = ColorBarWidth
         Dim y As Double = 0
 
@@ -73,6 +82,29 @@ Public Class ColorScaler
                 Call g.FillRectangle(New SolidBrush(c), New RectangleF(New PointF(0, y), New SizeF(w, d)))
                 y += d
             Next
+
+            If Not axisTicks.IsNullOrEmpty Then
+                Dim scaleY As New YScaler(False) With {
+                    .Y = d3js.scale.linear.domain(values:=axisTicks).range(values:={0, height}),
+                    .region = New Rectangle(0, 0, 0, height)
+                }
+                Dim a As New PointF(w, 0)
+                Dim b As New PointF(w, height)
+                Dim pen As New Pen(Color.Black, 5)
+                Dim font As New Font(FontFace.MicrosoftYaHeiUI, 14, FontStyle.Bold)
+                Dim fh = g.MeasureString("0", font).Height / 2
+
+                g.DrawLine(pen, a, b)
+                pen = New Pen(Color.Black, 3)
+
+                For Each tick As Double In axisTicks
+                    y = scaleY.TranslateY(tick)
+                    a = New PointF(w, y)
+                    b = New PointF(w + 5, y)
+                    g.DrawLine(pen, a, b)
+                    g.DrawString(tick.ToString("G3"), font, Brushes.Black, New PointF(w + 8, y - fh))
+                Next
+            End If
 
             Return DirectCast(g, Graphics2D).ImageResource
         End Using
@@ -92,6 +124,8 @@ Public Class ColorScaler
 
         picUpperbound.Size = New Size(width - 2, 10)
         picLowerbound.Size = New Size(width - 2, 10)
+
+        Call updateColors()
     End Sub
 
     Dim moveUp, moveDown As Boolean
