@@ -72,20 +72,22 @@ Public Class ColorScaler
         picLowerbound.Location = New Point(1, Height - 10)
         picLowerbound.Size = New Size(width - 2, 10)
 
+        PictureBox1.Location = New Point(1, picUpperbound.Location.Y + 12)
+        PictureBox1.Size = New Size(width - 2, picLowerbound.Top - picUpperbound.Bottom - 5)
+
         Call updateColors()
     End Sub
 
     Private Sub updateColors()
         Dim axisTicks = New DoubleRange(0, intensityMax).CreateAxisTicks
 
-        Me.BackgroundImage = DrawByColors(Designer.GetColors(ScalerPalette.Gray.Description, mapLevels), axisTicks)
-        PictureBox1.BackgroundImage = DrawByColors(Designer.GetColors(colorSet.Description, mapLevels), Nothing)
+        Me.BackgroundImage = DrawByColors(Designer.GetColors(ScalerPalette.Gray.Description, mapLevels), ColorBarWidth, axisTicks)
+        PictureBox1.BackgroundImage = DrawByColors(Designer.GetColors(colorSet.Description, mapLevels), PictureBox1.Width, Nothing)
     End Sub
 
-    Private Function DrawByColors(colors As Color(), axisTicks As Double()) As Image
+    Private Function DrawByColors(colors As Color(), w As Double, axisTicks As Double()) As Image
         Dim height As Double = Me.Height
         Dim d As Double = height / colors.Length
-        Dim w As Double = ColorBarWidth
         Dim y As Double = 0
 
         Using g As IGraphics = Me.Size.CreateGDIDevice
@@ -96,6 +98,7 @@ Public Class ColorScaler
 
             If Not axisTicks.IsNullOrEmpty Then
                 height -= 20
+                w += 5
 
                 Dim scaleY As New YScaler(False) With {
                     .Y = d3js.scale.linear.domain(values:=axisTicks).range(values:={10, height}),
@@ -104,13 +107,13 @@ Public Class ColorScaler
                 Dim a As New PointF(w, 10)
                 Dim b As New PointF(w, height)
                 Dim pen As New Pen(Color.Black, 5)
-                Dim font As New Font(FontFace.MicrosoftYaHeiUI, 12, FontStyle.Bold)
+                Dim font As New Font(FontFace.MicrosoftYaHeiUI, 7, FontStyle.Bold)
                 Dim fh = g.MeasureString("0", font).Height / 2
 
                 g.DrawLine(pen, a, b)
                 pen = New Pen(Color.Black, 3)
 
-                For Each tick As Double In axisTicks
+                For Each tick As Double In axisTicks.Take(axisTicks.Length - 1)
                     y = scaleY.TranslateY(tick)
                     a = New PointF(w, y)
                     b = New PointF(w + 5, y)
@@ -163,8 +166,8 @@ Public Class ColorScaler
             mousePos = e.Location
             picUpperbound.Location = newPos
 
-            PictureBox1.Location = New Point(1, newPos.Y + 10)
-            PictureBox1.Size = New Size(width - 2, picLowerbound.Top - picUpperbound.Bottom)
+            PictureBox1.Location = New Point(1, newPos.Y + 12)
+            PictureBox1.Size = New Size(width - 2, picLowerbound.Top - picUpperbound.Bottom - 5)
         End If
     End Sub
 
@@ -181,7 +184,7 @@ Public Class ColorScaler
 
             mousePos = e.Location
             picLowerbound.Location = newPos
-            PictureBox1.Size = New Size(width - 2, picLowerbound.Top - picUpperbound.Bottom)
+            PictureBox1.Size = New Size(width - 2, picLowerbound.Top - picUpperbound.Bottom - 5)
         End If
     End Sub
 
