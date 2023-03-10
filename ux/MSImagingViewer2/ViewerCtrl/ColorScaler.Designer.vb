@@ -70,6 +70,7 @@ Partial Class ColorScaler
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.picLowerbound)
         Me.Controls.Add(Me.picUpperbound)
+        Me.DoubleBuffered = True
         Me.Name = "ColorScaler"
         Me.Size = New System.Drawing.Size(155, 589)
         CType(Me.picUpperbound, System.ComponentModel.ISupportInitialize).EndInit()
