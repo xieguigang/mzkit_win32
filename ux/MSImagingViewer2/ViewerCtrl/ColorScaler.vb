@@ -12,7 +12,7 @@ Public Class ColorScaler
 
     Public ReadOnly Property ColorBarWidth As Integer
         Get
-            Return Width - 25
+            Return Width - 45
         End Get
     End Property
 
@@ -64,11 +64,22 @@ Public Class ColorScaler
         intensityMax = max
     End Sub
 
+    Public Sub ResetScaleRange()
+        Dim width = ColorBarWidth
+
+        picUpperbound.Location = New Point(1, 1)
+        picUpperbound.Size = New Size(width - 2, 10)
+        picLowerbound.Location = New Point(1, Height - 10)
+        picLowerbound.Size = New Size(width - 2, 10)
+
+        Call updateColors()
+    End Sub
+
     Private Sub updateColors()
         Dim axisTicks = New DoubleRange(0, intensityMax).CreateAxisTicks
 
-        Me.BackgroundImage = DrawByColors(Designer.GetColors(ScalerPalette.Gray.Description, mapLevels), Nothing)
-        PictureBox1.BackgroundImage = DrawByColors(Designer.GetColors(colorSet.Description, mapLevels), axisTicks)
+        Me.BackgroundImage = DrawByColors(Designer.GetColors(ScalerPalette.Gray.Description, mapLevels), axisTicks)
+        PictureBox1.BackgroundImage = DrawByColors(Designer.GetColors(colorSet.Description, mapLevels), Nothing)
     End Sub
 
     Private Function DrawByColors(colors As Color(), axisTicks As Double()) As Image
@@ -84,14 +95,16 @@ Public Class ColorScaler
             Next
 
             If Not axisTicks.IsNullOrEmpty Then
+                height -= 20
+
                 Dim scaleY As New YScaler(False) With {
-                    .Y = d3js.scale.linear.domain(values:=axisTicks).range(values:={0, height}),
+                    .Y = d3js.scale.linear.domain(values:=axisTicks).range(values:={10, height}),
                     .region = New Rectangle(0, 0, 0, height)
                 }
-                Dim a As New PointF(w, 0)
+                Dim a As New PointF(w, 10)
                 Dim b As New PointF(w, height)
                 Dim pen As New Pen(Color.Black, 5)
-                Dim font As New Font(FontFace.MicrosoftYaHeiUI, 14, FontStyle.Bold)
+                Dim font As New Font(FontFace.MicrosoftYaHeiUI, 12, FontStyle.Bold)
                 Dim fh = g.MeasureString("0", font).Height / 2
 
                 g.DrawLine(pen, a, b)
@@ -111,12 +124,7 @@ Public Class ColorScaler
     End Function
 
     Private Sub ColorScaler_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim width = ColorBarWidth
-
-        picUpperbound.Location = New Point(1, 1)
-        picUpperbound.Size = New Size(width - 2, 10)
-        picLowerbound.Location = New Point(1, Height - 10)
-        picLowerbound.Size = New Size(width - 2, 10)
+        Call ResetScaleRange()
     End Sub
 
     Private Sub ColorScaler_Resize(sender As Object, e As EventArgs) Handles Me.Resize
