@@ -24,8 +24,10 @@ Partial Class ColorScaler
     Private Sub InitializeComponent()
         Me.picUpperbound = New System.Windows.Forms.PictureBox()
         Me.picLowerbound = New System.Windows.Forms.PictureBox()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         CType(Me.picUpperbound, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picLowerbound, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'picUpperbound
@@ -48,21 +50,36 @@ Partial Class ColorScaler
         Me.picLowerbound.TabIndex = 1
         Me.picLowerbound.TabStop = False
         '
+        'PictureBox1
+        '
+        Me.PictureBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.PictureBox1.Location = New System.Drawing.Point(3, 30)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(149, 508)
+        Me.PictureBox1.TabIndex = 2
+        Me.PictureBox1.TabStop = False
+        '
         'ColorScaler
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.picLowerbound)
         Me.Controls.Add(Me.picUpperbound)
         Me.Name = "ColorScaler"
         Me.Size = New System.Drawing.Size(155, 589)
         CType(Me.picUpperbound, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picLowerbound, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents picUpperbound As PictureBox
     Friend WithEvents picLowerbound As PictureBox
+    Friend WithEvents PictureBox1 As PictureBox
 End Class

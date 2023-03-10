@@ -1,5 +1,6 @@
 ﻿Imports System.Drawing
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
+Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 
 Public Class ColorScaler
@@ -52,9 +53,24 @@ Public Class ColorScaler
     End Property
 
     Private Sub updateColors()
-        Dim colors As Color() = Designer.GetColors(colorSet.Description)
-
+        PictureBox1.BackgroundImage = DrawByColors(Designer.GetColors(colorSet.Description, mapLevels))
+        Me.BackgroundImage = DrawByColors(Designer.GetColors(ScalerPalette.Gray, mapLevels))
     End Sub
+
+    Private Function DrawByColors(colors As Color()) As Image
+        Dim d As Double = Height / colors.Length
+        Dim w As Double = Width
+        Dim y As Double = 0
+
+        Using g As IGraphics = Me.Size.CreateGDIDevice
+            For Each c As Color In colors
+                Call g.FillRectangle(New SolidBrush(c), New RectangleF(New PointF(0, y), New SizeF(w, d)))
+                y += d
+            Next
+
+            Return DirectCast(g, Graphics2D).ImageResource
+        End Using
+    End Function
 
     Private Sub ColorScaler_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         picUpperbound.Location = New Point(1, 1)
@@ -85,9 +101,17 @@ Public Class ColorScaler
         If moveUp Then
             Dim oldPos = picUpperbound.Location
             Dim delta = e.Y - mousePos.Y
+            Dim newPos As New Point(oldPos.X, oldPos.Y + delta)
+
+            If newPos.Y > picLowerbound.Top Then
+                Return
+            End If
 
             mousePos = e.Location
-            picUpperbound.Location = New Point(oldPos.X, oldPos.Y + delta)
+            picUpperbound.Location = newPos
+
+            PictureBox1.Location = New Point(1, newPos.Y + 10)
+            PictureBox1.Size = New Size(Width - 2, picLowerbound.Top - picUpperbound.Bottom)
         End If
     End Sub
 
@@ -95,9 +119,15 @@ Public Class ColorScaler
         If moveDown Then
             Dim oldPos = picLowerbound.Location
             Dim delta = e.Y - mousePos.Y
+            Dim newPos As New Point(oldPos.X, oldPos.Y + delta)
+
+            If newPos.Y < picUpperbound.Bottom Then
+                Return
+            End If
 
             mousePos = e.Location
-            picLowerbound.Location = New Point(oldPos.X, oldPos.Y + delta)
+            picLowerbound.Location = newPos
+            PictureBox1.Size = New Size(Width - 2, picLowerbound.Top - picUpperbound.Bottom)
         End If
     End Sub
 

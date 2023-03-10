@@ -275,7 +275,10 @@ Partial Public Class KpImageViewer : Inherits UserControl
                 ' panelPreview.Hide()
                 pbPanelAirscape.Hide()
                 pbFull.Hide()
-                MSICanvas.Show()
+                pbFull.Dock = DockStyle.None
+
+                SplitContainer1.Show()
+                SplitContainer1.Dock = DockStyle.Fill
 
                 ' pbFull.Width = pbFull.Width + (4 + panelPreview.Width)
 
@@ -289,10 +292,13 @@ Partial Public Class KpImageViewer : Inherits UserControl
                 drawing.AvoidOutOfScreen()
                 pbFull.Refresh()
             Else
+                SplitContainer1.Dock = DockStyle.None
+                SplitContainer1.Hide()
+
                 ' panelPreview.Show()
                 pbPanelAirscape.Show()
                 pbFull.Show()
-                MSICanvas.Hide()
+                pbFull.Dock = DockStyle.Fill
 
                 ' pbFull.Width = pbFull.Width - (4 + panelPreview.Width)
 

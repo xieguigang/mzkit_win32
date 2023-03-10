@@ -42,18 +42,24 @@
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.MSICanvas = New Mzkit_win32.MSImagingViewerV2.PixelSelector()
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.ColorScaler1 = New Mzkit_win32.MSImagingViewerV2.ColorScaler()
         CType(Me.pbPanelAirscape, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbFull, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pbFull.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.MSICanvas, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer1.Panel1.SuspendLayout()
+        Me.SplitContainer1.Panel2.SuspendLayout()
+        Me.SplitContainer1.SuspendLayout()
         Me.SuspendLayout()
         '
         'pbPanelAirscape
         '
         Me.pbPanelAirscape.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.pbPanelAirscape.Location = New System.Drawing.Point(485, 3)
+        Me.pbPanelAirscape.Location = New System.Drawing.Point(63, 3)
         Me.pbPanelAirscape.Name = "pbPanelAirscape"
         Me.pbPanelAirscape.Size = New System.Drawing.Size(148, 108)
         Me.pbPanelAirscape.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -62,15 +68,12 @@
         '
         'pbFull
         '
-        Me.pbFull.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pbFull.BackColor = System.Drawing.SystemColors.ControlLight
         Me.pbFull.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pbFull.Controls.Add(Me.pbPanelAirscape)
         Me.pbFull.Location = New System.Drawing.Point(0, 25)
         Me.pbFull.Name = "pbFull"
-        Me.pbFull.Size = New System.Drawing.Size(638, 370)
+        Me.pbFull.Size = New System.Drawing.Size(216, 235)
         Me.pbFull.TabIndex = 13
         '
         'ToolStrip1
@@ -192,25 +195,49 @@
         '
         'MSICanvas
         '
-        Me.MSICanvas.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MSICanvas.BackColor = System.Drawing.Color.Black
         Me.MSICanvas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.MSICanvas.Dock = System.Windows.Forms.DockStyle.Fill
         Me.MSICanvas.HEMap = Nothing
-        Me.MSICanvas.Location = New System.Drawing.Point(311, 401)
+        Me.MSICanvas.Location = New System.Drawing.Point(0, 0)
         Me.MSICanvas.Name = "MSICanvas"
         Me.MSICanvas.SelectPolygonMode = False
         Me.MSICanvas.ShowPointInform = False
-        Me.MSICanvas.Size = New System.Drawing.Size(10, 10)
+        Me.MSICanvas.Size = New System.Drawing.Size(230, 174)
         Me.MSICanvas.TabIndex = 11
         Me.MSICanvas.tissue_layer = Nothing
         Me.MSICanvas.ViewerHost = Nothing
+        '
+        'SplitContainer1
+        '
+        Me.SplitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2
+        Me.SplitContainer1.Location = New System.Drawing.Point(275, 75)
+        Me.SplitContainer1.Name = "SplitContainer1"
+        '
+        'SplitContainer1.Panel1
+        '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.MSICanvas)
+        '
+        'SplitContainer1.Panel2
+        '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.ColorScaler1)
+        Me.SplitContainer1.Size = New System.Drawing.Size(299, 174)
+        Me.SplitContainer1.SplitterDistance = 230
+        Me.SplitContainer1.TabIndex = 16
+        '
+        'ColorScaler1
+        '
+        Me.ColorScaler1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ColorScaler1.Location = New System.Drawing.Point(0, 0)
+        Me.ColorScaler1.Name = "ColorScaler1"
+        Me.ColorScaler1.Size = New System.Drawing.Size(65, 174)
+        Me.ColorScaler1.TabIndex = 0
         '
         'KpImageViewer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.MSICanvas)
+        Me.Controls.Add(Me.SplitContainer1)
         Me.Controls.Add(Me.pbFull)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.ToolStrip1)
@@ -225,6 +252,10 @@
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         CType(Me.MSICanvas, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.Panel1.ResumeLayout(False)
+        Me.SplitContainer1.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -253,4 +284,6 @@
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
     Friend WithEvents ToolStripStatusLabel2 As ToolStripStatusLabel
     Friend WithEvents MSICanvas As PixelSelector
+    Friend WithEvents SplitContainer1 As SplitContainer
+    Friend WithEvents ColorScaler1 As ColorScaler
 End Class
