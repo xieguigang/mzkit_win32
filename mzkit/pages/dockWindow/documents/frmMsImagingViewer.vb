@@ -1402,7 +1402,7 @@ Public Class frmMsImagingViewer
                     Call MyApplication.host.mzkitTool.PlotSpectrum(ms, focusOn:=False)
                 End Sub)
         Else
-            Call MyApplication.host.showStatusMessage($"target region [{x1}, {y1}, {x2}, {y2}] not contains any data...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning($"target region [{x1}, {y1}, {x2}, {y2}] not contains any data...")
         End If
     End Sub
 
@@ -1458,7 +1458,7 @@ Public Class frmMsImagingViewer
         Dim selectedMz As Double() = {r, g, b}.Where(Function(mz) mz > 0).ToArray
 
         If params Is Nothing Then
-            Call MyApplication.host.warning("No MS-imaging data is loaded yet!")
+            Call Workbench.Warning("No MS-imaging data is loaded yet!")
             Return
         End If
 

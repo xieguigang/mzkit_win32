@@ -12,7 +12,7 @@ Public Class ColorScaler
 
     Public ReadOnly Property ColorBarWidth As Integer
         Get
-            Return Width - 45
+            Return Width - 60
         End Get
     End Property
 

@@ -1054,7 +1054,13 @@ Partial Public Class KpImageViewer : Inherits UserControl
         MSICanvas.SetMsImagingOutput(image, scan_dimension)
         MSICanvas.BackColor = background
 
+        Me.updateColorScaler(colorSet, mapLevels)
         Me.Image = New Bitmap(image)
+    End Sub
+
+    Private Sub updateColorScaler(colorSet As ScalerPalette, mapLevels As Integer)
+        ColorScaler1.ScalerLevels = mapLevels
+        ColorScaler1.ScalerPalette = colorSet
     End Sub
 
     Private Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
