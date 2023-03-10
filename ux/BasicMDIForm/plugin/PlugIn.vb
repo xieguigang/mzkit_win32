@@ -43,7 +43,12 @@ Public MustInherit Class Plugin
     End Function
 
     Public Shared Sub LoadPlugins(println As Action(Of String))
-        Dim files As String() = PopulateDllFiles.IteratesALL.ToArray
+        Dim files As String() = PopulateDllFiles _
+            .IteratesALL _
+            .Where(Function(dll) Not dll.FileName.ToLower.StartsWith("microsoft")) _
+            .Where(Function(dll) Not dll.FileName.ToLower.StartsWith("bionovogene")) _
+            .Where(Function(dll) Not dll.FileName.ToLower.StartsWith("system")) _
+            .ToArray
         Dim loaded As Index(Of String) = New String() {}
         Dim registry As RegistryFile = RegistryFile.LoadRegistry
         Dim hashlist = registry.plugins.ToDictionary(Function(p) p.id)
