@@ -91,11 +91,6 @@ Public Class ColorScaler
         Dim y As Double = 0
 
         Using g As IGraphics = Me.Size.CreateGDIDevice
-            For Each c As Color In colors
-                Call g.FillRectangle(New SolidBrush(c), New RectangleF(New PointF(0, y), New SizeF(w, d)))
-                y += d
-            Next
-
             If Not axisTicks.IsNullOrEmpty Then
                 height -= 20
                 w += 5
@@ -119,6 +114,11 @@ Public Class ColorScaler
                     b = New PointF(w + 5, y)
                     g.DrawLine(pen, a, b)
                     g.DrawString(tick.ToString("G3"), font, Brushes.Black, New PointF(w + 8, y - fh))
+                Next
+            Else
+                For Each c As Color In colors
+                    Call g.FillRectangle(New SolidBrush(c), New RectangleF(New PointF(0, y), New SizeF(w, d)))
+                    y += d
                 Next
             End If
 
