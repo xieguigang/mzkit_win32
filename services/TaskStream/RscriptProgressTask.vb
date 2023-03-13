@@ -88,6 +88,7 @@ Public NotInheritable Class RscriptProgressTask
         If cachefile.FileLength > 1024 Then
             Return cachefile
         Else
+            Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
             Call Workbench.LogText(pipeline.CommandLine)
             Call TaskProgress.RunAction(
                 run:=Sub(p)

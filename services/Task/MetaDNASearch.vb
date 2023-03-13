@@ -72,11 +72,17 @@ Public Module MetaDNASearch
         Dim cacheRaw As String = raw.cache
         Dim ssid As String = SingletonHolder(Of BioDeepSession).Instance.ssid
         Dim outputdir As String = TempFileSystem.GetAppSysTempFile("__save", App.PID.ToHexString, "metadna_")
-        Dim cli As String = $"""{RscriptPipelineTask.GetRScript("metadna.R")}"" --biodeep_ssid ""{ssid}"" --raw ""{cacheRaw}"" --save ""{outputdir}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim cli As String = $"""{RscriptPipelineTask.GetRScript("metadna.R")}""
+--biodeep_ssid ""{ssid}"" 
+--raw ""{cacheRaw}"" 
+--save ""{outputdir}"" 
+--SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
+"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
         AddHandler pipeline.SetMessage, AddressOf println.Invoke
 
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call cli.__DEBUG_ECHO
         Call pipeline.Run()
 
@@ -88,11 +94,17 @@ Public Module MetaDNASearch
         Dim cacheRaw As String = raw.cache
         Dim ssid As String = SingletonHolder(Of BioDeepSession).Instance.ssid
         Dim outputdir As String = TempFileSystem.GetAppSysTempFile("__save", App.PID.ToHexString, "Mummichog_")
-        Dim cli As String = $"""{RscriptPipelineTask.GetRScript("Mummichog.R")}"" --biodeep_ssid ""{ssid}"" --raw ""{cacheRaw}"" --save ""{outputdir}"" --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}"
+        Dim cli As String = $"""{RscriptPipelineTask.GetRScript("Mummichog.R")}"" 
+--biodeep_ssid ""{ssid}"" 
+--raw ""{cacheRaw}"" 
+--save ""{outputdir}"" 
+--SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
+"
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
         AddHandler pipeline.SetMessage, AddressOf println.Invoke
 
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call cli.__DEBUG_ECHO
         Call pipeline.Run()
 
@@ -113,6 +125,7 @@ Public Module MetaDNASearch
 
         AddHandler pipeline.SetMessage, AddressOf println.Invoke
 
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call mz.FlushAllLines(cacheRaw)
         Call println("Run mummichog DIA:")
         Call println(mz.GetJson)
