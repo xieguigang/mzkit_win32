@@ -646,12 +646,14 @@
     <ROW Component="msconvertGUI.resources.dll_1" ComponentId="{99725A07-C5DF-4C9B-8A99-7D8ABE8B6D4A}" Directory_="zhHant_Dir" Attributes="256" KeyPath="msconvertGUI.resources.dll_1"/>
     <ROW Component="msconvertGUI.resources.dll_2" ComponentId="{1467150A-96DC-4E80-AA1B-A54E2F521ECB}" Directory_="jaJP_Dir" Attributes="256" KeyPath="msconvertGUI.resources.dll_2"/>
     <ROW Component="msmpisetup.exe" ComponentId="{3078F7F3-F025-4770-B5C1-4AF5B2861DE7}" Directory_="cfmid2_Dir" Attributes="0" KeyPath="msmpisetup.exe"/>
+    <ROW Component="mzLab.dll" ComponentId="{B5BFBDBC-E302-4EA5-BFFA-25EC35924656}" Directory_="plugins_Dir" Attributes="256" KeyPath="mzLab.dll"/>
     <ROW Component="mzView.dll" ComponentId="{662240FD-9CF4-4A19-94C9-396624EDF473}" Directory_="plugins_Dir" Attributes="256" KeyPath="mzView.dll"/>
     <ROW Component="mzblender.exe" ComponentId="{2D6CE157-27F6-4445-A54F-33D27C344C24}" Directory_="APPDIR" Attributes="256" KeyPath="mzblender.exe"/>
     <ROW Component="mzkit_win32.exe_1" ComponentId="{D1A9B7C2-509C-425B-AD9E-9C44DC837AD7}" Directory_="APPDIR" Attributes="256" KeyPath="mzkit_win32.exe_1"/>
     <ROW Component="mzkit_win32.resources.dll" ComponentId="{07088A7D-4893-4253-9A2A-E6C0AF73195D}" Directory_="enUS_Dir" Attributes="256" KeyPath="mzkit_win32.resources.dll"/>
     <ROW Component="mzkit_win32.resources.dll_1" ComponentId="{BF42566E-B837-4E29-845D-D598E82099BE}" Directory_="zhCN_Dir" Attributes="256" KeyPath="mzkit_win32.resources.dll_1"/>
     <ROW Component="mzkit_win32.resources.dll_2" ComponentId="{11CB8308-0BDA-45A2-80B0-DCFEEDD84E65}" Directory_="zhHant_Dir" Attributes="256" KeyPath="mzkit_win32.resources.dll_2"/>
+    <ROW Component="mzkit_win32.resources.dll_3" ComponentId="{270EE38E-FEF8-4F42-9C81-87AC37081607}" Directory_="zhHans_Dir" Attributes="256" KeyPath="mzkit_win32.resources.dll_3"/>
     <ROW Component="ndpi2tiff.exe" ComponentId="{2A64A9AF-F880-4144-83EF-8FEFB57AFA2D}" Directory_="ndpitools_Dir" Attributes="256" KeyPath="ndpi2tiff.exe"/>
     <ROW Component="ndpisplit.exe" ComponentId="{B2D15C0E-E5A8-4E45-A9CF-2F958FB54A99}" Directory_="ndpitools_Dir" Attributes="256" KeyPath="ndpisplit.exe"/>
     <ROW Component="ndpisplitm.exe" ComponentId="{4D3E844D-4332-4CA1-8BF8-490A5C6A973A}" Directory_="ndpitools_Dir" Attributes="256" KeyPath="ndpisplitm.exe"/>
@@ -4725,6 +4727,9 @@
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll" Component_="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll" FileName="BIONO~16.DLL|BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll" SelfReg="false"/>
     <ROW File="plot_cdf_tic.R" Component_="plot_cdf_tic.R" FileName="PLOT_C~1.R|plot_cdf_tic.R" Attributes="0" SourcePath="..\rstudio\demo\plot_cdf_tic.R" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll_1" Component_="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll_1" FileName="BIONO~33.DLL|BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll" SelfReg="false"/>
+    <ROW File="mzLab.dll" Component_="mzLab.dll" FileName="mzLab.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\mzLab.dll" SelfReg="false"/>
+    <ROW File="mzLab.dll.config" Component_="Microsoft.VisualBasic.Runtime.dll.config" FileName="MZLABD~1.CON|mzLab.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\mzLab.dll.config" SelfReg="false"/>
+    <ROW File="mzkit_win32.resources.dll_3" Component_="mzkit_win32.resources.dll_3" FileName="MZKIT_~2.DLL|mzkit_win32.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\zh-Hans\mzkit_win32.resources.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -5391,6 +5396,8 @@
     <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll"/>
     <ROW Feature_="MainFeature" Component_="plot_cdf_tic.R"/>
     <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="mzLab.dll"/>
+    <ROW Feature_="MainFeature" Component_="mzkit_win32.resources.dll_3"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
