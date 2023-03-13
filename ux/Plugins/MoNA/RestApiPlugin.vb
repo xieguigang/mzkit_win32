@@ -27,7 +27,7 @@ Public Class RestApiPlugin : Inherits Plugin
     End Property
 
     Public Overrides Sub Exec()
-
+        Call Workbench.ShowSingleDocument(Of FormMoNADownloads)()
     End Sub
 
     Public Overrides Function Init(println As Action(Of String)) As Boolean
