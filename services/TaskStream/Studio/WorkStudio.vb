@@ -52,6 +52,8 @@
 
 #End Region
 
+Imports System.Text
+Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ApplicationServices.Debugging.Logging
 
 Public Class WorkStudio
@@ -67,10 +69,21 @@ Public Class WorkStudio
     End Sub
 
     Public Shared Sub LogCommandLine(host As String, commandline As String, workdir As String)
-        Dim logText As String = $"host: {host}{vbCrLf}arguments: {commandline}{vbCrLf}workdir: {workdir}"
+        Dim logText As New StringBuilder
+
+        Call logText.AppendLine($"host: {host}")
+        Call logText.AppendLine($"arguments: {commandline}")
+        Call logText.AppendLine($"workdir: {workdir}")
+        Call logText.AppendLine()
+        Call logText.AppendLine($"***** full workflow commandline *****")
+        Call logText.AppendLine()
+        Call logText.AppendLine($"cd {workdir.CLIPath}")
+        Call logText.AppendLine($"{host.CLIPath} {commandline.TrimNewLine}")
+        Call logText.AppendLine()
 
         Using log As LogFile = CreateLogger()
             Call log.log(MSG_TYPES.DEBUG, logText)
         End Using
     End Sub
 End Class
+
