@@ -1,4 +1,5 @@
-﻿Imports Mzkit_win32.BasicMDIForm
+﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking
+Imports Mzkit_win32.BasicMDIForm
 
 Public Class FormMoNADownloads
 
@@ -19,8 +20,11 @@ Public Class FormMoNADownloads
         For Each libdata In libs
             Dim libitem As ListViewItem = ListView1.Items.Add(libdata.label)
 
+            libitem.Tag = libdata.mspExport
+
             Call libitem.SubItems.Add(libdata.description)
             Call libitem.SubItems.Add(libdata.queryCount)
+            Call libitem.SubItems.Add(StringFormats.Lanudry(CDbl(libdata.sdfExport.size)))
             Call Application.DoEvents()
         Next
     End Sub

@@ -31,6 +31,7 @@ Partial Class FormMoNADownloads
         Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.InstallToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -38,7 +39,7 @@ Partial Class FormMoNADownloads
         '
         Me.ListView1.Activation = System.Windows.Forms.ItemActivation.OneClick
         Me.ListView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3})
+        Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4})
         Me.ListView1.ContextMenuStrip = Me.ContextMenuStrip1
         Me.ListView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ListView1.Font = New System.Drawing.Font("微软雅黑", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
@@ -73,7 +74,7 @@ Partial Class FormMoNADownloads
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InstallToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 48)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(106, 26)
         '
         'InstallToolStripMenuItem
         '
@@ -81,6 +82,10 @@ Partial Class FormMoNADownloads
         Me.InstallToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.InstallToolStripMenuItem.Text = "Install"
         Me.InstallToolStripMenuItem.ToolTipText = "Download and install the spectrum reference library to local"
+        '
+        'ColumnHeader4
+        '
+        Me.ColumnHeader4.Text = "Size"
         '
         'FormMoNADownloads
         '
@@ -102,4 +107,5 @@ Partial Class FormMoNADownloads
     Friend WithEvents ColumnHeader3 As ColumnHeader
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents InstallToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ColumnHeader4 As ColumnHeader
 End Class
