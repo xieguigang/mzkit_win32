@@ -57,6 +57,7 @@ Imports BioDeep
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.BioDeep.MetaDNA
 Imports BioNovoGene.BioDeep.MetaDNA.Infer
+Imports BioNovoGene.BioDeep.MSEngine
 Imports BioNovoGene.BioDeep.MSEngine.Mummichog
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
@@ -90,13 +91,15 @@ Public Module MetaDNASearch
         infer = $"{outputdir}/infer_network.json".LoadJsonFile(Of CandidateInfer())
     End Sub
 
-    Public Sub RunMummichogDIA(raw As Raw, println As Action(Of String), ByRef output As ActivityEnrichment())
+    Public Sub RunMummichogDIA(raw As Raw, args As MassSearchArguments, println As Action(Of String), ByRef output As ActivityEnrichment())
         Dim cacheRaw As String = raw.cache
+        Dim argv As String = TempFileSystem.GetAppSysTempFile(".json", App.PID, "arguments")
         Dim ssid As String = SingletonHolder(Of BioDeepSession).Instance.ssid
         Dim outputdir As String = TempFileSystem.GetAppSysTempFile("__save", App.PID.ToHexString, "Mummichog_")
         Dim cli As String = $"""{RscriptPipelineTask.GetRScript("Mummichog.R")}"" 
 --biodeep_ssid ""{ssid}"" 
 --raw ""{cacheRaw}"" 
+--argv ""{argv}""
 --save ""{outputdir}"" 
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
@@ -104,6 +107,7 @@ Public Module MetaDNASearch
 
         AddHandler pipeline.SetMessage, AddressOf println.Invoke
 
+        Call args.GetJson.SaveTo(argv)
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call cli.__DEBUG_ECHO
         Call pipeline.Run()
@@ -111,13 +115,16 @@ Public Module MetaDNASearch
         output = $"{outputdir}/Mummichog.json".LoadJsonFile(Of ActivityEnrichment())
     End Sub
 
-    Public Sub RunMummichogDIA(mz As Double(), println As Action(Of String), ByRef output As ActivityEnrichment())
+    Public Sub RunMummichogDIA(mz As Double(), args As MassSearchArguments, println As Action(Of String), ByRef output As ActivityEnrichment())
         Dim cacheRaw As String = TempFileSystem.GetAppSysTempFile(".txt", App.PID, "mz_peaklist")
         Dim ssid As String = SingletonHolder(Of BioDeepSession).Instance.ssid
+        Dim argv As String = TempFileSystem.GetAppSysTempFile(".json", App.PID, "arguments")
         Dim outputdir As String = TempFileSystem.GetAppSysTempFile("__save", App.PID.ToHexString, "Mummichog_")
         Dim cli As String = $"""{RscriptPipelineTask.GetRScript("Mummichog.R")}"" 
 --biodeep_ssid ""{ssid}"" 
 --raw ""{cacheRaw}"" 
+--argv ""{argv}""
+--mz-peaks
 --save ""{outputdir}"" 
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
@@ -125,10 +132,12 @@ Public Module MetaDNASearch
 
         AddHandler pipeline.SetMessage, AddressOf println.Invoke
 
+        Call args.GetJson.SaveTo(argv)
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call mz.FlushAllLines(cacheRaw)
         Call println("Run mummichog DIA:")
         Call println(mz.GetJson)
+        Call println(args.GetJson)
         Call cli.__DEBUG_ECHO
         Call pipeline.Run()
 

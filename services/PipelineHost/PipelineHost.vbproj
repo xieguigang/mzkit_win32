@@ -100,6 +100,7 @@
     <ProjectReference Include="..\..\..\metadb\Massbank\massbank.NET5.vbproj" />
     <ProjectReference Include="..\..\..\metadna\metaDNA\metaDNA.NET5.vbproj" />
     <ProjectReference Include="..\..\..\mzmath\ms2_math-core\mzmath-netcore5.vbproj" />
+    <ProjectReference Include="..\..\..\mzmath\MSEngine\MSEngine.vbproj" />
     <ProjectReference Include="..\..\..\mzmath\mz_deco\deconv.NET5.vbproj" />
     <ProjectReference Include="..\..\..\visualize\MsImaging\MsImaging.NET5.vbproj" />
     <ProjectReference Include="..\..\..\visualize\TissueMorphology\TissueMorphology.vbproj" />

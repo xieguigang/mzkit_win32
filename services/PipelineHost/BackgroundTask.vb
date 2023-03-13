@@ -194,12 +194,7 @@ Module BackgroundTask
     End Function
 
     <ExportAPI("Mummichog")>
-    Public Function Mummichog(<RRawVectorArgument>
-                              raw As Object,
-                              outputdir As String,
-                              Optional polarity As Integer? = Nothing,
-                              Optional env As Environment = Nothing) As Object
-
+    Public Function Mummichog(<RRawVectorArgument> raw As Object, args As MassSearchArguments, outputdir As String, Optional env As Environment = Nothing) As Object
         Dim mzInputs As Double()
 
         If TypeOf raw Is String Then
@@ -209,10 +204,6 @@ Module BackgroundTask
                 mzpack = mzPack.ReadAll(file)
             End Using
 
-            If polarity Is Nothing Then
-                polarity = getPolarity(mzpack)
-            End If
-
             mzInputs = mzpack.MS _
                 .Select(Function(i) i.mz) _
                 .IteratesALL _
@@ -221,21 +212,17 @@ Module BackgroundTask
                 .ToArray
         Else
             mzInputs = CLRVector.asNumeric(raw)
-
-            If polarity Is Nothing Then
-                Return Internal.debug.stop("the required ion mode value could not be nothing!", env)
-            End If
         End If
 
         Dim println As Action(Of String) = AddressOf RunSlavePipeline.SendMessage
         Dim keggCompounds = KEGGRepo.RequestKEGGCompounds()
-        Dim range As MzCalculator() = getIonRange(polarity) _
+        Dim range As MzCalculator() = If(args.Adducts, getIonRange(args.IonMode)) _
             .Select(Function(adducts) Parser.ParseMzCalculator(adducts)) _
             .ToArray
-        Dim pool As IMzQuery = KEGGHandler.CreateIndex(keggCompounds, range, PPMmethod.PPM(20))
+        Dim pool As IMzQuery = KEGGHandler.CreateIndex(keggCompounds, range, PPMmethod.PPM(args.PPM))
         Dim init0 = pool.GetCandidateSet(peaks:=mzInputs).ToArray
         Dim models = KEGGRepo.RequestKEGGMaps.CreateBackground(KEGGRepo.RequestKeggReactionNetwork).ToArray
-        Dim result = init0.PeakListAnnotation(models, permutation:=100)
+        Dim result = init0.PeakListAnnotation(models, permutation:=Integer.Parse(args.Optionals("permutation")))
 
         Return result _
             .GetJson _
