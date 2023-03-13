@@ -77,7 +77,9 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
+Imports BioNovoGene.BioDeep.MSEngine
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
@@ -837,7 +839,7 @@ Public Class frmRawFeaturesList
 
     Private Sub MummichogToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MummichogToolStripMenuItem.Click
         If Not CurrentOpenedFile Is Nothing Then
-            Call ConnectToBioDeep.RunMummichog(CurrentOpenedFile)
+            Call ConnectToBioDeep.RunMummichog(CurrentOpenedFile, New MassSearchArguments With {.IonMode = IonModes.Positive, .PPM = 20, .Optionals = New Dictionary(Of String, String) From {{"permutation", 1000}}})
         End If
     End Sub
 

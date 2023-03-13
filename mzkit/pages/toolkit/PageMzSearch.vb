@@ -574,7 +574,12 @@ Public Class PageMzSearch
         Dim ionMode As IonModes = If(ComboBox2.SelectedIndex <= 0, IonModes.Positive, IonModes.Negative)
         Dim ppm As Double = NumericUpDown2.Value
         Dim permutations As Integer = NumericUpDown3.Value
+        Dim args As New MassSearchArguments With {
+            .Optionals = New Dictionary(Of String, String) From {{"permutation", permutations}},
+            .PPM = ppm,
+            .IonMode = ionMode
+        }
 
-        Call ConnectToBioDeep.RunMummichog(getMzPeakList)
+        Call ConnectToBioDeep.RunMummichog(getMzPeakList, args)
     End Sub
 End Class
