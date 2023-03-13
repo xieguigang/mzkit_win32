@@ -1,5 +1,7 @@
 imports "BackgroundTask" from "PipelineHost";
 
+require(GCModeller);
+
 # title: Pipeline for run ms1 ions peakset annotation based on Mummichog annotation algorithm
 # author: xieguigang <xie.guigang@gcmodeller.org>
 

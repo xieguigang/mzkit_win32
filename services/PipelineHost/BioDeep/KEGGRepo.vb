@@ -89,16 +89,16 @@ Public Module KEGGRepo
         End Using
     End Function
 
-    Public Function RequestKEGGcompounds(println As Action(Of String)) As Compound()
-        Const url As String = "http://query.biodeep.cn/kegg/repository/compounds"
+    'Public Function RequestKEGGcompounds(println As Action(Of String)) As Compound()
+    '    Const url As String = "http://query.biodeep.cn/kegg/repository/compounds"
 
-        Call println("request KEGG compounds from BioDeep...")
+    '    Call println("request KEGG compounds from BioDeep...")
 
-        Return SingletonHolder(Of BioDeepSession).Instance _
-            .RequestStream(url) _
-            .unzip _
-            .DoCall(AddressOf KEGGCompoundPack.ReadKeggDb)
-    End Function
+    '    Return SingletonHolder(Of BioDeepSession).Instance _
+    '        .RequestStream(url) _
+    '        .unzip _
+    '        .DoCall(AddressOf KEGGCompoundPack.ReadKeggDb)
+    'End Function
 
     Public Function RequestKEGGReactions(println As Action(Of String)) As ReactionClass()
         Const url As String = "http://query.biodeep.cn/kegg/repository/reactions"
