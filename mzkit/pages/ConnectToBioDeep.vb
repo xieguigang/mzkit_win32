@@ -80,17 +80,21 @@ Public Class ConnectToBioDeep
     End Sub
 
     Public Shared Sub RunMummichog(raw As Raw)
-        Call OpenAdvancedFunction(Sub() RunMummichogImpl(raw))
+        Call OpenAdvancedFunction(Sub() RunMummichogImpl(raw, Function(t) t.source.FileName, AddressOf MetaDNASearch.RunMummichogDIA))
     End Sub
 
     Public Shared Sub RunMetaDNA(raw As Raw)
         Call OpenAdvancedFunction(Sub() RunMetaDNAImpl(raw))
     End Sub
 
-    Private Shared Sub RunMummichogImpl(raw As Raw)
+    Public Shared Sub RunMummichog(mz As Double())
+        Call OpenAdvancedFunction(Sub() RunMummichogImpl(mz, Function(t) $"M/z peak set of {t.Length} ions", AddressOf MetaDNASearch.RunMummichogDIA))
+    End Sub
+
+    Private Shared Sub RunMummichogImpl(Of T)(raw As T, getName As Func(Of T, String), impl As RunMummichogDIA(Of T))
         ' work in background
         Dim taskList As TaskListWindow = WindowModules.taskWin
-        Dim task As TaskUI = taskList.Add("Mummichog Annotation", raw.source.GetFullPath)
+        Dim task As TaskUI = taskList.Add("Mummichog Annotation", getName(raw))
         Dim log As OutputWindow = WindowModules.output
         Dim println As Action(Of String) =
             Sub(message)
@@ -110,20 +114,16 @@ Public Class ConnectToBioDeep
                 Dim result As ActivityEnrichment() = Nothing
 
                 Call task.Running()
-                Call MetaDNASearch.RunMummichogDIA(raw, println, result)
+                Call impl(raw, println, result)
                 Call table.Invoke(Sub()
                                       table.DockState = DockState.Document
                                       table.Show(MyApplication.host.m_dockPanel)
-                                      table.TabText = $"[Mummichog] {raw.source.FileName}"
+                                      table.TabText = $"[Mummichog] {getName(raw)}"
                                   End Sub)
 
                 Call println("output result table")
 
                 Call table.Invoke(Sub() showTable(table, result))
-                Call table.Invoke(Sub()
-                                      ' Call ShowInferAlignment(table, result, infer)
-                                  End Sub)
-
                 Call println("Mummichog search job done!")
                 Call task.Finish()
 
@@ -135,6 +135,8 @@ Public Class ConnectToBioDeep
                 )
             End Sub)
     End Sub
+
+    Private Delegate Sub RunMummichogDIA(Of T)(x As T, println As Action(Of String), ByRef result As ActivityEnrichment())
 
     Private Shared Sub RunMetaDNAImpl(raw As Raw)
         ' work in background

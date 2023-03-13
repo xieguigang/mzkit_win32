@@ -114,15 +114,15 @@ Partial Class PageMzSearch
         Me.CheckedListBox2 = New System.Windows.Forms.CheckedListBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.NumericUpDown3 = New System.Windows.Forms.NumericUpDown()
+        Me.Label12 = New System.Windows.Forms.Label()
         Me.NumericUpDown2 = New System.Windows.Forms.NumericUpDown()
         Me.Label11 = New System.Windows.Forms.Label()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.NumericUpDown3 = New System.Windows.Forms.NumericUpDown()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -136,8 +136,8 @@ Partial Class PageMzSearch
         Me.TabPage4.SuspendLayout()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage5.SuspendLayout()
-        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -385,36 +385,19 @@ Partial Class PageMzSearch
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.UseVisualStyleBackColor = True
         '
-        'TextBox3
+        'NumericUpDown3
         '
-        resources.ApplyResources(Me.TextBox3, "TextBox3")
-        Me.TextBox3.BackColor = System.Drawing.Color.White
-        Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox3.Name = "TextBox3"
+        Me.NumericUpDown3.Increment = New Decimal(New Integer() {100, 0, 0, 0})
+        resources.ApplyResources(Me.NumericUpDown3, "NumericUpDown3")
+        Me.NumericUpDown3.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
+        Me.NumericUpDown3.Minimum = New Decimal(New Integer() {100, 0, 0, 0})
+        Me.NumericUpDown3.Name = "NumericUpDown3"
+        Me.NumericUpDown3.Value = New Decimal(New Integer() {1000, 0, 0, 0})
         '
-        'Label6
+        'Label12
         '
-        resources.ApplyResources(Me.Label6, "Label6")
-        Me.Label6.Name = "Label6"
-        '
-        'Label10
-        '
-        resources.ApplyResources(Me.Label10, "Label10")
-        Me.Label10.Name = "Label10"
-        '
-        'ComboBox2
-        '
-        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Items.AddRange(New Object() {resources.GetString("ComboBox2.Items"), resources.GetString("ComboBox2.Items1")})
-        resources.ApplyResources(Me.ComboBox2, "ComboBox2")
-        Me.ComboBox2.Name = "ComboBox2"
-        '
-        'Button4
-        '
-        resources.ApplyResources(Me.Button4, "Button4")
-        Me.Button4.Name = "Button4"
-        Me.Button4.UseVisualStyleBackColor = True
+        resources.ApplyResources(Me.Label12, "Label12")
+        Me.Label12.Name = "Label12"
         '
         'NumericUpDown2
         '
@@ -429,19 +412,36 @@ Partial Class PageMzSearch
         resources.ApplyResources(Me.Label11, "Label11")
         Me.Label11.Name = "Label11"
         '
-        'Label12
+        'Button4
         '
-        resources.ApplyResources(Me.Label12, "Label12")
-        Me.Label12.Name = "Label12"
+        resources.ApplyResources(Me.Button4, "Button4")
+        Me.Button4.Name = "Button4"
+        Me.Button4.UseVisualStyleBackColor = True
         '
-        'NumericUpDown3
+        'ComboBox2
         '
-        Me.NumericUpDown3.Increment = New Decimal(New Integer() {100, 0, 0, 0})
-        resources.ApplyResources(Me.NumericUpDown3, "NumericUpDown3")
-        Me.NumericUpDown3.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
-        Me.NumericUpDown3.Minimum = New Decimal(New Integer() {100, 0, 0, 0})
-        Me.NumericUpDown3.Name = "NumericUpDown3"
-        Me.NumericUpDown3.Value = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox2.FormattingEnabled = True
+        Me.ComboBox2.Items.AddRange(New Object() {resources.GetString("ComboBox2.Items"), resources.GetString("ComboBox2.Items1")})
+        resources.ApplyResources(Me.ComboBox2, "ComboBox2")
+        Me.ComboBox2.Name = "ComboBox2"
+        '
+        'Label10
+        '
+        resources.ApplyResources(Me.Label10, "Label10")
+        Me.Label10.Name = "Label10"
+        '
+        'TextBox3
+        '
+        resources.ApplyResources(Me.TextBox3, "TextBox3")
+        Me.TextBox3.BackColor = System.Drawing.Color.White
+        Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBox3.Name = "TextBox3"
+        '
+        'Label6
+        '
+        resources.ApplyResources(Me.Label6, "Label6")
+        Me.Label6.Name = "Label6"
         '
         'PageMzSearch
         '
@@ -469,8 +469,8 @@ Partial Class PageMzSearch
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage5.ResumeLayout(False)
         Me.TabPage5.PerformLayout()
-        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

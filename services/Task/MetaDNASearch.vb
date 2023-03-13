@@ -98,4 +98,27 @@ Public Module MetaDNASearch
 
         output = $"{outputdir}/Mummichog.json".LoadJsonFile(Of ActivityEnrichment())
     End Sub
+
+    Public Sub RunMummichogDIA(mz As Double(), println As Action(Of String), ByRef output As ActivityEnrichment())
+        Dim cacheRaw As String = TempFileSystem.GetAppSysTempFile(".txt", App.PID, "mz_peaklist")
+        Dim ssid As String = SingletonHolder(Of BioDeepSession).Instance.ssid
+        Dim outputdir As String = TempFileSystem.GetAppSysTempFile("__save", App.PID.ToHexString, "Mummichog_")
+        Dim cli As String = $"""{RscriptPipelineTask.GetRScript("Mummichog.R")}"" 
+--biodeep_ssid ""{ssid}"" 
+--raw ""{cacheRaw}"" 
+--save ""{outputdir}"" 
+--SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
+"
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+
+        AddHandler pipeline.SetMessage, AddressOf println.Invoke
+
+        Call mz.FlushAllLines(cacheRaw)
+        Call println("Run mummichog DIA:")
+        Call println(mz.GetJson)
+        Call cli.__DEBUG_ECHO
+        Call pipeline.Run()
+
+        output = $"{outputdir}/Mummichog.json".LoadJsonFile(Of ActivityEnrichment())
+    End Sub
 End Module
