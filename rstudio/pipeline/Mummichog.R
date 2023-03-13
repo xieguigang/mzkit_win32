@@ -22,12 +22,20 @@ const argv as string = ?"--argv" || stop("annotation argument must be provided!"
 sleep(1);
 BackgroundTask::biodeep.session(ssid);
 
+const workflow_configs = argv
+|> readText()
+|> json_decode(typeof = "ms_search.args")
+;
+
+print("view of the workflow configurations:");
+str(as.list(workflow_configs));
+
 if (!peaksMz) {
-    BackgroundTask::Mummichog(raw, json_decode(readText(argv)), outputdir);
+    BackgroundTask::Mummichog(raw, workflow_configs, outputdir);
 } else {
     raw 
     |> readLines()
     |> as.numeric()
-    |> BackgroundTask::Mummichog(json_decode(readText(argv)), outputdir)
+    |> BackgroundTask::Mummichog(workflow_configs, outputdir)
     ;
 }

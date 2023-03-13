@@ -95,6 +95,7 @@ Imports STImaging
 Imports stdNum = System.Math
 
 <Package("BackgroundTask")>
+<RTypeExport("ms_search.args", GetType(MassSearchArguments))>
 Module BackgroundTask
 
     Sub New()
@@ -196,6 +197,7 @@ Module BackgroundTask
     <ExportAPI("Mummichog")>
     Public Function Mummichog(<RRawVectorArgument> raw As Object, args As MassSearchArguments, outputdir As String, Optional env As Environment = Nothing) As Object
         Dim mzInputs As Double()
+        Dim printf = env.WriteLineHandler
 
         If TypeOf raw Is String Then
             Dim mzpack As mzPack
@@ -213,6 +215,9 @@ Module BackgroundTask
         Else
             mzInputs = CLRVector.asNumeric(raw)
         End If
+
+        Call printf("get ions m/z set:")
+        Call printf(mzInputs)
 
         Dim println As Action(Of String) = AddressOf RunSlavePipeline.SendMessage
         Dim keggCompounds = KEGGRepo.RequestKEGGCompounds()
