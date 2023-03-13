@@ -53,14 +53,17 @@
 
 #End Region
 
+Imports System.Runtime.CompilerServices
 Imports BioDeep
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.BioDeep.MetaDNA
 Imports BioNovoGene.BioDeep.MetaDNA.Infer
+Imports BioNovoGene.BioDeep.MSEngine
 Imports BioNovoGene.BioDeep.MSEngine.Mummichog
 Imports BioNovoGene.mzkit_win32.DockSample
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.My
+Imports Mzkit_win32.BasicMDIForm
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 
@@ -79,19 +82,22 @@ Public Class ConnectToBioDeep
         End If
     End Sub
 
-    Public Shared Sub RunMummichog(raw As Raw)
-        Call OpenAdvancedFunction(Sub() RunMummichogImpl(raw, Function(t) t.source.FileName, AddressOf MetaDNASearch.RunMummichogDIA))
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Shared Sub RunMummichog(raw As Raw, args As MassSearchArguments)
+        Call OpenAdvancedFunction(Sub() RunMummichogImpl(raw, args, Function(t) t.source.FileName, AddressOf MetaDNASearch.RunMummichogDIA))
     End Sub
 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Sub RunMetaDNA(raw As Raw)
         Call OpenAdvancedFunction(Sub() RunMetaDNAImpl(raw))
     End Sub
 
-    Public Shared Sub RunMummichog(mz As Double())
-        Call OpenAdvancedFunction(Sub() RunMummichogImpl(mz, Function(t) $"M/z peak set of {t.Length} ions", AddressOf MetaDNASearch.RunMummichogDIA))
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Shared Sub RunMummichog(mz As Double(), args As MassSearchArguments)
+        Call OpenAdvancedFunction(Sub() RunMummichogImpl(mz, args, Function(t) $"M/z peak set of {t.Length} ions", AddressOf MetaDNASearch.RunMummichogDIA))
     End Sub
 
-    Private Shared Sub RunMummichogImpl(Of T)(raw As T, getName As Func(Of T, String), impl As RunMummichogDIA(Of T))
+    Private Shared Sub RunMummichogImpl(Of T)(raw As T, args As MassSearchArguments, getName As Func(Of T, String), impl As RunMummichogDIA(Of T))
         ' work in background
         Dim taskList As TaskListWindow = WindowModules.taskWin
         Dim task As TaskUI = taskList.Add("Mummichog Annotation", getName(raw))
@@ -114,7 +120,7 @@ Public Class ConnectToBioDeep
                 Dim result As ActivityEnrichment() = Nothing
 
                 Call task.Running()
-                Call impl(raw, println, result)
+                Call impl(raw, args, println, result)
                 Call table.Invoke(Sub()
                                       table.DockState = DockState.Document
                                       table.Show(MyApplication.host.m_dockPanel)
@@ -136,7 +142,7 @@ Public Class ConnectToBioDeep
             End Sub)
     End Sub
 
-    Private Delegate Sub RunMummichogDIA(Of T)(x As T, println As Action(Of String), ByRef result As ActivityEnrichment())
+    Private Delegate Sub RunMummichogDIA(Of T)(x As T, args As MassSearchArguments, println As Action(Of String), ByRef result As ActivityEnrichment())
 
     Private Shared Sub RunMetaDNAImpl(raw As Raw)
         ' work in background
@@ -186,27 +192,27 @@ Public Class ConnectToBioDeep
 
     Private Shared Sub ShowInferAlignment(table As frmTableViewer, result As MetaDNAResult(), infer As CandidateInfer())
         Dim inferIndex As Dictionary(Of String, Candidate) = infer _
-            .ExportInferRaw(result) _
-            .Inference _
+            .ExportInferRaw(result).Inference _
             .ToDictionary(Function(a)
                               Return $"{a.ROI}|{a.infer.kegg.unique_id}|{a.precursorType}|{a.infer.reference.id}|{a.infer.rawFile}"
                           End Function)
 
-        table.ViewRow = Sub(obj)
-                            Dim uidRef As String = $"{obj!ROI_id}|{obj!KEGGId}|{obj!precursorType}|{obj!seed}|{obj!fileName}"
-                            Dim align As Candidate = inferIndex(uidRef)
+        table.ViewRow =
+            Sub(obj)
+                Dim uidRef As String = $"{obj!ROI_id}|{obj!KEGGId}|{obj!precursorType}|{obj!seed}|{obj!fileName}"
+                Dim align As Candidate = inferIndex(uidRef)
 
-                            If align.infer.level <> InferLevel.Ms1 Then
-                                Dim qvsref = align.infer.GetAlignmentMirror
+                If align.infer.level <> InferLevel.Ms1 Then
+                    Dim qvsref = align.infer.GetAlignmentMirror
 
-                                Call MyApplication.host.Invoke(
-                                    Sub()
-                                        Call MyApplication.host.mzkitTool.showAlignment(qvsref.query, qvsref.ref, align.infer, showScore:=False)
-                                    End Sub)
-                            Else
-                                Call MyApplication.host.showStatusMessage($"MS1 level metaDNA infer did'nt have MS/MS alignment data...")
-                            End If
-                        End Sub
+                    Call MyApplication.host.Invoke(
+                        Sub()
+                            Call MyApplication.host.mzkitTool.showAlignment(qvsref.query, qvsref.ref, align.infer, showScore:=False)
+                        End Sub)
+                Else
+                    Call Workbench.StatusMessage($"MS1 level metaDNA infer did'nt have MS/MS alignment data...")
+                End If
+            End Sub
     End Sub
 
     Private Shared Sub showTable(table As frmTableViewer, result As ActivityEnrichment())

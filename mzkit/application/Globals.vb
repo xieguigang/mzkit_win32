@@ -357,7 +357,7 @@ Module Globals
         }
         Dim explorer = WindowModules.fileExplorer
 
-        sharedProgressUpdater = Sub(text) MyApplication.host.showStatusMessage(text)
+        sharedProgressUpdater = Sub(text) Workbench.StatusMessage(text)
 
         Call project.LoadRawFileCache(
             explorer:=explorer.treeView1,
