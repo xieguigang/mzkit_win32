@@ -20,7 +20,12 @@ Public Class FormMoNADownloads
             Dim libitem As ListViewItem = ListView1.Items.Add(libdata.label)
 
             Call libitem.SubItems.Add(libdata.description)
+            Call libitem.SubItems.Add(libdata.queryCount)
             Call Application.DoEvents()
         Next
+    End Sub
+
+    Private Sub InstallToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InstallToolStripMenuItem.Click
+
     End Sub
 End Class
