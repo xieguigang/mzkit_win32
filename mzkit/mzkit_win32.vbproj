@@ -1285,6 +1285,9 @@
     <EmbeddedResource Include="pages\Settings\RawFileViewer.resx">
       <DependentUpon>RawFileViewer.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="pages\toolkit\PageMzSearch.zh-Hans.resx">
+      <DependentUpon>PageMzSearch.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="pages\toolkit\PageSpectrumSearch.resx">
       <DependentUpon>PageSpectrumSearch.vb</DependentUpon>
     </EmbeddedResource>
