@@ -67,9 +67,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
-Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.IndexedCache
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
-Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.BioDeep.MetaDNA
 Imports BioNovoGene.BioDeep.MetaDNA.Infer
@@ -90,6 +88,9 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports SMRUCC.genomics.Analysis.HTS.DataFrame
+Imports SMRUCC.Rsharp.Runtime
+Imports SMRUCC.Rsharp.Runtime.Interop
+Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports STImaging
 Imports stdNum = System.Math
 
@@ -185,40 +186,58 @@ Module BackgroundTask
     End Sub
 
     <ExportAPI("Mummichog")>
-    Public Sub Mummichog(raw As String, outputdir As String)
-        Dim mzpack As mzPack
+    Public Function Mummichog(<RRawVectorArgument> raw As Object, outputdir As String,
+                              Optional polarity As Integer? = Nothing,
+                              Optional env As Environment = Nothing) As Object
 
-        Using file As Stream = raw.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
-            mzpack = mzPack.ReadAll(file)
-        End Using
+        Dim mzInputs As Double()
+
+        If TypeOf raw Is String Then
+            Dim mzpack As mzPack
+
+            Using file As Stream = CStr(raw).Open(FileMode.Open, doClear:=False, [readOnly]:=True)
+                mzpack = mzPack.ReadAll(file)
+            End Using
+
+            If polarity Is Nothing Then
+                polarity = mzpack.MS _
+                    .Select(Function(a) a.products) _
+                    .IteratesALL _
+                    .First _
+                    .polarity
+            End If
+
+            mzInputs = mzpack.MS _
+                .Select(Function(i) i.mz) _
+                .IteratesALL _
+                .GroupBy(PPMmethod.PPM(20)) _
+                .Select(Function(a) Val(a.name)) _
+                .ToArray
+        Else
+            mzInputs = CLRVector.asNumeric(raw)
+
+            If polarity Is Nothing Then
+                Return Internal.debug.stop("the required ion mode value could not be nothing!", env)
+            End If
+        End If
 
         Dim println As Action(Of String) = AddressOf RunSlavePipeline.SendMessage
         Dim keggCompounds = KEGGRepo.RequestKEGGcompounds(println)
-        Dim range As MzCalculator() = mzpack.getIonRange _
+        Dim range As MzCalculator() = getIonRange(polarity) _
             .Select(Function(adducts) Parser.ParseMzCalculator(adducts)) _
             .ToArray
         Dim pool As IMzQuery = KEGGHandler.CreateIndex(keggCompounds, range, PPMmethod.PPM(20))
-        Dim mzInputs As Double() = mzpack.MS _
-            .Select(Function(i) i.mz) _
-            .IteratesALL _
-            .GroupBy(PPMmethod.PPM(20)) _
-            .Select(Function(a) Val(a.name)) _
-            .ToArray
         Dim init0 = pool.GetCandidateSet(peaks:=mzInputs).ToArray
         Dim models = KEGGRepo.RequestKEGGMaps.CreateBackground(KEGGRepo.RequestKeggReactionNetwork).ToArray
         Dim result = init0.PeakListAnnotation(models, permutation:=100)
 
-        Call result.GetJson.SaveTo($"{outputdir}/Mummichog.json")
-    End Sub
+        Return result _
+            .GetJson _
+            .SaveTo($"{outputdir}/Mummichog.json")
+    End Function
 
     <Extension>
-    Private Function getIonRange(mzpack As mzPack) As String()
-        Dim ionMode As Integer = mzpack.MS _
-            .Select(Function(a) a.products) _
-            .IteratesALL _
-            .First _
-            .polarity
-
+    Private Function getIonRange(ionMode As Integer) As String()
         If ionMode = 1 Then
             Return {"[M]+", "[M+H]+"}
         Else
