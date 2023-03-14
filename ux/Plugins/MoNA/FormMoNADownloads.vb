@@ -1,4 +1,4 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking
+﻿Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Mzkit_win32.BasicMDIForm
 
 Public Class FormMoNADownloads
@@ -12,6 +12,7 @@ Public Class FormMoNADownloads
                 Call Me.Invoke(Sub() loadMoNA())
             End Sub
         )
+        Call ApplyVsTheme(ContextMenuStrip1)
     End Sub
 
     Private Sub loadMoNA()
@@ -30,6 +31,21 @@ Public Class FormMoNADownloads
     End Sub
 
     Private Sub InstallToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InstallToolStripMenuItem.Click
+        If ListView1.SelectedItems.Count = 0 Then
+            Return
+        End If
 
+        Dim targetLib As Export = ListView1.SelectedItems.Item(0).Tag
+
+        Call Workbench.LogText(targetLib.GetJson)
+        Call TaskProgress.LoadData(
+            streamLoad:=Function(a As ITaskProgress) As Boolean
+                            Return True
+                        End Function,
+            title:=$"Download & Install MoNA",
+            info:=$"",
+            canbeCancel:=True,
+            host:=Me
+        )
     End Sub
 End Class
