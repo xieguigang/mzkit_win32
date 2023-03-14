@@ -1,4 +1,5 @@
 ﻿Imports Microsoft.VisualBasic.ApplicationServices
+Imports Microsoft.VisualBasic.ApplicationServices.Zip
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Mzkit_win32.BasicMDIForm
@@ -39,6 +40,7 @@ Public Class FormMoNADownloads
 
         Dim targetLib As Export = ListView1.SelectedItems.Item(0).Tag
         Dim tmp_zip As String = TempFileSystem.GetAppSysTempFile(, "/.cache/mona_download/", "").ParentPath & $"/{targetLib.id}.zip"
+        Dim msp_file As String = $"{tmp_zip.ParentPath}/{targetLib.id}.msp"
         Dim file_url As String = $"https://mona.fiehnlab.ucdavis.edu/rest/downloads/retrieve/{targetLib.id}"
 
         Call Workbench.LogText($"from_url: {file_url}")
@@ -46,9 +48,15 @@ Public Class FormMoNADownloads
         Call Workbench.LogText(targetLib.GetJson)
         Call TaskProgress.LoadData(
             streamLoad:=Function(a As ITaskProgress) As Boolean
+                            Call a.SetProgressMode()
+
                             If file_url.DownloadFile(save:=tmp_zip) Then
                                 Call Workbench.LogText("Download database file success!")
                                 Call Workbench.LogText($"database_file_size: {StringFormats.Lanudry(CDbl(tmp_zip.FileLength))}")
+                                Call a.SetInfo("Extract the zip archive file...")
+                                Call UnZip.ExtractToSelfDirectory(tmp_zip, Overwrite.Always)
+
+
                             Else
                                 Call Workbench.Warning("Download MoNA database file error!")
                             End If
