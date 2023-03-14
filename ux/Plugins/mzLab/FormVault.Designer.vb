@@ -31,12 +31,17 @@ Partial Class FormVault : Inherits DocumentWindow
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SearchInSampleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
+        Me.TabControl1.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Win7StyleTreeView1
@@ -45,11 +50,11 @@ Partial Class FormVault : Inherits DocumentWindow
         Me.Win7StyleTreeView1.HotTracking = True
         Me.Win7StyleTreeView1.ImageIndex = 0
         Me.Win7StyleTreeView1.ImageList = Me.ImageList1
-        Me.Win7StyleTreeView1.Location = New System.Drawing.Point(0, 0)
+        Me.Win7StyleTreeView1.Location = New System.Drawing.Point(3, 3)
         Me.Win7StyleTreeView1.Name = "Win7StyleTreeView1"
         Me.Win7StyleTreeView1.SelectedImageIndex = 0
         Me.Win7StyleTreeView1.ShowLines = False
-        Me.Win7StyleTreeView1.Size = New System.Drawing.Size(306, 554)
+        Me.Win7StyleTreeView1.Size = New System.Drawing.Size(292, 522)
         Me.Win7StyleTreeView1.TabIndex = 1
         '
         'ImageList1
@@ -67,7 +72,7 @@ Partial Class FormVault : Inherits DocumentWindow
         '
         'SplitContainer1.Panel1
         '
-        Me.SplitContainer1.Panel1.Controls.Add(Me.Win7StyleTreeView1)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.TabControl1)
         '
         'SplitContainer1.Panel2
         '
@@ -92,14 +97,46 @@ Partial Class FormVault : Inherits DocumentWindow
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SearchInSampleToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 48)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(170, 26)
         '
         'SearchInSampleToolStripMenuItem
         '
         Me.SearchInSampleToolStripMenuItem.Image = CType(resources.GetObject("SearchInSampleToolStripMenuItem.Image"), System.Drawing.Image)
         Me.SearchInSampleToolStripMenuItem.Name = "SearchInSampleToolStripMenuItem"
-        Me.SearchInSampleToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SearchInSampleToolStripMenuItem.Size = New System.Drawing.Size(169, 22)
         Me.SearchInSampleToolStripMenuItem.Text = "Search In Samples"
+        '
+        'TabControl1
+        '
+        Me.TabControl1.Controls.Add(Me.TabPage1)
+        Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TabControl1.Location = New System.Drawing.Point(0, 0)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(306, 554)
+        Me.TabControl1.TabIndex = 2
+        '
+        'TabPage1
+        '
+        Me.TabPage1.Controls.Add(Me.Win7StyleTreeView1)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(298, 528)
+        Me.TabPage1.TabIndex = 0
+        Me.TabPage1.Text = "Database Browser"
+        Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'TabPage2
+        '
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(246, 147)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "Local Repository"
+        Me.TabPage2.UseVisualStyleBackColor = True
         '
         'FormVault
         '
@@ -116,6 +153,8 @@ Partial Class FormVault : Inherits DocumentWindow
         Me.SplitContainer1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
+        Me.TabControl1.ResumeLayout(False)
+        Me.TabPage1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -126,4 +165,7 @@ Partial Class FormVault : Inherits DocumentWindow
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents SearchInSampleToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TabControl1 As TabControl
+    Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents TabPage2 As TabPage
 End Class
