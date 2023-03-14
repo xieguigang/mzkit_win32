@@ -1,7 +1,6 @@
 ﻿Imports System.IO.Compression
 Imports Microsoft.VisualBasic.ApplicationServices
-Imports Microsoft.VisualBasic.ApplicationServices.Zip
-Imports Microsoft.VisualBasic.Net.Http
+Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Mzkit_win32.BasicMDIForm
 
@@ -56,8 +55,10 @@ Public Class FormMoNADownloads
                                 Call Workbench.LogText($"database_file_size: {StringFormats.Lanudry(CDbl(tmp_zip.FileLength))}")
 
                                 Call a.SetInfo("Extract the zip archive file...")
+                                Call msp_file.ParentPath.MakeDir
+
                                 Using zip As New ZipArchive(tmp_zip.OpenReadonly, ZipArchiveMode.Read)
-                                    zip.Entries.Item(0).ImprovedExtractToFile(msp_file, Overwrite.Always)
+                                    zip.Entries.Item(0).ExtractToFile(msp_file, True)
                                 End Using
 
                                 Call a.SetInfo("Install database to local appdata filesystem...")
