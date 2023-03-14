@@ -1,4 +1,6 @@
-﻿Imports Microsoft.VisualBasic.Serialization.JSON
+﻿Imports Microsoft.VisualBasic.ApplicationServices
+Imports Microsoft.VisualBasic.Net.Http
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Mzkit_win32.BasicMDIForm
 
 Public Class FormMoNADownloads
@@ -25,8 +27,8 @@ Public Class FormMoNADownloads
 
             Call libitem.SubItems.Add(libdata.description)
             Call libitem.SubItems.Add(libdata.queryCount)
-            Call libitem.SubItems.Add(StringFormats.Lanudry(CDbl(libdata.sdfExport.size)))
-            Call Application.DoEvents()
+            Call libitem.SubItems.Add(StringFormats.Lanudry(CDbl(libdata.mspExport.size)))
+            Call System.Windows.Forms.Application.DoEvents()
         Next
     End Sub
 
@@ -36,14 +38,19 @@ Public Class FormMoNADownloads
         End If
 
         Dim targetLib As Export = ListView1.SelectedItems.Item(0).Tag
+        Dim tmp_zip As String = TempFileSystem.GetAppSysTempFile(, App.PID, "download_mona").ParentPath & $"/{targetLib.id}.zip"
+        Dim file_url As String = $"https://mona.fiehnlab.ucdavis.edu/rest/downloads/retrieve/{targetLib.id}"
 
+        Call Workbench.LogText($"from_url: {file_url}")
+        Call Workbench.LogText($"temp_file: {tmp_zip}")
         Call Workbench.LogText(targetLib.GetJson)
         Call TaskProgress.LoadData(
             streamLoad:=Function(a As ITaskProgress) As Boolean
+                            Call wget.Download(file_url, save:=tmp_zip, clear:=False)
                             Return True
                         End Function,
             title:=$"Download & Install MoNA",
-            info:=$"",
+            info:=$"[HTTP/GET] {targetLib.exportFile} {StringFormats.Lanudry(CDbl(targetLib.size))}...",
             canbeCancel:=True,
             host:=Me
         )
