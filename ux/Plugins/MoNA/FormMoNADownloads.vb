@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic.ApplicationServices
+﻿Imports System.IO.Compression
+Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ApplicationServices.Zip
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Serialization.JSON
@@ -53,9 +54,13 @@ Public Class FormMoNADownloads
                             If file_url.DownloadFile(save:=tmp_zip) Then
                                 Call Workbench.LogText("Download database file success!")
                                 Call Workbench.LogText($"database_file_size: {StringFormats.Lanudry(CDbl(tmp_zip.FileLength))}")
-                                Call a.SetInfo("Extract the zip archive file...")
-                                Call UnZip.ExtractToSelfDirectory(tmp_zip, Overwrite.Always)
 
+                                Call a.SetInfo("Extract the zip archive file...")
+                                Using zip As New ZipArchive(tmp_zip.OpenReadonly, ZipArchiveMode.Read)
+                                    zip.Entries.Item(0).ImprovedExtractToFile(msp_file, Overwrite.Always)
+                                End Using
+
+                                Call a.SetInfo("Install database to local appdata filesystem...")
 
                             Else
                                 Call Workbench.Warning("Download MoNA database file error!")
