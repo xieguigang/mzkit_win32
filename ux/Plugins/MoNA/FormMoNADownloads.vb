@@ -38,7 +38,7 @@ Public Class FormMoNADownloads
         End If
 
         Dim targetLib As Export = ListView1.SelectedItems.Item(0).Tag
-        Dim tmp_zip As String = TempFileSystem.GetAppSysTempFile(, App.PID, "download_mona").ParentPath & $"/{targetLib.id}.zip"
+        Dim tmp_zip As String = TempFileSystem.GetAppSysTempFile(, "/.cache/mona_download/", "").ParentPath & $"/{targetLib.id}.zip"
         Dim file_url As String = $"https://mona.fiehnlab.ucdavis.edu/rest/downloads/retrieve/{targetLib.id}"
 
         Call Workbench.LogText($"from_url: {file_url}")
