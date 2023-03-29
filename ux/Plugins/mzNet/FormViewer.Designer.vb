@@ -26,15 +26,15 @@ Partial Class FormViewer : Inherits DocumentWindow
         Me.components = New System.ComponentModel.Container()
         Me.TreeView1 = New System.Windows.Forms.TreeView()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
-        Me.AdvancedDataGridView1 = New Zuby.ADGV.AdvancedDataGridView()
-        Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
+        Me.AdvancedDataGridView1 = New Zuby.ADGV.AdvancedDataGridView()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
-        CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TreeView1
@@ -63,22 +63,6 @@ Partial Class FormViewer : Inherits DocumentWindow
         Me.SplitContainer1.SplitterDistance = 373
         Me.SplitContainer1.TabIndex = 1
         '
-        'AdvancedDataGridView1
-        '
-        Me.AdvancedDataGridView1.AutoGenerateColumns = False
-        Me.AdvancedDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.AdvancedDataGridView1.DataSource = Me.BindingSource1
-        Me.AdvancedDataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.AdvancedDataGridView1.FilterAndSortEnabled = True
-        Me.AdvancedDataGridView1.FilterStringChangedInvokeBeforeDatasourceUpdate = True
-        Me.AdvancedDataGridView1.Location = New System.Drawing.Point(0, 27)
-        Me.AdvancedDataGridView1.Name = "AdvancedDataGridView1"
-        Me.AdvancedDataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.AdvancedDataGridView1.RowTemplate.Height = 23
-        Me.AdvancedDataGridView1.Size = New System.Drawing.Size(745, 456)
-        Me.AdvancedDataGridView1.SortStringChangedInvokeBeforeDatasourceUpdate = True
-        Me.AdvancedDataGridView1.TabIndex = 2
-        '
         'AdvancedDataGridViewSearchToolBar1
         '
         Me.AdvancedDataGridViewSearchToolBar1.AllowMerge = False
@@ -91,6 +75,20 @@ Partial Class FormViewer : Inherits DocumentWindow
         Me.AdvancedDataGridViewSearchToolBar1.Size = New System.Drawing.Size(745, 27)
         Me.AdvancedDataGridViewSearchToolBar1.TabIndex = 0
         Me.AdvancedDataGridViewSearchToolBar1.Text = "AdvancedDataGridViewSearchToolBar1"
+        '
+        'AdvancedDataGridView1
+        '
+        Me.AdvancedDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.AdvancedDataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.AdvancedDataGridView1.FilterAndSortEnabled = True
+        Me.AdvancedDataGridView1.FilterStringChangedInvokeBeforeDatasourceUpdate = True
+        Me.AdvancedDataGridView1.Location = New System.Drawing.Point(0, 27)
+        Me.AdvancedDataGridView1.Name = "AdvancedDataGridView1"
+        Me.AdvancedDataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.AdvancedDataGridView1.RowTemplate.Height = 23
+        Me.AdvancedDataGridView1.Size = New System.Drawing.Size(745, 456)
+        Me.AdvancedDataGridView1.SortStringChangedInvokeBeforeDatasourceUpdate = True
+        Me.AdvancedDataGridView1.TabIndex = 2
         '
         'FormViewer
         '
@@ -106,15 +104,15 @@ Partial Class FormViewer : Inherits DocumentWindow
         Me.SplitContainer1.Panel2.PerformLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
-        CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents TreeView1 As TreeView
     Friend WithEvents SplitContainer1 As SplitContainer
-    Friend WithEvents AdvancedDataGridView1 As Zuby.ADGV.AdvancedDataGridView
     Friend WithEvents AdvancedDataGridViewSearchToolBar1 As Zuby.ADGV.AdvancedDataGridViewSearchToolBar
     Friend WithEvents BindingSource1 As BindingSource
+    Friend WithEvents AdvancedDataGridView1 As Zuby.ADGV.AdvancedDataGridView
 End Class
