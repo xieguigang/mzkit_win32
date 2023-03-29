@@ -8,13 +8,15 @@ Public Class FormViewer
     Dim search As GridSearchHandler
 
     Private Sub FormViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Dim root = TreeView1.Nodes.Add("Spectrum Pool")
+        Dim root = TreeView1.Nodes.Add("Spectrum Pool").Nodes.Add("/")
 
         Me.tree = New HttpTreeFs("http://192.168.0.207:83/taxonomy")
         Me.TabText = "Spectrum Pool Viewer"
         Me.search = New GridSearchHandler(AdvancedDataGridView1)
 
         Dim childs = Me.tree.GetTreeChilds("/").ToArray
+
+        root.Tag = "/"
 
         For Each dir As String In childs
             Dim node = root.Nodes.Add(dir.BaseName)
@@ -35,19 +37,19 @@ Public Class FormViewer
             Call Me.AdvancedDataGridView1.Columns.Clear()
             Call Me.AdvancedDataGridView1.Rows.Clear()
 
-            Dim tbl = Me.AdvancedDataGridView1
+            'Dim tbl = Me.AdvancedDataGridView1
 
-            tbl.Columns.Add("guid", "guid")
-            tbl.Columns.Add("mz", "mz")
-            tbl.Columns.Add("rt", "rt")
-            tbl.Columns.Add("intensity", "intensity")
-            tbl.Columns.Add("source_file", "source_file")
-            tbl.Columns.Add("sample_source", "sample_source")
-            tbl.Columns.Add("organism", "organism")
-            tbl.Columns.Add("name", "name")
-            tbl.Columns.Add("biodeep_id", "biodeep_id")
-            tbl.Columns.Add("formula", "formula")
-            tbl.Columns.Add("adducts", "adducts")
+            'tbl.Columns.Add("guid", "guid")
+            'tbl.Columns.Add("mz", "mz")
+            'tbl.Columns.Add("rt", "rt")
+            'tbl.Columns.Add("intensity", "intensity")
+            'tbl.Columns.Add("source_file", "source_file")
+            'tbl.Columns.Add("sample_source", "sample_source")
+            'tbl.Columns.Add("organism", "organism")
+            'tbl.Columns.Add("name", "name")
+            'tbl.Columns.Add("biodeep_id", "biodeep_id")
+            'tbl.Columns.Add("formula", "formula")
+            'tbl.Columns.Add("adducts", "adducts")
         Catch ex As Exception
 
         End Try
@@ -61,18 +63,18 @@ Public Class FormViewer
         AdvancedDataGridView1.DataSource = BindingSource1
         AdvancedDataGridViewSearchToolBar1.SetColumns(AdvancedDataGridView1.Columns)
 
-        For Each column As DataGridViewColumn In AdvancedDataGridView1.Columns
-            'Select Case table.Columns.Item(column.HeaderText).DataType
-            '    Case GetType(String)
-            '        AdvancedDataGridView1.SetSortEnabled(column, True)
-            '    Case GetType(Double)
-            '    Case GetType(Integer)
-            '    Case Else
-            '        ' do nothing 
-            'End Select
+        'For Each column As DataGridViewColumn In AdvancedDataGridView1.Columns
+        '    'Select Case table.Columns.Item(column.HeaderText).DataType
+        '    '    Case GetType(String)
+        '    '        AdvancedDataGridView1.SetSortEnabled(column, True)
+        '    '    Case GetType(Double)
+        '    '    Case GetType(Integer)
+        '    '    Case Else
+        '    '        ' do nothing 
+        '    'End Select
 
-            AdvancedDataGridView1.ShowMenuStrip(column)
-        Next
+        '    AdvancedDataGridView1.ShowMenuStrip(column)
+        'Next
     End Sub
 
     Private Sub TreeView1_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles TreeView1.AfterSelect
