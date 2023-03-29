@@ -29,12 +29,15 @@ Partial Class FormViewer : Inherits DocumentWindow
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
         Me.AdvancedDataGridView1 = New Zuby.ADGV.AdvancedDataGridView()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewSpectralToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'TreeView1
@@ -78,7 +81,10 @@ Partial Class FormViewer : Inherits DocumentWindow
         '
         'AdvancedDataGridView1
         '
+        Me.AdvancedDataGridView1.AutoGenerateColumns = False
         Me.AdvancedDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.AdvancedDataGridView1.ContextMenuStrip = Me.ContextMenuStrip1
+        Me.AdvancedDataGridView1.DataSource = Me.BindingSource1
         Me.AdvancedDataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.AdvancedDataGridView1.FilterAndSortEnabled = True
         Me.AdvancedDataGridView1.FilterStringChangedInvokeBeforeDatasourceUpdate = True
@@ -89,6 +95,18 @@ Partial Class FormViewer : Inherits DocumentWindow
         Me.AdvancedDataGridView1.Size = New System.Drawing.Size(745, 456)
         Me.AdvancedDataGridView1.SortStringChangedInvokeBeforeDatasourceUpdate = True
         Me.AdvancedDataGridView1.TabIndex = 2
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewSpectralToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 48)
+        '
+        'ViewSpectralToolStripMenuItem
+        '
+        Me.ViewSpectralToolStripMenuItem.Name = "ViewSpectralToolStripMenuItem"
+        Me.ViewSpectralToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ViewSpectralToolStripMenuItem.Text = "View Spectral"
         '
         'FormViewer
         '
@@ -106,6 +124,7 @@ Partial Class FormViewer : Inherits DocumentWindow
         Me.SplitContainer1.ResumeLayout(False)
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -115,4 +134,6 @@ Partial Class FormViewer : Inherits DocumentWindow
     Friend WithEvents AdvancedDataGridViewSearchToolBar1 As Zuby.ADGV.AdvancedDataGridViewSearchToolBar
     Friend WithEvents BindingSource1 As BindingSource
     Friend WithEvents AdvancedDataGridView1 As Zuby.ADGV.AdvancedDataGridView
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ViewSpectralToolStripMenuItem As ToolStripMenuItem
 End Class

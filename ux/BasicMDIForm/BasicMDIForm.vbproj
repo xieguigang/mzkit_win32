@@ -193,6 +193,7 @@
     <Compile Include="GridSearchHandler.vb" />
     <Compile Include="plugin\modules\Actions\ActionBase.vb" />
     <Compile Include="plugin\modules\Actions\Actions.vb" />
+    <Compile Include="plugin\modules\SpectralViewerModule.vb" />
     <Compile Include="plugin\modules\SpectrumSearchModule.vb" />
     <Compile Include="plugin\modules\MSImagingServiceModule.vb" />
     <Compile Include="plugin\PluginPkg.vb" />

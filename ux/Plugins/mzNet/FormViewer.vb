@@ -1,4 +1,5 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.PoolData
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports Mzkit_win32.BasicMDIForm
 
 Public Class FormViewer
@@ -122,5 +123,28 @@ Public Class FormViewer
                     tbl.Rows.Add(meta.guid, meta.mz, meta.rt, meta.intensity, meta.source_file, meta.sample_source, meta.organism, meta.name, meta.biodeep_id, meta.formula, meta.adducts)
                 Next
             End Sub)
+    End Sub
+
+    Private Sub ViewSpectralToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewSpectralToolStripMenuItem.Click
+        Dim rows = AdvancedDataGridView1.SelectedRows
+
+        If rows.Count = 0 Then
+            Return
+        End If
+
+        Dim metadataRow = rows.Item(0)
+
+        If metadataRow.Cells.Count = 0 Then
+            Return
+        End If
+
+        Dim guid As String = CStr(metadataRow.Cells.Item(0).Value)
+        Dim spectral As PeakMs2 = Me.tree.ReadSpectrum(guid)
+
+        Call SpectralViewerModule.ViewSpectral(spectral)
+    End Sub
+
+    Private Sub ContextMenuStrip1_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles ContextMenuStrip1.Opening
+
     End Sub
 End Class
