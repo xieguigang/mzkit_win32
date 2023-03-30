@@ -20,16 +20,28 @@ Public Class FormViewer
 
         root.Tag = "/"
 
-        For Each dir As String In childs
-            Dim node = root.Nodes.Add(dir.BaseName)
-            Dim data As JavaScriptObject = tree.GetCluster(HttpTreeFs.ClusterHashIndex(dir))
-
-            node.Tag = dir
-        Next
+        Call addNodes(root, childs)
 
         AddHandler AdvancedDataGridViewSearchToolBar1.Search, AddressOf search.AdvancedDataGridViewSearchToolBar1_Search
 
         ApplyVsTheme(AdvancedDataGridViewSearchToolBar1)
+    End Sub
+
+    Private Sub addNodes(root As TreeNode, childs As String())
+        For Each dir As String In childs
+            Dim data As JavaScriptObject = tree.GetCluster(HttpTreeFs.ClusterHashIndex(dir))
+            Dim annotations As String = data!annotations
+            Dim n_childs As String = data!n_childs
+            Dim n_spectrum As String = data!n_spectrum
+
+            If annotations.StringEmpty(testEmptyFactor:=True) Then
+                annotations = dir.BaseName
+            End If
+
+            Dim node = root.Nodes.Add($"{annotations} [{n_childs} childs, {n_spectrum} spectrum]")
+
+            node.Tag = dir
+        Next
     End Sub
 
     Public Sub LoadTable(apply As Action(Of DataTable))
@@ -88,16 +100,9 @@ Public Class FormViewer
             Return
         End If
 
-        If sel.Nodes.Count > 0 Then
-            Return
+        If sel.Nodes.Count = 0 Then
+            Call addNodes(sel, tree.GetTreeChilds(CStr(sel.Tag)).ToArray)
         End If
-
-        Dim childs = tree.GetTreeChilds(CStr(sel.Tag)).ToArray
-
-        For Each dir As String In childs
-            Dim node = sel.Nodes.Add(dir.BaseName)
-            node.Tag = dir
-        Next
 
         Call loadTable(sel)
     End Sub
