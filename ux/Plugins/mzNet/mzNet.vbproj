@@ -134,6 +134,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmCloudExplorer.Designer.vb">
+      <DependentUpon>frmCloudExplorer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCloudExplorer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Plugin.vb" />
     <Compile Include="FormViewer.vb">
       <SubType>Form</SubType>
@@ -163,6 +169,9 @@
   <ItemGroup>
     <EmbeddedResource Include="FormViewer.resx">
       <DependentUpon>FormViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCloudExplorer.resx">
+      <DependentUpon>frmCloudExplorer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

@@ -1,55 +1,28 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII
-Imports BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.PoolData
+﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.PoolData
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
-Imports Microsoft.VisualBasic.My.JavaScript
 Imports Mzkit_win32.BasicMDIForm
+Imports WeifenLuo.WinFormsUI.Docking
 Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class FormViewer
 
-    Dim tree As HttpTreeFs
     Dim memoryData As New DataSet
     Dim search As GridSearchHandler
+    Dim cloud As frmCloudExplorer
 
     Private Sub FormViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Me.tree = New HttpTreeFs("http://192.168.0.207:83/taxonomy")
         Me.TabText = "Spectrum Pool Viewer"
         Me.search = New GridSearchHandler(AdvancedDataGridView1)
+        Me.cloud = New frmCloudExplorer() With {
+            .loadTable = AddressOf loadTable
+        }
 
-        Dim childs = Me.tree.GetTreeChilds("/").ToArray
-        Dim root = TreeView1.Nodes.Add($"Spectrum Pool [{tree.HttpServices.TrimEnd("/"c)}/ connected!]").Nodes.Add("/")
-
-        root.Tag = "/"
-        root.ImageIndex = 1
-        root.SelectedImageIndex = 1
-
-        Call addNodes(root, childs)
+        Me.cloud.Show(Workbench.AppHost.DockPanel)
+        Me.cloud.DockState = DockState.DockLeft
 
         AddHandler AdvancedDataGridViewSearchToolBar1.Search, AddressOf search.AdvancedDataGridViewSearchToolBar1_Search
 
         ApplyVsTheme(AdvancedDataGridViewSearchToolBar1)
-    End Sub
-
-    Private Sub addNodes(root As TreeNode, childs As String())
-        root.ImageIndex = 1
-        root.SelectedImageIndex = 1
-
-        For Each dir As String In childs
-            Dim data As JavaScriptObject = tree.GetCluster(HttpTreeFs.ClusterHashIndex(dir))
-            Dim annotations As String = data!annotations
-            Dim n_childs As String = data!n_childs
-            Dim n_spectrum As String = data!n_spectrum
-
-            If annotations.StringEmpty(testEmptyFactor:=True) Then
-                annotations = dir.BaseName
-            End If
-
-            Dim node = root.Nodes.Add($"{annotations} [{n_childs} childs, {n_spectrum} spectrum]")
-
-            node.ImageIndex = 2
-            node.SelectedImageIndex = 2
-            node.Tag = dir
-        Next
     End Sub
 
     Public Sub LoadTable(apply As Action(Of DataTable))
@@ -101,43 +74,9 @@ Public Class FormViewer
         'Next
     End Sub
 
-    Private Sub TreeView1_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles TreeView1.AfterSelect
-        Dim sel = TreeView1.SelectedNode
-
-        If sel Is Nothing OrElse sel.Tag Is Nothing Then
-            Return
-        End If
-
-        If sel.Nodes.Count = 0 Then
-            Call addNodes(sel, tree.GetTreeChilds(CStr(sel.Tag)).ToArray)
-        End If
-
-        Call loadMetadata(sel.Tag)
-        Call loadTable(sel)
-    End Sub
-
-    Private Sub loadMetadata(dir As String)
-        Dim data As New Dictionary(Of String, Object)
-        Dim js = tree.GetCluster(HttpTreeFs.ClusterHashIndex(dir))
-
-        If js Is Nothing Then
-            Return
-        End If
-
-        For Each name_str In js
-            data.Add(name_str, CStr(js(name_str)))
-        Next
-
-        data.Add("tree_path", dir)
-
-        Dim obj = DynamicType.Create(data)
-
-        Call Workbench.AppHost.ShowProperties(obj)
-    End Sub
-
     Private Sub loadTable(node As TreeNode)
         Dim getMetadata As Metadata() = HttpRESTMetadataPool.FetchClusterData(
-            url_get:=$"{tree.HttpServices}/get/metadata/",
+            url_get:=$"{cloud.tree.HttpServices}/get/metadata/",
             hash_index:=HttpTreeFs.ClusterHashIndex(node.Tag)
         ).ToArray
 
@@ -185,14 +124,11 @@ Public Class FormViewer
         End If
 
         Dim guid As String = CStr(metadataRow.Cells.Item(0).Value)
-        Dim spectral As PeakMs2 = Me.tree.ReadSpectrum(guid)
+        Dim spectral As PeakMs2 = cloud.tree.ReadSpectrum(guid)
 
         spectral.lib_guid = getTitle(metadataRow)
 
         Call SpectralViewerModule.ViewSpectral(spectral)
     End Sub
 
-    Private Sub ContextMenuStrip1_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles ContextMenuStrip1.Opening
-
-    End Sub
 End Class
