@@ -6,7 +6,7 @@ Imports Mzkit_win32.BasicMDIForm
 Public Class frmCloudExplorer
 
     Public tree As HttpTreeFs
-    Public loadTable As Action(Of TreeNode)
+    Public loadTable As Action(Of String)
 
     Private Sub frmCloudExplorer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TabText = "Cloud Explorer"
@@ -56,7 +56,7 @@ Public Class frmCloudExplorer
         End If
 
         Call loadMetadata(sel.Tag)
-        Call loadTable(sel)
+        Call loadTable(sel.Tag)
     End Sub
 
     Private Sub loadMetadata(dir As String)
@@ -102,5 +102,6 @@ Public Class frmCloudExplorer
         End If
 
         loadMetadataByhashCode(input)
+        loadTable(input)
     End Sub
 End Class
