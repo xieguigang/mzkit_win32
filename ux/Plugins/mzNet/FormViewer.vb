@@ -1,4 +1,6 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.PoolData
+﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.PoolData
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports Mzkit_win32.BasicMDIForm
 Imports WeifenLuo.WinFormsUI.Docking
@@ -75,7 +77,7 @@ Public Class FormViewer
     End Sub
 
     Private Sub loadTable(node As TreeNode)
-        Dim getMetadata As Metadata() = HttpRESTMetadataPool.FetchClusterData(
+        Dim getMetadata As PoolData.Metadata() = HttpRESTMetadataPool.FetchClusterData(
             url_get:=$"{cloud.tree.HttpServices}/get/metadata/",
             hash_index:=HttpTreeFs.ClusterHashIndex(node.Tag)
         ).ToArray
@@ -94,10 +96,66 @@ Public Class FormViewer
                 tbl.Columns.Add("formula", GetType(String)) '9
                 tbl.Columns.Add("adducts", GetType(String)) '10
 
-                For Each meta As Metadata In getMetadata
+                For Each meta As PoolData.Metadata In getMetadata
                     tbl.Rows.Add(meta.guid, meta.mz, meta.rt, meta.intensity, meta.source_file, meta.sample_source, meta.organism, meta.name, meta.biodeep_id, meta.formula, meta.adducts)
                 Next
             End Sub)
+    End Sub
+
+    Private Sub ExportSpectrumToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportSpectrumToolStripMenuItem.Click
+        Using file As New SaveFileDialog With {.Filter = "MGF(*.mgf)|*.mgf"}
+            If file.ShowDialog = DialogResult.OK Then
+                Call ProgressSpinner.DoLoading(
+                    Sub()
+                        Call exportMgfFile(file.FileName)
+                    End Sub)
+
+                Call MessageBox.Show("Export spectrum in mgf file format success!", "Export Spectrum Pool",
+                                     buttons:=MessageBoxButtons.OK,
+                                     icon:=MessageBoxIcon.Information)
+            End If
+        End Using
+    End Sub
+
+    Private Sub exportMgfFile(filepath As String)
+        Dim rows = AdvancedDataGridView1.Rows
+        Dim data As New List(Of PeakMs2)
+
+        For i As Integer = 0 To rows.Count - 1
+            Dim row = rows.Item(i)
+
+            If row.Cells.Count = 0 Then
+                Exit For
+            End If
+
+            Dim guid As String = CStr(row.Cells.Item(0).Value)
+
+            If guid.StringEmpty Then
+                Continue For
+            End If
+
+            Dim spectral As PeakMs2 = cloud.tree.ReadSpectrum(guid)
+            Dim mz As Double = Val(row.Cells.Item(1).Value)
+            Dim rt As Double = Val(row.Cells.Item(2).Value)
+            Dim into As Double = Val(row.Cells.Item(3).Value)
+            Dim filename As String = CStr(row.Cells.Item(4).Value)
+            Dim id As String = CStr(row.Cells.Item(8).Value)
+            Dim adducts As String = CStr(row.Cells.Item(10).Value)
+
+            spectral.lib_guid = getTitle(row)
+            spectral.file = filename
+            spectral.precursor_type = adducts
+            spectral.mz = mz
+            spectral.rt = rt
+            spectral.intensity = into
+            spectral.scan = guid
+            spectral.meta = New Dictionary(Of String, String) From {{"id", id}}
+
+            data.Add(spectral)
+            Application.DoEvents()
+        Next
+
+        Call data.Select(Function(a) a.MgfIon).SaveTo(filepath)
     End Sub
 
     Private Shared Function getTitle(meta As DataGridViewRow) As String
