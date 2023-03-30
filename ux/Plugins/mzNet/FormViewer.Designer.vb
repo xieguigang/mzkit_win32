@@ -33,6 +33,8 @@ Partial Class FormViewer : Inherits DocumentWindow
         Me.ViewSpectralToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ExportMzPackToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -40,6 +42,7 @@ Partial Class FormViewer : Inherits DocumentWindow
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip2.SuspendLayout()
         Me.SuspendLayout()
         '
         'TreeView1
@@ -121,6 +124,18 @@ Partial Class FormViewer : Inherits DocumentWindow
         Me.AdvancedDataGridViewSearchToolBar1.TabIndex = 0
         Me.AdvancedDataGridViewSearchToolBar1.Text = "AdvancedDataGridViewSearchToolBar1"
         '
+        'ContextMenuStrip2
+        '
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportMzPackToolStripMenuItem})
+        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(181, 48)
+        '
+        'ExportMzPackToolStripMenuItem
+        '
+        Me.ExportMzPackToolStripMenuItem.Name = "ExportMzPackToolStripMenuItem"
+        Me.ExportMzPackToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExportMzPackToolStripMenuItem.Text = "Export mzPack"
+        '
         'FormViewer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -138,6 +153,7 @@ Partial Class FormViewer : Inherits DocumentWindow
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -150,4 +166,6 @@ Partial Class FormViewer : Inherits DocumentWindow
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ViewSpectralToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ImageList1 As ImageList
+    Friend WithEvents ContextMenuStrip2 As ContextMenuStrip
+    Friend WithEvents ExportMzPackToolStripMenuItem As ToolStripMenuItem
 End Class

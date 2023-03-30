@@ -725,6 +725,11 @@ Public Class frmMain : Implements AppHost
         VisualStudio.Dock(WindowModules.propertyWin, DockState.DockRight)
     End Sub
 
+    Public Sub ShowProperties(obj As Object) Implements AppHost.ShowProperties
+        WindowModules.propertyWin.SetObject(obj)
+        ShowPropertyWindow()
+    End Sub
+
     Private Sub initializeVSPanel()
         PanelBase.Controls.Add(Me.m_dockPanel)
         m_dockPanel.ShowDocumentIcon = True

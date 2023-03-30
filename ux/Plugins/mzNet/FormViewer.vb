@@ -1,7 +1,9 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.PoolData
+﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.PoolData
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports Microsoft.VisualBasic.My.JavaScript
 Imports Mzkit_win32.BasicMDIForm
+Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class FormViewer
 
@@ -110,7 +112,27 @@ Public Class FormViewer
             Call addNodes(sel, tree.GetTreeChilds(CStr(sel.Tag)).ToArray)
         End If
 
+        Call loadMetadata(sel.Tag)
         Call loadTable(sel)
+    End Sub
+
+    Private Sub loadMetadata(dir As String)
+        Dim data As New Dictionary(Of String, Object)
+        Dim js = tree.GetCluster(HttpTreeFs.ClusterHashIndex(dir))
+
+        If js Is Nothing Then
+            Return
+        End If
+
+        For Each name_str In js
+            data.Add(name_str, CStr(js(name_str)))
+        Next
+
+        data.Add("tree_path", dir)
+
+        Dim obj = DynamicType.Create(data)
+
+        Call Workbench.AppHost.ShowProperties(obj)
     End Sub
 
     Private Sub loadTable(node As TreeNode)
@@ -121,23 +143,33 @@ Public Class FormViewer
 
         Call LoadTable(
             Sub(tbl)
-                tbl.Columns.Add("guid", GetType(String))
-                tbl.Columns.Add("mz", GetType(Double))
-                tbl.Columns.Add("rt", GetType(Double))
-                tbl.Columns.Add("intensity", GetType(Double))
-                tbl.Columns.Add("source_file", GetType(String))
-                tbl.Columns.Add("sample_source", GetType(String))
-                tbl.Columns.Add("organism", GetType(String))
-                tbl.Columns.Add("name", GetType(String))
-                tbl.Columns.Add("biodeep_id", GetType(String))
-                tbl.Columns.Add("formula", GetType(String))
-                tbl.Columns.Add("adducts", GetType(String))
+                tbl.Columns.Add("guid", GetType(String)) '0
+                tbl.Columns.Add("mz", GetType(Double)) '1
+                tbl.Columns.Add("rt", GetType(Double)) '2
+                tbl.Columns.Add("intensity", GetType(Double)) '3
+                tbl.Columns.Add("source_file", GetType(String)) '4
+                tbl.Columns.Add("sample_source", GetType(String)) '5
+                tbl.Columns.Add("organism", GetType(String)) '6
+                tbl.Columns.Add("name", GetType(String)) '7
+                tbl.Columns.Add("biodeep_id", GetType(String)) '8
+                tbl.Columns.Add("formula", GetType(String)) '9
+                tbl.Columns.Add("adducts", GetType(String)) '10
 
                 For Each meta As Metadata In getMetadata
                     tbl.Rows.Add(meta.guid, meta.mz, meta.rt, meta.intensity, meta.source_file, meta.sample_source, meta.organism, meta.name, meta.biodeep_id, meta.formula, meta.adducts)
                 Next
             End Sub)
     End Sub
+
+    Private Shared Function getTitle(meta As DataGridViewRow) As String
+        Const no_id = "unknown conserved"
+
+        If no_id = any.ToString(meta.Cells.Item(8).Value) Then
+            Return $"{no_id} [{meta.Cells.Item(5).Value}@{meta.Cells.Item(6).Value}]"
+        Else
+            Return $"{meta.Cells.Item(7).Value}_{meta.Cells.Item(10).Value} [{meta.Cells.Item(5).Value}@{meta.Cells.Item(6).Value}]"
+        End If
+    End Function
 
     Private Sub ViewSpectralToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewSpectralToolStripMenuItem.Click
         Dim rows = AdvancedDataGridView1.SelectedRows
@@ -154,6 +186,8 @@ Public Class FormViewer
 
         Dim guid As String = CStr(metadataRow.Cells.Item(0).Value)
         Dim spectral As PeakMs2 = Me.tree.ReadSpectrum(guid)
+
+        spectral.lib_guid = getTitle(metadataRow)
 
         Call SpectralViewerModule.ViewSpectral(spectral)
     End Sub

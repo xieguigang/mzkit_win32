@@ -218,4 +218,8 @@ Public Class FormMain : Implements AppHost
     Private Sub FormMain_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         RaiseEvent ResizeForm(Location, Size)
     End Sub
+
+    Public Sub ShowProperties(obj As Object) Implements AppHost.ShowProperties
+        ' Throw New NotImplementedException()
+    End Sub
 End Class
