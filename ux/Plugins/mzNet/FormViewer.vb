@@ -22,7 +22,7 @@ Public Class FormViewer
 
         AddHandler AdvancedDataGridViewSearchToolBar1.Search, AddressOf search.AdvancedDataGridViewSearchToolBar1_Search
 
-        ApplyVsTheme(AdvancedDataGridViewSearchToolBar1)
+        ApplyVsTheme(AdvancedDataGridViewSearchToolBar1, ContextMenuStrip1)
     End Sub
 
     Public Sub LoadTable(apply As Action(Of DataTable))
@@ -110,7 +110,7 @@ Public Class FormViewer
         End If
     End Function
 
-    Private Sub ViewSpectralToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewSpectralToolStripMenuItem.Click
+    Private Sub ViewSpectralToolStripMenuItem_Click() Handles ViewSpectralToolStripMenuItem.Click
         Dim rows = AdvancedDataGridView1.SelectedRows
 
         If rows.Count = 0 Then
@@ -131,4 +131,16 @@ Public Class FormViewer
         Call SpectralViewerModule.ViewSpectral(spectral)
     End Sub
 
+    Private Sub AutoPlotSpectrumToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AutoPlotSpectrumToolStripMenuItem.Click
+
+    End Sub
+
+    Private Sub AdvancedDataGridView1_RowStateChanged(sender As Object, e As DataGridViewRowStateChangedEventArgs) Handles AdvancedDataGridView1.RowStateChanged
+
+        If AutoPlotSpectrumToolStripMenuItem.Checked Then
+            If e.StateChanged = DataGridViewElementStates.Selected Then
+                Call ViewSpectralToolStripMenuItem_Click()
+            End If
+        End If
+    End Sub
 End Class
