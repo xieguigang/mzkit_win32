@@ -60,18 +60,21 @@ Public Class frmCloudExplorer
     End Sub
 
     Private Sub loadMetadata(dir As String)
+        loadMetadataByhashCode(HttpTreeFs.ClusterHashIndex(dir))
+    End Sub
+
+    Public Sub loadMetadataByhashCode(hash As String)
         Dim data As New Dictionary(Of String, Object)
-        Dim js = tree.GetCluster(HttpTreeFs.ClusterHashIndex(dir))
+        Dim js = tree.GetCluster(hash)
 
         If js Is Nothing Then
+            Workbench.Warning("incorrect cluster hashcode!")
             Return
         End If
 
         For Each name_str In js
             data.Add(name_str, CStr(js(name_str)))
         Next
-
-        data.Add("tree_path", dir)
 
         Dim obj = DynamicType.Create(data)
 
@@ -80,5 +83,24 @@ Public Class frmCloudExplorer
 
     Private Sub frmCloudExplorer_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         e.Cancel = True
+    End Sub
+
+    Private Sub ToolStripTextBox1_Click(sender As Object, e As EventArgs) Handles ToolStripTextBox1.Click
+
+    End Sub
+
+    ''' <summary>
+    ''' view cluster data via id/hashcode/path
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        Dim input As String = Strings.Trim(ToolStripTextBox1.Text)
+
+        If input.Contains("/"c) Then
+            input = HttpTreeFs.ClusterHashIndex(input)
+        End If
+
+        loadMetadataByhashCode(input)
     End Sub
 End Class
