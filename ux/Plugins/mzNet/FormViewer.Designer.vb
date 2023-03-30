@@ -26,18 +26,18 @@ Partial Class FormViewer : Inherits DocumentWindow
         Me.components = New System.ComponentModel.Container()
         Me.TreeView1 = New System.Windows.Forms.TreeView()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
-        Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
         Me.AdvancedDataGridView1 = New Zuby.ADGV.AdvancedDataGridView()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewSpectralToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
-        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
+        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TreeView1
@@ -66,25 +66,10 @@ Partial Class FormViewer : Inherits DocumentWindow
         Me.SplitContainer1.SplitterDistance = 373
         Me.SplitContainer1.TabIndex = 1
         '
-        'AdvancedDataGridViewSearchToolBar1
-        '
-        Me.AdvancedDataGridViewSearchToolBar1.AllowMerge = False
-        Me.AdvancedDataGridViewSearchToolBar1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.AdvancedDataGridViewSearchToolBar1.Location = New System.Drawing.Point(0, 0)
-        Me.AdvancedDataGridViewSearchToolBar1.MaximumSize = New System.Drawing.Size(0, 27)
-        Me.AdvancedDataGridViewSearchToolBar1.MinimumSize = New System.Drawing.Size(0, 27)
-        Me.AdvancedDataGridViewSearchToolBar1.Name = "AdvancedDataGridViewSearchToolBar1"
-        Me.AdvancedDataGridViewSearchToolBar1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
-        Me.AdvancedDataGridViewSearchToolBar1.Size = New System.Drawing.Size(745, 27)
-        Me.AdvancedDataGridViewSearchToolBar1.TabIndex = 0
-        Me.AdvancedDataGridViewSearchToolBar1.Text = "AdvancedDataGridViewSearchToolBar1"
-        '
         'AdvancedDataGridView1
         '
-        Me.AdvancedDataGridView1.AutoGenerateColumns = False
         Me.AdvancedDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.AdvancedDataGridView1.ContextMenuStrip = Me.ContextMenuStrip1
-        Me.AdvancedDataGridView1.DataSource = Me.BindingSource1
         Me.AdvancedDataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.AdvancedDataGridView1.FilterAndSortEnabled = True
         Me.AdvancedDataGridView1.FilterStringChangedInvokeBeforeDatasourceUpdate = True
@@ -100,13 +85,26 @@ Partial Class FormViewer : Inherits DocumentWindow
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewSpectralToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 48)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(145, 26)
         '
         'ViewSpectralToolStripMenuItem
         '
         Me.ViewSpectralToolStripMenuItem.Name = "ViewSpectralToolStripMenuItem"
-        Me.ViewSpectralToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ViewSpectralToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.ViewSpectralToolStripMenuItem.Text = "View Spectral"
+        '
+        'AdvancedDataGridViewSearchToolBar1
+        '
+        Me.AdvancedDataGridViewSearchToolBar1.AllowMerge = False
+        Me.AdvancedDataGridViewSearchToolBar1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.AdvancedDataGridViewSearchToolBar1.Location = New System.Drawing.Point(0, 0)
+        Me.AdvancedDataGridViewSearchToolBar1.MaximumSize = New System.Drawing.Size(0, 27)
+        Me.AdvancedDataGridViewSearchToolBar1.MinimumSize = New System.Drawing.Size(0, 27)
+        Me.AdvancedDataGridViewSearchToolBar1.Name = "AdvancedDataGridViewSearchToolBar1"
+        Me.AdvancedDataGridViewSearchToolBar1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
+        Me.AdvancedDataGridViewSearchToolBar1.Size = New System.Drawing.Size(745, 27)
+        Me.AdvancedDataGridViewSearchToolBar1.TabIndex = 0
+        Me.AdvancedDataGridViewSearchToolBar1.Text = "AdvancedDataGridViewSearchToolBar1"
         '
         'FormViewer
         '
@@ -122,9 +120,9 @@ Partial Class FormViewer : Inherits DocumentWindow
         Me.SplitContainer1.Panel2.PerformLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
-        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
+        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

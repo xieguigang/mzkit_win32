@@ -1,5 +1,6 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.PoolData
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
+Imports Microsoft.VisualBasic.My.JavaScript
 Imports Mzkit_win32.BasicMDIForm
 
 Public Class FormViewer
@@ -21,6 +22,8 @@ Public Class FormViewer
 
         For Each dir As String In childs
             Dim node = root.Nodes.Add(dir.BaseName)
+            Dim data As JavaScriptObject = tree.GetCluster(HttpTreeFs.ClusterHashIndex(dir))
+
             node.Tag = dir
         Next
 

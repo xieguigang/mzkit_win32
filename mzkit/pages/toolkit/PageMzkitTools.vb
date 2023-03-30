@@ -702,6 +702,7 @@ Public Class PageMzkitTools
             Return
         End If
 
+        Call MyApplication.host.mzkitTool.PlotSpectrum(New LibraryMatrix(matrix) With {.name = name})
         Call MyApplication.host.mzkitTool.showMatrix(matrix, name)
         Call MyApplication.host.ShowMzkitToolkit()
     End Sub
