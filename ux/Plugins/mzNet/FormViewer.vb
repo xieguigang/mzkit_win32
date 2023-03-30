@@ -10,15 +10,16 @@ Public Class FormViewer
     Dim search As GridSearchHandler
 
     Private Sub FormViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Dim root = TreeView1.Nodes.Add("Spectrum Pool").Nodes.Add("/")
-
         Me.tree = New HttpTreeFs("http://192.168.0.207:83/taxonomy")
         Me.TabText = "Spectrum Pool Viewer"
         Me.search = New GridSearchHandler(AdvancedDataGridView1)
 
         Dim childs = Me.tree.GetTreeChilds("/").ToArray
+        Dim root = TreeView1.Nodes.Add($"Spectrum Pool [{tree.HttpServices.TrimEnd("/"c)}/ connected!]").Nodes.Add("/")
 
         root.Tag = "/"
+        root.ImageIndex = 1
+        root.SelectedImageIndex = 1
 
         Call addNodes(root, childs)
 
@@ -28,6 +29,9 @@ Public Class FormViewer
     End Sub
 
     Private Sub addNodes(root As TreeNode, childs As String())
+        root.ImageIndex = 1
+        root.SelectedImageIndex = 1
+
         For Each dir As String In childs
             Dim data As JavaScriptObject = tree.GetCluster(HttpTreeFs.ClusterHashIndex(dir))
             Dim annotations As String = data!annotations
@@ -40,6 +44,8 @@ Public Class FormViewer
 
             Dim node = root.Nodes.Add($"{annotations} [{n_childs} childs, {n_spectrum} spectrum]")
 
+            node.ImageIndex = 2
+            node.SelectedImageIndex = 2
             node.Tag = dir
         Next
     End Sub
