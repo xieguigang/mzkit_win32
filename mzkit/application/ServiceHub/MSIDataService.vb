@@ -451,7 +451,9 @@ Namespace ServiceHub
                 Call Workbench.StatusMessage("MS-imaging services is not started yet!", My.Resources.StatusAnnotations_Warning_32xLG_color)
                 Return Nothing
             Else
-                Return New TcpRequest(endPoint).SendMessage(request)
+                Return New TcpRequest(endPoint) _
+                    .SetTimeOut(TimeSpan.FromMinutes(30)) _
+                    .SendMessage(request)
             End If
         End Function
 
