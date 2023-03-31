@@ -80,7 +80,7 @@ Public Class FormViewer
         Dim key As String = If(node.Contains("/"), HttpTreeFs.ClusterHashIndex(node), node)
         Dim getMetadata As PoolData.Metadata() = HttpRESTMetadataPool.FetchClusterData(
             url_get:=$"{cloud.tree.HttpServices}/get/metadata/",
-            hash_index:=node
+            hash_index:=key
         ).ToArray
 
         Call LoadTable(
