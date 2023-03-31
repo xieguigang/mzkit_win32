@@ -1,30 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application xmlns="http://schemas.microsoft.com/windows/2009/Ribbon">
   <Application.Commands>
-    <Command Name="cmdComboFormulaSearchProfile3" Id="1099" />
-    <Command Name="cmdContextMap" Id="1106" />
-    <Command Name="cmdCustomizeQAT" Id="1018" />
-    <Command Name="cmdFontControl" Id="1165" />
-    <Command Name="cmdHelpButton" Id="1016" />
-    <Command Name="cmdQAT" Id="1015" />
-    <Command Name="cmdButtonNew" Id="1001">
+    <Command Name="cmdAdjustParameters" Id="116">
       <Command.LabelTitle>
-        <String Id="103">&amp;New</String>
+        <String Id="2">Adjust Parameters</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="104">New R# script file</String>
+        <String Id="3">Adjust Parameters</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
-        <String Id="105">New (Ctrl+N)</String>
+        <String Id="4">Adjust Parameters</String>
       </Command.TooltipTitle>
       <Command.TooltipDescription>
-        <String Id="106">Create a R# script file for mzkit automation.</String>
+        <String Id="5">Adjust Parameters</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="107">Res/New16.bmp</Image>
+        <Image Id="6" MinDPI="192">Res/insert-object.bmp</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="108">Res/New32.bmp</Image>
+        <Image Id="7" MinDPI="144">Res/insert-object.bmp</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonAbout" Id="1021">
@@ -40,21 +34,6 @@
       <Command.LargeImages>
         <Image Id="11">Res/dialog-information.png</Image>
       </Command.LargeImages>
-    </Command>
-    <Command Name="cmdTabAbout" Id="1020">
-      <Command.LabelTitle>
-        <String Id="303">About</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdGroupAboutActions" Id="1047">
-      <Command.LabelTitle>
-        <String Id="218">About mzkit</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdGroupDemoActions" Id="1048">
-      <Command.LabelTitle>
-        <String Id="221">About mzkit</String>
-      </Command.LabelTitle>
     </Command>
     <Command Name="cmdButtonAddNewPolygon" Id="149">
       <Command.LabelTitle>
@@ -82,100 +61,6 @@
         <Image Id="535" MinDPI="192">../ux/PolygonEditor/AddVertexMenuItem.Image.png</Image>
       </Command.LargeHighContrastImages>
     </Command>
-    <Command Name="cmdAdjustParameters" Id="116">
-      <Command.LabelTitle>
-        <String Id="2">Adjust Parameters</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="3">Adjust Parameters</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="4">Adjust Parameters</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="5">Adjust Parameters</String>
-      </Command.TooltipDescription>
-      <Command.SmallImages>
-        <Image Id="6" MinDPI="192">Res/insert-object.bmp</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image Id="7" MinDPI="144">Res/insert-object.bmp</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdTabAppStore" Id="216" LabelTitle="App Store" LabelDescription="App Store" TooltipTitle="App Store" TooltipDescription="App Store" />
-    <Command Name="cmdTabGroupAppStore" Id="217" LabelTitle="App Store" LabelDescription="App Store" TooltipTitle="App Store" TooltipDescription="App Store" />
-    <Command Name="cmdGroupExit" Id="1096">
-      <Command.LabelTitle>
-        <String Id="224">Application Tools</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdTabGroupWindowTools" Id="1023">
-      <Command.LabelTitle>
-        <String Id="334">Application Windows Tools</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdButtonMSIAverageIon" Id="125">
-      <Command.LabelTitle>
-        <String Id="398">Average Ion</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="399">Render Average Ion</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="400">Render Average Ion</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="401">Render Average Ion</String>
-      </Command.TooltipDescription>
-      <Command.SmallImages>
-        <Image Id="402" MinDPI="192">Res/applets-screenshooter.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image Id="403" MinDPI="192">Res/applets-screenshooter.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdWWWBack" Id="170" LabelTitle="Back" LabelDescription="Back" TooltipTitle="Back" TooltipDescription="Back">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/edit-undo.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="144">Res/edit-undo.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonPageNavBack" Id="1053">
-      <Command.LabelTitle>
-        <String Id="115">Back to Previous Page</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="116">Go Back to the Previous Page</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="117">Go Back to the Previous Page</String>
-      </Command.TooltipTitle>
-      <Command.LargeImages>
-        <Image Id="118">Res/edit-undo.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonMSIBasePeakIon" Id="124">
-      <Command.LabelTitle>
-        <String Id="392">BasePeakIon</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="393">Render BasePeakIon</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="394">Render BasePeakIon</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="395">Render BasePeakIon</String>
-      </Command.TooltipDescription>
-      <Command.SmallImages>
-        <Image Id="396" MinDPI="192">Res/applets-screenshooter.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image Id="397" MinDPI="192">Res/applets-screenshooter.png</Image>
-      </Command.LargeImages>
-    </Command>
     <Command Name="cmdButtonBioDeep" Id="1022">
       <Command.LabelTitle>
         <String Id="12">BioDeep</String>
@@ -192,34 +77,6 @@
       <Command.LargeImages>
         <Image Id="16">Res/BioDeep.png</Image>
       </Command.LargeImages>
-    </Command>
-    <Command Name="cmdTabBioDeep" Id="104">
-      <Command.LabelTitle>
-        <String Id="304">BioDeep</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="305">BioDeep</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="306">BioDeep</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="307">BioDeep</String>
-      </Command.TooltipDescription>
-    </Command>
-    <Command Name="cmdTabGroupBioDeep" Id="105">
-      <Command.LabelTitle>
-        <String Id="316">BioDeep</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="317">BioDeep</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="318">BioDeep</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="319">BioDeep</String>
-      </Command.TooltipDescription>
     </Command>
     <Command Name="cmdButtonBPC" Id="1143">
       <Command.LabelTitle>
@@ -238,31 +95,22 @@
         <Image Id="21">Res/office_chart_area_256px_540041_easyicon.net.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonMzCalculator" Id="1013">
+    <Command Name="cmdButtonCalculatorExport" Id="1064">
       <Command.LabelTitle>
-        <String Id="92">Calculator</String>
+        <String Id="22">Export</String>
       </Command.LabelTitle>
-      <Command.SmallImages>
-        <Image Id="93">Res/libreoffice-math.png</Image>
-      </Command.SmallImages>
+      <Command.LabelDescription>
+        <String Id="23">Save M/Z Calculation result to Table File.</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="24">Save Matrix</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="25">Save M/Z Calculation result to Table File.</String>
+      </Command.TooltipDescription>
       <Command.LargeImages>
-        <Image Id="94">Res/libreoffice-math.png</Image>
+        <Image Id="26">Res/excel-icon.png</Image>
       </Command.LargeImages>
-    </Command>
-    <Command Name="cmdTabCalculator" Id="1062">
-      <Command.LabelTitle>
-        <String Id="308">Calculator Result</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdTabGroupCalculatorTools" Id="1061">
-      <Command.LabelTitle>
-        <String Id="320">Calculator Tools</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdTabGroupExactMassSearchTools" Id="1071">
-      <Command.LabelTitle>
-        <String Id="321">Calculator Tools</String>
-      </Command.LabelTitle>
     </Command>
     <Command Name="cmdButtonCFMIDTool" Id="212" LabelTitle="CFM-ID Prediction" LabelDescription="CFM-ID Prediction" TooltipTitle="CFM-ID Prediction" TooltipDescription="CFM-ID Prediction">
       <Command.SmallImages>
@@ -277,43 +125,6 @@
       <Command.LargeHighContrastImages>
         <Image MinDPI="192">Resources/Flask.png</Image>
       </Command.LargeHighContrastImages>
-    </Command>
-    <Command Name="cmdGroupChromatography" Id="1141">
-      <Command.LabelTitle>
-        <String Id="220">Chromatography Data Plot</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdButtonMSICleanBackground" Id="167" LabelTitle="Clean Background" LabelDescription="Clean Background" TooltipTitle="Clean Background" TooltipDescription="Clean Background">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/edit-cut.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="144">Res/edit-cut.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdCleanBackgroundAutoReference" Id="199" LabelTitle="Clean Background Auto Reference" LabelDescription="Clean Background Auto Reference" TooltipTitle="Clean Background Auto Reference" TooltipDescription="Clean Background Auto Reference">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/edit-cut.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="144">Res/edit-cut.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdCleanBackgroundByBasePeak" Id="208" LabelTitle="Clean Background By BasePeak Ion" LabelDescription="Clean Background By BasePeak Ion" TooltipTitle="Clean Background By BasePeak Ion" TooltipDescription="Clean Background By BasePeak Ion">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/edit-cut.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="144">Res/edit-cut.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdCleanBackgroundByReference" Id="198" LabelTitle="Clean Background By Reference" LabelDescription="Clean background ions by a given blank reference raw data file" TooltipTitle="Clean Background By Reference" TooltipDescription="Clean background ions by a given blank reference raw data file">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/edit-cut.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="144">Res/edit-cut.png</Image>
-      </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonClosePolygonEditor" Id="146">
       <Command.LabelTitle>
@@ -335,14 +146,6 @@
         <Image Id="511" MinDPI="144">Res/edit-delete.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonIonCoLocalization" Id="204" LabelTitle="Co-Localization" LabelDescription="Check Ion co-localization" TooltipTitle="Check Ion co-localization" TooltipDescription="Check Ion co-localization">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/libreoffice-math.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/libreoffice-math.png</Image>
-      </Command.LargeImages>
-    </Command>
     <Command Name="cmdButtonColumnStats" Id="175" LabelTitle="Column Stat" LabelDescription="Column Stat" TooltipTitle="Column Stat" TooltipDescription="Column Stat">
       <Command.SmallImages>
         <Image MinDPI="192">Res/libreoffice-math.png</Image>
@@ -351,33 +154,12 @@
         <Image MinDPI="192">Res/libreoffice-math.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdGroupShowComprehensive" Id="191" LabelTitle="Comprehensive Spectrum" LabelDescription="Comprehensive Mass Spectrum Data Viewer" TooltipTitle="Comprehensive Mass Spectrum Data Viewer" TooltipDescription="Comprehensive Mass Spectrum Data Viewer" />
     <Command Name="cmdButtonConnectMSIService" Id="218" LabelTitle="Connect Cloud" LabelDescription="Connect MSI Data Service" TooltipTitle="Connect MSI Data Service" TooltipDescription="Connect the MSI data service on another remote data analysis server or the service from the MZKit cloud studio">
       <Command.SmallImages>
         <Image MinDPI="192">Res/folder-publicshare.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
         <Image MinDPI="192">Res/folder-publicshare.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdGroupCopyData" Id="139">
-      <Command.LabelTitle>
-        <String Id="472">Copy Data</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="473">Copy Data</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="474">Copy Data</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="475">Copy Data</String>
-      </Command.TooltipDescription>
-      <Command.SmallImages>
-        <Image Id="476" MinDPI="192">Res/applets-screenshooter.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image Id="477" MinDPI="192">Res/applets-screenshooter.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonCopyMatrix" Id="137">
@@ -440,82 +222,19 @@
         <Image Id="459" MinDPI="144">Res/edit-paste.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdGroupFormulaSearch" Id="1093">
-      <Command.LabelTitle>
-        <String Id="232">Data</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdTabTargeted" Id="102">
-      <Command.LabelTitle>
-        <String Id="343">Data Analysis</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdTabLayout" Id="1035">
-      <Command.LabelTitle>
-        <String Id="335">Data Viewer</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdButtonPolygonDeleteVertex" Id="150">
-      <Command.LabelTitle>
-        <String Id="536">Delete Vertex</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="537">Delete Vertex</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="538">Delete Vertex</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="539">Delete Vertex</String>
-      </Command.TooltipDescription>
+    <Command Name="cmdButtonCosHeatmap" Id="211" LabelTitle="Pixel Cosine Heatmap" LabelDescription="Pixel Cosine Heatmap" TooltipTitle="Pixel Cosine Heatmap" TooltipDescription="Pixel Cosine Heatmap">
       <Command.SmallImages>
-        <Image Id="540" MinDPI="192">../ux/PolygonEditor/RemoveVertexMenuItem.Image.png</Image>
+        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="541" MinDPI="192">../ux/PolygonEditor/RemoveVertexMenuItem.Image.png</Image>
+        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
       </Command.LargeImages>
       <Command.SmallHighContrastImages>
-        <Image Id="542" MinDPI="192">../ux/PolygonEditor/RemoveVertexMenuItem.Image.png</Image>
+        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
       </Command.SmallHighContrastImages>
       <Command.LargeHighContrastImages>
-        <Image Id="543" MinDPI="192">../ux/PolygonEditor/RemoveVertexMenuItem.Image.png</Image>
+        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
       </Command.LargeHighContrastImages>
-    </Command>
-    <Command Name="cmdTabDemo" Id="110">
-      <Command.LabelTitle>
-        <String Id="309">Demo</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="310">Demo</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="311">Demo</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="312">Mzkit demo data files</String>
-      </Command.TooltipDescription>
-    </Command>
-    <Command Name="cmdButtonMsDemo" Id="1168">
-      <Command.LabelTitle>
-        <String Id="82">Demo Data</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="83">View the demo data that contains from the MZKit installation to learn how to use MZKit</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="84">Demo Data</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="85">View the demo data that contains from the MZKit installation to learn how to use MZKit</String>
-      </Command.TooltipDescription>
-      <Command.LargeImages>
-        <Image Id="86">Res/folder-pictures.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdTabExactMassSearch" Id="1072">
-      <Command.LabelTitle>
-        <String Id="314">Design</String>
-      </Command.LabelTitle>
     </Command>
     <Command Name="cmdButtonDevTools" Id="168" LabelTitle="Developer CommandLine Tools" LabelDescription="Developer CommandLine Tools" TooltipTitle="Developer CommandLine Tools" TooltipDescription="Developer CommandLine Tools">
       <Command.SmallImages>
@@ -525,18 +244,46 @@
         <Image MinDPI="192">Res/Terminal.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdDOIReference" Id="177" LabelTitle="DOI Reference" LabelDescription="View algorithm paper DOI reference that MZKit software used." TooltipTitle="DOI Reference" TooltipDescription="View algorithm paper DOI reference that MZKit software used.">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/preferences-system-notifications.png</Image>
-      </Command.SmallImages>
+    <Command Name="cmdButtonDropA" Id="1008">
+      <Command.LabelTitle>
+        <String Id="27">Mzkit Raw Data File Viewer</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="28">View MSMS and Chromatography data in MzXML/mzML/Mgf raw file data.</String>
+      </Command.LabelDescription>
       <Command.LargeImages>
-        <Image MinDPI="192">Res/preferences-system-notifications.png</Image>
+        <Image Id="29">Res/application-x-object.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdGroupExactMassSearch" Id="1073">
+    <Command Name="cmdButtonDropB" Id="1009">
       <Command.LabelTitle>
-        <String Id="223">Exact Mass Search</String>
+        <String Id="30">M/z Calculator</String>
       </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="31">Calculate Precursor M/z Information for a given exact mass value.</String>
+      </Command.LabelDescription>
+      <Command.LargeImages>
+        <Image Id="32">Res/libreoffice-math.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonDropD" Id="5010">
+      <Command.LabelTitle>
+        <String Id="33">Molecule Networking</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="34">View network data created from the Spectrum similarity matrix calculation.</String>
+      </Command.LabelDescription>
+      <Command.LargeImages>
+        <Image Id="35">Res/preferences-system-sharing.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonExactMassSearchExport" Id="1074">
+      <Command.LabelTitle>
+        <String Id="36">Export Result Table</String>
+      </Command.LabelTitle>
+      <Command.LargeImages>
+        <Image Id="37">Res/excel-icon.png</Image>
+      </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonExit" Id="1004">
       <Command.LabelTitle>
@@ -558,113 +305,24 @@
         <Image Id="43">Res/application-exit.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdMenuGroupExit" Id="1006">
+    <Command Name="cmdButtonExportImage" Id="1104">
       <Command.LabelTitle>
-        <String Id="255">Exit Menu</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdButtonShowExplorer" Id="1121" TooltipDescription="Show Raw File Explorer">
-      <Command.LabelTitle>
-        <String Id="156">Explorer</String>
+        <String Id="44">Export Plot Image</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="157">Show Raw File Explorer</String>
+        <String Id="45">Save Mass Spectrum Or XIC plot image to a given file</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
-        <String Id="158">File Explorer</String>
-      </Command.TooltipTitle>
-      <Command.LargeImages>
-        <Image Id="159">Res/folder-documents.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdExplorers" Id="114">
-      <Command.LabelTitle>
-        <String Id="212">Explorers</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="213">Explorers</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="214">Explorers</String>
+        <String Id="46">Save Image</String>
       </Command.TooltipTitle>
       <Command.TooltipDescription>
-        <String Id="215">Explorers</String>
+        <String Id="47">Save Mass Spectrum Or XIC plot image to a given file</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="216" MinDPI="192">Res/folder-documents.bmp</Image>
+        <Image Id="48">Res/applets-screenshooter.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="217" MinDPI="192">Res/folder-documents.bmp</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonCalculatorExport" Id="1064">
-      <Command.LabelTitle>
-        <String Id="22">Export</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="23">Save M/Z Calculation result to Table File.</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="24">Save Matrix</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="25">Save M/Z Calculation result to Table File.</String>
-      </Command.TooltipDescription>
-      <Command.LargeImages>
-        <Image Id="26">Res/excel-icon.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonFormulaSearchExport" Id="1094">
-      <Command.LabelTitle>
-        <String Id="59">Export</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="60">Export Formula Search Result</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="61">Save Formula Table</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="62">Export Formula Search Result to a given file</String>
-      </Command.TooltipDescription>
-      <Command.LargeImages>
-        <Image Id="63">Res/excel-icon.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonNetworkExport" Id="1084">
-      <Command.LabelTitle>
-        <String Id="99">Export</String>
-      </Command.LabelTitle>
-      <Command.LargeImages>
-        <Image Id="100">Res/excel-icon.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonSaveTableCDF" Id="176" LabelTitle="Export CDF" LabelDescription="Export CDF" TooltipTitle="Export CDF" TooltipDescription="Export CDF">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/application-x-object.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/application-x-object.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdGroupExport" Id="2">
-      <Command.LabelTitle>
-        <String Id="225">Export Data</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="226">Export plot image or matrix data</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="227">Export Data</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="228">Export plot image or matrix data</String>
-      </Command.TooltipDescription>
-      <Command.SmallImages>
-        <Image Id="229" MinDPI="192">Res/application-x-object.bmp</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image Id="230" MinDPI="192">Res/application-x-object.bmp</Image>
+        <Image Id="49">Res/applets-screenshooter.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonExportMatrix" Id="1105">
@@ -707,40 +365,12 @@
         <Image Id="413" MinDPI="192">Res/document-save.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonExportImage" Id="1104">
-      <Command.LabelTitle>
-        <String Id="44">Export Plot Image</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="45">Save Mass Spectrum Or XIC plot image to a given file</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="46">Save Image</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="47">Save Mass Spectrum Or XIC plot image to a given file</String>
-      </Command.TooltipDescription>
-      <Command.SmallImages>
-        <Image Id="48">Res/applets-screenshooter.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image Id="49">Res/applets-screenshooter.png</Image>
-      </Command.LargeImages>
-    </Command>
     <Command Name="cmdButtonExportRegions" Id="189" LabelTitle="Export Regions" LabelDescription="Export Regions" TooltipTitle="Export Regions" TooltipDescription="Export Regions">
       <Command.SmallImages>
         <Image MinDPI="192">Resources/emblem-downloads.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
         <Image MinDPI="192">Resources/emblem-downloads.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonExactMassSearchExport" Id="1074">
-      <Command.LabelTitle>
-        <String Id="36">Export Result Table</String>
-      </Command.LabelTitle>
-      <Command.LargeImages>
-        <Image Id="37">Res/excel-icon.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonExportSample" Id="135">
@@ -789,41 +419,6 @@
         <Image Id="559" MinDPI="192">Res/edit-find.png</Image>
       </Command.LargeHighContrastImages>
     </Command>
-    <Command Name="cmdGroupFeatureFilter" Id="162" LabelTitle="Feature Filter" LabelDescription="Feature Filter" TooltipTitle="Feature Filter" TooltipDescription="Feature Filter" />
-    <Command Name="cmdButtonShowSearchList" Id="1122">
-      <Command.LabelTitle>
-        <String Id="178">Features</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="179">Show Feature List</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="180">Feature List</String>
-      </Command.TooltipTitle>
-      <Command.LargeImages>
-        <Image Id="181">Res/folder-pictures.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdMenuGroupFile" Id="1005">
-      <Command.LabelTitle>
-        <String Id="256">File Menu</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdGroupFileActions" Id="1045">
-      <Command.LabelTitle>
-        <String Id="231">File Operations</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdTabFormulaSearch" Id="1092">
-      <Command.LabelTitle>
-        <String Id="315">Formula Result</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdGroupFormulaSearchConfig2" Id="1095">
-      <Command.LabelTitle>
-        <String Id="233">Formula Search Config</String>
-      </Command.LabelTitle>
-    </Command>
     <Command Name="cmdButtonFormulaSearch" Id="1010">
       <Command.LabelTitle>
         <String Id="56">Formula Search Tool</String>
@@ -835,53 +430,21 @@
         <Image Id="58">Res/document-print-preview.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdTabGroupFormulaSearchTools" Id="1091">
+    <Command Name="cmdButtonFormulaSearchExport" Id="1094">
       <Command.LabelTitle>
-        <String Id="322">Formula Search Tools</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdWWWForward" Id="169" LabelTitle="Forward" LabelDescription="Forward" TooltipTitle="Forward" TooltipDescription="Forward">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/edit-undo-rtl.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="144">Res/edit-undo-rtl.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdShowGCMSExplorer" Id="113">
-      <Command.LabelTitle>
-        <String Id="281">GCMS Explorer</String>
+        <String Id="59">Export</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="282">Show GCMS ROI Peaks Explorer</String>
+        <String Id="60">Export Formula Search Result</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
-        <String Id="283">GCMS Explorer</String>
+        <String Id="61">Save Formula Table</String>
       </Command.TooltipTitle>
       <Command.TooltipDescription>
-        <String Id="284">Show GCMS ROI Peaks Explorer</String>
+        <String Id="62">Export Formula Search Result to a given file</String>
       </Command.TooltipDescription>
-      <Command.SmallImages>
-        <Image Id="285" MinDPI="192">Res/folder-documents.bmp</Image>
-      </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="286" MinDPI="192">Res/folder-documents.bmp</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdGCxGCViewer" Id="179" LabelTitle="GCxGC Viewer" LabelDescription="GCxGC Viewer" TooltipTitle="GCxGC Viewer" TooltipDescription="GCxGC Viewer">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/folder-documents.bmp</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/folder-documents.bmp</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonMSIMatrixVisual" Id="187" LabelTitle="HeatMap Matrix" LabelDescription="Visual multiple ion in N * N matrix style" TooltipTitle="HeatMap Matrix" TooltipDescription="Visual multiple ion in N * N matrix style">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/view-dual.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="144">Res/view-dual.png</Image>
+        <Image Id="63">Res/excel-icon.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonImportsMSITable" Id="205" LabelTitle="Import MSI Table" LabelDescription="Import MSI Table" TooltipTitle="Import MSI Table" TooltipDescription="Import MSI Table">
@@ -890,46 +453,6 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image MinDPI="192">Res/excel-icon.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdMenuImports" Id="158">
-      <Command.LabelTitle>
-        <String Id="585">Imports Data</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="586">Imports MS Data</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="587">Imports MS Data</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="588">Imports MS Data</String>
-      </Command.TooltipDescription>
-      <Command.SmallImages>
-        <Image Id="589" MinDPI="192">Res/folder-documents.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image Id="590" MinDPI="192">Res/folder-documents.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdImportsLinear" Id="100">
-      <Command.LabelTitle>
-        <String Id="242">Imports Linear</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="243">Open a file imports dialog and then imports a list of linear reference files.</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="244">Imports Linear</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="245">Open a file imports dialog and then imports a list of linear reference files.</String>
-      </Command.TooltipDescription>
-      <Command.SmallImages>
-        <Image Id="246" MinDPI="192">Res/folder-documents.bmp</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image Id="247" MinDPI="192">Res/folder-documents.bmp</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonImportsRawFiles" Id="1017">
@@ -996,89 +519,37 @@
         <Image Id="75" MinDPI="192">Res/applications-utilities.bmp</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonMSIRawIonStat" Id="166" LabelTitle="Ion stats" LabelDescription="Ion stats" TooltipTitle="Ion stats" TooltipDescription="Ion stats">
+    <Command Name="cmdButtonIonCoLocalization" Id="204" LabelTitle="Co-Localization" LabelDescription="Check Ion co-localization" TooltipTitle="Check Ion co-localization" TooltipDescription="Check Ion co-localization">
       <Command.SmallImages>
-        <Image MinDPI="192">Res/excel-icon.png</Image>
+        <Image MinDPI="192">Res/libreoffice-math.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image MinDPI="192">Res/excel-icon.png</Image>
+        <Image MinDPI="192">Res/libreoffice-math.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdGroupKEGG" Id="133">
+    <Command Name="cmdButtonLayout1" Id="1043">
       <Command.LabelTitle>
-        <String Id="440">KEGG</String>
+        <String Id="76">Snapshot</String>
       </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="441">KEGG</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="442">KEGG</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="443">KEGG</String>
-      </Command.TooltipDescription>
-    </Command>
-    <Command Name="cmdTabGroupKEGG" Id="134">
-      <Command.LabelTitle>
-        <String Id="444">KEGG</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="445">KEGG</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="446">KEGG</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="447">KEGG</String>
-      </Command.TooltipDescription>
-    </Command>
-    <Command Name="cmdTabKEGG" Id="132">
-      <Command.LabelTitle>
-        <String Id="436">KEGG</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="437">KEGG</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="438">KEGG</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="439">KEGG</String>
-      </Command.TooltipDescription>
-    </Command>
-    <Command Name="cmdButtonViewKEGGNetwork" Id="131">
-      <Command.LabelTitle>
-        <String Id="430">KEGG Network</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="431">View KEGG Pathway Network</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="432">KEGG Network</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="433">View KEGG Pathway Network</String>
-      </Command.TooltipDescription>
-      <Command.SmallImages>
-        <Image Id="434" MinDPI="192">Res/applications-utilities.png</Image>
-      </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="435" MinDPI="192">Res/applications-utilities.png</Image>
+        <Image Id="77">Res/applets-screenshooter.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdTabGroupTargetedLibrary" Id="107">
+    <Command Name="cmdButtonLayout2" Id="1044">
       <Command.LabelTitle>
-        <String Id="330">Library</String>
+        <String Id="78">Save Matrix</String>
       </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="331">Targeted Ion Library</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="332">Targeted Ion Library</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="333">View and Edit Targeted Ion Library</String>
-      </Command.TooltipDescription>
+      <Command.LargeImages>
+        <Image Id="79">Res/excel-icon.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonLicense" Id="1101" LabelDescription="View the license information about the MZKit workbench" TooltipTitle="View License Information" TooltipDescription="View the license information about the MZKit workbench">
+      <Command.LabelTitle>
+        <String Id="80">View License Information</String>
+      </Command.LabelTitle>
+      <Command.LargeImages>
+        <Image Id="81">Res/baobab.png</Image>
+      </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonLinearFitting" Id="182" LabelTitle="Linear Fitting" LabelDescription="Open tool page to evaluate linear fitting" TooltipTitle="Linear Fitting" TooltipDescription="Open tool page to evaluate linear fitting">
       <Command.SmallImages>
@@ -1096,117 +567,21 @@
         <Image MinDPI="192">Resources/System-Map-icon.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonShowLogWindow" Id="1109">
-      <Command.LabelTitle>
-        <String Id="160">Logging</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="161">Show Application Logging Output Window</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="162">Show Logging Output</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="163">Show Application Logging Output Window</String>
-      </Command.TooltipDescription>
+    <Command Name="cmdButtonMenuSearchTools" Id="209" LabelTitle="Search Tools" LabelDescription="Search Tools" TooltipTitle="Search Tools" TooltipDescription="Search Tools">
       <Command.SmallImages>
-        <Image Id="164">Res/preferences-system-notifications.png</Image>
+        <Image MinDPI="192">Res/application-x-rpm.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="165">Res/preferences-system-notifications.png</Image>
+        <Image MinDPI="192">Res/application-x-rpm.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdLogInBioDeep" Id="106">
-      <Command.LabelTitle>
-        <String Id="249">Login</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="250">Connect to BioDeep Cloud </String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="251">Login BioDeep</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="252">Connect to BioDeep Cloud </String>
-      </Command.TooltipDescription>
-      <Command.SmallImages>
-        <Image Id="253" MinDPI="192">Res/BioDeep.bmp</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image Id="254" MinDPI="192">Res/BioDeep.bmp</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonDropB" Id="1009">
-      <Command.LabelTitle>
-        <String Id="30">M/z Calculator</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="31">Calculate Precursor M/z Information for a given exact mass value.</String>
-      </Command.LabelDescription>
-      <Command.LargeImages>
-        <Image Id="32">Res/libreoffice-math.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdTabMain" Id="1011">
-      <Command.LabelTitle>
-        <String Id="336">Main</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdMALDIViewer" Id="215" LabelTitle="MALDI Viewer" LabelDescription="Viewer of the MALDI comprehensive mass spectrum raw data file" TooltipTitle="Viewer of the MALDI comprehensive mass spectrum raw data file" TooltipDescription="Viewer of the MALDI comprehensive mass spectrum raw data file">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/folder-pictures.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/folder-pictures.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdTabGroupTableTools" Id="1031">
-      <Command.LabelTitle>
-        <String Id="325">Mass Spectrum Viewer</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdGroupShowDockWindows" Id="1120">
-      <Command.LabelTitle>
-        <String Id="239">Mass Spectrum Windows</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdButtonShowMatrixViewer" Id="1112" TooltipDescription="Show M/Z Data Matrix Viewer">
-      <Command.LabelTitle>
-        <String Id="166">Matrix</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="167">Show M/Z Data Matrix Viewer</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="168">Show M/Z Data Matrix Viewer</String>
-      </Command.TooltipTitle>
-      <Command.LargeImages>
-        <Image Id="169">Res/application-x-object.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonMergeMultipleMSISample" Id="207" LabelTitle="Merge Multiple MSI Sample" LabelDescription="Merge Multiple MSI Sample" TooltipTitle="Merge Multiple MSI Sample" TooltipDescription="Merge Multiple MSI Sample">
+    <Command Name="cmdButtonMergeMultipleMSISample" Id="207" LabelTitle="Merge Multiple" LabelDescription="Merge multiple MS-Imaging sample slides, and join to a larger slide sample data for the downstream union analysis" TooltipTitle="Merge multiple MS-Imaging sample slides" TooltipDescription="Merge multiple MS-Imaging sample slides">
       <Command.SmallImages>
         <Image MinDPI="192">Res/osd-duplicate.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
         <Image MinDPI="192">Res/osd-duplicate.png</Image>
       </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonDropD" Id="5010">
-      <Command.LabelTitle>
-        <String Id="33">Molecule Networking</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="34">View network data created from the Spectrum similarity matrix calculation.</String>
-      </Command.LabelDescription>
-      <Command.LargeImages>
-        <Image Id="35">Res/preferences-system-sharing.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdTabGroupNetworkTools" Id="1081">
-      <Command.LabelTitle>
-        <String Id="323">Molecule Networking Tools</String>
-      </Command.LabelTitle>
     </Command>
     <Command Name="cmdButtonMovePolygon" Id="147">
       <Command.LabelTitle>
@@ -1234,179 +609,70 @@
         <Image Id="519" MinDPI="192">../ux/PolygonEditor/MovePolygonMenuItem.Image.png</Image>
       </Command.LargeHighContrastImages>
     </Command>
-    <Command Name="cmdButtonPolygonEditorMoveVertex" Id="145">
+    <Command Name="cmdButtonMsDemo" Id="1168">
       <Command.LabelTitle>
-        <String Id="500">Move Vertex/Edge</String>
+        <String Id="82">Demo Data</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="501">Move Vertex/Edge</String>
+        <String Id="83">View the demo data that contains from the MZKit installation to learn how to use MZKit</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
-        <String Id="502">Move Vertex/Edge</String>
+        <String Id="84">Demo Data</String>
       </Command.TooltipTitle>
       <Command.TooltipDescription>
-        <String Id="503">Move Vertex/Edge</String>
+        <String Id="85">View the demo data that contains from the MZKit installation to learn how to use MZKit</String>
       </Command.TooltipDescription>
-      <Command.SmallImages>
-        <Image Id="504" MinDPI="192">../ux/PolygonEditor/MoveComponentMenuItem.Image.png</Image>
-      </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="505" MinDPI="192">../ux/PolygonEditor/MoveComponentMenuItem.Image.png</Image>
+        <Image Id="86">Res/folder-pictures.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdShowMRMExplorer" Id="118">
+    <Command Name="cmdButtonMSIAverageIon" Id="125">
       <Command.LabelTitle>
-        <String Id="287">MRM Ion Explorer</String>
+        <String Id="398">Average Ion</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="288">Show MRM Ion Explorer</String>
+        <String Id="399">Render Average Ion</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
-        <String Id="289">Show MRM Ion Explorer</String>
+        <String Id="400">Render Average Ion</String>
       </Command.TooltipTitle>
       <Command.TooltipDescription>
-        <String Id="290">Show MRM Ion Explorer</String>
+        <String Id="401">Render Average Ion</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="291" MinDPI="192">Res/folder-documents.bmp</Image>
+        <Image Id="402" MinDPI="192">Res/applets-screenshooter.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="292" MinDPI="192">Res/folder-documents.bmp</Image>
+        <Image Id="403" MinDPI="192">Res/applets-screenshooter.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdMRMLibrary" Id="108">
+    <Command Name="cmdButtonMSIBasePeakIon" Id="124">
       <Command.LabelTitle>
-        <String Id="257">MRM Ions</String>
+        <String Id="392">BasePeakIon</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="258">View and Edit LC-MS/MS MRM Ions Library</String>
+        <String Id="393">Render BasePeakIon</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
-        <String Id="259">MRM Ions Library</String>
+        <String Id="394">Render BasePeakIon</String>
       </Command.TooltipTitle>
       <Command.TooltipDescription>
-        <String Id="260">View and Edit LC-MS/MS MRM Ions Library</String>
+        <String Id="395">Render BasePeakIon</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="261" MinDPI="192">Res/application-vnd.oasis.opendocument.database.bmp</Image>
+        <Image Id="396" MinDPI="192">Res/applets-screenshooter.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="262" MinDPI="144">Res/application-vnd.oasis.opendocument.database.bmp</Image>
+        <Image Id="397" MinDPI="192">Res/applets-screenshooter.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdGroupMSIFile" Id="122">
-      <Command.LabelTitle>
-        <String Id="382">MS Imaging</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="383">MS Imaging</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="384">MS Imaging</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="385">MS Imaging</String>
-      </Command.TooltipDescription>
-    </Command>
-    <Command Name="cmdTabGroupMSI" Id="120">
-      <Command.LabelTitle>
-        <String Id="374">MS Imaging</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="375">MS Imaging</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="376">MS Imaging</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="377">MS Imaging</String>
-      </Command.TooltipDescription>
-    </Command>
-    <Command Name="cmdMsconvertGUI" Id="210" LabelTitle="Msconvert GUI" LabelDescription="Launch the MZKit MsConvert GUI Tools for convert MS raw data files" TooltipTitle="Msconvert GUI" TooltipDescription="Launch the MZKit MsConvert GUI Tools for convert MS raw data files">
+    <Command Name="cmdButtonMSICleanBackground" Id="167" LabelTitle="Clean Background" LabelDescription="Clean Background" TooltipTitle="Clean Background" TooltipDescription="Clean Background">
       <Command.SmallImages>
-        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+        <Image MinDPI="192">Res/edit-cut.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+        <Image MinDPI="144">Res/edit-cut.png</Image>
       </Command.LargeImages>
-    </Command>
-    <Command Name="cmdTabMSIPage" Id="121">
-      <Command.LabelTitle>
-        <String Id="378">MSI</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="379">MSI</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="380">MSI</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="381">MSI</String>
-      </Command.TooltipDescription>
-    </Command>
-    <Command Name="cmdTabMenuMSIAnalysis" Id="142">
-      <Command.LabelTitle>
-        <String Id="488">MSI Analysis</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="489">MSI Analysis</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="490">MSI Analysis</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="491">MSI Analysis</String>
-      </Command.TooltipDescription>
-    </Command>
-    <Command Name="cmdTabMSIAnalysis" Id="141">
-      <Command.LabelTitle>
-        <String Id="484">MSI Analysis</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="485">MSI Analysis</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="486">MSI Analysis</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="487">MSI Analysis</String>
-      </Command.TooltipDescription>
-    </Command>
-    <Command Name="cmdTabMSIFile" Id="129">
-      <Command.LabelTitle>
-        <String Id="420">MSI File</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="421">MSI File</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="422">MSI File</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="423">MSI File</String>
-      </Command.TooltipDescription>
-    </Command>
-    <Command Name="cmdButtonMSISignalCorrection" Id="197" LabelTitle="MSI Signal Correction" LabelDescription="Make MSI ions signal correction in manual by adjust of the intensity range." TooltipTitle="MSI Signal Correction" TooltipDescription="Make MSI ions signal correction in manual by adjust of the intensity range.">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/gparted.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/gparted.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdTabMSISnapshot" Id="126">
-      <Command.LabelTitle>
-        <String Id="404">MSI Snapshot</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="405">MSI Snapshot</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="406">MSI Snapshot</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="407">MSI Snapshot</String>
-      </Command.TooltipDescription>
     </Command>
     <Command Name="cmdButtonMsImaging" Id="1167">
       <Command.LabelTitle>
@@ -1428,101 +694,145 @@
         <Image Id="91">Res/system-software-update.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdPanelMSIVisual" Id="186" LabelTitle="MS-Imaging Visual" />
-    <Command Name="cmdButtonToolkits" Id="1007">
-      <Command.LabelTitle>
-        <String Id="197">Mzkit Data Toolkits</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="198">Open Description</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="199">Open (Ctrl+O)</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="200">Open an existing image.</String>
-      </Command.TooltipDescription>
+    <Command Name="cmdButtonMSIMatrixVisual" Id="187" LabelTitle="HeatMap Matrix" LabelDescription="Visual multiple ion in N * N matrix style" TooltipTitle="HeatMap Matrix" TooltipDescription="Visual multiple ion in N * N matrix style">
       <Command.SmallImages>
-        <Image Id="201">Res/applications-utilities.png</Image>
+        <Image MinDPI="192">Res/view-dual.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="202">Res/applications-utilities.png</Image>
+        <Image MinDPI="144">Res/view-dual.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdTabDesign" Id="1032">
-      <Command.LabelTitle>
-        <String Id="313">Mzkit Data Tools</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdButtonDropA" Id="1008">
-      <Command.LabelTitle>
-        <String Id="27">Mzkit Raw Data File Viewer</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="28">View MSMS and Chromatography data in MzXML/mzML/Mgf raw file data.</String>
-      </Command.LabelDescription>
-      <Command.LargeImages>
-        <Image Id="29">Res/application-x-object.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdGroupToolsActions" Id="1046">
-      <Command.LabelTitle>
-        <String Id="241">Mzkit Toolkit</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdTabNetwork" Id="1082">
-      <Command.LabelTitle>
-        <String Id="337">Network</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdGroupNetworkTools" Id="1151">
-      <Command.LabelTitle>
-        <String Id="237">Network Plot Data Tools</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdGroupNetwork" Id="1083">
-      <Command.LabelTitle>
-        <String Id="235">Network Result</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdButtonOpenRaw" Id="1002">
-      <Command.LabelTitle>
-        <String Id="109">Open</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="110">Open A file</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="111">Open (Ctrl+O)</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="112">Open an existing raw data file or R# script file.</String>
-      </Command.TooltipDescription>
+    <Command Name="cmdButtonMSIRawIonStat" Id="166" LabelTitle="Ion stats" LabelDescription="Ion stats" TooltipTitle="Ion stats" TooltipDescription="Ion stats">
       <Command.SmallImages>
-        <Image MinDPI="192">Res/folder-pictures.png</Image>
+        <Image MinDPI="192">Res/excel-icon.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image MinDPI="192">Res/folder-pictures.png</Image>
+        <Image MinDPI="192">Res/excel-icon.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdOpenIonsLibrary" Id="159">
+    <Command Name="cmdButtonMSIRowScans" Id="128">
       <Command.LabelTitle>
-        <String Id="591">Open Ions Annotation</String>
+        <String Id="414">Row Scans</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="592">Open ions annotation library</String>
+        <String Id="415">Combine Row Scan MSI raw data files</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
-        <String Id="593">Open Ions Annotation</String>
+        <String Id="416">Combine Row Scan MSI raw data files</String>
       </Command.TooltipTitle>
       <Command.TooltipDescription>
-        <String Id="594">Open ions annotation library</String>
+        <String Id="417">Combine Row Scan MSI raw data files into a single mzPack raw data file</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="595" MinDPI="192">Res/application-vnd.oasis.opendocument.database.png</Image>
+        <Image Id="418" MinDPI="192">Res/emblem-synchronizing.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="596" MinDPI="144">Res/application-vnd.oasis.opendocument.database.png</Image>
+        <Image Id="419" MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonMSISearchPubChem" Id="192" LabelTitle="Search PubChem" LabelDescription="Submit the chemical compound name and CAS id etc to the database search for search the corresponding metabolite information, example as formula etc." TooltipTitle="Search PubChem" TooltipDescription="Submit the chemical compound name and CAS id etc to the database search for search the corresponding metabolite information, example as formula etc.">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/tracker.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/tracker.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonMSISignalCorrection" Id="197" LabelTitle="MSI Signal Correction" LabelDescription="Make MSI ions signal correction in manual by adjust of the intensity range." TooltipTitle="MSI Signal Correction" TooltipDescription="Make MSI ions signal correction in manual by adjust of the intensity range.">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/gparted.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/gparted.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonMSITotalIon" Id="123">
+      <Command.LabelTitle>
+        <String Id="386">Total Ions</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="387">Render Total Ions</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="388">Render Total Ions</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="389">Render Total Ions</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="390" MinDPI="192">Res/applets-screenshooter.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="391" MinDPI="192">Res/applets-screenshooter.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonMzCalculator" Id="1013">
+      <Command.LabelTitle>
+        <String Id="92">Calculator</String>
+      </Command.LabelTitle>
+      <Command.SmallImages>
+        <Image Id="93">Res/libreoffice-math.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="94">Res/libreoffice-math.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonMzSearch" Id="1052">
+      <Command.LabelTitle>
+        <String Id="95">Search</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="96">Search Formula for given m/z value</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="97">Search Formula</String>
+      </Command.TooltipTitle>
+      <Command.LargeImages>
+        <Image Id="98">Res/tracker.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonNetworkExport" Id="1084">
+      <Command.LabelTitle>
+        <String Id="99">Export</String>
+      </Command.LabelTitle>
+      <Command.LargeImages>
+        <Image Id="100">Res/excel-icon.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonNetworkRender" Id="1085">
+      <Command.LabelTitle>
+        <String Id="101">Render Network</String>
+      </Command.LabelTitle>
+      <Command.LargeImages>
+        <Image Id="102">Res/image-tiff.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonNew" Id="1001">
+      <Command.LabelTitle>
+        <String Id="103">&amp;New</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="104">New R# script file</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="105">New (Ctrl+N)</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="106">Create a R# script file for mzkit automation.</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="107">Res/New16.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="108">Res/New32.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonNextPolygon" Id="193" LabelTitle="Start Next Polygon" LabelDescription="Save current polygon and then start to create next polygon." TooltipTitle="Start Next Polygon" TooltipDescription="Save current polygon and then start to create next polygon.">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/RegistryEditor_5838_32x.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image>Res/RegistryEditor_5838_32x.bmp</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonOpenMSIRaw" Id="119">
@@ -1545,41 +855,47 @@
         <Image Id="373" MinDPI="192">Res/folder-documents.bmp</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdImportsMzwork" Id="157">
+    <Command Name="cmdButtonOpenRaw" Id="1002">
       <Command.LabelTitle>
-        <String Id="579">Open Workspace</String>
+        <String Id="109">Open</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="580">Open MZkit workspace data file</String>
+        <String Id="110">Open A file</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
-        <String Id="581">Open Workspace</String>
+        <String Id="111">Open (Ctrl+O)</String>
       </Command.TooltipTitle>
       <Command.TooltipDescription>
-        <String Id="582">Open MZkit workspace data file</String>
+        <String Id="112">Open an existing raw data file or R# script file.</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="583" MinDPI="192">Res/folder-pictures.png</Image>
+        <Image MinDPI="192">Res/folder-pictures.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="584" MinDPI="192">Res/folder-pictures.png</Image>
+        <Image MinDPI="192">Res/folder-pictures.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdGroupMSIOperations" Id="201" LabelTitle="Operations" LabelDescription="Operations" TooltipTitle="Operations" TooltipDescription="Operations" />
-    <Command Name="cmdTabMSIOperations" Id="200" LabelTitle="Operations" LabelDescription="Operations" TooltipTitle="Operations" TooltipDescription="Operations" />
-    <Command Name="cmdPanelOptions" Id="155">
+    <Command Name="cmdButtonOpenServicesMgr" Id="219" LabelTitle="Services Manager" LabelDescription="Open services manager page for view all of the running MZKit data background services progress." TooltipTitle="Open services manager page for view all of the running MZKit data background services progress." TooltipDescription="Open services manager page for view all of the running MZKit data background services progress.">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/document-open-recent.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/document-open-recent.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonPageNavBack" Id="1053">
       <Command.LabelTitle>
-        <String Id="572">Options</String>
+        <String Id="115">Back to Previous Page</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="573">Options</String>
+        <String Id="116">Go Back to the Previous Page</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
-        <String Id="574">Options</String>
+        <String Id="117">Go Back to the Previous Page</String>
       </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="575">Options</String>
-      </Command.TooltipDescription>
+      <Command.LargeImages>
+        <Image Id="118">Res/edit-undo.png</Image>
+      </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonPeakFinding" Id="5" LabelTitle="Peak Finding" LabelDescription="Peak Finding" TooltipTitle="Peak Finding" TooltipDescription="Peak Finding">
       <Command.SmallImages>
@@ -1589,48 +905,6 @@
         <Image MinDPI="192">Res/edit-find.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonCosHeatmap" Id="211" LabelTitle="Pixel Cosine Heatmap" LabelDescription="Pixel Cosine Heatmap" TooltipTitle="Pixel Cosine Heatmap" TooltipDescription="Pixel Cosine Heatmap">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
-      </Command.LargeImages>
-      <Command.SmallHighContrastImages>
-        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
-      </Command.SmallHighContrastImages>
-      <Command.LargeHighContrastImages>
-        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
-      </Command.LargeHighContrastImages>
-    </Command>
-    <Command Name="cmdButtonShowPlotViewer" Id="1111">
-      <Command.LabelTitle>
-        <String Id="170">Plot</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="171">Show M/Z Plot Viewer</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="172">Show M/Z Plot Viewer</String>
-      </Command.TooltipTitle>
-      <Command.LargeImages>
-        <Image Id="173">Res/pix.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdPlotOptions" Id="97">
-      <Command.LabelTitle>
-        <String Id="263">Plot Options</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="264">Plot Options</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="265">Plot Options</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="266">Plot Options</String>
-      </Command.TooltipDescription>
-    </Command>
     <Command Name="cmdButtonPluginManager" Id="214" LabelTitle="Plugin Manager" LabelDescription="Plugin Manager" TooltipTitle="Plugin Manager" TooltipDescription="Plugin Manager">
       <Command.SmallImages>
         <Image MinDPI="192">Res/application-x-rpm.png</Image>
@@ -1639,175 +913,50 @@
         <Image MinDPI="192">Res/application-x-rpm.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonTogglePolygon" Id="140">
+    <Command Name="cmdButtonPolygonDeleteVertex" Id="150">
       <Command.LabelTitle>
-        <String Id="478">Polygon Editor</String>
+        <String Id="536">Delete Vertex</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="479">Polygon editor for your MS-Imaging data, create regions via polygon for extract expression data for downstream data analysis</String>
+        <String Id="537">Delete Vertex</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
-        <String Id="480">Open Polygon Editor</String>
+        <String Id="538">Delete Vertex</String>
       </Command.TooltipTitle>
       <Command.TooltipDescription>
-        <String Id="481">Polygon editor for your MS-Imaging data, create regions via polygon for extract expression data for downstream data analysis</String>
+        <String Id="539">Delete Vertex</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="482" MinDPI="192">Res/insert-object.png</Image>
+        <Image Id="540" MinDPI="192">../ux/PolygonEditor/RemoveVertexMenuItem.Image.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="483" MinDPI="144">Res/insert-object.png</Image>
+        <Image Id="541" MinDPI="192">../ux/PolygonEditor/RemoveVertexMenuItem.Image.png</Image>
       </Command.LargeImages>
+      <Command.SmallHighContrastImages>
+        <Image Id="542" MinDPI="192">../ux/PolygonEditor/RemoveVertexMenuItem.Image.png</Image>
+      </Command.SmallHighContrastImages>
+      <Command.LargeHighContrastImages>
+        <Image Id="543" MinDPI="192">../ux/PolygonEditor/RemoveVertexMenuItem.Image.png</Image>
+      </Command.LargeHighContrastImages>
     </Command>
-    <Command Name="cmdtabGroupPolygonEditor" Id="143">
+    <Command Name="cmdButtonPolygonEditorMoveVertex" Id="145">
       <Command.LabelTitle>
-        <String Id="492">Polygon Editor</String>
+        <String Id="500">Move Vertex/Edge</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="493">Polygon Editor</String>
+        <String Id="501">Move Vertex/Edge</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
-        <String Id="494">Polygon Editor</String>
+        <String Id="502">Move Vertex/Edge</String>
       </Command.TooltipTitle>
       <Command.TooltipDescription>
-        <String Id="495">Polygon Editor</String>
-      </Command.TooltipDescription>
-    </Command>
-    <Command Name="cmdTabPolygonEditor" Id="144">
-      <Command.LabelTitle>
-        <String Id="496">Polygon Editor</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="497">Polygon Editor</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="498">Polygon Editor</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="499">Polygon Editor</String>
-      </Command.TooltipDescription>
-    </Command>
-    <Command Name="cmdButtonShowProperties" Id="1123" TooltipDescription="Show M/Z Data Properties Viewer">
-      <Command.LabelTitle>
-        <String Id="174">Properties</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="175">Show M/Z Data Properties Viewer</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="176">M/Z Data Properties</String>
-      </Command.TooltipTitle>
-      <Command.LargeImages>
-        <Image Id="177">Res/application-x-object.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdQuantifyIons" Id="109">
-      <Command.LabelTitle>
-        <String Id="268">Quantify Ions</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="269">View and Edit GC-MS Quantify Ions Library</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="270">Quantify Ions Library</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="271">View and Edit GC-MS Quantify Ions Library</String>
+        <String Id="503">Move Vertex/Edge</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="272" MinDPI="192">Res/application-vnd.oasis.opendocument.database.bmp</Image>
+        <Image Id="504" MinDPI="192">../ux/PolygonEditor/MoveComponentMenuItem.Image.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="273" MinDPI="144">Res/application-vnd.oasis.opendocument.database.bmp</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdTabRscriptTools" Id="1131">
-      <Command.LabelTitle>
-        <String Id="338">R#</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdTabGroupRscriptTools" Id="1130">
-      <Command.LabelTitle>
-        <String Id="324">R# Scripting</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdTabRStudio" Id="111">
-      <Command.LabelTitle>
-        <String Id="339">R# Studio</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="340">R# Studio</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="341">R# Studio</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="342">R# Studio</String>
-      </Command.TooltipDescription>
-    </Command>
-    <Command Name="cmdButtonRsharp" Id="1107">
-      <Command.LabelTitle>
-        <String Id="130">R# Terminal</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="131">R# Scripting for Run Mzkit Automation Pipeline</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="132">Mzkit Automation</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="133">R# Scripting for Run Mzkit Automation Pipeline</String>
-      </Command.TooltipDescription>
-      <Command.SmallImages>
-        <Image Id="134">Res/Terminal.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image Id="135">Res/Terminal.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdRecentItems" Id="1014">
-      <Command.LabelTitle>
-        <String Id="274">Recent Items</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdReferenceLibrary" Id="160">
-      <Command.LabelTitle>
-        <String Id="597">Reference Library</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="598">View and edit of your ms2 spectrum reference library</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="599">Reference Library</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="600">View and edit of your ms2 spectrum reference library</String>
-      </Command.TooltipDescription>
-      <Command.SmallImages>
-        <Image Id="601" MinDPI="192">Res/application-vnd.oasis.opendocument.database.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image Id="602" MinDPI="144">Res/application-vnd.oasis.opendocument.database.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdTabReferenceLibrary" Id="161">
-      <Command.LabelTitle>
-        <String Id="603">Reference Library</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="604">Reference Library</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="605">Reference Library</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="606">Reference Library</String>
-      </Command.TooltipDescription>
-      <Command.SmallImages>
-        <Image Id="607" MinDPI="192">Res/application-vnd.oasis.opendocument.database.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image Id="608" MinDPI="144">Res/application-vnd.oasis.opendocument.database.png</Image>
+        <Image Id="505" MinDPI="192">../ux/PolygonEditor/MoveComponentMenuItem.Image.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonRefreshNetwork" Id="1154">
@@ -1826,45 +975,6 @@
       <Command.LargeImages>
         <Image Id="123">Res/system-software-update.png</Image>
       </Command.LargeImages>
-    </Command>
-    <Command Name="cmdGroupNetworkRenderTool" Id="1150">
-      <Command.LabelTitle>
-        <String Id="236">Refresh Network</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdButtonShowRegionOverlap" Id="130">
-      <Command.LabelTitle>
-        <String Id="424">Region Overlap</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="425">Toggle display feature region overlap</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="426">Region Overlap</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="427">Toggle display feature region overlap</String>
-      </Command.TooltipDescription>
-      <Command.SmallImages>
-        <Image Id="428" MinDPI="192">Res/pin-icon.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image Id="429" MinDPI="192">Res/pin-icon.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdCheckBoxXICRelative" Id="96">
-      <Command.LabelTitle>
-        <String Id="208">Relative Height</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="209">Relative Height</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="210">Relative Height</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="211">Relative Height</String>
-      </Command.TooltipDescription>
     </Command>
     <Command Name="cmdButtonRemovePolygon" Id="148">
       <Command.LabelTitle>
@@ -1892,12 +1002,12 @@
         <Image Id="527" MinDPI="192">../ux/PolygonEditor/RemovePolygonMenuItem.Image.png</Image>
       </Command.LargeHighContrastImages>
     </Command>
-    <Command Name="cmdButtonNetworkRender" Id="1085">
-      <Command.LabelTitle>
-        <String Id="101">Render Network</String>
-      </Command.LabelTitle>
+    <Command Name="cmdButtonResetFeatureFilter" Id="165" LabelTitle="Reset Filter" LabelDescription="Reset Feature Filter" TooltipTitle="Reset Filter" TooltipDescription="Reset Feature Filter">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/application-exit.png</Image>
+      </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="102">Res/image-tiff.png</Image>
+        <Image MinDPI="192">Res/application-exit.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonResetLayout" Id="1019">
@@ -1920,14 +1030,6 @@
         <Image Id="129">Res/gnome-window-manager.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonResetFeatureFilter" Id="165" LabelTitle="Reset Filter" LabelDescription="Reset Feature Filter" TooltipTitle="Reset Filter" TooltipDescription="Reset Feature Filter">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/application-exit.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/application-exit.png</Image>
-      </Command.LargeImages>
-    </Command>
     <Command Name="cmdButtonResetTableFilter" Id="171" LabelTitle="Reset Filter" LabelDescription="Reset Filter" TooltipTitle="Reset Filter" TooltipDescription="Reset Filter">
       <Command.SmallImages>
         <Image MinDPI="192">Res/application-exit.png</Image>
@@ -1936,33 +1038,34 @@
         <Image MinDPI="192">Res/application-exit.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdGroupCalculator" Id="1063">
-      <Command.LabelTitle>
-        <String Id="219">Result Data</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdButtonMSIRowScans" Id="128">
-      <Command.LabelTitle>
-        <String Id="414">Row Scans</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="415">Combine Row Scan MSI raw data files</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="416">Combine Row Scan MSI raw data files</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="417">Combine Row Scan MSI raw data files into a single mzPack raw data file</String>
-      </Command.TooltipDescription>
+    <Command Name="cmdButtonRotateSlide" Id="221" LabelTitle="Rotate Slide" LabelDescription="Rotate Slide" TooltipTitle="Rotate Slide" TooltipDescription="Rotate Slide">
       <Command.SmallImages>
-        <Image Id="418" MinDPI="192">Res/emblem-synchronizing.png</Image>
+        <Image MinDPI="192">Res/view-refresh.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="419" MinDPI="192">Res/emblem-synchronizing.png</Image>
+        <Image MinDPI="144">Res/view-refresh.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdSpinnerFeatureFilterRtMax" Id="164" LabelTitle="rtmax" LabelDescription="max rt(seconds)" TooltipTitle="max rt" TooltipDescription="max rt(seconds)" />
-    <Command Name="cmdSpinnerFeatureFilterRtMin" Id="163" LabelTitle="rtmin" LabelDescription="min rt(seconds)" TooltipTitle="min rt" TooltipDescription="min rt(seconds)" />
+    <Command Name="cmdButtonRsharp" Id="1107">
+      <Command.LabelTitle>
+        <String Id="130">R# Terminal</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="131">R# Scripting for Run Mzkit Automation Pipeline</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="132">Mzkit Automation</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="133">R# Scripting for Run Mzkit Automation Pipeline</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="134">Res/Terminal.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="135">Res/Terminal.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdButtonRunScript" Id="1133">
       <Command.LabelTitle>
         <String Id="136">Run</String>
@@ -2017,72 +1120,12 @@
         <Image Id="151">Res/document-save.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdSaveLinears" Id="103">
-      <Command.LabelTitle>
-        <String Id="275">Save Linear Table</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="276">Save Linear Table</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="277">Save Linear Table</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="278">Save Linear Table</String>
-      </Command.TooltipDescription>
+    <Command Name="cmdButtonSaveTableCDF" Id="176" LabelTitle="Export CDF" LabelDescription="Export CDF" TooltipTitle="Export CDF" TooltipDescription="Export CDF">
       <Command.SmallImages>
-        <Image Id="279" MinDPI="192">Res/excel-icon.bmp</Image>
+        <Image MinDPI="192">Res/application-x-object.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="280" MinDPI="192">Res/excel-icon.bmp</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonLayout2" Id="1044">
-      <Command.LabelTitle>
-        <String Id="78">Save Matrix</String>
-      </Command.LabelTitle>
-      <Command.LargeImages>
-        <Image Id="79">Res/excel-icon.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdGroupRscript" Id="1132">
-      <Command.LabelTitle>
-        <String Id="238">Scripting</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdButtonMzSearch" Id="1052">
-      <Command.LabelTitle>
-        <String Id="95">Search</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="96">Search Formula for given m/z value</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="97">Search Formula</String>
-      </Command.TooltipTitle>
-      <Command.LargeImages>
-        <Image Id="98">Res/tracker.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdPPMSpinner" Id="1050">
-      <Command.LabelTitle>
-        <String Id="267">Search PPM</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdButtonMSISearchPubChem" Id="192" LabelTitle="Search PubChem" LabelDescription="Submit the chemical compound name and CAS id etc to the database search for search the corresponding metabolite information, example as formula etc." TooltipTitle="Search PubChem" TooltipDescription="Submit the chemical compound name and CAS id etc to the database search for search the corresponding metabolite information, example as formula etc.">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/tracker.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/tracker.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonMenuSearchTools" Id="209" LabelTitle="Search Tools" LabelDescription="Search Tools" TooltipTitle="Search Tools" TooltipDescription="Search Tools">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/application-x-rpm.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/application-x-rpm.png</Image>
+        <Image MinDPI="192">Res/application-x-object.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonSettings" Id="1051" TooltipDescription="Mzkit Tools Configuration">
@@ -2099,64 +1142,52 @@
         <Image Id="155">Res/applications-system.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdCheckBoxShowMs2Fragment" Id="4" LabelTitle="Show Fragment Annotation" LabelDescription="Show Fragment Annotation" TooltipTitle="Show Fragment Annotation" TooltipDescription="Show Fragment Annotation" />
-    <Command Name="cmdCheckBoxShowKEGGAnnotation" Id="153">
+    <Command Name="cmdButtonShowExplorer" Id="1121" TooltipDescription="Show Raw File Explorer">
       <Command.LabelTitle>
-        <String Id="560">Show KEGG Annotation</String>
+        <String Id="156">Explorer</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="561">Show KEGG annotation for  ms1 scan data</String>
+        <String Id="157">Show Raw File Explorer</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
-        <String Id="562">Show KEGG Annotation</String>
+        <String Id="158">File Explorer</String>
       </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="563">Show KEGG annotation for  ms1 scan data</String>
-      </Command.TooltipDescription>
-      <Command.SmallImages>
-        <Image Id="564" MinDPI="192">Res/application-x-object.png</Image>
-      </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="565" MinDPI="192">Res/application-x-object.png</Image>
-      </Command.LargeImages>
-      <Command.SmallHighContrastImages>
-        <Image Id="566" MinDPI="192">Res/application-x-object.png</Image>
-      </Command.SmallHighContrastImages>
-      <Command.LargeHighContrastImages>
-        <Image Id="567" MinDPI="192">Res/application-x-object.png</Image>
-      </Command.LargeHighContrastImages>
-    </Command>
-    <Command Name="cmdLegendCheckBox" Id="1166">
-      <Command.LabelTitle>
-        <String Id="248">Show Legend</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdCheckShowMapLayer" Id="194" LabelTitle="Show Map Layer" LabelDescription="Show or hide of the tissue regions map overlaps on the MS-imaging image output or not?" TooltipTitle="Show Tissue Map Regions" TooltipDescription="Show or hide of the tissue regions map overlaps on the MS-imaging image output or not?">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/insert-object.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="144">Res/insert-object.png</Image>
+        <Image Id="159">Res/folder-documents.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdShowProperty" Id="3">
+    <Command Name="cmdButtonShowLogWindow" Id="1109">
       <Command.LabelTitle>
-        <String Id="293">Show Property</String>
+        <String Id="160">Logging</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="294">Show Plot Data Properties</String>
+        <String Id="161">Show Application Logging Output Window</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
-        <String Id="295">Show Property</String>
+        <String Id="162">Show Logging Output</String>
       </Command.TooltipTitle>
       <Command.TooltipDescription>
-        <String Id="296">Show Plot Data Properties</String>
+        <String Id="163">Show Application Logging Output Window</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="297" MinDPI="192">Res/applications-utilities.bmp</Image>
+        <Image Id="164">Res/preferences-system-notifications.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="298" MinDPI="192">Res/applications-utilities.bmp</Image>
+        <Image Id="165">Res/preferences-system-notifications.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonShowMatrixViewer" Id="1112" TooltipDescription="Show M/Z Data Matrix Viewer">
+      <Command.LabelTitle>
+        <String Id="166">Matrix</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="167">Show M/Z Data Matrix Viewer</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="168">Show M/Z Data Matrix Viewer</String>
+      </Command.TooltipTitle>
+      <Command.LargeImages>
+        <Image Id="169">Res/application-x-object.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonShowMSISampleWindow" Id="195" LabelTitle="Show Sample Window" LabelDescription="Show the property window for view of your MSI sample regions list, which is generated from the region editing result in polygon editor." TooltipTitle="Show MSI Sample Window" TooltipDescription="Show the property window for view of your MSI sample regions list, which is generated from the region editing result in polygon editor.">
@@ -2165,6 +1196,20 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image MinDPI="192">Res/pix.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonShowPlotViewer" Id="1111">
+      <Command.LabelTitle>
+        <String Id="170">Plot</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="171">Show M/Z Plot Viewer</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="172">Show M/Z Plot Viewer</String>
+      </Command.TooltipTitle>
+      <Command.LargeImages>
+        <Image Id="173">Res/pix.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonShowPolygonVertexInfo" Id="151">
@@ -2193,12 +1238,52 @@
         <Image Id="551" MinDPI="144">Res/view-dual.png</Image>
       </Command.LargeHighContrastImages>
     </Command>
-    <Command Name="cmdButtonLayout1" Id="1043">
+    <Command Name="cmdButtonShowProperties" Id="1123" TooltipDescription="Show M/Z Data Properties Viewer">
       <Command.LabelTitle>
-        <String Id="76">Snapshot</String>
+        <String Id="174">Properties</String>
       </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="175">Show M/Z Data Properties Viewer</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="176">M/Z Data Properties</String>
+      </Command.TooltipTitle>
       <Command.LargeImages>
-        <Image Id="77">Res/applets-screenshooter.png</Image>
+        <Image Id="177">Res/application-x-object.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonShowRegionOverlap" Id="130">
+      <Command.LabelTitle>
+        <String Id="424">Region Overlap</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="425">Toggle display feature region overlap</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="426">Region Overlap</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="427">Toggle display feature region overlap</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="428" MinDPI="192">Res/pin-icon.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="429" MinDPI="192">Res/pin-icon.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonShowSearchList" Id="1122">
+      <Command.LabelTitle>
+        <String Id="178">Features</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="179">Show Feature List</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="180">Feature List</String>
+      </Command.TooltipTitle>
+      <Command.LargeImages>
+        <Image Id="181">Res/folder-pictures.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonShowSpectrumSearchPage" Id="1102" TooltipTitle="Spectrum Similarity Search" TooltipDescription="Spectrum Similarity Search">
@@ -2213,28 +1298,6 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image Id="185">Res/tracker.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdSpinnerSimilarity" Id="1153">
-      <Command.LabelTitle>
-        <String Id="299">Spectrum Similarity</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="300">Filter node links by spectrum similarity</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="301">Spectrum Similarity</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="302">Filter node links by spectrum similarity</String>
-      </Command.TooltipDescription>
-    </Command>
-    <Command Name="cmdButtonNextPolygon" Id="193" LabelTitle="Start Next Polygon" LabelDescription="Save current polygon and then start to create next polygon." TooltipTitle="Start Next Polygon" TooltipDescription="Save current polygon and then start to create next polygon.">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/RegistryEditor_5838_32x.bmp</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image>Res/RegistryEditor_5838_32x.bmp</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonShowStartPage" Id="1108">
@@ -2265,10 +1328,891 @@
         <Image MinDPI="192">Res/gparted.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonTIC" Id="1144">
+      <Command.LabelTitle>
+        <String Id="192">TIC</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="193">Total Ion Chromatography</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="194">TIC plot</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="195">Total ion Chromatography Data Plot</String>
+      </Command.TooltipDescription>
+      <Command.LargeImages>
+        <Image Id="196">Res/office_chart_area_256px_540041_easyicon.net.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonTissueMap" Id="190" LabelTitle="Tissue Map" LabelDescription="Tissue Map" TooltipTitle="Tissue Map" TooltipDescription="Tissue Map">
+      <Command.SmallImages>
+        <Image MinDPI="192">Resources/System-Map-icon.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Resources/System-Map-icon.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonTogglePolygon" Id="140">
+      <Command.LabelTitle>
+        <String Id="478">Polygon Editor</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="479">Polygon editor for your MS-Imaging data, create regions via polygon for extract expression data for downstream data analysis</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="480">Open Polygon Editor</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="481">Polygon editor for your MS-Imaging data, create regions via polygon for extract expression data for downstream data analysis</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="482" MinDPI="192">Res/insert-object.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="483" MinDPI="144">Res/insert-object.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonToolkits" Id="1007">
+      <Command.LabelTitle>
+        <String Id="197">Mzkit Data Toolkits</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="198">Open Description</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="199">Open (Ctrl+O)</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="200">Open an existing image.</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="201">Res/applications-utilities.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="202">Res/applications-utilities.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonUpsideDown" Id="202" LabelTitle="Up side down" LabelDescription="Turn the image data up side down" TooltipTitle="Up side down" TooltipDescription="Turn the image data up side down">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonViewKEGGNetwork" Id="131">
+      <Command.LabelTitle>
+        <String Id="430">KEGG Network</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="431">View KEGG Pathway Network</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="432">KEGG Network</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="433">View KEGG Pathway Network</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="434" MinDPI="192">Res/applications-utilities.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="435" MinDPI="192">Res/applications-utilities.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonViewSMILES" Id="178" LabelTitle="View SMILES" LabelDescription="View the input SMILES its molecule graph data" TooltipTitle="View SMILES" TooltipDescription="View the input SMILES its molecule graph data">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonXIC" Id="1145">
+      <Command.LabelTitle>
+        <String Id="203">XIC</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="204">Selective Ion Chromatography</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="205">XIC plot</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="206">Selective Ion Chromatography Data Plot</String>
+      </Command.TooltipDescription>
+      <Command.LargeImages>
+        <Image Id="207">Res/office_chart_area_256px_540041_easyicon.net.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdCheckBoxShowKEGGAnnotation" Id="153">
+      <Command.LabelTitle>
+        <String Id="560">Show KEGG Annotation</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="561">Show KEGG annotation for  ms1 scan data</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="562">Show KEGG Annotation</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="563">Show KEGG annotation for  ms1 scan data</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="564" MinDPI="192">Res/application-x-object.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="565" MinDPI="192">Res/application-x-object.png</Image>
+      </Command.LargeImages>
+      <Command.SmallHighContrastImages>
+        <Image Id="566" MinDPI="192">Res/application-x-object.png</Image>
+      </Command.SmallHighContrastImages>
+      <Command.LargeHighContrastImages>
+        <Image Id="567" MinDPI="192">Res/application-x-object.png</Image>
+      </Command.LargeHighContrastImages>
+    </Command>
+    <Command Name="cmdCheckBoxShowMs2Fragment" Id="4" LabelTitle="Show Fragment Annotation" LabelDescription="Show Fragment Annotation" TooltipTitle="Show Fragment Annotation" TooltipDescription="Show Fragment Annotation" />
+    <Command Name="cmdCheckBoxTrIQThreshold" Id="154">
+      <Command.LabelTitle>
+        <String Id="568">TrIQ Threshold</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="569">Threshold Intensity Quantization Algorithm</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="570">TrIQ Threshold</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="571">Threshold Intensity Quantization Algorithm</String>
+      </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdCheckBoxXICRelative" Id="96">
+      <Command.LabelTitle>
+        <String Id="208">Relative Height</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="209">Relative Height</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="210">Relative Height</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="211">Relative Height</String>
+      </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdCheckShowMapLayer" Id="194" LabelTitle="Show Map Layer" LabelDescription="Show or hide of the tissue regions map overlaps on the MS-imaging image output or not?" TooltipTitle="Show Tissue Map Regions" TooltipDescription="Show or hide of the tissue regions map overlaps on the MS-imaging image output or not?">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/insert-object.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="144">Res/insert-object.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdCleanBackgroundAutoReference" Id="199" LabelTitle="Clean Background Auto Reference" LabelDescription="Clean Background Auto Reference" TooltipTitle="Clean Background Auto Reference" TooltipDescription="Clean Background Auto Reference">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/edit-cut.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="144">Res/edit-cut.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdCleanBackgroundByBasePeak" Id="208" LabelTitle="Clean Background By BasePeak Ion" LabelDescription="Clean Background By BasePeak Ion" TooltipTitle="Clean Background By BasePeak Ion" TooltipDescription="Clean Background By BasePeak Ion">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/edit-cut.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="144">Res/edit-cut.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdCleanBackgroundByReference" Id="198" LabelTitle="Clean Background By Reference" LabelDescription="Clean background ions by a given blank reference raw data file" TooltipTitle="Clean Background By Reference" TooltipDescription="Clean background ions by a given blank reference raw data file">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/edit-cut.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="144">Res/edit-cut.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdComboFormulaSearchProfile3" Id="1099" />
+    <Command Name="cmdContextMap" Id="1106" />
+    <Command Name="cmdCustomizeQAT" Id="1018" />
+    <Command Name="cmdDOIReference" Id="177" LabelTitle="DOI Reference" LabelDescription="View algorithm paper DOI reference that MZKit software used." TooltipTitle="DOI Reference" TooltipDescription="View algorithm paper DOI reference that MZKit software used.">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/preferences-system-notifications.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/preferences-system-notifications.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdExplorers" Id="114">
+      <Command.LabelTitle>
+        <String Id="212">Explorers</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="213">Explorers</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="214">Explorers</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="215">Explorers</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="216" MinDPI="192">Res/folder-documents.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="217" MinDPI="192">Res/folder-documents.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdFontControl" Id="1165" />
+    <Command Name="cmdGCxGCViewer" Id="179" LabelTitle="GCxGC Viewer" LabelDescription="GCxGC Viewer" TooltipTitle="GCxGC Viewer" TooltipDescription="GCxGC Viewer">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/folder-documents.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/folder-documents.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdGroupAboutActions" Id="1047">
+      <Command.LabelTitle>
+        <String Id="218">About mzkit</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdGroupCalculator" Id="1063">
+      <Command.LabelTitle>
+        <String Id="219">Result Data</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdGroupChromatography" Id="1141">
+      <Command.LabelTitle>
+        <String Id="220">Chromatography Data Plot</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdGroupCopyData" Id="139">
+      <Command.LabelTitle>
+        <String Id="472">Copy Data</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="473">Copy Data</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="474">Copy Data</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="475">Copy Data</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="476" MinDPI="192">Res/applets-screenshooter.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="477" MinDPI="192">Res/applets-screenshooter.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdGroupDemoActions" Id="1048">
+      <Command.LabelTitle>
+        <String Id="221">About mzkit</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdGroupDesign" Id="1036">
+      <Command.LabelTitle>
+        <String Id="222">Viewer Config</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdGroupExactMassSearch" Id="1073">
+      <Command.LabelTitle>
+        <String Id="223">Exact Mass Search</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdGroupExit" Id="1096">
+      <Command.LabelTitle>
+        <String Id="224">Application Tools</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdGroupExport" Id="2">
+      <Command.LabelTitle>
+        <String Id="225">Export Data</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="226">Export plot image or matrix data</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="227">Export Data</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="228">Export plot image or matrix data</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="229" MinDPI="192">Res/application-x-object.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="230" MinDPI="192">Res/application-x-object.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdGroupFeatureFilter" Id="162" LabelTitle="Feature Filter" LabelDescription="Feature Filter" TooltipTitle="Feature Filter" TooltipDescription="Feature Filter" />
+    <Command Name="cmdGroupFileActions" Id="1045">
+      <Command.LabelTitle>
+        <String Id="231">File Operations</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdGroupFormulaSearch" Id="1093">
+      <Command.LabelTitle>
+        <String Id="232">Data</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdGroupFormulaSearchConfig2" Id="1095">
+      <Command.LabelTitle>
+        <String Id="233">Formula Search Config</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdGroupKEGG" Id="133">
+      <Command.LabelTitle>
+        <String Id="440">KEGG</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="441">KEGG</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="442">KEGG</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="443">KEGG</String>
+      </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdGroupLayout" Id="1037">
+      <Command.LabelTitle>
+        <String Id="234">Viewer Actions</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdGroupMSIFile" Id="122">
+      <Command.LabelTitle>
+        <String Id="382">MS Imaging</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="383">MS Imaging</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="384">MS Imaging</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="385">MS Imaging</String>
+      </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdGroupMSIOperations" Id="201" LabelTitle="Operations" LabelDescription="Operations" TooltipTitle="Operations" TooltipDescription="Operations" />
+    <Command Name="cmdGroupNetwork" Id="1083">
+      <Command.LabelTitle>
+        <String Id="235">Network Result</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdGroupNetworkRenderTool" Id="1150">
+      <Command.LabelTitle>
+        <String Id="236">Refresh Network</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdGroupNetworkTools" Id="1151">
+      <Command.LabelTitle>
+        <String Id="237">Network Plot Data Tools</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdGroupRscript" Id="1132">
+      <Command.LabelTitle>
+        <String Id="238">Scripting</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdGroupShowComprehensive" Id="191" LabelTitle="Comprehensive Spectrum" LabelDescription="Comprehensive Mass Spectrum Data Viewer" TooltipTitle="Comprehensive Mass Spectrum Data Viewer" TooltipDescription="Comprehensive Mass Spectrum Data Viewer" />
+    <Command Name="cmdGroupShowDockWindows" Id="1120">
+      <Command.LabelTitle>
+        <String Id="239">Mass Spectrum Windows</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdGroupShowViewer" Id="1110">
+      <Command.LabelTitle>
+        <String Id="240">Viewers</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdGroupTissueMaps" Id="196" LabelTitle="Tissue Maps" LabelDescription="Tissue Maps" TooltipTitle="Tissue Maps" TooltipDescription="Tissue Maps" />
+    <Command Name="cmdGroupToolsActions" Id="1046">
+      <Command.LabelTitle>
+        <String Id="241">Mzkit Toolkit</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdHelpButton" Id="1016" />
+    <Command Name="cmdImportsLinear" Id="100">
+      <Command.LabelTitle>
+        <String Id="242">Imports Linear</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="243">Open a file imports dialog and then imports a list of linear reference files.</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="244">Imports Linear</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="245">Open a file imports dialog and then imports a list of linear reference files.</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="246" MinDPI="192">Res/folder-documents.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="247" MinDPI="192">Res/folder-documents.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdImportsMzwork" Id="157">
+      <Command.LabelTitle>
+        <String Id="579">Open Workspace</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="580">Open MZkit workspace data file</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="581">Open Workspace</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="582">Open MZkit workspace data file</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="583" MinDPI="192">Res/folder-pictures.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="584" MinDPI="192">Res/folder-pictures.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdLabelSystemInformation" Id="181" LabelTitle="System Information" LabelDescription="System Information" TooltipTitle="System Information" TooltipDescription="System Information" />
-    <Command Name="cmdTableGroup" Id="173" LabelTitle="Table" LabelDescription="Table" TooltipTitle="Table" TooltipDescription="Table" />
-    <Command Name="cmdTableInnerGroup" Id="174" LabelTitle="Table" LabelDescription="Table" TooltipTitle="Table" TooltipDescription="Table" />
-    <Command Name="cmdTableTab" Id="172" LabelTitle="Table Tab" LabelDescription="Table Tab" TooltipTitle="Table Tab" TooltipDescription="Table Tab" />
+    <Command Name="cmdLegendCheckBox" Id="1166">
+      <Command.LabelTitle>
+        <String Id="248">Show Legend</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdLogInBioDeep" Id="106">
+      <Command.LabelTitle>
+        <String Id="249">Login</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="250">Connect to BioDeep Cloud </String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="251">Login BioDeep</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="252">Connect to BioDeep Cloud </String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="253" MinDPI="192">Res/BioDeep.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="254" MinDPI="192">Res/BioDeep.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdMALDIViewer" Id="215" LabelTitle="MALDI Viewer" LabelDescription="Viewer of the MALDI comprehensive mass spectrum raw data file" TooltipTitle="Viewer of the MALDI comprehensive mass spectrum raw data file" TooltipDescription="Viewer of the MALDI comprehensive mass spectrum raw data file">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/folder-pictures.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/folder-pictures.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdMenuGroupExit" Id="1006">
+      <Command.LabelTitle>
+        <String Id="255">Exit Menu</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdMenuGroupFile" Id="1005">
+      <Command.LabelTitle>
+        <String Id="256">File Menu</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdMenuImports" Id="158">
+      <Command.LabelTitle>
+        <String Id="585">Imports Data</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="586">Imports MS Data</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="587">Imports MS Data</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="588">Imports MS Data</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="589" MinDPI="192">Res/folder-documents.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="590" MinDPI="192">Res/folder-documents.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdMRMLibrary" Id="108">
+      <Command.LabelTitle>
+        <String Id="257">MRM Ions</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="258">View and Edit LC-MS/MS MRM Ions Library</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="259">MRM Ions Library</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="260">View and Edit LC-MS/MS MRM Ions Library</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="261" MinDPI="192">Res/application-vnd.oasis.opendocument.database.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="262" MinDPI="144">Res/application-vnd.oasis.opendocument.database.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdMsconvertGUI" Id="210" LabelTitle="Msconvert GUI" LabelDescription="Launch the MZKit MsConvert GUI Tools for convert MS raw data files" TooltipTitle="Msconvert GUI" TooltipDescription="Launch the MZKit MsConvert GUI Tools for convert MS raw data files">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdOpenIonsLibrary" Id="159">
+      <Command.LabelTitle>
+        <String Id="591">Open Ions Annotation</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="592">Open ions annotation library</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="593">Open Ions Annotation</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="594">Open ions annotation library</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="595" MinDPI="192">Res/application-vnd.oasis.opendocument.database.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="596" MinDPI="144">Res/application-vnd.oasis.opendocument.database.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdPanelMSIVisual" Id="186" LabelTitle="MS-Imaging Visual" />
+    <Command Name="cmdPanelOptions" Id="155">
+      <Command.LabelTitle>
+        <String Id="572">Options</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="573">Options</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="574">Options</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="575">Options</String>
+      </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdPlotOptions" Id="97">
+      <Command.LabelTitle>
+        <String Id="263">Plot Options</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="264">Plot Options</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="265">Plot Options</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="266">Plot Options</String>
+      </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdPPMSpinner" Id="1050">
+      <Command.LabelTitle>
+        <String Id="267">Search PPM</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdQAT" Id="1015" />
+    <Command Name="cmdQuantifyIons" Id="109">
+      <Command.LabelTitle>
+        <String Id="268">Quantify Ions</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="269">View and Edit GC-MS Quantify Ions Library</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="270">Quantify Ions Library</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="271">View and Edit GC-MS Quantify Ions Library</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="272" MinDPI="192">Res/application-vnd.oasis.opendocument.database.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="273" MinDPI="144">Res/application-vnd.oasis.opendocument.database.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdRecentItems" Id="1014">
+      <Command.LabelTitle>
+        <String Id="274">Recent Items</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdReferenceLibrary" Id="160">
+      <Command.LabelTitle>
+        <String Id="597">Reference Library</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="598">View and edit of your ms2 spectrum reference library</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="599">Reference Library</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="600">View and edit of your ms2 spectrum reference library</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="601" MinDPI="192">Res/application-vnd.oasis.opendocument.database.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="602" MinDPI="144">Res/application-vnd.oasis.opendocument.database.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdSaveLinears" Id="103">
+      <Command.LabelTitle>
+        <String Id="275">Save Linear Table</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="276">Save Linear Table</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="277">Save Linear Table</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="278">Save Linear Table</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="279" MinDPI="192">Res/excel-icon.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="280" MinDPI="192">Res/excel-icon.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdShowGCMSExplorer" Id="113">
+      <Command.LabelTitle>
+        <String Id="281">GCMS Explorer</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="282">Show GCMS ROI Peaks Explorer</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="283">GCMS Explorer</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="284">Show GCMS ROI Peaks Explorer</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="285" MinDPI="192">Res/folder-documents.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="286" MinDPI="192">Res/folder-documents.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdShowMRMExplorer" Id="118">
+      <Command.LabelTitle>
+        <String Id="287">MRM Ion Explorer</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="288">Show MRM Ion Explorer</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="289">Show MRM Ion Explorer</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="290">Show MRM Ion Explorer</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="291" MinDPI="192">Res/folder-documents.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="292" MinDPI="192">Res/folder-documents.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdShowProperty" Id="3">
+      <Command.LabelTitle>
+        <String Id="293">Show Property</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="294">Show Plot Data Properties</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="295">Show Property</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="296">Show Plot Data Properties</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="297" MinDPI="192">Res/applications-utilities.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="298" MinDPI="192">Res/applications-utilities.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdShowTissueData" Id="220" LabelTitle="Show Tissue Data" LabelDescription="Show Tissue Data" TooltipTitle="Show Tissue Data" TooltipDescription="Show Tissue Data">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/application-x-object.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/application-x-object.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdSpinnerFeatureFilterRtMax" Id="164" LabelTitle="rtmax" LabelDescription="max rt(seconds)" TooltipTitle="max rt" TooltipDescription="max rt(seconds)" />
+    <Command Name="cmdSpinnerFeatureFilterRtMin" Id="163" LabelTitle="rtmin" LabelDescription="min rt(seconds)" TooltipTitle="min rt" TooltipDescription="min rt(seconds)" />
+    <Command Name="cmdSpinnerSimilarity" Id="1153">
+      <Command.LabelTitle>
+        <String Id="299">Spectrum Similarity</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="300">Filter node links by spectrum similarity</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="301">Spectrum Similarity</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="302">Filter node links by spectrum similarity</String>
+      </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdTabAbout" Id="1020">
+      <Command.LabelTitle>
+        <String Id="303">About</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdTabAppStore" Id="216" LabelTitle="App Store" LabelDescription="App Store" TooltipTitle="App Store" TooltipDescription="App Store" />
+    <Command Name="cmdTabBioDeep" Id="104">
+      <Command.LabelTitle>
+        <String Id="304">BioDeep</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="305">BioDeep</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="306">BioDeep</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="307">BioDeep</String>
+      </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdTabCalculator" Id="1062">
+      <Command.LabelTitle>
+        <String Id="308">Calculator Result</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdTabDemo" Id="110">
+      <Command.LabelTitle>
+        <String Id="309">Demo</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="310">Demo</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="311">Demo</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="312">Mzkit demo data files</String>
+      </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdTabDesign" Id="1032">
+      <Command.LabelTitle>
+        <String Id="313">Mzkit Data Tools</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdTabExactMassSearch" Id="1072">
+      <Command.LabelTitle>
+        <String Id="314">Design</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdTabFormulaSearch" Id="1092">
+      <Command.LabelTitle>
+        <String Id="315">Formula Result</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdTabGroupAppStore" Id="217" LabelTitle="App Store" LabelDescription="App Store" TooltipTitle="App Store" TooltipDescription="App Store" />
+    <Command Name="cmdTabGroupBioDeep" Id="105">
+      <Command.LabelTitle>
+        <String Id="316">BioDeep</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="317">BioDeep</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="318">BioDeep</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="319">BioDeep</String>
+      </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdTabGroupCalculatorTools" Id="1061">
+      <Command.LabelTitle>
+        <String Id="320">Calculator Tools</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdTabGroupExactMassSearchTools" Id="1071">
+      <Command.LabelTitle>
+        <String Id="321">Calculator Tools</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdTabGroupFormulaSearchTools" Id="1091">
+      <Command.LabelTitle>
+        <String Id="322">Formula Search Tools</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdTabGroupKEGG" Id="134">
+      <Command.LabelTitle>
+        <String Id="444">KEGG</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="445">KEGG</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="446">KEGG</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="447">KEGG</String>
+      </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdTabGroupMSI" Id="120">
+      <Command.LabelTitle>
+        <String Id="374">MS Imaging</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="375">MS Imaging</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="376">MS Imaging</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="377">MS Imaging</String>
+      </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdTabGroupNetworkTools" Id="1081">
+      <Command.LabelTitle>
+        <String Id="323">Molecule Networking Tools</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdtabGroupPolygonEditor" Id="143">
+      <Command.LabelTitle>
+        <String Id="492">Polygon Editor</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="493">Polygon Editor</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="494">Polygon Editor</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="495">Polygon Editor</String>
+      </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdTabGroupRscriptTools" Id="1130">
+      <Command.LabelTitle>
+        <String Id="324">R# Scripting</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdTabGroupTableTools" Id="1031">
+      <Command.LabelTitle>
+        <String Id="325">Mass Spectrum Viewer</String>
+      </Command.LabelTitle>
+    </Command>
     <Command Name="cmdTabGroupTargeted" Id="98">
       <Command.LabelTitle>
         <String Id="326">Targeted Quantification</String>
@@ -2281,6 +2225,205 @@
       </Command.TooltipTitle>
       <Command.TooltipDescription>
         <String Id="329">Targeted Quantification</String>
+      </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdTabGroupTargetedLibrary" Id="107">
+      <Command.LabelTitle>
+        <String Id="330">Library</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="331">Targeted Ion Library</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="332">Targeted Ion Library</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="333">View and Edit Targeted Ion Library</String>
+      </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdTabGroupWindowTools" Id="1023">
+      <Command.LabelTitle>
+        <String Id="334">Application Windows Tools</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdTabKEGG" Id="132">
+      <Command.LabelTitle>
+        <String Id="436">KEGG</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="437">KEGG</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="438">KEGG</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="439">KEGG</String>
+      </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdTabLayout" Id="1035">
+      <Command.LabelTitle>
+        <String Id="335">Data Viewer</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdTableGroup" Id="173" LabelTitle="Table" LabelDescription="Table" TooltipTitle="Table" TooltipDescription="Table" />
+    <Command Name="cmdTableInnerGroup" Id="174" LabelTitle="Table" LabelDescription="Table" TooltipTitle="Table" TooltipDescription="Table" />
+    <Command Name="cmdTableTab" Id="172" LabelTitle="Table Tab" LabelDescription="Table Tab" TooltipTitle="Table Tab" TooltipDescription="Table Tab" />
+    <Command Name="cmdTabMain" Id="1011">
+      <Command.LabelTitle>
+        <String Id="336">Main</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdTabMenuMSIAnalysis" Id="142">
+      <Command.LabelTitle>
+        <String Id="488">MSI Analysis</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="489">MSI Analysis</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="490">MSI Analysis</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="491">MSI Analysis</String>
+      </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdTabMSIAnalysis" Id="141">
+      <Command.LabelTitle>
+        <String Id="484">MSI Analysis</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="485">MSI Analysis</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="486">MSI Analysis</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="487">MSI Analysis</String>
+      </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdTabMSIFile" Id="129">
+      <Command.LabelTitle>
+        <String Id="420">MSI File</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="421">MSI File</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="422">MSI File</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="423">MSI File</String>
+      </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdTabMSIOperations" Id="200" LabelTitle="Operations" LabelDescription="Operations" TooltipTitle="Operations" TooltipDescription="Operations" />
+    <Command Name="cmdTabMSIPage" Id="121">
+      <Command.LabelTitle>
+        <String Id="378">MSI</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="379">MSI</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="380">MSI</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="381">MSI</String>
+      </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdTabMSISnapshot" Id="126">
+      <Command.LabelTitle>
+        <String Id="404">MSI Snapshot</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="405">MSI Snapshot</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="406">MSI Snapshot</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="407">MSI Snapshot</String>
+      </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdTabNetwork" Id="1082">
+      <Command.LabelTitle>
+        <String Id="337">Network</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdTabPolygonEditor" Id="144">
+      <Command.LabelTitle>
+        <String Id="496">Polygon Editor</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="497">Polygon Editor</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="498">Polygon Editor</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="499">Polygon Editor</String>
+      </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdTabReferenceLibrary" Id="161">
+      <Command.LabelTitle>
+        <String Id="603">Reference Library</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="604">Reference Library</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="605">Reference Library</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="606">Reference Library</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="607" MinDPI="192">Res/application-vnd.oasis.opendocument.database.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="608" MinDPI="144">Res/application-vnd.oasis.opendocument.database.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdTabRscriptTools" Id="1131">
+      <Command.LabelTitle>
+        <String Id="338">R#</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdTabRStudio" Id="111">
+      <Command.LabelTitle>
+        <String Id="339">R# Studio</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="340">R# Studio</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="341">R# Studio</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="342">R# Studio</String>
+      </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdTabTargeted" Id="102">
+      <Command.LabelTitle>
+        <String Id="343">Data Analysis</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdTabTools" Id="1012">
+      <Command.LabelTitle>
+        <String Id="344">Tools</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdTagGroupParameterTool" Id="117">
+      <Command.LabelTitle>
+        <String Id="345">Tools</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="346">Tools</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="347">Tools</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="348">Tools</String>
       </Command.TooltipDescription>
     </Command>
     <Command Name="cmdTargeted" Id="99">
@@ -2307,85 +2450,6 @@
       <Command.LabelTitle>
         <String Id="355">Targeted Quantification</String>
       </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdButtonTIC" Id="1144">
-      <Command.LabelTitle>
-        <String Id="192">TIC</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="193">Total Ion Chromatography</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="194">TIC plot</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="195">Total ion Chromatography Data Plot</String>
-      </Command.TooltipDescription>
-      <Command.LargeImages>
-        <Image Id="196">Res/office_chart_area_256px_540041_easyicon.net.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonTissueMap" Id="190" LabelTitle="Tissue Map" LabelDescription="Tissue Map" TooltipTitle="Tissue Map" TooltipDescription="Tissue Map">
-      <Command.SmallImages>
-        <Image MinDPI="192">Resources/System-Map-icon.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Resources/System-Map-icon.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdGroupTissueMaps" Id="196" LabelTitle="Tissue Maps" LabelDescription="Tissue Maps" TooltipTitle="Tissue Maps" TooltipDescription="Tissue Maps" />
-    <Command Name="cmdTabTools" Id="1012">
-      <Command.LabelTitle>
-        <String Id="344">Tools</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdTagGroupParameterTool" Id="117">
-      <Command.LabelTitle>
-        <String Id="345">Tools</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="346">Tools</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="347">Tools</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="348">Tools</String>
-      </Command.TooltipDescription>
-    </Command>
-    <Command Name="cmdButtonMSITotalIon" Id="123">
-      <Command.LabelTitle>
-        <String Id="386">Total Ions</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="387">Render Total Ions</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="388">Render Total Ions</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="389">Render Total Ions</String>
-      </Command.TooltipDescription>
-      <Command.SmallImages>
-        <Image Id="390" MinDPI="192">Res/applets-screenshooter.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image Id="391" MinDPI="192">Res/applets-screenshooter.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdCheckBoxTrIQThreshold" Id="154">
-      <Command.LabelTitle>
-        <String Id="568">TrIQ Threshold</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="569">Threshold Intensity Quantization Algorithm</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="570">TrIQ Threshold</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="571">Threshold Intensity Quantization Algorithm</String>
-      </Command.TooltipDescription>
     </Command>
     <Command Name="cmdTutorials" Id="115">
       <Command.LabelTitle>
@@ -2427,14 +2491,6 @@
         <Image Id="367" MinDPI="192">Res/applications-system.bmp</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonUpsideDown" Id="202" LabelTitle="Up side down" LabelDescription="Turn the image data up side down" TooltipTitle="Up side down" TooltipDescription="Turn the image data up side down">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
-      </Command.LargeImages>
-    </Command>
     <Command Name="cmdView3DMALDI" Id="213" LabelTitle="View 3D MALDI" LabelDescription="View 3D tissue scanning model which is extract from the MALDI 3d scan experiment" TooltipTitle="View 3D tissue scanning model which is extract from the MALDI 3d scan experiment" TooltipDescription="View 3D tissue scanning model which is extract from the MALDI 3d scan experiment">
       <Command.SmallImages>
         <Image MinDPI="192">Resources/3d-object.png</Image>
@@ -2443,52 +2499,20 @@
         <Image MinDPI="192">Resources/3d-object.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonLicense" Id="1101" LabelDescription="View the license information about the MZKit workbench" TooltipTitle="View License Information" TooltipDescription="View the license information about the MZKit workbench">
-      <Command.LabelTitle>
-        <String Id="80">View License Information</String>
-      </Command.LabelTitle>
-      <Command.LargeImages>
-        <Image Id="81">Res/baobab.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonViewSMILES" Id="178" LabelTitle="View SMILES" LabelDescription="View the input SMILES its molecule graph data" TooltipTitle="View SMILES" TooltipDescription="View the input SMILES its molecule graph data">
+    <Command Name="cmdWWWBack" Id="170" LabelTitle="Back" LabelDescription="Back" TooltipTitle="Back" TooltipDescription="Back">
       <Command.SmallImages>
-        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
+        <Image MinDPI="192">Res/edit-undo.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
+        <Image MinDPI="144">Res/edit-undo.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdGroupLayout" Id="1037">
-      <Command.LabelTitle>
-        <String Id="234">Viewer Actions</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdGroupDesign" Id="1036">
-      <Command.LabelTitle>
-        <String Id="222">Viewer Config</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdGroupShowViewer" Id="1110">
-      <Command.LabelTitle>
-        <String Id="240">Viewers</String>
-      </Command.LabelTitle>
-    </Command>
-    <Command Name="cmdButtonXIC" Id="1145">
-      <Command.LabelTitle>
-        <String Id="203">XIC</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="204">Selective Ion Chromatography</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="205">XIC plot</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="206">Selective Ion Chromatography Data Plot</String>
-      </Command.TooltipDescription>
+    <Command Name="cmdWWWForward" Id="169" LabelTitle="Forward" LabelDescription="Forward" TooltipTitle="Forward" TooltipDescription="Forward">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/edit-undo-rtl.png</Image>
+      </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="207">Res/office_chart_area_256px_540041_easyicon.net.png</Image>
+        <Image MinDPI="144">Res/edit-undo-rtl.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdXIC_PPMSpinner" Id="156">
@@ -2501,22 +2525,6 @@
       <Command.TooltipDescription>
         <String Id="578">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
-    </Command>
-    <Command Name="cmdButtonOpenServicesMgr" Id="219" LabelTitle="Services Manager" LabelDescription="Open services manager page for view all of the running MZKit data background services progress." TooltipTitle="Open services manager page for view all of the running MZKit data background services progress." TooltipDescription="Open services manager page for view all of the running MZKit data background services progress.">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/document-open-recent.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/document-open-recent.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdShowTissueData" Id="220" LabelTitle="Show Tissue Data" LabelDescription="Show Tissue Data" TooltipTitle="Show Tissue Data" TooltipDescription="Show Tissue Data">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/application-x-object.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/application-x-object.png</Image>
-      </Command.LargeImages>
     </Command>
   </Application.Commands>
   <Application.Views>
@@ -2735,13 +2743,14 @@
               <Button CommandName="cmdButtonOpenMSIRaw" />
               <Button CommandName="cmdButtonConnectMSIService" />
             </Group>
-            <Group CommandName="cmdTabMSIFile" ApplicationModes="0,1" SizeDefinition="ThreeButtons">
+            <Group CommandName="cmdTabMSIFile" ApplicationModes="0,1" SizeDefinition="FourButtons">
               <DropDownButton CommandName="cmdButtonImportsMSITable">
                 <Button CommandName="cmdButtonImportsSCiLSLab" />
                 <Button CommandName="cmdButtonImportsShimadzu" />
               </DropDownButton>
               <Button CommandName="cmdButtonMSIRowScans" />
               <Button CommandName="cmdButtonExportMSIMzpack" />
+              <Button CommandName="cmdButtonMergeMultipleMSISample" />
             </Group>
             <Group CommandName="cmdPanelMSIVisual" SizeDefinition="TwoButtons">
               <Button CommandName="cmdButtonMSISearchPubChem" />
@@ -2749,7 +2758,7 @@
             </Group>
             <Group CommandName="cmdGroupMSIOperations" SizeDefinition="TwoButtons">
               <Button CommandName="cmdButtonUpsideDown" />
-              <Button CommandName="cmdButtonMergeMultipleMSISample" />
+              <Button CommandName="cmdButtonRotateSlide" />
             </Group>
           </Tab>
           <Tab CommandName="cmdTabMSIAnalysis" ApplicationModes="0,1">
@@ -2775,7 +2784,6 @@
                 <Button CommandName="cmdButtonImportsTissueMorphology" />
                 <Button CommandName="cmdButtonLoadHEMap" />
                 <Button CommandName="cmdButtonExportRegions" />
-                <Button CommandName="cmdShowTissueData" />
               </DropDownButton>
               <ToggleButton CommandName="cmdButtonTogglePolygon" />
             </Group>
@@ -2789,9 +2797,10 @@
               <ToggleButton CommandName="cmdButtonShowPolygonVertexInfo" />
               <Button CommandName="cmdButtonNextPolygon" />
             </Group>
-            <Group CommandName="cmdGroupTissueMaps" SizeDefinition="TwoButtons">
+            <Group CommandName="cmdGroupTissueMaps" SizeDefinition="ThreeButtons">
               <ToggleButton CommandName="cmdCheckShowMapLayer" />
               <Button CommandName="cmdButtonShowMSISampleWindow" />
+              <Button CommandName="cmdShowTissueData" />
             </Group>
           </Tab>
         </TabGroup>
