@@ -219,7 +219,7 @@ Public Class frmStartPage
             Call MyApplication.host.Show()
             Call Application.DoEvents()
 
-            If firstFile.ExtensionSuffix("raw", "wiff", "msp") Then
+            If firstFile.ExtensionSuffix("raw", "wiff", "msp", "mgf") Then
                 Call MyApplication.host.OpenFile(firstFile, showDocument:=True)
                 Call VisualStudio.ShowDocument(Of frmUntargettedViewer)().loadRaw(WindowModules.rawFeaturesList.CurrentOpenedFile)
             Else

@@ -167,6 +167,7 @@ Module Globals
         ' initialize for external plugin module
         MSImagingServiceModule.m_StartEngine = Sub() Call MSIDataService.StartMSIService(Nothing)
         SpectrumSearchModule.SetDocument(GetType(frmSpectrumSearch))
+        SpectralViewerModule.HookViewer(AddressOf PageMzkitTools.ShowSpectral)
     End Sub
 
     Public Sub RegisterActions(println As Action(Of String))

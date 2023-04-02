@@ -52,8 +52,6 @@
 
 #End Region
 
-Imports Microsoft.VisualBasic.Language
-
 Public Class frmUserAgreement
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -72,5 +70,13 @@ Public Class frmUserAgreement
 
     Private Sub frmUserAgreement_Load(sender As Object, e As EventArgs) Handles Me.Load
         TextBox1.Text = frmLicense.getLicenseText()
+    End Sub
+
+    Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
+        Process.Start("https://mzkit.org/zh/")
+    End Sub
+
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+        Process.Start("https://mzkit.org/HISTORY.html")
     End Sub
 End Class

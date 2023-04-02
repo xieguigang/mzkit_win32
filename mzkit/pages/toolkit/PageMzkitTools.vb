@@ -680,6 +680,33 @@ Public Class PageMzkitTools
         End If
     End Sub
 
+    Public Shared Sub ShowSpectral(data As Object)
+        Dim matrix As ms2()
+        Dim name As String
+
+        If data Is Nothing Then
+            Call Workbench.Warning("the given spectral data is nothing!")
+            Return
+        ElseIf TypeOf data Is LibraryMatrix Then
+            With DirectCast(data, LibraryMatrix)
+                matrix = .ms2
+                name = .name
+            End With
+        ElseIf TypeOf data Is PeakMs2 Then
+            With DirectCast(data, PeakMs2)
+                matrix = .mzInto
+                name = .lib_guid
+            End With
+        Else
+            Call Workbench.Warning($"the spectral view for {data.GetType.FullName} is not implements yet...")
+            Return
+        End If
+
+        Call MyApplication.host.mzkitTool.PlotSpectrum(New LibraryMatrix(matrix) With {.name = name})
+        Call MyApplication.host.mzkitTool.showMatrix(matrix, name)
+        Call MyApplication.host.ShowMzkitToolkit()
+    End Sub
+
     ''' <summary>
     ''' load matrix data into the data grid
     ''' </summary>

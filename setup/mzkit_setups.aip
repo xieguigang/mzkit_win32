@@ -190,6 +190,7 @@
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.dll_1" ComponentId="{9986E7EB-8D23-45A2-B72D-D81A513273A6}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.dll_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions.dll" ComponentId="{0D4C376C-5A09-415D-BEFE-B0EA19BA4411}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.Insilicon.dll" ComponentId="{DB51ADD5-4229-4CD9-AB97-3C9C7E986228}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.Insilicon.dll"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.dll" ComponentId="{E5281E48-33A3-429F-8F37-2848F303E388}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.TargetedMetabolomics.dll" ComponentId="{4267F9F4-CE5B-4C2B-BCC1-E613CE849AE1}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.TargetedMetabolomics.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.dll" ComponentId="{24645E0D-2CF4-444A-8145-FEA462CDED12}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.dll_1" ComponentId="{6F6AA3F0-274B-4DC8-B0CE-11FFD71894FB}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.dll_1"/>
@@ -365,6 +366,7 @@
     <ROW Component="Microsoft.VisualBasic.MIME.application.pdf.dll_3" ComponentId="{A4C194C2-61A4-44D3-B872-1D72C46F51C8}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.pdf.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.MIME.application.rdf_xml.dll" ComponentId="{2F0483A1-0CA3-4D47-A38D-F4C1D5FFBC7C}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.rdf_xml.dll"/>
     <ROW Component="Microsoft.VisualBasic.MIME.application.rdf_xml.dll_1" ComponentId="{788EAC9D-CA9B-4A22-8076-9ED5805890A8}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.rdf_xml.dll_1"/>
+    <ROW Component="Microsoft.VisualBasic.MIME.application.rdf_xml.dll_2" ComponentId="{96624473-77BB-4F77-ABBD-686497C42C6B}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.rdf_xml.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.MIME.application.xml.dll" ComponentId="{56009D9E-1A6D-4AC5-ACFE-7DE572200F45}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.xml.dll"/>
     <ROW Component="Microsoft.VisualBasic.MIME.application.xml.dll_1" ComponentId="{9953DC0F-930F-41F4-9360-0B29400BC38A}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.xml.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.MIME.application.xml.dll_5" ComponentId="{8FD210BD-BAB2-48B2-AEF8-27885BC2E0E4}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.xml.dll_5"/>
@@ -647,6 +649,7 @@
     <ROW Component="msconvertGUI.resources.dll_2" ComponentId="{1467150A-96DC-4E80-AA1B-A54E2F521ECB}" Directory_="jaJP_Dir" Attributes="256" KeyPath="msconvertGUI.resources.dll_2"/>
     <ROW Component="msmpisetup.exe" ComponentId="{3078F7F3-F025-4770-B5C1-4AF5B2861DE7}" Directory_="cfmid2_Dir" Attributes="0" KeyPath="msmpisetup.exe"/>
     <ROW Component="mzLab.dll" ComponentId="{B5BFBDBC-E302-4EA5-BFFA-25EC35924656}" Directory_="plugins_Dir" Attributes="256" KeyPath="mzLab.dll"/>
+    <ROW Component="mzNet.dll" ComponentId="{227DAF5D-BB8B-4971-8E7E-7E0C8280A9CC}" Directory_="plugins_Dir" Attributes="256" KeyPath="mzNet.dll"/>
     <ROW Component="mzView.dll" ComponentId="{662240FD-9CF4-4A19-94C9-396624EDF473}" Directory_="plugins_Dir" Attributes="256" KeyPath="mzView.dll"/>
     <ROW Component="mzblender.exe" ComponentId="{2D6CE157-27F6-4445-A54F-33D27C344C24}" Directory_="APPDIR" Attributes="256" KeyPath="mzblender.exe"/>
     <ROW Component="mzkit_win32.exe_1" ComponentId="{D1A9B7C2-509C-425B-AD9E-9C44DC837AD7}" Directory_="APPDIR" Attributes="256" KeyPath="mzkit_win32.exe_1"/>
@@ -4730,6 +4733,12 @@
     <ROW File="mzLab.dll" Component_="mzLab.dll" FileName="mzLab.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\mzLab.dll" SelfReg="false"/>
     <ROW File="mzLab.dll.config" Component_="Microsoft.VisualBasic.Runtime.dll.config" FileName="MZLABD~1.CON|mzLab.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\mzLab.dll.config" SelfReg="false"/>
     <ROW File="mzkit_win32.resources.dll_3" Component_="mzkit_win32.resources.dll_3" FileName="MZKIT_~2.DLL|mzkit_win32.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\zh-Hans\mzkit_win32.resources.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.MIME.application.rdf_xml.dll_2" Component_="Microsoft.VisualBasic.MIME.application.rdf_xml.dll_2" FileName="MICRO~56.DLL|Microsoft.VisualBasic.MIME.application.rdf_xml.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.MIME.application.rdf_xml.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.MIME.application.rdf_xml.dll.config_2" Component_="base.deps.json" FileName="MICROS~6.CON|Microsoft.VisualBasic.MIME.application.rdf_xml.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.MIME.application.rdf_xml.dll.config" SelfReg="false"/>
+    <ROW File="install_mona.R" Component_="buildMSIIndex.R" FileName="INSTAL~1.R|install_mona.R" Attributes="0" SourcePath="..\rstudio\pipeline\install_mona.R" SelfReg="false"/>
+    <ROW File="mzNet.dll" Component_="mzNet.dll" FileName="mzNet.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\mzNet.dll" SelfReg="false"/>
+    <ROW File="mzNet.dll.config" Component_="Microsoft.VisualBasic.Runtime.dll.config" FileName="MZNETD~1.CON|mzNet.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\mzNet.dll.config" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.dll" Component_="BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.dll" FileName="BIONO~34.DLL|BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.dll" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -5398,6 +5407,9 @@
     <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll_1"/>
     <ROW Feature_="MainFeature" Component_="mzLab.dll"/>
     <ROW Feature_="MainFeature" Component_="mzkit_win32.resources.dll_3"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MIME.application.rdf_xml.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="mzNet.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
@@ -5551,7 +5563,7 @@
     <ROW Directory_="data_Dir" SourcePath="..\rstudio\data" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="jaJP_Dir" SourcePath="..\..\..\dist\bin\ja-JP" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="ndpitools_Dir" SourcePath="..\dist\ndpitools" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
-    <ROW Directory_="plugins_Dir" SourcePath="..\..\..\dist\bin\plugins" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|\en-US|\zh-Hans|runtimes|*.xml|*.pdb|Microsoft.VisualBasic.Runtime.*|/ThemeVS2015.*|System.Numerics.Vectors.*|Mzkit_win32.BasicMDIForm.*|Microsoft.*|\zh-CN|/BioNovoGene.*|/ThermoFisher.*|/System.*|/REnv.*|Mzkit_.*|Mzkit_win32.Interaction.dll" ExcludeFlags="6" FileAddOptions="4"/>
+    <ROW Directory_="plugins_Dir" SourcePath="..\..\..\dist\bin\plugins" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|\en-US|\zh-Hans|runtimes|*.xml|*.pdb|Microsoft.VisualBasic.Runtime.*|/ThemeVS2015.*|System.Numerics.Vectors.*|Mzkit_win32.BasicMDIForm.*|Microsoft.*|\zh-CN|/BioNovoGene.*|/ThermoFisher.*|/System.*|/REnv.*|Mzkit_.*|Mzkit_win32.Interaction.dll|Sciex.*|Clearcore2.*|Mzkit_win32.*" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="zhHans_Dir" SourcePath="..\..\..\dist\bin\zh-Hans" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="js_1_Dir" SourcePath="..\webview\assets\js" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|/*.map" ExcludeFlags="6" FileAddOptions="4"/>
   </COMPONENT>

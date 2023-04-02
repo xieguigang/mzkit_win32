@@ -271,7 +271,7 @@ Public Class frmMain : Implements AppHost
     ''' </summary>
     Public Sub ImportsFiles()
         Using file As New OpenFileDialog With {
-            .Filter = "Raw Data(*.mzXML; *.mzML)|*.mzXML;*.mzML|Thermo MSRaw(*.raw)|*.raw|Open Source(*.msp)|*.msp",
+            .Filter = "Raw Data(*.mzXML; *.mzML)|*.mzXML;*.mzML|Thermo MSRaw(*.raw)|*.raw|Open Source(*.msp;*.mgf)|*.msp;*.mgf",
             .Multiselect = True
         }
             If file.ShowDialog = DialogResult.OK Then
@@ -723,6 +723,11 @@ Public Class frmMain : Implements AppHost
 
     Public Sub ShowPropertyWindow()
         VisualStudio.Dock(WindowModules.propertyWin, DockState.DockRight)
+    End Sub
+
+    Public Sub ShowProperties(obj As Object) Implements AppHost.ShowProperties
+        WindowModules.propertyWin.SetObject(obj)
+        ShowPropertyWindow()
     End Sub
 
     Private Sub initializeVSPanel()

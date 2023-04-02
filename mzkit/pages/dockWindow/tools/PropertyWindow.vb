@@ -63,8 +63,8 @@ Imports Mzkit_win32.BasicMDIForm
 Imports Task
 
 Namespace DockSample
-    Partial Public Class PropertyWindow
-        Inherits ToolWindow
+
+    Partial Public Class PropertyWindow : Inherits ToolWindow
 
         Public Sub New()
             InitializeComponent()
@@ -82,5 +82,10 @@ Namespace DockSample
         Public Function getPropertyObject() As Object
             Return propertyGrid.SelectedObject
         End Function
+
+        Public Sub SetObject(obj As Object)
+            propertyGrid.SelectedObject = obj
+            propertyGrid.Refresh()
+        End Sub
     End Class
 End Namespace

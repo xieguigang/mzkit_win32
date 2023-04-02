@@ -132,12 +132,13 @@ namespace RibbonLib.Controls
             public const uint cmdButtonImportsShimadzu = 206;
             public const uint cmdButtonMSIRowScans = 128;
             public const uint cmdButtonExportMSIMzpack = 127;
+            public const uint cmdButtonMergeMultipleMSISample = 207;
             public const uint cmdPanelMSIVisual = 186;
             public const uint cmdButtonMSISearchPubChem = 192;
             public const uint cmdButtonMSIMatrixVisual = 187;
             public const uint cmdGroupMSIOperations = 201;
             public const uint cmdButtonUpsideDown = 202;
-            public const uint cmdButtonMergeMultipleMSISample = 207;
+            public const uint cmdButtonRotateSlide = 221;
             public const uint cmdTabMSIAnalysis = 141;
             public const uint cmdTabMSISnapshot = 126;
             public const uint cmdButtonMSIAverageIon = 125;
@@ -344,12 +345,13 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonImportsShimadzu { get; private set; }
         public RibbonButton ButtonMSIRowScans { get; private set; }
         public RibbonButton ButtonExportMSIMzpack { get; private set; }
+        public RibbonButton ButtonMergeMultipleMSISample { get; private set; }
         public RibbonGroup PanelMSIVisual { get; private set; }
         public RibbonButton ButtonMSISearchPubChem { get; private set; }
         public RibbonButton ButtonMSIMatrixVisual { get; private set; }
         public RibbonGroup GroupMSIOperations { get; private set; }
         public RibbonButton ButtonUpsideDown { get; private set; }
-        public RibbonButton ButtonMergeMultipleMSISample { get; private set; }
+        public RibbonButton ButtonRotateSlide { get; private set; }
         public RibbonTab TabMSIAnalysis { get; private set; }
         public RibbonGroup TabMSISnapshot { get; private set; }
         public RibbonButton ButtonMSIAverageIon { get; private set; }
@@ -551,12 +553,13 @@ namespace RibbonLib.Controls
             ButtonImportsShimadzu = new RibbonButton(ribbon, Cmd.cmdButtonImportsShimadzu);
             ButtonMSIRowScans = new RibbonButton(ribbon, Cmd.cmdButtonMSIRowScans);
             ButtonExportMSIMzpack = new RibbonButton(ribbon, Cmd.cmdButtonExportMSIMzpack);
+            ButtonMergeMultipleMSISample = new RibbonButton(ribbon, Cmd.cmdButtonMergeMultipleMSISample);
             PanelMSIVisual = new RibbonGroup(ribbon, Cmd.cmdPanelMSIVisual);
             ButtonMSISearchPubChem = new RibbonButton(ribbon, Cmd.cmdButtonMSISearchPubChem);
             ButtonMSIMatrixVisual = new RibbonButton(ribbon, Cmd.cmdButtonMSIMatrixVisual);
             GroupMSIOperations = new RibbonGroup(ribbon, Cmd.cmdGroupMSIOperations);
             ButtonUpsideDown = new RibbonButton(ribbon, Cmd.cmdButtonUpsideDown);
-            ButtonMergeMultipleMSISample = new RibbonButton(ribbon, Cmd.cmdButtonMergeMultipleMSISample);
+            ButtonRotateSlide = new RibbonButton(ribbon, Cmd.cmdButtonRotateSlide);
             TabMSIAnalysis = new RibbonTab(ribbon, Cmd.cmdTabMSIAnalysis);
             TabMSISnapshot = new RibbonGroup(ribbon, Cmd.cmdTabMSISnapshot);
             ButtonMSIAverageIon = new RibbonButton(ribbon, Cmd.cmdButtonMSIAverageIon);

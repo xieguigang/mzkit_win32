@@ -129,12 +129,13 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonImportsShimadzu As UInteger = 206
             Public Const cmdButtonMSIRowScans As UInteger = 128
             Public Const cmdButtonExportMSIMzpack As UInteger = 127
+            Public Const cmdButtonMergeMultipleMSISample As UInteger = 207
             Public Const cmdPanelMSIVisual As UInteger = 186
             Public Const cmdButtonMSISearchPubChem As UInteger = 192
             Public Const cmdButtonMSIMatrixVisual As UInteger = 187
             Public Const cmdGroupMSIOperations As UInteger = 201
             Public Const cmdButtonUpsideDown As UInteger = 202
-            Public Const cmdButtonMergeMultipleMSISample As UInteger = 207
+            Public Const cmdButtonRotateSlide As UInteger = 221
             Public Const cmdTabMSIAnalysis As UInteger = 141
             Public Const cmdTabMSISnapshot As UInteger = 126
             Public Const cmdButtonMSIAverageIon As UInteger = 125
@@ -911,6 +912,12 @@ Namespace RibbonLib.Controls
                 Return _ButtonExportMSIMzpack
             End Get
         End Property
+        Private _ButtonMergeMultipleMSISample As RibbonButton
+        Public ReadOnly Property ButtonMergeMultipleMSISample As RibbonButton
+            Get
+                Return _ButtonMergeMultipleMSISample
+            End Get
+        End Property
         Private _PanelMSIVisual As RibbonGroup
         Public ReadOnly Property PanelMSIVisual As RibbonGroup
             Get
@@ -941,10 +948,10 @@ Namespace RibbonLib.Controls
                 Return _ButtonUpsideDown
             End Get
         End Property
-        Private _ButtonMergeMultipleMSISample As RibbonButton
-        Public ReadOnly Property ButtonMergeMultipleMSISample As RibbonButton
+        Private _ButtonRotateSlide As RibbonButton
+        Public ReadOnly Property ButtonRotateSlide As RibbonButton
             Get
-                Return _ButtonMergeMultipleMSISample
+                Return _ButtonRotateSlide
             End Get
         End Property
         Private _TabMSIAnalysis As RibbonTab
@@ -1558,12 +1565,13 @@ Namespace RibbonLib.Controls
             _ButtonImportsShimadzu = New RibbonButton(_ribbon, Cmd.cmdButtonImportsShimadzu)
             _ButtonMSIRowScans = New RibbonButton(_ribbon, Cmd.cmdButtonMSIRowScans)
             _ButtonExportMSIMzpack = New RibbonButton(_ribbon, Cmd.cmdButtonExportMSIMzpack)
+            _ButtonMergeMultipleMSISample = New RibbonButton(_ribbon, Cmd.cmdButtonMergeMultipleMSISample)
             _PanelMSIVisual = New RibbonGroup(_ribbon, Cmd.cmdPanelMSIVisual)
             _ButtonMSISearchPubChem = New RibbonButton(_ribbon, Cmd.cmdButtonMSISearchPubChem)
             _ButtonMSIMatrixVisual = New RibbonButton(_ribbon, Cmd.cmdButtonMSIMatrixVisual)
             _GroupMSIOperations = New RibbonGroup(_ribbon, Cmd.cmdGroupMSIOperations)
             _ButtonUpsideDown = New RibbonButton(_ribbon, Cmd.cmdButtonUpsideDown)
-            _ButtonMergeMultipleMSISample = New RibbonButton(_ribbon, Cmd.cmdButtonMergeMultipleMSISample)
+            _ButtonRotateSlide = New RibbonButton(_ribbon, Cmd.cmdButtonRotateSlide)
             _TabMSIAnalysis = New RibbonTab(_ribbon, Cmd.cmdTabMSIAnalysis)
             _TabMSISnapshot = New RibbonGroup(_ribbon, Cmd.cmdTabMSISnapshot)
             _ButtonMSIAverageIon = New RibbonButton(_ribbon, Cmd.cmdButtonMSIAverageIon)
