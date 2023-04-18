@@ -2248,3 +2248,70 @@ D:\mzkit\src\assembly\NMRFidTool\Math\apodization\SineSquaredApodizator.vb(97,17
   SingleCells -> D:\mzkit\src\mzmath\SingleCells\bin\x64\Rsharp_app_release\net48\BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll
   DensityQuery.NET5 -> D:\GCModeller\src\runtime\sciBASIC#\Data_science\DataMining\DensityQuery\bin\x64\Rsharp_app_release\net48\Microsoft.VisualBasic.DataMining.DensityQuery.dll
   MsImaging.NET5 -> D:\mzkit\Rscript\Library\mzkit_app\assembly\net48\BioNovoGene.Analytical.MassSpectrometry.MsImaging.dll
+  BrukerDataReader.NET5 -> D:\mzkit\src\assembly\BrukerDataReader\bin\x64\Rsharp_app_release\net6.0-windows\BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.dll
+  mzPackExtensions.NET5 -> D:\mzkit\src\assembly\mzPackExtensions\bin\x64\Rsharp_app_release\net6.0-windows\BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.Extensions.dll
+  BrukerDataReader.NET5 -> D:\mzkit\src\assembly\BrukerDataReader\bin\x64\Rsharp_app_release\net48\BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.dll
+  mzPackExtensions.NET5 -> D:\mzkit\src\assembly\mzPackExtensions\bin\x64\Rsharp_app_release\net48\BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.Extensions.dll
+  The package BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.Extensions.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package 'D:\mzkit\src\assembly\mzPackExtensions\bin\x64\Rsharp_app_release\BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.Extensions.1.0.0.nupkg'.
+  The package BioNovoGene.Analytical.MassSpectrometry.Plots.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package 'D:\mzkit\src\visualize\plot\bin\x64\Rsharp_app_release\BioNovoGene.Analytical.MassSpectrometry.Plots.1.0.0.nupkg'.
+D:\GCModeller\src\R-sharp\studio\RData\obj\x64\Rsharp_app_release\net6.0-windows\RData.NET5.AssemblyInfo.vb(18,59): warning BC42366: The specified version string does not conform to the recommended format - major.minor.build.revision [D:\GCModeller\src\R-sharp\studio\RData\RData.NET5.vbproj::TargetFramework=net6.0-windows]
+D:\GCModeller\src\R-sharp\studio\RData\Convertor\Deserializer.vb(63,9): warning BC42105: Function 'ToObject' doesn't return a value on all code paths. A null reference exception could occur at run time when the result is used. [D:\GCModeller\src\R-sharp\studio\RData\RData.NET5.vbproj::TargetFramework=net6.0-windows]
+D:\GCModeller\src\R-sharp\studio\RData\Writer.vb(165,57): warning BC40008: 'Public Function asVector(Of Object)(value As Object) As Array' is obsolete. [D:\GCModeller\src\R-sharp\studio\RData\RData.NET5.vbproj::TargetFramework=net6.0-windows]
+  RData.NET5 -> D:\GCModeller\src\R-sharp\App\net6.0-windows\RData.dll
+  The package Microsoft.VisualBasic.DataMining.Framework.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package 'D:\GCModeller\src\runtime\sciBASIC#\Data_science\DataMining\DataMining\bin\x64\Rsharp_app_release\Microsoft.VisualBasic.DataMining.Framework.1.0.0.nupkg'.
+  The package BioNovoGene.Analytical.MassSpectrometry.MsImaging.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package 'D:\mzkit\Rscript\Library\mzkit_app\assembly\BioNovoGene.Analytical.MassSpectrometry.MsImaging.1.0.0.nupkg'.
+  The package Microsoft.VisualBasic.MIME.application.rdf_xml.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package 'D:\GCModeller\src\runtime\sciBASIC#\mime\application%rdf+xml\bin\x64\Rsharp_app_release\Microsoft.VisualBasic.MIME.application.rdf_xml.1.0.0.nupkg'.
+D:\GCModeller\src\R-sharp\studio\RData\obj\x64\Rsharp_app_release\net48\RData.NET5.AssemblyInfo.vb(18,59): warning BC42366: The specified version string does not conform to the recommended format - major.minor.build.revision [D:\GCModeller\src\R-sharp\studio\RData\RData.NET5.vbproj::TargetFramework=net48]
+D:\GCModeller\src\R-sharp\studio\RData\Convertor\Deserializer.vb(63,9): warning BC42105: Function 'ToObject' doesn't return a value on all code paths. A null reference exception could occur at run time when the result is used. [D:\GCModeller\src\R-sharp\studio\RData\RData.NET5.vbproj::TargetFramework=net48]
+D:\GCModeller\src\R-sharp\studio\RData\Writer.vb(165,57): warning BC40008: 'Public Function asVector(Of Object)(value As Object) As Array' is obsolete. [D:\GCModeller\src\R-sharp\studio\RData\RData.NET5.vbproj::TargetFramework=net48]
+  RData.NET5 -> D:\GCModeller\src\R-sharp\App\net48\RData.dll
+  The package SMRUCC.genomics.Annotation.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package 'D:\GCModeller\src\GCModeller\core\Bio.Annotation\bin\x64\Rsharp_app_release\SMRUCC.genomics.Annotation.1.0.0.nupkg'.
+  The package BioNovoGene.BioDeep.MSEngine.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package 'D:\mzkit\Rscript\Library\mzkit_app\assembly\BioNovoGene.BioDeep.MSEngine.1.0.0.nupkg'.
+  The package RData.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package 'D:\GCModeller\src\R-sharp\App\RData.1.0.0.nupkg'.
+  LoadR.NET5 -> D:\mzkit\src\assembly\LoadR.NET5\bin\x64\Rsharp_app_release\net48\BioNovoGene.Analytical.MassSpectrometry.RInterop.dll
+  LoadR.NET5 -> D:\mzkit\src\assembly\LoadR.NET5\bin\x64\Rsharp_app_release\net6.0-windows\BioNovoGene.Analytical.MassSpectrometry.RInterop.dll
+  The package Microsoft.VisualBasic.DataMining.DensityQuery.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package 'D:\GCModeller\src\runtime\sciBASIC#\Data_science\DataMining\DensityQuery\bin\x64\Rsharp_app_release\Microsoft.VisualBasic.DataMining.DensityQuery.1.0.0.nupkg'.
+  TissueMorphology -> D:\mzkit\src\visualize\TissueMorphology\bin\x64\Rsharp_app_release\net6.0-windows\BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.dll
+  TissueMorphology -> D:\mzkit\src\visualize\TissueMorphology\bin\x64\Rsharp_app_release\net48\BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.dll
+  The package BioNovoGene.Analytical.MassSpectrometry.RInterop.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package 'D:\mzkit\src\assembly\LoadR.NET5\bin\x64\Rsharp_app_release\BioNovoGene.Analytical.MassSpectrometry.RInterop.1.0.0.nupkg'.
+  Successfully created package 'D:\mzkit\src\assembly\SpectrumTree\bin\x64\Rsharp_app_release\BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.1.0.0.nupkg'.
+  The package BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package 'D:\mzkit\src\assembly\BrukerDataReader\bin\x64\Rsharp_app_release\BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.1.0.0.nupkg'.
+  The package SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package 'D:\GCModeller\src\workbench\modules\ExperimentDesigner\bin\x64\Rsharp_app_release\SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.1.0.0.nupkg'.
+  The package BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package 'D:\mzkit\src\visualize\TissueMorphology\bin\x64\Rsharp_app_release\BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.1.0.0.nupkg'.
+  The package BioNovoGene.Analytical.MassSpectrometry.SingleCells.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package 'D:\mzkit\src\mzmath\SingleCells\bin\x64\Rsharp_app_release\BioNovoGene.Analytical.MassSpectrometry.SingleCells.1.0.0.nupkg'.
+  The package SMRUCC.genomics.Model.SBML_v1.0_2.0.22.0__a8b9cc5dce5d8b0cc9.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package 'D:\GCModeller\src\GCModeller\models\SBML\SBML\bin\x64\Rsharp_app_release\SMRUCC.genomics.Model.SBML_v1.0_2.0.22.0__a8b9cc5dce5d8b0cc9.1.0.0.nupkg'.
+  InteractionModel.NET5 -> D:\GCModeller\src\GCModeller\core\Bio.InteractionModel\bin\x64\Rsharp_app_release\net6.0-windows\SMRUCC.genomics.InteractionModel.dll
+D:\GCModeller\src\interops\visualize\Cytoscape\Cytoscape\API\ImportantNodes\ImportantNodes.vb(98,20): warning BC40008: 'Public Property Info As String' is obsolete. [D:\GCModeller\src\interops\visualize\Cytoscape\Cytoscape\Cytoscape.NET5.vbproj::TargetFramework=net6.0-windows]
+D:\GCModeller\src\interops\visualize\Cytoscape\Cytoscape\API\ImportantNodes\ImportantNodes.vb(180,20): warning BC40008: 'Public Property Info As String' is obsolete. [D:\GCModeller\src\interops\visualize\Cytoscape\Cytoscape\Cytoscape.NET5.vbproj::TargetFramework=net6.0-windows]
+  Cytoscape.NET5 -> D:\GCModeller\src\interops\visualize\Cytoscape\Cytoscape\bin\x64\Rsharp_app_release\net6.0-windows\SMRUCC.genomics.Visualize.Cytoscape.dll
+  InteractionModel.NET5 -> D:\GCModeller\src\GCModeller\core\Bio.InteractionModel\bin\x64\Rsharp_app_release\net48\SMRUCC.genomics.InteractionModel.dll
+  datavisual-netcore5 -> D:\GCModeller\src\GCModeller\visualize\DataVisualizationExtensions\bin\x64\Rsharp_app_release\net6.0-windows\SMRUCC.genomics.Visualize.Extensions.dll
+D:\GCModeller\src\interops\visualize\Cytoscape\Cytoscape\API\ImportantNodes\ImportantNodes.vb(98,20): warning BC40008: 'Public Property Info As String' is obsolete. [D:\GCModeller\src\interops\visualize\Cytoscape\Cytoscape\Cytoscape.NET5.vbproj::TargetFramework=net48]
+D:\GCModeller\src\interops\visualize\Cytoscape\Cytoscape\API\ImportantNodes\ImportantNodes.vb(180,20): warning BC40008: 'Public Property Info As String' is obsolete. [D:\GCModeller\src\interops\visualize\Cytoscape\Cytoscape\Cytoscape.NET5.vbproj::TargetFramework=net48]
+  datavisual-netcore5 -> D:\GCModeller\src\GCModeller\visualize\DataVisualizationExtensions\bin\x64\Rsharp_app_release\net48\SMRUCC.genomics.Visualize.Extensions.dll
+  Cytoscape.NET5 -> D:\GCModeller\src\interops\visualize\Cytoscape\Cytoscape\bin\x64\Rsharp_app_release\net48\SMRUCC.genomics.Visualize.Cytoscape.dll
+D:\GCModeller\src\GCModeller\models\Networks\KEGG\PathwayMaps\MaxGraphAsignment.vb(73,9): warning BC42105: Function 'AssignMapClass' doesn't return a value on all code paths. A null reference exception could occur at run time when the result is used. [D:\GCModeller\src\GCModeller\models\Networks\KEGG\KEGGNetwork.NET5.vbproj::TargetFramework=net6.0-windows]
+  KEGGNetwork.NET5 -> D:\GCModeller\src\GCModeller\models\Networks\KEGG\bin\x64\Rsharp_app_release\net6.0-windows\SMRUCC.genomics.Model.Network.KEGG.dll
+D:\GCModeller\src\GCModeller\models\Networks\KEGG\PathwayMaps\MaxGraphAsignment.vb(73,9): warning BC42105: Function 'AssignMapClass' doesn't return a value on all code paths. A null reference exception could occur at run time when the result is used. [D:\GCModeller\src\GCModeller\models\Networks\KEGG\KEGGNetwork.NET5.vbproj::TargetFramework=net48]
+  KEGGNetwork.NET5 -> D:\GCModeller\src\GCModeller\models\Networks\KEGG\bin\x64\Rsharp_app_release\net48\SMRUCC.genomics.Model.Network.KEGG.dll
+  The package SMRUCC.genomics.Visualize.Cytoscape.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package 'D:\GCModeller\src\interops\visualize\Cytoscape\Cytoscape\bin\x64\Rsharp_app_release\SMRUCC.genomics.Visualize.Cytoscape.1.0.0.nupkg'.
+  The package SMRUCC.genomics.Model.Network.KEGG.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package 'D:\GCModeller\src\GCModeller\models\Networks\KEGG\bin\x64\Rsharp_app_release\SMRUCC.genomics.Model.Network.KEGG.1.0.0.nupkg'.
+  The package SMRUCC.genomics.Visualize.Extensions.1.0.0 is missing a readme. Go to https://aka.ms/nuget/authoring-best-practices/readme to learn why package readmes are important.
+  Successfully created package 'D:\GCModeller\src\GCModeller\visualize\DataVisualizationExtensions\bin\x64\Rsharp_app_release\SMRUCC.genomics.Visualize.Extensions.1.0.0.nupkg'.
