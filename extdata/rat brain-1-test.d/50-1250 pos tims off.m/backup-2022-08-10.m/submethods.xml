@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<method>
+    <submethods>
+        <submethod program="OtofImpacTEMControl" revision="1">
+            <name>D:\Data\Imaging\demo\beijing cancer hosipital-20220802\20220809\rat brain-1-TMP-CHCA-20um\rat brain-1-test.d\50-1250 pos tims off.m\backup-2022-08-10.m</name>
+            <files>
+                <file name="microTOFQImpacTemAcquisition.method"/>
+                <file name="Maldi.method"/>
+                <file name="diaSettings.diasqlite"/>
+                <file name="prmSettings.prmsqlite"/>
+            </files>
+        </submethod>
+    </submethods>
+    <locked>false</locked>
+    <readonly>true</readonly>
+    <comment/>
+</method>
