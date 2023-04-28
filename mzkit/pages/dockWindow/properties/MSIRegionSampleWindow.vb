@@ -105,7 +105,7 @@ Public Class MSIRegionSampleWindow
 
         Call ProgressSpinner.DoLoading(
             Sub()
-                ms1 = viewer.MSIservice.ExtractRegionMs1Spectrum({poly})
+                ms1 = viewer.MSIservice.ExtractRegionMs1Spectrum({poly}, region.SampleInfo)
             End Sub)
 
         ' and then plot on the raw data viewer

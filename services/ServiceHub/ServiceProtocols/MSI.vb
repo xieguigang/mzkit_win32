@@ -281,6 +281,20 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
     End Function
 
+    <Protocol(ServiceProtocol.ExtractRegionMs1Spectrum)>
+    Public Function ExtractRegionMs1Spectrum(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
+        Dim regions As RegionLoader = BSON _
+           .Load(request.ChunkBuffer) _
+           .CreateObject(Of RegionLoader)(decodeMetachar:=False) _
+           .Reload
+        Dim allPixels As PixelScan() = MSI.pixelReader.AllPixels.ToArray
+        Dim targets = allPixels.Where(Function(i) regions.ContainsPixel(i.X, i.Y)).Select(Function(i) i.GetMs).IteratesALL.ToArray
+        Dim ms1 As ms2() = targets.Centroid(Tolerance.DeltaMass(0.3), New RelativeIntensityCutoff(0.05))
+        Dim mat As New LibraryMatrix With {.name = regions.sample_tags.JoinBy("; "), .centroid = True, .ms2 = ms1}
+
+        Return New DataPipe(mat.GetStream)
+    End Function
+
     <Protocol(ServiceProtocol.ExtractRegionSample)>
     Public Function ExtractRegionSample(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
         Dim regions As RegionLoader = BSON _

@@ -388,11 +388,12 @@ Namespace ServiceHub
             Return output
         End Function
 
-        Public Function ExtractRegionMs1Spectrum(region As Polygon2D()) As LibraryMatrix
+        Public Function ExtractRegionMs1Spectrum(region As Polygon2D(), label As String) As LibraryMatrix
             Dim payload As New RegionLoader With {
                .height = 0,
                .width = 0,
-               .regions = region
+               .regions = region,
+               .sample_tags = {label}
             }
             Dim buffer = BSON.GetBuffer(GetType(RegionLoader).GetJsonElement(payload, New JSONSerializerOptions))
             Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.ExtractRegionMs1Spectrum, buffer.ToArray))
@@ -401,7 +402,7 @@ Namespace ServiceHub
                 Call MyApplication.host.showStatusMessage(data.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
                 Return Nothing
             Else
-
+                Return LibraryMatrix.ParseStream(data.ChunkBuffer)
             End If
         End Function
 
