@@ -10,7 +10,7 @@ Public Class frmCloudExplorer
 
     Private Sub frmCloudExplorer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TabText = "Cloud Explorer"
-        tree = New HttpTreeFs("http://192.168.0.207:83/taxonomy")
+        tree = New HttpTreeFs("http://192.168.0.207:83/taxonomy", 1)
 
         Dim childs = Me.tree.GetTreeChilds("/").ToArray
         Dim root = TreeView1.Nodes.Add($"Spectrum Pool [{tree.HttpServices.TrimEnd("/"c)}/ connected!]").Nodes.Add("/")
