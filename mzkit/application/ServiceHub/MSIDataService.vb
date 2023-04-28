@@ -62,6 +62,7 @@ Imports System.Text
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.mzkit_win32.My
@@ -78,6 +79,7 @@ Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Mzkit_win32.BasicMDIForm
 Imports ServiceHub
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.DataFiles
 Imports Task
 Imports TaskStream
 
@@ -384,6 +386,23 @@ Namespace ServiceHub
                         End Function)
 
             Return output
+        End Function
+
+        Public Function ExtractRegionMs1Spectrum(region As Polygon2D()) As LibraryMatrix
+            Dim payload As New RegionLoader With {
+               .height = 0,
+               .width = 0,
+               .regions = region
+            }
+            Dim buffer = BSON.GetBuffer(GetType(RegionLoader).GetJsonElement(payload, New JSONSerializerOptions))
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.ExtractRegionMs1Spectrum, buffer.ToArray))
+
+            If data.IsHTTP_RFC Then
+                Call MyApplication.host.showStatusMessage(data.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Return Nothing
+            Else
+
+            End If
         End Function
 
         Public Function ExtractRegionSample(regions As Polygon2D(), dims As Size) As MsImageProperty

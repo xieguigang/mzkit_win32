@@ -101,7 +101,6 @@ Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports ServiceHub
-Imports SMRUCC.genomics.Assembly.MetaCyc.File.DataFiles
 Imports STImaging
 Imports Task
 Imports TaskStream

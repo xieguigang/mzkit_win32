@@ -94,6 +94,7 @@ Public Enum ServiceProtocol
     UpsideDown
     Mirrors
     DeleteRegion
+    ExtractRegionMs1Spectrum
     ExtractRegionSample
     ExtractMultipleSampleRegions
     ExitApp
