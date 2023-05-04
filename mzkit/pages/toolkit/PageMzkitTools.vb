@@ -729,10 +729,20 @@ Public Class PageMzkitTools
                 System.Windows.Forms.Application.DoEvents()
             Next
         Else
-            DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "m/z"})
-            DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "intensity"})
-            DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "relative"})
-            DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "annotation"})
+            Dim memoryData As New DataSet
+            Dim table As DataTable = memoryData.Tables.Add("memoryData")
+
+            Try
+                Call DataGridView1.Columns.Clear()
+                Call DataGridView1.Rows.Clear()
+            Catch ex As Exception
+
+            End Try
+
+            table.Columns.Add("m/z", GetType(Double))
+            table.Columns.Add("intensity", GetType(Double))
+            table.Columns.Add("relative", GetType(Double))
+            table.Columns.Add("annotation", GetType(String))
 
             Dim max As Double
 
@@ -744,9 +754,13 @@ Public Class PageMzkitTools
             End If
 
             For Each tick As ms2 In matrix
-                DataGridView1.Rows.Add({tick.mz, tick.intensity, CInt(tick.intensity / max * 100), tick.Annotation})
+                table.Rows.Add(tick.mz, tick.intensity, CInt(tick.intensity / max * 100), tick.Annotation)
                 System.Windows.Forms.Application.DoEvents()
             Next
+
+            BindingSource1.DataSource = memoryData
+            BindingSource1.DataMember = table.TableName
+            DataGridView1.DataSource = BindingSource1
         End If
     End Sub
 
