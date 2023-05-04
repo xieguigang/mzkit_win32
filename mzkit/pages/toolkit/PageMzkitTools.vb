@@ -714,13 +714,11 @@ Public Class PageMzkitTools
     ''' <param name="name"></param>
     Sub showMatrix(matrix As ms2(), name As String, Optional nmr As Boolean = False)
         Me.matrix = matrix
-
-        matrixName = name
-
-        DataGridView1.Rows.Clear()
-        DataGridView1.Columns.Clear()
+        Me.matrixName = name
 
         If nmr Then
+            DataGridView1.Rows.Clear()
+            DataGridView1.Columns.Clear()
             DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "ppm"})
             DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "intensity"})
 
