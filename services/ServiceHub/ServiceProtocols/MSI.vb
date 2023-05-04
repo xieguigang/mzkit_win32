@@ -294,7 +294,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             .Select(Function(i) i.GetMs) _
             .IteratesALL _
             .ToArray
-        Dim ms1 As ms2() = targets.Centroid(Tolerance.DeltaMass(0.3), New RelativeIntensityCutoff(0.05))
+        Dim ms1 As ms2() = targets.Centroid(Tolerance.DeltaMass(0.3), New RelativeIntensityCutoff(0.01))
         Dim mat As New LibraryMatrix With {
             .name = regions.sample_tags.JoinBy("; "),
             .centroid = True,
