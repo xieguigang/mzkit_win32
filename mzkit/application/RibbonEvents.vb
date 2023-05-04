@@ -317,14 +317,18 @@ Module RibbonEvents
         Dim table As DataGridView = MyApplication.host.mzkitTool.DataGridView1
 
         If Not table Is Nothing Then
-            Dim sb As New StringBuilder
-            Dim write As New StringWriter(sb)
-
-            Call table.WriteTableToFile(write)
-            Call Clipboard.Clear()
-            Call Clipboard.SetText(sb.ToString)
+            Call ProgressSpinner.DoLoading(Sub() Call doMatrixCopy(table))
             Call MyApplication.host.showStatusMessage("Matrix data is copy to clipboard!")
         End If
+    End Sub
+
+    Private Sub doMatrixCopy(table As DataGridView)
+        Dim sb As New StringBuilder
+        Dim write As New StringWriter(sb)
+
+        Call table.WriteTableToFile(write)
+        Call Clipboard.Clear()
+        Call Clipboard.SetText(sb.ToString)
     End Sub
 
     Public Sub CopyProperties()

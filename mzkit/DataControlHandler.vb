@@ -58,6 +58,7 @@ Imports System.Text
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Text
+Imports Mzkit_win32.BasicMDIForm
 Imports any = Microsoft.VisualBasic.Scripting
 Imports REnv = SMRUCC.Rsharp.Runtime
 
@@ -172,33 +173,35 @@ Module DataControlHandler
     ''' <summary>
     ''' write table in tsv file format
     ''' </summary>
-    ''' <param name="table"></param>
+    ''' <param name="table2"></param>
     ''' <param name="writeTsv">
     ''' target file or the <see cref="StringBuilder"/> for copy to clipboard
     ''' </param>
     <Extension>
-    Public Sub WriteTableToFile(table As DataGridView, writeTsv As TextWriter,
+    Public Sub WriteTableToFile(table2 As DataGridView, writeTsv As TextWriter,
                                 Optional saveHeader As Boolean = True,
                                 Optional sep As Char = ASCII.TAB)
 
         Dim row As New List(Of String)
+        Dim table As DataTable = table2.DataSource
 
         If saveHeader Then
             For i As Integer = 0 To table.Columns.Count - 1
-                Call row.Add(table.Columns(i).HeaderText)
+                Call row.Add(table.Columns(i).ColumnName)
             Next
 
             Call writeTsv.WriteLine(row.PopAll.JoinBy(sep))
         End If
 
         For j As Integer = 0 To table.Rows.Count - 1
-            Dim rowObj = table.Rows(j)
+            Dim rowObj As DataRow = table.Rows(j)
 
-            For i As Integer = 0 To rowObj.Cells.Count - 1
-                Call row.Add(any.ToString(rowObj.Cells(i).Value))
-            Next
-
-            Call writeTsv.WriteLine(row.PopAll.JoinBy(sep))
+            Try
+                Call row.AddRange(rowObj.ItemArray.Select(AddressOf any.ToString))
+                Call writeTsv.WriteLine(row.PopAll.JoinBy(sep))
+            Catch ex As Exception
+                Call Workbench.Warning(ex.ToString)
+            End Try
         Next
 
         Call writeTsv.Flush()
