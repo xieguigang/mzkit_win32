@@ -315,9 +315,16 @@ Module RibbonEvents
 
     Public Sub CopyMatrix()
         Dim table As DataGridView = MyApplication.host.mzkitTool.DataGridView1
+        Dim exportTask As Action =
+            Sub()
+                Call MyApplication.host.Invoke(
+                    Sub()
+                        Call doMatrixCopy(table)
+                    End Sub)
+            End Sub
 
         If Not table Is Nothing Then
-            Call ProgressSpinner.DoLoading(Sub() Call doMatrixCopy(table))
+            Call ProgressSpinner.DoLoading(exportTask)
             Call MyApplication.host.showStatusMessage("Matrix data is copy to clipboard!")
         End If
     End Sub
@@ -327,8 +334,14 @@ Module RibbonEvents
         Dim write As New StringWriter(sb)
 
         Call table.WriteTableToFile(write)
-        Call Clipboard.Clear()
-        Call Clipboard.SetText(sb.ToString)
+
+        Try
+            Call Clipboard.Clear()
+            Call Clipboard.SetText(sb.ToString)
+        Catch ex As Exception
+            Call MessageBox.Show("Error while access the clipboard, please retry later.", "Copy Matrix Data", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            Call Workbench.Warning(ex.ToString)
+        End Try
     End Sub
 
     Public Sub CopyProperties()
