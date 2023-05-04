@@ -504,7 +504,7 @@ Namespace ServiceHub
 
         Public Function GetPixel(x As Integer, y As Integer) As PixelScan
             Dim xy As Byte() = BitConverter.GetBytes(x).JoinIterates(BitConverter.GetBytes(y)).ToArray
-            Dim output As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.GetPixel, xy), min:=0.05)
+            Dim output As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.GetPixel, xy), min:=0.01)
 
             If output Is Nothing Then
                 Return Nothing
@@ -515,7 +515,8 @@ Namespace ServiceHub
                 If checkOffline < 6 Then
                     checkOffline += 1
                 Else
-                    MessageBox.Show("MS-Imaging data service backend is panic or offline, please load raw data file again to restart the service", "Error Service Request", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    MessageBox.Show("MS-Imaging data service backend is panic or offline, please load raw data file again to restart the service",
+                                    "Error Service Request", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
 
                 Return Nothing
