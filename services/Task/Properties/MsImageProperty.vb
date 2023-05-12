@@ -140,6 +140,8 @@ Public Class MsImageProperty
     <Category("Render")> Public Property scale As InterpolationMode = InterpolationMode.Bilinear
     <Category("Render")> Public Property enableFilter As Boolean = True
     <Category("Render")> Public Property showPhysicalRuler As Boolean = True
+    <Description("Show the overlap of total ion imaging plot in grayscale when do single ion/rgb ion imaging?")>
+    <Category("Render")> Public Property showTotalIonOverlap As Boolean = True
 
     <Description("The mass tolerance error threshold in delta dalton or ppm.")>
     <Category("Pixel M/z Data")> Public Property tolerance As Double = 0.1
@@ -153,8 +155,6 @@ Public Class MsImageProperty
 
     <Description("The TrIQ cutoff threshold, value in range of [0,1]")>
     <Category("Intensity")> Public Property TrIQ As Double = 0.85
-    <Description("Show the color map legend on the canvas display?")>
-    <Category("Intensity")> Public Property showColorMap As Boolean = True
 
     Sub New(render As Drawer)
         scan_x = render.dimension.Width
@@ -164,8 +164,7 @@ Public Class MsImageProperty
 
         If TypeOf render.pixelReader Is ReadIbd Then
             UUID = DirectCast(render.pixelReader, ReadIbd).UUID
-            fileSize = DirectCast(render.pixelReader, ReadIbd) _
-                .ibd _
+            fileSize = DirectCast(render.pixelReader, ReadIbd).ibd _
                 .size _
                 .DoCall(AddressOf StringFormats.Lanudry)
         End If
