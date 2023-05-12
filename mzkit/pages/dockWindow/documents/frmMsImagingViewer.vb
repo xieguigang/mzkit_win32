@@ -83,6 +83,7 @@ Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
@@ -1473,6 +1474,11 @@ Public Class frmMsImagingViewer
 
         mzdiff = params.GetTolerance
         targetMz = selectedMz
+        rgb_configs = New RGBConfigs With {
+            .R = New NamedValue(Of Double)(r.ToString("F4"), r),
+            .G = New NamedValue(Of Double)(g.ToString("F4"), g),
+            .B = New NamedValue(Of Double)(b.ToString("F4"), b)
+        }
 
         Call ProgressSpinner.DoLoading(
             Sub()
