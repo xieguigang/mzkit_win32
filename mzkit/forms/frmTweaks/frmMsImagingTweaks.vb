@@ -63,6 +63,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
@@ -305,6 +306,7 @@ UseCheckedList:
         Dim pixels As PixelData()
         Dim size As Size
         Dim tolerance As Tolerance
+        Dim rgb As RGBConfigs = Nothing
 
         If viewer Is Nothing Then
             viewer = WindowModules.viewer
@@ -338,7 +340,7 @@ UseCheckedList:
                     Call MyApplication.host.ShowMzkitToolkit()
                 Else
                     ' invalid format
-                    Call MyApplication.host.showStatusMessage("Invalid cdf file format! [mz, intensity, x, y] data vector should exists inside this cdf file!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                    Call Workbench.Warning("Invalid cdf file format! [mz, intensity, x, y] data vector should exists inside this cdf file!")
                 End If
 
                 Return
@@ -347,15 +349,23 @@ UseCheckedList:
             size = cdf.GetMsiDimension
             pixels = cdf.LoadPixelsData.ToArray
             tolerance = cdf.GetMzTolerance
+
+            If cdf.dataVariableExists("rgb") Then
+                ' load rgb configs
+
+            End If
         End Using
 
-        Call ProgressSpinner.DoLoading(
-            Sub()
-                Call Me.Invoke(Sub()
-                                   viewer.LoadRender(firstFile, firstFile)
-                                   viewer.renderByPixelsData(pixels, size)
-                               End Sub)
-            End Sub)
+        'Call ProgressSpinner.DoLoading(
+        '    Sub()
+        '        Call Me.Invoke(Sub()
+        '                           viewer.LoadRender(firstFile, firstFile)
+        '                           viewer.renderByPixelsData(pixels, size)
+        '                       End Sub)
+        '    End Sub)
+
+        Call viewer.LoadRender(firstFile, firstFile)
+        Call viewer.renderByPixelsData(pixels, size)
 
         For Each mz As Double In pixels _
             .GroupBy(Function(p) p.mz, tolerance) _

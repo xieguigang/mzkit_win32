@@ -75,6 +75,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
@@ -82,6 +83,7 @@ Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
@@ -393,7 +395,7 @@ Public Class frmMsImagingViewer
     ''' </summary>
     ''' <param name="fileName"></param>
     Private Sub loadHEMapMatrix(fileName As String)
-        Dim file = Microsoft.VisualBasic.Data.csv.IO.File.Load(fileName)
+        Dim file As File = Microsoft.VisualBasic.Data.csv.IO.File.Load(fileName)
         Dim table = DataFrame.CreateObject(file)
 
         If table.GetOrdinal("x") = -1 OrElse table.GetOrdinal("y") = -1 Then
@@ -1472,6 +1474,11 @@ Public Class frmMsImagingViewer
 
         mzdiff = params.GetTolerance
         targetMz = selectedMz
+        rgb_configs = New RGBConfigs With {
+            .R = New NamedValue(Of Double)(r.ToString("F4"), r),
+            .G = New NamedValue(Of Double)(g.ToString("F4"), g),
+            .B = New NamedValue(Of Double)(b.ToString("F4"), b)
+        }
 
         Call ProgressSpinner.DoLoading(
             Sub()
@@ -1569,6 +1576,7 @@ Public Class frmMsImagingViewer
     End Sub
 
     Dim loadedPixels As PixelData()
+    Dim rgb_configs As RGBConfigs
     Dim targetMz As Double()
     Dim title As String
     Dim mzdiff As Tolerance
@@ -1651,6 +1659,7 @@ Public Class frmMsImagingViewer
         Dim blender As New SingleIonMSIBlender(pixels, TIC, params)
         Dim range As DoubleRange = blender.range
 
+        Me.rgb_configs = Nothing
         Me.loadedPixels = pixels
         Me.blender = blender
         Me.PixelSelector1.MSICanvas.LoadSampleTags(pixels.Select(Function(i) i.sampleTag).Where(Function(str) Not str Is Nothing).Distinct)
@@ -1753,7 +1762,7 @@ Public Class frmMsImagingViewer
         Using file As New SaveFileDialog With {.Filter = "NetCDF(*.cdf)|*.cdf", .Title = "Save MS-Imaging Matrix"}
             If file.ShowDialog = DialogResult.OK Then
                 Using filesave As FileStream = file.FileName.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
-                    Call loadedPixels.CreateCDF(filesave, dimension, params.GetTolerance)
+                    Call loadedPixels.CreateCDF(filesave, dimension, params.GetTolerance, rgb:=rgb_configs)
                 End Using
             End If
         End Using
