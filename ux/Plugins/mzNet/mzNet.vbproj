@@ -137,7 +137,9 @@
     <Compile Include="frmCloudExplorer.Designer.vb">
       <DependentUpon>frmCloudExplorer.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmCloudExplorer.vb" />
+    <Compile Include="frmCloudExplorer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Plugin.vb" />
     <Compile Include="FormViewer.vb">
       <SubType>Form</SubType>
