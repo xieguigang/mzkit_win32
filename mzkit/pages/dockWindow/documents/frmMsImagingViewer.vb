@@ -1480,27 +1480,25 @@ Public Class frmMsImagingViewer
             .B = New NamedValue(Of Double)(b.ToString("F4"), b)
         }
 
-        Call ProgressSpinner.DoLoading(
-            Sub()
-                Dim pixels As PixelData() = MSIservice.LoadPixels(selectedMz, mzdiff)
-
-                If pixels.IsNullOrEmpty Then
-                    Call MyApplication.host.showStatusMessage($"No ion hits!", My.Resources.StatusAnnotations_Warning_32xLG_color)
-                Else
-                    Dim base = pixels.OrderByDescending(Function(p) p.intensity).FirstOrDefault
-                    Dim maxInto As Double = base?.intensity
-                    Dim Rpixels = pixels.Where(Function(p) mzdiff(p.mz, r)).ToArray
-                    Dim Gpixels = pixels.Where(Function(p) mzdiff(p.mz, g)).ToArray
-                    Dim Bpixels = pixels.Where(Function(p) mzdiff(p.mz, b)).ToArray
-
-                    Call Invoke(Sub() params.SetIntensityMax(maxInto, New Point(base?.x, base?.y)))
-                    Call Invoke(Sub() rendering = createRenderTask(Rpixels, Gpixels, Bpixels))
-                    Call Invoke(rendering)
-                    Call MyApplication.host.showStatusMessage("Rendering Complete!", My.Resources.preferences_system_notifications)
-                End If
-            End Sub)
-
+        Call ProgressSpinner.DoLoading(Sub() Call createRGB(MSIservice.LoadPixels(selectedMz, mzdiff), r, g, b))
         Call PixelSelector1.ShowMessage($"Render in RGB Channel Composition Mode: {selectedMz.Select(Function(d) stdNum.Round(d, 4)).JoinBy(", ")}")
+    End Sub
+
+    Private Sub createRGB(pixels As PixelData(), r#, g#, b#)
+        If pixels.IsNullOrEmpty Then
+            Call MyApplication.host.showStatusMessage($"No ion hits!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+        Else
+            Dim base = pixels.OrderByDescending(Function(p) p.intensity).FirstOrDefault
+            Dim maxInto As Double = base?.intensity
+            Dim Rpixels = pixels.Where(Function(p) mzdiff(p.mz, r)).ToArray
+            Dim Gpixels = pixels.Where(Function(p) mzdiff(p.mz, g)).ToArray
+            Dim Bpixels = pixels.Where(Function(p) mzdiff(p.mz, b)).ToArray
+
+            Call Invoke(Sub() params.SetIntensityMax(maxInto, New Point(base?.x, base?.y)))
+            Call Invoke(Sub() rendering = createRenderTask(Rpixels, Gpixels, Bpixels))
+            Call Invoke(rendering)
+            Call MyApplication.host.showStatusMessage("Rendering Complete!", My.Resources.preferences_system_notifications)
+        End If
     End Sub
 
     Private Function createRenderTask(R As PixelData(), G As PixelData(), B As PixelData()) As Action
@@ -1602,7 +1600,7 @@ Public Class frmMsImagingViewer
         Me.titles(targetMz(Scan0).ToString("F3")) = title
     End Sub
 
-    Public Sub renderByPixelsData(pixels As PixelData(), MsiDim As Size)
+    Public Sub renderByPixelsData(pixels As PixelData(), MsiDim As Size, rgb As RGBConfigs)
         If params Is Nothing Then
             Me.params = New MsImageProperty
             Me.checks = WindowModules.msImageParameters.RenderingToolStripMenuItem
@@ -1619,8 +1617,13 @@ Public Class frmMsImagingViewer
         Call params.Reset(MsiDim, "N/A", "N/A", 17)
         Call sampleRegions.SetBounds(pixels.Select(Function(a) New Point(a.x, a.y)))
 
-        rendering = createRenderTask(pixels, $"{params.scan_x},{params.scan_y}")
-        rendering()
+        If rgb Is Nothing Then
+            rendering = createRenderTask(pixels, $"{params.scan_x},{params.scan_y}")
+            rendering()
+        Else
+            rgb_configs = rgb
+            createRGB(pixels, rgb.R, rgb.G, rgb.B)
+        End If
 
         Call MyApplication.host.showStatusMessage("Rendering Complete!", My.Resources.preferences_system_notifications)
     End Sub
