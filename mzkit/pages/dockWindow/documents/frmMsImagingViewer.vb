@@ -433,7 +433,7 @@ Public Class frmMsImagingViewer
                     .Hqx = HqxScales.Hqx_4x,
                     .mapLevels = 255,
                     .scale = InterpolationMode.HighQualityBicubic,
-                    .showColorMap = False,
+                    .showTotalIonOverlap = True,
                     .showPhysicalRuler = False,
                     .TrIQ = 1,
                     .resolution = 17,
@@ -1450,7 +1450,7 @@ Public Class frmMsImagingViewer
                            Dim mapLevels As Integer = params.mapLevels
 
                            PixelSelector1.SetMsImagingOutput(image, blender.dimensions, params.background, params.colors, {range.Min, range.Max}, mapLevels)
-                           PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
+                           PixelSelector1.SetColorMapVisible(visible:=True)
                        End Sub)
                End Sub
     End Function
@@ -1516,7 +1516,7 @@ Public Class frmMsImagingViewer
                            Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
 
                            PixelSelector1.SetMsImagingOutput(image, blender.dimensions, params.background, Nothing, Nothing, Nothing)
-                           PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
+                           PixelSelector1.SetColorMapVisible(visible:=True)
                        End Sub)
                End Sub
     End Function
@@ -1647,7 +1647,7 @@ Public Class frmMsImagingViewer
                         Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
 
                         PixelSelector1.SetMsImagingOutput(image, dimensions, params.background, params.colors, {0, 1}, params.mapLevels)
-                        PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
+                        PixelSelector1.SetColorMapVisible(visible:=True)
                     End Sub)
             End Sub
 
@@ -1679,7 +1679,7 @@ Public Class frmMsImagingViewer
                                        Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
 
                                        PixelSelector1.SetMsImagingOutput(image, dimensions.SizeParser, params.background, params.colors, {range.Min, range.Max}, params.mapLevels)
-                                       PixelSelector1.SetColorMapVisible(visible:=params.showColorMap)
+                                       PixelSelector1.SetColorMapVisible(visible:=True)
                                    End Sub)
                                End Sub)
                        End Sub)
