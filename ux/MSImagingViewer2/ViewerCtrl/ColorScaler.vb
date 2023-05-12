@@ -7,12 +7,12 @@ Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Public Class ColorScaler
 
     Dim colorSet As ScalerPalette = ScalerPalette.FlexImaging
-    Dim mapLevels As Integer = 200
+    Dim mapLevels As Integer = 250
     Dim intensityMax As Double = 10 ^ 6
 
     Public ReadOnly Property ColorBarWidth As Integer
         Get
-            Return Width - 30
+            Return Width - 35
         End Get
     End Property
 
@@ -81,7 +81,9 @@ Public Class ColorScaler
     Private Sub updateColors()
         Dim axisTicks = New DoubleRange(0, intensityMax).CreateAxisTicks
 
+        ' 绘制坐标轴
         Me.BackgroundImage = DrawByColors(Designer.GetColors(ScalerPalette.Gray.Description, mapLevels), ColorBarWidth, axisTicks)
+        ' 绘制颜色条
         PictureBox1.BackgroundImage = DrawByColors(Designer.GetColors(colorSet.Description, mapLevels), PictureBox1.Width, Nothing)
     End Sub
 
@@ -93,20 +95,21 @@ Public Class ColorScaler
         Using g As IGraphics = Me.Size.CreateGDIDevice
             If Not axisTicks.IsNullOrEmpty Then
                 height -= 20
-                w += 5
+                ' w -= 20
 
+                ' 绘制坐标轴
                 Dim scaleY As New YScaler(False) With {
                     .Y = d3js.scale.linear.domain(values:=axisTicks).range(values:={10, height}),
                     .region = New Rectangle(0, 0, 0, height)
                 }
                 Dim a As New PointF(w, 10)
                 Dim b As New PointF(w, height)
-                Dim pen As New Pen(Color.Black, 5)
+                Dim pen As New Pen(Color.Black, 3)
                 Dim font As New Font(FontFace.MicrosoftYaHeiUI, 7, FontStyle.Bold)
                 Dim fh = g.MeasureString("0", font).Height / 2
 
                 g.DrawLine(pen, a, b)
-                pen = New Pen(Color.Black, 3)
+                pen = New Pen(Color.Black, 2)
 
                 For Each tick As Double In axisTicks.Take(axisTicks.Length - 1)
                     y = scaleY.TranslateY(tick)
