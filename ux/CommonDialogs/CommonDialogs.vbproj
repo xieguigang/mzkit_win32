@@ -122,9 +122,7 @@
     <Compile Include="InputDialogs\InputCloudEndPoint.Designer.vb">
       <DependentUpon>InputCloudEndPoint.vb</DependentUpon>
     </Compile>
-    <Compile Include="InputDialogs\InputCloudEndPoint.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="InputDialogs\InputCloudEndPoint.vb" />
     <Compile Include="InputDialogs\InputMSISlideLayout.Designer.vb">
       <DependentUpon>InputMSISlideLayout.vb</DependentUpon>
     </Compile>
