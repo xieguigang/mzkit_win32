@@ -1622,6 +1622,8 @@ Public Class frmMsImagingViewer
             rendering()
         Else
             rgb_configs = rgb
+            mzdiff = params.GetTolerance
+
             createRGB(pixels, rgb.R, rgb.G, rgb.B)
         End If
 
