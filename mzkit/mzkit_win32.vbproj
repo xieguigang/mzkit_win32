@@ -787,7 +787,9 @@
     <Compile Include="pages\dockWindow\properties\MSIPixelPropertyWindow.Designer.vb">
       <DependentUpon>MSIPixelPropertyWindow.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\properties\MSIPixelPropertyWindow.vb" />
+    <Compile Include="pages\dockWindow\properties\MSIPixelPropertyWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\tools\TaskUI.vb" />
     <Compile Include="pages\dockWindow\tools\TaskListWindow.Designer.vb">
       <DependentUpon>TaskListWindow.vb</DependentUpon>

@@ -155,7 +155,9 @@
     <Compile Include="MSI\RegionSampleCard.Designer.vb">
       <DependentUpon>RegionSampleCard.vb</DependentUpon>
     </Compile>
-    <Compile Include="MSI\RegionSampleCard.vb" />
+    <Compile Include="MSI\RegionSampleCard.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="MSI\SpatialTile.Designer.vb">
       <DependentUpon>SpatialTile.vb</DependentUpon>
     </Compile>
