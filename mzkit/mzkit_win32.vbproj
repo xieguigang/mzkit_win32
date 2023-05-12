@@ -838,7 +838,9 @@
     <Compile Include="pages\dockWindow\systems\frmRScriptEdit.Designer.vb">
       <DependentUpon>frmRScriptEdit.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\systems\frmRScriptEdit.vb" />
+    <Compile Include="pages\dockWindow\systems\frmRScriptEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\systems\frmRsharp.Designer.vb">
       <DependentUpon>frmRsharp.vb</DependentUpon>
     </Compile>

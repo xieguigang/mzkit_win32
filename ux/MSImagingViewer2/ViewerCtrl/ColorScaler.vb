@@ -1,4 +1,6 @@
-﻿Imports System.Drawing
+﻿Imports System.Diagnostics
+Imports System.Drawing
+Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
 Imports Microsoft.VisualBasic.Imaging
@@ -60,6 +62,8 @@ Public Class ColorScaler
         End Set
     End Property
 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    <DebuggerStepThrough>
     Public Sub SetIntensityMax(max As Double)
         intensityMax = max
     End Sub
@@ -79,51 +83,58 @@ Public Class ColorScaler
     End Sub
 
     Private Sub updateColors()
-        Dim axisTicks = New DoubleRange(0, intensityMax).CreateAxisTicks
-
         ' 绘制坐标轴
-        Me.BackgroundImage = DrawByColors(Designer.GetColors(ScalerPalette.Gray.Description, mapLevels), ColorBarWidth, axisTicks)
+        BackgroundImage = DrawIntensityAxis(Designer.GetColors(ScalerPalette.Gray.Description, mapLevels), ColorBarWidth)
         ' 绘制颜色条
-        PictureBox1.BackgroundImage = DrawByColors(Designer.GetColors(colorSet.Description, mapLevels), PictureBox1.Width, Nothing)
+        PictureBox1.BackgroundImage = DrawByColors(Designer.GetColors(colorSet.Description, mapLevels), PictureBox1.Width)
     End Sub
 
-    Private Function DrawByColors(colors As Color(), w As Double, axisTicks As Double()) As Image
+    Private Function DrawIntensityAxis(colors As Color(), w As Double) As Image
+        Dim axisTicks = New DoubleRange(0, intensityMax).CreateAxisTicks
         Dim height As Double = Me.Height
         Dim d As Double = height / colors.Length
         Dim y As Double = 0
 
         Using g As IGraphics = Me.Size.CreateGDIDevice
-            If Not axisTicks.IsNullOrEmpty Then
-                height -= 20
-                ' w -= 20
+            height -= 20
+            ' w -= 20
 
-                ' 绘制坐标轴
-                Dim scaleY As New YScaler(False) With {
-                    .Y = d3js.scale.linear.domain(values:=axisTicks).range(values:={10, height}),
-                    .region = New Rectangle(0, 0, 0, height)
-                }
-                Dim a As New PointF(w, 10)
-                Dim b As New PointF(w, height)
-                Dim pen As New Pen(Color.Black, 3)
-                Dim font As New Font(FontFace.MicrosoftYaHeiUI, 7, FontStyle.Bold)
-                Dim fh = g.MeasureString("0", font).Height / 2
+            ' 绘制坐标轴
+            Dim scaleY As New YScaler(False) With {
+                .Y = d3js.scale.linear.domain(values:=axisTicks).range(values:={10, height}),
+                .region = New Rectangle(0, 0, 0, height)
+            }
+            Dim a As New PointF(w, 10)
+            Dim b As New PointF(w, height)
+            Dim pen As New Pen(Color.Black, 3)
+            Dim font As New Font(FontFace.MicrosoftYaHeiUI, 7, FontStyle.Italic)
+            Dim fh = g.MeasureString("0", font).Height / 2
 
+            g.DrawLine(pen, a, b)
+            pen = New Pen(Color.Black, 2)
+
+            For Each tick As Double In axisTicks.Take(axisTicks.Length - 1)
+                y = scaleY.TranslateY(tick)
+                a = New PointF(w, y)
+                b = New PointF(w + 5, y)
                 g.DrawLine(pen, a, b)
-                pen = New Pen(Color.Black, 2)
+                g.DrawString(tick.ToString("G3"), font, Brushes.Black, New PointF(w + 8, y - fh))
+            Next
 
-                For Each tick As Double In axisTicks.Take(axisTicks.Length - 1)
-                    y = scaleY.TranslateY(tick)
-                    a = New PointF(w, y)
-                    b = New PointF(w + 5, y)
-                    g.DrawLine(pen, a, b)
-                    g.DrawString(tick.ToString("G3"), font, Brushes.Black, New PointF(w + 8, y - fh))
-                Next
-            Else
-                For Each c As Color In colors
-                    Call g.FillRectangle(New SolidBrush(c), New RectangleF(New PointF(0, y), New SizeF(w, d)))
-                    y += d
-                Next
-            End If
+            Return DirectCast(g, Graphics2D).ImageResource
+        End Using
+    End Function
+
+    Private Function DrawByColors(colors As Color(), w As Double) As Image
+        Dim height As Double = Me.Height
+        Dim d As Double = height / colors.Length
+        Dim y As Double = 0
+
+        Using g As IGraphics = Me.Size.CreateGDIDevice
+            For Each c As Color In colors
+                Call g.FillRectangle(New SolidBrush(c), New RectangleF(New PointF(0, y), New SizeF(w, d)))
+                y += d
+            Next
 
             Return DirectCast(g, Graphics2D).ImageResource
         End Using
