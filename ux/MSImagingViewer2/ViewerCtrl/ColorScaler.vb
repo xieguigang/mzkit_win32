@@ -14,7 +14,7 @@ Public Class ColorScaler
 
     Public ReadOnly Property ColorBarWidth As Integer
         Get
-            Return Width - 35
+            Return Width - 80
         End Get
     End Property
 
@@ -84,12 +84,13 @@ Public Class ColorScaler
 
     Private Sub updateColors()
         ' 绘制坐标轴
-        BackgroundImage = DrawIntensityAxis(Designer.GetColors(ScalerPalette.Gray.Description, mapLevels), ColorBarWidth)
+        BackgroundImage = DrawIntensityAxis(Designer.GetColors(ScalerPalette.Gray.Description, mapLevels))
         ' 绘制颜色条
-        PictureBox1.BackgroundImage = DrawByColors(Designer.GetColors(colorSet.Description, mapLevels), PictureBox1.Width)
+        PictureBox1.BackgroundImage = DrawByColors(Designer.GetColors(colorSet.Description, mapLevels))
     End Sub
 
-    Private Function DrawIntensityAxis(colors As Color(), w As Double) As Image
+    Private Function DrawIntensityAxis(colors As Color()) As Image
+        Dim w As Double = ColorBarWidth
         Dim axisTicks = New DoubleRange(0, intensityMax).CreateAxisTicks
         Dim height As Double = Me.Height
         Dim d As Double = height / colors.Length
@@ -125,10 +126,11 @@ Public Class ColorScaler
         End Using
     End Function
 
-    Private Function DrawByColors(colors As Color(), w As Double) As Image
+    Private Function DrawByColors(colors As Color()) As Image
         Dim height As Double = Me.Height
         Dim d As Double = height / colors.Length
         Dim y As Double = 0
+        Dim w As Double = Me.Width
 
         Using g As IGraphics = Me.Size.CreateGDIDevice
             For Each c As Color In colors
@@ -145,6 +147,10 @@ Public Class ColorScaler
     End Sub
 
     Private Sub ColorScaler_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+        If Me.Width < 100 Then
+            Me.Width = 100
+        End If
+
         Dim width = ColorBarWidth
 
         picUpperbound.Size = New Size(width - 2, 10)
