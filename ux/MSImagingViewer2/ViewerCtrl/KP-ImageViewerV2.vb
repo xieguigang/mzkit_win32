@@ -2,6 +2,7 @@
 Imports System.IO
 Imports System.Reflection
 Imports System.Runtime.InteropServices
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 
 Partial Public Class KpImageViewer : Inherits UserControl
@@ -34,6 +35,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
 
     Public Delegate Sub ImageViewerZoomEventHandler(sender As Object, e As ImageViewerZoomEventArgs)
     Public Event AfterZoom As ImageViewerZoomEventHandler
+    Public Event SetRange(range As DoubleRange)
 
     Protected Overridable Sub OnZoom(e As ImageViewerZoomEventArgs)
         RaiseEvent AfterZoom(Me, e)
@@ -1054,11 +1056,11 @@ Partial Public Class KpImageViewer : Inherits UserControl
         MSICanvas.SetMsImagingOutput(image, scan_dimension)
         MSICanvas.BackColor = background
 
-        Me.updateColorScaler(range, colorSet, mapLevels)
+        Me.UpdateColorScaler(range, colorSet, mapLevels)
         Me.Image = New Bitmap(image)
     End Sub
 
-    Private Sub updateColorScaler(range As Double(), colorSet As ScalerPalette, mapLevels As Integer)
+    Public Sub UpdateColorScaler(range As Double(), colorSet As ScalerPalette, mapLevels As Integer)
         ColorScaler1.ScalerLevels = mapLevels
         ColorScaler1.ScalerPalette = colorSet
         ColorScaler1.SetIntensityMax(If(range.IsNullOrEmpty, 255, range.Max))
@@ -1073,6 +1075,10 @@ Partial Public Class KpImageViewer : Inherits UserControl
 
     Private Sub MSICanvas_GetPixelTissueMorphology(x As Integer, y As Integer, ByRef tag As String) Handles MSICanvas.GetPixelTissueMorphology
         RaiseEvent GetPixelTissueMorphology(x, y, tag)
+    End Sub
+
+    Private Sub ColorScaler1_SetRange(range As DoubleRange) Handles ColorScaler1.SetRange
+        RaiseEvent SetRange(range)
     End Sub
 End Class
 

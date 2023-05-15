@@ -62,6 +62,8 @@ Public Class ColorScaler
         End Set
     End Property
 
+    Public Event SetRange(range As DoubleRange)
+
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     <DebuggerStepThrough>
     Public Sub SetIntensityMax(max As Double)
@@ -87,6 +89,12 @@ Public Class ColorScaler
         BackgroundImage = DrawIntensityAxis(Designer.GetColors(ScalerPalette.Gray.Description, mapLevels))
         ' 绘制颜色条
         PictureBox1.BackgroundImage = DrawByColors(Designer.GetColors(colorSet.Description, mapLevels))
+
+        Try
+            RaiseEvent SetRange(ScalerRange)
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Function DrawIntensityAxis(colors As Color()) As Image
