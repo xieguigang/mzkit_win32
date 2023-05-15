@@ -19,20 +19,21 @@ Namespace Container
         Private Function getTestDevelopmentMode() As Boolean
             Static HOME As String = App.HOME.GetDirectoryFullPath.Replace("/"c, "\"c)
 
-            If HOME = "E:\mzkit\dist\bin" OrElse HOME = "D:\mzkit\dist\bin" Then
-                Dim drive As String = HOME.Split(":"c).First
-                Dim githubFolder As String() = {
-                    "\mzkit\Rscript",
-                    "\mzkit\Sciex",
-                    "\mzkit\src",
-                    "\mzkit\ThermoFisher",
-                    "\mzkit\.github"
-                }
+            For Each drive As String In New String() {"C", "D", "E", "F", "G", "H"}
+                If HOME = $"{drive}:\mzkit\dist\bin" Then
+                    Dim githubFolder As String() = {
+                        "\mzkit\Rscript",
+                        "\mzkit\Sciex",
+                        "\mzkit\src",
+                        "\mzkit\ThermoFisher",
+                        "\mzkit\.github"
+                    }
 
-                Return githubFolder.All(Function(ref) $"{drive}:{ref}".DirectoryExists)
-            Else
-                Return False
-            End If
+                    Return githubFolder.All(Function(ref) $"{drive}:{ref}".DirectoryExists)
+                End If
+            Next
+
+            Return False
         End Function
 
         Public Function get3DMALDIDemoFolder() As String

@@ -70,6 +70,7 @@ Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots.BarPlot.Histogram
 Imports Microsoft.VisualBasic.DataStorage.netCDF
+Imports Microsoft.VisualBasic.DataStorage.netCDF.DataVector
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
@@ -355,7 +356,7 @@ UseCheckedList:
 
             If cdf.dataVariableExists("rgb") Then
                 ' load rgb configs
-
+                rgb = RGBConfigs.ParseJSON(DirectCast(cdf.getDataVariable("rgb"), chars))
             End If
         End Using
 
@@ -368,7 +369,7 @@ UseCheckedList:
         '    End Sub)
 
         Call viewer.LoadRender(firstFile, firstFile)
-        Call viewer.renderByPixelsData(pixels, size)
+        Call viewer.renderByPixelsData(pixels, size, rgb)
 
         For Each mz As Double In pixels _
             .GroupBy(Function(p) p.mz, tolerance) _

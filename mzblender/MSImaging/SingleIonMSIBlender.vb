@@ -88,7 +88,7 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
                 height:=params.scan_y
             )
         }
-        ' Me.TIC = SummaryMSIBlender.Rendering(TIC, Me.layer.DimensionSize, "gray", 250)
+        Me.TIC = SummaryMSIBlender.Rendering(TIC, Me.layer.DimensionSize, "gray", 255)
         Me.intensity = layer.Select(Function(i) i.intensity).ToArray
         Me.range = intensity.Range
     End Sub
@@ -114,7 +114,8 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
             pixelFilter = filter(pixelFilter)
         End If
 
-        Dim drawer As New PixelRender(heatmapRender:=False)
+        Dim background As Image = If(params.showTotalIonOverlap, TIC, Nothing)
+        Dim drawer As New PixelRender(heatmapRender:=False, overlaps:=background)
         Dim image As Image = drawer.RenderPixels(
             pixels:=MsImaging.Drawer.GetPixelsMatrix(pixelFilter),
             dimension:=dimensionSize,
@@ -122,15 +123,6 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
             colorSet:=params.colors.Description,
             scale:=params.scale
         ).AsGDIImage
-
-        'If params.overlap_TIC AndAlso Not TIC Is Nothing Then
-        '    Using g As IGraphics = New Size(image.Width, image.Height).CreateGDIDevice
-        '        Call g.DrawImage(TIC, New Rectangle(New Point(0, 0), g.Size))
-        '        Call g.DrawImageUnscaled(image, 0, 0)
-
-        '        image = DirectCast(g, Graphics2D).ImageResource
-        '    End Using
-        'End If
 
         image = New HeatMap.RasterScaler(image).Scale(hqx:=params.Hqx)
 
