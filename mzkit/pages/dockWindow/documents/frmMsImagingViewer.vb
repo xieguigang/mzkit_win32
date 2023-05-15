@@ -1627,7 +1627,7 @@ Public Class frmMsImagingViewer
             createRGB(pixels, rgb.R, rgb.G, rgb.B)
         End If
 
-        Call MyApplication.host.showStatusMessage("Rendering Complete!", My.Resources.preferences_system_notifications)
+        Call Workbench.StatusMessage("Rendering Complete!")
     End Sub
 
     Public Sub BlendingHEMap(layer As HeatMap.PixelData(), dimensions As Size)
@@ -1713,6 +1713,10 @@ Public Class frmMsImagingViewer
         ElseIf Not rendering Is Nothing Then
             Dim grid As PropertyGrid = DirectCast(s, PropertyGrid)
             Dim reason As String = MsImageProperty.Validation(grid.SelectedObject, e)
+
+            If e.ChangedItem.Label.TextEquals("TrIQ") AndAlso Not TypeOf blender Is RGBIonMSIBlender Then
+                Call PixelSelector1.UpdateColorScaler({0, blender.GetTrIQIntensity(params.TrIQ)}, params.colors, params.mapLevels)
+            End If
 
             If reason.StringEmpty Then
                 Call rendering()
@@ -1960,5 +1964,12 @@ Public Class frmMsImagingViewer
 
                     Return 0
                 End Function, canbeCancel:=True)
+    End Sub
+
+    Private Sub PixelSelector1_SetRange(range As DoubleRange) Handles PixelSelector1.SetRange
+        If Not blender Is Nothing Then
+            Call blender.SetIntensityRange(range)
+            Call rendering()
+        End If
     End Sub
 End Class

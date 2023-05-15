@@ -514,7 +514,7 @@ UseCheckedList:
     End Sub
 
     ''' <summary>
-    ''' 
+    ''' Run plot in Rscript host for export image plot
     ''' </summary>
     ''' <param name="data">[region_label => [color => expression_vector]]</param>
     ''' <param name="type">bar/box/violin</param>

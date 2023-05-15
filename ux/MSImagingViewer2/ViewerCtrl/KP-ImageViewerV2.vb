@@ -1064,6 +1064,7 @@ Partial Public Class KpImageViewer : Inherits UserControl
         ColorScaler1.ScalerLevels = mapLevels
         ColorScaler1.ScalerPalette = colorSet
         ColorScaler1.SetIntensityMax(If(range.IsNullOrEmpty, 255, range.Max))
+        ColorScaler1.UpdateColors(callEvents:=False)
     End Sub
 
     Private Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged

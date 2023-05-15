@@ -24,7 +24,7 @@ Public Class ColorScaler
         End Get
         Set(value As ScalerPalette)
             colorSet = value
-            updateColors()
+            UpdateColors(callEvents:=False)
         End Set
     End Property
 
@@ -34,7 +34,7 @@ Public Class ColorScaler
         End Get
         Set(value As Integer)
             mapLevels = value
-            updateColors()
+            UpdateColors(callEvents:=False)
         End Set
     End Property
 
@@ -81,20 +81,22 @@ Public Class ColorScaler
         PictureBox1.Location = New Point(1, picUpperbound.Location.Y + 12)
         PictureBox1.Size = New Size(width - 2, picLowerbound.Top - picUpperbound.Bottom - 5)
 
-        Call updateColors()
+        Call UpdateColors(callEvents:=True)
     End Sub
 
-    Private Sub updateColors()
+    Public Sub UpdateColors(callEvents As Boolean)
         ' 绘制坐标轴
         BackgroundImage = DrawIntensityAxis(Designer.GetColors(ScalerPalette.Gray.Description, mapLevels))
         ' 绘制颜色条
         PictureBox1.BackgroundImage = DrawByColors(Designer.GetColors(colorSet.Description, mapLevels))
 
-        Try
-            RaiseEvent SetRange(ScalerRange)
-        Catch ex As Exception
+        If callEvents Then
+            Try
+                RaiseEvent SetRange(ScalerRange)
+            Catch ex As Exception
 
-        End Try
+            End Try
+        End If
     End Sub
 
     Private Function DrawIntensityAxis(colors As Color()) As Image
@@ -164,7 +166,7 @@ Public Class ColorScaler
         picUpperbound.Size = New Size(width - 2, 10)
         picLowerbound.Size = New Size(width - 2, 10)
 
-        Call updateColors()
+        Call UpdateColors(callEvents:=False)
     End Sub
 
     Dim moveUp, moveDown As Boolean
@@ -218,11 +220,11 @@ Public Class ColorScaler
 
     Private Sub picUpperbound_MouseUp(sender As Object, e As MouseEventArgs) Handles picUpperbound.MouseUp
         moveUp = False
-        Call updateColors()
+        Call UpdateColors(callEvents:=True)
     End Sub
 
     Private Sub picLowerbound_MouseUp(sender As Object, e As MouseEventArgs) Handles picLowerbound.MouseUp
         moveDown = False
-        Call updateColors()
+        Call UpdateColors(callEvents:=True)
     End Sub
 End Class
