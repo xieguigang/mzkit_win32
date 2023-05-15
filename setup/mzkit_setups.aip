@@ -35,7 +35,7 @@
     <ROW Property="AiWinUI" MultiBuildValue="DefaultBuild:1"/>
     <ROW Property="CTRLS" Value="3"/>
     <ROW Property="IAgree" Value="Yes" Type="4"/>
-    <ROW Property="Manufacturer" Value="PANOMIX"/>
+    <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
     <ROW Property="ProductCode" Value="1033:{7ACE1281-49A4-4AFD-B482-41730BA6050D} 2052:{7ACE1281-49A4-4AFD-B482-41730BA6050D} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
