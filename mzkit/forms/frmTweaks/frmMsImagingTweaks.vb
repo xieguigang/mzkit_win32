@@ -75,11 +75,14 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
+Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Interop
 Imports Task
 Imports TaskStream
+Imports DataFrame = Microsoft.VisualBasic.Data.csv.IO.DataFrame
+Imports Xlsx = Microsoft.VisualBasic.MIME.Office.Excel.File
 
 Public Class frmMsImagingTweaks
 
@@ -575,5 +578,32 @@ UseCheckedList:
             MyApplication.host.mzkitTool.ShowPlotImage(image, ImageLayout.Zoom)
             MyApplication.host.ShowMzkitToolkit()
         End If
+    End Sub
+
+    Private Sub ToolStripButton1_Click_1(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        Using file As New OpenFileDialog With {.Filter = "Excel Table(*.xlsx;*.csv)|*.xlsx;*.csv"}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim table As DataFrame
+
+                If file.FileName.ExtensionSuffix("csv") Then
+                    table = DataFrame.Load(file.FileName)
+                Else
+                    table = DataFrame.CreateObject(Xlsx.Open(file.FileName).GetTable("Sheet1"))
+                End If
+
+                Dim mz As Double() = table(table.GetOrdinal("mz")).AsDouble
+                Dim name As String() = table(table.GetOrdinal("name")).ToArray
+                Dim folder = Win7StyleTreeView1.Nodes(0)
+
+                For i As Integer = 0 To mz.Length - 1
+                    Dim label As String = $"{name(i)} [m/z {mz(i).ToString("F4")}]"
+                    Dim node = folder.Nodes.Add(label)
+
+                    node.Tag = mz(i)
+                Next
+
+                Call Workbench.StatusMessage($"Load {mz.Length} ions for run data visualization.")
+            End If
+        End Using
     End Sub
 End Class
