@@ -86,7 +86,7 @@ Public Class ColorScaler
 
     Public Sub UpdateColors(callEvents As Boolean)
         ' 绘制坐标轴
-        BackgroundImage = DrawIntensityAxis(Designer.GetColors(ScalerPalette.Gray.Description, mapLevels))
+        BackgroundImage = DrawIntensityAxis()
         ' 绘制颜色条
         PictureBox1.BackgroundImage = DrawByColors(Designer.GetColors(colorSet.Description, mapLevels))
 
@@ -99,11 +99,11 @@ Public Class ColorScaler
         End If
     End Sub
 
-    Private Function DrawIntensityAxis(colors As Color()) As Image
+    Private Function DrawIntensityAxis() As Image
         Dim w As Double = ColorBarWidth
         Dim axisTicks = New DoubleRange(0, intensityMax).CreateAxisTicks
         Dim height As Double = Me.Height
-        Dim d As Double = height / colors.Length
+        Dim d As Double = height / mapLevels
         Dim y As Double = 0
 
         Using g As IGraphics = Me.Size.CreateGDIDevice
@@ -143,7 +143,7 @@ Public Class ColorScaler
         Dim w As Double = Me.Width
 
         Using g As IGraphics = Me.Size.CreateGDIDevice
-            For Each c As Color In colors
+            For Each c As Color In colors.Reverse
                 Call g.FillRectangle(New SolidBrush(c), New RectangleF(New PointF(0, y), New SizeF(w, d)))
                 y += d
             Next

@@ -14,6 +14,7 @@ const mz as string       = ?"--mzlist"  || stop("target ions list must be provid
 const mzdiff as string   = ?"--mzdiff"  || "da:0.1";
 const savefile as string = ?"--save"    || stop("A file path to save plot image must be specificed!");
 const knnFill as integer = ?"--knnFill" || 3;
+const overlap_totalIons as boolean = ?"--overlap-tic" || FALSE;
 const mzlist as double   = mz
 |> strsplit(",", fixed = TRUE)
 |> unlist()

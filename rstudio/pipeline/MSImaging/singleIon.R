@@ -12,7 +12,9 @@ const mzdiff as string   = ?"--mzdiff" || "da:0.1";
 const savefile as string = ?"--save"   || stop("A file path to save plot image must be specificed!");
 const title as string    = ?"--title"  || "";
 const bg as string       = ?"--backcolor" || "black";
+const overlap_totalIons as boolean = ?"--overlap-tic" || FALSE;
 const colorSet as string = ?"--colors" || "viridis:turbo";
+const hostName as string = ?"--host" || "localhost";
 const mzlist as double   = mz
 |> strsplit(",", fixed = TRUE)
 |> unlist()
@@ -21,9 +23,23 @@ const mzlist as double   = mz
 const pixelsData = app::getMSIData(
     MSI_service = appPort, 
     mz          = mzlist, 
-    mzdiff      = mzdiff
+    mzdiff      = mzdiff,
+    host        = hostName
 );
+const dataPack = pixelPack(pixelsData);
 const mz_tag as string = `m/z ${round(mzlist[1], 4)}`;
+const totalIonLayer = {
+    if (overlap_totalIons) {
+        raster_blending(
+            pixels = app::getTotalIons(appPort, host = hostName), 
+            dims = as.object(dataPack)$GetDimensionSize(),
+            scale = "gray",
+            levels = 255
+        );
+    } else {
+        NULL;
+    }
+}
 
 print(`load ${length(pixelsData)} pixels data from given m/z:`);
 print(mzlist);
@@ -33,7 +49,7 @@ bitmap(file = savefile, size = [3300, 2000]) {
     # load mzpack/imzML raw data file
     # and config ggplot data source driver 
     # as MSImaging data reader
-    ggplot(pixelPack(pixelsData), 
+    ggplot(dataPack, 
            mapping = aes(), 
            padding = "padding: 200px 600px 200px 250px;"
     ) 
@@ -42,7 +58,9 @@ bitmap(file = savefile, size = [3300, 2000]) {
        + geom_msimaging(
 		    mz        = mzlist[1], 
 			tolerance = mzdiff, 
-			color     = colorSet
+			color     = colorSet,
+            pixel_render = TRUE,
+            raster = totalIonLayer
 	   )
        + geom_MSIfilters(
             denoise_scale() > TrIQ_scale(0.85) > knn_scale() > soften_scale()
