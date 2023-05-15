@@ -277,7 +277,8 @@ Public Class InputMatrixIons
                         saveAs:=$"{folder.SelectedPath}/${mz.Value.ToString("F4")}.png",
                         title:=$"{mz.Name} {mz.Description}",
                         background:="black",
-                        colorSet:="viridis:turbo"
+                        colorSet:="viridis:turbo",
+                        overlapTotalIons:=True
                     )
                 Next
             End If

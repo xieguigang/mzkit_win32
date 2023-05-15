@@ -148,9 +148,11 @@ Public NotInheritable Class RscriptProgressTask
                                           saveAs As String,
                                           background As String,
                                           colorSet As String,
+                                          overlapTotalIons As Boolean,
                                           Optional title As String = "")
 
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSImaging/singleIon.R")
+        Dim overlapFlag As String = If(overlapTotalIons, "--overlap-tic", "")
         Dim cli As String = $"""{Rscript}"" 
 --app {Workbench.MSIServiceAppPort} 
 --mzlist ""{mz}"" 
@@ -158,7 +160,7 @@ Public NotInheritable Class RscriptProgressTask
 --backcolor ""{background}"" 
 --colors ""{colorSet}"" 
 --mzdiff ""{tolerance}"" 
---title ""{title}"" 
+--title ""{title}"" {overlapFlag} 
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)

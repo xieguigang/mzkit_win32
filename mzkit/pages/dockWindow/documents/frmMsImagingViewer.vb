@@ -1863,7 +1863,8 @@ Public Class frmMsImagingViewer
                         saveAs:=file.FileName,
                         title:=title,
                         background:=params.background.ToHtmlColor,
-                        colorSet:=params.colors.Description
+                        colorSet:=params.colors.Description,
+                        overlapTotalIons:=params.showTotalIonOverlap
                     )
                 End If
             End If
