@@ -1,4 +1,5 @@
-﻿Imports Mzkit_win32.BasicMDIForm
+﻿Imports ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView
+Imports Mzkit_win32.BasicMDIForm
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormVault : Inherits DocumentWindow
@@ -159,7 +160,7 @@ Partial Class FormVault : Inherits DocumentWindow
 
     End Sub
 
-    Friend WithEvents Win7StyleTreeView1 As ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView
+    Friend WithEvents Win7StyleTreeView1 As Win7StyleTreeView
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents ImageList1 As ImageList
     Friend WithEvents PictureBox1 As PictureBox
