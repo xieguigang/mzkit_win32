@@ -69,6 +69,10 @@ Public Class HeatMapBlender : Inherits MSImagingBlender
         Me.dimension = dimension
     End Sub
 
+    Public Overrides Sub SetIntensityRange(normRange As Microsoft.VisualBasic.ComponentModel.Ranges.Model.DoubleRange)
+
+    End Sub
+
     Public Overrides Function Rendering(args As PlotProperty, target As Size) As Image
         Dim blender As New Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.PixelRender(params.colors.Description, params.mapLevels, defaultColor:=params.background)
         Dim img As Image = blender.RenderRasterImage(layer, dimension, fillRect:=True)
@@ -78,5 +82,9 @@ Public Class HeatMapBlender : Inherits MSImagingBlender
         End If
 
         Return img
+    End Function
+
+    Public Overrides Function GetTrIQIntensity(q As Double) As Double
+
     End Function
 End Class

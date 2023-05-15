@@ -134,4 +134,12 @@ Public Class RGBIonMSIBlender : Inherits MSImagingBlender
 
         Return image
     End Function
+
+    Public Overrides Sub SetIntensityRange(normRange As DoubleRange)
+
+    End Sub
+
+    Public Overrides Function GetTrIQIntensity(q As Double) As Double
+        Return 1
+    End Function
 End Class
