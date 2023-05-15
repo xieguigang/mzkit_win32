@@ -33,6 +33,15 @@ const images  = lapply(mzlist, function(mz) {
     |> knnFill()
     ;
 });
+const mz_keys = `m/z ${round( mzlist, 4)}`;
+const kr = mz_keys[1];
+const kg = mz_keys[2];
+const kb = mz_keys[3];
+
+names(images) = mz_keys;
+
+print("view of the images data:");
+str(images);
 
 bitmap(file = savefile, size = [3300, 2000]) {
     
@@ -42,16 +51,16 @@ bitmap(file = savefile, size = [3300, 2000]) {
 
     # rendering of rgb channels ion m/z
     ggplot(MSIheatmap(
-        R = images[[1]], 
-        G = images[[2]], 
-        B = images[[3]]
+        R = images[[kr]], 
+        G = images[[kg]], 
+        B = images[[kb]]
     ), padding = "padding: 200px 600px 200px 250px;") 
        
 	   + theme(panel.background = "black")
        + geom_msiheatmap()
-	   + geom_MSIfilters(
-            denoise_scale() > TrIQ_scale(0.8) > knn_scale(knnFill, 0.5) > soften_scale()
-        )
+	   # + geom_MSIfilters(
+            # denoise_scale() > TrIQ_scale(0.8) > knn_scale(knnFill, 0.5) > soften_scale()
+        # )
        # add ggplot charting elements
        + ggtitle(`MS-Imaging of ${paste(round(mzlist, 3), "+")}`)
        + labs(x = "Dimension(X)", y = "Dimension(Y)")
