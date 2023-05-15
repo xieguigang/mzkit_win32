@@ -58,7 +58,7 @@ Public Class ColorScaler
             picUpperbound.Location = New Point(1, upperBottom - 10)
             picLowerbound.Location = New Point(1, lowerTop)
 
-            updateColors()
+            UpdateColors(callEvents:=False)
         End Set
     End Property
 
