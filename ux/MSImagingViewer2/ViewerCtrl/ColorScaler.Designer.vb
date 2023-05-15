@@ -22,17 +22,22 @@ Partial Class ColorScaler
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.picUpperbound = New System.Windows.Forms.PictureBox()
         Me.picLowerbound = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ResetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.picUpperbound, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picLowerbound, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'picUpperbound
         '
         Me.picUpperbound.BackColor = System.Drawing.Color.Black
+        Me.picUpperbound.ContextMenuStrip = Me.ContextMenuStrip1
         Me.picUpperbound.Cursor = System.Windows.Forms.Cursors.NoMoveVert
         Me.picUpperbound.Location = New System.Drawing.Point(2, 2)
         Me.picUpperbound.Name = "picUpperbound"
@@ -43,6 +48,7 @@ Partial Class ColorScaler
         'picLowerbound
         '
         Me.picLowerbound.BackColor = System.Drawing.Color.Black
+        Me.picLowerbound.ContextMenuStrip = Me.ContextMenuStrip1
         Me.picLowerbound.Cursor = System.Windows.Forms.Cursors.NoMoveVert
         Me.picLowerbound.Location = New System.Drawing.Point(3, 576)
         Me.picLowerbound.Name = "picLowerbound"
@@ -56,11 +62,24 @@ Partial Class ColorScaler
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.PictureBox1.ContextMenuStrip = Me.ContextMenuStrip1
         Me.PictureBox1.Location = New System.Drawing.Point(3, 30)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(149, 508)
         Me.PictureBox1.TabIndex = 2
         Me.PictureBox1.TabStop = False
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ResetToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(103, 26)
+        '
+        'ResetToolStripMenuItem
+        '
+        Me.ResetToolStripMenuItem.Name = "ResetToolStripMenuItem"
+        Me.ResetToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ResetToolStripMenuItem.Text = "Reset"
         '
         'ColorScaler
         '
@@ -68,6 +87,7 @@ Partial Class ColorScaler
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ContextMenuStrip = Me.ContextMenuStrip1
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.picLowerbound)
         Me.Controls.Add(Me.picUpperbound)
@@ -77,6 +97,7 @@ Partial Class ColorScaler
         CType(Me.picUpperbound, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picLowerbound, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -84,4 +105,6 @@ Partial Class ColorScaler
     Friend WithEvents picUpperbound As PictureBox
     Friend WithEvents picLowerbound As PictureBox
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ResetToolStripMenuItem As ToolStripMenuItem
 End Class

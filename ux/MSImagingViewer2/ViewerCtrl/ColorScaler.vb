@@ -223,6 +223,11 @@ Public Class ColorScaler
         Call UpdateColors(callEvents:=True)
     End Sub
 
+    Private Sub ResetToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ResetToolStripMenuItem.Click
+        ScalerRange = {0.0, 1.0}
+        RaiseEvent SetRange(ScalerRange)
+    End Sub
+
     Private Sub picLowerbound_MouseUp(sender As Object, e As MouseEventArgs) Handles picLowerbound.MouseUp
         moveDown = False
         Call UpdateColors(callEvents:=True)
