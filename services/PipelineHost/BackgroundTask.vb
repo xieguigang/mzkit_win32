@@ -90,6 +90,7 @@ Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports SMRUCC.genomics.Analysis.HTS.DataFrame
 Imports SMRUCC.Rsharp.Runtime
+Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports SMRUCC.Rsharp.Runtime.Interop
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports STImaging
@@ -430,8 +431,8 @@ Module BackgroundTask
     End Sub
 
     <ExportAPI("linear.ions_raw")>
-    Public Function linear_ionsRaw(linearPack As LinearPack) As List
-        Return New List With {
+    Public Function linear_ionsRaw(linearPack As LinearPack) As list
+        Return New list With {
             .slots = linearPack.peakSamples _
                 .GroupBy(Function(sample) sample.Name) _
                 .ToDictionary(Function(ion) ion.Key,
