@@ -197,6 +197,8 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         Dim directMapName As Boolean = False
 
         If files.All(Function(name) name.Value.BaseName.IsContentPattern) Then
+            ' parse quantification reference content value from
+            ' file names directly
             files = files _
                 .Select(Function(file)
                             Return New NamedValue(Of String) With {

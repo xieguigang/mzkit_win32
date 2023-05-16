@@ -130,6 +130,10 @@ Public Class frmMain : Implements AppHost
         WindowModules.panelMain.Show(m_dockPanel)
     End Sub
 
+    ''' <summary>
+    ''' add a MRM file into the explorer
+    ''' </summary>
+    ''' <param name="file"></param>
     Public Sub ShowMRMIons(file As String)
         If Not file.FileExists Then
             Call showStatusMessage($"missing raw data file '{file.GetFullPath}'!", My.Resources.StatusAnnotations_Warning_32xLG_color)

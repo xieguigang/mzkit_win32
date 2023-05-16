@@ -169,6 +169,7 @@ Module Globals
 
         Pages.SetDocument(NameOf(SpectrumSearchPage), GetType(frmSpectrumSearch))
         Pages.SetDocument(NameOf(QuantificationLinearPage), GetType(frmTargetedQuantification))
+        Pages.SetDocument(NameOf(MRMLibraryPage), GetType(frmMRMLibrary))
 
         SpectralViewerModule.HookViewer(AddressOf PageMzkitTools.ShowSpectral)
     End Sub

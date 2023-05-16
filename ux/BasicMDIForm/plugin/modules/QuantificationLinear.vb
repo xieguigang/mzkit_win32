@@ -9,6 +9,10 @@
 
 End Interface
 
+Public Interface MRMLibraryPage
+
+End Interface
+
 Public Enum TargetTypes
     MRM
     GCMS_SIM
@@ -18,5 +22,9 @@ Public Module QuantificationLinear
 
     Public Function ShowDocument() As QuantificationLinearPage
         Return Pages.OpenDocument(NameOf(QuantificationLinearPage))
+    End Function
+
+    Public Function ShowMRMLibrary() As MRMLibraryPage
+        Return Pages.OpenDocument(NameOf(MRMLibraryPage))
     End Function
 End Module

@@ -67,6 +67,9 @@ Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
 Imports any = Microsoft.VisualBasic.Scripting
 
+''' <summary>
+''' GC-MS
+''' </summary>
 Public Class frmQuantifyIons
     Implements ISaveHandle
     Implements IFileReference
