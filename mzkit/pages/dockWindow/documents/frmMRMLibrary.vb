@@ -57,8 +57,10 @@
 
 #End Region
 
+Imports System.Runtime.CompilerServices
 Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM.Models
+Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Language
@@ -116,7 +118,7 @@ Public Class frmMRMLibrary
         Next
     End Sub
 
-    Protected Overrides Sub SaveDocument()
+    Protected Overrides Sub SaveDocument() Implements MRMLibraryPage.SaveLibrary
         Call Save(FilePath)
     End Sub
 
@@ -160,5 +162,10 @@ Public Class frmMRMLibrary
                 DataGridView1.Rows.RemoveAt(row.Index)
             Next
         End If
+    End Sub
+
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Sub Add(id As String, name As String, q1 As Double, q2 As Double, rt As Double) Implements MRMLibraryPage.Add
+        Call DataGridView1.Rows.Add(id, name, rt, q1, q2)
     End Sub
 End Class

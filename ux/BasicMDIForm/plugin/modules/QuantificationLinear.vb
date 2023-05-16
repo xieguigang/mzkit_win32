@@ -11,6 +11,9 @@ End Interface
 
 Public Interface MRMLibraryPage
 
+    Sub SaveLibrary()
+    Sub Add(id As String, name As String, q1 As Double, q2 As Double, rt As Double)
+
 End Interface
 
 Public Enum TargetTypes
