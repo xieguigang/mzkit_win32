@@ -60,6 +60,11 @@ Imports Mzkit_win32.BasicMDIForm
 
 Module CLI
 
+    ''' <summary>
+    ''' --debug-plugin --plugin xxxxx
+    ''' </summary>
+    ''' <param name="nameOrGuid"></param>
+    ''' <returns></returns>
     Public Function debugPluginPage(nameOrGuid As String) As Integer
         Dim registry As PluginMgr = PluginMgr.Load
         Dim page As Plugin = registry.Query(nameOrGuid)
@@ -75,6 +80,12 @@ Module CLI
         Return 0
     End Function
 
+    ''' <summary>
+    ''' xxxx.raw
+    ''' </summary>
+    ''' <param name="filepath"></param>
+    ''' <param name="args"></param>
+    ''' <returns></returns>
     Public Function openRawFile(filepath As String, args As CommandLine) As Integer
         MyApplication.afterLoad =
             Sub()
@@ -92,6 +103,10 @@ Module CLI
         Return 0
     End Function
 
+    ''' <summary>
+    ''' --devtools
+    ''' </summary>
+    ''' <returns></returns>
     Public Function openDevTools() As Integer
         Call RibbonEvents.openCmd()
         Call App.Exit()
@@ -99,6 +114,11 @@ Module CLI
         Return 0
     End Function
 
+    ''' <summary>
+    ''' --deep_zoom --image xxxxx.tiff
+    ''' </summary>
+    ''' <param name="img"></param>
+    ''' <returns></returns>
     Public Function createDeepzoomImage(img As String) As Integer
         Dim tool As New DeepZoomCreator()
         Dim dzi As String = img.ChangeSuffix("dzi")
