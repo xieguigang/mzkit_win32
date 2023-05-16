@@ -1,62 +1,62 @@
 ﻿#Region "Microsoft.VisualBasic::d8cd6f9b81d685f0993f132369bb1fad, mzkit\src\mzkit\mzkit\application\ApplicationEvents.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 389
-    '    Code Lines: 294
-    ' Comment Lines: 22
-    '   Blank Lines: 73
-    '     File Size: 15.83 KB
+' Summaries:
 
 
-    '     Class MyApplication
-    ' 
-    '         Properties: host, LogForm, mzkitRawViewer, REngine
-    ' 
-    '         Function: CheckPkgFolder, getLanguageString, GetSplashScreen, LoadLibrary, SetDllDirectory
-    '                   SetProcessDPIAware
-    ' 
-    '         Sub: doRunScript, doRunScriptWithSpecialCommand, ExecuteRScript, handleResult, InitializeREngine
-    '              InstallPackageRelease, LogText, MyApplication_Shutdown, MyApplication_Startup, MyApplication_UnhandledException
-    '              RegisterConsole, RegisterHost, RegisterOutput, RegisterPlot
-    ' 
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 389
+'    Code Lines: 294
+' Comment Lines: 22
+'   Blank Lines: 73
+'     File Size: 15.83 KB
+
+
+'     Class MyApplication
+' 
+'         Properties: host, LogForm, mzkitRawViewer, REngine
+' 
+'         Function: CheckPkgFolder, getLanguageString, GetSplashScreen, LoadLibrary, SetDllDirectory
+'                   SetProcessDPIAware
+' 
+'         Sub: doRunScript, doRunScriptWithSpecialCommand, ExecuteRScript, handleResult, InitializeREngine
+'              InstallPackageRelease, LogText, MyApplication_Shutdown, MyApplication_Startup, MyApplication_UnhandledException
+'              RegisterConsole, RegisterHost, RegisterOutput, RegisterPlot
+' 
+' 
+' /********************************************************************************/
 
 #End Region
 
@@ -80,7 +80,6 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic.Windows.Forms
-Imports Mzkit_win32.MSImagingViewerV2.DeepZoomBuilder
 Imports RDev
 Imports SMRUCC.Rsharp.Interpreter
 Imports SMRUCC.Rsharp.Runtime
@@ -450,13 +449,10 @@ Type 'q()' to quit R.
                     ServiceHub.MSIDataService.debugPort = cli.GetInt32("--port")
                 ElseIf cli.Name.TextEquals("--devtools") Then
                     Call BioNovoGene.mzkit_win32.CLI.openDevTools()
+                ElseIf cli.Name.TextEquals("--debug-plugin") Then
+                    Call BioNovoGene.mzkit_win32.CLI.debugPluginPage(cli.GetString("--plugin"))
                 ElseIf cli.Name.TextEquals("--deep_zoom") Then
-                    Dim img As String = cli.GetString("--image")
-                    Dim tool As New DeepZoomCreator()
-                    Dim dzi As String = img.ChangeSuffix("dzi")
-
-                    Call tool.CreateSingleComposition(img, dzi, ImageType.Jpeg)
-                    End
+                    Call BioNovoGene.mzkit_win32.CLI.createDeepzoomImage(img:=cli.GetString("--image"))
                 End If
             End If
 
