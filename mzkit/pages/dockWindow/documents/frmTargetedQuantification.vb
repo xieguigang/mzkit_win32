@@ -604,11 +604,8 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         End If
 
         Dim profileName As String = any.ToString(cbProfileNameSelector.Items(cbProfileNameSelector.SelectedIndex))
-        Dim file As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & $"/mzkit/linears/{profileName}.linearPack"
 
-        linearPack = LinearPack.OpenFile(file)
-
-        Call unifyLoadLinears()
+        Call RunLinearRegression(profileName)
     End Sub
 
     Private Sub reload(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
@@ -1241,7 +1238,11 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
     End Sub
 
-    Public Sub RunLinearRegression(profile As String) Implements QuantificationLinearPage.RunLinearRegression
+    Public Sub RunLinearRegression(profileName As String) Implements QuantificationLinearPage.RunLinearRegression
+        Dim file As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & $"/mzkit/linears/{profileName}.linearPack"
 
+        linearPack = LinearPack.OpenFile(file)
+
+        Call unifyLoadLinears()
     End Sub
 End Class
