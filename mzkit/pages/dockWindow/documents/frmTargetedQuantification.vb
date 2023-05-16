@@ -94,6 +94,7 @@ Imports RibbonLib.Controls.Events
 Imports RibbonLib.Interop
 Imports SMRUCC.Rsharp.Runtime.Components
 Imports Task
+Imports TaskStream
 Imports WeifenLuo.WinFormsUI.Docking
 Imports any = Microsoft.VisualBasic.Scripting
 Imports stdNum = System.Math
@@ -1181,10 +1182,13 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
     Public Sub ViewLinearModelReport() Implements QuantificationLinearPage.ViewLinearModelReport
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".html", sessionID:=App.PID.ToHexString, "linear_report")
+        Dim packtemp As String = TempFileSystem.GetAppSysTempFile(".cdf", sessionID:=App.PID.ToHexString, "linear_pack")
 
+        Call linearPack.Write(packtemp)
+        Call RscriptProgressTask.ExportLinearReport(packtemp, tempfile)
 
-        If TypeOf MyApplication.REngine.globalEnvir.last Is Message Then
-            Call MessageBox.Show(MyApplication.REngine.globalEnvir.last.ToString, "View Linear Report", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        If tempfile.FileLength <= 10 Then
+            Call MessageBox.Show("Run Rscript workflow error...", "View Linear Report", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
             Call VisualStudio.ShowDocument(Of frmHtmlViewer)().LoadHtml(tempfile)
         End If

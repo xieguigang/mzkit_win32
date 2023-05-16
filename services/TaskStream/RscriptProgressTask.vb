@@ -69,6 +69,32 @@ Public NotInheritable Class RscriptProgressTask
     Private Sub New()
     End Sub
 
+    Public Shared Function ExportLinearReport(linear As String, export As String) As String
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("linearReport.R")
+        Dim cli As String = $"""{Rscript}"" 
+--linear ""{linear}"" 
+--export ""{export}"" 
+--SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
+"
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
+        Call Workbench.LogText(pipeline.CommandLine)
+        Call TaskProgress.RunAction(
+            run:=Sub(p)
+                     p.SetProgressMode()
+
+                     AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                     AddHandler pipeline.Finish, AddressOf p.TaskFinish
+
+                     Call pipeline.Run()
+                 End Sub,
+            title:="Export Report",
+            info:="Do exports of the html report for the linear regression and targetted quantification...")
+
+        Return export
+    End Function
+
     ''' <summary>
     ''' convert imzML to mzpack
     ''' </summary>
