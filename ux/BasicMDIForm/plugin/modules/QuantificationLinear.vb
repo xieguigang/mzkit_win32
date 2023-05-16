@@ -6,7 +6,22 @@
     ''' <param name="fileNames">a vector of the file full path</param>
     ''' <param name="type">MRM/GCMS_SIM</param>
     Sub RunLinearFileImports(fileNames As String(), type As TargetTypes?)
+
+    ''' <summary>
+    ''' set linear reference in current profile table
+    ''' </summary>
+    ''' <param name="key"></param>
+    ''' <param name="is_key"></param>
+    ''' <param name="reference"></param>
     Sub SetLinear(key As String, is_key As String, reference As Dictionary(Of String, Double))
+
+    ''' <summary>
+    ''' create linear models under a given linear reference profile 
+    ''' </summary>
+    ''' <param name="profile">target linear reference profile name</param>
+    Sub RunLinearRegression(profile As String)
+
+    Sub LoadSampleFiles(FileNames As String())
 
 End Interface
 

@@ -978,7 +978,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         End Using
     End Sub
 
-    Private Sub doLoadSampleFiles(FileNames As String())
+    Private Sub doLoadSampleFiles(FileNames As String()) Implements QuantificationLinearPage.LoadSampleFiles
         Dim files As NamedValue(Of String)() = FileNames _
             .Select(Function(file)
                         Return New NamedValue(Of String) With {
@@ -1238,6 +1238,10 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     End Sub
 
     Public Sub SetLinear(key As String, is_key As String, reference As Dictionary(Of String, Double)) Implements QuantificationLinearPage.SetLinear
+
+    End Sub
+
+    Public Sub RunLinearRegression(profile As String) Implements QuantificationLinearPage.RunLinearRegression
 
     End Sub
 End Class
