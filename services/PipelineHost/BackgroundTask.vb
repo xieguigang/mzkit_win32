@@ -76,6 +76,7 @@ Imports BioNovoGene.BioDeep.MSEngine
 Imports BioNovoGene.BioDeep.MSEngine.Mummichog
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.Data.Bootstrapping
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Data.visualize.Network.Graph
@@ -88,12 +89,12 @@ Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.My.FrameworkInternal
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Serialization.JSON
-Imports SMRUCC.genomics.Analysis.HTS.DataFrame
 Imports SMRUCC.Rsharp.Runtime
-Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports SMRUCC.Rsharp.Runtime.Interop
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports STImaging
+Imports list = SMRUCC.Rsharp.Runtime.Internal.Object.list
+Imports Matrix = SMRUCC.genomics.Analysis.HTS.DataFrame.Matrix
 Imports stdNum = System.Math
 
 <Package("BackgroundTask")>
@@ -459,5 +460,7 @@ Module BackgroundTask
                         End Function) _
                 .ToArray
         Next
+
+        Return linearPack
     End Function
 End Module

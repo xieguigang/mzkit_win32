@@ -81,7 +81,6 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
-Imports Microsoft.VisualBasic.Data.Bootstrapping
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Data.IO.MessagePack
@@ -97,7 +96,6 @@ Imports SMRUCC.Rsharp.Runtime.Components
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 Imports any = Microsoft.VisualBasic.Scripting
-Imports Rlist = SMRUCC.Rsharp.Runtime.Internal.Object.list
 Imports stdNum = System.Math
 
 Public Class frmTargetedQuantification : Implements QuantificationLinearPage
@@ -1183,14 +1181,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
     Public Sub ViewLinearModelReport() Implements QuantificationLinearPage.ViewLinearModelReport
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".html", sessionID:=App.PID.ToHexString, "linear_report")
-        ' Dim samples As QuantifyScan() = {}
 
-
-
-        'Call MyApplication.REngine.LoadLibrary("mzkit")
-        'Call MyApplication.REngine.Evaluate("imports 'Linears' from 'mzkit.quantify';")
-        'Call MyApplication.REngine.Set("$temp_report", MyApplication.REngine.Invoke("report.dataset", linearPack.linears, samples, Nothing, ionsRaw))
-        'Call MyApplication.REngine.Invoke("html", MyApplication.REngine("$temp_report"), MyApplication.REngine.globalEnvir).ToString.SaveTo(tempfile)
 
         If TypeOf MyApplication.REngine.globalEnvir.last Is Message Then
             Call MessageBox.Show(MyApplication.REngine.globalEnvir.last.ToString, "View Linear Report", MessageBoxButtons.OK, MessageBoxIcon.Error)
