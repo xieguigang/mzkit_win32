@@ -5,9 +5,11 @@ imports 'Linears' from 'mz_quantify';
 
 const packfile    = ?"--linear" || stop("A linear data file is required!");
 const export_html = ?"--export" || `${dirname(packfile)}/${basename(packfile)}_report.html`;
-const linearPack  = 
+const linearPack  = read.linearPack(packfile);
+const standards   = [linearPack]::linears;
 
-report.dataset([linearPack]::linears, NULL, NULL, ionsRaw = ionsRaw)
+standards 
+|> report.dataset(NULL, NULL, ionsRaw = ionsRaw)
 |> html()
 |> writeLines(con = export_html)
 ;
