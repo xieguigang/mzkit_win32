@@ -63,6 +63,7 @@ Imports System.Runtime.CompilerServices
 Imports BioDeep
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.LinearQuantitative.Data
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
@@ -427,4 +428,35 @@ Module BackgroundTask
 
         Call file.Flush()
     End Sub
+
+    <ExportAPI("linear.ions_raw")>
+    Public Function linear_ionsRaw(linearPack As LinearPack) As List
+        Return New List With {
+            .slots = linearPack.peakSamples _
+                .GroupBy(Function(sample) sample.Name) _
+                .ToDictionary(Function(ion) ion.Key,
+                              Function(ionGroup)
+                                  Dim innerList As New Rlist With {
+                                      .slots = ionGroup _
+                                          .ToDictionary(Function(ion) ion.SampleName,
+                                                        Function(ion)
+                                                            Return CObj(ion.Peak.ticks)
+                                                        End Function)
+                                  }
+
+                                  Return CObj(innerList)
+                              End Function)
+        }
+    End Function
+
+    <ExportAPI("linear.setErrPoints")>
+    Public Function linear_setErrorPoints(linearPack As LinearPack) As Object
+        For Each line As StandardCurve In linearPack.linears
+            line.linear.ErrorTest = line.points _
+                .Select(Function(p)
+                            Return CType(New TestPoint With {.X = p.Px, .Y = p.Cti, .Yfit = p.yfit}, IFitError)
+                        End Function) _
+                .ToArray
+        Next
+    End Function
 End Module

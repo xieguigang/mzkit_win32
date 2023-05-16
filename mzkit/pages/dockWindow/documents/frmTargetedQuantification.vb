@@ -1181,48 +1181,29 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
     End Function
 
-    Private Sub ViewLinearReportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewLinearReportToolStripMenuItem.Click
-        If linearPack Is Nothing OrElse linearPack.linears.IsNullOrEmpty Then
-            Call MyApplication.host.showStatusMessage("no linear model was loaded!", My.Resources.StatusAnnotations_Warning_32xLG_color)
-            Return
-        End If
-
+    Public Sub ViewLinearModelReport() Implements QuantificationLinearPage.ViewLinearModelReport
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".html", sessionID:=App.PID.ToHexString, "linear_report")
-        Dim samples As QuantifyScan() = {}
-        Dim ionsRaw As New Rlist With {
-            .slots = linearPack.peakSamples _
-                .GroupBy(Function(sample) sample.Name) _
-                .ToDictionary(Function(ion) ion.Key,
-                              Function(ionGroup)
-                                  Dim innerList As New Rlist With {
-                                      .slots = ionGroup _
-                                          .ToDictionary(Function(ion) ion.SampleName,
-                                                        Function(ion)
-                                                            Return CObj(ion.Peak.ticks)
-                                                        End Function)
-                                  }
+        ' Dim samples As QuantifyScan() = {}
 
-                                  Return CObj(innerList)
-                              End Function)
-        }
 
-        For Each line In linearPack.linears
-            line.linear.ErrorTest = line.points _
-                .Select(Function(p)
-                            Return CType(New TestPoint With {.X = p.Px, .Y = p.Cti, .Yfit = p.yfit}, IFitError)
-                        End Function) _
-                .ToArray
-        Next
 
-        Call MyApplication.REngine.LoadLibrary("mzkit")
-        Call MyApplication.REngine.Evaluate("imports 'Linears' from 'mzkit.quantify';")
-        Call MyApplication.REngine.Set("$temp_report", MyApplication.REngine.Invoke("report.dataset", linearPack.linears, samples, Nothing, ionsRaw))
-        Call MyApplication.REngine.Invoke("html", MyApplication.REngine("$temp_report"), MyApplication.REngine.globalEnvir).ToString.SaveTo(tempfile)
+        'Call MyApplication.REngine.LoadLibrary("mzkit")
+        'Call MyApplication.REngine.Evaluate("imports 'Linears' from 'mzkit.quantify';")
+        'Call MyApplication.REngine.Set("$temp_report", MyApplication.REngine.Invoke("report.dataset", linearPack.linears, samples, Nothing, ionsRaw))
+        'Call MyApplication.REngine.Invoke("html", MyApplication.REngine("$temp_report"), MyApplication.REngine.globalEnvir).ToString.SaveTo(tempfile)
 
         If TypeOf MyApplication.REngine.globalEnvir.last Is Message Then
             Call MessageBox.Show(MyApplication.REngine.globalEnvir.last.ToString, "View Linear Report", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
             Call VisualStudio.ShowDocument(Of frmHtmlViewer)().LoadHtml(tempfile)
+        End If
+    End Sub
+
+    Private Sub ViewLinearReportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewLinearReportToolStripMenuItem.Click
+        If linearPack Is Nothing OrElse linearPack.linears.IsNullOrEmpty Then
+            Call Workbench.Warning("no linear model was loaded!")
+        Else
+            Call ViewLinearModelReport()
         End If
     End Sub
 
