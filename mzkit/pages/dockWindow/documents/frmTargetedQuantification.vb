@@ -92,7 +92,6 @@ Imports Microsoft.VisualBasic.Math
 Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Controls.Events
 Imports RibbonLib.Interop
-Imports SMRUCC.Rsharp.Runtime.Components
 Imports Task
 Imports TaskStream
 Imports WeifenLuo.WinFormsUI.Docking
@@ -1180,12 +1179,12 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
     End Function
 
-    Public Sub ViewLinearModelReport() Implements QuantificationLinearPage.ViewLinearModelReport
+    Public Sub ViewLinearModelReport(onHost As Boolean) Implements QuantificationLinearPage.ViewLinearModelReport
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".html", sessionID:=App.PID.ToHexString, "linear_report")
         Dim packtemp As String = TempFileSystem.GetAppSysTempFile(".cdf", sessionID:=App.PID.ToHexString, "linear_pack")
 
         Call linearPack.Write(packtemp)
-        Call RscriptProgressTask.ExportLinearReport(packtemp, tempfile)
+        Call RscriptProgressTask.ExportLinearReport(packtemp, tempfile, onHost)
 
         If tempfile.FileLength <= 10 Then
             Call MessageBox.Show("Run Rscript workflow error...", "View Linear Report", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -1198,7 +1197,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         If linearPack Is Nothing OrElse linearPack.linears.IsNullOrEmpty Then
             Call Workbench.Warning("no linear model was loaded!")
         Else
-            Call ViewLinearModelReport()
+            Call ViewLinearModelReport(onHost:=False)
         End If
     End Sub
 

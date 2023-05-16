@@ -69,7 +69,7 @@ Public NotInheritable Class RscriptProgressTask
     Private Sub New()
     End Sub
 
-    Public Shared Function ExportLinearReport(linear As String, export As String) As String
+    Public Shared Function ExportLinearReport(linear As String, export As String, onHost As Boolean) As String
         Dim Rscript As String = RscriptPipelineTask.GetRScript("linearReport.R")
         Dim cli As String = $"""{Rscript}"" 
 --linear ""{linear}"" 
@@ -80,17 +80,23 @@ Public NotInheritable Class RscriptProgressTask
 
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call Workbench.LogText(pipeline.CommandLine)
-        Call TaskProgress.RunAction(
-            run:=Sub(p)
-                     p.SetProgressMode()
 
-                     AddHandler pipeline.SetProgress, AddressOf p.SetProgress
-                     AddHandler pipeline.Finish, AddressOf p.TaskFinish
+        If onHost Then
+            AddHandler pipeline.SetMessage, AddressOf Workbench.StatusMessage
+            Call pipeline.Run()
+        Else
+            Call TaskProgress.RunAction(
+                run:=Sub(p)
+                         p.SetProgressMode()
 
-                     Call pipeline.Run()
-                 End Sub,
-            title:="Export Report",
-            info:="Do exports of the html report for the linear regression and targetted quantification...")
+                         AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                         AddHandler pipeline.Finish, AddressOf p.TaskFinish
+
+                         Call pipeline.Run()
+                     End Sub,
+                title:="Export Report",
+                info:="Do exports of the html report for the linear regression and targetted quantification...")
+        End If
 
         Return export
     End Function

@@ -22,7 +22,7 @@
     Sub RunLinearRegression(profile As String)
 
     Sub LoadSampleFiles(FileNames As String())
-    Sub ViewLinearModelReport()
+    Sub ViewLinearModelReport(onHost As Boolean)
 
 End Interface
 
