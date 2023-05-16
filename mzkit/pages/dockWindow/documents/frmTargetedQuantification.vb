@@ -100,7 +100,7 @@ Imports any = Microsoft.VisualBasic.Scripting
 Imports Rlist = SMRUCC.Rsharp.Runtime.Internal.Object.list
 Imports stdNum = System.Math
 
-Public Class frmTargetedQuantification
+Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
     ReadOnly args As New QuantifyParameters
 
@@ -157,7 +157,13 @@ Public Class frmTargetedQuantification
     Dim linearPack As LinearPack
     Dim linearFiles As NamedValue(Of String)()
     Dim allFeatures As String()
-    Dim isGCMS As Boolean = False
+
+    ''' <summary>
+    ''' <see cref="QuantificationLinearPage.RunLinearFileImports"/>
+    ''' 
+    ''' value of this symbol could be MRM/GCMS_SIM
+    ''' </summary>
+    Dim targetType As TargetTypes
 
     Sub saveLinearsTable(sender As Object, e As ExecuteEventArgs)
         If linearPack Is Nothing OrElse linearPack.linears.IsNullOrEmpty Then
@@ -175,12 +181,17 @@ Public Class frmTargetedQuantification
         }
 
             If importsFile.ShowDialog = DialogResult.OK Then
-                Call runLinearFileImports(importsFile.FileNames)
+                Call runLinearFileImports(importsFile.FileNames, Nothing)
             End If
         End Using
     End Sub
 
-    Private Sub runLinearFileImports(fileNames As String())
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="fileNames"></param>
+    ''' <param name="type">MRM/GCMS_SIM</param>
+    Private Sub runLinearFileImports(fileNames As String(), type As TargetTypes?) Implements QuantificationLinearPage.RunLinearFileImports
         Dim files As NamedValue(Of String)() = ContentTable.StripMaxCommonNames(fileNames)
         Dim fakeLevels As Dictionary(Of String, Double)
         Dim directMapName As Boolean = False
@@ -222,12 +233,18 @@ Public Class frmTargetedQuantification
         For Each file As NamedValue(Of String) In files
             Call DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.HeaderText = file.Name})
 
-            If file.Value.ExtensionSuffix("CDF") OrElse RawScanParser.IsSIMData(file.Value) Then
-                isGCMS = True
-                Call MyApplication.host.ShowGCMSSIM(file.Value, isBackground:=False, showExplorer:=False)
-            Else
-                isGCMS = False
+            If type Is Nothing Then
+                If file.Value.ExtensionSuffix("CDF") OrElse RawScanParser.IsSIMData(file.Value) Then
+                    type = TargetTypes.GCMS_SIM
+                    Call MyApplication.host.ShowGCMSSIM(file.Value, isBackground:=False, showExplorer:=False)
+                Else
+                    type = TargetTypes.MRM
+                    Call MyApplication.host.ShowMRMIons(file.Value)
+                End If
+            ElseIf type.Value = TargetTypes.MRM Then
                 Call MyApplication.host.ShowMRMIons(file.Value)
+            Else
+                Call MyApplication.host.ShowGCMSSIM(file.Value, isBackground:=False, showExplorer:=False)
             End If
         Next
 
@@ -238,7 +255,9 @@ Public Class frmTargetedQuantification
             }
         }
 
-        If isGCMS Then
+        targetType = type
+
+        If type.Value <> TargetTypes.MRM Then
             Call loadGCMSReference(files, directMapName)
         Else
             Call loadMRMReference(files, directMapName)
