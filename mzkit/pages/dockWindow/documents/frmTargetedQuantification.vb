@@ -402,7 +402,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             Return Nothing
         End If
 
-        If isGCMS Then
+        If targetType = TargetTypes.GCMS_SIM Then
             Dim ion As QuantifyIon = GCMSIons.GetIon(rid)
 
             If Not ion Is Nothing Then
@@ -499,7 +499,11 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         Dim ionLib As IonLibrary = Globals.LoadIonLibrary
         Dim quantifyIons As SIMIonExtract = GetGCMSFeatureReader(LoadGCMSIonLibrary)
 
-        isGCMS = linearPack.targetted = TargettedData.SIM
+        If linearPack.targetted = TargettedData.SIM Then
+            targetType = TargetTypes.GCMS_SIM
+        Else
+            targetType = TargetTypes.MRM
+        End If
 
         DataGridView1.Rows.Clear()
         DataGridView1.Columns.Clear()
@@ -518,7 +522,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                         Dim ionpairtext = i.ID.Split("/"c).Select(AddressOf Val).ToArray
                         Dim name As String
 
-                        If isGCMS Then
+                        If targetType = TargetTypes.GCMS_SIM Then
                             name = quantifyIons.FindIon(ionpairtext.Min, ionpairtext.Max).name
                         Else
                             name = New IonPair With {
@@ -548,7 +552,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             [is] = New [IS]
         End If
 
-        If isGCMS Then
+        If targetType = TargetTypes.GCMS_SIM Then
             ionID = quantifyIons.FindIon(ionpairtext.Min, ionpairtext.Max).name
         Else
             ionID = New IonPair With {
@@ -561,7 +565,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         If Not [is].ID.StringEmpty Then
             ionpairtext = [is].ID.Split("/"c).Select(AddressOf Val).ToArray
 
-            If isGCMS Then
+            If targetType = TargetTypes.GCMS_SIM Then
                 [is].name = quantifyIons.FindIon(ionpairtext.Min, ionpairtext.Max).name
             Else
                 [is].name = New IonPair With {
@@ -591,7 +595,12 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     Dim linearEdit As Boolean = False
 
     Private Sub loadLinears(sender As Object, e As EventArgs) Handles cbProfileNameSelector.SelectedIndexChanged
-        If linearEdit AndAlso MessageBox.Show("Current linear profiles has been edited, do you want continute to load new linear profiles data?", "Linear Profile Unsaved", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = DialogResult.Cancel Then
+        If linearEdit AndAlso MessageBox.Show(
+            "Current linear profiles has been edited, do you want continute to load new linear profiles data?",
+            "Linear Profile Unsaved",
+            MessageBoxButtons.OKCancel,
+            MessageBoxIcon.Question) = DialogResult.Cancel Then
+
             Return
         End If
 
@@ -731,7 +740,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             .Select(Function(pg) pg.First) _
             .AsList
 
-        If isGCMS Then
+        If targetType = TargetTypes.GCMS_SIM Then
             Call SetGCMSKeys(refPoints, linears, GCMSIons)
         Else
             Call SetMRMKeys(refPoints, linears, ionLib)
@@ -745,7 +754,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             .reference = refLevels,
             .[IS] = allFeatures _
                 .Select(Function(name)
-                            If isGCMS Then
+                            If targetType = TargetTypes.GCMS_SIM Then
                                 ' do nothing
                             Else
                                 Dim nameIon As IonPair = ionLib.GetIonByKey(name)
@@ -759,7 +768,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                             }
                         End Function) _
                 .ToArray,
-            .targetted = If(isGCMS, TargettedData.SIM, TargettedData.MRM)
+            .targetted = If(targetType = TargetTypes.GCMS_SIM, TargettedData.SIM, TargettedData.MRM)
         }
 
         Call linearPack.Write(file)
@@ -830,7 +839,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         Dim isid As String = any.ToString(refRow.Cells(1).Value)
         Dim chr As New List(Of TargetPeakPoint)
 
-        If isGCMS Then
+        If targetType = TargetTypes.GCMS_SIM Then
             chr.AddRange(createGCMSLinears(id, isid))
         Else
             chr.AddRange(createMRMLinears(id, isid))
@@ -1020,7 +1029,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
                 linears.Add(createLinear(refRow, args))
 
-                If isGCMS Then
+                If targetType = TargetTypes.GCMS_SIM Then
                     Dim ion As QuantifyIon = GCMSIons.GetIon(id)
                     Dim ISion As QuantifyIon = GCMSIons.GetIon(isid)
 
