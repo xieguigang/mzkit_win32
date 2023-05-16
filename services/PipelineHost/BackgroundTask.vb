@@ -437,7 +437,7 @@ Module BackgroundTask
                 .GroupBy(Function(sample) sample.Name) _
                 .ToDictionary(Function(ion) ion.Key,
                               Function(ionGroup)
-                                  Dim innerList As New Rlist With {
+                                  Dim innerList As New list With {
                                       .slots = ionGroup _
                                           .ToDictionary(Function(ion) ion.SampleName,
                                                         Function(ion)
@@ -452,7 +452,7 @@ Module BackgroundTask
 
     <ExportAPI("linear.setErrPoints")>
     Public Function linear_setErrorPoints(linearPack As LinearPack) As Object
-        For Each line As StandardCurve In linearPack.linears
+        For Each line As LinearQuantitative.StandardCurve In linearPack.linears
             line.linear.ErrorTest = line.points _
                 .Select(Function(p)
                             Return CType(New TestPoint With {.X = p.Px, .Y = p.Cti, .Yfit = p.yfit}, IFitError)
