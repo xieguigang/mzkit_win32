@@ -6,6 +6,7 @@
     ''' <param name="fileNames">a vector of the file full path</param>
     ''' <param name="type">MRM/GCMS_SIM</param>
     Sub RunLinearFileImports(fileNames As String(), type As TargetTypes?)
+    Sub SetLinear(key As String, is_key As String, reference As Dictionary(Of String, Double))
 
 End Interface
 

@@ -1130,6 +1130,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
     Private Sub DataGridView1_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellEndEdit
         Me.linearEdit = True
+        Workbench.StatusMessage("For save the linear reference content, click [save] button to save current or create new profile!")
     End Sub
 
     Private Sub deleteProfiles(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
@@ -1237,5 +1238,13 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
     Private Sub frmTargetedQuantification_Closed(sender As Object, e As EventArgs) Handles Me.Closed
         WindowModules.ribbon.TargetedContex.ContextAvailable = ContextAvailability.NotAvailable
+    End Sub
+
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+
+    End Sub
+
+    Public Sub SetLinear(key As String, is_key As String, reference As Dictionary(Of String, Double)) Implements QuantificationLinearPage.SetLinear
+
     End Sub
 End Class
