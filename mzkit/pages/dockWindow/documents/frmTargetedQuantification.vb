@@ -140,7 +140,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     Private Sub reloadProfileNames()
         cbProfileNameSelector.Items.Clear()
 
-        For Each key As String In linearProfileNames()
+        For Each key As String In LinearProfileNames()
             cbProfileNameSelector.Items.Add(key)
         Next
     End Sub
@@ -483,13 +483,6 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             End If
         End Using
     End Sub
-
-    Private Function linearProfileNames() As String()
-        Return (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & $"/mzkit/linears/") _
-            .ListFiles("*.linearPack") _
-            .Select(AddressOf BaseName) _
-            .ToArray
-    End Function
 
     Private Sub DataGridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles DataGridView1.KeyDown
         If e.KeyCode = Keys.V AndAlso e.Control AndAlso Clipboard.ContainsText Then

@@ -24,6 +24,13 @@ End Enum
 
 Public Module QuantificationLinear
 
+    Public Function LinearProfileNames() As String()
+        Return (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & $"/mzkit/linears/") _
+            .ListFiles("*.linearPack") _
+            .Select(AddressOf BaseName) _
+            .ToArray
+    End Function
+
     Public Function ShowDocument() As QuantificationLinearPage
         Return Pages.OpenDocument(NameOf(QuantificationLinearPage))
     End Function
