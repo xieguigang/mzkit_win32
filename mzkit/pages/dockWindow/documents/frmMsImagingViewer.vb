@@ -1541,7 +1541,7 @@ Public Class frmMsImagingViewer
                             rendering = New Action(Sub()
                                                    End Sub)
                             PixelSelector1.SetMsImagingOutput(
-                                New Bitmap(1, 1),
+                                New Bitmap(params.scan_x, params.scan_y),
                                 New Size(params.scan_x, params.scan_y),
                                 params.background,
                                 params.colors,
