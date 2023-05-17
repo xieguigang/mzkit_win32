@@ -243,7 +243,7 @@ Public Class frmMain : Implements AppHost
                .source = fileName
             }
 
-            MyApplication.host.showStatusMessage("Do mass calibration!")
+            Workbench.StatusMessage("Do mass calibration!")
             mzPack = mzPack.MassCalibration(da:=0.1)
 
             Using temp As Stream = cacheFile.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
@@ -252,7 +252,7 @@ Public Class frmMain : Implements AppHost
 
             Call WindowModules.rawFeaturesList.LoadRaw(raw)
             Call VisualStudio.Dock(WindowModules.rawFeaturesList, DockState.DockLeft)
-            Call MyApplication.host.showStatusMessage($"Load {fileName} success!")
+            Call Workbench.StatusMessage($"Load {fileName} success!")
         Else
             Call WindowModules.fileExplorer.ImportsRaw(fileName)
         End If

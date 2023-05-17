@@ -968,12 +968,16 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             .Title = "Select linears"
         }
             If importsFile.ShowDialog = DialogResult.OK Then
-                Call doLoadSampleFiles(importsFile.FileNames)
+                Call TaskProgress.LoadData(
+                    Function(echo As Action(Of String))
+                        Call doLoadSampleFiles(importsFile.FileNames, echo)
+                        Return True
+                    End Function, "Import sample data files...")
             End If
         End Using
     End Sub
 
-    Private Sub doLoadSampleFiles(FileNames As String()) Implements QuantificationLinearPage.LoadSampleFiles
+    Private Sub doLoadSampleFiles(FileNames As String(), echo As Action(Of String)) Implements QuantificationLinearPage.LoadSampleFiles
         Dim files As NamedValue(Of String)() = FileNames _
             .Select(Function(file)
                         Return New NamedValue(Of String) With {
@@ -985,16 +989,16 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
         ' add files to viewer
         For Each file As NamedValue(Of String) In files
-            Call MyApplication.host.showStatusMessage($"open raw data file '{file.Value}'...")
+            Call Workbench.StatusMessage($"open raw data file '{file.Value.FileName}'...")
             Call MyApplication.host.OpenFile(file.Value, showDocument:=linearPack Is Nothing)
             Call System.Windows.Forms.Application.DoEvents()
         Next
 
         ' and then do quantify if the linear is exists
         If Not linearPack Is Nothing Then
-            Call loadSampleFiles(files)
+            Call loadSampleFiles(files, echo)
         Else
-            Call MyApplication.host.showStatusMessage("no linear model for run quantification, just open raw files viewer...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning("no linear model for run quantification, just open raw files viewer...")
         End If
 
         ToolStripComboBox2.SelectedIndex = 1
@@ -1002,7 +1006,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         Call showQuanifyTable()
     End Sub
 
-    Private Sub loadSampleFiles(files As NamedValue(Of String)())
+    Private Sub loadSampleFiles(files As NamedValue(Of String)(), echo As Action(Of String))
         Dim points As New List(Of TargetPeakPoint)
         Dim linears As New List(Of StandardCurve)
         Dim ionLib As IonLibrary = Globals.LoadIonLibrary
@@ -1017,7 +1021,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                 Dim id As String = any.ToString(refRow.Cells(0).Value)
                 Dim isid As String = any.ToString(refRow.Cells(1).Value)
 
-                linears.Add(createLinear(refRow, args))
+                Call linears.Add(createLinear(refRow, args))
 
                 If targetType = TargetTypes.GCMS_SIM Then
                     Dim ion As QuantifyIon = GCMSIons.GetIon(id)
@@ -1025,11 +1029,13 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
                     points.AddRange(extract.LoadSamples(files, ion, keyByName:=True))
                     points.AddRange(extract.LoadSamples(files, ion, keyByName:=True))
+                    echo($"Measure linear for {ion.ToString}")
                 Else
                     Dim ion As IonPair = ionLib.GetIonByKey(id)
                     Dim ISion As IonPair = ionLib.GetIonByKey(isid)
 
                     points.AddRange(MRMIonExtract.LoadSamples(files, ion, massError))
+                    echo($"Measure linear for {ion.ToString}")
 
                     If Not ISion Is Nothing Then
                         points.AddRange(MRMIonExtract.LoadSamples(files, ISion, massError))
@@ -1039,9 +1045,11 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         Next
 
         With linears.Where(Function(l) Not l Is Nothing).ToArray
-            For Each file In points.GroupBy(Function(p) p.SampleName)
+            For Each file As IGrouping(Of String, TargetPeakPoint) In points.GroupBy(Function(p) p.SampleName)
                 Dim uniqueIons = file.GroupBy(Function(p) p.Name).Select(Function(p) p.First).ToArray
                 Dim quantify As QuantifyScan = .SampleQuantify(uniqueIons, PeakAreaMethods.SumAll, fileName:=file.Key)
+
+                Call echo($"Processing quantify for sample: {file.Key}")
 
                 If Not quantify Is Nothing Then
                     scans.Add(quantify)
@@ -1063,7 +1071,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = col})
         Next
 
-        For Each sample In quantify
+        For Each sample As DataSet In quantify
             Dim vec As Object() = New Object() {sample.ID} _
                 .JoinIterates(metaboliteNames.Select(Function(name) CObj(sample(name)))) _
                 .ToArray

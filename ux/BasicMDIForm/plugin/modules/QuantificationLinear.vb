@@ -23,7 +23,7 @@ Public Interface QuantificationLinearPage
     ''' <param name="profile">target linear reference profile name</param>
     Sub RunLinearRegression(profile As String)
 
-    Sub LoadSampleFiles(FileNames As String())
+    Sub LoadSampleFiles(FileNames As String(), echo As Action(Of String))
     Sub ViewLinearModelReport(onHost As Boolean)
 
     Function PullQuantifyResult() As IEnumerable(Of NamedValue(Of DynamicPropertyBase(Of Double)))
