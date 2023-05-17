@@ -73,6 +73,7 @@ Imports Microsoft.VisualBasic.Data.ChartPlots.BarPlot.Histogram
 Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.DataStorage.netCDF.DataVector
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.hqx
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.MIME.application.json
@@ -639,6 +640,8 @@ UseCheckedList:
                 Dim size As String = $"{params.scan_x},{params.scan_y}"
                 Dim args As New PlotProperty
                 Dim canvas As New Size(params.scan_x * 3, params.scan_y * 3)
+
+                params.Hqx = HqxScales.Hqx_4x
 
                 Call TaskProgress.LoadData(
                     Function(echo As Action(Of String))
