@@ -1521,9 +1521,49 @@ Public Class frmMsImagingViewer
                End Sub
     End Function
 
+    Friend Sub renderByName(name As String, titleName As String)
+        title = titleName
+
+        Call Workbench.StatusMessage($"Render layer of annotation: {titleName}")
+        Call ProgressSpinner.DoLoading(
+            Sub()
+                Call RenderPixelsLayer(pixels:=MSIservice.LoadGeneLayer(name))
+            End Sub)
+        Call PixelSelector1.ShowMessage($"Render layer of annotation: {titleName}")
+    End Sub
+
+    Private Sub RenderPixelsLayer(pixels As PixelData())
+        Dim size As String = $"{params.scan_x},{params.scan_y}"
+
+        If pixels.IsNullOrEmpty Then
+            Call MyApplication.host.showStatusMessage("no pixel data...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Invoke(Sub()
+                            rendering = New Action(Sub()
+                                                   End Sub)
+                        End Sub)
+            Call Invoke(Sub()
+                            PixelSelector1.SetMsImagingOutput(
+                                New Bitmap(1, 1),
+                                New Size(params.scan_x, params.scan_y),
+                                params.background,
+                                params.colors,
+                                {0, 1},
+                                1
+                            )
+                        End Sub)
+        Else
+            Dim base = pixels.OrderByDescending(Function(p) p.intensity).FirstOrDefault
+            Dim maxInto As Double = base?.intensity
+
+            Call Invoke(Sub() params.SetIntensityMax(maxInto, New Point(base?.x, base?.y)))
+            Call Invoke(Sub() rendering = createRenderTask(pixels, Size))
+            Call Invoke(rendering)
+            Call Workbench.SuccessMessage("Rendering Complete!")
+        End If
+    End Sub
+
     Friend Sub renderByMzList(mz As Double(), titleName As String)
         Dim selectedMz As New List(Of Double)
-        Dim size As String = $"{params.scan_x},{params.scan_y}"
         Dim dotSize As New Size(3, 3)
 
         For i As Integer = 0 To mz.Length - 1
@@ -1541,33 +1581,7 @@ Public Class frmMsImagingViewer
         Call SetTitle(selectedMz, titleName)
         Call ProgressSpinner.DoLoading(
             Sub()
-                Dim pixels As PixelData() = MSIservice.LoadPixels(selectedMz, mzdiff)
-
-                If pixels.IsNullOrEmpty Then
-                    Call MyApplication.host.showStatusMessage("no pixel data...", My.Resources.StatusAnnotations_Warning_32xLG_color)
-                    Call Invoke(Sub()
-                                    rendering = New Action(Sub()
-                                                           End Sub)
-                                End Sub)
-                    Call Invoke(Sub()
-                                    PixelSelector1.SetMsImagingOutput(
-                                        New Bitmap(1, 1),
-                                        New Size(params.scan_x, params.scan_y),
-                                        params.background,
-                                        params.colors,
-                                        {0, 1},
-                                        1
-                                    )
-                                End Sub)
-                Else
-                    Dim base = pixels.OrderByDescending(Function(p) p.intensity).FirstOrDefault
-                    Dim maxInto As Double = base?.intensity
-
-                    Call Invoke(Sub() params.SetIntensityMax(maxInto, New Point(base?.x, base?.y)))
-                    Call Invoke(Sub() rendering = createRenderTask(pixels, size))
-                    Call Invoke(rendering)
-                    Call MyApplication.host.showStatusMessage("Rendering Complete!", My.Resources.preferences_system_notifications)
-                End If
+                Call RenderPixelsLayer(pixels:=MSIservice.LoadPixels(selectedMz, mzdiff))
             End Sub)
 
         Call PixelSelector1.ShowMessage($"Render in Layer Pixels Composition Mode: {selectedMz.Select(Function(d) stdNum.Round(d, 4)).JoinBy(", ")}")

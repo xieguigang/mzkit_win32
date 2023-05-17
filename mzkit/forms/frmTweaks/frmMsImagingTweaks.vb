@@ -59,6 +59,7 @@
 
 #End Region
 
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
@@ -207,12 +208,16 @@ UseCheckedList:
         If ToolStripSpringTextBox1.Text.StringEmpty Then
             Call MyApplication.host.showStatusMessage("no ions data...", My.Resources.StatusAnnotations_Warning_32xLG_color)
         ElseIf ToolStripSpringTextBox1.Text.IsNumeric(True) Then
+            ' is mz value
             Dim mz As Double = Val(ToolStripSpringTextBox1.Text)
             Dim viewer = WindowModules.viewer
 
             If TypeOf viewer Is frmMsImagingViewer Then
                 Call DirectCast(viewer, frmMsImagingViewer).renderByMzList({mz}, Nothing)
             End If
+        ElseIf WindowModules.viewer.params.app = FileApplicationClass.STImaging Then
+            ' is a gene id
+            Call WindowModules.viewer.renderByName(ToolStripSpringTextBox1.Text, $"STImaging of '{ToolStripSpringTextBox1.Text}'")
         Else
             ' formula
             Dim formula As String = ToolStripSpringTextBox1.Text

@@ -63,6 +63,7 @@
 
 #End Region
 
+Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
@@ -85,6 +86,7 @@ Public Enum ServiceProtocol
     UnloadMSI
     ExportMzpack
     LoadMSILayers
+    LoadGeneLayer
     GetIonStatList
     GetIonColocalization
     GetBasePeakMzList
@@ -137,6 +139,23 @@ Public Module MSIProtocols
             Return {}
         Else
             Return PixelScanIntensity.Parse(data.ChunkBuffer)
+        End If
+    End Function
+
+    Public Function LoadPixels(id As String, handleServiceRequest As Func(Of RequestStream, RequestStream)) As PixelData()
+        Dim data As RequestStream = handleServiceRequest(New RequestStream(
+            protocolCategory:=MSI.Protocol,
+            protocol:=ServiceProtocol.LoadGeneLayer,
+            buffer:=Encoding.ASCII.GetBytes(id)
+        ))
+
+        If data Is Nothing Then
+            Return {}
+        Else
+            Dim pixels As PixelData() = PixelData.Parse(data.ChunkBuffer)
+            'Dim points = pixels.Select(Function(p) New ClusterEntity With {.uid = $"{p.x},{p.y}", .entityVector = {p.x, p.y}}).ToArray
+            'Dim densityList = Density.GetDensity(points, k:=stdNum.Min(points.Length / 10, 150), query:=New KDQuery(points)).ToArray
+            Return pixels
         End If
     End Function
 

@@ -302,6 +302,10 @@ Namespace ServiceHub
             Return output
         End Function
 
+        Public Function LoadGeneLayer(id As String) As PixelData()
+            Return MSIProtocols.LoadPixels(id, AddressOf handleServiceRequest)
+        End Function
+
         Public Function LoadPixels(mz As IEnumerable(Of Double), mzErr As Tolerance) As PixelData()
             Return MSIProtocols.LoadPixels(mz, mzErr, AddressOf handleServiceRequest)
         End Function

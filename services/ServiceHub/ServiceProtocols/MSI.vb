@@ -98,7 +98,13 @@ Public Class MSI : Implements ITaskDriver, IDisposable
     Dim socket As TcpServicesSocket
 
     Friend type As FileApplicationClass
+    ''' <summary>
+    ''' [mz => name]
+    ''' </summary>
     Friend ion_annotations As Dictionary(Of String, String)
+
+    Dim map_to_ion As New Dictionary(Of String, Double)
+
     Friend MSI As Drawer
     ' only updates when the file load function invoke
     ' which it means the session changed
@@ -183,6 +189,12 @@ Public Class MSI : Implements ITaskDriver, IDisposable
                 metadata = mzpack.GetMSIMetadata
                 ion_annotations = mzpack.Annotations
                 type = mzpack.Application
+
+                If Not ion_annotations.IsNullOrEmpty Then
+                    For Each layer In ion_annotations
+                        map_to_ion(layer.Value) = Val(layer.Key)
+                    Next
+                End If
 
                 If Not mzpack.source.ExtensionSuffix("csv") Then
                     Call RunSlavePipeline.SendMessage("make bugs fixed for RT pixel correction!")
@@ -564,6 +576,19 @@ Public Class MSI : Implements ITaskDriver, IDisposable
     Public Function Quit(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
         Call socket.Dispose()
         Return New DataPipe(Encoding.UTF8.GetBytes("OK!"))
+    End Function
+
+    <Protocol(ServiceProtocol.LoadGeneLayer)>
+    Public Function GetGeneLayers(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
+        Dim id As String = Encoding.ASCII.GetString(request.ChunkBuffer)
+        Dim mz As Double = map_to_ion.TryGetValue(id, [default]:=-1)
+
+        If mz <= 0 Then
+            Return New DataPipe(PixelData.GetBuffer({}))
+        Else
+            Dim layers = MSI.LoadPixels({mz}, Tolerance.DeltaMass(0.3)).ToArray
+            Return New DataPipe(PixelData.GetBuffer(layers))
+        End If
     End Function
 
     ''' <summary>
