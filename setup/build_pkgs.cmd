@@ -127,6 +127,9 @@ SET pkg=%pkg_repo%/ggplot.zip
 %REnv% --install.packages %pkg%
 
 REM copy the required assembly dll file
+REM
+REM copy command will not working if the source
+REM file name has the quot character inside?
 SET dll=wkhtmltopdf/Newtonsoft.Json.dll
 
 cd %dir%
