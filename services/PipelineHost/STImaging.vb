@@ -5,7 +5,7 @@ Imports STImaging
 Imports Matrix = SMRUCC.genomics.Analysis.HTS.DataFrame.Matrix
 
 <Package("STImaging")>
-Module STImaging
+Module STImagingTools
 
     <ExportAPI("ST_spaceranger.mzpack")>
     Public Function convertMzPack(spots As SpaceSpot(), matrix As Matrix) As mzPack
