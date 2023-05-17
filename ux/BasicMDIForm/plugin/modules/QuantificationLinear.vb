@@ -1,4 +1,6 @@
-﻿Public Interface QuantificationLinearPage
+﻿Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+
+Public Interface QuantificationLinearPage
 
     ''' <summary>
     ''' Set reference files
@@ -23,6 +25,8 @@
 
     Sub LoadSampleFiles(FileNames As String())
     Sub ViewLinearModelReport(onHost As Boolean)
+
+    Function PullQuantifyResult() As IEnumerable(Of NamedValue(Of DynamicPropertyBase(Of Double)))
 
 End Interface
 

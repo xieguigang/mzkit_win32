@@ -11,6 +11,6 @@ const ionsRaw     = linear.ions_raw(linearPack);
 
 standards 
 |> report.dataset(NULL, NULL, ionsRaw = ionsRaw)
-|> html()
+|> html(reverse = TRUE)
 |> writeLines(con = export_html)
 ;

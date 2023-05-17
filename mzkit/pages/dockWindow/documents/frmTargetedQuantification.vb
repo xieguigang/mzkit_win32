@@ -167,7 +167,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         If linearPack Is Nothing OrElse linearPack.linears.IsNullOrEmpty Then
             Call MyApplication.host.showStatusMessage("No linears for save!", My.Resources.StatusAnnotations_Warning_32xLG_color)
         Else
-
+            Call SaveDocument()
         End If
     End Sub
 
@@ -468,7 +468,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                 Call Me.Invoke(Sub() Call reloadProfileNames())
             End Sub, "Save Linear Reference Models", "...")
 
-        Call MyApplication.host.showStatusMessage($"linear model profile '{profileName}' saved!")
+        Call Workbench.StatusMessage($"linear model profile '{profileName}' saved!")
     End Sub
 
     Private Sub SaveAsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveAsToolStripMenuItem.Click
@@ -1054,7 +1054,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         DataGridView3.Rows.Clear()
         DataGridView3.Columns.Clear()
 
-        Dim quantify = scans.Select(Function(q) q.quantify).ToArray
+        Dim quantify As DataSet() = PullQuantifyResult().Select(Function(q) DirectCast(q.Value, DataSet)).ToArray
         Dim metaboliteNames = quantify.PropertyNames
 
         DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = "Sample Name"})
@@ -1220,4 +1220,12 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
         Call unifyLoadLinears()
     End Sub
+
+    Public Iterator Function PullQuantifyResult() As IEnumerable(Of NamedValue(Of DynamicPropertyBase(Of Double))) Implements QuantificationLinearPage.PullQuantifyResult
+        For Each scan As QuantifyScan In scans
+            Dim quantify = scan.quantify
+
+            Yield New NamedValue(Of DynamicPropertyBase(Of Double))(quantify.ID, quantify)
+        Next
+    End Function
 End Class
