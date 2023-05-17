@@ -1540,8 +1540,6 @@ Public Class frmMsImagingViewer
             Call Invoke(Sub()
                             rendering = New Action(Sub()
                                                    End Sub)
-                        End Sub)
-            Call Invoke(Sub()
                             PixelSelector1.SetMsImagingOutput(
                                 New Bitmap(1, 1),
                                 New Size(params.scan_x, params.scan_y),
