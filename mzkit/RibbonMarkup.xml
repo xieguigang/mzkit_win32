@@ -2526,6 +2526,7 @@
         <String Id="578">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdButtonImport10x_genomics" Id="222" LabelTitle="Import 10x Genomics" LabelDescription="Import 10x Genomics" TooltipTitle="Import 10x Genomics" TooltipDescription="Import 10x Genomics" />
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
