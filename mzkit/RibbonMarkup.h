@@ -1174,5 +1174,12 @@
 #define cmdXIC_PPMSpinner_LabelTitle_RESID 576
 #define cmdXIC_PPMSpinner_LabelDescription_RESID 577
 #define cmdXIC_PPMSpinner_TooltipDescription_RESID 578
-#define InternalCmd2_LabelTitle_RESID 60345
-#define InternalCmd4_LabelTitle_RESID 60346
+#define cmdButtonImport10x_genomics 222 
+#define cmdButtonImport10x_genomics_LabelTitle_RESID 60345
+#define cmdButtonImport10x_genomics_LabelDescription_RESID 60346
+#define cmdButtonImport10x_genomics_TooltipTitle_RESID 60347
+#define cmdButtonImport10x_genomics_TooltipDescription_RESID 60348
+#define cmdButtonImport10x_genomics_SmallImages_192__RESID 60349
+#define cmdButtonImport10x_genomics_LargeImages_192__RESID 60350
+#define InternalCmd2_LabelTitle_RESID 60351
+#define InternalCmd4_LabelTitle_RESID 60352

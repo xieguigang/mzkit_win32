@@ -127,6 +127,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonImportsMSITable As UInteger = 205
             Public Const cmdButtonImportsSCiLSLab As UInteger = 185
             Public Const cmdButtonImportsShimadzu As UInteger = 206
+            Public Const cmdButtonImport10x_genomics As UInteger = 222
             Public Const cmdButtonMSIRowScans As UInteger = 128
             Public Const cmdButtonExportMSIMzpack As UInteger = 127
             Public Const cmdButtonMergeMultipleMSISample As UInteger = 207
@@ -900,6 +901,12 @@ Namespace RibbonLib.Controls
                 Return _ButtonImportsShimadzu
             End Get
         End Property
+        Private _ButtonImport10x_genomics As RibbonButton
+        Public ReadOnly Property ButtonImport10x_genomics As RibbonButton
+            Get
+                Return _ButtonImport10x_genomics
+            End Get
+        End Property
         Private _ButtonMSIRowScans As RibbonButton
         Public ReadOnly Property ButtonMSIRowScans As RibbonButton
             Get
@@ -1563,6 +1570,7 @@ Namespace RibbonLib.Controls
             _ButtonImportsMSITable = New RibbonDropDownButton(_ribbon, Cmd.cmdButtonImportsMSITable)
             _ButtonImportsSCiLSLab = New RibbonButton(_ribbon, Cmd.cmdButtonImportsSCiLSLab)
             _ButtonImportsShimadzu = New RibbonButton(_ribbon, Cmd.cmdButtonImportsShimadzu)
+            _ButtonImport10x_genomics = New RibbonButton(_ribbon, Cmd.cmdButtonImport10x_genomics)
             _ButtonMSIRowScans = New RibbonButton(_ribbon, Cmd.cmdButtonMSIRowScans)
             _ButtonExportMSIMzpack = New RibbonButton(_ribbon, Cmd.cmdButtonExportMSIMzpack)
             _ButtonMergeMultipleMSISample = New RibbonButton(_ribbon, Cmd.cmdButtonMergeMultipleMSISample)

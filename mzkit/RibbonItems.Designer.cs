@@ -130,6 +130,7 @@ namespace RibbonLib.Controls
             public const uint cmdButtonImportsMSITable = 205;
             public const uint cmdButtonImportsSCiLSLab = 185;
             public const uint cmdButtonImportsShimadzu = 206;
+            public const uint cmdButtonImport10x_genomics = 222;
             public const uint cmdButtonMSIRowScans = 128;
             public const uint cmdButtonExportMSIMzpack = 127;
             public const uint cmdButtonMergeMultipleMSISample = 207;
@@ -343,6 +344,7 @@ namespace RibbonLib.Controls
         public RibbonDropDownButton ButtonImportsMSITable { get; private set; }
         public RibbonButton ButtonImportsSCiLSLab { get; private set; }
         public RibbonButton ButtonImportsShimadzu { get; private set; }
+        public RibbonButton ButtonImport10x_genomics { get; private set; }
         public RibbonButton ButtonMSIRowScans { get; private set; }
         public RibbonButton ButtonExportMSIMzpack { get; private set; }
         public RibbonButton ButtonMergeMultipleMSISample { get; private set; }
@@ -551,6 +553,7 @@ namespace RibbonLib.Controls
             ButtonImportsMSITable = new RibbonDropDownButton(ribbon, Cmd.cmdButtonImportsMSITable);
             ButtonImportsSCiLSLab = new RibbonButton(ribbon, Cmd.cmdButtonImportsSCiLSLab);
             ButtonImportsShimadzu = new RibbonButton(ribbon, Cmd.cmdButtonImportsShimadzu);
+            ButtonImport10x_genomics = new RibbonButton(ribbon, Cmd.cmdButtonImport10x_genomics);
             ButtonMSIRowScans = new RibbonButton(ribbon, Cmd.cmdButtonMSIRowScans);
             ButtonExportMSIMzpack = new RibbonButton(ribbon, Cmd.cmdButtonExportMSIMzpack);
             ButtonMergeMultipleMSISample = new RibbonButton(ribbon, Cmd.cmdButtonMergeMultipleMSISample);

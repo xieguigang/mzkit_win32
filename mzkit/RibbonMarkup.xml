@@ -2303,16 +2303,16 @@
     </Command>
     <Command Name="cmdTabMSIFile" Id="129">
       <Command.LabelTitle>
-        <String Id="420">MSI File</String>
+        <String Id="420">Spatial File Imports &amp;&amp; Exports</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="421">MSI File</String>
+        <String Id="421">Spatial Imaging File Imports &amp;&amp; Exports</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
-        <String Id="422">MSI File</String>
+        <String Id="422">Spatial Imaging File Imports &amp;&amp; Exports</String>
       </Command.TooltipTitle>
       <Command.TooltipDescription>
-        <String Id="423">MSI File</String>
+        <String Id="423">Spatial Imaging File Imports &amp;&amp; Exports</String>
       </Command.TooltipDescription>
     </Command>
     <Command Name="cmdTabMSIOperations" Id="200" LabelTitle="Operations" LabelDescription="Operations" TooltipTitle="Operations" TooltipDescription="Operations" />
@@ -2526,7 +2526,14 @@
         <String Id="578">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
     </Command>
-    <Command Name="cmdButtonImport10x_genomics" Id="222" LabelTitle="Import 10x Genomics" LabelDescription="Import 10x Genomics" TooltipTitle="Import 10x Genomics" TooltipDescription="Import 10x Genomics" />
+    <Command Name="cmdButtonImport10x_genomics" Id="222" LabelTitle="Import 10x Genomics" LabelDescription="Import 10x Genomics raw data for rendering spatial transcriptomics data in MS-imaging way" TooltipTitle="Import 10x Genomics raw data for rendering spatial transcriptomics data in MS-imaging way" TooltipDescription="Import 10x Genomics raw data for rendering spatial transcriptomics data in MS-imaging way">
+      <Command.SmallImages>
+        <Image MinDPI="192">Resources/10x_genomics.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Resources/10x_genomics.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2744,11 +2751,12 @@
               <Button CommandName="cmdButtonOpenMSIRaw" />
               <Button CommandName="cmdButtonConnectMSIService" />
             </Group>
-            <Group CommandName="cmdTabMSIFile" ApplicationModes="0,1" SizeDefinition="FourButtons">
+            <Group CommandName="cmdTabMSIFile" ApplicationModes="0,1" SizeDefinition="FiveOrSixButtons">
               <DropDownButton CommandName="cmdButtonImportsMSITable">
                 <Button CommandName="cmdButtonImportsSCiLSLab" />
                 <Button CommandName="cmdButtonImportsShimadzu" />
               </DropDownButton>
+              <Button CommandName="cmdButtonImport10x_genomics" />
               <Button CommandName="cmdButtonMSIRowScans" />
               <Button CommandName="cmdButtonExportMSIMzpack" />
               <Button CommandName="cmdButtonMergeMultipleMSISample" />
