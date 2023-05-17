@@ -29,9 +29,7 @@
     ''' <summary>
     ''' targets.txt
     ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    Private Sub TextBox4_TextChanged(sender As Object, e As EventArgs) Handles TextBox4.TextChanged
+    Private Sub TextBox4_TextChanged() Handles TextBox4.Click
         Using file As New OpenFileDialog With {.Filter = "gene Names(*.txt)|*.txt"}
             If file.ShowDialog = DialogResult.OK Then
                 TextBox4.Text = file.FileName
