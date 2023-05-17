@@ -9,6 +9,7 @@ Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
+Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports any = Microsoft.VisualBasic.Scripting
 
