@@ -111,6 +111,7 @@ Partial Class frmMsImagingTweaks
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
         Me.ExportEachSelectedLayersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SelectAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -131,9 +132,9 @@ Partial Class frmMsImagingTweaks
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowPlotToolStripMenuItem, Me.RenderLayerCompositionModeToolStripMenuItem, Me.RenderingToolStripMenuItem, Me.ExportEachSelectedLayersToolStripMenuItem, Me.ToolStripMenuItem1, Me.LoadBasePeakIonsToolStripMenuItem, Me.ToolStripMenuItem2, Me.ClearSelectionToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowPlotToolStripMenuItem, Me.RenderLayerCompositionModeToolStripMenuItem, Me.RenderingToolStripMenuItem, Me.ExportEachSelectedLayersToolStripMenuItem, Me.ToolStripMenuItem1, Me.LoadBasePeakIonsToolStripMenuItem, Me.ToolStripMenuItem2, Me.SelectAllToolStripMenuItem, Me.ClearSelectionToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(262, 170)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(262, 192)
         '
         'ShowPlotToolStripMenuItem
         '
@@ -330,6 +331,12 @@ Partial Class frmMsImagingTweaks
         Me.ExportEachSelectedLayersToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
         Me.ExportEachSelectedLayersToolStripMenuItem.Text = "Export Each Selected Layers"
         '
+        'SelectAllToolStripMenuItem
+        '
+        Me.SelectAllToolStripMenuItem.Name = "SelectAllToolStripMenuItem"
+        Me.SelectAllToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
+        Me.SelectAllToolStripMenuItem.Text = "Select All"
+        '
         'frmMsImagingTweaks
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -380,4 +387,5 @@ Partial Class frmMsImagingTweaks
     Friend WithEvents ToolStripMenuItem4 As ToolStripSeparator
     Friend WithEvents ToolStripButton1 As ToolStripButton
     Friend WithEvents ExportEachSelectedLayersToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SelectAllToolStripMenuItem As ToolStripMenuItem
 End Class

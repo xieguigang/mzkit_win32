@@ -590,28 +590,41 @@ UseCheckedList:
     End Sub
 
     Private Sub ToolStripButton1_Click_1(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
-        Using file As New OpenFileDialog With {.Filter = "Excel Table(*.xlsx;*.csv)|*.xlsx;*.csv"}
+        Using file As New OpenFileDialog With {.Filter = "Excel Table(*.xlsx;*.csv)|*.xlsx;*.csv|Name Targets(*.txt)|*.txt"}
             If file.ShowDialog = DialogResult.OK Then
-                Dim table As DataFrame
-
-                If file.FileName.ExtensionSuffix("csv") Then
-                    table = DataFrame.Load(file.FileName)
-                Else
-                    table = DataFrame.CreateObject(Xlsx.Open(file.FileName).GetTable("Sheet1"))
-                End If
-
-                Dim mz As Double() = table(table.GetOrdinal("mz")).AsDouble
-                Dim name As String() = table(table.GetOrdinal("name")).ToArray
                 Dim folder = Win7StyleTreeView1.Nodes(0)
 
-                For i As Integer = 0 To mz.Length - 1
-                    Dim label As String = $"{name(i)} [m/z {mz(i).ToString("F4")}]"
-                    Dim node = folder.Nodes.Add(label)
+                Call folder.Nodes.Clear()
 
-                    node.Tag = mz(i)
-                Next
+                If file.FileName.ExtensionSuffix("txt") Then
+                    Dim names As String() = file.FileName.ReadAllLines
 
-                Call Workbench.StatusMessage($"Load {mz.Length} ions for run data visualization.")
+                    For Each Name As String In names
+                        folder.Nodes.Add(Name).Tag = Name
+                    Next
+
+                    Call Workbench.SuccessMessage($"Load {names.Length} layers for run data visualization.")
+                Else
+                    Dim table As DataFrame
+
+                    If file.FileName.ExtensionSuffix("csv") Then
+                        table = DataFrame.Load(file.FileName)
+                    Else
+                        table = DataFrame.CreateObject(Xlsx.Open(file.FileName).GetTable("Sheet1"))
+                    End If
+
+                    Dim mz As Double() = table(table.GetOrdinal("mz")).AsDouble
+                    Dim name As String() = table(table.GetOrdinal("name")).ToArray
+
+                    For i As Integer = 0 To mz.Length - 1
+                        Dim label As String = $"{name(i)} [m/z {mz(i).ToString("F4")}]"
+                        Dim node = folder.Nodes.Add(label)
+
+                        node.Tag = mz(i)
+                    Next
+
+                    Call Workbench.StatusMessage($"Load {mz.Length} ions for run data visualization.")
+                End If
             End If
         End Using
     End Sub
@@ -657,5 +670,14 @@ UseCheckedList:
                     host:=WindowModules.viewer)
             End If
         End Using
+    End Sub
+
+    Private Sub SelectAllToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SelectAllToolStripMenuItem.Click
+        Dim list = Win7StyleTreeView1.Nodes(0)
+
+        For i As Integer = 0 To list.Nodes.Count - 1
+            Dim n = list.Nodes(i)
+            n.Checked = True
+        Next
     End Sub
 End Class
