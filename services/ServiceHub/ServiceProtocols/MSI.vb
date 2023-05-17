@@ -96,6 +96,8 @@ Public Class MSI : Implements ITaskDriver, IDisposable
     Public Shared ReadOnly Property Protocol As Long = New ProtocolAttribute(GetType(ServiceProtocol)).EntryPoint
 
     Dim socket As TcpServicesSocket
+    Dim ion_annotations As Dictionary(Of String, String)
+    Dim type As FileApplicationClass
 
     Friend MSI As Drawer
     ' only updates when the file load function invoke
@@ -153,15 +155,18 @@ Public Class MSI : Implements ITaskDriver, IDisposable
                         vector:=readRawPack.GetScans.Select(Function(scan) scan.mz).IteratesALL
                     )
                 }
+                type = FileApplicationClass.MSImaging
             End Using
         ElseIf filepath.ExtensionSuffix("mzImage") Then
             Call RunSlavePipeline.SendMessage($"read MSI image file!")
+            type = FileApplicationClass.MSImaging
             Throw New NotImplementedException
         ElseIf filepath.ExtensionSuffix("imzml") Then
             Dim mzPack = Converter.LoadimzML(filepath, AddressOf RunSlavePipeline.SendProgress)
             mzPack.source = filepath.FileName
             MSI = New Drawer(mzPack)
             metadata = mzPack.GetMSIMetadata
+            type = FileApplicationClass.MSImaging
         Else
             Dim mzpack As mzPack
 
@@ -176,6 +181,8 @@ Public Class MSI : Implements ITaskDriver, IDisposable
                 )
                 sourceName = mzpack.source
                 metadata = mzpack.GetMSIMetadata
+                ion_annotations = mzpack.Annotations
+                type = mzpack.Application
 
                 If Not mzpack.source.ExtensionSuffix("csv") Then
                     Call RunSlavePipeline.SendMessage("make bugs fixed for RT pixel correction!")
@@ -485,7 +492,23 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             Call RunSlavePipeline.SendMessage($"but missing pixel data at [{xy(0)},{xy(1)}]!")
             Return New DataPipe(New Byte() {})
         Else
-            Return New DataPipe(New InMemoryVectorPixel(pixel).GetBuffer)
+            Dim annotations As String() = Nothing
+
+            If Not ion_annotations.IsNullOrEmpty Then
+                Dim mz As Double() = pixel.GetMs.Select(Function(i) i.mz).ToArray
+
+                If type = FileApplicationClass.STImaging Then
+                    For i As Integer = 0 To mz.Length - 1
+                        annotations(i) = ion_annotations.TryGetValue(CInt(mz(i)).ToString)
+                    Next
+                Else
+                    For i As Integer = 0 To mz.Length - 1
+                        annotations(i) = ion_annotations.TryGetValue(mz(i).ToString("F4"))
+                    Next
+                End If
+            End If
+
+            Return New DataPipe(New InMemoryVectorPixel(pixel, annotations).GetBuffer)
         End If
     End Function
 
