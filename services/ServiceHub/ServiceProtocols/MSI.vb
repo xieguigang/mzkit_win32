@@ -497,6 +497,8 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             If Not ion_annotations.IsNullOrEmpty Then
                 Dim mz As Double() = pixel.GetMs.Select(Function(i) i.mz).ToArray
 
+                annotations = New String(mz.Length - 1) {}
+
                 If type = FileApplicationClass.STImaging Then
                     For i As Integer = 0 To mz.Length - 1
                         annotations(i) = ion_annotations.TryGetValue(CInt(mz(i)).ToString)
