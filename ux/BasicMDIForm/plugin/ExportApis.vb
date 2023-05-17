@@ -61,6 +61,10 @@ Public Module ExportApis
         End If
     End Sub
 
+    ''' <summary>
+    ''' throw exception for: Call this api code required of the MZKit workbench application instance!
+    ''' </summary>
+    ''' <returns></returns>
     Friend Function MZKitWorkbenchIsNotRunning() As Object
         Throw New InvalidProgramException("Call this api code required of the MZKit workbench application instance!")
     End Function

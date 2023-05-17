@@ -44,6 +44,15 @@ Public NotInheritable Class Workbench
     End Sub
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Shared Sub SuccessMessage(msg As String)
+        If AppHost Is Nothing Then
+            Call ExportApis.MZKitWorkbenchIsNotRunning()
+        Else
+            Call _AppHost.StatusMessage(msg, My.Resources._1200px_Checked_svg)
+        End If
+    End Sub
+
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Sub StatusMessage(msg As String, Optional icon As Image = Nothing)
         If AppHost Is Nothing Then
             Call ExportApis.MZKitWorkbenchIsNotRunning()
