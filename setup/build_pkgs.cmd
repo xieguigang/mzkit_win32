@@ -127,13 +127,17 @@ SET pkg=%pkg_repo%/ggplot.zip
 %REnv% --install.packages %pkg%
 
 REM copy the required assembly dll file
-SET dll="%dir%/wkhtmltopdf/Newtonsoft.Json.dll"
+SET dll="wkhtmltopdf/Newtonsoft.Json.dll"
 
 cd %dir%
 
-copy %dll% "%Rstudio%/bin/"
-copy %dll% "%Rstudio%/host/"
-copy %dll% "%Rstudio%/library/"
+echo %dir%
+echo %dll%
+echo %Rstudio%
+
+copy /Y %dll% "%Rstudio%/bin/"
+copy /Y %dll% "%Rstudio%/host/"
+copy /Y %dll% "%Rstudio%/library/"
 
 pause
 exit 0
