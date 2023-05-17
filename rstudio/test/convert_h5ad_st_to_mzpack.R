@@ -43,8 +43,8 @@ const anno_tags = map_geneNames(geneIds, maps, target_nameset);
 print("mapping to gene names:");
 print(anno_tags);
 
-stop();
+# stop();
 
-ST_spaceranger.mzpack(spots, matrix)
+ST_spaceranger.mzpack(spots, setSamples(matrix, anno_tags))
 |> write.mzPack(file = savefile)
 ;
