@@ -45,6 +45,9 @@ print(anno_tags);
 
 # stop();
 
-ST_spaceranger.mzpack(spots, setSamples(matrix, anno_tags))
+ST_spaceranger.mzpack(
+    spots = spots, 
+    matrix = setSamples(matrix, anno_tags)
+)
 |> write.mzPack(file = savefile)
 ;
