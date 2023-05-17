@@ -78,11 +78,14 @@ Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
 Imports Microsoft.VisualBasic.Scripting.Runtime
+Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Mzkit_win32.MSImagingViewerV2
 Imports RibbonLib.Interop
 Imports Task
 Imports TaskStream
+Imports any = Microsoft.VisualBasic.Scripting
 Imports DataFrame = Microsoft.VisualBasic.Data.csv.IO.DataFrame
 Imports Xlsx = Microsoft.VisualBasic.MIME.Office.Excel.File
 
@@ -609,6 +612,49 @@ UseCheckedList:
                 Next
 
                 Call Workbench.StatusMessage($"Load {mz.Length} ions for run data visualization.")
+            End If
+        End Using
+    End Sub
+
+    Private Sub ExportEachSelectedLayersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportEachSelectedLayersToolStripMenuItem.Click
+        Dim list = Win7StyleTreeView1.Nodes(0)
+
+        Using folder As New FolderBrowserDialog With {.Description = "Select a folder to export images"}
+            If folder.ShowDialog = DialogResult.OK Then
+                Dim dir As String = folder.SelectedPath
+                Dim params = WindowModules.viewer.params
+                Dim size As String = $"{params.scan_x},{params.scan_y}"
+                Dim args As New PlotProperty
+                Dim canvas As New Size(params.scan_x * 3, params.scan_y * 3)
+
+                Call TaskProgress.LoadData(
+                    Function(echo As Action(Of String))
+                        For i As Integer = 0 To list.Nodes.Count - 1
+                            Dim n = list.Nodes(i)
+
+                            If n.Checked Then
+                                Dim val As String = any.ToString(If(n.Tag, CObj(n.Text)))
+                                Dim path As String = $"{dir}/{val}.png"
+                                Dim pixels = WindowModules.viewer.MSIservice.LoadGeneLayer(Name)
+
+                                If pixels.IsNullOrEmpty Then
+
+                                Else
+                                    Dim maxInto = pixels.Select(Function(a) a.intensity).Max
+                                    params.SetIntensityMax(maxInto, New Point())
+                                    Dim blender As New SingleIonMSIBlender(pixels, Nothing, params)
+                                    Dim range As DoubleRange = blender.range
+                                    Dim image As Image = blender.Rendering(args, canvas)
+
+                                    Call image.SaveAs(path)
+                                End If
+                            End If
+                        Next
+
+                        Return True
+                    End Function,
+                    title:="Plot each selected image layers...",
+                    host:=WindowModules.viewer)
             End If
         End Using
     End Sub
