@@ -1,11 +1,13 @@
 @echo off
 
 SET msbuild_logger=%CD%
+SET dir=%CD%
 SET drive=%~d0
 SET R_HOME=%drive%\GCModeller\src\R-sharp\App\net6.0
 SET Rscript="%R_HOME%/Rscript.exe"
 SET REnv="%R_HOME%/R#.exe"
 SET pkg_repo=../../../dist\bin\Rstudio\packages
+SET Rstudio=../../../dist\bin\Rstudio
 SET GCModeller_src=%drive%\GCModeller\src
 SET mzkit_src=%drive%\mzkit\Rscript\Library
 SET erica_src=%drive%\Erica
@@ -123,6 +125,13 @@ SET pkg=%pkg_repo%/ggplot.zip
 
 %Rscript% --build /src %drive%\GCModeller\src\runtime\ggplot /save %pkg% --skip-src-build
 %REnv% --install.packages %pkg%
+
+REM copy the required assembly dll file
+SET dll="%dir%/wkhtmltopdf/Newtonsoft.Json.dll"
+
+copy %dll% "%Rstudio%/bin/"
+copy %dll% "%Rstudio%/host/"
+copy %dll% "%Rstudio%/library/"
 
 pause
 exit 0
