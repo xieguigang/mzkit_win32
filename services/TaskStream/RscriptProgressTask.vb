@@ -69,6 +69,40 @@ Public NotInheritable Class RscriptProgressTask
     Private Sub New()
     End Sub
 
+    Public Shared Function ConvertSTData(spot As String, matrix As String, tag As String, targets As String(), save As String) As String
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("10x_genomics/convert_h5ad_st_to_mzpack.R")
+        Dim targetfile As String = TempFileSystem.GetAppSysTempFile(".txt")
+
+        Call targets.SaveTo(targetfile)
+
+        Dim cli As String = $"""{Rscript}"" 
+--spots ""{spot}""
+--expr ""{matrix}""
+--tag ""{tag}""
+--save ""{save}""
+--targets ""{targetfile}""
+--SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
+"
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
+        Call Workbench.LogText(pipeline.CommandLine)
+
+        Call TaskProgress.RunAction(
+                run:=Sub(p)
+                         p.SetProgressMode()
+
+                         AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                         AddHandler pipeline.Finish, AddressOf p.TaskFinish
+
+                         Call pipeline.Run()
+                     End Sub,
+                title:="Import 10X Genomics h5ad matrix",
+                info:="Do file data converts to mzpack data file...")
+
+        Return save
+    End Function
+
     Public Shared Function ExportLinearReport(linear As String, export As String, onHost As Boolean) As String
         Dim Rscript As String = RscriptPipelineTask.GetRScript("linearReport.R")
         Dim cli As String = $"""{Rscript}"" 
