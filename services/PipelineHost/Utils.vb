@@ -81,26 +81,21 @@ Public Module Utils
     End Function
 
     <Extension>
-    Public Function ST_spacerangerToMzPack(spots As SpaceSpot(), matrix As Matrix) As mzPack
-        Dim ms As New List(Of ScanMS1)
+    Private Iterator Function SpotConvertAsScans(spots As SpaceSpot(), matrix As Matrix) As IEnumerable(Of ScanMS1)
+        Dim geneID As String() = matrix.sampleID
         Dim spatial As Dictionary(Of String, Point) = spots _
             .ToDictionary(Function(p) p.barcode,
                           Function(p)
                               Return p.GetPoint
                           End Function)
-        Dim spot As DataFrameRow
-        Dim point As Point
-        Dim scan As ScanMS1
         Dim mz As New List(Of Double)
         Dim anno As New List(Of String)
         Dim into As New List(Of Double)
-        Dim metadata As Dictionary(Of String, String)
-        Dim geneID As String() = matrix.sampleID
 
         For i As Integer = 0 To spots.Length - 1
-            spot = matrix.expression(i)
-            point = spatial(spot.geneID)
-            metadata = New Dictionary(Of String, String) From {
+            Dim spot = matrix.expression(i)
+            Dim point = spatial(spot.geneID)
+            Dim metadata As New Dictionary(Of String, String) From {
                 {"x", point.X},
                 {"y", point.Y}
             }
@@ -113,7 +108,7 @@ Public Module Utils
                 End If
             Next
 
-            scan = New ScanMS1 With {
+            Yield New ScanMS1 With {
                 .mz = mz.ToArray,
                 .into = into.ToArray,
                 .scan_id = $"[MS1] [{point.X},{point.Y}] {spot.geneID}",
@@ -122,9 +117,12 @@ Public Module Utils
 
             Call mz.Clear()
             Call into.Clear()
-            Call ms.Add(scan)
         Next
+    End Function
 
+    <Extension>
+    Public Function ST_spacerangerToMzPack(spots As SpaceSpot(), matrix As Matrix) As mzPack
+        Dim ms As ScanMS1() = spots.SpotConvertAsScans(matrix).ToArray
         Dim pixels As Point() = ms _
             .Select(Function(s) s.GetMSIPixel) _
             .ToArray _
@@ -138,7 +136,7 @@ Public Module Utils
         Return New mzPack With {
             .MS = ms.ToArray.ScalePixels(flip:=False),
             .source = matrix.tag,
-            .Application = FileApplicationClass.MSImaging
+            .Application = FileApplicationClass.STImaging
         }
     End Function
 End Module
