@@ -188,12 +188,27 @@ Module RibbonEvents
         AddHandler ribbonItems.View3DMALDI.ExecuteEvent, Sub() Call open3dMALDIViewer()
 
         AddHandler ribbonItems.ButtonOpenServicesMgr.ExecuteEvent, Sub() Call VisualStudio.ShowSingleDocument(Of frmServicesManager)()
+
+        AddHandler ribbonItems.ButtonImport10x_genomics.ExecuteEvent, Sub() Call ConvertH5ad()
     End Sub
 
     Sub New()
         ExportApis._openMSImagingFile = AddressOf OpenMSIRaw
         ExportApis._openMSImagingViewer = AddressOf showMsImaging
         ExportApis._openCFMIDTool = AddressOf OpenCFMIDTool
+    End Sub
+
+    Private Sub ConvertH5ad()
+        InputDialog.Input(Of InputConvert10x)(
+            Sub(cfg)
+                Using file As New SaveFileDialog With {.Filter = "Imaging Pack File(*.mzPack)|*.mzPack"}
+                    If file.ShowDialog = DialogResult.OK Then
+                        Dim pars = cfg.GetParameters
+
+                        Call RscriptProgressTask.ConvertSTData(pars.spots, pars.h5ad, pars.tag, pars.targets, file.FileName)
+                    End If
+                End Using
+            End Sub)
     End Sub
 
     Private Sub open3dMALDIViewer()
