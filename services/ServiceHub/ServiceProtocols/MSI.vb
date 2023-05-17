@@ -96,9 +96,9 @@ Public Class MSI : Implements ITaskDriver, IDisposable
     Public Shared ReadOnly Property Protocol As Long = New ProtocolAttribute(GetType(ServiceProtocol)).EntryPoint
 
     Dim socket As TcpServicesSocket
-    Dim ion_annotations As Dictionary(Of String, String)
     Dim type As FileApplicationClass
 
+    Friend ion_annotations As Dictionary(Of String, String)
     Friend MSI As Drawer
     ' only updates when the file load function invoke
     ' which it means the session changed

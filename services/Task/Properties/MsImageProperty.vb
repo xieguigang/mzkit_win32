@@ -111,6 +111,9 @@ Public Class MsImageProperty
     <Description("The scan resolution size of each pixel.")>
     <Category("imzML")> Public Property resolution As Double
 
+    <Description("The number of the ion which has annotation data.")>
+    Public ReadOnly Property ion_annotations As Integer
+
     Public ReadOnly Property physical_width As String
         Get
             Return ((scan_x * resolution) / 1000).ToString("F2") & "mm"
@@ -184,6 +187,7 @@ Public Class MsImageProperty
         instrument = If(sourceFile.ExtensionSuffix("csv", "slx"), "Bruker", "Thermo Fisher")
         resolution = info.TryGetValue("resolution", [default]:=17)
         background = Color.Black
+        ion_annotations = info.TryGetValue("ion_annotations", [default]:=0)
     End Sub
 
     Sub New(scan_x As Integer, scan_y As Integer)
