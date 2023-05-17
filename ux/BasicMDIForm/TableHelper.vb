@@ -35,7 +35,7 @@ Public Module TableHelper
                 Dim rowObj As DataGridViewRow = table2.Rows(j)
 
                 For i As Integer = 0 To rowObj.Cells.Count - 1
-                    Call row.Add(any.ToString(rowObj.Cells.Item(i)))
+                    Call row.Add(any.ToString(rowObj.Cells.Item(i).Value))
                 Next
 
                 Call writeTsv.WriteLine(row.PopAll.JoinBy(sep))
