@@ -58,8 +58,8 @@ Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
-Imports Microsoft.Web.WebView2.WinForms
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.BasicMDIForm.Container
 Imports WeifenLuo.WinFormsUI.Docking
 Imports WkHtmlToPdf.Arguments
 
@@ -79,15 +79,7 @@ Public Class frmHtmlViewer
     End Sub
 
     Public Sub PDF(filepath As String)
-        Static bin As String = Nothing
-
-        If bin.StringEmpty Then
-            bin = $"{App.HOME}/tools/wkhtmltopdf.exe"
-
-            If Not bin.FileExists Then
-                bin = $"{App.HOME}/wkhtmltopdf.exe"
-            End If
-        End If
+        Static bin As String = AppEnvironment.getWkhtmltopdf
 
         If bin.FileExists Then
             Dim env As New PdfConvertEnvironment With {

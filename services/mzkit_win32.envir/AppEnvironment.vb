@@ -63,5 +63,13 @@ Namespace Container
                 Return $"{App.HOME}/tools/ndpitools/".GetDirectoryFullPath
             End If
         End Function
+
+        Public Function getWkhtmltopdf() As String
+            If AppEnvironment.IsDevelopmentMode Then
+                Return $"{App.HOME}/../../src/mzkit/dist/wkhtmltopdf.exe".GetFullPath
+            Else
+                Return $"{App.HOME}/tools/wkhtmltopdf.exe".GetFullPath
+            End If
+        End Function
     End Module
 End Namespace
