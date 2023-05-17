@@ -651,7 +651,10 @@ UseCheckedList:
                             If n.Checked Then
                                 Dim val As String = any.ToString(If(n.Tag, CObj(n.Text)))
                                 Dim path As String = $"{dir}/{val}.png"
-                                Dim pixels = WindowModules.viewer.MSIservice.LoadGeneLayer(Name)
+
+                                Call echo($"processing '{val}'")
+
+                                Dim pixels = WindowModules.viewer.MSIservice.LoadGeneLayer(val)
 
                                 If pixels.IsNullOrEmpty Then
 
