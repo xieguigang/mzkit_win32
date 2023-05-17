@@ -121,7 +121,8 @@ Public Module MSIProtocols
             {"scan_y", render.metadata.scan_y},
             {"uuid", uuid},
             {"fileSize", fileSize},
-            {"resolution", render.metadata.resolution}
+            {"resolution", render.metadata.resolution},
+            {"ion_annotations", If(render.ion_annotations Is Nothing, 0, render.ion_annotations.Count)}
         }
     End Function
 
