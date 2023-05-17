@@ -159,7 +159,11 @@ Public Class frmMRMLibrary
     Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
         If DataGridView1.SelectedRows.Count > 0 Then
             For Each row As DataGridViewRow In DataGridView1.SelectedRows
-                DataGridView1.Rows.RemoveAt(row.Index)
+                Try
+                    DataGridView1.Rows.RemoveAt(row.Index)
+                Catch ex As Exception
+
+                End Try
             Next
         End If
     End Sub
