@@ -1,21 +1,29 @@
+require(Erica);
+require(mzkit);
+require(JSON);
 
+imports "mzweb" from "mzkit";
 imports "BackgroundTask" from "PipelineHost";
 imports "STImaging" from "PipelineHost";
 imports "package_utils" from "devkit";
-
-package_utils::attach("D:\Erica");
-
 imports "STdata" from "Erica";
 
-require(mzkit);
+const spotsTable = ?"--spots" || stop("Missing spots list table file!");
+const exprRaw = ?"--expr" || stop("The h5ad expression matrix file must be provided!");
+const savefile = ?"--save" || `${dirname(exprRaw)}/${basename(exprRaw)}_import.mzPack`;
+const human_genes = "data/HUMAN_geneExpression.json"
+|> system.file(package = "Erica")
+|> readText()
+|> JSON::json_decode()
+;
 
-imports "mzweb" from "mzkit";
+print("view of the human gene data annotation set:");
+str(human_genes);
+stop();
 
-spots = read.spatial_spots("C:\Users\lipidsearch\Desktop\tissue_positions_list.csv");
-matrix = read.ST_spacerangerH5Matrix("C:\Users\lipidsearch\Desktop\raw_feature_bc_matrix.h5");
-
-str(spots);
-str(matrix);
+const spots = read.spatial_spots(spotsTable);
+const matrix = read.ST_spacerangerH5Matrix(exprRaw);
 
 ST_spaceranger.mzpack(spots, matrix)
-|> write.mzPack(file = "C:\Users\lipidsearch\Desktop\raw_feature_bc_matrix.mzPack");
+|> write.mzPack(file = savefile)
+;
