@@ -206,6 +206,14 @@ Module RibbonEvents
                         Dim pars = cfg.GetParameters
 
                         Call RscriptProgressTask.ConvertSTData(pars.spots, pars.h5ad, pars.tag, pars.targets, file.FileName)
+
+                        If file.FileName.FileLength > 1024 Then
+                            If MessageBox.Show("File imports success, load into viewer?", "Task success", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
+                                Call MyApplication.host.showMzPackMSI(file.FileName)
+                            End If
+                        Else
+                            Workbench.Warning("10X genomics st-imaging file imports error!")
+                        End If
                     End If
                 End Using
             End Sub)
