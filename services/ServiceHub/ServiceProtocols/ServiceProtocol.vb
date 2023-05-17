@@ -122,7 +122,8 @@ Public Module MSIProtocols
             {"uuid", uuid},
             {"fileSize", fileSize},
             {"resolution", render.metadata.resolution},
-            {"ion_annotations", If(render.ion_annotations Is Nothing, 0, render.ion_annotations.Count)}
+            {"ion_annotations", If(render.ion_annotations Is Nothing, 0, render.ion_annotations.Count)},
+            {"app", render.type.ToString}
         }
     End Function
 

@@ -74,6 +74,7 @@ Imports System.ComponentModel
 Imports System.Drawing
 Imports System.Drawing.Drawing2D
 Imports System.Windows.Forms
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
@@ -113,6 +114,7 @@ Public Class MsImageProperty
 
     <Description("The number of the ion which has annotation data.")>
     Public ReadOnly Property ion_annotations As Integer
+    Public ReadOnly Property app As FileApplicationClass
 
     Public ReadOnly Property physical_width As String
         Get
@@ -188,6 +190,7 @@ Public Class MsImageProperty
         resolution = info.TryGetValue("resolution", [default]:=17)
         background = Color.Black
         ion_annotations = info.TryGetValue("ion_annotations", [default]:=0)
+        app = [Enum].Parse(GetType(FileApplicationClass), info.TryGetValue("app", [default]:=FileApplicationClass.MSImaging.ToString))
     End Sub
 
     Sub New(scan_x As Integer, scan_y As Integer)
