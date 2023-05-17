@@ -92,9 +92,7 @@ Imports Microsoft.VisualBasic.Serialization.JSON
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Interop
 Imports SMRUCC.Rsharp.Runtime.Vectorization
-Imports STImaging
 Imports list = SMRUCC.Rsharp.Runtime.Internal.Object.list
-Imports Matrix = SMRUCC.genomics.Analysis.HTS.DataFrame.Matrix
 Imports stdNum = System.Math
 
 <Package("BackgroundTask")>
@@ -104,11 +102,6 @@ Module BackgroundTask
     Sub New()
         FrameworkInternal.ConfigMemory(MemoryLoads.Heavy)
     End Sub
-
-    <ExportAPI("ST_spaceranger.mzpack")>
-    Public Function convertMzPack(spots As SpaceSpot(), matrix As Matrix) As mzPack
-        Return spots.ST_spacerangerToMzPack(matrix)
-    End Function
 
     Public Function cfmidPredict() As Object
         Dim cfmid As New CFM_ID.Prediction("")
