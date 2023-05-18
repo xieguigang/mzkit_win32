@@ -39,7 +39,7 @@ Public Module Program
     Public Function RenderSTImagingTargets(args As CommandLine) As Integer
         Dim raw As String = args("--raw")
         Dim targets As String() = args("--targets").ReadAllLines
-        Dim output As String = args("--output") Or $"{raw.ParentPath}/{raw.BaseName}_STImaging/"
+        Dim output As String = args("--output") Or $"{raw.ParentPath}/{raw.BaseName}/"
         Dim scale As Double = args("--scale") Or 15.0
 
         Call FrameworkInternal.ConfigMemory(MemoryLoads.Max)
