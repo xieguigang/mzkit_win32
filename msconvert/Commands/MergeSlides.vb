@@ -93,16 +93,15 @@ Public Module MergeSlides
                     Dim sample As mzPack = raw(col)
                     Dim sample_shape = polygons(col)
                     Dim rect As RectangleF = sample_shape.GetRectangle
+                    Dim merge As New MergeSMSlides(relativePos, norm, println)
 
-                    union.JoinOneSample(
+                    Call merge.JoinOneSample(
                         shape:=sample_shape,
                         sample:=sample,
                         left:=left,
-                        top:=top,
-                        relativePos:=relativePos,
-                        norm:=norm,
-                        println:=println
-                    )
+                        top:=top
+                    ).DoCall(AddressOf union.AddRange)
+
                     left += padding.Width * 2 + rect.Width
 
                     With sample.MS _
