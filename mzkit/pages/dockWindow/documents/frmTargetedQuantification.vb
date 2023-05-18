@@ -155,7 +155,12 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     End Sub
 
     Dim linearPack As LinearPack
+
+    ''' <summary>
+    ''' the raw data file list of the reference linear points
+    ''' </summary>
     Dim linearFiles As NamedValue(Of String)()
+    Dim mzpackRaw As mzPack
     Dim allFeatures As String()
 
     ''' <summary>
@@ -245,6 +250,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         }
 
         targetType = type
+        mzpackRaw = pack
 
         If type <> TargetTypes.MRM Then
             Workbench.Warning("GCMS sim quantification is not implemented yet...")
@@ -325,6 +331,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         }
 
         targetType = type
+        mzpackRaw = Nothing
 
         If type.Value <> TargetTypes.MRM Then
             Call loadGCMSReference(files, directMapName)
@@ -397,6 +404,12 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         Return extract.GetAllFeatures(gcms)
     End Function
 
+    ''' <summary>
+    ''' fill the data table with MRM ion pair and IS ions information
+    ''' </summary>
+    ''' <param name="files"></param>
+    ''' <param name="data"></param>
+    ''' <param name="directMapName"></param>
     Private Sub loadMRMReference(files As NamedValue(Of String)(), data As mzPack, directMapName As Boolean)
         Dim ionsLib As IonLibrary = Globals.LoadIonLibrary
         Dim allFeatures As IonPair() = data.MS.Select(Function(s) s.meta.Keys) _
