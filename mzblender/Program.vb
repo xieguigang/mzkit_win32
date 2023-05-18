@@ -72,6 +72,7 @@ Public Module Program
                     Dim blender As New SingleIonMSIBlender(pixels, Nothing, params)
                     Dim image As Image = blender.Rendering(New Task.PlotProperty, canvasSize)
 
+                    Call VBDebugger.EchoLine(id)
                     Call image.SaveAs($"{output}/{id}.png")
                 End If
             Next
