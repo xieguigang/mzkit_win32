@@ -1046,6 +1046,8 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             Dim cals As Index(Of String) = linearFiles.Select(Function(f) f.Value).Indexing
             Dim raw = mzpackRaw.MS.GroupBy(Function(si) si.meta(mzStreamWriter.SampleMetaName)).Where(Function(g) g.Key Like cals).ToDictionary(Function(a) a.Key, Function(a) a.ToArray)
 
+            arguments.sn_threshold = -1
+
             Call MRMIonExtract.LoadSamples(raw, quantifyIon, arguments).DoCall(AddressOf chr.AddRange)
 
             If Not isid.StringEmpty Then
