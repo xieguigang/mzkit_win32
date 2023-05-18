@@ -35,7 +35,7 @@ Public Module Program
     End Function
 
     <ExportAPI("/ST-imaging")>
-    <Usage("/ST-imaging --raw <stimaging.mzPack> --targets <names.txt> [--scale <default=30> --output <outputdir>]")>
+    <Usage("/ST-imaging --raw <stimaging.mzPack> [--targets <names.txt> --scale <default=30> --output <outputdir>]")>
     Public Function RenderSTImagingTargets(args As CommandLine) As Integer
         Dim raw As String = args("--raw")
         Dim targets As String() = args("--targets").ReadAllLines
@@ -66,6 +66,10 @@ Public Module Program
             For Each layer In load.Annotations
                 maps(layer.Value) = Val(layer.Key)
             Next
+
+            If targets.IsNullOrEmpty Then
+                targets = maps.Keys.ToArray
+            End If
 
             For Each id As String In targets
                 Dim mz As Double = maps.TryGetValue(id, [default]:=-1)
