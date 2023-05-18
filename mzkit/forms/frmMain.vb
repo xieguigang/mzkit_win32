@@ -72,6 +72,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
@@ -214,22 +215,28 @@ Public Class frmMain : Implements AppHost
         ElseIf fileName.ExtensionSuffix("wiff") Then
             Dim wiffRaw As New sciexWiffReader.WiffScanFileReader(fileName)
             Dim mzPack As mzPack = TaskProgress.LoadData(Function(println) wiffRaw.LoadFromWiffRaw(checkNoise:=True, println.Echo))
-            Dim cacheFile As String = TempFileSystem.GetAppSysTempFile(".mzPack", App.PID.ToHexString, "WiffRawFile_")
-            Dim raw As New Raw With {
-               .cache = cacheFile,
-               .numOfScan1 = 0,
-               .numOfScan2 = 0,
-               .rtmax = 0,
-               .rtmin = 0,
-               .source = fileName
-            }
 
-            Using temp As Stream = cacheFile.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
-                Call mzPack.Write(temp)
-            End Using
+            If mzPack.Application = FileApplicationClass.LCMSMS Then
+                WindowModules.MRMIons.DockState = DockState.DockLeft
+                WindowModules.MRMIons.LoadMRM(mzPack)
+            Else
+                Dim cacheFile As String = TempFileSystem.GetAppSysTempFile(".mzPack", App.PID.ToHexString, "WiffRawFile_")
+                Dim raw As New Raw With {
+                   .cache = cacheFile,
+                   .numOfScan1 = 0,
+                   .numOfScan2 = 0,
+                   .rtmax = 0,
+                   .rtmin = 0,
+                   .source = fileName
+                }
 
-            Call WindowModules.rawFeaturesList.LoadRaw(raw)
-            Call VisualStudio.Dock(WindowModules.rawFeaturesList, DockState.DockLeft)
+                Using temp As Stream = cacheFile.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
+                    Call mzPack.Write(temp)
+                End Using
+
+                Call WindowModules.rawFeaturesList.LoadRaw(raw)
+                Call VisualStudio.Dock(WindowModules.rawFeaturesList, DockState.DockLeft)
+            End If
         ElseIf fileName.ExtensionSuffix("raw") Then
             Dim Xraw As New MSFileReader(fileName)
             Dim mzPack As mzPack = TaskProgress.LoadData(Function(println) Xraw.LoadFromXRaw(println.Echo))
