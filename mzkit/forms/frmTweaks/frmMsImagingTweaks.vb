@@ -686,4 +686,24 @@ UseCheckedList:
             n.Checked = True
         Next
     End Sub
+
+    Private Sub LoadAllAnnotationLayersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoadAllAnnotationLayersToolStripMenuItem.Click
+        Dim list = Win7StyleTreeView1.Nodes(0)
+
+        Call ProgressSpinner.DoLoading(
+            Sub()
+                Dim nameList = viewer.MSIservice.getAllLayerNames
+
+                Call Invoke(Sub() list.Nodes.Clear())
+
+                If Not nameList.IsNullOrEmpty Then
+                    Call Invoke(Sub()
+                                    For Each name As String In nameList
+                                        list.Nodes.Add(name).Tag = name
+                                    Next
+                                End Sub)
+                End If
+            End Sub)
+        Call Workbench.SuccessMessage($"fetch {list.Nodes.Count} annotation layers!")
+    End Sub
 End Class

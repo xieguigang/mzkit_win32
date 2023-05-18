@@ -229,6 +229,19 @@ Namespace ServiceHub
             End If
         End Function
 
+        Public Function getAllLayerNames() As String()
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.GetAnnotationNames, "ok"))
+
+            If data Is Nothing Then
+                Return {}
+            ElseIf data.IsHTTP_RFC Then
+                Call MyApplication.host.showStatusMessage(data.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Return {}
+            Else
+                Return data.GetUTF8String.LoadJSON(Of String())
+            End If
+        End Function
+
         Public Function DoIonStats(mz As Double()) As IonStat()
             Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.GetIonStatList, mz.GetJson(indent:=False, simpleDict:=True)))
 

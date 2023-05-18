@@ -83,6 +83,7 @@ Public Enum ServiceProtocol
     ''' </summary>
     LoadThermoRawMSI
     GetMSIInformationMetadata
+    GetAnnotationNames
     UnloadMSI
     ExportMzpack
     LoadMSILayers

@@ -616,6 +616,19 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Return New DataPipe(PixelData.GetBuffer(layers))
     End Function
 
+    <Protocol(ServiceProtocol.GetAnnotationNames)>
+    Public Function GetAllAnnotationNames() As BufferPipe
+        Dim names As String()
+
+        If map_to_ion.IsNullOrEmpty Then
+            names = {}
+        Else
+            names = map_to_ion.Keys.ToArray
+        End If
+
+        Return New DataPipe(names.GetJson(indent:=False, simpleDict:=True))
+    End Function
+
     <Protocol(ServiceProtocol.LoadSummaryLayer)>
     Public Function LoadSummaryLayer(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
         Dim summaryType As IntensitySummary = BitConverter.ToInt32(request.ChunkBuffer, Scan0)

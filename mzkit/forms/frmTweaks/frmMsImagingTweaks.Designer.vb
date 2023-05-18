@@ -95,9 +95,11 @@ Partial Class frmMsImagingTweaks
         Me.AppendMSImagingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RenderLayerCompositionModeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RenderingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportEachSelectedLayersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.LoadBasePeakIonsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.SelectAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ClearSelectionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.Win7StyleTreeView1 = New ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView(Me.components)
@@ -110,8 +112,7 @@ Partial Class frmMsImagingTweaks
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
-        Me.ExportEachSelectedLayersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SelectAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LoadAllAnnotationLayersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -132,9 +133,9 @@ Partial Class frmMsImagingTweaks
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowPlotToolStripMenuItem, Me.RenderLayerCompositionModeToolStripMenuItem, Me.RenderingToolStripMenuItem, Me.ExportEachSelectedLayersToolStripMenuItem, Me.ToolStripMenuItem1, Me.LoadBasePeakIonsToolStripMenuItem, Me.ToolStripMenuItem2, Me.SelectAllToolStripMenuItem, Me.ClearSelectionToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowPlotToolStripMenuItem, Me.RenderLayerCompositionModeToolStripMenuItem, Me.RenderingToolStripMenuItem, Me.ExportEachSelectedLayersToolStripMenuItem, Me.ToolStripMenuItem1, Me.LoadAllAnnotationLayersToolStripMenuItem, Me.LoadBasePeakIonsToolStripMenuItem, Me.ToolStripMenuItem2, Me.SelectAllToolStripMenuItem, Me.ClearSelectionToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(262, 192)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(262, 214)
         '
         'ShowPlotToolStripMenuItem
         '
@@ -202,6 +203,12 @@ Partial Class frmMsImagingTweaks
         Me.RenderingToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
         Me.RenderingToolStripMenuItem.Text = "Render"
         '
+        'ExportEachSelectedLayersToolStripMenuItem
+        '
+        Me.ExportEachSelectedLayersToolStripMenuItem.Name = "ExportEachSelectedLayersToolStripMenuItem"
+        Me.ExportEachSelectedLayersToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
+        Me.ExportEachSelectedLayersToolStripMenuItem.Text = "Export Each Selected Layers"
+        '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
@@ -217,6 +224,12 @@ Partial Class frmMsImagingTweaks
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
         Me.ToolStripMenuItem2.Size = New System.Drawing.Size(258, 6)
+        '
+        'SelectAllToolStripMenuItem
+        '
+        Me.SelectAllToolStripMenuItem.Name = "SelectAllToolStripMenuItem"
+        Me.SelectAllToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
+        Me.SelectAllToolStripMenuItem.Text = "Select All"
         '
         'ClearSelectionToolStripMenuItem
         '
@@ -325,17 +338,11 @@ Partial Class frmMsImagingTweaks
         Me.ToolStripButton3.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton3.Text = "Clear Layers"
         '
-        'ExportEachSelectedLayersToolStripMenuItem
+        'LoadAllAnnotationLayersToolStripMenuItem
         '
-        Me.ExportEachSelectedLayersToolStripMenuItem.Name = "ExportEachSelectedLayersToolStripMenuItem"
-        Me.ExportEachSelectedLayersToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
-        Me.ExportEachSelectedLayersToolStripMenuItem.Text = "Export Each Selected Layers"
-        '
-        'SelectAllToolStripMenuItem
-        '
-        Me.SelectAllToolStripMenuItem.Name = "SelectAllToolStripMenuItem"
-        Me.SelectAllToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
-        Me.SelectAllToolStripMenuItem.Text = "Select All"
+        Me.LoadAllAnnotationLayersToolStripMenuItem.Name = "LoadAllAnnotationLayersToolStripMenuItem"
+        Me.LoadAllAnnotationLayersToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
+        Me.LoadAllAnnotationLayersToolStripMenuItem.Text = "Load All Annotation Layers"
         '
         'frmMsImagingTweaks
         '
@@ -388,4 +395,5 @@ Partial Class frmMsImagingTweaks
     Friend WithEvents ToolStripButton1 As ToolStripButton
     Friend WithEvents ExportEachSelectedLayersToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SelectAllToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LoadAllAnnotationLayersToolStripMenuItem As ToolStripMenuItem
 End Class
