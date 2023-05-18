@@ -82,6 +82,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
@@ -1040,6 +1041,16 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                         End Function) _
                 .Where(Function(p) Not p Is Nothing) _
                 .DoCall(AddressOf chr.AddRange)
+        ElseIf mzpackRaw IsNot Nothing Then
+            Dim arguments As MRMArguments = args.GetMRMArguments
+            Dim cals As Index(Of String) = linearFiles.Select(Function(f) f.Name).Indexing
+            Dim raw = mzpackRaw.MS.GroupBy(Function(si) si.meta(mzStreamWriter.SampleMetaName)).Where(Function(g) g.Key Like cals).ToDictionary(Function(a) a.Key, Function(a) a.ToArray)
+
+            Call MRMIonExtract.LoadSamples(raw, quantifyIon, arguments).DoCall(AddressOf chr.AddRange)
+
+            If Not isid.StringEmpty Then
+                Call MRMIonExtract.LoadSamples(raw, quantifyIS, arguments).DoCall(AddressOf chr.AddRange)
+            End If
         Else
             Dim arguments As MRMArguments = args.GetMRMArguments
 
