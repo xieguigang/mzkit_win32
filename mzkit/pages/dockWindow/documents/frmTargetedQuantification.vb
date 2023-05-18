@@ -601,7 +601,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     End Sub
 
     Private Sub DataGridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles DataGridView1.KeyDown
-        If e.KeyCode = Keys.V AndAlso e.Control AndAlso Clipboard.ContainsText Then
+        If e.KeyCode = System.Windows.Forms.Keys.V AndAlso e.Control AndAlso Clipboard.ContainsText Then
             Call DataGridView1.PasteTextData()
         End If
     End Sub
