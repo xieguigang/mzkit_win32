@@ -12,6 +12,13 @@ Imports Microsoft.VisualBasic.Linq
 
 Public Module MergeSlides
 
+    ''' <summary>
+    ''' merge multiple ms-imaging slide
+    ''' </summary>
+    ''' <param name="file"></param>
+    ''' <param name="layout"></param>
+    ''' <param name="fileNameAsSourceTag"></param>
+    ''' <returns></returns>
     Public Function JoinDataSet(file As IEnumerable(Of String), layout As String, fileNameAsSourceTag As Boolean) As mzPack
         Dim rawfiles As Dictionary(Of String, mzPack) = file _
             .ToDictionary(Function(path) path.BaseName,
@@ -28,8 +35,12 @@ Public Module MergeSlides
                           End Function)
 
         If layout.StringEmpty Then
-            ' merge data in linear
-            Return rawfiles.Values.JoinMSISamples(println:=AddressOf RunSlavePipeline.SendMessage)
+            If rawfiles.Values.Any(Function(m) m.Application = FileApplicationClass.STImaging) Then
+                Return MergeFakeSTImagingSliders.JoinSTImagingSamples(rawfiles.Values, println:=AddressOf RunSlavePipeline.SendMessage)
+            Else
+                ' merge data in linear
+                Return rawfiles.Values.JoinMSISamples(println:=AddressOf RunSlavePipeline.SendMessage)
+            End If
         Else
             Dim layoutData As String()() = layout _
                 .SolveStream _
