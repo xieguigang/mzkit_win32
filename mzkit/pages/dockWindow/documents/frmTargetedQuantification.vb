@@ -1136,6 +1136,60 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         Call showQuanifyTable()
     End Sub
 
+    Public Sub LoadSampleMzpack(samples() As String, mzpack As Object, echo As Action(Of String)) Implements QuantificationLinearPage.LoadSampleMzpack
+        Dim points As New List(Of TargetPeakPoint)
+        Dim linears As New List(Of StandardCurve)
+        Dim ionLib As IonLibrary = Globals.LoadIonLibrary
+        Dim GCMSIons = LoadGCMSIonLibrary.ToDictionary(Function(a) a.name)
+        Dim extract = GetGCMSFeatureReader(GCMSIons.Values)
+        Dim massError As MRMArguments = args.GetMRMArguments
+        Dim sampleIndex = samples.Indexing
+        Dim sampleData = DirectCast(mzpack, mzPack).MS _
+            .Where(Function(si) si.meta(mzStreamWriter.SampleMetaName) Like sampleIndex) _
+            .GroupBy(Function(si) si.meta(mzStreamWriter.SampleMetaName)) _
+            .ToDictionary(Function(a) a.Key, Function(a) a.ToArray)
+
+        massError.sn_threshold = -1
+        Call scans.Clear()
+
+        For Each refRow As DataGridViewRow In DataGridView1.Rows
+            If isValidLinearRow(refRow) Then
+                Dim id As String = any.ToString(refRow.Cells(0).Value)
+                Dim isid As String = any.ToString(refRow.Cells(1).Value)
+
+                Call linears.Add(createLinear(refRow, args))
+
+                If targetType = TargetTypes.GCMS_SIM Then
+
+                Else
+                    Dim ion As IonPair = ionLib.GetIonByKey(id)
+                    Dim ISion As IonPair = ionLib.GetIonByKey(isid)
+
+
+                    points.AddRange(MRMIonExtract.LoadSamples(sampleData, ion, massError))
+                    echo($"Measure linear for {ion.ToString}")
+
+                    If Not ISion Is Nothing Then
+                        points.AddRange(MRMIonExtract.LoadSamples(sampleData, ISion, massError))
+                    End If
+                End If
+            End If
+        Next
+
+        With linears.Where(Function(l) Not l Is Nothing).ToArray
+            For Each file As IGrouping(Of String, TargetPeakPoint) In points.GroupBy(Function(p) p.SampleName)
+                Dim uniqueIons = file.GroupBy(Function(p) p.Name).Select(Function(p) p.First).ToArray
+                Dim quantify As QuantifyScan = .SampleQuantify(uniqueIons, PeakAreaMethods.SumAll, fileName:=file.Key)
+
+                Call echo($"Processing quantify for sample: {file.Key}")
+
+                If Not quantify Is Nothing Then
+                    scans.Add(quantify)
+                End If
+            Next
+        End With
+    End Sub
+
     Private Sub loadSampleFiles(files As NamedValue(Of String)(), echo As Action(Of String))
         Dim points As New List(Of TargetPeakPoint)
         Dim linears As New List(Of StandardCurve)
@@ -1366,8 +1420,4 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             Yield New NamedValue(Of DynamicPropertyBase(Of Double))(quantify.ID, quantify)
         Next
     End Function
-
-    Public Sub LoadSampleMzpack(samples() As String, mzpack As Object, echo As Action(Of String)) Implements QuantificationLinearPage.LoadSampleMzpack
-
-    End Sub
 End Class
