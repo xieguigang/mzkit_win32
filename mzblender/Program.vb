@@ -9,6 +9,8 @@ Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.hqx
+Imports Microsoft.VisualBasic.My
+Imports Microsoft.VisualBasic.My.FrameworkInternal
 Imports Parallel
 
 Public Module Program
@@ -38,6 +40,8 @@ Public Module Program
         Dim raw As String = args("--raw")
         Dim targets As String() = args("--targets").ReadAllLines
         Dim output As String = args("--output") Or $"{raw.ParentPath}/{raw.BaseName}_STImaging/"
+
+        Call FrameworkInternal.ConfigMemory(MemoryLoads.Max)
 
         Using file As Stream = raw.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
             Dim load As mzPack = mzPack.ReadAll(file, ignoreThumbnail:=True, skipMsn:=True)
