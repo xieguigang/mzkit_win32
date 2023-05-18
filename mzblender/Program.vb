@@ -47,7 +47,8 @@ Public Module Program
             Dim load As mzPack = mzPack.ReadAll(file, ignoreThumbnail:=True, skipMsn:=True)
             Dim maps As New Dictionary(Of String, Double)
             Dim MSI As New Drawer(load)
-            Dim params As New Task.MsImageProperty With {
+            Dim metadata As Metadata = load.GetMSIMetadata
+            Dim params As New Task.MsImageProperty(metadata.scan_x, metadata.scan_y) With {
                 .background = Color.Black,
                 .colors = ScalerPalette.turbo,
                 .enableFilter = True,
@@ -59,7 +60,6 @@ Public Module Program
                 .showTotalIonOverlap = False,
                 .TrIQ = 0.9
             }
-            Dim metadata As Metadata = load.GetMSIMetadata
             Dim canvasSize As New Size(metadata.scan_x * 15, metadata.scan_y * 15)
 
             For Each layer In load.Annotations
