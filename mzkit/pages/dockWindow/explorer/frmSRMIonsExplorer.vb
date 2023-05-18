@@ -120,7 +120,11 @@ Public Class frmSRMIonsExplorer
             TICRoot.ContextMenuStrip = ContextMenuStrip1
 
             For Each chr As String In ions
-                Dim t As Double() = chr.Split("/"c).Select(Function(d) d.Trim.ParseDouble).ToArray
+                Dim t As Double() = chr.Replace("MRM:", "") _
+                    .Trim _
+                    .Split("/"c) _
+                    .Select(Function(d) d.Trim.ParseDouble) _
+                    .ToArray
                 Dim ionRef As New IonPair With {
                     .precursor = t(0),
                     .product = t(1)
