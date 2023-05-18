@@ -63,19 +63,24 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM.Models
 Imports BioNovoGene.Analytical.MassSpectrometry.SignalReader
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
-Imports Microsoft.VisualBasic.MIME.Office.Excel.XML.xl.worksheets
+Imports Mzkit_win32.BasicMDIForm
 Imports Task
 Imports chromatogram = BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML.chromatogram
 
 Public Class frmSRMIonsExplorer
 
     Private Sub ImportsFilesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportsFilesToolStripMenuItem.Click
-        Using openfile As New OpenFileDialog With {.Filter = "LC-MSMS(*.mzML)|*.mzML", .Multiselect = True}
+        Using openfile As New OpenFileDialog With {.Filter = "LC-MSMS(*.mzML)|*.mzML|AB sciex wiff(*.wiff)|*.wiff", .Multiselect = True}
             If openfile.ShowDialog = DialogResult.OK Then
                 Dim notMRM As New List(Of String)
 
                 For Each file As String In openfile.FileNames
-                    If RawScanParser.IsMRMData(file) Then
+                    If file.ExtensionSuffix("wiff") Then
+                        Dim wiffRaw As New sciexWiffReader.WiffScanFileReader(file)
+                        Dim mzPack As mzPack = TaskProgress.LoadData(Function(println) wiffRaw.LoadFromWiffRaw(checkNoise:=True, println.Echo))
+
+                        Call LoadMRM(mzPack)
+                    ElseIf RawScanParser.IsMRMData(file) Then
                         Call LoadMRM(file)
                     Else
                         Call MyApplication.LogText($"{file} is not a MRM raw data file!")
