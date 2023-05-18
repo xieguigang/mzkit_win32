@@ -1043,7 +1043,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                 .DoCall(AddressOf chr.AddRange)
         ElseIf mzpackRaw IsNot Nothing Then
             Dim arguments As MRMArguments = args.GetMRMArguments
-            Dim cals As Index(Of String) = linearFiles.Select(Function(f) f.Name).Indexing
+            Dim cals As Index(Of String) = linearFiles.Select(Function(f) f.Value).Indexing
             Dim raw = mzpackRaw.MS.GroupBy(Function(si) si.meta(mzStreamWriter.SampleMetaName)).Where(Function(g) g.Key Like cals).ToDictionary(Function(a) a.Key, Function(a) a.ToArray)
 
             Call MRMIonExtract.LoadSamples(raw, quantifyIon, arguments).DoCall(AddressOf chr.AddRange)
