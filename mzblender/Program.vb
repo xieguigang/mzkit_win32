@@ -35,11 +35,12 @@ Public Module Program
     End Function
 
     <ExportAPI("/ST-imaging")>
-    <Usage("/ST-imaging --raw <stimaging.mzPack> --targets <names.txt> [--output <outputdir>]")>
+    <Usage("/ST-imaging --raw <stimaging.mzPack> --targets <names.txt> [--scale <default=30> --output <outputdir>]")>
     Public Function RenderSTImagingTargets(args As CommandLine) As Integer
         Dim raw As String = args("--raw")
         Dim targets As String() = args("--targets").ReadAllLines
         Dim output As String = args("--output") Or $"{raw.ParentPath}/{raw.BaseName}_STImaging/"
+        Dim scale As Double = args("--scale") Or 15.0
 
         Call FrameworkInternal.ConfigMemory(MemoryLoads.Max)
 
@@ -58,9 +59,9 @@ Public Module Program
                 .mapLevels = 250,
                 .showPhysicalRuler = False,
                 .showTotalIonOverlap = False,
-                .TrIQ = 0.9
+                .TrIQ = 1
             }
-            Dim canvasSize As New Size(metadata.scan_x * 15, metadata.scan_y * 15)
+            Dim canvasSize As New Size(metadata.scan_x * scale, metadata.scan_y * scale)
 
             For Each layer In load.Annotations
                 maps(layer.Value) = Val(layer.Key)
@@ -70,6 +71,7 @@ Public Module Program
                 Dim mz As Double = maps.TryGetValue(id, [default]:=-1)
 
                 If mz <= 0 Then
+                    Call $"Missing '{id}'!".Warning
                     Continue For
                 Else
                     Dim pixels = MSI.LoadPixels({mz}, Tolerance.DeltaMass(0.3)).ToArray
