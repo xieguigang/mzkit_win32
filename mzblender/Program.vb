@@ -78,12 +78,16 @@ Public Module Program
                     Call $"Missing '{id}'!".Warning
                     Continue For
                 Else
-                    Dim pixels = MSI.LoadPixels({mz}, Tolerance.DeltaMass(0.3)).ToArray
-                    Dim blender As New SingleIonMSIBlender(pixels, Nothing, params)
-                    Dim image As Image = blender.Rendering(New Task.PlotProperty, canvasSize)
+                    Try
+                        Dim pixels = MSI.LoadPixels({mz}, Tolerance.DeltaMass(0.3)).ToArray
+                        Dim blender As New SingleIonMSIBlender(pixels, Nothing, params)
+                        Dim image As Image = blender.Rendering(New Task.PlotProperty, canvasSize)
 
-                    Call VBDebugger.EchoLine(id)
-                    Call image.SaveAs($"{output}/{id}.png")
+                        Call VBDebugger.EchoLine(id)
+                        Call image.SaveAs($"{output}/{id}.png")
+                    Catch ex As Exception
+
+                    End Try
                 End If
             Next
 
