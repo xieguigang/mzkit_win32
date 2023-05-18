@@ -8,6 +8,7 @@ Public Interface QuantificationLinearPage
     ''' <param name="fileNames">a vector of the file full path</param>
     ''' <param name="type">MRM/GCMS_SIM</param>
     Sub RunLinearFileImports(fileNames As String(), type As TargetTypes?)
+    Sub RunLinearmzPackImports(cals As String(), mzpack As Object)
 
     ''' <summary>
     ''' set linear reference in current profile table
@@ -24,6 +25,8 @@ Public Interface QuantificationLinearPage
     Sub RunLinearRegression(profile As String)
 
     Sub LoadSampleFiles(FileNames As String(), echo As Action(Of String))
+    Sub LoadSampleMzpack(samples As String(), mzpack As Object, echo As Action(Of String))
+
     Sub ViewLinearModelReport(onHost As Boolean)
 
     Function PullQuantifyResult() As IEnumerable(Of NamedValue(Of DynamicPropertyBase(Of Double)))

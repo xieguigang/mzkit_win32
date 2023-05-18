@@ -64,7 +64,9 @@
 #End Region
 
 Imports System.IO
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Content
@@ -182,6 +184,73 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                 Call runLinearFileImports(importsFile.FileNames, Nothing)
             End If
         End Using
+    End Sub
+
+    Public Sub RunLinearmzPackImports(cals() As String, mzpack As Object) Implements QuantificationLinearPage.RunLinearmzPackImports
+        Dim files As NamedValue(Of String)() = ContentTable.StripMaxCommonNames(cals)
+        Dim fakeLevels As Dictionary(Of String, Double)
+        Dim directMapName As Boolean = False
+
+        If files.All(Function(name) name.Value.IsContentPattern) Then
+            ' parse quantification reference content value from
+            ' file names directly
+            files = files _
+                .Select(Function(file)
+                            Return New NamedValue(Of String) With {
+                                .Name = file.Value,
+                                .Value = file.Value,
+                                .Description = file.Description
+                            }
+                        End Function) _
+                .ToArray
+            fakeLevels = files _
+                .ToDictionary(Function(file) file.Value,
+                              Function(file)
+                                  Return file.Value _
+                                      .ParseContent _
+                                      .ScaleTo(ContentUnits.ppb) _
+                                      .Value
+                              End Function)
+            directMapName = True
+        Else
+            fakeLevels = files _
+                .ToDictionary(Function(file) file.Name,
+                              Function()
+                                  Return 0.0
+                              End Function)
+        End If
+
+        DataGridView1.Rows.Clear()
+        DataGridView1.Columns.Clear()
+
+        DataGridView1.Columns.Add(New DataGridViewLinkColumn With {.HeaderText = "Features"})
+        DataGridView1.Columns.Add(New DataGridViewComboBoxColumn With {.HeaderText = "IS"})
+
+        Dim pack As mzPack = mzpack
+        Dim type As TargetTypes = If(
+            pack.Application = FileApplicationClass.LCMSMS,
+            TargetTypes.MRM,
+            TargetTypes.GCMS_SIM
+        )
+
+        For Each file As NamedValue(Of String) In files
+            Call DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.HeaderText = file.Name})
+        Next
+
+        Me.linearFiles = files
+        Me.linearPack = New LinearPack With {
+            .reference = New Dictionary(Of String, SampleContentLevels) From {
+                {"n/a", New SampleContentLevels(fakeLevels, directMapName)}
+            }
+        }
+
+        targetType = type
+
+        If type <> TargetTypes.MRM Then
+            Workbench.Warning("GCMS sim quantification is not implemented yet...")
+        Else
+            Call loadMRMReference(files, pack, directMapName)
+        End If
     End Sub
 
     ''' <summary>
@@ -327,6 +396,41 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
         Return extract.GetAllFeatures(gcms)
     End Function
+
+    Private Sub loadMRMReference(files As NamedValue(Of String)(), data As mzPack, directMapName As Boolean)
+        Dim ionsLib As IonLibrary = Globals.LoadIonLibrary
+        Dim allFeatures As IonPair() = data.MS.Select(Function(s) s.meta.Keys) _
+            .IteratesALL.Distinct.Where(Function(t) t.StartsWith("MRM:")) _
+            .Select(Function(si)
+                        si = si.Replace("MRM:", "").Trim
+                        Dim t = si.Split("/"c).Select(AddressOf Strings.Trim).Select(Function(ti) ti.ParseDouble).ToArray
+                        Return New IonPair With {.precursor = t(0), .product = t(1)}
+                    End Function) _
+            .ToArray
+        Dim contentLevels As SampleContentLevels = linearPack.reference("n/a")
+
+        Me.allFeatures = allFeatures.Select(AddressOf ionsLib.GetDisplay).ToArray
+
+        For Each ion As IonPair In allFeatures
+            Dim refId As String = ionsLib.GetDisplay(ion)
+            Dim i As Integer = DataGridView1.Rows.Add(refId)
+            Dim comboxBox As DataGridViewComboBoxCell = DataGridView1.Rows(i).Cells(1)
+
+            comboxBox.Items.Add("")
+
+            For Each IS_candidate As IonPair In allFeatures
+                comboxBox.Items.Add(ionsLib.GetDisplay(IS_candidate))
+            Next
+
+            If directMapName Then
+                Dim row As DataGridViewRow = DataGridView1.Rows(i)
+
+                For index As Integer = 2 To DataGridView1.Columns.Count - 1
+                    row.Cells(index).Value = contentLevels.Content(DataGridView1.Columns(index).HeaderText)
+                Next
+            End If
+        Next
+    End Sub
 
     Private Sub loadMRMReference(files As NamedValue(Of String)(), directMapName As Boolean)
         Dim ionsLib As IonLibrary = Globals.LoadIonLibrary
@@ -1236,4 +1340,8 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
             Yield New NamedValue(Of DynamicPropertyBase(Of Double))(quantify.ID, quantify)
         Next
     End Function
+
+    Public Sub LoadSampleMzpack(samples() As String, mzpack As Object, echo As Action(Of String)) Implements QuantificationLinearPage.LoadSampleMzpack
+
+    End Sub
 End Class
