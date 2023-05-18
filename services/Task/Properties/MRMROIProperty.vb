@@ -57,6 +57,7 @@
 
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM.Models
 Imports BioNovoGene.Analytical.MassSpectrometry.SignalReader.ChromatogramReader
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
@@ -72,23 +73,23 @@ Public Class MRMROIProperty
     Public Property peakArea As Double
     Public Property baseline As Double
 
-    Sub New(chr As rawChromatogram)
-        Dim TIC = chr.Ticks
+    Sub New(ion As IonPair, chr As ChromatogramTick())
+        Call Me.New(chr)
 
-        If chr.precursor IsNot Nothing AndAlso chr.product IsNot Nothing Then
-            precursor = chr.precursor.MRMTargetMz
-            product = chr.product.MRMTargetMz
-        End If
+        precursor = ion.precursor
+        product = ion.product
+    End Sub
 
+    Sub New(TIC As ChromatogramTick())
         Dim ROI = TIC.Shadows _
-            .PopulateROI(
-                baselineQuantile:=0.65,
-                angleThreshold:=5,
-                peakwidth:=New Double() {8, 30},
-                snThreshold:=3
-            ) _
-            .OrderByDescending(Function(r) r.integration) _
-            .FirstOrDefault
+           .PopulateROI(
+               baselineQuantile:=0.65,
+               angleThreshold:=5,
+               peakwidth:=New Double() {8, 30},
+               snThreshold:=3
+           ) _
+           .OrderByDescending(Function(r) r.integration) _
+           .FirstOrDefault
 
         If Not ROI Is Nothing Then
             rtmin = ROI.time.Min
@@ -96,6 +97,15 @@ Public Class MRMROIProperty
             rt = ROI.rt
             peakArea = ROI.integration
             baseline = ROI.baseline
+        End If
+    End Sub
+
+    Sub New(chr As rawChromatogram)
+        Call Me.New(chr.Ticks)
+
+        If chr.precursor IsNot Nothing AndAlso chr.product IsNot Nothing Then
+            precursor = chr.precursor.MRMTargetMz
+            product = chr.product.MRMTargetMz
         End If
     End Sub
 End Class

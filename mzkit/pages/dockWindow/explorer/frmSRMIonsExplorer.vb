@@ -63,6 +63,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM.Models
 Imports BioNovoGene.Analytical.MassSpectrometry.SignalReader
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
 Imports Task
 Imports chromatogram = BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML.chromatogram
@@ -108,12 +109,47 @@ Public Class frmSRMIonsExplorer
                 .TIC = scan1.Select(Function(m) m.TIC).ToArray,
                 .BPC = scan1.Select(Function(m) m.BPC).ToArray
             }
+            Dim ions = scan1.Select(Function(s) s.meta.Keys) _
+                .IteratesALL _
+                .Distinct _
+                .Where(Function(key) key.StartsWith("MRM: ")) _
+                .ToArray
 
             TICRoot.Tag = tic
             TICRoot.ImageIndex = 0
             TICRoot.ContextMenuStrip = ContextMenuStrip1
+
+            For Each chr As String In ions
+                Dim t As Double() = chr.Split("/"c).Select(Function(d) d.Trim.ParseDouble).ToArray
+                Dim ionRef As New IonPair With {
+                    .precursor = t(0),
+                    .product = t(1)
+                }
+                Dim chromatogram As ChromatogramTick() = scan1 _
+                    .Select(Function(s)
+                                Dim i As Integer = Integer.Parse(s.meta(chr))
+                                Dim into As Double = s.into(i)
+
+                                Return New ChromatogramTick(s.rt, into)
+                            End Function) _
+                    .ToArray
+
+                display = ionsLib.GetDisplay(ionRef)
+
+                With TICRoot.Nodes.Add(display)
+                    .Tag = New MRMHolder With {.ion = ionRef, .TIC = chromatogram}
+                    .ImageIndex = 1
+                    .SelectedImageIndex = 1
+                    .ContextMenuStrip = ContextMenuStrip2
+                End With
+            Next
         Next
     End Sub
+
+    Private Class MRMHolder
+        Public ion As IonPair
+        Public TIC As ChromatogramTick()
+    End Class
 
     Public Sub LoadMRM(file As String)
         Dim list = file.LoadChromatogramList.ToArray
@@ -163,6 +199,11 @@ Public Class frmSRMIonsExplorer
 
         If TypeOf e.Node.Tag Is DataReader.Chromatogram Then
             ticks = DirectCast(e.Node.Tag, DataReader.Chromatogram).GetTicks.ToArray
+        ElseIf TypeOf e.Node.Tag Is MRMHolder Then
+            Dim holder As MRMHolder = e.Node.Tag
+            ticks = holder.TIC
+            Dim props As New MRMROIProperty(holder.ion, ticks)
+            Call VisualStudio.ShowProperties(props)
         Else
             Dim chr As chromatogram = e.Node.Tag
             ticks = chr.Ticks
@@ -198,9 +239,15 @@ Public Class frmSRMIonsExplorer
                     Continue For
                 End If
 
-                With DirectCast(obj.Tag, chromatogram)
-                    Yield New NamedCollection(Of ChromatogramTick)($"[{fileName}] {obj.Text}", .Ticks)
-                End With
+                If TypeOf obj.Tag Is chromatogram Then
+                    With DirectCast(obj.Tag, chromatogram)
+                        Yield New NamedCollection(Of ChromatogramTick)($"[{fileName}] {obj.Text}", .Ticks)
+                    End With
+                Else
+                    With DirectCast(obj.Tag, MRMHolder)
+                        Yield New NamedCollection(Of ChromatogramTick)($"[{fileName}] {obj.Text}", .TIC)
+                    End With
+                End If
             Next
         Next
     End Function
