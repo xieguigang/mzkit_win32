@@ -35,18 +35,27 @@ Public Module Program
     End Function
 
     <ExportAPI("/ST-imaging")>
-    <Usage("/ST-imaging --raw <stimaging.mzPack> [--targets <names.txt> --scale <default=30> --output <outputdir>]")>
+    <Usage("/ST-imaging --raw <stimaging.mzPack> [--keeps-background --targets <names.txt> --scale <default=30> --output <outputdir>]")>
     Public Function RenderSTImagingTargets(args As CommandLine) As Integer
         Dim raw As String = args("--raw")
         Dim targets As String() = args("--targets").ReadAllLines
         Dim output As String = args("--output") Or $"{raw.ParentPath}/{raw.BaseName}/"
         Dim scale As Double = args("--scale") Or 15.0
+        Dim keepsBackground As Boolean = args("--keeps-background")
 
         Call FrameworkInternal.ConfigMemory(MemoryLoads.Max)
 
         Using file As Stream = raw.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
             Dim load As mzPack = mzPack.ReadAll(file, ignoreThumbnail:=True, skipMsn:=True)
             Dim maps As New Dictionary(Of String, Double)
+
+            If Not keepsBackground Then
+                ' filter out the background spots
+                load.MS = load.MS _
+                    .Where(Function(s) s.meta(mzStreamWriter.SampleMetaName) = "sample") _
+                    .ToArray
+            End If
+
             Dim MSI As New Drawer(load)
             Dim metadata As Metadata = load.GetMSIMetadata
             Dim params As New Task.MsImageProperty(metadata.scan_x, metadata.scan_y) With {
