@@ -131,8 +131,12 @@ Public Class frmSRMIonsExplorer
                 }
                 Dim chromatogram As ChromatogramTick() = scan1 _
                     .Select(Function(s)
-                                Dim i As Integer = Integer.Parse(s.meta(chr))
-                                Dim into As Double = s.into(i)
+                                Dim into As Double = 0
+
+                                If s.meta.ContainsKey(chr) Then
+                                    Dim i As Integer = Integer.Parse(s.meta(chr))
+                                    into = s.into(i)
+                                End If
 
                                 Return New ChromatogramTick(s.rt, into)
                             End Function) _
