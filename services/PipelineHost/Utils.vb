@@ -108,7 +108,8 @@ Public Module Utils
             Dim point = spatial(spot.geneID)
             Dim metadata As New Dictionary(Of String, String) From {
                 {"x", point.X},
-                {"y", point.Y}
+                {"y", point.Y},
+                {mzStreamWriter.SampleMetaName, If(spots(i).flag > 0, "sample", "background")}
             }
 
             ' length of experiments is equals to the geneIDs
