@@ -253,6 +253,8 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         targetType = type
         mzpackRaw = pack
 
+        Call WindowModules.MRMIons.LoadMRM(pack)
+
         If type <> TargetTypes.MRM Then
             Workbench.Warning("GCMS sim quantification is not implemented yet...")
         Else
@@ -1151,6 +1153,10 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
         massError.sn_threshold = -1
         Call scans.Clear()
+
+        If Not mzpack Is mzpackRaw Then
+            Call WindowModules.MRMIons.LoadMRM(DirectCast(mzpack, mzPack))
+        End If
 
         For Each refRow As DataGridViewRow In DataGridView1.Rows
             If isValidLinearRow(refRow) Then
