@@ -1377,7 +1377,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
     End Function
 
-    Public Sub ViewLinearModelReport(onHost As Boolean) Implements QuantificationLinearPage.ViewLinearModelReport
+    Public Sub ViewLinearModelReport(onHost As Boolean, ignoreError As Boolean) Implements QuantificationLinearPage.ViewLinearModelReport
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".html", sessionID:=App.PID.ToHexString, "linear_report")
         Dim packtemp As String = TempFileSystem.GetAppSysTempFile(".cdf", sessionID:=App.PID.ToHexString, "linear_pack")
 
@@ -1385,7 +1385,9 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         Call RscriptProgressTask.ExportLinearReport(packtemp, tempfile, onHost)
 
         If tempfile.FileLength <= 10 Then
-            Call MessageBox.Show("Run Rscript workflow error...", "View Linear Report", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If Not ignoreError Then
+                Call MessageBox.Show("Run Rscript workflow error...", "View Linear Report", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
         Else
             Call VisualStudio.ShowDocument(Of frmHtmlViewer)().LoadHtml(tempfile)
         End If
@@ -1395,7 +1397,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         If linearPack Is Nothing OrElse linearPack.linears.IsNullOrEmpty Then
             Call Workbench.Warning("no linear model was loaded!")
         Else
-            Call ViewLinearModelReport(onHost:=False)
+            Call ViewLinearModelReport(onHost:=False, ignoreError:=False)
         End If
     End Sub
 

@@ -27,7 +27,7 @@ Public Interface QuantificationLinearPage
     Sub LoadSampleFiles(FileNames As String(), echo As Action(Of String))
     Sub LoadSampleMzpack(samples As String(), mzpack As Object, echo As Action(Of String))
 
-    Sub ViewLinearModelReport(onHost As Boolean)
+    Sub ViewLinearModelReport(onHost As Boolean, ignoreErr As Boolean)
 
     Function PullQuantifyResult() As IEnumerable(Of NamedValue(Of DynamicPropertyBase(Of Double)))
 
