@@ -5,6 +5,7 @@ Imports WeifenLuo.WinFormsUI.Docking
 Public NotInheritable Class Workbench
 
     Public Shared ReadOnly Property AppHost As AppHost
+    Public Shared Property SplashBannerImage As Image = My.Resources.Home_Logo_Link
 
     ''' <summary>
     ''' local http port for the ui view
