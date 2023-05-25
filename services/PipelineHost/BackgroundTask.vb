@@ -90,6 +90,7 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports SMRUCC.Rsharp.Runtime
+Imports SMRUCC.Rsharp.Runtime.Components
 Imports SMRUCC.Rsharp.Runtime.Interop
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports list = SMRUCC.Rsharp.Runtime.Internal.Object.list
@@ -364,14 +365,33 @@ Module BackgroundTask
         Call layers.GetJson.SaveTo(cache)
     End Sub
 
+    ''' <summary>
+    ''' extract the ms-imaging raw data peak feature table
+    ''' </summary>
+    ''' <param name="raw"></param>
+    ''' <param name="regions"></param>
+    ''' <param name="save"></param>
+    ''' <param name="mzdiff"></param>
+    ''' <param name="into_cutoff"></param>
+    ''' <param name="TrIQ"></param>
     <ExportAPI("MSI_peaktable")>
-    Public Sub ExportMSISampleTable(raw As String, regions As TissueRegion(), save As Stream)
-        Dim data As New Dictionary(Of String, ms2())
+    Public Function ExportMSISampleTable(raw As String, regions As TissueRegion(), save As Stream,
+                                         Optional mzdiff As Object = "da:0.005",
+                                         Optional into_cutoff As Double = 0.05,
+                                         Optional TrIQ As Double = 0.6,
+                                         Optional env As Environment = Nothing) As Object
 
-        Call RunSlavePipeline.SendMessage("Initialize raw data file...")
+        Dim data As New Dictionary(Of String, ms2())
+        Dim mzerr = Math.getTolerance(mzdiff, env, [default]:="da:0.005")
+
+        If mzerr Like GetType(Message) Then
+            Return mzerr.TryCast(Of Message)
+        Else
+            Call RunSlavePipeline.SendMessage("Initialize raw data file...")
+        End If
 
         Dim render As New Drawer(mzPack.ReadAll(raw.Open(FileMode.Open, doClear:=False, [readOnly]:=True), ignoreThumbnail:=True))
-        Dim ppm20 As Tolerance = Tolerance.DeltaMass(0.005)
+        Dim ppm20 As Tolerance = mzerr.TryCast(Of Tolerance)
         Dim j As i32 = 1
         Dim regionId As String
         Dim pixels As PixelScan()
@@ -392,7 +412,7 @@ Module BackgroundTask
         Dim allMz As Double() = data.Values _
             .IteratesALL _
             .ToArray _
-            .Centroid(ppm20, New RelativeIntensityCutoff(0.01)) _
+            .Centroid(ppm20, New RelativeIntensityCutoff(into_cutoff)) _
             .Select(Function(i) i.mz) _
             .OrderBy(Function(mz) mz) _
             .ToArray
@@ -422,7 +442,9 @@ Module BackgroundTask
         Next
 
         Call file.Flush()
-    End Sub
+
+        Return Nothing
+    End Function
 
     <ExportAPI("linear.ions_raw")>
     Public Function linear_ionsRaw(linearPack As LinearPack) As list

@@ -362,6 +362,10 @@ Public NotInheritable Class RscriptProgressTask
         End If
     End Sub
 
+    Public Shared Sub CreateMSIPeakTable(mzpack As String, saveAs As String, mzdiff As String, intocutoff As Double, TrIQ As Double)
+
+    End Sub
+
     Public Shared Sub CreateMSIPeakTable(mzpack As String, saveAs As String, exportTissueMaps As Action(Of Stream))
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".cdf", App.PID.ToHexString, prefix:="MSI_regions__")
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSI_peaktable.R")

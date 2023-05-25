@@ -1554,7 +1554,7 @@ Public Class frmMsImagingViewer
             Dim maxInto As Double = base?.intensity
 
             Call Invoke(Sub() params.SetIntensityMax(maxInto, New Point(base?.x, base?.y)))
-            Call Invoke(Sub() rendering = createRenderTask(pixels, Size))
+            Call Invoke(Sub() rendering = createRenderTask(pixels, size))
             Call Invoke(rendering)
             Call Workbench.SuccessMessage("Rendering Complete!")
         End If
@@ -1840,8 +1840,26 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub exportMSISampleTable()
+        If Not checkService() Then
+            Call Workbench.Warning("No MSI raw data is loaded!")
+            Return
+        End If
+
         If sampleRegions.IsNullOrEmpty Then
-            Call MyApplication.host.showStatusMessage("No sample spot regions!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            ' Call Workbench.Warning("No sample spot regions!")
+            ' export all spots
+            Using file As New SaveFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
+                If file.ShowDialog = DialogResult.OK Then
+                    Call InputDialog.Input(Of InputMSIPeakTableParameters)(
+                        Sub(cfg)
+                            Call RscriptProgressTask.CreateMSIPeakTable(
+                                mzpack:=FilePath,
+                                saveAs:=file.FileName,
+                                cfg.Mzdiff, cfg.IntoCutoff, cfg.TrIQCutoff
+                            )
+                        End Sub)
+                End If
+            End Using
         Else
             Using file As New SaveFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
                 If file.ShowDialog = DialogResult.OK Then
