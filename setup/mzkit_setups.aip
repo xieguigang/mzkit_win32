@@ -64,6 +64,7 @@
     <ROW Directory="CommonAppDataFolder" Directory_Parent="TARGETDIR" DefaultDir="COMMON~1|CommonAppDataFolder" IsPseudoRoot="1"/>
     <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
     <ROW Directory="DevTools_Dir" Directory_Parent="SHORTCUTDIR" DefaultDir="DevTools"/>
+    <ROW Directory="MRMImaging_Dir" Directory_Parent="data_Dir" DefaultDir="MRM-IM~1|MRM-Imaging"/>
     <ROW Directory="MSImaging_Dir" Directory_Parent="pipeline_Dir" DefaultDir="MSIMAG~1|MSImaging"/>
     <ROW Directory="NMR_Dir" Directory_Parent="demo_Dir" DefaultDir="NMR"/>
     <ROW Directory="NewFolder_1_Dir" Directory_Parent="APPDIR" DefaultDir="images"/>
@@ -646,6 +647,7 @@
     <ROW Component="hdf5.dll_1" ComponentId="{63977075-690E-4D84-BF5C-C893BC183C48}" Directory_="bin64_Dir" Attributes="256" KeyPath="hdf5.dll_1"/>
     <ROW Component="hdf5_hl.dll" ComponentId="{D0F53FE1-1C23-4C87-B4D0-E6BAA1ED0716}" Directory_="bin32_Dir" Attributes="0" KeyPath="hdf5_hl.dll"/>
     <ROW Component="hdf5_hl.dll_1" ComponentId="{33FF0BDC-B836-4298-A836-D0920F950922}" Directory_="bin64_Dir" Attributes="256" KeyPath="hdf5_hl.dll_1"/>
+    <ROW Component="hpo_AAAAAA0001eye_HR.wiff" ComponentId="{21ACCBF4-2852-48B7-8143-112B39BE79AE}" Directory_="MRMImaging_Dir" Attributes="0" KeyPath="hpo_AAAAAA0001eye_HR.wiff" Type="0"/>
     <ROW Component="igraph.dll" ComponentId="{0F05D7C2-03D4-4C28-B43F-470D8F511F82}" Directory_="library_Dir" Attributes="256" KeyPath="igraph.dll"/>
     <ROW Component="install_locals.cmd" ComponentId="{7A6DCF88-DE75-4942-A2E1-16C51C260C94}" Directory_="packages_Dir" Attributes="0" KeyPath="install_locals.cmd"/>
     <ROW Component="library" ComponentId="{7165AD75-FA2D-4513-8E69-E2CCE22396AC}" Directory_="library_Dir" Attributes="256"/>
@@ -4779,6 +4781,9 @@
     <ROW File="System.Security.Permissions.dll_1" Component_="System.Security.Permissions.dll_1" FileName="SYSTE~23.DLL|System.Security.Permissions.dll" Attributes="0" SourcePath="..\..\..\dist\bin\System.Security.Permissions.dll" SelfReg="false"/>
     <ROW File="System.Security.Principal.Windows.dll" Component_="System.Security.Principal.Windows.dll" FileName="SYSTE~24.DLL|System.Security.Principal.Windows.dll" Attributes="0" SourcePath="..\..\..\dist\bin\System.Security.Principal.Windows.dll" SelfReg="false"/>
     <ROW File="mzkit_win32.VisualElementsManifest.xml" Component_="mzkit_win32.VisualElementsManifest.xml" FileName="MZKIT_~1.XML|mzkit_win32.VisualElementsManifest.xml" Attributes="0" SourcePath="&lt;AI_RES&gt;app.VisualElementsManifest.xml" SelfReg="false"/>
+    <ROW File="hpo_AAAAAA0001eye_HR.wiff" Component_="hpo_AAAAAA0001eye_HR.wiff" FileName="1HPO_A~1.WIF|1hpo_AAAAAA-0001eye_HR.wiff" Attributes="0" SourcePath="..\extdata\MRM-ms-imaging\1hpo_AAAAAA-0001eye_HR.wiff" SelfReg="false"/>
+    <ROW File="hpo_AAAAAA0001eye_HR.wiff.scan" Component_="hpo_AAAAAA0001eye_HR.wiff" FileName="1HPO_A~1.SCA|1hpo_AAAAAA-0001eye_HR.wiff.scan" Attributes="0" SourcePath="..\extdata\MRM-ms-imaging\1hpo_AAAAAA-0001eye_HR.wiff.scan" SelfReg="false"/>
+    <ROW File="hpo_AAAAAA0001eye_HR3.5J.mzML" Component_="hpo_AAAAAA0001eye_HR.wiff" FileName="1HPO_A~1.MZM|1hpo_AAAAAA-0001eye_HR-3.5µJ.mzML" Attributes="0" SourcePath="..\extdata\MRM-ms-imaging\1hpo_AAAAAA-0001eye_HR-3.5µJ.mzML" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -5487,6 +5492,7 @@
     <ROW Feature_="MainFeature" Component_="System.Security.Permissions.dll_1"/>
     <ROW Feature_="MainFeature" Component_="System.Security.Principal.Windows.dll"/>
     <ROW Feature_="TileAssets_DefaultBuild" Component_="mzkit_win32.VisualElementsManifest.xml"/>
+    <ROW Feature_="MainFeature" Component_="hpo_AAAAAA0001eye_HR.wiff"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
