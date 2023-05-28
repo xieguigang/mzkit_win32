@@ -182,6 +182,7 @@ Imports Microsoft.VisualBasic.Scripting.Runtime
         Dim dims As Size = args("/dims").DefaultValue.SizeParser
         Dim resolution As Integer = args("/resolution") Or 50
         Dim output As String = args("/out") Or $"{raw.ParentPath}/{raw.BaseName}_{dims.Width}x{dims.Height}@{resolution}um.mzPack"
+
     End Function
 
     <ExportAPI("/rowbinds")>
