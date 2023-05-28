@@ -470,6 +470,12 @@
     <Compile Include="application\settings\RawFileViewerSettings.vb" />
     <Compile Include="application\VisualStudio.vb" />
     <Compile Include="application\RPackage.vb" />
+    <Compile Include="forms\Inputs\MSImaging\InputMSIPeakTableParameters.Designer.vb">
+      <DependentUpon>InputMSIPeakTableParameters.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\MSImaging\InputMSIPeakTableParameters.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\InputConvert10x.Designer.vb">
       <DependentUpon>InputConvert10x.vb</DependentUpon>
     </Compile>
@@ -1125,6 +1131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputMoNAHits.resx">
       <DependentUpon>InputMoNAHits.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\MSImaging\InputMSIPeakTableParameters.resx">
+      <DependentUpon>InputMSIPeakTableParameters.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputNetworkLayout.resx">
       <DependentUpon>InputNetworkLayout.vb</DependentUpon>

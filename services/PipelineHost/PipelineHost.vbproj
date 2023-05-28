@@ -109,4 +109,6 @@
     <ProjectReference Include="..\CFM-ID\CFM-ID.vbproj" />
   </ItemGroup>
 
+  <Import Project="..\..\..\..\Rscript\Library\mzkit.interopArguments\mzkit.interopArguments.projitems" Label="Shared" />
+
 </Project>

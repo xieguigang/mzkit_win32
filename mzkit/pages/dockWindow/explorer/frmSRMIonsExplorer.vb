@@ -131,8 +131,12 @@ Public Class frmSRMIonsExplorer
                 }
                 Dim chromatogram As ChromatogramTick() = scan1 _
                     .Select(Function(s)
-                                Dim i As Integer = Integer.Parse(s.meta(chr))
-                                Dim into As Double = s.into(i)
+                                Dim into As Double = 0
+
+                                If s.meta.ContainsKey(chr) Then
+                                    Dim i As Integer = Integer.Parse(s.meta(chr))
+                                    into = s.into(i)
+                                End If
 
                                 Return New ChromatogramTick(s.rt, into)
                             End Function) _
@@ -170,9 +174,11 @@ Public Class frmSRMIonsExplorer
         Dim ionsLib As IonLibrary = Globals.LoadIonLibrary
         Dim display As String
 
-        For Each chr As chromatogram In list.Where(Function(i)
-                                                       Return Not (i.id.TextEquals("TIC") OrElse i.id.TextEquals("BPC"))
-                                                   End Function)
+        For Each chr As chromatogram In list _
+            .Where(Function(i)
+                       Return Not (i.id.TextEquals("TIC") OrElse i.id.TextEquals("BPC"))
+                   End Function)
+
             Dim ionRef As New IonPair With {
                 .precursor = chr.precursor.MRMTargetMz,
                 .product = chr.product.MRMTargetMz

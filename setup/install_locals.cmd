@@ -14,5 +14,6 @@ SET R_ENV="%R_HOME%/R#.exe"
 %R_ENV% --install.packages "./MSImaging.zip"
 %R_ENV% --install.packages "./mzkit.zip"
 %R_ENV% --install.packages "./REnv.zip"
+%R_ENV% --install.packages "./Erica.zip"
 
 REM pause
