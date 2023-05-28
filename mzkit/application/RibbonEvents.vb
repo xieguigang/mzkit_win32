@@ -474,8 +474,7 @@ Module RibbonEvents
         Call showMsImaging()
 
         Select Case file.ExtensionSuffix.ToLower
-            Case "raw" : Call WindowModules.viewer.loadRaw(file)
-            Case "mzml" : Call WindowModules.viewer.loadmzML(file)
+            Case "mzml", "raw" : Call WindowModules.viewer.loadRaw(file)
             Case "imzml", "mzpack" : Call WindowModules.viewer.loadimzML(file)
             Case "cdf" : Call WindowModules.msImageParameters.loadRenderFromCDF(file)
             Case Else

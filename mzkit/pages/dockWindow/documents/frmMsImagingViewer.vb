@@ -1111,7 +1111,7 @@ Public Class frmMsImagingViewer
     End Sub
 
     ''' <summary>
-    ''' load thermo raw
+    ''' load thermo *.raw or *.mzML
     ''' </summary>
     ''' <param name="file"></param>
     Public Sub loadRaw(file As String)
@@ -1128,7 +1128,7 @@ Public Class frmMsImagingViewer
 
             Call ProgressSpinner.DoLoading(
                 Sub()
-                    Dim info As MsImageProperty = MSIservice.LoadMSI(file, getSize.Dims.SizeParser, Sub(msg) MyApplication.host.showStatusMessage(msg))
+                    Dim info As MsImageProperty = MSIservice.LoadMSI(file, getSize.Dims.SizeParser, AddressOf Workbench.StatusMessage)
 
                     Call WindowModules.viewer.Invoke(Sub() Call LoadRender(info, file))
                     Call WindowModules.viewer.Invoke(Sub() WindowModules.viewer.DockState = DockState.Document)
@@ -1142,14 +1142,6 @@ Public Class frmMsImagingViewer
             WindowModules.msImageParameters.DockState = DockState.DockLeft
         Else
             Call MyApplication.host.showStatusMessage("User cancel load MSI raw data file...")
-        End If
-    End Sub
-
-    Public Sub loadmzML(file As String)
-        Dim getSize As New InputMSIDimension
-
-        If getSize.ShowDialog = DialogResult.OK Then
-            guid = file.MD5
         End If
     End Sub
 

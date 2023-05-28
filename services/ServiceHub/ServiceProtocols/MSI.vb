@@ -1,63 +1,63 @@
 ﻿#Region "Microsoft.VisualBasic::dc709719d2eb0d4fdc41766495d7ac4f, mzkit\src\mzkit\services\ServiceHub\ServiceProtocols\MSI.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 553
-    '    Code Lines: 402
-    ' Comment Lines: 63
-    '   Blank Lines: 88
-    '     File Size: 23.06 KB
+' Summaries:
 
 
-    ' Class MSI
-    ' 
-    '     Properties: Protocol, TcpPort
-    ' 
-    '     Constructor: (+1 Overloads) Sub New
-    ' 
-    '     Function: CutBackground, ExportMzPack, ExtractMultipleSampleRegions, ExtractRegionSample, GetBPCIons
-    '               GetIonColocalization, GetIonStatList, GetMSIInformationMetadata, GetMSILayers, GetPixel
-    '               GetPixelRectangle, Load, LoadSummaryLayer, Quit, Run
-    '               TurnMirrors, TurnUpsideDown, Unload
-    ' 
-    '     Sub: (+2 Overloads) Dispose
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 553
+'    Code Lines: 402
+' Comment Lines: 63
+'   Blank Lines: 88
+'     File Size: 23.06 KB
+
+
+' Class MSI
+' 
+'     Properties: Protocol, TcpPort
+' 
+'     Constructor: (+1 Overloads) Sub New
+' 
+'     Function: CutBackground, ExportMzPack, ExtractMultipleSampleRegions, ExtractRegionSample, GetBPCIons
+'               GetIonColocalization, GetIonStatList, GetMSIInformationMetadata, GetMSILayers, GetPixel
+'               GetPixelRectangle, Load, LoadSummaryLayer, Quit, Run
+'               TurnMirrors, TurnUpsideDown, Unload
+' 
+'     Sub: (+2 Overloads) Dispose
+' 
+' /********************************************************************************/
 
 #End Region
 
@@ -67,6 +67,7 @@ Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
@@ -86,6 +87,7 @@ Imports Microsoft.VisualBasic.MIME.application.json.Javascript
 Imports Microsoft.VisualBasic.Net.Protocols.Reflection
 Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Parallel
+Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Parallel
 Imports stdNum = System.Math
@@ -131,6 +133,27 @@ Public Class MSI : Implements ITaskDriver, IDisposable
 
     Public Function Run() As Integer Implements ITaskDriver.Run
         Return socket.Run
+    End Function
+
+    <Protocol(ServiceProtocol.LoadThermoRawMSI)>
+    Public Function loadMzML(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
+        ' $"{dimSize.Width},{dimSize.Height}={raw}"
+        Dim strConfig As String = request.GetUTF8String
+        Dim parse = strConfig.GetTagValue("=", trim:=True)
+        Dim dims As Size = parse.Name.SizeParser
+        Dim filepath As String = parse.Value
+
+        If filepath.ExtensionSuffix("mzML") Then
+            If RawScanParser.IsMRMData(filepath) Then
+                ' load ms-imaging data via MRM mode
+            Else
+                ' load ms-imaging data via LC-MS mode
+                Dim mzpack As mzPack = Converter.LoadRawFileAuto(xml:=filepath)
+
+            End If
+        Else
+            Return New DataPipe("invalid file type!")
+        End If
     End Function
 
     ''' <summary>
@@ -498,32 +521,32 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Dim xy As Integer() = request.GetIntegers
         Dim pixel As PixelScan = MSI.pixelReader.GetPixel(xy(0), xy(1))
 
-        Call RunSlavePipeline.SendMessage($"read [{xy(0)},{xy(1)}]")
-
         If pixel Is Nothing Then
-            Call RunSlavePipeline.SendMessage($"but missing pixel data at [{xy(0)},{xy(1)}]!")
+            Call RunSlavePipeline.SendMessage($"Missing pixel data at [{xy(0)},{xy(1)}]!")
             Return New DataPipe(New Byte() {})
-        Else
-            Dim annotations As String() = Nothing
-
-            If Not ion_annotations.IsNullOrEmpty Then
-                Dim mz As Double() = pixel.GetMs.Select(Function(i) i.mz).ToArray
-
-                annotations = New String(mz.Length - 1) {}
-
-                If type = FileApplicationClass.STImaging Then
-                    For i As Integer = 0 To mz.Length - 1
-                        annotations(i) = ion_annotations.TryGetValue(CInt(mz(i)).ToString)
-                    Next
-                Else
-                    For i As Integer = 0 To mz.Length - 1
-                        annotations(i) = ion_annotations.TryGetValue(mz(i).ToString("F4"))
-                    Next
-                End If
-            End If
-
-            Return New DataPipe(New InMemoryVectorPixel(pixel, annotations).GetBuffer)
         End If
+
+        Dim annotations As String() = Nothing
+
+        Call RunSlavePipeline.SendMessage($"read a 2D pixel [{xy(0)},{xy(1)}]")
+
+        If Not ion_annotations.IsNullOrEmpty Then
+            Dim mz As Double() = pixel.GetMs.Select(Function(i) i.mz).ToArray
+
+            annotations = New String(mz.Length - 1) {}
+
+            If type = FileApplicationClass.STImaging Then
+                For i As Integer = 0 To mz.Length - 1
+                    annotations(i) = ion_annotations.TryGetValue(CInt(mz(i)).ToString)
+                Next
+            Else
+                For i As Integer = 0 To mz.Length - 1
+                    annotations(i) = ion_annotations.TryGetValue(mz(i).ToString("F4"))
+                Next
+            End If
+        End If
+
+        Return New DataPipe(New InMemoryVectorPixel(pixel, annotations).GetBuffer)
     End Function
 
     ''' <summary>
