@@ -146,6 +146,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         If filepath.ExtensionSuffix("mzML") Then
             If RawScanParser.IsMRMData(filepath) Then
                 ' load ms-imaging data via MRM mode
+                Dim ions = mzML.LoadChromatogramList(filepath).ToArray
             Else
                 ' load ms-imaging data via LC-MS mode
                 Dim mzpack As mzPack = Converter.LoadRawFileAuto(xml:=filepath)
