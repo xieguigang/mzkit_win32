@@ -142,19 +142,45 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Dim parse = strConfig.GetTagValue("=", trim:=True)
         Dim dims As Size = parse.Name.SizeParser
         Dim filepath As String = parse.Value
+        Dim msi As mzPack
+        Dim info As Dictionary(Of String, String)
 
         If filepath.ExtensionSuffix("mzML") Then
             If RawScanParser.IsMRMData(filepath) Then
                 ' load ms-imaging data via MRM mode
                 Dim ions = mzML.LoadChromatogramList(filepath).ToArray
+                Dim mzpack As mzPack = ions.ConvertMzMLFile(source:=filepath.BaseName, size:=dims.Area)
+
+                msi = mzpack.ConvertToMSI(dims)
             Else
                 ' load ms-imaging data via LC-MS mode
                 Dim mzpack As mzPack = Converter.LoadRawFileAuto(xml:=filepath)
-
+                msi = mzpack.ConvertToMSI(dims)
             End If
+        ElseIf filepath.ExtensionSuffix("mzPack") Then
+            ' the mzpack is not row scans result
+            Call RunSlavePipeline.SendMessage($"read MSI dataset from the mzPack raw data file!")
+
+            Using file As Stream = filepath.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
+                Dim mzpack As mzPack = mzPack.ReadAll(
+                    file:=file,
+                    ignoreThumbnail:=True,
+                    verbose:=True,
+                    skipMsn:=True
+                )
+
+                msi = mzpack.ConvertToMSI(dims)
+            End Using
         Else
             Return New DataPipe("invalid file type!")
         End If
+
+        Call LoadMSIMzPackCommon(msi)
+
+        info = MSIProtocols.GetMSIInfo(Me)
+        info!source = sourceName
+
+        Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
     End Function
 
     ''' <summary>
@@ -198,41 +224,17 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             metadata = mzPack.GetMSIMetadata
             type = FileApplicationClass.MSImaging
         Else
-            Dim mzpack As mzPack
-
             Call RunSlavePipeline.SendMessage($"read MSI dataset from the mzPack raw data file!")
 
             Using file As Stream = filepath.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
-                mzpack = mzPack.ReadAll(
+                Dim mzpack As mzPack = mzPack.ReadAll(
                     file:=file,
                     ignoreThumbnail:=True,
                     verbose:=True,
                     skipMsn:=True
                 )
-                sourceName = mzpack.source
-                metadata = mzpack.GetMSIMetadata
-                ion_annotations = mzpack.Annotations
-                type = mzpack.Application
 
-                If Not ion_annotations.IsNullOrEmpty Then
-                    For Each layer In ion_annotations
-                        map_to_ion(layer.Value) = Val(layer.Key)
-                    Next
-                End If
-
-                If Not mzpack.source.ExtensionSuffix("csv") Then
-                    Call RunSlavePipeline.SendMessage("make bugs fixed for RT pixel correction!")
-
-                    ' skip for bruker data
-                    mzpack = mzpack.ScanMeltdown(
-                        gridSize:=10,
-                        println:=Nothing
-                    )
-                End If
-
-                Call RunSlavePipeline.SendMessage("Load MS-imaging raw data into workspace!")
-
-                MSI = New Drawer(mzpack)
+                Call LoadMSIMzPackCommon(mzpack)
             End Using
         End If
 
@@ -241,6 +243,33 @@ Public Class MSI : Implements ITaskDriver, IDisposable
 
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
     End Function
+
+    Private Sub LoadMSIMzPackCommon(mzpack As mzPack)
+        sourceName = mzpack.source
+        metadata = mzpack.GetMSIMetadata
+        ion_annotations = mzpack.Annotations
+        type = mzpack.Application
+
+        If Not ion_annotations.IsNullOrEmpty Then
+            For Each layer In ion_annotations
+                map_to_ion(layer.Value) = Val(layer.Key)
+            Next
+        End If
+
+        If Not mzpack.source.ExtensionSuffix("csv") Then
+            Call RunSlavePipeline.SendMessage("make bugs fixed for RT pixel correction!")
+
+            ' skip for bruker data
+            mzpack = mzpack.ScanMeltdown(
+                gridSize:=10,
+                println:=Nothing
+            )
+        End If
+
+        Call RunSlavePipeline.SendMessage("Load MS-imaging raw data into workspace!")
+        MSI = New Drawer(mzpack)
+        Call RunSlavePipeline.SendMessage("Load raw data job done!")
+    End Sub
 
     <Protocol(ServiceProtocol.ExtractMultipleSampleRegions)>
     Public Function ExtractMultipleSampleRegions(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
