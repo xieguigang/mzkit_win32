@@ -459,9 +459,12 @@ Module RibbonEvents
         End Using
     End Sub
 
+    ''' <summary>
+    ''' open the ms-imaging raw data file
+    ''' </summary>
     Public Sub OpenMSIRaw()
         Using file As New OpenFileDialog() With {
-            .Filter = "All Supported Raw(*.raw;*.mzPack;*.imzML;*.cdf)|*.raw;*.mzPack;*.imzML;*.cdf|Thermo Raw(*.raw)|*.raw|Imaging mzML(*.imzML)|*.imzML|Mzkit Pixel Matrix(*.cdf)|*.cdf",
+            .Filter = "All Supported Raw(*.raw;*.mzPack;*.imzML;*.cdf;*.mzML)|*.raw;*.mzPack;*.imzML;*.cdf;*.mzML|Thermo Raw(*.raw)|*.raw|Imaging mzML(*.imzML)|*.imzML|Mzkit Pixel Matrix(*.cdf)|*.cdf|MRM targetted MS-Imaging(*.mzML)|*.mzML",
             .Title = "Open MS-imaging Raw Data File"
         }
             If file.ShowDialog = DialogResult.OK Then

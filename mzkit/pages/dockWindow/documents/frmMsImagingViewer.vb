@@ -70,6 +70,7 @@ Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
@@ -1118,6 +1119,17 @@ Public Class frmMsImagingViewer
         Dim getSize As New InputMSIDimension
         Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
 
+        If RawScanParser.IsMRMData(file) Then
+            Call New Thread(
+                Sub()
+                    Call Thread.Sleep(1000)
+                    Call getSize.Invoke(
+                        Sub()
+                            getSize.SetTotalScans(mzML.LoadChromatogramList(file).Select(Function(c) Val(c.defaultArrayLength)).Max)
+                        End Sub)
+                End Sub).Start()
+        End If
+
         If mask.ShowDialogForm(getSize) = DialogResult.OK Then
             guid = file.MD5
             FilePath = file
@@ -1132,11 +1144,7 @@ Public Class frmMsImagingViewer
 
                     Call WindowModules.viewer.Invoke(Sub() Call LoadRender(info, file))
                     Call WindowModules.viewer.Invoke(Sub() WindowModules.viewer.DockState = DockState.Document)
-
-                    MyApplication.host.Invoke(
-                        Sub()
-                            MyApplication.host.Text = $"BioNovoGene Mzkit [{WindowModules.viewer.Text} {file.FileName}]"
-                        End Sub)
+                    Call Workbench.AppHost.SetTitle($"{WindowModules.viewer.Text} {file.FileName}")
                 End Sub)
 
             WindowModules.msImageParameters.DockState = DockState.DockLeft

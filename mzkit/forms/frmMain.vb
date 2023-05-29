@@ -124,7 +124,7 @@ Public Class frmMain : Implements AppHost
             RibbonEvents.nav.Push(page)
         End If
 
-        Me.Text = $"BioNovoGene Mzkit [{page.Text}]"
+        SetTitle(page.Text)
         page.Visible = True
         page.Show()
 
@@ -137,7 +137,7 @@ Public Class frmMain : Implements AppHost
     ''' <param name="file"></param>
     Public Sub ShowMRMIons(file As String)
         If Not file.FileExists Then
-            Call showStatusMessage($"missing raw data file '{file.GetFullPath}'!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning($"Missing raw data file '{file.GetFullPath}'!")
         Else
             WindowModules.MRMIons.DockState = DockState.DockLeft
             WindowModules.MRMIons.LoadMRM(file)
@@ -146,7 +146,7 @@ Public Class frmMain : Implements AppHost
 
     Public Sub ShowGCMSSIM(file As String, isBackground As Boolean, showExplorer As Boolean)
         If Not file.FileExists Then
-            Call showStatusMessage($"missing raw data file '{file.GetFullPath}'!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning($"Missing raw data file '{file.GetFullPath}'!")
         ElseIf Not WindowModules.GCMSPeaks.ContainsRaw(file) Then
             Dim raw = frmGCMS_CDFExplorer.loadCDF(file, isBackground)
 
@@ -165,7 +165,14 @@ Public Class frmMain : Implements AppHost
     Private Sub showRamanSpectrumData(file As String)
         Dim data = Raman.FileReader.ParseTextFile(file)
         Dim sig = New NamedCollection(Of ChromatogramTick)("Raman Spectroscopy", data.ToChromatogram)
-        Dim obj = DynamicType.Create(data.Comments.JoinIterates(data.DetailedInformation).JoinIterates(data.MeasurementInformation).ToDictionary(Function(a) a.Key, Function(a) CObj(a.Value)))
+        Dim obj = DynamicType.Create(
+            metadata:=data.Comments _
+                .JoinIterates(data.DetailedInformation) _
+                .JoinIterates(data.MeasurementInformation) _
+                .ToDictionary(Function(a) a.Key,
+                              Function(a)
+                                  Return CObj(a.Value)
+                              End Function))
 
         Call mzkitTool.TIC({sig}, d3:=False, xlab:="Raman Shift [cm-1]")
         Call mzkitTool.ShowPage()
@@ -259,7 +266,7 @@ Public Class frmMain : Implements AppHost
 
             Call WindowModules.rawFeaturesList.LoadRaw(raw)
             Call VisualStudio.Dock(WindowModules.rawFeaturesList, DockState.DockLeft)
-            Call Workbench.StatusMessage($"Load {fileName} success!")
+            Call Workbench.SuccessMessage($"Load {fileName} success!")
         Else
             Call WindowModules.fileExplorer.ImportsRaw(fileName)
         End If
@@ -330,8 +337,7 @@ Public Class frmMain : Implements AppHost
                          End Function)
 
             WindowModules.viewer.LoadRender(cachefile, imzML)
-
-            Text = $"BioNovoGene Mzkit [{WindowModules.viewer.Text} {imzML.FileName}]"
+            Workbench.AppHost.SetTitle($"{WindowModules.viewer.Text} {imzML.FileName}")
         End If
 
         WindowModules.viewer.RenderSummary(IntensitySummary.BasePeak)
@@ -380,7 +386,7 @@ Public Class frmMain : Implements AppHost
 
         If Not script.scriptFile.StringEmpty Then
             Globals.AddRecentFileHistory(script.scriptFile)
-            Me.showStatusMessage($"Save R# script file at location {script.scriptFile.GetFullPath}!")
+            Workbench.StatusMessage($"Save R# script file at location {script.scriptFile.GetFullPath}!")
         End If
     End Sub
 
@@ -395,7 +401,7 @@ Public Class frmMain : Implements AppHost
                     ' do nothing
                 End Sub)
 
-            Me.showStatusMessage("The workspace was saved!")
+            Workbench.StatusMessage("The workspace was saved!")
         End If
     End Sub
 
@@ -435,7 +441,7 @@ Public Class frmMain : Implements AppHost
 
             If Not file.StringEmpty Then
                 Globals.AddRecentFileHistory(file)
-                Me.showStatusMessage($"Current file saved at {file.GetFullPath}!")
+                Workbench.StatusMessage($"Current file saved at {file.GetFullPath}!")
             End If
         End If
     End Sub
@@ -886,5 +892,12 @@ Public Class frmMain : Implements AppHost
 
     Public Sub LogText(msg As String) Implements AppHost.LogText
         MyApplication.LogForm.AppendMessage(msg)
+    End Sub
+
+    Public Sub SetTitle(title As String) Implements AppHost.SetTitle
+        Call Invoke(
+            Sub()
+                Text = $"BioNovoGene MZKit Workbench [{title}]"
+            End Sub)
     End Sub
 End Class
