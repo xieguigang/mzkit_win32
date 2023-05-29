@@ -83,9 +83,9 @@ Partial Class InputMSIDimension
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -155,14 +155,13 @@ Partial Class InputMSIDimension
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Set Dimension Size"
         '
-        'Button2
+        'TextBox3
         '
-        Me.Button2.Location = New System.Drawing.Point(80, 151)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 8
-        Me.Button2.Text = "Cancel"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.TextBox3.Location = New System.Drawing.Point(102, 86)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.ReadOnly = True
+        Me.TextBox3.Size = New System.Drawing.Size(132, 20)
+        Me.TextBox3.TabIndex = 7
         '
         'Label4
         '
@@ -173,13 +172,14 @@ Partial Class InputMSIDimension
         Me.Label4.TabIndex = 6
         Me.Label4.Text = "Total Scans:"
         '
-        'TextBox3
+        'Button2
         '
-        Me.TextBox3.Location = New System.Drawing.Point(102, 86)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.ReadOnly = True
-        Me.TextBox3.Size = New System.Drawing.Size(132, 20)
-        Me.TextBox3.TabIndex = 7
+        Me.Button2.Location = New System.Drawing.Point(80, 151)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 8
+        Me.Button2.Text = "Cancel"
+        Me.Button2.UseVisualStyleBackColor = True
         '
         'InputMSIDimension
         '

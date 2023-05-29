@@ -222,4 +222,8 @@ Public Class FormMain : Implements AppHost
     Public Sub ShowProperties(obj As Object) Implements AppHost.ShowProperties
         ' Throw New NotImplementedException()
     End Sub
+
+    Public Sub SetTitle(title As String) Implements AppHost.SetTitle
+        Call Invoke(Sub() Me.Text = title)
+    End Sub
 End Class
