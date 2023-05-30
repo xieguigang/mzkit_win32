@@ -150,7 +150,7 @@ public class NVIDIAAnsel
         return str;
     }
 
-    public async void StartImageProcessing()
+    public void StartImageProcessing()
     {
         if (!systemCheckComplete)
         {
@@ -168,7 +168,7 @@ public class NVIDIAAnsel
         }
 
         string time = DateTime.Now.ToString("yyyy MM dd HH mm ss");
-        int resolutionFactor = (int)Math.Pow(2, (int)ScaleSize.x4);
+        int resolutionFactor = (int)Math.Pow(2, (int)ScaleSize.x16);
         string colourMode = "2";
         bool limitSize = true;
 
@@ -178,14 +178,13 @@ public class NVIDIAAnsel
 
         Program.message($"Processing... ({tasksCompleted + 1}/{imagePaths.Count})");
 
-
         var progress = new Progress<int>(progressValue =>
         {
             Debug.Write(progressValue);
             Program.message($"Processing... ({progressValue++}/{imagePaths.Count})");
         });
 
-        await Task.Run(() => ProcessImage(time, resolutionFactor, colourMode, limitSize, progress));
+        ProcessImage(time, resolutionFactor, colourMode, limitSize, progress);
 
         // If no images failed, show a success image.
         if (failedImages <= 0)
@@ -195,7 +194,7 @@ public class NVIDIAAnsel
     }
 
     // Processes the selected images into the NVIDIA Ansel AI Up-Res app in a multithreaded way.
-    async Task ProcessImage(string time, int defaultResolutionFactor, string colourMode, bool limitSize, IProgress<int> progress)
+    void ProcessImage(string time, int defaultResolutionFactor, string colourMode, bool limitSize, IProgress<int> progress)
     {
         string tempDirectoryName = string.Empty;
 
@@ -206,15 +205,12 @@ public class NVIDIAAnsel
             Directory.CreateDirectory(tempDirectoryName);
         }
 
-        await Task.Run(() =>
+        // Divides the task into many parallel tasks (multithreading).
+        Parallel.ForEach(imagePaths, new ParallelOptions()
         {
-            // Divides the task into many parallel tasks (multithreading).
-            Parallel.ForEach(imagePaths, new ParallelOptions()
-            {
-                // The user selected thread count becomes the max possible threads the following tasks will use at once.
-                MaxDegreeOfParallelism = threadCount
-            }, sourceImagePath => processImage(sourceImagePath, defaultResolutionFactor, colourMode, limitSize, progress, tempDirectoryName));
-        });
+            // The user selected thread count becomes the max possible threads the following tasks will use at once.
+            MaxDegreeOfParallelism = threadCount
+        }, sourceImagePath => processImage(sourceImagePath, defaultResolutionFactor, colourMode, limitSize, progress, tempDirectoryName));
     }
 
     private void processImage(string sourceImagePath, int defaultResolutionFactor, string colourMode, bool limitSize, IProgress<int> progress, string tempDirectoryName)

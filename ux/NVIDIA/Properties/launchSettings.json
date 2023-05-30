@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "nvidia-anselAI": {
+      "commandName": "Project",
+      "commandLineArgs": "\"F:\\mzkit\\dist\\bin\\plugins\\nvidia\\test.png\""
+    }
+  }
+}
