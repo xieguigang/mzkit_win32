@@ -1,4 +1,6 @@
-﻿class GraphicsAdapter
+﻿namespace nv;
+
+class GraphicsAdapter
 {
     public string Name { get; set; }
     public string DriverVersion { get; set; }

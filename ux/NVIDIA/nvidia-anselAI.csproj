@@ -6,7 +6,7 @@
     <RootNamespace>nvidia_anselAI</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <ApplicationIcon>NVIDIA-GeForce-Experience.ico</ApplicationIcon>
+    <ApplicationIcon>asserts\NVIDIA-GeForce-Experience.ico</ApplicationIcon>
     <StartupObject>nvidia_anselAI.Program</StartupObject>
     <OutputPath>../../../../dist\bin\plugins\nvidia\</OutputPath>
     <Platforms>AnyCPU;x64</Platforms>
