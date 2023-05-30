@@ -21,10 +21,26 @@ public class NVIDIAAnsel
     bool firstTime;
     readonly List<string> imagePaths = new List<string>();
 
-    public NVIDIAAnsel()
+    const string NvDLISR_default = "C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR/nvdlisrwrapper.exe";
+
+    public NVIDIAAnsel(IEnumerable<string> files = null)
     {
         Program.message("NVIDIA Display Adapter is required ;)\n\n\nTL;DR\nDo not up-res images that will result in a resolution of over 9000x9000.\n\nWhen up-ressing an image that will result in a resolution of over 9000x9000, the image is likely to provide an error during processing due to memory limitations with NVIDIA's API.");
+
         DetectSystem();
+
+        if (files != null)
+        {
+            this.imagePaths.AddRange(files);
+        }
+    }
+
+    public void Add(IEnumerable<string> files)
+    {
+        if (files != null)
+        {
+            imagePaths.AddRange(files);
+        }
     }
 
     // Checks whether the system is able to use the app.
@@ -34,11 +50,9 @@ public class NVIDIAAnsel
 
         supportLevel = graphicsAdapter.SupportLevel;
 
-
-
         // Has graphics adapter but not app (probably driver update needed).
         if (graphicsAdapter.SupportLevel != SupportLevel.None && !DetectApp())
-            Program.message("I was unable to locate 'C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR/nvdlisrwrapper.exe'. Without this app, I cannot do what I am supposed to do.\n\nIt is very likely that your Display Adapter Driver needs updating.");
+            Program.message($"I was unable to locate '{NvDLISR_default}'. Without this app, I cannot do what I am supposed to do.\n\nIt is very likely that your Display Adapter Driver needs updating.");
         // Has neither the graphics adapter nor the app (probably not NVIDIA).
         else if (graphicsAdapter.SupportLevel == SupportLevel.None && !DetectApp())
             Program.message("An NVIDIA GeForce GTX or RTX display adapter is required and neither could not be found.");
@@ -46,14 +60,13 @@ public class NVIDIAAnsel
         else if (graphicsAdapter.SupportLevel == SupportLevel.None && DetectApp())
             Program.message("An NVIDIA GeForce GTX or RTX display adapter is required and neither could be found.\n\nIf you feel like this is a mistake, enable 'Force Mode'.");
 
-
         systemCheckComplete = true;
     }
 
     // Checks if the app required for up-ressing is present.
     bool DetectApp()
     {
-        if (!File.Exists("C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR/nvdlisrwrapper.exe"))
+        if (!File.Exists(NvDLISR_default))
             return false;
 
         return true;
@@ -259,7 +272,7 @@ public class NVIDIAAnsel
             // Starts the NVIDIA Ansel AI Up-Res app and insert the selected image into it.
             using (Process process = new Process())
             {
-                process.StartInfo.FileName = "C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR/nvdlisrwrapper.exe";
+                process.StartInfo.FileName = NvDLISR_default;
                 process.StartInfo.Arguments = args;
                 process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 process.Start();
@@ -303,7 +316,6 @@ public class NVIDIAAnsel
 
         // Creates the command needed to put into the NVIDIA app. 'url 2/4 1/2'
         string command = $"{sourceImagePath} {currentResolutionFactor} {colourMode}";
-
         // Preform the normal upscale as normal (if img has transparency dont yet move it to user's location)
         string upscaledImagePath = startUpscale(command, !isTransparentImage, "normal");
 
@@ -320,7 +332,6 @@ public class NVIDIAAnsel
             catch (Exception ex)
             {
                 failedImages++;
-
                 Program.message($"An error has occured during the transparency merge stage.\n\n{ex}");
             }
             finally

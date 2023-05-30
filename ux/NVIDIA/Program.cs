@@ -1,9 +1,15 @@
 ﻿
+using Microsoft.VisualBasic;
+using nv;
+
 internal class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        NVIDIAAnsel ansel = new NVIDIAAnsel();
+
+        ansel.Add(App.CommandLine.Tokens);
+        ansel.StartImageProcessing();
     }
 
     public static void message(string msg)
