@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Management;
+﻿using nvidia_anselAI;
 using System.Diagnostics;
-using Microsoft.Win32;
 using System.Drawing;
+using System.Management;
 using Image = System.Drawing.Image;
-using System.Drawing.Imaging;
-using nvidia_anselAI;
 
 namespace NVIDIA_Ansel_AI_Up_Res
 {
@@ -167,37 +156,24 @@ namespace NVIDIA_Ansel_AI_Up_Res
             }
 
             string time = DateTime.Now.ToString("yyyy MM dd HH mm ss");
-            int resolutionFactor = (int)Math.Pow(2, resolutionScaleComboBox.SelectedIndex + 1);
-            string colourMode = (colourModeComboBox.SelectedItem == "Colour") ? "2" : "1";
-            bool limitSize = this.MaxSizeModeCheckBox.IsChecked == true;
+            int resolutionFactor = (int)Math.Pow(2, (int) ScaleSize.x4);
+            string colourMode = "2" ;
+            bool limitSize =  true;
 
             // Reset
             tasksCompleted = 0;
             failedImages = 0;
 
-            // Deactivates user input
-            startButton.IsEnabled = false;
-            startButton.Content = $"Processing... ({tasksCompleted + 1}/{imagePaths.Count})";
-            browseImagesButton.IsEnabled = false;
-            clearImagesButton.IsEnabled = false;
-            resolutionScaleComboBox.IsEnabled = false;
-            colourModeComboBox.IsEnabled = false;
+           Program.message( $"Processing... ({tasksCompleted + 1}/{imagePaths.Count})");
+           
 
             var progress = new Progress<int>(progressValue =>
             {
                 Debug.Write(progressValue);
-                startButton.Content = $"Processing... ({progressValue++}/{imagePaths.Count})";
+                Program.message($"Processing... ({progressValue++}/{imagePaths.Count})");
             });
 
             await Task.Run(() => ProcessImage(time, resolutionFactor, colourMode, limitSize, progress));
-
-            // Activates user input
-            startButton.IsEnabled = true;
-            startButton.Content = "Enhance";
-            browseImagesButton.IsEnabled = true;
-            clearImagesButton.IsEnabled = true;
-            resolutionScaleComboBox.IsEnabled = true;
-            colourModeComboBox.IsEnabled = true;
 
             // If no images failed, show a success image.
             if (failedImages <= 0)
