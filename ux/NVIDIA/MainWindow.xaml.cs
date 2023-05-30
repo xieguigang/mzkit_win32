@@ -18,7 +18,7 @@ namespace NVIDIA_Ansel_AI_Up_Res
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public class NVIDIA_Ansel
     {
         bool forceMode = false;
         SupportLevel supportLevel;
@@ -30,14 +30,8 @@ namespace NVIDIA_Ansel_AI_Up_Res
         bool firstTime;
         readonly List<string> imagePaths = new List<string>();
 
-        public MainWindow()
-        {
-            InitializeComponent();
-            OnStart();
-        }
-
-        void OnStart()
-        {
+        public NVIDIA_Ansel()
+        {  
             ApplySettings();
 
             if (firstTime)
@@ -51,6 +45,8 @@ namespace NVIDIA_Ansel_AI_Up_Res
                 Properties.Settings.Default.FirstTime = false;
                 Properties.Settings.Default.Save();
             }
+
+            DetectSystem();
         }
 
         void ApplySettings()
@@ -63,26 +59,6 @@ namespace NVIDIA_Ansel_AI_Up_Res
             threadCount = Properties.Settings.Default.ThreadCount;
             firstTime = Properties.Settings.Default.FirstTime;
             MaxSizeModeCheckBox.IsChecked = Properties.Settings.Default.ResolutionLimiter;
-        }
-
-        void SetupThreadComboBox()
-        {
-            int threads = Environment.ProcessorCount;
-
-            for (var i = 1; i < threads + 1; i++)
-                threadsComboBox.Items.Add(i);
-
-            if (threadCount > Environment.ProcessorCount)
-                threadCount = Environment.ProcessorCount;
-
-            threadsComboBox.SelectedIndex = threadCount - 1;
-        }
-
-
-        // UI start
-        private void MainGrid_Loaded(object sender, RoutedEventArgs e)
-        {
-            DetectSystem();
         }
 
         // Checks whether the system is able to use the app.
@@ -448,10 +424,10 @@ namespace NVIDIA_Ansel_AI_Up_Res
                          {
                              failedImages++;
 
-                             MessageBox.Show($"This could either be due to NVIDIA's API memory limitations (try a lower resolution) or something to do with file write permissions.\n\n{ex}", 
+                             MessageBox.Show($"This could either be due to NVIDIA's API memory limitations (try a lower resolution) or something to do with file write permissions.\n\n{ex}",
                                  "An error has occured!", MessageBoxButton.OK, MessageBoxImage.Hand);
 
-                                return "";
+                             return "";
                          }
                      };
 
@@ -475,7 +451,7 @@ namespace NVIDIA_Ansel_AI_Up_Res
                         {
                             failedImages++;
 
-                            MessageBox.Show($"An error has occured during the transparency merge stage.\n\n{ex}", 
+                            MessageBox.Show($"An error has occured during the transparency merge stage.\n\n{ex}",
                                 "An error has occured!", MessageBoxButton.OK, MessageBoxImage.Hand);
                         }
                         finally
@@ -493,164 +469,6 @@ namespace NVIDIA_Ansel_AI_Up_Res
             });
         }
 
-        private void BrowseImagesButton_Click(object sender, RoutedEventArgs e)
-        {
-            BrowseImage();
-        }
-
-        // Allows the user to select images.
-        void BrowseImage()
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Multiselect = true;
-            openFileDialog.Title = "Select images (to reduce errors, do not up-res an image that will result in a resolution over 9000x9000)";
-            openFileDialog.DefaultExt = ".png";
-            openFileDialog.Filter = "PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg";
-            openFileDialog.ShowDialog();
-
-            foreach (string fileName in openFileDialog.FileNames)
-                if (!imagePaths.Contains(fileName))
-                    imagePaths.Add(fileName);
-
-            RefreshImageGrid();
-        }
-
-        // Refreshes the image grid to ensure it alligns correctly with the image list.
-        void RefreshImageGrid()
-        {
-            if (imagePaths.Count > 0)
-            {
-                image3L.Visibility = Visibility.Hidden;
-                image3L.Content = "";
-                image3L.ToolTip = "";
-                ImageSource imageSource = new BitmapImage(new Uri(imagePaths[0]));
-                image.Source = imageSource;
-                imageB.Height = 100;
-                imageB.Width = 100;
-
-                if (imagePaths.Count > 1)
-                {
-                    ImageSource imageSource1 = new BitmapImage(new Uri(imagePaths[1]));
-                    image1.Source = imageSource1;
-                    image1B.Height = 100;
-                    image1B.Width = 50;
-                    imageB.Height = 100;
-                    imageB.Width = 50;
-
-                    if (imagePaths.Count > 2)
-                    {
-                        ImageSource imageSource2 = new BitmapImage(new Uri(imagePaths[2]));
-                        image2.Source = imageSource2;
-                        image2B.Height = 50;
-                        image2B.Width = 50;
-                        imageB.Height = 50;
-
-                        if (imagePaths.Count > 3)
-                        {
-                            image1B.Height = 50;
-                            image3B.Height = 50;
-                            image3B.Width = 50;
-                            image2B.Height = 50;
-
-                            if (imagePaths.Count < 5)
-                            {
-                                ImageSource imageSource3 = new BitmapImage(new Uri(imagePaths[3]));
-                                image3.Source = imageSource3;
-                            }
-                            else
-                            {
-                                image3.Source = null;
-                                if (imagePaths.Count < 104)
-                                    image3L.Content = $"+{imagePaths.Count - 3}";
-                                else
-                                    image3L.Content = $"+100";
-
-                                image3L.ToolTip = $"+{imagePaths.Count - 3} other images";
-
-                                image3L.Visibility = Visibility.Visible;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        private void OutputFolderModeCheckBox_Click(object sender, RoutedEventArgs e)
-        {
-            outputFolderMode = (bool)outputFolderModeCheckBox.IsChecked;
-
-            if (Properties.Settings.Default == null)
-                return;
-
-            Properties.Settings.Default.OutputFolderMode = outputFolderMode;
-            Properties.Settings.Default.Save();
-        }
-
-        private void ClearImagesButton_Click(object sender, RoutedEventArgs e)
-        {
-            ClearImages();
-        }
-
-        void ClearImages()
-        {
-            if (imagePaths.Count > 0)
-            {
-                imagePaths.Clear();
-                image.Source = null;
-                imageB.Height = 0;
-                imageB.Width = 0;
-                image1.Source = null;
-                image1B.Height = 0;
-                image1B.Width = 0;
-                image2.Source = null;
-                image2B.Height = 0;
-                image2B.Width = 0;
-                image3.Source = null;
-                image3B.Height = 0;
-                image3B.Width = 0;
-                image3L.Content = null;
-                image3L.ToolTip = null;
-                image3L.Visibility = Visibility.Hidden;
-            }
-        }
-
-        private void ThreadsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            threadCount = threadsComboBox.SelectedIndex + 1;
-
-            if (Properties.Settings.Default == null)
-                return;
-
-            Properties.Settings.Default.ThreadCount = threadCount;
-            Properties.Settings.Default.Save();
-        }
-
-        private void MaxSizeModeCheckBox_Click(object sender, RoutedEventArgs e)
-        {
-            if (Properties.Settings.Default == null)
-                return;
-
-            Properties.Settings.Default.ResolutionLimiter = (bool)MaxSizeModeCheckBox.IsChecked;
-            Properties.Settings.Default.Save();
-        }
     }
 }
 
-class GraphicsAdapter
-{
-    public string Name { get; set; }
-    public string DriverVersion { get; set; }
-    public SupportLevel SupportLevel { get; set; }
-
-    public GraphicsAdapter(string name)
-    {
-        Name = name;
-    }
-}
-
-enum SupportLevel
-{
-    None,
-    Partial,
-    Full
-}
