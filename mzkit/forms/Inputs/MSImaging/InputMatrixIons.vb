@@ -6,7 +6,7 @@ Imports Mzkit_win32.BasicMDIForm
 Imports TaskStream
 Imports DataFrame = Microsoft.VisualBasic.Data.csv.IO.DataFrame
 Imports stdNum = System.Math
-Imports xlsx = Microsoft.VisualBasic.MIME.Office.Excel.File
+Imports xlsx = Microsoft.VisualBasic.MIME.Office.Excel.XLSX.File
 
 Public Class InputMatrixIons
 

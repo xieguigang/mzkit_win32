@@ -82,13 +82,12 @@ Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
-Imports Mzkit_win32.MSImagingViewerV2
 Imports RibbonLib.Interop
 Imports Task
 Imports TaskStream
 Imports any = Microsoft.VisualBasic.Scripting
 Imports DataFrame = Microsoft.VisualBasic.Data.csv.IO.DataFrame
-Imports Xlsx = Microsoft.VisualBasic.MIME.Office.Excel.File
+Imports Xlsx = Microsoft.VisualBasic.MIME.Office.Excel.XLSX.File
 
 Public Class frmMsImagingTweaks
 

@@ -1,5 +1,4 @@
 ﻿using ImageUtils;
-using nvidia_anselAI;
 using System.Diagnostics;
 using System.Drawing;
 using System.Management;
