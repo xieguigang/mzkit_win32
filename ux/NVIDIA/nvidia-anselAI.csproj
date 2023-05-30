@@ -20,7 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="NVIDIA-GeForce-Experience.ico" />
+    <Content Include="asserts\NVIDIA-GeForce-Experience.ico" />
   </ItemGroup>
 
   <ItemGroup>

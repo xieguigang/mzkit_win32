@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 
-namespace NVIDIA_Ansel_AI_Up_Res
+namespace nvidia_anselAI.ImageUtils
 {
     public static class TransparencySupport
     {
@@ -20,13 +20,13 @@ namespace NVIDIA_Ansel_AI_Up_Res
                 return false;
             // Get the byte data 'as 32-bit ARGB'. This offers a converted version of the image data without modifying the original image.
             BitmapData data = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
-            Int32 len = bitmap.Height * data.Stride;
-            Byte[] bytes = new Byte[len];
+            int len = bitmap.Height * data.Stride;
+            byte[] bytes = new byte[len];
             Marshal.Copy(data.Scan0, bytes, 0, len);
             bitmap.UnlockBits(data);
             bitmap.Dispose();
             // Check the alpha bytes in the data. Since the data is little-endian, the actual byte order is [BB GG RR AA]
-            for (Int32 i = 3; i < len; i += 4)
+            for (int i = 3; i < len; i += 4)
                 if (bytes[i] != 255)
                     return true;
             return false;
@@ -81,8 +81,8 @@ namespace NVIDIA_Ansel_AI_Up_Res
             {
                 for (int y = 0; y < Height; ++y)
                 {
-                    byte* fullImage_row = (byte*)fullImage_bitData.Scan0 + (y * fullImage_bitData.Stride);
-                    byte* alphaImage_row = (byte*)alphaImage_bitData.Scan0 + (y * alphaImage_bitData.Stride);
+                    byte* fullImage_row = (byte*)fullImage_bitData.Scan0 + y * fullImage_bitData.Stride;
+                    byte* alphaImage_row = (byte*)alphaImage_bitData.Scan0 + y * alphaImage_bitData.Stride;
                     int columnOffset = 0;
                     for (int x = 0; x < Width; ++x)
                     {
@@ -119,13 +119,13 @@ namespace NVIDIA_Ansel_AI_Up_Res
             {
                 for (int y = 0; y < Height; ++y)
                 {
-                    byte* row = (byte*)data.Scan0 + (y * data.Stride);
+                    byte* row = (byte*)data.Scan0 + y * data.Stride;
                     int columnOffset = 0;
                     for (int x = 0; x < Width; ++x)
                     {
-                        row[columnOffset + 0] = (byte)255;
-                        row[columnOffset + 1] = (byte)255;
-                        row[columnOffset + 2] = (byte)255;
+                        row[columnOffset + 0] = 255;
+                        row[columnOffset + 1] = 255;
+                        row[columnOffset + 2] = 255;
                         columnOffset += 4;
                     }
                 }
@@ -134,10 +134,10 @@ namespace NVIDIA_Ansel_AI_Up_Res
             return NewBitmap;
         }
 
-        private static byte PremultiplyAlpha(byte source, byte alpha,int y)
+        private static byte PremultiplyAlpha(byte source, byte alpha, int y)
         {
-            return (byte)((float)(source) * (float)(alpha) / (float)(byte.MaxValue) + 0.5f);
+            return (byte)(source * (float)alpha / byte.MaxValue + 0.5f);
         }
-   
+
     }
 }

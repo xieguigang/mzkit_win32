@@ -1,10 +1,11 @@
 ﻿using nvidia_anselAI;
+using nvidia_anselAI.ImageUtils;
 using System.Diagnostics;
 using System.Drawing;
 using System.Management;
 using Image = System.Drawing.Image;
 
-namespace NVIDIA_Ansel_AI_Up_Res
+namespace nvidia_anselAI.nv
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -38,7 +39,7 @@ namespace NVIDIA_Ansel_AI_Up_Res
 
 
             // Has graphics adapter but not app (probably driver update needed).
-            if ((graphicsAdapter.SupportLevel != SupportLevel.None) && !DetectApp())
+            if (graphicsAdapter.SupportLevel != SupportLevel.None && !DetectApp())
                 Program.message("I was unable to locate 'C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR/nvdlisrwrapper.exe'. Without this app, I cannot do what I am supposed to do.\n\nIt is very likely that your Display Adapter Driver needs updating.");
             // Has neither the graphics adapter nor the app (probably not NVIDIA).
             else if (graphicsAdapter.SupportLevel == SupportLevel.None && !DetectApp())
@@ -156,16 +157,16 @@ namespace NVIDIA_Ansel_AI_Up_Res
             }
 
             string time = DateTime.Now.ToString("yyyy MM dd HH mm ss");
-            int resolutionFactor = (int)Math.Pow(2, (int) ScaleSize.x4);
-            string colourMode = "2" ;
-            bool limitSize =  true;
+            int resolutionFactor = (int)Math.Pow(2, (int)ScaleSize.x4);
+            string colourMode = "2";
+            bool limitSize = true;
 
             // Reset
             tasksCompleted = 0;
             failedImages = 0;
 
-           Program.message( $"Processing... ({tasksCompleted + 1}/{imagePaths.Count})");
-           
+            Program.message($"Processing... ({tasksCompleted + 1}/{imagePaths.Count})");
+
 
             var progress = new Progress<int>(progressValue =>
             {
@@ -218,7 +219,7 @@ namespace NVIDIA_Ansel_AI_Up_Res
             // with the ability to ignore it.
             if (limitSize)
             {
-                int largestUpscaledDimension = (Math.Max(sourceImage.Width, sourceImage.Height) * defaultResolutionFactor);
+                int largestUpscaledDimension = Math.Max(sourceImage.Width, sourceImage.Height) * defaultResolutionFactor;
 
                 // Calculate new resolution factor to max out to be 8000px.
                 if (largestUpscaledDimension >= 8000)
