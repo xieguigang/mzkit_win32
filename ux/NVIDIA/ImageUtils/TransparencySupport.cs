@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using Microsoft.VisualBasic.Imaging;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 
@@ -31,13 +32,16 @@ public static class TransparencySupport
 
     public static Bitmap UpscaleWithAlpha(string upscaled_path, string ip, double resolution, Func<string, bool, string, string> startUpscale)
     {
-        Image source_img = Image.FromFile(ip);
-        // Convert all image's pixel to white - preserveing only alpha values
-        Bitmap alpha_img = ToAlphaChannel(new Bitmap(source_img));
         string alpha_path = ip + "_alpha";
-        alpha_img.Save(alpha_path);
-        alpha_img.Dispose();
-        source_img.Dispose();
+
+        using (Image source_img = ip.LoadImage())
+        {
+            // Convert all image's pixel to white - preserveing only alpha values
+            Bitmap alpha_img = ToAlphaChannel(new Bitmap(source_img));
+
+            alpha_img.Save(alpha_path);
+            alpha_img.Dispose();
+        }
 
         // Upscale the alpha channel image (using color - as the edges looks more clean that way)
         string alphaUpscale_command = $"{alpha_path} {resolution} 2";
@@ -58,18 +62,21 @@ public static class TransparencySupport
         // Load images to memory and directly merge alpha value from grayscale into the full image.
 
         // Loads full image and locks data to memory
-        Image fullImage_img = Image.FromFile(origin_path);
-        Bitmap fullImage_bit = new Bitmap(fullImage_img);
-        BitmapData fullImage_bitData = fullImage_bit.LockBits(new Rectangle(0, 0, fullImage_bit.Width, fullImage_bit.Height),
-            ImageLockMode.ReadWrite,
-            PixelFormat.Format32bppArgb);
+        Bitmap fullImage_bit = new Bitmap(origin_path.LoadImage());
+        BitmapData fullImage_bitData = fullImage_bit.LockBits(
+            rect: new Rectangle(0, 0, fullImage_bit.Width, fullImage_bit.Height),
+            flags: ImageLockMode.ReadWrite,
+            format: PixelFormat.Format32bppArgb
+        );
 
         // Loads alpha image and locks data to memory
         Image alphaImage_img = Image.FromFile(alphaChannel_path);
         Bitmap alphaImage_bit = new Bitmap(alphaImage_img);
-        BitmapData alphaImage_bitData = alphaImage_bit.LockBits(new Rectangle(0, 0, alphaImage_bit.Width, alphaImage_bit.Height),
+        BitmapData alphaImage_bitData = alphaImage_bit.LockBits(
+            new Rectangle(0, 0, alphaImage_bit.Width, alphaImage_bit.Height),
             ImageLockMode.ReadOnly,
-            PixelFormat.Format32bppArgb);
+            PixelFormat.Format32bppArgb
+        );
 
         int Height = fullImage_bit.Height;
         int Width = fullImage_bit.Width;
@@ -95,7 +102,6 @@ public static class TransparencySupport
         alphaImage_bit.UnlockBits(alphaImage_bitData);
 
         // Cleanup
-        fullImage_img.Dispose();
         alphaImage_bit.Dispose();
         alphaImage_img.Dispose();
 
@@ -104,13 +110,14 @@ public static class TransparencySupport
 
     private static Bitmap ToAlphaChannel(Bitmap Image)
     {
-        Bitmap NewBitmap = (Bitmap)Image.Clone();
-        BitmapData data = NewBitmap.LockBits(
-            new Rectangle(0, 0, NewBitmap.Width, NewBitmap.Height),
+        Bitmap newBitmap = (Bitmap)Image.Clone();
+        BitmapData data = newBitmap.LockBits(
+            new Rectangle(0, 0, newBitmap.Width, newBitmap.Height),
             ImageLockMode.ReadWrite,
-            NewBitmap.PixelFormat);
-        int Height = NewBitmap.Height;
-        int Width = NewBitmap.Width;
+            newBitmap.PixelFormat
+        );
+        int Height = newBitmap.Height;
+        int Width = newBitmap.Width;
 
         unsafe
         {
@@ -127,8 +134,8 @@ public static class TransparencySupport
                 }
             }
         }
-        NewBitmap.UnlockBits(data);
-        return NewBitmap;
+        newBitmap.UnlockBits(data);
+        return newBitmap;
     }
 
     private static byte PremultiplyAlpha(byte source, byte alpha, int y)
