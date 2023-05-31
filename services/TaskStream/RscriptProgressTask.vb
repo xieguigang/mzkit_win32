@@ -400,13 +400,17 @@ Public NotInheritable Class RscriptProgressTask
 
     Private Shared Sub CommonPeaktableFilePrompt(saveAs As String)
         If Not saveAs.FileExists(ZERO_Nonexists:=True) Then
-            MessageBox.Show("Sorry, the MS-Imaging feature peaktable export is not success.", "Rscript Task Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Dim errMsg As String = "Sorry, the MS-Imaging feature peaktable export is not success."
+
+            Call Workbench.Warning(errMsg)
+            Call MessageBox.Show(errMsg, "Rscript Task Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
 
         ElseIf MessageBox.Show("Export MSI sampletable Job Done!" & vbCrLf & "Open MSI sample table data file?",
                                "Open Excel",
                                MessageBoxButtons.YesNo,
                                MessageBoxIcon.Information) = DialogResult.Yes Then
 
+            Call Workbench.SuccessMessage($"Export MSI sampletable Job Done! [{saveAs}]")
             Call Process.Start(saveAs.GetFullPath)
         End If
     End Sub
