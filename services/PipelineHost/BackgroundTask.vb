@@ -469,6 +469,8 @@ Module BackgroundTask
             })
         Next
 
+        dataKeys = mzKeys
+
         Return dataSet.ToArray
     End Function
 
