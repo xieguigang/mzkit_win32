@@ -458,10 +458,10 @@ Module BackgroundTask
         Dim allMz As Double() = allMs.uniqueMz(da, into_cutoff, triq)
         Dim mzKeys As String() = allMz.Select(Function(mzi) mzi.ToString("F3")).ToArray
 
-        RunSlavePipeline.SendProgress(100, $"Run peak alignment for {allMz.Length} m/z features!")
+        RunSlavePipeline.SendProgress(0, $"Run peak alignment for {allMz.Length} m/z features!")
 
         Dim dataSet As New List(Of DataSet)
-        Dim d As Integer = allPixels.Length / 100
+        Dim d As Integer = allPixels.Length / 50
         Dim p As i32 = Scan0
         Dim t0 As Date = Now
 
