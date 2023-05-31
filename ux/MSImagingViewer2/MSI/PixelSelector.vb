@@ -1293,10 +1293,12 @@ Public Class PixelSelector
     End Sub
 
     Public Sub RedrawCanvas()
-        Dim bmp As New Bitmap(orginal_image)
-        Dim color = oldBackColor
+        If Not orginal_image Is Nothing Then
+            Dim bmp As New Bitmap(orginal_image)
+            Dim color = oldBackColor
 
-        Call renderWithLegend(bmp, color)
+            Call renderWithLegend(bmp, color)
+        End If
     End Sub
 
     Dim oldBackColor As Color = Color.White
