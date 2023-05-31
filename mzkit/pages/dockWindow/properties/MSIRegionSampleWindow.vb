@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
@@ -7,6 +8,7 @@ Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
+Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Mzkit_win32.MSImagingViewerV2
 Imports ServiceHub
@@ -25,6 +27,9 @@ Public Class MSIRegionSampleWindow
     Friend importsFile As String
     Friend viewer As frmMsImagingViewer
 
+    ''' <summary>
+    ''' Clear all regions data
+    ''' </summary>
     Friend Sub Clear()
         FlowLayoutPanel1.Controls.Clear()
     End Sub
@@ -80,12 +85,31 @@ Public Class MSIRegionSampleWindow
             card.SampleInfo = region.label
 
             AddHandler card.RemoveSampleGroup, AddressOf removeSampleGroup
+            AddHandler card.ViewRegionMs1Spectrum, AddressOf ViewMs1Spectrum
         Next
     End Sub
 
     Private Sub removeSampleGroup(polygon As RegionSampleCard)
         Call FlowLayoutPanel1.Controls.Remove(polygon)
         Call updateLayerRendering()
+    End Sub
+
+    Private Sub ViewMs1Spectrum(region As RegionSampleCard)
+        If viewer Is Nothing Then
+            Call Workbench.Warning("Unable to view the ms1 spectrum of the specific sample region due to the reason of MSI viewer data services is not found!")
+        End If
+
+        ' get ms1 spectrum data of current region
+        Dim ms1 As LibraryMatrix = Nothing
+        Dim poly As New Polygon2D(region.ExportTissueRegion(dimension).points)
+
+        Call ProgressSpinner.DoLoading(
+            Sub()
+                ms1 = viewer.MSIservice.ExtractRegionMs1Spectrum({poly}, region.SampleInfo)
+            End Sub)
+
+        ' and then plot on the raw data viewer
+        Call SpectralViewerModule.ViewSpectral(ms1)
     End Sub
 
     ''' <summary>
@@ -105,6 +129,7 @@ Public Class MSIRegionSampleWindow
         FlowLayoutPanel1.Controls.Add(card)
 
         AddHandler card.RemoveSampleGroup, AddressOf removeSampleGroup
+        AddHandler card.ViewRegionMs1Spectrum, AddressOf ViewMs1Spectrum
 
         Return card
     End Function

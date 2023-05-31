@@ -60,6 +60,7 @@ Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.CommandLine
 Imports Mzkit_win32.BasicMDIForm.Container
+Imports Mzkit_win32.BasicMDIForm
 
 Public Class frmSplashScreen
 
@@ -89,7 +90,7 @@ Public Class frmSplashScreen
 
     Private Sub frmSplashScreen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DoubleBuffered = True
-
+        PictureBox2.BackgroundImage = Workbench.SplashBannerImage
         Label3.Text = Label3.Text.Replace("%s", My.User.Name)
         Label4.Text = "Built: " & GetType(MyApplication).Assembly.FromAssembly.AssemblyVersion
         Label4.Location = New Point(Width - Label4.Width - 5, Label4.Location.Y)

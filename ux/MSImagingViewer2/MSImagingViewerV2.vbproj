@@ -203,10 +203,22 @@
     <EmbeddedResource Include="MSI\PixelSelector.resx">
       <DependentUpon>PixelSelector.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MSI\RegionSampleCard.fr.resx">
+      <DependentUpon>RegionSampleCard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MSI\RegionSampleCard.ja-JP.resx">
+      <DependentUpon>RegionSampleCard.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MSI\RegionSampleCard.resx">
       <DependentUpon>RegionSampleCard.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MSI\RegionSampleCard.ru-RU.resx">
+      <DependentUpon>RegionSampleCard.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MSI\RegionSampleCard.zh-CN.resx">
+      <DependentUpon>RegionSampleCard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MSI\RegionSampleCard.zh-Hans.resx">
       <DependentUpon>RegionSampleCard.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MSI\SpatialTile.resx">

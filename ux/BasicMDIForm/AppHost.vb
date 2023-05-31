@@ -15,6 +15,7 @@ Public Interface AppHost
     Sub StatusMessage(msg As String, Optional icon As Image = Nothing)
     Sub LogText(text As String)
     Sub ShowProperties(obj As Object)
+    Sub SetTitle(title As String)
 
     Function GetWindowState() As FormWindowState
     Function GetDesktopLocation() As Point

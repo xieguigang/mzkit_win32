@@ -56,6 +56,7 @@
 #End Region
 
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Task
 
 Public MustInherit Class MSImagingBlender : Inherits Blender
@@ -74,6 +75,15 @@ Public MustInherit Class MSImagingBlender : Inherits Blender
     Sub New(host As MsImageProperty)
         params = host
     End Sub
+
+    ''' <summary>
+    ''' set the intensity range for plot imaging visual
+    ''' </summary>
+    ''' <param name="normRange">
+    ''' A numeric range which is normalized at [0,1] level.
+    ''' </param>
+    Public MustOverride Sub SetIntensityRange(normRange As DoubleRange)
+    Public MustOverride Function GetTrIQIntensity(q As Double) As Double
 
     ''' <summary>
     ''' take sample pixels via <see cref="sample_tag"/>

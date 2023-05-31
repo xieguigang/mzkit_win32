@@ -61,6 +61,36 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property _1200px_Checked_svg() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("_1200px_Checked_svg", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property cloud_icon_3() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("cloud_icon_3", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property Home_Logo_Link() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Home_Logo_Link", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  查找类似 &lt;!DOCTYPE html&gt;
         '''&lt;html lang=&quot;en&quot;&gt;
         '''
@@ -78,7 +108,8 @@ Namespace My.Resources
         '''            background-color: #fff;
         '''            width: 400px;
         '''            height: 30px;
-        '''            mar [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''            margin: 0px;
+        '''        [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Friend ReadOnly Property progress_bar() As String
             Get

@@ -27,7 +27,7 @@ Public Class frm3DMALDIViewer
         End Function
 
         Public Sub open_MALDI_model()
-            Using file As New OpenFileDialog With {.Filter = "3D MALDI model(*.maldi)|*.maldi"}
+            Using file As New OpenFileDialog With {.Filter = "3D MALDI model(*.maldi)|*.maldi|NRRD Raster Image(*.nrrd)|*.nrrd"}
                 If file.ShowDialog = DialogResult.OK Then
                     Me.source = file.FileName
                 End If

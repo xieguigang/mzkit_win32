@@ -59,26 +59,35 @@
 
 #End Region
 
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots.BarPlot.Histogram
 Imports Microsoft.VisualBasic.DataStorage.netCDF
+Imports Microsoft.VisualBasic.DataStorage.netCDF.DataVector
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.hqx
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
+Imports Microsoft.VisualBasic.Scripting.Runtime
+Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Interop
 Imports Task
 Imports TaskStream
+Imports any = Microsoft.VisualBasic.Scripting
+Imports DataFrame = Microsoft.VisualBasic.Data.csv.IO.DataFrame
+Imports Xlsx = Microsoft.VisualBasic.MIME.Office.Excel.XLSX.File
 
 Public Class frmMsImagingTweaks
 
@@ -202,12 +211,16 @@ UseCheckedList:
         If ToolStripSpringTextBox1.Text.StringEmpty Then
             Call MyApplication.host.showStatusMessage("no ions data...", My.Resources.StatusAnnotations_Warning_32xLG_color)
         ElseIf ToolStripSpringTextBox1.Text.IsNumeric(True) Then
+            ' is mz value
             Dim mz As Double = Val(ToolStripSpringTextBox1.Text)
             Dim viewer = WindowModules.viewer
 
             If TypeOf viewer Is frmMsImagingViewer Then
                 Call DirectCast(viewer, frmMsImagingViewer).renderByMzList({mz}, Nothing)
             End If
+        ElseIf WindowModules.viewer.params.app = FileApplicationClass.STImaging Then
+            ' is a gene id
+            Call WindowModules.viewer.renderByName(ToolStripSpringTextBox1.Text, $"STImaging of '{ToolStripSpringTextBox1.Text}'")
         Else
             ' formula
             Dim formula As String = ToolStripSpringTextBox1.Text
@@ -305,6 +318,7 @@ UseCheckedList:
         Dim pixels As PixelData()
         Dim size As Size
         Dim tolerance As Tolerance
+        Dim rgb As RGBConfigs = Nothing
 
         If viewer Is Nothing Then
             viewer = WindowModules.viewer
@@ -338,7 +352,7 @@ UseCheckedList:
                     Call MyApplication.host.ShowMzkitToolkit()
                 Else
                     ' invalid format
-                    Call MyApplication.host.showStatusMessage("Invalid cdf file format! [mz, intensity, x, y] data vector should exists inside this cdf file!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                    Call Workbench.Warning("Invalid cdf file format! [mz, intensity, x, y] data vector should exists inside this cdf file!")
                 End If
 
                 Return
@@ -347,15 +361,23 @@ UseCheckedList:
             size = cdf.GetMsiDimension
             pixels = cdf.LoadPixelsData.ToArray
             tolerance = cdf.GetMzTolerance
+
+            If cdf.dataVariableExists("rgb") Then
+                ' load rgb configs
+                rgb = RGBConfigs.ParseJSON(DirectCast(cdf.getDataVariable("rgb"), chars))
+            End If
         End Using
 
-        Call ProgressSpinner.DoLoading(
-            Sub()
-                Call Me.Invoke(Sub()
-                                   viewer.LoadRender(firstFile, firstFile)
-                                   viewer.renderByPixelsData(pixels, size)
-                               End Sub)
-            End Sub)
+        'Call ProgressSpinner.DoLoading(
+        '    Sub()
+        '        Call Me.Invoke(Sub()
+        '                           viewer.LoadRender(firstFile, firstFile)
+        '                           viewer.renderByPixelsData(pixels, size)
+        '                       End Sub)
+        '    End Sub)
+
+        Call viewer.LoadRender(firstFile, firstFile)
+        Call viewer.renderByPixelsData(pixels, size, rgb)
 
         For Each mz As Double In pixels _
             .GroupBy(Function(p) p.mz, tolerance) _
@@ -500,7 +522,7 @@ UseCheckedList:
     End Sub
 
     ''' <summary>
-    ''' 
+    ''' Run plot in Rscript host for export image plot
     ''' </summary>
     ''' <param name="data">[region_label => [color => expression_vector]]</param>
     ''' <param name="type">bar/box/violin</param>
@@ -565,5 +587,122 @@ UseCheckedList:
             MyApplication.host.mzkitTool.ShowPlotImage(image, ImageLayout.Zoom)
             MyApplication.host.ShowMzkitToolkit()
         End If
+    End Sub
+
+    Private Sub ToolStripButton1_Click_1(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        Using file As New OpenFileDialog With {.Filter = "Excel Table(*.xlsx;*.csv)|*.xlsx;*.csv|Name Targets(*.txt)|*.txt"}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim folder = Win7StyleTreeView1.Nodes(0)
+
+                Call folder.Nodes.Clear()
+
+                If file.FileName.ExtensionSuffix("txt") Then
+                    Dim names As String() = file.FileName.ReadAllLines
+
+                    For Each Name As String In names
+                        folder.Nodes.Add(Name).Tag = Name
+                    Next
+
+                    Call Workbench.SuccessMessage($"Load {names.Length} layers for run data visualization.")
+                Else
+                    Dim table As DataFrame
+
+                    If file.FileName.ExtensionSuffix("csv") Then
+                        table = DataFrame.Load(file.FileName)
+                    Else
+                        table = DataFrame.CreateObject(Xlsx.Open(file.FileName).GetTable("Sheet1"))
+                    End If
+
+                    Dim mz As Double() = table(table.GetOrdinal("mz")).AsDouble
+                    Dim name As String() = table(table.GetOrdinal("name")).ToArray
+
+                    For i As Integer = 0 To mz.Length - 1
+                        Dim label As String = $"{name(i)} [m/z {mz(i).ToString("F4")}]"
+                        Dim node = folder.Nodes.Add(label)
+
+                        node.Tag = mz(i)
+                    Next
+
+                    Call Workbench.StatusMessage($"Load {mz.Length} ions for run data visualization.")
+                End If
+            End If
+        End Using
+    End Sub
+
+    Private Sub ExportEachSelectedLayersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportEachSelectedLayersToolStripMenuItem.Click
+        Dim list = Win7StyleTreeView1.Nodes(0)
+
+        Using folder As New FolderBrowserDialog With {.Description = "Select a folder to export images"}
+            If folder.ShowDialog = DialogResult.OK Then
+                Dim dir As String = folder.SelectedPath
+                Dim params = WindowModules.viewer.params
+                Dim size As String = $"{params.scan_x},{params.scan_y}"
+                Dim args As New PlotProperty
+                Dim canvas As New Size(params.scan_x * 3, params.scan_y * 3)
+
+                params.Hqx = HqxScales.Hqx_4x
+
+                Call TaskProgress.LoadData(
+                    Function(echo As Action(Of String))
+                        For i As Integer = 0 To list.Nodes.Count - 1
+                            Dim n = list.Nodes(i)
+
+                            If n.Checked Then
+                                Dim val As String = any.ToString(If(n.Tag, CObj(n.Text)))
+                                Dim path As String = $"{dir}/{val}.png"
+
+                                Call echo($"processing '{val}'")
+
+                                Dim pixels = WindowModules.viewer.MSIservice.LoadGeneLayer(val)
+
+                                If pixels.IsNullOrEmpty Then
+
+                                Else
+                                    Dim maxInto = pixels.Select(Function(a) a.intensity).Max
+                                    params.SetIntensityMax(maxInto, New Point())
+                                    Dim blender As New SingleIonMSIBlender(pixels, Nothing, params)
+                                    Dim range As DoubleRange = blender.range
+                                    Dim image As Image = blender.Rendering(args, canvas)
+
+                                    Call image.SaveAs(path)
+                                End If
+                            End If
+                        Next
+
+                        Return True
+                    End Function,
+                    title:="Plot each selected image layers...",
+                    host:=WindowModules.viewer)
+            End If
+        End Using
+    End Sub
+
+    Private Sub SelectAllToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SelectAllToolStripMenuItem.Click
+        Dim list = Win7StyleTreeView1.Nodes(0)
+
+        For i As Integer = 0 To list.Nodes.Count - 1
+            Dim n = list.Nodes(i)
+            n.Checked = True
+        Next
+    End Sub
+
+    Private Sub LoadAllAnnotationLayersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoadAllAnnotationLayersToolStripMenuItem.Click
+        Dim list = Win7StyleTreeView1.Nodes(0)
+
+        Call ProgressSpinner.DoLoading(
+            Sub()
+                Dim nameList = viewer.MSIservice.getAllLayerNames
+
+                Call Invoke(Sub() list.Nodes.Clear())
+
+                If Not nameList.IsNullOrEmpty Then
+                    Call Invoke(Sub()
+                                    For Each name As String In nameList
+                                        list.Nodes.Add(name).Tag = name
+                                    Next
+                                End Sub)
+                End If
+            End Sub)
+        Call Workbench.SuccessMessage($"fetch {list.Nodes.Count} annotation layers!")
     End Sub
 End Class

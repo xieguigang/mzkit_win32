@@ -64,7 +64,9 @@
 #End Region
 
 Imports System.IO
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Content
@@ -80,8 +82,8 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
-Imports Microsoft.VisualBasic.Data.Bootstrapping
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Data.IO.MessagePack
@@ -93,14 +95,13 @@ Imports Microsoft.VisualBasic.Math
 Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Controls.Events
 Imports RibbonLib.Interop
-Imports SMRUCC.Rsharp.Runtime.Components
 Imports Task
+Imports TaskStream
 Imports WeifenLuo.WinFormsUI.Docking
 Imports any = Microsoft.VisualBasic.Scripting
-Imports Rlist = SMRUCC.Rsharp.Runtime.Internal.Object.list
 Imports stdNum = System.Math
 
-Public Class frmTargetedQuantification
+Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
     ReadOnly args As New QuantifyParameters
 
@@ -140,7 +141,7 @@ Public Class frmTargetedQuantification
     Private Sub reloadProfileNames()
         cbProfileNameSelector.Items.Clear()
 
-        For Each key As String In linearProfileNames()
+        For Each key As String In LinearProfileNames()
             cbProfileNameSelector.Items.Add(key)
         Next
     End Sub
@@ -155,15 +156,26 @@ Public Class frmTargetedQuantification
     End Sub
 
     Dim linearPack As LinearPack
+
+    ''' <summary>
+    ''' the raw data file list of the reference linear points
+    ''' </summary>
     Dim linearFiles As NamedValue(Of String)()
+    Dim mzpackRaw As mzPack
     Dim allFeatures As String()
-    Dim isGCMS As Boolean = False
+
+    ''' <summary>
+    ''' <see cref="QuantificationLinearPage.RunLinearFileImports"/>
+    ''' 
+    ''' value of this symbol could be MRM/GCMS_SIM
+    ''' </summary>
+    Dim targetType As TargetTypes
 
     Sub saveLinearsTable(sender As Object, e As ExecuteEventArgs)
         If linearPack Is Nothing OrElse linearPack.linears.IsNullOrEmpty Then
             Call MyApplication.host.showStatusMessage("No linears for save!", My.Resources.StatusAnnotations_Warning_32xLG_color)
         Else
-
+            Call SaveDocument()
         End If
     End Sub
 
@@ -175,17 +187,94 @@ Public Class frmTargetedQuantification
         }
 
             If importsFile.ShowDialog = DialogResult.OK Then
-                Call runLinearFileImports(importsFile.FileNames)
+                Call runLinearFileImports(importsFile.FileNames, Nothing)
             End If
         End Using
     End Sub
 
-    Private Sub runLinearFileImports(fileNames As String())
+    Public Sub RunLinearmzPackImports(cals() As String, mzpack As Object) Implements QuantificationLinearPage.RunLinearmzPackImports
+        Dim files As NamedValue(Of String)() = ContentTable.StripMaxCommonNames(cals)
+        Dim fakeLevels As Dictionary(Of String, Double)
+        Dim directMapName As Boolean = False
+
+        If files.All(Function(name) name.Value.IsContentPattern) Then
+            ' parse quantification reference content value from
+            ' file names directly
+            files = files _
+                .Select(Function(file)
+                            Return New NamedValue(Of String) With {
+                                .Name = file.Value,
+                                .Value = file.Value,
+                                .Description = file.Description
+                            }
+                        End Function) _
+                .ToArray
+            fakeLevels = files _
+                .ToDictionary(Function(file) file.Value,
+                              Function(file)
+                                  Return file.Value _
+                                      .ParseContent _
+                                      .ScaleTo(ContentUnits.ppb) _
+                                      .Value
+                              End Function)
+            directMapName = True
+        Else
+            fakeLevels = files _
+                .ToDictionary(Function(file) file.Name,
+                              Function()
+                                  Return 0.0
+                              End Function)
+        End If
+
+        DataGridView1.Rows.Clear()
+        DataGridView1.Columns.Clear()
+
+        DataGridView1.Columns.Add(New DataGridViewLinkColumn With {.HeaderText = "Features"})
+        DataGridView1.Columns.Add(New DataGridViewComboBoxColumn With {.HeaderText = "IS"})
+
+        Dim pack As mzPack = mzpack
+        Dim type As TargetTypes = If(
+            pack.Application = FileApplicationClass.LCMSMS,
+            TargetTypes.MRM,
+            TargetTypes.GCMS_SIM
+        )
+
+        For Each file As NamedValue(Of String) In files
+            Call DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.HeaderText = file.Name})
+        Next
+
+        Me.linearFiles = files
+        Me.linearPack = New LinearPack With {
+            .reference = New Dictionary(Of String, SampleContentLevels) From {
+                {"n/a", New SampleContentLevels(fakeLevels, directMapName)}
+            }
+        }
+
+        targetType = type
+        mzpackRaw = pack
+
+        Call WindowModules.MRMIons.LoadMRM(pack)
+
+        If type <> TargetTypes.MRM Then
+            Workbench.Warning("GCMS sim quantification is not implemented yet...")
+        Else
+            Call loadMRMReference(files, pack, directMapName)
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="fileNames"></param>
+    ''' <param name="type">MRM/GCMS_SIM</param>
+    Private Sub runLinearFileImports(fileNames As String(), type As TargetTypes?) Implements QuantificationLinearPage.RunLinearFileImports
         Dim files As NamedValue(Of String)() = ContentTable.StripMaxCommonNames(fileNames)
         Dim fakeLevels As Dictionary(Of String, Double)
         Dim directMapName As Boolean = False
 
         If files.All(Function(name) name.Value.BaseName.IsContentPattern) Then
+            ' parse quantification reference content value from
+            ' file names directly
             files = files _
                 .Select(Function(file)
                             Return New NamedValue(Of String) With {
@@ -222,12 +311,18 @@ Public Class frmTargetedQuantification
         For Each file As NamedValue(Of String) In files
             Call DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.HeaderText = file.Name})
 
-            If file.Value.ExtensionSuffix("CDF") OrElse RawScanParser.IsSIMData(file.Value) Then
-                isGCMS = True
-                Call MyApplication.host.ShowGCMSSIM(file.Value, isBackground:=False, showExplorer:=False)
-            Else
-                isGCMS = False
+            If type Is Nothing Then
+                If file.Value.ExtensionSuffix("CDF") OrElse RawScanParser.IsSIMData(file.Value) Then
+                    type = TargetTypes.GCMS_SIM
+                    Call MyApplication.host.ShowGCMSSIM(file.Value, isBackground:=False, showExplorer:=False)
+                Else
+                    type = TargetTypes.MRM
+                    Call MyApplication.host.ShowMRMIons(file.Value)
+                End If
+            ElseIf type.Value = TargetTypes.MRM Then
                 Call MyApplication.host.ShowMRMIons(file.Value)
+            Else
+                Call MyApplication.host.ShowGCMSSIM(file.Value, isBackground:=False, showExplorer:=False)
             End If
         Next
 
@@ -238,7 +333,10 @@ Public Class frmTargetedQuantification
             }
         }
 
-        If isGCMS Then
+        targetType = type
+        mzpackRaw = Nothing
+
+        If type.Value <> TargetTypes.MRM Then
             Call loadGCMSReference(files, directMapName)
         Else
             Call loadMRMReference(files, directMapName)
@@ -308,6 +406,47 @@ Public Class frmTargetedQuantification
 
         Return extract.GetAllFeatures(gcms)
     End Function
+
+    ''' <summary>
+    ''' fill the data table with MRM ion pair and IS ions information
+    ''' </summary>
+    ''' <param name="files"></param>
+    ''' <param name="data"></param>
+    ''' <param name="directMapName"></param>
+    Private Sub loadMRMReference(files As NamedValue(Of String)(), data As mzPack, directMapName As Boolean)
+        Dim ionsLib As IonLibrary = Globals.LoadIonLibrary
+        Dim allFeatures As IonPair() = data.MS.Select(Function(s) s.meta.Keys) _
+            .IteratesALL.Distinct.Where(Function(t) t.StartsWith("MRM:")) _
+            .Select(Function(si)
+                        si = si.Replace("MRM:", "").Trim
+                        Dim t = si.Split("/"c).Select(AddressOf Strings.Trim).Select(Function(ti) ti.ParseDouble).ToArray
+                        Return New IonPair With {.precursor = t(0), .product = t(1)}
+                    End Function) _
+            .ToArray
+        Dim contentLevels As SampleContentLevels = linearPack.reference("n/a")
+
+        Me.allFeatures = allFeatures.Select(AddressOf ionsLib.GetDisplay).ToArray
+
+        For Each ion As IonPair In allFeatures
+            Dim refId As String = ionsLib.GetDisplay(ion)
+            Dim i As Integer = DataGridView1.Rows.Add(refId)
+            Dim comboxBox As DataGridViewComboBoxCell = DataGridView1.Rows(i).Cells(1)
+
+            comboxBox.Items.Add("")
+
+            For Each IS_candidate As IonPair In allFeatures
+                comboxBox.Items.Add(ionsLib.GetDisplay(IS_candidate))
+            Next
+
+            If directMapName Then
+                Dim row As DataGridViewRow = DataGridView1.Rows(i)
+
+                For index As Integer = 2 To DataGridView1.Columns.Count - 1
+                    row.Cells(index).Value = contentLevels.Content(DataGridView1.Columns(index).HeaderText)
+                Next
+            End If
+        Next
+    End Sub
 
     Private Sub loadMRMReference(files As NamedValue(Of String)(), directMapName As Boolean)
         Dim ionsLib As IonLibrary = Globals.LoadIonLibrary
@@ -383,7 +522,7 @@ Public Class frmTargetedQuantification
             Return Nothing
         End If
 
-        If isGCMS Then
+        If targetType = TargetTypes.GCMS_SIM Then
             Dim ion As QuantifyIon = GCMSIons.GetIon(rid)
 
             If Not ion Is Nothing Then
@@ -449,7 +588,7 @@ Public Class frmTargetedQuantification
                 Call Me.Invoke(Sub() Call reloadProfileNames())
             End Sub, "Save Linear Reference Models", "...")
 
-        Call MyApplication.host.showStatusMessage($"linear model profile '{profileName}' saved!")
+        Call Workbench.StatusMessage($"linear model profile '{profileName}' saved!")
     End Sub
 
     Private Sub SaveAsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveAsToolStripMenuItem.Click
@@ -463,15 +602,8 @@ Public Class frmTargetedQuantification
         End Using
     End Sub
 
-    Private Function linearProfileNames() As String()
-        Return (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & $"/mzkit/linears/") _
-            .ListFiles("*.linearPack") _
-            .Select(AddressOf BaseName) _
-            .ToArray
-    End Function
-
     Private Sub DataGridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles DataGridView1.KeyDown
-        If e.KeyCode = Keys.V AndAlso e.Control AndAlso Clipboard.ContainsText Then
+        If e.KeyCode = System.Windows.Forms.Keys.V AndAlso e.Control AndAlso Clipboard.ContainsText Then
             Call DataGridView1.PasteTextData()
         End If
     End Sub
@@ -480,7 +612,11 @@ Public Class frmTargetedQuantification
         Dim ionLib As IonLibrary = Globals.LoadIonLibrary
         Dim quantifyIons As SIMIonExtract = GetGCMSFeatureReader(LoadGCMSIonLibrary)
 
-        isGCMS = linearPack.targetted = TargettedData.SIM
+        If linearPack.targetted = TargettedData.SIM Then
+            targetType = TargetTypes.GCMS_SIM
+        Else
+            targetType = TargetTypes.MRM
+        End If
 
         DataGridView1.Rows.Clear()
         DataGridView1.Columns.Clear()
@@ -499,7 +635,7 @@ Public Class frmTargetedQuantification
                         Dim ionpairtext = i.ID.Split("/"c).Select(AddressOf Val).ToArray
                         Dim name As String
 
-                        If isGCMS Then
+                        If targetType = TargetTypes.GCMS_SIM Then
                             name = quantifyIons.FindIon(ionpairtext.Min, ionpairtext.Max).name
                         Else
                             name = New IonPair With {
@@ -529,7 +665,7 @@ Public Class frmTargetedQuantification
             [is] = New [IS]
         End If
 
-        If isGCMS Then
+        If targetType = TargetTypes.GCMS_SIM Then
             ionID = quantifyIons.FindIon(ionpairtext.Min, ionpairtext.Max).name
         Else
             ionID = New IonPair With {
@@ -542,7 +678,7 @@ Public Class frmTargetedQuantification
         If Not [is].ID.StringEmpty Then
             ionpairtext = [is].ID.Split("/"c).Select(AddressOf Val).ToArray
 
-            If isGCMS Then
+            If targetType = TargetTypes.GCMS_SIM Then
                 [is].name = quantifyIons.FindIon(ionpairtext.Min, ionpairtext.Max).name
             Else
                 [is].name = New IonPair With {
@@ -572,7 +708,12 @@ Public Class frmTargetedQuantification
     Dim linearEdit As Boolean = False
 
     Private Sub loadLinears(sender As Object, e As EventArgs) Handles cbProfileNameSelector.SelectedIndexChanged
-        If linearEdit AndAlso MessageBox.Show("Current linear profiles has been edited, do you want continute to load new linear profiles data?", "Linear Profile Unsaved", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = DialogResult.Cancel Then
+        If linearEdit AndAlso MessageBox.Show(
+            "Current linear profiles has been edited, do you want continute to load new linear profiles data?",
+            "Linear Profile Unsaved",
+            MessageBoxButtons.OKCancel,
+            MessageBoxIcon.Question) = DialogResult.Cancel Then
+
             Return
         End If
 
@@ -581,11 +722,8 @@ Public Class frmTargetedQuantification
         End If
 
         Dim profileName As String = any.ToString(cbProfileNameSelector.Items(cbProfileNameSelector.SelectedIndex))
-        Dim file As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & $"/mzkit/linears/{profileName}.linearPack"
 
-        linearPack = LinearPack.OpenFile(file)
-
-        Call unifyLoadLinears()
+        Call RunLinearRegression(profileName)
     End Sub
 
     Private Sub reload(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
@@ -712,7 +850,7 @@ Public Class frmTargetedQuantification
             .Select(Function(pg) pg.First) _
             .AsList
 
-        If isGCMS Then
+        If targetType = TargetTypes.GCMS_SIM Then
             Call SetGCMSKeys(refPoints, linears, GCMSIons)
         Else
             Call SetMRMKeys(refPoints, linears, ionLib)
@@ -726,7 +864,7 @@ Public Class frmTargetedQuantification
             .reference = refLevels,
             .[IS] = allFeatures _
                 .Select(Function(name)
-                            If isGCMS Then
+                            If targetType = TargetTypes.GCMS_SIM Then
                                 ' do nothing
                             Else
                                 Dim nameIon As IonPair = ionLib.GetIonByKey(name)
@@ -740,7 +878,7 @@ Public Class frmTargetedQuantification
                             }
                         End Function) _
                 .ToArray,
-            .targetted = If(isGCMS, TargettedData.SIM, TargettedData.MRM)
+            .targetted = If(targetType = TargetTypes.GCMS_SIM, TargettedData.SIM, TargettedData.MRM)
         }
 
         Call linearPack.Write(file)
@@ -811,7 +949,7 @@ Public Class frmTargetedQuantification
         Dim isid As String = any.ToString(refRow.Cells(1).Value)
         Dim chr As New List(Of TargetPeakPoint)
 
-        If isGCMS Then
+        If targetType = TargetTypes.GCMS_SIM Then
             chr.AddRange(createGCMSLinears(id, isid))
         Else
             chr.AddRange(createMRMLinears(id, isid))
@@ -905,6 +1043,18 @@ Public Class frmTargetedQuantification
                         End Function) _
                 .Where(Function(p) Not p Is Nothing) _
                 .DoCall(AddressOf chr.AddRange)
+        ElseIf mzpackRaw IsNot Nothing Then
+            Dim arguments As MRMArguments = args.GetMRMArguments
+            Dim cals As Index(Of String) = linearFiles.Select(Function(f) f.Value).Indexing
+            Dim raw = mzpackRaw.MS.GroupBy(Function(si) si.meta(mzStreamWriter.SampleMetaName)).Where(Function(g) g.Key Like cals).ToDictionary(Function(a) a.Key, Function(a) a.ToArray)
+
+            arguments.sn_threshold = -1
+
+            Call MRMIonExtract.LoadSamples(raw, quantifyIon, arguments).DoCall(AddressOf chr.AddRange)
+
+            If Not isid.StringEmpty Then
+                Call MRMIonExtract.LoadSamples(raw, quantifyIS, arguments).DoCall(AddressOf chr.AddRange)
+            End If
         Else
             Dim arguments As MRMArguments = args.GetMRMArguments
 
@@ -950,12 +1100,16 @@ Public Class frmTargetedQuantification
             .Title = "Select linears"
         }
             If importsFile.ShowDialog = DialogResult.OK Then
-                Call doLoadSampleFiles(importsFile.FileNames)
+                Call TaskProgress.LoadData(
+                    Function(echo As Action(Of String))
+                        Call doLoadSampleFiles(importsFile.FileNames, echo)
+                        Return True
+                    End Function, "Import sample data files...")
             End If
         End Using
     End Sub
 
-    Private Sub doLoadSampleFiles(FileNames As String())
+    Private Sub doLoadSampleFiles(FileNames As String(), echo As Action(Of String)) Implements QuantificationLinearPage.LoadSampleFiles
         Dim files As NamedValue(Of String)() = FileNames _
             .Select(Function(file)
                         Return New NamedValue(Of String) With {
@@ -967,16 +1121,16 @@ Public Class frmTargetedQuantification
 
         ' add files to viewer
         For Each file As NamedValue(Of String) In files
-            Call MyApplication.host.showStatusMessage($"open raw data file '{file.Value}'...")
+            Call Workbench.StatusMessage($"open raw data file '{file.Value.FileName}'...")
             Call MyApplication.host.OpenFile(file.Value, showDocument:=linearPack Is Nothing)
             Call System.Windows.Forms.Application.DoEvents()
         Next
 
         ' and then do quantify if the linear is exists
         If Not linearPack Is Nothing Then
-            Call loadSampleFiles(files)
+            Call loadSampleFiles(files, echo)
         Else
-            Call MyApplication.host.showStatusMessage("no linear model for run quantification, just open raw files viewer...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning("no linear model for run quantification, just open raw files viewer...")
         End If
 
         ToolStripComboBox2.SelectedIndex = 1
@@ -984,7 +1138,65 @@ Public Class frmTargetedQuantification
         Call showQuanifyTable()
     End Sub
 
-    Private Sub loadSampleFiles(files As NamedValue(Of String)())
+    Public Sub LoadSampleMzpack(samples() As String, mzpack As Object, echo As Action(Of String)) Implements QuantificationLinearPage.LoadSampleMzpack
+        Dim points As New List(Of TargetPeakPoint)
+        Dim linears As New List(Of StandardCurve)
+        Dim ionLib As IonLibrary = Globals.LoadIonLibrary
+        Dim GCMSIons = LoadGCMSIonLibrary.ToDictionary(Function(a) a.name)
+        Dim extract = GetGCMSFeatureReader(GCMSIons.Values)
+        Dim massError As MRMArguments = args.GetMRMArguments
+        Dim sampleIndex = samples.Indexing
+        Dim sampleData = DirectCast(mzpack, mzPack).MS _
+            .Where(Function(si) si.meta(mzStreamWriter.SampleMetaName) Like sampleIndex) _
+            .GroupBy(Function(si) si.meta(mzStreamWriter.SampleMetaName)) _
+            .ToDictionary(Function(a) a.Key, Function(a) a.ToArray)
+
+        massError.sn_threshold = -1
+        Call scans.Clear()
+
+        If Not mzpack Is mzpackRaw Then
+            Call WindowModules.MRMIons.LoadMRM(DirectCast(mzpack, mzPack))
+        End If
+
+        For Each refRow As DataGridViewRow In DataGridView1.Rows
+            If isValidLinearRow(refRow) Then
+                Dim id As String = any.ToString(refRow.Cells(0).Value)
+                Dim isid As String = any.ToString(refRow.Cells(1).Value)
+
+                Call linears.Add(createLinear(refRow, args))
+
+                If targetType = TargetTypes.GCMS_SIM Then
+
+                Else
+                    Dim ion As IonPair = ionLib.GetIonByKey(id)
+                    Dim ISion As IonPair = ionLib.GetIonByKey(isid)
+
+
+                    points.AddRange(MRMIonExtract.LoadSamples(sampleData, ion, massError))
+                    echo($"Measure linear for {ion.ToString}")
+
+                    If Not ISion Is Nothing Then
+                        points.AddRange(MRMIonExtract.LoadSamples(sampleData, ISion, massError))
+                    End If
+                End If
+            End If
+        Next
+
+        With linears.Where(Function(l) Not l Is Nothing).ToArray
+            For Each file As IGrouping(Of String, TargetPeakPoint) In points.GroupBy(Function(p) p.SampleName)
+                Dim uniqueIons = file.GroupBy(Function(p) p.Name).Select(Function(p) p.First).ToArray
+                Dim quantify As QuantifyScan = .SampleQuantify(uniqueIons, PeakAreaMethods.SumAll, fileName:=file.Key)
+
+                Call echo($"Processing quantify for sample: {file.Key}")
+
+                If Not quantify Is Nothing Then
+                    scans.Add(quantify)
+                End If
+            Next
+        End With
+    End Sub
+
+    Private Sub loadSampleFiles(files As NamedValue(Of String)(), echo As Action(Of String))
         Dim points As New List(Of TargetPeakPoint)
         Dim linears As New List(Of StandardCurve)
         Dim ionLib As IonLibrary = Globals.LoadIonLibrary
@@ -999,19 +1211,21 @@ Public Class frmTargetedQuantification
                 Dim id As String = any.ToString(refRow.Cells(0).Value)
                 Dim isid As String = any.ToString(refRow.Cells(1).Value)
 
-                linears.Add(createLinear(refRow, args))
+                Call linears.Add(createLinear(refRow, args))
 
-                If isGCMS Then
+                If targetType = TargetTypes.GCMS_SIM Then
                     Dim ion As QuantifyIon = GCMSIons.GetIon(id)
                     Dim ISion As QuantifyIon = GCMSIons.GetIon(isid)
 
                     points.AddRange(extract.LoadSamples(files, ion, keyByName:=True))
                     points.AddRange(extract.LoadSamples(files, ion, keyByName:=True))
+                    echo($"Measure linear for {ion.ToString}")
                 Else
                     Dim ion As IonPair = ionLib.GetIonByKey(id)
                     Dim ISion As IonPair = ionLib.GetIonByKey(isid)
 
                     points.AddRange(MRMIonExtract.LoadSamples(files, ion, massError))
+                    echo($"Measure linear for {ion.ToString}")
 
                     If Not ISion Is Nothing Then
                         points.AddRange(MRMIonExtract.LoadSamples(files, ISion, massError))
@@ -1021,9 +1235,11 @@ Public Class frmTargetedQuantification
         Next
 
         With linears.Where(Function(l) Not l Is Nothing).ToArray
-            For Each file In points.GroupBy(Function(p) p.SampleName)
+            For Each file As IGrouping(Of String, TargetPeakPoint) In points.GroupBy(Function(p) p.SampleName)
                 Dim uniqueIons = file.GroupBy(Function(p) p.Name).Select(Function(p) p.First).ToArray
                 Dim quantify As QuantifyScan = .SampleQuantify(uniqueIons, PeakAreaMethods.SumAll, fileName:=file.Key)
+
+                Call echo($"Processing quantify for sample: {file.Key}")
 
                 If Not quantify Is Nothing Then
                     scans.Add(quantify)
@@ -1036,7 +1252,7 @@ Public Class frmTargetedQuantification
         DataGridView3.Rows.Clear()
         DataGridView3.Columns.Clear()
 
-        Dim quantify = scans.Select(Function(q) q.quantify).ToArray
+        Dim quantify As DataSet() = PullQuantifyResult().Select(Function(q) DirectCast(q.Value, DataSet)).ToArray
         Dim metaboliteNames = quantify.PropertyNames
 
         DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = "Sample Name"})
@@ -1045,7 +1261,7 @@ Public Class frmTargetedQuantification
             DataGridView3.Columns.Add(New DataGridViewTextBoxColumn() With {.HeaderText = col})
         Next
 
-        For Each sample In quantify
+        For Each sample As DataSet In quantify
             Dim vec As Object() = New Object() {sample.ID} _
                 .JoinIterates(metaboliteNames.Select(Function(name) CObj(sample(name)))) _
                 .ToArray
@@ -1100,6 +1316,7 @@ Public Class frmTargetedQuantification
 
     Private Sub DataGridView1_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellEndEdit
         Me.linearEdit = True
+        Workbench.StatusMessage("For save the linear reference content, click [save] button to save current or create new profile!")
     End Sub
 
     Private Sub deleteProfiles(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
@@ -1160,52 +1377,55 @@ Public Class frmTargetedQuantification
 
     End Function
 
-    Private Sub ViewLinearReportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewLinearReportToolStripMenuItem.Click
-        If linearPack Is Nothing OrElse linearPack.linears.IsNullOrEmpty Then
-            Call MyApplication.host.showStatusMessage("no linear model was loaded!", My.Resources.StatusAnnotations_Warning_32xLG_color)
-            Return
-        End If
-
+    Public Sub ViewLinearModelReport(onHost As Boolean, ignoreError As Boolean) Implements QuantificationLinearPage.ViewLinearModelReport
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".html", sessionID:=App.PID.ToHexString, "linear_report")
-        Dim samples As QuantifyScan() = {}
-        Dim ionsRaw As New Rlist With {
-            .slots = linearPack.peakSamples _
-                .GroupBy(Function(sample) sample.Name) _
-                .ToDictionary(Function(ion) ion.Key,
-                              Function(ionGroup)
-                                  Dim innerList As New Rlist With {
-                                      .slots = ionGroup _
-                                          .ToDictionary(Function(ion) ion.SampleName,
-                                                        Function(ion)
-                                                            Return CObj(ion.Peak.ticks)
-                                                        End Function)
-                                  }
+        Dim packtemp As String = TempFileSystem.GetAppSysTempFile(".cdf", sessionID:=App.PID.ToHexString, "linear_pack")
 
-                                  Return CObj(innerList)
-                              End Function)
-        }
+        Call linearPack.Write(packtemp)
+        Call RscriptProgressTask.ExportLinearReport(packtemp, tempfile, onHost)
 
-        For Each line In linearPack.linears
-            line.linear.ErrorTest = line.points _
-                .Select(Function(p)
-                            Return CType(New TestPoint With {.X = p.Px, .Y = p.Cti, .Yfit = p.yfit}, IFitError)
-                        End Function) _
-                .ToArray
-        Next
-
-        Call MyApplication.REngine.LoadLibrary("mzkit")
-        Call MyApplication.REngine.Evaluate("imports 'Linears' from 'mzkit.quantify';")
-        Call MyApplication.REngine.Set("$temp_report", MyApplication.REngine.Invoke("report.dataset", linearPack.linears, samples, Nothing, ionsRaw))
-        Call MyApplication.REngine.Invoke("html", MyApplication.REngine("$temp_report"), MyApplication.REngine.globalEnvir).ToString.SaveTo(tempfile)
-
-        If TypeOf MyApplication.REngine.globalEnvir.last Is Message Then
-            Call MessageBox.Show(MyApplication.REngine.globalEnvir.last.ToString, "View Linear Report", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        If tempfile.FileLength <= 10 Then
+            If Not ignoreError Then
+                Call MessageBox.Show("Run Rscript workflow error...", "View Linear Report", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
         Else
             Call VisualStudio.ShowDocument(Of frmHtmlViewer)().LoadHtml(tempfile)
+        End If
+    End Sub
+
+    Private Sub ViewLinearReportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewLinearReportToolStripMenuItem.Click
+        If linearPack Is Nothing OrElse linearPack.linears.IsNullOrEmpty Then
+            Call Workbench.Warning("no linear model was loaded!")
+        Else
+            Call ViewLinearModelReport(onHost:=False, ignoreError:=False)
         End If
     End Sub
 
     Private Sub frmTargetedQuantification_Closed(sender As Object, e As EventArgs) Handles Me.Closed
         WindowModules.ribbon.TargetedContex.ContextAvailable = ContextAvailability.NotAvailable
     End Sub
+
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+
+    End Sub
+
+    Public Sub SetLinear(key As String, is_key As String, reference As Dictionary(Of String, Double)) Implements QuantificationLinearPage.SetLinear
+
+    End Sub
+
+    Public Sub RunLinearRegression(profileName As String) Implements QuantificationLinearPage.RunLinearRegression
+        Dim file As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & $"/mzkit/linears/{profileName}.linearPack"
+
+        linearPack = LinearPack.OpenFile(file)
+
+        Call unifyLoadLinears()
+    End Sub
+
+    Public Iterator Function PullQuantifyResult() As IEnumerable(Of NamedValue(Of DynamicPropertyBase(Of Double))) Implements QuantificationLinearPage.PullQuantifyResult
+        For Each scan As QuantifyScan In scans
+            Dim quantify = scan.quantify
+
+            Yield New NamedValue(Of DynamicPropertyBase(Of Double))(quantify.ID, quantify)
+        Next
+    End Function
 End Class

@@ -106,6 +106,7 @@ Module Program
     Public Function getData(MSI_service As Integer,
                             mz As Double(),
                             mzdiff As Object,
+                            Optional host As String = "localhost",
                             Optional env As Environment = Nothing) As Object
 
         Dim mzErr = Math.getTolerance(mzdiff, env, [default]:="da:0.1")
@@ -114,12 +115,27 @@ Module Program
             Return mzErr.TryCast(Of Message)
         End If
 
-        Dim tcpRequest =
-            Function(request As RequestStream) As RequestStream
-                Return New TcpRequest("localhost", MSI_service).SendMessage(request)
-            End Function
+        Dim tcpRequest = tcpGet(host, MSI_service)
+        Dim pull = MSIProtocols.LoadPixels(mz, mzErr.TryCast(Of Tolerance), tcpRequest)
 
-        Return MSIProtocols.LoadPixels(mz, mzErr.TryCast(Of Tolerance), tcpRequest)
+        Return pull
+    End Function
+
+    Private Function tcpGet(host As String, MSI_service As Integer) As Func(Of RequestStream, RequestStream)
+        Return Function(request As RequestStream) As RequestStream
+                   Return New TcpRequest(host, MSI_service).SendMessage(request)
+               End Function
+    End Function
+
+    <ExportAPI("getTotalIons")>
+    Public Function getTotalIons(MSI_service As Integer,
+                                 Optional host As String = "localhost",
+                                 Optional env As Environment = Nothing) As Object
+
+        Dim tcpRequest = tcpGet(host, MSI_service)
+        Dim pull = MSIProtocols.GetTotalIons(tcpRequest)
+
+        Return pull
     End Function
 
 End Module

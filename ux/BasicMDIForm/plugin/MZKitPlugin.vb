@@ -9,6 +9,10 @@ Imports System.Reflection
 <AttributeUsage(AttributeTargets.Assembly, AllowMultiple:=False)>
 Public Class MZKitPlugin : Inherits Attribute
 
+    ''' <summary>
+    ''' [<see cref="PluginMetadata.id"/> => <see cref="Plugin"/>]
+    ''' </summary>
+    ''' <returns></returns>
     Public Shared ReadOnly Property InMemoryLoaderRegistry As New Dictionary(Of String, Plugin)
 
     Public Overrides Function ToString() As String

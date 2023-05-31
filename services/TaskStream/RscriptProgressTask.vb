@@ -69,6 +69,72 @@ Public NotInheritable Class RscriptProgressTask
     Private Sub New()
     End Sub
 
+    Public Shared Function ConvertSTData(spot As String, matrix As String, tag As String, targets As String(), save As String) As String
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("10x_genomics/convert_h5ad_st_to_mzpack.R")
+        Dim targetfile As String = TempFileSystem.GetAppSysTempFile(".txt")
+
+        Call targets.SaveTo(targetfile)
+
+        Dim cli As String = $"""{Rscript}"" 
+--spots ""{spot}""
+--expr ""{matrix}""
+--tag ""{tag}""
+--save ""{save}""
+--targets ""{targetfile}""
+--SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
+"
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
+        Call Workbench.LogText(pipeline.CommandLine)
+
+        Call TaskProgress.RunAction(
+                run:=Sub(p)
+                         p.SetProgressMode()
+
+                         AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                         AddHandler pipeline.Finish, AddressOf p.TaskFinish
+
+                         Call pipeline.Run()
+                     End Sub,
+                title:="Import 10X Genomics h5ad matrix",
+                info:="Do file data converts to mzpack data file...")
+
+        Return save
+    End Function
+
+    Public Shared Function ExportLinearReport(linear As String, export As String, onHost As Boolean) As String
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("linearReport.R")
+        Dim cli As String = $"""{Rscript}"" 
+--linear ""{linear}"" 
+--export ""{export}"" 
+--SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
+"
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
+        Call Workbench.LogText(pipeline.CommandLine)
+
+        If onHost Then
+            AddHandler pipeline.SetMessage, AddressOf Workbench.StatusMessage
+            Call pipeline.Run()
+        Else
+            Call TaskProgress.RunAction(
+                run:=Sub(p)
+                         p.SetProgressMode()
+
+                         AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                         AddHandler pipeline.Finish, AddressOf p.TaskFinish
+
+                         Call pipeline.Run()
+                     End Sub,
+                title:="Export Report",
+                info:="Do exports of the html report for the linear regression and targetted quantification...")
+        End If
+
+        Return export
+    End Function
+
     ''' <summary>
     ''' convert imzML to mzpack
     ''' </summary>
@@ -148,9 +214,11 @@ Public NotInheritable Class RscriptProgressTask
                                           saveAs As String,
                                           background As String,
                                           colorSet As String,
+                                          overlapTotalIons As Boolean,
                                           Optional title As String = "")
 
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSImaging/singleIon.R")
+        Dim overlapFlag As String = If(overlapTotalIons, "--overlap-tic", "")
         Dim cli As String = $"""{Rscript}"" 
 --app {Workbench.MSIServiceAppPort} 
 --mzlist ""{mz}"" 
@@ -158,7 +226,7 @@ Public NotInheritable Class RscriptProgressTask
 --backcolor ""{background}"" 
 --colors ""{colorSet}"" 
 --mzdiff ""{tolerance}"" 
---title ""{title}"" 
+--title ""{title}"" {overlapFlag} 
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -294,6 +362,54 @@ Public NotInheritable Class RscriptProgressTask
         End If
     End Sub
 
+    ''' <summary>
+    ''' Create MSI peaktable without ptissue region maps
+    ''' </summary>
+    ''' <param name="mzpack"></param>
+    ''' <param name="saveAs"></param>
+    ''' <param name="mzdiff"></param>
+    ''' <param name="intocutoff"></param>
+    ''' <param name="TrIQ"></param>
+    Public Shared Sub CreateMSIPeakTable(mzpack As String, saveAs As String, mzdiff As String, intocutoff As Double, TrIQ As Double)
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("MSI_peaktable.R")
+        Dim cli As String = $"""{Rscript}"" 
+--raw ""{mzpack}"" 
+--save ""{saveAs}"" 
+--mzdiff ""{mzdiff}""
+--into.cutoff ""{intocutoff}""
+--TrIQ ""{TrIQ}""
+--SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
+"
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
+        Call Workbench.LogText(pipeline.CommandLine)
+        Call TaskProgress.RunAction(
+            run:=Sub(p)
+                     AddHandler pipeline.SetMessage, AddressOf p.SetInfo
+                     AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                     AddHandler pipeline.Finish, AddressOf p.TaskFinish
+
+                     Call pipeline.Run()
+                 End Sub,
+            title:="Create MSI sampletable...",
+            info:="Loading MSI raw data file into viewer workspace...")
+
+        If MessageBox.Show("Export MSI sampletable Job Done!" & vbCrLf & "Open MSI sample table data file?",
+                           "Open Excel",
+                           MessageBoxButtons.YesNo,
+                           MessageBoxIcon.Information) = DialogResult.Yes Then
+
+            Call Process.Start(saveAs.GetFullPath)
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' Create MSI peaktable with a specific ptissue region maps
+    ''' </summary>
+    ''' <param name="mzpack"></param>
+    ''' <param name="saveAs"></param>
+    ''' <param name="exportTissueMaps"></param>
     Public Shared Sub CreateMSIPeakTable(mzpack As String, saveAs As String, exportTissueMaps As Action(Of Stream))
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".cdf", App.PID.ToHexString, prefix:="MSI_regions__")
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSI_peaktable.R")

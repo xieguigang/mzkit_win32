@@ -90,25 +90,29 @@ Partial Class frmMsImagingTweaks
         Me.BarPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViolinPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.IntensityHistogramToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripSeparator()
         Me.AppendMSImagingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RenderLayerCompositionModeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RenderingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportEachSelectedLayersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.LoadBasePeakIonsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.SelectAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ClearSelectionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.Win7StyleTreeView1 = New ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView(Me.components)
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
-        Me.ToolStripSpringTextBox1 = New Global.Mzkit_win32.BasicMDIForm.ToolStripSpringTextBox()
+        Me.ToolStripSpringTextBox1 = New ToolStripSpringTextBox()
         Me.ViewLayerButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
-        Me.IntensityHistogramToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripSeparator()
+        Me.LoadAllAnnotationLayersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -129,9 +133,9 @@ Partial Class frmMsImagingTweaks
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowPlotToolStripMenuItem, Me.RenderLayerCompositionModeToolStripMenuItem, Me.RenderingToolStripMenuItem, Me.ToolStripMenuItem1, Me.LoadBasePeakIonsToolStripMenuItem, Me.ToolStripMenuItem2, Me.ClearSelectionToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowPlotToolStripMenuItem, Me.RenderLayerCompositionModeToolStripMenuItem, Me.RenderingToolStripMenuItem, Me.ExportEachSelectedLayersToolStripMenuItem, Me.ToolStripMenuItem1, Me.LoadAllAnnotationLayersToolStripMenuItem, Me.LoadBasePeakIonsToolStripMenuItem, Me.ToolStripMenuItem2, Me.SelectAllToolStripMenuItem, Me.ClearSelectionToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(262, 148)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(262, 214)
         '
         'ShowPlotToolStripMenuItem
         '
@@ -164,6 +168,18 @@ Partial Class frmMsImagingTweaks
         Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
         Me.ToolStripMenuItem3.Size = New System.Drawing.Size(182, 6)
         '
+        'IntensityHistogramToolStripMenuItem
+        '
+        Me.IntensityHistogramToolStripMenuItem.Image = CType(resources.GetObject("IntensityHistogramToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.IntensityHistogramToolStripMenuItem.Name = "IntensityHistogramToolStripMenuItem"
+        Me.IntensityHistogramToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.IntensityHistogramToolStripMenuItem.Text = "Intensity Histogram"
+        '
+        'ToolStripMenuItem4
+        '
+        Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(182, 6)
+        '
         'AppendMSImagingToolStripMenuItem
         '
         Me.AppendMSImagingToolStripMenuItem.Checked = True
@@ -187,6 +203,12 @@ Partial Class frmMsImagingTweaks
         Me.RenderingToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
         Me.RenderingToolStripMenuItem.Text = "Render"
         '
+        'ExportEachSelectedLayersToolStripMenuItem
+        '
+        Me.ExportEachSelectedLayersToolStripMenuItem.Name = "ExportEachSelectedLayersToolStripMenuItem"
+        Me.ExportEachSelectedLayersToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
+        Me.ExportEachSelectedLayersToolStripMenuItem.Text = "Export Each Selected Layers"
+        '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
@@ -202,6 +224,12 @@ Partial Class frmMsImagingTweaks
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
         Me.ToolStripMenuItem2.Size = New System.Drawing.Size(258, 6)
+        '
+        'SelectAllToolStripMenuItem
+        '
+        Me.SelectAllToolStripMenuItem.Name = "SelectAllToolStripMenuItem"
+        Me.SelectAllToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
+        Me.SelectAllToolStripMenuItem.Text = "Select All"
         '
         'ClearSelectionToolStripMenuItem
         '
@@ -251,7 +279,7 @@ Partial Class frmMsImagingTweaks
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.ToolStripSpringTextBox1, Me.ViewLayerButton, Me.ToolStripButton2, Me.ToolStripSeparator1, Me.ToolStripButton3})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.ToolStripSpringTextBox1, Me.ViewLayerButton, Me.ToolStripButton2, Me.ToolStripButton1, Me.ToolStripSeparator1, Me.ToolStripButton3})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(377, 25)
@@ -261,14 +289,13 @@ Partial Class frmMsImagingTweaks
         'ToolStripLabel1
         '
         Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(65, 22)
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(66, 22)
         Me.ToolStripLabel1.Text = "MSI Target:"
         '
         'ToolStripSpringTextBox1
         '
-        Me.ToolStripSpringTextBox1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.ToolStripSpringTextBox1.Name = "ToolStripSpringTextBox1"
-        Me.ToolStripSpringTextBox1.Size = New System.Drawing.Size(194, 25)
+        Me.ToolStripSpringTextBox1.Size = New System.Drawing.Size(170, 25)
         '
         'ViewLayerButton
         '
@@ -288,6 +315,15 @@ Partial Class frmMsImagingTweaks
         Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton2.Text = "Add Ion Layer"
         '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton1.Text = "Imports A List of Ions"
+        '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
@@ -302,17 +338,11 @@ Partial Class frmMsImagingTweaks
         Me.ToolStripButton3.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton3.Text = "Clear Layers"
         '
-        'IntensityHistogramToolStripMenuItem
+        'LoadAllAnnotationLayersToolStripMenuItem
         '
-        Me.IntensityHistogramToolStripMenuItem.Image = CType(resources.GetObject("IntensityHistogramToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.IntensityHistogramToolStripMenuItem.Name = "IntensityHistogramToolStripMenuItem"
-        Me.IntensityHistogramToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
-        Me.IntensityHistogramToolStripMenuItem.Text = "Intensity Histogram"
-        '
-        'ToolStripMenuItem4
-        '
-        Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
-        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(182, 6)
+        Me.LoadAllAnnotationLayersToolStripMenuItem.Name = "LoadAllAnnotationLayersToolStripMenuItem"
+        Me.LoadAllAnnotationLayersToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
+        Me.LoadAllAnnotationLayersToolStripMenuItem.Text = "Load All Annotation Layers"
         '
         'frmMsImagingTweaks
         '
@@ -362,4 +392,8 @@ Partial Class frmMsImagingTweaks
     Friend WithEvents AppendMSImagingToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents IntensityHistogramToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem4 As ToolStripSeparator
+    Friend WithEvents ToolStripButton1 As ToolStripButton
+    Friend WithEvents ExportEachSelectedLayersToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SelectAllToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LoadAllAnnotationLayersToolStripMenuItem As ToolStripMenuItem
 End Class

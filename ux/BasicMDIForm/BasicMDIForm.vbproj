@@ -26,7 +26,9 @@
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
     <DocumentationFile>Mzkit_win32.BasicMDIForm.xml</DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,7 +38,9 @@
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DocumentationFile>Mzkit_win32.BasicMDIForm.xml</DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
@@ -56,40 +60,70 @@
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\x64\Debug\</OutputPath>
     <DocumentationFile>Mzkit_win32.BasicMDIForm.xml</DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <Prefer32Bit>true</Prefer32Bit>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\x64\Release\</OutputPath>
     <DocumentationFile>Mzkit_win32.BasicMDIForm.xml</DocumentationFile>
     <Optimize>true</Optimize>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <Prefer32Bit>true</Prefer32Bit>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'mzkit_win32|AnyCPU'">
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\mzkit_win32\</OutputPath>
     <DocumentationFile>Mzkit_win32.BasicMDIForm.xml</DocumentationFile>
-    <Optimize>true</Optimize>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Optimize>false</Optimize>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
     <Prefer32Bit>true</Prefer32Bit>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <RemoveIntegerChecks>true</RemoveIntegerChecks>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'mzkit_win32|x64'">
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\x64\mzkit_win32\</OutputPath>
     <DocumentationFile>Mzkit_win32.BasicMDIForm.xml</DocumentationFile>
-    <Optimize>true</Optimize>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <Prefer32Bit>true</Prefer32Bit>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <RemoveIntegerChecks>true</RemoveIntegerChecks>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'">
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <DocumentationFile>Mzkit_win32.BasicMDIForm.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Win32'">
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <DocumentationFile>Mzkit_win32.BasicMDIForm.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'mzkit_win32|Win32'">
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <DocumentationFile>Mzkit_win32.BasicMDIForm.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.Windows.Form">
@@ -180,6 +214,7 @@
     <Compile Include="buzyIndicator\TaskProgress.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="TableHelper.vb" />
     <Compile Include="plugin\base\MSIServicePlugin.vb" />
     <Compile Include="dialogs\InputDialog.Designer.vb">
       <DependentUpon>InputDialog.vb</DependentUpon>
@@ -196,6 +231,8 @@
     <Compile Include="GridSearchHandler.vb" />
     <Compile Include="plugin\modules\Actions\ActionBase.vb" />
     <Compile Include="plugin\modules\Actions\Actions.vb" />
+    <Compile Include="plugin\modules\Pages.vb" />
+    <Compile Include="plugin\modules\QuantificationLinear.vb" />
     <Compile Include="plugin\modules\SpectralViewerModule.vb" />
     <Compile Include="plugin\modules\SpectrumSearchModule.vb" />
     <Compile Include="plugin\modules\MSImagingServiceModule.vb" />
@@ -290,7 +327,15 @@
   <ItemGroup>
     <None Include="Resources\progress-bar.html" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\1200px-Checked.svg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cloud icon 3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Home_Logo_Link.png" />
+  </ItemGroup>
   <Import Project="..\..\services\mzkit_win32.envir\mzkit_win32.envir.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="..\..\packages\Microsoft.Web.WebView2.1.0.1462.37\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\..\packages\Microsoft.Web.WebView2.1.0.1462.37\build\Microsoft.Web.WebView2.targets')" />

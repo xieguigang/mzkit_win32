@@ -1,4 +1,6 @@
-﻿Imports System.Drawing
+﻿Imports System.Diagnostics
+Imports System.Drawing
+Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
 Imports Microsoft.VisualBasic.Imaging
@@ -7,12 +9,12 @@ Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Public Class ColorScaler
 
     Dim colorSet As ScalerPalette = ScalerPalette.FlexImaging
-    Dim mapLevels As Integer = 200
+    Dim mapLevels As Integer = 250
     Dim intensityMax As Double = 10 ^ 6
 
     Public ReadOnly Property ColorBarWidth As Integer
         Get
-            Return Width - 60
+            Return Width - 80
         End Get
     End Property
 
@@ -22,7 +24,7 @@ Public Class ColorScaler
         End Get
         Set(value As ScalerPalette)
             colorSet = value
-            updateColors()
+            UpdateColors(callEvents:=False)
         End Set
     End Property
 
@@ -32,7 +34,7 @@ Public Class ColorScaler
         End Get
         Set(value As Integer)
             mapLevels = value
-            updateColors()
+            UpdateColors(callEvents:=False)
         End Set
     End Property
 
@@ -56,10 +58,14 @@ Public Class ColorScaler
             picUpperbound.Location = New Point(1, upperBottom - 10)
             picLowerbound.Location = New Point(1, lowerTop)
 
-            updateColors()
+            UpdateColors(callEvents:=False)
         End Set
     End Property
 
+    Public Event SetRange(range As DoubleRange)
+
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    <DebuggerStepThrough>
     Public Sub SetIntensityMax(max As Double)
         intensityMax = max
     End Sub
@@ -75,52 +81,72 @@ Public Class ColorScaler
         PictureBox1.Location = New Point(1, picUpperbound.Location.Y + 12)
         PictureBox1.Size = New Size(width - 2, picLowerbound.Top - picUpperbound.Bottom - 5)
 
-        Call updateColors()
+        Call UpdateColors(callEvents:=True)
     End Sub
 
-    Private Sub updateColors()
+    Public Sub UpdateColors(callEvents As Boolean)
+        ' 绘制坐标轴
+        BackgroundImage = DrawIntensityAxis()
+        ' 绘制颜色条
+        PictureBox1.BackgroundImage = DrawByColors(Designer.GetColors(colorSet.Description, mapLevels))
+
+        If callEvents Then
+            Try
+                RaiseEvent SetRange(ScalerRange)
+            Catch ex As Exception
+
+            End Try
+        End If
+    End Sub
+
+    Private Function DrawIntensityAxis() As Image
+        Dim w As Double = ColorBarWidth
         Dim axisTicks = New DoubleRange(0, intensityMax).CreateAxisTicks
-
-        Me.BackgroundImage = DrawByColors(Designer.GetColors(ScalerPalette.Gray.Description, mapLevels), ColorBarWidth, axisTicks)
-        PictureBox1.BackgroundImage = DrawByColors(Designer.GetColors(colorSet.Description, mapLevels), PictureBox1.Width, Nothing)
-    End Sub
-
-    Private Function DrawByColors(colors As Color(), w As Double, axisTicks As Double()) As Image
         Dim height As Double = Me.Height
-        Dim d As Double = height / colors.Length
+        Dim d As Double = height / mapLevels
         Dim y As Double = 0
 
         Using g As IGraphics = Me.Size.CreateGDIDevice
-            If Not axisTicks.IsNullOrEmpty Then
-                height -= 20
-                w += 5
+            height -= 20
+            ' w -= 20
 
-                Dim scaleY As New YScaler(False) With {
-                    .Y = d3js.scale.linear.domain(values:=axisTicks).range(values:={10, height}),
-                    .region = New Rectangle(0, 0, 0, height)
-                }
-                Dim a As New PointF(w, 10)
-                Dim b As New PointF(w, height)
-                Dim pen As New Pen(Color.Black, 5)
-                Dim font As New Font(FontFace.MicrosoftYaHeiUI, 7, FontStyle.Bold)
-                Dim fh = g.MeasureString("0", font).Height / 2
+            ' 绘制坐标轴
+            Dim scaleY As New YScaler(False) With {
+                .Y = d3js.scale.linear.domain(values:=axisTicks).range(values:={10, height}),
+                .region = New Rectangle(0, 0, 0, height)
+            }
+            Dim a As New PointF(w, 10)
+            Dim b As New PointF(w, height)
+            Dim pen As New Pen(Color.Black, 3)
+            Dim font As New Font(FontFace.MicrosoftYaHeiUI, 7, FontStyle.Italic)
+            Dim fh = g.MeasureString("0", font).Height / 2
 
+            g.DrawLine(pen, a, b)
+            pen = New Pen(Color.Black, 2)
+
+            For Each tick As Double In axisTicks.Take(axisTicks.Length - 1)
+                y = scaleY.TranslateY(tick)
+                a = New PointF(w, y)
+                b = New PointF(w + 5, y)
                 g.DrawLine(pen, a, b)
-                pen = New Pen(Color.Black, 3)
+                g.DrawString(tick.ToString("G3"), font, Brushes.Black, New PointF(w + 8, y - fh))
+            Next
 
-                For Each tick As Double In axisTicks.Take(axisTicks.Length - 1)
-                    y = scaleY.TranslateY(tick)
-                    a = New PointF(w, y)
-                    b = New PointF(w + 5, y)
-                    g.DrawLine(pen, a, b)
-                    g.DrawString(tick.ToString("G3"), font, Brushes.Black, New PointF(w + 8, y - fh))
-                Next
-            Else
-                For Each c As Color In colors
-                    Call g.FillRectangle(New SolidBrush(c), New RectangleF(New PointF(0, y), New SizeF(w, d)))
-                    y += d
-                Next
-            End If
+            Return DirectCast(g, Graphics2D).ImageResource
+        End Using
+    End Function
+
+    Private Function DrawByColors(colors As Color()) As Image
+        Dim height As Double = Me.Height
+        Dim d As Double = height / colors.Length
+        Dim y As Double = 0
+        Dim w As Double = Me.Width
+
+        Using g As IGraphics = Me.Size.CreateGDIDevice
+            For Each c As Color In colors.Reverse
+                Call g.FillRectangle(New SolidBrush(c), New RectangleF(New PointF(0, y), New SizeF(w, d)))
+                y += d
+            Next
 
             Return DirectCast(g, Graphics2D).ImageResource
         End Using
@@ -131,12 +157,16 @@ Public Class ColorScaler
     End Sub
 
     Private Sub ColorScaler_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+        If Me.Width < 100 Then
+            Me.Width = 100
+        End If
+
         Dim width = ColorBarWidth
 
         picUpperbound.Size = New Size(width - 2, 10)
         picLowerbound.Size = New Size(width - 2, 10)
 
-        Call updateColors()
+        Call UpdateColors(callEvents:=False)
     End Sub
 
     Dim moveUp, moveDown As Boolean
@@ -190,11 +220,17 @@ Public Class ColorScaler
 
     Private Sub picUpperbound_MouseUp(sender As Object, e As MouseEventArgs) Handles picUpperbound.MouseUp
         moveUp = False
-        Call updateColors()
+        Call UpdateColors(callEvents:=True)
+    End Sub
+
+    Private Sub ResetToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ResetToolStripMenuItem.Click
+        'ScalerRange = {0.0, 1.0}
+        'RaiseEvent SetRange(ScalerRange)
+        Call ResetScaleRange()
     End Sub
 
     Private Sub picLowerbound_MouseUp(sender As Object, e As MouseEventArgs) Handles picLowerbound.MouseUp
         moveDown = False
-        Call updateColors()
+        Call UpdateColors(callEvents:=True)
     End Sub
 End Class

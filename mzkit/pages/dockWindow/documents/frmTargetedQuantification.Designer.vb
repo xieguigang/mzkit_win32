@@ -110,6 +110,8 @@ Partial Class frmTargetedQuantification
         Me.DeleteIonFeatureToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveAsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ViewLinearReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
         Me.cbProfileNameSelector = New System.Windows.Forms.ToolStripComboBox()
@@ -126,8 +128,6 @@ Partial Class frmTargetedQuantification
         Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel()
         Me.ToolStripComboBox2 = New System.Windows.Forms.ToolStripComboBox()
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ViewLinearReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -370,7 +370,7 @@ Partial Class frmTargetedQuantification
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportsLinearReferenceToolStripMenuItem, Me.ToolStripMenuItem1, Me.DeleteIonFeatureToolStripMenuItem, Me.SaveToolStripMenuItem, Me.SaveAsToolStripMenuItem, Me.ToolStripMenuItem2, Me.ViewLinearReportToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(206, 148)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(206, 126)
         '
         'ImportsLinearReferenceToolStripMenuItem
         '
@@ -403,6 +403,18 @@ Partial Class frmTargetedQuantification
         Me.SaveAsToolStripMenuItem.Name = "SaveAsToolStripMenuItem"
         Me.SaveAsToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
         Me.SaveAsToolStripMenuItem.Text = "Save As"
+        '
+        'ToolStripMenuItem2
+        '
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(202, 6)
+        '
+        'ViewLinearReportToolStripMenuItem
+        '
+        Me.ViewLinearReportToolStripMenuItem.Image = CType(resources.GetObject("ViewLinearReportToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.ViewLinearReportToolStripMenuItem.Name = "ViewLinearReportToolStripMenuItem"
+        Me.ViewLinearReportToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.ViewLinearReportToolStripMenuItem.Text = "View Linear Report"
         '
         'ToolStrip1
         '
@@ -510,7 +522,7 @@ Partial Class frmTargetedQuantification
         'ToolStripLabel2
         '
         Me.ToolStripLabel2.Name = "ToolStripLabel2"
-        Me.ToolStripLabel2.Size = New System.Drawing.Size(77, 22)
+        Me.ToolStripLabel2.Size = New System.Drawing.Size(78, 22)
         Me.ToolStripLabel2.Text = "Result Tables:"
         '
         'ToolStripComboBox2
@@ -529,18 +541,6 @@ Partial Class frmTargetedQuantification
         Me.ToolStripButton4.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton4.Text = "Save Table Data"
         '
-        'ToolStripMenuItem2
-        '
-        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(202, 6)
-        '
-        'ViewLinearReportToolStripMenuItem
-        '
-        Me.ViewLinearReportToolStripMenuItem.Image = CType(resources.GetObject("ViewLinearReportToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.ViewLinearReportToolStripMenuItem.Name = "ViewLinearReportToolStripMenuItem"
-        Me.ViewLinearReportToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
-        Me.ViewLinearReportToolStripMenuItem.Text = "View Linear Report"
-        '
         'frmTargetedQuantification
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -550,6 +550,7 @@ Partial Class frmTargetedQuantification
         Me.DoubleBuffered = True
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmTargetedQuantification"
+        Me.TabPageContextMenuStrip = Me.DockContextMenuStrip1
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.SplitContainer1.Panel1.ResumeLayout(False)

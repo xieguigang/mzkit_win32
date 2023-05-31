@@ -1,8 +1,7 @@
 ﻿Imports BioNovoGene.mzkit_win32.My
-Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
-Imports Microsoft.VisualBasic.MIME.Office
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Excel = Microsoft.VisualBasic.MIME.Office.Excel.XLSX
 
 Public Class SelectSheetName
 

@@ -50,11 +50,11 @@ Public Class KEGGStatsAction : Inherits ActionBase
 
     Private Function StatCompounds(cid As String()) As EntityObject()
         Dim maps = KEGGRepo.RequestKEGGMaps _
-            .GroupBy(Function(map) map.id) _
+            .GroupBy(Function(map) map.EntryId) _
             .Select(Function(map) map.First) _
             .ToArray
         Dim pathways = maps.ToDictionary(
-            Function(m) m.id,
+            Function(m) m.EntryId,
             Function(m)
                 Return m.shapes _
                     .Select(Function(a) a.IDVector) _

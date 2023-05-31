@@ -202,6 +202,8 @@
     <RemoveIntegerChecks>true</RemoveIntegerChecks>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningLevel>1</WarningLevel>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <DefineTrace>true</DefineTrace>
@@ -215,6 +217,8 @@
     <Prefer32Bit>true</Prefer32Bit>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningLevel>1</WarningLevel>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'mzkit|x86'">
     <DefineTrace>true</DefineTrace>
@@ -228,6 +232,8 @@
     <Prefer32Bit>true</Prefer32Bit>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningLevel>1</WarningLevel>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Publish|x86'">
     <OutputPath>bin\x86\Publish\</OutputPath>
@@ -238,6 +244,8 @@
     <DocumentationFile>mzkit_win32.xml</DocumentationFile>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningLevel>1</WarningLevel>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
@@ -253,6 +261,8 @@
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'mzkit_win32|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -266,6 +276,8 @@
     <PlatformTarget>x64</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'mzkit_win32|x86'">
     <DefineTrace>true</DefineTrace>
@@ -278,6 +290,43 @@
     <PlatformTarget>x86</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'">
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <WarningLevel>1</WarningLevel>
+    <DocumentationFile>mzkit_win32.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Win32'">
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <WarningLevel>1</WarningLevel>
+    <DocumentationFile>mzkit_win32.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'mzkit|Win32'">
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <WarningLevel>1</WarningLevel>
+    <DocumentationFile>mzkit_win32.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Publish|Win32'">
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <WarningLevel>1</WarningLevel>
+    <DocumentationFile>mzkit_win32.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'mzkit_win32|Win32'">
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <WarningLevel>1</WarningLevel>
+    <DocumentationFile>mzkit_win32.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.Windows.Form">
@@ -300,8 +349,13 @@
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=6.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.6.0.1\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Drawing.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -310,6 +364,7 @@
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
@@ -323,6 +378,18 @@
     <Reference Include="System.Runtime.InteropServices.APIs">
       <HintPath>..\dist\System.Runtime.InteropServices.APIs.dll</HintPath>
     </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.6.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Permissions.6.0.0\lib\net461\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Forms.DataGridView">
       <HintPath>..\dist\System.Windows.Forms.DataGridView.dll</HintPath>
@@ -403,13 +470,25 @@
     <Compile Include="application\settings\RawFileViewerSettings.vb" />
     <Compile Include="application\VisualStudio.vb" />
     <Compile Include="application\RPackage.vb" />
+    <Compile Include="forms\Inputs\MSImaging\InputMSIPeakTableParameters.Designer.vb">
+      <DependentUpon>InputMSIPeakTableParameters.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\MSImaging\InputMSIPeakTableParameters.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\Inputs\MSImaging\InputConvert10x.Designer.vb">
+      <DependentUpon>InputConvert10x.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\MSImaging\InputConvert10x.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\InputPeakFindParameter.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Inputs\ShowTissueData.Designer.vb">
+    <Compile Include="forms\Inputs\MSImaging\ShowTissueData.Designer.vb">
       <DependentUpon>ShowTissueData.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\ShowTissueData.vb">
+    <Compile Include="forms\Inputs\MSImaging\ShowTissueData.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\Inputs\Input3DScatter.Designer.vb">
@@ -448,10 +527,10 @@
     <Compile Include="forms\Inputs\InputBasePeakIon.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Inputs\InputConfigTissueMap.Designer.vb">
+    <Compile Include="forms\Inputs\MSImaging\InputConfigTissueMap.Designer.vb">
       <DependentUpon>InputConfigTissueMap.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputConfigTissueMap.vb">
+    <Compile Include="forms\Inputs\MSImaging\InputConfigTissueMap.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\Inputs\InputPubChemProxy.Designer.vb">
@@ -490,16 +569,16 @@
     <Compile Include="forms\frmTweaks\frmTweaks.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Inputs\InputIonRGB.Designer.vb">
+    <Compile Include="forms\Inputs\MSImaging\InputIonRGB.Designer.vb">
       <DependentUpon>InputIonRGB.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputIonRGB.vb">
+    <Compile Include="forms\Inputs\MSImaging\InputIonRGB.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Inputs\InputMatrixIons.Designer.vb">
+    <Compile Include="forms\Inputs\MSImaging\InputMatrixIons.Designer.vb">
       <DependentUpon>InputMatrixIons.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputMatrixIons.vb">
+    <Compile Include="forms\Inputs\MSImaging\InputMatrixIons.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\Inputs\InputPeakTime.Designer.vb">
@@ -626,10 +705,10 @@
     <Compile Include="pages\dockWindow\documents\frmGCxGCViewer.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Inputs\InputMSIDimension.Designer.vb">
+    <Compile Include="forms\Inputs\MSImaging\InputMSIDimension.Designer.vb">
       <DependentUpon>InputMSIDimension.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputMSIDimension.vb">
+    <Compile Include="forms\Inputs\MSImaging\InputMSIDimension.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\documents\frmSeeMs.Designer.vb">
@@ -1008,6 +1087,9 @@
     <EmbeddedResource Include="forms\Inputs\Input3DScatter.resx">
       <DependentUpon>Input3DScatter.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\MSImaging\InputConvert10x.resx">
+      <DependentUpon>InputConvert10x.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputDataFieldName.resx">
       <DependentUpon>InputDataFieldName.vb</DependentUpon>
     </EmbeddedResource>
@@ -1020,10 +1102,10 @@
     <EmbeddedResource Include="forms\Inputs\InputBasePeakIon.resx">
       <DependentUpon>InputBasePeakIon.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputConfigTissueMap.resx">
+    <EmbeddedResource Include="forms\Inputs\MSImaging\InputConfigTissueMap.resx">
       <DependentUpon>InputConfigTissueMap.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputIonRGB.resx">
+    <EmbeddedResource Include="forms\Inputs\MSImaging\InputIonRGB.resx">
       <DependentUpon>InputIonRGB.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputAction.resx">
@@ -1044,11 +1126,14 @@
     <EmbeddedResource Include="forms\Inputs\InputFormula.resx">
       <DependentUpon>InputFormula.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputMatrixIons.resx">
+    <EmbeddedResource Include="forms\Inputs\MSImaging\InputMatrixIons.resx">
       <DependentUpon>InputMatrixIons.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputMoNAHits.resx">
       <DependentUpon>InputMoNAHits.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\MSImaging\InputMSIPeakTableParameters.resx">
+      <DependentUpon>InputMSIPeakTableParameters.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputNetworkLayout.resx">
       <DependentUpon>InputNetworkLayout.vb</DependentUpon>
@@ -1083,7 +1168,7 @@
     <EmbeddedResource Include="forms\frmTweaks\frmTweaks.resx">
       <DependentUpon>frmTweaks.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\ShowTissueData.resx">
+    <EmbeddedResource Include="forms\Inputs\MSImaging\ShowTissueData.resx">
       <DependentUpon>ShowTissueData.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frm3DMALDIViewer.resx">
@@ -1158,7 +1243,7 @@
     <EmbeddedResource Include="pages\dockWindow\documents\frmUntargettedViewer.resx">
       <DependentUpon>frmUntargettedViewer.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputMSIDimension.resx">
+    <EmbeddedResource Include="forms\Inputs\MSImaging\InputMSIDimension.resx">
       <DependentUpon>InputMSIDimension.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\explorer\frmFileExplorer.resx">
@@ -1597,6 +1682,10 @@
     <ProjectReference Include="..\..\..\..\mini-R\RDev\RDev.NET5.vbproj">
       <Project>{884f2aa6-1cd9-4c72-9531-1725d2502cd9}</Project>
       <Name>RDev.NET5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\NRRD\src\NRRD\NRRD.vbproj">
+      <Project>{dccd7fa6-dc0d-41fb-8589-0ccec658d418}</Project>
+      <Name>NRRD</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\assembly\assembly\assembly-netcore5.vbproj">
       <Project>{5dce233f-c0e1-41b8-827a-872b0c8cc3bc}</Project>

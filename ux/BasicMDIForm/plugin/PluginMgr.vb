@@ -26,6 +26,23 @@ Public Class PluginMgr
         Return registry.plugins.GetJson
     End Function
 
+    Public Function Query(nameOrGuid As String) As Plugin
+        Dim guid As Guid = Nothing
+        Dim q As Plugin
+
+        If Guid.TryParse(nameOrGuid, guid) Then
+            q = MZKitPlugin.InMemoryLoaderRegistry.Values _
+                .Where(Function(app) app.guid.Equals(guid)) _
+                .FirstOrDefault
+        Else
+            q = MZKitPlugin.InMemoryLoaderRegistry.Values _
+                .Where(Function(app) app.Name.TextEquals(nameOrGuid)) _
+                .FirstOrDefault
+        End If
+
+        Return q
+    End Function
+
     Public Sub Exec(id As String)
         Dim plugin As Plugin = MZKitPlugin.InMemoryLoaderRegistry.TryGetValue(id)
 

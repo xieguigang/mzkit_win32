@@ -1,63 +1,63 @@
 ﻿#Region "Microsoft.VisualBasic::dc709719d2eb0d4fdc41766495d7ac4f, mzkit\src\mzkit\services\ServiceHub\ServiceProtocols\MSI.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 553
-    '    Code Lines: 402
-    ' Comment Lines: 63
-    '   Blank Lines: 88
-    '     File Size: 23.06 KB
+' Summaries:
 
 
-    ' Class MSI
-    ' 
-    '     Properties: Protocol, TcpPort
-    ' 
-    '     Constructor: (+1 Overloads) Sub New
-    ' 
-    '     Function: CutBackground, ExportMzPack, ExtractMultipleSampleRegions, ExtractRegionSample, GetBPCIons
-    '               GetIonColocalization, GetIonStatList, GetMSIInformationMetadata, GetMSILayers, GetPixel
-    '               GetPixelRectangle, Load, LoadSummaryLayer, Quit, Run
-    '               TurnMirrors, TurnUpsideDown, Unload
-    ' 
-    '     Sub: (+2 Overloads) Dispose
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 553
+'    Code Lines: 402
+' Comment Lines: 63
+'   Blank Lines: 88
+'     File Size: 23.06 KB
+
+
+' Class MSI
+' 
+'     Properties: Protocol, TcpPort
+' 
+'     Constructor: (+1 Overloads) Sub New
+' 
+'     Function: CutBackground, ExportMzPack, ExtractMultipleSampleRegions, ExtractRegionSample, GetBPCIons
+'               GetIonColocalization, GetIonStatList, GetMSIInformationMetadata, GetMSILayers, GetPixel
+'               GetPixelRectangle, Load, LoadSummaryLayer, Quit, Run
+'               TurnMirrors, TurnUpsideDown, Unload
+' 
+'     Sub: (+2 Overloads) Dispose
+' 
+' /********************************************************************************/
 
 #End Region
 
@@ -67,6 +67,7 @@ Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
@@ -76,7 +77,6 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
-Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MachineLearning.Data
@@ -86,7 +86,9 @@ Imports Microsoft.VisualBasic.MIME.application.json.Javascript
 Imports Microsoft.VisualBasic.Net.Protocols.Reflection
 Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Parallel
+Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports MZWorkPack
 Imports Parallel
 Imports stdNum = System.Math
 
@@ -96,6 +98,14 @@ Public Class MSI : Implements ITaskDriver, IDisposable
     Public Shared ReadOnly Property Protocol As Long = New ProtocolAttribute(GetType(ServiceProtocol)).EntryPoint
 
     Dim socket As TcpServicesSocket
+
+    Friend type As FileApplicationClass
+    ''' <summary>
+    ''' [mz => name]
+    ''' </summary>
+    Friend ion_annotations As Dictionary(Of String, String)
+
+    Dim map_to_ion As New Dictionary(Of String, Double)
 
     Friend MSI As Drawer
     ' only updates when the file load function invoke
@@ -125,6 +135,45 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Return socket.Run
     End Function
 
+    <Protocol(ServiceProtocol.LoadThermoRawMSI)>
+    Public Function loadMzML(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
+        ' $"{dimSize.Width},{dimSize.Height}={raw}"
+        Dim strConfig As String = request.GetUTF8String
+        Dim parse = strConfig.GetTagValue("=", trim:=True)
+        Dim dims As Size = parse.Name.SizeParser
+        Dim filepath As String = parse.Value
+        Dim msi As mzPack
+        Dim info As Dictionary(Of String, String)
+
+        If filepath.ExtensionSuffix("mzML") Then
+            If RawScanParser.IsMRMData(filepath) Then
+                ' load ms-imaging data via MRM mode
+                Dim ions = mzML.LoadChromatogramList(filepath).ToArray
+                Dim mzpack As mzPack = ions.ConvertMzMLFile(source:=filepath.BaseName, size:=dims.Area)
+
+                msi = mzpack.ConvertToMSI(dims)
+            Else
+                ' load ms-imaging data via LC-MS mode
+                Dim mzpack As mzPack = Converter.LoadRawFileAuto(xml:=filepath)
+                msi = mzpack.ConvertToMSI(dims)
+            End If
+        ElseIf filepath.ExtensionSuffix("mzPack") Then
+            ' the mzpack is not row scans result
+            Call RunSlavePipeline.SendMessage($"read MSI dataset from the mzPack raw data file!")
+
+            msi = MSImagingReader.UnifyReadAsMzPack(filepath).TryCast(Of mzPack).ConvertToMSI(dims)
+        Else
+            Return New DataPipe("invalid file type!")
+        End If
+
+        Call LoadMSIMzPackCommon(msi)
+
+        info = MSIProtocols.GetMSIInfo(Me)
+        info!source = sourceName
+
+        Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
+    End Function
+
     ''' <summary>
     ''' load mzPack data
     ''' </summary>
@@ -141,56 +190,30 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         If filepath.ExtensionSuffix("cdf") Then
             Call RunSlavePipeline.SendMessage($"read MSI layers from the cdf file!")
 
-            Using cdf As New netCDFReader(filepath)
-                Dim readRawPack As ReadRawPack = cdf.CreatePixelReader
+            Dim readRawPack As ReadRawPack = MSImagingReader.UnifyReadAsMzPack(filepath)
 
-                MSI = New Drawer(readRawPack)
-                metadata = New Metadata With {
-                    .resolution = readRawPack.resolution,
-                    .scan_x = readRawPack.dimension.Width,
-                    .scan_y = readRawPack.dimension.Height,
-                    .mass_range = New DoubleRange(
-                        vector:=readRawPack.GetScans.Select(Function(scan) scan.mz).IteratesALL
-                    )
-                }
-            End Using
+            MSI = New Drawer(readRawPack)
+            metadata = New Metadata With {
+                .resolution = readRawPack.resolution,
+                .scan_x = readRawPack.dimension.Width,
+                .scan_y = readRawPack.dimension.Height,
+                .mass_range = New DoubleRange(
+                    vector:=readRawPack.GetScans.Select(Function(scan) scan.mz).IteratesALL
+                )
+            }
+            type = FileApplicationClass.MSImaging
         ElseIf filepath.ExtensionSuffix("mzImage") Then
             Call RunSlavePipeline.SendMessage($"read MSI image file!")
+            type = FileApplicationClass.MSImaging
             Throw New NotImplementedException
         ElseIf filepath.ExtensionSuffix("imzml") Then
-            Dim mzPack = Converter.LoadimzML(filepath, AddressOf RunSlavePipeline.SendProgress)
-            mzPack.source = filepath.FileName
+            Dim mzpack As mzPack = MSImagingReader.UnifyReadAsMzPack(filepath)
             MSI = New Drawer(mzPack)
             metadata = mzPack.GetMSIMetadata
+            type = FileApplicationClass.MSImaging
         Else
-            Dim mzpack As mzPack
-
             Call RunSlavePipeline.SendMessage($"read MSI dataset from the mzPack raw data file!")
-
-            Using file As Stream = filepath.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
-                mzpack = mzPack.ReadAll(
-                    file:=file,
-                    ignoreThumbnail:=True,
-                    verbose:=True,
-                    skipMsn:=True
-                )
-                sourceName = mzpack.source
-                metadata = mzpack.GetMSIMetadata
-
-                If Not mzpack.source.ExtensionSuffix("csv") Then
-                    Call RunSlavePipeline.SendMessage("make bugs fixed for RT pixel correction!")
-
-                    ' skip for bruker data
-                    mzpack = mzpack.ScanMeltdown(
-                        gridSize:=10,
-                        println:=Nothing
-                    )
-                End If
-
-                Call RunSlavePipeline.SendMessage("Load MS-imaging raw data into workspace!")
-
-                MSI = New Drawer(mzpack)
-            End Using
+            Call LoadMSIMzPackCommon(MSImagingReader.UnifyReadAsMzPack(filepath))
         End If
 
         info = MSIProtocols.GetMSIInfo(Me)
@@ -198,6 +221,33 @@ Public Class MSI : Implements ITaskDriver, IDisposable
 
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
     End Function
+
+    Private Sub LoadMSIMzPackCommon(mzpack As mzPack)
+        sourceName = mzpack.source
+        metadata = mzpack.GetMSIMetadata
+        ion_annotations = mzpack.Annotations
+        type = mzpack.Application
+
+        If Not ion_annotations.IsNullOrEmpty Then
+            For Each layer In ion_annotations
+                map_to_ion(layer.Value) = Val(layer.Key)
+            Next
+        End If
+
+        If Not mzpack.source.ExtensionSuffix("csv") Then
+            Call RunSlavePipeline.SendMessage("make bugs fixed for RT pixel correction!")
+
+            ' skip for bruker data
+            mzpack = mzpack.ScanMeltdown(
+                gridSize:=10,
+                println:=Nothing
+            )
+        End If
+
+        Call RunSlavePipeline.SendMessage("Load MS-imaging raw data into workspace!")
+        MSI = New Drawer(mzpack)
+        Call RunSlavePipeline.SendMessage("Load raw data job done!")
+    End Sub
 
     <Protocol(ServiceProtocol.ExtractMultipleSampleRegions)>
     Public Function ExtractMultipleSampleRegions(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
@@ -279,6 +329,29 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         info!source = "in-memory<ExtractRegionSample>"
 
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
+    End Function
+
+    <Protocol(ServiceProtocol.ExtractRegionMs1Spectrum)>
+    Public Function ExtractRegionMs1Spectrum(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
+        Dim regions As RegionLoader = BSON _
+           .Load(request.ChunkBuffer) _
+           .CreateObject(Of RegionLoader)(decodeMetachar:=False) _
+           .Reload
+        Dim allPixels As PixelScan() = MSI.pixelReader.AllPixels.ToArray
+        Dim targets As ms2() = allPixels _
+            .AsParallel _
+            .Where(Function(i) regions.ContainsPixel(i.X, i.Y)) _
+            .Select(Function(i) i.GetMs) _
+            .IteratesALL _
+            .ToArray
+        Dim ms1 As ms2() = targets.Centroid(Tolerance.DeltaMass(0.3), New RelativeIntensityCutoff(0.01))
+        Dim mat As New LibraryMatrix With {
+            .name = regions.sample_tags.JoinBy("; "),
+            .centroid = True,
+            .ms2 = ms1
+        }
+
+        Return New DataPipe(mat.GetStream)
     End Function
 
     <Protocol(ServiceProtocol.ExtractRegionSample)>
@@ -456,14 +529,32 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Dim xy As Integer() = request.GetIntegers
         Dim pixel As PixelScan = MSI.pixelReader.GetPixel(xy(0), xy(1))
 
-        Call RunSlavePipeline.SendMessage($"read [{xy(0)},{xy(1)}]")
-
         If pixel Is Nothing Then
-            Call RunSlavePipeline.SendMessage($"but missing pixel data at [{xy(0)},{xy(1)}]!")
+            Call RunSlavePipeline.SendMessage($"Missing pixel data at [{xy(0)},{xy(1)}]!")
             Return New DataPipe(New Byte() {})
-        Else
-            Return New DataPipe(New InMemoryVectorPixel(pixel).GetBuffer)
         End If
+
+        Dim annotations As String() = Nothing
+
+        Call RunSlavePipeline.SendMessage($"read a 2D pixel [{xy(0)},{xy(1)}]")
+
+        If Not ion_annotations.IsNullOrEmpty Then
+            Dim mz As Double() = pixel.GetMs.Select(Function(i) i.mz).ToArray
+
+            annotations = New String(mz.Length - 1) {}
+
+            If type = FileApplicationClass.STImaging Then
+                For i As Integer = 0 To mz.Length - 1
+                    annotations(i) = ion_annotations.TryGetValue(CInt(mz(i)).ToString)
+                Next
+            Else
+                For i As Integer = 0 To mz.Length - 1
+                    annotations(i) = ion_annotations.TryGetValue(mz(i).ToString("F4"))
+                Next
+            End If
+        End If
+
+        Return New DataPipe(New InMemoryVectorPixel(pixel, annotations).GetBuffer)
     End Function
 
     ''' <summary>
@@ -518,6 +609,19 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Return New DataPipe(Encoding.UTF8.GetBytes("OK!"))
     End Function
 
+    <Protocol(ServiceProtocol.LoadGeneLayer)>
+    Public Function GetGeneLayers(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
+        Dim id As String = Encoding.ASCII.GetString(request.ChunkBuffer)
+        Dim mz As Double = map_to_ion.TryGetValue(id, [default]:=-1)
+
+        If mz <= 0 Then
+            Return New DataPipe(PixelData.GetBuffer({}))
+        Else
+            Dim layers = MSI.LoadPixels({mz}, Tolerance.DeltaMass(0.3)).ToArray
+            Return New DataPipe(PixelData.GetBuffer(layers))
+        End If
+    End Function
+
     ''' <summary>
     ''' get multiple layers data of a given mz list
     ''' </summary>
@@ -541,6 +645,19 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Call RunSlavePipeline.SendMessage($"get {layers.Length} pixels from the m/z matches!")
 
         Return New DataPipe(PixelData.GetBuffer(layers))
+    End Function
+
+    <Protocol(ServiceProtocol.GetAnnotationNames)>
+    Public Function GetAllAnnotationNames() As BufferPipe
+        Dim names As String()
+
+        If map_to_ion.IsNullOrEmpty Then
+            names = {}
+        Else
+            names = map_to_ion.Keys.ToArray
+        End If
+
+        Return New DataPipe(names.GetJson(indent:=False, simpleDict:=True))
     End Function
 
     <Protocol(ServiceProtocol.LoadSummaryLayer)>

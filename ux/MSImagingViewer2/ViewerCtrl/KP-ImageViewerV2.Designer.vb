@@ -218,13 +218,7 @@
         '
         Me.SplitContainer1.Panel1.Controls.Add(Me.MSICanvas)
         '
-        'SplitContainer1.Panel2
-        '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.ColorScaler1)
-        Me.SplitContainer1.Size = New System.Drawing.Size(299, 174)
-        Me.SplitContainer1.SplitterDistance = 230
-        Me.SplitContainer1.TabIndex = 16
-        '
+
         'ColorScaler1
         '
         Me.ColorScaler1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -232,6 +226,15 @@
         Me.ColorScaler1.Name = "ColorScaler1"
         Me.ColorScaler1.Size = New System.Drawing.Size(65, 174)
         Me.ColorScaler1.TabIndex = 0
+
+        'SplitContainer1.Panel2
+        '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.ColorScaler1)
+        Me.SplitContainer1.Size = New System.Drawing.Size(299, 174)
+        Me.SplitContainer1.SplitterDistance = 230
+        Me.SplitContainer1.TabIndex = 16
+        '
+
         '
         'KpImageViewer
         '

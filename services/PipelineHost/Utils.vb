@@ -1,54 +1,54 @@
 ﻿#Region "Microsoft.VisualBasic::934792fd0478867f4700a2341119a837, mzkit\src\mzkit\services\PipelineHost\Utils.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 90
-    '    Code Lines: 80
-    ' Comment Lines: 0
-    '   Blank Lines: 10
-    '     File Size: 3.26 KB
+' Summaries:
 
 
-    ' Module Utils
-    ' 
-    '     Function: GetMs1Points, ST_spacerangerToMzPack
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 90
+'    Code Lines: 80
+' Comment Lines: 0
+'   Blank Lines: 10
+'     File Size: 3.26 KB
+
+
+' Module Utils
+' 
+'     Function: GetMs1Points, ST_spacerangerToMzPack
+' 
+' /********************************************************************************/
 
 #End Region
 
@@ -57,6 +57,7 @@ Imports System.Runtime.CompilerServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Linq
 Imports SMRUCC.genomics.Analysis.HTS.DataFrame
 Imports STImaging
@@ -81,50 +82,66 @@ Public Module Utils
     End Function
 
     <Extension>
-    Public Function ST_spacerangerToMzPack(spots As SpaceSpot(), matrix As Matrix) As mzPack
-        Dim ms As New List(Of ScanMS1)
+    Private Iterator Function SpotConvertAsScans(spots As SpaceSpot(),
+                                                 matrix As Matrix,
+                                                 annotations As Dictionary(Of String, String)) As IEnumerable(Of ScanMS1)
+
+        Dim geneID As String() = matrix.sampleID
         Dim spatial As Dictionary(Of String, Point) = spots _
             .ToDictionary(Function(p) p.barcode,
                           Function(p)
                               Return p.GetPoint
                           End Function)
-        Dim spot As DataFrameRow
-        Dim point As Point
-        Dim scan As ScanMS1
         Dim mz As New List(Of Double)
         Dim anno As New List(Of String)
         Dim into As New List(Of Double)
-        Dim metadata As Dictionary(Of String, String)
-        Dim geneID As String() = matrix.sampleID
+        Dim geneIndex As Index(Of String) = geneID
+
+        Call annotations.Clear()
+
+        For Each v As KeyValuePair(Of String, Integer) In geneIndex.Map
+            Call annotations.Add(v.Value.ToString, v.Key)
+        Next
 
         For i As Integer = 0 To spots.Length - 1
-            spot = matrix.expression(i)
-            point = spatial(spot.geneID)
-            metadata = New Dictionary(Of String, String) From {
+            Dim spot = matrix.expression(i)
+            Dim point = spatial(spot.geneID)
+            Dim metadata As New Dictionary(Of String, String) From {
                 {"x", point.X},
-                {"y", point.Y}
+                {"y", point.Y},
+                {mzStreamWriter.SampleMetaName, If(spots(i).flag > 0, "sample", "background")}
             }
 
+            ' length of experiments is equals to the geneIDs
             For j As Integer = 0 To geneID.Length - 1
                 If spot.experiments(j) > 0 Then
-                    Call metadata.Add(j, geneID(j))
-                    Call mz.Add(j)
+                    Dim guid As Integer = geneIndex(geneID(j))
+
+                    ' Call metadata.Add(j, geneID(j))
+                    Call mz.Add(guid)
                     Call into.Add(spot.experiments(j))
                 End If
             Next
 
-            scan = New ScanMS1 With {
+            Dim hi_gene As Integer = which.Max(into)
+            Dim max_guid As String = mz(hi_gene)
+
+            Yield New ScanMS1 With {
                 .mz = mz.ToArray,
                 .into = into.ToArray,
-                .scan_id = $"[MS1] [{point.X},{point.Y}] {spot.geneID}",
+                .scan_id = $"[MS1] [{point.X},{point.Y}] {spot.geneID} <{mz.Count} genes>; top_gene {annotations(max_guid)}={into(hi_gene)}",
                 .meta = metadata
             }
 
             Call mz.Clear()
             Call into.Clear()
-            Call ms.Add(scan)
         Next
+    End Function
 
+    <Extension>
+    Public Function ST_spacerangerToMzPack(spots As SpaceSpot(), matrix As Matrix) As mzPack
+        Dim annotations As New Dictionary(Of String, String)
+        Dim ms As ScanMS1() = spots.SpotConvertAsScans(matrix, annotations).ToArray
         Dim pixels As Point() = ms _
             .Select(Function(s) s.GetMSIPixel) _
             .ToArray _
@@ -138,7 +155,8 @@ Public Module Utils
         Return New mzPack With {
             .MS = ms.ToArray.ScalePixels(flip:=False),
             .source = matrix.tag,
-            .Application = FileApplicationClass.MSImaging
+            .Application = FileApplicationClass.STImaging,
+            .Annotations = annotations
         }
     End Function
 End Module

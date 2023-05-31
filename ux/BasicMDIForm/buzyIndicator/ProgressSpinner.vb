@@ -124,6 +124,7 @@ Public Class ProgressSpinner
                     Call loading()
                 Catch ex As Exception
                     Call App.LogException(ex)
+                    Call Workbench.Warning(ex.ToString)
                 End Try
 
                 Call spinner.CloseWindow()

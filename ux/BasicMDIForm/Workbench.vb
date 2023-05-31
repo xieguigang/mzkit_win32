@@ -5,6 +5,7 @@ Imports WeifenLuo.WinFormsUI.Docking
 Public NotInheritable Class Workbench
 
     Public Shared ReadOnly Property AppHost As AppHost
+    Public Shared Property SplashBannerImage As Image = My.Resources.Home_Logo_Link
 
     ''' <summary>
     ''' local http port for the ui view
@@ -40,6 +41,15 @@ Public NotInheritable Class Workbench
             Call ExportApis.MZKitWorkbenchIsNotRunning()
         Else
             Call _AppHost.Warning(msg)
+        End If
+    End Sub
+
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Shared Sub SuccessMessage(msg As String)
+        If AppHost Is Nothing Then
+            Call ExportApis.MZKitWorkbenchIsNotRunning()
+        Else
+            Call _AppHost.StatusMessage(msg, My.Resources._1200px_Checked_svg)
         End If
     End Sub
 

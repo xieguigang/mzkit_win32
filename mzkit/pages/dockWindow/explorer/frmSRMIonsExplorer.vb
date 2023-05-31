@@ -1,58 +1,58 @@
 ﻿#Region "Microsoft.VisualBasic::c3bd73918006a5b3b4ba5ca4687b80ae, mzkit\src\mzkit\mzkit\pages\dockWindow\explorer\frmSRMIonsExplorer.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 188
-    '    Code Lines: 137
-    ' Comment Lines: 15
-    '   Blank Lines: 36
-    '     File Size: 7.97 KB
+' Summaries:
 
 
-    ' Class frmSRMIonsExplorer
-    ' 
-    '     Function: GetFileTICOverlaps, GetIonTICOverlaps
-    ' 
-    '     Sub: BPCToolStripMenuItem_Click, ClearFileSelectionsToolStripMenuItem_Click, ClearFilesToolStripMenuItem_Click, ClearIonSelectionsToolStripMenuItem_Click, frmSRMIonsExplorer_Load
-    '          ImportsFilesToolStripMenuItem_Click, LoadMRM, SelectAllFilesToolStripMenuItem_Click, SelectAllIonsToolStripMenuItem_Click, ShowTICOverlap3DToolStripMenuItem_Click
-    '          ShowTICOverlap3DToolStripMenuItem1_Click, ShowTICOverlapToolStripMenuItem1_Click, TICToolStripMenuItem_Click, Win7StyleTreeView1_AfterSelect
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 188
+'    Code Lines: 137
+' Comment Lines: 15
+'   Blank Lines: 36
+'     File Size: 7.97 KB
+
+
+' Class frmSRMIonsExplorer
+' 
+'     Function: GetFileTICOverlaps, GetIonTICOverlaps
+' 
+'     Sub: BPCToolStripMenuItem_Click, ClearFileSelectionsToolStripMenuItem_Click, ClearFilesToolStripMenuItem_Click, ClearIonSelectionsToolStripMenuItem_Click, frmSRMIonsExplorer_Load
+'          ImportsFilesToolStripMenuItem_Click, LoadMRM, SelectAllFilesToolStripMenuItem_Click, SelectAllIonsToolStripMenuItem_Click, ShowTICOverlap3DToolStripMenuItem_Click
+'          ShowTICOverlap3DToolStripMenuItem1_Click, ShowTICOverlapToolStripMenuItem1_Click, TICToolStripMenuItem_Click, Win7StyleTreeView1_AfterSelect
+' 
+' /********************************************************************************/
 
 #End Region
 
@@ -63,18 +63,25 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM.Models
 Imports BioNovoGene.Analytical.MassSpectrometry.SignalReader
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Linq
+Imports Mzkit_win32.BasicMDIForm
 Imports Task
 Imports chromatogram = BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML.chromatogram
 
 Public Class frmSRMIonsExplorer
 
     Private Sub ImportsFilesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportsFilesToolStripMenuItem.Click
-        Using openfile As New OpenFileDialog With {.Filter = "LC-MSMS(*.mzML)|*.mzML", .Multiselect = True}
+        Using openfile As New OpenFileDialog With {.Filter = "LC-MSMS(*.mzML)|*.mzML|AB sciex wiff(*.wiff)|*.wiff", .Multiselect = True}
             If openfile.ShowDialog = DialogResult.OK Then
                 Dim notMRM As New List(Of String)
 
                 For Each file As String In openfile.FileNames
-                    If RawScanParser.IsMRMData(file) Then
+                    If file.ExtensionSuffix("wiff") Then
+                        Dim wiffRaw As New sciexWiffReader.WiffScanFileReader(file)
+                        Dim mzPack As mzPack = TaskProgress.LoadData(Function(println) wiffRaw.LoadFromWiffRaw(checkNoise:=True, println.Echo))
+
+                        Call LoadMRM(mzPack)
+                    ElseIf RawScanParser.IsMRMData(file) Then
                         Call LoadMRM(file)
                     Else
                         Call MyApplication.LogText($"{file} is not a MRM raw data file!")
@@ -88,6 +95,69 @@ Public Class frmSRMIonsExplorer
             End If
         End Using
     End Sub
+
+    Public Sub LoadMRM(data As mzPack)
+        Dim sample_files = data.MS.GroupBy(Function(m) m.meta.TryGetValue(mzStreamWriter.SampleMetaName, [default]:=data.source)).ToArray
+        Dim ionsLib As IonLibrary = Globals.LoadIonLibrary
+        Dim display As String
+
+        For Each sample In sample_files
+            Dim TICRoot As TreeNode = Win7StyleTreeView1.Nodes.Add(sample.Key)
+            Dim scan1 = sample.OrderBy(Function(d) d.rt).ToArray
+            Dim tic As New DataReader.Chromatogram With {
+                .scan_time = scan1.Select(Function(m) m.rt).ToArray,
+                .TIC = scan1.Select(Function(m) m.TIC).ToArray,
+                .BPC = scan1.Select(Function(m) m.BPC).ToArray
+            }
+            Dim ions = scan1.Select(Function(s) s.meta.Keys) _
+                .IteratesALL _
+                .Distinct _
+                .Where(Function(key) key.StartsWith("MRM: ")) _
+                .ToArray
+
+            TICRoot.Tag = tic
+            TICRoot.ImageIndex = 0
+            TICRoot.ContextMenuStrip = ContextMenuStrip1
+
+            For Each chr As String In ions
+                Dim t As Double() = chr.Replace("MRM:", "") _
+                    .Trim _
+                    .Split("/"c) _
+                    .Select(Function(d) d.Trim.ParseDouble) _
+                    .ToArray
+                Dim ionRef As New IonPair With {
+                    .precursor = t(0),
+                    .product = t(1)
+                }
+                Dim chromatogram As ChromatogramTick() = scan1 _
+                    .Select(Function(s)
+                                Dim into As Double = 0
+
+                                If s.meta.ContainsKey(chr) Then
+                                    Dim i As Integer = Integer.Parse(s.meta(chr))
+                                    into = s.into(i)
+                                End If
+
+                                Return New ChromatogramTick(s.rt, into)
+                            End Function) _
+                    .ToArray
+
+                display = ionsLib.GetDisplay(ionRef)
+
+                With TICRoot.Nodes.Add(display)
+                    .Tag = New MRMHolder With {.ion = ionRef, .TIC = chromatogram}
+                    .ImageIndex = 1
+                    .SelectedImageIndex = 1
+                    .ContextMenuStrip = ContextMenuStrip2
+                End With
+            Next
+        Next
+    End Sub
+
+    Private Class MRMHolder
+        Public ion As IonPair
+        Public TIC As ChromatogramTick()
+    End Class
 
     Public Sub LoadMRM(file As String)
         Dim list = file.LoadChromatogramList.ToArray
@@ -104,9 +174,11 @@ Public Class frmSRMIonsExplorer
         Dim ionsLib As IonLibrary = Globals.LoadIonLibrary
         Dim display As String
 
-        For Each chr As chromatogram In list.Where(Function(i)
-                                                       Return Not (i.id.TextEquals("TIC") OrElse i.id.TextEquals("BPC"))
-                                                   End Function)
+        For Each chr As chromatogram In list _
+            .Where(Function(i)
+                       Return Not (i.id.TextEquals("TIC") OrElse i.id.TextEquals("BPC"))
+                   End Function)
+
             Dim ionRef As New IonPair With {
                 .precursor = chr.precursor.MRMTargetMz,
                 .product = chr.product.MRMTargetMz
@@ -137,6 +209,11 @@ Public Class frmSRMIonsExplorer
 
         If TypeOf e.Node.Tag Is DataReader.Chromatogram Then
             ticks = DirectCast(e.Node.Tag, DataReader.Chromatogram).GetTicks.ToArray
+        ElseIf TypeOf e.Node.Tag Is MRMHolder Then
+            Dim holder As MRMHolder = e.Node.Tag
+            ticks = holder.TIC
+            Dim props As New MRMROIProperty(holder.ion, ticks)
+            Call VisualStudio.ShowProperties(props)
         Else
             Dim chr As chromatogram = e.Node.Tag
             ticks = chr.Ticks
@@ -172,9 +249,15 @@ Public Class frmSRMIonsExplorer
                     Continue For
                 End If
 
-                With DirectCast(obj.Tag, chromatogram)
-                    Yield New NamedCollection(Of ChromatogramTick)($"[{fileName}] {obj.Text}", .Ticks)
-                End With
+                If TypeOf obj.Tag Is chromatogram Then
+                    With DirectCast(obj.Tag, chromatogram)
+                        Yield New NamedCollection(Of ChromatogramTick)($"[{fileName}] {obj.Text}", .Ticks)
+                    End With
+                Else
+                    With DirectCast(obj.Tag, MRMHolder)
+                        Yield New NamedCollection(Of ChromatogramTick)($"[{fileName}] {obj.Text}", .TIC)
+                    End With
+                End If
             Next
         Next
     End Function

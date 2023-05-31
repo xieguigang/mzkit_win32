@@ -221,6 +221,10 @@
       <Project>{51c55c5c-2f21-4e9f-aa8d-3664135758b7}</Project>
       <Name>BasicMDIForm</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ControlLibrary\ControlLibrary.vbproj">
+      <Project>{df66aa70-9ab9-48d0-b492-9d0e0482a651}</Project>
+      <Name>ControlLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

@@ -118,15 +118,14 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="&gt;&gt;TextBox1.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="Label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>58, 47</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="TextBox3.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="ContextMenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 26</value>
   </data>
   <data name="&gt;&gt;TextBox3.Parent" xml:space="preserve">
     <value>$this</value>
@@ -135,13 +134,14 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;LinkLabel1.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Label2.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
   <data name="&gt;&gt;TextBox3.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="TextBox1.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -155,6 +155,9 @@
   <data name="&gt;&gt;PictureBox1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="TextBox3.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="&gt;&gt;Label3.Name" xml:space="preserve">
     <value>Label3</value>
   </data>
@@ -164,11 +167,14 @@
   <data name="&gt;&gt;Label1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;TextBox3.Name" xml:space="preserve">
-    <value>TextBox3</value>
+  <data name="ViewMS1SpectrumToolStripMenuItem.Text" xml:space="preserve">
+    <value>View MS1 Spectrum</value>
   </data>
   <data name="Label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>58, 4</value>
+  </data>
+  <data name="&gt;&gt;ViewMS1SpectrumToolStripMenuItem.Name" xml:space="preserve">
+    <value>ViewMS1SpectrumToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;Label3.Parent" xml:space="preserve">
     <value>$this</value>
@@ -198,6 +204,9 @@
   <data name="&gt;&gt;TextBox2.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;ViewMS1SpectrumToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="LinkLabel1.Font" type="System.Drawing.Font, System.Drawing">
     <value>宋体, 9.75pt, style=Bold</value>
   </data>
@@ -222,6 +231,9 @@
   <data name="&gt;&gt;TextBox1.Name" xml:space="preserve">
     <value>TextBox1</value>
   </data>
+  <data name="&gt;&gt;Label2.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
   <data name="&gt;&gt;PictureBox1.Name" xml:space="preserve">
     <value>PictureBox1</value>
   </data>
@@ -232,19 +244,16 @@
     <value>True</value>
   </data>
   <data name="&gt;&gt;PictureBox1.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="Label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="Label2.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>272, 85</value>
+    <value>272, 83</value>
   </data>
   <data name="PictureBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 65</value>
+    <value>49, 75</value>
   </data>
   <data name="Label2.Text" xml:space="preserve">
     <value>Sample Group:</value>
@@ -258,11 +267,14 @@
   <data name="Label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 12</value>
   </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="TextBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 31</value>
+    <value>112, 29</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 12</value>
@@ -274,13 +286,13 @@
     <value>141, 1</value>
   </data>
   <data name="&gt;&gt;Label1.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="PictureBox1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;Label2.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="&gt;&gt;TextBox3.Name" xml:space="preserve">
+    <value>TextBox3</value>
   </data>
   <data name="LinkLabel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -297,14 +309,23 @@
   <data name="Label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="&gt;&gt;ContextMenuStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ViewMS1SpectrumToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>179, 22</value>
+  </data>
   <data name="LinkLabel1.Text" xml:space="preserve">
     <value>x</value>
   </data>
   <data name="&gt;&gt;TextBox2.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;ContextMenuStrip1.Name" xml:space="preserve">
+    <value>ContextMenuStrip1</value>
   </data>
   <data name="&gt;&gt;Label3.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;TextBox2.Name" xml:space="preserve">
     <value>TextBox2</value>
@@ -347,5 +368,8 @@
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
+  </metadata>
+  <metadata name="ContextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
   </metadata>
 </root>

@@ -74,6 +74,7 @@ Imports System.ComponentModel
 Imports System.Drawing
 Imports System.Drawing.Drawing2D
 Imports System.Windows.Forms
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
@@ -111,6 +112,10 @@ Public Class MsImageProperty
     <Description("The scan resolution size of each pixel.")>
     <Category("imzML")> Public Property resolution As Double
 
+    <Description("The number of the ion which has annotation data.")>
+    Public ReadOnly Property ion_annotations As Integer
+    Public ReadOnly Property app As FileApplicationClass
+
     Public ReadOnly Property physical_width As String
         Get
             Return ((scan_x * resolution) / 1000).ToString("F2") & "mm"
@@ -140,6 +145,8 @@ Public Class MsImageProperty
     <Category("Render")> Public Property scale As InterpolationMode = InterpolationMode.Bilinear
     <Category("Render")> Public Property enableFilter As Boolean = True
     <Category("Render")> Public Property showPhysicalRuler As Boolean = True
+    <Description("Show the overlap of total ion imaging plot in grayscale when do single ion/rgb ion imaging?")>
+    <Category("Render")> Public Property showTotalIonOverlap As Boolean = True
 
     <Description("The mass tolerance error threshold in delta dalton or ppm.")>
     <Category("Pixel M/z Data")> Public Property tolerance As Double = 0.1
@@ -153,8 +160,6 @@ Public Class MsImageProperty
 
     <Description("The TrIQ cutoff threshold, value in range of [0,1]")>
     <Category("Intensity")> Public Property TrIQ As Double = 0.85
-    <Description("Show the color map legend on the canvas display?")>
-    <Category("Intensity")> Public Property showColorMap As Boolean = True
 
     Sub New(render As Drawer)
         scan_x = render.dimension.Width
@@ -164,8 +169,7 @@ Public Class MsImageProperty
 
         If TypeOf render.pixelReader Is ReadIbd Then
             UUID = DirectCast(render.pixelReader, ReadIbd).UUID
-            fileSize = DirectCast(render.pixelReader, ReadIbd) _
-                .ibd _
+            fileSize = DirectCast(render.pixelReader, ReadIbd).ibd _
                 .size _
                 .DoCall(AddressOf StringFormats.Lanudry)
         End If
@@ -185,6 +189,8 @@ Public Class MsImageProperty
         instrument = If(sourceFile.ExtensionSuffix("csv", "slx"), "Bruker", "Thermo Fisher")
         resolution = info.TryGetValue("resolution", [default]:=17)
         background = Color.Black
+        ion_annotations = info.TryGetValue("ion_annotations", [default]:=0)
+        app = [Enum].Parse(GetType(FileApplicationClass), info.TryGetValue("app", [default]:=FileApplicationClass.MSImaging.ToString))
     End Sub
 
     Sub New(scan_x As Integer, scan_y As Integer)

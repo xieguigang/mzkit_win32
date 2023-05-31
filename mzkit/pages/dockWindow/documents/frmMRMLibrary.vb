@@ -1,75 +1,82 @@
 ﻿#Region "Microsoft.VisualBasic::6c63df775d0545e383ce9a8b3c72d4cc, mzkit\src\mzkit\mzkit\pages\dockWindow\documents\frmMRMLibrary.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 100
-    '    Code Lines: 80
-    ' Comment Lines: 1
-    '   Blank Lines: 19
-    '     File Size: 3.60 KB
+' Summaries:
 
 
-    ' Class frmMRMLibrary
-    ' 
-    '     Properties: FilePath, MimeType
-    ' 
-    '     Function: (+2 Overloads) Save
-    ' 
-    '     Sub: CopyFullPath, DeleteToolStripMenuItem_Click, frmMRMLibrary_Load, OpenContainingFolder, SaveDocument
-    '          TabPage1_KeyDown
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 100
+'    Code Lines: 80
+' Comment Lines: 1
+'   Blank Lines: 19
+'     File Size: 3.60 KB
+
+
+' Class frmMRMLibrary
+' 
+'     Properties: FilePath, MimeType
+' 
+'     Function: (+2 Overloads) Save
+' 
+'     Sub: CopyFullPath, DeleteToolStripMenuItem_Click, frmMRMLibrary_Load, OpenContainingFolder, SaveDocument
+'          TabPage1_KeyDown
+' 
+' /********************************************************************************/
 
 #End Region
 
+Imports System.Runtime.CompilerServices
 Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM.Models
+Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
+Imports Mzkit_win32.BasicMDIForm
 Imports any = Microsoft.VisualBasic.Scripting
 
+''' <summary>
+''' MRM
+''' </summary>
 Public Class frmMRMLibrary
     Implements ISaveHandle
     Implements IFileReference
+    Implements MRMLibraryPage
 
     Public Property FilePath As String Implements IFileReference.FilePath
 
@@ -111,7 +118,7 @@ Public Class frmMRMLibrary
         Next
     End Sub
 
-    Protected Overrides Sub SaveDocument()
+    Protected Overrides Sub SaveDocument() Implements MRMLibraryPage.SaveLibrary
         Call Save(FilePath)
     End Sub
 
@@ -152,8 +159,17 @@ Public Class frmMRMLibrary
     Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
         If DataGridView1.SelectedRows.Count > 0 Then
             For Each row As DataGridViewRow In DataGridView1.SelectedRows
-                DataGridView1.Rows.RemoveAt(row.Index)
+                Try
+                    DataGridView1.Rows.RemoveAt(row.Index)
+                Catch ex As Exception
+
+                End Try
             Next
         End If
+    End Sub
+
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Sub Add(id As String, name As String, q1 As Double, q2 As Double, rt As Double) Implements MRMLibraryPage.Add
+        Call DataGridView1.Rows.Add(id, name, rt, q1, q2)
     End Sub
 End Class

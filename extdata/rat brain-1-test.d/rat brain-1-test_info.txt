@@ -1,0 +1,13 @@
+FlexImaging Info File 
+flexImaging Version: 7.0.16.0_062fccb_1
+Name of Sample: rat brain-1-test
+Number of Spots: 1400
+Method: D:\Methods\MALDI-Imaging\beijing cancer hospital\50-1250 pos tims off.m
+Raster: 50,50
+Start Time: Wed, 10.08.2022 09:02:14
+End Time: Wed, 10.08.2022 09:03:44
+Container Size: 26.5102 MB
+ImagingPrecisionModeEnable :  Off
+Performed MS Calibration: 0
+Performed Focus Adjustment: 0
+Performed Height Control: 0

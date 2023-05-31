@@ -62,6 +62,7 @@ Imports System.Text
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.mzkit_win32.My
@@ -98,6 +99,7 @@ Namespace ServiceHub
         ''' the tcp ip of the MSI data services, default value is localhost services
         ''' </summary>
         Dim server As String = "127.0.0.1"
+        Dim checkOffline As Integer
 
         ''' <summary>
         ''' current task host
@@ -160,6 +162,7 @@ Namespace ServiceHub
                 .server = ip,
                 .taskHost = Nothing
             }
+            hostReference.checkOffline = 0
 
             Call MyApplication.LogText($"Connect to the MS-Imaging cloud service!({hostReference.endPoint.ToString})")
             Workbench.SetMSIServicesAppPort(appPort:=hostReference.appPort)
@@ -220,8 +223,22 @@ Namespace ServiceHub
                 Return {}
             Else
                 Dim ions = LabeledData.LoadLabelData(New MemoryStream(data.ChunkBuffer)).ToArray
+                checkOffline = 0
                 Call MyApplication.LogText($"get ion stat table payload {StringFormats.Lanudry(data.ChunkBuffer.Length)}!")
                 Return ions
+            End If
+        End Function
+
+        Public Function getAllLayerNames() As String()
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.GetAnnotationNames, "ok"))
+
+            If data Is Nothing Then
+                Return {}
+            ElseIf data.IsHTTP_RFC Then
+                Call MyApplication.host.showStatusMessage(data.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Return {}
+            Else
+                Return data.GetUTF8String.LoadJSON(Of String())
             End If
         End Function
 
@@ -235,6 +252,7 @@ Namespace ServiceHub
                 Return {}
             Else
                 Dim ions = BSON.Load(data).CreateObject(Of IonStat())(decodeMetachar:=True)
+                checkOffline = 0
                 Call MyApplication.LogText($"get ion stat table payload {StringFormats.Lanudry(data.ChunkBuffer.Length)}!")
                 Return ions
             End If
@@ -256,6 +274,7 @@ Namespace ServiceHub
                 'Call RibbonEvents.showMsImaging()
                 'Call WindowModules.viewer.Invoke(Sub() WindowModules.viewer.LoadRender(dataPack, filepath))
                 'Call MyApplication.host.Invoke(Sub() MyApplication.host.Text = $"BioNovoGene Mzkit [{WindowModules.viewer.Text} {filepath.FileName}]")
+                checkOffline = 0
             Catch ex As Exception
 
             End Try
@@ -269,7 +288,7 @@ Namespace ServiceHub
                 .DoCall(Function(info)
                             Return New MsImageProperty(info)
                         End Function)
-
+            checkOffline = 0
             Return output
         End Function
 
@@ -292,8 +311,12 @@ Namespace ServiceHub
                         End Function)
 
             MessageCallback = Nothing
-
+            checkOffline = 0
             Return output
+        End Function
+
+        Public Function LoadGeneLayer(id As String) As PixelData()
+            Return MSIProtocols.LoadPixels(id, AddressOf handleServiceRequest)
         End Function
 
         Public Function LoadPixels(mz As IEnumerable(Of Double), mzErr As Tolerance) As PixelData()
@@ -314,7 +337,7 @@ Namespace ServiceHub
                                 Return App.LogException(ex)
                             End Try
                         End Function)
-
+            checkOffline = 0
             Return output
         End Function
 
@@ -339,7 +362,7 @@ Namespace ServiceHub
                                 Return App.LogException(ex)
                             End Try
                         End Function)
-
+            checkOffline = 0
             Return output
         End Function
 
@@ -358,7 +381,7 @@ Namespace ServiceHub
                .Load(data.ChunkBuffer) _
                .CreateObject(Of RegionLoader)(decodeMetachar:=False) _
                .Reload
-
+            checkOffline = 0
             Return regions
         End Function
 
@@ -382,8 +405,27 @@ Namespace ServiceHub
                 .DoCall(Function(info)
                             Return New MsImageProperty(info)
                         End Function)
-
+            checkOffline = 0
             Return output
+        End Function
+
+        Public Function ExtractRegionMs1Spectrum(region As Polygon2D(), label As String) As LibraryMatrix
+            Dim payload As New RegionLoader With {
+               .height = 0,
+               .width = 0,
+               .regions = region,
+               .sample_tags = {label}
+            }
+            Dim buffer = BSON.GetBuffer(GetType(RegionLoader).GetJsonElement(payload, New JSONSerializerOptions))
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.ExtractRegionMs1Spectrum, buffer.ToArray))
+
+            If data.IsHTTP_RFC Then
+                Call MyApplication.host.showStatusMessage(data.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Return Nothing
+            Else
+                checkOffline = 0
+                Return LibraryMatrix.ParseStream(data.ChunkBuffer)
+            End If
         End Function
 
         Public Function ExtractRegionSample(regions As Polygon2D(), dims As Size) As MsImageProperty
@@ -406,7 +448,7 @@ Namespace ServiceHub
                 .DoCall(Function(info)
                             Return New MsImageProperty(info)
                         End Function)
-
+            checkOffline = 0
             Return output
         End Function
 
@@ -437,7 +479,7 @@ Namespace ServiceHub
                 .DoCall(Function(info)
                             Return New MsImageProperty(info)
                         End Function)
-
+            checkOffline = 0
             Return output
         End Function
 
@@ -446,13 +488,13 @@ Namespace ServiceHub
         ''' </summary>
         ''' <param name="request"></param>
         ''' <returns></returns>
-        Private Function handleServiceRequest(request As RequestStream) As RequestStream
+        Private Function handleServiceRequest(request As RequestStream, Optional min As Double = 30) As RequestStream
             If MSI_service <= 0 Then
                 Call Workbench.StatusMessage("MS-imaging services is not started yet!", My.Resources.StatusAnnotations_Warning_32xLG_color)
                 Return Nothing
             Else
                 Return New TcpRequest(endPoint) _
-                    .SetTimeOut(TimeSpan.FromMinutes(30)) _
+                    .SetTimeOut(TimeSpan.FromMinutes(min)) _
                     .SendMessage(request)
             End If
         End Function
@@ -472,21 +514,31 @@ Namespace ServiceHub
                 Return Nothing
             Else
                 Call MyApplication.LogText($"get pixel data payload {StringFormats.Lanudry(output.ChunkBuffer.Length)}!")
+                checkOffline = 0
                 Return InMemoryVectorPixel.ParseVector(output.ChunkBuffer).ToArray
             End If
         End Function
 
         Public Function GetPixel(x As Integer, y As Integer) As PixelScan
             Dim xy As Byte() = BitConverter.GetBytes(x).JoinIterates(BitConverter.GetBytes(y)).ToArray
-            Dim output As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.GetPixel, xy))
+            Dim output As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.GetPixel, xy), min:=0.01)
 
             If output Is Nothing Then
                 Return Nothing
             ElseIf HTTP_RFC.RFC_OK <> output.Protocol AndAlso output.Protocol <> 0 Then
                 Call MyApplication.host.showStatusMessage("MSI service backend panic.", My.Resources.StatusAnnotations_Warning_32xLG_color)
                 Call MyApplication.LogText(output.GetUTF8String)
+
+                If checkOffline < 6 Then
+                    checkOffline += 1
+                Else
+                    MessageBox.Show("MS-Imaging data service backend is panic or offline, please load raw data file again to restart the service",
+                                    "Error Service Request", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
+
                 Return Nothing
             Else
+                checkOffline = 0
                 Return InMemoryVectorPixel.Parse(output.ChunkBuffer)
             End If
         End Function
@@ -500,6 +552,7 @@ Namespace ServiceHub
                 Call MyApplication.host.showStatusMessage(data.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
                 Return {}
             Else
+                checkOffline = 0
                 Return data.GetDoubles
             End If
         End Function
@@ -516,6 +569,7 @@ Namespace ServiceHub
                 panic = True
                 Return {}
             Else
+                checkOffline = 0
                 Return PixelScanIntensity.Parse(data.ChunkBuffer)
             End If
         End Function
@@ -529,6 +583,7 @@ Namespace ServiceHub
                 ' detach message event handler
                 RemoveHandler MSI_pipe.SetMessage, AddressOf MSI_pipe_SetMessage
 
+                checkOffline = 0
                 MSI_pipe = Nothing
                 MSI_service = -1
             End If
@@ -572,6 +627,7 @@ Namespace ServiceHub
                     RemoveHandler MSI_pipe.SetMessage, AddressOf MSI_pipe_SetMessage
                 End If
 
+                checkOffline = 0
                 MSI_pipe = Nothing
                 MSI_service = -1
             End If

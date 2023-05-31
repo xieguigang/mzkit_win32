@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "PipelineHost": {
+      "commandName": "Project"
+    },
+    "run_dll": {
+      "commandName": "Executable",
+      "executablePath": "D:\\mzkit\\dist\\bin/Rstudio/bin/Rscript.exe",
+      "commandLineArgs": "\"D:/mzkit/src/mzkit/rstudio/pipeline/MSI_peaktable.R\" --raw \"D:\\mzkit\\DATA\\test\\HR2MSI mouse urinary bladder S096 - Figure1.cdf\" --save \"C:\\Users\\lipidsearch\\Desktop\\matrix3.csv\" --mzdiff \"0.005\" --into.cutoff \"0.05\" --TrIQ \"0.8\" --SetDllDirectory D:/mzkit/dist/bin/Rstudio/host",
+      "workingDirectory": "D:\\mzkit\\dist\\bin\\Rstudio\\bin"
+    }
+  }
+}

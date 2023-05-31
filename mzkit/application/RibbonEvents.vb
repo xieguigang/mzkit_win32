@@ -159,7 +159,8 @@ Module RibbonEvents
         AddHandler ribbonItems.ButtonMSIRowScans.ExecuteEvent, AddressOf CombineRowScanTask
         AddHandler ribbonItems.ButtonImportsSCiLSLab.ExecuteEvent, AddressOf ImportsSCiLSLab
         AddHandler ribbonItems.ButtonMsDemo.ExecuteEvent, Sub() WindowModules.msDemo.ShowPage()
-        AddHandler ribbonItems.Targeted.ExecuteEvent, Sub() Call ConnectToBioDeep.OpenAdvancedFunction(AddressOf VisualStudio.ShowSingleDocument(Of frmTargetedQuantification))
+        ' AddHandler ribbonItems.Targeted.ExecuteEvent, Sub() Call ConnectToBioDeep.OpenAdvancedFunction(AddressOf VisualStudio.ShowSingleDocument(Of frmTargetedQuantification))
+        AddHandler ribbonItems.Targeted.ExecuteEvent, Sub() Call VisualStudio.ShowSingleDocument(Of frmTargetedQuantification)()
 
         AddHandler ribbonItems.MRMLibrary.ExecuteEvent, Sub() Call VisualStudio.ShowSingleDocument(Of frmMRMLibrary)(Nothing)
         AddHandler ribbonItems.QuantifyIons.ExecuteEvent, Sub() Call VisualStudio.ShowSingleDocument(Of frmQuantifyIons)(Nothing)
@@ -187,12 +188,35 @@ Module RibbonEvents
         AddHandler ribbonItems.View3DMALDI.ExecuteEvent, Sub() Call open3dMALDIViewer()
 
         AddHandler ribbonItems.ButtonOpenServicesMgr.ExecuteEvent, Sub() Call VisualStudio.ShowSingleDocument(Of frmServicesManager)()
+
+        AddHandler ribbonItems.ButtonImport10x_genomics.ExecuteEvent, Sub() Call ConvertH5ad()
     End Sub
 
     Sub New()
         ExportApis._openMSImagingFile = AddressOf OpenMSIRaw
         ExportApis._openMSImagingViewer = AddressOf showMsImaging
         ExportApis._openCFMIDTool = AddressOf OpenCFMIDTool
+    End Sub
+
+    Private Sub ConvertH5ad()
+        InputDialog.Input(Of InputConvert10x)(
+            Sub(cfg)
+                Using file As New SaveFileDialog With {.Filter = "Imaging Pack File(*.mzPack)|*.mzPack"}
+                    If file.ShowDialog = DialogResult.OK Then
+                        Dim pars = cfg.GetParameters
+
+                        Call RscriptProgressTask.ConvertSTData(pars.spots, pars.h5ad, pars.tag, pars.targets, file.FileName)
+
+                        If file.FileName.FileLength > 1024 Then
+                            If MessageBox.Show("File imports success, load into viewer?", "Task success", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
+                                Call MyApplication.host.showMzPackMSI(file.FileName)
+                            End If
+                        Else
+                            Workbench.Warning("10X genomics st-imaging file imports error!")
+                        End If
+                    End If
+                End Using
+            End Sub)
     End Sub
 
     Private Sub open3dMALDIViewer()
@@ -315,16 +339,33 @@ Module RibbonEvents
 
     Public Sub CopyMatrix()
         Dim table As DataGridView = MyApplication.host.mzkitTool.DataGridView1
+        Dim exportTask As Action =
+            Sub()
+                Call MyApplication.host.Invoke(
+                    Sub()
+                        Call doMatrixCopy(table)
+                    End Sub)
+            End Sub
 
         If Not table Is Nothing Then
-            Dim sb As New StringBuilder
-            Dim write As New StringWriter(sb)
-
-            Call table.WriteTableToFile(write)
-            Call Clipboard.Clear()
-            Call Clipboard.SetText(sb.ToString)
+            Call ProgressSpinner.DoLoading(exportTask)
             Call MyApplication.host.showStatusMessage("Matrix data is copy to clipboard!")
         End If
+    End Sub
+
+    Private Sub doMatrixCopy(table As DataGridView)
+        Dim sb As New StringBuilder
+        Dim write As New StringWriter(sb)
+
+        Call table.WriteTableToFile(write)
+
+        Try
+            Call Clipboard.Clear()
+            Call Clipboard.SetText(sb.ToString)
+        Catch ex As Exception
+            Call MessageBox.Show("Error while access the clipboard, please retry later.", "Copy Matrix Data", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            Call Workbench.Warning(ex.ToString)
+        End Try
     End Sub
 
     Public Sub CopyProperties()
@@ -418,9 +459,12 @@ Module RibbonEvents
         End Using
     End Sub
 
+    ''' <summary>
+    ''' open the ms-imaging raw data file
+    ''' </summary>
     Public Sub OpenMSIRaw()
         Using file As New OpenFileDialog() With {
-            .Filter = "All Supported Raw(*.raw;*.mzPack;*.imzML;*.cdf)|*.raw;*.mzPack;*.imzML;*.cdf|Thermo Raw(*.raw)|*.raw|Imaging mzML(*.imzML)|*.imzML|Mzkit Pixel Matrix(*.cdf)|*.cdf",
+            .Filter = "All Supported Raw(*.raw;*.mzPack;*.imzML;*.cdf;*.mzML)|*.raw;*.mzPack;*.imzML;*.cdf;*.mzML|Thermo Raw(*.raw)|*.raw|Imaging mzML(*.imzML)|*.imzML|Mzkit Pixel Matrix(*.cdf)|*.cdf|MRM targetted MS-Imaging(*.mzML)|*.mzML",
             .Title = "Open MS-imaging Raw Data File"
         }
             If file.ShowDialog = DialogResult.OK Then
@@ -433,8 +477,7 @@ Module RibbonEvents
         Call showMsImaging()
 
         Select Case file.ExtensionSuffix.ToLower
-            Case "raw" : Call WindowModules.viewer.loadRaw(file)
-            Case "mzml" : Call WindowModules.viewer.loadmzML(file)
+            Case "mzml", "raw" : Call WindowModules.viewer.loadRaw(file)
             Case "imzml", "mzpack" : Call WindowModules.viewer.loadimzML(file)
             Case "cdf" : Call WindowModules.msImageParameters.loadRenderFromCDF(file)
             Case Else

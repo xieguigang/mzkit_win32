@@ -7,14 +7,8 @@ End Interface
 
 Public Module SpectrumSearchModule
 
-    Dim documentType As Type
-
-    Public Sub SetDocument(type As Type)
-        documentType = type
-    End Sub
-
     Public Function ShowDocument() As SpectrumSearchPage
-        Return CObj(Workbench.ShowDocument(documentType))
+        Return Pages.OpenDocument(NameOf(SpectrumSearchPage))
     End Function
 
 End Module

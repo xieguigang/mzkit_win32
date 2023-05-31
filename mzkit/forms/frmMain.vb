@@ -72,6 +72,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
@@ -123,16 +124,20 @@ Public Class frmMain : Implements AppHost
             RibbonEvents.nav.Push(page)
         End If
 
-        Me.Text = $"BioNovoGene Mzkit [{page.Text}]"
+        SetTitle(page.Text)
         page.Visible = True
         page.Show()
 
         WindowModules.panelMain.Show(m_dockPanel)
     End Sub
 
+    ''' <summary>
+    ''' add a MRM file into the explorer
+    ''' </summary>
+    ''' <param name="file"></param>
     Public Sub ShowMRMIons(file As String)
         If Not file.FileExists Then
-            Call showStatusMessage($"missing raw data file '{file.GetFullPath}'!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning($"Missing raw data file '{file.GetFullPath}'!")
         Else
             WindowModules.MRMIons.DockState = DockState.DockLeft
             WindowModules.MRMIons.LoadMRM(file)
@@ -141,7 +146,7 @@ Public Class frmMain : Implements AppHost
 
     Public Sub ShowGCMSSIM(file As String, isBackground As Boolean, showExplorer As Boolean)
         If Not file.FileExists Then
-            Call showStatusMessage($"missing raw data file '{file.GetFullPath}'!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning($"Missing raw data file '{file.GetFullPath}'!")
         ElseIf Not WindowModules.GCMSPeaks.ContainsRaw(file) Then
             Dim raw = frmGCMS_CDFExplorer.loadCDF(file, isBackground)
 
@@ -160,7 +165,14 @@ Public Class frmMain : Implements AppHost
     Private Sub showRamanSpectrumData(file As String)
         Dim data = Raman.FileReader.ParseTextFile(file)
         Dim sig = New NamedCollection(Of ChromatogramTick)("Raman Spectroscopy", data.ToChromatogram)
-        Dim obj = DynamicType.Create(data.Comments.JoinIterates(data.DetailedInformation).JoinIterates(data.MeasurementInformation).ToDictionary(Function(a) a.Key, Function(a) CObj(a.Value)))
+        Dim obj = DynamicType.Create(
+            metadata:=data.Comments _
+                .JoinIterates(data.DetailedInformation) _
+                .JoinIterates(data.MeasurementInformation) _
+                .ToDictionary(Function(a) a.Key,
+                              Function(a)
+                                  Return CObj(a.Value)
+                              End Function))
 
         Call mzkitTool.TIC({sig}, d3:=False, xlab:="Raman Shift [cm-1]")
         Call mzkitTool.ShowPage()
@@ -210,22 +222,28 @@ Public Class frmMain : Implements AppHost
         ElseIf fileName.ExtensionSuffix("wiff") Then
             Dim wiffRaw As New sciexWiffReader.WiffScanFileReader(fileName)
             Dim mzPack As mzPack = TaskProgress.LoadData(Function(println) wiffRaw.LoadFromWiffRaw(checkNoise:=True, println.Echo))
-            Dim cacheFile As String = TempFileSystem.GetAppSysTempFile(".mzPack", App.PID.ToHexString, "WiffRawFile_")
-            Dim raw As New Raw With {
-               .cache = cacheFile,
-               .numOfScan1 = 0,
-               .numOfScan2 = 0,
-               .rtmax = 0,
-               .rtmin = 0,
-               .source = fileName
-            }
 
-            Using temp As Stream = cacheFile.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
-                Call mzPack.Write(temp)
-            End Using
+            If mzPack.Application = FileApplicationClass.LCMSMS Then
+                WindowModules.MRMIons.DockState = DockState.DockLeft
+                WindowModules.MRMIons.LoadMRM(mzPack)
+            Else
+                Dim cacheFile As String = TempFileSystem.GetAppSysTempFile(".mzPack", App.PID.ToHexString, "WiffRawFile_")
+                Dim raw As New Raw With {
+                   .cache = cacheFile,
+                   .numOfScan1 = 0,
+                   .numOfScan2 = 0,
+                   .rtmax = 0,
+                   .rtmin = 0,
+                   .source = fileName
+                }
 
-            Call WindowModules.rawFeaturesList.LoadRaw(raw)
-            Call VisualStudio.Dock(WindowModules.rawFeaturesList, DockState.DockLeft)
+                Using temp As Stream = cacheFile.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
+                    Call mzPack.Write(temp)
+                End Using
+
+                Call WindowModules.rawFeaturesList.LoadRaw(raw)
+                Call VisualStudio.Dock(WindowModules.rawFeaturesList, DockState.DockLeft)
+            End If
         ElseIf fileName.ExtensionSuffix("raw") Then
             Dim Xraw As New MSFileReader(fileName)
             Dim mzPack As mzPack = TaskProgress.LoadData(Function(println) Xraw.LoadFromXRaw(println.Echo))
@@ -239,7 +257,7 @@ Public Class frmMain : Implements AppHost
                .source = fileName
             }
 
-            MyApplication.host.showStatusMessage("Do mass calibration!")
+            Workbench.StatusMessage("Do mass calibration!")
             mzPack = mzPack.MassCalibration(da:=0.1)
 
             Using temp As Stream = cacheFile.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
@@ -248,7 +266,7 @@ Public Class frmMain : Implements AppHost
 
             Call WindowModules.rawFeaturesList.LoadRaw(raw)
             Call VisualStudio.Dock(WindowModules.rawFeaturesList, DockState.DockLeft)
-            Call MyApplication.host.showStatusMessage($"Load {fileName} success!")
+            Call Workbench.SuccessMessage($"Load {fileName} success!")
         Else
             Call WindowModules.fileExplorer.ImportsRaw(fileName)
         End If
@@ -321,8 +339,7 @@ Public Class frmMain : Implements AppHost
                          End Function)
 
             WindowModules.viewer.LoadRender(cachefile, imzML)
-
-            Text = $"BioNovoGene Mzkit [{WindowModules.viewer.Text} {imzML.FileName}]"
+            Workbench.AppHost.SetTitle($"{WindowModules.viewer.Text} {imzML.FileName}")
         End If
 
         If imzML.FileLength > 1.5 * GB Then
@@ -384,7 +401,7 @@ Public Class frmMain : Implements AppHost
 
         If Not script.scriptFile.StringEmpty Then
             Globals.AddRecentFileHistory(script.scriptFile)
-            Me.showStatusMessage($"Save R# script file at location {script.scriptFile.GetFullPath}!")
+            Workbench.StatusMessage($"Save R# script file at location {script.scriptFile.GetFullPath}!")
         End If
     End Sub
 
@@ -399,7 +416,7 @@ Public Class frmMain : Implements AppHost
                     ' do nothing
                 End Sub)
 
-            Me.showStatusMessage("The workspace was saved!")
+            Workbench.StatusMessage("The workspace was saved!")
         End If
     End Sub
 
@@ -439,7 +456,7 @@ Public Class frmMain : Implements AppHost
 
             If Not file.StringEmpty Then
                 Globals.AddRecentFileHistory(file)
-                Me.showStatusMessage($"Current file saved at {file.GetFullPath}!")
+                Workbench.StatusMessage($"Current file saved at {file.GetFullPath}!")
             End If
         End If
     End Sub
@@ -890,5 +907,12 @@ Public Class frmMain : Implements AppHost
 
     Public Sub LogText(msg As String) Implements AppHost.LogText
         MyApplication.LogForm.AppendMessage(msg)
+    End Sub
+
+    Public Sub SetTitle(title As String) Implements AppHost.SetTitle
+        Call Invoke(
+            Sub()
+                Text = $"BioNovoGene MZKit Workbench [{title}]"
+            End Sub)
     End Sub
 End Class

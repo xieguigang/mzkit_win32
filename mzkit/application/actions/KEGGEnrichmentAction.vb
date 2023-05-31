@@ -60,7 +60,7 @@ Public Class KEGGEnrichmentAction : Inherits ActionBase
                 Return fdr
             End Function, title:="Run KEGG Enrichment", info:="Run fisher test...")
         Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(title:="KEGG Enrichment Result")
-        Dim mapIndex = maps.ToDictionary(Function(m) m.id)
+        Dim mapIndex = maps.ToDictionary(Function(m) m.EntryId)
 
         table.ViewRow = viewRowHandler(mapIndex)
         table.LoadTable(loadTableHandler(enrich))

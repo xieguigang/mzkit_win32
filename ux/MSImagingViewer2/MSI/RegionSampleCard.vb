@@ -5,6 +5,7 @@ Imports Microsoft.VisualBasic.Imaging.Math2D
 Public Class RegionSampleCard
 
     Public Event RemoveSampleGroup(card As RegionSampleCard)
+    Public Event ViewRegionMs1Spectrum(card As RegionSampleCard)
 
     Public Property SampleColor As Color
         Get
@@ -58,8 +59,8 @@ Public Class RegionSampleCard
     Public Function ExportTissueRegion(dimension As Size) As TissueRegion
         If Not tissue Is Nothing Then
             Return New TissueRegion With {
-                .Color = SampleColor,
-                .Label = SampleInfo,
+                .color = SampleColor,
+                .label = SampleInfo,
                 .points = tissue.points
             }
         Else
@@ -67,13 +68,15 @@ Public Class RegionSampleCard
         End If
     End Function
 
-    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
-        Using color As New ColorDialog
-            If color.ShowDialog = DialogResult.OK Then
-                PictureBox1.BackColor = color.Color
-                updateCallback()
-            End If
-        End Using
+    Private Sub PictureBox1_MouseClick(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseClick
+        If e.Button = MouseButtons.Left Then
+            Using color As New ColorDialog
+                If color.ShowDialog = DialogResult.OK Then
+                    PictureBox1.BackColor = color.Color
+                    updateCallback()
+                End If
+            End Using
+        End If
     End Sub
 
     Public Sub SetPolygons(polygons As TissueRegion, callback As Action)
@@ -115,5 +118,13 @@ Public Class RegionSampleCard
 
     Private Sub RegionSampleCard_LostFocus(sender As Object, e As EventArgs) Handles Me.LostFocus
         Me.BorderStyle = BorderStyle.None
+    End Sub
+
+    Private Sub ViewMS1SpectrumToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewMS1SpectrumToolStripMenuItem.Click
+        RaiseEvent ViewRegionMs1Spectrum(Me)
+    End Sub
+
+    Private Sub ContextMenuStrip1_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles ContextMenuStrip1.Opening
+
     End Sub
 End Class

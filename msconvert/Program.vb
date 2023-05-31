@@ -14,8 +14,10 @@ Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.CommandLine.InteropService.SharedORM
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Imaging.Math2D
+Imports Microsoft.VisualBasic.Language.[Default]
 Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.My.FrameworkInternal
+Imports Microsoft.VisualBasic.Scripting.Runtime
 
 ''' <summary>
 ''' 主要是为了兼容第三方厂家的原始数据文件模块的引用而构建的.NET4.8兼容模块
@@ -53,7 +55,7 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
             If groups.Length = 1 Then
                 If groups(Scan0).Key = IonModes.Positive Then
                     Call Console.WriteLine(1)
-                ElseIf groups(scan0).Key = IonModes.Negative Then
+                ElseIf groups(Scan0).Key = IonModes.Negative Then
                     Call Console.WriteLine(-1)
                 Else
                     Call Console.WriteLine(0)
@@ -165,6 +167,22 @@ Imports Microsoft.VisualBasic.My.FrameworkInternal
         Else
             Return inputfile.EnumerateFiles($"*.{scanExt}")
         End If
+    End Function
+
+    ''' <summary>
+    ''' Convert MRM mzML file to ms-imaging raw data file
+    ''' </summary>
+    ''' <param name="args"></param>
+    ''' <returns></returns>
+    <ExportAPI("/MRM-msimaging")>
+    <Description("Convert MRM mzML file to ms-imaging raw data file")>
+    <Usage("/MRM-msimaging /raw <data.mzML> /dims <x,y> [/resolution=50 /out <result.mzPack>]")>
+    Public Function MRM_MSImaging(args As CommandLine) As Integer
+        Dim raw As String = args("/raw")
+        Dim dims As Size = args("/dims").DefaultValue.SizeParser
+        Dim resolution As Integer = args("/resolution") Or 50
+        Dim output As String = args("/out") Or $"{raw.ParentPath}/{raw.BaseName}_{dims.Width}x{dims.Height}@{resolution}um.mzPack"
+
     End Function
 
     <ExportAPI("/rowbinds")>
