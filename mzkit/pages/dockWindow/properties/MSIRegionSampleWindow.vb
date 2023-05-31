@@ -399,7 +399,14 @@ Public Class MSIRegionSampleWindow
             Dim minLabel As String = Nothing
 
             For Each region As TissueRegion In polygons
-                Dim dist As Double = region.points.Select(Function(pt) (pt.X - x) ^ 2 + (pt.Y - y) ^ 2).Min
+                If region.nsize = 0 Then
+                    Continue For
+                End If
+
+                Dim dist As Double = region.points _
+                    .AsParallel _
+                    .Select(Function(pt) (pt.X - x) ^ 2 + (pt.Y - y) ^ 2) _
+                    .Min
 
                 If dist < minDist Then
                     minDist = dist
