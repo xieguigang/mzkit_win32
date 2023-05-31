@@ -82,6 +82,8 @@ Public Class MSIRegionSampleWindow
             Call card.SetPolygons(region, callback:=AddressOf updateLayerRendering)
             Call FlowLayoutPanel1.Controls.Add(card)
 
+            Call ApplyVsTheme(card.ContextMenuStrip1)
+
             ' card.Anchor = AnchorStyles.Left Or AnchorStyles.Right
             card.SampleColor = region.color
             card.SampleInfo = region.label
@@ -135,8 +137,9 @@ Public Class MSIRegionSampleWindow
     Private Function Add(sample_group As IEnumerable(Of Polygon2D)) As RegionSampleCard
         Dim card As New RegionSampleCard
 
-        card.SetPolygons(sample_group, callback:=AddressOf updateLayerRendering)
-        FlowLayoutPanel1.Controls.Add(card)
+        Call card.SetPolygons(sample_group, callback:=AddressOf updateLayerRendering)
+        Call FlowLayoutPanel1.Controls.Add(card)
+        Call ApplyVsTheme(card.ContextMenuStrip1)
 
         AddHandler card.RemoveSampleGroup, AddressOf removeSampleGroup
         AddHandler card.ViewRegionMs1Spectrum, AddressOf ViewMs1Spectrum

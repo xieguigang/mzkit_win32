@@ -473,7 +473,9 @@
     <Compile Include="forms\Inputs\MSImaging\InputHTMLColorCode.Designer.vb">
       <DependentUpon>InputHTMLColorCode.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\MSImaging\InputHTMLColorCode.vb" />
+    <Compile Include="forms\Inputs\MSImaging\InputHTMLColorCode.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\MSImaging\InputMSIPeakTableParameters.Designer.vb">
       <DependentUpon>InputMSIPeakTableParameters.vb</DependentUpon>
     </Compile>

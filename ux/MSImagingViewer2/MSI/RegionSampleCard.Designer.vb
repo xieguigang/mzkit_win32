@@ -128,7 +128,7 @@ Partial Class RegionSampleCard
     Friend WithEvents Label3 As Label
     Friend WithEvents TextBox3 As TextBox
     Friend WithEvents LinkLabel1 As LinkLabel
-    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
-    Friend WithEvents ViewMS1SpectrumToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents SetHTMLColorToolStripMenuItem As ToolStripMenuItem
+    Public WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Public WithEvents ViewMS1SpectrumToolStripMenuItem As ToolStripMenuItem
+    Public WithEvents SetHTMLColorToolStripMenuItem As ToolStripMenuItem
 End Class
