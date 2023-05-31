@@ -5,7 +5,7 @@ Partial Class MSIRegionSampleWindow
     Inherits ToolWindow
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -22,7 +22,7 @@ Partial Class MSIRegionSampleWindow
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MSIRegionSampleWindow))
@@ -30,7 +30,6 @@ Partial Class MSIRegionSampleWindow
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton6 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton7 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
@@ -38,6 +37,8 @@ Partial Class MSIRegionSampleWindow
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripButton5 = New System.Windows.Forms.ToolStripSplitButton()
+        Me.GroupUntaggedSpotToNearestRegonToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -49,7 +50,7 @@ Partial Class MSIRegionSampleWindow
         Me.FlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 25)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(394, 447)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(538, 535)
         Me.FlowLayoutPanel1.TabIndex = 0
         Me.FlowLayoutPanel1.WrapContents = False
         '
@@ -58,7 +59,7 @@ Partial Class MSIRegionSampleWindow
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton2, Me.ToolStripButton6, Me.ToolStripButton5, Me.ToolStripButton4, Me.ToolStripButton7, Me.ToolStripSeparator1, Me.ToolStripButton1, Me.ToolStripButton3})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(394, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(538, 25)
         Me.ToolStrip1.TabIndex = 1
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -79,15 +80,6 @@ Partial Class MSIRegionSampleWindow
         Me.ToolStripButton6.Name = "ToolStripButton6"
         Me.ToolStripButton6.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton6.Text = "Merge Regions"
-        '
-        'ToolStripButton5
-        '
-        Me.ToolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton5.Image = CType(resources.GetObject("ToolStripButton5.Image"), System.Drawing.Image)
-        Me.ToolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton5.Name = "ToolStripButton5"
-        Me.ToolStripButton5.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton5.Text = "Convert Un-tagged sample region as group"
         '
         'ToolStripButton4
         '
@@ -133,9 +125,9 @@ Partial Class MSIRegionSampleWindow
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 472)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 560)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(394, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(538, 22)
         Me.StatusStrip1.TabIndex = 2
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -145,11 +137,28 @@ Partial Class MSIRegionSampleWindow
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(42, 17)
         Me.ToolStripStatusLabel1.Text = "Ready!"
         '
+        'ToolStripButton5
+        '
+        Me.ToolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton5.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GroupUntaggedSpotToNearestRegonToolStripMenuItem})
+        Me.ToolStripButton5.Image = CType(resources.GetObject("ToolStripButton5.Image"), System.Drawing.Image)
+        Me.ToolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton5.Name = "ToolStripButton5"
+        Me.ToolStripButton5.Size = New System.Drawing.Size(32, 22)
+        Me.ToolStripButton5.Text = "Convert Un-tagged sample region as group"
+        '
+        'GroupUntaggedSpotToNearestRegonToolStripMenuItem
+        '
+        Me.GroupUntaggedSpotToNearestRegonToolStripMenuItem.Image = CType(resources.GetObject("GroupUntaggedSpotToNearestRegonToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.GroupUntaggedSpotToNearestRegonToolStripMenuItem.Name = "GroupUntaggedSpotToNearestRegonToolStripMenuItem"
+        Me.GroupUntaggedSpotToNearestRegonToolStripMenuItem.Size = New System.Drawing.Size(284, 22)
+        Me.GroupUntaggedSpotToNearestRegonToolStripMenuItem.Text = "Group un-tagged spot to nearest region"
+        '
         'MSIRegionSampleWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(394, 494)
+        Me.ClientSize = New System.Drawing.Size(538, 582)
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.ToolStrip1)
@@ -172,9 +181,10 @@ Partial Class MSIRegionSampleWindow
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents ToolStripButton3 As ToolStripButton
     Friend WithEvents ToolStripButton4 As ToolStripButton
-    Friend WithEvents ToolStripButton5 As ToolStripButton
     Friend WithEvents ToolStripButton6 As ToolStripButton
     Friend WithEvents ToolStripButton7 As ToolStripButton
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
+    Friend WithEvents ToolStripButton5 As ToolStripSplitButton
+    Friend WithEvents GroupUntaggedSpotToNearestRegonToolStripMenuItem As ToolStripMenuItem
 End Class
