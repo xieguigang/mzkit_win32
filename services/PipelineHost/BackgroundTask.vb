@@ -456,7 +456,7 @@ Module BackgroundTask
         Call RunSlavePipeline.SendMessage("pick of the unique ion features...")
 
         Dim allMz As Double() = allMs.uniqueMz(da, into_cutoff, triq)
-        Dim mzKeys As String() = allMz.Select(Function(mzi) mzi.ToString("F3")).ToArray
+        Dim mzKeys As String() = allMz.Select(Function(mzi) mzi.ToString("F4")).ToArray
 
         RunSlavePipeline.SendProgress(0, $"Run peak alignment for {allMz.Length} m/z features!")
 
