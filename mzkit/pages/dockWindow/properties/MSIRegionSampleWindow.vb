@@ -389,8 +389,7 @@ Public Class MSIRegionSampleWindow
 
     End Sub
 
-    Private Sub ToolStripButton5_ButtonClick(sender As Object, e As EventArgs) Handles ToolStripButton5.ButtonClick
-        Dim polygons = GetRegions(dimension).ToArray
+    Private Function getUnLabledPixels(polygons As TissueRegion()) As (x As Double(), y As Double())
         Dim tagged = polygons _
             .Select(Function(p) p.points) _
             .IteratesALL _
@@ -418,6 +417,13 @@ Public Class MSIRegionSampleWindow
             Next
         End If
 
-        Call Add({New Polygon2D(x.ToArray, y.ToArray)})
+        Return (x.ToArray, y.ToArray)
+    End Function
+
+    Private Sub ToolStripButton5_ButtonClick(sender As Object, e As EventArgs) Handles ToolStripButton5.ButtonClick
+        Dim polygons As TissueRegion() = GetRegions(dimension).ToArray
+        Dim xy = getUnLabledPixels(polygons)
+
+        Call Add({New Polygon2D(xy.x, xy.y)})
     End Sub
 End Class
