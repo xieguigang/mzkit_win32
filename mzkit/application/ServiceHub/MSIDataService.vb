@@ -68,13 +68,14 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.Tcp
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
+Imports Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.GridRouter(Of Node)
 Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MachineLearning.Data
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.Net
-Imports Microsoft.VisualBasic.Net.Http
+Imports Microsoft.VisualBasic.Net.HTTP
 Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Mzkit_win32.BasicMDIForm
@@ -557,15 +558,23 @@ Namespace ServiceHub
             End If
         End Function
 
+        Public Function ExtractSampleRegion(ByRef panic As Boolean) As PixelScanIntensity()
+            Return handleLayer(New RequestStream(MSI.Protocol, ServiceProtocol.ExtractSamplePixels, "OK"), panic)
+        End Function
+
         Public Function LoadSummaryLayer(summary As IntensitySummary, ByRef panic As Boolean) As PixelScanIntensity()
-            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.LoadSummaryLayer, BitConverter.GetBytes(CInt(summary))))
+            Return handleLayer(New RequestStream(MSI.Protocol, ServiceProtocol.LoadSummaryLayer, BitConverter.GetBytes(CInt(summary))), panic)
+        End Function
+
+        Private Function handleLayer(req As RequestStream, ByRef panic As Boolean) As PixelScanIntensity()
+            Dim data As RequestStream = handleServiceRequest(req)
 
             panic = False
 
             If data Is Nothing Then
                 Return {}
             ElseIf data.IsHTTP_RFC Then
-                Call Workbench.StatusMessage(data.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Call Workbench.Warning(data.GetUTF8String)
                 panic = True
                 Return {}
             Else

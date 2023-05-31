@@ -1427,10 +1427,32 @@ Public Class frmMsImagingViewer
         End If
     End Sub
 
+    Public Sub ExtractSampleRegion()
+        If Not checkService() Then
+            Return
+        Else
+            Call TaskProgress.RunAction(
+                Sub()
+                    Dim panic As Boolean = False
+                    Dim summaryLayer As PixelScanIntensity() = MSIservice.ExtractSampleRegion(panic)
+
+                    Invoke(Sub() rendering = registerSummaryRender(summaryLayer, panic))
+
+                    If Not rendering Is Nothing Then
+                        Call Invoke(rendering)
+                    End If
+                End Sub, "Load sample region", $"Extract the sample region data for tissue region operation...")
+        End If
+    End Sub
+
     Private Function registerSummaryRender(summary As IntensitySummary) As Action
         Dim panic As Boolean = False
         Dim summaryLayer As PixelScanIntensity() = MSIservice.LoadSummaryLayer(summary, panic)
 
+        Return registerSummaryRender(summaryLayer, panic)
+    End Function
+
+    Private Function registerSummaryRender(summaryLayer As PixelScanIntensity(), panic As Boolean) As Action
         If panic Then
             Return Nothing
         Else
@@ -1456,11 +1478,7 @@ Public Class frmMsImagingViewer
     End Function
 
     Public Sub SetBlank()
-        Dim size As New Size(params.scan_x * 4, params.scan_y * 4)
-        Dim dims As New Size(params.scan_x, params.scan_y)
-
-        rendering = Sub() Call PixelSelector1.SetMsImagingOutput(New Bitmap(size.Width, size.Height), dims, Color.Black, ScalerPalette.FlexImaging, {0, 1}, 255)
-        rendering()
+        Call ExtractSampleRegion()
     End Sub
 
     Friend Sub renderRGB(r As Double, g As Double, b As Double)

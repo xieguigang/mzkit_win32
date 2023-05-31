@@ -24,6 +24,10 @@ Public Class MSIRegionSampleWindow
 
     Friend dimension As Size
     Friend canvas As PixelSelector
+
+    ''' <summary>
+    ''' the sample region pixels
+    ''' </summary>
     Friend sample_bounds As Point()
     Friend importsFile As String
     Friend viewer As frmMsImagingViewer
