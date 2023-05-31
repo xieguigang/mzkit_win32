@@ -88,12 +88,20 @@ Public Class MSIRegionSampleWindow
 
             AddHandler card.RemoveSampleGroup, AddressOf removeSampleGroup
             AddHandler card.ViewRegionMs1Spectrum, AddressOf ViewMs1Spectrum
+            AddHandler card.SetHtmlColorCode, AddressOf SetHtmlColorCode
         Next
     End Sub
 
     Private Sub removeSampleGroup(polygon As RegionSampleCard)
         Call FlowLayoutPanel1.Controls.Remove(polygon)
         Call updateLayerRendering()
+    End Sub
+
+    Private Sub SetHtmlColorCode(region As RegionSampleCard)
+        InputDialog.Input(Of InputHTMLColorCode)(
+            Sub(cfg)
+                region.SampleColor = cfg.UserInputColor
+            End Sub)
     End Sub
 
     Private Sub ViewMs1Spectrum(region As RegionSampleCard)
@@ -132,6 +140,7 @@ Public Class MSIRegionSampleWindow
 
         AddHandler card.RemoveSampleGroup, AddressOf removeSampleGroup
         AddHandler card.ViewRegionMs1Spectrum, AddressOf ViewMs1Spectrum
+        AddHandler card.SetHtmlColorCode, AddressOf SetHtmlColorCode
 
         Return card
     End Function

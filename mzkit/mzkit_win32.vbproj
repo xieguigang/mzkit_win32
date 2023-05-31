@@ -470,6 +470,10 @@
     <Compile Include="application\settings\RawFileViewerSettings.vb" />
     <Compile Include="application\VisualStudio.vb" />
     <Compile Include="application\RPackage.vb" />
+    <Compile Include="forms\Inputs\MSImaging\InputHTMLColorCode.Designer.vb">
+      <DependentUpon>InputHTMLColorCode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\MSImaging\InputHTMLColorCode.vb" />
     <Compile Include="forms\Inputs\MSImaging\InputMSIPeakTableParameters.Designer.vb">
       <DependentUpon>InputMSIPeakTableParameters.vb</DependentUpon>
     </Compile>
@@ -1086,6 +1090,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\Input3DScatter.resx">
       <DependentUpon>Input3DScatter.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\MSImaging\InputHTMLColorCode.resx">
+      <DependentUpon>InputHTMLColorCode.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\MSImaging\InputConvert10x.resx">
       <DependentUpon>InputConvert10x.vb</DependentUpon>

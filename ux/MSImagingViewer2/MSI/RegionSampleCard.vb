@@ -6,6 +6,7 @@ Public Class RegionSampleCard
 
     Public Event RemoveSampleGroup(card As RegionSampleCard)
     Public Event ViewRegionMs1Spectrum(card As RegionSampleCard)
+    Public Event SetHtmlColorCode(card As RegionSampleCard)
 
     Public Property SampleColor As Color
         Get
@@ -126,5 +127,9 @@ Public Class RegionSampleCard
 
     Private Sub ContextMenuStrip1_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles ContextMenuStrip1.Opening
 
+    End Sub
+
+    Private Sub SetHTMLColorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetHTMLColorToolStripMenuItem.Click
+        RaiseEvent SetHtmlColorCode(Me)
     End Sub
 End Class
