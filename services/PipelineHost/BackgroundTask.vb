@@ -398,11 +398,15 @@ Module BackgroundTask
         Dim file As New StreamWriter(save)
         Dim loadraw = MSImagingReader.UnifyReadAsMzPack(raw)
 
+        Call RunSlavePipeline.SendMessage("load raw data into ms-imaging render")
+
         If loadraw Like GetType(mzPack) Then
             render = New Drawer(loadraw.TryCast(Of mzPack))
         Else
             render = New Drawer(loadraw.TryCast(Of ReadRawPack))
         End If
+
+        Call RunSlavePipeline.SendMessage("start to export MSI feature peaks table!")
 
         If regions.IsNullOrEmpty Then
             dataset = render.exportMSIRawPeakTable(ppm20, into_cutoff, dataKeys, TrIQ)
@@ -442,9 +446,13 @@ Module BackgroundTask
         Dim allMs As New List(Of ms2)
         Dim allPixels = render.LoadPixels.ToArray
 
+        Call RunSlavePipeline.SendMessage($"get {allPixels.Length} pixel spots for export feature peaks!")
+
         For Each pixel As PixelScan In allPixels
             Call allMs.AddRange(pixel.GetMs)
         Next
+
+        Call RunSlavePipeline.SendMessage("pick of the unique ion features...")
 
         Dim allMz As Double() = allMs.uniqueMz(da, into_cutoff)
         Dim mzKeys As String() = allMz.Select(Function(mzi) mzi.ToString("F3")).ToArray
@@ -452,21 +460,37 @@ Module BackgroundTask
         RunSlavePipeline.SendProgress(100, $"Run peak alignment for {allMz.Length} m/z features!")
 
         Dim dataSet As New List(Of DataSet)
+        Dim d As Integer = allPixels.Length / 100
+        Dim p As i32 = Scan0
+        Dim t0 As Date = Now
 
         For Each pixel As PixelScan In allPixels
             Dim vec As New Dictionary(Of String, Double)
             Dim ms1 = pixel.GetMs
-            Dim into As Double
 
-            For i As Integer = 0 To mzKeys.Length - 1
-                into = ms1.Where(Function(mzi) da(mzi.mz, allMz(i))).Sum(Function(a) a.intensity)
-                vec.Add(mzKeys(i), into)
-            Next
+            Call allMz _
+                .AsParallel _
+                .Select(Function(mzKey, i)
+                            Dim into As Double = ms1 _
+                                .Where(Function(mzi) da(mzi.mz, mzKey)) _
+                                .Sum(Function(a) a.intensity)
+                            Dim t = (mzKey, i, into)
+
+                            Return t
+                        End Function) _
+                .ToArray _
+                .ForEach(Sub(t, i)
+                             Call vec.Add(mzKeys(t.i), t.into)
+                         End Sub)
 
             Call dataSet.Add(New DataSet With {
                 .ID = $"{pixel.X},{pixel.Y}",
                 .Properties = vec
             })
+
+            If (++p) Mod d = 0 Then
+                Call RunSlavePipeline.SendProgress(p / d * 100, $"[{(100 * p / d).ToString("F1")}%] {p / CInt((Now - t0).TotalSeconds)} pixel/s; {pixel.scanId}")
+            End If
         Next
 
         dataKeys = mzKeys
