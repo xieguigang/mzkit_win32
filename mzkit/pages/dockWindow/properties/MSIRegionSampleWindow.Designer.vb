@@ -30,6 +30,8 @@ Partial Class MSIRegionSampleWindow
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton6 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton5 = New System.Windows.Forms.ToolStripSplitButton()
+        Me.GroupUntaggedSpotToNearestRegonToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton7 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
@@ -37,8 +39,6 @@ Partial Class MSIRegionSampleWindow
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ToolStripButton5 = New System.Windows.Forms.ToolStripSplitButton()
-        Me.GroupUntaggedSpotToNearestRegonToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -80,6 +80,23 @@ Partial Class MSIRegionSampleWindow
         Me.ToolStripButton6.Name = "ToolStripButton6"
         Me.ToolStripButton6.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton6.Text = "Merge Regions"
+        '
+        'ToolStripButton5
+        '
+        Me.ToolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton5.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GroupUntaggedSpotToNearestRegonToolStripMenuItem})
+        Me.ToolStripButton5.Image = CType(resources.GetObject("ToolStripButton5.Image"), System.Drawing.Image)
+        Me.ToolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton5.Name = "ToolStripButton5"
+        Me.ToolStripButton5.Size = New System.Drawing.Size(32, 22)
+        Me.ToolStripButton5.Text = "Convert Un-tagged sample region as group"
+        '
+        'GroupUntaggedSpotToNearestRegonToolStripMenuItem
+        '
+        Me.GroupUntaggedSpotToNearestRegonToolStripMenuItem.Image = CType(resources.GetObject("GroupUntaggedSpotToNearestRegonToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.GroupUntaggedSpotToNearestRegonToolStripMenuItem.Name = "GroupUntaggedSpotToNearestRegonToolStripMenuItem"
+        Me.GroupUntaggedSpotToNearestRegonToolStripMenuItem.Size = New System.Drawing.Size(284, 22)
+        Me.GroupUntaggedSpotToNearestRegonToolStripMenuItem.Text = "Group un-tagged spot to nearest region"
         '
         'ToolStripButton4
         '
@@ -136,23 +153,6 @@ Partial Class MSIRegionSampleWindow
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(42, 17)
         Me.ToolStripStatusLabel1.Text = "Ready!"
-        '
-        'ToolStripButton5
-        '
-        Me.ToolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton5.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GroupUntaggedSpotToNearestRegonToolStripMenuItem})
-        Me.ToolStripButton5.Image = CType(resources.GetObject("ToolStripButton5.Image"), System.Drawing.Image)
-        Me.ToolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton5.Name = "ToolStripButton5"
-        Me.ToolStripButton5.Size = New System.Drawing.Size(32, 22)
-        Me.ToolStripButton5.Text = "Convert Un-tagged sample region as group"
-        '
-        'GroupUntaggedSpotToNearestRegonToolStripMenuItem
-        '
-        Me.GroupUntaggedSpotToNearestRegonToolStripMenuItem.Image = CType(resources.GetObject("GroupUntaggedSpotToNearestRegonToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.GroupUntaggedSpotToNearestRegonToolStripMenuItem.Name = "GroupUntaggedSpotToNearestRegonToolStripMenuItem"
-        Me.GroupUntaggedSpotToNearestRegonToolStripMenuItem.Size = New System.Drawing.Size(284, 22)
-        Me.GroupUntaggedSpotToNearestRegonToolStripMenuItem.Text = "Group un-tagged spot to nearest region"
         '
         'MSIRegionSampleWindow
         '

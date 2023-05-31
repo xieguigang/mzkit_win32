@@ -305,38 +305,6 @@ Public Class MSIRegionSampleWindow
         End If
     End Sub
 
-    Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
-        Dim polygons = GetRegions(dimension).ToArray
-        Dim tagged = polygons _
-            .Select(Function(p) p.points) _
-            .IteratesALL _
-            .Select(Function(a) $"{a.X},{a.Y}") _
-            .Distinct _
-            .Indexing
-        Dim x As New List(Of Double)
-        Dim y As New List(Of Double)
-
-        If sample_bounds.IsNullOrEmpty Then
-            For i As Integer = 0 To dimension.Width
-                For j As Integer = 0 To dimension.Height
-                    If Not $"{i},{j}" Like tagged Then
-                        Call x.Add(i)
-                        Call y.Add(j)
-                    End If
-                Next
-            Next
-        Else
-            For Each p As Point In sample_bounds
-                If Not $"{p.X},{p.Y}" Like tagged Then
-                    Call x.Add(p.X)
-                    Call y.Add(p.Y)
-                End If
-            Next
-        End If
-
-        Call Add({New Polygon2D(x.ToArray, y.ToArray)})
-    End Sub
-
     ''' <summary>
     ''' open merge tool
     ''' </summary>
@@ -416,4 +384,40 @@ Public Class MSIRegionSampleWindow
 
         Return Nothing
     End Function
+
+    Private Sub GroupUntaggedSpotToNearestRegonToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GroupUntaggedSpotToNearestRegonToolStripMenuItem.Click
+
+    End Sub
+
+    Private Sub ToolStripButton5_ButtonClick(sender As Object, e As EventArgs) Handles ToolStripButton5.ButtonClick
+        Dim polygons = GetRegions(dimension).ToArray
+        Dim tagged = polygons _
+            .Select(Function(p) p.points) _
+            .IteratesALL _
+            .Select(Function(a) $"{a.X},{a.Y}") _
+            .Distinct _
+            .Indexing
+        Dim x As New List(Of Double)
+        Dim y As New List(Of Double)
+
+        If sample_bounds.IsNullOrEmpty Then
+            For i As Integer = 0 To dimension.Width
+                For j As Integer = 0 To dimension.Height
+                    If Not $"{i},{j}" Like tagged Then
+                        Call x.Add(i)
+                        Call y.Add(j)
+                    End If
+                Next
+            Next
+        Else
+            For Each p As Point In sample_bounds
+                If Not $"{p.X},{p.Y}" Like tagged Then
+                    Call x.Add(p.X)
+                    Call y.Add(p.Y)
+                End If
+            Next
+        End If
+
+        Call Add({New Polygon2D(x.ToArray, y.ToArray)})
+    End Sub
 End Class
