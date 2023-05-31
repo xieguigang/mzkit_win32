@@ -490,7 +490,7 @@ Module BackgroundTask
             })
 
             If (++p) Mod d = 0 Then
-                Call RunSlavePipeline.SendProgress(p / d * 100, $"[{(100 * p / d).ToString("F1")}%] {p / CInt((Now - t0).TotalSeconds)} pixel/s; {pixel.scanId}")
+                Call RunSlavePipeline.SendProgress(p / allPixels.Length * 100, $"[{(100 * p / allPixels.Length).ToString("F1")}%] {p / CInt((Now - t0).TotalSeconds)} pixel/s; {pixel.scanId}")
             End If
         Next
 
@@ -515,7 +515,8 @@ Module BackgroundTask
                     End Function) _
             .ToArray _
             .Centroid(da, New RelativeIntensityCutoff(into_cutoff)) _
-            .Select(Function(i) i.mz) _
+            .Select(Function(i) stdNum.Round(i.mz, 4)) _
+            .Distinct _
             .OrderBy(Function(mz) mz) _
             .ToArray
     End Function
