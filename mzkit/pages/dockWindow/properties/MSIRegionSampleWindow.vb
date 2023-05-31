@@ -423,6 +423,7 @@ Public Class MSIRegionSampleWindow
         ' refresh the control UI
         Call Clear()
         Call LoadTissueMaps(polygons, canvas)
+        Call Workbench.SuccessMessage($"Group {labels.Length} un-labbled spots into nearest tissue region success!")
     End Sub
 
     Private Function getUnLabledPixels(polygons As TissueRegion()) As (x As Double(), y As Double())
