@@ -1454,6 +1454,14 @@ Public Class frmMsImagingViewer
                End Sub
     End Function
 
+    Public Sub SetBlank()
+        Dim size As New Size(params.scan_x * 4, params.scan_y * 4)
+        Dim dims As New Size(params.scan_x, params.scan_y)
+
+        rendering = Sub() Call PixelSelector1.SetMsImagingOutput(New Bitmap(size.Width, size.Height), dims, Color.Black, ScalerPalette.FlexImaging, {0, 1}, 255)
+        rendering()
+    End Sub
+
     Friend Sub renderRGB(r As Double, g As Double, b As Double)
         Dim selectedMz As Double() = {r, g, b}.Where(Function(mz) mz > 0).ToArray
 
