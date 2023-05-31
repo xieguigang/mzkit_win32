@@ -465,9 +465,10 @@ Module BackgroundTask
         Dim p As i32 = Scan0
         Dim t0 As Date = Now
 
-        For Each pixel As PixelScan In allPixels
+        ' duplicated pixel may be found in the data
+        For Each pixel As IGrouping(Of String, PixelScan) In allPixels.GroupBy(Function(s) $"{s.X},{s.Y}")
             Dim vec As New Dictionary(Of String, Double)
-            Dim ms1 = pixel.GetMs
+            Dim ms1 = pixel.Select(Function(si) si.GetMs).IteratesALL.ToArray
 
             Call allMz _
                 .AsParallel _
@@ -484,13 +485,17 @@ Module BackgroundTask
                              Call vec.Add(mzKeys(t.i), t.into)
                          End Sub)
 
+            If vec.Values.All(Function(di) di = 0.0) Then
+                Continue For
+            End If
+
             Call dataSet.Add(New DataSet With {
-                .ID = $"{pixel.X},{pixel.Y}",
+                .ID = pixel.Key,
                 .Properties = vec
             })
 
             If (++p) Mod d = 0 Then
-                Call RunSlavePipeline.SendProgress(p / allPixels.Length * 100, $"[{(100 * p / allPixels.Length).ToString("F1")}%] {p / CInt((Now - t0).TotalSeconds)} pixel/s; {pixel.scanId}")
+                Call RunSlavePipeline.SendProgress(p / allPixels.Length * 100, $"[{(100 * p / allPixels.Length).ToString("F1")}%] {p / CInt((Now - t0).TotalSeconds)} pixel/s; {pixel.Key}")
             End If
         Next
 
