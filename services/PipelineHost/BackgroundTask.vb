@@ -493,7 +493,7 @@ Module BackgroundTask
         Dim pixels As PixelScan()
 
         For Each region As TissueRegion In regions
-            RunSlavePipeline.SendProgress(j / regions.Length * 100, $"scan for region {region.label}... [{j}/{regions.Length}]")
+            RunSlavePipeline.SendProgress(j / regions.Length * 100, $"scan for region {region.label}... [{++j}/{regions.Length}]")
 
             regionId = region.label
             pixels = region.points _
