@@ -355,10 +355,14 @@ Public NotInheritable Class RscriptProgressTask
                                MessageBoxButtons.YesNo,
                                MessageBoxIcon.Information) = DialogResult.Yes Then
 
+                Call Workbench.SuccessMessage("MSImaging matrix heatmap rendering job done!")
                 Call Process.Start(saveAs.GetFullPath)
             End If
         Else
-            Call MessageBox.Show("MSImaging matrix heatmap rendering task error!", "Task Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Dim errMsg As String = "MSImaging matrix heatmap rendering task error!"
+
+            Call Workbench.Warning(errMsg)
+            Call MessageBox.Show(errMsg, "Task Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
     End Sub
 
