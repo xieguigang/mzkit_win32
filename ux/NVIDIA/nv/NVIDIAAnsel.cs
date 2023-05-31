@@ -1,7 +1,6 @@
 ﻿using ImageUtils;
 using System.Diagnostics;
 using System.Drawing;
-using System.Management;
 using Image = System.Drawing.Image;
 
 namespace nv;
@@ -46,7 +45,7 @@ public class NVIDIAAnsel
     // Checks whether the system is able to use the app.
     void DetectSystem()
     {
-        GraphicsAdapter graphicsAdapter = DetectGraphicsAdapter();
+        GraphicsAdapter graphicsAdapter = WQL.DetectGraphicsAdapter();
 
         supportLevel = graphicsAdapter.SupportLevel;
 
@@ -70,84 +69,6 @@ public class NVIDIAAnsel
             return false;
 
         return true;
-    }
-
-    // Returns the most suitable graphics adapter in the system whiles also displaying to the user what graphics adapter they have.
-    GraphicsAdapter DetectGraphicsAdapter()
-    {
-        GraphicsAdapter graphicsAdapter = GetGraphicsAdapter();
-
-        string graphicsAdapterName = graphicsAdapter.Name;
-        Program.message(graphicsAdapterName);
-
-        return graphicsAdapter;
-    }
-
-    // Returns the most suitable graphics adapter present in the system.
-    GraphicsAdapter GetGraphicsAdapter()
-    {
-        // Gets every graphics adapter in use by the system.
-        ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_DisplayConfiguration");
-
-        List<GraphicsAdapter> graphicsAdapters = new List<GraphicsAdapter>();
-
-        // Saves the name of every found graphics card in a list.
-        foreach (ManagementObject mo in searcher.Get())
-            foreach (PropertyData property in mo.Properties)
-                if (property.Name == "Description")
-                    graphicsAdapters.Add(new GraphicsAdapter(property.Value.ToString()));
-
-        // If no graphics adapters could be found...
-        if (graphicsAdapters.Count < 1)
-        {
-            Program.message("For some unknown reason, your display adapter could not be found.\n\nPerhaps you have some security program blocking me access?\n\nIf you feel like this is a mistake, enable 'Force Mode'.");
-            return new GraphicsAdapter("N/A");
-        }
-
-        // For every graphics adapter, find its support level by looking up its name.
-        foreach (var graphicsAdapter in graphicsAdapters)
-        {
-
-            if (FullySupportedGraphicsAdapters().Any(s => graphicsAdapter.Name.ToLower().Contains(s)))
-                graphicsAdapter.SupportLevel = SupportLevel.Full;
-            else if (PartiallySupportedGraphicsAdapters().Any(s => graphicsAdapter.Name.ToLower().Contains(s)))
-                graphicsAdapter.SupportLevel = SupportLevel.Partial;
-            else
-                graphicsAdapter.SupportLevel = SupportLevel.None;
-        }
-
-        // Orders the graphics adapters by support level (first graphics adapter should be most suitable).
-        graphicsAdapters.OrderBy(o => o.SupportLevel).Reverse().ToList();
-
-        // Returns the most suitable graphics adapter.
-        return graphicsAdapters[0];
-    }
-
-    List<string> FullySupportedGraphicsAdapters()
-    {
-        List<string> str = new List<string>();
-        str.Add("rtx");
-
-        return str;
-    }
-
-    List<string> PartiallySupportedGraphicsAdapters()
-    {
-        List<string> str = new List<string>();
-        str.Add("1030");
-        str.Add("1040");
-        str.Add("1050");
-        str.Add("1060");
-        str.Add("1070");
-        str.Add("1080");
-        str.Add("titan");
-        str.Add("1640");
-        str.Add("1650");
-        str.Add("1660");
-        str.Add("1670");
-        str.Add("1680");
-
-        return str;
     }
 
     public void StartImageProcessing()
