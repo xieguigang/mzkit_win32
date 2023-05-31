@@ -69,6 +69,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.BioDeep.MetaDNA
 Imports BioNovoGene.BioDeep.MetaDNA.Infer
@@ -89,6 +90,7 @@ Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.My.FrameworkInternal
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports MZWorkPack
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Components
 Imports SMRUCC.Rsharp.Runtime.Interop
@@ -391,9 +393,16 @@ Module BackgroundTask
             Call RunSlavePipeline.SendMessage("Initialize raw data file...")
         End If
 
-        Dim render As New Drawer(mzPack.ReadAll(raw.Open(FileMode.Open, doClear:=False, [readOnly]:=True), ignoreThumbnail:=True))
+        Dim render As Drawer
         Dim ppm20 As Tolerance = mzerr.TryCast(Of Tolerance)
         Dim file As New StreamWriter(save)
+        Dim loadraw = MSImagingReader.UnifyReadAsMzPack(raw)
+
+        If loadraw Like GetType(mzPack) Then
+            render = New Drawer(loadraw.TryCast(Of mzPack))
+        Else
+            render = New Drawer(loadraw.TryCast(Of ReadRawPack))
+        End If
 
         If regions.IsNullOrEmpty Then
             dataset = render.exportMSIRawPeakTable(ppm20, into_cutoff, dataKeys, TrIQ)

@@ -107,6 +107,7 @@
     <ProjectReference Include="..\..\..\visualize\TissueMorphology\TissueMorphology.vbproj" />
     <ProjectReference Include="..\BioDeep\BioDeep.vbproj" />
     <ProjectReference Include="..\CFM-ID\CFM-ID.vbproj" />
+    <ProjectReference Include="..\MZWork\MZWork.vbproj" />
   </ItemGroup>
 
   <Import Project="..\..\..\..\Rscript\Library\mzkit.interopArguments\mzkit.interopArguments.projitems" Label="Shared" />
