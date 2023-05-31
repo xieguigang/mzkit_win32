@@ -423,7 +423,12 @@ Public Class MSIRegionSampleWindow
         ' refresh the control UI
         Call Clear()
         Call LoadTissueMaps(polygons, canvas)
-        Call Workbench.SuccessMessage($"Group {labels.Length} un-labbled spots into nearest tissue region success!")
+
+        If labels.Length > 0 Then
+            Call Workbench.SuccessMessage($"Group {labels.Length} un-labbled spots into nearest tissue region success!")
+        Else
+            Call Workbench.StatusMessage("All spot pixels has tissue region label!")
+        End If
     End Sub
 
     Private Function getUnLabledPixels(polygons As TissueRegion()) As (x As Double(), y As Double())
@@ -461,6 +466,10 @@ Public Class MSIRegionSampleWindow
         Dim polygons As TissueRegion() = GetRegions(dimension).ToArray
         Dim xy = getUnLabledPixels(polygons)
 
-        Call Add({New Polygon2D(xy.x, xy.y)})
+        If xy.x.Length > 0 Then
+            Call Add({New Polygon2D(xy.x, xy.y)})
+        Else
+            Call Workbench.StatusMessage("no spots needs to assign group label.")
+        End If
     End Sub
 End Class
