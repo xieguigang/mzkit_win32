@@ -31,6 +31,7 @@ Public Class MSIRegionSampleWindow
     ''' Clear all regions data
     ''' </summary>
     Friend Sub Clear()
+        ' the tissue region data is store in this winform control
         FlowLayoutPanel1.Controls.Clear()
     End Sub
 
@@ -386,7 +387,35 @@ Public Class MSIRegionSampleWindow
     End Function
 
     Private Sub GroupUntaggedSpotToNearestRegonToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GroupUntaggedSpotToNearestRegonToolStripMenuItem.Click
+        Dim polygons As TissueRegion() = GetRegions(dimension).ToArray
+        Dim xy = getUnLabledPixels(polygons)
+        Dim labels As String() = New String(xy.x.Length - 1) {}
+        Dim tissueList = polygons.ToDictionary(Function(r) r.label)
 
+        For i As Integer = 0 To labels.Length - 1
+            Dim x As Double = xy.x(i)
+            Dim y As Double = xy.y(i)
+            Dim minDist As Double = Double.MaxValue
+            Dim minLabel As String = Nothing
+
+            For Each region As TissueRegion In polygons
+                Dim dist As Double = region.points.Select(Function(pt) (pt.X - x) ^ 2 + (pt.Y - y) ^ 2).Min
+
+                If dist < minDist Then
+                    minDist = dist
+                    minLabel = region.label
+                End If
+            Next
+
+            labels(i) = minLabel
+            tissueList(minLabel).points = tissueList(minLabel).points _
+                .Join({New Point(x, y)}) _
+                .ToArray
+        Next
+
+        ' refresh the control UI
+        Call Clear()
+        Call LoadTissueMaps(polygons, canvas)
     End Sub
 
     Private Function getUnLabledPixels(polygons As TissueRegion()) As (x As Double(), y As Double())
