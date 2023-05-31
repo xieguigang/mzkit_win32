@@ -82,6 +82,7 @@ Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Data.visualize.Network.Graph
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors.Scaler
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Math2D.MarchingSquares
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
@@ -411,7 +412,7 @@ Module BackgroundTask
         If regions.IsNullOrEmpty Then
             dataset = render.exportMSIRawPeakTable(ppm20, into_cutoff, dataKeys, TrIQ)
         Else
-            dataset = regions.exportRegionDataset(render, ppm20, into_cutoff, dataKeys)
+            dataset = regions.exportRegionDataset(render, ppm20, into_cutoff, dataKeys, TrIQ)
         End If
 
         Call RunSlavePipeline.SendProgress(100, $"Save peaktable!")
@@ -454,7 +455,7 @@ Module BackgroundTask
 
         Call RunSlavePipeline.SendMessage("pick of the unique ion features...")
 
-        Dim allMz As Double() = allMs.uniqueMz(da, into_cutoff)
+        Dim allMz As Double() = allMs.uniqueMz(da, into_cutoff, triq)
         Dim mzKeys As String() = allMz.Select(Function(mzi) mzi.ToString("F3")).ToArray
 
         RunSlavePipeline.SendProgress(100, $"Run peak alignment for {allMz.Length} m/z features!")
@@ -499,10 +500,21 @@ Module BackgroundTask
     End Function
 
     <Extension>
-    Private Function uniqueMz(allMs As IEnumerable(Of ms2), da As Tolerance, into_cutoff As Double) As Double()
-        Return allMs _
+    Private Function uniqueMz(allMs As IEnumerable(Of ms2), da As Tolerance, into_cutoff As Double, triq As Double) As Double()
+        Dim raw = allMs.ToArray
+        Dim threshold As Double = raw.Select(Function(m) m.intensity).FindThreshold(triq)
+
+        Return raw.AsParallel _
+            .Select(Function(msi)
+                        ' apply of the intensity trim cutoff
+                        If msi.intensity > threshold Then
+                            msi.intensity = threshold
+                        End If
+
+                        Return msi
+                    End Function) _
             .ToArray _
-            .Centroid(ppm20, New RelativeIntensityCutoff(into_cutoff)) _
+            .Centroid(da, New RelativeIntensityCutoff(into_cutoff)) _
             .Select(Function(i) i.mz) _
             .OrderBy(Function(mz) mz) _
             .ToArray
@@ -521,7 +533,11 @@ Module BackgroundTask
     ''' region labels in column
     ''' </returns>
     <Extension>
-    Private Function exportRegionDataset(regions As TissueRegion(), render As Drawer, ppm20 As Tolerance, into_cutoff As Double, ByRef dataKeys As String()) As DataSet()
+    Private Function exportRegionDataset(regions As TissueRegion(), render As Drawer, ppm20 As Tolerance,
+                                         into_cutoff As Double,
+                                         ByRef dataKeys As String(),
+                                         triq As Double) As DataSet()
+
         Dim data As New Dictionary(Of String, ms2())
         Dim j As i32 = 1
         Dim regionId As String
@@ -542,7 +558,7 @@ Module BackgroundTask
 
         dataKeys = data.Keys.ToArray
 
-        Dim allMz As Double() = data.Values.IteratesALL.uniqueMz(ppm20, into_cutoff)
+        Dim allMz As Double() = data.Values.IteratesALL.uniqueMz(ppm20, into_cutoff, triq)
 
         RunSlavePipeline.SendProgress(100, $"Run peak alignment for {allMz.Length} m/z features!")
 
