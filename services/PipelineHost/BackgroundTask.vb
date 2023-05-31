@@ -419,7 +419,7 @@ Module BackgroundTask
         Call file.WriteLine({"MID"}.JoinIterates(dataKeys).JoinBy(","))
 
         For Each line As DataSet In dataset
-            Call New String() {line.ID} _
+            Call New String() {"""" & line.ID & """"} _
                 .JoinIterates(line(dataKeys).Select(Function(d) d.ToString)) _
                 .JoinBy(",") _
                 .DoCall(AddressOf file.WriteLine)
