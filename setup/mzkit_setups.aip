@@ -129,10 +129,12 @@
     <ROW Directory="js_1_Dir" Directory_Parent="assets_Dir" DefaultDir="js"/>
     <ROW Directory="js_Dir" Directory_Parent="static_Dir" DefaultDir="js"/>
     <ROW Directory="ketcher_Dir" Directory_Parent="webview_Dir" DefaultDir="ketcher"/>
+    <ROW Directory="lib_1_Dir" Directory_Parent="win_Dir" DefaultDir="lib"/>
     <ROW Directory="lib_2_Dir" Directory_Parent="unix_1_Dir" DefaultDir="lib"/>
     <ROW Directory="lib_3_Dir" Directory_Parent="win_1_Dir" DefaultDir="lib"/>
     <ROW Directory="lib_6_Dir" Directory_Parent="unix_3_Dir" DefaultDir="lib"/>
     <ROW Directory="lib_7_Dir" Directory_Parent="win_3_Dir" DefaultDir="lib"/>
+    <ROW Directory="lib_Dir" Directory_Parent="unix_Dir" DefaultDir="lib"/>
     <ROW Directory="library_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="library"/>
     <ROW Directory="media_Dir" Directory_Parent="static_Dir" DefaultDir="media"/>
     <ROW Directory="metab_ce_cfm_Dir" Directory_Parent="esi_msms_models_Dir" DefaultDir="METAB_~1|metab_ce_cfm"/>
@@ -142,6 +144,8 @@
     <ROW Directory="ndpitools_Dir" Directory_Parent="NewFolder_Dir" DefaultDir="NDPITO~1|ndpitools"/>
     <ROW Directory="negative_metab_se_cfm_Dir" Directory_Parent="esi_msms_models_Dir" DefaultDir="NEGATI~1|negative_metab_se_cfm"/>
     <ROW Directory="net6.0_1_Dir" Directory_Parent="lib_7_Dir" DefaultDir="net6.0"/>
+    <ROW Directory="net6.0_2_Dir" Directory_Parent="lib_Dir" DefaultDir="net6.0"/>
+    <ROW Directory="net6.0_3_Dir" Directory_Parent="lib_1_Dir" DefaultDir="net6.0"/>
     <ROW Directory="net6.0_5_Dir" Directory_Parent="lib_2_Dir" DefaultDir="net6.0"/>
     <ROW Directory="net6.0_6_Dir" Directory_Parent="lib_3_Dir" DefaultDir="net6.0"/>
     <ROW Directory="net6.0_Dir" Directory_Parent="lib_6_Dir" DefaultDir="net6.0"/>
@@ -154,6 +158,7 @@
     <ROW Directory="plugins_Dir" Directory_Parent="APPDIR" DefaultDir="plugins"/>
     <ROW Directory="regid.201301.com.panomix_Dir" Directory_Parent="CommonAppDataFolder" DefaultDir="REGID2~1.PAN|regid.2013-01.com.panomix"/>
     <ROW Directory="ruRU_Dir" Directory_Parent="APPDIR" DefaultDir="ru-RU"/>
+    <ROW Directory="runtimes_1_Dir" Directory_Parent="nvidia_Dir" DefaultDir="runtimes"/>
     <ROW Directory="runtimes_2_Dir" Directory_Parent="host_Dir" DefaultDir="runtimes"/>
     <ROW Directory="runtimes_3_Dir" Directory_Parent="bin_Dir" DefaultDir="runtimes"/>
     <ROW Directory="runtimes_Dir" Directory_Parent="APPDIR" DefaultDir="runtimes"/>
@@ -163,10 +168,12 @@
     <ROW Directory="three_Dir" Directory_Parent="vendor_Dir" DefaultDir="three"/>
     <ROW Directory="unix_1_Dir" Directory_Parent="runtimes_2_Dir" DefaultDir="unix"/>
     <ROW Directory="unix_3_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="unix"/>
+    <ROW Directory="unix_Dir" Directory_Parent="runtimes_1_Dir" DefaultDir="unix"/>
     <ROW Directory="vendor_Dir" Directory_Parent="webview_Dir" DefaultDir="vendor"/>
     <ROW Directory="webview_Dir" Directory_Parent="APPDIR" DefaultDir="WebView"/>
     <ROW Directory="win_1_Dir" Directory_Parent="runtimes_2_Dir" DefaultDir="win"/>
     <ROW Directory="win_3_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="win"/>
+    <ROW Directory="win_Dir" Directory_Parent="runtimes_1_Dir" DefaultDir="win"/>
     <ROW Directory="winx64_Dir" Directory_Parent="runtimes_Dir" DefaultDir="win-x64"/>
     <ROW Directory="x_genomics_Dir" Directory_Parent="pipeline_Dir" DefaultDir="10X_GE~1|10x_genomics"/>
     <ROW Directory="zhCN_Dir" Directory_Parent="APPDIR" DefaultDir="zh-CN"/>
@@ -427,6 +434,7 @@
     <ROW Component="Microsoft.VisualBasic.Runtime.dll.config_1" ComponentId="{E6326481-61D2-434A-A01C-C36FB3DC6AAF}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll.config_3"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.dll_1" ComponentId="{B845645A-0FDE-45EB-844E-8C19C80BC12F}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.dll_12" ComponentId="{FEF2956E-48B4-44EA-A58C-2A76B5EEA671}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll_12"/>
+    <ROW Component="Microsoft.VisualBasic.Runtime.dll_2" ComponentId="{EBCD835D-4C98-4C0F-A1AB-E52478BAD6E4}" Directory_="nvidia_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.dll_4" ComponentId="{EEA1A22B-17CA-44DF-869E-49A98B8D7B96}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll_4"/>
     <ROW Component="Microsoft.VisualBasic.Windows.Forms.Console.dll" ComponentId="{66BFAC4E-7321-4D6E-A0DA-E80383C39C90}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Windows.Forms.Console.dll"/>
     <ROW Component="Microsoft.VisualBasic.Windows.Forms.DataValidation.dll" ComponentId="{CAE24AF6-7012-4899-98DB-30E10197A174}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Windows.Forms.DataValidation.dll"/>
@@ -437,9 +445,12 @@
     <ROW Component="Microsoft.Web.WebView2.Wpf.dll" ComponentId="{5EA5451C-3349-4D0B-87ED-754EF750628D}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Web.WebView2.Wpf.dll"/>
     <ROW Component="Microsoft.Win32.SystemEvents.dll" ComponentId="{006A119E-E0DE-4830-BE9C-DAA4061C77B6}" Directory_="net6.0_1_Dir" Attributes="256" KeyPath="Microsoft.Win32.SystemEvents.dll"/>
     <ROW Component="Microsoft.Win32.SystemEvents.dll_1" ComponentId="{BBA5FC51-D11C-4C92-8CAB-48F3A12A4B28}" Directory_="net6.0_6_Dir" Attributes="0" KeyPath="Microsoft.Win32.SystemEvents.dll_1"/>
+    <ROW Component="Microsoft.Win32.SystemEvents.dll_2" ComponentId="{EECE808B-614F-4DBB-AAC1-C0DE5792ECEE}" Directory_="nvidia_Dir" Attributes="0" KeyPath="Microsoft.Win32.SystemEvents.dll_2"/>
+    <ROW Component="Microsoft.Win32.SystemEvents.dll_3" ComponentId="{D54B9B25-21A4-4694-976B-CCBB0232DA9D}" Directory_="net6.0_3_Dir" Attributes="0" KeyPath="Microsoft.Win32.SystemEvents.dll_3"/>
     <ROW Component="Microsoft.Win32.SystemEvents.dll_4" ComponentId="{FC52EFC3-197E-4C96-A069-B7FEF11462FF}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.Win32.SystemEvents.dll_4"/>
     <ROW Component="Microsoft.Windows.FeatureAPI.dll" ComponentId="{939287B4-B311-4979-88EE-799AC1393C63}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.Windows.FeatureAPI.dll"/>
     <ROW Component="Microsoft.Windows.Ribbon.dll" ComponentId="{ACD1A2A4-798D-41B7-802A-0A07A618CCBB}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.Windows.Ribbon.dll"/>
+    <ROW Component="Microsoft.Windows.SDK.NET.dll" ComponentId="{5BAAC770-8FBE-4777-984E-B5A3C2A0403B}" Directory_="nvidia_Dir" Attributes="0" KeyPath="Microsoft.Windows.SDK.NET.dll"/>
     <ROW Component="MoNA.dll" ComponentId="{A9ABEBFD-6384-4DC0-8553-6D35B60BB0ED}" Directory_="plugins_Dir" Attributes="256" KeyPath="MoNA.dll"/>
     <ROW Component="MsImaging.R" ComponentId="{20B324EF-2327-49DF-9121-DB6CAA676EDB}" Directory_="demo_1_Dir" Attributes="256" KeyPath="TIC_overlaps.R" Type="0"/>
     <ROW Component="MsImaging.R_1" ComponentId="{78C43444-BFA7-4CA4-9460-DD70EB774491}" Directory_="demo_1_Dir" Attributes="0" KeyPath="MsImaging.R"/>
@@ -539,15 +550,21 @@
     <ROW Component="ServiceHub.dll" ComponentId="{4369CD89-DD64-442D-A5B3-F0B82F6220EE}" Directory_="APPDIR" Attributes="256" KeyPath="ServiceHub.dll"/>
     <ROW Component="ServiceHub.dll_1" ComponentId="{FF86F3AD-AB71-4FE2-95DF-A0B8B1EB1D2E}" Directory_="host_Dir" Attributes="256" KeyPath="ServiceHub.dll_1"/>
     <ROW Component="System.Buffers.dll_2" ComponentId="{7DB96DCA-7F1F-429B-B422-3FE24EAF0BE1}" Directory_="APPDIR" Attributes="256" KeyPath="System.Buffers.dll_2"/>
+    <ROW Component="System.CodeDom.dll" ComponentId="{8F8842EC-C783-4F87-9D8B-6E2156FECA3A}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.CodeDom.dll"/>
     <ROW Component="System.ComponentModel.Annotations.dll" ComponentId="{29BC3C3F-E1BC-465E-A099-EACF51FE9AB6}" Directory_="APPDIR" Attributes="256" KeyPath="System.ComponentModel.Annotations.dll"/>
+    <ROW Component="System.Composition.AttributedModel.dll" ComponentId="{8519BE25-4B79-40E9-97C8-44ED75DFCAC0}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Composition.AttributedModel.dll"/>
     <ROW Component="System.Composition.AttributedModel.dll_5" ComponentId="{70C3BA0B-E511-44E3-A094-E6F26D78DE66}" Directory_="bin_Dir" Attributes="256" KeyPath="System.Composition.AttributedModel.dll_5"/>
     <ROW Component="System.Composition.AttributedModel.dll_6" ComponentId="{A661471E-2BF3-4B39-B488-F308BBFD4364}" Directory_="APPDIR" Attributes="256" KeyPath="System.Composition.AttributedModel.dll_6"/>
+    <ROW Component="System.Composition.Convention.dll" ComponentId="{413077CB-4E85-4013-AE86-0AE425A6E778}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Composition.Convention.dll"/>
     <ROW Component="System.Composition.Convention.dll_1" ComponentId="{ABD04FE1-4976-4C35-9597-6A218C6159DA}" Directory_="APPDIR" Attributes="256" KeyPath="System.Composition.Convention.dll_1"/>
     <ROW Component="System.Composition.Convention.dll_5" ComponentId="{3C13FA18-94CC-434E-8652-5B51E900A185}" Directory_="bin_Dir" Attributes="256" KeyPath="System.Composition.Convention.dll_5"/>
+    <ROW Component="System.Composition.Hosting.dll" ComponentId="{35625A78-B552-4B64-B2EC-DCC9DD7DA5AE}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Composition.Hosting.dll"/>
     <ROW Component="System.Composition.Hosting.dll_1" ComponentId="{2E868AB2-2456-4530-93A5-9F7315816775}" Directory_="APPDIR" Attributes="256" KeyPath="System.Composition.Hosting.dll_1"/>
     <ROW Component="System.Composition.Hosting.dll_5" ComponentId="{73C23720-B237-44AC-AAEF-6A31BE8AADEA}" Directory_="bin_Dir" Attributes="256" KeyPath="System.Composition.Hosting.dll_5"/>
+    <ROW Component="System.Composition.Runtime.dll" ComponentId="{7FA6FEB1-0085-44F1-8BE5-FBDAC13FF19D}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Composition.Runtime.dll"/>
     <ROW Component="System.Composition.Runtime.dll_1" ComponentId="{7BB55119-6BBE-4897-BCAB-053906A28A36}" Directory_="APPDIR" Attributes="256" KeyPath="System.Composition.Runtime.dll_1"/>
     <ROW Component="System.Composition.Runtime.dll_5" ComponentId="{E9986C9E-67C8-4126-A304-9A22D24A3BC7}" Directory_="bin_Dir" Attributes="256" KeyPath="System.Composition.Runtime.dll_5"/>
+    <ROW Component="System.Composition.TypedParts.dll" ComponentId="{6EF19618-42ED-45AF-A25E-C9FFF4561388}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Composition.TypedParts.dll"/>
     <ROW Component="System.Composition.TypedParts.dll_1" ComponentId="{EC25EFC7-93B5-49B8-88AA-0A94ECE935F9}" Directory_="APPDIR" Attributes="256" KeyPath="System.Composition.TypedParts.dll_1"/>
     <ROW Component="System.Composition.TypedParts.dll_5" ComponentId="{A5991169-3FE4-471D-8B9F-A98B94120FF3}" Directory_="bin_Dir" Attributes="256" KeyPath="System.Composition.TypedParts.dll_5"/>
     <ROW Component="System.Configuration.ConfigurationManager.dll" ComponentId="{D7AD2012-9C45-44E4-B2AD-16867A8B2B70}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Configuration.ConfigurationManager.dll"/>
@@ -557,10 +574,16 @@
     <ROW Component="System.Drawing.Common.dll_13" ComponentId="{A0B052BB-0F1A-49F7-92B3-0AEEA2266322}" Directory_="bin_Dir" Attributes="256" KeyPath="System.Drawing.Common.dll_13"/>
     <ROW Component="System.Drawing.Common.dll_2" ComponentId="{C7030214-8D1F-455B-90A5-2E85B879A304}" Directory_="net6.0_5_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_2"/>
     <ROW Component="System.Drawing.Common.dll_3" ComponentId="{F3C1031D-71AD-41C2-9E18-74D70AE20E88}" Directory_="net6.0_6_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_3"/>
+    <ROW Component="System.Drawing.Common.dll_4" ComponentId="{50F1768D-B922-4687-A130-43763632577A}" Directory_="net6.0_2_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_4"/>
     <ROW Component="System.Drawing.Common.dll_5" ComponentId="{C9483DB6-7334-447F-9111-9A1498C9C8B7}" Directory_="APPDIR" Attributes="256" KeyPath="System.Drawing.Common.dll_5"/>
+    <ROW Component="System.Drawing.Common.dll_6" ComponentId="{82D3E6B8-18CC-44DB-8731-07AD8E19BCAC}" Directory_="net6.0_3_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_6"/>
+    <ROW Component="System.Drawing.Common.dll_7" ComponentId="{B61B3B74-B1FB-4310-BF7F-AF7AC5E90BF0}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_7"/>
+    <ROW Component="System.Management.dll" ComponentId="{51CCE2AD-1FDA-4162-8585-ED30564533CE}" Directory_="net6.0_3_Dir" Attributes="0" KeyPath="System.Management.dll"/>
+    <ROW Component="System.Management.dll_1" ComponentId="{2916DFD0-9968-4E42-BB68-0F6C17BA9F6F}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Management.dll_1"/>
     <ROW Component="System.Memory.dll_2" ComponentId="{37EBBB97-6017-46E4-AC04-AD3FB3EB9131}" Directory_="APPDIR" Attributes="256" KeyPath="System.Memory.dll_2"/>
     <ROW Component="System.Numerics.Tensors.dll" ComponentId="{C303739F-A4A8-4A4E-B6B0-3664F41949EB}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Numerics.Tensors.dll"/>
     <ROW Component="System.Numerics.Vectors.dll_2" ComponentId="{3D47FC0B-6349-41D3-92EC-307A6F2D8E41}" Directory_="APPDIR" Attributes="256" KeyPath="System.Numerics.Vectors.dll_2"/>
+    <ROW Component="System.Resources.Extensions.dll" ComponentId="{5F9E9865-E3D8-4C64-AFE0-E6767759C7E9}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Resources.Extensions.dll"/>
     <ROW Component="System.Resources.Extensions.dll_5" ComponentId="{7EC4EF76-1BA4-4D1F-A6ED-3632F865E587}" Directory_="bin_Dir" Attributes="256" KeyPath="System.Resources.Extensions.dll_5"/>
     <ROW Component="System.Resources.Extensions.dll_6" ComponentId="{41686767-0A2C-4AD4-83C9-C7169E417F30}" Directory_="APPDIR" Attributes="256" KeyPath="System.Resources.Extensions.dll_6"/>
     <ROW Component="System.Runtime.CompilerServices.Unsafe.dll_4" ComponentId="{1AB38C3B-DC16-4FAA-884C-0EA9A2958257}" Directory_="APPDIR" Attributes="256" KeyPath="System.Runtime.CompilerServices.Unsafe.dll_4"/>
@@ -690,8 +713,6 @@
     <ROW Component="ndpisplits.exe" ComponentId="{A750B522-44B0-4D72-905E-D212C7C68DEF}" Directory_="ndpitools_Dir" Attributes="256" KeyPath="ndpisplits.exe"/>
     <ROW Component="ndpisplitsm.exe" ComponentId="{2BF8BA74-59D1-4D3E-8FF1-1F18ABFAF40A}" Directory_="ndpitools_Dir" Attributes="256" KeyPath="ndpisplitsm.exe"/>
     <ROW Component="ndpisplitsmJ.exe" ComponentId="{95F9635F-BA5E-43FB-B40D-D2B54F58C6DC}" Directory_="ndpitools_Dir" Attributes="256" KeyPath="ndpisplitsmJ.exe"/>
-    <ROW Component="net6.0" ComponentId="{412B54A1-AE3B-4E86-A5AD-0D7802AFF717}" Directory_="net6.0_5_Dir" Attributes="0"/>
-    <ROW Component="net6.0_1" ComponentId="{1EB078CF-4F32-4367-B7AF-67EF9D81581D}" Directory_="net6.0_6_Dir" Attributes="0"/>
     <ROW Component="njl.dll" ComponentId="{EA76B011-5678-408C-A8ED-B55E34699377}" Directory_="library_Dir" Attributes="256" KeyPath="njl.dll"/>
     <ROW Component="npy.dll" ComponentId="{57A4DF98-6211-4C12-8590-541E4B27BC6C}" Directory_="library_Dir" Attributes="256" KeyPath="npy.dll"/>
     <ROW Component="nts.dll" ComponentId="{C3430FDE-A92A-4B60-AC18-9F8A223BF24A}" Directory_="library_Dir" Attributes="256" KeyPath="nts.dll"/>
@@ -4800,6 +4821,24 @@
     <ROW File="nvidiaanselAI.runtimeconfig.json" Component_="nvidiaanselAI.deps.json" FileName="NVIDIA~2.JSO|nvidia-anselAI.runtimeconfig.json" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\nvidia-anselAI.runtimeconfig.json" SelfReg="false"/>
     <ROW File="WinRT.Runtime.dll" Component_="WinRT.Runtime.dll" FileName="WINRTR~1.DLL|WinRT.Runtime.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\WinRT.Runtime.dll" SelfReg="false"/>
     <ROW File="NRRD.dll" Component_="NRRD.dll" FileName="NRRD.dll" Attributes="0" SourcePath="..\..\..\dist\bin\NRRD.dll" SelfReg="false"/>
+    <ROW File="demomsimaging.png" Component_="S043.png" FileName="DEMO-M~1.PNG|demo-ms-imaging.png" Attributes="0" SourcePath="..\extdata\demo-ms-imaging.png" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Runtime.dll_2" Component_="Microsoft.VisualBasic.Runtime.dll_2" FileName="MICROS~1.DLL|Microsoft.VisualBasic.Runtime.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\Microsoft.VisualBasic.Runtime.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Runtime.dll.config_2" Component_="nvidiaanselAI.deps.json" FileName="MICROS~1.CON|Microsoft.VisualBasic.Runtime.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\Microsoft.VisualBasic.Runtime.dll.config" SelfReg="false"/>
+    <ROW File="Microsoft.Win32.SystemEvents.dll_2" Component_="Microsoft.Win32.SystemEvents.dll_2" FileName="MICROS~2.DLL|Microsoft.Win32.SystemEvents.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\Microsoft.Win32.SystemEvents.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Windows.SDK.NET.dll" Component_="Microsoft.Windows.SDK.NET.dll" FileName="MICROS~3.DLL|Microsoft.Windows.SDK.NET.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\Microsoft.Windows.SDK.NET.dll" SelfReg="false"/>
+    <ROW File="System.Drawing.Common.dll_4" Component_="System.Drawing.Common.dll_4" FileName="SYSTEM~1.DLL|System.Drawing.Common.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\runtimes\unix\lib\net6.0\System.Drawing.Common.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Win32.SystemEvents.dll_3" Component_="Microsoft.Win32.SystemEvents.dll_3" FileName="MICROS~1.DLL|Microsoft.Win32.SystemEvents.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll" SelfReg="false"/>
+    <ROW File="System.Drawing.Common.dll_6" Component_="System.Drawing.Common.dll_6" FileName="SYSTEM~1.DLL|System.Drawing.Common.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\runtimes\win\lib\net6.0\System.Drawing.Common.dll" SelfReg="false"/>
+    <ROW File="System.Management.dll" Component_="System.Management.dll" FileName="SYSTEM~2.DLL|System.Management.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\runtimes\win\lib\net6.0\System.Management.dll" SelfReg="false"/>
+    <ROW File="System.CodeDom.dll" Component_="System.CodeDom.dll" FileName="SYSTEM~1.DLL|System.CodeDom.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\System.CodeDom.dll" SelfReg="false"/>
+    <ROW File="System.Composition.AttributedModel.dll" Component_="System.Composition.AttributedModel.dll" FileName="SYSTEM~2.DLL|System.Composition.AttributedModel.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\System.Composition.AttributedModel.dll" SelfReg="false"/>
+    <ROW File="System.Composition.Convention.dll" Component_="System.Composition.Convention.dll" FileName="SYSTEM~3.DLL|System.Composition.Convention.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\System.Composition.Convention.dll" SelfReg="false"/>
+    <ROW File="System.Composition.Hosting.dll" Component_="System.Composition.Hosting.dll" FileName="SYSTEM~4.DLL|System.Composition.Hosting.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\System.Composition.Hosting.dll" SelfReg="false"/>
+    <ROW File="System.Composition.Runtime.dll" Component_="System.Composition.Runtime.dll" FileName="SYSTEM~5.DLL|System.Composition.Runtime.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\System.Composition.Runtime.dll" SelfReg="false"/>
+    <ROW File="System.Composition.TypedParts.dll" Component_="System.Composition.TypedParts.dll" FileName="SYSTEM~6.DLL|System.Composition.TypedParts.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\System.Composition.TypedParts.dll" SelfReg="false"/>
+    <ROW File="System.Drawing.Common.dll_7" Component_="System.Drawing.Common.dll_7" FileName="SYSTEM~7.DLL|System.Drawing.Common.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\System.Drawing.Common.dll" SelfReg="false"/>
+    <ROW File="System.Management.dll_1" Component_="System.Management.dll_1" FileName="SYSTEM~8.DLL|System.Management.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\System.Management.dll" SelfReg="false"/>
+    <ROW File="System.Resources.Extensions.dll" Component_="System.Resources.Extensions.dll" FileName="SYSTEM~9.DLL|System.Resources.Extensions.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\System.Resources.Extensions.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -4930,8 +4969,6 @@
     <ROW Directory_="library_Dir" Component_="library" ManualDelete="true"/>
     <ROW Directory_="DevTools_Dir" Component_="DevTools" ManualDelete="false"/>
     <ROW Directory_="regid.201301.com.panomix_Dir" Component_="regid.201301.com.panomix" ManualDelete="false"/>
-    <ROW Directory_="net6.0_5_Dir" Component_="net6.0" ManualDelete="false"/>
-    <ROW Directory_="net6.0_6_Dir" Component_="net6.0_1" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_AppSearchEx" Type="1" Source="Prereq.dll" Target="DoAppSearchEx"/>
@@ -5507,8 +5544,6 @@
     <ROW Feature_="TileAssets_DefaultBuild" Component_="mzkit_win32.VisualElementsManifest.xml"/>
     <ROW Feature_="MainFeature" Component_="hpo_AAAAAA0001eye_HR.wiff"/>
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.MZWork.dll_1"/>
-    <ROW Feature_="MainFeature" Component_="net6.0"/>
-    <ROW Feature_="MainFeature" Component_="net6.0_1"/>
     <ROW Feature_="MainFeature" Component_="System.Drawing.Common.dll_2"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.Win32.SystemEvents.dll_1"/>
     <ROW Feature_="MainFeature" Component_="System.Drawing.Common.dll_3"/>
@@ -5519,6 +5554,22 @@
     <ROW Feature_="MainFeature" Component_="nvidiaanselAI.exe"/>
     <ROW Feature_="MainFeature" Component_="WinRT.Runtime.dll"/>
     <ROW Feature_="MainFeature" Component_="NRRD.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Runtime.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Win32.SystemEvents.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Windows.SDK.NET.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Drawing.Common.dll_4"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Win32.SystemEvents.dll_3"/>
+    <ROW Feature_="MainFeature" Component_="System.Drawing.Common.dll_6"/>
+    <ROW Feature_="MainFeature" Component_="System.Management.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.CodeDom.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Composition.AttributedModel.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Composition.Convention.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Composition.Hosting.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Composition.Runtime.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Composition.TypedParts.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Drawing.Common.dll_7"/>
+    <ROW Feature_="MainFeature" Component_="System.Management.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="System.Resources.Extensions.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
@@ -5677,6 +5728,7 @@
     <ROW Directory_="js_1_Dir" SourcePath="..\webview\assets\js" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|/*.map" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="fr_Dir" SourcePath="..\..\..\dist\bin\fr" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="ruRU_Dir" SourcePath="..\..\..\dist\bin\ru-RU" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
+    <ROW Directory_="nvidia_Dir" SourcePath="..\..\..\dist\bin\plugins\nvidia" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|/*.pdb|/*.xml" ExcludeFlags="6" FileAddOptions="4"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.XmlAttributeComponent">
     <ROW XmlAttribute="xmlnsds" XmlElement="swidsoftware_identification_tag" Name="xmlns:ds" Flags="14" Order="0" Value="http://www.w3.org/2000/09/xmldsig#"/>
