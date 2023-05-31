@@ -12,6 +12,7 @@ Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Mzkit_win32.MSImagingViewerV2
 Imports ServiceHub
+Imports SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.Blocks
 
 Public Class MSIRegionSampleWindow
 
@@ -235,7 +236,14 @@ Public Class MSIRegionSampleWindow
             End If
         Else
             Dim data As RegionLoader = viewer.ExtractMultipleSampleRegions
-            Dim colors As Color() = Designer.GetColors(colorSet, data.size)
+            Dim colors As Color()
+
+            If data Is Nothing Then
+                Call Workbench.Warning("Please load MS-imaging related data set at first!")
+                Return
+            Else
+                colors = Designer.GetColors(colorSet, data.size)
+            End If
 
             For i As Integer = 0 To data.regions.Length - 1
                 Dim card = Me.Add({data.regions(i)})
@@ -387,7 +395,14 @@ Public Class MSIRegionSampleWindow
     End Function
 
     Private Sub GroupUntaggedSpotToNearestRegonToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GroupUntaggedSpotToNearestRegonToolStripMenuItem.Click
-        Dim polygons As TissueRegion() = GetRegions(dimension).ToArray
+        Dim polygons As TissueRegion() = GetRegions(dimension).Where(Function(r) r.nsize > 0).ToArray
+
+        If polygons.Select(Function(r) r.label).Distinct.Count <> polygons.Length Then
+            ' has duplicated tissue region label
+            Call Workbench.Warning("Tissue region with duplicated label has been found, please make the label unique and then try again!")
+            Return
+        End If
+
         Dim xy = getUnLabledPixels(polygons)
         Dim labels As String() = New String(xy.x.Length - 1) {}
         Dim tissueList = polygons.ToDictionary(Function(r) r.label)
@@ -442,8 +457,9 @@ Public Class MSIRegionSampleWindow
         Dim y As New List(Of Double)
 
         If sample_bounds.IsNullOrEmpty Then
-            For i As Integer = 0 To dimension.Width
-                For j As Integer = 0 To dimension.Height
+            ' the MS-imaging pixel is started from origin [1,1]
+            For i As Integer = 1 To dimension.Width
+                For j As Integer = 1 To dimension.Height
                     If Not $"{i},{j}" Like tagged Then
                         Call x.Add(i)
                         Call y.Add(j)
@@ -463,7 +479,7 @@ Public Class MSIRegionSampleWindow
     End Function
 
     Private Sub ToolStripButton5_ButtonClick(sender As Object, e As EventArgs) Handles ToolStripButton5.ButtonClick
-        Dim polygons As TissueRegion() = GetRegions(dimension).ToArray
+        Dim polygons As TissueRegion() = GetRegions(dimension).Where(Function(r) r.nsize > 0).ToArray
         Dim xy = getUnLabledPixels(polygons)
 
         If xy.x.Length > 0 Then
