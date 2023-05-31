@@ -90,6 +90,7 @@ Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.BasicMDIForm.Container
 Imports RibbonLib
 Imports RibbonLib.Interop
 Imports TaskStream
@@ -180,6 +181,23 @@ Public Class frmMain : Implements AppHost
     End Sub
 
     Public Sub OpenFile(fileName As String, showDocument As Boolean)
+        If AppEnvironment.IsDevelopmentMode Then
+            Call OpenFile(fileName, showDocument)
+        Else
+            Try
+                Call OpenFile(fileName, showDocument)
+            Catch ex As Exception
+                MessageBox.Show($"MZKit can not handle the given input file '{fileName}' correctly. Probably you should check the file is corruptted or try to open this file in a specific MZKit application module?",
+                                "Open File Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning)
+
+                Call App.LogException(New Exception(fileName, ex))
+            End Try
+        End If
+    End Sub
+
+    Private Sub OpenFileInternal(fileName As String, showDocument As Boolean)
         If fileName.ExtensionSuffix("R") Then
             Call WindowModules.fileExplorer.AddScript(fileName.GetFullPath)
             Call openRscript(fileName)
