@@ -68,7 +68,6 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.Tcp
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
-Imports Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.GridRouter(Of Node)
 Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Linq
