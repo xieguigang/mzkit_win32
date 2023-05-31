@@ -77,7 +77,6 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
-Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MachineLearning.Data
@@ -89,6 +88,7 @@ Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports MZWorkPack
 Imports Parallel
 Imports stdNum = System.Math
 
@@ -161,16 +161,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             ' the mzpack is not row scans result
             Call RunSlavePipeline.SendMessage($"read MSI dataset from the mzPack raw data file!")
 
-            Using file As Stream = filepath.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
-                Dim mzpack As mzPack = mzPack.ReadAll(
-                    file:=file,
-                    ignoreThumbnail:=True,
-                    verbose:=True,
-                    skipMsn:=True
-                )
-
-                msi = mzpack.ConvertToMSI(dims)
-            End Using
+            msi = MSImagingReader.UnifyReadAsMzPack(filepath).TryCast(Of mzPack).ConvertToMSI(dims)
         Else
             Return New DataPipe("invalid file type!")
         End If
@@ -199,43 +190,30 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         If filepath.ExtensionSuffix("cdf") Then
             Call RunSlavePipeline.SendMessage($"read MSI layers from the cdf file!")
 
-            Using cdf As New netCDFReader(filepath)
-                Dim readRawPack As ReadRawPack = cdf.CreatePixelReader
+            Dim readRawPack As ReadRawPack = MSImagingReader.UnifyReadAsMzPack(filepath)
 
-                MSI = New Drawer(readRawPack)
-                metadata = New Metadata With {
-                    .resolution = readRawPack.resolution,
-                    .scan_x = readRawPack.dimension.Width,
-                    .scan_y = readRawPack.dimension.Height,
-                    .mass_range = New DoubleRange(
-                        vector:=readRawPack.GetScans.Select(Function(scan) scan.mz).IteratesALL
-                    )
-                }
-                type = FileApplicationClass.MSImaging
-            End Using
+            MSI = New Drawer(readRawPack)
+            metadata = New Metadata With {
+                .resolution = readRawPack.resolution,
+                .scan_x = readRawPack.dimension.Width,
+                .scan_y = readRawPack.dimension.Height,
+                .mass_range = New DoubleRange(
+                    vector:=readRawPack.GetScans.Select(Function(scan) scan.mz).IteratesALL
+                )
+            }
+            type = FileApplicationClass.MSImaging
         ElseIf filepath.ExtensionSuffix("mzImage") Then
             Call RunSlavePipeline.SendMessage($"read MSI image file!")
             type = FileApplicationClass.MSImaging
             Throw New NotImplementedException
         ElseIf filepath.ExtensionSuffix("imzml") Then
-            Dim mzPack = Converter.LoadimzML(filepath, AddressOf RunSlavePipeline.SendProgress)
-            mzPack.source = filepath.FileName
+            Dim mzpack As mzPack = MSImagingReader.UnifyReadAsMzPack(filepath)
             MSI = New Drawer(mzPack)
             metadata = mzPack.GetMSIMetadata
             type = FileApplicationClass.MSImaging
         Else
             Call RunSlavePipeline.SendMessage($"read MSI dataset from the mzPack raw data file!")
-
-            Using file As Stream = filepath.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
-                Dim mzpack As mzPack = mzPack.ReadAll(
-                    file:=file,
-                    ignoreThumbnail:=True,
-                    verbose:=True,
-                    skipMsn:=True
-                )
-
-                Call LoadMSIMzPackCommon(mzpack)
-            End Using
+            Call LoadMSIMzPackCommon(MSImagingReader.UnifyReadAsMzPack(filepath))
         End If
 
         info = MSIProtocols.GetMSIInfo(Me)

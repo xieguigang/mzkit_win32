@@ -69,6 +69,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.BioDeep.MetaDNA
 Imports BioNovoGene.BioDeep.MetaDNA.Infer
@@ -81,6 +82,7 @@ Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Data.visualize.Network.Graph
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors.Scaler
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Math2D.MarchingSquares
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
@@ -89,6 +91,7 @@ Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.My.FrameworkInternal
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports MZWorkPack
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Components
 Imports SMRUCC.Rsharp.Runtime.Interop
@@ -391,14 +394,25 @@ Module BackgroundTask
             Call RunSlavePipeline.SendMessage("Initialize raw data file...")
         End If
 
-        Dim render As New Drawer(mzPack.ReadAll(raw.Open(FileMode.Open, doClear:=False, [readOnly]:=True), ignoreThumbnail:=True))
+        Dim render As Drawer
         Dim ppm20 As Tolerance = mzerr.TryCast(Of Tolerance)
         Dim file As New StreamWriter(save)
+        Dim loadraw = MSImagingReader.UnifyReadAsMzPack(raw)
+
+        Call RunSlavePipeline.SendMessage("load raw data into ms-imaging render")
+
+        If loadraw Like GetType(mzPack) Then
+            render = New Drawer(loadraw.TryCast(Of mzPack))
+        Else
+            render = New Drawer(loadraw.TryCast(Of ReadRawPack))
+        End If
+
+        Call RunSlavePipeline.SendMessage("start to export MSI feature peaks table!")
 
         If regions.IsNullOrEmpty Then
             dataset = render.exportMSIRawPeakTable(ppm20, into_cutoff, dataKeys, TrIQ)
         Else
-            dataset = regions.exportRegionDataset(render, ppm20, into_cutoff, dataKeys)
+            dataset = regions.exportRegionDataset(render, ppm20, into_cutoff, dataKeys, TrIQ)
         End If
 
         Call RunSlavePipeline.SendProgress(100, $"Save peaktable!")
@@ -406,7 +420,7 @@ Module BackgroundTask
         Call file.WriteLine({"MID"}.JoinIterates(dataKeys).JoinBy(","))
 
         For Each line As DataSet In dataset
-            Call New String() {line.ID} _
+            Call New String() {"""" & line.ID & """"} _
                 .JoinIterates(line(dataKeys).Select(Function(d) d.ToString)) _
                 .JoinBy(",") _
                 .DoCall(AddressOf file.WriteLine)
@@ -433,42 +447,81 @@ Module BackgroundTask
         Dim allMs As New List(Of ms2)
         Dim allPixels = render.LoadPixels.ToArray
 
+        Call RunSlavePipeline.SendMessage($"get {allPixels.Length} pixel spots for export feature peaks!")
+
         For Each pixel As PixelScan In allPixels
             Call allMs.AddRange(pixel.GetMs)
         Next
 
-        Dim allMz As Double() = allMs.uniqueMz(da, into_cutoff)
-        Dim mzKeys As String() = allMz.Select(Function(mzi) mzi.ToString("F3")).ToArray
+        Call RunSlavePipeline.SendMessage("pick of the unique ion features...")
 
-        RunSlavePipeline.SendProgress(100, $"Run peak alignment for {allMz.Length} m/z features!")
+        Dim allMz As Double() = allMs.uniqueMz(da, into_cutoff, triq)
+        Dim mzKeys As String() = allMz.Select(Function(mzi) mzi.ToString("F4")).ToArray
+
+        RunSlavePipeline.SendProgress(0, $"Run peak alignment for {allMz.Length} m/z features!")
 
         Dim dataSet As New List(Of DataSet)
+        Dim d As Integer = allPixels.Length / 50
+        Dim p As i32 = Scan0
+        Dim t0 As Date = Now
 
-        For Each pixel As PixelScan In allPixels
+        ' duplicated pixel may be found in the data
+        For Each pixel As IGrouping(Of String, PixelScan) In allPixels.GroupBy(Function(s) $"{s.X},{s.Y}")
             Dim vec As New Dictionary(Of String, Double)
-            Dim ms1 = pixel.GetMs
-            Dim into As Double
+            Dim ms1 = pixel.Select(Function(si) si.GetMs).IteratesALL.ToArray
 
-            For i As Integer = 0 To mzKeys.Length - 1
-                into = ms1.Where(Function(mzi) da(mzi.mz, allMz(i))).Sum(Function(a) a.intensity)
-                vec.Add(mzKeys(i), into)
-            Next
+            Call allMz _
+                .AsParallel _
+                .Select(Function(mzKey, i)
+                            Dim into As Double = ms1 _
+                                .Where(Function(mzi) da(mzi.mz, mzKey)) _
+                                .Sum(Function(a) a.intensity)
+                            Dim t = (mzKey, i, into)
+
+                            Return t
+                        End Function) _
+                .ToArray _
+                .ForEach(Sub(t, i)
+                             Call vec.Add(mzKeys(t.i), t.into)
+                         End Sub)
+
+            If vec.Values.All(Function(di) di = 0.0) Then
+                Continue For
+            End If
 
             Call dataSet.Add(New DataSet With {
-                .ID = $"{pixel.X},{pixel.Y}",
+                .ID = pixel.Key,
                 .Properties = vec
             })
+
+            If (++p) Mod d = 0 Then
+                Call RunSlavePipeline.SendProgress(p / allPixels.Length * 100, $"[{(100 * p / allPixels.Length).ToString("F1")}%] {p / CInt((Now - t0).TotalSeconds)} pixel/s; {pixel.Key}")
+            End If
         Next
+
+        dataKeys = mzKeys
 
         Return dataSet.ToArray
     End Function
 
     <Extension>
-    Private Function uniqueMz(allMs As IEnumerable(Of ms2), da As Tolerance, into_cutoff As Double) As Double()
-        Return allMs _
+    Private Function uniqueMz(allMs As IEnumerable(Of ms2), da As Tolerance, into_cutoff As Double, triq As Double) As Double()
+        Dim raw = allMs.ToArray
+        Dim threshold As Double = raw.Select(Function(m) m.intensity).FindThreshold(triq)
+
+        Return raw.AsParallel _
+            .Select(Function(msi)
+                        ' apply of the intensity trim cutoff
+                        If msi.intensity > threshold Then
+                            msi.intensity = threshold
+                        End If
+
+                        Return msi
+                    End Function) _
             .ToArray _
-            .Centroid(ppm20, New RelativeIntensityCutoff(into_cutoff)) _
-            .Select(Function(i) i.mz) _
+            .Centroid(da, New RelativeIntensityCutoff(into_cutoff)) _
+            .Select(Function(i) stdNum.Round(i.mz, 4)) _
+            .Distinct _
             .OrderBy(Function(mz) mz) _
             .ToArray
     End Function
@@ -486,7 +539,11 @@ Module BackgroundTask
     ''' region labels in column
     ''' </returns>
     <Extension>
-    Private Function exportRegionDataset(regions As TissueRegion(), render As Drawer, ppm20 As Tolerance, into_cutoff As Double, ByRef dataKeys As String()) As DataSet()
+    Private Function exportRegionDataset(regions As TissueRegion(), render As Drawer, ppm20 As Tolerance,
+                                         into_cutoff As Double,
+                                         ByRef dataKeys As String(),
+                                         triq As Double) As DataSet()
+
         Dim data As New Dictionary(Of String, ms2())
         Dim j As i32 = 1
         Dim regionId As String
@@ -507,7 +564,7 @@ Module BackgroundTask
 
         dataKeys = data.Keys.ToArray
 
-        Dim allMz As Double() = data.Values.IteratesALL.uniqueMz(ppm20, into_cutoff)
+        Dim allMz As Double() = data.Values.IteratesALL.uniqueMz(ppm20, into_cutoff, triq)
 
         RunSlavePipeline.SendProgress(100, $"Run peak alignment for {allMz.Length} m/z features!")
 

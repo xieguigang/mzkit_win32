@@ -23,6 +23,15 @@ const getRegions = function() {
 }
 
 if (is.null(regions)) {
+
+	# D:\mzkit\dist\bin/Rstudio/bin/Rscript.exe "D:/mzkit/src/mzkit/rstudio/pipeline/MSI_peaktable.R" 
+	# --raw "D:\mzkit\DATA\test\HR2MSI mouse urinary bladder S096 - Figure1.cdf" 
+	# --save "C:\Users\lipidsearch\Desktop\matrix3.csv" 
+	# --mzdiff "0.005"
+	# --into.cutoff "0.05"
+	# --TrIQ "0.8"
+	# --SetDllDirectory D:/mzkit/dist/bin/Rstudio/host
+
 	print("a rectangle list data in json format is not provided!");
 	print("all of the spot ion features will be export!");
 	

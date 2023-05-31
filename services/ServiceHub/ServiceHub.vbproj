@@ -98,6 +98,7 @@
     <ProjectReference Include="..\..\..\mzmath\ms2_math-core\mzmath-netcore5.vbproj" />
     <ProjectReference Include="..\..\..\visualize\MsImaging\MsImaging.NET5.vbproj" />
     <ProjectReference Include="..\..\..\visualize\TissueMorphology\TissueMorphology.vbproj" />
+    <ProjectReference Include="..\MZWork\MZWork.vbproj" />
   </ItemGroup>
 
   <Import Project="..\..\..\..\Rscript\Library\mzkit.interopArguments\mzkit.interopArguments.projitems" Label="Shared" />
