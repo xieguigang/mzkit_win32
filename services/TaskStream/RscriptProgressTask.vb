@@ -395,10 +395,17 @@ Public NotInheritable Class RscriptProgressTask
             title:="Create MSI sampletable...",
             info:="Loading MSI raw data file into viewer workspace...")
 
-        If MessageBox.Show("Export MSI sampletable Job Done!" & vbCrLf & "Open MSI sample table data file?",
-                           "Open Excel",
-                           MessageBoxButtons.YesNo,
-                           MessageBoxIcon.Information) = DialogResult.Yes Then
+        Call CommonPeaktableFilePrompt(saveAs)
+    End Sub
+
+    Private Shared Sub CommonPeaktableFilePrompt(saveAs As String)
+        If Not saveAs.FileExists(ZERO_Nonexists:=True) Then
+            MessageBox.Show("Sorry, the MS-Imaging feature peaktable export is not success.", "Rscript Task Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        ElseIf MessageBox.Show("Export MSI sampletable Job Done!" & vbCrLf & "Open MSI sample table data file?",
+                               "Open Excel",
+                               MessageBoxButtons.YesNo,
+                               MessageBoxIcon.Information) = DialogResult.Yes Then
 
             Call Process.Start(saveAs.GetFullPath)
         End If
@@ -438,13 +445,7 @@ Public NotInheritable Class RscriptProgressTask
             title:="Create MSI sampletable...",
             info:="Loading MSI raw data file into viewer workspace...")
 
-        If MessageBox.Show("Export MSI sampletable Job Done!" & vbCrLf & "Open MSI sample table data file?",
-                           "Open Excel",
-                           MessageBoxButtons.YesNo,
-                           MessageBoxIcon.Information) = DialogResult.Yes Then
-
-            Call Process.Start(saveAs.GetFullPath)
-        End If
+        Call CommonPeaktableFilePrompt(saveAs)
     End Sub
 
     Public Shared Function PlotSingleMSIStats(data As String, type As String, title As String,
