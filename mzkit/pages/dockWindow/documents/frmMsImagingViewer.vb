@@ -219,7 +219,8 @@ Public Class frmMsImagingViewer
             Return
         Else
             ' show umap scatter 3d
-
+            umap3D = UMAPPoint.ParseCsvTable(umap3).ToArray
+            ShowTissueData()
         End If
     End Sub
 

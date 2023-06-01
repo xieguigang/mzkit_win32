@@ -18,7 +18,7 @@ let dim3 = data |> umap(
 	spectral_cos      = TRUE,
 	numberOfNeighbors = knn_size
 );
-let result         = as.data.frame(dim3$umap, labels = dim3$labels);
+let result         = as.data.frame(dim3$umap, labels = dim3$labels, dimension = ["x","y","z"]);
 let assign_cluster = function(result) {
 	let scans      = dbscan(result, eps = 1, minPts = 6);
 	let cluster_id = [scans]::classLabels;
@@ -35,5 +35,9 @@ if (is.null(labels)) {
 } else {
 	result[, "class"] = labels;
 }
+
+# 1. labels
+# 2. x, y, z
+# 3. class
 
 write.csv(result, file = output_file, row.names = TRUE);
