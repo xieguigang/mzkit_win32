@@ -1,6 +1,7 @@
 ﻿Imports System.Drawing
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.Imaging.Math2D
+Imports Microsoft.VisualBasic.Linq
 
 Public Class RegionSampleCard
 
@@ -33,6 +34,7 @@ Public Class RegionSampleCard
     Friend regions As Polygon2D()
     Friend updateCallback As Action
     Friend tissue As TissueRegion
+    Friend alreadyRaster As Boolean = False
 
     Public Function PixelPointInside(x As Integer, y As Integer) As Boolean
         If regions.IsNullOrEmpty Then
@@ -63,6 +65,17 @@ Public Class RegionSampleCard
                 .color = SampleColor,
                 .label = SampleInfo,
                 .points = tissue.points
+            }
+        ElseIf alreadyRaster Then
+            Return New TissueRegion With {
+                .color = SampleColor,
+                .label = SampleInfo,
+                .points = regions _
+                    .Select(Function(r) r.AsEnumerable.Select(Function(pf) New Point(pf.X, pf.Y))) _
+                    .IteratesALL _
+                    .GroupBy(Function(pt) $"{pt.X},{pt.Y}") _
+                    .Select(Function(pg) pg.First) _
+                    .ToArray
             }
         Else
             Return regions.RasterGeometry2D(dimension, SampleInfo, SampleColor)

@@ -138,8 +138,10 @@ Public Class MSIRegionSampleWindow
         Call Add(selector.GetPolygons(popAll:=True))
     End Sub
 
-    Private Function Add(sample_group As IEnumerable(Of Polygon2D)) As RegionSampleCard
-        Dim card As New RegionSampleCard
+    Private Function Add(sample_group As IEnumerable(Of Polygon2D), is_raster As Boolean) As RegionSampleCard
+        Dim card As New RegionSampleCard With {
+            .alreadyRaster = is_raster
+        }
 
         Call card.SetPolygons(sample_group, callback:=AddressOf updateLayerRendering)
         Call FlowLayoutPanel1.Controls.Add(card)
@@ -262,7 +264,7 @@ Public Class MSIRegionSampleWindow
             End If
 
             For i As Integer = 0 To data.regions.Length - 1
-                Dim card = Me.Add({data.regions(i)})
+                Dim card = Me.Add({data.regions(i)}, is_raster:=True)
 
                 card.SampleColor = colors(i)
                 card.SampleInfo = data.sample_tags(i)
@@ -499,7 +501,7 @@ Public Class MSIRegionSampleWindow
         Dim xy = getUnLabledPixels(polygons)
 
         If xy.x.Length > 0 Then
-            Call Add({New Polygon2D(xy.x, xy.y)})
+            Call Add({New Polygon2D(xy.x, xy.y)}, is_raster:=True)
         Else
             Call Workbench.StatusMessage("no spots needs to assign group label.")
         End If
