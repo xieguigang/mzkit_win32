@@ -173,6 +173,7 @@ Public Class frmMsImagingViewer
 
         AddHandler RibbonEvents.ribbonItems.ButtonConnectMSIService.ExecuteEvent, Sub() Call ConnectToCloud()
         AddHandler RibbonEvents.ribbonItems.ShowTissueData.ExecuteEvent, Sub() Call ShowTissueData()
+        AddHandler RibbonEvents.ribbonItems.ButtonAutoUMAP.ExecuteEvent, Sub() Call RunUMAPTissueCluster()
 
         AddHandler RibbonEvents.ribbonItems.CheckShowMapLayer.ExecuteEvent,
             Sub()
@@ -199,9 +200,36 @@ Public Class frmMsImagingViewer
         sampleRegions.viewer = Me
     End Sub
 
+    Private Sub RunUMAPTissueCluster()
+        If Not checkService() Then
+            Return
+        End If
+
+        Dim matrix As String = exportAllSpotSamplePeaktable()
+
+        If matrix.StringEmpty Then
+            Call Workbench.Warning("Export feature ions peaktable task error or user canceled.")
+            Return
+        End If
+
+        Dim umap3 As String = RscriptProgressTask.CreateUMAPCluster(matrix, 16)
+
+        If umap3.StringEmpty Then
+            MessageBox.Show("Sorry, run umap task error...", "UMAP error", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            Return
+        Else
+            ' show umap scatter 3d
+
+        End If
+    End Sub
+
     Dim umap3D As UMAPPoint()
 
     Public Sub ShowTissueData()
+        Call ShowTissueData(umap3D)
+    End Sub
+
+    Public Sub ShowTissueData(umap3D As UMAPPoint())
         Dim summary As New ShowTissueData
 
         If umap3D.IsNullOrEmpty Then
@@ -1865,6 +1893,31 @@ Public Class frmMsImagingViewer
         End If
     End Sub
 
+    Private Function exportAllSpotSamplePeaktable() As String
+        ' export all spots
+        Using file As New SaveFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
+            If file.ShowDialog = DialogResult.OK Then
+                Call InputDialog.Input(Of InputMSIPeakTableParameters)(
+                    Sub(cfg)
+                        Call RscriptProgressTask.CreateMSIPeakTable(
+                            mzpack:=FilePath,
+                            saveAs:=file.FileName,
+                            cfg.Mzdiff, cfg.IntoCutoff, cfg.TrIQCutoff
+                        )
+                    End Sub)
+
+                If file.FileName.FileExists(ZERO_Nonexists:=True) Then
+                    Return file.FileName
+                Else
+                    ' user cancel or task error
+                    Return Nothing
+                End If
+            Else
+                Return Nothing
+            End If
+        End Using
+    End Function
+
     Private Sub exportMSISampleTable()
         If Not checkService() Then
             Call Workbench.Warning("No MSI raw data is loaded!")
@@ -1873,19 +1926,7 @@ Public Class frmMsImagingViewer
 
         If sampleRegions.IsNullOrEmpty Then
             ' Call Workbench.Warning("No sample spot regions!")
-            ' export all spots
-            Using file As New SaveFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
-                If file.ShowDialog = DialogResult.OK Then
-                    Call InputDialog.Input(Of InputMSIPeakTableParameters)(
-                        Sub(cfg)
-                            Call RscriptProgressTask.CreateMSIPeakTable(
-                                mzpack:=FilePath,
-                                saveAs:=file.FileName,
-                                cfg.Mzdiff, cfg.IntoCutoff, cfg.TrIQCutoff
-                            )
-                        End Sub)
-                End If
-            End Using
+            Call exportAllSpotSamplePeaktable()
         Else
             Using file As New SaveFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
                 If file.ShowDialog = DialogResult.OK Then

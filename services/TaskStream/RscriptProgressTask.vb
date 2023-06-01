@@ -366,8 +366,39 @@ Public NotInheritable Class RscriptProgressTask
         End If
     End Sub
 
+    Public Shared Function CreateUMAPCluster(matrix As String, knn As Integer) As String
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("umap.R")
+        Dim save As String = $"{matrix.ParentPath}/{matrix.BaseName}_umap3.csv"
+        Dim cli As String = $"""{Rscript}"" 
+--input ""{matrix}"" 
+--save ""{save}"" 
+--knn ""{knn}""
+--SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
+"
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
+        Call Workbench.LogText(pipeline.CommandLine)
+        Call TaskProgress.RunAction(
+            run:=Sub(p)
+                     AddHandler pipeline.SetMessage, AddressOf p.SetInfo
+                     AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                     AddHandler pipeline.Finish, AddressOf p.TaskFinish
+
+                     Call pipeline.Run()
+                 End Sub,
+            title:="Create UMAP clusters...",
+            info:="Create UMAP clusters based on your given feature peaktable, this may takes a long time when your dataset size is ultra large...")
+
+        If save.FileExists(ZERO_Nonexists:=True) Then
+            Return save
+        Else
+            Return Nothing
+        End If
+    End Function
+
     ''' <summary>
-    ''' Create MSI peaktable without ptissue region maps
+    ''' Create MSI peaktable without tissue region maps
     ''' </summary>
     ''' <param name="mzpack"></param>
     ''' <param name="saveAs"></param>
