@@ -423,25 +423,37 @@ Public Class MSIRegionSampleWindow
         Dim xy = getUnLabledPixels(polygons)
         Dim labels As String() = New String(xy.x.Length - 1) {}
         Dim tissueList = polygons.ToDictionary(Function(r) r.label)
+        Dim top As Integer = 6
 
         For i As Integer = 0 To labels.Length - 1
             Dim x As Double = xy.x(i)
             Dim y As Double = xy.y(i)
             Dim minDist As Double = Double.MaxValue
             Dim minLabel As String = Nothing
+            Dim distVal As Double
 
             For Each region As TissueRegion In polygons
                 If region.nsize = 0 Then
                     Continue For
                 End If
 
-                Dim dist As Double = region.points _
+                Dim dist As Double() = region.points _
                     .AsParallel _
                     .Select(Function(pt) (pt.X - x) ^ 2 + (pt.Y - y) ^ 2) _
-                    .Min
+                    .OrderBy(Function(di) di) _
+                    .Take(top) _
+                    .ToArray
 
-                If dist < minDist Then
-                    minDist = dist
+                If dist.Length < top Then
+                    ' 5 - 4 = 1 no changed
+                    ' 5 - 4 + 1 = 2, will produce lower score result
+                    distVal = dist.Average * (top - dist.Length + 1)
+                Else
+                    distVal = dist.Average
+                End If
+
+                If distVal < minDist Then
+                    minDist = distVal
                     minLabel = region.label
                 End If
             Next
