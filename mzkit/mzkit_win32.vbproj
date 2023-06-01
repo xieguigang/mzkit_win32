@@ -341,7 +341,8 @@
     <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.1462.37, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.WebView2.1.0.1462.37\lib\net45\Microsoft.Web.WebView2.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Windows.Ribbon">
+    <Reference Include="Microsoft.Windows.Ribbon, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4a850abcb1bad68b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\dist\Microsoft.Windows.Ribbon.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
