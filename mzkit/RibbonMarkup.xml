@@ -2534,6 +2534,15 @@
         <Image MinDPI="192">Resources/10x_genomics.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonAutoUMAP" Id="223" LabelTitle="Auto Segmentation via UMAP" LabelDescription="Auto Segmentation via UMAP" TooltipTitle="Auto UMAP" TooltipDescription="Auto UMAP">
+      <Command.SmallImages>
+        <Image MinDPI="192">Resources/umap.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Resources/umap.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonUIShowMapLayer" Id="224" LabelTitle="Show Map Layer" LabelDescription="Show Map Layer" TooltipTitle="Show Map Layer" TooltipDescription="Show Map Layer" />
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2807,7 +2816,12 @@
               <Button CommandName="cmdButtonNextPolygon" />
             </Group>
             <Group CommandName="cmdGroupTissueMaps" SizeDefinition="ThreeButtons">
-              <ToggleButton CommandName="cmdCheckShowMapLayer" />
+              <SplitButton CommandName="cmdButtonUIShowMapLayer">
+                <SplitButton.ButtonItem>
+                  <ToggleButton CommandName="cmdCheckShowMapLayer" />
+                </SplitButton.ButtonItem>
+                <Button CommandName="cmdButtonAutoUMAP" />
+              </SplitButton>
               <Button CommandName="cmdButtonShowMSISampleWindow" />
               <Button CommandName="cmdShowTissueData" />
             </Group>

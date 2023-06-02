@@ -37,10 +37,10 @@
     <ROW Property="IAgree" Value="Yes" Type="4"/>
     <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1033:{3882DAEA-DDC2-4201-BAA3-DC62FF6D56B8} 2052:{3882DAEA-DDC2-4201-BAA3-DC62FF6D56B8} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{6FA918FE-6DD7-4922-BFC7-BECE2311A7CA} 2052:{6FA918FE-6DD7-4922-BFC7-BECE2311A7CA} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="mzkit_win32"/>
-    <ROW Property="ProductVersion" Value="4.5.138.9688" Type="32"/>
+    <ROW Property="ProductVersion" Value="4.5.139.9689" Type="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{B645400B-3918-41EF-9009-7ADDD81C84B4}"/>
@@ -181,7 +181,7 @@
     <ROW Directory="zhHant_Dir" Directory_Parent="APPDIR" DefaultDir="zh-Hant"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{F2CA0F34-0506-4A5A-AB9F-9CB0D4D218DE}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{0765E862-B329-4599-BF98-AC6683DA60B7}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{69AA9FFE-67B1-456B-88EB-97D3D6C92AA7}" Directory_="APPDIR" Attributes="256"/>
     <ROW Component="BioDeep.dll" ComponentId="{2FECE77D-517F-47B1-97BA-15B1100BE489}" Directory_="APPDIR" Attributes="256" KeyPath="BioDeep.dll"/>
     <ROW Component="BioDeep.dll_1" ComponentId="{8274C55C-D52A-4F5B-A268-505929309095}" Directory_="host_Dir" Attributes="256" KeyPath="BioDeep.dll_1"/>
@@ -272,6 +272,7 @@
     <ROW Component="LocalLaplacianFilters.dll" ComponentId="{8AFD3854-6449-4D0F-B43F-69854C9FB745}" Directory_="APPDIR" Attributes="256" KeyPath="LocalLaplacianFilters.dll"/>
     <ROW Component="MLkit.dll" ComponentId="{1CBF1239-53EE-4681-87D7-63EA4D833530}" Directory_="library_Dir" Attributes="256" KeyPath="MLkit.dll"/>
     <ROW Component="MZWorkRedis.dll" ComponentId="{78286F07-D230-44DD-AC53-033E532F79A9}" Directory_="host_Dir" Attributes="256" KeyPath="MZWorkRedis.dll"/>
+    <ROW Component="MZWorkRedis.dll_1" ComponentId="{BED3785B-74C3-4B81-A660-D380249DB065}" Directory_="APPDIR" Attributes="256" KeyPath="MZWorkRedis.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.dll" ComponentId="{6D27B998-7C7B-4FDF-9B61-64583344D9EA}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.dl"/>
     <ROW Component="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.dll_5" ComponentId="{7FD551D9-5C8B-4731-B2D7-70734DE23995}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio._9"/>
     <ROW Component="Microsoft.VisualBasic.Data.BinaryData.dll" ComponentId="{25A480C0-3670-4750-A4BC-37FBB67D8404}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.BinaryData.dll"/>
@@ -582,6 +583,7 @@
     <ROW Component="System.Management.dll_1" ComponentId="{2916DFD0-9968-4E42-BB68-0F6C17BA9F6F}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Management.dll_1"/>
     <ROW Component="System.Memory.dll_2" ComponentId="{37EBBB97-6017-46E4-AC04-AD3FB3EB9131}" Directory_="APPDIR" Attributes="256" KeyPath="System.Memory.dll_2"/>
     <ROW Component="System.Numerics.Tensors.dll" ComponentId="{C303739F-A4A8-4A4E-B6B0-3664F41949EB}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Numerics.Tensors.dll"/>
+    <ROW Component="System.Numerics.Tensors.dll_1" ComponentId="{94DAE157-683F-4818-93A9-59284F9CBDE9}" Directory_="APPDIR" Attributes="0" KeyPath="System.Numerics.Tensors.dll_1"/>
     <ROW Component="System.Numerics.Vectors.dll_2" ComponentId="{3D47FC0B-6349-41D3-92EC-307A6F2D8E41}" Directory_="APPDIR" Attributes="256" KeyPath="System.Numerics.Vectors.dll_2"/>
     <ROW Component="System.Resources.Extensions.dll" ComponentId="{5F9E9865-E3D8-4C64-AFE0-E6767759C7E9}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Resources.Extensions.dll"/>
     <ROW Component="System.Resources.Extensions.dll_5" ComponentId="{7EC4EF76-1BA4-4D1F-A6ED-3632F865E587}" Directory_="bin_Dir" Attributes="256" KeyPath="System.Resources.Extensions.dll_5"/>
@@ -4810,11 +4812,11 @@
     <ROW File="hpo_AAAAAA0001eye_HR.wiff.scan" Component_="hpo_AAAAAA0001eye_HR.wiff" FileName="1HPO_A~1.SCA|1hpo_AAAAAA-0001eye_HR.wiff.scan" Attributes="0" SourcePath="..\extdata\MRM-ms-imaging\1hpo_AAAAAA-0001eye_HR.wiff.scan" SelfReg="false"/>
     <ROW File="hpo_AAAAAA0001eye_HR3.5J.mzML" Component_="hpo_AAAAAA0001eye_HR.wiff" FileName="1HPO_A~1.MZM|1hpo_AAAAAA-0001eye_HR-3.5µJ.mzML" Attributes="0" SourcePath="..\extdata\MRM-ms-imaging\1hpo_AAAAAA-0001eye_HR-3.5µJ.mzML" SelfReg="false"/>
     <ROW File="Mzkit_win32.MZWork.dll_1" Component_="Mzkit_win32.MZWork.dll_1" FileName="MZKIT_~1.DLL|Mzkit_win32.MZWork.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Mzkit_win32.MZWork.dll" SelfReg="false"/>
-    <ROW File="System.Drawing.Common.dll_2" Component_="System.Drawing.Common.dll_2" FileName="SYSTEM~1.DLL|System.Drawing.Common.dll" Attributes="0" SourcePath="..\dist\hdf5\runtimes\unix\lib\net6.0\System.Drawing.Common.dll" SelfReg="false"/>
-    <ROW File="Microsoft.Win32.SystemEvents.dll_1" Component_="Microsoft.Win32.SystemEvents.dll_1" FileName="MICROS~1.DLL|Microsoft.Win32.SystemEvents.dll" Attributes="0" SourcePath="..\dist\hdf5\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll" SelfReg="false"/>
-    <ROW File="System.Drawing.Common.dll_3" Component_="System.Drawing.Common.dll_3" FileName="SYSTEM~1.DLL|System.Drawing.Common.dll" Attributes="0" SourcePath="..\dist\hdf5\runtimes\win\lib\net6.0\System.Drawing.Common.dll" SelfReg="false"/>
-    <ROW File="System.Security.Cryptography.ProtectedData.dll_2" Component_="System.Security.Cryptography.ProtectedData.dll_2" FileName="SYSTEM~2.DLL|System.Security.Cryptography.ProtectedData.dll" Attributes="0" SourcePath="..\dist\hdf5\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll" SelfReg="false"/>
-    <ROW File="System.Windows.Extensions.dll_2" Component_="System.Windows.Extensions.dll_2" FileName="SYSTEM~3.DLL|System.Windows.Extensions.dll" Attributes="0" SourcePath="..\dist\hdf5\runtimes\win\lib\net6.0\System.Windows.Extensions.dll" SelfReg="false"/>
+    <ROW File="System.Drawing.Common.dll_2" Component_="System.Drawing.Common.dll_2" FileName="SYSTEM~1.DLL|System.Drawing.Common.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\runtimes\unix\lib\net6.0\System.Drawing.Common.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Win32.SystemEvents.dll_1" Component_="Microsoft.Win32.SystemEvents.dll_1" FileName="MICROS~1.DLL|Microsoft.Win32.SystemEvents.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll" SelfReg="false"/>
+    <ROW File="System.Drawing.Common.dll_3" Component_="System.Drawing.Common.dll_3" FileName="SYSTEM~1.DLL|System.Drawing.Common.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\runtimes\win\lib\net6.0\System.Drawing.Common.dll" SelfReg="false"/>
+    <ROW File="System.Security.Cryptography.ProtectedData.dll_2" Component_="System.Security.Cryptography.ProtectedData.dll_2" FileName="SYSTEM~2.DLL|System.Security.Cryptography.ProtectedData.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll" SelfReg="false"/>
+    <ROW File="System.Windows.Extensions.dll_2" Component_="System.Windows.Extensions.dll_2" FileName="SYSTEM~3.DLL|System.Windows.Extensions.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\runtimes\win\lib\net6.0\System.Windows.Extensions.dll" SelfReg="false"/>
     <ROW File="nvidiaanselAI.deps.json" Component_="nvidiaanselAI.deps.json" FileName="NVIDIA~1.JSO|nvidia-anselAI.deps.json" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\nvidia-anselAI.deps.json" SelfReg="false"/>
     <ROW File="nvidiaanselAI.dll" Component_="nvidiaanselAI.dll" FileName="NVIDIA~1.DLL|nvidia-anselAI.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\nvidia-anselAI.dll" SelfReg="false"/>
     <ROW File="nvidiaanselAI.exe" Component_="nvidiaanselAI.exe" FileName="NVIDIA~1.EXE|nvidia-anselAI.exe" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\nvidia-anselAI.exe" SelfReg="false" DigSign="true"/>
@@ -4839,6 +4841,9 @@
     <ROW File="System.Drawing.Common.dll_7" Component_="System.Drawing.Common.dll_7" FileName="SYSTEM~7.DLL|System.Drawing.Common.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\System.Drawing.Common.dll" SelfReg="false"/>
     <ROW File="System.Management.dll_1" Component_="System.Management.dll_1" FileName="SYSTEM~8.DLL|System.Management.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\System.Management.dll" SelfReg="false"/>
     <ROW File="System.Resources.Extensions.dll" Component_="System.Resources.Extensions.dll" FileName="SYSTEM~9.DLL|System.Resources.Extensions.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\System.Resources.Extensions.dll" SelfReg="false"/>
+    <ROW File="MZWorkRedis.dll_1" Component_="MZWorkRedis.dll_1" FileName="MZWORK~1.DLL|MZWorkRedis.dll" Attributes="0" SourcePath="..\..\..\dist\bin\MZWorkRedis.dll" SelfReg="false"/>
+    <ROW File="System.Numerics.Tensors.dll_1" Component_="System.Numerics.Tensors.dll_1" FileName="SYSTE~25.DLL|System.Numerics.Tensors.dll" Attributes="0" SourcePath="..\..\..\dist\bin\System.Numerics.Tensors.dll" SelfReg="false"/>
+    <ROW File="umap.R" Component_="buildMSIIndex.R" FileName="umap.R" Attributes="0" SourcePath="..\rstudio\pipeline\umap.R" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -5570,6 +5575,8 @@
     <ROW Feature_="MainFeature" Component_="System.Drawing.Common.dll_7"/>
     <ROW Feature_="MainFeature" Component_="System.Management.dll_1"/>
     <ROW Feature_="MainFeature" Component_="System.Resources.Extensions.dll"/>
+    <ROW Feature_="MainFeature" Component_="MZWorkRedis.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="System.Numerics.Tensors.dll_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
@@ -5737,7 +5744,7 @@
     <ROW XmlAttribute="xsischemaLocation" XmlElement="swidsoftware_identification_tag" Name="xsi:schemaLocation" Flags="14" Order="3" Value="http://standards.iso.org/iso/19770/-2/2008/schema.xsd software_identification_tag.xsd"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.XmlElementComponent">
-    <ROW XmlElement="swidbuild" ParentElement="swidnumeric" Name="swid:build" Condition="1" Order="2" Flags="14" Text="138" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidbuild" ParentElement="swidnumeric" Name="swid:build" Condition="1" Order="2" Flags="14" Text="139" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidchannel_name" ParentElement="swidlicense_linkage" Name="swid:channel_name" Condition="1" Order="1" Flags="14" Text="Standard(Community Edition)" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidchannel_type" ParentElement="swidlicense_linkage" Name="swid:channel_type" Condition="1" Order="0" Flags="14" Text="Retail" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidcustomer_type" ParentElement="swidlicense_linkage" Name="swid:customer_type" Condition="1" Order="2" Flags="14" Text="Academic" UpdateIndexInParent="0"/>
@@ -5755,7 +5762,7 @@
     <ROW XmlElement="swidregid" ParentElement="swidsoftware_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2013-01.com.panomix" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_5" ParentElement="swidsoftware_licensor" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2019-11.org.mzkit" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_6" ParentElement="swidtag_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.1995-09.me.xieguigang,gg.xie@bionovogene.com" UpdateIndexInParent="0"/>
-    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="9688" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="9689" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidserial_number" ParentElement="swidsoftware_identification_tag" Name="swid:serial_number" Condition="1" Order="7" Flags="14" Text="[PIDKEY]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_creator" ParentElement="swidsoftware_identification_tag" Name="swid:software_creator" Condition="1" Order="3" Flags="14" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_id" ParentElement="swidsoftware_identification_tag" Name="swid:software_id" Condition="1" Order="5" Flags="14" UpdateIndexInParent="0"/>

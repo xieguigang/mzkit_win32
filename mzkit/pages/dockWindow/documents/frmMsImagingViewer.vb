@@ -85,6 +85,7 @@ Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
@@ -173,6 +174,7 @@ Public Class frmMsImagingViewer
 
         AddHandler RibbonEvents.ribbonItems.ButtonConnectMSIService.ExecuteEvent, Sub() Call ConnectToCloud()
         AddHandler RibbonEvents.ribbonItems.ShowTissueData.ExecuteEvent, Sub() Call ShowTissueData()
+        AddHandler RibbonEvents.ribbonItems.ButtonAutoUMAP.ExecuteEvent, Sub() Call RunUMAPTissueCluster()
 
         AddHandler RibbonEvents.ribbonItems.CheckShowMapLayer.ExecuteEvent,
             Sub()
@@ -199,9 +201,55 @@ Public Class frmMsImagingViewer
         sampleRegions.viewer = Me
     End Sub
 
+    Private Sub RunUMAPTissueCluster()
+        If Not checkService() Then
+            Return
+        End If
+
+        Dim matrix As String = exportAllSpotSamplePeaktable(noUI:=True)
+
+        If matrix.StringEmpty Then
+            Call Workbench.Warning("Export feature ions peaktable task error or user canceled.")
+            Return
+        End If
+
+        Dim umap3 As String = RscriptProgressTask.CreateUMAPCluster(matrix, 16)
+
+        If umap3.StringEmpty Then
+            MessageBox.Show("Sorry, run umap task error...", "UMAP error", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            Return
+        Else
+            ' show umap scatter 3d
+            umap3D = UMAPPoint.ParseCsvTable(umap3).ToArray
+
+            Call ShowTissueData()
+
+            ' ansalso convert to tissue region data
+            Dim colors As LoopArray(Of Color) = Designer.GetColors("Paper")
+            Dim groups = umap3D _
+                .GroupBy(Function(a) a.class) _
+                .Select(Function(group)
+                            Return New TissueRegion With {
+                                .color = ++colors,
+                                .label = group.Key,
+                                .points = group _
+                                    .Select(Function(u) u.Pixel) _
+                                    .ToArray
+                            }
+                        End Function) _
+                .ToArray
+
+            Call ImportsTissueMorphology(tissues:=groups)
+        End If
+    End Sub
+
     Dim umap3D As UMAPPoint()
 
     Public Sub ShowTissueData()
+        Call ShowTissueData(umap3D)
+    End Sub
+
+    Public Sub ShowTissueData(umap3D As UMAPPoint())
         Dim summary As New ShowTissueData
 
         If umap3D.IsNullOrEmpty Then
@@ -636,11 +684,16 @@ Public Class frmMsImagingViewer
                 .ToArray
         End If
 
+        sampleRegions.ShowMessage($"Tissue map {filepath.FileName} has been imported.")
+        sampleRegions.importsFile = filepath
+
+        Call ImportsTissueMorphology(tissues)
+    End Sub
+
+    Private Sub ImportsTissueMorphology(tissues As TissueRegion())
         sampleRegions.Clear()
         sampleRegions.LoadTissueMaps(tissues, PixelSelector1.MSICanvas)
         sampleRegions.RenderLayer(PixelSelector1.MSICanvas)
-        sampleRegions.ShowMessage($"Tissue map {filepath.FileName} has been imported.")
-        sampleRegions.importsFile = filepath
 
         RibbonEvents.ribbonItems.CheckShowMapLayer.BooleanValue = True
 
@@ -1427,10 +1480,32 @@ Public Class frmMsImagingViewer
         End If
     End Sub
 
+    Public Sub ExtractSampleRegion()
+        If Not checkService() Then
+            Return
+        Else
+            Call TaskProgress.RunAction(
+                Sub()
+                    Dim panic As Boolean = False
+                    Dim summaryLayer As PixelScanIntensity() = MSIservice.ExtractSampleRegion(panic)
+
+                    Invoke(Sub() rendering = registerSummaryRender(summaryLayer, panic))
+
+                    If Not rendering Is Nothing Then
+                        Call Invoke(rendering)
+                    End If
+                End Sub, "Load sample region", $"Extract the sample region data for tissue region operation...")
+        End If
+    End Sub
+
     Private Function registerSummaryRender(summary As IntensitySummary) As Action
         Dim panic As Boolean = False
         Dim summaryLayer As PixelScanIntensity() = MSIservice.LoadSummaryLayer(summary, panic)
 
+        Return registerSummaryRender(summaryLayer, panic)
+    End Function
+
+    Private Function registerSummaryRender(summaryLayer As PixelScanIntensity(), panic As Boolean) As Action
         If panic Then
             Return Nothing
         Else
@@ -1454,6 +1529,10 @@ Public Class frmMsImagingViewer
                        End Sub)
                End Sub
     End Function
+
+    Public Sub SetBlank()
+        Call ExtractSampleRegion()
+    End Sub
 
     Friend Sub renderRGB(r As Double, g As Double, b As Double)
         Dim selectedMz As Double() = {r, g, b}.Where(Function(mz) mz > 0).ToArray
@@ -1839,6 +1918,32 @@ Public Class frmMsImagingViewer
         End If
     End Sub
 
+    Private Function exportAllSpotSamplePeaktable(noUI As Boolean) As String
+        ' export all spots
+        Using file As New SaveFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
+            If file.ShowDialog = DialogResult.OK Then
+                Call InputDialog.Input(Of InputMSIPeakTableParameters)(
+                    Sub(cfg)
+                        Call RscriptProgressTask.CreateMSIPeakTable(
+                            mzpack:=FilePath,
+                            saveAs:=file.FileName,
+                            cfg.Mzdiff, cfg.IntoCutoff, cfg.TrIQCutoff,
+                            noUI
+                        )
+                    End Sub)
+
+                If file.FileName.FileExists(ZERO_Nonexists:=True) Then
+                    Return file.FileName
+                Else
+                    ' user cancel or task error
+                    Return Nothing
+                End If
+            Else
+                Return Nothing
+            End If
+        End Using
+    End Function
+
     Private Sub exportMSISampleTable()
         If Not checkService() Then
             Call Workbench.Warning("No MSI raw data is loaded!")
@@ -1847,19 +1952,7 @@ Public Class frmMsImagingViewer
 
         If sampleRegions.IsNullOrEmpty Then
             ' Call Workbench.Warning("No sample spot regions!")
-            ' export all spots
-            Using file As New SaveFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
-                If file.ShowDialog = DialogResult.OK Then
-                    Call InputDialog.Input(Of InputMSIPeakTableParameters)(
-                        Sub(cfg)
-                            Call RscriptProgressTask.CreateMSIPeakTable(
-                                mzpack:=FilePath,
-                                saveAs:=file.FileName,
-                                cfg.Mzdiff, cfg.IntoCutoff, cfg.TrIQCutoff
-                            )
-                        End Sub)
-                End If
-            End Using
+            Call exportAllSpotSamplePeaktable(noUI:=False)
         Else
             Using file As New SaveFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
                 If file.ShowDialog = DialogResult.OK Then

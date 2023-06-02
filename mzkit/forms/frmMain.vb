@@ -90,6 +90,7 @@ Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.BasicMDIForm.Container
 Imports RibbonLib
 Imports RibbonLib.Interop
 Imports TaskStream
@@ -180,6 +181,23 @@ Public Class frmMain : Implements AppHost
     End Sub
 
     Public Sub OpenFile(fileName As String, showDocument As Boolean)
+        If AppEnvironment.IsDevelopmentMode Then
+            Call OpenFile(fileName, showDocument)
+        Else
+            Try
+                Call OpenFile(fileName, showDocument)
+            Catch ex As Exception
+                MessageBox.Show($"MZKit can not handle the given input file '{fileName}' correctly. Probably you should check the file is corruptted or try to open this file in a specific MZKit application module?",
+                                "Open File Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning)
+
+                Call App.LogException(New Exception(fileName, ex))
+            End Try
+        End If
+    End Sub
+
+    Private Sub OpenFileInternal(fileName As String, showDocument As Boolean)
         If fileName.ExtensionSuffix("R") Then
             Call WindowModules.fileExplorer.AddScript(fileName.GetFullPath)
             Call openRscript(fileName)
@@ -320,6 +338,8 @@ Public Class frmMain : Implements AppHost
         _uiCollectionChangedEvent = New UICollectionChangedEvent()
     End Sub
 
+    Const GB As Long = 1024 * 1024 * 1024
+
     Friend Sub showMsImaging(imzML As String)
         WindowModules.viewer.Show(m_dockPanel)
         WindowModules.msImageParameters.Show(m_dockPanel)
@@ -340,7 +360,20 @@ Public Class frmMain : Implements AppHost
             Workbench.AppHost.SetTitle($"{WindowModules.viewer.Text} {imzML.FileName}")
         End If
 
-        WindowModules.viewer.RenderSummary(IntensitySummary.BasePeak)
+        If imzML.FileLength > 1.5 * GB Then
+            If MessageBox.Show("The raw data file size is too big, MZKit may takes a very long time to rendering, continute to display the default MS-imaging rendering?",
+                               "Display MS-Imaging",
+                               MessageBoxButtons.OKCancel,
+                               MessageBoxIcon.Exclamation) = DialogResult.OK Then
+
+                WindowModules.viewer.RenderSummary(IntensitySummary.BasePeak)
+            Else
+                WindowModules.viewer.SetBlank()
+            End If
+        Else
+            WindowModules.viewer.RenderSummary(IntensitySummary.BasePeak)
+        End If
+
         WindowModules.viewer.DockState = DockState.Document
         WindowModules.msImageParameters.DockState = DockState.DockLeft
     End Sub

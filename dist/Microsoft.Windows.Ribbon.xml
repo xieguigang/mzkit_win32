@@ -4,6 +4,66 @@
         <name>Microsoft.Windows.Ribbon</name>
     </assembly>
     <members>
+        <member name="T:RibbonLib.AbstractPropertySet">
+            <summary>
+            Helper abstract class that wraps a gallery item or command IUISimplePropertySet.
+            This abstract class is a constrain for UICollection of T
+            </summary>
+        </member>
+        <member name="M:RibbonLib.AbstractPropertySet.GetValueImpl(RibbonLib.Interop.PropertyKey@,RibbonLib.Interop.PropVariant@)">
+            <summary>
+            Retrieves the stored value of a given property
+            </summary>
+            <param name="key">The Property Key of interest.</param>
+            <param name="value">When this method returns, contains a pointer to the value for key.</param>
+            <returns></returns>
+        </member>
+        <member name="M:RibbonLib.AbstractPropertySet.GetValue(RibbonLib.Interop.PropertyKey@,RibbonLib.Interop.PropVariant@)">
+            <summary>
+            Retrieves the stored value of a given property
+            </summary>
+            <param name="key">The Property Key of interest.</param>
+            <param name="value">When this method returns, contains a pointer to the value for key.</param>
+            <returns></returns>
+        </member>
+        <member name="T:RibbonLib.Controls.Events.ColorPickerEventArgs">
+            <summary>
+            The EventArgs for RibbonDropDownColorPicker
+            </summary>
+        </member>
+        <member name="M:RibbonLib.Controls.Events.ColorPickerEventArgs.#ctor(RibbonLib.Interop.SwatchColorType,System.Nullable{System.Drawing.Color})">
+            <summary>
+            Ctor
+            </summary>
+            <param name="colorType"></param>
+            <param name="color"></param>
+        </member>
+        <member name="P:RibbonLib.Controls.Events.ColorPickerEventArgs.ColorType">
+            <summary>
+            The selected Item index
+            </summary>
+        </member>
+        <member name="P:RibbonLib.Controls.Events.ColorPickerEventArgs.RGBColor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RibbonLib.Controls.Events.ColorPickerEventArgs.Create(RibbonLib.Controls.Events.ExecuteEventArgs)">
+            <summary>
+            Creates a ColorPickerEventArgs from ExecuteEventArgs of a RibbonDropDownColorPicker event
+            </summary>
+            <param name="e">Parameters from event: ExecuteEventArgs</param>
+            <returns></returns>
+        </member>
+        <member name="M:RibbonLib.Controls.Events.ColorPickerEventArgs.Create(RibbonLib.Interop.PropertyKey@,RibbonLib.Interop.PropVariant@,RibbonLib.Interop.IUISimplePropertySet)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="currentValue"></param>
+            <param name="commandExecutionProperties"></param>
+            <returns></returns>
+        </member>
         <member name="T:RibbonLib.Controls.Events.ExecuteEventArgs">
             <summary>
             Definition for execute events arguments
@@ -31,6 +91,139 @@
             <summary>
             Get the Command Execution Properties
             </summary>
+        </member>
+        <member name="T:RibbonLib.Controls.Events.FontControlEventArgs">
+            <summary>
+            The EventArgs for RibbonFontControl
+            </summary>
+        </member>
+        <member name="M:RibbonLib.Controls.Events.FontControlEventArgs.#ctor(RibbonLib.FontPropertyStore,System.Collections.Generic.Dictionary{RibbonLib.Controls.Events.FontPropertiesEnum,System.Object})">
+            <summary>
+            Ctor
+            </summary>
+            <param name="currentFontStore"></param>
+            <param name="changedValues"></param>
+        </member>
+        <member name="P:RibbonLib.Controls.Events.FontControlEventArgs.CurrentFontStore">
+            <summary>
+            Current Font Properties Store
+            </summary>
+        </member>
+        <member name="P:RibbonLib.Controls.Events.FontControlEventArgs.ChangedFontValues">
+            <summary>
+            The changed values, can be null
+            Key is an enum for the Font control properties defined at the end of this class
+            like Family, Size, ...
+            </summary>
+        </member>
+        <member name="M:RibbonLib.Controls.Events.FontControlEventArgs.Create(RibbonLib.Controls.Events.ExecuteEventArgs)">
+            <summary>
+            Creates a FontControlEventArgs from ExecuteEventArgs of a RibbonFontControl event
+            </summary>
+            <param name="e">Parameters from event: ExecuteEventArgs</param>
+            <returns></returns>
+        </member>
+        <member name="M:RibbonLib.Controls.Events.FontControlEventArgs.Create(RibbonLib.Interop.PropertyKey@,RibbonLib.Interop.PropVariant@,RibbonLib.Interop.IUISimplePropertySet)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="currentValue"></param>
+            <param name="commandExecutionProperties"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RibbonLib.Controls.Events.GalleryItemEventArgs">
+            <summary>
+            The EventArgs for GalleryItem
+            </summary>
+        </member>
+        <member name="M:RibbonLib.Controls.Events.GalleryItemEventArgs.#ctor(RibbonLib.SelectedItem{RibbonLib.GalleryItemPropertySet})">
+            <summary>
+            Ctor
+            </summary>
+            <param name="selected"></param>
+        </member>
+        <member name="P:RibbonLib.Controls.Events.GalleryItemEventArgs.SelectedItem">
+            <summary>
+            The selected Item index
+            </summary>
+        </member>
+        <member name="M:RibbonLib.Controls.Events.GalleryItemEventArgs.Create(RibbonLib.Controls.Events.ExecuteEventArgs)">
+            <summary>
+            Creates a GalleryItemEventArgs from ExecuteEventArgs of a Ribbon Gallery Control (RibbonComboBox, ...) event
+            </summary>
+            <param name="e">Parameters from event: ExecuteEventArgs</param>
+            <returns></returns>
+        </member>
+        <member name="M:RibbonLib.Controls.Events.GalleryItemEventArgs.Create(RibbonLib.Interop.PropertyKey@,RibbonLib.Interop.PropVariant@,RibbonLib.Interop.IUISimplePropertySet)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="currentValue"></param>
+            <param name="commandExecutionProperties"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RibbonLib.Controls.Events.GalleryItemEventArgs.GetGalleryItemProperty(RibbonLib.Interop.IUISimplePropertySet)">
+            <summary>
+            returns a GalleryItemPropertySet from IUISimplePropertySet
+            </summary>
+            <param name="commandExecutionProperties"></param>
+            <returns>GalleryItemPropertySet</returns>
+        </member>
+        <member name="T:RibbonLib.Controls.Events.RecentItemsEventArgs">
+            <summary>
+            The EventArgs for RecentItems
+            </summary>
+        </member>
+        <member name="M:RibbonLib.Controls.Events.RecentItemsEventArgs.#ctor(RibbonLib.SelectedItem{RibbonLib.RecentItemsPropertySet},System.Collections.Generic.IList{RibbonLib.RecentItemsPropertySet},System.Collections.Generic.IList{RibbonLib.RecentItemsPropertySet})">
+            <summary>
+            Ctor
+            </summary>
+            <param name="selected"></param>
+            <param name="propertySets"></param>
+            <param name="oldPropertySets"></param>
+        </member>
+        <member name="P:RibbonLib.Controls.Events.RecentItemsEventArgs.SelectedItem">
+            <summary>
+            SelectedRecentItem, can be null
+            </summary>
+        </member>
+        <member name="P:RibbonLib.Controls.Events.RecentItemsEventArgs.RecentItems">
+            <summary>
+            Current RecentItemsPropertySets, can be null
+            </summary>
+        </member>
+        <member name="P:RibbonLib.Controls.Events.RecentItemsEventArgs.OldRecentItems">
+            <summary>
+            Old RecentItemsPropertySets, can be null
+            </summary>
+        </member>
+        <member name="M:RibbonLib.Controls.Events.RecentItemsEventArgs.Create(System.Object,RibbonLib.Controls.Events.ExecuteEventArgs)">
+            <summary>
+            Creates a RecentItemsEventArgs from ExecuteEventArgs of a RibbonRecentItems event
+            </summary>
+            <param name="sender">Parameters from event: sender = RibbonControl</param>
+            <param name="e">Parameters from event: ExecuteEventArgs</param>
+            <returns></returns>
+        </member>
+        <member name="M:RibbonLib.Controls.Events.RecentItemsEventArgs.Create(System.Object,RibbonLib.Interop.PropertyKey@,RibbonLib.Interop.PropVariant@,RibbonLib.Interop.IUISimplePropertySet)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="key"></param>
+            <param name="currentValue"></param>
+            <param name="commandExecutionProperties"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RibbonLib.Controls.Events.RecentItemsEventArgs.GetRecentItemProperties(RibbonLib.Interop.IUISimplePropertySet,System.Int32)">
+            <summary>
+            returns a RecentItemsPropertySet from IUISimplePropertySet
+            </summary>
+            <param name="commandExecutionProperties"></param>
+            <param name="index">RibbonRecentItems.RecentItems index</param>
+            <returns>RecentItemsPropertySet</returns>
         </member>
         <member name="T:RibbonLib.Controls.Events.BaseEventsProvider">
             <summary>
@@ -122,7 +315,7 @@
             <summary>
             Initializes a new instance of the ExecuteEventsProvider
             </summary>
-            <param name="sender"></param>
+            <param name="sender">Is a RibbonControl like RibbonButton</param>
         </member>
         <member name="M:RibbonLib.Controls.Events.ExecuteEventsProvider.Execute(RibbonLib.Interop.ExecutionVerb,RibbonLib.Interop.PropertyKeyRef,RibbonLib.Interop.PropVariantRef,RibbonLib.Interop.IUISimplePropertySet)">
             <summary>
@@ -159,6 +352,21 @@
             <param name="commandExecutionProperties">additional data for this execution</param>
             <returns>Returns S_OK if successful, or an error value otherwise</returns>
         </member>
+        <member name="T:RibbonLib.Controls.Properties.IGallery2PropertiesProvider">
+            <summary>
+            Definition for gallery properties provider interface for Command
+            </summary>
+        </member>
+        <member name="P:RibbonLib.Controls.Properties.IGallery2PropertiesProvider.GalleryCommandItemsSource">
+            <summary>
+            Items source property for Command
+            </summary>
+        </member>
+        <member name="P:RibbonLib.Controls.Properties.GalleryCommandProperties.GalleryCommandItemsSource">
+            <summary>
+            Items source property for Command
+            </summary>
+        </member>
         <member name="T:RibbonLib.Controls.Properties.IRecentItemsPropertiesProvider">
             <summary>
             Definition for recent items properties provider interface
@@ -167,6 +375,11 @@
         <member name="P:RibbonLib.Controls.Properties.IRecentItemsPropertiesProvider.RecentItems">
             <summary>
             Recent items property
+            </summary>
+        </member>
+        <member name="P:RibbonLib.Controls.Properties.IRecentItemsPropertiesProvider.MaxCount">
+            <summary>
+            Maximal count of RecentItems
             </summary>
         </member>
         <member name="T:RibbonLib.Controls.Properties.RecentItemsPropertiesProvider">
@@ -193,6 +406,11 @@
         <member name="P:RibbonLib.Controls.Properties.RecentItemsPropertiesProvider.RecentItems">
             <summary>
             Recent items property
+            </summary>
+        </member>
+        <member name="P:RibbonLib.Controls.Properties.RecentItemsPropertiesProvider.MaxCount">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:RibbonLib.Controls.Properties.BasePropertiesProvider">
@@ -618,6 +836,16 @@
             Definition for gallery properties provider interface
             </summary>
         </member>
+        <member name="P:RibbonLib.Controls.Properties.IGalleryPropertiesProvider.GalleryCategories">
+            <summary>
+            Categories property, Managed version
+            </summary>
+        </member>
+        <member name="P:RibbonLib.Controls.Properties.IGalleryPropertiesProvider.GalleryItemItemsSource">
+            <summary>
+            Items source property
+            </summary>
+        </member>
         <member name="P:RibbonLib.Controls.Properties.IGalleryPropertiesProvider.Categories">
             <summary>
             Categories property
@@ -664,6 +892,16 @@
             <param name="currentValue">A pointer to the current value for key. This parameter can be null</param>
             <param name="newValue">When this method returns, contains a pointer to the new value for key</param>
             <returns>Returns S_OK if successful, or an error value otherwise</returns>
+        </member>
+        <member name="P:RibbonLib.Controls.Properties.GalleryPropertiesProvider.GalleryCategories">
+            <summary>
+            Categories property
+            </summary>
+        </member>
+        <member name="P:RibbonLib.Controls.Properties.GalleryPropertiesProvider.GalleryItemItemsSource">
+            <summary>
+            Items source property for Item
+            </summary>
         </member>
         <member name="P:RibbonLib.Controls.Properties.GalleryPropertiesProvider.Categories">
             <summary>
@@ -1469,6 +1707,11 @@
             and Superscript buttons are selected, if any.
             </summary>
         </member>
+        <member name="P:RibbonLib.Controls.RibbonFontControl.FontStyle">
+            <summary>
+            System.Drawing.FontStyle. A combination of some properties
+            </summary>
+        </member>
         <member name="P:RibbonLib.Controls.RibbonFontControl.Enabled">
             <summary>
             Get or set the Enabled state.
@@ -1780,6 +2023,11 @@
             Items source property
             </summary>
         </member>
+        <member name="P:RibbonLib.Controls.RibbonQuickAccessToolbar.QatItemsSource">
+            <summary>
+            Managed Items source property
+            </summary>
+        </member>
         <member name="E:RibbonLib.Controls.RibbonQuickAccessToolbar.ExecuteEvent">
             <summary>
             The customizeButton Click event
@@ -1800,6 +2048,13 @@
         <member name="P:RibbonLib.Controls.RibbonRecentItems.RecentItems">
             <summary>
             This property contains the list of the recent items.
+            </summary>
+        </member>
+        <member name="P:RibbonLib.Controls.RibbonRecentItems.MaxCount">
+            <summary>
+            This property contains the maximum count of recent items.
+            This is configured in the RibbonMarkup file
+            The value is available after first showing the file menu
             </summary>
         </member>
         <member name="P:RibbonLib.Controls.RibbonRecentItems.Keytip">
@@ -1988,6 +2243,26 @@
             <param name="ribbon">Parent Ribbon control</param>
             <param name="commandId">Command id attached to this control</param>
         </member>
+        <member name="P:RibbonLib.Controls.RibbonDropDownGallery.GalleryCategories">
+            <summary>
+            The list of categories. 
+            Also exposed as an UICollection of GalleryItemPropertySet elements
+            </summary>
+        </member>
+        <member name="P:RibbonLib.Controls.RibbonDropDownGallery.GalleryItemItemsSource">
+            <summary>
+            The list of DropDownGallery items.
+            It is exposed as an UICollection where every element
+            in the collection is of type: GalleryItemPropertySet
+            </summary>
+        </member>
+        <member name="P:RibbonLib.Controls.RibbonDropDownGallery.GalleryCommandItemsSource">
+            <summary>
+            The list of DropDownGallery items.
+            It is exposed as an UICollection where every element
+            in the collection is of type: GalleryCommandPropertySet
+            </summary>
+        </member>
         <member name="P:RibbonLib.Controls.RibbonDropDownGallery.Categories">
             <summary>
             The list of categories. 
@@ -2166,6 +2441,26 @@
             <param name="ribbon">Parent Ribbon control</param>
             <param name="commandId">Command id attached to this control</param>
         </member>
+        <member name="P:RibbonLib.Controls.RibbonInRibbonGallery.GalleryCategories">
+            <summary>
+            The list of categories. 
+            Also exposed as an UICollection of GalleryItemPropertySet elements
+            </summary>
+        </member>
+        <member name="P:RibbonLib.Controls.RibbonInRibbonGallery.GalleryItemItemsSource">
+            <summary>
+            The list of InRibbonGallery items.
+            It is exposed as an UICollection where every element
+            in the collection is of type: GalleryItemPropertySet
+            </summary>
+        </member>
+        <member name="P:RibbonLib.Controls.RibbonInRibbonGallery.GalleryCommandItemsSource">
+            <summary>
+            The list of InRibbonGallery items.
+            It is exposed as an UICollection where every element
+            in the collection is of type: GalleryCommandPropertySet
+            </summary>
+        </member>
         <member name="P:RibbonLib.Controls.RibbonInRibbonGallery.Categories">
             <summary>
             The list of categories. 
@@ -2286,6 +2581,26 @@
         <member name="P:RibbonLib.Controls.RibbonSplitButtonGallery.BooleanValue">
             <summary>
             Get or set the Checked state.
+            </summary>
+        </member>
+        <member name="P:RibbonLib.Controls.RibbonSplitButtonGallery.GalleryCategories">
+            <summary>
+            The list of categories. 
+            Also exposed as an UICollection of GalleryItemPropertySet elements
+            </summary>
+        </member>
+        <member name="P:RibbonLib.Controls.RibbonSplitButtonGallery.GalleryItemItemsSource">
+            <summary>
+            The list of SplitButtonGallery items.
+            It is exposed as an UICollection where every element
+            in the collection is of type: GalleryItemPropertySet
+            </summary>
+        </member>
+        <member name="P:RibbonLib.Controls.RibbonSplitButtonGallery.GalleryCommandItemsSource">
+            <summary>
+            The list of SplitButtonGallery items.
+            It is exposed as an UICollection where every element
+            in the collection is of type: GalleryCommandPropertySet
             </summary>
         </member>
         <member name="P:RibbonLib.Controls.RibbonSplitButtonGallery.Categories">
@@ -2441,6 +2756,19 @@
             </summary>
             <param name="ribbon">Parent Ribbon control</param>
             <param name="commandId">Command id attached to this control</param>
+        </member>
+        <member name="P:RibbonLib.Controls.RibbonComboBox.GalleryCategories">
+            <summary>
+            The list of categories. 
+            Also exposed as an UICollection of GalleryItemPropertySet elements
+            </summary>
+        </member>
+        <member name="P:RibbonLib.Controls.RibbonComboBox.GalleryItemItemsSource">
+            <summary>
+            The list of ComboBox items.
+            It is exposed as an UICollection where every element
+            in the collection is of type: GalleryItemPropertySet
+            </summary>
         </member>
         <member name="P:RibbonLib.Controls.RibbonComboBox.Categories">
             <summary>
@@ -2682,36 +3010,137 @@
             Helper struct for Hue, Saturation, Luminance
             </summary>
         </member>
-        <member name="T:RibbonLib.HSB">
-            <summary>
-            Helper struct for Hue, Saturation, Brightness
-            </summary>
-        </member>
         <member name="T:RibbonLib.ColorHelper">
             <summary>
             Class for color conversions
             </summary>
         </member>
-        <member name="M:RibbonLib.ColorHelper.RGBToUInt32(System.Drawing.Color)">
+        <member name="P:RibbonLib.ColorHelper.UserColorToHSB">
             <summary>
-            Convert RGB Color to Ribbon Color format
+            User defined function to convert from Color to HSB
+            </summary>
+        </member>
+        <member name="P:RibbonLib.ColorHelper.UserHSBtoColor">
+            <summary>
+            User defined function to convert from HSB to Color
+            </summary>
+        </member>
+        <member name="M:RibbonLib.ColorHelper.ColorToHSB(System.Drawing.Color)">
+            <summary>
+            Convert RGB Color to Ribbon HSB Color format
             </summary>
             <param name="color">RGB Color</param>
             <returns>Ribbon Color format</returns>
         </member>
-        <member name="M:RibbonLib.ColorHelper.UInt32ToRGB(System.UInt32)">
+        <member name="M:RibbonLib.ColorHelper.HSBtoColor(System.UInt32)">
             <summary>
-            Convert Ribbon Color format to RGB Color
+            Convert Ribbon HSB Color format to RGB Color
             </summary>
             <param name="value">Ribbon Color format</param>
             <returns>RGB Color</returns>
         </member>
-        <member name="M:RibbonLib.ColorHelper.HSBToHSL(RibbonLib.HSB)">
+        <member name="M:RibbonLib.ColorHelper.MSDocLike.ColorToHSB(System.Drawing.Color)">
+            <summary>
+            Convert RGB Color to Ribbon HSB Color format
+            </summary>
+            <param name="color">RGB Color</param>
+            <returns>Ribbon Color format</returns>
+        </member>
+        <member name="M:RibbonLib.ColorHelper.MSDocLike.HSBtoColor(RibbonLib.UI_HSBCOLOR)">
+            <summary>
+            Convert Ribbon HSB Color format to RGB Color
+            </summary>
+            <param name="hsb">Ribbon Color format</param>
+            <returns>RGB Color</returns>
+        </member>
+        <member name="M:RibbonLib.ColorHelper.MSDocLike.HSBToHSL(RibbonLib.UI_HSBCOLOR)">
             <summary>
             HSB to HSL conversion. All values of HSL in Range [0..1]
             </summary>
             <param name="hsb"></param>
             <returns></returns>
+        </member>
+        <member name="M:RibbonLib.ColorHelper.Arik.ColorToHSB(System.Drawing.Color)">
+            <summary>
+            Convert RGB Color to Ribbon HSB Color format
+            </summary>
+            <param name="color">RGB Color</param>
+            <returns>Ribbon Color format</returns>
+        </member>
+        <member name="M:RibbonLib.ColorHelper.Arik.HSBtoColor(RibbonLib.UI_HSBCOLOR)">
+            <summary>
+            Convert Ribbon HSB Color format to RGB Color
+            </summary>
+            <param name="hsb">Ribbon Color format</param>
+            <returns>RGB Color</returns>
+        </member>
+        <member name="M:RibbonLib.ColorHelper.Arik.HSBToHSL(RibbonLib.UI_HSBCOLOR)">
+            <summary>
+            HSB to HSL conversion. All values of HSL in Range [0..1]
+            </summary>
+            <param name="hsb"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RibbonLib.ColorHelper.JavaAwt.HSBtoColor(RibbonLib.UI_HSBCOLOR)">
+            <summary>
+            Main function
+            </summary>
+            <param name="hsb"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RibbonLib.ColorHelper.JavaAwt.HSBtoRGB(System.Single,System.Single,System.Single)">
+            <summary>
+            Converts the components of a color, as specified by the HSB
+            model, to an equivalent set of values for the default RGB model.
+            
+            The {@code saturation} and {@code brightness} components
+            should be floating-point values between zero and one
+            (numbers in the range 0.0-1.0).  The {@code hue} component
+            can be any floating-point number.  The floor of this number is
+            subtracted from it to create a fraction between 0 and 1.  This
+            fractional number is then multiplied by 360 to produce the hue
+            angle in the HSB color model.
+            
+            The integer that is returned by {@code HSBtoRGB} encodes the
+            value of a color in bits 0-23 of an integer value that is the same
+            format used by the method {@link #getRGB() getRGB}.
+            This integer can be supplied as an argument to the
+            {@code Color} constructor that takes a single integer argument.
+            </summary>
+            <param name="hue">the hue component of the color</param>
+            <param name="saturation">the saturation of the color</param>
+            <param name="brightness">the brightness of the color</param>
+            <returns>the RGB value of the color with the indicated hue,
+            saturation, and brightness.</returns>
+            <remarks>From java.awt.Color</remarks>
+        </member>
+        <member name="M:RibbonLib.ColorHelper.JavaAwt.ColorToHSB(System.Drawing.Color)">
+            <summary>
+            Main function
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RibbonLib.ColorHelper.JavaAwt.RGBtoHSB(System.Int32,System.Int32,System.Int32,System.Single[])">
+            <summary>
+            Converts the components of a color, as specified by the default RGB
+            model, to an equivalent set of values for hue, saturation, and
+            brightness that are the three components of the HSB model.
+            
+            If the {@code hsbvals} argument is {@code null}, then a
+            new array is allocated to return the result. Otherwise, the method
+            returns the array {@code hsbvals}, with the values put into
+            that array.
+            </summary>
+            <param name="r">the red component of the color</param>
+            <param name="g">the green component of the color</param>
+            <param name="b">the blue component of the color</param>
+            <param name="hsbvals">the array used to return the
+                          three HSB values, or {@code null}</param>
+            <returns>an array of three elements containing the hue, saturation,
+            and brightness (in that order), of the color with
+            the indicated red, green, and blue components.</returns>
+            <remarks>From java.awt.Color</remarks>
         </member>
         <member name="T:RibbonLib.EventLogger">
             <summary>
@@ -2873,6 +3302,11 @@
             Helper class that wraps a gallery command simple property set.
             </summary>
         </member>
+        <member name="P:RibbonLib.GalleryCommandPropertySet.RibbonCtrl">
+            <summary>
+            The Ribbon Control like RibbonButton, ... which belongs to the CommandID
+            </summary>
+        </member>
         <member name="P:RibbonLib.GalleryCommandPropertySet.CommandID">
             <summary>
             Get or set the Command ID
@@ -2888,7 +3322,13 @@
             Get or set the Category ID
             </summary>
         </member>
-        <member name="M:RibbonLib.GalleryCommandPropertySet.GetValue(RibbonLib.Interop.PropertyKey@,RibbonLib.Interop.PropVariant@)">
+        <member name="P:RibbonLib.GalleryCommandPropertySet.Tag">
+            <summary>
+            Gets or sets the object that contains to this PropertySet
+            Additional object for the user
+            </summary>
+        </member>
+        <member name="M:RibbonLib.GalleryCommandPropertySet.GetValueImpl(RibbonLib.Interop.PropertyKey@,RibbonLib.Interop.PropVariant@)">
             <summary>
             Retrieves the stored value of a given property
             </summary>
@@ -2916,13 +3356,44 @@
             Get or set the Item Image
             </summary>
         </member>
-        <member name="M:RibbonLib.GalleryItemPropertySet.GetValue(RibbonLib.Interop.PropertyKey@,RibbonLib.Interop.PropVariant@)">
+        <member name="P:RibbonLib.GalleryItemPropertySet.Tag">
+            <summary>
+            Gets or sets the object that contains to this PropertySet
+            Additional object for the user
+            </summary>
+        </member>
+        <member name="M:RibbonLib.GalleryItemPropertySet.GetValueImpl(RibbonLib.Interop.PropertyKey@,RibbonLib.Interop.PropVariant@)">
             <summary>
             Retrieves the stored value of a given property
             </summary>
             <param name="key">The Property Key of interest.</param>
             <param name="value">When this method returns, contains a pointer to the value for key.</param>
             <returns></returns>
+        </member>
+        <member name="F:RibbonLib.Interop.HRESULT.E_FAIL">
+            <summary>The operation could not be completed.</summary>
+            <remarks>
+            <para><see href="https://docs.microsoft.com/windows/win32/api//mbnapi/nf-mbnapi-imbnpinevents-onunblockcomplete">Learn more about this API from docs.microsoft.com</see>.</para>
+            </remarks>
+        </member>
+        <member name="F:RibbonLib.Interop.HRESULT.E_INVALIDARG">
+            <summary>Documentation varies per use. Refer to each: <see href="https://docs.microsoft.com/windows/win32/api//mbnapi/nf-mbnapi-imbnconnectioncontextevents-onsetprovisionedcontextcomplete">IMbnConnectionContextEvents.OnSetProvisionedContextComplete</see>, <see href="https://docs.microsoft.com/windows/win32/api//mbnapi/nf-mbnapi-imbnsmsevents-onsmssendcomplete">IMbnSmsEvents.OnSmsSendComplete</see>, <see href="https://docs.microsoft.com/windows/win32/api//mbnapi/nf-mbnapi-imbnserviceactivationevents-onactivationcomplete">IMbnServiceActivationEvents.OnActivationComplete</see>.</summary>
+        </member>
+        <member name="F:RibbonLib.Interop.HRESULT.S_OK">
+            <summary>Documentation varies per use. Refer to each: <see href="https://docs.microsoft.com/windows/win32/api//mbnapi/nf-mbnapi-imbnpinmanagerevents-ongetpinstatecomplete">IMbnPinManagerEvents.OnGetPinStateComplete</see>, <see href="https://docs.microsoft.com/windows/win32/api//mbnapi/nf-mbnapi-imbnconnectionevents-onconnectcomplete">IMbnConnectionEvents.OnConnectComplete</see>, <see href="https://docs.microsoft.com/windows/win32/api//mbnapi/nf-mbnapi-imbnpinevents-onunblockcomplete">IMbnPinEvents.OnUnblockComplete</see>, <see href="https://docs.microsoft.com/windows/win32/api//mbnapi/nf-mbnapi-imbnpinevents-onchangecomplete">IMbnPinEvents.OnChangeComplete</see>, <see href="https://docs.microsoft.com/windows/win32/api//mbnapi/nf-mbnapi-imbnconnectioncontextevents-onsetprovisionedcontextcomplete">IMbnConnectionContextEvents.OnSetProvisionedContextComplete</see>, <see href="https://docs.microsoft.com/windows/win32/api//mbnapi/nf-mbnapi-imbnsmsevents-onsetsmsconfigurationcomplete">IMbnSmsEvents.OnSetSmsConfigurationComplete</see>, <see href="https://docs.microsoft.com/windows/win32/api//mbnapi/nf-mbnapi-imbnpinevents-ondisablecomplete">IMbnPinEvents.OnDisableComplete</see>, <see href="https://docs.microsoft.com/windows/win32/api//mbnapi/nf-mbnapi-imbnpinevents-onentercomplete">IMbnPinEvents.OnEnterComplete</see>, <see href="https://docs.microsoft.com/windows/win32/api//mbnapi/nf-mbnapi-imbnradioevents-onsetsoftwareradiostatecomplete">IMbnRadioEvents.OnSetSoftwareRadioStateComplete</see>, <see href="https://docs.microsoft.com/windows/win32/api//mbnapi/nf-mbnapi-imbnsmsevents-onsmssendcomplete">IMbnSmsEvents.OnSmsSendComplete</see>, <see href="https://docs.microsoft.com/windows/win32/api//mbnapi/nf-mbnapi-imbnsmsevents-onsmsreadcomplete">IMbnSmsEvents.OnSmsReadComplete</see>, <see href="https://docs.microsoft.com/windows/win32/api//mbnapi/nf-mbnapi-imbnsmsevents-onsmsdeletecomplete">IMbnSmsEvents.OnSmsDeleteComplete</see>, <see href="https://docs.microsoft.com/windows/win32/api//mbnapi/nf-mbnapi-imbnserviceactivationevents-onactivationcomplete">IMbnServiceActivationEvents.OnActivationComplete</see>, <see href="https://docs.microsoft.com/windows/win32/api//mbnapi/nf-mbnapi-imbnpinevents-onenablecomplete">IMbnPinEvents.OnEnableComplete</see>.</summary>
+        </member>
+        <member name="M:RibbonLib.Interop.PInvoke.FreeLibrary(System.IntPtr)">
+            <summary>Frees the loaded dynamic-link library (DLL) module and, if necessary, decrements its reference count.</summary>
+            <param name="hLibModule">
+            <para>A handle to the loaded library module. The <a href="https://docs.microsoft.com/windows/desktop/api/libloaderapi/nf-libloaderapi-loadlibrarya">LoadLibrary</a>, <a href="https://docs.microsoft.com/windows/desktop/api/libloaderapi/nf-libloaderapi-loadlibraryexa">LoadLibraryEx</a>, <a href="https://docs.microsoft.com/windows/desktop/api/libloaderapi/nf-libloaderapi-getmodulehandlea">GetModuleHandle</a>, or <a href="https://docs.microsoft.com/windows/desktop/api/libloaderapi/nf-libloaderapi-getmodulehandleexa">GetModuleHandleEx</a> function returns this handle.</para>
+            <para><see href="https://docs.microsoft.com/windows/win32/api//libloaderapi/nf-libloaderapi-freelibrary#parameters">Read more on docs.microsoft.com</see>.</para>
+            </param>
+            <returns>
+            <para>If the function succeeds, the return value is nonzero. If the function fails, the return value is zero. To get extended error information, call the <a href="/windows/desktop/api/errhandlingapi/nf-errhandlingapi-getlasterror">GetLastError</a> function.</para>
+            </returns>
+            <remarks>
+            <para><see href="https://docs.microsoft.com/windows/win32/api//libloaderapi/nf-libloaderapi-freelibrary">Learn more about this API from docs.microsoft.com</see>.</para>
+            </remarks>
         </member>
         <member name="T:RibbonLib.Interop.PropertyKey">
             <summary>
@@ -3051,6 +3522,21 @@
             <remarks>
             You must call Clear to avoid memory leaks.
             </remarks>
+        </member>
+        <member name="M:RibbonLib.Interop.PropVariant.Clear(RibbonLib.Interop.PropVariant@)">
+            <summary>
+            Called to clear the PropVariant's referenced and local memory.
+            </summary>
+            <remarks>
+            You must call Clear to avoid memory leaks.
+            </remarks>
+            <param name="var">The PropVariant.</param>
+        </member>
+        <member name="M:RibbonLib.Interop.PropVariant.PropVariantInit(RibbonLib.Interop.PropVariant@)">
+            <summary>
+            Set all values to zero.
+            </summary>
+            <param name="var">The PropVariant.</param>
         </member>
         <member name="M:RibbonLib.Interop.PropVariant.Clone">
             <summary>
@@ -3264,6 +3750,30 @@
             Marshals an unmanaged SafeArray to a managed Array object.
             </summary>
         </member>
+        <member name="M:RibbonLib.Interop.PropVariant.InitPropVariantFromBoolean(System.Boolean,RibbonLib.Interop.PropVariant@)">
+            <summary>
+            
+            </summary>
+            <param name="fVal"></param>
+            <param name="ppropvar"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RibbonLib.Interop.PropVariant.InitPropVariantFromUInt32(System.UInt32,RibbonLib.Interop.PropVariant@)">
+            <summary>
+            
+            </summary>
+            <param name="ulVal"></param>
+            <param name="ppropvar"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RibbonLib.Interop.PropVariant.InitPropVariantFromString(System.String,RibbonLib.Interop.PropVariant@)">
+            <summary>
+            
+            </summary>
+            <param name="psz"></param>
+            <param name="ppropvar"></param>
+            <returns></returns>
+        </member>
         <member name="T:RibbonLib.Interop.PropVariantRef">
             <summary>
             represent the struct PropVariant as a reference-type
@@ -3370,11 +3880,6 @@
             <param name="buffer"></param>
             <param name="bufferSize"></param>
             <param name="bytesWrittenPtr"></param>
-        </member>
-        <member name="T:RibbonLib.Interop.HRESULT">
-            <summary>
-            HRESULT Wrapper
-            </summary>
         </member>
         <member name="T:RibbonLib.Interop.RibbonIIDGuid">
             <summary>
@@ -4224,6 +4729,29 @@
             <returns>Name of the PropertyKey</returns>
             <remarks>This function is used for debugging.</remarks>
         </member>
+        <member name="T:RibbonLib.QatCommandPropertySet">
+            <summary>
+            Helper class that wraps a qat command IUISimplePropertySet.
+            </summary>
+        </member>
+        <member name="P:RibbonLib.QatCommandPropertySet.RibbonCtrl">
+            <summary>
+            The Ribbon Control like RibbonButton, ... which belongs to the CommandID
+            </summary>
+        </member>
+        <member name="P:RibbonLib.QatCommandPropertySet.CommandID">
+            <summary>
+            Get or set the Command ID
+            </summary>
+        </member>
+        <member name="M:RibbonLib.QatCommandPropertySet.GetValueImpl(RibbonLib.Interop.PropertyKey@,RibbonLib.Interop.PropVariant@)">
+            <summary>
+            Retrieves the stored value of a given property
+            </summary>
+            <param name="key">The Property Key of interest.</param>
+            <param name="value">When this method returns, contains a pointer to the value for key.</param>
+            <returns></returns>
+        </member>
         <member name="T:RibbonLib.RecentItemsPropertySet">
             <summary>
             Helper class that wraps a recent items simple property set.
@@ -4244,12 +4772,24 @@
             The pinned status
             </summary>
         </member>
+        <member name="P:RibbonLib.RecentItemsPropertySet.Tag">
+            <summary>
+            Gets or sets the object that contains to this PropertySet
+            Additional object for the user
+            </summary>
+        </member>
         <member name="M:RibbonLib.RecentItemsPropertySet.GetValue(RibbonLib.Interop.PropertyKey@,RibbonLib.Interop.PropVariant@)">
             <summary>
             Retrieves the stored value of a given property
             </summary>
             <param name="key">The Property Key of interest.</param>
             <param name="value">When this method returns, contains a pointer to the value for key.</param>
+            <returns></returns>
+        </member>
+        <member name="M:RibbonLib.RecentItemsPropertySet.Clone">
+            <summary>
+            Clone
+            </summary>
             <returns></returns>
         </member>
         <member name="T:RibbonLib.RibbonColors">
@@ -4322,6 +4862,193 @@
             </summary>
             <param name="shortcutKeys">the shortcut keys</param>
             <returns>the command name</returns>
+        </member>
+        <member name="T:RibbonLib.SelectedItem`1">
+            <summary>
+            Infos about the selected Item
+            </summary>
+            <typeparam name="T">RecentItemsPropertySet, GalleryItemPropertySet</typeparam>
+        </member>
+        <member name="P:RibbonLib.SelectedItem`1.SelectedItemIndex">
+            <summary>
+            The selected Item index
+            </summary>
+        </member>
+        <member name="P:RibbonLib.SelectedItem`1.PropertySet">
+            <summary>
+            The selected PropertySet
+            </summary>
+        </member>
+        <member name="T:RibbonLib.CollectionType">
+            <summary>
+            The uiCollection member
+            </summary>
+        </member>
+        <member name="F:RibbonLib.CollectionType.ItemsSource">
+            <summary>
+            The uiCollection member ItemsSource of a Gallery Control
+            </summary>
+        </member>
+        <member name="F:RibbonLib.CollectionType.Categories">
+            <summary>
+            The uiCollection member Categories of a Gallery Control
+            </summary>
+        </member>
+        <member name="F:RibbonLib.CollectionType.QatItemsSource">
+            <summary>
+            The uiCollection member ItemsSource of a Qat Control
+            </summary>
+        </member>
+        <member name="T:RibbonLib.UICollection`1">
+            <summary>
+            Helper class that provides an implementation of the 
+            IUICollection interface.
+            </summary>
+            <typeparam name="T">An AbstractPropertySet</typeparam>
+        </member>
+        <member name="M:RibbonLib.UICollection`1.#ctor(RibbonLib.Interop.IUICollection,RibbonLib.Controls.BaseRibbonControl,RibbonLib.CollectionType)">
+            <summary>
+            
+            </summary>
+            <param name="uiCollection"></param>
+            <param name="ctrl"></param>
+            <param name="colType"></param>
+        </member>
+        <member name="M:RibbonLib.UICollection`1.GetEnumerator">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RibbonLib.UICollection`1.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RibbonLib.UICollection`1.Add(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:RibbonLib.UICollection`1.RemoveAt(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="M:RibbonLib.UICollection`1.Insert(System.Int32,`0)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+            <param name="item"></param>
+        </member>
+        <member name="M:RibbonLib.UICollection`1.Clear">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RibbonLib.UICollection`1.Item(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="P:RibbonLib.UICollection`1.Count">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RibbonLib.UICollection`1.CollectionList">
+            <summary>
+            Returns a List from uiCollection
+            </summary>
+        </member>
+        <member name="M:RibbonLib.UICollection`1.RibbonLib#Interop#IUICollection#GetCount(System.UInt32@)">
+            <summary>
+            Retrieves the count of the collection
+            </summary>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RibbonLib.UICollection`1.RibbonLib#Interop#IUICollection#GetItem(System.UInt32,System.Object@)">
+            <summary>
+            Retrieves an item
+            </summary>
+            <param name="index"></param>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RibbonLib.UICollection`1.RibbonLib#Interop#IUICollection#Add(System.Object)">
+            <summary>
+            Adds an item to the end
+            </summary>
+            <param name="item">Must be an object of type T</param>
+            <returns></returns>
+        </member>
+        <member name="M:RibbonLib.UICollection`1.RibbonLib#Interop#IUICollection#Insert(System.UInt32,System.Object)">
+            <summary>
+            Inserts an item
+            </summary>
+            <param name="index"></param>
+            <param name="item">Must be an object of type T</param>
+            <returns></returns>
+        </member>
+        <member name="M:RibbonLib.UICollection`1.RibbonLib#Interop#IUICollection#RemoveAt(System.UInt32)">
+            <summary>
+            Removes an item at the specified position
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RibbonLib.UICollection`1.RibbonLib#Interop#IUICollection#Replace(System.UInt32,System.Object)">
+            <summary>
+            Replaces an item at the specified position
+            </summary>
+            <param name="indexReplaced"></param>
+            <param name="itemReplaceWith">Must be an object of type T</param>
+            <returns></returns>
+        </member>
+        <member name="M:RibbonLib.UICollection`1.RibbonLib#Interop#IUICollection#Clear">
+            <summary>
+            Clear the collection
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="E:RibbonLib.UICollection`1.ChangedEvent">
+            <summary>
+            Event provider: The Collection is changing.
+            </summary>
+        </member>
+        <member name="T:RibbonLib.UICollection`1.PropertySetEnumerator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RibbonLib.UICollection`1.PropertySetEnumerator.#ctor(RibbonLib.UICollection{`0})">
+            <summary>
+            Ctor
+            </summary>
+            <param name="caller">UICollection of T</param>
+        </member>
+        <member name="P:RibbonLib.UICollection`1.PropertySetEnumerator.Current">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RibbonLib.UICollection`1.PropertySetEnumerator.MoveNext">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RibbonLib.UICollection`1.PropertySetEnumerator.Reset">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:RibbonLib.UICollection">
             <summary>
@@ -4432,6 +5159,17 @@
             <param name="newValue">When this method returns, contains a pointer to the new value for key</param>
             <returns>Returns S_OK if successful, or an error value otherwise</returns>
         </member>
+        <member name="P:RibbonLib.IRibbonControl.Tag">
+            <summary>
+            Gets or sets the object that contains data about the control
+            </summary>
+        </member>
+        <member name="P:RibbonLib.IRibbonControl.CommandType">
+            <summary>
+            The CommandType of the Control
+            If the CommandType is CommandType.Unknown then the Control is not initialized by the Framework
+            </summary>
+        </member>
         <member name="T:RibbonLib.Ribbon">
             <summary>
             Main class for using the windows ribbon in a .NET application
@@ -4487,11 +5225,6 @@
             Draws only in Design mode
             </summary>
             <param name="e"></param>
-        </member>
-        <member name="P:RibbonLib.Ribbon.Initalized">
-            <summary>
-            Check if ribbon framework has been initialized
-            </summary>
         </member>
         <member name="P:RibbonLib.Ribbon.Initialized">
             <summary>
@@ -4573,9 +5306,9 @@
         </member>
         <member name="M:RibbonLib.Ribbon.ConvertToUIImage(System.Drawing.Bitmap)">
             <summary>
-            Wraps a bitmap object with IUIImage interface
+            Wraps a Bitmap object with IUIImage interface
             </summary>
-            <param name="bitmap">bitmap object to wrap</param>
+            <param name="bitmap">Bitmap object to wrap</param>
             <returns>IUIImage wrapper</returns>
         </member>
         <member name="M:RibbonLib.Ribbon.SetModes(System.Byte[])">
@@ -4592,6 +5325,16 @@
             <param name="contextPopupID">commandId for the context popup</param>
             <param name="x">X in screen coordinates</param>
             <param name="y">Y in screen coordinates</param>
+        </member>
+        <member name="P:RibbonLib.Ribbon.ApplicationButtonColor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RibbonLib.Ribbon.DarkModeRibbon">
+            <summary>
+            Get or Set the DarkModeRibbon PropertyKey
+            </summary>
         </member>
         <member name="P:RibbonLib.Ribbon.Minimized">
             <summary>

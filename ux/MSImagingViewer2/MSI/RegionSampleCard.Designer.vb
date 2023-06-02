@@ -34,6 +34,7 @@ Partial Class RegionSampleCard
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewMS1SpectrumToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.SetHTMLColorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -78,21 +79,26 @@ Partial Class RegionSampleCard
         '
         'ContextMenuStrip1
         '
-        resources.ApplyResources(Me.ContextMenuStrip1, "ContextMenuStrip1")
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewMS1SpectrumToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewMS1SpectrumToolStripMenuItem, Me.SetHTMLColorToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        resources.ApplyResources(Me.ContextMenuStrip1, "ContextMenuStrip1")
         '
         'ViewMS1SpectrumToolStripMenuItem
         '
-        resources.ApplyResources(Me.ViewMS1SpectrumToolStripMenuItem, "ViewMS1SpectrumToolStripMenuItem")
         Me.ViewMS1SpectrumToolStripMenuItem.Name = "ViewMS1SpectrumToolStripMenuItem"
+        resources.ApplyResources(Me.ViewMS1SpectrumToolStripMenuItem, "ViewMS1SpectrumToolStripMenuItem")
         '
         'PictureBox1
         '
-        resources.ApplyResources(Me.PictureBox1, "PictureBox1")
         Me.PictureBox1.ContextMenuStrip = Me.ContextMenuStrip1
+        resources.ApplyResources(Me.PictureBox1, "PictureBox1")
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.TabStop = False
+        '
+        'SetHTMLColorToolStripMenuItem
+        '
+        Me.SetHTMLColorToolStripMenuItem.Name = "SetHTMLColorToolStripMenuItem"
+        resources.ApplyResources(Me.SetHTMLColorToolStripMenuItem, "SetHTMLColorToolStripMenuItem")
         '
         'RegionSampleCard
         '
@@ -122,6 +128,7 @@ Partial Class RegionSampleCard
     Friend WithEvents Label3 As Label
     Friend WithEvents TextBox3 As TextBox
     Friend WithEvents LinkLabel1 As LinkLabel
-    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
-    Friend WithEvents ViewMS1SpectrumToolStripMenuItem As ToolStripMenuItem
+    Public WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Public WithEvents ViewMS1SpectrumToolStripMenuItem As ToolStripMenuItem
+    Public WithEvents SetHTMLColorToolStripMenuItem As ToolStripMenuItem
 End Class

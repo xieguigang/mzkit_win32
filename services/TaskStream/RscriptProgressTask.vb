@@ -366,15 +366,46 @@ Public NotInheritable Class RscriptProgressTask
         End If
     End Sub
 
+    Public Shared Function CreateUMAPCluster(matrix As String, knn As Integer) As String
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("umap.R")
+        Dim save As String = $"{matrix.ParentPath}/{matrix.BaseName}_umap3.csv"
+        Dim cli As String = $"""{Rscript}"" 
+--input ""{matrix}"" 
+--save ""{save}"" 
+--knn ""{knn}""
+--SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
+"
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
+        Call Workbench.LogText(pipeline.CommandLine)
+        Call TaskProgress.RunAction(
+            run:=Sub(p)
+                     AddHandler pipeline.SetMessage, AddressOf p.SetInfo
+                     AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                     AddHandler pipeline.Finish, AddressOf p.TaskFinish
+
+                     Call pipeline.Run()
+                 End Sub,
+            title:="Create UMAP clusters...",
+            info:="Create UMAP clusters based on your given feature peaktable, this may takes a long time when your dataset size is ultra large...")
+
+        If save.FileExists(ZERO_Nonexists:=True) Then
+            Return save
+        Else
+            Return Nothing
+        End If
+    End Function
+
     ''' <summary>
-    ''' Create MSI peaktable without ptissue region maps
+    ''' Create MSI peaktable without tissue region maps
     ''' </summary>
     ''' <param name="mzpack"></param>
     ''' <param name="saveAs"></param>
     ''' <param name="mzdiff"></param>
     ''' <param name="intocutoff"></param>
     ''' <param name="TrIQ"></param>
-    Public Shared Sub CreateMSIPeakTable(mzpack As String, saveAs As String, mzdiff As String, intocutoff As Double, TrIQ As Double)
+    Public Shared Sub CreateMSIPeakTable(mzpack As String, saveAs As String, mzdiff As String, intocutoff As Double, TrIQ As Double, Optional noUI As Boolean = False)
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSI_peaktable.R")
         Dim cli As String = $"""{Rscript}"" 
 --raw ""{mzpack}"" 
@@ -399,23 +430,28 @@ Public NotInheritable Class RscriptProgressTask
             title:="Create MSI sampletable...",
             info:="Loading MSI raw data file into viewer workspace...")
 
-        Call CommonPeaktableFilePrompt(saveAs)
+        Call CommonPeaktableFilePrompt(saveAs, noUI)
     End Sub
 
-    Private Shared Sub CommonPeaktableFilePrompt(saveAs As String)
+    Private Shared Sub CommonPeaktableFilePrompt(saveAs As String, Optional noUI As Boolean = False)
         If Not saveAs.FileExists(ZERO_Nonexists:=True) Then
             Dim errMsg As String = "Sorry, the MS-Imaging feature peaktable export is not success."
 
             Call Workbench.Warning(errMsg)
-            Call MessageBox.Show(errMsg, "Rscript Task Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
 
-        ElseIf MessageBox.Show("Export MSI sampletable Job Done!" & vbCrLf & "Open MSI sample table data file?",
+            If Not noUI Then
+                Call MessageBox.Show(errMsg, "Rscript Task Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+
+        ElseIf (Not noUI) AndAlso MessageBox.Show("Export MSI sampletable Job Done!" & vbCrLf & "Open MSI sample table data file?",
                                "Open Excel",
                                MessageBoxButtons.YesNo,
                                MessageBoxIcon.Information) = DialogResult.Yes Then
 
             Call Workbench.SuccessMessage($"Export MSI sampletable Job Done! [{saveAs}]")
             Call Process.Start(saveAs.GetFullPath)
+        Else
+            Call Workbench.SuccessMessage($"Export MSI sampletable Job Done! [{saveAs}]")
         End If
     End Sub
 

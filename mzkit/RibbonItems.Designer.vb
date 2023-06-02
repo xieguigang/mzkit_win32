@@ -11,7 +11,6 @@
 Imports System
 Imports RibbonLib
 Imports RibbonLib.Controls
-Imports RibbonLib.Interop
 
 Namespace RibbonLib.Controls
     Partial Class RibbonItems
@@ -168,7 +167,9 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonShowPolygonVertexInfo As UInteger = 151
             Public Const cmdButtonNextPolygon As UInteger = 193
             Public Const cmdGroupTissueMaps As UInteger = 196
+            Public Const cmdButtonUIShowMapLayer As UInteger = 224
             Public Const cmdCheckShowMapLayer As UInteger = 194
+            Public Const cmdButtonAutoUMAP As UInteger = 223
             Public Const cmdButtonShowMSISampleWindow As UInteger = 195
             Public Const cmdShowTissueData As UInteger = 220
             Public Const cmdGroupKEGG As UInteger = 133
@@ -1147,10 +1148,22 @@ Namespace RibbonLib.Controls
                 Return _GroupTissueMaps
             End Get
         End Property
+        Private _ButtonUIShowMapLayer As RibbonSplitButton
+        Public ReadOnly Property ButtonUIShowMapLayer As RibbonSplitButton
+            Get
+                Return _ButtonUIShowMapLayer
+            End Get
+        End Property
         Private _CheckShowMapLayer As RibbonToggleButton
         Public ReadOnly Property CheckShowMapLayer As RibbonToggleButton
             Get
                 Return _CheckShowMapLayer
+            End Get
+        End Property
+        Private _ButtonAutoUMAP As RibbonButton
+        Public ReadOnly Property ButtonAutoUMAP As RibbonButton
+            Get
+                Return _ButtonAutoUMAP
             End Get
         End Property
         Private _ButtonShowMSISampleWindow As RibbonButton
@@ -1611,7 +1624,9 @@ Namespace RibbonLib.Controls
             _ButtonShowPolygonVertexInfo = New RibbonToggleButton(_ribbon, Cmd.cmdButtonShowPolygonVertexInfo)
             _ButtonNextPolygon = New RibbonButton(_ribbon, Cmd.cmdButtonNextPolygon)
             _GroupTissueMaps = New RibbonGroup(_ribbon, Cmd.cmdGroupTissueMaps)
+            _ButtonUIShowMapLayer = New RibbonSplitButton(_ribbon, Cmd.cmdButtonUIShowMapLayer)
             _CheckShowMapLayer = New RibbonToggleButton(_ribbon, Cmd.cmdCheckShowMapLayer)
+            _ButtonAutoUMAP = New RibbonButton(_ribbon, Cmd.cmdButtonAutoUMAP)
             _ButtonShowMSISampleWindow = New RibbonButton(_ribbon, Cmd.cmdButtonShowMSISampleWindow)
             _ShowTissueData = New RibbonButton(_ribbon, Cmd.cmdShowTissueData)
             _GroupKEGG = New RibbonTabGroup(_ribbon, Cmd.cmdGroupKEGG)

@@ -17,6 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pipeline", "Pipeline", "{D0
 		rstudio\pipeline\MSI_peaktable.R = rstudio\pipeline\MSI_peaktable.R
 		rstudio\pipeline\Mummichog.R = rstudio\pipeline\Mummichog.R
 		rstudio\pipeline\phenograph.R = rstudio\pipeline\phenograph.R
+		rstudio\pipeline\umap.R = rstudio\pipeline\umap.R
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceHub", "ServiceHub", "{9958F5C7-C2D8-4BD7-AEE1-2706118E5F06}"

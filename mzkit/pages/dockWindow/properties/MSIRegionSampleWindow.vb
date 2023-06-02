@@ -12,7 +12,6 @@ Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Mzkit_win32.MSImagingViewerV2
 Imports ServiceHub
-Imports SMRUCC.Rsharp.Interpreter.ExecuteEngine.ExpressionSymbols.Blocks
 
 Public Class MSIRegionSampleWindow
 
@@ -24,6 +23,10 @@ Public Class MSIRegionSampleWindow
 
     Friend dimension As Size
     Friend canvas As PixelSelector
+
+    ''' <summary>
+    ''' the sample region pixels
+    ''' </summary>
     Friend sample_bounds As Point()
     Friend importsFile As String
     Friend viewer As frmMsImagingViewer
@@ -82,18 +85,28 @@ Public Class MSIRegionSampleWindow
             Call card.SetPolygons(region, callback:=AddressOf updateLayerRendering)
             Call FlowLayoutPanel1.Controls.Add(card)
 
+            Call ApplyVsTheme(card.ContextMenuStrip1)
+
             ' card.Anchor = AnchorStyles.Left Or AnchorStyles.Right
             card.SampleColor = region.color
             card.SampleInfo = region.label
 
             AddHandler card.RemoveSampleGroup, AddressOf removeSampleGroup
             AddHandler card.ViewRegionMs1Spectrum, AddressOf ViewMs1Spectrum
+            AddHandler card.SetHtmlColorCode, AddressOf SetHtmlColorCode
         Next
     End Sub
 
     Private Sub removeSampleGroup(polygon As RegionSampleCard)
         Call FlowLayoutPanel1.Controls.Remove(polygon)
         Call updateLayerRendering()
+    End Sub
+
+    Private Sub SetHtmlColorCode(region As RegionSampleCard)
+        InputDialog.Input(Of InputHTMLColorCode)(
+            Sub(cfg)
+                region.SampleColor = cfg.UserInputColor
+            End Sub)
     End Sub
 
     Private Sub ViewMs1Spectrum(region As RegionSampleCard)
@@ -124,14 +137,18 @@ Public Class MSIRegionSampleWindow
         Call Add(selector.GetPolygons(popAll:=True))
     End Sub
 
-    Private Function Add(sample_group As IEnumerable(Of Polygon2D)) As RegionSampleCard
-        Dim card As New RegionSampleCard
+    Private Function Add(sample_group As IEnumerable(Of Polygon2D), is_raster As Boolean) As RegionSampleCard
+        Dim card As New RegionSampleCard With {
+            .alreadyRaster = is_raster
+        }
 
-        card.SetPolygons(sample_group, callback:=AddressOf updateLayerRendering)
-        FlowLayoutPanel1.Controls.Add(card)
+        Call card.SetPolygons(sample_group, callback:=AddressOf updateLayerRendering)
+        Call FlowLayoutPanel1.Controls.Add(card)
+        Call ApplyVsTheme(card.ContextMenuStrip1)
 
         AddHandler card.RemoveSampleGroup, AddressOf removeSampleGroup
         AddHandler card.ViewRegionMs1Spectrum, AddressOf ViewMs1Spectrum
+        AddHandler card.SetHtmlColorCode, AddressOf SetHtmlColorCode
 
         Return card
     End Function
@@ -246,7 +263,7 @@ Public Class MSIRegionSampleWindow
             End If
 
             For i As Integer = 0 To data.regions.Length - 1
-                Dim card = Me.Add({data.regions(i)})
+                Dim card = Me.Add({data.regions(i)}, is_raster:=True)
 
                 card.SampleColor = colors(i)
                 card.SampleInfo = data.sample_tags(i)
@@ -406,25 +423,37 @@ Public Class MSIRegionSampleWindow
         Dim xy = getUnLabledPixels(polygons)
         Dim labels As String() = New String(xy.x.Length - 1) {}
         Dim tissueList = polygons.ToDictionary(Function(r) r.label)
+        Dim top As Integer = 6
 
         For i As Integer = 0 To labels.Length - 1
             Dim x As Double = xy.x(i)
             Dim y As Double = xy.y(i)
             Dim minDist As Double = Double.MaxValue
             Dim minLabel As String = Nothing
+            Dim distVal As Double
 
             For Each region As TissueRegion In polygons
                 If region.nsize = 0 Then
                     Continue For
                 End If
 
-                Dim dist As Double = region.points _
+                Dim dist As Double() = region.points _
                     .AsParallel _
                     .Select(Function(pt) (pt.X - x) ^ 2 + (pt.Y - y) ^ 2) _
-                    .Min
+                    .OrderBy(Function(di) di) _
+                    .Take(top) _
+                    .ToArray
 
-                If dist < minDist Then
-                    minDist = dist
+                If dist.Length < top Then
+                    ' 5 - 4 = 1 no changed
+                    ' 5 - 4 + 1 = 2, will produce lower score result
+                    distVal = dist.Average * (top - dist.Length + 1)
+                Else
+                    distVal = dist.Average
+                End If
+
+                If distVal < minDist Then
+                    minDist = distVal
                     minLabel = region.label
                 End If
             Next
@@ -483,7 +512,7 @@ Public Class MSIRegionSampleWindow
         Dim xy = getUnLabledPixels(polygons)
 
         If xy.x.Length > 0 Then
-            Call Add({New Polygon2D(xy.x, xy.y)})
+            Call Add({New Polygon2D(xy.x, xy.y)}, is_raster:=True)
         Else
             Call Workbench.StatusMessage("no spots needs to assign group label.")
         End If

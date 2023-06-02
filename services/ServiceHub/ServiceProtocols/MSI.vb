@@ -673,6 +673,23 @@ Public Class MSI : Implements ITaskDriver, IDisposable
     End Function
 
     ''' <summary>
+    ''' just for get the sample regions
+    ''' </summary>
+    ''' <param name="request"></param>
+    ''' <param name="remoteAddress"></param>
+    ''' <returns></returns>
+    <Protocol(ServiceProtocol.ExtractSamplePixels)>
+    Public Function ExtractSamplePixels(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
+        Dim pixels As Point() = MSI.LoadPixels.Select(Function(si) New Point(si.X, si.Y)).ToArray
+        Dim spots As PixelScanIntensity() = pixels _
+            .Select(Function(pi) New PixelScanIntensity With {.x = pi.X, .y = pi.Y, .totalIon = NextDouble()}) _
+            .ToArray
+        Dim byts As Byte() = PixelScanIntensity.GetBuffer(spots)
+
+        Return New DataPipe(byts)
+    End Function
+
+    ''' <summary>
     ''' get BPC ion set from all pixels
     ''' </summary>
     ''' <param name="request"></param>

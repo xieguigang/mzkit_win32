@@ -102,6 +102,10 @@ Public Enum ServiceProtocol
     ExtractRegionMs1Spectrum
     ExtractRegionSample
     ExtractMultipleSampleRegions
+    ''' <summary>
+    ''' Just call for extract the sample pixels point data
+    ''' </summary>
+    ExtractSamplePixels
     ExitApp
 End Enum
 
