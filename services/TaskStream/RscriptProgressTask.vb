@@ -405,7 +405,7 @@ Public NotInheritable Class RscriptProgressTask
     ''' <param name="mzdiff"></param>
     ''' <param name="intocutoff"></param>
     ''' <param name="TrIQ"></param>
-    Public Shared Sub CreateMSIPeakTable(mzpack As String, saveAs As String, mzdiff As String, intocutoff As Double, TrIQ As Double)
+    Public Shared Sub CreateMSIPeakTable(mzpack As String, saveAs As String, mzdiff As String, intocutoff As Double, TrIQ As Double, Optional noUI As Boolean = False)
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSI_peaktable.R")
         Dim cli As String = $"""{Rscript}"" 
 --raw ""{mzpack}"" 
@@ -430,23 +430,28 @@ Public NotInheritable Class RscriptProgressTask
             title:="Create MSI sampletable...",
             info:="Loading MSI raw data file into viewer workspace...")
 
-        Call CommonPeaktableFilePrompt(saveAs)
+        Call CommonPeaktableFilePrompt(saveAs, noUI)
     End Sub
 
-    Private Shared Sub CommonPeaktableFilePrompt(saveAs As String)
+    Private Shared Sub CommonPeaktableFilePrompt(saveAs As String, Optional noUI As Boolean = False)
         If Not saveAs.FileExists(ZERO_Nonexists:=True) Then
             Dim errMsg As String = "Sorry, the MS-Imaging feature peaktable export is not success."
 
             Call Workbench.Warning(errMsg)
-            Call MessageBox.Show(errMsg, "Rscript Task Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
 
-        ElseIf MessageBox.Show("Export MSI sampletable Job Done!" & vbCrLf & "Open MSI sample table data file?",
+            If Not noUI Then
+                Call MessageBox.Show(errMsg, "Rscript Task Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+
+        ElseIf (Not noUI) AndAlso MessageBox.Show("Export MSI sampletable Job Done!" & vbCrLf & "Open MSI sample table data file?",
                                "Open Excel",
                                MessageBoxButtons.YesNo,
                                MessageBoxIcon.Information) = DialogResult.Yes Then
 
             Call Workbench.SuccessMessage($"Export MSI sampletable Job Done! [{saveAs}]")
             Call Process.Start(saveAs.GetFullPath)
+        Else
+            Call Workbench.SuccessMessage($"Export MSI sampletable Job Done! [{saveAs}]")
         End If
     End Sub
 

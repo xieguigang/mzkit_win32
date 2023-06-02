@@ -85,6 +85,7 @@ Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
@@ -205,7 +206,7 @@ Public Class frmMsImagingViewer
             Return
         End If
 
-        Dim matrix As String = exportAllSpotSamplePeaktable()
+        Dim matrix As String = exportAllSpotSamplePeaktable(noUI:=True)
 
         If matrix.StringEmpty Then
             Call Workbench.Warning("Export feature ions peaktable task error or user canceled.")
@@ -220,7 +221,25 @@ Public Class frmMsImagingViewer
         Else
             ' show umap scatter 3d
             umap3D = UMAPPoint.ParseCsvTable(umap3).ToArray
-            ShowTissueData()
+
+            Call ShowTissueData()
+
+            ' ansalso convert to tissue region data
+            Dim colors As LoopArray(Of Color) = Designer.GetColors("Paper")
+            Dim groups = umap3D _
+                .GroupBy(Function(a) a.class) _
+                .Select(Function(group)
+                            Return New TissueRegion With {
+                                .color = ++colors,
+                                .label = group.Key,
+                                .points = group _
+                                    .Select(Function(u) u.Pixel) _
+                                    .ToArray
+                            }
+                        End Function) _
+                .ToArray
+
+            Call ImportsTissueMorphology(tissues:=groups)
         End If
     End Sub
 
@@ -665,11 +684,16 @@ Public Class frmMsImagingViewer
                 .ToArray
         End If
 
+        sampleRegions.ShowMessage($"Tissue map {filepath.FileName} has been imported.")
+        sampleRegions.importsFile = filepath
+
+        Call ImportsTissueMorphology(tissues)
+    End Sub
+
+    Private Sub ImportsTissueMorphology(tissues As TissueRegion())
         sampleRegions.Clear()
         sampleRegions.LoadTissueMaps(tissues, PixelSelector1.MSICanvas)
         sampleRegions.RenderLayer(PixelSelector1.MSICanvas)
-        sampleRegions.ShowMessage($"Tissue map {filepath.FileName} has been imported.")
-        sampleRegions.importsFile = filepath
 
         RibbonEvents.ribbonItems.CheckShowMapLayer.BooleanValue = True
 
@@ -1894,7 +1918,7 @@ Public Class frmMsImagingViewer
         End If
     End Sub
 
-    Private Function exportAllSpotSamplePeaktable() As String
+    Private Function exportAllSpotSamplePeaktable(noUI As Boolean) As String
         ' export all spots
         Using file As New SaveFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
             If file.ShowDialog = DialogResult.OK Then
@@ -1903,7 +1927,8 @@ Public Class frmMsImagingViewer
                         Call RscriptProgressTask.CreateMSIPeakTable(
                             mzpack:=FilePath,
                             saveAs:=file.FileName,
-                            cfg.Mzdiff, cfg.IntoCutoff, cfg.TrIQCutoff
+                            cfg.Mzdiff, cfg.IntoCutoff, cfg.TrIQCutoff,
+                            noUI
                         )
                     End Sub)
 
@@ -1927,7 +1952,7 @@ Public Class frmMsImagingViewer
 
         If sampleRegions.IsNullOrEmpty Then
             ' Call Workbench.Warning("No sample spot regions!")
-            Call exportAllSpotSamplePeaktable()
+            Call exportAllSpotSamplePeaktable(noUI:=False)
         Else
             Using file As New SaveFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
                 If file.ShowDialog = DialogResult.OK Then
