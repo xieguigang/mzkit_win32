@@ -46,8 +46,10 @@
 
         If Not pars.spots.FileExists Then
             Call MessageBox.Show("No tissue spot list table file!", "File Missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            Return
         ElseIf Not pars.h5ad.FileExists Then
             Call MessageBox.Show("No h5ad matrix file!", "File Missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            Return
         End If
 
         Me.DialogResult = DialogResult.OK
