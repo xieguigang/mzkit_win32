@@ -386,6 +386,8 @@ Public Class frmMsImagingViewer
                     Next
                 Next
             End Sub)
+
+        Call Workbench.SuccessMessage($"Imports {ions.Length} ms-imaging ions target for {name.Length} metabolite annotations!")
     End Sub
 
     Dim umap3D As UMAPPoint()
@@ -721,6 +723,7 @@ Public Class frmMsImagingViewer
                         Else
                             Call Me.Invoke(Sub()
                                                Call DoIonStats(ions, getFormula.GetAnnotation.name, formula, Provider.Positives)
+                                               Call Workbench.SuccessMessage($"Load {ions.Length} ms-imaging ion targets!")
                                            End Sub)
                         End If
                     End Sub)
