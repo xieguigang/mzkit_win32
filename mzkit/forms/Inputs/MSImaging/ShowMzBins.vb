@@ -27,7 +27,7 @@ Public Class ShowMzBins
                             .lineType = DashStyle.Dot,
                             .pointSize = 5,
                             .shape = LegendStyles.Circle,
-                            .title = Val(si.name).ToString("F3"),
+                            .title = "m/z " & Val(si.name).ToString("F3"),
                             .width = 3,
                             .pts = si _
                                 .Select(Function(xi) New PointData(xi.mz, xi.binbox.Length)) _
@@ -39,7 +39,11 @@ Public Class ShowMzBins
                                             Return New Annotation With {
                                                 .X = a.pt.X,
                                                 .Y = a.pt.Y,
-                                                .Text = a.pt.X.ToString("F4")
+                                                .Text = a.pt.X.ToString("F4"),
+                                                .color = "black",
+                                                .Font = "font-style: normal; font-size: 13; font-family: " & FontFace.SegoeUI & ";",
+                                                .Legend = LegendStyles.Triangle,
+                                                .size = New SizeF(20, 20)
                                             }
                                         End Function) _
                                 .ToArray
@@ -54,14 +58,17 @@ Public Class ShowMzBins
             Ylabel:="binbox size",
             fill:=True,
             drawLine:=True,
-            padding:="padding:100px 300px 250px 250px;",
+            padding:="padding:100px 350px 150px 150px;",
             dpi:=150,
             YtickFormat:="F0",
             preferPositive:=True,
             xlim:=mzbins.Select(Function(a) Val(a.name)).Max + 0.015,
             tickFontStyle:="font-style: normal; font-size: 16; font-family: " & FontFace.MicrosoftYaHei & ";",
             axisLabelCSS:="font-style: normal; font-size: 16; font-family: " & FontFace.SegoeUI & ";",
-            interplot:=Interpolation.Splines.B_Spline
+            interplot:=Interpolation.Splines.B_Spline,
+            fillPie:=False,
+            showGrid:=False,
+            gridFill:="white"
         ).AsGDIImage
     End Sub
 End Class
