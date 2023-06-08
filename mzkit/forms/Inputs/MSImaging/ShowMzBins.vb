@@ -27,11 +27,21 @@ Public Class ShowMzBins
                             .lineType = DashStyle.Dot,
                             .pointSize = 5,
                             .shape = LegendStyles.Circle,
-                            .title = si.name,
+                            .title = Val(si.name).ToString("F3"),
                             .width = 3,
                             .pts = si _
                                 .Select(Function(xi) New PointData(xi.mz, xi.binbox.Length)) _
                                 .OrderBy(Function(pi) pi.pt.X) _
+                                .ToArray,
+                             .DataAnnotations = .pts.OrderByDescending(Function(pi) pi.pt.Y) _
+                                .Take(3) _
+                                .Select(Function(a)
+                                            Return New Annotation With {
+                                                .X = a.pt.X,
+                                                .Y = a.pt.Y,
+                                                .Text = a.pt.X.ToString("F4")
+                                            }
+                                        End Function) _
                                 .ToArray
                         }
                     End Function) _
@@ -39,16 +49,19 @@ Public Class ShowMzBins
 
         PictureBox1.BackgroundImage = Scatter.Plot(
             c:=serials,
-            size:="1600,1200",
+            size:="1900,1280",
             Xlabel:="m/z",
             Ylabel:="binbox size",
             fill:=True,
             drawLine:=True,
             padding:="padding:100px 300px 250px 250px;",
-            dpi:=200,
+            dpi:=150,
             YtickFormat:="F0",
             preferPositive:=True,
-            xlim:=mzbins.Select(Function(a) Val(a.name)).Max + 0.3
+            xlim:=mzbins.Select(Function(a) Val(a.name)).Max + 0.015,
+            tickFontStyle:="font-style: normal; font-size: 16; font-family: " & FontFace.MicrosoftYaHei & ";",
+            axisLabelCSS:="font-style: normal; font-size: 16; font-family: " & FontFace.SegoeUI & ";",
+            interplot:=Interpolation.Splines.B_Spline
         ).AsGDIImage
     End Sub
 End Class
