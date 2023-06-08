@@ -340,7 +340,7 @@ Public Class frmMsImagingViewer
         Dim ionList = New BlockSearchFunction(Of IonStat)(
             data:=ions,
             eval:=Function(i) i.mz,
-            tolerance:=0.05,
+            tolerance:=1,
             factor:=2,
             fuzzy:=True
         )
@@ -372,11 +372,13 @@ Public Class frmMsImagingViewer
                     For Each type As MzCalculator In adducts
                         Dim mzi As Double = type.CalcMZ(exactMass)
                         Dim ion = ionList _
-                            .Search(New IonStat With {.mz = mzi}) _
+                            .Search(New IonStat With {.mz = mzi}, tolerance:=0.05) _
                             .OrderBy(Function(ion2) stdNum.Abs(ion2.mz - mzi)) _
                             .FirstOrDefault
 
                         If ion Is Nothing Then
+                            Continue For
+                        ElseIf stdNum.Abs(ion.mz - mzi) > 0.05 Then
                             Continue For
                         End If
 
