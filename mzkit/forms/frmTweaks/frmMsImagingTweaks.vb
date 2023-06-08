@@ -59,7 +59,6 @@
 
 #End Region
 
-Imports System.Windows.Forms.Design
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
@@ -72,7 +71,6 @@ Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots.BarPlot.Histogram
-Imports Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.GridRouter(Of Node)
 Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.DataStorage.netCDF.DataVector
 Imports Microsoft.VisualBasic.Imaging
@@ -694,7 +692,7 @@ UseCheckedList:
                                 Else
                                     Dim maxInto = pixels.Select(Function(a) a.intensity).Max
                                     params.SetIntensityMax(maxInto, New Point())
-                                    Dim blender As New SingleIonMSIBlender(pixels, TIC, params)
+                                    Dim blender As New SingleIonMSIBlender(pixels, params, TIC)
                                     Dim range As DoubleRange = blender.range
                                     Dim image As Image = blender.Rendering(args, canvas)
 
