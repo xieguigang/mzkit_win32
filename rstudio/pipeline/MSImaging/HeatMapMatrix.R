@@ -48,7 +48,7 @@ const images  = lapply(mzSet, function(ion) {
 bitmap(
     file    = savefile,
     size    = size, 
-    padding = `padding: ${canvasPadding[1]}px ${canvasPadding[2]}px ${canvasPadding[3]}px ${canvasPadding[4]}px;`, 
+    padding = `padding: ${padding[1]}px ${padding[2]}px ${padding[3]}px ${padding[4]}px;`, 
     fill    = "black"
 );
 
