@@ -284,7 +284,8 @@ Public Class frmMsImagingViewer
         Dim formula As String() = annotations.GetColumnValues("formula").ToArray
         Dim mass As Double() = formula.Select(Function(fstr) FormulaScanner.ScanFormula(fstr).ExactMass).ToArray
         ' evaluate m/z
-        Dim mz As Double() = If(params.polarity = IonModes.Negative, Provider.Negatives, Provider.Positives) _
+        Dim adducts = If(params.polarity = IonModes.Negative, Provider.Negatives, Provider.Positives)
+        Dim mz As Double() = adducts _
             .Select(Function(t) mass.Select(Function(em) t.CalcMZ(em))) _
             .IteratesALL _
             .Distinct _
@@ -292,7 +293,7 @@ Public Class frmMsImagingViewer
 
         Call TaskProgress.LoadData(
             Function(println As Action(Of String))
-                Call Me.Invoke(Sub() importsAnnotations(name, formula, mass, mz, Provider.Positives, println))
+                Call Me.Invoke(Sub() importsAnnotations(name, formula, mass, mz, adducts, println))
                 Return True
             End Function, title:="Do metabolite annotation imports", info:="Running ms-imaging raw data file scanning!")
     End Sub
