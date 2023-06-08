@@ -24,9 +24,16 @@ Partial Class ShowMzBins
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        components = New System.ComponentModel.Container
+        Me.SuspendLayout()
+        '
+        'ShowMzBins
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Text = "Form1"
+        Me.ClientSize = New System.Drawing.Size(781, 470)
+        Me.Name = "ShowMzBins"
+        Me.Text = "View m/z Bin Box Histogram"
+        Me.ResumeLayout(False)
+
     End Sub
 End Class

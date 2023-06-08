@@ -1172,6 +1172,9 @@
     <EmbeddedResource Include="forms\Inputs\InputXICTarget.resx">
       <DependentUpon>InputXICTarget.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\MSImaging\ShowMzBins.resx">
+      <DependentUpon>ShowMzBins.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\SelectSheetName.resx">
       <DependentUpon>SelectSheetName.vb</DependentUpon>
     </EmbeddedResource>
