@@ -589,6 +589,11 @@ UseCheckedList:
         End If
     End Sub
 
+    ''' <summary>
+    ''' imports excel table
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub ToolStripButton1_Click_1(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
         Using file As New OpenFileDialog With {.Filter = "Excel Table(*.xlsx;*.csv)|*.xlsx;*.csv|Name Targets(*.txt)|*.txt"}
             If file.ShowDialog = DialogResult.OK Then
@@ -610,7 +615,7 @@ UseCheckedList:
                     If file.FileName.ExtensionSuffix("csv") Then
                         table = DataFrame.Load(file.FileName)
                     Else
-                        table = DataFrame.CreateObject(Xlsx.Open(file.FileName).GetTable("Sheet1"))
+                        table = DataFrame.CreateObject(Xlsx.Open(file.FileName).GetTable(0))
                     End If
 
                     Dim mz As Double() = table(table.GetOrdinal("mz")).AsDouble

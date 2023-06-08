@@ -77,6 +77,7 @@ Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
@@ -151,6 +152,8 @@ Public Class MsImageProperty
     <Description("The mass tolerance error threshold in delta dalton or ppm.")>
     <Category("Pixel M/z Data")> Public Property tolerance As Double = 0.1
     <Category("Pixel M/z Data")> Public Property method As ToleranceMethod = ToleranceMethod.Da
+    <Description("The m/z ion data polarity mode, this property value will affects the ion metabolite annotation function in MZKit!")>
+    <Category("Pixel M/z Data")> Public Property polarity As IonModes = IonModes.Positive
 
     <Category("Intensity")> Public ReadOnly Property basePeak_x As Integer
     <Category("Intensity")> Public ReadOnly Property basePeak_y As Integer
