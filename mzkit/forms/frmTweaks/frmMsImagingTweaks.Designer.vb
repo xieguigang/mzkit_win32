@@ -97,6 +97,7 @@ Partial Class frmMsImagingTweaks
         Me.RenderingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportEachSelectedLayersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.LoadAllAnnotationLayersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoadBasePeakIonsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
         Me.SelectAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -106,13 +107,12 @@ Partial Class frmMsImagingTweaks
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
-        Me.ToolStripSpringTextBox1 = New ToolStripSpringTextBox()
+        Me.ToolStripSpringTextBox1 = New Global.Mzkit_win32.BasicMDIForm.ToolStripSpringTextBox()
         Me.ViewLayerButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
-        Me.LoadAllAnnotationLayersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -135,7 +135,7 @@ Partial Class frmMsImagingTweaks
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowPlotToolStripMenuItem, Me.RenderLayerCompositionModeToolStripMenuItem, Me.RenderingToolStripMenuItem, Me.ExportEachSelectedLayersToolStripMenuItem, Me.ToolStripMenuItem1, Me.LoadAllAnnotationLayersToolStripMenuItem, Me.LoadBasePeakIonsToolStripMenuItem, Me.ToolStripMenuItem2, Me.SelectAllToolStripMenuItem, Me.ClearSelectionToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(262, 214)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(262, 192)
         '
         'ShowPlotToolStripMenuItem
         '
@@ -214,6 +214,12 @@ Partial Class frmMsImagingTweaks
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         Me.ToolStripMenuItem1.Size = New System.Drawing.Size(258, 6)
         '
+        'LoadAllAnnotationLayersToolStripMenuItem
+        '
+        Me.LoadAllAnnotationLayersToolStripMenuItem.Name = "LoadAllAnnotationLayersToolStripMenuItem"
+        Me.LoadAllAnnotationLayersToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
+        Me.LoadAllAnnotationLayersToolStripMenuItem.Text = "Load All Annotation Layers"
+        '
         'LoadBasePeakIonsToolStripMenuItem
         '
         Me.LoadBasePeakIonsToolStripMenuItem.Name = "LoadBasePeakIonsToolStripMenuItem"
@@ -289,13 +295,14 @@ Partial Class frmMsImagingTweaks
         'ToolStripLabel1
         '
         Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(66, 22)
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(65, 22)
         Me.ToolStripLabel1.Text = "MSI Target:"
         '
         'ToolStripSpringTextBox1
         '
+        Me.ToolStripSpringTextBox1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.ToolStripSpringTextBox1.Name = "ToolStripSpringTextBox1"
-        Me.ToolStripSpringTextBox1.Size = New System.Drawing.Size(170, 25)
+        Me.ToolStripSpringTextBox1.Size = New System.Drawing.Size(171, 25)
         '
         'ViewLayerButton
         '
@@ -323,6 +330,7 @@ Partial Class frmMsImagingTweaks
         Me.ToolStripButton1.Name = "ToolStripButton1"
         Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton1.Text = "Imports A List of Ions"
+        Me.ToolStripButton1.ToolTipText = resources.GetString("ToolStripButton1.ToolTipText")
         '
         'ToolStripSeparator1
         '
@@ -337,12 +345,6 @@ Partial Class frmMsImagingTweaks
         Me.ToolStripButton3.Name = "ToolStripButton3"
         Me.ToolStripButton3.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton3.Text = "Clear Layers"
-        '
-        'LoadAllAnnotationLayersToolStripMenuItem
-        '
-        Me.LoadAllAnnotationLayersToolStripMenuItem.Name = "LoadAllAnnotationLayersToolStripMenuItem"
-        Me.LoadAllAnnotationLayersToolStripMenuItem.Size = New System.Drawing.Size(261, 22)
-        Me.LoadAllAnnotationLayersToolStripMenuItem.Text = "Load All Annotation Layers"
         '
         'frmMsImagingTweaks
         '
