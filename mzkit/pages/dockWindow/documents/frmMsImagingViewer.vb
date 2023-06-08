@@ -269,7 +269,7 @@ Public Class frmMsImagingViewer
         Dim formula As String() = annotations.GetColumnValues("formula").ToArray
         Dim mass As Double() = formula.Select(Function(fstr) FormulaScanner.ScanFormula(fstr).ExactMass).ToArray
         ' evaluate m/z
-        Dim mz As Double() = Provider.Positives _
+        Dim mz As Double() = If(params.polarity = IonModes.Negative, Provider.Negatives, Provider.Positives) _
             .Select(Function(t) mass.Select(Function(em) t.CalcMZ(em))) _
             .IteratesALL _
             .Distinct _
@@ -709,14 +709,15 @@ Public Class frmMsImagingViewer
                 Dim formula As String = getFormula.GetAnnotation.formula
                 Dim mass As Double = FormulaScanner.ScanFormula(formula).ExactMass
                 ' evaluate m/z
-                Dim mz As Double() = Provider.Positives.Select(Function(t) t.CalcMZ(mass)).ToArray
+                Dim adducts As MzCalculator() = If(params.polarity = IonModes.Negative, Provider.Negatives, Provider.Positives)
+                Dim mz As Double() = adducts.Select(Function(t) t.CalcMZ(mass)).ToArray
 
                 ProgressSpinner.DoLoading(
                     Sub()
                         Dim ions As IonStat() = MSIservice.DoIonStats(mz)
 
                         If ions.IsNullOrEmpty Then
-                            Call MyApplication.host.warning("No ions result...")
+                            Call Workbench.Warning("No ions result...")
                         Else
                             Call Me.Invoke(Sub()
                                                Call DoIonStats(ions, getFormula.GetAnnotation.name, formula, Provider.Positives)
