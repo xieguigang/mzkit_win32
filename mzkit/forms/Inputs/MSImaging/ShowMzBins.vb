@@ -45,7 +45,10 @@ Public Class ShowMzBins
             fill:=True,
             drawLine:=True,
             padding:="padding:100px 100px 150px 150px;",
-            dpi:=200
+            dpi:=200,
+            YtickFormat:="F0",
+            preferPositive:=True,
+            xlim:=mzbins.Select(Function(a) Val(a.name)).Max + 0.3
         ).AsGDIImage
     End Sub
 End Class
