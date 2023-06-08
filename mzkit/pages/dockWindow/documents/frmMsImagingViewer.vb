@@ -1515,6 +1515,7 @@ Public Class frmMsImagingViewer
         Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
         Dim blender As New SummaryMSIBlender(summaryLayer, params)
 
+        Me.params.enableFilter = False
         Me.blender = blender
         Me.sampleRegions.SetBounds(summaryLayer.Select(Function(a) New Point(a.x, a.y)))
 
@@ -1583,6 +1584,7 @@ Public Class frmMsImagingViewer
     Private Function createRenderTask(R As PixelData(), G As PixelData(), B As PixelData()) As Action
         Dim blender As New RGBIonMSIBlender(R, G, B, TIC, params)
 
+        Me.params.enableFilter = False
         Me.blender = blender
         Me.loadedPixels = R _
             .JoinIterates(G) _
@@ -1730,6 +1732,7 @@ Public Class frmMsImagingViewer
 
         Dim blender As New HeatMapBlender(layer, dimensions, params)
 
+        Me.params.enableFilter = True
         Me.blender = blender
         Me.rendering =
             Sub()
@@ -1755,6 +1758,7 @@ Public Class frmMsImagingViewer
         Dim blender As New SingleIonMSIBlender(pixels, TIC, params)
         Dim range As DoubleRange = blender.range
 
+        Me.params.enableFilter = True
         Me.rgb_configs = Nothing
         Me.loadedPixels = pixels
         Me.blender = blender
