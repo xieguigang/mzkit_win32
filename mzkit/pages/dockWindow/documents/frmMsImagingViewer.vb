@@ -328,8 +328,9 @@ Public Class frmMsImagingViewer
         table.InstanceGuid = guid
         table.SourceName = FilePath.FileName Or "MS-Imaging".AsDefault
         table.ViewRow = Sub(row)
-                            Dim namePlot As String = $"{name} {row("precursor_type")} {mz.ToString("F4")}"
                             Dim mzi As Double = Val(row("mz"))
+                            Dim namei As String = row("name")
+                            Dim namePlot As String = $"{namei} {row("precursor_type")} {mzi.ToString("F4")}"
 
                             Call renderByMzList({mzi}, namePlot)
                             Call Me.Activate()
