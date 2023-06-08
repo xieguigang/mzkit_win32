@@ -738,7 +738,7 @@
         <Image MinDPI="192">Res/tracker.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonMSISignalCorrection" Id="197" LabelTitle="MSI Signal Correction" LabelDescription="Make MSI ions signal correction in manual by adjust of the intensity range." TooltipTitle="MSI Signal Correction" TooltipDescription="Make MSI ions signal correction in manual by adjust of the intensity range.">
+    <Command Name="cmdButtonMSISignalCorrection" Id="197" LabelTitle="View m/z histogram" LabelDescription="View m/z histogram" TooltipTitle="View m/z histogram" TooltipDescription="View m/z histogram">
       <Command.SmallImages>
         <Image MinDPI="192">Res/gparted.png</Image>
       </Command.SmallImages>
