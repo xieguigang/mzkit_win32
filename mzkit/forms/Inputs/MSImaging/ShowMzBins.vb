@@ -12,7 +12,7 @@ Public Class ShowMzBins
     Public Property Layer As PixelData()
 
     Private Sub ShowMzBins_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Call updateBinBox(err:=0.005)
+        Call updateBinBox(err:=0.0001)
     End Sub
 
     Private Sub updateBinBox(err As Double)
@@ -39,6 +39,7 @@ Public Class ShowMzBins
 
         PictureBox1.BackgroundImage = Scatter.Plot(
             c:=serials,
+            size:="1600,1200",
             Xlabel:="m/z",
             Ylabel:="binbox size",
             fill:=True,
