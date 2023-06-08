@@ -471,6 +471,12 @@
     <Compile Include="application\settings\RawFileViewerSettings.vb" />
     <Compile Include="application\VisualStudio.vb" />
     <Compile Include="application\RPackage.vb" />
+    <Compile Include="forms\Inputs\MSImaging\ShowMzBins.Designer.vb">
+      <DependentUpon>ShowMzBins.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\MSImaging\ShowMzBins.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\MSImaging\InputHTMLColorCode.Designer.vb">
       <DependentUpon>InputHTMLColorCode.vb</DependentUpon>
     </Compile>
