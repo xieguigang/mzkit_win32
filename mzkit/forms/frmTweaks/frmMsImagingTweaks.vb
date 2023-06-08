@@ -652,6 +652,7 @@ UseCheckedList:
                 Dim size As String = $"{params.scan_x},{params.scan_y}"
                 Dim args As New PlotProperty
                 Dim canvas As New Size(params.scan_x * 3, params.scan_y * 3)
+                Dim mzdiff = params.GetTolerance
 
                 params.Hqx = HqxScales.Hqx_4x
 
@@ -662,14 +663,19 @@ UseCheckedList:
 
                             If n.Checked Then
                                 Dim val As String = any.ToString(If(n.Tag, CObj(n.Text)))
-                                Dim path As String = $"{dir}/{val}.png"
+                                Dim path As String = $"{dir}/{n.Text.NormalizePathString(False, ".")}.png"
+                                Dim pixels As PixelData()
 
-                                Call echo($"processing '{val}'")
+                                Call echo($"processing '{n.Text}' ({val})")
 
-                                Dim pixels = WindowModules.viewer.MSIservice.LoadGeneLayer(val)
+                                If val.IsSimpleNumber Then
+                                    pixels = WindowModules.viewer.MSIservice.LoadPixels(New Double() {Conversion.Val(val)}, mzdiff)
+                                Else
+                                    pixels = WindowModules.viewer.MSIservice.LoadGeneLayer(val)
+                                End If
 
                                 If pixels.IsNullOrEmpty Then
-
+                                    Call Workbench.Warning($"No pixels data for {n.Text}...")
                                 Else
                                     Dim maxInto = pixels.Select(Function(a) a.intensity).Max
                                     params.SetIntensityMax(maxInto, New Point())
@@ -678,6 +684,7 @@ UseCheckedList:
                                     Dim image As Image = blender.Rendering(args, canvas)
 
                                     Call image.SaveAs(path)
+                                    Call Workbench.SuccessMessage($"Imaging render for {n.Text} success and save at location: {path}!")
                                 End If
                             End If
                         Next
