@@ -106,7 +106,6 @@ Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports ServiceHub
-Imports SMRUCC.genomics.Assembly.Uniprot.XML
 Imports STImaging
 Imports Task
 Imports TaskStream
@@ -291,7 +290,9 @@ Public Class frmMsImagingViewer
         '    .Distinct _
         '    .ToArray
         Dim mz As Double() = annotations.GetColumnValues("m/z").Select(AddressOf Val).ToArray
+        Dim labels As String() = name.Select(Function(namei, i) $"{namei} {adducts(i)}").ToArray
 
+        Call WindowModules.msImageParameters.ImportsIons(labels, mz)
         Call TaskProgress.LoadData(
             Function(println As Action(Of String))
                 Call Me.Invoke(Sub() importsAnnotations(name, formula, mass, mz, adducts, println))
@@ -324,7 +325,6 @@ Public Class frmMsImagingViewer
 
         Dim title As String = If(FilePath.StringEmpty, "MS-Imaging Ion Stats", $"[{FilePath.FileName}]Ion Stats")
         Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
-        Dim exactMass As Double
 
         table.AppSource = GetType(IonStat)
         table.InstanceGuid = guid
@@ -498,7 +498,7 @@ Public Class frmMsImagingViewer
                     If savefile.ShowDialog = DialogResult.OK Then
 
                         Dim input As New InputMSISlideLayout With {
-                            .layoutData = files.Select(AddressOf BaseName).JoinBy(","),
+                            .layoutData = files.Select(AddressOf basename).JoinBy(","),
                             .useFileNameAsSourceTag = True
                         }
 

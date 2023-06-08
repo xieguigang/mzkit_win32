@@ -621,17 +621,25 @@ UseCheckedList:
                     Dim mz As Double() = table(table.GetOrdinal("mz")).AsDouble
                     Dim name As String() = table(table.GetOrdinal("name")).ToArray
 
-                    For i As Integer = 0 To mz.Length - 1
-                        Dim label As String = $"{name(i)} [m/z {mz(i).ToString("F4")}]"
-                        Dim node = folder.Nodes.Add(label)
-
-                        node.Tag = mz(i)
-                    Next
-
-                    Call Workbench.StatusMessage($"Load {mz.Length} ions for run data visualization.")
+                    Call ImportsIons(name, mz)
                 End If
             End If
         End Using
+    End Sub
+
+    Public Sub ImportsIons(labels As String(), mz As Double())
+        Dim folder = Win7StyleTreeView1.Nodes(0)
+
+        Call folder.Nodes.Clear()
+
+        For i As Integer = 0 To mz.Length - 1
+            Dim label As String = $"{labels(i)} [m/z {mz(i).ToString("F4")}]"
+            Dim node = folder.Nodes.Add(label)
+
+            node.Tag = mz(i)
+        Next
+
+        Call Workbench.StatusMessage($"Load {mz.Length} ions for run data visualization.")
     End Sub
 
     Private Sub ExportEachSelectedLayersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportEachSelectedLayersToolStripMenuItem.Click
