@@ -134,6 +134,7 @@ namespace RibbonLib.Controls
             public const uint cmdButtonExportMSIMzpack = 127;
             public const uint cmdButtonMergeMultipleMSISample = 207;
             public const uint cmdPanelMSIVisual = 186;
+            public const uint cmdButtonMSIImportAnnotationTable = 225;
             public const uint cmdButtonMSISearchPubChem = 192;
             public const uint cmdButtonMSIMatrixVisual = 187;
             public const uint cmdGroupMSIOperations = 201;
@@ -350,6 +351,7 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonExportMSIMzpack { get; private set; }
         public RibbonButton ButtonMergeMultipleMSISample { get; private set; }
         public RibbonGroup PanelMSIVisual { get; private set; }
+        public RibbonButton ButtonMSIImportAnnotationTable { get; private set; }
         public RibbonButton ButtonMSISearchPubChem { get; private set; }
         public RibbonButton ButtonMSIMatrixVisual { get; private set; }
         public RibbonGroup GroupMSIOperations { get; private set; }
@@ -561,6 +563,7 @@ namespace RibbonLib.Controls
             ButtonExportMSIMzpack = new RibbonButton(ribbon, Cmd.cmdButtonExportMSIMzpack);
             ButtonMergeMultipleMSISample = new RibbonButton(ribbon, Cmd.cmdButtonMergeMultipleMSISample);
             PanelMSIVisual = new RibbonGroup(ribbon, Cmd.cmdPanelMSIVisual);
+            ButtonMSIImportAnnotationTable = new RibbonButton(ribbon, Cmd.cmdButtonMSIImportAnnotationTable);
             ButtonMSISearchPubChem = new RibbonButton(ribbon, Cmd.cmdButtonMSISearchPubChem);
             ButtonMSIMatrixVisual = new RibbonButton(ribbon, Cmd.cmdButtonMSIMatrixVisual);
             GroupMSIOperations = new RibbonGroup(ribbon, Cmd.cmdGroupMSIOperations);

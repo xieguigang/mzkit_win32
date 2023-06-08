@@ -2543,6 +2543,14 @@
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonUIShowMapLayer" Id="224" LabelTitle="Show Map Layer" LabelDescription="Show Map Layer" TooltipTitle="Show Map Layer" TooltipDescription="Show Map Layer" />
+    <Command Name="cmdButtonMSIImportAnnotationTable" Id="225" LabelTitle="Import Annotations" LabelDescription="Import Annotation Table" TooltipTitle="Import Annotation Table" TooltipDescription="Import Annotation Table">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/excel-icon.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/excel-icon.bmp</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2770,7 +2778,8 @@
               <Button CommandName="cmdButtonExportMSIMzpack" />
               <Button CommandName="cmdButtonMergeMultipleMSISample" />
             </Group>
-            <Group CommandName="cmdPanelMSIVisual" SizeDefinition="TwoButtons">
+            <Group CommandName="cmdPanelMSIVisual" SizeDefinition="ThreeButtons">
+              <Button CommandName="cmdButtonMSIImportAnnotationTable" />
               <Button CommandName="cmdButtonMSISearchPubChem" />
               <Button CommandName="cmdButtonMSIMatrixVisual" />
             </Group>

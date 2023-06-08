@@ -131,6 +131,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonExportMSIMzpack As UInteger = 127
             Public Const cmdButtonMergeMultipleMSISample As UInteger = 207
             Public Const cmdPanelMSIVisual As UInteger = 186
+            Public Const cmdButtonMSIImportAnnotationTable As UInteger = 225
             Public Const cmdButtonMSISearchPubChem As UInteger = 192
             Public Const cmdButtonMSIMatrixVisual As UInteger = 187
             Public Const cmdGroupMSIOperations As UInteger = 201
@@ -932,6 +933,12 @@ Namespace RibbonLib.Controls
                 Return _PanelMSIVisual
             End Get
         End Property
+        Private _ButtonMSIImportAnnotationTable As RibbonButton
+        Public ReadOnly Property ButtonMSIImportAnnotationTable As RibbonButton
+            Get
+                Return _ButtonMSIImportAnnotationTable
+            End Get
+        End Property
         Private _ButtonMSISearchPubChem As RibbonButton
         Public ReadOnly Property ButtonMSISearchPubChem As RibbonButton
             Get
@@ -1588,6 +1595,7 @@ Namespace RibbonLib.Controls
             _ButtonExportMSIMzpack = New RibbonButton(_ribbon, Cmd.cmdButtonExportMSIMzpack)
             _ButtonMergeMultipleMSISample = New RibbonButton(_ribbon, Cmd.cmdButtonMergeMultipleMSISample)
             _PanelMSIVisual = New RibbonGroup(_ribbon, Cmd.cmdPanelMSIVisual)
+            _ButtonMSIImportAnnotationTable = New RibbonButton(_ribbon, Cmd.cmdButtonMSIImportAnnotationTable)
             _ButtonMSISearchPubChem = New RibbonButton(_ribbon, Cmd.cmdButtonMSISearchPubChem)
             _ButtonMSIMatrixVisual = New RibbonButton(_ribbon, Cmd.cmdButtonMSIMatrixVisual)
             _GroupMSIOperations = New RibbonGroup(_ribbon, Cmd.cmdGroupMSIOperations)
