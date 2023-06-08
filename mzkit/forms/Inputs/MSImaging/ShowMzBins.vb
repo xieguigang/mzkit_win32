@@ -18,8 +18,13 @@ Public Class ShowMzBins
     Private Sub updateBinBox(err As Double)
         Dim mzbins = Layer.GroupBy(Function(p) p.mz, Function(x, y) stdNum.Abs(x - y) < err).ToArray
         Dim hist = mzbins.OrderBy(Function(a) Val(a.name)).Select(Function(mzi) (mz:=Val(mzi.name), binbox:=mzi.ToArray)).ToArray
-        Dim mzgroups = hist.GroupBy(Function(i) i.mz, offsets:=0.5).OrderBy(Function(a) Val(a.name)).ToArray
+        Dim mzgroups = hist.GroupBy(Function(i) i.mz, offsets:=0.1).OrderBy(Function(a) Val(a.name)).ToArray
         Dim colors As Color() = Designer.GetColors("paper", n:=mzgroups.Length)
+
+        If mzgroups.Length = 1 Then
+            colors = {Color.SkyBlue}
+        End If
+
         Dim serials As SerialData() = mzgroups _
             .Select(Function(si, i)
                         Return New SerialData With {
