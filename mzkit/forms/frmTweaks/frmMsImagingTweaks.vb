@@ -59,6 +59,8 @@
 
 #End Region
 
+Imports System.Windows.Forms.Design
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
@@ -70,6 +72,7 @@ Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots.BarPlot.Histogram
+Imports Microsoft.VisualBasic.Data.visualize.Network.Layouts.Cola.GridRouter(Of Node)
 Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.DataStorage.netCDF.DataVector
 Imports Microsoft.VisualBasic.Imaging
@@ -653,6 +656,17 @@ UseCheckedList:
                 Dim args As New PlotProperty
                 Dim canvas As New Size(params.scan_x * 3, params.scan_y * 3)
                 Dim mzdiff = params.GetTolerance
+                Dim MSIservice = WindowModules.viewer.MSIservice
+                Dim TIC = TaskProgress.LoadData(
+                    Function(echo As Action(Of String))
+                        Dim layer = MSIservice.LoadSummaryLayer(IntensitySummary.Total, False)
+                        Dim render As Image = SummaryMSIBlender.Rendering(layer, New Size(params.scan_x, params.scan_y), "gray", 255)
+
+                        Return render
+                    End Function,
+                    title:="Load TIC layer",
+                    info:="Fetch layer pixels data from data serivces backend!"
+                )
 
                 params.Hqx = HqxScales.Hqx_4x
 
@@ -670,9 +684,9 @@ UseCheckedList:
                                 Call echo($"processing '{n.Text}' ({val})")
 
                                 If val.IsSimpleNumber Then
-                                    pixels = WindowModules.viewer.MSIservice.LoadPixels(New Double() {Conversion.Val(val)}, mzdiff)
+                                    pixels = MSIservice.LoadPixels(New Double() {Conversion.Val(val)}, mzdiff)
                                 Else
-                                    pixels = WindowModules.viewer.MSIservice.LoadGeneLayer(val)
+                                    pixels = MSIservice.LoadGeneLayer(val)
                                 End If
 
                                 If pixels.IsNullOrEmpty Then
@@ -680,7 +694,7 @@ UseCheckedList:
                                 Else
                                     Dim maxInto = pixels.Select(Function(a) a.intensity).Max
                                     params.SetIntensityMax(maxInto, New Point())
-                                    Dim blender As New SingleIonMSIBlender(pixels, Nothing, params)
+                                    Dim blender As New SingleIonMSIBlender(pixels, TIC, params)
                                     Dim range As DoubleRange = blender.range
                                     Dim image As Image = blender.Rendering(args, canvas)
 
@@ -693,6 +707,7 @@ UseCheckedList:
                         Return True
                     End Function,
                     title:="Plot each selected image layers...",
+                    info:="Export image rendering...",
                     host:=WindowModules.viewer)
             End If
         End Using
