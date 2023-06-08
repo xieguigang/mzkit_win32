@@ -105,6 +105,7 @@ Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports ServiceHub
+Imports SMRUCC.genomics.Assembly.Uniprot.XML
 Imports STImaging
 Imports Task
 Imports TaskStream
@@ -175,6 +176,7 @@ Public Class frmMsImagingViewer
         AddHandler RibbonEvents.ribbonItems.ButtonConnectMSIService.ExecuteEvent, Sub() Call ConnectToCloud()
         AddHandler RibbonEvents.ribbonItems.ShowTissueData.ExecuteEvent, Sub() Call ShowTissueData()
         AddHandler RibbonEvents.ribbonItems.ButtonAutoUMAP.ExecuteEvent, Sub() Call RunUMAPTissueCluster()
+        AddHandler RibbonEvents.ribbonItems.ButtonMSISignalCorrection.ExecuteEvent, Sub() Call ViewMzBins()
 
         AddHandler RibbonEvents.ribbonItems.CheckShowMapLayer.ExecuteEvent,
             Sub()
@@ -199,6 +201,19 @@ Public Class frmMsImagingViewer
         sampleRegions.Show(MyApplication.host.m_dockPanel)
         sampleRegions.DockState = DockState.Hidden
         sampleRegions.viewer = Me
+    End Sub
+
+    Private Sub ViewMzBins()
+        If loadedPixels.IsNullOrEmpty Then
+            Call Workbench.Warning("No pixel layer data was loaded, please load a target ion at first!")
+            Return
+        End If
+
+        Dim canvas As New ShowMzBins With {.Layer = loadedPixels}
+
+        Call InputDialog.Input(Sub(cfg)
+                                   ' do nothing
+                               End Sub, config:=canvas)
     End Sub
 
     Private Sub RunUMAPTissueCluster()
