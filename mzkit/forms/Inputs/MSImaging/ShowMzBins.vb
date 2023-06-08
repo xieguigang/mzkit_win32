@@ -44,7 +44,7 @@ Public Class ShowMzBins
             Ylabel:="binbox size",
             fill:=True,
             drawLine:=True,
-            padding:="padding:100px 100px 150px 150px;",
+            padding:="padding:100px 300px 250px 250px;",
             dpi:=200,
             YtickFormat:="F0",
             preferPositive:=True,
