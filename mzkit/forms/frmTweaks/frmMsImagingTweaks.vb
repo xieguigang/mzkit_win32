@@ -663,7 +663,8 @@ UseCheckedList:
 
                             If n.Checked Then
                                 Dim val As String = any.ToString(If(n.Tag, CObj(n.Text)))
-                                Dim path As String = $"{dir}/{n.Text.NormalizePathString(False, ".")}.png"
+                                Dim fileName As String = n.Text.NormalizePathString(False, ".")
+                                Dim path As String = $"{dir}/{If(fileName.Length > 128, fileName.Substring(0, 127) & "...", fileName)}.png"
                                 Dim pixels As PixelData()
 
                                 Call echo($"processing '{n.Text}' ({val})")
