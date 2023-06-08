@@ -36,9 +36,9 @@ Partial Class ShowMzBins
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox1.Controls.Add(Me.PictureBox1)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
+        Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(607, 328)
+        Me.GroupBox1.Size = New System.Drawing.Size(786, 512)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Histogram"
@@ -49,7 +49,7 @@ Partial Class ShowMzBins
         Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PictureBox1.Location = New System.Drawing.Point(3, 17)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(601, 308)
+        Me.PictureBox1.Size = New System.Drawing.Size(780, 492)
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
@@ -57,7 +57,7 @@ Partial Class ShowMzBins
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(631, 352)
+        Me.ClientSize = New System.Drawing.Size(793, 520)
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "ShowMzBins"
         Me.Text = "View m/z Bin Box Histogram"

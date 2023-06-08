@@ -43,7 +43,9 @@ Public Class ShowMzBins
             Xlabel:="m/z",
             Ylabel:="binbox size",
             fill:=True,
-            drawLine:=True
+            drawLine:=True,
+            padding:="padding:100px 100px 150px 150px;",
+            dpi:=200
         ).AsGDIImage
     End Sub
 End Class
