@@ -164,6 +164,13 @@ Public Module MSIProtocols
         End If
     End Function
 
+    ''' <summary>
+    ''' load pixels layer via a given set of ion m/z value
+    ''' </summary>
+    ''' <param name="mz"></param>
+    ''' <param name="mzErr"></param>
+    ''' <param name="handleServiceRequest"></param>
+    ''' <returns></returns>
     Public Function LoadPixels(mz As IEnumerable(Of Double),
                                mzErr As Tolerance,
                                handleServiceRequest As Func(Of RequestStream, RequestStream)) As PixelData()
@@ -173,7 +180,9 @@ Public Module MSIProtocols
             .method = If(TypeOf mzErr Is PPMmethod, "ppm", "da"),
             .mzErr = mzErr.DeltaTolerance
         }
-        Dim configBytes As Byte() = BSON.GetBuffer(config.GetType.GetJsonElement(config, New JSONSerializerOptions)).ToArray
+        Dim configBytes As Byte() = BSON _
+            .GetBuffer(config.GetType.GetJsonElement(config, New JSONSerializerOptions)) _
+            .ToArray
         Dim data As RequestStream = handleServiceRequest(New RequestStream(
             protocolCategory:=MSI.Protocol,
             protocol:=ServiceProtocol.LoadMSILayers,

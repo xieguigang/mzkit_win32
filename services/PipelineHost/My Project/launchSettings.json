@@ -5,9 +5,9 @@
     },
     "run_dll": {
       "commandName": "Executable",
-      "executablePath": "D:\\mzkit\\dist\\bin/Rstudio/bin/Rscript.exe",
-      "commandLineArgs": "\"D:/mzkit/src/mzkit/rstudio/pipeline/MSI_peaktable.R\" --raw \"D:\\mzkit\\DATA\\test\\HR2MSI mouse urinary bladder S096 - Figure1.cdf\" --save \"C:\\Users\\lipidsearch\\Desktop\\matrix3.csv\" --mzdiff \"0.005\" --into.cutoff \"0.05\" --TrIQ \"0.8\" --SetDllDirectory D:/mzkit/dist/bin/Rstudio/host",
-      "workingDirectory": "D:\\mzkit\\dist\\bin\\Rstudio\\bin"
+      "executablePath": "\\mzkit\\dist\\bin/Rstudio/bin/Rscript.exe",
+      "commandLineArgs": "\"E:/mzkit/src/mzkit/rstudio/pipeline/MSI_peaktable.R\" --raw \"\\\\192.168.1.254\\backup3\\项目以外内容\\2022\\仁济医院\\2023-05-31\\P2\\P2-V.mzPack\" --save \"E:\\biodeep\\biodeepdb_v3\\spatial\\msi_analysis-3.0\\test\\graph_cluster\\HTS.csv\" --mzdiff \"0.3\" --into.cutoff \"0\" --TrIQ \"0.8\" --SetDllDirectory E:/mzkit/dist/bin/Rstudio/host",
+      "workingDirectory": "\\mzkit\\dist\\bin\\Rstudio\\bin"
     }
   }
 }

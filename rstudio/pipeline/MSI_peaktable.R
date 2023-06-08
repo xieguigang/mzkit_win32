@@ -35,7 +35,7 @@ if (is.null(regions)) {
 	print("a rectangle list data in json format is not provided!");
 	print("all of the spot ion features will be export!");
 	
-	using savefile as file(savepath) {
+	using savefile as file(savepath, truncate = TRUE) {
 		raw |> BackgroundTask::MSI_peaktable(
 			NULL, savefile, 
 			mzdiff = mzdiff,
@@ -44,7 +44,7 @@ if (is.null(regions)) {
 		);
 	}
 } else {
-	using savefile as file(savepath) {
+	using savefile as file(savepath, truncate = TRUE) {
 		BackgroundTask::MSI_peaktable(raw, getRegions(), savefile);
 	}
 }
