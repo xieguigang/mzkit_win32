@@ -2543,7 +2543,7 @@
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonUIShowMapLayer" Id="224" LabelTitle="Show Map Layer" LabelDescription="Show Map Layer" TooltipTitle="Show Map Layer" TooltipDescription="Show Map Layer" />
-    <Command Name="cmdButtonMSIImportAnnotationTable" Id="225" LabelTitle="Import Annotations" LabelDescription="Import Annotation Table" TooltipTitle="Import Annotation Table" TooltipDescription="Import Annotation Table">
+    <Command Name="cmdButtonMSIImportAnnotationTable" Id="225" LabelTitle="Import Annotations" LabelDescription="Imports a list set of the metabolite annotation data for visual on ms-imaging sample data. Two field is required: name, formula!" TooltipTitle="Import Annotation Table" TooltipDescription="Imports a list set of the metabolite annotation data for visual on ms-imaging sample data. Two field is required: name, formula!">
       <Command.SmallImages>
         <Image MinDPI="192">Res/excel-icon.bmp</Image>
       </Command.SmallImages>

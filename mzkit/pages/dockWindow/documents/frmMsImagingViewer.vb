@@ -84,6 +84,7 @@ Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.ComponentModel.Algorithm
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
@@ -111,6 +112,7 @@ Imports TaskStream
 Imports WeifenLuo.WinFormsUI.Docking
 Imports File = Microsoft.VisualBasic.Data.csv.IO.File
 Imports stdNum = System.Math
+Imports xlsxFile = Microsoft.VisualBasic.MIME.Office.Excel.XLSX.File
 
 Public Class frmMsImagingViewer
     Implements IFileReference
@@ -155,6 +157,7 @@ Public Class frmMsImagingViewer
         AddHandler RibbonEvents.ribbonItems.ButtonMSIBasePeakIon.ExecuteEvent, Sub() Call RenderSummary(IntensitySummary.BasePeak)
         AddHandler RibbonEvents.ribbonItems.ButtonMSIAverageIon.ExecuteEvent, Sub() Call RenderSummary(IntensitySummary.Average)
 
+        AddHandler RibbonEvents.ribbonItems.ButtonMSIImportAnnotationTable.ExecuteEvent, Sub() Call LoadImportAnnotationTable()
         AddHandler RibbonEvents.ribbonItems.ButtonExportSample.ExecuteEvent, Sub() Call exportMSISampleTable()
         AddHandler RibbonEvents.ribbonItems.ButtonExportMSIMzpack.ExecuteEvent, Sub() Call exportMzPack()
         AddHandler RibbonEvents.ribbonItems.ButtonTogglePolygon.ExecuteEvent, Sub() Call TogglePolygonMode()
@@ -241,6 +244,148 @@ Public Class frmMsImagingViewer
 
             Call ImportsTissueMorphology(tissues:=groups)
         End If
+    End Sub
+
+    Private Sub LoadImportAnnotationTable()
+        If Not checkService() Then
+            Return
+        End If
+
+        Dim file As New OpenFileDialog With {.Filter = "Excel Table(*.csv;*.xlsx)|*.csv;*.xlsx"}
+
+        If file.ShowDialog <> DialogResult.OK Then
+            Return
+        End If
+
+        Dim annotations As DataFrame
+
+        If file.FileName.ExtensionSuffix("csv") Then
+            annotations = DataFrame.Load(file.FileName)
+        Else
+            annotations = DataFrame.CreateObject(xlsxFile.Open(file.FileName).GetTable(0))
+        End If
+
+        Dim name As String() = annotations.GetColumnValues("name").ToArray
+        Dim formula As String() = annotations.GetColumnValues("formula").ToArray
+        Dim mass As Double() = formula.Select(Function(fstr) FormulaScanner.ScanFormula(fstr).ExactMass).ToArray
+        ' evaluate m/z
+        Dim mz As Double() = Provider.Positives _
+            .Select(Function(t) mass.Select(Function(em) t.CalcMZ(em))) _
+            .IteratesALL _
+            .Distinct _
+            .ToArray
+
+        Call TaskProgress.LoadData(
+            Function(println As Action(Of String))
+                Call Me.Invoke(Sub() importsAnnotations(name, formula, mass, mz, Provider.Positives, println))
+                Return True
+            End Function, title:="Do metabolite annotation imports", info:="Running ms-imaging raw data file scanning!")
+    End Sub
+
+    ''' <summary>
+    ''' name/formula/exactMass是一一对应的
+    ''' </summary>
+    ''' <param name="name"></param>
+    ''' <param name="formula"></param>
+    ''' <param name="exactMassList"></param>
+    ''' <param name="mz"></param>
+    Private Sub importsAnnotations(name As String(),
+                                   formula As String(),
+                                   exactMassList As Double(),
+                                   mz As Double(),
+                                   adducts As MzCalculator(),
+                                   println As Action(Of String))
+
+        Call println($"Measuring for {mz.Length} ions data...")
+
+        Dim ions As IonStat() = MSIservice.DoIonStats(mz)
+
+        If ions.IsNullOrEmpty Then
+            Call Workbench.Warning("No ions result...")
+            Return
+        End If
+
+        Dim title As String = If(FilePath.StringEmpty, "MS-Imaging Ion Stats", $"[{If(name, FilePath.FileName)}]Ion Stats")
+        Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
+        Dim exactMass As Double
+
+        table.AppSource = GetType(IonStat)
+        table.InstanceGuid = guid
+        table.SourceName = FilePath.FileName Or "MS-Imaging".AsDefault
+        table.ViewRow = Sub(row)
+                            Dim namePlot As String = $"{name} {row("precursor_type")} {mz.ToString("F4")}"
+                            Dim mzi As Double = Val(row("mz"))
+
+                            Call renderByMzList({mzi}, namePlot)
+                            Call Me.Activate()
+                        End Sub
+
+        Call println($"Build search tree for {ions.Length} ions hit!")
+
+        Dim ionList = New BlockSearchFunction(Of IonStat)(
+            data:=ions,
+            eval:=Function(i) i.mz,
+            tolerance:=0.05,
+            factor:=2,
+            fuzzy:=True
+        )
+
+        table.LoadTable(
+            Sub(grid)
+                Call grid.Columns.Add("name", GetType(String))
+                Call grid.Columns.Add("formula", GetType(String))
+                Call grid.Columns.Add("precursor_type")
+                Call grid.Columns.Add("mz", GetType(Double))
+                Call grid.Columns.Add("pixels", GetType(Integer))
+                Call grid.Columns.Add("density", GetType(Double))
+                Call grid.Columns.Add("imaging_score", GetType(Double))
+                Call grid.Columns.Add("maxIntensity", GetType(Double))
+                Call grid.Columns.Add("basePixel.X", GetType(Integer))
+                Call grid.Columns.Add("basePixel.Y", GetType(Integer))
+                Call grid.Columns.Add("Q1_intensity", GetType(Double))
+                Call grid.Columns.Add("Q2_intensity", GetType(Double))
+                Call grid.Columns.Add("Q3_intensity", GetType(Double))
+                Call grid.Columns.Add("RSD", GetType(Double))
+
+                For i As Integer = 0 To name.Length - 1
+                    Dim name_str = name(i)
+                    Dim formula_str = formula(i)
+
+                    exactMass = exactMassList(i)
+                    println($"Process for {name_str}({formula_str})...")
+
+                    For Each type As MzCalculator In adducts
+                        Dim mzi As Double = type.CalcMZ(exactMass)
+                        Dim ion = ionList _
+                            .Search(New IonStat With {.mz = mzi}) _
+                            .OrderBy(Function(ion2) stdNum.Abs(ion2.mz - mzi)) _
+                            .FirstOrDefault
+
+                        If ion Is Nothing Then
+                            Continue For
+                        End If
+
+                        Call grid.Rows.Add(
+                           name_str,
+                           formula_str,
+                           type.ToString,
+                           ion.mz.ToString("F4"),
+                           ion.pixels,
+                           ion.density.ToString("F2"),
+                           (stdNum.Log(ion.pixels + 1) * ion.density).ToString("F2"),
+                           stdNum.Round(ion.maxIntensity),
+                           ion.basePixelX,
+                           ion.basePixelY,
+                           stdNum.Round(ion.Q1Intensity),
+                           stdNum.Round(ion.Q2Intensity),
+                           stdNum.Round(ion.Q3Intensity),
+                           stdNum.Round(ion.RSD)
+                        )
+
+                        Call System.Windows.Forms.Application.DoEvents()
+                    Next
+                Next
+            End Sub)
     End Sub
 
     Dim umap3D As UMAPPoint()
@@ -579,7 +724,7 @@ Public Class frmMsImagingViewer
                         End If
                     End Sub)
             Else
-                Call Workbench.StatusMessage($"The MS-imaging backend services is not running for rendering {getFormula.GetAnnotation.name}!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Call Workbench.Warning($"The MS-imaging backend services is not running for rendering {getFormula.GetAnnotation.name}!")
             End If
         End If
     End Sub
