@@ -60,6 +60,7 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math.Distributions
+Imports SMRUCC.Rsharp.Runtime.Vectorization
 
 Public Class ShowColumnStat
 
@@ -74,11 +75,13 @@ Public Class ShowColumnStat
         Dim vec As Array = vectors(key)
 
         If TypeOf vec Is String() OrElse TypeOf vec Is Char() Then
-            Dim chrs As String() = vec.AsObjectEnumerator.Select(Function(s) CStr(s)).ToArray
+            Dim chrs As String() = CLRVector.asCharacter(vec)
             Dim factors = chrs.GroupBy(Function(c) c).ToArray
 
             If factors.Length = chrs.Length Then
                 Return
+            ElseIf chrs.All(Function(si) si.StringEmpty OrElse si.IsNumeric) Then
+                GoTo IS_NUMERIC
             End If
 
             DataGridView1.Rows.Clear()
@@ -126,8 +129,8 @@ Public Class ShowColumnStat
         ElseIf TypeOf vec Is Date() Then
             ' do nothing?
         Else
-            ' is numeric
-            Dim num As Double() = vec.AsObjectEnumerator.Select(Function(d) CDbl(d)).ToArray
+IS_NUMERIC:    ' is numeric
+            Dim num As Double() = CLRVector.asNumeric(vec)
             Dim sample As New SampleDistribution(num)
 
             DataGridView1.Rows.Clear()
