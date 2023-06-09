@@ -182,10 +182,10 @@ Public Class frmMain : Implements AppHost
 
     Public Sub OpenFile(fileName As String, showDocument As Boolean)
         If AppEnvironment.IsDevelopmentMode Then
-            Call OpenFile(fileName, showDocument)
+            Call OpenFileInternal(fileName, showDocument)
         Else
             Try
-                Call OpenFile(fileName, showDocument)
+                Call OpenFileInternal(fileName, showDocument)
             Catch ex As Exception
                 MessageBox.Show($"MZKit can not handle the given input file '{fileName}' correctly. Probably you should check the file is corruptted or try to open this file in a specific MZKit application module?",
                                 "Open File Error",
