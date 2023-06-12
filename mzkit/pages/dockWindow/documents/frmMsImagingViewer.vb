@@ -106,7 +106,6 @@ Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports ServiceHub
-Imports SMRUCC.genomics.Assembly.Uniprot.XML
 Imports STImaging
 Imports Task
 Imports TaskStream
@@ -284,15 +283,19 @@ Public Class frmMsImagingViewer
         Dim formula As String() = annotations.GetColumnValues("formula").ToArray
         Dim mass As Double() = formula.Select(Function(fstr) FormulaScanner.ScanFormula(fstr).ExactMass).ToArray
         ' evaluate m/z
-        Dim mz As Double() = If(params.polarity = IonModes.Negative, Provider.Negatives, Provider.Positives) _
-            .Select(Function(t) mass.Select(Function(em) t.CalcMZ(em))) _
-            .IteratesALL _
-            .Distinct _
-            .ToArray
+        Dim adducts = annotations.GetColumnValues("precursor_type").ToArray  ' If(params.polarity = IonModes.Negative, Provider.Negatives, Provider.Positives)
+        'Dim mz As Double() = adducts _
+        '    .Select(Function(t) mass.Select(Function(em) t.CalcMZ(em))) _
+        '    .IteratesALL _
+        '    .Distinct _
+        '    .ToArray
+        Dim mz As Double() = annotations.GetColumnValues("m/z").Select(AddressOf Val).ToArray
+        Dim labels As String() = name.Select(Function(namei, i) $"{namei} {adducts(i)}").ToArray
 
+        Call WindowModules.msImageParameters.ImportsIons(labels, mz)
         Call TaskProgress.LoadData(
             Function(println As Action(Of String))
-                Call Me.Invoke(Sub() importsAnnotations(name, formula, mass, mz, Provider.Positives, println))
+                Call Me.Invoke(Sub() importsAnnotations(name, formula, mass, mz, adducts, println))
                 Return True
             End Function, title:="Do metabolite annotation imports", info:="Running ms-imaging raw data file scanning!")
     End Sub
@@ -308,7 +311,7 @@ Public Class frmMsImagingViewer
                                    formula As String(),
                                    exactMassList As Double(),
                                    mz As Double(),
-                                   adducts As MzCalculator(),
+                                   adducts As String(),
                                    println As Action(Of String))
 
         Call println($"Measuring for {mz.Length} ions data...")
@@ -320,16 +323,16 @@ Public Class frmMsImagingViewer
             Return
         End If
 
-        Dim title As String = If(FilePath.StringEmpty, "MS-Imaging Ion Stats", $"[{If(name, FilePath.FileName)}]Ion Stats")
+        Dim title As String = If(FilePath.StringEmpty, "MS-Imaging Ion Stats", $"[{FilePath.FileName}]Ion Stats")
         Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
-        Dim exactMass As Double
 
         table.AppSource = GetType(IonStat)
         table.InstanceGuid = guid
         table.SourceName = FilePath.FileName Or "MS-Imaging".AsDefault
         table.ViewRow = Sub(row)
-                            Dim namePlot As String = $"{name} {row("precursor_type")} {mz.ToString("F4")}"
                             Dim mzi As Double = Val(row("mz"))
+                            Dim namei As String = row("name")
+                            Dim namePlot As String = $"{namei} {row("precursor_type")} {mzi.ToString("F4")}"
 
                             Call renderByMzList({mzi}, namePlot)
                             Call Me.Activate()
@@ -340,7 +343,7 @@ Public Class frmMsImagingViewer
         Dim ionList = New BlockSearchFunction(Of IonStat)(
             data:=ions,
             eval:=Function(i) i.mz,
-            tolerance:=0.05,
+            tolerance:=1,
             factor:=2,
             fuzzy:=True
         )
@@ -365,40 +368,40 @@ Public Class frmMsImagingViewer
                 For i As Integer = 0 To name.Length - 1
                     Dim name_str = name(i)
                     Dim formula_str = formula(i)
+                    Dim mzi As Double = mz(i)
+                    Dim type As String = adducts(i)
 
-                    exactMass = exactMassList(i)
                     println($"Process for {name_str}({formula_str})...")
 
-                    For Each type As MzCalculator In adducts
-                        Dim mzi As Double = type.CalcMZ(exactMass)
-                        Dim ion = ionList _
-                            .Search(New IonStat With {.mz = mzi}) _
-                            .OrderBy(Function(ion2) stdNum.Abs(ion2.mz - mzi)) _
-                            .FirstOrDefault
+                    Dim ion = ionList _
+                        .Search(New IonStat With {.mz = mzi}, tolerance:=0.05) _
+                        .OrderBy(Function(ion2) stdNum.Abs(ion2.mz - mzi)) _
+                        .FirstOrDefault
 
-                        If ion Is Nothing Then
-                            Continue For
-                        End If
+                    If ion Is Nothing Then
+                        Continue For
+                    ElseIf stdNum.Abs(ion.mz - mzi) > 0.05 Then
+                        Continue For
+                    End If
 
-                        Call grid.Rows.Add(
-                           name_str,
-                           formula_str,
-                           type.ToString,
-                           ion.mz.ToString("F4"),
-                           ion.pixels,
-                           ion.density.ToString("F2"),
-                           (stdNum.Log(ion.pixels + 1) * ion.density).ToString("F2"),
-                           stdNum.Round(ion.maxIntensity),
-                           ion.basePixelX,
-                           ion.basePixelY,
-                           stdNum.Round(ion.Q1Intensity),
-                           stdNum.Round(ion.Q2Intensity),
-                           stdNum.Round(ion.Q3Intensity),
-                           stdNum.Round(ion.RSD)
-                        )
+                    Call grid.Rows.Add(
+                       name_str,
+                       formula_str,
+                       type,
+                       mzi.ToString("F4"),
+                       ion.pixels,
+                       ion.density.ToString("F2"),
+                       (stdNum.Log(ion.pixels + 1) * ion.density).ToString("F2"),
+                       stdNum.Round(ion.maxIntensity),
+                       ion.basePixelX,
+                       ion.basePixelY,
+                       stdNum.Round(ion.Q1Intensity),
+                       stdNum.Round(ion.Q2Intensity),
+                       stdNum.Round(ion.Q3Intensity),
+                       stdNum.Round(ion.RSD)
+                    )
 
-                        Call System.Windows.Forms.Application.DoEvents()
-                    Next
+                    Call System.Windows.Forms.Application.DoEvents()
                 Next
             End Sub)
 
@@ -495,7 +498,7 @@ Public Class frmMsImagingViewer
                     If savefile.ShowDialog = DialogResult.OK Then
 
                         Dim input As New InputMSISlideLayout With {
-                            .layoutData = files.Select(AddressOf BaseName).JoinBy(","),
+                            .layoutData = files.Select(AddressOf basename).JoinBy(","),
                             .useFileNameAsSourceTag = True
                         }
 

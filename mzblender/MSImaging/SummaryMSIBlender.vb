@@ -142,6 +142,17 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
         Return image
     End Function
 
+    ''' <summary>
+    ''' rendering of the TIC data layer image
+    ''' </summary>
+    ''' <param name="layerData"></param>
+    ''' <param name="dimensions"></param>
+    ''' <param name="color"></param>
+    ''' <param name="mapLevels"></param>
+    ''' <returns>
+    ''' this is a safe function, and this function will returns nothing if
+    ''' the given <paramref name="layerData"/> is empty
+    ''' </returns>
     Public Overloads Shared Function Rendering(layerData As PixelScanIntensity(),
                                                dimensions As Size,
                                                color As String,

@@ -130,6 +130,8 @@ Public Class MsImageProperty
     End Property
 
     Public ReadOnly Property instrument As String
+    <Description("The m/z ion data polarity mode, this property value will affects the ion metabolite annotation function in MZKit!")>
+    Public Property polarity As IonModes = IonModes.Positive
 
     <Category("Render")> Public Property background As Color
     <Category("Render")>
@@ -152,8 +154,6 @@ Public Class MsImageProperty
     <Description("The mass tolerance error threshold in delta dalton or ppm.")>
     <Category("Pixel M/z Data")> Public Property tolerance As Double = 0.1
     <Category("Pixel M/z Data")> Public Property method As ToleranceMethod = ToleranceMethod.Da
-    <Description("The m/z ion data polarity mode, this property value will affects the ion metabolite annotation function in MZKit!")>
-    <Category("Pixel M/z Data")> Public Property polarity As IonModes = IonModes.Positive
 
     <Category("Intensity")> Public ReadOnly Property basePeak_x As Integer
     <Category("Intensity")> Public ReadOnly Property basePeak_y As Integer

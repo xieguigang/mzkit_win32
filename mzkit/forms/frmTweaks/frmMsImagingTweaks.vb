@@ -59,6 +59,7 @@
 
 #End Region
 
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
@@ -621,17 +622,25 @@ UseCheckedList:
                     Dim mz As Double() = table(table.GetOrdinal("mz")).AsDouble
                     Dim name As String() = table(table.GetOrdinal("name")).ToArray
 
-                    For i As Integer = 0 To mz.Length - 1
-                        Dim label As String = $"{name(i)} [m/z {mz(i).ToString("F4")}]"
-                        Dim node = folder.Nodes.Add(label)
-
-                        node.Tag = mz(i)
-                    Next
-
-                    Call Workbench.StatusMessage($"Load {mz.Length} ions for run data visualization.")
+                    Call ImportsIons(name, mz)
                 End If
             End If
         End Using
+    End Sub
+
+    Public Sub ImportsIons(labels As String(), mz As Double())
+        Dim folder = Win7StyleTreeView1.Nodes(0)
+
+        Call folder.Nodes.Clear()
+
+        For i As Integer = 0 To mz.Length - 1
+            Dim label As String = $"{labels(i)} [m/z {mz(i).ToString("F4")}]"
+            Dim node = folder.Nodes.Add(label)
+
+            node.Tag = mz(i)
+        Next
+
+        Call Workbench.StatusMessage($"Load {mz.Length} ions for run data visualization.")
     End Sub
 
     Private Sub ExportEachSelectedLayersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportEachSelectedLayersToolStripMenuItem.Click
@@ -644,6 +653,18 @@ UseCheckedList:
                 Dim size As String = $"{params.scan_x},{params.scan_y}"
                 Dim args As New PlotProperty
                 Dim canvas As New Size(params.scan_x * 3, params.scan_y * 3)
+                Dim mzdiff = params.GetTolerance
+                Dim MSIservice = WindowModules.viewer.MSIservice
+                Dim TIC = TaskProgress.LoadData(
+                    Function(echo As Action(Of String))
+                        Dim layer = MSIservice.LoadSummaryLayer(IntensitySummary.Total, False)
+                        Dim render As Image = SummaryMSIBlender.Rendering(layer, New Size(params.scan_x, params.scan_y), "gray", 255)
+
+                        Return render
+                    End Function,
+                    title:="Load TIC layer",
+                    info:="Fetch layer pixels data from data serivces backend!"
+                )
 
                 params.Hqx = HqxScales.Hqx_4x
 
@@ -654,22 +675,29 @@ UseCheckedList:
 
                             If n.Checked Then
                                 Dim val As String = any.ToString(If(n.Tag, CObj(n.Text)))
-                                Dim path As String = $"{dir}/{val}.png"
+                                Dim fileName As String = n.Text.NormalizePathString(False, ".")
+                                Dim path As String = $"{dir}/{If(fileName.Length > 128, fileName.Substring(0, 127) & "...", fileName)}.png"
+                                Dim pixels As PixelData()
 
-                                Call echo($"processing '{val}'")
+                                Call echo($"processing '{n.Text}' ({val})")
 
-                                Dim pixels = WindowModules.viewer.MSIservice.LoadGeneLayer(val)
+                                If val.IsSimpleNumber Then
+                                    pixels = MSIservice.LoadPixels(New Double() {Conversion.Val(val)}, mzdiff)
+                                Else
+                                    pixels = MSIservice.LoadGeneLayer(val)
+                                End If
 
                                 If pixels.IsNullOrEmpty Then
-
+                                    Call Workbench.Warning($"No pixels data for {n.Text}...")
                                 Else
                                     Dim maxInto = pixels.Select(Function(a) a.intensity).Max
                                     params.SetIntensityMax(maxInto, New Point())
-                                    Dim blender As New SingleIonMSIBlender(pixels, Nothing, params)
+                                    Dim blender As New SingleIonMSIBlender(pixels, params, TIC)
                                     Dim range As DoubleRange = blender.range
                                     Dim image As Image = blender.Rendering(args, canvas)
 
                                     Call image.SaveAs(path)
+                                    Call Workbench.SuccessMessage($"Imaging render for {n.Text} success and save at location: {path}!")
                                 End If
                             End If
                         Next
@@ -677,6 +705,7 @@ UseCheckedList:
                         Return True
                     End Function,
                     title:="Plot each selected image layers...",
+                    info:="Export image rendering...",
                     host:=WindowModules.viewer)
             End If
         End Using

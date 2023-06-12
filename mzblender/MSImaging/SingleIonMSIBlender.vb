@@ -86,6 +86,10 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
     End Property
 
     Sub New(layer As PixelData(), TIC As PixelScanIntensity(), params As MsImageProperty)
+        Call Me.New(layer, params, SummaryMSIBlender.Rendering(TIC, New Size(params.scan_x, params.scan_y), "gray", 255))
+    End Sub
+
+    Sub New(layer As PixelData(), params As MsImageProperty, Optional TIC As Image = Nothing)
         Call MyBase.New(params)
 
         Me.layer = New SingleIonLayer With {
@@ -95,7 +99,7 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
                 height:=params.scan_y
             )
         }
-        Me.TIC = SummaryMSIBlender.Rendering(TIC, Me.layer.DimensionSize, "gray", 255)
+        Me.TIC = TIC
         Me.intensity = layer.Select(Function(i) i.intensity).ToArray
         Me.range = intensity.Range
     End Sub
