@@ -223,7 +223,7 @@ Public Class frmMsImagingViewer
             Return
         End If
 
-        Dim matrix As String = exportAllSpotSamplePeaktable(noUI:=True)
+        Dim matrix As String = exportAllSpotSamplePeaktable(noUI:=True, filePath:=FilePath)
 
         If matrix.StringEmpty Then
             Call Workbench.Warning("Export feature ions peaktable task error or user canceled.")
@@ -498,7 +498,7 @@ Public Class frmMsImagingViewer
                     If savefile.ShowDialog = DialogResult.OK Then
 
                         Dim input As New InputMSISlideLayout With {
-                            .layoutData = files.Select(AddressOf basename).JoinBy(","),
+                            .layoutData = files.Select(AddressOf BaseName).JoinBy(","),
                             .useFileNameAsSourceTag = True
                         }
 
@@ -2093,14 +2093,14 @@ Public Class frmMsImagingViewer
         End If
     End Sub
 
-    Private Function exportAllSpotSamplePeaktable(noUI As Boolean) As String
+    Private Shared Function exportAllSpotSamplePeaktable(noUI As Boolean, filePath As String) As String
         ' export all spots
         Using file As New SaveFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
             If file.ShowDialog = DialogResult.OK Then
                 Call InputDialog.Input(Of InputMSIPeakTableParameters)(
                     Sub(cfg)
                         Call RscriptProgressTask.CreateMSIPeakTable(
-                            mzpack:=FilePath,
+                            mzpack:=filePath,
                             saveAs:=file.FileName,
                             cfg.Mzdiff, cfg.IntoCutoff, cfg.TrIQCutoff,
                             noUI
@@ -2121,13 +2121,20 @@ Public Class frmMsImagingViewer
 
     Private Sub exportMSISampleTable()
         If Not checkService() Then
-            Call Workbench.Warning("No MSI raw data is loaded!")
+            ' select file and export all pixel spots
+            Using file As New OpenFileDialog With {.Filter = "BioNovoGene mzPack(*.mzPack)|*.mzPack"}
+                If file.ShowDialog = DialogResult.OK Then
+                    Call exportAllSpotSamplePeaktable(noUI:=False, filePath:=file.FileName)
+                End If
+            End Using
+
+            ' Call Workbench.Warning("No MSI raw data is loaded!")
             Return
         End If
 
         If sampleRegions.IsNullOrEmpty Then
             ' Call Workbench.Warning("No sample spot regions!")
-            Call exportAllSpotSamplePeaktable(noUI:=False)
+            Call exportAllSpotSamplePeaktable(noUI:=False, filePath:=FilePath)
         Else
             Using file As New SaveFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
                 If file.ShowDialog = DialogResult.OK Then
