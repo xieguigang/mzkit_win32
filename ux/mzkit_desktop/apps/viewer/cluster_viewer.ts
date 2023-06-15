@@ -98,7 +98,7 @@ namespace apps.viewer {
                 })
                 .ToArray();
 
-            return {
+            return <any>{
                 grid3D: {},
                 xAxis3D: { type: 'value', name: 'x' },
                 yAxis3D: { type: 'value', name: 'y' },
@@ -112,12 +112,12 @@ namespace apps.viewer {
                     },
                     // showContent: true, //是否显示提示框浮层，默认显示。
                     // triggerOn: 'mouseover', // 触发时机'click'鼠标点击时触发。 
-                    backgroundColor: 'rgba(50,50,50,0.7)', // 提示框浮层的背景颜色。
+                    backgroundColor: 'white', // 提示框浮层的背景颜色。
                     borderColor: '#333', // 提示框浮层的边框颜色。
                     borderWidth: 0, // 提示框浮层的边框宽。
                     padding: 5, // 提示框浮层内边距，
                     textStyle: { // 提示框浮层的文本样式。
-                        color: '#fff',
+                        color: 'skyblue',
                         fontStyle: 'normal',
                         fontWeight: 'normal',
                         fontFamily: 'sans-serif',
@@ -127,8 +127,14 @@ namespace apps.viewer {
                     // 模板变量有 {a}, {b}，{c}，分别表示系列名，数据名，数据值等
                     // formatter: '{a}--{b} 的成绩是 {c}'
                     formatter: function (arg) {
-                        return JSON.stringify(arg);
+                        // console.log(arg);
+                        return `${arg.seriesName} ${JSON.stringify(arg.data)}`;
                     }
+                },
+                legend: {
+                    orient: 'vertical',
+                    x: 'right',
+                    y: 'center'
                 }
             };
         }

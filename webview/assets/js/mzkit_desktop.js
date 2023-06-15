@@ -811,12 +811,12 @@ var apps;
                         },
                         // showContent: true, //是否显示提示框浮层，默认显示。
                         // triggerOn: 'mouseover', // 触发时机'click'鼠标点击时触发。 
-                        backgroundColor: 'rgba(50,50,50,0.7)',
+                        backgroundColor: 'white',
                         borderColor: '#333',
                         borderWidth: 0,
                         padding: 5,
                         textStyle: {
-                            color: '#fff',
+                            color: 'skyblue',
                             fontStyle: 'normal',
                             fontWeight: 'normal',
                             fontFamily: 'sans-serif',
@@ -826,8 +826,14 @@ var apps;
                         // 模板变量有 {a}, {b}，{c}，分别表示系列名，数据名，数据值等
                         // formatter: '{a}--{b} 的成绩是 {c}'
                         formatter: function (arg) {
-                            return JSON.stringify(arg);
+                            // console.log(arg);
+                            return "".concat(arg.seriesName, " ").concat(JSON.stringify(arg.data));
                         }
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        x: 'right',
+                        y: 'center'
                     }
                 };
             };
