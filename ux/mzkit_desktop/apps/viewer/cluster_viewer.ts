@@ -74,11 +74,13 @@ namespace apps.viewer {
 
         public static load_cluster(data: cluster_data[]): gl_plot.scatter3d_options {
             const paper = echart_app.paper;
+            const class_labels = $from(data).Select(r => r.cluster).Distinct().ToArray();
+            const numeric_cluster = $from(class_labels).All(si => Strings.isIntegerPattern(si.toString()));
             const scatter3D = $from(data)
                 .Select(function (r) {
                     return <gl_plot.gl_scatter_data>{
                         type: 'scatter3D',
-                        name: `cluster_${r.cluster}`,
+                        name: numeric_cluster ? `cluster_${r.cluster}` : r.cluster.toString(),
                         symbolSize: 3,
                         dimensions: [
                             'x',
@@ -89,7 +91,7 @@ namespace apps.viewer {
                         symbol: 'triangle',
                         itemStyle: {
                             // borderWidth: 0.5,
-                            color: paper[parseInt(r.cluster.toString())],
+                            color: paper[class_labels.indexOf(r.cluster.toString())],
                             // borderColor: 'rgba(255,255,255,0.8)'//边框样式
                         }
                     };
