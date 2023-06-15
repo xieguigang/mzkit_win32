@@ -102,6 +102,7 @@ namespace apps.viewer {
                     };
                 })
                 .ToArray();
+            const spot_labels = $from(data).ToDictionary(d => d.cluster.toString(), d => d.labels);
 
             return <any>{
                 grid3D: {},
@@ -132,8 +133,10 @@ namespace apps.viewer {
                     // 模板变量有 {a}, {b}，{c}，分别表示系列名，数据名，数据值等
                     // formatter: '{a}--{b} 的成绩是 {c}'
                     formatter: function (arg) {
-                        console.log(arg);
-                        return `${arg.seriesName} ${JSON.stringify(arg.data)}`;
+                        const i = arg.dataIndex;
+                        const labels = spot_labels.Item(arg.seriesName);
+
+                        return `${arg.seriesName} spot:<${labels[i]}> scatter3:${JSON.stringify(arg.data)}`;
                     }
                 },
                 legend: {

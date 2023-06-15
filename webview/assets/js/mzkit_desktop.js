@@ -801,6 +801,7 @@ var apps;
                     };
                 })
                     .ToArray();
+                var spot_labels = $from(data).ToDictionary(function (d) { return d.cluster.toString(); }, function (d) { return d.labels; });
                 return {
                     grid3D: {},
                     xAxis3D: { type: 'value', name: 'x' },
@@ -830,8 +831,9 @@ var apps;
                         // 模板变量有 {a}, {b}，{c}，分别表示系列名，数据名，数据值等
                         // formatter: '{a}--{b} 的成绩是 {c}'
                         formatter: function (arg) {
-                            console.log(arg);
-                            return "".concat(arg.seriesName, " ").concat(JSON.stringify(arg.data));
+                            var i = arg.dataIndex;
+                            var labels = spot_labels.Item(arg.seriesName);
+                            return "".concat(arg.seriesName, " spot:<").concat(labels[i], "> scatter3:").concat(JSON.stringify(arg.data));
                         }
                     },
                     legend: {
