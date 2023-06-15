@@ -1720,7 +1720,7 @@ Public Class frmMsImagingViewer
         Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
         Dim blender As New SummaryMSIBlender(summaryLayer, params)
 
-        Me.params.enableFilter = False
+        ' Me.params.enableFilter = False
         Me.blender = blender
         Me.sampleRegions.SetBounds(summaryLayer.Select(Function(a) New Point(a.x, a.y)))
 

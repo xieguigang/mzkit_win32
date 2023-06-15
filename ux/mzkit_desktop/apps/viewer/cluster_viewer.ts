@@ -122,7 +122,7 @@ namespace apps.viewer {
                         type: 'scatter3D',
                         name: format_tag(r),
                         spot_labels: r.labels,
-                        symbolSize: 8,
+                        symbolSize: 5,
                         dimensions: [
                             'x',
                             'y',
