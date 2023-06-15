@@ -85,6 +85,7 @@ namespace apps.viewer {
                 // console.log(spot_id);
                 app.desktop.mzkit.Click(spot_id);
             });
+            window.onresize = render.chartObj.resize;
         }
 
         public static load_cluster(data: cluster_data[]): gl_plot.scatter3d_options {

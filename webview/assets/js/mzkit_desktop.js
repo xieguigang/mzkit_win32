@@ -784,6 +784,7 @@ var apps;
                     // console.log(spot_id);
                     app.desktop.mzkit.Click(spot_id);
                 });
+                window.onresize = render.chartObj.resize;
             };
             clusterViewer.load_cluster = function (data) {
                 var paper = echart_app.paper;
