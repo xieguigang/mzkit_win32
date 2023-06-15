@@ -1,4 +1,6 @@
-﻿Public Class Input3DScatter
+﻿Imports Microsoft.VisualBasic.ComponentModel.Collection
+
+Public Class Input3DScatter
 
     Private Function checkInput() As Boolean
         If ComboBox1.SelectedIndex = -1 Then
@@ -17,12 +19,29 @@
 
     Public Sub LoadLabels(fields As IEnumerable(Of String))
         Dim box = {ComboBox1, ComboBox2, ComboBox3, ComboBox4, ComboBox5}
+        Dim fieldSet As New List(Of String)
 
         For Each label As String In fields
             For Each i As ComboBox In box
                 i.Items.Add(label)
             Next
+
+            Call fieldSet.Add(label)
         Next
+
+        Call SetLabelMatches(fieldSet.Indexing)
+    End Sub
+
+    Private Sub SetLabelMatches(fields As Index(Of String))
+        Dim x As Integer = fields.IndexOf("x")
+        Dim y As Integer = fields.IndexOf("y")
+        Dim z As Integer = fields.IndexOf("z")
+        Dim [class] As Integer = fields.IndexOf("class")
+
+        ComboBox2.SelectedIndex = [class]
+        ComboBox3.SelectedIndex = x
+        ComboBox4.SelectedIndex = y
+        ComboBox5.SelectedIndex = z
     End Sub
 
     Public Function GetLabels() As (labels As String, clusters As String, x As String, y As String, z As String)
