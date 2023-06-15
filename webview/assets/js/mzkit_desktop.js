@@ -760,13 +760,16 @@ var apps;
                     var group = _a[_i];
                     var matrix = [];
                     var id = group.Key;
+                    var labels = [];
                     for (var _b = 0, _c = group.ToArray(); _b < _c.length; _b++) {
                         var i = _c[_b];
                         matrix.push([i.x, i.y, i.z]);
+                        labels.push(i.label);
                     }
                     clusters.push({
                         cluster: id,
-                        scatter: matrix
+                        scatter: matrix,
+                        labels: labels
                     });
                 }
                 var render = new gl_plot.scatter3d(clusterViewer.load_cluster, "viewer");
@@ -781,6 +784,7 @@ var apps;
                     return {
                         type: 'scatter3D',
                         name: numeric_cluster ? "cluster_".concat(r.cluster) : r.cluster.toString(),
+                        spot_labels: r.labels,
                         symbolSize: 3,
                         dimensions: [
                             'x',
@@ -826,7 +830,7 @@ var apps;
                         // 模板变量有 {a}, {b}，{c}，分别表示系列名，数据名，数据值等
                         // formatter: '{a}--{b} 的成绩是 {c}'
                         formatter: function (arg) {
-                            // console.log(arg);
+                            console.log(arg);
                             return "".concat(arg.seriesName, " ").concat(JSON.stringify(arg.data));
                         }
                     },

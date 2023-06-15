@@ -22,6 +22,7 @@ namespace apps.viewer {
     export interface cluster_data {
         cluster: number | string;
         scatter: number[][];
+        labels: string[];
     }
 
     /**
@@ -53,14 +54,17 @@ namespace apps.viewer {
             for (let group of $from(dataset).GroupBy(a => a.class).ToArray()) {
                 const matrix: number[][] = [];
                 const id: string = group.Key;
+                const labels: string[] = [];
 
                 for (let i of group.ToArray()) {
                     matrix.push([i.x, i.y, i.z]);
+                    labels.push(i.label);
                 }
 
                 clusters.push({
                     cluster: id,
-                    scatter: matrix
+                    scatter: matrix,
+                    labels: labels
                 });
             }
 
@@ -81,6 +85,7 @@ namespace apps.viewer {
                     return <gl_plot.gl_scatter_data>{
                         type: 'scatter3D',
                         name: numeric_cluster ? `cluster_${r.cluster}` : r.cluster.toString(),
+                        spot_labels: r.labels,
                         symbolSize: 3,
                         dimensions: [
                             'x',
@@ -127,7 +132,7 @@ namespace apps.viewer {
                     // 模板变量有 {a}, {b}，{c}，分别表示系列名，数据名，数据值等
                     // formatter: '{a}--{b} 的成绩是 {c}'
                     formatter: function (arg) {
-                        // console.log(arg);
+                        console.log(arg);
                         return `${arg.seriesName} ${JSON.stringify(arg.data)}`;
                     }
                 },

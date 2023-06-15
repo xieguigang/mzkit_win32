@@ -169,6 +169,7 @@ declare namespace apps.viewer {
     interface cluster_data {
         cluster: number | string;
         scatter: number[][];
+        labels: string[];
     }
     /**
      * #viewer
