@@ -1599,11 +1599,11 @@ Public Class frmMsImagingViewer
 
         Dim ms As New LibraryMatrix With {
             .ms2 = pixel.GetMs,
-            .name = $"Pixel[{x}, {y}]"
+            .name = pixel.scanId
         }
 
         If pinedPixel Is Nothing Then
-            Call MyApplication.host.mzkitTool.showMatrix(ms.ms2, $"Pixel[{x}, {y}]")
+            Call MyApplication.host.mzkitTool.showMatrix(ms.ms2, pixel.scanId)
             Call MyApplication.host.mzkitTool.PlotSpectrum(ms, focusOn:=False)
         Else
             Dim handler As New CosAlignment(Tolerance.PPM(20), New RelativeIntensityCutoff(0.05))

@@ -775,6 +775,7 @@ var apps;
                 var format_tag = clusterViewer.format_cluster_tag(clusters);
                 var render = new gl_plot.scatter3d(clusterViewer.load_cluster, "viewer");
                 var spot_labels = $from(clusters).ToDictionary(function (d) { return format_tag(d); }, function (d) { return d.labels; });
+                var div = $ts("#viewer");
                 render.plot(clusters);
                 render.chartObj.on("click", function (par) {
                     // console.log(par);
@@ -785,7 +786,14 @@ var apps;
                     // console.log(spot_id);
                     app.desktop.mzkit.Click(spot_id);
                 });
-                window.onresize = render.chartObj.resize;
+                var resize_canvas = function () {
+                    var padding = 25;
+                    div.style.width = (window.innerWidth - padding) + "px";
+                    div.style.height = (window.innerHeight - padding) + "px";
+                    render.chartObj.resize();
+                };
+                window.onresize = function () { return resize_canvas(); };
+                resize_canvas();
             };
             clusterViewer.format_cluster_tag = function (data) {
                 var class_labels = $from(data).Select(function (r) { return r.cluster; }).Distinct().ToArray();
@@ -812,7 +820,7 @@ var apps;
                             'z'
                         ],
                         data: r.scatter,
-                        symbol: 'triangle',
+                        symbol: 'circle',
                         itemStyle: {
                             // borderWidth: 0.5,
                             color: paper[class_labels.indexOf(r.cluster.toString())],

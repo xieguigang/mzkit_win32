@@ -74,6 +74,7 @@ namespace apps.viewer {
                 "viewer"
             );
             const spot_labels = $from(clusters).ToDictionary(d => format_tag(d), d => d.labels);
+            const div = $ts("#viewer");
 
             render.plot(clusters);
             render.chartObj.on("click", function (par: any) {
@@ -87,7 +88,18 @@ namespace apps.viewer {
                 // console.log(spot_id);
                 app.desktop.mzkit.Click(spot_id);
             });
-            window.onresize = render.chartObj.resize;
+
+            const resize_canvas = function () {
+                const padding = 25;
+
+                div.style.width = (window.innerWidth - padding) + "px";
+                div.style.height = (window.innerHeight - padding) + "px";
+
+                render.chartObj.resize();
+            };
+
+            window.onresize = () => resize_canvas();
+            resize_canvas();
         }
 
         private static format_cluster_tag(data: cluster_data[]) {
@@ -117,7 +129,7 @@ namespace apps.viewer {
                             'z'
                         ],
                         data: r.scatter,
-                        symbol: 'triangle',
+                        symbol: 'circle',
                         itemStyle: {
                             // borderWidth: 0.5,
                             color: paper[class_labels.indexOf(r.cluster.toString())],
