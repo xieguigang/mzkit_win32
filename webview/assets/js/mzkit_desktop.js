@@ -802,7 +802,33 @@ var apps;
                     xAxis3D: { type: 'value', name: 'x' },
                     yAxis3D: { type: 'value', name: 'y' },
                     zAxis3D: { type: 'value', name: 'z' },
-                    series: scatter3D
+                    series: scatter3D,
+                    tooltip: {
+                        show: true,
+                        trigger: 'item',
+                        axisPointer: {
+                            type: 'cross', // 'line' 直线指示器  'shadow' 阴影指示器  'none' 无指示器  'cross' 十字准星指示器。
+                        },
+                        // showContent: true, //是否显示提示框浮层，默认显示。
+                        // triggerOn: 'mouseover', // 触发时机'click'鼠标点击时触发。 
+                        backgroundColor: 'rgba(50,50,50,0.7)',
+                        borderColor: '#333',
+                        borderWidth: 0,
+                        padding: 5,
+                        textStyle: {
+                            color: '#fff',
+                            fontStyle: 'normal',
+                            fontWeight: 'normal',
+                            fontFamily: 'sans-serif',
+                            fontSize: 14,
+                        },
+                        // 提示框浮层内容格式器，支持字符串模板和回调函数两种形式。
+                        // 模板变量有 {a}, {b}，{c}，分别表示系列名，数据名，数据值等
+                        // formatter: '{a}--{b} 的成绩是 {c}'
+                        formatter: function (arg) {
+                            return JSON.stringify(arg);
+                        }
+                    }
                 };
             };
             return clusterViewer;
