@@ -433,11 +433,24 @@ Public Class frmMsImagingViewer
             setConfig:=Sub(cfg)
                            Dim viewer As New frm3DScatterPlotView
 
-                           Call viewer.LoadScatter(umap3D, Nothing)
+                           Call viewer.LoadScatter(umap3D, AddressOf ClickOnPixel)
                            Call VisualStudio.ShowDocument(viewer)
                        End Sub,
             config:=summary
         )
+    End Sub
+
+    Private Sub ClickOnPixel(spot_id As String)
+        If spot_id.StringEmpty Then
+            Return
+        End If
+
+        Dim xy As Integer() = spot_id _
+            .Split(","c) _
+            .Select(AddressOf Integer.Parse) _
+            .ToArray
+
+        Call Me.Invoke(Sub() showPixel(xy(0), xy(1)))
     End Sub
 
     Public Sub ConnectToCloud()
@@ -1536,17 +1549,16 @@ Public Class frmMsImagingViewer
         End If
     End Sub
 
+    ''' <summary>
+    ''' will overrides <see cref="showPixel"/> if this handler is not nothing
+    ''' </summary>
     Friend clickPixel As Action(Of Integer, Integer, Color)
 
     Private Sub PixelSelector1_GetPixelTissueMorphology(x As Integer, y As Integer, ByRef tag As String) Handles PixelSelector1.GetPixelTissueMorphology
         tag = sampleRegions.GetTissueTag(x, y)
     End Sub
 
-    Private Sub showPixel(x As Integer, y As Integer, color As Color) Handles PixelSelector1.SelectPixel
-        If Not clickPixel Is Nothing Then
-            clickPixel(x, y, color)
-            Return
-        End If
+    Private Sub showPixel(x As Integer, y As Integer)
         If Not checkService() Then
             Return
         ElseIf WindowModules.MSIPixelProperty.DockState = DockState.Hidden Then
@@ -1583,6 +1595,14 @@ Public Class frmMsImagingViewer
             align.reference = New Meta With {.id = pinedPixel.name}
 
             Call MyApplication.host.mzkitTool.showAlignment(align, showScore:=True)
+        End If
+    End Sub
+
+    Private Sub showPixel(x As Integer, y As Integer, color As Color) Handles PixelSelector1.SelectPixel
+        If Not clickPixel Is Nothing Then
+            Call clickPixel(x, y, color)
+        Else
+            Call showPixel(x, y)
         End If
     End Sub
 
