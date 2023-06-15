@@ -773,7 +773,17 @@ var apps;
                     });
                 }
                 var render = new gl_plot.scatter3d(clusterViewer.load_cluster, "viewer");
+                var spot_labels = $from(clusters).ToDictionary(function (d) { return d.cluster.toString(); }, function (d) { return d.labels; });
                 render.plot(clusters);
+                render.chartObj.on("click", function (par) {
+                    var i = par.dataIndex;
+                    var category = par.seriesName;
+                    var labels = spot_labels.Item(category);
+                    var spot_id = labels[i];
+                    // console.log(par);
+                    // console.log(spot_id);
+                    app.desktop.mzkit.Click(spot_id);
+                });
             };
             clusterViewer.load_cluster = function (data) {
                 var paper = echart_app.paper;

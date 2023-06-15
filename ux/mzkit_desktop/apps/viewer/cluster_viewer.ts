@@ -72,8 +72,19 @@ namespace apps.viewer {
                 clusterViewer.load_cluster,
                 "viewer"
             );
+            const spot_labels = $from(clusters).ToDictionary(d => d.cluster.toString(), d => d.labels);
 
             render.plot(clusters);
+            render.chartObj.on("click", function (par: any) {
+                const i = par.dataIndex;
+                const category = par.seriesName;
+                const labels = spot_labels.Item(category);
+                const spot_id: string = labels[i];
+
+                // console.log(par);
+                // console.log(spot_id);
+                app.desktop.mzkit.Click(spot_id);
+            });
         }
 
         public static load_cluster(data: cluster_data[]): gl_plot.scatter3d_options {
