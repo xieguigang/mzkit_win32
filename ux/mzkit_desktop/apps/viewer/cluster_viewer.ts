@@ -68,37 +68,49 @@ namespace apps.viewer {
                 });
             }
 
+            const format_tag = clusterViewer.format_cluster_tag(clusters);
             const render = new gl_plot.scatter3d<cluster_data[]>(
                 clusterViewer.load_cluster,
                 "viewer"
             );
-            const spot_labels = $from(clusters).ToDictionary(d => d.cluster.toString(), d => d.labels);
+            const spot_labels = $from(clusters).ToDictionary(d => format_tag(d), d => d.labels);
 
             render.plot(clusters);
             render.chartObj.on("click", function (par: any) {
+                // console.log(par);
+
                 const i = par.dataIndex;
                 const category = par.seriesName;
                 const labels = spot_labels.Item(category);
                 const spot_id: string = labels[i];
 
-                // console.log(par);
                 // console.log(spot_id);
                 app.desktop.mzkit.Click(spot_id);
             });
             window.onresize = render.chartObj.resize;
         }
 
+        private static format_cluster_tag(data: cluster_data[]) {
+            const class_labels = $from(data).Select(r => r.cluster).Distinct().ToArray();
+            const numeric_cluster = $from(class_labels).All(si => Strings.isIntegerPattern(si.toString()));
+
+            return (function (r: cluster_data) {
+                return numeric_cluster ? `cluster_${r.cluster}` : r.cluster.toString();
+            });
+        }
+
         public static load_cluster(data: cluster_data[]): gl_plot.scatter3d_options {
             const paper = echart_app.paper;
             const class_labels = $from(data).Select(r => r.cluster).Distinct().ToArray();
             const numeric_cluster = $from(class_labels).All(si => Strings.isIntegerPattern(si.toString()));
+            const format_tag = clusterViewer.format_cluster_tag(data);
             const scatter3D = $from(data)
                 .Select(function (r) {
                     return <gl_plot.gl_scatter_data>{
                         type: 'scatter3D',
-                        name: numeric_cluster ? `cluster_${r.cluster}` : r.cluster.toString(),
+                        name: format_tag(r),
                         spot_labels: r.labels,
-                        symbolSize: 3,
+                        symbolSize: 8,
                         dimensions: [
                             'x',
                             'y',
@@ -114,7 +126,7 @@ namespace apps.viewer {
                     };
                 })
                 .ToArray();
-            const spot_labels = $from(data).ToDictionary(d => d.cluster.toString(), d => d.labels);
+            const spot_labels = $from(data).ToDictionary(d => format_tag(d), d => d.labels);
 
             return <any>{
                 grid3D: {},
@@ -139,12 +151,14 @@ namespace apps.viewer {
                         fontStyle: 'normal',
                         fontWeight: 'normal',
                         fontFamily: 'sans-serif',
-                        fontSize: 14,
+                        fontSize: 16,
                     },
                     // 提示框浮层内容格式器，支持字符串模板和回调函数两种形式。
                     // 模板变量有 {a}, {b}，{c}，分别表示系列名，数据名，数据值等
                     // formatter: '{a}--{b} 的成绩是 {c}'
                     formatter: function (arg) {
+                        // console.log(arg);
+
                         const i = arg.dataIndex;
                         const labels = spot_labels.Item(arg.seriesName);
 

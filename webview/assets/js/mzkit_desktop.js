@@ -772,31 +772,40 @@ var apps;
                         labels: labels
                     });
                 }
+                var format_tag = clusterViewer.format_cluster_tag(clusters);
                 var render = new gl_plot.scatter3d(clusterViewer.load_cluster, "viewer");
-                var spot_labels = $from(clusters).ToDictionary(function (d) { return d.cluster.toString(); }, function (d) { return d.labels; });
+                var spot_labels = $from(clusters).ToDictionary(function (d) { return format_tag(d); }, function (d) { return d.labels; });
                 render.plot(clusters);
                 render.chartObj.on("click", function (par) {
+                    // console.log(par);
                     var i = par.dataIndex;
                     var category = par.seriesName;
                     var labels = spot_labels.Item(category);
                     var spot_id = labels[i];
-                    // console.log(par);
                     // console.log(spot_id);
                     app.desktop.mzkit.Click(spot_id);
                 });
                 window.onresize = render.chartObj.resize;
             };
+            clusterViewer.format_cluster_tag = function (data) {
+                var class_labels = $from(data).Select(function (r) { return r.cluster; }).Distinct().ToArray();
+                var numeric_cluster = $from(class_labels).All(function (si) { return Strings.isIntegerPattern(si.toString()); });
+                return (function (r) {
+                    return numeric_cluster ? "cluster_".concat(r.cluster) : r.cluster.toString();
+                });
+            };
             clusterViewer.load_cluster = function (data) {
                 var paper = echart_app.paper;
                 var class_labels = $from(data).Select(function (r) { return r.cluster; }).Distinct().ToArray();
                 var numeric_cluster = $from(class_labels).All(function (si) { return Strings.isIntegerPattern(si.toString()); });
+                var format_tag = clusterViewer.format_cluster_tag(data);
                 var scatter3D = $from(data)
                     .Select(function (r) {
                     return {
                         type: 'scatter3D',
-                        name: numeric_cluster ? "cluster_".concat(r.cluster) : r.cluster.toString(),
+                        name: format_tag(r),
                         spot_labels: r.labels,
-                        symbolSize: 3,
+                        symbolSize: 8,
                         dimensions: [
                             'x',
                             'y',
@@ -812,7 +821,7 @@ var apps;
                     };
                 })
                     .ToArray();
-                var spot_labels = $from(data).ToDictionary(function (d) { return d.cluster.toString(); }, function (d) { return d.labels; });
+                var spot_labels = $from(data).ToDictionary(function (d) { return format_tag(d); }, function (d) { return d.labels; });
                 return {
                     grid3D: {},
                     xAxis3D: { type: 'value', name: 'x' },
@@ -836,12 +845,13 @@ var apps;
                             fontStyle: 'normal',
                             fontWeight: 'normal',
                             fontFamily: 'sans-serif',
-                            fontSize: 14,
+                            fontSize: 16,
                         },
                         // 提示框浮层内容格式器，支持字符串模板和回调函数两种形式。
                         // 模板变量有 {a}, {b}，{c}，分别表示系列名，数据名，数据值等
                         // formatter: '{a}--{b} 的成绩是 {c}'
                         formatter: function (arg) {
+                            // console.log(arg);
                             var i = arg.dataIndex;
                             var labels = spot_labels.Item(arg.seriesName);
                             return "".concat(arg.seriesName, " spot:<").concat(labels[i], "> scatter3:").concat(JSON.stringify(arg.data));
