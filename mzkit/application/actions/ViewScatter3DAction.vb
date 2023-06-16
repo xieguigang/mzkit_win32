@@ -2,6 +2,7 @@
 Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports SMRUCC.Rsharp.Runtime.Vectorization
 
 Public Class ViewScatter3DAction : Inherits ActionBase
 
@@ -29,19 +30,19 @@ Public Class ViewScatter3DAction : Inherits ActionBase
 
     Private Iterator Function createPoints(config As Input3DScatter, table As DataTable) As IEnumerable(Of UMAPPoint)
         Dim fields = config.GetLabels
-        Dim labels = table.getFieldVector(fields.labels).AsObjectEnumerator.ToArray
-        Dim cluster = table.getFieldVector(fields.clusters).AsObjectEnumerator.ToArray
-        Dim x = table.getFieldVector(fields.x).AsObjectEnumerator.ToArray
-        Dim y = table.getFieldVector(fields.y).AsObjectEnumerator.ToArray
-        Dim z = table.getFieldVector(fields.z).AsObjectEnumerator.ToArray
+        Dim labels = CLRVector.asCharacter(table.getFieldVector(fields.labels))
+        Dim cluster = CLRVector.asCharacter(table.getFieldVector(fields.clusters))
+        Dim x = CLRVector.asNumeric(table.getFieldVector(fields.x))
+        Dim y = CLRVector.asNumeric(table.getFieldVector(fields.y))
+        Dim z = CLRVector.asNumeric(table.getFieldVector(fields.z))
 
         For i As Integer = 0 To labels.Length - 1
             Yield New UMAPPoint With {
-                .[class] = cluster(i).ToString,
-                .label = labels(i).ToString,
-                .x = Val(x(i)),
-                .y = Val(y(i)),
-                .z = Val(z(i))
+                .[class] = cluster(i),
+                .label = labels(i),
+                .x = x(i),
+                .y = y(i),
+                .z = z(i)
             }
         Next
     End Function

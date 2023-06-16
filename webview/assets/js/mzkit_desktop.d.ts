@@ -169,6 +169,7 @@ declare namespace apps.viewer {
     interface cluster_data {
         cluster: number | string;
         scatter: number[][];
+        labels: string[];
     }
     /**
      * #viewer
@@ -177,6 +178,7 @@ declare namespace apps.viewer {
         get appName(): string;
         protected init(): void;
         static render3DScatter(dataset: scatterPoint[]): void;
+        private static format_cluster_tag;
         static load_cluster(data: cluster_data[]): gl_plot.scatter3d_options;
     }
 }

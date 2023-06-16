@@ -85,6 +85,7 @@ Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Algorithm
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
@@ -106,6 +107,7 @@ Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports ServiceHub
+Imports SMRUCC.genomics.foundation.OBO_Foundry.IO.Models
 Imports STImaging
 Imports Task
 Imports TaskStream
@@ -236,28 +238,32 @@ Public Class frmMsImagingViewer
             MessageBox.Show("Sorry, run umap task error...", "UMAP error", MessageBoxButtons.OK, MessageBoxIcon.Stop)
             Return
         Else
-            ' show umap scatter 3d
-            umap3D = UMAPPoint.ParseCsvTable(umap3).ToArray
-
-            Call ShowTissueData()
-
-            ' ansalso convert to tissue region data
-            Dim colors As LoopArray(Of Color) = Designer.GetColors("Paper")
-            Dim groups = umap3D _
-                .GroupBy(Function(a) a.class) _
-                .Select(Function(group)
-                            Return New TissueRegion With {
-                                .color = ++colors,
-                                .label = group.Key,
-                                .points = group _
-                                    .Select(Function(u) u.Pixel) _
-                                    .ToArray
-                            }
-                        End Function) _
-                .ToArray
-
-            Call ImportsTissueMorphology(tissues:=groups)
+            Call ImportsUmap3dFile(umap3)
         End If
+    End Sub
+
+    Private Sub ImportsUmap3dFile(umap3 As String)
+        ' show umap scatter 3d
+        umap3D = UMAPPoint.ParseCsvTable(umap3).ToArray
+
+        Call ShowTissueData()
+
+        ' ansalso convert to tissue region data
+        Dim colors As LoopArray(Of Color) = Designer.GetColors("Paper")
+        Dim groups = umap3D _
+            .GroupBy(Function(a) a.class) _
+            .Select(Function(group)
+                        Return New TissueRegion With {
+                            .color = ++colors,
+                            .label = group.Key,
+                            .points = group _
+                                .Select(Function(u) u.Pixel) _
+                                .ToArray
+                        }
+                    End Function) _
+            .ToArray
+
+        Call ImportsTissueMorphology(tissues:=groups)
     End Sub
 
     Private Sub LoadImportAnnotationTable()
@@ -410,6 +416,9 @@ Public Class frmMsImagingViewer
 
     Dim umap3D As UMAPPoint()
 
+    ''' <summary>
+    ''' try to show umap 3d scatter plot
+    ''' </summary>
     Public Sub ShowTissueData()
         Call ShowTissueData(umap3D)
     End Sub
@@ -433,11 +442,24 @@ Public Class frmMsImagingViewer
             setConfig:=Sub(cfg)
                            Dim viewer As New frm3DScatterPlotView
 
-                           Call viewer.LoadScatter(umap3D, Nothing)
+                           Call viewer.LoadScatter(umap3D, AddressOf ClickOnPixel)
                            Call VisualStudio.ShowDocument(viewer)
                        End Sub,
             config:=summary
         )
+    End Sub
+
+    Private Sub ClickOnPixel(spot_id As String)
+        If spot_id.StringEmpty Then
+            Return
+        End If
+
+        Dim xy As Integer() = spot_id _
+            .Split(","c) _
+            .Select(AddressOf Integer.Parse) _
+            .ToArray
+
+        Call Me.Invoke(Sub() showPixel(xy(0), xy(1)))
     End Sub
 
     Public Sub ConnectToCloud()
@@ -765,17 +787,26 @@ Public Class frmMsImagingViewer
         End If
 
         Using file As New OpenFileDialog With {
-            .Filter = "Tissue Morphology Matrix(*.cdf)|*.cdf|Phenograph Spot Plot(*.csv)|*.csv"
+            .Filter = "Tissue Morphology Matrix(*.cdf)|*.cdf|Phenograph Spot Plot; UMAP scatter Plot(*.csv)|*.csv"
         }
             If file.ShowDialog = DialogResult.OK Then
                 If file.FileName.ExtensionSuffix("cdf") Then
                     Call ImportsTissueMorphology(file.FileName, file.OpenFile)
+                ElseIf CheckUmapTableFile(file.FileName) Then
+                    Call ImportsUmap3dFile(file.FileName)
                 Else
                     Call ImportsPhenographSpotPlot(filepath:=file.FileName)
                 End If
             End If
         End Using
     End Sub
+
+    Private Function CheckUmapTableFile(filepath As String) As Boolean
+        Dim headers As Index(Of String) = RowObject.TryParse(filepath.ReadFirstLine).Indexing
+        Dim check_xyz As Boolean = "x" Like headers AndAlso "y" Like headers AndAlso "z" Like headers
+
+        Return check_xyz
+    End Function
 
     Private Sub ImportsPhenographSpotPlot(filepath As String)
         Dim spots As PhenographSpot() = filepath.LoadCsv(Of PhenographSpot).ToArray
@@ -1536,17 +1567,16 @@ Public Class frmMsImagingViewer
         End If
     End Sub
 
+    ''' <summary>
+    ''' will overrides <see cref="showPixel"/> if this handler is not nothing
+    ''' </summary>
     Friend clickPixel As Action(Of Integer, Integer, Color)
 
     Private Sub PixelSelector1_GetPixelTissueMorphology(x As Integer, y As Integer, ByRef tag As String) Handles PixelSelector1.GetPixelTissueMorphology
         tag = sampleRegions.GetTissueTag(x, y)
     End Sub
 
-    Private Sub showPixel(x As Integer, y As Integer, color As Color) Handles PixelSelector1.SelectPixel
-        If Not clickPixel Is Nothing Then
-            clickPixel(x, y, color)
-            Return
-        End If
+    Private Sub showPixel(x As Integer, y As Integer)
         If Not checkService() Then
             Return
         ElseIf WindowModules.MSIPixelProperty.DockState = DockState.Hidden Then
@@ -1569,11 +1599,11 @@ Public Class frmMsImagingViewer
 
         Dim ms As New LibraryMatrix With {
             .ms2 = pixel.GetMs,
-            .name = $"Pixel[{x}, {y}]"
+            .name = pixel.scanId
         }
 
         If pinedPixel Is Nothing Then
-            Call MyApplication.host.mzkitTool.showMatrix(ms.ms2, $"Pixel[{x}, {y}]")
+            Call MyApplication.host.mzkitTool.showMatrix(ms.ms2, pixel.scanId)
             Call MyApplication.host.mzkitTool.PlotSpectrum(ms, focusOn:=False)
         Else
             Dim handler As New CosAlignment(Tolerance.PPM(20), New RelativeIntensityCutoff(0.05))
@@ -1583,6 +1613,14 @@ Public Class frmMsImagingViewer
             align.reference = New Meta With {.id = pinedPixel.name}
 
             Call MyApplication.host.mzkitTool.showAlignment(align, showScore:=True)
+        End If
+    End Sub
+
+    Private Sub showPixel(x As Integer, y As Integer, color As Color) Handles PixelSelector1.SelectPixel
+        If Not clickPixel Is Nothing Then
+            Call clickPixel(x, y, color)
+        Else
+            Call showPixel(x, y)
         End If
     End Sub
 
@@ -1682,7 +1720,7 @@ Public Class frmMsImagingViewer
         Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
         Dim blender As New SummaryMSIBlender(summaryLayer, params)
 
-        Me.params.enableFilter = False
+        ' Me.params.enableFilter = False
         Me.blender = blender
         Me.sampleRegions.SetBounds(summaryLayer.Select(Function(a) New Point(a.x, a.y)))
 
