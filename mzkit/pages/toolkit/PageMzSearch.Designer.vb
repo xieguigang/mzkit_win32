@@ -363,8 +363,8 @@ Partial Class PageMzSearch
         '
         'CheckedListBox2
         '
-        resources.ApplyResources(Me.CheckedListBox2, "CheckedListBox2")
         Me.CheckedListBox2.FormattingEnabled = True
+        resources.ApplyResources(Me.CheckedListBox2, "CheckedListBox2")
         Me.CheckedListBox2.Name = "CheckedListBox2"
         '
         'Label8
