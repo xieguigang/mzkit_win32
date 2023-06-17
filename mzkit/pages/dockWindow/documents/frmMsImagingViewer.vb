@@ -1896,7 +1896,7 @@ Public Class frmMsImagingViewer
         End If
     End Function
 
-    Private Sub SetTitle(mz As IEnumerable(Of Double), title As String)
+    Public Sub SetTitle(mz As IEnumerable(Of Double), title As String)
         Me.title = title
         Me.targetMz = mz.ToArray
         Me.titles(targetMz(Scan0).ToString("F3")) = title
