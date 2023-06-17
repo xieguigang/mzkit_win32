@@ -24,8 +24,14 @@ Public Class frm3DScatterPlotView
     Public Sub LoadScatter(data As IEnumerable(Of UMAPPoint), onclick As Action(Of String))
         source.points = data _
             .Select(Function(a)
-                        a.Pixel = Nothing
-                        Return a
+                        Return New UMAPPoint With {
+                            .[class] = a.class,
+                            .label = a.label,
+                            .Pixel = Nothing,
+                            .x = a.x,
+                            .y = a.y,
+                            .z = a.z
+                        }
                     End Function) _
             .ToArray
         source.onclick = onclick
