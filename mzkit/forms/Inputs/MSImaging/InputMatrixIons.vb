@@ -129,8 +129,13 @@ Public Class InputMatrixIons
             table.Rows.Add({False, mz(i), name(i), precursor_type(i), pixels(i), density(i)})
         Next
 
-        Call Me.AdvancedDataGridView1.Columns.Clear()
-        Call Me.AdvancedDataGridView1.Rows.Clear()
+        Try
+            Call Me.AdvancedDataGridView1.Columns.Clear()
+            Call Me.AdvancedDataGridView1.Rows.Clear()
+        Catch ex As Exception
+
+        End Try
+
         Call AdvancedDataGridView1.SetDoubleBuffered()
 
         For Each column As DataGridViewColumn In AdvancedDataGridView1.Columns
