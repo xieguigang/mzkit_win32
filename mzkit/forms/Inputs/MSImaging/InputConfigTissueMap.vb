@@ -9,6 +9,15 @@
         End Set
     End Property
 
+    Public Property SpotSize As Double
+        Get
+            Return Val(TextBox2.Text)
+        End Get
+        Set(value As Double)
+            TextBox2.Text = value
+        End Set
+    End Property
+
     Public ReadOnly Property ColorSet As String
         Get
             Return ComboBox1.SelectedItem.ToString
@@ -36,5 +45,6 @@
         ComboBox1.SelectedIndex = 0
         TextBox1.Text = "region_"
         TrackBar1.Value = 80
+        SpotSize = 8
     End Sub
 End Class
