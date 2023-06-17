@@ -1040,7 +1040,7 @@ Public Class frmMsImagingViewer
                     debug:=AddressOf getFormula.TextBox1.AppendText,
                     size:=getFormula.CanvasSize,
                     layout:=getFormula.MSILayout，
-                    scaler:="viridis:turbo"
+                    scaler:=getFormula.colorSet
                 )
                 Call getFormula.TextBox1.AppendText(vbCrLf)
             End If
