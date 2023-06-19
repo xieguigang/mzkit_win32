@@ -30,7 +30,7 @@ Partial Class frmPeakFinding
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(690, 365)
+        Me.ClientSize = New System.Drawing.Size(753, 462)
         Me.DoubleBuffered = True
         Me.Name = "frmPeakFinding"
         Me.TabPageContextMenuStrip = Me.DockContextMenuStrip1
