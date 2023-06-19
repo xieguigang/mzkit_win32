@@ -20,6 +20,8 @@ Mzkit Windows Desktop Application, this source repository is a submodule of the 
 5. Finally build the installer package project:
    + open the project file in ``Advanced Installer`` in mzkit source folder: "src/mzkit/setup/mzkit_setups.aip"
 
+![](./screenshot.jpg)
+
 ![](extdata/demo-ms-imaging.png)
 > demo ms-imaging generated from MZKit, raw data reference:
 >
