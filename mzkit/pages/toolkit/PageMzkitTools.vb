@@ -670,26 +670,27 @@ Public Class PageMzkitTools
 
         If net.Length < 3 Then
             Call Workbench.Warning("the ions data is not enough for create network!")
-        Else
-            Dim kn As Integer
-
-            If net.Length > 9 Then
-                kn = 9
-            Else
-                kn = CInt(net.Length / 2)
-            End If
-
-            Dim clusters = net.ToKMeansModels.Kmeans(expected:=kn, debug:=False)
-            Dim rawLinks = links.ToDictionary(Function(a) a.reference, Function(a) a)
-
-            progress.SetInfo("initialize result output...")
-
-            MyApplication.host.Invoke(
-                Sub()
-                    Call MyApplication.host.mzkitMNtools.loadNetwork(clusters, protocol, rawLinks, similarityCutoff)
-                    Call MyApplication.host.ShowPage(MyApplication.host.mzkitMNtools)
-                End Sub)
+            Return
         End If
+
+        Dim kn As Integer
+
+        If net.Length > 9 Then
+            kn = 9
+        Else
+            kn = CInt(net.Length / 2)
+        End If
+
+        Dim clusters = net.ToKMeansModels.Kmeans(expected:=kn, debug:=False)
+        Dim rawLinks = links.ToDictionary(Function(a) a.reference, Function(a) a)
+
+        progress.SetInfo("initialize result output...")
+
+        MyApplication.host.Invoke(
+            Sub()
+                Call MyApplication.host.mzkitMNtools.loadNetwork(clusters, protocol, rawLinks, similarityCutoff)
+                Call MyApplication.host.ShowPage(MyApplication.host.mzkitMNtools)
+            End Sub)
     End Sub
 
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
