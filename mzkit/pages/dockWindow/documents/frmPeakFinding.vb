@@ -120,36 +120,14 @@ Public Class frmPeakFinding
 
     End Class
 
-    Private Sub PictureBox1_Resize(sender As Object, e As EventArgs) Handles PictureBox1.Resize
+    Private Sub PictureBox1_Resize(sender As Object, e As EventArgs)
         If Not plotMatrixList.IsNullOrEmpty Then
             Call plotMatrix(bspline, plotMatrixList)
         End If
     End Sub
 
-    Private Sub ViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewToolStripMenuItem.Click
-        If PeakListViewer.SelectedRows.Count <= 0 Then
-            Call MyApplication.host.showStatusMessage("Please select a row data for view content!", My.Resources.StatusAnnotations_Warning_32xLG_color)
-        Else
-            Dim row As DataGridViewRow = PeakListViewer.SelectedRows(0)
-            Dim peakId As String = any.ToString(row.Cells.Item(0).Value)
-            Dim peakROI As ROI = peakList(peakId)
-            Dim targetPeak As New NamedCollection(Of ChromatogramTick) With {
-                .name = peakROI.ToString,
-                .value = peakROI.ticks
-            }
-            Dim background As New NamedCollection(Of ChromatogramTick) With {
-                .name = "Background",
-                .value = peakROI _
-                    .GetChromatogramData(matrix, 15) _
-                    .ToArray
-            }
 
-            Call plotMatrix(spline:=True, background, targetPeak)
-            Call ShowMatrix(peakROI.ticks)
-        End If
-    End Sub
-
-    Private Sub PeakListViewer_RowStateChanged(sender As Object, e As DataGridViewRowStateChangedEventArgs) Handles PeakListViewer.RowStateChanged
+    Private Sub PeakListViewer_RowStateChanged(sender As Object, e As DataGridViewRowStateChangedEventArgs)
         If e.StateChanged = DataGridViewElementStates.Selected Then
             Dim peakId As String = any.ToString(e.Row.Cells.Item(0).Value)
 
@@ -176,7 +154,7 @@ Public Class frmPeakFinding
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs)
         Using file As New OpenFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
             If file.ShowDialog = DialogResult.OK Then
                 Dim data = file.FileName.LoadCsv(Of ChromatogramTick)()
@@ -191,7 +169,7 @@ Public Class frmPeakFinding
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs)
         Call PeakListViewer.SaveDataGrid(rawName)
     End Sub
 
@@ -200,7 +178,7 @@ Public Class frmPeakFinding
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
+    Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs)
         Dim sb As New StringBuilder
         Dim text As New StringWriter(sb)
 
@@ -215,7 +193,7 @@ Public Class frmPeakFinding
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
+    Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs)
         Call DataControlHandler.OpenInTableViewer(matrix:=PeakListViewer)
     End Sub
 
@@ -224,7 +202,7 @@ Public Class frmPeakFinding
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Private Sub SaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveToolStripMenuItem.Click
+    Private Sub SaveToolStripMenuItem_Click(sender As Object, e As EventArgs)
         Call PeakMatrixViewer.SaveDataGrid(rawName)
     End Sub
 
@@ -233,7 +211,7 @@ Public Class frmPeakFinding
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Private Sub CopyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyToolStripMenuItem.Click
+    Private Sub CopyToolStripMenuItem_Click(sender As Object, e As EventArgs)
         Dim sb As New StringBuilder
         Dim text As New StringWriter(sb)
 
@@ -248,7 +226,7 @@ Public Class frmPeakFinding
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Private Sub SendToTableViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendToTableViewerToolStripMenuItem.Click
+    Private Sub SendToTableViewerToolStripMenuItem_Click(sender As Object, e As EventArgs)
         Call DataControlHandler.OpenInTableViewer(matrix:=PeakMatrixViewer)
     End Sub
 
@@ -257,7 +235,7 @@ Public Class frmPeakFinding
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
+    Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs)
         Dim cfg As New InputPeakFindParameter
 
         Call cfg.SetArguments(args)
