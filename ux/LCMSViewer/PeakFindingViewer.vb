@@ -110,14 +110,6 @@ Public Class PeakFindingViewer
         Next
     End Sub
 
-    Public Class PeakFindingParameter
-
-        Public SN As Double = 1
-        Public baseline As Double = 0.65
-        Public peakwidth As Double() = {3, 15}
-
-    End Class
-
     Private Sub PictureBox1_Resize(sender As Object, e As EventArgs) Handles PictureBox1.Resize
         If Not plotMatrixList.IsNullOrEmpty Then
             Call plotMatrix(bspline, plotMatrixList)

@@ -74,6 +74,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PeakFindingParameter.vb" />
     <Compile Include="Dialogs\InputPeakFindParameter.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +174,10 @@
     <ProjectReference Include="..\BasicMDIForm\BasicMDIForm.vbproj">
       <Project>{51c55c5c-2f21-4e9f-aa8d-3664135758b7}</Project>
       <Name>BasicMDIForm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\winux\DataValidation\DataValidation.vbproj">
+      <Project>{be119982-49e0-45e8-b26a-3efc1bd32610}</Project>
+      <Name>DataValidation</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
