@@ -155,9 +155,9 @@ Public Class InputPeakFindParameter : Inherits InputDialog
         Call InitializeComponent()
     End Sub
 
-    Friend args As New frmPeakFinding.PeakFindingParameter
+    Friend args As New PeakFindingParameter
 
-    Public Sub SetArguments(args As frmPeakFinding.PeakFindingParameter)
+    Public Sub SetArguments(args As PeakFindingParameter)
         If Not args Is Nothing Then
             Me.args = args
 

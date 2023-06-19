@@ -1040,6 +1040,6 @@ Public Class PageMzkitTools
     End Sub
 
     Private Sub OpenInTableViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenInTableViewerToolStripMenuItem.Click
-        Call DataControlHandler.OpenInTableViewer(matrix:=DataGridView1)
+        Call DataGridView1.OpenInTableViewer
     End Sub
 End Class

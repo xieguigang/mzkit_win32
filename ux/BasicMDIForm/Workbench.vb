@@ -150,4 +150,12 @@ Public NotInheritable Class Workbench
 
         Return newDoc
     End Function
+
+    ''' <summary>
+    ''' get color palette that used for do chartting plots
+    ''' </summary>
+    ''' <returns></returns>
+    Public Shared Function GetPlotColors() As String
+        Return BaseHook.getColorSet()
+    End Function
 End Class

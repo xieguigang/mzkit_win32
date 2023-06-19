@@ -62,32 +62,6 @@ Imports REnv = SMRUCC.Rsharp.Runtime
 
 Module DataControlHandler
 
-    Public Sub OpenInTableViewer(matrix As DataGridView)
-        Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)
-
-        table.LoadTable(
-            Sub(grid)
-                For i As Integer = 0 To matrix.Columns.Count - 1
-                    Call grid.Columns.Add(matrix.Columns(i).HeaderText, GetType(Object))
-                Next
-
-                For j As Integer = 0 To matrix.Rows.Count - 1
-                    Dim rowObj = matrix.Rows(j)
-                    Dim row As New List(Of Object)
-
-                    For i As Integer = 0 To rowObj.Cells.Count - 1
-                        Call row.Add(rowObj.Cells(i).Value)
-                    Next
-
-                    If row.All(Function(o) o Is Nothing OrElse IsDBNull(o)) Then
-                        Continue For
-                    End If
-
-                    Call grid.Rows.Add(row.ToArray)
-                Next
-            End Sub)
-    End Sub
-
     <Extension>
     Public Function getFieldVector(table As DataTable, fieldRef As String) As Array
         Dim fieldNames As New List(Of String)
@@ -145,27 +119,4 @@ Module DataControlHandler
 
         Return REnv.TryCastGenericArray(array.ToArray, MyApplication.REngine.globalEnvir)
     End Function
-
-    ''' <summary>
-    ''' save data grid as excel table file
-    ''' </summary>
-    ''' <param name="table"></param>
-    ''' <param name="title">
-    ''' ``%s`` is the place holder for file name
-    ''' </param>
-    <Extension>
-    Public Sub SaveDataGrid(table As DataGridView, title$)
-        Using file As New SaveFileDialog With {
-            .Filter = "Excel Table(*.xls)|*.xls|Comma data sheet(*.csv)|*.csv",
-            .Title = $"Save Table File({title})"
-        }
-            If file.ShowDialog = DialogResult.OK Then
-                Using writeTsv As StreamWriter = file.FileName.OpenWriter(encoding:=Encodings.GB2312)
-                    Call table.WriteTableToFile(writeTsv, sep:=If(file.FileName.ExtensionSuffix("csv"), ","c, ASCII.TAB))
-                    Call MessageBox.Show(title.Replace("%s", file.FileName), "Export Table", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                End Using
-            End If
-        End Using
-    End Sub
-
 End Module

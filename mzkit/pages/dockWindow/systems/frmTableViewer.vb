@@ -73,7 +73,7 @@ Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports Zuby.ADGV
 
-Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTraceback
+Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTraceback, IDataTableViewer
 
     Public Property FilePath As String Implements IFileReference.FilePath
     Public Property ViewRow As Action(Of Dictionary(Of String, Object))
@@ -98,7 +98,7 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
     Dim memoryData As New DataSet
     Dim search As GridSearchHandler
 
-    Public Sub LoadTable(apply As Action(Of DataTable))
+    Public Sub LoadTable(apply As Action(Of DataTable)) Implements IDataTableViewer.LoadTable
         memoryData = New DataSet
 
         Dim table As DataTable = memoryData.Tables.Add("memoryData")
