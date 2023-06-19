@@ -271,10 +271,10 @@ Partial Class PeakFindingViewer
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents PeakListViewer As DataGridView
     Friend WithEvents PeakMatrixViewer As DataGridView
-    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Public WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ToolStrip1 As ToolStrip
-    Friend WithEvents ContextMenuStrip2 As ContextMenuStrip
+    Public WithEvents ToolStrip1 As ToolStrip
+    Public WithEvents ContextMenuStrip2 As ContextMenuStrip
     Friend WithEvents ToolStripButton1 As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents ToolStripButton2 As ToolStripButton
