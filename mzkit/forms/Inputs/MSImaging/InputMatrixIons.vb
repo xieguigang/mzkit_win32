@@ -2,6 +2,7 @@
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Mzkit_win32.BasicMDIForm
 Imports TaskStream
 Imports DataFrame = Microsoft.VisualBasic.Data.csv.IO.DataFrame
@@ -25,6 +26,12 @@ Public Class InputMatrixIons
                 width:=Integer.Parse(TextBox2.Text),
                 height:=Integer.Parse(TextBox3.Text)
             )
+        End Get
+    End Property
+
+    Public ReadOnly Property colorSet As String
+        Get
+            Return ComboBox1.SelectedItem.ToString
         End Get
     End Property
 
@@ -79,6 +86,14 @@ Public Class InputMatrixIons
     Private Sub InputMatrixIons_Load(sender As Object, e As EventArgs) Handles Me.Load
         ToolStripStatusLabel1.Text = "Please select 9 ions to visual data..."
         search = New GridSearchHandler(AdvancedDataGridView1)
+        ComboBox1.Items.Clear()
+
+        For Each color As ScalerPalette In Enums(Of ScalerPalette)()
+            ComboBox1.Items.Add(color.Description)
+        Next
+
+        ComboBox1.SelectedIndex = 12
+
         AddHandler AdvancedDataGridViewSearchToolBar1.Search, AddressOf search.AdvancedDataGridViewSearchToolBar1_Search
     End Sub
 
@@ -129,8 +144,13 @@ Public Class InputMatrixIons
             table.Rows.Add({False, mz(i), name(i), precursor_type(i), pixels(i), density(i)})
         Next
 
-        Call Me.AdvancedDataGridView1.Columns.Clear()
-        Call Me.AdvancedDataGridView1.Rows.Clear()
+        Try
+            Call Me.AdvancedDataGridView1.Columns.Clear()
+            Call Me.AdvancedDataGridView1.Rows.Clear()
+        Catch ex As Exception
+
+        End Try
+
         Call AdvancedDataGridView1.SetDoubleBuffered()
 
         For Each column As DataGridViewColumn In AdvancedDataGridView1.Columns
@@ -277,7 +297,7 @@ Public Class InputMatrixIons
                         saveAs:=$"{folder.SelectedPath}/${mz.Value.ToString("F4")}.png",
                         title:=$"{mz.Name} {mz.Description}",
                         background:="black",
-                        colorSet:="viridis:turbo",
+                        colorSet:=colorSet,
                         overlapTotalIons:=True
                     )
                 Next

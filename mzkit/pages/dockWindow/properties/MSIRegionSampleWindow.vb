@@ -204,7 +204,7 @@ Public Class MSIRegionSampleWindow
             Return
         End If
 
-        Dim layer As Image = LayerRender.Draw(tissueMaps, layerSize, alphaLevel, dotSize:=1)
+        Dim layer As Image = LayerRender.Draw(tissueMaps, layerSize, alphaLevel, dotSize:=spotSize)
 
         Me.canvas = canvas
 
@@ -238,7 +238,9 @@ Public Class MSIRegionSampleWindow
         Dim nsize As Integer = FlowLayoutPanel1.Controls.Count
 
         If nsize > 0 Then
-            If MessageBox.Show("All of the sample name and color will be generated with unique id fill?", "Tissue Map", buttons:=MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
+            If MessageBox.Show("All of the sample name and color will be generated with unique id fill?",
+                               "Tissue Map",
+                               buttons:=MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
                 Dim i As i32 = 1
                 Dim colors As LoopArray(Of Color) = Designer.GetColors(colorSet, nsize)
 
@@ -289,7 +291,7 @@ Public Class MSIRegionSampleWindow
         }
             If file.ShowDialog = DialogResult.OK Then
                 Call ExportTissueMaps(dimension, file.OpenFile)
-                Call MyApplication.host.showStatusMessage("Sample tissue regions has been export to file success!")
+                Call Workbench.SuccessMessage("Sample tissue regions has been export to file success!")
             End If
         End Using
     End Sub
@@ -297,6 +299,7 @@ Public Class MSIRegionSampleWindow
     Dim prefix As String = "region_"
     Dim colorSet As String = "paper"
     Dim alpha As Double = 80
+    Dim spotSize As Double = 1.5
 
     ''' <summary>
     ''' config alpha/prefix etc
@@ -314,6 +317,7 @@ Public Class MSIRegionSampleWindow
             prefix = getFormula.RegionPrefix
             colorSet = getFormula.ColorSet
             alpha = getFormula.AlphaLevel
+            spotSize = getFormula.SpotSize
 
             Call updateLayerRendering()
         End If
@@ -365,7 +369,7 @@ Public Class MSIRegionSampleWindow
         Dim polygons As TissueRegion() = GetRegions(dimension).ToArray
 
         If polygons.IsNullOrEmpty Then
-            MyApplication.host.warning("No tissue map polygon region was found...")
+            Workbench.Warning("No tissue map polygon region was found...")
             Return
         End If
 

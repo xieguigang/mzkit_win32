@@ -112,6 +112,7 @@ Public Class frmMsImagingTweaks
 UseCheckedList:
             If checkedMz.Count > 0 Then
                 For Each node In checkedMz
+                    Call viewer.SetTitle({node.Tag}, node.Text)
                     Yield DirectCast(node.Tag, Double)
                 Next
             Else

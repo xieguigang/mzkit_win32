@@ -330,7 +330,7 @@ Public Class frmMsImagingViewer
         End If
 
         Dim title As String = If(FilePath.StringEmpty, "MS-Imaging Ion Stats", $"[{FilePath.FileName}]Ion Stats")
-        Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
+        Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(DockState.Hidden, title:=title)
 
         table.AppSource = GetType(IonStat)
         table.InstanceGuid = guid
@@ -410,6 +410,11 @@ Public Class frmMsImagingViewer
                     Call System.Windows.Forms.Application.DoEvents()
                 Next
             End Sub)
+
+        table.DockState = DockState.Document
+
+        Me.DockState = DockState.Document
+        Me.Show(Workbench.AppHost.DockPanel)
 
         Call Workbench.SuccessMessage($"Imports {ions.Length} ms-imaging ions target for {name.Length} metabolite annotations!")
     End Sub
@@ -1035,7 +1040,7 @@ Public Class frmMsImagingViewer
                     debug:=AddressOf getFormula.TextBox1.AppendText,
                     size:=getFormula.CanvasSize,
                     layout:=getFormula.MSILayout，
-                    scaler:="viridis:turbo"
+                    scaler:=getFormula.colorSet
                 )
                 Call getFormula.TextBox1.AppendText(vbCrLf)
             End If
@@ -1896,7 +1901,7 @@ Public Class frmMsImagingViewer
         End If
     End Function
 
-    Private Sub SetTitle(mz As IEnumerable(Of Double), title As String)
+    Public Sub SetTitle(mz As IEnumerable(Of Double), title As String)
         Me.title = title
         Me.targetMz = mz.ToArray
         Me.titles(targetMz(Scan0).ToString("F3")) = title

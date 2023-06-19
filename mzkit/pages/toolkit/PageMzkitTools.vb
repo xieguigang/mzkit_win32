@@ -356,38 +356,60 @@ Public Class PageMzkitTools
 
     Friend Sub ShowMatrix(PDA As PDAPoint(), name As String)
         Me.matrix = PDA
-        matrixName = name
+        Me.matrixName = name
 
-        DataGridView1.Rows.Clear()
-        DataGridView1.Columns.Clear()
+        Dim memoryData As New DataSet
+        Dim table As DataTable = memoryData.Tables.Add("memoryData")
 
-        DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "scan_time"})
-        DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "total_ion"})
-        DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "relative"})
+        Try
+            Call DataGridView1.Columns.Clear()
+            Call DataGridView1.Rows.Clear()
+        Catch ex As Exception
+
+        End Try
+
+        table.Columns.Add("scan_time", GetType(Double))
+        table.Columns.Add("total_ion", GetType(Double))
+        table.Columns.Add("relative", GetType(Double))
 
         Dim max As Double = PDA.Select(Function(a) a.total_ion).Max
 
         For Each tick As PDAPoint In PDA
-            DataGridView1.Rows.Add({tick.scan_time, tick.total_ion, tick.total_ion / max * 100})
+            table.Rows.Add(tick.scan_time, tick.total_ion, tick.total_ion / max * 100)
         Next
+
+        BindingSource1.DataSource = memoryData
+        BindingSource1.DataMember = table.TableName
+        DataGridView1.DataSource = BindingSource1
     End Sub
 
     Friend Sub ShowMatrix(UVscan As UVScanPoint(), name As String)
         Me.matrix = UVscan
-        matrixName = name
+        Me.matrixName = name
 
-        DataGridView1.Rows.Clear()
-        DataGridView1.Columns.Clear()
+        Dim memoryData As New DataSet
+        Dim table As DataTable = memoryData.Tables.Add("memoryData")
 
-        DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "wavelength(nm)"})
-        DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "intensity"})
-        DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "relative"})
+        Try
+            Call DataGridView1.Columns.Clear()
+            Call DataGridView1.Rows.Clear()
+        Catch ex As Exception
+
+        End Try
+
+        table.Columns.Add("wavelength(nm)", GetType(Double))
+        table.Columns.Add("intensity", GetType(Double))
+        table.Columns.Add("relative", GetType(Double))
 
         Dim max As Double = UVscan.Select(Function(a) a.intensity).Max
 
         For Each tick As UVScanPoint In UVscan
-            DataGridView1.Rows.Add({tick.wavelength, tick.intensity, tick.intensity / max * 100})
+            table.Rows.Add(tick.wavelength, tick.intensity, tick.intensity / max * 100)
         Next
+
+        BindingSource1.DataSource = memoryData
+        BindingSource1.DataMember = table.TableName
+        DataGridView1.DataSource = BindingSource1
     End Sub
 
     Friend Sub showUVscans(scans As IEnumerable(Of GeneralSignal), title$, xlable$)
@@ -647,27 +669,28 @@ Public Class PageMzkitTools
         progress.SetTitle("run family clustering....")
 
         If net.Length < 3 Then
-            Call MyApplication.host.showStatusMessage("the ions data is not enough for create network!", My.Resources.StatusAnnotations_Warning_32xLG_color)
-        Else
-            Dim kn As Integer
-
-            If net.Length > 9 Then
-                kn = 9
-            Else
-                kn = CInt(net.Length / 2)
-            End If
-
-            Dim clusters = net.ToKMeansModels.Kmeans(expected:=kn, debug:=False)
-            Dim rawLinks = links.ToDictionary(Function(a) a.reference, Function(a) a)
-
-            progress.SetInfo("initialize result output...")
-
-            MyApplication.host.Invoke(
-                Sub()
-                    Call MyApplication.host.mzkitMNtools.loadNetwork(clusters, protocol, rawLinks, similarityCutoff)
-                    Call MyApplication.host.ShowPage(MyApplication.host.mzkitMNtools)
-                End Sub)
+            Call Workbench.Warning("the ions data is not enough for create network!")
+            Return
         End If
+
+        Dim kn As Integer
+
+        If net.Length > 9 Then
+            kn = 9
+        Else
+            kn = CInt(net.Length / 2)
+        End If
+
+        Dim clusters = net.ToKMeansModels.Kmeans(expected:=kn, debug:=False)
+        Dim rawLinks = links.ToDictionary(Function(a) a.reference, Function(a) a)
+
+        progress.SetInfo("initialize result output...")
+
+        MyApplication.host.Invoke(
+            Sub()
+                Call MyApplication.host.mzkitMNtools.loadNetwork(clusters, protocol, rawLinks, similarityCutoff)
+                Call MyApplication.host.ShowPage(MyApplication.host.mzkitMNtools)
+            End Sub)
     End Sub
 
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
@@ -713,88 +736,111 @@ Public Class PageMzkitTools
     ''' <param name="matrix"></param>
     ''' <param name="name"></param>
     Sub showMatrix(matrix As ms2(), name As String, Optional nmr As Boolean = False)
+        Dim memoryData As New DataSet
+        Dim table As DataTable = memoryData.Tables.Add("memoryData")
+
         Me.matrix = matrix
         Me.matrixName = name
 
+        Try
+            Call DataGridView1.Columns.Clear()
+            Call DataGridView1.Rows.Clear()
+        Catch ex As Exception
+
+        End Try
+
         If nmr Then
-            DataGridView1.Rows.Clear()
-            DataGridView1.Columns.Clear()
-            DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "ppm"})
-            DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "intensity"})
+            table.Columns.Add("ppm", GetType(Double))
+            table.Columns.Add("intensity", GetType(Double))
 
             For Each tick As ms2 In matrix
-                DataGridView1.Rows.Add({tick.mz, tick.intensity})
+                table.Rows.Add(tick.mz, tick.intensity)
                 System.Windows.Forms.Application.DoEvents()
             Next
         Else
-            Dim memoryData As New DataSet
-            Dim table As DataTable = memoryData.Tables.Add("memoryData")
+            Dim max As Double
 
-            Try
-                Call DataGridView1.Columns.Clear()
-                Call DataGridView1.Rows.Clear()
-            Catch ex As Exception
-
-            End Try
+            If matrix.Length = 0 Then
+                max = 0
+                Call Workbench.Warning($"'{name}' didn't contains any data...")
+            Else
+                max = matrix.Select(Function(a) a.intensity).Max
+            End If
 
             table.Columns.Add("m/z", GetType(Double))
             table.Columns.Add("intensity", GetType(Double))
             table.Columns.Add("relative", GetType(Double))
             table.Columns.Add("annotation", GetType(String))
 
-            Dim max As Double
-
-            If matrix.Length = 0 Then
-                max = 0
-                Call MyApplication.host.showStatusMessage($"'{name}' didn't contains any data...", My.Resources.StatusAnnotations_Warning_32xLG_color)
-            Else
-                max = matrix.Select(Function(a) a.intensity).Max
-            End If
-
             For Each tick As ms2 In matrix
                 table.Rows.Add(tick.mz, tick.intensity, CInt(tick.intensity / max * 100), tick.Annotation)
                 System.Windows.Forms.Application.DoEvents()
             Next
-
-            BindingSource1.DataSource = memoryData
-            BindingSource1.DataMember = table.TableName
-            DataGridView1.DataSource = BindingSource1
         End If
+
+        BindingSource1.DataSource = memoryData
+        BindingSource1.DataMember = table.TableName
+        DataGridView1.DataSource = BindingSource1
     End Sub
 
     Sub showMatrix(matrix As SSM2MatrixFragment(), name As String)
         Me.matrix = matrix
         Me.matrixName = name
 
-        DataGridView1.Rows.Clear()
-        DataGridView1.Columns.Clear()
+        Dim memoryData As New DataSet
+        Dim table As DataTable = memoryData.Tables.Add("memoryData")
 
-        DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "m/z"})
-        DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "intensity(query)"})
-        DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "intensity(target)"})
-        DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "tolerance"})
+        Try
+            Call DataGridView1.Columns.Clear()
+            Call DataGridView1.Rows.Clear()
+        Catch ex As Exception
+
+        End Try
+
+        table.Columns.Add("m/z", GetType(Double))
+        table.Columns.Add("intensity(query)", GetType(Double))
+        table.Columns.Add("intensity(target)", GetType(Double))
+        table.Columns.Add("tolerance", GetType(Double))
 
         For Each tick In matrix
-            DataGridView1.Rows.Add({tick.mz, tick.query, tick.ref, tick.da})
+            table.Rows.Add(tick.mz, tick.query, tick.ref, tick.da)
         Next
+
+        BindingSource1.DataSource = memoryData
+        BindingSource1.DataMember = table.TableName
+        DataGridView1.DataSource = BindingSource1
     End Sub
 
     Public Sub showMatrix(matrix As ChromatogramTick(), name As String)
         Me.matrix = matrix
         Me.matrixName = name
 
-        DataGridView1.Rows.Clear()
-        DataGridView1.Columns.Clear()
+        Dim memoryData As New DataSet
+        Dim table As DataTable = memoryData.Tables.Add("memoryData")
 
-        DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "time"})
-        DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .HeaderText = "intensity"})
+        Try
+            Call DataGridView1.Columns.Clear()
+            Call DataGridView1.Rows.Clear()
+        Catch ex As Exception
+
+        End Try
+
+        table.Columns.Add("time", GetType(Double))
+        table.Columns.Add("intensity", GetType(Double))
 
         For Each tick In matrix
-            DataGridView1.Rows.Add({tick.Time, tick.Intensity})
+            table.Rows.Add(tick.Time, tick.Intensity)
         Next
+
+        BindingSource1.DataSource = memoryData
+        BindingSource1.DataMember = table.TableName
+        DataGridView1.DataSource = BindingSource1
     End Sub
 
-    Public Sub ShowXIC(ppm As Double, plotTIC As NamedCollection(Of ChromatogramTick), getXICCollection As Func(Of Double, IEnumerable(Of NamedCollection(Of ChromatogramTick))), maxY As Double)
+    Public Sub ShowXIC(ppm As Double,
+                       plotTIC As NamedCollection(Of ChromatogramTick),
+                       getXICCollection As Func(Of Double, IEnumerable(Of NamedCollection(Of ChromatogramTick))),
+                       maxY As Double)
 
         Dim plotImage As Image = Nothing
         Dim relative As Boolean = relativeInto()
@@ -810,7 +856,7 @@ Public Class PageMzkitTools
             End Sub)
 
         If XICPlot.Count = 0 Then
-            Call MyApplication.host.showStatusMessage("No XIC ions data for generate plot!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning("No XIC ions data for generate plot!")
         Else
             Call TIC(XICPlot, d3:=False)
         End If
@@ -995,6 +1041,6 @@ Public Class PageMzkitTools
     End Sub
 
     Private Sub OpenInTableViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenInTableViewerToolStripMenuItem.Click
-        Call DataControlHandler.OpenInTableViewer(matrix:=DataGridView1)
+        Call DataGridView1.OpenInTableViewer
     End Sub
 End Class

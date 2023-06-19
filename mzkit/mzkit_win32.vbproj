@@ -495,9 +495,6 @@
     <Compile Include="forms\Inputs\MSImaging\InputConvert10x.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Inputs\InputPeakFindParameter.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="forms\Inputs\MSImaging\ShowTissueData.Designer.vb">
       <DependentUpon>ShowTissueData.vb</DependentUpon>
     </Compile>
@@ -1156,9 +1153,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputNetworkLayout.zh-CN.resx">
       <DependentUpon>InputNetworkLayout.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputPeakFindParameter.resx">
-      <DependentUpon>InputPeakFindParameter.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputPeakTime.resx">
       <DependentUpon>InputPeakTime.vb</DependentUpon>
@@ -1885,6 +1879,10 @@
     <ProjectReference Include="..\ux\ControlLibrary\ControlLibrary.vbproj">
       <Project>{df66aa70-9ab9-48d0-b492-9d0e0482a651}</Project>
       <Name>ControlLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ux\LCMSViewer\LCMSViewer.vbproj">
+      <Project>{72e288a5-18c4-43ec-95bf-d0f57f93ca92}</Project>
+      <Name>LCMSViewer</Name>
     </ProjectReference>
     <ProjectReference Include="..\ux\LocalLaplacianFilters\LocalLaplacianFilters.vbproj">
       <Project>{1440c713-78b7-4d26-978c-d2789dda67ff}</Project>

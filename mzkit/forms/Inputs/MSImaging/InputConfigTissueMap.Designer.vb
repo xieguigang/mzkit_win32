@@ -33,13 +33,15 @@ Partial Class InputConfigTissueMap
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(245, 201)
+        Me.Button1.Location = New System.Drawing.Point(232, 198)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 0
@@ -48,7 +50,7 @@ Partial Class InputConfigTissueMap
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(146, 201)
+        Me.Button2.Location = New System.Drawing.Point(133, 198)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 1
@@ -74,7 +76,7 @@ Partial Class InputConfigTissueMap
         'TrackBar1
         '
         Me.TrackBar1.LargeChange = 25
-        Me.TrackBar1.Location = New System.Drawing.Point(95, 68)
+        Me.TrackBar1.Location = New System.Drawing.Point(95, 51)
         Me.TrackBar1.Maximum = 100
         Me.TrackBar1.Name = "TrackBar1"
         Me.TrackBar1.Size = New System.Drawing.Size(207, 45)
@@ -84,7 +86,7 @@ Partial Class InputConfigTissueMap
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(6, 73)
+        Me.Label2.Location = New System.Drawing.Point(31, 60)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(46, 13)
         Me.Label2.TabIndex = 5
@@ -111,6 +113,8 @@ Partial Class InputConfigTissueMap
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.TextBox2)
+        Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.TextBox1)
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.Label1)
@@ -124,11 +128,27 @@ Partial Class InputConfigTissueMap
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Settings"
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(22, 97)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(55, 13)
+        Me.Label4.TabIndex = 8
+        Me.Label4.Text = "Spot Size:"
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(108, 94)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox2.TabIndex = 9
+        '
         'InputConfigTissueMap
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(346, 240)
+        Me.ClientSize = New System.Drawing.Size(328, 231)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
@@ -150,4 +170,6 @@ Partial Class InputConfigTissueMap
     Friend WithEvents ComboBox1 As ComboBox
     Friend WithEvents Label3 As Label
     Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents TextBox2 As TextBox
 End Class

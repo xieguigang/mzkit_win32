@@ -199,7 +199,7 @@
     <value>6, 99</value>
   </data>
   <data name="DataGridView1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1027, 568</value>
+    <value>1099, 509</value>
   </data>
   <data name="DataGridView1.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
@@ -316,7 +316,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="TabPage1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1039, 675</value>
+    <value>1111, 616</value>
   </data>
   <data name="TabPage1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -415,7 +415,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="TabPage2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1039, 675</value>
+    <value>1111, 616</value>
   </data>
   <data name="TabPage2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -532,7 +532,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="TabPage4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>738, 581</value>
+    <value>810, 522</value>
   </data>
   <data name="TabPage4.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -661,7 +661,7 @@
     <value>NoControl</value>
   </data>
   <data name="Button4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 535</value>
+    <value>23, 476</value>
   </data>
   <data name="Button4.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
@@ -748,7 +748,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="TabPage5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>738, 581</value>
+    <value>810, 522</value>
   </data>
   <data name="TabPage5.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -772,7 +772,7 @@
     <value>6, 35</value>
   </data>
   <data name="TabControl2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>746, 607</value>
+    <value>818, 548</value>
   </data>
   <data name="TabControl2.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -793,7 +793,7 @@
     <value>275, 9</value>
   </data>
   <data name="GroupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>758, 648</value>
+    <value>830, 589</value>
   </data>
   <data name="GroupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -829,7 +829,7 @@
     <value>Vertical</value>
   </data>
   <data name="TextBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>241, 613</value>
+    <value>241, 554</value>
   </data>
   <data name="TextBox3.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -880,7 +880,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="TabPage3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1039, 675</value>
+    <value>1111, 616</value>
   </data>
   <data name="TabPage3.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -907,7 +907,7 @@
     <value>0, 0</value>
   </data>
   <data name="TabControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1047, 701</value>
+    <value>1119, 642</value>
   </data>
   <data name="TabControl1.TabIndex" type="System.Int32, mscorlib">
     <value>29</value>
@@ -946,7 +946,7 @@
     <value>383, 6</value>
   </data>
   <data name="PictureBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>650, 660</value>
+    <value>722, 601</value>
   </data>
   <data name="PictureBox1.TabIndex" type="System.Int32, mscorlib">
     <value>36</value>
@@ -1472,7 +1472,7 @@
     <value>Vertical</value>
   </data>
   <data name="DataGridView2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>365, 558</value>
+    <value>365, 499</value>
   </data>
   <data name="DataGridView2.TabIndex" type="System.Int32, mscorlib">
     <value>35</value>
@@ -1637,7 +1637,7 @@
     <value>Bottom, Left</value>
   </data>
   <data name="Button3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 543</value>
+    <value>23, 484</value>
   </data>
   <data name="Button3.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
@@ -1735,14 +1735,11 @@
   <data name="&gt;&gt;NumericUpDown1.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="CheckedListBox2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left</value>
-  </data>
   <data name="CheckedListBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>20, 217</value>
   </data>
   <data name="CheckedListBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>144, 304</value>
+    <value>144, 244</value>
   </data>
   <data name="CheckedListBox2.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -1793,7 +1790,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1047, 701</value>
+    <value>1119, 642</value>
   </data>
   <data name="&gt;&gt;GaussianPlotToolStripMenuItem.Name" xml:space="preserve">
     <value>GaussianPlotToolStripMenuItem</value>
