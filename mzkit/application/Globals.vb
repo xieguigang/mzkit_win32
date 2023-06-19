@@ -171,6 +171,7 @@ Module Globals
         Pages.SetDocument(NameOf(QuantificationLinearPage), GetType(frmTargetedQuantification))
         Pages.SetDocument(NameOf(MRMLibraryPage), GetType(frmMRMLibrary))
 
+        DataTableViewer.HookTableViewer(Function() DirectCast(VisualStudio.ShowDocument(Of frmTableViewer), IDataTableViewer))
         SpectralViewerModule.HookViewer(AddressOf PageMzkitTools.ShowSpectral)
     End Sub
 

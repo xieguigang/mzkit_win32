@@ -62,32 +62,6 @@ Imports REnv = SMRUCC.Rsharp.Runtime
 
 Module DataControlHandler
 
-    Public Sub OpenInTableViewer(matrix As DataGridView)
-        Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)
-
-        table.LoadTable(
-            Sub(grid)
-                For i As Integer = 0 To matrix.Columns.Count - 1
-                    Call grid.Columns.Add(matrix.Columns(i).HeaderText, GetType(Object))
-                Next
-
-                For j As Integer = 0 To matrix.Rows.Count - 1
-                    Dim rowObj = matrix.Rows(j)
-                    Dim row As New List(Of Object)
-
-                    For i As Integer = 0 To rowObj.Cells.Count - 1
-                        Call row.Add(rowObj.Cells(i).Value)
-                    Next
-
-                    If row.All(Function(o) o Is Nothing OrElse IsDBNull(o)) Then
-                        Continue For
-                    End If
-
-                    Call grid.Rows.Add(row.ToArray)
-                Next
-            End Sub)
-    End Sub
-
     <Extension>
     Public Function getFieldVector(table As DataTable, fieldRef As String) As Array
         Dim fieldNames As New List(Of String)
