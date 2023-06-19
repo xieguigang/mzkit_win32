@@ -74,6 +74,9 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialogs\InputPeakFindParameter.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -98,6 +101,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Dialogs\InputPeakFindParameter.resx">
+      <DependentUpon>InputPeakFindParameter.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -124,9 +130,45 @@
     <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data\DataFrame\dataframework-netcore5.vbproj">
+      <Project>{02e9ba6a-35e1-431f-bb47-0553757af6b9}</Project>
+      <Name>dataframework-netcore5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\Math\Math\Math.NET5.vbproj">
+      <Project>{eb3dd1ee-71a4-4d85-b494-ef075ad99098}</Project>
+      <Name>Math.NET5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\SignalProcessing\SignalProcessing\signalprocessing-netcore5.vbproj">
+      <Project>{590fb6f6-7f96-488d-8f32-cc584298d061}</Project>
+      <Name>signalprocessing-netcore5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Visualization\Plots\plots-netcore5.vbproj">
+      <Project>{5886614d-8d70-41e7-9795-afd0effb4e38}</Project>
+      <Name>plots-netcore5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\gr\Microsoft.VisualBasic.Imaging\imaging.NET5.vbproj">
+      <Project>{e2caa18e-9705-462a-844d-c809a45d4197}</Project>
+      <Name>imaging.NET5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj">
       <Project>{dee82853-4241-4f24-a096-12923c664369}</Project>
       <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\assembly\SignalReader\SignalReader.vbproj">
+      <Project>{4491210e-d07d-409b-8028-43e8256c93e0}</Project>
+      <Name>SignalReader</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\mzmath\ms2_math-core\mzmath-netcore5.vbproj">
+      <Project>{ab5fd86e-6da9-4f7c-8dce-17da85bc895d}</Project>
+      <Name>mzmath-netcore5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\mzmath\mz_deco\deconv.NET5.vbproj">
+      <Project>{fd924bdc-104f-4210-ab34-38ddeaf081ad}</Project>
+      <Name>deconv.NET5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\visualize\plot\MsPlot.NET5.vbproj">
+      <Project>{a27dc075-07ac-4d90-b1d5-0966925b5309}</Project>
+      <Name>MsPlot.NET5</Name>
     </ProjectReference>
     <ProjectReference Include="..\BasicMDIForm\BasicMDIForm.vbproj">
       <Project>{51c55c5c-2f21-4e9f-aa8d-3664135758b7}</Project>

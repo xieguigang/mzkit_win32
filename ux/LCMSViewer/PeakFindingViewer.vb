@@ -1,4 +1,18 @@
-﻿Public Class PeakFindingViewer
+﻿Imports System.IO
+Imports System.Text
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
+Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
+Imports Microsoft.VisualBasic.Data.csv
+Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Math
+Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports any = Microsoft.VisualBasic.Scripting
+
+Public Class PeakFindingViewer
     ''' <summary>
     ''' raw peaks data
     ''' </summary>
@@ -26,7 +40,7 @@
             .TICplot(
                 intensityMax:=0,
                 isXIC:=True,
-                colorsSchema:=Globals.GetColors,
+                colorsSchema:=Workbench.GetPlotColors,
                 fillCurve:=True,
                 gridFill:="white",
                 spline:=If(spline, 3, 0),
@@ -112,25 +126,26 @@
 
     Private Sub ViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewToolStripMenuItem.Click
         If PeakListViewer.SelectedRows.Count <= 0 Then
-            Call MyApplication.host.showStatusMessage("Please select a row data for view content!", My.Resources.StatusAnnotations_Warning_32xLG_color)
-        Else
-            Dim row As DataGridViewRow = PeakListViewer.SelectedRows(0)
-            Dim peakId As String = any.ToString(row.Cells.Item(0).Value)
-            Dim peakROI As ROI = peakList(peakId)
-            Dim targetPeak As New NamedCollection(Of ChromatogramTick) With {
-                .Name = peakROI.ToString,
-                .value = peakROI.ticks
-            }
-            Dim background As New NamedCollection(Of ChromatogramTick) With {
-                .Name = "Background",
-                .value = peakROI _
-                    .GetChromatogramData(matrix, 15) _
-                    .ToArray
-            }
-
-            Call plotMatrix(spline:=True, background, targetPeak)
-            Call ShowMatrix(peakROI.ticks)
+            Call Workbench.Warning("Please select a row data for view content!")
+            Return
         End If
+
+        Dim row As DataGridViewRow = PeakListViewer.SelectedRows(0)
+        Dim peakId As String = any.ToString(row.Cells.Item(0).Value)
+        Dim peakROI As ROI = peakList(peakId)
+        Dim targetPeak As New NamedCollection(Of ChromatogramTick) With {
+            .name = peakROI.ToString,
+            .value = peakROI.ticks
+        }
+        Dim background As New NamedCollection(Of ChromatogramTick) With {
+            .name = "Background",
+            .value = peakROI _
+                .GetChromatogramData(matrix, 15) _
+                .ToArray
+        }
+
+        Call plotMatrix(spline:=True, background, targetPeak)
+        Call ShowMatrix(peakROI.ticks)
     End Sub
 
     Private Sub PeakListViewer_RowStateChanged(sender As Object, e As DataGridViewRowStateChangedEventArgs) Handles PeakListViewer.RowStateChanged
@@ -143,16 +158,12 @@
 
             Dim peakROI As ROI = peakList(peakId)
             Dim targetPeak As New NamedCollection(Of ChromatogramTick) With {
-                .Name = peakROI.ToString,
+                .name = peakROI.ToString,
                 .value = peakROI.ticks
             }
 
             Call plotMatrix(spline:=False, New NamedCollection(Of ChromatogramTick)(rawName, matrix), targetPeak)
         End If
-    End Sub
-
-    Private Sub frmPeakFinding_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Call ApplyVsTheme(ContextMenuStrip1, ContextMenuStrip2, ToolStrip1)
     End Sub
 
     ''' <summary>
@@ -200,7 +211,7 @@
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
-        Call DataControlHandler.OpenInTableViewer(matrix:=PeakListViewer)
+        Call PeakListViewer.OpenInTableViewer
     End Sub
 
     ''' <summary>
@@ -233,7 +244,7 @@
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub SendToTableViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendToTableViewerToolStripMenuItem.Click
-        Call DataControlHandler.OpenInTableViewer(matrix:=PeakMatrixViewer)
+        Call PeakMatrixViewer.OpenInTableViewer
     End Sub
 
     ''' <summary>

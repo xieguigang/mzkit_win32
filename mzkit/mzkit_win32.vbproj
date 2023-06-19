@@ -495,9 +495,6 @@
     <Compile Include="forms\Inputs\MSImaging\InputConvert10x.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Inputs\InputPeakFindParameter.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="forms\Inputs\MSImaging\ShowTissueData.Designer.vb">
       <DependentUpon>ShowTissueData.vb</DependentUpon>
     </Compile>
@@ -1156,9 +1153,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputNetworkLayout.zh-CN.resx">
       <DependentUpon>InputNetworkLayout.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputPeakFindParameter.resx">
-      <DependentUpon>InputPeakFindParameter.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputPeakTime.resx">
       <DependentUpon>InputPeakTime.vb</DependentUpon>

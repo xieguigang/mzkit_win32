@@ -173,6 +173,8 @@ Module Globals
 
         DataTableViewer.HookTableViewer(Function() DirectCast(VisualStudio.ShowDocument(Of frmTableViewer), IDataTableViewer))
         SpectralViewerModule.HookViewer(AddressOf PageMzkitTools.ShowSpectral)
+
+        BaseHook.HookPlotColorSet(AddressOf Globals.GetColors)
     End Sub
 
     Public Sub RegisterActions(println As Action(Of String))
