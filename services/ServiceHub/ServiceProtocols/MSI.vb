@@ -146,7 +146,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
     ''' <returns></returns>
     <Protocol(ServiceProtocol.SetSpatial2D)>
     Public Function SetSpatial2D(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
-        Dim angle As Double = BitConverter.ToDouble(request.ChunkBuffer)
+        Dim angle As Double = BitConverter.ToDouble(request.ChunkBuffer, Scan0)
         Dim r As Double = angle.ToRadians
         Dim rawPixels As PixelScan() = MSI.LoadPixels.ToArray
         Dim matrix = rawPixels.Select(Function(p) New PointF(p.X, p.Y)).ToArray
