@@ -63,6 +63,7 @@
 
 Imports System.Drawing
 Imports System.IO
+Imports System.Runtime.CompilerServices
 Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging
@@ -77,6 +78,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
+Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MachineLearning.Data
@@ -131,8 +133,40 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Call BackgroundTaskUtils.BindToMaster(masterPid, Me)
     End Sub
 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Function Run() As Integer Implements ITaskDriver.Run
         Return socket.Run
+    End Function
+
+    ''' <summary>
+    ''' just pass a degree angle, apply the matrix rotation at here
+    ''' </summary>
+    ''' <param name="request"></param>
+    ''' <param name="remoteAddress"></param>
+    ''' <returns></returns>
+    <Protocol(ServiceProtocol.SetSpatial2D)>
+    Public Function SetSpatial2D(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
+        Dim angle As Double = BitConverter.ToDouble(request.ChunkBuffer)
+        Dim r As Double = angle.ToRadians
+        Dim rawPixels As PixelScan() = MSI.LoadPixels.ToArray
+        Dim matrix = rawPixels.Select(Function(p) New PointF(p.X, p.Y)).ToArray
+        Dim polygon As New Polygon2D(matrix)
+        Dim center As New PointF With {
+            .X = polygon.xpoints.Average,
+            .Y = polygon.ypoints.Average
+        }
+        Dim info As Dictionary(Of String, String)
+
+        matrix = matrix.Rotate(center, alpha:=r)
+
+        For i As Integer = 0 To matrix.Length - 1
+            rawPixels(i) = rawPixels(i).SetXY(matrix(i).X, matrix(i).Y)
+        Next
+
+        MSI = New Drawer(rawPixels)
+        info = MSIProtocols.GetMSIInfo(Me)
+
+        Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
     End Function
 
     <Protocol(ServiceProtocol.LoadThermoRawMSI)>
@@ -208,8 +242,8 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             Throw New NotImplementedException
         ElseIf filepath.ExtensionSuffix("imzml") Then
             Dim mzpack As mzPack = MSImagingReader.UnifyReadAsMzPack(filepath)
-            MSI = New Drawer(mzPack)
-            metadata = mzPack.GetMSIMetadata
+            MSI = New Drawer(mzpack)
+            metadata = mzpack.GetMSIMetadata
             type = FileApplicationClass.MSImaging
         Else
             Call RunSlavePipeline.SendMessage($"read MSI dataset from the mzPack raw data file!")
