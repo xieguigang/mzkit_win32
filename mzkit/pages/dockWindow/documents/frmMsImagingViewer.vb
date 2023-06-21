@@ -181,6 +181,7 @@ Public Class frmMsImagingViewer
         AddHandler RibbonEvents.ribbonItems.ShowTissueData.ExecuteEvent, Sub() Call ShowTissueData()
         AddHandler RibbonEvents.ribbonItems.ButtonAutoUMAP.ExecuteEvent, Sub() Call RunUMAPTissueCluster()
         AddHandler RibbonEvents.ribbonItems.ButtonMSISignalCorrection.ExecuteEvent, Sub() Call ViewMzBins()
+        AddHandler RibbonEvents.ribbonItems.ButtonRotateSlide.ExecuteEvent, Sub() Call rotateSlide()
 
         AddHandler RibbonEvents.ribbonItems.CheckShowMapLayer.ExecuteEvent,
             Sub()
@@ -205,6 +206,11 @@ Public Class frmMsImagingViewer
         sampleRegions.Show(MyApplication.host.m_dockPanel)
         sampleRegions.DockState = DockState.Hidden
         sampleRegions.viewer = Me
+    End Sub
+
+    Private Sub rotateSlide()
+        ' fetch the BPC views
+        ' and then set rotation
     End Sub
 
     Private Sub ViewMzBins()

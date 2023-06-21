@@ -471,6 +471,12 @@
     <Compile Include="application\settings\RawFileViewerSettings.vb" />
     <Compile Include="application\VisualStudio.vb" />
     <Compile Include="application\RPackage.vb" />
+    <Compile Include="forms\Inputs\MSImaging\InputMSIRotation.Designer.vb">
+      <DependentUpon>InputMSIRotation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\MSImaging\InputMSIRotation.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\MSImaging\ShowMzBins.Designer.vb">
       <DependentUpon>ShowMzBins.vb</DependentUpon>
     </Compile>
@@ -1165,6 +1171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputXICTarget.resx">
       <DependentUpon>InputXICTarget.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\MSImaging\InputMSIRotation.resx">
+      <DependentUpon>InputMSIRotation.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\MSImaging\ShowMzBins.resx">
       <DependentUpon>ShowMzBins.vb</DependentUpon>
