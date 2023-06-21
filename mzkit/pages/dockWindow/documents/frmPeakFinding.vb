@@ -13,6 +13,7 @@ Public Class frmPeakFinding
     End Sub
 
     Private Sub frmPeakFinding_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Controls.Add(peakFinding)
         peakFinding.Dock = DockStyle.Fill
 
         Call ApplyVsTheme(
