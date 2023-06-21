@@ -14,9 +14,6 @@ Public Module MSImagingReader
     ''' <param name="filepath"></param>
     ''' <returns></returns>
     Public Function UnifyReadAsMzPack(filepath As String) As [Variant](Of mzPack, ReadRawPack)
-        If filepath.ExtensionSuffix("mzpack") Then
-            Return mzPack.ReadAll(filepath.Open(FileMode.Open, doClear:=False, [readOnly]:=True), ignoreThumbnail:=True)
-        End If
         If filepath.ExtensionSuffix("cdf") Then
             ' read multiple ion layers
             Using cdf As New netCDFReader(filepath)
@@ -28,5 +25,8 @@ Public Module MSImagingReader
             mzPack.source = filepath.FileName
             Return mzPack
         End If
+
+        ' try to open all other kind of data files as mzpack
+        Return mzPack.ReadAll(filepath.Open(FileMode.Open, doClear:=False, [readOnly]:=True), ignoreThumbnail:=True)
     End Function
 End Module
