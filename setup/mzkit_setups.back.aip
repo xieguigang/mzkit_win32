@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="16.3" version="20.7.1" Modules="enterprise" RootPath="." Language="en" Id="{DF438C35-DFC1-43BF-9D1D-43492EAC31CF}">
-  <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
-    <ROW Name="HiddenItems" Value="ActSyncAppComponent;CPLAppletComponent;AutorunComponent;GameUxComponent;SilverlightSlnComponent;SharePointSlnComponent;AppXAppDetailsComponent;FixupComponent;AppXCapabilitiesComponent;AppXDependenciesComponent;AppXProductDetailsComponent;AppXVisualAssetsComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;MsiXDiffComponent;MsixManifestEditorComponent"/>
-  </COMPONENT>
+<DOCUMENT Type="Advanced Installer" CreateVersion="16.3" version="19.0" Modules="enterprise" RootPath="." Language="en" Id="{DF438C35-DFC1-43BF-9D1D-43492EAC31CF}">
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
-    <ROW Property="AI_APP_FILE" Value="[#mzkit_win32.exe_1]"/>
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
     <ROW Property="AI_BOOTSTRAPPERLANG" Value="1033" Type="4"/>
     <ROW Property="AI_BackgroundColor" Value="lightblue" MultiBuildValue="DefaultBuild:powderblue" MsiKey="AI_BackgroundColor"/>
+    <ROW Property="AI_CURRENT_YEAR" Value="2023" ValueLocId="-"/>
     <ROW Property="AI_EXTERNALUIUNINSTALLERNAME" MultiBuildValue="DefaultBuild:aiui"/>
     <ROW Property="AI_FrameBtnsColor" Value="powderblue" MsiKey="AI_FrameBtnsColor"/>
     <ROW Property="AI_FrameColor" Value="powderblue" MsiKey="AI_FrameColor"/>
     <ROW Property="AI_ImagesColor" Value="powderblue" MsiKey="AI_ImagesColor"/>
     <ROW Property="AI_PREDEF_LCONDS_PROPS" Value="AI_DETECTED_DOTNET_VERSION;AI_DETECTED_SCREEN_RESOLUTION_X;AI_DETECTED_SCREEN_RESOLUTION_Y;AI_DETECTED_COLOR_QUALITY;AI_DETECTED_PHYSICAL_MEMORY"/>
     <ROW Property="AI_PRODUCTNAME_ARP" Value="mzkit_win32"/>
-    <ROW Property="AI_README_FILE" Value="[#README.txt]"/>
     <ROW Property="AI_REQUIRED_COLOR_QUALITY" MultiBuildValue="DefaultBuild:32" ValueLocId="-"/>
     <ROW Property="AI_REQUIRED_DOTNET_DISPLAY" MultiBuildValue="DefaultBuild:4.8" ValueLocId="-"/>
     <ROW Property="AI_REQUIRED_DOTNET_VERSION" MultiBuildValue="DefaultBuild:4.8" ValueLocId="-"/>
@@ -44,7 +40,7 @@
     <ROW Property="ProductCode" Value="1028:{6FA918FE-6DD7-4922-BFC7-BECE2311A7CA} 1033:{6FA918FE-6DD7-4922-BFC7-BECE2311A7CA} 1036:{6FA918FE-6DD7-4922-BFC7-BECE2311A7CA} 1041:{6FA918FE-6DD7-4922-BFC7-BECE2311A7CA} 1049:{6FA918FE-6DD7-4922-BFC7-BECE2311A7CA} 2052:{6FA918FE-6DD7-4922-BFC7-BECE2311A7CA} 2057:{6FA918FE-6DD7-4922-BFC7-BECE2311A7CA} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="mzkit_win32"/>
-    <ROW Property="ProductVersion" Value="4.5.139.9689" Options="32"/>
+    <ROW Property="ProductVersion" Value="4.5.139.9689" Type="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{B645400B-3918-41EF-9009-7ADDD81C84B4}"/>
@@ -554,7 +550,7 @@
     <ROW Component="Microsoft.Web.WebView2.WinForms.dll" ComponentId="{95475075-2F81-4D9D-964F-8C8A3F7AACDD}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Web.WebView2.WinForms.dll"/>
     <ROW Component="Microsoft.Web.WebView2.Wpf.dll" ComponentId="{5EA5451C-3349-4D0B-87ED-754EF750628D}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Web.WebView2.Wpf.dll"/>
     <ROW Component="Microsoft.Win32.SystemEvents.dll" ComponentId="{006A119E-E0DE-4830-BE9C-DAA4061C77B6}" Directory_="net6.0_1_Dir" Attributes="256" KeyPath="Microsoft.Win32.SystemEvents.dll"/>
-    <ROW Component="Microsoft.Win32.SystemEvents.dll_1" ComponentId="{DE633905-B91C-442C-9BFB-4BE9AF88FF3F}" Directory_="net6.0_6_Dir" Attributes="0" KeyPath="Microsoft.Win32.SystemEvents.dll_1"/>
+    <ROW Component="Microsoft.Win32.SystemEvents.dll_1" ComponentId="{BBA5FC51-D11C-4C92-8CAB-48F3A12A4B28}" Directory_="net6.0_6_Dir" Attributes="0" KeyPath="Microsoft.Win32.SystemEvents.dll_1"/>
     <ROW Component="Microsoft.Win32.SystemEvents.dll_2" ComponentId="{EECE808B-614F-4DBB-AAC1-C0DE5792ECEE}" Directory_="nvidia_Dir" Attributes="0" KeyPath="Microsoft.Win32.SystemEvents.dll_2"/>
     <ROW Component="Microsoft.Win32.SystemEvents.dll_3" ComponentId="{D54B9B25-21A4-4694-976B-CCBB0232DA9D}" Directory_="net6.0_3_Dir" Attributes="0" KeyPath="Microsoft.Win32.SystemEvents.dll_3"/>
     <ROW Component="Microsoft.Win32.SystemEvents.dll_4" ComponentId="{FC52EFC3-197E-4C96-A069-B7FEF11462FF}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.Win32.SystemEvents.dll_4"/>
@@ -718,8 +714,8 @@
     <ROW Component="System.Drawing.Common.dll" ComponentId="{FB8E0761-69C1-409A-88A5-A093F773D038}" Directory_="net6.0_Dir" Attributes="256" KeyPath="System.Drawing.Common.dll"/>
     <ROW Component="System.Drawing.Common.dll_1" ComponentId="{2FF8DA4A-840A-467F-A12A-2EA4332D2A6F}" Directory_="net6.0_1_Dir" Attributes="256" KeyPath="System.Drawing.Common.dll_1"/>
     <ROW Component="System.Drawing.Common.dll_13" ComponentId="{A0B052BB-0F1A-49F7-92B3-0AEEA2266322}" Directory_="bin_Dir" Attributes="256" KeyPath="System.Drawing.Common.dll_13"/>
-    <ROW Component="System.Drawing.Common.dll_2" ComponentId="{D2DAC4CE-CE22-4589-83D8-5BD6D25DCDAE}" Directory_="net6.0_5_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_2"/>
-    <ROW Component="System.Drawing.Common.dll_3" ComponentId="{360930E0-C7BF-4EA7-9F15-C1D2BFDA69EE}" Directory_="net6.0_6_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_3"/>
+    <ROW Component="System.Drawing.Common.dll_2" ComponentId="{C7030214-8D1F-455B-90A5-2E85B879A304}" Directory_="net6.0_5_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_2"/>
+    <ROW Component="System.Drawing.Common.dll_3" ComponentId="{F3C1031D-71AD-41C2-9E18-74D70AE20E88}" Directory_="net6.0_6_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_3"/>
     <ROW Component="System.Drawing.Common.dll_4" ComponentId="{50F1768D-B922-4687-A130-43763632577A}" Directory_="net6.0_2_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_4"/>
     <ROW Component="System.Drawing.Common.dll_5" ComponentId="{C9483DB6-7334-447F-9111-9A1498C9C8B7}" Directory_="APPDIR" Attributes="256" KeyPath="System.Drawing.Common.dll_5"/>
     <ROW Component="System.Drawing.Common.dll_6" ComponentId="{82D3E6B8-18CC-44DB-8731-07AD8E19BCAC}" Directory_="net6.0_3_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_6"/>
@@ -738,7 +734,7 @@
     <ROW Component="System.Security.AccessControl.dll" ComponentId="{8BB3AB38-DC42-4B57-8F48-65BA71A281F0}" Directory_="APPDIR" Attributes="0" KeyPath="System.Security.AccessControl.dll"/>
     <ROW Component="System.Security.Cryptography.ProtectedData.dll" ComponentId="{2323932E-9916-4EFF-A541-795E27A82FF2}" Directory_="net6.0_1_Dir" Attributes="0" KeyPath="System.Security.Cryptography.ProtectedData.dll"/>
     <ROW Component="System.Security.Cryptography.ProtectedData.dll_1" ComponentId="{D617D9A2-51AB-41ED-A5DA-2639F562B2AE}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Security.Cryptography.ProtectedData.dll_1"/>
-    <ROW Component="System.Security.Cryptography.ProtectedData.dll_2" ComponentId="{65D7EA76-ED3A-438A-8775-0EDD92922D71}" Directory_="net6.0_6_Dir" Attributes="0" KeyPath="System.Security.Cryptography.ProtectedData.dll_2"/>
+    <ROW Component="System.Security.Cryptography.ProtectedData.dll_2" ComponentId="{5D48791B-7134-4376-A173-5939F94ECEA2}" Directory_="net6.0_6_Dir" Attributes="0" KeyPath="System.Security.Cryptography.ProtectedData.dll_2"/>
     <ROW Component="System.Security.Permissions.dll" ComponentId="{FFD3E0FD-C862-4860-92E8-65A5727CED20}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Security.Permissions.dll"/>
     <ROW Component="System.Security.Permissions.dll_1" ComponentId="{1AD6749E-36C8-4DEB-88A0-7E4CDE178B3E}" Directory_="APPDIR" Attributes="0" KeyPath="System.Security.Permissions.dll_1"/>
     <ROW Component="System.Security.Principal.Windows.dll" ComponentId="{351E2342-B6E5-4F51-92FC-48D47D07AF1B}" Directory_="APPDIR" Attributes="0" KeyPath="System.Security.Principal.Windows.dll"/>
@@ -746,7 +742,7 @@
     <ROW Component="System.Text.Encodings.Web.dll" ComponentId="{42FC3573-00B8-41B0-AE43-2052A550C455}" Directory_="APPDIR" Attributes="256" KeyPath="System.Text.Encodings.Web.dll"/>
     <ROW Component="System.Windows.Extensions.dll" ComponentId="{867D6714-0E49-4401-81E8-29605B8BA165}" Directory_="net6.0_1_Dir" Attributes="0" KeyPath="System.Windows.Extensions.dll"/>
     <ROW Component="System.Windows.Extensions.dll_1" ComponentId="{C47CF8DA-3F8F-49E1-97A9-9C55EAB1D8C0}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Windows.Extensions.dll_1"/>
-    <ROW Component="System.Windows.Extensions.dll_2" ComponentId="{1A4F4F45-8C15-4F93-852E-7612EEA6786F}" Directory_="net6.0_6_Dir" Attributes="0" KeyPath="System.Windows.Extensions.dll_2"/>
+    <ROW Component="System.Windows.Extensions.dll_2" ComponentId="{2F828922-962F-4CFC-BC36-500032091A4B}" Directory_="net6.0_6_Dir" Attributes="0" KeyPath="System.Windows.Extensions.dll_2"/>
     <ROW Component="System.Windows.Forms.DataGridView.dll" ComponentId="{0042629F-1D15-48FF-8D0A-6EF08F56381D}" Directory_="APPDIR" Attributes="256" KeyPath="System.Windows.Forms.DataGridView.dll"/>
     <ROW Component="System.Windows.Forms.TabControl.dll" ComponentId="{44DACCB1-A234-4C92-A226-ACA00CDC595D}" Directory_="APPDIR" Attributes="256" KeyPath="System.Windows.Forms.TabControl.dll"/>
     <ROW Component="System.Windows.Forms.ThemeColorPicker.dll" ComponentId="{B602F318-9812-49D7-8DCE-385FF4BAD8DF}" Directory_="APPDIR" Attributes="256" KeyPath="System.Windows.Forms.ThemeColorPicker.dll"/>
@@ -815,7 +811,7 @@
     <ROW Component="demo" ComponentId="{3814EF2E-1AF4-4908-916A-83B955835615}" Directory_="demo_Dir" Attributes="256"/>
     <ROW Component="devkit.dll" ComponentId="{80218546-A076-4BAB-8073-8B2AA5A22589}" Directory_="library_Dir" Attributes="256" KeyPath="devkit.dll"/>
     <ROW Component="dobject.png" ComponentId="{862F9866-255E-491A-A672-52C864F669DB}" Directory_="images_2_Dir" Attributes="0" KeyPath="dobject.png" Type="0"/>
-    <ROW Component="fg.sdf" ComponentId="{B49B414E-0355-487C-9F47-4EF018D7C3A8}" Directory_="templates_Dir" Attributes="0" KeyPath="library.svg" Type="0"/>
+    <ROW Component="fg.sdf" ComponentId="{B49B414E-0355-487C-9F47-4EF018D7C3A8}" Directory_="templates_Dir" Attributes="0" KeyPath="fg.sdf" Type="0"/>
     <ROW Component="fraggraphgen.exe" ComponentId="{F8375977-6A1E-4A75-B017-7F23BEF9BF89}" Directory_="cfmid2_Dir" Attributes="0" KeyPath="fraggraphgen.exe"/>
     <ROW Component="ggplot2.R" ComponentId="{023AC957-2102-4B0E-BC0F-DB37073393BD}" Directory_="ggplot_Dir" Attributes="0" KeyPath="ggplot2.R" Type="0"/>
     <ROW Component="graphics.dll" ComponentId="{44E373AA-FBE7-4E47-AD1B-1718C9230FE4}" Directory_="library_Dir" Attributes="256" KeyPath="graphics.dll"/>
@@ -869,8 +865,6 @@
     <ROW Component="ndpisplits.exe" ComponentId="{A750B522-44B0-4D72-905E-D212C7C68DEF}" Directory_="ndpitools_Dir" Attributes="256" KeyPath="ndpisplits.exe"/>
     <ROW Component="ndpisplitsm.exe" ComponentId="{2BF8BA74-59D1-4D3E-8FF1-1F18ABFAF40A}" Directory_="ndpitools_Dir" Attributes="256" KeyPath="ndpisplitsm.exe"/>
     <ROW Component="ndpisplitsmJ.exe" ComponentId="{95F9635F-BA5E-43FB-B40D-D2B54F58C6DC}" Directory_="ndpitools_Dir" Attributes="256" KeyPath="ndpisplitsmJ.exe"/>
-    <ROW Component="net6.0" ComponentId="{CC433755-9470-4D12-A644-5D4220D935F0}" Directory_="net6.0_5_Dir" Attributes="0"/>
-    <ROW Component="net6.0_1" ComponentId="{FD006A92-297E-4E8C-80F0-135C4C8D03FF}" Directory_="net6.0_6_Dir" Attributes="0"/>
     <ROW Component="njl.dll" ComponentId="{EA76B011-5678-408C-A8ED-B55E34699377}" Directory_="library_Dir" Attributes="256" KeyPath="njl.dll"/>
     <ROW Component="npy.dll" ComponentId="{57A4DF98-6211-4C12-8590-541E4B27BC6C}" Directory_="library_Dir" Attributes="256" KeyPath="npy.dll"/>
     <ROW Component="nts.dll" ComponentId="{C3430FDE-A92A-4B60-AC18-9F8A223BF24A}" Directory_="library_Dir" Attributes="256" KeyPath="nts.dll"/>
@@ -1401,6 +1395,8 @@
     <ROW File="main.22c72ca0.js" Component_="main.22c72ca0.js" FileName="MAIN22~1.JS|main.22c72ca0.js" Attributes="0" SourcePath="..\webview\ketcher\static\js\main.22c72ca0.js" SelfReg="false"/>
     <ROW File="main.22c72ca0.js.LICENSE.txt" Component_="main.22c72ca0.js" FileName="MAIN22~1.TXT|main.22c72ca0.js.LICENSE.txt" Attributes="0" SourcePath="..\webview\ketcher\static\js\main.22c72ca0.js.LICENSE.txt" SelfReg="false"/>
     <ROW File="overlay.8faf238632c16c841197.svg" Component_="overlay.8faf238632c16c841197.svg" FileName="OVERLA~1.SVG|overlay.8faf238632c16c841197.svg" Attributes="0" SourcePath="..\webview\ketcher\static\media\overlay.8faf238632c16c841197.svg" SelfReg="false"/>
+    <ROW File="fg.sdf" Component_="fg.sdf" FileName="fg.sdf" Attributes="0" SourcePath="..\webview\ketcher\templates\fg.sdf" SelfReg="false"/>
+    <ROW File="library.sdf" Component_="fg.sdf" FileName="library.sdf" Attributes="0" SourcePath="..\webview\ketcher\templates\library.sdf" SelfReg="false"/>
     <ROW File="library.svg" Component_="fg.sdf" FileName="library.svg" Attributes="0" SourcePath="..\webview\ketcher\templates\library.svg" SelfReg="false"/>
     <ROW File="logo.png" Component_="logo.png" FileName="logo.png" Attributes="0" SourcePath="..\webview\logo.png" SelfReg="false"/>
     <ROW File="SMILES.html" Component_="logo.png" FileName="SMILES~1.HTM|SMILES.html" Attributes="0" SourcePath="..\webview\SMILES.html" SelfReg="false"/>
@@ -4931,6 +4927,7 @@
     <ROW File="C00041_LAlanine.mzPack" Component_="chebi_lite.obo" FileName="C00041~1.MZP|C00041_L-Alanine.mzPack" Attributes="0" SourcePath="..\rstudio\data\C00041_L-Alanine.mzPack" SelfReg="false"/>
     <ROW File="mzblender.exe" Component_="mzblender.exe" FileName="MZBLEN~1.EXE|mzblender.exe" Attributes="0" SourcePath="..\..\..\dist\bin\mzblender.exe" SelfReg="false" DigSign="true"/>
     <ROW File="mzblender.exe.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MZBLEN~1.CON|mzblender.exe.config" Attributes="0" SourcePath="..\..\..\dist\bin\mzblender.exe.config" SelfReg="false"/>
+    <ROW File="mzkit_desktop.js.map" Component_="linq.d.ts" FileName="MZKIT_~1.MAP|mzkit_desktop.js.map" Attributes="0" SourcePath="..\webview\assets\js\mzkit_desktop.js.map" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll" Component_="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll" FileName="BIONO~16.DLL|BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll" SelfReg="false"/>
     <ROW File="plot_cdf_tic.R" Component_="plot_cdf_tic.R" FileName="PLOT_C~1.R|plot_cdf_tic.R" Attributes="0" SourcePath="..\rstudio\demo\plot_cdf_tic.R" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll_1" Component_="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll_1" FileName="BIONO~33.DLL|BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll" SelfReg="false"/>
@@ -4966,6 +4963,11 @@
     <ROW File="hpo_AAAAAA0001eye_HR.wiff.scan" Component_="hpo_AAAAAA0001eye_HR.wiff" FileName="1HPO_A~1.SCA|1hpo_AAAAAA-0001eye_HR.wiff.scan" Attributes="0" SourcePath="..\extdata\MRM-ms-imaging\1hpo_AAAAAA-0001eye_HR.wiff.scan" SelfReg="false"/>
     <ROW File="hpo_AAAAAA0001eye_HR3.5J.mzML" Component_="hpo_AAAAAA0001eye_HR.wiff" FileName="1HPO_A~1.MZM|1hpo_AAAAAA-0001eye_HR-3.5µJ.mzML" Attributes="0" SourcePath="..\extdata\MRM-ms-imaging\1hpo_AAAAAA-0001eye_HR-3.5µJ.mzML" SelfReg="false"/>
     <ROW File="Mzkit_win32.MZWork.dll_1" Component_="Mzkit_win32.MZWork.dll_1" FileName="MZKIT_~1.DLL|Mzkit_win32.MZWork.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Mzkit_win32.MZWork.dll" SelfReg="false"/>
+    <ROW File="System.Drawing.Common.dll_2" Component_="System.Drawing.Common.dll_2" FileName="SYSTEM~1.DLL|System.Drawing.Common.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\runtimes\unix\lib\net6.0\System.Drawing.Common.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Win32.SystemEvents.dll_1" Component_="Microsoft.Win32.SystemEvents.dll_1" FileName="MICROS~1.DLL|Microsoft.Win32.SystemEvents.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll" SelfReg="false"/>
+    <ROW File="System.Drawing.Common.dll_3" Component_="System.Drawing.Common.dll_3" FileName="SYSTEM~1.DLL|System.Drawing.Common.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\runtimes\win\lib\net6.0\System.Drawing.Common.dll" SelfReg="false"/>
+    <ROW File="System.Security.Cryptography.ProtectedData.dll_2" Component_="System.Security.Cryptography.ProtectedData.dll_2" FileName="SYSTEM~2.DLL|System.Security.Cryptography.ProtectedData.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll" SelfReg="false"/>
+    <ROW File="System.Windows.Extensions.dll_2" Component_="System.Windows.Extensions.dll_2" FileName="SYSTEM~3.DLL|System.Windows.Extensions.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\runtimes\win\lib\net6.0\System.Windows.Extensions.dll" SelfReg="false"/>
     <ROW File="nvidiaanselAI.deps.json" Component_="nvidiaanselAI.deps.json" FileName="NVIDIA~1.JSO|nvidia-anselAI.deps.json" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\nvidia-anselAI.deps.json" SelfReg="false"/>
     <ROW File="nvidiaanselAI.dll" Component_="nvidiaanselAI.dll" FileName="NVIDIA~1.DLL|nvidia-anselAI.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\nvidia-anselAI.dll" SelfReg="false"/>
     <ROW File="nvidiaanselAI.exe" Component_="nvidiaanselAI.exe" FileName="NVIDIA~1.EXE|nvidia-anselAI.exe" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\nvidia-anselAI.exe" SelfReg="false" DigSign="true"/>
@@ -5144,11 +5146,6 @@
     <ROW File="nvidiaanselAI.pdb" Component_="nvidiaanselAI.pdb" FileName="NVIDIA~1.PDB|nvidia-anselAI.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\nvidia-anselAI.pdb" SelfReg="false"/>
     <ROW File="PkgTool.pdb" Component_="PkgTool.pdb" FileName="PkgTool.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\PkgTool.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Runtime.pdb_1" Component_="Microsoft.VisualBasic.Runtime.pdb_1" FileName="MICROS~1.PDB|Microsoft.VisualBasic.Runtime.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\Microsoft.VisualBasic.Runtime.pdb" SelfReg="false"/>
-    <ROW File="System.Drawing.Common.dll_2" Component_="System.Drawing.Common.dll_2" FileName="SYSTEM~1.DLL|System.Drawing.Common.dll" Attributes="0" SourcePath="..\dist\hdf5\runtimes\unix\lib\net6.0\System.Drawing.Common.dll" SelfReg="false"/>
-    <ROW File="Microsoft.Win32.SystemEvents.dll_1" Component_="Microsoft.Win32.SystemEvents.dll_1" FileName="MICROS~1.DLL|Microsoft.Win32.SystemEvents.dll" Attributes="0" SourcePath="..\dist\hdf5\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll" SelfReg="false"/>
-    <ROW File="System.Drawing.Common.dll_3" Component_="System.Drawing.Common.dll_3" FileName="SYSTEM~1.DLL|System.Drawing.Common.dll" Attributes="0" SourcePath="..\dist\hdf5\runtimes\win\lib\net6.0\System.Drawing.Common.dll" SelfReg="false"/>
-    <ROW File="System.Security.Cryptography.ProtectedData.dll_2" Component_="System.Security.Cryptography.ProtectedData.dll_2" FileName="SYSTEM~2.DLL|System.Security.Cryptography.ProtectedData.dll" Attributes="0" SourcePath="..\dist\hdf5\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll" SelfReg="false"/>
-    <ROW File="System.Windows.Extensions.dll_2" Component_="System.Windows.Extensions.dll_2" FileName="SYSTEM~3.DLL|System.Windows.Extensions.dll" Attributes="0" SourcePath="..\dist\hdf5\runtimes\win\lib\net6.0\System.Windows.Extensions.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -5200,7 +5197,6 @@
     <ROW Fragment="SequenceDialogs.aip" Path="&lt;AI_THEMES&gt;azure\fragments\SequenceDialogs.aip"/>
     <ROW Fragment="Sequences.aip" Path="&lt;AI_FRAGS&gt;Sequences.aip"/>
     <ROW Fragment="StaticUIStrings.aip" Path="&lt;AI_FRAGS&gt;StaticUIStrings.aip"/>
-    <ROW Fragment="Themes.aip" Path="&lt;AI_FRAGS&gt;Themes.aip"/>
     <ROW Fragment="UI.aip" Path="&lt;AI_THEMES&gt;azure\fragments\UI.aip"/>
     <ROW Fragment="Validation.aip" Path="&lt;AI_FRAGS&gt;Validation.aip"/>
     <ROW Fragment="VerifyRemoveDlg.aip" Path="&lt;AI_THEMES&gt;azure\fragments\VerifyRemoveDlg.aip"/>
@@ -5237,7 +5233,7 @@
     <ROW Name="ShowBackgroundImages.dll" SourcePath="&lt;AI_CUSTACTS&gt;ShowBackgroundImages.dll"/>
     <ROW Name="SoftwareDetector.dll" SourcePath="&lt;AI_CUSTACTS&gt;SoftwareDetector.dll"/>
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
-    <ROW Name="viewer.exe" SourcePath="&lt;AI_CUSTACTS&gt;viewer.exe" DigSign="true"/>
+    <ROW Name="viewer.exe" SourcePath="&lt;AI_CUSTACTS&gt;viewer.exe"/>
     <ROW Name="xmlCfg.dll" SourcePath="&lt;AI_CUSTACTS&gt;xmlCfg.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiConditionComponent">
@@ -5285,8 +5281,6 @@
     <ROW Directory_="library_Dir" Component_="library" ManualDelete="true"/>
     <ROW Directory_="DevTools_Dir" Component_="DevTools" ManualDelete="false"/>
     <ROW Directory_="regid.201301.com.panomix_Dir" Component_="regid.201301.com.panomix" ManualDelete="false"/>
-    <ROW Directory_="net6.0_5_Dir" Component_="net6.0" ManualDelete="false"/>
-    <ROW Directory_="net6.0_6_Dir" Component_="net6.0_1" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_AppSearchEx" Type="1" Source="Prereq.dll" Target="DoAppSearchEx"/>
@@ -5301,9 +5295,8 @@
     <ROW Action="AI_EnableDebugLog" Type="321" Source="aicustact.dll" Target="EnableDebugLog"/>
     <ROW Action="AI_GetArpIconPath" Type="1" Source="aicustact.dll" Target="GetArpIconPath"/>
     <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
-    <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="LaunchApp"/>
+    <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="[#mzkit_win32.exe_1]"/>
     <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
-    <ROW Action="AI_PRESERVE_INSTALL_TYPE" Type="65" Source="aicustact.dll" Target="PreserveInstallType"/>
     <ROW Action="AI_PinShortcuts" Type="1" Source="ShortcutFlags.dll" Target="PinShortcuts"/>
     <ROW Action="AI_PinToStartScreen" Type="1025" Source="ShortcutFlags.dll" Target="PinToStartScreen" WithoutSeq="true"/>
     <ROW Action="AI_PinToTaskbar" Type="1025" Source="ShortcutFlags.dll" Target="PinToTaskbar" WithoutSeq="true"/>
@@ -5320,7 +5313,7 @@
     <ROW Action="AI_UnpinFromStartScreen" Type="1025" Source="ShortcutFlags.dll" Target="UnpinFromStartScreen" WithoutSeq="true"/>
     <ROW Action="AI_UnpinFromTaskbar" Type="1025" Source="ShortcutFlags.dll" Target="UnpinFromTaskbar" WithoutSeq="true"/>
     <ROW Action="AI_UnpinShortcuts" Type="1" Source="ShortcutFlags.dll" Target="UnpinShortcuts"/>
-    <ROW Action="AI_ViewReadme" Type="1" Source="aicustact.dll" Target="ViewReadMe"/>
+    <ROW Action="AI_ViewReadme" Type="1" Source="aicustact.dll" Target="[#README.txt]"/>
     <ROW Action="AI_XmlCommit" Type="11777" Source="xmlCfg.dll" Target="OnXmlCommit" WithoutSeq="true"/>
     <ROW Action="AI_XmlConfig" Type="11265" Source="xmlCfg.dll" Target="OnXmlConfig" WithoutSeq="true"/>
     <ROW Action="AI_XmlInstall" Type="1" Source="xmlCfg.dll" Target="OnXmlInstall" AdditionalSeq="AI_DATA_SETTER"/>
@@ -5863,6 +5856,11 @@
     <ROW Feature_="TileAssets_DefaultBuild" Component_="mzkit_win32.VisualElementsManifest.xml"/>
     <ROW Feature_="MainFeature" Component_="hpo_AAAAAA0001eye_HR.wiff"/>
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.MZWork.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="System.Drawing.Common.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Win32.SystemEvents.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="System.Drawing.Common.dll_3"/>
+    <ROW Feature_="MainFeature" Component_="System.Security.Cryptography.ProtectedData.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="System.Windows.Extensions.dll_2"/>
     <ROW Feature_="MainFeature" Component_="nvidiaanselAI.deps.json"/>
     <ROW Feature_="MainFeature" Component_="nvidiaanselAI.dll"/>
     <ROW Feature_="MainFeature" Component_="nvidiaanselAI.exe"/>
@@ -6037,13 +6035,6 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="PkgTool.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="nvidiaanselAI.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Runtime.pdb_1"/>
-    <ROW Feature_="MainFeature" Component_="net6.0"/>
-    <ROW Feature_="MainFeature" Component_="net6.0_1"/>
-    <ROW Feature_="MainFeature" Component_="System.Drawing.Common.dll_2"/>
-    <ROW Feature_="MainFeature" Component_="Microsoft.Win32.SystemEvents.dll_1"/>
-    <ROW Feature_="MainFeature" Component_="System.Drawing.Common.dll_3"/>
-    <ROW Feature_="MainFeature" Component_="System.Security.Cryptography.ProtectedData.dll_2"/>
-    <ROW Feature_="MainFeature" Component_="System.Windows.Extensions.dll_2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
@@ -6094,7 +6085,6 @@
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99"/>
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="102"/>
     <ROW Action="AI_AppSearchEx" Sequence="101"/>
-    <ROW Action="AI_PRESERVE_INSTALL_TYPE" Sequence="199"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
     <ROW Condition="( Version9X OR ( NOT VersionNT64 ) OR ( VersionNT64 AND ((VersionNT64 &lt;&gt; 600) OR (MsiNTProductType &lt;&gt; 1)) AND ((VersionNT64 &lt;&gt; 600) OR (MsiNTProductType = 1)) AND ((VersionNT64 &lt;&gt; 601) OR (MsiNTProductType &lt;&gt; 1)) AND ((VersionNT64 &lt;&gt; 601) OR (MsiNTProductType = 1)) AND ((VersionNT64 &lt;&gt; 602) OR (MsiNTProductType &lt;&gt; 1)) AND ((VersionNT64 &lt;&gt; 602) OR (MsiNTProductType = 1)) AND ((VersionNT64 &lt;&gt; 603) OR (MsiNTProductType &lt;&gt; 1)) ) )" Description="[ProductName] cannot be installed on the following Windows versions: [WindowsTypeNT64Display]." DescriptionLocId="AI.LaunchCondition.NoSpecificNT64" IsPredefined="true" Builds="DefaultBuild"/>
@@ -6119,11 +6109,8 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
     <ROW Registry="AI_InstallLanguage" Root="-1" Key="Software\Caphyon\Advanced Installer\[ProductCode]" Name="AI_InstallLanguage" Value="[ProductLanguage]" Component_="ProductInformation"/>
-    <ROW Registry="AdvancedInstaller" Root="-1" Key="Software\Caphyon\Advanced Installer" Name="\"/>
-    <ROW Registry="Caphyon" Root="-1" Key="Software\Caphyon" Name="\"/>
     <ROW Registry="Comments" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Comments" Value="[ARPCOMMENTS]" Component_="AI_CustomARPName"/>
     <ROW Registry="Contact" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Contact" Value="[ARPCONTACT]" Component_="AI_CustomARPName"/>
-    <ROW Registry="CurrentVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion" Name="\"/>
     <ROW Registry="DisplayIcon" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayIcon" Value="[ARP_ICON_PATH]" Component_="AI_CustomARPName"/>
     <ROW Registry="DisplayName" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayName" Value="[AI_PRODUCTNAME_ARP]" Component_="AI_CustomARPName"/>
     <ROW Registry="DisplayVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayVersion" Value="[ProductVersion]" Component_="AI_CustomARPName"/>
@@ -6131,24 +6118,16 @@
     <ROW Registry="HelpLink" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpLink" Value="[ARPHELPLINK]" Component_="AI_CustomARPName"/>
     <ROW Registry="HelpTelephone" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpTelephone" Value="[ARPHELPTELEPHONE]" Component_="AI_CustomARPName"/>
     <ROW Registry="InstallLocation" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="InstallLocation" Value="[APPDIR]" Component_="AI_CustomARPName"/>
-    <ROW Registry="Manufacturer" Root="-1" Key="Software\[Manufacturer]" Name="\"/>
-    <ROW Registry="Microsoft" Root="-1" Key="Software\Microsoft" Name="\"/>
     <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
-    <ROW Registry="ProductCode" Root="-1" Key="Software\Caphyon\Advanced Installer\[ProductCode]" Name="\"/>
-    <ROW Registry="ProductName" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="\"/>
-    <ROW Registry="ProductNameProductVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="\"/>
     <ROW Registry="Publisher" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Publisher" Value="[Manufacturer]" Component_="AI_CustomARPName"/>
     <ROW Registry="Readme" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Readme" Value="[ARPREADME]" Component_="AI_CustomARPName"/>
-    <ROW Registry="Software" Root="-1" Key="Software" Name="\"/>
     <ROW Registry="URLInfoAbout" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLInfoAbout" Value="[ARPURLINFOABOUT]" Component_="AI_CustomARPName"/>
     <ROW Registry="URLUpdateInfo" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLUpdateInfo" Value="[ARPURLUPDATEINFO]" Component_="AI_CustomARPName"/>
-    <ROW Registry="Uninstall" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall" Name="\"/>
     <ROW Registry="UninstallPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="UninstallPath" Value="[AI_UNINSTALLER] /i [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
     <ROW Registry="UninstallString" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="UninstallString" Value="[AI_UNINSTALLER] /i [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
     <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
     <ROW Registry="VersionMajor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMajor" Value="#3" Component_="AI_CustomARPName" VirtualValue="#"/>
     <ROW Registry="VersionMinor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMinor" Value="#2" Component_="AI_CustomARPName" VirtualValue="#"/>
-    <ROW Registry="Windows" Root="-1" Key="Software\Microsoft\Windows" Name="\"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
     <ROW Shortcut="BioNovoGeneDeveloperCommandLineTool" Directory_="DevTools_Dir" Name="BIONOV~1|BioNovoGene Developer CommandLine Tool" Component_="mzkit_win32.exe_1" Target="[#mzkit_win32.exe_1]" Arguments="--devtools" Description="Run bionovogene mzkit automation" Hotkey="0" Icon_="vs.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR" CustomFlags="4"/>
