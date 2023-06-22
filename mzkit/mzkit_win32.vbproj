@@ -168,11 +168,10 @@
     <ApplicationIcon>Flask.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>5A0504B19E601FDE4F714FA46A7A12E938EC25D1</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>6BEC36C7A93C639F5CB15F4800CDC99809DB351F</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>
-    </ManifestKeyFile>
+    <ManifestKeyFile>mzkit_win32_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -327,6 +326,9 @@
     <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
     <WarningLevel>1</WarningLevel>
     <DocumentationFile>mzkit_win32.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.Windows.Form">
@@ -1911,6 +1913,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="mzkit_win32_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Resources\RE4As8m.jpg" />
   </ItemGroup>
@@ -1955,7 +1958,7 @@
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 和 x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
