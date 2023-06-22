@@ -391,7 +391,7 @@ Public Class frmMain : Implements AppHost
                      Dim dataPack = WindowModules.viewer.MSIservice.LoadMSI(mzpack, AddressOf p.SetInfo)
 
                      Call WindowModules.viewer.Invoke(Sub() WindowModules.viewer.LoadRender(dataPack, mzpack))
-                     Call Invoke(Sub() Text = $"BioNovoGene Mzkit [{WindowModules.viewer.Text} {mzpack.FileName}]")
+                     Call Workbench.AppHost.SetTitle($"{WindowModules.viewer.Text} {mzpack.FileName}")
                  End Sub,
             title:="Open mzPack for MSI...",
             info:="Loading MSI raw data file into viewer workspace...")

@@ -249,14 +249,15 @@ Public Class frmMsImagingViewer
                     title:="Do rotation",
                     info:="Apply matrix rotation to the ms-imaging slide sample data..."
                 )
+                Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".tmp.mzPack", sessionID:=App.PID, prefix:="rotate_temp_")
 
                 If Not info Is Nothing Then
-                    Call Me.Invoke(
-                        Sub()
-                            Me.checks = WindowModules.msImageParameters.RenderingToolStripMenuItem
-                            Me.params = info
-                            Me.tweaks = WindowModules.msImageParameters.PropertyGrid1
-                        End Sub)
+                    Call TaskProgress.LoadData(
+                        Function(echo As Action(Of String))
+                            Call MSIservice.ExportMzpack(tempfile)
+                            Return True
+                        End Function)
+                    Call MyApplication.host.showMzPackMSI(tempfile)
                     Call RenderSummary(IntensitySummary.BasePeak)
 
                     Call Workbench.SuccessMessage($"Rotate the MS-imaging sample slide at angle {cfg.GetAngle}.")

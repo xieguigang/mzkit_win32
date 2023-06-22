@@ -15,6 +15,11 @@ Public Interface AppHost
     Sub StatusMessage(msg As String, Optional icon As Image = Nothing)
     Sub LogText(text As String)
     Sub ShowProperties(obj As Object)
+
+    ''' <summary>
+    ''' BioNovoGene MZKit Workbench [{title}]
+    ''' </summary>
+    ''' <param name="title"></param>
     Sub SetTitle(title As String)
 
     Function GetWindowState() As FormWindowState

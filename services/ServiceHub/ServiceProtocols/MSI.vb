@@ -157,7 +157,6 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             .Y = polygon.ypoints.Average
         }
         Dim info As Dictionary(Of String, String)
-        Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".tmp.mzPack", sessionID:=App.PID, prefix:="rotate_temp_")
 
         matrix = matrix.Rotate(center, alpha:=r)
 
@@ -180,10 +179,8 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Next
 
         MSI = New Drawer(rawPixels.Select(Function(d) DirectCast(d, mzPackPixel)).ToArray)
-
-        Call ExportMzPack(filename:=tempfile)
-        Call RunSlavePipeline.SendMessage($"read MSI dataset from the mzPack raw data file!")
-        Call LoadMSIMzPackCommon(MSImagingReader.UnifyReadAsMzPack(tempfile))
+        metadata.scan_x = MSI.dimension.Width
+        metadata.scan_y = MSI.dimension.Height
 
         info = MSIProtocols.GetMSIInfo(Me)
         info!source = sourceName
