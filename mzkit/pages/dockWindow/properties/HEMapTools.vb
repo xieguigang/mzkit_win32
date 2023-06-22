@@ -1,13 +1,13 @@
-﻿Imports WeifenLuo.WinFormsUI.Docking
+﻿Imports System.IO
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Imaging
-Imports Microsoft.VisualBasic.Imaging.Math2D
-Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
-Imports System.IO
+Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Math
-Imports TaskStream
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports TaskStream
+Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class HEMapTools
 
@@ -28,6 +28,10 @@ Public Class HEMapTools
 
         hemap = newMap
     End Sub
+
+    Public Overrides Function GetMainToolStrip() As ToolStrip
+        Return ToolStrip1
+    End Function
 
     Private Sub HEMapTools_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TabText = "HEMap Tools"

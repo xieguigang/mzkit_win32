@@ -23,23 +23,17 @@ Partial Class ToolStripWindow
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+
         Me.SuspendLayout()
         '
-        'ToolStrip1
-        '
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(423, 25)
-        Me.ToolStrip1.TabIndex = 0
-        Me.ToolStrip1.Text = "Main Tool Strip"
+
         '
         'ToolStripWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(423, 475)
-        Me.Controls.Add(Me.ToolStrip1)
+
         Me.DoubleBuffered = True
         Me.Name = "ToolStripWindow"
         Me.ResumeLayout(False)
@@ -47,5 +41,4 @@ Partial Class ToolStripWindow
 
     End Sub
 
-    Protected Friend WithEvents ToolStrip1 As ToolStrip
 End Class
