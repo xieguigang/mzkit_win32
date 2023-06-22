@@ -75,6 +75,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
+Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
@@ -156,6 +157,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             .Y = polygon.ypoints.Average
         }
         Dim info As Dictionary(Of String, String)
+        Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".tmp.mzPack", sessionID:=App.PID, prefix:="rotate_temp_")
 
         matrix = matrix.Rotate(center, alpha:=r)
 
@@ -178,9 +180,13 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Next
 
         MSI = New Drawer(rawPixels.Select(Function(d) DirectCast(d, mzPackPixel)).ToArray)
-        metadata.scan_x = MSI.dimension.Width
-        metadata.scan_y = MSI.dimension.Height
+
+        Call ExportMzPack(filename:=tempfile)
+        Call RunSlavePipeline.SendMessage($"read MSI dataset from the mzPack raw data file!")
+        Call LoadMSIMzPackCommon(MSImagingReader.UnifyReadAsMzPack(tempfile))
+
         info = MSIProtocols.GetMSIInfo(Me)
+        info!source = sourceName
 
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
     End Function
@@ -628,7 +634,11 @@ Public Class MSI : Implements ITaskDriver, IDisposable
 
     <Protocol(ServiceProtocol.ExportMzpack)>
     Public Function ExportMzPack(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
-        Dim filename As String = request.GetString(Encoding.UTF8)
+        Call ExportMzPack(filename:=request.GetString(Encoding.UTF8))
+        Return New DataPipe(Encoding.UTF8.GetBytes("OK!"))
+    End Function
+
+    Private Sub ExportMzPack(filename As String)
         Dim reader = MSI.pixelReader
 
         Using buffer As Stream = filename.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
@@ -641,9 +651,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
                 .Application = FileApplicationClass.MSImaging
             }.Write(buffer, progress:=AddressOf RunSlavePipeline.SendMessage)
         End Using
-
-        Return New DataPipe(Encoding.UTF8.GetBytes("OK!"))
-    End Function
+    End Sub
 
     <Protocol(ServiceProtocol.UnloadMSI)>
     Public Function Unload(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
