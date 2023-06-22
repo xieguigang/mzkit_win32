@@ -99,6 +99,8 @@ Partial Class InputMSIRotation
         'NumericUpDown1
         '
         Me.NumericUpDown1.Location = New System.Drawing.Point(140, 228)
+        Me.NumericUpDown1.Maximum = New Decimal(New Integer() {360, 0, 0, 0})
+        Me.NumericUpDown1.Minimum = New Decimal(New Integer() {360, 0, 0, -2147483648})
         Me.NumericUpDown1.Name = "NumericUpDown1"
         Me.NumericUpDown1.Size = New System.Drawing.Size(89, 21)
         Me.NumericUpDown1.TabIndex = 4
