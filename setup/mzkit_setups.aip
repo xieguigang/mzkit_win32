@@ -5318,7 +5318,7 @@
     <ROW Path="&lt;AI_DICTS&gt;ui_ru.ail"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DigCertStoreComponent">
-    <ROW TimeStampUrl="http://timestamp.digicert.com" SignerDescription="[|ProductName]" DescriptionUrl="https://mzkit.org/" SignOptions="7" SignTool="0" UseSha256="1" Thumbprint="a8985d3a65e5e5c4b2d7d66d40c6dd2fb19c5436 Subject: DigiCert Global Root CA&#10;Issuer: DigiCert Global Root CA&#10;Valid from 11/10/2006 to 11/10/2031" Subject="CN=DigiCert Global Root CA, OU=www.digicert.com, O=DigiCert Inc, C=US" Store="User\Root"/>
+    <ROW DigitalCertificate="..\..\..\..\etc\mzkit_win32.pfx" TimeStampUrl="http://timestamp.digicert.com" SignerDescription="[|ProductName]" DescriptionUrl="https://mzkit.org/" SignOptions="7" SignTool="0" UseSha256="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
     <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
