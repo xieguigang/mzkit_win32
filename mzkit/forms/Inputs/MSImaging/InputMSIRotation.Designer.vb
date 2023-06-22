@@ -28,10 +28,10 @@ Partial Class InputMSIRotation
         Me.Button2 = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
+        Me.Label1 = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,21 +78,14 @@ Partial Class InputMSIRotation
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Rotate Previews"
         '
-        'Label1
+        'Button4
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(29, 232)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(95, 12)
-        Me.Label1.TabIndex = 3
-        Me.Label1.Text = "Rotate Degrees:"
-        '
-        'NumericUpDown1
-        '
-        Me.NumericUpDown1.Location = New System.Drawing.Point(140, 228)
-        Me.NumericUpDown1.Name = "NumericUpDown1"
-        Me.NumericUpDown1.Size = New System.Drawing.Size(89, 21)
-        Me.NumericUpDown1.TabIndex = 4
+        Me.Button4.Location = New System.Drawing.Point(342, 228)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(75, 23)
+        Me.Button4.TabIndex = 6
+        Me.Button4.Text = "Reset"
+        Me.Button4.UseVisualStyleBackColor = True
         '
         'Button3
         '
@@ -103,14 +96,21 @@ Partial Class InputMSIRotation
         Me.Button3.Text = "Rotate"
         Me.Button3.UseVisualStyleBackColor = True
         '
-        'Button4
+        'NumericUpDown1
         '
-        Me.Button4.Location = New System.Drawing.Point(342, 228)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(75, 23)
-        Me.Button4.TabIndex = 6
-        Me.Button4.Text = "Reset"
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.NumericUpDown1.Location = New System.Drawing.Point(140, 228)
+        Me.NumericUpDown1.Name = "NumericUpDown1"
+        Me.NumericUpDown1.Size = New System.Drawing.Size(89, 21)
+        Me.NumericUpDown1.TabIndex = 4
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(29, 232)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(95, 12)
+        Me.Label1.TabIndex = 3
+        Me.Label1.Text = "Rotate Degrees:"
         '
         'InputMSIRotation
         '

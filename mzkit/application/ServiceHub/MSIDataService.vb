@@ -213,6 +213,10 @@ Namespace ServiceHub
             Return hostReference
         End Function
 
+        Public Function SetSpatial2D(angle As Double) As Boolean
+
+        End Function
+
         Public Function DoIonCoLocalization(mz As Double()) As EntityClusterModel()
             Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.GetIonColocalization, mz.GetJson(indent:=False, simpleDict:=True)))
 

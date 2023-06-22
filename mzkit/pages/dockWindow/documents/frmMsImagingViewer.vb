@@ -66,6 +66,7 @@
 Imports System.ComponentModel
 Imports System.Drawing.Drawing2D
 Imports System.IO
+Imports System.Runtime.CompilerServices
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive
@@ -209,8 +210,45 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub rotateSlide()
+        If Not checkService() Then
+            Return
+        End If
+
         ' fetch the BPC views
+        Dim image As Image = TaskProgress.LoadData(
+            Function(p As Action(Of String))
+                Dim panic As Boolean = False
+                Dim summaryLayer As PixelScanIntensity() = MSIservice.LoadSummaryLayer(IntensitySummary.BasePeak, panic)
+
+                If panic Then
+                    Workbench.StatusMessage("MS-Imaging data backend panic!", My.Resources.mintupdate_error)
+                    Return Nothing
+                Else
+                    TIC = summaryLayer
+                End If
+
+                Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
+                Dim blender As New SummaryMSIBlender(summaryLayer, params)
+
+                Return blender.Rendering()
+            End Function, title:="Create ms-imaging slide previews", "Loading the basepeak summary plot of your slide as previews...")
+
+        If image Is Nothing Then
+            Return
+        Else
+            Me.sampleRegions.SetBounds(TIC.Select(Function(a) New Point(a.x, a.y)))
+        End If
+
         ' and then set rotation
+        Dim rotateCfg As New InputMSIRotation
+
+        Call rotateCfg.SetImage(image)
+        Call InputDialog.Input(Of InputMSIRotation)(
+            Sub(cfg)
+                If MSIservice.SetSpatial2D(cfg.GetAngle) Then
+                    Call Workbench.SuccessMessage($"Rotate the MS-imaging sample slide at angle {cfg.GetAngle}.")
+                End If
+            End Sub, config:=rotateCfg)
     End Sub
 
     Private Sub ViewMzBins()
@@ -736,7 +774,11 @@ Public Class frmMsImagingViewer
     Sub TurnUpsideDown()
         If Not checkService() Then
             Return
-        ElseIf MessageBox.Show("This operation will makes the entire MSImaging plot upside down.", "MSI Data Services", buttons:=MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
+        ElseIf MessageBox.Show("This operation will makes the entire MSImaging plot upside down.",
+                               "MSI Data Services",
+                               buttons:=MessageBoxButtons.OKCancel,
+                               MessageBoxIcon.Information) = DialogResult.OK Then
+
             Call TaskProgress.LoadData(
                 Function(msg As ITaskProgress)
                     Dim info = MSIservice.TurnUpsideDown
@@ -981,7 +1023,10 @@ Public Class frmMsImagingViewer
             End If
 
         ElseIf annotation Is Nothing Then
-            MessageBox.Show("No ion annotation, the plot image will only display the m/z value!", "Heatmap Matrix Plot", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("No ion annotation, the plot image will only display the m/z value!",
+                            "Heatmap Matrix Plot",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning)
 
             ' no name and precursor type
             mz = ionStat.AdvancedDataGridView1.getFieldVector("mz")
@@ -1117,20 +1162,23 @@ Public Class frmMsImagingViewer
     Sub DoIonStats()
         If Not checkService() Then
             Return
+        Else
+            Call ProgressSpinner.DoLoading(
+                Sub()
+                    Call Thread.Sleep(500)
+                    Call DoIonStatsInternal()
+                End Sub)
         End If
+    End Sub
 
-        Call ProgressSpinner.DoLoading(
-            Sub()
-                Call Thread.Sleep(500)
+    Private Sub DoIonStatsInternal()
+        Dim ions As IonStat() = MSIservice.DoIonStats({})
 
-                Dim ions As IonStat() = MSIservice.DoIonStats({})
-
-                If ions.IsNullOrEmpty Then
-                    Call MyApplication.host.warning("No ions result...")
-                Else
-                    Call Me.Invoke(Sub() Call DoIonStats(ions, Nothing, Nothing, Nothing))
-                End If
-            End Sub)
+        If ions.IsNullOrEmpty Then
+            Call Workbench.Warning("No ions result...")
+        Else
+            Call Me.Invoke(Sub() Call DoIonStats(ions, Nothing, Nothing, Nothing))
+        End If
     End Sub
 
     Private Sub DoIonStats(ions As IonStat(), name As String, formula As String, types As MzCalculator())
@@ -1411,13 +1459,13 @@ Public Class frmMsImagingViewer
 
             WindowModules.msImageParameters.DockState = DockState.DockLeft
         Else
-            Call MyApplication.host.showStatusMessage("User cancel load MSI raw data file...")
+            Call Workbench.StatusMessage("User cancel load MSI raw data file...", My.Resources.mintupdate_installing)
         End If
     End Sub
 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Sub loadimzML(file As String)
-        MyApplication.host.showMsImaging(imzML:=file)
-        guid = file.MD5
+        guid = MyApplication.host.showMsImaging(imzML:=file)
     End Sub
 
     ''' <summary>
@@ -1510,7 +1558,7 @@ Public Class frmMsImagingViewer
             .ToArray
 
         If regions.Length = 0 Then
-            Call MyApplication.host.showStatusMessage("No region polygon data was found from polygon editor, draw some region polygon at first!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning("No region polygon data was found from polygon editor, draw some region polygon at first!")
             Return
         Else
             PixelSelector1.MSICanvas.ClearSelection()
@@ -1691,7 +1739,7 @@ Public Class frmMsImagingViewer
         End If
 
         If Not rendering Is Nothing Then
-            Call MyApplication.host.showStatusMessage("Rendering Complete!", My.Resources.preferences_system_notifications)
+            Call Workbench.SuccessMessage("Rendering Complete!")
             Call PixelSelector1.ShowMessage($"Render MSI in {summary.Description} mode.")
         End If
     End Sub

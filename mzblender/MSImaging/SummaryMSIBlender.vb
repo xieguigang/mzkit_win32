@@ -88,7 +88,7 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
             .ToArray
     End Sub
 
-    Public Overrides Function Rendering(args As PlotProperty, target As Size) As Image
+    Public Overloads Function Rendering() As Image
         Dim mapLevels As Integer = params.mapLevels
         Dim layerData As PixelScanIntensity() = summaryLayer
         Dim filter As RasterPipeline = New DenoiseScaler() _
@@ -132,8 +132,11 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
 
         layerData = pixelFilter.MSILayer.Select(Function(p) New PixelScanIntensity With {.x = p.x, .y = p.y, .totalIon = p.intensity}).ToArray
 
-        Dim image As Image = Rendering(layerData, dimensions, params.colors.Description, mapLevels)
-        image = New RasterScaler(image).Scale(hqx:=params.Hqx)
+        Return Rendering(layerData, dimensions, params.colors.Description, mapLevels)
+    End Function
+
+    Public Overrides Function Rendering(args As PlotProperty, target As Size) As Image
+        Dim image As Image = New RasterScaler(Rendering()).Scale(hqx:=params.Hqx)
 
         If params.showPhysicalRuler Then
             Call New Ruler(args.GetTheme).DrawOnImage(image, dimensions, Color.White, params.resolution)

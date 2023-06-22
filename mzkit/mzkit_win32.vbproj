@@ -1941,6 +1941,11 @@
     <None Include="Resources\logging.ico" />
     <None Include="Resources\xobject.ico" />
     <None Include="Resources\3d-object.ico" />
+    <None Include="Resources\mintupdate-checking.png" />
+    <None Include="Resources\mintupdate-error.png" />
+    <None Include="Resources\mintupdate-installing.png" />
+    <None Include="Resources\mintupdate-updates-available.png" />
+    <None Include="Resources\mintupdate-up-to-date.png" />
     <Content Include="RibbonMarkup.h" />
     <Content Include="RibbonMarkup.xml" />
     <None Include="Resources\header-foreground-image.png" />
