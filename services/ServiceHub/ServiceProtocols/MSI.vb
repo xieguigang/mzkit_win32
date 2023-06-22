@@ -178,6 +178,8 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Next
 
         MSI = New Drawer(rawPixels.Select(Function(d) DirectCast(d, mzPackPixel)).ToArray)
+        metadata.scan_x = MSI.dimension.Width
+        metadata.scan_y = MSI.dimension.Height
         info = MSIProtocols.GetMSIInfo(Me)
 
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
