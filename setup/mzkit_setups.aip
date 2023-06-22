@@ -5990,7 +5990,6 @@
     <ROW Feature_="MainFeature" Component_="System.Security.AccessControl.dll"/>
     <ROW Feature_="MainFeature" Component_="System.Security.Permissions.dll_1"/>
     <ROW Feature_="MainFeature" Component_="System.Security.Principal.Windows.dll"/>
-    <ROW Feature_="TileAssets_DefaultBuild" Component_="mzkit_win32.VisualElementsManifest.xml"/>
     <ROW Feature_="MainFeature" Component_="hpo_AAAAAA0001eye_HR.wiff"/>
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.MZWork.dll_1"/>
     <ROW Feature_="MainFeature" Component_="nvidiaanselAI.deps.json"/>
@@ -6175,6 +6174,7 @@
     <ROW Feature_="MainFeature" Component_="System.Windows.Extensions.dll_2"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="BioDeep.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Mzkit_win32.LCMSViewer.dll"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="mzkit_win32.VisualElementsManifest.xml"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
