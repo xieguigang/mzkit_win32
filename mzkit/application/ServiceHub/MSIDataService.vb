@@ -58,6 +58,7 @@
 #End Region
 
 Imports System.IO
+Imports System.Runtime.CompilerServices
 Imports System.Text
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
@@ -74,7 +75,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MachineLearning.Data
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.Net
-Imports Microsoft.VisualBasic.Net.HTTP
+Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Mzkit_win32.BasicMDIForm
@@ -213,8 +214,17 @@ Namespace ServiceHub
             Return hostReference
         End Function
 
-        Public Function SetSpatial2D(angle As Double) As Boolean
+        Public Function SetSpatial2D(angle As Double) As MsImageProperty
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.SetSpatial2D, BitConverter.GetBytes(angle)))
 
+            If data Is Nothing Then
+                Return Nothing
+            ElseIf data.IsHTTP_RFC Then
+                Call Workbench.Warning(data.GetUTF8String)
+                Return Nothing
+            Else
+                Return GetMSIInformationMetadata(data)
+            End If
         End Function
 
         Public Function DoIonCoLocalization(mz As Double()) As EntityClusterModel()
@@ -284,14 +294,20 @@ Namespace ServiceHub
             End Try
         End Sub
 
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
         Public Function GetMSIInformationMetadata() As MsImageProperty
-            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.GetMSIInformationMetadata, Encoding.UTF8.GetBytes("test")))
+            Return New RequestStream(MSI.Protocol, ServiceProtocol.GetMSIInformationMetadata, Encoding.UTF8.GetBytes("test")) _
+                .DoCall(AddressOf handleServiceRequest) _
+                .DoCall(AddressOf GetMSIInformationMetadata)
+        End Function
+
+        Public Function GetMSIInformationMetadata(data As RequestStream) As MsImageProperty
             Dim output As MsImageProperty = data _
-                .GetString(Encoding.UTF8) _
-                .LoadJSON(Of Dictionary(Of String, String)) _
-                .DoCall(Function(info)
-                            Return New MsImageProperty(info)
-                        End Function)
+               .GetString(Encoding.UTF8) _
+               .LoadJSON(Of Dictionary(Of String, String)) _
+               .DoCall(Function(info)
+                           Return New MsImageProperty(info)
+                       End Function)
             checkOffline = 0
             Return output
         End Function

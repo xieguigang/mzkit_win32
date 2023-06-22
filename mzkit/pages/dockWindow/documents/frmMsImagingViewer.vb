@@ -245,7 +245,16 @@ Public Class frmMsImagingViewer
         Call rotateCfg.SetImage(image)
         Call InputDialog.Input(Of InputMSIRotation)(
             Sub(cfg)
-                If MSIservice.SetSpatial2D(cfg.GetAngle) Then
+                Dim info = MSIservice.SetSpatial2D(cfg.GetAngle)
+
+                If Not info Is Nothing Then
+                    Call Me.Invoke(
+                        Sub()
+                            Me.checks = WindowModules.msImageParameters.RenderingToolStripMenuItem
+                            Me.params = info
+                            Me.tweaks = WindowModules.msImageParameters.PropertyGrid1
+                        End Sub)
+
                     Call Workbench.SuccessMessage($"Rotate the MS-imaging sample slide at angle {cfg.GetAngle}.")
                 End If
             End Sub, config:=rotateCfg)
