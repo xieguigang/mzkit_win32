@@ -108,7 +108,6 @@ Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports ServiceHub
-Imports SMRUCC.genomics.foundation.OBO_Foundry.IO.Models
 Imports STImaging
 Imports Task
 Imports TaskStream
@@ -245,7 +244,11 @@ Public Class frmMsImagingViewer
         Call rotateCfg.SetImage(image)
         Call InputDialog.Input(Of InputMSIRotation)(
             Sub(cfg)
-                Dim info = MSIservice.SetSpatial2D(cfg.GetAngle)
+                Dim info = TaskProgress.LoadData(
+                    streamLoad:=Function(echo As Action(Of String)) MSIservice.SetSpatial2D(cfg.GetAngle),
+                    title:="Do rotation",
+                    info:="Apply matrix rotation to the ms-imaging slide sample data..."
+                )
 
                 If Not info Is Nothing Then
                     Call Me.Invoke(
@@ -254,6 +257,7 @@ Public Class frmMsImagingViewer
                             Me.params = info
                             Me.tweaks = WindowModules.msImageParameters.PropertyGrid1
                         End Sub)
+                    Call RenderSummary(IntensitySummary.BasePeak)
 
                     Call Workbench.SuccessMessage($"Rotate the MS-imaging sample slide at angle {cfg.GetAngle}.")
                 End If
