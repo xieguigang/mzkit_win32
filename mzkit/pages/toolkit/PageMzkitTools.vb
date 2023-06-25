@@ -59,6 +59,7 @@
 
 #End Region
 
+Imports System.Runtime.CompilerServices
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
@@ -901,6 +902,7 @@ Public Class PageMzkitTools
         }
     End Function
 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Private Function relativeInto() As Boolean
         Return MyApplication.host.ribbonItems.CheckBoxXICRelative.BooleanValue
     End Function
@@ -909,7 +911,7 @@ Public Class PageMzkitTools
     ''' get XIC Chromatogram collection
     ''' </summary>
     ''' <param name="raw"></param>
-    ''' <param name="scanId"></param>
+    ''' <param name="scanId">the scan id of the target ms2 data</param>
     ''' <param name="ppm"></param>
     ''' <param name="relativeInto"></param>
     ''' <returns></returns>
@@ -925,10 +927,10 @@ Public Class PageMzkitTools
             .FirstOrDefault
 
         If ms2 Is Nothing OrElse ms2.parentMz = 0.0 Then
-            MyApplication.host.showStatusMessage("XIC plot is not avaliable for MS1 parent scan!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Workbench.Warning("XIC plot is not avaliable for MS1 parent scan!")
             Return Nothing
         Else
-            MyApplication.host.showStatusMessage(name, Nothing)
+            Workbench.StatusMessage(name)
         End If
 
         Dim parentMz As Double = ms1.mz _

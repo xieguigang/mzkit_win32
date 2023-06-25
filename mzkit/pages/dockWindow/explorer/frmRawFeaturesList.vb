@@ -185,6 +185,8 @@ Public Class frmRawFeaturesList
     End Sub
 
     Public Iterator Function GetXICCollection(ppm As Double) As IEnumerable(Of NamedCollection(Of ChromatogramTick))
+        ' get target ms2 precursor ion set for create XIC collection
+        ' from the ms1 scans
         Dim scans = GetSelectedNodes _
             .Where(Function(t) TypeOf t.Tag Is ScanMS2) _
             .Select(Function(a) DirectCast(a.Tag, ScanMS2)) _
@@ -192,6 +194,7 @@ Public Class frmRawFeaturesList
             .ToArray
         Dim raw As Raw = CurrentOpenedFile
 
+        ' for each ms2 precursor ion m/z as XIC target
         For Each scanId In scans.Select(Function(a) a.First.scan_id)
             Yield MyApplication.mzkitRawViewer.getXICMatrix(raw, scanId, ppm, relativeInto:=False)
         Next
@@ -362,12 +365,16 @@ Public Class frmRawFeaturesList
         Dim ions = GetSelectedNodes.ToArray
 
         If ions.Length >= 500 Then
-            If MessageBox.Show("There are too many ions for create XIC plot, probably you should uncheck some ions for reduce data, continute to procedure?", "Too much data!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) = DialogResult.Cancel Then
-                MyApplication.host.showStatusMessage("Show XIC plot for too many ions has been cancel!")
+            If MessageBox.Show("There are too many ions for create XIC plot, probably you should uncheck some ions for reduce data, continute to procedure?",
+                               "Too much data!",
+                               MessageBoxButtons.OKCancel,
+                               MessageBoxIcon.Warning) = DialogResult.Cancel Then
+
+                Workbench.StatusMessage("Show XIC plot for too many ions has been cancel!", My.Resources.mintupdate_error)
                 Return
             End If
         ElseIf CurrentOpenedFile Is Nothing Then
-            MyApplication.host.showStatusMessage("No raw data file is selected!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Workbench.Warning("No raw data file is selected!")
             Return
         ElseIf treeView1.SelectedNode Is Nothing OrElse treeView1.SelectedNode.Text Is Nothing Then
             Call frmUntargettedViewer.SelectXICIon(
