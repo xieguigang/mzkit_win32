@@ -7,6 +7,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Math.Distributions
 Imports Mzkit_win32.BasicMDIForm
 
 Namespace MSdata
@@ -56,6 +57,36 @@ Namespace MSdata
                             }
                         End Function) _
                 .ToArray
+            Dim pzero As Double = XIC.Count(Function(ti) ti.Intensity = 0.0) / XIC.Length
+
+            If pzero > 0.5 Then
+                ' needs data interplation
+                Dim nonzero = XIC.Where(Function(ti) ti.Intensity > 0) _
+                    .OrderBy(Function(ti) ti.Time) _
+                    .ToArray
+                Dim dt_avg As Double = nonzero _
+                    .Skip(1) _
+                    .Select(Function(ti, i) ti.Time - nonzero(i).Time) _
+                    .TabulateMode
+
+                If dt_avg >= 3 Then
+                    Dim XIClist As New List(Of ChromatogramTick)
+
+                    For i As Integer = 0 To nonzero.Length - 2
+                        Dim nextT = nonzero(i + 1)
+                        Dim mid As New ChromatogramTick With {
+                            .Time = nonzero(i).Time + dt_avg,
+                            .Intensity = (nonzero(i).Intensity + nextT.Intensity) / 2
+                        }
+
+                        XIClist.Add(nonzero(i))
+                        XIClist.Add(mid)
+                    Next
+
+                    XIClist.Add(New ChromatogramTick With {.Time = nonzero.Last.Time + dt_avg, .Intensity = nonzero.Last.Intensity / 2})
+                    XIC = XIClist.ToArray
+                End If
+            End If
 
             name = $"XIC [m/z={parentMz.ToString("F4")}]"
 
