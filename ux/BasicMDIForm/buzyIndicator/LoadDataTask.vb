@@ -53,9 +53,11 @@ Public Class LoadDataTask(Of T) : Implements ITaskDriver
                 Call progress.ShowProgressDetails(ex.Message)
                 Call Thread.Sleep(3 * 1000)
             Finally
-                Call progress.CloseWindow()
+
             End Try
         End If
+
+        Call progress.CloseWindow()
 
         Return 0
     End Function

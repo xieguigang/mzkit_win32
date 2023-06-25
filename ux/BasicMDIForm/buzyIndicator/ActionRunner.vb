@@ -44,9 +44,11 @@ Friend Class ActionRunner : Implements ITaskDriver
                 Call progress.ShowProgressDetails(ex.Message)
                 Call Thread.Sleep(3 * 1000)
             Finally
-                Call progress.CloseWindow()
+
             End Try
         End If
+
+        Call progress.CloseWindow()
 
         Return 0
     End Function
