@@ -1465,7 +1465,9 @@ Public Class frmMsImagingViewer
 
             If tempCache.FileLength <= 1024 Then
                 ' do raw vendor file format converts
-                Call ProgressSpinner.DoLoading(Sub() Call PipelineTask.ConvertRaw(FilePath, tempCache))
+                Call TaskProgress.RunAction(run:=Sub() Call PipelineTask.ConvertRaw(FilePath, tempCache),
+                                            title:="Pre-processing",
+                                            info:="Make data cache of the vendor raw data file...")
             End If
 
             Call WindowModules.viewer.Show(DockPanel)
@@ -1474,7 +1476,7 @@ Public Class frmMsImagingViewer
 
             Call TaskProgress.RunAction(
                 Sub()
-                    Dim info As MsImageProperty = MSIservice.LoadMSI(file, getSize.Dims.SizeParser, AddressOf Workbench.StatusMessage)
+                    Dim info As MsImageProperty = MSIservice.LoadMSI(tempCache, getSize.Dims.SizeParser, AddressOf Workbench.StatusMessage)
 
                     Call WindowModules.viewer.Invoke(Sub() Call LoadRender(info, file))
                     Call WindowModules.viewer.Invoke(Sub() Call MSIViewerInit0(file))
