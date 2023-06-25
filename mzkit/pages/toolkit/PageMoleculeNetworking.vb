@@ -237,7 +237,7 @@ Public Class PageMoleculeNetworking
             Dim node As Graph.Node = g.CreateNode(row.ID, New NodeData With {
                 .Properties = New Dictionary(Of String, String) From {
                     {NamesOf.REFLECTION_ID_MAPPING_NODETYPE, row.Cluster},
-                    {"member_size", info.members.Length},
+                    {"member_size", info.size},
                     {"m/z", info.mz},
                     {"rt", maxrt},
                     {"rtmin", rt.Min},
@@ -246,8 +246,8 @@ Public Class PageMoleculeNetworking
                     {"color", color}
                 },
                 .color = color.GetBrush,
-                .label = $"{row.ID} member_size:{info.members.Length}",
-                .mass = info.members.Length,
+                .label = $"{row.ID} member_size:{info.size}",
+                .mass = info.size,
                 .origID = info.representation.name
             })
         Next
@@ -309,7 +309,7 @@ Public Class PageMoleculeNetworking
             Next
 
             row.SubItems.Add(New ListViewSubItem With {.Text = node.data(NamesOf.REFLECTION_ID_MAPPING_NODETYPE)})
-            row.SubItems.Add(New ListViewSubItem With {.Text = info.members.Length})
+            row.SubItems.Add(New ListViewSubItem With {.Text = info.size})
             row.SubItems.Add(New ListViewSubItem With {.Text = info.mz})
             row.SubItems.Add(New ListViewSubItem With {.Text = node.data("rt")})
             row.SubItems.Add(New ListViewSubItem With {.Text = node.data("rtmin")})
