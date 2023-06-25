@@ -80,6 +80,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.BioDeep.MSEngine
+Imports BioNovoGene.mzkit_win32.MSdata
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
@@ -196,7 +197,7 @@ Public Class frmRawFeaturesList
 
         ' for each ms2 precursor ion m/z as XIC target
         For Each scanId In scans.Select(Function(a) a.First.scan_id)
-            Yield MyApplication.mzkitRawViewer.getXICMatrix(raw, scanId, ppm, relativeInto:=False)
+            Yield raw.getXICMatrix(scanId, ppm, relativeInto:=False)
         Next
     End Function
 
@@ -402,7 +403,7 @@ Public Class frmRawFeaturesList
         ' scan节点
         Dim raw As MZWork.Raw = CurrentOpenedFile
         Dim ppm As Double = MyApplication.host.GetPPMError()
-        Dim plotTIC As NamedCollection(Of ChromatogramTick) = MyApplication.mzkitRawViewer.getXICMatrix(raw, treeView1.SelectedNode.Text, ppm, relativeInto:=False)
+        Dim plotTIC As NamedCollection(Of ChromatogramTick) = raw.getXICMatrix(treeView1.SelectedNode.Text, ppm, relativeInto:=False)
 
         If plotTIC.value.IsNullOrEmpty Then
             ' 当前没有选中MS2，但是可以显示选中的XIC
