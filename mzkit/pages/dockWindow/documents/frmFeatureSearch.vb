@@ -65,6 +65,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
+Imports BioNovoGene.mzkit_win32.MSdata
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Collection
@@ -482,7 +483,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
 
             Call TaskProgress.RunAction(
                 run:=Sub(p)
-                         Call MyApplication.host.mzkitTool.MolecularNetworkingTool(peaksData, p, 0.8)
+                         Call peaksData.MolecularNetworkingTool(p, 0.8)
                      End Sub,
                 title:="Build Molecular Networking...",
                 info:="Run ms2 clustering!"
