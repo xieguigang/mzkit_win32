@@ -648,6 +648,7 @@ Public Class frmRawFeaturesList
     ''' <param name="e"></param>
     Private Sub XICViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles XICViewToolStripMenuItem.Click
         If CurrentOpenedFile Is Nothing Then
+            Call Workbench.Warning("No raw data file was loaded into the feature explorer!")
             Return
         ElseIf XICViewToolStripMenuItem.Checked Then
             ' switch back to MS scan groups
@@ -664,11 +665,24 @@ Public Class frmRawFeaturesList
         End If
     End Sub
 
+    ''' <summary>
+    ''' load into XIC data view mode
+    ''' </summary>
+    ''' <param name="data"></param>
     Private Sub LoadXICIons(data As IEnumerable(Of ScanMS2))
         Dim allMs2 = data _
             .GroupBy(Function(t) t.parentMz, Tolerance.DeltaMass(0.1)) _
-            .OrderBy(Function(t) Val(t.name)) _
             .ToArray
+
+        If OrderByPrecursorMZToolStripMenuItem.Checked Then
+            allMs2 = allMs2 _
+                .OrderBy(Function(t) Val(t.name)) _
+                .ToArray
+        Else
+            allMs2 = allMs2 _
+                .OrderByDescending(Function(t) t.Length) _
+                .ToArray
+        End If
 
         treeView1.Nodes.Clear()
         checked.Clear()
@@ -839,7 +853,11 @@ Public Class frmRawFeaturesList
 
     Private Sub MummichogToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MummichogToolStripMenuItem.Click
         If Not CurrentOpenedFile Is Nothing Then
-            Call ConnectToBioDeep.RunMummichog(CurrentOpenedFile, New MassSearchArguments With {.IonMode = IonModes.Positive, .PPM = 20, .Optionals = New Dictionary(Of String, String) From {{"permutation", 1000}}})
+            Call ConnectToBioDeep.RunMummichog(CurrentOpenedFile, New MassSearchArguments With {
+                 .IonMode = IonModes.Positive,
+                 .PPM = 20,
+                 .Optionals = New Dictionary(Of String, String) From {{"permutation", 1000}}
+            })
         End If
     End Sub
 
@@ -855,6 +873,16 @@ Public Class frmRawFeaturesList
 
         Call sb.ToString.SaveTo(tempfile)
         Call SelectSheetName.showFile(Table.Load(tempfile), "MS2 Ion Table")
+    End Sub
+
+    Private Sub OrderByPrecursorMZToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OrderByPrecursorMZToolStripMenuItem.Click
+        OrderByPrecursorMZToolStripMenuItem.Checked = True
+        OrderByMs2CountsToolStripMenuItem.Checked = False
+    End Sub
+
+    Private Sub OrderByMs2CountsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OrderByMs2CountsToolStripMenuItem.Click
+        OrderByPrecursorMZToolStripMenuItem.Checked = False
+        OrderByMs2CountsToolStripMenuItem.Checked = True
     End Sub
 
     Private Sub treeView1_DragEnter(sender As Object, e As DragEventArgs) Handles treeView1.DragEnter
