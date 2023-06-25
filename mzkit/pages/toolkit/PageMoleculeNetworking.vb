@@ -150,7 +150,10 @@ Public Class PageMoleculeNetworking
         Dim raw As PeakMs2() = info.members
         Dim rt As Double() = raw.Select(Function(p) p.rt).ToArray
         Dim rt_scan = info.members.GroupBy(Function(a) a.rt, offsets:=5).ToArray
-        Dim ms1 As ScanMS1() = rt_scan.Select(Function(p) p.value.ClusterScan(vlabel)).ToArray
+        Dim ms1 As ScanMS1() = rt_scan _
+            .Select(Function(p) p.value.ClusterScan(vlabel)) _
+            .OrderBy(Function(m) m.rt) _
+            .ToArray
         Dim fakePack As New mzPack With {
             .Application = FileApplicationClass.LCMS,
             .source = vlabel,

@@ -21,7 +21,7 @@ Namespace MSdata
             Dim rt As Double() = raw.Select(Function(p) p.rt).ToArray
 
             Return New ScanMS1 With {
-                .into = raw.Select(Function(p) p.intensity).ToArray,
+                .into = raw.Select(Function(p) p.Ms2Intensity).ToArray,
                 .mz = raw.Select(Function(p) p.mz).ToArray,
                 .rt = rt.Average,
                 .scan_id = $"[MS1] tgroup={ .rt.ToString("F4")}; {scan_id}",
