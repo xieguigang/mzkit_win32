@@ -56,6 +56,7 @@
 #End Region
 
 Imports System.ComponentModel
+Imports System.Runtime.CompilerServices
 Imports System.Threading
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.Web.WebView2.Core
@@ -120,7 +121,7 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
         e.Graphics.DrawRectangle(New Pen(Color.Black, 1), New Rectangle(0, 0, Width - 1, Height - 1))
     End Sub
 
-    Private Sub ShowProgressTitle(title As String) Implements ITaskProgress.SetTitle
+    Friend Sub ShowProgressTitle(title As String) Implements ITaskProgress.SetTitle
         If Not dialogClosed Then
             Invoke(Sub()
                        Dim title_str As String
@@ -139,7 +140,7 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
     Dim titleDirect As String
     Dim messageDirect As String
 
-    Private Sub ShowProgressDetails(message As String) Implements ITaskProgress.SetInfo
+    Friend Sub ShowProgressDetails(message As String) Implements ITaskProgress.SetInfo
         If Not dialogClosed Then
             Invoke(Sub()
                        WebView21.CoreWebView2.ExecuteScriptAsync($"document.querySelector('#info').innerHTML = JSON.parse('{message.GetJson}');")
@@ -176,7 +177,7 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
         TaskbarStatus.SetLoopStatus()
     End Sub
 
-    Dim webkitLoaded As Boolean = False
+    Friend webkitLoaded As Boolean = False
 
     ''' <summary>
     ''' 
@@ -224,68 +225,53 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
     ''' if the host form is found, due to the reason of run <paramref name="streamLoad"/> from a new 
     ''' thread. 
     ''' </param>
-    ''' <returns></returns>
+    ''' <returns>
+    ''' this function will always returns nothing if the task has been canceled
+    ''' </returns>
     Public Shared Function LoadData(Of T)(streamLoad As Func(Of ITaskProgress, T),
                                           Optional title$ = "Loading data...",
                                           Optional info$ = "Open a large raw data file...",
                                           Optional ByRef taskAssign As Thread = Nothing,
                                           Optional canbeCancel As Boolean = False,
                                           Optional host As Control = Nothing) As T
-        Dim tmp As T
+
         Dim progress As New TaskProgress
         Dim mask As MaskForm = MaskForm.CreateMask(Workbench.AppHost)
-        Dim task As ThreadStart =
-            Sub()
-                Do While Not progress.webkitLoaded
-                    Call Thread.Sleep(30)
-                Loop
-
-                Call progress.ShowProgressTitle(title)
-                Call progress.ShowProgressDetails(info)
-
-                Try
-                    tmp = Nothing
-
-                    If host Is Nothing Then
-                        tmp = streamLoad(progress)
-                    Else
-                        tmp = host.Invoke(Function() streamLoad(progress))
-                    End If
-                Catch ex As Exception
-                    Call App.LogException(ex)
-                    Call progress.ShowProgressTitle("Task Error!")
-                    Call progress.ShowProgressDetails(ex.Message)
-                    Call Thread.Sleep(3 * 1000)
-                Finally
-                    Call progress.CloseWindow()
-                End Try
-            End Sub
+        Dim task As New LoadDataTask(Of T)(streamLoad, progress, host) With {.title = title, .info = info}
 
         If progress.ParentForm Is Nothing Then
             progress.StartPosition = FormStartPosition.Manual
             progress.Location = Workbench.CenterToMain(progress)
         End If
 
-        taskAssign = New Thread(task)
-        taskAssign.Start()
+        taskAssign = task.DriverRun
 
         If canbeCancel Then
-            Dim handle As Thread = taskAssign
-
-            progress.TaskCancel =
-                Sub()
-                    Try
-                        Call handle.Abort()
-                    Catch ex As Exception
-                        Call Workbench.Warning($"[{title}] task has been cancel.")
-                    End Try
-                End Sub
+            progress.TaskCancel = AddressOf New ThreadCancelHelper With {
+                .handle = taskAssign,
+                .title = title
+            }.Abort
         End If
 
         Call mask.ShowDialogForm(progress)
 
-        Return tmp
+        Return task.result
     End Function
+
+    Private Class ThreadCancelHelper
+
+        Public handle As Thread
+        Public title As String
+
+        Public Sub Abort()
+            Try
+                Call handle.Abort()
+            Catch ex As Exception
+                Call Workbench.Warning($"[{title}] task has been cancel.")
+            End Try
+        End Sub
+
+    End Class
 
     ''' <summary>
     ''' 
@@ -310,31 +296,16 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
         }
         Dim mask As MaskForm = MaskForm.CreateMask(Workbench.AppHost)
 
+        If progress.ParentForm Is Nothing Then
+            progress.StartPosition = FormStartPosition.Manual
+            progress.Location = Workbench.CenterToMain(progress)
+        End If
+
         Call progress.SetProgressMode()
-        Call New Thread(
-            Sub()
-                Do While Not progress.webkitLoaded
-                    Call Thread.Sleep(30)
-                Loop
-
-                Call progress.ShowProgressTitle(title)
-                Call progress.ShowProgressDetails(info)
-
-                Try
-                    If host Is Nothing Then
-                        Call run(progress)
-                    Else
-                        Call host.Invoke(Sub() Call run(progress))
-                    End If
-                Catch ex As Exception
-                    Call App.LogException(ex)
-                    Call progress.ShowProgressTitle("Task Error!")
-                    Call progress.ShowProgressDetails(ex.Message)
-                    Call Thread.Sleep(3 * 1000)
-                Finally
-                    Call progress.CloseWindow()
-                End Try
-            End Sub).Start()
+        Call New ActionRunner(run, progress, host) With {
+            .title = title,
+            .info = info
+        }.DriverRun
 
         Call mask.ShowDialogForm(progress)
     End Sub
@@ -347,6 +318,7 @@ document.querySelector('#info').innerHTML = JSON.parse('{message}');
         End Try
     End Sub
 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Private Sub TaskProgress_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         TaskbarStatus.Stop()
     End Sub
