@@ -323,6 +323,16 @@ Namespace ServiceHub
 
             Dim config As String = $"{dimSize.Width},{dimSize.Height}={raw}"
             Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.LoadThermoRawMSI, Encoding.UTF8.GetBytes(config)))
+
+            If data Is Nothing Then
+                checkOffline += 1
+                Call Workbench.Warning("The MS-imaging data backend has been shutdown?")
+                Return Nothing
+            ElseIf data.IsHTTP_RFC Then
+                Call Workbench.Warning(data.GetUTF8String)
+                Return Nothing
+            End If
+
             Dim output As MsImageProperty = data _
                 .GetString(Encoding.UTF8) _
                 .LoadJSON(Of Dictionary(Of String, String)) _

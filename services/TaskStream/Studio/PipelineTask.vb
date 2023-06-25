@@ -75,4 +75,14 @@ Public Class PipelineTask
         Task = msconvert.FromEnvironment(App.HOME)
     End Sub
 
+    ''' <summary>
+    ''' convert any raw data file to mzpack
+    ''' </summary>
+    ''' <param name="rawfile"></param>
+    ''' <param name="save"></param>
+    ''' <returns></returns>
+    Public Shared Function ConvertRaw(rawfile As String, save As String) As Boolean
+        Return Task.convertAnyRaw(raw:=rawfile, cache:=save, ver:=2, mute:=True, no_thumbnail:=True) = 0
+    End Function
+
 End Class
