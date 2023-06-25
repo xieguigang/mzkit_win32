@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="16.3" version="20.7.1" Modules="enterprise" RootPath="." Language="en" Id="{DF438C35-DFC1-43BF-9D1D-43492EAC31CF}">
-  <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
-    <ROW Name="HiddenItems" Value="ActSyncAppComponent;CPLAppletComponent;AutorunComponent;GameUxComponent;SilverlightSlnComponent;SharePointSlnComponent;AppXAppDetailsComponent;FixupComponent;AppXCapabilitiesComponent;AppXDependenciesComponent;AppXProductDetailsComponent;AppXVisualAssetsComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;MsiXDiffComponent;MsixManifestEditorComponent"/>
-  </COMPONENT>
+<DOCUMENT Type="Advanced Installer" CreateVersion="16.3" version="19.0" Modules="enterprise" RootPath="." Language="en" Id="{DF438C35-DFC1-43BF-9D1D-43492EAC31CF}">
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
-    <ROW Property="AI_APP_FILE" Value="[#mzkit_win32.exe_1]"/>
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
+    <ROW Property="AI_BOOTSTRAPPERLANG" Value="1033" Type="4"/>
     <ROW Property="AI_BackgroundColor" Value="lightblue" MultiBuildValue="DefaultBuild:powderblue" MsiKey="AI_BackgroundColor"/>
+    <ROW Property="AI_CURRENT_YEAR" Value="2023" ValueLocId="-"/>
     <ROW Property="AI_EXTERNALUIUNINSTALLERNAME" MultiBuildValue="DefaultBuild:aiui"/>
+    <ROW Property="AI_FrameBtnsColor" Value="powderblue" MsiKey="AI_FrameBtnsColor"/>
+    <ROW Property="AI_FrameColor" Value="powderblue" MsiKey="AI_FrameColor"/>
+    <ROW Property="AI_ImagesColor" Value="powderblue" MsiKey="AI_ImagesColor"/>
     <ROW Property="AI_PREDEF_LCONDS_PROPS" Value="AI_DETECTED_DOTNET_VERSION;AI_DETECTED_SCREEN_RESOLUTION_X;AI_DETECTED_SCREEN_RESOLUTION_Y;AI_DETECTED_COLOR_QUALITY;AI_DETECTED_PHYSICAL_MEMORY"/>
     <ROW Property="AI_PRODUCTNAME_ARP" Value="mzkit_win32"/>
-    <ROW Property="AI_README_FILE" Value="[#README.txt]"/>
     <ROW Property="AI_REQUIRED_COLOR_QUALITY" MultiBuildValue="DefaultBuild:32" ValueLocId="-"/>
     <ROW Property="AI_REQUIRED_DOTNET_DISPLAY" MultiBuildValue="DefaultBuild:4.8" ValueLocId="-"/>
     <ROW Property="AI_REQUIRED_DOTNET_VERSION" MultiBuildValue="DefaultBuild:4.8" ValueLocId="-"/>
@@ -18,6 +18,7 @@
     <ROW Property="AI_REQUIRED_SCREEN_RESOLUTION_X" MultiBuildValue="DefaultBuild:1024" ValueLocId="-"/>
     <ROW Property="AI_REQUIRED_SCREEN_RESOLUTION_Y" MultiBuildValue="DefaultBuild:768" ValueLocId="-"/>
     <ROW Property="AI_RUN_AS_ADMIN" Value="0"/>
+    <ROW Property="AI_ThemeStyle" Value="head" MsiKey="AI_ThemeStyle"/>
     <ROW Property="AI_UNINSTALLER" Value="msiexec.exe"/>
     <ROW Property="ALLUSERS" Value="1"/>
     <ROW Property="ARPCOMMENTS" Value="Data toolkits for processing NMR, MALDI MSI, MALDI single cell, Raman Spectroscopy, LC-MS and GC-MS raw data, chemoinformatics data analysis and data visualization." ValueLocId="*"/>
@@ -32,16 +33,18 @@
     <ROW Property="AiFeatIcoMainFeature" Value="Flask.exe" Type="8"/>
     <ROW Property="AiFeatIcoVisualStudio_Diagnostic" Value="ext.exe" Type="8"/>
     <ROW Property="AiWinUI" MultiBuildValue="DefaultBuild:1"/>
-    <ROW Property="AppLogoIcon" Value="applogoicon" MultiBuildValue="DefaultBuild:installer.ico" Type="1" MsiKey="AppLogoIcon"/>
     <ROW Property="CTRLS" Value="3"/>
+    <ROW Property="IAgree" Value="Yes" Type="4"/>
     <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
     <ROW Property="ProductCode" Value="1028:{6FA918FE-6DD7-4922-BFC7-BECE2311A7CA} 1033:{6FA918FE-6DD7-4922-BFC7-BECE2311A7CA} 1036:{6FA918FE-6DD7-4922-BFC7-BECE2311A7CA} 1041:{6FA918FE-6DD7-4922-BFC7-BECE2311A7CA} 1049:{6FA918FE-6DD7-4922-BFC7-BECE2311A7CA} 2052:{6FA918FE-6DD7-4922-BFC7-BECE2311A7CA} 2057:{6FA918FE-6DD7-4922-BFC7-BECE2311A7CA} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="mzkit_win32"/>
-    <ROW Property="ProductVersion" Value="4.5.139.9689" Options="32"/>
+    <ROW Property="ProductVersion" Value="4.5.139.9689" Type="32"/>
+    <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{B645400B-3918-41EF-9009-7ADDD81C84B4}"/>
+    <ROW Property="VIEWREADME" Value="1" Type="4"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT" MultiBuildValue="DefaultBuild:Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" ValueLocId="-"/>
@@ -137,7 +140,6 @@
     <ROW Directory="metab_ce_cfm_Dir" Directory_Parent="esi_msms_models_Dir" DefaultDir="METAB_~1|metab_ce_cfm"/>
     <ROW Directory="metab_se_cfm_Dir" Directory_Parent="esi_msms_models_Dir" DefaultDir="METAB_~2|metab_se_cfm"/>
     <ROW Directory="models_Dir" Directory_Parent="cfmid2_Dir" DefaultDir="models"/>
-    <ROW Directory="native_1_Dir" Directory_Parent="winx64_1_Dir" DefaultDir="native"/>
     <ROW Directory="native_Dir" Directory_Parent="winx64_Dir" DefaultDir="native"/>
     <ROW Directory="ndpitools_Dir" Directory_Parent="NewFolder_Dir" DefaultDir="NDPITO~1|ndpitools"/>
     <ROW Directory="negative_metab_se_cfm_Dir" Directory_Parent="esi_msms_models_Dir" DefaultDir="NEGATI~1|negative_metab_se_cfm"/>
@@ -159,7 +161,6 @@
     <ROW Directory="runtimes_1_Dir" Directory_Parent="nvidia_Dir" DefaultDir="runtimes"/>
     <ROW Directory="runtimes_2_Dir" Directory_Parent="host_Dir" DefaultDir="runtimes"/>
     <ROW Directory="runtimes_3_Dir" Directory_Parent="bin_Dir" DefaultDir="runtimes"/>
-    <ROW Directory="runtimes_4_Dir" Directory_Parent="plugins_Dir" DefaultDir="runtimes"/>
     <ROW Directory="runtimes_Dir" Directory_Parent="APPDIR" DefaultDir="runtimes"/>
     <ROW Directory="services_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="services"/>
     <ROW Directory="static_Dir" Directory_Parent="ketcher_Dir" DefaultDir="static"/>
@@ -173,7 +174,6 @@
     <ROW Directory="win_1_Dir" Directory_Parent="runtimes_2_Dir" DefaultDir="win"/>
     <ROW Directory="win_3_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="win"/>
     <ROW Directory="win_Dir" Directory_Parent="runtimes_1_Dir" DefaultDir="win"/>
-    <ROW Directory="winx64_1_Dir" Directory_Parent="runtimes_4_Dir" DefaultDir="win-x64"/>
     <ROW Directory="winx64_Dir" Directory_Parent="runtimes_Dir" DefaultDir="win-x64"/>
     <ROW Directory="x_genomics_Dir" Directory_Parent="pipeline_Dir" DefaultDir="10X_GE~1|10x_genomics"/>
     <ROW Directory="zhCN_Dir" Directory_Parent="APPDIR" DefaultDir="zh-CN"/>
@@ -186,7 +186,6 @@
     <ROW Component="BioDeep.dll" ComponentId="{2FECE77D-517F-47B1-97BA-15B1100BE489}" Directory_="APPDIR" Attributes="256" KeyPath="BioDeep.dll"/>
     <ROW Component="BioDeep.dll_1" ComponentId="{8274C55C-D52A-4F5B-A268-505929309095}" Directory_="host_Dir" Attributes="256" KeyPath="BioDeep.dll_1"/>
     <ROW Component="BioDeep.pdb" ComponentId="{A43A4C99-E463-4917-B458-0C0240FFCE18}" Directory_="APPDIR" Attributes="0" KeyPath="BioDeep.pdb" Type="4"/>
-    <ROW Component="BioDeep.xml" ComponentId="{F792C30E-AF8C-4B5F-A2D9-58E3B027E541}" Directory_="APPDIR" Attributes="0" KeyPath="BioDeep.xml" Type="0"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.dll" ComponentId="{7703A1F3-D323-4C49-B302-B4C97B203A97}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.dll_1" ComponentId="{92FB8640-32ED-41B1-9936-572F0A52E59B}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.d_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.pdb" ComponentId="{0975F409-53EF-46A1-BC7F-553744A370DF}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.pdb" Type="4"/>
@@ -551,13 +550,14 @@
     <ROW Component="Microsoft.Web.WebView2.WinForms.dll" ComponentId="{95475075-2F81-4D9D-964F-8C8A3F7AACDD}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Web.WebView2.WinForms.dll"/>
     <ROW Component="Microsoft.Web.WebView2.Wpf.dll" ComponentId="{5EA5451C-3349-4D0B-87ED-754EF750628D}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Web.WebView2.Wpf.dll"/>
     <ROW Component="Microsoft.Win32.SystemEvents.dll" ComponentId="{006A119E-E0DE-4830-BE9C-DAA4061C77B6}" Directory_="net6.0_1_Dir" Attributes="256" KeyPath="Microsoft.Win32.SystemEvents.dll"/>
-    <ROW Component="Microsoft.Win32.SystemEvents.dll_1" ComponentId="{DE633905-B91C-442C-9BFB-4BE9AF88FF3F}" Directory_="net6.0_6_Dir" Attributes="0" KeyPath="Microsoft.Win32.SystemEvents.dll_1"/>
+    <ROW Component="Microsoft.Win32.SystemEvents.dll_1" ComponentId="{BBA5FC51-D11C-4C92-8CAB-48F3A12A4B28}" Directory_="net6.0_6_Dir" Attributes="0" KeyPath="Microsoft.Win32.SystemEvents.dll_1"/>
     <ROW Component="Microsoft.Win32.SystemEvents.dll_2" ComponentId="{EECE808B-614F-4DBB-AAC1-C0DE5792ECEE}" Directory_="nvidia_Dir" Attributes="0" KeyPath="Microsoft.Win32.SystemEvents.dll_2"/>
     <ROW Component="Microsoft.Win32.SystemEvents.dll_3" ComponentId="{D54B9B25-21A4-4694-976B-CCBB0232DA9D}" Directory_="net6.0_3_Dir" Attributes="0" KeyPath="Microsoft.Win32.SystemEvents.dll_3"/>
     <ROW Component="Microsoft.Win32.SystemEvents.dll_4" ComponentId="{FC52EFC3-197E-4C96-A069-B7FEF11462FF}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.Win32.SystemEvents.dll_4"/>
     <ROW Component="Microsoft.Windows.FeatureAPI.dll" ComponentId="{939287B4-B311-4979-88EE-799AC1393C63}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.Windows.FeatureAPI.dll"/>
     <ROW Component="Microsoft.Windows.FeatureAPI.pdb" ComponentId="{E1986F8C-2EA6-41F0-95F4-12CA6983E2F0}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Windows.FeatureAPI.pdb" Type="4"/>
     <ROW Component="Microsoft.Windows.Ribbon.dll" ComponentId="{ACD1A2A4-798D-41B7-802A-0A07A618CCBB}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.Windows.Ribbon.dll"/>
+    <ROW Component="Microsoft.Windows.Ribbon.pdb" ComponentId="{4F0C0C40-F86C-4745-A92C-3E88A7EBEA45}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Windows.Ribbon.pdb" Type="4"/>
     <ROW Component="Microsoft.Windows.SDK.NET.dll" ComponentId="{5BAAC770-8FBE-4777-984E-B5A3C2A0403B}" Directory_="nvidia_Dir" Attributes="0" KeyPath="Microsoft.Windows.SDK.NET.dll"/>
     <ROW Component="MoNA.dll" ComponentId="{A9ABEBFD-6384-4DC0-8553-6D35B60BB0ED}" Directory_="plugins_Dir" Attributes="256" KeyPath="MoNA.dll"/>
     <ROW Component="MoNA.pdb" ComponentId="{21B83CE7-6D64-4640-A0C0-5BA3879B1518}" Directory_="plugins_Dir" Attributes="0" KeyPath="MoNA.pdb" Type="4"/>
@@ -574,7 +574,6 @@
     <ROW Component="Mzkit_win32.Interaction.pdb" ComponentId="{E64F4EF7-1789-4EAC-8827-3C0B780C5288}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.Interaction.pdb" Type="4"/>
     <ROW Component="Mzkit_win32.Interaction.resources.dll" ComponentId="{3035B09F-2371-402C-9D04-D341E03835AB}" Directory_="enUS_Dir" Attributes="256" KeyPath="Mzkit_win32.Interaction.resources.dll"/>
     <ROW Component="Mzkit_win32.Interaction.resources.dll_1" ComponentId="{7FF290C8-A166-47BC-B831-B31802DC747D}" Directory_="zhCN_Dir" Attributes="256" KeyPath="Mzkit_win32.Interaction.resources.dll_1"/>
-    <ROW Component="Mzkit_win32.LCMSViewer.dll" ComponentId="{A4C3B514-7823-419B-A68C-0B933FBC41EA}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.LCMSViewer.dll"/>
     <ROW Component="Mzkit_win32.MSImagingViewerV2.dll" ComponentId="{97B8F2A2-5753-454D-B986-A059D567878D}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.MSImagingViewerV2.dll"/>
     <ROW Component="Mzkit_win32.MSImagingViewerV2.pdb" ComponentId="{C522C59A-AE85-4113-AE5B-BEA7C0D72739}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.MSImagingViewerV2.pdb" Type="4"/>
     <ROW Component="Mzkit_win32.MSImagingViewerV2.resources.dll" ComponentId="{CEE28641-2E31-43F7-8D23-780412E79094}" Directory_="zhCN_Dir" Attributes="256" KeyPath="Mzkit_win32.MSImagingViewerV2.resources.dll"/>
@@ -715,8 +714,8 @@
     <ROW Component="System.Drawing.Common.dll" ComponentId="{FB8E0761-69C1-409A-88A5-A093F773D038}" Directory_="net6.0_Dir" Attributes="256" KeyPath="System.Drawing.Common.dll"/>
     <ROW Component="System.Drawing.Common.dll_1" ComponentId="{2FF8DA4A-840A-467F-A12A-2EA4332D2A6F}" Directory_="net6.0_1_Dir" Attributes="256" KeyPath="System.Drawing.Common.dll_1"/>
     <ROW Component="System.Drawing.Common.dll_13" ComponentId="{A0B052BB-0F1A-49F7-92B3-0AEEA2266322}" Directory_="bin_Dir" Attributes="256" KeyPath="System.Drawing.Common.dll_13"/>
-    <ROW Component="System.Drawing.Common.dll_2" ComponentId="{D2DAC4CE-CE22-4589-83D8-5BD6D25DCDAE}" Directory_="net6.0_5_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_2"/>
-    <ROW Component="System.Drawing.Common.dll_3" ComponentId="{360930E0-C7BF-4EA7-9F15-C1D2BFDA69EE}" Directory_="net6.0_6_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_3"/>
+    <ROW Component="System.Drawing.Common.dll_2" ComponentId="{C7030214-8D1F-455B-90A5-2E85B879A304}" Directory_="net6.0_5_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_2"/>
+    <ROW Component="System.Drawing.Common.dll_3" ComponentId="{F3C1031D-71AD-41C2-9E18-74D70AE20E88}" Directory_="net6.0_6_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_3"/>
     <ROW Component="System.Drawing.Common.dll_4" ComponentId="{50F1768D-B922-4687-A130-43763632577A}" Directory_="net6.0_2_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_4"/>
     <ROW Component="System.Drawing.Common.dll_5" ComponentId="{C9483DB6-7334-447F-9111-9A1498C9C8B7}" Directory_="APPDIR" Attributes="256" KeyPath="System.Drawing.Common.dll_5"/>
     <ROW Component="System.Drawing.Common.dll_6" ComponentId="{82D3E6B8-18CC-44DB-8731-07AD8E19BCAC}" Directory_="net6.0_3_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_6"/>
@@ -735,7 +734,7 @@
     <ROW Component="System.Security.AccessControl.dll" ComponentId="{8BB3AB38-DC42-4B57-8F48-65BA71A281F0}" Directory_="APPDIR" Attributes="0" KeyPath="System.Security.AccessControl.dll"/>
     <ROW Component="System.Security.Cryptography.ProtectedData.dll" ComponentId="{2323932E-9916-4EFF-A541-795E27A82FF2}" Directory_="net6.0_1_Dir" Attributes="0" KeyPath="System.Security.Cryptography.ProtectedData.dll"/>
     <ROW Component="System.Security.Cryptography.ProtectedData.dll_1" ComponentId="{D617D9A2-51AB-41ED-A5DA-2639F562B2AE}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Security.Cryptography.ProtectedData.dll_1"/>
-    <ROW Component="System.Security.Cryptography.ProtectedData.dll_2" ComponentId="{65D7EA76-ED3A-438A-8775-0EDD92922D71}" Directory_="net6.0_6_Dir" Attributes="0" KeyPath="System.Security.Cryptography.ProtectedData.dll_2"/>
+    <ROW Component="System.Security.Cryptography.ProtectedData.dll_2" ComponentId="{5D48791B-7134-4376-A173-5939F94ECEA2}" Directory_="net6.0_6_Dir" Attributes="0" KeyPath="System.Security.Cryptography.ProtectedData.dll_2"/>
     <ROW Component="System.Security.Permissions.dll" ComponentId="{FFD3E0FD-C862-4860-92E8-65A5727CED20}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Security.Permissions.dll"/>
     <ROW Component="System.Security.Permissions.dll_1" ComponentId="{1AD6749E-36C8-4DEB-88A0-7E4CDE178B3E}" Directory_="APPDIR" Attributes="0" KeyPath="System.Security.Permissions.dll_1"/>
     <ROW Component="System.Security.Principal.Windows.dll" ComponentId="{351E2342-B6E5-4F51-92FC-48D47D07AF1B}" Directory_="APPDIR" Attributes="0" KeyPath="System.Security.Principal.Windows.dll"/>
@@ -743,7 +742,7 @@
     <ROW Component="System.Text.Encodings.Web.dll" ComponentId="{42FC3573-00B8-41B0-AE43-2052A550C455}" Directory_="APPDIR" Attributes="256" KeyPath="System.Text.Encodings.Web.dll"/>
     <ROW Component="System.Windows.Extensions.dll" ComponentId="{867D6714-0E49-4401-81E8-29605B8BA165}" Directory_="net6.0_1_Dir" Attributes="0" KeyPath="System.Windows.Extensions.dll"/>
     <ROW Component="System.Windows.Extensions.dll_1" ComponentId="{C47CF8DA-3F8F-49E1-97A9-9C55EAB1D8C0}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Windows.Extensions.dll_1"/>
-    <ROW Component="System.Windows.Extensions.dll_2" ComponentId="{1A4F4F45-8C15-4F93-852E-7612EEA6786F}" Directory_="net6.0_6_Dir" Attributes="0" KeyPath="System.Windows.Extensions.dll_2"/>
+    <ROW Component="System.Windows.Extensions.dll_2" ComponentId="{2F828922-962F-4CFC-BC36-500032091A4B}" Directory_="net6.0_6_Dir" Attributes="0" KeyPath="System.Windows.Extensions.dll_2"/>
     <ROW Component="System.Windows.Forms.DataGridView.dll" ComponentId="{0042629F-1D15-48FF-8D0A-6EF08F56381D}" Directory_="APPDIR" Attributes="256" KeyPath="System.Windows.Forms.DataGridView.dll"/>
     <ROW Component="System.Windows.Forms.TabControl.dll" ComponentId="{44DACCB1-A234-4C92-A226-ACA00CDC595D}" Directory_="APPDIR" Attributes="256" KeyPath="System.Windows.Forms.TabControl.dll"/>
     <ROW Component="System.Windows.Forms.ThemeColorPicker.dll" ComponentId="{B602F318-9812-49D7-8DCE-385FF4BAD8DF}" Directory_="APPDIR" Attributes="256" KeyPath="System.Windows.Forms.ThemeColorPicker.dll"/>
@@ -758,7 +757,6 @@
     <ROW Component="ThinkVB.FileSystem.OSS.pdb" ComponentId="{D3F95B2E-CC33-4A4B-9599-341C6E33682B}" Directory_="APPDIR" Attributes="0" KeyPath="ThinkVB.FileSystem.OSS.pdb" Type="4"/>
     <ROW Component="UMapx.dll" ComponentId="{6FAE705B-544D-4A20-8A28-5FA099627E37}" Directory_="APPDIR" Attributes="0" KeyPath="UMapx.dll"/>
     <ROW Component="WebView2Loader.dll" ComponentId="{26054BE2-7F65-4DA9-BC3D-2D2A106BF06C}" Directory_="native_Dir" Attributes="256" KeyPath="WebView2Loader.dll"/>
-    <ROW Component="WebView2Loader.dll_1" ComponentId="{F344C508-896D-4BC3-A55A-99AEDA3B43AD}" Directory_="native_1_Dir" Attributes="256" KeyPath="WebView2Loader.dll_1"/>
     <ROW Component="WinRT.Runtime.dll" ComponentId="{D6F2398A-5C67-4E3F-A0EE-566C827D0B3A}" Directory_="nvidia_Dir" Attributes="0" KeyPath="WinRT.Runtime.dll"/>
     <ROW Component="WkHtmlToPdf.CLI.InteropService.dll" ComponentId="{6F546340-6C18-4CE9-B774-345B01929B9D}" Directory_="APPDIR" Attributes="256" KeyPath="WkHtmlToPdf.CLI.InteropService.dll"/>
     <ROW Component="WkHtmlToPdf.CLI.InteropService.pdb" ComponentId="{796860FD-DEF9-4B78-A9FE-460DB02FE68C}" Directory_="APPDIR" Attributes="0" KeyPath="WkHtmlToPdf.CLI.InteropService.pdb" Type="4"/>
@@ -813,7 +811,7 @@
     <ROW Component="demo" ComponentId="{3814EF2E-1AF4-4908-916A-83B955835615}" Directory_="demo_Dir" Attributes="256"/>
     <ROW Component="devkit.dll" ComponentId="{80218546-A076-4BAB-8073-8B2AA5A22589}" Directory_="library_Dir" Attributes="256" KeyPath="devkit.dll"/>
     <ROW Component="dobject.png" ComponentId="{862F9866-255E-491A-A672-52C864F669DB}" Directory_="images_2_Dir" Attributes="0" KeyPath="dobject.png" Type="0"/>
-    <ROW Component="fg.sdf" ComponentId="{B49B414E-0355-487C-9F47-4EF018D7C3A8}" Directory_="templates_Dir" Attributes="0" KeyPath="library.svg" Type="0"/>
+    <ROW Component="fg.sdf" ComponentId="{B49B414E-0355-487C-9F47-4EF018D7C3A8}" Directory_="templates_Dir" Attributes="0" KeyPath="fg.sdf" Type="0"/>
     <ROW Component="fraggraphgen.exe" ComponentId="{F8375977-6A1E-4A75-B017-7F23BEF9BF89}" Directory_="cfmid2_Dir" Attributes="0" KeyPath="fraggraphgen.exe"/>
     <ROW Component="ggplot2.R" ComponentId="{023AC957-2102-4B0E-BC0F-DB37073393BD}" Directory_="ggplot_Dir" Attributes="0" KeyPath="ggplot2.R" Type="0"/>
     <ROW Component="graphics.dll" ComponentId="{44E373AA-FBE7-4E47-AD1B-1718C9230FE4}" Directory_="library_Dir" Attributes="256" KeyPath="graphics.dll"/>
@@ -867,8 +865,6 @@
     <ROW Component="ndpisplits.exe" ComponentId="{A750B522-44B0-4D72-905E-D212C7C68DEF}" Directory_="ndpitools_Dir" Attributes="256" KeyPath="ndpisplits.exe"/>
     <ROW Component="ndpisplitsm.exe" ComponentId="{2BF8BA74-59D1-4D3E-8FF1-1F18ABFAF40A}" Directory_="ndpitools_Dir" Attributes="256" KeyPath="ndpisplitsm.exe"/>
     <ROW Component="ndpisplitsmJ.exe" ComponentId="{95F9635F-BA5E-43FB-B40D-D2B54F58C6DC}" Directory_="ndpitools_Dir" Attributes="256" KeyPath="ndpisplitsmJ.exe"/>
-    <ROW Component="net6.0" ComponentId="{CC433755-9470-4D12-A644-5D4220D935F0}" Directory_="net6.0_5_Dir" Attributes="0"/>
-    <ROW Component="net6.0_1" ComponentId="{FD006A92-297E-4E8C-80F0-135C4C8D03FF}" Directory_="net6.0_6_Dir" Attributes="0"/>
     <ROW Component="njl.dll" ComponentId="{EA76B011-5678-408C-A8ED-B55E34699377}" Directory_="library_Dir" Attributes="256" KeyPath="njl.dll"/>
     <ROW Component="npy.dll" ComponentId="{57A4DF98-6211-4C12-8590-541E4B27BC6C}" Directory_="library_Dir" Attributes="256" KeyPath="npy.dll"/>
     <ROW Component="nts.dll" ComponentId="{C3430FDE-A92A-4B60-AC18-9F8A223BF24A}" Directory_="library_Dir" Attributes="256" KeyPath="nts.dll"/>
@@ -1399,6 +1395,8 @@
     <ROW File="main.22c72ca0.js" Component_="main.22c72ca0.js" FileName="MAIN22~1.JS|main.22c72ca0.js" Attributes="0" SourcePath="..\webview\ketcher\static\js\main.22c72ca0.js" SelfReg="false"/>
     <ROW File="main.22c72ca0.js.LICENSE.txt" Component_="main.22c72ca0.js" FileName="MAIN22~1.TXT|main.22c72ca0.js.LICENSE.txt" Attributes="0" SourcePath="..\webview\ketcher\static\js\main.22c72ca0.js.LICENSE.txt" SelfReg="false"/>
     <ROW File="overlay.8faf238632c16c841197.svg" Component_="overlay.8faf238632c16c841197.svg" FileName="OVERLA~1.SVG|overlay.8faf238632c16c841197.svg" Attributes="0" SourcePath="..\webview\ketcher\static\media\overlay.8faf238632c16c841197.svg" SelfReg="false"/>
+    <ROW File="fg.sdf" Component_="fg.sdf" FileName="fg.sdf" Attributes="0" SourcePath="..\webview\ketcher\templates\fg.sdf" SelfReg="false"/>
+    <ROW File="library.sdf" Component_="fg.sdf" FileName="library.sdf" Attributes="0" SourcePath="..\webview\ketcher\templates\library.sdf" SelfReg="false"/>
     <ROW File="library.svg" Component_="fg.sdf" FileName="library.svg" Attributes="0" SourcePath="..\webview\ketcher\templates\library.svg" SelfReg="false"/>
     <ROW File="logo.png" Component_="logo.png" FileName="logo.png" Attributes="0" SourcePath="..\webview\logo.png" SelfReg="false"/>
     <ROW File="SMILES.html" Component_="logo.png" FileName="SMILES~1.HTM|SMILES.html" Attributes="0" SourcePath="..\webview\SMILES.html" SelfReg="false"/>
@@ -4929,6 +4927,7 @@
     <ROW File="C00041_LAlanine.mzPack" Component_="chebi_lite.obo" FileName="C00041~1.MZP|C00041_L-Alanine.mzPack" Attributes="0" SourcePath="..\rstudio\data\C00041_L-Alanine.mzPack" SelfReg="false"/>
     <ROW File="mzblender.exe" Component_="mzblender.exe" FileName="MZBLEN~1.EXE|mzblender.exe" Attributes="0" SourcePath="..\..\..\dist\bin\mzblender.exe" SelfReg="false" DigSign="true"/>
     <ROW File="mzblender.exe.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MZBLEN~1.CON|mzblender.exe.config" Attributes="0" SourcePath="..\..\..\dist\bin\mzblender.exe.config" SelfReg="false"/>
+    <ROW File="mzkit_desktop.js.map" Component_="linq.d.ts" FileName="MZKIT_~1.MAP|mzkit_desktop.js.map" Attributes="0" SourcePath="..\webview\assets\js\mzkit_desktop.js.map" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll" Component_="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll" FileName="BIONO~16.DLL|BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll" SelfReg="false"/>
     <ROW File="plot_cdf_tic.R" Component_="plot_cdf_tic.R" FileName="PLOT_C~1.R|plot_cdf_tic.R" Attributes="0" SourcePath="..\rstudio\demo\plot_cdf_tic.R" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll_1" Component_="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll_1" FileName="BIONO~33.DLL|BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll" SelfReg="false"/>
@@ -4964,6 +4963,11 @@
     <ROW File="hpo_AAAAAA0001eye_HR.wiff.scan" Component_="hpo_AAAAAA0001eye_HR.wiff" FileName="1HPO_A~1.SCA|1hpo_AAAAAA-0001eye_HR.wiff.scan" Attributes="0" SourcePath="..\extdata\MRM-ms-imaging\1hpo_AAAAAA-0001eye_HR.wiff.scan" SelfReg="false"/>
     <ROW File="hpo_AAAAAA0001eye_HR3.5J.mzML" Component_="hpo_AAAAAA0001eye_HR.wiff" FileName="1HPO_A~1.MZM|1hpo_AAAAAA-0001eye_HR-3.5µJ.mzML" Attributes="0" SourcePath="..\extdata\MRM-ms-imaging\1hpo_AAAAAA-0001eye_HR-3.5µJ.mzML" SelfReg="false"/>
     <ROW File="Mzkit_win32.MZWork.dll_1" Component_="Mzkit_win32.MZWork.dll_1" FileName="MZKIT_~1.DLL|Mzkit_win32.MZWork.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Mzkit_win32.MZWork.dll" SelfReg="false"/>
+    <ROW File="System.Drawing.Common.dll_2" Component_="System.Drawing.Common.dll_2" FileName="SYSTEM~1.DLL|System.Drawing.Common.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\runtimes\unix\lib\net6.0\System.Drawing.Common.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Win32.SystemEvents.dll_1" Component_="Microsoft.Win32.SystemEvents.dll_1" FileName="MICROS~1.DLL|Microsoft.Win32.SystemEvents.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll" SelfReg="false"/>
+    <ROW File="System.Drawing.Common.dll_3" Component_="System.Drawing.Common.dll_3" FileName="SYSTEM~1.DLL|System.Drawing.Common.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\runtimes\win\lib\net6.0\System.Drawing.Common.dll" SelfReg="false"/>
+    <ROW File="System.Security.Cryptography.ProtectedData.dll_2" Component_="System.Security.Cryptography.ProtectedData.dll_2" FileName="SYSTEM~2.DLL|System.Security.Cryptography.ProtectedData.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll" SelfReg="false"/>
+    <ROW File="System.Windows.Extensions.dll_2" Component_="System.Windows.Extensions.dll_2" FileName="SYSTEM~3.DLL|System.Windows.Extensions.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\runtimes\win\lib\net6.0\System.Windows.Extensions.dll" SelfReg="false"/>
     <ROW File="nvidiaanselAI.deps.json" Component_="nvidiaanselAI.deps.json" FileName="NVIDIA~1.JSO|nvidia-anselAI.deps.json" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\nvidia-anselAI.deps.json" SelfReg="false"/>
     <ROW File="nvidiaanselAI.dll" Component_="nvidiaanselAI.dll" FileName="NVIDIA~1.DLL|nvidia-anselAI.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\nvidia-anselAI.dll" SelfReg="false"/>
     <ROW File="nvidiaanselAI.exe" Component_="nvidiaanselAI.exe" FileName="NVIDIA~1.EXE|nvidia-anselAI.exe" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\nvidia-anselAI.exe" SelfReg="false" DigSign="true"/>
@@ -5095,6 +5099,7 @@
     <ROW File="Microsoft.VisualBasic.Windows.Forms.Console.pdb" Component_="Microsoft.VisualBasic.Windows.Forms.Console.pdb" FileName="MICRO~61.PDB|Microsoft.VisualBasic.Windows.Forms.Console.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Windows.Forms.Console.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Windows.Forms.DataValidation.pdb" Component_="Microsoft.VisualBasic.Windows.Forms.DataValidation.pdb" FileName="MICRO~62.PDB|Microsoft.VisualBasic.Windows.Forms.DataValidation.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Windows.Forms.DataValidation.pdb" SelfReg="false"/>
     <ROW File="Microsoft.Windows.FeatureAPI.pdb" Component_="Microsoft.Windows.FeatureAPI.pdb" FileName="MICRO~63.PDB|Microsoft.Windows.FeatureAPI.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.Windows.FeatureAPI.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.Windows.Ribbon.pdb" Component_="Microsoft.Windows.Ribbon.pdb" FileName="MICRO~64.PDB|Microsoft.Windows.Ribbon.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.Windows.Ribbon.pdb" SelfReg="false"/>
     <ROW File="msconvert.pdb" Component_="msconvert.pdb" FileName="MSCONV~1.PDB|msconvert.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\msconvert.pdb" SelfReg="false"/>
     <ROW File="msconvertGUI.pdb" Component_="msconvertGUI.pdb" FileName="MSCONV~2.PDB|msconvertGUI.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\msconvertGUI.pdb" SelfReg="false"/>
     <ROW File="mzblender.pdb" Component_="mzblender.pdb" FileName="MZBLEN~1.PDB|mzblender.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\mzblender.pdb" SelfReg="false"/>
@@ -5141,149 +5146,6 @@
     <ROW File="nvidiaanselAI.pdb" Component_="nvidiaanselAI.pdb" FileName="NVIDIA~1.PDB|nvidia-anselAI.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\nvidia-anselAI.pdb" SelfReg="false"/>
     <ROW File="PkgTool.pdb" Component_="PkgTool.pdb" FileName="PkgTool.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\PkgTool.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Runtime.pdb_1" Component_="Microsoft.VisualBasic.Runtime.pdb_1" FileName="MICROS~1.PDB|Microsoft.VisualBasic.Runtime.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\Microsoft.VisualBasic.Runtime.pdb" SelfReg="false"/>
-    <ROW File="System.Drawing.Common.dll_2" Component_="System.Drawing.Common.dll_2" FileName="SYSTEM~1.DLL|System.Drawing.Common.dll" Attributes="0" SourcePath="..\dist\hdf5\runtimes\unix\lib\net6.0\System.Drawing.Common.dll" SelfReg="false"/>
-    <ROW File="Microsoft.Win32.SystemEvents.dll_1" Component_="Microsoft.Win32.SystemEvents.dll_1" FileName="MICROS~1.DLL|Microsoft.Win32.SystemEvents.dll" Attributes="0" SourcePath="..\dist\hdf5\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll" SelfReg="false"/>
-    <ROW File="System.Drawing.Common.dll_3" Component_="System.Drawing.Common.dll_3" FileName="SYSTEM~1.DLL|System.Drawing.Common.dll" Attributes="0" SourcePath="..\dist\hdf5\runtimes\win\lib\net6.0\System.Drawing.Common.dll" SelfReg="false"/>
-    <ROW File="System.Security.Cryptography.ProtectedData.dll_2" Component_="System.Security.Cryptography.ProtectedData.dll_2" FileName="SYSTEM~2.DLL|System.Security.Cryptography.ProtectedData.dll" Attributes="0" SourcePath="..\dist\hdf5\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll" SelfReg="false"/>
-    <ROW File="System.Windows.Extensions.dll_2" Component_="System.Windows.Extensions.dll_2" FileName="SYSTEM~3.DLL|System.Windows.Extensions.dll" Attributes="0" SourcePath="..\dist\hdf5\runtimes\win\lib\net6.0\System.Windows.Extensions.dll" SelfReg="false"/>
-    <ROW File="BioDeep.xml" Component_="BioDeep.xml" FileName="BioDeep.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioDeep.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" Component_="BioDeep.xml" FileName="BIONOV~1.XML|BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.xml" Component_="BioDeep.xml" FileName="BIONOV~2.XML|BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.Extensions.xm" Component_="BioDeep.xml" FileName="BIONOV~3.XML|BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.Extensions.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.Extensions.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.xml" Component_="BioDeep.xml" FileName="BIONOV~4.XML|BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Assembly.sciexWiffReader.xml" Component_="BioDeep.xml" FileName="BIONOV~5.XML|BioNovoGene.Analytical.MassSpectrometry.Assembly.sciexWiffReader.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Assembly.sciexWiffReader.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.xml" Component_="BioDeep.xml" FileName="BIONOV~6.XML|BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Assembly.xml" Component_="BioDeep.xml" FileName="BIONOV~7.XML|BioNovoGene.Analytical.MassSpectrometry.Assembly.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Assembly.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.xml" Component_="BioDeep.xml" FileName="BIONOV~8.XML|BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Math.Insilicon.xml" Component_="BioDeep.xml" FileName="BIONOV~9.XML|BioNovoGene.Analytical.MassSpectrometry.Math.Insilicon.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Math.Insilicon.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Math.TargetedMetabolomics.xml" Component_="BioDeep.xml" FileName="BIONO~10.XML|BioNovoGene.Analytical.MassSpectrometry.Math.TargetedMetabolomics.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Math.TargetedMetabolomics.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Math.xml" Component_="BioDeep.xml" FileName="BIONO~11.XML|BioNovoGene.Analytical.MassSpectrometry.Math.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Math.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.Analytical.MassSpectrometry.MsImaging.xml" Component_="BioDeep.xml" FileName="BIONO~12.XML|BioNovoGene.Analytical.MassSpectrometry.MsImaging.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.MsImaging.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Plots.xml" Component_="BioDeep.xml" FileName="BIONO~13.XML|BioNovoGene.Analytical.MassSpectrometry.Plots.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Plots.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.Analytical.MassSpectrometry.RInterop.xml" Component_="BioDeep.xml" FileName="BIONO~14.XML|BioNovoGene.Analytical.MassSpectrometry.RInterop.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.RInterop.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.BioDeep.Chemistry.Massbank.MoNA.xml" Component_="BioDeep.xml" FileName="BIONO~15.XML|BioNovoGene.BioDeep.Chemistry.Massbank.MoNA.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.Chemistry.Massbank.MoNA.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.BioDeep.Chemistry.Massbank.xml" Component_="BioDeep.xml" FileName="BIONO~16.XML|BioNovoGene.BioDeep.Chemistry.Massbank.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.Chemistry.Massbank.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.BioDeep.Chemistry.Model.Graph.xml" Component_="BioDeep.xml" FileName="BIONO~17.XML|BioNovoGene.BioDeep.Chemistry.Model.Graph.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.Chemistry.Model.Graph.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.BioDeep.Chemistry.Model.KCFDrawing.xml" Component_="BioDeep.xml" FileName="BIONO~18.XML|BioNovoGene.BioDeep.Chemistry.Model.KCFDrawing.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.Chemistry.Model.KCFDrawing.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.BioDeep.Chemistry.Model.xml" Component_="BioDeep.xml" FileName="BIONO~19.XML|BioNovoGene.BioDeep.Chemistry.Model.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.Chemistry.Model.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.BioDeep.Chemistry.XrefEngine.xml" Component_="BioDeep.xml" FileName="BIONO~20.XML|BioNovoGene.BioDeep.Chemistry.XrefEngine.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.Chemistry.XrefEngine.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.BioDeep.Chemoinformatics.SDF.Extensions.xml" Component_="BioDeep.xml" FileName="BIONO~21.XML|BioNovoGene.BioDeep.Chemoinformatics.SDF.Extensions.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.Chemoinformatics.SDF.Extensions.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.BioDeep.Chemoinformatics.SMILES.xml" Component_="BioDeep.xml" FileName="BIONO~22.XML|BioNovoGene.BioDeep.Chemoinformatics.SMILES.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.Chemoinformatics.SMILES.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.BioDeep.Chemoinformatics.xml" Component_="BioDeep.xml" FileName="BIONO~23.XML|BioNovoGene.BioDeep.Chemoinformatics.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.Chemoinformatics.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.BioDeep.MetaDNA.Visual.xml" Component_="BioDeep.xml" FileName="BIONO~24.XML|BioNovoGene.BioDeep.MetaDNA.Visual.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.MetaDNA.Visual.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.BioDeep.MetaDNA.xml" Component_="BioDeep.xml" FileName="BIONO~25.XML|BioNovoGene.BioDeep.MetaDNA.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.MetaDNA.xml" SelfReg="false"/>
-    <ROW File="BioNovoGene.BioDeep.MSEngine.xml" Component_="BioDeep.xml" FileName="BIONO~26.XML|BioNovoGene.BioDeep.MSEngine.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.MSEngine.xml" SelfReg="false"/>
-    <ROW File="Docker.xml" Component_="BioDeep.xml" FileName="Docker.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Docker.xml" SelfReg="false"/>
-    <ROW File="Flute.Http.xml" Component_="BioDeep.xml" FileName="FLUTEH~1.XML|Flute.Http.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Flute.Http.xml" SelfReg="false"/>
-    <ROW File="HDF.PInvoke.Core.xml" Component_="BioDeep.xml" FileName="HDFPIN~1.XML|HDF.PInvoke.Core.xml" Attributes="0" SourcePath="..\..\..\dist\bin\HDF.PInvoke.Core.xml" SelfReg="false"/>
-    <ROW File="LocalLaplacianFilters.xml" Component_="BioDeep.xml" FileName="LOCALL~1.XML|LocalLaplacianFilters.xml" Attributes="0" SourcePath="..\..\..\dist\bin\LocalLaplacianFilters.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.xm" Component_="BioDeep.xml" FileName="MICROS~1.XML|Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Data.BinaryData.xml" Component_="BioDeep.xml" FileName="MICROS~2.XML|Microsoft.VisualBasic.Data.BinaryData.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.BinaryData.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Data.Bootstrapping.Fittings.xml" Component_="BioDeep.xml" FileName="MICROS~3.XML|Microsoft.VisualBasic.Data.Bootstrapping.Fittings.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.Bootstrapping.Fittings.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Data.ChartPlots.Statistics.xml" Component_="BioDeep.xml" FileName="MICROS~4.XML|Microsoft.VisualBasic.Data.ChartPlots.Statistics.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.ChartPlots.Statistics.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Data.ChartPlots.xml" Component_="BioDeep.xml" FileName="MICROS~5.XML|Microsoft.VisualBasic.Data.ChartPlots.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.ChartPlots.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Data.Framework.xml" Component_="BioDeep.xml" FileName="MICROS~6.XML|Microsoft.VisualBasic.Data.Framework.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.Framework.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Data.GraphQuery.xml" Component_="BioDeep.xml" FileName="MICROS~7.XML|Microsoft.VisualBasic.Data.GraphQuery.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.GraphQuery.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Data.GraphTheory.xml" Component_="BioDeep.xml" FileName="MICROS~8.XML|Microsoft.VisualBasic.Data.GraphTheory.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.GraphTheory.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Data.IO.MessagePack.xml" Component_="BioDeep.xml" FileName="MICROS~9.XML|Microsoft.VisualBasic.Data.IO.MessagePack.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.IO.MessagePack.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Data.NLP.xml" Component_="BioDeep.xml" FileName="MICRO~10.XML|Microsoft.VisualBasic.Data.NLP.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.NLP.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Data.Signal.IO.xml" Component_="BioDeep.xml" FileName="MICRO~11.XML|Microsoft.VisualBasic.Data.Signal.IO.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.Signal.IO.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Data.Storage.xml" Component_="BioDeep.xml" FileName="MICRO~12.XML|Microsoft.VisualBasic.Data.Storage.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.Storage.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Data.TrinityNLP.xml" Component_="BioDeep.xml" FileName="MICRO~13.XML|Microsoft.VisualBasic.Data.TrinityNLP.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.TrinityNLP.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.xml" Component_="BioDeep.xml" FileName="MICRO~14.XML|Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.xml" Component_="BioDeep.xml" FileName="MICRO~15.XML|Microsoft.VisualBasic.Data.visualize.Network.Visualizer.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.visualize.Network.Visualizer.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Data.visualize.Network.xml" Component_="BioDeep.xml" FileName="MICRO~16.XML|Microsoft.VisualBasic.Data.visualize.Network.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.visualize.Network.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Data.visualize.xml" Component_="BioDeep.xml" FileName="MICRO~17.XML|Microsoft.VisualBasic.Data.visualize.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.visualize.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Data.Wave.xml" Component_="BioDeep.xml" FileName="MICRO~18.XML|Microsoft.VisualBasic.Data.Wave.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.Wave.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.DataMining.BinaryTreeClustering.xml" Component_="BioDeep.xml" FileName="MICRO~19.XML|Microsoft.VisualBasic.DataMining.BinaryTreeClustering.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.DataMining.BinaryTreeClustering.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.DataMining.DensityQuery.xml" Component_="BioDeep.xml" FileName="MICRO~20.XML|Microsoft.VisualBasic.DataMining.DensityQuery.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.DataMining.DensityQuery.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.DataMining.DynamicProgramming.xml" Component_="BioDeep.xml" FileName="MICRO~21.XML|Microsoft.VisualBasic.DataMining.DynamicProgramming.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.DataMining.DynamicProgramming.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.DataMining.Framework.xml" Component_="BioDeep.xml" FileName="MICRO~22.XML|Microsoft.VisualBasic.DataMining.Framework.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.DataMining.Framework.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.DataMining.HiddenMarkovChain.xml" Component_="BioDeep.xml" FileName="MICRO~23.XML|Microsoft.VisualBasic.DataMining.HiddenMarkovChain.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.DataMining.HiddenMarkovChain.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.DataMining.HierarchicalClustering.xml" Component_="BioDeep.xml" FileName="MICRO~24.XML|Microsoft.VisualBasic.DataMining.HierarchicalClustering.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.DataMining.HierarchicalClustering.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.DataMining.UMAP.xml" Component_="BioDeep.xml" FileName="MICRO~25.XML|Microsoft.VisualBasic.DataMining.UMAP.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.DataMining.UMAP.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Imaging.PDF.xml" Component_="BioDeep.xml" FileName="MICRO~26.XML|Microsoft.VisualBasic.Imaging.PDF.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Imaging.PDF.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Imaging.Physics.xml" Component_="BioDeep.xml" FileName="MICRO~27.XML|Microsoft.VisualBasic.Imaging.Physics.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Imaging.Physics.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Imaging.xml" Component_="BioDeep.xml" FileName="MICRO~28.XML|Microsoft.VisualBasic.Imaging.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Imaging.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.MachineLearning.Debugger.xml" Component_="BioDeep.xml" FileName="MICRO~29.XML|Microsoft.VisualBasic.MachineLearning.Debugger.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MachineLearning.Debugger.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.MachineLearning.tSNE.xml" Component_="BioDeep.xml" FileName="MICRO~30.XML|Microsoft.VisualBasic.MachineLearning.t-SNE.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MachineLearning.t-SNE.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.xml" Component_="BioDeep.xml" FileName="MICRO~31.XML|Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.MachineLearning.XGBoost.xml" Component_="BioDeep.xml" FileName="MICRO~32.XML|Microsoft.VisualBasic.MachineLearning.XGBoost.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MachineLearning.XGBoost.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.MachineLearning.xml" Component_="BioDeep.xml" FileName="MICRO~33.XML|Microsoft.VisualBasic.MachineLearning.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MachineLearning.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.Core.xml" Component_="BioDeep.xml" FileName="MICRO~34.XML|Microsoft.VisualBasic.Math.Core.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Core.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.DataFrame.xml" Component_="BioDeep.xml" FileName="MICRO~35.XML|Microsoft.VisualBasic.Math.DataFrame.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.DataFrame.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.Lambda.xml" Component_="BioDeep.xml" FileName="MICRO~36.XML|Microsoft.VisualBasic.Math.Lambda.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Lambda.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.ODEsSolver.Extensions.xml" Component_="BioDeep.xml" FileName="MICRO~37.XML|Microsoft.VisualBasic.Math.ODEsSolver.Extensions.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.ODEsSolver.Extensions.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.ODEsSolver.xml" Component_="BioDeep.xml" FileName="MICRO~38.XML|Microsoft.VisualBasic.Math.ODEsSolver.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.ODEsSolver.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.SignalProcessing.xml" Component_="BioDeep.xml" FileName="MICRO~39.XML|Microsoft.VisualBasic.Math.SignalProcessing.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.SignalProcessing.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.Statistics.ANOVA.xml" Component_="BioDeep.xml" FileName="MICRO~40.XML|Microsoft.VisualBasic.Math.Statistics.ANOVA.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Statistics.ANOVA.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Math.Statistics.xml" Component_="BioDeep.xml" FileName="MICRO~41.XML|Microsoft.VisualBasic.Math.Statistics.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Math.Statistics.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.MIME.application.json.xml" Component_="BioDeep.xml" FileName="MICRO~42.XML|Microsoft.VisualBasic.MIME.application.json.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MIME.application.json.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.MIME.application.pdf.xml" Component_="BioDeep.xml" FileName="MICRO~43.XML|Microsoft.VisualBasic.MIME.application.pdf.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MIME.application.pdf.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.MIME.application.rdf_xml.xml" Component_="BioDeep.xml" FileName="MICRO~44.XML|Microsoft.VisualBasic.MIME.application.rdf_xml.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MIME.application.rdf_xml.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.MIME.application.xml.xml" Component_="BioDeep.xml" FileName="MICRO~45.XML|Microsoft.VisualBasic.MIME.application.xml.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MIME.application.xml.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.MIME.Html.xml" Component_="BioDeep.xml" FileName="MICRO~46.XML|Microsoft.VisualBasic.MIME.Html.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MIME.Html.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.MIME.Office.Excel.xml" Component_="BioDeep.xml" FileName="MICRO~47.XML|Microsoft.VisualBasic.MIME.Office.Excel.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MIME.Office.Excel.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.MIME.text.markdown.xml" Component_="BioDeep.xml" FileName="MICRO~48.XML|Microsoft.VisualBasic.MIME.text.markdown.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MIME.text.markdown.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Network.xml" Component_="BioDeep.xml" FileName="MICRO~49.XML|Microsoft.VisualBasic.Network.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Network.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Runtime.xml" Component_="BioDeep.xml" FileName="MICRO~50.XML|Microsoft.VisualBasic.Runtime.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Runtime.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Windows.Forms.Console.xml" Component_="BioDeep.xml" FileName="MICRO~51.XML|Microsoft.VisualBasic.Windows.Forms.Console.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Windows.Forms.Console.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Windows.Forms.DataValidation.xml" Component_="BioDeep.xml" FileName="MICRO~52.XML|Microsoft.VisualBasic.Windows.Forms.DataValidation.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Windows.Forms.DataValidation.xml" SelfReg="false"/>
-    <ROW File="Microsoft.Web.WebView2.Core.xml" Component_="BioDeep.xml" FileName="MICRO~53.XML|Microsoft.Web.WebView2.Core.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.Web.WebView2.Core.xml" SelfReg="false"/>
-    <ROW File="Microsoft.Web.WebView2.WinForms.xml" Component_="BioDeep.xml" FileName="MICRO~54.XML|Microsoft.Web.WebView2.WinForms.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.Web.WebView2.WinForms.xml" SelfReg="false"/>
-    <ROW File="Microsoft.Web.WebView2.Wpf.xml" Component_="BioDeep.xml" FileName="MICRO~55.XML|Microsoft.Web.WebView2.Wpf.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.Web.WebView2.Wpf.xml" SelfReg="false"/>
-    <ROW File="Microsoft.Windows.FeatureAPI.xml" Component_="BioDeep.xml" FileName="MICRO~56.XML|Microsoft.Windows.FeatureAPI.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.Windows.FeatureAPI.xml" SelfReg="false"/>
-    <ROW File="Microsoft.Windows.Ribbon.xml" Component_="BioDeep.xml" FileName="MICRO~57.XML|Microsoft.Windows.Ribbon.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.Windows.Ribbon.xml" SelfReg="false"/>
-    <ROW File="msconvert.xml" Component_="BioDeep.xml" FileName="MSCONV~1.XML|msconvert.xml" Attributes="0" SourcePath="..\..\..\dist\bin\msconvert.xml" SelfReg="false"/>
-    <ROW File="mzblender.xml" Component_="BioDeep.xml" FileName="MZBLEN~1.XML|mzblender.xml" Attributes="0" SourcePath="..\..\..\dist\bin\mzblender.xml" SelfReg="false"/>
-    <ROW File="Mzkit_win32.BasicMDIForm.xml" Component_="BioDeep.xml" FileName="MZKIT_~2.XML|Mzkit_win32.BasicMDIForm.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.BasicMDIForm.xml" SelfReg="false"/>
-    <ROW File="Mzkit_win32.CommonDialogs.xml" Component_="BioDeep.xml" FileName="MZKIT_~3.XML|Mzkit_win32.CommonDialogs.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.CommonDialogs.xml" SelfReg="false"/>
-    <ROW File="Mzkit_win32.Interaction.xml" Component_="BioDeep.xml" FileName="MZKIT_~4.XML|Mzkit_win32.Interaction.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.Interaction.xml" SelfReg="false"/>
-    <ROW File="Mzkit_win32.LCMSViewer.dll" Component_="Mzkit_win32.LCMSViewer.dll" FileName="MZKIT_~8.DLL|Mzkit_win32.LCMSViewer.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.LCMSViewer.dll" SelfReg="false"/>
-    <ROW File="Mzkit_win32.LCMSViewer.dll.config" Component_="BioDeep.xml" FileName="MZKIT_~6.CON|Mzkit_win32.LCMSViewer.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.LCMSViewer.dll.config" SelfReg="false"/>
-    <ROW File="Mzkit_win32.LCMSViewer.pdb" Component_="Mzkit_win32.LCMSViewer.dll" FileName="MZKIT_~9.PDB|Mzkit_win32.LCMSViewer.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.LCMSViewer.pdb" SelfReg="false"/>
-    <ROW File="Mzkit_win32.LCMSViewer.xml" Component_="BioDeep.xml" FileName="MZKIT_~5.XML|Mzkit_win32.LCMSViewer.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.LCMSViewer.xml" SelfReg="false"/>
-    <ROW File="Mzkit_win32.MSImagingViewerV2.xml" Component_="BioDeep.xml" FileName="MZKIT_~6.XML|Mzkit_win32.MSImagingViewerV2.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.MSImagingViewerV2.xml" SelfReg="false"/>
-    <ROW File="Mzkit_win32.Task.xml" Component_="BioDeep.xml" FileName="MZKIT_~7.XML|Mzkit_win32.Task.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.Task.xml" SelfReg="false"/>
-    <ROW File="Mzkit_win32.TaskStream.xml" Component_="BioDeep.xml" FileName="MZKIT_~8.XML|Mzkit_win32.TaskStream.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.TaskStream.xml" SelfReg="false"/>
-    <ROW File="mzkit_win32.xml" Component_="BioDeep.xml" FileName="MZKIT_~9.XML|mzkit_win32.xml" Attributes="0" SourcePath="..\..\..\dist\bin\mzkit_win32.xml" SelfReg="false"/>
-    <ROW File="NRRD.xml" Component_="BioDeep.xml" FileName="NRRD.xml" Attributes="0" SourcePath="..\..\..\dist\bin\NRRD.xml" SelfReg="false"/>
-    <ROW File="Parallel.xml" Component_="BioDeep.xml" FileName="Parallel.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Parallel.xml" SelfReg="false"/>
-    <ROW File="RData.xml" Component_="BioDeep.xml" FileName="RData.xml" Attributes="0" SourcePath="..\..\..\dist\bin\RData.xml" SelfReg="false"/>
-    <ROW File="RDev.xml" Component_="BioDeep.xml" FileName="RDev.xml" Attributes="0" SourcePath="..\..\..\dist\bin\RDev.xml" SelfReg="false"/>
-    <ROW File="REnv.xml" Component_="BioDeep.xml" FileName="REnv.xml" Attributes="0" SourcePath="..\..\..\dist\bin\REnv.xml" SelfReg="false"/>
-    <ROW File="SMRUCC.genomics.Analysis.HTS.DataFrame.xml" Component_="BioDeep.xml" FileName="SMRUCC~1.XML|SMRUCC.genomics.Analysis.HTS.DataFrame.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Analysis.HTS.DataFrame.xml" SelfReg="false"/>
-    <ROW File="SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.xml" Component_="BioDeep.xml" FileName="SMRUCC~2.XML|SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.xml" SelfReg="false"/>
-    <ROW File="SMRUCC.genomics.Annotation.xml" Component_="BioDeep.xml" FileName="SMRUCC~3.XML|SMRUCC.genomics.Annotation.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Annotation.xml" SelfReg="false"/>
-    <ROW File="SMRUCC.genomics.Core.xml" Component_="BioDeep.xml" FileName="SMRUCC~4.XML|SMRUCC.genomics.Core.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Core.xml" SelfReg="false"/>
-    <ROW File="SMRUCC.genomics.Data.GO_OWL.xml" Component_="BioDeep.xml" FileName="SMRUCC~5.XML|SMRUCC.genomics.Data.GO_OWL.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Data.GO_OWL.xml" SelfReg="false"/>
-    <ROW File="SMRUCC.genomics.Data.Repository.xml" Component_="BioDeep.xml" FileName="SMRUCC~6.XML|SMRUCC.genomics.Data.Repository.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Data.Repository.xml" SelfReg="false"/>
-    <ROW File="SMRUCC.genomics.foundation.OBO_Foundry.xml" Component_="BioDeep.xml" FileName="SMRUCC~7.XML|SMRUCC.genomics.foundation.OBO_Foundry.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.foundation.OBO_Foundry.xml" SelfReg="false"/>
-    <ROW File="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.xml" Component_="BioDeep.xml" FileName="SMRUCC~8.XML|SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.xml" SelfReg="false"/>
-    <ROW File="SMRUCC.genomics.GCModeller.Workbench.keggReport.xml" Component_="BioDeep.xml" FileName="SMRUCC~9.XML|SMRUCC.genomics.GCModeller.Workbench.keggReport.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.GCModeller.Workbench.keggReport.xml" SelfReg="false"/>
-    <ROW File="SMRUCC.genomics.InteractionModel.xml" Component_="BioDeep.xml" FileName="SMRUC~10.XML|SMRUCC.genomics.InteractionModel.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.InteractionModel.xml" SelfReg="false"/>
-    <ROW File="SMRUCC.genomics.Model.Biopax_OWL.xml" Component_="BioDeep.xml" FileName="SMRUC~11.XML|SMRUCC.genomics.Model.Biopax_OWL.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Model.Biopax_OWL.xml" SelfReg="false"/>
-    <ROW File="SMRUCC.genomics.Model.SBML_v1.0_2.0.22.0__a8b9cc5dce5d8b0cc9.xml" Component_="BioDeep.xml" FileName="SMRUC~12.XML|SMRUCC.genomics.Model.SBML_v1.0_2.0.22.0__a8b9cc5dce5d8b0cc9.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Model.SBML_v1.0_2.0.22.0__a8b9cc5dce5d8b0cc9.xml" SelfReg="false"/>
-    <ROW File="SMRUCC.genomics.Visualize.Cytoscape.xml" Component_="BioDeep.xml" FileName="SMRUC~13.XML|SMRUCC.genomics.Visualize.Cytoscape.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Visualize.Cytoscape.xml" SelfReg="false"/>
-    <ROW File="SMRUCC.genomics.Visualize.Extensions.xml" Component_="BioDeep.xml" FileName="SMRUC~14.XML|SMRUCC.genomics.Visualize.Extensions.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Visualize.Extensions.xml" SelfReg="false"/>
-    <ROW File="System.Buffers.xml" Component_="BioDeep.xml" FileName="SYSTEM~1.XML|System.Buffers.xml" Attributes="0" SourcePath="..\..\..\dist\bin\System.Buffers.xml" SelfReg="false"/>
-    <ROW File="System.Configuration.ConfigurationManager.xml" Component_="BioDeep.xml" FileName="SYSTEM~2.XML|System.Configuration.ConfigurationManager.xml" Attributes="0" SourcePath="..\..\..\dist\bin\System.Configuration.ConfigurationManager.xml" SelfReg="false"/>
-    <ROW File="System.Drawing.Common.xml" Component_="BioDeep.xml" FileName="SYSTEM~3.XML|System.Drawing.Common.xml" Attributes="0" SourcePath="..\..\..\dist\bin\System.Drawing.Common.xml" SelfReg="false"/>
-    <ROW File="System.Memory.xml" Component_="BioDeep.xml" FileName="SYSTEM~4.XML|System.Memory.xml" Attributes="0" SourcePath="..\..\..\dist\bin\System.Memory.xml" SelfReg="false"/>
-    <ROW File="System.Numerics.Vectors.xml" Component_="BioDeep.xml" FileName="SYSTEM~5.XML|System.Numerics.Vectors.xml" Attributes="0" SourcePath="..\..\..\dist\bin\System.Numerics.Vectors.xml" SelfReg="false"/>
-    <ROW File="System.Resources.Extensions.xml" Component_="BioDeep.xml" FileName="SYSTEM~6.XML|System.Resources.Extensions.xml" Attributes="0" SourcePath="..\..\..\dist\bin\System.Resources.Extensions.xml" SelfReg="false"/>
-    <ROW File="System.Runtime.CompilerServices.Unsafe.xml" Component_="BioDeep.xml" FileName="SYSTEM~7.XML|System.Runtime.CompilerServices.Unsafe.xml" Attributes="0" SourcePath="..\..\..\dist\bin\System.Runtime.CompilerServices.Unsafe.xml" SelfReg="false"/>
-    <ROW File="System.Security.AccessControl.xml" Component_="BioDeep.xml" FileName="SYSTEM~8.XML|System.Security.AccessControl.xml" Attributes="0" SourcePath="..\..\..\dist\bin\System.Security.AccessControl.xml" SelfReg="false"/>
-    <ROW File="System.Security.Permissions.xml" Component_="BioDeep.xml" FileName="SYSTEM~9.XML|System.Security.Permissions.xml" Attributes="0" SourcePath="..\..\..\dist\bin\System.Security.Permissions.xml" SelfReg="false"/>
-    <ROW File="System.Security.Principal.Windows.xml" Component_="BioDeep.xml" FileName="SYSTE~10.XML|System.Security.Principal.Windows.xml" Attributes="0" SourcePath="..\..\..\dist\bin\System.Security.Principal.Windows.xml" SelfReg="false"/>
-    <ROW File="ThermoFisher.CommonCore.BackgroundSubtraction.xml" Component_="BioDeep.xml" FileName="THERMO~1.XML|ThermoFisher.CommonCore.BackgroundSubtraction.xml" Attributes="0" SourcePath="..\..\..\dist\bin\ThermoFisher.CommonCore.BackgroundSubtraction.xml" SelfReg="false"/>
-    <ROW File="ThermoFisher.CommonCore.Data.xml" Component_="BioDeep.xml" FileName="THERMO~2.XML|ThermoFisher.CommonCore.Data.xml" Attributes="0" SourcePath="..\..\..\dist\bin\ThermoFisher.CommonCore.Data.xml" SelfReg="false"/>
-    <ROW File="ThermoFisher.CommonCore.MassPrecisionEstimator.xml" Component_="BioDeep.xml" FileName="THERMO~3.XML|ThermoFisher.CommonCore.MassPrecisionEstimator.xml" Attributes="0" SourcePath="..\..\..\dist\bin\ThermoFisher.CommonCore.MassPrecisionEstimator.xml" SelfReg="false"/>
-    <ROW File="ThermoFisher.CommonCore.RawFileReader.xml" Component_="BioDeep.xml" FileName="THERMO~4.XML|ThermoFisher.CommonCore.RawFileReader.xml" Attributes="0" SourcePath="..\..\..\dist\bin\ThermoFisher.CommonCore.RawFileReader.xml" SelfReg="false"/>
-    <ROW File="ThinkVB.FileSystem.OSS.xml" Component_="BioDeep.xml" FileName="THINKV~1.XML|ThinkVB.FileSystem.OSS.xml" Attributes="0" SourcePath="..\..\..\dist\bin\ThinkVB.FileSystem.OSS.xml" SelfReg="false"/>
-    <ROW File="UMapx.xml" Component_="BioDeep.xml" FileName="UMapx.xml" Attributes="0" SourcePath="..\..\..\dist\bin\UMapx.xml" SelfReg="false"/>
-    <ROW File="WkHtmlToPdf.CLI.InteropService.xml" Component_="BioDeep.xml" FileName="WKHTML~1.XML|WkHtmlToPdf.CLI.InteropService.xml" Attributes="0" SourcePath="..\..\..\dist\bin\WkHtmlToPdf.CLI.InteropService.xml" SelfReg="false"/>
-    <ROW File="WebView2Loader.dll_1" Component_="WebView2Loader.dll_1" FileName="WEBVIE~1.DLL|WebView2Loader.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\runtimes\win-x64\native\WebView2Loader.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -5320,12 +5182,13 @@
     <ROW Path="&lt;AI_DICTS&gt;ui_ru.ail"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DigCertStoreComponent">
-    <ROW DigitalCertificate="..\..\..\..\etc\mzkit_win32.pfx" TimeStampUrl="http://timestamp.digicert.com" SignerDescription="[|ProductName]" DescriptionUrl="https://mzkit.org/" SignOptions="7" SignTool="0" UseSha256="1"/>
+    <ROW TimeStampUrl="http://timestamp.digicert.com" SignerDescription="[|ProductName]" DescriptionUrl="https://mzkit.org/" SignOptions="7" SignTool="0" UseSha256="1" Subject="CN=PANOMIX_MZKit"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
     <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
     <ROW Fragment="FolderDlg.aip" Path="&lt;AI_THEMES&gt;azure\fragments\FolderDlg.aip"/>
     <ROW Fragment="LanguageDlg.aip" Path="&lt;AI_THEMES&gt;azure\fragments\LanguageDlg.aip"/>
+    <ROW Fragment="LicenseAgreementDlg.aip" Path="&lt;AI_THEMES&gt;azure\fragments\LicenseAgreementDlg.aip"/>
     <ROW Fragment="MaintenanceTypeDlg.aip" Path="&lt;AI_THEMES&gt;azure\fragments\MaintenanceTypeDlg.aip"/>
     <ROW Fragment="MaintenanceWelcomeDlg.aip" Path="&lt;AI_THEMES&gt;azure\fragments\MaintenanceWelcomeDlg.aip"/>
     <ROW Fragment="PreparePrereqDlg.aip" Path="&lt;AI_THEMES&gt;azure\fragments\PreparePrereqDlg.aip"/>
@@ -5334,7 +5197,6 @@
     <ROW Fragment="SequenceDialogs.aip" Path="&lt;AI_THEMES&gt;azure\fragments\SequenceDialogs.aip"/>
     <ROW Fragment="Sequences.aip" Path="&lt;AI_FRAGS&gt;Sequences.aip"/>
     <ROW Fragment="StaticUIStrings.aip" Path="&lt;AI_FRAGS&gt;StaticUIStrings.aip"/>
-    <ROW Fragment="Themes.aip" Path="&lt;AI_FRAGS&gt;Themes.aip"/>
     <ROW Fragment="UI.aip" Path="&lt;AI_THEMES&gt;azure\fragments\UI.aip"/>
     <ROW Fragment="Validation.aip" Path="&lt;AI_FRAGS&gt;Validation.aip"/>
     <ROW Fragment="VerifyRemoveDlg.aip" Path="&lt;AI_THEMES&gt;azure\fragments\VerifyRemoveDlg.aip"/>
@@ -5371,31 +5233,27 @@
     <ROW Name="ShowBackgroundImages.dll" SourcePath="&lt;AI_CUSTACTS&gt;ShowBackgroundImages.dll"/>
     <ROW Name="SoftwareDetector.dll" SourcePath="&lt;AI_CUSTACTS&gt;SoftwareDetector.dll"/>
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
-    <ROW Name="installer.ico" SourcePath="installer.ico"/>
-    <ROW Name="viewer.exe" SourcePath="&lt;AI_CUSTACTS&gt;viewer.exe" DigSign="true"/>
+    <ROW Name="viewer.exe" SourcePath="&lt;AI_CUSTACTS&gt;viewer.exe"/>
     <ROW Name="xmlCfg.dll" SourcePath="&lt;AI_CUSTACTS&gt;xmlCfg.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiConditionComponent">
     <ROW Feature_="TileAssets_DefaultBuild" Level="4" Condition="VersionNT &lt; 603"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
-    <ROW Dialog_="NewSeqDialog" Control="Bitmap" Type="Bitmap" X="0" Y="0" Width="450" Height="360" Attributes="1048577" Text="[Background]" Order="100"/>
-    <ROW Dialog_="NewSeqDialog" Control="Next" Type="PushButton" X="380" Y="330" Width="56" Height="17" Attributes="3" Text="[ButtonText_Next]" Order="200" Options="1"/>
-    <ROW Dialog_="NewSeqDialog" Control="Cancel" Type="PushButton" X="450" Y="0" Width="0" Height="0" Attributes="2" Text="[ButtonText_Cancel]" Order="300" Options="1"/>
-    <ROW Dialog_="NewSeqDialog" Control="Back" Type="PushButton" X="320" Y="330" Width="56" Height="17" Attributes="1" Text="[ButtonText_Back]" Order="400" Options="1"/>
-    <ROW Dialog_="NewSeqDialog" Control="Title" Type="Text" X="33" Y="23" Width="380" Height="40" Attributes="196611" Text="New Dialog" TextStyle="TitleFont" Order="500"/>
-    <ROW Dialog_="NewSeqDialog" Control="Description" Type="Text" X="55" Y="130" Width="360" Height="60" Attributes="196611" Text="New Dialog Description..." Order="600"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control="AgreementText" Type="ScrollableText" X="55" Y="110" Width="372" Height="180" Attributes="3" Property="EulaRead" Text="..\extdata\Reference.rtf" Order="800" MsiKey="LicenseAgreementDlg#AgreementText"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control="EulaAgreeCheckBox" Type="CheckBox" X="55" Y="300" Width="230" Height="13" Attributes="1" Property="IAgree" Text="I &amp;accept the terms of this agreement." Order="1000" TextLocId="Azure.Control.Text.LicenseAgreementDlg#EulaAgreeCheckBox" MsiKey="LicenseAgreementDlg#EulaAgreeCheckBox"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
-    <ROW Dialog_="LanguageDlg" Control_="Next" Event="EndDialog" Argument="Return" Condition="AI_BOOTSTRAPPER" Ordering="1"/>
     <ROW Dialog_="WelcomePrereqDlg" Control_="Next" Event="NewDialog" Argument="PrerequisitesDlg" Condition="AI_BOOTSTRAPPER" Ordering="1"/>
     <ROW Dialog_="PrerequisitesDlg" Control_="Next" Event="EndDialog" Argument="Return" Condition="AI_BOOTSTRAPPER" Ordering="1"/>
     <ROW Dialog_="PrerequisitesDlg" Control_="Back" Event="NewDialog" Argument="WelcomePrereqDlg" Condition="AI_BOOTSTRAPPER" Ordering="1"/>
-    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="LicenseAgreementDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="LicenseAgreementDlg" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="197"/>
     <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="201"/>
-    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="201"/>
-    <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="MaintenanceWelcomeDlg" Control_="Next" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="99"/>
     <ROW Dialog_="CustomizeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_MAINT" Ordering="101"/>
     <ROW Dialog_="CustomizeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="1"/>
@@ -5413,7 +5271,7 @@
     <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_PATCH" Ordering="199"/>
     <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
     <ROW Dialog_="ResumeDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_RESUME" Ordering="299"/>
-    <ROW Dialog_="NewSeqDialog" Control_="Cancel" Event="SpawnDialog" Argument="CancelDlg" Condition="1" Ordering="100"/>
+    <ROW Dialog_="LanguageDlg" Control_="Next" Event="EndDialog" Argument="Return" Condition="AI_BOOTSTRAPPER" Ordering="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
@@ -5423,8 +5281,6 @@
     <ROW Directory_="library_Dir" Component_="library" ManualDelete="true"/>
     <ROW Directory_="DevTools_Dir" Component_="DevTools" ManualDelete="false"/>
     <ROW Directory_="regid.201301.com.panomix_Dir" Component_="regid.201301.com.panomix" ManualDelete="false"/>
-    <ROW Directory_="net6.0_5_Dir" Component_="net6.0" ManualDelete="false"/>
-    <ROW Directory_="net6.0_6_Dir" Component_="net6.0_1" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_AppSearchEx" Type="1" Source="Prereq.dll" Target="DoAppSearchEx"/>
@@ -5439,9 +5295,8 @@
     <ROW Action="AI_EnableDebugLog" Type="321" Source="aicustact.dll" Target="EnableDebugLog"/>
     <ROW Action="AI_GetArpIconPath" Type="1" Source="aicustact.dll" Target="GetArpIconPath"/>
     <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
-    <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="LaunchApp"/>
+    <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="[#mzkit_win32.exe_1]"/>
     <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
-    <ROW Action="AI_PRESERVE_INSTALL_TYPE" Type="65" Source="aicustact.dll" Target="PreserveInstallType"/>
     <ROW Action="AI_PinShortcuts" Type="1" Source="ShortcutFlags.dll" Target="PinShortcuts"/>
     <ROW Action="AI_PinToStartScreen" Type="1025" Source="ShortcutFlags.dll" Target="PinToStartScreen" WithoutSeq="true"/>
     <ROW Action="AI_PinToTaskbar" Type="1025" Source="ShortcutFlags.dll" Target="PinToTaskbar" WithoutSeq="true"/>
@@ -5458,7 +5313,7 @@
     <ROW Action="AI_UnpinFromStartScreen" Type="1025" Source="ShortcutFlags.dll" Target="UnpinFromStartScreen" WithoutSeq="true"/>
     <ROW Action="AI_UnpinFromTaskbar" Type="1025" Source="ShortcutFlags.dll" Target="UnpinFromTaskbar" WithoutSeq="true"/>
     <ROW Action="AI_UnpinShortcuts" Type="1" Source="ShortcutFlags.dll" Target="UnpinShortcuts"/>
-    <ROW Action="AI_ViewReadme" Type="1" Source="aicustact.dll" Target="ViewReadMe"/>
+    <ROW Action="AI_ViewReadme" Type="1" Source="aicustact.dll" Target="[#README.txt]"/>
     <ROW Action="AI_XmlCommit" Type="11777" Source="xmlCfg.dll" Target="OnXmlCommit" WithoutSeq="true"/>
     <ROW Action="AI_XmlConfig" Type="11265" Source="xmlCfg.dll" Target="OnXmlConfig" WithoutSeq="true"/>
     <ROW Action="AI_XmlInstall" Type="1" Source="xmlCfg.dll" Target="OnXmlInstall" AdditionalSeq="AI_DATA_SETTER"/>
@@ -5469,10 +5324,6 @@
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFiles64Folder][Manufacturer]\[ProductName]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]" MultiBuildTarget="DefaultBuild:[ProgramMenuFolder]\[Manufacturer]\[ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
-  </COMPONENT>
-  <COMPONENT cid="caphyon.advinst.msicomp.MsiDialogComponent">
-    <ROW Dialog="NewSeqDialog" HCentering="50" VCentering="50" Width="450" Height="360" Attributes="3" Title="[ProductName] [Setup]" Control_Default="Next" Control_Cancel="Cancel"/>
-    <ROW Dialog="PrerequisitesDlg" HCentering="50" VCentering="50" Width="450" Height="360" Attributes="35" Title="[ProductName] [Setup]" Control_Default="Next" Control_Cancel="Cancel" TitleLocId="Dialog.PrerequisitesDlg" MsiKey="PrerequisitesDlg"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiExtComponent">
     <ROW Extension="mzPack" Component_="mzkit_win32.exe_1" ProgId_="MZKit binary MS pack" MIME_="application/x-mzpack" Feature_="MainFeature" Options="32"/>
@@ -6002,8 +5853,14 @@
     <ROW Feature_="MainFeature" Component_="System.Security.AccessControl.dll"/>
     <ROW Feature_="MainFeature" Component_="System.Security.Permissions.dll_1"/>
     <ROW Feature_="MainFeature" Component_="System.Security.Principal.Windows.dll"/>
+    <ROW Feature_="TileAssets_DefaultBuild" Component_="mzkit_win32.VisualElementsManifest.xml"/>
     <ROW Feature_="MainFeature" Component_="hpo_AAAAAA0001eye_HR.wiff"/>
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.MZWork.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="System.Drawing.Common.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Win32.SystemEvents.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="System.Drawing.Common.dll_3"/>
+    <ROW Feature_="MainFeature" Component_="System.Security.Cryptography.ProtectedData.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="System.Windows.Extensions.dll_2"/>
     <ROW Feature_="MainFeature" Component_="nvidiaanselAI.deps.json"/>
     <ROW Feature_="MainFeature" Component_="nvidiaanselAI.dll"/>
     <ROW Feature_="MainFeature" Component_="nvidiaanselAI.exe"/>
@@ -6131,6 +5988,7 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Windows.Forms.Console.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Windows.Forms.DataValidation.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.Windows.FeatureAPI.pdb"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.Windows.Ribbon.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="msconvert.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="msconvertGUI.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="mzblender.pdb"/>
@@ -6177,17 +6035,6 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="PkgTool.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="nvidiaanselAI.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Runtime.pdb_1"/>
-    <ROW Feature_="MainFeature" Component_="net6.0"/>
-    <ROW Feature_="MainFeature" Component_="net6.0_1"/>
-    <ROW Feature_="MainFeature" Component_="System.Drawing.Common.dll_2"/>
-    <ROW Feature_="MainFeature" Component_="Microsoft.Win32.SystemEvents.dll_1"/>
-    <ROW Feature_="MainFeature" Component_="System.Drawing.Common.dll_3"/>
-    <ROW Feature_="MainFeature" Component_="System.Security.Cryptography.ProtectedData.dll_2"/>
-    <ROW Feature_="MainFeature" Component_="System.Windows.Extensions.dll_2"/>
-    <ROW Feature_="VisualStudio_Diagnostic" Component_="BioDeep.xml"/>
-    <ROW Feature_="VisualStudio_Diagnostic" Component_="Mzkit_win32.LCMSViewer.dll"/>
-    <ROW Feature_="TileAssets_DefaultBuild" Component_="mzkit_win32.VisualElementsManifest.xml"/>
-    <ROW Feature_="VisualStudio_Diagnostic" Component_="WebView2Loader.dll_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
@@ -6238,7 +6085,6 @@
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99"/>
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="102"/>
     <ROW Action="AI_AppSearchEx" Sequence="101"/>
-    <ROW Action="AI_PRESERVE_INSTALL_TYPE" Sequence="199"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
     <ROW Condition="( Version9X OR ( NOT VersionNT64 ) OR ( VersionNT64 AND ((VersionNT64 &lt;&gt; 600) OR (MsiNTProductType &lt;&gt; 1)) AND ((VersionNT64 &lt;&gt; 600) OR (MsiNTProductType = 1)) AND ((VersionNT64 &lt;&gt; 601) OR (MsiNTProductType &lt;&gt; 1)) AND ((VersionNT64 &lt;&gt; 601) OR (MsiNTProductType = 1)) AND ((VersionNT64 &lt;&gt; 602) OR (MsiNTProductType &lt;&gt; 1)) AND ((VersionNT64 &lt;&gt; 602) OR (MsiNTProductType = 1)) AND ((VersionNT64 &lt;&gt; 603) OR (MsiNTProductType &lt;&gt; 1)) ) )" Description="[ProductName] cannot be installed on the following Windows versions: [WindowsTypeNT64Display]." DescriptionLocId="AI.LaunchCondition.NoSpecificNT64" IsPredefined="true" Builds="DefaultBuild"/>
@@ -6263,11 +6109,8 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
     <ROW Registry="AI_InstallLanguage" Root="-1" Key="Software\Caphyon\Advanced Installer\[ProductCode]" Name="AI_InstallLanguage" Value="[ProductLanguage]" Component_="ProductInformation"/>
-    <ROW Registry="AdvancedInstaller" Root="-1" Key="Software\Caphyon\Advanced Installer" Name="\"/>
-    <ROW Registry="Caphyon" Root="-1" Key="Software\Caphyon" Name="\"/>
     <ROW Registry="Comments" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Comments" Value="[ARPCOMMENTS]" Component_="AI_CustomARPName"/>
     <ROW Registry="Contact" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Contact" Value="[ARPCONTACT]" Component_="AI_CustomARPName"/>
-    <ROW Registry="CurrentVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion" Name="\"/>
     <ROW Registry="DisplayIcon" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayIcon" Value="[ARP_ICON_PATH]" Component_="AI_CustomARPName"/>
     <ROW Registry="DisplayName" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayName" Value="[AI_PRODUCTNAME_ARP]" Component_="AI_CustomARPName"/>
     <ROW Registry="DisplayVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayVersion" Value="[ProductVersion]" Component_="AI_CustomARPName"/>
@@ -6275,24 +6118,16 @@
     <ROW Registry="HelpLink" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpLink" Value="[ARPHELPLINK]" Component_="AI_CustomARPName"/>
     <ROW Registry="HelpTelephone" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpTelephone" Value="[ARPHELPTELEPHONE]" Component_="AI_CustomARPName"/>
     <ROW Registry="InstallLocation" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="InstallLocation" Value="[APPDIR]" Component_="AI_CustomARPName"/>
-    <ROW Registry="Manufacturer" Root="-1" Key="Software\[Manufacturer]" Name="\"/>
-    <ROW Registry="Microsoft" Root="-1" Key="Software\Microsoft" Name="\"/>
     <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
-    <ROW Registry="ProductCode" Root="-1" Key="Software\Caphyon\Advanced Installer\[ProductCode]" Name="\"/>
-    <ROW Registry="ProductName" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="\"/>
-    <ROW Registry="ProductNameProductVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="\"/>
     <ROW Registry="Publisher" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Publisher" Value="[Manufacturer]" Component_="AI_CustomARPName"/>
     <ROW Registry="Readme" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Readme" Value="[ARPREADME]" Component_="AI_CustomARPName"/>
-    <ROW Registry="Software" Root="-1" Key="Software" Name="\"/>
     <ROW Registry="URLInfoAbout" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLInfoAbout" Value="[ARPURLINFOABOUT]" Component_="AI_CustomARPName"/>
     <ROW Registry="URLUpdateInfo" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLUpdateInfo" Value="[ARPURLUPDATEINFO]" Component_="AI_CustomARPName"/>
-    <ROW Registry="Uninstall" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall" Name="\"/>
     <ROW Registry="UninstallPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="UninstallPath" Value="[AI_UNINSTALLER] /i [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
     <ROW Registry="UninstallString" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="UninstallString" Value="[AI_UNINSTALLER] /i [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
     <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
     <ROW Registry="VersionMajor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMajor" Value="#3" Component_="AI_CustomARPName" VirtualValue="#"/>
     <ROW Registry="VersionMinor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMinor" Value="#2" Component_="AI_CustomARPName" VirtualValue="#"/>
-    <ROW Registry="Windows" Root="-1" Key="Software\Microsoft\Windows" Name="\"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
     <ROW Shortcut="BioNovoGeneDeveloperCommandLineTool" Directory_="DevTools_Dir" Name="BIONOV~1|BioNovoGene Developer CommandLine Tool" Component_="mzkit_win32.exe_1" Target="[#mzkit_win32.exe_1]" Arguments="--devtools" Description="Run bionovogene mzkit automation" Hotkey="0" Icon_="vs.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR" CustomFlags="4"/>
@@ -6359,7 +6194,6 @@
     <ROW Directory_="fr_Dir" SourcePath="..\..\..\dist\bin\fr" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="ruRU_Dir" SourcePath="..\..\..\dist\bin\ru-RU" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="nvidia_Dir" SourcePath="..\..\..\dist\bin\plugins\nvidia" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|/*.xml" ExcludeFlags="6" FileAddOptions="4"/>
-    <ROW Directory_="runtimes_4_Dir" SourcePath="..\..\..\dist\bin\plugins\runtimes" Feature="VisualStudio_Diagnostic" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.XmlAttributeComponent">
     <ROW XmlAttribute="xmlnsds" XmlElement="swidsoftware_identification_tag" Name="xmlns:ds" Flags="14" Order="0" Value="http://www.w3.org/2000/09/xmldsig#"/>

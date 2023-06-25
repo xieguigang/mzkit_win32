@@ -340,13 +340,15 @@ Public Class frmMain : Implements AppHost
 
     Const GB As Long = 1024 * 1024 * 1024
 
-    Friend Sub showMsImaging(imzML As String)
+    Friend Function showMsImaging(imzML As String) As String
         WindowModules.viewer.Show(m_dockPanel)
         WindowModules.msImageParameters.Show(m_dockPanel)
 
         If imzML.ExtensionSuffix("mzpack") Then
             Call showMzPackMSI(imzML)
         Else
+            ' create mzPack cache at first for imzML file
+            ' and then load the mzPack data
             Dim cachefile As String = RscriptProgressTask.CreateMSIIndex(
                 imzML:=imzML,
                 getGuid:=Function(filepath)
@@ -376,7 +378,9 @@ Public Class frmMain : Implements AppHost
 
         WindowModules.viewer.DockState = DockState.Document
         WindowModules.msImageParameters.DockState = DockState.DockLeft
-    End Sub
+
+        Return imzML.MD5
+    End Function
 
     Friend Sub showMzPackMSI(mzpack As String)
         Call TaskProgress.RunAction(
@@ -387,7 +391,7 @@ Public Class frmMain : Implements AppHost
                      Dim dataPack = WindowModules.viewer.MSIservice.LoadMSI(mzpack, AddressOf p.SetInfo)
 
                      Call WindowModules.viewer.Invoke(Sub() WindowModules.viewer.LoadRender(dataPack, mzpack))
-                     Call Invoke(Sub() Text = $"BioNovoGene Mzkit [{WindowModules.viewer.Text} {mzpack.FileName}]")
+                     Call Workbench.AppHost.SetTitle($"{WindowModules.viewer.Text} {mzpack.FileName}")
                  End Sub,
             title:="Open mzPack for MSI...",
             info:="Loading MSI raw data file into viewer workspace...")

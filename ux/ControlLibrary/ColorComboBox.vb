@@ -33,8 +33,16 @@ Public Class ColorComboBox : Inherits ComboBox
 
         If e.Index < 0 Then
             Return
-        End If
+        Else
+            Try
+                Call DrawItemInternal(e)
+            Catch ex As Exception
 
+            End Try
+        End If
+    End Sub
+
+    Private Sub DrawItemInternal(e As DrawItemEventArgs)
         Dim color As Color = If(
             getColor Is Nothing,
             DirectCast(Items(e.Index), Color),

@@ -102,6 +102,12 @@ Public Enum ServiceProtocol
     ExtractRegionMs1Spectrum
     ExtractRegionSample
     ExtractMultipleSampleRegions
+
+    ''' <summary>
+    ''' set spot pixels 2d rotation angle data for do matix rotation
+    ''' </summary>
+    SetSpatial2D
+
     ''' <summary>
     ''' Just call for extract the sample pixels point data
     ''' </summary>

@@ -168,11 +168,10 @@
     <ApplicationIcon>Flask.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>5A0504B19E601FDE4F714FA46A7A12E938EC25D1</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>6BEC36C7A93C639F5CB15F4800CDC99809DB351F</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>
-    </ManifestKeyFile>
+    <ManifestKeyFile>mzkit_win32_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -328,6 +327,9 @@
     <WarningLevel>1</WarningLevel>
     <DocumentationFile>mzkit_win32.xml</DocumentationFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.Windows.Form">
       <HintPath>..\dist\Microsoft.VisualStudio.Windows.Form.dll</HintPath>
@@ -471,6 +473,12 @@
     <Compile Include="application\settings\RawFileViewerSettings.vb" />
     <Compile Include="application\VisualStudio.vb" />
     <Compile Include="application\RPackage.vb" />
+    <Compile Include="forms\Inputs\MSImaging\InputMSIRotation.Designer.vb">
+      <DependentUpon>InputMSIRotation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\MSImaging\InputMSIRotation.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\MSImaging\ShowMzBins.Designer.vb">
       <DependentUpon>ShowMzBins.vb</DependentUpon>
     </Compile>
@@ -1165,6 +1173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputXICTarget.resx">
       <DependentUpon>InputXICTarget.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\MSImaging\InputMSIRotation.resx">
+      <DependentUpon>InputMSIRotation.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\MSImaging\ShowMzBins.resx">
       <DependentUpon>ShowMzBins.vb</DependentUpon>
@@ -1902,6 +1913,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="mzkit_win32_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Resources\RE4As8m.jpg" />
   </ItemGroup>
@@ -1932,6 +1944,11 @@
     <None Include="Resources\logging.ico" />
     <None Include="Resources\xobject.ico" />
     <None Include="Resources\3d-object.ico" />
+    <None Include="Resources\mintupdate-checking.png" />
+    <None Include="Resources\mintupdate-error.png" />
+    <None Include="Resources\mintupdate-installing.png" />
+    <None Include="Resources\mintupdate-updates-available.png" />
+    <None Include="Resources\mintupdate-up-to-date.png" />
     <Content Include="RibbonMarkup.h" />
     <Content Include="RibbonMarkup.xml" />
     <None Include="Resources\header-foreground-image.png" />
@@ -1941,7 +1958,7 @@
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 和 x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">

@@ -133,7 +133,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'mzkit_win32|x64'">
     <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\x64\mzkit_win32\</OutputPath>
+    <OutputPath>..\..\..\..\dist\bin\</OutputPath>
     <DefineConstants>_MYFORMS=True</DefineConstants>
     <DocumentationFile>Mzkit_win32.Interaction.xml</DocumentationFile>
     <Optimize>false</Optimize>
@@ -315,10 +315,6 @@
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj">
       <Project>{dee82853-4241-4f24-a096-12923c664369}</Project>
       <Name>Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\assembly\SignalReader\SignalReader.vbproj">
-      <Project>{4491210e-d07d-409b-8028-43e8256c93e0}</Project>
-      <Name>SignalReader</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\mzmath\ms2_math-core\mzmath-netcore5.vbproj">
       <Project>{ab5fd86e-6da9-4f7c-8dce-17da85bc895d}</Project>

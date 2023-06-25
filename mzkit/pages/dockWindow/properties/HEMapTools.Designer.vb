@@ -232,6 +232,8 @@ Partial Class HEMapTools
     Friend WithEvents LinkLabel5 As LinkLabel
     Friend WithEvents TextBox1 As TextBox
 
+    Public WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
+
     Friend WithEvents ToolStripButton1 As ToolStripButton
     Friend WithEvents ToolStripButton2 As ToolStripButton
     Friend WithEvents ToolStripButton3 As ToolStripButton

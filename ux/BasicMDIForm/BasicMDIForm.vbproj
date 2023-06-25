@@ -138,9 +138,6 @@
     <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.1462.37, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Web.WebView2.1.0.1462.37\lib\net45\Microsoft.Web.WebView2.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Windows.FeatureAPI">
-      <HintPath>..\..\dist\Microsoft.Windows.FeatureAPI.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Windows.Ribbon">
       <HintPath>..\..\dist\Microsoft.Windows.Ribbon.dll</HintPath>
     </Reference>
@@ -317,12 +314,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj">
-      <Project>{dee82853-4241-4f24-a096-12923c664369}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
     <None Include="Resources\spinner.gif" />
   </ItemGroup>
@@ -337,6 +328,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Home_Logo_Link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj">
+      <Project>{dee82853-4241-4f24-a096-12923c664369}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\winux\Microsoft.Windows.FeatureAPI\Microsoft.Windows.FeatureAPI.vbproj">
+      <Project>{3d61f3a9-a8e0-4195-9133-6fd8e4b82d54}</Project>
+      <Name>Microsoft.Windows.FeatureAPI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\..\services\mzkit_win32.envir\mzkit_win32.envir.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

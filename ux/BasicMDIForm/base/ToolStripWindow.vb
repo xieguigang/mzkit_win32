@@ -1,10 +1,11 @@
-﻿Public Class ToolStripWindow
+﻿''' <summary>
+''' A method of <see cref="GetMainToolStrip"/> must be overrides
+''' and implemented for get the toolstrip for the external 3rd 
+''' plugin
+''' </summary>
+Public Class ToolStripWindow
 
-    Private Sub ToolStripWindow_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Call ApplyVsTheme(ToolStrip1)
-    End Sub
-
-    Public Function GetMainToolStrip() As ToolStrip
-        Return ToolStrip1
+    Public Overridable Function GetMainToolStrip() As ToolStrip
+        Throw New NotImplementedException
     End Function
 End Class
