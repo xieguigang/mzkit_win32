@@ -667,6 +667,7 @@
     </Compile>
     <Compile Include="forms\ISplashScreenUpdater.vb" />
     <Compile Include="MSdata\Module1.vb" />
+    <Compile Include="MSdata\Module2.vb" />
     <Compile Include="pages\ConnectToBioDeep.vb" />
     <Compile Include="pages\dockWindow\DemoItem.vb" />
     <Compile Include="pages\dockWindow\documents\frm3DMALDIViewer.Designer.vb">
