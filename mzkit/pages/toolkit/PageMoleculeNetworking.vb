@@ -53,6 +53,7 @@
 
 #End Region
 
+Imports System.Runtime.CompilerServices
 Imports System.Threading
 Imports System.Windows.Forms.ListViewItem
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
@@ -64,6 +65,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports BioNovoGene.mzkit_win32.cooldatagridview
+Imports BioNovoGene.mzkit_win32.MSdata
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
@@ -77,9 +79,11 @@ Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Math
 Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Interop
 Imports WeifenLuo.WinFormsUI.Docking
+Imports any = Microsoft.VisualBasic.Scripting
 Imports stdNum = System.Math
 
 Public Class PageMoleculeNetworking
@@ -142,52 +146,32 @@ Public Class PageMoleculeNetworking
         Call viewer.Show(MyApplication.host.m_dockPanel)
     End Sub
 
-    Private Sub showCluster(v As Graph.Node)
-        Dim info As NetworkingNode = nodeInfo.Cluster(v.label)
+    Private Sub showCluster(info As NetworkingNode, vlabel As String)
         Dim raw As PeakMs2() = info.members
         Dim rt As Double() = raw.Select(Function(p) p.rt).ToArray
-        Dim ms1 As New ScanMS1 With {
-            .into = raw.Select(Function(p) p.intensity).ToArray,
-            .mz = raw.Select(Function(p) p.mz).ToArray,
-            .rt = rt.Average,
-            .scan_id = $"[MS1] {v.label}",
-            .TIC = .into.Sum,
-            .BPC = .into.Max,
-            .meta = New Dictionary(Of String, String),
-            .products = raw _
-                .Select(Function(r)
-                            Return New ScanMS2 With {
-                                .activationMethod = [Enum].Parse(GetType(mzData.ActivationMethods), r.activation),
-                                .centroided = True,
-                                .charge = 0,
-                                .collisionEnergy = r.collisionEnergy,
-                                .intensity = r.intensity,
-                                .into = r.mzInto.Select(Function(i) i.intensity).ToArray,
-                                .mz = r.mzInto.Select(Function(i) i.mz).ToArray,
-                                .parentMz = r.mz,
-                                .polarity = 0,
-                                .rt = r.rt,
-                                .scan_id = r.lib_guid
-                            }
-                        End Function) _
-                .ToArray
-        }
+        Dim rt_scan = info.members.GroupBy(Function(a) a.rt, offsets:=5).ToArray
+        Dim ms1 As ScanMS1() = rt_scan.Select(Function(p) p.value.ClusterScan(vlabel)).ToArray
         Dim fakePack As New mzPack With {
             .Application = FileApplicationClass.LCMS,
-            .source = v.ToString,
-            .MS = {ms1}
+            .source = vlabel,
+            .MS = ms1
         }
         Dim fakeRaw As New Raw(inMemory:=fakePack) With {
             .cache = Nothing,
-            .numOfScan1 = 1,
+            .numOfScan1 = ms1.Length,
             .numOfScan2 = raw.Length,
             .rtmax = rt.Max,
             .rtmin = rt.Min,
-            .source = v.ToString
+            .source = vlabel
         }
 
         WindowModules.rawFeaturesList.LoadRaw(fakeRaw)
         VisualStudio.Dock(WindowModules.rawFeaturesList, DockState.DockLeft)
+    End Sub
+
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Private Sub showCluster(v As Graph.Node)
+        Call showCluster(info:=nodeInfo.Cluster(v.label), vlabel:=v.label)
     End Sub
 
     Public Sub RefreshNetwork()
@@ -257,6 +241,7 @@ Public Class PageMoleculeNetworking
         Dim edgeProps As EdgeData
         Dim score As (forward As Double, reverse As Double)
 
+        ' show molecular network links in the table UI
         For Each row As EntityClusterModel In rawMatrix
             Dim rawLink As LinkSet = rawLinks(row.ID)
 
@@ -278,7 +263,11 @@ Public Class PageMoleculeNetworking
             Next
         Next
 
-        If g.graphEdges.Count >= 8000 AndAlso MessageBox.Show("There are two many edges in your network, do you wan to increase the similarity threshold for reduce network size?", "To many edges", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+        If g.graphEdges.Count >= 8000 AndAlso MessageBox.Show("There are two many edges in your network, do you wan to increase the similarity threshold for reduce network size?",
+                                                              "To many edges",
+                                                              MessageBoxButtons.YesNo,
+                                                              MessageBoxIcon.Question) = DialogResult.Yes Then
+
             MyApplication.host.ribbonItems.SpinnerSimilarity.DecimalValue = 0.98
             Call RefreshNetwork()
             Return
@@ -287,12 +276,15 @@ Public Class PageMoleculeNetworking
         Call g.ComputeNodeDegrees
         Call g.ComputeBetweennessCentrality
 
-        For Each node In g.vertex
+        ' show the molecular cluster graph nodes in the table UI
+        For Each node As Graph.Node In g.vertex
             Dim info = nodeInfo.Cluster(node.label)
-
-            ' DataGridView2.Rows.Add(node.label, node.data(NamesOf.REFLECTION_ID_MAPPING_NODETYPE), info.members.Length, info.mz, node.data("rt"), node.data("rtmin"), node.data("rtmax"), node.data("area"))
-
-            Dim row As New TreeListViewItem With {.Text = node.label, .ImageIndex = 0, .ToolTipText = node.label}
+            ' create UI for cluster node
+            Dim row As New TreeListViewItem With {
+                .Text = node.label,
+                .ImageIndex = 0,
+                .ToolTipText = node.label
+            }
 
             For Each member In info.members
                 Dim ion As New TreeListViewItem(member.lib_guid) With {.ImageIndex = 1, .ToolTipText = member.lib_guid}
@@ -348,8 +340,8 @@ Public Class PageMoleculeNetworking
                     Dim meta As New Dictionary(Of String, String)
 
                     For i As Integer = 0 To DataGridView2.Rows.Count - 1
-                        Dim key As String = Scripting.ToString(DataGridView2.Rows(i).Cells(0).Value)
-                        Dim val As String = Scripting.ToString(DataGridView2.Rows(i).Cells(1).Value)
+                        Dim key As String = any.ToString(DataGridView2.Rows(i).Cells(0).Value)
+                        Dim val As String = any.ToString(DataGridView2.Rows(i).Cells(1).Value)
 
                         meta(key) = val
                     Next
@@ -367,11 +359,39 @@ Public Class PageMoleculeNetworking
                 End If
             End Using
         Else
-            MessageBox.Show("No network graph Object Is found! Please GoTo raw file viewer page And Select a raw file To run [Molecule Networking] analysis!", "No network graph object!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("No network graph Object Is found! Please GoTo raw file viewer page And Select a raw file To run [Molecule Networking] analysis!",
+                            "No network graph object!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
-    Private Sub SaveImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveImageToolStripMenuItem.Click
+    ''' <summary>
+    ''' show cluster member spectrum into the feature explorer
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ShowSpectrumToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowSpectrumToolStripMenuItem.Click
+        Dim cluster As TreeListViewItem
+        Dim host = MyApplication.host
+        Dim v As NetworkingNode
+
+        If TreeListView1.SelectedItems.Count = 0 Then
+            Return
+        Else
+            cluster = TreeListView1.SelectedItems(0)
+        End If
+
+        If cluster.ChildrenCount > 0 Then
+            ' 是一个cluster
+            v = nodeInfo.Cluster(cluster.Text)
+        Else
+            ' 是一个spectrum
+            v = nodeInfo.Cluster(cluster.Parent.Text)
+        End If
+
+        Call showCluster(v, v.referenceId)
+    End Sub
+
+    Private Sub SaveImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowImageToolStripMenuItem.Click
         Dim cluster As TreeListViewItem
         Dim host = MyApplication.host
 
@@ -402,10 +422,12 @@ Public Class PageMoleculeNetworking
     End Sub
 
     Private Sub PageMoleculeNetworking_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
+        Dim mnTools = MyApplication.host.ribbonItems.TabGroupNetworkTools
+
         If Visible Then
-            MyApplication.host.ribbonItems.TabGroupNetworkTools.ContextAvailable = ContextAvailability.Active
+            mnTools.ContextAvailable = ContextAvailability.Active
         Else
-            MyApplication.host.ribbonItems.TabGroupNetworkTools.ContextAvailable = ContextAvailability.NotAvailable
+            mnTools.ContextAvailable = ContextAvailability.NotAvailable
         End If
     End Sub
 

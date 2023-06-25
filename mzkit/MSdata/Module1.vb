@@ -1,9 +1,11 @@
-﻿Imports System.Runtime.CompilerServices
+﻿Imports System.Reflection.Emit
+Imports System.Runtime.CompilerServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
@@ -13,6 +15,38 @@ Imports Mzkit_win32.BasicMDIForm
 Namespace MSdata
 
     Module Module1
+
+        <Extension>
+        Public Function ClusterScan(raw As PeakMs2(), scan_id As String) As ScanMS1
+            Dim rt As Double() = raw.Select(Function(p) p.rt).ToArray
+
+            Return New ScanMS1 With {
+                .into = raw.Select(Function(p) p.intensity).ToArray,
+                .mz = raw.Select(Function(p) p.mz).ToArray,
+                .rt = rt.Average,
+                .scan_id = $"[MS1] tgroup={ .rt.ToString("F4")}; {scan_id}",
+                .TIC = .into.Sum,
+                .BPC = .into.Max,
+                .meta = New Dictionary(Of String, String),
+                .products = raw _
+                    .Select(Function(r)
+                                Return New ScanMS2 With {
+                                    .activationMethod = [Enum].Parse(GetType(mzData.ActivationMethods), r.activation),
+                                    .centroided = True,
+                                    .charge = 0,
+                                    .collisionEnergy = r.collisionEnergy,
+                                    .intensity = r.intensity,
+                                    .into = r.mzInto.Select(Function(i) i.intensity).ToArray,
+                                    .mz = r.mzInto.Select(Function(i) i.mz).ToArray,
+                                    .parentMz = r.mz,
+                                    .polarity = 0,
+                                    .rt = r.rt,
+                                    .scan_id = r.lib_guid
+                                }
+                            End Function) _
+                    .ToArray
+            }
+        End Function
 
         ''' <summary>
         ''' get XIC Chromatogram collection
