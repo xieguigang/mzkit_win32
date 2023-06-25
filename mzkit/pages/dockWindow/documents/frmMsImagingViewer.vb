@@ -1443,7 +1443,9 @@ Public Class frmMsImagingViewer
         Dim getSize As New InputMSIDimension
         Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
 
-        If RawScanParser.IsMRMData(file) Then
+        ' MRM data only works for the mzML file
+        ' mzXML not able to contains the ion pair data
+        If file.ExtensionSuffix("mzml") AndAlso RawScanParser.IsMRMData(file) Then
             Call New Thread(
                 Sub()
                     Call Thread.Sleep(1000)
