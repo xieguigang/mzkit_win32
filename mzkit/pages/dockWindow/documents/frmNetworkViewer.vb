@@ -58,6 +58,7 @@ Imports System.Text
 Imports BioNovoGene.mzkit_win32.My
 Imports ControlLibrary.Ligy
 Imports Microsoft.VisualBasic.ApplicationServices
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.visualize.Network
 Imports Microsoft.VisualBasic.Data.visualize.Network.Canvas
 Imports Microsoft.VisualBasic.Data.visualize.Network.FileStream
@@ -107,8 +108,12 @@ Public Class frmNetworkViewer
 
     Private Sub ConfigLayoutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConfigLayoutToolStripMenuItem.Click
         Dim settings As New InputNetworkLayout
+        Dim range As New DoubleRange(settings.TrackBar1.Minimum, settings.TrackBar1.Maximum)
 
-        settings.TrackBar1.Value = Canvas1.ViewDistance
+        If range.IsInside(Canvas1.ViewDistance) Then
+            settings.TrackBar1.Value = Canvas1.ViewDistance
+        End If
+
         MyApplication.LogText($"view distance: {Canvas1.ViewDistance}")
 
         Call InputDialog.Input(Of InputNetworkLayout)(
