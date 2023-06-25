@@ -73,10 +73,10 @@ Public Class frmUserAgreement
     End Sub
 
     Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
-        Process.Start("https://mzkit.org/zh/")
+        Call Invoke(Sub() Call Process.Start("https://mzkit.org/zh/"))
     End Sub
 
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
-        Process.Start("https://mzkit.org/HISTORY.html")
+        Call Invoke(Sub() Call Process.Start("https://mzkit.org/HISTORY.html"))
     End Sub
 End Class
