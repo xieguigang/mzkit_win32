@@ -187,6 +187,12 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
     End Function
 
+    ''' <summary>
+    ''' this method required a size parameter for fold the raw scans into 2D matrix
+    ''' </summary>
+    ''' <param name="request"></param>
+    ''' <param name="remoteAddress"></param>
+    ''' <returns></returns>
     <Protocol(ServiceProtocol.LoadThermoRawMSI)>
     Public Function loadMzML(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
         ' $"{dimSize.Width},{dimSize.Height}={raw}"

@@ -1443,7 +1443,9 @@ Public Class frmMsImagingViewer
         Dim getSize As New InputMSIDimension
         Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
 
-        If RawScanParser.IsMRMData(file) Then
+        ' MRM data only works for the mzML file
+        ' mzXML not able to contains the ion pair data
+        If file.ExtensionSuffix("mzml") AndAlso RawScanParser.IsMRMData(file) Then
             Call New Thread(
                 Sub()
                     Call Thread.Sleep(1000)
@@ -1458,24 +1460,60 @@ Public Class frmMsImagingViewer
             guid = file.MD5
             FilePath = file
 
+            ' convert raw to mzpack at first
+            Dim tempCache As String = TempFileSystem.GetAppSysTempFile(".mzPack", sessionID:="", prefix:="RAW_VENDOR").ParentPath & $"/{guid}.mzPack"
+
+            If tempCache.FileLength <= 1024 Then
+                ' do raw vendor file format converts
+                Call TaskProgress.RunAction(run:=Sub() Call PipelineTask.ConvertRaw(FilePath, tempCache),
+                                            title:="Pre-processing",
+                                            info:="Make data cache of the vendor raw data file...")
+            End If
+
             Call WindowModules.viewer.Show(DockPanel)
             Call WindowModules.msImageParameters.Show(DockPanel)
             Call ServiceHub.MSIDataService.StartMSIService(MSIservice)
 
-            Call ProgressSpinner.DoLoading(
+            Call TaskProgress.RunAction(
                 Sub()
-                    Dim info As MsImageProperty = MSIservice.LoadMSI(file, getSize.Dims.SizeParser, AddressOf Workbench.StatusMessage)
+                    Dim info As MsImageProperty = MSIservice.LoadMSI(tempCache, getSize.Dims.SizeParser, AddressOf Workbench.StatusMessage)
 
                     Call WindowModules.viewer.Invoke(Sub() Call LoadRender(info, file))
-                    Call WindowModules.viewer.Invoke(Sub() WindowModules.viewer.DockState = DockState.Document)
-                    Call Workbench.AppHost.SetTitle($"{WindowModules.viewer.Text} {file.FileName}")
-                End Sub)
+                    Call WindowModules.viewer.Invoke(Sub() Call MSIViewerInit0(file))
+                End Sub, title:="Load MS-Imaging Raw", info:=$"Loading [{FilePath}]...")
 
             WindowModules.msImageParameters.DockState = DockState.DockLeft
         Else
             Call Workbench.StatusMessage("User cancel load MSI raw data file...", My.Resources.mintupdate_installing)
         End If
     End Sub
+
+    Const GB As Long = 1024 * 1024 * 1024
+
+    Friend Function MSIViewerInit0(rawfile As String) As String
+        If rawfile.FileLength > 1.5 * GB Then
+            If MessageBox.Show("The raw data file size is too big, MZKit may takes a very long time to rendering, continute to display the default MS-imaging rendering?",
+                               "Display MS-Imaging",
+                               MessageBoxButtons.OKCancel,
+                               MessageBoxIcon.Exclamation) = DialogResult.OK Then
+
+                WindowModules.viewer.RenderSummary(IntensitySummary.BasePeak)
+            Else
+                WindowModules.viewer.SetBlank()
+            End If
+        Else
+            WindowModules.viewer.RenderSummary(IntensitySummary.BasePeak)
+        End If
+
+        guid = rawfile.MD5
+
+        WindowModules.viewer.DockState = DockState.Document
+        WindowModules.msImageParameters.DockState = DockState.DockLeft
+
+        Call Workbench.AppHost.SetTitle($"{WindowModules.viewer.Text} {rawfile.FileName}")
+
+        Return guid
+    End Function
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Sub loadimzML(file As String)

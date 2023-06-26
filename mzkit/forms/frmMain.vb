@@ -338,8 +338,6 @@ Public Class frmMain : Implements AppHost
         _uiCollectionChangedEvent = New UICollectionChangedEvent()
     End Sub
 
-    Const GB As Long = 1024 * 1024 * 1024
-
     Friend Function showMsImaging(imzML As String) As String
         WindowModules.viewer.Show(m_dockPanel)
         WindowModules.msImageParameters.Show(m_dockPanel)
@@ -362,24 +360,7 @@ Public Class frmMain : Implements AppHost
             Workbench.AppHost.SetTitle($"{WindowModules.viewer.Text} {imzML.FileName}")
         End If
 
-        If imzML.FileLength > 1.5 * GB Then
-            If MessageBox.Show("The raw data file size is too big, MZKit may takes a very long time to rendering, continute to display the default MS-imaging rendering?",
-                               "Display MS-Imaging",
-                               MessageBoxButtons.OKCancel,
-                               MessageBoxIcon.Exclamation) = DialogResult.OK Then
-
-                WindowModules.viewer.RenderSummary(IntensitySummary.BasePeak)
-            Else
-                WindowModules.viewer.SetBlank()
-            End If
-        Else
-            WindowModules.viewer.RenderSummary(IntensitySummary.BasePeak)
-        End If
-
-        WindowModules.viewer.DockState = DockState.Document
-        WindowModules.msImageParameters.DockState = DockState.DockLeft
-
-        Return imzML.MD5
+        Return WindowModules.viewer.MSIViewerInit0(imzML)
     End Function
 
     Friend Sub showMzPackMSI(mzpack As String)
