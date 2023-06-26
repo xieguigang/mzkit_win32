@@ -38,10 +38,10 @@
     <ROW Property="CTRLS" Value="3"/>
     <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1028:{BAEFC729-840E-4D0E-BDC2-9D1F4144B6E9} 1033:{BAEFC729-840E-4D0E-BDC2-9D1F4144B6E9} 1036:{BAEFC729-840E-4D0E-BDC2-9D1F4144B6E9} 1041:{BAEFC729-840E-4D0E-BDC2-9D1F4144B6E9} 1049:{BAEFC729-840E-4D0E-BDC2-9D1F4144B6E9} 2052:{BAEFC729-840E-4D0E-BDC2-9D1F4144B6E9} 2057:{BAEFC729-840E-4D0E-BDC2-9D1F4144B6E9} " Type="16"/>
+    <ROW Property="ProductCode" Value="1028:{DA4DA032-9315-4D3F-A1F7-D7D988B6B726} 1033:{DA4DA032-9315-4D3F-A1F7-D7D988B6B726} 1036:{DA4DA032-9315-4D3F-A1F7-D7D988B6B726} 1041:{DA4DA032-9315-4D3F-A1F7-D7D988B6B726} 1049:{DA4DA032-9315-4D3F-A1F7-D7D988B6B726} 2052:{DA4DA032-9315-4D3F-A1F7-D7D988B6B726} 2057:{DA4DA032-9315-4D3F-A1F7-D7D988B6B726} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="mzkit_win32"/>
-    <ROW Property="ProductVersion" Value="4.5.144.356" Options="32"/>
+    <ROW Property="ProductVersion" Value="4.5.144.3584" Options="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{B645400B-3918-41EF-9009-7ADDD81C84B4}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -183,7 +183,7 @@
     <ROW Directory="zhHant_Dir" Directory_Parent="APPDIR" DefaultDir="zh-Hant"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{1F5DEFA7-4D24-4B1D-B8B4-1AF1BB1C7DC3}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{1321C5D3-A7FF-4738-8913-8487CD143B47}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{69AA9FFE-67B1-456B-88EB-97D3D6C92AA7}" Directory_="APPDIR" Attributes="256"/>
     <ROW Component="BioDeep.dll" ComponentId="{2FECE77D-517F-47B1-97BA-15B1100BE489}" Directory_="APPDIR" Attributes="256" KeyPath="BioDeep.dll"/>
     <ROW Component="BioDeep.dll_1" ComponentId="{8274C55C-D52A-4F5B-A268-505929309095}" Directory_="host_Dir" Attributes="256" KeyPath="BioDeep.dll_1"/>
@@ -576,7 +576,7 @@
     <ROW Component="Mzkit_win32.Interaction.pdb" ComponentId="{E64F4EF7-1789-4EAC-8827-3C0B780C5288}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.Interaction.pdb" Type="4"/>
     <ROW Component="Mzkit_win32.Interaction.resources.dll" ComponentId="{3035B09F-2371-402C-9D04-D341E03835AB}" Directory_="enUS_Dir" Attributes="256" KeyPath="Mzkit_win32.Interaction.resources.dll"/>
     <ROW Component="Mzkit_win32.Interaction.resources.dll_1" ComponentId="{7FF290C8-A166-47BC-B831-B31802DC747D}" Directory_="zhCN_Dir" Attributes="256" KeyPath="Mzkit_win32.Interaction.resources.dll_1"/>
-    <ROW Component="Mzkit_win32.LCMSViewer.dll" ComponentId="{A4C3B514-7823-419B-A68C-0B933FBC41EA}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.LCMSViewer.pdb"/>
+    <ROW Component="Mzkit_win32.LCMSViewer.dll" ComponentId="{A4C3B514-7823-419B-A68C-0B933FBC41EA}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.LCMSViewer.pdb" Type="4"/>
     <ROW Component="Mzkit_win32.LCMSViewer.dll_1" ComponentId="{8F3BE771-5359-457E-B5AD-B1F64DA80AB6}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.LCMSViewer.dll"/>
     <ROW Component="Mzkit_win32.MSImagingViewerV2.dll" ComponentId="{97B8F2A2-5753-454D-B986-A059D567878D}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.MSImagingViewerV2.dll"/>
     <ROW Component="Mzkit_win32.MSImagingViewerV2.pdb" ComponentId="{C522C59A-AE85-4113-AE5B-BEA7C0D72739}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.MSImagingViewerV2.pdb" Type="4"/>
@@ -6314,7 +6314,7 @@
     <ATTRIBUTE name="UsedTheme" value="azure"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiUpgradeComponent">
-    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="0.0.1" VersionMax="[|ProductVersion]" Attributes="257" ActionProperty="OLDPRODUCTS"/>
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="0.0.1" VersionMax="[|ProductVersion]" Attributes="769" ActionProperty="OLDPRODUCTS"/>
     <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiVerbComponent">
@@ -6392,7 +6392,7 @@
     <ROW XmlElement="swidregid" ParentElement="swidsoftware_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2013-01.com.panomix" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_5" ParentElement="swidsoftware_licensor" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2019-11.org.mzkit" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_6" ParentElement="swidtag_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.1995-09.me.xieguigang,gg.xie@bionovogene.com" UpdateIndexInParent="0"/>
-    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="356" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="3584" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidserial_number" ParentElement="swidsoftware_identification_tag" Name="swid:serial_number" Condition="1" Order="7" Flags="14" Text="[PIDKEY]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_creator" ParentElement="swidsoftware_identification_tag" Name="swid:software_creator" Condition="1" Order="3" Flags="14" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_id" ParentElement="swidsoftware_identification_tag" Name="swid:software_id" Condition="1" Order="5" Flags="14" UpdateIndexInParent="0"/>
