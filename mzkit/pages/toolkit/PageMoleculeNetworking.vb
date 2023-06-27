@@ -86,7 +86,6 @@ Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
-Imports Microsoft.VisualBasic.MIME.application.pdf
 Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Interop
 Imports TaskStream
@@ -102,11 +101,7 @@ Public Class PageMoleculeNetworking
     Dim rawLinks As Dictionary(Of String, LinkSet)
     Dim tooltip As New PlotTooltip
 
-    Shared Sub New()
-        AddHandler ribbonItems.ButtonRenderUMAPScatter.ExecuteEvent, Sub() Call RunUMAP()
-    End Sub
-
-    Private Shared Sub RunUMAP()
+    Public Shared Sub RunUMAP()
         Dim MNtool = MyApplication.host.mzkitMNtools
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".csv", sessionID:=App.PID.ToHexString, prefix:="MNTools_clusters_")
 

@@ -190,6 +190,7 @@ Module RibbonEvents
         AddHandler ribbonItems.ButtonOpenServicesMgr.ExecuteEvent, Sub() Call VisualStudio.ShowSingleDocument(Of frmServicesManager)()
 
         AddHandler ribbonItems.ButtonImport10x_genomics.ExecuteEvent, Sub() Call ConvertH5ad()
+        AddHandler ribbonItems.ButtonRenderUMAPScatter.ExecuteEvent, Sub() Call PageMoleculeNetworking.RunUMAP()
     End Sub
 
     Sub New()
