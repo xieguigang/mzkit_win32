@@ -99,6 +99,7 @@ Namespace RibbonLib.Controls
             Public Const cmdGroupNetwork As UInteger = 1083
             Public Const cmdButtonNetworkExport As UInteger = 1084
             Public Const cmdButtonNetworkRender As UInteger = 1085
+            Public Const cmdButtonRenderUMAPScatter As UInteger = 226
             Public Const cmdGroupNetworkTools As UInteger = 1151
             Public Const cmdSpinnerSimilarity As UInteger = 1153
             Public Const cmdGroupNetworkRenderTool As UInteger = 1150
@@ -739,6 +740,12 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonNetworkRender As RibbonButton
             Get
                 Return _ButtonNetworkRender
+            End Get
+        End Property
+        Private _ButtonRenderUMAPScatter As RibbonButton
+        Public ReadOnly Property ButtonRenderUMAPScatter As RibbonButton
+            Get
+                Return _ButtonRenderUMAPScatter
             End Get
         End Property
         Private _GroupNetworkTools As RibbonGroup
@@ -1563,6 +1570,7 @@ Namespace RibbonLib.Controls
             _GroupNetwork = New RibbonGroup(_ribbon, Cmd.cmdGroupNetwork)
             _ButtonNetworkExport = New RibbonButton(_ribbon, Cmd.cmdButtonNetworkExport)
             _ButtonNetworkRender = New RibbonButton(_ribbon, Cmd.cmdButtonNetworkRender)
+            _ButtonRenderUMAPScatter = New RibbonButton(_ribbon, Cmd.cmdButtonRenderUMAPScatter)
             _GroupNetworkTools = New RibbonGroup(_ribbon, Cmd.cmdGroupNetworkTools)
             _SpinnerSimilarity = New RibbonSpinner(_ribbon, Cmd.cmdSpinnerSimilarity)
             _GroupNetworkRenderTool = New RibbonGroup(_ribbon, Cmd.cmdGroupNetworkRenderTool)
