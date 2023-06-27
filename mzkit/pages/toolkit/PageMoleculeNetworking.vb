@@ -409,19 +409,47 @@ Public Class PageMoleculeNetworking
             Dim clusterId As String = cluster.Text
             Dim clusterSpectrum = nodeInfo.Cluster(clusterId).representation
 
-            host.mzkitTool.showMatrix(clusterSpectrum.ms2, clusterId)
-            host.mzkitTool.PictureBox1.BackgroundImage = MassSpectra.MirrorPlot(clusterSpectrum).AsGDIImage
+            Call PageMzkitTools.ShowSpectral(clusterSpectrum)
         Else
             ' 是一个spectrum
             Dim spectrumName As String = cluster.Text
             Dim spectrum = nodeInfo.GetSpectrum(spectrumName)
 
-            host.mzkitTool.showMatrix(spectrum.mzInto, spectrumName)
-            host.mzkitTool.PictureBox1.BackgroundImage = MassSpectra.MirrorPlot(New LibraryMatrix With {.ms2 = spectrum.mzInto, .name = spectrumName}).AsGDIImage
+            Call PageMzkitTools.ShowSpectral(spectrum)
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' Show current spectrum alignment with the cluster representive spectrum
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ShowClusterAlignmentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowClusterAlignmentToolStripMenuItem.Click
+        Dim cluster As TreeListViewItem
+        Dim host = MyApplication.host
+
+        If TreeListView1.SelectedItems.Count = 0 Then
+            Return
+        Else
+            cluster = TreeListView1.SelectedItems(0)
         End If
 
-        host.mzkitTool.CustomTabControl1.SelectedTab = host.mzkitTool.TabPage5
-        host.ShowPage(host.mzkitTool)
+        If cluster.ChildrenCount > 0 Then
+            ' is a cluster, not working for the cluster
+            Return
+        End If
+
+        ' get spectrum data
+        Dim spectrumName As String = cluster.Text
+        Dim spectrum = nodeInfo.GetSpectrum(spectrumName)
+        Dim clusterId = cluster.Parent.Text
+        Dim cluster_representive = nodeInfo.Cluster(clusterId).representation
+        ' create spectrum matrix alignment
+        Dim alignment As AlignmentOutput = AlignmentProvider _
+            .Cosine(Tolerance.DeltaMass(0.3), New RelativeIntensityCutoff(0.05)) _
+            .CreateAlignment(spectrum, cluster_representive)
+
+        Call MyApplication.host.mzkitTool.showAlignment(alignment, showScore:=True)
     End Sub
 
     Private Sub PageMoleculeNetworking_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged

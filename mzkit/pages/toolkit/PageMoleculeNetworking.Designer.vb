@@ -106,6 +106,8 @@ Partial Class PageMoleculeNetworking
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ShowClusterAlignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -198,6 +200,7 @@ Partial Class PageMoleculeNetworking
         '
         'TreeListView1
         '
+        Me.TreeListView1.Alignment = System.Windows.Forms.ListViewAlignment.[Default]
         Me.TreeListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5, Me.ColumnHeader6, Me.ColumnHeader7, Me.ColumnHeader8})
         TreeListViewItemCollectionComparer1.Column = 0
         TreeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending
@@ -259,22 +262,22 @@ Partial Class PageMoleculeNetworking
         '
         'ctxCluster
         '
-        Me.ctxCluster.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowImageToolStripMenuItem, Me.ShowSpectrumToolStripMenuItem})
+        Me.ctxCluster.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowImageToolStripMenuItem, Me.ShowClusterAlignmentToolStripMenuItem, Me.ToolStripMenuItem1, Me.ShowSpectrumToolStripMenuItem})
         Me.ctxCluster.Name = "ctxCluster"
         Me.ctxCluster.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.ctxCluster.Size = New System.Drawing.Size(195, 48)
+        Me.ctxCluster.Size = New System.Drawing.Size(203, 98)
         '
         'ShowImageToolStripMenuItem
         '
         Me.ShowImageToolStripMenuItem.Image = Global.BioNovoGene.mzkit_win32.My.Resources.Resources.preferences_system_notifications
         Me.ShowImageToolStripMenuItem.Name = "ShowImageToolStripMenuItem"
-        Me.ShowImageToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
+        Me.ShowImageToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
         Me.ShowImageToolStripMenuItem.Text = "Show Image"
         '
         'ShowSpectrumToolStripMenuItem
         '
         Me.ShowSpectrumToolStripMenuItem.Name = "ShowSpectrumToolStripMenuItem"
-        Me.ShowSpectrumToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
+        Me.ShowSpectrumToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
         Me.ShowSpectrumToolStripMenuItem.Text = "Load Cluster Spectrum"
         '
         'ImageList1
@@ -315,6 +318,17 @@ Partial Class PageMoleculeNetworking
         Me.Column3.HeaderText = "Value"
         Me.Column3.Name = "Column3"
         Me.Column3.ReadOnly = True
+        '
+        'ShowClusterAlignmentToolStripMenuItem
+        '
+        Me.ShowClusterAlignmentToolStripMenuItem.Name = "ShowClusterAlignmentToolStripMenuItem"
+        Me.ShowClusterAlignmentToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
+        Me.ShowClusterAlignmentToolStripMenuItem.Text = "Show Cluster Alignment"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(199, 6)
         '
         'PageMoleculeNetworking
         '
@@ -362,4 +376,6 @@ Partial Class PageMoleculeNetworking
     Friend WithEvents ctxCluster As ContextMenuStrip
     Friend WithEvents ShowImageToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ShowSpectrumToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ShowClusterAlignmentToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
 End Class
