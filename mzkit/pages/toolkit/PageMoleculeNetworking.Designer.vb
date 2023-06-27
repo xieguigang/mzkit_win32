@@ -98,21 +98,21 @@ Partial Class PageMoleculeNetworking
         Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader7 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader8 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ctxCluster = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ShowImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ShowSpectrumToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ctxCluster = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ShowImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ShowSpectrumToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
+        Me.ctxCluster.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ctxCluster.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -257,6 +257,25 @@ Partial Class PageMoleculeNetworking
         Me.ColumnHeader8.Text = "area"
         Me.ColumnHeader8.Width = 117
         '
+        'ctxCluster
+        '
+        Me.ctxCluster.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowImageToolStripMenuItem, Me.ShowSpectrumToolStripMenuItem})
+        Me.ctxCluster.Name = "ctxCluster"
+        Me.ctxCluster.Size = New System.Drawing.Size(209, 70)
+        '
+        'ShowImageToolStripMenuItem
+        '
+        Me.ShowImageToolStripMenuItem.Image = Global.BioNovoGene.mzkit_win32.My.Resources.Resources.preferences_system_notifications
+        Me.ShowImageToolStripMenuItem.Name = "ShowImageToolStripMenuItem"
+        Me.ShowImageToolStripMenuItem.Size = New System.Drawing.Size(208, 22)
+        Me.ShowImageToolStripMenuItem.Text = "Show Image"
+        '
+        'ShowSpectrumToolStripMenuItem
+        '
+        Me.ShowSpectrumToolStripMenuItem.Name = "ShowSpectrumToolStripMenuItem"
+        Me.ShowSpectrumToolStripMenuItem.Size = New System.Drawing.Size(208, 22)
+        Me.ShowSpectrumToolStripMenuItem.Text = "Load Cluster Spectrum"
+        '
         'ImageList1
         '
         Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
@@ -296,26 +315,6 @@ Partial Class PageMoleculeNetworking
         Me.Column3.Name = "Column3"
         Me.Column3.ReadOnly = True
         '
-        'ctxCluster
-        '
-        Me.ctxCluster.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowImageToolStripMenuItem, Me.ShowSpectrumToolStripMenuItem})
-        Me.ctxCluster.Name = "ctxCluster"
-        Me.ctxCluster.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.ctxCluster.Size = New System.Drawing.Size(195, 70)
-        '
-        'ShowImageToolStripMenuItem
-        '
-        Me.ShowImageToolStripMenuItem.Image = Global.BioNovoGene.mzkit_win32.My.Resources.Resources.preferences_system_notifications
-        Me.ShowImageToolStripMenuItem.Name = "ShowImageToolStripMenuItem"
-        Me.ShowImageToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
-        Me.ShowImageToolStripMenuItem.Text = "Show Image"
-        '
-        'ShowSpectrumToolStripMenuItem
-        '
-        Me.ShowSpectrumToolStripMenuItem.Name = "ShowSpectrumToolStripMenuItem"
-        Me.ShowSpectrumToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
-        Me.ShowSpectrumToolStripMenuItem.Text = "Load Cluster Spectrum"
-        '
         'PageMoleculeNetworking
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -328,9 +327,9 @@ Partial Class PageMoleculeNetworking
         Me.TabPage1.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage3.ResumeLayout(False)
+        Me.ctxCluster.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ctxCluster.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
