@@ -144,8 +144,9 @@ Public Class PageMoleculeNetworking
         Call viewer.LoadScatter(
             data:=scatter,
             onclick:=Sub(id)
-                         Call Workbench.LogText($"View spectrum cluster: {id}")
+                         Call Workbench.StatusMessage($"View spectrum cluster: {id}", My.Resources.mintupdate_up_to_date)
                          Call MNtool.showCluster(info:=clusters.Cluster(id), vlabel:=id)
+                         Call PageMzkitTools.ShowSpectral(clusters.Cluster(id).representation)
                      End Sub)
         Call VisualStudio.ShowDocument(viewer)
     End Sub
