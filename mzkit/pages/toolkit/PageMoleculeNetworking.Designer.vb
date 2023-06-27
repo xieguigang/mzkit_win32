@@ -100,12 +100,15 @@ Partial Class PageMoleculeNetworking
         Me.ColumnHeader8 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ctxCluster = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ShowImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ShowClusterAlignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ShowSpectrumToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ExportClusterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -198,13 +201,14 @@ Partial Class PageMoleculeNetworking
         '
         'TreeListView1
         '
+        Me.TreeListView1.Alignment = System.Windows.Forms.ListViewAlignment.[Default]
         Me.TreeListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5, Me.ColumnHeader6, Me.ColumnHeader7, Me.ColumnHeader8})
         TreeListViewItemCollectionComparer1.Column = 0
         TreeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending
         Me.TreeListView1.Comparer = TreeListViewItemCollectionComparer1
         Me.TreeListView1.ContextMenuStrip = Me.ctxCluster
         Me.TreeListView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TreeListView1.Font = New System.Drawing.Font("微软雅黑", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TreeListView1.Font = New System.Drawing.Font("Microsoft YaHei UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.TreeListView1.GridLines = True
         Me.TreeListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
         Me.TreeListView1.HideSelection = False
@@ -259,9 +263,10 @@ Partial Class PageMoleculeNetworking
         '
         'ctxCluster
         '
-        Me.ctxCluster.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowImageToolStripMenuItem, Me.ShowSpectrumToolStripMenuItem})
+        Me.ctxCluster.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowImageToolStripMenuItem, Me.ShowClusterAlignmentToolStripMenuItem, Me.ToolStripMenuItem1, Me.ShowSpectrumToolStripMenuItem, Me.ExportClusterToolStripMenuItem})
         Me.ctxCluster.Name = "ctxCluster"
-        Me.ctxCluster.Size = New System.Drawing.Size(209, 70)
+        Me.ctxCluster.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
+        Me.ctxCluster.Size = New System.Drawing.Size(203, 120)
         '
         'ShowImageToolStripMenuItem
         '
@@ -274,6 +279,24 @@ Partial Class PageMoleculeNetworking
         '
         Me.ShowSpectrumToolStripMenuItem.Name = "ShowSpectrumToolStripMenuItem"
         Me.ShowSpectrumToolStripMenuItem.Size = New System.Drawing.Size(208, 22)
+        Me.ShowImageToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
+        Me.ShowImageToolStripMenuItem.Text = "Show Image"
+        '
+        'ShowClusterAlignmentToolStripMenuItem
+        '
+        Me.ShowClusterAlignmentToolStripMenuItem.Name = "ShowClusterAlignmentToolStripMenuItem"
+        Me.ShowClusterAlignmentToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
+        Me.ShowClusterAlignmentToolStripMenuItem.Text = "Show Cluster Alignment"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(199, 6)
+        '
+        'ShowSpectrumToolStripMenuItem
+        '
+        Me.ShowSpectrumToolStripMenuItem.Name = "ShowSpectrumToolStripMenuItem"
+        Me.ShowSpectrumToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
         Me.ShowSpectrumToolStripMenuItem.Text = "Load Cluster Spectrum"
         '
         'ImageList1
@@ -314,6 +337,12 @@ Partial Class PageMoleculeNetworking
         Me.Column3.HeaderText = "Value"
         Me.Column3.Name = "Column3"
         Me.Column3.ReadOnly = True
+        '
+        'ExportClusterToolStripMenuItem
+        '
+        Me.ExportClusterToolStripMenuItem.Name = "ExportClusterToolStripMenuItem"
+        Me.ExportClusterToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
+        Me.ExportClusterToolStripMenuItem.Text = "Export Cluster"
         '
         'PageMoleculeNetworking
         '
@@ -361,4 +390,7 @@ Partial Class PageMoleculeNetworking
     Friend WithEvents ctxCluster As ContextMenuStrip
     Friend WithEvents ShowImageToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ShowSpectrumToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ShowClusterAlignmentToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
+    Friend WithEvents ExportClusterToolStripMenuItem As ToolStripMenuItem
 End Class

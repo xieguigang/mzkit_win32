@@ -12,6 +12,10 @@ if ("class" in colnames(data)) {
 	labels          = data$class;
 	data[, "class"] = NULL;
 }
+if ("Cluster" in colnames(data)) {
+	labels            = data$Cluster;
+	data[, "Cluster"] = NULL;
+}
 
 let dim3 = data |> umap( 
 	dimension         = 3, 

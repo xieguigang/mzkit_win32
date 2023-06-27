@@ -57,19 +57,24 @@ Imports System.Runtime.CompilerServices
 Imports System.Threading
 Imports System.Windows.Forms.ListViewItem
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports BioNovoGene.mzkit_win32.cooldatagridview
 Imports BioNovoGene.mzkit_win32.MSdata
 Imports BioNovoGene.mzkit_win32.My
+Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
+Imports Microsoft.VisualBasic.Data.csv
+Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Data.visualize.Network
 Imports Microsoft.VisualBasic.Data.visualize.Network.Analysis
 Imports Microsoft.VisualBasic.Data.visualize.Network.FileStream
@@ -79,9 +84,11 @@ Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Interop
+Imports TaskStream
 Imports WeifenLuo.WinFormsUI.Docking
 Imports any = Microsoft.VisualBasic.Scripting
 Imports stdNum = System.Math
@@ -94,12 +101,61 @@ Public Class PageMoleculeNetworking
     Dim rawLinks As Dictionary(Of String, LinkSet)
     Dim tooltip As New PlotTooltip
 
+    Public Shared Sub RunUMAP()
+        Dim MNtool = MyApplication.host.mzkitMNtools
+        Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".csv", sessionID:=App.PID.ToHexString, prefix:="MNTools_clusters_")
+
+        If MNtool.rawMatrix.IsNullOrEmpty Then
+            MessageBox.Show("Sorry, run molecular networking analysis at first...", "No cluster data", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        Call MNtool.rawMatrix.SaveTo(tempfile)
+
+        Dim umap3 As String = RscriptProgressTask.CreateUMAPCluster(tempfile, knn:=16)
+
+        If umap3.StringEmpty Then
+            MessageBox.Show("Sorry, run umap task error...", "UMAP error", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            Return
+        End If
+
+        Dim df As DataFrame = DataFrame.Load(umap3)
+        Dim labels As String() = df.Column(0).ToArray
+        Dim x As Double() = df.GetColumnValues("x").Select(AddressOf Val).ToArray
+        Dim y As Double() = df.GetColumnValues("y").Select(AddressOf Val).ToArray
+        Dim z As Double() = df.GetColumnValues("z").Select(AddressOf Val).ToArray
+        ' "Noise"
+        Dim [class] As String() = df.GetColumnValues("class").SafeQuery.ToArray
+        Dim scatter As UMAPPoint() = labels _
+            .Select(Function(lbtext, i)
+                        Return New UMAPPoint With {
+                            .label = lbtext,
+                            .[class] = [class](i),
+                            .x = x(i),
+                            .y = y(i),
+                            .z = z(i)
+                        }
+                    End Function) _
+            .ToArray
+
+        Dim viewer As New frm3DScatterPlotView()
+        Dim clusters = MNtool.nodeInfo
+
+        Call viewer.LoadScatter(
+            data:=scatter,
+            onclick:=Sub(id)
+                         Call Workbench.LogText($"View spectrum cluster: {id}")
+                         Call MNtool.showCluster(info:=clusters.Cluster(id), vlabel:=id)
+                     End Sub)
+        Call VisualStudio.ShowDocument(viewer)
+    End Sub
+
     Public Sub RenderNetwork()
         If g Is Nothing Then
-            MyApplication.host.showStatusMessage("You should run molecular networking at first!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Workbench.Warning("You should run molecular networking at first!")
             Return
         ElseIf g.vertex.Count > 500 OrElse g.graphEdges.Count > 700 Then
-            MyApplication.host.showStatusMessage("The network size is huge for create layout, entire progress will be very slow...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Workbench.Warning("The network size is huge for create layout, entire progress will be very slow...")
         End If
 
         Dim viewer As frmNetworkViewer = VisualStudio.ShowDocument(Of frmNetworkViewer)(title:="Molecular Networking Viewer")
@@ -313,7 +369,7 @@ Public Class PageMoleculeNetworking
 
             TreeListView1.Items.Add(row)
         Next
-        For Each edge In g.graphEdges
+        For Each edge As Edge In g.graphEdges
             DataGridView1.Rows.Add(
                 edge.U.label,
                 edge.V.label,
@@ -322,7 +378,8 @@ Public Class PageMoleculeNetworking
                 Val(edge.data!reverse).ToString("F4"),
                 "View Alignment"
             )
-            Application.DoEvents()
+
+            Call System.Windows.Forms.Application.DoEvents()
         Next
 
         DataGridView2.Rows.Clear()
@@ -373,12 +430,20 @@ Public Class PageMoleculeNetworking
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub ShowSpectrumToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowSpectrumToolStripMenuItem.Click
+        Dim v As NetworkingNode = GetSelectedCluster()
+
+        If Not v Is Nothing Then
+            Call showCluster(v, v.referenceId)
+        End If
+    End Sub
+
+    Private Function GetSelectedCluster() As NetworkingNode
         Dim cluster As TreeListViewItem
         Dim host = MyApplication.host
         Dim v As NetworkingNode
 
         If TreeListView1.SelectedItems.Count = 0 Then
-            Return
+            Return Nothing
         Else
             cluster = TreeListView1.SelectedItems(0)
         End If
@@ -391,8 +456,8 @@ Public Class PageMoleculeNetworking
             v = nodeInfo.Cluster(cluster.Parent.Text)
         End If
 
-        Call showCluster(v, v.referenceId)
-    End Sub
+        Return v
+    End Function
 
     Private Sub SaveImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowImageToolStripMenuItem.Click
         Dim cluster As TreeListViewItem
@@ -409,19 +474,48 @@ Public Class PageMoleculeNetworking
             Dim clusterId As String = cluster.Text
             Dim clusterSpectrum = nodeInfo.Cluster(clusterId).representation
 
-            host.mzkitTool.showMatrix(clusterSpectrum.ms2, clusterId)
-            host.mzkitTool.PictureBox1.BackgroundImage = MassSpectra.MirrorPlot(clusterSpectrum).AsGDIImage
+            Call PageMzkitTools.ShowSpectral(clusterSpectrum)
         Else
             ' 是一个spectrum
             Dim spectrumName As String = cluster.Text
             Dim spectrum = nodeInfo.GetSpectrum(spectrumName)
 
-            host.mzkitTool.showMatrix(spectrum.mzInto, spectrumName)
-            host.mzkitTool.PictureBox1.BackgroundImage = MassSpectra.MirrorPlot(New LibraryMatrix With {.ms2 = spectrum.mzInto, .name = spectrumName}).AsGDIImage
+            Call PageMzkitTools.ShowSpectral(spectrum)
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' Show current spectrum alignment with the cluster representive spectrum
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ShowClusterAlignmentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowClusterAlignmentToolStripMenuItem.Click
+        Dim cluster As TreeListViewItem
+        Dim host = MyApplication.host
+
+        If TreeListView1.SelectedItems.Count = 0 Then
+            Return
+        Else
+            cluster = TreeListView1.SelectedItems(0)
         End If
 
-        host.mzkitTool.CustomTabControl1.SelectedTab = host.mzkitTool.TabPage5
-        host.ShowPage(host.mzkitTool)
+        If cluster.ChildrenCount > 0 Then
+            ' is a cluster, not working for the cluster
+            Return
+        End If
+
+        ' get spectrum data
+        Dim spectrumName As String = cluster.Text
+        Dim spectrum = nodeInfo.GetSpectrum(spectrumName)
+        Dim clusterId = cluster.Parent.Text
+        Dim cluster_representive = nodeInfo.Cluster(clusterId).representation
+        ' create spectrum matrix alignment
+        Dim alignment As AlignmentOutput = AlignmentProvider _
+            .Cosine(Tolerance.DeltaMass(0.3), New RelativeIntensityCutoff(0.05)) _
+            .CreateAlignment(spectrum, cluster_representive)
+
+        Call MyApplication.host.mzkitTool.showAlignment(alignment, showScore:=True)
+        Call MyApplication.host.ShowMzkitToolkit()
     End Sub
 
     Private Sub PageMoleculeNetworking_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
@@ -463,5 +557,21 @@ Public Class PageMoleculeNetworking
         DataGridView1.CoolGrid
         DataGridView2.CoolGrid
         tooltip.OwnerDraw = True
+    End Sub
+
+    Private Sub ExportClusterToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportClusterToolStripMenuItem.Click
+        Using file As New SaveFileDialog With {.Filter = "MGF file export(*.mgf)|*.mgf"}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim cluster = GetSelectedCluster()
+                Dim peaks As PeakMs2() = cluster.members
+
+                If peaks.SaveAsMgfIons(file.FileName) Then
+                    Call MessageBox.Show("Export target cluster member spectrum as mgf ion text file success!",
+                                         "Export Cluster",
+                                         buttons:=MessageBoxButtons.OK,
+                                         icon:=MessageBoxIcon.Information)
+                End If
+            End If
+        End Using
     End Sub
 End Class
