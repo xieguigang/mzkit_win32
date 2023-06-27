@@ -60,6 +60,7 @@ Imports System.Text
 Imports System.Windows.Forms
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
+Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Mzkit_win32.BasicMDIForm
@@ -366,6 +367,12 @@ Public NotInheritable Class RscriptProgressTask
         End If
     End Sub
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="matrix"></param>
+    ''' <param name="knn"></param>
+    ''' <returns>return the umap result temp file path</returns>
     Public Shared Function CreateUMAPCluster(matrix As String, knn As Integer) As String
         Dim Rscript As String = RscriptPipelineTask.GetRScript("umap.R")
         Dim save As String = $"{matrix.ParentPath}/{matrix.BaseName}_umap3.csv"

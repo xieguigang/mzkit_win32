@@ -64,13 +64,17 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports BioNovoGene.mzkit_win32.cooldatagridview
 Imports BioNovoGene.mzkit_win32.MSdata
 Imports BioNovoGene.mzkit_win32.My
+Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
+Imports Microsoft.VisualBasic.Data.csv
+Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Data.visualize.Network
 Imports Microsoft.VisualBasic.Data.visualize.Network.Analysis
 Imports Microsoft.VisualBasic.Data.visualize.Network.FileStream
@@ -80,9 +84,12 @@ Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
+Imports Microsoft.VisualBasic.MIME.application.pdf
 Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Interop
+Imports TaskStream
 Imports WeifenLuo.WinFormsUI.Docking
 Imports any = Microsoft.VisualBasic.Scripting
 Imports stdNum = System.Math
@@ -94,6 +101,52 @@ Public Class PageMoleculeNetworking
     Dim nodeInfo As Protocols
     Dim rawLinks As Dictionary(Of String, LinkSet)
     Dim tooltip As New PlotTooltip
+
+    Shared Sub New()
+        AddHandler ribbonItems.ButtonRenderUMAPScatter.ExecuteEvent, Sub() Call RunUMAP()
+    End Sub
+
+    Private Shared Sub RunUMAP()
+        Dim MNtool = MyApplication.host.mzkitMNtools
+        Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".csv", sessionID:=App.PID.ToHexString, prefix:="MNTools_clusters_")
+
+        Call MNtool.rawMatrix.SaveTo(tempfile)
+
+        Dim umap3 As String = RscriptProgressTask.CreateUMAPCluster(tempfile, knn:=16)
+
+        If umap3.StringEmpty Then
+            MessageBox.Show("Sorry, run umap task error...", "UMAP error", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            Return
+        End If
+
+        Dim df As DataFrame = DataFrame.Load(umap3)
+        Dim labels As String() = df.Column(0).ToArray
+        Dim x As Double() = df.GetColumnValues("x").Select(AddressOf Val).ToArray
+        Dim y As Double() = df.GetColumnValues("y").Select(AddressOf Val).ToArray
+        Dim z As Double() = df.GetColumnValues("z").Select(AddressOf Val).ToArray
+        ' "Noise"
+        Dim [class] As String() = df.GetColumnValues("class").SafeQuery.ToArray
+        Dim scatter As UMAPPoint() = labels _
+            .Select(Function(lbtext, i)
+                        Return New UMAPPoint With {
+                            .label = lbtext,
+                            .[class] = [class](i),
+                            .x = x(i),
+                            .y = y(i),
+                            .z = z(i)
+                        }
+                    End Function) _
+            .ToArray
+
+        Dim viewer As New frm3DScatterPlotView()
+
+        Call viewer.LoadScatter(
+            data:=scatter,
+            onclick:=Sub(id)
+                         Call Workbench.LogText($"View spectrum cluster: {id}")
+                     End Sub)
+        Call VisualStudio.ShowDocument(viewer)
+    End Sub
 
     Public Sub RenderNetwork()
         If g Is Nothing Then
