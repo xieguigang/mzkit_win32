@@ -139,11 +139,13 @@ Public Class PageMoleculeNetworking
             .ToArray
 
         Dim viewer As New frm3DScatterPlotView()
+        Dim clusters = MNtool.nodeInfo
 
         Call viewer.LoadScatter(
             data:=scatter,
             onclick:=Sub(id)
                          Call Workbench.LogText($"View spectrum cluster: {id}")
+                         Call MNtool.showCluster(info:=clusters.Cluster(id), vlabel:=id)
                      End Sub)
         Call VisualStudio.ShowDocument(viewer)
     End Sub
