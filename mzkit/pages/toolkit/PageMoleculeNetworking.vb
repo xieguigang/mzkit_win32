@@ -57,6 +57,7 @@ Imports System.Runtime.CompilerServices
 Imports System.Threading
 Imports System.Windows.Forms.ListViewItem
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
@@ -373,12 +374,20 @@ Public Class PageMoleculeNetworking
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub ShowSpectrumToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowSpectrumToolStripMenuItem.Click
+        Dim v As NetworkingNode = GetSelectedCluster()
+
+        If Not v Is Nothing Then
+            Call showCluster(v, v.referenceId)
+        End If
+    End Sub
+
+    Private Function GetSelectedCluster() As NetworkingNode
         Dim cluster As TreeListViewItem
         Dim host = MyApplication.host
         Dim v As NetworkingNode
 
         If TreeListView1.SelectedItems.Count = 0 Then
-            Return
+            Return Nothing
         Else
             cluster = TreeListView1.SelectedItems(0)
         End If
@@ -391,8 +400,8 @@ Public Class PageMoleculeNetworking
             v = nodeInfo.Cluster(cluster.Parent.Text)
         End If
 
-        Call showCluster(v, v.referenceId)
-    End Sub
+        Return v
+    End Function
 
     Private Sub SaveImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowImageToolStripMenuItem.Click
         Dim cluster As TreeListViewItem
@@ -450,6 +459,7 @@ Public Class PageMoleculeNetworking
             .CreateAlignment(spectrum, cluster_representive)
 
         Call MyApplication.host.mzkitTool.showAlignment(alignment, showScore:=True)
+        Call MyApplication.host.ShowMzkitToolkit()
     End Sub
 
     Private Sub PageMoleculeNetworking_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
@@ -491,5 +501,21 @@ Public Class PageMoleculeNetworking
         DataGridView1.CoolGrid
         DataGridView2.CoolGrid
         tooltip.OwnerDraw = True
+    End Sub
+
+    Private Sub ExportClusterToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportClusterToolStripMenuItem.Click
+        Using file As New SaveFileDialog With {.Filter = "MGF file export(*.mgf)|*.mgf"}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim cluster = GetSelectedCluster()
+                Dim peaks As PeakMs2() = cluster.members
+
+                If peaks.SaveAsMgfIons(file.FileName) Then
+                    Call MessageBox.Show("Export target cluster member spectrum as mgf ion text file success!",
+                                         "Export Cluster",
+                                         buttons:=MessageBoxButtons.OK,
+                                         icon:=MessageBoxIcon.Information)
+                End If
+            End If
+        End Using
     End Sub
 End Class

@@ -100,14 +100,15 @@ Partial Class PageMoleculeNetworking
         Me.ColumnHeader8 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ctxCluster = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ShowImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ShowClusterAlignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ShowSpectrumToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ShowClusterAlignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ExportClusterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -262,10 +263,10 @@ Partial Class PageMoleculeNetworking
         '
         'ctxCluster
         '
-        Me.ctxCluster.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowImageToolStripMenuItem, Me.ShowClusterAlignmentToolStripMenuItem, Me.ToolStripMenuItem1, Me.ShowSpectrumToolStripMenuItem})
+        Me.ctxCluster.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowImageToolStripMenuItem, Me.ShowClusterAlignmentToolStripMenuItem, Me.ToolStripMenuItem1, Me.ShowSpectrumToolStripMenuItem, Me.ExportClusterToolStripMenuItem})
         Me.ctxCluster.Name = "ctxCluster"
         Me.ctxCluster.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.ctxCluster.Size = New System.Drawing.Size(203, 98)
+        Me.ctxCluster.Size = New System.Drawing.Size(203, 120)
         '
         'ShowImageToolStripMenuItem
         '
@@ -273,6 +274,17 @@ Partial Class PageMoleculeNetworking
         Me.ShowImageToolStripMenuItem.Name = "ShowImageToolStripMenuItem"
         Me.ShowImageToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
         Me.ShowImageToolStripMenuItem.Text = "Show Image"
+        '
+        'ShowClusterAlignmentToolStripMenuItem
+        '
+        Me.ShowClusterAlignmentToolStripMenuItem.Name = "ShowClusterAlignmentToolStripMenuItem"
+        Me.ShowClusterAlignmentToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
+        Me.ShowClusterAlignmentToolStripMenuItem.Text = "Show Cluster Alignment"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(199, 6)
         '
         'ShowSpectrumToolStripMenuItem
         '
@@ -319,16 +331,11 @@ Partial Class PageMoleculeNetworking
         Me.Column3.Name = "Column3"
         Me.Column3.ReadOnly = True
         '
-        'ShowClusterAlignmentToolStripMenuItem
+        'ExportClusterToolStripMenuItem
         '
-        Me.ShowClusterAlignmentToolStripMenuItem.Name = "ShowClusterAlignmentToolStripMenuItem"
-        Me.ShowClusterAlignmentToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
-        Me.ShowClusterAlignmentToolStripMenuItem.Text = "Show Cluster Alignment"
-        '
-        'ToolStripMenuItem1
-        '
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(199, 6)
+        Me.ExportClusterToolStripMenuItem.Name = "ExportClusterToolStripMenuItem"
+        Me.ExportClusterToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
+        Me.ExportClusterToolStripMenuItem.Text = "Export Cluster"
         '
         'PageMoleculeNetworking
         '
@@ -378,4 +385,5 @@ Partial Class PageMoleculeNetworking
     Friend WithEvents ShowSpectrumToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ShowClusterAlignmentToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
+    Friend WithEvents ExportClusterToolStripMenuItem As ToolStripMenuItem
 End Class
