@@ -772,6 +772,7 @@ Public Class frmFileExplorer
                 title:="Run molecular networking",
                 info:="Initialized..."
             )
+            Call MyApplication.host.mzkitMNtools.RefreshNetwork()
         End If
     End Sub
 End Class

@@ -59,7 +59,7 @@ Namespace MSdata
 
             MyApplication.host.Invoke(
                 Sub()
-                    Call toolPage.loadNetwork(clusters, protocol, rawLinks, similarityCutoff)
+                    Call toolPage.loadNetworkData(clusters, protocol, rawLinks, similarityCutoff)
                     Call MyApplication.host.ShowPage(toolPage)
                 End Sub)
         End Sub

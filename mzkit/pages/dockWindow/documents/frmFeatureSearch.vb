@@ -488,6 +488,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
                 title:="Build Molecular Networking...",
                 info:="Run ms2 clustering!"
             )
+            Call MyApplication.host.mzkitMNtools.RefreshNetwork()
         End If
     End Sub
 

@@ -429,6 +429,7 @@ Public Class frmRawFeaturesList
                  End Sub,
             title:="Run molecular networking",
             info:="Initialized...")
+        Call MyApplication.host.mzkitMNtools.RefreshNetwork()
     End Sub
 
     Private Sub CustomToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CustomToolStripMenuItem.Click

@@ -251,7 +251,19 @@ Public Class PageMoleculeNetworking
             End Sub)
     End Sub
 
-    Public Sub loadNetwork(MN As IEnumerable(Of EntityClusterModel),
+    Public Sub loadNetworkData(MN As IEnumerable(Of EntityClusterModel),
+                               nodes As Protocols,
+                               rawLinks As Dictionary(Of String, LinkSet),
+                               cutoff As Double)
+
+        Me.rawMatrix = MN.ToArray
+        Me.nodeInfo = nodes
+        Me.rawLinks = rawLinks
+
+        MyApplication.host.ribbonItems.SpinnerSimilarity.DecimalValue = 0.98
+    End Sub
+
+    Private Sub loadNetwork(MN As IEnumerable(Of EntityClusterModel),
                            nodes As Protocols,
                            rawLinks As Dictionary(Of String, LinkSet),
                            cutoff As Double)
