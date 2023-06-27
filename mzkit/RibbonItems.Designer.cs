@@ -102,6 +102,7 @@ namespace RibbonLib.Controls
             public const uint cmdGroupNetwork = 1083;
             public const uint cmdButtonNetworkExport = 1084;
             public const uint cmdButtonNetworkRender = 1085;
+            public const uint cmdButtonRenderUMAPScatter = 226;
             public const uint cmdGroupNetworkTools = 1151;
             public const uint cmdSpinnerSimilarity = 1153;
             public const uint cmdGroupNetworkRenderTool = 1150;
@@ -319,6 +320,7 @@ namespace RibbonLib.Controls
         public RibbonGroup GroupNetwork { get; private set; }
         public RibbonButton ButtonNetworkExport { get; private set; }
         public RibbonButton ButtonNetworkRender { get; private set; }
+        public RibbonButton ButtonRenderUMAPScatter { get; private set; }
         public RibbonGroup GroupNetworkTools { get; private set; }
         public RibbonSpinner SpinnerSimilarity { get; private set; }
         public RibbonGroup GroupNetworkRenderTool { get; private set; }
@@ -531,6 +533,7 @@ namespace RibbonLib.Controls
             GroupNetwork = new RibbonGroup(ribbon, Cmd.cmdGroupNetwork);
             ButtonNetworkExport = new RibbonButton(ribbon, Cmd.cmdButtonNetworkExport);
             ButtonNetworkRender = new RibbonButton(ribbon, Cmd.cmdButtonNetworkRender);
+            ButtonRenderUMAPScatter = new RibbonButton(ribbon, Cmd.cmdButtonRenderUMAPScatter);
             GroupNetworkTools = new RibbonGroup(ribbon, Cmd.cmdGroupNetworkTools);
             SpinnerSimilarity = new RibbonSpinner(ribbon, Cmd.cmdSpinnerSimilarity);
             GroupNetworkRenderTool = new RibbonGroup(ribbon, Cmd.cmdGroupNetworkRenderTool);

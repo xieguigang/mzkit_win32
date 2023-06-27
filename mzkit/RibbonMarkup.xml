@@ -2551,6 +2551,14 @@
         <Image MinDPI="192">Res/excel-icon.bmp</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonRenderUMAPScatter" Id="226" LabelTitle="Render UMAP Scatter" LabelDescription="Rendering the spectrum cluster matrix as UMAP scatter plot" TooltipTitle="Rendering the spectrum cluster matrix as UMAP scatter plot" TooltipDescription="Rendering the spectrum cluster matrix as UMAP scatter plot">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/preferences-system-sharing.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2728,9 +2736,10 @@
         </TabGroup>
         <TabGroup CommandName="cmdTabGroupNetworkTools">
           <Tab CommandName="cmdTabNetwork" ApplicationModes="0,1">
-            <Group CommandName="cmdGroupNetwork" ApplicationModes="0,1" SizeDefinition="TwoButtons">
+            <Group CommandName="cmdGroupNetwork" ApplicationModes="0,1" SizeDefinition="ThreeButtons">
               <Button CommandName="cmdButtonNetworkExport" />
               <Button CommandName="cmdButtonNetworkRender" />
+              <Button CommandName="cmdButtonRenderUMAPScatter" />
             </Group>
             <Group CommandName="cmdGroupNetworkTools" ApplicationModes="0,1">
               <Spinner CommandName="cmdSpinnerSimilarity" />
