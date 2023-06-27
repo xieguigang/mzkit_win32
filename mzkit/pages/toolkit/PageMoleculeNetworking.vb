@@ -110,6 +110,11 @@ Public Class PageMoleculeNetworking
         Dim MNtool = MyApplication.host.mzkitMNtools
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".csv", sessionID:=App.PID.ToHexString, prefix:="MNTools_clusters_")
 
+        If MNtool.rawMatrix.IsNullOrEmpty Then
+            MessageBox.Show("Sorry, run molecular networking analysis at first...", "No cluster data", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
         Call MNtool.rawMatrix.SaveTo(tempfile)
 
         Dim umap3 As String = RscriptProgressTask.CreateUMAPCluster(tempfile, knn:=16)
@@ -367,7 +372,7 @@ Public Class PageMoleculeNetworking
 
             TreeListView1.Items.Add(row)
         Next
-        For Each edge In g.graphEdges
+        For Each edge As Edge In g.graphEdges
             DataGridView1.Rows.Add(
                 edge.U.label,
                 edge.V.label,
@@ -376,7 +381,8 @@ Public Class PageMoleculeNetworking
                 Val(edge.data!reverse).ToString("F4"),
                 "View Alignment"
             )
-            Application.DoEvents()
+
+            Call System.Windows.Forms.Application.DoEvents()
         Next
 
         DataGridView2.Rows.Clear()
