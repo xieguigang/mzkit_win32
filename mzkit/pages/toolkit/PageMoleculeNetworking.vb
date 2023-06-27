@@ -96,10 +96,10 @@ Public Class PageMoleculeNetworking
 
     Public Sub RenderNetwork()
         If g Is Nothing Then
-            MyApplication.host.showStatusMessage("You should run molecular networking at first!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Workbench.Warning("You should run molecular networking at first!")
             Return
         ElseIf g.vertex.Count > 500 OrElse g.graphEdges.Count > 700 Then
-            MyApplication.host.showStatusMessage("The network size is huge for create layout, entire progress will be very slow...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Workbench.Warning("The network size is huge for create layout, entire progress will be very slow...")
         End If
 
         Dim viewer As frmNetworkViewer = VisualStudio.ShowDocument(Of frmNetworkViewer)(title:="Molecular Networking Viewer")
