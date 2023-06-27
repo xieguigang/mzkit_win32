@@ -103,12 +103,12 @@ Partial Class PageMoleculeNetworking
         Me.ShowClusterAlignmentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ShowSpectrumToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportClusterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ExportClusterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -265,39 +265,38 @@ Partial Class PageMoleculeNetworking
         '
         Me.ctxCluster.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowImageToolStripMenuItem, Me.ShowClusterAlignmentToolStripMenuItem, Me.ToolStripMenuItem1, Me.ShowSpectrumToolStripMenuItem, Me.ExportClusterToolStripMenuItem})
         Me.ctxCluster.Name = "ctxCluster"
-        Me.ctxCluster.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.ctxCluster.Size = New System.Drawing.Size(203, 120)
+        Me.ctxCluster.Size = New System.Drawing.Size(214, 120)
         '
         'ShowImageToolStripMenuItem
         '
-        Me.ShowImageToolStripMenuItem.Image = Global.BioNovoGene.mzkit_win32.My.Resources.Resources.preferences_system_notifications
+        Me.ShowImageToolStripMenuItem.Image = CType(resources.GetObject("ShowImageToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ShowImageToolStripMenuItem.Name = "ShowImageToolStripMenuItem"
-        Me.ShowImageToolStripMenuItem.Size = New System.Drawing.Size(208, 22)
-        Me.ShowImageToolStripMenuItem.Text = "Show Image"
-        '
-        'ShowSpectrumToolStripMenuItem
-        '
-        Me.ShowSpectrumToolStripMenuItem.Name = "ShowSpectrumToolStripMenuItem"
-        Me.ShowSpectrumToolStripMenuItem.Size = New System.Drawing.Size(208, 22)
-        Me.ShowImageToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
+        Me.ShowImageToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
         Me.ShowImageToolStripMenuItem.Text = "Show Image"
         '
         'ShowClusterAlignmentToolStripMenuItem
         '
         Me.ShowClusterAlignmentToolStripMenuItem.Name = "ShowClusterAlignmentToolStripMenuItem"
-        Me.ShowClusterAlignmentToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
+        Me.ShowClusterAlignmentToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
         Me.ShowClusterAlignmentToolStripMenuItem.Text = "Show Cluster Alignment"
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(199, 6)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(210, 6)
         '
         'ShowSpectrumToolStripMenuItem
         '
+        Me.ShowSpectrumToolStripMenuItem.Image = CType(resources.GetObject("ShowSpectrumToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ShowSpectrumToolStripMenuItem.Name = "ShowSpectrumToolStripMenuItem"
-        Me.ShowSpectrumToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
+        Me.ShowSpectrumToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
         Me.ShowSpectrumToolStripMenuItem.Text = "Load Cluster Spectrum"
+        '
+        'ExportClusterToolStripMenuItem
+        '
+        Me.ExportClusterToolStripMenuItem.Name = "ExportClusterToolStripMenuItem"
+        Me.ExportClusterToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.ExportClusterToolStripMenuItem.Text = "Export Cluster"
         '
         'ImageList1
         '
@@ -337,12 +336,6 @@ Partial Class PageMoleculeNetworking
         Me.Column3.HeaderText = "Value"
         Me.Column3.Name = "Column3"
         Me.Column3.ReadOnly = True
-        '
-        'ExportClusterToolStripMenuItem
-        '
-        Me.ExportClusterToolStripMenuItem.Name = "ExportClusterToolStripMenuItem"
-        Me.ExportClusterToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
-        Me.ExportClusterToolStripMenuItem.Text = "Export Cluster"
         '
         'PageMoleculeNetworking
         '
