@@ -71,6 +71,10 @@ Public Class InputDataVisual
 
     Dim fields As Dictionary(Of String, Type)
 
+    ''' <summary>
+    ''' set field names
+    ''' </summary>
+    ''' <param name="fields"></param>
     Public Sub SetAxis(fields As Dictionary(Of String, Type))
         For Each item As KeyValuePair(Of String, Type) In fields
             ListBox1.Items.Add(item.Key)
