@@ -311,6 +311,8 @@ Public Class PageMoleculeNetworking
                 .mass = info.size,
                 .origID = info.representation.name
             })
+
+            Call System.Windows.Forms.Application.DoEvents()
         Next
 
         Dim duplicatedEdges As New Index(Of String)
@@ -338,6 +340,8 @@ Public Class PageMoleculeNetworking
                     Call g.CreateEdge(row.ID, link.Key, link.Value, edgeProps)
                 End If
             Next
+
+            Call System.Windows.Forms.Application.DoEvents()
         Next
 
         If g.graphEdges.Count >= 8000 AndAlso MessageBox.Show("There are two many edges in your network, do you wan to increase the similarity threshold for reduce network size?",
@@ -385,10 +389,11 @@ Public Class PageMoleculeNetworking
             row.SubItems.Add(New ListViewSubItem With {.Text = node.data("rtmax")})
             row.SubItems.Add(New ListViewSubItem With {.Text = node.data("area")})
 
-            TreeListView1.Items.Add(row)
+            Call TreeListView1.Items.Add(row)
+            Call System.Windows.Forms.Application.DoEvents()
         Next
         For Each edge As Edge In g.graphEdges
-            DataGridView1.Rows.Add(
+            Call DataGridView1.Rows.Add(
                 edge.U.label,
                 edge.V.label,
                 stdNum.Min(Val(edge.data!forward), Val(edge.data!reverse)).ToString("F4"),
@@ -396,7 +401,6 @@ Public Class PageMoleculeNetworking
                 Val(edge.data!reverse).ToString("F4"),
                 "View Alignment"
             )
-
             Call System.Windows.Forms.Application.DoEvents()
         Next
 
@@ -407,7 +411,8 @@ Public Class PageMoleculeNetworking
         DataGridView2.Rows.Add("similarity_threshold", cutoff)
 
         For Each cluster In rawMatrix.GroupBy(Function(a) a.Cluster).OrderBy(Function(a) Val(a.Key))
-            DataGridView2.Rows.Add($"#Cluster_{cluster.Key}", cluster.Count)
+            Call DataGridView2.Rows.Add($"#Cluster_{cluster.Key}", cluster.Count)
+            Call System.Windows.Forms.Application.DoEvents()
         Next
     End Sub
 
