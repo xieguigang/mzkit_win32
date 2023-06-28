@@ -109,6 +109,7 @@ Partial Class PageMoleculeNetworking
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FilterSimilarClustersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -263,39 +264,39 @@ Partial Class PageMoleculeNetworking
         '
         'ctxCluster
         '
-        Me.ctxCluster.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowImageToolStripMenuItem, Me.ShowClusterAlignmentToolStripMenuItem, Me.ToolStripMenuItem1, Me.ShowSpectrumToolStripMenuItem, Me.ExportClusterToolStripMenuItem})
+        Me.ctxCluster.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowImageToolStripMenuItem, Me.ShowClusterAlignmentToolStripMenuItem, Me.ToolStripMenuItem1, Me.FilterSimilarClustersToolStripMenuItem, Me.ShowSpectrumToolStripMenuItem, Me.ExportClusterToolStripMenuItem})
         Me.ctxCluster.Name = "ctxCluster"
-        Me.ctxCluster.Size = New System.Drawing.Size(214, 120)
+        Me.ctxCluster.Size = New System.Drawing.Size(203, 142)
         '
         'ShowImageToolStripMenuItem
         '
         Me.ShowImageToolStripMenuItem.Image = CType(resources.GetObject("ShowImageToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ShowImageToolStripMenuItem.Name = "ShowImageToolStripMenuItem"
-        Me.ShowImageToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.ShowImageToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
         Me.ShowImageToolStripMenuItem.Text = "Show Image"
         '
         'ShowClusterAlignmentToolStripMenuItem
         '
         Me.ShowClusterAlignmentToolStripMenuItem.Name = "ShowClusterAlignmentToolStripMenuItem"
-        Me.ShowClusterAlignmentToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.ShowClusterAlignmentToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
         Me.ShowClusterAlignmentToolStripMenuItem.Text = "Show Cluster Alignment"
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(210, 6)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(199, 6)
         '
         'ShowSpectrumToolStripMenuItem
         '
         Me.ShowSpectrumToolStripMenuItem.Image = CType(resources.GetObject("ShowSpectrumToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ShowSpectrumToolStripMenuItem.Name = "ShowSpectrumToolStripMenuItem"
-        Me.ShowSpectrumToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.ShowSpectrumToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
         Me.ShowSpectrumToolStripMenuItem.Text = "Load Cluster Spectrum"
         '
         'ExportClusterToolStripMenuItem
         '
         Me.ExportClusterToolStripMenuItem.Name = "ExportClusterToolStripMenuItem"
-        Me.ExportClusterToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.ExportClusterToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
         Me.ExportClusterToolStripMenuItem.Text = "Export Cluster"
         '
         'ImageList1
@@ -336,6 +337,12 @@ Partial Class PageMoleculeNetworking
         Me.Column3.HeaderText = "Value"
         Me.Column3.Name = "Column3"
         Me.Column3.ReadOnly = True
+        '
+        'FilterSimilarClustersToolStripMenuItem
+        '
+        Me.FilterSimilarClustersToolStripMenuItem.Name = "FilterSimilarClustersToolStripMenuItem"
+        Me.FilterSimilarClustersToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
+        Me.FilterSimilarClustersToolStripMenuItem.Text = "Filter Similar Clusters"
         '
         'PageMoleculeNetworking
         '
@@ -386,4 +393,5 @@ Partial Class PageMoleculeNetworking
     Friend WithEvents ShowClusterAlignmentToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
     Friend WithEvents ExportClusterToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents FilterSimilarClustersToolStripMenuItem As ToolStripMenuItem
 End Class

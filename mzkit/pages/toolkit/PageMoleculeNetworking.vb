@@ -203,10 +203,14 @@ Public Class PageMoleculeNetworking
         Call viewer.Show(MyApplication.host.m_dockPanel)
     End Sub
 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Private Sub showCluster(info As NetworkingNode, vlabel As String)
-        Dim raw As PeakMs2() = info.members
+        Call showCluster(info.members, vlabel)
+    End Sub
+
+    Private Sub showCluster(raw As PeakMs2(), vlabel As String)
         Dim rt As Double() = raw.Select(Function(p) p.rt).ToArray
-        Dim rt_scan = info.members.GroupBy(Function(a) a.rt, offsets:=5).ToArray
+        Dim rt_scan = raw.GroupBy(Function(a) a.rt, offsets:=5).ToArray
         Dim ms1 As ScanMS1() = rt_scan _
             .Select(Function(p) p.value.ClusterScan(vlabel)) _
             .OrderBy(Function(m) m.rt) _
@@ -471,6 +475,25 @@ Public Class PageMoleculeNetworking
 
         Return v
     End Function
+
+
+    Private Sub FilterSimilarClustersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FilterSimilarClustersToolStripMenuItem.Click
+        Dim current As NetworkingNode = GetSelectedCluster()
+        Dim links As LinkSet = rawLinks(current.referenceId)
+        Dim cutoff As Double = 0.85
+        Dim clusterSet As New List(Of PeakMs2)
+
+        Call clusterSet.AddRange(current.members)
+
+        For Each cluster In links.links
+            If cluster.Value.GetScore >= cutoff Then
+                Call clusterSet.AddRange(nodeInfo.Cluster(cluster.Key).members)
+            End If
+        Next
+
+        ' load into feature explorer
+        Call showCluster(clusterSet.ToArray, $"cos({current.referenceId},y) > {cutoff}")
+    End Sub
 
     Private Sub SaveImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowImageToolStripMenuItem.Click
         Dim cluster As TreeListViewItem
