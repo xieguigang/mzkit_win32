@@ -60,6 +60,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
+Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking
@@ -490,17 +491,42 @@ Public Class PageMoleculeNetworking
         Call InputDialog.Input(Of InputMNSimilarityScore)(
             Sub(cfg)
                 Dim cutoff As Double = cfg.GetCutoff
+                Dim mz As New List(Of ms2)
 
+                Call mz.Add(New ms2 With {.mz = current.mz, .intensity = current.size})
                 Call clusterSet.AddRange(current.members)
 
                 For Each cluster In links.links
                     If cluster.Value.GetScore >= cutoff Then
-                        Call clusterSet.AddRange(nodeInfo.Cluster(cluster.Key).members)
+                        Dim target = nodeInfo.Cluster(cluster.Key)
+
+                        Call clusterSet.AddRange(target.members)
+                        Call mz.Add(New ms2 With {.mz = target.mz, .intensity = target.size})
                     End If
                 Next
 
                 ' load into feature explorer
                 Call showCluster(clusterSet.ToArray, $"cos({current.referenceId},y) > {cutoff}")
+                ' show mass diff analysis
+                Call showMasssdiff(current.mz, mz.ToArray)
+            End Sub)
+    End Sub
+
+    Private Sub showMasssdiff(M As Double, mz As ms2())
+        Dim pa As New PeakAnnotation(0.05, isotopeFirst:=True)
+        Dim massdiff = pa.RunAnnotation(M, mz.ToArray).products
+        ' show result in table viewer
+        Dim tblView = VisualStudio.ShowDocument(Of frmTableViewer)(title:=$"Mass Diff Analysis[m/z {M.ToString("F4")}]")
+
+        Call tblView.LoadTable(
+            Sub(subView)
+                Call subView.Columns.Add("precursor", GetType(Double))
+                Call subView.Columns.Add("cluster_size", GetType(Double))
+                Call subView.Columns.Add("mass_diff", GetType(String))
+
+                For Each row As ms2 In massdiff
+                    Call subView.Rows.Add(row.mz, row.intensity, row.Annotation)
+                Next
             End Sub)
     End Sub
 
