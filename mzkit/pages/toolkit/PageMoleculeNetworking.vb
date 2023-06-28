@@ -87,6 +87,7 @@ Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Interop
 Imports TaskStream
 Imports WeifenLuo.WinFormsUI.Docking
@@ -476,23 +477,26 @@ Public Class PageMoleculeNetworking
         Return v
     End Function
 
-
     Private Sub FilterSimilarClustersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FilterSimilarClustersToolStripMenuItem.Click
         Dim current As NetworkingNode = GetSelectedCluster()
         Dim links As LinkSet = rawLinks(current.referenceId)
-        Dim cutoff As Double = 0.85
         Dim clusterSet As New List(Of PeakMs2)
 
-        Call clusterSet.AddRange(current.members)
+        Call InputDialog.Input(Of InputMNSimilarityScore)(
+            Sub(cfg)
+                Dim cutoff As Double = cfg.GetCutoff
 
-        For Each cluster In links.links
-            If cluster.Value.GetScore >= cutoff Then
-                Call clusterSet.AddRange(nodeInfo.Cluster(cluster.Key).members)
-            End If
-        Next
+                Call clusterSet.AddRange(current.members)
 
-        ' load into feature explorer
-        Call showCluster(clusterSet.ToArray, $"cos({current.referenceId},y) > {cutoff}")
+                For Each cluster In links.links
+                    If cluster.Value.GetScore >= cutoff Then
+                        Call clusterSet.AddRange(nodeInfo.Cluster(cluster.Key).members)
+                    End If
+                Next
+
+                ' load into feature explorer
+                Call showCluster(clusterSet.ToArray, $"cos({current.referenceId},y) > {cutoff}")
+            End Sub)
     End Sub
 
     Private Sub SaveImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowImageToolStripMenuItem.Click
