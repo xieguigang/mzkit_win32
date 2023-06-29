@@ -2,24 +2,35 @@
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.PoolData
 Imports Microsoft.VisualBasic.My.JavaScript
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 
 Public Class frmCloudExplorer
 
     Public tree As HttpTreeFs
     Public loadTable As Action(Of String)
 
+    Dim model As SpectrumGraphModel
+
     Private Sub frmCloudExplorer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TabText = "Cloud Explorer"
-        tree = New HttpTreeFs("http://192.168.0.207:83/taxonomy", 1)
+
+        Call ApplyVsTheme(ToolStrip1)
+        Call SelectModel()
+    End Sub
+
+    Private Sub LoadGraphModel(cloud As String, model_id As String)
+        tree = New HttpTreeFs(cloud, model_id)
+        TreeView1.Nodes.Clear()
 
         Dim childs = Me.tree.GetTreeChilds("/").ToArray
-        Dim root = TreeView1.Nodes.Add($"Spectrum Pool [{tree.HttpServices.TrimEnd("/"c)}/ connected!]").Nodes.Add("/")
+        Dim root = TreeView1.Nodes.Add($"Spectrum Pool [{tree.HttpServices.TrimEnd("/"c)}/]").Nodes.Add("/")
 
         root.Tag = "/"
         root.ImageIndex = 1
         root.SelectedImageIndex = 1
 
         Call addNodes(root, childs)
+        Call Workbench.SuccessMessage($"Connected to the cloud services: {tree.HttpServices.TrimEnd("/"c)}/")
     End Sub
 
     Private Sub addNodes(root As TreeNode, childs As String())
@@ -103,5 +114,13 @@ Public Class frmCloudExplorer
 
         loadMetadataByhashCode(input)
         loadTable(input)
+    End Sub
+
+    Private Sub SelectModel() Handles ToolStripButton2.Click
+        InputDialog.Input(Of InputSelectGraphModel)(
+            Sub(cfg)
+                model = cfg.GetModel
+                Call LoadGraphModel(cfg.GetCloudRootURL, model_id:=model.id)
+            End Sub)
     End Sub
 End Class
