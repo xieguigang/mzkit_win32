@@ -25,6 +25,7 @@ Partial Class InputSelectGraphModel
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -32,7 +33,6 @@ Partial Class InputSelectGraphModel
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -53,6 +53,15 @@ Partial Class InputSelectGraphModel
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Spectrum Graph Model"
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(243, 80)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(108, 23)
+        Me.Button3.TabIndex = 5
+        Me.Button3.Text = "Load Models"
+        Me.Button3.UseVisualStyleBackColor = True
         '
         'TextBox2
         '
@@ -118,15 +127,6 @@ Partial Class InputSelectGraphModel
         Me.Button2.TabIndex = 2
         Me.Button2.Text = "Cancel"
         Me.Button2.UseVisualStyleBackColor = True
-        '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(243, 80)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(108, 23)
-        Me.Button3.TabIndex = 5
-        Me.Button3.Text = "Load Models"
-        Me.Button3.UseVisualStyleBackColor = True
         '
         'InputSelectGraphModel
         '

@@ -78,6 +78,18 @@ Public Class InputSelectGraphModel
             TextBox2.Text = DirectCast(ComboBox1.SelectedItem, SpectrumGraphModel).description
         End If
     End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If GetCloudRootURL.StringEmpty Then
+            Return
+        End If
+
+        DialogResult = DialogResult.OK
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        DialogResult = DialogResult.Cancel
+    End Sub
 End Class
 
 Public Class SpectrumGraphModel
