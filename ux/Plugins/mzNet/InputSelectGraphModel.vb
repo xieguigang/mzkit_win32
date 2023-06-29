@@ -1,5 +1,6 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.PoolData
 Imports Microsoft.VisualBasic.My.JavaScript
+Imports Mzkit_win32.BasicMDIForm
 
 Public Class InputSelectGraphModel
 
@@ -8,6 +9,12 @@ Public Class InputSelectGraphModel
     Public ReadOnly Property GetModel As SpectrumGraphModel
         Get
             Return ComboBox1.SelectedItem
+        End Get
+    End Property
+
+    Public ReadOnly Property GetCloudRootURL As String
+        Get
+            Return TextBox1.Text
         End Get
     End Property
 
@@ -31,6 +38,7 @@ Public Class InputSelectGraphModel
             .ToArray
 
         Call ComboBox1.Items.Clear()
+        Call Workbench.SuccessMessage($"Load {models.Length} spectrum cluster graph models!")
 
         For Each graph As SpectrumGraphModel In models
             Call ComboBox1.Items.Add(graph)
