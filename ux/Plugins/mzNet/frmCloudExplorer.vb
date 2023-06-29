@@ -13,7 +13,9 @@ Public Class frmCloudExplorer
 
     Private Sub frmCloudExplorer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TabText = "Cloud Explorer"
-        SelectModel()
+
+        Call ApplyVsTheme(ToolStrip1)
+        Call SelectModel()
     End Sub
 
     Private Sub LoadGraphModel(cloud As String, model_id As String)
