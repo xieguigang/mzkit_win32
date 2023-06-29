@@ -66,7 +66,9 @@ Public Class InputSelectGraphModel
     End Sub
 
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
-        TextBox2.Text = DirectCast(ComboBox1.SelectedValue, SpectrumGraphModel).description
+        If ComboBox1.SelectedItem IsNot Nothing Then
+            TextBox2.Text = DirectCast(ComboBox1.SelectedItem, SpectrumGraphModel).description
+        End If
     End Sub
 End Class
 
