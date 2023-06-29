@@ -20,13 +20,14 @@ Public Class frmCloudExplorer
         tree = New HttpTreeFs(cloud, model_id)
 
         Dim childs = Me.tree.GetTreeChilds("/").ToArray
-        Dim root = TreeView1.Nodes.Add($"Spectrum Pool [{tree.HttpServices.TrimEnd("/"c)}/ connected!]").Nodes.Add("/")
+        Dim root = TreeView1.Nodes.Add($"Spectrum Pool [{tree.HttpServices.TrimEnd("/"c)}/]").Nodes.Add("/")
 
         root.Tag = "/"
         root.ImageIndex = 1
         root.SelectedImageIndex = 1
 
         Call addNodes(root, childs)
+        Call Workbench.SuccessMessage($"Connected to the cloud services: {tree.HttpServices.TrimEnd("/"c)}/")
     End Sub
 
     Private Sub addNodes(root As TreeNode, childs As String())
