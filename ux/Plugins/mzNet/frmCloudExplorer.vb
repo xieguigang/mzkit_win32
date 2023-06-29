@@ -18,6 +18,7 @@ Public Class frmCloudExplorer
 
     Private Sub LoadGraphModel(cloud As String, model_id As String)
         tree = New HttpTreeFs(cloud, model_id)
+        TreeView1.Nodes.Clear()
 
         Dim childs = Me.tree.GetTreeChilds("/").ToArray
         Dim root = TreeView1.Nodes.Add($"Spectrum Pool [{tree.HttpServices.TrimEnd("/"c)}/]").Nodes.Add("/")
