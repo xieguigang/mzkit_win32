@@ -23,8 +23,12 @@ Public Class InputSelectGraphModel
     End Sub
 
     Private Sub loadModelList()
-        Dim list As JavaScriptObject() = Restful.ParseJSON($"{TextBox1.Text}/get_models/".GET).info
-        Dim models = list.Select(Function(js) js.CreateObject(Of SpectrumGraphModel)).ToArray
+        Dim list As Object() = Restful.ParseJSON($"{TextBox1.Text}/get_models/".GET).info
+        Dim models = list _
+            .Select(Function(js)
+                        Return DirectCast(js, JavaScriptObject).CreateObject(Of SpectrumGraphModel)
+                    End Function) _
+            .ToArray
 
         Call ComboBox1.Items.Clear()
 
