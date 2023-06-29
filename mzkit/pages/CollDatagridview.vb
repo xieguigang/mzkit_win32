@@ -95,7 +95,7 @@ Namespace cooldatagridview
             dgv.BackgroundColor = Drawing.Color.White
             cellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             cellStyle.BackColor = Drawing.Color.White
-            cellStyle.Font = New Drawing.Font("Microsoft Sans Serif", 10.0F, Drawing.FontStyle.Regular, Drawing.GraphicsUnit.Point, 0)
+            cellStyle.Font = New Drawing.Font("Microsoft Sans Serif", 8.0F, Drawing.FontStyle.Regular, Drawing.GraphicsUnit.Point, 0)
             cellStyle.ForeColor = Drawing.Color.Black
             cellStyle.SelectionBackColor = Drawing.Color.SkyBlue
             cellStyle.SelectionForeColor = Drawing.Color.Black
@@ -105,7 +105,7 @@ Namespace cooldatagridview
             dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
             headerStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             headerStyle.BackColor = Drawing.SystemColors.Window
-            headerStyle.Font = New Drawing.Font("Microsoft Sans Serif", 10.0F, Drawing.FontStyle.Bold, Drawing.GraphicsUnit.Point, 0)
+            headerStyle.Font = New Drawing.Font("Microsoft Sans Serif", 8.0F, Drawing.FontStyle.Bold, Drawing.GraphicsUnit.Point, 0)
             headerStyle.ForeColor = Drawing.Color.Black
             headerStyle.SelectionBackColor = Drawing.Color.White
             headerStyle.SelectionForeColor = Drawing.Color.Black
@@ -143,7 +143,8 @@ Namespace cooldatagridview
             End If
         End Sub
 
-        <Extension()>
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        <Extension>
         Public Sub HideColumn(dgv As DataGridView, columnName As String)
             dgv.Columns(columnName).Visible = False
         End Sub

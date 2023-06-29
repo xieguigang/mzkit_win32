@@ -31,9 +31,10 @@ Partial Class frmCloudExplorer
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.TreeView1 = New System.Windows.Forms.TreeView()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
         Me.ToolStripTextBox1 = New Mzkit_win32.BasicMDIForm.ToolStripSpringTextBox()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ContextMenuStrip2.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -42,12 +43,12 @@ Partial Class frmCloudExplorer
         '
         Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportMzPackToolStripMenuItem})
         Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(153, 26)
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(152, 26)
         '
         'ExportMzPackToolStripMenuItem
         '
         Me.ExportMzPackToolStripMenuItem.Name = "ExportMzPackToolStripMenuItem"
-        Me.ExportMzPackToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ExportMzPackToolStripMenuItem.Size = New System.Drawing.Size(151, 22)
         Me.ExportMzPackToolStripMenuItem.Text = "Export mzPack"
         '
         'ImageList1
@@ -73,18 +74,24 @@ Partial Class frmCloudExplorer
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.ToolStripTextBox1, Me.ToolStripButton1})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.ToolStripTextBox1, Me.ToolStripButton1, Me.ToolStripButton2})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(384, 25)
         Me.ToolStrip1.TabIndex = 2
         Me.ToolStrip1.Text = "ToolStrip1"
         '
+        'ToolStripLabel1
+        '
+        Me.ToolStripLabel1.Name = "ToolStripLabel1"
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(129, 22)
+        Me.ToolStripLabel1.Text = "View Spectrum Cluster:"
+        '
         'ToolStripTextBox1
         '
         Me.ToolStripTextBox1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.ToolStripTextBox1.Name = "ToolStripTextBox1"
-        Me.ToolStripTextBox1.Size = New System.Drawing.Size(189, 25)
+        Me.ToolStripTextBox1.Size = New System.Drawing.Size(166, 25)
         '
         'ToolStripButton1
         '
@@ -95,11 +102,14 @@ Partial Class frmCloudExplorer
         Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton1.Text = "View"
         '
-        'ToolStripLabel1
+        'ToolStripButton2
         '
-        Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(129, 22)
-        Me.ToolStripLabel1.Text = "View Spectrum Cluster:"
+        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
+        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton2.Name = "ToolStripButton2"
+        Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton2.Text = "Select Model"
         '
         'frmCloudExplorer
         '
@@ -126,4 +136,5 @@ Partial Class frmCloudExplorer
     Friend WithEvents ToolStripTextBox1 As Mzkit_win32.BasicMDIForm.ToolStripSpringTextBox
     Friend WithEvents ToolStripButton1 As ToolStripButton
     Friend WithEvents ToolStripLabel1 As ToolStripLabel
+    Friend WithEvents ToolStripButton2 As ToolStripButton
 End Class

@@ -53,13 +53,14 @@ Namespace MSdata
 
             Dim clusters = net.ToKMeansModels.Kmeans(expected:=kn, debug:=False)
             Dim rawLinks = links.ToDictionary(Function(a) a.reference, Function(a) a)
+            Dim toolPage = MyApplication.host.mzkitMNtools
 
             progress.SetInfo("initialize result output...")
 
             MyApplication.host.Invoke(
                 Sub()
-                    Call MyApplication.host.mzkitMNtools.loadNetwork(clusters, protocol, rawLinks, similarityCutoff)
-                    Call MyApplication.host.ShowPage(MyApplication.host.mzkitMNtools)
+                    Call toolPage.loadNetworkData(clusters, protocol, rawLinks, similarityCutoff)
+                    Call MyApplication.host.ShowPage(toolPage)
                 End Sub)
         End Sub
     End Module

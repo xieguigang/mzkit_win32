@@ -827,6 +827,7 @@ Public Class frmMain : Implements AppHost
         ' vsToolStripExtender1.SetStyle(MainMenu, version, theme)
         ' vsToolStripExtender1.SetStyle(ToolBar, version, theme)
         vsToolStripExtender1.SetStyle(StatusStrip, version, theme)
+        vsToolStripExtender1.SetStyle(mzkitMNtools.ctxCluster, version, theme)
     End Sub
 
     Private Sub frmMain_ResizeEnd(sender As Object, e As EventArgs) Handles Me.ResizeEnd
