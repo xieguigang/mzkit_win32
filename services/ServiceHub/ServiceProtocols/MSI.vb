@@ -162,16 +162,12 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Dim minX As Double = matrix.Select(Function(p) p.X).Min
         Dim minY As Double = matrix.Select(Function(p) p.Y).Min
 
-        If minX < 0 Then
-            matrix = matrix _
-                .Select(Function(p) New PointF(p.X - minX, p.Y)) _
-                .ToArray
-        End If
-        If minY < 0 Then
-            matrix = matrix _
-                .Select(Function(p) New PointF(p.X, p.Y - minY)) _
-                .ToArray
-        End If
+        matrix = matrix _
+            .Select(Function(p) New PointF(p.X - minX, p.Y)) _
+            .ToArray
+        matrix = matrix _
+            .Select(Function(p) New PointF(p.X, p.Y - minY)) _
+            .ToArray
 
         For i As Integer = 0 To matrix.Length - 1
             rawPixels(i) = rawPixels(i).SetXY(matrix(i).X, matrix(i).Y)
