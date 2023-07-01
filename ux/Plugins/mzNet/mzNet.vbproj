@@ -134,6 +134,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InputSelectGraphModel.Designer.vb">
+      <DependentUpon>InputSelectGraphModel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InputSelectGraphModel.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmCloudExplorer.Designer.vb">
       <DependentUpon>frmCloudExplorer.vb</DependentUpon>
     </Compile>
@@ -172,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCloudExplorer.resx">
       <DependentUpon>frmCloudExplorer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputSelectGraphModel.resx">
+      <DependentUpon>InputSelectGraphModel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

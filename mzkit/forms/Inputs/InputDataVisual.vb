@@ -71,6 +71,10 @@ Public Class InputDataVisual
 
     Dim fields As Dictionary(Of String, Type)
 
+    ''' <summary>
+    ''' set field names
+    ''' </summary>
+    ''' <param name="fields"></param>
     Public Sub SetAxis(fields As Dictionary(Of String, Type))
         For Each item As KeyValuePair(Of String, Type) In fields
             ListBox1.Items.Add(item.Key)
@@ -173,10 +177,17 @@ Public Class InputDataVisual
                 .ToArray
         End If
 
-        Call grid.Rows.Clear()
-        Call grid.Columns.Clear()
+        Dim memoryData As New DataSet
+        Dim table As DataTable = memoryData.Tables.Add("memoryData")
 
-        Call grid.Columns.Add(getXName, getXName)
+        Try
+            Call grid.Columns.Clear()
+            Call grid.Rows.Clear()
+        Catch ex As Exception
+
+        End Try
+
+        table.Columns.Add(getXName, GetType(Double))
 
         Dim yNames = GetY.ToArray
 
@@ -210,7 +221,7 @@ Public Class InputDataVisual
                 For Each group In group_maps
                     Dim s = Scatter.FromPoints(group.Value.Item1, lineColor:=group.Value.Item2)
 
-                    Call grid.Columns.Add(group.Key, group.Key)
+                    Call table.Columns.Add(group.Key, GetType(Double))
                     Call yList.Add(group.Value.Item1.Select(Function(p) p.Y).ToArray)
 
                     Yield s
@@ -229,7 +240,7 @@ SingleS:    For Each name As String In GetY()
                     .ToArray
                 Dim s = Scatter.FromPoints(points, lineColor:=colors(++idx))
 
-                Call grid.Columns.Add(name, name)
+                Call table.Columns.Add(name, GetType(Double))
                 Call yList.Add(y)
 
                 Yield s
@@ -242,13 +253,17 @@ SingleS:    For Each name As String In GetY()
             ' 如果y group的每组元素的数量和x都一样，才显示绘图矩阵
             For i As Integer = 0 To x.Length - 2
                 Dim row As Object() = {x.GetValue(i)} _
-                .JoinIterates(yList.Select(Function(yi) yi.GetValue(i))) _
-                .ToArray
+                    .JoinIterates(yList.Select(Function(yi) yi.GetValue(i))) _
+                    .ToArray
 
-                Call grid.Rows.Add(row)
+                Call table.Rows.Add(row)
             Next
 #Enable Warning
         End If
+
+        MyApplication.host.mzkitTool.BindingSource1.DataSource = memoryData
+        MyApplication.host.mzkitTool.BindingSource1.DataMember = table.TableName
+        MyApplication.host.mzkitTool.DataGridView1.DataSource = MyApplication.host.mzkitTool.BindingSource1
     End Function
 
     Public Sub DoPlot(x As Array, table As DataTable, getVector As Func(Of String, Array))

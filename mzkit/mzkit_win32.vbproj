@@ -473,6 +473,12 @@
     <Compile Include="application\settings\RawFileViewerSettings.vb" />
     <Compile Include="application\VisualStudio.vb" />
     <Compile Include="application\RPackage.vb" />
+    <Compile Include="forms\Inputs\LCMS\InputMNSimilarityScore.Designer.vb">
+      <DependentUpon>InputMNSimilarityScore.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\LCMS\InputMNSimilarityScore.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\MSImaging\InputMSIRotation.Designer.vb">
       <DependentUpon>InputMSIRotation.vb</DependentUpon>
     </Compile>
@@ -647,10 +653,10 @@
     <Compile Include="forms\Inputs\InputNetworkLayout.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Inputs\InputXICTarget.Designer.vb">
+    <Compile Include="forms\Inputs\LCMS\InputXICTarget.Designer.vb">
       <DependentUpon>InputXICTarget.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputXICTarget.vb">
+    <Compile Include="forms\Inputs\LCMS\InputXICTarget.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\Inputs\InputFeatureFilter.Designer.vb">
@@ -1107,6 +1113,9 @@
     <EmbeddedResource Include="forms\Inputs\Input3DScatter.resx">
       <DependentUpon>Input3DScatter.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\LCMS\InputMNSimilarityScore.resx">
+      <DependentUpon>InputMNSimilarityScore.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\MSImaging\InputHTMLColorCode.resx">
       <DependentUpon>InputHTMLColorCode.vb</DependentUpon>
     </EmbeddedResource>
@@ -1173,7 +1182,7 @@
     <EmbeddedResource Include="forms\Inputs\InputRSymbol.resx">
       <DependentUpon>InputRSymbol.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputXICTarget.resx">
+    <EmbeddedResource Include="forms\Inputs\LCMS\InputXICTarget.resx">
       <DependentUpon>InputXICTarget.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\MSImaging\InputMSIRotation.resx">

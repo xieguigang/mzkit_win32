@@ -117,24 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="cbColorGroups.Items" xml:space="preserve">
-    <value>Scatter</value>
-  </data>
-  <data name="cbColorGroups.Items1" xml:space="preserve">
-    <value>Line</value>
-  </data>
-  <data name="cbColorGroups.Items2" xml:space="preserve">
-    <value>BarPlot</value>
-  </data>
-  <data name="cbColorGroups.Items3" xml:space="preserve">
-    <value>BoxPlot</value>
-  </data>
-  <data name="cbColorGroups.Items4" xml:space="preserve">
-    <value>ViolinPlot</value>
-  </data>
-  <data name="cbColorGroups.Items5" xml:space="preserve">
-    <value>Histogram</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="cbColorGroups.Location" type="System.Drawing.Point, System.Drawing">
     <value>147, 166</value>
@@ -718,6 +700,6 @@
     <value>InputDataVisual</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>BioNovoGene.mzkit_win32.InputDialog, mzkit_win32, Version=1.32.8308.21310, Culture=neutral, PublicKeyToken=null</value>
+    <value>Mzkit_win32.BasicMDIForm.CommonDialogs.InputDialog, Mzkit_win32.BasicMDIForm, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

@@ -60,6 +60,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
+Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking
@@ -87,6 +88,7 @@ Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Interop
 Imports TaskStream
 Imports WeifenLuo.WinFormsUI.Docking
@@ -203,10 +205,14 @@ Public Class PageMoleculeNetworking
         Call viewer.Show(MyApplication.host.m_dockPanel)
     End Sub
 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Private Sub showCluster(info As NetworkingNode, vlabel As String)
-        Dim raw As PeakMs2() = info.members
+        Call showCluster(info.members, vlabel)
+    End Sub
+
+    Private Sub showCluster(raw As PeakMs2(), vlabel As String)
         Dim rt As Double() = raw.Select(Function(p) p.rt).ToArray
-        Dim rt_scan = info.members.GroupBy(Function(a) a.rt, offsets:=5).ToArray
+        Dim rt_scan = raw.GroupBy(Function(a) a.rt, offsets:=5).ToArray
         Dim ms1 As ScanMS1() = rt_scan _
             .Select(Function(p) p.value.ClusterScan(vlabel)) _
             .OrderBy(Function(m) m.rt) _
@@ -306,6 +312,8 @@ Public Class PageMoleculeNetworking
                 .mass = info.size,
                 .origID = info.representation.name
             })
+
+            Call System.Windows.Forms.Application.DoEvents()
         Next
 
         Dim duplicatedEdges As New Index(Of String)
@@ -333,6 +341,8 @@ Public Class PageMoleculeNetworking
                     Call g.CreateEdge(row.ID, link.Key, link.Value, edgeProps)
                 End If
             Next
+
+            Call System.Windows.Forms.Application.DoEvents()
         Next
 
         If g.graphEdges.Count >= 8000 AndAlso MessageBox.Show("There are two many edges in your network, do you wan to increase the similarity threshold for reduce network size?",
@@ -380,10 +390,11 @@ Public Class PageMoleculeNetworking
             row.SubItems.Add(New ListViewSubItem With {.Text = node.data("rtmax")})
             row.SubItems.Add(New ListViewSubItem With {.Text = node.data("area")})
 
-            TreeListView1.Items.Add(row)
+            Call TreeListView1.Items.Add(row)
+            Call System.Windows.Forms.Application.DoEvents()
         Next
         For Each edge As Edge In g.graphEdges
-            DataGridView1.Rows.Add(
+            Call DataGridView1.Rows.Add(
                 edge.U.label,
                 edge.V.label,
                 stdNum.Min(Val(edge.data!forward), Val(edge.data!reverse)).ToString("F4"),
@@ -391,7 +402,6 @@ Public Class PageMoleculeNetworking
                 Val(edge.data!reverse).ToString("F4"),
                 "View Alignment"
             )
-
             Call System.Windows.Forms.Application.DoEvents()
         Next
 
@@ -402,7 +412,8 @@ Public Class PageMoleculeNetworking
         DataGridView2.Rows.Add("similarity_threshold", cutoff)
 
         For Each cluster In rawMatrix.GroupBy(Function(a) a.Cluster).OrderBy(Function(a) Val(a.Key))
-            DataGridView2.Rows.Add($"#Cluster_{cluster.Key}", cluster.Count)
+            Call DataGridView2.Rows.Add($"#Cluster_{cluster.Key}", cluster.Count)
+            Call System.Windows.Forms.Application.DoEvents()
         Next
     End Sub
 
@@ -471,6 +482,53 @@ Public Class PageMoleculeNetworking
 
         Return v
     End Function
+
+    Private Sub FilterSimilarClustersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FilterSimilarClustersToolStripMenuItem.Click
+        Dim current As NetworkingNode = GetSelectedCluster()
+        Dim links As LinkSet = rawLinks(current.referenceId)
+        Dim clusterSet As New List(Of PeakMs2)
+
+        Call InputDialog.Input(Of InputMNSimilarityScore)(
+            Sub(cfg)
+                Dim cutoff As Double = cfg.GetCutoff
+                Dim mz As New List(Of ms2)
+
+                Call mz.Add(New ms2 With {.mz = current.mz, .intensity = current.size})
+                Call clusterSet.AddRange(current.members)
+
+                For Each cluster In links.links
+                    If cluster.Value.GetScore >= cutoff Then
+                        Dim target = nodeInfo.Cluster(cluster.Key)
+
+                        Call clusterSet.AddRange(target.members)
+                        Call mz.Add(New ms2 With {.mz = target.mz, .intensity = target.size})
+                    End If
+                Next
+
+                ' load into feature explorer
+                Call showCluster(clusterSet.ToArray, $"cos({current.referenceId},y) > {cutoff}")
+                ' show mass diff analysis
+                Call showMasssdiff(current.mz, mz.ToArray)
+            End Sub)
+    End Sub
+
+    Private Sub showMasssdiff(M As Double, mz As ms2())
+        Dim pa As New PeakAnnotation(0.05, isotopeFirst:=True)
+        Dim massdiff = pa.RunAnnotation(M, mz.ToArray).products
+        ' show result in table viewer
+        Dim tblView = VisualStudio.ShowDocument(Of frmTableViewer)(title:=$"Mass Diff Analysis[m/z {M.ToString("F4")}]")
+
+        Call tblView.LoadTable(
+            Sub(subView)
+                Call subView.Columns.Add("precursor", GetType(Double))
+                Call subView.Columns.Add("cluster_size", GetType(Double))
+                Call subView.Columns.Add("mass_diff", GetType(String))
+
+                For Each row As ms2 In massdiff
+                    Call subView.Rows.Add(row.mz, row.intensity, row.Annotation)
+                Next
+            End Sub)
+    End Sub
 
     Private Sub SaveImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowImageToolStripMenuItem.Click
         Dim cluster As TreeListViewItem
