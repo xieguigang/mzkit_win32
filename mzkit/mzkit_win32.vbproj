@@ -933,12 +933,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\IDataTraceback.vb" />
-    <Compile Include="pages\pageStart\VideoCards.Designer.vb">
-      <DependentUpon>VideoCards.vb</DependentUpon>
-    </Compile>
-    <Compile Include="pages\pageStart\VideoCards.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="pages\toolkit\PlotTooltip.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -1349,9 +1343,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\tools\TaskListWindow.resx">
       <DependentUpon>TaskListWindow.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="pages\pageStart\VideoCards.resx">
-      <DependentUpon>VideoCards.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\Settings\AppConfig.en-US.resx">
       <DependentUpon>AppConfig.vb</DependentUpon>
