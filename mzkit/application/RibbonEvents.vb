@@ -172,7 +172,7 @@ Module RibbonEvents
         AddHandler ribbonItems.ShowGCMSExplorer.ExecuteEvent, Sub() Call VisualStudio.Dock(WindowModules.GCMSPeaks, DockState.DockLeft)
         AddHandler ribbonItems.ShowMRMExplorer.ExecuteEvent, Sub() Call VisualStudio.Dock(WindowModules.MRMIons, DockState.DockLeft)
 
-        AddHandler ribbonItems.Tutorials.ExecuteEvent, Sub() Call VisualStudio.ShowSingleDocument(Of frmVideoList)()
+        AddHandler ribbonItems.Tutorials.ExecuteEvent, Sub() Call openVideoList()
         AddHandler ribbonItems.ButtonViewSMILES.ExecuteEvent, Sub() Call VisualStudio.ShowSingleDocument(Of frmSMILESViewer)()
         AddHandler ribbonItems.ButtonPluginManager.ExecuteEvent, Sub() Call VisualStudio.ShowSingleDocument(Of frmPluginMgr)()
 
@@ -197,6 +197,10 @@ Module RibbonEvents
         ExportApis._openMSImagingFile = AddressOf OpenMSIRaw
         ExportApis._openMSImagingViewer = AddressOf showMsImaging
         ExportApis._openCFMIDTool = AddressOf OpenCFMIDTool
+    End Sub
+
+    Private Sub openVideoList()
+        Call VisualStudio.ShowDocument(Of frmHtmlViewer)(title:="View").LoadHtml("http://education.biodeep.cn/")
     End Sub
 
     Private Sub ConvertH5ad()
