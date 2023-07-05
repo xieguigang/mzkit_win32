@@ -83,6 +83,8 @@ Partial Class frmHtmlViewer
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SavePDFToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WebView21 = New Microsoft.Web.WebView2.WinForms.WebView2()
+        Me.GotoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -91,13 +93,13 @@ Partial Class frmHtmlViewer
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SavePDFToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(123, 26)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(130, 26)
         '
         'SavePDFToolStripMenuItem
         '
         Me.SavePDFToolStripMenuItem.Image = CType(resources.GetObject("SavePDFToolStripMenuItem.Image"), System.Drawing.Image)
         Me.SavePDFToolStripMenuItem.Name = "SavePDFToolStripMenuItem"
-        Me.SavePDFToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
+        Me.SavePDFToolStripMenuItem.Size = New System.Drawing.Size(129, 22)
         Me.SavePDFToolStripMenuItem.Text = "Save PDF"
         '
         'WebView21
@@ -112,6 +114,17 @@ Partial Class frmHtmlViewer
         Me.WebView21.TabIndex = 1
         Me.WebView21.ZoomFactor = 1.0R
         '
+        'GotoToolStripMenuItem
+        '
+        Me.GotoToolStripMenuItem.Name = "GotoToolStripMenuItem"
+        Me.GotoToolStripMenuItem.Size = New System.Drawing.Size(215, 22)
+        Me.GotoToolStripMenuItem.Text = "Goto"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(212, 6)
+        '
         'frmHtmlViewer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -120,6 +133,7 @@ Partial Class frmHtmlViewer
         Me.Controls.Add(Me.WebView21)
         Me.DoubleBuffered = True
         Me.Name = "frmHtmlViewer"
+        Me.TabPageContextMenuStrip = Me.DockContextMenuStrip1
         Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -128,4 +142,6 @@ Partial Class frmHtmlViewer
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents SavePDFToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents WebView21 As Microsoft.Web.WebView2.WinForms.WebView2
+    Friend WithEvents GotoToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
 End Class

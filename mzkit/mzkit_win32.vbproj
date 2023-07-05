@@ -473,6 +473,12 @@
     <Compile Include="application\settings\RawFileViewerSettings.vb" />
     <Compile Include="application\VisualStudio.vb" />
     <Compile Include="application\RPackage.vb" />
+    <Compile Include="forms\Inputs\InputURL.Designer.vb">
+      <DependentUpon>InputURL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\InputURL.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\LCMS\InputMNSimilarityScore.Designer.vb">
       <DependentUpon>InputMNSimilarityScore.vb</DependentUpon>
     </Compile>
@@ -1112,6 +1118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\Input3DScatter.resx">
       <DependentUpon>Input3DScatter.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\InputURL.resx">
+      <DependentUpon>InputURL.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\LCMS\InputMNSimilarityScore.resx">
       <DependentUpon>InputMNSimilarityScore.vb</DependentUpon>

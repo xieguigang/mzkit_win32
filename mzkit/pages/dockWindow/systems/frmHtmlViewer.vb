@@ -59,6 +59,7 @@ Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Mzkit_win32.BasicMDIForm.Container
 Imports WeifenLuo.WinFormsUI.Docking
 Imports WkHtmlToPdf.Arguments
@@ -166,5 +167,15 @@ Public Class frmHtmlViewer
         If MessageBox.Show("Close current app page?", "Workbench WebView", buttons:=MessageBoxButtons.OKCancel, icon:=MessageBoxIcon.Information) = DialogResult.Cancel Then
             e.Cancel = True
         End If
+    End Sub
+
+    Private Sub GotoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GotoToolStripMenuItem.Click
+        InputDialog.Input(Of InputURL)(
+            setConfig:=Sub(input)
+                           sourceURL = input.URL
+                           WebView21.CoreWebView2.Navigate(sourceURL)
+                       End Sub,
+            config:=New InputURL With {.URL = sourceURL}
+        )
     End Sub
 End Class
