@@ -140,6 +140,12 @@
     <Compile Include="PeakFindingViewer.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="PeakScatterViewer.Designer.vb">
+      <DependentUpon>PeakScatterViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PeakScatterViewer.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Dialogs\InputPeakFindParameter.resx">
