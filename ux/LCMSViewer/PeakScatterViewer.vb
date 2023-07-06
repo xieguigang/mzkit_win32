@@ -20,7 +20,10 @@ Public Class PeakScatterViewer
         End Get
         Set(value As ScalerPalette)
             m_palette = value
-            Call Rendering()
+
+            If Not rawdata.IsNullOrEmpty Then
+                Call Rendering()
+            End If
         End Set
     End Property
 
@@ -30,7 +33,10 @@ Public Class PeakScatterViewer
         End Get
         Set(value As Integer)
             m_levels = value
-            Call Rendering()
+
+            If Not rawdata.IsNullOrEmpty Then
+                Call Rendering()
+            End If
         End Set
     End Property
 
@@ -132,25 +138,33 @@ Public Class PeakScatterViewer
 
         Call GetPeak(peakId, mz, rt)
 
-        RaiseEvent MoveOverPeak(peakId, mz, rt)
+        If peakId IsNot Nothing Then
+            RaiseEvent MoveOverPeak(peakId, mz, rt)
+        End If
     End Sub
 
     Private Sub GetPeak(ByRef peakId As String, ByRef mz As Double, ByRef rt As Double)
         Dim pt = PointToClient([Control].MousePosition)
         Dim size As Size = Me.Size
 
-        mz = (pt.Y / size.Width) * mz_range.Length + mz_range.Min
-        rt = (pt.X / size.Height) * rt_range.Length + rt_range.Min
-        peakId = Nothing
+        If mz_range IsNot Nothing AndAlso rt_range IsNot Nothing Then
+            mz = (pt.Y / size.Width) * mz_range.Length + mz_range.Min
+            rt = (pt.X / size.Height) * rt_range.Length + rt_range.Min
+            peakId = Nothing
+        Else
+            peakId = Nothing
+        End If
     End Sub
 
     Private Sub ViewerResize() Handles Me.Resize
         Dim size As Size = Me.Size
 
-        ' scale the mapping of the mouse xy
-        ' not for plot rendering
-        mzscale = d3js.scale.linear().domain(mz_range).range(integers:={0, size.Height})
-        rtscale = d3js.scale.linear().domain(rt_range).range(integers:={0, size.Width})
+        If mz_range IsNot Nothing AndAlso rt_range IsNot Nothing Then
+            ' scale the mapping of the mouse xy
+            ' not for plot rendering
+            mzscale = d3js.scale.linear().domain(mz_range).range(integers:={0, size.Height})
+            rtscale = d3js.scale.linear().domain(rt_range).range(integers:={0, size.Width})
+        End If
     End Sub
 
     Private Sub PeakScatterViewer_MouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseClick
@@ -159,6 +173,8 @@ Public Class PeakScatterViewer
 
         Call GetPeak(peakId, mz, rt)
 
-        RaiseEvent ClickOnPeak(peakId, mz, rt)
+        If peakId IsNot Nothing Then
+            RaiseEvent ClickOnPeak(peakId, mz, rt)
+        End If
     End Sub
 End Class
