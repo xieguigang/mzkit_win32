@@ -175,10 +175,12 @@ Public Class frmCloudExplorer
                 Dim node_tag As String = sel.Tag.ToString
 
                 Call TaskProgress.RunAction(
-                    Sub(echo As Action(Of String))
-                        Call echo("Fetch spectrum data from the cloud service...")
+                    Sub(echo As ITaskProgress)
+                        Dim println As Action(Of String) = AddressOf echo.SetInfo
+
+                        Call println("Fetch spectrum data from the cloud service...")
                         Dim spectrum As PeakMs2() = FetchSpectrum(node_tag).ToArray
-                        Call echo("Construct the spectrum objects...")
+                        Call println("Construct the spectrum objects...")
                         Dim scan1 = spectrum.GroupBy(Function(p) p.rt, 5) _
                             .Select(Function(p)
                                         Dim scan2 = p.Select(Function(p2)
@@ -207,7 +209,7 @@ Public Class frmCloudExplorer
                             .MS = scan1,
                             .source = sel.Tag
                         }
-                        Call echo("Save mzpack data to target file...")
+                        Call println("Save mzpack data to target file...")
 
                         Using buf As Stream = savefile.Open(FileMode.OpenOrCreate, doClear:=True)
                             Call pack.Write(buf, progress:=echo)
