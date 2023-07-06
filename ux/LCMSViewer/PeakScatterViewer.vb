@@ -12,8 +12,28 @@ Public Class PeakScatterViewer
     Public Event ClickOnPeak(peakId As String, mz As Double, rt As Double)
     Public Event MoveOverPeak(peakId As String, mz As Double, rt As Double)
 
-    Public Property ColorScale As ScalerPalette = ScalerPalette.turbo
-    Public Property ScaleLevels As Integer = 255
+    Public Property ColorScale As ScalerPalette
+        Get
+            Return m_palette
+        End Get
+        Set(value As ScalerPalette)
+            m_palette = value
+            Call Rendering()
+        End Set
+    End Property
+
+    Public Property ScaleLevels As Integer
+        Get
+            Return m_levels
+        End Get
+        Set(value As Integer)
+            m_levels = value
+            Call Rendering()
+        End Set
+    End Property
+
+    Dim m_levels As Integer = 255
+    Dim m_palette As ScalerPalette = ScalerPalette.turbo
 
     Dim mzscale As d3js.scale.LinearScale
     Dim rtscale As d3js.scale.LinearScale
