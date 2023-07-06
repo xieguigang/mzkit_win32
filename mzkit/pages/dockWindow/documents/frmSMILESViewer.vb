@@ -52,7 +52,6 @@
 
 #End Region
 
-Imports System.Reflection
 Imports System.Text
 Imports System.Threading
 Imports BioNovoGene.BioDeep.Chemistry.Model
@@ -90,6 +89,8 @@ Public Class frmSMILESViewer
         Return $"http://127.0.0.1:{Workbench.WebPort}/ketcher/index.html"
     End Function
 
+    Dim tableRows As New List(Of Object())
+
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim smilesStr As String = Strings.Trim(TextBox1.Text)
         Dim js As String = $"rendering('{smilesStr}');"
@@ -105,19 +106,25 @@ Public Class frmSMILESViewer
 
             Call TextBox3.Clear()
             Call DataGridView1.Rows.Clear()
+            Call tableRows.Clear()
 
             TextBox3.Text = info.ToString
 
             For Each atom As ChemicalElement In graph.AllElements
-                Call DataGridView1.Rows.Add(atom.label, atom.elementName, atom.group, atom.charge, atom.Keys, ChemicalElement _
+                Dim connects = ChemicalElement _
                     .GetConnection(graph, atom) _
                     .Select(Function(a)
                                 Return $"{CInt(a.keys)}({a.Item2.group})"
                             End Function) _
-                    .JoinBy("; "))
+                    .JoinBy("; ")
+
+                Call tableRows.Add({atom.label, atom.elementName, atom.group, atom.charge, atom.Keys, connects})
+                Call DataGridView1.Rows.Add(atom.label, atom.elementName, atom.group, atom.charge, atom.Keys, connects)
             Next
         Catch ex As Exception
+            Call TextBox3.Clear()
             Call DataGridView1.Rows.Clear()
+            Call tableRows.Clear()
         End Try
 
         WebView21.CoreWebView2.ExecuteScriptAsync(js)
@@ -241,5 +248,28 @@ Public Class frmSMILESViewer
     ''' <param name="e"></param>
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Call OpenCFMIDTool(TextBox1.Text)
+    End Sub
+
+    Private Sub ExportTableFileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportTableFileToolStripMenuItem.Click
+        Call DataGridView1.SaveDataGrid("Export Molecule Composition To File")
+    End Sub
+
+    Private Sub SendToTableViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendToTableViewerToolStripMenuItem.Click
+        Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(, title:="SMILES data")
+
+        ' Call tableRows.Add({atom.label, atom.elementName, atom.group, atom.charge, atom.Keys, connects})
+        Call table.LoadTable(
+            Sub(a)
+                Call a.Columns.Add("#ID", GetType(String))
+                Call a.Columns.Add("Atom", GetType(String))
+                Call a.Columns.Add("Atom Group", GetType(String))
+                Call a.Columns.Add("Charge", GetType(Integer))
+                Call a.Columns.Add("Links", GetType(Integer))
+                Call a.Columns.Add("Atom Group Connections", GetType(String))
+
+                For Each row In tableRows
+                    Call a.Rows.Add(row)
+                Next
+            End Sub)
     End Sub
 End Class
