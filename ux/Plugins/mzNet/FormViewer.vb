@@ -77,13 +77,6 @@ Public Class FormViewer
     End Sub
 
     Private Sub loadTable(node As String)
-        Dim key As String = If(node.Contains("/"), HttpTreeFs.ClusterHashIndex(node), node)
-        Dim getMetadata As PoolData.Metadata() = HttpRESTMetadataPool.FetchClusterData(
-            url_get:=$"{cloud.tree.HttpServices}/get/metadata/",
-            model_id:=cloud.tree.model_id,
-            hash_index:=key
-        ).ToArray
-
         Call LoadTable(
             Sub(tbl)
                 tbl.Columns.Add("guid", GetType(String)) '0
@@ -98,8 +91,10 @@ Public Class FormViewer
                 tbl.Columns.Add("formula", GetType(String)) '9
                 tbl.Columns.Add("adducts", GetType(String)) '10
 
-                For Each meta As PoolData.Metadata In getMetadata
-                    tbl.Rows.Add(meta.guid, meta.mz, meta.rt, meta.intensity, meta.source_file, meta.sample_source, meta.organism, meta.name, meta.biodeep_id, meta.formula, meta.adducts)
+                For Each meta As PoolData.Metadata In cloud.FetchMetadata(node)
+                    Call tbl.Rows.Add(meta.guid, meta.mz, meta.rt, meta.intensity, meta.source_file,
+                                 meta.sample_source, meta.organism, meta.name, meta.biodeep_id,
+                                 meta.formula, meta.adducts)
                 Next
             End Sub)
     End Sub
@@ -154,7 +149,8 @@ Public Class FormViewer
             spectral.meta = New Dictionary(Of String, String) From {{"id", id}}
 
             data.Add(spectral)
-            Application.DoEvents()
+
+            Call Application.DoEvents()
         Next
 
         Call data.Select(Function(a) a.MgfIon).SaveTo(filepath)
@@ -186,7 +182,7 @@ Public Class FormViewer
         Dim guid As String = CStr(metadataRow.Cells.Item(0).Value)
         Dim spectral As PeakMs2 = cloud.tree.ReadSpectrum(guid)
 
-        If guid.StringEmpty Then
+        If guid.StringEmpty OrElse spectral Is Nothing Then
             Return
         Else
             spectral.lib_guid = getTitle(metadataRow)
