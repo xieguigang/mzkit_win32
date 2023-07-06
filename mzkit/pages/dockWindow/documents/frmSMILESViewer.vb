@@ -53,12 +53,15 @@
 #End Region
 
 Imports System.Reflection
+Imports System.Text
 Imports System.Threading
 Imports BioNovoGene.BioDeep.Chemistry.Model
 Imports BioNovoGene.BioDeep.Chemistry.Model.Drawing
+Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.BioDeep.Chemoinformatics.SDF
 Imports BioNovoGene.BioDeep.Chemoinformatics.SMILES
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
 Imports Microsoft.Web.WebView2.WinForms
@@ -93,8 +96,17 @@ Public Class frmSMILESViewer
 
         Try
             Dim graph As ChemicalFormula = ParseChain.ParseGraph(smilesStr)
+            Dim info As New StringBuilder
+            Dim formula As Formula = graph.GetFormula
 
+            Call info.AppendLine($"Formula: {formula.ToString}")
+            Call info.AppendLine($"Element Composition: {formula.CountsByElement.GetJson}")
+            Call info.AppendLine($"Exact Mass: {formula.ExactMass}")
+
+            Call TextBox3.Clear()
             Call DataGridView1.Rows.Clear()
+
+            TextBox3.Text = info.ToString
 
             For Each atom As ChemicalElement In graph.AllElements
                 Call DataGridView1.Rows.Add(atom.label, atom.elementName, atom.group, atom.charge, atom.Keys, ChemicalElement _
