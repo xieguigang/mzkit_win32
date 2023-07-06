@@ -62,10 +62,10 @@ Module DataControlHandler
     <Extension>
     Public Function getFieldVector(table As DataTable, fieldRef As String) As Array
         Dim fieldNames As New List(Of String)
+        Dim tag As String
 
         For i As Integer = 0 To table.Columns.Count - 1
-            Dim tag As String = table.Columns.Item(i).ColumnName
-
+            tag = table.Columns.Item(i).ColumnName
             fieldNames.Add(tag)
         Next
 
@@ -78,9 +78,10 @@ Module DataControlHandler
     <Extension>
     Public Function getFieldVector(table As DataTable, fieldRef As Integer) As Array
         Dim array As New List(Of Object)
+        Dim row As DataRow
 
         For index As Integer = 0 To table.Rows.Count - 2
-            Dim row = table.Rows.Item(index)
+            row = table.Rows.Item(index)
             array.Add(row.Item(fieldRef))
         Next
 
@@ -100,6 +101,7 @@ Module DataControlHandler
         For Each col As DataGridViewColumn In AdvancedDataGridView1.Columns
             Call fieldNames.Add(col.Name)
         Next
+
         Dim i As Integer = fieldNames.IndexOf(fieldRef)
         Dim vec = AdvancedDataGridView1.getFieldVector(i)
 
@@ -111,7 +113,7 @@ Module DataControlHandler
         Dim array As New List(Of Object)
 
         For Each row As DataGridViewRow In AdvancedDataGridView1.Rows
-            array.Add(row.Cells(i).Value)
+            Call array.Add(row.Cells(i).Value)
         Next
 
         Return REnv.TryCastGenericArray(array.ToArray, MyApplication.REngine.globalEnvir)
