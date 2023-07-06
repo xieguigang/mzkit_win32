@@ -96,9 +96,9 @@ Public Class frmSMILESViewer
         Dim js As String = $"rendering('{smilesStr}');"
 
         Try
-            Dim graph As ChemicalFormula = ParseChain.ParseGraph(smilesStr)
+            Dim graph As ChemicalFormula = ParseChain.ParseGraph(smilesStr, strict:=False)
             Dim info As New StringBuilder
-            Dim formula As Formula = graph.GetFormula
+            Dim formula As Formula = graph.GetFormula(canonical:=True)
 
             Call info.AppendLine($"Formula: {formula.ToString}")
             Call info.AppendLine($"Element Composition: {formula.CountsByElement.GetJson}")
@@ -137,6 +137,8 @@ Public Class frmSMILESViewer
 
         Text = "Molecule Drawer"
         TabText = Text
+
+        Call ApplyVsTheme(ContextMenuStrip1)
     End Sub
 
     Public Shared Sub DeveloperOptions(WebView21 As WebView2, enable As Boolean)
