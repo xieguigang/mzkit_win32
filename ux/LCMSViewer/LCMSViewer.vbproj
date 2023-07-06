@@ -160,6 +160,9 @@
     <EmbeddedResource Include="PeakFindingViewer.resx">
       <DependentUpon>PeakFindingViewer.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PeakScatterViewer.resx">
+      <DependentUpon>PeakScatterViewer.vb</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="My Project\Application.myapp">
