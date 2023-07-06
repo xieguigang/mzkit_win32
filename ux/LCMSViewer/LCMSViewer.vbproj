@@ -204,6 +204,10 @@
       <Project>{dee82853-4241-4f24-a096-12923c664369}</Project>
       <Name>Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\mime\text%25html\html_netcore5.vbproj">
+      <Project>{0b752d71-2852-4071-ac44-db37195cf8c3}</Project>
+      <Name>html_netcore5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\assembly\SignalReader\SignalReader.vbproj">
       <Project>{4491210e-d07d-409b-8028-43e8256c93e0}</Project>
       <Name>SignalReader</Name>

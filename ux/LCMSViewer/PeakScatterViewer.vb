@@ -1,8 +1,8 @@
-﻿Imports System.IO.Ports
-Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
+﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports Microsoft.VisualBasic.ComponentModel.Algorithm
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots
+Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 
@@ -36,6 +36,10 @@ Public Class PeakScatterViewer
 
     Dim m_levels As Integer = 255
     Dim m_palette As ScalerPalette = ScalerPalette.turbo
+
+    ' mzscale and rtscale is used for 
+    ' scale the mapping of the mouse xy
+    ' not for plot rendering
 
     ''' <summary>
     ''' Y axis mapper
@@ -75,13 +79,13 @@ Public Class PeakScatterViewer
     End Function
 
     Private Iterator Function getScatter() As IEnumerable(Of PointData)
-        Dim p As New DoubleRange(0, m_levels)
+        Dim p As New DoubleRange(0, m_levels - 1)
 
         For Each m As Meta In rawdata
             Yield New PointData With {
                 .pt = New PointF(m.scan_time, m.mz),
                 .value = m.intensity,
-                .tag = CInt(int_range.ScaleMapping(p)).ToString
+                .tag = CInt(int_range.ScaleMapping(.value, p)).ToString
             }
         Next
     End Function
@@ -91,8 +95,36 @@ Public Class PeakScatterViewer
     ''' </summary>
     Private Sub Rendering()
         Dim colors As Color() = Designer.GetColors(m_palette.Description, m_levels)
-        Dim colorlevels = getScatter.GroupBy(Function(p) p.tag).Select(Function(t) New SerialData With {})
+        Dim colorlevels = getScatter _
+            .GroupBy(Function(p) p.tag) _
+            .Select(Function(t)
+                        Return GetColorLevel(colors(Integer.Parse(t.Key)), t)
+                    End Function) _
+            .ToArray
+        Dim defineSize As Size = Me.Size
+        Dim scaler As New DataScaler() With {
+            .AxisTicks = Nothing,
+            .region = New Rectangle(New Point, defineSize),
+            .X = d3js.scale.linear().domain(rt_range).range(integers:={0, defineSize.Width}),
+            .Y = d3js.scale.linear().domain(mz_range).range(integers:={0, defineSize.Height})
+        }
+
+        Using g As Graphics2D = defineSize.CreateGDIDevice(filled:=Color.White)
+            For Each level As SerialData In colorlevels
+                Call Bubble.Plot(g, level, scaler)
+            Next
+
+            BackgroundImage = g.ImageResource
+        End Using
     End Sub
+
+    Private Function GetColorLevel(color As Color, points As IEnumerable(Of PointData)) As SerialData
+        Return New SerialData() With {
+            .color = color,
+            .pointSize = 5,
+            .pts = points.ToArray
+        }
+    End Function
 
     Private Sub PeakScatterViewer_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
         Dim peakId As String = Nothing
@@ -115,6 +147,8 @@ Public Class PeakScatterViewer
     Private Sub ViewerResize() Handles Me.Resize
         Dim size As Size = Me.Size
 
+        ' scale the mapping of the mouse xy
+        ' not for plot rendering
         mzscale = d3js.scale.linear().domain(mz_range).range(integers:={0, size.Height})
         rtscale = d3js.scale.linear().domain(rt_range).range(integers:={0, size.Width})
     End Sub
