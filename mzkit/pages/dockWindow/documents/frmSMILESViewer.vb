@@ -91,11 +91,22 @@ Public Class frmSMILESViewer
         Dim smilesStr As String = Strings.Trim(TextBox1.Text)
         Dim js As String = $"rendering('{smilesStr}');"
 
-        'Try
-        '    Dim graph As ChemicalFormula = ParseChain.ParseGraph(smilesStr)
-        'Catch ex As Exception
+        Try
+            Dim graph As ChemicalFormula = ParseChain.ParseGraph(smilesStr)
 
-        'End Try
+            Call DataGridView1.Rows.Clear()
+
+            For Each atom As ChemicalElement In graph.AllElements
+                Call DataGridView1.Rows.Add(atom.label, atom.elementName, atom.group, atom.charge, atom.Keys, ChemicalElement _
+                    .GetConnection(graph, atom) _
+                    .Select(Function(a)
+                                Return $"{CInt(a.keys)}({a.Item2.group})"
+                            End Function) _
+                    .JoinBy("; "))
+            Next
+        Catch ex As Exception
+            Call DataGridView1.Rows.Clear()
+        End Try
 
         WebView21.CoreWebView2.ExecuteScriptAsync(js)
     End Sub
