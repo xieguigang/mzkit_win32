@@ -212,7 +212,7 @@ Public Class frmCloudExplorer
                         Call println("Save mzpack data to target file...")
 
                         Using buf As Stream = savefile.Open(FileMode.OpenOrCreate, doClear:=True)
-                            Call pack.Write(buf, progress:=echo)
+                            Call pack.Write(buf, progress:=println)
                         End Using
                     End Sub)
             End If
