@@ -186,17 +186,16 @@ Public Class FormViewer
         Dim guid As String = CStr(metadataRow.Cells.Item(0).Value)
         Dim spectral As PeakMs2 = cloud.tree.ReadSpectrum(guid)
 
-        spectral.lib_guid = getTitle(metadataRow)
+        If guid.StringEmpty Then
+            Return
+        Else
+            spectral.lib_guid = getTitle(metadataRow)
+        End If
 
         Call SpectralViewerModule.ViewSpectral(spectral)
     End Sub
 
-    Private Sub AutoPlotSpectrumToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AutoPlotSpectrumToolStripMenuItem.Click
-
-    End Sub
-
     Private Sub AdvancedDataGridView1_RowStateChanged(sender As Object, e As DataGridViewRowStateChangedEventArgs) Handles AdvancedDataGridView1.RowStateChanged
-
         If AutoPlotSpectrumToolStripMenuItem.Checked Then
             If e.StateChanged = DataGridViewElementStates.Selected Then
                 Call ViewSpectralToolStripMenuItem_Click()
