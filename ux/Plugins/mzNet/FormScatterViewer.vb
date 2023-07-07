@@ -49,7 +49,7 @@ Public Class FormScatterViewer
     End Sub
 
     Private Sub LoadClusters(p As ITaskProgress, clusters As Object())
-        Dim precursorList As New List(Of MetaIon)
+        Dim precursorList As New List(Of Meta)
 
         For Each obj As Object In clusters.SafeQuery
             Dim js As JavaScriptObject = DirectCast(obj, JavaScriptObject)
@@ -72,13 +72,14 @@ Public Class FormScatterViewer
                             Return mzset.GroupBy(Function(m) m.rt, offsets:=30)
                         End Function) _
                 .IteratesALL
+            Dim annotext As String = js!annotations
 
             For Each ion As NamedCollection(Of Metadata) In precursors
                 Dim mz As Double = ion.Select(Function(i) i.mz).Average
                 Dim rt As Double() = ion.Select(Function(i) i.rt).ToArray
 
                 Call precursorList.Add(New MetaIon With {
-                    .id = $"[{id}] {js!annotation} {mz.ToString("F4")}@{(rt.Average / 60).ToString("F2")}min",
+                    .id = $"[{id}] {annotext} {mz.ToString("F4")}@{(rt.Average / 60).ToString("F2")}min",
                     .mz = mz,
                     .rtmin = rt.Min,
                     .rtmax = rt.Max,
@@ -88,6 +89,8 @@ Public Class FormScatterViewer
                 })
             Next
         Next
+
+        Call scatterViewer.LoadPeaks(precursorList)
     End Sub
 End Class
 
@@ -96,5 +99,6 @@ Public Class MetaIon : Inherits Meta
     Public Property metaList As Metadata()
     Public Property rtmin As Double
     Public Property rtmax As Double
+    Public Property cluster As JavaScriptObject
 
 End Class
