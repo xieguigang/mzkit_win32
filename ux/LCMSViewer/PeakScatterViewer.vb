@@ -158,7 +158,13 @@ Public Class PeakScatterViewer
         Dim colorlevels = getScatter _
             .GroupBy(Function(p) p.tag) _
             .Select(Function(t)
-                        Return GetColorLevel(colors(Integer.Parse(t.Key)), t)
+                        Dim i As Integer = Integer.Parse(t.Key)
+
+                        If i >= colors.Length Then
+                            i = colors.Length - 1
+                        End If
+
+                        Return GetColorLevel(colors(i), t)
                     End Function) _
             .ToArray
         Dim defineSize As Size = PictureBox1.Size
