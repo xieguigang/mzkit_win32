@@ -1,6 +1,8 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.LCMSViewer
 
 Public Class frmLCMSScatterViewer
 
@@ -25,15 +27,18 @@ Public Class frmLCMSScatterViewer
     End Sub
 
     Private Sub frmLCMSScatterViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
-        ToolStripStatusLabel1.Text = "Ready!"
-        ' ApplyVsTheme(StatusStrip1)
+        ScatterViewer = New PeakScatterViewer With {
+            .ColorScale = ScalerPalette.viridis,
+            .Dock = DockStyle.Fill
+        }
+        Me.Controls.Add(ScatterViewer)
     End Sub
 
     Private Sub ScatterViewer_MoveOverPeak(peakId As String, mz As Double, rt As Double) Handles ScatterViewer.MoveOverPeak
-        ToolStripStatusLabel1.Text = $"m/z {mz.ToString("F4")} RT {(rt / 60).ToString("F2")}min; find ion: {peakId}"
+        ' ToolStripStatusLabel1.Text = $"m/z {mz.ToString("F4")} RT {(rt / 60).ToString("F2")}min; find ion: {peakId}"
     End Sub
 
     Private Sub ScatterViewer_ClickOnPeak(peakId As String, mz As Double, rt As Double) Handles ScatterViewer.ClickOnPeak
-        ToolStripStatusLabel1.Text = $"m/z {mz.ToString("F4")} RT {(rt / 60).ToString("F2")}min; ion: '{peakId}' has been selected!"
+        ' ToolStripStatusLabel1.Text = $"m/z {mz.ToString("F4")} RT {(rt / 60).ToString("F2")}min; ion: '{peakId}' has been selected!"
     End Sub
 End Class

@@ -75,8 +75,8 @@ Public Class PeakScatterViewer
         rawdata = peaksdata.ToArray
         mzBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.mz, 0.5, fuzzy:=True)
         rtBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.scan_time, 5, fuzzy:=True)
-        mz_range = New DoubleRange(0, rawdata.Select(Function(i) i.mz).Max * 1.125)
-        rt_range = New DoubleRange(0, rawdata.Select(Function(i) i.scan_time).Max * 1.125)
+        mz_range = New DoubleRange(0, rawdata.Select(Function(i) i.mz).Max * 1.0125)
+        rt_range = New DoubleRange(0, rawdata.Select(Function(i) i.scan_time).Max * 1.0125)
         int_range = New DoubleRange(rawdata.Select(Function(i) i.intensity))
 
         Call Rendering()
@@ -108,7 +108,7 @@ Public Class PeakScatterViewer
                         Return GetColorLevel(colors(Integer.Parse(t.Key)), t)
                     End Function) _
             .ToArray
-        Dim defineSize As Size = Me.Size
+        Dim defineSize As Size = PictureBox1.Size
         Dim scaler As New DataScaler() With {
             .AxisTicks = Nothing,
             .region = New Rectangle(New Point, defineSize),
@@ -133,7 +133,7 @@ Public Class PeakScatterViewer
         }
     End Function
 
-    Private Sub PeakScatterViewer_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
+    Private Sub PeakScatterViewer_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
         Dim peakId As String = Nothing
         Dim mz, rt As Double
         Dim loc As Point = Cursor.Position
@@ -145,7 +145,7 @@ Public Class PeakScatterViewer
 
     Private Sub GetPeak(ByRef peakId As String, ByRef mz As Double, ByRef rt As Double, loc As Point)
         Dim pt = Me.PointToClient(loc)
-        Dim size As Size = Me.Size
+        Dim size As Size = PictureBox1.Size
 
         If mz_range IsNot Nothing AndAlso rt_range IsNot Nothing Then
             Dim mzi = (pt.Y / size.Height) * mz_range.Length + mz_range.Min
@@ -172,7 +172,7 @@ Public Class PeakScatterViewer
     End Sub
 
     Private Sub ViewerResize() Handles Me.SizeChanged
-        Dim size As Size = Me.Size
+        Dim size As Size = PictureBox1.Size
 
         If mz_range IsNot Nothing AndAlso rt_range IsNot Nothing Then
             ' scale the mapping of the mouse xy
@@ -182,7 +182,7 @@ Public Class PeakScatterViewer
         End If
     End Sub
 
-    Private Sub PeakScatterViewer_MouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseClick
+    Private Sub PeakScatterViewer_MouseClick(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseClick
         Dim peakId As String = Nothing
         Dim mz, rt As Double
         Dim loc As Point = Cursor.Position
