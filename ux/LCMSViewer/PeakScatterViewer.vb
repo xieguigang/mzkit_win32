@@ -145,7 +145,7 @@ Public Class PeakScatterViewer
     End Sub
 
     Private Sub GetPeak(ByRef peakId As String, ByRef mz As Double, ByRef rt As Double)
-        Dim pt = PointToClient([Control].MousePosition)
+        Dim pt = [Control].MousePosition
         Dim size As Size = Me.Size
 
         If mz_range IsNot Nothing AndAlso rt_range IsNot Nothing Then
