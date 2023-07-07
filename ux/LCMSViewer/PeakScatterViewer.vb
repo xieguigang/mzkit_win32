@@ -243,33 +243,35 @@ Public Class PeakScatterViewer
         End If
     End Sub
 
-    Private Sub PeakScatterViewer_MouseClick(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseClick
-        Dim peakId As String = Nothing
-        Dim mz, rt As Double
-        Dim loc As Point = Cursor.Position
-
-        Call GetPeak(peakId, mz, rt, loc)
-
-        If peakId IsNot Nothing Then
-            RaiseEvent ClickOnPeak(peakId, mz, rt)
-
-            ToolStripStatusLabel1.Text = $"m/z {mz.ToString("F4")} RT {(rt / 60).ToString("F2")}min; ion: '{peakId}' has been selected!"
-        End If
-    End Sub
-
     Dim drawBox As Boolean = False
     Dim p0 As Point
     Dim p1 As Point
+    Dim t0 As Date
 
     Private Sub PictureBox1_MouseDown(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseDown
         drawBox = True
+        t0 = Now
         p0 = Cursor.Position
     End Sub
 
     Private Sub PictureBox1_MouseUp(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseUp
-        If drawBox Then
-            drawBox = False
+        drawBox = False
+
+        If (Now - t0).TotalMilliseconds > 300 Then
+            ' do nothing 
         Else
+            Dim peakId As String = Nothing
+            Dim mz, rt As Double
+            Dim loc As Point = Cursor.Position
+
+            Call GetPeak(peakId, mz, rt, loc)
+
+            If peakId IsNot Nothing Then
+                RaiseEvent ClickOnPeak(peakId, mz, rt)
+
+                ToolStripStatusLabel1.Text = $"m/z {mz.ToString("F4")} RT {(rt / 60).ToString("F2")}min; ion: '{peakId}' has been selected!"
+            End If
+
             Return
         End If
 
@@ -300,6 +302,10 @@ Public Class PeakScatterViewer
     End Sub
 
     Private Sub PictureBox1_Paint(sender As Object, e As PaintEventArgs) Handles PictureBox1.Paint
+        If Not drawBox Then
+            Return
+        End If
+
         Dim x0 = p0.X, y0 = p0.Y
         Dim x1 = p1.X, y1 = p1.Y
 
