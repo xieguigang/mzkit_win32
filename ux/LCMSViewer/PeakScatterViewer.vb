@@ -41,6 +41,20 @@ Public Class PeakScatterViewer
         End Set
     End Property
 
+    Public Property LogScale As Boolean
+        Get
+            Return m_log
+        End Get
+        Set(value As Boolean)
+            m_log = value
+
+            If Not rawdata.IsNullOrEmpty Then
+                Call Rendering()
+            End If
+        End Set
+    End Property
+
+    Dim m_log As Boolean = True
     Dim m_levels As Integer = 255
     Dim m_palette As ScalerPalette = ScalerPalette.turbo
 
@@ -87,12 +101,24 @@ Public Class PeakScatterViewer
 
     Private Iterator Function getScatter() As IEnumerable(Of PointData)
         Dim p As New DoubleRange(0, m_levels - 1)
+        Dim int_range As DoubleRange = Me.int_range
+        Dim v As Double
+
+        If LogScale Then
+            int_range = New DoubleRange(0, stdNum.Log(int_range.Max))
+        End If
 
         For Each m As Meta In rawdata
+            v = m.intensity
+
+            If LogScale Then
+                v = stdNum.Log(v + 1)
+            End If
+
             Yield New PointData With {
                 .pt = New PointF(m.scan_time, m.mz),
                 .value = m.intensity,
-                .tag = CInt(int_range.ScaleMapping(.value, p)).ToString
+                .tag = CInt(int_range.ScaleMapping(v, p)).ToString
             }
         Next
     End Function
@@ -109,7 +135,7 @@ Public Class PeakScatterViewer
                     End Function) _
             .ToArray
         Dim defineSize As Size = PictureBox1.Size
-        Dim scaler As New DataScaler() With {
+        Dim scaler As New DataScaler(rev:=True) With {
             .AxisTicks = Nothing,
             .region = New Rectangle(New Point, defineSize),
             .X = d3js.scale.linear().domain(rt_range).range(integers:={0, defineSize.Width}),
@@ -121,7 +147,7 @@ Public Class PeakScatterViewer
                 Call Bubble.Plot(g, level, scaler, scale:=Function(r) 5)
             Next
 
-            BackgroundImage = g.ImageResource
+            PictureBox1.BackgroundImage = g.ImageResource
         End Using
     End Sub
 
@@ -141,6 +167,8 @@ Public Class PeakScatterViewer
         Call GetPeak(peakId, mz, rt, loc)
 
         RaiseEvent MoveOverPeak(peakId, mz, rt)
+
+        ToolStripStatusLabel1.Text = $"m/z {mz.ToString("F4")} RT {(rt / 60).ToString("F2")}min; find ion: {peakId}"
     End Sub
 
     Private Sub GetPeak(ByRef peakId As String, ByRef mz As Double, ByRef rt As Double, loc As Point)
@@ -191,6 +219,8 @@ Public Class PeakScatterViewer
 
         If peakId IsNot Nothing Then
             RaiseEvent ClickOnPeak(peakId, mz, rt)
+
+            ToolStripStatusLabel1.Text = $"m/z {mz.ToString("F4")} RT {(rt / 60).ToString("F2")}min; ion: '{peakId}' has been selected!"
         End If
     End Sub
 End Class

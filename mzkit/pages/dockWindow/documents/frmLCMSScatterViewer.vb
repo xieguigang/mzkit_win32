@@ -35,10 +35,10 @@ Public Class frmLCMSScatterViewer
     End Sub
 
     Private Sub ScatterViewer_MoveOverPeak(peakId As String, mz As Double, rt As Double) Handles ScatterViewer.MoveOverPeak
-        ' ToolStripStatusLabel1.Text = $"m/z {mz.ToString("F4")} RT {(rt / 60).ToString("F2")}min; find ion: {peakId}"
+
     End Sub
 
     Private Sub ScatterViewer_ClickOnPeak(peakId As String, mz As Double, rt As Double) Handles ScatterViewer.ClickOnPeak
-        ' ToolStripStatusLabel1.Text = $"m/z {mz.ToString("F4")} RT {(rt / 60).ToString("F2")}min; ion: '{peakId}' has been selected!"
+
     End Sub
 End Class
