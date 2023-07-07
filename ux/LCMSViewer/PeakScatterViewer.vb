@@ -5,6 +5,7 @@ Imports Microsoft.VisualBasic.Data.ChartPlots
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
+Imports stdNum = System.Math
 
 ''' <summary>
 ''' mz@rt 2d scatter viewer
@@ -117,7 +118,7 @@ Public Class PeakScatterViewer
 
         Using g As Graphics2D = defineSize.CreateGDIDevice(filled:=Color.White)
             For Each level As SerialData In colorlevels
-                Call Bubble.Plot(g, level, scaler)
+                Call Bubble.Plot(g, level, scaler, scale:=Function(r) 5)
             Next
 
             BackgroundImage = g.ImageResource
@@ -148,15 +149,30 @@ Public Class PeakScatterViewer
         Dim size As Size = Me.Size
 
         If mz_range IsNot Nothing AndAlso rt_range IsNot Nothing Then
-            mz = (pt.Y / size.Width) * mz_range.Length + mz_range.Min
-            rt = (pt.X / size.Height) * rt_range.Length + rt_range.Min
-            peakId = Nothing
+            Dim mzi = (pt.Y / size.Width) * mz_range.Length + mz_range.Min
+            Dim rti = (pt.X / size.Height) * rt_range.Length + rt_range.Min
+
+            Dim qmz = mzBins.Search(New Meta With {.mz = mz}).ToDictionary(Function(a) a.id)
+            Dim qrt = rtBins.Search(New Meta With {.scan_time = rt}).ToDictionary(Function(a) a.id)
+            Dim find = qmz.Values.Select(Function(a) a.id) _
+                .Intersect(qrt.Values.Select(Function(a) a.id)) _
+                .OrderBy(Function(id) stdNum.Abs(qmz(id).mz - mzi) + stdNum.Abs(qrt(id).scan_time - rti)) _
+                .FirstOrDefault
+
+            mz = mzi
+            rt = rti
+
+            If find Is Nothing Then
+                peakId = Nothing
+            Else
+                peakId = find
+            End If
         Else
             peakId = Nothing
         End If
     End Sub
 
-    Private Sub ViewerResize() Handles Me.Resize
+    Private Sub ViewerResize() Handles Me.SizeChanged
         Dim size As Size = Me.Size
 
         If mz_range IsNot Nothing AndAlso rt_range IsNot Nothing Then
