@@ -1,6 +1,7 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.PoolData
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.My.JavaScript
@@ -50,11 +51,18 @@ Public Class FormScatterViewer
 
     Private Sub LoadClusters(p As ITaskProgress, clusters As Object())
         Dim precursorList As New List(Of Meta)
+        Dim ii As i32 = 0
+
+        Call p.SetProgressMode()
 
         For Each obj As Object In clusters.SafeQuery
             Dim js As JavaScriptObject = DirectCast(obj, JavaScriptObject)
             Dim id As String = js!id
             Dim url As String = $"{model.HttpServices}/load_cluster/?id={id}"
+            Dim annotext As String = js!annotations
+
+            Call p.SetProgress(++ii / clusters.Length * 100, $"Processing cluster [{id}] {annotext} <{CStr(js!n_spectrum)} spectrum>")
+
             Dim json = Restful.ParseJSON(url.GET)
 
             If json.code <> 0 Then
@@ -72,14 +80,13 @@ Public Class FormScatterViewer
                             Return mzset.GroupBy(Function(m) m.rt, offsets:=30)
                         End Function) _
                 .IteratesALL
-            Dim annotext As String = js!annotations
 
             For Each ion As NamedCollection(Of Metadata) In precursors
                 Dim mz As Double = ion.Select(Function(i) i.mz).Average
                 Dim rt As Double() = ion.Select(Function(i) i.rt).ToArray
 
                 Call precursorList.Add(New MetaIon With {
-                    .id = $"[{id}] {annotext} {mz.ToString("F4")}@{(rt.Average / 60).ToString("F2")}min",
+                    .id = $"[{id}] {annotext} {mz.ToString("F4")}@{(rt.Average / 60).ToString("F2")}min <{ion.Length} sample files>",
                     .mz = mz,
                     .rtmin = rt.Min,
                     .rtmax = rt.Max,
