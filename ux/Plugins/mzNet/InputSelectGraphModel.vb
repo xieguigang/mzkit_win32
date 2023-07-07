@@ -31,7 +31,14 @@ Public Class InputSelectGraphModel
     End Sub
 
     Private Sub loadModelList()
-        Dim list As Object() = Restful.ParseJSON($"{TextBox1.Text}/get_models/".GET(timeoutSec:=1)).info
+        Dim req = Restful.ParseJSON($"{TextBox1.Text}/get_models/".GET(timeoutSec:=1))
+
+        If req.info > 0 Then
+            Call MessageBox.Show(req.info, "Fetch spectrum graph model error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
+
+        Dim list As Object() = req.info
         Dim models = list.SafeQuery _
             .Select(Function(js)
                         Return DirectCast(js, JavaScriptObject).CreateObject(Of SpectrumGraphModel)
