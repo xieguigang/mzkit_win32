@@ -151,8 +151,8 @@ Public Class PeakScatterViewer
             Dim mzi = (pt.Y / size.Height) * mz_range.Length + mz_range.Min
             Dim rti = (pt.X / size.Width) * rt_range.Length + rt_range.Min
 
-            Dim qmz = mzBins.Search(New Meta With {.mz = mz}).ToDictionary(Function(a) a.id)
-            Dim qrt = rtBins.Search(New Meta With {.scan_time = rt}).ToDictionary(Function(a) a.id)
+            Dim qmz = mzBins.Search(New Meta With {.mz = mzi}).ToDictionary(Function(a) a.id)
+            Dim qrt = rtBins.Search(New Meta With {.scan_time = rti}).ToDictionary(Function(a) a.id)
             Dim find = qmz.Values.Select(Function(a) a.id) _
                 .Intersect(qrt.Values.Select(Function(a) a.id)) _
                 .OrderBy(Function(id) stdNum.Abs(qmz(id).mz - mzi) + stdNum.Abs(qrt(id).scan_time - rti)) _
