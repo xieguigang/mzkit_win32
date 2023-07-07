@@ -5,6 +5,7 @@ Imports Microsoft.VisualBasic.Data.ChartPlots
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
+Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
 Imports stdNum = System.Math
 
@@ -58,6 +59,7 @@ Public Class PeakScatterViewer
     Dim m_log As Boolean = True
     Dim m_levels As Integer = 255
     Dim m_palette As ScalerPalette = ScalerPalette.turbo
+    Dim m_rawdata As Meta()
 
     ' mzscale and rtscale is used for 
     ' scale the mapping of the mouse xy
@@ -87,6 +89,13 @@ Public Class PeakScatterViewer
     End Sub
 
     Public Function LoadPeaks(peaksdata As IEnumerable(Of Meta)) As PeakScatterViewer
+        m_rawdata = peaksdata.ToArray
+        LoadPeaks2(m_rawdata.ToArray)
+
+        Return Me
+    End Function
+
+    Private Sub LoadPeaks2(peaksdata As IEnumerable(Of Meta))
         rawdata = peaksdata.ToArray
         mzBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.mz, 1, fuzzy:=True)
         rtBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.scan_time, 10, fuzzy:=True)
@@ -96,9 +105,7 @@ Public Class PeakScatterViewer
 
         Call Rendering()
         Call ViewerResize()
-
-        Return Me
-    End Function
+    End Sub
 
     Private Iterator Function getScatter() As IEnumerable(Of PointData)
         Dim p As New DoubleRange(0, m_levels - 1)
@@ -250,6 +257,16 @@ Public Class PeakScatterViewer
 
         If mz0 > mz1 Then Call mz1.Swap(mz0)
         If rt0 > rt1 Then Call rt1.Swap(rt0)
+
+        Call m_rawdata _
+            .AsParallel _
+            .Where(Function(s)
+                       Dim test_mz = s.mz >= mz0 AndAlso s.mz <= mz1
+                       Dim test_rt = s.scan_time >= rt0 AndAlso s.scan_time <= rt1
+
+                       Return test_mz AndAlso test_rt
+                   End Function) _
+            .DoCall(AddressOf LoadPeaks2)
 
         Workbench.StatusMessage($"Zoom-in of the sub-region: m/z range {mz0.ToString("F4")} ~ {mz1.ToString("F4")}, RT range {(rt0 / 60).ToString("F2")} ~ {(rt1 / 60).ToString("F2")}min.")
     End Sub
