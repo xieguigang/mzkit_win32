@@ -162,7 +162,7 @@ Public Class PeakScatterViewer
                     End Function) _
             .ToArray
         Dim defineSize As Size = PictureBox1.Size
-        Dim scaler As New DataScaler(rev:=True) With {
+        Dim scaler As New DataScaler() With {
             .AxisTicks = Nothing,
             .region = New Rectangle(New Point, defineSize),
             .X = d3js.scale.linear().domain(rt_range).range(integers:={0, defineSize.Width}),
@@ -201,6 +201,12 @@ Public Class PeakScatterViewer
             RaiseEvent MoveOverPeak(peakId, mz, rt)
 
             ToolStripStatusLabel1.Text = $"m/z {mz.ToString("F4")} RT {(rt / 60).ToString("F2")}min; find ion: {peakId}"
+
+            If peakId.StringEmpty Then
+                Call ToolTip1.SetToolTip(PictureBox1, $"m/z {mz.ToString("F4")} RT {(rt / 60).ToString("F2")}min")
+            Else
+                Call ToolTip1.SetToolTip(PictureBox1, $"m/z {mz.ToString("F4")} RT {(rt / 60).ToString("F2")}min" & vbCrLf & vbCrLf & peakId)
+            End If
         End If
     End Sub
 
@@ -209,14 +215,16 @@ Public Class PeakScatterViewer
         Dim size As Size = PictureBox1.Size
 
         If mz_range IsNot Nothing AndAlso rt_range IsNot Nothing Then
-            Dim mzi = (pt.Y / size.Height) * mz_range.Length + mz_range.Min
+            Dim mzi = ((size.Height - pt.Y) / size.Height) * mz_range.Length + mz_range.Min
             Dim rti = (pt.X / size.Width) * rt_range.Length + rt_range.Min
 
             Dim qmz = mzBins.Search(New Meta With {.mz = mzi}).ToDictionary(Function(a) a.id)
             Dim qrt = rtBins.Search(New Meta With {.scan_time = rti}).ToDictionary(Function(a) a.id)
             Dim find = qmz.Values.Select(Function(a) a.id) _
                 .Intersect(qrt.Values.Select(Function(a) a.id)) _
-                .OrderBy(Function(id) stdNum.Abs(qmz(id).mz - mzi) + stdNum.Abs(qrt(id).scan_time - rti)) _
+                .OrderBy(Function(id)
+                             Return stdNum.Abs(qmz(id).mz - mzi) + stdNum.Abs(qrt(id).scan_time - rti)
+                         End Function) _
                 .FirstOrDefault
 
             mz = mzi
@@ -240,6 +248,8 @@ Public Class PeakScatterViewer
             ' not for plot rendering
             mzscale = d3js.scale.linear().domain(mz_range).range(integers:={0, size.Height})
             rtscale = d3js.scale.linear().domain(rt_range).range(integers:={0, size.Width})
+
+            Call Rendering()
         End If
     End Sub
 
@@ -302,21 +312,19 @@ Public Class PeakScatterViewer
     End Sub
 
     Private Sub PictureBox1_Paint(sender As Object, e As PaintEventArgs) Handles PictureBox1.Paint
-        If Not drawBox Then
-            Return
+        If drawBox Then
+            Dim x0 = p0.X, y0 = p0.Y
+            Dim x1 = p1.X, y1 = p1.Y
+
+            If x0 > x1 Then x0.Swap(x1)
+            If y0 > y1 Then y1.Swap(y1)
+
+            Dim rect As New Rectangle(PictureBox1.PointToClient(New Point(x0, y0)), New Size(x1 - x0, y1 - y0))
+            Dim pen As New Pen(Color.Red, 2) With {
+                .DashStyle = DashStyle.Dot
+            }
+
+            Call e.Graphics.DrawRectangle(pen, rect)
         End If
-
-        Dim x0 = p0.X, y0 = p0.Y
-        Dim x1 = p1.X, y1 = p1.Y
-
-        If x0 > x1 Then x0.Swap(x1)
-        If y0 > y1 Then y1.Swap(y1)
-
-        Dim rect As New Rectangle(PictureBox1.PointToClient(New Point(x0, y0)), New Size(x1 - x0, y1 - y0))
-        Dim pen As New Pen(Color.Red, 2) With {
-            .DashStyle = DashStyle.Dot
-        }
-
-        Call e.Graphics.DrawRectangle(pen, rect)
     End Sub
 End Class

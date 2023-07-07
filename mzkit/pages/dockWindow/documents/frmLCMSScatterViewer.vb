@@ -22,7 +22,10 @@ Public Class frmLCMSScatterViewer
     End Sub
 
     Private Sub loadRaw()
-        Dim meta As Meta() = raw.GetMs2Scans.Select(Function(a) a.GetScanMeta).ToArray
+        Dim meta As Meta() = raw.GetMs2Scans _
+            .Where(Function(a) Not a.mz.IsNullOrEmpty) _
+            .Select(Function(a) a.GetScanMeta) _
+            .ToArray
 
         Call Me.ScatterViewer.LoadPeaks(meta)
     End Sub
