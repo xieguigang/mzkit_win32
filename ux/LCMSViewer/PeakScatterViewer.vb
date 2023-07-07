@@ -87,10 +87,10 @@ Public Class PeakScatterViewer
 
     Public Function LoadPeaks(peaksdata As IEnumerable(Of Meta)) As PeakScatterViewer
         rawdata = peaksdata.ToArray
-        mzBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.mz, 0.5, fuzzy:=True)
-        rtBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.scan_time, 5, fuzzy:=True)
-        mz_range = New DoubleRange(0, rawdata.Select(Function(i) i.mz).Max * 1.0125)
-        rt_range = New DoubleRange(0, rawdata.Select(Function(i) i.scan_time).Max * 1.0125)
+        mzBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.mz, 1, fuzzy:=True)
+        rtBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.scan_time, 10, fuzzy:=True)
+        mz_range = New DoubleRange(0, rawdata.Select(Function(i) i.mz).Max * 1.125)
+        rt_range = New DoubleRange(0, rawdata.Select(Function(i) i.scan_time).Max * 1.125)
         int_range = New DoubleRange(rawdata.Select(Function(i) i.intensity))
 
         Call Rendering()
