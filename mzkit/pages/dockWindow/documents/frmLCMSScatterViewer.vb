@@ -18,6 +18,6 @@ Public Class frmLCMSScatterViewer
 
     Private Sub frmLCMSScatterViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         ToolStripStatusLabel1.Text = "Ready!"
-        ApplyVsTheme(StatusStrip1)
+        ' ApplyVsTheme(StatusStrip1)
     End Sub
 End Class
