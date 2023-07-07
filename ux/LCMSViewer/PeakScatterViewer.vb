@@ -1,4 +1,5 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
+﻿Imports System.Drawing.Drawing2D
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports Microsoft.VisualBasic.ComponentModel.Algorithm
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots
@@ -97,14 +98,23 @@ Public Class PeakScatterViewer
 
     Private Sub LoadPeaks2(peaksdata As IEnumerable(Of Meta))
         rawdata = peaksdata.ToArray
-        mzBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.mz, 1, fuzzy:=True)
-        rtBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.scan_time, 10, fuzzy:=True)
-        mz_range = New DoubleRange(rawdata.Select(Function(i) i.mz)).DoCall(AddressOf autoPaddingRange)
-        rt_range = New DoubleRange(rawdata.Select(Function(i) i.scan_time)).DoCall(AddressOf autoPaddingRange)
-        int_range = New DoubleRange(rawdata.Select(Function(i) i.intensity))
 
-        Call Rendering()
-        Call ViewerResize()
+        If rawdata.IsNullOrEmpty Then
+            mzBins = Nothing
+            rtBins = Nothing
+            mz_range = Nothing
+            rt_range = Nothing
+            int_range = Nothing
+        Else
+            mzBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.mz, 1, fuzzy:=True)
+            rtBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.scan_time, 10, fuzzy:=True)
+            mz_range = New DoubleRange(rawdata.Select(Function(i) i.mz)).DoCall(AddressOf autoPaddingRange)
+            rt_range = New DoubleRange(rawdata.Select(Function(i) i.scan_time)).DoCall(AddressOf autoPaddingRange)
+            int_range = New DoubleRange(rawdata.Select(Function(i) i.intensity))
+
+            Call Rendering()
+            Call ViewerResize()
+        End If
     End Sub
 
     Private Function autoPaddingRange(r As DoubleRange) As DoubleRange
@@ -179,6 +189,7 @@ Public Class PeakScatterViewer
     Private Sub PeakScatterViewer_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
         If drawBox Then
             p1 = Cursor.Position
+            PictureBox1.Refresh()
             ToolStripStatusLabel1.Text = "Select new sub-region..."
         Else
             Dim peakId As String = Nothing
@@ -194,7 +205,7 @@ Public Class PeakScatterViewer
     End Sub
 
     Private Sub GetPeak(ByRef peakId As String, ByRef mz As Double, ByRef rt As Double, loc As Point)
-        Dim pt = Me.PointToClient(loc)
+        Dim pt = PictureBox1.PointToClient(loc)
         Dim size As Size = PictureBox1.Size
 
         If mz_range IsNot Nothing AndAlso rt_range IsNot Nothing Then
@@ -286,5 +297,20 @@ Public Class PeakScatterViewer
 
     Private Sub ResetToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ResetToolStripMenuItem.Click
         Call LoadPeaks2(m_rawdata)
+    End Sub
+
+    Private Sub PictureBox1_Paint(sender As Object, e As PaintEventArgs) Handles PictureBox1.Paint
+        Dim x0 = p0.X, y0 = p0.Y
+        Dim x1 = p1.X, y1 = p1.Y
+
+        If x0 > x1 Then x0.Swap(x1)
+        If y0 > y1 Then y1.Swap(y1)
+
+        Dim rect As New Rectangle(PictureBox1.PointToClient(New Point(x0, y0)), New Size(x1 - x0, y1 - y0))
+        Dim pen As New Pen(Color.Red, 2) With {
+            .DashStyle = DashStyle.Dot
+        }
+
+        Call e.Graphics.DrawRectangle(pen, rect)
     End Sub
 End Class
