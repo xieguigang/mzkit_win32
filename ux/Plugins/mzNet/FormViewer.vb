@@ -198,4 +198,27 @@ Public Class FormViewer
             End If
         End If
     End Sub
+
+    Private Sub MassDifferenceAnalysisToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MassDifferenceAnalysisToolStripMenuItem.Click
+        Dim rows = AdvancedDataGridView1.Rows
+        Dim mz As New List(Of ms2)
+
+        For i As Integer = 0 To rows.Count - 1
+            Dim row = rows.Item(i)
+
+            If row.Cells.Count = 0 Then
+                Exit For
+            Else
+                Call mz.Add(New ms2 With {
+                    .mz = Val(row.Cells.Item(1).Value),
+                    .intensity = Val(row.Cells.Item(3).Value),
+                    .Annotation = CStr(row.Cells.Item(0).Value)
+                })
+            End If
+        Next
+
+        If mz.Count > 0 Then
+            Call SpectralViewerModule.RunMassDiff(mz.Select(Function(i) i.mz).Min, mz.ToArray)
+        End If
+    End Sub
 End Class

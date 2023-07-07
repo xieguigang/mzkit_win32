@@ -27,11 +27,13 @@ Partial Class FormViewer : Inherits DocumentWindow
         Me.AdvancedDataGridView1 = New Zuby.ADGV.AdvancedDataGridView()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewSpectralToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportSpectrumToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.AutoPlotSpectrumToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ExportSpectrumToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MassDifferenceAnalysisToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -54,26 +56,32 @@ Partial Class FormViewer : Inherits DocumentWindow
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewSpectralToolStripMenuItem, Me.ExportSpectrumToolStripMenuItem, Me.ToolStripMenuItem1, Me.AutoPlotSpectrumToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewSpectralToolStripMenuItem, Me.ExportSpectrumToolStripMenuItem, Me.ToolStripMenuItem2, Me.MassDifferenceAnalysisToolStripMenuItem, Me.ToolStripMenuItem1, Me.AutoPlotSpectrumToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 98)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(205, 126)
         '
         'ViewSpectralToolStripMenuItem
         '
         Me.ViewSpectralToolStripMenuItem.Name = "ViewSpectralToolStripMenuItem"
-        Me.ViewSpectralToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ViewSpectralToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
         Me.ViewSpectralToolStripMenuItem.Text = "View Spectral"
+        '
+        'ExportSpectrumToolStripMenuItem
+        '
+        Me.ExportSpectrumToolStripMenuItem.Name = "ExportSpectrumToolStripMenuItem"
+        Me.ExportSpectrumToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.ExportSpectrumToolStripMenuItem.Text = "Export Spectrum"
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(201, 6)
         '
         'AutoPlotSpectrumToolStripMenuItem
         '
         Me.AutoPlotSpectrumToolStripMenuItem.CheckOnClick = True
         Me.AutoPlotSpectrumToolStripMenuItem.Name = "AutoPlotSpectrumToolStripMenuItem"
-        Me.AutoPlotSpectrumToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AutoPlotSpectrumToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
         Me.AutoPlotSpectrumToolStripMenuItem.Text = "Auto Plot Spectrum"
         '
         'AdvancedDataGridViewSearchToolBar1
@@ -89,11 +97,16 @@ Partial Class FormViewer : Inherits DocumentWindow
         Me.AdvancedDataGridViewSearchToolBar1.TabIndex = 0
         Me.AdvancedDataGridViewSearchToolBar1.Text = "AdvancedDataGridViewSearchToolBar1"
         '
-        'ExportSpectrumToolStripMenuItem
+        'MassDifferenceAnalysisToolStripMenuItem
         '
-        Me.ExportSpectrumToolStripMenuItem.Name = "ExportSpectrumToolStripMenuItem"
-        Me.ExportSpectrumToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ExportSpectrumToolStripMenuItem.Text = "Export Spectrum"
+        Me.MassDifferenceAnalysisToolStripMenuItem.Name = "MassDifferenceAnalysisToolStripMenuItem"
+        Me.MassDifferenceAnalysisToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.MassDifferenceAnalysisToolStripMenuItem.Text = "Mass Difference Analysis"
+        '
+        'ToolStripMenuItem2
+        '
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(201, 6)
         '
         'FormViewer
         '
@@ -120,4 +133,6 @@ Partial Class FormViewer : Inherits DocumentWindow
     Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
     Friend WithEvents AutoPlotSpectrumToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExportSpectrumToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
+    Friend WithEvents MassDifferenceAnalysisToolStripMenuItem As ToolStripMenuItem
 End Class
