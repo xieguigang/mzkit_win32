@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking
@@ -15,6 +16,25 @@ Imports stdNum = System.Math
 Namespace MSdata
 
     Module Module2
+
+        Public Sub showMasssdiff(M As Double, mz2 As Array)
+            Dim pa As New PeakAnnotation(0.05, isotopeFirst:=True)
+            Dim mz As ms2() = mz2
+            Dim massdiff = pa.RunAnnotation(M, mz.ToArray).products
+            ' show result in table viewer
+            Dim tblView = VisualStudio.ShowDocument(Of frmTableViewer)(title:=$"Mass Diff Analysis[m/z {M.ToString("F4")}]")
+
+            Call tblView.LoadTable(
+                Sub(subView)
+                    Call subView.Columns.Add("precursor", GetType(Double))
+                    Call subView.Columns.Add("cluster_size", GetType(Double))
+                    Call subView.Columns.Add("mass_diff", GetType(String))
+
+                    For Each row As ms2 In massdiff
+                        Call subView.Rows.Add(row.mz, row.intensity, row.Annotation)
+                    Next
+                End Sub)
+        End Sub
 
         <Extension>
         Friend Sub MolecularNetworkingTool(raw As PeakMs2(), progress As ITaskProgress, similarityCutoff As Double)
