@@ -200,7 +200,7 @@ Module RibbonEvents
     End Sub
 
     Private Sub openVideoList()
-        Call VisualStudio.ShowDocument(Of frmHtmlViewer)(title:="View").LoadHtml("http://education.biodeep.cn/")
+        Call VisualStudio.ShowDocument(Of frmHtmlViewer)(title:="View File").LoadHtml("http://education.biodeep.cn/")
     End Sub
 
     Private Sub ConvertH5ad()

@@ -73,6 +73,9 @@ Public Class frmHtmlViewer
         ' 此调用是设计器所必需的。
         InitializeComponent()
 
+        Me.DockContextMenuStrip1.Items.Add(Me.ToolStripMenuItem1)
+        Me.DockContextMenuStrip1.Items.Add(Me.GotoToolStripMenuItem)
+
         ' 在 InitializeComponent() 调用之后添加任何初始化。
         AutoScaleMode = AutoScaleMode.Dpi
         DockAreas = DockAreas.Document Or DockAreas.Float
@@ -138,7 +141,7 @@ Public Class frmHtmlViewer
         Call ApplyVsTheme(ContextMenuStrip1)
 
         TabText = "Document Viewer"
-        Icon = My.Resources.IE
+        ' Icon = My.Resources.IE
 
         WebKit.Init(WebView21)
     End Sub
@@ -155,12 +158,12 @@ Public Class frmHtmlViewer
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub WebView21_NavigationStarting(sender As Object, e As CoreWebView2NavigationStartingEventArgs) Handles WebView21.NavigationStarting
-        Dim url As New URL(e.Uri)
+        'Dim url As New URL(e.Uri)
 
-        If url.hostName <> "127.0.0.1" AndAlso url.hostName <> "localhost" Then
-            e.Cancel = True
-            Process.Start(e.Uri)
-        End If
+        'If url.hostName <> "127.0.0.1" AndAlso url.hostName <> "localhost" Then
+        '    e.Cancel = True
+        '    Process.Start(e.Uri)
+        'End If
     End Sub
 
     Private Sub frmHtmlViewer_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
