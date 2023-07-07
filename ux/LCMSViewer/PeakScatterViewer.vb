@@ -136,14 +136,15 @@ Public Class PeakScatterViewer
     Private Sub PeakScatterViewer_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
         Dim peakId As String = Nothing
         Dim mz, rt As Double
+        Dim loc As Point = Cursor.Position
 
-        Call GetPeak(peakId, mz, rt)
+        Call GetPeak(peakId, mz, rt, loc)
 
         RaiseEvent MoveOverPeak(peakId, mz, rt)
     End Sub
 
-    Private Sub GetPeak(ByRef peakId As String, ByRef mz As Double, ByRef rt As Double)
-        Dim pt = Me.PointToClient(MousePosition)
+    Private Sub GetPeak(ByRef peakId As String, ByRef mz As Double, ByRef rt As Double, loc As Point)
+        Dim pt = Me.PointToClient(loc)
         Dim size As Size = Me.Size
 
         If mz_range IsNot Nothing AndAlso rt_range IsNot Nothing Then
@@ -184,8 +185,9 @@ Public Class PeakScatterViewer
     Private Sub PeakScatterViewer_MouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseClick
         Dim peakId As String = Nothing
         Dim mz, rt As Double
+        Dim loc As Point = Cursor.Position
 
-        Call GetPeak(peakId, mz, rt)
+        Call GetPeak(peakId, mz, rt, loc)
 
         If peakId IsNot Nothing Then
             RaiseEvent ClickOnPeak(peakId, mz, rt)
