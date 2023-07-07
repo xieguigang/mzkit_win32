@@ -294,15 +294,17 @@ Public Class PeakScatterViewer
         If mz0 > mz1 Then Call mz1.Swap(mz0)
         If rt0 > rt1 Then Call rt1.Swap(rt0)
 
-        Call m_rawdata _
-            .AsParallel _
-            .Where(Function(s)
-                       Dim test_mz = s.mz >= mz0 AndAlso s.mz <= mz1
-                       Dim test_rt = s.scan_time >= rt0 AndAlso s.scan_time <= rt1
+        If Not m_rawdata.IsNullOrEmpty Then
+            Call m_rawdata _
+                .AsParallel _
+                .Where(Function(s)
+                           Dim test_mz = s.mz >= mz0 AndAlso s.mz <= mz1
+                           Dim test_rt = s.scan_time >= rt0 AndAlso s.scan_time <= rt1
 
-                       Return test_mz AndAlso test_rt
-                   End Function) _
-            .DoCall(AddressOf LoadPeaks2)
+                           Return test_mz AndAlso test_rt
+                       End Function) _
+                .DoCall(AddressOf LoadPeaks2)
+        End If
 
         Workbench.StatusMessage($"Zoom-in of the sub-region: m/z range {mz0.ToString("F4")} ~ {mz1.ToString("F4")}, RT range {(rt0 / 60).ToString("F2")} ~ {(rt1 / 60).ToString("F2")}min.")
     End Sub
