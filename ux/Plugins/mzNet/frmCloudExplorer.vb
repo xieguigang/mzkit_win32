@@ -30,12 +30,15 @@ Public Class frmCloudExplorer
         TreeView1.Nodes.Clear()
 
         Dim childs = Me.tree.GetTreeChilds("/").ToArray
-        Dim root = TreeView1.Nodes.Add($"Spectrum Pool [{tree.HttpServices.TrimEnd("/"c)}/]").Nodes.Add("/")
+        Dim root = TreeView1.Nodes.Add($"Spectrum Pool [{tree.HttpServices.TrimEnd("/"c)}/]")
 
+        root.ContextMenuStrip = ContextMenuStrip1
+
+        root = root.Nodes.Add("/")
         root.Tag = "/"
         root.ImageIndex = 1
         root.SelectedImageIndex = 1
-        root.ContextMenuStrip = ContextMenuStrip1
+        root.ContextMenuStrip = ContextMenuStrip2
 
         Call addNodes(root, childs)
         Call Workbench.SuccessMessage($"Connected to the cloud services: {tree.HttpServices.TrimEnd("/"c)}/")
@@ -205,7 +208,7 @@ Public Class frmCloudExplorer
                                             .scan_id = p.name,
                                             .mz = scan2.Select(Function(si) si.parentMz).ToArray,
                                             .into = scan2.Select(Function(si) si.intensity).ToArray
-}
+                                        }
                                     End Function) _
                             .ToArray
                         Dim pack As New mzPack With {
