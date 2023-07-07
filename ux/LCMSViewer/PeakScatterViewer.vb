@@ -90,8 +90,8 @@ Public Class PeakScatterViewer
         rawdata = peaksdata.ToArray
         mzBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.mz, 1, fuzzy:=True)
         rtBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.scan_time, 10, fuzzy:=True)
-        mz_range = New DoubleRange(0, rawdata.Select(Function(i) i.mz).Max * 1.125)
-        rt_range = New DoubleRange(0, rawdata.Select(Function(i) i.scan_time).Max * 1.125)
+        mz_range = New DoubleRange(0, rawdata.Select(Function(i) i.mz).Max * 1.0125)
+        rt_range = New DoubleRange(-20, rawdata.Select(Function(i) i.scan_time).Max * 1.0125)
         int_range = New DoubleRange(rawdata.Select(Function(i) i.intensity))
 
         Call Rendering()
@@ -251,6 +251,6 @@ Public Class PeakScatterViewer
         If mz0 > mz1 Then Call mz1.Swap(mz0)
         If rt0 > rt1 Then Call rt1.Swap(rt0)
 
-        Workbench.StatusMessage($"Zoom-in of the sub-region: m/z range ${mz0.ToString("F4")} ~ ${mz1.ToString("F4")}, RT range ${rt0.ToString("F2")} ~ ${rt1.ToString("F2")}min")
+        Workbench.StatusMessage($"Zoom-in of the sub-region: m/z range {mz0.ToString("F4")} ~ {mz1.ToString("F4")}, RT range {(rt0 / 60).ToString("F2")} ~ {(rt1 / 60).ToString("F2")}min.")
     End Sub
 End Class
