@@ -273,5 +273,10 @@ Public Class frmCloudExplorer
 
     Private Sub ViewClusterScattersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewClusterScattersToolStripMenuItem.Click
         Dim viewer = Workbench.ShowSingleDocument(Of FormScatterViewer)()
+
+        Call InputDialog.Input(Of frmSetClusterNumbers)(
+            Sub(cfg)
+                Call viewer.LoadClusters(tree, topN:=cfg.TopNClusters)
+            End Sub)
     End Sub
 End Class

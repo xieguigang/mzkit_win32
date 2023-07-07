@@ -310,7 +310,9 @@ Public Class PeakScatterViewer
     End Sub
 
     Private Sub ResetToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ResetToolStripMenuItem.Click
-        Call LoadPeaks2(m_rawdata)
+        If Not m_rawdata.IsNullOrEmpty Then
+            Call LoadPeaks2(m_rawdata)
+        End If
     End Sub
 
     Private Sub PictureBox1_Paint(sender As Object, e As PaintEventArgs) Handles PictureBox1.Paint
