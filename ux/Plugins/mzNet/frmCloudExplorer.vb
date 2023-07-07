@@ -246,6 +246,12 @@ Public Class frmCloudExplorer
         For Each name_str In js
             If name_str = "consensus" Then
                 Dim b64_consensus = CStr(js(name_str))
+
+                If b64_consensus = "*" Then
+                    Call Workbench.Warning("No consensus spectrum data...")
+                    Return
+                End If
+
                 Dim v = HttpTreeFs.DecodeConsensus(b64_consensus)
                 Dim spectrum As New PeakMs2 With {
                     .mzInto = v.mz _
@@ -256,6 +262,8 @@ Public Class frmCloudExplorer
                 }
 
                 Call SpectralViewerModule.ViewSpectral(spectrum)
+
+                Exit For
             End If
         Next
     End Sub
