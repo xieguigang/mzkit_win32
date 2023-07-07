@@ -175,6 +175,11 @@ Public Class PeakScatterViewer
             .Y = d3js.scale.linear().domain(mz_range).range(integers:={0, defineSize.Height})
         }
 
+        ' ignore this gdi device error
+        If defineSize.Width = 0 OrElse defineSize.Height = 0 Then
+            Return
+        End If
+
         Using g As Graphics2D = defineSize.CreateGDIDevice(filled:=Color.White)
             For Each level As SerialData In colorlevels
                 Call Bubble.Plot(g, level, scaler, scale:=Function(r) 5)

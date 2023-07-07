@@ -299,6 +299,9 @@ Public Class PageMzkitTools
                       } _
                          .Plot(New Size(args.width, args.height), dpi:=150) _
                          .AsGDIImage
+                  ElseIf scanData.ms2.All(Function(i) i.mz = 0.0) Then
+                      Call Workbench.Warning("Sorry, no valid m/z ion data...")
+                      Return
                   Else
                       PictureBox1.BackgroundImage = PeakAssign.DrawSpectrumPeaks(
                         scanData,

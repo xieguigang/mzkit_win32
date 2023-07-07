@@ -1,4 +1,5 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.PoolData
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Language
@@ -12,6 +13,7 @@ Public Class FormScatterViewer
 
     Dim WithEvents scatterViewer As PeakScatterViewer
     Dim model As HttpTreeFs
+    Dim peaksData As New Dictionary(Of String, MetaIon)
 
     Sub New()
 
@@ -44,6 +46,7 @@ Public Class FormScatterViewer
                      End If
 
                      Call Me.Invoke(Sub() Call LoadClusters(p, data.info))
+                     Call p.SetInfo("Done!")
                  End Sub,
             info:=$"Load top {topN} clusters..."
         )
@@ -54,14 +57,17 @@ Public Class FormScatterViewer
         Dim ii As i32 = 0
 
         Call p.SetProgressMode()
+        Call peaksData.Clear()
 
         For Each obj As Object In clusters.SafeQuery
             Dim js As JavaScriptObject = DirectCast(obj, JavaScriptObject)
             Dim id As String = js!id
             Dim url As String = $"{model.HttpServices}/load_cluster/?id={id}"
             Dim annotext As String = js!annotations
+            Dim note As String = $"Processing cluster [{id}] {annotext} <{CStr(js!n_spectrum)} spectrum>"
 
-            Call p.SetProgress(++ii / clusters.Length * 100, $"Processing cluster [{id}] {annotext} <{CStr(js!n_spectrum)} spectrum>")
+            Call p.SetProgress(++ii / clusters.Length * 100, note)
+            Call p.SetInfo(note)
 
             Dim json = Restful.ParseJSON(url.GET)
 
@@ -84,8 +90,7 @@ Public Class FormScatterViewer
             For Each ion As NamedCollection(Of Metadata) In precursors
                 Dim mz As Double = ion.Select(Function(i) i.mz).Average
                 Dim rt As Double() = ion.Select(Function(i) i.rt).ToArray
-
-                Call precursorList.Add(New MetaIon With {
+                Dim ion1 As New MetaIon With {
                     .id = $"[{id}] {annotext} {mz.ToString("F4")}@{(rt.Average / 60).ToString("F2")}min <{ion.Length} sample files>",
                     .mz = mz,
                     .rtmin = rt.Min,
@@ -93,11 +98,51 @@ Public Class FormScatterViewer
                     .scan_time = rt.Average,
                     .intensity = ion.Length,
                     .metaList = ion.value
-                })
+                }
+
+                Call precursorList.Add(ion1)
+                Call peaksData.Add(ion1.id, ion1)
             Next
         Next
 
         Call scatterViewer.LoadPeaks(precursorList)
+    End Sub
+
+    Private Sub scatterViewer_MoveOverPeak(peakId As String, mz As Double, rt As Double) Handles scatterViewer.MoveOverPeak
+
+    End Sub
+
+    Private Sub scatterViewer_ClickOnPeak(peakId As String, mz As Double, rt As Double) Handles scatterViewer.ClickOnPeak
+        Dim ion As MetaIon = peaksData.TryGetValue(peakId)
+
+        If ion Is Nothing Then
+            Return
+        End If
+
+        Dim spectrum As PeakMs2() = TaskProgress.LoadData(Of PeakMs2())(
+            Function(echo As ITaskProgress)
+                Dim println As Action(Of String) = AddressOf echo.SetInfo
+
+                Call echo.SetProgressMode()
+
+                Return ion.metaList _
+                    .Select(Function(m, i)
+                                Call echo.SetProgress(100 * i / ion.metaList.Length)
+                                Call println($"load spectrum: {peakId} | {m.guid}")
+
+                                Dim ms2 = model.ReadSpectrum(m.guid)
+                                ms2.mz = m.mz
+                                ms2.rt = m.rt
+                                ms2.file = m.source_file
+                                ms2.scan = m.name
+                                ms2.lib_guid = $"[MS/MS][{i + 1}] {peakId} | {m.guid}"
+
+                                Return ms2
+                            End Function) _
+                    .ToArray
+            End Function, title:="Fetch Spectrum From Cloud")
+
+        Call SpectralViewerModule.showCluster(spectrum, ion.id)
     End Sub
 End Class
 

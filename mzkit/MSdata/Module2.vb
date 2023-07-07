@@ -1,21 +1,54 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking
+Imports BioNovoGene.mzkit_win32.MSdata
 Imports BioNovoGene.mzkit_win32.My
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
 Imports Microsoft.VisualBasic.Data.csv
+Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports Mzkit_win32.BasicMDIForm
+Imports WeifenLuo.WinFormsUI.Docking
 Imports stdNum = System.Math
 
 Namespace MSdata
 
     Module Module2
+
+        Public Sub ShowCluster(raw As PeakMs2(), vlabel As String)
+            Dim rt As Double() = raw.Select(Function(p) p.rt).ToArray
+            Dim rt_scan = raw.GroupBy(Function(a) a.rt, offsets:=5).ToArray
+            Dim ms1 As ScanMS1() = rt_scan _
+                .Select(Function(p) p.value.ClusterScan(vlabel)) _
+                .OrderBy(Function(m) m.rt) _
+                .ToArray
+            Dim fakePack As New mzPack With {
+                .Application = FileApplicationClass.LCMS,
+                .source = vlabel,
+                .MS = ms1
+            }
+            Dim fakeRaw As New Raw(inMemory:=fakePack) With {
+                .cache = Nothing,
+                .numOfScan1 = ms1.Length,
+                .numOfScan2 = raw.Length,
+                .rtmax = rt.Max,
+                .rtmin = rt.Min,
+                .source = vlabel
+            }
+
+            WindowModules.rawFeaturesList.LoadRaw(fakeRaw)
+            VisualStudio.Dock(WindowModules.rawFeaturesList, DockState.DockLeft)
+        End Sub
 
         Public Sub showMasssdiff(M As Double, mz2 As Array)
             Dim pa As New PeakAnnotation(0.05, isotopeFirst:=True)

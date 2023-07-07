@@ -30,8 +30,14 @@ Namespace MSdata
                 .meta = New Dictionary(Of String, String),
                 .products = raw _
                     .Select(Function(r)
+                                Dim active As mzData.ActivationMethods = mzData.ActivationMethods.AnyType
+
+                                If Not r.activation.StringEmpty Then
+                                    active = [Enum].Parse(GetType(mzData.ActivationMethods), r.activation)
+                                End If
+
                                 Return New ScanMS2 With {
-                                    .activationMethod = [Enum].Parse(GetType(mzData.ActivationMethods), r.activation),
+                                    .activationMethod = active,
                                     .centroided = True,
                                     .charge = 0,
                                     .collisionEnergy = r.collisionEnergy,

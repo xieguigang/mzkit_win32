@@ -2,6 +2,7 @@
 
     Dim viewMatrix As Action(Of Object)
     Dim runmassDiffAnalysis As Action(Of Double, Array)
+    Dim showClusterSpectrum As Action(Of Array, String)
 
     Public Sub HookViewer(view As Action(Of Object))
         viewMatrix = view
@@ -9,6 +10,16 @@
 
     Public Sub HookAnalysis(analysis As Action(Of Double, Array))
         runmassDiffAnalysis = analysis
+    End Sub
+
+    Public Sub HookClusterLoader(load As Action(Of Array, String))
+        showClusterSpectrum = load
+    End Sub
+
+    Public Sub showCluster(raw As Array, vlabel As String)
+        If showClusterSpectrum IsNot Nothing Then
+            Call showClusterSpectrum(raw, vlabel)
+        End If
     End Sub
 
     Public Sub ViewSpectral(data As Object)

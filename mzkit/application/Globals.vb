@@ -175,6 +175,7 @@ Module Globals
         DataTableViewer.HookTableViewer(Function() DirectCast(VisualStudio.ShowDocument(Of frmTableViewer), IDataTableViewer))
         SpectralViewerModule.HookViewer(AddressOf PageMzkitTools.ShowSpectral)
         SpectralViewerModule.HookAnalysis(AddressOf Module2.showMasssdiff)
+        SpectralViewerModule.HookClusterLoader(AddressOf MSdata.ShowCluster)
 
         BaseHook.HookPlotColorSet(AddressOf Globals.GetColors)
     End Sub
