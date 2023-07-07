@@ -1,13 +1,13 @@
 ﻿Public Module SpectralViewerModule
 
     Dim viewMatrix As Action(Of Object)
-    Dim runmassDiffAnalysis As Action(Of Double, Array())
+    Dim runmassDiffAnalysis As Action(Of Double, Array)
 
     Public Sub HookViewer(view As Action(Of Object))
         viewMatrix = view
     End Sub
 
-    Public Sub HookAnalysis(analysis As Action(Of Double, Array()))
+    Public Sub HookAnalysis(analysis As Action(Of Double, Array))
         runmassDiffAnalysis = analysis
     End Sub
 
