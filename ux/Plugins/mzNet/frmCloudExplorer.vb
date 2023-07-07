@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.IO
+Imports System.Security.Policy
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking
@@ -185,13 +186,16 @@ Public Class frmCloudExplorer
                             .Select(Function(p)
                                         Dim scan2 = p.Select(Function(p2)
                                                                  Return New ScanMS2 With {
-                                                                 .intensity = p2.intensity, .mz = p2.mzInto.Select(Function(m) m.mz).ToArray,
-                                                                                                                .into = p2.mzInto.Select(Function(m) m.intensity).ToArray,
-                                                                                                                .parentMz = p2.mz,
-                                                                                                                .rt = p2.rt,
-                                                                                                                .scan_id = p2.lib_guid,
-                                                                                                                .polarity = 1}
-                                                             End Function).ToArray
+                                                                    .intensity = p2.intensity,
+                                                                    .mz = p2.mzInto.Select(Function(m) m.mz).ToArray,
+                                                                    .into = p2.mzInto.Select(Function(m) m.intensity).ToArray,
+                                                                    .parentMz = p2.mz,
+                                                                    .rt = p2.rt,
+                                                                    .scan_id = p2.lib_guid,
+                                                                    .polarity = 1
+                                                                 }
+                                                             End Function) _
+                                                     .ToArray
 
                                         Return New ScanMS1 With {
                                             .rt = Val(p.name),
@@ -201,7 +205,7 @@ Public Class frmCloudExplorer
                                             .scan_id = p.name,
                                             .mz = scan2.Select(Function(si) si.parentMz).ToArray,
                                             .into = scan2.Select(Function(si) si.intensity).ToArray
-                                        }
+}
                                     End Function) _
                             .ToArray
                         Dim pack As New mzPack With {
@@ -225,6 +229,34 @@ Public Class frmCloudExplorer
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub ViewConsensusSpectrumToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewConsensusSpectrumToolStripMenuItem.Click
+        Dim sel = TreeView1.SelectedNode
 
+        If sel Is Nothing OrElse sel.Tag Is Nothing Then
+            Return
+        End If
+
+        Dim hashcode As String = HttpTreeFs.ClusterHashIndex(sel.Tag)
+        Dim js = tree.GetCluster(hashcode)
+
+        If js Is Nothing Then
+            Workbench.Warning("incorrect cluster hashcode!")
+            Return
+        End If
+
+        For Each name_str In js
+            If name_str = "consensus" Then
+                Dim b64_consensus = CStr(js(name_str))
+                Dim v = HttpTreeFs.DecodeConsensus(b64_consensus)
+                Dim spectrum As New PeakMs2 With {
+                    .mzInto = v.mz _
+                        .Select(Function(mzi, i) New ms2 With {.mz = mzi, .intensity = v.into(i)}) _
+                        .ToArray,
+                    .lib_guid = "Consensus Spectra",
+                    .file = hashcode
+                }
+
+                Call SpectralViewerModule.ViewSpectral(spectrum)
+            End If
+        Next
     End Sub
 End Class
