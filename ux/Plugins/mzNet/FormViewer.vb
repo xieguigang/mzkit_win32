@@ -209,11 +209,15 @@ Public Class FormViewer
             If row.Cells.Count = 0 Then
                 Exit For
             Else
-                Call mz.Add(New ms2 With {
-                    .mz = Val(row.Cells.Item(1).Value),
-                    .intensity = Val(row.Cells.Item(3).Value),
-                    .Annotation = CStr(row.Cells.Item(0).Value)
-                })
+                Dim mzi = Val(row.Cells.Item(1).Value)
+
+                If mzi > 0 Then
+                    Call mz.Add(New ms2 With {
+                        .mz = Val(row.Cells.Item(1).Value),
+                        .intensity = Val(row.Cells.Item(3).Value),
+                        .Annotation = Nothing
+                    })
+                End If
             End If
         Next
 
