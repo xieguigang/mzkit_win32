@@ -60,7 +60,6 @@ Imports System.Text
 Imports System.Windows.Forms
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
-Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Mzkit_win32.BasicMDIForm

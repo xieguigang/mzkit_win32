@@ -1,4 +1,5 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports Mzkit_win32.BasicMDIForm
 
 Public Class frmLCMSScatterViewer
@@ -13,7 +14,14 @@ Public Class frmLCMSScatterViewer
         Me.raw.LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache))
         Me.TabText = raw.source.FileName
 
+        Call loadRaw()
         Call Workbench.AppHost.SetTitle($"LCMS Scatter '{raw.source.FileName}'")
+    End Sub
+
+    Private Sub loadRaw()
+        Dim meta As Meta() = raw.GetMs2Scans.Select(Function(a) a.GetScanMeta).ToArray
+
+        Call Me.ScatterViewer.LoadPeaks(meta)
     End Sub
 
     Private Sub frmLCMSScatterViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
