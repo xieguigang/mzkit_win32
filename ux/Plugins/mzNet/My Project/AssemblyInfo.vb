@@ -10,9 +10,9 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("mzNet")>
 <Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("微软中国")>
+<Assembly: AssemblyCompany("PANOMIX")>
 <Assembly: AssemblyProduct("mzNet")>
-<Assembly: AssemblyCopyright("Copyright © 微软中国 2023")>
+<Assembly: AssemblyCopyright("Copyright © PANOMIX 2023")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>

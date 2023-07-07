@@ -545,18 +545,6 @@ Public Class frmFileExplorer
 
     End Sub
 
-    Private Sub OpenViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenViewerToolStripMenuItem.Click
-        Dim node = treeView1.SelectedNode
-
-        If node Is Nothing OrElse TypeOf node.Tag IsNot MZWork.Raw Then
-            Return
-        End If
-
-        Dim raw As MZWork.Raw = DirectCast(node.Tag, MZWork.Raw).LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache))
-        Dim viewer = VisualStudio.ShowDocument(Of frmUntargettedViewer)()
-
-        viewer.loadRaw(raw)
-    End Sub
 
     Private Sub ContourPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ContourPlotToolStripMenuItem.Click
         If treeView1.SelectedNode Is Nothing Then
@@ -774,5 +762,31 @@ Public Class frmFileExplorer
             )
             Call MyApplication.host.mzkitMNtools.RefreshNetwork()
         End If
+    End Sub
+
+    Private Sub ChromatographyViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChromatographyViewerToolStripMenuItem.Click
+        Dim node = treeView1.SelectedNode
+
+        If node Is Nothing OrElse TypeOf node.Tag IsNot MZWork.Raw Then
+            Return
+        End If
+
+        Dim raw As MZWork.Raw = DirectCast(node.Tag, MZWork.Raw).LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache))
+        Dim viewer = VisualStudio.ShowDocument(Of frmUntargettedViewer)()
+
+        viewer.loadRaw(raw)
+    End Sub
+
+    Private Sub ScatterViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ScatterViewerToolStripMenuItem.Click
+        Dim node = treeView1.SelectedNode
+
+        If node Is Nothing OrElse TypeOf node.Tag IsNot MZWork.Raw Then
+            Return
+        End If
+
+        Dim raw As MZWork.Raw = DirectCast(node.Tag, MZWork.Raw).LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache))
+        Dim viewer = VisualStudio.ShowDocument(Of frmLCMSScatterViewer)()
+
+        viewer.loadRaw(raw)
     End Sub
 End Class

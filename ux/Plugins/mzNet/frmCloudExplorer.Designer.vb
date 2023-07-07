@@ -28,6 +28,7 @@ Partial Class frmCloudExplorer
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCloudExplorer))
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ExportMzPackToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewConsensusSpectrumToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.TreeView1 = New System.Windows.Forms.TreeView()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
@@ -35,21 +36,30 @@ Partial Class frmCloudExplorer
         Me.ToolStripTextBox1 = New Mzkit_win32.BasicMDIForm.ToolStripSpringTextBox()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewClusterScattersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip2.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'ContextMenuStrip2
         '
-        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportMzPackToolStripMenuItem})
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportMzPackToolStripMenuItem, Me.ViewConsensusSpectrumToolStripMenuItem})
         Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(152, 26)
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(214, 48)
         '
         'ExportMzPackToolStripMenuItem
         '
         Me.ExportMzPackToolStripMenuItem.Name = "ExportMzPackToolStripMenuItem"
-        Me.ExportMzPackToolStripMenuItem.Size = New System.Drawing.Size(151, 22)
+        Me.ExportMzPackToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
         Me.ExportMzPackToolStripMenuItem.Text = "Export mzPack"
+        '
+        'ViewConsensusSpectrumToolStripMenuItem
+        '
+        Me.ViewConsensusSpectrumToolStripMenuItem.Name = "ViewConsensusSpectrumToolStripMenuItem"
+        Me.ViewConsensusSpectrumToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.ViewConsensusSpectrumToolStripMenuItem.Text = "View Consensus Spectrum"
         '
         'ImageList1
         '
@@ -69,6 +79,7 @@ Partial Class frmCloudExplorer
         Me.TreeView1.Location = New System.Drawing.Point(0, 25)
         Me.TreeView1.Name = "TreeView1"
         Me.TreeView1.SelectedImageIndex = 0
+        Me.TreeView1.ShowNodeToolTips = True
         Me.TreeView1.Size = New System.Drawing.Size(384, 472)
         Me.TreeView1.TabIndex = 1
         '
@@ -111,6 +122,18 @@ Partial Class frmCloudExplorer
         Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton2.Text = "Select Model"
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewClusterScattersToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(184, 48)
+        '
+        'ViewClusterScattersToolStripMenuItem
+        '
+        Me.ViewClusterScattersToolStripMenuItem.Name = "ViewClusterScattersToolStripMenuItem"
+        Me.ViewClusterScattersToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
+        Me.ViewClusterScattersToolStripMenuItem.Text = "View Cluster Scatters"
+        '
         'frmCloudExplorer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -123,6 +146,7 @@ Partial Class frmCloudExplorer
         Me.ContextMenuStrip2.ResumeLayout(False)
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -137,4 +161,7 @@ Partial Class frmCloudExplorer
     Friend WithEvents ToolStripButton1 As ToolStripButton
     Friend WithEvents ToolStripLabel1 As ToolStripLabel
     Friend WithEvents ToolStripButton2 As ToolStripButton
+    Friend WithEvents ViewConsensusSpectrumToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ViewClusterScattersToolStripMenuItem As ToolStripMenuItem
 End Class

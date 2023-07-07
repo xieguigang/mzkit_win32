@@ -296,11 +296,17 @@ SingleS:    For Each name As String In GetY()
 
         Select Case ComboBox1.SelectedItem.ToString
             Case "Scatter"
-                Return Scatter.Plot(getSerials(x, getVector), size:=size, drawLine:=False, padding:=padding).AsGDIImage
+                Dim groups = getSerials(x, getVector).ToArray
+                Return Scatter.Plot(groups, size:=size, drawLine:=False, padding:=padding).AsGDIImage
             Case "Line"
-                Return Scatter.Plot(getSerials(x, getVector), size:=size, drawLine:=True, padding:=padding).AsGDIImage
+                Dim groups = getSerials(x, getVector).ToArray
+                Return Scatter.Plot(groups, size:=size, drawLine:=True, padding:=padding).AsGDIImage
             Case "BarPlot"
-                Dim catNames As String() = x.AsObjectEnumerator().Take(x.Length - 1).Select(Function(o) any.ToString(o)).ToArray
+                Dim catNames As String() = x _
+                    .AsObjectEnumerator() _
+                    .Take(x.Length - 1) _
+                    .Select(Function(o) any.ToString(o)) _
+                    .ToArray
 
                 padding = "padding:200px 600px 200px 200px;"
 

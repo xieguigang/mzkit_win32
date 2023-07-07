@@ -76,6 +76,7 @@ Imports BioNovoGene.BioDeep.Chemoinformatics
 Imports BioNovoGene.BioDeep.MetaDNA
 Imports BioNovoGene.BioDeep.MSEngine
 Imports BioNovoGene.mzkit_win32.Configuration
+Imports BioNovoGene.mzkit_win32.MSdata
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Microsoft.VisualBasic.ApplicationServices.Development
@@ -173,6 +174,8 @@ Module Globals
 
         DataTableViewer.HookTableViewer(Function() DirectCast(VisualStudio.ShowDocument(Of frmTableViewer), IDataTableViewer))
         SpectralViewerModule.HookViewer(AddressOf PageMzkitTools.ShowSpectral)
+        SpectralViewerModule.HookAnalysis(AddressOf Module2.showMasssdiff)
+        SpectralViewerModule.HookClusterLoader(AddressOf MSdata.ShowCluster)
 
         BaseHook.HookPlotColorSet(AddressOf Globals.GetColors)
     End Sub

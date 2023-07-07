@@ -52,13 +52,15 @@
 
 #End Region
 
-Imports System.Reflection
+Imports System.Text
 Imports System.Threading
 Imports BioNovoGene.BioDeep.Chemistry.Model
 Imports BioNovoGene.BioDeep.Chemistry.Model.Drawing
+Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.BioDeep.Chemoinformatics.SDF
 Imports BioNovoGene.BioDeep.Chemoinformatics.SMILES
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
 Imports Microsoft.Web.WebView2.WinForms
@@ -87,14 +89,42 @@ Public Class frmSMILESViewer
         Return $"http://127.0.0.1:{Workbench.WebPort}/ketcher/index.html"
     End Function
 
+    Dim tableRows As New List(Of Object())
+
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim smilesStr As String = Strings.Trim(TextBox1.Text)
         Dim js As String = $"rendering('{smilesStr}');"
 
         Try
-            Dim graph As ChemicalFormula = ParseChain.ParseGraph(smilesStr)
-        Catch ex As Exception
+            Dim graph As ChemicalFormula = ParseChain.ParseGraph(smilesStr, strict:=False)
+            Dim info As New StringBuilder
+            Dim formula As Formula = graph.GetFormula(canonical:=True)
 
+            Call info.AppendLine($"Formula: {formula.ToString}")
+            Call info.AppendLine($"Element Composition: {formula.CountsByElement.GetJson}")
+            Call info.AppendLine($"Exact Mass: {formula.ExactMass}")
+
+            Call TextBox3.Clear()
+            Call DataGridView1.Rows.Clear()
+            Call tableRows.Clear()
+
+            TextBox3.Text = info.ToString
+
+            For Each atom As ChemicalElement In graph.AllElements
+                Dim connects = ChemicalElement _
+                    .GetConnection(graph, atom) _
+                    .Select(Function(a)
+                                Return $"{CInt(a.keys)}({a.Item2.group})"
+                            End Function) _
+                    .JoinBy("; ")
+
+                Call tableRows.Add({atom.label, atom.elementName, atom.group, atom.charge, atom.Keys, connects})
+                Call DataGridView1.Rows.Add(atom.label, atom.elementName, atom.group, atom.charge, atom.Keys, connects)
+            Next
+        Catch ex As Exception
+            Call TextBox3.Clear()
+            Call DataGridView1.Rows.Clear()
+            Call tableRows.Clear()
         End Try
 
         WebView21.CoreWebView2.ExecuteScriptAsync(js)
@@ -107,6 +137,8 @@ Public Class frmSMILESViewer
 
         Text = "Molecule Drawer"
         TabText = Text
+
+        Call ApplyVsTheme(ContextMenuStrip1)
     End Sub
 
     Public Shared Sub DeveloperOptions(WebView21 As WebView2, enable As Boolean)
@@ -218,5 +250,28 @@ Public Class frmSMILESViewer
     ''' <param name="e"></param>
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Call OpenCFMIDTool(TextBox1.Text)
+    End Sub
+
+    Private Sub ExportTableFileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportTableFileToolStripMenuItem.Click
+        Call DataGridView1.SaveDataGrid("Export Molecule Composition To File")
+    End Sub
+
+    Private Sub SendToTableViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SendToTableViewerToolStripMenuItem.Click
+        Dim table = VisualStudio.ShowDocument(Of frmTableViewer)(, title:="SMILES data")
+
+        ' Call tableRows.Add({atom.label, atom.elementName, atom.group, atom.charge, atom.Keys, connects})
+        Call table.LoadTable(
+            Sub(a)
+                Call a.Columns.Add("#ID", GetType(String))
+                Call a.Columns.Add("Atom", GetType(String))
+                Call a.Columns.Add("Atom Group", GetType(String))
+                Call a.Columns.Add("Charge", GetType(Integer))
+                Call a.Columns.Add("Links", GetType(Integer))
+                Call a.Columns.Add("Atom Group Connections", GetType(String))
+
+                For Each row In tableRows
+                    Call a.Rows.Add(row)
+                Next
+            End Sub)
     End Sub
 End Class

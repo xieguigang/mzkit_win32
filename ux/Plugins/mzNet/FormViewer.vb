@@ -1,6 +1,5 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking
-Imports BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.PoolData
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports Mzkit_win32.BasicMDIForm
 Imports WeifenLuo.WinFormsUI.Docking
@@ -77,13 +76,6 @@ Public Class FormViewer
     End Sub
 
     Private Sub loadTable(node As String)
-        Dim key As String = If(node.Contains("/"), HttpTreeFs.ClusterHashIndex(node), node)
-        Dim getMetadata As PoolData.Metadata() = HttpRESTMetadataPool.FetchClusterData(
-            url_get:=$"{cloud.tree.HttpServices}/get/metadata/",
-            model_id:=cloud.tree.model_id,
-            hash_index:=key
-        ).ToArray
-
         Call LoadTable(
             Sub(tbl)
                 tbl.Columns.Add("guid", GetType(String)) '0
@@ -98,8 +90,10 @@ Public Class FormViewer
                 tbl.Columns.Add("formula", GetType(String)) '9
                 tbl.Columns.Add("adducts", GetType(String)) '10
 
-                For Each meta As PoolData.Metadata In getMetadata
-                    tbl.Rows.Add(meta.guid, meta.mz, meta.rt, meta.intensity, meta.source_file, meta.sample_source, meta.organism, meta.name, meta.biodeep_id, meta.formula, meta.adducts)
+                For Each meta As PoolData.Metadata In cloud.FetchMetadata(node)
+                    Call tbl.Rows.Add(meta.guid, meta.mz, meta.rt, meta.intensity, meta.source_file,
+                                 meta.sample_source, meta.organism, meta.name, meta.biodeep_id,
+                                 meta.formula, meta.adducts)
                 Next
             End Sub)
     End Sub
@@ -154,7 +148,8 @@ Public Class FormViewer
             spectral.meta = New Dictionary(Of String, String) From {{"id", id}}
 
             data.Add(spectral)
-            Application.DoEvents()
+
+            Call Application.DoEvents()
         Next
 
         Call data.Select(Function(a) a.MgfIon).SaveTo(filepath)
@@ -186,21 +181,47 @@ Public Class FormViewer
         Dim guid As String = CStr(metadataRow.Cells.Item(0).Value)
         Dim spectral As PeakMs2 = cloud.tree.ReadSpectrum(guid)
 
-        spectral.lib_guid = getTitle(metadataRow)
+        If guid.StringEmpty OrElse spectral Is Nothing Then
+            Return
+        Else
+            spectral.lib_guid = getTitle(metadataRow)
+        End If
 
         Call SpectralViewerModule.ViewSpectral(spectral)
     End Sub
 
-    Private Sub AutoPlotSpectrumToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AutoPlotSpectrumToolStripMenuItem.Click
-
-    End Sub
-
     Private Sub AdvancedDataGridView1_RowStateChanged(sender As Object, e As DataGridViewRowStateChangedEventArgs) Handles AdvancedDataGridView1.RowStateChanged
-
         If AutoPlotSpectrumToolStripMenuItem.Checked Then
             If e.StateChanged = DataGridViewElementStates.Selected Then
                 Call ViewSpectralToolStripMenuItem_Click()
             End If
+        End If
+    End Sub
+
+    Private Sub MassDifferenceAnalysisToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MassDifferenceAnalysisToolStripMenuItem.Click
+        Dim rows = AdvancedDataGridView1.Rows
+        Dim mz As New List(Of ms2)
+
+        For i As Integer = 0 To rows.Count - 1
+            Dim row = rows.Item(i)
+
+            If row.Cells.Count = 0 Then
+                Exit For
+            Else
+                Dim mzi = Val(row.Cells.Item(1).Value)
+
+                If mzi > 0 Then
+                    Call mz.Add(New ms2 With {
+                        .mz = Val(row.Cells.Item(1).Value),
+                        .intensity = Val(row.Cells.Item(3).Value),
+                        .Annotation = Nothing
+                    })
+                End If
+            End If
+        Next
+
+        If mz.Count > 0 Then
+            Call SpectralViewerModule.RunMassDiff(mz.Select(Function(i) i.mz).Min, mz.ToArray)
         End If
     End Sub
 End Class

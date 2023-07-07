@@ -56,11 +56,7 @@
 Imports System.Runtime.CompilerServices
 Imports System.Threading
 Imports System.Windows.Forms.ListViewItem
-Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
-Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
-Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
-Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking
@@ -91,7 +87,6 @@ Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Interop
 Imports TaskStream
-Imports WeifenLuo.WinFormsUI.Docking
 Imports any = Microsoft.VisualBasic.Scripting
 Imports stdNum = System.Math
 
@@ -207,32 +202,7 @@ Public Class PageMoleculeNetworking
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Private Sub showCluster(info As NetworkingNode, vlabel As String)
-        Call showCluster(info.members, vlabel)
-    End Sub
-
-    Private Sub showCluster(raw As PeakMs2(), vlabel As String)
-        Dim rt As Double() = raw.Select(Function(p) p.rt).ToArray
-        Dim rt_scan = raw.GroupBy(Function(a) a.rt, offsets:=5).ToArray
-        Dim ms1 As ScanMS1() = rt_scan _
-            .Select(Function(p) p.value.ClusterScan(vlabel)) _
-            .OrderBy(Function(m) m.rt) _
-            .ToArray
-        Dim fakePack As New mzPack With {
-            .Application = FileApplicationClass.LCMS,
-            .source = vlabel,
-            .MS = ms1
-        }
-        Dim fakeRaw As New Raw(inMemory:=fakePack) With {
-            .cache = Nothing,
-            .numOfScan1 = ms1.Length,
-            .numOfScan2 = raw.Length,
-            .rtmax = rt.Max,
-            .rtmin = rt.Min,
-            .source = vlabel
-        }
-
-        WindowModules.rawFeaturesList.LoadRaw(fakeRaw)
-        VisualStudio.Dock(WindowModules.rawFeaturesList, DockState.DockLeft)
+        Call MSdata.ShowCluster(info.members, vlabel)
     End Sub
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
@@ -506,27 +476,9 @@ Public Class PageMoleculeNetworking
                 Next
 
                 ' load into feature explorer
-                Call showCluster(clusterSet.ToArray, $"cos({current.referenceId},y) > {cutoff}")
+                Call MSdata.ShowCluster(clusterSet.ToArray, $"cos({current.referenceId},y) > {cutoff}")
                 ' show mass diff analysis
                 Call showMasssdiff(current.mz, mz.ToArray)
-            End Sub)
-    End Sub
-
-    Private Sub showMasssdiff(M As Double, mz As ms2())
-        Dim pa As New PeakAnnotation(0.05, isotopeFirst:=True)
-        Dim massdiff = pa.RunAnnotation(M, mz.ToArray).products
-        ' show result in table viewer
-        Dim tblView = VisualStudio.ShowDocument(Of frmTableViewer)(title:=$"Mass Diff Analysis[m/z {M.ToString("F4")}]")
-
-        Call tblView.LoadTable(
-            Sub(subView)
-                Call subView.Columns.Add("precursor", GetType(Double))
-                Call subView.Columns.Add("cluster_size", GetType(Double))
-                Call subView.Columns.Add("mass_diff", GetType(String))
-
-                For Each row As ms2 In massdiff
-                    Call subView.Rows.Add(row.mz, row.intensity, row.Annotation)
-                Next
             End Sub)
     End Sub
 

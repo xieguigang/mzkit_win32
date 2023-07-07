@@ -134,6 +134,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmSetClusterNumbers.Designer.vb">
+      <DependentUpon>frmSetClusterNumbers.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSetClusterNumbers.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormScatterViewer.Designer.vb">
+      <DependentUpon>FormScatterViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormScatterViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="InputSelectGraphModel.Designer.vb">
       <DependentUpon>InputSelectGraphModel.vb</DependentUpon>
     </Compile>
@@ -173,11 +185,17 @@
     <Compile Include="zzz.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormScatterViewer.resx">
+      <DependentUpon>FormScatterViewer.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormViewer.resx">
       <DependentUpon>FormViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCloudExplorer.resx">
       <DependentUpon>frmCloudExplorer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSetClusterNumbers.resx">
+      <DependentUpon>frmSetClusterNumbers.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputSelectGraphModel.resx">
       <DependentUpon>InputSelectGraphModel.vb</DependentUpon>
@@ -258,6 +276,10 @@
       <Project>{5dce233f-c0e1-41b8-827a-872b0c8cc3bc}</Project>
       <Name>assembly-netcore5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\assembly\mzPack\mzpack.NET5.vbproj">
+      <Project>{c6d266df-b35f-480b-acb0-15c7d2882769}</Project>
+      <Name>mzpack.NET5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\metadb\Chemoinformatics\chemoinformatics-netcore5.vbproj">
       <Project>{2abff190-611a-4cb7-afff-d8f7bba0bb63}</Project>
       <Name>chemoinformatics-netcore5</Name>
@@ -281,6 +303,10 @@
     <ProjectReference Include="..\..\ControlLibrary\ControlLibrary.vbproj">
       <Project>{df66aa70-9ab9-48d0-b492-9d0e0482a651}</Project>
       <Name>ControlLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\LCMSViewer\LCMSViewer.vbproj">
+      <Project>{72e288a5-18c4-43ec-95bf-d0f57f93ca92}</Project>
+      <Name>LCMSViewer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
