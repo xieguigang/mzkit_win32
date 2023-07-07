@@ -75,8 +75,8 @@ Public Class PeakScatterViewer
         rawdata = peaksdata.ToArray
         mzBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.mz, 0.5, fuzzy:=True)
         rtBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.scan_time, 5, fuzzy:=True)
-        mz_range = New DoubleRange(rawdata.Select(Function(i) i.mz))
-        rt_range = New DoubleRange(rawdata.Select(Function(i) i.scan_time))
+        mz_range = New DoubleRange(0, rawdata.Select(Function(i) i.mz).Max * 1.125)
+        rt_range = New DoubleRange(0, rawdata.Select(Function(i) i.scan_time).Max * 1.125)
         int_range = New DoubleRange(rawdata.Select(Function(i) i.intensity))
 
         Call Rendering()
@@ -139,18 +139,16 @@ Public Class PeakScatterViewer
 
         Call GetPeak(peakId, mz, rt)
 
-        If peakId IsNot Nothing Then
-            RaiseEvent MoveOverPeak(peakId, mz, rt)
-        End If
+        RaiseEvent MoveOverPeak(peakId, mz, rt)
     End Sub
 
     Private Sub GetPeak(ByRef peakId As String, ByRef mz As Double, ByRef rt As Double)
-        Dim pt = [Control].MousePosition
+        Dim pt = Me.PointToClient(MousePosition)
         Dim size As Size = Me.Size
 
         If mz_range IsNot Nothing AndAlso rt_range IsNot Nothing Then
-            Dim mzi = (pt.Y / size.Width) * mz_range.Length + mz_range.Min
-            Dim rti = (pt.X / size.Height) * rt_range.Length + rt_range.Min
+            Dim mzi = (pt.Y / size.Height) * mz_range.Length + mz_range.Min
+            Dim rti = (pt.X / size.Width) * rt_range.Length + rt_range.Min
 
             Dim qmz = mzBins.Search(New Meta With {.mz = mz}).ToDictionary(Function(a) a.id)
             Dim qrt = rtBins.Search(New Meta With {.scan_time = rt}).ToDictionary(Function(a) a.id)
