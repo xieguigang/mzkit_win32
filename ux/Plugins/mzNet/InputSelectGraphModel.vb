@@ -1,4 +1,5 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.PoolData
+Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.My.JavaScript
 Imports Mzkit_win32.BasicMDIForm
 
@@ -30,12 +31,17 @@ Public Class InputSelectGraphModel
     End Sub
 
     Private Sub loadModelList()
-        Dim list As Object() = Restful.ParseJSON($"{TextBox1.Text}/get_models/".GET).info
-        Dim models = list _
+        Dim list As Object() = Restful.ParseJSON($"{TextBox1.Text}/get_models/".GET(timeoutSec:=1)).info
+        Dim models = list.SafeQuery _
             .Select(Function(js)
                         Return DirectCast(js, JavaScriptObject).CreateObject(Of SpectrumGraphModel)
                     End Function) _
             .ToArray
+
+        If list Is Nothing Then
+            Call MessageBox.Show("Sorry, the cloud service is unavailable!", "Server Down", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
 
         Call ComboBox1.Items.Clear()
         Call Workbench.SuccessMessage($"Load {models.Length} spectrum cluster graph models!")
