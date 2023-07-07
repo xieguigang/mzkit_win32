@@ -247,7 +247,11 @@ Public Class PeakScatterViewer
     End Sub
 
     Private Sub PictureBox1_MouseUp(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseUp
-        drawBox = False
+        If drawBox Then
+            drawBox = False
+        Else
+            Return
+        End If
 
         Dim mz0, rt0 As Double
         Dim mz1, rt1 As Double
