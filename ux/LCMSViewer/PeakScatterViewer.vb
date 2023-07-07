@@ -5,6 +5,7 @@ Imports Microsoft.VisualBasic.Data.ChartPlots
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
+Imports Mzkit_win32.BasicMDIForm
 Imports stdNum = System.Math
 
 ''' <summary>
@@ -160,15 +161,20 @@ Public Class PeakScatterViewer
     End Function
 
     Private Sub PeakScatterViewer_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
-        Dim peakId As String = Nothing
-        Dim mz, rt As Double
-        Dim loc As Point = Cursor.Position
+        If drawBox Then
+            p1 = Cursor.Position
+            ToolStripStatusLabel1.Text = "Select new sub-region..."
+        Else
+            Dim peakId As String = Nothing
+            Dim mz, rt As Double
+            Dim loc As Point = Cursor.Position
 
-        Call GetPeak(peakId, mz, rt, loc)
+            Call GetPeak(peakId, mz, rt, loc)
 
-        RaiseEvent MoveOverPeak(peakId, mz, rt)
+            RaiseEvent MoveOverPeak(peakId, mz, rt)
 
-        ToolStripStatusLabel1.Text = $"m/z {mz.ToString("F4")} RT {(rt / 60).ToString("F2")}min; find ion: {peakId}"
+            ToolStripStatusLabel1.Text = $"m/z {mz.ToString("F4")} RT {(rt / 60).ToString("F2")}min; find ion: {peakId}"
+        End If
     End Sub
 
     Private Sub GetPeak(ByRef peakId As String, ByRef mz As Double, ByRef rt As Double, loc As Point)
@@ -222,5 +228,29 @@ Public Class PeakScatterViewer
 
             ToolStripStatusLabel1.Text = $"m/z {mz.ToString("F4")} RT {(rt / 60).ToString("F2")}min; ion: '{peakId}' has been selected!"
         End If
+    End Sub
+
+    Dim drawBox As Boolean = False
+    Dim p0 As Point
+    Dim p1 As Point
+
+    Private Sub PictureBox1_MouseDown(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseDown
+        drawBox = True
+        p0 = Cursor.Position
+    End Sub
+
+    Private Sub PictureBox1_MouseUp(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseUp
+        drawBox = False
+
+        Dim mz0, rt0 As Double
+        Dim mz1, rt1 As Double
+
+        Call GetPeak(Nothing, mz0, rt0, p0)
+        Call GetPeak(Nothing, mz1, rt1, p1)
+
+        If mz0 > mz1 Then Call mz1.Swap(mz0)
+        If rt0 > rt1 Then Call rt1.Swap(rt0)
+
+        Workbench.StatusMessage($"Zoom-in of the sub-region: m/z range ${mz0.ToString("F4")} ~ ${mz1.ToString("F4")}, RT range ${rt0.ToString("F2")} ~ ${rt1.ToString("F2")}min")
     End Sub
 End Class
