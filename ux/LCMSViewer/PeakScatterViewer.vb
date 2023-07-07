@@ -99,13 +99,22 @@ Public Class PeakScatterViewer
         rawdata = peaksdata.ToArray
         mzBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.mz, 1, fuzzy:=True)
         rtBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.scan_time, 10, fuzzy:=True)
-        mz_range = New DoubleRange(0, rawdata.Select(Function(i) i.mz).Max * 1.0125)
-        rt_range = New DoubleRange(-20, rawdata.Select(Function(i) i.scan_time).Max * 1.0125)
+        mz_range = New DoubleRange(rawdata.Select(Function(i) i.mz)).DoCall(AddressOf autoPaddingRange)
+        rt_range = New DoubleRange(rawdata.Select(Function(i) i.scan_time)).DoCall(AddressOf autoPaddingRange)
         int_range = New DoubleRange(rawdata.Select(Function(i) i.intensity))
 
         Call Rendering()
         Call ViewerResize()
     End Sub
+
+    Private Function autoPaddingRange(r As DoubleRange) As DoubleRange
+        Dim min = r.Min
+        Dim max = r.Max
+        Dim maxPad = max * 1.0125
+        Dim d As Double = maxPad - max
+
+        Return New DoubleRange(min - d, maxPad)
+    End Function
 
     Private Iterator Function getScatter() As IEnumerable(Of PointData)
         Dim p As New DoubleRange(0, m_levels - 1)
