@@ -21,7 +21,7 @@ Public Class frmCloudExplorer
     Private Sub frmCloudExplorer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TabText = "Cloud Explorer"
 
-        Call ApplyVsTheme(ToolStrip1, ContextMenuStrip2)
+        Call ApplyVsTheme(ToolStrip1, ContextMenuStrip2, ContextMenuStrip1)
         Call SelectModel()
     End Sub
 
@@ -35,7 +35,7 @@ Public Class frmCloudExplorer
         root.Tag = "/"
         root.ImageIndex = 1
         root.SelectedImageIndex = 1
-        root.ContextMenuStrip = ContextMenuStrip2
+        root.ContextMenuStrip = ContextMenuStrip1
 
         Call addNodes(root, childs)
         Call Workbench.SuccessMessage($"Connected to the cloud services: {tree.HttpServices.TrimEnd("/"c)}/")
@@ -266,5 +266,9 @@ Public Class frmCloudExplorer
                 Exit For
             End If
         Next
+    End Sub
+
+    Private Sub ViewClusterScattersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewClusterScattersToolStripMenuItem.Click
+        Dim viewer = Workbench.ShowSingleDocument(Of FormScatterViewer)()
     End Sub
 End Class

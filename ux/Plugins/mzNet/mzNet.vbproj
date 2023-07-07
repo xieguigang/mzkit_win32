@@ -134,6 +134,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormScatterViewer.Designer.vb">
+      <DependentUpon>FormScatterViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormScatterViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="InputSelectGraphModel.Designer.vb">
       <DependentUpon>InputSelectGraphModel.vb</DependentUpon>
     </Compile>
@@ -173,6 +179,9 @@
     <Compile Include="zzz.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormScatterViewer.resx">
+      <DependentUpon>FormScatterViewer.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormViewer.resx">
       <DependentUpon>FormViewer.vb</DependentUpon>
     </EmbeddedResource>
@@ -285,6 +294,10 @@
     <ProjectReference Include="..\..\ControlLibrary\ControlLibrary.vbproj">
       <Project>{df66aa70-9ab9-48d0-b492-9d0e0482a651}</Project>
       <Name>ControlLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\LCMSViewer\LCMSViewer.vbproj">
+      <Project>{72e288a5-18c4-43ec-95bf-d0f57f93ca92}</Project>
+      <Name>LCMSViewer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
