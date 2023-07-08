@@ -167,12 +167,21 @@ Public Class FormScatterViewer
     End Sub
 
     Private Sub exportReport_Click(sender As Object, e As EventArgs) Handles exportReport.Click
+        Call TaskProgress.RunAction(
+            Sub(p As ITaskProgress)
+                Call RunReportExports(p)
+            End Sub, title:="Generate Report Exports", info:="Export Report pdf file data")
+    End Sub
+
+    Private Sub RunReportExports(p As ITaskProgress)
         Dim metaIonsDesc = peaksData.Values.OrderByDescending(Function(i) i.metaList.Length).ToArray
         Dim htmltemp As String = TempFileSystem.GetAppSysTempFile(".html", sessionID:=App.PID.ToHexString, prefix:="metabo_clusters")
         Dim pdffile As String = htmltemp.ChangeSuffix("pdf")
 
         Using file As New StreamWriter(htmltemp.Open(FileMode.OpenOrCreate, doClear:=True))
             Dim i As i32 = 0
+
+            Call p.SetInfo("Build html document file...")
 
             For Each ion In metaIonsDesc
                 Dim consensus As (mz As Double(), into As Double()) = HttpTreeFs.DecodeConsensus(ion.cluster!consensus)
@@ -194,18 +203,19 @@ Public Class FormScatterViewer
                 Call file.WriteLine($"<p>Find in samples: {ion.metaList.Select(Function(io) io.source_file).Distinct.JoinBy(", ")}</p>")
                 Call file.WriteLine(Html.Document.Pagebreak)
 
-                If ++i > 10 Then
-                    Exit For
-                End If
+                Call p.SetProgress(100 * (++i / metaIonsDesc.Length))
             Next
 
             Call file.Flush()
         End Using
 
+        Call p.SetInfo("Create PDF report file...")
         Call Helper.PDF(pdffile, htmltemp)
 
         If pdffile.FileExists Then
             Call Process.Start(pdffile)
+        Else
+            Call MessageBox.Show("Create PDF file error!", "Export Report Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
     End Sub
 End Class
