@@ -13,6 +13,7 @@ Imports Microsoft.VisualBasic.MIME
 Imports Microsoft.VisualBasic.My.JavaScript
 Imports Microsoft.VisualBasic.Net.Http
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Mzkit_win32.LCMSViewer
 
 Public Class FormScatterViewer
@@ -139,7 +140,10 @@ Public Class FormScatterViewer
     End Sub
 
     Private Sub filterScatter_Click(sender As Object, e As EventArgs) Handles filterScatter.Click
-
+        InputDialog.Input(Sub(cfg)
+                              filterOut = cfg.FilterNumber
+                              scatterViewer.LoadPeaks(peaksData.Values.Where(Function(i) i.metaList.Length > filterOut))
+                          End Sub, config:=New InputSetScatterFilterNumber With {.FilterNumber = filterOut})
     End Sub
 
     Private Sub scatterViewer_MoveOverPeak(peakId As String, mz As Double, rt As Double) Handles scatterViewer.MoveOverPeak
