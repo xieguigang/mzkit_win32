@@ -105,6 +105,15 @@ Public Class FormScatterViewer
                 Continue For
             End If
 
+            Dim consensus As (mz As Double(), into As Double()) = HttpTreeFs.DecodeConsensus(js!consensus)
+            Dim spectra As New LibraryMatrix With {
+                .centroid = True,
+                .name = id,
+                .ms2 = consensus.mz _
+                    .Select(Function(mzi, j) New ms2(mzi, consensus.into(j))) _
+                    .ToArray
+            }
+
             Dim data As Object() = json.info!metabolites
             Dim metaIons = data.SafeQuery _
                 .AsParallel _
@@ -128,7 +137,8 @@ Public Class FormScatterViewer
                     .scan_time = rt.Average,
                     .intensity = ion.Length,
                     .metaList = ion.value,
-                    .cluster = js
+                    .cluster = js,
+                    .consensus = spectra
                 }
 
                 Call precursorList.Add(ion1)
@@ -197,7 +207,10 @@ Public Class FormScatterViewer
     End Sub
 
     Private Function RunReportExports(p As ITaskProgress) As String
-        Dim metaIonsDesc = peaksData.Values.OrderByDescending(Function(i) i.metaList.Length).ToArray
+        Dim metaIonsDesc = peaksData.Values _
+            .Where(Function(o) o.metaList.Length > filterOut) _
+            .OrderByDescending(Function(i) i.metaList.Length) _
+            .ToArray
         Dim htmltemp As String = TempFileSystem.GetAppSysTempFile(".html", sessionID:=App.PID.ToHexString, prefix:="metabo_clusters")
         Dim pdffile As String = htmltemp.ChangeSuffix("pdf")
 
@@ -207,24 +220,18 @@ Public Class FormScatterViewer
             Call p.SetProgressMode()
             Call p.SetInfo("Build html document file...")
 
+            Call file.WriteLine("<style></style>")
+
             For Each ion In metaIonsDesc
-                Dim consensus As (mz As Double(), into As Double()) = HttpTreeFs.DecodeConsensus(ion.cluster!consensus)
-                Dim spectra As New LibraryMatrix With {
-                    .centroid = True,
-                    .name = ion.id,
-                    .ms2 = consensus.mz _
-                        .Select(Function(mzi, j) New ms2(mzi, consensus.into(j))) _
-                        .ToArray
-                }
-                Dim img = PeakAssign.DrawSpectrumPeaks(spectra).AsGDIImage
+                Dim img = PeakAssign.DrawSpectrumPeaks(ion.consensus).AsGDIImage
                 Dim uri As New DataURI(img)
 
                 Call file.WriteLine($"<h2>{ion.id}</h2>")
-                Call file.WriteLine($"<p><img src=""{uri}"" style=""width: 65%;""></p>")
+                Call file.WriteLine($"<p><img src=""{uri}"" style=""width: 70%;""></p>")
                 Call file.WriteLine($"<p>precursor m/z: {ion.mz.ToString("F4")}</p>")
                 Call file.WriteLine($"<p>RT range: {ion.rtmin.ToString("F0")} ~ {ion.rtmax.ToString("F0")}s | {(ion.rtmin / 60).ToString("F2")} ~ {(ion.rtmax / 60).ToString("F2")}min</p>")
                 Call file.WriteLine($"<p>Find {ion.metaList.Length} spectrum</p>")
-                Call file.WriteLine($"<p>Find in samples: {ion.metaList.Select(Function(io) io.source_file).Distinct.JoinBy(", ")}</p>")
+                Call file.WriteLine($"<p>Find in samples: <i>{ion.metaList.Select(Function(io) io.source_file).Distinct.JoinBy(", ")}</i></p>")
                 Call file.WriteLine(Html.Document.Pagebreak)
 
                 Call p.SetProgress(100 * (++i / metaIonsDesc.Length))
@@ -249,5 +256,6 @@ Public Class MetaIon : Inherits Meta
     Public Property rtmin As Double
     Public Property rtmax As Double
     Public Property cluster As JavaScriptObject
+    Public Property consensus As LibraryMatrix
 
 End Class
