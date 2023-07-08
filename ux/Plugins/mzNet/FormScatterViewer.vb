@@ -169,7 +169,7 @@ Public Class FormScatterViewer
     Private Sub exportReport_Click(sender As Object, e As EventArgs) Handles exportReport.Click
         Call TaskProgress.RunAction(
             Sub(p As ITaskProgress)
-                Call RunReportExports(p)
+                Call Me.Invoke(Sub() RunReportExports(p))
             End Sub, title:="Generate Report Exports", info:="Export Report pdf file data")
     End Sub
 
@@ -181,6 +181,7 @@ Public Class FormScatterViewer
         Using file As New StreamWriter(htmltemp.Open(FileMode.OpenOrCreate, doClear:=True))
             Dim i As i32 = 0
 
+            Call p.SetProgressMode()
             Call p.SetInfo("Build html document file...")
 
             For Each ion In metaIonsDesc
@@ -204,6 +205,7 @@ Public Class FormScatterViewer
                 Call file.WriteLine(Html.Document.Pagebreak)
 
                 Call p.SetProgress(100 * (++i / metaIonsDesc.Length))
+                Call p.SetInfo($"Build html document file... [{i}/{metaIonsDesc.Length}]")
             Next
 
             Call file.Flush()
