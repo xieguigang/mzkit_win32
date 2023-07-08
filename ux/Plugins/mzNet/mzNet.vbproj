@@ -241,6 +241,10 @@
       <Project>{84f10a06-0779-4480-abac-fac185d66693}</Project>
       <Name>msgpack-netcore5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data\DataFrame\dataframework-netcore5.vbproj">
+      <Project>{02e9ba6a-35e1-431f-bb47-0553757af6b9}</Project>
+      <Name>dataframework-netcore5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\DataMining\BinaryTree\btree-netcore5.vbproj">
       <Project>{60fdcf90-6d75-489f-a6ed-55a77090dbf7}</Project>
       <Name>btree-netcore5</Name>
@@ -280,6 +284,10 @@
     <ProjectReference Include="..\..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\mime\application%25json\JSON-netcore5.vbproj">
       <Project>{e907b484-44f0-41f6-97c7-297451fa05ee}</Project>
       <Name>JSON-netcore5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\mime\application%25vnd.openxmlformats-officedocument.spreadsheetml.sheet\Excel\xlsx-netcore5.vbproj">
+      <Project>{bc2399de-b852-4ee0-9596-d27e5afb827b}</Project>
+      <Name>xlsx-netcore5</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\mime\text%25html\html_netcore5.vbproj">
       <Project>{0b752d71-2852-4071-ac44-db37195cf8c3}</Project>
