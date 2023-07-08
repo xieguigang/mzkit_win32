@@ -1,6 +1,8 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.PoolData
+﻿Imports System.IO
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.PoolData
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
+Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
@@ -12,6 +14,8 @@ Imports Mzkit_win32.LCMSViewer
 Public Class FormScatterViewer
 
     Dim WithEvents scatterViewer As PeakScatterViewer
+    Dim WithEvents exportReport As ToolStripMenuItem
+
     Dim model As HttpTreeFs
     Dim peaksData As New Dictionary(Of String, MetaIon)
 
@@ -29,7 +33,14 @@ Public Class FormScatterViewer
     End Sub
 
     Private Sub FormScatterViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
+        exportReport = New ToolStripMenuItem With {
+            .Text = "Export Ion Report",
+            .AutoToolTip = True,
+            .AutoSize = True
+        }
 
+        Call ApplyVsTheme(scatterViewer.GetMenu)
+        Call scatterViewer.GetMenu.Items.Add(exportReport)
     End Sub
 
     Public Sub LoadClusters(model As HttpTreeFs, topN As Integer)
@@ -143,6 +154,32 @@ Public Class FormScatterViewer
             End Function, title:="Fetch Spectrum From Cloud")
 
         Call SpectralViewerModule.showCluster(spectrum, ion.id)
+    End Sub
+
+    Private Sub exportReport_Click(sender As Object, e As EventArgs) Handles exportReport.Click
+        Dim metaIonsDesc = peaksData.Values.OrderByDescending(Function(i) i.metaList.Length).ToArray
+        Dim htmltemp As String = TempFileSystem.GetAppSysTempFile(".html", sessionID:=App.PID.ToHexString, prefix:="metabo_clusters")
+        Dim pdffile As String = htmltemp.ChangeSuffix("pdf")
+
+        Using file As New StreamWriter(htmltemp.Open(FileMode.OpenOrCreate, doClear:=True))
+            Dim i As i32 = 0
+
+            For Each ion In metaIonsDesc
+                Call file.WriteLine($"<h1>{ion.id}</h1>")
+                Call file.WriteLine($"<p>precursor m/z: {ion.mz}</p>")
+                Call file.WriteLine($"<p>RT range: {ion.rtmin} ~ {ion.rtmax}s | {(ion.rtmin / 60).ToString("F2")} ~ {(ion.rtmax / 60).ToString("F2")}min</p>")
+                Call file.WriteLine($"<p>Find {ion.metaList.Length} spectrum</p>")
+                Call file.WriteLine($"<p>Find in samples: {ion.metaList.Select(Function(io) io.source_file).Distinct.JoinBy(", ")}</p>")
+
+                If ++i > 10 Then
+                    Exit For
+                End If
+            Next
+
+            Call file.Flush()
+        End Using
+
+        Call Helper.PDF(pdffile, htmltemp)
     End Sub
 End Class
 

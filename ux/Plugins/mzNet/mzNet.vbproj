@@ -272,6 +272,10 @@
       <Project>{e907b484-44f0-41f6-97c7-297451fa05ee}</Project>
       <Name>JSON-netcore5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\GCModeller\src\workbench\markdown2pdf\src\PdfConvert\WkHtmlToPdf.NET5.vbproj">
+      <Project>{eca213f0-e999-478c-904a-0840fd3b645c}</Project>
+      <Name>WkHtmlToPdf.NET5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\assembly\assembly\assembly-netcore5.vbproj">
       <Project>{5dce233f-c0e1-41b8-827a-872b0c8cc3bc}</Project>
       <Name>assembly-netcore5</Name>
@@ -309,5 +313,7 @@
       <Name>LCMSViewer</Name>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="..\..\..\services\PDF\PDF.projitems" Label="Shared" />
+  <Import Project="..\..\..\services\mzkit_win32.envir\mzkit_win32.envir.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

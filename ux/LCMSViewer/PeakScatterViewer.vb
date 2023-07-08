@@ -85,6 +85,10 @@ Public Class PeakScatterViewer
     Dim rawdata As Meta()
     Dim scatters As SerialData()
 
+    Public Function GetMenu() As ContextMenuStrip
+        Return ContextMenuStrip1
+    End Function
+
     Private Sub PeakScatterViewer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
