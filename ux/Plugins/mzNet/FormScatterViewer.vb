@@ -236,11 +236,11 @@ Public Class FormScatterViewer
             Call file.WriteLine("<style></style>")
 
             For Each ion In metaIonsDesc
-                Dim img = PeakAssign.DrawSpectrumPeaks(ion.consensus, size:="1920,1080").AsGDIImage
+                Dim img = PeakAssign.DrawSpectrumPeaks(ion.consensus, size:="1920,900").AsGDIImage
                 Dim uri As New DataURI(img)
 
                 Call file.WriteLine($"<h2>{ion.id}</h2>")
-                Call file.WriteLine($"<p><img src=""{uri}"" style=""width: 70%;""></p>")
+                Call file.WriteLine($"<p><img src=""{uri}"" style=""width: 85%;""></p>")
                 Call file.WriteLine($"<p>precursor m/z: {ion.mz.ToString("F4")}</p>")
                 Call file.WriteLine($"<p>RT range: {ion.rtmin.ToString("F0")} ~ {ion.rtmax.ToString("F0")}s | {(ion.rtmin / 60).ToString("F2")} ~ {(ion.rtmax / 60).ToString("F2")}min</p>")
                 Call file.WriteLine($"<p>Find {ion.metaList.Length} spectrum</p>")
