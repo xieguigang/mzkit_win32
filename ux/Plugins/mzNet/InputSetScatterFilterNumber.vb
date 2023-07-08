@@ -9,6 +9,14 @@
         End Set
     End Property
 
+    Public Property RemoveSingle As Boolean
+        Get
+            Return CheckBox1.Checked
+        End Get
+        Set(value As Boolean)
+            CheckBox1.Checked = value
+        End Set
+    End Property
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         DialogResult = DialogResult.Cancel

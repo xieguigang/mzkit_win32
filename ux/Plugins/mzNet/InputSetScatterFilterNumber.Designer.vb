@@ -31,17 +31,19 @@ Partial Class InputSetScatterFilterNumber
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.CheckBox1)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.TextBox1)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Location = New System.Drawing.Point(5, 6)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(285, 127)
+        Me.GroupBox1.Size = New System.Drawing.Size(285, 163)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Set Cutoff Numbers"
@@ -74,7 +76,7 @@ Partial Class InputSetScatterFilterNumber
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(174, 142)
+        Me.Button1.Location = New System.Drawing.Point(191, 178)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 1
@@ -83,18 +85,28 @@ Partial Class InputSetScatterFilterNumber
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(82, 142)
+        Me.Button2.Location = New System.Drawing.Point(99, 178)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 2
         Me.Button2.Text = "Cancel"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(21, 126)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(240, 28)
+        Me.CheckBox1.TabIndex = 3
+        Me.CheckBox1.Text = "Remove spectra data which only have " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "single fragment peak"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
         'InputSetScatterFilterNumber
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(296, 176)
+        Me.ClientSize = New System.Drawing.Size(296, 210)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.GroupBox1)
@@ -112,4 +124,5 @@ Partial Class InputSetScatterFilterNumber
     Friend WithEvents Label1 As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
+    Friend WithEvents CheckBox1 As CheckBox
 End Class

@@ -25,6 +25,7 @@ Public Class FormScatterViewer
     Dim model As HttpTreeFs
     Dim peaksData As New Dictionary(Of String, MetaIon)
     Dim filterOut As Integer
+    Dim filterSingle As Boolean = False
 
     Sub New()
 
@@ -68,7 +69,7 @@ Public Class FormScatterViewer
                          Return
                      End If
 
-                     Call Me.Invoke(Sub() Call LoadClusters(p, data.info, filterOut:=19))
+                     Call Me.Invoke(Sub() Call LoadClusters(p, data.info, filterOut:=2))
                      Call p.SetInfo("Done!")
                  End Sub,
             info:=$"Load top {topN} clusters..."
@@ -152,8 +153,19 @@ Public Class FormScatterViewer
     Private Sub filterScatter_Click(sender As Object, e As EventArgs) Handles filterScatter.Click
         InputDialog.Input(Sub(cfg)
                               filterOut = cfg.FilterNumber
-                              scatterViewer.LoadPeaks(peaksData.Values.Where(Function(i) i.metaList.Length > filterOut))
-                          End Sub, config:=New InputSetScatterFilterNumber With {.FilterNumber = filterOut})
+                              filterSingle = cfg.RemoveSingle
+                              scatterViewer.LoadPeaks(peaksData.Values.Where(Function(i)
+                                                                                 If Not i.metaList.Length > filterOut Then
+                                                                                     Return False
+                                                                                 End If
+
+                                                                                 If filterSingle Then
+                                                                                     Return i.consensus.Length > 1
+                                                                                 Else
+                                                                                     Return True
+                                                                                 End If
+                                                                             End Function))
+                          End Sub, config:=New InputSetScatterFilterNumber With {.FilterNumber = filterOut, .RemoveSingle = filterSingle})
     End Sub
 
     Private Sub scatterViewer_MoveOverPeak(peakId As String, mz As Double, rt As Double) Handles scatterViewer.MoveOverPeak
@@ -224,7 +236,7 @@ Public Class FormScatterViewer
             Call file.WriteLine("<style></style>")
 
             For Each ion In metaIonsDesc
-                Dim img = PeakAssign.DrawSpectrumPeaks(ion.consensus).AsGDIImage
+                Dim img = PeakAssign.DrawSpectrumPeaks(ion.consensus, size:="1920,1080").AsGDIImage
                 Dim uri As New DataURI(img)
 
                 Call file.WriteLine($"<h2>{ion.id}</h2>")
