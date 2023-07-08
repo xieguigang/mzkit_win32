@@ -54,15 +54,10 @@
 #End Region
 
 Imports System.ComponentModel
-Imports BioNovoGene.mzkit_win32.My
-Imports Microsoft.VisualBasic.ApplicationServices
-Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
-Imports Mzkit_win32.BasicMDIForm.Container
 Imports WeifenLuo.WinFormsUI.Docking
-Imports WkHtmlToPdf.Arguments
 
 Public Class frmHtmlViewer
 
@@ -80,25 +75,6 @@ Public Class frmHtmlViewer
         AutoScaleMode = AutoScaleMode.Dpi
         DockAreas = DockAreas.Document Or DockAreas.Float
         TabText = "Loading WebView2 App..."
-    End Sub
-
-    Public Sub PDF(filepath As String)
-        Static bin As String = AppEnvironment.getWkhtmltopdf
-
-        If bin.FileExists Then
-            Dim env As New PdfConvertEnvironment With {
-                .Debug = False,
-                .TempFolderPath = TempFileSystem.GetAppSysTempFile,
-                .Timeout = 60000,
-                .WkHtmlToPdfPath = bin
-            }
-            Dim content As New PdfDocument With {.Url = {sourceURL}}
-            Dim pdfFile As New PdfOutput With {.OutputFilePath = filepath}
-
-            Call WkHtmlToPdf.PdfConvert.ConvertHtmlToPdf(content, pdfFile, env)
-        Else
-            Call MyApplication.host.showStatusMessage("'wkhtmltopdf' tool is missing for generate PDF file...", My.Resources.StatusAnnotations_Warning_32xLG_color)
-        End If
     End Sub
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
@@ -131,7 +107,7 @@ Public Class frmHtmlViewer
             .Filter = "PDF file(*.pdf)|*.pdf"
         }
             If file.ShowDialog = DialogResult.OK Then
-                Call PDF(file.FileName)
+                Call Helper.PDF(file.FileName, sourceURL)
                 Call Process.Start(file.FileName)
             End If
         End Using

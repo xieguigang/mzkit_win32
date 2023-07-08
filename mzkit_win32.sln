@@ -457,6 +457,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nvidia-anselAI", "ux\NVIDIA
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "LCMSViewer", "ux\LCMSViewer\LCMSViewer.vbproj", "{72E288A5-18C4-43EC-95BF-D0F57F93CA92}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "PDF", "services\PDF\PDF.shproj", "{4106F441-AC52-4AAB-A105-04D3B61487A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		BioDeep_database|Any CPU = BioDeep_database|Any CPU
@@ -48970,6 +48972,7 @@ Global
 		{DCCD7FA6-DC0D-41FB-8589-0CCEC658D418} = {36F34509-2202-4F00-9443-A86A06384520}
 		{99B60211-9C9D-4FF9-87F5-5446F4E0BE7A} = {7146A8C3-B5E6-4109-98CF-D1E0EB2139A9}
 		{72E288A5-18C4-43EC-95BF-D0F57F93CA92} = {08A6CE87-CF2D-4B0B-B5AF-3CFA2378E9BC}
+		{4106F441-AC52-4AAB-A105-04D3B61487A8} = {3F8893E6-47AA-4CBC-9569-A533F2DC7C11}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4C1FED87-3DE9-4C58-AFCB-3C3950D15747}
@@ -48981,10 +48984,12 @@ Global
 		..\..\..\GCModeller\src\R-sharp\studio\Rstudio.common\Rstudio.common.projitems*{2584c91e-35e4-462d-b269-effd3e51318d}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\runtime\sciBASIC#\www\Microsoft.VisualBasic.NETProtocol\TcpRequest\TcpRequest.projitems*{2584c91e-35e4-462d-b269-effd3e51318d}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\runtime\sciBASIC#\www\Microsoft.VisualBasic.NETProtocol\TcpRequest\TcpRequest.projitems*{2cd05f2c-b62f-4859-844d-e2968d05b4ea}*SharedItemsImports = 4
+		services\PDF\PDF.projitems*{2cd05f2c-b62f-4859-844d-e2968d05b4ea}*SharedItemsImports = 4
 		..\..\..\GCModeller\src\R-sharp\Library\shares\dataframeHelper\dataframeHelper.projitems*{32bde5fc-000b-43af-beae-3af8b18b2036}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\R-sharp\Library\shares\R_graphic.interop\R_graphic.interop.projitems*{38108f41-95ae-43cd-b429-958a8f1a406d}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\R-sharp\Library\shares\symbolic\symbolic.projitems*{38108f41-95ae-43cd-b429-958a8f1a406d}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\R-sharp\Library\shares\R_graphic.interop\R_graphic.interop.projitems*{3d2bd8e4-57b1-409e-bc91-64f5ff8b1b6b}*SharedItemsImports = 5
+		services\PDF\PDF.projitems*{4106f441-ac52-4aab-a105-04d3b61487a8}*SharedItemsImports = 13
 		services\mzkit_win32.envir\mzkit_win32.envir.projitems*{51c55c5c-2f21-4e9f-aa8d-3664135758b7}*SharedItemsImports = 4
 		..\..\Rscript\Library\mzkit.interopArguments\mzkit.interopArguments.projitems*{59127bcb-e898-4712-b51d-d967b10249c8}*SharedItemsImports = 5
 		services\mzkit_win32.envir\mzkit_win32.envir.projitems*{6e5bca87-358e-4ba5-b279-de17afa52c5c}*SharedItemsImports = 4
@@ -48994,6 +48999,8 @@ Global
 		..\..\..\GCModeller\src\R-sharp\Library\shares\JsonHelper\JsonHelper.projitems*{7825ed5b-ca14-49d0-a20a-7fb76c8cbbdd}*SharedItemsImports = 5
 		..\..\..\GCModeller\src\runtime\sciBASIC#\www\Microsoft.VisualBasic.NETProtocol\TcpRequest\TcpRequest.projitems*{7df565ae-6e7a-4667-ab6d-9908acbeed8b}*SharedItemsImports = 13
 		..\..\..\GCModeller\src\R-sharp\studio\Rstudio.common\Rstudio.common.projitems*{88fd010f-1154-47ec-b1cd-cc954e0da244}*SharedItemsImports = 5
+		services\mzkit_win32.envir\mzkit_win32.envir.projitems*{a27fff1c-b063-4641-a122-a4cb7cb417da}*SharedItemsImports = 4
+		services\PDF\PDF.projitems*{a27fff1c-b063-4641-a122-a4cb7cb417da}*SharedItemsImports = 4
 		..\..\Rscript\Library\mzkit.interopArguments\mzkit.interopArguments.projitems*{c295c3af-3e62-4756-966a-3d0b90ded160}*SharedItemsImports = 13
 		..\..\..\GCModeller\src\R-sharp\Library\shares\JsonHelper\JsonHelper.projitems*{c3b29265-c414-4dc9-a56d-eae67db31c9b}*SharedItemsImports = 5
 		..\..\Rscript\Library\mzkit.interopArguments\mzkit.interopArguments.projitems*{d2b96f8b-4538-497e-b10a-2325df053575}*SharedItemsImports = 5
