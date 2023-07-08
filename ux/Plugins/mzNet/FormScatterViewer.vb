@@ -207,7 +207,8 @@ Public Class FormScatterViewer
     End Sub
 
     Private Function RunReportExports(p As ITaskProgress) As String
-        Dim metaIonsDesc = peaksData.Values _
+        Dim metaIonsDesc = scatterViewer.GetSelectedIons _
+            .Select(Function(m) DirectCast(m, MetaIon)) _
             .Where(Function(o) o.metaList.Length > filterOut) _
             .OrderByDescending(Function(i) i.metaList.Length) _
             .ToArray

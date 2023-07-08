@@ -82,8 +82,15 @@ Public Class PeakScatterViewer
     Dim mzBins As BlockSearchFunction(Of Meta)
     Dim rtBins As BlockSearchFunction(Of Meta)
 
+    ''' <summary>
+    ''' the scatter raw data in current view range
+    ''' </summary>
     Dim rawdata As Meta()
     Dim scatters As SerialData()
+
+    Public Function GetSelectedIons() As Meta()
+        Return rawdata.ToArray
+    End Function
 
     Public Function GetMenu() As ContextMenuStrip
         Return ContextMenuStrip1
