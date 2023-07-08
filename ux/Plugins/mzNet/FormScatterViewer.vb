@@ -2,12 +2,17 @@
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.PoolData
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
+Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
+Imports Microsoft.VisualBasic.MIME
 Imports Microsoft.VisualBasic.My.JavaScript
+Imports Microsoft.VisualBasic.Net.Http
+Imports Microsoft.VisualBasic.Text.Xml
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.LCMSViewer
 
@@ -73,6 +78,11 @@ Public Class FormScatterViewer
         For Each obj As Object In clusters.SafeQuery
             Dim js As JavaScriptObject = DirectCast(obj, JavaScriptObject)
             Dim id As String = js!id
+
+            If CStr(js!consensus) = "*" Then
+                Continue For
+            End If
+
             Dim url As String = $"{model.HttpServices}/load_cluster/?id={id}"
             Dim annotext As String = js!annotations
             Dim note As String = $"Processing cluster [{id}] {annotext} <{CStr(js!n_spectrum)} spectrum>"
@@ -165,11 +175,24 @@ Public Class FormScatterViewer
             Dim i As i32 = 0
 
             For Each ion In metaIonsDesc
-                Call file.WriteLine($"<h1>{ion.id}</h1>")
-                Call file.WriteLine($"<p>precursor m/z: {ion.mz}</p>")
-                Call file.WriteLine($"<p>RT range: {ion.rtmin} ~ {ion.rtmax}s | {(ion.rtmin / 60).ToString("F2")} ~ {(ion.rtmax / 60).ToString("F2")}min</p>")
+                Dim consensus As (mz As Double(), into As Double()) = HttpTreeFs.DecodeConsensus(ion.cluster!consensus)
+                Dim spectra As New LibraryMatrix With {
+                    .centroid = True,
+                    .name = ion.id,
+                    .ms2 = consensus.mz _
+                        .Select(Function(mzi, j) New ms2(mzi, consensus.into(j))) _
+                        .ToArray
+                }
+                Dim img = PeakAssign.DrawSpectrumPeaks(spectra).AsGDIImage
+                Dim uri As New DataURI(img)
+
+                Call file.WriteLine($"<h2>{ion.id}</h2>")
+                Call file.WriteLine($"<p><img src=""{uri}"" style=""width: 65%;""></p>")
+                Call file.WriteLine($"<p>precursor m/z: {ion.mz.ToString("F4")}</p>")
+                Call file.WriteLine($"<p>RT range: {ion.rtmin.ToString("F0")} ~ {ion.rtmax.ToString("F0")}s | {(ion.rtmin / 60).ToString("F2")} ~ {(ion.rtmax / 60).ToString("F2")}min</p>")
                 Call file.WriteLine($"<p>Find {ion.metaList.Length} spectrum</p>")
                 Call file.WriteLine($"<p>Find in samples: {ion.metaList.Select(Function(io) io.source_file).Distinct.JoinBy(", ")}</p>")
+                Call file.WriteLine(Html.Document.Pagebreak)
 
                 If ++i > 10 Then
                     Exit For
@@ -180,6 +203,10 @@ Public Class FormScatterViewer
         End Using
 
         Call Helper.PDF(pdffile, htmltemp)
+
+        If pdffile.FileExists Then
+            Call Process.Start(pdffile)
+        End If
     End Sub
 End Class
 
