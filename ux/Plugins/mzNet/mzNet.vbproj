@@ -134,6 +134,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InputSetScatterFilterNumber.Designer.vb">
+      <DependentUpon>InputSetScatterFilterNumber.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InputSetScatterFilterNumber.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmSetClusterNumbers.Designer.vb">
       <DependentUpon>frmSetClusterNumbers.vb</DependentUpon>
     </Compile>

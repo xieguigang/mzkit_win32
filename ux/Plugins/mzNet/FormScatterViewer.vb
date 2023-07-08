@@ -12,7 +12,6 @@ Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.MIME
 Imports Microsoft.VisualBasic.My.JavaScript
 Imports Microsoft.VisualBasic.Net.Http
-Imports Microsoft.VisualBasic.Text.Xml
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.LCMSViewer
 
@@ -20,9 +19,11 @@ Public Class FormScatterViewer
 
     Dim WithEvents scatterViewer As PeakScatterViewer
     Dim WithEvents exportReport As ToolStripMenuItem
+    Dim WithEvents filterScatter As ToolStripMenuItem
 
     Dim model As HttpTreeFs
     Dim peaksData As New Dictionary(Of String, MetaIon)
+    Dim filterOut As Integer
 
     Sub New()
 
@@ -43,9 +44,14 @@ Public Class FormScatterViewer
             .AutoToolTip = True,
             .AutoSize = True
         }
+        filterScatter = New ToolStripMenuItem With {
+            .Text = "Filter Scatter Points",
+            .AutoSize = True,
+            .AutoToolTip = True
+        }
 
         Call ApplyVsTheme(scatterViewer.GetMenu)
-        Call scatterViewer.GetMenu.Items.Add(exportReport)
+        Call scatterViewer.GetMenu.Items.AddRange({exportReport, filterScatter})
     End Sub
 
     Public Sub LoadClusters(model As HttpTreeFs, topN As Integer)
@@ -61,7 +67,7 @@ Public Class FormScatterViewer
                          Return
                      End If
 
-                     Call Me.Invoke(Sub() Call LoadClusters(p, data.info, filterOut:=9))
+                     Call Me.Invoke(Sub() Call LoadClusters(p, data.info, filterOut:=19))
                      Call p.SetInfo("Done!")
                  End Sub,
             info:=$"Load top {topN} clusters..."
@@ -71,6 +77,8 @@ Public Class FormScatterViewer
     Private Sub LoadClusters(p As ITaskProgress, clusters As Object(), filterOut As Integer)
         Dim precursorList As New List(Of Meta)
         Dim ii As i32 = 0
+
+        Me.filterOut = filterOut
 
         Call p.SetProgressMode()
         Call peaksData.Clear()
@@ -130,6 +138,10 @@ Public Class FormScatterViewer
         Call scatterViewer.LoadPeaks(precursorList)
     End Sub
 
+    Private Sub filterScatter_Click(sender As Object, e As EventArgs) Handles filterScatter.Click
+
+    End Sub
+
     Private Sub scatterViewer_MoveOverPeak(peakId As String, mz As Double, rt As Double) Handles scatterViewer.MoveOverPeak
 
     End Sub
@@ -168,13 +180,19 @@ Public Class FormScatterViewer
     End Sub
 
     Private Sub exportReport_Click(sender As Object, e As EventArgs) Handles exportReport.Click
-        Call TaskProgress.RunAction(
-            Sub(p As ITaskProgress)
-                Call Me.Invoke(Sub() RunReportExports(p))
-            End Sub, title:="Generate Report Exports", info:="Export Report pdf file data")
+        Dim pdffile As String = TaskProgress.LoadData(
+            Function(p As ITaskProgress) As String
+                Return Me.Invoke(Function() RunReportExports(p))
+            End Function, title:="Generate Report Exports", info:="Export Report pdf file data")
+
+        If pdffile.FileExists Then
+            Call Process.Start(pdffile)
+        Else
+            Call MessageBox.Show("Create PDF file error!", "Export Report Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
     End Sub
 
-    Private Sub RunReportExports(p As ITaskProgress)
+    Private Function RunReportExports(p As ITaskProgress) As String
         Dim metaIonsDesc = peaksData.Values.OrderByDescending(Function(i) i.metaList.Length).ToArray
         Dim htmltemp As String = TempFileSystem.GetAppSysTempFile(".html", sessionID:=App.PID.ToHexString, prefix:="metabo_clusters")
         Dim pdffile As String = htmltemp.ChangeSuffix("pdf")
@@ -215,12 +233,10 @@ Public Class FormScatterViewer
         Call p.SetInfo("Create PDF report file...")
         Call Helper.PDF(pdffile, htmltemp)
 
-        If pdffile.FileExists Then
-            Call Process.Start(pdffile)
-        Else
-            Call MessageBox.Show("Create PDF file error!", "Export Report Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End If
-    End Sub
+        Return pdffile
+    End Function
+
+
 End Class
 
 Public Class MetaIon : Inherits Meta
