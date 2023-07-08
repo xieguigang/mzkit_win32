@@ -61,14 +61,14 @@ Public Class FormScatterViewer
                          Return
                      End If
 
-                     Call Me.Invoke(Sub() Call LoadClusters(p, data.info))
+                     Call Me.Invoke(Sub() Call LoadClusters(p, data.info, filterOut:=9))
                      Call p.SetInfo("Done!")
                  End Sub,
             info:=$"Load top {topN} clusters..."
         )
     End Sub
 
-    Private Sub LoadClusters(p As ITaskProgress, clusters As Object())
+    Private Sub LoadClusters(p As ITaskProgress, clusters As Object(), filterOut As Integer)
         Dim precursorList As New List(Of Meta)
         Dim ii As i32 = 0
 
@@ -108,7 +108,7 @@ Public Class FormScatterViewer
                         End Function) _
                 .IteratesALL
 
-            For Each ion As NamedCollection(Of Metadata) In precursors
+            For Each ion As NamedCollection(Of Metadata) In precursors.Where(Function(o) o.Length > filterOut)
                 Dim mz As Double = ion.Select(Function(i) i.mz).Average
                 Dim rt As Double() = ion.Select(Function(i) i.rt).ToArray
                 Dim ion1 As New MetaIon With {
@@ -118,7 +118,8 @@ Public Class FormScatterViewer
                     .rtmax = rt.Max,
                     .scan_time = rt.Average,
                     .intensity = ion.Length,
-                    .metaList = ion.value
+                    .metaList = ion.value,
+                    .cluster = js
                 }
 
                 Call precursorList.Add(ion1)
