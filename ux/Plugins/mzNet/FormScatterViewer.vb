@@ -9,6 +9,7 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
+Imports Microsoft.VisualBasic.Math.Distributions
 Imports Microsoft.VisualBasic.MIME
 Imports Microsoft.VisualBasic.My.JavaScript
 Imports Microsoft.VisualBasic.Net.Http
@@ -123,13 +124,17 @@ Public Class FormScatterViewer
             Dim precursors = metaIons.GroupBy(Function(m) m.mz, offsets:=0.3) _
                 .AsParallel _
                 .Select(Function(mzset)
-                            Return mzset.GroupBy(Function(m) m.rt, offsets:=30)
+                            'Dim rtlist = mzset.OrderBy(Function(a) a.rt).ToArray
+                            'Dim bins = rtlist.GroupBy(Function(m) m.rt, offsets:=30).ToArray
+
+                            'Return bins
+                            Return mzset.GroupBy(Function(m) m.rt, offsets:=60)
                         End Function) _
                 .IteratesALL
 
             For Each ion As NamedCollection(Of Metadata) In precursors.Where(Function(o) o.Length > filterOut)
                 Dim mz As Double = ion.Select(Function(i) i.mz).Average
-                Dim rt As Double() = ion.Select(Function(i) i.rt).ToArray
+                Dim rt As Double() = ion.Select(Function(i) i.rt).TabulateBin
                 Dim ion1 As New MetaIon With {
                     .id = $"[{id}] {annotext} {mz.ToString("F4")}@{(rt.Average / 60).ToString("F2")}min <{ion.Length} sample files>",
                     .mz = mz,
