@@ -273,7 +273,9 @@ Public Class FormScatterViewer
             }))
         Next
 
-        Call New csv.IO.File(table).ToExcel("MetaIons").SaveTo(xlsfile)
+        Call New csv.IO.File(table) _
+            .ToExcel("MetaIons", width:=New Dictionary(Of String, String) From {{"spectra", "450px"}}) _
+            .SaveTo(xlsfile)
 
         Return xlsfile
     End Function
