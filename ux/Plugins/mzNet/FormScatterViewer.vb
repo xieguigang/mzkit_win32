@@ -271,6 +271,11 @@ Public Class FormScatterViewer
                 ion.metaList.Length,
                 ion.metaList.Select(Function(a) a.source_file).Distinct.JoinBy(", ")
             }))
+
+            Call p.SetProgress(100 * (++i / metaIonsDesc.Length))
+            Call p.SetInfo($"Build table rows: {ion.id} [{i}/{metaIonsDesc.Length}]")
+
+            Call System.Windows.Forms.Application.DoEvents()
         Next
 
         Call New csv.IO.File(table) _
@@ -314,6 +319,7 @@ Public Class FormScatterViewer
 
                 Call p.SetProgress(100 * (++i / metaIonsDesc.Length))
                 Call p.SetInfo($"Build html document file... [{i}/{metaIonsDesc.Length}]")
+                Call System.Windows.Forms.Application.DoEvents()
             Next
 
             Call file.Flush()
