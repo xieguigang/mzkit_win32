@@ -266,7 +266,7 @@ Public Class FormScatterViewer
             Call table.Add(New RowObject({
                 CStr(ion.cluster!id), ion.id,
                 ion.mz, ion.metaList.Select(Function(j) j.rt).Average, (ion.metaList.Select(Function(j) j.rt).Average / 60).ToString("F1"),
-                ion.rtmin, ion.rtmax, $"<img src=""{uri}"" style=""width: 100%;"">",
+                ion.rtmin, ion.rtmax, $"<img src=""{uri}"" width=""450px"">",
                 ion.consensus.ms2.Select(Function(m) $"{m.mz}_{m.intensity}").JoinBy(" "),
                 ion.metaList.Length,
                 ion.metaList.Select(Function(a) a.source_file).Distinct.JoinBy(", ")
