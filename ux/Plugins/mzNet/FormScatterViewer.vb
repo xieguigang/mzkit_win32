@@ -266,7 +266,7 @@ Public Class FormScatterViewer
             Call table.Add(New RowObject({
                 CStr(ion.cluster!id), ion.id,
                 ion.mz, ion.metaList.Select(Function(j) j.rt).Average, (ion.metaList.Select(Function(j) j.rt).Average / 60).ToString("F1"),
-                ion.rtmin, ion.rtmax, $"<img src=""{uri}"" width=""450px"">",
+                ion.rtmin, ion.rtmax, $"<img src=""{uri}"" width=""450"">",
                 ion.consensus.ms2.Select(Function(m) $"{m.mz}_{m.intensity}").JoinBy(" "),
                 ion.metaList.Length,
                 ion.metaList.Select(Function(a) a.source_file).Distinct.JoinBy(", ")
@@ -279,7 +279,7 @@ Public Class FormScatterViewer
         Next
 
         Call New csv.IO.File(table) _
-            .ToExcel("MetaIons", width:=New Dictionary(Of String, String) From {{"spectra", "450px"}}) _
+            .ToExcel("MetaIons", width:=New Dictionary(Of String, String) From {{"spectra", "450"}}) _
             .SaveTo(xlsfile)
 
         Return xlsfile
