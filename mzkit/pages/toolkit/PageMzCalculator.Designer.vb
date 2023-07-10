@@ -101,19 +101,24 @@ Partial Class PageMzCalculator
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.ToggleSlider1 = New ToggleSlider()
+        Me.ToggleSlider1 = New ControlLibrary.ToggleSlider()
+        Me.TabControl2 = New System.Windows.Forms.TabControl()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabControl2.SuspendLayout()
+        Me.TabPage3.SuspendLayout()
         Me.SuspendLayout()
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(362, 40)
+        Me.Button2.Location = New System.Drawing.Point(373, 42)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(133, 23)
+        Me.Button2.Size = New System.Drawing.Size(133, 21)
         Me.Button2.TabIndex = 10
         Me.Button2.Text = "Search BioDeep"
         Me.Button2.UseVisualStyleBackColor = True
@@ -125,10 +130,10 @@ Partial Class PageMzCalculator
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Location = New System.Drawing.Point(3, 69)
+        Me.TabControl1.Location = New System.Drawing.Point(7, 87)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1082, 717)
+        Me.TabControl1.Size = New System.Drawing.Size(1068, 610)
         Me.TabControl1.TabIndex = 9
         '
         'TabPage1
@@ -137,7 +142,7 @@ Partial Class PageMzCalculator
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1074, 691)
+        Me.TabPage1.Size = New System.Drawing.Size(1060, 584)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Positive"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -149,7 +154,7 @@ Partial Class PageMzCalculator
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.Location = New System.Drawing.Point(3, 3)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(1068, 685)
+        Me.DataGridView1.Size = New System.Drawing.Size(1054, 578)
         Me.DataGridView1.TabIndex = 0
         '
         'PrecursorType
@@ -195,7 +200,7 @@ Partial Class PageMzCalculator
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(1074, 691)
+        Me.TabPage2.Size = New System.Drawing.Size(1074, 636)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Negative"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -207,7 +212,7 @@ Partial Class PageMzCalculator
         Me.DataGridView2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView2.Location = New System.Drawing.Point(3, 3)
         Me.DataGridView2.Name = "DataGridView2"
-        Me.DataGridView2.Size = New System.Drawing.Size(1068, 685)
+        Me.DataGridView2.Size = New System.Drawing.Size(1068, 630)
         Me.DataGridView2.TabIndex = 1
         '
         'DataGridViewTextBoxColumn1
@@ -249,26 +254,26 @@ Partial Class PageMzCalculator
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(221, 40)
+        Me.Button1.Location = New System.Drawing.Point(232, 42)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(111, 23)
+        Me.Button1.Size = New System.Drawing.Size(111, 21)
         Me.Button1.TabIndex = 8
         Me.Button1.Text = "Evaluate m/z"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(10, 40)
+        Me.TextBox1.Location = New System.Drawing.Point(21, 42)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(153, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(153, 21)
         Me.TextBox1.TabIndex = 7
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(8, 18)
+        Me.Label1.Location = New System.Drawing.Point(19, 22)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(129, 13)
+        Me.Label1.Size = New System.Drawing.Size(155, 12)
         Me.Label1.TabIndex = 6
         Me.Label1.Text = "Enter a exact mass value:"
         '
@@ -276,34 +281,68 @@ Partial Class PageMzCalculator
         '
         Me.ToggleSlider1.AutoSize = True
         Me.ToggleSlider1.Checked = False
-        Me.ToggleSlider1.Location = New System.Drawing.Point(533, 40)
+        Me.ToggleSlider1.Location = New System.Drawing.Point(544, 42)
         Me.ToggleSlider1.Name = "ToggleSlider1"
-        Me.ToggleSlider1.Size = New System.Drawing.Size(231, 42)
+        Me.ToggleSlider1.Size = New System.Drawing.Size(231, 39)
         Me.ToggleSlider1.TabIndex = 11
         Me.ToggleSlider1.ToggleCircleColor = System.Drawing.Color.DeepSkyBlue
         Me.ToggleSlider1.ToggleColorBar = System.Drawing.Color.Silver
         '
+        'TabControl2
+        '
+        Me.TabControl2.Controls.Add(Me.TabPage3)
+        Me.TabControl2.Controls.Add(Me.TabPage4)
+        Me.TabControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TabControl2.Location = New System.Drawing.Point(0, 0)
+        Me.TabControl2.Name = "TabControl2"
+        Me.TabControl2.SelectedIndex = 0
+        Me.TabControl2.Size = New System.Drawing.Size(1088, 729)
+        Me.TabControl2.TabIndex = 12
+        '
+        'TabPage3
+        '
+        Me.TabPage3.Controls.Add(Me.TextBox1)
+        Me.TabPage3.Controls.Add(Me.ToggleSlider1)
+        Me.TabPage3.Controls.Add(Me.Label1)
+        Me.TabPage3.Controls.Add(Me.Button2)
+        Me.TabPage3.Controls.Add(Me.Button1)
+        Me.TabPage3.Controls.Add(Me.TabControl1)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage3.Size = New System.Drawing.Size(1080, 703)
+        Me.TabPage3.TabIndex = 0
+        Me.TabPage3.Text = "Mass Calculator"
+        Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'TabPage4
+        '
+        Me.TabPage4.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage4.Name = "TabPage4"
+        Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage4.Size = New System.Drawing.Size(934, 431)
+        Me.TabPage4.TabIndex = 1
+        Me.TabPage4.Text = "Mass Difference Analysis"
+        Me.TabPage4.UseVisualStyleBackColor = True
+        '
         'PageMzCalculator
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.Controls.Add(Me.ToggleSlider1)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.TabControl1)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.TextBox1)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.TabControl2)
         Me.DoubleBuffered = True
         Me.Name = "PageMzCalculator"
-        Me.Size = New System.Drawing.Size(1088, 790)
+        Me.Size = New System.Drawing.Size(1088, 729)
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage2.ResumeLayout(False)
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabControl2.ResumeLayout(False)
+        Me.TabPage3.ResumeLayout(False)
+        Me.TabPage3.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
@@ -331,4 +370,7 @@ Partial Class PageMzCalculator
     Friend WithEvents Column2 As DataGridViewButtonColumn
     Friend WithEvents Column4 As DataGridViewButtonColumn
     Friend WithEvents ToggleSlider1 As ToggleSlider
+    Friend WithEvents TabControl2 As TabControl
+    Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents TabPage4 As TabPage
 End Class
