@@ -5,12 +5,15 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Data
+Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.Math.Distributions
 Imports Microsoft.VisualBasic.MIME
+Imports Microsoft.VisualBasic.MIME.Office.Excel.XLS
 Imports Microsoft.VisualBasic.My.JavaScript
 Imports Microsoft.VisualBasic.Net.Http
 Imports Mzkit_win32.BasicMDIForm
@@ -211,26 +214,88 @@ Public Class FormScatterViewer
     End Sub
 
     Private Sub exportReport_Click(sender As Object, e As EventArgs) Handles exportReport.Click
-        Dim pdffile As String = TaskProgress.LoadData(
-            Function(p As ITaskProgress) As String
-                Return Me.Invoke(Function() RunReportExports(p))
-            End Function, title:="Generate Report Exports", info:="Export Report pdf file data")
+        Using file As New SaveFileDialog With {.Filter = "PDF report file(*.pdf)|*.pdf|Excel table(*.xls)|*.xls"}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim path As String = file.FileName
 
-        If pdffile.FileExists Then
-            Call Process.Start(pdffile)
-        Else
-            Call MessageBox.Show("Create PDF file error!", "Export Report Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End If
+                If path.ExtensionSuffix("xls") Then
+                    Dim xlsxfile As String = TaskProgress.LoadData(
+                        streamLoad:=Function(p As ITaskProgress) As String
+                                        Return Me.Invoke(Function() RunTableReportExports(p, path))
+                                    End Function,
+                        title:="Generate Report Exports",
+                        info:="Export Report excel table file data")
+
+                    If xlsxfile.FileExists Then
+                        Call Process.Start(xlsxfile)
+                    Else
+                        Call MessageBox.Show("Create excel table file error!", "Export Report Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End If
+                Else
+                    Dim pdffile As String = TaskProgress.LoadData(
+                        streamLoad:=Function(p As ITaskProgress) As String
+                                        Return Me.Invoke(Function() RunReportExports(p, path))
+                                    End Function,
+                        title:="Generate Report Exports",
+                        info:="Export Report pdf file data")
+
+                    If pdffile.FileExists Then
+                        Call Process.Start(pdffile)
+                    Else
+                        Call MessageBox.Show("Create PDF file error!", "Export Report Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End If
+                End If
+            End If
+        End Using
     End Sub
 
-    Private Function RunReportExports(p As ITaskProgress) As String
-        Dim metaIonsDesc = scatterViewer.GetSelectedIons _
+    Private Function RunTableReportExports(p As ITaskProgress, xlsfile As String) As String
+        Dim metaIonsDesc As MetaIon() = getReportIonSource()
+        Dim table As New List(Of RowObject)
+        Dim i As i32 = 0
+
+        Call p.SetProgressMode()
+        Call p.SetInfo("Build excel table document file...")
+
+        Call table.Add(New RowObject({"ID", "name", "mz", "rt", "rt(minute)", "rtmin", "rtmax", "spectra", "spectra_text", "nsamples", "sample files"}))
+
+        For Each ion In metaIonsDesc
+            Dim img = PeakAssign.DrawSpectrumPeaks(ion.consensus, size:="1920,900").AsGDIImage
+            Dim uri As New DataURI(img)
+
+            Call table.Add(New RowObject({
+                CStr(ion.cluster!id), ion.id,
+                ion.mz, ion.metaList.Select(Function(j) j.rt).Average, (ion.metaList.Select(Function(j) j.rt).Average / 60).ToString("F1"),
+                ion.rtmin, ion.rtmax, $"<img src=""{uri}"" width=""450"">",
+                ion.consensus.ms2.Select(Function(m) $"{m.mz}_{m.intensity}").JoinBy(" "),
+                ion.metaList.Length,
+                ion.metaList.Select(Function(a) a.source_file).Distinct.JoinBy(", ")
+            }))
+
+            Call p.SetProgress(100 * (++i / metaIonsDesc.Length))
+            Call p.SetInfo($"Build table rows: {ion.id} [{i}/{metaIonsDesc.Length}]")
+
+            Call System.Windows.Forms.Application.DoEvents()
+        Next
+
+        Call New csv.IO.File(table) _
+            .ToExcel("MetaIons", width:=New Dictionary(Of String, String) From {{"spectra", "450"}}) _
+            .SaveTo(xlsfile)
+
+        Return xlsfile
+    End Function
+
+    Private Function getReportIonSource() As MetaIon()
+        Return scatterViewer.GetSelectedIons _
             .Select(Function(m) DirectCast(m, MetaIon)) _
             .Where(Function(o) o.metaList.Length > filterOut) _
             .OrderByDescending(Function(i) i.metaList.Length) _
             .ToArray
+    End Function
+
+    Private Function RunReportExports(p As ITaskProgress, pdffile As String) As String
+        Dim metaIonsDesc As MetaIon() = getReportIonSource()
         Dim htmltemp As String = TempFileSystem.GetAppSysTempFile(".html", sessionID:=App.PID.ToHexString, prefix:="metabo_clusters")
-        Dim pdffile As String = htmltemp.ChangeSuffix("pdf")
 
         Using file As New StreamWriter(htmltemp.Open(FileMode.OpenOrCreate, doClear:=True))
             Dim i As i32 = 0
@@ -254,6 +319,7 @@ Public Class FormScatterViewer
 
                 Call p.SetProgress(100 * (++i / metaIonsDesc.Length))
                 Call p.SetInfo($"Build html document file... [{i}/{metaIonsDesc.Length}]")
+                Call System.Windows.Forms.Application.DoEvents()
             Next
 
             Call file.Flush()
@@ -264,7 +330,6 @@ Public Class FormScatterViewer
 
         Return pdffile
     End Function
-
 
 End Class
 
