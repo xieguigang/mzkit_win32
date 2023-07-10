@@ -1454,6 +1454,10 @@
       <Project>{b63f0c8e-d97b-432a-9cac-8dd7dd5da2c6}</Project>
       <Name>repository.NET5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\Darwinism\src\Parallel\parallel-netcore5.vbproj">
+      <Project>{d438b6dc-ea9f-4b35-9749-6f905f49be0e}</Project>
+      <Name>parallel-netcore5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\httpd\Flute\Flute.NET5.vbproj">
       <Project>{1fd40f6e-6a78-4c61-9f86-682560337028}</Project>
       <Name>Flute.NET5</Name>
