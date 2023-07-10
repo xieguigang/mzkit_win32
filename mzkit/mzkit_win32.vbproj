@@ -1454,22 +1454,6 @@
       <Project>{b63f0c8e-d97b-432a-9cac-8dd7dd5da2c6}</Project>
       <Name>repository.NET5</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\Darwinism\CloudKit\Centos\Centos.NET5.vbproj">
-      <Project>{d124c066-9534-4caa-96f4-5b95873748a5}</Project>
-      <Name>Centos.NET5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\Darwinism\CloudKit\Docker\Docker.NET5.vbproj">
-      <Project>{67addf65-9dd0-4dda-aeb0-706ef381fa15}</Project>
-      <Name>Docker.NET5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\Darwinism\CloudKit\ossutil\ossutil.NET5.vbproj">
-      <Project>{b4ce0f90-6a52-45e9-a62b-576922e7dd36}</Project>
-      <Name>ossutil.NET5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\Darwinism\Parallel\parallel-netcore5.vbproj">
-      <Project>{ad91d54d-5502-471e-90d6-5ff488687016}</Project>
-      <Name>parallel-netcore5</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\httpd\Flute\Flute.NET5.vbproj">
       <Project>{1fd40f6e-6a78-4c61-9f86-682560337028}</Project>
       <Name>Flute.NET5</Name>
