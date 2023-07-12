@@ -68,6 +68,7 @@
 
 Imports System.ComponentModel
 Imports System.IO
+Imports System.Runtime.CompilerServices
 Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII
@@ -587,11 +588,22 @@ Public Class frmRawFeaturesList
         Call FeatureSearchHandler.SearchByMz(DirectCast(currentScan, ScanMS2).parentMz, {CurrentOpenedFile}, True)
     End Sub
 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        Call DoFeatureSearch(Strings.Trim(ToolStripSpringTextBox1.Text))
+    End Sub
+
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="feature">
+    ''' m/z numeric value or formula exact mass
+    ''' </param>
+    Public Sub DoFeatureSearch(feature As String)
         If CurrentOpenedFile Is Nothing Then
             Call Workbench.Warning("please load a raw data file at first!")
         Else
-            Call FeatureSearchHandler.SearchByMz(Strings.Trim(ToolStripSpringTextBox1.Text), {CurrentOpenedFile}, True)
+            Call FeatureSearchHandler.SearchByMz(feature, {CurrentOpenedFile}, True)
         End If
     End Sub
 

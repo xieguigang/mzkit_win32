@@ -66,6 +66,12 @@ Imports Task
 
 Module FeatureSearchHandler
 
+    ''' <summary>
+    ''' Do search via m/z numeric value or formula exact mass
+    ''' </summary>
+    ''' <param name="text"></param>
+    ''' <param name="raw"></param>
+    ''' <param name="directRaw"></param>
     Public Sub SearchByMz(text As String, raw As IEnumerable(Of MZWork.Raw), directRaw As Boolean)
         If text.StringEmpty Then
             Return

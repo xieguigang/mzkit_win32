@@ -206,6 +206,8 @@ Module RibbonEvents
             Sub(cfg)
                 Dim metadata = cfg.GetAnnotation
                 Dim features As frmRawFeaturesList = WindowModules.rawFeaturesList
+
+                Call features.DoFeatureSearch(metadata.formula)
             End Sub)
     End Sub
 
