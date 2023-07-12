@@ -79,6 +79,7 @@ namespace RibbonLib.Controls
             public const uint cmdCheckBoxShowMs2Fragment = 4;
             public const uint cmdCheckBoxXICRelative = 96;
             public const uint cmdTabReferenceLibrary = 161;
+            public const uint cmdButtonSearchPubChem = 227;
             public const uint cmdOpenIonsLibrary = 159;
             public const uint cmdTabGroupCalculatorTools = 1061;
             public const uint cmdTabCalculator = 1062;
@@ -297,6 +298,7 @@ namespace RibbonLib.Controls
         public RibbonCheckBox CheckBoxShowMs2Fragment { get; private set; }
         public RibbonCheckBox CheckBoxXICRelative { get; private set; }
         public RibbonGroup TabReferenceLibrary { get; private set; }
+        public RibbonButton ButtonSearchPubChem { get; private set; }
         public RibbonButton OpenIonsLibrary { get; private set; }
         public RibbonTabGroup TabGroupCalculatorTools { get; private set; }
         public RibbonTab TabCalculator { get; private set; }
@@ -510,6 +512,7 @@ namespace RibbonLib.Controls
             CheckBoxShowMs2Fragment = new RibbonCheckBox(ribbon, Cmd.cmdCheckBoxShowMs2Fragment);
             CheckBoxXICRelative = new RibbonCheckBox(ribbon, Cmd.cmdCheckBoxXICRelative);
             TabReferenceLibrary = new RibbonGroup(ribbon, Cmd.cmdTabReferenceLibrary);
+            ButtonSearchPubChem = new RibbonButton(ribbon, Cmd.cmdButtonSearchPubChem);
             OpenIonsLibrary = new RibbonButton(ribbon, Cmd.cmdOpenIonsLibrary);
             TabGroupCalculatorTools = new RibbonTabGroup(ribbon, Cmd.cmdTabGroupCalculatorTools);
             TabCalculator = new RibbonTab(ribbon, Cmd.cmdTabCalculator);

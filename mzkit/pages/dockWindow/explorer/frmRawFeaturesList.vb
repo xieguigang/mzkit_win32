@@ -347,7 +347,7 @@ Public Class frmRawFeaturesList
     End Sub
 
     Private Sub TextBox2_Click(sender As Object, e As EventArgs) Handles ToolStripSpringTextBox1.Click
-        MyApplication.host.showStatusMessage("Input a number for m/z search, or input formula text for precursor ion match!")
+        Workbench.StatusMessage("Input a number for m/z search, or input formula text for precursor ion match!")
     End Sub
 
     Private Sub ShowTICToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowTICToolStripMenuItem.Click
@@ -589,7 +589,7 @@ Public Class frmRawFeaturesList
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
         If CurrentOpenedFile Is Nothing Then
-            Call MyApplication.host.showStatusMessage("please load a raw data file at first!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning("please load a raw data file at first!")
         Else
             Call FeatureSearchHandler.SearchByMz(Strings.Trim(ToolStripSpringTextBox1.Text), {CurrentOpenedFile}, True)
         End If
@@ -821,7 +821,7 @@ Public Class frmRawFeaturesList
         Dim test As Tolerance = Tolerance.DeltaMass(0.05)
 
         If CurrentOpenedFile Is Nothing Then
-            Call MyApplication.host.warning("Open a raw data file at first!")
+            Call Workbench.Warning("Open a raw data file at first!")
             Return
         End If
 

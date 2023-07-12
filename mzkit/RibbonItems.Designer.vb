@@ -76,6 +76,7 @@ Namespace RibbonLib.Controls
             Public Const cmdCheckBoxShowMs2Fragment As UInteger = 4
             Public Const cmdCheckBoxXICRelative As UInteger = 96
             Public Const cmdTabReferenceLibrary As UInteger = 161
+            Public Const cmdButtonSearchPubChem As UInteger = 227
             Public Const cmdOpenIonsLibrary As UInteger = 159
             Public Const cmdTabGroupCalculatorTools As UInteger = 1061
             Public Const cmdTabCalculator As UInteger = 1062
@@ -602,6 +603,12 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property TabReferenceLibrary As RibbonGroup
             Get
                 Return _TabReferenceLibrary
+            End Get
+        End Property
+        Private _ButtonSearchPubChem As RibbonButton
+        Public ReadOnly Property ButtonSearchPubChem As RibbonButton
+            Get
+                Return _ButtonSearchPubChem
             End Get
         End Property
         Private _OpenIonsLibrary As RibbonButton
@@ -1547,6 +1554,7 @@ Namespace RibbonLib.Controls
             _CheckBoxShowMs2Fragment = New RibbonCheckBox(_ribbon, Cmd.cmdCheckBoxShowMs2Fragment)
             _CheckBoxXICRelative = New RibbonCheckBox(_ribbon, Cmd.cmdCheckBoxXICRelative)
             _TabReferenceLibrary = New RibbonGroup(_ribbon, Cmd.cmdTabReferenceLibrary)
+            _ButtonSearchPubChem = New RibbonButton(_ribbon, Cmd.cmdButtonSearchPubChem)
             _OpenIonsLibrary = New RibbonButton(_ribbon, Cmd.cmdOpenIonsLibrary)
             _TabGroupCalculatorTools = New RibbonTabGroup(_ribbon, Cmd.cmdTabGroupCalculatorTools)
             _TabCalculator = New RibbonTab(_ribbon, Cmd.cmdTabCalculator)

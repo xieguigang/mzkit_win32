@@ -191,12 +191,22 @@ Module RibbonEvents
 
         AddHandler ribbonItems.ButtonImport10x_genomics.ExecuteEvent, Sub() Call ConvertH5ad()
         AddHandler ribbonItems.ButtonRenderUMAPScatter.ExecuteEvent, Sub() Call PageMoleculeNetworking.RunUMAP()
+
+        AddHandler ribbonItems.ButtonSearchPubChem.ExecuteEvent, Sub() Call openShowSearchPubChemLCMS()
     End Sub
 
     Sub New()
         ExportApis._openMSImagingFile = AddressOf OpenMSIRaw
         ExportApis._openMSImagingViewer = AddressOf showMsImaging
         ExportApis._openCFMIDTool = AddressOf OpenCFMIDTool
+    End Sub
+
+    Private Sub openShowSearchPubChemLCMS()
+        InputDialog.Input(Of InputPubChemProxy)(
+            Sub(cfg)
+                Dim metadata = cfg.GetAnnotation
+                Dim features As frmRawFeaturesList = WindowModules.rawFeaturesList
+            End Sub)
     End Sub
 
     Private Sub openVideoList()
