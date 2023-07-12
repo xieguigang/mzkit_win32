@@ -87,7 +87,7 @@ Module FeatureSearchHandler
 
     Private Sub runFormulaMatch(formula As String, files As IEnumerable(Of MZWork.Raw), directRaw As Boolean)
         Dim display As frmFeatureSearch = VisualStudio.ShowDocument(Of frmFeatureSearch)
-        Dim ppm As Double = MyApplication.host.GetPPMError()
+        Dim ppm As Tolerance = Tolerance.DeltaMass(0.3)
 
         display.TabText = $"Search [{formula}]"
 
@@ -115,11 +115,11 @@ Module FeatureSearchHandler
         End If
     End Sub
 
-    Public Iterator Function MatchByFormula(formula As String, raw As MZWork.Raw, ppm As Double) As IEnumerable(Of ParentMatch)
+    Public Iterator Function MatchByFormula(formula As String, raw As MZWork.Raw, ppm As Tolerance) As IEnumerable(Of ParentMatch)
         ' formula
         Dim exact_mass As Double = Math.EvaluateFormula(formula)
 
-        Call Workbench.StatusMessage($"Search MS ions for [{formula}] exact_mass={exact_mass} with tolerance error {ppm} ppm")
+        Call Workbench.StatusMessage($"Search MS ions for [{formula}] exact_mass={exact_mass} with tolerance error {ppm}...")
 
         ' C25H40N4O5
         Dim pos = MzCalculator.EvaluateAll(exact_mass, "+", False).ToArray
@@ -134,7 +134,7 @@ Module FeatureSearchHandler
             End If
 
             For Each mode As PrecursorInfo In info
-                If PPMmethod.PPM(scan.parentMz, Val(mode.mz)) <= ppm Then
+                If ppm(scan.parentMz, Val(mode.mz)) Then
                     Yield New ParentMatch With {
                         .scan_id = scan.scan_id,
                         .mz = scan.mz,
@@ -145,7 +145,7 @@ Module FeatureSearchHandler
                         .adducts = mode.adduct,
                         .charge = mode.charge,
                         .precursor_type = mode.precursor_type,
-                        .ppm = PPMmethod.PPM(scan.parentMz, Val(mode.mz)).ToString("F2"),
+                        .ppm = PPMmethod.PPM(scan.parentMz, Val(mode.mz)).ToString("F0"),
                         .polarity = scan.polarity,
                         .XIC = scan.intensity,
                         .into = scan.into,
