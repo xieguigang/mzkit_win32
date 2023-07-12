@@ -119,7 +119,7 @@ Module FeatureSearchHandler
         ' formula
         Dim exact_mass As Double = Math.EvaluateFormula(formula)
 
-        MyApplication.host.showStatusMessage($"Search MS ions for [{formula}] exact_mass={exact_mass} with tolerance error {ppm} ppm")
+        Call Workbench.StatusMessage($"Search MS ions for [{formula}] exact_mass={exact_mass} with tolerance error {ppm} ppm")
 
         ' C25H40N4O5
         Dim pos = MzCalculator.EvaluateAll(exact_mass, "+", False).ToArray
