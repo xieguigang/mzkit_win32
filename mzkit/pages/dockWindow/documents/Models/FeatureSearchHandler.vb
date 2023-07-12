@@ -87,7 +87,7 @@ Module FeatureSearchHandler
 
     Private Sub runFormulaMatch(formula As String, files As IEnumerable(Of MZWork.Raw), directRaw As Boolean)
         Dim display As frmFeatureSearch = VisualStudio.ShowDocument(Of frmFeatureSearch)
-        Dim ppm As Tolerance = Tolerance.DeltaMass(0.3)
+        Dim ppm As Tolerance = Tolerance.DeltaMass(0.1)
 
         display.TabText = $"Search [{formula}]"
 

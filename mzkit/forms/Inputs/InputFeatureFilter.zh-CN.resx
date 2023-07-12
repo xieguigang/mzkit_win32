@@ -117,39 +117,99 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="Button1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>378, 283</value>
+  </data>
+  <data name="Button1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
   <data name="Button1.Text" xml:space="preserve">
     <value>应用</value>
+  </data>
+  <data name="Button2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>271, 283</value>
+  </data>
+  <data name="Button2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
   </data>
   <data name="Button2.Text" xml:space="preserve">
     <value>取消</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="Label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 114</value>
+  </data>
   <data name="Label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 13</value>
+    <value>101, 12</value>
   </data>
   <data name="Label4.Text" xml:space="preserve">
     <value>前体母离子类型：</value>
   </data>
+  <data name="CheckedListBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 140</value>
+  </data>
+  <data name="CheckedListBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 84</value>
+  </data>
+  <data name="txtPPM.Location" type="System.Drawing.Point, System.Drawing">
+    <value>302, 30</value>
+  </data>
+  <data name="txtPPM.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 21</value>
+  </data>
+  <data name="Label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>242, 33</value>
+  </data>
   <data name="Label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 13</value>
+    <value>101, 12</value>
   </data>
   <data name="Label3.Text" xml:space="preserve">
     <value>质量误差（ppm）:</value>
   </data>
+  <data name="txtRtMax.Location" type="System.Drawing.Point, System.Drawing">
+    <value>85, 61</value>
+  </data>
+  <data name="txtRtMax.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 21</value>
+  </data>
+  <data name="txtRtMin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>85, 30</value>
+  </data>
+  <data name="txtRtMin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 21</value>
+  </data>
+  <data name="Label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 64</value>
+  </data>
   <data name="Label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 13</value>
+    <value>89, 12</value>
   </data>
   <data name="Label2.Text" xml:space="preserve">
     <value>最大保留时间：</value>
   </data>
+  <data name="Label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 33</value>
+  </data>
   <data name="Label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 13</value>
+    <value>89, 12</value>
   </data>
   <data name="Label1.Text" xml:space="preserve">
     <value>最小保留时间：</value>
   </data>
+  <data name="GroupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="GroupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>470, 257</value>
+  </data>
   <data name="GroupBox1.Text" xml:space="preserve">
     <value>筛选器参数</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 12</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>494, 318</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>特征筛选</value>

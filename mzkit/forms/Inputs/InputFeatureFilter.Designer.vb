@@ -88,6 +88,9 @@ Partial Class InputFeatureFilter
         Me.txtRtMin = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.cbCharge1 = New System.Windows.Forms.CheckBox()
+        Me.cbChage2 = New System.Windows.Forms.CheckBox()
+        Me.cbCharge3 = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -105,7 +108,9 @@ Partial Class InputFeatureFilter
         '
         'GroupBox1
         '
-        resources.ApplyResources(Me.GroupBox1, "GroupBox1")
+        Me.GroupBox1.Controls.Add(Me.cbCharge3)
+        Me.GroupBox1.Controls.Add(Me.cbChage2)
+        Me.GroupBox1.Controls.Add(Me.cbCharge1)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.CheckedListBox1)
         Me.GroupBox1.Controls.Add(Me.txtPPM)
@@ -114,6 +119,7 @@ Partial Class InputFeatureFilter
         Me.GroupBox1.Controls.Add(Me.txtRtMin)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.Label1)
+        resources.ApplyResources(Me.GroupBox1, "GroupBox1")
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.TabStop = False
         '
@@ -124,8 +130,8 @@ Partial Class InputFeatureFilter
         '
         'CheckedListBox1
         '
-        resources.ApplyResources(Me.CheckedListBox1, "CheckedListBox1")
         Me.CheckedListBox1.FormattingEnabled = True
+        resources.ApplyResources(Me.CheckedListBox1, "CheckedListBox1")
         Me.CheckedListBox1.Name = "CheckedListBox1"
         '
         'txtPPM
@@ -158,6 +164,30 @@ Partial Class InputFeatureFilter
         resources.ApplyResources(Me.Label1, "Label1")
         Me.Label1.Name = "Label1"
         '
+        'cbCharge1
+        '
+        resources.ApplyResources(Me.cbCharge1, "cbCharge1")
+        Me.cbCharge1.Checked = True
+        Me.cbCharge1.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cbCharge1.Name = "cbCharge1"
+        Me.cbCharge1.UseVisualStyleBackColor = True
+        '
+        'cbChage2
+        '
+        resources.ApplyResources(Me.cbChage2, "cbChage2")
+        Me.cbChage2.Checked = True
+        Me.cbChage2.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cbChage2.Name = "cbChage2"
+        Me.cbChage2.UseVisualStyleBackColor = True
+        '
+        'cbCharge3
+        '
+        resources.ApplyResources(Me.cbCharge3, "cbCharge3")
+        Me.cbCharge3.Checked = True
+        Me.cbCharge3.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cbCharge3.Name = "cbCharge3"
+        Me.cbCharge3.UseVisualStyleBackColor = True
+        '
         'InputFeatureFilter
         '
         resources.ApplyResources(Me, "$this")
@@ -187,4 +217,7 @@ Partial Class InputFeatureFilter
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents CheckedListBox1 As CheckedListBox
+    Friend WithEvents cbCharge3 As CheckBox
+    Friend WithEvents cbChage2 As CheckBox
+    Friend WithEvents cbCharge1 As CheckBox
 End Class
