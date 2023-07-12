@@ -537,7 +537,7 @@ Public Class frmFileExplorer
         Dim raws As New List(Of MZWork.Raw)
 
         For Each node As TreeNode In treeView1.Nodes(0).Nodes
-            raws.Add(node.Tag)
+            Call raws.Add(node.Tag)
         Next
 
         Call FeatureSearchHandler.SearchByMz(feature, raws, False)
