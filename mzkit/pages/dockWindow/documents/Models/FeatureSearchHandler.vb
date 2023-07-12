@@ -78,6 +78,7 @@ Module FeatureSearchHandler
         ElseIf text.IsNumeric Then
             Call searchInFileByMz(mz:=Val(text), raw:=raw)
         Else
+            Call Workbench.StatusMessage($"Do search features for formula: {text}...")
             Call runFormulaMatch(text, raw, directRaw)
 
             MyApplication.host.ribbonItems.TabGroupExactMassSearchTools.ContextAvailable = ContextAvailability.Active

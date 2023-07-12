@@ -64,6 +64,7 @@
 
 Imports System.ComponentModel
 Imports System.IO
+Imports System.Runtime.CompilerServices
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
@@ -527,14 +528,19 @@ Public Class frmFileExplorer
         Call MyApplication.ExecuteRScript(scriptFile, isFile:=True, AddressOf WindowModules.output.AppendRoutput)
     End Sub
 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        Call SearchFeatures(Strings.Trim(ToolStripSpringTextBox1.Text))
+    End Sub
+
+    Public Sub SearchFeatures(feature As String)
         Dim raws As New List(Of MZWork.Raw)
 
         For Each node As TreeNode In treeView1.Nodes(0).Nodes
             raws.Add(node.Tag)
         Next
 
-        Call FeatureSearchHandler.SearchByMz(ToolStripSpringTextBox1.Text, raws, False)
+        Call FeatureSearchHandler.SearchByMz(feature, raws, False)
     End Sub
 
     Private Sub ImportsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportsToolStripMenuItem.Click

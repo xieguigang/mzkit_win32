@@ -205,9 +205,9 @@ Module RibbonEvents
         InputDialog.Input(Of InputPubChemProxy)(
             Sub(cfg)
                 Dim metadata = cfg.GetAnnotation
-                Dim features As frmRawFeaturesList = WindowModules.rawFeaturesList
+                Dim features = WindowModules.fileExplorer
 
-                Call features.DoFeatureSearch(metadata.formula)
+                Call features.SearchFeatures(metadata.formula)
             End Sub)
     End Sub
 
