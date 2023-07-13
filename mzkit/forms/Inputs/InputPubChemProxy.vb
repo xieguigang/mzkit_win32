@@ -1,4 +1,5 @@
 ﻿Imports System.Threading
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
 Imports Microsoft.VisualBasic.Linq
@@ -12,6 +13,16 @@ Public Class InputPubChemProxy
     Public ReadOnly Property GetAnnotation As MetaLib
         Get
             Return cids(target)
+        End Get
+    End Property
+
+    Public ReadOnly Property GetTolerance As Tolerance
+        Get
+            If RadioButton1.Checked Then
+                Return Tolerance.PPM(Val(txtPPM.Text))
+            Else
+                Return Tolerance.DeltaMass(Val(txtDa.Text))
+            End If
         End Get
     End Property
 

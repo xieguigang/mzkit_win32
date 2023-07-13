@@ -61,25 +61,25 @@ Public Class FormulaQueryAction : Inherits ActionBase
             Next
 
             Call tblView.LoadTable(
-                        Sub(subView)
-                            For Each field In headers
-                                Call subView.Columns.Add(field.Key, field.Value)
-                            Next
+                 Sub(subView)
+                     For Each field In headers
+                         Call subView.Columns.Add(field.Key, field.Value)
+                     Next
 
-                            For Each row In rows
-                                Dim values As New List(Of Object)
-                                Dim subData = row.Item1
+                     For Each row In rows
+                         Dim values As New List(Of Object)
+                         Dim subData = row.Item1
 
-                                values.Add(stdNum.Round(row.mztarget, 4))
-                                values.Add(row.Item2.ToString)
-                                values.Add(stdNum.Round(row.ppm))
-                                values.Add(name)
-                                values.Add(formula.EmpiricalFormula)
-                                values.AddRange(subData.ItemArray)
+                         values.Add(stdNum.Round(row.mztarget, 4))
+                         values.Add(row.Item2.ToString)
+                         values.Add(stdNum.Round(row.ppm))
+                         values.Add(name)
+                         values.Add(formula.EmpiricalFormula)
+                         values.AddRange(subData.ItemArray)
 
-                                Call subView.Rows.Add(values.ToArray)
-                            Next
-                        End Sub)
+                         Call subView.Rows.Add(values.ToArray)
+                     Next
+                 End Sub)
         End If
     End Sub
 End Class

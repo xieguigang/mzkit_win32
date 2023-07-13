@@ -38,31 +38,37 @@ Partial Class InputPubChemProxy
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
+        Me.txtPPM = New System.Windows.Forms.TextBox()
+        Me.txtDa = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(22, 21)
+        Me.Label1.Location = New System.Drawing.Point(22, 19)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(110, 13)
+        Me.Label1.Size = New System.Drawing.Size(131, 12)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Input Any Query Text:"
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(170, 17)
+        Me.TextBox1.Location = New System.Drawing.Point(170, 16)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(551, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(551, 21)
         Me.TextBox1.TabIndex = 1
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(736, 15)
+        Me.Button1.Location = New System.Drawing.Point(736, 14)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(103, 25)
+        Me.Button1.Size = New System.Drawing.Size(103, 23)
         Me.Button1.TabIndex = 2
         Me.Button1.Text = "Search PubChem"
         Me.Button1.UseVisualStyleBackColor = True
@@ -75,9 +81,9 @@ Partial Class InputPubChemProxy
         Me.ListView1.FullRowSelect = True
         Me.ListView1.GridLines = True
         Me.ListView1.HideSelection = False
-        Me.ListView1.Location = New System.Drawing.Point(16, 25)
+        Me.ListView1.Location = New System.Drawing.Point(16, 23)
         Me.ListView1.Name = "ListView1"
-        Me.ListView1.Size = New System.Drawing.Size(603, 381)
+        Me.ListView1.Size = New System.Drawing.Size(603, 352)
         Me.ListView1.TabIndex = 3
         Me.ListView1.UseCompatibleStateImageBehavior = False
         Me.ListView1.View = System.Windows.Forms.View.Details
@@ -109,18 +115,18 @@ Partial Class InputPubChemProxy
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(582, 488)
+        Me.Button2.Location = New System.Drawing.Point(582, 450)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 25)
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 4
         Me.Button2.Text = "Okey"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(487, 488)
+        Me.Button3.Location = New System.Drawing.Point(487, 450)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 25)
+        Me.Button3.Size = New System.Drawing.Size(75, 23)
         Me.Button3.TabIndex = 5
         Me.Button3.Text = "Cancel"
         Me.Button3.UseVisualStyleBackColor = True
@@ -128,35 +134,89 @@ Partial Class InputPubChemProxy
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.ListView1)
-        Me.GroupBox1.Location = New System.Drawing.Point(24, 57)
+        Me.GroupBox1.Location = New System.Drawing.Point(24, 53)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(633, 419)
+        Me.GroupBox1.Size = New System.Drawing.Size(633, 387)
         Me.GroupBox1.TabIndex = 6
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "PubChem Results"
         '
         'Label2
         '
-        Me.Label2.Location = New System.Drawing.Point(24, 489)
+        Me.Label2.Location = New System.Drawing.Point(24, 451)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(447, 20)
+        Me.Label2.Size = New System.Drawing.Size(447, 18)
         Me.Label2.TabIndex = 7
         Me.Label2.Text = "..."
         '
         'PictureBox1
         '
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox1.Location = New System.Drawing.Point(665, 66)
+        Me.PictureBox1.Location = New System.Drawing.Point(665, 61)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(203, 192)
+        Me.PictureBox1.Size = New System.Drawing.Size(203, 177)
         Me.PictureBox1.TabIndex = 8
         Me.PictureBox1.TabStop = False
         '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.txtDa)
+        Me.GroupBox2.Controls.Add(Me.txtPPM)
+        Me.GroupBox2.Controls.Add(Me.RadioButton2)
+        Me.GroupBox2.Controls.Add(Me.RadioButton1)
+        Me.GroupBox2.Location = New System.Drawing.Point(665, 325)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(201, 115)
+        Me.GroupBox2.TabIndex = 9
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Select a Mass Tolerance"
+        '
+        'RadioButton1
+        '
+        Me.RadioButton1.AutoSize = True
+        Me.RadioButton1.Checked = True
+        Me.RadioButton1.Location = New System.Drawing.Point(17, 33)
+        Me.RadioButton1.Name = "RadioButton1"
+        Me.RadioButton1.Size = New System.Drawing.Size(41, 16)
+        Me.RadioButton1.TabIndex = 0
+        Me.RadioButton1.TabStop = True
+        Me.RadioButton1.Text = "PPM"
+        Me.RadioButton1.UseVisualStyleBackColor = True
+        '
+        'RadioButton2
+        '
+        Me.RadioButton2.AutoSize = True
+        Me.RadioButton2.Location = New System.Drawing.Point(17, 74)
+        Me.RadioButton2.Name = "RadioButton2"
+        Me.RadioButton2.Size = New System.Drawing.Size(95, 16)
+        Me.RadioButton2.TabIndex = 1
+        Me.RadioButton2.Text = "Delta Dalton"
+        Me.RadioButton2.UseVisualStyleBackColor = True
+        '
+        'txtPPM
+        '
+        Me.txtPPM.Location = New System.Drawing.Point(118, 29)
+        Me.txtPPM.Name = "txtPPM"
+        Me.txtPPM.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.txtPPM.Size = New System.Drawing.Size(71, 21)
+        Me.txtPPM.TabIndex = 2
+        Me.txtPPM.Text = "20"
+        '
+        'txtDa
+        '
+        Me.txtDa.Location = New System.Drawing.Point(118, 72)
+        Me.txtDa.Name = "txtDa"
+        Me.txtDa.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.txtDa.Size = New System.Drawing.Size(71, 21)
+        Me.txtDa.TabIndex = 3
+        Me.txtDa.Text = "0.1"
+        '
         'InputPubChemProxy
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(878, 525)
+        Me.ClientSize = New System.Drawing.Size(878, 485)
+        Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.GroupBox1)
@@ -169,6 +229,8 @@ Partial Class InputPubChemProxy
         Me.Text = "PubChem Query"
         Me.GroupBox1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -188,4 +250,9 @@ Partial Class InputPubChemProxy
     Friend WithEvents ColumnHeader5 As ColumnHeader
     Friend WithEvents Label2 As Label
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents RadioButton2 As RadioButton
+    Friend WithEvents RadioButton1 As RadioButton
+    Friend WithEvents txtDa As TextBox
+    Friend WithEvents txtPPM As TextBox
 End Class
