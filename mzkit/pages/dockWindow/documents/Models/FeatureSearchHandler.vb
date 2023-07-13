@@ -72,22 +72,25 @@ Module FeatureSearchHandler
     ''' <param name="text"></param>
     ''' <param name="raw"></param>
     ''' <param name="directRaw"></param>
-    Public Sub SearchByMz(text As String, raw As IEnumerable(Of MZWork.Raw), directRaw As Boolean)
+    Public Sub SearchByMz(text As String, raw As IEnumerable(Of MZWork.Raw), directRaw As Boolean, mzdiff As Tolerance)
         If text.StringEmpty Then
             Return
         ElseIf text.IsNumeric Then
-            Call searchInFileByMz(mz:=Val(text), raw:=raw)
+            Call searchInFileByMz(mz:=Val(text), raw:=raw, tolerance:=mzdiff)
         Else
             Call Workbench.StatusMessage($"Do search features for formula: {text}...")
-            Call runFormulaMatch(text, raw, directRaw)
+            Call runFormulaMatch(text, raw, directRaw, ppm:=mzdiff)
 
             MyApplication.host.ribbonItems.TabGroupExactMassSearchTools.ContextAvailable = ContextAvailability.Active
         End If
     End Sub
 
-    Private Sub runFormulaMatch(formula As String, files As IEnumerable(Of MZWork.Raw), directRaw As Boolean)
+    Private Sub runFormulaMatch(formula As String,
+                                files As IEnumerable(Of MZWork.Raw),
+                                directRaw As Boolean,
+                                ppm As Tolerance)
+
         Dim display As frmFeatureSearch = VisualStudio.ShowDocument(Of frmFeatureSearch)
-        Dim ppm As Tolerance = Tolerance.DeltaMass(0.1)
 
         display.TabText = $"Search [{formula}]"
 
@@ -157,9 +160,8 @@ Module FeatureSearchHandler
         Next
     End Function
 
-    Private Sub searchInFileByMz(mz As Double, raw As IEnumerable(Of MZWork.Raw))
+    Private Sub searchInFileByMz(mz As Double, raw As IEnumerable(Of MZWork.Raw), tolerance As Tolerance)
         Dim ppm As Double = MyApplication.host.GetPPMError()
-        Dim tolerance As Tolerance = Tolerance.PPM(ppm)
         Dim display As New frmFeatureSearch
 
         display.Show(MyApplication.host.m_dockPanel)

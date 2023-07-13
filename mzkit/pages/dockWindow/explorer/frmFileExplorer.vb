@@ -71,6 +71,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzXML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ApplicationServices
@@ -530,17 +531,26 @@ Public Class frmFileExplorer
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
-        Call SearchFeatures(Strings.Trim(ToolStripSpringTextBox1.Text))
+        Dim str As String = Strings.Trim(ToolStripSpringTextBox1.Text)
+        Dim mzdiff As Tolerance
+
+        If str.IsSimpleNumber Then
+            mzdiff = Tolerance.PPM(20)
+        Else
+            mzdiff = Tolerance.DeltaMass(0.1)
+        End If
+
+        Call SearchFeatures(str, mzdiff)
     End Sub
 
-    Public Sub SearchFeatures(feature As String)
+    Public Sub SearchFeatures(feature As String, mzdiff As Tolerance)
         Dim raws As New List(Of MZWork.Raw)
 
         For Each node As TreeNode In treeView1.Nodes(0).Nodes
             Call raws.Add(node.Tag)
         Next
 
-        Call FeatureSearchHandler.SearchByMz(feature, raws, False)
+        Call FeatureSearchHandler.SearchByMz(feature, raws, False, mzdiff)
     End Sub
 
     Private Sub ImportsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportsToolStripMenuItem.Click

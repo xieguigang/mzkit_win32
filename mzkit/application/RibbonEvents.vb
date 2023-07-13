@@ -207,7 +207,7 @@ Module RibbonEvents
                 Dim metadata = cfg.GetAnnotation
                 Dim features = WindowModules.fileExplorer
 
-                Call features.SearchFeatures(metadata.formula)
+                Call features.SearchFeatures(metadata.formula, mzdiff:=cfg.GetTolerance)
             End Sub)
     End Sub
 
