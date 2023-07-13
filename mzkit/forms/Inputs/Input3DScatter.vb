@@ -21,6 +21,13 @@ Public Class Input3DScatter
         Dim box = {ComboBox1, ComboBox2, ComboBox3, ComboBox4, ComboBox5}
         Dim fieldSet As New List(Of String)
 
+        For Each item In box
+            Call item.Items.Clear()
+        Next
+
+        ' [0] NO CLASS
+        Call ComboBox2.Items.Add("NO CLASS")
+
         For Each label As String In fields
             For Each i As ComboBox In box
                 i.Items.Add(label)
@@ -47,7 +54,7 @@ Public Class Input3DScatter
     Public Function GetLabels() As (labels As String, clusters As String, x As String, y As String, z As String)
         Return (
              ComboBox1.SelectedItem.ToString,
-             ComboBox2.SelectedItem.ToString,
+             If(ComboBox2.SelectedIndex < 1, Nothing, ComboBox2.SelectedItem.ToString),
              ComboBox3.SelectedItem.ToString,
              ComboBox4.SelectedItem.ToString,
              ComboBox5.SelectedItem.ToString

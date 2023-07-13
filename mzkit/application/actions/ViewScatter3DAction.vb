@@ -31,10 +31,16 @@ Public Class ViewScatter3DAction : Inherits ActionBase
     Private Iterator Function createPoints(config As Input3DScatter, table As DataTable) As IEnumerable(Of UMAPPoint)
         Dim fields = config.GetLabels
         Dim labels = CLRVector.asCharacter(table.getFieldVector(fields.labels))
-        Dim cluster = CLRVector.asCharacter(table.getFieldVector(fields.clusters))
+        Dim cluster As String()
         Dim x = CLRVector.asNumeric(table.getFieldVector(fields.x))
         Dim y = CLRVector.asNumeric(table.getFieldVector(fields.y))
         Dim z = CLRVector.asNumeric(table.getFieldVector(fields.z))
+
+        If fields.clusters Is Nothing Then
+            cluster = New String(labels.Length - 1) {}
+        Else
+            cluster = CLRVector.asCharacter(table.getFieldVector(fields.clusters))
+        End If
 
         For i As Integer = 0 To labels.Length - 1
             Yield New UMAPPoint With {
