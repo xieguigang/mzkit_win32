@@ -580,17 +580,18 @@ Public Class frmRawFeaturesList
 
     Private Sub IonSearchToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles IonSearchToolStripMenuItem.Click
         Dim currentScan = treeView1.SelectedNode?.Tag
+        Dim mzdiff As Tolerance = Tolerance.PPM(20)
 
         If currentScan Is Nothing OrElse Not TypeOf currentScan Is ScanMS2 Then
             Return
         End If
 
-        Call FeatureSearchHandler.SearchByMz(DirectCast(currentScan, ScanMS2).parentMz, {CurrentOpenedFile}, True)
+        Call FeatureSearchHandler.SearchByMz(DirectCast(currentScan, ScanMS2).parentMz, {CurrentOpenedFile}, True, mzdiff)
     End Sub
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
-        Call DoFeatureSearch(Strings.Trim(ToolStripSpringTextBox1.Text))
+        Call DoFeatureSearch(ToolStripSpringTextBox1.Text)
     End Sub
 
     ''' <summary>
@@ -600,10 +601,20 @@ Public Class frmRawFeaturesList
     ''' m/z numeric value or formula exact mass
     ''' </param>
     Public Sub DoFeatureSearch(feature As String)
+        Dim mzdiff As Tolerance
+
+        feature = Strings.Trim(feature)
+
+        If feature.IsSimpleNumber Then
+            mzdiff = Tolerance.PPM(20)
+        Else
+            mzdiff = Tolerance.DeltaMass(0.1)
+        End If
+
         If CurrentOpenedFile Is Nothing Then
             Call Workbench.Warning("please load a raw data file at first!")
         Else
-            Call FeatureSearchHandler.SearchByMz(feature, {CurrentOpenedFile}, True)
+            Call FeatureSearchHandler.SearchByMz(feature, {CurrentOpenedFile}, True, mzdiff)
         End If
     End Sub
 

@@ -59,6 +59,7 @@ Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Linq
 Imports BioNovoGene.mzkit_win32.My
 Imports RibbonLib.Interop
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 
 Public Class PageMzCalculator
 
@@ -171,7 +172,7 @@ Public Class PageMzCalculator
         Dim row = grid.Rows(e.RowIndex)
         Dim mz As Double = Val(row.Cells(4).Value)
 
-        Call FeatureSearchHandler.SearchByMz(mz, WindowModules.fileExplorer.GetRawFiles(), False)
+        Call FeatureSearchHandler.SearchByMz(mz, WindowModules.fileExplorer.GetRawFiles(), False, Tolerance.DeltaMass(0.1))
     End Sub
 
     Private Sub DataGridView2_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView2.CellClick
