@@ -63,6 +63,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Interop
 Imports Task
+Imports stdNum = System.Math
 
 Module FeatureSearchHandler
 
@@ -153,10 +154,13 @@ Module FeatureSearchHandler
                         .XIC = scan.intensity,
                         .into = scan.into,
                         .parentMz = scan.parentMz,
-                        .rawfile = raw.source
+                        .rawfile = raw.source,
+                        .da = stdNum.Round(stdNum.Abs(scan.parentMz - Val(mode.mz)), 3)
                     }
                 End If
             Next
+
+            Call System.Windows.Forms.Application.DoEvents()
         Next
     End Function
 

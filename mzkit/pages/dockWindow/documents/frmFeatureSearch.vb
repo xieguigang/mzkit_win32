@@ -58,7 +58,6 @@
 #End Region
 
 Imports System.Text
-Imports System.Threading
 Imports System.Windows.Forms.ListViewItem
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
@@ -80,6 +79,7 @@ Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Controls.Events
 Imports RibbonLib.Interop
 Imports Task
+Imports stdNum = System.Math
 
 Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
 
@@ -126,6 +126,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             ion.SubItems.Add(New ListViewSubItem With {.Text = member.parentMz.ToString("F4")})
             ion.SubItems.Add(New ListViewSubItem With {.Text = CInt(member.rt)})
             ion.SubItems.Add(New ListViewSubItem With {.Text = (member.rt / 60).ToString("F1")})
+            ion.SubItems.Add(New ListViewSubItem With {.Text = member.da})
             ion.SubItems.Add(New ListViewSubItem With {.Text = CInt(member.ppm)})
             ion.SubItems.Add(New ListViewSubItem With {.Text = member.polarity})
             ion.SubItems.Add(New ListViewSubItem With {.Text = member.charge})
@@ -164,6 +165,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             ion.SubItems.Add(New ListViewSubItem With {.Text = member.parentMz.ToString("F4")})
             ion.SubItems.Add(New ListViewSubItem With {.Text = CInt(member.rt)})
             ion.SubItems.Add(New ListViewSubItem With {.Text = (member.rt / 60).ToString("F1")})
+            ion.SubItems.Add(New ListViewSubItem With {.Text = stdNum.Round(stdNum.Abs(member.parentMz - targetMz), 3)})
             ion.SubItems.Add(New ListViewSubItem With {.Text = CInt(PPMmethod.PPM(member.parentMz, targetMz))})
             ion.SubItems.Add(New ListViewSubItem With {.Text = member.polarity})
             ion.SubItems.Add(New ListViewSubItem With {.Text = member.charge})
@@ -287,7 +289,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
         ' 但是raw文件的parent是空的
         ' 所以还需要加上parent是否为空的判断来避免无结果产生的冲突
         If cluster.ChildrenCount > 0 OrElse cluster.Parent Is Nothing Then
-            Call MyApplication.host.showStatusMessage("Select a ms2 feature for view XIC plot!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning("Select a ms2 feature for view XIC plot!")
         Else
             ' 选择的是一个scan数据节点
             Dim parentFile = cluster.Parent.ToolTipText
@@ -307,7 +309,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             Dim scan = raw.FindMs2Scan(scan_id)
 
             If scan Is Nothing Then
-                Call MyApplication.host.showStatusMessage($"no scan data was found for scan id: {scan_id}!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Call Workbench.Warning($"no scan data was found for scan id: {scan_id}!")
             Else
                 Dim mz As Double = scan.parentMz
                 Dim ppm As New PPMmethod(30)

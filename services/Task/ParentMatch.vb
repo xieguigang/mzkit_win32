@@ -62,6 +62,7 @@ Public Class ParentMatch : Inherits ScanMS2
 
     Public Property precursor_type As String
     Public Property ppm As Double
+    Public Property da As Double
     Public Property adducts As Double
     Public Property M As Integer
     Public Property BPC As Double
