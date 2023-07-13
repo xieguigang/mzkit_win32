@@ -1,6 +1,6 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
-Imports BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
+Imports BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking
 Imports Mzkit_win32.BasicMDIForm
 Imports WeifenLuo.WinFormsUI.Docking
 Imports any = Microsoft.VisualBasic.Scripting
@@ -15,7 +15,7 @@ Public Class FormViewer
         Me.TabText = "Spectrum Pool Viewer"
         Me.search = New GridSearchHandler(AdvancedDataGridView1)
         Me.cloud = New frmCloudExplorer() With {
-            .loadTable = AddressOf loadTable
+            .loadTable = AddressOf loadTable2
         }
 
         Me.cloud.Show(Workbench.AppHost.DockPanel)
@@ -75,27 +75,27 @@ Public Class FormViewer
         'Next
     End Sub
 
-    Private Sub loadTable(node As String)
+    Private Sub loadTable2(node As String)
         Call LoadTable(
-            Sub(tbl)
-                tbl.Columns.Add("guid", GetType(String)) '0
-                tbl.Columns.Add("mz", GetType(Double)) '1
-                tbl.Columns.Add("rt", GetType(Double)) '2
-                tbl.Columns.Add("intensity", GetType(Double)) '3
-                tbl.Columns.Add("source_file", GetType(String)) '4
-                tbl.Columns.Add("sample_source", GetType(String)) '5
-                tbl.Columns.Add("organism", GetType(String)) '6
-                tbl.Columns.Add("name", GetType(String)) '7
-                tbl.Columns.Add("biodeep_id", GetType(String)) '8
-                tbl.Columns.Add("formula", GetType(String)) '9
-                tbl.Columns.Add("adducts", GetType(String)) '10
+            apply:=Sub(tbl)
+                       tbl.Columns.Add("guid", GetType(String)) '0
+                       tbl.Columns.Add("mz", GetType(Double)) '1
+                       tbl.Columns.Add("rt", GetType(Double)) '2
+                       tbl.Columns.Add("intensity", GetType(Double)) '3
+                       tbl.Columns.Add("source_file", GetType(String)) '4
+                       tbl.Columns.Add("sample_source", GetType(String)) '5
+                       tbl.Columns.Add("organism", GetType(String)) '6
+                       tbl.Columns.Add("name", GetType(String)) '7
+                       tbl.Columns.Add("biodeep_id", GetType(String)) '8
+                       tbl.Columns.Add("formula", GetType(String)) '9
+                       tbl.Columns.Add("adducts", GetType(String)) '10
 
-                For Each meta As PoolData.Metadata In cloud.FetchMetadata(node)
-                    Call tbl.Rows.Add(meta.guid, meta.mz, meta.rt, meta.intensity, meta.source_file,
+                       For Each meta As PoolData.Metadata In cloud.FetchMetadata(node)
+                           Call tbl.Rows.Add(meta.guid, meta.mz, meta.rt, meta.intensity, meta.source_file,
                                  meta.sample_source, meta.organism, meta.name, meta.biodeep_id,
                                  meta.formula, meta.adducts)
-                Next
-            End Sub)
+                       Next
+                   End Sub)
     End Sub
 
     Private Sub ExportSpectrumToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportSpectrumToolStripMenuItem.Click

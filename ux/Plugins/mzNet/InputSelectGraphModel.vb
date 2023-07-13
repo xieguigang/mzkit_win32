@@ -1,4 +1,4 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.PoolData
+﻿Imports BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.PoolData
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.My.JavaScript
 Imports Mzkit_win32.BasicMDIForm
@@ -21,7 +21,8 @@ Public Class InputSelectGraphModel
 
     Private Sub InputSelectGraphModel_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not CheckCloudConnection($"{default_resource}/get_models/") Then
-            MessageBox.Show("The default cloud resource is not avaiable at now, it may be move to a new network location, you could specific the new cloud service location and then try again.", "Cloud Services not avaiable", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("The default cloud resource is not avaiable at now, it may be move to a new network location, you could specific the new cloud service location and then try again.",
+                            "Cloud Services not avaiable", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         Else
             TextBox1.Text = default_resource
