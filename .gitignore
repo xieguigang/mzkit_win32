@@ -12,6 +12,10 @@ bower_components/
 *.userosscache
 *.sln.docstates
 
+
+setup/Setup\ Files/changchunkanghuida/
+setup/Setup\ Files/脉诺康报告模块/
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
