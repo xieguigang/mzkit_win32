@@ -1,6 +1,7 @@
 ﻿Imports System.Drawing
 Imports System.Drawing.Drawing2D
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
+Imports Microsoft.VisualBasic.ApplicationServices.Development.XmlDoc.Serialization
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.GraphTheory
 Imports Microsoft.VisualBasic.Data.GraphTheory.GridGraph
@@ -397,9 +398,11 @@ Public Class SpatialTile
         Dim gi As New DoubleRange(0, red.Color.G)
         Dim bi As New DoubleRange(0, red.Color.B)
         Dim p As i32 = 0
+        Dim heatmap As Double() = Me.heatmap
 
         If Not heatmap Is Nothing Then
-            colorIndex = New DoubleRange(New Vector(heatmap).Log(base:=2))
+            heatmap = New Vector(heatmap).Log(base:=2)
+            colorIndex = New DoubleRange(heatmap)
         End If
 
         ' draw spatial matrix
