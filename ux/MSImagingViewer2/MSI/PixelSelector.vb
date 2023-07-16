@@ -152,7 +152,7 @@ Public Class PixelSelector
     Public Function AddSpatialTile(heatmap As SpatialHeatMap) As SpatialTile
         Dim tile As New SpatialTile
 
-        Call tile.ShowMatrix(Matrix)
+        Call tile.ShowMatrix(heatmap)
         Call Me.Controls.Add(tile)
 
         AddHandler tile.GetSpatialMetabolismPoint, AddressOf getPoint
