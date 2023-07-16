@@ -1,6 +1,7 @@
 ﻿Imports System.Drawing
 Imports System.Drawing.Drawing2D
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.GraphTheory
 Imports Microsoft.VisualBasic.Data.GraphTheory.GridGraph
 Imports Microsoft.VisualBasic.Imaging
@@ -8,6 +9,7 @@ Imports Microsoft.VisualBasic.Imaging.BitmapImage
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Math.LinearAlgebra
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports STImaging
@@ -390,11 +392,30 @@ Public Class SpatialTile
         Dim r As New SizeF(d.Width / 2, d.Height / 2)
         Dim black As New SolidBrush(Color.Black.Alpha(alpha))
         Dim red As New SolidBrush(SpotColor.Alpha(alpha))
+        Dim colorIndex As DoubleRange = Nothing
+        Dim ri As New DoubleRange(0, red.Color.R)
+        Dim gi As New DoubleRange(0, red.Color.G)
+        Dim bi As New DoubleRange(0, red.Color.B)
+        Dim p As i32 = 0
+
+        If Not heatmap Is Nothing Then
+            colorIndex = New DoubleRange(New Vector(heatmap).Log(base:=2))
+        End If
 
         ' draw spatial matrix
         For Each spot As SpatialSpot In rotationMatrix
             Dim x = spot.px * d.Width
             Dim y = spot.py * d.Height
+
+            If Not colorIndex Is Nothing Then
+                Dim i As Double = heatmap(++p)
+
+                red = New SolidBrush(Color.FromArgb(
+                    colorIndex.ScaleMapping(i, ri),
+                    colorIndex.ScaleMapping(i, gi),
+                    colorIndex.ScaleMapping(i, bi)
+                ).Alpha(alpha))
+            End If
 
             If spot.flag = 0 Then
                 Call g.FillEllipse(black, New RectangleF(New PointF(x, y), d))
