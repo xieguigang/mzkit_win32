@@ -44,7 +44,7 @@ Public Class SpatialTile
     Friend offset_origin As Point
     Friend offset As Point
 
-    Public Property DrawOffset As Integer = 25
+    Public Property DrawOffset As Integer = 0 ' 25
 
     'Private Const WS_EX_TRANSPARENT As Integer = &H20
 
