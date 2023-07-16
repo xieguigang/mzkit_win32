@@ -2356,7 +2356,7 @@ Public Class frmMsImagingViewer
         }
             If file.ShowDialog = DialogResult.OK Then
                 If file.FileName.ExtensionSuffix("csv") Then
-                    Dim spots As SpaceSpot() = ST_spaceranger _
+                    Dim spots As SpatialSpot() = SpaceRanger _
                         .LoadTissueSpots(file.FileName.ReadAllLines) _
                         .ToArray
                     Dim tile = PixelSelector1 _
