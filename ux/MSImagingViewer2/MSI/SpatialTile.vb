@@ -408,7 +408,7 @@ Public Class SpatialTile
         End If
 
         If Not heatmap Is Nothing Then
-            heatmap = New Vector(heatmap).Log(base:=2)
+            heatmap = New Vector(heatmap).Log()
             colorIndex = New DoubleRange(heatmap)
         End If
 
