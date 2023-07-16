@@ -2352,7 +2352,7 @@ Public Class frmMsImagingViewer
 
     Private Sub AddSpatialTileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddSpatialTileToolStripMenuItem.Click
         Using file As New OpenFileDialog With {
-            .Filter = "10X Space Ranger Spots(*.csv)|*.csv|MZKit Spatial Mapping(*.xml)|*.xml|Erica Spatial HeatMap(*.cdf)|*.cdf",
+            .Filter = "10X Space Ranger Spots(*.csv)|*.csv|MZKit Spatial Mapping(*.xml)|*.xml|Erica Spatial HeatMap(*.cdf;*.netcdf;*.nc)|*.cdf;*.netcdf;*.nc",
             .Title = "Open a new tissue positions list"
         }
             If file.ShowDialog = DialogResult.OK Then
@@ -2365,7 +2365,7 @@ Public Class frmMsImagingViewer
                         .AddSpatialTile(spots)
 
                     Call MoveToMouseLocation(tile)
-                ElseIf file.FileName.ExtensionSuffix("cdf") Then
+                ElseIf file.FileName.ExtensionSuffix("cdf", "netcdf", "nc") Then
                     Dim heatmap As SpatialHeatMap = SpatialHeatMap.LoadCDF(file.OpenFile)
                     Dim tile = PixelSelector1 _
                         .MSICanvas _
