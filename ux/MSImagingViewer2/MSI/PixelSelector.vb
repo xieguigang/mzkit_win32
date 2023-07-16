@@ -149,6 +149,23 @@ Public Class PixelSelector
         AddHandler tile.ClickSpatialMetabolismPixel, Sub(e, ByRef px, ByRef py) Call clickGetPoint(e)
     End Sub
 
+    Public Function AddSpatialTile(heatmap As SpatialHeatMap) As SpatialTile
+        Dim tile As New SpatialTile
+
+        Call tile.ShowMatrix(Matrix)
+        Call Me.Controls.Add(tile)
+
+        AddHandler tile.GetSpatialMetabolismPoint, AddressOf getPoint
+        AddHandler tile.ClickSpatialMetabolismPixel, Sub(e, ByRef px, ByRef py) Call clickGetPoint(e)
+
+        Return tile
+    End Function
+
+    ''' <summary>
+    ''' imports from a csv table file
+    ''' </summary>
+    ''' <param name="matrix"></param>
+    ''' <returns></returns>
     Public Function AddSpatialTile(matrix As IEnumerable(Of SpatialSpot)) As SpatialTile
         Dim tile As New SpatialTile
 

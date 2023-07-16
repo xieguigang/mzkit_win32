@@ -107,6 +107,7 @@ Imports Microsoft.VisualBasic.Text
 Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Mzkit_win32.MSImagingViewerV2
 Imports ServiceHub
 Imports STImaging
 Imports Task
@@ -2351,7 +2352,7 @@ Public Class frmMsImagingViewer
 
     Private Sub AddSpatialTileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddSpatialTileToolStripMenuItem.Click
         Using file As New OpenFileDialog With {
-            .Filter = "10X Space Ranger Spots(*.csv)|*.csv|MZKit Spatial Mapping(*.xml)|*.xml",
+            .Filter = "10X Space Ranger Spots(*.csv)|*.csv|MZKit Spatial Mapping(*.xml)|*.xml|Erica Spatial HeatMap(*.cdf)|*.cdf",
             .Title = "Open a new tissue positions list"
         }
             If file.ShowDialog = DialogResult.OK Then
@@ -2362,14 +2363,15 @@ Public Class frmMsImagingViewer
                     Dim tile = PixelSelector1 _
                         .MSICanvas _
                         .AddSpatialTile(spots)
-                    ' move the spatial tile to the mouse location
-                    Dim tilePos = PixelSelector1.MSICanvas.PointToClient(Cursor.Position)
 
-                    tilePos = New Point With {
-                        .X = If(tilePos.X < 0, 0, tilePos.X),
-                        .Y = If(tilePos.Y < 0, 0, tilePos.Y)
-                    }
-                    tile.Location = tilePos
+                    Call MoveToMouseLocation(tile)
+                ElseIf file.FileName.ExtensionSuffix("cdf") Then
+                    Dim heatmap As SpatialHeatMap = SpatialHeatMap.LoadCDF(file.OpenFile)
+                    Dim tile = PixelSelector1 _
+                        .MSICanvas _
+                        .AddSpatialTile(heatmap)
+
+                    Call MoveToMouseLocation(tile)
                 Else
                     Dim maps As SpatialMapping = file.FileName.LoadXml(Of SpatialMapping)
 
@@ -2379,6 +2381,17 @@ Public Class frmMsImagingViewer
                 End If
             End If
         End Using
+    End Sub
+
+    Private Sub MoveToMouseLocation(tile As SpatialTile)
+        ' move the spatial tile to the mouse location
+        Dim tilePos = PixelSelector1.MSICanvas.PointToClient(Cursor.Position)
+
+        tilePos = New Point With {
+            .X = If(tilePos.X < 0, 0, tilePos.X),
+            .Y = If(tilePos.Y < 0, 0, tilePos.Y)
+        }
+        tile.Location = tilePos
     End Sub
 
     ''' <summary>

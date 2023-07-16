@@ -24,6 +24,12 @@ Public Class SpatialTile
     ''' layout information about the spatial polygon
     ''' </summary>
     Friend rotationRaw As PointF()
+
+    ''' <summary>
+    ''' The expression scale of the corresponding spot inside the <see cref="rotationMatrix"/>
+    ''' </summary>
+    Dim heatmap As Double()
+
     ''' <summary>
     ''' keeps the reference of the spot object to <see cref="spatialMatrix"/>. 
     ''' </summary>
@@ -97,7 +103,22 @@ Public Class SpatialTile
         Me.Label1.Text = matrix.label
         Me.SpotColor = matrix.color.TranslateColor
 
+        If matrix.spots.Any(Function(si) si.heatmap IsNot Nothing) Then
+            heatmap = matrix.spots _
+                .Select(Function(a) If(a.heatmap, 0.0)) _
+                .ToArray
+        Else
+            heatmap = Nothing
+        End If
+
         Call ShowMatrix(spots, flip:=False)
+    End Sub
+
+    Public Sub ShowMatrix(heatmap As SpatialHeatMap)
+        Dim spots As SpatialSpot() = heatmap.spots.Select(Function(ci) ci.ToSpot).ToArray
+
+        Me.heatmap = heatmap.spots.Select(Function(ci) ci.Scale).ToArray
+        Me.ShowMatrix(spots, flip:=True)
     End Sub
 
     Public Sub ShowMatrix(matrix As IEnumerable(Of SpatialSpot), Optional flip As Boolean = True)
@@ -285,10 +306,18 @@ Public Class SpatialTile
 
         For Each spot As SpatialSpot In rotationMatrix
             ' translate to control client XY
-            Dim clientXY As New PointF With {.X = spot.px * radiusX * 2, .Y = spot.py * radiusY * 2}
+            Dim clientXY As New PointF With {
+                .X = spot.px * radiusX * 2,
+                .Y = spot.py * radiusY * 2
+            }
             Dim pixels As New List(Of Point)
             Dim originalSpot As PointF = rotationRaw(++i)
             Dim tags As New List(Of String)
+            Dim heatmap As Double? = Nothing
+
+            If Not Me.heatmap Is Nothing Then
+                heatmap = Me.heatmap(CInt(i) - 1)
+            End If
 
             For x As Integer = clientXY.X - radiusX To clientXY.X + radiusX
                 For y As Integer = clientXY.Y - radiusY To clientXY.Y + radiusY
@@ -321,7 +350,8 @@ Public Class SpatialTile
                     .GroupBy(Function(tag) tag) _
                     .OrderByDescending(Function(g) g.Count) _
                     .FirstOrDefault _
-                   ?.Key
+                   ?.Key,
+                .heatmap = heatmap
             }
         Next
     End Function
