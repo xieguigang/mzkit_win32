@@ -400,6 +400,13 @@ Public Class SpatialTile
         Dim p As i32 = 0
         Dim heatmap As Double() = Me.heatmap
 
+        If d.Width < 1 Then
+            d = New SizeF(1, d.Height)
+        End If
+        If d.Height < 1 Then
+            d = New SizeF(d.Width, 1)
+        End If
+
         If Not heatmap Is Nothing Then
             heatmap = New Vector(heatmap).Log(base:=2)
             colorIndex = New DoubleRange(heatmap)
@@ -467,6 +474,7 @@ Public Class SpatialTile
         If Me.Parent IsNot Nothing AndAlso imageLoad Is Nothing Then
             Dim index = Me.Parent.Controls.GetChildIndex(Me) - 1
 
+            ' try to draw control transparent overlaps
             Me.Visible = False
 
             Call drawControl(Parent, g)
@@ -494,7 +502,7 @@ Public Class SpatialTile
             g.ResetTransform()
             g.DrawRectangle(New Pen(Brushes.White, 2) With {.DashStyle = DashStyle.Dash}, New Rectangle(New Point(2, 2), size))
 
-            onDrawSpots(g, 150)
+            onDrawSpots(g, 200)
         Else
             onDrawSpots(g, 60)
         End If
