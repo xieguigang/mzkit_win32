@@ -82,7 +82,7 @@ Public Module Utils
     End Function
 
     <Extension>
-    Private Iterator Function SpotConvertAsScans(spots As SpaceSpot(),
+    Private Iterator Function SpotConvertAsScans(spots As SpatialSpot(),
                                                  matrix As Matrix,
                                                  annotations As Dictionary(Of String, String)) As IEnumerable(Of ScanMS1)
 
@@ -139,7 +139,7 @@ Public Module Utils
     End Function
 
     <Extension>
-    Public Function ST_spacerangerToMzPack(spots As SpaceSpot(), matrix As Matrix) As mzPack
+    Public Function ST_spacerangerToMzPack(spots As SpatialSpot(), matrix As Matrix) As mzPack
         Dim annotations As New Dictionary(Of String, String)
         Dim ms As ScanMS1() = spots.SpotConvertAsScans(matrix, annotations).ToArray
         Dim pixels As Point() = ms _

@@ -12,7 +12,7 @@ Imports Matrix = SMRUCC.genomics.Analysis.HTS.DataFrame.Matrix
 Module STImagingTools
 
     <ExportAPI("ST_spaceranger.mzpack")>
-    Public Function convertMzPack(spots As SpaceSpot(), matrix As Matrix, Optional tag As String = Nothing) As mzPack
+    Public Function convertMzPack(spots As SpatialSpot(), matrix As Matrix, Optional tag As String = Nothing) As mzPack
         Dim pack = spots.ST_spacerangerToMzPack(matrix)
 
         If Not tag.StringEmpty Then

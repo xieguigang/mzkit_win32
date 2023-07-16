@@ -149,7 +149,7 @@ Public Class PixelSelector
         AddHandler tile.ClickSpatialMetabolismPixel, Sub(e, ByRef px, ByRef py) Call clickGetPoint(e)
     End Sub
 
-    Public Function AddSpatialTile(matrix As IEnumerable(Of SpaceSpot)) As SpatialTile
+    Public Function AddSpatialTile(matrix As IEnumerable(Of SpatialSpot)) As SpatialTile
         Dim tile As New SpatialTile
 
         Call tile.ShowMatrix(matrix)

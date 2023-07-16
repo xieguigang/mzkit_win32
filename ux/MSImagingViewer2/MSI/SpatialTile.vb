@@ -14,7 +14,7 @@ Imports STImaging
 
 Public Class SpatialTile
 
-    Dim spatialMatrix As Grid(Of SpaceSpot)
+    Dim spatialMatrix As Grid(Of SpatialSpot)
     Dim moveTile As Boolean = False
     Dim p As Point
 
@@ -30,7 +30,7 @@ Public Class SpatialTile
     ''' <remarks>
     ''' the spot point data for rendering onto the canvas after the data rotation
     ''' </remarks>
-    Friend rotationMatrix As SpaceSpot()
+    Friend rotationMatrix As SpatialSpot()
     Friend dimensions As Size
     Friend offset_origin As Point
     Friend offset As Point
@@ -83,7 +83,7 @@ Public Class SpatialTile
     Public Sub ShowMatrix(matrix As SpatialMapping)
         Dim spots = matrix.spots _
             .Select(Function(p)
-                        Return New SpaceSpot With {
+                        Return New SpatialSpot With {
                             .barcode = p.barcode,
                             .flag = p.flag,
                             .px = p.STX,
@@ -100,7 +100,7 @@ Public Class SpatialTile
         Call ShowMatrix(spots, flip:=False)
     End Sub
 
-    Public Sub ShowMatrix(matrix As IEnumerable(Of SpaceSpot), Optional flip As Boolean = True)
+    Public Sub ShowMatrix(matrix As IEnumerable(Of SpatialSpot), Optional flip As Boolean = True)
         Dim spatialMatrix = matrix.Where(Function(s) s.flag > 0).ToArray
         Dim polygon As New Polygon2D(spatialMatrix.Select(Function(t) New Point(t.px, t.py)))
 
@@ -110,7 +110,7 @@ Public Class SpatialTile
 
         spatialMatrix = spatialMatrix _
             .Select(Function(p)
-                        Return New SpaceSpot With {
+                        Return New SpatialSpot With {
                             .px = p.px - offset.X,
                             .py = p.py - offset.Y,
                             .flag = p.flag,
@@ -127,7 +127,7 @@ Public Class SpatialTile
 
         spatialMatrix = spatialMatrix _
             .Select(Function(p)
-                        Return New SpaceSpot With {
+                        Return New SpatialSpot With {
                             .px = If(flip, dimensions.Width - p.px, p.px),
                             .py = If(flip, dimensions.Height - p.py, p.py),
                             .flag = p.flag,
@@ -152,7 +152,7 @@ Public Class SpatialTile
     End Sub
 
     Friend Sub buildGrid()
-        Me.spatialMatrix = Grid(Of SpaceSpot).Create(
+        Me.spatialMatrix = Grid(Of SpatialSpot).Create(
             data:=rotationMatrix,
             getX:=Function(spot) spot.px,
             getY:=Function(spot) spot.py
@@ -203,7 +203,7 @@ Public Class SpatialTile
             Dim smY As Integer
             Dim smXY As New Point(Left + e.X, Top + e.Y)
             Dim barcode As String
-            Dim spot As SpaceSpot
+            Dim spot As SpatialSpot
             Dim tag As String = Nothing
 
             ' get pixel in SMdata
@@ -283,7 +283,7 @@ Public Class SpatialTile
         Dim top = Me.Top
         Dim i As i32 = Scan0
 
-        For Each spot As SpaceSpot In rotationMatrix
+        For Each spot As SpatialSpot In rotationMatrix
             ' translate to control client XY
             Dim clientXY As New PointF With {.X = spot.px * radiusX * 2, .Y = spot.py * radiusY * 2}
             Dim pixels As New List(Of Point)
@@ -362,7 +362,7 @@ Public Class SpatialTile
         Dim red As New SolidBrush(SpotColor.Alpha(alpha))
 
         ' draw spatial matrix
-        For Each spot As SpaceSpot In rotationMatrix
+        For Each spot As SpatialSpot In rotationMatrix
             Dim x = spot.px * d.Width
             Dim y = spot.py * d.Height
 
