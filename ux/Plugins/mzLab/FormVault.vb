@@ -65,7 +65,7 @@ Public Class FormVault
         Text = "Library Viewer"
         TabText = Text
 
-        Call ApplyVsTheme(ContextMenuStrip1, ContextMenuStrip2)
+        Call ApplyVsTheme(ContextMenuStrip1, ContextMenuStrip2, ToolStrip1)
     End Sub
 
     Private Sub Win7StyleTreeView1_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles Win7StyleTreeView1.AfterSelect
@@ -187,6 +187,7 @@ Public Class FormVault
         Dim ref As Integer() = text.Select(Function(ch) AscW(ch)).ToArray
         Dim filter = allMass.AsParallel _
             .Select(Function(m) (LevenshteinDistance.ComputeDistance(ref, m.name), m)) _
+            .Where(Function(m) Not m.Item1 Is Nothing) _
             .OrderByDescending(Function(i) i.Item1.MatchSimilarity) _
             .Take(100) _
             .ToArray
