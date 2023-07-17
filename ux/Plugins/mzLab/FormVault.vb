@@ -1,4 +1,6 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
+﻿Imports System.IO
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.PackLib
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.Imaging
@@ -107,5 +109,62 @@ Public Class FormVault
 
         Call doc.LoadMs2(spectrum)
         Call doc.RunSearch()
+    End Sub
+
+    Private Sub ExportMGFIonsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportMGFIonsToolStripMenuItem.Click
+        Using file As New SaveFileDialog With {.Filter = "MGF Ions(*.mgf)|*.mgf"}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim node = Win7StyleTreeView1.SelectedNode
+
+                Using mgf As New StreamWriter(file.FileName.Open(FileMode.OpenOrCreate, doClear:=True))
+                    If TypeOf node.Tag Is MassIndex Then
+                        Call SaveMass(node.Tag, mgf)
+                    Else
+                        Call TaskProgress.RunAction(
+                            run:=Sub(proc As ITaskProgress)
+                                     Call proc.SetProgressMode()
+                                     Call proc.SetProgress(0)
+
+                                     ' export for all metabolites
+                                     For i As Integer = 0 To node.Nodes.Count - 1
+                                         Dim metabo = node.Nodes.Item(i)
+                                         Dim mass As MassIndex = metabo.Tag
+
+                                         Call SaveMass(mass, mgf)
+                                         Call proc.SetProgress(i / node.Nodes.Count * 100)
+                                         Call proc.SetInfo(mass.name)
+                                     Next
+                                 End Sub,
+                            title:="Export Mgf Ions",
+                            info:="Export spectrum to mgf file..."
+                        )
+                    End If
+
+                    Call mgf.Flush()
+                End Using
+
+                Call MessageBox.Show($"Spectrum data has been export to mgf file: {file.FileName}!",
+                                     "Export Spectrum",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Information)
+            End If
+        End Using
+    End Sub
+
+    ''' <summary>
+    ''' export for a specific metabolite
+    ''' </summary>
+    ''' <param name="mass"></param>
+    ''' <param name="mgf"></param>
+    Private Sub SaveMass(mass As MassIndex, mgf As TextWriter)
+        Dim spectrum_data = mass.spectrum _
+            .Select(Function(i)
+                        Return SpectrumReader.GetSpectrum(stdlib.GetSpectrum(i)).MgfIon
+                    End Function) _
+            .ToArray
+
+        For Each ion As Ions In spectrum_data
+            Call ion.WriteAsciiMgf(mgf)
+        Next
     End Sub
 End Class
