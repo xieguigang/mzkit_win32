@@ -39,9 +39,13 @@ Public Class FormVault
 
     Private Sub loadMetabolites(fileName As String, println As Action(Of String))
         Dim tree = Win7StyleTreeView1.Nodes.Add(stdlib.ToString)
-        Dim i As i32 = 1
 
         allMass = stdlib.LoadMass.ToArray
+        loadMetabolites(allMass, tree, println)
+    End Sub
+
+    Private Sub loadMetabolites(allMass As MassIndex(), tree As TreeNode, println As Action(Of String))
+        Dim i As i32 = 1
 
         For Each mass As MassIndex In allMass
             Dim metabolite = tree.Nodes.Add(mass.name & $" [{mass.size} spectrum]")
@@ -202,5 +206,23 @@ Public Class FormVault
 
             Call Application.DoEvents()
         Next
+    End Sub
+
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        ToolStripSpringTextBox1.Text = Nothing
+
+        If allMass.IsNullOrEmpty Then
+            Return
+        ElseIf Win7StyleTreeView1.Nodes.Count = 0 Then
+            Return
+        End If
+
+        Call TaskProgress.RunAction(
+            run:=Sub(proc As ITaskProgress)
+                     Call Me.Invoke(Sub() Call loadMetabolites(allMass, tree:=Win7StyleTreeView1.Nodes(0), AddressOf proc.SetInfo))
+                 End Sub,
+            title:="Reload library data",
+            info:="Reload the reference spectrum library..."
+        )
     End Sub
 End Class
