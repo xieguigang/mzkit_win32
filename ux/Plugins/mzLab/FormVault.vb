@@ -3,6 +3,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.PackLib
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
+Imports Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.Levenshtein
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Language
 Imports Mzkit_win32.BasicMDIForm
@@ -11,6 +12,7 @@ Public Class FormVault
 
     Dim stdlib As SpectrumReader
     Dim spectrum As PeakMs2
+    Dim allMass As MassIndex()
 
     Public Sub OpenDatabase()
         Using file As New OpenFileDialog With {.Filter = "any file(*.*)|*.*"}
@@ -37,8 +39,9 @@ Public Class FormVault
 
     Private Sub loadMetabolites(fileName As String, println As Action(Of String))
         Dim tree = Win7StyleTreeView1.Nodes.Add(stdlib.ToString)
-        Dim allMass = stdlib.LoadMass.ToArray
         Dim i As i32 = 1
+
+        allMass = stdlib.LoadMass.ToArray
 
         For Each mass As MassIndex In allMass
             Dim metabolite = tree.Nodes.Add(mass.name & $" [{mass.size} spectrum]")
@@ -167,6 +170,37 @@ Public Class FormVault
         For Each ion As Ions In spectrum_data
             ion.Title = title
             ion.WriteAsciiMgf(mgf)
+        Next
+    End Sub
+
+    Private Sub ToolStripSpringTextBox1_TextChanged(sender As Object, e As EventArgs) Handles ToolStripSpringTextBox1.TextChanged
+        Dim text As String = Strings.Trim(ToolStripSpringTextBox1.Text)
+
+        If text.StringEmpty Then
+            Return
+        End If
+
+        Dim ref As Integer() = text.Select(Function(ch) AscW(ch)).ToArray
+        Dim filter = allMass.AsParallel _
+            .Select(Function(m) (LevenshteinDistance.ComputeDistance(ref, m.name), m)) _
+            .OrderByDescending(Function(i) i.Item1.MatchSimilarity) _
+            .Take(100) _
+            .ToArray
+        Dim root = Win7StyleTreeView1.Nodes.Item(0)
+
+        Call root.Nodes.Clear()
+
+        For Each hit In filter
+            Dim mass = hit.m
+            Dim metabolite = root.Nodes.Add(mass.name & $" [{mass.size} spectrum]")
+
+            metabolite.Tag = mass
+
+            'If allMass.Length Mod (++i) = 0 Then
+            '    Call println(mass.ToString)
+            'End If
+
+            Call Application.DoEvents()
         Next
     End Sub
 End Class

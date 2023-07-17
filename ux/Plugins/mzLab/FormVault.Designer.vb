@@ -27,6 +27,8 @@ Partial Class FormVault : Inherits DocumentWindow
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormVault))
         Me.Win7StyleTreeView1 = New ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView(Me.components)
+        Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ExportMGFIonsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
@@ -35,8 +37,11 @@ Partial Class FormVault : Inherits DocumentWindow
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SearchInSampleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ExportMGFIonsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripSpringTextBox1 = New Mzkit_win32.BasicMDIForm.ToolStripSpringTextBox()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.ContextMenuStrip2.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -45,7 +50,7 @@ Partial Class FormVault : Inherits DocumentWindow
         Me.TabPage1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
-        Me.ContextMenuStrip2.SuspendLayout()
+        Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Win7StyleTreeView1
@@ -55,12 +60,24 @@ Partial Class FormVault : Inherits DocumentWindow
         Me.Win7StyleTreeView1.HotTracking = True
         Me.Win7StyleTreeView1.ImageIndex = 0
         Me.Win7StyleTreeView1.ImageList = Me.ImageList1
-        Me.Win7StyleTreeView1.Location = New System.Drawing.Point(3, 3)
+        Me.Win7StyleTreeView1.Location = New System.Drawing.Point(3, 28)
         Me.Win7StyleTreeView1.Name = "Win7StyleTreeView1"
         Me.Win7StyleTreeView1.SelectedImageIndex = 0
         Me.Win7StyleTreeView1.ShowLines = False
-        Me.Win7StyleTreeView1.Size = New System.Drawing.Size(292, 522)
+        Me.Win7StyleTreeView1.Size = New System.Drawing.Size(292, 497)
         Me.Win7StyleTreeView1.TabIndex = 1
+        '
+        'ContextMenuStrip2
+        '
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportMGFIonsToolStripMenuItem})
+        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(162, 26)
+        '
+        'ExportMGFIonsToolStripMenuItem
+        '
+        Me.ExportMGFIonsToolStripMenuItem.Name = "ExportMGFIonsToolStripMenuItem"
+        Me.ExportMGFIonsToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
+        Me.ExportMGFIonsToolStripMenuItem.Text = "Export MGF Ions"
         '
         'ImageList1
         '
@@ -100,6 +117,7 @@ Partial Class FormVault : Inherits DocumentWindow
         'TabPage1
         '
         Me.TabPage1.Controls.Add(Me.Win7StyleTreeView1)
+        Me.TabPage1.Controls.Add(Me.ToolStrip1)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
@@ -143,17 +161,35 @@ Partial Class FormVault : Inherits DocumentWindow
         Me.SearchInSampleToolStripMenuItem.Size = New System.Drawing.Size(169, 22)
         Me.SearchInSampleToolStripMenuItem.Text = "Search In Samples"
         '
-        'ContextMenuStrip2
+        'ToolStrip1
         '
-        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportMGFIonsToolStripMenuItem})
-        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(162, 26)
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.ToolStripSpringTextBox1, Me.ToolStripButton1})
+        Me.ToolStrip1.Location = New System.Drawing.Point(3, 3)
+        Me.ToolStrip1.Name = "ToolStrip1"
+        Me.ToolStrip1.Size = New System.Drawing.Size(292, 25)
+        Me.ToolStrip1.TabIndex = 2
+        Me.ToolStrip1.Text = "ToolStrip1"
         '
-        'ExportMGFIonsToolStripMenuItem
+        'ToolStripLabel1
         '
-        Me.ExportMGFIonsToolStripMenuItem.Name = "ExportMGFIonsToolStripMenuItem"
-        Me.ExportMGFIonsToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
-        Me.ExportMGFIonsToolStripMenuItem.Text = "Export MGF Ions"
+        Me.ToolStripLabel1.Name = "ToolStripLabel1"
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(45, 22)
+        Me.ToolStripLabel1.Text = "Search:"
+        '
+        'ToolStripSpringTextBox1
+        '
+        Me.ToolStripSpringTextBox1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.ToolStripSpringTextBox1.Name = "ToolStripSpringTextBox1"
+        Me.ToolStripSpringTextBox1.Size = New System.Drawing.Size(181, 25)
+        '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton1.Text = "Reset"
         '
         'FormVault
         '
@@ -164,15 +200,18 @@ Partial Class FormVault : Inherits DocumentWindow
         Me.DoubleBuffered = True
         Me.Name = "FormVault"
         Me.TabPageContextMenuStrip = Me.DockContextMenuStrip1
+        Me.ContextMenuStrip2.ResumeLayout(False)
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
+        Me.TabPage1.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
-        Me.ContextMenuStrip2.ResumeLayout(False)
+        Me.ToolStrip1.ResumeLayout(False)
+        Me.ToolStrip1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -188,4 +227,8 @@ Partial Class FormVault : Inherits DocumentWindow
     Friend WithEvents TabPage2 As TabPage
     Friend WithEvents ContextMenuStrip2 As ContextMenuStrip
     Friend WithEvents ExportMGFIonsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStrip1 As ToolStrip
+    Friend WithEvents ToolStripLabel1 As ToolStripLabel
+    Friend WithEvents ToolStripSpringTextBox1 As ToolStripSpringTextBox
+    Friend WithEvents ToolStripButton1 As ToolStripButton
 End Class
