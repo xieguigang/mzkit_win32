@@ -50,6 +50,7 @@ Partial Class FormVault : Inherits DocumentWindow
         '
         'Win7StyleTreeView1
         '
+        Me.Win7StyleTreeView1.ContextMenuStrip = Me.ContextMenuStrip2
         Me.Win7StyleTreeView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Win7StyleTreeView1.HotTracking = True
         Me.Win7StyleTreeView1.ImageIndex = 0
@@ -146,12 +147,12 @@ Partial Class FormVault : Inherits DocumentWindow
         '
         Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportMGFIonsToolStripMenuItem})
         Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(181, 48)
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(162, 26)
         '
         'ExportMGFIonsToolStripMenuItem
         '
         Me.ExportMGFIonsToolStripMenuItem.Name = "ExportMGFIonsToolStripMenuItem"
-        Me.ExportMGFIonsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExportMGFIonsToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
         Me.ExportMGFIonsToolStripMenuItem.Text = "Export MGF Ions"
         '
         'FormVault

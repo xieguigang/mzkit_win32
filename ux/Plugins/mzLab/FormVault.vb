@@ -58,7 +58,7 @@ Public Class FormVault
         Text = "Library Viewer"
         TabText = Text
 
-        Call ApplyVsTheme(ContextMenuStrip1)
+        Call ApplyVsTheme(ContextMenuStrip1, ContextMenuStrip2)
     End Sub
 
     Private Sub Win7StyleTreeView1_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles Win7StyleTreeView1.AfterSelect
@@ -157,14 +157,16 @@ Public Class FormVault
     ''' <param name="mass"></param>
     ''' <param name="mgf"></param>
     Private Sub SaveMass(mass As MassIndex, mgf As TextWriter)
-        Dim spectrum_data = mass.spectrum _
+        Dim spectrum_data As Ions() = mass.spectrum _
             .Select(Function(i)
                         Return SpectrumReader.GetSpectrum(stdlib.GetSpectrum(i)).MgfIon
                     End Function) _
             .ToArray
+        Dim title As String = $"{mass.name} ({mass.formula})"
 
         For Each ion As Ions In spectrum_data
-            Call ion.WriteAsciiMgf(mgf)
+            ion.Title = title
+            ion.WriteAsciiMgf(mgf)
         Next
     End Sub
 End Class
