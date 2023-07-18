@@ -229,6 +229,45 @@ Public Class MSIRegionSampleWindow
         Return New Point(xpoint, ypoint)
     End Function
 
+    Private Sub AutoFillSampleInfo(nsize As Integer)
+        If MessageBox.Show("All of the sample name and color will be generated with unique id fill?",
+                               "Tissue Map",
+                               buttons:=MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
+            Dim i As i32 = 1
+            Dim colors As LoopArray(Of Color) = Designer.GetColors(colorSet, nsize)
+
+            For Each item As Control In FlowLayoutPanel1.Controls
+                Dim card = DirectCast(item, RegionSampleCard)
+
+                card.SampleColor = ++colors
+                card.SampleInfo = $"{prefix}{++i}"
+            Next
+
+            Call updateLayerRendering()
+        End If
+    End Sub
+
+    Private Sub AutoExtractSampleTags()
+        Dim data As RegionLoader = viewer.ExtractMultipleSampleRegions
+        Dim colors As Color()
+
+        If data Is Nothing Then
+            Call Workbench.Warning("Please load MS-imaging related data set at first!")
+            Return
+        Else
+            colors = Designer.GetColors(colorSet, data.size)
+        End If
+
+        For i As Integer = 0 To data.regions.Length - 1
+            Dim card = Me.Add({data.regions(i)}, is_raster:=True)
+
+            card.SampleColor = colors(i)
+            card.SampleInfo = data.sample_tags(i)
+        Next
+
+        Call updateLayerRendering()
+    End Sub
+
     ''' <summary>
     ''' auto sampleinfo
     ''' </summary>
@@ -238,40 +277,9 @@ Public Class MSIRegionSampleWindow
         Dim nsize As Integer = FlowLayoutPanel1.Controls.Count
 
         If nsize > 0 Then
-            If MessageBox.Show("All of the sample name and color will be generated with unique id fill?",
-                               "Tissue Map",
-                               buttons:=MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
-                Dim i As i32 = 1
-                Dim colors As LoopArray(Of Color) = Designer.GetColors(colorSet, nsize)
-
-                For Each item As Control In FlowLayoutPanel1.Controls
-                    Dim card = DirectCast(item, RegionSampleCard)
-
-                    card.SampleColor = ++colors
-                    card.SampleInfo = $"{prefix}{++i}"
-                Next
-
-                Call updateLayerRendering()
-            End If
+            Call AutoFillSampleInfo(nsize)
         Else
-            Dim data As RegionLoader = viewer.ExtractMultipleSampleRegions
-            Dim colors As Color()
-
-            If data Is Nothing Then
-                Call Workbench.Warning("Please load MS-imaging related data set at first!")
-                Return
-            Else
-                colors = Designer.GetColors(colorSet, data.size)
-            End If
-
-            For i As Integer = 0 To data.regions.Length - 1
-                Dim card = Me.Add({data.regions(i)}, is_raster:=True)
-
-                card.SampleColor = colors(i)
-                card.SampleInfo = data.sample_tags(i)
-            Next
-
-            Call updateLayerRendering()
+            Call AutoExtractSampleTags()
         End If
     End Sub
 
@@ -345,18 +353,16 @@ Public Class MSIRegionSampleWindow
 
         If polygons.IsNullOrEmpty Then
             MessageBox.Show("No tissue map region polygon was found!", "Tissue Map Editor", buttons:=MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
+        Else
+            Dim getFormula As New SampleRegionMergeTool
 
-        Dim getFormula As New SampleRegionMergeTool
-        Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
-
-        Call getFormula.LoadRegions(polygons, dimension)
-
-        If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
-            ' update to new regions
-            Call LoadTissueMaps(getFormula.GetMergedRegions, canvas)
-            Call updateLayerRendering()
+            Call getFormula.LoadRegions(polygons, dimension)
+            Call InputDialog.Input(
+                Sub(cfg)
+                    ' update to new regions
+                    Call LoadTissueMaps(cfg.GetMergedRegions, canvas)
+                    Call updateLayerRendering()
+                End Sub, config:=getFormula)
         End If
     End Sub
 
