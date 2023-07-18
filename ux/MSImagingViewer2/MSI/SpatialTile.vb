@@ -118,7 +118,9 @@ Public Class SpatialTile
     End Sub
 
     Public Sub ShowMatrix(heatmap As SpatialHeatMap)
-        Dim spots As SpatialSpot() = heatmap.spots.Select(Function(ci) ci.ToSpot).ToArray
+        Dim spots As SpatialSpot() = heatmap.spots _
+            .Select(Function(ci) ci.ToSpot) _
+            .ToArray
 
         Me.heatmap = heatmap.spots.Select(Function(ci) ci.Scale).ToArray
         Me.ShowMatrix(spots, flip:=True)
