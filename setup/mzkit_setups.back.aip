@@ -132,8 +132,6 @@
     <ROW Directory="lib_1_Dir" Directory_Parent="win_Dir" DefaultDir="lib"/>
     <ROW Directory="lib_2_Dir" Directory_Parent="unix_1_Dir" DefaultDir="lib"/>
     <ROW Directory="lib_3_Dir" Directory_Parent="win_1_Dir" DefaultDir="lib"/>
-    <ROW Directory="lib_4_Dir" Directory_Parent="unix_2_Dir" DefaultDir="lib"/>
-    <ROW Directory="lib_5_Dir" Directory_Parent="win_2_Dir" DefaultDir="lib"/>
     <ROW Directory="lib_6_Dir" Directory_Parent="unix_3_Dir" DefaultDir="lib"/>
     <ROW Directory="lib_7_Dir" Directory_Parent="win_3_Dir" DefaultDir="lib"/>
     <ROW Directory="lib_Dir" Directory_Parent="unix_Dir" DefaultDir="lib"/>
@@ -148,11 +146,8 @@
     <ROW Directory="net6.0_1_Dir" Directory_Parent="lib_7_Dir" DefaultDir="net6.0"/>
     <ROW Directory="net6.0_2_Dir" Directory_Parent="lib_Dir" DefaultDir="net6.0"/>
     <ROW Directory="net6.0_3_Dir" Directory_Parent="lib_1_Dir" DefaultDir="net6.0"/>
-    <ROW Directory="net6.0_4_Dir" Directory_Parent="bin_Dir" DefaultDir="net6.0"/>
     <ROW Directory="net6.0_5_Dir" Directory_Parent="lib_2_Dir" DefaultDir="net6.0"/>
     <ROW Directory="net6.0_6_Dir" Directory_Parent="lib_3_Dir" DefaultDir="net6.0"/>
-    <ROW Directory="net6.0_7_Dir" Directory_Parent="lib_4_Dir" DefaultDir="net6.0"/>
-    <ROW Directory="net6.0_8_Dir" Directory_Parent="lib_5_Dir" DefaultDir="net6.0"/>
     <ROW Directory="net6.0_Dir" Directory_Parent="lib_6_Dir" DefaultDir="net6.0"/>
     <ROW Directory="nvidia_Dir" Directory_Parent="plugins_Dir" DefaultDir="nvidia"/>
     <ROW Directory="openseadragon_Dir" Directory_Parent="webview_Dir" DefaultDir="OPENSE~1|openseadragon"/>
@@ -166,7 +161,6 @@
     <ROW Directory="runtimes_1_Dir" Directory_Parent="nvidia_Dir" DefaultDir="runtimes"/>
     <ROW Directory="runtimes_2_Dir" Directory_Parent="host_Dir" DefaultDir="runtimes"/>
     <ROW Directory="runtimes_3_Dir" Directory_Parent="bin_Dir" DefaultDir="runtimes"/>
-    <ROW Directory="runtimes_4_Dir" Directory_Parent="net6.0_4_Dir" DefaultDir="runtimes"/>
     <ROW Directory="runtimes_Dir" Directory_Parent="APPDIR" DefaultDir="runtimes"/>
     <ROW Directory="services_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="services"/>
     <ROW Directory="small_demos_Dir" Directory_Parent="demo_1_Dir" DefaultDir="SMALL_~1|small_demos"/>
@@ -174,13 +168,11 @@
     <ROW Directory="templates_Dir" Directory_Parent="ketcher_Dir" DefaultDir="TEMPLA~1|templates"/>
     <ROW Directory="three_Dir" Directory_Parent="vendor_Dir" DefaultDir="three"/>
     <ROW Directory="unix_1_Dir" Directory_Parent="runtimes_2_Dir" DefaultDir="unix"/>
-    <ROW Directory="unix_2_Dir" Directory_Parent="runtimes_4_Dir" DefaultDir="unix"/>
     <ROW Directory="unix_3_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="unix"/>
     <ROW Directory="unix_Dir" Directory_Parent="runtimes_1_Dir" DefaultDir="unix"/>
     <ROW Directory="vendor_Dir" Directory_Parent="webview_Dir" DefaultDir="vendor"/>
     <ROW Directory="webview_Dir" Directory_Parent="APPDIR" DefaultDir="WebView"/>
     <ROW Directory="win_1_Dir" Directory_Parent="runtimes_2_Dir" DefaultDir="win"/>
-    <ROW Directory="win_2_Dir" Directory_Parent="runtimes_4_Dir" DefaultDir="win"/>
     <ROW Directory="win_3_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="win"/>
     <ROW Directory="win_Dir" Directory_Parent="runtimes_1_Dir" DefaultDir="win"/>
     <ROW Directory="winx64_Dir" Directory_Parent="runtimes_Dir" DefaultDir="win-x64"/>
@@ -275,7 +267,7 @@
     <ROW Component="BioNovoGene.BioDeep.MSEngine.dll" ComponentId="{34592B78-00DD-4DAB-AD16-45AC97403A40}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.MSEngine.dll"/>
     <ROW Component="BioNovoGene.BioDeep.MSEngine.dll_1" ComponentId="{16288244-C58E-4473-B241-1ADD6F638C27}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.BioDeep.MSEngine.dll_1"/>
     <ROW Component="BioNovoGene.BioDeep.MSEngine.pdb" ComponentId="{EE625141-4A9E-4A3B-9408-3635658FBA52}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.BioDeep.MSEngine.pdb" Type="4"/>
-    <ROW Component="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" ComponentId="{E09A2369-37FA-47E9-A002-5E1E78D802D9}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.pdb"/>
+    <ROW Component="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" ComponentId="{E09A2369-37FA-47E9-A002-5E1E78D802D9}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.pdb" Type="4"/>
     <ROW Component="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll_1" ComponentId="{F43F67E1-743E-4DBE-837B-14950B1C2E04}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll"/>
     <ROW Component="BioNovoGene.BioDeep.MetaDNA.Visual.dll" ComponentId="{99ADFC45-FDD3-4983-BF14-8BD45E01E5C4}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.MetaDNA.Visual.dll"/>
     <ROW Component="BioNovoGene.BioDeep.MetaDNA.Visual.pdb" ComponentId="{446C3209-A8F3-46C6-8F28-16676E91C428}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.BioDeep.MetaDNA.Visual.pdb" Type="4"/>
@@ -308,7 +300,6 @@
     <ROW Component="FULLMS_centriod_CHCA_20210819CleanSample616x404.cdf" ComponentId="{9E6541B7-77B9-404C-BC00-F40ACC3A70CF}" Directory_="PANOMIX_Dir" Attributes="0" KeyPath="FULLMS_centriod_CHCA_20210819CleanSample616x404.cdf" Type="0"/>
     <ROW Component="Flute.Http.dll" ComponentId="{1A9D1085-A042-4FB2-B9F6-267C14D598BD}" Directory_="APPDIR" Attributes="256" KeyPath="Flute.Http.dll"/>
     <ROW Component="Flute.Http.dll_1" ComponentId="{7126992B-A818-47AB-A05F-ECAF115FD030}" Directory_="bin_Dir" Attributes="256" KeyPath="Flute.Http.dll_1"/>
-    <ROW Component="Flute.Http.dll_2" ComponentId="{EAFAED57-3B39-4740-8B0E-4ED256C08EC2}" Directory_="net6.0_4_Dir" Attributes="256" KeyPath="Flute.Http.dll_2"/>
     <ROW Component="Flute.Http.dll_9" ComponentId="{AC04B39C-8C05-407B-8AE4-0780C87805B9}" Directory_="library_Dir" Attributes="256" KeyPath="Flute.Http.dll_9"/>
     <ROW Component="Flute.Http.pdb" ComponentId="{BFE97953-F38D-4536-9EEC-FB524EC6A5B8}" Directory_="APPDIR" Attributes="0" KeyPath="Flute.Http.pdb" Type="4"/>
     <ROW Component="Flute.Http.xml" ComponentId="{4035364A-48E6-4100-B4AD-C6C9D7D8BEA4}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll.config_4" Type="0"/>
@@ -331,7 +322,6 @@
     <ROW Component="Microsoft.VisualBasic.Data.BinaryData.dll" ComponentId="{25A480C0-3670-4750-A4BC-37FBB67D8404}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.BinaryData.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.BinaryData.dll_1" ComponentId="{CFDD704D-FAF8-4958-A312-A9FCE6B13001}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.BinaryData.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Data.BinaryData.dll_2" ComponentId="{A5FC1E1F-72B8-43BC-A479-21CD024D6BAE}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.BinaryData.dll_2"/>
-    <ROW Component="Microsoft.VisualBasic.Data.BinaryData.dll_3" ComponentId="{421E410E-64CE-4B57-912F-C6E894929EB1}" Directory_="net6.0_4_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.BinaryData.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.Data.BinaryData.dll_6" ComponentId="{D688F6B7-CF53-44B8-97DE-2005983EE84B}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.BinaryData.dll_6"/>
     <ROW Component="Microsoft.VisualBasic.Data.BinaryData.pdb" ComponentId="{9BB8C806-2F0A-4E05-8AE3-079D994E4D9D}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Data.BinaryData.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Data.Bootstrapping.Fittings.dll" ComponentId="{7DAE9D67-0782-4FB4-B999-C571AA74EA5F}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.Bootstrapping.Fittings.dll"/>
@@ -351,7 +341,6 @@
     <ROW Component="Microsoft.VisualBasic.Data.Framework.dll" ComponentId="{03F87D61-08A8-4AE4-9D71-3B5771B3EDBE}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.Framework.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.Framework.dll_1" ComponentId="{0C90B942-338B-4F51-9207-D0BE784F4080}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.Framework.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Data.Framework.dll_2" ComponentId="{BF5250C0-A5AB-41E7-896C-1F2023B1F980}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.Framework.dll_2"/>
-    <ROW Component="Microsoft.VisualBasic.Data.Framework.dll_3" ComponentId="{9D1DD986-7E19-4353-AA01-DAB8A841D5C5}" Directory_="net6.0_4_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.Framework.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.Data.Framework.dll_6" ComponentId="{4608F3D9-7692-4BAA-9FB0-0B287C97B666}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.Framework.dll_6"/>
     <ROW Component="Microsoft.VisualBasic.Data.Framework.pdb" ComponentId="{E4F6B887-E9B6-4554-9252-3E7B435C2564}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Data.Framework.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Data.GraphQuery.dll" ComponentId="{45AF98D6-EB19-4082-9D0D-2381FBC604FB}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.GraphQuery.dll"/>
@@ -366,7 +355,6 @@
     <ROW Component="Microsoft.VisualBasic.Data.IO.MessagePack.dll" ComponentId="{0E2F72D4-567F-4100-A535-16173B02E3F5}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.IO.MessagePack.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.IO.MessagePack.dll_1" ComponentId="{C12F917F-5C9D-4EC0-8303-E93BAE72D4AD}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.IO.MessagePack.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Data.IO.MessagePack.dll_2" ComponentId="{896925F1-60F3-45FF-85EC-47896B86B612}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.IO.MessagePack.dll_2"/>
-    <ROW Component="Microsoft.VisualBasic.Data.IO.MessagePack.dll_3" ComponentId="{9779F9D9-7E8A-402B-A0C7-71C7BB9A9A5B}" Directory_="net6.0_4_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.IO.MessagePack.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.Data.IO.MessagePack.dll_6" ComponentId="{011AC763-6668-4B24-A3FF-8008A8718E2D}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.IO.MessagePack.dll_6"/>
     <ROW Component="Microsoft.VisualBasic.Data.IO.MessagePack.pdb" ComponentId="{C66F79AE-CC20-49FA-B867-A33A85B86B8B}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Data.IO.MessagePack.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Data.IO.SQLite3.dll" ComponentId="{932A0387-29E4-4678-8531-2EA6E5A8F687}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.IO.SQLite3.dll"/>
@@ -471,7 +459,6 @@
     <ROW Component="Microsoft.VisualBasic.MIME.application.json.dll_1" ComponentId="{F8D44323-F4C5-4583-9CAC-47EE07B12323}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.json.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.MIME.application.json.dll_11" ComponentId="{5FE02378-946B-45B1-9658-98DBBF3152E3}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.json.dll_11"/>
     <ROW Component="Microsoft.VisualBasic.MIME.application.json.dll_2" ComponentId="{C86476E6-E4A1-4F49-8CA8-2538F11CF43F}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.json.dll_2"/>
-    <ROW Component="Microsoft.VisualBasic.MIME.application.json.dll_3" ComponentId="{53E3542B-CFCF-43F1-BF17-2D0DAF250F13}" Directory_="net6.0_4_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.json.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.MIME.application.json.pdb" ComponentId="{A79A9B62-4389-4B89-8AC0-90E9479C819E}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.MIME.application.json.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.MIME.application.pdf.dll" ComponentId="{F8CE3C86-EC24-4A09-AD2F-D17FF27E7F3B}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.pdf.dll"/>
     <ROW Component="Microsoft.VisualBasic.MIME.application.pdf.dll_3" ComponentId="{A4C194C2-61A4-44D3-B872-1D72C46F51C8}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.application.pdf.dll_3"/>
@@ -543,17 +530,14 @@
     <ROW Component="Microsoft.VisualBasic.Network.dll" ComponentId="{E7B6290F-FE7E-4D32-B00A-CFAE2FCF202B}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Network.dll"/>
     <ROW Component="Microsoft.VisualBasic.Network.dll_1" ComponentId="{2699EF41-F593-48FD-ACAD-37243E328CA6}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Network.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Network.dll_10" ComponentId="{B6C6F107-CB75-4918-9FD7-62FD4A64BE28}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Network.dll_10"/>
-    <ROW Component="Microsoft.VisualBasic.Network.dll_2" ComponentId="{C315A4D5-0B1C-4136-A457-CE33CAB7933E}" Directory_="net6.0_4_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Network.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Network.dll_3" ComponentId="{5FF5726C-B283-4264-B5C4-03C0BC3708A1}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Network.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.Network.pdb" ComponentId="{A9FCD9D5-16E1-4C62-B8C3-A851A6D67BC8}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Network.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.dll" ComponentId="{967988B9-4DBB-4B4D-8AA8-A207F7C4D216}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.dll.config" ComponentId="{A133ABA4-F1D6-4C15-BBC8-8A7139145C07}" Directory_="plugins_Dir" Attributes="0" KeyPath="PkgTool.dll.config" Type="0"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.dll.config_1" ComponentId="{E6326481-61D2-434A-A01C-C36FB3DC6AAF}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll.config_3"/>
-    <ROW Component="Microsoft.VisualBasic.Runtime.dll.config_2" ComponentId="{1F5F36C3-8C30-4C65-8BAD-1656E15078FB}" Directory_="net6.0_4_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Runtime.dll.config_5" Type="0"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.dll_1" ComponentId="{B845645A-0FDE-45EB-844E-8C19C80BC12F}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.dll_12" ComponentId="{FEF2956E-48B4-44EA-A58C-2A76B5EEA671}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll_12"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.dll_2" ComponentId="{EBCD835D-4C98-4C0F-A1AB-E52478BAD6E4}" Directory_="nvidia_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll_2"/>
-    <ROW Component="Microsoft.VisualBasic.Runtime.dll_3" ComponentId="{7426E3E5-75BB-4B94-B47D-1BBC704666B6}" Directory_="net6.0_4_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.dll_4" ComponentId="{EEA1A22B-17CA-44DF-869E-49A98B8D7B96}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll_4"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.pdb" ComponentId="{C3C6EE63-5E49-4EBC-9E4E-CF616B3B6E5E}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Runtime.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.pdb_1" ComponentId="{EB512494-C0ED-42F0-A0BC-5A7FD4215E69}" Directory_="nvidia_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Runtime.pdb_1" Type="4"/>
@@ -571,8 +555,6 @@
     <ROW Component="Microsoft.Win32.SystemEvents.dll_2" ComponentId="{EECE808B-614F-4DBB-AAC1-C0DE5792ECEE}" Directory_="nvidia_Dir" Attributes="0" KeyPath="Microsoft.Win32.SystemEvents.dll_2"/>
     <ROW Component="Microsoft.Win32.SystemEvents.dll_3" ComponentId="{D54B9B25-21A4-4694-976B-CCBB0232DA9D}" Directory_="net6.0_3_Dir" Attributes="0" KeyPath="Microsoft.Win32.SystemEvents.dll_3"/>
     <ROW Component="Microsoft.Win32.SystemEvents.dll_4" ComponentId="{FC52EFC3-197E-4C96-A069-B7FEF11462FF}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.Win32.SystemEvents.dll_4"/>
-    <ROW Component="Microsoft.Win32.SystemEvents.dll_5" ComponentId="{98D1454B-3181-42EC-A692-1E5E00A23477}" Directory_="net6.0_4_Dir" Attributes="0" KeyPath="Microsoft.Win32.SystemEvents.dll_5"/>
-    <ROW Component="Microsoft.Win32.SystemEvents.dll_6" ComponentId="{84C1299A-DFC1-4611-902A-F1EA572004CA}" Directory_="net6.0_8_Dir" Attributes="0" KeyPath="Microsoft.Win32.SystemEvents.dll_6"/>
     <ROW Component="Microsoft.Windows.FeatureAPI.dll" ComponentId="{939287B4-B311-4979-88EE-799AC1393C63}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.Windows.FeatureAPI.dll"/>
     <ROW Component="Microsoft.Windows.FeatureAPI.pdb" ComponentId="{E1986F8C-2EA6-41F0-95F4-12CA6983E2F0}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Windows.FeatureAPI.pdb" Type="4"/>
     <ROW Component="Microsoft.Windows.Ribbon.dll" ComponentId="{ACD1A2A4-798D-41B7-802A-0A07A618CCBB}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.Windows.Ribbon.dll"/>
@@ -619,7 +601,6 @@
     <ROW Component="Parallel.dll" ComponentId="{825C390A-5E2B-4B80-987C-C6A8D79EA9BF}" Directory_="APPDIR" Attributes="256" KeyPath="Parallel.dll"/>
     <ROW Component="Parallel.dll_1" ComponentId="{3FE33655-CC52-499A-A95C-5E214C9F788C}" Directory_="bin_Dir" Attributes="256" KeyPath="Parallel.dll_1"/>
     <ROW Component="Parallel.dll_2" ComponentId="{ACE6ED6E-E9AD-46A0-B09A-169C1D31AC8D}" Directory_="host_Dir" Attributes="256" KeyPath="Parallel.dll_2"/>
-    <ROW Component="Parallel.dll_3" ComponentId="{9CD8F9B2-C435-4A16-AC4F-C8C8649CDA29}" Directory_="net6.0_4_Dir" Attributes="256" KeyPath="Parallel.dll_3"/>
     <ROW Component="Parallel.dll_5" ComponentId="{3916ADE2-2A32-4BAE-B730-84EBCAB773EA}" Directory_="library_Dir" Attributes="256" KeyPath="Parallel.dll_5"/>
     <ROW Component="Parallel.pdb" ComponentId="{AD95993A-6EB8-4AE6-A811-EAE6489E9EA8}" Directory_="APPDIR" Attributes="0" KeyPath="Parallel.pdb" Type="4"/>
     <ROW Component="PipelineHost.dll" ComponentId="{C6AEE233-38F4-4AC3-8F59-25714596C997}" Directory_="APPDIR" Attributes="256" KeyPath="PipelineHost.dll"/>
@@ -628,9 +609,7 @@
     <ROW Component="PkgTool.dll" ComponentId="{B7407482-2A7E-45F5-8C94-ED8EC57BBE31}" Directory_="plugins_Dir" Attributes="256" KeyPath="PkgTool.dll"/>
     <ROW Component="PkgTool.pdb" ComponentId="{DEED36CE-B0AA-4B8D-9EE4-9F0930765F3C}" Directory_="plugins_Dir" Attributes="0" KeyPath="PkgTool.pdb" Type="4"/>
     <ROW Component="ProductInformation" ComponentId="{FADC1164-1C7C-4771-A286-3511D36BDADC}" Directory_="APPDIR" Attributes="260" KeyPath="Version" Options="1"/>
-    <ROW Component="R.dll" ComponentId="{F93DDD70-BF5C-47F8-9108-24EABD4AA1F7}" Directory_="net6.0_4_Dir" Attributes="256" KeyPath="R.dll"/>
     <ROW Component="R.dll_3" ComponentId="{E0C63FA7-1D29-44F5-A58B-2430D2B7E4A0}" Directory_="bin_Dir" Attributes="256" KeyPath="R.dll_3"/>
-    <ROW Component="R.exe" ComponentId="{5AFAF374-4369-4FD5-BFA0-5E38812B82DE}" Directory_="net6.0_4_Dir" Attributes="256" KeyPath="R.exe"/>
     <ROW Component="R.exe_4" ComponentId="{14F569FD-8CFB-4EF8-A3F8-D59BA7A93A97}" Directory_="bin_Dir" Attributes="256" KeyPath="R.exe_4"/>
     <ROW Component="RData.dll" ComponentId="{37C75FB3-509F-4338-B8AE-9916CDCC3457}" Directory_="APPDIR" Attributes="256" KeyPath="RData.dll"/>
     <ROW Component="RData.dll_5" ComponentId="{F79B1CBB-1572-4D93-BAD8-941B1AC28D60}" Directory_="library_Dir" Attributes="256" KeyPath="RData.dll_5"/>
@@ -640,23 +619,17 @@
     <ROW Component="README.txt" ComponentId="{BC3C52BC-377D-4729-81AC-BA35EA59E7D5}" Directory_="APPDIR" Attributes="256" KeyPath="README.txt"/>
     <ROW Component="REnv.dll" ComponentId="{680F61AC-8E8E-4ECB-842B-89136EAD0FF8}" Directory_="host_Dir" Attributes="256" KeyPath="REnv.dll"/>
     <ROW Component="REnv.dll.config" ComponentId="{6E09CBB0-018E-4DD1-924E-34FD4FA313E9}" Directory_="library_Dir" Attributes="256" KeyPath="REnv.dll.config_2"/>
-    <ROW Component="REnv.dll_1" ComponentId="{2A2B0D93-494D-451C-A074-948E4BB89230}" Directory_="net6.0_4_Dir" Attributes="256" KeyPath="REnv.dll_1"/>
     <ROW Component="REnv.dll_12" ComponentId="{EDD53F76-66A2-4486-B2D0-0FE99112D125}" Directory_="library_Dir" Attributes="256" KeyPath="REnv.dll_12"/>
     <ROW Component="REnv.dll_3" ComponentId="{8AC4F6C4-2F77-4EF4-AC4F-BE56A26592DB}" Directory_="APPDIR" Attributes="256" KeyPath="REnv.dll_3"/>
     <ROW Component="REnv.dll_6" ComponentId="{0A6B97C1-64A8-4591-BBC7-A9C5D61245A7}" Directory_="bin_Dir" Attributes="256" KeyPath="REnv.dll_6"/>
     <ROW Component="REnv.pdb" ComponentId="{A59E7642-17E3-4CBE-9A22-6A018C296FF6}" Directory_="APPDIR" Attributes="0" KeyPath="REnv.pdb" Type="4"/>
     <ROW Component="ReleaseNotes.docx" ComponentId="{C89F9217-25CE-46C6-92A0-E41CA58D8AEA}" Directory_="NewFolder_2_Dir" Attributes="0" KeyPath="ReleaseNotes.docx" Type="0"/>
     <ROW Component="Rlapack.dll" ComponentId="{C08012A2-5A0F-4DE5-A380-A4C8C87EA7FD}" Directory_="library_Dir" Attributes="256" KeyPath="Rlapack.dll"/>
-    <ROW Component="Rscript.dll" ComponentId="{3DD6ED7C-440C-44C0-AFB3-961C9FE0A2C6}" Directory_="net6.0_4_Dir" Attributes="256" KeyPath="Rscript.dll"/>
     <ROW Component="Rscript.dll_3" ComponentId="{D0CCC07B-2407-4099-B543-F74EA74FFDEE}" Directory_="bin_Dir" Attributes="256" KeyPath="Rscript.dll_3"/>
-    <ROW Component="Rscript.exe" ComponentId="{7074B58C-7FF5-4087-A286-B6D396755F95}" Directory_="net6.0_4_Dir" Attributes="256" KeyPath="Rscript.exe"/>
     <ROW Component="Rscript.exe_5" ComponentId="{DD17189D-DC4C-4648-A10C-95064554E915}" Directory_="bin_Dir" Attributes="256" KeyPath="Rscript.exe_5"/>
-    <ROW Component="Rserve.dll" ComponentId="{62584835-C0CB-4BB8-86A2-055E1378F82B}" Directory_="net6.0_4_Dir" Attributes="256" KeyPath="Rserve.dll"/>
     <ROW Component="Rserve.dll_1" ComponentId="{7EF98A11-0187-4874-8CC5-4383F445CB7C}" Directory_="bin_Dir" Attributes="256" KeyPath="Rserve.dll_1"/>
-    <ROW Component="Rserve.exe" ComponentId="{10F5E546-3DD9-4DC2-BA58-D2B21BA9393A}" Directory_="net6.0_4_Dir" Attributes="256" KeyPath="Rserve.exe"/>
     <ROW Component="Rserve.exe_2" ComponentId="{BC70E7B9-401B-4B3D-9B49-B07A4835CA6F}" Directory_="bin_Dir" Attributes="256" KeyPath="Rserve.exe_2"/>
     <ROW Component="Rserver.dll" ComponentId="{B2254DD1-BBDD-4A86-87A5-A86770732088}" Directory_="library_Dir" Attributes="256" KeyPath="Rserver.dll"/>
-    <ROW Component="Rserver.dll_1" ComponentId="{D8032267-9555-4E59-BCB4-B47A46B37CBA}" Directory_="net6.0_4_Dir" Attributes="256" KeyPath="Rserver.dll_1"/>
     <ROW Component="Rserver.dll_2" ComponentId="{73BEB323-BE35-46D2-B3EB-05C271B766D2}" Directory_="bin_Dir" Attributes="256" KeyPath="Rserver.dll_2"/>
     <ROW Component="Rstudio" ComponentId="{1CFB315F-1BED-42AF-B36E-33F762D7C4A9}" Directory_="Rstudio_Dir" Attributes="256"/>
     <ROW Component="Rstudio.dll" ComponentId="{43F30DE2-D099-44BA-A33F-3314AC952108}" Directory_="library_Dir" Attributes="256" KeyPath="Rstudio.dll"/>
@@ -727,31 +700,24 @@
     <ROW Component="System.CodeDom.dll" ComponentId="{8F8842EC-C783-4F87-9D8B-6E2156FECA3A}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.CodeDom.dll"/>
     <ROW Component="System.ComponentModel.Annotations.dll" ComponentId="{29BC3C3F-E1BC-465E-A099-EACF51FE9AB6}" Directory_="APPDIR" Attributes="256" KeyPath="System.ComponentModel.Annotations.dll"/>
     <ROW Component="System.Composition.AttributedModel.dll" ComponentId="{8519BE25-4B79-40E9-97C8-44ED75DFCAC0}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Composition.AttributedModel.dll"/>
-    <ROW Component="System.Composition.AttributedModel.dll_1" ComponentId="{FB4A2E2F-C762-4AD2-A67A-B807DE26E92D}" Directory_="net6.0_4_Dir" Attributes="0" KeyPath="System.Composition.AttributedModel.dll_1"/>
     <ROW Component="System.Composition.AttributedModel.dll_5" ComponentId="{70C3BA0B-E511-44E3-A094-E6F26D78DE66}" Directory_="bin_Dir" Attributes="256" KeyPath="System.Composition.AttributedModel.dll_5"/>
     <ROW Component="System.Composition.AttributedModel.dll_6" ComponentId="{A661471E-2BF3-4B39-B488-F308BBFD4364}" Directory_="APPDIR" Attributes="256" KeyPath="System.Composition.AttributedModel.dll_6"/>
     <ROW Component="System.Composition.Convention.dll" ComponentId="{413077CB-4E85-4013-AE86-0AE425A6E778}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Composition.Convention.dll"/>
     <ROW Component="System.Composition.Convention.dll_1" ComponentId="{ABD04FE1-4976-4C35-9597-6A218C6159DA}" Directory_="APPDIR" Attributes="256" KeyPath="System.Composition.Convention.dll_1"/>
-    <ROW Component="System.Composition.Convention.dll_2" ComponentId="{CD29DE5F-5BFA-4E1E-A267-06F559A21ABE}" Directory_="net6.0_4_Dir" Attributes="0" KeyPath="System.Composition.Convention.dll_2"/>
     <ROW Component="System.Composition.Convention.dll_5" ComponentId="{3C13FA18-94CC-434E-8652-5B51E900A185}" Directory_="bin_Dir" Attributes="256" KeyPath="System.Composition.Convention.dll_5"/>
     <ROW Component="System.Composition.Hosting.dll" ComponentId="{35625A78-B552-4B64-B2EC-DCC9DD7DA5AE}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Composition.Hosting.dll"/>
     <ROW Component="System.Composition.Hosting.dll_1" ComponentId="{2E868AB2-2456-4530-93A5-9F7315816775}" Directory_="APPDIR" Attributes="256" KeyPath="System.Composition.Hosting.dll_1"/>
-    <ROW Component="System.Composition.Hosting.dll_2" ComponentId="{CD14C109-C436-498E-8667-979D0D4D49C9}" Directory_="net6.0_4_Dir" Attributes="0" KeyPath="System.Composition.Hosting.dll_2"/>
     <ROW Component="System.Composition.Hosting.dll_5" ComponentId="{73C23720-B237-44AC-AAEF-6A31BE8AADEA}" Directory_="bin_Dir" Attributes="256" KeyPath="System.Composition.Hosting.dll_5"/>
     <ROW Component="System.Composition.Runtime.dll" ComponentId="{7FA6FEB1-0085-44F1-8BE5-FBDAC13FF19D}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Composition.Runtime.dll"/>
     <ROW Component="System.Composition.Runtime.dll_1" ComponentId="{7BB55119-6BBE-4897-BCAB-053906A28A36}" Directory_="APPDIR" Attributes="256" KeyPath="System.Composition.Runtime.dll_1"/>
-    <ROW Component="System.Composition.Runtime.dll_2" ComponentId="{6D6AABDE-0A5E-41EF-939F-9F3E937DD4D6}" Directory_="net6.0_4_Dir" Attributes="0" KeyPath="System.Composition.Runtime.dll_2"/>
     <ROW Component="System.Composition.Runtime.dll_5" ComponentId="{E9986C9E-67C8-4126-A304-9A22D24A3BC7}" Directory_="bin_Dir" Attributes="256" KeyPath="System.Composition.Runtime.dll_5"/>
     <ROW Component="System.Composition.TypedParts.dll" ComponentId="{6EF19618-42ED-45AF-A25E-C9FFF4561388}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Composition.TypedParts.dll"/>
     <ROW Component="System.Composition.TypedParts.dll_1" ComponentId="{EC25EFC7-93B5-49B8-88AA-0A94ECE935F9}" Directory_="APPDIR" Attributes="256" KeyPath="System.Composition.TypedParts.dll_1"/>
-    <ROW Component="System.Composition.TypedParts.dll_2" ComponentId="{1E0474F1-CCD4-4376-8B46-460B5418CFB7}" Directory_="net6.0_4_Dir" Attributes="0" KeyPath="System.Composition.TypedParts.dll_2"/>
     <ROW Component="System.Composition.TypedParts.dll_5" ComponentId="{A5991169-3FE4-471D-8B9F-A98B94120FF3}" Directory_="bin_Dir" Attributes="256" KeyPath="System.Composition.TypedParts.dll_5"/>
     <ROW Component="System.Configuration.ConfigurationManager.dll" ComponentId="{D7AD2012-9C45-44E4-B2AD-16867A8B2B70}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Configuration.ConfigurationManager.dll"/>
     <ROW Component="System.Configuration.ConfigurationManager.dll_1" ComponentId="{072CFF97-E245-4BE1-99F5-931B5FDAB1C1}" Directory_="APPDIR" Attributes="0" KeyPath="System.Configuration.ConfigurationManager.dll_1"/>
-    <ROW Component="System.Configuration.ConfigurationManager.dll_2" ComponentId="{B09B53DC-9648-4F59-BFF3-8D164D3B8F2D}" Directory_="net6.0_4_Dir" Attributes="0" KeyPath="System.Configuration.ConfigurationManager.dll_2"/>
     <ROW Component="System.Drawing.Common.dll" ComponentId="{FB8E0761-69C1-409A-88A5-A093F773D038}" Directory_="net6.0_Dir" Attributes="256" KeyPath="System.Drawing.Common.dll"/>
     <ROW Component="System.Drawing.Common.dll_1" ComponentId="{2FF8DA4A-840A-467F-A12A-2EA4332D2A6F}" Directory_="net6.0_1_Dir" Attributes="256" KeyPath="System.Drawing.Common.dll_1"/>
-    <ROW Component="System.Drawing.Common.dll_10" ComponentId="{B64F494B-EEDA-414E-AC02-011F33459D9D}" Directory_="net6.0_4_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_10"/>
     <ROW Component="System.Drawing.Common.dll_13" ComponentId="{A0B052BB-0F1A-49F7-92B3-0AEEA2266322}" Directory_="bin_Dir" Attributes="256" KeyPath="System.Drawing.Common.dll_13"/>
     <ROW Component="System.Drawing.Common.dll_2" ComponentId="{C7030214-8D1F-455B-90A5-2E85B879A304}" Directory_="net6.0_5_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_2"/>
     <ROW Component="System.Drawing.Common.dll_3" ComponentId="{F3C1031D-71AD-41C2-9E18-74D70AE20E88}" Directory_="net6.0_6_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_3"/>
@@ -759,17 +725,13 @@
     <ROW Component="System.Drawing.Common.dll_5" ComponentId="{C9483DB6-7334-447F-9111-9A1498C9C8B7}" Directory_="APPDIR" Attributes="256" KeyPath="System.Drawing.Common.dll_5"/>
     <ROW Component="System.Drawing.Common.dll_6" ComponentId="{82D3E6B8-18CC-44DB-8731-07AD8E19BCAC}" Directory_="net6.0_3_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_6"/>
     <ROW Component="System.Drawing.Common.dll_7" ComponentId="{B61B3B74-B1FB-4310-BF7F-AF7AC5E90BF0}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_7"/>
-    <ROW Component="System.Drawing.Common.dll_8" ComponentId="{9C3EE9EA-0D5B-432A-9173-80327D69D254}" Directory_="net6.0_7_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_8"/>
-    <ROW Component="System.Drawing.Common.dll_9" ComponentId="{729F1963-5CBB-4231-945D-AE18054B05FA}" Directory_="net6.0_8_Dir" Attributes="0" KeyPath="System.Drawing.Common.dll_9"/>
     <ROW Component="System.Management.dll" ComponentId="{51CCE2AD-1FDA-4162-8585-ED30564533CE}" Directory_="net6.0_3_Dir" Attributes="0" KeyPath="System.Management.dll"/>
     <ROW Component="System.Management.dll_1" ComponentId="{2916DFD0-9968-4E42-BB68-0F6C17BA9F6F}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Management.dll_1"/>
     <ROW Component="System.Memory.dll_2" ComponentId="{37EBBB97-6017-46E4-AC04-AD3FB3EB9131}" Directory_="APPDIR" Attributes="256" KeyPath="System.Memory.dll_2"/>
     <ROW Component="System.Numerics.Tensors.dll" ComponentId="{C303739F-A4A8-4A4E-B6B0-3664F41949EB}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Numerics.Tensors.dll"/>
     <ROW Component="System.Numerics.Tensors.dll_1" ComponentId="{94DAE157-683F-4818-93A9-59284F9CBDE9}" Directory_="APPDIR" Attributes="0" KeyPath="System.Numerics.Tensors.dll_1"/>
-    <ROW Component="System.Numerics.Tensors.dll_2" ComponentId="{BB4B62AA-4257-47AC-9B56-D8A3AA960C48}" Directory_="net6.0_4_Dir" Attributes="0" KeyPath="System.Numerics.Tensors.dll_2"/>
     <ROW Component="System.Numerics.Vectors.dll_2" ComponentId="{3D47FC0B-6349-41D3-92EC-307A6F2D8E41}" Directory_="APPDIR" Attributes="256" KeyPath="System.Numerics.Vectors.dll_2"/>
     <ROW Component="System.Resources.Extensions.dll" ComponentId="{5F9E9865-E3D8-4C64-AFE0-E6767759C7E9}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Resources.Extensions.dll"/>
-    <ROW Component="System.Resources.Extensions.dll_1" ComponentId="{28C9E526-EDA4-4FE9-B115-FA132184E6DE}" Directory_="net6.0_4_Dir" Attributes="0" KeyPath="System.Resources.Extensions.dll_1"/>
     <ROW Component="System.Resources.Extensions.dll_5" ComponentId="{7EC4EF76-1BA4-4D1F-A6ED-3632F865E587}" Directory_="bin_Dir" Attributes="256" KeyPath="System.Resources.Extensions.dll_5"/>
     <ROW Component="System.Resources.Extensions.dll_6" ComponentId="{41686767-0A2C-4AD4-83C9-C7169E417F30}" Directory_="APPDIR" Attributes="256" KeyPath="System.Resources.Extensions.dll_6"/>
     <ROW Component="System.Runtime.CompilerServices.Unsafe.dll_4" ComponentId="{1AB38C3B-DC16-4FAA-884C-0EA9A2958257}" Directory_="APPDIR" Attributes="256" KeyPath="System.Runtime.CompilerServices.Unsafe.dll_4"/>
@@ -778,19 +740,14 @@
     <ROW Component="System.Security.Cryptography.ProtectedData.dll" ComponentId="{2323932E-9916-4EFF-A541-795E27A82FF2}" Directory_="net6.0_1_Dir" Attributes="0" KeyPath="System.Security.Cryptography.ProtectedData.dll"/>
     <ROW Component="System.Security.Cryptography.ProtectedData.dll_1" ComponentId="{D617D9A2-51AB-41ED-A5DA-2639F562B2AE}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Security.Cryptography.ProtectedData.dll_1"/>
     <ROW Component="System.Security.Cryptography.ProtectedData.dll_2" ComponentId="{5D48791B-7134-4376-A173-5939F94ECEA2}" Directory_="net6.0_6_Dir" Attributes="0" KeyPath="System.Security.Cryptography.ProtectedData.dll_2"/>
-    <ROW Component="System.Security.Cryptography.ProtectedData.dll_3" ComponentId="{5AA3CA44-B16B-458F-81E1-26893937AF41}" Directory_="net6.0_8_Dir" Attributes="0" KeyPath="System.Security.Cryptography.ProtectedData.dll_3"/>
-    <ROW Component="System.Security.Cryptography.ProtectedData.dll_4" ComponentId="{FD39874C-AC3F-4106-9B5E-E5B9BBDEA44E}" Directory_="net6.0_4_Dir" Attributes="0" KeyPath="System.Security.Cryptography.ProtectedData.dll_4"/>
     <ROW Component="System.Security.Permissions.dll" ComponentId="{FFD3E0FD-C862-4860-92E8-65A5727CED20}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Security.Permissions.dll"/>
     <ROW Component="System.Security.Permissions.dll_1" ComponentId="{1AD6749E-36C8-4DEB-88A0-7E4CDE178B3E}" Directory_="APPDIR" Attributes="0" KeyPath="System.Security.Permissions.dll_1"/>
-    <ROW Component="System.Security.Permissions.dll_2" ComponentId="{E436C7F3-59A9-4912-A5B4-69863CA2C488}" Directory_="net6.0_4_Dir" Attributes="0" KeyPath="System.Security.Permissions.dll_2"/>
     <ROW Component="System.Security.Principal.Windows.dll" ComponentId="{351E2342-B6E5-4F51-92FC-48D47D07AF1B}" Directory_="APPDIR" Attributes="0" KeyPath="System.Security.Principal.Windows.dll"/>
     <ROW Component="System.Text.Encoding.CodePages.dll_6" ComponentId="{3FCB4354-BF05-445A-9025-1CD26EA3D60D}" Directory_="APPDIR" Attributes="256" KeyPath="System.Text.Encoding.CodePages.dll_6"/>
     <ROW Component="System.Text.Encodings.Web.dll" ComponentId="{42FC3573-00B8-41B0-AE43-2052A550C455}" Directory_="APPDIR" Attributes="256" KeyPath="System.Text.Encodings.Web.dll"/>
     <ROW Component="System.Windows.Extensions.dll" ComponentId="{867D6714-0E49-4401-81E8-29605B8BA165}" Directory_="net6.0_1_Dir" Attributes="0" KeyPath="System.Windows.Extensions.dll"/>
     <ROW Component="System.Windows.Extensions.dll_1" ComponentId="{C47CF8DA-3F8F-49E1-97A9-9C55EAB1D8C0}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Windows.Extensions.dll_1"/>
     <ROW Component="System.Windows.Extensions.dll_2" ComponentId="{2F828922-962F-4CFC-BC36-500032091A4B}" Directory_="net6.0_6_Dir" Attributes="0" KeyPath="System.Windows.Extensions.dll_2"/>
-    <ROW Component="System.Windows.Extensions.dll_3" ComponentId="{3C7B75C6-297F-4F8D-97AC-AD00F10C2785}" Directory_="net6.0_8_Dir" Attributes="0" KeyPath="System.Windows.Extensions.dll_3"/>
-    <ROW Component="System.Windows.Extensions.dll_4" ComponentId="{AE641A08-BE35-4D97-A566-A61A558D3703}" Directory_="net6.0_4_Dir" Attributes="0" KeyPath="System.Windows.Extensions.dll_4"/>
     <ROW Component="System.Windows.Forms.DataGridView.dll" ComponentId="{0042629F-1D15-48FF-8D0A-6EF08F56381D}" Directory_="APPDIR" Attributes="256" KeyPath="System.Windows.Forms.DataGridView.dll"/>
     <ROW Component="System.Windows.Forms.TabControl.dll" ComponentId="{44DACCB1-A234-4C92-A226-ACA00CDC595D}" Directory_="APPDIR" Attributes="256" KeyPath="System.Windows.Forms.TabControl.dll"/>
     <ROW Component="System.Windows.Forms.ThemeColorPicker.dll" ComponentId="{B602F318-9812-49D7-8DCE-385FF4BAD8DF}" Directory_="APPDIR" Attributes="256" KeyPath="System.Windows.Forms.ThemeColorPicker.dll"/>
@@ -5332,51 +5289,6 @@
     <ROW File="ThermoFisher.CommonCore.RawFileReader.xml" Component_="Mzkit_win32.LCMSViewer.dll.config" FileName="THERMO~4.XML|ThermoFisher.CommonCore.RawFileReader.xml" Attributes="0" SourcePath="..\..\..\dist\bin\ThermoFisher.CommonCore.RawFileReader.xml" SelfReg="false"/>
     <ROW File="UMapx.xml" Component_="Mzkit_win32.LCMSViewer.dll.config" FileName="UMapx.xml" Attributes="0" SourcePath="..\..\..\dist\bin\UMapx.xml" SelfReg="false"/>
     <ROW File="WkHtmlToPdf.CLI.InteropService.xml" Component_="Mzkit_win32.LCMSViewer.dll.config" FileName="WKHTML~1.XML|WkHtmlToPdf.CLI.InteropService.xml" Attributes="0" SourcePath="..\..\..\dist\bin\WkHtmlToPdf.CLI.InteropService.xml" SelfReg="false"/>
-    <ROW File="Flute.Http.dll_2" Component_="Flute.Http.dll_2" FileName="FLUTEH~1.DLL|Flute.Http.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\Flute.Http.dll" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Data.BinaryData.dll_3" Component_="Microsoft.VisualBasic.Data.BinaryData.dll_3" FileName="MICROS~1.DLL|Microsoft.VisualBasic.Data.BinaryData.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\Microsoft.VisualBasic.Data.BinaryData.dll" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Data.Framework.dll_3" Component_="Microsoft.VisualBasic.Data.Framework.dll_3" FileName="MICROS~2.DLL|Microsoft.VisualBasic.Data.Framework.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\Microsoft.VisualBasic.Data.Framework.dll" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Data.IO.MessagePack.dll_3" Component_="Microsoft.VisualBasic.Data.IO.MessagePack.dll_3" FileName="MICROS~3.DLL|Microsoft.VisualBasic.Data.IO.MessagePack.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\Microsoft.VisualBasic.Data.IO.MessagePack.dll" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.MIME.application.json.dll_3" Component_="Microsoft.VisualBasic.MIME.application.json.dll_3" FileName="MICROS~4.DLL|Microsoft.VisualBasic.MIME.application.json.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\Microsoft.VisualBasic.MIME.application.json.dll" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Network.dll_2" Component_="Microsoft.VisualBasic.Network.dll_2" FileName="MICROS~5.DLL|Microsoft.VisualBasic.Network.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\Microsoft.VisualBasic.Network.dll" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Runtime.dll_3" Component_="Microsoft.VisualBasic.Runtime.dll_3" FileName="MICROS~6.DLL|Microsoft.VisualBasic.Runtime.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\Microsoft.VisualBasic.Runtime.dll" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Runtime.dll.config_5" Component_="Microsoft.VisualBasic.Runtime.dll.config_2" FileName="MICROS~1.CON|Microsoft.VisualBasic.Runtime.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\Microsoft.VisualBasic.Runtime.dll.config" SelfReg="false"/>
-    <ROW File="Microsoft.Win32.SystemEvents.dll_5" Component_="Microsoft.Win32.SystemEvents.dll_5" FileName="MICROS~7.DLL|Microsoft.Win32.SystemEvents.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\Microsoft.Win32.SystemEvents.dll" SelfReg="false"/>
-    <ROW File="Parallel.dll_3" Component_="Parallel.dll_3" FileName="Parallel.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\Parallel.dll" SelfReg="false"/>
-    <ROW File="R.deps.json" Component_="Microsoft.VisualBasic.Runtime.dll.config_2" FileName="R#DEPS~1.JSO|R#.deps.json" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\R#.deps.json" SelfReg="false"/>
-    <ROW File="R.dll" Component_="R.dll" FileName="R#.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\R#.dll" SelfReg="false"/>
-    <ROW File="R.dll.config" Component_="Microsoft.VisualBasic.Runtime.dll.config_2" FileName="R#DLL~1.CON|R#.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\R#.dll.config" SelfReg="false"/>
-    <ROW File="R.exe" Component_="R.exe" FileName="R#.exe" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\R#.exe" SelfReg="false" DigSign="true"/>
-    <ROW File="R.runtimeconfig.json" Component_="Microsoft.VisualBasic.Runtime.dll.config_2" FileName="R#RUNT~1.JSO|R#.runtimeconfig.json" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\R#.runtimeconfig.json" SelfReg="false"/>
-    <ROW File="REnv.dll_1" Component_="REnv.dll_1" FileName="REnv.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\REnv.dll" SelfReg="false"/>
-    <ROW File="REnv.dll.config_1" Component_="Microsoft.VisualBasic.Runtime.dll.config_2" FileName="RENVDL~1.CON|REnv.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\REnv.dll.config" SelfReg="false"/>
-    <ROW File="Rscript.deps.json" Component_="Microsoft.VisualBasic.Runtime.dll.config_2" FileName="RSCRIP~1.JSO|Rscript.deps.json" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\Rscript.deps.json" SelfReg="false"/>
-    <ROW File="Rscript.dll" Component_="Rscript.dll" FileName="Rscript.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\Rscript.dll" SelfReg="false"/>
-    <ROW File="Rscript.dll.config" Component_="Microsoft.VisualBasic.Runtime.dll.config_2" FileName="RSCRIP~1.CON|Rscript.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\Rscript.dll.config" SelfReg="false"/>
-    <ROW File="Rscript.exe" Component_="Rscript.exe" FileName="Rscript.exe" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\Rscript.exe" SelfReg="false" DigSign="true"/>
-    <ROW File="Rscript.runtimeconfig.json" Component_="Microsoft.VisualBasic.Runtime.dll.config_2" FileName="RSCRIP~2.JSO|Rscript.runtimeconfig.json" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\Rscript.runtimeconfig.json" SelfReg="false"/>
-    <ROW File="Rserve.deps.json" Component_="Microsoft.VisualBasic.Runtime.dll.config_2" FileName="RSERVE~1.JSO|Rserve.deps.json" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\Rserve.deps.json" SelfReg="false"/>
-    <ROW File="Rserve.dll" Component_="Rserve.dll" FileName="Rserve.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\Rserve.dll" SelfReg="false"/>
-    <ROW File="Rserve.dll.config" Component_="Microsoft.VisualBasic.Runtime.dll.config_2" FileName="RSERVE~1.CON|Rserve.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\Rserve.dll.config" SelfReg="false"/>
-    <ROW File="Rserve.exe" Component_="Rserve.exe" FileName="Rserve.exe" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\Rserve.exe" SelfReg="false" DigSign="true"/>
-    <ROW File="Rserve.runtimeconfig.json" Component_="Microsoft.VisualBasic.Runtime.dll.config_2" FileName="RSERVE~2.JSO|Rserve.runtimeconfig.json" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\Rserve.runtimeconfig.json" SelfReg="false"/>
-    <ROW File="Rserver.dll_1" Component_="Rserver.dll_1" FileName="Rserver.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\Rserver.dll" SelfReg="false"/>
-    <ROW File="System.Drawing.Common.dll_8" Component_="System.Drawing.Common.dll_8" FileName="SYSTEM~1.DLL|System.Drawing.Common.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll" SelfReg="false"/>
-    <ROW File="Microsoft.Win32.SystemEvents.dll_6" Component_="Microsoft.Win32.SystemEvents.dll_6" FileName="MICROS~1.DLL|Microsoft.Win32.SystemEvents.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll" SelfReg="false"/>
-    <ROW File="System.Drawing.Common.dll_9" Component_="System.Drawing.Common.dll_9" FileName="SYSTEM~1.DLL|System.Drawing.Common.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll" SelfReg="false"/>
-    <ROW File="System.Security.Cryptography.ProtectedData.dll_3" Component_="System.Security.Cryptography.ProtectedData.dll_3" FileName="SYSTEM~2.DLL|System.Security.Cryptography.ProtectedData.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll" SelfReg="false"/>
-    <ROW File="System.Windows.Extensions.dll_3" Component_="System.Windows.Extensions.dll_3" FileName="SYSTEM~3.DLL|System.Windows.Extensions.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll" SelfReg="false"/>
-    <ROW File="System.Composition.AttributedModel.dll_1" Component_="System.Composition.AttributedModel.dll_1" FileName="SYSTEM~1.DLL|System.Composition.AttributedModel.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\System.Composition.AttributedModel.dll" SelfReg="false"/>
-    <ROW File="System.Composition.Convention.dll_2" Component_="System.Composition.Convention.dll_2" FileName="SYSTEM~2.DLL|System.Composition.Convention.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\System.Composition.Convention.dll" SelfReg="false"/>
-    <ROW File="System.Composition.Hosting.dll_2" Component_="System.Composition.Hosting.dll_2" FileName="SYSTEM~3.DLL|System.Composition.Hosting.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\System.Composition.Hosting.dll" SelfReg="false"/>
-    <ROW File="System.Composition.Runtime.dll_2" Component_="System.Composition.Runtime.dll_2" FileName="SYSTEM~4.DLL|System.Composition.Runtime.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\System.Composition.Runtime.dll" SelfReg="false"/>
-    <ROW File="System.Composition.TypedParts.dll_2" Component_="System.Composition.TypedParts.dll_2" FileName="SYSTEM~5.DLL|System.Composition.TypedParts.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\System.Composition.TypedParts.dll" SelfReg="false"/>
-    <ROW File="System.Configuration.ConfigurationManager.dll_2" Component_="System.Configuration.ConfigurationManager.dll_2" FileName="SYSTEM~6.DLL|System.Configuration.ConfigurationManager.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\System.Configuration.ConfigurationManager.dll" SelfReg="false"/>
-    <ROW File="System.Drawing.Common.dll_10" Component_="System.Drawing.Common.dll_10" FileName="SYSTEM~7.DLL|System.Drawing.Common.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\System.Drawing.Common.dll" SelfReg="false"/>
-    <ROW File="System.Numerics.Tensors.dll_2" Component_="System.Numerics.Tensors.dll_2" FileName="SYSTEM~8.DLL|System.Numerics.Tensors.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\System.Numerics.Tensors.dll" SelfReg="false"/>
-    <ROW File="System.Resources.Extensions.dll_1" Component_="System.Resources.Extensions.dll_1" FileName="SYSTEM~9.DLL|System.Resources.Extensions.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\System.Resources.Extensions.dll" SelfReg="false"/>
-    <ROW File="System.Security.Cryptography.ProtectedData.dll_4" Component_="System.Security.Cryptography.ProtectedData.dll_4" FileName="SYSTE~10.DLL|System.Security.Cryptography.ProtectedData.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\System.Security.Cryptography.ProtectedData.dll" SelfReg="false"/>
-    <ROW File="System.Security.Permissions.dll_2" Component_="System.Security.Permissions.dll_2" FileName="SYSTE~11.DLL|System.Security.Permissions.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\System.Security.Permissions.dll" SelfReg="false"/>
-    <ROW File="System.Windows.Extensions.dll_4" Component_="System.Windows.Extensions.dll_4" FileName="SYSTE~12.DLL|System.Windows.Extensions.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\net6.0\System.Windows.Extensions.dll" SelfReg="false"/>
     <ROW File="stent.nrrd" Component_="d_canvas.css" FileName="STENT~1.NRR|stent.nrrd" Attributes="0" SourcePath="..\webview\assets\stent.nrrd" SelfReg="false"/>
     <ROW File="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" Component_="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll_1" FileName="BIONO~35.DLL|BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" SelfReg="false"/>
     <ROW File="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.pdb" Component_="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" FileName="BIONO~35.PDB|BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.pdb" SelfReg="false"/>
@@ -6271,41 +6183,6 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Mzkit_win32.LCMSViewer.dll.config"/>
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.LCMSViewer.dll.config_1"/>
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.LCMSViewer.dll_1"/>
-    <ROW Feature_="MainFeature" Component_="Flute.Http.dll_2"/>
-    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.BinaryData.dll_3"/>
-    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.Framework.dll_3"/>
-    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.IO.MessagePack.dll_3"/>
-    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MIME.application.json.dll_3"/>
-    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Network.dll_2"/>
-    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Runtime.dll_3"/>
-    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Runtime.dll.config_2"/>
-    <ROW Feature_="MainFeature" Component_="Microsoft.Win32.SystemEvents.dll_5"/>
-    <ROW Feature_="MainFeature" Component_="Parallel.dll_3"/>
-    <ROW Feature_="MainFeature" Component_="R.dll"/>
-    <ROW Feature_="MainFeature" Component_="R.exe"/>
-    <ROW Feature_="MainFeature" Component_="REnv.dll_1"/>
-    <ROW Feature_="MainFeature" Component_="Rscript.dll"/>
-    <ROW Feature_="MainFeature" Component_="Rscript.exe"/>
-    <ROW Feature_="MainFeature" Component_="Rserve.dll"/>
-    <ROW Feature_="MainFeature" Component_="Rserve.exe"/>
-    <ROW Feature_="MainFeature" Component_="Rserver.dll_1"/>
-    <ROW Feature_="MainFeature" Component_="System.Drawing.Common.dll_8"/>
-    <ROW Feature_="MainFeature" Component_="Microsoft.Win32.SystemEvents.dll_6"/>
-    <ROW Feature_="MainFeature" Component_="System.Drawing.Common.dll_9"/>
-    <ROW Feature_="MainFeature" Component_="System.Security.Cryptography.ProtectedData.dll_3"/>
-    <ROW Feature_="MainFeature" Component_="System.Windows.Extensions.dll_3"/>
-    <ROW Feature_="MainFeature" Component_="System.Composition.AttributedModel.dll_1"/>
-    <ROW Feature_="MainFeature" Component_="System.Composition.Convention.dll_2"/>
-    <ROW Feature_="MainFeature" Component_="System.Composition.Hosting.dll_2"/>
-    <ROW Feature_="MainFeature" Component_="System.Composition.Runtime.dll_2"/>
-    <ROW Feature_="MainFeature" Component_="System.Composition.TypedParts.dll_2"/>
-    <ROW Feature_="MainFeature" Component_="System.Configuration.ConfigurationManager.dll_2"/>
-    <ROW Feature_="MainFeature" Component_="System.Drawing.Common.dll_10"/>
-    <ROW Feature_="MainFeature" Component_="System.Numerics.Tensors.dll_2"/>
-    <ROW Feature_="MainFeature" Component_="System.Resources.Extensions.dll_1"/>
-    <ROW Feature_="MainFeature" Component_="System.Security.Cryptography.ProtectedData.dll_4"/>
-    <ROW Feature_="MainFeature" Component_="System.Security.Permissions.dll_2"/>
-    <ROW Feature_="MainFeature" Component_="System.Windows.Extensions.dll_4"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll"/>
     <ROW Feature_="MainFeature" Component_="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll_1"/>
   </COMPONENT>
