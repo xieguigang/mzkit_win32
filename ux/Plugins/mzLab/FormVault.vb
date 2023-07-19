@@ -1,6 +1,9 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
+﻿Imports System.IO
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.PackLib
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
+Imports Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.Levenshtein
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Language
 Imports Mzkit_win32.BasicMDIForm
@@ -9,6 +12,7 @@ Public Class FormVault
 
     Dim stdlib As SpectrumReader
     Dim spectrum As PeakMs2
+    Dim allMass As MassIndex()
 
     Public Sub OpenDatabase()
         Using file As New OpenFileDialog With {.Filter = "any file(*.*)|*.*"}
@@ -35,7 +39,12 @@ Public Class FormVault
 
     Private Sub loadMetabolites(fileName As String, println As Action(Of String))
         Dim tree = Win7StyleTreeView1.Nodes.Add(stdlib.ToString)
-        Dim allMass = stdlib.LoadMass.ToArray
+
+        allMass = stdlib.LoadMass.ToArray
+        loadMetabolites(allMass, tree, println)
+    End Sub
+
+    Private Sub loadMetabolites(allMass As MassIndex(), tree As TreeNode, println As Action(Of String))
         Dim i As i32 = 1
 
         For Each mass As MassIndex In allMass
@@ -56,7 +65,7 @@ Public Class FormVault
         Text = "Library Viewer"
         TabText = Text
 
-        Call ApplyVsTheme(ContextMenuStrip1)
+        Call ApplyVsTheme(ContextMenuStrip1, ContextMenuStrip2, ToolStrip1)
     End Sub
 
     Private Sub Win7StyleTreeView1_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles Win7StyleTreeView1.AfterSelect
@@ -107,5 +116,114 @@ Public Class FormVault
 
         Call doc.LoadMs2(spectrum)
         Call doc.RunSearch()
+    End Sub
+
+    Private Sub ExportMGFIonsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportMGFIonsToolStripMenuItem.Click
+        Using file As New SaveFileDialog With {.Filter = "MGF Ions(*.mgf)|*.mgf"}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim node = Win7StyleTreeView1.SelectedNode
+
+                Using mgf As New StreamWriter(file.FileName.Open(FileMode.OpenOrCreate, doClear:=True))
+                    If TypeOf node.Tag Is MassIndex Then
+                        Call SaveMass(node.Tag, mgf)
+                    Else
+                        Call TaskProgress.RunAction(
+                            run:=Sub(proc As ITaskProgress)
+                                     Call proc.SetProgressMode()
+                                     Call proc.SetProgress(0)
+
+                                     ' export for all metabolites
+                                     For i As Integer = 0 To node.Nodes.Count - 1
+                                         Dim metabo = node.Nodes.Item(i)
+                                         Dim mass As MassIndex = metabo.Tag
+
+                                         Call SaveMass(mass, mgf)
+                                         Call proc.SetProgress(i / node.Nodes.Count * 100)
+                                         Call proc.SetInfo(mass.name)
+                                     Next
+                                 End Sub,
+                            title:="Export Mgf Ions",
+                            info:="Export spectrum to mgf file..."
+                        )
+                    End If
+
+                    Call mgf.Flush()
+                End Using
+
+                Call MessageBox.Show($"Spectrum data has been export to mgf file: {file.FileName}!",
+                                     "Export Spectrum",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Information)
+            End If
+        End Using
+    End Sub
+
+    ''' <summary>
+    ''' export for a specific metabolite
+    ''' </summary>
+    ''' <param name="mass"></param>
+    ''' <param name="mgf"></param>
+    Private Sub SaveMass(mass As MassIndex, mgf As TextWriter)
+        Dim spectrum_data As Ions() = mass.spectrum _
+            .Select(Function(i)
+                        Return SpectrumReader.GetSpectrum(stdlib.GetSpectrum(i)).MgfIon
+                    End Function) _
+            .ToArray
+        Dim title As String = $"{mass.name} ({mass.formula})"
+
+        For Each ion As Ions In spectrum_data
+            ion.Title = title
+            ion.WriteAsciiMgf(mgf)
+        Next
+    End Sub
+
+    Private Sub ToolStripSpringTextBox1_TextChanged(sender As Object, e As EventArgs) Handles ToolStripSpringTextBox1.TextChanged
+        Dim text As String = Strings.Trim(ToolStripSpringTextBox1.Text)
+
+        If text.StringEmpty Then
+            Return
+        End If
+
+        Dim ref As Integer() = text.Select(Function(ch) AscW(ch)).ToArray
+        Dim filter = allMass.AsParallel _
+            .Select(Function(m) (LevenshteinDistance.ComputeDistance(ref, m.name), m)) _
+            .Where(Function(m) Not m.Item1 Is Nothing) _
+            .OrderByDescending(Function(i) i.Item1.MatchSimilarity) _
+            .Take(100) _
+            .ToArray
+        Dim root = Win7StyleTreeView1.Nodes.Item(0)
+
+        Call root.Nodes.Clear()
+
+        For Each hit In filter
+            Dim mass = hit.m
+            Dim metabolite = root.Nodes.Add(mass.name & $" [{mass.size} spectrum]")
+
+            metabolite.Tag = mass
+
+            'If allMass.Length Mod (++i) = 0 Then
+            '    Call println(mass.ToString)
+            'End If
+
+            Call Application.DoEvents()
+        Next
+    End Sub
+
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        ToolStripSpringTextBox1.Text = Nothing
+
+        If allMass.IsNullOrEmpty Then
+            Return
+        ElseIf Win7StyleTreeView1.Nodes.Count = 0 Then
+            Return
+        End If
+
+        Call TaskProgress.RunAction(
+            run:=Sub(proc As ITaskProgress)
+                     Call Me.Invoke(Sub() Call loadMetabolites(allMass, tree:=Win7StyleTreeView1.Nodes(0), AddressOf proc.SetInfo))
+                 End Sub,
+            title:="Reload library data",
+            info:="Reload the reference spectrum library..."
+        )
     End Sub
 End Class
