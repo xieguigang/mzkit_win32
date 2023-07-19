@@ -2177,12 +2177,42 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub ExportMatrixToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportMatrixToolStripMenuItem.Click
-        If loadedPixels.IsNullOrEmpty Then
-            Call MyApplication.host.showStatusMessage("No loaded pixels data...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+        Dim loadedPixels As PixelData() = Me.loadedPixels
+
+        If loadedPixels.IsNullOrEmpty AndAlso TIC.IsNullOrEmpty Then
+            Call Workbench.Warning("No loaded pixels data...")
             Return
         End If
 
         Dim dimension As New Size(params.scan_x, params.scan_y)
+
+        If loadedPixels.IsNullOrEmpty Then
+            If MessageBox.Show("No ion layer data could be exports, export the summary heatmap layer of your ms-imaging data?",
+                               "Export Heatmap Matrix",
+                               MessageBoxButtons.OKCancel,
+                               MessageBoxIcon.Question) = DialogResult.OK Then
+
+                Dim into_range As New DoubleRange(TIC.Select(Function(i) i.totalIon))
+                Dim level As New DoubleRange(0, 1)
+
+                loadedPixels = TIC _
+                    .Select(Function(pi)
+                                Return New PixelData With {
+                                    .intensity = pi.totalIon,
+                                    .x = pi.x,
+                                    .y = pi.y,
+                                    .level = into_range.ScaleMapping(pi.totalIon, level),
+                                    .mz = 0,
+                                    .sampleTag = Nothing
+                                }
+                            End Function) _
+                    .ToArray
+
+                Call Workbench.Warning("No ion layer data could be exports, the summary heatmap layer of your ms-imaging data was exports!")
+            Else
+                Return
+            End If
+        End If
 
         Using file As New SaveFileDialog With {.Filter = "NetCDF(*.cdf)|*.cdf", .Title = "Save MS-Imaging Matrix"}
             If file.ShowDialog = DialogResult.OK Then
