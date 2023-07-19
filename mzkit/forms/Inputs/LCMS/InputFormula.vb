@@ -1,4 +1,6 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
+﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 
 Public Class InputFormula
 
@@ -27,10 +29,20 @@ Public Class InputFormula
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If TextBox1.Text.StringEmpty Then
+        If txtFormula.Text.StringEmpty Then
             Call MessageBox.Show("No formula string!", "Formula Query", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
             Me.DialogResult = DialogResult.OK
         End If
+    End Sub
+
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+        InputDialog.Input(Of InputPubChemProxy)(
+            Sub(cfg)
+                Dim metadata = cfg.GetAnnotation
+
+                txtFormula.Text = metadata.formula
+                txtMetaboName.Text = metadata.name
+            End Sub)
     End Sub
 End Class
