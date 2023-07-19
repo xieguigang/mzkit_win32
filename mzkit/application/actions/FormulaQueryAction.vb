@@ -20,8 +20,8 @@ Public Class FormulaQueryAction : Inherits ActionBase
         Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
 
         If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
-            Dim formula As Formula = FormulaScanner.ScanFormula(getFormula.TextBox1.Text)
-            Dim name As String = getFormula.TextBox2.Text
+            Dim formula As Formula = FormulaScanner.ScanFormula(getFormula.txtFormula.Text)
+            Dim name As String = getFormula.txtMetaboName.Text
             Dim ppm As Integer = getFormula.NumericUpDown1.Value
             Dim adducts As MzCalculator() = getFormula.GetAdducts
             Dim mz As Double() = data.AsObjectEnumerator.Select(Function(o) Val(o)).ToArray
