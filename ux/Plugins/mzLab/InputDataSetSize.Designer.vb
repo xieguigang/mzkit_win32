@@ -37,11 +37,15 @@ Partial Class InputDataSetSize
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.TextBox6 = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.TextBox6)
+        Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.TextBox5)
         Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Controls.Add(Me.TextBox4)
@@ -54,7 +58,7 @@ Partial Class InputDataSetSize
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Location = New System.Drawing.Point(10, 11)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(344, 181)
+        Me.GroupBox1.Size = New System.Drawing.Size(344, 217)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Config DataSet Size"
@@ -78,7 +82,7 @@ Partial Class InputDataSetSize
         '
         'TextBox4
         '
-        Me.TextBox4.Location = New System.Drawing.Point(263, 138)
+        Me.TextBox4.Location = New System.Drawing.Point(263, 176)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(58, 21)
         Me.TextBox4.TabIndex = 7
@@ -87,7 +91,7 @@ Partial Class InputDataSetSize
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(241, 142)
+        Me.Label4.Location = New System.Drawing.Point(241, 180)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(11, 12)
         Me.Label4.TabIndex = 6
@@ -95,7 +99,7 @@ Partial Class InputDataSetSize
         '
         'TextBox3
         '
-        Me.TextBox3.Location = New System.Drawing.Point(176, 138)
+        Me.TextBox3.Location = New System.Drawing.Point(176, 176)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(55, 21)
         Me.TextBox3.TabIndex = 5
@@ -104,7 +108,7 @@ Partial Class InputDataSetSize
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(95, 142)
+        Me.Label3.Location = New System.Drawing.Point(95, 180)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(59, 12)
         Me.Label3.TabIndex = 4
@@ -146,7 +150,7 @@ Partial Class InputDataSetSize
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(256, 207)
+        Me.Button1.Location = New System.Drawing.Point(256, 234)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 1
@@ -155,18 +159,35 @@ Partial Class InputDataSetSize
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(166, 207)
+        Me.Button2.Location = New System.Drawing.Point(166, 234)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 2
         Me.Button2.Text = "Cancel"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(95, 139)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(65, 12)
+        Me.Label6.TabIndex = 10
+        Me.Label6.Text = "File Name:"
+        '
+        'TextBox6
+        '
+        Me.TextBox6.Location = New System.Drawing.Point(176, 136)
+        Me.TextBox6.Name = "TextBox6"
+        Me.TextBox6.Size = New System.Drawing.Size(145, 21)
+        Me.TextBox6.TabIndex = 11
+        Me.TextBox6.Text = "RawDATAfile"
+        '
         'InputDataSetSize
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(364, 242)
+        Me.ClientSize = New System.Drawing.Size(364, 269)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.GroupBox1)
@@ -191,4 +212,6 @@ Partial Class InputDataSetSize
     Friend WithEvents TextBox4 As TextBox
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
+    Friend WithEvents TextBox6 As TextBox
+    Friend WithEvents Label6 As Label
 End Class

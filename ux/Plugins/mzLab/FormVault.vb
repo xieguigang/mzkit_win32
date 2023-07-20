@@ -7,6 +7,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.PackLib
 Imports BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.PackLib.Validation
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.Levenshtein
+Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Math.Information
@@ -266,7 +267,13 @@ Public Class FormVault
                         Call TaskProgress.RunAction(
                             Sub(proc As ITaskProgress)
                                 Call Me.Invoke(Sub() Call ExportValidationDataSet(args:=cfg.GetParameters, dir:=folder.SelectedPath, proc:=proc))
-                            End Sub, title:="Export Validation DataSet", info:="Export raw data files for run validation analysis!")
+                            End Sub, title:="Export Validation DataSet",
+                                     info:="Export raw data files for run validation analysis!")
+
+                        Call MessageBox.Show("Validation DataSet Export Job Done!",
+                                             "Export validation DataSet",
+                                             MessageBoxButtons.OK,
+                                             MessageBoxIcon.Information)
                     End Sub)
             End If
         End Using
@@ -296,6 +303,6 @@ Public Class FormVault
         Next
 
         Call proc.SetInfo("Export ions peaktable...")
-
+        Call dataset.GetPeaktable.SaveTo($"{dir}/peakdata.csv")
     End Sub
 End Class

@@ -9,7 +9,8 @@ Public Class InputDataSetSize
                 .RawFiles = Val(TextBox2.Text),
                 .rtmin = Val(TextBox3.Text),
                 .rtmax = Val(TextBox4.Text),
-                .AverageNumberOfSpectrum = Val(TextBox5.Text)
+                .AverageNumberOfSpectrum = Val(TextBox5.Text),
+                .rawname = TextBox6.Text.Trim
             }
         End Get
     End Property

@@ -194,6 +194,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data\DataFrame\dataframework-netcore5.vbproj">
+      <Project>{02e9ba6a-35e1-431f-bb47-0553757af6b9}</Project>
+      <Name>dataframework-netcore5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\Math\Math\Math.NET5.vbproj">
       <Project>{eb3dd1ee-71a4-4d85-b494-ef075ad99098}</Project>
       <Name>Math.NET5</Name>
