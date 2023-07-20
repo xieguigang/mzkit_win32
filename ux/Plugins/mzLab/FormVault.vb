@@ -6,6 +6,8 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.Levenshtein
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Math.Information
+Imports Microsoft.VisualBasic.Math.LinearAlgebra
 Imports Mzkit_win32.BasicMDIForm
 
 Public Class FormVault
@@ -100,11 +102,26 @@ Public Class FormVault
 
         Dim p As Integer = node.Tag
         Dim spectrum As PeakMs2 = SpectrumReader.GetSpectrum(stdlib.GetSpectrum(p))
-        Dim mat As New LibraryMatrix With {.ms2 = spectrum.mzInto, .name = $"{node.Text} {spectrum.lib_guid} {spectrum.mz}@{spectrum.rt}"}
+        Dim mat As New LibraryMatrix With {
+            .ms2 = spectrum.mzInto,
+            .name = $"{node.Text} {spectrum.lib_guid} {spectrum.mz}@{spectrum.rt}"
+        }
         Dim img As Image = PeakAssign.DrawSpectrumPeaks(mat, size:="1920,1080").AsGDIImage
+        Dim props As New Dictionary(Of String, Object)
+        Dim into As Vector = New Vector(spectrum.mzInto.Select(Function(m) m.intensity))
+
+        Call props.Add("id", spectrum.lib_guid)
+        Call props.Add("precursor_mz", spectrum.mz)
+        Call props.Add("rt", spectrum.rt)
+        Call props.Add("npeaks", spectrum.mzInto.Length)
+        Call props.Add("entropy", (into / into.Sum).ShannonEntropy)
+        Call props.Add("basePeak_mz", spectrum.mzInto.OrderByDescending(Function(m) m.intensity).First.mz)
+        Call props.Add("total_ions", into.Sum)
 
         Me.spectrum = spectrum
         Me.PictureBox1.BackgroundImage = img
+
+        Call Workbench.ShowProperties(DynamicType.Create(metadata:=props))
     End Sub
 
     Private Sub SearchInSampleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchInSampleToolStripMenuItem.Click

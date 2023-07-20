@@ -74,6 +74,12 @@ Public NotInheritable Class Workbench
         )
     End Function
 
+    Public Shared Sub ShowProperties(obj As Object)
+        If BaseHook.showProperties IsNot Nothing Then
+            Call BaseHook.showProperties(obj)
+        End If
+    End Sub
+
     ''' <summary>
     ''' 
     ''' </summary>
