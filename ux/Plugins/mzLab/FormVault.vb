@@ -274,6 +274,7 @@ Public Class FormVault
                                              "Export validation DataSet",
                                              MessageBoxButtons.OK,
                                              MessageBoxIcon.Information)
+                        Call Process.Start(folder.SelectedPath)
                     End Sub)
             End If
         End Using
