@@ -7,6 +7,7 @@ Imports Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.Levens
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Language
 Imports Mzkit_win32.BasicMDIForm
+Imports Microsoft.VisualBasic.Serialization.Bencoding
 
 Public Class FormVault
 
@@ -225,5 +226,30 @@ Public Class FormVault
             title:="Reload library data",
             info:="Reload the reference spectrum library..."
         )
+    End Sub
+
+    Private Sub CopyNodeLabelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyNodeLabelToolStripMenuItem.Click
+        Dim node As TreeNode = Win7StyleTreeView1.SelectedNode
+
+        If node Is Nothing OrElse node.Tag Is Nothing Then
+            Return
+        End If
+
+        Dim index As MassIndex
+
+        If TypeOf node.Tag Is MassIndex Then
+            index = node.Tag
+        Else
+            index = node.Parent.Tag
+        End If
+
+        Dim content As New Dictionary(Of String, String) From {
+            {"name", index.name},
+            {"formula", index.formula},
+            {"exact_mass", index.exactMass}
+        }
+
+        Call Clipboard.Clear()
+        Call Clipboard.SetText(content.ToBEncodeString)
     End Sub
 End Class
