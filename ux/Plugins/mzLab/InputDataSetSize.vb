@@ -1,4 +1,6 @@
-﻿Public Class InputDataSetSize
+﻿Imports BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.PackLib.Validation
+
+Public Class InputDataSetSize
 
     Public ReadOnly Property GetParameters As DataSetParameters
         Get
@@ -19,14 +21,4 @@
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Me.DialogResult = DialogResult.Cancel
     End Sub
-End Class
-
-Public Class DataSetParameters
-
-    Public Property Ions As Integer
-    Public Property RawFiles As Integer
-    Public Property AverageNumberOfSpectrum As Integer
-    Public Property rtmin As Double
-    Public Property rtmax As Double
-
 End Class
