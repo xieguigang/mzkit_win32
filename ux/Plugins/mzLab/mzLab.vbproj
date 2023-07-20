@@ -135,6 +135,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InputDataSetSize.Designer.vb">
+      <DependentUpon>InputDataSetSize.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InputDataSetSize.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Plugin.vb" />
     <Compile Include="FormVault.vb">
       <SubType>Form</SubType>
@@ -164,6 +170,9 @@
   <ItemGroup>
     <EmbeddedResource Include="FormVault.resx">
       <DependentUpon>FormVault.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputDataSetSize.resx">
+      <DependentUpon>InputDataSetSize.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

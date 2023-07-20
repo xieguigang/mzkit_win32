@@ -41,6 +41,7 @@ Partial Class FormVault : Inherits DocumentWindow
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SearchInSampleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportValidationDataSetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip2.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -69,14 +70,14 @@ Partial Class FormVault : Inherits DocumentWindow
         '
         'ContextMenuStrip2
         '
-        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportMGFIonsToolStripMenuItem})
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportMGFIonsToolStripMenuItem, Me.ExportValidationDataSetToolStripMenuItem})
         Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(162, 26)
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(226, 70)
         '
         'ExportMGFIonsToolStripMenuItem
         '
         Me.ExportMGFIonsToolStripMenuItem.Name = "ExportMGFIonsToolStripMenuItem"
-        Me.ExportMGFIonsToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
+        Me.ExportMGFIonsToolStripMenuItem.Size = New System.Drawing.Size(225, 22)
         Me.ExportMGFIonsToolStripMenuItem.Text = "Export MGF Ions"
         '
         'ImageList1
@@ -138,14 +139,14 @@ Partial Class FormVault : Inherits DocumentWindow
         'ToolStripLabel1
         '
         Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(45, 22)
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(50, 22)
         Me.ToolStripLabel1.Text = "Search:"
         '
         'ToolStripSpringTextBox1
         '
         Me.ToolStripSpringTextBox1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.ToolStripSpringTextBox1.Name = "ToolStripSpringTextBox1"
-        Me.ToolStripSpringTextBox1.Size = New System.Drawing.Size(181, 25)
+        Me.ToolStripSpringTextBox1.Size = New System.Drawing.Size(176, 25)
         '
         'ToolStripButton1
         '
@@ -182,14 +183,20 @@ Partial Class FormVault : Inherits DocumentWindow
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SearchInSampleToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(170, 26)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(184, 26)
         '
         'SearchInSampleToolStripMenuItem
         '
         Me.SearchInSampleToolStripMenuItem.Image = CType(resources.GetObject("SearchInSampleToolStripMenuItem.Image"), System.Drawing.Image)
         Me.SearchInSampleToolStripMenuItem.Name = "SearchInSampleToolStripMenuItem"
-        Me.SearchInSampleToolStripMenuItem.Size = New System.Drawing.Size(169, 22)
+        Me.SearchInSampleToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
         Me.SearchInSampleToolStripMenuItem.Text = "Search In Samples"
+        '
+        'ExportValidationDataSetToolStripMenuItem
+        '
+        Me.ExportValidationDataSetToolStripMenuItem.Name = "ExportValidationDataSetToolStripMenuItem"
+        Me.ExportValidationDataSetToolStripMenuItem.Size = New System.Drawing.Size(225, 22)
+        Me.ExportValidationDataSetToolStripMenuItem.Text = "Export Validation DataSet"
         '
         'FormVault
         '
@@ -231,4 +238,5 @@ Partial Class FormVault : Inherits DocumentWindow
     Friend WithEvents ToolStripLabel1 As ToolStripLabel
     Friend WithEvents ToolStripSpringTextBox1 As ToolStripSpringTextBox
     Friend WithEvents ToolStripButton1 As ToolStripButton
+    Friend WithEvents ExportValidationDataSetToolStripMenuItem As ToolStripMenuItem
 End Class

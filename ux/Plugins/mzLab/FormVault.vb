@@ -9,6 +9,7 @@ Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Math.Information
 Imports Microsoft.VisualBasic.Math.LinearAlgebra
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 
 Public Class FormVault
 
@@ -242,5 +243,24 @@ Public Class FormVault
             title:="Reload library data",
             info:="Reload the reference spectrum library..."
         )
+    End Sub
+
+    ''' <summary>
+    ''' open a folder for export one peaktable file and multiple raw data mzpack for run annotation validation test
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ExportValidationDataSetToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportValidationDataSetToolStripMenuItem.Click
+        Using folder As New FolderBrowserDialog With {
+            .Description = "Select a folder for save validation dataset.",
+            .ShowNewFolderButton = True
+        }
+            If folder.ShowDialog = DialogResult.OK Then
+                InputDialog.Input(Of InputDataSetSize)(
+                    Sub(cfg)
+
+                    End Sub)
+            End If
+        End Using
     End Sub
 End Class
