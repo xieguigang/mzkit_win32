@@ -1,7 +1,10 @@
 ﻿Imports System.IO
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.PackLib
+Imports BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.PackLib.Validation
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.Levenshtein
 Imports Microsoft.VisualBasic.Imaging
@@ -16,6 +19,7 @@ Public Class FormVault
     Dim stdlib As SpectrumReader
     Dim spectrum As PeakMs2
     Dim allMass As MassIndex()
+    Dim libfile As String
 
     Public Sub OpenDatabase()
         Using file As New OpenFileDialog With {.Filter = "any file(*.*)|*.*"}
@@ -25,6 +29,7 @@ Public Class FormVault
                 End If
 
                 stdlib = New SpectrumReader(file.OpenFile)
+                libfile = file.FileName
                 Win7StyleTreeView1.Nodes.Clear()
 
                 Call TaskProgress.RunAction(
@@ -258,9 +263,39 @@ Public Class FormVault
             If folder.ShowDialog = DialogResult.OK Then
                 InputDialog.Input(Of InputDataSetSize)(
                     Sub(cfg)
-
+                        Call TaskProgress.RunAction(
+                            Sub(proc As ITaskProgress)
+                                Call Me.Invoke(Sub() Call ExportValidationDataSet(args:=cfg.GetParameters, dir:=folder.SelectedPath, proc:=proc))
+                            End Sub, title:="Export Validation DataSet", info:="Export raw data files for run validation analysis!")
                     End Sub)
             End If
         End Using
+    End Sub
+
+    Private Sub ExportValidationDataSet(args As DataSetParameters, dir As String, proc As ITaskProgress)
+        Dim dataset As New DataSetGenerator(stdlib, args)
+        Dim i As i32 = 0
+
+        Call proc.SetProgressMode()
+        Call proc.SetProgress(0)
+        Call proc.SetInfo("Start to export first raw data file!")
+
+        For Each group In dataset.ExportRawDatas
+            Dim filename As String = $"{dir}/raw/{group.name}.mzPack"
+
+            Using file As Stream = filename.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
+                Call New mzPack With {
+                    .Application = FileApplicationClass.LCMS,
+                    .MS = group.value,
+                    .source = group.name
+                }.Write(file, version:=1)
+            End Using
+
+            Call proc.SetProgress(100 * (++i / args.RawFiles))
+            Call proc.SetInfo($"Export and save [{filename}]!")
+        Next
+
+        Call proc.SetInfo("Export ions peaktable...")
+
     End Sub
 End Class

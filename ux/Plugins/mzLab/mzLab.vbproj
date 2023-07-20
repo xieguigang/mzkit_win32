@@ -214,6 +214,10 @@
       <Project>{5dce233f-c0e1-41b8-827a-872b0c8cc3bc}</Project>
       <Name>assembly-netcore5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\assembly\mzPack\mzpack.NET5.vbproj">
+      <Project>{c6d266df-b35f-480b-acb0-15c7d2882769}</Project>
+      <Name>mzpack.NET5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\assembly\SpectrumTree\spectrumTree.NETCore5.vbproj">
       <Project>{d99285e0-574f-4302-a3fd-9d6c7f228937}</Project>
       <Name>spectrumTree.NETCore5</Name>
