@@ -135,6 +135,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InputDataSetSize.Designer.vb">
+      <DependentUpon>InputDataSetSize.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InputDataSetSize.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Plugin.vb" />
     <Compile Include="FormVault.vb">
       <SubType>Form</SubType>
@@ -165,6 +171,9 @@
     <EmbeddedResource Include="FormVault.resx">
       <DependentUpon>FormVault.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InputDataSetSize.resx">
+      <DependentUpon>InputDataSetSize.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -185,6 +194,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data\DataFrame\dataframework-netcore5.vbproj">
+      <Project>{02e9ba6a-35e1-431f-bb47-0553757af6b9}</Project>
+      <Name>dataframework-netcore5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\Math\Math\Math.NET5.vbproj">
       <Project>{eb3dd1ee-71a4-4d85-b494-ef075ad99098}</Project>
       <Name>Math.NET5</Name>
@@ -204,6 +217,10 @@
     <ProjectReference Include="..\..\..\..\assembly\assembly\assembly-netcore5.vbproj">
       <Project>{5dce233f-c0e1-41b8-827a-872b0c8cc3bc}</Project>
       <Name>assembly-netcore5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\assembly\mzPack\mzpack.NET5.vbproj">
+      <Project>{c6d266df-b35f-480b-acb0-15c7d2882769}</Project>
+      <Name>mzpack.NET5</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\assembly\SpectrumTree\spectrumTree.NETCore5.vbproj">
       <Project>{d99285e0-574f-4302-a3fd-9d6c7f228937}</Project>

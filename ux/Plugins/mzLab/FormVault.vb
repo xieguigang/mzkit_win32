@@ -1,19 +1,27 @@
 ﻿Imports System.IO
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.PackLib
+Imports BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.PackLib.Validation
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.ComponentModel.Algorithm.DynamicProgramming.Levenshtein
+Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Math.Information
+Imports Microsoft.VisualBasic.Math.LinearAlgebra
 Imports Mzkit_win32.BasicMDIForm
 Imports Microsoft.VisualBasic.Serialization.Bencoding
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 
 Public Class FormVault
 
     Dim stdlib As SpectrumReader
     Dim spectrum As PeakMs2
     Dim allMass As MassIndex()
+    Dim libfile As String
 
     Public Sub OpenDatabase()
         Using file As New OpenFileDialog With {.Filter = "any file(*.*)|*.*"}
@@ -23,6 +31,7 @@ Public Class FormVault
                 End If
 
                 stdlib = New SpectrumReader(file.OpenFile)
+                libfile = file.FileName
                 Win7StyleTreeView1.Nodes.Clear()
 
                 Call TaskProgress.RunAction(
@@ -101,11 +110,26 @@ Public Class FormVault
 
         Dim p As Integer = node.Tag
         Dim spectrum As PeakMs2 = SpectrumReader.GetSpectrum(stdlib.GetSpectrum(p))
-        Dim mat As New LibraryMatrix With {.ms2 = spectrum.mzInto, .name = $"{node.Text} {spectrum.lib_guid} {spectrum.mz}@{spectrum.rt}"}
+        Dim mat As New LibraryMatrix With {
+            .ms2 = spectrum.mzInto,
+            .name = $"{node.Text} {spectrum.lib_guid} {spectrum.mz}@{spectrum.rt}"
+        }
         Dim img As Image = PeakAssign.DrawSpectrumPeaks(mat, size:="1920,1080").AsGDIImage
+        Dim props As New Dictionary(Of String, Object)
+        Dim into As Vector = New Vector(spectrum.mzInto.Select(Function(m) m.intensity))
+
+        Call props.Add("id", spectrum.lib_guid)
+        Call props.Add("precursor_mz", spectrum.mz)
+        Call props.Add("rt", spectrum.rt)
+        Call props.Add("npeaks", spectrum.mzInto.Length)
+        Call props.Add("entropy", (into / into.Sum).ShannonEntropy)
+        Call props.Add("basePeak_mz", spectrum.mzInto.OrderByDescending(Function(m) m.intensity).First.mz)
+        Call props.Add("total_ions", into.Sum)
 
         Me.spectrum = spectrum
         Me.PictureBox1.BackgroundImage = img
+
+        Call Workbench.ShowProperties(DynamicType.Create(metadata:=props))
     End Sub
 
     Private Sub SearchInSampleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchInSampleToolStripMenuItem.Click
@@ -251,5 +275,73 @@ Public Class FormVault
 
         Call Clipboard.Clear()
         Call Clipboard.SetText(content.ToBEncodeString)
+    End Sub 
+
+    ''' <summary>
+    ''' open a folder for export one peaktable file and multiple raw data mzpack for run annotation validation test
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ExportValidationDataSetToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportValidationDataSetToolStripMenuItem.Click
+        Using folder As New FolderBrowserDialog With {
+            .Description = "Select a folder for save validation dataset.",
+            .ShowNewFolderButton = True
+        }
+            If folder.ShowDialog = DialogResult.OK Then
+                InputDialog.Input(Of InputDataSetSize)(
+                    Sub(cfg)
+                        Call TaskProgress.RunAction(
+                            Sub(proc As ITaskProgress)
+                                Call Me.Invoke(Sub() Call ExportValidationDataSet(args:=cfg.GetParameters, dir:=folder.SelectedPath, proc:=proc))
+                            End Sub, title:="Export Validation DataSet",
+                                     info:="Export raw data files for run validation analysis!")
+
+                        Call MessageBox.Show("Validation DataSet Export Job Done!",
+                                             "Export validation DataSet",
+                                             MessageBoxButtons.OK,
+                                             MessageBoxIcon.Information)
+                        Call Process.Start(folder.SelectedPath)
+                    End Sub)
+            End If
+        End Using
+    End Sub
+
+    Private Sub ExportValidationDataSet(args As DataSetParameters, dir As String, proc As ITaskProgress)
+        Dim dataset As New DataSetGenerator(stdlib, args)
+        Dim i As i32 = 0
+
+        Call proc.SetProgressMode()
+        Call proc.SetProgress(0)
+        Call proc.SetInfo("Start to export first raw data file!")
+
+        For Each group In dataset.ExportRawDatas
+            Dim filename As String = $"{dir}/raw/{group.name}.mzPack"
+
+            Using file As Stream = filename.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
+                Call New mzPack With {
+                    .Application = FileApplicationClass.LCMS,
+                    .MS = group.value,
+                    .source = group.name
+                }.Write(file, version:=1)
+            End Using
+
+            Call proc.SetProgress(100 * (++i / args.RawFiles))
+            Call proc.SetInfo($"Export and save [{filename}]!")
+        Next
+
+        Call proc.SetInfo("Export ions peaktable...")
+        Call dataset.GetPeaktable.SaveTo($"{dir}/peakdata.csv")
+    End Sub
+
+    Private Sub CopyImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyImageToolStripMenuItem.Click
+        Clipboard.Clear()
+        Clipboard.SetImage(PictureBox1.BackgroundImage)
+        Workbench.SuccessMessage("Spectrum image has been copy to clipboard, you could paste it to a excel to PPT file!")
+    End Sub
+
+    Private Sub ShowInSpectrumViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowInSpectrumViewerToolStripMenuItem.Click
+        If spectrum IsNot Nothing Then
+            Call SpectralViewerModule.ViewSpectral(spectrum)
+        End If
     End Sub
 End Class

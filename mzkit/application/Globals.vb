@@ -178,6 +178,7 @@ Module Globals
         SpectralViewerModule.HookClusterLoader(AddressOf MSdata.ShowCluster)
 
         BaseHook.HookPlotColorSet(AddressOf Globals.GetColors)
+        BaseHook.HookShowProperties(AddressOf VisualStudio.ShowProperties)
     End Sub
 
     Public Sub RegisterActions(println As Action(Of String))
