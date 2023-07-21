@@ -306,4 +306,16 @@ Public Class FormVault
         Call proc.SetInfo("Export ions peaktable...")
         Call dataset.GetPeaktable.SaveTo($"{dir}/peakdata.csv")
     End Sub
+
+    Private Sub CopyImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyImageToolStripMenuItem.Click
+        Clipboard.Clear()
+        Clipboard.SetImage(PictureBox1.BackgroundImage)
+        Workbench.SuccessMessage("Spectrum image has been copy to clipboard, you could paste it to a excel to PPT file!")
+    End Sub
+
+    Private Sub ShowInSpectrumViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowInSpectrumViewerToolStripMenuItem.Click
+        If spectrum IsNot Nothing Then
+            Call SpectralViewerModule.ViewSpectral(spectrum)
+        End If
+    End Sub
 End Class

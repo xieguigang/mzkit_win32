@@ -35,6 +35,10 @@ Public NotInheritable Class Workbench
         Call AppHost.LogText(text)
     End Sub
 
+    ''' <summary>
+    ''' Show status bar message with a warning icon
+    ''' </summary>
+    ''' <param name="msg"></param>
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Sub Warning(msg As String)
         If AppHost Is Nothing Then
@@ -44,6 +48,10 @@ Public NotInheritable Class Workbench
         End If
     End Sub
 
+    ''' <summary>
+    ''' Show status bar message with a success icon
+    ''' </summary>
+    ''' <param name="msg"></param>
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Sub SuccessMessage(msg As String)
         If AppHost Is Nothing Then
@@ -53,6 +61,12 @@ Public NotInheritable Class Workbench
         End If
     End Sub
 
+    ''' <summary>
+    ''' Show status bar message with a default message icon, <paramref name="icon"/> 
+    ''' could be changed via a specific image value has been specific at here.
+    ''' </summary>
+    ''' <param name="msg"></param>
+    ''' <param name="icon"></param>
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Sub StatusMessage(msg As String, Optional icon As Image = Nothing)
         If AppHost Is Nothing Then
