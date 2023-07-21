@@ -25,6 +25,8 @@ Partial Class InputDataSetSize
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.TextBox6 = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
@@ -37,13 +39,18 @@ Partial Class InputDataSetSize
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.TextBox6 = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.GroupBox1.SuspendLayout()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Button3)
+        Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Controls.Add(Me.TextBox6)
         Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.TextBox5)
@@ -56,6 +63,7 @@ Partial Class InputDataSetSize
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.TextBox1)
         Me.GroupBox1.Controls.Add(Me.Label1)
+        Me.GroupBox1.Controls.Add(Me.Panel1)
         Me.GroupBox1.Location = New System.Drawing.Point(10, 11)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(344, 217)
@@ -63,18 +71,35 @@ Partial Class InputDataSetSize
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Config DataSet Size"
         '
+        'TextBox6
+        '
+        Me.TextBox6.Location = New System.Drawing.Point(176, 103)
+        Me.TextBox6.Name = "TextBox6"
+        Me.TextBox6.Size = New System.Drawing.Size(145, 21)
+        Me.TextBox6.TabIndex = 11
+        Me.TextBox6.Text = "RawDATAfile"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(95, 106)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(65, 12)
+        Me.Label6.TabIndex = 10
+        Me.Label6.Text = "File Name:"
+        '
         'TextBox5
         '
-        Me.TextBox5.Location = New System.Drawing.Point(232, 98)
+        Me.TextBox5.Location = New System.Drawing.Point(246, 76)
         Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(89, 21)
+        Me.TextBox5.Size = New System.Drawing.Size(75, 21)
         Me.TextBox5.TabIndex = 9
         Me.TextBox5.Text = "3500"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(19, 101)
+        Me.Label5.Location = New System.Drawing.Point(34, 79)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(197, 12)
         Me.Label5.TabIndex = 8
@@ -82,7 +107,7 @@ Partial Class InputDataSetSize
         '
         'TextBox4
         '
-        Me.TextBox4.Location = New System.Drawing.Point(263, 176)
+        Me.TextBox4.Location = New System.Drawing.Point(263, 130)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(58, 21)
         Me.TextBox4.TabIndex = 7
@@ -91,7 +116,7 @@ Partial Class InputDataSetSize
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(241, 180)
+        Me.Label4.Location = New System.Drawing.Point(241, 134)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(11, 12)
         Me.Label4.TabIndex = 6
@@ -99,7 +124,7 @@ Partial Class InputDataSetSize
         '
         'TextBox3
         '
-        Me.TextBox3.Location = New System.Drawing.Point(176, 176)
+        Me.TextBox3.Location = New System.Drawing.Point(176, 130)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(55, 21)
         Me.TextBox3.TabIndex = 5
@@ -108,7 +133,7 @@ Partial Class InputDataSetSize
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(95, 180)
+        Me.Label3.Location = New System.Drawing.Point(101, 134)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(59, 12)
         Me.Label3.TabIndex = 4
@@ -116,7 +141,7 @@ Partial Class InputDataSetSize
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(207, 65)
+        Me.TextBox2.Location = New System.Drawing.Point(207, 49)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(114, 21)
         Me.TextBox2.TabIndex = 3
@@ -125,7 +150,7 @@ Partial Class InputDataSetSize
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(53, 68)
+        Me.Label2.Location = New System.Drawing.Point(53, 52)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(137, 12)
         Me.Label2.TabIndex = 2
@@ -133,7 +158,7 @@ Partial Class InputDataSetSize
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(207, 35)
+        Me.TextBox1.Location = New System.Drawing.Point(207, 22)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(114, 21)
         Me.TextBox1.TabIndex = 1
@@ -142,7 +167,7 @@ Partial Class InputDataSetSize
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(95, 38)
+        Me.Label1.Location = New System.Drawing.Point(95, 25)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(95, 12)
         Me.Label1.TabIndex = 0
@@ -166,22 +191,41 @@ Partial Class InputDataSetSize
         Me.Button2.Text = "Cancel"
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'Label6
+        'Label7
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(95, 139)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(65, 12)
-        Me.Label6.TabIndex = 10
-        Me.Label6.Text = "File Name:"
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(35, 157)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(125, 12)
+        Me.Label7.TabIndex = 12
+        Me.Label7.Text = "Set Search ID Range:"
         '
-        'TextBox6
+        'Label8
         '
-        Me.TextBox6.Location = New System.Drawing.Point(176, 136)
-        Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(145, 21)
-        Me.TextBox6.TabIndex = 11
-        Me.TextBox6.Text = "RawDATAfile"
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(17, 9)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(179, 12)
+        Me.Label8.TabIndex = 13
+        Me.Label8.Text = "No reference id range was set"
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(246, 183)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(75, 23)
+        Me.Button3.TabIndex = 14
+        Me.Button3.Text = "Select"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'Panel1
+        '
+        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.Label8)
+        Me.Panel1.Location = New System.Drawing.Point(36, 179)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(302, 32)
+        Me.Panel1.TabIndex = 15
         '
         'InputDataSetSize
         '
@@ -195,6 +239,8 @@ Partial Class InputDataSetSize
         Me.Text = "Set Validation Data Size"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -214,4 +260,8 @@ Partial Class InputDataSetSize
     Friend WithEvents Button2 As Button
     Friend WithEvents TextBox6 As TextBox
     Friend WithEvents Label6 As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Panel1 As Panel
 End Class
