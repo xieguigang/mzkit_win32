@@ -617,10 +617,10 @@
     <Compile Include="forms\Inputs\InputPeakTime.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Inputs\InputFormula.Designer.vb">
+    <Compile Include="forms\Inputs\LCMS\InputFormula.Designer.vb">
       <DependentUpon>InputFormula.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputFormula.vb">
+    <Compile Include="forms\Inputs\LCMS\InputFormula.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\Inputs\SelectSheetName.Designer.vb">
@@ -1158,7 +1158,7 @@
     <EmbeddedResource Include="forms\Inputs\InputFeatureFilter.zh-CN.resx">
       <DependentUpon>InputFeatureFilter.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputFormula.resx">
+    <EmbeddedResource Include="forms\Inputs\LCMS\InputFormula.resx">
       <DependentUpon>InputFormula.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\MSImaging\InputMatrixIons.resx">
