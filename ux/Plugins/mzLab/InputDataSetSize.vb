@@ -30,6 +30,7 @@ Public Class InputDataSetSize
         Using file As New OpenFileDialog With {.Filter = "id list(*.txt)|*.txt"}
             If file.ShowDialog = DialogResult.OK Then
                 idlist = file.FileName.ReadAllLines
+                Label8.Text = $"Set label selection in range {idlist.Length} id"
             End If
         End Using
     End Sub

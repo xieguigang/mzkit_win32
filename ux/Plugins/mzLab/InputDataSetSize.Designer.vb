@@ -66,7 +66,7 @@ Partial Class InputDataSetSize
         Me.GroupBox1.Controls.Add(Me.Panel1)
         Me.GroupBox1.Location = New System.Drawing.Point(10, 11)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(344, 217)
+        Me.GroupBox1.Size = New System.Drawing.Size(344, 221)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Config DataSet Size"
@@ -175,7 +175,7 @@ Partial Class InputDataSetSize
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(256, 234)
+        Me.Button1.Location = New System.Drawing.Point(256, 238)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 1
@@ -184,7 +184,7 @@ Partial Class InputDataSetSize
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(166, 234)
+        Me.Button2.Location = New System.Drawing.Point(166, 238)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 2
