@@ -999,7 +999,7 @@ var apps;
                             var ms1 = arg.data;
                             var rt = Math.round(ms1[0]);
                             var mz = Strings.round(ms1[1]);
-                            var into = Math.exp(ms1[2]).toExponential(2);
+                            var into = Math.pow(1.125, ms1[2]).toExponential(2);
                             return arg.seriesName + " spot:<" + labels[i].id + "> m/z: " + mz + "@" + rt + "s intensity=" + into;
                         }
                     },

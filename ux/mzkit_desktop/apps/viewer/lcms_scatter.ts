@@ -130,7 +130,7 @@ namespace apps.viewer {
                         const ms1: number[] = arg.data;
                         const rt = Math.round(ms1[0]);
                         const mz = Strings.round(ms1[1]);
-                        const into = Math.exp(ms1[2]).toExponential(2);
+                        const into = Math.pow(1.125, ms1[2]).toExponential(2);
 
                         return `${arg.seriesName} spot:<${labels[i].id}> m/z: ${mz}@${rt}s intensity=${into}`;
                     }
