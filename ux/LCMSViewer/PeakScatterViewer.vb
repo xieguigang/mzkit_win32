@@ -6,6 +6,7 @@ Imports Microsoft.VisualBasic.Data.ChartPlots
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors.Scaler
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
@@ -132,6 +133,15 @@ Public Class PeakScatterViewer
 
     Public Function LoadPeaks(peaksdata As IEnumerable(Of Meta)) As PeakScatterViewer
         m_rawdata = peaksdata.ToArray
+
+        Dim maxinto As Double = m_rawdata.Select(Function(r) r.intensity).FindThreshold(0.8)
+
+        m_rawdata = m_rawdata _
+            .Select(Function(a)
+                        Return New Meta(a.mz, a.scan_time, If(a.intensity > maxinto, maxinto, a.intensity), a.id)
+                    End Function) _
+            .ToArray
+
         LoadPeaks2(m_rawdata.ToArray)
         lcms_scatter.rawdata = m_rawdata.ToArray
 

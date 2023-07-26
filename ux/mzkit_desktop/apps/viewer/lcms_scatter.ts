@@ -61,6 +61,17 @@ namespace apps.viewer {
         }
 
         private static scatter_group(data: ms1_scatter[]) {
+            // if (data.length > 4) {
+            //     let scatter = $from(data).OrderByDescending(r => r.intensity + 0.0).ToArray();
+            //     let max_into = scatter[3].intensity;
+
+            //     for (let i = 0; i < 3; ++i) {
+            //         scatter[i].intensity = max_into;
+            //     }
+
+            //     data = scatter;
+            // }
+
             return <gl_plot.gl_scatter_data>{
                 type: 'scatter3D',
                 name: "LCMS Ms2 Spectrum", // format_tag(r),
@@ -130,7 +141,7 @@ namespace apps.viewer {
                         const ms1: number[] = arg.data;
                         const rt = Math.round(ms1[0]);
                         const mz = Strings.round(ms1[1]);
-                        const into = Math.pow(1.125, ms1[2]).toExponential(2);
+                        const into = ms1[2].toExponential(2); // Math.pow(1.125, ms1[2]).toExponential(2);
 
                         return `${arg.seriesName} spot:<${labels[i].id}> m/z: ${mz}@${rt}s intensity=${into}`;
                     }
