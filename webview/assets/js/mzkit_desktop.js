@@ -940,9 +940,9 @@ var apps;
                     spot_labels: $from(data).Select(function (r) { return r.id; }).ToArray(),
                     symbolSize: 5,
                     dimensions: [
-                        'x',
-                        'y',
-                        'z'
+                        'Scan Time(s)',
+                        'M/Z',
+                        'Intensity'
                     ],
                     data: $from(data).Select(function (r) { return [r.scan_time, r.mz, r.intensity]; }).ToArray(),
                     symbol: 'circle',
@@ -966,9 +966,9 @@ var apps;
                 var scatter3D = [LCMSScatterViewer.scatter_group(data)];
                 return {
                     grid3D: {},
-                    xAxis3D: { type: 'value', name: 'x' },
-                    yAxis3D: { type: 'value', name: 'y' },
-                    zAxis3D: { type: 'value', name: 'z' },
+                    xAxis3D: { type: 'value', name: 'Scan Time(s)' },
+                    yAxis3D: { type: 'value', name: 'M/Z' },
+                    zAxis3D: { type: 'value', name: 'Intensity' },
                     series: scatter3D,
                     tooltip: {
                         show: true,
@@ -996,7 +996,11 @@ var apps;
                             // console.log(arg);
                             var i = arg.dataIndex;
                             var labels = data; // spot_labels.Item(arg.seriesName);
-                            return arg.seriesName + " spot:<" + labels[i].id + "> scatter3:" + JSON.stringify(arg.data);
+                            var ms1 = arg.data;
+                            var rt = Math.round(ms1[0]);
+                            var mz = Strings.round(ms1[1]);
+                            var into = Math.exp(ms1[2]).toExponential(2);
+                            return arg.seriesName + " spot:<" + labels[i].id + "> m/z: " + mz + "@" + rt + "s intensity=" + into;
                         }
                     },
                     legend: {

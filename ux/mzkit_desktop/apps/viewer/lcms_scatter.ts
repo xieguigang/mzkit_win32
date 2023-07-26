@@ -67,9 +67,9 @@ namespace apps.viewer {
                 spot_labels: $from(data).Select(r => r.id).ToArray(),
                 symbolSize: 5,
                 dimensions: [
-                    'x',
-                    'y',
-                    'z'
+                    'Scan Time(s)',
+                    'M/Z',
+                    'Intensity'
                 ],
                 data: $from(data).Select(r => [r.scan_time, r.mz, r.intensity]).ToArray(),
                 symbol: 'circle',
@@ -93,12 +93,12 @@ namespace apps.viewer {
             //     .ToArray();
             // const spot_labels = $from(data).ToDictionary(d => format_tag(d), d => d.labels);
             const scatter3D = [LCMSScatterViewer.scatter_group(data)];
-            
+
             return <any>{
                 grid3D: {},
-                xAxis3D: { type: 'value', name: 'x' },
-                yAxis3D: { type: 'value', name: 'y' },
-                zAxis3D: { type: 'value', name: 'z' },
+                xAxis3D: { type: 'value', name: 'Scan Time(s)' },
+                yAxis3D: { type: 'value', name: 'M/Z' },
+                zAxis3D: { type: 'value', name: 'Intensity' },
                 series: scatter3D,
                 tooltip: {//提示框组件，用于配置鼠标滑过或点击图表时的显示框。
                     show: true, // 是否显示
@@ -127,8 +127,12 @@ namespace apps.viewer {
 
                         const i = arg.dataIndex;
                         const labels = data;// spot_labels.Item(arg.seriesName);
+                        const ms1: number[] = arg.data;
+                        const rt = Math.round(ms1[0]);
+                        const mz = Strings.round(ms1[1]);
+                        const into = Math.exp(ms1[2]).toExponential(2);
 
-                        return `${arg.seriesName} spot:<${labels[i].id}> scatter3:${JSON.stringify(arg.data)}`;
+                        return `${arg.seriesName} spot:<${labels[i].id}> m/z: ${mz}@${rt}s intensity=${into}`;
                     }
                 },
                 legend: {

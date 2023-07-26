@@ -133,7 +133,7 @@ Public Class PeakScatterViewer
     Public Function LoadPeaks(peaksdata As IEnumerable(Of Meta)) As PeakScatterViewer
         m_rawdata = peaksdata.ToArray
         LoadPeaks2(m_rawdata.ToArray)
-        lcms_scatter.rawdata = Meta.Log(m_rawdata).ToArray
+        lcms_scatter.rawdata = Meta.Log(m_rawdata, base:=1.125).ToArray
 
         Return Me
     End Function
