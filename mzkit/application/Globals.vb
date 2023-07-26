@@ -592,6 +592,13 @@ Module Globals
                     Call MyApplication.host.showStatusMessage($"{pct}/{msg}...")
                 End Sub)
             Call raw.LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache))
+
+            If raw.GetLoadedMzpack.MS.IsNullOrEmpty Then
+                If Not raw.source.FileExists Then
+                    Call MessageBox.Show($"The MS raw data file '{raw.source}' is not exists on your filesystem.", "Load Raw Data Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Return
+                End If
+            End If
         End If
 
         If raw.GetLoadedMzpack.Application = FileApplicationClass.MSImaging Then
