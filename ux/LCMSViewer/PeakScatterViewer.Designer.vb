@@ -28,14 +28,16 @@ Partial Class PeakScatterViewer
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewIn3DCanvasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ResetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.ViewIn3DCanvasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.WebView21 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'StatusStrip1
@@ -71,28 +73,40 @@ Partial Class PeakScatterViewer
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
         Me.ContextMenuStrip1.Size = New System.Drawing.Size(171, 48)
         '
-        'ResetToolStripMenuItem
-        '
-        Me.ResetToolStripMenuItem.Image = CType(resources.GetObject("ResetToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.ResetToolStripMenuItem.Name = "ResetToolStripMenuItem"
-        Me.ResetToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ResetToolStripMenuItem.Text = "Reset"
-        '
         'ViewIn3DCanvasToolStripMenuItem
         '
         Me.ViewIn3DCanvasToolStripMenuItem.Image = CType(resources.GetObject("ViewIn3DCanvasToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ViewIn3DCanvasToolStripMenuItem.Name = "ViewIn3DCanvasToolStripMenuItem"
-        Me.ViewIn3DCanvasToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ViewIn3DCanvasToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
         Me.ViewIn3DCanvasToolStripMenuItem.Text = "View in 3D Canvas"
+        '
+        'ResetToolStripMenuItem
+        '
+        Me.ResetToolStripMenuItem.Image = CType(resources.GetObject("ResetToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.ResetToolStripMenuItem.Name = "ResetToolStripMenuItem"
+        Me.ResetToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.ResetToolStripMenuItem.Text = "Reset"
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.WebView21)
         Me.Panel1.Controls.Add(Me.PictureBox1)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(775, 530)
         Me.Panel1.TabIndex = 2
+        '
+        'WebView21
+        '
+        Me.WebView21.AllowExternalDrop = True
+        Me.WebView21.CreationProperties = Nothing
+        Me.WebView21.DefaultBackgroundColor = System.Drawing.Color.White
+        Me.WebView21.Location = New System.Drawing.Point(373, 236)
+        Me.WebView21.Name = "WebView21"
+        Me.WebView21.Size = New System.Drawing.Size(270, 138)
+        Me.WebView21.TabIndex = 2
+        Me.WebView21.ZoomFactor = 1.0R
         '
         'PeakScatterViewer
         '
@@ -108,6 +122,7 @@ Partial Class PeakScatterViewer
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
+        CType(Me.WebView21, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -121,4 +136,5 @@ Partial Class PeakScatterViewer
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents ViewIn3DCanvasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents WebView21 As Microsoft.Web.WebView2.WinForms.WebView2
 End Class

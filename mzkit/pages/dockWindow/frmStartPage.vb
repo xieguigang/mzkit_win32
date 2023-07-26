@@ -117,13 +117,7 @@ Public Class frmStartPage
         ' WebView21.CoreWebView2.OpenDevToolsWindow()
         Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", New LinkActions)
         Call WebView21.CoreWebView2.Navigate(sourceURL)
-        Call DeveloperOptions(enable:=True)
-    End Sub
-
-    Public Sub DeveloperOptions(enable As Boolean)
-        WebView21.CoreWebView2.Settings.AreDevToolsEnabled = enable
-        WebView21.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = enable
-        WebView21.CoreWebView2.Settings.AreDefaultContextMenusEnabled = enable
+        Call WebKit.DeveloperOptions(WebView21, enable:=True,)
     End Sub
 
     Public Shared Sub ViewRawDataFile()

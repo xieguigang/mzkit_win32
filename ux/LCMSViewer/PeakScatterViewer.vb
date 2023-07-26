@@ -7,6 +7,7 @@ Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
 Imports stdNum = System.Math
 
@@ -17,6 +18,30 @@ Public Class PeakScatterViewer
 
     Public Event ClickOnPeak(peakId As String, mz As Double, rt As Double)
     Public Event MoveOverPeak(peakId As String, mz As Double, rt As Double)
+
+    Public Property HtmlView As Boolean
+        Get
+            Return WebView21.Visible
+        End Get
+        Set(value As Boolean)
+            If value Then
+                WebView21.Hide()
+                WebView21.Visible = False
+                WebView21.Dock = DockStyle.None
+                PictureBox1.Visible = True
+                PictureBox1.Show()
+                PictureBox1.Dock = DockStyle.Fill
+            Else
+                PictureBox1.Visible = False
+                PictureBox1.Hide()
+                PictureBox1.Dock = DockStyle.None
+                WebView21.Show()
+                WebView21.Visible = True
+                WebView21.Dock = DockStyle.Fill
+            End If
+        End Set
+    End Property
+
 
     Public Property ColorScale As ScalerPalette
         Get
@@ -82,6 +107,8 @@ Public Class PeakScatterViewer
     Dim mzBins As BlockSearchFunction(Of Meta)
     Dim rtBins As BlockSearchFunction(Of Meta)
 
+    Dim lcms_scatter As New LCMSScatter
+
     ''' <summary>
     ''' the scatter raw data in current view range
     ''' </summary>
@@ -97,7 +124,7 @@ Public Class PeakScatterViewer
     End Function
 
     Private Sub PeakScatterViewer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        WebKit.Init(WebView21)
     End Sub
 
     Public Function LoadPeaks(peaksdata As IEnumerable(Of Meta)) As PeakScatterViewer
@@ -355,6 +382,14 @@ Public Class PeakScatterViewer
     End Sub
 
     Private Sub ViewIn3DCanvasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewIn3DCanvasToolStripMenuItem.Click
+        HtmlView = True
+    End Sub
 
+    Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
+        ' WebView21.CoreWebView2.OpenDevToolsWindow()
+        Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", lcms_scatter)
+        Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Workbench.WebPort}/LCMS-scatter.html")
+        Call WebKit.DeveloperOptions(WebView21, enable:=True,)
     End Sub
 End Class
+

@@ -125,6 +125,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LCMSScatter.vb" />
     <Compile Include="PeakFindingParameter.vb" />
     <Compile Include="Dialogs\InputPeakFindParameter.vb">
       <SubType>Form</SubType>
