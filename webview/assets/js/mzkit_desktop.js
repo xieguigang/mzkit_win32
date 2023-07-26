@@ -2,12 +2,10 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -28,7 +26,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
+        while (_) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -49,14 +47,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
 };
 /// <reference path="../../d/three/index.d.ts" />
 var apps;
@@ -72,7 +68,7 @@ var apps;
                 get: function () {
                     return "3d_three";
                 },
-                enumerable: false,
+                enumerable: true,
                 configurable: true
             });
             three_app.prototype.initControls = function () {
@@ -227,6 +223,7 @@ var app;
             // data analysis & data visualization
             Router.AddAppHandler(new apps.viewer.three_app());
             Router.AddAppHandler(new apps.viewer.clusterViewer());
+            Router.AddAppHandler(new apps.viewer.LCMSScatterViewer());
             Router.RunApp();
         }
         desktop.run = run;
@@ -373,7 +370,7 @@ var apps;
             get: function () {
                 return "home";
             },
-            enumerable: false,
+            enumerable: true,
             configurable: true
         });
         home.prototype.init = function () {
@@ -391,7 +388,7 @@ var apps;
             }
             for (var _i = 0, _a = result.records; _i < _a.length; _i++) {
                 var item = _a[_i];
-                var liItem = "\n                    <img class=\"news-pic\" src=\"".concat(item.imgUrl, "\" />\n                    <div class=\"news-txt\">\n                        <a href=\"").concat(sprintf(apps.biodeep_viewVideo, item.id), "\">").concat(item.title, "</a>\n                        <span>").concat(item.createTime, "</span>\n                    </div>");
+                var liItem = "\n                    <img class=\"news-pic\" src=\"" + item.imgUrl + "\" />\n                    <div class=\"news-txt\">\n                        <a href=\"" + sprintf(apps.biodeep_viewVideo, item.id) + "\">" + item.title + "</a>\n                        <span>" + item.createTime + "</span>\n                    </div>";
                 var li = $ts("<li>").display(liItem);
                 newsList.appendElement(li);
             }
@@ -413,7 +410,7 @@ var apps;
                 get: function () {
                     return "pluginMgr";
                 },
-                enumerable: false,
+                enumerable: true,
                 configurable: true
             });
             ;
@@ -455,8 +452,8 @@ var apps;
             pluginMgr.prototype.addPlugin = function (mgr, plugin) {
                 var type = (plugin.status == "disable" || plugin.status == "incompatible") ? "inactive" : "active";
                 var row = $ts("<tr>", { class: type });
-                var action = type == "active" ? "<span class=\"deactivate\">\n            <a href=\"#\" class=\"deactive\" data=\"".concat(plugin.id, "\">Deactivate</a>\n        </span>") : "<span class=\"activate\">\n        <a href=\"#\" class=\"edit\" data=\"".concat(plugin.id, "\">Activate</a> <!--|\n    </span>\n    <span class=\"delete\">\n        <a href=\"#\" class=\"delete\" data=\"").concat(plugin.id, "\">Delete</a>\n    </span>-->");
-                var html = "\n            \n            <th scope=\"row\" class=\"check-column\">\n                <input type=\"checkbox\" name=\"check_plugins\" />\n            </th>\n            <td class=\"plugin-title column-primary\">\n                <strong><a href=\"#\" onclick=\"app.desktop.mzkit.Exec('".concat(plugin.id, "')\">").concat(plugin.name, "</a></strong>\n                <div class=\"row-actions visible\">\n                    ").concat(action, "\n                </div>        \n            </td>\n            <td class=\"column-description desc\">\n                <div class=\"plugin-description\">\n                    <p>\n                        ").concat(plugin.desc, "\n                    </p>\n                </div>\n                <div class=\"").concat(type, " second plugin-version-author-uri\">\n                    Version ").concat(plugin.ver, " | By\n                    <a href=\"#\">").concat(plugin.author, "</a> |\n                    <a href=\"").concat(plugin.url, "\" class=\"thickbox open-plugin-details-modal\">View details</a>\n                </div>\n            </td>\n            <td class=\"column-auto-updates\">\n                \n            </td>     \n            ");
+                var action = type == "active" ? "<span class=\"deactivate\">\n            <a href=\"#\" class=\"deactive\" data=\"" + plugin.id + "\">Deactivate</a>\n        </span>" : "<span class=\"activate\">\n        <a href=\"#\" class=\"edit\" data=\"" + plugin.id + "\">Activate</a> <!--|\n    </span>\n    <span class=\"delete\">\n        <a href=\"#\" class=\"delete\" data=\"" + plugin.id + "\">Delete</a>\n    </span>-->";
+                var html = "\n            \n            <th scope=\"row\" class=\"check-column\">\n                <input type=\"checkbox\" name=\"check_plugins\" />\n            </th>\n            <td class=\"plugin-title column-primary\">\n                <strong><a href=\"#\" onclick=\"app.desktop.mzkit.Exec('" + plugin.id + "')\">" + plugin.name + "</a></strong>\n                <div class=\"row-actions visible\">\n                    " + action + "\n                </div>        \n            </td>\n            <td class=\"column-description desc\">\n                <div class=\"plugin-description\">\n                    <p>\n                        " + plugin.desc + "\n                    </p>\n                </div>\n                <div class=\"" + type + " second plugin-version-author-uri\">\n                    Version " + plugin.ver + " | By\n                    <a href=\"#\">" + plugin.author + "</a> |\n                    <a href=\"" + plugin.url + "\" class=\"thickbox open-plugin-details-modal\">View details</a>\n                </div>\n            </td>\n            <td class=\"column-auto-updates\">\n                \n            </td>     \n            ";
                 mgr.appendChild(row.display(html));
             };
             pluginMgr.prototype.install_local_onclick = function () {
@@ -480,7 +477,7 @@ var apps;
                 get: function () {
                     return "pluginPkg";
                 },
-                enumerable: false,
+                enumerable: true,
                 configurable: true
             });
             ;
@@ -528,7 +525,7 @@ var apps;
             pluginPkg.prototype.build_onclick = function () {
                 var vm = this;
                 var dir = $input("#dir").value.toString();
-                console.log("Build plugin package: ".concat(dir, "!"));
+                console.log("Build plugin package: " + dir + "!");
                 app.desktop.mzkit.BuildPkg(dir).then(function (flag) {
                     return __awaiter(this, void 0, void 0, function () {
                         return __generator(this, function (_a) {
@@ -563,7 +560,7 @@ var apps;
                 get: function () {
                     return "mzkit/services";
                 },
-                enumerable: false,
+                enumerable: true,
                 configurable: true
             });
             ;
@@ -600,7 +597,7 @@ var apps;
                 var vm = this;
                 for (var _i = 0, list_2 = list; _i < list_2.length; _i++) {
                     var svr = list_2[_i];
-                    var id = "P".concat(svr.PID);
+                    var id = "P" + svr.PID;
                     if (!vm.cpu.ContainsKey(id)) {
                         vm.cpu.Add(id, { svr: svr, Counter: [] });
                         vm.memory.Add(id, { svr: svr, Counter: [] });
@@ -627,7 +624,7 @@ var apps;
                 var cpu = vm.plot.cpu;
                 var mem = vm.plot.memory;
                 var panel = $ts("#service-info").clear();
-                var x = __spreadArray([], cpu.Counter, true).map(function (_, index) { return index + 1; });
+                var x = __spreadArrays(cpu.Counter).map(function (_, index) { return index + 1; });
                 panel.display($ts("<h3>").display(cpu.svr.Name));
                 panel.appendElement($ts("<p>").display(cpu.svr.Description));
                 panel.appendElement($ts("<p>").display(cpu.svr.StartTime));
@@ -688,7 +685,7 @@ var apps;
                     row.classList.add("disabled");
                 }
                 row.onclick = function () {
-                    var id = "P".concat(svr.PID);
+                    var id = "P" + svr.PID;
                     var cpu = vm.cpu.Item(id);
                     var mem = vm.memory.Item(id);
                     if (vm.plot) {
@@ -727,7 +724,7 @@ var apps;
                 get: function () {
                     return "clusterViewer";
                 },
-                enumerable: false,
+                enumerable: true,
                 configurable: true
             });
             ;
@@ -799,7 +796,7 @@ var apps;
                 var class_labels = $from(data).Select(function (r) { return r.cluster; }).Distinct().ToArray();
                 var numeric_cluster = $from(class_labels).All(function (si) { return Strings.isIntegerPattern(si.toString()); });
                 return (function (r) {
-                    return numeric_cluster ? "cluster_".concat(r.cluster) : r.cluster.toString();
+                    return numeric_cluster ? "cluster_" + r.cluster : r.cluster.toString();
                 });
             };
             clusterViewer.load_cluster = function (data) {
@@ -824,7 +821,6 @@ var apps;
                         itemStyle: {
                             // borderWidth: 0.5,
                             color: paper[class_labels.indexOf(r.cluster.toString())],
-                            // borderColor: 'rgba(255,255,255,0.8)'//边框样式
                         }
                     };
                 })
@@ -840,7 +836,7 @@ var apps;
                         show: true,
                         trigger: 'item',
                         axisPointer: {
-                            type: 'cross', // 'line' 直线指示器  'shadow' 阴影指示器  'none' 无指示器  'cross' 十字准星指示器。
+                            type: 'cross',
                         },
                         // showContent: true, //是否显示提示框浮层，默认显示。
                         // triggerOn: 'mouseover', // 触发时机'click'鼠标点击时触发。 
@@ -862,7 +858,7 @@ var apps;
                             // console.log(arg);
                             var i = arg.dataIndex;
                             var labels = spot_labels.Item(arg.seriesName);
-                            return "".concat(arg.seriesName, " spot:<").concat(labels[i], "> scatter3:").concat(JSON.stringify(arg.data));
+                            return arg.seriesName + " spot:<" + labels[i] + "> scatter3:" + JSON.stringify(arg.data);
                         }
                     },
                     legend: {
@@ -875,6 +871,51 @@ var apps;
             return clusterViewer;
         }(Bootstrap));
         viewer.clusterViewer = clusterViewer;
+    })(viewer = apps.viewer || (apps.viewer = {}));
+})(apps || (apps = {}));
+var apps;
+(function (apps) {
+    var viewer;
+    (function (viewer) {
+        var LCMSScatterViewer = /** @class */ (function (_super) {
+            __extends(LCMSScatterViewer, _super);
+            function LCMSScatterViewer() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            Object.defineProperty(LCMSScatterViewer.prototype, "appName", {
+                get: function () {
+                    return "lcms-scatter";
+                },
+                enumerable: true,
+                configurable: true
+            });
+            LCMSScatterViewer.prototype.init = function () {
+                app.desktop.mzkit.GetLCMSScatter().then(function (data) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var json_str, scatter;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, data];
+                                case 1:
+                                    json_str = _a.sent();
+                                    scatter = JSON.parse(json_str);
+                                    if (isNullOrEmpty(scatter)) {
+                                        LCMSScatterViewer.render3DScatter([]);
+                                    }
+                                    else {
+                                        LCMSScatterViewer.render3DScatter(scatter);
+                                    }
+                                    return [2 /*return*/];
+                            }
+                        });
+                    });
+                });
+            };
+            LCMSScatterViewer.render3DScatter = function (dataset) {
+            };
+            return LCMSScatterViewer;
+        }(Bootstrap));
+        viewer.LCMSScatterViewer = LCMSScatterViewer;
     })(viewer = apps.viewer || (apps.viewer = {}));
 })(apps || (apps = {}));
 //# sourceMappingURL=mzkit_desktop.js.map
