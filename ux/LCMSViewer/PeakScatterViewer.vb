@@ -353,4 +353,8 @@ Public Class PeakScatterViewer
             Call e.Graphics.DrawRectangle(pen, rect)
         End If
     End Sub
+
+    Private Sub ViewIn3DCanvasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewIn3DCanvasToolStripMenuItem.Click
+
+    End Sub
 End Class
