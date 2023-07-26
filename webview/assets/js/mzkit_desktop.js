@@ -912,6 +912,99 @@ var apps;
                 });
             };
             LCMSScatterViewer.render3DScatter = function (dataset) {
+                var render = new gl_plot.scatter3d(LCMSScatterViewer.load_cluster, "viewer");
+                var div = $ts("#viewer");
+                render.plot(dataset);
+                render.chartObj.on("click", function (par) {
+                    // // console.log(par);
+                    // const i = par.dataIndex;
+                    // const category = par.seriesName;
+                    // const labels = spot_labels.Item(category);
+                    // const spot_id: string = labels[i];
+                    // // console.log(spot_id);
+                    // app.desktop.mzkit.Click(spot_id);
+                });
+                var resize_canvas = function () {
+                    var padding = 25;
+                    div.style.width = (window.innerWidth - padding) + "px";
+                    div.style.height = (window.innerHeight - padding) + "px";
+                    render.chartObj.resize();
+                };
+                window.onresize = function () { return resize_canvas(); };
+                resize_canvas();
+            };
+            LCMSScatterViewer.scatter_group = function (data) {
+                return {
+                    type: 'scatter3D',
+                    name: "LCMS Ms2 Spectrum",
+                    spot_labels: $from(data).Select(function (r) { return r.id; }).ToArray(),
+                    symbolSize: 5,
+                    dimensions: [
+                        'x',
+                        'y',
+                        'z'
+                    ],
+                    data: $from(data).Select(function (r) { return [r.scan_time, r.mz, r.intensity]; }).ToArray(),
+                    symbol: 'circle',
+                    itemStyle: {
+                        // borderWidth: 0.5,
+                        color: "red" // paper[class_labels.indexOf(r.cluster.toString())],
+                        // borderColor: 'rgba(255,255,255,0.8)'//边框样式
+                    }
+                };
+            };
+            LCMSScatterViewer.load_cluster = function (data) {
+                var paper = echart_app.paper;
+                // const class_labels = $from(data).Select(r => r.cluster).Distinct().ToArray();
+                // const numeric_cluster = $from(class_labels).All(si => Strings.isIntegerPattern(si.toString()));
+                // const format_tag = clusterViewer.format_cluster_tag(data);
+                // const scatter3D = $from(data)
+                //     .Select(function (r) {
+                //     })
+                //     .ToArray();
+                // const spot_labels = $from(data).ToDictionary(d => format_tag(d), d => d.labels);
+                var scatter3D = [LCMSScatterViewer.scatter_group(data)];
+                return {
+                    grid3D: {},
+                    xAxis3D: { type: 'value', name: 'x' },
+                    yAxis3D: { type: 'value', name: 'y' },
+                    zAxis3D: { type: 'value', name: 'z' },
+                    series: scatter3D,
+                    tooltip: {
+                        show: true,
+                        trigger: 'item',
+                        axisPointer: {
+                            type: 'cross',
+                        },
+                        // showContent: true, //是否显示提示框浮层，默认显示。
+                        // triggerOn: 'mouseover', // 触发时机'click'鼠标点击时触发。 
+                        backgroundColor: 'white',
+                        borderColor: '#333',
+                        borderWidth: 0,
+                        padding: 5,
+                        textStyle: {
+                            color: 'skyblue',
+                            fontStyle: 'normal',
+                            fontWeight: 'normal',
+                            fontFamily: 'sans-serif',
+                            fontSize: 16,
+                        },
+                        // 提示框浮层内容格式器，支持字符串模板和回调函数两种形式。
+                        // 模板变量有 {a}, {b}，{c}，分别表示系列名，数据名，数据值等
+                        // formatter: '{a}--{b} 的成绩是 {c}'
+                        formatter: function (arg) {
+                            // console.log(arg);
+                            var i = arg.dataIndex;
+                            var labels = data; // spot_labels.Item(arg.seriesName);
+                            return arg.seriesName + " spot:<" + labels[i].id + "> scatter3:" + JSON.stringify(arg.data);
+                        }
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        x: 'right',
+                        y: 'center'
+                    }
+                };
             };
             return LCMSScatterViewer;
         }(Bootstrap));

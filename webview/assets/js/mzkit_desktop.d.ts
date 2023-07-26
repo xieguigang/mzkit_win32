@@ -194,5 +194,7 @@ declare namespace apps.viewer {
         get appName(): string;
         protected init(): void;
         static render3DScatter(dataset: ms1_scatter[]): void;
+        private static scatter_group;
+        static load_cluster(data: ms1_scatter[]): gl_plot.scatter3d_options;
     }
 }
