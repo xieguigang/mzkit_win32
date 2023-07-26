@@ -24,13 +24,15 @@ Public Class PeakScatterViewer
             Return WebView21.Visible
         End Get
         Set(value As Boolean)
-            If value Then
+            If Not value Then
                 WebView21.Hide()
                 WebView21.Visible = False
                 WebView21.Dock = DockStyle.None
                 PictureBox1.Visible = True
                 PictureBox1.Show()
                 PictureBox1.Dock = DockStyle.Fill
+
+                Call ViewerResize()
             Else
                 PictureBox1.Visible = False
                 PictureBox1.Hide()
@@ -125,6 +127,7 @@ Public Class PeakScatterViewer
 
     Private Sub PeakScatterViewer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         WebKit.Init(WebView21)
+        HtmlView = False
     End Sub
 
     Public Function LoadPeaks(peaksdata As IEnumerable(Of Meta)) As PeakScatterViewer
