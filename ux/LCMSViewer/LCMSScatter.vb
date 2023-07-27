@@ -19,6 +19,10 @@ Public Class LCMSScatter
         Return rawdata.GetJson
     End Function
 
+    Public Sub LoadMesh(rawdata As Meta(), Optional n As Integer = 500)
+        Me.rawdata = MeshGrid(rawdata, n).ToArray
+    End Sub
+
     Public Shared Iterator Function MeshGrid(rawdata As Meta(), Optional n As Integer = 1500) As IEnumerable(Of Meta)
         Dim mz_bin As New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.mz, 1, fuzzy:=True)
         Dim mz_range As New DoubleRange(rawdata.Select(Function(a) a.mz))
@@ -34,6 +38,8 @@ Public Class LCMSScatter
                 .Select(Function(a) New PointF(a.scan_time, a.intensity)) _
                 .BSpline(degree:=3) _
                 .ToArray
+
+            Call Application.DoEvents()
 
             For Each p As PointF In line
                 Yield New Meta With {
@@ -54,6 +60,8 @@ Public Class LCMSScatter
                 .Select(Function(a) New PointF(a.mz, a.intensity)) _
                 .BSpline(degree:=3) _
                 .ToArray
+
+            Call Application.DoEvents()
 
             For Each p As PointF In line
                 Yield New Meta With {

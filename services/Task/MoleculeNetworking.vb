@@ -121,6 +121,11 @@ Public Module MoleculeNetworking
         If attrs Is Nothing OrElse scanId.Contains("[MS1]") Then
             Dim ms1 = raw.FindMs1Scan(scanId)
 
+            If ms1 Is Nothing Then
+                ' ms1 also has no hit?
+                Return Nothing
+            End If
+
             msLevel = 1
             attrs = New ScanMS2 With {
                 .scan_id = ms1.scan_id,
