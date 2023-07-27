@@ -935,9 +935,9 @@ var apps;
                 var mesh_data = [];
                 for (var _i = 0, dataset_1 = dataset; _i < dataset_1.length; _i++) {
                     var ms1 = dataset_1[_i];
-                    var lum = range.ScaleMapping(ms1.intensity, lum_range);
-                    lum = (lum - 125) / 10 + 50;
-                    mesh_data.push([ms1.mz, ms1.scan_time, lum]);
+                    //var lum = range.ScaleMapping(ms1.intensity, lum_range);
+                    //lum = (lum - 125) / 10 + 50;
+                    mesh_data.push([ms1.mz, ms1.scan_time, ms1.intensity]);
                 }
                 myChart.setOption((option = {
                     tooltip: {},
@@ -951,7 +951,7 @@ var apps;
                     zAxis3D: {
                         type: 'value',
                         min: 0,
-                        max: 255
+                        max: range.Max
                     },
                     grid3D: {
                         axisPointer: {
