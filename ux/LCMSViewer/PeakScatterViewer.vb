@@ -6,7 +6,9 @@ Imports Microsoft.VisualBasic.Data.ChartPlots
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors.Scaler
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
 Imports stdNum = System.Math
 
@@ -17,6 +19,32 @@ Public Class PeakScatterViewer
 
     Public Event ClickOnPeak(peakId As String, mz As Double, rt As Double)
     Public Event MoveOverPeak(peakId As String, mz As Double, rt As Double)
+
+    Public Property HtmlView As Boolean
+        Get
+            Return WebView21.Visible
+        End Get
+        Set(value As Boolean)
+            If Not value Then
+                WebView21.Hide()
+                WebView21.Visible = False
+                WebView21.Dock = DockStyle.None
+                PictureBox1.Visible = True
+                PictureBox1.Show()
+                PictureBox1.Dock = DockStyle.Fill
+
+                Call ViewerResize()
+            Else
+                PictureBox1.Visible = False
+                PictureBox1.Hide()
+                PictureBox1.Dock = DockStyle.None
+                WebView21.Show()
+                WebView21.Visible = True
+                WebView21.Dock = DockStyle.Fill
+            End If
+        End Set
+    End Property
+
 
     Public Property ColorScale As ScalerPalette
         Get
@@ -82,6 +110,8 @@ Public Class PeakScatterViewer
     Dim mzBins As BlockSearchFunction(Of Meta)
     Dim rtBins As BlockSearchFunction(Of Meta)
 
+    Dim lcms_scatter As New LCMSScatter
+
     ''' <summary>
     ''' the scatter raw data in current view range
     ''' </summary>
@@ -97,11 +127,14 @@ Public Class PeakScatterViewer
     End Function
 
     Private Sub PeakScatterViewer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        WebKit.Init(WebView21)
+        HtmlView = False
     End Sub
 
     Public Function LoadPeaks(peaksdata As IEnumerable(Of Meta)) As PeakScatterViewer
         m_rawdata = peaksdata.ToArray
+
+        Dim maxinto As Double = m_rawdata.Select(Function(r) r.intensity).FindThreshold(0.8)
 
         For i As Integer = 0 To m_rawdata.Length - 1
             If m_rawdata(i).id Is Nothing Then
@@ -112,9 +145,16 @@ Public Class PeakScatterViewer
         m_rawdata = m_rawdata _
             .GroupBy(Function(i) i.id) _
             .Select(Function(a) a.First) _
+      
+
+        m_rawdata = m_rawdata _
+            .Select(Function(a)
+                        Return New Meta(a.mz, a.scan_time, If(a.intensity > maxinto, maxinto, a.intensity), a.id)
+                    End Function) _
             .ToArray
 
         LoadPeaks2(m_rawdata.ToArray)
+        lcms_scatter.rawdata = m_rawdata.ToArray
 
         Return Me
     End Function
@@ -365,4 +405,16 @@ Public Class PeakScatterViewer
             Call e.Graphics.DrawRectangle(pen, rect)
         End If
     End Sub
+
+    Private Sub ViewIn3DCanvasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewIn3DCanvasToolStripMenuItem.Click
+        HtmlView = True
+    End Sub
+
+    Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
+        ' WebView21.CoreWebView2.OpenDevToolsWindow()
+        Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", lcms_scatter)
+        Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Workbench.WebPort}/LCMS-scatter.html")
+        Call WebKit.DeveloperOptions(WebView21, enable:=True,)
+    End Sub
 End Class
+

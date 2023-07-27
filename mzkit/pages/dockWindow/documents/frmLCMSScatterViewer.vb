@@ -38,6 +38,8 @@ Public Class frmLCMSScatterViewer
             .Dock = DockStyle.Fill
         }
         Me.Controls.Add(ScatterViewer)
+
+        Call ApplyVsTheme(ScatterViewer.GetMenu)
     End Sub
 
     Private Sub ScatterViewer_MoveOverPeak(peakId As String, mz As Double, rt As Double) Handles ScatterViewer.MoveOverPeak

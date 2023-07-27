@@ -22,6 +22,8 @@ namespace app.desktop {
         GetScatter(): Promise<string>;
         Click(tag: string);
 
+        GetLCMSScatter(): Promise<string>;
+
         // plugin manager
         Save(): void;
         InstallLocal(): void;
@@ -48,6 +50,7 @@ namespace app.desktop {
         // data analysis & data visualization
         Router.AddAppHandler(new apps.viewer.three_app());
         Router.AddAppHandler(new apps.viewer.clusterViewer());
+        Router.AddAppHandler(new apps.viewer.LCMSScatterViewer());
 
         Router.RunApp();
     }
