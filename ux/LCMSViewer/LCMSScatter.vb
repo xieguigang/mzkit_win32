@@ -13,14 +13,14 @@ Public Class LCMSScatter
     ''' <summary>
     ''' the scatter raw data in current view range
     ''' </summary>
-    Dim rawdata As Meta()
+    Friend rawdata As Meta()
 
     Public Function GetLCMSScatter() As String
         Return rawdata.GetJson
     End Function
 
     Public Sub LoadMesh(rawdata As Meta(), Optional n As Integer = 500)
-        Me.rawdata = MeshGrid(rawdata, n)
+        Me.rawdata = MeshGrid(rawdata, n).ToArray
     End Sub
 
     Public Shared Iterator Function MeshGrid(rawdata As Meta(), Optional n As Integer = 1500) As IEnumerable(Of Meta)
@@ -38,6 +38,8 @@ Public Class LCMSScatter
                 .Select(Function(a) New PointF(a.scan_time, a.intensity)) _
                 .BSpline(degree:=3) _
                 .ToArray
+
+            Call Application.DoEvents()
 
             For Each p As PointF In line
                 Yield New Meta With {
@@ -58,6 +60,8 @@ Public Class LCMSScatter
                 .Select(Function(a) New PointF(a.mz, a.intensity)) _
                 .BSpline(degree:=3) _
                 .ToArray
+
+            Call Application.DoEvents()
 
             For Each p As PointF In line
                 Yield New Meta With {

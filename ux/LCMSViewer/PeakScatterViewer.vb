@@ -134,7 +134,11 @@ Public Class PeakScatterViewer
     Public Function LoadPeaks(peaksdata As IEnumerable(Of Meta)) As PeakScatterViewer
         m_rawdata = peaksdata.ToArray
 
+        Call Application.DoEvents()
+
         Dim maxinto As Double = m_rawdata.Select(Function(r) r.intensity).FindThreshold(0.8)
+
+        Call Application.DoEvents()
 
         For i As Integer = 0 To m_rawdata.Length - 1
             If m_rawdata(i).id Is Nothing Then
@@ -144,13 +148,17 @@ Public Class PeakScatterViewer
             m_rawdata(i).intensity = If(m_rawdata(i).intensity > maxinto, maxinto, m_rawdata(i).intensity)
         Next
 
+        Call Application.DoEvents()
+
         m_rawdata = m_rawdata _
             .GroupBy(Function(i) i.id) _
             .Select(Function(a) a.First) _
             .ToArray
 
+        Call Application.DoEvents()
+
         LoadPeaks2(m_rawdata.ToArray)
-        lcms_scatter.LoadMesh(m_rawdata.ToArray)
+        lcms_scatter.rawdata = m_rawdata.ToArray
 
         Return Me
     End Function
