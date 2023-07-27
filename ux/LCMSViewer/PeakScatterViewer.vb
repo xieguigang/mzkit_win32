@@ -136,7 +136,7 @@ Public Class PeakScatterViewer
 
         Call Application.DoEvents()
 
-        Dim maxinto As Double = m_rawdata.Select(Function(r) r.intensity).FindThreshold(0.8)
+        ' Dim maxinto As Double = m_rawdata.Select(Function(r) r.intensity).FindThreshold(0.999999999999)
 
         Call Application.DoEvents()
 
@@ -145,7 +145,7 @@ Public Class PeakScatterViewer
                 m_rawdata(i).id = m_rawdata(i).GetHashCode.ToHexString
             End If
 
-            m_rawdata(i).intensity = If(m_rawdata(i).intensity > maxinto, maxinto, m_rawdata(i).intensity)
+            ' m_rawdata(i).intensity = If(m_rawdata(i).intensity > maxinto, maxinto, m_rawdata(i).intensity)
         Next
 
         Call Application.DoEvents()
@@ -159,6 +159,7 @@ Public Class PeakScatterViewer
 
         LoadPeaks2(m_rawdata.ToArray)
         lcms_scatter.rawdata = m_rawdata.ToArray
+        WebView21.CoreWebView2.Reload()
 
         Return Me
     End Function

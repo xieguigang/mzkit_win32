@@ -126,7 +126,9 @@
     <Compile Include="FormMoNADownloads.Designer.vb">
       <DependentUpon>FormMoNADownloads.vb</DependentUpon>
     </Compile>
-    <Compile Include="FormMoNADownloads.vb" />
+    <Compile Include="FormMoNADownloads.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Library.vb" />
     <Compile Include="RestApiPlugin.vb" />
     <Compile Include="zzz.vb" />
