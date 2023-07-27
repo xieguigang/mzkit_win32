@@ -228,7 +228,18 @@ Public Class PageMzkitTools
         If raw.cacheFileExists OrElse raw.isInMemory Then
             Dim prop As SpectrumProperty = Nothing
             Dim showAnnotation As Boolean = RibbonEvents.ribbonItems.CheckBoxShowMs2Fragment.BooleanValue
-            Dim scanData As LibraryMatrix = raw.GetSpectrum(scanId, Globals.Settings.viewer.GetMethod, Sub(src, cache) frmFileExplorer.getRawCache(src,, cache), showAnnotation, prop)
+            Dim scanData As LibraryMatrix = raw.GetSpectrum(
+                scanId:=scanId,
+                cutoff:=Globals.Settings.viewer.GetMethod,
+                reload:=Sub(src, cache) frmFileExplorer.getRawCache(src,, cache),
+                showAnnotation:=showAnnotation,
+                properties:=prop
+            )
+
+            If scanData Is Nothing Then
+                Call Workbench.Warning($"Sorry, could not fould any spectrum data that related with scan id: {scanId}.")
+                Return
+            End If
 
             If prop.msLevel = 1 AndAlso ribbonItems.CheckBoxShowKEGGAnnotation.BooleanValue Then
                 Call ConnectToBioDeep.OpenAdvancedFunction(
