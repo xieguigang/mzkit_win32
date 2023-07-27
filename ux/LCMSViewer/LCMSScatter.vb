@@ -13,11 +13,15 @@ Public Class LCMSScatter
     ''' <summary>
     ''' the scatter raw data in current view range
     ''' </summary>
-    Friend rawdata As Meta()
+    Dim rawdata As Meta()
 
     Public Function GetLCMSScatter() As String
         Return rawdata.GetJson
     End Function
+
+    Public Sub LoadMesh(rawdata As Meta(), Optional n As Integer = 500)
+        Me.rawdata = MeshGrid(rawdata, n)
+    End Sub
 
     Public Shared Iterator Function MeshGrid(rawdata As Meta(), Optional n As Integer = 1500) As IEnumerable(Of Meta)
         Dim mz_bin As New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.mz, 1, fuzzy:=True)

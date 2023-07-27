@@ -150,7 +150,7 @@ Public Class PeakScatterViewer
             .ToArray
 
         LoadPeaks2(m_rawdata.ToArray)
-        lcms_scatter.rawdata = m_rawdata.ToArray
+        lcms_scatter.LoadMesh(m_rawdata.ToArray)
 
         Return Me
     End Function
