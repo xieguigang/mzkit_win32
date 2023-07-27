@@ -27,106 +27,37 @@ namespace apps.viewer {
         }
 
         public static render3DScatter(dataset: ms1_scatter[]) {
-            var dom = document.getElementById('viewer');
-            var myChart = echarts.init(dom, null, {
-                renderer: 'canvas',
-                useDirtyRect: false
-            });
-            var option;
-
-            // let img = new Image();
-            // let canvas = document.createElement("canvas");
-            // let ctx = canvas.getContext("2d");
-            let stream = $from(dataset);
-            let range = data.NumericRange.Create(stream.Select(a => a.intensity));
-            let lum_range = new data.NumericRange(0, 255);
-            let r_range = data.NumericRange.Create(stream.Select(a => a.mz));
-            let g_range = data.NumericRange.Create(stream.Select(a => a.scan_time));
-            let b_range = range;
-
-            // img.onload = function () {
-            //     var width = (canvas.width = img.width);
-            //     var height = (canvas.height = img.height);
-
-            //     ctx.drawImage(img, 0, 0, width, height);
-            console.log("log mesh data...");
-
-            var mesh_data = [];
-            for (let ms1 of dataset) {
-                var lum = range.ScaleMapping(ms1.intensity, lum_range);
-                lum = (lum - 125) / 10 + 50;
-                mesh_data.push([ms1.mz, ms1.scan_time, lum]);
-            }
-
-            myChart.setOption(
-                (option = {
-                    tooltip: {},
-                    backgroundColor: '#fff',
-                    xAxis3D: {
-                        type: 'value'
-                    },
-                    yAxis3D: {
-                        type: 'value'
-                    },
-                    zAxis3D: {
-                        type: 'value',
-                        min: 0,
-                        max: 255
-                    },
-                    grid3D: {
-                        axisPointer: {
-                            show: false
-                        },
-                        viewControl: {
-                            distance: 100
-                        },
-                        postEffect: {
-                            enable: true
-                        },
-                        light: {
-                            main: {
-                                shadow: true,
-                                intensity: 2
-                            },
-                            ambientCubemap: {
-                                texture: "/assets/canyon.hdr",
-                                exposure: 2,
-                                diffuseIntensity: 0.2,
-                                specularIntensity: 1
-                            }
-                        }
-                    },
-                    series: [
-                        {
-                            type: 'surface',
-                            silent: true,
-                            wireframe: {
-                                show: false
-                            },
-                            itemStyle: {
-                                color: function (params) {
-                                    var i = params.dataIndex;
-                                    var p = dataset[i];
-                                    var r = r_range.ScaleMapping(p.mz, lum_range);
-                                    var g = g_range.ScaleMapping(p.scan_time, lum_range);
-                                    var b = b_range.ScaleMapping(p.intensity, lum_range);
-                                    var exp = 'rgb(' + [r, g, b].join(',') + ')';
-                                    console.log(exp);
-                                    return exp;
-                                }
-                            },
-                            data: mesh_data
-                        }
-                    ]
-                })
+            const render = new gl_plot.scatter3d<ms1_scatter[]>(
+                LCMSScatterViewer.load_cluster,
+                "viewer"
             );
 
-            // if (option && typeof option === 'object') {
-            //     myChart.setOption(option);
-            // }
+            const div = $ts("#viewer");
 
-            window.addEventListener('resize', myChart.resize);
-            // }
+            render.plot(dataset);
+            render.chartObj.on("click", function (par: any) {
+                // // console.log(par);
+
+                // const i = par.dataIndex;
+                // const category = par.seriesName;
+                // const labels = spot_labels.Item(category);
+                // const spot_id: string = labels[i];
+
+                // // console.log(spot_id);
+                // app.desktop.mzkit.Click(spot_id);
+            });
+
+            const resize_canvas = function () {
+                const padding = 25;
+
+                div.style.width = (window.innerWidth - padding) + "px";
+                div.style.height = (window.innerHeight - padding) + "px";
+
+                render.chartObj.resize();
+            };
+
+            window.onresize = () => resize_canvas();
+            resize_canvas();
         }
 
         private static scatter_group(data: ms1_scatter[]) {
@@ -157,6 +88,9 @@ namespace apps.viewer {
                     // borderWidth: 0.5,
                     color: "red"// paper[class_labels.indexOf(r.cluster.toString())],
                     // borderColor: 'rgba(255,255,255,0.8)'//边框样式
+                },
+                wireframe: {
+                    show: true
                 }
             };
         }
@@ -175,7 +109,30 @@ namespace apps.viewer {
             const scatter3D = [LCMSScatterViewer.scatter_group(data)];
 
             return <any>{
-                grid3D: {},
+                grid3D: {
+                    axisPointer: {
+                        show: false
+                    },
+                    viewControl: {
+                        distance: 100
+                    },
+                    postEffect: {
+                        enable: true
+                    },
+                    light: {
+                        main: {
+                            shadow: true,
+                            intensity: 2
+                        },
+                        ambientCubemap: {
+                            texture: "/assets/canyon.hdr",
+                            exposure: 2,
+                            diffuseIntensity: 0.2,
+                            specularIntensity: 1
+                        }
+                    }
+                },
+                backgroundColor: '#fff',
                 xAxis3D: { type: 'value', name: 'Scan Time(s)' },
                 yAxis3D: { type: 'value', name: 'M/Z' },
                 zAxis3D: { type: 'value', name: 'Intensity' },
