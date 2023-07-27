@@ -34,7 +34,7 @@ Public Class frmLCMSScatterViewer
 
     Private Sub frmLCMSScatterViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         ScatterViewer = New PeakScatterViewer With {
-            .ColorScale = ScalerPalette.viridis,
+            .ColorScale = ScalerPalette.turbo,
             .Dock = DockStyle.Fill
         }
         Me.Controls.Add(ScatterViewer)
