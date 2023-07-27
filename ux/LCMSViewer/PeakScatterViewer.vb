@@ -102,6 +102,13 @@ Public Class PeakScatterViewer
 
     Public Function LoadPeaks(peaksdata As IEnumerable(Of Meta)) As PeakScatterViewer
         m_rawdata = peaksdata.ToArray
+
+        For i As Integer = 0 To m_rawdata.Length - 1
+            If m_rawdata(i).id Is Nothing Then
+                m_rawdata(i).id = m_rawdata(i).GetHashCode.ToHexString
+            End If
+        Next
+
         LoadPeaks2(m_rawdata.ToArray)
 
         Return Me
