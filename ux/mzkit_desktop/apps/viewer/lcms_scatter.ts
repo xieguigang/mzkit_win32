@@ -60,7 +60,7 @@ namespace apps.viewer {
             resize_canvas();
         }
 
-        private static scatter_group(data: ms1_scatter[]) {
+        private static scatter_group(data: ms1_scatter[], color: string, label: string) {
             // if (data.length > 4) {
             //     let scatter = $from(data).OrderByDescending(r => r.intensity + 0.0).ToArray();
             //     let max_into = scatter[3].intensity;
@@ -74,7 +74,7 @@ namespace apps.viewer {
 
             return <gl_plot.gl_scatter_data>{
                 type: 'scatter3D',
-                name: "LCMS Ms2 Spectrum", // format_tag(r),
+                name: `Intensity: ${label}`, // format_tag(r),
                 spot_labels: $from(data).Select(r => r.id).ToArray(),
                 symbolSize: 5,
                 dimensions: [
@@ -86,7 +86,7 @@ namespace apps.viewer {
                 symbol: 'circle',
                 itemStyle: {
                     // borderWidth: 0.5,
-                    color: "red"// paper[class_labels.indexOf(r.cluster.toString())],
+                    color: color // paper[class_labels.indexOf(r.cluster.toString())],
                     // borderColor: 'rgba(255,255,255,0.8)'//边框样式
                 },
                 wireframe: {
@@ -97,6 +97,24 @@ namespace apps.viewer {
 
         public static load_cluster(data: ms1_scatter[]): gl_plot.scatter3d_options {
             const paper = echart_app.paper;
+            const colors = [
+                "#30123B", //	48	18	59
+                "#4454C4", //	68	84	196
+                "#4490FE", //	68	144	254
+                "#1FC8DE", //	31	200	222
+                "#29EFA2", //	41	239	162
+                "#7DFF56", //	125	255	86
+                "#C1F334", //	193	243	52
+                "#F1CA3A", //	241	202	58
+                "#FE922A", //	254	146	42
+                "#EA4F0D", //	234	79	13
+                "#BE2102", //	190	33	2
+                "#7A0403" //	122	4	3
+            ];
+            const seq = $from(data);
+            const max = seq.Select(a => a.intensity).Max();
+            const d = max / 12;
+
             // const class_labels = $from(data).Select(r => r.cluster).Distinct().ToArray();
             // const numeric_cluster = $from(class_labels).All(si => Strings.isIntegerPattern(si.toString()));
             // const format_tag = clusterViewer.format_cluster_tag(data);
@@ -106,7 +124,16 @@ namespace apps.viewer {
             //     })
             //     .ToArray();
             // const spot_labels = $from(data).ToDictionary(d => format_tag(d), d => d.labels);
-            const scatter3D = [LCMSScatterViewer.scatter_group(data)];
+            const scatter3D = [];
+
+            let i = 0;
+
+            for (let min = 0; min < max; min = min + d) {
+                const l0 = min + d;
+                const subset = seq.Where(a => a.intensity > min && a.intensity < l0).ToArray();
+
+                scatter3D.push(LCMSScatterViewer.scatter_group(subset, colors[i++], `${min} ~ ${l0}`));
+            }
 
             return <any>{
                 grid3D: {
