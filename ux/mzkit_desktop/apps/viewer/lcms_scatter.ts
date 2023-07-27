@@ -111,7 +111,7 @@ namespace apps.viewer {
                                     var g = g_range.ScaleMapping(p.scan_time, lum_range);
                                     var b = b_range.ScaleMapping(p.intensity, lum_range);
                                     var exp = 'rgb(' + [r, g, b].join(',') + ')';
-                                    console.log(exp);
+                                    // console.log(exp);
                                     return exp;
                                 }
                             },
