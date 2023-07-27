@@ -146,7 +146,8 @@ Public Class PeakScatterViewer
 
         m_rawdata = m_rawdata _
             .GroupBy(Function(i) i.id) _
-            .Select(Function(a) a.First)
+            .Select(Function(a) a.First) _
+            .ToArray
 
         LoadPeaks2(m_rawdata.ToArray)
         lcms_scatter.rawdata = m_rawdata.ToArray
