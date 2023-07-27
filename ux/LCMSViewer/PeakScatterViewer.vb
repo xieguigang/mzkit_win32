@@ -140,18 +140,13 @@ Public Class PeakScatterViewer
             If m_rawdata(i).id Is Nothing Then
                 m_rawdata(i).id = m_rawdata(i).GetHashCode.ToHexString
             End If
+
+            m_rawdata(i).intensity = If(m_rawdata(i).intensity > maxinto, maxinto, m_rawdata(i).intensity)
         Next
 
         m_rawdata = m_rawdata _
             .GroupBy(Function(i) i.id) _
-            .Select(Function(a) a.First) _
-      
-
-        m_rawdata = m_rawdata _
-            .Select(Function(a)
-                        Return New Meta(a.mz, a.scan_time, If(a.intensity > maxinto, maxinto, a.intensity), a.id)
-                    End Function) _
-            .ToArray
+            .Select(Function(a) a.First)
 
         LoadPeaks2(m_rawdata.ToArray)
         lcms_scatter.rawdata = m_rawdata.ToArray
