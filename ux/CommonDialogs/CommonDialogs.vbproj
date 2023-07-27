@@ -116,23 +116,33 @@
     <Compile Include="InputDialogs\InputSingleIonMSIExport.Designer.vb">
       <DependentUpon>InputSingleIonMSIExport.vb</DependentUpon>
     </Compile>
-    <Compile Include="InputDialogs\InputSingleIonMSIExport.vb" />
+    <Compile Include="InputDialogs\InputSingleIonMSIExport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="InputDialogs\InputCloudEndPoint.Designer.vb">
       <DependentUpon>InputCloudEndPoint.vb</DependentUpon>
     </Compile>
-    <Compile Include="InputDialogs\InputCloudEndPoint.vb" />
+    <Compile Include="InputDialogs\InputCloudEndPoint.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="InputDialogs\InputMSISlideLayout.Designer.vb">
       <DependentUpon>InputMSISlideLayout.vb</DependentUpon>
     </Compile>
-    <Compile Include="InputDialogs\InputMSISlideLayout.vb" />
+    <Compile Include="InputDialogs\InputMSISlideLayout.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="InputDialogs\InputSpotRadius.Designer.vb">
       <DependentUpon>InputSpotRadius.vb</DependentUpon>
     </Compile>
-    <Compile Include="InputDialogs\InputSpotRadius.vb" />
+    <Compile Include="InputDialogs\InputSpotRadius.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="InputDialogs\ShowMSIRowScanSummary.Designer.vb">
       <DependentUpon>ShowMSIRowScanSummary.vb</DependentUpon>
     </Compile>
-    <Compile Include="InputDialogs\ShowMSIRowScanSummary.vb" />
+    <Compile Include="InputDialogs\ShowMSIRowScanSummary.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
