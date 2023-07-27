@@ -109,6 +109,11 @@ Public Class PeakScatterViewer
             End If
         Next
 
+        m_rawdata = m_rawdata _
+            .GroupBy(Function(i) i.id) _
+            .Select(Function(a) a.First) _
+            .ToArray
+
         LoadPeaks2(m_rawdata.ToArray)
 
         Return Me
