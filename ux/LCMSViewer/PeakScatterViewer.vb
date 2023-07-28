@@ -40,6 +40,8 @@ Public Class PeakScatterViewer
                 WebView21.Show()
                 WebView21.Visible = True
                 WebView21.Dock = DockStyle.Fill
+
+                ToolStripStatusLabel1.Text = "Use mouse left button to rotate, and mouse right button to pan the canvas"
             End If
         End Set
     End Property

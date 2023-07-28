@@ -60,7 +60,7 @@ namespace apps.viewer {
                 // app.desktop.mzkit.Click(spot_id);
             });
             const resize_canvas = function () {
-                const padding = 25;
+                const padding = 10;
                 div.style.width = (window.innerWidth - padding) + "px";
                 div.style.height = (window.innerHeight - padding) + "px";
                 render.chartObj.resize();
@@ -133,15 +133,16 @@ namespace apps.viewer {
             // const scatter3D = [LCMSScatterViewer.scatter_group(data)];
             return <any>{
                 grid3D: {
+                    color: "white",
                     axisPointer: {
                         show: false
                     },
                     viewControl: {
-                        distance: 300,
+                        distance: 200,
                         beta: -30,
                         panMouseButton: 'right',//平移操作使用的鼠标按键
                         rotateMouseButton: 'left',//旋转操作使用的鼠标按键
-                        alpha: 50 // 让canvas在x轴有一定的倾斜角度
+                        alpha: 30 // 让canvas在x轴有一定的倾斜角度
                     },
                     postEffect: {
                         enable: false,
@@ -169,10 +170,10 @@ namespace apps.viewer {
                     //     enable: false
                     // }
                 },
-                backgroundColor: 'silver',
-                xAxis3D: { type: 'value', name: 'Scan Time(s)' },
-                yAxis3D: { type: 'value', name: 'M/Z' },
-                zAxis3D: { type: 'value', name: 'Intensity' },
+                backgroundColor: '#e7e7e7',
+                xAxis3D: { type: 'value', name: 'Scan Time(s)', color: "white" },
+                yAxis3D: { type: 'value', name: 'M/Z', color: "white" },
+                zAxis3D: { type: 'value', name: 'Intensity', color: "white" },
                 series: scatter3D,
                 tooltip: {//提示框组件，用于配置鼠标滑过或点击图表时的显示框。
                     show: true, // 是否显示

@@ -32,7 +32,7 @@ Public Class frmLCMSScatterViewer
             .IteratesALL _
             .ToArray
         Dim maxinto As Double = ms1.Select(Function(a) a.intensity).Max
-        Dim cutoff As Double = maxinto * 0.01
+        Dim cutoff As Double = maxinto * 0.001
 
         Call meta.AddRange(ms1.Where(Function(a) a.intensity > cutoff))
         Call Me.ScatterViewer.LoadPeaks(meta)
