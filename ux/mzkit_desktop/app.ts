@@ -23,6 +23,7 @@ namespace app.desktop {
         Click(tag: string);
 
         GetLCMSScatter(): Promise<string>;
+        GetColors(): Promise<string>;
 
         // plugin manager
         Save(): void;

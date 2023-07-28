@@ -13,6 +13,8 @@ namespace apps.viewer {
             return "lcms-scatter";
         }
 
+        private colors: string[];
+
         protected init(): void {
             const vm = this;
 
@@ -20,17 +22,24 @@ namespace apps.viewer {
                 const json_str: string = await data;
                 const scatter: ms1_scatter[] = JSON.parse(json_str);
 
-                if (isNullOrEmpty(scatter)) {
-                    vm.render3DScatter([]);
-                } else {
-                    vm.render3DScatter(scatter);
-                }
+                app.desktop.mzkit.GetColors().then(async function (ls) {
+                    const str: string = await ls;
+                    const colors: string[] = JSON.parse(str);
+
+                    vm.colors = colors;
+
+                    if (isNullOrEmpty(scatter)) {
+                        vm.render3DScatter([]);
+                    } else {
+                        vm.render3DScatter(scatter);
+                    }
+                });
             });
         }
 
         public render3DScatter(dataset: ms1_scatter[]) {
             const render = new gl_plot.scatter3d<ms1_scatter[]>(
-                LCMSScatterViewer.load_cluster,
+                (ls: any) => this.load_cluster(ls),
                 "viewer"
             );
             const div = $ts("#viewer");
@@ -92,25 +101,10 @@ namespace apps.viewer {
                 }
             };
         }
-        public static load_cluster(data: ms1_scatter[]): gl_plot.scatter3d_options {
-            // const paper = echart_app.paper;
-            const colors = [
-                "#30123B", //	48	18	59
-                "#4454C4", //	68	84	196
-                "#4490FE", //	68	144	254
-                "#1FC8DE", //	31	200	222
-                "#29EFA2", //	41	239	162
-                "#7DFF56", //	125	255	86
-                "#C1F334", //	193	243	52
-                "#F1CA3A", //	241	202	58
-                "#FE922A", //	254	146	42
-                "#EA4F0D", //	234	79	13
-                "#BE2102", //	190	33	2
-                "#7A0403" //	122	4	3
-            ];
+        public load_cluster(data: ms1_scatter[]): gl_plot.scatter3d_options {
             const seq = $from(data);
             const max = seq.Select(a => a.intensity).Max();
-            const d = max / 12;
+            const d = max / this.colors.length;
             // // const class_labels = $from(data).Select(r => r.cluster).Distinct().ToArray();
             // // const numeric_cluster = $from(class_labels).All(si => Strings.isIntegerPattern(si.toString()));
             // // const format_tag = clusterViewer.format_cluster_tag(data);
@@ -124,7 +118,7 @@ namespace apps.viewer {
             for (let min = 0; min < max; min = min + d) {
                 const l0 = min + d;
                 const subset = seq.Where(a => a.intensity > min && a.intensity < l0).ToArray();
-                scatter3D.push(LCMSScatterViewer.scatter_group(subset, colors[i++], `${min} ~ ${l0}`));
+                scatter3D.push(LCMSScatterViewer.scatter_group(subset, this.colors[i++], `${min} ~ ${l0}`));
             }
 
             // const scatter3D = [LCMSScatterViewer.scatter_group(data)];
