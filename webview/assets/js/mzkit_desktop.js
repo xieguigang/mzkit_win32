@@ -942,11 +942,11 @@ var apps;
                 // const byte_range = new globalThis.data.NumericRange(0, 255);
                 return {
                     type: 'bar3D',
-                    shading: 'lambert',
-                    barSize: 1,
+                    shading: 'color',
+                    barSize: 0.1,
                     name: "Intensity",
                     spot_labels: $from(data).Select(function (r) { return r.id; }).ToArray(),
-                    symbolSize: 5,
+                    symbolSize: 1,
                     dimensions: [
                         'Scan Time(s)',
                         'M/Z',
@@ -1015,21 +1015,28 @@ var apps;
                             show: false
                         },
                         viewControl: {
-                            distance: 100,
-                            alpha: 20,
-                            beta: -30
+                            distance: 300,
+                            beta: -30,
+                            panMouseButton: 'left',
+                            rotateMouseButton: 'right',
+                            alpha: 50 // 让canvas在x轴有一定的倾斜角度
                         },
                         postEffect: {
-                            enable: true,
+                            enable: false,
                             SSAO: {
+                                radius: 1,
+                                intensity: 1,
                                 enable: true
                             }
+                        },
+                        temporalSuperSampling: {
+                            enable: true
                         },
                         boxDepth: 120,
                         light: {
                             main: {
                                 shadow: true,
-                                intensity: 2
+                                intensity: 10
                             },
                             ambientCubemap: {
                                 texture: "/assets/canyon.hdr",

@@ -62,11 +62,11 @@ namespace apps.viewer {
 
             return <gl_plot.gl_scatter_data>{
                 type: 'bar3D',
-                shading: 'lambert',  // color, lambert, realistic
-                barSize: 1,
+                shading: 'color',  // color, lambert, realistic
+                barSize: 0.1,
                 name: `Intensity`, // format_tag(r),
                 spot_labels: $from(data).Select(r => r.id).ToArray(),
-                symbolSize: 5,
+                symbolSize: 1,
                 dimensions: [
                     'Scan Time(s)',
                     'M/Z',
@@ -134,21 +134,28 @@ namespace apps.viewer {
                         show: false
                     },
                     viewControl: {
-                        distance: 100,
-                        alpha: 20,
-                        beta: -30
+                        distance: 300,
+                        beta: -30,
+                        panMouseButton: 'left',//平移操作使用的鼠标按键
+                        rotateMouseButton: 'right',//旋转操作使用的鼠标按键
+                        alpha: 50 // 让canvas在x轴有一定的倾斜角度
                     },
                     postEffect: {
-                        enable: true,
-                        SSAO: {
+                        enable: false,
+                        SSAO: {//环境光遮蔽
+                            radius: 1,//环境光遮蔽的采样半径。半径越大效果越自然
+                            intensity: 1,//环境光遮蔽的强度
                             enable: true
                         }
+                    },
+                    temporalSuperSampling: {//分帧超采样。在开启 postEffect 后，WebGL 默认的 MSAA 会无法使用,分帧超采样用来解决锯齿的问题
+                        enable: true
                     },
                     boxDepth: 120,
                     light: {
                         main: {
                             shadow: true,
-                            intensity: 2
+                            intensity: 10
                         },
                         ambientCubemap: {
                             texture: "/assets/canyon.hdr",
