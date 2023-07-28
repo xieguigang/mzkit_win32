@@ -900,12 +900,27 @@ var apps;
                                 case 1:
                                     json_str = _a.sent();
                                     scatter = JSON.parse(json_str);
-                                    if (isNullOrEmpty(scatter)) {
-                                        vm.render3DScatter([]);
-                                    }
-                                    else {
-                                        vm.render3DScatter(scatter);
-                                    }
+                                    app.desktop.mzkit.GetColors().then(function (ls) {
+                                        return __awaiter(this, void 0, void 0, function () {
+                                            var str, colors;
+                                            return __generator(this, function (_a) {
+                                                switch (_a.label) {
+                                                    case 0: return [4 /*yield*/, ls];
+                                                    case 1:
+                                                        str = _a.sent();
+                                                        colors = JSON.parse(str);
+                                                        vm.colors = colors;
+                                                        if (isNullOrEmpty(scatter)) {
+                                                            vm.render3DScatter([]);
+                                                        }
+                                                        else {
+                                                            vm.render3DScatter(scatter);
+                                                        }
+                                                        return [2 /*return*/];
+                                                }
+                                            });
+                                        });
+                                    });
                                     return [2 /*return*/];
                             }
                         });
@@ -913,7 +928,8 @@ var apps;
                 });
             };
             LCMSScatterViewer.prototype.render3DScatter = function (dataset) {
-                var render = new gl_plot.scatter3d(LCMSScatterViewer.load_cluster, "viewer");
+                var _this = this;
+                var render = new gl_plot.scatter3d(function (ls) { return _this.load_cluster(ls); }, "viewer");
                 var div = $ts("#viewer");
                 render.plot(dataset);
                 render.chartObj.on("click", function (par) {
@@ -971,25 +987,10 @@ var apps;
                     }
                 };
             };
-            LCMSScatterViewer.load_cluster = function (data) {
-                // const paper = echart_app.paper;
-                var colors = [
-                    "#30123B",
-                    "#4454C4",
-                    "#4490FE",
-                    "#1FC8DE",
-                    "#29EFA2",
-                    "#7DFF56",
-                    "#C1F334",
-                    "#F1CA3A",
-                    "#FE922A",
-                    "#EA4F0D",
-                    "#BE2102",
-                    "#7A0403" //	122	4	3
-                ];
+            LCMSScatterViewer.prototype.load_cluster = function (data) {
                 var seq = $from(data);
                 var max = seq.Select(function (a) { return a.intensity; }).Max();
-                var d = max / 12;
+                var d = max / this.colors.length;
                 // // const class_labels = $from(data).Select(r => r.cluster).Distinct().ToArray();
                 // // const numeric_cluster = $from(class_labels).All(si => Strings.isIntegerPattern(si.toString()));
                 // // const format_tag = clusterViewer.format_cluster_tag(data);
@@ -1003,8 +1004,9 @@ var apps;
                 var _loop_1 = function (min) {
                     var l0 = min + d;
                     var subset = seq.Where(function (a) { return a.intensity > min && a.intensity < l0; }).ToArray();
-                    scatter3D.push(LCMSScatterViewer.scatter_group(subset, colors[i++], min + " ~ " + l0));
+                    scatter3D.push(LCMSScatterViewer.scatter_group(subset, this_1.colors[i++], min + " ~ " + l0));
                 };
+                var this_1 = this;
                 for (var min = 0; min < max; min = min + d) {
                     _loop_1(min);
                 }

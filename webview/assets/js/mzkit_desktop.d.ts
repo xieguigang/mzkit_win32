@@ -32,6 +32,7 @@ declare namespace app.desktop {
         GetScatter(): Promise<string>;
         Click(tag: string): any;
         GetLCMSScatter(): Promise<string>;
+        GetColors(): Promise<string>;
         Save(): void;
         InstallLocal(): void;
         SetStatus(id: string, status: string): void;
@@ -192,9 +193,10 @@ declare namespace apps.viewer {
     }
     class LCMSScatterViewer extends Bootstrap {
         get appName(): string;
+        private colors;
         protected init(): void;
         render3DScatter(dataset: ms1_scatter[]): void;
         private static scatter_group;
-        static load_cluster(data: ms1_scatter[]): gl_plot.scatter3d_options;
+        load_cluster(data: ms1_scatter[]): gl_plot.scatter3d_options;
     }
 }
