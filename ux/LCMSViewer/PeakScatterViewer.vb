@@ -51,6 +51,7 @@ Public Class PeakScatterViewer
         End Get
         Set(value As ScalerPalette)
             m_palette = value
+            lcms_scatter.colorScaler = value
 
             If Not rawdata.IsNullOrEmpty Then
                 Call Rendering()

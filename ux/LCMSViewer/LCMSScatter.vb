@@ -16,7 +16,7 @@ Public Class LCMSScatter
     ''' the scatter raw data in current view range
     ''' </summary>
     Dim rawdata As Meta()
-    Dim colorScaler As ScalerPalette
+    Friend colorScaler As ScalerPalette = ScalerPalette.FlexImaging
 
     Public Function GetLCMSScatter() As String
         Return rawdata.GetJson
