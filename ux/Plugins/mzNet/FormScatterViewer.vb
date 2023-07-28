@@ -159,10 +159,10 @@ Public Class FormScatterViewer
     End Sub
 
     Private Sub filterScatter_Click(sender As Object, e As EventArgs) Handles filterScatter.Click
-        InputDialog.Input(Sub(cfg)
-                              filterOut = cfg.FilterNumber
-                              filterSingle = cfg.RemoveSingle
-                              scatterViewer.LoadPeaks(
+        Call InputDialog.Input(Sub(cfg)
+                                   filterOut = cfg.FilterNumber
+                                   filterSingle = cfg.RemoveSingle
+                                   scatterViewer.LoadPeaks(
                                 peaksdata:=peaksData.Values _
                                     .Where(Function(i)
                                                If Not i.metaList.Length > filterOut Then
@@ -175,7 +175,10 @@ Public Class FormScatterViewer
                                                    Return True
                                                End If
                                            End Function))
-                          End Sub, config:=New InputSetScatterFilterNumber With {.FilterNumber = filterOut, .RemoveSingle = filterSingle})
+                               End Sub, config:=New InputSetScatterFilterNumber With {
+                            .FilterNumber = filterOut,
+                            .RemoveSingle = filterSingle
+        })
     End Sub
 
     Private Sub scatterViewer_MoveOverPeak(peakId As String, mz As Double, rt As Double) Handles scatterViewer.MoveOverPeak
