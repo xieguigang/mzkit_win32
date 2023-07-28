@@ -1042,7 +1042,7 @@ var apps;
                         temporalSuperSampling: {
                             enable: false
                         },
-                        boxDepth: 200
+                        boxDepth: 100
                         // light: {
                         //     main: {
                         //         shadow: false,
