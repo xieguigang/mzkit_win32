@@ -942,7 +942,7 @@ var apps;
                 var byte_range = new globalThis.data.NumericRange(0, 255);
                 return {
                     type: 'bar3D',
-                    shading: 'realistic',
+                    shading: 'lambert',
                     barSize: 1,
                     name: "Intensity",
                     spot_labels: $from(data).Select(function (r) { return r.id; }).ToArray(),

@@ -62,7 +62,7 @@ namespace apps.viewer {
 
             return <gl_plot.gl_scatter_data>{
                 type: 'bar3D',
-                shading: 'realistic',
+                shading: 'lambert',  // color, lambert, realistic
                 barSize: 1,
                 name: `Intensity`, // format_tag(r),
                 spot_labels: $from(data).Select(r => r.id).ToArray(),
