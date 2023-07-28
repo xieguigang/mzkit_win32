@@ -947,7 +947,7 @@ var apps;
                     // app.desktop.mzkit.Click(spot_id);
                 });
                 var resize_canvas = function () {
-                    var padding = 10;
+                    var padding = 18;
                     div.style.width = (window.innerWidth - padding) + "px";
                     div.style.height = (window.innerHeight - padding) + "px";
                     render.chartObj.resize();
@@ -1026,7 +1026,7 @@ var apps;
                         },
                         viewControl: {
                             distance: 200,
-                            beta: -30,
+                            beta: -20,
                             panMouseButton: 'right',
                             rotateMouseButton: 'left',
                             alpha: 30 // 让canvas在x轴有一定的倾斜角度
@@ -1042,7 +1042,7 @@ var apps;
                         temporalSuperSampling: {
                             enable: false
                         },
-                        boxDepth: 120
+                        boxDepth: 200
                         // light: {
                         //     main: {
                         //         shadow: false,
@@ -1060,7 +1060,54 @@ var apps;
                     backgroundColor: '#e7e7e7',
                     xAxis3D: { type: 'value', name: 'Scan Time(s)', color: "white" },
                     yAxis3D: { type: 'value', name: 'M/Z', color: "white" },
-                    zAxis3D: { type: 'value', name: 'Intensity', color: "white" },
+                    zAxis3D: {
+                        type: 'value', name: 'Intensity', color: "white",
+                        axisLabel: {
+                            formatter: function (value) {
+                                var res = value.toString();
+                                var numN1 = 0;
+                                var numN2 = 1;
+                                var num1 = 0;
+                                var num2 = 0;
+                                var t1 = 1;
+                                for (var k = 0; k < res.length; k++) {
+                                    if (res[k] == ".")
+                                        t1 = 0;
+                                    if (t1)
+                                        num1++;
+                                    else
+                                        num2++;
+                                }
+                                if (Math.abs(parseFloat(res)) < 1 && res.length > 4) {
+                                    for (var i = 2; i < res.length; i++) {
+                                        if (res[i] == "0") {
+                                            numN2++;
+                                        }
+                                        else if (res[i] == ".")
+                                            continue;
+                                        else
+                                            break;
+                                    }
+                                    var v = parseFloat(res);
+                                    v = v * Math.pow(10, numN2);
+                                    return v.toString() + "e-" + numN2;
+                                }
+                                else if (num1 > 4) {
+                                    if (res[0] == "-")
+                                        numN1 = num1 - 2;
+                                    else
+                                        numN1 = num1 - 1;
+                                    var v = parseFloat(res);
+                                    v = v / Math.pow(10, numN1);
+                                    if (num2 > 4)
+                                        v = v.toFixed(4);
+                                    return v.toString() + "e" + numN1;
+                                }
+                                else
+                                    return parseFloat(res);
+                            }
+                        }
+                    },
                     series: scatter3D,
                     tooltip: {
                         show: true,
