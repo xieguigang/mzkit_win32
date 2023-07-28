@@ -169,7 +169,7 @@ namespace apps.viewer {
                     //     enable: false
                     // }
                 },
-                backgroundColor: 'black',
+                backgroundColor: 'silver',
                 xAxis3D: { type: 'value', name: 'Scan Time(s)' },
                 yAxis3D: { type: 'value', name: 'M/Z' },
                 zAxis3D: { type: 'value', name: 'Intensity' },

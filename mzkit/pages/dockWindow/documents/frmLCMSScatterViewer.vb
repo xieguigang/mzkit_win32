@@ -27,9 +27,12 @@ Public Class frmLCMSScatterViewer
             .Where(Function(a) Not a.mz.IsNullOrEmpty) _
             .Select(Function(a) a.GetScanMeta) _
             .AsList
-        Dim ms1 = raw.GetMs1Scans.Select(Function(s) s.GetMs1Scans(Of Meta)).IteratesALL.ToArray
+        Dim ms1 = raw.GetMs1Scans _
+            .Select(Function(s) s.GetMs1Scans(Of Meta)) _
+            .IteratesALL _
+            .ToArray
         Dim maxinto As Double = ms1.Select(Function(a) a.intensity).Max
-        Dim cutoff As Double = maxinto * 0.05
+        Dim cutoff As Double = maxinto * 0.01
 
         Call meta.AddRange(ms1.Where(Function(a) a.intensity > cutoff))
         Call Me.ScatterViewer.LoadPeaks(meta)
