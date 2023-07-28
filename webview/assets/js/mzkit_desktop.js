@@ -891,7 +891,12 @@ var apps;
             });
             Object.defineProperty(LCMSScatterViewer.prototype, "canvas", {
                 get: function () {
-                    return this.renderer.domElement;
+                    if (this.renderer) {
+                        return this.renderer.domElement;
+                    }
+                    else {
+                        return null;
+                    }
                 },
                 enumerable: true,
                 configurable: true
@@ -931,13 +936,13 @@ var apps;
                 document.body.appendChild(canvas);
                 var controls = new THREE.OrbitControls(camera, canvas);
                 var light = new THREE.DirectionalLight(0xffffff, 1.5);
-                light.position.setScalar(100);
+                light.position.setScalar(1000);
                 this.scene.add(light);
                 this.scene.add(new THREE.AmbientLight(0xffffff, 0.5));
                 var points3d = [];
                 for (var _i = 0, dataset_1 = dataset; _i < dataset_1.length; _i++) {
                     var p = dataset_1[_i];
-                    points3d.push(new THREE.Vector3(p.mz, p.scan_time, p.intensity));
+                    points3d.push(new THREE.Vector3(p.scan_time, p.mz, p.intensity));
                 }
                 var geom = new THREE.BufferGeometry().setFromPoints(points3d);
                 var cloud = new THREE.Points(geom, new THREE.PointsMaterial({ color: 0x99ccff, size: 2 }));
@@ -953,7 +958,7 @@ var apps;
                 geom.setIndex(meshIndex); // add three.js index to the existing geometry
                 geom.computeVertexNormals();
                 var mesh = new THREE.Mesh(geom, // re-use the existing geometry
-                new THREE.MeshLambertMaterial({ color: "purple", wireframe: true }));
+                new THREE.MeshLambertMaterial({ color: "blue", wireframe: true }));
                 this.scene.add(mesh);
                 var gui = new dat.GUI();
                 gui.add(mesh.material, "wireframe");

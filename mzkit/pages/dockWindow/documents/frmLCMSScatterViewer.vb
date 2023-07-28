@@ -28,7 +28,7 @@ Public Class frmLCMSScatterViewer
             .Select(Function(a) a.GetScanMeta) _
             .AsList
 
-        ' Call meta.AddRange(raw.GetMs1Scans.Select(Function(s) s.GetMs1Scans(Of Meta)).IteratesALL)
+        Call meta.AddRange(raw.GetMs1Scans.Select(Function(s) s.GetMs1Scans(Of Meta)).IteratesALL)
         Call Me.ScatterViewer.LoadPeaks(meta)
     End Sub
 
