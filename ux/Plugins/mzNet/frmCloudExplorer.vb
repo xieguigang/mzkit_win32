@@ -9,11 +9,13 @@ Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.My.JavaScript
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmCloudExplorer
 
     Public tree As HttpTreeFs
     Public loadTable As Action(Of String)
+    Public host As FormViewer
 
     Dim model As SpectrumGraphModel
 
@@ -104,6 +106,11 @@ Public Class frmCloudExplorer
 
         Call loadMetadata(sel.Tag)
         Call loadTable(sel.Tag)
+
+        If host.DockState = DockState.Hidden OrElse host.DockState = DockState.Unknown Then
+            host.DockState = DockState.Document
+            host.Show(Workbench.AppHost.DockPanel)
+        End If
     End Sub
 
     Private Sub loadMetadata(dir As String)

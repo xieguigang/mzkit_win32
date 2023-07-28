@@ -1,4 +1,5 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
+﻿Imports System.ComponentModel
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking
 Imports Mzkit_win32.BasicMDIForm
@@ -15,7 +16,8 @@ Public Class FormViewer
         Me.TabText = "Spectrum Pool Viewer"
         Me.search = New GridSearchHandler(AdvancedDataGridView1)
         Me.cloud = New frmCloudExplorer() With {
-            .loadTable = AddressOf loadTable2
+            .loadTable = AddressOf loadTable2,
+            .host = Me
         }
 
         Me.cloud.Show(Workbench.AppHost.DockPanel)
@@ -223,5 +225,10 @@ Public Class FormViewer
         If mz.Count > 0 Then
             Call SpectralViewerModule.RunMassDiff(mz.Select(Function(i) i.mz).Min, mz.ToArray)
         End If
+    End Sub
+
+    Private Sub FormViewer_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        e.Cancel = True
+        DockState = DockState.Hidden
     End Sub
 End Class
