@@ -28,6 +28,10 @@ namespace apps.viewer {
 
                     vm.colors = colors;
 
+                    for (let code of vm.colors) {
+                        TypeScript.logging.log(code, code);
+                    }
+
                     if (isNullOrEmpty(scatter)) {
                         vm.render3DScatter([]);
                     } else {
@@ -43,6 +47,8 @@ namespace apps.viewer {
                 "viewer"
             );
             const div = $ts("#viewer");
+
+            // render.chartObj.showLoading();
             render.plot(dataset);
             render.chartObj.on("click", function (par: any) {
                 // // console.log(par);
@@ -73,7 +79,7 @@ namespace apps.viewer {
                 type: 'bar3D',
                 shading: 'color',  // color, lambert, realistic
                 barSize: 0.1,
-                name: `Intensity`, // format_tag(r),
+                name: `Intensity ${label}`, // format_tag(r),
                 spot_labels: $from(data).Select(r => r.id).ToArray(),
                 symbolSize: 1,
                 dimensions: [
@@ -97,7 +103,7 @@ namespace apps.viewer {
                     color: color
                 },
                 wireframe: {
-                    show: true
+                    show: false
                 }
             };
         }
@@ -118,7 +124,10 @@ namespace apps.viewer {
             for (let min = 0; min < max; min = min + d) {
                 const l0 = min + d;
                 const subset = seq.Where(a => a.intensity > min && a.intensity < l0).ToArray();
-                scatter3D.push(LCMSScatterViewer.scatter_group(subset, this.colors[i++], `${min} ~ ${l0}`));
+                const color = this.colors[i++];
+                const label = `${min.toExponential(1)} ~ ${l0.toExponential(1)}`;
+
+                scatter3D.push(LCMSScatterViewer.scatter_group(subset, color, label));
             }
 
             // const scatter3D = [LCMSScatterViewer.scatter_group(data)];
@@ -130,8 +139,8 @@ namespace apps.viewer {
                     viewControl: {
                         distance: 300,
                         beta: -30,
-                        panMouseButton: 'left',//平移操作使用的鼠标按键
-                        rotateMouseButton: 'right',//旋转操作使用的鼠标按键
+                        panMouseButton: 'right',//平移操作使用的鼠标按键
+                        rotateMouseButton: 'left',//旋转操作使用的鼠标按键
                         alpha: 50 // 让canvas在x轴有一定的倾斜角度
                     },
                     postEffect: {
@@ -139,25 +148,26 @@ namespace apps.viewer {
                         SSAO: {//环境光遮蔽
                             radius: 1,//环境光遮蔽的采样半径。半径越大效果越自然
                             intensity: 1,//环境光遮蔽的强度
-                            enable: true
+                            enable: false
                         }
                     },
                     temporalSuperSampling: {//分帧超采样。在开启 postEffect 后，WebGL 默认的 MSAA 会无法使用,分帧超采样用来解决锯齿的问题
-                        enable: true
+                        enable: false
                     },
-                    boxDepth: 120,
-                    light: {
-                        main: {
-                            shadow: true,
-                            intensity: 10
-                        },
-                        ambientCubemap: {
-                            texture: "/assets/canyon.hdr",
-                            exposure: 2,
-                            diffuseIntensity: 0.2,
-                            specularIntensity: 1
-                        }
-                    }
+                    boxDepth: 120
+                    // light: {
+                    //     main: {
+                    //         shadow: false,
+                    //         intensity: 10
+                    //     },
+                    //     ambientCubemap: {
+                    //         texture: "/assets/canyon.hdr",
+                    //         exposure: 2,
+                    //         diffuseIntensity: 0.2,
+                    //         specularIntensity: 1
+                    //     },
+                    //     enable: false
+                    // }
                 },
                 backgroundColor: '#fff',
                 xAxis3D: { type: 'value', name: 'Scan Time(s)' },
@@ -197,11 +207,17 @@ namespace apps.viewer {
                         return `${arg.seriesName} spot:<${labels[i].id}> m/z: ${mz}@${rt}s intensity=${into}`;
                     }
                 },
-                legend: {
-                    orient: 'vertical',
-                    x: 'right',
-                    y: 'center'
+                visualMap: {
+                    max: max,
+                    inRange: {
+                        color: this.colors
+                    }
                 }
+                // legend: {
+                //     orient: 'vertical',
+                //     x: 'right',
+                //     y: 'center'
+                // }
             };
         }
     }

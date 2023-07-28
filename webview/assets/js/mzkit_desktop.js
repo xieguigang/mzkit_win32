@@ -902,14 +902,18 @@ var apps;
                                     scatter = JSON.parse(json_str);
                                     app.desktop.mzkit.GetColors().then(function (ls) {
                                         return __awaiter(this, void 0, void 0, function () {
-                                            var str, colors;
-                                            return __generator(this, function (_a) {
-                                                switch (_a.label) {
+                                            var str, colors, _i, _a, code;
+                                            return __generator(this, function (_b) {
+                                                switch (_b.label) {
                                                     case 0: return [4 /*yield*/, ls];
                                                     case 1:
-                                                        str = _a.sent();
+                                                        str = _b.sent();
                                                         colors = JSON.parse(str);
                                                         vm.colors = colors;
+                                                        for (_i = 0, _a = vm.colors; _i < _a.length; _i++) {
+                                                            code = _a[_i];
+                                                            TypeScript.logging.log(code, code);
+                                                        }
                                                         if (isNullOrEmpty(scatter)) {
                                                             vm.render3DScatter([]);
                                                         }
@@ -931,6 +935,7 @@ var apps;
                 var _this = this;
                 var render = new gl_plot.scatter3d(function (ls) { return _this.load_cluster(ls); }, "viewer");
                 var div = $ts("#viewer");
+                // render.chartObj.showLoading();
                 render.plot(dataset);
                 render.chartObj.on("click", function (par) {
                     // // console.log(par);
@@ -960,7 +965,7 @@ var apps;
                     type: 'bar3D',
                     shading: 'color',
                     barSize: 0.1,
-                    name: "Intensity",
+                    name: "Intensity " + label,
                     spot_labels: $from(data).Select(function (r) { return r.id; }).ToArray(),
                     symbolSize: 1,
                     dimensions: [
@@ -983,7 +988,7 @@ var apps;
                         color: color
                     },
                     wireframe: {
-                        show: true
+                        show: false
                     }
                 };
             };
@@ -1004,7 +1009,9 @@ var apps;
                 var _loop_1 = function (min) {
                     var l0 = min + d;
                     var subset = seq.Where(function (a) { return a.intensity > min && a.intensity < l0; }).ToArray();
-                    scatter3D.push(LCMSScatterViewer.scatter_group(subset, this_1.colors[i++], min + " ~ " + l0));
+                    var color = this_1.colors[i++];
+                    var label = min.toExponential(1) + " ~ " + l0.toExponential(1);
+                    scatter3D.push(LCMSScatterViewer.scatter_group(subset, color, label));
                 };
                 var this_1 = this;
                 for (var min = 0; min < max; min = min + d) {
@@ -1019,8 +1026,8 @@ var apps;
                         viewControl: {
                             distance: 300,
                             beta: -30,
-                            panMouseButton: 'left',
-                            rotateMouseButton: 'right',
+                            panMouseButton: 'right',
+                            rotateMouseButton: 'left',
                             alpha: 50 // 让canvas在x轴有一定的倾斜角度
                         },
                         postEffect: {
@@ -1028,25 +1035,26 @@ var apps;
                             SSAO: {
                                 radius: 1,
                                 intensity: 1,
-                                enable: true
+                                enable: false
                             }
                         },
                         temporalSuperSampling: {
-                            enable: true
+                            enable: false
                         },
-                        boxDepth: 120,
-                        light: {
-                            main: {
-                                shadow: true,
-                                intensity: 10
-                            },
-                            ambientCubemap: {
-                                texture: "/assets/canyon.hdr",
-                                exposure: 2,
-                                diffuseIntensity: 0.2,
-                                specularIntensity: 1
-                            }
-                        }
+                        boxDepth: 120
+                        // light: {
+                        //     main: {
+                        //         shadow: false,
+                        //         intensity: 10
+                        //     },
+                        //     ambientCubemap: {
+                        //         texture: "/assets/canyon.hdr",
+                        //         exposure: 2,
+                        //         diffuseIntensity: 0.2,
+                        //         specularIntensity: 1
+                        //     },
+                        //     enable: false
+                        // }
                     },
                     backgroundColor: '#fff',
                     xAxis3D: { type: 'value', name: 'Scan Time(s)' },
@@ -1086,11 +1094,17 @@ var apps;
                             return arg.seriesName + " spot:<" + labels[i].id + "> m/z: " + mz + "@" + rt + "s intensity=" + into;
                         }
                     },
-                    legend: {
-                        orient: 'vertical',
-                        x: 'right',
-                        y: 'center'
+                    visualMap: {
+                        max: max,
+                        inRange: {
+                            color: this.colors
+                        }
                     }
+                    // legend: {
+                    //     orient: 'vertical',
+                    //     x: 'right',
+                    //     y: 'center'
+                    // }
                 };
             };
             return LCMSScatterViewer;

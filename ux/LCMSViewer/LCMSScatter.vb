@@ -23,7 +23,7 @@ Public Class LCMSScatter
     End Function
 
     Public Function GetColors() As String
-        Return Designer.GetColors(colorScaler, n:=30).Select(Function(a) a.ToHtmlColor).ToArray.GetJson
+        Return Designer.GetColors(colorScaler.Description, n:=30).Select(Function(a) a.ToHtmlColor).ToArray.GetJson
     End Function
 
     ''' <summary>
