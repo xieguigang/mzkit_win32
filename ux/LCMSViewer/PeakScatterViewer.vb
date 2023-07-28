@@ -425,5 +425,13 @@ Public Class PeakScatterViewer
         Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Workbench.WebPort}/LCMS-scatter.html")
         Call WebKit.DeveloperOptions(WebView21, enable:=True,)
     End Sub
+
+    Private Sub DViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DViewerToolStripMenuItem.Click
+        HtmlView = True
+    End Sub
+
+    Private Sub ScatterViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ScatterViewerToolStripMenuItem.Click
+        HtmlView = False
+    End Sub
 End Class
 

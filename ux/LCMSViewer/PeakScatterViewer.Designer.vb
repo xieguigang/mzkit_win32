@@ -33,6 +33,9 @@ Partial Class PeakScatterViewer
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.WebView21 = New Microsoft.Web.WebView2.WinForms.WebView2()
+        Me.ToolStripSplitButton1 = New System.Windows.Forms.ToolStripSplitButton()
+        Me.ScatterViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
@@ -42,7 +45,7 @@ Partial Class PeakScatterViewer
         '
         'StatusStrip1
         '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripSplitButton1, Me.ToolStripStatusLabel1})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 530)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(775, 22)
@@ -108,6 +111,28 @@ Partial Class PeakScatterViewer
         Me.WebView21.TabIndex = 2
         Me.WebView21.ZoomFactor = 1.0R
         '
+        'ToolStripSplitButton1
+        '
+        Me.ToolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripSplitButton1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DViewerToolStripMenuItem, Me.ScatterViewerToolStripMenuItem})
+        Me.ToolStripSplitButton1.Image = CType(resources.GetObject("ToolStripSplitButton1.Image"), System.Drawing.Image)
+        Me.ToolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripSplitButton1.Name = "ToolStripSplitButton1"
+        Me.ToolStripSplitButton1.Size = New System.Drawing.Size(32, 20)
+        Me.ToolStripSplitButton1.Text = "ToolStripSplitButton1"
+        '
+        'ScatterViewerToolStripMenuItem
+        '
+        Me.ScatterViewerToolStripMenuItem.Name = "ScatterViewerToolStripMenuItem"
+        Me.ScatterViewerToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ScatterViewerToolStripMenuItem.Text = "Scatter Viewer"
+        '
+        'DViewerToolStripMenuItem
+        '
+        Me.DViewerToolStripMenuItem.Name = "DViewerToolStripMenuItem"
+        Me.DViewerToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DViewerToolStripMenuItem.Text = "3D Viewer"
+        '
         'PeakScatterViewer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -137,4 +162,7 @@ Partial Class PeakScatterViewer
     Friend WithEvents ViewIn3DCanvasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Panel1 As Panel
     Friend WithEvents WebView21 As Microsoft.Web.WebView2.WinForms.WebView2
+    Friend WithEvents ToolStripSplitButton1 As ToolStripSplitButton
+    Friend WithEvents DViewerToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ScatterViewerToolStripMenuItem As ToolStripMenuItem
 End Class
