@@ -889,7 +889,21 @@ var apps;
                 enumerable: true,
                 configurable: true
             });
+            Object.defineProperty(LCMSScatterViewer.prototype, "canvas", {
+                get: function () {
+                    return this.renderer.domElement;
+                },
+                enumerable: true,
+                configurable: true
+            });
             LCMSScatterViewer.prototype.init = function () {
+                var vm = this;
+                this.renderer = new THREE.WebGLRenderer({
+                    antialias: true
+                });
+                this.camera = new THREE.PerspectiveCamera(60, 1, 1, 1000);
+                this.scene = new THREE.Scene();
+                this.camera.position.setScalar(150);
                 app.desktop.mzkit.GetLCMSScatter().then(function (data) {
                     return __awaiter(this, void 0, void 0, function () {
                         var json_str, scatter;
@@ -900,10 +914,10 @@ var apps;
                                     json_str = _a.sent();
                                     scatter = JSON.parse(json_str);
                                     if (isNullOrEmpty(scatter)) {
-                                        LCMSScatterViewer.render3DScatter([]);
+                                        vm.render3DScatter([]);
                                     }
                                     else {
-                                        LCMSScatterViewer.render3DScatter(scatter);
+                                        vm.render3DScatter(scatter);
                                     }
                                     return [2 /*return*/];
                             }
@@ -911,164 +925,60 @@ var apps;
                     });
                 });
             };
-            LCMSScatterViewer.render3DScatter = function (dataset) {
-                var render = new gl_plot.scatter3d(LCMSScatterViewer.load_cluster, "viewer");
-                var div = $ts("#viewer");
-                render.plot(dataset);
-                render.chartObj.on("click", function (par) {
-                    // // console.log(par);
-                    // const i = par.dataIndex;
-                    // const category = par.seriesName;
-                    // const labels = spot_labels.Item(category);
-                    // const spot_id: string = labels[i];
-                    // // console.log(spot_id);
-                    // app.desktop.mzkit.Click(spot_id);
-                });
-                var resize_canvas = function () {
-                    var padding = 25;
-                    div.style.width = (window.innerWidth - padding) + "px";
-                    div.style.height = (window.innerHeight - padding) + "px";
-                    render.chartObj.resize();
-                };
-                window.onresize = function () { return resize_canvas(); };
-                resize_canvas();
-            };
-            LCMSScatterViewer.scatter_group = function (data, color, label) {
-                // if (data.length > 4) {
-                //     let scatter = $from(data).OrderByDescending(r => r.intensity + 0.0).ToArray();
-                //     let max_into = scatter[3].intensity;
-                //     for (let i = 0; i < 3; ++i) {
-                //         scatter[i].intensity = max_into;
-                //     }
-                //     data = scatter;
-                // }
-                return {
-                    type: 'scatter3D',
-                    name: "Intensity: " + label,
-                    spot_labels: $from(data).Select(function (r) { return r.id; }).ToArray(),
-                    symbolSize: 5,
-                    dimensions: [
-                        'Scan Time(s)',
-                        'M/Z',
-                        'Intensity'
-                    ],
-                    data: $from(data).Select(function (r) { return [r.scan_time, r.mz, r.intensity]; }).ToArray(),
-                    symbol: 'circle',
-                    itemStyle: {
-                        // borderWidth: 0.5,
-                        color: color // paper[class_labels.indexOf(r.cluster.toString())],
-                        // borderColor: 'rgba(255,255,255,0.8)'//边框样式
-                    },
-                    wireframe: {
-                        show: true
-                    }
-                };
-            };
-            LCMSScatterViewer.load_cluster = function (data) {
-                var paper = echart_app.paper;
-                var colors = [
-                    "#30123B",
-                    "#4454C4",
-                    "#4490FE",
-                    "#1FC8DE",
-                    "#29EFA2",
-                    "#7DFF56",
-                    "#C1F334",
-                    "#F1CA3A",
-                    "#FE922A",
-                    "#EA4F0D",
-                    "#BE2102",
-                    "#7A0403" //	122	4	3
-                ];
-                var seq = $from(data);
-                var max = seq.Select(function (a) { return a.intensity; }).Max();
-                var d = max / 12;
-                // const class_labels = $from(data).Select(r => r.cluster).Distinct().ToArray();
-                // const numeric_cluster = $from(class_labels).All(si => Strings.isIntegerPattern(si.toString()));
-                // const format_tag = clusterViewer.format_cluster_tag(data);
-                // const scatter3D = $from(data)
-                //     .Select(function (r) {
-                //     })
-                //     .ToArray();
-                // const spot_labels = $from(data).ToDictionary(d => format_tag(d), d => d.labels);
-                var scatter3D = [];
-                var i = 0;
-                var _loop_1 = function (min) {
-                    var l0 = min + d;
-                    var subset = seq.Where(function (a) { return a.intensity > min && a.intensity < l0; }).ToArray();
-                    scatter3D.push(LCMSScatterViewer.scatter_group(subset, colors[i++], min + " ~ " + l0));
-                };
-                for (var min = 0; min < max; min = min + d) {
-                    _loop_1(min);
+            LCMSScatterViewer.prototype.render3DScatter = function (dataset) {
+                var canvas = this.renderer.domElement;
+                var camera = this.camera;
+                document.body.appendChild(canvas);
+                var controls = new THREE.OrbitControls(camera, canvas);
+                var light = new THREE.DirectionalLight(0xffffff, 1.5);
+                light.position.setScalar(100);
+                this.scene.add(light);
+                this.scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+                var points3d = [];
+                for (var _i = 0, dataset_1 = dataset; _i < dataset_1.length; _i++) {
+                    var p = dataset_1[_i];
+                    points3d.push(new THREE.Vector3(p.mz, p.scan_time, p.intensity));
                 }
-                return {
-                    grid3D: {
-                        axisPointer: {
-                            show: false
-                        },
-                        viewControl: {
-                            distance: 100
-                        },
-                        postEffect: {
-                            enable: true
-                        },
-                        light: {
-                            main: {
-                                shadow: true,
-                                intensity: 2
-                            },
-                            ambientCubemap: {
-                                texture: "/assets/canyon.hdr",
-                                exposure: 2,
-                                diffuseIntensity: 0.2,
-                                specularIntensity: 1
-                            }
-                        }
-                    },
-                    backgroundColor: '#fff',
-                    xAxis3D: { type: 'value', name: 'Scan Time(s)' },
-                    yAxis3D: { type: 'value', name: 'M/Z' },
-                    zAxis3D: { type: 'value', name: 'Intensity' },
-                    series: scatter3D,
-                    tooltip: {
-                        show: true,
-                        trigger: 'item',
-                        axisPointer: {
-                            type: 'cross',
-                        },
-                        // showContent: true, //是否显示提示框浮层，默认显示。
-                        // triggerOn: 'mouseover', // 触发时机'click'鼠标点击时触发。 
-                        backgroundColor: 'white',
-                        borderColor: '#333',
-                        borderWidth: 0,
-                        padding: 5,
-                        textStyle: {
-                            color: 'skyblue',
-                            fontStyle: 'normal',
-                            fontWeight: 'normal',
-                            fontFamily: 'sans-serif',
-                            fontSize: 16,
-                        },
-                        // 提示框浮层内容格式器，支持字符串模板和回调函数两种形式。
-                        // 模板变量有 {a}, {b}，{c}，分别表示系列名，数据名，数据值等
-                        // formatter: '{a}--{b} 的成绩是 {c}'
-                        formatter: function (arg) {
-                            // console.log(arg);
-                            var i = arg.dataIndex;
-                            var labels = data; // spot_labels.Item(arg.seriesName);
-                            var ms1 = arg.data;
-                            var rt = Math.round(ms1[0]);
-                            var mz = Strings.round(ms1[1]);
-                            var into = ms1[2].toExponential(2); // Math.pow(1.125, ms1[2]).toExponential(2);
-                            return arg.seriesName + " spot:<" + labels[i].id + "> m/z: " + mz + "@" + rt + "s intensity=" + into;
-                        }
-                    },
-                    legend: {
-                        orient: 'vertical',
-                        x: 'right',
-                        y: 'center'
-                    }
-                };
+                var geom = new THREE.BufferGeometry().setFromPoints(points3d);
+                var cloud = new THREE.Points(geom, new THREE.PointsMaterial({ color: 0x99ccff, size: 2 }));
+                this.scene.add(cloud);
+                // triangulate x, z
+                var indexDelaunay = Delaunator.from(points3d.map(function (v) {
+                    return [v.x, v.z];
+                }));
+                var meshIndex = []; // delaunay index => three.js index
+                for (var i = 0; i < indexDelaunay.triangles.length; i++) {
+                    meshIndex.push(indexDelaunay.triangles[i]);
+                }
+                geom.setIndex(meshIndex); // add three.js index to the existing geometry
+                geom.computeVertexNormals();
+                var mesh = new THREE.Mesh(geom, // re-use the existing geometry
+                new THREE.MeshLambertMaterial({ color: "purple", wireframe: true }));
+                this.scene.add(mesh);
+                var gui = new dat.GUI();
+                gui.add(mesh.material, "wireframe");
+                this.render();
+            };
+            LCMSScatterViewer.prototype.render = function () {
+                var _this = this;
+                var canvas = this.canvas;
+                var camera = this.camera;
+                if (this.resize(this.renderer)) {
+                    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+                    camera.updateProjectionMatrix();
+                }
+                this.renderer.render(this.scene, camera);
+                requestAnimationFrame(function () { return _this.render(); });
+            };
+            LCMSScatterViewer.prototype.resize = function (renderer) {
+                var canvas = renderer.domElement;
+                var width = canvas.clientWidth;
+                var height = canvas.clientHeight;
+                var needResize = canvas.width !== width || canvas.height !== height;
+                if (needResize) {
+                    renderer.setSize(width, height, false);
+                }
+                return needResize;
             };
             return LCMSScatterViewer;
         }(Bootstrap));

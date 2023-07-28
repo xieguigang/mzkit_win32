@@ -192,9 +192,13 @@ declare namespace apps.viewer {
     }
     class LCMSScatterViewer extends Bootstrap {
         get appName(): string;
+        private renderer;
+        private camera;
+        private scene;
+        private get canvas();
         protected init(): void;
-        static render3DScatter(dataset: ms1_scatter[]): void;
-        private static scatter_group;
-        static load_cluster(data: ms1_scatter[]): gl_plot.scatter3d_options;
+        render3DScatter(dataset: ms1_scatter[]): void;
+        private render;
+        private resize;
     }
 }
