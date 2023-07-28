@@ -1094,17 +1094,6 @@ var apps;
                             return arg.seriesName + " spot:<" + labels[i].id + "> m/z: " + mz + "@" + rt + "s intensity=" + into;
                         }
                     },
-                    visualMap: {
-                        max: max,
-                        inRange: {
-                            color: this.colors
-                        }
-                    }
-                    // legend: {
-                    //     orient: 'vertical',
-                    //     x: 'right',
-                    //     y: 'center'
-                    // }
                 };
             };
             return LCMSScatterViewer;

@@ -392,7 +392,7 @@ Public Class PeakScatterViewer
         Workbench.StatusMessage($"Zoom-in of the sub-region: m/z range {mz0.ToString("F4")} ~ {mz1.ToString("F4")}, RT range {(rt0 / 60).ToString("F2")} ~ {(rt1 / 60).ToString("F2")}min.")
     End Sub
 
-    Private Sub ResetToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ResetToolStripMenuItem.Click
+    Private Sub ResetToolStripMenuItem_Click() Handles ResetToolStripMenuItem.Click
         If Not m_rawdata.IsNullOrEmpty Then
             Call LoadPeaks2(m_rawdata)
         End If
@@ -432,6 +432,14 @@ Public Class PeakScatterViewer
 
     Private Sub ScatterViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ScatterViewerToolStripMenuItem.Click
         HtmlView = False
+    End Sub
+
+    Private Sub RefreshToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RefreshToolStripMenuItem.Click
+        If HtmlView Then
+            Call WebView21.CoreWebView2.Reload()
+        Else
+            Call ResetToolStripMenuItem_Click()
+        End If
     End Sub
 End Class
 
