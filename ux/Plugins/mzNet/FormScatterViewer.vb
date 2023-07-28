@@ -162,17 +162,19 @@ Public Class FormScatterViewer
         InputDialog.Input(Sub(cfg)
                               filterOut = cfg.FilterNumber
                               filterSingle = cfg.RemoveSingle
-                              scatterViewer.LoadPeaks(peaksData.Values.Where(Function(i)
-                                                                                 If Not i.metaList.Length > filterOut Then
-                                                                                     Return False
-                                                                                 End If
+                              scatterViewer.LoadPeaks(
+                                peaksdata:=peaksData.Values _
+                                    .Where(Function(i)
+                                               If Not i.metaList.Length > filterOut Then
+                                                   Return False
+                                               End If
 
-                                                                                 If filterSingle Then
-                                                                                     Return i.consensus.Length > 1
-                                                                                 Else
-                                                                                     Return True
-                                                                                 End If
-                                                                             End Function))
+                                               If filterSingle Then
+                                                   Return i.consensus.Length > 1
+                                               Else
+                                                   Return True
+                                               End If
+                                           End Function))
                           End Sub, config:=New InputSetScatterFilterNumber With {.FilterNumber = filterOut, .RemoveSingle = filterSingle})
     End Sub
 

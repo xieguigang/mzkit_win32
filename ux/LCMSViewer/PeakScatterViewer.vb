@@ -136,7 +136,11 @@ Public Class PeakScatterViewer
 
         Call Application.DoEvents()
 
-        Dim maxinto As Double = m_rawdata.Select(Function(r) r.intensity).FindThreshold(0.999999999999)
+        Dim maxinto As Double
+
+        If Not m_rawdata.IsNullOrEmpty Then
+            maxinto = m_rawdata.Select(Function(r) r.intensity).FindThreshold(0.999999999999)
+        End If
 
         Call Application.DoEvents()
 
