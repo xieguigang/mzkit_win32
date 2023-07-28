@@ -13,11 +13,21 @@ Public Class LCMSScatter
     ''' <summary>
     ''' the scatter raw data in current view range
     ''' </summary>
-    Friend rawdata As Meta()
+    Dim rawdata As Meta()
 
     Public Function GetLCMSScatter() As String
         Return rawdata.GetJson
     End Function
+
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="meta">data type of this parameter may be inherits from this data type, JSON encode will crashed due to the reason of we set base type to the json encoder</param>
+    Public Sub SetMetadata(meta As IEnumerable(Of Meta))
+        rawdata = meta _
+            .Select(Function(a) New Meta With {.id = a.id, .intensity = a.intensity, .mz = a.mz, .scan_time = a.scan_time}) _
+            .ToArray
+    End Sub
 
     Public Sub LoadMesh(rawdata As Meta(), Optional n As Integer = 500)
         Me.rawdata = MeshGrid(rawdata, n).ToArray
