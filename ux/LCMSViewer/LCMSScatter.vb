@@ -3,6 +3,8 @@ Imports System.Runtime.InteropServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports Microsoft.VisualBasic.ComponentModel.Algorithm
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
+Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Math2D
 Imports Microsoft.VisualBasic.Serialization.JSON
 
@@ -14,9 +16,14 @@ Public Class LCMSScatter
     ''' the scatter raw data in current view range
     ''' </summary>
     Dim rawdata As Meta()
+    Dim colorScaler As ScalerPalette
 
     Public Function GetLCMSScatter() As String
         Return rawdata.GetJson
+    End Function
+
+    Public Function GetColors() As String
+        Return Designer.GetColors(colorScaler, n:=30).Select(Function(a) a.ToHtmlColor).ToArray.GetJson
     End Function
 
     ''' <summary>
