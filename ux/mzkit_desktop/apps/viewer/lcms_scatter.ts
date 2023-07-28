@@ -169,7 +169,7 @@ namespace apps.viewer {
                     //     enable: false
                     // }
                 },
-                backgroundColor: '#fff',
+                backgroundColor: 'black',
                 xAxis3D: { type: 'value', name: 'Scan Time(s)' },
                 yAxis3D: { type: 'value', name: 'M/Z' },
                 zAxis3D: { type: 'value', name: 'Intensity' },
@@ -187,11 +187,11 @@ namespace apps.viewer {
                     borderWidth: 0, // 提示框浮层的边框宽。
                     padding: 5, // 提示框浮层内边距，
                     textStyle: { // 提示框浮层的文本样式。
-                        color: 'skyblue',
+                        color: 'darkblue',
                         fontStyle: 'normal',
                         fontWeight: 'normal',
                         fontFamily: 'sans-serif',
-                        fontSize: 16,
+                        fontSize: 12,
                     },
                     // 提示框浮层内容格式器，支持字符串模板和回调函数两种形式。
                     // 模板变量有 {a}, {b}，{c}，分别表示系列名，数据名，数据值等
@@ -204,7 +204,7 @@ namespace apps.viewer {
                         const rt = Math.round(ms1[0]);
                         const mz = Strings.round(ms1[1]);
                         const into = ms1[2].toExponential(2); // Math.pow(1.125, ms1[2]).toExponential(2);
-                        return `${arg.seriesName} spot:<${labels[i].id}> m/z: ${mz}@${rt}s intensity=${into}`;
+                        return `<${labels[i].id}> m/z: ${mz}@${rt}s intensity=${into}`;
                     }
                 },
                 // visualMap: {
