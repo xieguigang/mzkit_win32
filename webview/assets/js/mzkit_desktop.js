@@ -934,12 +934,12 @@ var apps;
                 window.onresize = function () { return resize_canvas(); };
                 resize_canvas();
             };
-            LCMSScatterViewer.scatter_group = function (data) {
-                var seq = $from(data);
-                var r_range = globalThis.data.NumericRange.Create(seq.Select(function (a) { return a.mz; }));
-                var g_range = globalThis.data.NumericRange.Create(seq.Select(function (a) { return a.scan_time; }));
-                var b_range = globalThis.data.NumericRange.Create(seq.Select(function (a) { return a.intensity; }));
-                var byte_range = new globalThis.data.NumericRange(0, 255);
+            LCMSScatterViewer.scatter_group = function (data, color, label) {
+                // const seq = $from(data);
+                // const r_range = globalThis.data.NumericRange.Create(seq.Select(a => a.mz));
+                // const g_range = globalThis.data.NumericRange.Create(seq.Select(a => a.scan_time));
+                // const b_range = globalThis.data.NumericRange.Create(seq.Select(a => a.intensity));
+                // const byte_range = new globalThis.data.NumericRange(0, 255);
                 return {
                     type: 'bar3D',
                     shading: 'lambert',
@@ -956,14 +956,15 @@ var apps;
                     symbol: 'circle',
                     itemStyle: {
                         // borderWidth: 0.5,
-                        color: function (params) {
-                            var i = params.dataIndex;
-                            var p = data[i];
-                            var r = r_range.ScaleMapping(p.mz, byte_range);
-                            var g = g_range.ScaleMapping(p.scan_time, byte_range);
-                            var b = b_range.ScaleMapping(p.intensity, byte_range);
-                            return 'rgb(' + [r, g, b].join(',') + ')';
-                        }
+                        // color: <any>function (params) {
+                        //     var i: number = params.dataIndex;
+                        //     var p = data[i];
+                        //     var r = r_range.ScaleMapping(p.mz, byte_range);
+                        //     var g = g_range.ScaleMapping(p.scan_time, byte_range);
+                        //     var b = b_range.ScaleMapping(p.intensity, byte_range);
+                        //     return 'rgb(' + [r, g, b].join(',') + ')';
+                        // }
+                        color: color
                     },
                     wireframe: {
                         show: true
@@ -972,23 +973,23 @@ var apps;
             };
             LCMSScatterViewer.load_cluster = function (data) {
                 // const paper = echart_app.paper;
-                // const colors = [
-                //     "#30123B", //	48	18	59
-                //     "#4454C4", //	68	84	196
-                //     "#4490FE", //	68	144	254
-                //     "#1FC8DE", //	31	200	222
-                //     "#29EFA2", //	41	239	162
-                //     "#7DFF56", //	125	255	86
-                //     "#C1F334", //	193	243	52
-                //     "#F1CA3A", //	241	202	58
-                //     "#FE922A", //	254	146	42
-                //     "#EA4F0D", //	234	79	13
-                //     "#BE2102", //	190	33	2
-                //     "#7A0403" //	122	4	3
-                // ];
-                // const seq = $from(data);
-                // const max = seq.Select(a => a.intensity).Max();
-                // const d = max / 12;
+                var colors = [
+                    "#30123B",
+                    "#4454C4",
+                    "#4490FE",
+                    "#1FC8DE",
+                    "#29EFA2",
+                    "#7DFF56",
+                    "#C1F334",
+                    "#F1CA3A",
+                    "#FE922A",
+                    "#EA4F0D",
+                    "#BE2102",
+                    "#7A0403" //	122	4	3
+                ];
+                var seq = $from(data);
+                var max = seq.Select(function (a) { return a.intensity; }).Max();
+                var d = max / 12;
                 // // const class_labels = $from(data).Select(r => r.cluster).Distinct().ToArray();
                 // // const numeric_cluster = $from(class_labels).All(si => Strings.isIntegerPattern(si.toString()));
                 // // const format_tag = clusterViewer.format_cluster_tag(data);
@@ -997,14 +998,17 @@ var apps;
                 // //     })
                 // //     .ToArray();
                 // // const spot_labels = $from(data).ToDictionary(d => format_tag(d), d => d.labels);
-                // const scatter3D = [];
-                // let i = 0;
-                // for (let min = 0; min < max; min = min + d) {
-                //     const l0 = min + d;
-                //     const subset = seq.Where(a => a.intensity > min && a.intensity < l0).ToArray();
-                //     scatter3D.push(LCMSScatterViewer.scatter_group(subset, colors[i++], `${min} ~ ${l0}`));
-                // }
-                var scatter3D = [LCMSScatterViewer.scatter_group(data)];
+                var scatter3D = [];
+                var i = 0;
+                var _loop_1 = function (min) {
+                    var l0 = min + d;
+                    var subset = seq.Where(function (a) { return a.intensity > min && a.intensity < l0; }).ToArray();
+                    scatter3D.push(LCMSScatterViewer.scatter_group(subset, colors[i++], min + " ~ " + l0));
+                };
+                for (var min = 0; min < max; min = min + d) {
+                    _loop_1(min);
+                }
+                // const scatter3D = [LCMSScatterViewer.scatter_group(data)];
                 return {
                     grid3D: {
                         axisPointer: {
