@@ -44,7 +44,7 @@ Public Class ViewScatter3DAction : Inherits ActionBase
 
         For i As Integer = 0 To labels.Length - 1
             Yield New UMAPPoint With {
-                .[class] = cluster(i),
+                .[class] = If(cluster(i), "NO_CLASS"),
                 .label = labels(i),
                 .x = x(i),
                 .y = y(i),
