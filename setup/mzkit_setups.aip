@@ -8,6 +8,7 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_APP_FILE" Value="[#mzkit_win32.exe_1]"/>
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
+    <ROW Property="AI_BOOTSTRAPPERLANG" Value="1033" Type="4"/>
     <ROW Property="AI_BackgroundColor" Value="lightblue" MultiBuildValue="DefaultBuild:powderblue" MsiKey="AI_BackgroundColor"/>
     <ROW Property="AI_EXTERNALUIUNINSTALLERNAME" MultiBuildValue="DefaultBuild:aiui"/>
     <ROW Property="AI_PREDEF_LCONDS_PROPS" Value="AI_DETECTED_DOTNET_VERSION;AI_DETECTED_SCREEN_RESOLUTION_X;AI_DETECTED_SCREEN_RESOLUTION_Y;AI_DETECTED_COLOR_QUALITY;AI_DETECTED_PHYSICAL_MEMORY"/>
@@ -268,6 +269,8 @@
     <ROW Component="BioNovoGene.BioDeep.MSEngine.dll" ComponentId="{34592B78-00DD-4DAB-AD16-45AC97403A40}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.MSEngine.dll"/>
     <ROW Component="BioNovoGene.BioDeep.MSEngine.dll_1" ComponentId="{16288244-C58E-4473-B241-1ADD6F638C27}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.BioDeep.MSEngine.dll_1"/>
     <ROW Component="BioNovoGene.BioDeep.MSEngine.pdb" ComponentId="{EE625141-4A9E-4A3B-9408-3635658FBA52}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.BioDeep.MSEngine.pdb" Type="4"/>
+    <ROW Component="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" ComponentId="{C41275B5-F523-47B4-A4FD-3ED088B3F0F5}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.pdb"/>
+    <ROW Component="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll_1" ComponentId="{28EAAE32-9A6A-4AF5-9395-E51392AEEEFC}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll"/>
     <ROW Component="BioNovoGene.BioDeep.MetaDNA.Visual.dll" ComponentId="{99ADFC45-FDD3-4983-BF14-8BD45E01E5C4}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.MetaDNA.Visual.dll"/>
     <ROW Component="BioNovoGene.BioDeep.MetaDNA.Visual.pdb" ComponentId="{446C3209-A8F3-46C6-8F28-16676E91C428}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.BioDeep.MetaDNA.Visual.pdb" Type="4"/>
     <ROW Component="BioNovoGene.BioDeep.MetaDNA.dll" ComponentId="{8C7B7B69-437B-4C53-977C-84FAB4A93D8C}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.MetaDNA.dll"/>
@@ -481,6 +484,7 @@
     <ROW Component="Microsoft.VisualBasic.MachineLearning.Debugger.dll" ComponentId="{75429713-F3A4-45B3-8A35-63B11F3CA637}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.Debugger.dll"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.Debugger.dll_5" ComponentId="{614F640B-6711-4ECC-B3FA-6044ADB17907}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.Debugger.dll_5"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.Debugger.pdb" ComponentId="{21F91A52-ED82-4E76-B297-20CA15BFD31A}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.MachineLearning.Debugger.pdb" Type="4"/>
+    <ROW Component="Microsoft.VisualBasic.MachineLearning.MLDataStorage.dll" ComponentId="{C4EA4E0C-250F-450D-A80E-DD58665306FC}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.MLDataStorage.dll"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.dll" ComponentId="{3A4A1667-F9F8-43A8-9405-54392FBEC6AC}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.dll"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.dll_5" ComponentId="{18C6C786-931A-47CF-B1BF-F80F493A28D7}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.dll_5"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.pdb" ComponentId="{9A7A3D5D-6D32-4BDE-97DA-B6DFED934214}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.pdb" Type="4"/>
@@ -5292,6 +5296,14 @@
     <ROW File="read_ms2.R" Component_="exact_mass.R" FileName="read_ms2.R" Attributes="0" SourcePath="..\rstudio\demo\small_demos\read_ms2.R" SelfReg="false"/>
     <ROW File="spectrum_plot.R" Component_="exact_mass.R" FileName="SPECTR~1.R|spectrum_plot.R" Attributes="0" SourcePath="..\rstudio\demo\small_demos\spectrum_plot.R" SelfReg="false"/>
     <ROW File="spectrum_similarity.R" Component_="exact_mass.R" FileName="SPECTR~2.R|spectrum_similarity.R" Attributes="0" SourcePath="..\rstudio\demo\small_demos\spectrum_similarity.R" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.MachineLearning.MLDataStorage.dll" Component_="Microsoft.VisualBasic.MachineLearning.MLDataStorage.dll" FileName="MICRO~58.DLL|Microsoft.VisualBasic.MachineLearning.MLDataStorage.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.MachineLearning.MLDataStorage.dll" SelfReg="false"/>
+    <ROW File="canyon.hdr" Component_="d_canvas.css" FileName="canyon.hdr" Attributes="0" SourcePath="..\webview\assets\canyon.hdr" SelfReg="false"/>
+    <ROW File="LCMSscatter.html" Component_="logo.png" FileName="LCMS-S~1.HTM|LCMS-scatter.html" Attributes="0" SourcePath="..\webview\LCMS-scatter.html" SelfReg="false"/>
+    <ROW File="delaunator.3.0.2.js" Component_="dat.gui.min.js" FileName="DELAUN~1.JS|delaunator.3.0.2.js" Attributes="0" SourcePath="..\webview\vendor\three\delaunator.3.0.2.js" SelfReg="false"/>
+    <ROW File="perlin.js" Component_="dat.gui.min.js" FileName="perlin.js" Attributes="0" SourcePath="..\webview\vendor\three\perlin.js" SelfReg="false"/>
+    <ROW File="export_ms2.R" Component_="plot_cdf_tic.R" FileName="EXPORT~1.R|export_ms2.R" Attributes="0" SourcePath="..\rstudio\demo\export_ms2.R" SelfReg="false"/>
+    <ROW File="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" Component_="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll_1" FileName="BIONO~35.DLL|BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.pdb" Component_="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" FileName="BIONO~35.PDB|BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.pdb" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -6199,6 +6211,9 @@
     <ROW Feature_="MainFeature" Component_="Reference.rtf"/>
     <ROW Feature_="MainFeature" Component_="exact_mass.R"/>
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.LCMSViewer.dll.config"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MachineLearning.MLDataStorage.dll"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
