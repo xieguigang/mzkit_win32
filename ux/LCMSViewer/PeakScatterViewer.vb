@@ -200,7 +200,13 @@ Public Class PeakScatterViewer
         Dim maxPad = max * 1.0125
         Dim d As Double = maxPad - max
 
-        Return New DoubleRange(min - d, maxPad)
+        min = min - d
+
+        If min < 0 Then
+            min = 0
+        End If
+
+        Return New DoubleRange(min, maxPad)
     End Function
 
     Private Iterator Function getScatter() As IEnumerable(Of PointData)
@@ -247,8 +253,9 @@ Public Class PeakScatterViewer
         Dim defineSize As Size = PictureBox1.Size
         Dim region As New GraphicsRegion(canvas_padding, defineSize)
         Dim rect = region.PlotRegion
+        Dim xTicks = rt_range.CreateAxisTicks
         Dim scaler As New DataScaler() With {
-            .AxisTicks = (rt_range.CreateAxisTicks.AsVector, mz_range.CreateAxisTicks.AsVector),
+            .AxisTicks = (xTicks.Take(xTicks.Length - 1).ToArray, mz_range.CreateAxisTicks.AsVector),
             .region = rect,
             .X = d3js.scale.linear().domain(rt_range).range(integers:={rect.Left, rect.Right}),
             .Y = d3js.scale.linear().domain(mz_range).range(integers:={rect.Top, rect.Height})
@@ -267,12 +274,16 @@ Public Class PeakScatterViewer
 
             ' draw axis
             ' x
-            Call Axis.DrawX(g, axisPen, "Scan time(seconds)", scaler, XAxisLayoutStyles.Bottom,
+            Call Axis.DrawX(g, axisPen,
+                            $"Scan time([{rt_range.Min.ToString("F0")} - {rt_range.Max.ToString("F0")}] seconds)",
+                            scaler, XAxisLayoutStyles.Bottom,
                             scaler.Y.Zero, Nothing,
                             labelFont.CSSValue,
                             labelColor, tickFont, labelColor, htmlLabel:=False)
             ' y
-            Call Axis.DrawY(g, axisPen, "m/z", scaler, scaler.X.Zero,
+            Call Axis.DrawY(g, axisPen,
+                            $"m/z [{mz_range.Min.ToString("F3")} - {mz_range.Max.ToString("F3")}]",
+                            scaler, scaler.X.Zero,
                             mz_range.CreateAxisTicks.AsVector, YAxisLayoutStyles.Left,
                             Nothing,
                             labelFont.CSSValue,
@@ -293,8 +304,8 @@ Public Class PeakScatterViewer
                 .titleFont = labelFont.GDIObject(100),
                 .legendOffsetLeft = 1,
                 .ruleOffset = 1,
-                .unmapColor = "gray"
-            }.Draw(g, New Rectangle(rect.Right + 10, rect.Top, defineSize.Width - rect.Right / 2, rect.Height))
+                .unmapColor = Nothing
+            }.Draw(g, New Rectangle(rect.Right + 10, rect.Top, (defineSize.Width - rect.Right) / 2, rect.Height))
 
             PictureBox1.BackgroundImage = g.ImageResource
         End Using
@@ -337,12 +348,18 @@ Public Class PeakScatterViewer
         Dim size As Size = PictureBox1.Size
         Dim region = New GraphicsRegion(canvas_padding, size)
         Dim rect = region.PlotRegion
-        Dim y As New DoubleRange(0, size.Height)
+        Dim y As New DoubleRange(rect.Top, rect.Bottom)
         Dim x As New DoubleRange(rect.Left, rect.Right)
 
         If mz_range IsNot Nothing AndAlso rt_range IsNot Nothing Then
-            Dim mzi = mz_range.Max - y.ScaleMapping(pt.Y, mz_range)
+            Dim mzi As Double
             Dim rti = x.ScaleMapping(pt.X, rt_range)
+
+            If pt.Y > rect.Top AndAlso pt.Y < rect.Bottom Then
+                mzi = mz_range.Max - y.ScaleMapping(pt.Y, mz_range)
+            Else
+                mzi = 0
+            End If
 
             Dim qmz = mzBins.Search(New Meta With {.mz = mzi}).ToDictionary(Function(a) a.id)
             Dim qrt = rtBins.Search(New Meta With {.scan_time = rti}).ToDictionary(Function(a) a.id)
