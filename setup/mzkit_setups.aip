@@ -39,10 +39,10 @@
     <ROW Property="CTRLS" Value="3"/>
     <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1028:{C316D487-064D-4C49-985F-74BB7174A8B8} 1033:{C316D487-064D-4C49-985F-74BB7174A8B8} 1036:{C316D487-064D-4C49-985F-74BB7174A8B8} 1041:{C316D487-064D-4C49-985F-74BB7174A8B8} 1049:{C316D487-064D-4C49-985F-74BB7174A8B8} 2052:{C316D487-064D-4C49-985F-74BB7174A8B8} 2057:{C316D487-064D-4C49-985F-74BB7174A8B8} " Type="16"/>
+    <ROW Property="ProductCode" Value="1028:{7966E48C-D539-4A07-BDB9-54361CC34A8C} 1033:{7966E48C-D539-4A07-BDB9-54361CC34A8C} 1036:{7966E48C-D539-4A07-BDB9-54361CC34A8C} 1041:{7966E48C-D539-4A07-BDB9-54361CC34A8C} 1049:{7966E48C-D539-4A07-BDB9-54361CC34A8C} 2052:{7966E48C-D539-4A07-BDB9-54361CC34A8C} 2057:{7966E48C-D539-4A07-BDB9-54361CC34A8C} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="mzkit_win32"/>
-    <ROW Property="ProductVersion" Value="4.6.84.6698" Options="32"/>
+    <ROW Property="ProductVersion" Value="4.6.984.98331" Options="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{B645400B-3918-41EF-9009-7ADDD81C84B4}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -184,7 +184,7 @@
     <ROW Directory="zhHant_Dir" Directory_Parent="APPDIR" DefaultDir="zh-Hant"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{25F5FDEA-6E2E-4708-88BE-2F57D1240F98}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{B5E6A519-94A8-4A33-925C-7CEC212B9B90}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{69AA9FFE-67B1-456B-88EB-97D3D6C92AA7}" Directory_="APPDIR" Attributes="256"/>
     <ROW Component="BioDeep.dll" ComponentId="{2FECE77D-517F-47B1-97BA-15B1100BE489}" Directory_="APPDIR" Attributes="256" KeyPath="BioDeep.dll"/>
     <ROW Component="BioDeep.dll_1" ComponentId="{8274C55C-D52A-4F5B-A268-505929309095}" Directory_="host_Dir" Attributes="256" KeyPath="BioDeep.dll_1"/>
@@ -217,8 +217,6 @@
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions.pdb" ComponentId="{4715AC3F-F0B5-4F22-A165-B999F6044E8D}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions.pdb" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.Insilicon.dll" ComponentId="{DB51ADD5-4229-4CD9-AB97-3C9C7E986228}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.Insilicon.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.Insilicon.pdb" ComponentId="{F0402CE3-FC7E-4B30-9020-B6E52BE6D4C7}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.Insilicon.pdb" Type="4"/>
-    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.dll" ComponentId="{E5281E48-33A3-429F-8F37-2848F303E388}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.dll"/>
-    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.pdb" ComponentId="{9D81BED5-EE60-4707-B8EB-416CC7DA095A}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.pdb" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.TargetedMetabolomics.dll" ComponentId="{4267F9F4-CE5B-4C2B-BCC1-E613CE849AE1}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.TargetedMetabolomics.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.TargetedMetabolomics.dll_1" ComponentId="{1E2C1EFA-1A6D-4464-B695-AAA6AC57045E}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.TargetedMetabolomics.d_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Math.TargetedMetabolomics.pdb" ComponentId="{4812D3D6-FD00-4743-831C-86F583188982}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Math.TargetedMetabolomics.pdb" Type="4"/>
@@ -300,8 +298,6 @@
     <ROW Component="Clearcore2.Utility.dll" ComponentId="{35AE8A41-C6EB-48B6-A981-88CACC0F244B}" Directory_="APPDIR" Attributes="256" KeyPath="Clearcore2.Utility.dll"/>
     <ROW Component="Clearcore2.XmlHelpers.dll" ComponentId="{2EEE50D9-C45A-4DA7-9CD3-1834F7E0C77F}" Directory_="APPDIR" Attributes="256" KeyPath="Clearcore2.XmlHelpers.dll"/>
     <ROW Component="DevTools" ComponentId="{3BCB9EDB-4D19-44D2-9583-3E021560CCBC}" Directory_="DevTools_Dir" Attributes="0"/>
-    <ROW Component="Docker.dll" ComponentId="{19F052DA-CA42-4618-8946-82C224F0F0BA}" Directory_="APPDIR" Attributes="256" KeyPath="Docker.dll"/>
-    <ROW Component="Docker.pdb" ComponentId="{A10D59AD-932A-4148-B326-E0B4C2A356EA}" Directory_="APPDIR" Attributes="0" KeyPath="Docker.pdb" Type="4"/>
     <ROW Component="FULLMS_centriod_CHCA_20210819CleanSample616x404.cdf" ComponentId="{9E6541B7-77B9-404C-BC00-F40ACC3A70CF}" Directory_="PANOMIX_Dir" Attributes="0" KeyPath="FULLMS_centriod_CHCA_20210819CleanSample616x404.cdf" Type="0"/>
     <ROW Component="Flute.Http.dll" ComponentId="{1A9D1085-A042-4FB2-B9F6-267C14D598BD}" Directory_="APPDIR" Attributes="256" KeyPath="Flute.Http.dll"/>
     <ROW Component="Flute.Http.dll_1" ComponentId="{7126992B-A818-47AB-A05F-ECAF115FD030}" Directory_="bin_Dir" Attributes="256" KeyPath="Flute.Http.dll_1"/>
@@ -763,8 +759,6 @@
     <ROW Component="ThermoFisher.CommonCore.Data.dll" ComponentId="{B89DA7CA-9FA6-4347-9A68-6F2B66770A59}" Directory_="APPDIR" Attributes="256" KeyPath="ThermoFisher.CommonCore.Data.dll"/>
     <ROW Component="ThermoFisher.CommonCore.MassPrecisionEstimator.dll" ComponentId="{5B78C406-C53A-41D1-8FCE-DE4F59A415A1}" Directory_="APPDIR" Attributes="256" KeyPath="ThermoFisher.CommonCore.MassPrecisionEstimator.dll"/>
     <ROW Component="ThermoFisher.CommonCore.RawFileReader.dll" ComponentId="{DB525469-6BD4-417A-A685-E627F559FAD3}" Directory_="APPDIR" Attributes="256" KeyPath="ThermoFisher.CommonCore.RawFileReader.dll"/>
-    <ROW Component="ThinkVB.FileSystem.OSS.dll" ComponentId="{F71AFF1E-223E-489C-BCA7-1F052FAA4A37}" Directory_="APPDIR" Attributes="256" KeyPath="ThinkVB.FileSystem.OSS.dll"/>
-    <ROW Component="ThinkVB.FileSystem.OSS.pdb" ComponentId="{D3F95B2E-CC33-4A4B-9599-341C6E33682B}" Directory_="APPDIR" Attributes="0" KeyPath="ThinkVB.FileSystem.OSS.pdb" Type="4"/>
     <ROW Component="UMapx.dll" ComponentId="{6FAE705B-544D-4A20-8A28-5FA099627E37}" Directory_="APPDIR" Attributes="0" KeyPath="UMapx.dll"/>
     <ROW Component="WebView2Loader.dll" ComponentId="{26054BE2-7F65-4DA9-BC3D-2D2A106BF06C}" Directory_="native_Dir" Attributes="256" KeyPath="WebView2Loader.dll"/>
     <ROW Component="WinRT.Runtime.dll" ComponentId="{D6F2398A-5C67-4E3F-A0EE-566C827D0B3A}" Directory_="nvidia_Dir" Attributes="0" KeyPath="WinRT.Runtime.dll"/>
@@ -953,7 +947,6 @@
     <ROW File="Clearcore2.StructuredStorage.dll" Component_="Clearcore2.StructuredStorage.dll" FileName="CLEAR~13.DLL|Clearcore2.StructuredStorage.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Clearcore2.StructuredStorage.dll" SelfReg="false"/>
     <ROW File="Clearcore2.Utility.dll" Component_="Clearcore2.Utility.dll" FileName="CLEAR~14.DLL|Clearcore2.Utility.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Clearcore2.Utility.dll" SelfReg="false"/>
     <ROW File="Clearcore2.XmlHelpers.dll" Component_="Clearcore2.XmlHelpers.dll" FileName="CLEAR~15.DLL|Clearcore2.XmlHelpers.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Clearcore2.XmlHelpers.dll" SelfReg="false"/>
-    <ROW File="Docker.dll" Component_="Docker.dll" FileName="Docker.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Docker.dll" SelfReg="false"/>
     <ROW File="Mzkit_win32.Interaction.resources.dll" Component_="Mzkit_win32.Interaction.resources.dll" FileName="MZKIT_~1.DLL|Mzkit_win32.Interaction.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\en-US\Mzkit_win32.Interaction.resources.dll" SelfReg="false"/>
     <ROW File="mzkit_win32.resources.dll" Component_="mzkit_win32.resources.dll" FileName="MZKIT_~2.DLL|mzkit_win32.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\en-US\mzkit_win32.resources.dll" SelfReg="false"/>
     <ROW File="Flute.Http.dll" Component_="Flute.Http.dll" FileName="FLUTEH~1.DLL|Flute.Http.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Flute.Http.dll" SelfReg="false"/>
@@ -1096,7 +1089,6 @@
     <ROW File="ThermoFisher.CommonCore.Data.dll" Component_="ThermoFisher.CommonCore.Data.dll" FileName="THERMO~2.DLL|ThermoFisher.CommonCore.Data.dll" Attributes="0" SourcePath="..\..\..\dist\bin\ThermoFisher.CommonCore.Data.dll" SelfReg="false"/>
     <ROW File="ThermoFisher.CommonCore.MassPrecisionEstimator.dll" Component_="ThermoFisher.CommonCore.MassPrecisionEstimator.dll" FileName="THERMO~3.DLL|ThermoFisher.CommonCore.MassPrecisionEstimator.dll" Attributes="0" SourcePath="..\..\..\dist\bin\ThermoFisher.CommonCore.MassPrecisionEstimator.dll" SelfReg="false"/>
     <ROW File="ThermoFisher.CommonCore.RawFileReader.dll" Component_="ThermoFisher.CommonCore.RawFileReader.dll" FileName="THERMO~4.DLL|ThermoFisher.CommonCore.RawFileReader.dll" Attributes="0" SourcePath="..\..\..\dist\bin\ThermoFisher.CommonCore.RawFileReader.dll" SelfReg="false"/>
-    <ROW File="ThinkVB.FileSystem.OSS.dll" Component_="ThinkVB.FileSystem.OSS.dll" FileName="THINKV~1.DLL|ThinkVB.FileSystem.OSS.dll" Attributes="0" SourcePath="..\..\..\dist\bin\ThinkVB.FileSystem.OSS.dll" SelfReg="false"/>
     <ROW File="WkHtmlToPdf.CLI.InteropService.dll" Component_="WkHtmlToPdf.CLI.InteropService.dll" FileName="WKHTML~1.DLL|WkHtmlToPdf.CLI.InteropService.dll" Attributes="0" SourcePath="..\..\..\dist\bin\WkHtmlToPdf.CLI.InteropService.dll" SelfReg="false"/>
     <ROW File="WkHtmlToPdf.CLI.InteropService.dll.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="WKHTML~1.CON|WkHtmlToPdf.CLI.InteropService.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\WkHtmlToPdf.CLI.InteropService.dll.config" SelfReg="false"/>
     <ROW File="Mzkit_win32.Interaction.resources.dll_1" Component_="Mzkit_win32.Interaction.resources.dll_1" FileName="MZKIT_~1.DLL|Mzkit_win32.Interaction.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\zh-CN\Mzkit_win32.Interaction.resources.dll" SelfReg="false"/>
@@ -4949,7 +4941,6 @@
     <ROW File="install_mona.R" Component_="buildMSIIndex.R" FileName="INSTAL~1.R|install_mona.R" Attributes="0" SourcePath="..\rstudio\pipeline\install_mona.R" SelfReg="false"/>
     <ROW File="mzNet.dll" Component_="mzNet.dll" FileName="mzNet.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\mzNet.dll" SelfReg="false"/>
     <ROW File="mzNet.dll.config" Component_="Microsoft.VisualBasic.Runtime.dll.config" FileName="MZNETD~1.CON|mzNet.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\mzNet.dll.config" SelfReg="false"/>
-    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.dll" Component_="BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.dll" FileName="BIONO~34.DLL|BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.dll" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.DataMining.DynamicProgramming.dll_1" Component_="Microsoft.VisualBasic.DataMining.DynamicProgramming.dll_1" FileName="MICRO~57.DLL|Microsoft.VisualBasic.DataMining.DynamicProgramming.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.DataMining.DynamicProgramming.dll" SelfReg="false"/>
     <ROW File="compound_CID_2244.xml" Component_="chebi_lite.obo" FileName="COMPOU~1.XML|compound_CID_2244.xml" Attributes="0" SourcePath="..\rstudio\data\compound_CID_2244.xml" SelfReg="false"/>
     <ROW File="Mzkit_win32.MSImagingViewerV2.resources.dll_1" Component_="Mzkit_win32.MSImagingViewerV2.resources.dll_1" FileName="MZKIT_~1.DLL|Mzkit_win32.MSImagingViewerV2.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\ja-JP\Mzkit_win32.MSImagingViewerV2.resources.dll" SelfReg="false"/>
@@ -5011,7 +5002,6 @@
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.pdb" Component_="BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.pdb" FileName="BIONOV~8.PDB|BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.pdb" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions.pdb" Component_="BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions.pdb" FileName="BIONOV~9.PDB|BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions.pdb" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.Math.Insilicon.pdb" Component_="BioNovoGene.Analytical.MassSpectrometry.Math.Insilicon.pdb" FileName="BIONO~10.PDB|BioNovoGene.Analytical.MassSpectrometry.Math.Insilicon.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Math.Insilicon.pdb" SelfReg="false"/>
-    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.pdb" Component_="BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.pdb" FileName="BIONO~11.PDB|BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.pdb" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.Math.pdb" Component_="BioNovoGene.Analytical.MassSpectrometry.Math.pdb" FileName="BIONO~12.PDB|BioNovoGene.Analytical.MassSpectrometry.Math.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Math.pdb" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.Math.TargetedMetabolomics.pdb" Component_="BioNovoGene.Analytical.MassSpectrometry.Math.TargetedMetabolomics.pdb" FileName="BIONO~13.PDB|BioNovoGene.Analytical.MassSpectrometry.Math.TargetedMetabolomics.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Math.TargetedMetabolomics.pdb" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.MsImaging.pdb" Component_="BioNovoGene.Analytical.MassSpectrometry.MsImaging.pdb" FileName="BIONO~14.PDB|BioNovoGene.Analytical.MassSpectrometry.MsImaging.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.MsImaging.pdb" SelfReg="false"/>
@@ -5037,7 +5027,6 @@
     <ROW File="BioNovoGene.BioDeep.MSEngine.pdb" Component_="BioNovoGene.BioDeep.MSEngine.pdb" FileName="BIONO~34.PDB|BioNovoGene.BioDeep.MSEngine.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.MSEngine.pdb" SelfReg="false"/>
     <ROW File="Centos.pdb" Component_="Centos.pdb" FileName="Centos.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Centos.pdb" SelfReg="false"/>
     <ROW File="CFMID.pdb" Component_="CFMID.pdb" FileName="CFM-ID.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\CFM-ID.pdb" SelfReg="false"/>
-    <ROW File="Docker.pdb" Component_="Docker.pdb" FileName="Docker.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Docker.pdb" SelfReg="false"/>
     <ROW File="Flute.Http.pdb" Component_="Flute.Http.pdb" FileName="FLUTEH~1.PDB|Flute.Http.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Flute.Http.pdb" SelfReg="false"/>
     <ROW File="HDF.PInvoke.Core.pdb" Component_="HDF.PInvoke.Core.pdb" FileName="HDFPIN~1.PDB|HDF.PInvoke.Core.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\HDF.PInvoke.Core.pdb" SelfReg="false"/>
     <ROW File="LocalLaplacianFilters.pdb" Component_="LocalLaplacianFilters.pdb" FileName="LOCALL~1.PDB|LocalLaplacianFilters.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\LocalLaplacianFilters.pdb" SelfReg="false"/>
@@ -5141,7 +5130,6 @@
     <ROW File="SMRUCC.genomics.Visualize.Extensions.pdb" Component_="SMRUCC.genomics.Visualize.Extensions.pdb" FileName="SMRUC~16.PDB|SMRUCC.genomics.Visualize.Extensions.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Visualize.Extensions.pdb" SelfReg="false"/>
     <ROW File="STImaging.pdb" Component_="STImaging.pdb" FileName="STIMAG~1.PDB|STImaging.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\STImaging.pdb" SelfReg="false"/>
     <ROW File="STRaid.pdb" Component_="STRaid.pdb" FileName="STRaid.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\STRaid.pdb" SelfReg="false"/>
-    <ROW File="ThinkVB.FileSystem.OSS.pdb" Component_="ThinkVB.FileSystem.OSS.pdb" FileName="THINKV~1.PDB|ThinkVB.FileSystem.OSS.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\ThinkVB.FileSystem.OSS.pdb" SelfReg="false"/>
     <ROW File="WkHtmlToPdf.CLI.InteropService.pdb" Component_="WkHtmlToPdf.CLI.InteropService.pdb" FileName="WKHTML~1.PDB|WkHtmlToPdf.CLI.InteropService.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\WkHtmlToPdf.CLI.InteropService.pdb" SelfReg="false"/>
     <ROW File="MoNA.pdb" Component_="MoNA.pdb" FileName="MoNA.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\MoNA.pdb" SelfReg="false"/>
     <ROW File="mzLab.pdb" Component_="mzLab.pdb" FileName="mzLab.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\mzLab.pdb" SelfReg="false"/>
@@ -5182,7 +5170,6 @@
     <ROW File="BioNovoGene.BioDeep.MetaDNA.Visual.xml" Component_="BioDeep.xml" FileName="BIONO~24.XML|BioNovoGene.BioDeep.MetaDNA.Visual.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.MetaDNA.Visual.xml" SelfReg="false"/>
     <ROW File="BioNovoGene.BioDeep.MetaDNA.xml" Component_="BioDeep.xml" FileName="BIONO~25.XML|BioNovoGene.BioDeep.MetaDNA.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.MetaDNA.xml" SelfReg="false"/>
     <ROW File="BioNovoGene.BioDeep.MSEngine.xml" Component_="BioDeep.xml" FileName="BIONO~26.XML|BioNovoGene.BioDeep.MSEngine.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.MSEngine.xml" SelfReg="false"/>
-    <ROW File="Docker.xml" Component_="BioDeep.xml" FileName="Docker.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Docker.xml" SelfReg="false"/>
     <ROW File="Flute.Http.xml" Component_="BioDeep.xml" FileName="FLUTEH~1.XML|Flute.Http.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Flute.Http.xml" SelfReg="false"/>
     <ROW File="HDF.PInvoke.Core.xml" Component_="BioDeep.xml" FileName="HDFPIN~1.XML|HDF.PInvoke.Core.xml" Attributes="0" SourcePath="..\..\..\dist\bin\HDF.PInvoke.Core.xml" SelfReg="false"/>
     <ROW File="LocalLaplacianFilters.xml" Component_="BioDeep.xml" FileName="LOCALL~1.XML|LocalLaplacianFilters.xml" Attributes="0" SourcePath="..\..\..\dist\bin\LocalLaplacianFilters.xml" SelfReg="false"/>
@@ -5289,7 +5276,6 @@
     <ROW File="ThermoFisher.CommonCore.Data.xml" Component_="BioDeep.xml" FileName="THERMO~2.XML|ThermoFisher.CommonCore.Data.xml" Attributes="0" SourcePath="..\..\..\dist\bin\ThermoFisher.CommonCore.Data.xml" SelfReg="false"/>
     <ROW File="ThermoFisher.CommonCore.MassPrecisionEstimator.xml" Component_="BioDeep.xml" FileName="THERMO~3.XML|ThermoFisher.CommonCore.MassPrecisionEstimator.xml" Attributes="0" SourcePath="..\..\..\dist\bin\ThermoFisher.CommonCore.MassPrecisionEstimator.xml" SelfReg="false"/>
     <ROW File="ThermoFisher.CommonCore.RawFileReader.xml" Component_="BioDeep.xml" FileName="THERMO~4.XML|ThermoFisher.CommonCore.RawFileReader.xml" Attributes="0" SourcePath="..\..\..\dist\bin\ThermoFisher.CommonCore.RawFileReader.xml" SelfReg="false"/>
-    <ROW File="ThinkVB.FileSystem.OSS.xml" Component_="BioDeep.xml" FileName="THINKV~1.XML|ThinkVB.FileSystem.OSS.xml" Attributes="0" SourcePath="..\..\..\dist\bin\ThinkVB.FileSystem.OSS.xml" SelfReg="false"/>
     <ROW File="UMapx.xml" Component_="BioDeep.xml" FileName="UMapx.xml" Attributes="0" SourcePath="..\..\..\dist\bin\UMapx.xml" SelfReg="false"/>
     <ROW File="WkHtmlToPdf.CLI.InteropService.xml" Component_="BioDeep.xml" FileName="WKHTML~1.XML|WkHtmlToPdf.CLI.InteropService.xml" Attributes="0" SourcePath="..\..\..\dist\bin\WkHtmlToPdf.CLI.InteropService.xml" SelfReg="false"/>
     <ROW File="Reference.rtf_1" Component_="Reference.rtf" FileName="REFERE~1.RTF|Reference.rtf" Attributes="0" SourcePath="..\extdata\Reference.rtf" SelfReg="false"/>
@@ -5554,7 +5540,6 @@
     <ROW Feature_="MainFeature" Component_="Clearcore2.StructuredStorage.dll"/>
     <ROW Feature_="MainFeature" Component_="Clearcore2.Utility.dll"/>
     <ROW Feature_="MainFeature" Component_="Clearcore2.XmlHelpers.dll"/>
-    <ROW Feature_="MainFeature" Component_="Docker.dll"/>
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.Interaction.resources.dll"/>
     <ROW Feature_="MainFeature" Component_="mzkit_win32.resources.dll"/>
     <ROW Feature_="MainFeature" Component_="Flute.Http.dll"/>
@@ -5678,7 +5663,6 @@
     <ROW Feature_="MainFeature" Component_="ThermoFisher.CommonCore.Data.dll"/>
     <ROW Feature_="MainFeature" Component_="ThermoFisher.CommonCore.MassPrecisionEstimator.dll"/>
     <ROW Feature_="MainFeature" Component_="ThermoFisher.CommonCore.RawFileReader.dll"/>
-    <ROW Feature_="MainFeature" Component_="ThinkVB.FileSystem.OSS.dll"/>
     <ROW Feature_="MainFeature" Component_="WkHtmlToPdf.CLI.InteropService.dll"/>
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.Interaction.resources.dll_1"/>
     <ROW Feature_="MainFeature" Component_="mzkit_win32.resources.dll_1"/>
@@ -6011,7 +5995,6 @@
     <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll_1"/>
     <ROW Feature_="MainFeature" Component_="mzLab.dll"/>
     <ROW Feature_="MainFeature" Component_="mzkit_win32.resources.dll_3"/>
-    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MIME.application.rdf_xml.dll_2"/>
     <ROW Feature_="MainFeature" Component_="mzNet.dll"/>
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.MSImagingViewerV2.resources.dll_3"/>
@@ -6066,7 +6049,6 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectrometry.Math.Insilicon.pdb"/>
-    <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectrometry.Math.MoleculeNetworking.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectrometry.Math.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectrometry.Math.TargetedMetabolomics.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectrometry.MsImaging.pdb"/>
@@ -6092,7 +6074,6 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.BioDeep.MSEngine.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Centos.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="CFMID.pdb"/>
-    <ROW Feature_="VisualStudio_Diagnostic" Component_="Docker.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Flute.Http.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="HDF.PInvoke.Core.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="LocalLaplacianFilters.pdb"/>
@@ -6196,7 +6177,6 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.genomics.Visualize.Extensions.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="STImaging.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="STRaid.pdb"/>
-    <ROW Feature_="VisualStudio_Diagnostic" Component_="ThinkVB.FileSystem.OSS.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="WkHtmlToPdf.CLI.InteropService.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="MoNA.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="mzLab.pdb"/>
@@ -6402,7 +6382,7 @@
     <ROW XmlAttribute="xsischemaLocation" XmlElement="swidsoftware_identification_tag" Name="xsi:schemaLocation" Flags="14" Order="3" Value="http://standards.iso.org/iso/19770/-2/2008/schema.xsd software_identification_tag.xsd"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.XmlElementComponent">
-    <ROW XmlElement="swidbuild" ParentElement="swidnumeric" Name="swid:build" Condition="1" Order="2" Flags="14" Text="84" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidbuild" ParentElement="swidnumeric" Name="swid:build" Condition="1" Order="2" Flags="14" Text="984" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidchannel_name" ParentElement="swidlicense_linkage" Name="swid:channel_name" Condition="1" Order="1" Flags="14" Text="Standard(Community Edition)" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidchannel_type" ParentElement="swidlicense_linkage" Name="swid:channel_type" Condition="1" Order="0" Flags="14" Text="Retail" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidcustomer_type" ParentElement="swidlicense_linkage" Name="swid:customer_type" Condition="1" Order="2" Flags="14" Text="Academic" UpdateIndexInParent="0"/>
@@ -6420,7 +6400,7 @@
     <ROW XmlElement="swidregid" ParentElement="swidsoftware_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2013-01.com.panomix" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_5" ParentElement="swidsoftware_licensor" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2019-11.org.mzkit" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_6" ParentElement="swidtag_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.1995-09.me.xieguigang,gg.xie@bionovogene.com" UpdateIndexInParent="0"/>
-    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="6698" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="98331" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidserial_number" ParentElement="swidsoftware_identification_tag" Name="swid:serial_number" Condition="1" Order="7" Flags="14" Text="[PIDKEY]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_creator" ParentElement="swidsoftware_identification_tag" Name="swid:software_creator" Condition="1" Order="3" Flags="14" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_id" ParentElement="swidsoftware_identification_tag" Name="swid:software_id" Condition="1" Order="5" Flags="14" UpdateIndexInParent="0"/>
