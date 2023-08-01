@@ -25,7 +25,11 @@ Public Class PeakScatterViewer
 
     Public Property HtmlView As Boolean
         Get
-            Return WebView21.Visible
+            Try
+                Return WebView21.Visible
+            Catch ex As Exception
+                Return False
+            End Try
         End Get
         Set(value As Boolean)
             If Not value Then
@@ -59,7 +63,12 @@ Public Class PeakScatterViewer
             lcms_scatter.colorScaler = value
 
             If HtmlView Then
-                Call WebView21.CoreWebView2.Reload()
+                Try
+                    ' ignores of the intiialize error
+                    Call WebView21.CoreWebView2.Reload()
+                Catch ex As Exception
+
+                End Try
             End If
             If Not rawdata.IsNullOrEmpty Then
                 Call Rendering()
