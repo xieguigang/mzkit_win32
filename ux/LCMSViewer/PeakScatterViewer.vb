@@ -245,8 +245,8 @@ Public Class PeakScatterViewer
             .ToArray
         Dim defineSize As Size = PictureBox1.Size
         Dim scaler As New DataScaler() With {
-            .AxisTicks = Nothing,
-            .region = New Rectangle(New Point, defineSize),
+            .AxisTicks = (rt_range.CreateAxisTicks.AsVector, mz_range.CreateAxisTicks.AsVector),
+            .region = New Rectangle(New Point(canvas_padding, canvas_padding), New Size(defineSize.Width - canvas_padding * 2, defineSize.Height - canvas_padding * 2)),
             .X = d3js.scale.linear().domain(rt_range).range(integers:={canvas_padding, defineSize.Width - canvas_padding * 2}),
             .Y = d3js.scale.linear().domain(mz_range).range(integers:={canvas_padding, defineSize.Height - canvas_padding * 2})
         }
