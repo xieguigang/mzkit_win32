@@ -2567,6 +2567,14 @@
         <Image MinDPI="192">Res/tracker.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonAutoLocation" Id="228" LabelTitle="Auto Location" LabelDescription="Try to adjust the slide sample location automatically." TooltipTitle="Try to adjust the slide sample location automatically." TooltipDescription="Try to adjust the slide sample location automatically.">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/osd-duplicate.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/osd-duplicate.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2801,9 +2809,10 @@
               <Button CommandName="cmdButtonMSISearchPubChem" />
               <Button CommandName="cmdButtonMSIMatrixVisual" />
             </Group>
-            <Group CommandName="cmdGroupMSIOperations" SizeDefinition="TwoButtons">
+            <Group CommandName="cmdGroupMSIOperations" SizeDefinition="ThreeButtons">
               <Button CommandName="cmdButtonUpsideDown" />
               <Button CommandName="cmdButtonRotateSlide" />
+              <Button CommandName="cmdButtonAutoLocation" />
             </Group>
           </Tab>
           <Tab CommandName="cmdTabMSIAnalysis" ApplicationModes="0,1">

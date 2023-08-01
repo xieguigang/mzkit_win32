@@ -1214,5 +1214,12 @@
 #define cmdButtonSearchPubChem_TooltipDescription_RESID 60376
 #define cmdButtonSearchPubChem_SmallImages_192__RESID 60377
 #define cmdButtonSearchPubChem_LargeImages_192__RESID 60378
-#define InternalCmd2_LabelTitle_RESID 60379
-#define InternalCmd4_LabelTitle_RESID 60380
+#define cmdButtonAutoLocation 228 
+#define cmdButtonAutoLocation_LabelTitle_RESID 60379
+#define cmdButtonAutoLocation_LabelDescription_RESID 60380
+#define cmdButtonAutoLocation_TooltipTitle_RESID 60381
+#define cmdButtonAutoLocation_TooltipDescription_RESID 60382
+#define cmdButtonAutoLocation_SmallImages_192__RESID 60383
+#define cmdButtonAutoLocation_LargeImages_192__RESID 60384
+#define InternalCmd2_LabelTitle_RESID 60385
+#define InternalCmd4_LabelTitle_RESID 60386

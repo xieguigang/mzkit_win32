@@ -139,6 +139,7 @@ Namespace RibbonLib.Controls
             Public Const cmdGroupMSIOperations As UInteger = 201
             Public Const cmdButtonUpsideDown As UInteger = 202
             Public Const cmdButtonRotateSlide As UInteger = 221
+            Public Const cmdButtonAutoLocation As UInteger = 228
             Public Const cmdTabMSIAnalysis As UInteger = 141
             Public Const cmdTabMSISnapshot As UInteger = 126
             Public Const cmdButtonMSIAverageIon As UInteger = 125
@@ -983,6 +984,12 @@ Namespace RibbonLib.Controls
                 Return _ButtonRotateSlide
             End Get
         End Property
+        Private _ButtonAutoLocation As RibbonButton
+        Public ReadOnly Property ButtonAutoLocation As RibbonButton
+            Get
+                Return _ButtonAutoLocation
+            End Get
+        End Property
         Private _TabMSIAnalysis As RibbonTab
         Public ReadOnly Property TabMSIAnalysis As RibbonTab
             Get
@@ -1617,6 +1624,7 @@ Namespace RibbonLib.Controls
             _GroupMSIOperations = New RibbonGroup(_ribbon, Cmd.cmdGroupMSIOperations)
             _ButtonUpsideDown = New RibbonButton(_ribbon, Cmd.cmdButtonUpsideDown)
             _ButtonRotateSlide = New RibbonButton(_ribbon, Cmd.cmdButtonRotateSlide)
+            _ButtonAutoLocation = New RibbonButton(_ribbon, Cmd.cmdButtonAutoLocation)
             _TabMSIAnalysis = New RibbonTab(_ribbon, Cmd.cmdTabMSIAnalysis)
             _TabMSISnapshot = New RibbonGroup(_ribbon, Cmd.cmdTabMSISnapshot)
             _ButtonMSIAverageIon = New RibbonButton(_ribbon, Cmd.cmdButtonMSIAverageIon)
