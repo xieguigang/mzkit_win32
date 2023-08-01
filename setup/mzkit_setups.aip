@@ -171,6 +171,8 @@
     <ROW Directory="unix_3_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="unix"/>
     <ROW Directory="unix_Dir" Directory_Parent="runtimes_1_Dir" DefaultDir="unix"/>
     <ROW Directory="vendor_Dir" Directory_Parent="webview_Dir" DefaultDir="vendor"/>
+    <ROW Directory="vscode_1_Dir" Directory_Parent="MSImaging_Dir" DefaultDir="VSCODE~1|.vscode"/>
+    <ROW Directory="vscode_Dir" Directory_Parent="pipeline_Dir" DefaultDir="VSCODE~1|.vscode"/>
     <ROW Directory="webview_Dir" Directory_Parent="APPDIR" DefaultDir="WebView"/>
     <ROW Directory="win_1_Dir" Directory_Parent="runtimes_2_Dir" DefaultDir="win"/>
     <ROW Directory="win_3_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="win"/>
@@ -269,7 +271,7 @@
     <ROW Component="BioNovoGene.BioDeep.MSEngine.dll" ComponentId="{34592B78-00DD-4DAB-AD16-45AC97403A40}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.MSEngine.dll"/>
     <ROW Component="BioNovoGene.BioDeep.MSEngine.dll_1" ComponentId="{16288244-C58E-4473-B241-1ADD6F638C27}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.BioDeep.MSEngine.dll_1"/>
     <ROW Component="BioNovoGene.BioDeep.MSEngine.pdb" ComponentId="{EE625141-4A9E-4A3B-9408-3635658FBA52}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.BioDeep.MSEngine.pdb" Type="4"/>
-    <ROW Component="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" ComponentId="{C41275B5-F523-47B4-A4FD-3ED088B3F0F5}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.pdb"/>
+    <ROW Component="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" ComponentId="{C41275B5-F523-47B4-A4FD-3ED088B3F0F5}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.pdb" Type="4"/>
     <ROW Component="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll_1" ComponentId="{28EAAE32-9A6A-4AF5-9395-E51392AEEEFC}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll"/>
     <ROW Component="BioNovoGene.BioDeep.MetaDNA.Visual.dll" ComponentId="{99ADFC45-FDD3-4983-BF14-8BD45E01E5C4}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.MetaDNA.Visual.dll"/>
     <ROW Component="BioNovoGene.BioDeep.MetaDNA.Visual.pdb" ComponentId="{446C3209-A8F3-46C6-8F28-16676E91C428}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.BioDeep.MetaDNA.Visual.pdb" Type="4"/>
@@ -885,6 +887,8 @@
     <ROW Component="plot_cdf_tic.R" ComponentId="{13B35F62-267C-4998-9FC5-3F3394BCA9E3}" Directory_="demo_1_Dir" Attributes="0" KeyPath="plot_cdf_tic.R" Type="0"/>
     <ROW Component="regid.201301.com.panomix" ComponentId="{63A0ED36-59FE-437D-ABA9-2A17B9A3A3F0}" Directory_="regid.201301.com.panomix_Dir" Attributes="0"/>
     <ROW Component="roxygenNet.dll" ComponentId="{E0E9A75E-58C3-4143-B990-88737EBD1D95}" Directory_="library_Dir" Attributes="256" KeyPath="roxygenNet.dll"/>
+    <ROW Component="settings.json" ComponentId="{EE36A3C9-49B6-4EE8-9346-B986B6549B11}" Directory_="vscode_Dir" Attributes="0" KeyPath="settings.json" Type="0"/>
+    <ROW Component="settings.json_1" ComponentId="{ACFA1EFB-7AAD-43B6-A657-91ED689BE589}" Directory_="vscode_1_Dir" Attributes="0" KeyPath="settings.json_1" Type="0"/>
     <ROW Component="signalKit.dll" ComponentId="{E647E3F5-5C3F-454E-917D-71D0B35C97B8}" Directory_="library_Dir" Attributes="256" KeyPath="signalKit.dll"/>
     <ROW Component="singleIon.R" ComponentId="{0C305F69-B9FA-4837-B2A8-D98DC523124F}" Directory_="MSImaging_Dir" Attributes="256" KeyPath="singleIon.R" Type="0"/>
     <ROW Component="smilesdrawer.min.js" ComponentId="{E87C9D2F-5474-4DD1-BADF-DED5832F0AE0}" Directory_="vendor_Dir" Attributes="0" KeyPath="smilesdrawer.min.js" Type="0"/>
@@ -5304,6 +5308,8 @@
     <ROW File="export_ms2.R" Component_="plot_cdf_tic.R" FileName="EXPORT~1.R|export_ms2.R" Attributes="0" SourcePath="..\rstudio\demo\export_ms2.R" SelfReg="false"/>
     <ROW File="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" Component_="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll_1" FileName="BIONO~35.DLL|BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" SelfReg="false"/>
     <ROW File="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.pdb" Component_="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" FileName="BIONO~35.PDB|BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.pdb" SelfReg="false"/>
+    <ROW File="settings.json" Component_="settings.json" FileName="SETTIN~1.JSO|settings.json" Attributes="0" SourcePath="..\rstudio\pipeline\.vscode\settings.json" SelfReg="false"/>
+    <ROW File="settings.json_1" Component_="settings.json_1" FileName="SETTIN~1.JSO|settings.json" Attributes="0" SourcePath="..\rstudio\pipeline\MSImaging\.vscode\settings.json" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -6214,6 +6220,8 @@
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MachineLearning.MLDataStorage.dll"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll"/>
     <ROW Feature_="MainFeature" Component_="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="settings.json"/>
+    <ROW Feature_="MainFeature" Component_="settings.json_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
