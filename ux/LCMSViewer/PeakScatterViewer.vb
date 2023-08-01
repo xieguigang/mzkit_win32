@@ -344,7 +344,7 @@ Public Class PeakScatterViewer
     End Sub
 
     Private Sub GetPeak(ByRef peakId As String, ByRef mz As Double, ByRef rt As Double, loc As Point)
-        Dim pt = PictureBox1.PointToClient(loc)
+        Dim pt As Point = PictureBox1.PointToClient(loc)
         Dim size As Size = PictureBox1.Size
         Dim region = New GraphicsRegion(canvas_padding, size)
         Dim rect = region.PlotRegion
@@ -356,7 +356,8 @@ Public Class PeakScatterViewer
             Dim rti = x.ScaleMapping(pt.X, rt_range)
 
             If pt.Y > rect.Top AndAlso pt.Y < rect.Bottom Then
-                mzi = mz_range.Max - y.ScaleMapping(pt.Y, mz_range)
+                ' mzi = mz_range.Max - y.ScaleMapping(pt.Y - rect.Top, mz_range)
+                mzi = mz_range.Max - ((pt.Y - rect.Top) / rect.Height * mz_range.Length)
             Else
                 mzi = 0
             End If

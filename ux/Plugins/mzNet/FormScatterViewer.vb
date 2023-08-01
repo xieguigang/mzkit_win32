@@ -1,8 +1,11 @@
 ﻿Imports System.IO
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.PoolData
+Imports BioNovoGene.BioDeep.MSEngine
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data
@@ -120,7 +123,7 @@ Public Class FormScatterViewer
             }
 
             Dim data As Object() = json.info!metabolites
-            Dim metaIons = data.SafeQuery _
+            Dim metaIons As Metadata() = data.SafeQuery _
                 .AsParallel _
                 .Select(Function(o) HttpRESTMetadataPool.ParseMetadata(DirectCast(o, JavaScriptObject))) _
                 .ToArray
@@ -131,15 +134,27 @@ Public Class FormScatterViewer
                             'Dim bins = rtlist.GroupBy(Function(m) m.rt, offsets:=30).ToArray
 
                             'Return bins
-                            Return mzset.GroupBy(Function(m) m.rt, offsets:=60)
+                            Return mzset.GroupBy(Function(m) m.rt, offsets:=30)
                         End Function) _
                 .IteratesALL
+            Dim da As Tolerance = Tolerance.DeltaMass(0.3)
+            Dim adducts As MzCalculator() = Provider.Positives
+            Dim reference As New MSSearch(Of Metadata)(metaIons.Where(Function(a) a.project = "Reference Annotation"), da, adducts)
 
             For Each ion As NamedCollection(Of Metadata) In precursors.Where(Function(o) o.Length > filterOut)
                 Dim mz As Double = ion.Select(Function(i) i.mz).Average
                 Dim rt As Double() = ion.Select(Function(i) i.rt).TabulateBin
+                Dim names As String() = reference.QueryByMz(mz) _
+                    .Select(Function(a) $"{a.name}({reference.GetCompound(a.unique_id).formula})") _
+                    .ToArray
+                Dim title As String = annotext
+
+                If Not names.IsNullOrEmpty Then
+                    title = names.JoinBy(" / ")
+                End If
+
                 Dim ion1 As New MetaIon With {
-                    .id = $"[{id}] {annotext} {mz.ToString("F4")}@{(rt.Average / 60).ToString("F2")}min <{ion.Length} sample files>",
+                    .id = $"[{id}] {title} {mz.ToString("F4")}@{(rt.Average / 60).ToString("F2")}min <{ion.Length} sample files>",
                     .mz = mz,
                     .rtmin = rt.Min,
                     .rtmax = rt.Max,
