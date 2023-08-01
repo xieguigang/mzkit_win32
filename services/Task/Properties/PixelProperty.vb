@@ -67,9 +67,17 @@ Imports stdNum = System.Math
 
 Public Class PixelProperty
 
+    <Description("the base peak ion m/z of current pixel spot mass spectrum, which its ion intensity value is the max one in current spectrum")>
+    <Category("Mass Spectrum")>
     Public ReadOnly Property TopIonMz As Double
+    <Description("the max intensity of current pixel spot mass spectrum")>
+    <Category("Mass Spectrum")>
     Public ReadOnly Property MaxIntensity As Double
+    <Description("the min intensity of current pixel spot mass spectrum")>
+    <Category("Mass Spectrum")>
     Public ReadOnly Property MinIntensity As Double
+    <Description("the number of the ion peaks that detected in current pixel spot mass spectrum")>
+    <Category("Mass Spectrum")>
     Public ReadOnly Property NumOfIons As Integer
     <Category("Intensity")> Public ReadOnly Property Q1 As Double
     <Category("Intensity")> Public ReadOnly Property Q2 As Double
@@ -78,13 +86,25 @@ Public Class PixelProperty
     <Category("Intensity")> Public ReadOnly Property Q2Count As Integer
     <Category("Intensity")> Public ReadOnly Property Q3Count As Integer
 
+    <Description("the max intensity value of current pixel MS1 scan data.")>
+    <Category("Mass Spectrum")>
     Public ReadOnly Property AverageIons As Double
+    <Description("total ions of current pixel MS1 scan data.")>
+    <Category("Mass Spectrum")>
     Public ReadOnly Property TotalIon As Double
+
+    <Description("the pixel coordinate X of current selected pixel spot.")>
     <Category("Pixel")> Public ReadOnly Property X As Integer
+    <Description("the pixel coordinate Y of current selected pixel spot.")>
     <Category("Pixel")> Public ReadOnly Property Y As Integer
+    <Description("the MS1 scan id of current selected pixel spot, which generated from the MS scan instrument experiment.")>
     <Category("Pixel")> Public ReadOnly Property ScanId As String
 
+    <Description("The shannon entropy value of current MS1 spectrum data.")>
+    <Category("Information Theory")>
     Public ReadOnly Property ShannonEntropy As Double
+    <Description("The gini value of current MS1 spectrum data.")>
+    <Category("Information Theory")>
     Public ReadOnly Property Gini As Double
 
     Sub New(pixel As PixelScan)
