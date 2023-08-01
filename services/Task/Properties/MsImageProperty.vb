@@ -83,7 +83,6 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.hqx
 Imports Microsoft.VisualBasic.Linq
-Imports ServiceHub
 
 Public Enum SmoothFilters
     None
@@ -102,6 +101,7 @@ Public Class MsImageProperty
 
     <Description("The raw data file size.")>
     <Category("imzML")> Public ReadOnly Property fileSize As String
+    <Description("The source file path of current opened ms-imaging raw data.")>
     <Category("imzML")> Public ReadOnly Property sourceFile As String
 
     <Description("the unique guid of the target imzML file/mzPack/SCiLS csv data file.")>
@@ -115,50 +115,67 @@ Public Class MsImageProperty
 
     <Description("The number of the ion which has annotation data.")>
     Public ReadOnly Property ion_annotations As Integer
+    <Description("The data file type descriptor, which could be used for determine the file type for run imaging data visualization")>
     Public ReadOnly Property app As FileApplicationClass
 
+    ''' <summary>
+    ''' The calculated physical width of the slide image in the real world, this width is evaluated based on the scan number in x axis and the MSI resolution value
+    ''' </summary>
+    ''' <returns></returns>
+    ''' 
+    <Description("The calculated physical width of the slide image in the real world, this width value is evaluated based on the scan number in x axis and the MSI resolution value.")>
     Public ReadOnly Property physical_width As String
         Get
             Return ((scan_x * resolution) / 1000).ToString("F2") & "mm"
         End Get
     End Property
 
+    <Description("The calculated physical height of the slide image in the real world, this height value is evaluated based on the scan number in y axis and the MSI resolution value.")>
     Public ReadOnly Property physical_height As String
         Get
             Return ((scan_y * resolution) / 1000).ToString("F2") & "mm"
         End Get
     End Property
 
+    <Description("MS instrument tag of current raw data")>
     Public ReadOnly Property instrument As String
     <Description("The m/z ion data polarity mode, this property value will affects the ion metabolite annotation function in MZKit!")>
     Public Property polarity As IonModes = IonModes.Positive
 
+    <Description("Set the background color of the ms-imaging output from this option.")>
     <Category("Render")> Public Property background As Color
     <Category("Render")>
     <Description("The level of Hqx pixel scaler algorithm.")>
     Public Property Hqx As HqxScales = HqxScales.Hqx_2x
 
-    <Description("The scaled color set palette name.")>
+    <Description("The scaled color set palette name. This option will change the heatmap color maps.")>
     <Category("Render")> Public Property colors As ScalerPalette = ScalerPalette.viridis
     <Description("the color depth levels of the color sequence which is generated from a specific scaler palette.")>
     <Category("Render")> Public Property mapLevels As Integer = 250
     <Description("knn fill range for the pixel data")>
     <Category("Render")> Public Property knn As Integer = 3
+    <Description("knn fill cutoff value for the pixel density around a pixel")>
     <Category("Render")> Public Property knn_qcut As Double = 0.65
+    <Description("The up scale algorithm for display image on the canvas winform control.")>
     <Category("Render")> Public Property scale As InterpolationMode = InterpolationMode.Bilinear
+    <Description("Enable the image filter processor algorithm for optimise the heatmap image output?")>
     <Category("Render")> Public Property enableFilter As Boolean = True
+    <Description("Show the overlap of the physical width ruler on the ms-imaging output?")>
     <Category("Render")> Public Property showPhysicalRuler As Boolean = True
     <Description("Show the overlap of total ion imaging plot in grayscale when do single ion/rgb ion imaging?")>
     <Category("Render")> Public Property showTotalIonOverlap As Boolean = True
 
     <Description("The mass tolerance error threshold in delta dalton or ppm.")>
     <Category("Pixel M/z Data")> Public Property tolerance As Double = 0.1
+    <Description("The ion m/z mass tolerance algorithm for measure two ion m/z value is equals to each other.")>
     <Category("Pixel M/z Data")> Public Property method As ToleranceMethod = ToleranceMethod.Da
-
+    <Description("The x coordinate of the pixel which has the max intensity value.")>
     <Category("Intensity")> Public ReadOnly Property basePeak_x As Integer
+    <Description("The y coordinate of the pixel which has the max intensity value.")>
     <Category("Intensity")> Public ReadOnly Property basePeak_y As Integer
-
+    <Description("The min value of current intensity range.")>
     <Category("Intensity")> Public ReadOnly Property min As Double
+    <Description("The max value of current intensity range.")>
     <Category("Intensity")> Public ReadOnly Property max As Double
 
     <Description("The TrIQ cutoff threshold, value in range of [0,1]")>
