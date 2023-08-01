@@ -1,8 +1,11 @@
 ﻿Imports System.IO
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.PoolData
+Imports BioNovoGene.BioDeep.MSEngine
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data
@@ -120,10 +123,18 @@ Public Class FormScatterViewer
             }
 
             Dim data As Object() = json.info!metabolites
-            Dim metaIons = data.SafeQuery _
+            Dim metaIons As Metadata() = data.SafeQuery _
                 .AsParallel _
                 .Select(Function(o) HttpRESTMetadataPool.ParseMetadata(DirectCast(o, JavaScriptObject))) _
                 .ToArray
+            Dim da As Tolerance = Tolerance.DeltaMass(0.3)
+            Dim adducts As MzCalculator() = Provider.Positives
+            Dim reference As New MSSearch(Of Metadata)(metaIons.Where(Function(a) a.project = "Reference Annotation"), da, adducts)
+
+            metaIons = metaIons _
+                .Where(Function(a) a.project <> "Reference Annotation") _
+                .ToArray
+
             Dim precursors = metaIons.GroupBy(Function(m) m.mz, offsets:=0.3) _
                 .AsParallel _
                 .Select(Function(mzset)
@@ -131,21 +142,33 @@ Public Class FormScatterViewer
                             'Dim bins = rtlist.GroupBy(Function(m) m.rt, offsets:=30).ToArray
 
                             'Return bins
-                            Return mzset.GroupBy(Function(m) m.rt, offsets:=60)
+                            Return mzset.GroupBy(Function(m) m.rt, offsets:=30)
                         End Function) _
                 .IteratesALL
 
             For Each ion As NamedCollection(Of Metadata) In precursors.Where(Function(o) o.Length > filterOut)
                 Dim mz As Double = ion.Select(Function(i) i.mz).Average
                 Dim rt As Double() = ion.Select(Function(i) i.rt).TabulateBin
+                Dim referIons = reference.QueryByMz(mz) _
+                    .Select(Function(a) reference.GetCompound(a.unique_id)) _
+                    .ToArray
+                Dim names As String() = referIons _
+                    .Select(Function(a) $"{a.name}({a.formula})") _
+                    .ToArray
+                Dim title As String = annotext
+
+                If Not names.IsNullOrEmpty Then
+                    title = names.JoinBy(" / ")
+                End If
+
                 Dim ion1 As New MetaIon With {
-                    .id = $"[{id}] {annotext} {mz.ToString("F4")}@{(rt.Average / 60).ToString("F2")}min <{ion.Length} sample files>",
+                    .id = $"[{id}] {title} {mz.ToString("F4")}@{(rt.Average / 60).ToString("F2")}min <{ion.Length} sample files>",
                     .mz = mz,
                     .rtmin = rt.Min,
                     .rtmax = rt.Max,
                     .scan_time = rt.Average,
                     .intensity = ion.Length,
-                    .metaList = ion.value,
+                    .metaList = ion.value.JoinIterates(referIons).ToArray,
                     .cluster = js,
                     .consensus = spectra
                 }
@@ -185,38 +208,60 @@ Public Class FormScatterViewer
 
     End Sub
 
-    Private Sub scatterViewer_ClickOnPeak(peakId As String, mz As Double, rt As Double) Handles scatterViewer.ClickOnPeak
+    Private Sub scatterViewer_ClickOnPeak(peakId As String, mz As Double, rt As Double, progress As Boolean) Handles scatterViewer.ClickOnPeak
         Dim ion As MetaIon = peaksData.TryGetValue(peakId)
+        Dim spectrum As PeakMs2() = Nothing
 
         If ion Is Nothing Then
             Return
         End If
 
-        Dim spectrum As PeakMs2() = TaskProgress.LoadData(Of PeakMs2())(
-            Function(echo As ITaskProgress)
-                Dim println As Action(Of String) = AddressOf echo.SetInfo
+        If progress Then
+            spectrum = TaskProgress.LoadData(
+                streamLoad:=Function(echo As ITaskProgress) PopulateSpectrum(echo, ion, peakId).ToArray,
+                title:="Fetch Spectrum From Cloud",
+                host:=Me
+            )
+        Else
+            Call ProgressSpinner.DoLoading(
+                Sub()
+                    spectrum = PopulateSpectrum(Nothing, ion, peakId).ToArray
+                End Sub)
+        End If
 
-                Call echo.SetProgressMode()
-
-                Return ion.metaList _
-                    .Select(Function(m, i)
-                                Call echo.SetProgress(100 * i / ion.metaList.Length)
-                                Call println($"load spectrum: {peakId} | {m.guid}")
-
-                                Dim ms2 = model.ReadSpectrum(m.guid)
-                                ms2.mz = m.mz
-                                ms2.rt = m.rt
-                                ms2.file = m.source_file
-                                ms2.scan = m.name
-                                ms2.lib_guid = $"[MS/MS][{i + 1}] {peakId} | {m.guid}"
-
-                                Return ms2
-                            End Function) _
-                    .ToArray
-            End Function, title:="Fetch Spectrum From Cloud")
-
-        Call SpectralViewerModule.showCluster(spectrum, ion.id)
+        Call Me.Invoke(Sub() Call SpectralViewerModule.showCluster(spectrum, ion.id))
     End Sub
+
+    Private Iterator Function PopulateSpectrum(echo As ITaskProgress, ion As MetaIon, peakId As String) As IEnumerable(Of PeakMs2)
+        Dim println As Action(Of String) = AddressOf Workbench.StatusMessage
+        Dim i As i32 = Scan0
+
+        If Not echo Is Nothing Then
+            println = AddressOf echo.SetInfo
+            echo.SetProgressMode()
+        End If
+
+        For Each m As Metadata In ion.metaList
+            If Not echo Is Nothing Then
+                Call echo.SetProgress(100 * (++i) / ion.metaList.Length)
+            End If
+
+            Call println($"load spectrum: {peakId} | {m.guid}")
+
+            Dim ms2 = model.ReadSpectrum(m.guid)
+            ms2.mz = m.mz
+            ms2.rt = m.rt
+            ms2.file = m.source_file
+            ms2.scan = m.name
+            ms2.lib_guid = $"[MS/MS][{i}] {peakId} | {m.guid}"
+
+            If m.project = "Reference Annotation" Then
+                ms2.lib_guid = $"[MS/MS][{i}] {m.name}({m.formula}) | {m.guid}"
+            End If
+
+            Yield ms2
+        Next
+    End Function
 
     Private Sub exportReport_Click(sender As Object, e As EventArgs) Handles exportReport.Click
         Using file As New SaveFileDialog With {.Filter = "PDF report file(*.pdf)|*.pdf|Excel table(*.xls)|*.xls"}

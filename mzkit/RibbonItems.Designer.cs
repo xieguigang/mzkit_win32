@@ -142,6 +142,7 @@ namespace RibbonLib.Controls
             public const uint cmdGroupMSIOperations = 201;
             public const uint cmdButtonUpsideDown = 202;
             public const uint cmdButtonRotateSlide = 221;
+            public const uint cmdButtonAutoLocation = 228;
             public const uint cmdTabMSIAnalysis = 141;
             public const uint cmdTabMSISnapshot = 126;
             public const uint cmdButtonMSIAverageIon = 125;
@@ -361,6 +362,7 @@ namespace RibbonLib.Controls
         public RibbonGroup GroupMSIOperations { get; private set; }
         public RibbonButton ButtonUpsideDown { get; private set; }
         public RibbonButton ButtonRotateSlide { get; private set; }
+        public RibbonButton ButtonAutoLocation { get; private set; }
         public RibbonTab TabMSIAnalysis { get; private set; }
         public RibbonGroup TabMSISnapshot { get; private set; }
         public RibbonButton ButtonMSIAverageIon { get; private set; }
@@ -575,6 +577,7 @@ namespace RibbonLib.Controls
             GroupMSIOperations = new RibbonGroup(ribbon, Cmd.cmdGroupMSIOperations);
             ButtonUpsideDown = new RibbonButton(ribbon, Cmd.cmdButtonUpsideDown);
             ButtonRotateSlide = new RibbonButton(ribbon, Cmd.cmdButtonRotateSlide);
+            ButtonAutoLocation = new RibbonButton(ribbon, Cmd.cmdButtonAutoLocation);
             TabMSIAnalysis = new RibbonTab(ribbon, Cmd.cmdTabMSIAnalysis);
             TabMSISnapshot = new RibbonGroup(ribbon, Cmd.cmdTabMSISnapshot);
             ButtonMSIAverageIon = new RibbonButton(ribbon, Cmd.cmdButtonMSIAverageIon);

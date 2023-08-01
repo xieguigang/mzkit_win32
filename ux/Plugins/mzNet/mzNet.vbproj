@@ -317,6 +317,10 @@
       <Project>{ab5fd86e-6da9-4f7c-8dce-17da85bc895d}</Project>
       <Name>mzmath-netcore5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\mzmath\MSEngine\MSEngine.vbproj">
+      <Project>{712e2304-2f25-4480-8a0b-6c7091136fb4}</Project>
+      <Name>MSEngine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\visualize\plot\MsPlot.NET5.vbproj">
       <Project>{a27dc075-07ac-4d90-b1d5-0966925b5309}</Project>
       <Name>MsPlot.NET5</Name>

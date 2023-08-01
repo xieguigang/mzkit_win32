@@ -14,6 +14,7 @@ namespace apps.viewer {
         }
 
         private colors: string[];
+        private layers: Dictionary<ms1_scatter[]>;
 
         protected init(): void {
             const vm = this;
@@ -27,6 +28,7 @@ namespace apps.viewer {
                     const colors: string[] = JSON.parse(str);
 
                     vm.colors = colors;
+                    vm.layers = new Dictionary<ms1_scatter[]>();
 
                     for (let code of vm.colors) {
                         TypeScript.logging.log(code, code);
@@ -47,17 +49,20 @@ namespace apps.viewer {
                 "viewer"
             );
             const div = $ts("#viewer");
+            const vm = this;
 
             // render.chartObj.showLoading();
             render.plot(dataset);
             render.chartObj.on("click", function (par: any) {
-                // // console.log(par);
-                // const i = par.dataIndex;
-                // const category = par.seriesName;
-                // const labels = spot_labels.Item(category);
-                // const spot_id: string = labels[i];
-                // // console.log(spot_id);
-                // app.desktop.mzkit.Click(spot_id);
+                // console.log(par);
+                const i = par.dataIndex;
+                const category = par.seriesName;
+                const labels = vm.layers.Item(category);
+                const spot_id: string = labels[i].id;
+                // console.log(spot_id);
+                // alert(spot_id);
+
+                app.desktop.mzkit.Click(spot_id);
             });
             const resize_canvas = function () {
                 const padding = 18;
@@ -119,14 +124,16 @@ namespace apps.viewer {
             // //     })
             // //     .ToArray();
             // // const spot_labels = $from(data).ToDictionary(d => format_tag(d), d => d.labels);
-            const scatter3D = [];
+            let scatter3D = [];
             let i = 0;
+
             for (let min = 0; min < max; min = min + d) {
                 const l0 = min + d;
                 const subset = seq.Where(a => a.intensity > min && a.intensity < l0).ToArray();
                 const color = this.colors[i++];
                 const label = `${min.toExponential(1)} ~ ${l0.toExponential(1)}`;
 
+                this.layers.Add(`Intensity ${label}`, subset);
                 scatter3D.push(LCMSScatterViewer.scatter_group(subset, color, label));
             }
 
@@ -155,7 +162,7 @@ namespace apps.viewer {
                     temporalSuperSampling: {//分帧超采样。在开启 postEffect 后，WebGL 默认的 MSAA 会无法使用,分帧超采样用来解决锯齿的问题
                         enable: false
                     },
-                    boxDepth: 200
+                    boxDepth: 100
                     // light: {
                     //     main: {
                     //         shadow: false,

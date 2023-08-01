@@ -194,6 +194,7 @@ declare namespace apps.viewer {
     class LCMSScatterViewer extends Bootstrap {
         get appName(): string;
         private colors;
+        private layers;
         protected init(): void;
         render3DScatter(dataset: ms1_scatter[]): void;
         private static scatter_group;

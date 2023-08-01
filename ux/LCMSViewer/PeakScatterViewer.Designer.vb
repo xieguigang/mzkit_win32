@@ -28,6 +28,8 @@ Partial Class PeakScatterViewer
         Me.ToolStripSplitButton1 = New System.Windows.Forms.ToolStripSplitButton()
         Me.DViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ScatterViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSplitButton2 = New System.Windows.Forms.ToolStripSplitButton()
+        Me.RefreshToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -36,8 +38,7 @@ Partial Class PeakScatterViewer
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.WebView21 = New Microsoft.Web.WebView2.WinForms.WebView2()
-        Me.ToolStripSplitButton2 = New System.Windows.Forms.ToolStripSplitButton()
-        Me.RefreshToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SelectColorMapToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
@@ -66,14 +67,30 @@ Partial Class PeakScatterViewer
         'DViewerToolStripMenuItem
         '
         Me.DViewerToolStripMenuItem.Name = "DViewerToolStripMenuItem"
-        Me.DViewerToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DViewerToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
         Me.DViewerToolStripMenuItem.Text = "3D Viewer"
         '
         'ScatterViewerToolStripMenuItem
         '
         Me.ScatterViewerToolStripMenuItem.Name = "ScatterViewerToolStripMenuItem"
-        Me.ScatterViewerToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ScatterViewerToolStripMenuItem.Size = New System.Drawing.Size(148, 22)
         Me.ScatterViewerToolStripMenuItem.Text = "Scatter Viewer"
+        '
+        'ToolStripSplitButton2
+        '
+        Me.ToolStripSplitButton2.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RefreshToolStripMenuItem, Me.SelectColorMapToolStripMenuItem})
+        Me.ToolStripSplitButton2.Image = CType(resources.GetObject("ToolStripSplitButton2.Image"), System.Drawing.Image)
+        Me.ToolStripSplitButton2.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripSplitButton2.Name = "ToolStripSplitButton2"
+        Me.ToolStripSplitButton2.Size = New System.Drawing.Size(97, 20)
+        Me.ToolStripSplitButton2.Text = "Operations"
+        '
+        'RefreshToolStripMenuItem
+        '
+        Me.RefreshToolStripMenuItem.Image = CType(resources.GetObject("RefreshToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.RefreshToolStripMenuItem.Name = "RefreshToolStripMenuItem"
+        Me.RefreshToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.RefreshToolStripMenuItem.Text = "Refresh"
         '
         'ToolStripStatusLabel1
         '
@@ -134,22 +151,12 @@ Partial Class PeakScatterViewer
         Me.WebView21.TabIndex = 2
         Me.WebView21.ZoomFactor = 1.0R
         '
-        'ToolStripSplitButton2
+        'SelectColorMapToolStripMenuItem
         '
-        Me.ToolStripSplitButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripSplitButton2.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RefreshToolStripMenuItem})
-        Me.ToolStripSplitButton2.Image = CType(resources.GetObject("ToolStripSplitButton2.Image"), System.Drawing.Image)
-        Me.ToolStripSplitButton2.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripSplitButton2.Name = "ToolStripSplitButton2"
-        Me.ToolStripSplitButton2.Size = New System.Drawing.Size(32, 20)
-        Me.ToolStripSplitButton2.Text = "ToolStripSplitButton2"
-        '
-        'RefreshToolStripMenuItem
-        '
-        Me.RefreshToolStripMenuItem.Image = CType(resources.GetObject("RefreshToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.RefreshToolStripMenuItem.Name = "RefreshToolStripMenuItem"
-        Me.RefreshToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.RefreshToolStripMenuItem.Text = "Refresh"
+        Me.SelectColorMapToolStripMenuItem.Image = CType(resources.GetObject("SelectColorMapToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.SelectColorMapToolStripMenuItem.Name = "SelectColorMapToolStripMenuItem"
+        Me.SelectColorMapToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.SelectColorMapToolStripMenuItem.Text = "Select Color Map"
         '
         'PeakScatterViewer
         '
@@ -185,4 +192,5 @@ Partial Class PeakScatterViewer
     Friend WithEvents ScatterViewerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripSplitButton2 As ToolStripSplitButton
     Friend WithEvents RefreshToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SelectColorMapToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -5,10 +5,14 @@ Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Math
+Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports stdNum = System.Math
 
 ''' <summary>
@@ -16,12 +20,16 @@ Imports stdNum = System.Math
 ''' </summary>
 Public Class PeakScatterViewer
 
-    Public Event ClickOnPeak(peakId As String, mz As Double, rt As Double)
+    Public Event ClickOnPeak(peakId As String, mz As Double, rt As Double, progress As Boolean)
     Public Event MoveOverPeak(peakId As String, mz As Double, rt As Double)
 
     Public Property HtmlView As Boolean
         Get
-            Return WebView21.Visible
+            Try
+                Return WebView21.Visible
+            Catch ex As Exception
+                Return False
+            End Try
         End Get
         Set(value As Boolean)
             If Not value Then
@@ -46,7 +54,6 @@ Public Class PeakScatterViewer
         End Set
     End Property
 
-
     Public Property ColorScale As ScalerPalette
         Get
             Return m_palette
@@ -55,6 +62,16 @@ Public Class PeakScatterViewer
             m_palette = value
             lcms_scatter.colorScaler = value
 
+            If HtmlView Then
+                Try
+                    ' ignores of the intiialize error
+                    If Not WebView21.CoreWebView2 Is Nothing Then
+                        Call WebView21.CoreWebView2.Reload()
+                    End If
+                Catch ex As Exception
+
+                End Try
+            End If
             If Not rawdata.IsNullOrEmpty Then
                 Call Rendering()
             End If
@@ -91,6 +108,7 @@ Public Class PeakScatterViewer
     Dim m_levels As Integer = 255
     Dim m_palette As ScalerPalette = ScalerPalette.turbo
     Dim m_rawdata As Meta()
+    Dim canvas_padding As Padding = New Padding(120, 50, 150, 80)
 
     ' mzscale and rtscale is used for 
     ' scale the mapping of the mouse xy
@@ -112,7 +130,9 @@ Public Class PeakScatterViewer
     Dim mzBins As BlockSearchFunction(Of Meta)
     Dim rtBins As BlockSearchFunction(Of Meta)
 
-    Dim lcms_scatter As New LCMSScatter
+    Dim lcms_scatter As New LCMSScatter With {
+        .callback = AddressOf ClickPeak
+    }
 
     ''' <summary>
     ''' the scatter raw data in current view range
@@ -182,7 +202,7 @@ Public Class PeakScatterViewer
         Else
             mzBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.mz, 1, fuzzy:=True)
             rtBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.scan_time, 10, fuzzy:=True)
-            mz_range = New DoubleRange(rawdata.Select(Function(i) i.mz)).DoCall(AddressOf autoPaddingRange)
+            mz_range = New DoubleRange(rawdata.Select(Function(i) i.mz))
             rt_range = New DoubleRange(rawdata.Select(Function(i) i.scan_time)).DoCall(AddressOf autoPaddingRange)
             int_range = New DoubleRange(rawdata.Select(Function(i) i.intensity))
 
@@ -197,7 +217,13 @@ Public Class PeakScatterViewer
         Dim maxPad = max * 1.0125
         Dim d As Double = maxPad - max
 
-        Return New DoubleRange(min - d, maxPad)
+        min = min - d
+
+        If min < 0 Then
+            min = 0
+        End If
+
+        Return New DoubleRange(min, maxPad)
     End Function
 
     Private Iterator Function getScatter() As IEnumerable(Of PointData)
@@ -242,11 +268,15 @@ Public Class PeakScatterViewer
                     End Function) _
             .ToArray
         Dim defineSize As Size = PictureBox1.Size
+        Dim region As New GraphicsRegion(canvas_padding, defineSize)
+        Dim rect = region.PlotRegion
+        Dim xTicks = rt_range.CreateAxisTicks
+        Dim yTicks = mz_range.CreateAxisTicks
         Dim scaler As New DataScaler() With {
-            .AxisTicks = Nothing,
-            .region = New Rectangle(New Point, defineSize),
-            .X = d3js.scale.linear().domain(rt_range).range(integers:={0, defineSize.Width}),
-            .Y = d3js.scale.linear().domain(mz_range).range(integers:={0, defineSize.Height})
+            .AxisTicks = (xTicks.Take(xTicks.Length - 1).AsVector, yTicks.Skip(1).AsVector),
+            .region = rect,
+            .X = d3js.scale.linear().domain(rt_range).range(integers:={rect.Left, rect.Right}),
+            .Y = d3js.scale.linear().domain(mz_range).range(integers:={rect.Top, rect.Bottom})
         }
 
         ' ignore this gdi device error
@@ -255,9 +285,45 @@ Public Class PeakScatterViewer
         End If
 
         Using g As Graphics2D = defineSize.CreateGDIDevice(filled:=Color.White)
+            Dim axisPen As New Pen(Color.Black, 3)
+            Dim labelFont As New CSSFont(New Font(FontFace.MicrosoftYaHei, 14))
+            Dim labelColor As Brush = Brushes.Black
+            Dim tickFont As New Font(FontFace.MicrosoftYaHei, 10)
+
+            ' draw axis
+            ' x
+            Call Axis.DrawX(g, axisPen,
+                            $"Scan time([{rt_range.Min.ToString("F0")} - {rt_range.Max.ToString("F0")}] seconds)",
+                            scaler, XAxisLayoutStyles.Bottom,
+                            scaler.Y.Zero, Nothing,
+                            labelFont.CSSValue,
+                            labelColor, tickFont, labelColor, htmlLabel:=False)
+            ' y
+            Call Axis.DrawY(g, axisPen,
+                            $"m/z [{mz_range.Min.ToString("F3")} - {mz_range.Max.ToString("F3")}]",
+                            scaler, scaler.X.Zero,
+                            scaler.AxisTicks.Y, YAxisLayoutStyles.Left,
+                            Nothing,
+                            labelFont.CSSValue,
+                            labelColor, tickFont, labelColor, htmlLabel:=False)
+
             For Each level As SerialData In colorlevels
                 Call Bubble.Plot(g, level, scaler, scale:=Function(r) 5)
             Next
+
+            Call New ColorMapLegend(ColorScale.Description, 30) With {
+                .foreColor = Color.Black,
+                .format = "G2",
+                .noblank = True,
+                .tickAxisStroke = New Pen(Color.Black, 1),
+                .tickFont = tickFont,
+                .ticks = int_range.CreateAxisTicks,
+                .title = "intensity",
+                .titleFont = labelFont.GDIObject(100),
+                .legendOffsetLeft = 1,
+                .ruleOffset = 1,
+                .unmapColor = Nothing
+            }.Draw(g, New Rectangle(rect.Right + 10, rect.Top, (defineSize.Width - rect.Right) / 2, rect.Height))
 
             PictureBox1.BackgroundImage = g.ImageResource
         End Using
@@ -296,12 +362,22 @@ Public Class PeakScatterViewer
     End Sub
 
     Private Sub GetPeak(ByRef peakId As String, ByRef mz As Double, ByRef rt As Double, loc As Point)
-        Dim pt = PictureBox1.PointToClient(loc)
+        Dim pt As Point = PictureBox1.PointToClient(loc)
         Dim size As Size = PictureBox1.Size
+        Dim region = New GraphicsRegion(canvas_padding, size)
+        Dim rect = region.PlotRegion
+        Dim y As New DoubleRange(rect.Top, rect.Bottom)
+        Dim x As New DoubleRange(rect.Left, rect.Right)
 
         If mz_range IsNot Nothing AndAlso rt_range IsNot Nothing Then
-            Dim mzi = ((size.Height - pt.Y) / size.Height) * mz_range.Length + mz_range.Min
-            Dim rti = (pt.X / size.Width) * rt_range.Length + rt_range.Min
+            Dim mzi As Double
+            Dim rti = x.ScaleMapping(pt.X, rt_range)
+
+            'If pt.Y > rect.Top AndAlso pt.Y < rect.Bottom Then
+            mzi = y.ScaleMapping(rect.Bottom - (pt.Y - rect.Top), mz_range)
+            'Else
+            '    mzi = 0
+            'End If
 
             Dim qmz = mzBins.Search(New Meta With {.mz = mzi}).ToDictionary(Function(a) a.id)
             Dim qrt = rtBins.Search(New Meta With {.scan_time = rti}).ToDictionary(Function(a) a.id)
@@ -327,12 +403,14 @@ Public Class PeakScatterViewer
 
     Private Sub ViewerResize() Handles Me.SizeChanged
         Dim size As Size = PictureBox1.Size
+        Dim region As New GraphicsRegion(canvas_padding, size)
+        Dim rect = region.PlotRegion
 
         If mz_range IsNot Nothing AndAlso rt_range IsNot Nothing Then
             ' scale the mapping of the mouse xy
             ' not for plot rendering
-            mzscale = d3js.scale.linear().domain(mz_range).range(integers:={0, size.Height})
-            rtscale = d3js.scale.linear().domain(rt_range).range(integers:={0, size.Width})
+            mzscale = d3js.scale.linear().domain(mz_range).range(integers:={rect.Top, rect.Bottom})
+            rtscale = d3js.scale.linear().domain(rt_range).range(integers:={rect.Left, rect.Right})
 
             Call Rendering()
         End If
@@ -349,6 +427,10 @@ Public Class PeakScatterViewer
         p0 = Cursor.Position
     End Sub
 
+    Private Sub ClickPeak(id As String, mz As Double, rt As Double)
+        RaiseEvent ClickOnPeak(id, mz, rt, False)
+    End Sub
+
     Private Sub PictureBox1_MouseUp(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseUp
         drawBox = False
 
@@ -362,7 +444,7 @@ Public Class PeakScatterViewer
             Call GetPeak(peakId, mz, rt, loc)
 
             If peakId IsNot Nothing Then
-                RaiseEvent ClickOnPeak(peakId, mz, rt)
+                RaiseEvent ClickOnPeak(peakId, mz, rt, True)
 
                 ToolStripStatusLabel1.Text = $"m/z {mz.ToString("F4")} RT {(rt / 60).ToString("F2")}min; ion: '{peakId}' has been selected!"
             End If
@@ -442,6 +524,17 @@ Public Class PeakScatterViewer
         Else
             Call ResetToolStripMenuItem_Click()
         End If
+    End Sub
+
+    Private Sub ToolStripSplitButton2_ButtonClick(sender As Object, e As EventArgs) Handles ToolStripSplitButton2.ButtonClick
+
+    End Sub
+
+    Private Sub SelectColorMapToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SelectColorMapToolStripMenuItem.Click
+        Call InputDialog.Input(Of InputSelectColorMap)(
+            Sub(cfg)
+                Call Me.Invoke(Sub() ColorScale = cfg.GetColorMap)
+            End Sub)
     End Sub
 End Class
 

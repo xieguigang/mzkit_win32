@@ -15,16 +15,28 @@ Public Class LCMSScatter
     ''' <summary>
     ''' the scatter raw data in current view range
     ''' </summary>
-    Dim rawdata As Meta()
+    Dim rawdata As Dictionary(Of String, Meta)
+
     Friend colorScaler As ScalerPalette = ScalerPalette.FlexImaging
+    Friend callback As Action(Of String, Double, Double)
 
     Public Function GetLCMSScatter() As String
-        Return rawdata.GetJson
+        If rawdata.IsNullOrEmpty Then
+            Return "[]"
+        Else
+            Return rawdata.Values.ToArray.GetJson
+        End If
     End Function
 
     Public Function GetColors() As String
         Return Designer.GetColors(colorScaler.Description, n:=30).Select(Function(a) a.ToHtmlColor).ToArray.GetJson
     End Function
+
+    Public Sub Click(id As String)
+        Dim meta = rawdata(id)
+
+        Call callback(id, meta.mz, meta.scan_time)
+    End Sub
 
     ''' <summary>
     ''' 
@@ -33,11 +45,16 @@ Public Class LCMSScatter
     Public Sub SetMetadata(meta As IEnumerable(Of Meta))
         rawdata = meta _
             .Select(Function(a) New Meta With {.id = a.id, .intensity = a.intensity, .mz = a.mz, .scan_time = a.scan_time}) _
-            .ToArray
+            .ToDictionary(Function(m)
+                              Return m.id
+                          End Function)
     End Sub
 
     Public Sub LoadMesh(rawdata As Meta(), Optional n As Integer = 500)
-        Me.rawdata = MeshGrid(rawdata, n).ToArray
+        Me.rawdata = MeshGrid(rawdata, n) _
+            .ToDictionary(Function(m)
+                              Return m.id
+                          End Function)
     End Sub
 
     Public Shared Iterator Function MeshGrid(rawdata As Meta(), Optional n As Integer = 1500) As IEnumerable(Of Meta)
