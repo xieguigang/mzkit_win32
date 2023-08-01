@@ -233,6 +233,10 @@ Public Class FormScatterViewer
                                 ms2.scan = m.name
                                 ms2.lib_guid = $"[MS/MS][{i + 1}] {peakId} | {m.guid}"
 
+                                If m.project = "Reference Annotation" Then
+                                    ms2.lib_guid = $"[MS/MS][{i + 1}] {m.name}({m.formula}) | {m.guid}"
+                                End If
+
                                 Return ms2
                             End Function) _
                     .ToArray
