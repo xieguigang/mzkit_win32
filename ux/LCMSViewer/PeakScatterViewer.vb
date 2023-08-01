@@ -360,11 +360,11 @@ Public Class PeakScatterViewer
             Dim mzi As Double
             Dim rti = x.ScaleMapping(pt.X, rt_range)
 
-            If pt.Y > rect.Top AndAlso pt.Y < rect.Bottom Then
-                mzi = y.ScaleMapping(rect.Bottom - (pt.Y - rect.Top), mz_range)
-            Else
-                mzi = 0
-            End If
+            'If pt.Y > rect.Top AndAlso pt.Y < rect.Bottom Then
+            mzi = y.ScaleMapping(rect.Bottom - (pt.Y - rect.Top), mz_range)
+            'Else
+            '    mzi = 0
+            'End If
 
             Dim qmz = mzBins.Search(New Meta With {.mz = mzi}).ToDictionary(Function(a) a.id)
             Dim qrt = rtBins.Search(New Meta With {.scan_time = rti}).ToDictionary(Function(a) a.id)
