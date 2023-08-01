@@ -7,6 +7,8 @@ Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Math
+Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
 Imports stdNum = System.Math
@@ -45,7 +47,6 @@ Public Class PeakScatterViewer
             End If
         End Set
     End Property
-
 
     Public Property ColorScale As ScalerPalette
         Get
@@ -91,6 +92,7 @@ Public Class PeakScatterViewer
     Dim m_levels As Integer = 255
     Dim m_palette As ScalerPalette = ScalerPalette.turbo
     Dim m_rawdata As Meta()
+    Dim canvas_padding As Double = 20
 
     ' mzscale and rtscale is used for 
     ' scale the mapping of the mouse xy
@@ -245,8 +247,8 @@ Public Class PeakScatterViewer
         Dim scaler As New DataScaler() With {
             .AxisTicks = Nothing,
             .region = New Rectangle(New Point, defineSize),
-            .X = d3js.scale.linear().domain(rt_range).range(integers:={0, defineSize.Width}),
-            .Y = d3js.scale.linear().domain(mz_range).range(integers:={0, defineSize.Height})
+            .X = d3js.scale.linear().domain(rt_range).range(integers:={canvas_padding, defineSize.Width - canvas_padding * 2}),
+            .Y = d3js.scale.linear().domain(mz_range).range(integers:={canvas_padding, defineSize.Height - canvas_padding * 2})
         }
 
         ' ignore this gdi device error
@@ -255,6 +257,17 @@ Public Class PeakScatterViewer
         End If
 
         Using g As Graphics2D = defineSize.CreateGDIDevice(filled:=Color.White)
+            Dim axisPen As New Pen(Color.Black, 5)
+            Dim labelFont As New CSSFont(New Font(FontFace.MicrosoftYaHei, 16))
+            Dim labelColor As Brush = Brushes.Black
+            Dim tickFont As New Font(FontFace.MicrosoftYaHei, 12)
+
+            ' draw axis
+            ' x
+            Call Axis.DrawX(g, axisPen, "RT(second)", scaler, XAxisLayoutStyles.Bottom, 0, Nothing, labelFont.CSSValue, labelColor, tickFont, labelColor, htmlLabel:=False)
+            ' y
+            Call Axis.DrawY(g, axisPen, "m/z", scaler, 0, mz_range.CreateAxisTicks.AsVector, YAxisLayoutStyles.Left, Nothing, labelFont.CSSValue, labelColor, tickFont, labelColor, htmlLabel:=False)
+
             For Each level As SerialData In colorlevels
                 Call Bubble.Plot(g, level, scaler, scale:=Function(r) 5)
             Next
@@ -300,8 +313,8 @@ Public Class PeakScatterViewer
         Dim size As Size = PictureBox1.Size
 
         If mz_range IsNot Nothing AndAlso rt_range IsNot Nothing Then
-            Dim mzi = ((size.Height - pt.Y) / size.Height) * mz_range.Length + mz_range.Min
-            Dim rti = (pt.X / size.Width) * rt_range.Length + rt_range.Min
+            Dim mzi = ((size.Height - canvas_padding - pt.Y) / (size.Height - canvas_padding * 2)) * mz_range.Length + mz_range.Min
+            Dim rti = (pt.X / (size.Width - canvas_padding * 2)) * rt_range.Length + rt_range.Min
 
             Dim qmz = mzBins.Search(New Meta With {.mz = mzi}).ToDictionary(Function(a) a.id)
             Dim qrt = rtBins.Search(New Meta With {.scan_time = rti}).ToDictionary(Function(a) a.id)
@@ -331,8 +344,8 @@ Public Class PeakScatterViewer
         If mz_range IsNot Nothing AndAlso rt_range IsNot Nothing Then
             ' scale the mapping of the mouse xy
             ' not for plot rendering
-            mzscale = d3js.scale.linear().domain(mz_range).range(integers:={0, size.Height})
-            rtscale = d3js.scale.linear().domain(rt_range).range(integers:={0, size.Width})
+            mzscale = d3js.scale.linear().domain(mz_range).range(integers:={canvas_padding, size.Height - canvas_padding * 2})
+            rtscale = d3js.scale.linear().domain(rt_range).range(integers:={canvas_padding, size.Width - canvas_padding * 2})
 
             Call Rendering()
         End If
