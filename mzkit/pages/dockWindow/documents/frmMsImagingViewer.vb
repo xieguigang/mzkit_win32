@@ -183,6 +183,7 @@ Public Class frmMsImagingViewer
         AddHandler RibbonEvents.ribbonItems.ButtonAutoUMAP.ExecuteEvent, Sub() Call RunUMAPTissueCluster()
         AddHandler RibbonEvents.ribbonItems.ButtonMSISignalCorrection.ExecuteEvent, Sub() Call ViewMzBins()
         AddHandler RibbonEvents.ribbonItems.ButtonRotateSlide.ExecuteEvent, Sub() Call rotateSlide()
+        AddHandler RibbonEvents.ribbonItems.ButtonAutoLocation.ExecuteEvent, Sub() Call autoLocation()
 
         AddHandler RibbonEvents.ribbonItems.CheckShowMapLayer.ExecuteEvent,
             Sub()
@@ -207,6 +208,33 @@ Public Class frmMsImagingViewer
         sampleRegions.Show(MyApplication.host.m_dockPanel)
         sampleRegions.DockState = DockState.Hidden
         sampleRegions.viewer = Me
+    End Sub
+
+    Private Sub autoLocation()
+        If Not checkService() Then
+            Return
+        End If
+
+        Dim info = TaskProgress.LoadData(
+            streamLoad:=Function(echo As Action(Of String)) MSIservice.AutoLocation,
+            title:="Do auto location",
+            info:="Apply ms-imaging slide sample matrix adjust location and padding automatically..."
+        )
+        Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".tmp.mzPack", sessionID:=App.PID, prefix:="rotate_temp_")
+
+        If Not info Is Nothing Then
+            Call TaskProgress.LoadData(
+                Function(echo As Action(Of String))
+                    Call MSIservice.ExportMzpack(tempfile)
+                    Return True
+                End Function)
+            Call MyApplication.host.showMzPackMSI(tempfile)
+            Call RenderSummary(IntensitySummary.BasePeak)
+
+            Call Workbench.SuccessMessage($"ms-imaging slide sample matrix adjust location and padding success!")
+        Else
+            Call Workbench.Warning("Adjust slide sample location error!")
+        End If
     End Sub
 
     Private Sub rotateSlide()

@@ -485,10 +485,10 @@ Namespace ServiceHub
         Public Function AutoLocation() As MsImageProperty
             Dim data As RequestStream = handleServiceRequest(
                 request:=New RequestStream(MSI.Protocol, ServiceProtocol.AutoLocation, Encoding.UTF8.GetBytes("padding: 25px 25px 25px 25px;")))
-            Return handlePropertiesReader(data)
+            Return handlePropertiesReader(data, "Auto slide sample position error!")
         End Function
 
-        Private Function handlePropertiesReader(data As RequestStream) As MsImageProperty
+        Private Function handlePropertiesReader(data As RequestStream, raw As String) As MsImageProperty
             If data Is Nothing Then
                 Call Workbench.Warning($"Failure to load MS-imaging raw data file: {raw}...")
                 Return Nothing
@@ -520,7 +520,7 @@ Namespace ServiceHub
 
             MessageCallback = Nothing
 
-            Return handlePropertiesReader(data)
+            Return handlePropertiesReader(data, raw)
         End Function
 
         ''' <summary>
