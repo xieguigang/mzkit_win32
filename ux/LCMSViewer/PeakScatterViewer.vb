@@ -254,11 +254,12 @@ Public Class PeakScatterViewer
         Dim region As New GraphicsRegion(canvas_padding, defineSize)
         Dim rect = region.PlotRegion
         Dim xTicks = rt_range.CreateAxisTicks
+        Dim yTicks = mz_range.CreateAxisTicks
         Dim scaler As New DataScaler() With {
-            .AxisTicks = (xTicks.Take(xTicks.Length - 1).ToArray, mz_range.CreateAxisTicks.AsVector),
+            .AxisTicks = (xTicks.Take(xTicks.Length - 1).AsVector, yTicks.Skip(1).AsVector),
             .region = rect,
             .X = d3js.scale.linear().domain(rt_range).range(integers:={rect.Left, rect.Right}),
-            .Y = d3js.scale.linear().domain(mz_range).range(integers:={rect.Top, rect.Height})
+            .Y = d3js.scale.linear().domain(mz_range).range(integers:={rect.Top, rect.Bottom})
         }
 
         ' ignore this gdi device error
@@ -284,7 +285,7 @@ Public Class PeakScatterViewer
             Call Axis.DrawY(g, axisPen,
                             $"m/z [{mz_range.Min.ToString("F3")} - {mz_range.Max.ToString("F3")}]",
                             scaler, scaler.X.Zero,
-                            mz_range.CreateAxisTicks.AsVector, YAxisLayoutStyles.Left,
+                            scaler.AxisTicks.Y, YAxisLayoutStyles.Left,
                             Nothing,
                             labelFont.CSSValue,
                             labelColor, tickFont, labelColor, htmlLabel:=False)
