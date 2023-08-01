@@ -26,7 +26,7 @@ const pixelsData = app::getMSIData(
     mzdiff      = mzdiff,
     host        = hostName
 );
-const dataPack = pixelPack(pixelsData);
+const dataPack = pixelPack(pixelsData, dims = app::getMSIDimensions(MSI_service = appPort));
 const mz_tag as string = `m/z ${round(mzlist[1], 4)}`;
 const totalIonLayer = {
     if (overlap_totalIons) {

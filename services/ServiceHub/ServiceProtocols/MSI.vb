@@ -183,6 +183,13 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
     End Function
 
+    <Protocol(ServiceProtocol.GetMSIDimensions)>
+    Public Function GetMSIDimensions(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
+        Dim dims As Integer() = New Integer() {MSI.dimension.Width, MSI.dimension.Height}
+        Dim payload As String = dims.GetJson(indent:=False, simpleDict:=True)
+        Return New DataPipe(payload)
+    End Function
+
     ''' <summary>
     ''' this method required a size parameter for fold the raw scans into 2D matrix
     ''' </summary>

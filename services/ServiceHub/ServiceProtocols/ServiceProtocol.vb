@@ -65,6 +65,7 @@
 
 Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
@@ -72,6 +73,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.Net.HTTP
 Imports Microsoft.VisualBasic.Parallel
+Imports Microsoft.VisualBasic.Serialization.JSON
 
 Public Enum ServiceProtocol
     ''' <summary>
@@ -83,6 +85,7 @@ Public Enum ServiceProtocol
     ''' </summary>
     LoadThermoRawMSI
     GetMSIInformationMetadata
+    GetMSIDimensions
     GetAnnotationNames
     UnloadMSI
     ExportMzpack
@@ -168,6 +171,20 @@ Public Module MSIProtocols
             'Dim points = pixels.Select(Function(p) New ClusterEntity With {.uid = $"{p.x},{p.y}", .entityVector = {p.x, p.y}}).ToArray
             'Dim densityList = Density.GetDensity(points, k:=stdNum.Min(points.Length / 10, 150), query:=New KDQuery(points)).ToArray
             Return pixels
+        End If
+    End Function
+
+    Public Function GetDimensions(handleServiceRequest As Func(Of RequestStream, RequestStream)) As Integer()
+        Dim data As RequestStream = handleServiceRequest(New RequestStream(
+            protocolCategory:=MSI.Protocol,
+            protocol:=ServiceProtocol.GetMSIDimensions,
+            buffer:=Encoding.ASCII.GetBytes("OK!")
+        ))
+
+        If data Is Nothing Then
+            Return {}
+        Else
+            Return data.GetUTF8String.LoadJSON(Of Integer())
         End If
     End Function
 

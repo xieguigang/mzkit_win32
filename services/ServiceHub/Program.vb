@@ -87,6 +87,14 @@ Module Program
         End Select
     End Sub
 
+    <ExportAPI("getMSIDimensions")>
+    Public Function getMSIDimensions(MSI_service As Integer, Optional host As String = "localhost") As Integer()
+        Dim tcpRequest = tcpGet(host, MSI_service)
+        Dim pull = MSIProtocols.GetDimensions(tcpRequest)
+
+        Return pull
+    End Function
+
     ''' <summary>
     ''' get MSI layer data for run MS-imaging rendering
     ''' </summary>
