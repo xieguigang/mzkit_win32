@@ -65,7 +65,9 @@ Public Class PeakScatterViewer
             If HtmlView Then
                 Try
                     ' ignores of the intiialize error
-                    Call WebView21.CoreWebView2.Reload()
+                    If Not WebView21.CoreWebView2 Is Nothing Then
+                        Call WebView21.CoreWebView2.Reload()
+                    End If
                 Catch ex As Exception
 
                 End Try
