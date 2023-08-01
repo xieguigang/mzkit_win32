@@ -21,7 +21,11 @@ Public Class LCMSScatter
     Friend callback As Action(Of String, Double, Double)
 
     Public Function GetLCMSScatter() As String
-        Return rawdata.Values.ToArray.GetJson
+        If rawdata.IsNullOrEmpty Then
+            Return "[]"
+        Else
+            Return rawdata.Values.ToArray.GetJson
+        End If
     End Function
 
     Public Function GetColors() As String
