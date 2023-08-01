@@ -5,6 +5,7 @@ Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
@@ -92,7 +93,7 @@ Public Class PeakScatterViewer
     Dim m_levels As Integer = 255
     Dim m_palette As ScalerPalette = ScalerPalette.turbo
     Dim m_rawdata As Meta()
-    Dim canvas_padding As Double = 20
+    Dim canvas_padding As Padding = New Padding(10, 10, 80, 150)
 
     ' mzscale and rtscale is used for 
     ' scale the mapping of the mouse xy
@@ -244,11 +245,13 @@ Public Class PeakScatterViewer
                     End Function) _
             .ToArray
         Dim defineSize As Size = PictureBox1.Size
+        Dim region As New GraphicsRegion(canvas_padding, defineSize)
+        Dim rect = region.PlotRegion
         Dim scaler As New DataScaler() With {
             .AxisTicks = (rt_range.CreateAxisTicks.AsVector, mz_range.CreateAxisTicks.AsVector),
-            .region = New Rectangle(New Point(canvas_padding, canvas_padding), New Size(defineSize.Width - canvas_padding * 2, defineSize.Height - canvas_padding * 2)),
-            .X = d3js.scale.linear().domain(rt_range).range(integers:={canvas_padding, defineSize.Width - canvas_padding * 2}),
-            .Y = d3js.scale.linear().domain(mz_range).range(integers:={canvas_padding, defineSize.Height - canvas_padding * 2})
+            .region = rect,
+            .X = d3js.scale.linear().domain(rt_range).range(integers:={rect.Left, rect.Right}),
+            .Y = d3js.scale.linear().domain(mz_range).range(integers:={rect.Top, rect.Height})
         }
 
         ' ignore this gdi device error
@@ -257,10 +260,10 @@ Public Class PeakScatterViewer
         End If
 
         Using g As Graphics2D = defineSize.CreateGDIDevice(filled:=Color.White)
-            Dim axisPen As New Pen(Color.Black, 5)
-            Dim labelFont As New CSSFont(New Font(FontFace.MicrosoftYaHei, 16))
+            Dim axisPen As New Pen(Color.Black, 3)
+            Dim labelFont As New CSSFont(New Font(FontFace.MicrosoftYaHei, 14))
             Dim labelColor As Brush = Brushes.Black
-            Dim tickFont As New Font(FontFace.MicrosoftYaHei, 12)
+            Dim tickFont As New Font(FontFace.MicrosoftYaHei, 10)
 
             ' draw axis
             ' x
@@ -311,10 +314,14 @@ Public Class PeakScatterViewer
     Private Sub GetPeak(ByRef peakId As String, ByRef mz As Double, ByRef rt As Double, loc As Point)
         Dim pt = PictureBox1.PointToClient(loc)
         Dim size As Size = PictureBox1.Size
+        Dim region = New GraphicsRegion(canvas_padding, size)
+        Dim rect = region.PlotRegion
+        Dim y As New DoubleRange(rect.Top, rect.Bottom)
+        Dim x As New DoubleRange(rect.Left, rect.Right)
 
         If mz_range IsNot Nothing AndAlso rt_range IsNot Nothing Then
-            Dim mzi = ((size.Height - canvas_padding - pt.Y) / (size.Height - canvas_padding * 2)) * mz_range.Length + mz_range.Min
-            Dim rti = (pt.X / (size.Width - canvas_padding * 2)) * rt_range.Length + rt_range.Min
+            Dim mzi = y.ScaleMapping(pt.Y, mz_range)
+            Dim rti = x.ScaleMapping(pt.X, rt_range)
 
             Dim qmz = mzBins.Search(New Meta With {.mz = mzi}).ToDictionary(Function(a) a.id)
             Dim qrt = rtBins.Search(New Meta With {.scan_time = rti}).ToDictionary(Function(a) a.id)
@@ -340,12 +347,14 @@ Public Class PeakScatterViewer
 
     Private Sub ViewerResize() Handles Me.SizeChanged
         Dim size As Size = PictureBox1.Size
+        Dim region As New GraphicsRegion(canvas_padding, size)
+        Dim rect = region.PlotRegion
 
         If mz_range IsNot Nothing AndAlso rt_range IsNot Nothing Then
             ' scale the mapping of the mouse xy
             ' not for plot rendering
-            mzscale = d3js.scale.linear().domain(mz_range).range(integers:={canvas_padding, size.Height - canvas_padding * 2})
-            rtscale = d3js.scale.linear().domain(rt_range).range(integers:={canvas_padding, size.Width - canvas_padding * 2})
+            mzscale = d3js.scale.linear().domain(mz_range).range(integers:={rect.Top, rect.Bottom})
+            rtscale = d3js.scale.linear().domain(rt_range).range(integers:={rect.Left, rect.Right})
 
             Call Rendering()
         End If
