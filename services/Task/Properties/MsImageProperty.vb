@@ -118,6 +118,9 @@ Public Class MsImageProperty
     <Description("The data file type descriptor, which could be used for determine the file type for run imaging data visualization")>
     Public ReadOnly Property app As FileApplicationClass
 
+    <Description("The width/height aspect ratio of the raw sample slide.")>
+    Public Property scale_ratio As SizeF = New SizeF(1, 1)
+
     ''' <summary>
     ''' The calculated physical width of the slide image in the real world, this width is evaluated based on the scan number in x axis and the MSI resolution value
     ''' </summary>
