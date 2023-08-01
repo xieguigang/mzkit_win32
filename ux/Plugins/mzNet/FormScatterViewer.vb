@@ -229,7 +229,7 @@ Public Class FormScatterViewer
                 End Sub)
         End If
 
-        Call SpectralViewerModule.showCluster(spectrum, ion.id)
+        Call Me.Invoke(Sub() Call SpectralViewerModule.showCluster(spectrum, ion.id))
     End Sub
 
     Private Iterator Function PopulateSpectrum(echo As ITaskProgress, ion As MetaIon, peakId As String) As IEnumerable(Of PeakMs2)
