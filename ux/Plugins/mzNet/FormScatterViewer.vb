@@ -208,42 +208,60 @@ Public Class FormScatterViewer
 
     End Sub
 
-    Private Sub scatterViewer_ClickOnPeak(peakId As String, mz As Double, rt As Double) Handles scatterViewer.ClickOnPeak
+    Private Sub scatterViewer_ClickOnPeak(peakId As String, mz As Double, rt As Double, progress As Boolean) Handles scatterViewer.ClickOnPeak
         Dim ion As MetaIon = peaksData.TryGetValue(peakId)
+        Dim spectrum As PeakMs2() = Nothing
 
         If ion Is Nothing Then
             Return
         End If
 
-        Dim spectrum As PeakMs2() = TaskProgress.LoadData(Of PeakMs2())(
-            Function(echo As ITaskProgress)
-                Dim println As Action(Of String) = AddressOf echo.SetInfo
-
-                Call echo.SetProgressMode()
-
-                Return ion.metaList _
-                    .Select(Function(m, i)
-                                Call echo.SetProgress(100 * i / ion.metaList.Length)
-                                Call println($"load spectrum: {peakId} | {m.guid}")
-
-                                Dim ms2 = model.ReadSpectrum(m.guid)
-                                ms2.mz = m.mz
-                                ms2.rt = m.rt
-                                ms2.file = m.source_file
-                                ms2.scan = m.name
-                                ms2.lib_guid = $"[MS/MS][{i + 1}] {peakId} | {m.guid}"
-
-                                If m.project = "Reference Annotation" Then
-                                    ms2.lib_guid = $"[MS/MS][{i + 1}] {m.name}({m.formula}) | {m.guid}"
-                                End If
-
-                                Return ms2
-                            End Function) _
-                    .ToArray
-            End Function, title:="Fetch Spectrum From Cloud", host:=Me)
+        If progress Then
+            spectrum = TaskProgress.LoadData(
+                streamLoad:=Function(echo As ITaskProgress) PopulateSpectrum(echo, ion, peakId).ToArray,
+                title:="Fetch Spectrum From Cloud",
+                host:=Me
+            )
+        Else
+            Call ProgressSpinner.DoLoading(
+                Sub()
+                    spectrum = PopulateSpectrum(Nothing, ion, peakId).ToArray
+                End Sub)
+        End If
 
         Call SpectralViewerModule.showCluster(spectrum, ion.id)
     End Sub
+
+    Private Iterator Function PopulateSpectrum(echo As ITaskProgress, ion As MetaIon, peakId As String) As IEnumerable(Of PeakMs2)
+        Dim println As Action(Of String) = AddressOf Workbench.StatusMessage
+        Dim i As i32 = Scan0
+
+        If Not echo Is Nothing Then
+            println = AddressOf echo.SetInfo
+            echo.SetProgressMode()
+        End If
+
+        For Each m As Metadata In ion.metaList
+            If Not echo Is Nothing Then
+                Call echo.SetProgress(100 * (++i) / ion.metaList.Length)
+            End If
+
+            Call println($"load spectrum: {peakId} | {m.guid}")
+
+            Dim ms2 = model.ReadSpectrum(m.guid)
+            ms2.mz = m.mz
+            ms2.rt = m.rt
+            ms2.file = m.source_file
+            ms2.scan = m.name
+            ms2.lib_guid = $"[MS/MS][{i}] {peakId} | {m.guid}"
+
+            If m.project = "Reference Annotation" Then
+                ms2.lib_guid = $"[MS/MS][{i}] {m.name}({m.formula}) | {m.guid}"
+            End If
+
+            Yield ms2
+        Next
+    End Function
 
     Private Sub exportReport_Click(sender As Object, e As EventArgs) Handles exportReport.Click
         Using file As New SaveFileDialog With {.Filter = "PDF report file(*.pdf)|*.pdf|Excel table(*.xls)|*.xls"}

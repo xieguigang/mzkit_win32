@@ -20,7 +20,7 @@ Imports stdNum = System.Math
 ''' </summary>
 Public Class PeakScatterViewer
 
-    Public Event ClickOnPeak(peakId As String, mz As Double, rt As Double)
+    Public Event ClickOnPeak(peakId As String, mz As Double, rt As Double, progress As Boolean)
     Public Event MoveOverPeak(peakId As String, mz As Double, rt As Double)
 
     Public Property HtmlView As Boolean
@@ -417,7 +417,7 @@ Public Class PeakScatterViewer
     End Sub
 
     Private Sub ClickPeak(id As String, mz As Double, rt As Double)
-        RaiseEvent ClickOnPeak(id, mz, rt)
+        RaiseEvent ClickOnPeak(id, mz, rt, False)
     End Sub
 
     Private Sub PictureBox1_MouseUp(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseUp
@@ -433,7 +433,7 @@ Public Class PeakScatterViewer
             Call GetPeak(peakId, mz, rt, loc)
 
             If peakId IsNot Nothing Then
-                RaiseEvent ClickOnPeak(peakId, mz, rt)
+                RaiseEvent ClickOnPeak(peakId, mz, rt, True)
 
                 ToolStripStatusLabel1.Text = $"m/z {mz.ToString("F4")} RT {(rt / 60).ToString("F2")}min; ion: '{peakId}' has been selected!"
             End If
