@@ -946,6 +946,7 @@ var apps;
                     var labels = vm.layers.Item(category);
                     var spot_id = labels[i].id;
                     // console.log(spot_id);
+                    // alert(spot_id);
                     app.desktop.mzkit.Click(spot_id);
                 });
                 var resize_canvas = function () {
@@ -1045,7 +1046,7 @@ var apps;
                         temporalSuperSampling: {
                             enable: false
                         },
-                        boxDepth: 200
+                        boxDepth: 100
                         // light: {
                         //     main: {
                         //         shadow: false,

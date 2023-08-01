@@ -240,7 +240,7 @@ Public Class FormScatterViewer
                                 Return ms2
                             End Function) _
                     .ToArray
-            End Function, title:="Fetch Spectrum From Cloud")
+            End Function, title:="Fetch Spectrum From Cloud", host:=Me)
 
         Call SpectralViewerModule.showCluster(spectrum, ion.id)
     End Sub

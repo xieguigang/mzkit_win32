@@ -60,6 +60,8 @@ namespace apps.viewer {
                 const labels = vm.layers.Item(category);
                 const spot_id: string = labels[i].id;
                 // console.log(spot_id);
+                // alert(spot_id);
+
                 app.desktop.mzkit.Click(spot_id);
             });
             const resize_canvas = function () {
@@ -160,7 +162,7 @@ namespace apps.viewer {
                     temporalSuperSampling: {//分帧超采样。在开启 postEffect 后，WebGL 默认的 MSAA 会无法使用,分帧超采样用来解决锯齿的问题
                         enable: false
                     },
-                    boxDepth: 200
+                    boxDepth: 100
                     // light: {
                     //     main: {
                     //         shadow: false,
