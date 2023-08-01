@@ -127,6 +127,14 @@ Public Class FormScatterViewer
                 .AsParallel _
                 .Select(Function(o) HttpRESTMetadataPool.ParseMetadata(DirectCast(o, JavaScriptObject))) _
                 .ToArray
+            Dim da As Tolerance = Tolerance.DeltaMass(0.3)
+            Dim adducts As MzCalculator() = Provider.Positives
+            Dim reference As New MSSearch(Of Metadata)(metaIons.Where(Function(a) a.project = "Reference Annotation"), da, adducts)
+
+            metaIons = metaIons _
+                .Where(Function(a) a.project <> "Reference Annotation") _
+                .ToArray
+
             Dim precursors = metaIons.GroupBy(Function(m) m.mz, offsets:=0.3) _
                 .AsParallel _
                 .Select(Function(mzset)
@@ -137,9 +145,6 @@ Public Class FormScatterViewer
                             Return mzset.GroupBy(Function(m) m.rt, offsets:=30)
                         End Function) _
                 .IteratesALL
-            Dim da As Tolerance = Tolerance.DeltaMass(0.3)
-            Dim adducts As MzCalculator() = Provider.Positives
-            Dim reference As New MSSearch(Of Metadata)(metaIons.Where(Function(a) a.project = "Reference Annotation"), da, adducts)
 
             For Each ion As NamedCollection(Of Metadata) In precursors.Where(Function(o) o.Length > filterOut)
                 Dim mz As Double = ion.Select(Function(i) i.mz).Average

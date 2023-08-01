@@ -185,7 +185,7 @@ Public Class PeakScatterViewer
         Else
             mzBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.mz, 1, fuzzy:=True)
             rtBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.scan_time, 10, fuzzy:=True)
-            mz_range = New DoubleRange(rawdata.Select(Function(i) i.mz)).DoCall(AddressOf autoPaddingRange)
+            mz_range = New DoubleRange(rawdata.Select(Function(i) i.mz))
             rt_range = New DoubleRange(rawdata.Select(Function(i) i.scan_time)).DoCall(AddressOf autoPaddingRange)
             int_range = New DoubleRange(rawdata.Select(Function(i) i.intensity))
 
@@ -356,8 +356,7 @@ Public Class PeakScatterViewer
             Dim rti = x.ScaleMapping(pt.X, rt_range)
 
             If pt.Y > rect.Top AndAlso pt.Y < rect.Bottom Then
-                ' mzi = mz_range.Max - y.ScaleMapping(pt.Y - rect.Top, mz_range)
-                mzi = mz_range.Max - ((pt.Y - rect.Top) / rect.Height * mz_range.Length)
+                mzi = y.ScaleMapping(rect.Bottom - (pt.Y - rect.Top), mz_range)
             Else
                 mzi = 0
             End If
