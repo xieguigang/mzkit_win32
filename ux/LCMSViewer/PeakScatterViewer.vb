@@ -12,6 +12,7 @@ Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports stdNum = System.Math
 
 ''' <summary>
@@ -503,6 +504,17 @@ Public Class PeakScatterViewer
         Else
             Call ResetToolStripMenuItem_Click()
         End If
+    End Sub
+
+    Private Sub ToolStripSplitButton2_ButtonClick(sender As Object, e As EventArgs) Handles ToolStripSplitButton2.ButtonClick
+
+    End Sub
+
+    Private Sub SelectColorMapToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SelectColorMapToolStripMenuItem.Click
+        Call InputDialog.Input(Of InputSelectColorMap)(
+            Sub(cfg)
+                Call Me.Invoke(Sub() ColorScale = cfg.GetColorMap)
+            End Sub)
     End Sub
 End Class
 
