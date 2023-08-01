@@ -2297,7 +2297,7 @@ Public Class frmMsImagingViewer
 
             Call StartNewPolygon()
         Else
-            Call MyApplication.host.showStatusMessage("No sample region was selected!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning("No sample region was selected!")
         End If
     End Sub
 
@@ -2497,5 +2497,9 @@ Public Class frmMsImagingViewer
             Call blender.SetIntensityRange(range)
             Call rendering()
         End If
+    End Sub
+
+    Private Sub frmMsImagingViewer_LocationChanged(sender As Object, e As EventArgs) Handles Me.LocationChanged
+
     End Sub
 End Class

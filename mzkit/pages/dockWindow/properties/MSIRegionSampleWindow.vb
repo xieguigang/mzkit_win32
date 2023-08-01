@@ -134,7 +134,7 @@ Public Class MSIRegionSampleWindow
         dimension = selector.dimension_size
         canvas = selector
 
-        Call Add(selector.GetPolygons(popAll:=True))
+        Call Add(selector.GetPolygons(popAll:=True), is_raster:=False)
     End Sub
 
     Private Function Add(sample_group As IEnumerable(Of Polygon2D), is_raster As Boolean) As RegionSampleCard
