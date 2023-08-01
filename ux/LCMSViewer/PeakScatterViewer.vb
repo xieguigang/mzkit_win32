@@ -58,6 +58,9 @@ Public Class PeakScatterViewer
             m_palette = value
             lcms_scatter.colorScaler = value
 
+            If HtmlView Then
+                Call WebView21.CoreWebView2.Reload()
+            End If
             If Not rawdata.IsNullOrEmpty Then
                 Call Rendering()
             End If
