@@ -98,6 +98,7 @@ Public Enum ServiceProtocol
     CutBackground
     UpsideDown
     Mirrors
+    AutoLocation
     DeleteRegion
     ExtractRegionMs1Spectrum
     ExtractRegionSample

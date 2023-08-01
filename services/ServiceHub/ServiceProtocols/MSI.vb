@@ -276,6 +276,11 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
     End Function
 
+    <Protocol(ServiceProtocol.AutoLocation)>
+    Public Function AutoLocation(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
+
+    End Function
+
     Private Sub LoadMSIMzPackCommon(mzpack As mzPack)
         sourceName = mzpack.source
         metadata = mzpack.GetMSIMetadata
@@ -646,7 +651,8 @@ Public Class MSI : Implements ITaskDriver, IDisposable
                     .ToArray,
                 .source = sourceName,
                 .metadata = metadata.GetMetadata,
-                .Application = FileApplicationClass.MSImaging
+                .Application = FileApplicationClass.MSImaging,
+                .Annotations = ion_annotations
             }.Write(buffer, progress:=AddressOf RunSlavePipeline.SendMessage)
         End Using
     End Sub
