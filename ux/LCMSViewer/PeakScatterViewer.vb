@@ -93,7 +93,7 @@ Public Class PeakScatterViewer
     Dim m_levels As Integer = 255
     Dim m_palette As ScalerPalette = ScalerPalette.turbo
     Dim m_rawdata As Meta()
-    Dim canvas_padding As Padding = New Padding(10, 10, 80, 150)
+    Dim canvas_padding As Padding = New Padding(150, 10, 10, 80)
 
     ' mzscale and rtscale is used for 
     ' scale the mapping of the mouse xy
@@ -320,7 +320,7 @@ Public Class PeakScatterViewer
         Dim x As New DoubleRange(rect.Left, rect.Right)
 
         If mz_range IsNot Nothing AndAlso rt_range IsNot Nothing Then
-            Dim mzi = y.ScaleMapping(pt.Y, mz_range)
+            Dim mzi = mz_range.Max - y.ScaleMapping(pt.Y, mz_range)
             Dim rti = x.ScaleMapping(pt.X, rt_range)
 
             Dim qmz = mzBins.Search(New Meta With {.mz = mzi}).ToDictionary(Function(a) a.id)
