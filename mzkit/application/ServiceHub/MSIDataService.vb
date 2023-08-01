@@ -482,19 +482,13 @@ Namespace ServiceHub
             Return output
         End Function
 
-        ''' <summary>
-        ''' 
-        ''' </summary>
-        ''' <param name="raw">
-        ''' filepath full name of the mzpack raw data file.
-        ''' </param>
-        Public Function LoadMSI(raw As String, message As Action(Of String)) As MsImageProperty
-            MessageCallback = message
+        Public Function AutoLocation() As MsImageProperty
+            Dim data As RequestStream = handleServiceRequest(
+                request:=New RequestStream(MSI.Protocol, ServiceProtocol.AutoLocation, Encoding.UTF8.GetBytes("padding: 25px 25px 25px 25px;")))
+            Return handlePropertiesReader(data)
+        End Function
 
-            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.LoadMSI, Encoding.UTF8.GetBytes(raw)))
-
-            MessageCallback = Nothing
-
+        Private Function handlePropertiesReader(data As RequestStream) As MsImageProperty
             If data Is Nothing Then
                 Call Workbench.Warning($"Failure to load MS-imaging raw data file: {raw}...")
                 Return Nothing
@@ -511,6 +505,22 @@ Namespace ServiceHub
                         End Function)
             checkOffline = 0
             Return output
+        End Function
+
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        ''' <param name="raw">
+        ''' filepath full name of the mzpack raw data file.
+        ''' </param>
+        Public Function LoadMSI(raw As String, message As Action(Of String)) As MsImageProperty
+            MessageCallback = message
+
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.LoadMSI, Encoding.UTF8.GetBytes(raw)))
+
+            MessageCallback = Nothing
+
+            Return handlePropertiesReader(data)
         End Function
 
         ''' <summary>

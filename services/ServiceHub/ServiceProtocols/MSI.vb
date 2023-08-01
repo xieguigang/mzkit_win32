@@ -278,7 +278,11 @@ Public Class MSI : Implements ITaskDriver, IDisposable
 
     <Protocol(ServiceProtocol.AutoLocation)>
     Public Function AutoLocation(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
-
+        Dim pack As mzPack = ExportMzPack().Reset.PixelScanPadding("padding: 25px 25px 25px 25px;")
+        Call LoadMSIMzPackCommon(pack)
+        Dim info = MSIProtocols.GetMSIInfo(Me)
+        info!source = sourceName
+        Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
     End Function
 
     Private Sub LoadMSIMzPackCommon(mzpack As mzPack)
@@ -641,19 +645,24 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Return New DataPipe(Encoding.UTF8.GetBytes("OK!"))
     End Function
 
-    Private Sub ExportMzPack(filename As String)
+    Private Function ExportMzPack() As mzPack
         Dim reader = MSI.pixelReader
+        Dim pack As New mzPack With {
+            .MS = DirectCast(reader, ReadRawPack) _
+                .GetScans _
+                .ToArray,
+            .source = sourceName,
+            .metadata = metadata.GetMetadata,
+            .Application = FileApplicationClass.MSImaging,
+            .Annotations = ion_annotations
+        }
 
+        Return pack
+    End Function
+
+    Private Sub ExportMzPack(filename As String)
         Using buffer As Stream = filename.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
-            Call New mzPack With {
-                .MS = DirectCast(reader, ReadRawPack) _
-                    .GetScans _
-                    .ToArray,
-                .source = sourceName,
-                .metadata = metadata.GetMetadata,
-                .Application = FileApplicationClass.MSImaging,
-                .Annotations = ion_annotations
-            }.Write(buffer, progress:=AddressOf RunSlavePipeline.SendMessage)
+            Call ExportMzPack.Write(buffer, progress:=AddressOf RunSlavePipeline.SendMessage)
         End Using
     End Sub
 
