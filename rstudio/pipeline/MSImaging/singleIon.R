@@ -71,5 +71,6 @@ bitmap(file = savefile, size = [3300, 2000]) {
        + labs(x = "Dimension(X)", y = "Dimension(Y)")
        + scale_x_continuous(labels = "F0")
        + scale_y_continuous(labels = "F0")
+       + theme(panel.grid = element_blank())
     ;
 }
