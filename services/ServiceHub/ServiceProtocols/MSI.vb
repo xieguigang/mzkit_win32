@@ -278,7 +278,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
 
     <Protocol(ServiceProtocol.AutoLocation)>
     Public Function AutoLocation(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
-        Dim pack As mzPack = ExportMzPack().Reset.PixelScanPadding("padding: 25px 25px 25px 25px;")
+        Dim pack As mzPack = ExportMzPack().Reset("padding: 25px 25px 25px 25px;")
         Call LoadMSIMzPackCommon(pack)
         Dim info = MSIProtocols.GetMSIInfo(Me)
         info!source = sourceName
