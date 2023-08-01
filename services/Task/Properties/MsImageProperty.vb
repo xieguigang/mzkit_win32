@@ -113,8 +113,8 @@ Public Class MsImageProperty
     <Description("The scan resolution size of each pixel.")>
     <Category("imzML")> Public Property resolution As Double
 
-    <Description("The number of the ion which has annotation data.")>
-    Public ReadOnly Property ion_annotations As Integer
+    <Description("The number of the ion which has metabolite annotation data in current ms-imaging data.")>
+    Public ReadOnly Property num_annotations As Integer
     <Description("The data file type descriptor, which could be used for determine the file type for run imaging data visualization")>
     Public ReadOnly Property app As FileApplicationClass
 
@@ -212,7 +212,7 @@ Public Class MsImageProperty
         instrument = If(sourceFile.ExtensionSuffix("csv", "slx"), "Bruker", "Thermo Fisher")
         resolution = info.TryGetValue("resolution", [default]:=17)
         background = Color.Black
-        ion_annotations = info.TryGetValue("ion_annotations", [default]:=0)
+        num_annotations = info.TryGetValue("ion_annotations", [default]:=0)
         app = [Enum].Parse(GetType(FileApplicationClass), info.TryGetValue("app", [default]:=FileApplicationClass.MSImaging.ToString))
     End Sub
 
