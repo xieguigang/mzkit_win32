@@ -27,7 +27,7 @@ const pixelsData = app::getMSIData(
     mzdiff      = mzdiff
 );
 const mz_tag as string = `m/z ${round(mzlist[1], 4)}`;
-const mzpack = pixelPack(pixelsData);
+const mzpack = pixelPack(pixelsData, dims = app::getMSIDimensions(MSI_service = appPort));
 
 let myeloma = rawdata
 |> readText()

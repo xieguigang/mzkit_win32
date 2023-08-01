@@ -24,6 +24,7 @@ const mzlist as double   = mz
 print("get a set of target RGB ions:");
 print(mzlist);
 
+const dims = app::getMSIDimensions(MSI_service = appPort);
 const images  = lapply(mzlist, function(mz) {
 	app::getMSIData(
         MSI_service = appPort, 
@@ -54,7 +55,8 @@ bitmap(file = savefile, size = [3300, 2000]) {
     ggplot(MSIheatmap(
         R = images[[kr]], 
         G = images[[kg]], 
-        B = images[[kb]]
+        B = images[[kb]],
+        dims = dims
     ), padding = "padding: 200px 600px 200px 250px;") 
        
 	   + theme(panel.background = "black")
@@ -67,5 +69,6 @@ bitmap(file = savefile, size = [3300, 2000]) {
        + labs(x = "Dimension(X)", y = "Dimension(Y)")
        + scale_x_continuous(labels = "F0")
        + scale_y_continuous(labels = "F0")
+       + theme(panel.grid = element_blank())
     ;
 }
