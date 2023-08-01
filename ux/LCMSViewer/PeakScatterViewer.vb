@@ -93,7 +93,7 @@ Public Class PeakScatterViewer
     Dim m_levels As Integer = 255
     Dim m_palette As ScalerPalette = ScalerPalette.turbo
     Dim m_rawdata As Meta()
-    Dim canvas_padding As Padding = New Padding(150, 10, 10, 80)
+    Dim canvas_padding As Padding = New Padding(120, 50, 150, 80)
 
     ' mzscale and rtscale is used for 
     ' scale the mapping of the mouse xy
@@ -267,13 +267,34 @@ Public Class PeakScatterViewer
 
             ' draw axis
             ' x
-            Call Axis.DrawX(g, axisPen, "RT(second)", scaler, XAxisLayoutStyles.Bottom, 0, Nothing, labelFont.CSSValue, labelColor, tickFont, labelColor, htmlLabel:=False)
+            Call Axis.DrawX(g, axisPen, "Scan time(seconds)", scaler, XAxisLayoutStyles.Bottom,
+                            scaler.Y.Zero, Nothing,
+                            labelFont.CSSValue,
+                            labelColor, tickFont, labelColor, htmlLabel:=False)
             ' y
-            Call Axis.DrawY(g, axisPen, "m/z", scaler, 0, mz_range.CreateAxisTicks.AsVector, YAxisLayoutStyles.Left, Nothing, labelFont.CSSValue, labelColor, tickFont, labelColor, htmlLabel:=False)
+            Call Axis.DrawY(g, axisPen, "m/z", scaler, scaler.X.Zero,
+                            mz_range.CreateAxisTicks.AsVector, YAxisLayoutStyles.Left,
+                            Nothing,
+                            labelFont.CSSValue,
+                            labelColor, tickFont, labelColor, htmlLabel:=False)
 
             For Each level As SerialData In colorlevels
                 Call Bubble.Plot(g, level, scaler, scale:=Function(r) 5)
             Next
+
+            Call New ColorMapLegend(ColorScale.Description, 30) With {
+                .foreColor = Color.Black,
+                .format = "G2",
+                .noblank = True,
+                .tickAxisStroke = New Pen(Color.Black, 1),
+                .tickFont = tickFont,
+                .ticks = int_range.CreateAxisTicks,
+                .title = "intensity",
+                .titleFont = labelFont.GDIObject(100),
+                .legendOffsetLeft = 1,
+                .ruleOffset = 1,
+                .unmapColor = "gray"
+            }.Draw(g, New Rectangle(rect.Right + 10, rect.Top, defineSize.Width - rect.Right / 2, rect.Height))
 
             PictureBox1.BackgroundImage = g.ImageResource
         End Using
@@ -316,7 +337,7 @@ Public Class PeakScatterViewer
         Dim size As Size = PictureBox1.Size
         Dim region = New GraphicsRegion(canvas_padding, size)
         Dim rect = region.PlotRegion
-        Dim y As New DoubleRange(rect.Top, rect.Bottom)
+        Dim y As New DoubleRange(0, size.Height)
         Dim x As New DoubleRange(rect.Left, rect.Right)
 
         If mz_range IsNot Nothing AndAlso rt_range IsNot Nothing Then
