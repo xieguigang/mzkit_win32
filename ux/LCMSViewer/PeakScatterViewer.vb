@@ -119,7 +119,9 @@ Public Class PeakScatterViewer
     Dim mzBins As BlockSearchFunction(Of Meta)
     Dim rtBins As BlockSearchFunction(Of Meta)
 
-    Dim lcms_scatter As New LCMSScatter
+    Dim lcms_scatter As New LCMSScatter With {
+        .callback = AddressOf ClickPeak
+    }
 
     ''' <summary>
     ''' the scatter raw data in current view range
@@ -412,6 +414,10 @@ Public Class PeakScatterViewer
         drawBox = True
         t0 = Now
         p0 = Cursor.Position
+    End Sub
+
+    Private Sub ClickPeak(id As String, mz As Double, rt As Double)
+        RaiseEvent ClickOnPeak(id, mz, rt)
     End Sub
 
     Private Sub PictureBox1_MouseUp(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseUp
