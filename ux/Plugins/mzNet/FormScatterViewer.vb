@@ -149,8 +149,11 @@ Public Class FormScatterViewer
             For Each ion As NamedCollection(Of Metadata) In precursors.Where(Function(o) o.Length > filterOut)
                 Dim mz As Double = ion.Select(Function(i) i.mz).Average
                 Dim rt As Double() = ion.Select(Function(i) i.rt).TabulateBin
-                Dim names As String() = reference.QueryByMz(mz) _
-                    .Select(Function(a) $"{a.name}({reference.GetCompound(a.unique_id).formula})") _
+                Dim referIons = reference.QueryByMz(mz) _
+                    .Select(Function(a) reference.GetCompound(a.unique_id)) _
+                    .ToArray
+                Dim names As String() = referIons _
+                    .Select(Function(a) $"{a.name}({a.formula})") _
                     .ToArray
                 Dim title As String = annotext
 
@@ -165,7 +168,7 @@ Public Class FormScatterViewer
                     .rtmax = rt.Max,
                     .scan_time = rt.Average,
                     .intensity = ion.Length,
-                    .metaList = ion.value,
+                    .metaList = ion.value.JoinIterates(referIons).ToArray,
                     .cluster = js,
                     .consensus = spectra
                 }

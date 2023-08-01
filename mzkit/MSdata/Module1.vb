@@ -24,7 +24,7 @@ Namespace MSdata
                 .into = raw.Select(Function(p) p.Ms2Intensity).ToArray,
                 .mz = raw.Select(Function(p) p.mz).ToArray,
                 .rt = rt.Average,
-                .scan_id = $"[MS1] time_box={(.rt / 60).ToString("F1")}min; {scan_id}",
+                .scan_id = $"[MS1] {(.rt / 60).ToString("F1")}min; {scan_id}; {raw.GetHashCode.ToHexString}",
                 .TIC = .into.Sum,
                 .BPC = .into.Max,
                 .meta = New Dictionary(Of String, String),
