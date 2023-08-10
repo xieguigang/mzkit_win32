@@ -225,6 +225,8 @@ Public Class frmMain : Implements AppHost
             Else
                 Call ShowGCMSSIM(fileName, isBackground:=False, showExplorer:=showDocument)
             End If
+        ElseIf fileName.ExtensionSuffix("h5") Then
+            Call RibbonEvents.OpenMSIRaw(fileName)
         ElseIf fileName.ExtensionSuffix("mzpack") Then
             Dim raw As New Raw With {
                 .cache = fileName,

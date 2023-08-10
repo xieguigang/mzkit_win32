@@ -64,6 +64,7 @@
 Imports System.IO
 Imports System.Net
 Imports System.Runtime.CompilerServices
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
@@ -583,14 +584,32 @@ Module Globals
     ''' <param name="raw"></param>
     <Extension>
     Public Sub loadRawFile(rawFileNode As TreeView, raw As Raw, ByRef hasUVscans As Boolean, rtmin As Double, rtmax As Double)
-        If raw.GetLoadedMzpack.Application = FileApplicationClass.MSImaging Then
+        Dim [class] As FileApplicationClass = FileApplicationClass.LCMS
+        Dim mzpack_file As String = Nothing
+
+        If raw.isLoaded Then
+            [class] = raw.GetLoadedMzpack.Application
+            mzpack_file = raw.cache
+        ElseIf raw.cacheFileExists Then
+            Using file As Stream = raw.cache.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
+                [class] = file.GetMSApplication
+                mzpack_file = raw.cache
+            End Using
+        ElseIf raw.source.FileExists AndAlso raw.source.ExtensionSuffix("mzPack") Then
+            Using file As Stream = raw.source.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
+                [class] = file.GetMSApplication
+                mzpack_file = raw.source
+            End Using
+        End If
+
+        If [class] = FileApplicationClass.MSImaging AndAlso Not mzpack_file.StringEmpty Then
             If MessageBox.Show("It seems that current raw data file is used for MS-imaging, it is recommended that open in MS-Imaging viewer. Open this file in MS-imaging viewer?",
                                "Load MzPack Raw Data",
                                MessageBoxButtons.YesNo,
                                MessageBoxIcon.Warning) <> DialogResult.Yes Then
 
                 ' open in ms-imaging viewer
-
+                Call RibbonEvents.OpenMSIRaw(mzpack_file)
 
                 Return
             Else
