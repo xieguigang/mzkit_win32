@@ -1,6 +1,7 @@
 ﻿Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
 Imports HDF.PInvoke
@@ -51,16 +52,28 @@ Public Module MSImagingReader
             .ToArray
         Dim xLocation = ReadData.Read_dataset(fileId, "/xLocation").GetDoubles.ToArray
         Dim yLocation = ReadData.Read_dataset(fileId, "/yLocation").GetDoubles.ToArray
-        Dim Data = ReadData.Read_dataset(fileId, "/Data").GetDoubles().ToArray
-        Dim split_size As Integer = mzArray.Length
-        Dim intos = Data.Split(split_size).ToArray
+        Dim split_size As Integer = xLocation.Length
+        Dim intos = ReadData.Read_dataset(fileId, "/Data") _
+            .GetDoubles() _
+            .ToArray _
+            .Split(split_size) _
+            .ToArray
         Dim ms1 As New List(Of ScanMS1)
 
-        For i As Integer = 0 To intos.Length - 1
-            Dim v As Double() = intos(i)
+        For i As Integer = 0 To xLocation.Length - 1
             Dim x As Integer = xLocation(i)
             Dim y As Integer = yLocation(i)
-            Dim ions As Integer = which(v.AsVector > 0).Count
+            Dim ms As ms2() = intos _
+                .Select(Function(vi, j)
+                            Return New ms2 With {.mz = mzArray(j), .intensity = vi(i)}
+                        End Function) _
+                .Where(Function(j) j.intensity > 0) _
+                .ToArray
+            Dim v As Double() = ms.Select(Function(mzi) mzi.intensity).ToArray
+
+            If v.Length = 0 Then
+                Continue For
+            End If
 
             Call ms1.Add(New ScanMS1 With {
                 .BPC = v.Max,
@@ -68,11 +81,11 @@ Public Module MSImagingReader
                 .meta = New Dictionary(Of String, String) From {
                     {"x", x}, {"y", y}
                 },
-                .mz = mzArray,
+                .mz = ms.Select(Function(mzi) mzi.mz).ToArray,
                 .products = {},
                 .rt = i,
                 .TIC = v.Sum,
-                .scan_id = $"[MS1][{i + 1}][{x},{y}] {ions} ions, BPC={ .BPC.ToString("G3")}, total_ions={ .TIC.ToString("G3")}, basepeak_m/z={mzArray(which.Max(v))}"
+                .scan_id = $"[MS1][{i + 1}][{x},{y}] {ms.Length} ions, BPC={ .BPC.ToString("G3")}, total_ions={ .TIC.ToString("G3")}, basepeak_m/z={ .mz(which.Max(v))}"
             })
         Next
 
