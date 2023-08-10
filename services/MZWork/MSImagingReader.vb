@@ -46,5 +46,8 @@ Public Module MSImagingReader
         Dim xLocation = ReadData.Read_dataset(fileId, "/xLocation").GetDoubles.ToArray
         Dim yLocation = ReadData.Read_dataset(fileId, "/yLocation").GetDoubles.ToArray
         Dim Data = ReadData.Read_dataset(fileId, "/Data").GetDoubles().ToArray
+        Dim split_size As Integer = xLocation.Length
+        Dim intos = Data.Split(split_size).ToArray
+
     End Function
 End Module
