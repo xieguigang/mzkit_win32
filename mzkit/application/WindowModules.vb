@@ -187,6 +187,7 @@ Friend MustInherit Class WindowModules
             "GC-MS Targeted(*.cdf)|*.cdf;*.netcdf",
             "GC-MS / LC-MS/MS Targeted(*.mzML)|*.mzML",
             "NMR data(*.nmrML)|*.nmrML",
+            "msiPL Dataset(*.h5)|*.h5",
             "Thermo Raw File(*.raw)|*.raw",
             "Ab Sciex Wiff(*.wiff)|*.wiff",
             "R# Script(*.R)|*.R",
