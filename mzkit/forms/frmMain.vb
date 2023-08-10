@@ -344,7 +344,7 @@ Public Class frmMain : Implements AppHost
         WindowModules.viewer.Show(m_dockPanel)
         WindowModules.msImageParameters.Show(m_dockPanel)
 
-        If imzML.ExtensionSuffix("mzpack") Then
+        If imzML.ExtensionSuffix("mzpack", "h5") Then
             Call showMzPackMSI(imzML)
         Else
             ' create mzPack cache at first for imzML file
