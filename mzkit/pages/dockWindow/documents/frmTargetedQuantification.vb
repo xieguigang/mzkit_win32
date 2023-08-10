@@ -935,7 +935,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
     End Sub
 
     Private Function GetGCMSFeatureReader(ionLib As IEnumerable(Of QuantifyIon)) As SIMIonExtract
-        Return New SIMIonExtract(ionLib, {5, 15}, Tolerance.DeltaMass(0.3), 20, 0.65)
+        Return New SIMIonExtract(ionLib, New Double() {5, 15}, Tolerance.DeltaMass(0.3), 20, 0.65)
     End Function
 
     ''' <summary>

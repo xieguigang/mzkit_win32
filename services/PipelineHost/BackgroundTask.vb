@@ -325,7 +325,7 @@ Module BackgroundTask
 
         Call RunSlavePipeline.SendMessage("Run peak finding for each XIC data...")
 
-        Dim features = massGroups.DecoMzGroups({5, 20}).ToArray
+        Dim features = massGroups.DecoMzGroups(New Double() {5, 20}).ToArray
 
         Return features
     End Function
