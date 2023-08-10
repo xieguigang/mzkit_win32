@@ -606,11 +606,9 @@ Module Globals
             If MessageBox.Show("It seems that current raw data file is used for MS-imaging, it is recommended that open in MS-Imaging viewer. Open this file in MS-imaging viewer?",
                                "Load MzPack Raw Data",
                                MessageBoxButtons.YesNo,
-                               MessageBoxIcon.Warning) <> DialogResult.Yes Then
-
+                               MessageBoxIcon.Warning) = DialogResult.Yes Then
                 ' open in ms-imaging viewer
                 Call RibbonEvents.OpenMSIRaw(mzpack_file)
-
                 Return
             Else
                 Call MessageBox.Show("This operation may takes a very long time to load", "Load MS-imaging data as LC-MS data", MessageBoxButtons.OK, MessageBoxIcon.Warning)
