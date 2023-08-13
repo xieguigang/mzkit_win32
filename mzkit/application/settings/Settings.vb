@@ -57,7 +57,7 @@
 
 #End Region
 
-Imports Microsoft.VisualBasic.ApplicationServices
+Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.Serialization.JSON
 
 Namespace Configuration
@@ -89,6 +89,7 @@ Namespace Configuration
         ''' </summary>
         ''' <returns></returns>
         Public Property biodeep As String
+        Public Property msi_filters As Filters
 
         Public Property MRMLibfile As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "/mzkit/MRM_IonPairs.csv"
         Public Property QuantifyIonLibfile As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "/mzkit/GCMS_QuantifyIons.ionPack"
@@ -109,10 +110,12 @@ Namespace Configuration
             version = -1
             random = RandomASCIIString(8)
             biodeep = Nothing
+            msi_filters = Filters.DefaultFilters
 
             Return Me
         End Function
 
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
         Public Shared Function DefaultProfile() As Settings
             Return New Settings().Reset
         End Function
@@ -128,6 +131,9 @@ Namespace Configuration
 
             If config Is Nothing Then
                 config = DefaultProfile()
+            End If
+            If config.msi_filters Is Nothing Then
+                config.msi_filters = Filters.DefaultFilters
             End If
 
             Return config

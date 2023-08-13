@@ -465,6 +465,7 @@
     <Compile Include="application\ServiceHub\Manager\Service.vb" />
     <Compile Include="application\ServiceHub\MSIDataService.vb" />
     <Compile Include="application\RibbonEvents.vb" />
+    <Compile Include="application\settings\Filters.vb" />
     <Compile Include="application\settings\Languages.vb" />
     <Compile Include="application\summaryPlots\PCA3d.vb" />
     <Compile Include="application\summaryPlots\KEGGEnrichmentBarSummary.vb" />
