@@ -1,8 +1,36 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender.Scaler
+Imports BioNovoGene.mzkit_win32.Configuration
 
 Public Class InputConfigFilterPipeline
 
+    Public Function GetFilter() As RasterPipeline
+        Dim filter As New RasterPipeline
 
+        For i As Integer = 0 To CheckedListBox1.Items.Count - 1
+            If CheckedListBox1.GetItemChecked(i) Then
+                Call filter.Add(CheckedListBox1.Items(i))
+            End If
+        Next
+
+        Return filter
+    End Function
+
+    Public Function GetFilterConfigs() As Filters
+        Dim scripts As New List(Of String)
+        Dim flags As New List(Of Boolean)
+
+        For i As Integer = 0 To CheckedListBox1.Items.Count - 1
+            Dim filter As Scaler = CheckedListBox1.Items(i)
+
+            scripts.Add(filter.ToScript)
+            flags.Add(CheckedListBox1.GetItemChecked(i))
+        Next
+
+        Return New Filters With {
+            .filters = scripts.ToArray,
+            .flags = flags.ToArray
+        }
+    End Function
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         DialogResult = DialogResult.Cancel
