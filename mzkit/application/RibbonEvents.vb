@@ -481,7 +481,14 @@ Module RibbonEvents
     ''' </summary>
     Public Sub OpenMSIRaw()
         Using file As New OpenFileDialog() With {
-            .Filter = "All Supported Raw(*.raw;*.mzPack;*.imzML;*.cdf;*.mzML)|*.raw;*.mzPack;*.imzML;*.cdf;*.mzML|Thermo Raw(*.raw)|*.raw|Imaging mzML(*.imzML)|*.imzML|Mzkit Pixel Matrix(*.cdf)|*.cdf|MRM targetted MS-Imaging(*.mzML)|*.mzML",
+            .Filter = {
+                "All Supported Raw(*.raw;*.mzPack;*.imzML;*.cdf;*.mzML)|*.raw;*.mzPack;*.imzML;*.cdf;*.mzML",
+                "Thermo Raw(*.raw)|*.raw",
+                "Imaging mzML(*.imzML)|*.imzML",
+                "Mzkit Pixel Matrix(*.cdf)|*.cdf",
+                "MRM targetted MS-Imaging(*.mzML)|*.mzML",
+                "msiPL Dataset(*.h5)|*.h5"
+            }.JoinBy("|"),
             .Title = "Open MS-imaging Raw Data File"
         }
             If file.ShowDialog = DialogResult.OK Then
@@ -497,6 +504,7 @@ Module RibbonEvents
             Case "mzml", "raw" : Call WindowModules.viewer.loadRaw(file)
             Case "imzml", "mzpack" : Call WindowModules.viewer.loadimzML(file)
             Case "cdf" : Call WindowModules.msImageParameters.loadRenderFromCDF(file)
+            Case "h5" : Call WindowModules.viewer.loadimzML(file)
             Case Else
                 Call Workbench.AppHost.Warning($"File type(*.{file.ExtensionSuffix}) is not yet supported!")
         End Select

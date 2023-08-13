@@ -225,6 +225,8 @@ Public Class frmMain : Implements AppHost
             Else
                 Call ShowGCMSSIM(fileName, isBackground:=False, showExplorer:=showDocument)
             End If
+        ElseIf fileName.ExtensionSuffix("h5") Then
+            Call RibbonEvents.OpenMSIRaw(fileName)
         ElseIf fileName.ExtensionSuffix("mzpack") Then
             Dim raw As New Raw With {
                 .cache = fileName,
@@ -342,7 +344,7 @@ Public Class frmMain : Implements AppHost
         WindowModules.viewer.Show(m_dockPanel)
         WindowModules.msImageParameters.Show(m_dockPanel)
 
-        If imzML.ExtensionSuffix("mzpack") Then
+        If imzML.ExtensionSuffix("mzpack", "h5") Then
             Call showMzPackMSI(imzML)
         Else
             ' create mzPack cache at first for imzML file

@@ -272,6 +272,11 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             MSI = New Drawer(mzpack)
             metadata = mzpack.GetMSIMetadata
             type = FileApplicationClass.MSImaging
+        ElseIf filepath.ExtensionSuffix("h5") Then
+            Dim mzpack As mzPack = MSImagingReader.ReadmsiPLData(filepath)
+            MSI = New Drawer(mzpack)
+            metadata = mzpack.GetMSIMetadata
+            type = FileApplicationClass.MSImaging
         Else
             Call RunSlavePipeline.SendMessage($"read MSI dataset from the mzPack raw data file!")
             Call LoadMSIMzPackCommon(MSImagingReader.UnifyReadAsMzPack(filepath))

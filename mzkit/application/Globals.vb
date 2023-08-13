@@ -64,6 +64,7 @@
 Imports System.IO
 Imports System.Net
 Imports System.Runtime.CompilerServices
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
@@ -583,6 +584,37 @@ Module Globals
     ''' <param name="raw"></param>
     <Extension>
     Public Sub loadRawFile(rawFileNode As TreeView, raw As Raw, ByRef hasUVscans As Boolean, rtmin As Double, rtmax As Double)
+        Dim [class] As FileApplicationClass = FileApplicationClass.LCMS
+        Dim mzpack_file As String = Nothing
+
+        If raw.isLoaded Then
+            [class] = raw.GetLoadedMzpack.Application
+            mzpack_file = raw.cache
+        ElseIf raw.cacheFileExists Then
+            Using file As Stream = raw.cache.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
+                [class] = file.GetMSApplication
+                mzpack_file = raw.cache
+            End Using
+        ElseIf raw.source.FileExists AndAlso raw.source.ExtensionSuffix("mzPack") Then
+            Using file As Stream = raw.source.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
+                [class] = file.GetMSApplication
+                mzpack_file = raw.source
+            End Using
+        End If
+
+        If [class] = FileApplicationClass.MSImaging AndAlso Not mzpack_file.StringEmpty Then
+            If MessageBox.Show("It seems that current raw data file is used for MS-imaging, it is recommended that open in MS-Imaging viewer. Open this file in MS-imaging viewer?",
+                               "Load MzPack Raw Data",
+                               MessageBoxButtons.YesNo,
+                               MessageBoxIcon.Warning) = DialogResult.Yes Then
+                ' open in ms-imaging viewer
+                Call RibbonEvents.OpenMSIRaw(mzpack_file)
+                Return
+            Else
+                Call MessageBox.Show("This operation may takes a very long time to load", "Load MS-imaging data as LC-MS data", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End If
+        End If
+
         rawFileNode.Nodes.Clear()
 
         If Not raw.isLoaded Then
@@ -598,13 +630,6 @@ Module Globals
                     Call MessageBox.Show($"The MS raw data file '{raw.source}' is not exists on your filesystem.", "Load Raw Data Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                     Return
                 End If
-            End If
-        End If
-
-        If raw.GetLoadedMzpack.Application = FileApplicationClass.MSImaging Then
-            If MessageBox.Show("It seems that current raw data file is used for MS-imaging, its may contains a lots of ms scans and takes a very long time to load, continute to process?",
-                               "Load MzPack Raw Data", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) <> DialogResult.Yes Then
-                Return
             End If
         End If
 
@@ -628,7 +653,7 @@ Module Globals
         Next
 
         If Not (rtmin < 0 OrElse rtmax > 10 ^ 100) Then
-            Call MyApplication.host.showStatusMessage($"Filter {rawFileNode.Nodes.Count} ms scan with RT range [{rtmin} sec, {rtmax} sec]!")
+            Call Workbench.StatusMessage($"Filter {rawFileNode.Nodes.Count} ms scan with RT range [{rtmin} sec, {rtmax} sec]!")
         End If
 
         Dim UVscans As UVScan() = raw _
