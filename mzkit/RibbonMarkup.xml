@@ -2575,6 +2575,15 @@
         <Image MinDPI="192">Res/osd-duplicate.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonMSIFilterPipeline" Id="229" LabelTitle="Tweaks MSI Filters" LabelDescription="Tweaks MSI Filters" TooltipTitle="Tweaks MSI Filters" TooltipDescription="Tweaks MSI Filters">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/preferences-system-notifications.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/preferences-system-notifications.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdPanelMSIFilters" Id="230" LabelTitle="MSI Filters" LabelDescription="MSI Filters" TooltipTitle="MSI Filters" TooltipDescription="MSI Filters" />
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -2813,6 +2822,9 @@
               <Button CommandName="cmdButtonUpsideDown" />
               <Button CommandName="cmdButtonRotateSlide" />
               <Button CommandName="cmdButtonAutoLocation" />
+            </Group>
+            <Group CommandName="cmdPanelMSIFilters" SizeDefinition="OneButton">
+              <Button CommandName="cmdButtonMSIFilterPipeline" />
             </Group>
           </Tab>
           <Tab CommandName="cmdTabMSIAnalysis" ApplicationModes="0,1">
