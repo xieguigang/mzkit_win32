@@ -57,12 +57,9 @@ Public Class InputConfigFilterPipeline
 
     Private Sub PlotHist()
         Dim into = Me.into.ToArray
+        Dim filter = GetFilter()
 
-        For i As Integer = 0 To CheckedListBox1.Items.Count - 1
-            If TypeOf CheckedListBox1.Items(i) Is TrIQScaler Then
-                into = DirectCast(CheckedListBox1.Items(i), TrIQScaler).DoIntensityScale(into)
-            End If
-        Next
+        into = filter.DoIntensityScale(into)
 
         Dim axis As DoubleRange = into.CreateAxisTicks
         Dim canvas As Size = PictureBox1.Size.Scale(5)
