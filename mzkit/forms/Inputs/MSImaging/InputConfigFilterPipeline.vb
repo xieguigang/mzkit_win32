@@ -10,11 +10,11 @@ Public Class InputConfigFilterPipeline
         DialogResult = DialogResult.OK
     End Sub
 
-    Public Sub ConfigPipeline(filters As Scaler(), flags As Boolean())
+    Public Sub ConfigPipeline(filters As Scaler(), Optional flags As Boolean() = Nothing)
         CheckedListBox1.Items.Clear()
 
         For i As Integer = 0 To filters.Length - 1
-            CheckedListBox1.Items.Add(filters(i), flags(i))
+            CheckedListBox1.Items.Add(filters(i), flags.ElementAtOrDefault(i, [default]:=True))
         Next
     End Sub
 

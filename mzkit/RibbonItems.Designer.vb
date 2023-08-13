@@ -140,6 +140,8 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonUpsideDown As UInteger = 202
             Public Const cmdButtonRotateSlide As UInteger = 221
             Public Const cmdButtonAutoLocation As UInteger = 228
+            Public Const cmdPanelMSIFilters As UInteger = 230
+            Public Const cmdButtonMSIFilterPipeline As UInteger = 229
             Public Const cmdTabMSIAnalysis As UInteger = 141
             Public Const cmdTabMSISnapshot As UInteger = 126
             Public Const cmdButtonMSIAverageIon As UInteger = 125
@@ -990,6 +992,18 @@ Namespace RibbonLib.Controls
                 Return _ButtonAutoLocation
             End Get
         End Property
+        Private _PanelMSIFilters As RibbonGroup
+        Public ReadOnly Property PanelMSIFilters As RibbonGroup
+            Get
+                Return _PanelMSIFilters
+            End Get
+        End Property
+        Private _ButtonMSIFilterPipeline As RibbonButton
+        Public ReadOnly Property ButtonMSIFilterPipeline As RibbonButton
+            Get
+                Return _ButtonMSIFilterPipeline
+            End Get
+        End Property
         Private _TabMSIAnalysis As RibbonTab
         Public ReadOnly Property TabMSIAnalysis As RibbonTab
             Get
@@ -1625,6 +1639,8 @@ Namespace RibbonLib.Controls
             _ButtonUpsideDown = New RibbonButton(_ribbon, Cmd.cmdButtonUpsideDown)
             _ButtonRotateSlide = New RibbonButton(_ribbon, Cmd.cmdButtonRotateSlide)
             _ButtonAutoLocation = New RibbonButton(_ribbon, Cmd.cmdButtonAutoLocation)
+            _PanelMSIFilters = New RibbonGroup(_ribbon, Cmd.cmdPanelMSIFilters)
+            _ButtonMSIFilterPipeline = New RibbonButton(_ribbon, Cmd.cmdButtonMSIFilterPipeline)
             _TabMSIAnalysis = New RibbonTab(_ribbon, Cmd.cmdTabMSIAnalysis)
             _TabMSISnapshot = New RibbonGroup(_ribbon, Cmd.cmdTabMSISnapshot)
             _ButtonMSIAverageIon = New RibbonButton(_ribbon, Cmd.cmdButtonMSIAverageIon)

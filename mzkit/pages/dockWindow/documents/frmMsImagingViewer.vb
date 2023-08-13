@@ -78,6 +78,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender.Scaler
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
@@ -185,6 +186,8 @@ Public Class frmMsImagingViewer
         AddHandler RibbonEvents.ribbonItems.ButtonRotateSlide.ExecuteEvent, Sub() Call rotateSlide()
         AddHandler RibbonEvents.ribbonItems.ButtonAutoLocation.ExecuteEvent, Sub() Call autoLocation()
 
+        AddHandler RibbonEvents.ribbonItems.ButtonMSIFilterPipeline.ExecuteEvent, Sub() Call configFilter()
+
         AddHandler RibbonEvents.ribbonItems.CheckShowMapLayer.ExecuteEvent,
             Sub()
                 If RibbonEvents.ribbonItems.CheckShowMapLayer.BooleanValue Then
@@ -208,6 +211,27 @@ Public Class frmMsImagingViewer
         sampleRegions.Show(MyApplication.host.m_dockPanel)
         sampleRegions.DockState = DockState.Hidden
         sampleRegions.viewer = Me
+    End Sub
+
+    Private Sub configFilter()
+        If Not checkService() Then
+            Return
+        End If
+
+        Dim config As New InputConfigFilterPipeline
+        Dim opts As New List(Of Scaler)
+
+        Call opts.Add(New DenoiseScaler)
+        Call opts.Add(New TrIQScaler(0.65))
+        Call opts.Add(New KNNScaler)
+        Call opts.Add(New SoftenScaler)
+
+        config.ConfigPipeline(opts.ToArray)
+
+        Call InputDialog.Input(
+            Sub(configs)
+
+            End Sub, config:=config)
     End Sub
 
     Private Sub autoLocation()
