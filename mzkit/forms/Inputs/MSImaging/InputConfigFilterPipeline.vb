@@ -25,4 +25,9 @@ Public Class InputConfigFilterPipeline
             CheckedListBox1.SetItemChecked(i, Not CheckedListBox1.GetItemChecked(i))
         End If
     End Sub
+
+    Private Sub CheckedListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CheckedListBox1.SelectedIndexChanged
+        PropertyGrid1.SelectedObject = CheckedListBox1.SelectedItem
+        PropertyGrid1.Refresh()
+    End Sub
 End Class

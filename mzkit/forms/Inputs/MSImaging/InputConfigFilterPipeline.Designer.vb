@@ -28,14 +28,14 @@ Partial Class InputConfigFilterPipeline
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.PropertyGrid1 = New System.Windows.Forms.PropertyGrid()
         Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -66,6 +66,19 @@ Partial Class InputConfigFilterPipeline
         Me.CheckedListBox1.Size = New System.Drawing.Size(306, 276)
         Me.CheckedListBox1.TabIndex = 1
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(140, 26)
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Image = Global.BioNovoGene.mzkit_win32.My.Resources.Resources.header_background_image
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(139, 22)
+        Me.ToolStripMenuItem1.Text = "Turn On/Off"
+        '
         'PictureBox1
         '
         Me.PictureBox1.Location = New System.Drawing.Point(18, 20)
@@ -92,19 +105,6 @@ Partial Class InputConfigFilterPipeline
         Me.Button2.Text = "Cancel"
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 48)
-        '
-        'ToolStripMenuItem1
-        '
-        Me.ToolStripMenuItem1.Image = Global.BioNovoGene.mzkit_win32.My.Resources.Resources.header_background_image
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
-        Me.ToolStripMenuItem1.Text = "Turn On/Off"
-        '
         'InputConfigFilterPipeline
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -116,8 +116,8 @@ Partial Class InputConfigFilterPipeline
         Me.Name = "InputConfigFilterPipeline"
         Me.Text = "Config MSI Filter Pipeline"
         Me.GroupBox1.ResumeLayout(False)
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
