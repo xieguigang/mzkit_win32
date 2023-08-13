@@ -1,7 +1,13 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender.Scaler
 Imports BioNovoGene.mzkit_win32.Configuration
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
+Imports Microsoft.VisualBasic.Data.ChartPlots.BarPlot.Histogram
+Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
+Imports Microsoft.VisualBasic.Imaging
 
 Public Class InputConfigFilterPipeline
+
+    Dim into As Double()
 
     Public Function GetFilter() As RasterPipeline
         Dim filter As New RasterPipeline
@@ -40,6 +46,31 @@ Public Class InputConfigFilterPipeline
         DialogResult = DialogResult.OK
     End Sub
 
+    Public Sub ConfigIntensity(into As Double())
+        Me.into = into
+
+        If Not into.IsNullOrEmpty Then
+            Call Me.PlotHist()
+        End If
+    End Sub
+
+    Private Sub PlotHist()
+        Dim into = Me.into.ToArray
+
+        For i As Integer = 0 To CheckedListBox1.Items.Count - 1
+            If TypeOf CheckedListBox1.Items(i) Is TrIQScaler Then
+                into = DirectCast(CheckedListBox1.Items(i), TrIQScaler).DoIntensityScale(into)
+            End If
+        Next
+
+        Dim axis As DoubleRange = into.CreateAxisTicks
+        Dim canvas As Size = PictureBox1.Size
+
+        PictureBox1.BackgroundImage = Histogram _
+            .Plot(into, axis, size:=$"{canvas.Width},{canvas.Height}") _
+            .AsGDIImage
+    End Sub
+
     Public Sub ConfigPipeline(filters As Scaler(), Optional flags As Boolean() = Nothing)
         CheckedListBox1.Items.Clear()
 
@@ -59,5 +90,13 @@ Public Class InputConfigFilterPipeline
     Private Sub CheckedListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CheckedListBox1.SelectedIndexChanged
         PropertyGrid1.SelectedObject = CheckedListBox1.SelectedItem
         PropertyGrid1.Refresh()
+    End Sub
+
+    Private Sub PropertyGrid1_PropertyValueChanged(s As Object, e As PropertyValueChangedEventArgs) Handles PropertyGrid1.PropertyValueChanged
+        If TypeOf s Is TrIQScaler Then
+            If Not into.IsNullOrEmpty Then
+                Call PlotHist()
+            End If
+        End If
     End Sub
 End Class

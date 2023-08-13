@@ -25,6 +25,7 @@ Partial Class InputConfigFilterPipeline
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(InputConfigFilterPipeline))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.PropertyGrid1 = New System.Windows.Forms.PropertyGrid()
         Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
@@ -48,7 +49,7 @@ Partial Class InputConfigFilterPipeline
         Me.GroupBox1.Size = New System.Drawing.Size(670, 481)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "GroupBox1"
+        Me.GroupBox1.Text = "MS-Imaging Filter Parameters"
         '
         'PropertyGrid1
         '
@@ -81,15 +82,17 @@ Partial Class InputConfigFilterPipeline
         '
         'PictureBox1
         '
-        Me.PictureBox1.Location = New System.Drawing.Point(18, 20)
+        Me.PictureBox1.BackgroundImage = CType(resources.GetObject("PictureBox1.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox1.Location = New System.Drawing.Point(15, 24)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(634, 144)
+        Me.PictureBox1.Size = New System.Drawing.Size(637, 144)
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(579, 522)
+        Me.Button1.Location = New System.Drawing.Point(589, 508)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 1
@@ -98,7 +101,7 @@ Partial Class InputConfigFilterPipeline
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(456, 522)
+        Me.Button2.Location = New System.Drawing.Point(488, 508)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 2
@@ -109,7 +112,7 @@ Partial Class InputConfigFilterPipeline
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(694, 557)
+        Me.ClientSize = New System.Drawing.Size(694, 546)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.GroupBox1)

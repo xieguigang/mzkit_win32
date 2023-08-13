@@ -245,6 +245,14 @@ Public Class frmMsImagingViewer
 
         config.ConfigPipeline(opts.ToArray, settings.flags)
 
+        If loadedPixels.IsNullOrEmpty Then
+            If Not TIC.IsNullOrEmpty Then
+                config.ConfigIntensity(TIC.Select(Function(i) i.totalIon).ToArray)
+            End If
+        Else
+            config.ConfigIntensity(loadedPixels.Select(Function(i) i.intensity).ToArray)
+        End If
+
         Call InputDialog.Input(
             Sub(configs)
                 With configs.GetFilterConfigs
