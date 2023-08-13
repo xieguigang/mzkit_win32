@@ -485,6 +485,12 @@
     <Compile Include="forms\Inputs\LCMS\InputMNSimilarityScore.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\Inputs\MSImaging\InputConfigFilterPipeline.Designer.vb">
+      <DependentUpon>InputConfigFilterPipeline.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\MSImaging\InputConfigFilterPipeline.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\MSImaging\InputMSIRotation.Designer.vb">
       <DependentUpon>InputMSIRotation.vb</DependentUpon>
     </Compile>
@@ -1118,6 +1124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\LCMS\InputMNSimilarityScore.resx">
       <DependentUpon>InputMNSimilarityScore.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\MSImaging\InputConfigFilterPipeline.resx">
+      <DependentUpon>InputConfigFilterPipeline.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\MSImaging\InputHTMLColorCode.resx">
       <DependentUpon>InputHTMLColorCode.vb</DependentUpon>
