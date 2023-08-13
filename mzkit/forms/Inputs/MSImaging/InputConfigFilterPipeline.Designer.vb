@@ -31,15 +31,18 @@ Partial Class InputConfigFilterPipeline
         Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
         Me.MoveUpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoveDownToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.RefreshToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip2.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -74,19 +77,37 @@ Partial Class InputConfigFilterPipeline
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.ToolStripMenuItem2, Me.MoveUpToolStripMenuItem, Me.MoveDownToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 98)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(140, 76)
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Image = Global.BioNovoGene.mzkit_win32.My.Resources.Resources.header_background_image
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(139, 22)
         Me.ToolStripMenuItem1.Text = "Turn On/Off"
+        '
+        'ToolStripMenuItem2
+        '
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(136, 6)
+        '
+        'MoveUpToolStripMenuItem
+        '
+        Me.MoveUpToolStripMenuItem.Name = "MoveUpToolStripMenuItem"
+        Me.MoveUpToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
+        Me.MoveUpToolStripMenuItem.Text = "Move Up"
+        '
+        'MoveDownToolStripMenuItem
+        '
+        Me.MoveDownToolStripMenuItem.Name = "MoveDownToolStripMenuItem"
+        Me.MoveDownToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
+        Me.MoveDownToolStripMenuItem.Text = "Move Down"
         '
         'PictureBox1
         '
         Me.PictureBox1.BackgroundImage = CType(resources.GetObject("PictureBox1.BackgroundImage"), System.Drawing.Image)
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox1.ContextMenuStrip = Me.ContextMenuStrip2
         Me.PictureBox1.Location = New System.Drawing.Point(15, 24)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(637, 235)
@@ -111,22 +132,17 @@ Partial Class InputConfigFilterPipeline
         Me.Button2.Text = "Cancel"
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'ToolStripMenuItem2
+        'ContextMenuStrip2
         '
-        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(177, 6)
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RefreshToolStripMenuItem})
+        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(181, 48)
         '
-        'MoveUpToolStripMenuItem
+        'RefreshToolStripMenuItem
         '
-        Me.MoveUpToolStripMenuItem.Name = "MoveUpToolStripMenuItem"
-        Me.MoveUpToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.MoveUpToolStripMenuItem.Text = "Move Up"
-        '
-        'MoveDownToolStripMenuItem
-        '
-        Me.MoveDownToolStripMenuItem.Name = "MoveDownToolStripMenuItem"
-        Me.MoveDownToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.MoveDownToolStripMenuItem.Text = "Move Down"
+        Me.RefreshToolStripMenuItem.Name = "RefreshToolStripMenuItem"
+        Me.RefreshToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.RefreshToolStripMenuItem.Text = "Refresh"
         '
         'InputConfigFilterPipeline
         '
@@ -141,6 +157,7 @@ Partial Class InputConfigFilterPipeline
         Me.GroupBox1.ResumeLayout(False)
         Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -156,4 +173,6 @@ Partial Class InputConfigFilterPipeline
     Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
     Friend WithEvents MoveUpToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MoveDownToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ContextMenuStrip2 As ContextMenuStrip
+    Friend WithEvents RefreshToolStripMenuItem As ToolStripMenuItem
 End Class

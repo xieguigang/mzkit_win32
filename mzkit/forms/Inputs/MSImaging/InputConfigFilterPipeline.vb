@@ -128,6 +128,8 @@ Public Class InputConfigFilterPipeline
         CheckedListBox1.Items(i) = jo
         CheckedListBox1.SetItemChecked(i, jf)
         CheckedListBox1.SetItemChecked(j, [if])
+
+        CheckedListBox1.SelectedIndex = j
     End Sub
 
     Private Sub MoveDownToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MoveDownToolStripMenuItem.Click
@@ -138,5 +140,9 @@ Public Class InputConfigFilterPipeline
         End If
 
         Call Swap(i, j:=i + 1)
+    End Sub
+
+    Private Sub RefreshToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RefreshToolStripMenuItem.Click
+        Call PlotHist()
     End Sub
 End Class
