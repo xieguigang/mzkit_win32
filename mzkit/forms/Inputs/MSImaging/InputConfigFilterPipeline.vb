@@ -4,6 +4,7 @@ Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots.BarPlot.Histogram
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Math2D
 
 Public Class InputConfigFilterPipeline
 
@@ -64,10 +65,13 @@ Public Class InputConfigFilterPipeline
         Next
 
         Dim axis As DoubleRange = into.CreateAxisTicks
-        Dim canvas As Size = PictureBox1.Size
+        Dim canvas As Size = PictureBox1.Size.Scale(5)
 
-        PictureBox1.BackgroundImage = Histogram _
-            .Plot(into, axis, size:=$"{canvas.Width},{canvas.Height}") _
+        PictureBox1.BackgroundImage = into.HistogramPlot(
+                  [step]:=(axis.Max - axis.Min) / 100,
+                  size:=$"{canvas.Width},{canvas.Height}",
+                  padding:="padding: 50px 50px 100px 100px;",
+                  showGrid:=False) _
             .AsGDIImage
     End Sub
 
@@ -93,10 +97,8 @@ Public Class InputConfigFilterPipeline
     End Sub
 
     Private Sub PropertyGrid1_PropertyValueChanged(s As Object, e As PropertyValueChangedEventArgs) Handles PropertyGrid1.PropertyValueChanged
-        If TypeOf s Is TrIQScaler Then
-            If Not into.IsNullOrEmpty Then
-                Call PlotHist()
-            End If
+        If Not into.IsNullOrEmpty Then
+            Call PlotHist()
         End If
     End Sub
 End Class

@@ -53,18 +53,18 @@ Partial Class InputConfigFilterPipeline
         '
         'PropertyGrid1
         '
-        Me.PropertyGrid1.Location = New System.Drawing.Point(349, 185)
+        Me.PropertyGrid1.Location = New System.Drawing.Point(349, 270)
         Me.PropertyGrid1.Name = "PropertyGrid1"
-        Me.PropertyGrid1.Size = New System.Drawing.Size(303, 276)
+        Me.PropertyGrid1.Size = New System.Drawing.Size(303, 196)
         Me.PropertyGrid1.TabIndex = 2
         '
         'CheckedListBox1
         '
         Me.CheckedListBox1.ContextMenuStrip = Me.ContextMenuStrip1
         Me.CheckedListBox1.FormattingEnabled = True
-        Me.CheckedListBox1.Location = New System.Drawing.Point(15, 185)
+        Me.CheckedListBox1.Location = New System.Drawing.Point(15, 271)
         Me.CheckedListBox1.Name = "CheckedListBox1"
-        Me.CheckedListBox1.Size = New System.Drawing.Size(306, 276)
+        Me.CheckedListBox1.Size = New System.Drawing.Size(306, 196)
         Me.CheckedListBox1.TabIndex = 1
         '
         'ContextMenuStrip1
@@ -86,7 +86,7 @@ Partial Class InputConfigFilterPipeline
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.PictureBox1.Location = New System.Drawing.Point(15, 24)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(637, 144)
+        Me.PictureBox1.Size = New System.Drawing.Size(637, 235)
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
