@@ -79,8 +79,8 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
         End Get
     End Property
 
-    Sub New(summaryLayer As PixelScanIntensity(), params As MsImageProperty)
-        Call MyBase.New(params)
+    Sub New(summaryLayer As PixelScanIntensity(), params As MsImageProperty, filter As RasterPipeline)
+        Call MyBase.New(params, filter)
 
         Me.summaryLayer = summaryLayer
         Me.intensity = summaryLayer _
@@ -91,8 +91,7 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
     Public Overloads Function Rendering() As Image
         Dim mapLevels As Integer = params.mapLevels
         Dim layerData As PixelScanIntensity() = summaryLayer
-        Dim filter As RasterPipeline = New DenoiseScaler() _
-            .Then(New TrIQScaler(params.TrIQ))
+        Dim filter = Me.filters
 
         If Not params.instrument.TextEquals("Bruker") Then
             filter = filter.Then(New KNNScaler(params.knn, params.knn_qcut)).Then(New SoftenScaler())

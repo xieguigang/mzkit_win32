@@ -693,7 +693,7 @@ UseCheckedList:
                                 Else
                                     Dim maxInto = pixels.Select(Function(a) a.intensity).Max
                                     params.SetIntensityMax(maxInto, New Point())
-                                    Dim blender As New SingleIonMSIBlender(pixels, params, TIC)
+                                    Dim blender As New SingleIonMSIBlender(pixels, params, frmMsImagingViewer.loadFilters, TIC)
                                     Dim range As DoubleRange = blender.range
                                     Dim image As Image = blender.Rendering(args, canvas)
 

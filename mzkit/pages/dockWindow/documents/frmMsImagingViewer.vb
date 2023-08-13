@@ -213,7 +213,7 @@ Public Class frmMsImagingViewer
         sampleRegions.viewer = Me
     End Sub
 
-    Private Function loadFilters() As RasterPipeline
+    Public Shared Function loadFilters() As RasterPipeline
         Dim settings = Globals.Settings.msi_filters
 
         If settings Is Nothing Then
@@ -306,7 +306,7 @@ Public Class frmMsImagingViewer
                 End If
 
                 Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
-                Dim blender As New SummaryMSIBlender(summaryLayer, params)
+                Dim blender As New SummaryMSIBlender(summaryLayer, params, loadFilters)
 
                 Return blender.Rendering()
             End Function, title:="Create ms-imaging slide previews", "Loading the basepeak summary plot of your slide as previews...")
@@ -1908,7 +1908,7 @@ Public Class frmMsImagingViewer
         End If
 
         Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
-        Dim blender As New SummaryMSIBlender(summaryLayer, params)
+        Dim blender As New SummaryMSIBlender(summaryLayer, params, loadFilters)
 
         ' Me.params.enableFilter = False
         Me.blender = blender
@@ -1977,7 +1977,7 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Function createRenderTask(R As PixelData(), G As PixelData(), B As PixelData()) As Action
-        Dim blender As New RGBIonMSIBlender(R, G, B, TIC, params)
+        Dim blender As New RGBIonMSIBlender(R, G, B, TIC, params, loadFilters)
 
         Me.params.enableFilter = False
         Me.blender = blender
@@ -2129,7 +2129,7 @@ Public Class frmMsImagingViewer
             Me.tweaks = WindowModules.msImageParameters.PropertyGrid1
         End If
 
-        Dim blender As New HeatMapBlender(layer, dimensions, params)
+        Dim blender As New HeatMapBlender(layer, dimensions, params, loadFilters)
 
         Me.params.enableFilter = True
         Me.blender = blender

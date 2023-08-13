@@ -77,8 +77,8 @@ Public Class RGBIonMSIBlender : Inherits MSImagingBlender
         End Get
     End Property
 
-    Sub New(r As PixelData(), g As PixelData(), b As PixelData(), TIC As PixelScanIntensity(), params As MsImageProperty)
-        Call MyBase.New(params)
+    Sub New(r As PixelData(), g As PixelData(), b As PixelData(), TIC As PixelScanIntensity(), params As MsImageProperty, filter As RasterPipeline)
+        Call MyBase.New(params, filter)
 
         Dim joinX = r.JoinIterates(g).JoinIterates(b).Select(Function(i) i.x).Max
         Dim joinY = r.JoinIterates(g).JoinIterates(b).Select(Function(i) i.y).Max
@@ -92,18 +92,15 @@ Public Class RGBIonMSIBlender : Inherits MSImagingBlender
 
     Public Overrides Function Rendering(args As PlotProperty, target As Size) As Image
         Dim drawer As New PixelRender(heatmapRender:=False)
-        Dim filter = New TrIQScaler(params.TrIQ) _
-            .Then(New KNNScaler(params.knn, params.knn_qcut)) _
-            .Then(New SoftenScaler())
         Dim dimensionSize As New Size(params.scan_x, params.scan_y)
         Dim r = New SingleIonLayer With {.DimensionSize = dimensions, .MSILayer = TakePixels(Me.R)}
         Dim g = New SingleIonLayer With {.DimensionSize = dimensions, .MSILayer = TakePixels(Me.G)}
         Dim b = New SingleIonLayer With {.DimensionSize = dimensions, .MSILayer = TakePixels(Me.B)}
 
         If params.enableFilter Then
-            r = filter(r)
-            g = filter(g)
-            b = filter(b)
+            r = filters(r)
+            g = filters(g)
+            b = filters(b)
         End If
 
         'Dim qr As Double = q1.ThresholdValue(r.Select(Function(p) p.intensity).ToArray)
