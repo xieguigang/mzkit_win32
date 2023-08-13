@@ -213,24 +213,50 @@ Public Class frmMsImagingViewer
         sampleRegions.viewer = Me
     End Sub
 
+    Private Function loadFilters() As RasterPipeline
+        Dim settings = Globals.Settings.msi_filters
+
+        If settings Is Nothing Then
+            Globals.Settings.msi_filters = Configuration.Filters.DefaultFilters
+            Globals.Settings.Save()
+
+            settings = Globals.Settings.msi_filters
+        End If
+
+        Return settings
+    End Function
+
     Private Sub configFilter()
         If Not checkService() Then
             Return
         End If
 
         Dim config As New InputConfigFilterPipeline
-        Dim opts As New List(Of Scaler)
+        Dim settings = Globals.Settings.msi_filters
 
-        Call opts.Add(New DenoiseScaler)
-        Call opts.Add(New TrIQScaler(0.65))
-        Call opts.Add(New KNNScaler)
-        Call opts.Add(New SoftenScaler)
+        If settings Is Nothing Then
+            Globals.Settings.msi_filters = Configuration.Filters.DefaultFilters
+            Globals.Settings.Save()
 
-        config.ConfigPipeline(opts.ToArray)
+            settings = Globals.Settings.msi_filters
+        End If
+
+        Dim opts As Scaler() = settings.filters.Select(Function(si) Scaler.Parse(si)).ToArray
+
+        config.ConfigPipeline(opts.ToArray, settings.flags)
 
         Call InputDialog.Input(
             Sub(configs)
+                With configs.GetFilterConfigs
+                    Globals.Settings.msi_filters.filters = .filters
+                    Globals.Settings.msi_filters.flags = .flags
+                    Globals.Settings.Save()
+                End With
 
+                If blender IsNot Nothing AndAlso rendering IsNot Nothing Then
+                    blender.filters = configs.GetFilter
+                    rendering()
+                End If
             End Sub, config:=config)
     End Sub
 
@@ -792,7 +818,7 @@ Public Class frmMsImagingViewer
                     .knn = 0,
                     .knn_qcut = 1
                 }
-                Dim blender As New SingleIonMSIBlender(layer.MSILayer, Nothing, argv)
+                Dim blender As New SingleIonMSIBlender(layer.MSILayer, Nothing, argv, loadFilters)
                 Dim HEMap As Image = blender.Rendering(Nothing, Nothing)
 
                 If Me.blender IsNot Nothing AndAlso TypeOf Me.blender IsNot HeatMapBlender Then
@@ -2128,7 +2154,7 @@ Public Class frmMsImagingViewer
     ''' <param name="dimensions">the dimension size of the MSI raw data</param>
     ''' <returns></returns>
     Private Function createRenderTask(pixels As PixelData(), dimensions$) As Action
-        Dim blender As New SingleIonMSIBlender(pixels, TIC, params)
+        Dim blender As New SingleIonMSIBlender(pixels, TIC, params, loadFilters)
         Dim range As DoubleRange = blender.range
 
         Me.params.enableFilter = True

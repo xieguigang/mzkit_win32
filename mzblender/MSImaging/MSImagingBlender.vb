@@ -72,7 +72,7 @@ Public MustInherit Class MSImagingBlender : Inherits Blender
         End Get
     End Property
 
-    Public ReadOnly Property filters As RasterPipeline
+    Public Property filters As RasterPipeline
 
     <DebuggerStepThrough>
     Sub New(host As MsImageProperty, filters As RasterPipeline)
