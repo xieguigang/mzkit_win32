@@ -76,10 +76,19 @@ Public Class InputConfigFilterPipeline
     End Sub
 
     Public Sub ConfigPipeline(filters As Scaler(), Optional flags As Boolean() = Nothing)
+        Dim fill_scalers As New List(Of Type) From {
+            GetType(DenoiseScaler), GetType(KNNScaler), GetType(TrIQScaler), GetType(SoftenScaler), GetType(LogScaler)
+        }
+
         CheckedListBox1.Items.Clear()
 
         For i As Integer = 0 To filters.Length - 1
             CheckedListBox1.Items.Add(filters(i), flags.ElementAtOrDefault(i, [default]:=True))
+            fill_scalers.Remove(filters(i).GetType)
+        Next
+
+        For Each type As Type In fill_scalers
+            CheckedListBox1.Items.Add(Activator.CreateInstance(type), False)
         Next
     End Sub
 
@@ -100,5 +109,37 @@ Public Class InputConfigFilterPipeline
         If Not into.IsNullOrEmpty Then
             Call PlotHist()
         End If
+    End Sub
+
+    Private Sub MoveUpToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MoveUpToolStripMenuItem.Click
+        Dim i As Integer = CheckedListBox1.SelectedIndex
+
+        If i <= 0 Then
+            Return
+        End If
+
+        Call Swap(i, j:=i - 1)
+    End Sub
+
+    Private Sub Swap(i As Integer, j As Integer)
+        Dim jo = CheckedListBox1.Items(j)
+        Dim jf = CheckedListBox1.GetItemChecked(j)
+        Dim io = CheckedListBox1.Items(i)
+        Dim [if] = CheckedListBox1.GetItemChecked(i)
+
+        CheckedListBox1.Items(j) = io
+        CheckedListBox1.Items(i) = jo
+        CheckedListBox1.SetItemChecked(i, jf)
+        CheckedListBox1.SetItemChecked(j, [if])
+    End Sub
+
+    Private Sub MoveDownToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MoveDownToolStripMenuItem.Click
+        Dim i As Integer = CheckedListBox1.SelectedIndex
+
+        If i < 0 Then
+            Return
+        End If
+
+        Call Swap(i, j:=i + 1)
     End Sub
 End Class
