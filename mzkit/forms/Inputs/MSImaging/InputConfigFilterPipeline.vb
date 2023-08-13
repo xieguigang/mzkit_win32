@@ -62,7 +62,7 @@ Public Class InputConfigFilterPipeline
         into = filter.DoIntensityScale(into)
 
         Dim axis As DoubleRange = into.CreateAxisTicks
-        Dim canvas As Size = PictureBox1.Size.Scale(5)
+        Dim canvas As Size = PictureBox1.Size.Scale(3)
 
         PictureBox1.BackgroundImage = into.HistogramPlot(
                   [step]:=(axis.Max - axis.Min) / 100,
