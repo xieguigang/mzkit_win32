@@ -80,7 +80,7 @@ Public Module GCMSQuantifyIon
                     .id = id,
                     .ms = {},
                     .name = id,
-                    .rt = {-100, -100}
+                    .rt = New Double() {-100, -100}
                 }
             End If
         End If
