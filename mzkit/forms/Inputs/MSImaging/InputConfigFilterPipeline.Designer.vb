@@ -27,6 +27,9 @@ Partial Class InputConfigFilterPipeline
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(InputConfigFilterPipeline))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.PropertyGrid1 = New System.Windows.Forms.PropertyGrid()
         Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -35,11 +38,13 @@ Partial Class InputConfigFilterPipeline
         Me.MoveUpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoveDownToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.RefreshToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip2.SuspendLayout()
@@ -47,30 +52,61 @@ Partial Class InputConfigFilterPipeline
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.PropertyGrid1)
-        Me.GroupBox1.Controls.Add(Me.CheckedListBox1)
+        Me.GroupBox1.Controls.Add(Me.GroupBox2)
         Me.GroupBox1.Controls.Add(Me.PictureBox1)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(670, 481)
+        Me.GroupBox1.Size = New System.Drawing.Size(670, 447)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "MS-Imaging Filter Parameters"
         '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.Label2)
+        Me.GroupBox2.Controls.Add(Me.Label1)
+        Me.GroupBox2.Controls.Add(Me.PropertyGrid1)
+        Me.GroupBox2.Controls.Add(Me.CheckedListBox1)
+        Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox2.Location = New System.Drawing.Point(3, 252)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(664, 192)
+        Me.GroupBox2.TabIndex = 4
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Config Pipeline"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(326, 26)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(149, 12)
+        Me.Label2.TabIndex = 4
+        Me.Label2.Text = "Config Filter Parameters"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(17, 26)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(143, 12)
+        Me.Label1.TabIndex = 3
+        Me.Label1.Text = "Raster Filters Pipeline"
+        '
         'PropertyGrid1
         '
-        Me.PropertyGrid1.Location = New System.Drawing.Point(349, 270)
+        Me.PropertyGrid1.Location = New System.Drawing.Point(328, 51)
         Me.PropertyGrid1.Name = "PropertyGrid1"
-        Me.PropertyGrid1.Size = New System.Drawing.Size(303, 196)
+        Me.PropertyGrid1.Size = New System.Drawing.Size(321, 132)
         Me.PropertyGrid1.TabIndex = 2
         '
         'CheckedListBox1
         '
         Me.CheckedListBox1.ContextMenuStrip = Me.ContextMenuStrip1
         Me.CheckedListBox1.FormattingEnabled = True
-        Me.CheckedListBox1.Location = New System.Drawing.Point(15, 271)
+        Me.CheckedListBox1.Location = New System.Drawing.Point(19, 51)
         Me.CheckedListBox1.Name = "CheckedListBox1"
-        Me.CheckedListBox1.Size = New System.Drawing.Size(306, 196)
+        Me.CheckedListBox1.Size = New System.Drawing.Size(292, 132)
         Me.CheckedListBox1.TabIndex = 1
         '
         'ContextMenuStrip1
@@ -108,15 +144,28 @@ Partial Class InputConfigFilterPipeline
         Me.PictureBox1.BackgroundImage = CType(resources.GetObject("PictureBox1.BackgroundImage"), System.Drawing.Image)
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.PictureBox1.ContextMenuStrip = Me.ContextMenuStrip2
-        Me.PictureBox1.Location = New System.Drawing.Point(15, 24)
+        Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PictureBox1.Location = New System.Drawing.Point(3, 17)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(637, 235)
+        Me.PictureBox1.Size = New System.Drawing.Size(664, 235)
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
+        'ContextMenuStrip2
+        '
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RefreshToolStripMenuItem})
+        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(114, 26)
+        '
+        'RefreshToolStripMenuItem
+        '
+        Me.RefreshToolStripMenuItem.Name = "RefreshToolStripMenuItem"
+        Me.RefreshToolStripMenuItem.Size = New System.Drawing.Size(113, 22)
+        Me.RefreshToolStripMenuItem.Text = "Refresh"
+        '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(589, 508)
+        Me.Button1.Location = New System.Drawing.Point(588, 467)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 1
@@ -125,40 +174,41 @@ Partial Class InputConfigFilterPipeline
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(488, 508)
+        Me.Button2.Location = New System.Drawing.Point(487, 467)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 2
         Me.Button2.Text = "Cancel"
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'ContextMenuStrip2
+        'Label3
         '
-        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RefreshToolStripMenuItem})
-        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(181, 48)
-        '
-        'RefreshToolStripMenuItem
-        '
-        Me.RefreshToolStripMenuItem.Name = "RefreshToolStripMenuItem"
-        Me.RefreshToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.RefreshToolStripMenuItem.Text = "Refresh"
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(13, 472)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(41, 12)
+        Me.Label3.TabIndex = 3
+        Me.Label3.Text = "Label3"
         '
         'InputConfigFilterPipeline
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(694, 546)
+        Me.ClientSize = New System.Drawing.Size(694, 499)
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "InputConfigFilterPipeline"
         Me.Text = "Config MSI Filter Pipeline"
         Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip2.ResumeLayout(False)
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -175,4 +225,8 @@ Partial Class InputConfigFilterPipeline
     Friend WithEvents MoveDownToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ContextMenuStrip2 As ContextMenuStrip
     Friend WithEvents RefreshToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label3 As Label
 End Class

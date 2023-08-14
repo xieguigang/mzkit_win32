@@ -67,7 +67,7 @@ Public Class InputConfigFilterPipeline
         PictureBox1.BackgroundImage = into.HistogramPlot(
                   [step]:=(axis.Max - axis.Min) / 100,
                   size:=$"{canvas.Width},{canvas.Height}",
-                  padding:="padding: 50px 50px 100px 100px;",
+                  padding:="padding: 50px 20px 100px 100px;",
                   showGrid:=False) _
             .AsGDIImage
     End Sub
@@ -144,5 +144,29 @@ Public Class InputConfigFilterPipeline
 
     Private Sub RefreshToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RefreshToolStripMenuItem.Click
         Call PlotHist()
+    End Sub
+
+    Private Sub CheckedListBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles CheckedListBox1.MouseMove
+        showTooltip("Check/uncheck the item for enable/disable corresponding filter, move up/down item to construct different pipeline")
+    End Sub
+
+    Private Sub PropertyGrid1_Click(sender As Object, e As EventArgs) Handles PropertyGrid1.Click
+
+    End Sub
+
+    Private Sub PropertyGrid1_MouseMove(sender As Object, e As MouseEventArgs) Handles PropertyGrid1.MouseMove
+        showTooltip("Modify the filter parameter at here")
+    End Sub
+
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+
+    End Sub
+
+    Private Sub showTooltip(txt As String)
+        Label3.Text = txt
+    End Sub
+
+    Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
+        showTooltip("The pixel intensity histogram")
     End Sub
 End Class
