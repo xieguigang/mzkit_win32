@@ -95,14 +95,18 @@ Public Class MSIPixelPropertyWindow
         If DirectCast(PropertyGrid1.SelectedObject, PixelProperty).NumOfIons = 0 Then
             PictureBox1.BackgroundImage = Nothing
         Else
-            PictureBox1.BackgroundImage = {serial}.Plot(
-                size:="900,600",
-                padding:="padding:50px 50px 100px 200px;",
-                fill:=True,
-                ablines:={Q2line},
-                YtickFormat:="G2",
-                XtickFormat:="F1"
-            ).AsGDIImage
+            Try
+                PictureBox1.BackgroundImage = {serial}.Plot(
+                    size:="900,600",
+                    padding:="padding:50px 50px 100px 200px;",
+                    fill:=True,
+                    ablines:={Q2line},
+                    YtickFormat:="G2",
+                    XtickFormat:="F1"
+                ).AsGDIImage
+            Catch ex As Exception
+
+            End Try
         End If
     End Sub
 
