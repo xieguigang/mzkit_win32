@@ -1,0 +1,18 @@
+libssp                         12.2.0
+winpthreads                    10.0.0
+zlib                           1.2.13-3
+libpng                         1.6.39-2
+libjpeg-turbo                  2.1.5.1-1
+libtiff                        4.5.0-3
+OpenJPEG                       2.5.0-1
+SQLite                         3.41.2-1
+proxy-libintl                  0.4
+libffi                         3.4.4-2
+PCRE2                          10.42-5
+glib                           2.76.1-1
+gdk-pixbuf                     2.42.10
+pixman                         0.42.2
+cairo                          1.17.8
+libxml2                        2.10.4-1
+OpenSlide                      3.4.1
+OpenSlide Java                 0.12.3
