@@ -1,10 +1,20 @@
 ﻿
+Imports System.Runtime.InteropServices
+
 Namespace Container
 
     ''' <summary>
     ''' A shared model for test application environment
     ''' </summary>
     Public Module AppEnvironment
+
+        <DllImport("kernel32.dll", CharSet:=CharSet.Unicode, SetLastError:=True)>
+        Public Function SetDllDirectory(lpPathName As String) As Boolean
+        End Function
+
+        <DllImport("kernel32", SetLastError:=True)>
+        Public Function LoadLibrary(lpFileName As String) As IntPtr
+        End Function
 
         ''' <summary>
         ''' mzkit_win32 is running in a source development environment
@@ -20,7 +30,7 @@ Namespace Container
             Static HOME As String = App.HOME.GetDirectoryFullPath.Replace("/"c, "\"c)
 
             For Each drive As String In New String() {"C", "D", "E", "F", "G", "H"}
-                If HOME = $"{drive}:\mzkit\dist\bin" Then
+                If HOME.StartsWith($"{drive}:\mzkit\dist\bin") Then
                     Dim githubFolder As String() = {
                         "\mzkit\Rscript",
                         "\mzkit\Sciex",
@@ -69,6 +79,18 @@ Namespace Container
                 Return $"{App.HOME}/../../src/mzkit/dist/wkhtmltopdf.exe".GetFullPath
             Else
                 Return $"{App.HOME}/tools/wkhtmltopdf.exe".GetFullPath
+            End If
+        End Function
+
+        ''' <summary>
+        ''' this function just works for the dzitools
+        ''' </summary>
+        ''' <returns></returns>
+        Public Function getOpenSlideLibDLL() As String
+            If AppEnvironment.IsDevelopmentMode Then
+                Return $"{App.HOME}/../../../../src/mzkit/dist/OpenSlide/openslide-win64/bin"
+            Else
+                Return $"{App.HOME}/"
             End If
         End Function
     End Module

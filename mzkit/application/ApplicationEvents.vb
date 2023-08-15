@@ -399,14 +399,6 @@ Type 'q()' to quit R.
         ''' </summary>
         Friend Shared afterLoad As Action
 
-        <DllImport("kernel32.dll", CharSet:=CharSet.Unicode, SetLastError:=True)>
-        Public Shared Function SetDllDirectory(lpPathName As String) As Boolean
-        End Function
-
-        <DllImport("kernel32", SetLastError:=True)>
-        Public Shared Function LoadLibrary(lpFileName As String) As IntPtr
-        End Function
-
         Public Shared Function getCurrentLanguageString(key As String) As String
             Return getLanguageString(key, Globals.Settings.ui.language)
         End Function

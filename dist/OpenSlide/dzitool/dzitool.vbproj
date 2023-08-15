@@ -42,4 +42,6 @@
     <ProjectReference Include="..\clr\OpenSlideCs.csproj" />
   </ItemGroup>
 
+  <Import Project="..\..\..\services\mzkit_win32.envir\mzkit_win32.envir.projitems" Label="Shared" />
+
 </Project>

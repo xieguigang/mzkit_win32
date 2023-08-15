@@ -1,4 +1,5 @@
 Imports System.IO
+Imports dzitool.Container
 Imports Microsoft.VisualBasic.CommandLine
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.CommandLine.Reflection
@@ -6,7 +7,7 @@ Imports OpenSlideCs
 
 Module Program
 
-    Dim openSlide As New OpenSlide()
+    Dim openSlide As OpenSlide
 
     Private Sub GetJpg(ByVal level As Integer, ByVal row As Integer, ByVal col As Integer, ByVal filename As String, ByVal outputname As String)
         Dim buffer As ArraySegment(Of Byte) = Nothing
@@ -53,11 +54,15 @@ Module Program
 
     <ExportAPI("/parse")>
     <Usage("/parse --file <slide.svs/ndpi> [--export <image.dzi>]")>
-    Private Function GetDziImage(args As CommandLine) As Integer
+    Public Function GetDziImage(args As CommandLine) As Integer
         Dim inputfile As String = args("--file")
         Dim export_file As String = args("--export") Or inputfile.ChangeSuffix("dzi")
 
-        Call openSlide.EnsureOpen(inputfile)
+        Call AppEnvironment.SetDllDirectory(AppEnvironment.getOpenSlideLibDLL)
+
+        openSlide = New OpenSlide
+        openSlide.EnsureOpen(inputfile)
+
         ' export DZI file
         Call GetDZI(inputfile.FileName, export_file)
         Call RunSlavePipeline.SendMessage("Done!")
