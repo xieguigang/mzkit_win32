@@ -2,7 +2,7 @@
   "profiles": {
     "dzitool": {
       "commandName": "Project",
-      "commandLineArgs": "/parse --file \"F:\\Downloads\\CMU-1.ndpi\" --export \"F:\\Downloads\\2222222/\"",
+      "commandLineArgs": "/parse --file \"F:\\Downloads\\CMU-1.ndpi\" --export \"F:\\Downloads\\2222222/aaa.dzi\"",
       "workingDirectory": "D:\\mzkit\\dist\\bin\\tools\\openslide"
     }
   }

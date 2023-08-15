@@ -14,7 +14,7 @@ Module Program
 
         Using stream = openSlide.GetJpg(filename, $"_files/{level}/{row}_{col}.jpeg")
             If stream.TryGetBuffer(buffer) Then
-                Call File.WriteAllBytes($"{outputname}.jpeg", buffer.ToArray())
+                Call buffer.FlushStream($"{outputname}.jpeg")
                 Call RunSlavePipeline.SendMessage($"{outputname}.jpeg successfully created!")
             Else
                 Call RunSlavePipeline.SendMessage($"{outputname}.jpeg failed...")
@@ -22,20 +22,20 @@ Module Program
         End Using
     End Sub
 
-    Private Sub GetDZI(ByVal filename As String, ByVal outputname As String)
+    Private Sub GetDZI(filepath As String, ByVal outputname As String)
         Dim width, height As Long
         Dim buffer As ArraySegment(Of Byte) = Nothing
 
-        Using stream = openSlide.GetDZI(filename, width, height)
+        Using stream = openSlide.GetDZI(filepath, width, height)
             If stream.TryGetBuffer(buffer) Then
                 Call RunSlavePipeline.SendMessage($"{outputname} successfully created!")
-                Call File.WriteAllBytes(outputname, buffer.ToArray())
+                Call buffer.FlushStream(outputname)
             Else
                 Call RunSlavePipeline.SendMessage($"{outputname} failed...")
             End If
         End Using
 
-        Dim levels = openSlide.Dimensions(filename)
+        Dim levels = openSlide.Dimensions(filepath)
         Dim maxDimensions = levels(levels.Length - 1)
         Dim export_dir As String = $"{outputname.ParentPath}/{outputname.BaseName}"
 
@@ -46,7 +46,7 @@ Module Program
 
             For row As Integer = 0 To levelInfo.Width - 1
                 For col As Integer = 0 To levelInfo.Height - 1
-                    Call GetJpg(level, row, col, filename, $"{export_dir}_files/{level}/{row}_{col}")
+                    Call GetJpg(level, row, col, filepath, $"{export_dir}_files/{level}/{row}_{col}")
                 Next
             Next
         Next
@@ -58,13 +58,18 @@ Module Program
         Dim inputfile As String = args("--file")
         Dim export_file As String = args("--export") Or inputfile.ChangeSuffix("dzi")
 
+        If Not export_file.ExtensionSuffix("dzi") Then
+            Call RunSlavePipeline.SendMessage("The export file name should be a deep zoom image(*.dzi)!")
+            Return 500
+        End If
+
         Call AppEnvironment.SetDllDirectory(AppEnvironment.getOpenSlideLibDLL)
 
         openSlide = New OpenSlide
         openSlide.EnsureOpen(inputfile)
 
         ' export DZI file
-        Call GetDZI(inputfile.FileName, export_file)
+        Call GetDZI(inputfile, export_file)
         Call RunSlavePipeline.SendMessage("Done!")
 
         Return 0
