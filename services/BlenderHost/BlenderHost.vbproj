@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>BlenderHost</RootNamespace>
     <TargetFrameworks>net4.8;net6.0-windows</TargetFrameworks>
-    <OutputPath>../../../dist\bin\plugins\blender</OutputPath>
+    <OutputPath>../../../../dist\bin\plugins\blender</OutputPath>
     <Platforms>AnyCPU;x64</Platforms>
     <Configurations>Debug;Release;mzkit_win32</Configurations>
   </PropertyGroup>
