@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "dzitool": {
+      "commandName": "Project",
+      "commandLineArgs": "/parse --file \"F:\\Downloads\\CMU-1.ndpi\" --export \"F:\\Downloads\\2222222/\""
+    }
+  }
+}
