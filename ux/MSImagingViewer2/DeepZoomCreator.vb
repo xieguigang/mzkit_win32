@@ -2,7 +2,6 @@
 Imports System.Windows
 Imports System.Windows.Media
 Imports System.Windows.Media.Imaging
-Imports System.Xml.Linq
 Imports Path = System.IO.Path
 
 Namespace DeepZoomBuilder
