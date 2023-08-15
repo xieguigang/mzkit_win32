@@ -39,7 +39,7 @@ namespace OpenSlideCs
             /// <summary>
             ///dimensions per dz_level (in tiles)
             /// </summary>
-            SizeL[] t_dimensions;
+            internal SizeL[] t_dimensions;
 
             /// <summary>
             ///Total downsamples for each dz_level (powers of 2) 
@@ -398,7 +398,7 @@ namespace OpenSlideCs
         public SizeL[] Dimensions(string filename)
         {
             var slide = GetOpenSlide(filename);
-            var dims = slide.z_dimensions.ToArray();
+            var dims = slide.t_dimensions.ToArray();
 
             return dims;
         }
