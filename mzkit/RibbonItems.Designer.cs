@@ -25,12 +25,16 @@ namespace RibbonLib.Controls
             public const uint cmdButtonImportsRawFiles = 1017;
             public const uint cmdImportsMzwork = 157;
             public const uint cmdButtonToolkits = 1007;
+            public const uint cmdTitleSpectrumToolkit = 232;
             public const uint cmdButtonDropA = 1008;
             public const uint cmdButtonDropB = 1009;
             public const uint cmdButtonFormulaSearch = 1010;
             public const uint cmdButtonDropD = 5010;
-            public const uint cmdButtonDevTools = 168;
+            public const uint cmdTitleShowComprehensive = 231;
+            public const uint cmdButtonMsImaging = 1167;
+            public const uint cmdMenuRTerm = 233;
             public const uint cmdButtonRsharp = 1107;
+            public const uint cmdButtonDevTools = 168;
             public const uint cmdButtonSettings = 1051;
             public const uint cmdButtonAbout = 1021;
             public const uint cmdButtonBioDeep = 1022;
@@ -62,7 +66,6 @@ namespace RibbonLib.Controls
             public const uint cmdButtonShowProperties = 1123;
             public const uint cmdGroupShowComprehensive = 191;
             public const uint cmdMALDIViewer = 215;
-            public const uint cmdButtonMsImaging = 1167;
             public const uint cmdView3DMALDI = 213;
             public const uint cmdGCxGCViewer = 179;
             public const uint cmdTabLayout = 1035;
@@ -244,12 +247,16 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonImportsRawFiles { get; private set; }
         public RibbonButton ImportsMzwork { get; private set; }
         public RibbonDropDownButton ButtonToolkits { get; private set; }
+        public RibbonMenuGroup TitleSpectrumToolkit { get; private set; }
         public RibbonButton ButtonDropA { get; private set; }
         public RibbonButton ButtonDropB { get; private set; }
         public RibbonButton ButtonFormulaSearch { get; private set; }
         public RibbonButton ButtonDropD { get; private set; }
-        public RibbonButton ButtonDevTools { get; private set; }
+        public RibbonMenuGroup TitleShowComprehensive { get; private set; }
+        public RibbonButton ButtonMsImaging { get; private set; }
+        public RibbonDropDownButton MenuRTerm { get; private set; }
         public RibbonButton ButtonRsharp { get; private set; }
+        public RibbonButton ButtonDevTools { get; private set; }
         public RibbonButton ButtonSettings { get; private set; }
         public RibbonButton ButtonAbout { get; private set; }
         public RibbonButton ButtonBioDeep { get; private set; }
@@ -284,7 +291,6 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonShowProperties { get; private set; }
         public RibbonGroup GroupShowComprehensive { get; private set; }
         public RibbonDropDownButton MALDIViewer { get; private set; }
-        public RibbonButton ButtonMsImaging { get; private set; }
         public RibbonButton View3DMALDI { get; private set; }
         public RibbonButton GCxGCViewer { get; private set; }
         public RibbonTab TabLayout { get; private set; }
@@ -464,12 +470,16 @@ namespace RibbonLib.Controls
             ButtonImportsRawFiles = new RibbonButton(ribbon, Cmd.cmdButtonImportsRawFiles);
             ImportsMzwork = new RibbonButton(ribbon, Cmd.cmdImportsMzwork);
             ButtonToolkits = new RibbonDropDownButton(ribbon, Cmd.cmdButtonToolkits);
+            TitleSpectrumToolkit = new RibbonMenuGroup(ribbon, Cmd.cmdTitleSpectrumToolkit);
             ButtonDropA = new RibbonButton(ribbon, Cmd.cmdButtonDropA);
             ButtonDropB = new RibbonButton(ribbon, Cmd.cmdButtonDropB);
             ButtonFormulaSearch = new RibbonButton(ribbon, Cmd.cmdButtonFormulaSearch);
             ButtonDropD = new RibbonButton(ribbon, Cmd.cmdButtonDropD);
-            ButtonDevTools = new RibbonButton(ribbon, Cmd.cmdButtonDevTools);
+            TitleShowComprehensive = new RibbonMenuGroup(ribbon, Cmd.cmdTitleShowComprehensive);
+            ButtonMsImaging = new RibbonButton(ribbon, Cmd.cmdButtonMsImaging);
+            MenuRTerm = new RibbonDropDownButton(ribbon, Cmd.cmdMenuRTerm);
             ButtonRsharp = new RibbonButton(ribbon, Cmd.cmdButtonRsharp);
+            ButtonDevTools = new RibbonButton(ribbon, Cmd.cmdButtonDevTools);
             ButtonSettings = new RibbonButton(ribbon, Cmd.cmdButtonSettings);
             ButtonAbout = new RibbonButton(ribbon, Cmd.cmdButtonAbout);
             ButtonBioDeep = new RibbonButton(ribbon, Cmd.cmdButtonBioDeep);
@@ -501,7 +511,6 @@ namespace RibbonLib.Controls
             ButtonShowProperties = new RibbonButton(ribbon, Cmd.cmdButtonShowProperties);
             GroupShowComprehensive = new RibbonGroup(ribbon, Cmd.cmdGroupShowComprehensive);
             MALDIViewer = new RibbonDropDownButton(ribbon, Cmd.cmdMALDIViewer);
-            ButtonMsImaging = new RibbonButton(ribbon, Cmd.cmdButtonMsImaging);
             View3DMALDI = new RibbonButton(ribbon, Cmd.cmdView3DMALDI);
             GCxGCViewer = new RibbonButton(ribbon, Cmd.cmdGCxGCViewer);
             TabLayout = new RibbonTab(ribbon, Cmd.cmdTabLayout);

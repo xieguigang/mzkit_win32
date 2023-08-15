@@ -22,12 +22,16 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonImportsRawFiles As UInteger = 1017
             Public Const cmdImportsMzwork As UInteger = 157
             Public Const cmdButtonToolkits As UInteger = 1007
+            Public Const cmdTitleSpectrumToolkit As UInteger = 232
             Public Const cmdButtonDropA As UInteger = 1008
             Public Const cmdButtonDropB As UInteger = 1009
             Public Const cmdButtonFormulaSearch As UInteger = 1010
             Public Const cmdButtonDropD As UInteger = 5010
-            Public Const cmdButtonDevTools As UInteger = 168
+            Public Const cmdTitleShowComprehensive As UInteger = 231
+            Public Const cmdButtonMsImaging As UInteger = 1167
+            Public Const cmdMenuRTerm As UInteger = 233
             Public Const cmdButtonRsharp As UInteger = 1107
+            Public Const cmdButtonDevTools As UInteger = 168
             Public Const cmdButtonSettings As UInteger = 1051
             Public Const cmdButtonAbout As UInteger = 1021
             Public Const cmdButtonBioDeep As UInteger = 1022
@@ -59,7 +63,6 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonShowProperties As UInteger = 1123
             Public Const cmdGroupShowComprehensive As UInteger = 191
             Public Const cmdMALDIViewer As UInteger = 215
-            Public Const cmdButtonMsImaging As UInteger = 1167
             Public Const cmdView3DMALDI As UInteger = 213
             Public Const cmdGCxGCViewer As UInteger = 179
             Public Const cmdTabLayout As UInteger = 1035
@@ -281,6 +284,12 @@ Namespace RibbonLib.Controls
                 Return _ButtonToolkits
             End Get
         End Property
+        Private _TitleSpectrumToolkit As RibbonMenuGroup
+        Public ReadOnly Property TitleSpectrumToolkit As RibbonMenuGroup
+            Get
+                Return _TitleSpectrumToolkit
+            End Get
+        End Property
         Private _ButtonDropA As RibbonButton
         Public ReadOnly Property ButtonDropA As RibbonButton
             Get
@@ -305,16 +314,34 @@ Namespace RibbonLib.Controls
                 Return _ButtonDropD
             End Get
         End Property
-        Private _ButtonDevTools As RibbonButton
-        Public ReadOnly Property ButtonDevTools As RibbonButton
+        Private _TitleShowComprehensive As RibbonMenuGroup
+        Public ReadOnly Property TitleShowComprehensive As RibbonMenuGroup
             Get
-                Return _ButtonDevTools
+                Return _TitleShowComprehensive
+            End Get
+        End Property
+        Private _ButtonMsImaging As RibbonButton
+        Public ReadOnly Property ButtonMsImaging As RibbonButton
+            Get
+                Return _ButtonMsImaging
+            End Get
+        End Property
+        Private _MenuRTerm As RibbonDropDownButton
+        Public ReadOnly Property MenuRTerm As RibbonDropDownButton
+            Get
+                Return _MenuRTerm
             End Get
         End Property
         Private _ButtonRsharp As RibbonButton
         Public ReadOnly Property ButtonRsharp As RibbonButton
             Get
                 Return _ButtonRsharp
+            End Get
+        End Property
+        Private _ButtonDevTools As RibbonButton
+        Public ReadOnly Property ButtonDevTools As RibbonButton
+            Get
+                Return _ButtonDevTools
             End Get
         End Property
         Private _ButtonSettings As RibbonButton
@@ -504,12 +531,6 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property MALDIViewer As RibbonDropDownButton
             Get
                 Return _MALDIViewer
-            End Get
-        End Property
-        Private _ButtonMsImaging As RibbonButton
-        Public ReadOnly Property ButtonMsImaging As RibbonButton
-            Get
-                Return _ButtonMsImaging
             End Get
         End Property
         Private _View3DMALDI As RibbonButton
@@ -1521,12 +1542,16 @@ Namespace RibbonLib.Controls
             _ButtonImportsRawFiles = New RibbonButton(_ribbon, Cmd.cmdButtonImportsRawFiles)
             _ImportsMzwork = New RibbonButton(_ribbon, Cmd.cmdImportsMzwork)
             _ButtonToolkits = New RibbonDropDownButton(_ribbon, Cmd.cmdButtonToolkits)
+            _TitleSpectrumToolkit = New RibbonMenuGroup(_ribbon, Cmd.cmdTitleSpectrumToolkit)
             _ButtonDropA = New RibbonButton(_ribbon, Cmd.cmdButtonDropA)
             _ButtonDropB = New RibbonButton(_ribbon, Cmd.cmdButtonDropB)
             _ButtonFormulaSearch = New RibbonButton(_ribbon, Cmd.cmdButtonFormulaSearch)
             _ButtonDropD = New RibbonButton(_ribbon, Cmd.cmdButtonDropD)
-            _ButtonDevTools = New RibbonButton(_ribbon, Cmd.cmdButtonDevTools)
+            _TitleShowComprehensive = New RibbonMenuGroup(_ribbon, Cmd.cmdTitleShowComprehensive)
+            _ButtonMsImaging = New RibbonButton(_ribbon, Cmd.cmdButtonMsImaging)
+            _MenuRTerm = New RibbonDropDownButton(_ribbon, Cmd.cmdMenuRTerm)
             _ButtonRsharp = New RibbonButton(_ribbon, Cmd.cmdButtonRsharp)
+            _ButtonDevTools = New RibbonButton(_ribbon, Cmd.cmdButtonDevTools)
             _ButtonSettings = New RibbonButton(_ribbon, Cmd.cmdButtonSettings)
             _ButtonAbout = New RibbonButton(_ribbon, Cmd.cmdButtonAbout)
             _ButtonBioDeep = New RibbonButton(_ribbon, Cmd.cmdButtonBioDeep)
@@ -1558,7 +1583,6 @@ Namespace RibbonLib.Controls
             _ButtonShowProperties = New RibbonButton(_ribbon, Cmd.cmdButtonShowProperties)
             _GroupShowComprehensive = New RibbonGroup(_ribbon, Cmd.cmdGroupShowComprehensive)
             _MALDIViewer = New RibbonDropDownButton(_ribbon, Cmd.cmdMALDIViewer)
-            _ButtonMsImaging = New RibbonButton(_ribbon, Cmd.cmdButtonMsImaging)
             _View3DMALDI = New RibbonButton(_ribbon, Cmd.cmdView3DMALDI)
             _GCxGCViewer = New RibbonButton(_ribbon, Cmd.cmdGCxGCViewer)
             _TabLayout = New RibbonTab(_ribbon, Cmd.cmdTabLayout)

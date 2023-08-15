@@ -3450,6 +3450,16 @@
         <String Id="1198">MSI Filters</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdTitleShowComprehensive" Id="231" LabelTitle="Comprehensive Spectrum Viewers" LabelDescription="Comprehensive Spectrum Viewers" TooltipTitle="Comprehensive Spectrum Viewers" TooltipDescription="Comprehensive Spectrum Viewers" />
+    <Command Name="cmdTitleSpectrumToolkit" Id="232" LabelTitle="Mass Spectrum Data Toolkit" LabelDescription="Mass Spectrum Data Toolkit" TooltipTitle="Mass Spectrum Data Toolkit" TooltipDescription="Mass Spectrum Data Toolkit" />
+    <Command Name="cmdMenuRTerm" Id="233" LabelTitle="R# Automation" LabelDescription="R# Automation" TooltipTitle="R# Automation" TooltipDescription="R# Automation">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/Terminal.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/Terminal.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -3499,17 +3509,22 @@
               </MenuGroup>
             </DropDownButton>
             <DropDownButton CommandName="cmdButtonToolkits" ApplicationModes="0,1">
-              <MenuGroup Class="MajorItems">
+              <MenuGroup CommandName="cmdTitleSpectrumToolkit" Class="MajorItems">
                 <Button CommandName="cmdButtonDropA" />
                 <Button CommandName="cmdButtonDropB" />
                 <Button CommandName="cmdButtonFormulaSearch" />
                 <Button CommandName="cmdButtonDropD" />
               </MenuGroup>
+              <MenuGroup CommandName="cmdTitleShowComprehensive" Class="MajorItems">
+                <Button CommandName="cmdButtonMsImaging" />
+              </MenuGroup>
+            </DropDownButton>
+            <DropDownButton CommandName="cmdMenuRTerm">
               <MenuGroup Class="MajorItems">
+                <Button CommandName="cmdButtonRsharp" />
                 <Button CommandName="cmdButtonDevTools" />
               </MenuGroup>
             </DropDownButton>
-            <Button CommandName="cmdButtonRsharp" ApplicationModes="0,1" />
           </MenuGroup>
           <MenuGroup>
             <Button CommandName="cmdButtonSettings" ApplicationModes="0,1" />
