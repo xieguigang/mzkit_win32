@@ -87,11 +87,17 @@ Namespace Container
         ''' </summary>
         ''' <returns></returns>
         Public Function getOpenSlideLibDLL() As String
+            Dim libdll As String
+
             If AppEnvironment.IsDevelopmentMode Then
-                Return $"{App.HOME}/../../../../src/mzkit/dist/OpenSlide/openslide-win64/bin"
+                libdll = $"{App.HOME}/../../../../src/mzkit/dist/OpenSlide/openslide-win64/bin"
             Else
-                Return $"{App.HOME}/"
+                libdll = $"{App.HOME}/"
             End If
+
+            libdll = libdll.GetDirectoryFullPath
+
+            Return libdll
         End Function
     End Module
 End Namespace
