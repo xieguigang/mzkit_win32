@@ -80,6 +80,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic.Windows.Forms
+Imports Mzkit_win32.BasicMDIForm.Container
 Imports RDev
 Imports SMRUCC.Rsharp.Interpreter
 Imports SMRUCC.Rsharp.Runtime
@@ -448,7 +449,7 @@ Type 'q()' to quit R.
                 End If
             End If
 
-            Call SetDllDirectory($"{App.HOME}/tools/cpp/")
+            Call AppEnvironment.SetDllDirectory($"{App.HOME}/tools/cpp/")
         End Sub
 
         Private Sub MyApplication_Shutdown(sender As Object, e As EventArgs) Handles Me.Shutdown
