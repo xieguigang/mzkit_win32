@@ -92,7 +92,7 @@ Namespace Container
             If AppEnvironment.IsDevelopmentMode Then
                 libdll = $"{App.HOME}/../../../../src/mzkit/dist/OpenSlide/openslide-win64/bin"
             Else
-                libdll = $"{App.HOME}/"
+                libdll = $"{App.HOME}/../openslide-win64/bin/"
             End If
 
             libdll = libdll.GetDirectoryFullPath
