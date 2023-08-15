@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <TargetFrameworks>net4.8;net6.0-windows</TargetFrameworks>
     <StartupObject>mzblender.Program</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
@@ -13,11 +13,7 @@
     <AssemblyName>mzblender</AssemblyName>
     <OutputPath>../../../dist\bin\plugins\blender</OutputPath>
   </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net48' ">
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-  </PropertyGroup>
-  
+ 
   
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net4.8|AnyCPU'">
     <DocumentationFile>mzblender.xml</DocumentationFile>
