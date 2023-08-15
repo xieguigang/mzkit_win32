@@ -35,7 +35,7 @@ namespace OpenSlideCs
             /// <summary>
             ///dimensions per dz_level (in pixels)
             /// </summary>
-            List<SizeL> z_dimensions = new List<SizeL>();
+            internal List<SizeL> z_dimensions = new List<SizeL>();
             /// <summary>
             ///dimensions per dz_level (in tiles)
             /// </summary>
@@ -368,7 +368,7 @@ namespace OpenSlideCs
             #endregion
         }
 
-        struct SizeL
+        public struct SizeL
         {
             public long Width;
             public long Height;
@@ -388,12 +388,20 @@ namespace OpenSlideCs
         /// </summary>
         const string OPENSLIDE_PROPERTY_NAME_MPP_X = "openslide.mpp-x";
         const string OPENSLIDE_PROPERTY_NAME_MPP_Y = "openslide.mpp-y";
-        
+
         static Dictionary<string, Openslide> slides = new Dictionary<string, Openslide>();
 
         static Regex rxDZ = new Regex("_files/([0-9]*)/([0-9]*)_([0-9]*).jpeg", RegexOptions.Compiled);
 
         static object slides_lock = new Object();
+
+        public SizeL[] Dimensions(string filename)
+        {
+            var slide = GetOpenSlide(filename);
+            var dims = slide.z_dimensions.ToArray();
+
+            return dims;
+        }
 
         private Openslide GetOpenSlide(string filename, bool canOpenFile = true)
         {
