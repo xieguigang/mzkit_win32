@@ -1,4 +1,6 @@
 ﻿Imports System.Drawing
+Imports System.Drawing.Drawing2D
+Imports Microsoft.VisualBasic.Imaging
 
 Namespace PolygonEditor
 
@@ -10,6 +12,12 @@ Namespace PolygonEditor
         Public Property line_width As Single
         Public Property dash As Boolean
         Public Property line_color As String
+
+        Public Function GetLinePen() As Pen
+            Return New Pen(line_color.TranslateColor, line_width) With {
+                .DashStyle = If(dash, DashStyle.Dash, DashStyle.Solid)
+            }
+        End Function
 
         Public Shared Function GetDefault() As PolygonEditorConfigs
             Return New PolygonEditorConfigs With {
