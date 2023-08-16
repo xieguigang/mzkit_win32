@@ -124,6 +124,7 @@
     <Compile Include="KPObject\GifImage.vb" />
     <Compile Include="KPObject\KP-DrawEngine.vb" />
     <Compile Include="KPObject\KP-DrawObject.vb" />
+    <Compile Include="MSI\Editor\Configs.vb" />
     <Compile Include="MSI\Editor\Constants.vb" />
     <Compile Include="MSI\Editor\Edge.vb" />
     <Compile Include="MSI\Editor\Polygon.vb" />
