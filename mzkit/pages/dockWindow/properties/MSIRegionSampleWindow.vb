@@ -288,8 +288,13 @@ Public Class MSIRegionSampleWindow
     End Sub
 
     Private Sub updateLayerRendering()
-        If Not canvas Is Nothing AndAlso RibbonEvents.ribbonItems.CheckShowMapLayer.BooleanValue Then
-            Call RenderLayer(canvas)
+        If Not canvas Is Nothing Then
+            If RibbonEvents.ribbonItems.CheckShowMapLayer.BooleanValue Then
+                Call RenderLayer(canvas)
+            End If
+
+            canvas.EditorConfigs = InputConfigTissueMap.GetPolygonEditorConfig
+            canvas.RepaintPolygon()
         End If
     End Sub
 

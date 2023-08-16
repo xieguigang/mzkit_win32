@@ -127,6 +127,10 @@ Public Class frmMsImagingViewer
     Dim WithEvents tweaks As PropertyGrid
     Dim rendering As Action
     Dim guid As String
+
+    ''' <summary>
+    ''' the ms-imaging rendering service
+    ''' </summary>
     Dim blender As MSImagingBlender
     Dim TIC As PixelScanIntensity()
 
@@ -211,6 +215,8 @@ Public Class frmMsImagingViewer
         sampleRegions.Show(MyApplication.host.m_dockPanel)
         sampleRegions.DockState = DockState.Hidden
         sampleRegions.viewer = Me
+
+        PixelSelector1.MSICanvas.EditorConfigs = InputConfigTissueMap.GetPolygonEditorConfig
     End Sub
 
     Public Shared Function loadFilters() As RasterPipeline

@@ -937,7 +937,7 @@ Public Class PixelSelector
     ''' <summary>
     ''' do polygon drawing
     ''' </summary>
-    Private Sub RepaintPolygon()
+    Public Sub RepaintPolygon()
         Me.Invalidate()
     End Sub
 
