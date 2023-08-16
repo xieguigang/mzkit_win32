@@ -1,3 +1,6 @@
 [submodule "ux/winux"]
 	path = ux/winux
 	url = https://github.com/xieguigang/Microsoft.VisualBasic.Windows.Forms.git
+[submodule "services/dzitools"]
+	path = services/dzitools
+	url = https://github.com/xieguigang/dzitools.git
