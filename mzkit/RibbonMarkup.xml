@@ -3460,6 +3460,23 @@
         <Image MinDPI="192">Res/Terminal.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonOpenVirtualSlideFile" Id="234" LabelTitle="Open Pathological Slide" LabelDescription="Open pathological slide file and view tissue scan result" TooltipTitle="Open pathological slide file and view tissue scan result" TooltipDescription="Open pathological slide file and view tissue scan result">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/Microscope.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/Microscope.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdMenuOpticalMicroscopyTools" Id="235" LabelTitle="Optical Microscopy Tools" LabelDescription="Optical Microscopy Tools" TooltipTitle="Optical Microscopy Tools" TooltipDescription="Optical Microscopy Tools" />
+    <Command Name="cmdMenuButtonToolkit" Id="236" LabelTitle="Toolkit" LabelDescription="Toolkit" TooltipTitle="Toolkit" TooltipDescription="Toolkit">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/Tools2.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/Tools2.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -3519,8 +3536,11 @@
                 <Button CommandName="cmdButtonMsImaging" />
               </MenuGroup>
             </DropDownButton>
-            <DropDownButton CommandName="cmdMenuRTerm">
-              <MenuGroup Class="MajorItems">
+            <DropDownButton CommandName="cmdMenuButtonToolkit">
+              <MenuGroup CommandName="cmdMenuOpticalMicroscopyTools" Class="MajorItems">
+                <Button CommandName="cmdButtonOpenVirtualSlideFile" />
+              </MenuGroup>
+              <MenuGroup CommandName="cmdMenuRTerm" Class="MajorItems">
                 <Button CommandName="cmdButtonRsharp" />
                 <Button CommandName="cmdButtonDevTools" />
               </MenuGroup>

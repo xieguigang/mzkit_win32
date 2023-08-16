@@ -29,6 +29,9 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonDropD As UInteger = 5010
             Public Const cmdTitleShowComprehensive As UInteger = 231
             Public Const cmdButtonMsImaging As UInteger = 1167
+            Public Const cmdMenuButtonToolkit As UInteger = 236
+            Public Const cmdMenuOpticalMicroscopyTools As UInteger = 235
+            Public Const cmdButtonOpenVirtualSlideFile As UInteger = 234
             Public Const cmdMenuRTerm As UInteger = 233
             Public Const cmdButtonRsharp As UInteger = 1107
             Public Const cmdButtonDevTools As UInteger = 168
@@ -326,8 +329,26 @@ Namespace RibbonLib.Controls
                 Return _ButtonMsImaging
             End Get
         End Property
-        Private _MenuRTerm As RibbonDropDownButton
-        Public ReadOnly Property MenuRTerm As RibbonDropDownButton
+        Private _MenuButtonToolkit As RibbonDropDownButton
+        Public ReadOnly Property MenuButtonToolkit As RibbonDropDownButton
+            Get
+                Return _MenuButtonToolkit
+            End Get
+        End Property
+        Private _MenuOpticalMicroscopyTools As RibbonMenuGroup
+        Public ReadOnly Property MenuOpticalMicroscopyTools As RibbonMenuGroup
+            Get
+                Return _MenuOpticalMicroscopyTools
+            End Get
+        End Property
+        Private _ButtonOpenVirtualSlideFile As RibbonButton
+        Public ReadOnly Property ButtonOpenVirtualSlideFile As RibbonButton
+            Get
+                Return _ButtonOpenVirtualSlideFile
+            End Get
+        End Property
+        Private _MenuRTerm As RibbonMenuGroup
+        Public ReadOnly Property MenuRTerm As RibbonMenuGroup
             Get
                 Return _MenuRTerm
             End Get
@@ -1549,7 +1570,10 @@ Namespace RibbonLib.Controls
             _ButtonDropD = New RibbonButton(_ribbon, Cmd.cmdButtonDropD)
             _TitleShowComprehensive = New RibbonMenuGroup(_ribbon, Cmd.cmdTitleShowComprehensive)
             _ButtonMsImaging = New RibbonButton(_ribbon, Cmd.cmdButtonMsImaging)
-            _MenuRTerm = New RibbonDropDownButton(_ribbon, Cmd.cmdMenuRTerm)
+            _MenuButtonToolkit = New RibbonDropDownButton(_ribbon, Cmd.cmdMenuButtonToolkit)
+            _MenuOpticalMicroscopyTools = New RibbonMenuGroup(_ribbon, Cmd.cmdMenuOpticalMicroscopyTools)
+            _ButtonOpenVirtualSlideFile = New RibbonButton(_ribbon, Cmd.cmdButtonOpenVirtualSlideFile)
+            _MenuRTerm = New RibbonMenuGroup(_ribbon, Cmd.cmdMenuRTerm)
             _ButtonRsharp = New RibbonButton(_ribbon, Cmd.cmdButtonRsharp)
             _ButtonDevTools = New RibbonButton(_ribbon, Cmd.cmdButtonDevTools)
             _ButtonSettings = New RibbonButton(_ribbon, Cmd.cmdButtonSettings)

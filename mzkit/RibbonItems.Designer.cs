@@ -32,6 +32,9 @@ namespace RibbonLib.Controls
             public const uint cmdButtonDropD = 5010;
             public const uint cmdTitleShowComprehensive = 231;
             public const uint cmdButtonMsImaging = 1167;
+            public const uint cmdMenuButtonToolkit = 236;
+            public const uint cmdMenuOpticalMicroscopyTools = 235;
+            public const uint cmdButtonOpenVirtualSlideFile = 234;
             public const uint cmdMenuRTerm = 233;
             public const uint cmdButtonRsharp = 1107;
             public const uint cmdButtonDevTools = 168;
@@ -254,7 +257,10 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonDropD { get; private set; }
         public RibbonMenuGroup TitleShowComprehensive { get; private set; }
         public RibbonButton ButtonMsImaging { get; private set; }
-        public RibbonDropDownButton MenuRTerm { get; private set; }
+        public RibbonDropDownButton MenuButtonToolkit { get; private set; }
+        public RibbonMenuGroup MenuOpticalMicroscopyTools { get; private set; }
+        public RibbonButton ButtonOpenVirtualSlideFile { get; private set; }
+        public RibbonMenuGroup MenuRTerm { get; private set; }
         public RibbonButton ButtonRsharp { get; private set; }
         public RibbonButton ButtonDevTools { get; private set; }
         public RibbonButton ButtonSettings { get; private set; }
@@ -477,7 +483,10 @@ namespace RibbonLib.Controls
             ButtonDropD = new RibbonButton(ribbon, Cmd.cmdButtonDropD);
             TitleShowComprehensive = new RibbonMenuGroup(ribbon, Cmd.cmdTitleShowComprehensive);
             ButtonMsImaging = new RibbonButton(ribbon, Cmd.cmdButtonMsImaging);
-            MenuRTerm = new RibbonDropDownButton(ribbon, Cmd.cmdMenuRTerm);
+            MenuButtonToolkit = new RibbonDropDownButton(ribbon, Cmd.cmdMenuButtonToolkit);
+            MenuOpticalMicroscopyTools = new RibbonMenuGroup(ribbon, Cmd.cmdMenuOpticalMicroscopyTools);
+            ButtonOpenVirtualSlideFile = new RibbonButton(ribbon, Cmd.cmdButtonOpenVirtualSlideFile);
+            MenuRTerm = new RibbonMenuGroup(ribbon, Cmd.cmdMenuRTerm);
             ButtonRsharp = new RibbonButton(ribbon, Cmd.cmdButtonRsharp);
             ButtonDevTools = new RibbonButton(ribbon, Cmd.cmdButtonDevTools);
             ButtonSettings = new RibbonButton(ribbon, Cmd.cmdButtonSettings);
