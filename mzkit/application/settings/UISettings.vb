@@ -72,7 +72,6 @@ Namespace Configuration
         Public Property rememberWindowsLocation As Boolean = True
         Public Property rememberLayouts As Boolean = True
 
-
         Public Property fileExplorerDock As DockState = DockState.DockLeft
         Public Property featureListDock As DockState = DockState.DockLeftAutoHide
         Public Property OutputDock As DockState = DockState.DockBottomAutoHide
