@@ -72,11 +72,11 @@ Public Class InputConfigTissueMap
         Return configs
     End Function
 
-    Public Shared Function GetPolygonEditorConfig() As PolygonEditor
+    Public Shared Function GetPolygonEditorConfig() As PolygonEditorConfigs
         Dim configs = GetTissueMapViewerConfig()
 
         If configs.editor Is Nothing Then
-            configs.editor = PolygonEditor.GetDefault
+            configs.editor = PolygonEditorConfigs.GetDefault
             Globals.Settings.tissue_map = configs
             Globals.Settings.Save()
         End If

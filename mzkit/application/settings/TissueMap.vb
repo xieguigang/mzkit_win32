@@ -3,7 +3,7 @@
 Namespace Configuration
 
     Public Class TissueMap
-        Public Property editor As PolygonEditor
+        Public Property editor As PolygonEditorConfigs
         Public Property region_prefix As String
         Public Property opacity As Single
         Public Property spot_size As Single
@@ -11,7 +11,7 @@ Namespace Configuration
 
         Public Shared Function GetDefault() As TissueMap
             Return New TissueMap With {
-                .editor = PolygonEditor.GetDefault,
+                .editor = PolygonEditorConfigs.GetDefault,
                 .color_scaler = "paper",
                 .opacity = 0.8,
                 .region_prefix = "region_",
@@ -20,7 +20,7 @@ Namespace Configuration
         End Function
     End Class
 
-    Public Class PolygonEditor
+    Public Class PolygonEditorConfigs
 
         Public Property point_size As Single
         Public Property point_color As String
@@ -29,8 +29,8 @@ Namespace Configuration
         Public Property dash As Boolean
         Public Property line_color As String
 
-        Public Shared Function GetDefault() As PolygonEditor
-            Return New PolygonEditor With {
+        Public Shared Function GetDefault() As PolygonEditorConfigs
+            Return New PolygonEditorConfigs With {
                 .dash = False,
                 .line_color = Color.Black.ToHtmlColor,
                 .line_width = 3,
