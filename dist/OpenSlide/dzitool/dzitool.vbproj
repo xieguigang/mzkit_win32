@@ -43,7 +43,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='mzkit_win32|x64'">
-    <OutputPath>\mzkit\dist\bin\tools\openslide</OutputPath>
+    <OutputPath>\mzkit\dist\bin\tools\dzitools</OutputPath>
     <RemoveIntegerChecks>True</RemoveIntegerChecks>
     <DebugType>full</DebugType>
     <DefineTrace>True</DefineTrace>
