@@ -220,6 +220,7 @@ Module RibbonEvents
                     source:=file.FileName,
                     save_dzi:=dzifile
                 )
+                Call TissueSlideHandler.OpenTifFile(dzifile)
             End If
         End Using
     End Sub
