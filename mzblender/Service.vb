@@ -1,7 +1,11 @@
-﻿Imports Microsoft.VisualBasic.Net.Protocols.Reflection
+﻿Imports System.Drawing.Imaging
+Imports System.IO
+Imports System.Runtime.CompilerServices
+Imports Microsoft.VisualBasic.Net.Protocols.Reflection
 Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Parallel
 Imports Parallel
+Imports Task
 Imports TcpEndPoint = System.Net.IPEndPoint
 
 <Protocol(GetType(Protocol))>
@@ -10,14 +14,20 @@ Public Class Service : Implements IDisposable
     Dim disposedValue As Boolean
     Dim socket As TcpServicesSocket
     Dim stream As MapObject
+    Dim blender As SingleIonMSIBlender
 
     Public Shared ReadOnly protocolHandle As Long = ProtocolAttribute.GetProtocolCategory(GetType(Protocol)).EntryPoint
 
     Sub New(port As Integer, masterChannel As String)
         socket = New TcpServicesSocket(port)
         socket.ResponseHandler = AddressOf New ProtocolHandler(Me).HandleRequest
-        stream = MapObject.Allocate(128 * 1024 * 1024, hMemP:=$"mzblender_{masterChannel}")
+        stream = MapObject.Allocate(128 * 1024 * 1024, hMemP:=GetMappedChannel(masterChannel))
     End Sub
+
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Shared Function GetMappedChannel(master As String) As String
+        Return $"mzblender_{master}"
+    End Function
 
     Public Function Run() As Integer
         Return socket.Run
@@ -25,7 +35,23 @@ Public Class Service : Implements IDisposable
 
     <Protocol(Protocol.OpenSession)>
     Public Function OpenSession(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
+        ' load pixels data
 
+    End Function
+
+
+    <Protocol(Protocol.MSIRender)>
+    Public Function MSIRender(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
+        ' get parameters from the request
+        Dim args As PlotProperty
+        Dim canvas As Size
+        Dim sample As String
+        Dim msi As Image = blender.Rendering(args, canvas, sample)
+
+        Using ms As New MemoryStream
+            Call msi.Save(ms, ImageFormat.Png)
+
+        End Using
     End Function
 
     <Protocol(Protocol.Shutdown)>
