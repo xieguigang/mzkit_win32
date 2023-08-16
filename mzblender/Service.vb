@@ -20,6 +20,11 @@ Public Class Service : Implements IDisposable
         Return socket.Run
     End Function
 
+    <Protocol(Protocol.OpenSession)>
+    Public Function OpenSession(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
+
+    End Function
+
     <Protocol(Protocol.Shutdown)>
     Public Function Shutdown(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
         Call Me.Dispose()
