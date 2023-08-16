@@ -345,12 +345,13 @@ Namespace ServiceHub
             Return output
         End Function
 
-        Public Function LoadGeneLayer(id As String) As PixelData()
-            Return MSIProtocols.LoadPixels(id, AddressOf handleServiceRequest)
+        Public Function LoadGeneLayer(id As String, ByRef getBuf As Byte()) As PixelData()
+            Return MSIProtocols.LoadPixels(id, getBuf, AddressOf handleServiceRequest)
         End Function
 
-        Public Function LoadPixels(mz As IEnumerable(Of Double), mzErr As Tolerance) As PixelData()
-            Return MSIProtocols.LoadPixels(mz, mzErr, AddressOf handleServiceRequest)
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        Public Function LoadPixels(mz As IEnumerable(Of Double), mzErr As Tolerance, ByRef getBuf As Byte()) As PixelData()
+            Return MSIProtocols.LoadPixels(mz, mzErr, getBuf, AddressOf handleServiceRequest)
         End Function
 
         Public Function TurnUpsideDown() As MsImageProperty
@@ -400,10 +401,10 @@ Namespace ServiceHub
             Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.ExtractMultipleSampleRegions, "get"))
 
             If data Is Nothing Then
-                Call MyApplication.host.warning($"Failure to load MS-imaging raw data sample regions...")
+                Call Workbench.Warning($"Failure to load MS-imaging raw data sample regions...")
                 Return Nothing
             ElseIf data.IsHTTP_RFC Then
-                Call MyApplication.host.showStatusMessage(data.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Call Workbench.Warning(data.GetUTF8String)
                 Return Nothing
             End If
 
@@ -668,7 +669,7 @@ Namespace ServiceHub
                 End If
 
                 MSI_pipe_SetMessage("the MS-imaging backend service panic...")
-                MyApplication.host.showStatusMessage("the MS-imaging backend service panic...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Workbench.Warning("the MS-imaging backend service panic...")
 
                 If MSI_pipe IsNot Nothing Then
                     ' detach message event handler
