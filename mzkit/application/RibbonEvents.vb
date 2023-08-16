@@ -193,6 +193,8 @@ Module RibbonEvents
         AddHandler ribbonItems.ButtonRenderUMAPScatter.ExecuteEvent, Sub() Call PageMoleculeNetworking.RunUMAP()
 
         AddHandler ribbonItems.ButtonSearchPubChem.ExecuteEvent, Sub() Call openShowSearchPubChemLCMS()
+
+        AddHandler ribbonItems.ButtonOpenVirtualSlideFile.ExecuteEvent, Sub() Call openSlideFile()
     End Sub
 
     Sub New()
@@ -202,13 +204,22 @@ Module RibbonEvents
     End Sub
 
     Private Sub openSlideFile()
-        Dim filetypes As String() = {}
+        Dim filetypes As String() = {
+            "Hamamatsu format(*.ndpi)|*.ndpi",
+            "Aperio format(*.svs)|*.svs",
+            "TIFF Image(*.tif;*.tiff)|*.tif;*.tiff"
+        }
 
         Using file As New OpenFileDialog With {
             .Filter = filetypes.JoinBy("|")
         }
             If file.ShowDialog = DialogResult.OK Then
+                Dim dzifile As String = $"{App.AppSystemTemp}/dzi_store/{file.FileName.MD5}/{file.FileName.BaseName}.dzi"
 
+                Call DziTools.CreateDziImages(
+                    source:=file.FileName,
+                    save_dzi:=dzifile
+                )
             End If
         End Using
     End Sub
