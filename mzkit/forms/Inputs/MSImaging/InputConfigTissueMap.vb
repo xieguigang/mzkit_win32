@@ -1,50 +1,106 @@
-﻿Public Class InputConfigTissueMap
+﻿Imports BioNovoGene.mzkit_win32.Configuration
+Imports Microsoft.VisualBasic.Imaging
 
-    Public Property RegionPrefix As String
-        Get
-            Return TextBox1.Text
-        End Get
-        Set(value As String)
-            TextBox1.Text = value
-        End Set
-    End Property
-
-    Public Property SpotSize As Double
-        Get
-            Return Val(TextBox2.Text)
-        End Get
-        Set(value As Double)
-            TextBox2.Text = value
-        End Set
-    End Property
-
-    Public ReadOnly Property ColorSet As String
-        Get
-            Return ComboBox1.SelectedItem.ToString
-        End Get
-    End Property
-
-    Public Property AlphaLevel As Double
-        Get
-            Return TrackBar1.Value
-        End Get
-        Set(value As Double)
-            TrackBar1.Value = value
-        End Set
-    End Property
+Public Class InputConfigTissueMap
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         DialogResult = DialogResult.Cancel
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        saveSettings()
         DialogResult = DialogResult.OK
     End Sub
 
     Private Sub InputConfigTissueMap_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ComboBox1.SelectedIndex = 0
-        TextBox1.Text = "region_"
-        TrackBar1.Value = 80
-        SpotSize = 8
+        Call loadSettings()
+    End Sub
+
+    Private Sub saveSettings()
+        Dim configs = GetTissueMapViewerConfig()
+
+        configs.region_prefix = txtPrefix.Text
+        configs.opacity = numOpacity.Value
+        configs.spot_size = Val(txtSpotSize.Text)
+        configs.color_scaler = cbColorSet.SelectedItem.ToString
+
+        Dim editorConfigs = configs.editor
+
+        editorConfigs.point_size = numPointSize.Value
+        editorConfigs.line_width = numLineWidth.Value
+        editorConfigs.point_color = pointColor.BackColor.ToHtmlColor
+        editorConfigs.line_color = lineColor.BackColor.ToHtmlColor
+        editorConfigs.show_points = ckShowPoints.Checked
+        editorConfigs.dash = ckDashLine.Checked
+    End Sub
+
+    Private Sub loadSettings()
+        Dim configs = GetTissueMapViewerConfig()
+
+        txtPrefix.Text = configs.region_prefix
+        numOpacity.Value = configs.opacity
+        txtSpotSize.Text = configs.spot_size
+
+        cbColorSet.SelectedIndex = 0
+
+        For i As Integer = 0 To cbColorSet.Items.Count - 1
+            If cbColorSet.Items(i) = configs.color_scaler Then
+                cbColorSet.SelectedIndex = i
+                Exit For
+            End If
+        Next
+
+        Dim editorConfigs = configs.editor
+
+        numPointSize.Value = editorConfigs.point_size
+        numLineWidth.Value = editorConfigs.line_width
+        pointColor.BackColor = editorConfigs.point_color.TranslateColor
+        lineColor.BackColor = editorConfigs.line_color.TranslateColor
+        ckShowPoints.Checked = editorConfigs.show_points
+        ckDashLine.Checked = editorConfigs.dash
+    End Sub
+
+    Public Shared Function GetTissueMapViewerConfig() As TissueMap
+        Dim configs = Globals.Settings.tissue_map
+
+        If configs Is Nothing Then
+            configs = TissueMap.GetDefault
+            Globals.Settings.tissue_map = configs
+            Globals.Settings.Save()
+        End If
+
+        Return configs
+    End Function
+
+    Public Shared Function GetPolygonEditorConfig() As PolygonEditor
+        Dim configs = GetTissueMapViewerConfig()
+
+        If configs.editor Is Nothing Then
+            configs.editor = PolygonEditor.GetDefault
+            Globals.Settings.tissue_map = configs
+            Globals.Settings.Save()
+        End If
+
+        Return configs.editor
+    End Function
+
+    Private Sub pointColor_Click(sender As Object, e As EventArgs) Handles pointColor.Click
+        Using colors As New ColorDialog With {
+            .Color = pointColor.BackColor
+        }
+            If colors.ShowDialog = DialogResult.OK Then
+                pointColor.BackColor = colors.Color
+            End If
+        End Using
+    End Sub
+
+    Private Sub lineColor_Click(sender As Object, e As EventArgs) Handles lineColor.Click
+        Using colors As New ColorDialog With {
+            .Color = lineColor.BackColor
+        }
+            If colors.ShowDialog = DialogResult.OK Then
+                lineColor.BackColor = colors.Color
+            End If
+        End Using
     End Sub
 End Class
