@@ -197,8 +197,10 @@ Public Class MSIRegionSampleWindow
     Public Sub RenderLayer(canvas As PixelSelector)
         Dim picCanvas As Size = canvas.Size
         Dim layerSize As Size = canvas.dimension_size
-        Dim alphaLevel As Double = Me.alpha / 100
+        Dim configs = InputConfigTissueMap.GetTissueMapViewerConfig
+        Dim alphaLevel As Double = configs.opacity / 100
         Dim tissueMaps = GetRegions(dimension).ToArray
+        Dim spotSize = configs.spot_size
 
         If tissueMaps.IsNullOrEmpty Then
             Return
@@ -234,13 +236,14 @@ Public Class MSIRegionSampleWindow
                                "Tissue Map",
                                buttons:=MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
             Dim i As i32 = 1
-            Dim colors As LoopArray(Of Color) = Designer.GetColors(colorSet, nsize)
+            Dim configs = InputConfigTissueMap.GetTissueMapViewerConfig
+            Dim colors As LoopArray(Of Color) = Designer.GetColors(configs.color_scaler, nsize)
 
             For Each item As Control In FlowLayoutPanel1.Controls
                 Dim card = DirectCast(item, RegionSampleCard)
 
                 card.SampleColor = ++colors
-                card.SampleInfo = $"{prefix}{++i}"
+                card.SampleInfo = $"{configs.region_prefix}{++i}"
             Next
 
             Call updateLayerRendering()
@@ -250,12 +253,13 @@ Public Class MSIRegionSampleWindow
     Private Sub AutoExtractSampleTags()
         Dim data As RegionLoader = viewer.ExtractMultipleSampleRegions
         Dim colors As Color()
+        Dim configs = InputConfigTissueMap.GetTissueMapViewerConfig
 
         If data Is Nothing Then
             Call Workbench.Warning("Please load MS-imaging related data set at first!")
             Return
         Else
-            colors = Designer.GetColors(colorSet, data.size)
+            colors = Designer.GetColors(configs.color_scaler, data.size)
         End If
 
         For i As Integer = 0 To data.regions.Length - 1
@@ -304,11 +308,6 @@ Public Class MSIRegionSampleWindow
         End Using
     End Sub
 
-    Dim prefix As String = "region_"
-    Dim colorSet As String = "paper"
-    Dim alpha As Double = 80
-    Dim spotSize As Double = 1.5
-
     ''' <summary>
     ''' config alpha/prefix etc
     ''' </summary>
@@ -318,15 +317,7 @@ Public Class MSIRegionSampleWindow
         Dim getFormula As New InputConfigTissueMap
         Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
 
-        getFormula.AlphaLevel = alpha
-        getFormula.RegionPrefix = prefix
-
         If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
-            prefix = getFormula.RegionPrefix
-            colorSet = getFormula.ColorSet
-            alpha = getFormula.AlphaLevel
-            spotSize = getFormula.SpotSize
-
             Call updateLayerRendering()
         End If
     End Sub
