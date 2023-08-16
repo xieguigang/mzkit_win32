@@ -1,6 +1,7 @@
 ﻿Imports Microsoft.VisualBasic.Net.Protocols.Reflection
 Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Parallel
+Imports Parallel
 Imports TcpEndPoint = System.Net.IPEndPoint
 
 <Protocol(GetType(Protocol))>
@@ -8,12 +9,14 @@ Public Class Service : Implements IDisposable
 
     Dim disposedValue As Boolean
     Dim socket As TcpServicesSocket
+    Dim stream As MapObject
 
     Public Shared ReadOnly protocolHandle As Long = ProtocolAttribute.GetProtocolCategory(GetType(Protocol)).EntryPoint
 
-    Sub New(port As Integer)
+    Sub New(port As Integer, masterChannel As String)
         socket = New TcpServicesSocket(port)
         socket.ResponseHandler = AddressOf New ProtocolHandler(Me).HandleRequest
+        stream = MapObject.Allocate(128 * 1024 * 1024, hMemP:=$"mzblender_{masterChannel}")
     End Sub
 
     Public Function Run() As Integer

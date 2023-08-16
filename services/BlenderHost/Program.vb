@@ -27,7 +27,7 @@ Public Module Program
     Public Function StartService(args As CommandLine) As Integer
         Dim port As Integer = args <= "--port"
         Dim master As Integer = args <= "--master"
-        Dim localhost As New Service(port)
+        Dim localhost As New Service(port, masterChannel:=master)
 
         If master > 0 Then
             Call BackgroundTaskUtils.BindToMaster(parentId:=master, kill:=localhost)
