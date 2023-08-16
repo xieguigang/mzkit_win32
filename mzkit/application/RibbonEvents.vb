@@ -201,6 +201,18 @@ Module RibbonEvents
         ExportApis._openCFMIDTool = AddressOf OpenCFMIDTool
     End Sub
 
+    Private Sub openSlideFile()
+        Dim filetypes As String() = {}
+
+        Using file As New OpenFileDialog With {
+            .Filter = filetypes.JoinBy("|")
+        }
+            If file.ShowDialog = DialogResult.OK Then
+
+            End If
+        End Using
+    End Sub
+
     Private Sub openShowSearchPubChemLCMS()
         InputDialog.Input(Of InputPubChemProxy)(
             Sub(cfg)
