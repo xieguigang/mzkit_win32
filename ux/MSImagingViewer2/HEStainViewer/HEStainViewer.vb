@@ -19,7 +19,7 @@ Public Class HEStainViewer
     End Function
 
     Private Function LoadUI() As SpatialTile
-        Dim tile As New SpatialTile
+        Dim tile As New SpatialTile With {.DragMode = 1}
         Dim matrix As SpatialSpot() = MSIMatrix _
             .Select(Function(pi)
                         Return New SpatialSpot With {

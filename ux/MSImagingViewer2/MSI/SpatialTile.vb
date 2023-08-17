@@ -45,6 +45,12 @@ Public Class SpatialTile
 
     Public Property DrawOffset As Integer = 0 ' 25
 
+    ''' <summary>
+    ''' default zero for mapping STdata to SMdata, other value is used for mapping SMdata to HEstain
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property DragMode As Integer = 0
+
     'Private Const WS_EX_TRANSPARENT As Integer = &H20
 
     'Private m_opacity As Integer = 50
@@ -217,39 +223,57 @@ Public Class SpatialTile
 
     Private Sub SpatialTile_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
         If moveTile Then
-            Me.Location = New Point(Me.Left + Cursor.Position.X - p.X, Me.Top + Cursor.Position.Y - p.Y)
-            p = Cursor.Position
+            Dim newLoc As Point
+
+            If DragMode = 0 Then
+                newLoc = New Point(Me.Left + Cursor.Position.X - p.X, Me.Top + Cursor.Position.Y - p.Y)
+                p = Cursor.Position
+            Else
+                Dim dx = Cursor.Position.X - p.X
+                Dim dy = Cursor.Position.Y - p.Y
+
+                newLoc = Me.Location
+                newLoc = New Point(newLoc.X + dx, newLoc.Y + dy)
+                p = Cursor.Position
+            End If
+
+            Me.Location = newLoc
+
             ' Me.Invalidate()
             ' Call PictureBox2.Refresh()
         Else
             ' show tooltip information
-            Dim x As Integer, y As Integer
-            Dim smX As Integer
-            Dim smY As Integer
-            Dim smXY As New Point(Left + e.X, Top + e.Y)
-            Dim barcode As String
-            Dim spot As SpatialSpot
-            Dim tag As String = Nothing
+            Call showTooltip(e)
+        End If
+    End Sub
 
-            ' get pixel in SMdata
-            RaiseEvent GetSpatialMetabolismPoint(smXY, smX, smY, tag)
+    Private Sub showTooltip(e As MouseEventArgs)
+        Dim x As Integer, y As Integer
+        Dim smX As Integer
+        Dim smY As Integer
+        Dim smXY As New Point(Left + e.X, Top + e.Y)
+        Dim barcode As String
+        Dim spot As SpatialSpot
+        Dim tag As String = Nothing
 
-            ' get spot in STdata
-            Call PixelSelector.getPoint(New Point(e.X, e.Y), dimensions, Me.Size, x, y)
+        ' get pixel in SMdata
+        RaiseEvent GetSpatialMetabolismPoint(smXY, smX, smY, tag)
 
-            spot = spatialMatrix.GetData(x, y)
+        ' get spot in STdata
+        Call PixelSelector.getPoint(New Point(e.X, e.Y), dimensions, Me.Size, x, y)
 
-            If spot Is Nothing Then
-                barcode = "<missing_barcode>"
-            Else
-                barcode = spot.barcode
-            End If
+        spot = spatialMatrix.GetData(x, y)
 
-            If tag.StringEmpty Then
-                Call ToolTip1.SetToolTip(Me, $"[STdata spot: ({x + offset.X},{y + offset.Y}) {barcode}] -> [MALDI pixel: ({smX},{smY})]")
-            Else
-                Call ToolTip1.SetToolTip(Me, $"[STdata spot: ({x + offset.X},{y + offset.Y}) {barcode}] -> [MALDI pixel: ({smX},{smY})@{tag}]")
-            End If
+        If spot Is Nothing Then
+            barcode = "<missing_barcode>"
+        Else
+            barcode = spot.barcode
+        End If
+
+        If tag.StringEmpty Then
+            Call ToolTip1.SetToolTip(Me, $"[STdata spot: ({x + offset.X},{y + offset.Y}) {barcode}] -> [MALDI pixel: ({smX},{smY})]")
+        Else
+            Call ToolTip1.SetToolTip(Me, $"[STdata spot: ({x + offset.X},{y + offset.Y}) {barcode}] -> [MALDI pixel: ({smX},{smY})@{tag}]")
         End If
     End Sub
 
