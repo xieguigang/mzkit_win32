@@ -1130,6 +1130,9 @@
     <EmbeddedResource Include="forms\Inputs\MSImaging\InputConfigFilterPipeline.resx">
       <DependentUpon>InputConfigFilterPipeline.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\MSImaging\InputConfigTissueMap.zh-CN.resx">
+      <DependentUpon>InputConfigTissueMap.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\MSImaging\InputHTMLColorCode.resx">
       <DependentUpon>InputHTMLColorCode.vb</DependentUpon>
     </EmbeddedResource>
