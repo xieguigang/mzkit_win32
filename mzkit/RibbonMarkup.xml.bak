@@ -140,6 +140,26 @@
         <String Id="236">Application Windows Tools</String>
       </Command.LabelTitle>
     </Command>
+    <Command Name="cmdButtonAutoLocation" Id="228">
+      <Command.LabelTitle>
+        <String Id="1183">Auto Location</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="1184">Try to adjust the slide sample location automatically.</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="1185">Try to adjust the slide sample location automatically.</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="1186">Try to adjust the slide sample location automatically.</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="1187" MinDPI="192">Res/osd-duplicate.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="1188" MinDPI="192">Res/osd-duplicate.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdButtonAutoUMAP" Id="223">
       <Command.LabelTitle>
         <String Id="237">Auto Segmentation via UMAP</String>
@@ -507,6 +527,7 @@
         <String Id="343">Comprehensive Mass Spectrum Data Viewer</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdTitleShowComprehensive" Id="231" LabelTitle="Comprehensive Spectrum Viewers" LabelDescription="Comprehensive Spectrum Viewers" TooltipTitle="Comprehensive Spectrum Viewers" TooltipDescription="Comprehensive Spectrum Viewers" />
     <Command Name="cmdButtonConnectMSIService" Id="218">
       <Command.LabelTitle>
         <String Id="344">Connect Cloud</String>
@@ -1563,6 +1584,7 @@
         <Image Id="651" MinDPI="192">Res/folder-pictures.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdTitleSpectrumToolkit" Id="232" LabelTitle="Mass Spectrum Data Toolkit" LabelDescription="Mass Spectrum Data Toolkit" TooltipTitle="Mass Spectrum Data Toolkit" TooltipDescription="Mass Spectrum Data Toolkit" />
     <Command Name="cmdTabGroupTableTools" Id="1031">
       <Command.LabelTitle>
         <String Id="652">Mass Spectrum Viewer</String>
@@ -1802,6 +1824,20 @@
         <String Id="720">MSI Analysis</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdPanelMSIFilters" Id="230">
+      <Command.LabelTitle>
+        <String Id="1195">MSI Filters</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="1196">MSI Filters</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="1197">MSI Filters</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="1198">MSI Filters</String>
+      </Command.TooltipDescription>
+    </Command>
     <Command Name="cmdTabMSISnapshot" Id="126">
       <Command.LabelTitle>
         <String Id="721">MSI Snapshot</String>
@@ -1830,10 +1866,10 @@
         <String Id="728">Open the MS-imaging viewer to view the comprehensive LC-MS spectrum data.</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="729" MinDPI="192">Res/system-software-update.png</Image>
+        <Image MinDPI="192">Res/image.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="730">Res/system-software-update.png</Image>
+        <Image MinDPI="192">Res/image.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdPanelMSIVisual" Id="186">
@@ -1957,6 +1993,14 @@
         <Image Id="763" MinDPI="144">Res/application-vnd.oasis.opendocument.database.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonOpenVirtualSlideFile" Id="234" LabelTitle="Open Pathological Slide" LabelDescription="Open pathological slide file and view tissue scan result" TooltipTitle="Open pathological slide file and view tissue scan result" TooltipDescription="Open pathological slide file and view tissue scan result">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/Microscope.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/Microscope.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdImportsMzwork" Id="157">
       <Command.LabelTitle>
         <String Id="764">Open Workspace</String>
@@ -2005,6 +2049,7 @@
         <String Id="777">Operations</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdMenuOpticalMicroscopyTools" Id="235" LabelTitle="Optical Microscopy Tools" LabelDescription="Optical Microscopy Tools" TooltipTitle="Optical Microscopy Tools" TooltipDescription="Optical Microscopy Tools" />
     <Command Name="cmdPanelOptions" Id="155">
       <Command.LabelTitle>
         <String Id="778">Options</String>
@@ -2127,10 +2172,10 @@
         <String Id="813">Polygon editor for your MS-Imaging data, create regions via polygon for extract expression data for downstream data analysis</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="814" MinDPI="192">Res/insert-object.png</Image>
+        <Image MinDPI="192">Res/TextEditor.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="815" MinDPI="144">Res/insert-object.png</Image>
+        <Image MinDPI="192">Res/TextEditor.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdtabGroupPolygonEditor" Id="143">
@@ -2202,6 +2247,14 @@
       <Command.LabelTitle>
         <String Id="835">R#</String>
       </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdMenuRTerm" Id="233" LabelTitle="R# Automation" LabelDescription="R# Automation" TooltipTitle="R# Automation" TooltipDescription="R# Automation">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/Terminal.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/Terminal.png</Image>
+      </Command.LargeImages>
     </Command>
     <Command Name="cmdTabGroupRscriptTools" Id="1130">
       <Command.LabelTitle>
@@ -2656,6 +2709,26 @@
         <Image Id="966" MinDPI="192">Res/tracker.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonSearchPubChem" Id="227">
+      <Command.LabelTitle>
+        <String Id="1177">Search PubChem</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="1178">Submit the chemical compound name and CAS id etc to the database search for search the corresponding metabolite information, example as formula etc.</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="1179">Search PubChem</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="1180">Submit the chemical compound name and CAS id etc to the database search for search the corresponding metabolite information, example as formula etc.</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="1181" MinDPI="192">Res/tracker.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="1182" MinDPI="192">Res/tracker.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdButtonMenuSearchTools" Id="209">
       <Command.LabelTitle>
         <String Id="967">Search Tools</String>
@@ -2690,10 +2763,10 @@
         <String Id="976">Open services manager page for view all of the running MZKit data background services progress.</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="977" MinDPI="192">Res/document-open-recent.png</Image>
+        <Image MinDPI="192">Res/Performance.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="978" MinDPI="192">Res/document-open-recent.png</Image>
+        <Image MinDPI="192">Res/Performance.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonSettings" Id="1051">
@@ -2968,10 +3041,10 @@
         <String Id="1058">Show Start Page</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="1059">Res/applications-utilities.png</Image>
+        <Image MinDPI="192">Res/Home.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="1060">Res/applications-utilities.png</Image>
+        <Image MinDPI="192">Res/Home.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonSystemDiagnosis" Comment="System Diagnosis" Id="180">
@@ -3143,6 +3216,14 @@
         <String Id="1109">Tissue Maps</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdMenuButtonToolkit" Id="236" LabelTitle="Toolkit" LabelDescription="Toolkit" TooltipTitle="Toolkit" TooltipDescription="Toolkit">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/Tools2.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/Tools2.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdTabTools" Id="1012">
       <Command.LabelTitle>
         <String Id="1110">Tools</String>
@@ -3210,10 +3291,30 @@
         <String Id="1128">Mzkit Tutorials Videos</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="1129" MinDPI="192">Res/application-x-rpm.bmp</Image>
+        <Image MinDPI="192">Res/tutorials.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="1130" MinDPI="192">Res/application-x-rpm.bmp</Image>
+        <Image MinDPI="192">Res/tutorials.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonMSIFilterPipeline" Id="229">
+      <Command.LabelTitle>
+        <String Id="1189">Tweaks MSI Filters</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="1190">Tweaks MSI Filters</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="1191">Tweaks MSI Filters</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="1192">Tweaks MSI Filters</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="1193" MinDPI="192">Res/preferences-system-notifications.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="1194" MinDPI="192">Res/preferences-system-notifications.bmp</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdTweaksImage" Id="93">
@@ -3375,107 +3476,6 @@
       <Command.TooltipDescription>
         <String Id="1176">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
-    </Command>
-    <Command Name="cmdButtonSearchPubChem" Id="227">
-      <Command.LabelTitle>
-        <String Id="1177">Search PubChem</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="1178">Submit the chemical compound name and CAS id etc to the database search for search the corresponding metabolite information, example as formula etc.</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="1179">Search PubChem</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="1180">Submit the chemical compound name and CAS id etc to the database search for search the corresponding metabolite information, example as formula etc.</String>
-      </Command.TooltipDescription>
-      <Command.SmallImages>
-        <Image Id="1181" MinDPI="192">Res/tracker.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image Id="1182" MinDPI="192">Res/tracker.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonAutoLocation" Id="228">
-      <Command.LabelTitle>
-        <String Id="1183">Auto Location</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="1184">Try to adjust the slide sample location automatically.</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="1185">Try to adjust the slide sample location automatically.</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="1186">Try to adjust the slide sample location automatically.</String>
-      </Command.TooltipDescription>
-      <Command.SmallImages>
-        <Image Id="1187" MinDPI="192">Res/osd-duplicate.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image Id="1188" MinDPI="192">Res/osd-duplicate.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonMSIFilterPipeline" Id="229">
-      <Command.LabelTitle>
-        <String Id="1189">Tweaks MSI Filters</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="1190">Tweaks MSI Filters</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="1191">Tweaks MSI Filters</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="1192">Tweaks MSI Filters</String>
-      </Command.TooltipDescription>
-      <Command.SmallImages>
-        <Image Id="1193" MinDPI="192">Res/preferences-system-notifications.bmp</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image Id="1194" MinDPI="192">Res/preferences-system-notifications.bmp</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdPanelMSIFilters" Id="230">
-      <Command.LabelTitle>
-        <String Id="1195">MSI Filters</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="1196">MSI Filters</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="1197">MSI Filters</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="1198">MSI Filters</String>
-      </Command.TooltipDescription>
-    </Command>
-    <Command Name="cmdTitleShowComprehensive" Id="231" LabelTitle="Comprehensive Spectrum Viewers" LabelDescription="Comprehensive Spectrum Viewers" TooltipTitle="Comprehensive Spectrum Viewers" TooltipDescription="Comprehensive Spectrum Viewers" />
-    <Command Name="cmdTitleSpectrumToolkit" Id="232" LabelTitle="Mass Spectrum Data Toolkit" LabelDescription="Mass Spectrum Data Toolkit" TooltipTitle="Mass Spectrum Data Toolkit" TooltipDescription="Mass Spectrum Data Toolkit" />
-    <Command Name="cmdMenuRTerm" Id="233" LabelTitle="R# Automation" LabelDescription="R# Automation" TooltipTitle="R# Automation" TooltipDescription="R# Automation">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/Terminal.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/Terminal.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonOpenVirtualSlideFile" Id="234" LabelTitle="Open Pathological Slide" LabelDescription="Open pathological slide file and view tissue scan result" TooltipTitle="Open pathological slide file and view tissue scan result" TooltipDescription="Open pathological slide file and view tissue scan result">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/Microscope.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/Microscope.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdMenuOpticalMicroscopyTools" Id="235" LabelTitle="Optical Microscopy Tools" LabelDescription="Optical Microscopy Tools" TooltipTitle="Optical Microscopy Tools" TooltipDescription="Optical Microscopy Tools" />
-    <Command Name="cmdMenuButtonToolkit" Id="236" LabelTitle="Toolkit" LabelDescription="Toolkit" TooltipTitle="Toolkit" TooltipDescription="Toolkit">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/Tools2.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/Tools2.png</Image>
-      </Command.LargeImages>
     </Command>
   </Application.Commands>
   <Application.Views>
