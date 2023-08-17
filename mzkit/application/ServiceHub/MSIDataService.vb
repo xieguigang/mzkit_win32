@@ -193,7 +193,7 @@ Namespace ServiceHub
             AddHandler hostReference.MSI_pipe.SetMessage, AddressOf hostReference.MSI_pipe_SetMessage
 
             If hostReference.MSI_service <= 0 Then
-                Call MyApplication.host.showStatusMessage("MS-Imaging service can not start!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Call Workbench.Warning("MS-Imaging service can not start!")
             Else
                 Call MyApplication.LogText($"MS-Imaging service started!({hostReference.MSI_service})")
             End If
@@ -235,7 +235,7 @@ Namespace ServiceHub
             If data Is Nothing Then
                 Return {}
             ElseIf data.IsHTTP_RFC Then
-                Call MyApplication.host.showStatusMessage(data.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Call Workbench.Warning(data.GetUTF8String)
                 Return {}
             Else
                 Dim ions = LabeledData.LoadLabelData(New MemoryStream(data.ChunkBuffer)).ToArray
@@ -251,7 +251,7 @@ Namespace ServiceHub
             If data Is Nothing Then
                 Return {}
             ElseIf data.IsHTTP_RFC Then
-                Call MyApplication.host.showStatusMessage(data.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Call Workbench.Warning(data.GetUTF8String)
                 Return {}
             Else
                 Return data.GetUTF8String.LoadJSON(Of String())
@@ -264,7 +264,7 @@ Namespace ServiceHub
             If data Is Nothing Then
                 Return {}
             ElseIf data.IsHTTP_RFC Then
-                Call MyApplication.host.showStatusMessage(data.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Call Workbench.Warning(data.GetUTF8String)
                 Return {}
             Else
                 Dim ions = BSON.Load(data).CreateObject(Of IonStat())(decodeMetachar:=True)
@@ -347,13 +347,19 @@ Namespace ServiceHub
             Return output
         End Function
 
-        Public Function LoadGeneLayer(id As String, ByRef getBuf As Byte()) As PixelData()
-            Return MSIProtocols.LoadPixels(id, getBuf, AddressOf handleServiceRequest)
+        Public Function LoadGeneLayer(id As String) As PixelData()
+            Dim getBuf As Byte() = Nothing
+            Dim pixels = MSIProtocols.LoadPixels(id, getBuf, AddressOf handleServiceRequest)
+            Call blender.WriteBuffer(getBuf)
+            Return pixels
         End Function
 
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
-        Public Function LoadPixels(mz As IEnumerable(Of Double), mzErr As Tolerance, ByRef getBuf As Byte()) As PixelData()
-            Return MSIProtocols.LoadPixels(mz, mzErr, getBuf, AddressOf handleServiceRequest)
+        Public Function LoadPixels(mz As IEnumerable(Of Double), mzErr As Tolerance) As PixelData()
+            Dim getBuf As Byte() = Nothing
+            Dim pixels = MSIProtocols.LoadPixels(mz, mzErr, getBuf, AddressOf handleServiceRequest)
+            Call blender.WriteBuffer(getBuf)
+            Return pixels
         End Function
 
         Public Function TurnUpsideDown() As MsImageProperty
@@ -569,7 +575,7 @@ Namespace ServiceHub
             If output Is Nothing Then
                 Return Nothing
             ElseIf HTTP_RFC.RFC_OK <> output.Protocol AndAlso output.Protocol <> 0 Then
-                Call MyApplication.host.showStatusMessage("MSI service backend panic.", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Call Workbench.Warning("MSI service backend panic.")
                 Call MyApplication.LogText(output.GetUTF8String)
 
                 If checkOffline < 6 Then
@@ -592,7 +598,7 @@ Namespace ServiceHub
             If data Is Nothing Then
                 Return {}
             ElseIf data.IsHTTP_RFC Then
-                Call MyApplication.host.showStatusMessage(data.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Call Workbench.Warning(data.GetUTF8String)
                 Return {}
             Else
                 checkOffline = 0
@@ -601,17 +607,25 @@ Namespace ServiceHub
         End Function
 
         Public Function ExtractSampleRegion(ByRef panic As Boolean) As PixelScanIntensity()
-            Return handleLayer(New RequestStream(MSI.Protocol, ServiceProtocol.ExtractSamplePixels, "OK"), panic)
+            Dim getBuf As Byte() = Nothing
+            Dim pixels = handleLayer(New RequestStream(MSI.Protocol, ServiceProtocol.ExtractSamplePixels, "OK"), getBuf, panic)
+            Call blender.WriteBuffer(getBuf)
+            Return pixels
         End Function
 
         Public Function LoadSummaryLayer(summary As IntensitySummary, ByRef panic As Boolean) As PixelScanIntensity()
-            Return handleLayer(New RequestStream(MSI.Protocol, ServiceProtocol.LoadSummaryLayer, BitConverter.GetBytes(CInt(summary))), panic)
+            Dim getBuf As Byte() = Nothing
+            Dim request As New RequestStream(MSI.Protocol, ServiceProtocol.LoadSummaryLayer, BitConverter.GetBytes(CInt(summary)))
+            Dim pixels = handleLayer(request, getBuf, panic)
+            Call blender.WriteBuffer(getBuf)
+            Return pixels
         End Function
 
-        Private Function handleLayer(req As RequestStream, ByRef panic As Boolean) As PixelScanIntensity()
+        Private Function handleLayer(req As RequestStream, ByRef getBuf As Byte(), ByRef panic As Boolean) As PixelScanIntensity()
             Dim data As RequestStream = handleServiceRequest(req)
 
             panic = False
+            getBuf = {}
 
             If data Is Nothing Then
                 Return {}
@@ -620,7 +634,9 @@ Namespace ServiceHub
                 panic = True
                 Return {}
             Else
+                getBuf = data.ChunkBuffer
                 checkOffline = 0
+
                 Return PixelScanIntensity.Parse(data.ChunkBuffer)
             End If
         End Function

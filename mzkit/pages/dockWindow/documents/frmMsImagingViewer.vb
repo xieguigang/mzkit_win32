@@ -2012,10 +2012,8 @@ Public Class frmMsImagingViewer
         Call Workbench.StatusMessage($"Render layer of annotation: {titleName}")
         Call ProgressSpinner.DoLoading(
             Sub()
-                Dim buf As Byte() = Nothing
-                Dim pixels = MSIservice.LoadGeneLayer(name, buf)
-
-                Call RenderPixelsLayer(pixels, buf)
+                Dim pixels = MSIservice.LoadGeneLayer(name)
+                Call RenderPixelsLayer(pixels)
             End Sub)
         Call PixelSelector1.ShowMessage($"Render layer of annotation: {titleName}")
     End Sub
@@ -2035,7 +2033,7 @@ Public Class frmMsImagingViewer
         Call Workbench.Warning("no pixel data...")
     End Sub
 
-    Private Sub RenderPixelsLayer(pixels As PixelData(), buf As Byte())
+    Private Sub RenderPixelsLayer(pixels As PixelData())
         Dim size As String = $"{params.scan_x},{params.scan_y}"
 
         If pixels.IsNullOrEmpty Then
@@ -2070,10 +2068,8 @@ Public Class frmMsImagingViewer
         Call SetTitle(selectedMz, titleName)
         Call ProgressSpinner.DoLoading(
             Sub()
-                Dim buf As Byte() = Nothing
-                Dim pixels = MSIservice.LoadPixels(selectedMz, mzdiff, buf)
-
-                Call RenderPixelsLayer(pixels, buf)
+                Dim pixels = MSIservice.LoadPixels(selectedMz, mzdiff)
+                Call RenderPixelsLayer(pixels)
             End Sub)
 
         Call PixelSelector1.ShowMessage($"Render in Layer Pixels Composition Mode: {selectedMz.Select(Function(d) stdNum.Round(d, 4)).JoinBy(", ")}")
