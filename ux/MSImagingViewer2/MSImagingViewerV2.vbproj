@@ -120,6 +120,12 @@
     <Compile Include="DeepZoomCreator.vb" />
     <Compile Include="DeepZoomImage.vb" />
     <Compile Include="App.vb" />
+    <Compile Include="HEStainViewer\HEStainViewer.Designer.vb">
+      <DependentUpon>HEStainViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HEStainViewer\HEStainViewer.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="KPObject\KpZoom.vb" />
     <Compile Include="KPObject\GifImage.vb" />
     <Compile Include="KPObject\KP-DrawEngine.vb" />
@@ -192,6 +198,9 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="HEStainViewer\HEStainViewer.resx">
+      <DependentUpon>HEStainViewer.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MSI\InputLabelText.resx">
       <DependentUpon>InputLabelText.vb</DependentUpon>
     </EmbeddedResource>
@@ -355,6 +364,7 @@
   <ItemGroup>
     <None Include="Resources\perpendicular-mathematical-symbol.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
