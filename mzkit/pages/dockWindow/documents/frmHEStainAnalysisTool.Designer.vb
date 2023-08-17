@@ -1,6 +1,8 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports Mzkit_win32.BasicMDIForm
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmHEStainAnalysisTool
-    Inherits System.Windows.Forms.Form
+    Inherits DocumentWindow
 
     'Form 重写 Dispose，以清理组件列表。
     <System.Diagnostics.DebuggerNonUserCode()> _
@@ -22,16 +24,29 @@ Partial Class frmHEStainAnalysisTool
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.HeStainViewer1 = New Global.Mzkit_win32.MSImagingViewerV2.HEStainViewer()
         Me.SuspendLayout()
+        '
+        'HeStainViewer1
+        '
+        Me.HeStainViewer1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.HeStainViewer1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.HeStainViewer1.Location = New System.Drawing.Point(0, 0)
+        Me.HeStainViewer1.Name = "HeStainViewer1"
+        Me.HeStainViewer1.Size = New System.Drawing.Size(800, 450)
+        Me.HeStainViewer1.TabIndex = 0
         '
         'frmHEStainAnalysisTool
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.HeStainViewer1)
         Me.Name = "frmHEStainAnalysisTool"
         Me.Text = "HEStain Analysis Tool"
         Me.ResumeLayout(False)
 
     End Sub
+
+    Friend WithEvents HeStainViewer1 As Global.Mzkit_win32.MSImagingViewerV2.HEStainViewer
 End Class

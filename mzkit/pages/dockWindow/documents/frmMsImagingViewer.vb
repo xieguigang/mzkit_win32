@@ -855,7 +855,13 @@ Public Class frmMsImagingViewer
             End If
 
             If Not TIC.IsNullOrEmpty Then
-
+                Call VisualStudio _
+                    .ShowDocument(Of frmHEStainAnalysisTool)(DockState.Document, "HEStain Tool") _
+                    .LoadRawData(
+                        MSI:=TIC,
+                        dims:=New Size(params.scan_x, params.scan_y),
+                        HEstain:=HEMapImg
+                    )
             End If
         Else
             ' just display hemap on the canvas
