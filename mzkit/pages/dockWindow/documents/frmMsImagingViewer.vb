@@ -848,9 +848,15 @@ Public Class frmMsImagingViewer
     Private Sub loadHEMapImage(HEMapImg As Bitmap)
         PixelSelector1.MSICanvas.HEMap = HEMapImg
 
-        If blender IsNot Nothing AndAlso TypeOf blender IsNot HeatMapBlender Then
-            blender.HEMap = PixelSelector1.MSICanvas.HEMap
-            rendering()
+        If blender IsNot Nothing Then
+            If TypeOf blender IsNot HeatMapBlender Then
+                blender.HEMap = PixelSelector1.MSICanvas.HEMap
+                rendering()
+            End If
+
+            If Not TIC.IsNullOrEmpty Then
+
+            End If
         Else
             ' just display hemap on the canvas
             PixelSelector1.SetMsImagingOutput(
