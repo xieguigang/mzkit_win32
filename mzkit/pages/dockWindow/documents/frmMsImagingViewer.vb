@@ -132,7 +132,8 @@ Public Class frmMsImagingViewer
     ''' the ms-imaging rendering service
     ''' </summary>
     Dim blender As MSImagingBlender
-    Dim TIC As PixelScanIntensity()
+
+    Friend TIC As PixelScanIntensity()
 
     Friend MSIservice As ServiceHub.MSIDataService
     Friend params As MsImageProperty
@@ -1233,7 +1234,7 @@ Public Class frmMsImagingViewer
                 Dim ions As EntityClusterModel() = MSIservice.DoIonCoLocalization({})
 
                 If ions.IsNullOrEmpty Then
-                    Call MyApplication.host.warning("No ions result...")
+                    Call Workbench.Warning("No ions result...")
                 Else
                     Call Me.Invoke(Sub() Call ShowIonColocalization(ions))
                 End If
