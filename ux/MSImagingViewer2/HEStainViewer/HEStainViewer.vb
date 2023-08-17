@@ -8,6 +8,10 @@ Public Class HEStainViewer
     Dim MSIDims As Size
     Dim HEImage As Size
 
+    Private Sub HEStainViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Me.DoubleBuffered = True
+    End Sub
+
     Public Function LoadRawData(MSI As IEnumerable(Of PixelData), msi_dims As Size, HEstain As Image) As SpatialTile
         Me.MSIMatrix = MSI.ToArray
         Me.MSIDims = msi_dims

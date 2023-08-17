@@ -541,6 +541,8 @@ Public Class SpatialTile
     End Sub
 
     Private Sub SpatialTile_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Me.DoubleBuffered = True
+
         ' PictureBox2.onDraw = AddressOf CanvasOnPaintBackground
         ' PictureBox2.Refresh()
         Call CanvasOnPaintBackground()
