@@ -690,6 +690,12 @@
     <Compile Include="MSdata\Module2.vb" />
     <Compile Include="pages\ConnectToBioDeep.vb" />
     <Compile Include="pages\dockWindow\DemoItem.vb" />
+    <Compile Include="pages\dockWindow\documents\frmHEStainAnalysisTool.Designer.vb">
+      <DependentUpon>frmHEStainAnalysisTool.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pages\dockWindow\documents\frmHEStainAnalysisTool.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\documents\frmLCMSScatterViewer.Designer.vb">
       <DependentUpon>frmLCMSScatterViewer.vb</DependentUpon>
     </Compile>
@@ -1237,6 +1243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frmGCxGCViewer.resx">
       <DependentUpon>frmGCxGCViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\documents\frmHEStainAnalysisTool.resx">
+      <DependentUpon>frmHEStainAnalysisTool.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frmLCMSScatterViewer.resx">
       <DependentUpon>frmLCMSScatterViewer.vb</DependentUpon>
