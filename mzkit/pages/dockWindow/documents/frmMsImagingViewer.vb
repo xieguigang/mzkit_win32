@@ -127,13 +127,14 @@ Public Class frmMsImagingViewer
     Dim WithEvents tweaks As PropertyGrid
     Dim rendering As Action
     Dim guid As String
-    Dim blender As MSImagingBlender
     Dim TIC As PixelScanIntensity()
 
     Friend MSIservice As ServiceHub.MSIDataService
     Friend params As MsImageProperty
     Friend HEMap As HEMapTools
     Friend DrawHeMapRegion As Boolean = False
+
+    Dim blender As BlenderClient
 
     Public ReadOnly Property MimeType As ContentType() Implements IFileReference.MimeType
         Get
@@ -2011,28 +2012,34 @@ Public Class frmMsImagingViewer
         Call Workbench.StatusMessage($"Render layer of annotation: {titleName}")
         Call ProgressSpinner.DoLoading(
             Sub()
-                Call RenderPixelsLayer(pixels:=MSIservice.LoadGeneLayer(name))
+                Dim buf As Byte() = Nothing
+                Dim pixels = MSIservice.LoadGeneLayer(name, buf)
+
+                Call RenderPixelsLayer(pixels, buf)
             End Sub)
         Call PixelSelector1.ShowMessage($"Render layer of annotation: {titleName}")
     End Sub
 
-    Private Sub RenderPixelsLayer(pixels As PixelData())
+    Private Sub renderEmpty()
+        rendering = New Action(Sub()
+                               End Sub)
+        PixelSelector1.SetMsImagingOutput(
+            New Bitmap(params.scan_x, params.scan_y),
+            New Size(params.scan_x, params.scan_y),
+            params.background,
+            params.colors,
+            {0, 1},
+            1
+        )
+
+        Call Workbench.Warning("no pixel data...")
+    End Sub
+
+    Private Sub RenderPixelsLayer(pixels As PixelData(), buf As Byte())
         Dim size As String = $"{params.scan_x},{params.scan_y}"
 
         If pixels.IsNullOrEmpty Then
-            Call Workbench.Warning("no pixel data...")
-            Call Invoke(Sub()
-                            rendering = New Action(Sub()
-                                                   End Sub)
-                            PixelSelector1.SetMsImagingOutput(
-                                New Bitmap(params.scan_x, params.scan_y),
-                                New Size(params.scan_x, params.scan_y),
-                                params.background,
-                                params.colors,
-                                {0, 1},
-                                1
-                            )
-                        End Sub)
+            Call Invoke(Sub() Call renderEmpty())
         Else
             Dim base = pixels.OrderByDescending(Function(p) p.intensity).FirstOrDefault
             Dim maxInto As Double = base?.intensity
@@ -2053,9 +2060,9 @@ Public Class frmMsImagingViewer
         Next
 
         If selectedMz.Count = 1 Then
-            MyApplication.host.showStatusMessage($"Run MS-Image rendering for selected ion m/z {selectedMz(Scan0)}...")
+            Workbench.StatusMessage($"Run MS-Image rendering for selected ion m/z {selectedMz(Scan0)}...")
         Else
-            MyApplication.host.showStatusMessage($"Run MS-Image rendering for {selectedMz.Count} selected ions...")
+            Workbench.StatusMessage($"Run MS-Image rendering for {selectedMz.Count} selected ions...")
         End If
 
         mzdiff = params.GetTolerance
@@ -2063,7 +2070,10 @@ Public Class frmMsImagingViewer
         Call SetTitle(selectedMz, titleName)
         Call ProgressSpinner.DoLoading(
             Sub()
-                Call RenderPixelsLayer(pixels:=MSIservice.LoadPixels(selectedMz, mzdiff))
+                Dim buf As Byte() = Nothing
+                Dim pixels = MSIservice.LoadPixels(selectedMz, mzdiff, buf)
+
+                Call RenderPixelsLayer(pixels, buf)
             End Sub)
 
         Call PixelSelector1.ShowMessage($"Render in Layer Pixels Composition Mode: {selectedMz.Select(Function(d) stdNum.Round(d, 4)).JoinBy(", ")}")

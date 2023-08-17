@@ -29,6 +29,20 @@ Public Class Service : Implements IDisposable
         Return $"mzblender_{master}"
     End Function
 
+    Public Function LoadStream() As Byte()
+        Dim file = stream.OpenFile
+        Dim bytes As Byte() = New Byte(4 - 1) {}
+
+        Call file.Seek(Scan0, SeekOrigin.Begin)
+        Call file.Read(bytes, Scan0, bytes.Length)
+
+        bytes = New Byte(BitConverter.ToInt32(bytes, Scan0) - 1) {}
+
+        Call file.Read(bytes, Scan0, bytes.Length)
+
+        Return bytes
+    End Function
+
     Public Function Run() As Integer
         Return socket.Run
     End Function

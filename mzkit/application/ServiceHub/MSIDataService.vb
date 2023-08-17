@@ -78,6 +78,7 @@ Imports Microsoft.VisualBasic.Net
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
 Imports ServiceHub
 Imports Task
@@ -106,6 +107,7 @@ Namespace ServiceHub
         ''' current task host
         ''' </summary>
         Public taskHost As Thread
+        Public blender As BlenderClient
 
         Public ReadOnly Property MSIEngineRunning As Boolean
             Get

@@ -124,7 +124,7 @@ Module Program
         End If
 
         Dim tcpRequest = tcpGet(host, MSI_service)
-        Dim pull = MSIProtocols.LoadPixels(mz, mzErr.TryCast(Of Tolerance), tcpRequest)
+        Dim pull = MSIProtocols.LoadPixels(mz, mzErr.TryCast(Of Tolerance), Nothing, tcpRequest)
 
         Return pull
     End Function

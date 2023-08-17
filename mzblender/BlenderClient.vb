@@ -18,10 +18,18 @@ Public Class BlenderClient
         Return New TcpRequest(host).SetTimeOut(TimeSpan.FromSeconds(60)).SendMessage(req)
     End Function
 
-    Public Function OpenSession(data As MemoryStream)
-        Dim buf = channel.OpenFile
-        buf.Write(data.ToArray, Scan0, data.Length)
-        buf.Flush()
+    Public Sub WriteBuffer(ByRef data As Byte())
+        Dim buf As Stream = channel.OpenFile
+
+        Call buf.Seek(Scan0, SeekOrigin.Begin)
+        Call buf.Write(BitConverter.GetBytes(data.Length), 0, 4)
+        Call buf.Write(data, Scan0, data.Length)
+        Call buf.Flush()
+
+        Erase data
+    End Sub
+
+    Public Function OpenSession()
         Dim result = handleRequest(New RequestStream(Service.protocolHandle, Protocol.OpenSession, "ok!"))
 
     End Function
