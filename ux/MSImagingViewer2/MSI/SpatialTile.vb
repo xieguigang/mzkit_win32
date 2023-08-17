@@ -131,6 +131,10 @@ Public Class SpatialTile
         Me.ShowMatrix(spots, flip:=True)
     End Sub
 
+    Public Sub SetHeatmapData(scales As IEnumerable(Of Double))
+        Me.heatmap = scales.ToArray
+    End Sub
+
     Public Sub ShowMatrix(matrix As IEnumerable(Of SpatialSpot), Optional flip As Boolean = True)
         Dim spatialMatrix = matrix.Where(Function(s) s.flag > 0).ToArray
         Dim polygon As New Polygon2D(spatialMatrix.Select(Function(t) New Point(t.px, t.py)))

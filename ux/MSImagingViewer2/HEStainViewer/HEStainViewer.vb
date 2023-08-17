@@ -38,6 +38,8 @@ Public Class HEStainViewer
             .ToArray
 
         Call tile.ShowMatrix(matrix)
+        Call tile.SetHeatmapData(From m In MSIMatrix Select m.Scale)
+
         Call Me.Controls.Add(tile)
 
         ' AddHandler tile.GetSpatialMetabolismPoint, AddressOf getPoint
