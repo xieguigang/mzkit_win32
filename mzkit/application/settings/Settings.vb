@@ -90,6 +90,7 @@ Namespace Configuration
         ''' <returns></returns>
         Public Property biodeep As String
         Public Property msi_filters As Filters
+        Public Property tissue_map As TissueMap
 
         Public Property MRMLibfile As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "/mzkit/MRM_IonPairs.csv"
         Public Property QuantifyIonLibfile As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "/mzkit/GCMS_QuantifyIons.ionPack"
@@ -97,7 +98,7 @@ Namespace Configuration
         Public Shared ReadOnly Property configFile As String = App.LocalData & "/settings.json"
 
         Public Function Reset() As Settings
-            precursor_search = New PrecursorSearchSettings With {.ppm = 5, .precursor_types = {"M", "M+H", "M-H", "M+H-H2O", "M-H2O-H"}}
+            precursor_search = PrecursorSearchSettings.GetDefault
             formula_search = Nothing
             ui = Nothing
             viewer = Nothing
@@ -111,6 +112,7 @@ Namespace Configuration
             random = RandomASCIIString(8)
             biodeep = Nothing
             msi_filters = Filters.DefaultFilters
+            tissue_map = TissueMap.GetDefault
 
             Return Me
         End Function
@@ -134,6 +136,12 @@ Namespace Configuration
             End If
             If config.msi_filters Is Nothing Then
                 config.msi_filters = Filters.DefaultFilters
+            End If
+            If config.tissue_map Is Nothing Then
+                config.tissue_map = TissueMap.GetDefault
+            End If
+            If config.precursor_search Is Nothing Then
+                config.precursor_search = PrecursorSearchSettings.GetDefault
             End If
 
             Return config

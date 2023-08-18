@@ -105,6 +105,7 @@ Public Class PixelSelector
 
     Public Property HEMap As Bitmap
     Public Property ViewerHost As KpImageViewer
+    Public Property EditorConfigs As PolygonEditorConfigs = PolygonEditorConfigs.GetDefault
 
     Public Sub New()
 
@@ -841,12 +842,14 @@ Public Class PixelSelector
         End If
 
         Dim g = e.Graphics
-        Dim radius As Single = 6
+        Dim radius As Single = EditorConfigs.point_size
+        Dim pointColor As Brush = EditorConfigs.point_color.GetBrush
+        Dim lineColor As Brush = EditorConfigs.line_color.GetBrush
+        Dim lineStyle As Pen = EditorConfigs.GetLinePen
 
-        For Each polygon In polygons
-
-            For Each vertex In polygon.Vertices
-                g.FillEllipse(Brushes.Red, vertex.X - radius, vertex.Y - radius, radius * 2, radius * 2)
+        For Each polygon As Polygon In polygons
+            For Each vertex As Vertex In polygon.Vertices
+                g.FillEllipse(pointColor, vertex.X - radius, vertex.Y - radius, radius * 2, radius * 2)
 
                 If ShowPointInform Then
                     g.DrawString($"({vertex.X}, {vertex.Y})", New Font("Arial", 10), Brushes.Black, vertex.X - 3, vertex.Y - 20)
@@ -855,20 +858,20 @@ Public Class PixelSelector
 
             If polygon.Edges.Count = 0 Then Continue For
 
-            For Each edge In polygon.Edges
+            For Each edge As Edge In polygon.Edges
                 Dim from As Point = edge.From.Coord
                 Dim [to] As Point = edge.To.Coord
 
                 If Not from.IsEmpty AndAlso Not [to].IsEmpty Then
-                    Dim brush = If(clickedEdges.IndexOf(edge) <> -1, Brushes.Aqua, Brushes.Black)
+                    Dim brush = If(clickedEdges.IndexOf(edge) <> -1, Brushes.Aqua, lineColor)
 
                     Select Case algorithmIndex
                         Case 0
                             Me.Bresenham(edge, g, brush)
                         Case 1
-                            g.DrawLine(New Pen(brush, 5), from, [to])
+                            Call g.DrawLine(lineStyle, from, [to])
                         Case 2
-                            Me.AntialiasingWU(edge, g, If(brush Is Brushes.Black, Color.Black, Color.Aqua))
+                            Me.AntialiasingWU(edge, g, If(brush Is lineColor, EditorConfigs.line_color.ToColor, Color.Aqua))
                         Case 3
                             Me.BresenhamSymmetric(edge, g, brush)
                     End Select
@@ -931,7 +934,10 @@ Public Class PixelSelector
         Me.Invalidate()
     End Sub
 
-    Private Sub RepaintPolygon()
+    ''' <summary>
+    ''' do polygon drawing
+    ''' </summary>
+    Public Sub RepaintPolygon()
         Me.Invalidate()
     End Sub
 

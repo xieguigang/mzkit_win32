@@ -465,6 +465,7 @@
     <Compile Include="application\ServiceHub\Manager\Service.vb" />
     <Compile Include="application\ServiceHub\MSIDataService.vb" />
     <Compile Include="application\RibbonEvents.vb" />
+    <Compile Include="application\settings\TissueMap.vb" />
     <Compile Include="application\settings\Filters.vb" />
     <Compile Include="application\settings\Languages.vb" />
     <Compile Include="application\summaryPlots\PCA3d.vb" />
@@ -689,6 +690,12 @@
     <Compile Include="MSdata\Module2.vb" />
     <Compile Include="pages\ConnectToBioDeep.vb" />
     <Compile Include="pages\dockWindow\DemoItem.vb" />
+    <Compile Include="pages\dockWindow\documents\frmHEStainAnalysisTool.Designer.vb">
+      <DependentUpon>frmHEStainAnalysisTool.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pages\dockWindow\documents\frmHEStainAnalysisTool.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\documents\frmLCMSScatterViewer.Designer.vb">
       <DependentUpon>frmLCMSScatterViewer.vb</DependentUpon>
     </Compile>
@@ -1129,6 +1136,9 @@
     <EmbeddedResource Include="forms\Inputs\MSImaging\InputConfigFilterPipeline.resx">
       <DependentUpon>InputConfigFilterPipeline.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\MSImaging\InputConfigTissueMap.zh-CN.resx">
+      <DependentUpon>InputConfigTissueMap.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\MSImaging\InputHTMLColorCode.resx">
       <DependentUpon>InputHTMLColorCode.vb</DependentUpon>
     </EmbeddedResource>
@@ -1233,6 +1243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frmGCxGCViewer.resx">
       <DependentUpon>frmGCxGCViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\documents\frmHEStainAnalysisTool.resx">
+      <DependentUpon>frmHEStainAnalysisTool.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frmLCMSScatterViewer.resx">
       <DependentUpon>frmLCMSScatterViewer.vb</DependentUpon>

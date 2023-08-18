@@ -32,6 +32,9 @@ namespace RibbonLib.Controls
             public const uint cmdButtonDropD = 5010;
             public const uint cmdTitleShowComprehensive = 231;
             public const uint cmdButtonMsImaging = 1167;
+            public const uint cmdMenuButtonToolkit = 236;
+            public const uint cmdMenuOpticalMicroscopyTools = 235;
+            public const uint cmdButtonOpenVirtualSlideFile = 234;
             public const uint cmdMenuRTerm = 233;
             public const uint cmdButtonRsharp = 1107;
             public const uint cmdButtonDevTools = 168;
@@ -194,6 +197,17 @@ namespace RibbonLib.Controls
             public const uint cmdButtonResetTableFilter = 171;
             public const uint cmdButtonColumnStats = 175;
             public const uint cmdButtonSaveTableCDF = 176;
+            public const uint cmdMenuHeStainTools = 237;
+            public const uint cmdGroupHEstainTools = 238;
+            public const uint cmdPanelHEstainTools = 243;
+            public const uint cmdButtonHEstainSave = 239;
+            public const uint cmdPanelHEstainOperations = 244;
+            public const uint cmdButtonHEstainRotate = 241;
+            public const uint cmdCheckboxHEstainKeepsAspectRatio = 246;
+            public const uint cmdPanelHEstainEditor = 245;
+            public const uint cmdButtonHEstainEditLabel = 240;
+            public const uint cmdButtonSpatialTileUI = 247;
+            public const uint cmdButtonHEstainSetSpotColor = 242;
             public const uint cmdTabMain = 1011;
             public const uint cmdGroupFileActions = 1045;
             public const uint cmdTabGroupWindowTools = 1023;
@@ -254,7 +268,10 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonDropD { get; private set; }
         public RibbonMenuGroup TitleShowComprehensive { get; private set; }
         public RibbonButton ButtonMsImaging { get; private set; }
-        public RibbonDropDownButton MenuRTerm { get; private set; }
+        public RibbonDropDownButton MenuButtonToolkit { get; private set; }
+        public RibbonMenuGroup MenuOpticalMicroscopyTools { get; private set; }
+        public RibbonButton ButtonOpenVirtualSlideFile { get; private set; }
+        public RibbonMenuGroup MenuRTerm { get; private set; }
         public RibbonButton ButtonRsharp { get; private set; }
         public RibbonButton ButtonDevTools { get; private set; }
         public RibbonButton ButtonSettings { get; private set; }
@@ -419,6 +436,17 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonResetTableFilter { get; private set; }
         public RibbonButton ButtonColumnStats { get; private set; }
         public RibbonButton ButtonSaveTableCDF { get; private set; }
+        public RibbonTabGroup MenuHeStainTools { get; private set; }
+        public RibbonTab GroupHEstainTools { get; private set; }
+        public RibbonGroup PanelHEstainTools { get; private set; }
+        public RibbonButton ButtonHEstainSave { get; private set; }
+        public RibbonGroup PanelHEstainOperations { get; private set; }
+        public RibbonButton ButtonHEstainRotate { get; private set; }
+        public RibbonCheckBox CheckboxHEstainKeepsAspectRatio { get; private set; }
+        public RibbonGroup PanelHEstainEditor { get; private set; }
+        public RibbonButton ButtonHEstainEditLabel { get; private set; }
+        public RibbonButton ButtonSpatialTileUI { get; private set; }
+        public RibbonButton ButtonHEstainSetSpotColor { get; private set; }
         public RibbonTab TabMain { get; private set; }
         public RibbonGroup GroupFileActions { get; private set; }
         public RibbonGroup TabGroupWindowTools { get; private set; }
@@ -477,7 +505,10 @@ namespace RibbonLib.Controls
             ButtonDropD = new RibbonButton(ribbon, Cmd.cmdButtonDropD);
             TitleShowComprehensive = new RibbonMenuGroup(ribbon, Cmd.cmdTitleShowComprehensive);
             ButtonMsImaging = new RibbonButton(ribbon, Cmd.cmdButtonMsImaging);
-            MenuRTerm = new RibbonDropDownButton(ribbon, Cmd.cmdMenuRTerm);
+            MenuButtonToolkit = new RibbonDropDownButton(ribbon, Cmd.cmdMenuButtonToolkit);
+            MenuOpticalMicroscopyTools = new RibbonMenuGroup(ribbon, Cmd.cmdMenuOpticalMicroscopyTools);
+            ButtonOpenVirtualSlideFile = new RibbonButton(ribbon, Cmd.cmdButtonOpenVirtualSlideFile);
+            MenuRTerm = new RibbonMenuGroup(ribbon, Cmd.cmdMenuRTerm);
             ButtonRsharp = new RibbonButton(ribbon, Cmd.cmdButtonRsharp);
             ButtonDevTools = new RibbonButton(ribbon, Cmd.cmdButtonDevTools);
             ButtonSettings = new RibbonButton(ribbon, Cmd.cmdButtonSettings);
@@ -639,6 +670,17 @@ namespace RibbonLib.Controls
             ButtonResetTableFilter = new RibbonButton(ribbon, Cmd.cmdButtonResetTableFilter);
             ButtonColumnStats = new RibbonButton(ribbon, Cmd.cmdButtonColumnStats);
             ButtonSaveTableCDF = new RibbonButton(ribbon, Cmd.cmdButtonSaveTableCDF);
+            MenuHeStainTools = new RibbonTabGroup(ribbon, Cmd.cmdMenuHeStainTools);
+            GroupHEstainTools = new RibbonTab(ribbon, Cmd.cmdGroupHEstainTools);
+            PanelHEstainTools = new RibbonGroup(ribbon, Cmd.cmdPanelHEstainTools);
+            ButtonHEstainSave = new RibbonButton(ribbon, Cmd.cmdButtonHEstainSave);
+            PanelHEstainOperations = new RibbonGroup(ribbon, Cmd.cmdPanelHEstainOperations);
+            ButtonHEstainRotate = new RibbonButton(ribbon, Cmd.cmdButtonHEstainRotate);
+            CheckboxHEstainKeepsAspectRatio = new RibbonCheckBox(ribbon, Cmd.cmdCheckboxHEstainKeepsAspectRatio);
+            PanelHEstainEditor = new RibbonGroup(ribbon, Cmd.cmdPanelHEstainEditor);
+            ButtonHEstainEditLabel = new RibbonButton(ribbon, Cmd.cmdButtonHEstainEditLabel);
+            ButtonSpatialTileUI = new RibbonButton(ribbon, Cmd.cmdButtonSpatialTileUI);
+            ButtonHEstainSetSpotColor = new RibbonButton(ribbon, Cmd.cmdButtonHEstainSetSpotColor);
             TabMain = new RibbonTab(ribbon, Cmd.cmdTabMain);
             GroupFileActions = new RibbonGroup(ribbon, Cmd.cmdGroupFileActions);
             TabGroupWindowTools = new RibbonGroup(ribbon, Cmd.cmdTabGroupWindowTools);

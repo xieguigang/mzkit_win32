@@ -389,6 +389,13 @@ UseCheckedList:
 
             Call AddIonMzLayer(mz)
         Next
+
+        viewer.TIC = pixels _
+            .GroupBy(Function(p) $"{p.x},{p.y}") _
+            .Select(Function(p)
+                        Return New PixelScanIntensity(p.First.x, p.First.y, Aggregate pi In p Into Sum(pi.intensity))
+                    End Function) _
+            .ToArray
     End Sub
 
     Private Sub PropertyGrid1_DragEnter(sender As Object, e As DragEventArgs) Handles PropertyGrid1.DragEnter
@@ -486,7 +493,7 @@ UseCheckedList:
         mz = GetSelectedIons().FirstOrDefault
 
         If mz <= 0 Then
-            msg = "No ions m/z is selected!"
+            msg = "No ions m/z Is selected!"
             Return Nothing
         End If
 
@@ -494,7 +501,7 @@ UseCheckedList:
         Dim layer As PixelData() = viewer.MSIservice.LoadPixels({mz}, mzdiff)
 
         If layer.IsNullOrEmpty Then
-            msg = "ion layer is empty!"
+            msg = "ion layer Is empty!"
             Return Nothing
         Else
             Return layer

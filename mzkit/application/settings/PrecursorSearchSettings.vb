@@ -88,6 +88,13 @@ Namespace Configuration
         Public Property ppm As Double = 20
         Public Property precursor_types As String()
 
+        Public Shared Function GetDefault() As PrecursorSearchSettings
+            Return New PrecursorSearchSettings With {
+                .ppm = 5,
+                .precursor_types = {"M", "M+H", "M-H", "M+H-H2O", "M-H2O-H"}
+            }
+        End Function
+
     End Class
 
     Public Enum FormulaSearchProfiles

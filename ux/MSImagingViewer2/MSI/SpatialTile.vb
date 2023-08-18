@@ -1,7 +1,7 @@
-﻿Imports System.Drawing
+﻿Imports System.ComponentModel
+Imports System.Drawing
 Imports System.Drawing.Drawing2D
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
-Imports Microsoft.VisualBasic.ApplicationServices.Development.XmlDoc.Serialization
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.GraphTheory
 Imports Microsoft.VisualBasic.Data.GraphTheory.GridGraph
@@ -46,23 +46,60 @@ Public Class SpatialTile
 
     Public Property DrawOffset As Integer = 0 ' 25
 
+    ''' <summary>
+    ''' default zero for mapping STdata to SMdata, other value is used for mapping SMdata to HEstain
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property DragMode As Integer = 0
+
     'Private Const WS_EX_TRANSPARENT As Integer = &H20
 
-    'Private m_opacity As Integer = 50
+    Dim m_opacity As Integer = 200
+    Dim m_contrast As Integer = -30
 
-    '<DefaultValue(50)>
-    'Public Property Opacity() As Integer
-    '    Get
-    '        Return Me.m_opacity
-    '    End Get
-    '    Set
-    '        If Value < 0 OrElse Value > 100 Then
-    '            Throw New ArgumentException("value must be between 0 and 100")
-    '        End If
+    <DefaultValue(-30)>
+    Public Property BackgroundContrast As Integer
+        Get
+            Return m_contrast
+        End Get
+        Set(value As Integer)
+            Me.m_contrast = value
 
-    '        Me.m_opacity = Value
-    '    End Set
-    'End Property
+            Try
+                Me.CanvasOnPaintBackground()
+            Catch ex As Exception
+
+            End Try
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' spot opacity value when has no image loaded
+    ''' </summary>
+    ''' <returns></returns>
+    ''' 
+    <DefaultValue(200)>
+    Public Property Opacity() As Integer
+        Get
+            Return Me.m_opacity
+        End Get
+        Set
+            If Value < 0 Then
+                ' Throw New ArgumentException("value must be between 0 and 255")
+                Value = 0
+            ElseIf Value > 255 Then
+                Value = 255
+            End If
+
+            Me.m_opacity = Value
+
+            Try
+                Me.CanvasOnPaintBackground()
+            Catch ex As Exception
+
+            End Try
+        End Set
+    End Property
 
     'Protected Overrides ReadOnly Property CreateParams() As CreateParams
     '    Get
@@ -71,6 +108,8 @@ Public Class SpatialTile
     '        Return cpar
     '    End Get
     'End Property
+
+    Friend SaveExport As Action
 
     Sub New()
 
@@ -124,6 +163,10 @@ Public Class SpatialTile
 
         Me.heatmap = heatmap.spots.Select(Function(ci) ci.Scale).ToArray
         Me.ShowMatrix(spots, flip:=True)
+    End Sub
+
+    Public Sub SetHeatmapData(scales As IEnumerable(Of Double))
+        Me.heatmap = scales.ToArray
     End Sub
 
     Public Sub ShowMatrix(matrix As IEnumerable(Of SpatialSpot), Optional flip As Boolean = True)
@@ -218,39 +261,61 @@ Public Class SpatialTile
 
     Private Sub SpatialTile_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
         If moveTile Then
-            Me.Location = New Point(Me.Left + Cursor.Position.X - p.X, Me.Top + Cursor.Position.Y - p.Y)
-            p = Cursor.Position
+            Dim newLoc As Point
+
+            If DragMode = 0 Then
+                newLoc = New Point(Me.Left + Cursor.Position.X - p.X, Me.Top + Cursor.Position.Y - p.Y)
+                p = Cursor.Position
+            Else
+                Dim dx = Cursor.Position.X - p.X
+                Dim dy = Cursor.Position.Y - p.Y
+
+                newLoc = Me.Location
+                newLoc = New Point(newLoc.X + dx, newLoc.Y + dy)
+                p = Cursor.Position
+            End If
+
+            Me.Location = newLoc
+
             ' Me.Invalidate()
             ' Call PictureBox2.Refresh()
         Else
             ' show tooltip information
-            Dim x As Integer, y As Integer
-            Dim smX As Integer
-            Dim smY As Integer
-            Dim smXY As New Point(Left + e.X, Top + e.Y)
-            Dim barcode As String
-            Dim spot As SpatialSpot
-            Dim tag As String = Nothing
+            Call showTooltip(e)
+        End If
+    End Sub
 
-            ' get pixel in SMdata
-            RaiseEvent GetSpatialMetabolismPoint(smXY, smX, smY, tag)
+    Private Sub showTooltip(e As MouseEventArgs)
+        Dim x As Integer, y As Integer
+        Dim smX As Integer
+        Dim smY As Integer
+        Dim smXY As New Point(Left + e.X, Top + e.Y)
+        Dim barcode As String
+        Dim spot As SpatialSpot
+        Dim tag As String = Nothing
 
-            ' get spot in STdata
-            Call PixelSelector.getPoint(New Point(e.X, e.Y), dimensions, Me.Size, x, y)
+        ' get pixel in SMdata
+        RaiseEvent GetSpatialMetabolismPoint(smXY, smX, smY, tag)
 
-            spot = spatialMatrix.GetData(x, y)
+        ' get spot in STdata
+        Call PixelSelector.getPoint(New Point(e.X, e.Y), dimensions, Me.Size, x, y)
 
-            If spot Is Nothing Then
-                barcode = "<missing_barcode>"
-            Else
-                barcode = spot.barcode
-            End If
+        spot = spatialMatrix.GetData(x, y)
 
+        If spot Is Nothing Then
+            barcode = "<missing_barcode>"
+        Else
+            barcode = spot.barcode
+        End If
+
+        If DragMode = 0 Then
             If tag.StringEmpty Then
                 Call ToolTip1.SetToolTip(Me, $"[STdata spot: ({x + offset.X},{y + offset.Y}) {barcode}] -> [MALDI pixel: ({smX},{smY})]")
             Else
                 Call ToolTip1.SetToolTip(Me, $"[STdata spot: ({x + offset.X},{y + offset.Y}) {barcode}] -> [MALDI pixel: ({smX},{smY})@{tag}]")
             End If
+        Else
+            Call ToolTip1.SetToolTip(Me, $"[MALDI pixel: ({x + offset.X},{y + offset.Y})] -> [HEstain pixel: ({smX},{smY})@{tag}]")
         End If
     End Sub
 
@@ -285,31 +350,45 @@ Public Class SpatialTile
     End Sub
 
     Private Sub ExportSpatialMappingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportSpatialMappingToolStripMenuItem.Click
+        If SaveExport Is Nothing Then
+            Call DefaultExport()
+        Else
+            Call SaveExport()
+        End If
+    End Sub
+
+    Private Sub DefaultExport()
         Using file As New SaveFileDialog With {.Filter = "Spatial Mapping Matrix(*.xml)|*.xml", .FileName = $"{Label1.Text}.xml"}
             If file.ShowDialog = DialogResult.OK Then
-                Call ProgressSpinner.DoLoading(
-                    Sub()
+                Call TaskProgress.RunAction(
+                    Sub(p As ITaskProgress)
+                        Call p.SetProgressMode()
+                        Call p.SetProgress(0)
+
                         Call New SpatialMapping With {
-                            .spots = GetMapping.ToArray,
+                            .spots = GetMapping(p, True).ToArray,
                             .label = Label1.Text,
                             .transform = transforms,
                             .color = SpotColor.ToHtmlColor
                         } _
                         .GetXml _
                         .SaveTo(file.FileName)
-                    End Sub)
+
+                    End Sub, title:="Export HE stain register matrix", info:="Processing pixel spot mapping...")
             End If
         End Using
     End Sub
 
-    Private Iterator Function GetMapping() As IEnumerable(Of SpotMap)
+    Friend Iterator Function GetMapping(task As ITaskProgress, exportSpotMaps As Boolean) As IEnumerable(Of SpotMap)
         Dim radiusX = Me.Width / dimensions.Width / 2
         Dim radiusY = Me.Height / dimensions.Height / 2
         Dim left = Me.Left
         Dim top = Me.Top
         Dim i As i32 = Scan0
+        Dim d As Integer = rotationMatrix.Length / 20
 
-        For Each spot As SpatialSpot In rotationMatrix
+        For index As Integer = 0 To rotationMatrix.Length - 1
+            Dim spot As SpatialSpot = rotationMatrix(index)
             ' translate to control client XY
             Dim clientXY As New PointF With {
                 .X = spot.px * radiusX * 2,
@@ -324,22 +403,28 @@ Public Class SpatialTile
                 heatmap = Me.heatmap(CInt(i) - 1)
             End If
 
-            For x As Integer = clientXY.X - radiusX To clientXY.X + radiusX
-                For y As Integer = clientXY.Y - radiusY To clientXY.Y + radiusY
-                    Dim SMXY As New Point(x + left, y + top)
-                    Dim smX, smY As Integer
-                    Dim tag As String = Nothing
+            If exportSpotMaps Then
+                For x As Integer = clientXY.X - radiusX To clientXY.X + radiusX
+                    For y As Integer = clientXY.Y - radiusY To clientXY.Y + radiusY
+                        Dim SMXY As New Point(x + left, y + top)
+                        Dim smX, smY As Integer
+                        Dim tag As String = Nothing
 
-                    RaiseEvent GetSpatialMetabolismPoint(SMXY, smX, smY, tag)
+                        RaiseEvent GetSpatialMetabolismPoint(SMXY, smX, smY, tag)
 
-                    Call tags.Add(tag)
-                    Call pixels.Add(New Point(smX, smY))
+                        Call tags.Add(tag)
+                        Call pixels.Add(New Point(smX, smY))
+                    Next
                 Next
-            Next
 
-            pixels = pixels _
-                .Distinct _
-                .AsList
+                pixels = pixels _
+                    .Distinct _
+                    .AsList
+            End If
+
+            If index Mod d = 0 Then
+                Call task.SetProgress(index / rotationMatrix.Length * 100)
+            End If
 
             Yield New SpotMap With {
                 .STX = spot.px + offset.X,
@@ -374,7 +459,7 @@ Public Class SpatialTile
         End Using
     End Sub
 
-    Private Sub EditLabelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditLabelToolStripMenuItem.Click, Label1.Click
+    Public Sub EditLabelToolStripMenuItem_Click() Handles EditLabelToolStripMenuItem.Click, Label1.Click
         Dim input As New InputLabelText With {.Label = Label1.Text}
 
         Call InputDialog.Input(
@@ -384,6 +469,14 @@ Public Class SpatialTile
     End Sub
 
     Public Property SpotColor As Color = Color.Red
+    Public Property Label As String
+        Get
+            Return Label1.Text
+        End Get
+        Set(value As String)
+            Label1.Text = value
+        End Set
+    End Property
 
     ''' <summary>
     ''' draw on the matrix of <see cref="rotationMatrix"/>
@@ -451,7 +544,7 @@ Public Class SpatialTile
             Using bmp = New Bitmap(c.Width, c.Height, g.Graphics)
                 c.DrawToBitmap(bmp, clientRect)
                 g.TranslateTransform(c.Left - Left, c.Top - Top - DrawOffset)
-                bmp.AdjustContrast(-30)
+                bmp.AdjustContrast(m_contrast)
                 g.DrawImageUnscaled(bmp, Point.Empty)
                 g.TranslateTransform(Left - c.Left, Top - c.Top - DrawOffset)
             End Using
@@ -464,7 +557,7 @@ Public Class SpatialTile
     ''' <remarks>
     ''' spot matrix is draw on <see cref="rotationMatrix"/>
     ''' </remarks>
-    Friend Sub CanvasOnPaintBackground()
+    Public Sub CanvasOnPaintBackground()
         Dim g As Graphics2D
 
         If imageLoad IsNot Nothing Then
@@ -504,7 +597,7 @@ Public Class SpatialTile
             g.ResetTransform()
             g.DrawRectangle(New Pen(Brushes.White, 2) With {.DashStyle = DashStyle.Dash}, New Rectangle(New Point(2, 2), size))
 
-            onDrawSpots(g, 200)
+            onDrawSpots(g, m_opacity)
         Else
             onDrawSpots(g, 60)
         End If
@@ -518,6 +611,8 @@ Public Class SpatialTile
     End Sub
 
     Private Sub SpatialTile_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Me.DoubleBuffered = True
+
         ' PictureBox2.onDraw = AddressOf CanvasOnPaintBackground
         ' PictureBox2.Refresh()
         Call CanvasOnPaintBackground()
@@ -534,7 +629,7 @@ Public Class SpatialTile
         End If
     End Sub
 
-    Private Sub SetSpotColorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetSpotColorToolStripMenuItem.Click
+    Public Sub SetSpotColorToolStripMenuItem_Click() Handles SetSpotColorToolStripMenuItem.Click
         Call InputDialog.Input(Of InputSpotColor)(
             Sub(cnfig)
                 Me.SpotColor = cnfig.SpotColor
@@ -591,7 +686,7 @@ Public Class SpatialTile
         End If
     End Sub
 
-    Private Sub RotateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RotateToolStripMenuItem.Click
+    Public Sub RotateToolStripMenuItem_Click() Handles RotateToolStripMenuItem.Click
         Dim setAngle As New InputRotateMatrix With {.Tile = Me}
 
         Call InputDialog.Input(

@@ -74,6 +74,7 @@ Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MachineLearning.Data
 Imports Microsoft.VisualBasic.MIME.application.json
+Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Microsoft.VisualBasic.Net
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Parallel
@@ -491,9 +492,10 @@ Namespace ServiceHub
             Return output
         End Function
 
-        Public Function AutoLocation() As MsImageProperty
+        Public Function AutoLocation(Optional padding As Padding = Nothing) As MsImageProperty
+            Dim css As String = If(padding.IsEmpty, "padding: 25px 25px 25px 25px;", padding.ToString)
             Dim data As RequestStream = handleServiceRequest(
-                request:=New RequestStream(MSI.Protocol, ServiceProtocol.AutoLocation, Encoding.UTF8.GetBytes("padding: 25px 25px 25px 25px;")))
+                request:=New RequestStream(MSI.Protocol, ServiceProtocol.AutoLocation, Encoding.UTF8.GetBytes(css)))
             Return handlePropertiesReader(data, "Auto slide sample position error!")
         End Function
 

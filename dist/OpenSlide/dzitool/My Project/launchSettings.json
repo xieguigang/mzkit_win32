@@ -2,8 +2,8 @@
   "profiles": {
     "dzitool": {
       "commandName": "Project",
-      "commandLineArgs": "/parse --file \"F:\\Downloads\\CMU-1.ndpi\" --export \"F:\\Downloads\\2222222/aaa.dzi\"",
-      "workingDirectory": "D:\\mzkit\\dist\\bin\\tools\\openslide"
+      "commandLineArgs": "/parse --file F:/IPX0005628000/IPX0005628001/OPTICAL_tumor.tiff --export F:/Temp/mzkit_win32/dzi_store/ec09dbd0bc29273a9474e85967bc9075/OPTICAL_tumor.dzi",
+      "workingDirectory": "D:\\mzkit\\dist\\bin\\tools\\dzitools"
     }
   }
 }
