@@ -10,6 +10,7 @@ Public Module DziTools
         Dim cli As String = $"/parse --file {source.CLIPath} --export {save_dzi.CLIPath}"
         Dim task As New RunSlavePipeline(tool, cli, workdir:=App.HOME)
 
+        Call Workbench.LogText(task.ToString)
         Call TaskProgress.RunAction(
             run:=Sub(p As ITaskProgress)
                      AddHandler task.SetMessage, AddressOf p.SetInfo
