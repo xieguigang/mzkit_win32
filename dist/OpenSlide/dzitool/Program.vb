@@ -66,6 +66,7 @@ Module Program
         Call AppEnvironment.SetDllDirectory(AppEnvironment.getOpenSlideLibDLL)
 
         openSlide = New OpenSlide
+        OpenSlide.OnTrace = AddressOf RunSlavePipeline.SendMessage
         openSlide.EnsureOpen(inputfile)
 
         ' export DZI file
