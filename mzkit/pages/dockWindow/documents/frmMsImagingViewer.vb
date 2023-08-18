@@ -281,11 +281,11 @@ Public Class frmMsImagingViewer
         If Not checkService() Then
             Return
         Else
-            Call SetMSIPadding(padding:=Nothing)
+            Call SetMSIPadding(padding:=Nothing, True)
         End If
     End Sub
 
-    Private Sub SetMSIPadding(padding As Padding)
+    Private Sub SetMSIPadding(padding As Padding, MSIrender As Boolean)
         Dim info = TaskProgress.LoadData(
             streamLoad:=Function(echo As Action(Of String)) MSIservice.AutoLocation(padding),
             title:="Do auto location",
@@ -300,7 +300,10 @@ Public Class frmMsImagingViewer
                     Return True
                 End Function)
             Call MyApplication.host.showMzPackMSI(tempfile)
-            Call RenderSummary(IntensitySummary.BasePeak)
+
+            If MSIrender Then
+                Call RenderSummary(IntensitySummary.BasePeak)
+            End If
 
             Call Workbench.SuccessMessage($"ms-imaging slide sample matrix adjust location and padding success!")
         Else
@@ -344,11 +347,11 @@ Public Class frmMsImagingViewer
         Call rotateCfg.SetImage(image)
         Call InputDialog.Input(
             Sub(cfg)
-                Call Me.Invoke(Sub() Call SetRotation(cfg.GetAngle))
+                Call Me.Invoke(Sub() Call SetRotation(cfg.GetAngle, True))
             End Sub, config:=rotateCfg)
     End Sub
 
-    Private Sub SetRotation(angle As Double)
+    Private Sub SetRotation(angle As Double, MSIrender As Boolean)
         Dim info = TaskProgress.LoadData(
             streamLoad:=Function(echo As Action(Of String)) MSIservice.SetSpatial2D(angle),
             title:="Do rotation",
@@ -363,7 +366,10 @@ Public Class frmMsImagingViewer
                     Return True
                 End Function)
             Call MyApplication.host.showMzPackMSI(tempfile)
-            Call RenderSummary(IntensitySummary.BasePeak)
+
+            If MSIrender Then
+                Call RenderSummary(IntensitySummary.BasePeak)
+            End If
 
             Call Workbench.SuccessMessage($"Rotate the MS-imaging sample slide at angle {angle}.")
         End If
@@ -806,10 +812,13 @@ Public Class frmMsImagingViewer
                     padding(2) = register.viewSize.Height - (register.offset.Y + register.MSIscale.Height) ' bottom
                     padding(3) = register.offset.X ' left
 
+                    ' display the HEstain image
+                    Call PixelSelector1.SetMsImagingOutput(image, scan_dims, params.background, params.colors, {range.Min, range.Max}, 255)
+
                     ' apply MSI data rotation and also set new data dimension
-                    Call SetRotation(angle:=register.rotation)
+                    Call SetRotation(angle:=register.rotation, False)
                     ' calculate and apply the MSI padding
-                    Call SetMSIPadding(padding:=New Padding(padding))
+                    Call SetMSIPadding(padding:=New Padding(padding), False)
                     ' display the HEstain image
                     Call PixelSelector1.SetMsImagingOutput(image, scan_dims, params.background, params.colors, {range.Min, range.Max}, 255)
 
