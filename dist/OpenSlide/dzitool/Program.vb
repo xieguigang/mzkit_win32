@@ -1,5 +1,6 @@
 Imports System.IO
 Imports dzitool.Container
+Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.CommandLine.Reflection
@@ -62,7 +63,7 @@ Module Program
     End Sub
 
     <ExportAPI("/parse")>
-    <Usage("/parse --file <slide.svs/ndpi> [--export <image.dzi> --verbose]")>
+    <Usage("/parse --file <slide.svs/ndpi/tiff> [--export <image.dzi> --verbose]")>
     Public Function GetDziImage(args As CommandLine) As Integer
         Dim inputfile As String = args("--file")
         Dim export_file As String = args("--export") Or inputfile.ChangeSuffix("dzi")
@@ -81,7 +82,26 @@ Module Program
             OpenSlide.OnTrace = AddressOf RunSlavePipeline.SendMessage
         End If
 
-        openSlide.EnsureOpen(inputfile)
+        Try
+            openSlide.EnsureOpen(inputfile)
+        Catch ex As Exception
+            If inputfile.ExtensionSuffix("tif", "tiff") Then
+                ' needs conversion via vips
+                Dim input_tiled As String = $"{inputfile.ParentPath}/{inputfile.BaseName}-tiled.tiff"
+                Dim cli As String = $"tiffsave {inputfile.CLIPath} {input_tiled.CLIPath} --tile --pyramid"
+                Dim vips As String = $"{AppEnvironment.getVIPS}/vips.exe"
+
+                Call RunSlavePipeline.SendMessage("The input tiff image needs to be convert to tiled image...")
+
+                Call PipelineProcess.ExecSub(vips, cli)
+                Call input_tiled.Swap(inputfile)
+                Call openSlide.EnsureOpen(inputfile)
+
+                Call RunSlavePipeline.SendMessage($"Use the new tiled image file {inputfile}!")
+            Else
+                Return 500
+            End If
+        End Try
 
         ' export DZI file
         Call GetDZI(inputfile, export_file)

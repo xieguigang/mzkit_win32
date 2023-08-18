@@ -82,6 +82,8 @@ Namespace Container
             End If
         End Function
 
+#Region "dzitools"
+
         ''' <summary>
         ''' this function just works for the dzitools
         ''' </summary>
@@ -99,5 +101,24 @@ Namespace Container
 
             Return libdll
         End Function
+
+        ''' <summary>
+        ''' this function just works for the dzitools
+        ''' </summary>
+        ''' <returns></returns>
+        Public Function getVIPS() As String
+            Dim libdll As String
+
+            If AppEnvironment.IsDevelopmentMode Then
+                libdll = $"{App.HOME}/../../../../src/mzkit/services/dzitools/dist/vips/bin"
+            Else
+                libdll = $"{App.HOME}/../vips/bin/"
+            End If
+
+            libdll = libdll.GetDirectoryFullPath
+
+            Return libdll
+        End Function
+#End Region
     End Module
 End Namespace
