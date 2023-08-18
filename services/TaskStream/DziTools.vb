@@ -14,6 +14,10 @@ Public Module DziTools
         Call TaskProgress.RunAction(
             run:=Sub(p As ITaskProgress)
                      AddHandler task.SetMessage, AddressOf p.SetInfo
+                     AddHandler task.SetProgress, AddressOf p.SetProgress
+
+                     Call p.SetProgressMode()
+                     Call p.SetProgress(0)
                      Call task.Run()
                  End Sub,
             title:="Create image tiles",
