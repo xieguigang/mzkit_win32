@@ -12,6 +12,15 @@ Public Class HEStainViewer
     Dim HEBitmap As Bitmap
     Dim WithEvents tile As SpatialTile
 
+    Public Property KeepAspectRatio As Boolean
+        Get
+            Return tile.KeepAspectRatioToolStripMenuItem.Checked
+        End Get
+        Set(value As Boolean)
+            tile.KeepAspectRatioToolStripMenuItem.Checked = value
+        End Set
+    End Property
+
     Private Sub HEStainViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.DoubleBuffered = True
     End Sub
@@ -24,6 +33,10 @@ Public Class HEStainViewer
         Me.Refresh()
         Me.tile = LoadUI()
         Me.HEBitmap = New Bitmap(HEstain)
+
+        tile.LoadTissueImageToolStripMenuItem.Enabled = False
+        tile.RemoveTissueImageToolStripMenuItem.Enabled = False
+        tile.DeleteToolStripMenuItem.Enabled = False
 
         Return tile
     End Function
@@ -43,7 +56,7 @@ Public Class HEStainViewer
                     End Function) _
             .ToArray
 
-        Call tile.ShowMatrix(matrix)
+        Call tile.ShowMatrix(matrix, flip:=False)
         Call tile.SetHeatmapData(From m In MSIMatrix Select m.Scale)
 
         Call Me.Controls.Add(tile)
@@ -54,7 +67,7 @@ Public Class HEStainViewer
         Return tile
     End Function
 
-    Private Sub SaveExport()
+    Public Sub SaveExport()
 
     End Sub
 
@@ -69,16 +82,29 @@ Public Class HEStainViewer
         tissueMorphology = c.ARGBExpression
     End Sub
 
-    Private Sub OnBoardPaint(sender As Object, e As PaintEventArgs) Handles Me.Paint
-        If xy.IsEmpty Then
-            Return
-        End If
+    'Private Sub OnBoardPaint(sender As Object, e As PaintEventArgs) Handles Me.Paint
+    '    If xy.IsEmpty Then
+    '        Return
+    '    End If
 
-        Dim g = e.Graphics
-        Dim dashLine As New Pen(Brushes.Black, 1) With {.DashStyle = DashStyle.Dash}
+    '    Dim g = e.Graphics
+    '    Dim dashLine As New Pen(Brushes.Black, 1) With {.DashStyle = DashStyle.Dash}
 
-        g.DrawLine(dashLine, New Point(0, xy.Y), New Point(Width, xy.Y))
-        g.DrawLine(dashLine, New Point(xy.X, 0), New Point(xy.X, Height))
-        g.Flush()
+    '    g.DrawLine(dashLine, New Point(0, xy.Y), New Point(Width, xy.Y))
+    '    g.DrawLine(dashLine, New Point(xy.X, 0), New Point(xy.X, Height))
+    '    g.Flush()
+    'End Sub
+
+    Public Sub EditLabel()
+        Call tile.EditLabelToolStripMenuItem_Click()
     End Sub
+
+    Public Sub Rotate()
+        Call tile.RotateToolStripMenuItem_Click()
+    End Sub
+
+    Public Sub SetSpotColor()
+        Call tile.SetSpotColorToolStripMenuItem_Click()
+    End Sub
+
 End Class

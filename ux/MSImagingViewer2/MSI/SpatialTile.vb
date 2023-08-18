@@ -415,7 +415,7 @@ Public Class SpatialTile
         End Using
     End Sub
 
-    Private Sub EditLabelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditLabelToolStripMenuItem.Click, Label1.Click
+    Public Sub EditLabelToolStripMenuItem_Click() Handles EditLabelToolStripMenuItem.Click, Label1.Click
         Dim input As New InputLabelText With {.Label = Label1.Text}
 
         Call InputDialog.Input(
@@ -577,7 +577,7 @@ Public Class SpatialTile
         End If
     End Sub
 
-    Private Sub SetSpotColorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetSpotColorToolStripMenuItem.Click
+    Public Sub SetSpotColorToolStripMenuItem_Click() Handles SetSpotColorToolStripMenuItem.Click
         Call InputDialog.Input(Of InputSpotColor)(
             Sub(cnfig)
                 Me.SpotColor = cnfig.SpotColor
@@ -634,7 +634,7 @@ Public Class SpatialTile
         End If
     End Sub
 
-    Private Sub RotateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RotateToolStripMenuItem.Click
+    Public Sub RotateToolStripMenuItem_Click() Handles RotateToolStripMenuItem.Click
         Dim setAngle As New InputRotateMatrix With {.Tile = Me}
 
         Call InputDialog.Input(
