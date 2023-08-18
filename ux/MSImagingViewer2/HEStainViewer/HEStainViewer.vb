@@ -7,6 +7,7 @@ Public Class HEStainViewer
     Dim MSIMatrix As PixelData()
     Dim MSIDims As Size
     Dim HEImage As Size
+    Dim tile As SpatialTile
 
     Private Sub HEStainViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.DoubleBuffered = True
@@ -18,12 +19,13 @@ Public Class HEStainViewer
         Me.HEImage = HEstain.Size
         Me.BackgroundImage = HEstain
         Me.Refresh()
+        Me.tile = LoadUI()
 
-        Return LoadUI()
+        Return tile
     End Function
 
     Private Function LoadUI() As SpatialTile
-        Dim tile As New SpatialTile With {.DragMode = 1}
+        Dim tile As New SpatialTile With {.DragMode = 1, .SaveExport = AddressOf SaveExport}
         Dim matrix As SpatialSpot() = MSIMatrix _
             .Select(Function(pi)
                         Return New SpatialSpot With {
@@ -47,5 +49,9 @@ Public Class HEStainViewer
 
         Return tile
     End Function
+
+    Private Sub SaveExport()
+
+    End Sub
 
 End Class

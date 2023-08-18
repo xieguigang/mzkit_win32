@@ -77,6 +77,8 @@ Public Class SpatialTile
     '    End Get
     'End Property
 
+    Friend SaveExport As Action
+
     Sub New()
 
         ' 此调用是设计器所必需的。
@@ -312,6 +314,14 @@ Public Class SpatialTile
     End Sub
 
     Private Sub ExportSpatialMappingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportSpatialMappingToolStripMenuItem.Click
+        If SaveExport Is Nothing Then
+            Call DefaultExport()
+        Else
+            Call SaveExport()
+        End If
+    End Sub
+
+    Private Sub DefaultExport()
         Using file As New SaveFileDialog With {.Filter = "Spatial Mapping Matrix(*.xml)|*.xml", .FileName = $"{Label1.Text}.xml"}
             If file.ShowDialog = DialogResult.OK Then
                 Call ProgressSpinner.DoLoading(
