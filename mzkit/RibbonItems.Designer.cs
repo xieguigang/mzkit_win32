@@ -197,6 +197,16 @@ namespace RibbonLib.Controls
             public const uint cmdButtonResetTableFilter = 171;
             public const uint cmdButtonColumnStats = 175;
             public const uint cmdButtonSaveTableCDF = 176;
+            public const uint cmdMenuHeStainTools = 237;
+            public const uint cmdGroupHEstainTools = 238;
+            public const uint cmdPanelHEstainTools = 243;
+            public const uint cmdButtonHEstainSave = 239;
+            public const uint cmdPanelHEstainOperations = 244;
+            public const uint cmdButtonHEstainRotate = 241;
+            public const uint cmdCheckboxHEstainKeepsAspectRatio = 246;
+            public const uint cmdPanelHEstainEditor = 245;
+            public const uint cmdButtonHEstainEditLabel = 240;
+            public const uint cmdButtonHEstainSetSpotColor = 242;
             public const uint cmdTabMain = 1011;
             public const uint cmdGroupFileActions = 1045;
             public const uint cmdTabGroupWindowTools = 1023;
@@ -425,6 +435,16 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonResetTableFilter { get; private set; }
         public RibbonButton ButtonColumnStats { get; private set; }
         public RibbonButton ButtonSaveTableCDF { get; private set; }
+        public RibbonTabGroup MenuHeStainTools { get; private set; }
+        public RibbonTab GroupHEstainTools { get; private set; }
+        public RibbonGroup PanelHEstainTools { get; private set; }
+        public RibbonButton ButtonHEstainSave { get; private set; }
+        public RibbonGroup PanelHEstainOperations { get; private set; }
+        public RibbonButton ButtonHEstainRotate { get; private set; }
+        public RibbonCheckBox CheckboxHEstainKeepsAspectRatio { get; private set; }
+        public RibbonGroup PanelHEstainEditor { get; private set; }
+        public RibbonButton ButtonHEstainEditLabel { get; private set; }
+        public RibbonButton ButtonHEstainSetSpotColor { get; private set; }
         public RibbonTab TabMain { get; private set; }
         public RibbonGroup GroupFileActions { get; private set; }
         public RibbonGroup TabGroupWindowTools { get; private set; }
@@ -648,6 +668,16 @@ namespace RibbonLib.Controls
             ButtonResetTableFilter = new RibbonButton(ribbon, Cmd.cmdButtonResetTableFilter);
             ButtonColumnStats = new RibbonButton(ribbon, Cmd.cmdButtonColumnStats);
             ButtonSaveTableCDF = new RibbonButton(ribbon, Cmd.cmdButtonSaveTableCDF);
+            MenuHeStainTools = new RibbonTabGroup(ribbon, Cmd.cmdMenuHeStainTools);
+            GroupHEstainTools = new RibbonTab(ribbon, Cmd.cmdGroupHEstainTools);
+            PanelHEstainTools = new RibbonGroup(ribbon, Cmd.cmdPanelHEstainTools);
+            ButtonHEstainSave = new RibbonButton(ribbon, Cmd.cmdButtonHEstainSave);
+            PanelHEstainOperations = new RibbonGroup(ribbon, Cmd.cmdPanelHEstainOperations);
+            ButtonHEstainRotate = new RibbonButton(ribbon, Cmd.cmdButtonHEstainRotate);
+            CheckboxHEstainKeepsAspectRatio = new RibbonCheckBox(ribbon, Cmd.cmdCheckboxHEstainKeepsAspectRatio);
+            PanelHEstainEditor = new RibbonGroup(ribbon, Cmd.cmdPanelHEstainEditor);
+            ButtonHEstainEditLabel = new RibbonButton(ribbon, Cmd.cmdButtonHEstainEditLabel);
+            ButtonHEstainSetSpotColor = new RibbonButton(ribbon, Cmd.cmdButtonHEstainSetSpotColor);
             TabMain = new RibbonTab(ribbon, Cmd.cmdTabMain);
             GroupFileActions = new RibbonGroup(ribbon, Cmd.cmdGroupFileActions);
             TabGroupWindowTools = new RibbonGroup(ribbon, Cmd.cmdTabGroupWindowTools);

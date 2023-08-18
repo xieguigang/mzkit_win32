@@ -194,6 +194,16 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonResetTableFilter As UInteger = 171
             Public Const cmdButtonColumnStats As UInteger = 175
             Public Const cmdButtonSaveTableCDF As UInteger = 176
+            Public Const cmdMenuHeStainTools As UInteger = 237
+            Public Const cmdGroupHEstainTools As UInteger = 238
+            Public Const cmdPanelHEstainTools As UInteger = 243
+            Public Const cmdButtonHEstainSave As UInteger = 239
+            Public Const cmdPanelHEstainOperations As UInteger = 244
+            Public Const cmdButtonHEstainRotate As UInteger = 241
+            Public Const cmdCheckboxHEstainKeepsAspectRatio As UInteger = 246
+            Public Const cmdPanelHEstainEditor As UInteger = 245
+            Public Const cmdButtonHEstainEditLabel As UInteger = 240
+            Public Const cmdButtonHEstainSetSpotColor As UInteger = 242
             Public Const cmdTabMain As UInteger = 1011
             Public Const cmdGroupFileActions As UInteger = 1045
             Public Const cmdTabGroupWindowTools As UInteger = 1023
@@ -1322,6 +1332,66 @@ Namespace RibbonLib.Controls
                 Return _ButtonSaveTableCDF
             End Get
         End Property
+        Private _MenuHeStainTools As RibbonTabGroup
+        Public ReadOnly Property MenuHeStainTools As RibbonTabGroup
+            Get
+                Return _MenuHeStainTools
+            End Get
+        End Property
+        Private _GroupHEstainTools As RibbonTab
+        Public ReadOnly Property GroupHEstainTools As RibbonTab
+            Get
+                Return _GroupHEstainTools
+            End Get
+        End Property
+        Private _PanelHEstainTools As RibbonGroup
+        Public ReadOnly Property PanelHEstainTools As RibbonGroup
+            Get
+                Return _PanelHEstainTools
+            End Get
+        End Property
+        Private _ButtonHEstainSave As RibbonButton
+        Public ReadOnly Property ButtonHEstainSave As RibbonButton
+            Get
+                Return _ButtonHEstainSave
+            End Get
+        End Property
+        Private _PanelHEstainOperations As RibbonGroup
+        Public ReadOnly Property PanelHEstainOperations As RibbonGroup
+            Get
+                Return _PanelHEstainOperations
+            End Get
+        End Property
+        Private _ButtonHEstainRotate As RibbonButton
+        Public ReadOnly Property ButtonHEstainRotate As RibbonButton
+            Get
+                Return _ButtonHEstainRotate
+            End Get
+        End Property
+        Private _CheckboxHEstainKeepsAspectRatio As RibbonCheckBox
+        Public ReadOnly Property CheckboxHEstainKeepsAspectRatio As RibbonCheckBox
+            Get
+                Return _CheckboxHEstainKeepsAspectRatio
+            End Get
+        End Property
+        Private _PanelHEstainEditor As RibbonGroup
+        Public ReadOnly Property PanelHEstainEditor As RibbonGroup
+            Get
+                Return _PanelHEstainEditor
+            End Get
+        End Property
+        Private _ButtonHEstainEditLabel As RibbonButton
+        Public ReadOnly Property ButtonHEstainEditLabel As RibbonButton
+            Get
+                Return _ButtonHEstainEditLabel
+            End Get
+        End Property
+        Private _ButtonHEstainSetSpotColor As RibbonButton
+        Public ReadOnly Property ButtonHEstainSetSpotColor As RibbonButton
+            Get
+                Return _ButtonHEstainSetSpotColor
+            End Get
+        End Property
         Private _TabMain As RibbonTab
         Public ReadOnly Property TabMain As RibbonTab
             Get
@@ -1735,6 +1805,16 @@ Namespace RibbonLib.Controls
             _ButtonResetTableFilter = New RibbonButton(_ribbon, Cmd.cmdButtonResetTableFilter)
             _ButtonColumnStats = New RibbonButton(_ribbon, Cmd.cmdButtonColumnStats)
             _ButtonSaveTableCDF = New RibbonButton(_ribbon, Cmd.cmdButtonSaveTableCDF)
+            _MenuHeStainTools = New RibbonTabGroup(_ribbon, Cmd.cmdMenuHeStainTools)
+            _GroupHEstainTools = New RibbonTab(_ribbon, Cmd.cmdGroupHEstainTools)
+            _PanelHEstainTools = New RibbonGroup(_ribbon, Cmd.cmdPanelHEstainTools)
+            _ButtonHEstainSave = New RibbonButton(_ribbon, Cmd.cmdButtonHEstainSave)
+            _PanelHEstainOperations = New RibbonGroup(_ribbon, Cmd.cmdPanelHEstainOperations)
+            _ButtonHEstainRotate = New RibbonButton(_ribbon, Cmd.cmdButtonHEstainRotate)
+            _CheckboxHEstainKeepsAspectRatio = New RibbonCheckBox(_ribbon, Cmd.cmdCheckboxHEstainKeepsAspectRatio)
+            _PanelHEstainEditor = New RibbonGroup(_ribbon, Cmd.cmdPanelHEstainEditor)
+            _ButtonHEstainEditLabel = New RibbonButton(_ribbon, Cmd.cmdButtonHEstainEditLabel)
+            _ButtonHEstainSetSpotColor = New RibbonButton(_ribbon, Cmd.cmdButtonHEstainSetSpotColor)
             _TabMain = New RibbonTab(_ribbon, Cmd.cmdTabMain)
             _GroupFileActions = New RibbonGroup(_ribbon, Cmd.cmdGroupFileActions)
             _TabGroupWindowTools = New RibbonGroup(_ribbon, Cmd.cmdTabGroupWindowTools)

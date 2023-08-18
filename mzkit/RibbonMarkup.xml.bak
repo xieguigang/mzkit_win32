@@ -3477,6 +3477,44 @@
         <String Id="1176">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdMenuHeStainTools" Id="237" LabelTitle="HE stain tools" LabelDescription="HE stain tools" TooltipTitle="HE stain tools" TooltipDescription="HE stain tools" />
+    <Command Name="cmdGroupHEstainTools" Id="238" LabelTitle="HE stain tools" LabelDescription="HE stain tools" TooltipTitle="HE stain tools" TooltipDescription="HE stain tools" />
+    <Command Name="cmdButtonHEstainSave" Id="239" LabelTitle="Save HE stain mapping" LabelDescription="Save HE stain mapping" TooltipTitle="Save HE stain mapping" TooltipDescription="Save HE stain mapping">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/document-save.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/document-save.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonHEstainEditLabel" Id="240" LabelTitle="Edit Label" LabelDescription="Edit Label" TooltipTitle="Edit Label" TooltipDescription="Edit Label">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/edit.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/edit.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonHEstainRotate" Id="241" LabelTitle="Rotate" LabelDescription="Rotate" TooltipTitle="Rotate" TooltipDescription="Rotate">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonHEstainSetSpotColor" Id="242" LabelTitle="Set Spot Color" LabelDescription="Set Spot Color" TooltipTitle="Set Spot Color" TooltipDescription="Set Spot Color">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/Color palette.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/Color palette.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdPanelHEstainTools" Id="243" LabelTitle="HE stain tools" LabelDescription="HE stain tools" TooltipTitle="HE stain tools" TooltipDescription="HE stain tools" />
+    <Command Name="cmdPanelHEstainOperations" Id="244" LabelTitle="Spatial Mapping Operations" LabelDescription="Spatial Mapping Operations" TooltipTitle="Spatial Mapping Operations" TooltipDescription="Spatial Mapping Operations" />
+    <Command Name="cmdPanelHEstainEditor" Id="245" LabelTitle="Edit Mapping" LabelDescription="Edit Mapping" TooltipTitle="Edit Mapping" TooltipDescription="Edit Mapping" />
+    <Command Name="cmdCheckboxHEstainKeepsAspectRatio" Id="246" LabelTitle="Keep Aspect Ratio" LabelDescription="Keep Aspect Ratio" TooltipTitle="Keep Aspect Ratio" TooltipDescription="Keep Aspect Ratio" />
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -3789,6 +3827,21 @@
               <Button CommandName="cmdButtonResetTableFilter" />
               <Button CommandName="cmdButtonColumnStats" />
               <Button CommandName="cmdButtonSaveTableCDF" />
+            </Group>
+          </Tab>
+        </TabGroup>
+        <TabGroup CommandName="cmdMenuHeStainTools">
+          <Tab CommandName="cmdGroupHEstainTools">
+            <Group CommandName="cmdPanelHEstainTools" SizeDefinition="OneButton">
+              <Button CommandName="cmdButtonHEstainSave" />
+            </Group>
+            <Group CommandName="cmdPanelHEstainOperations">
+              <Button CommandName="cmdButtonHEstainRotate" />
+              <CheckBox CommandName="cmdCheckboxHEstainKeepsAspectRatio" />
+            </Group>
+            <Group CommandName="cmdPanelHEstainEditor" SizeDefinition="TwoButtons">
+              <Button CommandName="cmdButtonHEstainEditLabel" />
+              <Button CommandName="cmdButtonHEstainSetSpotColor" />
             </Group>
           </Tab>
         </TabGroup>
