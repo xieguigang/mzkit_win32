@@ -339,7 +339,7 @@ Public Class SpatialTile
         End Using
     End Sub
 
-    Private Iterator Function GetMapping() As IEnumerable(Of SpotMap)
+    Friend Iterator Function GetMapping() As IEnumerable(Of SpotMap)
         Dim radiusX = Me.Width / dimensions.Width / 2
         Dim radiusY = Me.Height / dimensions.Height / 2
         Dim left = Me.Left
