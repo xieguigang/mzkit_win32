@@ -93,12 +93,16 @@ Public Class HEStainViewer
         Dim label = tile.Label1.Text
         Dim transforms = tile.transforms
         Dim color = tile.SpotColor.ToHtmlColor
+        Dim rotation_argument = transforms _
+            .Where(Function(t) t.op = Transform.Operation.Rotate) _
+            .OrderByDescending(Function(t) std.Abs(t.argument)) _
+            .FirstOrDefault
         Dim register As New SpatialRegister With {
             .HEstain = HEBitmap,
             .label = label,
             .mappings = mapping,
             .mirror = transforms.Where(Function(t) t.op = Transform.Operation.Mirror).Any,
-            .rotation = transforms.Where(Function(t) t.op = Transform.Operation.Rotate).OrderByDescending(Function(t) std.Abs(t.argument)).FirstOrDefault?.argument,
+            .rotation = If(rotation_argument Is Nothing, 0, rotation_argument.argument),
             .viewSize = Me.Size,
             .offset = tile.Location,
             .MSIscale = tile.Size,
