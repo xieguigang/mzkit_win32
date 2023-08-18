@@ -206,6 +206,7 @@ namespace RibbonLib.Controls
             public const uint cmdCheckboxHEstainKeepsAspectRatio = 246;
             public const uint cmdPanelHEstainEditor = 245;
             public const uint cmdButtonHEstainEditLabel = 240;
+            public const uint cmdButtonSpatialTileUI = 247;
             public const uint cmdButtonHEstainSetSpotColor = 242;
             public const uint cmdTabMain = 1011;
             public const uint cmdGroupFileActions = 1045;
@@ -444,6 +445,7 @@ namespace RibbonLib.Controls
         public RibbonCheckBox CheckboxHEstainKeepsAspectRatio { get; private set; }
         public RibbonGroup PanelHEstainEditor { get; private set; }
         public RibbonButton ButtonHEstainEditLabel { get; private set; }
+        public RibbonButton ButtonSpatialTileUI { get; private set; }
         public RibbonButton ButtonHEstainSetSpotColor { get; private set; }
         public RibbonTab TabMain { get; private set; }
         public RibbonGroup GroupFileActions { get; private set; }
@@ -677,6 +679,7 @@ namespace RibbonLib.Controls
             CheckboxHEstainKeepsAspectRatio = new RibbonCheckBox(ribbon, Cmd.cmdCheckboxHEstainKeepsAspectRatio);
             PanelHEstainEditor = new RibbonGroup(ribbon, Cmd.cmdPanelHEstainEditor);
             ButtonHEstainEditLabel = new RibbonButton(ribbon, Cmd.cmdButtonHEstainEditLabel);
+            ButtonSpatialTileUI = new RibbonButton(ribbon, Cmd.cmdButtonSpatialTileUI);
             ButtonHEstainSetSpotColor = new RibbonButton(ribbon, Cmd.cmdButtonHEstainSetSpotColor);
             TabMain = new RibbonTab(ribbon, Cmd.cmdTabMain);
             GroupFileActions = new RibbonGroup(ribbon, Cmd.cmdGroupFileActions);

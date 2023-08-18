@@ -1,6 +1,7 @@
 ﻿Imports System.Drawing
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports STImaging
 
 Public Class HEStainViewer
@@ -112,4 +113,17 @@ Public Class HEStainViewer
         Call tile.SetSpotColorToolStripMenuItem_Click()
     End Sub
 
+    Public Sub UpdateSpatialTileUI()
+        Dim input As New InputSetUILooks With {
+            .SpotOpacity = tile.Opacity,
+            .BackgroundContrast = tile.BackgroundContrast
+        }
+
+        Call InputDialog.Input(
+            Sub(cfg)
+                tile.Opacity = input.SpotOpacity
+                tile.BackgroundContrast = input.BackgroundContrast
+                tile.CanvasOnPaintBackground()
+            End Sub, config:=input)
+    End Sub
 End Class

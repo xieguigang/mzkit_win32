@@ -203,6 +203,7 @@ Namespace RibbonLib.Controls
             Public Const cmdCheckboxHEstainKeepsAspectRatio As UInteger = 246
             Public Const cmdPanelHEstainEditor As UInteger = 245
             Public Const cmdButtonHEstainEditLabel As UInteger = 240
+            Public Const cmdButtonSpatialTileUI As UInteger = 247
             Public Const cmdButtonHEstainSetSpotColor As UInteger = 242
             Public Const cmdTabMain As UInteger = 1011
             Public Const cmdGroupFileActions As UInteger = 1045
@@ -1386,6 +1387,12 @@ Namespace RibbonLib.Controls
                 Return _ButtonHEstainEditLabel
             End Get
         End Property
+        Private _ButtonSpatialTileUI As RibbonButton
+        Public ReadOnly Property ButtonSpatialTileUI As RibbonButton
+            Get
+                Return _ButtonSpatialTileUI
+            End Get
+        End Property
         Private _ButtonHEstainSetSpotColor As RibbonButton
         Public ReadOnly Property ButtonHEstainSetSpotColor As RibbonButton
             Get
@@ -1814,6 +1821,7 @@ Namespace RibbonLib.Controls
             _CheckboxHEstainKeepsAspectRatio = New RibbonCheckBox(_ribbon, Cmd.cmdCheckboxHEstainKeepsAspectRatio)
             _PanelHEstainEditor = New RibbonGroup(_ribbon, Cmd.cmdPanelHEstainEditor)
             _ButtonHEstainEditLabel = New RibbonButton(_ribbon, Cmd.cmdButtonHEstainEditLabel)
+            _ButtonSpatialTileUI = New RibbonButton(_ribbon, Cmd.cmdButtonSpatialTileUI)
             _ButtonHEstainSetSpotColor = New RibbonButton(_ribbon, Cmd.cmdButtonHEstainSetSpotColor)
             _TabMain = New RibbonTab(_ribbon, Cmd.cmdTabMain)
             _GroupFileActions = New RibbonGroup(_ribbon, Cmd.cmdGroupFileActions)

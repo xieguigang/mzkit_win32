@@ -3515,6 +3515,14 @@
     <Command Name="cmdPanelHEstainOperations" Id="244" LabelTitle="Spatial Mapping Operations" LabelDescription="Spatial Mapping Operations" TooltipTitle="Spatial Mapping Operations" TooltipDescription="Spatial Mapping Operations" />
     <Command Name="cmdPanelHEstainEditor" Id="245" LabelTitle="Edit Mapping" LabelDescription="Edit Mapping" TooltipTitle="Edit Mapping" TooltipDescription="Edit Mapping" />
     <Command Name="cmdCheckboxHEstainKeepsAspectRatio" Id="246" LabelTitle="Keep Aspect Ratio" LabelDescription="Keep Aspect Ratio" TooltipTitle="Keep Aspect Ratio" TooltipDescription="Keep Aspect Ratio" />
+    <Command Name="cmdButtonSpatialTileUI" Id="247" LabelTitle="Adjust Spatial Tile UI" LabelDescription="Adjust Spatial Tile UI" TooltipTitle="Adjust Spatial Tile UI" TooltipDescription="Adjust Spatial Tile UI">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/TextEditor.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/TextEditor.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>

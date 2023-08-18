@@ -1327,5 +1327,12 @@
 #define cmdCheckboxHEstainKeepsAspectRatio_LabelDescription_RESID 60086
 #define cmdCheckboxHEstainKeepsAspectRatio_TooltipTitle_RESID 60087
 #define cmdCheckboxHEstainKeepsAspectRatio_TooltipDescription_RESID 60088
-#define InternalCmd2_LabelTitle_RESID 60089
-#define InternalCmd4_LabelTitle_RESID 60090
+#define cmdButtonSpatialTileUI 247 
+#define cmdButtonSpatialTileUI_LabelTitle_RESID 60089
+#define cmdButtonSpatialTileUI_LabelDescription_RESID 60090
+#define cmdButtonSpatialTileUI_TooltipTitle_RESID 60091
+#define cmdButtonSpatialTileUI_TooltipDescription_RESID 60092
+#define cmdButtonSpatialTileUI_SmallImages_192__RESID 60093
+#define cmdButtonSpatialTileUI_LargeImages_192__RESID 60094
+#define InternalCmd2_LabelTitle_RESID 60095
+#define InternalCmd4_LabelTitle_RESID 60096

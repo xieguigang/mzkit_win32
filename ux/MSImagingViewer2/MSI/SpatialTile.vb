@@ -1,4 +1,5 @@
-﻿Imports System.Drawing
+﻿Imports System.ComponentModel
+Imports System.Drawing
 Imports System.Drawing.Drawing2D
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
@@ -53,21 +54,52 @@ Public Class SpatialTile
 
     'Private Const WS_EX_TRANSPARENT As Integer = &H20
 
-    'Private m_opacity As Integer = 50
+    Dim m_opacity As Integer = 200
+    Dim m_contrast As Integer = -30
 
-    '<DefaultValue(50)>
-    'Public Property Opacity() As Integer
-    '    Get
-    '        Return Me.m_opacity
-    '    End Get
-    '    Set
-    '        If Value < 0 OrElse Value > 100 Then
-    '            Throw New ArgumentException("value must be between 0 and 100")
-    '        End If
+    <DefaultValue(-30)>
+    Public Property BackgroundContrast As Integer
+        Get
+            Return m_contrast
+        End Get
+        Set(value As Integer)
+            Me.m_contrast = value
 
-    '        Me.m_opacity = Value
-    '    End Set
-    'End Property
+            Try
+                Me.CanvasOnPaintBackground()
+            Catch ex As Exception
+
+            End Try
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' spot opacity value when has no image loaded
+    ''' </summary>
+    ''' <returns></returns>
+    ''' 
+    <DefaultValue(200)>
+    Public Property Opacity() As Integer
+        Get
+            Return Me.m_opacity
+        End Get
+        Set
+            If Value < 0 Then
+                ' Throw New ArgumentException("value must be between 0 and 255")
+                Value = 0
+            ElseIf Value > 255 Then
+                Value = 255
+            End If
+
+            Me.m_opacity = Value
+
+            Try
+                Me.CanvasOnPaintBackground()
+            Catch ex As Exception
+
+            End Try
+        End Set
+    End Property
 
     'Protected Overrides ReadOnly Property CreateParams() As CreateParams
     '    Get
@@ -492,7 +524,7 @@ Public Class SpatialTile
             Using bmp = New Bitmap(c.Width, c.Height, g.Graphics)
                 c.DrawToBitmap(bmp, clientRect)
                 g.TranslateTransform(c.Left - Left, c.Top - Top - DrawOffset)
-                bmp.AdjustContrast(-30)
+                bmp.AdjustContrast(m_contrast)
                 g.DrawImageUnscaled(bmp, Point.Empty)
                 g.TranslateTransform(Left - c.Left, Top - c.Top - DrawOffset)
             End Using
@@ -545,7 +577,7 @@ Public Class SpatialTile
             g.ResetTransform()
             g.DrawRectangle(New Pen(Brushes.White, 2) With {.DashStyle = DashStyle.Dash}, New Rectangle(New Point(2, 2), size))
 
-            onDrawSpots(g, 200)
+            onDrawSpots(g, m_opacity)
         Else
             onDrawSpots(g, 60)
         End If

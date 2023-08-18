@@ -24,6 +24,7 @@ Public Class frmHEStainAnalysisTool
         AddHandler ribbonItems.ButtonHEstainRotate.ExecuteEvent, Sub() Call HeStainViewer1.Rotate()
         AddHandler ribbonItems.ButtonHEstainSave.ExecuteEvent, Sub() Call HeStainViewer1.SaveExport()
         AddHandler ribbonItems.ButtonHEstainSetSpotColor.ExecuteEvent, Sub() Call HeStainViewer1.SetSpotColor()
+        AddHandler ribbonItems.ButtonSpatialTileUI.ExecuteEvent, Sub() Call HeStainViewer1.UpdateSpatialTileUI()
         AddHandler ribbonItems.CheckboxHEstainKeepsAspectRatio.ExecuteEvent,
             Sub()
                 HeStainViewer1.KeepAspectRatio = ribbonItems.CheckboxHEstainKeepsAspectRatio.BooleanValue
