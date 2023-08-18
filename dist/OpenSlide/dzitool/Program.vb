@@ -43,7 +43,7 @@ Module Program
         For level As Integer = 0 To levels.Length - 1
             Dim levelInfo = levels(level)
             Dim total As Integer = levelInfo.Width * levelInfo.Height
-            Dim d As Integer = total / 20
+            Dim d As Integer = total / 25
             Dim proc As i32 = Scan0
 
             Call Directory.CreateDirectory($"{export_dir}_files/{level}")
@@ -53,7 +53,7 @@ Module Program
                 For col As Integer = 0 To levelInfo.Height - 1
                     Call GetJpg(level, row, col, filepath, $"{export_dir}_files/{level}/{row}_{col}")
 
-                    If (++proc) Mod d = 0 Then
+                    If d <> 0 AndAlso ((++proc) Mod d = 0) Then
                         Call RunSlavePipeline.SendProgress(proc / total * 100, $"{export_dir}_files/{level}/{row}_{col}")
                     End If
                 Next
