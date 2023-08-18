@@ -762,12 +762,21 @@ Public Class frmMsImagingViewer
     End Sub
 
     Sub loadHEMap()
+        Dim files As String() = {
+            "HE Stain Image(*.jpg;*.png;*.bmp;*.tif)|*.jpg;*.png;*.bmp;*.tif",
+            "HE Scalar Mapping Matrix(*.csv)|*.csv",
+            "MZKit spatial register matrix(*.cdf)|*.cdf"
+        }
+
         Using file As New OpenFileDialog With {
-            .Filter = "HE Stain Image(*.jpg;*.png;*.bmp;*.tif)|*.jpg;*.png;*.bmp;*.tif|HE Scalar Mapping Matrix(*.csv)|*.csv|Hamamatsu slide scanner pathology image(*.ndpi)|*.ndpi|Deep Zoom Pathology Slide(*.dzi)|*.dzi"
+            .Filter = files.JoinBy("|")
         }
             If file.ShowDialog = DialogResult.OK Then
                 If file.FileName.ExtensionSuffix("csv") Then
                     Call loadHEMapMatrix(file.FileName)
+                ElseIf file.FileName.ExtensionSuffix("cdf") Then
+                    Dim register As SpatialRegister = SpatialRegister.ParseFile(file.OpenFile)
+
                 ElseIf file.FileName.ExtensionSuffix("ndpi") Then
                     Call TissueSlideHandler.OpenNdpiFile(file.FileName)
                 ElseIf file.FileName.ExtensionSuffix("tif", "tiff", "dzi") Then
