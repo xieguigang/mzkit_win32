@@ -1,5 +1,4 @@
 ﻿Imports System.Drawing
-Imports System.Drawing.Drawing2D
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports STImaging
@@ -11,6 +10,12 @@ Public Class HEStainViewer
     Dim HEImageSize As Size
     Dim HEBitmap As Bitmap
     Dim WithEvents tile As SpatialTile
+
+    Public ReadOnly Property GetMenu As ContextMenuStrip
+        Get
+            Return tile.ContextMenuStrip1
+        End Get
+    End Property
 
     Public Property KeepAspectRatio As Boolean
         Get
