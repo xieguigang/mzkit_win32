@@ -1,4 +1,5 @@
 ﻿Imports System.Drawing
+Imports System.Drawing.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports STImaging
 
@@ -7,7 +8,7 @@ Public Class HEStainViewer
     Dim MSIMatrix As PixelData()
     Dim MSIDims As Size
     Dim HEImage As Size
-    Dim tile As SpatialTile
+    Dim WithEvents tile As SpatialTile
 
     Private Sub HEStainViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.DoubleBuffered = True
@@ -54,4 +55,25 @@ Public Class HEStainViewer
 
     End Sub
 
+    Dim xy As Point
+
+    Private Sub tile_GetSpatialMetabolismPoint(smXY As Point, ByRef x As Integer, ByRef y As Integer, ByRef tissueMorphology As String) Handles tile.GetSpatialMetabolismPoint
+        Me.xy = smXY
+
+        Call PixelSelector.getPoint(smXY, HEImage, Me.Size, x, y)
+        Call Me.Invalidate()
+    End Sub
+
+    Private Sub OnBoardPaint(sender As Object, e As PaintEventArgs) Handles Me.Paint
+        If xy.IsEmpty Then
+            Return
+        End If
+
+        Dim g = e.Graphics
+        Dim dashLine As New Pen(Brushes.Black, 1) With {.DashStyle = DashStyle.Dash}
+
+        g.DrawLine(dashLine, New Point(0, xy.Y), New Point(Width, xy.Y))
+        g.DrawLine(dashLine, New Point(xy.X, 0), New Point(xy.X, Height))
+        g.Flush()
+    End Sub
 End Class

@@ -276,10 +276,14 @@ Public Class SpatialTile
             barcode = spot.barcode
         End If
 
-        If tag.StringEmpty Then
-            Call ToolTip1.SetToolTip(Me, $"[STdata spot: ({x + offset.X},{y + offset.Y}) {barcode}] -> [MALDI pixel: ({smX},{smY})]")
+        If DragMode = 0 Then
+            If tag.StringEmpty Then
+                Call ToolTip1.SetToolTip(Me, $"[STdata spot: ({x + offset.X},{y + offset.Y}) {barcode}] -> [MALDI pixel: ({smX},{smY})]")
+            Else
+                Call ToolTip1.SetToolTip(Me, $"[STdata spot: ({x + offset.X},{y + offset.Y}) {barcode}] -> [MALDI pixel: ({smX},{smY})@{tag}]")
+            End If
         Else
-            Call ToolTip1.SetToolTip(Me, $"[STdata spot: ({x + offset.X},{y + offset.Y}) {barcode}] -> [MALDI pixel: ({smX},{smY})@{tag}]")
+            Call ToolTip1.SetToolTip(Me, $"[MALDI pixel: ({x + offset.X},{y + offset.Y})] -> [HEstain pixel: ({smX},{smY})@{tag}]")
         End If
     End Sub
 
