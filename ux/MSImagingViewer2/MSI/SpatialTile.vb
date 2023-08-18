@@ -360,29 +360,35 @@ Public Class SpatialTile
     Private Sub DefaultExport()
         Using file As New SaveFileDialog With {.Filter = "Spatial Mapping Matrix(*.xml)|*.xml", .FileName = $"{Label1.Text}.xml"}
             If file.ShowDialog = DialogResult.OK Then
-                Call ProgressSpinner.DoLoading(
-                    Sub()
+                Call TaskProgress.RunAction(
+                    Sub(p As ITaskProgress)
+                        Call p.SetProgressMode()
+                        Call p.SetProgress(0)
+
                         Call New SpatialMapping With {
-                            .spots = GetMapping.ToArray,
+                            .spots = GetMapping(p).ToArray,
                             .label = Label1.Text,
                             .transform = transforms,
                             .color = SpotColor.ToHtmlColor
                         } _
                         .GetXml _
                         .SaveTo(file.FileName)
-                    End Sub)
+
+                    End Sub, title:="Export HE stain register matrix", info:="Processing pixel spot mapping...")
             End If
         End Using
     End Sub
 
-    Friend Iterator Function GetMapping() As IEnumerable(Of SpotMap)
+    Friend Iterator Function GetMapping(task As ITaskProgress) As IEnumerable(Of SpotMap)
         Dim radiusX = Me.Width / dimensions.Width / 2
         Dim radiusY = Me.Height / dimensions.Height / 2
         Dim left = Me.Left
         Dim top = Me.Top
         Dim i As i32 = Scan0
+        Dim d As Integer = rotationMatrix.Length / 20
 
-        For Each spot As SpatialSpot In rotationMatrix
+        For index As Integer = 0 To rotationMatrix.Length - 1
+            Dim spot As SpatialSpot = rotationMatrix(index)
             ' translate to control client XY
             Dim clientXY As New PointF With {
                 .X = spot.px * radiusX * 2,
@@ -413,6 +419,10 @@ Public Class SpatialTile
             pixels = pixels _
                 .Distinct _
                 .AsList
+
+            If index Mod d = 0 Then
+                Call task.SetProgress(index / rotationMatrix.Length * 100)
+            End If
 
             Yield New SpotMap With {
                 .STX = spot.px + offset.X,

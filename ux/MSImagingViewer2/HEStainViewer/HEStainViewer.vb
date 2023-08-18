@@ -95,16 +95,18 @@ Public Class HEStainViewer
     Public Sub SaveExport()
         Using file As New SaveFileDialog With {.Filter = "HEstain spatial register matrix(*.cdf)|*.cdf"}
             If file.ShowDialog = DialogResult.OK Then
-                Call ProgressSpinner.DoLoading(
-                    Sub()
-                        Call Me.Invoke(Sub() Call ExportMatrixFile(file.FileName))
-                    End Sub)
+                Call TaskProgress.RunAction(
+                    Sub(p As ITaskProgress)
+                        Call p.SetProgressMode()
+                        Call p.SetProgress(0)
+                        Call Me.Invoke(Sub() Call ExportMatrixFile(file.FileName, p))
+                    End Sub, title:="Export HE stain register matrix", info:="Processing pixel spot mapping...")
             End If
         End Using
     End Sub
 
-    Private Sub ExportMatrixFile(filepath As String)
-        Dim mapping = tile.GetMapping.ToArray
+    Private Sub ExportMatrixFile(filepath As String, p As ITaskProgress)
+        Dim mapping = tile.GetMapping(p).ToArray
         Dim label = tile.Label1.Text
         Dim transforms = tile.transforms
         Dim color = tile.SpotColor.ToHtmlColor
@@ -126,6 +128,7 @@ Public Class HEStainViewer
         }
         Dim file As Stream = filepath.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
 
+        Call p.SetInfo("Export register matrix to file...")
         Call register.Save(file)
     End Sub
 
