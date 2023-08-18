@@ -3,6 +3,7 @@ Imports dzitool.Container
 Imports Microsoft.VisualBasic.CommandLine
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.Language
 Imports OpenSlideCs
 
 Module Program
@@ -15,9 +16,9 @@ Module Program
         Using stream = openSlide.GetJpg(filename, $"_files/{level}/{row}_{col}.jpeg")
             If stream.TryGetBuffer(buffer) Then
                 Call buffer.FlushStream($"{outputname}.jpeg")
-                Call RunSlavePipeline.SendMessage($"{outputname}.jpeg successfully created!")
+                ' Call RunSlavePipeline.SendMessage($"{outputname}.jpeg successfully created!")
             Else
-                Call RunSlavePipeline.SendMessage($"{outputname}.jpeg failed...")
+                ' Call RunSlavePipeline.SendMessage($"{outputname}.jpeg failed...")
             End If
         End Using
     End Sub
@@ -41,22 +42,31 @@ Module Program
 
         For level As Integer = 0 To levels.Length - 1
             Dim levelInfo = levels(level)
+            Dim total As Integer = levelInfo.Width * levelInfo.Height
+            Dim d As Integer = total / 20
+            Dim proc As i32 = Scan0
 
             Call Directory.CreateDirectory($"{export_dir}_files/{level}")
+            Call RunSlavePipeline.SendProgress(0, $"Process tile image at level: {level}...")
 
             For row As Integer = 0 To levelInfo.Width - 1
                 For col As Integer = 0 To levelInfo.Height - 1
                     Call GetJpg(level, row, col, filepath, $"{export_dir}_files/{level}/{row}_{col}")
+
+                    If (++proc) Mod d = 0 Then
+                        Call RunSlavePipeline.SendProgress(proc / total * 100, $"{export_dir}_files/{level}/{row}_{col}")
+                    End If
                 Next
             Next
         Next
     End Sub
 
     <ExportAPI("/parse")>
-    <Usage("/parse --file <slide.svs/ndpi> [--export <image.dzi>]")>
+    <Usage("/parse --file <slide.svs/ndpi> [--export <image.dzi> --verbose]")>
     Public Function GetDziImage(args As CommandLine) As Integer
         Dim inputfile As String = args("--file")
         Dim export_file As String = args("--export") Or inputfile.ChangeSuffix("dzi")
+        Dim verbose As Boolean = args("--verbose")
 
         If Not export_file.ExtensionSuffix("dzi") Then
             Call RunSlavePipeline.SendMessage("The export file name should be a deep zoom image(*.dzi)!")
@@ -66,7 +76,11 @@ Module Program
         Call AppEnvironment.SetDllDirectory(AppEnvironment.getOpenSlideLibDLL)
 
         openSlide = New OpenSlide
-        OpenSlide.OnTrace = AddressOf RunSlavePipeline.SendMessage
+
+        If verbose Then
+            OpenSlide.OnTrace = AddressOf RunSlavePipeline.SendMessage
+        End If
+
         openSlide.EnsureOpen(inputfile)
 
         ' export DZI file
