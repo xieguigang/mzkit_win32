@@ -18,16 +18,24 @@ Public Class HEStainViewer
 
     Public ReadOnly Property GetMenu As ContextMenuStrip
         Get
+            If tile Is Nothing Then
+                Return Nothing
+            End If
             Return tile.ContextMenuStrip1
         End Get
     End Property
 
     Public Property KeepAspectRatio As Boolean
         Get
+            If tile Is Nothing Then
+                Return False
+            End If
             Return tile.KeepAspectRatioToolStripMenuItem.Checked
         End Get
         Set(value As Boolean)
-            tile.KeepAspectRatioToolStripMenuItem.Checked = value
+            If Not tile Is Nothing Then
+                tile.KeepAspectRatioToolStripMenuItem.Checked = value
+            End If
         End Set
     End Property
 

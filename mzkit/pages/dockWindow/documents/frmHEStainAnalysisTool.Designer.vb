@@ -24,11 +24,12 @@ Partial Class frmHEStainAnalysisTool
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.HeStainViewer1 = New Global.Mzkit_win32.MSImagingViewerV2.HEStainViewer()
+        Me.HeStainViewer1 = New mzkit_win32.MSImagingViewerV2.HEStainViewer()
         Me.SuspendLayout()
         '
         'HeStainViewer1
         '
+        Me.HeStainViewer1.AllowDrop = True
         Me.HeStainViewer1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.HeStainViewer1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.HeStainViewer1.Location = New System.Drawing.Point(0, 0)
@@ -42,7 +43,9 @@ Partial Class frmHEStainAnalysisTool
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.HeStainViewer1)
+        Me.DoubleBuffered = True
         Me.Name = "frmHEStainAnalysisTool"
+        Me.TabPageContextMenuStrip = Me.DockContextMenuStrip1
         Me.Text = "HEStain Analysis Tool"
         Me.ResumeLayout(False)
 
