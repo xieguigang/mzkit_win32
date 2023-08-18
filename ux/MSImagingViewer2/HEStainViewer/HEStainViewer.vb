@@ -80,12 +80,17 @@ Public Class HEStainViewer
     Dim xy As Point
 
     Private Sub tile_GetSpatialMetabolismPoint(smXY As Point, ByRef x As Integer, ByRef y As Integer, ByRef tissueMorphology As String) Handles tile.GetSpatialMetabolismPoint
-        Me.xy = smXY
+        xy = smXY
+        tissueMorphology = "NULL"
 
         Call PixelSelector.getPoint(smXY, HEImageSize, Me.Size, x, y)
 
-        Dim c As Color = HEBitmap.GetPixel(x, y)
-        tissueMorphology = c.ARGBExpression
+        Try
+            Dim c As Color = HEBitmap.GetPixel(x, y)
+            tissueMorphology = c.ARGBExpression
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     'Private Sub OnBoardPaint(sender As Object, e As PaintEventArgs) Handles Me.Paint
