@@ -1,5 +1,6 @@
 ﻿Imports System.Drawing
 Imports System.Drawing.Drawing2D
+Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports STImaging
 
@@ -7,7 +8,8 @@ Public Class HEStainViewer
 
     Dim MSIMatrix As PixelData()
     Dim MSIDims As Size
-    Dim HEImage As Size
+    Dim HEImageSize As Size
+    Dim HEBitmap As Bitmap
     Dim WithEvents tile As SpatialTile
 
     Private Sub HEStainViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -17,10 +19,11 @@ Public Class HEStainViewer
     Public Function LoadRawData(MSI As IEnumerable(Of PixelData), msi_dims As Size, HEstain As Image) As SpatialTile
         Me.MSIMatrix = MSI.ToArray
         Me.MSIDims = msi_dims
-        Me.HEImage = HEstain.Size
+        Me.HEImageSize = HEstain.Size
         Me.BackgroundImage = HEstain
         Me.Refresh()
         Me.tile = LoadUI()
+        Me.HEBitmap = New Bitmap(HEstain)
 
         Return tile
     End Function
@@ -60,8 +63,10 @@ Public Class HEStainViewer
     Private Sub tile_GetSpatialMetabolismPoint(smXY As Point, ByRef x As Integer, ByRef y As Integer, ByRef tissueMorphology As String) Handles tile.GetSpatialMetabolismPoint
         Me.xy = smXY
 
-        Call PixelSelector.getPoint(smXY, HEImage, Me.Size, x, y)
-        Call Me.Invalidate()
+        Call PixelSelector.getPoint(smXY, HEImageSize, Me.Size, x, y)
+
+        Dim c As Color = HEBitmap.GetPixel(x, y)
+        tissueMorphology = c.ARGBExpression
     End Sub
 
     Private Sub OnBoardPaint(sender As Object, e As PaintEventArgs) Handles Me.Paint
