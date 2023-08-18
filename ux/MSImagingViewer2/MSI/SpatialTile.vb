@@ -457,6 +457,14 @@ Public Class SpatialTile
     End Sub
 
     Public Property SpotColor As Color = Color.Red
+    Public Property Label As String
+        Get
+            Return Label1.Text
+        End Get
+        Set(value As String)
+            Label1.Text = value
+        End Set
+    End Property
 
     ''' <summary>
     ''' draw on the matrix of <see cref="rotationMatrix"/>
@@ -537,7 +545,7 @@ Public Class SpatialTile
     ''' <remarks>
     ''' spot matrix is draw on <see cref="rotationMatrix"/>
     ''' </remarks>
-    Friend Sub CanvasOnPaintBackground()
+    Public Sub CanvasOnPaintBackground()
         Dim g As Graphics2D
 
         If imageLoad IsNot Nothing Then

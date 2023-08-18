@@ -1,4 +1,5 @@
 ﻿Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.MSImagingViewerV2
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmHEStainAnalysisTool
@@ -24,7 +25,7 @@ Partial Class frmHEStainAnalysisTool
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.HeStainViewer1 = New mzkit_win32.MSImagingViewerV2.HEStainViewer()
+        Me.HeStainViewer1 = New HEStainViewer()
         Me.SuspendLayout()
         '
         'HeStainViewer1

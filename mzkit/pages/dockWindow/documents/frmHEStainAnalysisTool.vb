@@ -1,5 +1,7 @@
 ﻿Imports System.ComponentModel
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
+Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports RibbonLib.Interop
 
@@ -29,5 +31,41 @@ Public Class frmHEStainAnalysisTool
             Sub()
                 HeStainViewer1.KeepAspectRatio = ribbonItems.CheckboxHEstainKeepsAspectRatio.BooleanValue
             End Sub
+    End Sub
+
+    ''' <summary>
+    ''' debug test
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub HeStainViewer1_DragDrop(sender As Object, e As DragEventArgs) Handles HeStainViewer1.DragDrop
+        Dim files() As String = e.Data.GetData(DataFormats.FileDrop)
+        Dim firstFile As String = files.ElementAtOrDefault(Scan0)
+
+        If Not firstFile Is Nothing Then
+            If firstFile.ExtensionSuffix("cdf") Then
+
+                Call HeStainViewer1.Clear()
+
+                Dim register As SpatialRegister = SpatialRegister.ParseFile(firstFile.OpenReadonly)
+                Dim pixels As PixelData() = register.mappings _
+                    .Select(Function(p) New PixelData(p.STX, p.STY, p.heatmap)) _
+                    .ToArray
+                Dim msi_dims As Size = register.MSIdims
+                Dim tile = HeStainViewer1.LoadRawData(pixels, msi_dims, register.HEstain)
+
+                tile.Location = register.offset.ToPoint
+                tile.Size = register.MSIscale
+                tile.Label = register.label
+                tile.SpotColor = register.spotColor.TranslateColor
+                tile.CanvasOnPaintBackground()
+            End If
+        End If
+    End Sub
+
+    Private Sub HeStainViewer1_DragEnter(sender As Object, e As DragEventArgs) Handles HeStainViewer1.DragEnter
+        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
+            e.Effect = DragDropEffects.Copy
+        End If
     End Sub
 End Class

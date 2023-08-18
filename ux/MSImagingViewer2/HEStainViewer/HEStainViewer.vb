@@ -39,6 +39,13 @@ Public Class HEStainViewer
         End Set
     End Property
 
+    Public Sub Clear()
+        tile = Nothing
+        BackgroundImage = Nothing
+        MSIMatrix = Nothing
+        Controls.Clear()
+    End Sub
+
     Private Sub HEStainViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.DoubleBuffered = True
     End Sub
@@ -114,7 +121,8 @@ Public Class HEStainViewer
             .viewSize = Me.Size,
             .offset = tile.Location,
             .MSIscale = tile.Size,
-            .spotColor = color
+            .spotColor = color,
+            .MSIdims = MSIDims
         }
         Dim file As Stream = filepath.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
 
