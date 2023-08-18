@@ -797,13 +797,19 @@ Public Class frmMsImagingViewer
                     End If
 
                     Dim image As New Bitmap(register.HEstain, register.viewSize)
-                    Dim scan_dims As Size
+                    Dim scan_dims As Size = image.Size
                     Dim range As DoubleRange = register.mappings.Select(Function(s) CDbl(s.heatmap)).Range
+                    Dim padding As Double() = New Double(3) {}
+
+                    padding(0) = register.offset.Y ' top 
+                    padding(1) = register.viewSize.Width - (register.offset.X + register.MSIscale.Width) ' right
+                    padding(2) = register.viewSize.Height - (register.offset.Y + register.MSIscale.Height) ' bottom
+                    padding(3) = register.offset.X ' left
 
                     ' apply MSI data rotation and also set new data dimension
                     Call SetRotation(angle:=register.rotation)
                     ' calculate and apply the MSI padding
-                    Call SetMSIPadding(padding:=Nothing)
+                    Call SetMSIPadding(padding:=New Padding(padding))
                     ' display the HEstain image
                     Call PixelSelector1.SetMsImagingOutput(image, scan_dims, params.background, params.colors, {range.Min, range.Max}, 255)
 
