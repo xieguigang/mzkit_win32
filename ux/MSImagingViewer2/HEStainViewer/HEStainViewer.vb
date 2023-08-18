@@ -1,8 +1,12 @@
 ﻿Imports System.Drawing
+Imports System.IO
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
+Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports STImaging
+Imports std = System.Math
 
 Public Class HEStainViewer
 
@@ -74,7 +78,35 @@ Public Class HEStainViewer
     End Function
 
     Public Sub SaveExport()
+        Using file As New SaveFileDialog With {.Filter = "HEstain spatial register matrix(*.cdf)|*.cdf"}
+            If file.ShowDialog = DialogResult.OK Then
+                Call ProgressSpinner.DoLoading(
+                    Sub()
+                        Call Me.Invoke(Sub() Call ExportMatrixFile(file.FileName))
+                    End Sub)
+            End If
+        End Using
+    End Sub
 
+    Private Sub ExportMatrixFile(filepath As String)
+        Dim mapping = tile.GetMapping.ToArray
+        Dim label = tile.Label1.Text
+        Dim transforms = tile.transforms
+        Dim color = tile.SpotColor.ToHtmlColor
+        Dim register As New SpatialRegister With {
+            .HEstain = HEBitmap,
+            .label = label,
+            .mappings = mapping,
+            .mirror = transforms.Where(Function(t) t.op = Transform.Operation.Mirror).Any,
+            .rotation = transforms.Where(Function(t) t.op = Transform.Operation.Rotate).OrderByDescending(Function(t) std.Abs(t.argument)).FirstOrDefault?.argument,
+            .viewSize = Me.Size,
+            .offset = tile.Location,
+            .MSIscale = tile.Size,
+            .spotColor = color
+        }
+        Dim file As Stream = filepath.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
+
+        Call register.Save(file)
     End Sub
 
     Dim xy As Point
