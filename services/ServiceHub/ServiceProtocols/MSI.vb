@@ -85,6 +85,7 @@ Imports Microsoft.VisualBasic.MachineLearning.Data
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
+Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Microsoft.VisualBasic.Net.Protocols.Reflection
 Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Parallel
@@ -290,7 +291,9 @@ Public Class MSI : Implements ITaskDriver, IDisposable
 
     <Protocol(ServiceProtocol.AutoLocation)>
     Public Function AutoLocation(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
-        Dim pack As mzPack = ExportMzPack().Reset(request.GetUTF8String)
+        Dim padStr As String = request.GetUTF8String
+        Dim padVal As Padding = Padding.TryParse(padStr, "padding: 25px 25px 25px 25px;")
+        Dim pack As mzPack = ExportMzPack().Reset(padVal)
         Call LoadMSIMzPackCommon(pack)
         Dim info = MSIProtocols.GetMSIInfo(Me)
         info!source = sourceName
