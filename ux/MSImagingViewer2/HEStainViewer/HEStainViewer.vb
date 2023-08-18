@@ -106,7 +106,7 @@ Public Class HEStainViewer
     End Sub
 
     Private Sub ExportMatrixFile(filepath As String, p As ITaskProgress)
-        Dim mapping = tile.GetMapping(p).ToArray
+        Dim mapping = tile.GetMapping(p, False).ToArray
         Dim label = tile.Label1.Text
         Dim transforms = tile.transforms
         Dim color = tile.SpotColor.ToHtmlColor

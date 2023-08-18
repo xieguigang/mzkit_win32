@@ -366,7 +366,7 @@ Public Class SpatialTile
                         Call p.SetProgress(0)
 
                         Call New SpatialMapping With {
-                            .spots = GetMapping(p).ToArray,
+                            .spots = GetMapping(p, True).ToArray,
                             .label = Label1.Text,
                             .transform = transforms,
                             .color = SpotColor.ToHtmlColor
@@ -379,7 +379,7 @@ Public Class SpatialTile
         End Using
     End Sub
 
-    Friend Iterator Function GetMapping(task As ITaskProgress) As IEnumerable(Of SpotMap)
+    Friend Iterator Function GetMapping(task As ITaskProgress, exportSpotMaps As Boolean) As IEnumerable(Of SpotMap)
         Dim radiusX = Me.Width / dimensions.Width / 2
         Dim radiusY = Me.Height / dimensions.Height / 2
         Dim left = Me.Left
@@ -403,22 +403,24 @@ Public Class SpatialTile
                 heatmap = Me.heatmap(CInt(i) - 1)
             End If
 
-            For x As Integer = clientXY.X - radiusX To clientXY.X + radiusX
-                For y As Integer = clientXY.Y - radiusY To clientXY.Y + radiusY
-                    Dim SMXY As New Point(x + left, y + top)
-                    Dim smX, smY As Integer
-                    Dim tag As String = Nothing
+            If exportSpotMaps Then
+                For x As Integer = clientXY.X - radiusX To clientXY.X + radiusX
+                    For y As Integer = clientXY.Y - radiusY To clientXY.Y + radiusY
+                        Dim SMXY As New Point(x + left, y + top)
+                        Dim smX, smY As Integer
+                        Dim tag As String = Nothing
 
-                    RaiseEvent GetSpatialMetabolismPoint(SMXY, smX, smY, tag)
+                        RaiseEvent GetSpatialMetabolismPoint(SMXY, smX, smY, tag)
 
-                    Call tags.Add(tag)
-                    Call pixels.Add(New Point(smX, smY))
+                        Call tags.Add(tag)
+                        Call pixels.Add(New Point(smX, smY))
+                    Next
                 Next
-            Next
 
-            pixels = pixels _
-                .Distinct _
-                .AsList
+                pixels = pixels _
+                    .Distinct _
+                    .AsList
+            End If
 
             If index Mod d = 0 Then
                 Call task.SetProgress(index / rotationMatrix.Length * 100)
