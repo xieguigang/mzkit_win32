@@ -95,12 +95,14 @@ Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.DataStorage.netCDF
+Imports Microsoft.VisualBasic.DataStorage.netCDF.DataVector
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.hqx
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Microsoft.VisualBasic.Serialization.JSON
@@ -278,10 +280,14 @@ Public Class frmMsImagingViewer
     Private Sub autoLocation()
         If Not checkService() Then
             Return
+        Else
+            Call SetMSIPadding(padding:=Nothing)
         End If
+    End Sub
 
+    Private Sub SetMSIPadding(padding As Padding)
         Dim info = TaskProgress.LoadData(
-            streamLoad:=Function(echo As Action(Of String)) MSIservice.AutoLocation,
+            streamLoad:=Function(echo As Action(Of String)) MSIservice.AutoLocation(padding),
             title:="Do auto location",
             info:="Apply ms-imaging slide sample matrix adjust location and padding automatically..."
         )
@@ -336,27 +342,31 @@ Public Class frmMsImagingViewer
         Dim rotateCfg As New InputMSIRotation
 
         Call rotateCfg.SetImage(image)
-        Call InputDialog.Input(Of InputMSIRotation)(
+        Call InputDialog.Input(
             Sub(cfg)
-                Dim info = TaskProgress.LoadData(
-                    streamLoad:=Function(echo As Action(Of String)) MSIservice.SetSpatial2D(cfg.GetAngle),
-                    title:="Do rotation",
-                    info:="Apply matrix rotation to the ms-imaging slide sample data..."
-                )
-                Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".tmp.mzPack", sessionID:=App.PID, prefix:="rotate_temp_")
-
-                If Not info Is Nothing Then
-                    Call TaskProgress.LoadData(
-                        Function(echo As Action(Of String))
-                            Call MSIservice.ExportMzpack(tempfile)
-                            Return True
-                        End Function)
-                    Call MyApplication.host.showMzPackMSI(tempfile)
-                    Call RenderSummary(IntensitySummary.BasePeak)
-
-                    Call Workbench.SuccessMessage($"Rotate the MS-imaging sample slide at angle {cfg.GetAngle}.")
-                End If
+                Call Me.Invoke(Sub() Call SetRotation(cfg.GetAngle))
             End Sub, config:=rotateCfg)
+    End Sub
+
+    Private Sub SetRotation(angle As Double)
+        Dim info = TaskProgress.LoadData(
+            streamLoad:=Function(echo As Action(Of String)) MSIservice.SetSpatial2D(angle),
+            title:="Do rotation",
+            info:="Apply matrix rotation to the ms-imaging slide sample data..."
+        )
+        Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".tmp.mzPack", sessionID:=App.PID, prefix:="rotate_temp_")
+
+        If Not info Is Nothing Then
+            Call TaskProgress.LoadData(
+                Function(echo As Action(Of String))
+                    Call MSIservice.ExportMzpack(tempfile)
+                    Return True
+                End Function)
+            Call MyApplication.host.showMzPackMSI(tempfile)
+            Call RenderSummary(IntensitySummary.BasePeak)
+
+            Call Workbench.SuccessMessage($"Rotate the MS-imaging sample slide at angle {angle}.")
+        End If
     End Sub
 
     Private Sub ViewMzBins()
@@ -776,7 +786,28 @@ Public Class frmMsImagingViewer
                     Call loadHEMapMatrix(file.FileName)
                 ElseIf file.FileName.ExtensionSuffix("cdf") Then
                     Dim register As SpatialRegister = SpatialRegister.ParseFile(file.OpenFile)
+                    ' verify the MSI data dimension 
+                    If Not checkService() Then
+                        Return
+                    ElseIf params Is Nothing Then
+                        Return
+                    ElseIf params.scan_x <> register.MSIdims.Width OrElse params.scan_y <> register.MSIdims.Height Then
+                        Call MessageBox.Show("The dimension data between current MS-imaging viewer and the HEstain regitsered dimesion is mis-matched!", "Invalid MS-Imaging Dimensions", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        Return
+                    End If
 
+                    Dim image As New Bitmap(register.HEstain, register.viewSize)
+                    Dim scan_dims As Size
+                    Dim range As DoubleRange = register.mappings.Select(Function(s) CDbl(s.heatmap)).Range
+
+                    ' apply MSI data rotation and also set new data dimension
+                    Call SetRotation(angle:=register.rotation)
+                    ' calculate and apply the MSI padding
+                    Call SetMSIPadding(padding:=Nothing)
+                    ' display the HEstain image
+                    Call PixelSelector1.SetMsImagingOutput(image, scan_dims, params.background, params.colors, {range.Min, range.Max}, 255)
+
+                    Call Workbench.SuccessMessage("HEstain - MSI register matrix load success!")
                 ElseIf file.FileName.ExtensionSuffix("ndpi") Then
                     Call TissueSlideHandler.OpenNdpiFile(file.FileName)
                 ElseIf file.FileName.ExtensionSuffix("tif", "tiff", "dzi") Then
