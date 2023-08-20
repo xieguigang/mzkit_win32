@@ -2228,7 +2228,7 @@ Public Class frmMsImagingViewer
         Call Me.blender.channel.WriteBuffer(HeatMap.PixelData.CreateStream(layer))
 
         Me.params.enableFilter = True
-        Me.blender.OpenSession(ss:=blender)
+        Me.blender.OpenSession(ss:=blender, args:=$"{dimensions.Width},{dimensions.Height}")
         Me.rendering =
             Sub()
                 Call MyApplication.RegisterPlot(
@@ -2256,7 +2256,7 @@ Public Class frmMsImagingViewer
         Me.params.enableFilter = True
         Me.rgb_configs = Nothing
         Me.loadedPixels = pixels
-        Me.blender.OpenSession(blender)
+        Me.blender.OpenSession(blender, $"{params.scan_x},{params.scan_y}")
         Me.PixelSelector1.MSICanvas.LoadSampleTags(pixels.Select(Function(i) i.sampleTag).Where(Function(str) Not str Is Nothing).Distinct)
 
         Return Sub()

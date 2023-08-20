@@ -351,7 +351,7 @@ Namespace ServiceHub
         Public Function LoadGeneLayer(id As String) As PixelData()
             Dim getBuf As Byte() = Nothing
             Dim pixels = MSIProtocols.LoadPixels(id, getBuf, AddressOf handleServiceRequest)
-            Call blender.WriteBuffer(getBuf)
+            Call blender.channel.WriteBuffer(getBuf)
             Return pixels
         End Function
 
@@ -359,7 +359,7 @@ Namespace ServiceHub
         Public Function LoadPixels(mz As IEnumerable(Of Double), mzErr As Tolerance) As PixelData()
             Dim getBuf As Byte() = Nothing
             Dim pixels = MSIProtocols.LoadPixels(mz, mzErr, getBuf, AddressOf handleServiceRequest)
-            Call blender.WriteBuffer(getBuf)
+            Call blender.channel.WriteBuffer(getBuf)
             Return pixels
         End Function
 
