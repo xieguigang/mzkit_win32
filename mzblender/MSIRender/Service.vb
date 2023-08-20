@@ -7,6 +7,7 @@ Imports Microsoft.VisualBasic.Data.IO
 Imports Microsoft.VisualBasic.Net.Protocols.Reflection
 Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Parallel
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Parallel
 Imports Task
 Imports TcpEndPoint = System.Net.IPEndPoint
@@ -82,17 +83,20 @@ Public Class Service : Implements IDisposable
     <Protocol(Protocol.MSIRender)>
     Public Function MSIRender(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
         ' get parameters from the request
-        Dim args As PlotProperty
-        Dim canvas As Size
-        Dim sample As String
-        Dim msi As Image = blender.Rendering(args, canvas, sample)
+        Dim json As Dictionary(Of String, String) = request.LoadObject(Of Dictionary(Of String, String))
+        Dim args As PlotProperty = json!args.LoadJSON(Of PlotProperty)
+        Dim params As MsImageProperty = json!params.LoadJSON(Of MsImageProperty)
+        Dim canvas As Size = json!canvas.LoadJSON(Of Size)
+        Dim sample As String = json!sample
+        Dim msi As Image = blender.Rendering(args, canvas, params, sample)
 
         Using ms As New MemoryStream
             Call msi.Save(ms, ImageFormat.Png)
             Call ms.Flush()
-
-
+            Call channel.WriteBuffer(ms.ToArray)
         End Using
+
+        Return New DataPipe("OK!")
     End Function
 
     <Protocol(Protocol.Shutdown)>
