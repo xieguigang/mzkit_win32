@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.Runtime.CompilerServices
 Imports Parallel
 
 Public Class MemoryPipe
@@ -21,6 +22,11 @@ Public Class MemoryPipe
         Call file.Read(bytes, Scan0, bytes.Length)
 
         Return bytes
+    End Function
+
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Function LoadImage() As Image
+        Return Image.FromStream(New MemoryStream(LoadStream))
     End Function
 
     Public Sub WriteBuffer(ByRef data As Byte())

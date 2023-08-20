@@ -2,6 +2,8 @@
 Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender.Scaler
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
+Imports Microsoft.VisualBasic.Data.IO
 Imports Microsoft.VisualBasic.Net.Protocols.Reflection
 Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Parallel
@@ -42,12 +44,40 @@ Public Class Service : Implements IDisposable
         Return New DataPipe("OK")
     End Function
 
-    <Protocol(Protocol.OpenSession)>
-    Public Function OpenSession(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
-        ' load pixels data
-
+    <Protocol(Protocol.SetHEmap)>
+    Public Function SetHEmap(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
+        blender.HEMap = channel.LoadImage
+        Return New DataPipe("OK")
     End Function
 
+    <Protocol(Protocol.OpenSession)>
+    Public Function OpenSession(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
+        Dim ss As String = request.GetUTF8String
+
+        ' load pixels data
+        Select Case ss
+            Case NameOf(HeatMapBlender)
+            Case NameOf(RGBIonMSIBlender)
+            Case NameOf(SingleIonMSIBlender)
+            Case NameOf(SummaryMSIBlender)
+            Case Else
+                Throw New InvalidDataException("invalid session open parameter!")
+        End Select
+    End Function
+
+    <Protocol(Protocol.SetIntensityRange)>
+    Public Function SetIntensityRange(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
+        Dim range As Double() = request.LoadObject(Of Double())
+        blender.SetIntensityRange(New DoubleRange(range))
+        Return New DataPipe("OK")
+    End Function
+
+    <Protocol(Protocol.GetTrIQIntensity)>
+    Public Function GetTrIQIntensity(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
+        Dim cutoff As Double = NetworkByteOrderBitConvertor.ToDouble(request.ChunkBuffer)
+        Dim q As Double = blender.GetTrIQIntensity(cutoff)
+        Return New DataPipe(NetworkByteOrderBitConvertor.GetBytes(q))
+    End Function
 
     <Protocol(Protocol.MSIRender)>
     Public Function MSIRender(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe

@@ -1989,10 +1989,9 @@ Public Class frmMsImagingViewer
         End If
 
         Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
-        Dim blender As New SummaryMSIBlender(summaryLayer, params, loadFilters)
+        Dim blender As Type = GetType(SummaryMSIBlender) ' (summaryLayer, params, loadFilters)
 
-        ' Me.params.enableFilter = False
-        Me.blender = blender
+        Me.blender.OpenSession(blender)
         Me.sampleRegions.SetBounds(summaryLayer.Select(Function(a) New Point(a.x, a.y)))
 
         Return Sub()
