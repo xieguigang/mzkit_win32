@@ -75,8 +75,12 @@ Public Class BlenderClient : Implements IDisposable
         Return handleRequest(New RequestStream(Service.protocolHandle, Protocol.SetIntensityRange, {range.Min, range.Max}.GetJson))
     End Function
 
-    Public Function OpenSession(ss As Type)
-        Dim result = handleRequest(New RequestStream(Service.protocolHandle, Protocol.OpenSession, ss.Name))
+    Public Function OpenSession(ss As Type, args As String)
+        Dim payload As New Dictionary(Of String, String) From {
+            {"ss", ss.Name},
+            {"args", args}
+        }
+        Dim result = handleRequest(New RequestStream(Service.protocolHandle, Protocol.OpenSession, payload.GetJson))
         Return result
     End Function
 

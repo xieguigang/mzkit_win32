@@ -611,7 +611,7 @@ Namespace ServiceHub
         Public Function ExtractSampleRegion(ByRef panic As Boolean) As PixelScanIntensity()
             Dim getBuf As Byte() = Nothing
             Dim pixels = handleLayer(New RequestStream(MSI.Protocol, ServiceProtocol.ExtractSamplePixels, "OK"), getBuf, panic)
-            Call blender.WriteBuffer(getBuf)
+            Call blender.channel.WriteBuffer(getBuf)
             Return pixels
         End Function
 
@@ -619,7 +619,7 @@ Namespace ServiceHub
             Dim getBuf As Byte() = Nothing
             Dim request As New RequestStream(MSI.Protocol, ServiceProtocol.LoadSummaryLayer, BitConverter.GetBytes(CInt(summary)))
             Dim pixels = handleLayer(request, getBuf, panic)
-            Call blender.WriteBuffer(getBuf)
+            Call blender.channel.WriteBuffer(getBuf)
             Return pixels
         End Function
 

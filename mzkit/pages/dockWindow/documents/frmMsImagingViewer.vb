@@ -331,7 +331,7 @@ Public Class frmMsImagingViewer
                 Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
                 Dim blender As Type = GetType(SummaryMSIBlender) ' (summaryLayer, params, loadFilters)
 
-                Me.blender.OpenSession(blender)
+                Me.blender.OpenSession(blender, "")
 
                 Return Me.blender.MSIRender(Nothing, params, params.GetMSIDimension)
             End Function, title:="Create ms-imaging slide previews", "Loading the basepeak summary plot of your slide as previews...")
@@ -890,8 +890,9 @@ Public Class frmMsImagingViewer
                     .knn_qcut = 1
                 }
                 Dim blender As Type = GetType(SingleIonMSIBlender) '(layer.MSILayer, Nothing, argv, loadFilters)
-                Me.blender.OpenSession(blender)
-                Dim HEMap As Image = Me.blender.MSIRender(Nothing, Nothing, Nothing)
+                Me.blender.channel.WriteBuffer(PixelData.GetBuffer(layer.MSILayer))
+                Me.blender.OpenSession(blender, $"{scan_x},{scan_y}")
+                Dim HEMap As Image = Me.blender.MSIRender(Nothing, argv, layer.DimensionSize)
 
                 If Me.blender IsNot Nothing AndAlso Me.blender.Session IsNot GetType(HeatMapBlender) Then
                     ' draw and overlaps on the MS-imaging rendering for CAD analysis
@@ -1994,7 +1995,7 @@ Public Class frmMsImagingViewer
         Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
         Dim blender As Type = GetType(SummaryMSIBlender) ' (summaryLayer, params, loadFilters)
 
-        Me.blender.OpenSession(blender)
+        Me.blender.OpenSession(blender, "")
         Me.sampleRegions.SetBounds(summaryLayer.Select(Function(a) New Point(a.x, a.y)))
 
         Return Sub()
@@ -2061,9 +2062,14 @@ Public Class frmMsImagingViewer
 
     Private Function createRenderTask(R As PixelData(), G As PixelData(), B As PixelData()) As Action
         Dim blender As Type = GetType(RGBIonMSIBlender) ' (R, G, B, TIC, params, loadFilters)
+        Dim mzdiff = params.GetTolerance.GetScript
+        Dim configs As New Dictionary(Of String, String) From {
+            {"rgb", rgb_configs.GetJSON},
+            {"mzdiff", mzdiff}
+        }
 
         Me.params.enableFilter = False
-        Me.blender.OpenSession(blender)
+        Me.blender.OpenSession(blender, configs.GetJson)
         Me.loadedPixels = R _
             .JoinIterates(G) _
             .JoinIterates(B) _

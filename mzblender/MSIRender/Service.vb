@@ -1,15 +1,21 @@
 ﻿Imports System.Drawing.Imaging
 Imports System.IO
 Imports System.Runtime.CompilerServices
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender.Scaler
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.IO
 Imports Microsoft.VisualBasic.Net.Protocols.Reflection
 Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Parallel
+Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Parallel
 Imports Task
+Imports HeatMap = Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports TcpEndPoint = System.Net.IPEndPoint
 
 <Protocol(GetType(Protocol))>
@@ -20,6 +26,7 @@ Public Class Service : Implements IDisposable
     Dim channel As MemoryPipe
     Dim blender As MSImagingBlender
     Dim filters As RasterPipeline
+    Dim TIC As PixelScanIntensity()
 
     Public Shared ReadOnly protocolHandle As Long = ProtocolAttribute.GetProtocolCategory(GetType(Protocol)).EntryPoint
 
@@ -55,15 +62,40 @@ Public Class Service : Implements IDisposable
 
     <Protocol(Protocol.OpenSession)>
     Public Function OpenSession(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
-        Dim ss As String = request.GetUTF8String
+        Dim data = request.LoadObject(Of Dictionary(Of String, String))
+        Dim ss As String = data!ss
 
         ' load pixels data
         Select Case ss
             Case NameOf(HeatMapBlender)
-                blender = New HeatMapBlender()
+                Dim pixels = HeatMap.PixelData.ParseStream(channel.LoadStream)
+                Dim dims As Size = data!args.SizeParser
+
+                blender = New HeatMapBlender(pixels, dims, filters)
             Case NameOf(RGBIonMSIBlender)
+                Dim pixels = PixelData.Parse(channel.LoadStream)
+                data = data!args.LoadJSON(Of Dictionary(Of String, String))
+                Dim rgb As RGBConfigs = data!args.LoadJSON(Of RGBConfigs)
+                Dim mzdiff As Tolerance = Tolerance.ParseScript(data!mzdiff)
+                Dim Rpixels = pixels.Where(Function(p) mzdiff(p.mz, rgb.R)).ToArray
+                Dim Gpixels = pixels.Where(Function(p) mzdiff(p.mz, rgb.G)).ToArray
+                Dim Bpixels = pixels.Where(Function(p) mzdiff(p.mz, rgb.B)).ToArray
+
+                blender = New RGBIonMSIBlender(Rpixels, Gpixels, Bpixels, TIC, filters)
             Case NameOf(SingleIonMSIBlender)
+                Dim dims As Size = data!args.SizeParser
+                Dim pixels As PixelData() = PixelData.Parse(channel.LoadStream)
+                Dim layer As New SingleIonLayer With {
+                    .DimensionSize = dims,
+                    .MSILayer = pixels,
+                    .IonMz = ""
+                }
+
+                blender = New SingleIonMSIBlender(pixels, filters, Nothing)
             Case NameOf(SummaryMSIBlender)
+                Dim pixels As PixelScanIntensity() = PixelScanIntensity.Parse(channel.LoadStream)
+
+                blender = New SummaryMSIBlender(pixels, filters)
             Case Else
                 Throw New InvalidDataException("invalid session open parameter!")
         End Select
