@@ -79,8 +79,8 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
         End Get
     End Property
 
-    Sub New(summaryLayer As PixelScanIntensity(), params As MsImageProperty, filter As RasterPipeline)
-        Call MyBase.New(params, filter)
+    Sub New(summaryLayer As PixelScanIntensity(), filter As RasterPipeline)
+        Call MyBase.New(filter)
 
         Me.summaryLayer = summaryLayer
         Me.intensity = summaryLayer _

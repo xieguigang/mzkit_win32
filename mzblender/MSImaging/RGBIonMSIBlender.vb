@@ -77,8 +77,8 @@ Public Class RGBIonMSIBlender : Inherits MSImagingBlender
         End Get
     End Property
 
-    Sub New(r As PixelData(), g As PixelData(), b As PixelData(), TIC As PixelScanIntensity(), params As MsImageProperty, filter As RasterPipeline)
-        Call MyBase.New(params, filter)
+    Sub New(r As PixelData(), g As PixelData(), b As PixelData(), TIC As PixelScanIntensity(), filter As RasterPipeline)
+        Call MyBase.New(filter)
 
         Dim joinX = r.JoinIterates(g).JoinIterates(b).Select(Function(i) i.x).Max
         Dim joinY = r.JoinIterates(g).JoinIterates(b).Select(Function(i) i.y).Max
