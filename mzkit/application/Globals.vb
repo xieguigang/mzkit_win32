@@ -165,7 +165,7 @@ Module Globals
             .StartTime = Now.ToString
         })
 
-        MSIBlender = New IPEndPoint("127.0.0.1", TCPExtensions.GetFirstAvailablePort(-1))
+        MSIBlender = New IPEndPoint("127.0.0.1", TCPExtensions.GetFirstAvailablePort(8000))
         MSI = New Process With {
             .StartInfo = New ProcessStartInfo With {
                 .FileName = $"{App.HOME}/plugins\blender\BlenderHost.exe",
