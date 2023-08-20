@@ -329,9 +329,11 @@ Public Class frmMsImagingViewer
                 End If
 
                 Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
-                Dim blender As New SummaryMSIBlender(summaryLayer, params, loadFilters)
+                Dim blender As Type = GetType(SummaryMSIBlender) ' (summaryLayer, params, loadFilters)
 
-                Return blender.Rendering()
+                Me.blender.OpenSession(blender)
+
+                Return Me.blender.MSIRender(Nothing, params, params.GetMSIDimension)
             End Function, title:="Create ms-imaging slide previews", "Loading the basepeak summary plot of your slide as previews...")
 
         If image Is Nothing Then
@@ -887,8 +889,9 @@ Public Class frmMsImagingViewer
                     .knn = 0,
                     .knn_qcut = 1
                 }
-                Dim blender As New SingleIonMSIBlender(layer.MSILayer, Nothing, argv, loadFilters)
-                Dim HEMap As Image = blender.Rendering(Nothing, Nothing)
+                Dim blender As Type = GetType(SingleIonMSIBlender) '(layer.MSILayer, Nothing, argv, loadFilters)
+                Me.blender.OpenSession(blender)
+                Dim HEMap As Image = Me.blender.MSIRender(Nothing, Nothing, Nothing)
 
                 If Me.blender IsNot Nothing AndAlso Me.blender.Session IsNot GetType(HeatMapBlender) Then
                     ' draw and overlaps on the MS-imaging rendering for CAD analysis
@@ -1997,10 +2000,10 @@ Public Class frmMsImagingViewer
         Return Sub()
                    Call MyApplication.RegisterPlot(
                        Sub(args)
-                           Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
+                           Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
                            Dim mapLevels As Integer = params.mapLevels
 
-                           PixelSelector1.SetMsImagingOutput(image, blender.dimensions, params.background, params.colors, {range.Min, range.Max}, mapLevels)
+                           PixelSelector1.SetMsImagingOutput(image, params.GetMSIDimension, params.background, params.colors, {range.Min, range.Max}, mapLevels)
                            PixelSelector1.SetColorMapVisible(visible:=True)
                        End Sub)
                End Sub
@@ -2052,15 +2055,15 @@ Public Class frmMsImagingViewer
             Call Invoke(Sub() params.SetIntensityMax(maxInto, New Point(base?.x, base?.y)))
             Call Invoke(Sub() rendering = createRenderTask(Rpixels, Gpixels, Bpixels))
             Call Invoke(rendering)
-            Call MyApplication.host.showStatusMessage("Rendering Complete!", My.Resources.preferences_system_notifications)
+            Call Workbench.SuccessMessage("Rendering Complete!")
         End If
     End Sub
 
     Private Function createRenderTask(R As PixelData(), G As PixelData(), B As PixelData()) As Action
-        Dim blender As New RGBIonMSIBlender(R, G, B, TIC, params, loadFilters)
+        Dim blender As Type = GetType(RGBIonMSIBlender) ' (R, G, B, TIC, params, loadFilters)
 
         Me.params.enableFilter = False
-        Me.blender = blender
+        Me.blender.OpenSession(blender)
         Me.loadedPixels = R _
             .JoinIterates(G) _
             .JoinIterates(B) _
@@ -2069,9 +2072,9 @@ Public Class frmMsImagingViewer
         Return Sub()
                    Call MyApplication.RegisterPlot(
                        Sub(args)
-                           Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
+                           Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
 
-                           PixelSelector1.SetMsImagingOutput(image, blender.dimensions, params.background, Nothing, Nothing, Nothing)
+                           PixelSelector1.SetMsImagingOutput(image, params.GetMSIDimension, params.background, Nothing, Nothing, Nothing)
                            PixelSelector1.SetColorMapVisible(visible:=True)
                        End Sub)
                End Sub
@@ -2224,7 +2227,7 @@ Public Class frmMsImagingViewer
             Sub()
                 Call MyApplication.RegisterPlot(
                     Sub(args)
-                        Dim image As Image = Me.blender.MSIRender(args, PixelSelector1.CanvasSize)
+                        Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
 
                         PixelSelector1.SetMsImagingOutput(image, dimensions, params.background, params.colors, {0, 1}, params.mapLevels)
                         PixelSelector1.SetColorMapVisible(visible:=True)
@@ -2241,13 +2244,13 @@ Public Class frmMsImagingViewer
     ''' <param name="dimensions">the dimension size of the MSI raw data</param>
     ''' <returns></returns>
     Private Function createRenderTask(pixels As PixelData(), dimensions$) As Action
-        Dim blender As New SingleIonMSIBlender(pixels, TIC, params, loadFilters)
-        Dim range As DoubleRange = blender.range
+        Dim blender As Type = GetType(SingleIonMSIBlender) ' (pixels, TIC, params, loadFilters)
+        Dim range As New DoubleRange(pixels.Select(Function(p) p.intensity))
 
         Me.params.enableFilter = True
         Me.rgb_configs = Nothing
         Me.loadedPixels = pixels
-        Me.blender = blender
+        Me.blender.OpenSession(blender)
         Me.PixelSelector1.MSICanvas.LoadSampleTags(pixels.Select(Function(i) i.sampleTag).Where(Function(str) Not str Is Nothing).Distinct)
 
         Return Sub()
@@ -2257,7 +2260,7 @@ Public Class frmMsImagingViewer
                                Sub()
                                    Call Me.Invoke(
                                    Sub()
-                                       Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
+                                       Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
 
                                        PixelSelector1.SetMsImagingOutput(image, dimensions.SizeParser, params.background, params.colors, {range.Min, range.Max}, params.mapLevels)
                                        PixelSelector1.SetColorMapVisible(visible:=True)

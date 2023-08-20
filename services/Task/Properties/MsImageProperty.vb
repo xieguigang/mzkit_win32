@@ -73,6 +73,7 @@
 Imports System.ComponentModel
 Imports System.Drawing
 Imports System.Drawing.Drawing2D
+Imports System.Runtime.CompilerServices
 Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
@@ -312,5 +313,10 @@ Public Class MsImageProperty
         Else
             Return Ms1.Tolerance.PPM(tolerance)
         End If
+    End Function
+
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Function GetMSIDimension() As Size
+        Return New Size(scan_x, scan_y)
     End Function
 End Class
