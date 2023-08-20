@@ -62,4 +62,8 @@ Public Class BlenderClient
         Dim result = handleRequest(New RequestStream(Service.protocolHandle, Protocol.OpenSession, "ok!"))
 
     End Function
+
+    Public Function GetTrIQIntensity(trIQ As Double) As Double
+
+    End Function
 End Class

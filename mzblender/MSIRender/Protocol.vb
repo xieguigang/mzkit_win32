@@ -7,6 +7,7 @@
     SetHEmap
     SetSampleTag
     SetIntensityRange
+    GetTrIQIntensity
     ''' <summary>
     ''' Rendering a new MS-imaging layer based on new parameters
     ''' </summary>
