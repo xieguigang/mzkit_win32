@@ -28,7 +28,7 @@ Public Class Service : Implements IDisposable
     Dim filters As RasterPipeline
     Dim TIC As PixelScanIntensity()
 
-    Public Shared ReadOnly protocolHandle As Long = ProtocolAttribute.GetProtocolCategory(GetType(Protocol)).EntryPoint
+    Public Shared ReadOnly protocolHandle As Long = ProtocolAttribute.GetProtocolCategory(GetType(Service)).EntryPoint
 
     Sub New(port As Integer, masterChannel As String)
         socket = New TcpServicesSocket(port)
