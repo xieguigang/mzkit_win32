@@ -29,6 +29,17 @@ Public Class MemoryPipe
         Return Image.FromStream(New MemoryStream(LoadStream))
     End Function
 
+    Public Sub WriteBuffer(data As MemoryStream)
+        Dim buf As Stream = channel.OpenFile
+
+        Call buf.Seek(Scan0, SeekOrigin.Begin)
+        Call buf.Write(BitConverter.GetBytes(data.Length), 0, 4)
+        Call buf.Write(data.ToArray, Scan0, data.Length)
+        Call buf.Flush()
+
+        data.Dispose()
+    End Sub
+
     Public Sub WriteBuffer(ByRef data As Byte())
         Dim buf As Stream = channel.OpenFile
 

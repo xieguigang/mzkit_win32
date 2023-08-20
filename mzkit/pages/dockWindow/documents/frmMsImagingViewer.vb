@@ -2214,15 +2214,17 @@ Public Class frmMsImagingViewer
             Me.tweaks = WindowModules.msImageParameters.PropertyGrid1
         End If
 
-        Dim blender As New HeatMapBlender(layer, dimensions, params, loadFilters)
+        Dim blender As Type = GetType(HeatMapBlender) '       (layer, dimensions, params, loadFilters)
+
+        Call Me.blender.channel.WriteBuffer(HeatMap.PixelData.CreateStream(layer))
 
         Me.params.enableFilter = True
-        Me.blender = blender
+        Me.blender.OpenSession(ss:=blender)
         Me.rendering =
             Sub()
                 Call MyApplication.RegisterPlot(
                     Sub(args)
-                        Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
+                        Dim image As Image = Me.blender.MSIRender(args, PixelSelector1.CanvasSize)
 
                         PixelSelector1.SetMsImagingOutput(image, dimensions, params.background, params.colors, {0, 1}, params.mapLevels)
                         PixelSelector1.SetColorMapVisible(visible:=True)

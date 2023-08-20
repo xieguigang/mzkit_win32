@@ -8,11 +8,11 @@ Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Parallel
+Imports Task
 
 Public Class BlenderClient : Implements IDisposable
 
     ReadOnly host As IPEndPoint
-    ReadOnly channel As MemoryPipe
 
     ''' <summary>
     ''' the MSI render type, one of the value of:
@@ -24,6 +24,7 @@ Public Class BlenderClient : Implements IDisposable
     ''' </summary>
     ''' <returns></returns>
     Public ReadOnly Property Session As Type
+    Public ReadOnly Property channel As MemoryPipe
 
     Dim sample_tag As String
 
@@ -38,10 +39,16 @@ Public Class BlenderClient : Implements IDisposable
         Return New TcpRequest(host).SetTimeOut(TimeSpan.FromSeconds(60)).SendMessage(req)
     End Function
 
-    Public Function MSIRender() As Image
+    Public Function MSIRender(args As PlotProperty, params As MsImageProperty, canvas As Size) As Image
         Dim payload As New Dictionary(Of String, String)
         payload.Add("sample", sample_tag)
+        payload.Add("canvas", canvas.GetJson)
+        payload.Add("params", params.GetJson)
+        payload.Add("args", args.GetJson)
+        Dim req As New RequestStream(Service.protocolHandle, Protocol.MSIRender, payload.GetJson)
+        Dim resp = handleRequest(req)
 
+        Return channel.LoadImage
     End Function
 
     Public Function SetSampleTag(tag As String)
