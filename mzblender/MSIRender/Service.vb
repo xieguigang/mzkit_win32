@@ -19,6 +19,7 @@ Public Class Service : Implements IDisposable
     Dim socket As TcpServicesSocket
     Dim channel As MemoryPipe
     Dim blender As MSImagingBlender
+    Dim filters As RasterPipeline
 
     Public Shared ReadOnly protocolHandle As Long = ProtocolAttribute.GetProtocolCategory(GetType(Protocol)).EntryPoint
 
@@ -42,6 +43,7 @@ Public Class Service : Implements IDisposable
         Dim shaders As String() = request.LoadObject(Of String())
         Dim filters As RasterPipeline = RasterPipeline.Parse(shaders)
         blender.filters = filters
+        Me.filters = filters
         Return New DataPipe("OK")
     End Function
 
@@ -58,12 +60,15 @@ Public Class Service : Implements IDisposable
         ' load pixels data
         Select Case ss
             Case NameOf(HeatMapBlender)
+                blender = New HeatMapBlender()
             Case NameOf(RGBIonMSIBlender)
             Case NameOf(SingleIonMSIBlender)
             Case NameOf(SummaryMSIBlender)
             Case Else
                 Throw New InvalidDataException("invalid session open parameter!")
         End Select
+
+        Return New DataPipe("OK")
     End Function
 
     <Protocol(Protocol.SetIntensityRange)>
