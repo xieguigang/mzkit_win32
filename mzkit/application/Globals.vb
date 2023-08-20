@@ -88,6 +88,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math.Distributions.BinBox
 Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.My.FrameworkInternal
+Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports Microsoft.VisualBasic.ValueTypes
 Imports Mzkit_win32.BasicMDIForm
@@ -97,6 +98,7 @@ Imports SMRUCC.genomics.Analysis.HTS.GSEA
 Imports Task
 Imports Task.Container
 Imports WeifenLuo.WinFormsUI.Docking
+Imports IPEndPoint = Microsoft.VisualBasic.Net.IPEndPoint
 Imports stdNum = System.Math
 
 Module Globals
@@ -106,6 +108,8 @@ Module Globals
     ''' </summary>
     Friend ReadOnly defaultWorkspace As String = App.LocalData & "/.defaultWorkspace"
     Friend ReadOnly localfs As Process
+    Friend ReadOnly MSI As Process
+    Friend ReadOnly MSIBlender As IPEndPoint
 
     Dim currentWorkspace As ViewerProject
 
@@ -158,6 +162,28 @@ Module Globals
             .PID = localfs.Id,
             .Port = Workbench.WebPort,
             .Protocol = "HTTP 1.0",
+            .StartTime = Now.ToString
+        })
+
+        MSIBlender = New IPEndPoint("127.0.0.1", TCPExtensions.GetFirstAvailablePort(-1))
+        MSI = New Process With {
+            .StartInfo = New ProcessStartInfo With {
+                .FileName = $"{App.HOME}/plugins\blender\BlenderHost.exe",
+                .Arguments = $"/start --port {MSIBlender.port} --master {App.PID}",
+                .CreateNoWindow = True,
+                .WindowStyle = ProcessWindowStyle.Hidden,
+                .UseShellExecute = True
+            }
+        }
+
+        Call MSI.Start()
+        Call ServiceHub.Manager.Hub.RegisterSingle(New Manager.Service With {
+            .Name = "MSI Blender",
+            .Description = "MS-Imaging blendering backend for mzkit workbench",
+            .isAlive = True,
+            .PID = MSI.Id,
+            .Port = MSIBlender.port,
+            .Protocol = "TCP",
             .StartTime = Now.ToString
         })
 

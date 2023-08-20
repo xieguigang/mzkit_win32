@@ -155,7 +155,10 @@ Public Class frmMsImagingViewer
     End Property
 
     Public Sub StartMSIService()
-        Call ServiceHub.MSIDataService.StartMSIService(hostReference:=MSIservice)
+        ServiceHub.MSIDataService.StartMSIService(hostReference:=MSIservice)
+
+        blender = New BlenderClient(Globals.MSIBlender)
+        MSIservice.blender = blender
     End Sub
 
     Private Sub frmMsImagingViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
