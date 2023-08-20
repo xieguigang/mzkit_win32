@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender.Scaler
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Net
 Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Parallel
@@ -9,6 +10,17 @@ Public Class BlenderClient
 
     ReadOnly host As IPEndPoint
     ReadOnly channel As MapObject
+
+    ''' <summary>
+    ''' the MSI render type, one of the value of:
+    ''' 
+    ''' + <see cref="HeatMapBlender"/>
+    ''' + <see cref="RGBIonMSIBlender"/>
+    ''' + <see cref="SingleIonMSIBlender"/>
+    ''' + <see cref="SummaryMSIBlender"/>
+    ''' </summary>
+    ''' <returns></returns>
+    Public ReadOnly Property Session As Type
 
     Sub New(host As IPEndPoint)
         Me.host = host
@@ -30,13 +42,24 @@ Public Class BlenderClient
         Erase data
     End Sub
 
+    Public Function SetSampleTag(tag As String)
+
+    End Function
+
+    Public Function SetHEMap(img As Image)
+
+    End Function
+
     Public Function SetFilters(filters As RasterPipeline)
 
     End Function
+
+    Public Sub SetIntensityRange(range As DoubleRange)
+
+    End Sub
 
     Public Function OpenSession()
         Dim result = handleRequest(New RequestStream(Service.protocolHandle, Protocol.OpenSession, "ok!"))
 
     End Function
-
 End Class

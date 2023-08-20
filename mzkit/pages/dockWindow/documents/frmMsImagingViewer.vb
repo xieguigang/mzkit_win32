@@ -270,7 +270,7 @@ Public Class frmMsImagingViewer
                 End With
 
                 If blender IsNot Nothing AndAlso rendering IsNot Nothing Then
-                    blender.filters = configs.GetFilter
+                    blender.SetFilters(configs.GetFilter)
                     rendering()
                 End If
             End Sub, config:=config)
@@ -890,7 +890,7 @@ Public Class frmMsImagingViewer
                 Dim blender As New SingleIonMSIBlender(layer.MSILayer, Nothing, argv, loadFilters)
                 Dim HEMap As Image = blender.Rendering(Nothing, Nothing)
 
-                If Me.blender IsNot Nothing AndAlso TypeOf Me.blender IsNot HeatMapBlender Then
+                If Me.blender IsNot Nothing AndAlso Me.blender.Session IsNot GetType(HeatMapBlender) Then
                     ' draw and overlaps on the MS-imaging rendering for CAD analysis
                     PixelSelector1.MSICanvas.tissue_layer = HEMap
                     PixelSelector1.MSICanvas.RedrawCanvas()
@@ -904,8 +904,8 @@ Public Class frmMsImagingViewer
         PixelSelector1.MSICanvas.HEMap = HEMapImg
 
         If blender IsNot Nothing Then
-            If TypeOf blender IsNot HeatMapBlender Then
-                blender.HEMap = PixelSelector1.MSICanvas.HEMap
+            If blender.Session IsNot GetType(HeatMapBlender) Then
+                blender.SetHEMap(PixelSelector1.MSICanvas.HEMap)
                 rendering()
             End If
 
@@ -2288,13 +2288,13 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub tweaks_PropertyValueChanged(s As Object, e As PropertyValueChangedEventArgs) Handles tweaks.PropertyValueChanged
-        If e.ChangedItem.Label.TextEquals("background") AndAlso (blender Is Nothing OrElse Not TypeOf blender Is RGBIonMSIBlender) Then
+        If e.ChangedItem.Label.TextEquals("background") AndAlso (blender Is Nothing OrElse blender.Session IsNot GetType(RGBIonMSIBlender)) Then
             PixelSelector1.MSICanvas.BackColor = params.background
         ElseIf Not rendering Is Nothing Then
             Dim grid As PropertyGrid = DirectCast(s, PropertyGrid)
             Dim reason As String = MsImageProperty.Validation(grid.SelectedObject, e)
 
-            If e.ChangedItem.Label.TextEquals("TrIQ") AndAlso Not TypeOf blender Is RGBIonMSIBlender Then
+            If e.ChangedItem.Label.TextEquals("TrIQ") AndAlso blender.Session IsNot GetType(RGBIonMSIBlender) Then
                 Call PixelSelector1.UpdateColorScaler({0, blender.GetTrIQIntensity(params.TrIQ)}, params.colors, params.mapLevels)
             End If
 
@@ -2404,7 +2404,7 @@ Public Class frmMsImagingViewer
 
             If pixel Is Nothing OrElse pinedPixel.ms2.IsNullOrEmpty Then
                 pinedPixel = Nothing
-                MyApplication.host.showStatusMessage("There is no MS data in current pixel?", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Workbench.Warning("There is no MS data in current pixel?")
             Else
                 Call WindowModules.msImageParameters.LoadPinnedIons(pinedPixel.ms2)
             End If
@@ -2497,7 +2497,7 @@ Public Class frmMsImagingViewer
         If Not checkService() Then
             Return
         ElseIf targetMz.IsNullOrEmpty Then
-            Call MyApplication.host.warning("No ion was selected to export MS-Imaging plot!")
+            Call Workbench.Warning("No ion was selected to export MS-Imaging plot!")
             Return
         End If
 
@@ -2539,7 +2539,7 @@ Public Class frmMsImagingViewer
         If blender Is Nothing Then
             Return
         Else
-            blender.sample_tag = tag
+            blender.SetSampleTag(tag)
             Call rendering()
         End If
     End Sub

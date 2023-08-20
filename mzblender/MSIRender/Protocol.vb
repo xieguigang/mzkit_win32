@@ -4,6 +4,9 @@
     ''' </summary>
     OpenSession
     SetFilters
+    SetHEmap
+    SetSampleTag
+    SetIntensityRange
     ''' <summary>
     ''' Rendering a new MS-imaging layer based on new parameters
     ''' </summary>
