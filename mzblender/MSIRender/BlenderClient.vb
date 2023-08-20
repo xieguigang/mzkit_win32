@@ -1,9 +1,12 @@
-﻿Imports System.IO
+﻿Imports System.Drawing.Imaging
+Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender.Scaler
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
+Imports Microsoft.VisualBasic.Data.IO
 Imports Microsoft.VisualBasic.Net
 Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Parallel
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Parallel
 
 Public Class BlenderClient
@@ -43,27 +46,37 @@ Public Class BlenderClient
     End Sub
 
     Public Function SetSampleTag(tag As String)
-
+        Return handleRequest(New RequestStream(Service.protocolHandle, Protocol.SetSampleTag, tag))
     End Function
 
     Public Function SetHEMap(img As Image)
+        Using ms As New MemoryStream
+            Call img.Save(ms, ImageFormat.Png)
+            Call ms.Flush()
+            Call WriteBuffer(ms.ToArray)
+        End Using
 
+        Return handleRequest(New RequestStream(Service.protocolHandle, Protocol.SetHEmap, "ok!"))
     End Function
 
     Public Function SetFilters(filters As RasterPipeline)
-
+        Dim shaders As String() = filters.Select(Function(f) f.ToScript).ToArray
+        Return handleRequest(New RequestStream(Service.protocolHandle, Protocol.SetFilters, shaders.GetJson))
     End Function
 
-    Public Sub SetIntensityRange(range As DoubleRange)
-
-    End Sub
+    Public Function SetIntensityRange(range As DoubleRange)
+        Return handleRequest(New RequestStream(Service.protocolHandle, Protocol.SetIntensityRange, {range.Min, range.Max}.GetJson))
+    End Function
 
     Public Function OpenSession()
         Dim result = handleRequest(New RequestStream(Service.protocolHandle, Protocol.OpenSession, "ok!"))
-
+        Return result
     End Function
 
     Public Function GetTrIQIntensity(trIQ As Double) As Double
-
+        Dim req As New RequestStream(Service.protocolHandle, Protocol.GetTrIQIntensity, NetworkByteOrderBitConvertor.GetBytes(trIQ))
+        Dim resp As RequestStream = handleRequest(req)
+        Dim dbls = NetworkByteOrderBitConvertor.ToDouble(resp.ChunkBuffer)
+        Return dbls
     End Function
 End Class
