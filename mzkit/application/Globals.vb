@@ -108,7 +108,7 @@ Module Globals
     ''' </summary>
     Friend ReadOnly defaultWorkspace As String = App.LocalData & "/.defaultWorkspace"
     Friend ReadOnly localfs As Process
-    Friend ReadOnly MSI As Process
+    Friend ReadOnly BlenderHost As Process
     Friend ReadOnly MSIBlender As IPEndPoint
 
     Dim currentWorkspace As ViewerProject
@@ -166,7 +166,7 @@ Module Globals
         })
 
         MSIBlender = New IPEndPoint("127.0.0.1", TCPExtensions.GetFirstAvailablePort(8000))
-        MSI = New Process With {
+        BlenderHost = New Process With {
             .StartInfo = New ProcessStartInfo With {
                 .FileName = $"{App.HOME}/plugins\blender\BlenderHost.exe",
                 .Arguments = $"/start --port {MSIBlender.port} --master {App.PID}",
@@ -176,12 +176,12 @@ Module Globals
             }
         }
 
-        Call MSI.Start()
+        Call BlenderHost.Start()
         Call ServiceHub.Manager.Hub.RegisterSingle(New Manager.Service With {
             .Name = "MSI Blender",
             .Description = "MS-Imaging blendering backend for mzkit workbench",
             .isAlive = True,
-            .PID = MSI.Id,
+            .PID = BlenderHost.Id,
             .Port = MSIBlender.port,
             .Protocol = "TCP",
             .StartTime = Now.ToString
