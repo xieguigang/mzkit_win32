@@ -1,33 +1,35 @@
-﻿Imports BioNovoGene.mzkit_win32.ServiceHub.Manager
-Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
+﻿Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Parallel
+Imports IPEndPoint = Microsoft.VisualBasic.Net.IPEndPoint
 
 Public NotInheritable Class RenderService
+
+    Friend Shared BlenderHost As Process
+    Friend Shared MSIBlender As IPEndPoint
 
     Private Sub New()
     End Sub
 
     Public Shared Sub Start()
-        Dim port As Integer = Net.Tcp.GetFirstAvailablePort(1043)
-        Dim slave = TaskStream.CLI.mzblender.FromEnvironment(App.HOME)
-        Dim args = slave.GetStartServiceCommandLine(port, App.PID)
-        Dim localhost As New RunSlavePipeline(slave.Path, args, workdir:=App.HOME)
-        Dim background As Process = localhost.Start()
+        MSIBlender = New IPEndPoint("127.0.0.1", TCPExtensions.GetFirstAvailablePort(8000))
+        BlenderHost = New Process With {
+            .StartInfo = New ProcessStartInfo With {
+                .FileName = $"{App.HOME}/plugins\blender\BlenderHost.exe",
+                .Arguments = $"/start --port {MSIBlender.port} --master {App.PID}",
+                .CreateNoWindow = True,
+                .WindowStyle = ProcessWindowStyle.Hidden,
+                .UseShellExecute = True
+            }
+        }
 
-        Call App.AddExitCleanHook(
-            Sub()
-                Call Shutdown(port)
-                Call background.Kill()
-            End Sub)
-        Call Hub.Register(New Service With {
-            .CPU = 0,
-            .Name = "Data Visualization &amp; Rendering",
-            .Description = "Background host for do mass spectral data rendering and plot data visualization output png/pdf/svg.",
+        Call BlenderHost.Start()
+        Call ServiceHub.Manager.Hub.RegisterSingle(New Manager.Service With {
+            .Name = "MSI Blender",
+            .Description = "MS-Imaging blendering backend for mzkit workbench",
             .isAlive = True,
-            .Memory = 0,
-            .PID = background.Id,
-            .Port = port,
+            .PID = BlenderHost.Id,
+            .port = MSIBlender.port,
             .Protocol = "TCP",
             .StartTime = Now.ToString
         })
