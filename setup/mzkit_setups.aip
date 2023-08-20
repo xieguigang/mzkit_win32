@@ -115,6 +115,7 @@
     <ROW Directory="assets_Dir" Directory_Parent="webview_Dir" DefaultDir="assets"/>
     <ROW Directory="bin32_Dir" Directory_Parent="host_Dir" DefaultDir="bin32"/>
     <ROW Directory="bin64_Dir" Directory_Parent="host_Dir" DefaultDir="bin64"/>
+    <ROW Directory="bin_1_Dir" Directory_Parent="openslidewin64_Dir" DefaultDir="bin"/>
     <ROW Directory="bin_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="bin"/>
     <ROW Directory="blender_Dir" Directory_Parent="plugins_Dir" DefaultDir="blender"/>
     <ROW Directory="cairo_Dir" Directory_Parent="licenses_Dir" DefaultDir="cairo"/>
@@ -128,6 +129,7 @@
     <ROW Directory="dzitools_Dir" Directory_Parent="NewFolder_Dir" DefaultDir="dzitools"/>
     <ROW Directory="ei_ms_models_Dir" Directory_Parent="models_Dir" DefaultDir="EI_MS_~1|ei_ms_models"/>
     <ROW Directory="ei_nn_iso_new_Dir" Directory_Parent="ei_ms_models_Dir" DefaultDir="EI_NN_~1|ei_nn_iso_new"/>
+    <ROW Directory="enUS_1_Dir" Directory_Parent="blender_Dir" DefaultDir="en-US"/>
     <ROW Directory="enUS_Dir" Directory_Parent="APPDIR" DefaultDir="en-US"/>
     <ROW Directory="esi_msms_models_Dir" Directory_Parent="models_Dir" DefaultDir="ESI_MS~1|esi_msms_models"/>
     <ROW Directory="fr_Dir" Directory_Parent="APPDIR" DefaultDir="fr"/>
@@ -161,6 +163,7 @@
     <ROW Directory="metab_ce_cfm_Dir" Directory_Parent="esi_msms_models_Dir" DefaultDir="METAB_~1|metab_ce_cfm"/>
     <ROW Directory="metab_se_cfm_Dir" Directory_Parent="esi_msms_models_Dir" DefaultDir="METAB_~2|metab_se_cfm"/>
     <ROW Directory="models_Dir" Directory_Parent="cfmid2_Dir" DefaultDir="models"/>
+    <ROW Directory="native_1_Dir" Directory_Parent="winx64_1_Dir" DefaultDir="native"/>
     <ROW Directory="native_Dir" Directory_Parent="winx64_Dir" DefaultDir="native"/>
     <ROW Directory="ndpitools_Dir" Directory_Parent="NewFolder_Dir" DefaultDir="NDPITO~1|ndpitools"/>
     <ROW Directory="negative_metab_se_cfm_Dir" Directory_Parent="esi_msms_models_Dir" DefaultDir="NEGATI~1|negative_metab_se_cfm"/>
@@ -186,6 +189,7 @@
     <ROW Directory="runtimes_1_Dir" Directory_Parent="nvidia_Dir" DefaultDir="runtimes"/>
     <ROW Directory="runtimes_2_Dir" Directory_Parent="host_Dir" DefaultDir="runtimes"/>
     <ROW Directory="runtimes_3_Dir" Directory_Parent="bin_Dir" DefaultDir="runtimes"/>
+    <ROW Directory="runtimes_4_Dir" Directory_Parent="blender_Dir" DefaultDir="runtimes"/>
     <ROW Directory="runtimes_Dir" Directory_Parent="APPDIR" DefaultDir="runtimes"/>
     <ROW Directory="services_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="services"/>
     <ROW Directory="small_demos_Dir" Directory_Parent="demo_1_Dir" DefaultDir="SMALL_~1|small_demos"/>
@@ -203,9 +207,12 @@
     <ROW Directory="win_3_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="win"/>
     <ROW Directory="win_Dir" Directory_Parent="runtimes_1_Dir" DefaultDir="win"/>
     <ROW Directory="winpthreads_Dir" Directory_Parent="licenses_Dir" DefaultDir="WINPTH~1|winpthreads"/>
+    <ROW Directory="winx64_1_Dir" Directory_Parent="runtimes_4_Dir" DefaultDir="win-x64"/>
     <ROW Directory="winx64_Dir" Directory_Parent="runtimes_Dir" DefaultDir="win-x64"/>
     <ROW Directory="x_genomics_Dir" Directory_Parent="pipeline_Dir" DefaultDir="10X_GE~1|10x_genomics"/>
+    <ROW Directory="zhCN_1_Dir" Directory_Parent="blender_Dir" DefaultDir="zh-CN"/>
     <ROW Directory="zhCN_Dir" Directory_Parent="APPDIR" DefaultDir="zh-CN"/>
+    <ROW Directory="zhHans_1_Dir" Directory_Parent="blender_Dir" DefaultDir="zh-Hans"/>
     <ROW Directory="zhHans_Dir" Directory_Parent="APPDIR" DefaultDir="zh-Hans"/>
     <ROW Directory="zhHant_Dir" Directory_Parent="APPDIR" DefaultDir="zh-Hant"/>
     <ROW Directory="zlib_Dir" Directory_Parent="licenses_Dir" DefaultDir="zlib"/>
@@ -676,6 +683,7 @@
     <ROW Component="Microsoft.VisualBasic.MachineLearning.Debugger.dll_5" ComponentId="{614F640B-6711-4ECC-B3FA-6044ADB17907}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.Debugger.dll_5"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.Debugger.pdb" ComponentId="{21F91A52-ED82-4E76-B297-20CA15BFD31A}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.MachineLearning.Debugger.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.MLDataStorage.dll" ComponentId="{C4EA4E0C-250F-450D-A80E-DD58665306FC}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.MLDataStorage.dll"/>
+    <ROW Component="Microsoft.VisualBasic.MachineLearning.TensorFlow.dll" ComponentId="{7E140DBE-5DC2-4100-8999-4EAF2CD8B0FC}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.TensorFlow.dll"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.VAE.dll" ComponentId="{78456E9C-F7E8-432C-A4AE-C8C43E081074}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.VAE.dll"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.dll" ComponentId="{3A4A1667-F9F8-43A8-9405-54392FBEC6AC}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.dll"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.dll_5" ComponentId="{18C6C786-931A-47CF-B1BF-F80F493A28D7}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.XGBoost.DataSet.dll_5"/>
@@ -756,7 +764,7 @@
     <ROW Component="Microsoft.VisualBasic.Runtime.dll_3" ComponentId="{D10AF677-2BA5-45D6-9AE6-260766569B21}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.dll_4" ComponentId="{EEA1A22B-17CA-44DF-869E-49A98B8D7B96}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll_4"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.dll_5" ComponentId="{5F732C9D-73E4-4DB5-918B-48408D0E36CB}" Directory_="dzitools_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll_6"/>
-    <ROW Component="Microsoft.VisualBasic.Runtime.dll_6" ComponentId="{2948F2D4-BA7F-46E7-B7B4-F04CDC85437F}" Directory_="dzitools_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.pdb_4"/>
+    <ROW Component="Microsoft.VisualBasic.Runtime.dll_6" ComponentId="{2948F2D4-BA7F-46E7-B7B4-F04CDC85437F}" Directory_="dzitools_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.pdb_4" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.pdb" ComponentId="{C3C6EE63-5E49-4EBC-9E4E-CF616B3B6E5E}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Runtime.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.pdb_1" ComponentId="{EB512494-C0ED-42F0-A0BC-5A7FD4215E69}" Directory_="nvidia_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Runtime.pdb_1" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.pdb_2" ComponentId="{F78F965D-6E35-4472-A53B-BE897ED75C52}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Runtime.pdb_2" Type="4"/>
@@ -797,6 +805,8 @@
     <ROW Component="Mzkit_win32.BasicMDIForm.pdb_1" ComponentId="{01689DDC-FD92-4198-B497-00DA7341F1DE}" Directory_="blender_Dir" Attributes="0" KeyPath="Mzkit_win32.BasicMDIForm.pdb_1" Type="4"/>
     <ROW Component="Mzkit_win32.BasicMDIForm.resources.dll" ComponentId="{A96B063C-1B50-4C74-B5DE-71856A0F9C69}" Directory_="enUS_Dir" Attributes="256" KeyPath="Mzkit_win32.BasicMDIForm.resources.dll"/>
     <ROW Component="Mzkit_win32.BasicMDIForm.resources.dll_1" ComponentId="{D8D73209-EF3E-44B4-915D-4D2A2536C78F}" Directory_="zhHans_Dir" Attributes="256" KeyPath="Mzkit_win32.BasicMDIForm.resources.dll_1"/>
+    <ROW Component="Mzkit_win32.BasicMDIForm.resources.dll_2" ComponentId="{C44BEB40-2C96-4800-9940-380BFC5ED227}" Directory_="enUS_1_Dir" Attributes="256" KeyPath="Mzkit_win32.BasicMDIForm.resources.dll_2"/>
+    <ROW Component="Mzkit_win32.BasicMDIForm.resources.dll_3" ComponentId="{62C3171F-810B-4692-8A3B-C51584FB5EC1}" Directory_="zhHans_1_Dir" Attributes="256" KeyPath="Mzkit_win32.BasicMDIForm.resources.dll_3"/>
     <ROW Component="Mzkit_win32.BasicMDIForm.xml" ComponentId="{8CBCCC9B-A2F5-4621-B83D-91E1A490B295}" Directory_="blender_Dir" Attributes="0" KeyPath="Mzkit_win32.BasicMDIForm.xml_1"/>
     <ROW Component="Mzkit_win32.CommonDialogs.dll" ComponentId="{CBA97253-FD26-4BEF-A1C1-A4A9B24FCBB3}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.CommonDialogs.dll"/>
     <ROW Component="Mzkit_win32.CommonDialogs.pdb" ComponentId="{DFF1C16A-B9A0-4D77-A66E-AF1DC9BAD3D3}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.CommonDialogs.pdb" Type="4"/>
@@ -807,6 +817,8 @@
     <ROW Component="Mzkit_win32.Interaction.pdb_1" ComponentId="{C25208E8-CE90-4ECC-A25C-8B94F6502CBD}" Directory_="blender_Dir" Attributes="0" KeyPath="Mzkit_win32.Interaction.pdb_1" Type="4"/>
     <ROW Component="Mzkit_win32.Interaction.resources.dll" ComponentId="{3035B09F-2371-402C-9D04-D341E03835AB}" Directory_="enUS_Dir" Attributes="256" KeyPath="Mzkit_win32.Interaction.resources.dll"/>
     <ROW Component="Mzkit_win32.Interaction.resources.dll_1" ComponentId="{7FF290C8-A166-47BC-B831-B31802DC747D}" Directory_="zhCN_Dir" Attributes="256" KeyPath="Mzkit_win32.Interaction.resources.dll_1"/>
+    <ROW Component="Mzkit_win32.Interaction.resources.dll_2" ComponentId="{3FC5238C-0D88-4872-9AE2-6004BD7ABFE8}" Directory_="enUS_1_Dir" Attributes="256" KeyPath="Mzkit_win32.Interaction.resources.dll_2"/>
+    <ROW Component="Mzkit_win32.Interaction.resources.dll_3" ComponentId="{19C7B013-553A-40F5-9552-C6550923CE0F}" Directory_="zhCN_1_Dir" Attributes="256" KeyPath="Mzkit_win32.Interaction.resources.dll_3"/>
     <ROW Component="Mzkit_win32.Interaction.xml" ComponentId="{E063B483-CB19-4D55-B5BD-BD666DAF6311}" Directory_="blender_Dir" Attributes="0" KeyPath="Mzkit_win32.Interaction.xml_1"/>
     <ROW Component="Mzkit_win32.LCMSViewer.dll" ComponentId="{A4C3B514-7823-419B-A68C-0B933FBC41EA}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.LCMSViewer.pdb" Type="4"/>
     <ROW Component="Mzkit_win32.LCMSViewer.dll.config" ComponentId="{D717C4D2-7733-43D3-ACD2-2FE5B88E4AED}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.LCMSViewer.dll.config"/>
@@ -838,7 +850,7 @@
     <ROW Component="Newtonsoft.Json.dll" ComponentId="{5DA776EE-760B-4639-8989-BD5C4883EF80}" Directory_="bin_Dir" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
     <ROW Component="Newtonsoft.Json.dll_1" ComponentId="{55136570-6B18-4201-95B7-1B84E6D2BE56}" Directory_="host_Dir" Attributes="0" KeyPath="Newtonsoft.Json.dll_1"/>
     <ROW Component="Newtonsoft.Json.dll_2" ComponentId="{97985656-7E59-4697-8E10-C19FC10F0FBE}" Directory_="library_Dir" Attributes="0" KeyPath="Newtonsoft.Json.dll_2"/>
-    <ROW Component="OpenSlide.CLR.Interop.dll" ComponentId="{8E868BF4-D92C-4B6E-A04C-4D43ED4C1272}" Directory_="dzitools_Dir" Attributes="256" KeyPath="OpenSlide.CLR.Interop.pdb"/>
+    <ROW Component="OpenSlide.CLR.Interop.dll" ComponentId="{8E868BF4-D92C-4B6E-A04C-4D43ED4C1272}" Directory_="dzitools_Dir" Attributes="256" KeyPath="OpenSlide.CLR.Interop.pdb" Type="4"/>
     <ROW Component="OpenSlide.CLR.Interop.dll_1" ComponentId="{F9432FFB-D01D-415D-ADB2-393EAB8074AA}" Directory_="dzitools_Dir" Attributes="256" KeyPath="OpenSlide.CLR.Interop.dll"/>
     <ROW Component="PUBLICDOMAIN.txt" ComponentId="{E9558156-10C7-4966-9224-251841E50095}" Directory_="SQLite_Dir" Attributes="0" KeyPath="PUBLICDOMAIN.txt" Type="0"/>
     <ROW Component="Parallel.dll" ComponentId="{825C390A-5E2B-4B80-987C-C6A8D79EA9BF}" Directory_="APPDIR" Attributes="256" KeyPath="Parallel.dll"/>
@@ -1091,6 +1103,7 @@
     <ROW Component="ThermoFisher.CommonCore.RawFileReader.xml" ComponentId="{1C465DAB-506D-47B0-9CAD-FDB33A23C916}" Directory_="blender_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.RawFileReader.xml_1"/>
     <ROW Component="UMapx.dll" ComponentId="{6FAE705B-544D-4A20-8A28-5FA099627E37}" Directory_="APPDIR" Attributes="0" KeyPath="UMapx.dll"/>
     <ROW Component="WebView2Loader.dll" ComponentId="{26054BE2-7F65-4DA9-BC3D-2D2A106BF06C}" Directory_="native_Dir" Attributes="256" KeyPath="WebView2Loader.dll"/>
+    <ROW Component="WebView2Loader.dll_1" ComponentId="{355DF16B-7003-40D0-840A-3F0E6DC6B7D7}" Directory_="native_1_Dir" Attributes="256" KeyPath="WebView2Loader.dll_1"/>
     <ROW Component="WinRT.Runtime.dll" ComponentId="{D6F2398A-5C67-4E3F-A0EE-566C827D0B3A}" Directory_="nvidia_Dir" Attributes="0" KeyPath="WinRT.Runtime.dll"/>
     <ROW Component="WkHtmlToPdf.CLI.InteropService.dll" ComponentId="{6F546340-6C18-4CE9-B774-345B01929B9D}" Directory_="APPDIR" Attributes="256" KeyPath="WkHtmlToPdf.CLI.InteropService.dll"/>
     <ROW Component="WkHtmlToPdf.CLI.InteropService.pdb" ComponentId="{796860FD-DEF9-4B78-A9FE-460DB02FE68C}" Directory_="APPDIR" Attributes="0" KeyPath="WkHtmlToPdf.CLI.InteropService.pdb" Type="4"/>
@@ -1147,7 +1160,7 @@
     <ROW Component="demo" ComponentId="{3814EF2E-1AF4-4908-916A-83B955835615}" Directory_="demo_Dir" Attributes="256"/>
     <ROW Component="devkit.dll" ComponentId="{80218546-A076-4BAB-8073-8B2AA5A22589}" Directory_="library_Dir" Attributes="256" KeyPath="devkit.dll"/>
     <ROW Component="dobject.png" ComponentId="{862F9866-255E-491A-A672-52C864F669DB}" Directory_="images_2_Dir" Attributes="0" KeyPath="dobject.png" Type="0"/>
-    <ROW Component="dzitool.exe" ComponentId="{5509D6E0-6B5B-4FE2-B6DD-6986937C1B1C}" Directory_="dzitools_Dir" Attributes="256" KeyPath="dzitool.pdb"/>
+    <ROW Component="dzitool.exe" ComponentId="{5509D6E0-6B5B-4FE2-B6DD-6986937C1B1C}" Directory_="dzitools_Dir" Attributes="256" KeyPath="dzitool.pdb" Type="4"/>
     <ROW Component="dzitool.exe.config" ComponentId="{0B568A17-340A-4404-BBD7-4FB27B0787FE}" Directory_="dzitools_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Runtime.xml_3" Type="0"/>
     <ROW Component="dzitool.exe.config_1" ComponentId="{948CA085-7373-4758-9F3A-20DC8C6040E0}" Directory_="dzitools_Dir" Attributes="0" KeyPath="dzitool.exe.config"/>
     <ROW Component="dzitool.exe_1" ComponentId="{A42DEDB2-7053-45C4-86FC-2A84568A817B}" Directory_="dzitools_Dir" Attributes="256" KeyPath="dzitool.exe"/>
@@ -1168,7 +1181,11 @@
     <ROW Component="libSkiaSharp.dll" ComponentId="{61A408CE-50C9-4B27-8164-F5C904C1BF88}" Directory_="dzitools_Dir" Attributes="256" KeyPath="libSkiaSharp.dll"/>
     <ROW Component="libSkiaSharp.dylib" ComponentId="{82FDB44C-8201-4FA1-9F69-9AC34C3C9994}" Directory_="dzitools_Dir" Attributes="0" KeyPath="libSkiaSharp.dylib"/>
     <ROW Component="libopenslide.lib" ComponentId="{D418B63F-4C6D-4CC2-A844-F58F8A7CFBB0}" Directory_="lib_4_Dir" Attributes="0" KeyPath="libopenslide.lib" Type="0"/>
+    <ROW Component="libopenslide0.dll" ComponentId="{66BC1779-302B-4C82-9382-A53C9755E102}" Directory_="bin_1_Dir" Attributes="256" KeyPath="libopenslide0.dll"/>
+    <ROW Component="libopenslide0.dll.debug" ComponentId="{A88852BD-5736-498F-9B2A-506197AD54FE}" Directory_="bin_1_Dir" Attributes="256" KeyPath="libopenslide0.dll.debug" Type="0"/>
     <ROW Component="library" ComponentId="{7165AD75-FA2D-4513-8E69-E2CCE22396AC}" Directory_="library_Dir" Attributes="256"/>
+    <ROW Component="libssp0.dll" ComponentId="{C0505E3B-984C-43ED-A088-1AA36C06FDFF}" Directory_="bin_1_Dir" Attributes="256" KeyPath="libssp0.dll"/>
+    <ROW Component="libwinpthread1.dll" ComponentId="{C00159E6-EFAE-432E-8115-8D5F262D937E}" Directory_="bin_1_Dir" Attributes="256" KeyPath="libwinpthread1.dll"/>
     <ROW Component="linq.d.ts" ComponentId="{1F9C0D72-4086-4153-8444-6C2A25C52E5B}" Directory_="js_1_Dir" Attributes="0" KeyPath="linq.d.ts" Type="0"/>
     <ROW Component="logo.png" ComponentId="{17087220-5093-40F8-9F73-BC58242E5BC4}" Directory_="webview_Dir" Attributes="0" KeyPath="logo.png" Type="0"/>
     <ROW Component="lpsolve55.dll" ComponentId="{0CF01530-6BAB-4BBC-A0D5-C7705FE256D0}" Directory_="cfmid2_Dir" Attributes="0" KeyPath="lpsolve55.dll"/>
@@ -1223,6 +1240,10 @@
     <ROW Component="nvidiaanselAI.pdb" ComponentId="{E699D9DC-0D53-4DDC-90F7-28126B6C0229}" Directory_="nvidia_Dir" Attributes="0" KeyPath="nvidiaanselAI.pdb" Type="4"/>
     <ROW Component="openslidefeatures.h" ComponentId="{6A845943-4377-45D4-B69B-73DA45BFEAA6}" Directory_="openslide_Dir" Attributes="0" KeyPath="openslide.h" Type="0"/>
     <ROW Component="openslidefeatures.h_1" ComponentId="{BC10FEDB-07B7-4E8F-937D-D41F560A9619}" Directory_="openslide_Dir" Attributes="0" KeyPath="openslidefeatures.h"/>
+    <ROW Component="openslidejni.dll" ComponentId="{CCC6034E-37D6-4C7E-9F5C-12F77318E272}" Directory_="bin_1_Dir" Attributes="256" KeyPath="openslidejni.dll"/>
+    <ROW Component="openslidequickhash1sum.exe" ComponentId="{69F98E0A-7CD5-4188-BED8-6C30C0C20716}" Directory_="bin_1_Dir" Attributes="256" KeyPath="openslidequickhash1sum.exe"/>
+    <ROW Component="openslideshowproperties.exe" ComponentId="{9EA8473D-73EF-4DF7-A3A5-80BE5997F695}" Directory_="bin_1_Dir" Attributes="256" KeyPath="openslideshowproperties.exe"/>
+    <ROW Component="openslidewritepng.exe" ComponentId="{C1825EC0-854C-4242-B3CF-1923170197DB}" Directory_="bin_1_Dir" Attributes="256" KeyPath="openslidewritepng.exe"/>
     <ROW Component="overlay.8faf238632c16c841197.svg" ComponentId="{32B72F33-C12E-48A2-AAE3-72C56C369022}" Directory_="media_Dir" Attributes="0" KeyPath="overlay.8faf238632c16c841197.svg" Type="0"/>
     <ROW Component="plot_cdf_tic.R" ComponentId="{13B35F62-267C-4998-9FC5-3F3394BCA9E3}" Directory_="demo_1_Dir" Attributes="0" KeyPath="plot_cdf_tic.R" Type="0"/>
     <ROW Component="regid.201301.com.panomix" ComponentId="{63A0ED36-59FE-437D-ABA9-2A17B9A3A3F0}" Directory_="regid.201301.com.panomix_Dir" Attributes="0"/>
@@ -13556,6 +13577,27 @@
     <ROW File="System.Runtime.CompilerServices.Unsafe.dll" Component_="System.Runtime.CompilerServices.Unsafe.dll" FileName="SYSTE~12.DLL|System.Runtime.CompilerServices.Unsafe.dll" Attributes="0" SourcePath="..\..\..\dist\bin\tools\dzitools\System.Runtime.CompilerServices.Unsafe.dll" SelfReg="false"/>
     <ROW File="System.Text.Encoding.CodePages.dll" Component_="System.Text.Encoding.CodePages.dll" FileName="SYSTE~13.DLL|System.Text.Encoding.CodePages.dll" Attributes="0" SourcePath="..\..\..\dist\bin\tools\dzitools\System.Text.Encoding.CodePages.dll" SelfReg="false"/>
     <ROW File="System.Text.Encodings.Web.dll_2" Component_="System.Text.Encodings.Web.dll_2" FileName="SYSTE~14.DLL|System.Text.Encodings.Web.dll" Attributes="0" SourcePath="..\..\..\dist\bin\tools\dzitools\System.Text.Encodings.Web.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.MachineLearning.TensorFlow.dll" Component_="Microsoft.VisualBasic.MachineLearning.TensorFlow.dll" FileName="MICRO~60.DLL|Microsoft.VisualBasic.MachineLearning.TensorFlow.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.MachineLearning.TensorFlow.dll" SelfReg="false"/>
+    <ROW File="Mzkit_win32.BasicMDIForm.resources.dll_2" Component_="Mzkit_win32.BasicMDIForm.resources.dll_2" FileName="MZKIT_~1.DLL|Mzkit_win32.BasicMDIForm.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\en-US\Mzkit_win32.BasicMDIForm.resources.dll" SelfReg="false"/>
+    <ROW File="Mzkit_win32.Interaction.resources.dll_2" Component_="Mzkit_win32.Interaction.resources.dll_2" FileName="MZKIT_~2.DLL|Mzkit_win32.Interaction.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\en-US\Mzkit_win32.Interaction.resources.dll" SelfReg="false"/>
+    <ROW File="WebView2Loader.dll_1" Component_="WebView2Loader.dll_1" FileName="WEBVIE~1.DLL|WebView2Loader.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\runtimes\win-x64\native\WebView2Loader.dll" SelfReg="false"/>
+    <ROW File="Mzkit_win32.Interaction.resources.dll_3" Component_="Mzkit_win32.Interaction.resources.dll_3" FileName="MZKIT_~1.DLL|Mzkit_win32.Interaction.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\zh-CN\Mzkit_win32.Interaction.resources.dll" SelfReg="false"/>
+    <ROW File="Mzkit_win32.BasicMDIForm.resources.dll_3" Component_="Mzkit_win32.BasicMDIForm.resources.dll_3" FileName="MZKIT_~1.DLL|Mzkit_win32.BasicMDIForm.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\zh-Hans\Mzkit_win32.BasicMDIForm.resources.dll" SelfReg="false"/>
+    <ROW File="libopenslide0.dll" Component_="libopenslide0.dll" FileName="LIBOPE~1.DLL|libopenslide-0.dll" Attributes="0" SourcePath="..\dist\OpenSlide\openslide-win64\bin\libopenslide-0.dll" SelfReg="false"/>
+    <ROW File="libopenslide0.dll.debug" Component_="libopenslide0.dll.debug" FileName="LIBOPE~1.DEB|libopenslide-0.dll.debug" Attributes="0" SourcePath="..\dist\OpenSlide\openslide-win64\bin\libopenslide-0.dll.debug" SelfReg="false"/>
+    <ROW File="libssp0.dll" Component_="libssp0.dll" FileName="libssp-0.dll" Attributes="0" SourcePath="..\dist\OpenSlide\openslide-win64\bin\libssp-0.dll" SelfReg="false"/>
+    <ROW File="libssp0.dll.debug" Component_="libopenslide0.dll.debug" FileName="LIBSSP~1.DEB|libssp-0.dll.debug" Attributes="0" SourcePath="..\dist\OpenSlide\openslide-win64\bin\libssp-0.dll.debug" SelfReg="false"/>
+    <ROW File="libwinpthread1.dll" Component_="libwinpthread1.dll" FileName="LIBWIN~1.DLL|libwinpthread-1.dll" Attributes="0" SourcePath="..\dist\OpenSlide\openslide-win64\bin\libwinpthread-1.dll" SelfReg="false"/>
+    <ROW File="libwinpthread1.dll.debug" Component_="libopenslide0.dll.debug" FileName="LIBWIN~1.DEB|libwinpthread-1.dll.debug" Attributes="0" SourcePath="..\dist\OpenSlide\openslide-win64\bin\libwinpthread-1.dll.debug" SelfReg="false"/>
+    <ROW File="openslidejni.dll" Component_="openslidejni.dll" FileName="OPENSL~1.DLL|openslide-jni.dll" Attributes="0" SourcePath="..\dist\OpenSlide\openslide-win64\bin\openslide-jni.dll" SelfReg="false"/>
+    <ROW File="openslidejni.dll.debug" Component_="libopenslide0.dll.debug" FileName="OPENSL~1.DEB|openslide-jni.dll.debug" Attributes="0" SourcePath="..\dist\OpenSlide\openslide-win64\bin\openslide-jni.dll.debug" SelfReg="false"/>
+    <ROW File="openslidequickhash1sum.exe" Component_="openslidequickhash1sum.exe" FileName="OPENSL~1.EXE|openslide-quickhash1sum.exe" Attributes="0" SourcePath="..\dist\OpenSlide\openslide-win64\bin\openslide-quickhash1sum.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="openslidequickhash1sum.exe.debug" Component_="libopenslide0.dll.debug" FileName="OPENSL~2.DEB|openslide-quickhash1sum.exe.debug" Attributes="0" SourcePath="..\dist\OpenSlide\openslide-win64\bin\openslide-quickhash1sum.exe.debug" SelfReg="false"/>
+    <ROW File="openslideshowproperties.exe" Component_="openslideshowproperties.exe" FileName="OPENSL~2.EXE|openslide-show-properties.exe" Attributes="0" SourcePath="..\dist\OpenSlide\openslide-win64\bin\openslide-show-properties.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="openslideshowproperties.exe.debug" Component_="libopenslide0.dll.debug" FileName="OPENSL~3.DEB|openslide-show-properties.exe.debug" Attributes="0" SourcePath="..\dist\OpenSlide\openslide-win64\bin\openslide-show-properties.exe.debug" SelfReg="false"/>
+    <ROW File="openslidewritepng.exe" Component_="openslidewritepng.exe" FileName="OPENSL~3.EXE|openslide-write-png.exe" Attributes="0" SourcePath="..\dist\OpenSlide\openslide-win64\bin\openslide-write-png.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="openslidewritepng.exe.debug" Component_="libopenslide0.dll.debug" FileName="OPENSL~4.DEB|openslide-write-png.exe.debug" Attributes="0" SourcePath="..\dist\OpenSlide\openslide-win64\bin\openslide-write-png.exe.debug" SelfReg="false"/>
+    <ROW File="openslide.jar" Component_="libopenslide0.dll.debug" FileName="OPENSL~1.JAR|openslide.jar" Attributes="0" SourcePath="..\dist\OpenSlide\openslide-win64\bin\openslide.jar" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -14773,14 +14815,28 @@
     <ROW Feature_="MainFeature" Component_="System.Runtime.CompilerServices.Unsafe.dll"/>
     <ROW Feature_="MainFeature" Component_="System.Text.Encoding.CodePages.dll"/>
     <ROW Feature_="MainFeature" Component_="System.Text.Encodings.Web.dll_2"/>
-    <ROW Feature_="MainFeature" Component_="dzitool.exe"/>
     <ROW Feature_="MainFeature" Component_="libSkiaSharp.dylib"/>
-    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Runtime.dll_6"/>
-    <ROW Feature_="MainFeature" Component_="OpenSlide.CLR.Interop.dll"/>
-    <ROW Feature_="MainFeature" Component_="dzitool.exe.config"/>
     <ROW Feature_="MainFeature" Component_="dzitool.exe.config_1"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Runtime.dll.config_2"/>
     <ROW Feature_="MainFeature" Component_="SkiaSharp.dll.config"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MachineLearning.TensorFlow.dll"/>
+    <ROW Feature_="MainFeature" Component_="Mzkit_win32.BasicMDIForm.resources.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Mzkit_win32.Interaction.resources.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="WebView2Loader.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Mzkit_win32.Interaction.resources.dll_3"/>
+    <ROW Feature_="MainFeature" Component_="Mzkit_win32.BasicMDIForm.resources.dll_3"/>
+    <ROW Feature_="MainFeature" Component_="libopenslide0.dll"/>
+    <ROW Feature_="MainFeature" Component_="libopenslide0.dll.debug"/>
+    <ROW Feature_="MainFeature" Component_="libssp0.dll"/>
+    <ROW Feature_="MainFeature" Component_="libwinpthread1.dll"/>
+    <ROW Feature_="MainFeature" Component_="openslidejni.dll"/>
+    <ROW Feature_="MainFeature" Component_="openslidequickhash1sum.exe"/>
+    <ROW Feature_="MainFeature" Component_="openslideshowproperties.exe"/>
+    <ROW Feature_="MainFeature" Component_="openslidewritepng.exe"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="dzitool.exe"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Runtime.dll_6"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="OpenSlide.CLR.Interop.dll"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="dzitool.exe.config"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
