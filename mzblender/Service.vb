@@ -1,6 +1,7 @@
 ﻿Imports System.Drawing.Imaging
 Imports System.IO
 Imports System.Runtime.CompilerServices
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender.Scaler
 Imports Microsoft.VisualBasic.Net.Protocols.Reflection
 Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Parallel
@@ -14,7 +15,7 @@ Public Class Service : Implements IDisposable
     Dim disposedValue As Boolean
     Dim socket As TcpServicesSocket
     Dim stream As MapObject
-    Dim blender As SingleIonMSIBlender
+    Dim blender As MSImagingBlender
 
     Public Shared ReadOnly protocolHandle As Long = ProtocolAttribute.GetProtocolCategory(GetType(Protocol)).EntryPoint
 
@@ -47,6 +48,14 @@ Public Class Service : Implements IDisposable
         Return socket.Run
     End Function
 
+    <Protocol(Protocol.SetFilters)>
+    Public Function SetFilters(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
+        Dim shaders As String() = request.LoadObject(Of String())
+        Dim filters As RasterPipeline = RasterPipeline.Parse(shaders)
+        blender.filters = filters
+        Return New DataPipe("OK")
+    End Function
+
     <Protocol(Protocol.OpenSession)>
     Public Function OpenSession(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
         ' load pixels data
@@ -64,6 +73,8 @@ Public Class Service : Implements IDisposable
 
         Using ms As New MemoryStream
             Call msi.Save(ms, ImageFormat.Png)
+            Call ms.Flush()
+
 
         End Using
     End Function

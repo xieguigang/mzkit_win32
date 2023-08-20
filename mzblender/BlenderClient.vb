@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender.Scaler
 Imports Microsoft.VisualBasic.Net
 Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Parallel
@@ -28,6 +29,10 @@ Public Class BlenderClient
 
         Erase data
     End Sub
+
+    Public Function SetFilters(filters As RasterPipeline)
+
+    End Function
 
     Public Function OpenSession()
         Dim result = handleRequest(New RequestStream(Service.protocolHandle, Protocol.OpenSession, "ok!"))

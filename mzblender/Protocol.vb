@@ -3,6 +3,7 @@
     ''' Open a new session and load new MSI pixel layer data
     ''' </summary>
     OpenSession
+    SetFilters
     ''' <summary>
     ''' Rendering a new MS-imaging layer based on new parameters
     ''' </summary>
