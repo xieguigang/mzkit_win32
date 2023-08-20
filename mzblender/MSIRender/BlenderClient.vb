@@ -38,6 +38,12 @@ Public Class BlenderClient : Implements IDisposable
         Return New TcpRequest(host).SetTimeOut(TimeSpan.FromSeconds(60)).SendMessage(req)
     End Function
 
+    Public Function MSIRender() As Image
+        Dim payload As New Dictionary(Of String, String)
+        payload.Add("sample", sample_tag)
+
+    End Function
+
     Public Function SetSampleTag(tag As String)
         sample_tag = tag
         Return tag
