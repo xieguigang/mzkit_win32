@@ -130,11 +130,6 @@ Public Class frmMsImagingViewer
     Dim rendering As Action
     Dim guid As String
 
-    ''' <summary>
-    ''' the ms-imaging rendering service
-    ''' </summary>
-    Dim blender As MSImagingBlender
-
     Friend TIC As PixelScanIntensity()
 
     Friend MSIservice As ServiceHub.MSIDataService
@@ -142,6 +137,9 @@ Public Class frmMsImagingViewer
     Friend HEMap As HEMapTools
     Friend DrawHeMapRegion As Boolean = False
 
+    ''' <summary>
+    ''' the ms-imaging rendering service
+    ''' </summary>
     Dim blender As BlenderClient
 
     Public ReadOnly Property MimeType As ContentType() Implements IFileReference.MimeType
