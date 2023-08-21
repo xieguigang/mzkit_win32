@@ -1,6 +1,8 @@
 ﻿Imports BioNovoGene.mzkit_win32.ServiceHub
+Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Parallel
+Imports Mzkit_win32.BasicMDIForm
 Imports IPEndPoint = Microsoft.VisualBasic.Net.IPEndPoint
 
 Public NotInheritable Class RenderService
@@ -29,10 +31,12 @@ Public NotInheritable Class RenderService
             .Description = "MS-Imaging blendering backend for mzkit workbench",
             .isAlive = True,
             .PID = BlenderHost.Id,
-            .port = MSIBlender.port,
+            .Port = MSIBlender.port,
             .Protocol = "TCP",
             .StartTime = Now.ToString
         })
+
+        Call Workbench.LogText($"{BlenderHost.StartInfo.FileName.CLIPath} {BlenderHost.StartInfo.Arguments}")
     End Sub
 
     Private Shared Sub Shutdown(port As Integer)
