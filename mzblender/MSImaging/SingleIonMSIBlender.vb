@@ -86,7 +86,7 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
     End Property
 
     Sub New(layer As PixelData(), TIC As PixelScanIntensity(), params As MsImageProperty, filters As RasterPipeline)
-        Call Me.New(layer, params, filters, SummaryMSIBlender.Rendering(TIC, New Size(params.scan_x, params.scan_y), "gray", 255))
+        Call Me.New(layer, params, filters, SummaryMSIBlender.Rendering(TIC, New Size(params.scan_x, params.scan_y), "gray", 255, "black"))
     End Sub
 
     Sub New(layer As PixelData(), params As MsImageProperty, filters As RasterPipeline, Optional TIC As Image = Nothing)

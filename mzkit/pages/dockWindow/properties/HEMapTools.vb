@@ -16,11 +16,21 @@ Public Class HEMapTools
     Dim heatmap As Cell()
     Dim heatmap_dims As Size
 
+    Public ReadOnly Property HEStainMap As Image
+        Get
+            Return hemap
+        End Get
+    End Property
+
     Public Sub Add(regions As Polygon2D())
         polygons.AddRange(regions)
         TextBox1.Text = $"mark {polygons.Count} polygon regions"
     End Sub
 
+    ''' <summary>
+    ''' Set new HE-stain map image into current analysis module
+    ''' </summary>
+    ''' <param name="newMap"></param>
     Public Sub Clear(newMap As Bitmap)
         Call ColorComboBox1.Items.Clear()
         Call polygons.Clear()

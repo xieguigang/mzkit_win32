@@ -383,12 +383,28 @@ Public Class frmMsImagingViewer
                     Call Invoke(Sub() rendering = registerSummaryRender(summary))
                 End Sub, "Render MSI", $"Rendering MSI in {summary.Description} mode...")
 
+        If HEMap Is Nothing Then
+            HEMap = New HEMapTools
+            HEMap.Show(VisualStudio.DockPanel)
+            HEMap.DockState = DockState.Hidden
+        End If
+
+        HEMap.Clear(PixelSelector1.MSICanvas.HEMap)
+
         blender.HEMap = image
         params.Hqx = HqxScales.None
         rendering()
 
         Call Workbench.SuccessMessage("HEstain - MSI register matrix load success!")
     End Sub
+
+    Private Function GetHEMap() As Image
+        If HEMap Is Nothing Then
+            Return Nothing
+        Else
+            Return HEMap.HEStainMap
+        End If
+    End Function
 
     Private Sub SetRotation(angle As Double, MSIrender As Boolean)
         Dim info = TaskProgress.LoadData(
@@ -2015,7 +2031,7 @@ Public Class frmMsImagingViewer
         End If
 
         Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
-        Dim blender As New SummaryMSIBlender(summaryLayer, params, loadFilters)
+        Dim blender As New SummaryMSIBlender(summaryLayer, params, loadFilters) With {.HEMap = GetHEMap()}
 
         ' Me.params.enableFilter = False
         Me.blender = blender
@@ -2084,7 +2100,7 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Function createRenderTask(R As PixelData(), G As PixelData(), B As PixelData()) As Action
-        Dim blender As New RGBIonMSIBlender(R, G, B, TIC, params, loadFilters)
+        Dim blender As New RGBIonMSIBlender(R, G, B, TIC, params, loadFilters) With {.HEMap = GetHEMap()}
 
         Me.params.enableFilter = False
         Me.blender = blender
@@ -2236,7 +2252,7 @@ Public Class frmMsImagingViewer
             Me.tweaks = WindowModules.msImageParameters.PropertyGrid1
         End If
 
-        Dim blender As New HeatMapBlender(layer, dimensions, params, loadFilters)
+        Dim blender As New HeatMapBlender(layer, dimensions, params, loadFilters) With {.HEMap = GetHEMap()}
 
         Me.params.enableFilter = True
         Me.blender = blender
@@ -2261,7 +2277,7 @@ Public Class frmMsImagingViewer
     ''' <param name="dimensions">the dimension size of the MSI raw data</param>
     ''' <returns></returns>
     Private Function createRenderTask(pixels As PixelData(), dimensions$) As Action
-        Dim blender As New SingleIonMSIBlender(pixels, TIC, params, loadFilters)
+        Dim blender As New SingleIonMSIBlender(pixels, TIC, params, loadFilters) With {.HEMap = GetHEMap()}
         Dim range As DoubleRange = blender.range
 
         Me.params.enableFilter = True

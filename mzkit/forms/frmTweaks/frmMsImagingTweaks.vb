@@ -666,7 +666,7 @@ UseCheckedList:
                 Dim TIC = TaskProgress.LoadData(
                     Function(echo As Action(Of String))
                         Dim layer = MSIservice.LoadSummaryLayer(IntensitySummary.Total, False)
-                        Dim render As Image = SummaryMSIBlender.Rendering(layer, New Size(params.scan_x, params.scan_y), "gray", 255)
+                        Dim render As Image = SummaryMSIBlender.Rendering(layer, New Size(params.scan_x, params.scan_y), "gray", 255, "black")
 
                         Return render
                     End Function,
