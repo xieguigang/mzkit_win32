@@ -890,7 +890,11 @@ Public Class frmMain : Implements AppHost
         If TypeOf m_dockPanel.ActiveDocument Is frmOpenseadragonViewer Then
             DirectCast(m_dockPanel.ActiveDocument, frmOpenseadragonViewer).DoActivated()
         Else
-            DirectCast(m_dockPanel.ActiveDocument, frmOpenseadragonViewer).DoLostFocus()
+            For Each doc In m_dockPanel.Documents
+                If TypeOf doc Is frmOpenseadragonViewer Then
+                    DirectCast(doc, frmOpenseadragonViewer).DoLostFocus()
+                End If
+            Next
         End If
         If TypeOf m_dockPanel.ActiveDocument Is frmMsImagingViewer Then
             ribbonItems.TabGroupMSI.ContextAvailable = ContextAvailability.Active
