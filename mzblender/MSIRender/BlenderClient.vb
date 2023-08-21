@@ -4,6 +4,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender.Scaler
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.IO
 Imports Microsoft.VisualBasic.Net
+Imports Microsoft.VisualBasic.Net.HTTP
 Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic.Serialization.JSON
@@ -44,11 +45,16 @@ Public Class BlenderClient : Implements IDisposable
         payload.Add("sample", sample_tag)
         payload.Add("canvas", canvas.GetJson)
         payload.Add("params", params.GetJson)
-        payload.Add("args", args.GetJson)
+        payload.Add("args", args.GetJSON)
         Dim req As New RequestStream(Service.protocolHandle, Protocol.MSIRender, payload.GetJson)
         Dim resp = handleRequest(req)
 
-        Return channel.LoadImage
+        If NetResponse.IsHTTP_RFC(resp) Then
+            Dim err As String = resp.GetUTF8String
+            Throw New Exception(err)
+        Else
+            Return channel.LoadImage
+        End If
     End Function
 
     Public Function SetSampleTag(tag As String)
