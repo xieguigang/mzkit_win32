@@ -3,6 +3,7 @@ Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Parallel
 Imports Mzkit_win32.BasicMDIForm
+Imports TaskStream
 Imports IPEndPoint = Microsoft.VisualBasic.Net.IPEndPoint
 
 Public NotInheritable Class RenderService
@@ -36,7 +37,7 @@ Public NotInheritable Class RenderService
             .StartTime = Now.ToString
         })
 
-        Call Workbench.LogText($"{BlenderHost.StartInfo.FileName.CLIPath} {BlenderHost.StartInfo.Arguments}")
+        Call WorkStudio.LogCommandLine(BlenderHost.StartInfo.FileName, BlenderHost.StartInfo.Arguments, App.HOME)
     End Sub
 
     Private Shared Sub Shutdown(port As Integer)
