@@ -75,6 +75,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.HEMap
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
@@ -156,7 +157,6 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             .X = polygon.xpoints.Average,
             .Y = polygon.ypoints.Average
         }
-        Dim info As Dictionary(Of String, String)
 
         matrix = matrix.Rotate(center, alpha:=r)
 
@@ -170,18 +170,44 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             .Select(Function(p) New PointF(p.X, p.Y - minY)) _
             .ToArray
 
+        Return SetSpatial2D(rawPixels, matrix, Nothing)
+    End Function
+
+    Private Function SetSpatial2D(rawPixels As PixelScan(), matrix As PointF(), newDims As Size?) As BufferPipe
+        Dim info As Dictionary(Of String, String)
+
         For i As Integer = 0 To matrix.Length - 1
             rawPixels(i) = rawPixels(i).SetXY(matrix(i).X, matrix(i).Y)
         Next
 
         MSI = New Drawer(rawPixels.Select(Function(d) DirectCast(d, mzPackPixel)).ToArray)
-        metadata.scan_x = MSI.dimension.Width
-        metadata.scan_y = MSI.dimension.Height
+
+        If newDims Is Nothing Then
+            metadata.scan_x = MSI.dimension.Width
+            metadata.scan_y = MSI.dimension.Height
+        Else
+            metadata.scan_x = newDims?.Width
+            metadata.scan_y = newDims?.Height
+        End If
 
         info = MSIProtocols.GetMSIInfo(Me)
         info!source = sourceName
 
         Return New DataPipe(info.GetJson(indent:=False, simpleDict:=True))
+    End Function
+
+    <Protocol(ServiceProtocol.SetSpatialMapping)>
+    Public Function SetSpatialMapping(request As RequestStream, remoteAddress As System.Net.IPEndPoint) As BufferPipe
+        Dim filepath As String = request.GetUTF8String
+        Dim register As SpatialRegister = SpatialRegister.ParseFile(filepath.OpenReadonly)
+        Dim rawPixels As PixelScan() = MSI.LoadPixels.ToArray
+        Dim newSpatial As PointF() = rawPixels _
+            .Select(Function(i) New PointF(i.X, i.Y)) _
+            .DoCall(Function(p)
+                        Return register.SpatialTranslation(p.ToArray)
+                    End Function)
+
+        Return SetSpatial2D(rawPixels, newSpatial, register.viewSize)
     End Function
 
     <Protocol(ServiceProtocol.GetMSIDimensions)>
