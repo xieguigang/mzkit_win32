@@ -30,7 +30,7 @@ Public Class frmOpenseadragonViewer
     End Sub
 
     Public Sub WebInvokeExportImage()
-
+        WebView21.ExecuteScriptAsync("apps.viewer.OpenseadragonSlideViewer.ExportViewImage()")
     End Sub
 
 
