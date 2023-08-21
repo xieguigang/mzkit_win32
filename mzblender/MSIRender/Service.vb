@@ -71,7 +71,7 @@ Public Class Service : Implements IDisposable
                 Dim pixels = HeatMap.PixelData.ParseStream(channel.LoadStream)
                 Dim dims As Size = data!args.SizeParser
 
-                blender = New HeatMapBlender(pixels, dims, filters)
+                blender = New HeatMapBlender(pixels, dims, filters) With {.filters = filters}
             Case NameOf(RGBIonMSIBlender)
                 Dim pixels = PixelData.Parse(channel.LoadStream)
                 data = data!args.LoadJSON(Of Dictionary(Of String, String))
@@ -81,7 +81,7 @@ Public Class Service : Implements IDisposable
                 Dim Gpixels = pixels.Where(Function(p) mzdiff(p.mz, rgb.G)).ToArray
                 Dim Bpixels = pixels.Where(Function(p) mzdiff(p.mz, rgb.B)).ToArray
 
-                blender = New RGBIonMSIBlender(Rpixels, Gpixels, Bpixels, TIC, filters)
+                blender = New RGBIonMSIBlender(Rpixels, Gpixels, Bpixels, TIC, filters) With {.filters = filters}
             Case NameOf(SingleIonMSIBlender)
                 Dim dims As Size = data!args.SizeParser
                 Dim pixels As PixelData() = PixelData.Parse(channel.LoadStream)
@@ -91,11 +91,11 @@ Public Class Service : Implements IDisposable
                     .IonMz = ""
                 }
 
-                blender = New SingleIonMSIBlender(pixels, filters, Nothing)
+                blender = New SingleIonMSIBlender(pixels, filters, Nothing) With {.filters = filters}
             Case NameOf(SummaryMSIBlender)
                 Dim pixels As PixelScanIntensity() = PixelScanIntensity.Parse(channel.LoadStream)
 
-                blender = New SummaryMSIBlender(pixels, filters)
+                blender = New SummaryMSIBlender(pixels, filters) With {.filters = filters}
             Case Else
                 Throw New InvalidDataException("invalid session open parameter!")
         End Select

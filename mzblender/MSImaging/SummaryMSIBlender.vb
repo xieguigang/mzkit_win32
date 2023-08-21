@@ -93,10 +93,12 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
         Dim layerData As PixelScanIntensity() = summaryLayer
         Dim filter = Me.filters
 
-        If Not params.instrument.TextEquals("Bruker") Then
-            filter = filter.Then(New KNNScaler(params.knn, params.knn_qcut)).Then(New SoftenScaler())
-        Else
-            filter = filter.Then(New SoftenScaler())
+        If Not filter Is Nothing Then
+            If Not params.instrument.TextEquals("Bruker") Then
+                filter = filter.Then(New KNNScaler(params.knn, params.knn_qcut)).Then(New SoftenScaler())
+            Else
+                filter = filter.Then(New SoftenScaler())
+            End If
         End If
 
         Dim pixelDatas As BioNovoGene.Analytical.MassSpectrometry.MsImaging.PixelData()
@@ -125,11 +127,19 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
 
         Dim pixelFilter As New SingleIonLayer With {.DimensionSize = dimensions, .IonMz = -1, .MSILayer = pixelDatas}
 
-        If params.enableFilter Then
+        If params.enableFilter AndAlso filter IsNot Nothing Then
             pixelFilter = filter(pixelFilter)
         End If
 
-        layerData = pixelFilter.MSILayer.Select(Function(p) New PixelScanIntensity With {.x = p.x, .y = p.y, .totalIon = p.intensity}).ToArray
+        layerData = pixelFilter.MSILayer _
+            .Select(Function(p)
+                        Return New PixelScanIntensity With {
+                            .x = p.x,
+                            .y = p.y,
+                            .totalIon = p.intensity
+                        }
+                    End Function) _
+            .ToArray
 
         Return Rendering(layerData, dimensions, params.colors.Description, mapLevels)
     End Function

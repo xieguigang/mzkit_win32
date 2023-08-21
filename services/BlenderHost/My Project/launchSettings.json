@@ -2,7 +2,7 @@
   "profiles": {
     "BlenderHost": {
       "commandName": "Project",
-      "commandLineArgs": "/start --port 8000 --master 34564"
+      "commandLineArgs": "/start --port 8000 --master 27476"
     }
   }
 }
