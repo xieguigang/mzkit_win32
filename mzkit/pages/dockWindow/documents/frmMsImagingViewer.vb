@@ -81,6 +81,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender.Scaler
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.HEMap
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.ServiceHub
@@ -95,7 +96,6 @@ Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.DataStorage.netCDF
-Imports Microsoft.VisualBasic.DataStorage.netCDF.DataVector
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors

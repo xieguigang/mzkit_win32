@@ -1,6 +1,7 @@
 ﻿Imports System.Drawing
 Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.HEMap
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Mzkit_win32.BasicMDIForm
