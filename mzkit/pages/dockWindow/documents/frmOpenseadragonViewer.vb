@@ -109,13 +109,13 @@ Public Class frmOpenseadragonViewer
     End Sub
 
     Private Sub frmOpenseadragonViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
+        frmOpenseadragonViewer_Activated()
         WebKit.Init(Me.WebView21)
-
-        ribbonItems.MenuOpenseadragon.ContextAvailable = ContextAvailability.Available
     End Sub
 
-    Private Sub frmOpenseadragonViewer_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+    Private Sub frmOpenseadragonViewer_Activated() Handles Me.Activated
         exportImage = AddressOf WebInvokeExportImage
+        ribbonItems.MenuOpenseadragon.ContextAvailable = ContextAvailability.Available
         ribbonItems.MenuOpenseadragon.ContextAvailable = ContextAvailability.Active
     End Sub
 
