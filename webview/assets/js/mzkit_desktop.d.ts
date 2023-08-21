@@ -201,3 +201,12 @@ declare namespace apps.viewer {
         load_cluster(data: ms1_scatter[]): gl_plot.scatter3d_options;
     }
 }
+declare namespace apps.viewer {
+    class OpenseadragonSlideViewer extends Bootstrap {
+        get appName(): string;
+        private getDziSrc;
+        private static viewer;
+        protected init(): void;
+        static ExportViewImage(): void;
+    }
+}

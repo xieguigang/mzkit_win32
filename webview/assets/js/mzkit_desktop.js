@@ -224,6 +224,7 @@ var app;
             Router.AddAppHandler(new apps.viewer.three_app());
             Router.AddAppHandler(new apps.viewer.clusterViewer());
             Router.AddAppHandler(new apps.viewer.LCMSScatterViewer());
+            Router.AddAppHandler(new apps.viewer.OpenseadragonSlideViewer());
             Router.RunApp();
         }
         desktop.run = run;
@@ -1151,6 +1152,59 @@ var apps;
             return LCMSScatterViewer;
         }(Bootstrap));
         viewer.LCMSScatterViewer = LCMSScatterViewer;
+    })(viewer = apps.viewer || (apps.viewer = {}));
+})(apps || (apps = {}));
+// openseadragon slide viewer
+var apps;
+(function (apps) {
+    var viewer;
+    (function (viewer_1) {
+        var OpenseadragonSlideViewer = /** @class */ (function (_super) {
+            __extends(OpenseadragonSlideViewer, _super);
+            function OpenseadragonSlideViewer() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            Object.defineProperty(OpenseadragonSlideViewer.prototype, "appName", {
+                get: function () {
+                    return "openseadragon";
+                },
+                enumerable: true,
+                configurable: true
+            });
+            OpenseadragonSlideViewer.prototype.getDziSrc = function () {
+                return window.chrome.webview.hostObjects.dzi;
+            };
+            OpenseadragonSlideViewer.prototype.init = function () {
+                var dzi = this.getDziSrc();
+                var OpenSeadragon = window.OpenSeadragon;
+                console.log("get the source deep zoom image url:");
+                console.log(dzi);
+                OpenseadragonSlideViewer.viewer = OpenSeadragon({
+                    id: "seadragon-viewer",
+                    prefixUrl: "/openseadragon/images/",
+                    tileSources: [
+                        dzi
+                    ],
+                    showNavigator: true,
+                    navigatorPosition: "BOTTOM_RIGHT",
+                    // Initial rotation angle
+                    degrees: 0,
+                    // Show rotation buttons
+                    showRotationControl: true,
+                    // Enable touch rotation on tactile devices
+                    gestureSettingsTouch: {
+                        pinchRotate: true
+                    }
+                });
+            };
+            OpenseadragonSlideViewer.ExportViewImage = function () {
+                var viewer = OpenseadragonSlideViewer.viewer.drawer;
+                var img = viewer.canvas.toDataURL("image/png");
+                DOM.download("capture.png", img, true);
+            };
+            return OpenseadragonSlideViewer;
+        }(Bootstrap));
+        viewer_1.OpenseadragonSlideViewer = OpenseadragonSlideViewer;
     })(viewer = apps.viewer || (apps.viewer = {}));
 })(apps || (apps = {}));
 //# sourceMappingURL=mzkit_desktop.js.map
