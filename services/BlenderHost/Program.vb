@@ -26,11 +26,11 @@ Public Module Program
     <Usage("/start --port <tcp_port> --master <mzkit_win32 PID> [--debug]")>
     Public Function StartService(args As CommandLine) As Integer
         Dim port As Integer = args <= "--port"
-        Dim master As Integer = args <= "--master"
+        Dim master As Integer = Val(CStr(args <= "--master"))
         Dim is_debug As Boolean = args("--debug")
         Dim localhost As New Service(port, masterChannel:=If(is_debug, "debug-blender", master))
 
-        If master > 0 Then
+        If (Not is_debug) AndAlso master > 0 Then
             Call BackgroundTaskUtils.BindToMaster(parentId:=master, kill:=localhost)
         End If
 
