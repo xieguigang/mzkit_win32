@@ -60,10 +60,15 @@
 
 Imports System.ComponentModel
 Imports System.Drawing
+Imports System.Reflection
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
+Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.MIME.Html.CSS
+Imports Microsoft.VisualBasic.Serialization.JSON
+Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class PlotProperty
 
@@ -123,6 +128,68 @@ Public Class PlotProperty
 
     Public Function GetPadding() As Padding
         Return New Padding(padding_left, padding_top, padding_right, padding_bottom)
+    End Function
+
+    Shared ReadOnly css_data As PropertyInfo() = GetType(PlotProperty) _
+        .GetProperties(DataFramework.PublicProperty) _
+        .Where(Function(p) p.GetIndexParameters.IsNullOrEmpty) _
+        .ToArray
+
+    Public Function GetJSON() As String
+        Dim json As New Dictionary(Of String, String)
+
+        For Each p As PropertyInfo In css_data
+            Dim val As Object = p.GetValue(Me)
+            Dim str As String
+
+            If val Is Nothing Then
+                str = Nothing
+            ElseIf TypeOf val Is Color Then
+                str = DirectCast(val, Color).ToHtmlColor
+            ElseIf TypeOf val Is Font Then
+                str = New CSSFont(DirectCast(val, Font)).CSSValue
+            ElseIf DataFramework.IsPrimitive(val.GetType) Then
+                str = val.ToString
+            ElseIf val.GetType.IsEnum Then
+                str = val.ToString
+            Else
+                Throw New NotImplementedException(val.GetType.FullName)
+            End If
+
+            Call json.Add(p.Name, str)
+        Next
+
+        Return json.GetJson(indent:=False, simpleDict:=True)
+    End Function
+
+    Public Shared Function ParseJSON(str As String) As PlotProperty
+        Dim json = str.LoadJSON(Of Dictionary(Of String, String))
+        Dim css As New PlotProperty
+        Dim val As Object
+
+        For Each p As PropertyInfo In css_data
+            str = json(p.Name)
+            val = Nothing
+
+            If (Not str.StringEmpty) AndAlso Not str.TextEquals("null") Then
+                Select Case p.PropertyType
+                    Case GetType(Color) : val = str.TranslateColor
+                    Case GetType(Font) : val = CSSFont.TryParse(str).GDIObject(100)
+                    Case Else
+                        If DataFramework.IsPrimitive(p.PropertyType) Then
+                            val = any.CTypeDynamic(str, p.PropertyType)
+                        ElseIf p.PropertyType.IsEnum Then
+                            val = [Enum].Parse(p.PropertyType, str)
+                        Else
+                            Throw New NotImplementedException(p.PropertyType.FullName)
+                        End If
+                End Select
+            End If
+
+            Call p.SetValue(css, val)
+        Next
+
+        Return css
     End Function
 
 End Class
