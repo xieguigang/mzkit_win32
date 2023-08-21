@@ -23,11 +23,12 @@ Public Module Program
 
     <ExportAPI("/start")>
     <Description("Start the data visualization rendering background service for the mass spectral data rendering.")>
-    <Usage("/start --port <tcp_port> --master <mzkit_win32 PID>")>
+    <Usage("/start --port <tcp_port> --master <mzkit_win32 PID> [--debug]")>
     Public Function StartService(args As CommandLine) As Integer
         Dim port As Integer = args <= "--port"
         Dim master As Integer = args <= "--master"
-        Dim localhost As New Service(port, masterChannel:=master)
+        Dim is_debug As Boolean = args("--debug")
+        Dim localhost As New Service(port, masterChannel:=If(is_debug, "debug-blender", master))
 
         If master > 0 Then
             Call BackgroundTaskUtils.BindToMaster(parentId:=master, kill:=localhost)

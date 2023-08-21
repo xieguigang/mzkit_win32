@@ -1,8 +1,7 @@
 ﻿Imports BioNovoGene.mzkit_win32.ServiceHub
-Imports Microsoft.VisualBasic.ApplicationServices
+Imports Microsoft.VisualBasic.CommandLine
 Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Parallel
-Imports Mzkit_win32.BasicMDIForm
 Imports TaskStream
 Imports IPEndPoint = Microsoft.VisualBasic.Net.IPEndPoint
 
@@ -15,11 +14,20 @@ Public NotInheritable Class RenderService
     End Sub
 
     Public Shared Sub Start()
-        MSIBlender = New IPEndPoint("127.0.0.1", TCPExtensions.GetFirstAvailablePort(8000))
+        Dim cli As CommandLine = App.CommandLine
+        Dim bindChannel As String = App.PID
+
+        If cli.Name.TextEquals("--debug") Then
+            MSIBlender = New IPEndPoint("127.0.0.1", cli("--blender") Or TCPExtensions.GetFirstAvailablePort(8000))
+            bindChannel = "debug-blender"
+        Else
+            MSIBlender = New IPEndPoint("127.0.0.1", TCPExtensions.GetFirstAvailablePort(8000))
+        End If
+
         BlenderHost = New Process With {
             .StartInfo = New ProcessStartInfo With {
                 .FileName = $"{App.HOME}/plugins\blender\BlenderHost.exe",
-                .Arguments = $"/start --port {MSIBlender.port} --master {App.PID}",
+                .Arguments = $"/start --port {MSIBlender.port} --master {bindChannel}",
                 .CreateNoWindow = True,
                 .WindowStyle = ProcessWindowStyle.Hidden,
                 .UseShellExecute = True
