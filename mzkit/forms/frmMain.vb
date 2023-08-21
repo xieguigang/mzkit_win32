@@ -887,6 +887,11 @@ Public Class frmMain : Implements AppHost
         Else
             ribbonItems.TableGroup.ContextAvailable = ContextAvailability.NotAvailable
         End If
+        If TypeOf m_dockPanel.ActiveDocument Is frmOpenseadragonViewer Then
+            DirectCast(m_dockPanel.ActiveDocument, frmOpenseadragonViewer).DoActivated()
+        Else
+            DirectCast(m_dockPanel.ActiveDocument, frmOpenseadragonViewer).DoLostFocus()
+        End If
         If TypeOf m_dockPanel.ActiveDocument Is frmMsImagingViewer Then
             ribbonItems.TabGroupMSI.ContextAvailable = ContextAvailability.Active
         Else

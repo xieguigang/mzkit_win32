@@ -109,17 +109,17 @@ Public Class frmOpenseadragonViewer
     End Sub
 
     Private Sub frmOpenseadragonViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
-        frmOpenseadragonViewer_Activated()
+        DoActivated()
         WebKit.Init(Me.WebView21)
     End Sub
 
-    Private Sub frmOpenseadragonViewer_Activated() Handles Me.Activated
+    Public Sub DoActivated()
         exportImage = AddressOf WebInvokeExportImage
         ribbonItems.MenuOpenseadragon.ContextAvailable = ContextAvailability.Available
         ribbonItems.MenuOpenseadragon.ContextAvailable = ContextAvailability.Active
     End Sub
 
-    Private Sub frmOpenseadragonViewer_LostFocus(sender As Object, e As EventArgs) Handles Me.LostFocus
+    Public Sub DoLostFocus()
         exportImage = Nothing
         ribbonItems.MenuOpenseadragon.ContextAvailable = ContextAvailability.NotAvailable
     End Sub
