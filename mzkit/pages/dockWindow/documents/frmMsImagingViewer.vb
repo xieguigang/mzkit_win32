@@ -351,6 +351,40 @@ Public Class frmMsImagingViewer
             End Sub, config:=rotateCfg)
     End Sub
 
+    Private Sub SetSpatialMapping(register As SpatialRegister, filepath As String)
+        Dim image As New Bitmap(register.HEstain, register.viewSize)
+        Dim scan_dims As Size = register.viewSize
+
+        ' display the HEmap image
+        Call PixelSelector1.SetMsImagingOutput(image, scan_dims, params.background, params.colors, {0, 1000}, 255)
+
+        Dim info = TaskProgress.LoadData(
+            streamLoad:=Function(echo As Action(Of String)) MSIservice.SetSpatialMapping(filepath),
+            title:="Register MSI to HE-stain",
+            info:="Apply matrix rotation and matrix translation to the ms-imaging slide sample data..."
+        )
+        ' display the overlaps
+        Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".tmp.mzPack", sessionID:=App.PID, prefix:="rotate_temp_")
+
+        If info Is Nothing Then
+            Call Workbench.Warning("Matrix rotation error!")
+            Return
+        End If
+
+        Call TaskProgress.LoadData(
+            Function(echo As Action(Of String))
+                Call MSIservice.ExportMzpack(tempfile)
+                Return True
+            End Function)
+        Call MyApplication.host.showMzPackMSI(tempfile)
+        Call RenderSummary(IntensitySummary.BasePeak)
+
+        blender.HEMap = image
+        rendering()
+
+        Call Workbench.SuccessMessage("HEstain - MSI register matrix load success!")
+    End Sub
+
     Private Sub SetRotation(angle As Double, MSIrender As Boolean)
         Dim info = TaskProgress.LoadData(
             streamLoad:=Function(echo As Action(Of String)) MSIservice.SetSpatial2D(angle),
@@ -359,20 +393,23 @@ Public Class frmMsImagingViewer
         )
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".tmp.mzPack", sessionID:=App.PID, prefix:="rotate_temp_")
 
-        If Not info Is Nothing Then
-            Call TaskProgress.LoadData(
-                Function(echo As Action(Of String))
-                    Call MSIservice.ExportMzpack(tempfile)
-                    Return True
-                End Function)
-            Call MyApplication.host.showMzPackMSI(tempfile)
-
-            If MSIrender Then
-                Call RenderSummary(IntensitySummary.BasePeak)
-            End If
-
-            Call Workbench.SuccessMessage($"Rotate the MS-imaging sample slide at angle {angle}.")
+        If info Is Nothing Then
+            Call Workbench.Warning("Matrix rotation error!")
+            Return
         End If
+
+        Call TaskProgress.LoadData(
+            Function(echo As Action(Of String))
+                Call MSIservice.ExportMzpack(tempfile)
+                Return True
+            End Function)
+        Call MyApplication.host.showMzPackMSI(tempfile)
+
+        If MSIrender Then
+            Call RenderSummary(IntensitySummary.BasePeak)
+        End If
+
+        Call Workbench.SuccessMessage($"Rotate the MS-imaging sample slide at angle {angle}.")
     End Sub
 
     Private Sub ViewMzBins()
@@ -792,6 +829,7 @@ Public Class frmMsImagingViewer
                     Call loadHEMapMatrix(file.FileName)
                 ElseIf file.FileName.ExtensionSuffix("cdf") Then
                     Dim register As SpatialRegister = SpatialRegister.ParseFile(file.OpenFile)
+
                     ' verify the MSI data dimension 
                     If Not checkService() Then
                         Return
@@ -800,29 +838,11 @@ Public Class frmMsImagingViewer
                     ElseIf params.scan_x <> register.MSIdims.Width OrElse params.scan_y <> register.MSIdims.Height Then
                         Call MessageBox.Show("The dimension data between current MS-imaging viewer and the HEstain regitsered dimesion is mis-matched!", "Invalid MS-Imaging Dimensions", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                         Return
+                    Else
+
                     End If
 
-                    Dim image As New Bitmap(register.HEstain, register.viewSize)
-                    Dim scan_dims As Size = image.Size
-                    Dim range As DoubleRange = register.mappings.Select(Function(s) CDbl(s.heatmap)).Range
-                    Dim padding As Double() = New Double(3) {}
-
-                    padding(0) = register.offset.Y ' top 
-                    padding(1) = register.viewSize.Width - (register.offset.X + register.MSIscale.Width) ' right
-                    padding(2) = register.viewSize.Height - (register.offset.Y + register.MSIscale.Height) ' bottom
-                    padding(3) = register.offset.X ' left
-
-                    ' display the HEstain image
-                    Call PixelSelector1.SetMsImagingOutput(image, scan_dims, params.background, params.colors, {range.Min, range.Max}, 255)
-
-                    ' apply MSI data rotation and also set new data dimension
-                    Call SetRotation(angle:=register.rotation, False)
-                    ' calculate and apply the MSI padding
-                    Call SetMSIPadding(padding:=New Padding(padding), False)
-                    ' display the HEstain image
-                    Call PixelSelector1.SetMsImagingOutput(image, scan_dims, params.background, params.colors, {range.Min, range.Max}, 255)
-
-                    Call Workbench.SuccessMessage("HEstain - MSI register matrix load success!")
+                    Call SetSpatialMapping(register, file.FileName)
                 ElseIf file.FileName.ExtensionSuffix("ndpi") Then
                     Call TissueSlideHandler.OpenNdpiFile(file.FileName)
                 ElseIf file.FileName.ExtensionSuffix("tif", "tiff", "dzi") Then
@@ -1139,7 +1159,7 @@ Public Class frmMsImagingViewer
     ''' <returns></returns>
     Public Function checkService() As Boolean
         If MSIservice Is Nothing OrElse Not MSIservice.MSIEngineRunning Then
-            Call MyApplication.host.showStatusMessage("No MSI raw data was loaded!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning("No MSI raw data was loaded!")
             Return False
         Else
             Return True

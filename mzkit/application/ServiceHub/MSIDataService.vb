@@ -228,6 +228,19 @@ Namespace ServiceHub
             End If
         End Function
 
+        Public Function SetSpatialMapping(cdf As String) As MsImageProperty
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.SetSpatialMapping, cdf))
+
+            If data Is Nothing Then
+                Return Nothing
+            ElseIf data.IsHTTP_RFC Then
+                Call Workbench.Warning(data.GetUTF8String)
+                Return Nothing
+            Else
+                Return GetMSIInformationMetadata(data)
+            End If
+        End Function
+
         Public Function DoIonCoLocalization(mz As Double()) As EntityClusterModel()
             Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.GetIonColocalization, mz.GetJson(indent:=False, simpleDict:=True)))
 
