@@ -129,9 +129,22 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
             pixelFilter = filter(pixelFilter)
         End If
 
-        layerData = pixelFilter.MSILayer.Select(Function(p) New PixelScanIntensity With {.x = p.x, .y = p.y, .totalIon = p.intensity}).ToArray
+        layerData = pixelFilter.MSILayer _
+            .Select(Function(p) New PixelScanIntensity With {.x = p.x, .y = p.y, .totalIon = p.intensity}) _
+            .ToArray
 
-        Return Rendering(layerData, dimensions, params.colors.Description, mapLevels)
+        Dim MSI As Image = Rendering(layerData, dimensions, params.colors.Description, mapLevels, params.background.ToHtmlColor)
+
+        If HEMap IsNot Nothing Then
+            Using g As Graphics2D = MSI.Size.CreateGDIDevice()
+                Call g.DrawImage(HEMap, New Rectangle(New Point, g.Size))
+                Call g.DrawImageUnscaled(MSI, New Point)
+
+                Return g.ImageResource
+            End Using
+        Else
+            Return MSI
+        End If
     End Function
 
     Public Overrides Function Rendering(args As PlotProperty, target As Size) As Image
@@ -158,7 +171,8 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
     Public Overloads Shared Function Rendering(layerData As PixelScanIntensity(),
                                                dimensions As Size,
                                                color As String,
-                                               mapLevels As Integer) As Image
+                                               mapLevels As Integer,
+                                               background As String) As Image
         If layerData.IsNullOrEmpty Then
             Return Nothing
         End If
@@ -167,7 +181,8 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
             layer:=layerData,
             dimension:=dimensions,
             colorSet:=color,
-            mapLevels:=mapLevels
+            mapLevels:=mapLevels,
+            background:=background
         ).AsGDIImage
     End Function
 
