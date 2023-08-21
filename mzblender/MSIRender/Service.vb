@@ -122,7 +122,7 @@ Public Class Service : Implements IDisposable
         ' get parameters from the request
         Dim json As Dictionary(Of String, String) = request.LoadObject(Of Dictionary(Of String, String))
         Dim args As PlotProperty = PlotProperty.ParseJSON(json!args)
-        Dim params As MsImageProperty = json!params.LoadJSON(Of MsImageProperty)
+        Dim params As MsImageProperty = MsImageProperty.ParseJSON(json!params)
         Dim canvas As Size = json!canvas.LoadJSON(Of Size)
         Dim sample As String = json!sample
         Dim msi As Image = blender.Rendering(args, canvas, params, sample)
