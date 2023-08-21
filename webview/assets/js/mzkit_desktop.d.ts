@@ -206,7 +206,7 @@ declare namespace apps.viewer {
         get appName(): string;
         private getDziSrc;
         private static viewer;
-        protected init(): void;
+        protected init(): Promise<void>;
         static ExportViewImage(): void;
     }
 }

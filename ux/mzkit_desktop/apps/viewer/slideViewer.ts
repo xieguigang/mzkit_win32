@@ -14,8 +14,8 @@ namespace apps.viewer {
 
         private static viewer: any;
 
-        protected init(): void {
-            const dzi = this.getDziSrc();
+        protected async init() {
+            const dzi = await this.getDziSrc();
             const OpenSeadragon = (<any>window).OpenSeadragon;
 
             console.log("get the source deep zoom image url:");
@@ -43,6 +43,9 @@ namespace apps.viewer {
         public static ExportViewImage() {
             var viewer = OpenseadragonSlideViewer.viewer.drawer;
             var img: string = viewer.canvas.toDataURL("image/png");
+
+            console.log("get web capture image exports:");
+            console.log(img);
 
             DOM.download("capture.png", img, true);
         }

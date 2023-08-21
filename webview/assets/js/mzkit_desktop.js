@@ -1175,31 +1175,43 @@ var apps;
                 return window.chrome.webview.hostObjects.dzi;
             };
             OpenseadragonSlideViewer.prototype.init = function () {
-                var dzi = this.getDziSrc();
-                var OpenSeadragon = window.OpenSeadragon;
-                console.log("get the source deep zoom image url:");
-                console.log(dzi);
-                OpenseadragonSlideViewer.viewer = OpenSeadragon({
-                    id: "seadragon-viewer",
-                    prefixUrl: "/openseadragon/images/",
-                    tileSources: [
-                        dzi
-                    ],
-                    showNavigator: true,
-                    navigatorPosition: "BOTTOM_RIGHT",
-                    // Initial rotation angle
-                    degrees: 0,
-                    // Show rotation buttons
-                    showRotationControl: true,
-                    // Enable touch rotation on tactile devices
-                    gestureSettingsTouch: {
-                        pinchRotate: true
-                    }
+                return __awaiter(this, void 0, void 0, function () {
+                    var dzi, OpenSeadragon;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0: return [4 /*yield*/, this.getDziSrc()];
+                            case 1:
+                                dzi = _a.sent();
+                                OpenSeadragon = window.OpenSeadragon;
+                                console.log("get the source deep zoom image url:");
+                                console.log(dzi);
+                                OpenseadragonSlideViewer.viewer = OpenSeadragon({
+                                    id: "seadragon-viewer",
+                                    prefixUrl: "/openseadragon/images/",
+                                    tileSources: [
+                                        dzi
+                                    ],
+                                    showNavigator: true,
+                                    navigatorPosition: "BOTTOM_RIGHT",
+                                    // Initial rotation angle
+                                    degrees: 0,
+                                    // Show rotation buttons
+                                    showRotationControl: true,
+                                    // Enable touch rotation on tactile devices
+                                    gestureSettingsTouch: {
+                                        pinchRotate: true
+                                    }
+                                });
+                                return [2 /*return*/];
+                        }
+                    });
                 });
             };
             OpenseadragonSlideViewer.ExportViewImage = function () {
                 var viewer = OpenseadragonSlideViewer.viewer.drawer;
                 var img = viewer.canvas.toDataURL("image/png");
+                console.log("get web capture image exports:");
+                console.log(img);
                 DOM.download("capture.png", img, true);
             };
             return OpenseadragonSlideViewer;
