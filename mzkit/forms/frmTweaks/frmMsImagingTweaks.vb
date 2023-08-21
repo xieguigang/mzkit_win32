@@ -142,11 +142,22 @@ UseCheckedList:
 
     Public Sub ClearIons() Handles ClearSelectionToolStripMenuItem.Click, ToolStripButton3.Click
         checkedMz.Clear()
-        Win7StyleTreeView1.Nodes.Item(0).Nodes.Clear()
+
+        If Win7StyleTreeView1.Nodes.Count > 0 Then
+            Win7StyleTreeView1.Nodes.Item(0).Nodes.Clear()
+        Else
+            Win7StyleTreeView1.Nodes.Add(Ion_Layers)
+        End If
+
         ' Win7StyleTreeView1.Nodes.Item(1).Nodes.Clear()
     End Sub
 
     Public Sub LoadPinnedIons(ions As IEnumerable(Of ms2))
+        If Win7StyleTreeView1.Nodes.Count = 0 Then
+            Win7StyleTreeView1.Nodes.Add(Ion_Layers)
+            Win7StyleTreeView1.Nodes.Add(Pinned_Pixels)
+        End If
+
         Win7StyleTreeView1.Nodes.Item(1).Nodes.Clear()
 
         For Each i As ms2 In ions _
