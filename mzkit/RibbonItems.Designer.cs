@@ -208,6 +208,10 @@ namespace RibbonLib.Controls
             public const uint cmdButtonHEstainEditLabel = 240;
             public const uint cmdButtonSpatialTileUI = 247;
             public const uint cmdButtonHEstainSetSpotColor = 242;
+            public const uint cmdMenuOpenseadragon = 248;
+            public const uint cmdGroupOpenseadragon = 249;
+            public const uint cmdPanelOpenseadragon = 250;
+            public const uint cmdButtonOpenseadragonWebCapture = 251;
             public const uint cmdTabMain = 1011;
             public const uint cmdGroupFileActions = 1045;
             public const uint cmdTabGroupWindowTools = 1023;
@@ -447,6 +451,10 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonHEstainEditLabel { get; private set; }
         public RibbonButton ButtonSpatialTileUI { get; private set; }
         public RibbonButton ButtonHEstainSetSpotColor { get; private set; }
+        public RibbonTabGroup MenuOpenseadragon { get; private set; }
+        public RibbonTab GroupOpenseadragon { get; private set; }
+        public RibbonGroup PanelOpenseadragon { get; private set; }
+        public RibbonButton ButtonOpenseadragonWebCapture { get; private set; }
         public RibbonTab TabMain { get; private set; }
         public RibbonGroup GroupFileActions { get; private set; }
         public RibbonGroup TabGroupWindowTools { get; private set; }
@@ -681,6 +689,10 @@ namespace RibbonLib.Controls
             ButtonHEstainEditLabel = new RibbonButton(ribbon, Cmd.cmdButtonHEstainEditLabel);
             ButtonSpatialTileUI = new RibbonButton(ribbon, Cmd.cmdButtonSpatialTileUI);
             ButtonHEstainSetSpotColor = new RibbonButton(ribbon, Cmd.cmdButtonHEstainSetSpotColor);
+            MenuOpenseadragon = new RibbonTabGroup(ribbon, Cmd.cmdMenuOpenseadragon);
+            GroupOpenseadragon = new RibbonTab(ribbon, Cmd.cmdGroupOpenseadragon);
+            PanelOpenseadragon = new RibbonGroup(ribbon, Cmd.cmdPanelOpenseadragon);
+            ButtonOpenseadragonWebCapture = new RibbonButton(ribbon, Cmd.cmdButtonOpenseadragonWebCapture);
             TabMain = new RibbonTab(ribbon, Cmd.cmdTabMain);
             GroupFileActions = new RibbonGroup(ribbon, Cmd.cmdGroupFileActions);
             TabGroupWindowTools = new RibbonGroup(ribbon, Cmd.cmdTabGroupWindowTools);

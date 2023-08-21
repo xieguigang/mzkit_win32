@@ -3523,6 +3523,17 @@
         <Image MinDPI="192">Res/TextEditor.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdMenuOpenseadragon" Id="248" LabelTitle="Openseadragon" LabelDescription="Openseadragon" TooltipTitle="Openseadragon" TooltipDescription="Openseadragon" />
+    <Command Name="cmdGroupOpenseadragon" Id="249" LabelTitle="Openseadragon" LabelDescription="Openseadragon" TooltipTitle="Openseadragon" TooltipDescription="Openseadragon" />
+    <Command Name="cmdPanelOpenseadragon" Id="250" LabelTitle="Slide Viewer" LabelDescription="Openseadragon web viewer for slide image" TooltipTitle="Openseadragon" TooltipDescription="Openseadragon" />
+    <Command Name="cmdButtonOpenseadragonWebCapture" Id="251" LabelTitle="Capture Image" LabelDescription="Capture and export the slide image in current data view" TooltipTitle="Capture and export the slide image in current data view" TooltipDescription="Capture and export the slide image in current data view">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/applets-screenshooter.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/applets-screenshooter.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -3851,6 +3862,13 @@
               <Button CommandName="cmdButtonHEstainEditLabel" />
               <Button CommandName="cmdButtonSpatialTileUI" />
               <Button CommandName="cmdButtonHEstainSetSpotColor" />
+            </Group>
+          </Tab>
+        </TabGroup>
+        <TabGroup CommandName="cmdMenuOpenseadragon">
+          <Tab CommandName="cmdGroupOpenseadragon">
+            <Group CommandName="cmdPanelOpenseadragon">
+              <Button CommandName="cmdButtonOpenseadragonWebCapture" />
             </Group>
           </Tab>
         </TabGroup>

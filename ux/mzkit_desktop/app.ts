@@ -52,6 +52,7 @@ namespace app.desktop {
         Router.AddAppHandler(new apps.viewer.three_app());
         Router.AddAppHandler(new apps.viewer.clusterViewer());
         Router.AddAppHandler(new apps.viewer.LCMSScatterViewer());
+        Router.AddAppHandler(new apps.viewer.OpenseadragonSlideViewer());
 
         Router.RunApp();
     }

@@ -1,11 +1,11 @@
 ﻿Imports System.ComponentModel
 Imports System.Threading
-Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.MSImagingViewerV2.DeepZoomBuilder
+Imports RibbonLib.Interop
 Imports Task.Container
 
 Public Class frmOpenseadragonViewer
@@ -21,6 +21,19 @@ Public Class frmOpenseadragonViewer
         End Get
     End Property
 
+    Shared exportImage As Action
+
+    Private Shared Sub DoWebCapture()
+        If Not exportImage Is Nothing Then
+            Call exportImage()
+        End If
+    End Sub
+
+    Public Sub WebInvokeExportImage()
+
+    End Sub
+
+
     Sub New()
 
         ' This call is required by the designer.
@@ -28,6 +41,8 @@ Public Class frmOpenseadragonViewer
 
         ' Add any initialization after the InitializeComponent() call.
         AutoScaleMode = AutoScaleMode.Dpi
+
+        AddHandler ribbonItems.ButtonOpenseadragonWebCapture.ExecuteEvent, Sub() Call DoWebCapture()
     End Sub
 
     Public Sub LoadSlide(tiff As String)
@@ -89,11 +104,23 @@ Public Class frmOpenseadragonViewer
         WebView21.CoreWebView2.Settings.AreDefaultContextMenusEnabled = enable
 
         If enable Then
-            Call MyApplication.host.showStatusMessage($"[{TabText}] WebView2 developer tools has been enable!")
+            Call Workbench.StatusMessage($"[{TabText}] WebView2 developer tools has been enable!")
         End If
     End Sub
 
     Private Sub frmOpenseadragonViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         WebKit.Init(Me.WebView21)
+
+        ribbonItems.MenuOpenseadragon.ContextAvailable = ContextAvailability.Available
+    End Sub
+
+    Private Sub frmOpenseadragonViewer_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+        exportImage = AddressOf WebInvokeExportImage
+        ribbonItems.MenuOpenseadragon.ContextAvailable = ContextAvailability.Active
+    End Sub
+
+    Private Sub frmOpenseadragonViewer_LostFocus(sender As Object, e As EventArgs) Handles Me.LostFocus
+        exportImage = Nothing
+        ribbonItems.MenuOpenseadragon.ContextAvailable = ContextAvailability.NotAvailable
     End Sub
 End Class
