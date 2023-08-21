@@ -365,6 +365,7 @@ Public Class frmMsImagingViewer
         )
         ' display the overlaps
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".tmp.mzPack", sessionID:=App.PID, prefix:="rotate_temp_")
+        Dim summary As IntensitySummary = IntensitySummary.Total
 
         If info Is Nothing Then
             Call Workbench.Warning("Matrix rotation error!")
@@ -377,9 +378,13 @@ Public Class frmMsImagingViewer
                 Return True
             End Function)
         Call MyApplication.host.showMzPackMSI(tempfile)
-        Call RenderSummary(IntensitySummary.BasePeak)
+        Call TaskProgress.RunAction(
+                Sub()
+                    Call Invoke(Sub() rendering = registerSummaryRender(summary))
+                End Sub, "Render MSI", $"Rendering MSI in {summary.Description} mode...")
 
         blender.HEMap = image
+        params.Hqx = HqxScales.None
         rendering()
 
         Call Workbench.SuccessMessage("HEstain - MSI register matrix load success!")
