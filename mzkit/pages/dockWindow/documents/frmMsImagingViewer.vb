@@ -396,7 +396,7 @@ Public Class frmMsImagingViewer
 
         HEMap.Clear(PixelSelector1.MSICanvas.HEMap)
 
-        blender.HEMap = image
+        blender.SetHEMap(image)
         params.Hqx = HqxScales.None
         rendering()
 
@@ -2040,7 +2040,7 @@ Public Class frmMsImagingViewer
         Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
         Dim blender As Type = GetType(SummaryMSIBlender) ' (summaryLayer, params, loadFilters)
 
-        Me.blender.sethemap(GetHEMap())
+        Me.blender.SetHEMap(GetHEMap())
         Me.blender.OpenSession(blender, "")
         Me.sampleRegions.SetBounds(summaryLayer.Select(Function(a) New Point(a.x, a.y)))
 
@@ -2115,7 +2115,7 @@ Public Class frmMsImagingViewer
         }
 
         Me.params.enableFilter = False
-        Me.blender.sethemap(GetHEMap())
+        Me.blender.SetHEMap(GetHEMap())
         Me.blender.OpenSession(blender, configs.GetJson)
         Me.loadedPixels = R _
             .JoinIterates(G) _
@@ -2275,7 +2275,7 @@ Public Class frmMsImagingViewer
         Call Me.blender.channel.WriteBuffer(HeatMap.PixelData.CreateStream(layer))
 
         Me.params.enableFilter = True
-        Me.blender.sethemap(GetHEMap())
+        Me.blender.SetHEMap(GetHEMap())
         Me.blender.OpenSession(ss:=blender, args:=$"{dimensions.Width},{dimensions.Height}")
         Me.rendering =
             Sub()
@@ -2304,7 +2304,7 @@ Public Class frmMsImagingViewer
         Me.params.enableFilter = True
         Me.rgb_configs = Nothing
         Me.loadedPixels = pixels
-        Me.blender.sethemap(GetHEMap())
+        Me.blender.SetHEMap(GetHEMap())
         Me.blender.OpenSession(blender, $"{params.scan_x},{params.scan_y}")
         Me.PixelSelector1.MSICanvas.LoadSampleTags(pixels.Select(Function(i) i.sampleTag).Where(Function(str) Not str Is Nothing).Distinct)
 
