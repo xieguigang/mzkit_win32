@@ -88,6 +88,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math.Distributions.BinBox
 Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.My.FrameworkInternal
+Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports Microsoft.VisualBasic.ValueTypes
 Imports Mzkit_win32.BasicMDIForm
@@ -97,6 +98,7 @@ Imports SMRUCC.genomics.Analysis.HTS.GSEA
 Imports Task
 Imports Task.Container
 Imports WeifenLuo.WinFormsUI.Docking
+Imports IPEndPoint = Microsoft.VisualBasic.Net.IPEndPoint
 Imports stdNum = System.Math
 
 Module Globals

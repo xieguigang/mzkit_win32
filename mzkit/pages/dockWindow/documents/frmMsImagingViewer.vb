@@ -130,17 +130,17 @@ Public Class frmMsImagingViewer
     Dim rendering As Action
     Dim guid As String
 
-    ''' <summary>
-    ''' the ms-imaging rendering service
-    ''' </summary>
-    Dim blender As MSImagingBlender
-
     Friend TIC As PixelScanIntensity()
 
     Friend MSIservice As ServiceHub.MSIDataService
     Friend params As MsImageProperty
     Friend HEMap As HEMapTools
     Friend DrawHeMapRegion As Boolean = False
+
+    ''' <summary>
+    ''' the ms-imaging rendering service
+    ''' </summary>
+    Dim blender As BlenderClient
 
     Public ReadOnly Property MimeType As ContentType() Implements IFileReference.MimeType
         Get
@@ -156,7 +156,10 @@ Public Class frmMsImagingViewer
     End Property
 
     Public Sub StartMSIService()
-        Call ServiceHub.MSIDataService.StartMSIService(hostReference:=MSIservice)
+        ServiceHub.MSIDataService.StartMSIService(hostReference:=MSIservice)
+
+        blender = New BlenderClient(RenderService.MSIBlender)
+        MSIservice.blender = blender
     End Sub
 
     Private Sub frmMsImagingViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -271,7 +274,7 @@ Public Class frmMsImagingViewer
                 End With
 
                 If blender IsNot Nothing AndAlso rendering IsNot Nothing Then
-                    blender.filters = configs.GetFilter
+                    blender.SetFilters(configs.GetFilter)
                     rendering()
                 End If
             End Sub, config:=config)
@@ -330,9 +333,11 @@ Public Class frmMsImagingViewer
                 End If
 
                 Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
-                Dim blender As New SummaryMSIBlender(summaryLayer, params, loadFilters)
+                Dim blender As Type = GetType(SummaryMSIBlender) ' (summaryLayer, params, loadFilters)
 
-                Return blender.Rendering()
+                Me.blender.OpenSession(blender, "")
+
+                Return Me.blender.MSIRender(Nothing, params, params.GetMSIDimension)
             End Function, title:="Create ms-imaging slide previews", "Loading the basepeak summary plot of your slide as previews...")
 
         If image Is Nothing Then
@@ -929,10 +934,12 @@ Public Class frmMsImagingViewer
                     .knn = 0,
                     .knn_qcut = 1
                 }
-                Dim blender As New SingleIonMSIBlender(layer.MSILayer, Nothing, argv, loadFilters)
-                Dim HEMap As Image = blender.Rendering(Nothing, Nothing)
+                Dim blender As Type = GetType(SingleIonMSIBlender) '(layer.MSILayer, Nothing, argv, loadFilters)
+                Me.blender.channel.WriteBuffer(PixelData.GetBuffer(layer.MSILayer))
+                Me.blender.OpenSession(blender, $"{scan_x},{scan_y}")
+                Dim HEMap As Image = Me.blender.MSIRender(Nothing, argv, layer.DimensionSize)
 
-                If Me.blender IsNot Nothing AndAlso TypeOf Me.blender IsNot HeatMapBlender Then
+                If Me.blender IsNot Nothing AndAlso Me.blender.Session IsNot GetType(HeatMapBlender) Then
                     ' draw and overlaps on the MS-imaging rendering for CAD analysis
                     PixelSelector1.MSICanvas.tissue_layer = HEMap
                     PixelSelector1.MSICanvas.RedrawCanvas()
@@ -946,8 +953,8 @@ Public Class frmMsImagingViewer
         PixelSelector1.MSICanvas.HEMap = HEMapImg
 
         If blender IsNot Nothing Then
-            If TypeOf blender IsNot HeatMapBlender Then
-                blender.HEMap = PixelSelector1.MSICanvas.HEMap
+            If blender.Session IsNot GetType(HeatMapBlender) Then
+                blender.SetHEMap(PixelSelector1.MSICanvas.HEMap)
                 rendering()
             End If
 
@@ -2031,19 +2038,19 @@ Public Class frmMsImagingViewer
         End If
 
         Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
-        Dim blender As New SummaryMSIBlender(summaryLayer, params, loadFilters) With {.HEMap = GetHEMap()}
+        Dim blender As Type = GetType(SummaryMSIBlender) ' (summaryLayer, params, loadFilters)
 
-        ' Me.params.enableFilter = False
-        Me.blender = blender
+        me.blender.sethemap(GetHEMap())
+        Me.blender.OpenSession(blender, "")
         Me.sampleRegions.SetBounds(summaryLayer.Select(Function(a) New Point(a.x, a.y)))
 
         Return Sub()
                    Call MyApplication.RegisterPlot(
                        Sub(args)
-                           Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
+                           Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
                            Dim mapLevels As Integer = params.mapLevels
 
-                           PixelSelector1.SetMsImagingOutput(image, blender.dimensions, params.background, params.colors, {range.Min, range.Max}, mapLevels)
+                           PixelSelector1.SetMsImagingOutput(image, params.GetMSIDimension, params.background, params.colors, {range.Min, range.Max}, mapLevels)
                            PixelSelector1.SetColorMapVisible(visible:=True)
                        End Sub)
                End Sub
@@ -2095,15 +2102,21 @@ Public Class frmMsImagingViewer
             Call Invoke(Sub() params.SetIntensityMax(maxInto, New Point(base?.x, base?.y)))
             Call Invoke(Sub() rendering = createRenderTask(Rpixels, Gpixels, Bpixels))
             Call Invoke(rendering)
-            Call MyApplication.host.showStatusMessage("Rendering Complete!", My.Resources.preferences_system_notifications)
+            Call Workbench.SuccessMessage("Rendering Complete!")
         End If
     End Sub
 
     Private Function createRenderTask(R As PixelData(), G As PixelData(), B As PixelData()) As Action
-        Dim blender As New RGBIonMSIBlender(R, G, B, TIC, params, loadFilters) With {.HEMap = GetHEMap()}
+        Dim blender As Type = GetType(RGBIonMSIBlender) ' (R, G, B, TIC, params, loadFilters)
+        Dim mzdiff = params.GetTolerance.GetScript
+        Dim configs As New Dictionary(Of String, String) From {
+            {"rgb", rgb_configs.GetJSON},
+            {"mzdiff", mzdiff}
+        }
 
         Me.params.enableFilter = False
-        Me.blender = blender
+        me.blender.sethemap(GetHEMap())
+        Me.blender.OpenSession(blender, configs.GetJson)
         Me.loadedPixels = R _
             .JoinIterates(G) _
             .JoinIterates(B) _
@@ -2112,9 +2125,9 @@ Public Class frmMsImagingViewer
         Return Sub()
                    Call MyApplication.RegisterPlot(
                        Sub(args)
-                           Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
+                           Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
 
-                           PixelSelector1.SetMsImagingOutput(image, blender.dimensions, params.background, Nothing, Nothing, Nothing)
+                           PixelSelector1.SetMsImagingOutput(image, params.GetMSIDimension, params.background, Nothing, Nothing, Nothing)
                            PixelSelector1.SetColorMapVisible(visible:=True)
                        End Sub)
                End Sub
@@ -2126,28 +2139,32 @@ Public Class frmMsImagingViewer
         Call Workbench.StatusMessage($"Render layer of annotation: {titleName}")
         Call ProgressSpinner.DoLoading(
             Sub()
-                Call RenderPixelsLayer(pixels:=MSIservice.LoadGeneLayer(name))
+                Dim pixels = MSIservice.LoadGeneLayer(name)
+                Call RenderPixelsLayer(pixels)
             End Sub)
         Call PixelSelector1.ShowMessage($"Render layer of annotation: {titleName}")
+    End Sub
+
+    Private Sub renderEmpty()
+        rendering = New Action(Sub()
+                               End Sub)
+        PixelSelector1.SetMsImagingOutput(
+            New Bitmap(params.scan_x, params.scan_y),
+            New Size(params.scan_x, params.scan_y),
+            params.background,
+            params.colors,
+            {0, 1},
+            1
+        )
+
+        Call Workbench.Warning("no pixel data...")
     End Sub
 
     Private Sub RenderPixelsLayer(pixels As PixelData())
         Dim size As String = $"{params.scan_x},{params.scan_y}"
 
         If pixels.IsNullOrEmpty Then
-            Call Workbench.Warning("no pixel data...")
-            Call Invoke(Sub()
-                            rendering = New Action(Sub()
-                                                   End Sub)
-                            PixelSelector1.SetMsImagingOutput(
-                                New Bitmap(params.scan_x, params.scan_y),
-                                New Size(params.scan_x, params.scan_y),
-                                params.background,
-                                params.colors,
-                                {0, 1},
-                                1
-                            )
-                        End Sub)
+            Call Invoke(Sub() Call renderEmpty())
         Else
             Dim base = pixels.OrderByDescending(Function(p) p.intensity).FirstOrDefault
             Dim maxInto As Double = base?.intensity
@@ -2168,9 +2185,9 @@ Public Class frmMsImagingViewer
         Next
 
         If selectedMz.Count = 1 Then
-            MyApplication.host.showStatusMessage($"Run MS-Image rendering for selected ion m/z {selectedMz(Scan0)}...")
+            Workbench.StatusMessage($"Run MS-Image rendering for selected ion m/z {selectedMz(Scan0)}...")
         Else
-            MyApplication.host.showStatusMessage($"Run MS-Image rendering for {selectedMz.Count} selected ions...")
+            Workbench.StatusMessage($"Run MS-Image rendering for {selectedMz.Count} selected ions...")
         End If
 
         mzdiff = params.GetTolerance
@@ -2178,7 +2195,8 @@ Public Class frmMsImagingViewer
         Call SetTitle(selectedMz, titleName)
         Call ProgressSpinner.DoLoading(
             Sub()
-                Call RenderPixelsLayer(pixels:=MSIservice.LoadPixels(selectedMz, mzdiff))
+                Dim pixels = MSIservice.LoadPixels(selectedMz, mzdiff)
+                Call RenderPixelsLayer(pixels)
             End Sub)
 
         Call PixelSelector1.ShowMessage($"Render in Layer Pixels Composition Mode: {selectedMz.Select(Function(d) stdNum.Round(d, 4)).JoinBy(", ")}")
@@ -2252,15 +2270,18 @@ Public Class frmMsImagingViewer
             Me.tweaks = WindowModules.msImageParameters.PropertyGrid1
         End If
 
-        Dim blender As New HeatMapBlender(layer, dimensions, params, loadFilters) With {.HEMap = GetHEMap()}
+        Dim blender As Type = GetType(HeatMapBlender) '       (layer, dimensions, params, loadFilters)
+
+        Call Me.blender.channel.WriteBuffer(HeatMap.PixelData.CreateStream(layer))
 
         Me.params.enableFilter = True
-        Me.blender = blender
+        me.blender.sethemap(GetHEMap())
+        Me.blender.OpenSession(ss:=blender, args:=$"{dimensions.Width},{dimensions.Height}")
         Me.rendering =
             Sub()
                 Call MyApplication.RegisterPlot(
                     Sub(args)
-                        Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
+                        Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
 
                         PixelSelector1.SetMsImagingOutput(image, dimensions, params.background, params.colors, {0, 1}, params.mapLevels)
                         PixelSelector1.SetColorMapVisible(visible:=True)
@@ -2277,13 +2298,14 @@ Public Class frmMsImagingViewer
     ''' <param name="dimensions">the dimension size of the MSI raw data</param>
     ''' <returns></returns>
     Private Function createRenderTask(pixels As PixelData(), dimensions$) As Action
-        Dim blender As New SingleIonMSIBlender(pixels, TIC, params, loadFilters) With {.HEMap = GetHEMap()}
-        Dim range As DoubleRange = blender.range
+        Dim blender As Type = GetType(SingleIonMSIBlender) ' (pixels, TIC, params, loadFilters)
+        Dim range As New DoubleRange(pixels.Select(Function(p) p.intensity))
 
         Me.params.enableFilter = True
         Me.rgb_configs = Nothing
         Me.loadedPixels = pixels
-        Me.blender = blender
+        me.blender.sethemap(GetHEMap())
+        Me.blender.OpenSession(blender, $"{params.scan_x},{params.scan_y}")
         Me.PixelSelector1.MSICanvas.LoadSampleTags(pixels.Select(Function(i) i.sampleTag).Where(Function(str) Not str Is Nothing).Distinct)
 
         Return Sub()
@@ -2293,7 +2315,7 @@ Public Class frmMsImagingViewer
                                Sub()
                                    Call Me.Invoke(
                                    Sub()
-                                       Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
+                                       Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
 
                                        PixelSelector1.SetMsImagingOutput(image, dimensions.SizeParser, params.background, params.colors, {range.Min, range.Max}, params.mapLevels)
                                        PixelSelector1.SetColorMapVisible(visible:=True)
@@ -2325,13 +2347,13 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub tweaks_PropertyValueChanged(s As Object, e As PropertyValueChangedEventArgs) Handles tweaks.PropertyValueChanged
-        If e.ChangedItem.Label.TextEquals("background") AndAlso (blender Is Nothing OrElse Not TypeOf blender Is RGBIonMSIBlender) Then
+        If e.ChangedItem.Label.TextEquals("background") AndAlso (blender Is Nothing OrElse blender.Session IsNot GetType(RGBIonMSIBlender)) Then
             PixelSelector1.MSICanvas.BackColor = params.background
         ElseIf Not rendering Is Nothing Then
             Dim grid As PropertyGrid = DirectCast(s, PropertyGrid)
             Dim reason As String = MsImageProperty.Validation(grid.SelectedObject, e)
 
-            If e.ChangedItem.Label.TextEquals("TrIQ") AndAlso Not TypeOf blender Is RGBIonMSIBlender Then
+            If e.ChangedItem.Label.TextEquals("TrIQ") AndAlso blender.Session IsNot GetType(RGBIonMSIBlender) Then
                 Call PixelSelector1.UpdateColorScaler({0, blender.GetTrIQIntensity(params.TrIQ)}, params.colors, params.mapLevels)
             End If
 
@@ -2441,7 +2463,7 @@ Public Class frmMsImagingViewer
 
             If pixel Is Nothing OrElse pinedPixel.ms2.IsNullOrEmpty Then
                 pinedPixel = Nothing
-                MyApplication.host.showStatusMessage("There is no MS data in current pixel?", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Workbench.Warning("There is no MS data in current pixel?")
             Else
                 Call WindowModules.msImageParameters.LoadPinnedIons(pinedPixel.ms2)
             End If
@@ -2534,7 +2556,7 @@ Public Class frmMsImagingViewer
         If Not checkService() Then
             Return
         ElseIf targetMz.IsNullOrEmpty Then
-            Call MyApplication.host.warning("No ion was selected to export MS-Imaging plot!")
+            Call Workbench.Warning("No ion was selected to export MS-Imaging plot!")
             Return
         End If
 
@@ -2576,7 +2598,7 @@ Public Class frmMsImagingViewer
         If blender Is Nothing Then
             Return
         Else
-            blender.sample_tag = tag
+            blender.SetSampleTag(tag)
             Call rendering()
         End If
     End Sub

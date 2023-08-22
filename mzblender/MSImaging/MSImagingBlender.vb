@@ -62,10 +62,9 @@ Imports Task
 
 Public MustInherit Class MSImagingBlender : Inherits Blender
 
-    Protected ReadOnly params As MsImageProperty
-
     Public Property sample_tag As String
     Public Property HEMap As Image
+
     Public ReadOnly Property showAllSample As Boolean
         Get
             Return sample_tag.StringEmpty OrElse sample_tag = "*"
@@ -74,9 +73,10 @@ Public MustInherit Class MSImagingBlender : Inherits Blender
 
     Public Property filters As RasterPipeline
 
+    Protected params As MsImageProperty
+
     <DebuggerStepThrough>
-    Sub New(host As MsImageProperty, filters As RasterPipeline)
-        Me.params = host
+    Sub New(filters As RasterPipeline)
         Me.filters = filters
     End Sub
 
@@ -104,8 +104,10 @@ Public MustInherit Class MSImagingBlender : Inherits Blender
         End If
     End Function
 
-    Public Overloads Function Rendering(args As PlotProperty, target As Size, sample As String) As Image
-        sample_tag = sample
+    Public Overloads Function Rendering(args As PlotProperty, target As Size, params As MsImageProperty, sample As String) As Image
+        Me.sample_tag = sample
+        Me.params = params
+
         Return Rendering(args, target)
     End Function
 End Class

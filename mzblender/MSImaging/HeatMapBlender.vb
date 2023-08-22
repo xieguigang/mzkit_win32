@@ -65,8 +65,8 @@ Public Class HeatMapBlender : Inherits MSImagingBlender
     Dim layer As PixelData()
     Dim dimension As Size
 
-    Public Sub New(layer As PixelData(), dimension As Size, host As MsImageProperty, filter As RasterPipeline)
-        MyBase.New(host, filter)
+    Public Sub New(layer As PixelData(), dimension As Size, filter As RasterPipeline)
+        MyBase.New(filter)
 
         Me.layer = layer
         Me.dimension = dimension

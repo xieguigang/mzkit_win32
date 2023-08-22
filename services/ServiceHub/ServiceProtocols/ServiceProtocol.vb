@@ -161,12 +161,14 @@ Public Module MSIProtocols
         End If
     End Function
 
-    Public Function LoadPixels(id As String, handleServiceRequest As Func(Of RequestStream, RequestStream)) As PixelData()
+    Public Function LoadPixels(id As String, ByRef getBuf As Byte(), handleServiceRequest As Func(Of RequestStream, RequestStream)) As PixelData()
         Dim data As RequestStream = handleServiceRequest(New RequestStream(
             protocolCategory:=MSI.Protocol,
             protocol:=ServiceProtocol.LoadGeneLayer,
             buffer:=Encoding.ASCII.GetBytes(id)
         ))
+
+        getBuf = {}
 
         If data Is Nothing Then
             Return {}
@@ -174,6 +176,7 @@ Public Module MSIProtocols
             Dim pixels As PixelData() = PixelData.Parse(data.ChunkBuffer)
             'Dim points = pixels.Select(Function(p) New ClusterEntity With {.uid = $"{p.x},{p.y}", .entityVector = {p.x, p.y}}).ToArray
             'Dim densityList = Density.GetDensity(points, k:=stdNum.Min(points.Length / 10, 150), query:=New KDQuery(points)).ToArray
+            getBuf = data.ChunkBuffer
             Return pixels
         End If
     End Function
@@ -201,6 +204,7 @@ Public Module MSIProtocols
     ''' <returns></returns>
     Public Function LoadPixels(mz As IEnumerable(Of Double),
                                mzErr As Tolerance,
+                               ByRef getBuf As Byte(),
                                handleServiceRequest As Func(Of RequestStream, RequestStream)) As PixelData()
 
         Dim config As New LayerLoader With {
@@ -217,12 +221,15 @@ Public Module MSIProtocols
             buffer:=configBytes
         ))
 
+        getBuf = {}
+
         If data Is Nothing Then
             Return {}
         Else
             Dim pixels As PixelData() = PixelData.Parse(data.ChunkBuffer)
             'Dim points = pixels.Select(Function(p) New ClusterEntity With {.uid = $"{p.x},{p.y}", .entityVector = {p.x, p.y}}).ToArray
             'Dim densityList = Density.GetDensity(points, k:=stdNum.Min(points.Length / 10, 150), query:=New KDQuery(points)).ToArray
+            getBuf = data.ChunkBuffer
             Return pixels
         End If
     End Function
