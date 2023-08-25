@@ -94,12 +94,14 @@ Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
+Imports Microsoft.VisualBasic.Data.Wave
 Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.hqx
+Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.Html.CSS
@@ -112,6 +114,7 @@ Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Mzkit_win32.MSImagingViewerV2
 Imports ServiceHub
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.DataFiles
 Imports STImaging
 Imports Task
 Imports TaskStream
@@ -699,31 +702,32 @@ Public Class frmMsImagingViewer
         Call Me.Invoke(Sub() showPixel(xy(0), xy(1)))
     End Sub
 
+    Private Sub ConnectToCloud(config As InputCloudEndPoint)
+        Me.MSIservice = MSIDataService.ConnectCloud(Me.MSIservice, config.IP, config.Port)
+
+        Call WindowModules.viewer.Show(DockPanel)
+        Call WindowModules.msImageParameters.Show(DockPanel)
+
+        Dim info As MsImageProperty
+
+        Try
+            info = MSIservice.GetMSIInformationMetadata
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "MZKit Cloud", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End Try
+
+        Call LoadRender(info, "MZKit_Cloud")
+
+        WindowModules.viewer.DockState = DockState.Document
+        MyApplication.host.Text = $"BioNovoGene Mzkit [{WindowModules.viewer.Text} {info.sourceFile}]"
+        WindowModules.msImageParameters.DockState = DockState.DockLeft
+
+        Call RenderSummary(IntensitySummary.BasePeak)
+    End Sub
+
     Public Sub ConnectToCloud()
-        Call InputDialog.Input(Of InputCloudEndPoint)(
-            Sub(config)
-                Me.MSIservice = MSIDataService.ConnectCloud(Me.MSIservice, config.IP, config.Port)
-
-                Call WindowModules.viewer.Show(DockPanel)
-                Call WindowModules.msImageParameters.Show(DockPanel)
-
-                Dim info As MsImageProperty
-
-                Try
-                    info = MSIservice.GetMSIInformationMetadata
-                Catch ex As Exception
-                    MessageBox.Show(ex.Message, "MZKit Cloud", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Return
-                End Try
-
-                Call LoadRender(info, "MZKit_Cloud")
-
-                WindowModules.viewer.DockState = DockState.Document
-                MyApplication.host.Text = $"BioNovoGene Mzkit [{WindowModules.viewer.Text} {info.sourceFile}]"
-                WindowModules.msImageParameters.DockState = DockState.DockLeft
-
-                Call RenderSummary(IntensitySummary.BasePeak)
-            End Sub)
+        Call InputDialog.Input(Of InputCloudEndPoint)(AddressOf ConnectToCloud)
     End Sub
 
     Public Function ExtractMultipleSampleRegions() As RegionLoader
@@ -733,6 +737,36 @@ Public Class frmMsImagingViewer
             Return MSIservice.ExtractMultipleSampleRegions
         End If
     End Function
+
+    Private Sub MergeWidthLayout(config As InputMSISlideLayout, files As String(), savefile As String)
+        If TaskProgress.LoadData(
+            streamLoad:=Function(echo)
+                            'Return loadfiles _
+                            '    .JoinMSISamples(println:=echo) _
+                            '    .Write(savefile.OpenFile, progress:=echo)
+                            Call MSConvertTask.MergeMultipleSlides(
+                                msData:=files,
+                                layoutData:=config.layoutData,
+                                savefile:=savefile,
+                                fileName_tag:=config.useFileNameAsSourceTag,
+                                echo:=AddressOf echo.SetInfo
+                            )
+
+                            Return True
+                        End Function,
+            title:="Merge Multiple Slides",
+            info:="Load MS-Imaging slide files...") Then
+
+            If MessageBox.Show("MSI Raw Convert Job Done!" & vbCrLf & "Open MSI raw data file in MSI Viewer?",
+                               "MSI Viewer",
+                               MessageBoxButtons.YesNo,
+                               MessageBoxIcon.Information) = DialogResult.Yes Then
+
+                Call RibbonEvents.showMsImaging()
+                Call WindowModules.viewer.loadimzML(savefile)
+            End If
+        End If
+    End Sub
 
     ''' <summary>
     ''' merge multiple sample files
@@ -755,42 +789,12 @@ Public Class frmMsImagingViewer
 
                 Using savefile As New SaveFileDialog With {.Filter = file.Filter}
                     If savefile.ShowDialog = DialogResult.OK Then
-
                         Dim input As New InputMSISlideLayout With {
                             .layoutData = files.Select(AddressOf BaseName).JoinBy(","),
                             .useFileNameAsSourceTag = True
                         }
 
-                        Call InputDialog.Input(Of InputMSISlideLayout)(
-                            Sub(config)
-                                If TaskProgress.LoadData(
-                                    streamLoad:=Function(echo)
-                                                    'Return loadfiles _
-                                                    '    .JoinMSISamples(println:=echo) _
-                                                    '    .Write(savefile.OpenFile, progress:=echo)
-                                                    Call MSConvertTask.MergeMultipleSlides(
-                                                        msData:=files,
-                                                        layoutData:=config.layoutData,
-                                                        savefile:=savefile.FileName,
-                                                        fileName_tag:=config.useFileNameAsSourceTag,
-                                                        echo:=AddressOf echo.SetInfo
-                                                    )
-
-                                                    Return True
-                                                End Function,
-                                    title:="Merge Multiple Slides",
-                                    info:="Load MS-Imaging slide files...") Then
-
-                                    If MessageBox.Show("MSI Raw Convert Job Done!" & vbCrLf & "Open MSI raw data file in MSI Viewer?",
-                                                       "MSI Viewer",
-                                                       MessageBoxButtons.YesNo,
-                                                       MessageBoxIcon.Information) = DialogResult.Yes Then
-
-                                        Call RibbonEvents.showMsImaging()
-                                        Call WindowModules.viewer.loadimzML(savefile.FileName)
-                                    End If
-                                End If
-                            End Sub,, config:=input)
+                        Call InputDialog.Input(Sub(config) Call MergeWidthLayout(config, files, savefile.FileName),, config:=input)
                     End If
                 End Using
             End If
@@ -1805,6 +1809,19 @@ Public Class frmMsImagingViewer
         End If
     End Sub
 
+    Private Function ExtractRegionSample(msg As Action(Of String), regions As Polygon2D()) As Integer
+        Dim info = MSIservice.ExtractRegionSample(regions, New Size(params.scan_x, params.scan_y))
+
+        If info Is Nothing Then
+            Return -1
+        End If
+
+        Call Me.Invoke(Sub() LoadRender(info, FilePath))
+        Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
+
+        Return 0
+    End Function
+
     ''' <summary>
     ''' 手动选择样本区域生成新的原始数据
     ''' </summary>
@@ -1815,7 +1832,7 @@ Public Class frmMsImagingViewer
             Return
         End If
 
-        Dim regions = PixelSelector1.MSICanvas _
+        Dim regions As Polygon2D() = PixelSelector1.MSICanvas _
             .GetPolygons(popAll:=False) _
             .ToArray
 
@@ -1831,18 +1848,11 @@ Public Class frmMsImagingViewer
         End If
 
         Call TaskProgress.LoadData(
-                Function(msg As Action(Of String))
-                    Dim info = MSIservice.ExtractRegionSample(regions, New Size(params.scan_x, params.scan_y))
-
-                    If info Is Nothing Then
-                        Return -1
-                    End If
-
-                    Call Me.Invoke(Sub() LoadRender(info, FilePath))
-                    Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
-
-                    Return 0
-                End Function, canbeCancel:=True)
+            streamLoad:=Function(msg As Action(Of String))
+                            Return ExtractRegionSample(msg, regions)
+                        End Function,
+            canbeCancel:=True
+        )
     End Sub
 
     ''' <summary>
@@ -1882,7 +1892,7 @@ Public Class frmMsImagingViewer
             .ToArray
 
         If mz.Length = 0 Then
-            Call MyApplication.host.showStatusMessage("No ions selected for rendering!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning("No ions selected for rendering!")
         Else
             Call renderByMzList(mz, Nothing)
         End If
@@ -1908,7 +1918,7 @@ Public Class frmMsImagingViewer
         Dim info As PixelProperty = Nothing
 
         If pixel Is Nothing Then
-            Call MyApplication.host.showStatusMessage($"Pixels [{x}, {y}] not contains any data.", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning($"Pixels [{x}, {y}] not contains any data.")
             Call WindowModules.MSIPixelProperty.SetPixel(New InMemoryPixel(x, y, {}), info)
             Call PixelSelector1.ShowMessage($"Pixels [{x}, {y}] not contains any data.")
 
