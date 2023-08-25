@@ -314,31 +314,32 @@ Public Class frmMsImagingViewer
         End If
     End Sub
 
+    Private Function getThumbnail(p As Action(Of String)) As Image
+        Dim panic As Boolean = False
+        Dim summaryLayer As PixelScanIntensity() = MSIservice.LoadSummaryLayer(IntensitySummary.BasePeak, panic)
+
+        If panic Then
+            Workbench.StatusMessage("MS-Imaging data backend panic!", My.Resources.mintupdate_error)
+            Return Nothing
+        Else
+            TIC = summaryLayer
+        End If
+
+        Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
+        Dim blender As Type = GetType(SummaryMSIBlender) ' (summaryLayer, params, loadFilters)
+
+        Me.blender.OpenSession(blender, "")
+
+        Return Me.blender.MSIRender(Nothing, params, params.GetMSIDimension)
+    End Function
+
     Private Sub rotateSlide()
         If Not checkService() Then
             Return
         End If
 
         ' fetch the BPC views
-        Dim image As Image = TaskProgress.LoadData(
-            Function(p As Action(Of String))
-                Dim panic As Boolean = False
-                Dim summaryLayer As PixelScanIntensity() = MSIservice.LoadSummaryLayer(IntensitySummary.BasePeak, panic)
-
-                If panic Then
-                    Workbench.StatusMessage("MS-Imaging data backend panic!", My.Resources.mintupdate_error)
-                    Return Nothing
-                Else
-                    TIC = summaryLayer
-                End If
-
-                Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
-                Dim blender As Type = GetType(SummaryMSIBlender) ' (summaryLayer, params, loadFilters)
-
-                Me.blender.OpenSession(blender, "")
-
-                Return Me.blender.MSIRender(Nothing, params, params.GetMSIDimension)
-            End Function, title:="Create ms-imaging slide previews", "Loading the basepeak summary plot of your slide as previews...")
+        Dim image As Image = TaskProgress.LoadData(AddressOf getThumbnail, title:="Create ms-imaging slide previews", "Loading the basepeak summary plot of your slide as previews...")
 
         If image Is Nothing Then
             Return
