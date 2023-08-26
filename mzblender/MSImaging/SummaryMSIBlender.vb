@@ -66,6 +66,9 @@ Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors.Scaler
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Task
 
+''' <summary>
+''' rendering for total_ions/basepeak/average
+''' </summary>
 Public Class SummaryMSIBlender : Inherits MSImagingBlender
 
     ReadOnly summaryLayer As PixelScanIntensity()

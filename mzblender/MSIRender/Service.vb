@@ -28,6 +28,7 @@ Public Class Service : Implements IDisposable
     Dim blender As MSImagingBlender
     Dim filters As RasterPipeline
     Dim TIC As PixelScanIntensity()
+    Dim TICImage As Image
 
     Public Shared ReadOnly protocolHandle As Long = ProtocolAttribute.GetProtocolCategory(GetType(Service)).EntryPoint
 
@@ -75,29 +76,33 @@ Public Class Service : Implements IDisposable
     Public Function OpenSession(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
         Dim data = request.LoadObject(Of Dictionary(Of String, String))
         Dim ss As String = data!ss
+        Dim params As MsImageProperty = MsImageProperty.ParseJSON(data.TryGetValue("params"))
+        Dim args As PlotProperty = PlotProperty.ParseJSON(data.TryGetValue("args"))
 
         RunSlavePipeline.SendMessage($"open a new session: {ss}")
         RunSlavePipeline.SendMessage(data.TryGetValue("args"))
+        RunSlavePipeline.SendMessage(data.TryGetValue("params"))
+        RunSlavePipeline.SendMessage(data.TryGetValue("dims"))
 
         ' load pixels data
         Select Case ss
             Case NameOf(HeatMapBlender)
                 Dim pixels = HeatMap.PixelData.ParseStream(channel.LoadStream)
-                Dim dims As Size = data!args.SizeParser
+                Dim dims As Size = data!dims.SizeParser
 
                 blender = New HeatMapBlender(pixels, dims, filters) With {.filters = filters}
             Case NameOf(RGBIonMSIBlender)
                 Dim pixels = PixelData.Parse(channel.LoadStream)
-                data = data!args.LoadJSON(Of Dictionary(Of String, String))
+                data = data!configs.LoadJSON(Of Dictionary(Of String, String))
                 Dim rgb As RGBConfigs = data!args.LoadJSON(Of RGBConfigs)
                 Dim mzdiff As Tolerance = Tolerance.ParseScript(data!mzdiff)
                 Dim Rpixels = pixels.Where(Function(p) mzdiff(p.mz, rgb.R)).ToArray
                 Dim Gpixels = pixels.Where(Function(p) mzdiff(p.mz, rgb.G)).ToArray
                 Dim Bpixels = pixels.Where(Function(p) mzdiff(p.mz, rgb.B)).ToArray
 
-                blender = New RGBIonMSIBlender(Rpixels, Gpixels, Bpixels, TIC, filters) With {.filters = filters}
+                blender = New RGBIonMSIBlender(Rpixels, Gpixels, Bpixels, TICImage, filters) With {.filters = filters}
             Case NameOf(SingleIonMSIBlender)
-                Dim dims As Size = data!args.SizeParser
+                Dim dims As Size = data!dims.SizeParser
                 Dim pixels As PixelData() = PixelData.Parse(channel.LoadStream)
                 Dim layer As New SingleIonLayer With {
                     .DimensionSize = dims,
@@ -105,10 +110,13 @@ Public Class Service : Implements IDisposable
                     .IonMz = ""
                 }
 
-                blender = New SingleIonMSIBlender(pixels, filters, Nothing) With {.filters = filters}
+                blender = New SingleIonMSIBlender(pixels, filters, params, TICImage) With {.filters = filters}
             Case NameOf(SummaryMSIBlender)
                 Dim pixels As PixelScanIntensity() = PixelScanIntensity.Parse(channel.LoadStream)
+                Dim dims As Size = data!dims.SizeParser
 
+                TIC = pixels
+                TICImage = SummaryMSIBlender.Rendering(TIC, dims, "gray", 250, "transparent")
                 blender = New SummaryMSIBlender(pixels, filters) With {.filters = filters}
             Case Else
                 Throw New InvalidDataException("invalid session open parameter!")

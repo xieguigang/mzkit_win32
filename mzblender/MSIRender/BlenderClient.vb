@@ -46,7 +46,7 @@ Public Class BlenderClient : Implements IDisposable
         Dim payload As New Dictionary(Of String, String)
         payload.Add("sample", sample_tag)
         payload.Add("canvas", canvas.GetJson)
-        payload.Add("params", params.GetJson)
+        payload.Add("params", params.GetJSON)
         payload.Add("args", args.GetJSON)
         Dim req As New RequestStream(Service.protocolHandle, Protocol.MSIRender, payload.GetJson)
         Dim resp = handleRequest(req)
@@ -87,10 +87,15 @@ Public Class BlenderClient : Implements IDisposable
         Return handleRequest(New RequestStream(Service.protocolHandle, Protocol.SetIntensityRange, {range.Min, range.Max}.GetJson))
     End Function
 
-    Public Function OpenSession(ss As Type, args As String)
+    Public Function OpenSession(ss As Type, dims As Size, args As PlotProperty, params As MsImageProperty, configs As String)
+        Dim args_str As String = If(args Is Nothing, "null", args.GetJSON)
+        Dim params_str As String = If(params Is Nothing, "null", params.GetJSON)
         Dim payload As New Dictionary(Of String, String) From {
             {"ss", ss.Name},
-            {"args", args}
+            {"args", args_str},
+            {"dims", $"{dims.Width},{dims.Height}"},
+            {"params", params_str},
+            {"configs", configs}
         }
         Dim result = handleRequest(New RequestStream(Service.protocolHandle, Protocol.OpenSession, payload.GetJson))
         Return result

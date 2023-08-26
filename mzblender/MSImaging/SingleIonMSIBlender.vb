@@ -85,12 +85,13 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
         End Get
     End Property
 
-    Sub New(layer As PixelData(), filters As RasterPipeline, Optional TIC As Image = Nothing)
+    Sub New(layer As PixelData(), filters As RasterPipeline, params As MsImageProperty, Optional TIC As Image = Nothing)
         Call MyBase.New(filters)
 
+        Me.params = params
         Me.layer = New SingleIonLayer With {
             .MSILayer = layer,
-            .dimensionSize = New Size(
+            .DimensionSize = New Size(
                 width:=params.scan_x,
                 height:=params.scan_y
             )
