@@ -31,9 +31,11 @@ Public Class BlenderClient : Implements IDisposable
 
     Private disposedValue As Boolean
 
-    Sub New(host As IPEndPoint)
+    Sub New(host As IPEndPoint, Optional debug As Boolean = False)
+        Dim map_name As String = If(debug, "debug-blender", Service.GetMappedChannel(App.PID))
+
         Me.host = host
-        Me.channel = New MemoryPipe(MapObject.FromPointer(Service.GetMappedChannel(App.PID), 128 * 1024 * 1024))
+        Me.channel = New MemoryPipe(MapObject.FromPointer(map_name, 128 * 1024 * 1024))
     End Sub
 
     Private Function handleRequest(req As RequestStream) As RequestStream

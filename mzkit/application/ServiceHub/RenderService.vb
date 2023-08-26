@@ -10,6 +10,8 @@ Public NotInheritable Class RenderService
     Friend Shared BlenderHost As Process
     Friend Shared MSIBlender As IPEndPoint
 
+    Public Shared ReadOnly Property debug As Boolean = False
+
     Private Sub New()
     End Sub
 
@@ -20,6 +22,7 @@ Public NotInheritable Class RenderService
         If cli.Name.TextEquals("--debug") Then
             MSIBlender = New IPEndPoint("127.0.0.1", cli("--blender") Or TCPExtensions.GetFirstAvailablePort(8000))
             bindChannel = "debug-blender"
+            _debug = True
         Else
             MSIBlender = New IPEndPoint("127.0.0.1", TCPExtensions.GetFirstAvailablePort(8000))
         End If

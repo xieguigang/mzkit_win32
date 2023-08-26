@@ -39,7 +39,7 @@ Public Class Service : Implements IDisposable
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Function GetMappedChannel(master As String) As String
-        Return $"mzblender_{master}"
+        Return If(master = "debug-blender", master, $"mzblender_{master}")
     End Function
 
     Public Function Run() As Integer
