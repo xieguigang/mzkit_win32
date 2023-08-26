@@ -6,6 +6,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender.Scaler
+Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.IO
 Imports Microsoft.VisualBasic.Net.Protocols.Reflection
@@ -50,6 +51,7 @@ Public Class Service : Implements IDisposable
         Dim shaders As String() = request.LoadObject(Of String())
         Dim filters As RasterPipeline = RasterPipeline.Parse(shaders)
         blender.filters = filters
+        RunSlavePipeline.SendMessage($"set filter: {filters.ToScript}")
         Me.filters = filters
         Return New DataPipe("OK")
     End Function
@@ -57,6 +59,7 @@ Public Class Service : Implements IDisposable
     <Protocol(Protocol.SetHEmap)>
     Public Function SetHEmap(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
         blender.HEMap = channel.LoadImage
+        RunSlavePipeline.SendMessage($"set HE-stain map image: w:{blender.HEMap.Width},h:{blender.HEMap.Height}")
         Return New DataPipe("OK")
     End Function
 
@@ -64,6 +67,9 @@ Public Class Service : Implements IDisposable
     Public Function OpenSession(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
         Dim data = request.LoadObject(Of Dictionary(Of String, String))
         Dim ss As String = data!ss
+
+        RunSlavePipeline.SendMessage($"open a new session: {ss}")
+        RunSlavePipeline.SendMessage(data.TryGetValue("args"))
 
         ' load pixels data
         Select Case ss
@@ -100,6 +106,8 @@ Public Class Service : Implements IDisposable
                 Throw New InvalidDataException("invalid session open parameter!")
         End Select
 
+        RunSlavePipeline.SendMessage("OK!")
+
         Return New DataPipe("OK")
     End Function
 
@@ -107,6 +115,7 @@ Public Class Service : Implements IDisposable
     Public Function SetIntensityRange(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
         Dim range As Double() = request.LoadObject(Of Double())
         blender.SetIntensityRange(New DoubleRange(range))
+        RunSlavePipeline.SendMessage($"set intensity range: {range.GetJson}")
         Return New DataPipe("OK")
     End Function
 
@@ -114,6 +123,7 @@ Public Class Service : Implements IDisposable
     Public Function GetTrIQIntensity(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
         Dim cutoff As Double = NetworkByteOrderBitConvertor.ToDouble(request.ChunkBuffer)
         Dim q As Double = blender.GetTrIQIntensity(cutoff)
+        RunSlavePipeline.SendMessage($"get TrIQ intensity cutoff: {q}@{cutoff}!")
         Return New DataPipe(NetworkByteOrderBitConvertor.GetBytes(q))
     End Function
 
@@ -125,13 +135,23 @@ Public Class Service : Implements IDisposable
         Dim params As MsImageProperty = MsImageProperty.ParseJSON(json!params)
         Dim canvas As Size = json!canvas.LoadJSON(Of Size)
         Dim sample As String = json!sample
+
+        RunSlavePipeline.SendMessage("Do ms-imaging rendering:")
+        RunSlavePipeline.SendMessage(json!args)
+        RunSlavePipeline.SendMessage(json!params)
+        RunSlavePipeline.SendMessage(json!canvas)
+        RunSlavePipeline.SendMessage(json!sample)
+
         Dim msi As Image = blender.Rendering(args, canvas, params, sample)
 
         Using ms As New MemoryStream
             Call msi.Save(ms, ImageFormat.Png)
             Call ms.Flush()
+            Call RunSlavePipeline.SendMessage($"MSI: w{msi.Width};h{msi.Height};{StringFormats.Lanudry(ms.Length)}")
             Call channel.WriteBuffer(ms.ToArray)
         End Using
+
+        RunSlavePipeline.SendMessage("OK!")
 
         Return New DataPipe("OK!")
     End Function

@@ -24,6 +24,14 @@ Public NotInheritable Class RenderService
             MSIBlender = New IPEndPoint("127.0.0.1", TCPExtensions.GetFirstAvailablePort(8000))
         End If
 
+        If cli.Name.TextEquals("--debug") AndAlso bindChannel = "debug-blender" Then
+            ' just debug, do nothing
+        Else
+            Call Start(bindChannel)
+        End If
+    End Sub
+
+    Private Shared Sub Start(bindChannel As String)
         BlenderHost = New Process With {
             .StartInfo = New ProcessStartInfo With {
                 .FileName = $"{App.HOME}/plugins\blender\BlenderHost.exe",
