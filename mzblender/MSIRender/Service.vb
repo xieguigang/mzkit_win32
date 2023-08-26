@@ -50,15 +50,23 @@ Public Class Service : Implements IDisposable
     Public Function SetFilters(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
         Dim shaders As String() = request.LoadObject(Of String())
         Dim filters As RasterPipeline = RasterPipeline.Parse(shaders)
-        blender.filters = filters
+
+        If blender IsNot Nothing Then
+            blender.filters = filters
+        End If
+
         RunSlavePipeline.SendMessage($"set filter: {filters.ToScript}")
         Me.filters = filters
+
         Return New DataPipe("OK")
     End Function
 
     <Protocol(Protocol.SetHEmap)>
     Public Function SetHEmap(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
-        blender.HEMap = channel.LoadImage
+        If blender IsNot Nothing Then
+            blender.HEMap = channel.LoadImage
+        End If
+
         RunSlavePipeline.SendMessage($"set HE-stain map image: w:{blender.HEMap.Width},h:{blender.HEMap.Height}")
         Return New DataPipe("OK")
     End Function
@@ -114,7 +122,9 @@ Public Class Service : Implements IDisposable
     <Protocol(Protocol.SetIntensityRange)>
     Public Function SetIntensityRange(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
         Dim range As Double() = request.LoadObject(Of Double())
-        blender.SetIntensityRange(New DoubleRange(range))
+        If blender IsNot Nothing Then
+            blender.SetIntensityRange(New DoubleRange(range))
+        End If
         RunSlavePipeline.SendMessage($"set intensity range: {range.GetJson}")
         Return New DataPipe("OK")
     End Function
@@ -122,7 +132,12 @@ Public Class Service : Implements IDisposable
     <Protocol(Protocol.GetTrIQIntensity)>
     Public Function GetTrIQIntensity(request As RequestStream, remoteDevcie As TcpEndPoint) As BufferPipe
         Dim cutoff As Double = NetworkByteOrderBitConvertor.ToDouble(request.ChunkBuffer)
-        Dim q As Double = blender.GetTrIQIntensity(cutoff)
+        Dim q As Double
+        If blender IsNot Nothing Then
+            q = blender.GetTrIQIntensity(cutoff)
+        Else
+            q = -1
+        End If
         RunSlavePipeline.SendMessage($"get TrIQ intensity cutoff: {q}@{cutoff}!")
         Return New DataPipe(NetworkByteOrderBitConvertor.GetBytes(q))
     End Function
