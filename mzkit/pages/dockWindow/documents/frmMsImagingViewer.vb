@@ -156,6 +156,20 @@ Public Class frmMsImagingViewer
         End Get
     End Property
 
+    Public Sub OpenSession(ss As Type, args As String)
+        If MSIservice Is Nothing Then
+            Call StartMSIService()
+        End If
+
+        If blender Is Nothing Then
+            blender = New BlenderClient(RenderService.MSIBlender, debug:=RenderService.debug)
+            MSIservice.blender = blender
+            MSIservice.blender.SetFilters(loadFilters)
+        End If
+
+        blender.OpenSession(ss, params.GetMSIDimension, Nothing, params, args)
+    End Sub
+
     Public Sub StartMSIService()
         ServiceHub.MSIDataService.StartMSIService(hostReference:=MSIservice)
 
@@ -1749,7 +1763,7 @@ Public Class frmMsImagingViewer
 
         Call TaskProgress.LoadData(
             Function(msg As ITaskProgress)
-                Call ServiceHub.MSIDataService.StartMSIService(MSIservice)
+                Call StartMSIService()
                 Call Me.Invoke(Sub() LoadRender(MSIservice.LoadMSI(mzpack, msg.Echo), filePath))
 
                 Return 0

@@ -378,7 +378,7 @@ UseCheckedList:
             viewer = WindowModules.viewer
         End If
 
-        viewer.StartMSIService()
+        ' viewer.StartMSIService()
 
         size = cdf.GetMsiDimension
         pixels = cdf.LoadPixelsData.ToArray
@@ -387,6 +387,7 @@ UseCheckedList:
         If cdf.dataVariableExists("rgb") Then
             ' load rgb configs
             rgb = RGBConfigs.ParseJSON(DirectCast(cdf.getDataVariable("rgb"), chars))
+            ' viewer.OpenSession(GetType(RGBIonMSIBlender), rgb.GetJSON)
         End If
 
         'Call ProgressSpinner.DoLoading(
