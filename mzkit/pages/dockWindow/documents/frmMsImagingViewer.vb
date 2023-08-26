@@ -2180,7 +2180,7 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub RenderPixelsLayer(pixels As PixelData())
-        Dim size As String = $"{params.scan_x},{params.scan_y}"
+        Dim size As Size = params.GetMSIDimension
 
         If pixels.IsNullOrEmpty Then
             Call Invoke(Sub() Call renderEmpty())
@@ -2270,7 +2270,7 @@ Public Class frmMsImagingViewer
         Call sampleRegions.SetBounds(pixels.Select(Function(a) New Point(a.x, a.y)))
 
         If rgb Is Nothing Then
-            rendering = createRenderTask(pixels, $"{params.scan_x},{params.scan_y}")
+            rendering = createRenderTask(pixels, params.GetMSIDimension)
             rendering()
         Else
             rgb_configs = rgb
@@ -2295,7 +2295,7 @@ Public Class frmMsImagingViewer
 
         Me.params.enableFilter = True
         Me.blender.SetHEMap(GetHEMap())
-        Me.blender.OpenSession(ss:=blender, args:=$"{dimensions.Width},{dimensions.Height}")
+        Me.blender.OpenSession(ss:=blender, dims:=dimensions, Nothing, params, Nothing)
         Me.rendering =
             Sub()
                 Call MyApplication.RegisterPlot(
@@ -2316,7 +2316,7 @@ Public Class frmMsImagingViewer
     ''' <param name="pixels"></param>
     ''' <param name="dimensions">the dimension size of the MSI raw data</param>
     ''' <returns></returns>
-    Private Function createRenderTask(pixels As PixelData(), dimensions$) As Action
+    Private Function createRenderTask(pixels As PixelData(), dimensions As Size) As Action
         Dim blender As Type = GetType(SingleIonMSIBlender) ' (pixels, TIC, params, loadFilters)
         Dim range As New DoubleRange(pixels.Select(Function(p) p.intensity))
 
@@ -2324,25 +2324,25 @@ Public Class frmMsImagingViewer
         Me.rgb_configs = Nothing
         Me.loadedPixels = pixels
         Me.blender.SetHEMap(GetHEMap())
-        Me.blender.OpenSession(blender, $"{params.scan_x},{params.scan_y}")
+        Me.blender.OpenSession(blender, dimensions, Nothing, params, Nothing)
         Me.PixelSelector1.MSICanvas.LoadSampleTags(pixels.Select(Function(i) i.sampleTag).Where(Function(str) Not str Is Nothing).Distinct)
 
         Return Sub()
-                   Call MyApplication.RegisterPlot(
-                       Sub(args)
-                           Call ProgressSpinner.DoLoading(
-                               Sub()
-                                   Call Me.Invoke(
-                                   Sub()
-                                       Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
-
-                                       PixelSelector1.SetMsImagingOutput(image, dimensions.SizeParser, params.background, params.colors, {range.Min, range.Max}, params.mapLevels)
-                                       PixelSelector1.SetColorMapVisible(visible:=True)
-                                   End Sub)
-                               End Sub)
-                       End Sub)
+                   Call MyApplication.RegisterPlot(Sub(args) registerTask(args, dimensions, range))
                End Sub
     End Function
+
+    Private Sub registerTask(args As PlotProperty, dimensions As Size, range As DoubleRange)
+        Dim render As Action =
+            Sub()
+                Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
+
+                PixelSelector1.SetMsImagingOutput(image, dimensions, params.background, params.colors, {range.Min, range.Max}, params.mapLevels)
+                PixelSelector1.SetColorMapVisible(visible:=True)
+            End Sub
+
+        Call ProgressSpinner.DoLoading(loading:=Sub() Call Me.Invoke(render))
+    End Sub
 
     Protected Overrides Sub OpenContainingFolder()
         Call Process.Start(FilePath.ParentPath)
