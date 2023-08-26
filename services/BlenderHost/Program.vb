@@ -92,7 +92,7 @@ Public Module Program
                 Else
                     Try
                         Dim pixels = MSI.LoadPixels({mz}, Tolerance.DeltaMass(0.3)).ToArray
-                        Dim blender As New SingleIonMSIBlender(pixels, filters:=Nothing)
+                        Dim blender As New SingleIonMSIBlender(pixels, filters:=Nothing, params)
                         Dim image As Image = blender.Rendering(New Task.PlotProperty, canvasSize)
 
                         Call VBDebugger.EchoLine(id)
