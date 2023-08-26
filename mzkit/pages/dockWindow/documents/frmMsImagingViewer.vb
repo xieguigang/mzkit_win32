@@ -335,7 +335,7 @@ Public Class frmMsImagingViewer
         Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
         Dim blender As Type = GetType(SummaryMSIBlender) ' (summaryLayer, params, loadFilters)
 
-        Me.blender.OpenSession(blender, "")
+        Me.blender.OpenSession(blender, params.GetMSIDimension, Nothing, params, "")
 
         Return Me.blender.MSIRender(Nothing, params, params.GetMSIDimension)
     End Function
@@ -346,7 +346,11 @@ Public Class frmMsImagingViewer
         End If
 
         ' fetch the BPC views
-        Dim image As Image = TaskProgress.LoadData(AddressOf getThumbnail, title:="Create ms-imaging slide previews", "Loading the basepeak summary plot of your slide as previews...")
+        Dim image As Image = TaskProgress.LoadData(
+            streamLoad:=AddressOf getThumbnail,
+            title:="Create ms-imaging slide previews",
+            info:="Loading the basepeak summary plot of your slide as previews..."
+        )
 
         If image Is Nothing Then
             Return

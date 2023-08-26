@@ -670,9 +670,6 @@ UseCheckedList:
                 Dim dir As String = folder.SelectedPath
                 Dim params = WindowModules.viewer.params
                 Dim size As String = $"{params.scan_x},{params.scan_y}"
-                Dim args As New PlotProperty
-                Dim canvas As New Size(params.scan_x * 3, params.scan_y * 3)
-                Dim mzdiff = params.GetTolerance
                 Dim MSIservice = WindowModules.viewer.MSIservice
                 Dim TIC = TaskProgress.LoadData(
                     Function(echo As Action(Of String))
@@ -688,47 +685,65 @@ UseCheckedList:
                 params.Hqx = HqxScales.Hqx_4x
 
                 Call TaskProgress.LoadData(
-                    Function(echo As Action(Of String))
-                        For i As Integer = 0 To list.Nodes.Count - 1
-                            Dim n = list.Nodes(i)
-
-                            If n.Checked Then
-                                Dim val As String = any.ToString(If(n.Tag, CObj(n.Text)))
-                                Dim fileName As String = n.Text.NormalizePathString(False, ".")
-                                Dim path As String = $"{dir}/{If(fileName.Length > 128, fileName.Substring(0, 127) & "...", fileName)}.png"
-                                Dim pixels As PixelData()
-
-                                Call echo($"processing '{n.Text}' ({val})")
-
-                                If val.IsSimpleNumber Then
-                                    pixels = MSIservice.LoadPixels(New Double() {Conversion.Val(val)}, mzdiff)
-                                Else
-                                    pixels = MSIservice.LoadGeneLayer(val)
-                                End If
-
-                                If pixels.IsNullOrEmpty Then
-                                    Call Workbench.Warning($"No pixels data for {n.Text}...")
-                                Else
-                                    Dim maxInto = pixels.Select(Function(a) a.intensity).Max
-                                    params.SetIntensityMax(maxInto, New Point())
-                                    Dim blender As New SingleIonMSIBlender(pixels, frmMsImagingViewer.loadFilters, TIC)
-                                    Dim range As DoubleRange = blender.range
-                                    Dim image As Image = blender.Rendering(args, canvas)
-
-                                    Call image.SaveAs(path)
-                                    Call Workbench.SuccessMessage($"Imaging render for {n.Text} success and save at location: {path}!")
-                                End If
-                            End If
-                        Next
-
-                        Return True
-                    End Function,
+                    streamLoad:=Function(proc As ITaskProgress)
+                                    Return ExportLayers(proc, list, TIC, dir)
+                                End Function,
                     title:="Plot each selected image layers...",
                     info:="Export image rendering...",
                     host:=WindowModules.viewer)
             End If
         End Using
     End Sub
+
+    Private Function ExportLayers(proc As ITaskProgress, list As TreeNode, TIC As Image, dir As String) As Boolean
+        Dim params = WindowModules.viewer.params
+        Dim mzdiff = params.GetTolerance
+        Dim echo = proc.Echo
+        Dim MSIservice = WindowModules.viewer.MSIservice
+        Dim args As New PlotProperty
+        Dim canvas As New Size(params.scan_x * 3, params.scan_y * 3)
+
+        Call proc.SetProgressMode()
+        Call proc.SetProgress(0)
+
+        For i As Integer = 0 To list.Nodes.Count - 1
+            Dim n = list.Nodes(i)
+
+            Call proc.SetProgress(i / list.Nodes.Count * 100)
+
+            If Not n.Checked Then
+                Continue For
+            End If
+
+            Dim val As String = any.ToString(If(n.Tag, CObj(n.Text)))
+            Dim fileName As String = n.Text.NormalizePathString(False, ".")
+            Dim path As String = $"{dir}/{If(fileName.Length > 128, fileName.Substring(0, 127) & "...", fileName)}.png"
+            Dim pixels As PixelData()
+
+            Call echo($"processing '{n.Text}' ({val})")
+
+            If val.IsSimpleNumber Then
+                pixels = MSIservice.LoadPixels(New Double() {Conversion.Val(val)}, mzdiff)
+            Else
+                pixels = MSIservice.LoadGeneLayer(val)
+            End If
+
+            If pixels.IsNullOrEmpty Then
+                Call Workbench.Warning($"No pixels data for {n.Text}...")
+            Else
+                Dim maxInto = pixels.Select(Function(a) a.intensity).Max
+                params.SetIntensityMax(maxInto, New Point())
+                Dim blender As New SingleIonMSIBlender(pixels, frmMsImagingViewer.loadFilters, params, TIC)
+                Dim range As DoubleRange = blender.range
+                Dim image As Image = blender.Rendering(args, canvas)
+
+                Call image.SaveAs(path)
+                Call Workbench.SuccessMessage($"Imaging render for {n.Text} success and save at location: {path}!")
+            End If
+        Next
+
+        Return True
+    End Function
 
     Private Sub SelectAllToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SelectAllToolStripMenuItem.Click
         Dim list = Win7StyleTreeView1.Nodes(0)
