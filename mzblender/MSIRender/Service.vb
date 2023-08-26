@@ -94,7 +94,7 @@ Public Class Service : Implements IDisposable
             Case NameOf(RGBIonMSIBlender)
                 Dim pixels = PixelData.Parse(channel.LoadStream)
                 data = data!configs.LoadJSON(Of Dictionary(Of String, String))
-                Dim rgb As RGBConfigs = data!rgb.LoadJSON(Of RGBConfigs)
+                Dim rgb As RGBConfigs = RGBConfigs.ParseJSON(data!rgb)
                 Dim mzdiff As Tolerance = Tolerance.ParseScript(data!mzdiff)
                 Dim Rpixels = pixels.Where(Function(p) mzdiff(p.mz, rgb.R)).ToArray
                 Dim Gpixels = pixels.Where(Function(p) mzdiff(p.mz, rgb.G)).ToArray
