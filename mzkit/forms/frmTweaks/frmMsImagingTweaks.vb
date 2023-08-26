@@ -390,15 +390,8 @@ UseCheckedList:
             ' viewer.OpenSession(GetType(RGBIonMSIBlender), rgb.GetJSON)
         End If
 
-        'Call ProgressSpinner.DoLoading(
-        '    Sub()
-        '        Call Me.Invoke(Sub()
-        '                           viewer.LoadRender(firstFile, firstFile)
-        '                           viewer.renderByPixelsData(pixels, size)
-        '                       End Sub)
-        '    End Sub)
-
         Call viewer.LoadRender(firstFile, firstFile)
+        Call viewer.MSIservice.blender.channel.WriteBuffer(pixels)
         Call viewer.renderByPixelsData(pixels, size, rgb)
 
         For Each mz As Double In pixels _

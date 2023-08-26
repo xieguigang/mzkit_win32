@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports System.Runtime.CompilerServices
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports Parallel
 
 Public Class MemoryPipe
@@ -32,6 +33,10 @@ Public Class MemoryPipe
     Public Function LoadImage() As Image
         Return Image.FromStream(New MemoryStream(LoadStream))
     End Function
+
+    Public Sub WriteBuffer(pixels As PixelData())
+        Call WriteBuffer(PixelData.GetBuffer(pixels))
+    End Sub
 
     Public Sub WriteBuffer(data As MemoryStream)
         Dim buf As Stream = channel.OpenFile
