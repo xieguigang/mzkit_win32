@@ -949,7 +949,7 @@ Public Class frmMsImagingViewer
                 }
                 Dim blender As Type = GetType(SingleIonMSIBlender) '(layer.MSILayer, Nothing, argv, loadFilters)
                 Me.blender.channel.WriteBuffer(PixelData.GetBuffer(layer.MSILayer))
-                Me.blender.OpenSession(blender, $"{scan_x},{scan_y}")
+                Me.blender.OpenSession(blender, New Size(scan_x, scan_y), Nothing, params, Nothing)
                 Dim HEMap As Image = Me.blender.MSIRender(Nothing, argv, layer.DimensionSize)
 
                 If Me.blender IsNot Nothing AndAlso Me.blender.Session IsNot GetType(HeatMapBlender) Then
@@ -2060,20 +2060,21 @@ Public Class frmMsImagingViewer
         Dim blender As Type = GetType(SummaryMSIBlender) ' (summaryLayer, params, loadFilters)
 
         Me.blender.SetHEMap(GetHEMap())
-        Me.blender.OpenSession(blender, "")
+        Me.blender.OpenSession(blender, params.GetMSIDimension, Nothing, params, "")
         Me.sampleRegions.SetBounds(summaryLayer.Select(Function(a) New Point(a.x, a.y)))
 
         Return Sub()
-                   Call MyApplication.RegisterPlot(
-                       Sub(args)
-                           Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
-                           Dim mapLevels As Integer = params.mapLevels
-
-                           PixelSelector1.SetMsImagingOutput(image, params.GetMSIDimension, params.background, params.colors, {range.Min, range.Max}, mapLevels)
-                           PixelSelector1.SetColorMapVisible(visible:=True)
-                       End Sub)
+                   Call MyApplication.RegisterPlot(Sub(args) PlotSummary(args, range))
                End Sub
     End Function
+
+    Private Sub PlotSummary(args As PlotProperty, range As DoubleRange)
+        Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
+        Dim mapLevels As Integer = params.mapLevels
+
+        PixelSelector1.SetMsImagingOutput(image, params.GetMSIDimension, params.background, params.colors, {range.Min, range.Max}, mapLevels)
+        PixelSelector1.SetColorMapVisible(visible:=True)
+    End Sub
 
     Public Sub SetBlank()
         Call ExtractSampleRegion()
@@ -2135,7 +2136,7 @@ Public Class frmMsImagingViewer
 
         Me.params.enableFilter = False
         Me.blender.SetHEMap(GetHEMap())
-        Me.blender.OpenSession(blender, configs.GetJson)
+        Me.blender.OpenSession(blender, params.GetMSIDimension, Nothing, params, configs.GetJson)
         Me.loadedPixels = R _
             .JoinIterates(G) _
             .JoinIterates(B) _
