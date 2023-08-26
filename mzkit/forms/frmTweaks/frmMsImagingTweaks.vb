@@ -327,7 +327,48 @@ UseCheckedList:
         End If
     End Sub
 
+    Private Sub TryRenderTissueMapPlot(cdf As netCDFReader)
+        If cdf.IsTissueMorphologyCDF Then
+            Dim regions = cdf.ReadTissueMorphology.ToArray
+
+            If regions.IsNullOrEmpty Then
+                MessageBox.Show("No content data!", "Tissue map viewer", buttons:=MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Return
+            End If
+
+            Dim dims As Size = cdf.GetDimension
+            ' open tool and then save to sample regions?
+            Dim getFormula As New SampleRegionMergeTool
+            Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
+
+            Call getFormula.LoadRegions(regions, dims)
+
+            If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
+                ' update to new regions
+                regions = getFormula.GetMergedRegions
+            End If
+
+            Dim Rplot As Image = LayerRender.Draw(regions, dims, alphaLevel:=1, dotSize:=3)
+
+            Call MyApplication.host.mzkitTool.ShowPlotImage(Rplot, ImageLayout.Zoom)
+            Call MyApplication.host.ShowMzkitToolkit()
+        Else
+            ' invalid format
+            Call Workbench.Warning("Invalid cdf file format! [mz, intensity, x, y] data vector should exists inside this cdf file!")
+        End If
+    End Sub
+
     Public Sub loadRenderFromCDF(firstFile As String)
+        Using cdf As New netCDFReader(firstFile)
+            If Not {"mz", "intensity", "x", "y"}.All(AddressOf cdf.dataVariableExists) Then
+                TryRenderTissueMapPlot(cdf)
+            Else
+                TryRenderMSI(cdf, firstFile)
+            End If
+        End Using
+    End Sub
+
+    Private Sub TryRenderMSI(cdf As netCDFReader, firstFile As String)
         Dim pixels As PixelData()
         Dim size As Size
         Dim tolerance As Tolerance
@@ -337,49 +378,16 @@ UseCheckedList:
             viewer = WindowModules.viewer
         End If
 
-        Using cdf As New netCDFReader(firstFile)
-            If Not {"mz", "intensity", "x", "y"}.All(AddressOf cdf.dataVariableExists) Then
-                If cdf.IsTissueMorphologyCDF Then
-                    Dim regions = cdf.ReadTissueMorphology.ToArray
+        viewer.StartMSIService()
 
-                    If regions.IsNullOrEmpty Then
-                        MessageBox.Show("No content data!", "Tissue map viewer", buttons:=MessageBoxButtons.OK, MessageBoxIcon.Information)
-                        Return
-                    End If
+        size = cdf.GetMsiDimension
+        pixels = cdf.LoadPixelsData.ToArray
+        tolerance = cdf.GetMzTolerance
 
-                    Dim dims As Size = cdf.GetDimension
-                    ' open tool and then save to sample regions?
-                    Dim getFormula As New SampleRegionMergeTool
-                    Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
-
-                    Call getFormula.LoadRegions(regions, dims)
-
-                    If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
-                        ' update to new regions
-                        regions = getFormula.GetMergedRegions
-                    End If
-
-                    Dim Rplot As Image = LayerRender.Draw(regions, dims, alphaLevel:=1, dotSize:=3)
-
-                    Call MyApplication.host.mzkitTool.ShowPlotImage(Rplot, ImageLayout.Zoom)
-                    Call MyApplication.host.ShowMzkitToolkit()
-                Else
-                    ' invalid format
-                    Call Workbench.Warning("Invalid cdf file format! [mz, intensity, x, y] data vector should exists inside this cdf file!")
-                End If
-
-                Return
-            End If
-
-            size = cdf.GetMsiDimension
-            pixels = cdf.LoadPixelsData.ToArray
-            tolerance = cdf.GetMzTolerance
-
-            If cdf.dataVariableExists("rgb") Then
-                ' load rgb configs
-                rgb = RGBConfigs.ParseJSON(DirectCast(cdf.getDataVariable("rgb"), chars))
-            End If
-        End Using
+        If cdf.dataVariableExists("rgb") Then
+            ' load rgb configs
+            rgb = RGBConfigs.ParseJSON(DirectCast(cdf.getDataVariable("rgb"), chars))
+        End If
 
         'Call ProgressSpinner.DoLoading(
         '    Sub()

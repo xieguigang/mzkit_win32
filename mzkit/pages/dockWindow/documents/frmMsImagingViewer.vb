@@ -94,7 +94,6 @@ Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
-Imports Microsoft.VisualBasic.Data.Wave
 Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.Imaging
@@ -114,7 +113,6 @@ Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Mzkit_win32.MSImagingViewerV2
 Imports ServiceHub
-Imports SMRUCC.genomics.Assembly.MetaCyc.File.DataFiles
 Imports STImaging
 Imports Task
 Imports TaskStream
@@ -2111,7 +2109,7 @@ Public Class frmMsImagingViewer
 
     Private Sub createRGB(pixels As PixelData(), r#, g#, b#)
         If pixels.IsNullOrEmpty Then
-            Call MyApplication.host.showStatusMessage($"No ion hits!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning($"No ion hits!")
         Else
             Dim base = pixels.OrderByDescending(Function(p) p.intensity).FirstOrDefault
             Dim maxInto As Double = base?.intensity
