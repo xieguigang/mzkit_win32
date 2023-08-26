@@ -63,6 +63,10 @@ Public Class BlenderClient : Implements IDisposable
     End Function
 
     Public Function SetHEMap(img As Image)
+        If img Is Nothing Then
+            Return Nothing
+        End If
+
         Using ms As New MemoryStream
             Call img.Save(ms, ImageFormat.Png)
             Call ms.Flush()
