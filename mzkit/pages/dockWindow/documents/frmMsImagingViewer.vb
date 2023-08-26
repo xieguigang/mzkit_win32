@@ -163,6 +163,7 @@ Public Class frmMsImagingViewer
 
         blender = New BlenderClient(RenderService.MSIBlender, debug:=RenderService.debug)
         MSIservice.blender = blender
+        MSIservice.blender.SetFilters(loadFilters)
     End Sub
 
     Private Sub frmMsImagingViewer_Load(sender As Object, e As EventArgs) Handles Me.Load

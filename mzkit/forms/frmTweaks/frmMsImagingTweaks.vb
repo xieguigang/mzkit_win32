@@ -216,7 +216,7 @@ UseCheckedList:
     End Sub
 
     ''' <summary>
-    ''' load m/z layer
+    ''' Do ion Rendering
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
