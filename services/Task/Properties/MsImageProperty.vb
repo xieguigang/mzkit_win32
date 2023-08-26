@@ -378,7 +378,11 @@ Public Class MsImageProperty
 
     Public Shared Function ParseJSON(json As String) As MsImageProperty
         Dim js = json.LoadJSON(Of Dictionary(Of String, String))
-        Dim css As New MsImageProperty(js)
-        Return css
+
+        If js Is Nothing Then
+            Return Nothing
+        Else
+            Return New MsImageProperty(js)
+        End If
     End Function
 End Class

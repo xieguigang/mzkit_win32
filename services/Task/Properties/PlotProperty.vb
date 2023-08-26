@@ -167,6 +167,10 @@ Public Class PlotProperty
         Dim css As New PlotProperty
         Dim val As Object
 
+        If json Is Nothing Then
+            Return Nothing
+        End If
+
         For Each p As PropertyInfo In css_data
             str = json(p.Name)
             val = Nothing
