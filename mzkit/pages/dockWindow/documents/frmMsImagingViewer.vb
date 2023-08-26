@@ -161,7 +161,10 @@ Public Class frmMsImagingViewer
     Public Sub StartMSIService()
         ServiceHub.MSIDataService.StartMSIService(hostReference:=MSIservice)
 
-        blender = New BlenderClient(RenderService.MSIBlender, debug:=RenderService.debug)
+        If blender Is Nothing Then
+            blender = New BlenderClient(RenderService.MSIBlender, debug:=RenderService.debug)
+        End If
+
         MSIservice.blender = blender
         MSIservice.blender.SetFilters(loadFilters)
     End Sub
