@@ -8,6 +8,10 @@ Public Class MemoryPipe
 
     Sub New(channel As MapObject)
         Me.channel = channel
+
+        If Not MapObject.Exists(channel) Then
+            Call MapObject.Allocate(channel)
+        End If
     End Sub
 
     Public Function LoadStream() As Byte()
