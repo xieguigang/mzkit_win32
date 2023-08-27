@@ -96,13 +96,13 @@ Public Class SummaryMSIBlender : Inherits MSImagingBlender
         Dim layerData As PixelScanIntensity() = summaryLayer
         Dim filter = Me.filters
 
-        If Not filter Is Nothing Then
-            If Not params.instrument.TextEquals("Bruker") Then
-                filter = filter.Then(New KNNScaler(params.knn, params.knn_qcut)).Then(New SoftenScaler())
-            Else
-                filter = filter.Then(New SoftenScaler())
-            End If
-        End If
+        'If Not filter Is Nothing Then
+        '    If Not params.instrument.TextEquals("Bruker") Then
+        '        filter = filter.Then(New KNNScaler(params.knn, params.knn_qcut)).Then(New SoftenScaler())
+        '    Else
+        '        filter = filter.Then(New SoftenScaler())
+        '    End If
+        'End If
 
         Dim pixelDatas As BioNovoGene.Analytical.MassSpectrometry.MsImaging.PixelData()
 

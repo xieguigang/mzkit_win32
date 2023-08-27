@@ -104,10 +104,7 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
     Public Overrides Function Rendering(args As PlotProperty, target As Size) As Image
         Dim pixels As PixelData() = TakePixels(layer.MSILayer)
         ' denoise_scale() > TrIQ_scale(0.8) > knn_scale() > soften_scale()
-        Dim filter As RasterPipeline = New DenoiseScaler() _
-            .Then(New TrIQScaler(params.TrIQ)) _
-            .Then(New KNNScaler(params.knn, params.knn_qcut)) _
-            .Then(New SoftenScaler())
+        Dim filter As RasterPipeline = Me.filters
 
         If Not plotRange Is Nothing Then
             pixels = pixels _

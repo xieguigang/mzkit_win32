@@ -97,7 +97,7 @@ Public Class RGBIonMSIBlender : Inherits MSImagingBlender
         Dim g = New SingleIonLayer With {.DimensionSize = dimensions, .MSILayer = TakePixels(Me.G)}
         Dim b = New SingleIonLayer With {.DimensionSize = dimensions, .MSILayer = TakePixels(Me.B)}
 
-        If params.enableFilter Then
+        If params.enableFilter AndAlso filters IsNot Nothing Then
             r = filters(r)
             g = filters(g)
             b = filters(b)
