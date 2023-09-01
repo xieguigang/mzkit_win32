@@ -451,6 +451,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="application\actions\MetabonomicsAnalysisTool.vb" />
     <Compile Include="application\actions\KEGGStatsAction.vb" />
     <Compile Include="application\actions\PeakFindingAction.vb" />
     <Compile Include="application\actions\PeakAnnotationAction.vb" />
@@ -690,6 +691,12 @@
     <Compile Include="MSdata\Module2.vb" />
     <Compile Include="pages\ConnectToBioDeep.vb" />
     <Compile Include="pages\dockWindow\DemoItem.vb" />
+    <Compile Include="pages\dockWindow\documents\frmMetabonomicsAnalysis.Designer.vb">
+      <DependentUpon>frmMetabonomicsAnalysis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pages\dockWindow\documents\frmMetabonomicsAnalysis.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\documents\frmHEStainAnalysisTool.Designer.vb">
       <DependentUpon>frmHEStainAnalysisTool.vb</DependentUpon>
     </Compile>
@@ -1228,6 +1235,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\MSImaging\ShowTissueData.resx">
       <DependentUpon>ShowTissueData.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\documents\frmMetabonomicsAnalysis.resx">
+      <DependentUpon>frmMetabonomicsAnalysis.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frm3DMALDIViewer.resx">
       <DependentUpon>frm3DMALDIViewer.vb</DependentUpon>
