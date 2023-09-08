@@ -712,8 +712,11 @@
       <Command.TooltipDescription>
         <String Id="392">View the demo data that contains from the MZKit installation to learn how to use MZKit</String>
       </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-user-folder-96.png</Image>
+      </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="393">Res/folder-pictures.png</Image>
+        <Image MinDPI="192">Res/icons8-user-folder-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdTabExactMassSearch" Id="1072">
@@ -2004,22 +2007,22 @@
     </Command>
     <Command Name="cmdOpenIonsLibrary" Id="159">
       <Command.LabelTitle>
-        <String Id="758">Open Ions Annotation</String>
+        <String Id="758">Ions Library</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
         <String Id="759">Open ions annotation library</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
-        <String Id="760">Open Ions Annotation</String>
+        <String Id="760">Ions Library</String>
       </Command.TooltipTitle>
       <Command.TooltipDescription>
         <String Id="761">Open ions annotation library</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="762" MinDPI="192">Res/application-vnd.oasis.opendocument.database.png</Image>
+        <Image MinDPI="192">Res/icons8-database-administrator-96.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="763" MinDPI="144">Res/application-vnd.oasis.opendocument.database.png</Image>
+        <Image MinDPI="192">Res/icons8-database-administrator-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonOpenVirtualSlideFile" Id="234" LabelTitle="Open Pathological Slide" LabelDescription="Open pathological slide file and view tissue scan result" TooltipTitle="Open pathological slide file and view tissue scan result" TooltipDescription="Open pathological slide file and view tissue scan result">
@@ -2704,12 +2707,15 @@
         <Image Id="952" MinDPI="192">Res/excel-icon.bmp</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonLayout2" Id="1044">
+    <Command Name="cmdButtonLayout2" Id="1044" LabelDescription="Export and save the spectrum data to file" TooltipTitle="Export and save the spectrum data to file" TooltipDescription="Export and save the spectrum data to file">
       <Command.LabelTitle>
-        <String Id="953">Save Matrix</String>
+        <String Id="953">Export Matrix</String>
       </Command.LabelTitle>
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-save-tabs-list-96.png</Image>
+      </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="954">Res/excel-icon.png</Image>
+        <Image MinDPI="192">Res/icons8-save-tabs-list-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdGroupRscript" Id="1132">
@@ -3428,10 +3434,10 @@
         <String Id="1146">View 3D tissue scanning model which is extract from the MALDI 3d scan experiment</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="1147" MinDPI="192">Resources/3d-object.png</Image>
+        <Image MinDPI="192">Res/3d scanning.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="1148" MinDPI="192">Resources/3d-object.png</Image>
+        <Image MinDPI="192">Res/3d scanning.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonLicense" Id="1101">
@@ -3488,10 +3494,10 @@
         <String Id="1163">View the input SMILES its molecule graph data</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="1164" MinDPI="192">Res/preferences-system-sharing.png</Image>
+        <Image MinDPI="192">Res/icons8-benzene-ring-96.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="1165" MinDPI="192">Res/preferences-system-sharing.png</Image>
+        <Image MinDPI="192">Res/icons8-benzene-ring-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdGroupLayout" Id="1037">
