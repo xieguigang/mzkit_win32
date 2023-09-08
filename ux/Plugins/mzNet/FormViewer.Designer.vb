@@ -28,12 +28,15 @@ Partial Class FormViewer : Inherits DocumentWindow
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewSpectralToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportSpectrumToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.MassDifferenceAnalysisToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.AutoPlotSpectrumToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.MassDifferenceAnalysisToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ViewClusterInBrowserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewBioDeepMetabolitesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,32 +59,43 @@ Partial Class FormViewer : Inherits DocumentWindow
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewSpectralToolStripMenuItem, Me.ExportSpectrumToolStripMenuItem, Me.ToolStripMenuItem2, Me.MassDifferenceAnalysisToolStripMenuItem, Me.ToolStripMenuItem1, Me.AutoPlotSpectrumToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewSpectralToolStripMenuItem, Me.ExportSpectrumToolStripMenuItem, Me.ToolStripMenuItem2, Me.MassDifferenceAnalysisToolStripMenuItem, Me.ToolStripMenuItem1, Me.AutoPlotSpectrumToolStripMenuItem, Me.ToolStripMenuItem3, Me.ViewClusterInBrowserToolStripMenuItem, Me.ViewBioDeepMetabolitesToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(205, 126)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(212, 176)
         '
         'ViewSpectralToolStripMenuItem
         '
         Me.ViewSpectralToolStripMenuItem.Name = "ViewSpectralToolStripMenuItem"
-        Me.ViewSpectralToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.ViewSpectralToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
         Me.ViewSpectralToolStripMenuItem.Text = "View Spectral"
         '
         'ExportSpectrumToolStripMenuItem
         '
         Me.ExportSpectrumToolStripMenuItem.Name = "ExportSpectrumToolStripMenuItem"
-        Me.ExportSpectrumToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.ExportSpectrumToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
         Me.ExportSpectrumToolStripMenuItem.Text = "Export Spectrum"
+        '
+        'ToolStripMenuItem2
+        '
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(208, 6)
+        '
+        'MassDifferenceAnalysisToolStripMenuItem
+        '
+        Me.MassDifferenceAnalysisToolStripMenuItem.Name = "MassDifferenceAnalysisToolStripMenuItem"
+        Me.MassDifferenceAnalysisToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
+        Me.MassDifferenceAnalysisToolStripMenuItem.Text = "Mass Difference Analysis"
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(201, 6)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(208, 6)
         '
         'AutoPlotSpectrumToolStripMenuItem
         '
         Me.AutoPlotSpectrumToolStripMenuItem.CheckOnClick = True
         Me.AutoPlotSpectrumToolStripMenuItem.Name = "AutoPlotSpectrumToolStripMenuItem"
-        Me.AutoPlotSpectrumToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.AutoPlotSpectrumToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
         Me.AutoPlotSpectrumToolStripMenuItem.Text = "Auto Plot Spectrum"
         '
         'AdvancedDataGridViewSearchToolBar1
@@ -97,16 +111,22 @@ Partial Class FormViewer : Inherits DocumentWindow
         Me.AdvancedDataGridViewSearchToolBar1.TabIndex = 0
         Me.AdvancedDataGridViewSearchToolBar1.Text = "AdvancedDataGridViewSearchToolBar1"
         '
-        'MassDifferenceAnalysisToolStripMenuItem
+        'ToolStripMenuItem3
         '
-        Me.MassDifferenceAnalysisToolStripMenuItem.Name = "MassDifferenceAnalysisToolStripMenuItem"
-        Me.MassDifferenceAnalysisToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
-        Me.MassDifferenceAnalysisToolStripMenuItem.Text = "Mass Difference Analysis"
+        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(208, 6)
         '
-        'ToolStripMenuItem2
+        'ViewClusterInBrowserToolStripMenuItem
         '
-        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(201, 6)
+        Me.ViewClusterInBrowserToolStripMenuItem.Name = "ViewClusterInBrowserToolStripMenuItem"
+        Me.ViewClusterInBrowserToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
+        Me.ViewClusterInBrowserToolStripMenuItem.Text = "View Cluster In Browser"
+        '
+        'ViewBioDeepMetabolitesToolStripMenuItem
+        '
+        Me.ViewBioDeepMetabolitesToolStripMenuItem.Name = "ViewBioDeepMetabolitesToolStripMenuItem"
+        Me.ViewBioDeepMetabolitesToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
+        Me.ViewBioDeepMetabolitesToolStripMenuItem.Text = "View BioDeep Metabolites"
         '
         'FormViewer
         '
@@ -135,4 +155,7 @@ Partial Class FormViewer : Inherits DocumentWindow
     Friend WithEvents ExportSpectrumToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
     Friend WithEvents MassDifferenceAnalysisToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem3 As ToolStripSeparator
+    Friend WithEvents ViewClusterInBrowserToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ViewBioDeepMetabolitesToolStripMenuItem As ToolStripMenuItem
 End Class

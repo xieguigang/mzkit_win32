@@ -246,7 +246,7 @@ Public Class FormScatterViewer
         ' display the spectrum list in the feature explorer
         Call Me.Invoke(Sub() Call SpectralViewerModule.showCluster(spectrum, ion.id))
         ' and also show the spectrum list in the cluster table
-        Call host.LoadDataSet(ion.metaList)
+        Call host.LoadDataSet(ion.cluster!id, ion.metaList)
     End Sub
 
     Private Iterator Function PopulateSpectrum(echo As ITaskProgress, ion As MetaIon, peakId As String) As IEnumerable(Of PeakMs2)

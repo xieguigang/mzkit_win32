@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.Text.RegularExpressions
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking
@@ -11,6 +12,7 @@ Public Class FormViewer
     Dim memoryData As New DataSet
     Dim search As GridSearchHandler
     Dim cloud As frmCloudExplorer
+    Dim current_ptr As String
 
     Private Sub FormViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.TabText = "Spectrum Pool Viewer"
@@ -78,10 +80,10 @@ Public Class FormViewer
     End Sub
 
     Private Sub loadTable2(node As String)
-        Call LoadDataSet(cloud.FetchMetadata(node))
+        Call LoadDataSet(ptr:=node, cloud.FetchMetadata(node))
     End Sub
 
-    Public Sub LoadDataSet(metaSet As IEnumerable(Of PoolData.Metadata))
+    Public Sub LoadDataSet(ptr As String, metaSet As IEnumerable(Of PoolData.Metadata))
         Call LoadTable(
             apply:=Sub(tbl)
                        tbl.Columns.Add("guid", GetType(String)) '0
@@ -102,6 +104,8 @@ Public Class FormViewer
                                  meta.formula, meta.adducts)
                        Next
                    End Sub)
+
+        current_ptr = ptr
     End Sub
 
     Private Sub ExportSpectrumToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportSpectrumToolStripMenuItem.Click
@@ -234,5 +238,42 @@ Public Class FormViewer
     Private Sub FormViewer_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         e.Cancel = True
         DockState = DockState.Hidden
+    End Sub
+
+    Private Sub ViewClusterInBrowserToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewClusterInBrowserToolStripMenuItem.Click
+        Try
+            Dim url As String = $"http://novocell.mzkit.org/spectrum/cluster/?id={current_ptr}&model={cloud.tree.model_id}"
+            Call Process.Start(url)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub ViewBioDeepMetabolitesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewBioDeepMetabolitesToolStripMenuItem.Click
+        Dim biodeep_id As New List(Of String)
+        Dim index As Integer = 8
+        Dim rows = AdvancedDataGridView1.Rows
+
+        Static pattern As New Regex("BioDeep_\d+")
+
+        For i As Integer = 0 To rows.Count - 1
+            Dim row = rows.Item(i)
+
+            If row.Cells.Count = 0 Then
+                Exit For
+            Else
+                Try
+                    Call biodeep_id.Add(CStr(row.Cells.Item(index).Value))
+                Catch ex As Exception
+
+                End Try
+            End If
+        Next
+
+        biodeep_id = biodeep_id.Where(Function(si) si.IsPattern(pattern)).Distinct.AsList
+
+        Dim url As String = $"https://novocell.mzkit.org/kb/metabolites/?list={biodeep_id.JoinBy(",")}"
+
+        Call Process.Start(url)
     End Sub
 End Class
