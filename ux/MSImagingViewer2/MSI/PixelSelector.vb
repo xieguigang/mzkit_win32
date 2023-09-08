@@ -78,7 +78,7 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Mzkit_win32.MSImagingViewerV2.PolygonEditor
 Imports STImaging
-Imports stdNum = System.Math
+Imports std = System.Math
 
 <Assembly: InternalsVisibleTo("mzkit_win32")>
 
@@ -144,7 +144,7 @@ Public Class PixelSelector
         offset = New Point(rect.Right, rect.Bottom)
 
         Call getPoint(offset, Me.Size, dimension_size, x, y)
-        tile.Size = New Size(stdNum.Abs(x - tile.Location.X), stdNum.Abs(y - tile.Location.Y))
+        tile.Size = New Size(std.Abs(x - tile.Location.X), std.Abs(y - tile.Location.Y))
 
         AddHandler tile.GetSpatialMetabolismPoint, AddressOf getPoint
         AddHandler tile.ClickSpatialMetabolismPixel, Sub(e, ByRef px, ByRef py) Call clickGetPoint(e)
@@ -1345,10 +1345,10 @@ Public Class PixelSelector
 
     Public ReadOnly Property RegionSelectin As Rectangle
         Get
-            Dim left As Integer = stdNum.Min(startPoint.X, endPoint.X)
-            Dim top As Integer = stdNum.Min(startPoint.Y, endPoint.Y)
-            Dim right As Integer = stdNum.Max(startPoint.X, endPoint.X)
-            Dim bottom As Integer = stdNum.Max(startPoint.Y, endPoint.Y)
+            Dim left As Integer = std.Min(startPoint.X, endPoint.X)
+            Dim top As Integer = std.Min(startPoint.Y, endPoint.Y)
+            Dim right As Integer = std.Max(startPoint.X, endPoint.X)
+            Dim bottom As Integer = std.Max(startPoint.Y, endPoint.Y)
 
             Return New Rectangle(left, top, right - left, bottom - top)
         End Get
