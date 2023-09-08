@@ -75,4 +75,12 @@ Public Class frmDOI
     Private Sub RichTextBox1_TextChanged(sender As Object, e As EventArgs) Handles RichTextBox1.TextChanged
 
     End Sub
+
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+
+    End Sub
+
+    Private Sub LinkLabel3_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel3.LinkClicked
+        Process.Start("https://scicrunch.org/resolver/RRID:SCR_023936?q=&i=rrid:scr_023936")
+    End Sub
 End Class

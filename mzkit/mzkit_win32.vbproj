@@ -1101,10 +1101,22 @@
     <Compile Include="Win32API.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="forms\frmDOI.de-DE.resx">
+      <DependentUpon>frmDOI.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmDOI.en-US.resx">
       <DependentUpon>frmDOI.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmDOI.fr.resx">
+      <DependentUpon>frmDOI.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmDOI.ja-JP.resx">
+      <DependentUpon>frmDOI.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmDOI.resx">
+      <DependentUpon>frmDOI.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmDOI.ru-RU.resx">
       <DependentUpon>frmDOI.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmDOI.zh-CN.resx">

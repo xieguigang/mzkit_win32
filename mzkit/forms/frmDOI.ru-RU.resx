@@ -118,28 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="RichTextBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>678, 282</value>
+  <data name="Label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>229, 28</value>
   </data>
-  <data name="PictureBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 344</value>
+  <data name="Label1.Text" xml:space="preserve">
+    <value>Справочник по DOI</value>
   </data>
-  <data name="PictureBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 74</value>
+  <data name="Label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>491, 48</value>
   </data>
-  <data name="LinkLabel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>133, 393</value>
-  </data>
-  <data name="LinkLabel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>133, 415</value>
-  </data>
-  <data name="Label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>135, 344</value>
+  <data name="Label2.Text" xml:space="preserve">
+    <value>Инструментарий данных для обработки ЯМР, 
+MALDI MSI, MALDI single cell, рамановской спектроскопии, 
+LC-MS и GC-MS исходных данных, хемоинформатики,
+ анализа данных и визуализации данных.</value>
   </data>
   <data name="PictureBox2.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAABooAAAIgCAYAAACyKjuGAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAAB6
-        JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAAACXBIWXMAAAsRAAALEQF/ZF+RAAD/hklE
+        JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAAACXBIWXMAAAsMAAALDAE/QCLIAAD/hklE
         QVR4XuzdCXzUxf3/8Z+IB1i0eKDWYqut1vK3ggqK2GqtUkVLrRbriQfSUqvWo2urtVqI3Hd2c98XOQiS
         hCsQEiBAuEkICQQkoNWe1mq1ttbz858JUGH3E8gmu8nu9/vK4/F8/Pob97ubzHdm2J33zsz/iQgAAAAA
         AAAAAABcSC0EAAAAAAAAAACA86mFAAAAAAAAAAAAcD61EAAAAAAAAAAAAM6nFgIAAAAAAAAAAMD51EIA
@@ -1336,13 +1333,7 @@
         OJs2X4sexQAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="PictureBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 424</value>
-  </data>
-  <data name="LinkLabel3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>133, 438</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>702, 476</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Справочник по DOI</value>
   </data>
 </root>

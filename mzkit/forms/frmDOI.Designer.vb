@@ -83,7 +83,10 @@ Partial Class frmDOI
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.LinkLabel3 = New System.Windows.Forms.LinkLabel()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RichTextBox1
@@ -123,11 +126,25 @@ Partial Class frmDOI
         resources.ApplyResources(Me.Label2, "Label2")
         Me.Label2.Name = "Label2"
         '
+        'PictureBox2
+        '
+        resources.ApplyResources(Me.PictureBox2, "PictureBox2")
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.TabStop = False
+        '
+        'LinkLabel3
+        '
+        resources.ApplyResources(Me.LinkLabel3, "LinkLabel3")
+        Me.LinkLabel3.Name = "LinkLabel3"
+        Me.LinkLabel3.TabStop = True
+        '
         'frmDOI
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.CadetBlue
+        Me.Controls.Add(Me.LinkLabel3)
+        Me.Controls.Add(Me.PictureBox2)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.LinkLabel2)
         Me.Controls.Add(Me.LinkLabel1)
@@ -139,6 +156,7 @@ Partial Class frmDOI
         Me.MinimizeBox = False
         Me.Name = "frmDOI"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -150,4 +168,6 @@ Partial Class frmDOI
     Friend WithEvents LinkLabel1 As LinkLabel
     Friend WithEvents LinkLabel2 As LinkLabel
     Friend WithEvents Label2 As Label
+    Friend WithEvents PictureBox2 As PictureBox
+    Friend WithEvents LinkLabel3 As LinkLabel
 End Class
