@@ -274,18 +274,18 @@ Public Class FormViewer
 
         biodeep_id = biodeep_id.Where(Function(si) si.IsPattern(pattern)).Distinct.AsList
 
-        If biodeep_id.Count > 10 Then
+        If biodeep_id.Count > 13 Then
             Dim ssid As String = $"mzkit_win32_{$"{App.PID}-{Now.ToString}-{biodeep_id.JoinBy("+")}".MD5}"
             Dim payload As New Dictionary(Of String, String()) From {
                 {"ssid", {ssid}},
                 {"biodeep_id", biodeep_id.ToArray}
             }
 
-            url = $"https://novocell.mzkit.org/kb/put_list/?ssid={ssid}"
+            url = $"http://novocell.mzkit.org/kb/put_list/?ssid={ssid}"
             url.POST(payload).DoCall(AddressOf Workbench.LogText)
-            url = $"https://novocell.mzkit.org/kb/metabolites/?list=query:{ssid}"
+            url = $"http://novocell.mzkit.org/kb/metabolites/?list=query:{ssid}"
         Else
-            url = $"https://novocell.mzkit.org/kb/metabolites/?list={biodeep_id.JoinBy(",")}"
+            url = $"http://novocell.mzkit.org/kb/metabolites/?list={biodeep_id.JoinBy(",")}"
         End If
 
         Call Process.Start(url)
