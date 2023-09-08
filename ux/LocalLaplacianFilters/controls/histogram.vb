@@ -246,9 +246,9 @@ Public Class Histogram
                 Dim brush As Brush = New SolidBrush(Color.FromArgb(92, 92, 92))
 
                 If vertical Then
-                    g.FillRectangle(brush, x, y + start, m_width, Math.Abs(start - [stop]) + 1)
+                    g.FillRectangle(brush, x, y + start, m_width, std.Abs(start - [stop]) + 1)
                 Else
-                    g.FillRectangle(brush, x + start, y, Math.Abs(start - [stop]) + 1, Height)
+                    g.FillRectangle(brush, x + start, y, std.Abs(start - [stop]) + 1, Height)
                 End If
                 brush.Dispose()
             End If

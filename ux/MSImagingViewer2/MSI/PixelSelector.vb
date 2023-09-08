@@ -412,7 +412,7 @@ Public Class PixelSelector
 
         Dim e1Length = Me.CalculateLength(edge1)
         Dim e2Length = Me.CalculateLength(edge2)
-        Dim diff = Math.Abs(e1Length - e2Length)
+        Dim diff = std.Abs(e1Length - e2Length)
 
         If diff > 2 Then
             Dim r = e2Length
@@ -918,8 +918,8 @@ Public Class PixelSelector
         ' Draw the selection area.
         Dim x = Math.Min(startPoint.X, endPoint.X)
         Dim y = Math.Min(startPoint.Y, endPoint.Y)
-        Dim width = Math.Abs(startPoint.X - endPoint.X)
-        Dim height = Math.Abs(startPoint.Y - endPoint.Y)
+        Dim width = std.Abs(startPoint.X - endPoint.X)
+        Dim height = std.Abs(startPoint.Y - endPoint.Y)
 
         g.DrawRectangle(Pens.Red, x, y, width, height)
     End Sub
@@ -989,7 +989,7 @@ Public Class PixelSelector
         Dim dy As Double = by - ay
         Dim len = Math.Sqrt(dx * dx + dy * dy)
         Dim d = (dy * (y - ay) - dx * (x - ax)) / len
-        If Math.Abs(d) < 4 AndAlso x >= Math.Min(ax, bx) AndAlso x <= Math.Max(ax, bx) AndAlso y >= Math.Min(ay, by) AndAlso y <= Math.Max(ay, by) Then Return True
+        If std.Abs(d) < 4 AndAlso x >= Math.Min(ax, bx) AndAlso x <= Math.Max(ax, bx) AndAlso y >= Math.Min(ay, by) AndAlso y <= Math.Max(ay, by) Then Return True
         Dim u = ((bx - ax) * (x - ax) + (by - ay) * (y - ay)) / ((bx - ax) * (bx - ax) + (by - ay) * (by - ay))
         Dim x3 As Integer = ax + u * (bx - ax)
         Dim y3 As Integer = ay + u * (by - ay)
@@ -1054,11 +1054,11 @@ Public Class PixelSelector
             edge1.To.Y += 1
         End If
 
-        Return Math.Abs(Me.CalculateLength(edge1) - Me.CalculateLength(edge2)) <= 1
+        Return std.Abs(Me.CalculateLength(edge1) - Me.CalculateLength(edge2)) <= 1
     End Function
 
     Private Function CalculateLength(e As Edge) As Integer
-        Return Math.Sqrt(Math.Abs(e.To.Y - e.From.Y) * Math.Abs(e.To.Y - e.From.Y) + Math.Abs(e.To.X - e.From.Coord.X) * Math.Abs(e.To.Coord.X - e.From.Coord.X))
+        Return Math.Sqrt(std.Abs(e.To.Y - e.From.Y) * std.Abs(e.To.Y - e.From.Y) + std.Abs(e.To.X - e.From.Coord.X) * std.Abs(e.To.Coord.X - e.From.Coord.X))
     End Function
 
     Private Sub Bresenham(edge As Edge, graphics As Graphics, brush As Brush)
@@ -1066,8 +1066,8 @@ Public Class PixelSelector
         Dim y0 As Integer = edge.From.Y
         Dim x1 As Integer = edge.To.X
         Dim y1 As Integer = edge.To.Y
-        Dim dx = Math.Abs(x1 - x0)
-        Dim dy = Math.Abs(y1 - y0)
+        Dim dx = std.Abs(x1 - x0)
+        Dim dy = std.Abs(y1 - y0)
         Dim kx = If(x0 < x1, 1, -1)
         Dim ky = If(y0 < y1, 1, -1)
         Dim err As Integer = If(dx > dy, dx, -1 * dy) / 2
@@ -1142,8 +1142,8 @@ Public Class PixelSelector
         Dim y0 As Double = edge.From.Y
         Dim x1 As Double = edge.To.X
         Dim y1 As Double = edge.To.Y
-        Dim dx = Math.Abs(x1 - x0)
-        Dim dy = Math.Abs(y1 - y0)
+        Dim dx = std.Abs(x1 - x0)
+        Dim dy = std.Abs(y1 - y0)
         Dim steep = dy > dx
 
         If steep Then
@@ -1209,8 +1209,8 @@ Public Class PixelSelector
         Dim y0 As Integer = edge.From.Y
         Dim x1 As Integer = edge.To.X
         Dim y1 As Integer = edge.To.Y
-        Dim dx = Math.Abs(x1 - x0)
-        Dim dy = Math.Abs(y1 - y0)
+        Dim dx = std.Abs(x1 - x0)
+        Dim dy = std.Abs(y1 - y0)
         Dim kx = If(x0 < x1, 1, -1)
         Dim ky = If(y0 < y1, 1, -1)
         Dim err As Integer = If(dx > dy, dx, -1 * dy) / 2
@@ -1224,7 +1224,7 @@ Public Class PixelSelector
             graphics.FillRectangle(brush, xf, yf, 1, 1)
             graphics.FillRectangle(brush, xb, yb, 1, 1)
             e2 = err
-            If Math.Abs(xf - xb) <= 1 AndAlso Math.Abs(yf - yb) <= 1 Then Exit While
+            If std.Abs(xf - xb) <= 1 AndAlso std.Abs(yf - yb) <= 1 Then Exit While
 
             If e2 + dx > 0 Then
                 err -= dy
