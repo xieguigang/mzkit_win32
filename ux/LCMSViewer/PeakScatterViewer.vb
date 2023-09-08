@@ -201,7 +201,7 @@ Public Class PeakScatterViewer
             int_range = Nothing
         Else
             mzBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.mz, 1, fuzzy:=True)
-            rtBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.scan_time, 10, fuzzy:=True)
+            rtBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.scan_time, 15, fuzzy:=True)
             mz_range = New DoubleRange(rawdata.Select(Function(i) i.mz))
             rt_range = New DoubleRange(rawdata.Select(Function(i) i.scan_time)).DoCall(AddressOf autoPaddingRange)
             int_range = New DoubleRange(rawdata.Select(Function(i) i.intensity))
