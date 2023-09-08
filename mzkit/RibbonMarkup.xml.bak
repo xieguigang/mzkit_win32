@@ -755,10 +755,10 @@
         <String Id="404">View algorithm paper DOI reference that MZKit software used.</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="405" MinDPI="192">Res/preferences-system-notifications.png</Image>
+        <Image MinDPI="192">Res/icons8-license-96.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="406" MinDPI="192">Res/preferences-system-notifications.png</Image>
+        <Image MinDPI="192">Res/icons8-license-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonHEstainEditLabel" Id="240" LabelTitle="Edit Label" LabelDescription="Edit Label" TooltipTitle="Edit Label" TooltipDescription="Edit Label">
@@ -1895,10 +1895,10 @@
         <String Id="728">Open the MS-imaging viewer to view the comprehensive LC-MS spectrum data.</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image MinDPI="192">Res/image.png</Image>
+        <Image MinDPI="192">Res/icons8-photo-viewer-96.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image MinDPI="192">Res/image.png</Image>
+        <Image MinDPI="192">Res/icons8-photo-viewer-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdPanelMSIVisual" Id="186">
@@ -2810,10 +2810,10 @@
         <String Id="976">Open services manager page for view all of the running MZKit data background services progress.</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image MinDPI="192">Res/Performance.png</Image>
+        <Image MinDPI="192">Res/icons8-system-task-96.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image MinDPI="192">Res/Performance.png</Image>
+        <Image MinDPI="192">Res/icons8-system-task-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonHEstainSetSpotColor" Id="242" LabelTitle="Set Spot Color" LabelDescription="Set Spot Color" TooltipTitle="Set Spot Color" TooltipDescription="Set Spot Color">
@@ -3078,10 +3078,10 @@
         <String Id="1052">Save current polygon and then start to create next polygon.</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="1053" MinDPI="192">Res/RegistryEditor_5838_32x.bmp</Image>
+        <Image MinDPI="192">Res/icons8-new-ticket-96.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="1054">Res/RegistryEditor_5838_32x.bmp</Image>
+        <Image MinDPI="192">Res/icons8-new-ticket-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonShowStartPage" Id="1108">
@@ -3447,8 +3447,11 @@
       <Command.TooltipDescription>
         <String Id="1152">View the license information about the MZKit workbench</String>
       </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-software-license-96.png</Image>
+      </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="1153">Res/baobab.png</Image>
+        <Image MinDPI="192">Res/icons8-software-license-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonMSISignalCorrection" Id="197">
