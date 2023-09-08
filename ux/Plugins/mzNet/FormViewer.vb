@@ -3,6 +3,7 @@ Imports System.Text.RegularExpressions
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking
+Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
 Imports WeifenLuo.WinFormsUI.Docking
 Imports any = Microsoft.VisualBasic.Scripting
@@ -253,6 +254,7 @@ Public Class FormViewer
         Dim biodeep_id As New List(Of String)
         Dim index As Integer = 8
         Dim rows = AdvancedDataGridView1.Rows
+        Dim url As String = Nothing
 
         Static pattern As New Regex("BioDeep_\d+")
 
@@ -272,7 +274,19 @@ Public Class FormViewer
 
         biodeep_id = biodeep_id.Where(Function(si) si.IsPattern(pattern)).Distinct.AsList
 
-        Dim url As String = $"https://novocell.mzkit.org/kb/metabolites/?list={biodeep_id.JoinBy(",")}"
+        If biodeep_id.Count > 20 Then
+            Dim ssid As String = $"mzkit_win32_{$"{App.PID}-{Now.ToString}-{biodeep_id.JoinBy("+")}".MD5}"
+            Dim payload As New Dictionary(Of String, String()) From {
+                {"ssid", {ssid}},
+                {"biodeep_id", biodeep_id.ToArray}
+            }
+
+            url = $"https://novocell.mzkit.org/kb/put_list/?ssid={ssid}"
+            url.POST(payload).DoCall(AddressOf Workbench.LogText)
+            url = $"https://novocell.mzkit.org/kb/metabolites/?list=query:{ssid}"
+        Else
+            url = $"https://novocell.mzkit.org/kb/metabolites/?list={biodeep_id.JoinBy(",")}"
+        End If
 
         Call Process.Start(url)
     End Sub

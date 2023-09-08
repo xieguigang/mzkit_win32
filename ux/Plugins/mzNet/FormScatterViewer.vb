@@ -22,6 +22,7 @@ Imports Microsoft.VisualBasic.Net.Http
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Mzkit_win32.LCMSViewer
+Imports std = System.Math
 
 Public Class FormScatterViewer
 
@@ -130,7 +131,7 @@ Public Class FormScatterViewer
                 .Select(Function(o) HttpRESTMetadataPool.ParseMetadata(DirectCast(o, JavaScriptObject))) _
                 .ToArray
             Dim da As Tolerance = Tolerance.DeltaMass(0.3)
-            Dim adducts As MzCalculator() = Provider.Positives
+            Dim adducts As MzCalculator() = Provider.Positives.Where(Function(a) a.M = 1 AndAlso std.Abs(a.charge) = 1).ToArray
             Dim reference As New MSSearch(Of Metadata)(metaIons.Where(Function(a) a.project = "Reference Annotation"), da, adducts)
 
             metaIons = metaIons _
