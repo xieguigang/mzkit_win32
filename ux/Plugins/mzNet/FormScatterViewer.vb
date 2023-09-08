@@ -29,6 +29,8 @@ Public Class FormScatterViewer
     Dim WithEvents exportReport As ToolStripMenuItem
     Dim WithEvents filterScatter As ToolStripMenuItem
 
+    Public host As FormViewer
+
     Dim model As HttpTreeFs
     Dim peaksData As New Dictionary(Of String, MetaIon)
     Dim filterOut As Integer
@@ -233,7 +235,10 @@ Public Class FormScatterViewer
                 End Sub)
         End If
 
+        ' display the spectrum list in the feature explorer
         Call Me.Invoke(Sub() Call SpectralViewerModule.showCluster(spectrum, ion.id))
+        ' and also show the spectrum list in the cluster table
+        Call host.LoadDataSet(ion.metaList)
     End Sub
 
     Private Iterator Function PopulateSpectrum(echo As ITaskProgress, ion As MetaIon, peakId As String) As IEnumerable(Of PeakMs2)
@@ -387,6 +392,9 @@ Public Class FormScatterViewer
 
 End Class
 
+''' <summary>
+''' A scatter spot on the canvas andalso a collection of the <see cref="Metadata"/>
+''' </summary>
 Public Class MetaIon : Inherits Meta
 
     Public Property metaList As Metadata()

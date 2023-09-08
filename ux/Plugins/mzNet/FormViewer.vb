@@ -78,6 +78,10 @@ Public Class FormViewer
     End Sub
 
     Private Sub loadTable2(node As String)
+        Call LoadDataSet(cloud.FetchMetadata(node))
+    End Sub
+
+    Public Sub LoadDataSet(metaSet As IEnumerable(Of PoolData.Metadata))
         Call LoadTable(
             apply:=Sub(tbl)
                        tbl.Columns.Add("guid", GetType(String)) '0
@@ -92,7 +96,7 @@ Public Class FormViewer
                        tbl.Columns.Add("formula", GetType(String)) '9
                        tbl.Columns.Add("adducts", GetType(String)) '10
 
-                       For Each meta As PoolData.Metadata In cloud.FetchMetadata(node)
+                       For Each meta As PoolData.Metadata In metaSet
                            Call tbl.Rows.Add(meta.guid, meta.mz, meta.rt, meta.intensity, meta.source_file,
                                  meta.sample_source, meta.organism, meta.name, meta.biodeep_id,
                                  meta.formula, meta.adducts)

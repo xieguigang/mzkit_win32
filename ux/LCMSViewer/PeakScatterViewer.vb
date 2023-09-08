@@ -441,6 +441,10 @@ Public Class PeakScatterViewer
             Dim mz, rt As Double
             Dim loc As Point = Cursor.Position
 
+            If e.Button <> MouseButtons.Left Then
+                Return
+            End If
+
             Call GetPeak(peakId, mz, rt, loc)
 
             If peakId IsNot Nothing Then
@@ -461,6 +465,7 @@ Public Class PeakScatterViewer
         If mz0 > mz1 Then Call mz1.Swap(mz0)
         If rt0 > rt1 Then Call rt1.Swap(rt0)
 
+        ' do zoom-in
         If Not m_rawdata.IsNullOrEmpty Then
             Call m_rawdata _
                 .AsParallel _
