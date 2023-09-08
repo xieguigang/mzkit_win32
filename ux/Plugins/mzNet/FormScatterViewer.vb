@@ -151,8 +151,16 @@ Public Class FormScatterViewer
             For Each ion As NamedCollection(Of Metadata) In precursors.Where(Function(o) o.Length > filterOut)
                 Dim mz As Double = ion.Select(Function(i) i.mz).Average
                 Dim rt As Double() = ion.Select(Function(i) i.rt).TabulateBin
+                Dim rt_mean As Double = rt.Average
                 Dim referIons = reference.QueryByMz(mz) _
-                    .Select(Function(a) reference.GetCompound(a.unique_id)) _
+                    .Select(Function(a)
+                                Dim annoData = reference.GetCompound(a.unique_id)
+                                annoData = New Metadata(annoData)
+                                annoData.mz = a.mz_ref
+                                annoData.adducts = a.precursorType
+                                annoData.rt = rt_mean
+                                Return annoData
+                            End Function) _
                     .ToArray
                 Dim names As String() = referIons _
                     .Select(Function(a) $"{a.name}({a.formula})") _
