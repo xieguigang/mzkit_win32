@@ -102,6 +102,14 @@
         <Image Id="226" MinDPI="144">Res/insert-object.bmp</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonSpatialTileUI" Id="247" LabelTitle="Adjust Spatial Tile UI" LabelDescription="Adjust Spatial Tile UI" TooltipTitle="Adjust Spatial Tile UI" TooltipDescription="Adjust Spatial Tile UI">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/TextEditor.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/TextEditor.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdTabAppStore" Id="216">
       <Command.LabelTitle>
         <String Id="227">App Store</String>
@@ -341,6 +349,14 @@
       <Command.LabelTitle>
         <String Id="288">Calculator Tools</String>
       </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdButtonOpenseadragonWebCapture" Id="251" LabelTitle="Capture Image" LabelDescription="Capture and export the slide image in current data view" TooltipTitle="Capture and export the slide image in current data view" TooltipDescription="Capture and export the slide image in current data view">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/applets-screenshooter.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/applets-screenshooter.png</Image>
+      </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonCFMIDTool" Id="212">
       <Command.LabelTitle>
@@ -739,12 +755,21 @@
         <String Id="404">View algorithm paper DOI reference that MZKit software used.</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="405" MinDPI="192">Res/preferences-system-notifications.png</Image>
+        <Image MinDPI="192">Res/icons8-license-96.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="406" MinDPI="192">Res/preferences-system-notifications.png</Image>
+        <Image MinDPI="192">Res/icons8-license-96.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonHEstainEditLabel" Id="240" LabelTitle="Edit Label" LabelDescription="Edit Label" TooltipTitle="Edit Label" TooltipDescription="Edit Label">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/edit.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/edit.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdPanelHEstainEditor" Id="245" LabelTitle="Edit Mapping" LabelDescription="Edit Mapping" TooltipTitle="Edit Mapping" TooltipDescription="Edit Mapping" />
     <Command Name="cmdGroupExactMassSearch" Id="1073">
       <Command.LabelTitle>
         <String Id="407">Exact Mass Search</String>
@@ -1152,6 +1177,9 @@
         <Image Id="523" MinDPI="192">Res/folder-documents.bmp</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdMenuHeStainTools" Id="237" LabelTitle="HE stain tools" LabelDescription="HE stain tools" TooltipTitle="HE stain tools" TooltipDescription="HE stain tools" />
+    <Command Name="cmdGroupHEstainTools" Id="238" LabelTitle="HE stain tools" LabelDescription="HE stain tools" TooltipTitle="HE stain tools" TooltipDescription="HE stain tools" />
+    <Command Name="cmdPanelHEstainTools" Id="243" LabelTitle="HE stain tools" LabelDescription="HE stain tools" TooltipTitle="HE stain tools" TooltipDescription="HE stain tools" />
     <Command Name="cmdButtonMSIMatrixVisual" Id="187">
       <Command.LabelTitle>
         <String Id="524">HeatMap Matrix</String>
@@ -1392,6 +1420,7 @@
         <Image Id="595" MinDPI="192">Res/excel-icon.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdCheckboxHEstainKeepsAspectRatio" Id="246" LabelTitle="Keep Aspect Ratio" LabelDescription="Keep Aspect Ratio" TooltipTitle="Keep Aspect Ratio" TooltipDescription="Keep Aspect Ratio" />
     <Command Name="cmdGroupKEGG" Id="133">
       <Command.LabelTitle>
         <String Id="596">KEGG</String>
@@ -1866,10 +1895,10 @@
         <String Id="728">Open the MS-imaging viewer to view the comprehensive LC-MS spectrum data.</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image MinDPI="192">Res/image.png</Image>
+        <Image MinDPI="192">Res/icons8-photo-viewer-96.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image MinDPI="192">Res/image.png</Image>
+        <Image MinDPI="192">Res/icons8-photo-viewer-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdPanelMSIVisual" Id="186">
@@ -2021,6 +2050,8 @@
         <Image Id="769" MinDPI="192">Res/folder-pictures.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdMenuOpenseadragon" Id="248" LabelTitle="Openseadragon" LabelDescription="Openseadragon" TooltipTitle="Openseadragon" TooltipDescription="Openseadragon" />
+    <Command Name="cmdGroupOpenseadragon" Id="249" LabelTitle="Openseadragon" LabelDescription="Openseadragon" TooltipTitle="Openseadragon" TooltipDescription="Openseadragon" />
     <Command Name="cmdGroupMSIOperations" Id="201">
       <Command.LabelTitle>
         <String Id="770">Operations</String>
@@ -2515,6 +2546,14 @@
         <String Id="910">Result Data</String>
       </Command.LabelTitle>
     </Command>
+    <Command Name="cmdButtonHEstainRotate" Id="241" LabelTitle="Rotate" LabelDescription="Rotate" TooltipTitle="Rotate" TooltipDescription="Rotate">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdButtonRotateSlide" Id="221">
       <Command.LabelTitle>
         <String Id="911">Rotate Slide</String>
@@ -2635,6 +2674,14 @@
       </Command.TooltipDescription>
       <Command.LargeImages>
         <Image Id="946">Res/document-save.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonHEstainSave" Id="239" LabelTitle="Save HE stain mapping" LabelDescription="Save HE stain mapping" TooltipTitle="Save HE stain mapping" TooltipDescription="Save HE stain mapping">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/document-save.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/document-save.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdSaveLinears" Id="103">
@@ -2763,10 +2810,18 @@
         <String Id="976">Open services manager page for view all of the running MZKit data background services progress.</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image MinDPI="192">Res/Performance.png</Image>
+        <Image MinDPI="192">Res/icons8-system-task-96.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image MinDPI="192">Res/Performance.png</Image>
+        <Image MinDPI="192">Res/icons8-system-task-96.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonHEstainSetSpotColor" Id="242" LabelTitle="Set Spot Color" LabelDescription="Set Spot Color" TooltipTitle="Set Spot Color" TooltipDescription="Set Spot Color">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/Color palette.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/Color palette.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonSettings" Id="1051">
@@ -2951,6 +3006,7 @@
         <Image Id="1032" MinDPI="144">Res/view-dual.png</Image>
       </Command.LargeHighContrastImages>
     </Command>
+    <Command Name="cmdPanelOpenseadragon" Id="250" LabelTitle="Slide Viewer" LabelDescription="Openseadragon web viewer for slide image" TooltipTitle="Openseadragon" TooltipDescription="Openseadragon" />
     <Command Name="cmdButtonLayout1" Id="1043">
       <Command.LabelTitle>
         <String Id="1033">Snapshot</String>
@@ -2973,6 +3029,7 @@
         <String Id="1038">Spatial Imaging File Imports &amp;&amp; Exports</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdPanelHEstainOperations" Id="244" LabelTitle="Spatial Mapping Operations" LabelDescription="Spatial Mapping Operations" TooltipTitle="Spatial Mapping Operations" TooltipDescription="Spatial Mapping Operations" />
     <Command Name="cmdButtonShowSpectrumSearchPage" Id="1102">
       <Command.LabelTitle>
         <String Id="1039">Spectrum Search</String>
@@ -3021,10 +3078,10 @@
         <String Id="1052">Save current polygon and then start to create next polygon.</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="1053" MinDPI="192">Res/RegistryEditor_5838_32x.bmp</Image>
+        <Image MinDPI="192">Res/icons8-new-ticket-96.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="1054">Res/RegistryEditor_5838_32x.bmp</Image>
+        <Image MinDPI="192">Res/icons8-new-ticket-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonShowStartPage" Id="1108">
@@ -3041,10 +3098,10 @@
         <String Id="1058">Show Start Page</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image MinDPI="192">Res/Home.png</Image>
+        <Image MinDPI="192">Res/icons8-home-96.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image MinDPI="192">Res/Home.png</Image>
+        <Image MinDPI="192">Res/icons8-home-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonSystemDiagnosis" Comment="System Diagnosis" Id="180">
@@ -3291,10 +3348,10 @@
         <String Id="1128">Mzkit Tutorials Videos</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image MinDPI="192">Res/tutorials.png</Image>
+        <Image MinDPI="192">Res/icons8-animal-shelter-96.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image MinDPI="192">Res/tutorials.png</Image>
+        <Image MinDPI="192">Res/icons8-animal-shelter-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonMSIFilterPipeline" Id="229">
@@ -3390,8 +3447,11 @@
       <Command.TooltipDescription>
         <String Id="1152">View the license information about the MZKit workbench</String>
       </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-software-license-96.png</Image>
+      </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="1153">Res/baobab.png</Image>
+        <Image MinDPI="192">Res/icons8-software-license-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonMSISignalCorrection" Id="197">
@@ -3476,63 +3536,6 @@
       <Command.TooltipDescription>
         <String Id="1176">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
-    </Command>
-    <Command Name="cmdMenuHeStainTools" Id="237" LabelTitle="HE stain tools" LabelDescription="HE stain tools" TooltipTitle="HE stain tools" TooltipDescription="HE stain tools" />
-    <Command Name="cmdGroupHEstainTools" Id="238" LabelTitle="HE stain tools" LabelDescription="HE stain tools" TooltipTitle="HE stain tools" TooltipDescription="HE stain tools" />
-    <Command Name="cmdButtonHEstainSave" Id="239" LabelTitle="Save HE stain mapping" LabelDescription="Save HE stain mapping" TooltipTitle="Save HE stain mapping" TooltipDescription="Save HE stain mapping">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/document-save.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/document-save.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonHEstainEditLabel" Id="240" LabelTitle="Edit Label" LabelDescription="Edit Label" TooltipTitle="Edit Label" TooltipDescription="Edit Label">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/edit.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/edit.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonHEstainRotate" Id="241" LabelTitle="Rotate" LabelDescription="Rotate" TooltipTitle="Rotate" TooltipDescription="Rotate">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/emblem-synchronizing.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonHEstainSetSpotColor" Id="242" LabelTitle="Set Spot Color" LabelDescription="Set Spot Color" TooltipTitle="Set Spot Color" TooltipDescription="Set Spot Color">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/Color palette.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/Color palette.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdPanelHEstainTools" Id="243" LabelTitle="HE stain tools" LabelDescription="HE stain tools" TooltipTitle="HE stain tools" TooltipDescription="HE stain tools" />
-    <Command Name="cmdPanelHEstainOperations" Id="244" LabelTitle="Spatial Mapping Operations" LabelDescription="Spatial Mapping Operations" TooltipTitle="Spatial Mapping Operations" TooltipDescription="Spatial Mapping Operations" />
-    <Command Name="cmdPanelHEstainEditor" Id="245" LabelTitle="Edit Mapping" LabelDescription="Edit Mapping" TooltipTitle="Edit Mapping" TooltipDescription="Edit Mapping" />
-    <Command Name="cmdCheckboxHEstainKeepsAspectRatio" Id="246" LabelTitle="Keep Aspect Ratio" LabelDescription="Keep Aspect Ratio" TooltipTitle="Keep Aspect Ratio" TooltipDescription="Keep Aspect Ratio" />
-    <Command Name="cmdButtonSpatialTileUI" Id="247" LabelTitle="Adjust Spatial Tile UI" LabelDescription="Adjust Spatial Tile UI" TooltipTitle="Adjust Spatial Tile UI" TooltipDescription="Adjust Spatial Tile UI">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/TextEditor.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/TextEditor.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdMenuOpenseadragon" Id="248" LabelTitle="Openseadragon" LabelDescription="Openseadragon" TooltipTitle="Openseadragon" TooltipDescription="Openseadragon" />
-    <Command Name="cmdGroupOpenseadragon" Id="249" LabelTitle="Openseadragon" LabelDescription="Openseadragon" TooltipTitle="Openseadragon" TooltipDescription="Openseadragon" />
-    <Command Name="cmdPanelOpenseadragon" Id="250" LabelTitle="Slide Viewer" LabelDescription="Openseadragon web viewer for slide image" TooltipTitle="Openseadragon" TooltipDescription="Openseadragon" />
-    <Command Name="cmdButtonOpenseadragonWebCapture" Id="251" LabelTitle="Capture Image" LabelDescription="Capture and export the slide image in current data view" TooltipTitle="Capture and export the slide image in current data view" TooltipDescription="Capture and export the slide image in current data view">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/applets-screenshooter.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/applets-screenshooter.png</Image>
-      </Command.LargeImages>
     </Command>
   </Application.Commands>
   <Application.Views>
