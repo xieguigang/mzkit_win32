@@ -158,7 +158,11 @@ Public Class FormScatterViewer
                 Dim title As String = annotext
 
                 If Not names.IsNullOrEmpty Then
-                    title = names.JoinBy(" / ")
+                    If names.Length > 3 Then
+                        title = names.Take(3).JoinBy(" / ") & $", and {names.Length - 3} more..."
+                    Else
+                        title = names.JoinBy(" / ")
+                    End If
                 End If
 
                 Dim ion1 As New MetaIon With {
