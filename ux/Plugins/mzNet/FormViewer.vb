@@ -274,7 +274,7 @@ Public Class FormViewer
 
         biodeep_id = biodeep_id.Where(Function(si) si.IsPattern(pattern)).Distinct.AsList
 
-        If biodeep_id.Count > 20 Then
+        If biodeep_id.Count > 10 Then
             Dim ssid As String = $"mzkit_win32_{$"{App.PID}-{Now.ToString}-{biodeep_id.JoinBy("+")}".MD5}"
             Dim payload As New Dictionary(Of String, String()) From {
                 {"ssid", {ssid}},
