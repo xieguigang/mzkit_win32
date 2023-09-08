@@ -4,6 +4,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Mzkit_win32.BasicMDIForm
 Imports WeifenLuo.WinFormsUI.Docking
 Imports any = Microsoft.VisualBasic.Scripting
@@ -278,12 +279,18 @@ Public Class FormViewer
             Dim ssid As String = $"mzkit_win32_{$"{App.PID}-{Now.ToString}-{biodeep_id.JoinBy("+")}".MD5}"
             Dim payload As New Dictionary(Of String, String()) From {
                 {"ssid", {ssid}},
-                {"biodeep_id", biodeep_id.ToArray}
+                {"biodeep_id", {biodeep_id.ToArray.GetJson}}
             }
+            Dim err As String = Nothing
 
             url = $"http://novocell.mzkit.org/kb/put_list/?ssid={ssid}"
-            url.POST(payload).DoCall(AddressOf Workbench.LogText)
+            url.POST(payload, unsafe:=False, [error]:=err) _
+               .DoCall(AddressOf Workbench.LogText)
             url = $"http://novocell.mzkit.org/kb/metabolites/?list=query:{ssid}"
+
+            If Not err.StringEmpty Then
+                Call Workbench.LogText(err)
+            End If
         Else
             url = $"http://novocell.mzkit.org/kb/metabolites/?list={biodeep_id.JoinBy(",")}"
         End If
