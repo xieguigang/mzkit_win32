@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports std = System.Math
 
 ''' <summary>
 ''' Histogram control.

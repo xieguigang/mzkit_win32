@@ -326,7 +326,7 @@ namespace OpenSlideCs
                 var ret = new List<int>();
                 for (int i = 0; i < max_dz_level; i++)
                 {
-                    if (std.Abs(l0_z_downsamples[i] - 1) < 0.01)
+                    if (Math.Abs(l0_z_downsamples[i] - 1) < 0.01)
                         ret.Add(i);
                 }
                 EasyLevels = ret.ToArray();
