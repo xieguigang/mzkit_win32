@@ -100,6 +100,7 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.hqx
+Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.Html.CSS
@@ -130,17 +131,17 @@ Public Class frmMsImagingViewer
     Dim rendering As Action
     Dim guid As String
 
-    ''' <summary>
-    ''' the ms-imaging rendering service
-    ''' </summary>
-    Dim blender As MSImagingBlender
-
     Friend TIC As PixelScanIntensity()
 
     Friend MSIservice As ServiceHub.MSIDataService
     Friend params As MsImageProperty
     Friend HEMap As HEMapTools
     Friend DrawHeMapRegion As Boolean = False
+
+    ''' <summary>
+    ''' the ms-imaging rendering service
+    ''' </summary>
+    Dim blender As BlenderClient
 
     Public ReadOnly Property MimeType As ContentType() Implements IFileReference.MimeType
         Get
@@ -155,8 +156,29 @@ Public Class frmMsImagingViewer
         End Get
     End Property
 
+    Public Sub OpenSession(ss As Type, args As String)
+        If MSIservice Is Nothing Then
+            Call StartMSIService()
+        End If
+
+        If blender Is Nothing Then
+            blender = New BlenderClient(RenderService.MSIBlender, debug:=RenderService.debug)
+            MSIservice.blender = blender
+            MSIservice.blender.SetFilters(loadFilters)
+        End If
+
+        blender.OpenSession(ss, params.GetMSIDimension, Nothing, params, args)
+    End Sub
+
     Public Sub StartMSIService()
-        Call ServiceHub.MSIDataService.StartMSIService(hostReference:=MSIservice)
+        ServiceHub.MSIDataService.StartMSIService(hostReference:=MSIservice)
+
+        If blender Is Nothing Then
+            blender = New BlenderClient(RenderService.MSIBlender, debug:=RenderService.debug)
+        End If
+
+        MSIservice.blender = blender
+        MSIservice.blender.SetFilters(loadFilters)
     End Sub
 
     Private Sub frmMsImagingViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -271,7 +293,7 @@ Public Class frmMsImagingViewer
                 End With
 
                 If blender IsNot Nothing AndAlso rendering IsNot Nothing Then
-                    blender.filters = configs.GetFilter
+                    blender.SetFilters(configs.GetFilter)
                     rendering()
                 End If
             End Sub, config:=config)
@@ -311,6 +333,25 @@ Public Class frmMsImagingViewer
         End If
     End Sub
 
+    Private Function getThumbnail(p As Action(Of String)) As Image
+        Dim panic As Boolean = False
+        Dim summaryLayer As PixelScanIntensity() = MSIservice.LoadSummaryLayer(IntensitySummary.BasePeak, panic)
+
+        If panic Then
+            Workbench.StatusMessage("MS-Imaging data backend panic!", My.Resources.mintupdate_error)
+            Return Nothing
+        Else
+            TIC = summaryLayer
+        End If
+
+        Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
+        Dim blender As Type = GetType(SummaryMSIBlender) ' (summaryLayer, params, loadFilters)
+
+        Me.blender.OpenSession(blender, params.GetMSIDimension, Nothing, params, "")
+
+        Return Me.blender.MSIRender(Nothing, params, params.GetMSIDimension)
+    End Function
+
     Private Sub rotateSlide()
         If Not checkService() Then
             Return
@@ -318,22 +359,10 @@ Public Class frmMsImagingViewer
 
         ' fetch the BPC views
         Dim image As Image = TaskProgress.LoadData(
-            Function(p As Action(Of String))
-                Dim panic As Boolean = False
-                Dim summaryLayer As PixelScanIntensity() = MSIservice.LoadSummaryLayer(IntensitySummary.BasePeak, panic)
-
-                If panic Then
-                    Workbench.StatusMessage("MS-Imaging data backend panic!", My.Resources.mintupdate_error)
-                    Return Nothing
-                Else
-                    TIC = summaryLayer
-                End If
-
-                Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
-                Dim blender As New SummaryMSIBlender(summaryLayer, params, loadFilters)
-
-                Return blender.Rendering()
-            End Function, title:="Create ms-imaging slide previews", "Loading the basepeak summary plot of your slide as previews...")
+            streamLoad:=AddressOf getThumbnail,
+            title:="Create ms-imaging slide previews",
+            info:="Loading the basepeak summary plot of your slide as previews..."
+        )
 
         If image Is Nothing Then
             Return
@@ -391,7 +420,7 @@ Public Class frmMsImagingViewer
 
         HEMap.Clear(PixelSelector1.MSICanvas.HEMap)
 
-        blender.HEMap = image
+        blender.SetHEMap(image)
         params.Hqx = HqxScales.None
         rendering()
 
@@ -693,31 +722,32 @@ Public Class frmMsImagingViewer
         Call Me.Invoke(Sub() showPixel(xy(0), xy(1)))
     End Sub
 
+    Private Sub ConnectToCloud(config As InputCloudEndPoint)
+        Me.MSIservice = MSIDataService.ConnectCloud(Me.MSIservice, config.IP, config.Port)
+
+        Call WindowModules.viewer.Show(DockPanel)
+        Call WindowModules.msImageParameters.Show(DockPanel)
+
+        Dim info As MsImageProperty
+
+        Try
+            info = MSIservice.GetMSIInformationMetadata
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "MZKit Cloud", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End Try
+
+        Call LoadRender(info, "MZKit_Cloud")
+
+        WindowModules.viewer.DockState = DockState.Document
+        MyApplication.host.Text = $"BioNovoGene Mzkit [{WindowModules.viewer.Text} {info.sourceFile}]"
+        WindowModules.msImageParameters.DockState = DockState.DockLeft
+
+        Call RenderSummary(IntensitySummary.BasePeak)
+    End Sub
+
     Public Sub ConnectToCloud()
-        Call InputDialog.Input(Of InputCloudEndPoint)(
-            Sub(config)
-                Me.MSIservice = MSIDataService.ConnectCloud(Me.MSIservice, config.IP, config.Port)
-
-                Call WindowModules.viewer.Show(DockPanel)
-                Call WindowModules.msImageParameters.Show(DockPanel)
-
-                Dim info As MsImageProperty
-
-                Try
-                    info = MSIservice.GetMSIInformationMetadata
-                Catch ex As Exception
-                    MessageBox.Show(ex.Message, "MZKit Cloud", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Return
-                End Try
-
-                Call LoadRender(info, "MZKit_Cloud")
-
-                WindowModules.viewer.DockState = DockState.Document
-                MyApplication.host.Text = $"BioNovoGene Mzkit [{WindowModules.viewer.Text} {info.sourceFile}]"
-                WindowModules.msImageParameters.DockState = DockState.DockLeft
-
-                Call RenderSummary(IntensitySummary.BasePeak)
-            End Sub)
+        Call InputDialog.Input(Of InputCloudEndPoint)(AddressOf ConnectToCloud)
     End Sub
 
     Public Function ExtractMultipleSampleRegions() As RegionLoader
@@ -727,6 +757,36 @@ Public Class frmMsImagingViewer
             Return MSIservice.ExtractMultipleSampleRegions
         End If
     End Function
+
+    Private Sub MergeWidthLayout(config As InputMSISlideLayout, files As String(), savefile As String)
+        If TaskProgress.LoadData(
+            streamLoad:=Function(echo)
+                            'Return loadfiles _
+                            '    .JoinMSISamples(println:=echo) _
+                            '    .Write(savefile.OpenFile, progress:=echo)
+                            Call MSConvertTask.MergeMultipleSlides(
+                                msData:=files,
+                                layoutData:=config.layoutData,
+                                savefile:=savefile,
+                                fileName_tag:=config.useFileNameAsSourceTag,
+                                echo:=AddressOf echo.SetInfo
+                            )
+
+                            Return True
+                        End Function,
+            title:="Merge Multiple Slides",
+            info:="Load MS-Imaging slide files...") Then
+
+            If MessageBox.Show("MSI Raw Convert Job Done!" & vbCrLf & "Open MSI raw data file in MSI Viewer?",
+                               "MSI Viewer",
+                               MessageBoxButtons.YesNo,
+                               MessageBoxIcon.Information) = DialogResult.Yes Then
+
+                Call RibbonEvents.showMsImaging()
+                Call WindowModules.viewer.loadimzML(savefile)
+            End If
+        End If
+    End Sub
 
     ''' <summary>
     ''' merge multiple sample files
@@ -749,42 +809,12 @@ Public Class frmMsImagingViewer
 
                 Using savefile As New SaveFileDialog With {.Filter = file.Filter}
                     If savefile.ShowDialog = DialogResult.OK Then
-
                         Dim input As New InputMSISlideLayout With {
                             .layoutData = files.Select(AddressOf BaseName).JoinBy(","),
                             .useFileNameAsSourceTag = True
                         }
 
-                        Call InputDialog.Input(Of InputMSISlideLayout)(
-                            Sub(config)
-                                If TaskProgress.LoadData(
-                                    streamLoad:=Function(echo)
-                                                    'Return loadfiles _
-                                                    '    .JoinMSISamples(println:=echo) _
-                                                    '    .Write(savefile.OpenFile, progress:=echo)
-                                                    Call MSConvertTask.MergeMultipleSlides(
-                                                        msData:=files,
-                                                        layoutData:=config.layoutData,
-                                                        savefile:=savefile.FileName,
-                                                        fileName_tag:=config.useFileNameAsSourceTag,
-                                                        echo:=AddressOf echo.SetInfo
-                                                    )
-
-                                                    Return True
-                                                End Function,
-                                    title:="Merge Multiple Slides",
-                                    info:="Load MS-Imaging slide files...") Then
-
-                                    If MessageBox.Show("MSI Raw Convert Job Done!" & vbCrLf & "Open MSI raw data file in MSI Viewer?",
-                                                       "MSI Viewer",
-                                                       MessageBoxButtons.YesNo,
-                                                       MessageBoxIcon.Information) = DialogResult.Yes Then
-
-                                        Call RibbonEvents.showMsImaging()
-                                        Call WindowModules.viewer.loadimzML(savefile.FileName)
-                                    End If
-                                End If
-                            End Sub,, config:=input)
+                        Call InputDialog.Input(Sub(config) Call MergeWidthLayout(config, files, savefile.FileName),, config:=input)
                     End If
                 End Using
             End If
@@ -929,10 +959,12 @@ Public Class frmMsImagingViewer
                     .knn = 0,
                     .knn_qcut = 1
                 }
-                Dim blender As New SingleIonMSIBlender(layer.MSILayer, Nothing, argv, loadFilters)
-                Dim HEMap As Image = blender.Rendering(Nothing, Nothing)
+                Dim blender As Type = GetType(SingleIonMSIBlender) '(layer.MSILayer, Nothing, argv, loadFilters)
+                Me.blender.channel.WriteBuffer(PixelData.GetBuffer(layer.MSILayer))
+                Me.blender.OpenSession(blender, New Size(scan_x, scan_y), Nothing, params, Nothing)
+                Dim HEMap As Image = Me.blender.MSIRender(Nothing, argv, layer.DimensionSize)
 
-                If Me.blender IsNot Nothing AndAlso TypeOf Me.blender IsNot HeatMapBlender Then
+                If Me.blender IsNot Nothing AndAlso Me.blender.Session IsNot GetType(HeatMapBlender) Then
                     ' draw and overlaps on the MS-imaging rendering for CAD analysis
                     PixelSelector1.MSICanvas.tissue_layer = HEMap
                     PixelSelector1.MSICanvas.RedrawCanvas()
@@ -946,8 +978,8 @@ Public Class frmMsImagingViewer
         PixelSelector1.MSICanvas.HEMap = HEMapImg
 
         If blender IsNot Nothing Then
-            If TypeOf blender IsNot HeatMapBlender Then
-                blender.HEMap = PixelSelector1.MSICanvas.HEMap
+            If blender.Session IsNot GetType(HeatMapBlender) Then
+                blender.SetHEMap(PixelSelector1.MSICanvas.HEMap)
                 rendering()
             End If
 
@@ -1731,7 +1763,7 @@ Public Class frmMsImagingViewer
 
         Call TaskProgress.LoadData(
             Function(msg As ITaskProgress)
-                Call ServiceHub.MSIDataService.StartMSIService(MSIservice)
+                Call StartMSIService()
                 Call Me.Invoke(Sub() LoadRender(MSIservice.LoadMSI(mzpack, msg.Echo), filePath))
 
                 Return 0
@@ -1797,6 +1829,19 @@ Public Class frmMsImagingViewer
         End If
     End Sub
 
+    Private Function ExtractRegionSample(msg As Action(Of String), regions As Polygon2D()) As Integer
+        Dim info = MSIservice.ExtractRegionSample(regions, New Size(params.scan_x, params.scan_y))
+
+        If info Is Nothing Then
+            Return -1
+        End If
+
+        Call Me.Invoke(Sub() LoadRender(info, FilePath))
+        Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
+
+        Return 0
+    End Function
+
     ''' <summary>
     ''' 手动选择样本区域生成新的原始数据
     ''' </summary>
@@ -1807,7 +1852,7 @@ Public Class frmMsImagingViewer
             Return
         End If
 
-        Dim regions = PixelSelector1.MSICanvas _
+        Dim regions As Polygon2D() = PixelSelector1.MSICanvas _
             .GetPolygons(popAll:=False) _
             .ToArray
 
@@ -1823,18 +1868,11 @@ Public Class frmMsImagingViewer
         End If
 
         Call TaskProgress.LoadData(
-                Function(msg As Action(Of String))
-                    Dim info = MSIservice.ExtractRegionSample(regions, New Size(params.scan_x, params.scan_y))
-
-                    If info Is Nothing Then
-                        Return -1
-                    End If
-
-                    Call Me.Invoke(Sub() LoadRender(info, FilePath))
-                    Call Me.Invoke(Sub() RenderSummary(IntensitySummary.BasePeak))
-
-                    Return 0
-                End Function, canbeCancel:=True)
+            streamLoad:=Function(msg As Action(Of String))
+                            Return ExtractRegionSample(msg, regions)
+                        End Function,
+            canbeCancel:=True
+        )
     End Sub
 
     ''' <summary>
@@ -1874,7 +1912,7 @@ Public Class frmMsImagingViewer
             .ToArray
 
         If mz.Length = 0 Then
-            Call MyApplication.host.showStatusMessage("No ions selected for rendering!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning("No ions selected for rendering!")
         Else
             Call renderByMzList(mz, Nothing)
         End If
@@ -1900,7 +1938,7 @@ Public Class frmMsImagingViewer
         Dim info As PixelProperty = Nothing
 
         If pixel Is Nothing Then
-            Call MyApplication.host.showStatusMessage($"Pixels [{x}, {y}] not contains any data.", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning($"Pixels [{x}, {y}] not contains any data.")
             Call WindowModules.MSIPixelProperty.SetPixel(New InMemoryPixel(x, y, {}), info)
             Call PixelSelector1.ShowMessage($"Pixels [{x}, {y}] not contains any data.")
 
@@ -2031,23 +2069,24 @@ Public Class frmMsImagingViewer
         End If
 
         Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
-        Dim blender As New SummaryMSIBlender(summaryLayer, params, loadFilters) With {.HEMap = GetHEMap()}
+        Dim blender As Type = GetType(SummaryMSIBlender) ' (summaryLayer, params, loadFilters)
 
-        ' Me.params.enableFilter = False
-        Me.blender = blender
+        Me.blender.SetHEMap(GetHEMap())
+        Me.blender.OpenSession(blender, params.GetMSIDimension, Nothing, params, "")
         Me.sampleRegions.SetBounds(summaryLayer.Select(Function(a) New Point(a.x, a.y)))
 
         Return Sub()
-                   Call MyApplication.RegisterPlot(
-                       Sub(args)
-                           Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
-                           Dim mapLevels As Integer = params.mapLevels
-
-                           PixelSelector1.SetMsImagingOutput(image, blender.dimensions, params.background, params.colors, {range.Min, range.Max}, mapLevels)
-                           PixelSelector1.SetColorMapVisible(visible:=True)
-                       End Sub)
+                   Call MyApplication.RegisterPlot(Sub(args) PlotSummary(args, range))
                End Sub
     End Function
+
+    Private Sub PlotSummary(args As PlotProperty, range As DoubleRange)
+        Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
+        Dim mapLevels As Integer = params.mapLevels
+
+        PixelSelector1.SetMsImagingOutput(image, params.GetMSIDimension, params.background, params.colors, {range.Min, range.Max}, mapLevels)
+        PixelSelector1.SetColorMapVisible(visible:=True)
+    End Sub
 
     Public Sub SetBlank()
         Call ExtractSampleRegion()
@@ -2084,7 +2123,7 @@ Public Class frmMsImagingViewer
 
     Private Sub createRGB(pixels As PixelData(), r#, g#, b#)
         If pixels.IsNullOrEmpty Then
-            Call MyApplication.host.showStatusMessage($"No ion hits!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning($"No ion hits!")
         Else
             Dim base = pixels.OrderByDescending(Function(p) p.intensity).FirstOrDefault
             Dim maxInto As Double = base?.intensity
@@ -2095,15 +2134,21 @@ Public Class frmMsImagingViewer
             Call Invoke(Sub() params.SetIntensityMax(maxInto, New Point(base?.x, base?.y)))
             Call Invoke(Sub() rendering = createRenderTask(Rpixels, Gpixels, Bpixels))
             Call Invoke(rendering)
-            Call MyApplication.host.showStatusMessage("Rendering Complete!", My.Resources.preferences_system_notifications)
+            Call Workbench.SuccessMessage("Rendering Complete!")
         End If
     End Sub
 
     Private Function createRenderTask(R As PixelData(), G As PixelData(), B As PixelData()) As Action
-        Dim blender As New RGBIonMSIBlender(R, G, B, TIC, params, loadFilters) With {.HEMap = GetHEMap()}
+        Dim blender As Type = GetType(RGBIonMSIBlender) ' (R, G, B, TIC, params, loadFilters)
+        Dim mzdiff = params.GetTolerance.GetScript
+        Dim configs As New Dictionary(Of String, String) From {
+            {"rgb", rgb_configs.GetJSON},
+            {"mzdiff", mzdiff}
+        }
 
         Me.params.enableFilter = False
-        Me.blender = blender
+        Me.blender.SetHEMap(GetHEMap())
+        Me.blender.OpenSession(blender, params.GetMSIDimension, Nothing, params, configs.GetJson)
         Me.loadedPixels = R _
             .JoinIterates(G) _
             .JoinIterates(B) _
@@ -2112,9 +2157,9 @@ Public Class frmMsImagingViewer
         Return Sub()
                    Call MyApplication.RegisterPlot(
                        Sub(args)
-                           Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
+                           Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
 
-                           PixelSelector1.SetMsImagingOutput(image, blender.dimensions, params.background, Nothing, Nothing, Nothing)
+                           PixelSelector1.SetMsImagingOutput(image, params.GetMSIDimension, params.background, Nothing, Nothing, Nothing)
                            PixelSelector1.SetColorMapVisible(visible:=True)
                        End Sub)
                End Sub
@@ -2126,28 +2171,32 @@ Public Class frmMsImagingViewer
         Call Workbench.StatusMessage($"Render layer of annotation: {titleName}")
         Call ProgressSpinner.DoLoading(
             Sub()
-                Call RenderPixelsLayer(pixels:=MSIservice.LoadGeneLayer(name))
+                Dim pixels = MSIservice.LoadGeneLayer(name)
+                Call RenderPixelsLayer(pixels)
             End Sub)
         Call PixelSelector1.ShowMessage($"Render layer of annotation: {titleName}")
     End Sub
 
+    Private Sub renderEmpty()
+        rendering = New Action(Sub()
+                               End Sub)
+        PixelSelector1.SetMsImagingOutput(
+            New Bitmap(params.scan_x, params.scan_y),
+            New Size(params.scan_x, params.scan_y),
+            params.background,
+            params.colors,
+            {0, 1},
+            1
+        )
+
+        Call Workbench.Warning("no pixel data...")
+    End Sub
+
     Private Sub RenderPixelsLayer(pixels As PixelData())
-        Dim size As String = $"{params.scan_x},{params.scan_y}"
+        Dim size As Size = params.GetMSIDimension
 
         If pixels.IsNullOrEmpty Then
-            Call Workbench.Warning("no pixel data...")
-            Call Invoke(Sub()
-                            rendering = New Action(Sub()
-                                                   End Sub)
-                            PixelSelector1.SetMsImagingOutput(
-                                New Bitmap(params.scan_x, params.scan_y),
-                                New Size(params.scan_x, params.scan_y),
-                                params.background,
-                                params.colors,
-                                {0, 1},
-                                1
-                            )
-                        End Sub)
+            Call Invoke(Sub() Call renderEmpty())
         Else
             Dim base = pixels.OrderByDescending(Function(p) p.intensity).FirstOrDefault
             Dim maxInto As Double = base?.intensity
@@ -2168,9 +2217,9 @@ Public Class frmMsImagingViewer
         Next
 
         If selectedMz.Count = 1 Then
-            MyApplication.host.showStatusMessage($"Run MS-Image rendering for selected ion m/z {selectedMz(Scan0)}...")
+            Workbench.StatusMessage($"Run MS-Image rendering for selected ion m/z {selectedMz(Scan0)}...")
         Else
-            MyApplication.host.showStatusMessage($"Run MS-Image rendering for {selectedMz.Count} selected ions...")
+            Workbench.StatusMessage($"Run MS-Image rendering for {selectedMz.Count} selected ions...")
         End If
 
         mzdiff = params.GetTolerance
@@ -2178,7 +2227,8 @@ Public Class frmMsImagingViewer
         Call SetTitle(selectedMz, titleName)
         Call ProgressSpinner.DoLoading(
             Sub()
-                Call RenderPixelsLayer(pixels:=MSIservice.LoadPixels(selectedMz, mzdiff))
+                Dim pixels = MSIservice.LoadPixels(selectedMz, mzdiff)
+                Call RenderPixelsLayer(pixels)
             End Sub)
 
         Call PixelSelector1.ShowMessage($"Render in Layer Pixels Composition Mode: {selectedMz.Select(Function(d) stdNum.Round(d, 4)).JoinBy(", ")}")
@@ -2233,7 +2283,7 @@ Public Class frmMsImagingViewer
         Call sampleRegions.SetBounds(pixels.Select(Function(a) New Point(a.x, a.y)))
 
         If rgb Is Nothing Then
-            rendering = createRenderTask(pixels, $"{params.scan_x},{params.scan_y}")
+            rendering = createRenderTask(pixels, params.GetMSIDimension)
             rendering()
         Else
             rgb_configs = rgb
@@ -2252,15 +2302,18 @@ Public Class frmMsImagingViewer
             Me.tweaks = WindowModules.msImageParameters.PropertyGrid1
         End If
 
-        Dim blender As New HeatMapBlender(layer, dimensions, params, loadFilters) With {.HEMap = GetHEMap()}
+        Dim blender As Type = GetType(HeatMapBlender) '       (layer, dimensions, params, loadFilters)
+
+        Call Me.blender.channel.WriteBuffer(HeatMap.PixelData.CreateStream(layer))
 
         Me.params.enableFilter = True
-        Me.blender = blender
+        Me.blender.SetHEMap(GetHEMap())
+        Me.blender.OpenSession(ss:=blender, dims:=dimensions, Nothing, params, Nothing)
         Me.rendering =
             Sub()
                 Call MyApplication.RegisterPlot(
                     Sub(args)
-                        Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
+                        Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
 
                         PixelSelector1.SetMsImagingOutput(image, dimensions, params.background, params.colors, {0, 1}, params.mapLevels)
                         PixelSelector1.SetColorMapVisible(visible:=True)
@@ -2276,32 +2329,33 @@ Public Class frmMsImagingViewer
     ''' <param name="pixels"></param>
     ''' <param name="dimensions">the dimension size of the MSI raw data</param>
     ''' <returns></returns>
-    Private Function createRenderTask(pixels As PixelData(), dimensions$) As Action
-        Dim blender As New SingleIonMSIBlender(pixels, TIC, params, loadFilters) With {.HEMap = GetHEMap()}
-        Dim range As DoubleRange = blender.range
+    Private Function createRenderTask(pixels As PixelData(), dimensions As Size) As Action
+        Dim blender As Type = GetType(SingleIonMSIBlender) ' (pixels, TIC, params, loadFilters)
+        Dim range As New DoubleRange(pixels.Select(Function(p) p.intensity))
 
         Me.params.enableFilter = True
         Me.rgb_configs = Nothing
         Me.loadedPixels = pixels
-        Me.blender = blender
+        Me.blender.SetHEMap(GetHEMap())
+        Me.blender.OpenSession(blender, dimensions, Nothing, params, Nothing)
         Me.PixelSelector1.MSICanvas.LoadSampleTags(pixels.Select(Function(i) i.sampleTag).Where(Function(str) Not str Is Nothing).Distinct)
 
         Return Sub()
-                   Call MyApplication.RegisterPlot(
-                       Sub(args)
-                           Call ProgressSpinner.DoLoading(
-                               Sub()
-                                   Call Me.Invoke(
-                                   Sub()
-                                       Dim image As Image = blender.Rendering(args, PixelSelector1.CanvasSize)
-
-                                       PixelSelector1.SetMsImagingOutput(image, dimensions.SizeParser, params.background, params.colors, {range.Min, range.Max}, params.mapLevels)
-                                       PixelSelector1.SetColorMapVisible(visible:=True)
-                                   End Sub)
-                               End Sub)
-                       End Sub)
+                   Call MyApplication.RegisterPlot(Sub(args) registerTask(args, dimensions, range))
                End Sub
     End Function
+
+    Private Sub registerTask(args As PlotProperty, dimensions As Size, range As DoubleRange)
+        Dim render As Action =
+            Sub()
+                Dim image As Image = Me.blender.MSIRender(args, params, PixelSelector1.CanvasSize)
+
+                PixelSelector1.SetMsImagingOutput(image, dimensions, params.background, params.colors, {range.Min, range.Max}, params.mapLevels)
+                PixelSelector1.SetColorMapVisible(visible:=True)
+            End Sub
+
+        Call ProgressSpinner.DoLoading(loading:=Sub() Call Me.Invoke(render))
+    End Sub
 
     Protected Overrides Sub OpenContainingFolder()
         Call Process.Start(FilePath.ParentPath)
@@ -2325,13 +2379,13 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub tweaks_PropertyValueChanged(s As Object, e As PropertyValueChangedEventArgs) Handles tweaks.PropertyValueChanged
-        If e.ChangedItem.Label.TextEquals("background") AndAlso (blender Is Nothing OrElse Not TypeOf blender Is RGBIonMSIBlender) Then
+        If e.ChangedItem.Label.TextEquals("background") AndAlso (blender Is Nothing OrElse blender.Session IsNot GetType(RGBIonMSIBlender)) Then
             PixelSelector1.MSICanvas.BackColor = params.background
         ElseIf Not rendering Is Nothing Then
             Dim grid As PropertyGrid = DirectCast(s, PropertyGrid)
             Dim reason As String = MsImageProperty.Validation(grid.SelectedObject, e)
 
-            If e.ChangedItem.Label.TextEquals("TrIQ") AndAlso Not TypeOf blender Is RGBIonMSIBlender Then
+            If e.ChangedItem.Label.TextEquals("TrIQ") AndAlso blender.Session IsNot GetType(RGBIonMSIBlender) Then
                 Call PixelSelector1.UpdateColorScaler({0, blender.GetTrIQIntensity(params.TrIQ)}, params.colors, params.mapLevels)
             End If
 
@@ -2441,7 +2495,7 @@ Public Class frmMsImagingViewer
 
             If pixel Is Nothing OrElse pinedPixel.ms2.IsNullOrEmpty Then
                 pinedPixel = Nothing
-                MyApplication.host.showStatusMessage("There is no MS data in current pixel?", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Workbench.Warning("There is no MS data in current pixel?")
             Else
                 Call WindowModules.msImageParameters.LoadPinnedIons(pinedPixel.ms2)
             End If
@@ -2534,7 +2588,7 @@ Public Class frmMsImagingViewer
         If Not checkService() Then
             Return
         ElseIf targetMz.IsNullOrEmpty Then
-            Call MyApplication.host.warning("No ion was selected to export MS-Imaging plot!")
+            Call Workbench.Warning("No ion was selected to export MS-Imaging plot!")
             Return
         End If
 
@@ -2576,7 +2630,7 @@ Public Class frmMsImagingViewer
         If blender Is Nothing Then
             Return
         Else
-            blender.sample_tag = tag
+            blender.SetSampleTag(tag)
             Call rendering()
         End If
     End Sub

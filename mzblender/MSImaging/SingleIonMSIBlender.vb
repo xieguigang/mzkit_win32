@@ -85,13 +85,10 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
         End Get
     End Property
 
-    Sub New(layer As PixelData(), TIC As PixelScanIntensity(), params As MsImageProperty, filters As RasterPipeline)
-        Call Me.New(layer, params, filters, SummaryMSIBlender.Rendering(TIC, New Size(params.scan_x, params.scan_y), "gray", 255, "black"))
-    End Sub
+    Sub New(layer As PixelData(), filters As RasterPipeline, params As MsImageProperty, Optional TIC As Image = Nothing)
+        Call MyBase.New(filters)
 
-    Sub New(layer As PixelData(), params As MsImageProperty, filters As RasterPipeline, Optional TIC As Image = Nothing)
-        Call MyBase.New(params, filters)
-
+        Me.params = params
         Me.layer = New SingleIonLayer With {
             .MSILayer = layer,
             .DimensionSize = New Size(
@@ -107,10 +104,7 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
     Public Overrides Function Rendering(args As PlotProperty, target As Size) As Image
         Dim pixels As PixelData() = TakePixels(layer.MSILayer)
         ' denoise_scale() > TrIQ_scale(0.8) > knn_scale() > soften_scale()
-        Dim filter As RasterPipeline = New DenoiseScaler() _
-            .Then(New TrIQScaler(params.TrIQ)) _
-            .Then(New KNNScaler(params.knn, params.knn_qcut)) _
-            .Then(New SoftenScaler())
+        Dim filter As RasterPipeline = Me.filters
 
         If Not plotRange Is Nothing Then
             pixels = pixels _
@@ -129,7 +123,7 @@ Public Class SingleIonMSIBlender : Inherits MSImagingBlender
         End If
 
         Dim pixelFilter As New SingleIonLayer With {
-            .DimensionSize = layer.DimensionSize,
+            .dimensionSize = layer.DimensionSize,
             .IonMz = -1,
             .MSILayer = pixels
         }

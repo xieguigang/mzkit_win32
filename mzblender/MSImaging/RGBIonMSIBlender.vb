@@ -77,13 +77,13 @@ Public Class RGBIonMSIBlender : Inherits MSImagingBlender
         End Get
     End Property
 
-    Sub New(r As PixelData(), g As PixelData(), b As PixelData(), TIC As PixelScanIntensity(), params As MsImageProperty, filter As RasterPipeline)
-        Call MyBase.New(params, filter)
+    Sub New(r As PixelData(), g As PixelData(), b As PixelData(), TIC As Image, filter As RasterPipeline)
+        Call MyBase.New(filter)
 
         Dim joinX = r.JoinIterates(g).JoinIterates(b).Select(Function(i) i.x).Max
         Dim joinY = r.JoinIterates(g).JoinIterates(b).Select(Function(i) i.y).Max
 
-        ' Me.TIC = SummaryMSIBlender.Rendering(TIC, New Size(params.scan_x, params.scan_y), "gray", 250)
+        Me.TIC = TIC
         Me.originalSize = New Size(joinX, joinY)
         Me.R = r
         Me.G = g
@@ -97,7 +97,7 @@ Public Class RGBIonMSIBlender : Inherits MSImagingBlender
         Dim g = New SingleIonLayer With {.DimensionSize = dimensions, .MSILayer = TakePixels(Me.G)}
         Dim b = New SingleIonLayer With {.DimensionSize = dimensions, .MSILayer = TakePixels(Me.B)}
 
-        If params.enableFilter Then
+        If params.enableFilter AndAlso filters IsNot Nothing Then
             r = filters(r)
             g = filters(g)
             b = filters(b)

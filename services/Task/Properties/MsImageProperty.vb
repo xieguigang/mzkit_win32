@@ -73,6 +73,8 @@
 Imports System.ComponentModel
 Imports System.Drawing
 Imports System.Drawing.Drawing2D
+Imports System.Reflection
+Imports System.Runtime.CompilerServices
 Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
@@ -80,9 +82,14 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.hqx
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.MIME.application.json
+Imports Microsoft.VisualBasic.Scripting.Runtime
+Imports Microsoft.VisualBasic.Serialization.JSON
 
 Public Enum SmoothFilters
     None
@@ -184,6 +191,33 @@ Public Class MsImageProperty
     <Description("The TrIQ cutoff threshold, value in range of [0,1]")>
     <Category("Intensity")> Public Property TrIQ As Double = 0.85
 
+    Sub New(info As Dictionary(Of String, String))
+        scan_x = Integer.Parse(info!scan_x)
+        scan_y = Integer.Parse(info!scan_y)
+
+        If info.ContainsKey("uuid") Then
+            UUID = info!uuid
+        Else
+            UUID = info!UUID
+        End If
+
+        fileSize = info!fileSize
+        sourceFile = info.TryGetValue({"source", NameOf(sourceFile)}, [default]:="in-memory sample")
+        instrument = If(sourceFile.ExtensionSuffix("csv", "slx"), "Bruker", "Thermo Fisher")
+        resolution = info.TryGetValue("resolution", [default]:=17)
+        background = info.TryGetValue(NameOf(background), [default]:="black").TranslateColor
+        num_annotations = info.TryGetValue({"ion_annotations", "num_annotations"}, [default]:=0)
+        app = [Enum].Parse(GetType(FileApplicationClass), info.TryGetValue("app", [default]:=FileApplicationClass.MSImaging.ToString))
+        scale_ratio = info.TryGetValue("scale_ratio", [default]:="1,1").FloatSizeParser
+        polarity = Provider.ParseIonMode(info.TryGetValue("polarity", [default]:="+"))
+        Hqx = [Enum].Parse(GetType(HqxScales), info.TryGetValue(NameOf(Hqx), [default]:="None"))
+        colors = [Enum].Parse(GetType(ScalerPalette), info.TryGetValue(NameOf(colors), [default]:="viridis"))
+        mapLevels = info.TryGetValue(NameOf(mapLevels), [default]:=250)
+        enableFilter = info.TryGetValue(NameOf(enableFilter), [default]:="true").ParseBoolean
+        showPhysicalRuler = info.TryGetValue(NameOf(showPhysicalRuler), [default]:="true").ParseBoolean
+        showTotalIonOverlap = info.TryGetValue(NameOf(showTotalIonOverlap), [default]:="true").ParseBoolean
+    End Sub
+
     Sub New(render As Drawer)
         scan_x = render.dimension.Width
         scan_y = render.dimension.Height
@@ -201,19 +235,6 @@ Public Class MsImageProperty
     Sub New()
         background = Color.Black
         resolution = 17
-    End Sub
-
-    Sub New(info As Dictionary(Of String, String))
-        scan_x = Integer.Parse(info!scan_x)
-        scan_y = Integer.Parse(info!scan_y)
-        UUID = info!uuid
-        fileSize = info!fileSize
-        sourceFile = info.TryGetValue("source", "in-memory sample")
-        instrument = If(sourceFile.ExtensionSuffix("csv", "slx"), "Bruker", "Thermo Fisher")
-        resolution = info.TryGetValue("resolution", [default]:=17)
-        background = Color.Black
-        num_annotations = info.TryGetValue("ion_annotations", [default]:=0)
-        app = [Enum].Parse(GetType(FileApplicationClass), info.TryGetValue("app", [default]:=FileApplicationClass.MSImaging.ToString))
     End Sub
 
     Sub New(scan_x As Integer, scan_y As Integer)
@@ -311,6 +332,57 @@ Public Class MsImageProperty
             Return Ms1.Tolerance.DeltaMass(tolerance)
         Else
             Return Ms1.Tolerance.PPM(tolerance)
+        End If
+    End Function
+
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Function GetMSIDimension() As Size
+        Return New Size(scan_x, scan_y)
+    End Function
+
+    Shared ReadOnly css_data As PropertyInfo() = GetType(MsImageProperty) _
+        .GetProperties(DataFramework.PublicProperty) _
+        .Where(Function(p) p.GetIndexParameters.IsNullOrEmpty) _
+        .ToArray
+
+    Public Function GetJSON() As String
+        Dim json As New Dictionary(Of String, String)
+        Dim val As Object
+        Dim str As String
+
+        For Each p As PropertyInfo In css_data
+            val = p.GetValue(Me)
+
+            If val Is Nothing Then
+                str = ""
+            Else
+                Select Case p.PropertyType
+                    Case GetType(Color) : str = DirectCast(val, Color).ToHtmlColor
+                    Case GetType(SizeF) : str = $"{DirectCast(val, SizeF).Width},{DirectCast(val, SizeF).Height}"
+                    Case Else
+                        If DataFramework.IsPrimitive(p.PropertyType) Then
+                            str = val.ToString
+                        ElseIf p.PropertyType.IsEnum Then
+                            str = val.ToString
+                        Else
+                            Throw New NotImplementedException(p.PropertyType.FullName)
+                        End If
+                End Select
+            End If
+
+            json.Add(p.Name, str)
+        Next
+
+        Return json.GetJson(simpleDict:=True)
+    End Function
+
+    Public Shared Function ParseJSON(json As String) As MsImageProperty
+        Dim js = json.LoadJSON(Of Dictionary(Of String, String))
+
+        If js Is Nothing Then
+            Return Nothing
+        Else
+            Return New MsImageProperty(js)
         End If
     End Function
 End Class

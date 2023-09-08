@@ -201,7 +201,7 @@ Public Class PeakScatterViewer
             int_range = Nothing
         Else
             mzBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.mz, 1, fuzzy:=True)
-            rtBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.scan_time, 10, fuzzy:=True)
+            rtBins = New BlockSearchFunction(Of Meta)(rawdata, Function(i) i.scan_time, 15, fuzzy:=True)
             mz_range = New DoubleRange(rawdata.Select(Function(i) i.mz))
             rt_range = New DoubleRange(rawdata.Select(Function(i) i.scan_time)).DoCall(AddressOf autoPaddingRange)
             int_range = New DoubleRange(rawdata.Select(Function(i) i.intensity))
@@ -441,6 +441,10 @@ Public Class PeakScatterViewer
             Dim mz, rt As Double
             Dim loc As Point = Cursor.Position
 
+            If e.Button <> MouseButtons.Left Then
+                Return
+            End If
+
             Call GetPeak(peakId, mz, rt, loc)
 
             If peakId IsNot Nothing Then
@@ -461,6 +465,7 @@ Public Class PeakScatterViewer
         If mz0 > mz1 Then Call mz1.Swap(mz0)
         If rt0 > rt1 Then Call rt1.Swap(rt0)
 
+        ' do zoom-in
         If Not m_rawdata.IsNullOrEmpty Then
             Call m_rawdata _
                 .AsParallel _

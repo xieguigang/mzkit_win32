@@ -1,7 +1,10 @@
 ﻿Imports System.ComponentModel
+Imports System.Text.RegularExpressions
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking
+Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Mzkit_win32.BasicMDIForm
 Imports WeifenLuo.WinFormsUI.Docking
 Imports any = Microsoft.VisualBasic.Scripting
@@ -11,6 +14,7 @@ Public Class FormViewer
     Dim memoryData As New DataSet
     Dim search As GridSearchHandler
     Dim cloud As frmCloudExplorer
+    Dim current_ptr As String
 
     Private Sub FormViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.TabText = "Spectrum Pool Viewer"
@@ -78,6 +82,10 @@ Public Class FormViewer
     End Sub
 
     Private Sub loadTable2(node As String)
+        Call LoadDataSet(ptr:=node, cloud.FetchMetadata(node))
+    End Sub
+
+    Public Sub LoadDataSet(ptr As String, metaSet As IEnumerable(Of PoolData.Metadata))
         Call LoadTable(
             apply:=Sub(tbl)
                        tbl.Columns.Add("guid", GetType(String)) '0
@@ -92,12 +100,14 @@ Public Class FormViewer
                        tbl.Columns.Add("formula", GetType(String)) '9
                        tbl.Columns.Add("adducts", GetType(String)) '10
 
-                       For Each meta As PoolData.Metadata In cloud.FetchMetadata(node)
+                       For Each meta As PoolData.Metadata In metaSet
                            Call tbl.Rows.Add(meta.guid, meta.mz, meta.rt, meta.intensity, meta.source_file,
                                  meta.sample_source, meta.organism, meta.name, meta.biodeep_id,
                                  meta.formula, meta.adducts)
                        Next
                    End Sub)
+
+        current_ptr = ptr
     End Sub
 
     Private Sub ExportSpectrumToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportSpectrumToolStripMenuItem.Click
@@ -230,5 +240,61 @@ Public Class FormViewer
     Private Sub FormViewer_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         e.Cancel = True
         DockState = DockState.Hidden
+    End Sub
+
+    Private Sub ViewClusterInBrowserToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewClusterInBrowserToolStripMenuItem.Click
+        Try
+            Dim url As String = $"http://novocell.mzkit.org/spectrum/cluster/?id={current_ptr}&model={cloud.tree.model_id}"
+            Call Process.Start(url)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub ViewBioDeepMetabolitesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewBioDeepMetabolitesToolStripMenuItem.Click
+        Dim biodeep_id As New List(Of String)
+        Dim index As Integer = 8
+        Dim rows = AdvancedDataGridView1.Rows
+        Dim url As String = Nothing
+
+        Static pattern As New Regex("BioDeep_\d+")
+
+        For i As Integer = 0 To rows.Count - 1
+            Dim row = rows.Item(i)
+
+            If row.Cells.Count = 0 Then
+                Exit For
+            Else
+                Try
+                    Call biodeep_id.Add(CStr(row.Cells.Item(index).Value))
+                Catch ex As Exception
+
+                End Try
+            End If
+        Next
+
+        biodeep_id = biodeep_id.Where(Function(si) si.IsPattern(pattern)).Distinct.AsList
+
+        If biodeep_id.Count > 13 Then
+            Dim ssid As String = $"mzkit_win32_{$"{App.PID}-{Now.ToString}-{biodeep_id.JoinBy("+")}".MD5}"
+            Dim payload As New Dictionary(Of String, String()) From {
+                {"ssid", {ssid}},
+                {"biodeep_id", {biodeep_id.ToArray.GetJson}}
+            }
+            Dim err As String = Nothing
+
+            url = $"http://novocell.mzkit.org/kb/put_list/?ssid={ssid}"
+            url.POST(payload, unsafe:=False, [error]:=err) _
+               .DoCall(AddressOf Workbench.LogText)
+            url = $"http://novocell.mzkit.org/kb/metabolites/?list=query:{ssid}"
+
+            If Not err.StringEmpty Then
+                Call Workbench.LogText(err)
+            End If
+        Else
+            url = $"http://novocell.mzkit.org/kb/metabolites/?list={biodeep_id.JoinBy(",")}"
+        End If
+
+        Call Process.Start(url)
     End Sub
 End Class

@@ -88,6 +88,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math.Distributions.BinBox
 Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.My.FrameworkInternal
+Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports Microsoft.VisualBasic.ValueTypes
 Imports Mzkit_win32.BasicMDIForm
@@ -97,6 +98,7 @@ Imports SMRUCC.genomics.Analysis.HTS.GSEA
 Imports Task
 Imports Task.Container
 Imports WeifenLuo.WinFormsUI.Docking
+Imports IPEndPoint = Microsoft.VisualBasic.Net.IPEndPoint
 Imports stdNum = System.Math
 
 Module Globals
@@ -189,6 +191,7 @@ Module Globals
         Call Actions.Register("Peak List Annotation", New PeakAnnotationAction, println)
         Call Actions.Register("KEGG Stats", New KEGGStatsAction, println)
         Call Actions.Register("View 3D Scatter", New ViewScatter3DAction, println)
+        Call Actions.Register("Metabonomics Analysis", New MetabonomicsAnalysisTool, println)
     End Sub
 
     Private Sub shutdownHttpWeb()

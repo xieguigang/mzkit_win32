@@ -216,7 +216,7 @@ UseCheckedList:
     End Sub
 
     ''' <summary>
-    ''' load m/z layer
+    ''' Do ion Rendering
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
@@ -327,7 +327,48 @@ UseCheckedList:
         End If
     End Sub
 
+    Private Sub TryRenderTissueMapPlot(cdf As netCDFReader)
+        If cdf.IsTissueMorphologyCDF Then
+            Dim regions = cdf.ReadTissueMorphology.ToArray
+
+            If regions.IsNullOrEmpty Then
+                MessageBox.Show("No content data!", "Tissue map viewer", buttons:=MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Return
+            End If
+
+            Dim dims As Size = cdf.GetDimension
+            ' open tool and then save to sample regions?
+            Dim getFormula As New SampleRegionMergeTool
+            Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
+
+            Call getFormula.LoadRegions(regions, dims)
+
+            If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
+                ' update to new regions
+                regions = getFormula.GetMergedRegions
+            End If
+
+            Dim Rplot As Image = LayerRender.Draw(regions, dims, alphaLevel:=1, dotSize:=3)
+
+            Call MyApplication.host.mzkitTool.ShowPlotImage(Rplot, ImageLayout.Zoom)
+            Call MyApplication.host.ShowMzkitToolkit()
+        Else
+            ' invalid format
+            Call Workbench.Warning("Invalid cdf file format! [mz, intensity, x, y] data vector should exists inside this cdf file!")
+        End If
+    End Sub
+
     Public Sub loadRenderFromCDF(firstFile As String)
+        Using cdf As New netCDFReader(firstFile)
+            If Not {"mz", "intensity", "x", "y"}.All(AddressOf cdf.dataVariableExists) Then
+                TryRenderTissueMapPlot(cdf)
+            Else
+                TryRenderMSI(cdf, firstFile)
+            End If
+        End Using
+    End Sub
+
+    Private Sub TryRenderMSI(cdf As netCDFReader, firstFile As String)
         Dim pixels As PixelData()
         Dim size As Size
         Dim tolerance As Tolerance
@@ -337,59 +378,20 @@ UseCheckedList:
             viewer = WindowModules.viewer
         End If
 
-        Using cdf As New netCDFReader(firstFile)
-            If Not {"mz", "intensity", "x", "y"}.All(AddressOf cdf.dataVariableExists) Then
-                If cdf.IsTissueMorphologyCDF Then
-                    Dim regions = cdf.ReadTissueMorphology.ToArray
+        ' viewer.StartMSIService()
 
-                    If regions.IsNullOrEmpty Then
-                        MessageBox.Show("No content data!", "Tissue map viewer", buttons:=MessageBoxButtons.OK, MessageBoxIcon.Information)
-                        Return
-                    End If
+        size = cdf.GetMsiDimension
+        pixels = cdf.LoadPixelsData.ToArray
+        tolerance = cdf.GetMzTolerance
 
-                    Dim dims As Size = cdf.GetDimension
-                    ' open tool and then save to sample regions?
-                    Dim getFormula As New SampleRegionMergeTool
-                    Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
-
-                    Call getFormula.LoadRegions(regions, dims)
-
-                    If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
-                        ' update to new regions
-                        regions = getFormula.GetMergedRegions
-                    End If
-
-                    Dim Rplot As Image = LayerRender.Draw(regions, dims, alphaLevel:=1, dotSize:=3)
-
-                    Call MyApplication.host.mzkitTool.ShowPlotImage(Rplot, ImageLayout.Zoom)
-                    Call MyApplication.host.ShowMzkitToolkit()
-                Else
-                    ' invalid format
-                    Call Workbench.Warning("Invalid cdf file format! [mz, intensity, x, y] data vector should exists inside this cdf file!")
-                End If
-
-                Return
-            End If
-
-            size = cdf.GetMsiDimension
-            pixels = cdf.LoadPixelsData.ToArray
-            tolerance = cdf.GetMzTolerance
-
-            If cdf.dataVariableExists("rgb") Then
-                ' load rgb configs
-                rgb = RGBConfigs.ParseJSON(DirectCast(cdf.getDataVariable("rgb"), chars))
-            End If
-        End Using
-
-        'Call ProgressSpinner.DoLoading(
-        '    Sub()
-        '        Call Me.Invoke(Sub()
-        '                           viewer.LoadRender(firstFile, firstFile)
-        '                           viewer.renderByPixelsData(pixels, size)
-        '                       End Sub)
-        '    End Sub)
+        If cdf.dataVariableExists("rgb") Then
+            ' load rgb configs
+            rgb = RGBConfigs.ParseJSON(DirectCast(cdf.getDataVariable("rgb"), chars))
+            ' viewer.OpenSession(GetType(RGBIonMSIBlender), rgb.GetJSON)
+        End If
 
         Call viewer.LoadRender(firstFile, firstFile)
+        Call viewer.MSIservice.blender.channel.WriteBuffer(pixels)
         Call viewer.renderByPixelsData(pixels, size, rgb)
 
         For Each mz As Double In pixels _
@@ -670,9 +672,6 @@ UseCheckedList:
                 Dim dir As String = folder.SelectedPath
                 Dim params = WindowModules.viewer.params
                 Dim size As String = $"{params.scan_x},{params.scan_y}"
-                Dim args As New PlotProperty
-                Dim canvas As New Size(params.scan_x * 3, params.scan_y * 3)
-                Dim mzdiff = params.GetTolerance
                 Dim MSIservice = WindowModules.viewer.MSIservice
                 Dim TIC = TaskProgress.LoadData(
                     Function(echo As Action(Of String))
@@ -688,47 +687,65 @@ UseCheckedList:
                 params.Hqx = HqxScales.Hqx_4x
 
                 Call TaskProgress.LoadData(
-                    Function(echo As Action(Of String))
-                        For i As Integer = 0 To list.Nodes.Count - 1
-                            Dim n = list.Nodes(i)
-
-                            If n.Checked Then
-                                Dim val As String = any.ToString(If(n.Tag, CObj(n.Text)))
-                                Dim fileName As String = n.Text.NormalizePathString(False, ".")
-                                Dim path As String = $"{dir}/{If(fileName.Length > 128, fileName.Substring(0, 127) & "...", fileName)}.png"
-                                Dim pixels As PixelData()
-
-                                Call echo($"processing '{n.Text}' ({val})")
-
-                                If val.IsSimpleNumber Then
-                                    pixels = MSIservice.LoadPixels(New Double() {Conversion.Val(val)}, mzdiff)
-                                Else
-                                    pixels = MSIservice.LoadGeneLayer(val)
-                                End If
-
-                                If pixels.IsNullOrEmpty Then
-                                    Call Workbench.Warning($"No pixels data for {n.Text}...")
-                                Else
-                                    Dim maxInto = pixels.Select(Function(a) a.intensity).Max
-                                    params.SetIntensityMax(maxInto, New Point())
-                                    Dim blender As New SingleIonMSIBlender(pixels, params, frmMsImagingViewer.loadFilters, TIC)
-                                    Dim range As DoubleRange = blender.range
-                                    Dim image As Image = blender.Rendering(args, canvas)
-
-                                    Call image.SaveAs(path)
-                                    Call Workbench.SuccessMessage($"Imaging render for {n.Text} success and save at location: {path}!")
-                                End If
-                            End If
-                        Next
-
-                        Return True
-                    End Function,
+                    streamLoad:=Function(proc As ITaskProgress)
+                                    Return ExportLayers(proc, list, TIC, dir)
+                                End Function,
                     title:="Plot each selected image layers...",
                     info:="Export image rendering...",
                     host:=WindowModules.viewer)
             End If
         End Using
     End Sub
+
+    Private Function ExportLayers(proc As ITaskProgress, list As TreeNode, TIC As Image, dir As String) As Boolean
+        Dim params = WindowModules.viewer.params
+        Dim mzdiff = params.GetTolerance
+        Dim echo = proc.Echo
+        Dim MSIservice = WindowModules.viewer.MSIservice
+        Dim args As New PlotProperty
+        Dim canvas As New Size(params.scan_x * 3, params.scan_y * 3)
+
+        Call proc.SetProgressMode()
+        Call proc.SetProgress(0)
+
+        For i As Integer = 0 To list.Nodes.Count - 1
+            Dim n = list.Nodes(i)
+
+            Call proc.SetProgress(i / list.Nodes.Count * 100)
+
+            If Not n.Checked Then
+                Continue For
+            End If
+
+            Dim val As String = any.ToString(If(n.Tag, CObj(n.Text)))
+            Dim fileName As String = n.Text.NormalizePathString(False, ".")
+            Dim path As String = $"{dir}/{If(fileName.Length > 128, fileName.Substring(0, 127) & "...", fileName)}.png"
+            Dim pixels As PixelData()
+
+            Call echo($"processing '{n.Text}' ({val})")
+
+            If val.IsSimpleNumber Then
+                pixels = MSIservice.LoadPixels(New Double() {Conversion.Val(val)}, mzdiff)
+            Else
+                pixels = MSIservice.LoadGeneLayer(val)
+            End If
+
+            If pixels.IsNullOrEmpty Then
+                Call Workbench.Warning($"No pixels data for {n.Text}...")
+            Else
+                Dim maxInto = pixels.Select(Function(a) a.intensity).Max
+                params.SetIntensityMax(maxInto, New Point())
+                Dim blender As New SingleIonMSIBlender(pixels, frmMsImagingViewer.loadFilters, params, TIC)
+                Dim range As DoubleRange = blender.range
+                Dim image As Image = blender.Rendering(args, canvas)
+
+                Call image.SaveAs(path)
+                Call Workbench.SuccessMessage($"Imaging render for {n.Text} success and save at location: {path}!")
+            End If
+        Next
+
+        Return True
+    End Function
 
     Private Sub SelectAllToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SelectAllToolStripMenuItem.Click
         Dim list = Win7StyleTreeView1.Nodes(0)

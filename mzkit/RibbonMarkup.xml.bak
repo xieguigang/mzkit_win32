@@ -3348,10 +3348,10 @@
         <String Id="1128">Mzkit Tutorials Videos</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image MinDPI="192">Res/tutorials.png</Image>
+        <Image MinDPI="192">Res/icons8-animal-shelter-96.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image MinDPI="192">Res/tutorials.png</Image>
+        <Image MinDPI="192">Res/icons8-animal-shelter-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonMSIFilterPipeline" Id="229">

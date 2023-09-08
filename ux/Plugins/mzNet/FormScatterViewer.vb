@@ -22,12 +22,15 @@ Imports Microsoft.VisualBasic.Net.Http
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Mzkit_win32.LCMSViewer
+Imports std = System.Math
 
 Public Class FormScatterViewer
 
     Dim WithEvents scatterViewer As PeakScatterViewer
     Dim WithEvents exportReport As ToolStripMenuItem
     Dim WithEvents filterScatter As ToolStripMenuItem
+
+    Public host As FormViewer
 
     Dim model As HttpTreeFs
     Dim peaksData As New Dictionary(Of String, MetaIon)
@@ -128,7 +131,7 @@ Public Class FormScatterViewer
                 .Select(Function(o) HttpRESTMetadataPool.ParseMetadata(DirectCast(o, JavaScriptObject))) _
                 .ToArray
             Dim da As Tolerance = Tolerance.DeltaMass(0.3)
-            Dim adducts As MzCalculator() = Provider.Positives
+            Dim adducts As MzCalculator() = Provider.Positives.Where(Function(a) a.M = 1 AndAlso std.Abs(a.charge) = 1).ToArray
             Dim reference As New MSSearch(Of Metadata)(metaIons.Where(Function(a) a.project = "Reference Annotation"), da, adducts)
 
             metaIons = metaIons _
@@ -149,8 +152,16 @@ Public Class FormScatterViewer
             For Each ion As NamedCollection(Of Metadata) In precursors.Where(Function(o) o.Length > filterOut)
                 Dim mz As Double = ion.Select(Function(i) i.mz).Average
                 Dim rt As Double() = ion.Select(Function(i) i.rt).TabulateBin
+                Dim rt_mean As Double = rt.Average
                 Dim referIons = reference.QueryByMz(mz) _
-                    .Select(Function(a) reference.GetCompound(a.unique_id)) _
+                    .Select(Function(a)
+                                Dim annoData = reference.GetCompound(a.unique_id)
+                                annoData = New Metadata(annoData)
+                                annoData.mz = a.mz_ref
+                                annoData.adducts = a.precursorType
+                                annoData.rt = rt_mean
+                                Return annoData
+                            End Function) _
                     .ToArray
                 Dim names As String() = referIons _
                     .Select(Function(a) $"{a.name}({a.formula})") _
@@ -158,7 +169,11 @@ Public Class FormScatterViewer
                 Dim title As String = annotext
 
                 If Not names.IsNullOrEmpty Then
-                    title = names.JoinBy(" / ")
+                    If names.Length > 3 Then
+                        title = names.Take(3).JoinBy(" / ") & $", and {names.Length - 3} more..."
+                    Else
+                        title = names.JoinBy(" / ")
+                    End If
                 End If
 
                 Dim ion1 As New MetaIon With {
@@ -229,7 +244,10 @@ Public Class FormScatterViewer
                 End Sub)
         End If
 
+        ' display the spectrum list in the feature explorer
         Call Me.Invoke(Sub() Call SpectralViewerModule.showCluster(spectrum, ion.id))
+        ' and also show the spectrum list in the cluster table
+        Call host.LoadDataSet(ion.cluster!id, ion.metaList)
     End Sub
 
     Private Iterator Function PopulateSpectrum(echo As ITaskProgress, ion As MetaIon, peakId As String) As IEnumerable(Of PeakMs2)
@@ -383,6 +401,9 @@ Public Class FormScatterViewer
 
 End Class
 
+''' <summary>
+''' A scatter spot on the canvas andalso a collection of the <see cref="Metadata"/>
+''' </summary>
 Public Class MetaIon : Inherits Meta
 
     Public Property metaList As Metadata()
