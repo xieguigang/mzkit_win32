@@ -174,10 +174,10 @@
         <String Id="48">Try to adjust the slide sample location automatically.</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="49" MinDPI="192">Res/osd-duplicate.png</Image>
+        <Image MinDPI="192">Res/icons8-move-96.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="50" MinDPI="192">Res/osd-duplicate.png</Image>
+        <Image MinDPI="192">Res/icons8-move-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonAutoUMAP" Id="223">
@@ -194,10 +194,10 @@
         <String Id="54">Auto UMAP</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="55" MinDPI="192">Resources/umap.bmp</Image>
+        <Image MinDPI="192">Resources/umap.bmp</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="56" MinDPI="192">Resources/umap.bmp</Image>
+        <Image MinDPI="192">Resources/umap.bmp</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonMSIAverageIon" Id="125">
@@ -984,6 +984,26 @@
         <Image Id="284" MinDPI="192">Res/application-x-object.bmp</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonLayout2" Id="1044">
+      <Command.LabelTitle>
+        <String Id="848">Export Matrix</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="849">Export and save the spectrum data to file</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="850">Export and save the spectrum data to file</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="851">Export and save the spectrum data to file</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="852" MinDPI="192">Res/icons8-save-tabs-list-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="853" MinDPI="192">Res/icons8-save-tabs-list-96.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdButtonExportMatrix" Id="1105">
       <Command.LabelTitle>
         <String Id="285">Export Matrix Table</String>
@@ -1338,10 +1358,10 @@
         <String Id="386">Imports a list set of the metabolite annotation data for visual on ms-imaging sample data. Two field is required: name, formula!</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="387" MinDPI="192">Res/excel-icon.bmp</Image>
+        <Image MinDPI="192">Res/icons8-show-property-96.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="388" MinDPI="192">Res/excel-icon.bmp</Image>
+        <Image MinDPI="192">Res/icons8-show-property-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonImportsMSITable" Id="205">
@@ -1522,6 +1542,26 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image Id="442" MinDPI="192">Res/excel-icon.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdOpenIonsLibrary" Id="159">
+      <Command.LabelTitle>
+        <String Id="617">Ions Library</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="618">Open ions annotation library</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="619">Ions Library</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="620">Open ions annotation library</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="621" MinDPI="192">Res/icons8-database-administrator-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="622" MinDPI="192">Res/icons8-database-administrator-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdCheckboxHEstainKeepsAspectRatio" Id="246">
@@ -1785,10 +1825,10 @@
         <String Id="517">Merge multiple MS-Imaging sample slides</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="518" MinDPI="192">Res/osd-duplicate.png</Image>
+        <Image MinDPI="192">Res/icons8-merge-documents-96.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="519" MinDPI="192">Res/osd-duplicate.png</Image>
+        <Image MinDPI="192">Res/icons8-merge-documents-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonDropD" Id="5010">
@@ -2130,26 +2170,6 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image Id="616" MinDPI="192">Res/folder-pictures.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdOpenIonsLibrary" Id="159">
-      <Command.LabelTitle>
-        <String Id="617">Ions Library</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="618">Open ions annotation library</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="619">Ions Library</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="620">Open ions annotation library</String>
-      </Command.TooltipDescription>
-      <Command.SmallImages>
-        <Image Id="621" MinDPI="192">Res/icons8-database-administrator-96.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image Id="622" MinDPI="192">Res/icons8-database-administrator-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonOpenVirtualSlideFile" Id="234">
@@ -2921,26 +2941,6 @@
         <Image Id="847" MinDPI="192">Res/excel-icon.bmp</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonLayout2" Id="1044">
-      <Command.LabelTitle>
-        <String Id="848">Export Matrix</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="849">Export and save the spectrum data to file</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="850">Export and save the spectrum data to file</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="851">Export and save the spectrum data to file</String>
-      </Command.TooltipDescription>
-      <Command.SmallImages>
-        <Image Id="852" MinDPI="192">Res/icons8-save-tabs-list-96.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image Id="853" MinDPI="192">Res/icons8-save-tabs-list-96.png</Image>
-      </Command.LargeImages>
-    </Command>
     <Command Name="cmdGroupRscript" Id="1132">
       <Command.LabelTitle>
         <String Id="854">Scripting</String>
@@ -3141,10 +3141,10 @@
         <String Id="911">Show or hide of the tissue regions map overlaps on the MS-imaging image output or not?</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="912" MinDPI="192">Res/insert-object.png</Image>
+        <Image MinDPI="192">Res/icons8-layers-96.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="913" MinDPI="144">Res/insert-object.png</Image>
+        <Image MinDPI="192">Res/icons8-layers-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonUIShowMapLayer" Id="224">
@@ -3195,10 +3195,10 @@
         <String Id="927">Show the property window for view of your MSI sample regions list, which is generated from the region editing result in polygon editor.</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
-        <Image Id="928" MinDPI="192">Res/pix.png</Image>
+        <Image MinDPI="192">Res/icons8-world-map-continents-96.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image Id="929" MinDPI="192">Res/pix.png</Image>
+        <Image MinDPI="192">Res/icons8-world-map-continents-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdShowTissueData" Id="220">
