@@ -36,3 +36,10 @@ Mzkit Windows Desktop Application, this source repository is a submodule of the 
    https://doi.org/10.1021/acs.jcim.7b00425
 
 2. Chemical structure drawer: https://github.com/epam/ketcher 
+
+## Windows Desktop UI Credits
+
++ Application icon is requested from [Icons8(https://icons8.com/icons)](https://icons8.com/icons) under the free license
++ 3D chartting use the [apache ECharts(https://echarts.apache.org/en/index.html)](https://echarts.apache.org/en/index.html)
++ Windows Ribbon: https://github.com/harborsiem/WindowsRibbon
++ DockPanel: https://github.com/dockpanelsuite/dockpanelsuite
