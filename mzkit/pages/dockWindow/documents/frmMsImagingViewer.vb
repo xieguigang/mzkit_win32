@@ -2595,7 +2595,7 @@ Public Class frmMsImagingViewer
         Dim filename As String
 
         If targetMz.Length > 1 Then
-            filename = targetMz.Select(Function(d) d.ToString("F3")).JoinBy("+") & ".png"
+            filename = targetMz.Select(Function(d) d.ToString("F3")).JoinBy("+")
         Else
             If title.StringEmpty Then
                 filename = targetMz(0).ToString("F4")

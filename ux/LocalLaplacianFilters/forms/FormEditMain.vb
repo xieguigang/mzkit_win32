@@ -120,6 +120,8 @@ Valery Asiryan
         If Not file.IsNullOrEmpty Then
             Call TryOpen(file(Scan0))
         End If
+
+        FormBorderStyle = FormBorderStyle.Sizable
     End Sub
 
     Private Sub EnableVSRenderer(version As VisualStudioToolStripExtender.VsVersion, theme As ThemeBase)
