@@ -7,7 +7,7 @@
     End Property
 
     Public Function SetFileName(filename As String) As SetMSIPlotParameters
-        TextBox1.Text = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) & "/" & filename & ".png"
+        TextBox1.Text = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) & "\" & filename & ".png"
         Return Me
     End Function
 
