@@ -488,6 +488,12 @@
     <Compile Include="forms\Inputs\LCMS\InputMNSimilarityScore.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\Inputs\MSImaging\SetMSIPlotParameters.Designer.vb">
+      <DependentUpon>SetMSIPlotParameters.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\MSImaging\SetMSIPlotParameters.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\MSImaging\InputConfigFilterPipeline.Designer.vb">
       <DependentUpon>InputConfigFilterPipeline.vb</DependentUpon>
     </Compile>
@@ -1229,6 +1235,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\MSImaging\InputMSIRotation.resx">
       <DependentUpon>InputMSIRotation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\MSImaging\SetMSIPlotParameters.resx">
+      <DependentUpon>SetMSIPlotParameters.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\MSImaging\ShowMzBins.resx">
       <DependentUpon>ShowMzBins.vb</DependentUpon>

@@ -264,6 +264,10 @@
       <Project>{9fd0355c-babf-4720-a880-2842c50b6e9e}</Project>
       <Name>Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BasicMDIForm\BasicMDIForm.vbproj">
+      <Project>{51c55c5c-2f21-4e9f-aa8d-3664135758b7}</Project>
+      <Name>BasicMDIForm</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="llflogo.ico" />

@@ -2592,31 +2592,51 @@ Public Class frmMsImagingViewer
             Return
         End If
 
-        Using file As New SaveFileDialog With {.Filter = "Plot Image(*.png)|*.png"}
-            If file.ShowDialog = DialogResult.OK Then
-                If targetMz.Length > 1 Then
-                    Call RscriptProgressTask.ExportRGBIonsPlot(targetMz, mzdiff.GetScript, saveAs:=file.FileName)
-                Else
-                    Call RscriptProgressTask.ExportSingleIonPlot(
-                        mz:=targetMz(0),
-                        tolerance:=mzdiff.GetScript,
-                        saveAs:=file.FileName,
-                        title:=title,
-                        background:=params.background.ToHtmlColor,
-                        colorSet:=params.colors.Description,
-                        overlapTotalIons:=params.showTotalIonOverlap
-                    )
-                End If
+        Dim filename As String
+
+        If targetMz.Length > 1 Then
+            filename = targetMz.Select(Function(d) d.ToString("F3")).JoinBy("+") & ".png"
+        Else
+            If title.StringEmpty Then
+                filename = targetMz(0).ToString("F4")
+            Else
+                filename = title.NormalizePathString(False)
             End If
-        End Using
+        End If
+
+        Dim save As New SetMSIPlotParameters
+
+        Call save.SetFileName(filename)
+        Call InputDialog.Input(
+            setConfig:=Sub(cfg)
+                           If targetMz.Length > 1 Then
+                               Call RscriptProgressTask.ExportRGBIonsPlot(targetMz, mzdiff.GetScript, saveAs:=save.FileName)
+                           Else
+                               Call RscriptProgressTask.ExportSingleIonPlot(
+                                   mz:=targetMz(0),
+                                   tolerance:=mzdiff.GetScript,
+                                   saveAs:=save.FileName,
+                                   title:=title,
+                                   background:=params.background.ToHtmlColor,
+                                   colorSet:=params.colors.Description,
+                                   overlapTotalIons:=params.showTotalIonOverlap
+                               )
+                           End If
+                       End Sub,
+            config:=save
+        )
     End Sub
 
     Private Sub ImageProcessingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImageProcessingToolStripMenuItem.Click
         Dim image As Image = PixelSelector1.MSImage
         Dim file As String = TempFileSystem.GetAppSysTempFile(".app", sessionID:=App.PID, prefix:="saveimage___") & "/MSImaging.png"
+        Dim editor As New LaplacianHDR.FormEditMain(loadfile:=file)
 
         Call image.SaveAs(file)
-        Call New LaplacianHDR.FormEditMain(loadfile:=file).ShowDialog()
+        Call InputDialog.Input(Of LaplacianHDR.FormEditMain)(
+            Sub()
+
+            End Sub, config:=editor)
     End Sub
 
     Private Sub CopyImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyImageToolStripMenuItem.Click

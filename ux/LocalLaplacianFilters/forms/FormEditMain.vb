@@ -2,11 +2,12 @@
 Imports System.IO
 Imports LaplacianHDR.Filters
 Imports LaplacianHDR.Helpers
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports UMapx.Imaging
 Imports WeifenLuo.WinFormsUI.Docking
 
 Partial Public Class FormEditMain
-    Inherits Form
+    Inherits InputDialog
 
 #Region "Constants"
     Const application As String = "Local Laplacian filters"
