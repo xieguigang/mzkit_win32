@@ -203,7 +203,7 @@ Public Class FormScatterViewer
                                    scatterViewer.LoadPeaks(
                                 peaksdata:=peaksData.Values _
                                     .Where(Function(i)
-                                               If Not i.metaList.Length > filterOut Then
+                                               If Not i.nsamples > filterOut Then
                                                    Return False
                                                End If
 
@@ -329,18 +329,25 @@ Public Class FormScatterViewer
         Call p.SetProgressMode()
         Call p.SetInfo("Build excel table document file...")
 
-        Call table.Add(New RowObject({"ID", "name", "reference_id", "reference_names", "mz", "rt", "rt(minute)", "rtmin", "rtmax", "spectra", "spectra_text", "nsamples", "sample files"}))
+        Call table.Add(New RowObject({"ID", "name", "reference_names", "mz", "rt", "rt(minute)", "rtmin", "rtmax", "spectra", "spectra_text", "nsamples", "sample files"}))
 
         For Each ion As MetaIon In metaIonsDesc
             Dim img = PeakAssign.DrawSpectrumPeaks(ion.consensus, size:="1920,900").AsGDIImage
             Dim uri As New DataURI(img)
+            Dim annos = ion.metaList _
+                .Where(Function(p1) p1.project = DIAInfer.ReferenceProjectId) _
+                .Select(Function(a)
+                            Return $"<a href=""http://novocell.mzkit.org/metabolite/{a.biodeep_id}"">{a.name}({a.formula}_{a.adducts})</a>"
+                        End Function) _
+                .ToArray
 
             Call table.Add(New RowObject({
                 CStr(ion.cluster!id), ion.id,
+                annos.JoinBy("<br />"),
                 ion.mz, ion.metaList.Select(Function(j) j.rt).Average, (ion.metaList.Select(Function(j) j.rt).Average / 60).ToString("F1"),
                 ion.rtmin, ion.rtmax, $"<img src=""{uri}"" width=""450"">",
                 ion.consensus.ms2.Select(Function(m) $"{m.mz}_{m.intensity}").JoinBy(" "),
-                ion.metaList.Length,
+                ion.metaList.Length - annos.Length,
                 ion.metaList.Select(Function(a) a.source_file).Distinct.JoinBy(", ")
             }))
 
@@ -360,8 +367,8 @@ Public Class FormScatterViewer
     Private Function getReportIonSource() As MetaIon()
         Return scatterViewer.GetSelectedIons _
             .Select(Function(m) DirectCast(m, MetaIon)) _
-            .Where(Function(o) o.metaList.Length > filterOut) _
-            .OrderByDescending(Function(i) i.metaList.Length) _
+            .Where(Function(o) o.nsamples > filterOut) _
+            .OrderByDescending(Function(i) i.nsamples) _
             .ToArray
     End Function
 
@@ -415,5 +422,11 @@ Public Class MetaIon : Inherits Meta
     Public Property rtmax As Double
     Public Property cluster As JavaScriptObject
     Public Property consensus As LibraryMatrix
+
+    Public ReadOnly Property nsamples As Integer
+        Get
+            Return metaList.Length - metaList.Where(Function(i) i.project = DIAInfer.ReferenceProjectId).Count
+        End Get
+    End Property
 
 End Class
