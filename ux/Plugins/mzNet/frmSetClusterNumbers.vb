@@ -11,11 +11,13 @@ Public Class frmSetClusterNumbers
 
     Public ReadOnly Property GetIonMode As IonModes
         Get
-            If ComboBox1.SelectedValue Is Nothing Then
+            If ComboBox1.SelectedIndex < 0 Then
                 Return IonModes.Unknown
+            ElseIf ComboBox1.SelectedIndex = 0 Then
+                Return IonModes.Positive
+            Else
+                Return IonModes.Negative
             End If
-
-            Return Provider.ParseIonMode(ComboBox1.SelectedValue.ToString)
         End Get
     End Property
 
