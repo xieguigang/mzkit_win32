@@ -1,5 +1,6 @@
 ﻿Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Data.csv.IO
+Imports Microsoft.VisualBasic.Text
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Excel = Microsoft.VisualBasic.MIME.Office.Excel.XLSX
 
@@ -20,6 +21,8 @@ Public Class SelectSheetName
     Public Shared Sub OpenExcel(fileName As String)
         If fileName.ExtensionSuffix("csv") Then
             Call showFile(File.Load(fileName), fileName.FileName)
+        ElseIf fileName.ExtensionSuffix("txt", "tsv") Then
+            Call showFile(File.LoadTsv(fileName, Encodings.UTF8), fileName.FileName)
         Else
             Dim getSheetName As New SelectSheetName
             Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)

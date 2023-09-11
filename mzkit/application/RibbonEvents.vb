@@ -70,8 +70,10 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.RibbonLib.Controls
 Imports Microsoft.VisualBasic.ApplicationServices
+Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Emit.Delegates
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Text
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib
@@ -195,12 +197,30 @@ Module RibbonEvents
         AddHandler ribbonItems.ButtonSearchPubChem.ExecuteEvent, Sub() Call openShowSearchPubChemLCMS()
 
         AddHandler ribbonItems.ButtonOpenVirtualSlideFile.ExecuteEvent, Sub() Call openSlideFile()
+        AddHandler ribbonItems.ButtonOpenTableTool.ExecuteEvent, Sub() Call OpenExcelTableFile2()
     End Sub
 
     Sub New()
         ExportApis._openMSImagingFile = AddressOf OpenMSIRaw
         ExportApis._openMSImagingViewer = AddressOf showMsImaging
         ExportApis._openCFMIDTool = AddressOf OpenCFMIDTool
+    End Sub
+
+    Private Sub OpenExcelTableFile2()
+        Dim filetypes As String() = {
+           "Any Excel Table File(*.txt;*.csv;*.tsv;*.xlsx)|*.txt;*.csv;*.xlsx;*.tsv",
+           "Tab delimiter file(*.txt;*.tsv)|*.txt;*.tsv",
+           "Comma delimiter file(*.csv)|*.csv",
+           "Excel table file(*.xlsx)|*.xlsx"
+        }
+
+        Using file As New OpenFileDialog With {
+            .Filter = filetypes.JoinBy("|")
+        }
+            If file.ShowDialog = DialogResult.OK Then
+                Call SelectSheetName.OpenExcel(file.FileName)
+            End If
+        End Using
     End Sub
 
     Private Sub openSlideFile()

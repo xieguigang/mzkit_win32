@@ -3816,6 +3816,15 @@
         <String Id="1108">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdButtonOpenTableTool" Id="252" LabelTitle="Open Table File" LabelDescription="Open table file for run data analysis and data visualization, example like PCA/PLS-DA/OPLS-DA analysis, UMAP, clustering analysis" TooltipTitle="Open Table File" TooltipDescription="Open table file for run data analysis and data visualization, example like PCA/PLS-DA/OPLS-DA analysis, UMAP, clustering analysis">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/excel-icon.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/excel-icon.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdMenuTableTools" Id="253" LabelTitle="Table Tools" LabelDescription="Table Tools" TooltipTitle="Table Tools" TooltipDescription="Table Tools" />
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -3882,6 +3891,9 @@
               <MenuGroup CommandName="cmdMenuRTerm" Class="MajorItems">
                 <Button CommandName="cmdButtonRsharp" />
                 <Button CommandName="cmdButtonDevTools" />
+              </MenuGroup>
+              <MenuGroup CommandName="cmdMenuTableTools">
+                <Button CommandName="cmdButtonOpenTableTool" />
               </MenuGroup>
             </DropDownButton>
           </MenuGroup>

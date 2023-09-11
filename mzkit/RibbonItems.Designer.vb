@@ -35,6 +35,8 @@ Namespace RibbonLib.Controls
             Public Const cmdMenuRTerm As UInteger = 233
             Public Const cmdButtonRsharp As UInteger = 1107
             Public Const cmdButtonDevTools As UInteger = 168
+            Public Const cmdMenuTableTools As UInteger = 253
+            Public Const cmdButtonOpenTableTool As UInteger = 252
             Public Const cmdButtonSettings As UInteger = 1051
             Public Const cmdButtonAbout As UInteger = 1021
             Public Const cmdButtonBioDeep As UInteger = 1022
@@ -378,6 +380,18 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonDevTools As RibbonButton
             Get
                 Return _ButtonDevTools
+            End Get
+        End Property
+        Private _MenuTableTools As RibbonMenuGroup
+        Public ReadOnly Property MenuTableTools As RibbonMenuGroup
+            Get
+                Return _MenuTableTools
+            End Get
+        End Property
+        Private _ButtonOpenTableTool As RibbonButton
+        Public ReadOnly Property ButtonOpenTableTool As RibbonButton
+            Get
+                Return _ButtonOpenTableTool
             End Get
         End Property
         Private _ButtonSettings As RibbonButton
@@ -1681,6 +1695,8 @@ Namespace RibbonLib.Controls
             _MenuRTerm = New RibbonMenuGroup(_ribbon, Cmd.cmdMenuRTerm)
             _ButtonRsharp = New RibbonButton(_ribbon, Cmd.cmdButtonRsharp)
             _ButtonDevTools = New RibbonButton(_ribbon, Cmd.cmdButtonDevTools)
+            _MenuTableTools = New RibbonMenuGroup(_ribbon, Cmd.cmdMenuTableTools)
+            _ButtonOpenTableTool = New RibbonButton(_ribbon, Cmd.cmdButtonOpenTableTool)
             _ButtonSettings = New RibbonButton(_ribbon, Cmd.cmdButtonSettings)
             _ButtonAbout = New RibbonButton(_ribbon, Cmd.cmdButtonAbout)
             _ButtonBioDeep = New RibbonButton(_ribbon, Cmd.cmdButtonBioDeep)
