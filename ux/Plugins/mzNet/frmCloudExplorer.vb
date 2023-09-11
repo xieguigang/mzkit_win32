@@ -284,7 +284,7 @@ Public Class frmCloudExplorer
 
         Call InputDialog.Input(Of frmSetClusterNumbers)(
             Sub(cfg)
-                Call viewer.LoadClusters(tree, topN:=cfg.TopNClusters)
+                Call viewer.LoadClusters(tree, topN:=cfg.TopNClusters, adducts:=cfg.GetAdducts)
             End Sub)
     End Sub
 End Class

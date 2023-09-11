@@ -22,7 +22,6 @@ Imports Microsoft.VisualBasic.Net.Http
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Mzkit_win32.LCMSViewer
-Imports std = System.Math
 
 Public Class FormScatterViewer
 
@@ -36,6 +35,7 @@ Public Class FormScatterViewer
     Dim peaksData As New Dictionary(Of String, MetaIon)
     Dim filterOut As Integer
     Dim filterSingle As Boolean = False
+    Dim adducts As MzCalculator()
 
     Sub New()
 
@@ -66,10 +66,11 @@ Public Class FormScatterViewer
         Call scatterViewer.GetMenu.Items.AddRange({exportReport, filterScatter})
     End Sub
 
-    Public Sub LoadClusters(model As HttpTreeFs, topN As Integer)
+    Public Sub LoadClusters(model As HttpTreeFs, topN As Integer, adducts As MzCalculator())
         Dim url As String = $"{model.HttpServices}/get/cluster/?model_id={model.model_id}&limit_n={topN}"
 
         Me.model = model
+        Me.adducts = adducts
 
         Call TaskProgress.RunAction(
             run:=Sub(p As ITaskProgress)
@@ -79,14 +80,14 @@ Public Class FormScatterViewer
                          Return
                      End If
 
-                     Call Me.Invoke(Sub() Call LoadClusters(p, data.info, filterOut:=2))
+                     Call Me.Invoke(Sub() Call LoadClusters(p, data.info, filterOut:=2, adducts:=adducts))
                      Call p.SetInfo("Done!")
                  End Sub,
             info:=$"Load top {topN} clusters..."
         )
     End Sub
 
-    Private Sub LoadClusters(p As ITaskProgress, clusters As Object(), filterOut As Integer)
+    Private Sub LoadClusters(p As ITaskProgress, clusters As Object(), filterOut As Integer, adducts As MzCalculator())
         Dim precursorList As New List(Of Meta)
         Dim ii As i32 = 0
 
@@ -131,7 +132,6 @@ Public Class FormScatterViewer
                 .Select(Function(o) HttpRESTMetadataPool.ParseMetadata(DirectCast(o, JavaScriptObject))) _
                 .ToArray
             Dim da As Tolerance = Tolerance.DeltaMass(0.3)
-            Dim adducts As MzCalculator() = Provider.Positives.Where(Function(a) a.M = 1 AndAlso std.Abs(a.charge) = 1).ToArray
             Dim reference As New MSSearch(Of Metadata)(metaIons.Where(Function(a) a.project = "Reference Annotation"), da, adducts)
 
             metaIons = metaIons _
@@ -332,7 +332,7 @@ Public Class FormScatterViewer
         Call table.Add(New RowObject({"ID", "name", "reference_names", "mz", "rt", "rt(minute)", "rtmin", "rtmax", "spectra", "spectra_text", "nsamples", "sample files"}))
 
         For Each ion As MetaIon In metaIonsDesc
-            Dim img = PeakAssign.DrawSpectrumPeaks(ion.consensus, size:="1920,900").AsGDIImage
+            Dim img = PeakAssign.DrawSpectrumPeaks(ion.consensus, size:="1920,1200").AsGDIImage
             Dim uri As New DataURI(img)
             Dim annos = ion.metaList _
                 .Where(Function(p1) p1.project = DIAInfer.ReferenceProjectId) _
