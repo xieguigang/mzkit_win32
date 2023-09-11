@@ -282,7 +282,11 @@ Public Class FormScatterViewer
     End Function
 
     Private Sub exportReport_Click(sender As Object, e As EventArgs) Handles exportReport.Click
-        Using file As New SaveFileDialog With {.Filter = "PDF report file(*.pdf)|*.pdf|Excel table(*.xls)|*.xls"}
+        Dim filetypes As String() = {' "PDF report file(*.pdf)|*.pdf", 
+            "Excel table(*.xls)|*.xls"
+        }
+
+        Using file As New SaveFileDialog With {.Filter = filetypes.JoinBy("|")}
             If file.ShowDialog = DialogResult.OK Then
                 Dim path As String = file.FileName
 
@@ -325,9 +329,9 @@ Public Class FormScatterViewer
         Call p.SetProgressMode()
         Call p.SetInfo("Build excel table document file...")
 
-        Call table.Add(New RowObject({"ID", "name", "mz", "rt", "rt(minute)", "rtmin", "rtmax", "spectra", "spectra_text", "nsamples", "sample files"}))
+        Call table.Add(New RowObject({"ID", "name", "reference_id", "reference_names", "mz", "rt", "rt(minute)", "rtmin", "rtmax", "spectra", "spectra_text", "nsamples", "sample files"}))
 
-        For Each ion In metaIonsDesc
+        For Each ion As MetaIon In metaIonsDesc
             Dim img = PeakAssign.DrawSpectrumPeaks(ion.consensus, size:="1920,900").AsGDIImage
             Dim uri As New DataURI(img)
 
