@@ -11,6 +11,10 @@ Public Class frmSetClusterNumbers
 
     Public ReadOnly Property GetIonMode As IonModes
         Get
+            If ComboBox1.SelectedValue Is Nothing Then
+                Return IonModes.Unknown
+            End If
+
             Return Provider.ParseIonMode(ComboBox1.SelectedValue.ToString)
         End Get
     End Property
@@ -69,5 +73,9 @@ Public Class frmSetClusterNumbers
                 Call CheckedListBox1.SetItemChecked(CheckedListBox1.Items.Count - 1, False)
             End If
         Next
+    End Sub
+
+    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
+        UpdateAdducts()
     End Sub
 End Class
