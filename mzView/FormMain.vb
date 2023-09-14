@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.IO.Compression
 Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
@@ -22,8 +23,32 @@ Public Class FormMain
     Private Sub OpenToolStripMenuItem_Click()
         Using file As New OpenFileDialog With {.Filter = "mzPack Data File(*.mzPack)|*.mzPack|All File Formats(*.*)|*.*"}
             If file.ShowDialog = DialogResult.OK Then
-                mzpack = New StreamPack(file.FileName, [readonly]:=True)
-                Win7StyleTreeView1.Nodes.Clear()
+                Try
+                    Dim buf As Stream = file.FileName.Open(FileMode.Open, doClear:=False, [readOnly]:=True, verbose:=True)
+
+                    If file.FileName.ExtensionSuffix("zip") Then
+                        ' read the first file stream
+                        Dim zip As New ZipArchive(buf, ZipArchiveMode.Read)
+                        Dim nfiles As Integer = zip.Entries.Count
+
+                        If nfiles = 0 Then
+                            MessageBox.Show("There is no data file inside the opened zip archive!", "Empty Archive", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            Return
+                        ElseIf nfiles > 1 Then
+                            MessageBox.Show("There are multiple data files inside the opened zip archive," & vbCrLf &
+                                            "Only the first archive stream will be used for open as the mzpack archive data!",
+                                            "Multiple Archive", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        End If
+
+                        buf = zip.Entries.First.Open
+                    End If
+
+                    mzpack = New StreamPack(buf, [readonly]:=True)
+                    Win7StyleTreeView1.Nodes.Clear()
+                Catch ex As Exception
+                    MessageBox.Show(ex.ToString, "Open Database Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Return
+                End Try
 
                 Call loadTree()
             End If
