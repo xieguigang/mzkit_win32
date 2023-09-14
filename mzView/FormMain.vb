@@ -22,8 +22,13 @@ Public Class FormMain
     Private Sub OpenToolStripMenuItem_Click()
         Using file As New OpenFileDialog With {.Filter = "mzPack Data File(*.mzPack)|*.mzPack|All File Formats(*.*)|*.*"}
             If file.ShowDialog = DialogResult.OK Then
-                mzpack = New StreamPack(file.FileName, [readonly]:=True)
-                Win7StyleTreeView1.Nodes.Clear()
+                Try
+                    mzpack = New StreamPack(file.FileName, [readonly]:=True)
+                    Win7StyleTreeView1.Nodes.Clear()
+                Catch ex As Exception
+                    MessageBox.Show(ex.ToString, "Open Database Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Return
+                End Try
 
                 Call loadTree()
             End If
