@@ -106,6 +106,7 @@ Public Class PixelProperty
     <Description("The gini value of current MS1 spectrum data.")>
     <Category("Information Theory")>
     Public ReadOnly Property Gini As Double
+    Public ReadOnly Property SplashId As String
 
     Sub New(pixel As PixelScan)
         Dim ms As ms2() = pixel.GetMs
