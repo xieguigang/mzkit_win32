@@ -63,6 +63,10 @@ Public Class InputPubChemProxy
             Dim compound = api.Query(Of PugViewRecord)(id)
             Dim metadata = compound.GetMetaInfo
 
+            If metadata Is Nothing Then
+                Continue For
+            End If
+
             Call Me.cids.Add(id, metadata)
 
             Dim cid = ListView1.Items.Add(id)
