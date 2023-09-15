@@ -6,6 +6,8 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking
+Imports BioNovoGene.BioDeep.Chemoinformatics.Formula.MS
+Imports BioNovoGene.BioDeep.MSFinder
 Imports BioNovoGene.mzkit_win32.MSdata
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.Collection
@@ -51,22 +53,22 @@ Namespace MSdata
         End Sub
 
         Public Sub showMasssdiff(M As Double, mz2 As Array)
-            Dim pa As New PeakAnnotation(0.05, isotopeFirst:=True)
-            Dim mz As ms2() = mz2
-            Dim massdiff = pa.RunAnnotation(M, mz.ToArray).products
-            ' show result in table viewer
-            Dim tblView = VisualStudio.ShowDocument(Of frmTableViewer)(title:=$"Mass Diff Analysis[m/z {M.ToString("F4")}]")
+            'Dim pa As New FragmentAssigner
+            'Dim mz As List(Of SpectrumPeak) = (From f As Object In mz2 Let frag = DirectCast(f, ms2) Select New SpectrumPeak With {.mz = frag.mz, .intensity = frag.intensity}).AsList
+            'Dim massdiff = pa.FastFragmnetAssigner(mz, Nothing, AdductIon.GetAdductIon("[M]+"))
+            '' show result in table viewer
+            'Dim tblView = VisualStudio.ShowDocument(Of frmTableViewer)(title:=$"Mass Diff Analysis[m/z {M.ToString("F4")}]")
 
-            Call tblView.LoadTable(
-                Sub(subView)
-                    Call subView.Columns.Add("precursor", GetType(Double))
-                    Call subView.Columns.Add("cluster_size", GetType(Double))
-                    Call subView.Columns.Add("mass_diff", GetType(String))
+            'Call tblView.LoadTable(
+            '    Sub(subView)
+            '        Call subView.Columns.Add("precursor", GetType(Double))
+            '        Call subView.Columns.Add("cluster_size", GetType(Double))
+            '        Call subView.Columns.Add("mass_diff", GetType(String))
 
-                    For Each row As ms2 In massdiff
-                        Call subView.Rows.Add(row.mz, row.intensity, row.Annotation)
-                    Next
-                End Sub)
+            '        For Each row As ProductIon In massdiff
+            '            Call subView.Rows.Add(row.Mass, row.Intensity, row.Formula.ToString)
+            '        Next
+            '    End Sub)
         End Sub
 
         <Extension>

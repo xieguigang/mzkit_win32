@@ -1856,6 +1856,10 @@
       <Project>{712e2304-2f25-4480-8a0b-6c7091136fb4}</Project>
       <Name>MSEngine</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\mzmath\MSFinder\MSFinder.vbproj">
+      <Project>{c0d84c9d-94ab-48a4-8e0b-c7070acc1d29}</Project>
+      <Name>MSFinder</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\mzmath\Mummichog\Mummichog.vbproj">
       <Project>{49f16938-4209-47a1-a1d5-b3de359c07eb}</Project>
       <Name>Mummichog</Name>

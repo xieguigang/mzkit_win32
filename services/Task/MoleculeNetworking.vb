@@ -61,8 +61,11 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
+Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula.IsotopicPatterns
+Imports BioNovoGene.BioDeep.Chemoinformatics.Formula.MS
 Imports BioNovoGene.BioDeep.MetaDNA
+Imports BioNovoGene.BioDeep.MSFinder
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Language
@@ -153,12 +156,18 @@ Public Module MoleculeNetworking
                 .Centroid(If(msLevel = 1, ms1diff, ms2diff), cutoff) _
                 .ToArray
         }
-        Dim pa As New PeakAnnotation(0.05, isotopeFirst:=True)
+        Dim pa As New FragmentAssigner
 
         properties = New SpectrumProperty(scanId, raw.source.FileName, msLevel, attrs)
 
         If showAnnotation AndAlso properties.precursorMz > 0 Then
-            scanData.ms2 = pa.RunAnnotation(properties.precursorMz, scanData.ms2).products
+            'Dim peaks As List(Of SpectrumPeak) = scanData.ms2 _
+            '    .Select(Function(m) New SpectrumPeak(m.mz, m.intensity, m.Annotation)) _
+            '    .AsList
+            'Dim candidate As Formula = Nothing
+            'Dim precursor As New AdductIon
+
+            'scanData.ms2 = pa.FastFragmnetAssigner(peaks, candidate, precursor).Select(Function(i) New ms2 With {.mz = i.Mass, .intensity = i.Intensity, .Annotation = i.Formula.ToString}).ToArray
         End If
 
         Return scanData
@@ -211,12 +220,12 @@ Public Module MoleculeNetworking
 
         Static pos As MzCalculator() = {"[M]+", "[M+H]+"} _
             .Select(Function(name)
-                        Return Parser.ParseMzCalculator(name, "+")
+                        Return Ms1.PrecursorType.Parser.ParseMzCalculator(name, "+")
                     End Function) _
             .ToArray
         Static neg As MzCalculator() = {"[M]-", "[M-H]-"} _
             .Select(Function(name)
-                        Return Parser.ParseMzCalculator(name, "-")
+                        Return Ms1.PrecursorType.Parser.ParseMzCalculator(name, "-")
                     End Function) _
             .ToArray
 
