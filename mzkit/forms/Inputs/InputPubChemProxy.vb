@@ -59,6 +59,8 @@ Public Class InputPubChemProxy
         )
         Dim api As WebQuery = $"{Globals.pubchemWebCache}/pugViews/".GetQueryHandler(Of WebQuery)(offline:=False)
 
+        Call api.Clear404URLIndex()
+
         For Each id As String In cids.SafeQuery
             Dim compound = api.Query(Of PugViewRecord)(id)
             Dim metadata = compound.GetMetaInfo
