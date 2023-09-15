@@ -67,6 +67,7 @@ Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID
 Imports Microsoft.VisualBasic.Math.Information
 Imports Microsoft.VisualBasic.Math.LinearAlgebra
 Imports Microsoft.VisualBasic.Serialization.JSON
@@ -113,6 +114,7 @@ Public Class SpectrumProperty : Implements ICopyProperties
 
     Public ReadOnly Property rawfile As String
     Public ReadOnly Property scanId As String
+    Public ReadOnly Property splashId As String
 
     Sub New(scanId As String, rawfile As String, msLevel As Integer, attrs As ScanMS2)
         With attrs
@@ -155,6 +157,7 @@ Public Class SpectrumProperty : Implements ICopyProperties
 
         Me.rawfile = rawfile
         Me.scanId = scanId
+        Me.splashId = Splash.MSSplash.CalcSplashID(attrs)
     End Sub
 
     Public Overrides Function ToString() As String
