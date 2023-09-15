@@ -59,6 +59,7 @@
 
 Imports System.ComponentModel
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports Microsoft.VisualBasic.Math.Distributions.BinBox
 Imports Microsoft.VisualBasic.Math.Information
@@ -115,6 +116,7 @@ Public Class PixelProperty
         X = pixel.X
         Y = pixel.Y
         ScanId = pixel.scanId
+        SplashId = Splash
 
         If into.Length = 0 Then
         Else
