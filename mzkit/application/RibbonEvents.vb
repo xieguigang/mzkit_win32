@@ -227,7 +227,8 @@ Module RibbonEvents
         Dim filetypes As String() = {
             "Hamamatsu format(*.ndpi)|*.ndpi",
             "Aperio format(*.svs)|*.svs",
-            "TIFF Image(*.tif;*.tiff)|*.tif;*.tiff"
+            "TIFF Image(*.tif;*.tiff)|*.tif;*.tiff",
+            "MIRAX format(*.mrxs)|*.mrxs"
         }
 
         Using file As New OpenFileDialog With {
