@@ -228,7 +228,9 @@ Module RibbonEvents
             "Hamamatsu format(*.ndpi)|*.ndpi",
             "Aperio format(*.svs)|*.svs",
             "TIFF Image(*.tif;*.tiff)|*.tif;*.tiff",
-            "MIRAX format(*.mrxs)|*.mrxs"
+            "MIRAX format(*.mrxs)|*.mrxs",
+            "Leica format(*.scn)|*.scn",
+            "DICOM format(*.dcm)|*.dcm"
         }
 
         Using file As New OpenFileDialog With {
