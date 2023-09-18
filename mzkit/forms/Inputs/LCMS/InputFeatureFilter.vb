@@ -72,6 +72,16 @@ Public Class InputFeatureFilter
         End Get
     End Property
 
+    Public ReadOnly Property GetMethod As ToleranceMethods
+        Get
+            If RadioButton2.Checked Then
+                Return ToleranceMethods.da
+            Else
+                Return ToleranceMethods.ppm
+            End If
+        End Get
+    End Property
+
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.DialogResult = DialogResult.OK
     End Sub

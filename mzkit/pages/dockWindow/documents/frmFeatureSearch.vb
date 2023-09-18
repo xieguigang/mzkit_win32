@@ -385,6 +385,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
     Dim rtmin As Double = Double.NaN
     Dim rtmax As Double = Double.NaN
     Dim ppm As Double = 30
+    Dim da As Double = 0.1
     Dim types As New Dictionary(Of String, Boolean)
 
     Private Sub ApplyFeatureFilterToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ApplyFeatureFilterToolStripMenuItem.Click
@@ -414,17 +415,19 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             getFilters.AddTypes(types)
         End If
 
-        getFilters.txtPPM.Text = ppm
+        getFilters.NumericUpDown1.Value = ppm
+        getFilters.NumericUpDown2.Value = da
         getFilters.txtRtMax.Text = rtmax
         getFilters.txtRtMin.Text = rtmin
 
         If mask.ShowDialogForm(getFilters) = DialogResult.OK Then
             rtmin = Val(getFilters.txtRtMin.Text)
             rtmax = Val(getFilters.txtRtMax.Text)
-            ppm = Val(getFilters.txtPPM.Text)
+            ppm = getFilters.NumericUpDown1.Value
+            da = getFilters.NumericUpDown2.Value
 
             If rtmin = rtmax OrElse (rtmin = rtmax AndAlso rtmin = 0.0) OrElse rtmin > rtmax Then
-                Call MyApplication.host.showStatusMessage("invalid filter value...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Call Workbench.Warning("invalid filter value...")
                 Return
             Else
                 Call TreeListView1.Items.Clear()
@@ -433,9 +436,26 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             If Not list1.IsNullOrEmpty Then
                 Dim source = list1.ToArray
                 Dim requiredTypes As Index(Of String) = getFilters.GetTypes
+                Dim method = getFilters.GetMethod
                 Dim filter = list1 _
                     .Select(Function(i)
-                                Return (i.File, i.matches.Where(Function(p) p.rt >= rtmin AndAlso p.rt <= rtmax AndAlso p.ppm <= ppm AndAlso p.precursor_type Like requiredTypes).ToArray)
+                                Dim hits = i.matches _
+                                    .Where(Function(p)
+                                               Dim filterMass As Boolean
+
+                                               If method = ToleranceMethods.da Then
+                                                   filterMass = p.da <= da
+                                               Else
+                                                   filterMass = p.ppm <= ppm
+                                               End If
+
+                                               Return p.rt >= rtmin AndAlso
+                                                      p.rt <= rtmax AndAlso
+                                                      filterMass AndAlso
+                                                      p.precursor_type Like requiredTypes
+                                           End Function)
+
+                                Return (i.File, hits.ToArray)
                             End Function) _
                     .ToArray
 
