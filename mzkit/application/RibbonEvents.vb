@@ -227,7 +227,8 @@ Module RibbonEvents
         Dim filetypes As String() = {
             "Hamamatsu format(*.ndpi)|*.ndpi",
             "Aperio format(*.svs)|*.svs",
-            "TIFF Image(*.tif;*.tiff)|*.tif;*.tiff",
+            "Philips format, Trestle format, or TIFF Image(*.tif;*.tiff)|*.tif;*.tiff",
+            "Ventana format(*.tif;*.bif)|*.tif;*.bif",
             "MIRAX format(*.mrxs)|*.mrxs",
             "Leica format(*.scn)|*.scn",
             "DICOM format(*.dcm)|*.dcm"
