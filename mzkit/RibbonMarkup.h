@@ -1374,5 +1374,12 @@
 #define cmdXIC_PPMSpinner_LabelTitle_RESID 1106
 #define cmdXIC_PPMSpinner_LabelDescription_RESID 1107
 #define cmdXIC_PPMSpinner_TooltipDescription_RESID 1108
-#define InternalCmd2_LabelTitle_RESID 60023
-#define InternalCmd4_LabelTitle_RESID 60024
+#define cmdButtonExportFeatureIons 254 
+#define cmdButtonExportFeatureIons_LabelTitle_RESID 60023
+#define cmdButtonExportFeatureIons_LabelDescription_RESID 60024
+#define cmdButtonExportFeatureIons_TooltipTitle_RESID 60025
+#define cmdButtonExportFeatureIons_TooltipDescription_RESID 60026
+#define cmdButtonExportFeatureIons_SmallImages_192__RESID 60027
+#define cmdButtonExportFeatureIons_LargeImages_192__RESID 60028
+#define InternalCmd2_LabelTitle_RESID 60029
+#define InternalCmd4_LabelTitle_RESID 60030

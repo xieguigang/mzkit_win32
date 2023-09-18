@@ -3825,6 +3825,14 @@
         <String Id="1108">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdButtonExportFeatureIons" Id="254" LabelTitle="Export Feature Spectrum" LabelDescription="Export Feature Spectrum" TooltipTitle="Export Feature Spectrum" TooltipDescription="Export Feature Spectrum">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/document-save.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/document-save.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4003,9 +4011,10 @@
         </TabGroup>
         <TabGroup CommandName="cmdTabGroupExactMassSearchTools">
           <Tab CommandName="cmdTabExactMassSearch" ApplicationModes="0,1">
-            <Group CommandName="cmdGroupExactMassSearch" ApplicationModes="0,1" SizeDefinition="TwoButtons">
+            <Group CommandName="cmdGroupExactMassSearch" ApplicationModes="0,1" SizeDefinition="ThreeButtons">
               <Button CommandName="cmdButtonExactMassSearchExport" />
               <Button CommandName="cmdButtonLayout2" />
+              <Button CommandName="cmdButtonExportFeatureIons" />
             </Group>
             <Group CommandName="cmdGroupFeatureFilter" SizeDefinition="OneButton">
               <Button CommandName="cmdButtonResetFeatureFilter" />

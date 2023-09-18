@@ -104,6 +104,7 @@ namespace RibbonLib.Controls
             public const uint cmdTabExactMassSearch = 1072;
             public const uint cmdGroupExactMassSearch = 1073;
             public const uint cmdButtonExactMassSearchExport = 1074;
+            public const uint cmdButtonExportFeatureIons = 254;
             public const uint cmdGroupFeatureFilter = 162;
             public const uint cmdButtonResetFeatureFilter = 165;
             public const uint cmdTabGroupNetworkTools = 1081;
@@ -349,6 +350,7 @@ namespace RibbonLib.Controls
         public RibbonTab TabExactMassSearch { get; private set; }
         public RibbonGroup GroupExactMassSearch { get; private set; }
         public RibbonButton ButtonExactMassSearchExport { get; private set; }
+        public RibbonButton ButtonExportFeatureIons { get; private set; }
         public RibbonGroup GroupFeatureFilter { get; private set; }
         public RibbonButton ButtonResetFeatureFilter { get; private set; }
         public RibbonTabGroup TabGroupNetworkTools { get; private set; }
@@ -589,6 +591,7 @@ namespace RibbonLib.Controls
             TabExactMassSearch = new RibbonTab(ribbon, Cmd.cmdTabExactMassSearch);
             GroupExactMassSearch = new RibbonGroup(ribbon, Cmd.cmdGroupExactMassSearch);
             ButtonExactMassSearchExport = new RibbonButton(ribbon, Cmd.cmdButtonExactMassSearchExport);
+            ButtonExportFeatureIons = new RibbonButton(ribbon, Cmd.cmdButtonExportFeatureIons);
             GroupFeatureFilter = new RibbonGroup(ribbon, Cmd.cmdGroupFeatureFilter);
             ButtonResetFeatureFilter = new RibbonButton(ribbon, Cmd.cmdButtonResetFeatureFilter);
             TabGroupNetworkTools = new RibbonTabGroup(ribbon, Cmd.cmdTabGroupNetworkTools);

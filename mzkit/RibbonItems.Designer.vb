@@ -101,6 +101,7 @@ Namespace RibbonLib.Controls
             Public Const cmdTabExactMassSearch As UInteger = 1072
             Public Const cmdGroupExactMassSearch As UInteger = 1073
             Public Const cmdButtonExactMassSearchExport As UInteger = 1074
+            Public Const cmdButtonExportFeatureIons As UInteger = 254
             Public Const cmdGroupFeatureFilter As UInteger = 162
             Public Const cmdButtonResetFeatureFilter As UInteger = 165
             Public Const cmdTabGroupNetworkTools As UInteger = 1081
@@ -779,6 +780,12 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonExactMassSearchExport As RibbonButton
             Get
                 Return _ButtonExactMassSearchExport
+            End Get
+        End Property
+        Private _ButtonExportFeatureIons As RibbonButton
+        Public ReadOnly Property ButtonExportFeatureIons As RibbonButton
+            Get
+                Return _ButtonExportFeatureIons
             End Get
         End Property
         Private _GroupFeatureFilter As RibbonGroup
@@ -1761,6 +1768,7 @@ Namespace RibbonLib.Controls
             _TabExactMassSearch = New RibbonTab(_ribbon, Cmd.cmdTabExactMassSearch)
             _GroupExactMassSearch = New RibbonGroup(_ribbon, Cmd.cmdGroupExactMassSearch)
             _ButtonExactMassSearchExport = New RibbonButton(_ribbon, Cmd.cmdButtonExactMassSearchExport)
+            _ButtonExportFeatureIons = New RibbonButton(_ribbon, Cmd.cmdButtonExportFeatureIons)
             _GroupFeatureFilter = New RibbonGroup(_ribbon, Cmd.cmdGroupFeatureFilter)
             _ButtonResetFeatureFilter = New RibbonButton(_ribbon, Cmd.cmdButtonResetFeatureFilter)
             _TabGroupNetworkTools = New RibbonTabGroup(_ribbon, Cmd.cmdTabGroupNetworkTools)
