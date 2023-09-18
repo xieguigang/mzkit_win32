@@ -326,7 +326,7 @@ Public Class frmRawFeaturesList
             Dim raw As MZWork.Raw = CurrentOpenedFile
             Dim scanId As String = e.Node.Text
 
-            Call MyApplication.host.mzkitTool.showSpectrum(scanId, raw)
+            Call MyApplication.host.mzkitTool.showSpectrum(scanId, raw, Nothing)
         End If
 
         Call MyApplication.host.mzkitTool.ShowPage()
@@ -396,7 +396,7 @@ Public Class frmRawFeaturesList
                            Call MyApplication.mzkitRawViewer.ShowXIC(15, New NamedCollection(Of ChromatogramTick)($"XIC, m/z={mz.ToString("F4")}", xic), AddressOf GetXICCollection, CurrentOpenedFile.GetXICMaxYAxis)
                        End Sub,
                 cancel:=Sub()
-                            MyApplication.host.showStatusMessage("No ion data selected for create XIC plot!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                            Workbench.Warning("No ion data selected for create XIC plot!")
                         End Sub)
             Return
         End If
@@ -410,7 +410,7 @@ Public Class frmRawFeaturesList
             ' 当前没有选中MS2，但是可以显示选中的XIC
             If ions.Length > 0 Then
             Else
-                MyApplication.host.showStatusMessage("No ion was selected for XIC plot...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Workbench.Warning("No ion was selected for XIC plot...")
                 Return
             End If
         Else
