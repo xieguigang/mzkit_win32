@@ -54,11 +54,23 @@
 
 #End Region
 
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports stdNum = System.Math
 
 Public Class InputFeatureFilter
+
+    Public ReadOnly Property GetTolerance As Tolerance
+        Get
+            If RadioButton2.Checked Then
+                ' da
+                Return Tolerance.DeltaMass(NumericUpDown2.Value)
+            Else
+                Return Tolerance.PPM(NumericUpDown1.Value)
+            End If
+        End Get
+    End Property
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.DialogResult = DialogResult.OK
@@ -87,11 +99,11 @@ Public Class InputFeatureFilter
         Return types.Indexing
     End Function
 
-    Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label3.Click
+    Private Sub Label3_Click(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub txtPPM_TextChanged(sender As Object, e As EventArgs) Handles txtPPM.TextChanged
+    Private Sub txtPPM_TextChanged(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -100,6 +112,8 @@ Public Class InputFeatureFilter
     End Sub
 
     Private Sub SelectCharges(charge As Integer, flag As Boolean)
+        Dim check_single As Boolean = CheckBox1.Checked
+
         For i As Integer = 0 To CheckedListBox1.Items.Count - 1
             Dim str As String = CheckedListBox1.Items(i)
             Dim adducts = Parser.ParseMzCalculator(str, str.Last)
@@ -116,5 +130,24 @@ Public Class InputFeatureFilter
 
     Private Sub cbCharge3_CheckedChanged(sender As Object, e As EventArgs) Handles cbCharge3.CheckedChanged
         Call SelectCharges(3, cbCharge3.Checked)
+    End Sub
+
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
+        Dim flagAll As Boolean = Not CheckBox1.Checked
+
+        For i As Integer = 0 To CheckedListBox1.Items.Count - 1
+            Dim str As String = CheckedListBox1.Items(i)
+            Dim adducts = Parser.ParseMzCalculator(str, str.Last)
+
+            If flagAll Then
+                Call CheckedListBox1.SetItemChecked(i, CheckedListBox1.GetItemChecked(i))
+            Else
+                If adducts.M = 1 Then
+                    Call CheckedListBox1.SetItemChecked(i, CheckedListBox1.GetItemChecked(i))
+                Else
+                    Call CheckedListBox1.SetItemChecked(i, False)
+                End If
+            End If
+        Next
     End Sub
 End Class

@@ -80,18 +80,26 @@ Partial Class InputFeatureFilter
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.cbCharge3 = New System.Windows.Forms.CheckBox()
+        Me.cbChage2 = New System.Windows.Forms.CheckBox()
+        Me.cbCharge1 = New System.Windows.Forms.CheckBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
-        Me.txtPPM = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.txtRtMax = New System.Windows.Forms.TextBox()
         Me.txtRtMin = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.cbCharge1 = New System.Windows.Forms.CheckBox()
-        Me.cbChage2 = New System.Windows.Forms.CheckBox()
-        Me.cbCharge3 = New System.Windows.Forms.CheckBox()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
+        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
+        Me.NumericUpDown2 = New System.Windows.Forms.NumericUpDown()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Button1
@@ -108,13 +116,14 @@ Partial Class InputFeatureFilter
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.CheckBox1)
+        Me.GroupBox1.Controls.Add(Me.Label3)
+        Me.GroupBox1.Controls.Add(Me.GroupBox2)
         Me.GroupBox1.Controls.Add(Me.cbCharge3)
         Me.GroupBox1.Controls.Add(Me.cbChage2)
         Me.GroupBox1.Controls.Add(Me.cbCharge1)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.CheckedListBox1)
-        Me.GroupBox1.Controls.Add(Me.txtPPM)
-        Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.txtRtMax)
         Me.GroupBox1.Controls.Add(Me.txtRtMin)
         Me.GroupBox1.Controls.Add(Me.Label2)
@@ -122,6 +131,30 @@ Partial Class InputFeatureFilter
         resources.ApplyResources(Me.GroupBox1, "GroupBox1")
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.TabStop = False
+        '
+        'cbCharge3
+        '
+        resources.ApplyResources(Me.cbCharge3, "cbCharge3")
+        Me.cbCharge3.Checked = True
+        Me.cbCharge3.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cbCharge3.Name = "cbCharge3"
+        Me.cbCharge3.UseVisualStyleBackColor = True
+        '
+        'cbChage2
+        '
+        resources.ApplyResources(Me.cbChage2, "cbChage2")
+        Me.cbChage2.Checked = True
+        Me.cbChage2.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cbChage2.Name = "cbChage2"
+        Me.cbChage2.UseVisualStyleBackColor = True
+        '
+        'cbCharge1
+        '
+        resources.ApplyResources(Me.cbCharge1, "cbCharge1")
+        Me.cbCharge1.Checked = True
+        Me.cbCharge1.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cbCharge1.Name = "cbCharge1"
+        Me.cbCharge1.UseVisualStyleBackColor = True
         '
         'Label4
         '
@@ -133,16 +166,6 @@ Partial Class InputFeatureFilter
         Me.CheckedListBox1.FormattingEnabled = True
         resources.ApplyResources(Me.CheckedListBox1, "CheckedListBox1")
         Me.CheckedListBox1.Name = "CheckedListBox1"
-        '
-        'txtPPM
-        '
-        resources.ApplyResources(Me.txtPPM, "txtPPM")
-        Me.txtPPM.Name = "txtPPM"
-        '
-        'Label3
-        '
-        resources.ApplyResources(Me.Label3, "Label3")
-        Me.Label3.Name = "Label3"
         '
         'txtRtMax
         '
@@ -164,29 +187,56 @@ Partial Class InputFeatureFilter
         resources.ApplyResources(Me.Label1, "Label1")
         Me.Label1.Name = "Label1"
         '
-        'cbCharge1
+        'GroupBox2
         '
-        resources.ApplyResources(Me.cbCharge1, "cbCharge1")
-        Me.cbCharge1.Checked = True
-        Me.cbCharge1.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.cbCharge1.Name = "cbCharge1"
-        Me.cbCharge1.UseVisualStyleBackColor = True
+        Me.GroupBox2.Controls.Add(Me.NumericUpDown2)
+        Me.GroupBox2.Controls.Add(Me.NumericUpDown1)
+        Me.GroupBox2.Controls.Add(Me.RadioButton2)
+        Me.GroupBox2.Controls.Add(Me.RadioButton1)
+        resources.ApplyResources(Me.GroupBox2, "GroupBox2")
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.TabStop = False
         '
-        'cbChage2
+        'RadioButton1
         '
-        resources.ApplyResources(Me.cbChage2, "cbChage2")
-        Me.cbChage2.Checked = True
-        Me.cbChage2.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.cbChage2.Name = "cbChage2"
-        Me.cbChage2.UseVisualStyleBackColor = True
+        resources.ApplyResources(Me.RadioButton1, "RadioButton1")
+        Me.RadioButton1.Name = "RadioButton1"
+        Me.RadioButton1.TabStop = True
+        Me.RadioButton1.UseVisualStyleBackColor = True
         '
-        'cbCharge3
+        'RadioButton2
         '
-        resources.ApplyResources(Me.cbCharge3, "cbCharge3")
-        Me.cbCharge3.Checked = True
-        Me.cbCharge3.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.cbCharge3.Name = "cbCharge3"
-        Me.cbCharge3.UseVisualStyleBackColor = True
+        resources.ApplyResources(Me.RadioButton2, "RadioButton2")
+        Me.RadioButton2.Checked = True
+        Me.RadioButton2.Name = "RadioButton2"
+        Me.RadioButton2.TabStop = True
+        Me.RadioButton2.UseVisualStyleBackColor = True
+        '
+        'NumericUpDown1
+        '
+        resources.ApplyResources(Me.NumericUpDown1, "NumericUpDown1")
+        Me.NumericUpDown1.Maximum = New Decimal(New Integer() {200, 0, 0, 0})
+        Me.NumericUpDown1.Name = "NumericUpDown1"
+        '
+        'NumericUpDown2
+        '
+        Me.NumericUpDown2.DecimalPlaces = 2
+        Me.NumericUpDown2.Increment = New Decimal(New Integer() {1, 0, 0, 131072})
+        resources.ApplyResources(Me.NumericUpDown2, "NumericUpDown2")
+        Me.NumericUpDown2.Maximum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.NumericUpDown2.Name = "NumericUpDown2"
+        Me.NumericUpDown2.Value = New Decimal(New Integer() {1, 0, 0, 65536})
+        '
+        'Label3
+        '
+        resources.ApplyResources(Me.Label3, "Label3")
+        Me.Label3.Name = "Label3"
+        '
+        'CheckBox1
+        '
+        resources.ApplyResources(Me.CheckBox1, "CheckBox1")
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'InputFeatureFilter
         '
@@ -202,6 +252,10 @@ Partial Class InputFeatureFilter
         Me.Name = "InputFeatureFilter"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -213,11 +267,16 @@ Partial Class InputFeatureFilter
     Friend WithEvents Label1 As Label
     Friend WithEvents txtRtMax As TextBox
     Friend WithEvents txtRtMin As TextBox
-    Friend WithEvents txtPPM As TextBox
-    Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents CheckedListBox1 As CheckedListBox
     Friend WithEvents cbCharge3 As CheckBox
     Friend WithEvents cbChage2 As CheckBox
     Friend WithEvents cbCharge1 As CheckBox
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents Label3 As Label
+    Friend WithEvents NumericUpDown2 As NumericUpDown
+    Friend WithEvents NumericUpDown1 As NumericUpDown
+    Friend WithEvents RadioButton2 As RadioButton
+    Friend WithEvents RadioButton1 As RadioButton
+    Friend WithEvents CheckBox1 As CheckBox
 End Class
