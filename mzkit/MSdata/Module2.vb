@@ -92,11 +92,10 @@ Namespace MSdata
             For Each peak As PeakMs2 In raw
                 If duplicates.ContainsKey(peak.lib_guid) Then
                     peak.lib_guid &= $"_{duplicates(peak.lib_guid)}"
+                    duplicates(peak.lib_guid) += 1
                 Else
                     duplicates.Add(peak.lib_guid, 1)
                 End If
-
-                duplicates(peak.lib_guid) += 1
             Next
 
             Dim links = protocol.RunProtocol(raw, progressMsg).ProduceNodes.Networking.ToArray
