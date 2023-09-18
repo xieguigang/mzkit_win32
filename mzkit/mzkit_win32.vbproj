@@ -680,10 +680,10 @@
     <Compile Include="forms\Inputs\LCMS\InputXICTarget.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Inputs\InputFeatureFilter.Designer.vb">
+    <Compile Include="forms\Inputs\LCMS\InputFeatureFilter.Designer.vb">
       <DependentUpon>InputFeatureFilter.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Inputs\InputFeatureFilter.vb">
+    <Compile Include="forms\Inputs\LCMS\InputFeatureFilter.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmLicense.Designer.vb">
@@ -1197,10 +1197,10 @@
     <EmbeddedResource Include="forms\Inputs\InputDataVisual.zh-CN.resx">
       <DependentUpon>InputDataVisual.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputFeatureFilter.resx">
+    <EmbeddedResource Include="forms\Inputs\LCMS\InputFeatureFilter.resx">
       <DependentUpon>InputFeatureFilter.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\Inputs\InputFeatureFilter.zh-CN.resx">
+    <EmbeddedResource Include="forms\Inputs\LCMS\InputFeatureFilter.zh-CN.resx">
       <DependentUpon>InputFeatureFilter.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\LCMS\InputFormula.resx">
