@@ -91,8 +91,9 @@ Namespace MSdata
 
             For Each peak As PeakMs2 In raw
                 If duplicates.ContainsKey(peak.lib_guid) Then
-                    peak.lib_guid &= $"_{duplicates(peak.lib_guid)}"
-                    duplicates(peak.lib_guid) += 1
+                    Dim key As String = peak.lib_guid
+                    peak.lib_guid &= $"_{duplicates(key)}"
+                    duplicates(key) += 1
                 Else
                     duplicates.Add(peak.lib_guid, 1)
                 End If
