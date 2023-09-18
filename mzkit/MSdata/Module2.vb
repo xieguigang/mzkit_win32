@@ -86,6 +86,19 @@ Namespace MSdata
             raw = (From r As PeakMs2 In raw Where Not r.mzInto.IsNullOrEmpty).ToArray
             progress.SetTitle("run molecular networking....")
 
+            ' removes duplicated scan id
+            Dim duplicates As New Dictionary(Of String, Integer)
+
+            For Each peak As PeakMs2 In raw
+                If duplicates.ContainsKey(peak.lib_guid) Then
+                    peak.lib_guid &= $"_{duplicates(peak.lib_guid)}"
+                Else
+                    duplicates.Add(peak.lib_guid, 1)
+                End If
+
+                duplicates(peak.lib_guid) += 1
+            Next
+
             Dim links = protocol.RunProtocol(raw, progressMsg).ProduceNodes.Networking.ToArray
             Dim net As IO.DataSet() = ProtocolPipeline _
                 .Networking(Of IO.DataSet)(links, Function(a, b) stdNum.Min(a, b)) _
