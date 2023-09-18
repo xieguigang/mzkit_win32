@@ -52,7 +52,11 @@ Module Program
 
             For row As Integer = 0 To levelInfo.Width - 1
                 For col As Integer = 0 To levelInfo.Height - 1
-                    Call GetJpg(level, row, col, filepath, $"{export_dir}_files/{level}/{row}_{col}")
+                    Try
+                        Call GetJpg(level, row, col, filepath, $"{export_dir}_files/{level}/{row}_{col}")
+                    Catch ex As Exception
+
+                    End Try
 
                     If d <> 0 AndAlso ((++proc) Mod d = 0) Then
                         Call RunSlavePipeline.SendProgress(proc / total * 100, $"{export_dir}_files/{level}/{row}_{col}")
