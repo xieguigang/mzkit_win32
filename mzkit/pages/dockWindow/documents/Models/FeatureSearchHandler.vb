@@ -94,6 +94,7 @@ Module FeatureSearchHandler
         Dim display As frmFeatureSearch = VisualStudio.ShowDocument(Of frmFeatureSearch)
 
         display.TabText = $"Search [{formula}]"
+        display.formula = formula
 
         If directRaw Then
             display.directRaw = files.ToArray

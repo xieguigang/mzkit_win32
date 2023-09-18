@@ -96,6 +96,8 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
     Dim rangeMin As Double = 999999999
     Dim rangeMax As Double = -99999999999999
 
+    Friend formula As String = Nothing
+
     Public Sub AddEachFileMatch(addMatch As Action(Of Raw))
         For Each file As Raw In directRaw
             Call addMatch(file)
@@ -199,6 +201,11 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
         End Get
     End Property
 
+    ''' <summary>
+    ''' view spectrum data
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub ViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewToolStripMenuItem.Click
         Dim cluster As TreeListViewItem
         Dim host = MyApplication.host
@@ -242,7 +249,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
                 raw = directRaw.First
             End If
 
-            Call MyApplication.host.mzkitTool.showSpectrum(scan_id, raw)
+            Call MyApplication.host.mzkitTool.showSpectrum(scan_id, raw, formula:=formula)
             Call MyApplication.host.mzkitTool.ShowPage()
         End If
     End Sub

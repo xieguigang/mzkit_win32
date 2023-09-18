@@ -93,6 +93,9 @@ Imports RibbonLib.Interop
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
+Imports BioNovoGene.Analytical.MassSpectrometry.Math
+Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 
 Public Class PageMzkitTools
 
@@ -224,7 +227,7 @@ Public Class PageMzkitTools
 
     Dim currentMatrix As [Variant](Of ms2(), ChromatogramTick())
 
-    Friend Sub showSpectrum(scanId As String, raw As MZWork.Raw)
+    Friend Sub showSpectrum(scanId As String, raw As MZWork.Raw, formula As String)
         If raw.cacheFileExists OrElse raw.isInMemory Then
             Dim prop As SpectrumProperty = Nothing
             Dim showAnnotation As Boolean = RibbonEvents.ribbonItems.CheckBoxShowMs2Fragment.BooleanValue
@@ -242,32 +245,21 @@ Public Class PageMzkitTools
             End If
 
             If prop.msLevel = 1 AndAlso ribbonItems.CheckBoxShowKEGGAnnotation.BooleanValue Then
-                Call ConnectToBioDeep.OpenAdvancedFunction(
-                    Sub()
-                        Dim mzdiff1 As Tolerance = Tolerance.DeltaMass(0.001)
-                        Dim mode As String = scanData.name.Match("[+-]")
-                        Dim kegg As MSJointConnection = TaskProgress.LoadData(
-                            streamLoad:=Function(echo As Action(Of String))
-                                            Return Globals.LoadKEGG(Sub(print)
-                                                                        MyApplication.LogText(print)
-                                                                        echo(print)
-                                                                    End Sub, If(mode = "+", 1, -1), mzdiff1)
-                                        End Function,
-                            info:="Load KEGG repository data..."
-                        )
-                        Dim anno As MzQuery() = kegg.SetAnnotation(scanData.mz)
-                        Dim mzdiff As Tolerance = Tolerance.DeltaMass(0.05)
-                        Dim compound As Compound
+                Call ConnectToBioDeep.OpenAdvancedFunction(Sub() Call MakeAnnotations(scanData))
+            End If
+            If prop.msLevel = 2 AndAlso Not formula.StringEmpty Then
+                ' try to do peak annotations
+                Dim f As Formula = FormulaScanner.ScanFormula(formula)
+                Dim exactMass As Double = f.ExactMass
+                Dim adducts As MzCalculator
 
-                        For Each mzi As ms2 In scanData.ms2
-                            Dim hit As MzQuery = anno.Where(Function(d) mzdiff(d.mz, mzi.mz)).FirstOrDefault
+                If Provider.ParseIonMode(prop.polarity) = IonModes.Positive Then
+                    adducts = PrecursorType.FindPrecursorType(exactMass, prop.precursorMz, 1, "+", DAmethod.DeltaMass(0.3))
+                Else
+                    adducts = PrecursorType.FindPrecursorType(exactMass, prop.precursorMz, 1, "-", DAmethod.DeltaMass(0.3))
+                End If
 
-                            If Not hit.unique_id.StringEmpty Then
-                                compound = kegg.GetCompound(hit.unique_id)
-                                mzi.Annotation = $"{mzi.mz.ToString("F4")} {compound.commonNames.FirstOrDefault([default]:=hit.unique_id)}{hit.precursorType}"
-                            End If
-                        Next
-                    End Sub)
+                scanData.ms2 = PeakAnnotation.DoPeakAnnotation(scanData, prop.precursorMz, adducts, f).products
             End If
 
             Call showMatrix(scanData.ms2, scanId)
@@ -289,6 +281,32 @@ Public Class PageMzkitTools
         Else
             Call missingCacheFile(raw)
         End If
+    End Sub
+
+    Private Sub MakeAnnotations(scanData As LibraryMatrix)
+        Dim mzdiff1 As Tolerance = Tolerance.DeltaMass(0.001)
+        Dim mode As String = scanData.name.Match("[+-]")
+        Dim kegg As MSJointConnection = TaskProgress.LoadData(
+            streamLoad:=Function(echo As Action(Of String))
+                            Return Globals.LoadKEGG(Sub(print)
+                                                        MyApplication.LogText(print)
+                                                        echo(print)
+                                                    End Sub, If(mode = "+", 1, -1), mzdiff1)
+                        End Function,
+            info:="Load KEGG repository data..."
+        )
+        Dim anno As MzQuery() = kegg.SetAnnotation(scanData.mz)
+        Dim mzdiff As Tolerance = Tolerance.DeltaMass(0.05)
+        Dim compound As Compound
+
+        For Each mzi As ms2 In scanData.ms2
+            Dim hit As MzQuery = anno.Where(Function(d) mzdiff(d.mz, mzi.mz)).FirstOrDefault
+
+            If Not hit.unique_id.StringEmpty Then
+                compound = kegg.GetCompound(hit.unique_id)
+                mzi.Annotation = $"{mzi.mz.ToString("F4")} {compound.commonNames.FirstOrDefault([default]:=hit.unique_id)}{hit.precursorType}"
+            End If
+        Next
     End Sub
 
     ''' <summary>
