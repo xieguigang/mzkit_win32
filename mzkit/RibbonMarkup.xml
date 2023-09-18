@@ -2192,6 +2192,14 @@
         <Image Id="628" MinDPI="192">Res/Microscope.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonOpenTableTool" Id="252" LabelTitle="Open Table File" LabelDescription="Open table file for run data analysis and data visualization, example like PCA/PLS-DA/OPLS-DA analysis, UMAP, clustering analysis" TooltipTitle="Open Table File" TooltipDescription="Open table file for run data analysis and data visualization, example like PCA/PLS-DA/OPLS-DA analysis, UMAP, clustering analysis">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/excel-icon.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/excel-icon.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdImportsMzwork" Id="157">
       <Command.LabelTitle>
         <String Id="629">Open Workspace</String>
@@ -3450,6 +3458,7 @@
         <String Id="1002">Table Tab</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdMenuTableTools" Id="253" LabelTitle="Table Tools" LabelDescription="Table Tools" TooltipTitle="Table Tools" TooltipDescription="Table Tools" />
     <Command Name="cmdTabGroupTargeted" Id="98">
       <Command.LabelTitle>
         <String Id="1003">Targeted Quantification</String>
@@ -3816,15 +3825,6 @@
         <String Id="1108">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
     </Command>
-    <Command Name="cmdButtonOpenTableTool" Id="252" LabelTitle="Open Table File" LabelDescription="Open table file for run data analysis and data visualization, example like PCA/PLS-DA/OPLS-DA analysis, UMAP, clustering analysis" TooltipTitle="Open Table File" TooltipDescription="Open table file for run data analysis and data visualization, example like PCA/PLS-DA/OPLS-DA analysis, UMAP, clustering analysis">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/excel-icon.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/excel-icon.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdMenuTableTools" Id="253" LabelTitle="Table Tools" LabelDescription="Table Tools" TooltipTitle="Table Tools" TooltipDescription="Table Tools" />
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4161,7 +4161,8 @@
         </TabGroup>
         <TabGroup CommandName="cmdMenuOpenseadragon">
           <Tab CommandName="cmdGroupOpenseadragon">
-            <Group CommandName="cmdPanelOpenseadragon">
+            <Group CommandName="cmdPanelOpenseadragon" SizeDefinition="TwoButtons">
+              <Button CommandName="cmdButtonOpenVirtualSlideFile" />
               <Button CommandName="cmdButtonOpenseadragonWebCapture" />
             </Group>
           </Tab>
