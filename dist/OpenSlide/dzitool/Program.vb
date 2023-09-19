@@ -5,7 +5,6 @@ Imports Microsoft.VisualBasic.CommandLine
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
-Imports Microsoft.VisualBasic.FileIO
 Imports Microsoft.VisualBasic.Language
 Imports OpenSlideCs
 Imports dir = Microsoft.VisualBasic.FileIO.Directory
@@ -16,15 +15,12 @@ Module Program
     Dim pack As IFileSystemEnvironment
 
     Private Sub GetJpg(level As Integer, row As Integer, col As Integer, filename As String, outputname As String)
-        Dim buffer As ArraySegment(Of Byte) = Nothing
-
         Using stream = openSlide.GetJpg(filename, $"_files/{level}/{row}_{col}.jpeg")
-            If stream.TryGetBuffer(buffer) Then
-                Call buffer.FlushStream($"{outputname}.jpeg")
-                ' Call RunSlavePipeline.SendMessage($"{outputname}.jpeg successfully created!")
-            Else
-                ' Call RunSlavePipeline.SendMessage($"{outputname}.jpeg failed...")
-            End If
+            Dim file As Stream = pack.OpenFile($"{outputname}.jpeg", FileMode.OpenOrCreate, FileAccess.Write)
+            Call stream.Seek(Scan0, SeekOrigin.Begin)
+            Call stream.CopyTo(file)
+            Call file.Flush()
+            Call file.Close()
         End Using
     End Sub
 
@@ -50,7 +46,7 @@ Module Program
 
         Dim levels = openSlide.Dimensions(filepath)
         Dim maxDimensions = levels(levels.Length - 1)
-        Dim export_dir As String = $"{outputname.ParentPath}/{outputname.BaseName}"
+        Dim export_dir As String = $"/{outputname.BaseName}"
 
         For level As Integer = 0 To levels.Length - 1
             Dim levelInfo = levels(level)
@@ -58,7 +54,6 @@ Module Program
             Dim d As Integer = total / 25
             Dim proc As i32 = Scan0
 
-            Call dir.CreateDirectory($"{export_dir}_files/{level}")
             Call RunSlavePipeline.SendProgress(0, $"Process tile image at level: {level}...")
 
             For row As Integer = 0 To levelInfo.Width - 1
@@ -76,6 +71,8 @@ Module Program
             Next
         Next
 
+        Call pack.Flush()
+        Call pack.Close()
         Call RunSlavePipeline.SendMessage("Done!")
 
         Return 0
