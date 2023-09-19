@@ -238,13 +238,16 @@ Module RibbonEvents
             .Filter = filetypes.JoinBy("|")
         }
             If file.ShowDialog = DialogResult.OK Then
-                Dim dzifile As String = $"{App.AppSystemTemp}/dzi_store/{file.FileName.MD5}/{file.FileName.BaseName}.dzi"
+                Dim dzifile As String = $"{App.AppSystemTemp}/dzi_store/{file.FileName.MD5}.hds"
 
-                Call DziTools.CreateDziImages(
-                    source:=file.FileName,
-                    save_dzi:=dzifile
-                )
-                Call TissueSlideHandler.OpenTifFile(dzifile)
+                If dzifile.FileLength < 1024 Then
+                    Call DziTools.CreateDziImages(
+                        source:=file.FileName,
+                        save_dzi:=dzifile
+                    )
+                End If
+
+                Call TissueSlideHandler.OpenTifFile(dzifile, file.FileName.FileName)
             End If
         End Using
     End Sub

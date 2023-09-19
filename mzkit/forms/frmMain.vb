@@ -202,7 +202,7 @@ Public Class frmMain : Implements AppHost
             Call WindowModules.fileExplorer.AddScript(fileName.GetFullPath)
             Call openRscript(fileName)
         ElseIf fileName.ExtensionSuffix("tif", "dzi") Then
-            Call TissueSlideHandler.OpenTifFile(fileName)
+            Call TissueSlideHandler.OpenTifFile(fileName, fileName.FileName)
         ElseIf fileName.ExtensionSuffix("ndpi") Then
             Call TissueSlideHandler.OpenNdpiFile(fileName)
         ElseIf fileName.ExtensionSuffix("csv", "xlsx") Then

@@ -46,7 +46,7 @@ Public Class frmOpenseadragonViewer
     End Sub
 
     Public Sub LoadSlide(tiff As String)
-        If tiff.ExtensionSuffix("xml", "dzi") Then
+        If tiff.ExtensionSuffix("xml", "dzi", "hds") Then
             dzi = tiff
         Else
             dzi = TempFileSystem.GetAppSysTempFile(".dzi", sessionID:=App.PID.ToHexString.MD5.Substring(2, 6) & "-" & tiff.BaseName, prefix:="deep_zoom_")
@@ -57,11 +57,19 @@ Public Class frmOpenseadragonViewer
     End Sub
 
     Private Sub startHttp()
+        Dim res As String
+
+        If dzi.ExtensionSuffix("hds") Then
+            res = dzi
+        Else
+            res = dzi.ParentPath
+        End If
+
         webPort = Net.Tcp.GetFirstAvailablePort(6001)
         localfs = New Process With {
             .StartInfo = New ProcessStartInfo With {
                 .FileName = $"{App.HOME}/Rstudio/bin/Rserve.exe",
-                .Arguments = $"--listen /wwwroot ""{AppEnvironment.getWebViewFolder}"" /port {webPort} --attach ""{dzi.ParentPath}"" --parent={App.PID}",
+                .Arguments = $"--listen /wwwroot ""{AppEnvironment.getWebViewFolder}"" /port {webPort} --attach ""{res}"" --parent={App.PID}",
                 .CreateNoWindow = True,
                 .WindowStyle = ProcessWindowStyle.Hidden,
                 .UseShellExecute = True
@@ -93,7 +101,7 @@ Public Class frmOpenseadragonViewer
             Call Thread.Sleep(10)
         Loop
 
-        Call WebView21.CoreWebView2.AddHostObjectToScript("dzi", $"http://127.0.0.1:{webPort}/{dzi.FileName}")
+        Call WebView21.CoreWebView2.AddHostObjectToScript("dzi", $"http://127.0.0.1:{webPort}/{dzi.BaseName}.dzi")
         Call WebView21.CoreWebView2.Navigate(sourceURL)
         Call DeveloperOptions(enable:=True)
     End Sub
