@@ -4,13 +4,14 @@ Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
 Imports Microsoft.VisualBasic.Language
 Imports OpenSlideCs
 
 Module Program
 
     Dim openSlide As OpenSlide
-
+    Dim pack As StreamPack
 
     Private Sub GetJpg(level As Integer, row As Integer, col As Integer, filename As String, outputname As String)
         Dim buffer As ArraySegment(Of Byte) = Nothing
