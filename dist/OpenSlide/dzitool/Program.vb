@@ -28,17 +28,24 @@ Module Program
         End Using
     End Sub
 
-    Private Sub GetDZI(filepath As String, outputname As String)
+    Private Function GetDZI(filepath As String, outputname As String) As Integer
         Dim width, height As Long
-        Dim buffer As ArraySegment(Of Byte) = Nothing
 
-        Using stream = openSlide.GetDZI(filepath, width, height)
-            If stream.TryGetBuffer(buffer) Then
-                Call RunSlavePipeline.SendMessage($"{outputname} successfully created!")
-                Call buffer.FlushStream(outputname)
+        Using stream As MemoryStream = openSlide.GetDZI(filepath, width, height)
+            Dim file As Stream
+
+            Call RunSlavePipeline.SendMessage($"{outputname} successfully created!")
+
+            If TypeOf pack Is dir Then
+                file = pack.OpenFile(outputname.FileName, FileMode.OpenOrCreate, FileAccess.Write)
             Else
-                Call RunSlavePipeline.SendMessage($"{outputname} failed...")
+                file = pack.OpenFile("index.dzi", FileMode.OpenOrCreate, FileAccess.Write)
             End If
+
+            Call stream.Seek(Scan0, SeekOrigin.Begin)
+            Call stream.CopyTo(file)
+            Call file.Flush()
+            Call file.Close()
         End Using
 
         Dim levels = openSlide.Dimensions(filepath)
@@ -68,7 +75,11 @@ Module Program
                 Next
             Next
         Next
-    End Sub
+
+        Call RunSlavePipeline.SendMessage("Done!")
+
+        Return 0
+    End Function
 
     <ExportAPI("/parse")>
     <Usage("/parse --file <slide.svs/ndpi/tiff> [--export <image.dzi> --verbose]")>
@@ -107,10 +118,7 @@ Module Program
         End Try
 
         ' export DZI file
-        Call GetDZI(inputfile, export_file)
-        Call RunSlavePipeline.SendMessage("Done!")
-
-        Return 0
+        Return GetDZI(inputfile, export_file)
     End Function
 
     ''' <summary>
