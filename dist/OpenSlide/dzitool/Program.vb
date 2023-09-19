@@ -28,7 +28,7 @@ Module Program
         Dim width, height As Long
 
         Using stream As MemoryStream = openSlide.GetDZI(filepath, width, height)
-            Dim file As Stream = pack.OpenFile(outputname.FileName, FileMode.OpenOrCreate, FileAccess.Write)
+            Dim file As Stream = pack.OpenFile(outputname.ChangeSuffix("dzi").FileName, FileMode.OpenOrCreate, FileAccess.Write)
 
             Call RunSlavePipeline.SendMessage($"{outputname} successfully created!")
             Call stream.Seek(Scan0, SeekOrigin.Begin)
