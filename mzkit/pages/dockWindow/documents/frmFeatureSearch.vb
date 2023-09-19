@@ -59,6 +59,7 @@
 
 Imports System.Text
 Imports System.Windows.Forms.ListViewItem
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
@@ -280,6 +281,45 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
                 End Sub
 
         AddHandler ribbonItems.ButtonResetFeatureFilter.ExecuteEvent, proxy
+        AddHandler ribbonItems.ButtonExportFeatureIons.ExecuteEvent, Sub() Call exportSpectrum()
+    End Sub
+
+    Private Sub exportSpectrum()
+        Using file As New SaveFileDialog With {.Filter = "MGF File(*.mgf)|*.mgf"}
+            If file.ShowDialog <> DialogResult.OK Then
+                Return
+            End If
+
+            Dim list = TreeListView1
+            Dim parents As New List(Of ParentMatch)
+
+            For i As Integer = 0 To list.Items.Count - 1
+                Dim raw = list.Items(i)
+                Dim parentFile As String = raw.ToolTipText
+                Dim rawdata As Raw
+
+                If directRaw.IsNullOrEmpty Then
+                    rawdata = Globals.workspace.FindRawFile(parentFile)
+                Else
+                    rawdata = directRaw.First
+                End If
+
+                For j As Integer = 0 To raw.Items.Count - 1
+                    Dim scan = raw.Items(j)
+                    Dim scan_id As String = raw.Text
+
+                    Call parents.Add(scan.Tag)
+                Next
+            Next
+
+            Dim msdata = parents.Select(Function(p) p.ToMs2).ToArray
+
+            Call msdata.SaveAsMgfIons(file.FileName)
+            Call MessageBox.Show("The matched feature spectrum has been save to spectrum file:" & vbCrLf & file.FileName,
+                                 "Export Success",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Information)
+        End Using
     End Sub
 
     Private Sub ViewXICToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewXICToolStripMenuItem.Click
