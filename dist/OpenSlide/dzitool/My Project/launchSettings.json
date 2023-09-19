@@ -2,7 +2,7 @@
   "profiles": {
     "dzitool": {
       "commandName": "Project",
-      "commandLineArgs": "/parse --file \"F:\\IPX0005628000\\IPX0005628001\\OPTICAL_tumor-tiled.tiff\" --export F:/test_pack.hds",
+      "commandLineArgs": "/parse --file \"F:\\IPX0005628000\\IPX0005628001\\OPTICAL_tumor-tiled.tiff\" --export F:/test/pack.dzi",
       "workingDirectory": "D:\\mzkit\\dist\\bin\\tools\\dzitools"
     }
   }
