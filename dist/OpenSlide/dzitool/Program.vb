@@ -5,13 +5,15 @@ Imports Microsoft.VisualBasic.CommandLine
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
+Imports Microsoft.VisualBasic.FileIO
 Imports Microsoft.VisualBasic.Language
 Imports OpenSlideCs
+Imports dir = Microsoft.VisualBasic.FileIO.Directory
 
 Module Program
 
     Dim openSlide As OpenSlide
-    Dim pack As StreamPack
+    Dim pack As IFileSystemEnvironment
 
     Private Sub GetJpg(level As Integer, row As Integer, col As Integer, filename As String, outputname As String)
         Dim buffer As ArraySegment(Of Byte) = Nothing
@@ -49,7 +51,7 @@ Module Program
             Dim d As Integer = total / 25
             Dim proc As i32 = Scan0
 
-            Call Directory.CreateDirectory($"{export_dir}_files/{level}")
+            Call dir.CreateDirectory($"{export_dir}_files/{level}")
             Call RunSlavePipeline.SendProgress(0, $"Process tile image at level: {level}...")
 
             For row As Integer = 0 To levelInfo.Width - 1
@@ -76,8 +78,14 @@ Module Program
         Dim verbose As Boolean = args("--verbose")
 
         If Not export_file.ExtensionSuffix("dzi") Then
-            Call RunSlavePipeline.SendMessage("The export file name should be a deep zoom image(*.dzi)!")
-            Return 500
+            If export_file.ExtensionSuffix("hds") Then
+                pack = StreamPack.CreateNewStream(export_file, meta_size:=8 * 1024 * 1024)
+            Else
+                Call RunSlavePipeline.SendMessage("The export file name should be a deep zoom image(*.dzi)!")
+                Return 500
+            End If
+        Else
+            pack = dir.FromLocalFileSystem(export_file.ParentPath)
         End If
 
         Call AppEnvironment.SetDllDirectory(AppEnvironment.getOpenSlideLibDLL)
@@ -92,18 +100,7 @@ Module Program
             openSlide.EnsureOpen(inputfile)
         Catch ex As Exception
             If inputfile.ExtensionSuffix("tif", "tiff") Then
-                ' needs conversion via vips
-                Dim input_tiled As String = $"{inputfile.ParentPath}/{inputfile.BaseName}-tiled.tiff"
-                Dim cli As String = $"tiffsave {inputfile.CLIPath} {input_tiled.CLIPath} --tile --pyramid"
-                Dim vips As String = $"{AppEnvironment.getVIPS}/vips.exe"
-
-                Call RunSlavePipeline.SendMessage("The input tiff image needs to be convert to tiled image...")
-
-                Call PipelineProcess.ExecSub(vips, cli)
-                Call input_tiled.Swap(inputfile)
-                Call openSlide.EnsureOpen(inputfile)
-
-                Call RunSlavePipeline.SendMessage($"Use the new tiled image file {inputfile}!")
+                Call convertTiledTiff(inputfile)
             Else
                 Return 500
             End If
@@ -115,6 +112,24 @@ Module Program
 
         Return 0
     End Function
+
+    ''' <summary>
+    ''' needs conversion via vips
+    ''' </summary>
+    Private Sub convertTiledTiff(ByRef inputfile As String)
+        ' needs conversion via vips
+        Dim input_tiled As String = $"{inputfile.ParentPath}/{inputfile.BaseName}-tiled.tiff"
+        Dim cli As String = $"tiffsave {inputfile.CLIPath} {input_tiled.CLIPath} --tile --pyramid"
+        Dim vips As String = $"{AppEnvironment.getVIPS}/vips.exe"
+
+        Call RunSlavePipeline.SendMessage("The input tiff image needs to be convert to tiled image...")
+
+        Call PipelineProcess.ExecSub(vips, cli)
+        Call input_tiled.Swap(inputfile)
+        Call openSlide.EnsureOpen(inputfile)
+
+        Call RunSlavePipeline.SendMessage($"Use the new tiled image file {inputfile}!")
+    End Sub
 
     Public Function Main() As Integer
         Return GetType(Program).RunCLI(App.CommandLine)
