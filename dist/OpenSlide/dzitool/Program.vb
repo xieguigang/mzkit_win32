@@ -28,16 +28,9 @@ Module Program
         Dim width, height As Long
 
         Using stream As MemoryStream = openSlide.GetDZI(filepath, width, height)
-            Dim file As Stream
+            Dim file As Stream = pack.OpenFile(outputname.FileName, FileMode.OpenOrCreate, FileAccess.Write)
 
             Call RunSlavePipeline.SendMessage($"{outputname} successfully created!")
-
-            If TypeOf pack Is dir Then
-                file = pack.OpenFile(outputname.FileName, FileMode.OpenOrCreate, FileAccess.Write)
-            Else
-                file = pack.OpenFile("index.dzi", FileMode.OpenOrCreate, FileAccess.Write)
-            End If
-
             Call stream.Seek(Scan0, SeekOrigin.Begin)
             Call stream.CopyTo(file)
             Call file.Flush()
