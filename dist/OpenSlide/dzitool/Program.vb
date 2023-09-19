@@ -11,7 +11,8 @@ Module Program
 
     Dim openSlide As OpenSlide
 
-    Private Sub GetJpg(ByVal level As Integer, ByVal row As Integer, ByVal col As Integer, ByVal filename As String, ByVal outputname As String)
+
+    Private Sub GetJpg(level As Integer, row As Integer, col As Integer, filename As String, outputname As String)
         Dim buffer As ArraySegment(Of Byte) = Nothing
 
         Using stream = openSlide.GetJpg(filename, $"_files/{level}/{row}_{col}.jpeg")
@@ -24,7 +25,7 @@ Module Program
         End Using
     End Sub
 
-    Private Sub GetDZI(filepath As String, ByVal outputname As String)
+    Private Sub GetDZI(filepath As String, outputname As String)
         Dim width, height As Long
         Dim buffer As ArraySegment(Of Byte) = Nothing
 
