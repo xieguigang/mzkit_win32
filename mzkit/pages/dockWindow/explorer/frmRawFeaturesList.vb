@@ -326,7 +326,7 @@ Public Class frmRawFeaturesList
             Dim raw As MZWork.Raw = CurrentOpenedFile
             Dim scanId As String = e.Node.Text
 
-            Call MyApplication.host.mzkitTool.showSpectrum(scanId, raw)
+            Call MyApplication.host.mzkitTool.showSpectrum(scanId, raw, Nothing)
         End If
 
         Call MyApplication.host.mzkitTool.ShowPage()
@@ -396,7 +396,7 @@ Public Class frmRawFeaturesList
                            Call MyApplication.mzkitRawViewer.ShowXIC(15, New NamedCollection(Of ChromatogramTick)($"XIC, m/z={mz.ToString("F4")}", xic), AddressOf GetXICCollection, CurrentOpenedFile.GetXICMaxYAxis)
                        End Sub,
                 cancel:=Sub()
-                            MyApplication.host.showStatusMessage("No ion data selected for create XIC plot!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                            Workbench.Warning("No ion data selected for create XIC plot!")
                         End Sub)
             Return
         End If
@@ -410,7 +410,7 @@ Public Class frmRawFeaturesList
             ' 当前没有选中MS2，但是可以显示选中的XIC
             If ions.Length > 0 Then
             Else
-                MyApplication.host.showStatusMessage("No ion was selected for XIC plot...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Workbench.Warning("No ion was selected for XIC plot...")
                 Return
             End If
         Else
@@ -738,10 +738,10 @@ Public Class frmRawFeaturesList
         mz = Val(Strings.Trim(ToolStripSpringTextBox1.Text))
 
         If mz = 0.0 Then
-            Call MyApplication.host.showStatusMessage($"M/z value expression '{ToolStripSpringTextBox1.Text}' is not a valid number expression, please input a valid m/z value...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning($"M/z value expression '{ToolStripSpringTextBox1.Text}' is not a valid number expression, please input a valid m/z value...")
             Return False
         ElseIf CurrentOpenedFile Is Nothing Then
-            Call MyApplication.host.showStatusMessage("Please load a raw data file at first!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning("Please load a raw data file at first!")
             Return False
         End If
 
@@ -808,7 +808,7 @@ Public Class frmRawFeaturesList
 
     Private Sub CopyIonsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyIonsToolStripMenuItem.Click
         If GetSelectedNodes.Count = 0 Then
-            MyApplication.host.showStatusMessage("No chromatogram data for XIC plot, please use XIC -> Add for add data!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Workbench.Warning("No chromatogram data for XIC plot, please use XIC -> Add for add data!")
             Return
         End If
 
@@ -836,7 +836,7 @@ Public Class frmRawFeaturesList
 
         Call Clipboard.Clear()
         Call Clipboard.SetText(outfile.ToString)
-        Call MyApplication.host.showStatusMessage("Ions data is copy to clipboard!")
+        Call Workbench.SuccessMessage("Ions data is copy to clipboard!")
     End Sub
 
     Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
@@ -859,13 +859,17 @@ Public Class frmRawFeaturesList
                            Return False
                        End If
 
-                       Dim mz2 As ms2 = i.GetMs.Select(Function(mzi)
-                                                           If test(mzi.mz, ms2) Then
-                                                               Return mzi
-                                                           Else
-                                                               Return Nothing
-                                                           End If
-                                                       End Function).Where(Function(mzi) Not mzi Is Nothing).OrderByDescending(Function(mzi) mzi.intensity).FirstOrDefault
+                       Dim mz2 As ms2 = i.GetMs _
+                          .Select(Function(mzi)
+                                      If test(mzi.mz, ms2) Then
+                                          Return mzi
+                                      Else
+                                          Return Nothing
+                                      End If
+                                  End Function) _
+                          .Where(Function(mzi) Not mzi Is Nothing) _
+                          .OrderByDescending(Function(mzi) mzi.intensity) _
+                          .FirstOrDefault
 
                        If mz2 Is Nothing OrElse mz2.intensity / i.into.Max < 0.5 Then
                            Return False

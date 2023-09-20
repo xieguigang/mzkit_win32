@@ -26,8 +26,8 @@ Public Module TissueSlideHandler
         Call VisualStudio.ShowDocument(Of frmOpenseadragonViewer)(, title:="Hamamatsu slide: " & tiff.FileName).LoadSlide(tiff)
     End Sub
 
-    Public Sub OpenTifFile(tif As String)
-        Call VisualStudio.ShowDocument(Of frmOpenseadragonViewer)(, title:="Deep Zoom Image: " & tif.FileName).LoadSlide(tif)
+    Public Sub OpenTifFile(tif As String, filename As String)
+        Call VisualStudio.ShowDocument(Of frmOpenseadragonViewer)(, title:="Deep Zoom Image: " & filename).LoadSlide(tif)
     End Sub
 
 End Module

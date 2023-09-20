@@ -227,20 +227,34 @@ Module RibbonEvents
         Dim filetypes As String() = {
             "Hamamatsu format(*.ndpi)|*.ndpi",
             "Aperio format(*.svs)|*.svs",
-            "TIFF Image(*.tif;*.tiff)|*.tif;*.tiff"
+            "Philips format, Trestle format, or TIFF Image(*.tif;*.tiff)|*.tif;*.tiff",
+            "Ventana format(*.tif;*.bif)|*.tif;*.bif",
+            "MIRAX format(*.mrxs)|*.mrxs",
+            "Leica format(*.scn)|*.scn",
+            "DICOM format(*.dcm)|*.dcm",
+            "MZKit Slide Pack File(*.hds;*.mzPack)|*.hds;*.mzPack"
         }
 
         Using file As New OpenFileDialog With {
             .Filter = filetypes.JoinBy("|")
         }
             If file.ShowDialog = DialogResult.OK Then
-                Dim dzifile As String = $"{App.AppSystemTemp}/dzi_store/{file.FileName.MD5}/{file.FileName.BaseName}.dzi"
+                Dim dzifile As String
 
-                Call DziTools.CreateDziImages(
-                    source:=file.FileName,
-                    save_dzi:=dzifile
-                )
-                Call TissueSlideHandler.OpenTifFile(dzifile)
+                If Not file.FileName.ExtensionSuffix("hds", "mzpack") Then
+                    dzifile = $"{App.AppSystemTemp}/dzi_store/{file.FileName.MD5}.hds"
+
+                    If dzifile.FileLength < 1024 Then
+                        Call DziTools.CreateDziImages(
+                            source:=file.FileName,
+                            save_dzi:=dzifile
+                        )
+                    End If
+                Else
+                    dzifile = file.FileName
+                End If
+
+                Call TissueSlideHandler.OpenTifFile(dzifile, file.FileName.FileName)
             End If
         End Using
     End Sub

@@ -900,7 +900,7 @@ Public Class frmMsImagingViewer
                     'PixelSelector1.OpenImageFile(file.FileName)
                     'PixelSelector1.PreviewButton = True
                     'PixelSelector1.ShowPreview = True
-                    Call TissueSlideHandler.OpenTifFile(file.FileName)
+                    Call TissueSlideHandler.OpenTifFile(file.FileName, file.FileName.FileName)
                 Else
                     Call loadHEMapImage(New Bitmap(file.FileName.LoadImage))
                 End If

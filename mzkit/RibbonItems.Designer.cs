@@ -104,6 +104,7 @@ namespace RibbonLib.Controls
             public const uint cmdTabExactMassSearch = 1072;
             public const uint cmdGroupExactMassSearch = 1073;
             public const uint cmdButtonExactMassSearchExport = 1074;
+            public const uint cmdButtonExportFeatureIons = 254;
             public const uint cmdGroupFeatureFilter = 162;
             public const uint cmdButtonResetFeatureFilter = 165;
             public const uint cmdTabGroupNetworkTools = 1081;
@@ -213,7 +214,10 @@ namespace RibbonLib.Controls
             public const uint cmdMenuOpenseadragon = 248;
             public const uint cmdGroupOpenseadragon = 249;
             public const uint cmdPanelOpenseadragon = 250;
+            public const uint cmdButtonExportSlidePack = 257;
+            public const uint cmdPanelSlideViewer = 256;
             public const uint cmdButtonOpenseadragonWebCapture = 251;
+            public const uint cmdButtonViewerFullScreen = 255;
             public const uint cmdTabMain = 1011;
             public const uint cmdGroupFileActions = 1045;
             public const uint cmdTabGroupWindowTools = 1023;
@@ -349,6 +353,7 @@ namespace RibbonLib.Controls
         public RibbonTab TabExactMassSearch { get; private set; }
         public RibbonGroup GroupExactMassSearch { get; private set; }
         public RibbonButton ButtonExactMassSearchExport { get; private set; }
+        public RibbonButton ButtonExportFeatureIons { get; private set; }
         public RibbonGroup GroupFeatureFilter { get; private set; }
         public RibbonButton ButtonResetFeatureFilter { get; private set; }
         public RibbonTabGroup TabGroupNetworkTools { get; private set; }
@@ -458,7 +463,10 @@ namespace RibbonLib.Controls
         public RibbonTabGroup MenuOpenseadragon { get; private set; }
         public RibbonTab GroupOpenseadragon { get; private set; }
         public RibbonGroup PanelOpenseadragon { get; private set; }
+        public RibbonButton ButtonExportSlidePack { get; private set; }
+        public RibbonGroup PanelSlideViewer { get; private set; }
         public RibbonButton ButtonOpenseadragonWebCapture { get; private set; }
+        public RibbonButton ButtonViewerFullScreen { get; private set; }
         public RibbonTab TabMain { get; private set; }
         public RibbonGroup GroupFileActions { get; private set; }
         public RibbonGroup TabGroupWindowTools { get; private set; }
@@ -589,6 +597,7 @@ namespace RibbonLib.Controls
             TabExactMassSearch = new RibbonTab(ribbon, Cmd.cmdTabExactMassSearch);
             GroupExactMassSearch = new RibbonGroup(ribbon, Cmd.cmdGroupExactMassSearch);
             ButtonExactMassSearchExport = new RibbonButton(ribbon, Cmd.cmdButtonExactMassSearchExport);
+            ButtonExportFeatureIons = new RibbonButton(ribbon, Cmd.cmdButtonExportFeatureIons);
             GroupFeatureFilter = new RibbonGroup(ribbon, Cmd.cmdGroupFeatureFilter);
             ButtonResetFeatureFilter = new RibbonButton(ribbon, Cmd.cmdButtonResetFeatureFilter);
             TabGroupNetworkTools = new RibbonTabGroup(ribbon, Cmd.cmdTabGroupNetworkTools);
@@ -698,7 +707,10 @@ namespace RibbonLib.Controls
             MenuOpenseadragon = new RibbonTabGroup(ribbon, Cmd.cmdMenuOpenseadragon);
             GroupOpenseadragon = new RibbonTab(ribbon, Cmd.cmdGroupOpenseadragon);
             PanelOpenseadragon = new RibbonGroup(ribbon, Cmd.cmdPanelOpenseadragon);
+            ButtonExportSlidePack = new RibbonButton(ribbon, Cmd.cmdButtonExportSlidePack);
+            PanelSlideViewer = new RibbonGroup(ribbon, Cmd.cmdPanelSlideViewer);
             ButtonOpenseadragonWebCapture = new RibbonButton(ribbon, Cmd.cmdButtonOpenseadragonWebCapture);
+            ButtonViewerFullScreen = new RibbonButton(ribbon, Cmd.cmdButtonViewerFullScreen);
             TabMain = new RibbonTab(ribbon, Cmd.cmdTabMain);
             GroupFileActions = new RibbonGroup(ribbon, Cmd.cmdGroupFileActions);
             TabGroupWindowTools = new RibbonGroup(ribbon, Cmd.cmdTabGroupWindowTools);

@@ -101,6 +101,7 @@ Namespace RibbonLib.Controls
             Public Const cmdTabExactMassSearch As UInteger = 1072
             Public Const cmdGroupExactMassSearch As UInteger = 1073
             Public Const cmdButtonExactMassSearchExport As UInteger = 1074
+            Public Const cmdButtonExportFeatureIons As UInteger = 254
             Public Const cmdGroupFeatureFilter As UInteger = 162
             Public Const cmdButtonResetFeatureFilter As UInteger = 165
             Public Const cmdTabGroupNetworkTools As UInteger = 1081
@@ -210,7 +211,10 @@ Namespace RibbonLib.Controls
             Public Const cmdMenuOpenseadragon As UInteger = 248
             Public Const cmdGroupOpenseadragon As UInteger = 249
             Public Const cmdPanelOpenseadragon As UInteger = 250
+            Public Const cmdButtonExportSlidePack As UInteger = 257
+            Public Const cmdPanelSlideViewer As UInteger = 256
             Public Const cmdButtonOpenseadragonWebCapture As UInteger = 251
+            Public Const cmdButtonViewerFullScreen As UInteger = 255
             Public Const cmdTabMain As UInteger = 1011
             Public Const cmdGroupFileActions As UInteger = 1045
             Public Const cmdTabGroupWindowTools As UInteger = 1023
@@ -779,6 +783,12 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonExactMassSearchExport As RibbonButton
             Get
                 Return _ButtonExactMassSearchExport
+            End Get
+        End Property
+        Private _ButtonExportFeatureIons As RibbonButton
+        Public ReadOnly Property ButtonExportFeatureIons As RibbonButton
+            Get
+                Return _ButtonExportFeatureIons
             End Get
         End Property
         Private _GroupFeatureFilter As RibbonGroup
@@ -1435,10 +1445,28 @@ Namespace RibbonLib.Controls
                 Return _PanelOpenseadragon
             End Get
         End Property
+        Private _ButtonExportSlidePack As RibbonButton
+        Public ReadOnly Property ButtonExportSlidePack As RibbonButton
+            Get
+                Return _ButtonExportSlidePack
+            End Get
+        End Property
+        Private _PanelSlideViewer As RibbonGroup
+        Public ReadOnly Property PanelSlideViewer As RibbonGroup
+            Get
+                Return _PanelSlideViewer
+            End Get
+        End Property
         Private _ButtonOpenseadragonWebCapture As RibbonButton
         Public ReadOnly Property ButtonOpenseadragonWebCapture As RibbonButton
             Get
                 Return _ButtonOpenseadragonWebCapture
+            End Get
+        End Property
+        Private _ButtonViewerFullScreen As RibbonButton
+        Public ReadOnly Property ButtonViewerFullScreen As RibbonButton
+            Get
+                Return _ButtonViewerFullScreen
             End Get
         End Property
         Private _TabMain As RibbonTab
@@ -1761,6 +1789,7 @@ Namespace RibbonLib.Controls
             _TabExactMassSearch = New RibbonTab(_ribbon, Cmd.cmdTabExactMassSearch)
             _GroupExactMassSearch = New RibbonGroup(_ribbon, Cmd.cmdGroupExactMassSearch)
             _ButtonExactMassSearchExport = New RibbonButton(_ribbon, Cmd.cmdButtonExactMassSearchExport)
+            _ButtonExportFeatureIons = New RibbonButton(_ribbon, Cmd.cmdButtonExportFeatureIons)
             _GroupFeatureFilter = New RibbonGroup(_ribbon, Cmd.cmdGroupFeatureFilter)
             _ButtonResetFeatureFilter = New RibbonButton(_ribbon, Cmd.cmdButtonResetFeatureFilter)
             _TabGroupNetworkTools = New RibbonTabGroup(_ribbon, Cmd.cmdTabGroupNetworkTools)
@@ -1870,7 +1899,10 @@ Namespace RibbonLib.Controls
             _MenuOpenseadragon = New RibbonTabGroup(_ribbon, Cmd.cmdMenuOpenseadragon)
             _GroupOpenseadragon = New RibbonTab(_ribbon, Cmd.cmdGroupOpenseadragon)
             _PanelOpenseadragon = New RibbonGroup(_ribbon, Cmd.cmdPanelOpenseadragon)
+            _ButtonExportSlidePack = New RibbonButton(_ribbon, Cmd.cmdButtonExportSlidePack)
+            _PanelSlideViewer = New RibbonGroup(_ribbon, Cmd.cmdPanelSlideViewer)
             _ButtonOpenseadragonWebCapture = New RibbonButton(_ribbon, Cmd.cmdButtonOpenseadragonWebCapture)
+            _ButtonViewerFullScreen = New RibbonButton(_ribbon, Cmd.cmdButtonViewerFullScreen)
             _TabMain = New RibbonTab(_ribbon, Cmd.cmdTabMain)
             _GroupFileActions = New RibbonGroup(_ribbon, Cmd.cmdGroupFileActions)
             _TabGroupWindowTools = New RibbonGroup(_ribbon, Cmd.cmdTabGroupWindowTools)

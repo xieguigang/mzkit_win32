@@ -59,6 +59,7 @@
 
 Imports System.Text
 Imports System.Windows.Forms.ListViewItem
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
@@ -95,6 +96,8 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
     Dim list2 As New List(Of (file As String, targetMz As Double, matches As ScanMS2()))
     Dim rangeMin As Double = 999999999
     Dim rangeMax As Double = -99999999999999
+
+    Friend formula As String = Nothing
 
     Public Sub AddEachFileMatch(addMatch As Action(Of Raw))
         For Each file As Raw In directRaw
@@ -199,6 +202,11 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
         End Get
     End Property
 
+    ''' <summary>
+    ''' view spectrum data
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub ViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewToolStripMenuItem.Click
         Dim cluster As TreeListViewItem
         Dim host = MyApplication.host
@@ -242,7 +250,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
                 raw = directRaw.First
             End If
 
-            Call MyApplication.host.mzkitTool.showSpectrum(scan_id, raw)
+            Call MyApplication.host.mzkitTool.showSpectrum(scan_id, raw, formula:=formula)
             Call MyApplication.host.mzkitTool.ShowPage()
         End If
     End Sub
@@ -273,6 +281,45 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
                 End Sub
 
         AddHandler ribbonItems.ButtonResetFeatureFilter.ExecuteEvent, proxy
+        AddHandler ribbonItems.ButtonExportFeatureIons.ExecuteEvent, Sub() Call exportSpectrum()
+    End Sub
+
+    Private Sub exportSpectrum()
+        Using file As New SaveFileDialog With {.Filter = "MGF File(*.mgf)|*.mgf"}
+            If file.ShowDialog <> DialogResult.OK Then
+                Return
+            End If
+
+            Dim list = TreeListView1
+            Dim parents As New List(Of ParentMatch)
+
+            For i As Integer = 0 To list.Items.Count - 1
+                Dim raw = list.Items(i)
+                Dim parentFile As String = raw.ToolTipText
+                Dim rawdata As Raw
+
+                If directRaw.IsNullOrEmpty Then
+                    rawdata = Globals.workspace.FindRawFile(parentFile)
+                Else
+                    rawdata = directRaw.First
+                End If
+
+                For j As Integer = 0 To raw.Items.Count - 1
+                    Dim scan = raw.Items(j)
+                    Dim scan_id As String = raw.Text
+
+                    Call parents.Add(scan.Tag)
+                Next
+            Next
+
+            Dim msdata = parents.Select(Function(p) p.ToMs2).ToArray
+
+            Call msdata.SaveAsMgfIons(file.FileName)
+            Call MessageBox.Show("The matched feature spectrum has been save to spectrum file:" & vbCrLf & file.FileName,
+                                 "Export Success",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Information)
+        End Using
     End Sub
 
     Private Sub ViewXICToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewXICToolStripMenuItem.Click
@@ -378,6 +425,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
     Dim rtmin As Double = Double.NaN
     Dim rtmax As Double = Double.NaN
     Dim ppm As Double = 30
+    Dim da As Double = 0.1
     Dim types As New Dictionary(Of String, Boolean)
 
     Private Sub ApplyFeatureFilterToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ApplyFeatureFilterToolStripMenuItem.Click
@@ -407,17 +455,19 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             getFilters.AddTypes(types)
         End If
 
-        getFilters.txtPPM.Text = ppm
+        getFilters.NumericUpDown1.Value = ppm
+        getFilters.NumericUpDown2.Value = da
         getFilters.txtRtMax.Text = rtmax
         getFilters.txtRtMin.Text = rtmin
 
         If mask.ShowDialogForm(getFilters) = DialogResult.OK Then
             rtmin = Val(getFilters.txtRtMin.Text)
             rtmax = Val(getFilters.txtRtMax.Text)
-            ppm = Val(getFilters.txtPPM.Text)
+            ppm = getFilters.NumericUpDown1.Value
+            da = getFilters.NumericUpDown2.Value
 
             If rtmin = rtmax OrElse (rtmin = rtmax AndAlso rtmin = 0.0) OrElse rtmin > rtmax Then
-                Call MyApplication.host.showStatusMessage("invalid filter value...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Call Workbench.Warning("invalid filter value...")
                 Return
             Else
                 Call TreeListView1.Items.Clear()
@@ -426,9 +476,26 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             If Not list1.IsNullOrEmpty Then
                 Dim source = list1.ToArray
                 Dim requiredTypes As Index(Of String) = getFilters.GetTypes
+                Dim method = getFilters.GetMethod
                 Dim filter = list1 _
                     .Select(Function(i)
-                                Return (i.File, i.matches.Where(Function(p) p.rt >= rtmin AndAlso p.rt <= rtmax AndAlso p.ppm <= ppm AndAlso p.precursor_type Like requiredTypes).ToArray)
+                                Dim hits = i.matches _
+                                    .Where(Function(p)
+                                               Dim filterMass As Boolean
+
+                                               If method = ToleranceMethods.da Then
+                                                   filterMass = p.da <= da
+                                               Else
+                                                   filterMass = p.ppm <= ppm
+                                               End If
+
+                                               Return p.rt >= rtmin AndAlso
+                                                      p.rt <= rtmax AndAlso
+                                                      filterMass AndAlso
+                                                      p.precursor_type Like requiredTypes
+                                           End Function)
+
+                                Return (i.File, hits.ToArray)
                             End Function) _
                     .ToArray
 

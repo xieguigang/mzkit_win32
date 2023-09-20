@@ -59,6 +59,6 @@ Public Class frmLCMSScatterViewer
     ''' <param name="mz"></param>
     ''' <param name="rt"></param>
     Private Sub ScatterViewer_ClickOnPeak(scanId As String, mz As Double, rt As Double, progress As Boolean) Handles ScatterViewer.ClickOnPeak
-        Call MyApplication.host.mzkitTool.showSpectrum(scanId, raw)
+        Call MyApplication.host.mzkitTool.showSpectrum(scanId, raw, Nothing)
     End Sub
 End Class
