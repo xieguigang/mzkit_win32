@@ -984,6 +984,14 @@
         <Image Id="284" MinDPI="192">Res/application-x-object.bmp</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonExportFeatureIons" Id="254" LabelTitle="Export Feature Spectrum" LabelDescription="Export Feature Spectrum" TooltipTitle="Export Feature Spectrum" TooltipDescription="Export Feature Spectrum">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/document-save.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/document-save.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdButtonLayout2" Id="1044">
       <Command.LabelTitle>
         <String Id="848">Export Matrix</String>
@@ -1220,6 +1228,14 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image Id="346" MinDPI="144">Res/edit-undo-rtl.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonViewerFullScreen" Id="255" LabelTitle="Full Screen" LabelDescription="Full Screen" TooltipTitle="Full Screen" TooltipDescription="Full Screen">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-fullscreen-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-fullscreen-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdShowGCMSExplorer" Id="113">
@@ -2174,7 +2190,7 @@
     </Command>
     <Command Name="cmdButtonOpenVirtualSlideFile" Id="234">
       <Command.LabelTitle>
-        <String Id="623">Open Pathological Slide</String>
+        <String Id="623">Open Slide</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
         <String Id="624">Open pathological slide file and view tissue scan result</String>
@@ -3257,7 +3273,7 @@
     </Command>
     <Command Name="cmdPanelOpenseadragon" Id="250">
       <Command.LabelTitle>
-        <String Id="944">Slide Viewer</String>
+        <String Id="944">Slide File</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
         <String Id="945">Openseadragon web viewer for slide image</String>
@@ -3269,6 +3285,7 @@
         <String Id="947">Openseadragon</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdPanelSlideViewer" Id="256" LabelTitle="Slide Viewer" LabelDescription="Slide Viewer" TooltipTitle="Slide Viewer" TooltipDescription="Slide Viewer" />
     <Command Name="cmdButtonLayout1" Id="1043">
       <Command.LabelTitle>
         <String Id="948">Snapshot</String>
@@ -3825,7 +3842,7 @@
         <String Id="1108">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
     </Command>
-    <Command Name="cmdButtonExportFeatureIons" Id="254" LabelTitle="Export Feature Spectrum" LabelDescription="Export Feature Spectrum" TooltipTitle="Export Feature Spectrum" TooltipDescription="Export Feature Spectrum">
+    <Command Name="cmdButtonExportSlidePack" Id="257" LabelTitle="Export Pack" LabelDescription="Export Pack" TooltipTitle="Export Pack" TooltipDescription="Export Pack">
       <Command.SmallImages>
         <Image MinDPI="192">Res/document-save.png</Image>
       </Command.SmallImages>
@@ -4172,7 +4189,11 @@
           <Tab CommandName="cmdGroupOpenseadragon">
             <Group CommandName="cmdPanelOpenseadragon" SizeDefinition="TwoButtons">
               <Button CommandName="cmdButtonOpenVirtualSlideFile" />
+              <Button CommandName="cmdButtonExportSlidePack" />
+            </Group>
+            <Group CommandName="cmdPanelSlideViewer" SizeDefinition="TwoButtons">
               <Button CommandName="cmdButtonOpenseadragonWebCapture" />
+              <Button CommandName="cmdButtonViewerFullScreen" />
             </Group>
           </Tab>
         </TabGroup>
