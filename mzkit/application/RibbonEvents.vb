@@ -231,20 +231,27 @@ Module RibbonEvents
             "Ventana format(*.tif;*.bif)|*.tif;*.bif",
             "MIRAX format(*.mrxs)|*.mrxs",
             "Leica format(*.scn)|*.scn",
-            "DICOM format(*.dcm)|*.dcm"
+            "DICOM format(*.dcm)|*.dcm",
+            "MZKit Slide Pack File(*.hds;*.mzPack)|*.hds;*.mzPack"
         }
 
         Using file As New OpenFileDialog With {
             .Filter = filetypes.JoinBy("|")
         }
             If file.ShowDialog = DialogResult.OK Then
-                Dim dzifile As String = $"{App.AppSystemTemp}/dzi_store/{file.FileName.MD5}.hds"
+                Dim dzifile As String
 
-                If dzifile.FileLength < 1024 Then
-                    Call DziTools.CreateDziImages(
-                        source:=file.FileName,
-                        save_dzi:=dzifile
-                    )
+                If Not file.FileName.ExtensionSuffix("hds", "mzpack") Then
+                    dzifile = $"{App.AppSystemTemp}/dzi_store/{file.FileName.MD5}.hds"
+
+                    If dzifile.FileLength < 1024 Then
+                        Call DziTools.CreateDziImages(
+                            source:=file.FileName,
+                            save_dzi:=dzifile
+                        )
+                    End If
+                Else
+                    dzifile = file.FileName
                 End If
 
                 Call TissueSlideHandler.OpenTifFile(dzifile, file.FileName.FileName)
