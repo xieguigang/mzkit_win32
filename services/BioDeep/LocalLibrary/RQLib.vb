@@ -3,6 +3,7 @@ Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports Microsoft.VisualBasic.ComponentModel.Ranges
 Imports Microsoft.VisualBasic.Data.IO.MessagePack
 Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
+Imports Microsoft.VisualBasic.Linq
 Imports RQL
 
 ''' <summary>
@@ -19,9 +20,19 @@ Public Class RQLib : Implements IDisposable
         query = New Resource(New StreamPack(file))
     End Sub
 
-    Public Function AddAnnotation(metabo As MetaLib)
+    Public Function AddAnnotation(metabo As MetaLib) As Boolean
         Dim packdata = MsgPackSerializer.SerializeObject(metabo)
 
+        Call query.Add(metabo.ID, packdata)
+        Call query.Add(metabo.name, packdata)
+        Call query.Add(metabo.formula, packdata)
+        Call query.Add(metabo.IUPACName, packdata)
+
+        For Each name As String In metabo.synonym.SafeQuery
+            Call query.Add(name, packdata)
+        Next
+
+        Return True
     End Function
 
     ''' <summary>
