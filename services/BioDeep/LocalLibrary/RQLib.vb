@@ -19,6 +19,11 @@ Public Class RQLib : Implements IDisposable
         query = New Resource(New StreamPack(file))
     End Sub
 
+    Public Function AddAnnotation(metabo As MetaLib)
+        Dim packdata = MsgPackSerializer.SerializeObject(metabo)
+
+    End Function
+
     ''' <summary>
     ''' just get metabolite annotation information
     ''' </summary>
