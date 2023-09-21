@@ -3,7 +3,6 @@ Imports System.Threading
 Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
-Imports Microsoft.VisualBasic.DataStorage.netCDF.DataVector
 Imports Microsoft.VisualBasic.FileIO
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
@@ -160,17 +159,7 @@ Public Class frmOpenseadragonViewer
 
         Call WebView21.CoreWebView2.AddHostObjectToScript("dzi", $"http://127.0.0.1:{webPort}/{dzi.BaseName}.dzi")
         Call WebView21.CoreWebView2.Navigate(sourceURL)
-        Call DeveloperOptions(enable:=True)
-    End Sub
-
-    Public Sub DeveloperOptions(enable As Boolean)
-        WebView21.CoreWebView2.Settings.AreDevToolsEnabled = enable
-        WebView21.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = enable
-        WebView21.CoreWebView2.Settings.AreDefaultContextMenusEnabled = enable
-
-        If enable Then
-            Call Workbench.StatusMessage($"[{TabText}] WebView2 developer tools has been enable!")
-        End If
+        Call WebKit.DeveloperOptions(WebView21, enable:=True, TabText)
     End Sub
 
     Private Sub frmOpenseadragonViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
