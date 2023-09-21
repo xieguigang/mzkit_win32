@@ -1,6 +1,7 @@
 ﻿Imports System.IO
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports Microsoft.VisualBasic.ComponentModel.Ranges
+Imports Microsoft.VisualBasic.Data.IO.MessagePack
 Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
 Imports RQL
 
@@ -29,7 +30,7 @@ Public Class RQLib : Implements IDisposable
         Dim result As MetaLib() = New MetaLib(keys.Length - 1) {}
 
         For i As Integer = 0 To keys.Length - 1
-            result(i) = messagepa query .ReadBuffer ( keys (i))
+            result(i) = MsgPackSerializer.Deserialize(Of MetaLib)(query.ReadBuffer(keys(i)))
         Next
 
         Return result
