@@ -75,8 +75,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\Darwinism\src\LINQ\RQL\RQL.vbproj" />
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data\BinaryData\msgpack\msgpack-netcore5.vbproj" />
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\mime\application%json\JSON-netcore5.vbproj" />
+    <ProjectReference Include="..\..\..\metadb\Massbank\massbank.NET5.vbproj" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="System.Data" />

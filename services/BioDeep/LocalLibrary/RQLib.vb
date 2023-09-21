@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports Microsoft.VisualBasic.ComponentModel.Ranges
 Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
 Imports RQL
@@ -22,9 +23,16 @@ Public Class RQLib : Implements IDisposable
     ''' </summary>
     ''' <param name="name"></param>
     ''' <returns></returns>
-    Public Function QueryMetabolites(name As String)
+    Public Function QueryMetabolites(name As String) As MetaLib()
         Dim list As NumericTagged(Of String)() = query.Get(query:=name).ToArray
+        Dim keys As String() = list.Select(Function(m) m.value).Distinct.ToArray
+        Dim result As MetaLib() = New MetaLib(keys.Length - 1) {}
 
+        For i As Integer = 0 To keys.Length - 1
+            result(i) = messagepa query .ReadBuffer ( keys (i))
+        Next
+
+        Return result
     End Function
 
 
