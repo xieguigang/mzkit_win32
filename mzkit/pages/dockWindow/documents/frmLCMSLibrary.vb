@@ -58,6 +58,7 @@ Public Class LibraryApp
             Return "[]"
         End If
 
-        Dim result = current.
+        Dim result = current.QueryMetabolites(name)
+        Return result.GetJson
     End Function
 End Class
