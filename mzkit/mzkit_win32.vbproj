@@ -697,6 +697,12 @@
     <Compile Include="MSdata\Module2.vb" />
     <Compile Include="pages\ConnectToBioDeep.vb" />
     <Compile Include="pages\dockWindow\DemoItem.vb" />
+    <Compile Include="pages\dockWindow\documents\frmLCMSLibrary.Designer.vb">
+      <DependentUpon>frmLCMSLibrary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pages\dockWindow\documents\frmLCMSLibrary.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\documents\frmMetabonomicsAnalysis.Designer.vb">
       <DependentUpon>frmMetabonomicsAnalysis.vb</DependentUpon>
     </Compile>
