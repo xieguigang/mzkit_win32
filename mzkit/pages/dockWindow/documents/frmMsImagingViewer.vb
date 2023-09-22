@@ -170,6 +170,9 @@ Public Class frmMsImagingViewer
         blender.OpenSession(ss, params.GetMSIDimension, Nothing, params, args)
     End Sub
 
+    ''' <summary>
+    ''' A unify method for start the ms-imaging data backend
+    ''' </summary>
     Public Sub StartMSIService()
         ServiceHub.MSIDataService.StartMSIService(hostReference:=MSIservice)
 
@@ -1706,7 +1709,7 @@ Public Class frmMsImagingViewer
 
             Call WindowModules.viewer.Show(DockPanel)
             Call WindowModules.msImageParameters.Show(DockPanel)
-            Call ServiceHub.MSIDataService.StartMSIService(MSIservice)
+            Call StartMSIService()
 
             Call TaskProgress.RunAction(
                 Sub()
