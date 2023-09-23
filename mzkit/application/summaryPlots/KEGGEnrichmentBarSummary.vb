@@ -38,7 +38,7 @@ Public Class KEGGEnrichmentBarSummary : Inherits SummaryPlot
         End Get
     End Property
 
-    Public Overrides Function Plot(table As DataTable) As Image
+    Public Overrides Function Plot(table As DataTable) As Object
         Dim term As String() = getFieldVector(table, {"term", "name"}).AsObjectEnumerator.Select(AddressOf any.ToString).ToArray
         Dim pvalue As Double() = getFieldVector(table, {"pvalue", "p-value"}) _
             .AsObjectEnumerator _

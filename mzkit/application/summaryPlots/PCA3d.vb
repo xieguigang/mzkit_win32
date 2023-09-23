@@ -25,7 +25,7 @@ Public Class PCA3d : Inherits SummaryPlot
         End Get
     End Property
 
-    Public Overrides Function Plot(table As DataTable) As Image
+    Public Overrides Function Plot(table As DataTable) As Object
         Dim pc1 = getFieldVector(table, {"PC1"}).AsObjectEnumerator.Select(Function(a) CDbl(a)).ToArray
         Dim pc2 = getFieldVector(table, {"PC2"}).AsObjectEnumerator.Select(Function(a) CDbl(a)).ToArray
         Dim pc3 = getFieldVector(table, {"PC3"}).AsObjectEnumerator.Select(Function(a) CDbl(a)).ToArray
