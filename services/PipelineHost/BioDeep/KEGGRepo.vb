@@ -112,9 +112,9 @@ Public Module KEGGRepo
     End Function
 
     Public Function RequestKEGGCompounds() As Compound()
-        Using zip As New ZipArchive(getMZKitPackage.Open(FileMode.Open, doClear:=False))
-            Using pack = If(zip.GetEntry("data\KEGG_compounds.msgpack"), zip.GetEntry("data/KEGG_compounds.msgpack")).Open
-                Return KEGGCompoundPack.ReadKeggDb(pack)
+        Using zip As New ZipArchive(getMZKitPackage("GCModeller").Open(FileMode.Open, doClear:=False))
+            Using pack As New ZipArchive(If(zip.GetEntry("data\kegg\compounds.zip"), zip.GetEntry("data/kegg/compounds.zip")).Open)
+                Return KEGGCompoundPack.ReadKeggDb(pack.GetEntry("compounds.msgpack").Open)
             End Using
         End Using
     End Function
