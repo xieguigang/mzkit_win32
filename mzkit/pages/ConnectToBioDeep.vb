@@ -219,7 +219,7 @@ Public Class ConnectToBioDeep
 
     Private Shared Iterator Function ParseMzSet1(row As Dictionary(Of String, Object)) As IEnumerable(Of NamedValue(Of Double))
         If row.ContainsKey("hits") Then
-            Dim hits As String() = any.ToString(row("hits"), "").StringSplit("[,;]\s?")
+            Dim hits As String() = any.ToString(row("hits"), "").StringSplit(";\s?")
 
             For Each meta As String In hits
                 Dim mz = Val(meta.Split.Last)
