@@ -525,13 +525,20 @@ Public Class PageMzSearch
 
         Dim title As String = If(SourceName.StringEmpty, "Peak List Annotation", $"[{SourceName}] Peak List Annotation")
         Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
+        Dim loader As Action(Of DataTable) = AddressOf New LoadAnnotationResultTableTask With {
+            .result = result,
+            .keggMeta = keggMeta
+        }.FillTable
 
         table.SourceName = SourceName
         table.InstanceGuid = InstanceGuid
         table.AppSource = GetType(PageMzSearch)
 
-        Call ProgressSpinner.DoLoading(Sub() Call table.LoadTable(AddressOf New LoadAnnotationResultTableTask With {.result = result, .keggMeta = keggMeta}.FillTable))
-        Call Workbench.StatusMessage($"get {result.Count} database annotation result for {mzset.Length} m/z ions list!")
+        Call ProgressSpinner.DoLoading(
+            Sub()
+                Call table.Invoke(Sub() table.LoadTable(loader))
+            End Sub)
+        Call Workbench.SuccessMessage($"get {result.Count} database annotation result for {mzset.Length} m/z ions list!")
     End Sub
 
     Private Function loadTable(result As List(Of NamedCollection(Of MzQuery)), keggMeta As DBPool) As Action(Of DataTable)
