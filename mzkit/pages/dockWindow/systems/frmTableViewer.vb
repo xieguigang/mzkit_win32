@@ -77,7 +77,7 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
 
     Public Property FilePath As String Implements IFileReference.FilePath
     Public Property ViewRow As Action(Of Dictionary(Of String, Object))
-
+    Public Property ParseMsSet As Func(Of Dictionary(Of String, Object), IEnumerable(Of NamedValue(Of Double)))
     Public Property SourceName As String Implements IDataTraceback.SourceName
     ''' <summary>
     ''' for raw data traceback
@@ -94,6 +94,23 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
     End Property
 
     Public Property AppSource As Type Implements IDataTraceback.AppSource
+
+    Public ReadOnly Property GetSelectedRow As Dictionary(Of String, Object)
+        Get
+            If AdvancedDataGridView1.SelectedRows.Count <= 0 Then
+                Return Nothing
+            End If
+
+            Dim obj As New Dictionary(Of String, Object)
+            Dim row As DataGridViewRow = AdvancedDataGridView1.SelectedRows(0)
+
+            For i As Integer = 0 To AdvancedDataGridView1.Columns.Count - 1
+                obj(AdvancedDataGridView1.Columns(i).HeaderText) = row.Cells(i).Value
+            Next
+
+            Return obj
+        End Get
+    End Property
 
     Dim memoryData As New DataSet
     Dim search As GridSearchHandler
@@ -183,17 +200,12 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
     End Function
 
     Private Sub ViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewToolStripMenuItem.Click
-        If AdvancedDataGridView1.SelectedRows.Count <= 0 Then
-            Call MyApplication.host.showStatusMessage("Please select a row data for view content!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+        Dim row = GetSelectedRow
+
+        If row.IsNullOrEmpty Then
+            Call Workbench.Warning("Please select a row data for view content!")
         ElseIf Not ViewRow Is Nothing Then
-            Dim obj As New Dictionary(Of String, Object)
-            Dim row As DataGridViewRow = AdvancedDataGridView1.SelectedRows(0)
-
-            For i As Integer = 0 To AdvancedDataGridView1.Columns.Count - 1
-                obj(AdvancedDataGridView1.Columns(i).HeaderText) = row.Cells(i).Value
-            Next
-
-            Call _ViewRow(obj)
+            Call _ViewRow(row)
         End If
     End Sub
 
@@ -411,6 +423,31 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub MSImagingIonListToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MSImagingIonListToolStripMenuItem.Click
+        Dim row = GetSelectedRow
 
+        If row.IsNullOrEmpty Then
+            Call Workbench.Warning("A row data must be selected!")
+            Return
+        End If
+
+        Dim msi As frmMsImagingViewer = Workbench.AppHost.DockPanel.Documents.Where(Function(f) TypeOf f Is frmMsImagingViewer).FirstOrDefault
+
+        If msi Is Nothing Then
+            Call Workbench.Warning("You must open a ms-imaging data viewer at first!")
+            Return
+        End If
+
+        If ParseMsSet Is Nothing Then
+            Call Workbench.Warning("Sorry, there is no avaiable ions mz source list in current table!")
+            Return
+        End If
+
+        Dim mzSet = ParseMsSet(row).ToArray
+        Dim labels As String() = mzSet.Select(Function(a) a.Name).ToArray
+        Dim mz As Double() = mzSet.Select(Function(a) a.Value).ToArray
+
+        Call WindowModules.msImageParameters.ImportsIons(labels, mz)
+        Call VisualStudio.Dock(WindowModules.msImageParameters, WeifenLuo.WinFormsUI.Docking.DockState.DockLeft)
+        Call VisualStudio.ShowSingleDocument(Of frmMsImagingViewer)()
     End Sub
 End Class

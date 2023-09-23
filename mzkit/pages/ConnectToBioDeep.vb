@@ -62,10 +62,12 @@ Imports BioNovoGene.BioDeep.MSEngine
 Imports BioNovoGene.BioDeep.MSEngine.Mummichog
 Imports BioNovoGene.mzkit_win32.DockSample
 Imports BioNovoGene.mzkit_win32.My
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.My
 Imports Mzkit_win32.BasicMDIForm
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
+Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class ConnectToBioDeep
 
@@ -215,8 +217,21 @@ Public Class ConnectToBioDeep
             End Sub
     End Sub
 
+    Private Shared Iterator Function ParseMzSet1(row As Dictionary(Of String, Object)) As IEnumerable(Of NamedValue(Of Double))
+        If row.ContainsKey("hits") Then
+            Dim hits As String() = any.ToString(row("hits"), "").StringSplit("[,;]\s?")
+
+            For Each meta As String In hits
+                Dim mz = Val(meta.Split.Last)
+
+                Yield New NamedValue(Of Double)(meta, mz)
+            Next
+        End If
+    End Function
+
     Private Shared Sub showTable(table As frmTableViewer, result As ActivityEnrichment())
-        Call table.LoadTable(
+        table.ParseMsSet = AddressOf ParseMzSet1
+        table.LoadTable(
             Sub(grid)
                 Call grid.Columns.Add("name", GetType(String))
                 Call grid.Columns.Add("description", GetType(String))
