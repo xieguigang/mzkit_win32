@@ -12,6 +12,7 @@ Public MustInherit Class SummaryPlot
             Yield New KEGGEnrichmentBarSummary
             Yield New KEGGEnrichmentBarSummary2
             Yield New PCA3d
+            Yield New KEGGEnrichmentGraph
         End Get
     End Property
 
@@ -46,7 +47,7 @@ Public MustInherit Class SummaryPlot
         Throw New KeyNotFoundException(name)
     End Function
 
-    Public MustOverride Function Plot(table As DataTable) As Image
+    Public MustOverride Function Plot(table As DataTable) As Object
 
     Protected Function getFieldVector(table As DataTable, aliasNames As String()) As Array
         For Each name As String In aliasNames
