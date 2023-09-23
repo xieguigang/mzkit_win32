@@ -10,6 +10,7 @@ Public MustInherit Class SummaryPlot
     Public Shared ReadOnly Iterator Property PlotApps As IEnumerable(Of SummaryPlot)
         Get
             Yield New KEGGEnrichmentBarSummary
+            Yield New KEGGEnrichmentBarSummary2
             Yield New PCA3d
         End Get
     End Property
