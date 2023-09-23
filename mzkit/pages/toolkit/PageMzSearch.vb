@@ -530,8 +530,8 @@ Public Class PageMzSearch
         table.InstanceGuid = InstanceGuid
         table.AppSource = GetType(PageMzSearch)
 
-        Call table.LoadTable(loadTable(result, keggMeta))
-        Call Workbench.StatusMessage($"get {result.Count} annotation result for {mzset.Length} m/z ions list!")
+        Call ProgressSpinner.DoLoading(Sub() Call table.LoadTable(loadTable(result, keggMeta)))
+        Call Workbench.StatusMessage($"get {result.Count} database annotation result for {mzset.Length} m/z ions list!")
     End Sub
 
     Private Function loadTable(result As List(Of NamedCollection(Of MzQuery)), keggMeta As DBPool) As Action(Of DataTable)
@@ -550,6 +550,11 @@ Public Class PageMzSearch
                    For Each setList In result
                        For Each ion As MzQuery In setList
                            Dim kegg = keggMeta.getAnnotation(ion.unique_id)
+                           Dim exactMass As Double = FormulaScanner.ScanFormula(kegg.formula).ExactMass
+
+                           If exactMass <= 0 Then
+                               Continue For
+                           End If
 
                            Call grid.Rows.Add(
                                ion.mz.ToString("F4"),
@@ -559,7 +564,7 @@ Public Class PageMzSearch
                                ion.unique_id,
                                If(kegg.name, ion.unique_id),
                                kegg.formula,
-                               FormulaScanner.ScanFormula(kegg.formula).ExactMass,
+                               exactMass,
                                ion.score.ToString("F2"),
                                setList.name
                            )
