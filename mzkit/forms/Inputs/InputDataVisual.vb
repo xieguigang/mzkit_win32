@@ -59,6 +59,7 @@ Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.Data.ChartPlots
 Imports Microsoft.VisualBasic.Data.ChartPlots.BarPlot.Data
+Imports Microsoft.VisualBasic.Data.visualize.Network.Graph
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Math2D
@@ -270,7 +271,19 @@ SingleS:    For Each name As String In GetY()
         Dim plot As Image
 
         If (TabControl1.SelectedTab Is TabPage2) Then
-            plot = doSummaryPlot(table)
+            Dim Rplot = doSummaryPlot(table)
+
+            If TypeOf Rplot Is NetworkGraph Then
+                Dim g As NetworkGraph = Rplot
+                Dim viewer As frmNetworkViewer = VisualStudio.ShowDocument(Of frmNetworkViewer)(title:=ComboBox2.SelectedItem.ToString)
+
+                viewer.SetGraph(g, layout:=Globals.Settings.network.layout)
+                viewer.Show(MyApplication.host.m_dockPanel)
+
+                Return
+            Else
+                plot = Rplot
+            End If
         Else
             plot = doGeneralPlot(x, getVector)
         End If
@@ -279,7 +292,7 @@ SingleS:    For Each name As String In GetY()
         MyApplication.host.ShowMzkitToolkit()
     End Sub
 
-    Private Function doSummaryPlot(table As DataTable) As Image
+    Private Function doSummaryPlot(table As DataTable) As Object
         Dim name As String = ComboBox2.SelectedItem.ToString
         Dim app As SummaryPlot = SummaryPlot.getApp(name)
 

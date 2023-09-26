@@ -1,10 +1,23 @@
-﻿Imports System.Text
-Imports Microsoft.VisualBasic.Imaging
+﻿Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 Imports SMRUCC.genomics.Assembly.KEGG
 Imports SMRUCC.genomics.Visualize.CatalogProfiling
 Imports any = Microsoft.VisualBasic.Scripting
 Imports stdNum = System.Math
+
+Public Class KEGGEnrichmentBarSummary2 : Inherits KEGGEnrichmentBarSummary
+
+    Public Overrides ReadOnly Property requiredFields As Dictionary(Of String(), String)
+        Get
+            Dim list As New Dictionary(Of String(), String)
+
+            list({"name"}) = "the kegg pathway map id vector."
+            list({"p-value"}) = "the fisher enrichment analysis pvalue result."
+
+            Return list
+        End Get
+    End Property
+End Class
 
 Public Class KEGGEnrichmentBarSummary : Inherits SummaryPlot
 
@@ -25,9 +38,9 @@ Public Class KEGGEnrichmentBarSummary : Inherits SummaryPlot
         End Get
     End Property
 
-    Public Overrides Function Plot(table As DataTable) As Image
-        Dim term As String() = getFieldVector(table, {"term"}).AsObjectEnumerator.Select(AddressOf any.ToString).ToArray
-        Dim pvalue As Double() = getFieldVector(table, {"pvalue"}) _
+    Public Overrides Function Plot(table As DataTable) As Object
+        Dim term As String() = getFieldVector(table, {"term", "name"}).AsObjectEnumerator.Select(AddressOf any.ToString).ToArray
+        Dim pvalue As Double() = getFieldVector(table, {"pvalue", "p-value"}) _
             .AsObjectEnumerator _
             .Select(Function(o)
                         Return Val(o)

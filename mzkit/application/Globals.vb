@@ -266,7 +266,7 @@ Module Globals
 
     Public Function LoadKEGG(println As Action(Of String), mode As Integer, mzdiff As Tolerance) As MSJointConnection
         Static background As Background = loadBackground()
-        Static compounds = KEGGHandler.Wraps(KEGGRepo.RequestKEGGCompounds).ToArray
+        Static compounds As KEGGCompound() = KEGGHandler.Wraps(KEGGRepo.RequestKEGGCompounds).ToArray
         Static cache As New Dictionary(Of String, KEGGHandler)
 
         Dim key As String = $"[{mzdiff.ToString}]{mode}"

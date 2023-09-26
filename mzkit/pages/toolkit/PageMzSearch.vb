@@ -525,48 +525,25 @@ Public Class PageMzSearch
 
         Dim title As String = If(SourceName.StringEmpty, "Peak List Annotation", $"[{SourceName}] Peak List Annotation")
         Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
+        Dim loader As Action(Of DataTable) = AddressOf New LoadAnnotationResultTableTask With {
+            .result = result,
+            .keggMeta = keggMeta
+        }.FillTable
 
         table.SourceName = SourceName
         table.InstanceGuid = InstanceGuid
         table.AppSource = GetType(PageMzSearch)
 
-        Call table.LoadTable(loadTable(result, keggMeta))
-        Call Workbench.StatusMessage($"get {result.Count} annotation result for {mzset.Length} m/z ions list!")
+        Call ProgressSpinner.DoLoading(
+            Sub()
+                Call table.Invoke(Sub() table.LoadTable(loader))
+            End Sub)
+        Call Workbench.SuccessMessage($"get {result.Count} database annotation result for {mzset.Length} m/z ions list!")
     End Sub
 
     Private Function loadTable(result As List(Of NamedCollection(Of MzQuery)), keggMeta As DBPool) As Action(Of DataTable)
         Return Sub(grid)
-                   Call grid.Columns.Add("mz", GetType(Double))
-                   Call grid.Columns.Add("mz_ref", GetType(Double))
-                   Call grid.Columns.Add("ppm", GetType(Double))
-                   Call grid.Columns.Add("precursorType", GetType(String))
-                   Call grid.Columns.Add("kegg_id", GetType(String))
-                   Call grid.Columns.Add("name", GetType(String))
-                   Call grid.Columns.Add("formula", GetType(String))
-                   Call grid.Columns.Add("exact_mass", GetType(Double))
-                   Call grid.Columns.Add("score", GetType(Double))
-                   Call grid.Columns.Add("metadb", GetType(String))
 
-                   For Each setList In result
-                       For Each ion As MzQuery In setList
-                           Dim kegg = keggMeta.getAnnotation(ion.unique_id)
-
-                           Call grid.Rows.Add(
-                               ion.mz.ToString("F4"),
-                               ion.mz_ref.ToString("F4"),
-                               ion.ppm.ToString("F1"),
-                               ion.precursorType,
-                               ion.unique_id,
-                               If(kegg.name, ion.unique_id),
-                               kegg.formula,
-                               FormulaScanner.ScanFormula(kegg.formula).ExactMass,
-                               ion.score.ToString("F2"),
-                               setList.name
-                           )
-
-                           Call Application.DoEvents()
-                       Next
-                   Next
                End Sub
     End Function
 
@@ -581,5 +558,49 @@ Public Class PageMzSearch
         }
 
         Call ConnectToBioDeep.RunMummichog(getMzPeakList, args)
+    End Sub
+End Class
+
+Friend Class LoadAnnotationResultTableTask
+
+    Public result As List(Of NamedCollection(Of MzQuery)), keggMeta As DBPool
+
+    Public Sub FillTable(grid As DataTable)
+        Call grid.Columns.Add("mz", GetType(Double))
+        Call grid.Columns.Add("mz_ref", GetType(Double))
+        Call grid.Columns.Add("ppm", GetType(Double))
+        Call grid.Columns.Add("precursorType", GetType(String))
+        Call grid.Columns.Add("kegg_id", GetType(String))
+        Call grid.Columns.Add("name", GetType(String))
+        Call grid.Columns.Add("formula", GetType(String))
+        Call grid.Columns.Add("exact_mass", GetType(Double))
+        Call grid.Columns.Add("score", GetType(Double))
+        Call grid.Columns.Add("metadb", GetType(String))
+
+        For Each setList In result
+            For Each ion As MzQuery In setList
+                Dim kegg = keggMeta.getAnnotation(ion.unique_id)
+                Dim exactMass As Double = FormulaScanner.ScanFormula(kegg.formula).ExactMass
+
+                If exactMass <= 0 Then
+                    Continue For
+                End If
+
+                Call grid.Rows.Add(
+                    ion.mz.ToString("F4"),
+                    ion.mz_ref.ToString("F4"),
+                    ion.ppm.ToString("F1"),
+                    ion.precursorType,
+                    ion.unique_id,
+                    If(kegg.name, ion.unique_id),
+                    kegg.formula,
+                    exactMass,
+                    ion.score.ToString("F2"),
+                    setList.name
+                )
+
+                Call Application.DoEvents()
+            Next
+        Next
     End Sub
 End Class
