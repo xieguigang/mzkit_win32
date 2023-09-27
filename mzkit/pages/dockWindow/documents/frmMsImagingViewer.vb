@@ -475,7 +475,7 @@ Public Class frmMsImagingViewer
 
         Call ProgressSpinner.DoLoading(
             Sub()
-                Call canvas.Invoke(Sub() Call canvas.SetData(loadedPixels))
+                Call canvas.SetData(loadedPixels)
             End Sub)
         Call InputDialog.Input(Sub(cfg)
                                    ' do nothing
