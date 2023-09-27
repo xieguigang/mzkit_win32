@@ -17,7 +17,21 @@ Public Class ShowMzBins
     End Sub
 
     Private Sub showIonStat()
+        Dim mz As Double
 
+        If Me.Layer.IsNullOrEmpty Then
+            mz = 0
+        Else
+            mz = Aggregate spot As PixelData
+                 In Me.Layer
+                 Into Average(spot.mz)
+        End If
+
+        Dim layer As New SingleIonLayer With {.IonMz = mz, .MSILayer = Me.Layer}
+        Dim stat As IonStat = IonStat.DoStat(layer)
+
+        PropertyGrid1.SelectedObject = stat
+        PropertyGrid1.Refresh()
     End Sub
 
     Private Sub updateBinBox(err As Double)
@@ -68,7 +82,7 @@ Public Class ShowMzBins
             Ylabel:="binbox size",
             fill:=True,
             drawLine:=True,
-            padding:="padding:100px 350px 150px 150px;",
+            padding:="padding:100px 400px 150px 200px;",
             dpi:=150,
             YtickFormat:="F0",
             preferPositive:=True,
