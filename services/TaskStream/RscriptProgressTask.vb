@@ -172,13 +172,16 @@ Public NotInheritable Class RscriptProgressTask
         Return cachefile
     End Function
 
-    Public Shared Sub ExportRGBIonsPlot(mz As Double(), tolerance As String, saveAs As String)
+    Public Shared Sub ExportRGBIonsPlot(mz As Double(), tolerance As String, saveAs As String, size As Size, dpi As Integer, padding As String)
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSImaging/tripleIon.R")
         Dim cli As String = $"""{Rscript}"" 
 --app {Workbench.MSIServiceAppPort} 
 --mzlist ""{mz.JoinBy(",")}"" 
 --save ""{saveAs}"" 
 --mzdiff ""{tolerance}"" 
+--size ""{size.Width},{size.Height}""
+--dpi {dpi}
+--padding ""{padding}""
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
@@ -215,6 +218,7 @@ Public NotInheritable Class RscriptProgressTask
                                           background As String,
                                           colorSet As String,
                                           overlapTotalIons As Boolean,
+                                          size As Size, dpi As Integer, padding As String,
                                           Optional title As String = "")
 
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSImaging/singleIon.R")
@@ -226,6 +230,9 @@ Public NotInheritable Class RscriptProgressTask
 --backcolor ""{background}"" 
 --colors ""{colorSet}"" 
 --mzdiff ""{tolerance}"" 
+--size ""{size.Width},{size.Height}""
+--dpi {dpi}
+--padding ""{padding}""
 --title ""{title}"" {overlapFlag} 
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
