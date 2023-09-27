@@ -15,6 +15,9 @@ const bg as string       = ?"--backcolor" || "black";
 const overlap_totalIons as boolean = ?"--overlap-tic" || FALSE;
 const colorSet as string = ?"--colors" || "viridis:turbo";
 const hostName as string = ?"--host" || "localhost";
+const plot_size          = ?"--size" || "3300,2000";
+const plot_dpi           = ?"--dpi"  || 120;
+const plot_padding       = ?"--padding" || "padding: 200px 600px 200px 250px;";
 const mzlist as double   = mz
 |> strsplit(",", fixed = TRUE)
 |> unlist()
@@ -44,14 +47,14 @@ const totalIonLayer = {
 print(`load ${length(pixelsData)} pixels data from given m/z:`);
 print(mzlist);
 
-bitmap(file = savefile, size = [3300, 2000]) {
+bitmap(file = savefile, size = as.integer(unlist(strsplit(plot_size, ","))), dpi = plot_dpi) {
     
     # load mzpack/imzML raw data file
     # and config ggplot data source driver 
     # as MSImaging data reader
     ggplot(dataPack, 
            mapping = aes(), 
-           padding = "padding: 200px 600px 200px 250px;"
+           padding = plot_padding
     ) 
        # rendering of a single ion m/z
        # default color palette is Jet color set

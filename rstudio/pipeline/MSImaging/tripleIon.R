@@ -15,6 +15,9 @@ const mzdiff as string   = ?"--mzdiff"  || "da:0.1";
 const savefile as string = ?"--save"    || stop("A file path to save plot image must be specificed!");
 const knnFill as integer = ?"--knnFill" || 3;
 const overlap_totalIons as boolean = ?"--overlap-tic" || FALSE;
+const plot_size          = ?"--size" || "3300,2000";
+const plot_dpi           = ?"--dpi"  || 120;
+const plot_padding       = ?"--padding" || "padding: 200px 600px 200px 250px;";
 const mzlist as double   = mz
 |> strsplit(",", fixed = TRUE)
 |> unlist()
@@ -45,7 +48,7 @@ names(images) = mz_keys;
 print("view of the images data:");
 str(images);
 
-bitmap(file = savefile, size = [3300, 2000]) {
+bitmap(file = savefile, size = as.integer(unlist(strsplit(plot_size, ","))), dpi = plot_dpi) {
     
     # load mzpack/imzML raw data file
     # and config ggplot data source driver 
@@ -57,7 +60,7 @@ bitmap(file = savefile, size = [3300, 2000]) {
         G = images[[kg]], 
         B = images[[kb]],
         dims = dims
-    ), padding = "padding: 200px 600px 200px 250px;") 
+    ), padding = plot_padding) 
        
 	   + theme(panel.background = "black")
        + geom_msiheatmap()
