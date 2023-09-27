@@ -2622,7 +2622,8 @@ Public Class frmMsImagingViewer
         Call InputDialog.Input(
             setConfig:=Sub(cfg)
                            If targetMz.Length > 1 Then
-                               Call RscriptProgressTask.ExportRGBIonsPlot(targetMz, mzdiff.GetScript, saveAs:=save.FileName)
+                               Call RscriptProgressTask.ExportRGBIonsPlot(targetMz, mzdiff.GetScript, saveAs:=save.FileName,
+                                                                          size:=cfg.GetPlotSize, dpi:=cfg.GetPlotDpi, padding:=cfg.GetPlotPadding)
                            Else
                                Call RscriptProgressTask.ExportSingleIonPlot(
                                    mz:=targetMz(0),
@@ -2631,7 +2632,8 @@ Public Class frmMsImagingViewer
                                    title:=title,
                                    background:=params.background.ToHtmlColor,
                                    colorSet:=params.colors.Description,
-                                   overlapTotalIons:=params.showTotalIonOverlap
+                                   overlapTotalIons:=params.showTotalIonOverlap,
+                                   size:=cfg.GetPlotSize, dpi:=cfg.GetPlotDpi, padding:=cfg.GetPlotPadding
                                )
                            End If
                        End Sub,

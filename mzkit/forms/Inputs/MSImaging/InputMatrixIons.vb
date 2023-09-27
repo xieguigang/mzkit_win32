@@ -4,6 +4,7 @@ Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports TaskStream
 Imports DataFrame = Microsoft.VisualBasic.Data.csv.IO.DataFrame
 Imports stdNum = System.Math
@@ -286,22 +287,26 @@ Public Class InputMatrixIons
     End Sub
 
     Private Sub ExportSingleIonsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportSingleIonsToolStripMenuItem.Click
-        Using folder As New FolderBrowserDialog With {.ShowNewFolderButton = True}
-            If folder.ShowDialog = DialogResult.OK Then
-                Dim mzdiff As String = $"da:{txtMzdiff.Text}"
+        Dim folder As New SetMSIPlotParameters With {.SetDir = True}
+        Dim mzdiff As String = $"da:{txtMzdiff.Text}"
 
-                For Each mz As NamedValue(Of Double) In GetSelectedIons()
-                    Call RscriptProgressTask.ExportSingleIonPlot(
-                        mz:=mz.Value,
-                        tolerance:=mzdiff,
-                        saveAs:=$"{folder.SelectedPath}/${mz.Value.ToString("F4")}.png",
-                        title:=$"{mz.Name} {mz.Description}",
-                        background:="black",
-                        colorSet:=colorSet,
-                        overlapTotalIons:=True
-                    )
-                Next
-            End If
-        End Using
+        folder.SetFolder(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory))
+
+        InputDialog.Input(Sub(cfg)
+                              For Each mz As NamedValue(Of Double) In GetSelectedIons()
+                                  Call RscriptProgressTask.ExportSingleIonPlot(
+                                              mz:=mz.Value,
+                                              tolerance:=mzdiff,
+                                              saveAs:=$"{folder.SelectedPath}/${mz.Value.ToString("F4")}.png",
+                                              title:=$"{mz.Name} {mz.Description}",
+                                              background:="black",
+                                              colorSet:=colorSet,
+                                              overlapTotalIons:=True,
+                                              size:=folder.GetPlotSize,
+                                              dpi:=folder.GetPlotDpi,
+                                              padding:=folder.GetPlotPadding
+                                          )
+                              Next
+                          End Sub, config:=folder)
     End Sub
 End Class
