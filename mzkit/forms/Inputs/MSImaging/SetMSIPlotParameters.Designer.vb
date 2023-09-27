@@ -88,10 +88,14 @@ Partial Class SetMSIPlotParameters
         '
         'NumericUpDown3
         '
+        Me.NumericUpDown3.Increment = New Decimal(New Integer() {20, 0, 0, 0})
         Me.NumericUpDown3.Location = New System.Drawing.Point(103, 111)
+        Me.NumericUpDown3.Maximum = New Decimal(New Integer() {2000, 0, 0, 0})
+        Me.NumericUpDown3.Minimum = New Decimal(New Integer() {100, 0, 0, 0})
         Me.NumericUpDown3.Name = "NumericUpDown3"
         Me.NumericUpDown3.Size = New System.Drawing.Size(120, 21)
         Me.NumericUpDown3.TabIndex = 9
+        Me.NumericUpDown3.Value = New Decimal(New Integer() {120, 0, 0, 0})
         '
         'Label4
         '
@@ -123,17 +127,25 @@ Partial Class SetMSIPlotParameters
         '
         'NumericUpDown2
         '
+        Me.NumericUpDown2.Increment = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.NumericUpDown2.Location = New System.Drawing.Point(266, 84)
+        Me.NumericUpDown2.Maximum = New Decimal(New Integer() {20000, 0, 0, 0})
+        Me.NumericUpDown2.Minimum = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.NumericUpDown2.Name = "NumericUpDown2"
         Me.NumericUpDown2.Size = New System.Drawing.Size(120, 21)
         Me.NumericUpDown2.TabIndex = 5
+        Me.NumericUpDown2.Value = New Decimal(New Integer() {2000, 0, 0, 0})
         '
         'NumericUpDown1
         '
+        Me.NumericUpDown1.Increment = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.NumericUpDown1.Location = New System.Drawing.Point(103, 84)
+        Me.NumericUpDown1.Maximum = New Decimal(New Integer() {20000, 0, 0, 0})
+        Me.NumericUpDown1.Minimum = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.NumericUpDown1.Name = "NumericUpDown1"
         Me.NumericUpDown1.Size = New System.Drawing.Size(120, 21)
         Me.NumericUpDown1.TabIndex = 4
+        Me.NumericUpDown1.Value = New Decimal(New Integer() {3300, 0, 0, 0})
         '
         'Label2
         '
@@ -215,31 +227,43 @@ Partial Class SetMSIPlotParameters
         '
         'NumericUpDown7
         '
+        Me.NumericUpDown7.Increment = New Decimal(New Integer() {100, 0, 0, 0})
         Me.NumericUpDown7.Location = New System.Drawing.Point(111, 106)
+        Me.NumericUpDown7.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
         Me.NumericUpDown7.Name = "NumericUpDown7"
         Me.NumericUpDown7.Size = New System.Drawing.Size(85, 21)
         Me.NumericUpDown7.TabIndex = 14
+        Me.NumericUpDown7.Value = New Decimal(New Integer() {300, 0, 0, 0})
         '
         'NumericUpDown4
         '
+        Me.NumericUpDown4.Increment = New Decimal(New Integer() {100, 0, 0, 0})
         Me.NumericUpDown4.Location = New System.Drawing.Point(111, 25)
+        Me.NumericUpDown4.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
         Me.NumericUpDown4.Name = "NumericUpDown4"
         Me.NumericUpDown4.Size = New System.Drawing.Size(85, 21)
         Me.NumericUpDown4.TabIndex = 11
+        Me.NumericUpDown4.Value = New Decimal(New Integer() {200, 0, 0, 0})
         '
         'NumericUpDown6
         '
+        Me.NumericUpDown6.Increment = New Decimal(New Integer() {100, 0, 0, 0})
         Me.NumericUpDown6.Location = New System.Drawing.Point(111, 79)
+        Me.NumericUpDown6.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
         Me.NumericUpDown6.Name = "NumericUpDown6"
         Me.NumericUpDown6.Size = New System.Drawing.Size(85, 21)
         Me.NumericUpDown6.TabIndex = 13
+        Me.NumericUpDown6.Value = New Decimal(New Integer() {250, 0, 0, 0})
         '
         'NumericUpDown5
         '
+        Me.NumericUpDown5.Increment = New Decimal(New Integer() {100, 0, 0, 0})
         Me.NumericUpDown5.Location = New System.Drawing.Point(111, 52)
+        Me.NumericUpDown5.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
         Me.NumericUpDown5.Name = "NumericUpDown5"
         Me.NumericUpDown5.Size = New System.Drawing.Size(85, 21)
         Me.NumericUpDown5.TabIndex = 12
+        Me.NumericUpDown5.Value = New Decimal(New Integer() {600, 0, 0, 0})
         '
         'Button2
         '
