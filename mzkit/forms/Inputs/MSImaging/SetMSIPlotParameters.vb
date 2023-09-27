@@ -1,6 +1,6 @@
 ﻿Public Class SetMSIPlotParameters
 
-    Public Property SetDir As Boolean
+    Public Property SetDir As Boolean = False
 
     Public ReadOnly Property FileName As String
         Get
@@ -48,11 +48,19 @@
     End Function
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Using file As New SaveFileDialog With {.FileName = TextBox1.Text, .Filter = "Image File(*.png)|*.png"}
-            If file.ShowDialog = DialogResult.OK Then
-                TextBox1.Text = file.FileName
-            End If
-        End Using
+        If SetDir Then
+            Using folder As New FolderBrowserDialog With {.ShowNewFolderButton = True}
+                If folder.ShowDialog = DialogResult.OK Then
+                    TextBox1.Text = folder.SelectedPath
+                End If
+            End Using
+        Else
+            Using file As New SaveFileDialog With {.FileName = TextBox1.Text, .Filter = "Image File(*.png)|*.png"}
+                If file.ShowDialog = DialogResult.OK Then
+                    TextBox1.Text = file.FileName
+                End If
+            End Using
+        End If
     End Sub
 
     ''' <summary>
