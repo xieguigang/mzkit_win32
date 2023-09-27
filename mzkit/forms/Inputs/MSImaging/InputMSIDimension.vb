@@ -63,6 +63,11 @@ Public Class InputMSIDimension
         End Get
     End Property
 
+    Public Sub SetPredefineSize(size As Size)
+        TextBox1.Text = size.Width
+        TextBox2.Text = size.Height
+    End Sub
+
     Public Sub SetTotalScans(n As Integer)
         TextBox3.Text = n
     End Sub

@@ -70,6 +70,7 @@ Imports System.Runtime.CompilerServices
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging.APSMALDI
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
@@ -1685,9 +1686,28 @@ Public Class frmMsImagingViewer
     ''' load thermo *.raw or *.mzML
     ''' </summary>
     ''' <param name="file"></param>
-    Public Sub loadRaw(file As String)
+    Public Sub loadRaw(file As String, predefine_dims As Size)
         Dim getSize As New InputMSIDimension
         Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
+
+        If file.ExtensionSuffix("raw") Then
+            Dim udpfile As String = file.ChangeSuffix("udp")
+
+            If udpfile.FileExists AndAlso predefine_dims.IsEmpty Then
+                Dim udpproj As UDPPrj = UDPPrj.ReadUdpFile(udpfile)
+                predefine_dims = udpproj.GetDimension
+            End If
+        ElseIf file.ExtensionSuffix("udp") Then
+            Dim udpproj As UDPPrj = UDPPrj.ReadUdpFile(file)
+
+            If predefine_dims.IsEmpty Then
+                predefine_dims = udpproj.GetDimension
+            End If
+
+            file = udpproj.GetRawdataFile(file.ParentPath)
+        End If
+
+        Call getSize.SetPredefineSize(predefine_dims)
 
         ' MRM data only works for the mzML file
         ' mzXML not able to contains the ion pair data

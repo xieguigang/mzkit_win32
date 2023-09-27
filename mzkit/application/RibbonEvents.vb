@@ -546,6 +546,7 @@ Module RibbonEvents
         Using file As New OpenFileDialog() With {
             .Filter = {
                 "All Supported Raw(*.raw;*.mzPack;*.imzML;*.cdf;*.mzML)|*.raw;*.mzPack;*.imzML;*.cdf;*.mzML",
+                "AP-SMALDI project file(*.udp)|*.udp",
                 "Thermo Raw(*.raw)|*.raw",
                 "Imaging mzML(*.imzML)|*.imzML",
                 "Mzkit Pixel Matrix(*.cdf)|*.cdf",
@@ -564,7 +565,7 @@ Module RibbonEvents
         Call showMsImaging()
 
         Select Case file.ExtensionSuffix.ToLower
-            Case "mzml", "raw" : Call WindowModules.viewer.loadRaw(file)
+            Case "mzml", "raw", "udp" : Call WindowModules.viewer.loadRaw(file, Nothing)
             Case "imzml", "mzpack" : Call WindowModules.viewer.loadimzML(file)
             Case "cdf" : Call WindowModules.msImageParameters.loadRenderFromCDF(file)
             Case "h5" : Call WindowModules.viewer.loadimzML(file)
