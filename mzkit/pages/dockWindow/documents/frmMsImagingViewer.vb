@@ -1470,7 +1470,8 @@ Public Class frmMsImagingViewer
                 Call grid.Columns.Add("Q1_intensity", GetType(Double))
                 Call grid.Columns.Add("Q2_intensity", GetType(Double))
                 Call grid.Columns.Add("Q3_intensity", GetType(Double))
-                Call grid.Columns.Add("RSD", GetType(Double))
+                Call grid.Columns.Add("moran I", GetType(Double))
+                Call grid.Columns.Add("p-value", GetType(Double))
 
                 For Each ion As IonStat In ions.OrderByDescending(Function(i) i.pixels)
                     If Not formula.StringEmpty Then
@@ -1495,7 +1496,8 @@ Public Class frmMsImagingViewer
                             stdNum.Round(ion.Q1Intensity),
                             stdNum.Round(ion.Q2Intensity),
                             stdNum.Round(ion.Q3Intensity),
-                            stdNum.Round(ion.RSD)
+                            stdNum.Round(ion.moran),
+                            stdNum.Round(ion.pvalue)
                         )
                     Else
                         Call grid.Rows.Add(
@@ -1509,7 +1511,8 @@ Public Class frmMsImagingViewer
                             stdNum.Round(ion.Q1Intensity),
                             stdNum.Round(ion.Q2Intensity),
                             stdNum.Round(ion.Q3Intensity),
-                            stdNum.Round(ion.RSD)
+                            stdNum.Round(ion.moran),
+                            stdNum.Round(ion.pvalue)
                         )
                     End If
 
