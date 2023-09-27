@@ -627,7 +627,8 @@ Public Class frmMsImagingViewer
                 Call grid.Columns.Add("Q1_intensity", GetType(Double))
                 Call grid.Columns.Add("Q2_intensity", GetType(Double))
                 Call grid.Columns.Add("Q3_intensity", GetType(Double))
-                Call grid.Columns.Add("RSD", GetType(Double))
+                Call grid.Columns.Add("moran I", GetType(Double))
+                Call grid.Columns.Add("moran p-value", GetType(Double))
 
                 For i As Integer = 0 To name.Length - 1
                     Dim name_str = name(i)
@@ -662,7 +663,8 @@ Public Class frmMsImagingViewer
                        stdNum.Round(ion.Q1Intensity),
                        stdNum.Round(ion.Q2Intensity),
                        stdNum.Round(ion.Q3Intensity),
-                       stdNum.Round(ion.RSD)
+                       stdNum.Round(ion.moran),
+                       stdNum.Round(ion.pvalue)
                     )
 
                     Call System.Windows.Forms.Application.DoEvents()
