@@ -471,8 +471,12 @@ Public Class frmMsImagingViewer
             Return
         End If
 
-        Dim canvas As New ShowMzBins With {.Layer = loadedPixels}
+        Dim canvas As New ShowMzBins
 
+        Call ProgressSpinner.DoLoading(
+            Sub()
+                Call canvas.Invoke(Sub() Call canvas.SetData(loadedPixels))
+            End Sub)
         Call InputDialog.Input(Sub(cfg)
                                    ' do nothing
                                End Sub, config:=canvas)

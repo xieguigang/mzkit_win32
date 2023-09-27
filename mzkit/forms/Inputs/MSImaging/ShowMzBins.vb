@@ -9,33 +9,33 @@ Imports stdNum = System.Math
 
 Public Class ShowMzBins
 
-    Public Property Layer As PixelData()
+    Dim hist As Image
+    Dim stat As IonStat
 
     Private Sub ShowMzBins_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Call updateBinBox(err:=0.0001)
-        Call showIonStat()
-    End Sub
-
-    Private Sub showIonStat()
-        Dim mz As Double
-
-        If Me.Layer.IsNullOrEmpty Then
-            mz = 0
-        Else
-            mz = Aggregate spot As PixelData
-                 In Me.Layer
-                 Into Average(spot.mz)
-        End If
-
-        Dim layer As New SingleIonLayer With {.IonMz = mz, .MSILayer = Me.Layer}
-        Dim stat As IonStat = IonStat.DoStat(layer)
-
+        PictureBox1.BackgroundImage = hist
         PropertyGrid1.SelectedObject = stat
         PropertyGrid1.Refresh()
     End Sub
 
-    Private Sub updateBinBox(err As Double)
-        Dim mzbins = Layer.GroupBy(Function(p) p.mz, Function(x, y) stdNum.Abs(x - y) < err).ToArray
+    Public Sub SetData(layer As PixelData())
+        Dim mz As Double
+
+        hist = DrawHistogramLine(layer, 0.0001)
+
+        If layer.IsNullOrEmpty Then
+            mz = 0
+        Else
+            mz = Aggregate spot As PixelData
+                 In layer
+                 Into Average(spot.mz)
+        End If
+
+        stat = IonStat.DoStat(New SingleIonLayer With {.IonMz = mz, .MSILayer = layer})
+    End Sub
+
+    Private Shared Function DrawHistogramLine(layer As PixelData(), err As Double)
+        Dim mzbins = layer.GroupBy(Function(p) p.mz, Function(x, y) stdNum.Abs(x - y) < err).ToArray
         Dim hist = mzbins.OrderBy(Function(a) Val(a.name)).Select(Function(mzi) (mz:=Val(mzi.name), binbox:=mzi.ToArray)).ToArray
         Dim mzgroups = hist.GroupBy(Function(i) i.mz, offsets:=0.1).OrderBy(Function(a) Val(a.name)).ToArray
         Dim colors As Color() = Designer.GetColors("paper", n:=mzgroups.Length)
@@ -75,7 +75,7 @@ Public Class ShowMzBins
                     End Function) _
             .ToArray
 
-        PictureBox1.BackgroundImage = Scatter.Plot(
+        Return Scatter.Plot(
             c:=serials,
             size:="1900,1280",
             Xlabel:="m/z",
@@ -94,5 +94,5 @@ Public Class ShowMzBins
             showGrid:=False,
             gridFill:="white"
         ).AsGDIImage
-    End Sub
+    End Function
 End Class
