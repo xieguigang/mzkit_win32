@@ -13,6 +13,11 @@ Public Class ShowMzBins
 
     Private Sub ShowMzBins_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call updateBinBox(err:=0.0001)
+        Call showIonStat()
+    End Sub
+
+    Private Sub showIonStat()
+
     End Sub
 
     Private Sub updateBinBox(err As Double)
