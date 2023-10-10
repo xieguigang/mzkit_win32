@@ -44,5 +44,5 @@ try({
 
 const [gene_exprs, tissue] = extract_h5ad(raw);
 
-write.mzPack(gene_exprs, file = savefile);
+write.mzPack(gene_exprs, file = out_file);
 TissueMorphology::writeCDF(tissue, file = `${export_dir}/${basename(out_file)}.cdf`);
