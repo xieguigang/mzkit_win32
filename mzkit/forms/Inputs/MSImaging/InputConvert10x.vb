@@ -41,13 +41,19 @@
         Me.DialogResult = DialogResult.Cancel
     End Sub
 
+    ''' <summary>
+    ''' only checks for the h5ad rawdata file
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim pars = GetParameters()
 
-        If Not pars.spots.FileExists Then
-            Call MessageBox.Show("No tissue spot list table file!", "File Missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            Return
-        ElseIf Not pars.h5ad.FileExists Then
+        'If Not pars.spots.FileExists Then
+        '    Call MessageBox.Show("No tissue spot list table file!", "File Missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+        '    Return
+        'Else
+        If Not pars.h5ad.FileExists Then
             Call MessageBox.Show("No h5ad matrix file!", "File Missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             Return
         End If
