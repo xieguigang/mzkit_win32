@@ -35,3 +35,7 @@ bitmap(file = `${export_dir}/spatial_3.png`) {
 		 reverse      = TRUE
 	);
 }
+
+const [gene_exprs, tissue] = extract_h5ad(raw);
+
+write.mzPack(gene_exprs, file = savefile);

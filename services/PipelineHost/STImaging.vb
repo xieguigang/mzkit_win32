@@ -1,11 +1,14 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Scripting.MetaData
+Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports SMRUCC.Rsharp.Runtime.Interop
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports STImaging
+Imports STRaid
 Imports Matrix = SMRUCC.genomics.Analysis.HTS.DataFrame.Matrix
 
 <Package("STImaging")>
@@ -20,6 +23,20 @@ Module STImagingTools
         End If
 
         Return pack
+    End Function
+
+    <ExportAPI("extract_h5ad")>
+    <RApiReturn("gene_exprs", "tissue")>
+    Public Function extract_h5ad(raw As AnnData, Optional env As Environment = Nothing) As Object
+        Dim exp As mzPack
+        Dim tissue As TissueRegion()
+
+        Return New list With {
+            .slots = New Dictionary(Of String, Object) From {
+                {"gene_exprs", exp},
+                {"tissue", tissue}
+            }
+        }
     End Function
 
     <ExportAPI("map_geneNames")>
