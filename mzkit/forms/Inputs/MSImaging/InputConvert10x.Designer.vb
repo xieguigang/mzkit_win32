@@ -154,7 +154,7 @@ Partial Class InputConvert10x
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(10, 122)
+        Me.Label5.Location = New System.Drawing.Point(10, 125)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(335, 24)
         Me.Label5.TabIndex = 8
