@@ -1990,13 +1990,22 @@ Public Class frmMsImagingViewer
             Call MyApplication.host.mzkitTool.showMatrix(ms.ms2, pixel.scanId)
 
             ' just draw top peaks
-            ms = New LibraryMatrix With {
-                .name = ms.name,
-                .ms2 = ms.ms2 _
-                    .OrderByDescending(Function(i) i.intensity) _
-                    .Take(500) _
-                    .ToArray
-            }
+            If params IsNot Nothing AndAlso params.app = mzData.mzWebCache.FileApplicationClass.STImaging Then
+                ms = New LibraryMatrix With {
+                    .name = ms.name,
+                    .ms2 = ms _
+                        .AbSciexBaselineHandling _
+                        .ToArray
+                }
+            Else
+                ms = New LibraryMatrix With {
+                    .name = ms.name,
+                    .ms2 = ms.ms2 _
+                        .OrderByDescending(Function(i) i.intensity) _
+                        .Take(500) _
+                        .ToArray
+                }
+            End If
 
             Call MyApplication.host.mzkitTool.PlotSpectrum(ms, focusOn:=False)
         Else
