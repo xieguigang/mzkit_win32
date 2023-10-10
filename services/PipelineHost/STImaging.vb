@@ -42,6 +42,15 @@ Module STImagingTools
                         }
                     End Function) _
             .ToArray
+
+        If matrix.sampleID.IsNullOrEmpty Then
+            matrix.sampleID = If(
+                raw.var.gene_ids.IsNullOrEmpty,
+                raw.var.gene_short_name,
+                raw.var.gene_ids
+            )
+        End If
+
         Dim exp As mzPack = spots.ST_spacerangerToMzPack(matrix)
         Dim tissue As TissueRegion()
 
