@@ -471,16 +471,26 @@ Module BackgroundTask
 
         RunSlavePipeline.SendProgress(0, $"Run peak alignment for {allMz.Length} m/z features!")
 
-        Dim d As Integer = allPixels.Length / 50
+        Dim dataset As New List(Of NamedCollection(Of Double))
+
+        ' duplicated pixel may be found in the data
+        dataset.AddRange(allPixels.GroupBy(Function(s) $"{s.X},{s.Y}").ToArray.ExportSpotVectors(Function(a) a.Key, Function(pixel) pixel.Select(Function(si) si.GetMs).IteratesALL.ToArray, allMz))
+        dataKeys = mzKeys
+
+        Return dataset
+    End Function
+
+    <Extension>
+    Private Iterator Function ExportSpotVectors(Of T)(rawdata As T(), getKey As Func(Of T, String), getMs As Func(Of T, ms2()), allMz As Double()) As IEnumerable(Of NamedCollection(Of Double))
+        Dim d As Integer = rawdata.Length / 50
         Dim p As i32 = Scan0
         Dim t0 As Date = Now
-        Dim dataset As New List(Of NamedCollection(Of Double))
         Dim index = allMz.CreateMzIndex(win_size:=2)
         Dim len As Integer = allMz.Length
 
-        ' duplicated pixel may be found in the data
-        For Each pixel As IGrouping(Of String, PixelScan) In allPixels.GroupBy(Function(s) $"{s.X},{s.Y}")
-            Dim ms1 = pixel.Select(Function(si) si.GetMs).IteratesALL.ToArray
+        For Each pixel As T In rawdata
+            Dim pixelKey As String = getKey(pixel)
+            Dim ms1 As ms2() = getMs(pixel)
             Dim scan_mz As Double() = ms1.Select(Function(a) a.mz).ToArray
             Dim scan_into As Double() = ms1.Select(Function(a) a.intensity).ToArray
             Dim vec As Double() = spatialMath.DeconvoluteScan(scan_mz, scan_into, len, index)
@@ -489,24 +499,15 @@ Module BackgroundTask
                 Continue For
             End If
 
-            Call dataset.Add(New NamedCollection(Of Double) With {
-                .name = pixel.Key,
+            Yield New NamedCollection(Of Double) With {
+                .name = pixelKey,
                 .value = vec
-            })
+            }
 
             If (++p) Mod d = 0 Then
-                Call RunSlavePipeline.SendProgress(p / allPixels.Length * 100, $"[{(100 * p / allPixels.Length).ToString("F1")}%] {p / CInt((Now - t0).TotalSeconds)} pixel/s; {pixel.Key}")
+                Call RunSlavePipeline.SendProgress(p / rawdata.Length * 100, $"[{(100 * p / rawdata.Length).ToString("F1")}%] {p / CInt((Now - t0).TotalSeconds)} pixel/s; {pixelKey}")
             End If
         Next
-
-        dataKeys = mzKeys
-
-        Return dataset
-    End Function
-
-    <Extension>
-    Private Iterator Function ExportSpotVectors(Of T)(rawdata As IEnumerable(Of T), getKey As Func(Of T, String), getMs As Func(Of T, ms2()), allMz As Double()) As IEnumerable(Of NamedCollection(Of Double))
-
     End Function
 
     <Extension>
@@ -567,26 +568,13 @@ Module BackgroundTask
             data.Add(regionId, pixels.Select(Function(i) i.GetMs).IteratesALL.ToArray)
         Next
 
-        dataKeys = data.Keys.ToArray
-
         Dim allMz As Double() = data.Values.IteratesALL.uniqueMz(ppm20, into_cutoff, triq)
+
+        dataKeys = allMz.Select(Function(a) a.ToString("F4")).ToArray
 
         RunSlavePipeline.SendProgress(100, $"Run peak alignment for {allMz.Length} m/z features!")
 
-        Dim generator = data
-        Dim dataSet As DataSet() = allMz _
-            .AsParallel _
-            .Select(Function(mz)
-                        Return New DataSet With {
-                            .ID = $"MZ_{mz.ToString("F3")}",
-                            .Properties = generator _
-                                .ToDictionary(Function(a) a.Key,
-                                              Function(a)
-                                                  Return a.Value.alignMz(mz, ppm20)
-                                              End Function)
-                        }
-                    End Function) _
-            .ToArray
+        Dim dataSet = data.ToArray.ExportSpotVectors(Function(a) a.Key, Function(a) a.Value, allMz).AsList
 
         Return dataSet
     End Function
