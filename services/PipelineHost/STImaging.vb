@@ -28,8 +28,24 @@ Module STImagingTools
     <ExportAPI("extract_h5ad")>
     <RApiReturn("gene_exprs", "tissue")>
     Public Function extract_h5ad(raw As AnnData, Optional env As Environment = Nothing) As Object
-        Dim exp As mzPack
+        Dim tag As String = raw.source
+        Dim matrix As Matrix = raw.ExportExpression
+        Dim spots As SpatialSpot() = raw.obsm.spatial _
+            .Select(Function(si)
+                        Return New SpatialSpot With {
+                            .px = si.X,
+                            .py = si.Y,
+                            .x = .px,
+                            .y = .py,
+                            .flag = 1,
+                            .barcode = $"{ .x},{ .y}"
+                        }
+                    End Function) _
+            .ToArray
+        Dim exp As mzPack = spots.ST_spacerangerToMzPack(matrix)
         Dim tissue As TissueRegion()
+
+        exp.source = tag
 
         Return New list With {
             .slots = New Dictionary(Of String, Object) From {
