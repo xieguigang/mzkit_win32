@@ -486,7 +486,7 @@ Module BackgroundTask
         Dim diff As New List(Of Double)
 
         For i As Integer = 1 To allMz.Length - 1
-            diff.Add(allMz(i) - allMz(i - 1))
+            diff.Add(allMz(i - 1) - allMz(i))
         Next
 
         If diff.Average > 0.9 AndAlso allMz.Length > 5000 Then
