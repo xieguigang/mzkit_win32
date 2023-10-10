@@ -767,8 +767,8 @@ UseCheckedList:
 
                 If Not nameList.IsNullOrEmpty Then
                     Call Invoke(Sub()
-                                    For Each name As String In nameList
-                                        list.Nodes.Add(name).Tag = name
+                                    For Each name As String In nameList.Keys
+                                        list.Nodes.Add(name).Tag = nameList(name)
                                     Next
                                 End Sub)
                 End If

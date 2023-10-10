@@ -761,15 +761,15 @@ Public Class MSI : Implements ITaskDriver, IDisposable
 
     <Protocol(ServiceProtocol.GetAnnotationNames)>
     Public Function GetAllAnnotationNames() As BufferPipe
-        Dim names As String()
+        Dim names As String
 
         If map_to_ion.IsNullOrEmpty Then
-            names = {}
+            names = "{}"
         Else
-            names = map_to_ion.Keys.ToArray
+            names = map_to_ion.GetJson(indent:=False, simpleDict:=True)
         End If
 
-        Return New DataPipe(names.GetJson(indent:=False, simpleDict:=True))
+        Return New DataPipe(names)
     End Function
 
     <Protocol(ServiceProtocol.LoadSummaryLayer)>

@@ -259,16 +259,16 @@ Namespace ServiceHub
             End If
         End Function
 
-        Public Function getAllLayerNames() As String()
+        Public Function getAllLayerNames() As Dictionary(Of String, Double)
             Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.GetAnnotationNames, "ok"))
 
             If data Is Nothing Then
-                Return {}
+                Return New Dictionary(Of String, Double)
             ElseIf data.IsHTTP_RFC Then
                 Call Workbench.Warning(data.GetUTF8String)
-                Return {}
+                Return New Dictionary(Of String, Double)
             Else
-                Return data.GetUTF8String.LoadJSON(Of String())
+                Return data.GetUTF8String.LoadJSON(Of Dictionary(Of String, Double))
             End If
         End Function
 

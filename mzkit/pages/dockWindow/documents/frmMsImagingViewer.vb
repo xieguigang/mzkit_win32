@@ -1986,7 +1986,18 @@ Public Class frmMsImagingViewer
         }
 
         If pinedPixel Is Nothing Then
+            ' show all peaks
             Call MyApplication.host.mzkitTool.showMatrix(ms.ms2, pixel.scanId)
+
+            ' just draw top peaks
+            ms = New LibraryMatrix With {
+                .name = ms.name,
+                .ms2 = ms.ms2 _
+                    .OrderByDescending(Function(i) i.intensity) _
+                    .Take(500) _
+                    .ToArray
+            }
+
             Call MyApplication.host.mzkitTool.PlotSpectrum(ms, focusOn:=False)
         Else
             Dim handler As New CosAlignment(Tolerance.PPM(20), New RelativeIntensityCutoff(0.05))
