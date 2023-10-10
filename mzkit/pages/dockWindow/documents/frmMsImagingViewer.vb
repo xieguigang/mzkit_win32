@@ -115,6 +115,7 @@ Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Mzkit_win32.MSImagingViewerV2
 Imports ServiceHub
 Imports STImaging
+Imports STRaid
 Imports Task
 Imports TaskStream
 Imports WeifenLuo.WinFormsUI.Docking
@@ -2710,15 +2711,42 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub AddSpatialTileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddSpatialTileToolStripMenuItem.Click
+        Dim filters As String() = {
+            "10X Space Ranger Spots, Erica Spatial Table(*.csv)|*.csv",
+            "MZKit Spatial Mapping(*.xml)|*.xml",
+            "Erica Spatial HeatMap(*.cdf;*.netcdf;*.nc)|*.cdf;*.netcdf;*.nc"
+        }
+
         Using file As New OpenFileDialog With {
-            .Filter = "10X Space Ranger Spots(*.csv)|*.csv|MZKit Spatial Mapping(*.xml)|*.xml|Erica Spatial HeatMap(*.cdf;*.netcdf;*.nc)|*.cdf;*.netcdf;*.nc",
+            .Filter = filters.JoinBy("|"),
             .Title = "Open a new tissue positions list"
         }
             If file.ShowDialog = DialogResult.OK Then
                 If file.FileName.ExtensionSuffix("csv") Then
-                    Dim spots As SpatialSpot() = SpaceRanger _
-                        .LoadTissueSpots(file.FileName.ReadAllLines) _
-                        .ToArray
+                    Dim headers As String() = file.FileName.ReadFirstLine.Split(","c)
+                    Dim ericaHeaders As Index(Of String) = {"x", "y", "class", "color"}
+                    Dim spots As SpatialSpot()
+
+                    If headers.All(Function(si) si Like ericaHeaders) Then
+                        spots = file.FileName _
+                            .LoadCsv(Of SpotAnnotation) _
+                            .Select(Function(a)
+                                        Return New SpatialSpot With {
+                                            .barcode = $"{a.x},{a.y}",
+                                            .x = a.x,
+                                            .y = a.y,
+                                            .px = a.x,
+                                            .py = a.y,
+                                            .flag = 1
+                                        }
+                                    End Function) _
+                            .ToArray
+                    Else
+                        spots = SpaceRanger _
+                            .LoadTissueSpots(file.FileName.ReadAllLines) _
+                            .ToArray
+                    End If
+
                     Dim tile = PixelSelector1 _
                         .MSICanvas _
                         .AddSpatialTile(spots)
