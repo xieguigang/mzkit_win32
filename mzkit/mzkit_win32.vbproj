@@ -1482,6 +1482,10 @@
       <Project>{5f242bb6-da7d-4e08-b4a9-3405f361a35b}</Project>
       <Name>STImaging</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Erica\src\STRaid\STRaid.vbproj">
+      <Project>{8e390f57-3714-47c2-bd1a-b97671a9321a}</Project>
+      <Name>STRaid</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\GCModeller\annotations\GSEA\FisherCore\Fisher.NET5.vbproj">
       <Project>{84dbe474-b005-4ddd-b4c7-0f6ba01d3ca2}</Project>
       <Name>Fisher.NET5</Name>

@@ -3,6 +3,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
+Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Math2D
@@ -12,6 +13,7 @@ Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Mzkit_win32.MSImagingViewerV2
 Imports ServiceHub
+Imports STRaid
 
 Public Class MSIRegionSampleWindow
 
@@ -175,6 +177,27 @@ Public Class MSIRegionSampleWindow
             .WriteCDF(file, dimension)
     End Function
 
+    Public Function ExportSpatialTable(dimension As Size) As SpotAnnotation()
+        Dim tissues = GetRegions(dimension).ToArray
+        Dim spots = tissues _
+            .Select(Iterator Function(seg) As IEnumerable(Of SpotAnnotation)
+                        Dim colorHtml As String = seg.color.ToHtmlColor
+
+                        For Each p As Point In seg.points
+                            Yield New SpotAnnotation With {
+                                .color = colorHtml,
+                                .label = seg.label,
+                                .x = p.X,
+                                .y = p.Y
+                            }
+                        Next
+                    End Function) _
+            .IteratesALL _
+            .ToArray
+
+        Return spots
+    End Function
+
     Public Sub ClearLayer(canvas As PixelSelector)
         canvas.tissue_layer = Nothing
         canvas.RedrawCanvas()
@@ -302,12 +325,16 @@ Public Class MSIRegionSampleWindow
         Dim importsDir As String = If(importsFile.StringEmpty, "", importsFile.ParentPath)
 
         Using file As New SaveFileDialog With {
-            .Filter = "Tissue Morphology Matrix(*.cdf)|*.cdf",
+            .Filter = "Tissue Morphology Matrix(*.cdf)|*.cdf|Erica spatial table(*.csv)|*.csv",
             .InitialDirectory = importsDir,
             .FileName = importsFile
         }
             If file.ShowDialog = DialogResult.OK Then
-                Call ExportTissueMaps(dimension, file.OpenFile)
+                Select Case file.FileName.ExtensionSuffix.ToLower
+                    Case "cdf" : Call ExportTissueMaps(dimension, file.OpenFile)
+                    Case "csv" : Call ExportSpatialTable(dimension).SaveTo(file.FileName)
+                End Select
+
                 Call Workbench.SuccessMessage("Sample tissue regions has been export to file success!")
             End If
         End Using
