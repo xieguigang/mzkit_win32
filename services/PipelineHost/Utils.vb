@@ -109,7 +109,8 @@ Public Module Utils
             Dim metadata As New Dictionary(Of String, String) From {
                 {"x", point.X},
                 {"y", point.Y},
-                {mzStreamWriter.SampleMetaName, If(spots(i).flag > 0, "sample", "background")}
+                {mzStreamWriter.SampleMetaName, If(spots(i).flag > 0, "sample", "background")},
+                {"ST-spot", $"{point.X},{point.Y}"}
             }
 
             ' length of experiments is equals to the geneIDs
@@ -138,6 +139,17 @@ Public Module Utils
         Next
     End Function
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="spots">The generated scan data element order 
+    ''' keeps the same as this given spatial spot element orders.
+    ''' </param>
+    ''' <param name="matrix"></param>
+    ''' <returns></returns>
+    ''' <remarks>
+    ''' the original spot location is tagged as ``ST-spot`` inside the metadata
+    ''' </remarks>
     <Extension>
     Public Function ST_spacerangerToMzPack(spots As SpatialSpot(), matrix As Matrix) As mzPack
         Dim annotations As New Dictionary(Of String, String)

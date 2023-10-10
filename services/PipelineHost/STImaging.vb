@@ -52,14 +52,18 @@ Module STImagingTools
         End If
 
         Dim exp As mzPack = spots.ST_spacerangerToMzPack(matrix)
-        Dim tissue As TissueRegion()
+        Dim tissue As New List(Of TissueRegion)
+
+        For i As Integer = 0 To spots.Length - 1
+
+        Next
 
         exp.source = tag
 
         Return New list With {
             .slots = New Dictionary(Of String, Object) From {
                 {"gene_exprs", exp},
-                {"tissue", tissue}
+                {"tissue", tissue.ToArray}
             }
         }
     End Function
