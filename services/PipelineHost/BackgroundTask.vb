@@ -71,12 +71,14 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
+Imports BioNovoGene.Analytical.MassSpectrometry.SingleCells.Deconvolute
 Imports BioNovoGene.BioDeep.MetaDNA
 Imports BioNovoGene.BioDeep.MetaDNA.Infer
 Imports BioNovoGene.BioDeep.MSEngine
 Imports BioNovoGene.BioDeep.MSEngine.Mummichog
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.Bootstrapping
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
@@ -97,7 +99,8 @@ Imports SMRUCC.Rsharp.Runtime.Components
 Imports SMRUCC.Rsharp.Runtime.Interop
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports list = SMRUCC.Rsharp.Runtime.Internal.Object.list
-Imports stdNum = System.Math
+Imports std = System.Math
+Imports spatialMath = BioNovoGene.Analytical.MassSpectrometry.SingleCells.Deconvolute.Math
 
 <Package("BackgroundTask")>
 <RTypeExport("ms_search.args", GetType(MassSearchArguments))>
@@ -343,7 +346,7 @@ Module BackgroundTask
                                          Return t.scan_time
                                      End Function,
                                      Function(a, b)
-                                         Return stdNum.Abs(a - b) <= 5
+                                         Return std.Abs(a - b) <= 5
                                      End Function) _
                             .Select(Function(p)
                                         Return New ms1_scan With {
@@ -357,7 +360,7 @@ Module BackgroundTask
             .ToArray
         Dim data As MeasureData() = ms1 _
             .Select(Function(p)
-                        Return New MeasureData(p.scan_time, p.mz, If(p.intensity <= 1, 0, stdNum.Log(p.intensity)))
+                        Return New MeasureData(p.scan_time, p.mz, If(p.intensity <= 1, 0, std.Log(p.intensity)))
                     End Function) _
             .ToArray
         Dim layers = ContourLayer _
@@ -386,7 +389,7 @@ Module BackgroundTask
 
         Dim mzerr = Math.getTolerance(mzdiff, env, [default]:="da:0.005")
         Dim dataKeys As String() = Nothing
-        Dim dataset As DataSet()
+        Dim dataset As List(Of NamedCollection(Of Double))
 
         If mzerr Like GetType(Message) Then
             Return mzerr.TryCast(Of Message)
@@ -427,9 +430,9 @@ Module BackgroundTask
         ' the data keys is the column names
         Call file.WriteLine({"MID"}.JoinIterates(titleKeys).JoinBy(","))
 
-        For Each line As DataSet In dataset
-            Call New String() {"""" & line.ID & """"} _
-                .JoinIterates(line(dataKeys).Select(Function(d) d.ToString)) _
+        For Each line As NamedCollection(Of Double) In dataset
+            Call New String() {"""" & line.name & """"} _
+                .JoinIterates(line.value.Select(Function(d) d.ToString)) _
                 .JoinBy(",") _
                 .DoCall(AddressOf file.WriteLine)
         Next
@@ -451,7 +454,7 @@ Module BackgroundTask
     ''' ion m/z peak features in column
     ''' </returns>
     <Extension>
-    Private Function exportMSIRawPeakTable(render As Drawer, da As Tolerance, into_cutoff As Double, ByRef dataKeys As String(), triq As Double) As DataSet()
+    Private Function exportMSIRawPeakTable(render As Drawer, da As Tolerance, into_cutoff As Double, ByRef dataKeys As String(), triq As Double) As List(Of NamedCollection(Of Double))
         Dim allMs As New List(Of ms2)
         Dim allPixels = render.LoadPixels.ToArray
 
@@ -468,38 +471,27 @@ Module BackgroundTask
 
         RunSlavePipeline.SendProgress(0, $"Run peak alignment for {allMz.Length} m/z features!")
 
-        Dim dataSet As New List(Of DataSet)
         Dim d As Integer = allPixels.Length / 50
         Dim p As i32 = Scan0
         Dim t0 As Date = Now
+        Dim dataset As New List(Of NamedCollection(Of Double))
+        Dim index = allMz.CreateMzIndex(win_size:=2)
+        Dim len As Integer = allMz.Length
 
         ' duplicated pixel may be found in the data
         For Each pixel As IGrouping(Of String, PixelScan) In allPixels.GroupBy(Function(s) $"{s.X},{s.Y}")
-            Dim vec As New Dictionary(Of String, Double)
             Dim ms1 = pixel.Select(Function(si) si.GetMs).IteratesALL.ToArray
+            Dim scan_mz As Double() = ms1.Select(Function(a) a.mz).ToArray
+            Dim scan_into As Double() = ms1.Select(Function(a) a.intensity).ToArray
+            Dim vec As Double() = spatialMath.DeconvoluteScan(scan_mz, scan_into, len, index)
 
-            Call allMz _
-                .AsParallel _
-                .Select(Function(mzKey, i)
-                            Dim into As Double = ms1 _
-                                .Where(Function(mzi) da(mzi.mz, mzKey)) _
-                                .Sum(Function(a) a.intensity)
-                            Dim t = (mzKey, i, into)
-
-                            Return t
-                        End Function) _
-                .ToArray _
-                .ForEach(Sub(t, i)
-                             Call vec.Add(mzKeys(t.i), t.into)
-                         End Sub)
-
-            If vec.Values.All(Function(di) di = 0.0) Then
+            If vec.All(Function(di) di = 0.0) Then
                 Continue For
             End If
 
-            Call dataSet.Add(New DataSet With {
-                .ID = pixel.Key,
-                .Properties = vec
+            Call dataset.Add(New NamedCollection(Of Double) With {
+                .name = pixel.Key,
+                .value = vec
             })
 
             If (++p) Mod d = 0 Then
@@ -509,7 +501,12 @@ Module BackgroundTask
 
         dataKeys = mzKeys
 
-        Return dataSet.ToArray
+        Return dataset
+    End Function
+
+    <Extension>
+    Private Iterator Function ExportSpotVectors(Of T)(rawdata As IEnumerable(Of T), getKey As Func(Of T, String), getMs As Func(Of T, ms2()), allMz As Double()) As IEnumerable(Of NamedCollection(Of Double))
+
     End Function
 
     <Extension>
@@ -528,7 +525,7 @@ Module BackgroundTask
                     End Function) _
             .ToArray _
             .Centroid(da, New RelativeIntensityCutoff(into_cutoff)) _
-            .Select(Function(i) stdNum.Round(i.mz, 4)) _
+            .Select(Function(i) std.Round(i.mz, 4)) _
             .Distinct _
             .OrderBy(Function(mz) mz) _
             .ToArray
@@ -550,7 +547,7 @@ Module BackgroundTask
     Private Function exportRegionDataset(regions As TissueRegion(), render As Drawer, ppm20 As Tolerance,
                                          into_cutoff As Double,
                                          ByRef dataKeys As String(),
-                                         triq As Double) As DataSet()
+                                         triq As Double) As List(Of NamedCollection(Of Double))
 
         Dim data As New Dictionary(Of String, ms2())
         Dim j As i32 = 1
