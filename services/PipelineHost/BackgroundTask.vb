@@ -515,7 +515,7 @@ Module BackgroundTask
 
         If diff.Average > 0.9 AndAlso allMz.Length > 5000 Then
             ' ST data probably
-            Return 500
+            Return 300
         Else
             Return std.Max(diff.Average * 10, 1.5)
         End If
