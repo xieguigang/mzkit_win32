@@ -78,6 +78,7 @@ Imports BioNovoGene.BioDeep.MSEngine
 Imports BioNovoGene.BioDeep.MSEngine.Mummichog
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.ComponentModel.Algorithm
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.Bootstrapping
 Imports Microsoft.VisualBasic.Data.csv
@@ -99,8 +100,8 @@ Imports SMRUCC.Rsharp.Runtime.Components
 Imports SMRUCC.Rsharp.Runtime.Interop
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports list = SMRUCC.Rsharp.Runtime.Internal.Object.list
-Imports std = System.Math
 Imports spatialMath = BioNovoGene.Analytical.MassSpectrometry.SingleCells.Deconvolute.Math
+Imports std = System.Math
 
 <Package("BackgroundTask")>
 <RTypeExport("ms_search.args", GetType(MassSearchArguments))>
@@ -402,6 +403,7 @@ Module BackgroundTask
         Dim file As New StreamWriter(save)
         Dim loadraw = MSImagingReader.UnifyReadAsMzPack(raw)
         Dim annos As Dictionary(Of String, String) = Nothing
+        Dim index_win As Double
 
         Call RunSlavePipeline.SendMessage("load raw data into ms-imaging render")
 
@@ -415,15 +417,35 @@ Module BackgroundTask
         Call RunSlavePipeline.SendMessage("start to export MSI feature peaks table!")
 
         If regions.IsNullOrEmpty Then
-            dataset = render.exportMSIRawPeakTable(ppm20, into_cutoff, dataKeys, TrIQ)
+            dataset = render.exportMSIRawPeakTable(ppm20, into_cutoff, dataKeys, TrIQ, index_win)
         Else
-            dataset = regions.exportRegionDataset(render, ppm20, into_cutoff, dataKeys, TrIQ)
+            dataset = regions.exportRegionDataset(render, ppm20, into_cutoff, dataKeys, TrIQ, index_win)
         End If
 
         Dim titleKeys As String() = dataKeys.ToArray
 
         If Not annos.IsNullOrEmpty Then
+            Dim nameIndex = New BlockSearchFunction(Of (mz As Double, String))(
+                data:=annos.Select(Function(mzi) (Val(mzi.Key), mzi.Value)),
+                eval:=Function(i) i.mz,
+                tolerance:=index_win,
+                fuzzy:=True
+            )
 
+            For i As Integer = 0 To titleKeys.Length - 1
+                Dim mzkey As Double = Val(titleKeys(i))
+                Dim hit = nameIndex _
+                   .Search((mzkey, -1)) _
+                   .OrderBy(Function(a) std.Abs(a.mz - mzkey)) _
+                   .FirstOrDefault
+
+                If hit.mz = 0 AndAlso hit.Item2.StringEmpty Then
+                    ' no hits
+                    ' do nothing
+                Else
+                    titleKeys(i) = hit.Item2
+                End If
+            Next
         End If
 
         Call RunSlavePipeline.SendProgress(100, $"Save peaktable!")
@@ -454,7 +476,7 @@ Module BackgroundTask
     ''' ion m/z peak features in column
     ''' </returns>
     <Extension>
-    Private Function exportMSIRawPeakTable(render As Drawer, da As Tolerance, into_cutoff As Double, ByRef dataKeys As String(), triq As Double) As List(Of NamedCollection(Of Double))
+    Private Function exportMSIRawPeakTable(render As Drawer, da As Tolerance, into_cutoff As Double, ByRef dataKeys As String(), triq As Double, ByRef index_win As Double) As List(Of NamedCollection(Of Double))
         Dim allMs As New List(Of ms2)
         Dim allPixels = render.LoadPixels.ToArray
 
@@ -472,10 +494,12 @@ Module BackgroundTask
         RunSlavePipeline.SendProgress(0, $"Run peak alignment for {allMz.Length} m/z features!")
 
         Dim dataset As New List(Of NamedCollection(Of Double))
+        Dim size As Double = eval_winsize(allMz)
 
         ' duplicated pixel may be found in the data
-        dataset.AddRange(allPixels.GroupBy(Function(s) $"{s.X},{s.Y}").ToArray.ExportSpotVectors(Function(a) a.Key, Function(pixel) pixel.Select(Function(si) si.GetMs).IteratesALL.ToArray, allMz))
+        dataset.AddRange(allPixels.GroupBy(Function(s) $"{s.X},{s.Y}").ToArray.ExportSpotVectors(Function(a) a.Key, Function(pixel) pixel.Select(Function(si) si.GetMs).IteratesALL.ToArray, allMz, index_win))
         dataKeys = mzKeys
+        index_win = size
 
         Return dataset
     End Function
@@ -491,19 +515,18 @@ Module BackgroundTask
 
         If diff.Average > 0.9 AndAlso allMz.Length > 5000 Then
             ' ST data probably
-            Return 500
+            Return 300
         Else
             Return std.Max(diff.Average * 10, 1.5)
         End If
     End Function
 
     <Extension>
-    Private Iterator Function ExportSpotVectors(Of T)(rawdata As T(), getKey As Func(Of T, String), getMs As Func(Of T, ms2()), allMz As Double()) As IEnumerable(Of NamedCollection(Of Double))
+    Private Iterator Function ExportSpotVectors(Of T)(rawdata As T(), getKey As Func(Of T, String), getMs As Func(Of T, ms2()), allMz As Double(), index_win As Double) As IEnumerable(Of NamedCollection(Of Double))
         Dim d As Integer = rawdata.Length / 50
         Dim p As i32 = Scan0
         Dim t0 As Date = Now
-        Dim size As Double = eval_winsize(allMz)
-        Dim index = allMz.CreateMzIndex(win_size:=size)
+        Dim index = allMz.CreateMzIndex(win_size:=index_win)
         Dim len As Integer = allMz.Length
 
         For Each pixel As T In rawdata
@@ -566,7 +589,7 @@ Module BackgroundTask
     Private Function exportRegionDataset(regions As TissueRegion(), render As Drawer, ppm20 As Tolerance,
                                          into_cutoff As Double,
                                          ByRef dataKeys As String(),
-                                         triq As Double) As List(Of NamedCollection(Of Double))
+                                         triq As Double, ByRef index_win As Double) As List(Of NamedCollection(Of Double))
 
         Dim data As New Dictionary(Of String, ms2())
         Dim j As i32 = 1
@@ -587,12 +610,14 @@ Module BackgroundTask
         Next
 
         Dim allMz As Double() = data.Values.IteratesALL.uniqueMz(ppm20, into_cutoff, triq)
+        Dim size As Double = eval_winsize(allMz)
 
         dataKeys = allMz.Select(Function(a) a.ToString("F4")).ToArray
+        index_win = size
 
         RunSlavePipeline.SendProgress(100, $"Run peak alignment for {allMz.Length} m/z features!")
 
-        Dim dataSet = data.ToArray.ExportSpotVectors(Function(a) a.Key, Function(a) a.Value, allMz).AsList
+        Dim dataSet = data.ToArray.ExportSpotVectors(Function(a) a.Key, Function(a) a.Value, allMz, index_win:=size).AsList
 
         Return dataSet
     End Function
