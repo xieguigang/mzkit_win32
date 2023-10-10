@@ -398,10 +398,12 @@ Module BackgroundTask
         Dim ppm20 As Tolerance = mzerr.TryCast(Of Tolerance)
         Dim file As New StreamWriter(save)
         Dim loadraw = MSImagingReader.UnifyReadAsMzPack(raw)
+        Dim annos As Dictionary(Of String, String) = Nothing
 
         Call RunSlavePipeline.SendMessage("load raw data into ms-imaging render")
 
         If loadraw Like GetType(mzPack) Then
+            annos = loadraw.TryCast(Of mzPack).Annotations
             render = New Drawer(loadraw.TryCast(Of mzPack))
         Else
             render = New Drawer(loadraw.TryCast(Of ReadRawPack))
@@ -415,9 +417,15 @@ Module BackgroundTask
             dataset = regions.exportRegionDataset(render, ppm20, into_cutoff, dataKeys, TrIQ)
         End If
 
+        Dim titleKeys As String() = dataKeys.ToArray
+
+        If Not annos.IsNullOrEmpty Then
+
+        End If
+
         Call RunSlavePipeline.SendProgress(100, $"Save peaktable!")
         ' the data keys is the column names
-        Call file.WriteLine({"MID"}.JoinIterates(dataKeys).JoinBy(","))
+        Call file.WriteLine({"MID"}.JoinIterates(titleKeys).JoinBy(","))
 
         For Each line As DataSet In dataset
             Call New String() {"""" & line.ID & """"} _

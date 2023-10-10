@@ -6,7 +6,7 @@
     "run_dll": {
       "commandName": "Executable",
       "executablePath": "\\mzkit\\dist\\bin/Rstudio/bin/Rscript.exe",
-      "commandLineArgs": "D:\\mzkit\\src\\mzkit\\rstudio\\pipeline\\10x_genomics\\extract_h5ad.R --SetDllDirectory /mzkit/dist/bin/Rstudio/host --h5ad \"F:\\Downloads\\E9.5_E1S1.MOSTA.h5ad\"",
+      "commandLineArgs": "D:\\mzkit\\src\\mzkit\\rstudio\\pipeline\\MSI_peaktable.R --SetDllDirectory /mzkit/dist/bin/Rstudio/host --raw \"U:\\AP-SMALDI-SingleCells-0.1um\\union\\mouse.mzPack\"",
       "workingDirectory": "\\mzkit\\dist\\bin\\Rstudio\\bin"
     }
   }

@@ -9,10 +9,10 @@ require(graphics2D);
 
 const raw      as string = ?"--raw"     || stop("a raw data file in mzpack format must be provided!");
 const regions  as string = ?"--regions" || NULL;
-const savepath as string = ?"--save"    || stop("A file path of the table data output must be provided!");
+const savepath as string = ?"--save"    || `${dirname(raw)}/${basename(raw)}_sampledata.csv`;
 const mzdiff   as string = ?"--mzdiff"  || "da:0.005";
 const intocutoff as double = ?"--into.cutoff" || 0.05;
-const TrIQ as double = ?"--TrIQ" || 0.65;
+const TrIQ as double       = ?"--TrIQ"  || 1.0;
 
 #' get regions polygon data
 #' 
