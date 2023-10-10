@@ -6,7 +6,7 @@
     "run_dll": {
       "commandName": "Executable",
       "executablePath": "\\mzkit\\dist\\bin/Rstudio/bin/Rscript.exe",
-      "commandLineArgs": "\"E:/mzkit/src/mzkit/rstudio/pipeline/MSI_peaktable.R\" --raw \"\\\\192.168.1.254\\backup3\\项目以外内容\\2022\\仁济医院\\2023-05-31\\P2\\P2-V.mzPack\" --save \"E:\\biodeep\\biodeepdb_v3\\spatial\\msi_analysis-3.0\\test\\graph_cluster\\HTS.csv\" --mzdiff \"0.3\" --into.cutoff \"0\" --TrIQ \"0.8\" --SetDllDirectory E:/mzkit/dist/bin/Rstudio/host",
+      "commandLineArgs": "D:\\mzkit\\src\\mzkit\\rstudio\\pipeline\\10x_genomics\\extract_h5ad.R --SetDllDirectory /mzkit/dist/bin/Rstudio/host --h5ad \"D:\\360Downloads\\GSM5494440_10x_Visium.h5ad\"",
       "workingDirectory": "\\mzkit\\dist\\bin\\Rstudio\\bin"
     }
   }
