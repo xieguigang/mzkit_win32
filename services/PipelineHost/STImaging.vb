@@ -1,7 +1,9 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+﻿Imports System.Drawing
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.ComponentModel.Collection
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
@@ -53,11 +55,26 @@ Module STImagingTools
 
         Dim exp As mzPack = spots.ST_spacerangerToMzPack(matrix)
         Dim tissue As New List(Of TissueRegion)
+        Dim labels = raw.obs.class_labels
+        Dim colors = Designer.GetColors("paper", labels.Length)
 
         For i As Integer = 0 To spots.Length - 1
-
+            spots(i).barcode = labels(raw.obs.clusters(i))
+            spots(i).x = exp.MS(i).meta!x
+            spots(i).y = exp.MS(i).meta!y
+            exp.MS(i).meta(mzStreamWriter.SampleMetaName) = spots(i).barcode
         Next
 
+        tissue.AddRange(spots _
+             .GroupBy(Function(t) t.barcode) _
+             .Select(Function(region, i)
+                         Return New TissueRegion With {
+                             .label = region.Key,
+                             .color = colors(i),
+                             .points = region.Select(Function(p) New Point(p.x, p.y)).ToArray,
+                             .tags = region.Key.Replicate(.points.Length).ToArray
+                         }
+                     End Function))
         exp.source = tag
 
         Return New list With {
