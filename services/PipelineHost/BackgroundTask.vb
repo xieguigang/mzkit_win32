@@ -480,12 +480,30 @@ Module BackgroundTask
         Return dataset
     End Function
 
+    Private Function eval_winsize(allMz As Double()) As Double
+        allMz = allMz.OrderByDescending(Function(a) a).ToArray
+
+        Dim diff As New List(Of Double)
+
+        For i As Integer = 1 To allMz.Length - 1
+            diff.Add(allMz(i) - allMz(i - 1))
+        Next
+
+        If diff.Average > 0.9 AndAlso allMz.Length > 5000 Then
+            ' ST data probably
+            Return 500
+        Else
+            Return std.Max(diff.Average * 10, 1.5)
+        End If
+    End Function
+
     <Extension>
     Private Iterator Function ExportSpotVectors(Of T)(rawdata As T(), getKey As Func(Of T, String), getMs As Func(Of T, ms2()), allMz As Double()) As IEnumerable(Of NamedCollection(Of Double))
         Dim d As Integer = rawdata.Length / 50
         Dim p As i32 = Scan0
         Dim t0 As Date = Now
-        Dim index = allMz.CreateMzIndex(win_size:=2)
+        Dim size As Double = eval_winsize(allMz)
+        Dim index = allMz.CreateMzIndex(win_size:=size)
         Dim len As Integer = allMz.Length
 
         For Each pixel As T In rawdata
