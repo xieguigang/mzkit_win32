@@ -281,11 +281,13 @@ Module RibbonEvents
     Private Sub ConvertH5ad()
         InputDialog.Input(Of InputConvert10x)(
             Sub(cfg)
-                Using file As New SaveFileDialog With {.Filter = "Imaging Pack File(*.mzPack)|*.mzPack"}
+                Using file As New SaveFileDialog With {
+                    .Filter = "Imaging Pack File(*.mzPack)|*.mzPack"
+                }
                     If file.ShowDialog = DialogResult.OK Then
-                        Dim pars = cfg.GetParameters
-
-                        Call ConvertH5ad(file.FileName, pars.spots, pars.h5ad, pars.tag, pars.targets)
+                        With cfg.GetParameters
+                            Call ConvertH5ad(file.FileName, .spots, .h5ad, .tag, .targets)
+                        End With
                     End If
                 End Using
             End Sub)
