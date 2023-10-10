@@ -285,18 +285,31 @@ Module RibbonEvents
                     If file.ShowDialog = DialogResult.OK Then
                         Dim pars = cfg.GetParameters
 
-                        Call RscriptProgressTask.ConvertSTData(pars.spots, pars.h5ad, pars.tag, pars.targets, file.FileName)
-
-                        If file.FileName.FileLength > 1024 Then
-                            If MessageBox.Show("File imports success, load into viewer?", "Task success", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
-                                Call MyApplication.host.showMzPackMSI(file.FileName)
-                            End If
-                        Else
-                            Workbench.Warning("10X genomics st-imaging file imports error!")
-                        End If
+                        Call ConvertH5ad(file.FileName, pars.spots, pars.h5ad, pars.tag, pars.targets)
                     End If
                 End Using
             End Sub)
+    End Sub
+
+    Private Sub ConvertH5ad(file_out As String, spots$, h5ad$, tag$, targets As String())
+        If spots.StringEmpty OrElse tag.StringEmpty Then
+            ' convert h5ad
+            Call RscriptProgressTask.Convert10XRawdata(h5ad, save:=file_out)
+        Else
+            ' convert space ranger result data
+            Call RscriptProgressTask.ConvertSTData(spots, h5ad, tag, targets, file_out)
+        End If
+
+        If file_out.FileLength > 1024 Then
+            If MessageBox.Show("File imports success, load into viewer?", "Task success",
+                               MessageBoxButtons.OKCancel,
+                               MessageBoxIcon.Information) = DialogResult.OK Then
+
+                Call MyApplication.host.showMzPackMSI(file_out)
+            End If
+        Else
+            Workbench.Warning("10X genomics st-imaging file imports error!")
+        End If
     End Sub
 
     Private Sub open3dMALDIViewer()
