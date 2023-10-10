@@ -496,10 +496,10 @@ Module BackgroundTask
         Dim dataset As New List(Of NamedCollection(Of Double))
         Dim size As Double = eval_winsize(allMz)
 
-        ' duplicated pixel may be found in the data
-        dataset.AddRange(allPixels.GroupBy(Function(s) $"{s.X},{s.Y}").ToArray.ExportSpotVectors(Function(a) a.Key, Function(pixel) pixel.Select(Function(si) si.GetMs).IteratesALL.ToArray, allMz, index_win))
         dataKeys = mzKeys
         index_win = size
+        ' duplicated pixel may be found in the data
+        dataset.AddRange(allPixels.GroupBy(Function(s) $"{s.X},{s.Y}").ToArray.ExportSpotVectors(Function(a) a.Key, Function(pixel) pixel.Select(Function(si) si.GetMs).IteratesALL.ToArray, allMz, index_win))
 
         Return dataset
     End Function
