@@ -2732,7 +2732,7 @@ Public Class frmMsImagingViewer
                             .LoadCsv(Of SpotAnnotation) _
                             .Select(Function(a)
                                         Return New SpatialSpot With {
-                                            .barcode = $"{a.x},{a.y}",
+                                            .barcode = $"{a.label}:{a.x},{a.y}",
                                             .x = a.x,
                                             .y = a.y,
                                             .px = a.x,
