@@ -5,7 +5,7 @@ imports "singleCell" from "Erica";
 const h5ad_file as string  = ?"--h5ad" || stop("The 10x genomics h5ad rawdata file must be provided!");
 const out_file as string   = ?"--save" || `${dirname(h5ad_file)}/${basename(h5ad_file)}.mzPack`;
 const export_dir as string = dirname(out_file);
-const raw = h5ad_file |> read.h5ad(loadExpr0 = FALSE);
+const raw = h5ad_file |> read.h5ad(loadExpr0 = TRUE);
 const spatial = raw |> spatialMap(useCellAnnotation = TRUE);
 
 print("peeks of the spatial data:");
