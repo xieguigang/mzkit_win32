@@ -1,6 +1,11 @@
 require(Erica);
+require(mzkit);
+require(JSON);
 
 imports "singleCell" from "Erica";
+imports "mzweb" from "mzkit";
+imports "BackgroundTask" from "PipelineHost";
+imports "STImaging" from "PipelineHost";
 
 const h5ad_file as string  = ?"--h5ad" || stop("The 10x genomics h5ad rawdata file must be provided!");
 const out_file as string   = ?"--save" || `${dirname(h5ad_file)}/${basename(h5ad_file)}.mzPack`;

@@ -9,11 +9,11 @@ imports "package_utils" from "devkit";
 imports "STdata" from "Erica";
 imports "geneExpression" from "phenotype_kit";
 
-const spotsTable = ?"--spots" || stop("Missing spots list table file!");
-const exprRaw = ?"--expr" || stop("The h5ad expression matrix file must be provided!");
-const namefile = ?"--targets";
-const data_tagstr = ?"--tag" || NULL;
-const savefile = ?"--save" || `${dirname(exprRaw)}/${basename(exprRaw)}_import.mzPack`;
+const spotsTable  = ?"--spots"   || stop("Missing spots list table file!");
+const exprRaw     = ?"--expr"    || stop("The h5ad expression matrix file must be provided!");
+const namefile    = ?"--targets" || "";
+const data_tagstr = ?"--tag"     || NULL;
+const savefile    = ?"--save"    || `${dirname(exprRaw)}/${basename(exprRaw)}_import.mzPack`;
 const human_genes = "data/HUMAN_geneExpression.json"
 |> system.file(package = "Erica")
 |> readText()
@@ -30,8 +30,8 @@ const target_nameset = {
 print("view of the human gene data annotation set:");
 str(human_genes);
 
-const spots = read.spatial_spots(spotsTable);
-const matrix = read.ST_spacerangerH5Matrix(exprRaw);
+const spots   = read.spatial_spots(spotsTable);
+const matrix  = read.ST_spacerangerH5Matrix(exprRaw);
 const summary = geneExpression::dims(matrix);
 
 print("view of the STdata summary:");
