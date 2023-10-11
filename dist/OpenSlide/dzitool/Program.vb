@@ -36,6 +36,8 @@ Module Program
             Call stream.CopyTo(file)
             Call file.Flush()
             Call file.Close()
+
+            Call pack.WriteText(dziIndex, "/index.txt")
         End Using
 
         Dim levels = openSlide.Dimensions(filepath)
