@@ -101,6 +101,8 @@
     <ProjectReference Include="..\MZWork\MZWork.vbproj" />
   </ItemGroup>
 
-  <Import Project="..\..\..\..\Rscript\Library\mzkit.interopArguments\mzkit.interopArguments.projitems" Label="Shared" />
+
+
+  <Import Project="..\..\..\..\Rscript\Library\mzkit_app\src\mzkit.interopArguments\mzkit.interopArguments.projitems" Label="Shared" />
 
 </Project>
