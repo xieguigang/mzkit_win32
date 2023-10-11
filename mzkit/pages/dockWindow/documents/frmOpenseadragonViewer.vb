@@ -121,7 +121,7 @@ Public Class frmOpenseadragonViewer
         If dzi.ExtensionSuffix("hds") Then
             res = dzi
 
-            Using pack As StreamPack = StreamPack.CreateNewStream(dzi)
+            Using pack As StreamPack = StreamPack.OpenReadOnly(dzi)
                 dziIndex = DirectCast(pack, IFileSystemEnvironment) _
                     .ReadAllText("/index.txt") _
                     .DoCall(AddressOf Strings.Trim) _
