@@ -28,7 +28,8 @@ Module Program
         Dim width, height As Long
 
         Using stream As MemoryStream = openSlide.GetDZI(filepath, width, height)
-            Dim file As Stream = pack.OpenFile(outputname.ChangeSuffix("dzi").FileName, FileMode.OpenOrCreate, FileAccess.Write)
+            Dim dziIndex As String = outputname.ChangeSuffix("dzi").FileName
+            Dim file As Stream = pack.OpenFile(dziIndex, FileMode.OpenOrCreate, FileAccess.Write)
 
             Call RunSlavePipeline.SendMessage($"{outputname} successfully created!")
             Call stream.Seek(Scan0, SeekOrigin.Begin)
@@ -122,7 +123,10 @@ Module Program
 
         Call RunSlavePipeline.SendMessage("The input tiff image needs to be convert to tiled image...")
 
-        Call PipelineProcess.ExecSub(vips, cli)
+        If input_tiled.FileLength < 64 * 1024& * 1024& Then
+            Call PipelineProcess.ExecSub(vips, cli)
+        End If
+
         Call input_tiled.Swap(inputfile)
         Call openSlide.EnsureOpen(inputfile)
 
