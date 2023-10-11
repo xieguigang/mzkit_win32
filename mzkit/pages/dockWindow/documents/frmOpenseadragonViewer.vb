@@ -4,6 +4,7 @@ Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
 Imports Microsoft.VisualBasic.FileIO
+Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.MSImagingViewerV2.DeepZoomBuilder
@@ -14,6 +15,7 @@ Imports WeifenLuo.WinFormsUI.Docking
 Public Class frmOpenseadragonViewer
 
     Dim dzi As String
+    Dim dziIndex As String
     Dim localfs As Process
     Dim webPort As Integer = -1
     Dim sourcefile As String
@@ -78,6 +80,7 @@ Public Class frmOpenseadragonViewer
                             Call s.Dispose()
                         Next
 
+                        Call DirectCast(pack, IFileSystemEnvironment).WriteText(dzi.FileName, "/index.txt")
                         Call pack.Dispose()
                 End Select
 
@@ -117,8 +120,16 @@ Public Class frmOpenseadragonViewer
 
         If dzi.ExtensionSuffix("hds") Then
             res = dzi
+
+            Using pack As StreamPack = StreamPack.CreateNewStream(dzi)
+                dziIndex = DirectCast(pack, IFileSystemEnvironment) _
+                    .ReadAllText("/index.txt") _
+                    .DoCall(AddressOf Strings.Trim) _
+                    .BaseName
+            End Using
         Else
             res = dzi.ParentPath
+            dziIndex = dzi.BaseName
         End If
 
         webPort = Net.Tcp.GetFirstAvailablePort(6001)
@@ -157,7 +168,7 @@ Public Class frmOpenseadragonViewer
             Call Thread.Sleep(10)
         Loop
 
-        Call WebView21.CoreWebView2.AddHostObjectToScript("dzi", $"http://127.0.0.1:{webPort}/{dzi.BaseName}.dzi")
+        Call WebView21.CoreWebView2.AddHostObjectToScript("dzi", $"http://127.0.0.1:{webPort}/{dziIndex}.dzi")
         Call WebView21.CoreWebView2.Navigate(sourceURL)
         Call WebKit.DeveloperOptions(WebView21, enable:=True, TabText)
     End Sub
