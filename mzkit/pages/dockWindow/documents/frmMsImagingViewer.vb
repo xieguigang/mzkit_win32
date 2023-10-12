@@ -1986,6 +1986,8 @@ Public Class frmMsImagingViewer
             .name = pixel.scanId
         }
 
+        Call WindowModules.msImageParameters.LoadSpotIons(ms.ms2, offset:=2)
+
         If pinedPixel Is Nothing Then
             ' show all peaks
             Call MyApplication.host.mzkitTool.showMatrix(ms.ms2, pixel.scanId)
@@ -2550,7 +2552,7 @@ Public Class frmMsImagingViewer
                 pinedPixel = Nothing
                 Workbench.Warning("There is no MS data in current pixel?")
             Else
-                Call WindowModules.msImageParameters.LoadPinnedIons(pinedPixel.ms2)
+                Call WindowModules.msImageParameters.LoadSpotIons(pinedPixel.ms2)
             End If
         End If
     End Sub
