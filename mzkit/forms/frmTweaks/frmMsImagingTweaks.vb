@@ -123,6 +123,7 @@ UseCheckedList:
 
     Public Const Ion_Layers As String = "Ion Layers"
     Public Const Pinned_Pixels As String = "Pinned Pixels"
+    Public Const Current_Spot As String = "Current Spot"
 
     Public ReadOnly Property Parameters As MsImageProperty
         Get
@@ -134,9 +135,8 @@ UseCheckedList:
         Me.TabText = "MsImage Parameters"
 
         Call ApplyVsTheme(ContextMenuStrip1, ToolStrip1)
+        Call ClearIons()
 
-        Win7StyleTreeView1.Nodes.Add(Ion_Layers)
-        Win7StyleTreeView1.Nodes.Add(Pinned_Pixels)
         RibbonEvents.ribbonItems.TabGroupMSI.ContextAvailable = ContextAvailability.Active
     End Sub
 
@@ -147,25 +147,36 @@ UseCheckedList:
             Win7StyleTreeView1.Nodes.Item(0).Nodes.Clear()
         Else
             Win7StyleTreeView1.Nodes.Add(Ion_Layers)
+            Win7StyleTreeView1.Nodes.Add(Pinned_Pixels)
+            Win7StyleTreeView1.Nodes.Add(Current_Spot)
         End If
 
         ' Win7StyleTreeView1.Nodes.Item(1).Nodes.Clear()
     End Sub
 
-    Public Sub LoadPinnedIons(ions As IEnumerable(Of ms2))
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="ions"></param>
+    ''' <param name="offset">
+    ''' 1 - pinned pixel
+    ''' 2 - current spot
+    ''' </param>
+    Public Sub LoadSpotIons(ions As IEnumerable(Of ms2), Optional offset As Integer = 1)
         If Win7StyleTreeView1.Nodes.Count = 0 Then
             Win7StyleTreeView1.Nodes.Add(Ion_Layers)
             Win7StyleTreeView1.Nodes.Add(Pinned_Pixels)
+            Win7StyleTreeView1.Nodes.Add(Current_Spot)
         End If
 
-        Win7StyleTreeView1.Nodes.Item(1).Nodes.Clear()
+        Win7StyleTreeView1.Nodes.Item(offset).Nodes.Clear()
 
         For Each i As ms2 In ions _
             .ToArray _
             .Centroid(Tolerance.DeltaMass(0.0001), New RelativeIntensityCutoff(0.001)) _
             .OrderByDescending(Function(m) m.intensity)
 
-            Call AddIonMzLayer(i.mz, index:=1)
+            Call AddIonMzLayer(i.mz, index:=offset)
         Next
     End Sub
 

@@ -24,14 +24,15 @@ Partial Class ColorScaler
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.picUpperbound = New System.Windows.Forms.PictureBox()
-        Me.picLowerbound = New System.Windows.Forms.PictureBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ResetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.picLowerbound = New System.Windows.Forms.PictureBox()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         CType(Me.picUpperbound, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.picLowerbound, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'picUpperbound
@@ -44,6 +45,18 @@ Partial Class ColorScaler
         Me.picUpperbound.Size = New System.Drawing.Size(152, 10)
         Me.picUpperbound.TabIndex = 0
         Me.picUpperbound.TabStop = False
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ResetToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(103, 26)
+        '
+        'ResetToolStripMenuItem
+        '
+        Me.ResetToolStripMenuItem.Name = "ResetToolStripMenuItem"
+        Me.ResetToolStripMenuItem.Size = New System.Drawing.Size(102, 22)
+        Me.ResetToolStripMenuItem.Text = "Reset"
         '
         'picLowerbound
         '
@@ -69,18 +82,6 @@ Partial Class ColorScaler
         Me.PictureBox1.TabIndex = 2
         Me.PictureBox1.TabStop = False
         '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ResetToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(103, 26)
-        '
-        'ResetToolStripMenuItem
-        '
-        Me.ResetToolStripMenuItem.Name = "ResetToolStripMenuItem"
-        Me.ResetToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ResetToolStripMenuItem.Text = "Reset"
-        '
         'ColorScaler
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -95,9 +96,9 @@ Partial Class ColorScaler
         Me.Name = "ColorScaler"
         Me.Size = New System.Drawing.Size(155, 589)
         CType(Me.picUpperbound, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.picLowerbound, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -107,4 +108,5 @@ Partial Class ColorScaler
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ResetToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolTip1 As ToolTip
 End Class

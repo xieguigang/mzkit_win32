@@ -233,4 +233,12 @@ Public Class ColorScaler
         moveDown = False
         Call UpdateColors(callEvents:=True)
     End Sub
+
+    Private Sub PictureBox1_MouseHover(sender As Object, e As EventArgs) Handles PictureBox1.MouseHover
+        Dim h As Double = PictureBox1.PointToClient(MousePosition).Y
+        Dim dh As Double = PictureBox1.Height - h
+        Dim into As Double = dh / PictureBox1.Height * intensityMax
+
+        Call ToolTip1.SetToolTip(PictureBox1, $"Intensity {into.ToString("G3")}, max intensity {intensityMax.ToString("G3")}")
+    End Sub
 End Class
