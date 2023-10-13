@@ -85,11 +85,9 @@ Public Class VisualStudio
         Call Dock(WindowModules.propertyWin, DockState.DockRight)
     End Sub
 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Sub ShowProperties(item As Object)
-        Dim propertyWin = WindowModules.propertyWin
-
-        propertyWin.propertyGrid.SelectedObject = item
-        propertyWin.propertyGrid.Refresh()
+        WindowModules.propertyWin.SetObject(item)
     End Sub
 
     ''' <summary>

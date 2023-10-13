@@ -73,6 +73,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging.APSMALDI
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
@@ -1985,8 +1986,23 @@ Public Class frmMsImagingViewer
             .ms2 = pixel.GetMs,
             .name = pixel.scanId
         }
+        Dim attrs As New ScanMS2 With {
+            .activationMethod = mzData.ActivationMethods.Unknown,
+            .centroided = True,
+            .charge = 0,
+            .collisionEnergy = 30,
+            .intensity = ms.intensity.Sum,
+            .into = ms.intensity,
+            .mz = ms.mz,
+            .parentMz = -1,
+            .polarity = params.polarity,
+            .rt = 0,
+            .scan_id = ms.name,
+            .MRM = {}
+        }
 
         Call WindowModules.msImageParameters.LoadSpotIons(ms.ms2, offset:=2)
+        Call VisualStudio.ShowProperties(New SpectrumProperty(ms.name, params.sourceFile, msLevel:=1, attrs))
 
         If pinedPixel Is Nothing Then
             ' show all peaks
