@@ -464,7 +464,7 @@ Module RibbonEvents
     End Sub
 
     Public Sub CopyProperties()
-        Dim obj As Object = WindowModules.propertyWin.propertyGrid.SelectedObject
+        Dim obj As Object = WindowModules.propertyWin.getPropertyObject
 
         If obj Is Nothing Then
             Return
@@ -472,7 +472,7 @@ Module RibbonEvents
             Return
         Else
             Call DirectCast(obj, ICopyProperties).Copy()
-            Call MyApplication.host.showStatusMessage("Property data is copy to clipboard!")
+            Call Workbench.SuccessMessage("Property data is copy to clipboard!")
         End If
     End Sub
 

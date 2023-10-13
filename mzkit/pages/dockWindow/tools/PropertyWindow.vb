@@ -58,6 +58,7 @@
 #End Region
 
 Imports System.ComponentModel
+Imports System.Runtime.CompilerServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports Mzkit_win32.BasicMDIForm
 Imports Task
@@ -79,10 +80,15 @@ Namespace DockSample
             Me.Hide()
         End Sub
 
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
         Public Function getPropertyObject() As Object
             Return propertyGrid.SelectedObject
         End Function
 
+        ''' <summary>
+        ''' set selected object and then refresh the <see cref="propertyGrid"/>
+        ''' </summary>
+        ''' <param name="obj"></param>
         Public Sub SetObject(obj As Object)
             propertyGrid.SelectedObject = obj
             propertyGrid.Refresh()
