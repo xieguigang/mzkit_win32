@@ -40,7 +40,7 @@ Public Class ShowMzBins
 
     Private Shared Function DrawIntensityQuantile(layer As PixelData()) As Image
         Dim into As Double() = layer.Select(Function(p) p.intensity).ToArray
-        Dim quantile As QuantileEstimationGK = into.GKQuantile(epsilon:=0.1)
+        Dim quantile As New FastRankQuantile(into)
         Dim x As Double() = Enumerable.Range(0, 11).Select(Function(i) i / 10).ToArray
         Dim y As Double() = x.Select(Function(q) quantile.Query(q)).ToArray
         Dim line As New SerialData With {
