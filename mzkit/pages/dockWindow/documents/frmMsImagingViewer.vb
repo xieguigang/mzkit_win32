@@ -195,6 +195,7 @@ Public Class frmMsImagingViewer
         AddHandler RibbonEvents.ribbonItems.ButtonMSITotalIon.ExecuteEvent, Sub() Call RenderSummary(IntensitySummary.Total)
         AddHandler RibbonEvents.ribbonItems.ButtonMSIBasePeakIon.ExecuteEvent, Sub() Call RenderSummary(IntensitySummary.BasePeak)
         AddHandler RibbonEvents.ribbonItems.ButtonMSIAverageIon.ExecuteEvent, Sub() Call RenderSummary(IntensitySummary.Average)
+        AddHandler RibbonEvents.ribbonItems.ButtonMSIMedian.ExecuteEvent, Sub() Call RenderSummary(IntensitySummary.Median)
 
         AddHandler RibbonEvents.ribbonItems.ButtonMSIImportAnnotationTable.ExecuteEvent, Sub() Call LoadImportAnnotationTable()
         AddHandler RibbonEvents.ribbonItems.ButtonExportSample.ExecuteEvent, Sub() Call exportMSISampleTable()
