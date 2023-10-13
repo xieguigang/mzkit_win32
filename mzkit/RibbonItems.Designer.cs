@@ -156,9 +156,11 @@ namespace RibbonLib.Controls
             public const uint cmdButtonMSIFilterPipeline = 229;
             public const uint cmdTabMSIAnalysis = 141;
             public const uint cmdTabMSISnapshot = 126;
-            public const uint cmdButtonMSIAverageIon = 125;
             public const uint cmdButtonMSIBasePeakIon = 124;
             public const uint cmdButtonMSITotalIon = 123;
+            public const uint cmdButtonMSIAverageIon2 = 259;
+            public const uint cmdButtonMSIAverageIon = 125;
+            public const uint cmdButtonMSIMedian = 258;
             public const uint cmdTabMenuMSIAnalysis = 142;
             public const uint cmdButtonFeatureDetections = 152;
             public const uint cmdButtonMSISignalCorrection = 197;
@@ -405,9 +407,11 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonMSIFilterPipeline { get; private set; }
         public RibbonTab TabMSIAnalysis { get; private set; }
         public RibbonGroup TabMSISnapshot { get; private set; }
-        public RibbonButton ButtonMSIAverageIon { get; private set; }
         public RibbonButton ButtonMSIBasePeakIon { get; private set; }
         public RibbonButton ButtonMSITotalIon { get; private set; }
+        public RibbonSplitButton ButtonMSIAverageIon2 { get; private set; }
+        public RibbonButton ButtonMSIAverageIon { get; private set; }
+        public RibbonButton ButtonMSIMedian { get; private set; }
         public RibbonGroup TabMenuMSIAnalysis { get; private set; }
         public RibbonDropDownButton ButtonFeatureDetections { get; private set; }
         public RibbonButton ButtonMSISignalCorrection { get; private set; }
@@ -649,9 +653,11 @@ namespace RibbonLib.Controls
             ButtonMSIFilterPipeline = new RibbonButton(ribbon, Cmd.cmdButtonMSIFilterPipeline);
             TabMSIAnalysis = new RibbonTab(ribbon, Cmd.cmdTabMSIAnalysis);
             TabMSISnapshot = new RibbonGroup(ribbon, Cmd.cmdTabMSISnapshot);
-            ButtonMSIAverageIon = new RibbonButton(ribbon, Cmd.cmdButtonMSIAverageIon);
             ButtonMSIBasePeakIon = new RibbonButton(ribbon, Cmd.cmdButtonMSIBasePeakIon);
             ButtonMSITotalIon = new RibbonButton(ribbon, Cmd.cmdButtonMSITotalIon);
+            ButtonMSIAverageIon2 = new RibbonSplitButton(ribbon, Cmd.cmdButtonMSIAverageIon2);
+            ButtonMSIAverageIon = new RibbonButton(ribbon, Cmd.cmdButtonMSIAverageIon);
+            ButtonMSIMedian = new RibbonButton(ribbon, Cmd.cmdButtonMSIMedian);
             TabMenuMSIAnalysis = new RibbonGroup(ribbon, Cmd.cmdTabMenuMSIAnalysis);
             ButtonFeatureDetections = new RibbonDropDownButton(ribbon, Cmd.cmdButtonFeatureDetections);
             ButtonMSISignalCorrection = new RibbonButton(ribbon, Cmd.cmdButtonMSISignalCorrection);

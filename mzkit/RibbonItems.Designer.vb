@@ -153,9 +153,11 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonMSIFilterPipeline As UInteger = 229
             Public Const cmdTabMSIAnalysis As UInteger = 141
             Public Const cmdTabMSISnapshot As UInteger = 126
-            Public Const cmdButtonMSIAverageIon As UInteger = 125
             Public Const cmdButtonMSIBasePeakIon As UInteger = 124
             Public Const cmdButtonMSITotalIon As UInteger = 123
+            Public Const cmdButtonMSIAverageIon2 As UInteger = 259
+            Public Const cmdButtonMSIAverageIon As UInteger = 125
+            Public Const cmdButtonMSIMedian As UInteger = 258
             Public Const cmdTabMenuMSIAnalysis As UInteger = 142
             Public Const cmdButtonFeatureDetections As UInteger = 152
             Public Const cmdButtonMSISignalCorrection As UInteger = 197
@@ -1097,12 +1099,6 @@ Namespace RibbonLib.Controls
                 Return _TabMSISnapshot
             End Get
         End Property
-        Private _ButtonMSIAverageIon As RibbonButton
-        Public ReadOnly Property ButtonMSIAverageIon As RibbonButton
-            Get
-                Return _ButtonMSIAverageIon
-            End Get
-        End Property
         Private _ButtonMSIBasePeakIon As RibbonButton
         Public ReadOnly Property ButtonMSIBasePeakIon As RibbonButton
             Get
@@ -1113,6 +1109,24 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonMSITotalIon As RibbonButton
             Get
                 Return _ButtonMSITotalIon
+            End Get
+        End Property
+        Private _ButtonMSIAverageIon2 As RibbonSplitButton
+        Public ReadOnly Property ButtonMSIAverageIon2 As RibbonSplitButton
+            Get
+                Return _ButtonMSIAverageIon2
+            End Get
+        End Property
+        Private _ButtonMSIAverageIon As RibbonButton
+        Public ReadOnly Property ButtonMSIAverageIon As RibbonButton
+            Get
+                Return _ButtonMSIAverageIon
+            End Get
+        End Property
+        Private _ButtonMSIMedian As RibbonButton
+        Public ReadOnly Property ButtonMSIMedian As RibbonButton
+            Get
+                Return _ButtonMSIMedian
             End Get
         End Property
         Private _TabMenuMSIAnalysis As RibbonGroup
@@ -1841,9 +1855,11 @@ Namespace RibbonLib.Controls
             _ButtonMSIFilterPipeline = New RibbonButton(_ribbon, Cmd.cmdButtonMSIFilterPipeline)
             _TabMSIAnalysis = New RibbonTab(_ribbon, Cmd.cmdTabMSIAnalysis)
             _TabMSISnapshot = New RibbonGroup(_ribbon, Cmd.cmdTabMSISnapshot)
-            _ButtonMSIAverageIon = New RibbonButton(_ribbon, Cmd.cmdButtonMSIAverageIon)
             _ButtonMSIBasePeakIon = New RibbonButton(_ribbon, Cmd.cmdButtonMSIBasePeakIon)
             _ButtonMSITotalIon = New RibbonButton(_ribbon, Cmd.cmdButtonMSITotalIon)
+            _ButtonMSIAverageIon2 = New RibbonSplitButton(_ribbon, Cmd.cmdButtonMSIAverageIon2)
+            _ButtonMSIAverageIon = New RibbonButton(_ribbon, Cmd.cmdButtonMSIAverageIon)
+            _ButtonMSIMedian = New RibbonButton(_ribbon, Cmd.cmdButtonMSIMedian)
             _TabMenuMSIAnalysis = New RibbonGroup(_ribbon, Cmd.cmdTabMenuMSIAnalysis)
             _ButtonFeatureDetections = New RibbonDropDownButton(_ribbon, Cmd.cmdButtonFeatureDetections)
             _ButtonMSISignalCorrection = New RibbonButton(_ribbon, Cmd.cmdButtonMSISignalCorrection)
