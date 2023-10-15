@@ -671,8 +671,8 @@ Public Class frmMsImagingViewer
                        stdNum.Round(ion.Q1Intensity),
                        stdNum.Round(ion.Q2Intensity),
                        stdNum.Round(ion.Q3Intensity),
-                       stdNum.Round(ion.moran),
-                       stdNum.Round(ion.pvalue)
+                       ion.moran,
+                       ion.pvalue
                     )
 
                     Call System.Windows.Forms.Application.DoEvents()
@@ -1506,8 +1506,8 @@ Public Class frmMsImagingViewer
                             stdNum.Round(ion.Q1Intensity),
                             stdNum.Round(ion.Q2Intensity),
                             stdNum.Round(ion.Q3Intensity),
-                            stdNum.Round(ion.moran),
-                            stdNum.Round(ion.pvalue)
+                            ion.moran,
+                            ion.pvalue
                         )
                     Else
                         Call grid.Rows.Add(
@@ -1521,8 +1521,8 @@ Public Class frmMsImagingViewer
                             stdNum.Round(ion.Q1Intensity),
                             stdNum.Round(ion.Q2Intensity),
                             stdNum.Round(ion.Q3Intensity),
-                            stdNum.Round(ion.moran),
-                            stdNum.Round(ion.pvalue)
+                            ion.moran,
+                            ion.pvalue
                         )
                     End If
 
