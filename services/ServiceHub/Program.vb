@@ -63,9 +63,14 @@ Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Components
 Imports SMRUCC.Rsharp.Runtime.Interop
+Imports std = System.Math
 
 <Package("app")>
 Module Program
+
+    Sub New()
+        VectorTask.n_threads = std.Max(8, App.CPUCoreNumbers)
+    End Sub
 
     ''' <summary>
     ''' 

@@ -4,6 +4,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
+Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
@@ -12,9 +13,14 @@ Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports STImaging
 Imports STRaid
 Imports Matrix = SMRUCC.genomics.Analysis.HTS.DataFrame.Matrix
+Imports std = System.Math
 
 <Package("STImaging")>
 Module STImagingTools
+
+    Sub New()
+        VectorTask.n_threads = std.Max(8, App.CPUCoreNumbers)
+    End Sub
 
     <ExportAPI("ST_spaceranger.mzpack")>
     Public Function convertMzPack(spots As SpatialSpot(), matrix As Matrix, Optional tag As String = Nothing) As mzPack

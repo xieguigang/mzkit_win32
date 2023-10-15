@@ -60,6 +60,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Driver
+Imports Microsoft.VisualBasic.Parallel
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Components
 Imports SMRUCC.Rsharp.Runtime.Internal.Invokes
@@ -67,7 +68,7 @@ Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports SMRUCC.Rsharp.Runtime.Interop
 Imports WeifenLuo.WinFormsUI.Docking
 Imports REnv = SMRUCC.Rsharp.Runtime.Internal
-Imports stdNum = System.Math
+Imports std = System.Math
 
 Namespace My
 
@@ -75,6 +76,7 @@ Namespace My
 
         Shared Sub New()
             REnv.Object.Converts.makeDataframe.addHandler(GetType(MZWork.Raw()), AddressOf rawDataFrame)
+            VectorTask.n_threads = std.Max(8, App.CPUCoreNumbers)
         End Sub
 
         Private Shared Function rawDataFrame(raws As MZWork.Raw(), args As list, env As Environment) As dataframe
@@ -100,7 +102,7 @@ Namespace My
         <ExportAPI("filterMz")>
         Public Shared Function FilterMz(ms2 As ScanMS2(), mz As Double, Optional da As Double = 0.5) As list()
             Return ms2 _
-                .Where(Function(i) stdNum.Abs(mz - i.parentMz) <= da) _
+                .Where(Function(i) std.Abs(mz - i.parentMz) <= da) _
                 .Select(Function(i)
                             Dim topIons = i.GetMs.OrderByDescending(Function(m) m.intensity).Take(5).Select(Function(m) $"{m.mz.ToString("F4")}:{m.intensity.ToString("G3")}").ToArray
 

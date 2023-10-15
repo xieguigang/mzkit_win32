@@ -92,6 +92,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.My.FrameworkInternal
+Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports MZWorkPack
@@ -109,6 +110,7 @@ Module BackgroundTask
 
     Sub New()
         FrameworkInternal.ConfigMemory(MemoryLoads.Heavy)
+        VectorTask.n_threads = std.Max(8, App.CPUCoreNumbers)
     End Sub
 
     Public Function cfmidPredict() As Object
