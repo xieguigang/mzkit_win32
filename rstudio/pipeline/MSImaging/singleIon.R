@@ -13,7 +13,9 @@ const savefile as string = ?"--save"   || stop("A file path to save plot image m
 const title as string    = ?"--title"  || "";
 const bg as string       = ?"--backcolor" || "black";
 const overlap_totalIons as boolean = ?"--overlap-tic" || FALSE;
+const filter_file as string = ?"--filters" || "";
 const colorSet as string = ?"--colors" || "viridis:turbo";
+const colorLevels as integer = ?"--levels" || 120;
 const hostName as string = ?"--host" || "localhost";
 const plot_size          = ?"--size" || "3300,2000";
 const plot_dpi           = ?"--dpi"  || 120;
@@ -47,6 +49,16 @@ const totalIonLayer = {
 print(`load ${length(pixelsData)} pixels data from given m/z:`);
 print(mzlist);
 
+let msi_filters = {
+    if (file.exists(filter_file)) {
+        geom_MSIfilters(file = filter_file);
+    } else {
+        geom_MSIfilters(
+            denoise_scale() > TrIQ_scale(0.85) > knn_scale() > soften_scale()
+        );
+    }
+}
+
 bitmap(file = savefile, size = as.integer(unlist(strsplit(plot_size, ","))), dpi = plot_dpi) {
     
     # load mzpack/imzML raw data file
@@ -63,11 +75,10 @@ bitmap(file = savefile, size = as.integer(unlist(strsplit(plot_size, ","))), dpi
 			tolerance = mzdiff, 
 			color     = colorSet,
             pixel_render = TRUE,
-            raster = totalIonLayer
+            raster = totalIonLayer,
+            colorLevels = colorLevels
 	   )
-       + geom_MSIfilters(
-            denoise_scale() > TrIQ_scale(0.85) > knn_scale() > soften_scale()
-        )
+       + msi_filters
 	   + geom_MSIbackground(bg)
        # add ggplot charting elements
        + ggtitle(`MSImaging of ${ifelse(title == "", mz_tag, title)}`)

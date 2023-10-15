@@ -245,6 +245,7 @@ Public NotInheritable Class RscriptProgressTask
                                           background As String,
                                           colorSet As String,
                                           filters As String(),
+                                          colorLevels As Integer,
                                           overlapTotalIons As Boolean,
                                           size As Size, dpi As Integer, padding As String,
                                           Optional title As String = "")
@@ -260,6 +261,7 @@ Public NotInheritable Class RscriptProgressTask
 --colors ""{colorSet}"" 
 --filters ""{filterfile}""
 --mzdiff ""{tolerance}"" 
+--levels {colorLevels}
 --size ""{size.Width},{size.Height}""
 --dpi {dpi}
 --padding ""{padding}""

@@ -312,7 +312,8 @@ Public Class InputMatrixIons
                filters:=filters,
                size:=folder.GetPlotSize,
                dpi:=folder.GetPlotDpi,
-               padding:=folder.GetPlotPadding
+               padding:=folder.GetPlotPadding,
+               colorLevels:=120
             )
         Next
     End Sub
