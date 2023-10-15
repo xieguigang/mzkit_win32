@@ -244,18 +244,21 @@ Public NotInheritable Class RscriptProgressTask
                                           saveAs As String,
                                           background As String,
                                           colorSet As String,
+                                          filters As String(),
                                           overlapTotalIons As Boolean,
                                           size As Size, dpi As Integer, padding As String,
                                           Optional title As String = "")
 
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSImaging/singleIon.R")
         Dim overlapFlag As String = If(overlapTotalIons, "--overlap-tic", "")
+        Dim filterfile As String = TempFileSystem.GetAppSysTempFile(".txt", prefix:="msi_filters")
         Dim cli As String = $"""{Rscript}"" 
 --app {Workbench.MSIServiceAppPort} 
 --mzlist ""{mz}"" 
 --save ""{saveAs}"" 
 --backcolor ""{background}"" 
 --colors ""{colorSet}"" 
+--filters ""{filterfile}""
 --mzdiff ""{tolerance}"" 
 --size ""{size.Width},{size.Height}""
 --dpi {dpi}
@@ -265,6 +268,7 @@ Public NotInheritable Class RscriptProgressTask
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
+        Call filters.SaveTo(filterfile)
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call Workbench.LogText(pipeline.CommandLine)
         Call TaskProgress.RunAction(

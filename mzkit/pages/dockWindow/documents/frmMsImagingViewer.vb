@@ -2690,6 +2690,7 @@ Public Class frmMsImagingViewer
                                    tolerance:=mzdiff.GetScript,
                                    saveAs:=save.FileName,
                                    title:=title,
+                                   filters:=loadFilters.Select(Function(f) f.ToScript).ToArray,
                                    background:=params.background.ToHtmlColor,
                                    colorSet:=params.colors.Description,
                                    overlapTotalIons:=params.showTotalIonOverlap,
