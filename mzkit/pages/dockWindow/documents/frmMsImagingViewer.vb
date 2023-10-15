@@ -2677,20 +2677,23 @@ Public Class frmMsImagingViewer
         End If
 
         Dim save As New SetMSIPlotParameters
+        Dim msi_filters As String() = loadFilters.Select(Function(f) f.ToScript).ToArray
 
         Call save.SetFileName(filename)
         Call InputDialog.Input(
             setConfig:=Sub(cfg)
                            If targetMz.Length > 1 Then
-                               Call RscriptProgressTask.ExportRGBIonsPlot(targetMz, mzdiff.GetScript, saveAs:=save.FileName,
-                                                                          size:=cfg.GetPlotSize, dpi:=cfg.GetPlotDpi, padding:=cfg.GetPlotPadding)
+                               Call RscriptProgressTask.ExportRGBIonsPlot(
+                                   targetMz, mzdiff.GetScript, saveAs:=save.FileName,
+                                   filters:=msi_filters,
+                                   size:=cfg.GetPlotSize, dpi:=cfg.GetPlotDpi, padding:=cfg.GetPlotPadding)
                            Else
                                Call RscriptProgressTask.ExportSingleIonPlot(
                                    mz:=targetMz(0),
                                    tolerance:=mzdiff.GetScript,
                                    saveAs:=save.FileName,
                                    title:=title,
-                                   filters:=loadFilters.Select(Function(f) f.ToScript).ToArray,
+                                   filters:=msi_filters,
                                    background:=params.background.ToHtmlColor,
                                    colorSet:=params.colors.Description,
                                    overlapTotalIons:=params.showTotalIonOverlap,

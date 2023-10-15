@@ -15,6 +15,7 @@ const mzdiff as string   = ?"--mzdiff"  || "da:0.1";
 const savefile as string = ?"--save"    || stop("A file path to save plot image must be specificed!");
 const knnFill as integer = ?"--knnFill" || 3;
 const overlap_totalIons as boolean = ?"--overlap-tic" || FALSE;
+const filter_file as string = ?"--filters" || ""; 
 const plot_size          = ?"--size" || "3300,2000";
 const plot_dpi           = ?"--dpi"  || 120;
 const plot_padding       = ?"--padding" || "padding: 200px 600px 200px 250px;";
@@ -48,6 +49,17 @@ names(images) = mz_keys;
 print("view of the images data:");
 str(images);
 
+let msi_filters = {
+    if (file.exists(filter_file)) {
+        geom_MSIfilters(file = filter_file);
+    } else {
+        geom_MSIfilters(
+            knn_scale() > soften_scale()
+        );
+    }
+}
+
+
 bitmap(file = savefile, size = as.integer(unlist(strsplit(plot_size, ","))), dpi = plot_dpi) {
     
     # load mzpack/imzML raw data file
@@ -67,6 +79,7 @@ bitmap(file = savefile, size = as.integer(unlist(strsplit(plot_size, ","))), dpi
 	   # + geom_MSIfilters(
             # denoise_scale() > TrIQ_scale(0.8) > knn_scale(knnFill, 0.5) > soften_scale()
         # )
+       + msi_filters
        # add ggplot charting elements
        + ggtitle(`MS-Imaging of ${paste(round(mzlist, 3), "+")}`)
        + labs(x = "Dimension(X)", y = "Dimension(Y)")

@@ -199,13 +199,15 @@ Public NotInheritable Class RscriptProgressTask
         Return cachefile
     End Function
 
-    Public Shared Sub ExportRGBIonsPlot(mz As Double(), tolerance As String, saveAs As String, size As Size, dpi As Integer, padding As String)
+    Public Shared Sub ExportRGBIonsPlot(mz As Double(), tolerance As String, saveAs As String, filters As String(), size As Size, dpi As Integer, padding As String)
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSImaging/tripleIon.R")
+        Dim filterfile As String = TempFileSystem.GetAppSysTempFile(".txt", prefix:="msi_filters")
         Dim cli As String = $"""{Rscript}"" 
 --app {Workbench.MSIServiceAppPort} 
 --mzlist ""{mz.JoinBy(",")}"" 
 --save ""{saveAs}"" 
 --mzdiff ""{tolerance}"" 
+--filters ""{filterfile}""
 --size ""{size.Width},{size.Height}""
 --dpi {dpi}
 --padding ""{padding}""
@@ -213,6 +215,7 @@ Public NotInheritable Class RscriptProgressTask
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
+        Call filters.SaveTo(filterfile)
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call Workbench.LogText(pipeline.CommandLine)
         Call TaskProgress.RunAction(
