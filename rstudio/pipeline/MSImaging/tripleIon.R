@@ -13,7 +13,6 @@ const appPort as integer = ?"--app"     || stop("A MSimaging services hub app ha
 const mz as string       = ?"--mzlist"  || stop("target ions list must be provided!");
 const mzdiff as string   = ?"--mzdiff"  || "da:0.1";
 const savefile as string = ?"--save"    || stop("A file path to save plot image must be specificed!");
-const knnFill as integer = ?"--knnFill" || 3;
 const overlap_totalIons as boolean = ?"--overlap-tic" || FALSE;
 const filter_file as string = ?"--filters" || ""; 
 const plot_size          = ?"--size" || "3300,2000";
@@ -36,7 +35,7 @@ const images  = lapply(mzlist, function(mz) {
         mzdiff      = mzdiff
     ) 
     |> as.layer(context = mz, strict = FALSE)
-    |> knnFill()
+    # |> knnFill()
     ;
 });
 const mz_keys = `m/z ${round( mzlist, 4)}`;
