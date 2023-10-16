@@ -54,11 +54,12 @@ let msi_filters = {
         geom_MSIfilters(file = filter_file);
     } else {
         geom_MSIfilters(
-            knn_scale() > soften_scale()
+            TrIQ_scale(0.85)
         );
     }
 }
 
+print(msi_filters);
 
 bitmap(file = savefile, size = as.integer(unlist(strsplit(plot_size, ","))), dpi = plot_dpi) {
     
