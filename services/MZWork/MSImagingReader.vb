@@ -10,7 +10,7 @@ Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
-Imports STRaid
+Imports STRaid.HDF5
 
 Public Module MSImagingReader
 
