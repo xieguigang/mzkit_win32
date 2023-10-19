@@ -508,7 +508,7 @@ UseCheckedList:
                 regions = viewer.sampleRegions _
                     .GetRegions(viewer.PixelSelector1.MSICanvas.dimension_size) _
                     .ToArray
-                Dim data = SampleData.ExtractSample(layer, regions, n:=81, coverage:=0.3)
+                Dim data = SampleData.ExtractSample(layer, regions, n:=81, coverage:=0.25)
 
                 For Each r As TissueRegion In regions
                     r.tags = data(r.label).Select(Function(d) d.ToString).ToArray
