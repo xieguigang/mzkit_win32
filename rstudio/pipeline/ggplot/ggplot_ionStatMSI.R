@@ -44,14 +44,17 @@ let x = [];
 let y = [];
 let colors = [];
 
+str(myeloma);
+
 for(name in names(myeloma)) {
     let part = myeloma[[name]];
     let color = part$color;
     let group_id = `${name}_${1:length(part$data)}`;
+    let nsize = length(part$x);
 
     x = append(x, part$x);
     y = append(y, part$y);
-    colors = append(colors, rep(color, length(part$data)));
+    colors = append(colors, rep(color, nsize));
 	part = part$data;
 	sampleinfo[[name]] = {
         group: name,
