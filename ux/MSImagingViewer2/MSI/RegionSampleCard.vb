@@ -58,7 +58,9 @@ Public Class RegionSampleCard
     ''' make polygon shape object raster matrix
     ''' </summary>
     ''' <param name="dimension"></param>
-    ''' <returns></returns>
+    ''' <returns>
+    ''' this function always create a new <see cref="TissueRegion"/> object
+    ''' </returns>
     Public Function ExportTissueRegion(dimension As Size) As TissueRegion
         If Not tissue Is Nothing Then
             Return New TissueRegion With {

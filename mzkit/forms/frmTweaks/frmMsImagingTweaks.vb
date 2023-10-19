@@ -470,15 +470,17 @@ UseCheckedList:
         End If
     End Sub
 
-    Private Function encodeJSON(data As Dictionary(Of String, NamedValue(Of Double()))) As String
+    Private Function encodeJSON(data As TissueRegion()) As String
         Dim json As New JsonObject
         Dim sample As JsonObject
 
-        For Each groupId As String In data.Keys
+        For Each tissue_group As TissueRegion In data
             sample = New JsonObject
-            sample.Add("color", New JsonValue(data(groupId).Name))
-            sample.Add("data", New JsonArray(data(groupId).Value))
-            json.Add(groupId, sample)
+            sample.Add("color", New JsonValue(tissue_group.color.ToHtmlColor))
+            sample.Add("data", New JsonArray(tissue_group.tags))
+            sample.Add("x", New JsonArray(tissue_group.points.Select(Function(t) t.X)))
+            sample.Add("y", New JsonArray(tissue_group.points.Select(Function(t) t.Y)))
+            json.Add(tissue_group.label, sample)
         Next
 
         Return json.BuildJsonString
@@ -489,20 +491,25 @@ UseCheckedList:
     ''' </summary>
     ''' <param name="mz"></param>
     ''' <returns>[region_label => [color => expression_vector]]</returns>
-    Private Function getVector(ByRef mz As Double) As Dictionary(Of String, NamedValue(Of Double()))
+    Private Function getVector(ByRef mz As Double) As TissueRegion()
         Dim errMsg As String = Nothing
         Dim layer As PixelData() = getLayer(mz, needsRegions:=True, msg:=errMsg)
 
         If layer Is Nothing Then
-            Call MyApplication.host.warning($"No ion layer data for ${mz.ToString("F4")}: {errMsg}")
+            Call Workbench.Warning($"No ion layer data for ${mz.ToString("F4")}: {errMsg}")
             Return Nothing
         End If
 
         Dim regions As TissueRegion() = viewer.sampleRegions _
             .GetRegions(viewer.PixelSelector1.MSICanvas.dimension_size) _
             .ToArray
+        Dim data = SampleData.ExtractSample(layer, regions, n:=64, coverage:=0.35)
 
-        Return SampleData.ExtractSample(layer, regions, n:=32, coverage:=0.35)
+        For Each r As TissueRegion In regions
+            r.tags = data(r.label).Select(Function(d) d.ToString).ToArray
+        Next
+
+        Return regions
     End Function
 
     Private Function getLayer(ByRef mz As Double, needsRegions As Boolean, ByRef msg$) As PixelData()
@@ -560,7 +567,7 @@ UseCheckedList:
     ''' <param name="data">[region_label => [color => expression_vector]]</param>
     ''' <param name="type">bar/box/violin</param>
     ''' <param name="mz"></param>
-    Private Sub showPlot(data As Dictionary(Of String, NamedValue(Of Double())), type As String, mz As Double)
+    Private Sub showPlot(data As TissueRegion(), type As String, mz As Double)
         Dim pack As String = encodeJSON(data)
         Dim image As Image
         Dim mzdiff = viewer.params.GetTolerance
@@ -593,7 +600,7 @@ UseCheckedList:
         Dim layer = getLayer(mz, needsRegions:=False, msg:=errMsg)
 
         If layer Is Nothing Then
-            Call MyApplication.host.warning($"No ion layer data for ${mz.ToString("F4")}: {errMsg}")
+            Call Workbench.Warning($"No ion layer data for ${mz.ToString("F4")}: {errMsg}")
             Return
         End If
 

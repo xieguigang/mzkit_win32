@@ -207,7 +207,7 @@ Public Class MSIRegionSampleWindow
     ''' get raster pixels data of the polygon regions
     ''' </summary>
     ''' <param name="dimension"></param>
-    ''' <returns></returns>
+    ''' <returns>populate new tissue regions data</returns>
     Public Iterator Function GetRegions(dimension As Size) As IEnumerable(Of TissueRegion)
         For Each item As Control In FlowLayoutPanel1.Controls
             Dim card = DirectCast(item, RegionSampleCard)
