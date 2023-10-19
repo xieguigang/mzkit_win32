@@ -54,6 +54,10 @@
             list.Add(svr)
         End Sub
 
+        ''' <summary>
+        ''' should be used for register of the house keeping service?
+        ''' </summary>
+        ''' <param name="svr"></param>
         Public Sub RegisterSingle(svr As Service)
             For Each item In list.ToArray
                 If item.Name = svr.Name Then

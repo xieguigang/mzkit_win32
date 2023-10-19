@@ -843,6 +843,23 @@ Public Class frmMain : Implements AppHost
     Public Event ResizeForm As AppHost.ResizeFormEventHandler Implements AppHost.ResizeForm
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        ' check house keeping service
+        For Each svr In ServiceHub.Manager.Hub.ServicesList
+            If svr.HouseKeeping Then
+                If Not svr.isAlive Then
+                    Dim msg As String =
+                        $"House keeping service is dead, some software function may not working." & vbCrLf &
+                        $"service: {svr.Name}" & vbCrLf &
+                        $"information: {svr.Description}"
+
+                    Call Workbench.Warning(msg)
+                    Call MessageBox.Show(msg, "Service backend error!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+
+                    svr.HouseKeeping = False
+                End If
+            End If
+        Next
+
         ToolStripStatusLabel3.Text = $"Memory: {StringFormats.Lanudry(mzkitApp.WorkingSet64)}"
         mzkitApp.Refresh()
     End Sub

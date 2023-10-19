@@ -11,6 +11,11 @@
         Public Property CPU As Double
         Public Property Memory As Long
         Public Property isAlive As Boolean
+        Public Property HouseKeeping As Boolean
+
+        Public Overrides Function ToString() As String
+            Return $"[{PID}] {Name}"
+        End Function
 
     End Class
 
