@@ -843,8 +843,10 @@ Public Class frmMain : Implements AppHost
     Public Event ResizeForm As AppHost.ResizeFormEventHandler Implements AppHost.ResizeForm
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        Dim list = ServiceHub.Manager.Hub.ServicesList.ToArray
+
         ' check house keeping service
-        For Each svr In ServiceHub.Manager.Hub.ServicesList
+        For Each svr As ServiceHub.Manager.Service In list
             If svr.HouseKeeping Then
                 If Not svr.isAlive Then
                     Dim msg As String =
@@ -852,9 +854,9 @@ Public Class frmMain : Implements AppHost
                         $"service: {svr.Name}" & vbCrLf &
                         $"information: {svr.Description}"
 
+                    Call ServiceHub.Manager.SetHouseKeeping(svr.PID, flag:=False)
                     Call Workbench.Warning(msg)
                     Call MessageBox.Show(msg, "Service backend error!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                    Call ServiceHub.Manager.SetHouseKeeping(svr.PID, flag:=False)
                 End If
             End If
         Next

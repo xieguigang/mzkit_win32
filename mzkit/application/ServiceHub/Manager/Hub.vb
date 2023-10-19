@@ -53,7 +53,7 @@
         End Function
 
         Public Sub SetHouseKeeping(pid As Integer, flag As Boolean)
-            For Each item In list
+            For Each item As Service In list
                 If item.PID = pid Then
                     item.HouseKeeping = flag
                     Return
