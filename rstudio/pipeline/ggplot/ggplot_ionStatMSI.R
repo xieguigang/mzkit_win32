@@ -16,6 +16,7 @@ const savefile as string  = ?"--save"   || stop("A file path to save plot image 
 const title as string     = ?"--title"  || NULL;
 const bg as string        = ?"--backcolor" || "black";
 const colorSet as string  = ?"--colors" || "viridis:turbo";
+const show_tissue as boolean = ?"--show-tissue" || FALSE;
 const mzlist as double    = mz
 |> strsplit(",", fixed = TRUE)
 |> unlist()
@@ -39,11 +40,18 @@ const intensity_data = list();
 const sampleinfo = list();
 const sample_color = lapply(myeloma, c -> c$color);
 
+let x = [];
+let y = [];
+let colors = [];
+
 for(name in names(myeloma)) {
     let part = myeloma[[name]];
     let color = part$color;
     let group_id = `${name}_${1:length(part$data)}`;
 
+    x = append(x, part$x);
+    y = append(y, part$y);
+    colors = append(colors, rep(color, length(part$data)));
 	part = part$data;
 	sampleinfo[[name]] = {
         group: name,
@@ -68,6 +76,13 @@ const getGgplot = function() {
 		geom_violin(width = 0.65, alpha = 0.85, color = sample_color);
 	}
 }
+const tissue_regions = {
+    if (show_tissue) {
+        data.frame(x,y,colors);
+    } else {
+        NULL;
+    }
+}
 
 MSImaging::MSI_ionStatPlot(
     mzpack         = mzpack, 
@@ -88,6 +103,7 @@ MSImaging::MSI_ionStatPlot(
     combine_layout = [4, 5], 
     jitter_size    = 8, 
     TrIQ           = 0.65,
-    backcolor      = bg
+    backcolor      = bg,
+    regions        = tissue_regions
 )
 ;
