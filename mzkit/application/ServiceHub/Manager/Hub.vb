@@ -52,6 +52,15 @@
             Next
         End Function
 
+        Public Sub SetHouseKeeping(pid As Integer, flag As Boolean)
+            For Each item In list
+                If item.PID = pid Then
+                    item.HouseKeeping = flag
+                    Return
+                End If
+            Next
+        End Sub
+
         Public Sub Register(svr As Service)
             list.Add(svr)
         End Sub

@@ -854,8 +854,7 @@ Public Class frmMain : Implements AppHost
 
                     Call Workbench.Warning(msg)
                     Call MessageBox.Show(msg, "Service backend error!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-
-                    svr.HouseKeeping = False
+                    Call ServiceHub.Manager.SetHouseKeeping(svr.PID, flag:=False)
                 End If
             End If
         Next
