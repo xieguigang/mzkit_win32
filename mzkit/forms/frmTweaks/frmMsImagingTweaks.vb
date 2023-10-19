@@ -492,22 +492,30 @@ UseCheckedList:
     ''' <param name="mz"></param>
     ''' <returns>[region_label => [color => expression_vector]]</returns>
     Private Function getVector(ByRef mz As Double) As TissueRegion()
-        Dim errMsg As String = Nothing
-        Dim layer As PixelData() = getLayer(mz, needsRegions:=True, msg:=errMsg)
+        Dim regions As TissueRegion() = Nothing
+        Dim mzi As Double
 
-        If layer Is Nothing Then
-            Call Workbench.Warning($"No ion layer data for ${mz.ToString("F4")}: {errMsg}")
-            Return Nothing
-        End If
+        Call ProgressSpinner.DoLoading(
+            Sub()
+                Dim errMsg As String = Nothing
+                Dim layer As PixelData() = getLayer(mzi, needsRegions:=True, msg:=errMsg)
 
-        Dim regions As TissueRegion() = viewer.sampleRegions _
-            .GetRegions(viewer.PixelSelector1.MSICanvas.dimension_size) _
-            .ToArray
-        Dim data = SampleData.ExtractSample(layer, regions, n:=64, coverage:=0.5)
+                If layer Is Nothing Then
+                    Call Workbench.Warning($"No ion layer data for ${mzi.ToString("F4")}: {errMsg}")
+                    Return
+                End If
 
-        For Each r As TissueRegion In regions
-            r.tags = data(r.label).Select(Function(d) d.ToString).ToArray
-        Next
+                regions = viewer.sampleRegions _
+                    .GetRegions(viewer.PixelSelector1.MSICanvas.dimension_size) _
+                    .ToArray
+                Dim data = SampleData.ExtractSample(layer, regions, n:=64, coverage:=0.5)
+
+                For Each r As TissueRegion In regions
+                    r.tags = data(r.label).Select(Function(d) d.ToString).ToArray
+                Next
+            End Sub)
+
+        mz = mzi
 
         Return regions
     End Function
