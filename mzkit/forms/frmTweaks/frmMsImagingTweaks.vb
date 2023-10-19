@@ -503,7 +503,7 @@ UseCheckedList:
         Dim regions As TissueRegion() = viewer.sampleRegions _
             .GetRegions(viewer.PixelSelector1.MSICanvas.dimension_size) _
             .ToArray
-        Dim data = SampleData.ExtractSample(layer, regions, n:=64, coverage:=0.35)
+        Dim data = SampleData.ExtractSample(layer, regions, n:=64, coverage:=0.5)
 
         For Each r As TissueRegion In regions
             r.tags = data(r.label).Select(Function(d) d.ToString).ToArray
@@ -580,7 +580,8 @@ UseCheckedList:
                 mz:=mz,
                 tolerance:=mzdiff.GetScript,
                 background:=viewer.params.background.ToHtmlColor,
-                colorSet:=viewer.params.colors.Description
+                colorSet:=viewer.params.colors.Description,
+                show_tissue:=ribbonItems.CheckShowMapLayer.BooleanValue
             )
         Else
             image = RscriptProgressTask.PlotStats(pack, type, title:=viewer.GetTitle(mz))
@@ -589,7 +590,15 @@ UseCheckedList:
         If image Is Nothing Then
             MyApplication.host.showStatusMessage("Error while run ggplot...", My.Resources.StatusAnnotations_Warning_32xLG_color)
         Else
+            Dim expr = data.ToDictionary(Function(t) t.label,
+                                         Function(t)
+                                             Return t.tags _
+                                                .Select(Function(si) Val(si)) _
+                                                .ToArray
+                                         End Function)
+
             MyApplication.host.mzkitTool.ShowPlotImage(image, ImageLayout.Zoom)
+            MyApplication.host.mzkitTool.ShowExpressionMatrix(expr, 64, "Expression of m/z " & mz.ToString("F4"))
             MyApplication.host.ShowMzkitToolkit()
         End If
     End Sub

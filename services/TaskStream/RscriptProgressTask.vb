@@ -545,7 +545,8 @@ Public NotInheritable Class RscriptProgressTask
                                               mz As Double,
                                               tolerance As String,
                                               background As String,
-                                              colorSet As String) As Image
+                                              colorSet As String,
+                                              show_tissue As Boolean) As Image
 
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".json", App.PID.ToHexString, prefix:="MSI_regions__")
         Dim imageOut As String = $"{tempfile.ParentPath}/Rplot.png"
@@ -559,7 +560,7 @@ Public NotInheritable Class RscriptProgressTask
 --data ""{tempfile}"" 
 --save ""{imageOut}"" 
 --title ""{title}"" 
---plot ""{type}"" 
+--plot ""{type}"" {If(show_tissue, " --show-tissue ", "")}
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
