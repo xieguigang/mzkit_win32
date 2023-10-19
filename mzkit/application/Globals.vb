@@ -160,7 +160,8 @@ Module Globals
             .PID = localfs.Id,
             .Port = Workbench.WebPort,
             .Protocol = "HTTP 1.0",
-            .StartTime = Now.ToString
+            .StartTime = Now.ToString,
+            .HouseKeeping = True
         })
 
         Call FrameworkInternal.ConfigMemory(MemoryLoads.Max)

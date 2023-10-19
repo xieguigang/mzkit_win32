@@ -35,7 +35,8 @@ Public NotInheritable Class RedisService
             .PID = localRedis.Id,
             .Port = port,
             .Protocol = "TCP",
-            .StartTime = Now.ToString
+            .StartTime = Now.ToString,
+            .HouseKeeping = True
         })
     End Sub
 End Class
