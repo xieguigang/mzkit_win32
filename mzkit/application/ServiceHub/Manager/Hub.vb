@@ -30,7 +30,8 @@
                         .StartTime = item.StartTime,
                         .Protocol = item.Protocol,
                         .CPU = 0,
-                        .Memory = 0
+                        .Memory = 0,
+                        .HouseKeeping = item.HouseKeeping
                     }
                 Else
                     Yield New Service With {
@@ -42,7 +43,8 @@
                         .CPU = p.TotalProcessorTime.TotalMilliseconds - item.CPU,
                         .Memory = p.WorkingSet64,
                         .Protocol = item.Protocol,
-                        .StartTime = item.StartTime
+                        .StartTime = item.StartTime,
+                        .HouseKeeping = item.HouseKeeping
                     }
 
                     item.CPU = p.TotalProcessorTime.TotalMilliseconds
