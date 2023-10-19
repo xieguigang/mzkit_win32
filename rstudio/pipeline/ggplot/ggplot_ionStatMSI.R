@@ -29,6 +29,7 @@ const pixelsData = app::getMSIData(
 const mz_tag as string = `m/z ${round(mzlist[1], 4)}`;
 const mzpack = pixelPack(pixelsData, dims = app::getMSIDimensions(MSI_service = appPort));
 
+# region_label -> [color, data, x, y]
 let myeloma = rawdata
 |> readText()
 |> json_decode()
