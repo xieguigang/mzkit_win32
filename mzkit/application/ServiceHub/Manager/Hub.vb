@@ -30,7 +30,8 @@
                         .StartTime = item.StartTime,
                         .Protocol = item.Protocol,
                         .CPU = 0,
-                        .Memory = 0
+                        .Memory = 0,
+                        .HouseKeeping = item.HouseKeeping
                     }
                 Else
                     Yield New Service With {
@@ -42,7 +43,8 @@
                         .CPU = p.TotalProcessorTime.TotalMilliseconds - item.CPU,
                         .Memory = p.WorkingSet64,
                         .Protocol = item.Protocol,
-                        .StartTime = item.StartTime
+                        .StartTime = item.StartTime,
+                        .HouseKeeping = item.HouseKeeping
                     }
 
                     item.CPU = p.TotalProcessorTime.TotalMilliseconds
@@ -50,10 +52,23 @@
             Next
         End Function
 
+        Public Sub SetHouseKeeping(pid As Integer, flag As Boolean)
+            For Each item As Service In list
+                If item.PID = pid Then
+                    item.HouseKeeping = flag
+                    Return
+                End If
+            Next
+        End Sub
+
         Public Sub Register(svr As Service)
             list.Add(svr)
         End Sub
 
+        ''' <summary>
+        ''' should be used for register of the house keeping service?
+        ''' </summary>
+        ''' <param name="svr"></param>
         Public Sub RegisterSingle(svr As Service)
             For Each item In list.ToArray
                 If item.Name = svr.Name Then

@@ -470,15 +470,17 @@ UseCheckedList:
         End If
     End Sub
 
-    Private Function encodeJSON(data As Dictionary(Of String, NamedValue(Of Double()))) As String
+    Private Function encodeJSON(data As TissueRegion()) As String
         Dim json As New JsonObject
         Dim sample As JsonObject
 
-        For Each groupId As String In data.Keys
+        For Each tissue_group As TissueRegion In data
             sample = New JsonObject
-            sample.Add("color", New JsonValue(data(groupId).Name))
-            sample.Add("data", New JsonArray(data(groupId).Value))
-            json.Add(groupId, sample)
+            sample.Add("color", New JsonValue(tissue_group.color.ToHtmlColor))
+            sample.Add("data", New JsonArray(tissue_group.tags))
+            sample.Add("x", New JsonArray(tissue_group.points.Select(Function(t) t.X)))
+            sample.Add("y", New JsonArray(tissue_group.points.Select(Function(t) t.Y)))
+            json.Add(tissue_group.label, sample)
         Next
 
         Return json.BuildJsonString
@@ -489,20 +491,33 @@ UseCheckedList:
     ''' </summary>
     ''' <param name="mz"></param>
     ''' <returns>[region_label => [color => expression_vector]]</returns>
-    Private Function getVector(ByRef mz As Double) As Dictionary(Of String, NamedValue(Of Double()))
-        Dim errMsg As String = Nothing
-        Dim layer As PixelData() = getLayer(mz, needsRegions:=True, msg:=errMsg)
+    Private Function getVector(ByRef mz As Double) As TissueRegion()
+        Dim regions As TissueRegion() = Nothing
+        Dim mzi As Double
 
-        If layer Is Nothing Then
-            Call MyApplication.host.warning($"No ion layer data for ${mz.ToString("F4")}: {errMsg}")
-            Return Nothing
-        End If
+        Call ProgressSpinner.DoLoading(
+            Sub()
+                Dim errMsg As String = Nothing
+                Dim layer As PixelData() = getLayer(mzi, needsRegions:=True, msg:=errMsg)
 
-        Dim regions As TissueRegion() = viewer.sampleRegions _
-            .GetRegions(viewer.PixelSelector1.MSICanvas.dimension_size) _
-            .ToArray
+                If layer Is Nothing Then
+                    Call Workbench.Warning($"No ion layer data for ${mzi.ToString("F4")}: {errMsg}")
+                    Return
+                End If
 
-        Return SampleData.ExtractSample(layer, regions, n:=32, coverage:=0.35)
+                regions = viewer.sampleRegions _
+                    .GetRegions(viewer.PixelSelector1.MSICanvas.dimension_size) _
+                    .ToArray
+                Dim data = SampleData.ExtractSample(layer, regions, n:=81, coverage:=0.25)
+
+                For Each r As TissueRegion In regions
+                    r.tags = data(r.label).Select(Function(d) d.ToString).ToArray
+                Next
+            End Sub)
+
+        mz = mzi
+
+        Return regions
     End Function
 
     Private Function getLayer(ByRef mz As Double, needsRegions As Boolean, ByRef msg$) As PixelData()
@@ -560,7 +575,7 @@ UseCheckedList:
     ''' <param name="data">[region_label => [color => expression_vector]]</param>
     ''' <param name="type">bar/box/violin</param>
     ''' <param name="mz"></param>
-    Private Sub showPlot(data As Dictionary(Of String, NamedValue(Of Double())), type As String, mz As Double)
+    Private Sub showPlot(data As TissueRegion(), type As String, mz As Double)
         Dim pack As String = encodeJSON(data)
         Dim image As Image
         Dim mzdiff = viewer.params.GetTolerance
@@ -573,7 +588,8 @@ UseCheckedList:
                 mz:=mz,
                 tolerance:=mzdiff.GetScript,
                 background:=viewer.params.background.ToHtmlColor,
-                colorSet:=viewer.params.colors.Description
+                colorSet:=viewer.params.colors.Description,
+                show_tissue:=ribbonItems.CheckShowMapLayer.BooleanValue
             )
         Else
             image = RscriptProgressTask.PlotStats(pack, type, title:=viewer.GetTitle(mz))
@@ -582,7 +598,15 @@ UseCheckedList:
         If image Is Nothing Then
             MyApplication.host.showStatusMessage("Error while run ggplot...", My.Resources.StatusAnnotations_Warning_32xLG_color)
         Else
+            Dim expr = data.ToDictionary(Function(t) t.label,
+                                         Function(t)
+                                             Return t.tags _
+                                                .Select(Function(si) Val(si)) _
+                                                .ToArray
+                                         End Function)
+
             MyApplication.host.mzkitTool.ShowPlotImage(image, ImageLayout.Zoom)
+            MyApplication.host.mzkitTool.ShowExpressionMatrix(expr, 64, "Expression of m/z " & mz.ToString("F4"))
             MyApplication.host.ShowMzkitToolkit()
         End If
     End Sub
@@ -593,7 +617,7 @@ UseCheckedList:
         Dim layer = getLayer(mz, needsRegions:=False, msg:=errMsg)
 
         If layer Is Nothing Then
-            Call MyApplication.host.warning($"No ion layer data for ${mz.ToString("F4")}: {errMsg}")
+            Call Workbench.Warning($"No ion layer data for ${mz.ToString("F4")}: {errMsg}")
             Return
         End If
 
