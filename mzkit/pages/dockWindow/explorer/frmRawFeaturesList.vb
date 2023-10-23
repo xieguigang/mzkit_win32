@@ -793,7 +793,14 @@ Public Class frmRawFeaturesList
         Dim firstFile As String = files.ElementAtOrDefault(Scan0)
 
         If Not firstFile Is Nothing Then
-            Call MyApplication.host.OpenFile(firstFile, showDocument:=True)
+            If firstFile.ExtensionSuffix("mzpack") Then
+                Call ProgressSpinner.DoLoading(
+                    Sub()
+                        Call MyApplication.host.OpenFile(firstFile, showDocument:=True)
+                    End Sub)
+            Else
+                Call MyApplication.host.OpenFile(firstFile, showDocument:=True)
+            End If
         End If
     End Sub
 
