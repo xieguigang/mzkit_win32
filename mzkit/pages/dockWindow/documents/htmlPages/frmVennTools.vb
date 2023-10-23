@@ -26,6 +26,8 @@ Public Class frmVennTools
     Private Sub frmVennTools_Load(sender As Object, e As EventArgs) Handles Me.Load
         Text = "Venn Plot Tool"
         TabText = Text
+
+        WebKit.Init(WebView21)
     End Sub
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
