@@ -722,16 +722,22 @@
     <Compile Include="pages\dockWindow\documents\frmLCMSScatterViewer.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frm3DMALDIViewer.Designer.vb">
+    <Compile Include="pages\dockWindow\documents\htmlPages\frm3DMALDIViewer.Designer.vb">
       <DependentUpon>frm3DMALDIViewer.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frm3DMALDIViewer.vb">
+    <Compile Include="pages\dockWindow\documents\htmlPages\frm3DMALDIViewer.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frm3DScatterPlotView.Designer.vb">
+    <Compile Include="pages\dockWindow\documents\htmlPages\frm3DScatterPlotView.Designer.vb">
       <DependentUpon>frm3DScatterPlotView.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\frm3DScatterPlotView.vb">
+    <Compile Include="pages\dockWindow\documents\htmlPages\frm3DScatterPlotView.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pages\dockWindow\documents\htmlPages\Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pages\dockWindow\documents\htmlPages\Form1.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\systems\frmPluginMgr.Designer.vb">
@@ -1270,10 +1276,10 @@
     <EmbeddedResource Include="pages\dockWindow\documents\frmMetabonomicsAnalysis.resx">
       <DependentUpon>frmMetabonomicsAnalysis.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\documents\frm3DMALDIViewer.resx">
+    <EmbeddedResource Include="pages\dockWindow\documents\htmlPages\frm3DMALDIViewer.resx">
       <DependentUpon>frm3DMALDIViewer.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="pages\dockWindow\documents\frm3DScatterPlotView.resx">
+    <EmbeddedResource Include="pages\dockWindow\documents\htmlPages\frm3DScatterPlotView.resx">
       <DependentUpon>frm3DScatterPlotView.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frmCFMIDOutputViewer.resx">
