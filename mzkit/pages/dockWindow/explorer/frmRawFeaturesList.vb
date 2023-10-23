@@ -92,6 +92,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Interop
 Imports WeifenLuo.WinFormsUI.Docking
 Imports stdNum = System.Math
@@ -480,7 +481,8 @@ Public Class frmRawFeaturesList
 
     Private Sub XICToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles XICToolStripMenuItem.Click
         If GetSelectedNodes.Count = 0 Then
-            MessageBox.Show("No chromatogram data for XIC plot, please use XIC -> Add for add data!", "No data save", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("No chromatogram data for XIC plot, please use XIC -> Add for add data!",
+                            "No data save", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         Else
             Dim ppm As Double = MyApplication.host.GetPPMError()
 
@@ -488,7 +490,10 @@ Public Class frmRawFeaturesList
                 Iterator Function() As IEnumerable(Of MGF.Ions)
 
                     For Each xic As NamedCollection(Of ChromatogramTick) In GetXICCollection(ppm)
-                        Dim parent As New NamedValue With {.name = xic.description.Split.First, .text = xic.value.Select(Function(a) a.Intensity).Max}
+                        Dim parent As New NamedValue With {
+                            .name = xic.description.Split.First,
+                            .text = xic.value.Select(Function(a) a.Intensity).Max
+                        }
                         Dim ion As New MGF.Ions With {
                             .Title = xic.name,
                             .Peaks = xic.value _
@@ -524,7 +529,8 @@ Public Class frmRawFeaturesList
 
     Private Sub IonScansToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles IonScansToolStripMenuItem.Click
         If GetSelectedNodes.Count = 0 Then
-            MessageBox.Show("No chromatogram data for XIC plot, please use XIC -> Add for add data!", "No data save", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("No chromatogram data for XIC plot, please use XIC -> Add for add data!",
+                            "No data save", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         Else
             Call exportMgf(Iterator Function() As IEnumerable(Of Ions)
                                For Each peak In MyApplication.mzkitRawViewer.getSelectedIonSpectrums(Nothing)
@@ -536,7 +542,8 @@ Public Class frmRawFeaturesList
 
     Private Sub IonTableToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles IonTableToolStripMenuItem.Click
         If GetSelectedNodes.Count = 0 Then
-            MessageBox.Show("No chromatogram data for XIC plot, please use XIC -> Add for add data!", "No data save", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("No chromatogram data for XIC plot, please use XIC -> Add for add data!",
+                            "No data save", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         Else
             Using file As New SaveFileDialog With {.Filter = "Ion Table(*.csv)|*.csv", .FileName = "Ions_scan.csv"}
                 If file.ShowDialog = DialogResult.OK Then
@@ -636,7 +643,7 @@ Public Class frmRawFeaturesList
         MyApplication.host.ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
 
         If treeView1.SelectedNode Is Nothing Then
-            Call MyApplication.host.showStatusMessage("No ion feature was selected...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning("No ion feature was selected...")
             Return
         End If
 
@@ -756,10 +763,18 @@ Public Class frmRawFeaturesList
             Return
         End If
 
-        Dim Ms2 = CurrentOpenedFile.LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache)) _
-            .GetMs2Scans _
+        Dim rawdata As mzPack = GetInMemoryRawdata()
+
+        If rawdata Is Nothing Then
+            Return
+        End If
+
+        Dim Ms2 = rawdata.MS _
+            .SafeQuery _
+            .Select(Function(m1) m1.products) _
+            .IteratesALL _
             .Where(Function(m)
-                       Return PPMmethod.PPM(m.parentMz, mz) <= ppm
+                       Return m.size > 0 AndAlso PPMmethod.PPM(m.parentMz, mz) <= ppm
                    End Function) _
             .OrderBy(Function(m) m.rt) _
             .ToArray
@@ -795,8 +810,13 @@ Public Class frmRawFeaturesList
             Return
         End If
 
-        Dim XIC = CurrentOpenedFile.LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache)) _
-            .GetLoadedMzpack.MS _
+        Dim rawdata = GetInMemoryRawdata()
+
+        If rawdata Is Nothing Then
+            Return
+        End If
+
+        Dim XIC = rawdata.MS _
             .Select(Function(scan) (scan.rt, scan.GetIntensity(mz, ppm))) _
             .Where(Function(p) p.Item2 > 0) _
             .OrderBy(Function(p) p.rt) _
@@ -839,19 +859,33 @@ Public Class frmRawFeaturesList
         Call Workbench.SuccessMessage("Ions data is copy to clipboard!")
     End Sub
 
+    ''' <summary>
+    ''' This function already handling the file content missing
+    ''' </summary>
+    ''' <returns>
+    ''' returns nothing if no file content exists in memory
+    ''' </returns>
+    Public Function GetInMemoryRawdata() As mzPack
+        If CurrentOpenedFile Is Nothing Then
+            Call Workbench.Warning("Open a raw data file at first!")
+            Return Nothing
+        End If
+
+        Return CurrentOpenedFile _
+            .LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache)) _
+            .GetLoadedMzpack
+    End Function
+
     Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
         Dim ms2 As Double = Val(ToolStripSpringTextBox1.Text)
         Dim test As Tolerance = Tolerance.DeltaMass(0.05)
+        Dim rawdata As mzPack = GetInMemoryRawdata()
 
-        If CurrentOpenedFile Is Nothing Then
-            Call Workbench.Warning("Open a raw data file at first!")
+        If rawdata Is Nothing Then
             Return
         End If
 
-        Dim matched = CurrentOpenedFile _
-            .LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache)) _
-            .GetLoadedMzpack _
-            .MS _
+        Dim matched = rawdata.MS _
             .Select(Function(i) i.products.SafeQuery) _
             .IteratesALL _
             .Where(Function(i)
@@ -919,6 +953,19 @@ Public Class frmRawFeaturesList
     Private Sub OrderByMs2CountsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OrderByMs2CountsToolStripMenuItem.Click
         OrderByPrecursorMZToolStripMenuItem.Checked = False
         OrderByMs2CountsToolStripMenuItem.Checked = True
+    End Sub
+
+    Private Sub ViewRawFileInformationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewRawFileInformationToolStripMenuItem.Click
+        Dim rawdata As mzPack = GetInMemoryRawdata()
+
+        If rawdata Is Nothing Then
+            Return
+        Else
+            Dim dialog As New ShowTissueData
+
+            Call dialog.SetRawdataInformation(rawdata)
+            Call InputDialog.ShowDialog(dialog)
+        End If
     End Sub
 
     Private Sub treeView1_DragEnter(sender As Object, e As DragEventArgs) Handles treeView1.DragEnter

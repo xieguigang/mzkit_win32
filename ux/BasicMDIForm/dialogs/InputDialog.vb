@@ -52,14 +52,27 @@
 
 #End Region
 
+Imports System.Runtime.CompilerServices
+
 Namespace CommonDialogs
 
     Public Class InputDialog
 
-        Public Shared Sub Input(Of Form As {New, InputDialog})(setConfig As Action(Of Form),
-                                                           Optional cancel As Action = Nothing,
-                                                           Optional config As Form = Nothing)
-
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        ''' <typeparam name="Form"></typeparam>
+        ''' <param name="setConfig">
+        ''' Just needs for display the information, then 
+        ''' this delegate function could be nothing.
+        ''' </param>
+        ''' <param name="cancel"></param>
+        ''' <param name="config"></param>
+        Public Shared Sub Input(Of Form As {New, InputDialog})(
+            Optional setConfig As Action(Of Form) = Nothing,
+            Optional cancel As Action = Nothing,
+            Optional config As Form = Nothing
+        )
             If Workbench.AppHost Is Nothing Then
                 Throw New NullReferenceException("the required main form is nothing!")
             End If
@@ -68,11 +81,23 @@ Namespace CommonDialogs
             Dim mask As MaskForm = MaskForm.CreateMask(Workbench.AppHost)
 
             If mask.ShowDialogForm(getConfig) = DialogResult.OK Then
-                Call setConfig(getConfig)
+                If Not setConfig Is Nothing Then
+                    Call setConfig(getConfig)
+                End If
             ElseIf Not cancel Is Nothing Then
                 Call cancel()
             End If
         End Sub
 
+        ''' <summary>
+        ''' just used this method for display some information
+        ''' </summary>
+        ''' <typeparam name="Form"></typeparam>
+        ''' <param name="config"></param>
+        ''' 
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        Public Overloads Shared Sub ShowDialog(Of Form As {New, InputDialog})(Optional config As Form = Nothing)
+            Call Input(Nothing, Nothing, config:=config)
+        End Sub
     End Class
 End Namespace
