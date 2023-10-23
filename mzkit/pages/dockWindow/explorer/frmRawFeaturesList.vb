@@ -796,7 +796,10 @@ Public Class frmRawFeaturesList
             If firstFile.ExtensionSuffix("mzpack") Then
                 Call ProgressSpinner.DoLoading(
                     Sub()
-                        Call MyApplication.host.OpenFile(firstFile, showDocument:=True)
+                        Call MyApplication.host.Invoke(
+                            Sub()
+                                Call MyApplication.host.OpenFile(firstFile, showDocument:=True)
+                            End Sub)
                     End Sub)
             Else
                 Call MyApplication.host.OpenFile(firstFile, showDocument:=True)
