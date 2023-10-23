@@ -1414,5 +1414,12 @@
 #define cmdXIC_PPMSpinner_LabelTitle_RESID 1106
 #define cmdXIC_PPMSpinner_LabelDescription_RESID 1107
 #define cmdXIC_PPMSpinner_TooltipDescription_RESID 1108
-#define InternalCmd2_LabelTitle_RESID 60057
-#define InternalCmd4_LabelTitle_RESID 60058
+#define cmdButtonVenn 260 
+#define cmdButtonVenn_LabelTitle_RESID 60057
+#define cmdButtonVenn_LabelDescription_RESID 60058
+#define cmdButtonVenn_TooltipTitle_RESID 60059
+#define cmdButtonVenn_TooltipDescription_RESID 60060
+#define cmdButtonVenn_SmallImages_192__RESID 60061
+#define cmdButtonVenn_LargeImages_192__RESID 60062
+#define InternalCmd2_LabelTitle_RESID 60063
+#define InternalCmd4_LabelTitle_RESID 60064

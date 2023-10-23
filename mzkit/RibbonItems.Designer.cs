@@ -40,6 +40,7 @@ namespace RibbonLib.Controls
             public const uint cmdButtonDevTools = 168;
             public const uint cmdMenuTableTools = 253;
             public const uint cmdButtonOpenTableTool = 252;
+            public const uint cmdButtonVenn = 260;
             public const uint cmdButtonSettings = 1051;
             public const uint cmdButtonAbout = 1021;
             public const uint cmdButtonBioDeep = 1022;
@@ -288,6 +289,7 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonDevTools { get; private set; }
         public RibbonMenuGroup MenuTableTools { get; private set; }
         public RibbonButton ButtonOpenTableTool { get; private set; }
+        public RibbonButton ButtonVenn { get; private set; }
         public RibbonButton ButtonSettings { get; private set; }
         public RibbonButton ButtonAbout { get; private set; }
         public RibbonButton ButtonBioDeep { get; private set; }
@@ -537,6 +539,7 @@ namespace RibbonLib.Controls
             ButtonDevTools = new RibbonButton(ribbon, Cmd.cmdButtonDevTools);
             MenuTableTools = new RibbonMenuGroup(ribbon, Cmd.cmdMenuTableTools);
             ButtonOpenTableTool = new RibbonButton(ribbon, Cmd.cmdButtonOpenTableTool);
+            ButtonVenn = new RibbonButton(ribbon, Cmd.cmdButtonVenn);
             ButtonSettings = new RibbonButton(ribbon, Cmd.cmdButtonSettings);
             ButtonAbout = new RibbonButton(ribbon, Cmd.cmdButtonAbout);
             ButtonBioDeep = new RibbonButton(ribbon, Cmd.cmdButtonBioDeep);
