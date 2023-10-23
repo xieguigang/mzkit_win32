@@ -199,6 +199,8 @@ Module RibbonEvents
         AddHandler ribbonItems.ButtonOpenVirtualSlideFile.ExecuteEvent, Sub() Call openSlideFile()
         AddHandler ribbonItems.ButtonOpenTableTool.ExecuteEvent, Sub() Call OpenExcelTableFile2()
         AddHandler ribbonItems.OpenIonsLibrary.ExecuteEvent, Sub() Call openIonLibrary()
+
+        AddHandler ribbonItems.ButtonVenn.ExecuteEvent, Sub() Call VisualStudio.ShowDocument(Of frmVennTools)(title:="Venn Plot Tool")
     End Sub
 
     Sub New()

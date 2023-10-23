@@ -734,10 +734,10 @@
     <Compile Include="pages\dockWindow\documents\htmlPages\frm3DScatterPlotView.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\htmlPages\Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="pages\dockWindow\documents\htmlPages\frmVennTools.Designer.vb">
+      <DependentUpon>frmVennTools.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\dockWindow\documents\htmlPages\Form1.vb">
+    <Compile Include="pages\dockWindow\documents\htmlPages\frmVennTools.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="pages\dockWindow\systems\frmPluginMgr.Designer.vb">
@@ -1296,6 +1296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frmLCMSScatterViewer.resx">
       <DependentUpon>frmLCMSScatterViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\documents\htmlPages\frmVennTools.resx">
+      <DependentUpon>frmVennTools.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\systems\frmHtmlViewer.resx">
       <DependentUpon>frmHtmlViewer.vb</DependentUpon>
