@@ -49,11 +49,16 @@ Public Class RQLib : Implements IDisposable
     ''' <returns></returns>
     Public Function QueryMetabolites(name As String) As MetaLib()
         Dim list As NumericTagged(Of String)() = query.Get(query:=name).ToArray
-        Dim keys As String() = list.Select(Function(m) m.value).Distinct.ToArray
+        Dim keys As String() = list _
+            .Select(Function(m) m.value) _
+            .Distinct _
+            .ToArray
         Dim result As MetaLib() = New MetaLib(keys.Length - 1) {}
 
         For i As Integer = 0 To keys.Length - 1
-            result(i) = MsgPackSerializer.Deserialize(Of MetaLib)(query.ReadBuffer(keys(i)))
+            result(i) = BSON _
+                .Load(query.ReadBuffer(keys(i))) _
+                .CreateObject(Of MetaLib)(decodeMetachar:=False)
         Next
 
         Return result
