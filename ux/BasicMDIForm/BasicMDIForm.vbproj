@@ -215,6 +215,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="plugin\modules\DataTableViewer.vb" />
+    <Compile Include="plugin\modules\SpectrumLibraryModule.vb" />
     <Compile Include="TableHelper.vb" />
     <Compile Include="plugin\base\MSIServicePlugin.vb" />
     <Compile Include="dialogs\InputDialog.Designer.vb">

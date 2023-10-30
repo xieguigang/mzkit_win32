@@ -39,7 +39,7 @@ Public Class LibraryApp
     Dim current As RQLib
 
     Public Function ScanLibraries() As String
-        Dim files As String() = $"{App.ProductProgramData}/lcms/".ListFiles("*.lcms-pack")
+        Dim files As String() = SpectrumLibraryModule.ScanLibraries.ToArray
         Return files.GetJson
     End Function
 
