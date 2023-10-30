@@ -195,6 +195,10 @@
       <Project>{ab5fd86e-6da9-4f7c-8dce-17da85bc895d}</Project>
       <Name>mzmath-netcore5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\services\BioDeep\BioDeep.vbproj">
+      <Project>{dcfa3211-c43b-40c3-a183-2d3d83b096e1}</Project>
+      <Name>BioDeep</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\BasicMDIForm\BasicMDIForm.vbproj">
       <Project>{51c55c5c-2f21-4e9f-aa8d-3664135758b7}</Project>
       <Name>BasicMDIForm</Name>

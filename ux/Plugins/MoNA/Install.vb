@@ -1,4 +1,6 @@
-﻿Imports System.IO.Compression
+﻿Imports System.IO
+Imports System.IO.Compression
+Imports BioDeep
 Imports Mzkit_win32.BasicMDIForm
 
 Public Class Install
@@ -6,6 +8,7 @@ Public Class Install
     Public file_url As String
     Public tmp_zip As String
     Public msp_file As String
+    Public targetLib As Export
 
     Public Function InstallMoNA(a As ITaskProgress) As Boolean
         Call a.SetProgressMode()
@@ -31,6 +34,11 @@ Public Class Install
     End Function
 
     Private Function InstallLocal(msp_file As String) As Boolean
+        Dim path As String = SpectrumLibraryModule.LibraryFile($"{targetLib.label.BaseName}.lcms-pack")
+        Dim libdb As New RQLib(path.Open(FileMode.OpenOrCreate, doClear:=False, [readOnly]:=False))
 
+        Call libdb.Dispose()
+
+        Return True
     End Function
 End Class

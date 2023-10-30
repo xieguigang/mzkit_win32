@@ -49,7 +49,8 @@ Public Class FormMoNADownloads
             streamLoad:=AddressOf New Install With {
                 .file_url = file_url,
                 .msp_file = msp_file,
-                .tmp_zip = tmp_zip
+                .tmp_zip = tmp_zip,
+                .targetLib = targetLib
             }.InstallMoNA,
             title:=$"Download & Install MoNA",
             info:=$"[HTTP/GET] {targetLib.exportFile} {StringFormats.Lanudry(CDbl(targetLib.size))}...",
