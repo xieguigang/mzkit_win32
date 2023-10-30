@@ -4,6 +4,7 @@ Imports Microsoft.VisualBasic.ComponentModel.Ranges
 Imports Microsoft.VisualBasic.Data.IO.MessagePack
 Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.MIME.application.json
 Imports RQL
 
 ''' <summary>
@@ -13,6 +14,12 @@ Imports RQL
 Public Class RQLib : Implements IDisposable
 
     ReadOnly query As Resource
+    ReadOnly opts As New JSONSerializerOptions With {
+        .indent = False,
+        .maskReadonly = False,
+        .enumToString = True,
+        .unixTimestamp = True
+    }
 
     Private disposedValue As Boolean
 
@@ -21,7 +28,7 @@ Public Class RQLib : Implements IDisposable
     End Sub
 
     Public Function AddAnnotation(metabo As MetaLib) As Boolean
-        Dim packdata = MsgPackSerializer.SerializeObject(metabo)
+        Dim packdata = BSON.GetBuffer(metabo.GetType.GetJsonElement(metabo, opts)).ToArray
 
         Call query.Add(metabo.ID, packdata)
         Call query.Add(metabo.name, packdata)

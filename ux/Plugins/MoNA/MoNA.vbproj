@@ -191,6 +191,14 @@
       <Project>{d99285e0-574f-4302-a3fd-9d6c7f228937}</Project>
       <Name>spectrumTree.NETCore5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\metadb\Massbank\massbank.NET5.vbproj">
+      <Project>{70056e6f-58d0-4e44-866c-27c0b70ad28d}</Project>
+      <Name>massbank.NET5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\metadb\MoNA\MoNA.NET5.vbproj">
+      <Project>{5365986b-a702-4cd6-873f-f9ff01f340ec}</Project>
+      <Name>MoNA.NET5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\mzmath\ms2_math-core\mzmath-netcore5.vbproj">
       <Project>{ab5fd86e-6da9-4f7c-8dce-17da85bc895d}</Project>
       <Name>mzmath-netcore5</Name>
