@@ -130,6 +130,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Library.vb" />
+    <Compile Include="Install.vb" />
     <Compile Include="RestApiPlugin.vb" />
     <Compile Include="zzz.vb" />
     <Compile Include="My Project\Application.Designer.vb">

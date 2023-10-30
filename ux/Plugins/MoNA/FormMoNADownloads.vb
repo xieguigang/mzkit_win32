@@ -1,5 +1,4 @@
-﻿Imports System.IO.Compression
-Imports Microsoft.VisualBasic.ApplicationServices
+﻿Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Mzkit_win32.BasicMDIForm
@@ -47,28 +46,11 @@ Public Class FormMoNADownloads
         Call Workbench.LogText($"temp_file: {tmp_zip}")
         Call Workbench.LogText(targetLib.GetJson)
         Call TaskProgress.LoadData(
-            streamLoad:=Function(a As ITaskProgress) As Boolean
-                            Call a.SetProgressMode()
-
-                            If file_url.DownloadFile(save:=tmp_zip) Then
-                                Call Workbench.LogText("Download database file success!")
-                                Call Workbench.LogText($"database_file_size: {StringFormats.Lanudry(CDbl(tmp_zip.FileLength))}")
-
-                                Call a.SetInfo("Extract the zip archive file...")
-                                Call msp_file.ParentPath.MakeDir
-
-                                Using zip As New ZipArchive(tmp_zip.OpenReadonly, ZipArchiveMode.Read)
-                                    zip.Entries.Item(0).ExtractToFile(msp_file, True)
-                                End Using
-
-                                Call a.SetInfo("Install database to local appdata filesystem...")
-
-                            Else
-                                Call Workbench.Warning("Download MoNA database file error!")
-                            End If
-
-                            Return True
-                        End Function,
+            streamLoad:=AddressOf New Install With {
+                .file_url = file_url,
+                .msp_file = msp_file,
+                .tmp_zip = tmp_zip
+            }.InstallMoNA,
             title:=$"Download & Install MoNA",
             info:=$"[HTTP/GET] {targetLib.exportFile} {StringFormats.Lanudry(CDbl(targetLib.size))}...",
             canbeCancel:=True,
