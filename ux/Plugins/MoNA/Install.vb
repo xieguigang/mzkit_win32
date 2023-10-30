@@ -34,7 +34,7 @@ Public Class Install
     End Function
 
     Private Function InstallLocal(msp_file As String) As Boolean
-        Dim path As String = SpectrumLibraryModule.LibraryFile($"{targetLib.label.BaseName}.lcms-pack")
+        Dim path As String = SpectrumLibraryModule.LibraryFile($"{targetLib.label.NormalizePathString(alphabetOnly:=False)}.lcms-pack")
         Dim libdb As New RQLib(path.Open(FileMode.OpenOrCreate, doClear:=False, [readOnly]:=False))
 
         Call libdb.Dispose()
