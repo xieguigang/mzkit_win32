@@ -24,12 +24,20 @@ Public Class Install
         Call Workbench.LogText("Download database file success!")
         Call Workbench.LogText($"database_file_size: {StringFormats.Lanudry(CDbl(tmp_zip.FileLength))}")
 
+        Return InstallZip(a)
+    End Function
+
+    Public Function InstallZip(a As ITaskProgress) As Boolean
         Call a.SetInfo("Extract the zip archive file...")
         Call msp_file.ParentPath.MakeDir
 
-        Using zip As New ZipArchive(tmp_zip.OpenReadonly, ZipArchiveMode.Read)
-            zip.Entries.Item(0).ExtractToFile(msp_file, True)
-        End Using
+        Try
+            Using zip As New ZipArchive(tmp_zip.OpenReadonly, ZipArchiveMode.Read)
+                zip.Entries.Item(0).ExtractToFile(msp_file, True)
+            End Using
+        Catch ex As Exception
+            Return False
+        End Try
 
         Call a.SetInfo("Install database to local appdata filesystem...")
 
