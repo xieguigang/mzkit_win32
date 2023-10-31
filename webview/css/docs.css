@@ -2,11 +2,13 @@
 section {
   padding-top: 30px;
 }
-section > .page-header,
-section > .lead {
+
+section>.page-header,
+section>.lead {
   color: #5a5a5a;
 }
-section > ul li {
+
+section>ul li {
   margin-bottom: 5px;
 }
 
@@ -26,6 +28,7 @@ section > ul li {
   padding-left: 0;
   list-style: none;
 }
+
 .bs-docs-social-buttons li {
   display: inline-block;
   padding: 5px 8px;
@@ -43,8 +46,8 @@ section > ul li {
   background-color: #fff;
   border: 1px solid #ddd;
   -webkit-border-radius: 4px;
-     -moz-border-radius: 4px;
-          border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
 }
 
 /* Echo out a label for the example */
@@ -60,21 +63,22 @@ section > ul li {
   border: 1px solid #ddd;
   color: #9da0a4;
   -webkit-border-radius: 4px 0 4px 0;
-     -moz-border-radius: 4px 0 4px 0;
-          border-radius: 4px 0 4px 0;
+  -moz-border-radius: 4px 0 4px 0;
+  border-radius: 4px 0 4px 0;
 }
 
 /* Remove spacing between an example and it's code */
-.bs-docs-example + .prettyprint {
+.bs-docs-example+.prettyprint {
   margin-top: -20px;
   padding-top: 15px;
 }
 
 /* Tweak examples
 ------------------------- */
-.bs-docs-example > p:last-child {
+.bs-docs-example>p:last-child {
   margin-bottom: 0;
 }
+
 .bs-docs-example .table,
 .bs-docs-example .progress,
 .bs-docs-example .well,
@@ -82,45 +86,54 @@ section > ul li {
 .bs-docs-example .hero-unit,
 .bs-docs-example .pagination,
 .bs-docs-example .navbar,
-.bs-docs-example > .nav,
+.bs-docs-example>.nav,
 .bs-docs-example blockquote {
   margin-bottom: 5px;
 }
+
 .bs-docs-example .pagination {
   margin-top: 0;
 }
+
 .bs-navbar-top-example,
 .bs-navbar-bottom-example {
   z-index: 1;
   padding: 0;
   height: 90px;
-  overflow: hidden; /* cut the drop shadows off */
+  overflow: hidden;
+  /* cut the drop shadows off */
 }
+
 .bs-navbar-top-example .navbar-fixed-top,
 .bs-navbar-bottom-example .navbar-fixed-bottom {
   margin-left: 0;
   margin-right: 0;
 }
+
 .bs-navbar-top-example {
   -webkit-border-radius: 0 0 4px 4px;
-     -moz-border-radius: 0 0 4px 4px;
-          border-radius: 0 0 4px 4px;
+  -moz-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
 }
+
 .bs-navbar-top-example:after {
   top: auto;
   bottom: -1px;
   -webkit-border-radius: 0 4px 0 4px;
-     -moz-border-radius: 0 4px 0 4px;
-          border-radius: 0 4px 0 4px;
+  -moz-border-radius: 0 4px 0 4px;
+  border-radius: 0 4px 0 4px;
 }
+
 .bs-navbar-bottom-example {
   -webkit-border-radius: 4px 4px 0 0;
-     -moz-border-radius: 4px 4px 0 0;
-          border-radius: 4px 4px 0 0;
+  -moz-border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
 }
+
 .bs-navbar-bottom-example .navbar {
   margin-bottom: 0;
 }
+
 form.bs-docs-example {
   padding-bottom: 19px;
 }
@@ -137,6 +150,7 @@ form.bs-docs-example {
   margin: 0 0 10px;
   list-style: none;
 }
+
 .bs-docs-tooltip-examples li {
   display: inline;
   padding: 0 10px;
@@ -147,6 +161,7 @@ form.bs-docs-example {
   padding-bottom: 24px;
   background-color: #f9f9f9;
 }
+
 .bs-docs-example-popover .popover {
   position: relative;
   display: block;
@@ -159,11 +174,13 @@ form.bs-docs-example {
 .bs-docs-example-submenus {
   min-height: 180px;
 }
-.bs-docs-example-submenus > .pull-left + .pull-left {
+
+.bs-docs-example-submenus>.pull-left+.pull-left {
   margin-left: 20px;
 }
-.bs-docs-example-submenus .dropup > .dropdown-menu,
-.bs-docs-example-submenus .dropdown > .dropdown-menu {
+
+.bs-docs-example-submenus .dropup>.dropdown-menu,
+.bs-docs-example-submenus .dropdown>.dropdown-menu {
   display: block;
   position: static;
   margin-bottom: 5px;
@@ -179,39 +196,44 @@ form.bs-docs-example {
   padding: 0;
   background-color: #fff;
   -webkit-border-radius: 6px;
-     -moz-border-radius: 6px;
-          border-radius: 6px;
-  -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.065);
-     -moz-box-shadow: 0 1px 4px rgba(0,0,0,.065);
-          box-shadow: 0 1px 4px rgba(0,0,0,.065);
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .065);
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, .065);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .065);
 }
-.bs-docs-sidenav > li > a {
+
+.bs-docs-sidenav>li>a {
   display: block;
   width: 190px \9;
   margin: 0 0 -1px;
   padding: 8px 14px;
   border: 1px solid #e5e5e5;
 }
-.bs-docs-sidenav > li:first-child > a {
+
+.bs-docs-sidenav>li:first-child>a {
   -webkit-border-radius: 6px 6px 0 0;
-     -moz-border-radius: 6px 6px 0 0;
-          border-radius: 6px 6px 0 0;
+  -moz-border-radius: 6px 6px 0 0;
+  border-radius: 6px 6px 0 0;
 }
-.bs-docs-sidenav > li:last-child > a {
+
+.bs-docs-sidenav>li:last-child>a {
   -webkit-border-radius: 0 0 6px 6px;
-     -moz-border-radius: 0 0 6px 6px;
-          border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
 }
-.bs-docs-sidenav > .active > a {
+
+.bs-docs-sidenav>.active>a {
   position: relative;
   z-index: 2;
   padding: 9px 15px;
   border: 0;
-  text-shadow: 0 1px 0 rgba(0,0,0,.15);
-  -webkit-box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
-     -moz-box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
-          box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
+  -webkit-box-shadow: inset 1px 0 0 rgba(0, 0, 0, .1), inset -1px 0 0 rgba(0, 0, 0, .1);
+  -moz-box-shadow: inset 1px 0 0 rgba(0, 0, 0, .1), inset -1px 0 0 rgba(0, 0, 0, .1);
+  box-shadow: inset 1px 0 0 rgba(0, 0, 0, .1), inset -1px 0 0 rgba(0, 0, 0, .1);
 }
+
 /* Chevrons */
 .bs-docs-sidenav .icon-chevron-right {
   float: right;
@@ -219,20 +241,25 @@ form.bs-docs-example {
   margin-right: -6px;
   opacity: .25;
 }
-.bs-docs-sidenav > li > a:hover {
+
+.bs-docs-sidenav>li>a:hover {
   background-color: #f5f5f5;
 }
+
 .bs-docs-sidenav a:hover .icon-chevron-right {
   opacity: .5;
 }
+
 .bs-docs-sidenav .active .icon-chevron-right,
 .bs-docs-sidenav .active a:hover .icon-chevron-right {
   background-image: url(../img/glyphicons-halflings-white.png);
   opacity: 1;
 }
+
 .bs-docs-sidenav.affix {
   top: 40px;
 }
+
 .bs-docs-sidenav.affix-bottom {
   position: absolute;
   top: auto;
