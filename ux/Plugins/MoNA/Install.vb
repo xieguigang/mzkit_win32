@@ -44,6 +44,7 @@ Public Class Install
             Dim anno = ion.GetMetabolite
 
             Call libdb.AddAnnotation(anno)
+            Call libdb.AddSpectrum(ion.GetSpectrumPeaks, key:=anno.name)
         Next
 
         Call libdb.Dispose()
