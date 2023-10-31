@@ -122,14 +122,19 @@ namespace apps.viewer {
             console.log(list);
 
             for (let meta of list) {
-                list_page.appendElement($ts("<div>").display(`
-                <h5>${meta.name} [<a>${meta.ID}</a>]</h5>
-                <canvas class="smiles-viewer" id="${meta.ID.replace(".", "_").replace(" ", "_")}" width="200" height="150" data="${this.get_smiles(meta)}"></canvas>
-                <p>
-                <span>Formula: </span> ${meta.formula} <br />
-                <span>Exact Mass: </span> ${meta.exact_mass} <br />                       
-                </p>
-                <p>${meta.description}</p>
+                list_page.appendElement($ts("<div class='row'>").display(`
+                <div class="span4">
+                    <h5>${meta.name} [<a>${meta.ID}</a>]</h5>
+                    <p>
+                    <span>Formula: </span> ${meta.formula} <br />
+                    <span>Exact Mass: </span> ${meta.exact_mass} <br />                       
+                    </p>
+                    <p>${meta.description}</p>
+                </div>
+                <div class="span8">
+                    <canvas class="smiles-viewer" id="${meta.ID.replace(".", "_").replace(" ", "_")}" width="200" height="150" data="${this.get_smiles(meta)}">
+                    </canvas>
+                </div>
                 `));
             }
 

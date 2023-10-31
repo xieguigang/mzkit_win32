@@ -15,26 +15,24 @@
     <script src="./vendor/smiles-drawer.min.js"></script>
 </head>
 
-<body>
+<body class="container-fluid">
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-4 panel-left">
+    <div class="row-fluid">
+        <div class="span2 panel-left">
 
-                <div id="lcms-libfiles"></div>
+            <div id="lcms-libfiles"></div>
 
+        </div>
+        <div class="span10 panel-right">
+
+            <div>
+                <input id="get-query" type="text" class="form-control" placeholder="Search by any metadata">
+                <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                <button id="query" type="button" class="btn btn-primary">Query</button>
             </div>
-            <div class="col-md-8 panel-right">
 
-                <div>
-                    <input id="get-query" type="text" class="form-control" placeholder="Search by any metadata">
-                    <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                    <button id="query" type="button" class="btn btn-primary">Query</button>
-                </div>
+            <div id="list-page"></div>
 
-                <div id="list-page"></div>
-
-            </div>
         </div>
     </div>
 

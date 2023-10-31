@@ -1019,7 +1019,7 @@ var apps;
                 console.log(list);
                 for (var _i = 0, list_4 = list; _i < list_4.length; _i++) {
                     var meta = list_4[_i];
-                    list_page.appendElement($ts("<div>").display("\n                <h5>" + meta.name + " [<a>" + meta.ID + "</a>]</h5>\n                <canvas class=\"smiles-viewer\" id=\"" + meta.ID.replace(".", "_").replace(" ", "_") + "\" width=\"200\" height=\"150\" data=\"" + this.get_smiles(meta) + "\"></canvas>\n                <p>\n                <span>Formula: </span> " + meta.formula + " <br />\n                <span>Exact Mass: </span> " + meta.exact_mass + " <br />                       \n                </p>\n                <p>" + meta.description + "</p>\n                "));
+                    list_page.appendElement($ts("<div class='row'>").display("\n                <div class=\"span4\">\n                    <h5>" + meta.name + " [<a>" + meta.ID + "</a>]</h5>\n                    <p>\n                    <span>Formula: </span> " + meta.formula + " <br />\n                    <span>Exact Mass: </span> " + meta.exact_mass + " <br />                       \n                    </p>\n                    <p>" + meta.description + "</p>\n                </div>\n                <div class=\"span8\">\n                    <canvas class=\"smiles-viewer\" id=\"" + meta.ID.replace(".", "_").replace(" ", "_") + "\" width=\"200\" height=\"150\" data=\"" + this.get_smiles(meta) + "\">\n                    </canvas>\n                </div>\n                "));
                 }
                 var options = {
                     width: 200,
