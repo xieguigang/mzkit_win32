@@ -27,8 +27,36 @@ namespace apps.viewer {
 
                     console.log("get lcms-library files:");
                     console.table(vm.libfiles);
+
+                    vm.loadfiles();
                 });
         }
 
+        private loadfiles() {
+            const div: any = $('#lcms-libfiles');
+            const root_dir = {
+                'text': 'LCMS Library',
+                'state': {
+                    'opened': true,
+                    'selected': true
+                },
+                'children': [
+                ]
+            }
+            const libfiles = [];
+
+            for (let key of Object.keys(this.libfiles)) {
+                libfiles.push({
+                    text: key
+                });
+            }
+
+            root_dir.children = libfiles;
+            div.jstree({
+                'core': {
+                    'data': [root_dir]
+                }
+            });
+        }
     }
 }

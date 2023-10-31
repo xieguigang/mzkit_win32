@@ -190,6 +190,7 @@ declare namespace apps.viewer {
         get appName(): string;
         private libfiles;
         protected init(): void;
+        private loadfiles;
     }
 }
 declare namespace apps.viewer {

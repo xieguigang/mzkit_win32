@@ -912,10 +912,35 @@ var apps;
                                     }
                                     console.log("get lcms-library files:");
                                     console.table(vm.libfiles);
+                                    vm.loadfiles();
                                     return [2 /*return*/];
                             }
                         });
                     });
+                });
+            };
+            lcmsLibrary.prototype.loadfiles = function () {
+                var div = $('#lcms-libfiles');
+                var root_dir = {
+                    'text': 'LCMS Library',
+                    'state': {
+                        'opened': true,
+                        'selected': true
+                    },
+                    'children': []
+                };
+                var libfiles = [];
+                for (var _i = 0, _a = Object.keys(this.libfiles); _i < _a.length; _i++) {
+                    var key = _a[_i];
+                    libfiles.push({
+                        text: key
+                    });
+                }
+                root_dir.children = libfiles;
+                div.jstree({
+                    'core': {
+                        'data': [root_dir]
+                    }
                 });
             };
             return lcmsLibrary;
