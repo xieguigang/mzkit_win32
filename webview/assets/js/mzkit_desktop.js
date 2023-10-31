@@ -995,10 +995,11 @@ var apps;
                 return items;
             };
             lcmsLibrary.prototype.list_data = function () {
+                var list_page = $ts("#list-page").clear();
                 app.desktop.mzkit.GetPage(this.page, this.page_size)
                     .then(function (str) {
                     return __awaiter(this, void 0, void 0, function () {
-                        var json, list;
+                        var json, list, _i, list_4, meta;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0: return [4 /*yield*/, str];
@@ -1007,6 +1008,10 @@ var apps;
                                     list = JSON.parse(json);
                                     console.log("get page data:");
                                     console.log(list);
+                                    for (_i = 0, list_4 = list; _i < list_4.length; _i++) {
+                                        meta = list_4[_i];
+                                        list_page.appendElement($ts("<div>").display("\n                        <h5>" + meta.name + "</h5>\n                        \n                        <p>\n                        <span>Formula: </span> " + meta.formula + " <br />\n                        <span>Exact Mass: </span> " + meta.exact_mass + "\n                        </p>\n                        "));
+                                    }
                                     return [2 /*return*/];
                             }
                         });
