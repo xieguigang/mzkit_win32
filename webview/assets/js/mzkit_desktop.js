@@ -952,13 +952,39 @@ var apps;
                 });
             };
             lcmsLibrary.prototype.customMenu = function (node) {
+                var vm = this;
                 // The default set of all items
                 var items = {
                     openItem: {
                         label: "Open",
                         action: function (a) {
+                            var n = a.reference[0];
+                            var key = Strings.Trim(n.innerText);
+                            var filepath = vm.libfiles[key];
                             console.log("open a libfile:");
                             console.log(a);
+                            console.log(key);
+                            console.log(filepath);
+                            app.desktop.mzkit.OpenLibrary(filepath)
+                                .then(function (b) {
+                                return __awaiter(this, void 0, void 0, function () {
+                                    var check;
+                                    return __generator(this, function (_a) {
+                                        switch (_a.label) {
+                                            case 0: return [4 /*yield*/, b];
+                                            case 1:
+                                                check = _a.sent();
+                                                if (check) {
+                                                    console.log("Open library file success!");
+                                                }
+                                                else {
+                                                    console.log("Error while trying to open the LCMS library file!");
+                                                }
+                                                return [2 /*return*/];
+                                        }
+                                    });
+                                });
+                            });
                         }
                     }
                 };

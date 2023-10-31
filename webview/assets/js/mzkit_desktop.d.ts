@@ -34,6 +34,7 @@ declare namespace app.desktop {
         GetLCMSScatter(): Promise<string>;
         GetColors(): Promise<string>;
         ScanLibraries(): Promise<string>;
+        OpenLibrary(path: string): Promise<boolean>;
         Save(): void;
         InstallLocal(): void;
         SetStatus(id: string, status: string): void;

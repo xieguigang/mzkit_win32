@@ -67,13 +67,32 @@ namespace apps.viewer {
         }
 
         private customMenu(node) {
+            const vm = this;
+
             // The default set of all items
             var items = {
                 openItem: { // The "delete" menu item
                     label: "Open",
                     action: function (a) {
+                        let n: HTMLElement = a.reference[0];
+                        let key = Strings.Trim(n.innerText);
+                        let filepath = vm.libfiles[key];
+
                         console.log("open a libfile:");
                         console.log(a);
+                        console.log(key);
+                        console.log(filepath);
+
+                        app.desktop.mzkit.OpenLibrary(filepath)
+                            .then(async function (b) {
+                                let check = await b;
+
+                                if (check) {
+                                    console.log("Open library file success!");
+                                } else {
+                                    console.log("Error while trying to open the LCMS library file!");
+                                }
+                            });
                     }
                 }
             };
