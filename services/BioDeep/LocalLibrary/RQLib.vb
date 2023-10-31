@@ -1,6 +1,9 @@
 ﻿Imports System.IO
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports Microsoft.VisualBasic.ComponentModel.Ranges
+Imports Microsoft.VisualBasic.Data.IO
 Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.application.json
@@ -26,17 +29,49 @@ Public Class RQLib : Implements IDisposable
         query = New Resource(New StreamPack(file))
     End Sub
 
+    Const class_metadata As String = "metadata"
+    Const class_spectrum As String = "spectrum"
+
+    ''' <summary>
+    ''' Add metabolite annotation metadata
+    ''' </summary>
+    ''' <param name="metabo"></param>
+    ''' <returns></returns>
     Public Function AddAnnotation(metabo As MetaLib) As Boolean
         Dim packdata = BSON.GetBuffer(metabo.GetType.GetJsonElement(metabo, opts)).ToArray
 
-        Call query.Add(metabo.ID, packdata)
-        Call query.Add(metabo.name, packdata)
-        Call query.Add(metabo.formula, packdata)
-        Call query.Add(metabo.IUPACName, packdata)
+        Call query.Add(metabo.ID, packdata, class_metadata)
+        Call query.Add(metabo.name, packdata, class_metadata)
+        Call query.Add(metabo.formula, packdata, class_metadata)
+        Call query.Add(metabo.IUPACName, packdata, class_metadata)
 
         For Each name As String In metabo.synonym.SafeQuery
-            Call query.Add(name, packdata)
+            Call query.Add(name, packdata, class_metadata)
         Next
+
+        Return True
+    End Function
+
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="mspeak"></param>
+    ''' <param name="key">
+    ''' the additional associated key of this spectrum data 
+    ''' associates with the corresponding metabolite annotation 
+    ''' data.
+    ''' </param>
+    ''' <returns></returns>
+    Public Function AddSpectrum(mspeak As PeakMs2, key As String) As Boolean
+        Dim buffer As New MemoryStream
+        Dim bw As New BinaryDataWriter(buffer)
+        Call Serialization.WriteBuffer(mspeak.Scan2, file:=bw)
+        Call bw.Flush()
+        Dim packdata = buffer.ToArray
+
+        Call query.Add(mspeak.lib_guid, packdata, class_spectrum)
+        Call query.Add(mspeak.precursor_type, packdata, class_spectrum)
+        Call query.Add(key, packdata, class_spectrum)
 
         Return True
     End Function
@@ -46,21 +81,23 @@ Public Class RQLib : Implements IDisposable
     ''' </summary>
     ''' <param name="name"></param>
     ''' <returns></returns>
-    Public Function QueryMetabolites(name As String) As MetaLib()
+    Public Iterator Function QueryMetabolites(name As String) As IEnumerable(Of MetaLib)
         Dim list As NumericTagged(Of String)() = query.Get(query:=name).ToArray
         Dim keys As String() = list _
             .Select(Function(m) m.value) _
             .Distinct _
             .ToArray
-        Dim result As MetaLib() = New MetaLib(keys.Length - 1) {}
+        Dim dat As Byte()
 
         For i As Integer = 0 To keys.Length - 1
-            result(i) = BSON _
-                .Load(query.ReadBuffer(keys(i))) _
-                .CreateObject(Of MetaLib)(decodeMetachar:=False)
-        Next
+            dat = query.ReadBuffer(keys(i), category:=class_metadata)
 
-        Return result
+            If Not dat.IsNullOrEmpty Then
+                Yield BSON _
+                    .Load(dat) _
+                    .CreateObject(Of MetaLib)(decodeMetachar:=False)
+            End If
+        Next
     End Function
 
     Protected Overridable Sub Dispose(disposing As Boolean)
