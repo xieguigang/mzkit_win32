@@ -122,6 +122,24 @@ namespace apps.viewer {
             console.log(list);
 
             for (let meta of list) {
+                let xrefs = "";
+                let xref_data = meta.xref || {};
+
+                for (let key of xref_keys) {
+                    let val: string[] | string = xref_data[key] || "";
+
+                    if (Array.isArray(val)) {
+                        val = val.join("; ");
+                    }
+
+                    if (!Strings.Empty(val, true)) {
+                        // if (key == "SMILES" || key == "InChIkey" || key == "InChI") {
+                        //     val = `<pre><code>${val}</code></pre>`;
+                        // }
+                        xrefs = xrefs + `<span>${key}: </span> ${val} <br />`;
+                    }
+                }
+
                 list_page.appendElement($ts("<div class='row'>").display(`
                 <div class="span4">
                     <h5>${meta.name} [<a>${meta.ID}</a>]</h5>
@@ -131,7 +149,12 @@ namespace apps.viewer {
                     </p>
                     <p>${meta.description}</p>
                 </div>
-                <div class="span8">
+                <div class="span4">
+                    <p>
+                    ${xrefs}
+                    </p>
+                </div>
+                <div class="span4">
                     <canvas class="smiles-viewer" id="${meta.ID.replace(".", "_").replace(" ", "_")}" width="200" height="150" data="${this.get_smiles(meta)}">
                     </canvas>
                 </div>
@@ -218,4 +241,22 @@ namespace apps.viewer {
         InChI: string;
         SMILES: string;
     }
+
+    const xref_keys: string[] = ["chebi",
+        "KEGG",
+        "pubchem",
+        "HMDB",
+        "metlin",
+        "DrugBank",
+        "ChEMBL",
+        "Wikipedia",
+        "lipidmaps",
+        "MeSH",
+        "ChemIDplus",
+        "MetaCyc",
+        "KNApSAcK",
+        "CAS",
+        "InChIkey",
+        "InChI",
+        "SMILES"];
 }

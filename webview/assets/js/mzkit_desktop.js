@@ -1019,7 +1019,22 @@ var apps;
                 console.log(list);
                 for (var _i = 0, list_4 = list; _i < list_4.length; _i++) {
                     var meta = list_4[_i];
-                    list_page.appendElement($ts("<div class='row'>").display("\n                <div class=\"span4\">\n                    <h5>" + meta.name + " [<a>" + meta.ID + "</a>]</h5>\n                    <p>\n                    <span>Formula: </span> " + meta.formula + " <br />\n                    <span>Exact Mass: </span> " + meta.exact_mass + " <br />                       \n                    </p>\n                    <p>" + meta.description + "</p>\n                </div>\n                <div class=\"span8\">\n                    <canvas class=\"smiles-viewer\" id=\"" + meta.ID.replace(".", "_").replace(" ", "_") + "\" width=\"200\" height=\"150\" data=\"" + this.get_smiles(meta) + "\">\n                    </canvas>\n                </div>\n                "));
+                    var xrefs = "";
+                    var xref_data = meta.xref || {};
+                    for (var _a = 0, xref_keys_1 = xref_keys; _a < xref_keys_1.length; _a++) {
+                        var key = xref_keys_1[_a];
+                        var val = xref_data[key] || "";
+                        if (Array.isArray(val)) {
+                            val = val.join("; ");
+                        }
+                        if (!Strings.Empty(val, true)) {
+                            // if (key == "SMILES" || key == "InChIkey" || key == "InChI") {
+                            //     val = `<pre><code>${val}</code></pre>`;
+                            // }
+                            xrefs = xrefs + ("<span>" + key + ": </span> " + val + " <br />");
+                        }
+                    }
+                    list_page.appendElement($ts("<div class='row'>").display("\n                <div class=\"span4\">\n                    <h5>" + meta.name + " [<a>" + meta.ID + "</a>]</h5>\n                    <p>\n                    <span>Formula: </span> " + meta.formula + " <br />\n                    <span>Exact Mass: </span> " + meta.exact_mass + " <br />                       \n                    </p>\n                    <p>" + meta.description + "</p>\n                </div>\n                <div class=\"span4\">\n                    <p>\n                    " + xrefs + "\n                    </p>\n                </div>\n                <div class=\"span4\">\n                    <canvas class=\"smiles-viewer\" id=\"" + meta.ID.replace(".", "_").replace(" ", "_") + "\" width=\"200\" height=\"150\" data=\"" + this.get_smiles(meta) + "\">\n                    </canvas>\n                </div>\n                "));
                 }
                 var options = {
                     width: 200,
@@ -1075,6 +1090,23 @@ var apps;
             return lcmsLibrary;
         }(Bootstrap));
         viewer.lcmsLibrary = lcmsLibrary;
+        var xref_keys = ["chebi",
+            "KEGG",
+            "pubchem",
+            "HMDB",
+            "metlin",
+            "DrugBank",
+            "ChEMBL",
+            "Wikipedia",
+            "lipidmaps",
+            "MeSH",
+            "ChemIDplus",
+            "MetaCyc",
+            "KNApSAcK",
+            "CAS",
+            "InChIkey",
+            "InChI",
+            "SMILES"];
     })(viewer = apps.viewer || (apps.viewer = {}));
 })(apps || (apps = {}));
 var apps;
