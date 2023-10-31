@@ -7,6 +7,8 @@ namespace apps.viewer {
         }
 
         private libfiles: {};
+        private page: number = 1;
+        private page_size: number = 100;
 
         protected init(): void {
             const vm = this;
@@ -89,6 +91,7 @@ namespace apps.viewer {
 
                                 if (check) {
                                     console.log("Open library file success!");
+                                    vm.list_data();
                                 } else {
                                     console.log("Error while trying to open the LCMS library file!");
                                 }
@@ -99,5 +102,49 @@ namespace apps.viewer {
 
             return items;
         }
+
+        private list_data() {
+            app.desktop.mzkit.GetPage(this.page, this.page_size)
+                .then(async function (str) {
+                    let json: string = await str;
+                    let list: MetaLib[] = JSON.parse(json);
+
+                    console.log("get page data:");
+                    console.log(list);
+                });
+        }
+    }
+
+    export interface MetaLib {
+        ID: string;
+        formula: string;
+        exact_mass: number;
+
+        name: string;
+        IUPACName: string;
+        description: string;
+        synonym: string[];
+
+        xref: xref
+    }
+
+    export interface xref {
+        chebi: string;
+        KEGG: string;
+        pubchem: string;
+        HMDB: string;
+        metlin: string;
+        DrugBank: string;
+        ChEMBL: string;
+        Wikipedia: string;
+        lipidmaps: string;
+        MeSH: string;
+        ChemIDplus: string;
+        MetaCyc: string;
+        KNApSAcK: string;
+        CAS: string[];
+        InChIkey: string;
+        InChI: string;
+        SMILES: string;
     }
 }

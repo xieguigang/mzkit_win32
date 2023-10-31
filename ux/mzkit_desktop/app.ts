@@ -28,6 +28,7 @@ namespace app.desktop {
         // LCMS library
         ScanLibraries(): Promise<string>;
         OpenLibrary(path: string): Promise<boolean>;
+        GetPage(page: number, page_size: number): Promise<string>;
 
         // plugin manager
         Save(): void;
