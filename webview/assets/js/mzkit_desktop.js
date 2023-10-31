@@ -882,7 +882,10 @@ var apps;
         var lcmsLibrary = /** @class */ (function (_super) {
             __extends(lcmsLibrary, _super);
             function lcmsLibrary() {
-                return _super !== null && _super.apply(this, arguments) || this;
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.page = 1;
+                _this.page_size = 100;
+                return _this;
             }
             Object.defineProperty(lcmsLibrary.prototype, "appName", {
                 get: function () {
@@ -976,6 +979,7 @@ var apps;
                                                 check = _a.sent();
                                                 if (check) {
                                                     console.log("Open library file success!");
+                                                    vm.list_data();
                                                 }
                                                 else {
                                                     console.log("Error while trying to open the LCMS library file!");
@@ -989,6 +993,25 @@ var apps;
                     }
                 };
                 return items;
+            };
+            lcmsLibrary.prototype.list_data = function () {
+                app.desktop.mzkit.GetPage(this.page, this.page_size)
+                    .then(function (str) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var json, list;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, str];
+                                case 1:
+                                    json = _a.sent();
+                                    list = JSON.parse(json);
+                                    console.log("get page data:");
+                                    console.log(list);
+                                    return [2 /*return*/];
+                            }
+                        });
+                    });
+                });
             };
             return lcmsLibrary;
         }(Bootstrap));

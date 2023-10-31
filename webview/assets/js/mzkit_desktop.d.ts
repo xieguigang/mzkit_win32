@@ -35,6 +35,7 @@ declare namespace app.desktop {
         GetColors(): Promise<string>;
         ScanLibraries(): Promise<string>;
         OpenLibrary(path: string): Promise<boolean>;
+        GetPage(page: number, page_size: number): Promise<string>;
         Save(): void;
         InstallLocal(): void;
         SetStatus(id: string, status: string): void;
@@ -190,9 +191,41 @@ declare namespace apps.viewer {
     class lcmsLibrary extends Bootstrap {
         get appName(): string;
         private libfiles;
+        private page;
+        private page_size;
         protected init(): void;
         private loadfiles;
         private customMenu;
+        private list_data;
+    }
+    interface MetaLib {
+        ID: string;
+        formula: string;
+        exact_mass: number;
+        name: string;
+        IUPACName: string;
+        description: string;
+        synonym: string[];
+        xref: xref;
+    }
+    interface xref {
+        chebi: string;
+        KEGG: string;
+        pubchem: string;
+        HMDB: string;
+        metlin: string;
+        DrugBank: string;
+        ChEMBL: string;
+        Wikipedia: string;
+        lipidmaps: string;
+        MeSH: string;
+        ChemIDplus: string;
+        MetaCyc: string;
+        KNApSAcK: string;
+        CAS: string[];
+        InChIkey: string;
+        InChI: string;
+        SMILES: string;
     }
 }
 declare namespace apps.viewer {
