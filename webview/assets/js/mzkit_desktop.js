@@ -896,7 +896,7 @@ var apps;
                 app.desktop.mzkit.ScanLibraries()
                     .then(function (str) {
                     return __awaiter(this, void 0, void 0, function () {
-                        var pull_str, list, _i, list_3, file;
+                        var pull_str, list, _i, list_3, file, name_1;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0: return [4 /*yield*/, str];
@@ -906,7 +906,9 @@ var apps;
                                     vm.libfiles = {};
                                     for (_i = 0, list_3 = list; _i < list_3.length; _i++) {
                                         file = list_3[_i];
-                                        vm.libfiles[$ts.baseName(file)] = file;
+                                        name_1 = file.split(/[\\/]/ig);
+                                        name_1 = name_1[name_1.length - 1];
+                                        vm.libfiles[$ts.baseName(name_1)] = file;
                                     }
                                     console.log("get lcms-library files:");
                                     console.table(vm.libfiles);

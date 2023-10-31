@@ -19,7 +19,10 @@ namespace apps.viewer {
                     vm.libfiles = {};
 
                     for (let file of list) {
-                        vm.libfiles[$ts.baseName(file)] = file;
+                        let name: string | string[] = file.split(/[\\/]/ig);
+
+                        name = name[name.length - 1];
+                        vm.libfiles[$ts.baseName(name)] = file;
                     }
 
                     console.log("get lcms-library files:");
