@@ -133,7 +133,10 @@ namespace apps.viewer {
                 `));
             }
 
-            let options = {};
+            let options = {
+                width: 200,
+                height: 150
+            };
             // Initialize the drawer to draw to canvas
             let smilesDrawer = new SmilesDrawer.Drawer(options);
             // Alternatively, initialize the SVG drawer:

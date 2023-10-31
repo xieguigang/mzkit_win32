@@ -1021,7 +1021,10 @@ var apps;
                     var meta = list_4[_i];
                     list_page.appendElement($ts("<div>").display("\n                <h5>" + meta.name + " [<a>" + meta.ID + "</a>]</h5>\n                <canvas class=\"smiles-viewer\" id=\"" + meta.ID.replace(".", "_").replace(" ", "_") + "\" width=\"200\" height=\"150\" data=\"" + this.get_smiles(meta) + "\"></canvas>\n                <p>\n                <span>Formula: </span> " + meta.formula + " <br />\n                <span>Exact Mass: </span> " + meta.exact_mass + " <br />                       \n                </p>\n                <p>" + meta.description + "</p>\n                "));
                 }
-                var options = {};
+                var options = {
+                    width: 200,
+                    height: 150
+                };
                 // Initialize the drawer to draw to canvas
                 var smilesDrawer = new SmilesDrawer.Drawer(options);
                 // Alternatively, initialize the SVG drawer:
