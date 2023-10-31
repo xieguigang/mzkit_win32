@@ -191,6 +191,7 @@ declare namespace apps.viewer {
         private libfiles;
         protected init(): void;
         private loadfiles;
+        private customMenu;
     }
 }
 declare namespace apps.viewer {

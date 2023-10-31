@@ -54,9 +54,31 @@ namespace apps.viewer {
             root_dir.children = libfiles;
             div.jstree({
                 'core': {
+                    "animation": 0,
+                    "check_callback": true,
                     'data': [root_dir]
-                }
+                },
+                "plugins": [
+                    "contextmenu", "dnd", "search",
+                    "state", "types", "wholerow"
+                ],
+                "contextmenu": { items: node => this.customMenu(node) }
             });
+        }
+
+        private customMenu(node) {
+            // The default set of all items
+            var items = {
+                openItem: { // The "delete" menu item
+                    label: "Open",
+                    action: function (a) {
+                        console.log("open a libfile:");
+                        console.log(a);
+                    }
+                }
+            };
+
+            return items;
         }
     }
 }

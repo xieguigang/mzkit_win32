@@ -920,6 +920,7 @@ var apps;
                 });
             };
             lcmsLibrary.prototype.loadfiles = function () {
+                var _this = this;
                 var div = $('#lcms-libfiles');
                 var root_dir = {
                     'text': 'LCMS Library',
@@ -939,9 +940,29 @@ var apps;
                 root_dir.children = libfiles;
                 div.jstree({
                     'core': {
+                        "animation": 0,
+                        "check_callback": true,
                         'data': [root_dir]
-                    }
+                    },
+                    "plugins": [
+                        "contextmenu", "dnd", "search",
+                        "state", "types", "wholerow"
+                    ],
+                    "contextmenu": { items: function (node) { return _this.customMenu(node); } }
                 });
+            };
+            lcmsLibrary.prototype.customMenu = function (node) {
+                // The default set of all items
+                var items = {
+                    openItem: {
+                        label: "Open",
+                        action: function (a) {
+                            console.log("open a libfile:");
+                            console.log(a);
+                        }
+                    }
+                };
+                return items;
             };
             return lcmsLibrary;
         }(Bootstrap));
