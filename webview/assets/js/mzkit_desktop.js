@@ -1010,7 +1010,7 @@ var apps;
                                     console.log(list);
                                     for (_i = 0, list_4 = list; _i < list_4.length; _i++) {
                                         meta = list_4[_i];
-                                        list_page.appendElement($ts("<div>").display("\n                        <h5>" + meta.name + "</h5>\n                        \n                        <p>\n                        <span>Formula: </span> " + meta.formula + " <br />\n                        <span>Exact Mass: </span> " + meta.exact_mass + "\n                        </p>\n                        "));
+                                        list_page.appendElement($ts("<div>").display("\n                        <h5>" + meta.name + " [<a>" + meta.ID + "</a>]</h5>\n                        \n                        <p>\n                        <span>Formula: </span> " + meta.formula + " <br />\n                        <span>Exact Mass: </span> " + meta.exact_mass + " <br />                       \n                        </p>\n                        <p>" + meta.description + "</p>\n                        "));
                                     }
                                     return [2 /*return*/];
                             }

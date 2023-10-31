@@ -116,12 +116,13 @@ namespace apps.viewer {
 
                     for (let meta of list) {
                         list_page.appendElement($ts("<div>").display(`
-                        <h5>${meta.name}</h5>
+                        <h5>${meta.name} [<a>${meta.ID}</a>]</h5>
                         
                         <p>
                         <span>Formula: </span> ${meta.formula} <br />
-                        <span>Exact Mass: </span> ${meta.exact_mass}
+                        <span>Exact Mass: </span> ${meta.exact_mass} <br />                       
                         </p>
+                        <p>${meta.description}</p>
                         `));
                     }
                 });
