@@ -13,11 +13,11 @@
     />
   </head>
   <body>
-    <canvas id="example-canvas" width="500" height="500"></canvas>
+    <canvas id="example-canvas" width="100%" height="100%"></canvas>
 
     <script src="./vendor/smiles-drawer.min.js"></script>
     <script>    
-      let options = {};
+      let options = {width:800, height: 600};
       // Initialize the drawer to draw to canvas
       let smilesDrawer = new SmilesDrawer.Drawer(options);
       // Alternatively, initialize the SVG drawer:
@@ -32,6 +32,8 @@
           // svgDrawer.draw(tree, 'output-svg', 'dark', false);
         });
       }
+	  
+	  // rendering("CC1C(=O)NC(C(=O)NC(C(=O)NC(C(=O)N2CCCC2C(=O)NC(C(=O)NC(C(=O)NC(CSSCC(C(=O)NCC(=O)NC(C(=O)NC(C(=O)NC(C(=O)NC(C(=O)N3CCCC3C(=O)NC(C(=O)NCC(=O)N1)CCC(=O)O)C(C)O)CCC(=O)O)CCCNC(=N)N)CCC(=O)N)N)C(=O)O)CC4=CC=C(C=C4)O)CC5=CNC6=CC=CC=C65)CCCCN)C)CCC(=O)O");
     </script>
   </body>
 </html>
