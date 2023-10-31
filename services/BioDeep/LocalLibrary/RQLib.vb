@@ -1,9 +1,11 @@
 ﻿Imports System.IO
+Imports System.Runtime.CompilerServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports Microsoft.VisualBasic.ComponentModel.Ranges
 Imports Microsoft.VisualBasic.Data.IO
+Imports Microsoft.VisualBasic.DataStorage.HDSPack
 Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.application.json
@@ -31,6 +33,22 @@ Public Class RQLib : Implements IDisposable
 
     Const class_metadata As String = "metadata"
     Const class_spectrum As String = "spectrum"
+
+    Public Iterator Function ListMetabolites(Optional page As Integer = 1, Optional page_size As Integer = 100) As IEnumerable(Of MetaLib)
+        Dim start As Integer = (page - 1) * page_size
+        Dim pulls = query.Archive.GetFiles($"/pool/{class_metadata}/")
+        Dim list = pulls.Skip(start).Take(page_size)
+        Dim libfile As StreamPack = query.Archive
+        Dim buf As MemoryStream
+
+        For Each filepath As String In list
+            buf = libfile.ReadBinary(filepath)
+
+            If Not buf Is Nothing Then
+                Yield ParseMetadata(buf.ToArray)
+            End If
+        Next
+    End Function
 
     ''' <summary>
     ''' Add metabolite annotation metadata
@@ -76,6 +94,13 @@ Public Class RQLib : Implements IDisposable
         Return True
     End Function
 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Private Shared Function ParseMetadata(dat As Byte()) As MetaLib
+        Return BSON _
+            .Load(dat) _
+            .CreateObject(Of MetaLib)(decodeMetachar:=False)
+    End Function
+
     ''' <summary>
     ''' just get metabolite annotation information
     ''' </summary>
@@ -90,12 +115,13 @@ Public Class RQLib : Implements IDisposable
         Dim dat As Byte()
 
         For i As Integer = 0 To keys.Length - 1
-            dat = query.ReadBuffer(keys(i), category:=class_metadata)
+            dat = query.ReadBuffer(
+                map:=keys(i),
+                category:=class_metadata
+            )
 
             If Not dat.IsNullOrEmpty Then
-                Yield BSON _
-                    .Load(dat) _
-                    .CreateObject(Of MetaLib)(decodeMetachar:=False)
+                Yield ParseMetadata(dat)
             End If
         Next
     End Function
