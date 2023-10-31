@@ -41,9 +41,9 @@ Public Class Install
         Dim msp As IEnumerable(Of SpectraSection) = MspReader.ParseFile(msp_file)
 
         For Each ion As SpectraSection In msp
+            Dim anno = ion.GetMetabolite
 
-
-            Call libdb.AddAnnotation()
+            Call libdb.AddAnnotation(anno)
         Next
 
         Call libdb.Dispose()
