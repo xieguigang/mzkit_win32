@@ -3,6 +3,7 @@ Imports System.IO.Compression
 Imports BioDeep
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MSP
 Imports BioNovoGene.BioDeep.Chemistry
+Imports Microsoft.VisualBasic.Language
 Imports Mzkit_win32.BasicMDIForm
 
 Public Class Install
@@ -32,19 +33,27 @@ Public Class Install
 
         Call a.SetInfo("Install database to local appdata filesystem...")
 
-        Return InstallLocal(msp_file)
+        Return InstallLocal(msp_file, a)
     End Function
 
-    Private Function InstallLocal(msp_file As String) As Boolean
+    Private Function InstallLocal(msp_file As String, a As ITaskProgress) As Boolean
         Dim path As String = SpectrumLibraryModule.LibraryFile($"{targetLib.label.NormalizePathString(alphabetOnly:=False)}.lcms-pack")
         Dim libdb As New RQLib(path.Open(FileMode.OpenOrCreate, doClear:=False, [readOnly]:=False))
         Dim msp As IEnumerable(Of SpectraSection) = MspReader.ParseFile(msp_file)
+        Dim d As Integer = 17
+        Dim i As i32 = 0
 
         For Each ion As SpectraSection In msp
             Dim anno = ion.GetMetabolite
 
             Call libdb.AddAnnotation(anno)
             Call libdb.AddSpectrum(ion.GetSpectrumPeaks, key:=anno.name)
+
+            Call System.Windows.Forms.Application.DoEvents()
+
+            If ++i Mod d = 0 Then
+                Call a.SetInfo("Installing... " & ion.ToString)
+            End If
         Next
 
         Call libdb.Dispose()

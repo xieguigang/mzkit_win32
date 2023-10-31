@@ -57,5 +57,7 @@ Public Class FormMoNADownloads
             canbeCancel:=True,
             host:=Me
         )
+
+        Call MessageBox.Show("Database installation task complete!", "Install MoNA distribution", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 End Class
