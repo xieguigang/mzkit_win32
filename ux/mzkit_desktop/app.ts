@@ -54,6 +54,8 @@ namespace app.desktop {
         Router.AddAppHandler(new apps.viewer.LCMSScatterViewer());
         Router.AddAppHandler(new apps.viewer.OpenseadragonSlideViewer());
 
+        Router.AddAppHandler(new apps.viewer.lcmsLibrary());
+
         Router.RunApp();
     }
 }

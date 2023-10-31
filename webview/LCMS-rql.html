@@ -4,34 +4,16 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>SMILES Drawer</title>
-    <meta name="description" content="A minimal smiles drawer example." />
+    <title>LCMS Reference Library</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="app" content="lcms-library" />
 
-    <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet" />
+    <script type="text/javascript" src="./assets/js/linq.js"></script>
+    <script type="text/javascript" src="./assets/js/mzkit_desktop.js"></script>
 </head>
 
 <body>
-    <canvas id="example-canvas" width="500" height="500"></canvas>
 
-    <script src="./vendor/smiles-drawer.min.js"></script>
-    <script>
-        let options = {};
-        // Initialize the drawer to draw to canvas
-        let smilesDrawer = new SmilesDrawer.Drawer(options);
-        // Alternatively, initialize the SVG drawer:
-        // let svgDrawer = new SmilesDrawer.SvgDrawer(options);
-
-        function rendering(input_value) {
-            // Clean the input (remove unrecognized characters, such as spaces and tabs) and parse it
-            SmilesDrawer.parse(input_value, function (tree) {
-                // Draw to the canvas
-                smilesDrawer.draw(tree, "example-canvas", "light", false);
-                // Alternatively, draw to SVG:
-                // svgDrawer.draw(tree, 'output-svg', 'dark', false);
-            });
-        }
-    </script>
 </body>
 
 </html>
