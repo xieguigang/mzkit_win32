@@ -133,6 +133,19 @@ namespace apps.viewer {
                 `));
             }
         }
+
+        public query_onclick() {
+            const q: string = $ts.value("#get-query");
+            const vm = this;
+
+            app.desktop.mzkit.Query(q)
+                .then(async function (str) {
+                    let json: string = await str;
+                    let list: MetaLib[] = JSON.parse(json);
+
+                    vm.show_page(list);
+                });
+        }
     }
 
     export interface MetaLib {

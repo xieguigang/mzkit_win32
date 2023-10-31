@@ -1022,6 +1022,26 @@ var apps;
                     list_page.appendElement($ts("<div>").display("\n                <h5>" + meta.name + " [<a>" + meta.ID + "</a>]</h5>\n                \n                <p>\n                <span>Formula: </span> " + meta.formula + " <br />\n                <span>Exact Mass: </span> " + meta.exact_mass + " <br />                       \n                </p>\n                <p>" + meta.description + "</p>\n                "));
                 }
             };
+            lcmsLibrary.prototype.query_onclick = function () {
+                var q = $ts.value("#get-query");
+                var vm = this;
+                app.desktop.mzkit.Query(q)
+                    .then(function (str) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var json, list;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, str];
+                                case 1:
+                                    json = _a.sent();
+                                    list = JSON.parse(json);
+                                    vm.show_page(list);
+                                    return [2 /*return*/];
+                            }
+                        });
+                    });
+                });
+            };
             return lcmsLibrary;
         }(Bootstrap));
         viewer.lcmsLibrary = lcmsLibrary;

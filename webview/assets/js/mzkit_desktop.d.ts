@@ -36,6 +36,7 @@ declare namespace app.desktop {
         ScanLibraries(): Promise<string>;
         OpenLibrary(path: string): Promise<boolean>;
         GetPage(page: number, page_size: number): Promise<string>;
+        Query(name: string): Promise<string>;
         Save(): void;
         InstallLocal(): void;
         SetStatus(id: string, status: string): void;
@@ -198,6 +199,7 @@ declare namespace apps.viewer {
         private customMenu;
         private list_data;
         private show_page;
+        query_onclick(): void;
     }
     interface MetaLib {
         ID: string;

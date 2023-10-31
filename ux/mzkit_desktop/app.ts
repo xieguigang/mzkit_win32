@@ -29,6 +29,7 @@ namespace app.desktop {
         ScanLibraries(): Promise<string>;
         OpenLibrary(path: string): Promise<boolean>;
         GetPage(page: number, page_size: number): Promise<string>;
+        Query(name: string): Promise<string>;
 
         // plugin manager
         Save(): void;
