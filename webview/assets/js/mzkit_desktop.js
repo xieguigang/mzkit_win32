@@ -225,6 +225,7 @@ var app;
             Router.AddAppHandler(new apps.viewer.clusterViewer());
             Router.AddAppHandler(new apps.viewer.LCMSScatterViewer());
             Router.AddAppHandler(new apps.viewer.OpenseadragonSlideViewer());
+            Router.AddAppHandler(new apps.viewer.lcmsLibrary());
             Router.RunApp();
         }
         desktop.run = run;
@@ -872,6 +873,52 @@ var apps;
             return clusterViewer;
         }(Bootstrap));
         viewer.clusterViewer = clusterViewer;
+    })(viewer = apps.viewer || (apps.viewer = {}));
+})(apps || (apps = {}));
+var apps;
+(function (apps) {
+    var viewer;
+    (function (viewer) {
+        var lcmsLibrary = /** @class */ (function (_super) {
+            __extends(lcmsLibrary, _super);
+            function lcmsLibrary() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            Object.defineProperty(lcmsLibrary.prototype, "appName", {
+                get: function () {
+                    return "lcms-library";
+                },
+                enumerable: true,
+                configurable: true
+            });
+            lcmsLibrary.prototype.init = function () {
+                var vm = this;
+                app.desktop.mzkit.ScanLibraries()
+                    .then(function (str) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var pull_str, list, _i, list_3, file;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, str];
+                                case 1:
+                                    pull_str = _a.sent();
+                                    list = JSON.parse(pull_str);
+                                    vm.libfiles = {};
+                                    for (_i = 0, list_3 = list; _i < list_3.length; _i++) {
+                                        file = list_3[_i];
+                                        vm.libfiles[$ts.baseName(file)] = file;
+                                    }
+                                    console.log("get lcms-library files:");
+                                    console.table(vm.libfiles);
+                                    return [2 /*return*/];
+                            }
+                        });
+                    });
+                });
+            };
+            return lcmsLibrary;
+        }(Bootstrap));
+        viewer.lcmsLibrary = lcmsLibrary;
     })(viewer = apps.viewer || (apps.viewer = {}));
 })(apps || (apps = {}));
 var apps;

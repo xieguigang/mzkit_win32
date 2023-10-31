@@ -21,6 +21,9 @@ namespace apps.viewer {
                     for (let file of list) {
                         vm.libfiles[$ts.baseName(file)] = file;
                     }
+
+                    console.log("get lcms-library files:");
+                    console.table(vm.libfiles);
                 });
         }
 
