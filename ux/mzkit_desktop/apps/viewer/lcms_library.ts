@@ -104,28 +104,34 @@ namespace apps.viewer {
         }
 
         private list_data() {
-            const list_page = $ts("#list-page").clear();
+            const vm = this;
 
             app.desktop.mzkit.GetPage(this.page, this.page_size)
                 .then(async function (str) {
                     let json: string = await str;
                     let list: MetaLib[] = JSON.parse(json);
 
-                    console.log("get page data:");
-                    console.log(list);
-
-                    for (let meta of list) {
-                        list_page.appendElement($ts("<div>").display(`
-                        <h5>${meta.name} [<a>${meta.ID}</a>]</h5>
-                        
-                        <p>
-                        <span>Formula: </span> ${meta.formula} <br />
-                        <span>Exact Mass: </span> ${meta.exact_mass} <br />                       
-                        </p>
-                        <p>${meta.description}</p>
-                        `));
-                    }
+                    vm.show_page(list);
                 });
+        }
+
+        private show_page(list: MetaLib[]) {
+            const list_page = $ts("#list-page").clear();
+
+            console.log("get page data:");
+            console.log(list);
+
+            for (let meta of list) {
+                list_page.appendElement($ts("<div>").display(`
+                <h5>${meta.name} [<a>${meta.ID}</a>]</h5>
+                
+                <p>
+                <span>Formula: </span> ${meta.formula} <br />
+                <span>Exact Mass: </span> ${meta.exact_mass} <br />                       
+                </p>
+                <p>${meta.description}</p>
+                `));
+            }
         }
     }
 

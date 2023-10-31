@@ -197,6 +197,7 @@ declare namespace apps.viewer {
         private loadfiles;
         private customMenu;
         private list_data;
+        private show_page;
     }
     interface MetaLib {
         ID: string;
