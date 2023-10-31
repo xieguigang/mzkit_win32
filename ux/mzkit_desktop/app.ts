@@ -25,6 +25,10 @@ namespace app.desktop {
         GetLCMSScatter(): Promise<string>;
         GetColors(): Promise<string>;
 
+        // LCMS library
+        ScanLibraries(): Promise<string>;
+
+
         // plugin manager
         Save(): void;
         InstallLocal(): void;
