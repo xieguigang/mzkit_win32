@@ -1019,7 +1019,33 @@ var apps;
                 console.log(list);
                 for (var _i = 0, list_4 = list; _i < list_4.length; _i++) {
                     var meta = list_4[_i];
-                    list_page.appendElement($ts("<div>").display("\n                <h5>" + meta.name + " [<a>" + meta.ID + "</a>]</h5>\n                \n                <p>\n                <span>Formula: </span> " + meta.formula + " <br />\n                <span>Exact Mass: </span> " + meta.exact_mass + " <br />                       \n                </p>\n                <p>" + meta.description + "</p>\n                "));
+                    list_page.appendElement($ts("<div>").display("\n                <h5>" + meta.name + " [<a>" + meta.ID + "</a>]</h5>\n                <canvas class=\"smiles-viewer\" id=\"" + meta.ID.replace(".", "_").replace(" ", "_") + "\" width=\"200\" height=\"150\" data=\"" + this.get_smiles(meta) + "\"></canvas>\n                <p>\n                <span>Formula: </span> " + meta.formula + " <br />\n                <span>Exact Mass: </span> " + meta.exact_mass + " <br />                       \n                </p>\n                <p>" + meta.description + "</p>\n                "));
+                }
+                var options = {};
+                // Initialize the drawer to draw to canvas
+                var smilesDrawer = new SmilesDrawer.Drawer(options);
+                // Alternatively, initialize the SVG drawer:
+                // let svgDrawer = new SmilesDrawer.SvgDrawer(options);
+                $ts.select(".smiles-viewer")
+                    .ForEach(function (a) {
+                    var input_value = a.getAttribute("data");
+                    if (!Strings.Empty(input_value, true)) {
+                        // Clean the input (remove unrecognized characters, such as spaces and tabs) and parse it
+                        SmilesDrawer.parse(input_value, function (tree) {
+                            // Draw to the canvas
+                            smilesDrawer.draw(tree, "example-canvas", "light", false);
+                            // Alternatively, draw to SVG:
+                            // svgDrawer.draw(tree, 'output-svg', 'dark', false);
+                        });
+                    }
+                });
+            };
+            lcmsLibrary.prototype.get_smiles = function (meta) {
+                if (meta.xref) {
+                    return meta.xref.SMILES || null;
+                }
+                else {
+                    return null;
                 }
             };
             lcmsLibrary.prototype.query_onclick = function () {

@@ -199,6 +199,7 @@ declare namespace apps.viewer {
         private customMenu;
         private list_data;
         private show_page;
+        private get_smiles;
         query_onclick(): void;
     }
     interface MetaLib {
