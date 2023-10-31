@@ -1029,11 +1029,12 @@ var apps;
                 $ts.select(".smiles-viewer")
                     .ForEach(function (a) {
                     var input_value = a.getAttribute("data");
+                    var id = a.getAttribute("id");
                     if (!Strings.Empty(input_value, true)) {
                         // Clean the input (remove unrecognized characters, such as spaces and tabs) and parse it
                         SmilesDrawer.parse(input_value, function (tree) {
                             // Draw to the canvas
-                            smilesDrawer.draw(tree, "example-canvas", "light", false);
+                            smilesDrawer.draw(tree, id, "light", false);
                             // Alternatively, draw to SVG:
                             // svgDrawer.draw(tree, 'output-svg', 'dark', false);
                         });
