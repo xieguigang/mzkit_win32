@@ -1,5 +1,4 @@
-﻿Imports System.IO.Compression
-Imports Microsoft.VisualBasic.ApplicationServices
+﻿Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Mzkit_win32.BasicMDIForm
@@ -42,37 +41,46 @@ Public Class FormMoNADownloads
         Dim tmp_zip As String = TempFileSystem.GetAppSysTempFile(, "/.cache/mona_download/", "").ParentPath & $"/{targetLib.id}.zip"
         Dim msp_file As String = $"{tmp_zip.ParentPath}/{targetLib.id}.msp"
         Dim file_url As String = $"https://mona.fiehnlab.ucdavis.edu/rest/downloads/retrieve/{targetLib.id}"
+        Dim install As New Install With {
+            .file_url = file_url,
+            .msp_file = msp_file,
+            .tmp_zip = tmp_zip,
+            .targetLib = targetLib
+        }
+        Dim flag As Boolean
 
-        Call Workbench.LogText($"from_url: {file_url}")
-        Call Workbench.LogText($"temp_file: {tmp_zip}")
-        Call Workbench.LogText(targetLib.GetJson)
-        Call TaskProgress.LoadData(
-            streamLoad:=Function(a As ITaskProgress) As Boolean
-                            Call a.SetProgressMode()
+        If tmp_zip.FileExists(ZERO_Nonexists:=True) Then
+            flag = TaskProgress.LoadData(
+                streamLoad:=AddressOf install.InstallZip,
+                title:=$"Install MoNA zip Cache",
+                info:=$"[get_cache] {targetLib.exportFile} {StringFormats.Lanudry(CDbl(targetLib.size))}...",
+                canbeCancel:=True,
+                host:=Me
+            )
 
-                            If file_url.DownloadFile(save:=tmp_zip) Then
-                                Call Workbench.LogText("Download database file success!")
-                                Call Workbench.LogText($"database_file_size: {StringFormats.Lanudry(CDbl(tmp_zip.FileLength))}")
+            If flag = False Then
+                Call Workbench.LogText("Invalid zip archive file, try to download the new archive cache file...")
+                GoTo DOWNLOAD_AND_INSTALL
+            End If
+        Else
+DOWNLOAD_AND_INSTALL:
+            Call Workbench.LogText($"from_url: {file_url}")
+            Call Workbench.LogText($"temp_file: {tmp_zip}")
+            Call Workbench.LogText(targetLib.GetJson)
 
-                                Call a.SetInfo("Extract the zip archive file...")
-                                Call msp_file.ParentPath.MakeDir
+            flag = TaskProgress.LoadData(
+                streamLoad:=AddressOf install.InstallMoNA,
+                title:=$"Download & Install MoNA",
+                info:=$"[HTTP/GET] {targetLib.exportFile} {StringFormats.Lanudry(CDbl(targetLib.size))}...",
+                canbeCancel:=True,
+                host:=Me
+            )
+        End If
 
-                                Using zip As New ZipArchive(tmp_zip.OpenReadonly, ZipArchiveMode.Read)
-                                    zip.Entries.Item(0).ExtractToFile(msp_file, True)
-                                End Using
-
-                                Call a.SetInfo("Install database to local appdata filesystem...")
-
-                            Else
-                                Call Workbench.Warning("Download MoNA database file error!")
-                            End If
-
-                            Return True
-                        End Function,
-            title:=$"Download & Install MoNA",
-            info:=$"[HTTP/GET] {targetLib.exportFile} {StringFormats.Lanudry(CDbl(targetLib.size))}...",
-            canbeCancel:=True,
-            host:=Me
-        )
+        If flag Then
+            Call MessageBox.Show("Database installation task complete!", "Install MoNA distribution", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            Call Workbench.Warning("Database installation task error!")
+        End If
     End Sub
 End Class

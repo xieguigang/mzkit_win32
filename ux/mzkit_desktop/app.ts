@@ -25,6 +25,12 @@ namespace app.desktop {
         GetLCMSScatter(): Promise<string>;
         GetColors(): Promise<string>;
 
+        // LCMS library
+        ScanLibraries(): Promise<string>;
+        OpenLibrary(path: string): Promise<boolean>;
+        GetPage(page: number, page_size: number): Promise<string>;
+        Query(name: string): Promise<string>;
+
         // plugin manager
         Save(): void;
         InstallLocal(): void;
@@ -53,6 +59,8 @@ namespace app.desktop {
         Router.AddAppHandler(new apps.viewer.clusterViewer());
         Router.AddAppHandler(new apps.viewer.LCMSScatterViewer());
         Router.AddAppHandler(new apps.viewer.OpenseadragonSlideViewer());
+
+        Router.AddAppHandler(new apps.viewer.lcmsLibrary());
 
         Router.RunApp();
     }

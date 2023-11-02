@@ -39,7 +39,7 @@ Public Class LibraryApp
     Dim current As RQLib
 
     Public Function ScanLibraries() As String
-        Dim files As String() = $"{App.ProductProgramData}/lcms/".ListFiles("*.lcms-pack")
+        Dim files As String() = SpectrumLibraryModule.ScanLibraries.ToArray
         Return files.GetJson
     End Function
 
@@ -53,12 +53,18 @@ Public Class LibraryApp
         Return True
     End Function
 
+    Public Function GetPage(page As Integer, page_size As Integer) As String
+        Dim ls = current.ListMetabolites(page, page_size).ToArray
+        Dim json As String = ls.GetJson
+        Return json
+    End Function
+
     Public Function Query(name As String) As String
         If current Is Nothing Then
             Return "[]"
         End If
 
-        Dim result = current.QueryMetabolites(name)
+        Dim result = current.QueryMetabolites(name).ToArray
         Return result.GetJson
     End Function
 End Class

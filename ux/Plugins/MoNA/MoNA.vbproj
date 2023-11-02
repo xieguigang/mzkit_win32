@@ -130,6 +130,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Library.vb" />
+    <Compile Include="Install.vb" />
     <Compile Include="RestApiPlugin.vb" />
     <Compile Include="zzz.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -186,13 +187,29 @@
       <Project>{5dce233f-c0e1-41b8-827a-872b0c8cc3bc}</Project>
       <Name>assembly-netcore5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\assembly\mzPack\mzpack.NET5.vbproj">
+      <Project>{c6d266df-b35f-480b-acb0-15c7d2882769}</Project>
+      <Name>mzpack.NET5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\assembly\SpectrumTree\spectrumTree.NETCore5.vbproj">
       <Project>{d99285e0-574f-4302-a3fd-9d6c7f228937}</Project>
       <Name>spectrumTree.NETCore5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\metadb\Massbank\massbank.NET5.vbproj">
+      <Project>{70056e6f-58d0-4e44-866c-27c0b70ad28d}</Project>
+      <Name>massbank.NET5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\metadb\MoNA\MoNA.NET5.vbproj">
+      <Project>{5365986b-a702-4cd6-873f-f9ff01f340ec}</Project>
+      <Name>MoNA.NET5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\mzmath\ms2_math-core\mzmath-netcore5.vbproj">
       <Project>{ab5fd86e-6da9-4f7c-8dce-17da85bc895d}</Project>
       <Name>mzmath-netcore5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\services\BioDeep\BioDeep.vbproj">
+      <Project>{dcfa3211-c43b-40c3-a183-2d3d83b096e1}</Project>
+      <Name>BioDeep</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\BasicMDIForm\BasicMDIForm.vbproj">
       <Project>{51c55c5c-2f21-4e9f-aa8d-3664135758b7}</Project>

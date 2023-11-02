@@ -1,37 +1,53 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>SMILES Drawer</title>
-    <meta name="description" content="A minimal smiles drawer example." />
+    <title>LCMS Reference Library</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="app" content="lcms-library" />
 
+    <link href="./vendor/vakata-jstree-b3135cf/themes/default/style.css" rel="stylesheet" media="screen">
+    <link href="./css/bootstrap.css" rel="stylesheet" media="screen">
     <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet" />
-</head>
-
-<body>
-    <canvas id="example-canvas" width="500" height="500"></canvas>
 
     <script src="./vendor/smiles-drawer.min.js"></script>
-    <script>
-        let options = {};
-        // Initialize the drawer to draw to canvas
-        let smilesDrawer = new SmilesDrawer.Drawer(options);
-        // Alternatively, initialize the SVG drawer:
-        // let svgDrawer = new SmilesDrawer.SvgDrawer(options);
+</head>
 
-        function rendering(input_value) {
-            // Clean the input (remove unrecognized characters, such as spaces and tabs) and parse it
-            SmilesDrawer.parse(input_value, function (tree) {
-                // Draw to the canvas
-                smilesDrawer.draw(tree, "example-canvas", "light", false);
-                // Alternatively, draw to SVG:
-                // svgDrawer.draw(tree, 'output-svg', 'dark', false);
-            });
-        }
-    </script>
+<body class="container-fluid">
+
+    <div class="row-fluid" style="padding: 1.25%;">
+        <div class="span2 panel-left">
+
+            <div id="lcms-libfiles"></div>
+
+        </div>
+        <div class="span10 panel-right">
+
+            <div class="row-fluid">
+                <form>
+                    <fieldset>
+                        <input id="get-query" type="text" class="form-control" placeholder="Search by any metadata">
+                        <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                        <button id="query" type="button" class="btn btn-primary">Query</button>
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="row-fluid">
+                <div id="list-page"></div>
+            </div>
+
+        </div>
+    </div>
+
 </body>
+
+<script type="text/javascript" src="./assets/js/linq.js"></script>
+<script type="text/javascript" src="./assets/js/mzkit_desktop.js"></script>
+<script type="text/javascript" src="./vendor/jquery.min.js"></script>
+<script type="text/javascript" src="./vendor/vakata-jstree-b3135cf/jstree.min.js"></script>
+<script type="text/javascript" src="./vendor/bootstrap.min.js"></script>
 
 </html>

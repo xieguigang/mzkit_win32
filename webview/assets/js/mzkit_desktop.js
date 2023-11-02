@@ -225,6 +225,7 @@ var app;
             Router.AddAppHandler(new apps.viewer.clusterViewer());
             Router.AddAppHandler(new apps.viewer.LCMSScatterViewer());
             Router.AddAppHandler(new apps.viewer.OpenseadragonSlideViewer());
+            Router.AddAppHandler(new apps.viewer.lcmsLibrary());
             Router.RunApp();
         }
         desktop.run = run;
@@ -872,6 +873,240 @@ var apps;
             return clusterViewer;
         }(Bootstrap));
         viewer.clusterViewer = clusterViewer;
+    })(viewer = apps.viewer || (apps.viewer = {}));
+})(apps || (apps = {}));
+var apps;
+(function (apps) {
+    var viewer;
+    (function (viewer) {
+        var lcmsLibrary = /** @class */ (function (_super) {
+            __extends(lcmsLibrary, _super);
+            function lcmsLibrary() {
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.page = 1;
+                _this.page_size = 100;
+                return _this;
+            }
+            Object.defineProperty(lcmsLibrary.prototype, "appName", {
+                get: function () {
+                    return "lcms-library";
+                },
+                enumerable: true,
+                configurable: true
+            });
+            lcmsLibrary.prototype.init = function () {
+                var vm = this;
+                app.desktop.mzkit.ScanLibraries()
+                    .then(function (str) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var pull_str, list, _i, list_3, file, name_1;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, str];
+                                case 1:
+                                    pull_str = _a.sent();
+                                    list = JSON.parse(pull_str);
+                                    vm.libfiles = {};
+                                    for (_i = 0, list_3 = list; _i < list_3.length; _i++) {
+                                        file = list_3[_i];
+                                        name_1 = file.split(/[\\/]/ig);
+                                        name_1 = name_1[name_1.length - 1];
+                                        vm.libfiles[$ts.baseName(name_1)] = file;
+                                    }
+                                    console.log("get lcms-library files:");
+                                    console.table(vm.libfiles);
+                                    vm.loadfiles();
+                                    return [2 /*return*/];
+                            }
+                        });
+                    });
+                });
+            };
+            lcmsLibrary.prototype.loadfiles = function () {
+                var _this = this;
+                var div = $('#lcms-libfiles');
+                var root_dir = {
+                    'text': 'LCMS Library',
+                    'state': {
+                        'opened': true,
+                        'selected': true
+                    },
+                    'children': []
+                };
+                var libfiles = [];
+                for (var _i = 0, _a = Object.keys(this.libfiles); _i < _a.length; _i++) {
+                    var key = _a[_i];
+                    libfiles.push({
+                        text: key
+                    });
+                }
+                root_dir.children = libfiles;
+                div.jstree({
+                    'core': {
+                        "animation": 0,
+                        "check_callback": true,
+                        'data': [root_dir]
+                    },
+                    "plugins": [
+                        "contextmenu", "dnd", "search",
+                        "state", "types", "wholerow"
+                    ],
+                    "contextmenu": { items: function (node) { return _this.customMenu(node); } }
+                });
+            };
+            lcmsLibrary.prototype.customMenu = function (node) {
+                var vm = this;
+                // The default set of all items
+                var items = {
+                    openItem: {
+                        label: "Open",
+                        action: function (a) {
+                            var n = a.reference[0];
+                            var key = Strings.Trim(n.innerText);
+                            var filepath = vm.libfiles[key];
+                            console.log("open a libfile:");
+                            console.log(a);
+                            console.log(key);
+                            console.log(filepath);
+                            app.desktop.mzkit.OpenLibrary(filepath)
+                                .then(function (b) {
+                                return __awaiter(this, void 0, void 0, function () {
+                                    var check;
+                                    return __generator(this, function (_a) {
+                                        switch (_a.label) {
+                                            case 0: return [4 /*yield*/, b];
+                                            case 1:
+                                                check = _a.sent();
+                                                if (check) {
+                                                    console.log("Open library file success!");
+                                                    vm.list_data();
+                                                }
+                                                else {
+                                                    console.log("Error while trying to open the LCMS library file!");
+                                                }
+                                                return [2 /*return*/];
+                                        }
+                                    });
+                                });
+                            });
+                        }
+                    }
+                };
+                return items;
+            };
+            lcmsLibrary.prototype.list_data = function () {
+                var vm = this;
+                app.desktop.mzkit.GetPage(this.page, this.page_size)
+                    .then(function (str) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var json, list;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, str];
+                                case 1:
+                                    json = _a.sent();
+                                    list = JSON.parse(json);
+                                    vm.show_page(list);
+                                    return [2 /*return*/];
+                            }
+                        });
+                    });
+                });
+            };
+            lcmsLibrary.prototype.show_page = function (list) {
+                var list_page = $ts("#list-page").clear();
+                console.log("get page data:");
+                console.log(list);
+                for (var _i = 0, list_4 = list; _i < list_4.length; _i++) {
+                    var meta = list_4[_i];
+                    var xrefs = "";
+                    var xref_data = meta.xref || {};
+                    for (var _a = 0, xref_keys_1 = xref_keys; _a < xref_keys_1.length; _a++) {
+                        var key = xref_keys_1[_a];
+                        var val = xref_data[key] || "";
+                        if (Array.isArray(val)) {
+                            val = val.join("; ");
+                        }
+                        if (!Strings.Empty(val, true)) {
+                            // if (key == "SMILES" || key == "InChIkey" || key == "InChI") {
+                            //     val = `<pre><code>${val}</code></pre>`;
+                            // }
+                            xrefs = xrefs + ("<span>" + key + ": </span> " + val + " <br />");
+                        }
+                    }
+                    list_page.appendElement($ts("<div class='row'>").display("\n                <div class=\"span4\">\n                    <h5>" + meta.name + " [<a>" + meta.ID + "</a>]</h5>\n                    <p>\n                    <span>Formula: </span> " + meta.formula + " <br />\n                    <span>Exact Mass: </span> " + meta.exact_mass + " <br />                       \n                    </p>\n                    <p>" + meta.description + "</p>\n                </div>\n                <div class=\"span4\">\n                    <p>\n                    " + xrefs + "\n                    </p>\n                </div>\n                <div class=\"span4\">\n                    <canvas class=\"smiles-viewer\" id=\"" + meta.ID.replace(".", "_").replace(" ", "_") + "\" width=\"200\" height=\"150\" data=\"" + this.get_smiles(meta) + "\">\n                    </canvas>\n                </div>\n                "));
+                }
+                var options = {
+                    width: 200,
+                    height: 150
+                };
+                // Initialize the drawer to draw to canvas
+                var smilesDrawer = new SmilesDrawer.Drawer(options);
+                // Alternatively, initialize the SVG drawer:
+                // let svgDrawer = new SmilesDrawer.SvgDrawer(options);
+                $ts.select(".smiles-viewer")
+                    .ForEach(function (a) {
+                    var input_value = a.getAttribute("data");
+                    var id = a.getAttribute("id");
+                    if (!Strings.Empty(input_value, true)) {
+                        // Clean the input (remove unrecognized characters, such as spaces and tabs) and parse it
+                        SmilesDrawer.parse(input_value, function (tree) {
+                            // Draw to the canvas
+                            smilesDrawer.draw(tree, id, "light", false);
+                            // Alternatively, draw to SVG:
+                            // svgDrawer.draw(tree, 'output-svg', 'dark', false);
+                        });
+                    }
+                });
+            };
+            lcmsLibrary.prototype.get_smiles = function (meta) {
+                if (meta.xref) {
+                    return meta.xref.SMILES || null;
+                }
+                else {
+                    return null;
+                }
+            };
+            lcmsLibrary.prototype.query_onclick = function () {
+                var q = $ts.value("#get-query");
+                var vm = this;
+                app.desktop.mzkit.Query(q)
+                    .then(function (str) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var json, list;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, str];
+                                case 1:
+                                    json = _a.sent();
+                                    list = JSON.parse(json);
+                                    vm.show_page(list);
+                                    return [2 /*return*/];
+                            }
+                        });
+                    });
+                });
+            };
+            return lcmsLibrary;
+        }(Bootstrap));
+        viewer.lcmsLibrary = lcmsLibrary;
+        var xref_keys = ["chebi",
+            "KEGG",
+            "pubchem",
+            "HMDB",
+            "metlin",
+            "DrugBank",
+            "ChEMBL",
+            "Wikipedia",
+            "lipidmaps",
+            "MeSH",
+            "ChemIDplus",
+            "MetaCyc",
+            "KNApSAcK",
+            "CAS",
+            "InChIkey",
+            "InChI",
+            "SMILES"];
     })(viewer = apps.viewer || (apps.viewer = {}));
 })(apps || (apps = {}));
 var apps;

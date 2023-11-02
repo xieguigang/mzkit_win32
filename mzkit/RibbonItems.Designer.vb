@@ -112,6 +112,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonNetworkRender As UInteger = 1085
             Public Const cmdButtonRenderUMAPScatter As UInteger = 226
             Public Const cmdGroupNetworkTools As UInteger = 1151
+            Public Const cmdViewMNClusterLCMSScatter As UInteger = 261
             Public Const cmdSpinnerSimilarity As UInteger = 1153
             Public Const cmdGroupNetworkRenderTool As UInteger = 1150
             Public Const cmdButtonRefreshNetwork As UInteger = 1154
@@ -852,6 +853,12 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property GroupNetworkTools As RibbonGroup
             Get
                 Return _GroupNetworkTools
+            End Get
+        End Property
+        Private _ViewMNClusterLCMSScatter As RibbonButton
+        Public ReadOnly Property ViewMNClusterLCMSScatter As RibbonButton
+            Get
+                Return _ViewMNClusterLCMSScatter
             End Get
         End Property
         Private _SpinnerSimilarity As RibbonSpinner
@@ -1821,6 +1828,7 @@ Namespace RibbonLib.Controls
             _ButtonNetworkRender = New RibbonButton(_ribbon, Cmd.cmdButtonNetworkRender)
             _ButtonRenderUMAPScatter = New RibbonButton(_ribbon, Cmd.cmdButtonRenderUMAPScatter)
             _GroupNetworkTools = New RibbonGroup(_ribbon, Cmd.cmdGroupNetworkTools)
+            _ViewMNClusterLCMSScatter = New RibbonButton(_ribbon, Cmd.cmdViewMNClusterLCMSScatter)
             _SpinnerSimilarity = New RibbonSpinner(_ribbon, Cmd.cmdSpinnerSimilarity)
             _GroupNetworkRenderTool = New RibbonGroup(_ribbon, Cmd.cmdGroupNetworkRenderTool)
             _ButtonRefreshNetwork = New RibbonButton(_ribbon, Cmd.cmdButtonRefreshNetwork)
