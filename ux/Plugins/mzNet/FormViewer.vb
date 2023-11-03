@@ -113,10 +113,12 @@ Public Class FormViewer
     Private Sub ExportSpectrumToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportSpectrumToolStripMenuItem.Click
         Using file As New SaveFileDialog With {.Filter = "MGF(*.mgf)|*.mgf"}
             If file.ShowDialog = DialogResult.OK Then
-                Call ProgressSpinner.DoLoading(
-                    Sub()
-                        Call exportMgfFile(file.FileName)
-                    End Sub)
+                Call TaskProgress.RunAction(
+                    Sub(p As ITaskProgress)
+                        Call p.SetProgressMode()
+                        Call p.SetProgress(0)
+                        Call exportMgfFile(file.FileName, p)
+                    End Sub, title:="Fetch data from cloud", info:="Download spectrum data from the remote server...")
 
                 Call MessageBox.Show("Export spectrum in mgf file format success!", "Export Spectrum Pool",
                                      buttons:=MessageBoxButtons.OK,
@@ -125,11 +127,13 @@ Public Class FormViewer
         End Using
     End Sub
 
-    Private Sub exportMgfFile(filepath As String)
+    Private Sub exportMgfFile(filepath As String, p As ITaskProgress)
         Dim rows = AdvancedDataGridView1.Rows
         Dim data As New List(Of PeakMs2)
+        Dim total As Integer = rows.Count
+        Dim d As Integer = total / 25
 
-        For i As Integer = 0 To rows.Count - 1
+        For i As Integer = 0 To total - 1
             Dim row = rows.Item(i)
 
             If row.Cells.Count = 0 Then
@@ -162,8 +166,13 @@ Public Class FormViewer
             data.Add(spectral)
 
             Call Application.DoEvents()
+
+            If i Mod d = 0 Then
+                Call p.SetProgress(i / total * 100, spectral.ToString)
+            End If
         Next
 
+        Call p.SetInfo($"Export ions data to file: {filepath}!")
         Call data.Select(Function(a) a.MgfIon).SaveTo(filepath)
     End Sub
 

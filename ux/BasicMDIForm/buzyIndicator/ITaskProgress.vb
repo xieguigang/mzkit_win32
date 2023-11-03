@@ -2,12 +2,12 @@
 
     Sub SetProgressMode()
     ''' <summary>
-    ''' 
+    ''' progress value between [0,100]
     ''' </summary>
     ''' <param name="p">[0,100]</param>
     Sub SetProgress(p As Integer)
     ''' <summary>
-    ''' 
+    ''' progress value between [0,100]
     ''' </summary>
     ''' <param name="p">[0,100]</param>
     ''' <param name="msg"></param>
