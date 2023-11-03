@@ -185,13 +185,13 @@
         <String Id="51">Auto Segmentation via UMAP</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="52">Auto Segmentation via UMAP</String>
+        <String Id="52">Make tissue slide segmentation via UMAP dimension reduce and clustering analysis</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
-        <String Id="53">Auto UMAP</String>
+        <String Id="53">Make tissue slide segmentation via UMAP dimension reduce and clustering analysis</String>
       </Command.TooltipTitle>
       <Command.TooltipDescription>
-        <String Id="54">Auto UMAP</String>
+        <String Id="54">Make tissue slide segmentation via UMAP dimension reduce and clustering analysis</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
         <Image MinDPI="192">Resources/umap.bmp</Image>
