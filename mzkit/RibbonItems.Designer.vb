@@ -189,6 +189,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonUIShowMapLayer As UInteger = 224
             Public Const cmdCheckShowMapLayer As UInteger = 194
             Public Const cmdButtonAutoUMAP As UInteger = 223
+            Public Const cmdButtonSpatialGibbs As UInteger = 262
             Public Const cmdButtonShowMSISampleWindow As UInteger = 195
             Public Const cmdShowTissueData As UInteger = 220
             Public Const cmdGroupKEGG As UInteger = 133
@@ -1317,6 +1318,12 @@ Namespace RibbonLib.Controls
                 Return _ButtonAutoUMAP
             End Get
         End Property
+        Private _ButtonSpatialGibbs As RibbonButton
+        Public ReadOnly Property ButtonSpatialGibbs As RibbonButton
+            Get
+                Return _ButtonSpatialGibbs
+            End Get
+        End Property
         Private _ButtonShowMSISampleWindow As RibbonButton
         Public ReadOnly Property ButtonShowMSISampleWindow As RibbonButton
             Get
@@ -1905,6 +1912,7 @@ Namespace RibbonLib.Controls
             _ButtonUIShowMapLayer = New RibbonSplitButton(_ribbon, Cmd.cmdButtonUIShowMapLayer)
             _CheckShowMapLayer = New RibbonToggleButton(_ribbon, Cmd.cmdCheckShowMapLayer)
             _ButtonAutoUMAP = New RibbonButton(_ribbon, Cmd.cmdButtonAutoUMAP)
+            _ButtonSpatialGibbs = New RibbonButton(_ribbon, Cmd.cmdButtonSpatialGibbs)
             _ButtonShowMSISampleWindow = New RibbonButton(_ribbon, Cmd.cmdButtonShowMSISampleWindow)
             _ShowTissueData = New RibbonButton(_ribbon, Cmd.cmdShowTissueData)
             _GroupKEGG = New RibbonTabGroup(_ribbon, Cmd.cmdGroupKEGG)

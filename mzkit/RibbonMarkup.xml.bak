@@ -182,7 +182,7 @@
     </Command>
     <Command Name="cmdButtonAutoUMAP" Id="223">
       <Command.LabelTitle>
-        <String Id="51">Auto Segmentation via UMAP</String>
+        <String Id="51">UMAP and clustering</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
         <String Id="52">Make tissue slide segmentation via UMAP dimension reduce and clustering analysis</String>
@@ -1045,13 +1045,13 @@
         <String Id="291">Export mzPack</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="292">Export mzPack</String>
+        <String Id="292">Export your current ms-imaging sample data as mzPack data file</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
-        <String Id="293">Export mzPack</String>
+        <String Id="293">Export your current ms-imaging sample data as mzPack data file</String>
       </Command.TooltipTitle>
       <Command.TooltipDescription>
-        <String Id="294">Export mzPack</String>
+        <String Id="294">Export your current ms-imaging sample data as mzPack data file</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
         <Image Id="295" MinDPI="192">Res/document-save.png</Image>
@@ -2835,13 +2835,13 @@
         <String Id="800">Rotate Slide</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="801">Rotate Slide</String>
+        <String Id="801">Rotate your sample slide with a specific angle</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
-        <String Id="802">Rotate Slide</String>
+        <String Id="802">Rotate your sample slide with a specific angle</String>
       </Command.TooltipTitle>
       <Command.TooltipDescription>
-        <String Id="803">Rotate Slide</String>
+        <String Id="803">Rotate your sample slide with a specific angle</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
         <Image Id="804" MinDPI="192">Res/view-refresh.png</Image>
@@ -3257,13 +3257,13 @@
         <String Id="930">Show Tissue Data</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="931">Show Tissue Data</String>
+        <String Id="931">Show the spot clustering data of your spatial sample tissue spots data</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
-        <String Id="932">Show Tissue Data</String>
+        <String Id="932">Show the spot clustering data of your spatial sample tissue spots data</String>
       </Command.TooltipTitle>
       <Command.TooltipDescription>
-        <String Id="933">Show Tissue Data</String>
+        <String Id="933">Show the spot clustering data of your spatial sample tissue spots data</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
         <Image Id="934" MinDPI="192">Res/application-x-object.png</Image>
@@ -3691,13 +3691,13 @@
         <String Id="1056">Tweaks MSI Filters</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
-        <String Id="1057">Tweaks MSI Filters</String>
+        <String Id="1057">Tweaks the raster image filters for adjust the visual style and quality of the ms-imaging heatmap rendering</String>
       </Command.LabelDescription>
       <Command.TooltipTitle>
-        <String Id="1058">Tweaks MSI Filters</String>
+        <String Id="1058">Tweaks the raster image filters for adjust the visual style and quality of the ms-imaging heatmap rendering</String>
       </Command.TooltipTitle>
       <Command.TooltipDescription>
-        <String Id="1059">Tweaks MSI Filters</String>
+        <String Id="1059">Tweaks the raster image filters for adjust the visual style and quality of the ms-imaging heatmap rendering</String>
       </Command.TooltipDescription>
       <Command.SmallImages>
         <Image Id="1060" MinDPI="192">Res/preferences-system-notifications.bmp</Image>
@@ -3772,6 +3772,14 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image Id="1079" MinDPI="192">Res/3d scanning.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdViewMNClusterLCMSScatter" Id="261" LabelTitle="View Cluster Peaks" LabelDescription="View LCMS peaks scatters with molecular networking cluster color rendering" TooltipTitle="View LCMS peaks scatters with molecular networking cluster color rendering" TooltipDescription="View LCMS peaks scatters with molecular networking cluster color rendering">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-particle-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-particle-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonLicense" Id="1101">
@@ -3877,14 +3885,7 @@
         <String Id="1108">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
     </Command>
-    <Command Name="cmdViewMNClusterLCMSScatter" Id="261" LabelTitle="View Cluster Peaks" LabelDescription="View LCMS peaks scatters with molecular networking cluster color rendering" TooltipTitle="View LCMS peaks scatters with molecular networking cluster color rendering" TooltipDescription="View LCMS peaks scatters with molecular networking cluster color rendering">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/icons8-particle-96.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/icons8-particle-96.png</Image>
-      </Command.LargeImages>
-    </Command>
+    <Command Name="cmdButtonSpatialGibbs" Id="262" LabelTitle="Spatial gibbs sampling" LabelDescription="Create tissue segmentation via the spatial gibbs sampling method" TooltipTitle="Create tissue segmentation via the spatial gibbs sampling method" TooltipDescription="Create tissue segmentation via the spatial gibbs sampling method" />
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4189,6 +4190,7 @@
                   <ToggleButton CommandName="cmdCheckShowMapLayer" />
                 </SplitButton.ButtonItem>
                 <Button CommandName="cmdButtonAutoUMAP" />
+                <Button CommandName="cmdButtonSpatialGibbs" />
               </SplitButton>
               <Button CommandName="cmdButtonShowMSISampleWindow" />
               <Button CommandName="cmdShowTissueData" />
