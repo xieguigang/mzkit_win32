@@ -32,6 +32,7 @@ declare namespace app.desktop {
         GetScatter(): Promise<string>;
         Click(tag: string): any;
         GetMatrixDims(): Promise<string>;
+        Run(knn: number, knniter: number, localConnectivity: number, bandwidth: number, learningRate: number, spectral_cos: boolean): Promise<boolean>;
         GetLCMSScatter(): Promise<string>;
         GetColors(): Promise<string>;
         ScanLibraries(): Promise<string>;
@@ -263,5 +264,7 @@ declare namespace apps.viewer {
     class umap extends Bootstrap {
         get appName(): string;
         protected init(): void;
+        knn_onchange(val: string): void;
+        run_umap_onclick(): void;
     }
 }

@@ -13,6 +13,8 @@
 
     <script type="text/javascript" src="./vendor/bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="./vendor/echarts.min.js"></script>
+    <script type="text/javascript" src="./vendor/echarts-gl.min.js"></script>
+
     <script type="text/javascript" src="./assets/js/linq.js"></script>
     <script type="text/javascript" src="./assets/js/echarts@types.js"></script>
     <script type="text/javascript" src="./assets/js/mzkit_desktop.js"></script>
@@ -47,6 +49,64 @@
                 </p>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col">
+                <h3>UMAP Manifold Parameters</h3>
+
+                <form>
+
+                    <div>
+                        <label for="knn" class="form-label">KNN: <span id="knn-value"></span></label>
+                        <input type="range" class="form-range" value="16" min="1" max="1000" id="knn">
+                    </div>
+                    <div>
+                        <label for="KnnIter" class="form-label">KNN Iterations: <span id="knnItr-value"></span></label>
+                        <input type="range" class="form-range" value="64" min="1" max="1000" id="KnnIter">
+                    </div>
+                    <div>
+                        <label for="localConnectivity" class="form-label">Local Connectivity: <span
+                                id="localConnect-value"></span></label>
+                        <input type="range" class="form-range" value="1" min="1" max="10" step="0.05"
+                            id="localConnectivity">
+                    </div>
+                    <div>
+                        <label for="bandwidth" class="form-label">Bandwidth: <span id="bandwidth-value"></span></label>
+                        <input type="range" class="form-range" value="1" min="1" max="10" step="0.05" id="bandwidth">
+                    </div>
+                    <div>
+                        <label for="learningRate" class="form-label">Learning Rate: <span
+                                id="learningRate-value"></span></label>
+                        <input type="range" class="form-range" value="0.95" min="0.01" max="1" step="0.05"
+                            id="learningRate">
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="spectral_cos" checked>
+                        <label class="form-check-label" for="spectral_cos">
+                            Spectral Cosine
+                        </label>
+                    </div>
+                </form>
+
+                <br />
+
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn btn-primary" id="run_umap">Run</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col">
+                <div class="main" id="viewer" style="margin: 5px; background: white; width: 90%; height: 600px;">
+
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
 </body>

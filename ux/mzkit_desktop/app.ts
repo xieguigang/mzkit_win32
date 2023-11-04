@@ -23,6 +23,11 @@ namespace app.desktop {
         Click(tag: string);
         // umap analysis
         GetMatrixDims(): Promise<string>;
+        Run(knn: number, knniter: number,
+            localConnectivity: number,
+            bandwidth: number,
+            learningRate: number,
+            spectral_cos: boolean): Promise<boolean>;
 
         GetLCMSScatter(): Promise<string>;
         GetColors(): Promise<string>;

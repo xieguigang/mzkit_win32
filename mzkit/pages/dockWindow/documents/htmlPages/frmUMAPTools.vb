@@ -98,9 +98,13 @@ Public Class UMApAnalysis
         Return json
     End Function
 
-    Public Sub Run(knn As Integer, spectral_cos As Boolean)
+    Public Function Run(knn As Integer, knniter As Integer,
+                   localConnectivity As Double,
+                   bandwidth As Double,
+                   learningRate As Double,
+                   spectral_cos As Boolean) As Boolean
 
-    End Sub
+    End Function
 
     Public Sub Save()
         If Not callback Is Nothing Then

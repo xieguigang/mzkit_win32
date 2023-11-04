@@ -1506,6 +1506,11 @@ var apps;
                     });
                 });
             };
+            umap.prototype.knn_onchange = function (val) {
+                console.log(val);
+            };
+            umap.prototype.run_umap_onclick = function () {
+            };
             return umap;
         }(Bootstrap));
         viewer.umap = umap;

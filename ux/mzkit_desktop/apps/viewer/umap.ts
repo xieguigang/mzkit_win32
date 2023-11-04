@@ -17,5 +17,12 @@ namespace apps.viewer {
                 });
         }
 
+        public knn_onchange(val: string) {
+            console.log(val);
+        }
+
+        public run_umap_onclick() {
+            
+        }
     }
 }
