@@ -528,7 +528,7 @@ Public Class frmMsImagingViewer
             Return
         End If
 
-        Dim umap3 As String = RscriptProgressTask.CreateUMAPCluster(matrix, 16)
+        Dim umap3 As String = RscriptProgressTask.CreateUMAPCluster(matrix, 16, readBinary:=True)
 
         If umap3.StringEmpty Then
             MessageBox.Show("Sorry, run umap task error...", "UMAP error", MessageBoxButtons.OK, MessageBoxIcon.Stop)

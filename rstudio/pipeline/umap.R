@@ -1,11 +1,25 @@
 imports "umap" from "MLkit";
 imports "clustering" from "MLkit";
 
+require(GCModeller);
+
+[@info "A matrix file input, could be a general csv 
+        ascii text file or the GCModeller HTS expression 
+		matrix file."]
 const input_data  = ?"--input" || stop("A data matrix excel table file must be specific!");
 const output_file = ?"--save"  || `${dirname(input_data)}/${basename(input_data)}_umap3d.csv`; 
 const knn_size    = ?"--knn"   || 16;
 
-let data   = read.csv(input_data, row.names = 1, check.names = FALSE);
+[@info "read the GCModeller HTS expression matrix binary file?"]
+const read_bin    = ?"--read_bin" || FALSE;
+
+let data   = {
+	if (!read_bin) {
+		read.csv(input_data, row.names = 1, check.names = FALSE);
+	} else {
+
+	}
+}
 let labels = NULL;
 
 if ("class" in colnames(data)) {

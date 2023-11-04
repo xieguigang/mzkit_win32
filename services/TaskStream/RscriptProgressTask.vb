@@ -415,13 +415,14 @@ Public NotInheritable Class RscriptProgressTask
     ''' <param name="matrix"></param>
     ''' <param name="knn"></param>
     ''' <returns>return the umap result temp file path</returns>
-    Public Shared Function CreateUMAPCluster(matrix As String, knn As Integer) As String
+    Public Shared Function CreateUMAPCluster(matrix As String, knn As Integer, readBinary As Boolean) As String
         Dim Rscript As String = RscriptPipelineTask.GetRScript("umap.R")
         Dim save As String = $"{matrix.ParentPath}/{matrix.BaseName}_umap3.csv"
         Dim cli As String = $"""{Rscript}"" 
 --input ""{matrix}"" 
 --save ""{save}"" 
 --knn ""{knn}""
+{If(readBinary, "--read_bin", "")}
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
