@@ -477,6 +477,12 @@
     <Compile Include="application\settings\RawFileViewerSettings.vb" />
     <Compile Include="application\VisualStudio.vb" />
     <Compile Include="application\RPackage.vb" />
+    <Compile Include="forms\Inputs\InputUMAPParameters.Designer.vb">
+      <DependentUpon>InputUMAPParameters.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\InputUMAPParameters.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\InputURL.Designer.vb">
       <DependentUpon>InputURL.vb</DependentUpon>
     </Compile>
@@ -1164,6 +1170,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\Input3DScatter.resx">
       <DependentUpon>Input3DScatter.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\InputUMAPParameters.resx">
+      <DependentUpon>InputUMAPParameters.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputURL.resx">
       <DependentUpon>InputURL.vb</DependentUpon>
