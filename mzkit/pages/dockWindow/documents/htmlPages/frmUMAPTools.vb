@@ -95,6 +95,13 @@ Public Class UMApAnalysis
 
     Public Function GetScatter() As String
         If umap_result.StringEmpty Then
+            umap_result = $"{matrix.ParentPath}/{matrix.BaseName}_umap3.csv"
+
+            If Not umap_result.FileExists Then
+                umap_result = Nothing
+            End If
+        End If
+        If umap_result.StringEmpty Then
             Return "[]"
         Else
             Dim points = UMAPPoint.ParseCsvTable(umap_result).ToArray
