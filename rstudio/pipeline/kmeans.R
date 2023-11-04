@@ -5,5 +5,9 @@ const k as integer = as.integer(?"--k" || 6);
 const savefile = ?"--save" || `${dirname(input_data)}/${basename(input_data)}_kmeans.csv`;
 
 const rawdata = read.csv(input_data, row.names = 1, check.names = FALSE);
-const clusters = kmeans(rawdata, centers = k);
+const clusters = kmeans(rawdata, centers = k) |> as.data.frame();
 
+print("get k-means result:");
+print(clusters, max.print = 13);
+
+write.csv(clusters, file = savefile, row.names = TRUE);
