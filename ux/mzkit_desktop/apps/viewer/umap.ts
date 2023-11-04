@@ -99,6 +99,20 @@ namespace apps.viewer {
                 .style.display = 'none';
         }
 
+        public download_onclick() {
+            app.desktop.mzkit.Download().then(async function (str) {
+                const csv: string = await str;
+                const data: DataURI = <DataURI>{
+                    mime_type: "plain/text",
+                    data: csv
+                }
+
+                if (!Strings.Empty(csv, true)) {
+                    DOM.download("umap.csv", data, false);
+                }
+            });
+        }
+
         public save_onclick() {
             const vm = this;
 

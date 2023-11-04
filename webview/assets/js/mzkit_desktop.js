@@ -1594,6 +1594,28 @@ var apps;
                 document.getElementById('spinner')
                     .style.display = 'none';
             };
+            umap.prototype.download_onclick = function () {
+                app.desktop.mzkit.Download().then(function (str) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var csv, data;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, str];
+                                case 1:
+                                    csv = _a.sent();
+                                    data = {
+                                        mime_type: "plain/text",
+                                        data: csv
+                                    };
+                                    if (!Strings.Empty(csv, true)) {
+                                        DOM.download("umap.csv", data, false);
+                                    }
+                                    return [2 /*return*/];
+                            }
+                        });
+                    });
+                });
+            };
             umap.prototype.save_onclick = function () {
                 var vm = this;
                 this.showSpinner();

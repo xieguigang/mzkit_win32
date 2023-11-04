@@ -30,6 +30,7 @@ namespace app.desktop {
             learningRate: number,
             spectral_cos: boolean): Promise<boolean>;
         RunKmeans(k: number): Promise<boolean>;
+        Download(): Promise<string>;
 
         GetLCMSScatter(): Promise<string>;
         GetColors(): Promise<string>;
