@@ -420,7 +420,7 @@ Public NotInheritable Class RscriptProgressTask
                                              localConnectivity As Double,
                                              bandwidth As Double,
                                              learningRate As Double,
-                                             spectral_cos As Boolean, readBinary As Boolean) As String
+                                             spectral_cos As Boolean, readBinary As Boolean, noUI As Boolean) As String
 
         Dim Rscript As String = RscriptPipelineTask.GetRScript("umap.R")
         Dim save As String = $"{matrix.ParentPath}/{matrix.BaseName}_umap3.csv"
@@ -440,16 +440,21 @@ Public NotInheritable Class RscriptProgressTask
 
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call Workbench.LogText(pipeline.CommandLine)
-        Call TaskProgress.RunAction(
-            run:=Sub(p)
-                     AddHandler pipeline.SetMessage, AddressOf p.SetInfo
-                     AddHandler pipeline.SetProgress, AddressOf p.SetProgress
-                     AddHandler pipeline.Finish, AddressOf p.TaskFinish
 
-                     Call pipeline.Run()
-                 End Sub,
-            title:="Create UMAP clusters...",
-            info:="Create UMAP clusters based on your given feature peaktable, this may takes a long time when your dataset size is ultra large...")
+        If noUI Then
+            Call pipeline.Run()
+        Else
+            Call TaskProgress.RunAction(
+                run:=Sub(p)
+                         AddHandler pipeline.SetMessage, AddressOf p.SetInfo
+                         AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                         AddHandler pipeline.Finish, AddressOf p.TaskFinish
+
+                         Call pipeline.Run()
+                     End Sub,
+                title:="Create UMAP clusters...",
+                info:="Create UMAP clusters based on your given feature peaktable, this may takes a long time when your dataset size is ultra large...")
+        End If
 
         If save.FileExists(ZERO_Nonexists:=True) Then
             Return save

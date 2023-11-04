@@ -88,7 +88,7 @@ Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Interop
 Imports TaskStream
 Imports any = Microsoft.VisualBasic.Scripting
-Imports stdNum = System.Math
+Imports std = System.Math
 
 Public Class PageMoleculeNetworking
 
@@ -112,7 +112,7 @@ Public Class PageMoleculeNetworking
         Dim umap3 As String = RscriptProgressTask.CreateUMAPCluster(
             tempfile,
             knn:=16, knniter:=64, localConnectivity:=1, bandwidth:=1, learningRate:=0.99, spectral_cos:=True,
-            readBinary:=False)
+            readBinary:=False, noUI:=False)
 
         If umap3.StringEmpty Then
             MessageBox.Show("Sorry, run umap task error...", "UMAP error", MessageBoxButtons.OK, MessageBoxIcon.Stop)
@@ -370,7 +370,7 @@ Public Class PageMoleculeNetworking
             Call DataGridView1.Rows.Add(
                 edge.U.label,
                 edge.V.label,
-                stdNum.Min(Val(edge.data!forward), Val(edge.data!reverse)).ToString("F4"),
+                std.Min(Val(edge.data!forward), Val(edge.data!reverse)).ToString("F4"),
                 Val(edge.data!forward).ToString("F4"),
                 Val(edge.data!reverse).ToString("F4"),
                 "View Alignment"

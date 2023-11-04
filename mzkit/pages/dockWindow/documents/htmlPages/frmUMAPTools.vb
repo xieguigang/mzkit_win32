@@ -112,7 +112,7 @@ Public Class UMApAnalysis
         Dim umap3 As String = RscriptProgressTask.CreateUMAPCluster(
             matrix,
             knn, knniter, localConnectivity, bandwidth, learningRate, spectral_cos,
-            readBinary:=binaryMatrix)
+            readBinary:=binaryMatrix, noUI:=True)
 
         umap_result = umap3
 

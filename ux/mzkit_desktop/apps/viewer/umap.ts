@@ -41,6 +41,8 @@ namespace apps.viewer {
 
         public run_umap_onclick() {
             const vm = this;
+
+            vm.showSpinner();
             app.desktop.mzkit.Run(
                 parseInt($ts.value("#knn").toString()),
                 parseInt($ts.value("#KnnIter").toString()),
@@ -53,10 +55,21 @@ namespace apps.viewer {
 
                 if (flag) {
                     vm.loadUMAP();
+                    vm.hideSpinner();
                 } else {
 
                 }
             });
+        }
+
+        showSpinner() {
+            document.getElementById('spinner')
+                .style.display = 'block';
+        }
+
+        hideSpinner() {
+            document.getElementById('spinner')
+                .style.display = 'none';
         }
 
         private loadUMAP() {

@@ -1524,6 +1524,7 @@ var apps;
             };
             umap.prototype.run_umap_onclick = function () {
                 var vm = this;
+                vm.showSpinner();
                 app.desktop.mzkit.Run(parseInt($ts.value("#knn").toString()), parseInt($ts.value("#KnnIter").toString()), parseFloat($ts.value("#localConnectivity").toString()), parseFloat($ts.value("#bandwidth").toString()), parseFloat($ts.value("#learningRate").toString()), parseBoolean($ts.value("#spectral_cos").toString())).then(function (b) {
                     return __awaiter(this, void 0, void 0, function () {
                         var flag;
@@ -1534,6 +1535,7 @@ var apps;
                                     flag = _a.sent();
                                     if (flag) {
                                         vm.loadUMAP();
+                                        vm.hideSpinner();
                                     }
                                     else {
                                     }
@@ -1542,6 +1544,14 @@ var apps;
                         });
                     });
                 });
+            };
+            umap.prototype.showSpinner = function () {
+                document.getElementById('spinner')
+                    .style.display = 'block';
+            };
+            umap.prototype.hideSpinner = function () {
+                document.getElementById('spinner')
+                    .style.display = 'none';
             };
             umap.prototype.loadUMAP = function () {
                 app.desktop.mzkit.GetScatter()

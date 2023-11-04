@@ -270,6 +270,8 @@ declare namespace apps.viewer {
         bandwidth_onchange(val: string): void;
         learningRate_onchange(val: string): void;
         run_umap_onclick(): void;
+        showSpinner(): void;
+        hideSpinner(): void;
         private loadUMAP;
     }
 }
