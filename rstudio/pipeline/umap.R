@@ -9,9 +9,13 @@ require(GCModeller);
 const input_data  = ?"--input" || stop("A data matrix excel table file must be specific!");
 const output_file = ?"--save"  || `${dirname(input_data)}/${basename(input_data)}_umap3d.csv`; 
 const knn_size    = ?"--knn"   || 16;
-
+const knniter     = ?"--knniter" || 64;
+const localconnectivity = ?"--localconnectivity" || 1.0;
+const bandwidth = ?"--bandwidth" || 1.0;
+const learningrate = ?"--learningrate" || 1.0;
+const spectral_cos as boolean = ?"--spectral_cos" || FALSE;
 [@info "read the GCModeller HTS expression matrix binary file?"]
-const read_bin    = ?"--read_bin" || FALSE;
+const read_bin as boolean = ?"--read_bin" || FALSE;
 
 let data   = {
 	if (!read_bin) {
@@ -37,9 +41,13 @@ if ("Cluster" in colnames(data)) {
 }
 
 let dim3 = data |> umap( 
-	dimension         = 3, 
-	spectral_cos      = TRUE,
-	numberOfNeighbors = knn_size
+	dimension         = 10, 
+	spectral_cos      = spectral_cos,
+	numberOfNeighbors = knn_size,
+	localConnectivity = localconnectivity,
+	KnnIter   = knniter ,
+    bandwidth  = bandwidth,
+    learningRate  = learningrate
 );
 let result         = as.data.frame(dim3$umap, labels = dim3$labels, dimension = ["x","y","z"]);
 let assign_cluster = function(result) {
@@ -54,7 +62,7 @@ let assign_cluster = function(result) {
 
 if (is.null(labels)) {
 	# add class label via dbscan?
-	result[, "class"] = assign_cluster(result);
+	# result[, "class"] = assign_cluster(result);
 } else {
 	result[, "class"] = labels;
 }
