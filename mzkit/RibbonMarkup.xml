@@ -4018,7 +4018,7 @@
     </Command>
     <Command Name="cmdButtonSpatialGibbs" Id="262">
       <Command.LabelTitle>
-        <String Id="1169">Spatial gibbs sampling</String>
+        <String Id="1169">Gibbs sampling</String>
       </Command.LabelTitle>
       <Command.LabelDescription>
         <String Id="1170">Create tissue segmentation via the spatial gibbs sampling method</String>

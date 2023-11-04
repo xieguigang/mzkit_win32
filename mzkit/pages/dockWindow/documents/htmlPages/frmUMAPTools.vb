@@ -130,6 +130,16 @@ Public Class UMApAnalysis
         Return umap_result.TrimSuffix & "_kmeans.csv"
     End Function
 
+    Public Function Download() As String
+        Dim file As String = get_kmeans()
+
+        If file.FileExists Then
+            Return file.ReadAllText
+        Else
+            Return ""
+        End If
+    End Function
+
     Public Async Function Run(knn As Integer, knniter As Integer,
                    localConnectivity As Double,
                    bandwidth As Double,
