@@ -15,6 +15,8 @@ namespace apps.viewer {
                     $ts("#nfeatures").display(ints[0].toString());
                     $ts("#nsamples").display(ints[1].toString());
                 });
+
+            this.loadUMAP();
         }
 
         public knn_onchange(val: string) {
@@ -38,6 +40,7 @@ namespace apps.viewer {
         }
 
         public run_umap_onclick() {
+            const vm = this;
             app.desktop.mzkit.Run(
                 parseInt($ts.value("#knn").toString()),
                 parseInt($ts.value("#KnnIter").toString()),
@@ -49,11 +52,25 @@ namespace apps.viewer {
                 const flag = await b;
 
                 if (flag) {
-
+                    vm.loadUMAP();
                 } else {
 
                 }
             });
+        }
+
+        private loadUMAP() {
+            app.desktop.mzkit.GetScatter()
+                .then(async function (str) {
+                    const json: string = await str;
+                    const scatter: scatterPoint[] = JSON.parse(json);
+
+                    if (isNullOrEmpty(scatter)) {
+                        clusterViewer.render3DScatter([]);
+                    } else {
+                        clusterViewer.render3DScatter(scatter);
+                    }
+                });
         }
     }
 }

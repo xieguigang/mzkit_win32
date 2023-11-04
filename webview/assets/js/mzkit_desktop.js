@@ -1505,6 +1505,7 @@ var apps;
                         });
                     });
                 });
+                this.loadUMAP();
             };
             umap.prototype.knn_onchange = function (val) {
                 $ts("#knn-value").display(val);
@@ -1522,6 +1523,7 @@ var apps;
                 $ts("#learningRate-value").display(val);
             };
             umap.prototype.run_umap_onclick = function () {
+                var vm = this;
                 app.desktop.mzkit.Run(parseInt($ts.value("#knn").toString()), parseInt($ts.value("#KnnIter").toString()), parseFloat($ts.value("#localConnectivity").toString()), parseFloat($ts.value("#bandwidth").toString()), parseFloat($ts.value("#learningRate").toString()), parseBoolean($ts.value("#spectral_cos").toString())).then(function (b) {
                     return __awaiter(this, void 0, void 0, function () {
                         var flag;
@@ -1531,8 +1533,32 @@ var apps;
                                 case 1:
                                     flag = _a.sent();
                                     if (flag) {
+                                        vm.loadUMAP();
                                     }
                                     else {
+                                    }
+                                    return [2 /*return*/];
+                            }
+                        });
+                    });
+                });
+            };
+            umap.prototype.loadUMAP = function () {
+                app.desktop.mzkit.GetScatter()
+                    .then(function (str) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var json, scatter;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, str];
+                                case 1:
+                                    json = _a.sent();
+                                    scatter = JSON.parse(json);
+                                    if (isNullOrEmpty(scatter)) {
+                                        viewer.clusterViewer.render3DScatter([]);
+                                    }
+                                    else {
+                                        viewer.clusterViewer.render3DScatter(scatter);
                                     }
                                     return [2 /*return*/];
                             }

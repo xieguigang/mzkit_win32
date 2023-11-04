@@ -94,9 +94,13 @@ Public Class UMApAnalysis
     End Function
 
     Public Function GetScatter() As String
-        Dim points = UMAPPoint.ParseCsvTable(umap_result).ToArray
-        Dim json As String = points.GetJson
-        Return json
+        If umap_result.StringEmpty Then
+            Return "[]"
+        Else
+            Dim points = UMAPPoint.ParseCsvTable(umap_result).ToArray
+            Dim json As String = points.GetJson
+            Return json
+        End If
     End Function
 
     Public Function Run(knn As Integer, knniter As Integer,
