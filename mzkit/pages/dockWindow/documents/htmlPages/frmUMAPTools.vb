@@ -104,7 +104,7 @@ Public Class UMApAnalysis
         If umap_result.StringEmpty Then
             Return "[]"
         Else
-            Dim try_kmeans As String = umap_result.TrimSuffix & "_kmeans.csv"
+            Dim try_kmeans As String = get_kmeans()
             Dim points As UMAPPoint()
 
             If try_kmeans.FileExists Then
@@ -116,6 +116,10 @@ Public Class UMApAnalysis
             Dim json As String = points.GetJson
             Return json
         End If
+    End Function
+
+    Private Function get_kmeans() As String
+        Return umap_result.TrimSuffix & "_kmeans.csv"
     End Function
 
     Public Async Function Run(knn As Integer, knniter As Integer,
@@ -136,6 +140,20 @@ Public Class UMApAnalysis
         umap_result = Await umap3
 
         Return True
+    End Function
+
+    Public Async Function RunKmeans(k As Integer) As Task(Of Boolean)
+        If umap_result.StringEmpty Then
+            Return False
+        End If
+
+        Dim savefile As String = get_kmeans()
+        Dim flag = Task(Of Boolean).Run(
+            Function()
+                Return RscriptProgressTask.KMeans(umap_result, k, savefile, noUI:=True)
+            End Function)
+
+        Return Await flag
     End Function
 
     Public Sub Save()

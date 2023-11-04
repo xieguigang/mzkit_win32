@@ -33,6 +33,7 @@ declare namespace app.desktop {
         Click(tag: string): any;
         GetMatrixDims(): Promise<string>;
         Run(knn: number, knniter: number, localConnectivity: number, bandwidth: number, learningRate: number, spectral_cos: boolean): Promise<boolean>;
+        RunKmeans(k: number): Promise<boolean>;
         GetLCMSScatter(): Promise<string>;
         GetColors(): Promise<string>;
         ScanLibraries(): Promise<string>;
@@ -271,6 +272,7 @@ declare namespace apps.viewer {
         learningRate_onchange(val: string): void;
         kmeans_onchange(val: string): void;
         run_umap_onclick(): void;
+        run_kmeans_onclick(): void;
         showSpinner(): void;
         hideSpinner(): void;
         private loadUMAP;

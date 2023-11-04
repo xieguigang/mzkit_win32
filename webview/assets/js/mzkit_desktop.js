@@ -1548,6 +1548,29 @@ var apps;
                     });
                 });
             };
+            umap.prototype.run_kmeans_onclick = function () {
+                var vm = this;
+                vm.showSpinner();
+                app.desktop.mzkit
+                    .RunKmeans(parseInt($ts.value("#kmeans").toString()))
+                    .then(function (b) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var flag;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, b];
+                                case 1:
+                                    flag = _a.sent();
+                                    if (flag) {
+                                        vm.loadUMAP();
+                                        vm.hideSpinner();
+                                    }
+                                    return [2 /*return*/];
+                            }
+                        });
+                    });
+                });
+            };
             umap.prototype.showSpinner = function () {
                 document.getElementById('spinner')
                     .style.display = 'block';

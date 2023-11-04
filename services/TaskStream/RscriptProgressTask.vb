@@ -409,6 +409,36 @@ Public NotInheritable Class RscriptProgressTask
         End If
     End Sub
 
+    Public Shared Function KMeans(rawdata As String, k As Integer, savefile As String, noUI As Boolean) As Boolean
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("kmeans.R")
+        Dim cli As String = $"""{Rscript}""
+--rawdata ""{rawdata}""
+--k {k}
+--save ""{savefile}""
+"
+        Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
+
+        Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
+        Call Workbench.LogText(pipeline.CommandLine)
+
+        If noUI Then
+            Call pipeline.Run()
+        Else
+            Call TaskProgress.RunAction(
+                run:=Sub(p)
+                         AddHandler pipeline.SetMessage, AddressOf p.SetInfo
+                         AddHandler pipeline.SetProgress, AddressOf p.SetProgress
+                         AddHandler pipeline.Finish, AddressOf p.TaskFinish
+
+                         Call pipeline.Run()
+                     End Sub,
+                title:="Do K-means clustering...",
+                info:="Create scatter clusters via k-means algorithm, this may takes a long time when your dataset size is ultra large...")
+        End If
+
+        Return savefile.FileExists(ZERO_Nonexists:=True)
+    End Function
+
     ''' <summary>
     ''' 
     ''' </summary>

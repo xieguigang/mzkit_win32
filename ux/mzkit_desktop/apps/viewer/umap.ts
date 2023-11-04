@@ -66,6 +66,22 @@ namespace apps.viewer {
             });
         }
 
+        public run_kmeans_onclick() {
+            const vm = this;
+
+            vm.showSpinner();
+            app.desktop.mzkit
+                .RunKmeans(parseInt($ts.value("#kmeans").toString()))
+                .then(async function (b) {
+                    const flag = await b;
+
+                    if (flag) {
+                        vm.loadUMAP();
+                        vm.hideSpinner();
+                    }
+                });
+        }
+
         showSpinner() {
             document.getElementById('spinner')
                 .style.display = 'block';
