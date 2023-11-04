@@ -552,7 +552,10 @@ Public Class frmMsImagingViewer
                             Else
                                 Call ImportsUmap3dFile(umap3)
                             End If
-                        End Sub
+                        End Sub,
+            .binaryMatrix = True,
+            .onclick = AddressOf ClickOnPixel,
+            .umap_result = Nothing
         }
         Dim page As New frmUMAPTools With {.source = args}
 
