@@ -103,18 +103,22 @@ Public Class UMApAnalysis
         End If
     End Function
 
-    Public Function Run(knn As Integer, knniter As Integer,
+    Public Async Function Run(knn As Integer, knniter As Integer,
                    localConnectivity As Double,
                    bandwidth As Double,
                    learningRate As Double,
-                   spectral_cos As Boolean) As Boolean
+                   spectral_cos As Boolean) As Task(Of Boolean)
 
-        Dim umap3 As String = RscriptProgressTask.CreateUMAPCluster(
-            matrix,
-            knn, knniter, localConnectivity, bandwidth, learningRate, spectral_cos,
-            readBinary:=binaryMatrix, noUI:=True)
+        Dim umap3 As Task(Of String) = Task(Of String) _
+            .Run(Function() As String
+                     Return RscriptProgressTask.CreateUMAPCluster(
+                        matrix,
+                        knn, knniter, localConnectivity, bandwidth, learningRate, spectral_cos,
+                        readBinary:=binaryMatrix,
+                        noUI:=True)
+                 End Function)
 
-        umap_result = umap3
+        umap_result = Await umap3
 
         Return True
     End Function
