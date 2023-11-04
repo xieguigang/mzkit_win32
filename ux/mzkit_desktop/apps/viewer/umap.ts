@@ -99,6 +99,16 @@ namespace apps.viewer {
                 .style.display = 'none';
         }
 
+        public save_onclick() {
+            const vm = this;
+
+            this.showSpinner();
+            app.desktop.mzkit.Save().then(async function () {
+                console.log("done!");
+                vm.hideSpinner();
+            });
+        }
+
         private loadUMAP() {
             app.desktop.mzkit.GetUMAPFile()
                 .then(async function (str) {

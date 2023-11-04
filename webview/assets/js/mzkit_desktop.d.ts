@@ -276,6 +276,7 @@ declare namespace apps.viewer {
         run_kmeans_onclick(): void;
         showSpinner(): void;
         hideSpinner(): void;
+        save_onclick(): void;
         private loadUMAP;
     }
 }

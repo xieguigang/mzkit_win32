@@ -1594,6 +1594,19 @@ var apps;
                 document.getElementById('spinner')
                     .style.display = 'none';
             };
+            umap.prototype.save_onclick = function () {
+                var vm = this;
+                this.showSpinner();
+                app.desktop.mzkit.Save().then(function () {
+                    return __awaiter(this, void 0, void 0, function () {
+                        return __generator(this, function (_a) {
+                            console.log("done!");
+                            vm.hideSpinner();
+                            return [2 /*return*/];
+                        });
+                    });
+                });
+            };
             umap.prototype.loadUMAP = function () {
                 app.desktop.mzkit.GetUMAPFile()
                     .then(function (str) {
