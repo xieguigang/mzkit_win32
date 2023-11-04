@@ -4,6 +4,7 @@ Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
+Imports TaskStream
 Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmUMAPTools
@@ -104,6 +105,14 @@ Public Class UMApAnalysis
                    learningRate As Double,
                    spectral_cos As Boolean) As Boolean
 
+        Dim umap3 As String = RscriptProgressTask.CreateUMAPCluster(
+            matrix,
+            knn, knniter, localConnectivity, bandwidth, learningRate, spectral_cos,
+            readBinary:=binaryMatrix)
+
+        umap_result = umap3
+
+        Return True
     End Function
 
     Public Sub Save()
