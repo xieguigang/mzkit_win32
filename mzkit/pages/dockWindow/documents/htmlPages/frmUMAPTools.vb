@@ -63,10 +63,32 @@ End Class
 Public Class UMApAnalysis
 
     Public Property matrix As String
+    ''' <summary>
+    ''' GCModeller HTS binary matrix or csv ascii text file?
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property binaryMatrix As Boolean = False
     Public Property matrix_dims As Integer()
+
+    ''' <summary>
+    ''' apply the umap analysis result
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property callback As Action(Of String)
+    ''' <summary>
+    ''' the csv file path of the umap analysis result
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property umap_result As String
 
     Public Function GetMatrixDims() As String
         Return matrix_dims.GetJson
     End Function
+
+    Public Sub Apply()
+        If Not callback Is Nothing Then
+            Call _callback(umap_result)
+        End If
+    End Sub
 
 End Class

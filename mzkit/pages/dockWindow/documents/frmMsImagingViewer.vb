@@ -116,6 +116,7 @@ Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Mzkit_win32.MSImagingViewerV2
 Imports ServiceHub
+Imports SMRUCC.genomics.Analysis.HTS.DataFrame
 Imports STImaging
 Imports STRaid
 Imports Task
@@ -528,14 +529,25 @@ Public Class frmMsImagingViewer
             Return
         End If
 
-        Dim umap3 As String = RscriptProgressTask.CreateUMAPCluster(matrix, 16, readBinary:=True)
+        Dim read As New HTSMatrixReader(matrix.Open(FileMode.Open, doClear:=False, [readOnly]:=False))
+        Dim dims = read.Size
+        Dim args As New UMApAnalysis With {
+            .matrix = matrix,
+            .matrix_dims = {dims.nfeature, dims.nsample},
+            .callback = Sub(umap3 As String)
+                            If umap3.StringEmpty Then
+                                MessageBox.Show("Sorry, run umap task error...", "UMAP error", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+                            Else
+                                Call ImportsUmap3dFile(umap3)
+                            End If
+                        End Sub
+        }
+        Dim page As New frmUMAPTools With {.source = args}
 
-        If umap3.StringEmpty Then
-            MessageBox.Show("Sorry, run umap task error...", "UMAP error", MessageBoxButtons.OK, MessageBoxIcon.Stop)
-            Return
-        Else
-            Call ImportsUmap3dFile(umap3)
-        End If
+        Call read.Dispose()
+        Call VisualStudio.ShowDocument(page)
+
+        ' Dim umap3 As String = RscriptProgressTask.CreateUMAPCluster(matrix, 16, readBinary:=True)
     End Sub
 
     Private Sub ImportsUmap3dFile(umap3 As String)

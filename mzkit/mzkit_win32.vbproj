@@ -1504,6 +1504,10 @@
       <Project>{8e390f57-3714-47c2-bd1a-b97671a9321a}</Project>
       <Name>STRaid</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\GCModeller\src\GCModeller\analysis\HTS_matrix\HTS_matrix-netcore5.vbproj">
+      <Project>{866d1fc8-67ab-4edc-a2ed-4a7fc467605e}</Project>
+      <Name>HTS_matrix-netcore5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\GCModeller\annotations\GSEA\FisherCore\Fisher.NET5.vbproj">
       <Project>{84dbe474-b005-4ddd-b4c7-0f6ba01d3ca2}</Project>
       <Name>Fisher.NET5</Name>
