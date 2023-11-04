@@ -121,10 +121,6 @@ declare class LINQIterator<T> {
     protected sequence: T[];
     private i;
     /**
-     * 实现迭代器的关键元素之1
-    */
-    [Symbol.iterator](): this;
-    /**
      * The number of elements in the data sequence.
     */
     get Count(): number;
@@ -157,8 +153,8 @@ declare module Enumerable {
      * 进行数据序列的排序操作
      *
     */
-    function OrderBy<T>(source: T[], key: (e: T) => number): IEnumerator<T>;
-    function OrderByDescending<T>(source: T[], key: (e: T) => number): IEnumerator<T>;
+    function OrderBy<T>(source: T[], key: (e: T) => number | string): IEnumerator<T>;
+    function OrderByDescending<T>(source: T[], key: (e: T) => number | string): IEnumerator<T>;
     function Take<T>(source: T[], n: number): IEnumerator<T>;
     function Skip<T>(source: T[], n: number): IEnumerator<T>;
     function TakeWhile<T>(source: T[], predicate: (e: T) => boolean): IEnumerator<T>;
@@ -283,7 +279,7 @@ declare class IEnumerator<T> extends LINQIterator<T> {
      * @returns An ``System.Linq.IOrderedEnumerable<T>`` whose elements are
      *          sorted according to a key.
     */
-    OrderBy(key: (e: T) => number): IEnumerator<T>;
+    OrderBy(key: (e: T) => number | string): IEnumerator<T>;
     /**
      * Sorts the elements of a sequence in descending order according to a key.
      *
@@ -292,7 +288,7 @@ declare class IEnumerator<T> extends LINQIterator<T> {
      * @returns An ``System.Linq.IOrderedEnumerable<T>`` whose elements are
      *          sorted in descending order according to a key.
     */
-    OrderByDescending(key: (e: T) => number): IEnumerator<T>;
+    OrderByDescending(key: (e: T) => number | string): IEnumerator<T>;
     /**
      * Split a sequence by elements count
     */
@@ -765,6 +761,13 @@ declare module Strings {
      * @param charsPerLine 每一行文本之中的字符数量的最大值
     */
     function WrappingLines(text: string, charsPerLine?: number, lineTrim?: boolean): string;
+    /**
+     * get hashcode of a given string
+     *
+     * @param str
+     * @returns
+     */
+    function hashCode(str: string): number;
 }
 declare namespace TypeScript.Reflection {
     /**
@@ -2319,6 +2322,21 @@ declare namespace TypeScript.Data {
         sorted: boolean;
         method: string;
     }): number;
+}
+declare namespace OADate {
+    function DateToOADate(value: any, offset?: number): number;
+    function OADateToDate(value: number, offset?: number): Date;
+    class TDateTime extends Date {
+        constructor(...args: any[]);
+        toJSON(): number;
+        prepareOADate(value: number): number;
+    }
+    class TDate extends TDateTime {
+        prepareOADate(value: number): any;
+    }
+    class TTime extends TDateTime {
+        prepareOADate(value: number): number;
+    }
 }
 declare namespace TypeScript.Data {
     class PriorityQueue<T> extends IEnumerator<QueueItem<T>> {
