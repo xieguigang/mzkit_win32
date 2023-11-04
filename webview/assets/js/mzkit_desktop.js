@@ -1488,6 +1488,23 @@ var apps;
                 configurable: true
             });
             umap.prototype.init = function () {
+                app.desktop.mzkit.GetMatrixDims()
+                    .then(function (json) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var str, ints;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, json];
+                                case 1:
+                                    str = _a.sent();
+                                    ints = JSON.parse(str);
+                                    $ts("#nfeatures").display(ints[0].toString());
+                                    $ts("#nsamples").display(ints[1].toString());
+                                    return [2 /*return*/];
+                            }
+                        });
+                    });
+                });
             };
             return umap;
         }(Bootstrap));

@@ -21,6 +21,8 @@ namespace app.desktop {
         // 3d scatter model viewer
         GetScatter(): Promise<string>;
         Click(tag: string);
+        // umap analysis
+        GetMatrixDims(): Promise<string>;
 
         GetLCMSScatter(): Promise<string>;
         GetColors(): Promise<string>;

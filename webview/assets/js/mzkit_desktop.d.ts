@@ -31,6 +31,7 @@ declare namespace app.desktop {
         open_MALDI_model(): any;
         GetScatter(): Promise<string>;
         Click(tag: string): any;
+        GetMatrixDims(): Promise<string>;
         GetLCMSScatter(): Promise<string>;
         GetColors(): Promise<string>;
         ScanLibraries(): Promise<string>;

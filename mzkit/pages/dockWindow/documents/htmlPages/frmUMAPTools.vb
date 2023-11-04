@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.InteropServices
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
@@ -76,6 +77,12 @@ Public Class UMApAnalysis
     ''' <returns></returns>
     Public Property callback As Action(Of String)
     ''' <summary>
+    ''' click on the umap scatter point
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property onclick As Action(Of String)
+
+    ''' <summary>
     ''' the csv file path of the umap analysis result
     ''' </summary>
     ''' <returns></returns>
@@ -85,10 +92,25 @@ Public Class UMApAnalysis
         Return matrix_dims.GetJson
     End Function
 
-    Public Sub Apply()
+    Public Function GetScatter() As String
+        Dim points = UMAPPoint.ParseCsvTable(umap_result).ToArray
+        Dim json As String = points.GetJson
+        Return json
+    End Function
+
+    Public Sub Run(knn As Integer, spectral_cos As Boolean)
+
+    End Sub
+
+    Public Sub Save()
         If Not callback Is Nothing Then
             Call _callback(umap_result)
         End If
     End Sub
 
+    Public Sub Click(tag As String)
+        If Not onclick Is Nothing Then
+            Call _onclick(tag)
+        End If
+    End Sub
 End Class
