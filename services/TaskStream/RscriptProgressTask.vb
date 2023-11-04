@@ -454,7 +454,11 @@ Public NotInheritable Class RscriptProgressTask
     ''' <param name="mzdiff"></param>
     ''' <param name="intocutoff"></param>
     ''' <param name="TrIQ"></param>
-    Public Shared Sub CreateMSIPeakTable(mzpack As String, saveAs As String, mzdiff As String, intocutoff As Double, TrIQ As Double, Optional noUI As Boolean = False)
+    Public Shared Sub CreateMSIPeakTable(mzpack As String, saveAs As String, mzdiff As String, intocutoff As Double,
+                                         TrIQ As Double,
+                                         binary As Boolean,
+                                         Optional noUI As Boolean = False)
+
         Dim Rscript As String = RscriptPipelineTask.GetRScript("MSI_peaktable.R")
         Dim cli As String = $"""{Rscript}"" 
 --raw ""{mzpack}"" 
@@ -462,6 +466,7 @@ Public NotInheritable Class RscriptProgressTask
 --mzdiff ""{mzdiff}""
 --into.cutoff ""{intocutoff}""
 --TrIQ ""{TrIQ}""
+{If(binary, "--bin", "")} 
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)

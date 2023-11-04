@@ -491,7 +491,7 @@ Public Class frmMsImagingViewer
             Return
         End If
 
-        Dim matrix As String = exportAllSpotSamplePeaktable(noUI:=True, filePath:=FilePath)
+        Dim matrix As String = exportAllSpotSamplePeaktable(noUI:=True, filePath:=FilePath, binary:=True)
 
         If matrix.StringEmpty Then
             Call Workbench.Warning("Export feature ions peaktable task error or user canceled.")
@@ -2600,30 +2600,48 @@ Public Class frmMsImagingViewer
         End If
     End Sub
 
-    Private Shared Function exportAllSpotSamplePeaktable(noUI As Boolean, filePath As String) As String
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="noUI"></param>
+    ''' <param name="binary"></param>
+    ''' <param name="filePath"></param>
+    ''' <returns>returns the result matrix file save location</returns>
+    Private Shared Function exportAllSpotSamplePeaktable(noUI As Boolean, binary As Boolean, filePath As String) As String
         ' export all spots
         Using file As New SaveFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
             If file.ShowDialog = DialogResult.OK Then
-                Call InputDialog.Input(Of InputMSIPeakTableParameters)(
-                    Sub(cfg)
-                        Call RscriptProgressTask.CreateMSIPeakTable(
-                            mzpack:=filePath,
-                            saveAs:=file.FileName,
-                            cfg.Mzdiff, cfg.IntoCutoff, cfg.TrIQCutoff,
-                            noUI
-                        )
-                    End Sub)
-
-                If file.FileName.FileExists(ZERO_Nonexists:=True) Then
-                    Return file.FileName
-                Else
-                    ' user cancel or task error
-                    Return Nothing
-                End If
+                Return exportAllSpotSamplePeaktable(noUI, binary, rawdata:=filePath, savefile:=file.FileName)
             Else
                 Return Nothing
             End If
         End Using
+    End Function
+
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="noUI"></param>
+    ''' <param name="binary"></param>
+    ''' <returns>returns the result matrix file save location</returns>
+    Private Shared Function exportAllSpotSamplePeaktable(noUI As Boolean, binary As Boolean, rawdata As String, savefile As String) As String
+        Call InputDialog.Input(Of InputMSIPeakTableParameters)(
+            Sub(cfg)
+                Call RscriptProgressTask.CreateMSIPeakTable(
+                    mzpack:=rawdata,
+                    saveAs:=savefile,
+                    cfg.Mzdiff, cfg.IntoCutoff, cfg.TrIQCutoff,
+                    binary:=binary,
+                    noUI
+                )
+            End Sub)
+
+        If savefile.FileExists(ZERO_Nonexists:=True) Then
+            Return savefile
+        Else
+            ' user cancel or task error
+            Return Nothing
+        End If
     End Function
 
     Private Sub exportMSISampleTable()
@@ -2631,7 +2649,7 @@ Public Class frmMsImagingViewer
             ' select file and export all pixel spots
             Using file As New OpenFileDialog With {.Filter = "BioNovoGene mzPack(*.mzPack)|*.mzPack"}
                 If file.ShowDialog = DialogResult.OK Then
-                    Call exportAllSpotSamplePeaktable(noUI:=False, filePath:=file.FileName)
+                    Call exportAllSpotSamplePeaktable(noUI:=False, filePath:=file.FileName, binary:=False)
                 End If
             End Using
 
@@ -2641,7 +2659,7 @@ Public Class frmMsImagingViewer
 
         If sampleRegions.IsNullOrEmpty Then
             ' Call Workbench.Warning("No sample spot regions!")
-            Call exportAllSpotSamplePeaktable(noUI:=False, filePath:=FilePath)
+            Call exportAllSpotSamplePeaktable(noUI:=False, filePath:=FilePath, binary:=False)
         Else
             Using file As New SaveFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
                 If file.ShowDialog = DialogResult.OK Then
