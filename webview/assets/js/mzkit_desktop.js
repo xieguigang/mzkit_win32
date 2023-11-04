@@ -1522,6 +1522,23 @@ var apps;
                 $ts("#learningRate-value").display(val);
             };
             umap.prototype.run_umap_onclick = function () {
+                app.desktop.mzkit.Run(parseFloat($ts.value("#knn").toString()), parseFloat($ts.value("#KnnIter").toString()), parseFloat($ts.value("#localConnectivity").toString()), parseFloat($ts.value("#bandwidth").toString()), parseFloat($ts.value("#learningRate").toString()), parseBoolean($ts.value("#knn").toString())).then(function (b) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var flag;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, b];
+                                case 1:
+                                    flag = _a.sent();
+                                    if (flag) {
+                                    }
+                                    else {
+                                    }
+                                    return [2 /*return*/];
+                            }
+                        });
+                    });
+                });
             };
             return umap;
         }(Bootstrap));

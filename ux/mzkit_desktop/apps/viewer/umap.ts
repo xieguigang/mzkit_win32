@@ -38,7 +38,22 @@ namespace apps.viewer {
         }
 
         public run_umap_onclick() {
+            app.desktop.mzkit.Run(
+                parseFloat($ts.value("#knn").toString()),
+                parseFloat($ts.value("#KnnIter").toString()),
+                parseFloat($ts.value("#localConnectivity").toString()),
+                parseFloat($ts.value("#bandwidth").toString()),
+                parseFloat($ts.value("#learningRate").toString()),
+                parseBoolean($ts.value("#knn").toString())
+            ).then(async function (b) {
+                const flag = await b;
 
+                if (flag) {
+
+                } else {
+
+                }
+            });
         }
     }
 }
