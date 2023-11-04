@@ -24,6 +24,7 @@ Partial Class frmUMAPTools
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmUMAPTools))
         Me.WebView21 = New Microsoft.Web.WebView2.WinForms.WebView2()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -46,6 +47,7 @@ Partial Class frmUMAPTools
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(934, 514)
         Me.Controls.Add(Me.WebView21)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmUMAPTools"
         Me.Text = "UMAP Analysis"
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).EndInit()
