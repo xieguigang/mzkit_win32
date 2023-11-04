@@ -96,6 +96,7 @@ Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports MZWorkPack
+Imports SMRUCC.genomics.Analysis.HTS.DataFrame
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Components
 Imports SMRUCC.Rsharp.Runtime.Interop
@@ -393,7 +394,6 @@ Module BackgroundTask
 
         Dim mzerr = Math.getTolerance(mzdiff, env, [default]:="da:0.005")
         Dim dataset As List(Of NamedCollection(Of Double))
-        Dim file As New StreamWriter(save)
         Dim titleKeys As String() = Nothing
 
         If mzerr Like GetType(Message) Then
@@ -408,8 +408,17 @@ Module BackgroundTask
 
         If save_bin Then
             ' save as the GCModeller HTS matrix object
+            Dim spotSet As DataFrameRow() = dataset.Select(Function(i) New DataFrameRow(i)).ToArray
+            Dim hts As New Matrix With {
+                .expression = spotSet,
+                .sampleID = titleKeys,
+                .tag = raw.BaseName
+            }
 
+            Call hts.Save(save)
         Else
+            Dim file As New StreamWriter(save)
+
             ' the data keys is the column names
             Call file.WriteLine({"MID"}.JoinIterates(titleKeys).JoinBy(","))
 
