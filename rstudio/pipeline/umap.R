@@ -17,7 +17,7 @@ const spectral_cos as boolean = ?"--spectral_cos" || FALSE;
 [@info "read the GCModeller HTS expression matrix binary file?"]
 const read_bin as boolean = ?"--read_bin" || FALSE;
 
-let data   = {
+const read_data = function() {
 	if (!read_bin) {
 		read.csv(input_data, row.names = 1, check.names = FALSE);
 	} else {
@@ -29,6 +29,8 @@ let data   = {
 		;
 	}
 }
+
+let data   = read_data();
 let labels = NULL;
 
 if ("class" in colnames(data)) {
