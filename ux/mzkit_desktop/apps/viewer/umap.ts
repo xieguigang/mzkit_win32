@@ -39,6 +39,10 @@ namespace apps.viewer {
             $ts("#learningRate-value").display(val);
         }
 
+        public kmeans_onchange(val: string) {
+            $ts("#kmeans-value").display(val);
+        }
+
         public run_umap_onclick() {
             const vm = this;
 

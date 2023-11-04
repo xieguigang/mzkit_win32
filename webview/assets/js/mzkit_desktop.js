@@ -1522,6 +1522,9 @@ var apps;
             umap.prototype.learningRate_onchange = function (val) {
                 $ts("#learningRate-value").display(val);
             };
+            umap.prototype.kmeans_onchange = function (val) {
+                $ts("#kmeans-value").display(val);
+            };
             umap.prototype.run_umap_onclick = function () {
                 var vm = this;
                 vm.showSpinner();

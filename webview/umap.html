@@ -97,21 +97,35 @@
                 </div>
             </div>
 
-            <div class="d-flex justify-content-center">
-                <div id="spinner" class="spinner-border" role="status" style="display: none;">
-                    <span class="visually-hidden">Running...</span>
-                </div>
-            </div>
-
-
             <div class="col">
-                <div class="main" id="viewer" style="margin: 5px; background: white; width: 90%; height: 600px;">
+                <div class="main" id="viewer" style="margin: 5px; background: white; width: 90%; height: 300px;">
 
+                </div>
+
+                <div class="row">
+                    <div class="col">
+
+                        <h5>Clustering</h5>
+
+                        <label for="kmeans" class="form-label">KMeans: <span id="kmeans-value"></span></label>
+                        <input type="range" class="form-range" value="6" min="3" max="100" step="1" id="kmeans">
+
+                        <div class="row">
+                            <div class="col">
+                                <button type="button" class="btn btn-primary" id="run_kmeans">Apply</button>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
 
-
+        <div class="d-flex justify-content-center">
+            <div id="spinner" class="spinner-border" role="status" style="display: none;">
+                <span class="visually-hidden">Running...</span>
+            </div>
+        </div>
     </div>
 
 </body>
