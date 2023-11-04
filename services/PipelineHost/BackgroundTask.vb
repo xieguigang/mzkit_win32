@@ -415,12 +415,14 @@ Module BackgroundTask
                 .tag = raw.BaseName
             }
 
+            Call RunSlavePipeline.SendMessage("save binary matrix file!")
             Call hts.Save(save)
         Else
             Dim file As New StreamWriter(save)
 
             ' the data keys is the column names
             Call file.WriteLine({"MID"}.JoinIterates(titleKeys).JoinBy(","))
+            Call RunSlavePipeline.SendMessage("save csv ascii text file!")
 
             For Each line As NamedCollection(Of Double) In dataset
                 Call New String() {"""" & line.name & """"} _
