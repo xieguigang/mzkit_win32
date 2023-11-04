@@ -17,7 +17,12 @@ let data   = {
 	if (!read_bin) {
 		read.csv(input_data, row.names = 1, check.names = FALSE);
 	} else {
+		imports "geneExpression" from "phenotype_kit";
 
+		input_data
+		|> load.expr0(lazy = FALSE)
+		|> as.data.frame()
+		;
 	}
 }
 let labels = NULL;
