@@ -388,11 +388,13 @@ Module BackgroundTask
                                          Optional mzdiff As Object = "da:0.005",
                                          Optional into_cutoff As Double = 0.05,
                                          Optional TrIQ As Double = 0.6,
+                                         Optional save_bin As Boolean = False,
                                          Optional env As Environment = Nothing) As Object
 
         Dim mzerr = Math.getTolerance(mzdiff, env, [default]:="da:0.005")
-        Dim dataKeys As String() = Nothing
         Dim dataset As List(Of NamedCollection(Of Double))
+        Dim file As New StreamWriter(save)
+        Dim titleKeys As String() = Nothing
 
         If mzerr Like GetType(Message) Then
             Return mzerr.TryCast(Of Message)
@@ -400,12 +402,42 @@ Module BackgroundTask
             Call RunSlavePipeline.SendMessage("Initialize raw data file...")
         End If
 
+        dataset = raw.exportMatrixRows(regions, titleKeys, mzerr.TryCast(Of Tolerance), TrIQ, into_cutoff)
+
+        Call RunSlavePipeline.SendProgress(100, $"Save peaktable!")
+
+        If save_bin Then
+            ' save as the GCModeller HTS matrix object
+
+        Else
+            ' the data keys is the column names
+            Call file.WriteLine({"MID"}.JoinIterates(titleKeys).JoinBy(","))
+
+            For Each line As NamedCollection(Of Double) In dataset
+                Call New String() {"""" & line.name & """"} _
+                    .JoinIterates(line.value.Select(Function(d) d.ToString)) _
+                    .JoinBy(",") _
+                    .DoCall(AddressOf file.WriteLine)
+            Next
+
+            Call file.Flush()
+        End If
+
+        Return Nothing
+    End Function
+
+    <Extension>
+    Private Function exportMatrixRows(raw As String, regions As TissueRegion(), ByRef titleKeys As String(),
+                                      mzerr As Tolerance,
+                                      TrIQ As Double,
+                                      into_cutoff As Double) As List(Of NamedCollection(Of Double))
         Dim render As Drawer
-        Dim ppm20 As Tolerance = mzerr.TryCast(Of Tolerance)
-        Dim file As New StreamWriter(save)
+        Dim ppm20 As Tolerance = mzerr
         Dim loadraw = MSImagingReader.UnifyReadAsMzPack(raw)
         Dim annos As Dictionary(Of String, String) = Nothing
         Dim index_win As Double
+        Dim dataKeys As String() = Nothing
+        Dim dataset As List(Of NamedCollection(Of Double))
 
         Call RunSlavePipeline.SendMessage("load raw data into ms-imaging render")
 
@@ -424,7 +456,7 @@ Module BackgroundTask
             dataset = regions.exportRegionDataset(render, ppm20, into_cutoff, dataKeys, TrIQ, index_win)
         End If
 
-        Dim titleKeys As String() = dataKeys.ToArray
+        titleKeys = dataKeys.ToArray
 
         If Not annos.IsNullOrEmpty Then
             Dim nameIndex = New BlockSearchFunction(Of (mz As Double, String))(
@@ -450,20 +482,7 @@ Module BackgroundTask
             Next
         End If
 
-        Call RunSlavePipeline.SendProgress(100, $"Save peaktable!")
-        ' the data keys is the column names
-        Call file.WriteLine({"MID"}.JoinIterates(titleKeys).JoinBy(","))
-
-        For Each line As NamedCollection(Of Double) In dataset
-            Call New String() {"""" & line.name & """"} _
-                .JoinIterates(line.value.Select(Function(d) d.ToString)) _
-                .JoinBy(",") _
-                .DoCall(AddressOf file.WriteLine)
-        Next
-
-        Call file.Flush()
-
-        Return Nothing
+        Return dataset
     End Function
 
     ''' <summary>

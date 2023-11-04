@@ -57,12 +57,16 @@ if (is.null(regions)) {
 			NULL, savefile, 
 			mzdiff = mzdiff,
 			into.cutoff = intocutoff, 
-			TrIQ = TrIQ
+			TrIQ = TrIQ,
+			save_bin = save_bin
 		);
 	}
 } else {
 	using savefile as file(savepath, truncate = TRUE) {
-		BackgroundTask::MSI_peaktable(raw, getRegions(), savefile);
+		raw |> BackgroundTask::MSI_peaktable(
+			getRegions(), savefile, 
+			save_bin = save_bin
+		);
 	}
 }
 
