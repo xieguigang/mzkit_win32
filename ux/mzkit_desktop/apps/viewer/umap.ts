@@ -104,7 +104,7 @@ namespace apps.viewer {
                 const csv: string = await str;
                 const data: DataURI = <DataURI>{
                     mime_type: "plain/text",
-                    data: csv
+                    data: Base64.encode(csv)
                 }
 
                 if (!Strings.Empty(csv, true)) {

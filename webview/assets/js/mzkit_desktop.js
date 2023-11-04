@@ -1605,7 +1605,7 @@ var apps;
                                     csv = _a.sent();
                                     data = {
                                         mime_type: "plain/text",
-                                        data: csv
+                                        data: Base64.encode(csv)
                                     };
                                     if (!Strings.Empty(csv, true)) {
                                         DOM.download("umap.csv", data, false);
