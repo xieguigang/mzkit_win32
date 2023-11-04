@@ -109,7 +109,10 @@ Public Class PageMoleculeNetworking
 
         Call MNtool.rawMatrix.SaveTo(tempfile)
 
-        Dim umap3 As String = RscriptProgressTask.CreateUMAPCluster(tempfile, knn:=16, readBinary:=False)
+        Dim umap3 As String = RscriptProgressTask.CreateUMAPCluster(
+            tempfile,
+            knn:=16, knniter:=64, localConnectivity:=1, bandwidth:=1, learningRate:=0.99, spectral_cos:=True,
+            readBinary:=False)
 
         If umap3.StringEmpty Then
             MessageBox.Show("Sorry, run umap task error...", "UMAP error", MessageBoxButtons.OK, MessageBoxIcon.Stop)
