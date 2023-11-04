@@ -18,11 +18,27 @@ namespace apps.viewer {
         }
 
         public knn_onchange(val: string) {
-            console.log(val);
+            $ts("#knn-value").display(val);
+        }
+
+        public KnnIter_onchange(val: string) {
+            $ts("#knnItr-value").display(val);
+        }
+
+        public localConnectivity_onchange(val: string) {
+            $ts("#localConnect-value").display(val);
+        }
+
+        public bandwidth_onchange(val: string) {
+            $ts("#bandwidth-value").display(val);
+        }
+
+        public learningRate_onchange(val: string) {
+            $ts("#learningRate-value").display(val);
         }
 
         public run_umap_onclick() {
-            
+
         }
     }
 }

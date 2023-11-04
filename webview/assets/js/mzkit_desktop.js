@@ -1507,7 +1507,19 @@ var apps;
                 });
             };
             umap.prototype.knn_onchange = function (val) {
-                console.log(val);
+                $ts("#knn-value").display(val);
+            };
+            umap.prototype.KnnIter_onchange = function (val) {
+                $ts("#knnItr-value").display(val);
+            };
+            umap.prototype.localConnectivity_onchange = function (val) {
+                $ts("#localConnect-value").display(val);
+            };
+            umap.prototype.bandwidth_onchange = function (val) {
+                $ts("#bandwidth-value").display(val);
+            };
+            umap.prototype.learningRate_onchange = function (val) {
+                $ts("#learningRate-value").display(val);
             };
             umap.prototype.run_umap_onclick = function () {
             };

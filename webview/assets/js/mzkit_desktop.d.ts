@@ -265,6 +265,10 @@ declare namespace apps.viewer {
         get appName(): string;
         protected init(): void;
         knn_onchange(val: string): void;
+        KnnIter_onchange(val: string): void;
+        localConnectivity_onchange(val: string): void;
+        bandwidth_onchange(val: string): void;
+        learningRate_onchange(val: string): void;
         run_umap_onclick(): void;
     }
 }
