@@ -258,3 +258,9 @@ declare namespace apps.viewer {
         static ExportViewImage(): void;
     }
 }
+declare namespace apps.viewer {
+    class umap extends Bootstrap {
+        get appName(): string;
+        protected init(): void;
+    }
+}
