@@ -521,7 +521,19 @@ Public Class frmMsImagingViewer
         Dim matrix As String = cachefile
 
         If Not cachefile.FileLength > 1024 Then
-            matrix = exportAllSpotSamplePeaktable(noUI:=True, rawdata:=FilePath, binary:=True, savefile:=cachefile)
+            Dim par As New InputMSIPeakTableParameters With {
+                .Mzdiff = 0.5,
+                .TrIQCutoff = 1,
+                .IntoCutoff = 0.05
+            }
+
+            matrix = exportAllSpotSamplePeaktable(
+                noUI:=True,
+                rawdata:=FilePath,
+                binary:=True,
+                savefile:=cachefile,
+                pars:=par
+            )
         End If
 
         If matrix.StringEmpty Then
@@ -2666,7 +2678,11 @@ Public Class frmMsImagingViewer
     ''' <param name="noUI"></param>
     ''' <param name="binary"></param>
     ''' <returns>returns the result matrix file save location</returns>
-    Private Shared Function exportAllSpotSamplePeaktable(noUI As Boolean, binary As Boolean, rawdata As String, savefile As String) As String
+    Private Shared Function exportAllSpotSamplePeaktable(noUI As Boolean, binary As Boolean,
+                                                         rawdata As String,
+                                                         savefile As String,
+                                                         Optional pars As InputMSIPeakTableParameters = Nothing) As String
+
         Call InputDialog.Input(Of InputMSIPeakTableParameters)(
             Sub(cfg)
                 Call RscriptProgressTask.CreateMSIPeakTable(
@@ -2676,7 +2692,7 @@ Public Class frmMsImagingViewer
                     binary:=binary,
                     noUI
                 )
-            End Sub)
+            End Sub, config:=pars)
 
         If savefile.FileExists(ZERO_Nonexists:=True) Then
             Return savefile
