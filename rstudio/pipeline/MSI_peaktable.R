@@ -7,12 +7,25 @@ require(graphics2D);
 # author: xieguigang <xie.guigang@gcmodeller.org>
 # description: export MSI peaktable for downstream data analysis
 
-const raw      as string = ?"--raw"     || stop("a raw data file in mzpack format must be provided!");
+[@info "the spatial rawdata file its file path, should be a 
+        data file in mzpack file format."]
+const raw as string = ?"--raw" || stop("a raw data file in mzpack format must be provided!");
+
+[@info "the regions file, this parameter will enable the 
+        script just export the spot samples inside the specific 
+		sample regions."]
 const regions  as string = ?"--regions" || NULL;
+
+[@info "the matrix file save location"]
 const savepath as string = ?"--save"    || `${dirname(raw)}/${basename(raw)}_sampledata.csv`;
 const mzdiff   as string = ?"--mzdiff"  || "da:0.005";
 const intocutoff as double = ?"--into.cutoff" || 0.05;
 const TrIQ as double       = ?"--TrIQ"  || 1.0;
+
+[@info "export the spatial expression matrix as the GCModeller 
+        HTS expression matrix object? not a general csv ascii 
+		text file."]
+const save_bin as boolean  = ?"--bin"   || FALSE;
 
 #' get regions polygon data
 #' 
@@ -20,6 +33,10 @@ const getRegions = function() {
 	regions
 	|> read.tissue_regions()
 	;
+}
+
+if (save_bin) {
+	print("the spatial expression matrix will be saved as a GCModeller HTS matrix object!");
 }
 
 if (is.null(regions)) {
