@@ -31,6 +31,7 @@ declare namespace app.desktop {
         open_MALDI_model(): any;
         GetScatter(): Promise<string>;
         Click(tag: string): any;
+        GetUMAPFile(): Promise<string>;
         GetMatrixDims(): Promise<string>;
         Run(knn: number, knniter: number, localConnectivity: number, bandwidth: number, learningRate: number, spectral_cos: boolean): Promise<boolean>;
         RunKmeans(k: number): Promise<boolean>;

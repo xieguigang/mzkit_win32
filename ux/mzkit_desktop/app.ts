@@ -22,6 +22,7 @@ namespace app.desktop {
         GetScatter(): Promise<string>;
         Click(tag: string);
         // umap analysis
+        GetUMAPFile(): Promise<string>;
         GetMatrixDims(): Promise<string>;
         Run(knn: number, knniter: number,
             localConnectivity: number,

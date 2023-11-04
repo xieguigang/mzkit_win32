@@ -59,10 +59,11 @@ namespace apps.viewer {
 
                 if (flag) {
                     vm.loadUMAP();
-                    vm.hideSpinner();
                 } else {
 
                 }
+
+                vm.hideSpinner();
             });
         }
 
@@ -70,6 +71,11 @@ namespace apps.viewer {
             const vm = this;
 
             vm.showSpinner();
+            app.desktop.mzkit.GetUMAPFile()
+                .then(async function (str) {
+                    const filepath: string = await str;
+                    console.log(filepath);
+                });
             app.desktop.mzkit
                 .RunKmeans(parseInt($ts.value("#kmeans").toString()))
                 .then(async function (b) {
@@ -77,8 +83,9 @@ namespace apps.viewer {
 
                     if (flag) {
                         vm.loadUMAP();
-                        vm.hideSpinner();
                     }
+
+                    vm.hideSpinner();
                 });
         }
 
@@ -93,6 +100,11 @@ namespace apps.viewer {
         }
 
         private loadUMAP() {
+            app.desktop.mzkit.GetUMAPFile()
+                .then(async function (str) {
+                    const filepath: string = await str;
+                    console.log(filepath);
+                });
             app.desktop.mzkit.GetScatter()
                 .then(async function (str) {
                     const json: string = await str;

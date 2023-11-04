@@ -1538,10 +1538,10 @@ var apps;
                                     flag = _a.sent();
                                     if (flag) {
                                         vm.loadUMAP();
-                                        vm.hideSpinner();
                                     }
                                     else {
                                     }
+                                    vm.hideSpinner();
                                     return [2 /*return*/];
                             }
                         });
@@ -1551,6 +1551,21 @@ var apps;
             umap.prototype.run_kmeans_onclick = function () {
                 var vm = this;
                 vm.showSpinner();
+                app.desktop.mzkit.GetUMAPFile()
+                    .then(function (str) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var filepath;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, str];
+                                case 1:
+                                    filepath = _a.sent();
+                                    console.log(filepath);
+                                    return [2 /*return*/];
+                            }
+                        });
+                    });
+                });
                 app.desktop.mzkit
                     .RunKmeans(parseInt($ts.value("#kmeans").toString()))
                     .then(function (b) {
@@ -1563,8 +1578,8 @@ var apps;
                                     flag = _a.sent();
                                     if (flag) {
                                         vm.loadUMAP();
-                                        vm.hideSpinner();
                                     }
+                                    vm.hideSpinner();
                                     return [2 /*return*/];
                             }
                         });
@@ -1580,6 +1595,21 @@ var apps;
                     .style.display = 'none';
             };
             umap.prototype.loadUMAP = function () {
+                app.desktop.mzkit.GetUMAPFile()
+                    .then(function (str) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var filepath;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, str];
+                                case 1:
+                                    filepath = _a.sent();
+                                    console.log(filepath);
+                                    return [2 /*return*/];
+                            }
+                        });
+                    });
+                });
                 app.desktop.mzkit.GetScatter()
                     .then(function (str) {
                     return __awaiter(this, void 0, void 0, function () {

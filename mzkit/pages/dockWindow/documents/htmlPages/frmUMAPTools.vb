@@ -89,6 +89,14 @@ Public Class UMApAnalysis
     ''' <returns></returns>
     Public Property umap_result As String
 
+    Public Function GetUMAPFile() As String
+        If umap_result.StringEmpty Then
+            Return $"{matrix.ParentPath}/{matrix.BaseName}_umap3.csv"
+        Else
+            Return umap_result
+        End If
+    End Function
+
     Public Function GetMatrixDims() As String
         Return matrix_dims.GetJson
     End Function
