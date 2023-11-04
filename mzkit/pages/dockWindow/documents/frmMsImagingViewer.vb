@@ -547,7 +547,7 @@ Public Class frmMsImagingViewer
             .matrix = matrix,
             .matrix_dims = {dims.nfeature, dims.nsample},
             .callback = Sub(umap3 As String)
-                            If umap3.StringEmpty Then
+                            If umap3.StringEmpty OrElse Not umap3.FileExists Then
                                 MessageBox.Show("Sorry, run umap task error...", "UMAP error", MessageBoxButtons.OK, MessageBoxIcon.Stop)
                             Else
                                 Call ImportsUmap3dFile(umap3)

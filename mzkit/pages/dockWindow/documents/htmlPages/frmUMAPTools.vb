@@ -166,7 +166,13 @@ Public Class UMApAnalysis
 
     Public Sub Save()
         If Not callback Is Nothing Then
-            Call _callback(umap_result)
+            Dim umap_result As String = get_kmeans()
+
+            If umap_result.FileExists Then
+                Call _callback(umap_result)
+            Else
+                Call _callback(Me.umap_result)
+            End If
         End If
     End Sub
 
