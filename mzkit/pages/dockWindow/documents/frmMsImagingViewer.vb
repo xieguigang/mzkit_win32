@@ -108,6 +108,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.Html.CSS
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Scripting.Runtime
+Imports Microsoft.VisualBasic.SecurityString
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Text
 Imports mzblender
@@ -486,12 +487,41 @@ Public Class frmMsImagingViewer
                                End Sub, config:=canvas)
     End Sub
 
+    Private Shared Function getCacheKey(filepath As String) As String
+        Dim filesize As Long = filepath.FileLength
+        Dim blockSize As Integer = 8192
+        Dim md5 As New Md5HashProvider
+        Dim blocks As Long() = {1, filesize / 3, filesize / 2, filesize - blockSize - 3}
+
+        If filesize < 8192 * 5 Then
+            Return md5.GetMd5Hash(filepath.ReadBinary)
+        Else
+            Dim sigs As New List(Of String)
+            Dim read As Stream = filepath.Open(FileMode.Open, doClear:=False, [readOnly]:=False)
+            Dim bytes As Byte() = New Byte(blockSize - 1) {}
+
+            For Each offset As Long In blocks
+                read.Seek(offset, SeekOrigin.Begin)
+                read.Read(bytes, Scan0, blockSize)
+                sigs.Add(md5.GetMd5Hash(bytes))
+            Next
+
+            Return md5.GetMd5Hash(sigs.JoinBy("+"))
+        End If
+    End Function
+
     Private Sub RunUMAPTissueCluster()
         If Not checkService() Then
             Return
         End If
 
-        Dim matrix As String = exportAllSpotSamplePeaktable(noUI:=True, filePath:=FilePath, binary:=True)
+        Dim cache_key As String = getCacheKey(FilePath)
+        Dim cachefile As String = $"{App.AppSystemTemp}/.matrix_cache/{cache_key}.dat"
+        Dim matrix As String = cachefile
+
+        If Not cachefile.FileLength > 1024 Then
+            matrix = exportAllSpotSamplePeaktable(noUI:=True, rawdata:=FilePath, binary:=True, savefile:=cachefile)
+        End If
 
         If matrix.StringEmpty Then
             Call Workbench.Warning("Export feature ions peaktable task error or user canceled.")
