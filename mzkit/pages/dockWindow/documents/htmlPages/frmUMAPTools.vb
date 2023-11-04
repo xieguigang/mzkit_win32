@@ -104,7 +104,15 @@ Public Class UMApAnalysis
         If umap_result.StringEmpty Then
             Return "[]"
         Else
-            Dim points = UMAPPoint.ParseCsvTable(umap_result).ToArray
+            Dim try_kmeans As String = umap_result.TrimSuffix & "_kmeans.csv"
+            Dim points As UMAPPoint()
+
+            If try_kmeans.FileExists Then
+                points = UMAPPoint.ParseCsvTable(try_kmeans).ToArray
+            Else
+                points = UMAPPoint.ParseCsvTable(umap_result).ToArray
+            End If
+
             Dim json As String = points.GetJson
             Return json
         End If
