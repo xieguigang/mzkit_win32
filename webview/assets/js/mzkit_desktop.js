@@ -758,7 +758,8 @@ var apps;
                     });
                 });
             };
-            clusterViewer.render3DScatter = function (dataset) {
+            clusterViewer.render3DScatter = function (dataset, hook_resize) {
+                if (hook_resize === void 0) { hook_resize = true; }
                 var clusters = [];
                 for (var _i = 0, _a = $from(dataset).GroupBy(function (a) { return a.class; }).ToArray(); _i < _a.length; _i++) {
                     var group = _a[_i];
@@ -796,8 +797,10 @@ var apps;
                     div.style.height = (window.innerHeight - padding) + "px";
                     render.chartObj.resize();
                 };
-                window.onresize = function () { return resize_canvas(); };
-                resize_canvas();
+                if (hook_resize) {
+                    window.onresize = function () { return resize_canvas(); };
+                    resize_canvas();
+                }
             };
             clusterViewer.format_cluster_tag = function (data) {
                 var class_labels = $from(data).Select(function (r) { return r.cluster; }).Distinct().ToArray();
@@ -866,7 +869,9 @@ var apps;
                             // console.log(arg);
                             var i = arg.dataIndex;
                             var labels = spot_labels.Item(arg.seriesName);
-                            return "".concat(arg.seriesName, " spot:<").concat(labels[i], "> scatter3:").concat(JSON.stringify(arg.data));
+                            var f = arg.data;
+                            var r = $from(f).Select(function (n) { return Strings.round(n, 4); }).ToArray();
+                            return "".concat(arg.seriesName, " spot:<").concat(labels[i], "> scatter3:").concat(JSON.stringify(r));
                         }
                     },
                     legend: {
@@ -1656,10 +1661,10 @@ var apps;
                                     json = _a.sent();
                                     scatter = JSON.parse(json);
                                     if (isNullOrEmpty(scatter)) {
-                                        viewer.clusterViewer.render3DScatter([]);
+                                        viewer.clusterViewer.render3DScatter([], false);
                                     }
                                     else {
-                                        viewer.clusterViewer.render3DScatter(scatter);
+                                        viewer.clusterViewer.render3DScatter(scatter, false);
                                     }
                                     return [2 /*return*/];
                             }

@@ -135,9 +135,9 @@ namespace apps.viewer {
                     const scatter: scatterPoint[] = JSON.parse(json);
 
                     if (isNullOrEmpty(scatter)) {
-                        clusterViewer.render3DScatter([]);
+                        clusterViewer.render3DScatter([], false);
                     } else {
-                        clusterViewer.render3DScatter(scatter);
+                        clusterViewer.render3DScatter(scatter, false);
                     }
                 });
         }

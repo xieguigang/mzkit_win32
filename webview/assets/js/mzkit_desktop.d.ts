@@ -188,7 +188,7 @@ declare namespace apps.viewer {
     class clusterViewer extends Bootstrap {
         get appName(): string;
         protected init(): void;
-        static render3DScatter(dataset: scatterPoint[]): void;
+        static render3DScatter(dataset: scatterPoint[], hook_resize?: boolean): void;
         private static format_cluster_tag;
         static load_cluster(data: cluster_data[]): gl_plot.scatter3d_options;
     }

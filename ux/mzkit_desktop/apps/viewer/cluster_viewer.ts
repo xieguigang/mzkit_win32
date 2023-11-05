@@ -48,7 +48,7 @@ namespace apps.viewer {
                 });
         }
 
-        public static render3DScatter(dataset: scatterPoint[]) {
+        public static render3DScatter(dataset: scatterPoint[], hook_resize: boolean = true) {
             const clusters: cluster_data[] = [];
 
             for (let group of $from(dataset).GroupBy(a => a.class).ToArray()) {
@@ -98,8 +98,10 @@ namespace apps.viewer {
                 render.chartObj.resize();
             };
 
-            window.onresize = () => resize_canvas();
-            resize_canvas();
+            if (hook_resize) {
+                window.onresize = () => resize_canvas();
+                resize_canvas();
+            }
         }
 
         private static format_cluster_tag(data: cluster_data[]) {
@@ -173,8 +175,10 @@ namespace apps.viewer {
 
                         const i = arg.dataIndex;
                         const labels = spot_labels.Item(arg.seriesName);
+                        const f: number[] = arg.data;
+                        const r: number[] = $from(f).Select(n => <number>Strings.round(n, 4)).ToArray();
 
-                        return `${arg.seriesName} spot:<${labels[i]}> scatter3:${JSON.stringify(arg.data)}`;
+                        return `${arg.seriesName} spot:<${labels[i]}> scatter3:${JSON.stringify(r)}`;
                     }
                 },
                 legend: {
