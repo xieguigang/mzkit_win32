@@ -39,10 +39,10 @@
     <ROW Property="CTRLS" Value="3"/>
     <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1028:{84711C5A-FD17-4B9E-92FE-8FC4F531751D} 1033:{84711C5A-FD17-4B9E-92FE-8FC4F531751D} 1036:{84711C5A-FD17-4B9E-92FE-8FC4F531751D} 1041:{84711C5A-FD17-4B9E-92FE-8FC4F531751D} 1049:{84711C5A-FD17-4B9E-92FE-8FC4F531751D} 2052:{84711C5A-FD17-4B9E-92FE-8FC4F531751D} 2057:{84711C5A-FD17-4B9E-92FE-8FC4F531751D} " Type="16"/>
+    <ROW Property="ProductCode" Value="1028:{07EE6F14-8E6D-46D8-80C8-51D9544363C4} 1033:{07EE6F14-8E6D-46D8-80C8-51D9544363C4} 1036:{07EE6F14-8E6D-46D8-80C8-51D9544363C4} 1041:{07EE6F14-8E6D-46D8-80C8-51D9544363C4} 1049:{07EE6F14-8E6D-46D8-80C8-51D9544363C4} 2052:{07EE6F14-8E6D-46D8-80C8-51D9544363C4} 2057:{07EE6F14-8E6D-46D8-80C8-51D9544363C4} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="mzkit_win32"/>
-    <ROW Property="ProductVersion" Value="4.8.4791.9877" Options="32"/>
+    <ROW Property="ProductVersion" Value="4.8.5361.8871" Options="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{B645400B-3918-41EF-9009-7ADDD81C84B4}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -308,7 +308,7 @@
     <ROW Directory="zlib_Dir" Directory_Parent="licenses_Dir" DefaultDir="zlib"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{4B37CA0A-B0CD-4C59-BFD9-2A1787444893}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{D8014527-022E-4F98-925F-423053C597C3}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{69AA9FFE-67B1-456B-88EB-97D3D6C92AA7}" Directory_="APPDIR" Attributes="256"/>
     <ROW Component="BioDeep.dll" ComponentId="{2FECE77D-517F-47B1-97BA-15B1100BE489}" Directory_="APPDIR" Attributes="256" KeyPath="BioDeep.dll"/>
     <ROW Component="BioDeep.dll.config" ComponentId="{A40976E0-441A-417A-A528-BB27D94551EE}" Directory_="blender_Dir" Attributes="0" KeyPath="BlenderHost.deps.json" Type="0"/>
@@ -17142,7 +17142,7 @@
     <ROW XmlAttribute="xsischemaLocation" XmlElement="swidsoftware_identification_tag" Name="xsi:schemaLocation" Flags="14" Order="3" Value="http://standards.iso.org/iso/19770/-2/2008/schema.xsd software_identification_tag.xsd"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.XmlElementComponent">
-    <ROW XmlElement="swidbuild" ParentElement="swidnumeric" Name="swid:build" Condition="1" Order="2" Flags="14" Text="4791" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidbuild" ParentElement="swidnumeric" Name="swid:build" Condition="1" Order="2" Flags="14" Text="5361" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidchannel_name" ParentElement="swidlicense_linkage" Name="swid:channel_name" Condition="1" Order="1" Flags="14" Text="Standard(Community Edition)" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidchannel_type" ParentElement="swidlicense_linkage" Name="swid:channel_type" Condition="1" Order="0" Flags="14" Text="Retail" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidcustomer_type" ParentElement="swidlicense_linkage" Name="swid:customer_type" Condition="1" Order="2" Flags="14" Text="Academic" UpdateIndexInParent="0"/>
@@ -17160,7 +17160,7 @@
     <ROW XmlElement="swidregid" ParentElement="swidsoftware_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2013-01.com.panomix" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_5" ParentElement="swidsoftware_licensor" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2019-11.org.mzkit" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_6" ParentElement="swidtag_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.1995-09.me.xieguigang,gg.xie@bionovogene.com" UpdateIndexInParent="0"/>
-    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="9877" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="8871" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidserial_number" ParentElement="swidsoftware_identification_tag" Name="swid:serial_number" Condition="1" Order="7" Flags="14" Text="[PIDKEY]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_creator" ParentElement="swidsoftware_identification_tag" Name="swid:software_creator" Condition="1" Order="3" Flags="14" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_id" ParentElement="swidsoftware_identification_tag" Name="swid:software_id" Condition="1" Order="5" Flags="14" UpdateIndexInParent="0"/>
