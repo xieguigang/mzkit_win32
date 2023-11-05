@@ -410,7 +410,7 @@ Public NotInheritable Class RscriptProgressTask
     End Sub
 
     Public Shared Function KMeans(rawdata As String, k As Integer, savefile As String, noUI As Boolean) As Boolean
-        Dim Rscript As String = RscriptPipelineTask.GetRScript("kmeans.R")
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("clustering/kmeans.R")
         Dim cli As String = $"""{Rscript}""
 --rawdata ""{rawdata}""
 --k {k}
@@ -452,7 +452,7 @@ Public NotInheritable Class RscriptProgressTask
                                              learningRate As Double,
                                              spectral_cos As Boolean, readBinary As Boolean, noUI As Boolean) As String
 
-        Dim Rscript As String = RscriptPipelineTask.GetRScript("umap.R")
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("clustering/umap.R")
         Dim save As String = $"{matrix.ParentPath}/{matrix.BaseName}_umap3.csv"
         Dim cli As String = $"""{Rscript}"" 
 --input ""{matrix}"" 
