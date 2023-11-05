@@ -4334,7 +4334,6 @@
                   <ToggleButton CommandName="cmdCheckShowMapLayer" />
                 </SplitButton.ButtonItem>
                 <Button CommandName="cmdButtonAutoUMAP" />
-                <Button CommandName="cmdButtonSpatialGibbs" />
               </SplitButton>
               <Button CommandName="cmdButtonShowMSISampleWindow" />
               <Button CommandName="cmdShowTissueData" />

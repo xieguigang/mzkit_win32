@@ -192,7 +192,6 @@ namespace RibbonLib.Controls
             public const uint cmdButtonUIShowMapLayer = 224;
             public const uint cmdCheckShowMapLayer = 194;
             public const uint cmdButtonAutoUMAP = 223;
-            public const uint cmdButtonSpatialGibbs = 262;
             public const uint cmdButtonShowMSISampleWindow = 195;
             public const uint cmdShowTissueData = 220;
             public const uint cmdGroupKEGG = 133;
@@ -446,7 +445,6 @@ namespace RibbonLib.Controls
         public RibbonSplitButton ButtonUIShowMapLayer { get; private set; }
         public RibbonToggleButton CheckShowMapLayer { get; private set; }
         public RibbonButton ButtonAutoUMAP { get; private set; }
-        public RibbonButton ButtonSpatialGibbs { get; private set; }
         public RibbonButton ButtonShowMSISampleWindow { get; private set; }
         public RibbonButton ShowTissueData { get; private set; }
         public RibbonTabGroup GroupKEGG { get; private set; }
@@ -695,7 +693,6 @@ namespace RibbonLib.Controls
             ButtonUIShowMapLayer = new RibbonSplitButton(ribbon, Cmd.cmdButtonUIShowMapLayer);
             CheckShowMapLayer = new RibbonToggleButton(ribbon, Cmd.cmdCheckShowMapLayer);
             ButtonAutoUMAP = new RibbonButton(ribbon, Cmd.cmdButtonAutoUMAP);
-            ButtonSpatialGibbs = new RibbonButton(ribbon, Cmd.cmdButtonSpatialGibbs);
             ButtonShowMSISampleWindow = new RibbonButton(ribbon, Cmd.cmdButtonShowMSISampleWindow);
             ShowTissueData = new RibbonButton(ribbon, Cmd.cmdShowTissueData);
             GroupKEGG = new RibbonTabGroup(ribbon, Cmd.cmdGroupKEGG);
