@@ -102,7 +102,7 @@ namespace apps.viewer {
 
             vm.showSpinner();
             app.desktop.mzkit
-                .RunKmeans(parseInt($ts.value("#kmeans").toString()))
+                .RunGraph(parseFloat($ts.value("#identical").toString()))
                 .then(async function (b) {
                     const flag = await b;
 

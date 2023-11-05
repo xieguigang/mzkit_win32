@@ -31,6 +31,7 @@ namespace app.desktop {
             spectral_cos: boolean): Promise<boolean>;
         RunKmeans(k: number): Promise<boolean>;
         RunDbScan(min_pts: number, eps: number): Promise<boolean>;
+        RunGraph(cutoff: number): Promise<boolean>;
         Download(): Promise<string>;
 
         GetLCMSScatter(): Promise<string>;

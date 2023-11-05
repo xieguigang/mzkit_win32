@@ -196,7 +196,7 @@ Public Class UMApAnalysis
         Dim savefile As String = get_clusters()
         Dim flag = Task(Of Boolean).Run(
             Function()
-                Return RscriptProgressTask.DbScan(umap_result, eps, min_pts, savefile, noUI:=True)
+                Return RscriptProgressTask.GraphClustering(umap_result, cutoff, savefile, noUI:=True)
             End Function)
 
         Return Await flag
