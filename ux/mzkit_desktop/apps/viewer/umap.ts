@@ -60,6 +60,7 @@ namespace apps.viewer {
             const vm = this;
 
             vm.showSpinner();
+            $goto("#spinner");
             app.desktop.mzkit.Run(
                 parseInt($ts.value("#knn").toString()),
                 parseInt($ts.value("#KnnIter").toString()),
@@ -84,6 +85,7 @@ namespace apps.viewer {
             const vm = this;
 
             vm.showSpinner();
+            $goto("#spinner");
             app.desktop.mzkit
                 .RunKmeans(parseInt($ts.value("#kmeans").toString()))
                 .then(async function (b) {
@@ -101,6 +103,7 @@ namespace apps.viewer {
             const vm = this;
 
             vm.showSpinner();
+            $goto("#spinner");
             app.desktop.mzkit
                 .RunGraph(parseFloat($ts.value("#identical").toString()))
                 .then(async function (b) {
@@ -118,6 +121,7 @@ namespace apps.viewer {
             const vm = this;
 
             vm.showSpinner();
+            $goto("#spinner");
             app.desktop.mzkit
                 .RunDbScan(
                     parseInt($ts.value("#min_pts").toString()),
