@@ -140,16 +140,47 @@
 
                             <div class="col">
 
-                                <label for="kmeans" class="form-label">KMeans: <span id="kmeans-value"></span></label>
-                                <input type="range" class="form-range" value="6" min="3" max="100" step="1" id="kmeans">
-
                                 <div class="row">
+
+                                    <div class="col">
+
+                                        <label for="kmeans" class="form-label">KMeans: <span
+                                                id="kmeans-value"></span></label>
+                                        <input type="range" class="form-range" value="6" min="3" max="100" step="1"
+                                            id="kmeans">
+                                    </div>
                                     <div class="col">
                                         <button type="button" class="btn btn-primary" id="run_kmeans">Set
                                             K-Means</button>
 
                                     </div>
                                 </div>
+
+                                <div class="row">
+
+                                    <div class="col">
+
+                                        <label for="min_pts" class="form-label">Min Points: <span
+                                                id="min_pts-value"></span></label>
+                                        <input type="range" class="form-range" value="6" min="3" max="1000" step="1"
+                                            id="min_pts">
+
+
+                                        <label for="eps" class="form-label">Eps: <span id="eps-value"></span></label>
+                                        <input type="range" class="form-range" value="0.8" min="0.05" max="1000"
+                                            step="0.01" id="eps">
+
+
+                                    </div>
+
+                                    <div class="col">
+                                        <button type="button" class="btn btn-primary" id="run_dbscan">Set
+                                            DBSCAN</button>
+
+                                    </div>
+
+                                </div>
+
 
                             </div>
 
