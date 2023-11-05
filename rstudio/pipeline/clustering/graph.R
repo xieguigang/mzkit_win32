@@ -8,6 +8,14 @@ const rawdata = read.csv(input_data, row.names = 1, check.names = FALSE);
 const clusters = btree(rawdata, equals = cutoff,
                             gt = cutoff / 2) |> as.data.frame();
 const class = clusters$Cluster;
+const uniq_class = unique(class);
+
+let i = 1;
+
+for(tag in uniq_class) {
+    class[tag == class] = i;
+    i = i + 1;
+}
 
 clusters[,"Cluster"] = NULL;
 clusters[,"class"] = class;
