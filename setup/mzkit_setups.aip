@@ -128,22 +128,27 @@
     <ROW Directory="bin_2_Dir" Directory_Parent="vips_Dir" DefaultDir="bin"/>
     <ROW Directory="bin_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="bin"/>
     <ROW Directory="blender_Dir" Directory_Parent="plugins_Dir" DefaultDir="blender"/>
+    <ROW Directory="bootstrap5.3.2dist_Dir" Directory_Parent="vendor_Dir" DefaultDir="BOOTST~1.2-D|bootstrap-5.3.2-dist"/>
     <ROW Directory="bootstrapcolorpicker_Dir" Directory_Parent="img_Dir" DefaultDir="BOOTST~1|bootstrap-colorpicker"/>
     <ROW Directory="brotli_Dir" Directory_Parent="include_1_Dir" DefaultDir="brotli"/>
     <ROW Directory="cairo_1_Dir" Directory_Parent="include_1_Dir" DefaultDir="cairo"/>
     <ROW Directory="cairo_Dir" Directory_Parent="licenses_Dir" DefaultDir="cairo"/>
     <ROW Directory="cfitsio4.3.0_Dir" Directory_Parent="lib_5_Dir" DefaultDir="CFITSI~1.0|cfitsio-4.3.0"/>
     <ROW Directory="cfmid2_Dir" Directory_Parent="NewFolder_Dir" DefaultDir="cfm-id2"/>
+    <ROW Directory="clustering_Dir" Directory_Parent="pipeline_Dir" DefaultDir="CLUSTE~1|clustering"/>
     <ROW Directory="cmake_Dir" Directory_Parent="lib_5_Dir" DefaultDir="cmake"/>
     <ROW Directory="conf.avail_Dir" Directory_Parent="fontconfig_1_Dir" DefaultDir="CONF~1.AVA|conf.avail"/>
     <ROW Directory="conf.d_Dir" Directory_Parent="fonts_Dir" DefaultDir="conf.d"/>
     <ROW Directory="configQ16_Dir" Directory_Parent="ImageMagick6.9.12_Dir" DefaultDir="CONFIG~1|config-Q16"/>
     <ROW Directory="config_Dir" Directory_Parent="freetype_Dir" DefaultDir="config"/>
     <ROW Directory="css_1_Dir" Directory_Parent="webview_Dir" DefaultDir="css"/>
+    <ROW Directory="css_2_Dir" Directory_Parent="bootstrap5.3.2dist_Dir" DefaultDir="css"/>
     <ROW Directory="css_Dir" Directory_Parent="static_Dir" DefaultDir="css"/>
     <ROW Directory="data_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="data"/>
     <ROW Directory="deDE_Dir" Directory_Parent="APPDIR" DefaultDir="de-DE"/>
     <ROW Directory="deep_zoom_image_Dir" Directory_Parent="demo_Dir" DefaultDir="DEEP_Z~1|deep_zoom_image"/>
+    <ROW Directory="default_Dir" Directory_Parent="themes_Dir" DefaultDir="default"/>
+    <ROW Directory="defaultdark_Dir" Directory_Parent="themes_Dir" DefaultDir="DEFAUL~1|default-dark"/>
     <ROW Directory="demo_1_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="demo"/>
     <ROW Directory="demo_Dir" Directory_Parent="APPDIR" DefaultDir="demo"/>
     <ROW Directory="deprecated_Dir" Directory_Parent="glib_1_Dir" DefaultDir="DEPREC~1|deprecated"/>
@@ -191,6 +196,7 @@
     <ROW Directory="its_Dir" Directory_Parent="gettext_Dir" DefaultDir="its"/>
     <ROW Directory="jaJP_Dir" Directory_Parent="APPDIR" DefaultDir="ja-JP"/>
     <ROW Directory="js_1_Dir" Directory_Parent="assets_Dir" DefaultDir="js"/>
+    <ROW Directory="js_2_Dir" Directory_Parent="bootstrap5.3.2dist_Dir" DefaultDir="js"/>
     <ROW Directory="js_Dir" Directory_Parent="static_Dir" DefaultDir="js"/>
     <ROW Directory="jvenn_Dir" Directory_Parent="vendor_Dir" DefaultDir="jvenn"/>
     <ROW Directory="jxl_Dir" Directory_Parent="include_1_Dir" DefaultDir="jxl"/>
@@ -220,6 +226,7 @@
     <ROW Directory="libxml2_Dir" Directory_Parent="licenses_Dir" DefaultDir="libxml2"/>
     <ROW Directory="libxml_Dir" Directory_Parent="libxml2_1_Dir" DefaultDir="libxml"/>
     <ROW Directory="licenses_Dir" Directory_Parent="openslidewin64_Dir" DefaultDir="licenses"/>
+    <ROW Directory="logs_Dir" Directory_Parent="webview_Dir" DefaultDir="logs"/>
     <ROW Directory="magick_Dir" Directory_Parent="ImageMagick6_1_Dir" DefaultDir="magick"/>
     <ROW Directory="media_Dir" Directory_Parent="static_Dir" DefaultDir="media"/>
     <ROW Directory="metab_ce_cfm_Dir" Directory_Parent="esi_msms_models_Dir" DefaultDir="METAB_~1|metab_ce_cfm"/>
@@ -272,15 +279,18 @@
     <ROW Directory="small_demos_Dir" Directory_Parent="demo_1_Dir" DefaultDir="SMALL_~1|small_demos"/>
     <ROW Directory="static_Dir" Directory_Parent="ketcher_Dir" DefaultDir="static"/>
     <ROW Directory="templates_Dir" Directory_Parent="ketcher_Dir" DefaultDir="TEMPLA~1|templates"/>
+    <ROW Directory="themes_Dir" Directory_Parent="vakatajstreeb3135cf_Dir" DefaultDir="themes"/>
     <ROW Directory="three_Dir" Directory_Parent="vendor_Dir" DefaultDir="three"/>
     <ROW Directory="unix_1_Dir" Directory_Parent="runtimes_2_Dir" DefaultDir="unix"/>
     <ROW Directory="unix_3_Dir" Directory_Parent="runtimes_3_Dir" DefaultDir="unix"/>
     <ROW Directory="unix_Dir" Directory_Parent="runtimes_1_Dir" DefaultDir="unix"/>
+    <ROW Directory="vakatajstreeb3135cf_Dir" Directory_Parent="vendor_Dir" DefaultDir="VAKATA~1|vakata-jstree-b3135cf"/>
     <ROW Directory="vendor_Dir" Directory_Parent="webview_Dir" DefaultDir="vendor"/>
     <ROW Directory="vips_1_Dir" Directory_Parent="include_1_Dir" DefaultDir="vips"/>
     <ROW Directory="vips_Dir" Directory_Parent="NewFolder_Dir" DefaultDir="vips"/>
     <ROW Directory="vipsmodules8.14_Dir" Directory_Parent="bin_2_Dir" DefaultDir="VIPS-M~1.14|vips-modules-8.14"/>
     <ROW Directory="vscode_1_Dir" Directory_Parent="MSImaging_Dir" DefaultDir="VSCODE~1|.vscode"/>
+    <ROW Directory="vscode_2_Dir" Directory_Parent="webview_Dir" DefaultDir="VSCODE~1|.vscode"/>
     <ROW Directory="vscode_Dir" Directory_Parent="pipeline_Dir" DefaultDir="VSCODE~1|.vscode"/>
     <ROW Directory="wand_Dir" Directory_Parent="ImageMagick6_1_Dir" DefaultDir="wand"/>
     <ROW Directory="webp_Dir" Directory_Parent="include_1_Dir" DefaultDir="webp"/>
@@ -304,6 +314,7 @@
     <ROW Component="BioDeep.dll.config" ComponentId="{A40976E0-441A-417A-A528-BB27D94551EE}" Directory_="blender_Dir" Attributes="0" KeyPath="BioDeep.dll.config_2" Type="0"/>
     <ROW Component="BioDeep.dll_1" ComponentId="{8274C55C-D52A-4F5B-A268-505929309095}" Directory_="host_Dir" Attributes="256" KeyPath="BioDeep.dll_1"/>
     <ROW Component="BioDeep.dll_2" ComponentId="{64A13109-4017-44DC-A175-CEBE50EF271C}" Directory_="blender_Dir" Attributes="256" KeyPath="BioDeep.dll_2"/>
+    <ROW Component="BioDeep.dll_3" ComponentId="{D7A4ECA1-A0EC-4D85-889A-BDBE4E121E36}" Directory_="plugins_Dir" Attributes="256" KeyPath="BioDeep.dll_3"/>
     <ROW Component="BioDeep.pdb" ComponentId="{A43A4C99-E463-4917-B458-0C0240FFCE18}" Directory_="APPDIR" Attributes="0" KeyPath="BioDeep.pdb" Type="4"/>
     <ROW Component="BioDeep.pdb_1" ComponentId="{569FC529-FD15-455A-9A1D-327C3EE422B2}" Directory_="blender_Dir" Attributes="0" KeyPath="BioDeep.pdb_1" Type="4"/>
     <ROW Component="BioDeep.xml" ComponentId="{F792C30E-AF8C-4B5F-A2D9-58E3B027E541}" Directory_="APPDIR" Attributes="0" KeyPath="BioDeep.xml" Type="0"/>
@@ -645,6 +656,8 @@
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.dll_2" ComponentId="{C3D8598F-F925-42E7-9C85-34C3B35E7F92}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.dll_6" ComponentId="{8AAEEE07-C07D-45AB-AB45-171637F7D09B}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.dll_6"/>
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.pdb" ComponentId="{F9890632-ADCA-438C-A1E3-BDB1B7BC5E3B}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.pdb" Type="4"/>
+    <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll" ComponentId="{FBE8C7D0-BF0C-4D8D-AABE-ABA0648B474E}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll"/>
+    <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll_1" ComponentId="{1C84B4CE-6AF0-4DAA-A076-AE935EC63CCE}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.dll" ComponentId="{5A84BB00-4530-4F45-936D-05282C6821CB}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.dll_5" ComponentId="{18A1DFC2-9327-4EC7-894D-F5888D904513}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.dll_5"/>
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.pdb" ComponentId="{ABBD0FED-443F-476D-8518-96AE986371A6}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.pdb" Type="4"/>
@@ -994,6 +1007,7 @@
     <ROW Component="RQL.dll" ComponentId="{81094E0D-A583-4A2A-8734-FD242A0D10B0}" Directory_="host_Dir" Attributes="256" KeyPath="RQL.dll"/>
     <ROW Component="RQL.dll_1" ComponentId="{0CFE6707-EB85-49C9-9827-1FAD23F0D967}" Directory_="blender_Dir" Attributes="256" KeyPath="RQL.dll_1"/>
     <ROW Component="RQL.dll_2" ComponentId="{2912CC44-5EB3-4A95-9070-3C63AAE8DC37}" Directory_="APPDIR" Attributes="256" KeyPath="RQL.dll_2"/>
+    <ROW Component="RQL.dll_3" ComponentId="{A2ABA4B1-56AA-4494-978F-42229F751FD6}" Directory_="plugins_Dir" Attributes="256" KeyPath="RQL.dll_3"/>
     <ROW Component="RQL.pdb" ComponentId="{603F8A79-13D5-4488-B7D5-EDEE8D60D2F2}" Directory_="blender_Dir" Attributes="0" KeyPath="RQL.pdb" Type="4"/>
     <ROW Component="RQL.pdb_1" ComponentId="{62C36322-27F7-46DC-B87C-46DB783E017D}" Directory_="APPDIR" Attributes="0" KeyPath="RQL.pdb_1" Type="4"/>
     <ROW Component="Reference.rtf" ComponentId="{5454AEF9-E36B-430B-A09A-3E657C95DA64}" Directory_="APPDIR" Attributes="0" KeyPath="Reference.rtf_1"/>
@@ -1164,6 +1178,7 @@
     <ROW Component="System.Memory.dll_2" ComponentId="{37EBBB97-6017-46E4-AC04-AD3FB3EB9131}" Directory_="APPDIR" Attributes="256" KeyPath="System.Memory.dll_2"/>
     <ROW Component="System.Numerics.Tensors.dll" ComponentId="{C303739F-A4A8-4A4E-B6B0-3664F41949EB}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Numerics.Tensors.dll"/>
     <ROW Component="System.Numerics.Tensors.dll_1" ComponentId="{9AF9A248-A0EE-45AC-9ACC-083847A01205}" Directory_="blender_Dir" Attributes="0" KeyPath="System.Numerics.Tensors.dll_1"/>
+    <ROW Component="System.Numerics.Tensors.dll_2" ComponentId="{BE64778F-F879-4E16-8AAB-B81748F7FF7C}" Directory_="APPDIR" Attributes="0" KeyPath="System.Numerics.Tensors.dll_2"/>
     <ROW Component="System.Numerics.Vectors.dll" ComponentId="{F5A71B49-FFB3-4AA2-893B-FDC947FF8F38}" Directory_="dzitools_Dir" Attributes="0" KeyPath="System.Numerics.Vectors.dll"/>
     <ROW Component="System.Numerics.Vectors.dll_2" ComponentId="{3D47FC0B-6349-41D3-92EC-307A6F2D8E41}" Directory_="APPDIR" Attributes="256" KeyPath="System.Numerics.Vectors.dll_2"/>
     <ROW Component="System.Resources.Extensions.dll" ComponentId="{5F9E9865-E3D8-4C64-AFE0-E6767759C7E9}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Resources.Extensions.dll"/>
@@ -1260,7 +1275,9 @@
     <ROW Component="base.deps.json" ComponentId="{954CDACD-2410-4584-BB91-98C0782548B3}" Directory_="library_Dir" Attributes="0" KeyPath="base.deps.json" Type="0"/>
     <ROW Component="base.dll" ComponentId="{CE725451-82E3-43CF-9CED-9EA3FC09BB45}" Directory_="library_Dir" Attributes="256" KeyPath="base.dll"/>
     <ROW Component="biosample_quantification.nmrML" ComponentId="{6797762F-26CA-4D41-A12D-70B4679D666D}" Directory_="NMR_Dir" Attributes="256" KeyPath="biosample_quantification.nmrML" Type="0"/>
+    <ROW Component="bootstrap.bundle.js" ComponentId="{BFB79DE3-7CEA-4F1A-83F1-CB9CFE9DA7D9}" Directory_="js_2_Dir" Attributes="0" KeyPath="bootstrap.bundle.js" Type="0"/>
     <ROW Component="bootstrapcolorpicker.min.css" ComponentId="{F21065EF-9225-4AA5-954F-C558F78538B7}" Directory_="css_1_Dir" Attributes="0" KeyPath="bootstrapcolorpicker.min.css" Type="0"/>
+    <ROW Component="bootstrapgrid.css" ComponentId="{1B8F1BAA-B9F5-4752-BFBB-57589C515455}" Directory_="css_2_Dir" Attributes="0" KeyPath="bootstrapgrid.css" Type="0"/>
     <ROW Component="buildMSIIndex.R" ComponentId="{4CAB334A-A78A-445B-A09F-95533697E87E}" Directory_="pipeline_Dir" Attributes="256" KeyPath="buildMSIIndex.R" Type="0"/>
     <ROW Component="bullet.png" ComponentId="{312691AA-A755-4F4F-9CD3-54DF9E1E70AB}" Directory_="img_Dir" Attributes="0" KeyPath="bullet.png" Type="0"/>
     <ROW Component="butteraugli.h" ComponentId="{ED5F7581-7179-447B-86B8-B9E2D2C7A83C}" Directory_="jxl_Dir" Attributes="0" KeyPath="butteraugli.h" Type="0"/>
@@ -1282,6 +1299,7 @@
     <ROW Component="convert_h5ad_st_to_mzpack.R" ComponentId="{BED9CF16-A06E-4D7C-8CB6-63B22D3BCEA4}" Directory_="x_genomics_Dir" Attributes="0" KeyPath="convert_h5ad_st_to_mzpack.R" Type="0"/>
     <ROW Component="d_canvas.css" ComponentId="{E4FEA481-6A27-4C89-8E04-CE8A30D2C92F}" Directory_="assets_Dir" Attributes="0" KeyPath="d_canvas.css" Type="0"/>
     <ROW Component="dat.gui.min.js" ComponentId="{670EC0D5-BB06-4530-AF70-3C54DE4B329E}" Directory_="three_Dir" Attributes="0" KeyPath="dat.gui.min.js" Type="0"/>
+    <ROW Component="dbscan.R" ComponentId="{E99B079C-AC08-4265-836A-D7A813C65EA4}" Directory_="clustering_Dir" Attributes="0" KeyPath="dbscan.R" Type="0"/>
     <ROW Component="decode.h" ComponentId="{FCABAB02-80E0-4A67-87C0-DF7E72EAD657}" Directory_="brotli_Dir" Attributes="0" KeyPath="decode.h" Type="0"/>
     <ROW Component="decode.h_1" ComponentId="{FAAAB03D-43B0-4144-B01F-7044B608A64E}" Directory_="webp_Dir" Attributes="0" KeyPath="decode.h_2" Type="0"/>
     <ROW Component="demo" ComponentId="{3814EF2E-1AF4-4908-916A-83B955835615}" Directory_="demo_Dir" Attributes="256"/>
@@ -1329,6 +1347,7 @@
     <ROW Component="igraph.dll" ComponentId="{0F05D7C2-03D4-4C28-B43F-470D8F511F82}" Directory_="library_Dir" Attributes="256" KeyPath="igraph.dll"/>
     <ROW Component="install_locals.cmd" ComponentId="{7A6DCF88-DE75-4942-A2E1-16C51C260C94}" Directory_="packages_Dir" Attributes="0" KeyPath="install_locals.cmd"/>
     <ROW Component="jsimdext.inc" ComponentId="{6262DD58-12E2-410A-B56C-291E311B1D40}" Directory_="libjpegturbo_Dir" Attributes="0" KeyPath="jsimdext.inc" Type="0"/>
+    <ROW Component="jstree.min.js" ComponentId="{79C95850-BD9E-4BE0-B5C2-F9DA0E859998}" Directory_="vakatajstreeb3135cf_Dir" Attributes="0" KeyPath="jstree.min.js" Type="0"/>
     <ROW Component="lgpl2.1.txt" ComponentId="{0CD1E13A-588E-45C4-A2CB-D624602D3B43}" Directory_="OpenSlide_Dir" Attributes="0" KeyPath="lgpl2.1.txt" Type="0"/>
     <ROW Component="libIex3_1.dll" ComponentId="{B36A073D-8D81-4732-AA9D-9CB41216233E}" Directory_="bin_2_Dir" Attributes="256" KeyPath="libIex3_1.dll"/>
     <ROW Component="libIlmThread3_1.dll" ComponentId="{BD6364B0-8F6A-4F5B-98A8-0E17DCF243F7}" Directory_="bin_2_Dir" Attributes="256" KeyPath="libIlmThread3_1.dll"/>
@@ -1476,6 +1495,8 @@
     <ROW Component="poppleraction.h" ComponentId="{AA0A3503-A4A3-4A97-BA70-7CC13F3C8D1E}" Directory_="glib_2_Dir" Attributes="0" KeyPath="poppleraction.h" Type="0"/>
     <ROW Component="ppm.R" ComponentId="{D4584C1F-276E-4233-A867-5D8663C20273}" Directory_="small_demos_Dir" Attributes="0" KeyPath="ppm.R"/>
     <ROW Component="precursor_mz.R" ComponentId="{0A750AF3-5FC3-4082-98AA-B7A3FA754EBA}" Directory_="small_demos_Dir" Attributes="0" KeyPath="precursor_mz.R"/>
+    <ROW Component="px.png" ComponentId="{21C877BD-94C2-403B-BFA5-0E3DFB9275ED}" Directory_="default_Dir" Attributes="0" KeyPath="px.png" Type="0"/>
+    <ROW Component="px.png_1" ComponentId="{FB64E193-6F16-4840-B50C-CC1E42213806}" Directory_="defaultdark_Dir" Attributes="0" KeyPath="px.png_2" Type="0"/>
     <ROW Component="read_ms2.R" ComponentId="{C0C7B538-787C-4EFC-AC9B-F0F5AEEA6406}" Directory_="small_demos_Dir" Attributes="0" KeyPath="read_ms2.R"/>
     <ROW Component="regid.201301.com.panomix" ComponentId="{63A0ED36-59FE-437D-ABA9-2A17B9A3A3F0}" Directory_="regid.201301.com.panomix_Dir" Attributes="0"/>
     <ROW Component="resetdirssample.conf" ComponentId="{34CA0A22-CCCE-4927-A693-6C95F88360E7}" Directory_="conf.avail_Dir" Attributes="0" KeyPath="resetdirssample.conf" Type="0"/>
@@ -1483,6 +1504,7 @@
     <ROW Component="rsvgcairo.h" ComponentId="{63DCB387-84DD-4E36-BEF0-C35A6204F1F1}" Directory_="librsvg_Dir" Attributes="0" KeyPath="rsvgcairo.h" Type="0"/>
     <ROW Component="settings.json" ComponentId="{EE36A3C9-49B6-4EE8-9346-B986B6549B11}" Directory_="vscode_Dir" Attributes="0" KeyPath="settings.json" Type="0"/>
     <ROW Component="settings.json_1" ComponentId="{ACFA1EFB-7AAD-43B6-A657-91ED689BE589}" Directory_="vscode_1_Dir" Attributes="0" KeyPath="settings.json_1" Type="0"/>
+    <ROW Component="settings.json_2" ComponentId="{F5CC00B8-7C72-4A8D-AA3F-2B23BE4C0A19}" Directory_="vscode_2_Dir" Attributes="0" KeyPath="settings.json_2" Type="0"/>
     <ROW Component="sharpyuv.h" ComponentId="{9C155515-FCF7-4CE9-B955-B2B6B8C2DC79}" Directory_="sharpyuv_Dir" Attributes="0" KeyPath="sharpyuv.h" Type="0"/>
     <ROW Component="signalKit.dll" ComponentId="{E647E3F5-5C3F-454E-917D-71D0B35C97B8}" Directory_="library_Dir" Attributes="256" KeyPath="signalKit.dll"/>
     <ROW Component="singleIon.R" ComponentId="{0C305F69-B9FA-4837-B2A8-D98DC523124F}" Directory_="MSImaging_Dir" Attributes="256" KeyPath="singleIon.R" Type="0"/>
@@ -1501,6 +1523,7 @@
     <ROW Component="vipsthumbnail.exe" ComponentId="{96A0D731-DD65-48EC-9859-C9C3DC9DD0EB}" Directory_="bin_2_Dir" Attributes="256" KeyPath="vipsthumbnail.exe"/>
     <ROW Component="webKit.dll" ComponentId="{9C6B377D-029E-42A4-80ED-E3033182214B}" Directory_="library_Dir" Attributes="256" KeyPath="webKit.dll"/>
     <ROW Component="wkhtmltopdf.exe" ComponentId="{34D00DE0-29AE-47D0-B48C-A07DBC004E06}" Directory_="NewFolder_Dir" Attributes="256" KeyPath="wkhtmltopdf.exe"/>
+    <ROW Component="xvba_debug.log" ComponentId="{3D1C50C9-9ECB-4E9B-93F1-10140FDAD2CD}" Directory_="logs_Dir" Attributes="0" KeyPath="xvba_debug.log" Type="0"/>
     <ROW Component="zlib.dll" ComponentId="{268AF1C3-4AB8-4E64-9996-E8D573925A5E}" Directory_="bin32_Dir" Attributes="0" KeyPath="zlib.dll"/>
     <ROW Component="zlib.dll_1" ComponentId="{E8C083E6-5F77-401A-BF60-A409A5470758}" Directory_="bin64_Dir" Attributes="256" KeyPath="zlib.dll_1"/>
   </COMPONENT>
@@ -1732,7 +1755,6 @@
     <ROW File="metadna.R" Component_="buildMSIIndex.R" FileName="metadna.R" Attributes="0" SourcePath="..\rstudio\pipeline\metadna.R" SelfReg="false"/>
     <ROW File="ms1_contour.R" Component_="buildMSIIndex.R" FileName="MS1_CO~1.R|ms1_contour.R" Attributes="0" SourcePath="..\rstudio\pipeline\ms1_contour.R" SelfReg="false"/>
     <ROW File="MSI_peaktable.R" Component_="buildMSIIndex.R" FileName="MSI_PE~1.R|MSI_peaktable.R" Attributes="0" SourcePath="..\rstudio\pipeline\MSI_peaktable.R" SelfReg="false"/>
-    <ROW File="phenograph.R" Component_="buildMSIIndex.R" FileName="PHENOG~1.R|phenograph.R" Attributes="0" SourcePath="..\rstudio\pipeline\phenograph.R" SelfReg="false"/>
     <ROW File="singleIon.R" Component_="singleIon.R" FileName="SINGLE~1.R|singleIon.R" Attributes="0" SourcePath="..\rstudio\pipeline\MSImaging\singleIon.R" SelfReg="false"/>
     <ROW File="tripleIon.R" Component_="singleIon.R" FileName="TRIPLE~1.R|tripleIon.R" Attributes="0" SourcePath="..\rstudio\pipeline\MSImaging\tripleIon.R" SelfReg="false"/>
     <ROW File="man.pptx" Component_="man.pptx" FileName="MAN~1.PPT|man.pptx" Attributes="0" SourcePath="..\extdata\man.pptx" SelfReg="false"/>
@@ -2974,7 +2996,6 @@
     <ROW File="System.Drawing.Common.dll_7" Component_="System.Drawing.Common.dll_7" FileName="SYSTEM~7.DLL|System.Drawing.Common.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\System.Drawing.Common.dll" SelfReg="false"/>
     <ROW File="System.Management.dll_1" Component_="System.Management.dll_1" FileName="SYSTEM~8.DLL|System.Management.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\System.Management.dll" SelfReg="false"/>
     <ROW File="System.Resources.Extensions.dll" Component_="System.Resources.Extensions.dll" FileName="SYSTEM~9.DLL|System.Resources.Extensions.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\System.Resources.Extensions.dll" SelfReg="false"/>
-    <ROW File="umap.R" Component_="buildMSIIndex.R" FileName="umap.R" Attributes="0" SourcePath="..\rstudio\pipeline\umap.R" SelfReg="false"/>
     <ROW File="BioDeep.pdb" Component_="BioDeep.pdb" FileName="BioDeep.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\BioDeep.pdb" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.pdb" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.pdb" FileName="BIONOV~1.PDB|BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.pdb" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.pdb" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.pdb" FileName="BIONOV~2.PDB|BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.pdb" SelfReg="false"/>
@@ -15464,6 +15485,79 @@
     <ROW File="Microsoft.VisualBasic.MachineLearning.dll_1" Component_="Microsoft.VisualBasic.MachineLearning.dll_1" FileName="MICRO~34.DLL|Microsoft.VisualBasic.MachineLearning.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.MachineLearning.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MachineLearning.pdb_1" Component_="Microsoft.VisualBasic.MachineLearning.pdb_1" FileName="MICRO~31.PDB|Microsoft.VisualBasic.MachineLearning.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.MachineLearning.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MachineLearning.xml_2" Component_="Microsoft.VisualBasic.MachineLearning.xml" FileName="MICRO~29.XML|Microsoft.VisualBasic.MachineLearning.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.MachineLearning.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll" Component_="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll" FileName="MICRO~61.DLL|Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll" SelfReg="false"/>
+    <ROW File="settings.json_2" Component_="settings.json_2" FileName="SETTIN~1.JSO|settings.json" Attributes="0" SourcePath="..\webview\.vscode\settings.json" SelfReg="false"/>
+    <ROW File="mzkit_desktop.js.map" Component_="linq.d.ts" FileName="MZKIT_~1.MAP|mzkit_desktop.js.map" Attributes="0" SourcePath="..\webview\assets\js\mzkit_desktop.js.map" SelfReg="false"/>
+    <ROW File="xvba_debug.log" Component_="xvba_debug.log" FileName="XVBA_D~1.LOG|xvba_debug.log" Attributes="0" SourcePath="..\webview\logs\xvba_debug.log" SelfReg="false"/>
+    <ROW File="umap.html" Component_="logo.png" FileName="UMAP~1.HTM|umap.html" Attributes="0" SourcePath="..\webview\umap.html" SelfReg="false"/>
+    <ROW File="bootstrapgrid.css" Component_="bootstrapgrid.css" FileName="BOOTST~1.CSS|bootstrap-grid.css" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap-grid.css" SelfReg="false"/>
+    <ROW File="bootstrapgrid.css.map" Component_="bootstrapgrid.css" FileName="BOOTST~1.MAP|bootstrap-grid.css.map" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap-grid.css.map" SelfReg="false"/>
+    <ROW File="bootstrapgrid.min.css" Component_="bootstrapgrid.css" FileName="BOOTST~2.CSS|bootstrap-grid.min.css" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap-grid.min.css" SelfReg="false"/>
+    <ROW File="bootstrapgrid.min.css.map" Component_="bootstrapgrid.css" FileName="BOOTST~2.MAP|bootstrap-grid.min.css.map" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap-grid.min.css.map" SelfReg="false"/>
+    <ROW File="bootstrapgrid.rtl.css" Component_="bootstrapgrid.css" FileName="BOOTST~3.CSS|bootstrap-grid.rtl.css" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap-grid.rtl.css" SelfReg="false"/>
+    <ROW File="bootstrapgrid.rtl.css.map" Component_="bootstrapgrid.css" FileName="BOOTST~3.MAP|bootstrap-grid.rtl.css.map" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap-grid.rtl.css.map" SelfReg="false"/>
+    <ROW File="bootstrapgrid.rtl.min.css" Component_="bootstrapgrid.css" FileName="BOOTST~4.CSS|bootstrap-grid.rtl.min.css" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap-grid.rtl.min.css" SelfReg="false"/>
+    <ROW File="bootstrapgrid.rtl.min.css.map" Component_="bootstrapgrid.css" FileName="BOOTST~4.MAP|bootstrap-grid.rtl.min.css.map" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap-grid.rtl.min.css.map" SelfReg="false"/>
+    <ROW File="bootstrapreboot.css" Component_="bootstrapgrid.css" FileName="BOOTST~5.CSS|bootstrap-reboot.css" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap-reboot.css" SelfReg="false"/>
+    <ROW File="bootstrapreboot.css.map" Component_="bootstrapgrid.css" FileName="BOOTST~5.MAP|bootstrap-reboot.css.map" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap-reboot.css.map" SelfReg="false"/>
+    <ROW File="bootstrapreboot.min.css" Component_="bootstrapgrid.css" FileName="BOOTST~6.CSS|bootstrap-reboot.min.css" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap-reboot.min.css" SelfReg="false"/>
+    <ROW File="bootstrapreboot.min.css.map" Component_="bootstrapgrid.css" FileName="BOOTST~6.MAP|bootstrap-reboot.min.css.map" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap-reboot.min.css.map" SelfReg="false"/>
+    <ROW File="bootstrapreboot.rtl.css" Component_="bootstrapgrid.css" FileName="BOOTST~7.CSS|bootstrap-reboot.rtl.css" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap-reboot.rtl.css" SelfReg="false"/>
+    <ROW File="bootstrapreboot.rtl.css.map" Component_="bootstrapgrid.css" FileName="BOOTST~7.MAP|bootstrap-reboot.rtl.css.map" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap-reboot.rtl.css.map" SelfReg="false"/>
+    <ROW File="bootstrapreboot.rtl.min.css" Component_="bootstrapgrid.css" FileName="BOOTST~8.CSS|bootstrap-reboot.rtl.min.css" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap-reboot.rtl.min.css" SelfReg="false"/>
+    <ROW File="bootstrapreboot.rtl.min.css.map" Component_="bootstrapgrid.css" FileName="BOOTST~8.MAP|bootstrap-reboot.rtl.min.css.map" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap-reboot.rtl.min.css.map" SelfReg="false"/>
+    <ROW File="bootstraputilities.css" Component_="bootstrapgrid.css" FileName="BOOTST~9.CSS|bootstrap-utilities.css" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap-utilities.css" SelfReg="false"/>
+    <ROW File="bootstraputilities.css.map" Component_="bootstrapgrid.css" FileName="BOOTST~9.MAP|bootstrap-utilities.css.map" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap-utilities.css.map" SelfReg="false"/>
+    <ROW File="bootstraputilities.min.css" Component_="bootstrapgrid.css" FileName="BOOTS~10.CSS|bootstrap-utilities.min.css" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap-utilities.min.css" SelfReg="false"/>
+    <ROW File="bootstraputilities.min.css.map" Component_="bootstrapgrid.css" FileName="BOOTS~10.MAP|bootstrap-utilities.min.css.map" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap-utilities.min.css.map" SelfReg="false"/>
+    <ROW File="bootstraputilities.rtl.css" Component_="bootstrapgrid.css" FileName="BOOTS~11.CSS|bootstrap-utilities.rtl.css" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap-utilities.rtl.css" SelfReg="false"/>
+    <ROW File="bootstraputilities.rtl.css.map" Component_="bootstrapgrid.css" FileName="BOOTS~11.MAP|bootstrap-utilities.rtl.css.map" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap-utilities.rtl.css.map" SelfReg="false"/>
+    <ROW File="bootstraputilities.rtl.min.css" Component_="bootstrapgrid.css" FileName="BOOTS~12.CSS|bootstrap-utilities.rtl.min.css" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap-utilities.rtl.min.css" SelfReg="false"/>
+    <ROW File="bootstraputilities.rtl.min.css.map" Component_="bootstrapgrid.css" FileName="BOOTS~12.MAP|bootstrap-utilities.rtl.min.css.map" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap-utilities.rtl.min.css.map" SelfReg="false"/>
+    <ROW File="bootstrap.css_1" Component_="bootstrapgrid.css" FileName="BOOTS~13.CSS|bootstrap.css" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap.css" SelfReg="false"/>
+    <ROW File="bootstrap.css.map" Component_="bootstrapgrid.css" FileName="BOOTS~13.MAP|bootstrap.css.map" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap.css.map" SelfReg="false"/>
+    <ROW File="bootstrap.min.css" Component_="bootstrapgrid.css" FileName="BOOTS~14.CSS|bootstrap.min.css" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap.min.css" SelfReg="false"/>
+    <ROW File="bootstrap.min.css.map" Component_="bootstrapgrid.css" FileName="BOOTS~14.MAP|bootstrap.min.css.map" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap.min.css.map" SelfReg="false"/>
+    <ROW File="bootstrap.rtl.css" Component_="bootstrapgrid.css" FileName="BOOTS~15.CSS|bootstrap.rtl.css" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap.rtl.css" SelfReg="false"/>
+    <ROW File="bootstrap.rtl.css.map" Component_="bootstrapgrid.css" FileName="BOOTS~15.MAP|bootstrap.rtl.css.map" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap.rtl.css.map" SelfReg="false"/>
+    <ROW File="bootstrap.rtl.min.css" Component_="bootstrapgrid.css" FileName="BOOTS~16.CSS|bootstrap.rtl.min.css" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap.rtl.min.css" SelfReg="false"/>
+    <ROW File="bootstrap.rtl.min.css.map" Component_="bootstrapgrid.css" FileName="BOOTS~16.MAP|bootstrap.rtl.min.css.map" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\css\bootstrap.rtl.min.css.map" SelfReg="false"/>
+    <ROW File="bootstrap.bundle.js" Component_="bootstrap.bundle.js" FileName="BOOTST~1.JS|bootstrap.bundle.js" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\js\bootstrap.bundle.js" SelfReg="false"/>
+    <ROW File="bootstrap.bundle.js.map" Component_="bootstrap.bundle.js" FileName="BOOTST~1.MAP|bootstrap.bundle.js.map" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\js\bootstrap.bundle.js.map" SelfReg="false"/>
+    <ROW File="bootstrap.bundle.min.js" Component_="bootstrap.bundle.js" FileName="BOOTST~2.JS|bootstrap.bundle.min.js" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\js\bootstrap.bundle.min.js" SelfReg="false"/>
+    <ROW File="bootstrap.bundle.min.js.map" Component_="bootstrap.bundle.js" FileName="BOOTST~2.MAP|bootstrap.bundle.min.js.map" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\js\bootstrap.bundle.min.js.map" SelfReg="false"/>
+    <ROW File="bootstrap.esm.js" Component_="bootstrap.bundle.js" FileName="BOOTST~3.JS|bootstrap.esm.js" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\js\bootstrap.esm.js" SelfReg="false"/>
+    <ROW File="bootstrap.esm.js.map" Component_="bootstrap.bundle.js" FileName="BOOTST~3.MAP|bootstrap.esm.js.map" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\js\bootstrap.esm.js.map" SelfReg="false"/>
+    <ROW File="bootstrap.esm.min.js" Component_="bootstrap.bundle.js" FileName="BOOTST~4.JS|bootstrap.esm.min.js" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\js\bootstrap.esm.min.js" SelfReg="false"/>
+    <ROW File="bootstrap.esm.min.js.map" Component_="bootstrap.bundle.js" FileName="BOOTST~4.MAP|bootstrap.esm.min.js.map" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\js\bootstrap.esm.min.js.map" SelfReg="false"/>
+    <ROW File="bootstrap.js" Component_="bootstrap.bundle.js" FileName="BOOTST~5.JS|bootstrap.js" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\js\bootstrap.js" SelfReg="false"/>
+    <ROW File="bootstrap.js.map" Component_="bootstrap.bundle.js" FileName="BOOTST~5.MAP|bootstrap.js.map" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\js\bootstrap.js.map" SelfReg="false"/>
+    <ROW File="bootstrap.min.js_1" Component_="bootstrap.bundle.js" FileName="BOOTST~6.JS|bootstrap.min.js" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\js\bootstrap.min.js" SelfReg="false"/>
+    <ROW File="bootstrap.min.js.map" Component_="bootstrap.bundle.js" FileName="BOOTST~6.MAP|bootstrap.min.js.map" Attributes="0" SourcePath="..\webview\vendor\bootstrap-5.3.2-dist\js\bootstrap.min.js.map" SelfReg="false"/>
+    <ROW File="jstree.min.js" Component_="jstree.min.js" FileName="JSTREE~1.JS|jstree.min.js" Attributes="0" SourcePath="..\webview\vendor\vakata-jstree-b3135cf\jstree.min.js" SelfReg="false"/>
+    <ROW File="px.png" Component_="px.png" FileName="32px.png" Attributes="0" SourcePath="..\webview\vendor\vakata-jstree-b3135cf\themes\default\32px.png" SelfReg="false"/>
+    <ROW File="px.png_1" Component_="px.png" FileName="40px.png" Attributes="0" SourcePath="..\webview\vendor\vakata-jstree-b3135cf\themes\default\40px.png" SelfReg="false"/>
+    <ROW File="style.css" Component_="px.png" FileName="style.css" Attributes="0" SourcePath="..\webview\vendor\vakata-jstree-b3135cf\themes\default\style.css" SelfReg="false"/>
+    <ROW File="style.min.css" Component_="px.png" FileName="STYLEM~1.CSS|style.min.css" Attributes="0" SourcePath="..\webview\vendor\vakata-jstree-b3135cf\themes\default\style.min.css" SelfReg="false"/>
+    <ROW File="throbber.gif" Component_="px.png" FileName="throbber.gif" Attributes="0" SourcePath="..\webview\vendor\vakata-jstree-b3135cf\themes\default\throbber.gif" SelfReg="false"/>
+    <ROW File="px.png_2" Component_="px.png_1" FileName="32px.png" Attributes="0" SourcePath="..\webview\vendor\vakata-jstree-b3135cf\themes\default-dark\32px.png" SelfReg="false"/>
+    <ROW File="px.png_3" Component_="px.png_1" FileName="40px.png" Attributes="0" SourcePath="..\webview\vendor\vakata-jstree-b3135cf\themes\default-dark\40px.png" SelfReg="false"/>
+    <ROW File="style.css_1" Component_="px.png_1" FileName="style.css" Attributes="0" SourcePath="..\webview\vendor\vakata-jstree-b3135cf\themes\default-dark\style.css" SelfReg="false"/>
+    <ROW File="style.min.css_1" Component_="px.png_1" FileName="STYLEM~1.CSS|style.min.css" Attributes="0" SourcePath="..\webview\vendor\vakata-jstree-b3135cf\themes\default-dark\style.min.css" SelfReg="false"/>
+    <ROW File="throbber.gif_1" Component_="px.png_1" FileName="throbber.gif" Attributes="0" SourcePath="..\webview\vendor\vakata-jstree-b3135cf\themes\default-dark\throbber.gif" SelfReg="false"/>
+    <ROW File="phenograph.R_1" Component_="convert_h5ad_st_to_mzpack.R" FileName="PHENOG~1.R|phenograph.R" Attributes="0" SourcePath="..\rstudio\pipeline\10x_genomics\phenograph.R" SelfReg="false"/>
+    <ROW File="dbscan.R" Component_="dbscan.R" FileName="dbscan.R" Attributes="0" SourcePath="..\rstudio\pipeline\clustering\dbscan.R" SelfReg="false"/>
+    <ROW File="graph.R" Component_="dbscan.R" FileName="graph.R" Attributes="0" SourcePath="..\rstudio\pipeline\clustering\graph.R" SelfReg="false"/>
+    <ROW File="kmeans.R" Component_="dbscan.R" FileName="kmeans.R" Attributes="0" SourcePath="..\rstudio\pipeline\clustering\kmeans.R" SelfReg="false"/>
+    <ROW File="umap.R_1" Component_="dbscan.R" FileName="umap.R" Attributes="0" SourcePath="..\rstudio\pipeline\clustering\umap.R" SelfReg="false"/>
+    <ROW File="BioDeep.dll_3" Component_="BioDeep.dll_3" FileName="BioDeep.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\BioDeep.dll" SelfReg="false"/>
+    <ROW File="BioDeep.dll.config_3" Component_="Microsoft.VisualBasic.Runtime.dll.config" FileName="BIODEE~1.CON|BioDeep.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\BioDeep.dll.config" SelfReg="false"/>
+    <ROW File="BioDeep.pdb_2" Component_="BioDeep.dll_3" FileName="BioDeep.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\BioDeep.pdb" SelfReg="false"/>
+    <ROW File="RQL.dll_3" Component_="RQL.dll_3" FileName="RQL.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\RQL.dll" SelfReg="false"/>
+    <ROW File="RQL.pdb_2" Component_="RQL.dll_3" FileName="RQL.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\RQL.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll_1" Component_="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll_1" FileName="MICRO~70.DLL|Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Data.visualize.Network.Layouts.pdb" Component_="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll_1" FileName="MICRO~64.PDB|Microsoft.VisualBasic.Data.visualize.Network.Layouts.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.visualize.Network.Layouts.pdb" SelfReg="false"/>
+    <ROW File="System.Numerics.Tensors.dll_2" Component_="System.Numerics.Tensors.dll_2" FileName="SYSTE~25.DLL|System.Numerics.Tensors.dll" Attributes="0" SourcePath="..\..\..\dist\bin\System.Numerics.Tensors.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -16866,6 +16960,19 @@
     <ROW Feature_="DemoScript" Component_="plot_cdf_tic.R_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.MachineLearning.pdb_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.MachineLearning.xml"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll"/>
+    <ROW Feature_="MainFeature" Component_="settings.json_2"/>
+    <ROW Feature_="MainFeature" Component_="xvba_debug.log"/>
+    <ROW Feature_="MainFeature" Component_="bootstrapgrid.css"/>
+    <ROW Feature_="MainFeature" Component_="bootstrap.bundle.js"/>
+    <ROW Feature_="MainFeature" Component_="jstree.min.js"/>
+    <ROW Feature_="MainFeature" Component_="px.png"/>
+    <ROW Feature_="MainFeature" Component_="px.png_1"/>
+    <ROW Feature_="MainFeature" Component_="dbscan.R"/>
+    <ROW Feature_="MainFeature" Component_="BioDeep.dll_3"/>
+    <ROW Feature_="MainFeature" Component_="RQL.dll_3"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="System.Numerics.Tensors.dll_2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
