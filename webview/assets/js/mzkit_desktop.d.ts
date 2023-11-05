@@ -280,5 +280,8 @@ declare namespace apps.viewer {
         download_onclick(): void;
         save_onclick(): void;
         private loadUMAP;
+        kmeans_method_onchange(val: string): void;
+        dbscan_method_onchange(val: string): void;
+        private selectMethod;
     }
 }

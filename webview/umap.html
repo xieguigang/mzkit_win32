@@ -117,14 +117,14 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="cluster_method"
+                                    <input class="form-check-input select-method" type="radio" name="cluster_method"
                                         id="kmeans_method" value="kmeans" checked>
                                     <label class="form-check-label" for="kmeans_method">
                                         K-Means Method
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="cluster_method"
+                                    <input class="form-check-input select-method" type="radio" name="cluster_method"
                                         id="dbscan_method" value="dbscan">
                                     <label class="form-check-label" for="dbscan_method">
                                         DBSCAN Method
@@ -140,7 +140,7 @@
 
                             <div class="col">
 
-                                <div class="row">
+                                <div id="kmean-card" class="row card" style="margin: 5px;">
 
                                     <div class="col">
 
@@ -156,7 +156,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div id="dbscan-card" class="row card" style="margin: 5px;">
 
                                     <div class="col">
 

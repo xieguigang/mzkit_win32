@@ -141,5 +141,24 @@ namespace apps.viewer {
                     }
                 });
         }
+
+        public kmeans_method_onchange(val: string) {
+            this.selectMethod($ts.select.getOption(".select-method"));
+        }
+
+        public dbscan_method_onchange(val: string) {
+            this.selectMethod($ts.select.getOption(".select-method"));
+        }
+
+        private selectMethod(method: string) {
+            for (let id of ["kmean-card", "dbscan-card"]) {
+                $ts(`#${id}`).interactive(false);
+            }
+
+            switch (method) {
+                case "kmeans": $ts("#kmean-card").interactive(true); break;
+                case "dbscan": $ts("#dbscan-card").interactive(true); break;
+            }
+        }
     }
 }

@@ -1672,6 +1672,26 @@ var apps;
                     });
                 });
             };
+            umap.prototype.kmeans_method_onchange = function (val) {
+                this.selectMethod($ts.select.getOption(".select-method"));
+            };
+            umap.prototype.dbscan_method_onchange = function (val) {
+                this.selectMethod($ts.select.getOption(".select-method"));
+            };
+            umap.prototype.selectMethod = function (method) {
+                for (var _i = 0, _a = ["kmean-card", "dbscan-card"]; _i < _a.length; _i++) {
+                    var id = _a[_i];
+                    $ts("#".concat(id)).interactive(false);
+                }
+                switch (method) {
+                    case "kmeans":
+                        $ts("#kmean-card").interactive(true);
+                        break;
+                    case "dbscan":
+                        $ts("#dbscan-card").interactive(true);
+                        break;
+                }
+            };
             return umap;
         }(Bootstrap));
         viewer.umap = umap;
