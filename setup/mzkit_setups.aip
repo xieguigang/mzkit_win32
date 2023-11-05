@@ -658,6 +658,7 @@
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.pdb" ComponentId="{F9890632-ADCA-438C-A1E3-BDB1B7BC5E3B}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll" ComponentId="{FBE8C7D0-BF0C-4D8D-AABE-ABA0648B474E}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll_1" ComponentId="{1C84B4CE-6AF0-4DAA-A076-AE935EC63CCE}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll_1"/>
+    <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.Layouts.pdb" ComponentId="{27914164-A23B-48B4-9291-CB3448F7881B}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.Layouts.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.dll" ComponentId="{5A84BB00-4530-4F45-936D-05282C6821CB}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.dll_5" ComponentId="{18A1DFC2-9327-4EC7-894D-F5888D904513}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.dll_5"/>
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.pdb" ComponentId="{ABBD0FED-443F-476D-8518-96AE986371A6}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.pdb" Type="4"/>
@@ -15556,7 +15557,7 @@
     <ROW File="RQL.dll_3" Component_="RQL.dll_3" FileName="RQL.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\RQL.dll" SelfReg="false"/>
     <ROW File="RQL.pdb_2" Component_="RQL.dll_3" FileName="RQL.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\RQL.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll_1" Component_="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll_1" FileName="MICRO~70.DLL|Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Data.visualize.Network.Layouts.pdb" Component_="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll_1" FileName="MICRO~64.PDB|Microsoft.VisualBasic.Data.visualize.Network.Layouts.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.visualize.Network.Layouts.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Data.visualize.Network.Layouts.pdb" Component_="Microsoft.VisualBasic.Data.visualize.Network.Layouts.pdb" FileName="MICRO~64.PDB|Microsoft.VisualBasic.Data.visualize.Network.Layouts.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.visualize.Network.Layouts.pdb" SelfReg="false"/>
     <ROW File="System.Numerics.Tensors.dll_2" Component_="System.Numerics.Tensors.dll_2" FileName="SYSTE~25.DLL|System.Numerics.Tensors.dll" Attributes="0" SourcePath="..\..\..\dist\bin\System.Numerics.Tensors.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
@@ -16973,6 +16974,7 @@
     <ROW Feature_="MainFeature" Component_="RQL.dll_3"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll_1"/>
     <ROW Feature_="MainFeature" Component_="System.Numerics.Tensors.dll_2"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Data.visualize.Network.Layouts.pdb"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
