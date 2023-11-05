@@ -550,7 +550,7 @@ Public Class frmMsImagingViewer
                             If umap3.StringEmpty OrElse Not umap3.FileExists Then
                                 MessageBox.Show("Sorry, run umap task error...", "UMAP error", MessageBoxButtons.OK, MessageBoxIcon.Stop)
                             Else
-                                Call ImportsUmap3dFile(umap3)
+                                Call ImportsUmap3dFile(umap3, showScatter:=False)
                             End If
                         End Sub,
             .binaryMatrix = True,
@@ -565,11 +565,13 @@ Public Class frmMsImagingViewer
         ' Dim umap3 As String = RscriptProgressTask.CreateUMAPCluster(matrix, 16, readBinary:=True)
     End Sub
 
-    Private Sub ImportsUmap3dFile(umap3 As String)
+    Private Sub ImportsUmap3dFile(umap3 As String, showScatter As Boolean)
         ' show umap scatter 3d
         umap3D = UMAPPoint.ParseCsvTable(umap3).ToArray
 
-        Call ShowTissueData()
+        If showScatter Then
+            Call ShowTissueData()
+        End If
 
         ' ansalso convert to tissue region data
         Dim colors As LoopArray(Of Color) = Designer.GetColors("Paper")
@@ -1164,7 +1166,7 @@ Public Class frmMsImagingViewer
                 If file.FileName.ExtensionSuffix("cdf") Then
                     Call ImportsTissueMorphology(file.FileName, file.OpenFile)
                 ElseIf CheckUmapTableFile(file.FileName) Then
-                    Call ImportsUmap3dFile(file.FileName)
+                    Call ImportsUmap3dFile(file.FileName, showScatter:=True)
                 Else
                     Call ImportsPhenographSpotPlot(filepath:=file.FileName)
                 End If
