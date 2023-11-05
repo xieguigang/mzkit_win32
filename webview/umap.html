@@ -53,7 +53,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row card" id="manifold">
             <div class="col">
                 <h3>UMAP Manifold Parameters</h3>
 
@@ -94,7 +94,7 @@
                 <br />
 
                 <div class="row">
-                    <div class="col">
+                    <div class="col" style="margin: 5px;">
                         <button type="button" class="btn btn-primary" id="run_umap">Run</button>
                     </div>
                 </div>
@@ -103,26 +103,56 @@
         </div>
 
 
-        <div class="row">
+        <div class="row" id="clustering">
             <div class="col">
-                <div class="main" id="viewer" style="margin: 5px; background: white; width: 90%; height: 300px;">
+                <div class="main" id="viewer" style="margin: 5px; background: white; width: 85%; height: 400px;">
 
                 </div>
 
-                <div class="row">
+                <div class="row card">
                     <div class="col">
 
                         <h5>Clustering</h5>
 
-                        <label for="kmeans" class="form-label">KMeans: <span id="kmeans-value"></span></label>
-                        <input type="range" class="form-range" value="6" min="3" max="100" step="1" id="kmeans">
-
                         <div class="row">
                             <div class="col">
-                                <button type="button" class="btn btn-primary" id="run_kmeans">Set K-Means</button>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="cluster_method"
+                                        id="kmeans_method" value="kmeans" checked>
+                                    <label class="form-check-label" for="kmeans_method">
+                                        K-Means Method
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="cluster_method"
+                                        id="dbscan_method" value="dbscan">
+                                    <label class="form-check-label" for="dbscan_method">
+                                        DBSCAN Method
+                                    </label>
+                                </div>
 
-                                <a href="#run_kmeans" onclick="javascript:void(0);" id="download">Download Result</a>
+                                <br />
+
+                                <a href="#run_kmeans" onclick="javascript:void(0);" id="download">Download
+                                    Result</a>
+
                             </div>
+
+                            <div class="col">
+
+                                <label for="kmeans" class="form-label">KMeans: <span id="kmeans-value"></span></label>
+                                <input type="range" class="form-range" value="6" min="3" max="100" step="1" id="kmeans">
+
+                                <div class="row">
+                                    <div class="col">
+                                        <button type="button" class="btn btn-primary" id="run_kmeans">Set
+                                            K-Means</button>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
                         </div>
 
                     </div>
