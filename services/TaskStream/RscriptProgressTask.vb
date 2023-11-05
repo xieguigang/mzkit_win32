@@ -56,6 +56,7 @@
 
 Imports System.Drawing
 Imports System.IO
+Imports System.Runtime.CompilerServices
 Imports System.Text
 Imports System.Windows.Forms
 Imports Microsoft.VisualBasic.ApplicationServices
@@ -409,6 +410,20 @@ Public NotInheritable Class RscriptProgressTask
         End If
     End Sub
 
+    Public Shared Function DbScan(rawdata As String, eps As Double, min_pts As Integer, savefile As String, noUI As Boolean) As Boolean
+        Dim Rscript As String = RscriptPipelineTask.GetRScript("clustering/dbscan.R")
+        Dim cli As String = $"""{Rscript}""
+--rawdata ""{rawdata}""
+--min_pts {min_pts}
+--eps {eps}
+--save ""{savefile}""
+"
+
+        Call ClusterMethodCommon(cli, noUI)
+
+        Return savefile.FileExists(ZERO_Nonexists:=True)
+    End Function
+
     Public Shared Function KMeans(rawdata As String, k As Integer, savefile As String, noUI As Boolean) As Boolean
         Dim Rscript As String = RscriptPipelineTask.GetRScript("clustering/kmeans.R")
         Dim cli As String = $"""{Rscript}""
@@ -416,6 +431,13 @@ Public NotInheritable Class RscriptProgressTask
 --k {k}
 --save ""{savefile}""
 "
+
+        Call ClusterMethodCommon(cli, noUI)
+
+        Return savefile.FileExists(ZERO_Nonexists:=True)
+    End Function
+
+    Private Shared Sub ClusterMethodCommon(cli As String, noUI As Boolean, <CallerMemberName> Optional method As String = Nothing)
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
 
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
@@ -432,12 +454,10 @@ Public NotInheritable Class RscriptProgressTask
 
                          Call pipeline.Run()
                      End Sub,
-                title:="Do K-means clustering...",
-                info:="Create scatter clusters via k-means algorithm, this may takes a long time when your dataset size is ultra large...")
+                title:=$"Do {method} clustering...",
+                info:=$"Create scatter clusters via {method} algorithm, this may takes a long time when your dataset size is ultra large...")
         End If
-
-        Return savefile.FileExists(ZERO_Nonexists:=True)
-    End Function
+    End Sub
 
     ''' <summary>
     ''' 

@@ -112,7 +112,7 @@ Public Class UMApAnalysis
         If umap_result.StringEmpty Then
             Return "[]"
         Else
-            Dim try_kmeans As String = get_kmeans()
+            Dim try_kmeans As String = get_clusters()
             Dim points As UMAPPoint()
 
             If try_kmeans.FileExists Then
@@ -126,12 +126,12 @@ Public Class UMApAnalysis
         End If
     End Function
 
-    Private Function get_kmeans() As String
-        Return umap_result.TrimSuffix & "_kmeans.csv"
+    Private Function get_clusters() As String
+        Return umap_result.TrimSuffix & "_clusters.csv"
     End Function
 
     Public Function Download() As String
-        Dim file As String = get_kmeans()
+        Dim file As String = get_clusters()
 
         If file.FileExists Then
             Return file.ReadAllText
@@ -165,7 +165,7 @@ Public Class UMApAnalysis
             Return False
         End If
 
-        Dim savefile As String = get_kmeans()
+        Dim savefile As String = get_clusters()
         Dim flag = Task(Of Boolean).Run(
             Function()
                 Return RscriptProgressTask.KMeans(umap_result, k, savefile, noUI:=True)
@@ -174,9 +174,23 @@ Public Class UMApAnalysis
         Return Await flag
     End Function
 
+    Public Async Function RunDbScan(min_pts As Integer, eps As Double) As Task(Of Boolean)
+        If umap_result.StringEmpty Then
+            Return False
+        End If
+
+        Dim savefile As String = get_clusters()
+        Dim flag = Task(Of Boolean).Run(
+            Function()
+                Return RscriptProgressTask.DbScan(umap_result, eps, min_pts, savefile, noUI:=True)
+            End Function)
+
+        Return Await flag
+    End Function
+
     Public Sub Save()
         If Not callback Is Nothing Then
-            Dim umap_result As String = get_kmeans()
+            Dim umap_result As String = get_clusters()
 
             If umap_result.FileExists Then
                 Call _callback(umap_result)
