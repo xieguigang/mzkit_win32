@@ -10,7 +10,7 @@ const input_data as string = ?"--raw"      || stop("missing of the raw data matr
 const read_bin as boolean = ?"--read_bin" || FALSE;
 const knn as integer = as.integer(?"--knn" || 16);
 [@info "the directory path for export the graph result"]
-const savegraph as string = ?"--save"     || `${dirname(raw)}/${basename(raw)}_phenograph/`; 
+const savegraph as string = ?"--save"     || `${dirname(input_data)}/${basename(input_data)}_phenograph/`; 
 
 const read_data = function() {
 	if (!read_bin) {
