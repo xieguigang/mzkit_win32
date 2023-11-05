@@ -188,6 +188,20 @@ Public Class UMApAnalysis
         Return Await flag
     End Function
 
+    Public Async Function RunGraph(cutoff As Double) As Task(Of Boolean)
+        If umap_result.StringEmpty Then
+            Return False
+        End If
+
+        Dim savefile As String = get_clusters()
+        Dim flag = Task(Of Boolean).Run(
+            Function()
+                Return RscriptProgressTask.DbScan(umap_result, eps, min_pts, savefile, noUI:=True)
+            End Function)
+
+        Return Await flag
+    End Function
+
     Public Sub Save()
         If Not callback Is Nothing Then
             Dim umap_result As String = get_clusters()

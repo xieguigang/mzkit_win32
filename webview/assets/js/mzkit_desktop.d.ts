@@ -276,6 +276,7 @@ declare namespace apps.viewer {
         kmeans_onchange(val: string): void;
         min_pts_onchange(val: string): void;
         eps_onchange(val: string): void;
+        identical_onchange(val: string): void;
         run_umap_onclick(): void;
         run_kmeans_onclick(): void;
         run_dbscan_onclick(): void;
@@ -286,6 +287,7 @@ declare namespace apps.viewer {
         private loadUMAP;
         kmeans_method_onchange(val: string): void;
         dbscan_method_onchange(val: string): void;
+        graph_method_onchange(val: string): void;
         private selectMethod;
     }
 }

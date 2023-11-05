@@ -410,6 +410,10 @@ Public NotInheritable Class RscriptProgressTask
         End If
     End Sub
 
+    Public Shared Function GraphClustering(rawdata As String, cutoff As Double, savefile As String, noUI As Boolean) As Boolean
+
+    End Function
+
     Public Shared Function DbScan(rawdata As String, eps As Double, min_pts As Integer, savefile As String, noUI As Boolean) As Boolean
         Dim Rscript As String = RscriptPipelineTask.GetRScript("clustering/dbscan.R")
         Dim cli As String = $"""{Rscript}""

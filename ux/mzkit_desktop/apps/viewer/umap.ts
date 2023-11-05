@@ -52,6 +52,10 @@ namespace apps.viewer {
             $ts("#eps-value").display(val);
         }
 
+        public identical_onchange(val: string) {
+            $ts("#identical-value").display(val);
+        }
+
         public run_umap_onclick() {
             const vm = this;
 
@@ -77,6 +81,23 @@ namespace apps.viewer {
         }
 
         public run_kmeans_onclick() {
+            const vm = this;
+
+            vm.showSpinner();
+            app.desktop.mzkit
+                .RunKmeans(parseInt($ts.value("#kmeans").toString()))
+                .then(async function (b) {
+                    const flag = await b;
+
+                    if (flag) {
+                        vm.loadUMAP();
+                    }
+
+                    vm.hideSpinner();
+                });
+        }
+
+        public run_graph_onclick() {
             const vm = this;
 
             vm.showSpinner();
@@ -174,14 +195,19 @@ namespace apps.viewer {
             this.selectMethod($ts.select.getOption(".select-method"));
         }
 
+        public graph_method_onchange(val: string) {
+            this.selectMethod($ts.select.getOption(".select-method"));
+        }
+
         private selectMethod(method: string) {
-            for (let id of ["kmean-card", "dbscan-card"]) {
+            for (let id of ["kmean-card", "dbscan-card", "graph-card"]) {
                 $ts(`#${id}`).interactive(false);
             }
 
             switch (method) {
                 case "kmeans": $ts("#kmean-card").interactive(true); break;
                 case "dbscan": $ts("#dbscan-card").interactive(true); break;
+                case "graph": $ts("#graph-card").interactive(true); break;
             }
         }
     }
