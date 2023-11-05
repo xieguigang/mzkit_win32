@@ -35,6 +35,7 @@ declare namespace app.desktop {
         GetMatrixDims(): Promise<string>;
         Run(knn: number, knniter: number, localConnectivity: number, bandwidth: number, learningRate: number, spectral_cos: boolean): Promise<boolean>;
         RunKmeans(k: number): Promise<boolean>;
+        RunDbScan(min_pts: number, eps: number): Promise<boolean>;
         Download(): Promise<string>;
         GetLCMSScatter(): Promise<string>;
         GetColors(): Promise<string>;
@@ -273,8 +274,11 @@ declare namespace apps.viewer {
         bandwidth_onchange(val: string): void;
         learningRate_onchange(val: string): void;
         kmeans_onchange(val: string): void;
+        min_pts_onchange(val: string): void;
+        eps_onchange(val: string): void;
         run_umap_onclick(): void;
         run_kmeans_onclick(): void;
+        run_dbscan_onclick(): void;
         showSpinner(): void;
         hideSpinner(): void;
         download_onclick(): void;

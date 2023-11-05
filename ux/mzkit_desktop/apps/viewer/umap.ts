@@ -17,6 +17,7 @@ namespace apps.viewer {
                 });
 
             this.loadUMAP();
+            this.selectMethod("kmeans");
         }
 
         public knn_onchange(val: string) {
@@ -41,6 +42,14 @@ namespace apps.viewer {
 
         public kmeans_onchange(val: string) {
             $ts("#kmeans-value").display(val);
+        }
+
+        public min_pts_onchange(val: string) {
+            $ts("#min_pts-value").display(val);
+        }
+
+        public eps_onchange(val: string) {
+            $ts("#eps-value").display(val);
         }
 
         public run_umap_onclick() {
@@ -71,13 +80,28 @@ namespace apps.viewer {
             const vm = this;
 
             vm.showSpinner();
-            app.desktop.mzkit.GetUMAPFile()
-                .then(async function (str) {
-                    const filepath: string = await str;
-                    console.log(filepath);
-                });
             app.desktop.mzkit
                 .RunKmeans(parseInt($ts.value("#kmeans").toString()))
+                .then(async function (b) {
+                    const flag = await b;
+
+                    if (flag) {
+                        vm.loadUMAP();
+                    }
+
+                    vm.hideSpinner();
+                });
+        }
+
+        public run_dbscan_onclick() {
+            const vm = this;
+
+            vm.showSpinner();
+            app.desktop.mzkit
+                .RunDbScan(
+                    parseInt($ts.value("#min_pts").toString()),
+                    parseFloat($ts.value("#eps").toString())
+                )
                 .then(async function (b) {
                     const flag = await b;
 

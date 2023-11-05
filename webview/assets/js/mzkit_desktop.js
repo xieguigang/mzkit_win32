@@ -1511,6 +1511,7 @@ var apps;
                     });
                 });
                 this.loadUMAP();
+                this.selectMethod("kmeans");
             };
             umap.prototype.knn_onchange = function (val) {
                 $ts("#knn-value").display(val);
@@ -1529,6 +1530,12 @@ var apps;
             };
             umap.prototype.kmeans_onchange = function (val) {
                 $ts("#kmeans-value").display(val);
+            };
+            umap.prototype.min_pts_onchange = function (val) {
+                $ts("#min_pts-value").display(val);
+            };
+            umap.prototype.eps_onchange = function (val) {
+                $ts("#eps-value").display(val);
             };
             umap.prototype.run_umap_onclick = function () {
                 var vm = this;
@@ -1556,23 +1563,31 @@ var apps;
             umap.prototype.run_kmeans_onclick = function () {
                 var vm = this;
                 vm.showSpinner();
-                app.desktop.mzkit.GetUMAPFile()
-                    .then(function (str) {
+                app.desktop.mzkit
+                    .RunKmeans(parseInt($ts.value("#kmeans").toString()))
+                    .then(function (b) {
                     return __awaiter(this, void 0, void 0, function () {
-                        var filepath;
+                        var flag;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
-                                case 0: return [4 /*yield*/, str];
+                                case 0: return [4 /*yield*/, b];
                                 case 1:
-                                    filepath = _a.sent();
-                                    console.log(filepath);
+                                    flag = _a.sent();
+                                    if (flag) {
+                                        vm.loadUMAP();
+                                    }
+                                    vm.hideSpinner();
                                     return [2 /*return*/];
                             }
                         });
                     });
                 });
+            };
+            umap.prototype.run_dbscan_onclick = function () {
+                var vm = this;
+                vm.showSpinner();
                 app.desktop.mzkit
-                    .RunKmeans(parseInt($ts.value("#kmeans").toString()))
+                    .RunDbScan(parseInt($ts.value("#min_pts").toString()), parseFloat($ts.value("#eps").toString()))
                     .then(function (b) {
                     return __awaiter(this, void 0, void 0, function () {
                         var flag;
