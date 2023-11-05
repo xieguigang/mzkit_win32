@@ -5,8 +5,9 @@ const cutoff as double = as.numeric(?"--cutoff" || 0.8);
 const savefile = ?"--save" || `${dirname(input_data)}/${basename(input_data)}_graph.csv`;
 
 const rawdata = read.csv(input_data, row.names = 1, check.names = FALSE);
+const labels = colnames(rawdata);
 const clusters = btree(rawdata, equals = cutoff,
-                            gt = cutoff / 2) |> as.data.frame();
+                            gt = cutoff / 2) |> as.data.frame(colnames = labels);
 const class = clusters$Cluster;
 const uniq_class = unique(class);
 
