@@ -141,11 +141,17 @@ namespace apps.viewer {
         showSpinner() {
             document.getElementById('spinner')
                 .style.display = 'block';
+
+            $ts("#manifold").interactive(false);
+            $ts("#clustering").interactive(false);
         }
 
         hideSpinner() {
             document.getElementById('spinner')
                 .style.display = 'none';
+
+            $ts("#manifold").interactive(true);
+            $ts("#clustering").interactive(true);
         }
 
         public download_onclick() {

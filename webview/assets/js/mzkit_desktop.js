@@ -1639,10 +1639,14 @@ var apps;
             umap.prototype.showSpinner = function () {
                 document.getElementById('spinner')
                     .style.display = 'block';
+                $ts("#manifold").interactive(false);
+                $ts("#clustering").interactive(false);
             };
             umap.prototype.hideSpinner = function () {
                 document.getElementById('spinner')
                     .style.display = 'none';
+                $ts("#manifold").interactive(true);
+                $ts("#clustering").interactive(true);
             };
             umap.prototype.download_onclick = function () {
                 app.desktop.mzkit.Download().then(function (str) {
