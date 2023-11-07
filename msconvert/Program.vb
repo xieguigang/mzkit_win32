@@ -235,16 +235,20 @@ Imports Microsoft.VisualBasic.Scripting.Runtime
     <Usage("/imzml --file <source.data> --save <file.imzML> [/TIC_norm /cutoff <intensity_cutoff, default=0> /matrix_basePeak <mz, default=0> /resolution <default=17>]")>
     Public Function MSIToimzML(args As CommandLine) As Integer
         Dim file_handle As String = args <= "--file"
-        Dim files As String() = args("--file").ReadAllLines
+        Dim files As String()
         Dim save As String = args("--save")
         Dim cutoff As Double = args("/cutoff") Or 0.0
         Dim basePeak As Double = args("/matrix_basePeak") Or 0.0
         Dim norm As Boolean = args("/TIC_norm")
         Dim mzpack As mzPack
+        Dim source As String
 
         If file_handle.ExtensionSuffix("mzPack") Then
+            source = file_handle
             mzpack = mzPack.ReadAll(file_handle.Open(FileMode.Open, doClear:=False, [readOnly]:=True))
         Else
+            files = file_handle.ReadAllLines
+            source = files(Scan0)
             mzpack = MSImagingRowBinds.MSI_rowbind(files, cutoff, basePeak, norm)
         End If
 
@@ -258,7 +262,7 @@ Imports Microsoft.VisualBasic.Scripting.Runtime
         Using writer As imzML.mzPackWriter = imzML.mzPackWriter _
             .OpenOutput(save) _
             .SetMSImagingParameters(dimsize, res) _
-            .SetSourceLocation(files(Scan0)) _
+            .SetSourceLocation(source) _
             .SetSpectrumParameters(1)
 
             For Each scan As ScanMS1 In mzpack.MS
