@@ -3,6 +3,7 @@ Imports System.Drawing
 Imports System.IO
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging.MALDI_3D
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
@@ -232,7 +233,10 @@ Imports Microsoft.VisualBasic.Scripting.Runtime
 
     <ExportAPI("/imzml")>
     <Description("Convert raw data file to imzML file.")>
-    <Usage("/imzml --file <source.data> --save <file.imzML> [/TIC_norm /cutoff <intensity_cutoff, default=0> /matrix_basePeak <mz, default=0> /resolution <default=17>]")>
+    <Usage("/imzml --file <source.data> --save <file.imzML> [/TIC_norm /ionMode <1/-1, default=1> /cutoff <intensity_cutoff, default=0> /matrix_basePeak <mz, default=0> /resolution <default=17>]")>
+    <Argument("--file", Description:="the source data file inputs, could be a MZKit mzpack rawdata file or a text file contains the vendor raw data file to combine.")>
+    <Argument("--save", Description:="the file location path of the imzML and ibd rawdata file to export.")>
+    <Argument("/ionMode", True, Description:="the polarity mode of the ms data. value could be 1 for positive and -1 for negative")>
     Public Function MSIToimzML(args As CommandLine) As Integer
         Dim file_handle As String = args <= "--file"
         Dim files As String()
@@ -242,6 +246,7 @@ Imports Microsoft.VisualBasic.Scripting.Runtime
         Dim norm As Boolean = args("/TIC_norm")
         Dim mzpack As mzPack
         Dim source As String
+        Dim polarity As Integer = args("/ionMode") Or 1
 
         If file_handle.ExtensionSuffix("mzPack") Then
             source = file_handle
@@ -252,18 +257,26 @@ Imports Microsoft.VisualBasic.Scripting.Runtime
             mzpack = MSImagingRowBinds.MSI_rowbind(files, cutoff, basePeak, norm)
         End If
 
-        Dim polygon As New Polygon2D(mzpack.MS.Select(Function(scan) scan.GetMSIPixel))
-        Dim dimsize As New Size(
-            width:=polygon.xpoints.Max,
-            height:=polygon.ypoints.Max
-        )
+        Dim dimsize As Size
         Dim res As Double = args("/resolution") Or 17.0
+
+        If mzpack.Application = FileApplicationClass.MSImaging Then
+            dimsize = mzpack.GetMSIMetadata.GetDimension
+        Else
+            Dim pull = mzpack.MS.Select(Function(scan) scan.GetMSIPixel)
+            Dim polygon As New Polygon2D(pull)
+
+            dimsize = New Size(
+                width:=polygon.xpoints.Max,
+                height:=polygon.ypoints.Max
+            )
+        End If
 
         Using writer As imzML.mzPackWriter = imzML.mzPackWriter _
             .OpenOutput(save) _
             .SetMSImagingParameters(dimsize, res) _
             .SetSourceLocation(source) _
-            .SetSpectrumParameters(1)
+            .SetSpectrumParameters(polarity)
 
             For Each scan As ScanMS1 In mzpack.MS
                 Call writer.WriteScan(scan)
