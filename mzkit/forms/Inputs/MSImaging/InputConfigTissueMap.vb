@@ -33,6 +33,13 @@ Public Class InputConfigTissueMap
         editorConfigs.line_color = lineColor.BackColor.ToHtmlColor
         editorConfigs.show_points = ckShowPoints.Checked
         editorConfigs.dash = ckDashLine.Checked
+
+        configs.bootstrapping = New SampleBootstrapping With {
+            .nsamples = Val(TextBox1.Text),
+            .coverage = Val(TextBox2.Text)
+        }
+
+        Globals.Settings.Save()
     End Sub
 
     Private Sub loadSettings()
@@ -59,6 +66,11 @@ Public Class InputConfigTissueMap
         lineColor.BackColor = editorConfigs.line_color.TranslateColor
         ckShowPoints.Checked = editorConfigs.show_points
         ckDashLine.Checked = editorConfigs.dash
+
+        Dim boot = Globals.MSIBootstrapping
+
+        TextBox1.Text = boot.nsamples
+        TextBox2.Text = boot.coverage
     End Sub
 
     Public Shared Function GetTissueMapViewerConfig() As TissueMap

@@ -25,6 +25,11 @@ Namespace Configuration
     Public Class SampleBootstrapping
 
         Public Property nsamples As Integer = 32
+
+        ''' <summary>
+        ''' percentage value in range [0,1]
+        ''' </summary>
+        ''' <returns></returns>
         Public Property coverage As Double = 0.3
 
         Public Shared Function GetDefault() As SampleBootstrapping

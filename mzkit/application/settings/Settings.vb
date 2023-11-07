@@ -147,6 +147,10 @@ Namespace Configuration
             Return config
         End Function
 
+        ''' <summary>
+        ''' save the software settings json file
+        ''' </summary>
+        ''' <returns></returns>
         Public Function Save() As Boolean
             Return Me.GetJson.SaveTo(configFile)
         End Function
