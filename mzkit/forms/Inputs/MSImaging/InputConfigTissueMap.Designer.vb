@@ -50,6 +50,12 @@ Partial Class InputConfigTissueMap
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.numLineWidth = New System.Windows.Forms.NumericUpDown()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.Label11 = New System.Windows.Forms.Label()
         CType(Me.numOpacity, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -60,6 +66,7 @@ Partial Class InputConfigTissueMap
         Me.GroupBox2.SuspendLayout()
         CType(Me.lineColor, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.numLineWidth, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage3.SuspendLayout()
         Me.SuspendLayout()
         '
         'Button1
@@ -86,8 +93,8 @@ Partial Class InputConfigTissueMap
         '
         'numOpacity
         '
-        resources.ApplyResources(Me.numOpacity, "numOpacity")
         Me.numOpacity.LargeChange = 25
+        resources.ApplyResources(Me.numOpacity, "numOpacity")
         Me.numOpacity.Maximum = 100
         Me.numOpacity.Name = "numOpacity"
         Me.numOpacity.SmallChange = 5
@@ -99,10 +106,10 @@ Partial Class InputConfigTissueMap
         '
         'cbColorSet
         '
-        resources.ApplyResources(Me.cbColorSet, "cbColorSet")
         Me.cbColorSet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbColorSet.FormattingEnabled = True
         Me.cbColorSet.Items.AddRange(New Object() {resources.GetString("cbColorSet.Items"), resources.GetString("cbColorSet.Items1"), resources.GetString("cbColorSet.Items2"), resources.GetString("cbColorSet.Items3"), resources.GetString("cbColorSet.Items4"), resources.GetString("cbColorSet.Items5")})
+        resources.ApplyResources(Me.cbColorSet, "cbColorSet")
         Me.cbColorSet.Name = "cbColorSet"
         '
         'Label3
@@ -122,15 +129,15 @@ Partial Class InputConfigTissueMap
         '
         'TabControl1
         '
-        resources.ApplyResources(Me.TabControl1, "TabControl1")
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Controls.Add(Me.TabPage3)
+        resources.ApplyResources(Me.TabControl1, "TabControl1")
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         '
         'TabPage1
         '
-        resources.ApplyResources(Me.TabPage1, "TabPage1")
         Me.TabPage1.Controls.Add(Me.txtSpotSize)
         Me.TabPage1.Controls.Add(Me.Label1)
         Me.TabPage1.Controls.Add(Me.Label4)
@@ -139,25 +146,26 @@ Partial Class InputConfigTissueMap
         Me.TabPage1.Controls.Add(Me.numOpacity)
         Me.TabPage1.Controls.Add(Me.Label3)
         Me.TabPage1.Controls.Add(Me.cbColorSet)
+        resources.ApplyResources(Me.TabPage1, "TabPage1")
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
         'TabPage2
         '
-        resources.ApplyResources(Me.TabPage2, "TabPage2")
         Me.TabPage2.Controls.Add(Me.GroupBox1)
         Me.TabPage2.Controls.Add(Me.GroupBox2)
+        resources.ApplyResources(Me.TabPage2, "TabPage2")
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
-        resources.ApplyResources(Me.GroupBox1, "GroupBox1")
         Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Controls.Add(Me.pointColor)
         Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.numPointSize)
         Me.GroupBox1.Controls.Add(Me.ckShowPoints)
+        resources.ApplyResources(Me.GroupBox1, "GroupBox1")
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.TabStop = False
         '
@@ -192,12 +200,12 @@ Partial Class InputConfigTissueMap
         '
         'GroupBox2
         '
-        resources.ApplyResources(Me.GroupBox2, "GroupBox2")
         Me.GroupBox2.Controls.Add(Me.lineColor)
         Me.GroupBox2.Controls.Add(Me.ckDashLine)
         Me.GroupBox2.Controls.Add(Me.Label7)
         Me.GroupBox2.Controls.Add(Me.Label8)
         Me.GroupBox2.Controls.Add(Me.numLineWidth)
+        resources.ApplyResources(Me.GroupBox2, "GroupBox2")
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.TabStop = False
         '
@@ -230,6 +238,42 @@ Partial Class InputConfigTissueMap
         resources.ApplyResources(Me.numLineWidth, "numLineWidth")
         Me.numLineWidth.Name = "numLineWidth"
         '
+        'TabPage3
+        '
+        Me.TabPage3.Controls.Add(Me.Label11)
+        Me.TabPage3.Controls.Add(Me.TextBox2)
+        Me.TabPage3.Controls.Add(Me.Label10)
+        Me.TabPage3.Controls.Add(Me.TextBox1)
+        Me.TabPage3.Controls.Add(Me.Label9)
+        resources.ApplyResources(Me.TabPage3, "TabPage3")
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'Label9
+        '
+        resources.ApplyResources(Me.Label9, "Label9")
+        Me.Label9.Name = "Label9"
+        '
+        'TextBox1
+        '
+        resources.ApplyResources(Me.TextBox1, "TextBox1")
+        Me.TextBox1.Name = "TextBox1"
+        '
+        'Label10
+        '
+        resources.ApplyResources(Me.Label10, "Label10")
+        Me.Label10.Name = "Label10"
+        '
+        'TextBox2
+        '
+        resources.ApplyResources(Me.TextBox2, "TextBox2")
+        Me.TextBox2.Name = "TextBox2"
+        '
+        'Label11
+        '
+        resources.ApplyResources(Me.Label11, "Label11")
+        Me.Label11.Name = "Label11"
+        '
         'InputConfigTissueMap
         '
         resources.ApplyResources(Me, "$this")
@@ -251,6 +295,8 @@ Partial Class InputConfigTissueMap
         Me.GroupBox2.PerformLayout()
         CType(Me.lineColor, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.numLineWidth, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage3.ResumeLayout(False)
+        Me.TabPage3.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -280,4 +326,10 @@ Partial Class InputConfigTissueMap
     Friend WithEvents Label7 As Label
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents Label10 As Label
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents TextBox2 As TextBox
 End Class
