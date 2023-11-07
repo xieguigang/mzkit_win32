@@ -2660,7 +2660,7 @@ Public Class frmMsImagingViewer
     End Sub
 
     ''' <summary>
-    ''' 
+    ''' Open dialog for save matrix 
     ''' </summary>
     ''' <param name="noUI"></param>
     ''' <param name="binary"></param>
@@ -2709,6 +2709,8 @@ Public Class frmMsImagingViewer
 
     Private Sub exportMSISampleTable()
         If Not checkService() Then
+            ' 01. export a specific mzpack rawdata file if MSI services is not actived
+            '
             ' select file and export all pixel spots
             Using file As New OpenFileDialog With {.Filter = "BioNovoGene mzPack(*.mzPack)|*.mzPack"}
                 If file.ShowDialog = DialogResult.OK Then
@@ -2721,11 +2723,14 @@ Public Class frmMsImagingViewer
         End If
 
         If sampleRegions.IsNullOrEmpty Then
-            ' Call Workbench.Warning("No sample spot regions!")
+            ' 02. export all spatial spot sample if no tissue region map
+            '
             Call exportAllSpotSamplePeaktable(noUI:=False, filePath:=FilePath, binary:=False)
         Else
             Using file As New SaveFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
                 If file.ShowDialog = DialogResult.OK Then
+                    ' 03. export analysis expression matrix if tissue region map exists
+                    '
                     Call RscriptProgressTask.CreateMSIPeakTable(
                         mzpack:=FilePath,
                         saveAs:=file.FileName,

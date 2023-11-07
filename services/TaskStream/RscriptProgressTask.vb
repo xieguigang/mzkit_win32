@@ -593,7 +593,7 @@ Public NotInheritable Class RscriptProgressTask
     ''' Create MSI peaktable with a specific ptissue region maps
     ''' </summary>
     ''' <param name="mzpack"></param>
-    ''' <param name="saveAs"></param>
+    ''' <param name="saveAs">The matrix save location</param>
     ''' <param name="exportTissueMaps"></param>
     Public Shared Sub CreateMSIPeakTable(mzpack As String, saveAs As String, exportTissueMaps As Action(Of Stream))
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".cdf", App.PID.ToHexString, prefix:="MSI_regions__")
