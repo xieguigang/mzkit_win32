@@ -88,7 +88,6 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math.Distributions.BinBox
 Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.My.FrameworkInternal
-Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports Microsoft.VisualBasic.ValueTypes
 Imports Mzkit_win32.BasicMDIForm
@@ -98,8 +97,7 @@ Imports SMRUCC.genomics.Analysis.HTS.GSEA
 Imports Task
 Imports Task.Container
 Imports WeifenLuo.WinFormsUI.Docking
-Imports IPEndPoint = Microsoft.VisualBasic.Net.IPEndPoint
-Imports stdNum = System.Math
+Imports std = System.Math
 
 Module Globals
 
@@ -136,6 +134,16 @@ Module Globals
     Public ReadOnly Property pubchemWebCache As String
         Get
             Return Settings.pubchemWebCache
+        End Get
+    End Property
+
+    Public ReadOnly Property MSIBootstrapping As SampleBootstrapping
+        Get
+            If Settings.tissue_map Is Nothing OrElse Settings.tissue_map.bootstrapping Is Nothing Then
+                Return SampleBootstrapping.GetDefault
+            Else
+                Return Settings.tissue_map.bootstrapping
+            End If
         End Get
     End Property
 
@@ -226,9 +234,9 @@ Module Globals
         Return cache.ComputeIfAbsent(key,
             lazyValue:=Function()
                            If mode = 1 Then
-                               Return MSSearch(Of MetaboliteAnnotation).CreateIndex(dataPack, Provider.Positives.Where(Function(t) stdNum.Abs(t.charge) = 1).ToArray, mzdiff)
+                               Return MSSearch(Of MetaboliteAnnotation).CreateIndex(dataPack, Provider.Positives.Where(Function(t) std.Abs(t.charge) = 1).ToArray, mzdiff)
                            Else
-                               Return MSSearch(Of MetaboliteAnnotation).CreateIndex(dataPack, Provider.Positives.Where(Function(t) stdNum.Abs(t.charge) = 1).ToArray, mzdiff)
+                               Return MSSearch(Of MetaboliteAnnotation).CreateIndex(dataPack, Provider.Positives.Where(Function(t) std.Abs(t.charge) = 1).ToArray, mzdiff)
                            End If
                        End Function)
     End Function
@@ -242,9 +250,9 @@ Module Globals
         Return cache.ComputeIfAbsent(key,
             lazyValue:=Function()
                            If mode = 1 Then
-                               Return MSSearch(Of MetaboliteAnnotation).CreateIndex(dataPack, Provider.Positives.Where(Function(t) stdNum.Abs(t.charge) = 1).ToArray, mzdiff)
+                               Return MSSearch(Of MetaboliteAnnotation).CreateIndex(dataPack, Provider.Positives.Where(Function(t) std.Abs(t.charge) = 1).ToArray, mzdiff)
                            Else
-                               Return MSSearch(Of MetaboliteAnnotation).CreateIndex(dataPack, Provider.Positives.Where(Function(t) stdNum.Abs(t.charge) = 1).ToArray, mzdiff)
+                               Return MSSearch(Of MetaboliteAnnotation).CreateIndex(dataPack, Provider.Positives.Where(Function(t) std.Abs(t.charge) = 1).ToArray, mzdiff)
                            End If
                        End Function)
     End Function
@@ -258,9 +266,9 @@ Module Globals
         Return cache.ComputeIfAbsent(key,
             lazyValue:=Function()
                            If mode = 1 Then
-                               Return MSSearch(Of LipidMaps.MetaData).CreateIndex(dataPack, Provider.Positives.Where(Function(t) stdNum.Abs(t.charge) = 1).ToArray, mzdiff)
+                               Return MSSearch(Of LipidMaps.MetaData).CreateIndex(dataPack, Provider.Positives.Where(Function(t) std.Abs(t.charge) = 1).ToArray, mzdiff)
                            Else
-                               Return MSSearch(Of LipidMaps.MetaData).CreateIndex(dataPack, Provider.Positives.Where(Function(t) stdNum.Abs(t.charge) = 1).ToArray, mzdiff)
+                               Return MSSearch(Of LipidMaps.MetaData).CreateIndex(dataPack, Provider.Positives.Where(Function(t) std.Abs(t.charge) = 1).ToArray, mzdiff)
                            End If
                        End Function)
     End Function
@@ -274,9 +282,9 @@ Module Globals
         Dim handler As KEGGHandler = cache.ComputeIfAbsent(key,
             lazyValue:=Function()
                            If mode = 1 Then
-                               Return KEGGHandler.CreateIndex(compounds, Provider.Positives.Where(Function(t) stdNum.Abs(t.charge) = 1).ToArray, mzdiff)
+                               Return KEGGHandler.CreateIndex(compounds, Provider.Positives.Where(Function(t) std.Abs(t.charge) = 1).ToArray, mzdiff)
                            Else
-                               Return KEGGHandler.CreateIndex(compounds, Provider.Negatives.Where(Function(t) stdNum.Abs(t.charge) = 1).ToArray, mzdiff)
+                               Return KEGGHandler.CreateIndex(compounds, Provider.Negatives.Where(Function(t) std.Abs(t.charge) = 1).ToArray, mzdiff)
                            End If
                        End Function)
 

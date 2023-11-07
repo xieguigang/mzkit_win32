@@ -494,6 +494,9 @@ UseCheckedList:
     Private Function getVector(ByRef mz As Double) As TissueRegion()
         Dim regions As TissueRegion() = Nothing
         Dim mzi As Double
+        Dim pars = Globals.MSIBootstrapping
+        Dim nsamples As Integer = pars.nsamples
+        Dim cov As Double = pars.coverage
 
         Call ProgressSpinner.DoLoading(
             Sub()
@@ -508,7 +511,7 @@ UseCheckedList:
                 regions = viewer.sampleRegions _
                     .GetRegions(viewer.PixelSelector1.MSICanvas.dimension_size) _
                     .ToArray
-                Dim data = SampleData.ExtractSample(layer, regions, n:=81, coverage:=0.25)
+                Dim data = SampleData.ExtractSample(layer, regions, n:=nsamples, coverage:=cov)
 
                 For Each r As TissueRegion In regions
                     r.tags = data(r.label).Select(Function(d) d.ToString).ToArray
