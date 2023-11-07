@@ -7,6 +7,8 @@ require(graphics2D);
 # author: xieguigang <xie.guigang@gcmodeller.org>
 # description: export MSI peaktable for downstream data analysis
 
+# this script file just export the spatial spot expression matrix
+
 [@info "the spatial rawdata file its file path, should be a 
         data file in mzpack file format."]
 const raw as string = ?"--raw" || stop("a raw data file in mzpack format must be provided!");
