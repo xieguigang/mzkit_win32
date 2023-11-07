@@ -62,6 +62,9 @@ if (is.null(regions)) {
 		);
 	}
 } else {
+
+	# export expression table for analysis
+
 	using savefile as file(savepath, truncate = TRUE) {
 		raw |> BackgroundTask::MSI_peaktable(
 			getRegions(), savefile, 

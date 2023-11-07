@@ -462,8 +462,10 @@ Module BackgroundTask
         Call RunSlavePipeline.SendMessage("start to export MSI feature peaks table!")
 
         If regions.IsNullOrEmpty Then
+            ' export all spatial spot
             dataset = render.exportMSIRawPeakTable(ppm20, into_cutoff, dataKeys, TrIQ, index_win)
         Else
+            ' export region related expresion data
             dataset = regions.exportRegionDataset(render, ppm20, into_cutoff, dataKeys, TrIQ, index_win)
         End If
 
