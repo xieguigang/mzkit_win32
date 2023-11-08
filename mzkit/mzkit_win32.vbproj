@@ -1288,6 +1288,9 @@
     <EmbeddedResource Include="pages\dockWindow\documents\frmMetabonomicsAnalysis.resx">
       <DependentUpon>frmMetabonomicsAnalysis.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\documents\frmMRIViewer.resx">
+      <DependentUpon>frmMRIViewer.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\htmlPages\frmUMAPTools.resx">
       <DependentUpon>frmUMAPTools.vb</DependentUpon>
     </EmbeddedResource>
