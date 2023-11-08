@@ -15,6 +15,7 @@ Public Class frmMRIViewer : Implements IFileReference
     End Property
 
     Dim raster As RasterPointCloud
+    Dim cache As New Dictionary(Of String, Image)
 
     Public Sub LoadRaster(nrrd As NRRD.FileReader)
         Dim raster As RasterObject = nrrd.LoadRaster
@@ -36,12 +37,22 @@ Public Class frmMRIViewer : Implements IFileReference
 
     Private Sub MoveFrame()
         Dim i As Integer = TrackBar1.Value + 1
+        Dim key As String = i.ToString
+
+        If Not cache.ContainsKey(key) Then
+            cache.Add(key, CreateFrame(i))
+        End If
+
+        PictureBox1.BackgroundImage = cache(key)
+    End Sub
+
+    Private Function CreateFrame(i As Integer) As Image
         Dim layer As RasterImage = raster.GetRasterImage(i)
         Dim render As New PixelRender(ScalerPalette.turbo.Description, 100, defaultColor:=PictureBox1.BackColor)
         Dim img As Image = render.RenderRasterImage(layer.GetRasterPixels, layer.RawSize)
 
-        PictureBox1.BackgroundImage = img
-    End Sub
+        Return img
+    End Function
 
     Private Sub TrackBar1_Scroll(sender As Object, e As EventArgs) Handles TrackBar1.Scroll
         Call MoveFrame()
