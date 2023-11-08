@@ -32,6 +32,7 @@ Namespace RibbonLib.Controls
             Public Const cmdMenuButtonToolkit As UInteger = 236
             Public Const cmdMenuOpticalMicroscopyTools As UInteger = 235
             Public Const cmdButtonOpenVirtualSlideFile As UInteger = 234
+            Public Const cmdButtonViewMRI As UInteger = 263
             Public Const cmdMenuRTerm As UInteger = 233
             Public Const cmdButtonRsharp As UInteger = 1107
             Public Const cmdButtonDevTools As UInteger = 168
@@ -370,6 +371,12 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonOpenVirtualSlideFile As RibbonButton
             Get
                 Return _ButtonOpenVirtualSlideFile
+            End Get
+        End Property
+        Private _ButtonViewMRI As RibbonButton
+        Public ReadOnly Property ButtonViewMRI As RibbonButton
+            Get
+                Return _ButtonViewMRI
             End Get
         End Property
         Private _MenuRTerm As RibbonMenuGroup
@@ -1748,6 +1755,7 @@ Namespace RibbonLib.Controls
             _MenuButtonToolkit = New RibbonDropDownButton(_ribbon, Cmd.cmdMenuButtonToolkit)
             _MenuOpticalMicroscopyTools = New RibbonMenuGroup(_ribbon, Cmd.cmdMenuOpticalMicroscopyTools)
             _ButtonOpenVirtualSlideFile = New RibbonButton(_ribbon, Cmd.cmdButtonOpenVirtualSlideFile)
+            _ButtonViewMRI = New RibbonButton(_ribbon, Cmd.cmdButtonViewMRI)
             _MenuRTerm = New RibbonMenuGroup(_ribbon, Cmd.cmdMenuRTerm)
             _ButtonRsharp = New RibbonButton(_ribbon, Cmd.cmdButtonRsharp)
             _ButtonDevTools = New RibbonButton(_ribbon, Cmd.cmdButtonDevTools)

@@ -4030,6 +4030,14 @@
         <String Id="1172">Create tissue segmentation via the spatial gibbs sampling method</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdButtonViewMRI" Id="263" LabelTitle="Magnetic resonance imaging" LabelDescription="Magnetic resonance imaging viewer">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-ct-scanner-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-ct-scanner-96.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4092,6 +4100,7 @@
             <DropDownButton CommandName="cmdMenuButtonToolkit">
               <MenuGroup CommandName="cmdMenuOpticalMicroscopyTools" Class="MajorItems">
                 <Button CommandName="cmdButtonOpenVirtualSlideFile" />
+                <Button CommandName="cmdButtonViewMRI" />
               </MenuGroup>
               <MenuGroup CommandName="cmdMenuRTerm" Class="MajorItems">
                 <Button CommandName="cmdButtonRsharp" />
