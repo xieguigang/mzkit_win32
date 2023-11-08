@@ -215,7 +215,15 @@ Module RibbonEvents
             If file.ShowDialog = DialogResult.OK Then
                 Using nrrd As New NRRD.FileReader(file.OpenFile)
                     Dim page = VisualStudio.ShowDocument(Of frmMRIViewer)(title:=$"View [{file.FileName.FileName}]")
-                    Call page.LoadRaster(nrrd)
+
+                    Call TaskProgress.RunAction(
+                        run:=Sub(t)
+                                 Call page.LoadRaster(nrrd)
+                             End Sub,
+                        title:=$"Open Nrrd Image",
+                        info:=$"Read nrrd image file: {file.FileName}...",
+                        host:=page
+                    )
                 End Using
             End If
         End Using
