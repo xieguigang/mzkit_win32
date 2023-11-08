@@ -24,18 +24,23 @@ Partial Class frmMRIViewer
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.TrackBar1 = New System.Windows.Forms.TrackBar()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ChangeColorMapToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PictureBox1
         '
         Me.PictureBox1.BackColor = System.Drawing.Color.Black
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox1.ContextMenuStrip = Me.ContextMenuStrip1
         Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox1.Name = "PictureBox1"
@@ -62,6 +67,18 @@ Partial Class frmMRIViewer
         Me.Panel1.Size = New System.Drawing.Size(800, 62)
         Me.Panel1.TabIndex = 3
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ChangeColorMapToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 48)
+        '
+        'ChangeColorMapToolStripMenuItem
+        '
+        Me.ChangeColorMapToolStripMenuItem.Name = "ChangeColorMapToolStripMenuItem"
+        Me.ChangeColorMapToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ChangeColorMapToolStripMenuItem.Text = "Change Color Map"
+        '
         'frmMRIViewer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -76,6 +93,7 @@ Partial Class frmMRIViewer
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -83,4 +101,6 @@ Partial Class frmMRIViewer
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents TrackBar1 As TrackBar
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ChangeColorMapToolStripMenuItem As ToolStripMenuItem
 End Class

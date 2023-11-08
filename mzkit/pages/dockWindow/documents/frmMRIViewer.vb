@@ -2,6 +2,8 @@
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Mzkit_win32.LCMSViewer
 Imports NRRD
 
 Public Class frmMRIViewer : Implements IFileReference
@@ -16,6 +18,7 @@ Public Class frmMRIViewer : Implements IFileReference
 
     Dim raster As RasterPointCloud
     Dim cache As New Dictionary(Of String, Image)
+    Dim colorMap As String = ScalerPalette.turbo.Description
 
     Public Sub LoadRaster(nrrd As NRRD.FileReader)
         Dim raster As RasterObject = nrrd.LoadRaster
@@ -48,7 +51,7 @@ Public Class frmMRIViewer : Implements IFileReference
 
     Private Function CreateFrame(i As Integer) As Image
         Dim layer As RasterImage = raster.GetRasterImage(i)
-        Dim render As New PixelRender(ScalerPalette.turbo.Description, 100, defaultColor:=PictureBox1.BackColor)
+        Dim render As New PixelRender(colorMap, 255, defaultColor:=PictureBox1.BackColor)
         Dim img As Image = render.RenderRasterImage(layer.GetRasterPixels, layer.RawSize)
 
         Return img
@@ -60,5 +63,18 @@ Public Class frmMRIViewer : Implements IFileReference
 
     Private Sub TrackBar1_ValueChanged(sender As Object, e As EventArgs) Handles TrackBar1.ValueChanged
         Call MoveFrame()
+    End Sub
+
+    Private Sub ChangeColorMapToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeColorMapToolStripMenuItem.Click
+        InputDialog.Input(Of InputSelectColorMap)(
+            Sub(config)
+                Me.colorMap = config.GetColorMap.Description
+                Me.cache.Clear()
+                Me.MoveFrame()
+            End Sub)
+    End Sub
+
+    Private Sub frmMRIViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
+        ApplyVsTheme(ContextMenuStrip1)
     End Sub
 End Class
