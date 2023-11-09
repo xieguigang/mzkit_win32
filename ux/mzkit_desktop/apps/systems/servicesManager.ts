@@ -47,6 +47,9 @@ namespace apps.systems {
                 });
         }
 
+        /**
+         * tick loop frame
+        */
         private loadServicesList(list: Service[]) {
             const vm = this;
 
@@ -69,6 +72,19 @@ namespace apps.systems {
 
             $ts("#num-svr").display(list.length.toString());
             $ts("#services-list").clear();
+
+            list = $from(list).Select(s => {
+                return <Service>{
+                    PID: s.PID,
+                    Name: s.Name,
+                    Description: s.Description,
+                    Port: s.Port,
+                    CPU: s.CPU,
+                    Memory: s.Memory,
+                    StartTime: s.StartTime
+                }
+            }).ToArray();
+
             $ts.appendTable(list, "#services-list", null, { class: [] }, (o, r) => vm.styleEachRow(o, r));
         }
 
@@ -93,6 +109,7 @@ namespace apps.systems {
             panel.display($ts("<h3>").display(cpu.svr.Name));
             panel.appendElement($ts("<p>").display(cpu.svr.Description));
             panel.appendElement($ts("<p>").display(cpu.svr.StartTime));
+            panel.appendElement($ts("<p>").display(`<pre><code>${cpu.svr.CommandLine}</code></pre>`));
 
             if (this.refresh) {
                 this.cpu_chart.plot(<counterData>{ x: x, y: cpu.Counter, title: "Performance Counter (CPU history)" });
@@ -189,6 +206,7 @@ namespace apps.systems {
         Memory: number | string;
         isAlive: boolean | string;
         StartTime: string;
+        CommandLine: string;
     }
 
 }

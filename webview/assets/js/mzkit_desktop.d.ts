@@ -128,6 +128,9 @@ declare namespace apps.systems {
          * on update a frame display
         */
         private startUpdateTask;
+        /**
+         * tick loop frame
+        */
         private loadServicesList;
         private cpu_chart;
         private mem_chart;
@@ -147,6 +150,7 @@ declare namespace apps.systems {
         Memory: number | string;
         isAlive: boolean | string;
         StartTime: string;
+        CommandLine: string;
     }
 }
 declare namespace apps.viewer {
