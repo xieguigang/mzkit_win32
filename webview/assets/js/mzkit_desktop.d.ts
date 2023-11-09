@@ -4,6 +4,7 @@ declare namespace apps.viewer {
     class three_app extends Bootstrap {
         get appName(): string;
         protected init(): void;
+        private loadModel;
     }
 }
 declare namespace app.desktop {
