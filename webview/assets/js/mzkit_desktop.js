@@ -61,7 +61,6 @@ var apps;
     (function (viewer) {
         var window = globalThis.window;
         var Potree = window.Potree;
-        var toMap = window.toMap;
         var proj4 = window.proj4;
         var three_app = /** @class */ (function (_super) {
             __extends(three_app, _super);
