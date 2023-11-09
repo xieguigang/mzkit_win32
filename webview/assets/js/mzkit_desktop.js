@@ -72,6 +72,7 @@ var apps;
                 configurable: true
             });
             three_app.prototype.init = function () {
+                var window = globalThis.window;
                 window.cesiumViewer = new Cesium.Viewer('cesiumContainer', {
                     useDefaultRenderLoop: false,
                     animation: false,

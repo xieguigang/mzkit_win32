@@ -3,13 +3,15 @@
 namespace apps.viewer {
 
     export class three_app extends Bootstrap {
-        
+
         public get appName(): string {
             return "three-3d";
         }
 
         protected init(): void {
-            window.cesiumViewer = new Cesium.Viewer('cesiumContainer', {
+            const window = <any>globalThis.window;
+            const Cesium = window.Cesium;
+            const cesiumViewer = new Cesium.Viewer('cesiumContainer', {
                 useDefaultRenderLoop: false,
                 animation: false,
                 baseLayerPicker: false,
@@ -24,7 +26,9 @@ namespace apps.viewer {
                 imageryProvider: Cesium.createOpenStreetMapImageryProvider({ url: 'https://a.tile.openstreetmap.org/' }),
                 terrainShadows: Cesium.ShadowMode.DISABLED,
             });
-    
+
+            window.cesiumViewer = cesiumViewer;
+
             let cp = new Cesium.Cartesian3(4303414.154026048, 552161.235598733, 4660771.704035539);
             cesiumViewer.camera.setView({
                 destination: cp,
@@ -34,18 +38,18 @@ namespace apps.viewer {
                     roll: 0.0
                 }
             });
-    
+
             window.potreeViewer = new Potree.Viewer(document.getElementById("potree_render_area"), {
                 useDefaultRenderLoop: false
             });
-    
+
             potreeViewer.setEDLEnabled(true);
             potreeViewer.setFOV(60);
             potreeViewer.setPointBudget(3_000_000);
             potreeViewer.setBackground(null);
-    
+
             potreeViewer.setDescription("");
-    
+
             potreeViewer.loadGUI(() => {
                 potreeViewer.setLanguage('en');
                 $("#menu_appearance").next().show();
@@ -53,32 +57,32 @@ namespace apps.viewer {
                 $("#menu_scene").next().show();
                 potreeViewer.toggleSidebar();
             });
-    
+
             // CA13
             Potree.loadPointCloud("http://5.9.65.151/mschuetz/potree/resources/pointclouds/opentopography/CA13_1.4/cloud.js", "CA13", function (e) {
                 let pointcloud = e.pointcloud;
                 let scene = potreeViewer.scene;
                 let material = pointcloud.material;
-    
+
                 scene.addPointCloud(pointcloud);
-    
+
                 material.size = 1;
                 material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
-    
+
                 potreeViewer.scene.view.setView(
                     [675036.45, 3850315.78, 65076.70],
                     [692869.03, 3925774.14, 1581.51],
                 );
-    
+
                 let pointcloudProjection = e.pointcloud.projection;
                 let mapProjection = proj4.defs("WGS84");
-    
+
                 window.toMap = proj4(pointcloudProjection, mapProjection);
                 window.toScene = proj4(mapProjection, pointcloudProjection);
-    
+
                 { // ANNOTATIONS
                     let aRoot = potreeViewer.scene.annotations;
-    
+
                     let aCA13 = new Potree.Annotation({
                         title: "CA13",
                         position: [675036.45, 3850315.78, 65076.70],
@@ -86,7 +90,7 @@ namespace apps.viewer {
                         cameraTarget: [692869.03, 3925774.14, 1581.51],
                     });
                     aRoot.add(aCA13);
-    
+
                     let aSanSimeon = new Potree.Annotation({
                         title: "San Simeon",
                         position: [664147.50, 3946008.73, 16.30],
@@ -94,7 +98,7 @@ namespace apps.viewer {
                         cameraTarget: [664147.50, 3946008.73, 16.30],
                     });
                     aCA13.add(aSanSimeon);
-    
+
                     let aHearstCastle = new Potree.Annotation({
                         title: "Hearst Castle",
                         position: [665744.56, 3950567.52, 500.48],
@@ -102,7 +106,7 @@ namespace apps.viewer {
                         cameraTarget: [665744.56, 3950567.52, 500.48],
                     });
                     aCA13.add(aHearstCastle);
-    
+
                     let aMorroBay = new Potree.Annotation({
                         title: "Morro Bay",
                         position: [695483.33, 3916430.09, 25.75],
@@ -110,7 +114,7 @@ namespace apps.viewer {
                         cameraTarget: [695483.33, 3916430.09, 25.75],
                     });
                     aCA13.add(aMorroBay);
-    
+
                     let aMorroRock = new Potree.Annotation({
                         title: "Morro Rock",
                         position: [693729.66, 3916085.19, 90.35],
@@ -118,7 +122,7 @@ namespace apps.viewer {
                         cameraTarget: [693729.66, 3916085.19, 90.35],
                     });
                     aMorroBay.add(aMorroRock);
-    
+
                     let aMorroBayMutualWaterCo = new Potree.Annotation({
                         title: "Morro Bay Mutual Water Co",
                         position: [694699.45, 3916425.75, 39.78],
@@ -126,7 +130,7 @@ namespace apps.viewer {
                         cameraTarget: [694699.45, 3916425.75, 39.78],
                     });
                     aMorroBay.add(aMorroBayMutualWaterCo);
-    
+
                     let aLilaKeiserPark = new Potree.Annotation({
                         title: "Lila Keiser Park",
                         position: [694674.99, 3917070.49, 10.86],
@@ -134,7 +138,7 @@ namespace apps.viewer {
                         cameraTarget: [694674.99, 3917070.49, 10.86],
                     });
                     aMorroBay.add(aLilaKeiserPark);
-    
+
                     let aSanLuisObispo = new Potree.Annotation({
                         title: "San Luis Obispo",
                         position: [712573.39, 3907588.33, 146.44],
@@ -142,7 +146,7 @@ namespace apps.viewer {
                         cameraTarget: [712573.39, 3907588.33, 146.44],
                     });
                     aCA13.add(aSanLuisObispo);
-    
+
                     let aLopezHill = new Potree.Annotation({
                         title: "Lopez Hill",
                         position: [728635.63, 3895761.56, 456.33],
@@ -150,7 +154,7 @@ namespace apps.viewer {
                         cameraTarget: [728635.63, 3895761.56, 456.33],
                     });
                     aCA13.add(aLopezHill);
-    
+
                     let aWhaleRockReservoir = new Potree.Annotation({
                         title: "Whale Rock Reservoir",
                         position: [692845.46, 3925528.53, 140.91],
@@ -158,19 +162,19 @@ namespace apps.viewer {
                         cameraTarget: [692845.46, 3925528.53, 140.91],
                     });
                     aCA13.add(aWhaleRockReservoir);
-    
+
                 }
-    
+
                 { // TREE RETURNS POI - ANNOTATION & VOLUME
                     let aRoot = scene.annotations;
-    
+
                     let elTitle = $(`
                     <span>
                         Tree Returns:
                         <img name="action_return_number" src="${Potree.resourcePath}/icons/return_number.svg" class="annotation-action-icon"/>
                         <img name="action_rgb" src="${Potree.resourcePath}/icons/rgb.png" class="annotation-action-icon"/>
                     </span>`);
-    
+
                     elTitle.find("img[name=action_return_number]").click(() => {
                         event.stopPropagation();
                         material.activeAttributeName = "return_number";
@@ -178,7 +182,7 @@ namespace apps.viewer {
                         material.size = 5;
                         potreeViewer.setClipTask(Potree.ClipTask.SHOW_INSIDE);
                     });
-    
+
                     elTitle.find("img[name=action_rgb]").click(() => {
                         event.stopPropagation();
                         material.activeAttributeName = "rgba";
@@ -186,10 +190,10 @@ namespace apps.viewer {
                         material.size = 1;
                         potreeViewer.setClipTask(Potree.ClipTask.HIGHLIGHT);
                     });
-    
+
                     elTitle.toString = () => "Tree Returns";
-    
-    
+
+
                     let aTreeReturns = new Potree.Annotation({
                         title: elTitle,
                         position: [675756.75, 3937590.94, 80.21],
@@ -198,7 +202,7 @@ namespace apps.viewer {
                     });
                     aRoot.add(aTreeReturns);
                     aTreeReturns.domElement.find(".annotation-action-icon:first").css("filter", "invert(1)");
-    
+
                     let volume = new Potree.BoxVolume();
                     volume.position.set(675755.4039368022, 3937586.911614576, 85);
                     volume.scale.set(119.87189835418388, 68.3925257233834, 51.757483718373265);
@@ -208,47 +212,47 @@ namespace apps.viewer {
                     volume.name = "Trees";
                     scene.addVolume(volume);
                 }
-    
+
             });
-    
-    
-    
+
+
+
             function loop(timestamp) {
                 requestAnimationFrame(loop);
-    
+
                 potreeViewer.update(potreeViewer.clock.getDelta(), timestamp);
-    
+
                 potreeViewer.render();
-    
+
                 if (window.toMap !== undefined) {
-    
+
                     {
                         let camera = potreeViewer.scene.getActiveCamera();
-    
+
                         let pPos = new THREE.Vector3(0, 0, 0).applyMatrix4(camera.matrixWorld);
                         let pRight = new THREE.Vector3(600, 0, 0).applyMatrix4(camera.matrixWorld);
                         let pUp = new THREE.Vector3(0, 600, 0).applyMatrix4(camera.matrixWorld);
                         let pTarget = potreeViewer.scene.view.getPivot();
-    
+
                         let toCes = (pos) => {
                             let xy = [pos.x, pos.y];
                             let height = pos.z;
                             let deg = toMap.forward(xy);
                             let cPos = Cesium.Cartesian3.fromDegrees(...deg, height);
-    
+
                             return cPos;
                         };
-    
+
                         let cPos = toCes(pPos);
                         let cUpTarget = toCes(pUp);
                         let cTarget = toCes(pTarget);
-    
+
                         let cDir = Cesium.Cartesian3.subtract(cTarget, cPos, new Cesium.Cartesian3());
                         let cUp = Cesium.Cartesian3.subtract(cUpTarget, cPos, new Cesium.Cartesian3());
-    
+
                         cDir = Cesium.Cartesian3.normalize(cDir, new Cesium.Cartesian3());
                         cUp = Cesium.Cartesian3.normalize(cUp, new Cesium.Cartesian3());
-    
+
                         cesiumViewer.camera.setView({
                             destination: cPos,
                             orientation: {
@@ -256,9 +260,9 @@ namespace apps.viewer {
                                 up: cUp
                             }
                         });
-    
+
                     }
-    
+
                     let aspect = potreeViewer.scene.getActiveCamera().aspect;
                     if (aspect < 1) {
                         let fovy = Math.PI * (potreeViewer.scene.getActiveCamera().fov / 180);
@@ -268,13 +272,13 @@ namespace apps.viewer {
                         let fovx = Math.atan(Math.tan(0.5 * fovy) * aspect) * 2
                         cesiumViewer.camera.frustum.fov = fovx;
                     }
-    
+
                 }
-    
+
                 cesiumViewer.render();
             }
-    
+
             requestAnimationFrame(loop);
-        }        
+        }
     }
 }
