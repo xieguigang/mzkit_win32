@@ -213,18 +213,16 @@ Module RibbonEvents
     Private Sub openMRIRaster()
         Using file As New OpenFileDialog With {.Filter = "Nearly raster image(*.nrrd)|*.nrrd"}
             If file.ShowDialog = DialogResult.OK Then
-                Using nrrd As New NRRD.FileReader(file.OpenFile)
-                    Dim page = VisualStudio.ShowDocument(Of frmMRIViewer)(title:=$"View [{file.FileName.FileName}]")
+                Dim page = VisualStudio.ShowDocument(Of frmMRIViewer)(title:=$"View [{file.FileName.FileName}]")
 
-                    Call TaskProgress.RunAction(
-                        run:=Sub(t)
-                                 Call page.LoadRaster(nrrd)
-                             End Sub,
-                        title:=$"Open Nrrd Image",
-                        info:=$"Read nrrd image file: {file.FileName}...",
-                        host:=page
-                    )
-                End Using
+                Call TaskProgress.RunAction(
+                    run:=Sub(t)
+                             Call page.LoadRaster(file.FileName)
+                         End Sub,
+                    title:=$"Open Nrrd Image",
+                    info:=$"Read nrrd image file: {file.FileName}...",
+                    host:=page
+                )
             End If
         End Using
     End Sub

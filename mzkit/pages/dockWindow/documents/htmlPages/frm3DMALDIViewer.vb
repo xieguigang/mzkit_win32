@@ -6,6 +6,9 @@ Imports BioNovoGene.mzkit_win32.ServiceHub.Manager
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
+Imports SMRUCC.DICOM.LASer
+Imports SMRUCC.DICOM.LASer.Model
+Imports SMRUCC.DICOM.NRRD
 Imports Task.Container
 
 Public Class frm3DMALDIViewer
@@ -23,13 +26,13 @@ Public Class frm3DMALDIViewer
         End Sub
 
         Public Function get_3d_MALDI_url() As String
-            Return $"http://127.0.0.1:{host.webPort}/{source.FileName}"
+            Return $"http://127.0.0.1:{host.webPort}/cloud.js"
         End Function
 
         Public Sub open_MALDI_model()
             Using file As New OpenFileDialog With {.Filter = "3D MALDI model(*.maldi)|*.maldi|NRRD Raster Image(*.nrrd)|*.nrrd"}
                 If file.ShowDialog = DialogResult.OK Then
-                    Me.source = file.FileName
+
                 End If
             End Using
         End Sub
@@ -38,6 +41,7 @@ Public Class frm3DMALDIViewer
     Dim localfs As Process
     Dim webPort As Integer = -1
     Dim sourceMALDI As New MALDISource(Me)
+    Dim modelTempDir As String = TempFileSystem.GetAppSysTempFile(".js", sessionID:=App.PID.ToString.MD5, prefix:="potree_las_model_").ParentPath
 
     Public ReadOnly Property sourceURL As String
         Get
@@ -52,10 +56,23 @@ Public Class frm3DMALDIViewer
 
         ' Add any initialization after the InitializeComponent() call.
         AutoScaleMode = AutoScaleMode.Dpi
-        sourceMALDI.source = AppEnvironment.get3DMALDIDemoFolder.GetDirectoryFullPath & "/3DMouseKidney.maldi"
     End Sub
 
     Public Sub LoadModel(maldi As String)
+        If maldi.ExtensionSuffix("nrrd") Then
+            Dim nrrd = New FileReader(maldi.Open(IO.FileMode.Open, doClear:=False, [readOnly]:=True)).LoadRaster
+
+            If TypeOf nrrd Is RasterImage Then
+                Return
+            Else
+                Dim points As LasPoint() = DirectCast(nrrd, RasterPointCloud) _
+                    .GetPointCloud(Of LasPoint)(skipZero:=True) _
+                    .ToArray
+
+                Call PotreeModel.ExportModel(points, dir:=modelTempDir)
+            End If
+        End If
+
         sourceMALDI.source = maldi
         WebView21.Reload()
     End Sub
@@ -65,7 +82,7 @@ Public Class frm3DMALDIViewer
         localfs = New Process With {
             .StartInfo = New ProcessStartInfo With {
                 .FileName = $"{App.HOME}/Rstudio/bin/Rserve.exe",
-                .Arguments = $"--listen /wwwroot ""{AppEnvironment.getWebViewFolder}"" /port {webPort} --parent={App.PID} --attach {sourceMALDI.source.ParentPath.CLIPath}",
+                .Arguments = $"--listen /wwwroot ""{AppEnvironment.getWebViewFolder}"" /port {webPort} --parent={App.PID} --attach {modelTempDir.CLIPath}",
                 .CreateNoWindow = True,
                 .WindowStyle = ProcessWindowStyle.Hidden,
                 .UseShellExecute = True
@@ -99,23 +116,13 @@ Public Class frm3DMALDIViewer
 
         Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", sourceMALDI)
         Call WebView21.CoreWebView2.Navigate(sourceURL)
-        Call DeveloperOptions(enable:=True)
-    End Sub
-
-    Public Sub DeveloperOptions(enable As Boolean)
-        WebView21.CoreWebView2.Settings.AreDevToolsEnabled = enable
-        WebView21.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = enable
-        WebView21.CoreWebView2.Settings.AreDefaultContextMenusEnabled = enable
-
-        If enable Then
-            Call MyApplication.host.showStatusMessage($"[{TabText}] WebView2 developer tools has been enable!")
-        End If
+        Call WebKit.DeveloperOptions(WebView21, enable:=True, TabText:=TabText)
     End Sub
 
     Private Sub frm3DMALDIViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Me.startHttp()
         Me.TabText = Me.Text
 
+        Call startHttp()
         Call WebKit.Init(Me.WebView21)
     End Sub
 End Class

@@ -4,7 +4,7 @@ Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Mzkit_win32.LCMSViewer
-Imports NRRD
+Imports SMRUCC.DICOM.NRRD
 
 Public Class frmMRIViewer : Implements IFileReference
 
@@ -20,7 +20,8 @@ Public Class frmMRIViewer : Implements IFileReference
     Dim cache As New Dictionary(Of String, Image)
     Dim colorMap As String = ScalerPalette.turbo.Description
 
-    Public Sub LoadRaster(nrrd As NRRD.FileReader)
+    Public Sub LoadRaster(filepath As String)
+        Dim nrrd As New FileReader(filepath.Open(IO.FileMode.Open, doClear:=False, [readOnly]:=True))
         Dim raster As RasterObject = nrrd.LoadRaster
 
         If TypeOf raster Is RasterImage Then
@@ -29,6 +30,8 @@ Public Class frmMRIViewer : Implements IFileReference
             Me.raster = raster
         End If
 
+        Me.FilePath = filepath
+
         Dim dims = raster.dimensionSize
 
         TrackBar1.Minimum = 0
@@ -36,6 +39,7 @@ Public Class frmMRIViewer : Implements IFileReference
         TrackBar1.Value = 0
 
         Call MoveFrame()
+        Call nrrd.Dispose()
     End Sub
 
     Private Sub MoveFrame()
@@ -76,5 +80,10 @@ Public Class frmMRIViewer : Implements IFileReference
 
     Private Sub frmMRIViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         ApplyVsTheme(ContextMenuStrip1)
+    End Sub
+
+    Private Sub OpenIn3DViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenIn3DViewerToolStripMenuItem.Click
+        Dim page = VisualStudio.ShowDocument(Of frm3DMALDIViewer)(, title:=$"View MRI NRRD Raw[{FilePath.FileName}]")
+        Call page.LoadModel(FilePath)
     End Sub
 End Class

@@ -26,14 +26,15 @@ Partial Class frmMRIViewer
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.TrackBar1 = New System.Windows.Forms.TrackBar()
-        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ChangeColorMapToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TrackBar1 = New System.Windows.Forms.TrackBar()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.OpenIn3DViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
-        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PictureBox1
@@ -47,6 +48,18 @@ Partial Class frmMRIViewer
         Me.PictureBox1.Size = New System.Drawing.Size(800, 388)
         Me.PictureBox1.TabIndex = 1
         Me.PictureBox1.TabStop = False
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ChangeColorMapToolStripMenuItem, Me.OpenIn3DViewerToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 70)
+        '
+        'ChangeColorMapToolStripMenuItem
+        '
+        Me.ChangeColorMapToolStripMenuItem.Name = "ChangeColorMapToolStripMenuItem"
+        Me.ChangeColorMapToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ChangeColorMapToolStripMenuItem.Text = "Change Color Map"
         '
         'TrackBar1
         '
@@ -67,17 +80,11 @@ Partial Class frmMRIViewer
         Me.Panel1.Size = New System.Drawing.Size(800, 62)
         Me.Panel1.TabIndex = 3
         '
-        'ContextMenuStrip1
+        'OpenIn3DViewerToolStripMenuItem
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ChangeColorMapToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 48)
-        '
-        'ChangeColorMapToolStripMenuItem
-        '
-        Me.ChangeColorMapToolStripMenuItem.Name = "ChangeColorMapToolStripMenuItem"
-        Me.ChangeColorMapToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ChangeColorMapToolStripMenuItem.Text = "Change Color Map"
+        Me.OpenIn3DViewerToolStripMenuItem.Name = "OpenIn3DViewerToolStripMenuItem"
+        Me.OpenIn3DViewerToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.OpenIn3DViewerToolStripMenuItem.Text = "Open In 3D Viewer"
         '
         'frmMRIViewer
         '
@@ -90,10 +97,10 @@ Partial Class frmMRIViewer
         Me.Name = "frmMRIViewer"
         Me.TabPageContextMenuStrip = Me.DockContextMenuStrip1
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -103,4 +110,5 @@ Partial Class frmMRIViewer
     Friend WithEvents Panel1 As Panel
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ChangeColorMapToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents OpenIn3DViewerToolStripMenuItem As ToolStripMenuItem
 End Class
