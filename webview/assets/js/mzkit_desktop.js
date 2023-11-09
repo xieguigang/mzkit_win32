@@ -62,6 +62,7 @@ var apps;
         var Cesium = window.Cesium;
         var Potree = window.Potree;
         var toMap = window.toMap;
+        var proj4 = window.proj4;
         var three_app = /** @class */ (function (_super) {
             __extends(three_app, _super);
             function three_app() {

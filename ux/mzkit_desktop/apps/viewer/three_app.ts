@@ -5,6 +5,7 @@ namespace apps.viewer {
     const Cesium = (<any>window).Cesium;
     const Potree = (<any>window).Potree;
     const toMap = (<any>window).toMap;
+    const proj4 = (<any>window).proj4;
 
     export class three_app extends Bootstrap {
 
