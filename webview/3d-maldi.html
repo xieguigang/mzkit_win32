@@ -8,13 +8,17 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<meta name="app" content="three-3d" />
 
-	<title>Potree Viewer</title>
+	<title>3D PointCloud Model Viewer</title>
 
 	<link rel="stylesheet" type="text/css" href="./vendor/potree/potree.css">
 	<link rel="stylesheet" type="text/css" href="./vendor/libs/jquery-ui/jquery-ui.min.css">
 	<link rel="stylesheet" type="text/css" href="./vendor/libs/openlayers3/ol.css">
 	<link rel="stylesheet" type="text/css" href="./vendor/libs/spectrum/spectrum.css">
 	<link rel="stylesheet" type="text/css" href="./vendor/libs/jstree/themes/mixed/style.css">
+
+	<script type="module">
+		import * as THREE from "./vendor/libs/three.js/build/three.module.js";
+	</script>
 </head>
 
 <body>
@@ -41,12 +45,6 @@
 		</div>
 		<div id="potree_sidebar_container"> </div>
 	</div>
-
-	<script type="module">
-
-		import * as THREE from "./vendor/libs/three.js/build/three.module.js";
-
-	</script>
 
 	<script src="./assets/js/linq.js"></script>
 	<script src="./assets/js/mzkit_desktop.js"></script>

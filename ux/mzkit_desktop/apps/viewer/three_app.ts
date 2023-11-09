@@ -13,44 +13,44 @@ namespace apps.viewer {
             return "three-3d";
         }
 
+        private potreeViewer;
+
         protected init(): void {
-            const potreeViewer = new Potree.Viewer(document.getElementById("potree_render_area"), {
+            this.potreeViewer = new Potree.Viewer(document.getElementById("potree_render_area"), {
                 useDefaultRenderLoop: false
             });
 
-            window.potreeViewer = potreeViewer;
+            this.potreeViewer.setEDLEnabled(true);
+            this.potreeViewer.setFOV(60);
+            this.potreeViewer.setPointBudget(3_000_000);
+            this.potreeViewer.setBackground(null);
 
-            potreeViewer.setEDLEnabled(true);
-            potreeViewer.setFOV(60);
-            potreeViewer.setPointBudget(3_000_000);
-            potreeViewer.setBackground(null);
+            this.potreeViewer.setDescription("");
 
-            potreeViewer.setDescription("");
-
-            potreeViewer.loadGUI(() => {
-                potreeViewer.setLanguage('en');
+            this.potreeViewer.loadGUI(() => {
+                this.potreeViewer.setLanguage('en');
                 $("#menu_appearance").next().show();
                 $("#menu_tools").next().show();
                 $("#menu_scene").next().show();
-                potreeViewer.toggleSidebar();
+                this.potreeViewer.toggleSidebar();
             });
 
             // CA13
-            Potree.loadPointCloud("http://5.9.65.151/mschuetz/potree/resources/pointclouds/opentopography/CA13_1.4/cloud.js", "CA13", e => this.loadModel(e, potreeViewer));
+            Potree.loadPointCloud("http://5.9.65.151/mschuetz/potree/resources/pointclouds/opentopography/CA13_1.4/cloud.js", "CA13", e => this.loadModel(e));
 
-            requestAnimationFrame(t => this.loop(t, potreeViewer));
+            requestAnimationFrame(t => this.loop(t));
         }
 
-        private loop(timestamp, potreeViewer) {
-            requestAnimationFrame(t => this.loop(t, potreeViewer));
+        private loop(timestamp) {
+            requestAnimationFrame(t => this.loop(t));
 
-            potreeViewer.update(potreeViewer.clock.getDelta(), timestamp);
-            potreeViewer.render();
+            this.potreeViewer.update(this.potreeViewer.clock.getDelta(), timestamp);
+            this.potreeViewer.render();
         }
 
-        private loadModel(e, potreeViewer) {
+        private loadModel(e) {
             let pointcloud = e.pointcloud;
-            let scene = potreeViewer.scene;
+            let scene = this.potreeViewer.scene;
             let material = pointcloud.material;
 
             scene.addPointCloud(pointcloud);
@@ -58,7 +58,7 @@ namespace apps.viewer {
             material.size = 1;
             material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
 
-            potreeViewer.scene.view.setView(
+            this.potreeViewer.scene.view.setView(
                 [675036.45, 3850315.78, 65076.70],
                 [692869.03, 3925774.14, 1581.51],
             );
@@ -70,7 +70,7 @@ namespace apps.viewer {
             window.toScene = proj4(mapProjection, pointcloudProjection);
 
             { // ANNOTATIONS
-                let aRoot = potreeViewer.scene.annotations;
+                let aRoot = this.potreeViewer.scene.annotations;
 
                 let aCA13 = new Potree.Annotation({
                     title: "CA13",
@@ -169,7 +169,7 @@ namespace apps.viewer {
                     material.activeAttributeName = "return_number";
                     material.pointSizeType = Potree.PointSizeType.FIXED;
                     material.size = 5;
-                    potreeViewer.setClipTask(Potree.ClipTask.SHOW_INSIDE);
+                    this.potreeViewer.setClipTask(Potree.ClipTask.SHOW_INSIDE);
                 });
 
                 elTitle.find("img[name=action_rgb]").click(() => {
@@ -177,7 +177,7 @@ namespace apps.viewer {
                     material.activeAttributeName = "rgba";
                     material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
                     material.size = 1;
-                    potreeViewer.setClipTask(Potree.ClipTask.HIGHLIGHT);
+                    this.potreeViewer.setClipTask(Potree.ClipTask.HIGHLIGHT);
                 });
 
                 elTitle.toString = () => "Tree Returns";

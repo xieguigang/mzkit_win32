@@ -77,46 +77,46 @@ var apps;
             });
             three_app.prototype.init = function () {
                 var _this = this;
-                var potreeViewer = new Potree.Viewer(document.getElementById("potree_render_area"), {
+                this.potreeViewer = new Potree.Viewer(document.getElementById("potree_render_area"), {
                     useDefaultRenderLoop: false
                 });
-                window.potreeViewer = potreeViewer;
-                potreeViewer.setEDLEnabled(true);
-                potreeViewer.setFOV(60);
-                potreeViewer.setPointBudget(3000000);
-                potreeViewer.setBackground(null);
-                potreeViewer.setDescription("");
-                potreeViewer.loadGUI(function () {
-                    potreeViewer.setLanguage('en');
+                this.potreeViewer.setEDLEnabled(true);
+                this.potreeViewer.setFOV(60);
+                this.potreeViewer.setPointBudget(3000000);
+                this.potreeViewer.setBackground(null);
+                this.potreeViewer.setDescription("");
+                this.potreeViewer.loadGUI(function () {
+                    _this.potreeViewer.setLanguage('en');
                     $("#menu_appearance").next().show();
                     $("#menu_tools").next().show();
                     $("#menu_scene").next().show();
-                    potreeViewer.toggleSidebar();
+                    _this.potreeViewer.toggleSidebar();
                 });
                 // CA13
-                Potree.loadPointCloud("http://5.9.65.151/mschuetz/potree/resources/pointclouds/opentopography/CA13_1.4/cloud.js", "CA13", function (e) { return _this.loadModel(e, potreeViewer); });
-                requestAnimationFrame(function (t) { return _this.loop(t, potreeViewer); });
+                Potree.loadPointCloud("http://5.9.65.151/mschuetz/potree/resources/pointclouds/opentopography/CA13_1.4/cloud.js", "CA13", function (e) { return _this.loadModel(e); });
+                requestAnimationFrame(function (t) { return _this.loop(t); });
             };
-            three_app.prototype.loop = function (timestamp, potreeViewer) {
+            three_app.prototype.loop = function (timestamp) {
                 var _this = this;
-                requestAnimationFrame(function (t) { return _this.loop(t, potreeViewer); });
-                potreeViewer.update(potreeViewer.clock.getDelta(), timestamp);
-                potreeViewer.render();
+                requestAnimationFrame(function (t) { return _this.loop(t); });
+                this.potreeViewer.update(this.potreeViewer.clock.getDelta(), timestamp);
+                this.potreeViewer.render();
             };
-            three_app.prototype.loadModel = function (e, potreeViewer) {
+            three_app.prototype.loadModel = function (e) {
+                var _this = this;
                 var pointcloud = e.pointcloud;
-                var scene = potreeViewer.scene;
+                var scene = this.potreeViewer.scene;
                 var material = pointcloud.material;
                 scene.addPointCloud(pointcloud);
                 material.size = 1;
                 material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
-                potreeViewer.scene.view.setView([675036.45, 3850315.78, 65076.70], [692869.03, 3925774.14, 1581.51]);
+                this.potreeViewer.scene.view.setView([675036.45, 3850315.78, 65076.70], [692869.03, 3925774.14, 1581.51]);
                 var pointcloudProjection = e.pointcloud.projection;
                 var mapProjection = proj4.defs("WGS84");
                 window.toMap = proj4(pointcloudProjection, mapProjection);
                 window.toScene = proj4(mapProjection, pointcloudProjection);
                 { // ANNOTATIONS
-                    var aRoot = potreeViewer.scene.annotations;
+                    var aRoot = this.potreeViewer.scene.annotations;
                     var aCA13 = new Potree.Annotation({
                         title: "CA13",
                         position: [675036.45, 3850315.78, 65076.70],
@@ -196,14 +196,14 @@ var apps;
                         material.activeAttributeName = "return_number";
                         material.pointSizeType = Potree.PointSizeType.FIXED;
                         material.size = 5;
-                        potreeViewer.setClipTask(Potree.ClipTask.SHOW_INSIDE);
+                        _this.potreeViewer.setClipTask(Potree.ClipTask.SHOW_INSIDE);
                     });
                     elTitle.find("img[name=action_rgb]").click(function () {
                         event.stopPropagation();
                         material.activeAttributeName = "rgba";
                         material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
                         material.size = 1;
-                        potreeViewer.setClipTask(Potree.ClipTask.HIGHLIGHT);
+                        _this.potreeViewer.setClipTask(Potree.ClipTask.HIGHLIGHT);
                     });
                     elTitle.toString = function () { return "Tree Returns"; };
                     var aTreeReturns = new Potree.Annotation({

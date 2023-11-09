@@ -3,6 +3,7 @@
 declare namespace apps.viewer {
     class three_app extends Bootstrap {
         get appName(): string;
+        private potreeViewer;
         protected init(): void;
         private loop;
         private loadModel;
