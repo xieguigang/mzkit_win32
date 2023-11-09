@@ -3,25 +3,7 @@
 declare namespace apps.viewer {
     class three_app extends Bootstrap {
         get appName(): string;
-        scene: THREE.Scene;
-        private renderer;
-        private camera;
-        private light;
-        private stats;
-        private controls;
-        private initControls;
-        private initStats;
-        private initRender;
-        private initCamera;
-        private initScene;
-        private initLight;
-        private initModel;
-        private render;
-        private onWindowResize;
-        private animate;
         protected init(): void;
-        private setup_device;
-        static open: Delegate.Action;
     }
 }
 declare namespace app.desktop {
