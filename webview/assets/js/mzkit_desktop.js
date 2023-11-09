@@ -90,7 +90,7 @@ var apps;
                     selectionIndicator: false,
                     timeline: false,
                     navigationHelpButton: false,
-                    imageryProvider: Cesium.createOpenStreetMapImageryProvider({ url: 'https://a.tile.openstreetmap.org/' }),
+                    // imageryProvider: Cesium.createOpenStreetMapImageryProvider({ url: 'https://a.tile.openstreetmap.org/' }),
                     terrainShadows: Cesium.ShadowMode.DISABLED,
                 });
                 window.cesiumViewer = cesiumViewer;
