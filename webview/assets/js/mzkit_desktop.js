@@ -59,6 +59,9 @@ var apps;
 (function (apps) {
     var viewer;
     (function (viewer) {
+        var Cesium = window.Cesium;
+        var Potree = window.Potree;
+        var toMap = window.toMap;
         var three_app = /** @class */ (function (_super) {
             __extends(three_app, _super);
             function three_app() {
@@ -73,7 +76,7 @@ var apps;
             });
             three_app.prototype.init = function () {
                 var window = globalThis.window;
-                window.cesiumViewer = new Cesium.Viewer('cesiumContainer', {
+                var cesiumViewer = new Cesium.Viewer('cesiumContainer', {
                     useDefaultRenderLoop: false,
                     animation: false,
                     baseLayerPicker: false,
@@ -88,6 +91,7 @@ var apps;
                     imageryProvider: Cesium.createOpenStreetMapImageryProvider({ url: 'https://a.tile.openstreetmap.org/' }),
                     terrainShadows: Cesium.ShadowMode.DISABLED,
                 });
+                window.cesiumViewer = cesiumViewer;
                 var cp = new Cesium.Cartesian3(4303414.154026048, 552161.235598733, 4660771.704035539);
                 cesiumViewer.camera.setView({
                     destination: cp,
@@ -97,9 +101,10 @@ var apps;
                         roll: 0.0
                     }
                 });
-                window.potreeViewer = new Potree.Viewer(document.getElementById("potree_render_area"), {
+                var potreeViewer = new Potree.Viewer(document.getElementById("potree_render_area"), {
                     useDefaultRenderLoop: false
                 });
+                window.potreeViewer = potreeViewer;
                 potreeViewer.setEDLEnabled(true);
                 potreeViewer.setFOV(60);
                 potreeViewer.setPointBudget(3000000);
@@ -238,7 +243,7 @@ var apps;
                     requestAnimationFrame(loop);
                     potreeViewer.update(potreeViewer.clock.getDelta(), timestamp);
                     potreeViewer.render();
-                    if (window.toMap !== undefined) {
+                    if (toMap !== undefined) {
                         {
                             var camera = potreeViewer.scene.getActiveCamera();
                             var pPos = new THREE.Vector3(0, 0, 0).applyMatrix4(camera.matrixWorld);

@@ -2,6 +2,10 @@
 
 namespace apps.viewer {
 
+    const Cesium = (<any>window).Cesium;
+    const Potree = (<any>window).Potree;
+    const toMap = (<any>window).toMap;
+
     export class three_app extends Bootstrap {
 
         public get appName(): string {
@@ -9,8 +13,7 @@ namespace apps.viewer {
         }
 
         protected init(): void {
-            const window = <any>globalThis.window;
-            const Cesium = window.Cesium;
+            const window = <any>globalThis.window;           
             const cesiumViewer = new Cesium.Viewer('cesiumContainer', {
                 useDefaultRenderLoop: false,
                 animation: false,
@@ -39,9 +42,11 @@ namespace apps.viewer {
                 }
             });
 
-            window.potreeViewer = new Potree.Viewer(document.getElementById("potree_render_area"), {
+            const potreeViewer = new Potree.Viewer(document.getElementById("potree_render_area"), {
                 useDefaultRenderLoop: false
             });
+
+            window.potreeViewer = potreeViewer;
 
             potreeViewer.setEDLEnabled(true);
             potreeViewer.setFOV(60);
@@ -224,7 +229,7 @@ namespace apps.viewer {
 
                 potreeViewer.render();
 
-                if (window.toMap !== undefined) {
+                if (toMap !== undefined) {
 
                     {
                         let camera = potreeViewer.scene.getActiveCamera();
