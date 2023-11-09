@@ -11,13 +11,6 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __spreadArrays = (this && this.__spreadArrays) || function () {
-    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-    for (var r = Array(s), k = 0, i = 0; i < il; i++)
-        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-            r[k] = a[j];
-    return r;
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -54,13 +47,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
 /// <reference path="../../d/three/index.d.ts" />
 var apps;
 (function (apps) {
     var viewer;
     (function (viewer) {
         var window = globalThis.window;
-        var Cesium = window.Cesium;
         var Potree = window.Potree;
         var toMap = window.toMap;
         var proj4 = window.proj4;
@@ -78,31 +77,6 @@ var apps;
             });
             three_app.prototype.init = function () {
                 var _this = this;
-                var cesiumViewer = new Cesium.Viewer('cesiumContainer', {
-                    useDefaultRenderLoop: false,
-                    animation: false,
-                    baseLayerPicker: false,
-                    fullscreenButton: false,
-                    geocoder: false,
-                    homeButton: false,
-                    infoBox: false,
-                    sceneModePicker: false,
-                    selectionIndicator: false,
-                    timeline: false,
-                    navigationHelpButton: false,
-                    // imageryProvider: Cesium.createOpenStreetMapImageryProvider({ url: 'https://a.tile.openstreetmap.org/' }),
-                    terrainShadows: Cesium.ShadowMode.DISABLED,
-                });
-                window.cesiumViewer = cesiumViewer;
-                var cp = new Cesium.Cartesian3(4303414.154026048, 552161.235598733, 4660771.704035539);
-                cesiumViewer.camera.setView({
-                    destination: cp,
-                    orientation: {
-                        heading: 10,
-                        pitch: -Cesium.Math.PI_OVER_TWO * 0.5,
-                        roll: 0.0
-                    }
-                });
                 var potreeViewer = new Potree.Viewer(document.getElementById("potree_render_area"), {
                     useDefaultRenderLoop: false
                 });
@@ -121,55 +95,13 @@ var apps;
                 });
                 // CA13
                 Potree.loadPointCloud("http://5.9.65.151/mschuetz/potree/resources/pointclouds/opentopography/CA13_1.4/cloud.js", "CA13", function (e) { return _this.loadModel(e, potreeViewer); });
-                requestAnimationFrame(function (t) { return _this.loop(t, potreeViewer, cesiumViewer); });
+                requestAnimationFrame(function (t) { return _this.loop(t, potreeViewer); });
             };
-            three_app.prototype.loop = function (timestamp, potreeViewer, cesiumViewer) {
+            three_app.prototype.loop = function (timestamp, potreeViewer) {
                 var _this = this;
-                requestAnimationFrame(function (t) { return _this.loop(t, potreeViewer, cesiumViewer); });
+                requestAnimationFrame(function (t) { return _this.loop(t, potreeViewer); });
                 potreeViewer.update(potreeViewer.clock.getDelta(), timestamp);
                 potreeViewer.render();
-                if (toMap !== undefined) {
-                    {
-                        var camera = potreeViewer.scene.getActiveCamera();
-                        var pPos = new THREE.Vector3(0, 0, 0).applyMatrix4(camera.matrixWorld);
-                        var pRight = new THREE.Vector3(600, 0, 0).applyMatrix4(camera.matrixWorld);
-                        var pUp = new THREE.Vector3(0, 600, 0).applyMatrix4(camera.matrixWorld);
-                        var pTarget = potreeViewer.scene.view.getPivot();
-                        var toCes = function (pos) {
-                            var _a;
-                            var xy = [pos.x, pos.y];
-                            var height = pos.z;
-                            var deg = toMap.forward(xy);
-                            var cPos = (_a = Cesium.Cartesian3).fromDegrees.apply(_a, __spreadArrays(deg, [height]));
-                            return cPos;
-                        };
-                        var cPos = toCes(pPos);
-                        var cUpTarget = toCes(pUp);
-                        var cTarget = toCes(pTarget);
-                        var cDir = Cesium.Cartesian3.subtract(cTarget, cPos, new Cesium.Cartesian3());
-                        var cUp = Cesium.Cartesian3.subtract(cUpTarget, cPos, new Cesium.Cartesian3());
-                        cDir = Cesium.Cartesian3.normalize(cDir, new Cesium.Cartesian3());
-                        cUp = Cesium.Cartesian3.normalize(cUp, new Cesium.Cartesian3());
-                        cesiumViewer.camera.setView({
-                            destination: cPos,
-                            orientation: {
-                                direction: cDir,
-                                up: cUp
-                            }
-                        });
-                    }
-                    var aspect = potreeViewer.scene.getActiveCamera().aspect;
-                    if (aspect < 1) {
-                        var fovy = Math.PI * (potreeViewer.scene.getActiveCamera().fov / 180);
-                        cesiumViewer.camera.frustum.fov = fovy;
-                    }
-                    else {
-                        var fovy = Math.PI * (potreeViewer.scene.getActiveCamera().fov / 180);
-                        var fovx = Math.atan(Math.tan(0.5 * fovy) * aspect) * 2;
-                        cesiumViewer.camera.frustum.fov = fovx;
-                    }
-                }
-                cesiumViewer.render();
             };
             three_app.prototype.loadModel = function (e, potreeViewer) {
                 var pointcloud = e.pointcloud;
