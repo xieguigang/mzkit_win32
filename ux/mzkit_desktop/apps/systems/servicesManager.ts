@@ -78,10 +78,12 @@ namespace apps.systems {
                     PID: s.PID,
                     Name: s.Name,
                     Description: s.Description,
+                    Protocol: s.Protocol,
                     Port: s.Port,
                     CPU: s.CPU,
                     Memory: s.Memory,
-                    StartTime: s.StartTime
+                    StartTime: s.StartTime,
+                    isAlive: s.isAlive
                 }
             }).ToArray();
 
@@ -109,7 +111,7 @@ namespace apps.systems {
             panel.display($ts("<h3>").display(cpu.svr.Name));
             panel.appendElement($ts("<p>").display(cpu.svr.Description));
             panel.appendElement($ts("<p>").display(cpu.svr.StartTime));
-            panel.appendElement($ts("<p>").display(`<pre><code>${cpu.svr.CommandLine}</code></pre>`));
+            panel.appendElement($ts("<p>").display(`Startup: <pre><code>${cpu.svr.CommandLine}</code></pre>`));
 
             if (this.refresh) {
                 this.cpu_chart.plot(<counterData>{ x: x, y: cpu.Counter, title: "Performance Counter (CPU history)" });
@@ -200,6 +202,7 @@ namespace apps.systems {
     export interface Service {
         Name: string;
         Description: string;
+        Protocol: string;
         Port: number;
         PID: number;
         CPU: number;

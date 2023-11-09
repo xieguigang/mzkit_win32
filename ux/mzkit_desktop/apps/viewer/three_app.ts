@@ -6,6 +6,9 @@ namespace apps.viewer {
     const Potree = (<any>window).Potree;
     const proj4 = (<any>window).proj4;
 
+    // D:/mzkit/dist/bin/Rstudio/bin/Rserve.exe --listen /wwwroot "D:\mzkit\dist\bin/../../src/mzkit/webview/" /port 6001 --parent=8124 --attach F:/Temp/mzkit_win32/9465ce9a7904ba9fa5a354804734cbc4
+
+
     export class three_app extends Bootstrap {
 
         public get appName(): string {

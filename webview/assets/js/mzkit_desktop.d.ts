@@ -144,6 +144,7 @@ declare namespace apps.systems {
     interface Service {
         Name: string;
         Description: string;
+        Protocol: string;
         Port: number;
         PID: number;
         CPU: number;

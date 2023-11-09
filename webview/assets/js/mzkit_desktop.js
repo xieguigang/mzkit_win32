@@ -655,10 +655,12 @@ var apps;
                         PID: s.PID,
                         Name: s.Name,
                         Description: s.Description,
+                        Protocol: s.Protocol,
                         Port: s.Port,
                         CPU: s.CPU,
                         Memory: s.Memory,
-                        StartTime: s.StartTime
+                        StartTime: s.StartTime,
+                        isAlive: s.isAlive
                     };
                 }).ToArray();
                 $ts.appendTable(list, "#services-list", null, { class: [] }, function (o, r) { return vm.styleEachRow(o, r); });
@@ -678,7 +680,7 @@ var apps;
                 panel.display($ts("<h3>").display(cpu.svr.Name));
                 panel.appendElement($ts("<p>").display(cpu.svr.Description));
                 panel.appendElement($ts("<p>").display(cpu.svr.StartTime));
-                panel.appendElement($ts("<p>").display("<pre><code>" + cpu.svr.CommandLine + "</code></pre>"));
+                panel.appendElement($ts("<p>").display("Startup: <pre><code>" + cpu.svr.CommandLine + "</code></pre>"));
                 if (this.refresh) {
                     this.cpu_chart.plot({ x: x, y: cpu.Counter, title: "Performance Counter (CPU history)" });
                     this.mem_chart.plot({ x: x, y: mem.Counter, title: "Performance Counter (Memory history)" });
