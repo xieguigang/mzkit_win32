@@ -54,7 +54,8 @@ Public NotInheritable Class RenderService
             .Port = MSIBlender.port,
             .Protocol = "TCP",
             .StartTime = Now.ToString,
-            .HouseKeeping = True
+            .HouseKeeping = True,
+            .CommandLine = Manager.Service.GetCommandLine(BlenderHost)
         })
 
         Call WorkStudio.LogCommandLine(BlenderHost.StartInfo.FileName, BlenderHost.StartInfo.Arguments, App.HOME)

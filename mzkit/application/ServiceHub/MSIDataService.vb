@@ -211,7 +211,8 @@ Namespace ServiceHub
                  .StartTime = Now.ToString,
                  .Protocol = "TCP",
                  .Memory = 0,
-                 .CPU = 0
+                 .CPU = 0,
+                 .CommandLine = Manager.Service.GetCommandLine(hostReference.MSI_pipe.Process)
             })
 
             Return hostReference

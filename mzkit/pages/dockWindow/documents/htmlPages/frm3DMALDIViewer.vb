@@ -73,8 +73,12 @@ Public Class frm3DMALDIViewer
             End If
         End If
 
-        sourceMALDI.source = maldi
-        WebView21.Reload()
+        Try
+            sourceMALDI.source = maldi
+            WebView21.Reload()
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub startHttp()
@@ -100,7 +104,8 @@ Public Class frm3DMALDIViewer
             .PID = localfs.Id,
             .Port = webPort,
             .Protocol = "HTTP 1.0",
-            .StartTime = Now.ToString
+            .StartTime = Now.ToString,
+            .CommandLine = Service.GetCommandLine(localfs)
         })
     End Sub
 

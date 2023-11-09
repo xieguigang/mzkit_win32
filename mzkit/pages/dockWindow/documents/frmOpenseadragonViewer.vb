@@ -154,7 +154,8 @@ Public Class frmOpenseadragonViewer
             .CPU = 0,
             .Memory = 0,
             .Protocol = "HTTP 1.0",
-            .StartTime = Now.ToString
+            .StartTime = Now.ToString,
+            .CommandLine = Manager.Service.GetCommandLine(localfs)
         })
     End Sub
 

@@ -169,7 +169,8 @@ Module Globals
             .Port = Workbench.WebPort,
             .Protocol = "HTTP 1.0",
             .StartTime = Now.ToString,
-            .HouseKeeping = True
+            .HouseKeeping = True，
+            .CommandLine = Manager.Service.GetCommandLine(localfs)
         })
 
         Call FrameworkInternal.ConfigMemory(MemoryLoads.Max)
