@@ -6,6 +6,8 @@ declare namespace apps.viewer {
         private potreeViewer;
         protected init(): void;
         private loop;
+        private createAnnotations;
+        private createVolume;
         private loadModel;
     }
 }

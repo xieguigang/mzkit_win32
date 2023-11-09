@@ -102,8 +102,116 @@ var apps;
                 this.potreeViewer.update(this.potreeViewer.clock.getDelta(), timestamp);
                 this.potreeViewer.render();
             };
-            three_app.prototype.loadModel = function (e) {
+            three_app.prototype.createAnnotations = function () {
+                var aRoot = this.potreeViewer.scene.annotations;
+                var aCA13 = new Potree.Annotation({
+                    title: "CA13",
+                    position: [675036.45, 3850315.78, 65076.70],
+                    cameraPosition: [675036.45, 3850315.78, 65076.70],
+                    cameraTarget: [692869.03, 3925774.14, 1581.51],
+                });
+                aRoot.add(aCA13);
+                var aSanSimeon = new Potree.Annotation({
+                    title: "San Simeon",
+                    position: [664147.50, 3946008.73, 16.30],
+                    cameraPosition: [664941.80, 3943568.06, 1925.30],
+                    cameraTarget: [664147.50, 3946008.73, 16.30],
+                });
+                aCA13.add(aSanSimeon);
+                var aHearstCastle = new Potree.Annotation({
+                    title: "Hearst Castle",
+                    position: [665744.56, 3950567.52, 500.48],
+                    cameraPosition: [665692.66, 3950521.65, 542.02],
+                    cameraTarget: [665744.56, 3950567.52, 500.48],
+                });
+                aCA13.add(aHearstCastle);
+                var aMorroBay = new Potree.Annotation({
+                    title: "Morro Bay",
+                    position: [695483.33, 3916430.09, 25.75],
+                    cameraPosition: [694114.65, 3911176.26, 3402.33],
+                    cameraTarget: [695483.33, 3916430.09, 25.75],
+                });
+                aCA13.add(aMorroBay);
+                var aMorroRock = new Potree.Annotation({
+                    title: "Morro Rock",
+                    position: [693729.66, 3916085.19, 90.35],
+                    cameraPosition: [693512.77, 3915375.61, 342.33],
+                    cameraTarget: [693729.66, 3916085.19, 90.35],
+                });
+                aMorroBay.add(aMorroRock);
+                var aMorroBayMutualWaterCo = new Potree.Annotation({
+                    title: "Morro Bay Mutual Water Co",
+                    position: [694699.45, 3916425.75, 39.78],
+                    cameraPosition: [694377.64, 3916289.32, 218.40],
+                    cameraTarget: [694699.45, 3916425.75, 39.78],
+                });
+                aMorroBay.add(aMorroBayMutualWaterCo);
+                var aLilaKeiserPark = new Potree.Annotation({
+                    title: "Lila Keiser Park",
+                    position: [694674.99, 3917070.49, 10.86],
+                    cameraPosition: [694452.59, 3916845.14, 298.64],
+                    cameraTarget: [694674.99, 3917070.49, 10.86],
+                });
+                aMorroBay.add(aLilaKeiserPark);
+                var aSanLuisObispo = new Potree.Annotation({
+                    title: "San Luis Obispo",
+                    position: [712573.39, 3907588.33, 146.44],
+                    cameraPosition: [711158.29, 3907019.82, 1335.89],
+                    cameraTarget: [712573.39, 3907588.33, 146.44],
+                });
+                aCA13.add(aSanLuisObispo);
+                var aLopezHill = new Potree.Annotation({
+                    title: "Lopez Hill",
+                    position: [728635.63, 3895761.56, 456.33],
+                    cameraPosition: [728277.24, 3895282.29, 821.51],
+                    cameraTarget: [728635.63, 3895761.56, 456.33],
+                });
+                aCA13.add(aLopezHill);
+                var aWhaleRockReservoir = new Potree.Annotation({
+                    title: "Whale Rock Reservoir",
+                    position: [692845.46, 3925528.53, 140.91],
+                    cameraPosition: [693073.32, 3922354.02, 2154.17],
+                    cameraTarget: [692845.46, 3925528.53, 140.91],
+                });
+                aCA13.add(aWhaleRockReservoir);
+            };
+            three_app.prototype.createVolume = function (scene, material) {
                 var _this = this;
+                var aRoot = scene.annotations;
+                var elTitle = $("\n            <span>\n                Tree Returns:\n                <img name=\"action_return_number\" src=\"" + Potree.resourcePath + "/icons/return_number.svg\" class=\"annotation-action-icon\"/>\n                <img name=\"action_rgb\" src=\"" + Potree.resourcePath + "/icons/rgb.png\" class=\"annotation-action-icon\"/>\n            </span>");
+                elTitle.find("img[name=action_return_number]").click(function () {
+                    event.stopPropagation();
+                    material.activeAttributeName = "return_number";
+                    material.pointSizeType = Potree.PointSizeType.FIXED;
+                    material.size = 5;
+                    _this.potreeViewer.setClipTask(Potree.ClipTask.SHOW_INSIDE);
+                });
+                elTitle.find("img[name=action_rgb]").click(function () {
+                    event.stopPropagation();
+                    material.activeAttributeName = "rgba";
+                    material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
+                    material.size = 1;
+                    _this.potreeViewer.setClipTask(Potree.ClipTask.HIGHLIGHT);
+                });
+                elTitle.toString = function () { return "Tree Returns"; };
+                var aTreeReturns = new Potree.Annotation({
+                    title: elTitle,
+                    position: [675756.75, 3937590.94, 80.21],
+                    cameraPosition: [675715.78, 3937700.36, 115.95],
+                    cameraTarget: [675756.75, 3937590.94, 80.21],
+                });
+                aRoot.add(aTreeReturns);
+                aTreeReturns.domElement.find(".annotation-action-icon:first").css("filter", "invert(1)");
+                var volume = new Potree.BoxVolume();
+                volume.position.set(675755.4039368022, 3937586.911614576, 85);
+                volume.scale.set(119.87189835418388, 68.3925257233834, 51.757483718373265);
+                volume.rotation.set(0, 0, 0.8819755090987993, "XYZ");
+                volume.clip = true;
+                volume.visible = false;
+                volume.name = "Trees";
+                scene.addVolume(volume);
+            };
+            three_app.prototype.loadModel = function (e) {
                 var pointcloud = e.pointcloud;
                 var scene = this.potreeViewer.scene;
                 var material = pointcloud.material;
@@ -115,114 +223,10 @@ var apps;
                 var mapProjection = proj4.defs("WGS84");
                 window.toMap = proj4(pointcloudProjection, mapProjection);
                 window.toScene = proj4(mapProjection, pointcloudProjection);
-                { // ANNOTATIONS
-                    var aRoot = this.potreeViewer.scene.annotations;
-                    var aCA13 = new Potree.Annotation({
-                        title: "CA13",
-                        position: [675036.45, 3850315.78, 65076.70],
-                        cameraPosition: [675036.45, 3850315.78, 65076.70],
-                        cameraTarget: [692869.03, 3925774.14, 1581.51],
-                    });
-                    aRoot.add(aCA13);
-                    var aSanSimeon = new Potree.Annotation({
-                        title: "San Simeon",
-                        position: [664147.50, 3946008.73, 16.30],
-                        cameraPosition: [664941.80, 3943568.06, 1925.30],
-                        cameraTarget: [664147.50, 3946008.73, 16.30],
-                    });
-                    aCA13.add(aSanSimeon);
-                    var aHearstCastle = new Potree.Annotation({
-                        title: "Hearst Castle",
-                        position: [665744.56, 3950567.52, 500.48],
-                        cameraPosition: [665692.66, 3950521.65, 542.02],
-                        cameraTarget: [665744.56, 3950567.52, 500.48],
-                    });
-                    aCA13.add(aHearstCastle);
-                    var aMorroBay = new Potree.Annotation({
-                        title: "Morro Bay",
-                        position: [695483.33, 3916430.09, 25.75],
-                        cameraPosition: [694114.65, 3911176.26, 3402.33],
-                        cameraTarget: [695483.33, 3916430.09, 25.75],
-                    });
-                    aCA13.add(aMorroBay);
-                    var aMorroRock = new Potree.Annotation({
-                        title: "Morro Rock",
-                        position: [693729.66, 3916085.19, 90.35],
-                        cameraPosition: [693512.77, 3915375.61, 342.33],
-                        cameraTarget: [693729.66, 3916085.19, 90.35],
-                    });
-                    aMorroBay.add(aMorroRock);
-                    var aMorroBayMutualWaterCo = new Potree.Annotation({
-                        title: "Morro Bay Mutual Water Co",
-                        position: [694699.45, 3916425.75, 39.78],
-                        cameraPosition: [694377.64, 3916289.32, 218.40],
-                        cameraTarget: [694699.45, 3916425.75, 39.78],
-                    });
-                    aMorroBay.add(aMorroBayMutualWaterCo);
-                    var aLilaKeiserPark = new Potree.Annotation({
-                        title: "Lila Keiser Park",
-                        position: [694674.99, 3917070.49, 10.86],
-                        cameraPosition: [694452.59, 3916845.14, 298.64],
-                        cameraTarget: [694674.99, 3917070.49, 10.86],
-                    });
-                    aMorroBay.add(aLilaKeiserPark);
-                    var aSanLuisObispo = new Potree.Annotation({
-                        title: "San Luis Obispo",
-                        position: [712573.39, 3907588.33, 146.44],
-                        cameraPosition: [711158.29, 3907019.82, 1335.89],
-                        cameraTarget: [712573.39, 3907588.33, 146.44],
-                    });
-                    aCA13.add(aSanLuisObispo);
-                    var aLopezHill = new Potree.Annotation({
-                        title: "Lopez Hill",
-                        position: [728635.63, 3895761.56, 456.33],
-                        cameraPosition: [728277.24, 3895282.29, 821.51],
-                        cameraTarget: [728635.63, 3895761.56, 456.33],
-                    });
-                    aCA13.add(aLopezHill);
-                    var aWhaleRockReservoir = new Potree.Annotation({
-                        title: "Whale Rock Reservoir",
-                        position: [692845.46, 3925528.53, 140.91],
-                        cameraPosition: [693073.32, 3922354.02, 2154.17],
-                        cameraTarget: [692845.46, 3925528.53, 140.91],
-                    });
-                    aCA13.add(aWhaleRockReservoir);
-                }
-                { // TREE RETURNS POI - ANNOTATION & VOLUME
-                    var aRoot = scene.annotations;
-                    var elTitle = $("\n                <span>\n                    Tree Returns:\n                    <img name=\"action_return_number\" src=\"" + Potree.resourcePath + "/icons/return_number.svg\" class=\"annotation-action-icon\"/>\n                    <img name=\"action_rgb\" src=\"" + Potree.resourcePath + "/icons/rgb.png\" class=\"annotation-action-icon\"/>\n                </span>");
-                    elTitle.find("img[name=action_return_number]").click(function () {
-                        event.stopPropagation();
-                        material.activeAttributeName = "return_number";
-                        material.pointSizeType = Potree.PointSizeType.FIXED;
-                        material.size = 5;
-                        _this.potreeViewer.setClipTask(Potree.ClipTask.SHOW_INSIDE);
-                    });
-                    elTitle.find("img[name=action_rgb]").click(function () {
-                        event.stopPropagation();
-                        material.activeAttributeName = "rgba";
-                        material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
-                        material.size = 1;
-                        _this.potreeViewer.setClipTask(Potree.ClipTask.HIGHLIGHT);
-                    });
-                    elTitle.toString = function () { return "Tree Returns"; };
-                    var aTreeReturns = new Potree.Annotation({
-                        title: elTitle,
-                        position: [675756.75, 3937590.94, 80.21],
-                        cameraPosition: [675715.78, 3937700.36, 115.95],
-                        cameraTarget: [675756.75, 3937590.94, 80.21],
-                    });
-                    aRoot.add(aTreeReturns);
-                    aTreeReturns.domElement.find(".annotation-action-icon:first").css("filter", "invert(1)");
-                    var volume = new Potree.BoxVolume();
-                    volume.position.set(675755.4039368022, 3937586.911614576, 85);
-                    volume.scale.set(119.87189835418388, 68.3925257233834, 51.757483718373265);
-                    volume.rotation.set(0, 0, 0.8819755090987993, "XYZ");
-                    volume.clip = true;
-                    volume.visible = false;
-                    volume.name = "Trees";
-                    scene.addVolume(volume);
-                }
+                // ANNOTATIONS
+                this.createAnnotations();
+                // TREE RETURNS POI - ANNOTATION & VOLUME
+                this.createVolume(scene, material);
             };
             return three_app;
         }(Bootstrap));
