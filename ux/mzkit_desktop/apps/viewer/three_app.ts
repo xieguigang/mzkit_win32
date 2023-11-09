@@ -67,70 +67,68 @@ namespace apps.viewer {
             // CA13
             Potree.loadPointCloud("http://5.9.65.151/mschuetz/potree/resources/pointclouds/opentopography/CA13_1.4/cloud.js", "CA13", e => this.loadModel(e, potreeViewer));
 
+            requestAnimationFrame(t => this.loop(t, potreeViewer, cesiumViewer));
+        }
 
+        private loop(timestamp, potreeViewer, cesiumViewer) {
+            requestAnimationFrame(t => this.loop(t, potreeViewer, cesiumViewer));
 
-            function loop(timestamp) {
-                requestAnimationFrame(loop);
+            potreeViewer.update(potreeViewer.clock.getDelta(), timestamp);
 
-                potreeViewer.update(potreeViewer.clock.getDelta(), timestamp);
+            potreeViewer.render();
 
-                potreeViewer.render();
+            if (toMap !== undefined) {
 
-                if (toMap !== undefined) {
+                {
+                    let camera = potreeViewer.scene.getActiveCamera();
 
-                    {
-                        let camera = potreeViewer.scene.getActiveCamera();
+                    let pPos = new THREE.Vector3(0, 0, 0).applyMatrix4(camera.matrixWorld);
+                    let pRight = new THREE.Vector3(600, 0, 0).applyMatrix4(camera.matrixWorld);
+                    let pUp = new THREE.Vector3(0, 600, 0).applyMatrix4(camera.matrixWorld);
+                    let pTarget = potreeViewer.scene.view.getPivot();
 
-                        let pPos = new THREE.Vector3(0, 0, 0).applyMatrix4(camera.matrixWorld);
-                        let pRight = new THREE.Vector3(600, 0, 0).applyMatrix4(camera.matrixWorld);
-                        let pUp = new THREE.Vector3(0, 600, 0).applyMatrix4(camera.matrixWorld);
-                        let pTarget = potreeViewer.scene.view.getPivot();
+                    let toCes = (pos) => {
+                        let xy = [pos.x, pos.y];
+                        let height = pos.z;
+                        let deg = toMap.forward(xy);
+                        let cPos = Cesium.Cartesian3.fromDegrees(...deg, height);
 
-                        let toCes = (pos) => {
-                            let xy = [pos.x, pos.y];
-                            let height = pos.z;
-                            let deg = toMap.forward(xy);
-                            let cPos = Cesium.Cartesian3.fromDegrees(...deg, height);
+                        return cPos;
+                    };
 
-                            return cPos;
-                        };
+                    let cPos = toCes(pPos);
+                    let cUpTarget = toCes(pUp);
+                    let cTarget = toCes(pTarget);
 
-                        let cPos = toCes(pPos);
-                        let cUpTarget = toCes(pUp);
-                        let cTarget = toCes(pTarget);
+                    let cDir = Cesium.Cartesian3.subtract(cTarget, cPos, new Cesium.Cartesian3());
+                    let cUp = Cesium.Cartesian3.subtract(cUpTarget, cPos, new Cesium.Cartesian3());
 
-                        let cDir = Cesium.Cartesian3.subtract(cTarget, cPos, new Cesium.Cartesian3());
-                        let cUp = Cesium.Cartesian3.subtract(cUpTarget, cPos, new Cesium.Cartesian3());
+                    cDir = Cesium.Cartesian3.normalize(cDir, new Cesium.Cartesian3());
+                    cUp = Cesium.Cartesian3.normalize(cUp, new Cesium.Cartesian3());
 
-                        cDir = Cesium.Cartesian3.normalize(cDir, new Cesium.Cartesian3());
-                        cUp = Cesium.Cartesian3.normalize(cUp, new Cesium.Cartesian3());
-
-                        cesiumViewer.camera.setView({
-                            destination: cPos,
-                            orientation: {
-                                direction: cDir,
-                                up: cUp
-                            }
-                        });
-
-                    }
-
-                    let aspect = potreeViewer.scene.getActiveCamera().aspect;
-                    if (aspect < 1) {
-                        let fovy = Math.PI * (potreeViewer.scene.getActiveCamera().fov / 180);
-                        cesiumViewer.camera.frustum.fov = fovy;
-                    } else {
-                        let fovy = Math.PI * (potreeViewer.scene.getActiveCamera().fov / 180);
-                        let fovx = Math.atan(Math.tan(0.5 * fovy) * aspect) * 2
-                        cesiumViewer.camera.frustum.fov = fovx;
-                    }
+                    cesiumViewer.camera.setView({
+                        destination: cPos,
+                        orientation: {
+                            direction: cDir,
+                            up: cUp
+                        }
+                    });
 
                 }
 
-                cesiumViewer.render();
+                let aspect = potreeViewer.scene.getActiveCamera().aspect;
+                if (aspect < 1) {
+                    let fovy = Math.PI * (potreeViewer.scene.getActiveCamera().fov / 180);
+                    cesiumViewer.camera.frustum.fov = fovy;
+                } else {
+                    let fovy = Math.PI * (potreeViewer.scene.getActiveCamera().fov / 180);
+                    let fovx = Math.atan(Math.tan(0.5 * fovy) * aspect) * 2
+                    cesiumViewer.camera.frustum.fov = fovx;
+                }
+
             }
 
-            requestAnimationFrame(loop);
+            cesiumViewer.render();
         }
 
         private loadModel(e, potreeViewer) {
