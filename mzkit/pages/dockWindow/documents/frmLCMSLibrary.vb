@@ -142,6 +142,7 @@ Public Class frmLCMSLibrary
         Dim libpos As New SpectrumPack($"{export_dir}/lib.pos.pack".Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
         Dim libneg As New SpectrumPack($"{export_dir}/lib.neg.pack".Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
         Dim biodeepid As New Dictionary(Of String, String)
+        Dim i As i32 = 0
 
         libfile = libfile.BaseName
 
@@ -166,10 +167,15 @@ Public Class frmLCMSLibrary
             Else
                 Call libneg.Push(metabolite.ID, metabolite.formula, peak)
             End If
+
+            If ++i Mod 23 = 0 Then
+                Call proc.SetInfo($"export: {metabolite.ID} [{metabolite.name}]...")
+            End If
         Next
 
         Call libpos.Dispose()
         Call libneg.Dispose()
+        Call libdata.Dispose()
 
         Call biodeepid _
             .GetJson _
