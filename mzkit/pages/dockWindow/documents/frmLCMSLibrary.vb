@@ -4,6 +4,7 @@ Imports BioDeep
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 
 Public Class frmLCMSLibrary
 
@@ -69,6 +70,29 @@ Public Class LibraryApp
     End Function
 
     Public Async Function NewLibrary() As Task(Of Boolean)
+        Dim libfile As String = Await CreateLibrary()
 
+        If libfile.StringEmpty OrElse libfile.FileLength < 1024 Then
+            Return False
+        Else
+            Return True
+        End If
+    End Function
+
+    Private Async Function CreateLibrary() As Task(Of String)
+        Dim libfile As String = Nothing
+        Dim create As Action =
+             Sub()
+                 InputDialog.Input(Of InputCreateLCMSLibrary)(
+                     Sub([lib])
+                         Dim name As String = [lib].LibraryName
+                         Dim import As String = [lib].FromImports
+
+                     End Sub)
+             End Sub
+
+        Await Threading.Tasks.Task.Run(create)
+
+        Return libfile
     End Function
 End Class
