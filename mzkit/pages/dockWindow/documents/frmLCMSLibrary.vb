@@ -3,6 +3,7 @@ Imports System.Runtime.InteropServices
 Imports BioDeep
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.BioDeep.Chemistry
 Imports BioNovoGene.mzkit_win32.My
@@ -194,7 +195,14 @@ Public Class LibraryApp
 
         End If
 
-        Dim qTask = 
+        Dim qTask =
+            Sub()
+                Call WindowModules.fileExplorer.SearchExactMassFeatures(mass, Tolerance.PPM(20))
+            End Sub
+
+        Await Threading.Tasks.Task.Run(qTask)
+
+        Return True
     End Function
 
     Public Function NewLibrary() As Boolean
