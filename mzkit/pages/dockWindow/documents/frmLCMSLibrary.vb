@@ -1,6 +1,7 @@
 ﻿Imports System.IO
 Imports System.Runtime.InteropServices
 Imports BioDeep
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.BioDeep.Chemistry
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Serialization.JSON
@@ -111,7 +112,9 @@ Public Class LibraryApp
     End Function
 
     Public Function ShowSpectral(data_id As String) As Boolean
-
+        Dim spectral As PeakMs2 = current.GetSpectrumByKey(data_id)
+        Call SpectralViewerModule.ViewSpectral(spectral)
+        Return True
     End Function
 
     Public Function NewLibrary() As Boolean

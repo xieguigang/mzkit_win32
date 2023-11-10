@@ -658,6 +658,10 @@ Public Class PageMzkitTools
         End If
     End Sub
 
+    ''' <summary>
+    ''' View spectral plot and then switch to the spectrl viewer UI
+    ''' </summary>
+    ''' <param name="data"></param>
     Public Shared Sub ShowSpectral(data As Object)
         Dim matrix As ms2()
         Dim name As String
