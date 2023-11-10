@@ -43,6 +43,7 @@ declare namespace app.desktop {
         OpenLibrary(path: string): Promise<boolean>;
         GetPage(page: number, page_size: number): Promise<string>;
         Query(name: string): Promise<string>;
+        ShowSpectral(data_id: string): Promise<boolean>;
         /**
          * actions for create new library file
         */
@@ -216,6 +217,10 @@ declare namespace apps.viewer {
         private menu_open;
         static openLibfile(filepath: string, vm?: lcmsLibrary): void;
         private list_data;
+        /**
+         * .lib-id
+        */
+        private hookSpectralLinkOpen;
         private show_page;
         private get_smiles;
         query_onclick(): void;

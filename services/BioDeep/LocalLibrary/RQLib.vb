@@ -48,7 +48,7 @@ Public Class RQLib : Implements IDisposable
         ' guid: map
         For Each line As String In lines
             ref = line.GetTagValue(":", trim:=True)
-            spectralMap.Add(ref.Name, ref.Value)
+            spectralMap(ref.Name) = ref.Value
         Next
     End Sub
 
@@ -132,7 +132,12 @@ Public Class RQLib : Implements IDisposable
     End Function
 
     Public Function GetSpectrumByKey(id As String) As PeakMs2
-        Dim map As String = spectralMap(id)
+        Dim map As String = spectralMap.TryGetValue(id)
+
+        If map.StringEmpty Then
+            Return Nothing
+        End If
+
         Dim buffer = query.ReadBuffer(map, category:=class_spectrum)
         Dim ms2 As ScanMS2 = Serialization.ParseScan2(buffer)
         Dim spectral As PeakMs2 = mzPack.CastToPeakMs2(ms2, file:="spectral")

@@ -137,7 +137,13 @@ Public Class LibraryApp
 
     Public Function ShowSpectral(data_id As String) As Boolean
         Dim spectral As PeakMs2 = current.GetSpectrumByKey(data_id)
-        Call SpectralViewerModule.ViewSpectral(spectral)
+
+        If Not spectral Is Nothing Then
+            Call SpectralViewerModule.ViewSpectral(spectral)
+        Else
+            Call Workbench.Warning($"missing spectral data associated with guid key: {data_id}!")
+        End If
+
         Return True
     End Function
 
@@ -181,7 +187,8 @@ Public Class LibraryApp
             Dim anno = ion.GetMetabolite
 
             Call libdb.AddAnnotation(anno)
-            Call libdb.AddSpectrum(ion.GetSpectrumPeaks, key:=anno.name)
+            Call libdb.AddSpectrum(ion.GetSpectrumPeaks, key:=ion.ID)
+            Call libdb.AddSpectrum(ion.GetSpectrumPeaks, key:=ion.name)
 
             Call System.Windows.Forms.Application.DoEvents()
 

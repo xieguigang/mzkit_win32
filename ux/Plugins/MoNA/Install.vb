@@ -55,6 +55,7 @@ Public Class Install
 
             Call libdb.AddAnnotation(anno)
             Call libdb.AddSpectrum(ion.GetSpectrumPeaks, key:=anno.name)
+            Call libdb.AddSpectrum(ion.GetSpectrumPeaks, key:=ion.ID)
 
             Call System.Windows.Forms.Application.DoEvents()
 
