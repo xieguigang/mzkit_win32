@@ -171,7 +171,7 @@ Public Class LibraryApp
                 Call doc.Invoke(
                     Sub()
                         Call doc.LoadMs2(spectral)
-                        Call doc.RunSearch(showUi:=False)
+                        ' Call doc.RunSearch(showUi:=False)
                     End Sub)
             End Sub
 
@@ -204,7 +204,10 @@ Public Class LibraryApp
 
         Dim qTask =
             Sub()
-                Call WindowModules.fileExplorer.SearchExactMassFeatures(mass, Tolerance.PPM(20))
+                Call MyApplication.host.Invoke(
+                    Sub()
+                        Call WindowModules.fileExplorer.SearchExactMassFeatures(mass, Tolerance.PPM(20))
+                    End Sub)
             End Sub
 
         Await Threading.Tasks.Task.Run(qTask)
