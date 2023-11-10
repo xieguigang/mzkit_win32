@@ -212,6 +212,8 @@ declare namespace apps.viewer {
         private page;
         private page_size;
         protected init(): void;
+        private static showLoader;
+        private static hideLoader;
         private reloadLibs;
         private loadfiles;
         private customMenu;

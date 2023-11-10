@@ -970,10 +970,19 @@ var apps;
             lcmsLibrary.prototype.init = function () {
                 // this.reloadLibs();
                 try {
+                    lcmsLibrary.hideLoader();
                     this.list_data();
                 }
                 catch (ex) {
                 }
+            };
+            lcmsLibrary.showLoader = function () {
+                $ts("#loader").show();
+                $ts("#explorer").interactive(false);
+            };
+            lcmsLibrary.hideLoader = function () {
+                $ts("#loader").hide();
+                $ts("#explorer").interactive(true);
             };
             lcmsLibrary.prototype.reloadLibs = function () {
                 var vm = this;
@@ -1087,6 +1096,7 @@ var apps;
             };
             lcmsLibrary.openLibfile = function (filepath, vm) {
                 if (vm === void 0) { vm = null; }
+                lcmsLibrary.showLoader();
                 if ((!vm) || typeof vm == "string") {
                     vm = Router.currentAppPage();
                 }
@@ -1110,6 +1120,7 @@ var apps;
                                     else {
                                         console.log("Error while trying to open the LCMS library file!");
                                     }
+                                    lcmsLibrary.hideLoader();
                                     return [2 /*return*/];
                             }
                         });
@@ -1163,6 +1174,7 @@ var apps;
                 });
                 $ts.select("." + libsearchClass).onClick(function (a) {
                     var data_id = a.getAttribute("data_id");
+                    lcmsLibrary.showLoader();
                     app.desktop.mzkit
                         .AlignSpectral(data_id)
                         .then(function (b) {
@@ -1177,6 +1189,7 @@ var apps;
                                         }
                                         else {
                                         }
+                                        lcmsLibrary.hideLoader();
                                         return [2 /*return*/];
                                 }
                             });

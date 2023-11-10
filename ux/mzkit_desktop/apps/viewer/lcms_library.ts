@@ -15,10 +15,21 @@ namespace apps.viewer {
         protected init(): void {
             // this.reloadLibs();
             try {
+                lcmsLibrary.hideLoader();
                 this.list_data();
             } catch (ex) {
 
             }
+        }
+
+        private static showLoader() {
+            $ts("#loader").show();
+            $ts("#explorer").interactive(false);
+        }
+
+        private static hideLoader() {
+            $ts("#loader").hide();
+            $ts("#explorer").interactive(true);
         }
 
         private reloadLibs() {
@@ -130,6 +141,8 @@ namespace apps.viewer {
         }
 
         public static openLibfile(filepath: string, vm: lcmsLibrary = null) {
+            lcmsLibrary.showLoader();
+
             if ((!vm) || typeof vm == "string") {
                 vm = <lcmsLibrary>Router.currentAppPage();
             }
@@ -149,6 +162,8 @@ namespace apps.viewer {
                     } else {
                         console.log("Error while trying to open the LCMS library file!");
                     }
+
+                    lcmsLibrary.hideLoader();
                 });
         }
 
@@ -186,6 +201,7 @@ namespace apps.viewer {
             $ts.select("." + libsearchClass).onClick(function (a) {
                 const data_id: string = a.getAttribute("data_id");
 
+                lcmsLibrary.showLoader();
                 app.desktop.mzkit
                     .AlignSpectral(data_id)
                     .then(async function (b) {
@@ -196,6 +212,8 @@ namespace apps.viewer {
                         } else {
 
                         }
+
+                        lcmsLibrary.hideLoader();
                     })
             });
         }
