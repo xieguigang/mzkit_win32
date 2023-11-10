@@ -80,6 +80,8 @@ Public Class PeakFindingViewer
         PeakListViewer.Columns.Add("noise", "noise")
         PeakListViewer.Columns.Add("snRatio", "snRatio")
 
+        Call peakList.Clear()
+
         For Each roi As ROI In peakROIs
             peakList.Add(roi.ToString, roi)
 
