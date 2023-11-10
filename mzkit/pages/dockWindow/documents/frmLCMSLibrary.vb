@@ -89,7 +89,7 @@ Public Class frmLCMSLibrary
 
         If MessageBox.Show($"Going to delete the reference library: {filepath.BaseName}?", "Delete Library", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) <> DialogResult.OK Then
             Return
-        ElseIf [lib].current_file.BaseName.TextEquals(filepath.BaseName) Then
+        ElseIf [lib].current_file.BaseName(allowEmpty:=True).TextEquals(filepath.BaseName) Then
             Call [lib].Close()
         End If
 
