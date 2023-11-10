@@ -60,7 +60,9 @@ Public Class PeakFindingViewer
             .PopulateROI(
                 peakwidth:=peakwidth,
                 baselineQuantile:=args.baseline,
-                snThreshold:=args.SN
+                snThreshold:=args.SN,
+                joint:=args.joint,
+                nticks:=args.nticks
             ) _
             .ToArray
 
