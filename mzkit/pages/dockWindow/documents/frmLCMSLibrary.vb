@@ -11,6 +11,7 @@ Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Public Class frmLCMSLibrary
 
     Dim [lib] As New LibraryApp
+    Dim root As TreeNode
 
     Public ReadOnly Property sourceURL As String
         Get
@@ -22,14 +23,40 @@ Public Class frmLCMSLibrary
         Text = "LCMS Reference Library"
         TabText = Text
         AutoScaleMode = AutoScaleMode.Dpi
+        root = Win7StyleTreeView1.Nodes(0)
+        root.Nodes.Clear()
 
         Call WebKit.Init(Me.WebView21)
+        Call LoadLibs()
+    End Sub
+
+    Private Sub LoadLibs()
+        For Each file As String In SpectrumLibraryModule.ScanLibraries
+            root.Nodes.Add(file.BaseName).Tag = file
+        Next
     End Sub
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
         Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", New LibraryApp)
         Call WebView21.CoreWebView2.Navigate(sourceURL)
         Call WebKit.DeveloperOptions(WebView21, enable:=True, TabText)
+    End Sub
+
+    Private Sub OpenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
+        Dim libNode = Win7StyleTreeView1.SelectedNode
+        Dim filepath As String = libNode.Tag
+
+        If filepath.StringEmpty Then
+            Return
+        End If
+
+        Call WebView21.ExecuteScriptAsync($"apps.viewer.lcmsLibrary.openLibfile('{filepath}', null);")
+    End Sub
+
+    Private Sub NewLibraryToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewLibraryToolStripMenuItem.Click
+        If Not [lib].NewLibrary() Then
+            Call Workbench.Warning("Create new library canceled or not successed.")
+        End If
     End Sub
 End Class
 
@@ -71,8 +98,8 @@ Public Class LibraryApp
         Return result.GetJson
     End Function
 
-    Public Async Function NewLibrary() As Task(Of Boolean)
-        Dim libfile As String = Await CreateLibrary()
+    Public Function NewLibrary() As Boolean
+        Dim libfile As String = CreateLibrary()
 
         If libfile.StringEmpty OrElse libfile.FileLength < 1024 Then
             Return False
@@ -81,26 +108,22 @@ Public Class LibraryApp
         End If
     End Function
 
-    Private Async Function CreateLibrary() As Task(Of String)
+    Private Function CreateLibrary() As String
         Dim libfile As String = Nothing
-        Dim create As Action =
-             Sub()
-                 InputDialog.Input(Of InputCreateLCMSLibrary)(
-                     Sub([lib])
-                         Dim name As String = [lib].LibraryName
-                         Dim import As String = [lib].FromImports
 
-                         libfile = SpectrumLibraryModule.LibraryFile(name)
+        InputDialog.Input(Of InputCreateLCMSLibrary)(
+            Sub([lib])
+                Dim name As String = [lib].LibraryName
+                Dim import As String = [lib].FromImports
 
-                         If import.FileLength > 1 Then
-                             Call importsMsp(import, libfile)
-                         Else
-                             Call createEmpty(libfile)
-                         End If
-                     End Sub)
-             End Sub
+                libfile = SpectrumLibraryModule.LibraryFile(name)
 
-        Await Threading.Tasks.Task.Run(create)
+                If import.FileLength > 1 Then
+                    Call importsMsp(import, libfile)
+                Else
+                    Call createEmpty(libfile)
+                End If
+            End Sub)
 
         Return libfile
     End Function

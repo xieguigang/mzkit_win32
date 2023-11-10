@@ -9,6 +9,10 @@ Public Module SpectrumLibraryModule
         End Get
     End Property
 
+    ''' <summary>
+    ''' populate the file path of the library files
+    ''' </summary>
+    ''' <returns></returns>
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Function ScanLibraries() As IEnumerable(Of String)
         Return $"{App.ProductProgramData}/lcms/".ListFiles("*.lcms-pack")

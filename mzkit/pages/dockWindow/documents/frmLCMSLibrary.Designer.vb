@@ -31,11 +31,15 @@ Partial Class frmLCMSLibrary
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.Win7StyleTreeView1 = New ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView(Me.components)
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NewLibraryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'WebView21
@@ -91,6 +95,25 @@ Partial Class frmLCMSLibrary
         Me.ImageList1.Images.SetKeyName(0, "folder-pictures.png")
         Me.ImageList1.Images.SetKeyName(1, "icons8-database-96.png")
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripMenuItem, Me.NewLibraryToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 70)
+        '
+        'OpenToolStripMenuItem
+        '
+        Me.OpenToolStripMenuItem.Image = CType(resources.GetObject("OpenToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.OpenToolStripMenuItem.Text = "Open"
+        '
+        'NewLibraryToolStripMenuItem
+        '
+        Me.NewLibraryToolStripMenuItem.Name = "NewLibraryToolStripMenuItem"
+        Me.NewLibraryToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.NewLibraryToolStripMenuItem.Text = "New Library"
+        '
         'frmLCMSLibrary
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -105,6 +128,7 @@ Partial Class frmLCMSLibrary
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -113,4 +137,7 @@ Partial Class frmLCMSLibrary
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents Win7StyleTreeView1 As ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView
     Friend WithEvents ImageList1 As ImageList
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents OpenToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents NewLibraryToolStripMenuItem As ToolStripMenuItem
 End Class
