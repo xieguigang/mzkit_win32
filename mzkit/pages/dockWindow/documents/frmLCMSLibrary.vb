@@ -181,7 +181,20 @@ Public Class LibraryApp
     End Function
 
     Public Async Function FindExactMass(mass As Double) As Task(Of Boolean)
+        Dim findMSI As frmMsImagingViewer = MyApplication.host.DockPanel.Documents _
+            .Where(Function(p) TypeOf p Is frmMsImagingViewer) _
+            .FirstOrDefault
 
+        If findMSI Is Nothing Then
+            ' search for the lcms file directly
+
+        Else
+            ' show dialog for select item 
+            ' and then implements the exact mass search
+
+        End If
+
+        Dim qTask = 
     End Function
 
     Public Function NewLibrary() As Boolean

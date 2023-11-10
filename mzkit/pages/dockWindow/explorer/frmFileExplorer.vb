@@ -380,7 +380,8 @@ Public Class frmFileExplorer
                 MyApplication.host.openRscript(path)
                 MyApplication.host.Text = $"BioNovoGene Mzkit [{path.GetFullPath}]"
             Else
-                MyApplication.host.showStatusMessage($"script file '{path.FileName}' is not exists...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Workbench.Warning($"script file '{path.FileName}' is not exists...")
+
                 e.Node.ImageIndex = 4
                 e.Node.SelectedImageIndex = 4
                 e.Node.StateImageIndex = 4
