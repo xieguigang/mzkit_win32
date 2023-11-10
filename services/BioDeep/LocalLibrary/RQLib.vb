@@ -61,6 +61,14 @@ Public Class RQLib : Implements IDisposable
     Const class_metadata As String = "metadata"
     Const class_spectrum As String = "spectrum"
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="page">
+    ''' the page number, start from base 1
+    ''' </param>
+    ''' <param name="page_size"></param>
+    ''' <returns></returns>
     Public Iterator Function ListMetabolites(Optional page As Integer = 1, Optional page_size As Integer = 100) As IEnumerable(Of MetaLib)
         Dim start As Integer = (page - 1) * page_size
         Dim pulls = query.Archive.GetFiles($"/pool/{class_metadata}/")

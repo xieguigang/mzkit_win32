@@ -4,7 +4,9 @@ Imports BioDeep
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
+Imports BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.PackLib
 Imports BioNovoGene.BioDeep.Chemistry
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Language
@@ -87,6 +89,8 @@ Public Class frmLCMSLibrary
 
         If MessageBox.Show($"Going to delete the reference library: {filepath.BaseName}?", "Delete Library", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) <> DialogResult.OK Then
             Return
+        ElseIf [lib].current_file.BaseName.TextEquals(filepath.BaseName) Then
+            Call [lib].Close()
         End If
 
         Call filepath.DeleteFile
@@ -96,6 +100,74 @@ Public Class frmLCMSLibrary
     Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
         Call LoadLibs()
     End Sub
+
+    Private Sub ExportLibraryToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportLibraryToolStripMenuItem.Click
+        Dim libNode = Win7StyleTreeView1.SelectedNode
+        Dim filepath As String = libNode.Tag
+
+        If filepath.StringEmpty Then
+            Return
+        End If
+
+        If [lib].current_file.BaseName.TextEquals(filepath.BaseName) Then
+            Call [lib].Close()
+        End If
+
+        Using folder As New FolderBrowserDialog With {
+            .Description = "Select a folder path for export the reference library data.",
+            .ShowNewFolderButton = True
+        }
+            If folder.ShowDialog = DialogResult.OK Then
+                Call TaskProgress.RunAction(
+                    run:=Sub(proc As ITaskProgress)
+                             Call ExportLibPack(filepath, folder.SelectedPath, proc)
+                         End Sub,
+                    title:="Export library data",
+                    info:="Export the reference library data for the biodeep workflow...."
+                )
+
+                If MessageBox.Show("The LCMS reference library export job done!" & vbCrLf & "View of the reference library folder result?",
+                                   "View Result",
+                                   MessageBoxButtons.OKCancel,
+                                   MessageBoxIcon.Information) = DialogResult.OK Then
+
+                    Call Process.Start(folder.SelectedPath)
+                End If
+            End If
+        End Using
+    End Sub
+
+    Private Sub ExportLibPack(libfile As String, export_dir As String, proc As ITaskProgress)
+        Dim libdata As New RQLib(libfile.Open(FileMode.OpenOrCreate, doClear:=False, [readOnly]:=True))
+        Dim libpos As New SpectrumPack($"{export_dir}/lib.pos.pack".Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
+        Dim libneg As New SpectrumPack($"{export_dir}/lib.neg.pack".Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
+
+        libfile = libfile.BaseName
+
+        For Each metabolite In libdata.ListMetabolites(1, page_size:=Integer.MaxValue)
+            If metabolite Is Nothing Then
+                Continue For
+            End If
+
+            Dim spectral = libdata.GetSpectrumByKey(metabolite.ID)
+
+            If spectral Is Nothing Then
+                Continue For
+            End If
+
+            Dim peak As PeakMs2 = mzPack.CastToPeakMs2(spectral, file:=libfile)
+            Dim ionMode As Integer = Provider.ParseIonMode(peak.precursor_type.Last)
+
+            If ionMode = 1 Then
+                Call libpos.Push(metabolite.ID, metabolite.formula, peak)
+            Else
+                Call libneg.Push(metabolite.ID, metabolite.formula, peak)
+            End If
+        Next
+
+        Call libpos.Dispose()
+        Call libneg.Dispose()
+    End Sub
 End Class
 
 ' 所有需要在JavaScript环境中暴露的对象
@@ -104,8 +176,16 @@ End Class
 <ComVisible(True)>
 Public Class LibraryApp
 
-    Dim current As RQLib
-    Dim current_file As String
+    Friend current As RQLib
+    Friend current_file As String
+
+    ''' <summary>
+    ''' Close current
+    ''' </summary>
+    Public Sub Close()
+        current.Dispose()
+        current = Nothing
+    End Sub
 
     Public Function ScanLibraries() As String
         Dim files As String() = SpectrumLibraryModule.ScanLibraries.ToArray
