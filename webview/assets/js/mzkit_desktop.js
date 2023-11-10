@@ -1149,7 +1149,7 @@ var apps;
             /**
              * .lib-id
             */
-            lcmsLibrary.prototype.hookSpectralLinkOpen = function (liblinkClass, libsearchClass) {
+            lcmsLibrary.prototype.hookSpectralLinkOpen = function (liblinkClass, libsearchClass, libmassSearchClass) {
                 $ts.select("." + liblinkClass).onClick(function (a) {
                     var data_id = a.getAttribute("data_id");
                     app.desktop.mzkit
@@ -1196,11 +1196,36 @@ var apps;
                         });
                     });
                 });
+                $ts.select("." + libmassSearchClass).onClick(function (a) {
+                    var mass = parseFloat(a.getAttribute("data"));
+                    lcmsLibrary.showLoader();
+                    app.desktop.mzkit
+                        .FindExactMass(mass)
+                        .then(function (b) {
+                        return __awaiter(this, void 0, void 0, function () {
+                            var flag;
+                            return __generator(this, function (_a) {
+                                switch (_a.label) {
+                                    case 0: return [4 /*yield*/, b];
+                                    case 1:
+                                        flag = _a.sent();
+                                        if (flag) {
+                                        }
+                                        else {
+                                        }
+                                        lcmsLibrary.hideLoader();
+                                        return [2 /*return*/];
+                                }
+                            });
+                        });
+                    });
+                });
             };
             lcmsLibrary.prototype.show_page = function (list) {
                 var list_page = $ts("#list-page").clear();
                 var liblinkClass = "lib-id";
                 var libsearchClass = "lib-query";
+                var libmassSearchClass = "lib-mass-query";
                 console.log("get page data:");
                 console.log(list);
                 for (var _i = 0, list_4 = list; _i < list_4.length; _i++) {
@@ -1220,9 +1245,9 @@ var apps;
                             xrefs = xrefs + ("<span>" + key + ": </span> " + val + " <br />");
                         }
                     }
-                    list_page.appendElement($ts("<div class='row'>").display("\n                <div class=\"span4\">\n                    <h5>" + meta.name + " [\n                        <a class=\"" + liblinkClass + "\" href=\"#\" onclick=\"javascript:void(0);\" data_id=\"" + meta.ID + "\">" + meta.ID + "</a> \n                        <a href=\"#\" class=\"fa-solid fa-magnifying-glass " + libsearchClass + "\" data_id=\"" + meta.ID + "\" onclick=\"javascript:void(0);\"></a>\n                    ]</h5>\n                    <p>\n                    <span>Formula: </span> " + meta.formula + " <br />\n                    <span>Exact Mass: </span> " + meta.exact_mass + " <br />                       \n                    </p>\n                    <p>" + meta.description + "</p>\n                </div>\n                <div class=\"span4\">\n                    <p>\n                    " + xrefs + "\n                    </p>\n                </div>\n                <div class=\"span4\">\n                    <canvas class=\"smiles-viewer\" id=\"" + meta.ID.replace(".", "_").replace(" ", "_") + "\" width=\"200\" height=\"150\" data=\"" + this.get_smiles(meta) + "\">\n                    </canvas>\n                </div>\n                "));
+                    list_page.appendElement($ts("<div class='row'>").display("\n                <div class=\"span4\">\n                    <h5>" + meta.name + " [\n                        <a class=\"" + liblinkClass + "\" href=\"#\" onclick=\"javascript:void(0);\" data_id=\"" + meta.ID + "\">" + meta.ID + "</a> \n                        <a href=\"#\" class=\"fa-solid fa-magnifying-glass " + libsearchClass + "\" data_id=\"" + meta.ID + "\" onclick=\"javascript:void(0);\"></a>\n                    ]</h5>\n                    <p>\n                    <span>Formula: </span> " + meta.formula + " <br />\n                    <span>Exact Mass: </span> " + meta.exact_mass + " <a href=\"#\" class=\"fa-solid fa-magnifying-glass " + libmassSearchClass + "\" data=\"" + meta.exact_mass + "\" onclick=\"javascript:void(0);\"> <br />                       \n                    </p>\n                    <p>" + meta.description + "</p>\n                </div>\n                <div class=\"span4\">\n                    <p>\n                    " + xrefs + "\n                    </p>\n                </div>\n                <div class=\"span4\">\n                    <canvas class=\"smiles-viewer\" id=\"" + meta.ID.replace(".", "_").replace(" ", "_") + "\" width=\"200\" height=\"150\" data=\"" + this.get_smiles(meta) + "\">\n                    </canvas>\n                </div>\n                "));
                 }
-                this.hookSpectralLinkOpen(liblinkClass, libsearchClass);
+                this.hookSpectralLinkOpen(liblinkClass, libsearchClass, libmassSearchClass);
                 var options = {
                     width: 200,
                     height: 150

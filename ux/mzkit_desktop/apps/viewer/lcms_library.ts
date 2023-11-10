@@ -182,7 +182,7 @@ namespace apps.viewer {
         /**
          * .lib-id
         */
-        private hookSpectralLinkOpen(liblinkClass: string, libsearchClass: string) {
+        private hookSpectralLinkOpen(liblinkClass: string, libsearchClass: string, libmassSearchClass: string) {
             $ts.select("." + liblinkClass).onClick(function (a) {
                 const data_id: string = a.getAttribute("data_id");
 
@@ -216,12 +216,32 @@ namespace apps.viewer {
                         lcmsLibrary.hideLoader();
                     })
             });
+
+            $ts.select("." + libmassSearchClass).onClick(function (a) {
+                const mass: number = parseFloat(a.getAttribute("data"));
+
+                lcmsLibrary.showLoader();
+                app.desktop.mzkit
+                    .FindExactMass(mass)
+                    .then(async function (b) {
+                        const flag = await b;
+
+                        if (flag) {
+
+                        } else {
+
+                        }
+
+                        lcmsLibrary.hideLoader();
+                    })
+            });
         }
 
         private show_page(list: MetaLib[]) {
             const list_page = $ts("#list-page").clear();
             const liblinkClass: string = "lib-id";
             const libsearchClass: string = "lib-query";
+            const libmassSearchClass: string = "lib-mass-query"
 
             console.log("get page data:");
             console.log(list);
@@ -253,7 +273,7 @@ namespace apps.viewer {
                     ]</h5>
                     <p>
                     <span>Formula: </span> ${meta.formula} <br />
-                    <span>Exact Mass: </span> ${meta.exact_mass} <br />                       
+                    <span>Exact Mass: </span> ${meta.exact_mass} <a href="#" class="fa-solid fa-magnifying-glass ${libmassSearchClass}" data="${meta.exact_mass}" onclick="javascript:void(0);"> <br />                       
                     </p>
                     <p>${meta.description}</p>
                 </div>
@@ -269,7 +289,7 @@ namespace apps.viewer {
                 `));
             }
 
-            this.hookSpectralLinkOpen(liblinkClass, libsearchClass);
+            this.hookSpectralLinkOpen(liblinkClass, libsearchClass, libmassSearchClass);
 
             let options = {
                 width: 200,
