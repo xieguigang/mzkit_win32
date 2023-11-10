@@ -1,6 +1,10 @@
 ﻿Imports System.IO
 Imports System.Runtime.InteropServices
 Imports BioDeep
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
+Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
+Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
@@ -88,6 +92,13 @@ Public Class LibraryApp
                          Dim name As String = [lib].LibraryName
                          Dim import As String = [lib].FromImports
 
+                         libfile = SpectrumLibraryModule.LibraryFile(name)
+
+                         If import.FileLength > 1 Then
+                             Call importsMgf(import, libfile)
+                         Else
+                             Call createEmpty(libfile)
+                         End If
                      End Sub)
              End Sub
 
@@ -95,4 +106,32 @@ Public Class LibraryApp
 
         Return libfile
     End Function
+
+    Private Sub importsMgf(mgffile As String, libfile As String)
+        Dim libdata As New RQLib(libfile.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
+
+        For Each ion As Ions In MgfReader.StreamParser(mgffile.Open(FileMode.Open, doClear:=False, [readOnly]:=True))
+            Dim spectral As PeakMs2 = CType(ion, PeakMs2)
+            Dim rawmeta As New MetaData(ion.Meta)
+            Dim metadata As New MetaLib With {
+                .ID = ion.Accession,
+                .description = ion.Title,
+                .formula = ion.Sequence,
+                .exact_mass = FormulaScanner.EvaluateExactMass(.formula),
+                .name = rawmeta.name,
+                .IUPACName = rawmeta.name,
+                .xref = New xref With {
+                    .KEGG = rawmeta.kegg
+                }
+            }
+
+            Call libdata.AddAnnotation(metadata)
+            Call libdata.AddSpectrum(spectral, key:=ion.Accession)
+        Next
+    End Sub
+
+    Private Sub createEmpty(libfile As String)
+        Dim libdata As New RQLib(libfile.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
+        Call libdata.Dispose()
+    End Sub
 End Class
