@@ -166,10 +166,13 @@ Public Class LibraryApp
         Dim searchTask As Action =
             Sub()
                 ' align with samples inside the sample file explorer
-                Dim doc As SpectrumSearchPage = SpectrumSearchModule.ShowDocument
+                Dim doc As frmSpectrumSearch = MyApplication.host.Invoke(Function() SpectrumSearchModule.ShowDocument)
 
-                Call doc.LoadMs2(spectral)
-                Call doc.RunSearch(showUI:=False)
+                Call doc.Invoke(
+                    Sub()
+                        Call doc.LoadMs2(spectral)
+                        Call doc.RunSearch(showUi:=False)
+                    End Sub)
             End Sub
 
         If Not raw Is Nothing Then
