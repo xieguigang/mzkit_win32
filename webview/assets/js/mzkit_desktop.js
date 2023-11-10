@@ -968,7 +968,7 @@ var apps;
                 configurable: true
             });
             lcmsLibrary.prototype.init = function () {
-                this.reloadLibs();
+                // this.reloadLibs();
             };
             lcmsLibrary.prototype.reloadLibs = function () {
                 var vm = this;
@@ -1076,33 +1076,40 @@ var apps;
                         var n = a.reference[0];
                         var key = Strings.Trim(n.innerText);
                         var filepath = vm.libfiles[key];
-                        console.log("open a libfile:");
-                        console.log(a);
-                        console.log(key);
-                        console.log(filepath);
-                        app.desktop.mzkit.OpenLibrary(filepath)
-                            .then(function (b) {
-                            return __awaiter(this, void 0, void 0, function () {
-                                var check;
-                                return __generator(this, function (_a) {
-                                    switch (_a.label) {
-                                        case 0: return [4 /*yield*/, b];
-                                        case 1:
-                                            check = _a.sent();
-                                            if (check) {
-                                                console.log("Open library file success!");
-                                                vm.list_data();
-                                            }
-                                            else {
-                                                console.log("Error while trying to open the LCMS library file!");
-                                            }
-                                            return [2 /*return*/];
-                                    }
-                                });
-                            });
-                        });
+                        lcmsLibrary.openLibfile(filepath, vm);
                     }
                 };
+            };
+            lcmsLibrary.openLibfile = function (filepath, vm) {
+                if (vm === void 0) { vm = null; }
+                if ((!vm) || typeof vm == "string") {
+                    vm = Router.currentAppPage();
+                }
+                console.log("open a libfile:");
+                // console.log(a);
+                // console.log(key);
+                console.log(filepath);
+                app.desktop.mzkit.OpenLibrary(filepath)
+                    .then(function (b) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var check;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, b];
+                                case 1:
+                                    check = _a.sent();
+                                    if (check) {
+                                        console.log("Open library file success!");
+                                        vm.list_data();
+                                    }
+                                    else {
+                                        console.log("Error while trying to open the LCMS library file!");
+                                    }
+                                    return [2 /*return*/];
+                            }
+                        });
+                    });
+                });
             };
             lcmsLibrary.prototype.list_data = function () {
                 var vm = this;

@@ -214,6 +214,7 @@ declare namespace apps.viewer {
         private customMenu;
         private menu_new;
         private menu_open;
+        static openLibfile(filepath: string, vm?: lcmsLibrary): void;
         private list_data;
         private show_page;
         private get_smiles;

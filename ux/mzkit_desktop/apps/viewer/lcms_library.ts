@@ -13,7 +13,7 @@ namespace apps.viewer {
         private page_size: number = 100;
 
         protected init(): void {
-            this.reloadLibs();
+            // this.reloadLibs();
         }
 
         private reloadLibs() {
@@ -119,24 +119,32 @@ namespace apps.viewer {
                     let key = Strings.Trim(n.innerText);
                     let filepath = vm.libfiles[key];
 
-                    console.log("open a libfile:");
-                    console.log(a);
-                    console.log(key);
-                    console.log(filepath);
-
-                    app.desktop.mzkit.OpenLibrary(filepath)
-                        .then(async function (b) {
-                            let check = await b;
-
-                            if (check) {
-                                console.log("Open library file success!");
-                                vm.list_data();
-                            } else {
-                                console.log("Error while trying to open the LCMS library file!");
-                            }
-                        });
+                    lcmsLibrary.openLibfile(filepath, vm);
                 }
             }
+        }
+
+        public static openLibfile(filepath: string, vm: lcmsLibrary = null) {
+            if ((!vm) || typeof vm == "string") {
+                vm = <lcmsLibrary>Router.currentAppPage();
+            }
+
+            console.log("open a libfile:");
+            // console.log(a);
+            // console.log(key);
+            console.log(filepath);
+
+            app.desktop.mzkit.OpenLibrary(filepath)
+                .then(async function (b) {
+                    let check = await b;
+
+                    if (check) {
+                        console.log("Open library file success!");
+                        vm.list_data();
+                    } else {
+                        console.log("Error while trying to open the LCMS library file!");
+                    }
+                });
         }
 
         private list_data() {
