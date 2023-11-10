@@ -25,11 +25,20 @@
         Me.DialogResult = DialogResult.OK
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        Using file As New OpenFileDialog With {.Filter = "ASCII spectrum library file(*.msp)|*.msp"}
-            If file.ShowDialog = DialogResult.OK Then
-                TextBox2.Text = file.FileName
-            End If
-        End Using
+    Private Async Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Await SelectLibFile()
     End Sub
+
+    Private Function SelectLibFile() As Threading.Tasks.Task
+        Dim [select] As Action =
+            Sub()
+                Using file As New OpenFileDialog With {.Filter = "ASCII spectrum library file(*.msp)|*.msp"}
+                    If file.ShowDialog = DialogResult.OK Then
+                        TextBox2.Text = file.FileName
+                    End If
+                End Using
+            End Sub
+
+        Return Threading.Tasks.Task.Run([select])
+    End Function
 End Class
