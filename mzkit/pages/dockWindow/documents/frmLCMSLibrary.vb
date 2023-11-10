@@ -32,7 +32,10 @@ Public Class frmLCMSLibrary
 
     Private Sub LoadLibs()
         For Each file As String In SpectrumLibraryModule.ScanLibraries
-            root.Nodes.Add(file.BaseName).Tag = file
+            Dim libFolder = root.Nodes.Add(file.BaseName)
+
+            libFolder.Tag = file
+            libFolder.ImageIndex = 1
         Next
     End Sub
 

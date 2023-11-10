@@ -73,8 +73,12 @@ Partial Class frmLCMSLibrary
         '
         'Win7StyleTreeView1
         '
+        Me.Win7StyleTreeView1.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.Win7StyleTreeView1.ContextMenuStrip = Me.ContextMenuStrip1
         Me.Win7StyleTreeView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Win7StyleTreeView1.Font = New System.Drawing.Font("微软雅黑", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.Win7StyleTreeView1.FullRowSelect = True
+        Me.Win7StyleTreeView1.HideSelection = False
         Me.Win7StyleTreeView1.HotTracking = True
         Me.Win7StyleTreeView1.ImageIndex = 0
         Me.Win7StyleTreeView1.ImageList = Me.ImageList1
@@ -84,7 +88,7 @@ Partial Class frmLCMSLibrary
         TreeNode1.Text = "LCMS Libraries"
         Me.Win7StyleTreeView1.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode1})
         Me.Win7StyleTreeView1.SelectedImageIndex = 0
-        Me.Win7StyleTreeView1.ShowLines = False
+        Me.Win7StyleTreeView1.ShowNodeToolTips = True
         Me.Win7StyleTreeView1.Size = New System.Drawing.Size(268, 553)
         Me.Win7StyleTreeView1.TabIndex = 0
         '
@@ -99,19 +103,19 @@ Partial Class frmLCMSLibrary
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripMenuItem, Me.NewLibraryToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 70)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(138, 48)
         '
         'OpenToolStripMenuItem
         '
         Me.OpenToolStripMenuItem.Image = CType(resources.GetObject("OpenToolStripMenuItem.Image"), System.Drawing.Image)
         Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
         Me.OpenToolStripMenuItem.Text = "Open"
         '
         'NewLibraryToolStripMenuItem
         '
         Me.NewLibraryToolStripMenuItem.Name = "NewLibraryToolStripMenuItem"
-        Me.NewLibraryToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.NewLibraryToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
         Me.NewLibraryToolStripMenuItem.Text = "New Library"
         '
         'frmLCMSLibrary
