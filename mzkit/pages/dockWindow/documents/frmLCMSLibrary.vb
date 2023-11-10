@@ -24,18 +24,21 @@ Public Class frmLCMSLibrary
         TabText = Text
         AutoScaleMode = AutoScaleMode.Dpi
         root = Win7StyleTreeView1.Nodes(0)
-        root.Nodes.Clear()
 
         Call WebKit.Init(Me.WebView21)
         Call LoadLibs()
+        Call ApplyVsTheme(ToolStrip1)
     End Sub
 
     Private Sub LoadLibs()
+        root.Nodes.Clear()
+
         For Each file As String In SpectrumLibraryModule.ScanLibraries
             Dim libFolder = root.Nodes.Add(file.BaseName)
 
             libFolder.Tag = file
             libFolder.ImageIndex = 1
+            libFolder.SelectedImageIndex = 1
         Next
     End Sub
 
@@ -53,13 +56,19 @@ Public Class frmLCMSLibrary
             Return
         End If
 
-        Call WebView21.ExecuteScriptAsync($"apps.viewer.lcmsLibrary.openLibfile('{filepath}', null);")
+        Call WebView21.ExecuteScriptAsync($"apps.viewer.lcmsLibrary.openLibfile('{filepath.Replace("\", "/")}', null);")
     End Sub
 
-    Private Sub NewLibraryToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewLibraryToolStripMenuItem.Click
+    Private Sub NewLibraryToolStripMenuItem_Click() Handles NewLibraryToolStripMenuItem.Click
         If Not [lib].NewLibrary() Then
             Call Workbench.Warning("Create new library canceled or not successed.")
+        Else
+            Call LoadLibs()
         End If
+    End Sub
+
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        NewLibraryToolStripMenuItem_Click()
     End Sub
 End Class
 
