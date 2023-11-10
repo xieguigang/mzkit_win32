@@ -159,7 +159,7 @@ Public Class frmLCMSLibrary
             End If
 
             Dim peak As PeakMs2 = mzPack.CastToPeakMs2(spectral, file:=libfile)
-            Dim ionMode As Integer = Provider.ParseIonMode(peak.precursor_type.Last)
+            Dim ionMode As Integer = spectral.polarity
 
             If ionMode = 1 Then
                 Call libpos.Push(metabolite.ID, metabolite.formula, peak)
