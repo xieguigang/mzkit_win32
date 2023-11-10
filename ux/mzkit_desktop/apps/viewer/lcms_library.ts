@@ -273,7 +273,7 @@ namespace apps.viewer {
                     ]</h5>
                     <p>
                     <span>Formula: </span> ${meta.formula} <br />
-                    <span>Exact Mass: </span> ${meta.exact_mass} <a href="#" class="fa-solid fa-magnifying-glass ${libmassSearchClass}" data="${meta.exact_mass}" onclick="javascript:void(0);"> <br />                       
+                    <span>Exact Mass: </span> ${meta.exact_mass} <a href="#" class="fa-solid fa-magnifying-glass ${libmassSearchClass}" data="${meta.exact_mass}" onclick="javascript:void(0);"></a> <br />                       
                     </p>
                     <p>${meta.description}</p>
                 </div>
