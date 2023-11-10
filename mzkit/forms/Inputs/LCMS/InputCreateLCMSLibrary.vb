@@ -26,7 +26,7 @@
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        Using file As New OpenFileDialog With {.Filter = "ASCII spectrum library file(*.mgf)|*.mgf"}
+        Using file As New OpenFileDialog With {.Filter = "ASCII spectrum library file(*.msp)|*.msp"}
             If file.ShowDialog = DialogResult.OK Then
                 TextBox2.Text = file.FileName
             End If

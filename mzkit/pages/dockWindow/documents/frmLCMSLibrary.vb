@@ -1,10 +1,8 @@
 ﻿Imports System.IO
 Imports System.Runtime.InteropServices
 Imports BioDeep
-Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
-Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
-Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
-Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
+Imports BioNovoGene.BioDeep.Chemistry
+Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
@@ -95,7 +93,7 @@ Public Class LibraryApp
                          libfile = SpectrumLibraryModule.LibraryFile(name)
 
                          If import.FileLength > 1 Then
-                             Call importsMgf(import, libfile)
+                             Call importsMsp(import, libfile)
                          Else
                              Call createEmpty(libfile)
                          End If
@@ -107,27 +105,26 @@ Public Class LibraryApp
         Return libfile
     End Function
 
-    Private Sub importsMgf(mgffile As String, libfile As String)
-        Dim libdata As New RQLib(libfile.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
+    Private Sub importsMsp(msp_file As String, libfile As String)
+        Dim libdb As New RQLib(libfile.Open(FileMode.OpenOrCreate, doClear:=False, [readOnly]:=False))
+        Dim msp As IEnumerable(Of SpectraSection) = MspReader.ParseFile(msp_file)
+        Dim d As Integer = 17
+        Dim i As i32 = 0
 
-        For Each ion As Ions In MgfReader.StreamParser(mgffile.Open(FileMode.Open, doClear:=False, [readOnly]:=True))
-            Dim spectral As PeakMs2 = CType(ion, PeakMs2)
-            Dim rawmeta As New MetaData(ion.Meta)
-            Dim metadata As New MetaLib With {
-                .ID = ion.Accession,
-                .description = ion.Title,
-                .formula = ion.Sequence,
-                .exact_mass = FormulaScanner.EvaluateExactMass(.formula),
-                .name = rawmeta.name,
-                .IUPACName = rawmeta.name,
-                .xref = New xref With {
-                    .KEGG = rawmeta.kegg
-                }
-            }
+        For Each ion As SpectraSection In msp
+            Dim anno = ion.GetMetabolite
 
-            Call libdata.AddAnnotation(metadata)
-            Call libdata.AddSpectrum(spectral, key:=ion.Accession)
+            Call libdb.AddAnnotation(anno)
+            Call libdb.AddSpectrum(ion.GetSpectrumPeaks, key:=anno.name)
+
+            Call System.Windows.Forms.Application.DoEvents()
+
+            If ++i Mod d = 0 Then
+                Call Workbench.LogText("Installing... " & ion.ToString)
+            End If
         Next
+
+        Call libdb.Dispose()
     End Sub
 
     Private Sub createEmpty(libfile As String)
