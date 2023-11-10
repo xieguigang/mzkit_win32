@@ -128,7 +128,12 @@ Public Class PeakFindingViewer
 
         Dim row As DataGridViewRow = PeakListViewer.SelectedRows(0)
         Dim peakId As String = any.ToString(row.Cells.Item(0).Value)
-        Dim peakROI As ROI = peakList(peakId)
+        Dim peakROI As ROI = peakList.TryGetValue(peakId)
+
+        If peakId.StringEmpty OrElse peakROI Is Nothing Then
+            Return
+        End If
+
         Dim targetPeak As New NamedCollection(Of ChromatogramTick) With {
             .name = peakROI.ToString,
             .value = peakROI.ticks
