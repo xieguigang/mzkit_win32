@@ -14,6 +14,11 @@ namespace apps.viewer {
 
         protected init(): void {
             // this.reloadLibs();
+            try {
+                this.list_data();
+            } catch (ex) {
+
+            }
         }
 
         private reloadLibs() {
@@ -159,8 +164,30 @@ namespace apps.viewer {
                 });
         }
 
+        /**
+         * .lib-id
+        */
+        private hookSpectralLinkOpen(liblinkClass: string) {
+            $ts.select("." + liblinkClass).ForEach(function (a) {
+                const data_id: string = a.getAttribute("data_id");
+
+                app.desktop.mzkit
+                    .ShowSpectral(data_id)
+                    .then(async function (b) {
+                        const flag = await b;
+
+                        if (flag) {
+
+                        } else {
+
+                        }
+                    })
+            });
+        }
+
         private show_page(list: MetaLib[]) {
             const list_page = $ts("#list-page").clear();
+            const liblinkClass: string = "lib-id";
 
             console.log("get page data:");
             console.log(list);
@@ -186,7 +213,7 @@ namespace apps.viewer {
 
                 list_page.appendElement($ts("<div class='row'>").display(`
                 <div class="span4">
-                    <h5>${meta.name} [<a>${meta.ID}</a>]</h5>
+                    <h5>${meta.name} [<a class="${liblinkClass}" href="#" onclick="javascript:void(0);" data_id="${meta.ID}">${meta.ID}</a>]</h5>
                     <p>
                     <span>Formula: </span> ${meta.formula} <br />
                     <span>Exact Mass: </span> ${meta.exact_mass} <br />                       
@@ -204,6 +231,8 @@ namespace apps.viewer {
                 </div>
                 `));
             }
+
+            this.hookSpectralLinkOpen(liblinkClass);
 
             let options = {
                 width: 200,

@@ -49,6 +49,7 @@ namespace app.desktop {
         OpenLibrary(path: string): Promise<boolean>;
         GetPage(page: number, page_size: number): Promise<string>;
         Query(name: string): Promise<string>;
+        ShowSpectral(data_id: string): Promise<boolean>;
         /**
          * actions for create new library file
         */

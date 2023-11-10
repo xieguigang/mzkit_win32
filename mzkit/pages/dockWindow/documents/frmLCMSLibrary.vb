@@ -110,6 +110,10 @@ Public Class LibraryApp
         Return result.GetJson
     End Function
 
+    Public Function ShowSpectral(data_id As String) As Boolean
+
+    End Function
+
     Public Function NewLibrary() As Boolean
         Dim libfile As String = CreateLibrary()
 

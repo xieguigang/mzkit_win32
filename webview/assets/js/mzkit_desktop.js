@@ -969,6 +969,11 @@ var apps;
             });
             lcmsLibrary.prototype.init = function () {
                 // this.reloadLibs();
+                try {
+                    this.list_data();
+                }
+                catch (ex) {
+                }
             };
             lcmsLibrary.prototype.reloadLibs = function () {
                 var vm = this;

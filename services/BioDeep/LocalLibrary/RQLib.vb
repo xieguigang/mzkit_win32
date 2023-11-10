@@ -1,12 +1,15 @@
 ﻿Imports System.IO
 Imports System.Runtime.CompilerServices
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges
 Imports Microsoft.VisualBasic.Data.IO
 Imports Microsoft.VisualBasic.DataStorage.HDSPack
 Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
+Imports Microsoft.VisualBasic.DataStorage.netCDF.Components
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports RQL
@@ -25,10 +28,34 @@ Public Class RQLib : Implements IDisposable
         .unixTimestamp = True
     }
 
+    ''' <summary>
+    ''' mapping the unique id key to the resource map link
+    ''' </summary>
+    ReadOnly spectralMap As New Dictionary(Of String, String)
+
     Private disposedValue As Boolean
 
     Sub New(file As Stream)
         query = New Resource(New StreamPack(file))
+        loadMap()
+    End Sub
+
+    Private Sub loadMap()
+        Dim mapList As String = query.Archive.ReadText("/spectralMap.txt")
+        Dim lines As String() = mapList.LineTokens
+        Dim ref As NamedValue(Of String)
+
+        ' guid: map
+        For Each line As String In lines
+            ref = line.GetTagValue(":", trim:=True)
+            spectralMap.Add(ref.Name, ref.Value)
+        Next
+    End Sub
+
+    Private Sub saveMap()
+        Dim lines As String() = spectralMap.Select(Function(t) $"{t.Key}:{t.Value}").ToArray
+
+        Call query.Archive.WriteText(lines, "/spectralMap.txt")
     End Sub
 
     Const class_metadata As String = "metadata"
@@ -86,10 +113,13 @@ Public Class RQLib : Implements IDisposable
         Call Serialization.WriteBuffer(mspeak.Scan2, file:=bw)
         Call bw.Flush()
         Dim packdata = buffer.ToArray
+        Dim mapKey As String = Resource.GetHashKey(packdata)
 
         Call query.Add(mspeak.lib_guid, packdata, class_spectrum)
         Call query.Add(mspeak.precursor_type, packdata, class_spectrum)
         Call query.Add(key, packdata, class_spectrum)
+
+        spectralMap(key) = mapKey
 
         Return True
     End Function
@@ -99,6 +129,17 @@ Public Class RQLib : Implements IDisposable
         Return BSON _
             .Load(dat) _
             .CreateObject(Of MetaLib)(decodeMetachar:=False)
+    End Function
+
+    Public Function GetSpectrumByKey(id As String) As PeakMs2
+        Dim map As String = spectralMap(id)
+        Dim buffer = query.ReadBuffer(map, category:=class_spectrum)
+        Dim ms2 As ScanMS2 = Serialization.ParseScan2(buffer)
+        Dim spectral As PeakMs2 = mzPack.CastToPeakMs2(ms2, file:="spectral")
+
+        Erase buffer
+
+        Return spectral
     End Function
 
     ''' <summary>
@@ -130,6 +171,7 @@ Public Class RQLib : Implements IDisposable
         If Not disposedValue Then
             If disposing Then
                 ' TODO: 释放托管状态(托管对象)
+                Call saveMap()
                 Call query.Dispose()
             End If
 
