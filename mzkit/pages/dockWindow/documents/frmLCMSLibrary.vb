@@ -71,6 +71,22 @@ Public Class frmLCMSLibrary
     Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
         NewLibraryToolStripMenuItem_Click()
     End Sub
+
+    Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
+        Dim libNode = Win7StyleTreeView1.SelectedNode
+        Dim filepath As String = libNode.Tag
+
+        If filepath.StringEmpty Then
+            Return
+        End If
+
+        If MessageBox.Show($"Going to delete the reference library: {filepath.BaseName}?", "Delete Library", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) <> DialogResult.OK Then
+            Return
+        End If
+
+        Call filepath.DeleteFile
+        Call LoadLibs()
+    End Sub
 End Class
 
 ' 所有需要在JavaScript环境中暴露的对象

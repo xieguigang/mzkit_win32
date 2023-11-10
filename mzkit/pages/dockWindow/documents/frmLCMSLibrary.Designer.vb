@@ -36,6 +36,8 @@ Partial Class frmLCMSLibrary
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -98,21 +100,21 @@ Partial Class frmLCMSLibrary
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripMenuItem, Me.NewLibraryToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripMenuItem, Me.DeleteToolStripMenuItem, Me.ToolStripMenuItem1, Me.NewLibraryToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(138, 48)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 98)
         '
         'OpenToolStripMenuItem
         '
         Me.OpenToolStripMenuItem.Image = CType(resources.GetObject("OpenToolStripMenuItem.Image"), System.Drawing.Image)
         Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.OpenToolStripMenuItem.Text = "Open"
         '
         'NewLibraryToolStripMenuItem
         '
         Me.NewLibraryToolStripMenuItem.Name = "NewLibraryToolStripMenuItem"
-        Me.NewLibraryToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.NewLibraryToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.NewLibraryToolStripMenuItem.Text = "New Library"
         '
         'ImageList1
@@ -139,6 +141,17 @@ Partial Class frmLCMSLibrary
         Me.ToolStripButton1.Name = "ToolStripButton1"
         Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton1.Text = "Create New"
+        '
+        'DeleteToolStripMenuItem
+        '
+        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.DeleteToolStripMenuItem.Text = "Delete"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(177, 6)
         '
         'frmLCMSLibrary
         '
@@ -171,4 +184,6 @@ Partial Class frmLCMSLibrary
     Friend WithEvents NewLibraryToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents ToolStripButton1 As ToolStripButton
+    Friend WithEvents DeleteToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
 End Class
