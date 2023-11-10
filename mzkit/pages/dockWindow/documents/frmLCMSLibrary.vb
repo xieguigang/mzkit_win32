@@ -67,4 +67,8 @@ Public Class LibraryApp
         Dim result = current.QueryMetabolites(name).ToArray
         Return result.GetJson
     End Function
+
+    Public Async Function NewLibrary() As Task(Of Boolean)
+
+    End Function
 End Class

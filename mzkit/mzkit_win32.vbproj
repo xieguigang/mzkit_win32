@@ -483,6 +483,12 @@
     <Compile Include="forms\Inputs\InputURL.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\Inputs\LCMS\InputCreateLCMSLibrary.Designer.vb">
+      <DependentUpon>InputCreateLCMSLibrary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\LCMS\InputCreateLCMSLibrary.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\LCMS\InputMNSimilarityScore.Designer.vb">
       <DependentUpon>InputMNSimilarityScore.vb</DependentUpon>
     </Compile>
@@ -1179,6 +1185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputURL.resx">
       <DependentUpon>InputURL.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\LCMS\InputCreateLCMSLibrary.resx">
+      <DependentUpon>InputCreateLCMSLibrary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\LCMS\InputMNSimilarityScore.resx">
       <DependentUpon>InputMNSimilarityScore.vb</DependentUpon>
