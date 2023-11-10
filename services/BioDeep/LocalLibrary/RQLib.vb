@@ -131,7 +131,7 @@ Public Class RQLib : Implements IDisposable
             .CreateObject(Of MetaLib)(decodeMetachar:=False)
     End Function
 
-    Public Function GetSpectrumByKey(id As String) As PeakMs2
+    Public Function GetSpectrumByKey(id As String) As ScanMS2
         Dim map As String = spectralMap.TryGetValue(id)
 
         If map.StringEmpty Then
@@ -140,11 +140,11 @@ Public Class RQLib : Implements IDisposable
 
         Dim buffer = query.ReadBuffer(map, category:=class_spectrum)
         Dim ms2 As ScanMS2 = Serialization.ParseScan2(buffer)
-        Dim spectral As PeakMs2 = mzPack.CastToPeakMs2(ms2, file:="spectral")
+        ' Dim spectral As PeakMs2 = mzPack.CastToPeakMs2(ms2, file:="spectral")
 
         Erase buffer
 
-        Return spectral
+        Return ms2
     End Function
 
     ''' <summary>

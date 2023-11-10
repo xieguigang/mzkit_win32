@@ -1139,7 +1139,7 @@ var apps;
              * .lib-id
             */
             lcmsLibrary.prototype.hookSpectralLinkOpen = function (liblinkClass) {
-                $ts.select("." + liblinkClass).ForEach(function (a) {
+                $ts.select("." + liblinkClass).onClick(function (a) {
                     var data_id = a.getAttribute("data_id");
                     app.desktop.mzkit
                         .ShowSpectral(data_id)

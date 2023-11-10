@@ -1,6 +1,8 @@
 ﻿Imports System.IO
 Imports System.Runtime.InteropServices
 Imports BioDeep
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.BioDeep.Chemistry
 Imports Microsoft.VisualBasic.Language
@@ -8,6 +10,8 @@ Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Global.BioNovoGene.mzkit_win32.My
+Imports Task
 
 Public Class frmLCMSLibrary
 
@@ -100,6 +104,7 @@ End Class
 Public Class LibraryApp
 
     Dim current As RQLib
+    Dim current_file As String
 
     Public Function ScanLibraries() As String
         Dim files As String() = SpectrumLibraryModule.ScanLibraries.ToArray
@@ -111,6 +116,7 @@ Public Class LibraryApp
             Call current.Dispose()
         End If
 
+        current_file = path
         current = New RQLib(path.Open(FileMode.OpenOrCreate, doClear:=False, [readOnly]:=False))
 
         Return True
@@ -136,10 +142,16 @@ Public Class LibraryApp
     End Function
 
     Public Function ShowSpectral(data_id As String) As Boolean
-        Dim spectral As PeakMs2 = current.GetSpectrumByKey(data_id)
+        Dim raw As ScanMS2 = current.GetSpectrumByKey(data_id)
+        Dim spectral As PeakMs2 = Nothing
+
+        If Not raw Is Nothing Then
+            spectral = mzPack.CastToPeakMs2(raw, file:=current_file.BaseName)
+        End If
 
         If Not spectral Is Nothing Then
             Call SpectralViewerModule.ViewSpectral(spectral)
+            Call MyApplication.host.ShowProperties(New SpectrumProperty(data_id, current_file.BaseName, 2, raw))
         Else
             Call Workbench.Warning($"missing spectral data associated with guid key: {data_id}!")
         End If

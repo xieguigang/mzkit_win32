@@ -168,7 +168,7 @@ namespace apps.viewer {
          * .lib-id
         */
         private hookSpectralLinkOpen(liblinkClass: string) {
-            $ts.select("." + liblinkClass).ForEach(function (a) {
+            $ts.select("." + liblinkClass).onClick(function (a) {
                 const data_id: string = a.getAttribute("data_id");
 
                 app.desktop.mzkit
