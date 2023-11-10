@@ -1,10 +1,10 @@
 [autorun]
-label = PANOMIX???
+label = mzkit_win32
 open = autorun.exe [verb00][1] "mzkit_setups.exe"
 icon = autorun.exe
 shell\verb00\command = autorun.exe [verb00][1] "mzkit_setups.exe"
-shell\verb00 = Install PANOMIX???
+shell\verb00 = Install mzkit_win32
 shell = verb00
 
 [Installed]
-ProductCode = {9EC192FF-484B-43A5-ADE8-CAE862031678}
+ProductCode = {719A223E-83F4-49B5-A1EF-B80CB46C0015}
