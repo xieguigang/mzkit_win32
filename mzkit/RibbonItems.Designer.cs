@@ -35,6 +35,7 @@ namespace RibbonLib.Controls
             public const uint cmdMenuButtonToolkit = 236;
             public const uint cmdMenuOpticalMicroscopyTools = 235;
             public const uint cmdButtonOpenVirtualSlideFile = 234;
+            public const uint cmdButtonViewMRI = 263;
             public const uint cmdMenuRTerm = 233;
             public const uint cmdButtonRsharp = 1107;
             public const uint cmdButtonDevTools = 168;
@@ -285,6 +286,7 @@ namespace RibbonLib.Controls
         public RibbonDropDownButton MenuButtonToolkit { get; private set; }
         public RibbonMenuGroup MenuOpticalMicroscopyTools { get; private set; }
         public RibbonButton ButtonOpenVirtualSlideFile { get; private set; }
+        public RibbonButton ButtonViewMRI { get; private set; }
         public RibbonMenuGroup MenuRTerm { get; private set; }
         public RibbonButton ButtonRsharp { get; private set; }
         public RibbonButton ButtonDevTools { get; private set; }
@@ -536,6 +538,7 @@ namespace RibbonLib.Controls
             MenuButtonToolkit = new RibbonDropDownButton(ribbon, Cmd.cmdMenuButtonToolkit);
             MenuOpticalMicroscopyTools = new RibbonMenuGroup(ribbon, Cmd.cmdMenuOpticalMicroscopyTools);
             ButtonOpenVirtualSlideFile = new RibbonButton(ribbon, Cmd.cmdButtonOpenVirtualSlideFile);
+            ButtonViewMRI = new RibbonButton(ribbon, Cmd.cmdButtonViewMRI);
             MenuRTerm = new RibbonMenuGroup(ribbon, Cmd.cmdMenuRTerm);
             ButtonRsharp = new RibbonButton(ribbon, Cmd.cmdButtonRsharp);
             ButtonDevTools = new RibbonButton(ribbon, Cmd.cmdButtonDevTools);

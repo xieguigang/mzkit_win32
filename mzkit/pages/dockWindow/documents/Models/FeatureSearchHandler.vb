@@ -63,7 +63,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Interop
 Imports Task
-Imports stdNum = System.Math
+Imports std = System.Math
 
 Module FeatureSearchHandler
 
@@ -84,6 +84,21 @@ Module FeatureSearchHandler
 
             MyApplication.host.ribbonItems.TabGroupExactMassSearchTools.ContextAvailable = ContextAvailability.Active
         End If
+    End Sub
+
+    Public Sub SearchByExactMass(mass As Double, files As IEnumerable(Of MZWork.Raw), mzdiff As Tolerance)
+        Dim display As frmFeatureSearch = VisualStudio.ShowDocument(Of frmFeatureSearch)(title:=$"Search Exact Mass [{mass}]")
+
+        Call Workbench.StatusMessage($"Do search features for exact mass: {mass}...")
+
+        For Each file As MZWork.Raw In files
+            Call display.AddFileMatch(
+                file:=file.source,
+                matches:=MatchByExactMass(mass, file, ppm:=mzdiff).ToArray
+            )
+        Next
+
+        MyApplication.host.ribbonItems.TabGroupExactMassSearchTools.ContextAvailable = ContextAvailability.Active
     End Sub
 
     Private Sub runFormulaMatch(formula As String,
@@ -120,12 +135,7 @@ Module FeatureSearchHandler
         End If
     End Sub
 
-    Public Iterator Function MatchByFormula(formula As String, raw As MZWork.Raw, ppm As Tolerance) As IEnumerable(Of ParentMatch)
-        ' formula
-        Dim exact_mass As Double = Math.EvaluateFormula(formula)
-
-        Call Workbench.StatusMessage($"Search MS ions for [{formula}] exact_mass={exact_mass} with tolerance error {ppm}...")
-
+    Public Iterator Function MatchByExactMass(exact_mass As Double, raw As MZWork.Raw, ppm As Tolerance) As IEnumerable(Of ParentMatch)
         ' C25H40N4O5
         Dim pos = MzCalculator.EvaluateAll(exact_mass, "+", False).ToArray
         Dim neg = MzCalculator.EvaluateAll(exact_mass, "-", False).ToArray
@@ -156,7 +166,7 @@ Module FeatureSearchHandler
                         .into = scan.into,
                         .parentMz = scan.parentMz,
                         .rawfile = raw.source,
-                        .da = stdNum.Round(stdNum.Abs(scan.parentMz - Val(mode.mz)), 3)
+                        .da = std.Round(std.Abs(scan.parentMz - Val(mode.mz)), 3)
                     }
                 End If
             Next
@@ -165,6 +175,22 @@ Module FeatureSearchHandler
         Next
     End Function
 
+    Public Function MatchByFormula(formula As String, raw As MZWork.Raw, ppm As Tolerance) As IEnumerable(Of ParentMatch)
+        ' formula
+        Dim exact_mass As Double = Math.EvaluateFormula(formula)
+        Dim q = MatchByExactMass(exact_mass, raw, ppm)
+
+        Call Workbench.StatusMessage($"Search MS ions for [{formula}] exact_mass={exact_mass} with tolerance error {ppm}...")
+
+        Return q
+    End Function
+
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="mz">the ms1 m/z value</param>
+    ''' <param name="raw"></param>
+    ''' <param name="tolerance"></param>
     Private Sub searchInFileByMz(mz As Double, raw As IEnumerable(Of MZWork.Raw), tolerance As Tolerance)
         Dim ppm As Double = MyApplication.host.GetPPMError()
         Dim display As New frmFeatureSearch

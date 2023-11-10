@@ -3,28 +3,24 @@
 declare namespace apps.viewer {
     class three_app extends Bootstrap {
         get appName(): string;
-        scene: THREE.Scene;
-        private renderer;
-        private camera;
-        private light;
-        private stats;
-        private controls;
-        private initControls;
-        private initStats;
-        private initRender;
-        private initCamera;
-        private initScene;
-        private initLight;
-        private initModel;
-        private render;
-        private onWindowResize;
-        private animate;
+        private potreeViewer;
         protected init(): void;
-        private setup_device;
-        static open: Delegate.Action;
+        private loop;
+        private createAnnotations;
+        private createVolume;
+        private loadModel;
     }
 }
 declare namespace app.desktop {
+    /**
+     * main function for run start of the desktop app
+    */
+    function run(): void;
+}
+declare namespace app.desktop {
+    /**
+     * the mzkit desktop app
+    */
     const mzkit: mzkit_desktop;
     interface mzkit_desktop {
         get_3d_MALDI_url(): Promise<string>;
@@ -40,10 +36,20 @@ declare namespace app.desktop {
         Download(): Promise<string>;
         GetLCMSScatter(): Promise<string>;
         GetColors(): Promise<string>;
+        /**
+         * Scan the library list that installed in the local filesystem.
+        */
         ScanLibraries(): Promise<string>;
         OpenLibrary(path: string): Promise<boolean>;
         GetPage(page: number, page_size: number): Promise<string>;
         Query(name: string): Promise<string>;
+        ShowSpectral(data_id: string): Promise<boolean>;
+        AlignSpectral(data_id: string): Promise<boolean>;
+        FindExactMass(mass: number): Promise<boolean>;
+        /**
+         * actions for create new library file
+        */
+        NewLibrary(): Promise<boolean>;
         Save(): void;
         InstallLocal(): void;
         SetStatus(id: string, status: string): void;
@@ -54,7 +60,6 @@ declare namespace app.desktop {
         BuildPkg(folder: string): Promise<boolean>;
         GetServicesList(): Promise<string>;
     }
-    function run(): void;
 }
 /**
  * Read of 3d model file blob
@@ -141,6 +146,9 @@ declare namespace apps.systems {
          * on update a frame display
         */
         private startUpdateTask;
+        /**
+         * tick loop frame
+        */
         private loadServicesList;
         private cpu_chart;
         private mem_chart;
@@ -154,12 +162,14 @@ declare namespace apps.systems {
     interface Service {
         Name: string;
         Description: string;
+        Protocol: string;
         Port: number;
         PID: number;
         CPU: number;
         Memory: number | string;
         isAlive: boolean | string;
         StartTime: string;
+        CommandLine: string;
     }
 }
 declare namespace apps.viewer {
@@ -202,9 +212,19 @@ declare namespace apps.viewer {
         private page;
         private page_size;
         protected init(): void;
+        private static showLoader;
+        private static hideLoader;
+        private reloadLibs;
         private loadfiles;
         private customMenu;
+        private menu_new;
+        private menu_open;
+        static openLibfile(filepath: string, vm?: lcmsLibrary): void;
         private list_data;
+        /**
+         * .lib-id
+        */
+        private hookSpectralLinkOpen;
         private show_page;
         private get_smiles;
         query_onclick(): void;

@@ -2,150 +2,211 @@
 
 namespace apps.viewer {
 
+    const window = <any>globalThis.window;
+    const Potree = (<any>window).Potree;
+    const proj4 = (<any>window).proj4;
+
+    // D:/mzkit/dist/bin/Rstudio/bin/Rserve.exe --listen /wwwroot "D:\mzkit\dist\bin/../../src/mzkit/webview/" /port 6001 --parent=8124 --attach F:/Temp/mzkit_win32/9465ce9a7904ba9fa5a354804734cbc4
+
+
     export class three_app extends Bootstrap {
 
         public get appName(): string {
-            return "3d_three";
+            return "three-3d";
         }
 
-        public scene: THREE.Scene;
-
-        private renderer;
-        private camera;
-        private light;
-        //初始化性能插件
-        private stats;
-        //用户交互插件 鼠标左键按住旋转，右键按住平移，滚轮缩放
-        private controls;
-
-        private initControls() {
-            this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
-
-            // 如果使用animate方法时，将此函数删除
-            //controls.addEventListener( 'change', render );
-            // 使动画循环使用时阻尼或自转 意思是否有惯性
-            this.controls.enableDamping = true;
-            //动态阻尼系数 就是鼠标拖拽旋转灵敏度
-            //controls.dampingFactor = 0.25;
-            //是否可以缩放
-            this.controls.enableZoom = true;
-            //是否自动旋转
-            this.controls.autoRotate = false;
-            //设置相机距离原点的最远距离
-            this.controls.minDistance = 20;
-            //设置相机距离原点的最远距离
-            this.controls.maxDistance = 10000;
-            //是否开启右键拖拽
-            this.controls.enablePan = true;
-        }
-
-        private initStats() {
-            this.stats = new Stats();
-            document.body.appendChild(this.stats.dom);
-        }
-
-        private initRender() {
-            this.renderer = new THREE.WebGLRenderer({ antialias: true });
-            //renderer.setClearColor(new THREE.Color(0xEEEEEE, 1.0)); //设置背景颜色
-            this.renderer.setSize(window.innerWidth, window.innerHeight);
-
-            document.body.appendChild(this.renderer.domElement);
-        }
-
-        private initCamera() {
-            this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
-            this.camera.position.set(0, 0, 200);
-        }
-
-        private initScene() {
-            this.scene = new THREE.Scene();
-        }
-
-        private initLight() {
-            this.scene.add(new THREE.AmbientLight(0x404040));
-
-            this.light = new THREE.DirectionalLight(0xffffff);
-            this.light.position.set(1, 1, 1);
-            this.scene.add(this.light);
-        }
-
-        private initModel(model: ModelReader) {
-            console.log("load 3d point cloud model!");
-            console.log(model);
-
-            model.loadPointCloudModel(this);
-        }
-
-        private render() {
-            this.renderer.render(this.scene, this.camera);
-        }
-
-        //窗口变动触发的函数
-        private onWindowResize() {
-            this.camera.aspect = window.innerWidth / window.innerHeight;
-            this.camera.updateProjectionMatrix();
-            this.render();
-            this.renderer.setSize(window.innerWidth, window.innerHeight);
-        }
-
-        private animate() {
-            //更新控制器
-            this.controls.update();
-            this.render();
-            //更新性能插件
-            this.stats.update();
-
-            requestAnimationFrame(() => this.animate());
-        }
+        private potreeViewer;
 
         protected init(): void {
-            const vm = this;
-
-            if (app.desktop.mzkit) {
-                app.desktop.mzkit
-                    .get_3d_MALDI_url()
-                    .then(async function (url) {
-                        url = await url;
-                        vm.setup_device(url);
-                    });
-
-                three_app.open = function () {
-                    app.desktop.mzkit
-                        .open_MALDI_model()
-                        .then(async function () {
-                            vm.init();
-                        });
-                }
-            } else {
-                $ts("#init-logo").show();
-            }
-
-            window.onresize = () => this.onWindowResize();
-        }
-
-        private setup_device(url: string) {
-            const vm = this;
-
-            HttpHelpers.getBlob(url, function (buffer) {
-                try {
-                    const model = new ModelReader(buffer);
-
-                    vm.initRender();
-                    vm.initScene();
-                    vm.initCamera();
-                    vm.initLight();
-                    vm.initModel(model);
-                    vm.initControls();
-                    vm.initStats();
-                    vm.animate();
-
-                    $ts("#init-logo").hide();
-                } catch {
-                    // do nothing
-                }
+            this.potreeViewer = new Potree.Viewer(document.getElementById("potree_render_area"), {
+                useDefaultRenderLoop: false
             });
+
+            this.potreeViewer.setEDLEnabled(true);
+            this.potreeViewer.setFOV(60);
+            this.potreeViewer.setPointBudget(3_000_000);
+            this.potreeViewer.setBackground(null);
+
+            this.potreeViewer.setDescription("");
+
+            this.potreeViewer.loadGUI(() => {
+                this.potreeViewer.setLanguage('en');
+                $("#menu_appearance").next().show();
+                $("#menu_tools").next().show();
+                $("#menu_scene").next().show();
+                this.potreeViewer.toggleSidebar();
+            });
+
+            // CA13
+            Potree.loadPointCloud("/cloud.js", "model", e => this.loadModel(e));
+
+            requestAnimationFrame(t => this.loop(t));
         }
 
-        public static open: Delegate.Action;
+        private loop(timestamp) {
+            requestAnimationFrame(t => this.loop(t));
+
+            this.potreeViewer.update(this.potreeViewer.clock.getDelta(), timestamp);
+            this.potreeViewer.render();
+        }
+
+        private createAnnotations() {
+            let aRoot = this.potreeViewer.scene.annotations;
+
+            let aCA13 = new Potree.Annotation({
+                title: "CA13",
+                position: [675036.45, 3850315.78, 65076.70],
+                cameraPosition: [675036.45, 3850315.78, 65076.70],
+                cameraTarget: [692869.03, 3925774.14, 1581.51],
+            });
+            aRoot.add(aCA13);
+
+            let aSanSimeon = new Potree.Annotation({
+                title: "San Simeon",
+                position: [664147.50, 3946008.73, 16.30],
+                cameraPosition: [664941.80, 3943568.06, 1925.30],
+                cameraTarget: [664147.50, 3946008.73, 16.30],
+            });
+            aCA13.add(aSanSimeon);
+
+            let aHearstCastle = new Potree.Annotation({
+                title: "Hearst Castle",
+                position: [665744.56, 3950567.52, 500.48],
+                cameraPosition: [665692.66, 3950521.65, 542.02],
+                cameraTarget: [665744.56, 3950567.52, 500.48],
+            });
+            aCA13.add(aHearstCastle);
+
+            let aMorroBay = new Potree.Annotation({
+                title: "Morro Bay",
+                position: [695483.33, 3916430.09, 25.75],
+                cameraPosition: [694114.65, 3911176.26, 3402.33],
+                cameraTarget: [695483.33, 3916430.09, 25.75],
+            });
+            aCA13.add(aMorroBay);
+
+            let aMorroRock = new Potree.Annotation({
+                title: "Morro Rock",
+                position: [693729.66, 3916085.19, 90.35],
+                cameraPosition: [693512.77, 3915375.61, 342.33],
+                cameraTarget: [693729.66, 3916085.19, 90.35],
+            });
+            aMorroBay.add(aMorroRock);
+
+            let aMorroBayMutualWaterCo = new Potree.Annotation({
+                title: "Morro Bay Mutual Water Co",
+                position: [694699.45, 3916425.75, 39.78],
+                cameraPosition: [694377.64, 3916289.32, 218.40],
+                cameraTarget: [694699.45, 3916425.75, 39.78],
+            });
+            aMorroBay.add(aMorroBayMutualWaterCo);
+
+            let aLilaKeiserPark = new Potree.Annotation({
+                title: "Lila Keiser Park",
+                position: [694674.99, 3917070.49, 10.86],
+                cameraPosition: [694452.59, 3916845.14, 298.64],
+                cameraTarget: [694674.99, 3917070.49, 10.86],
+            });
+            aMorroBay.add(aLilaKeiserPark);
+
+            let aSanLuisObispo = new Potree.Annotation({
+                title: "San Luis Obispo",
+                position: [712573.39, 3907588.33, 146.44],
+                cameraPosition: [711158.29, 3907019.82, 1335.89],
+                cameraTarget: [712573.39, 3907588.33, 146.44],
+            });
+            aCA13.add(aSanLuisObispo);
+
+            let aLopezHill = new Potree.Annotation({
+                title: "Lopez Hill",
+                position: [728635.63, 3895761.56, 456.33],
+                cameraPosition: [728277.24, 3895282.29, 821.51],
+                cameraTarget: [728635.63, 3895761.56, 456.33],
+            });
+            aCA13.add(aLopezHill);
+
+            let aWhaleRockReservoir = new Potree.Annotation({
+                title: "Whale Rock Reservoir",
+                position: [692845.46, 3925528.53, 140.91],
+                cameraPosition: [693073.32, 3922354.02, 2154.17],
+                cameraTarget: [692845.46, 3925528.53, 140.91],
+            });
+            aCA13.add(aWhaleRockReservoir);
+        }
+
+        private createVolume(scene, material) {
+            let aRoot = scene.annotations;
+
+            let elTitle = $(`
+            <span>
+                Tree Returns:
+                <img name="action_return_number" src="${Potree.resourcePath}/icons/return_number.svg" class="annotation-action-icon"/>
+                <img name="action_rgb" src="${Potree.resourcePath}/icons/rgb.png" class="annotation-action-icon"/>
+            </span>`);
+
+            elTitle.find("img[name=action_return_number]").click(() => {
+                event.stopPropagation();
+                material.activeAttributeName = "return_number";
+                material.pointSizeType = Potree.PointSizeType.FIXED;
+                material.size = 5;
+                this.potreeViewer.setClipTask(Potree.ClipTask.SHOW_INSIDE);
+            });
+
+            elTitle.find("img[name=action_rgb]").click(() => {
+                event.stopPropagation();
+                material.activeAttributeName = "rgba";
+                material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
+                material.size = 1;
+                this.potreeViewer.setClipTask(Potree.ClipTask.HIGHLIGHT);
+            });
+
+            elTitle.toString = () => "Tree Returns";
+
+
+            let aTreeReturns = new Potree.Annotation({
+                title: elTitle,
+                position: [675756.75, 3937590.94, 80.21],
+                cameraPosition: [675715.78, 3937700.36, 115.95],
+                cameraTarget: [675756.75, 3937590.94, 80.21],
+            });
+            aRoot.add(aTreeReturns);
+            aTreeReturns.domElement.find(".annotation-action-icon:first").css("filter", "invert(1)");
+
+            let volume = new Potree.BoxVolume();
+            volume.position.set(675755.4039368022, 3937586.911614576, 85);
+            volume.scale.set(119.87189835418388, 68.3925257233834, 51.757483718373265);
+            volume.rotation.set(0, 0, 0.8819755090987993, "XYZ");
+            volume.clip = true;
+            volume.visible = false;
+            volume.name = "Trees";
+            scene.addVolume(volume);
+        }
+
+        private loadModel(e) {
+            let pointcloud = e.pointcloud;
+            let scene = this.potreeViewer.scene;
+            let material = pointcloud.material;
+
+            scene.addPointCloud(pointcloud);
+
+            material.size = 1;
+            material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
+
+            this.potreeViewer.scene.view.setView(
+                [675036.45, 3850315.78, 65076.70],
+                [692869.03, 3925774.14, 1581.51],
+            );
+
+            let pointcloudProjection = e.pointcloud.projection;
+            let mapProjection = proj4.defs("WGS84");
+
+            window.toMap = proj4(pointcloudProjection, mapProjection);
+            window.toScene = proj4(mapProjection, pointcloudProjection);
+
+            // ANNOTATIONS
+            this.createAnnotations();
+            // TREE RETURNS POI - ANNOTATION & VOLUME
+            this.createVolume(scene, material);
+        }
     }
 }

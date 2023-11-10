@@ -1437,5 +1437,10 @@
 #define cmdButtonSpatialGibbs_LabelDescription_RESID 1170
 #define cmdButtonSpatialGibbs_TooltipTitle_RESID 1171
 #define cmdButtonSpatialGibbs_TooltipDescription_RESID 1172
-#define InternalCmd2_LabelTitle_RESID 60001
-#define InternalCmd4_LabelTitle_RESID 60002
+#define cmdButtonViewMRI 263 
+#define cmdButtonViewMRI_LabelTitle_RESID 60001
+#define cmdButtonViewMRI_LabelDescription_RESID 60002
+#define cmdButtonViewMRI_SmallImages_192__RESID 60003
+#define cmdButtonViewMRI_LargeImages_192__RESID 60004
+#define InternalCmd2_LabelTitle_RESID 60005
+#define InternalCmd4_LabelTitle_RESID 60006

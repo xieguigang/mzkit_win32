@@ -1,5 +1,7 @@
 namespace apps.viewer {
 
+    const SmilesDrawer = (<any>window).SmilesDrawer;
+
     export class lcmsLibrary extends Bootstrap {
 
         public get appName(): string {
@@ -11,6 +13,26 @@ namespace apps.viewer {
         private page_size: number = 100;
 
         protected init(): void {
+            // this.reloadLibs();
+            try {
+                lcmsLibrary.hideLoader();
+                this.list_data();
+            } catch (ex) {
+
+            }
+        }
+
+        private static showLoader() {
+            $ts("#loader").show();
+            $ts("#explorer").interactive(false);
+        }
+
+        private static hideLoader() {
+            $ts("#loader").hide();
+            $ts("#explorer").interactive(true);
+        }
+
+        private reloadLibs() {
             const vm = this;
 
             app.desktop.mzkit.ScanLibraries()
@@ -54,6 +76,7 @@ namespace apps.viewer {
             }
 
             root_dir.children = libfiles;
+            div.empty();
             div.jstree({
                 'core': {
                     "animation": 0,
@@ -73,34 +96,75 @@ namespace apps.viewer {
 
             // The default set of all items
             var items = {
-                openItem: { // The "delete" menu item
-                    label: "Open",
-                    action: function (a) {
-                        let n: HTMLElement = a.reference[0];
-                        let key = Strings.Trim(n.innerText);
-                        let filepath = vm.libfiles[key];
-
-                        console.log("open a libfile:");
-                        console.log(a);
-                        console.log(key);
-                        console.log(filepath);
-
-                        app.desktop.mzkit.OpenLibrary(filepath)
-                            .then(async function (b) {
-                                let check = await b;
-
-                                if (check) {
-                                    console.log("Open library file success!");
-                                    vm.list_data();
-                                } else {
-                                    console.log("Error while trying to open the LCMS library file!");
-                                }
-                            });
-                    }
-                }
+                openItem: this.menu_open(),
+                newItem: this.menu_new()
             };
 
             return items;
+        }
+
+        private menu_new() {
+            const vm = this;
+
+            return {
+                label: "New Library",
+                action: function (a) {
+                    console.log("start to create a new library file!");
+
+                    app.desktop.mzkit.NewLibrary()
+                        .then(async function (b) {
+                            const flag = await b;
+
+                            if (flag) {
+                                // reload the library list
+                                // vm.reloadLibs();
+                                location.reload();
+                            }
+                        })
+                }
+            }
+        }
+
+        private menu_open() {
+            const vm = this;
+
+            return { // The "delete" menu item
+                label: "Open",
+                action: function (a) {
+                    let n: HTMLElement = a.reference[0];
+                    let key = Strings.Trim(n.innerText);
+                    let filepath = vm.libfiles[key];
+
+                    lcmsLibrary.openLibfile(filepath, vm);
+                }
+            }
+        }
+
+        public static openLibfile(filepath: string, vm: lcmsLibrary = null) {
+            lcmsLibrary.showLoader();
+
+            if ((!vm) || typeof vm == "string") {
+                vm = <lcmsLibrary>Router.currentAppPage();
+            }
+
+            console.log("open a libfile:");
+            // console.log(a);
+            // console.log(key);
+            console.log(filepath);
+
+            app.desktop.mzkit.OpenLibrary(filepath)
+                .then(async function (b) {
+                    let check = await b;
+
+                    if (check) {
+                        console.log("Open library file success!");
+                        vm.list_data();
+                    } else {
+                        console.log("Error while trying to open the LCMS library file!");
+                    }
+
+                    lcmsLibrary.hideLoader();
+                });
         }
 
         private list_data() {
@@ -115,8 +179,69 @@ namespace apps.viewer {
                 });
         }
 
+        /**
+         * .lib-id
+        */
+        private hookSpectralLinkOpen(liblinkClass: string, libsearchClass: string, libmassSearchClass: string) {
+            $ts.select("." + liblinkClass).onClick(function (a) {
+                const data_id: string = a.getAttribute("data_id");
+
+                app.desktop.mzkit
+                    .ShowSpectral(data_id)
+                    .then(async function (b) {
+                        const flag = await b;
+
+                        if (flag) {
+
+                        } else {
+
+                        }
+                    })
+            });
+            $ts.select("." + libsearchClass).onClick(function (a) {
+                const data_id: string = a.getAttribute("data_id");
+
+                lcmsLibrary.showLoader();
+                app.desktop.mzkit
+                    .AlignSpectral(data_id)
+                    .then(async function (b) {
+                        const flag = await b;
+
+                        if (flag) {
+
+                        } else {
+
+                        }
+
+                        lcmsLibrary.hideLoader();
+                    })
+            });
+
+            $ts.select("." + libmassSearchClass).onClick(function (a) {
+                const mass: number = parseFloat(a.getAttribute("data"));
+
+                lcmsLibrary.showLoader();
+                app.desktop.mzkit
+                    .FindExactMass(mass)
+                    .then(async function (b) {
+                        const flag = await b;
+
+                        if (flag) {
+
+                        } else {
+
+                        }
+
+                        lcmsLibrary.hideLoader();
+                    })
+            });
+        }
+
         private show_page(list: MetaLib[]) {
             const list_page = $ts("#list-page").clear();
+            const liblinkClass: string = "lib-id";
+            const libsearchClass: string = "lib-query";
+            const libmassSearchClass: string = "lib-mass-query"
 
             console.log("get page data:");
             console.log(list);
@@ -142,10 +267,13 @@ namespace apps.viewer {
 
                 list_page.appendElement($ts("<div class='row'>").display(`
                 <div class="span4">
-                    <h5>${meta.name} [<a>${meta.ID}</a>]</h5>
+                    <h5>${meta.name} [
+                        <a class="${liblinkClass}" href="#" onclick="javascript:void(0);" data_id="${meta.ID}">${meta.ID}</a> 
+                        <a href="#" class="fa-solid fa-magnifying-glass ${libsearchClass}" data_id="${meta.ID}" onclick="javascript:void(0);"></a>
+                    ]</h5>
                     <p>
                     <span>Formula: </span> ${meta.formula} <br />
-                    <span>Exact Mass: </span> ${meta.exact_mass} <br />                       
+                    <span>Exact Mass: </span> ${meta.exact_mass} <a href="#" class="fa-solid fa-magnifying-glass ${libmassSearchClass}" data="${meta.exact_mass}" onclick="javascript:void(0);"></a> <br />                       
                     </p>
                     <p>${meta.description}</p>
                 </div>
@@ -160,6 +288,8 @@ namespace apps.viewer {
                 </div>
                 `));
             }
+
+            this.hookSpectralLinkOpen(liblinkClass, libsearchClass, libmassSearchClass);
 
             let options = {
                 width: 200,

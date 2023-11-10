@@ -201,12 +201,30 @@ Module RibbonEvents
         AddHandler ribbonItems.OpenIonsLibrary.ExecuteEvent, Sub() Call openIonLibrary()
 
         AddHandler ribbonItems.ButtonVenn.ExecuteEvent, Sub() Call VisualStudio.ShowDocument(Of frmVennTools)(title:="Venn Plot Tool")
+        AddHandler ribbonItems.ButtonViewMRI.ExecuteEvent, Sub() Call openMRIRaster()
     End Sub
 
     Sub New()
         ExportApis._openMSImagingFile = AddressOf OpenMSIRaw
         ExportApis._openMSImagingViewer = AddressOf showMsImaging
         ExportApis._openCFMIDTool = AddressOf OpenCFMIDTool
+    End Sub
+
+    Private Sub openMRIRaster()
+        Using file As New OpenFileDialog With {.Filter = "Nearly raster image(*.nrrd)|*.nrrd"}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim page = VisualStudio.ShowDocument(Of frmMRIViewer)(title:=$"View [{file.FileName.FileName}]")
+
+                Call TaskProgress.RunAction(
+                    run:=Sub(t)
+                             Call page.LoadRaster(file.FileName)
+                         End Sub,
+                    title:=$"Open Nrrd Image",
+                    info:=$"Read nrrd image file: {file.FileName}...",
+                    host:=page
+                )
+            End If
+        End Using
     End Sub
 
     Private Sub openIonLibrary()

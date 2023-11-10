@@ -107,6 +107,9 @@ Public Class VisualStudio
     ''' create a new document tab page
     ''' </summary>
     ''' <typeparam name="T"></typeparam>
+    ''' <param name="title">
+    ''' set the tab text of the dock page
+    ''' </param>
     ''' <returns></returns>
     ''' 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>

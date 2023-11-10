@@ -4,6 +4,10 @@
     Dim runmassDiffAnalysis As Action(Of Double, Array)
     Dim showClusterSpectrum As Action(Of Array, String)
 
+    ''' <summary>
+    ''' hook the spectral matrix viewer
+    ''' </summary>
+    ''' <param name="view"></param>
     Public Sub HookViewer(view As Action(Of Object))
         viewMatrix = view
     End Sub

@@ -380,7 +380,8 @@ Public Class frmFileExplorer
                 MyApplication.host.openRscript(path)
                 MyApplication.host.Text = $"BioNovoGene Mzkit [{path.GetFullPath}]"
             Else
-                MyApplication.host.showStatusMessage($"script file '{path.FileName}' is not exists...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Workbench.Warning($"script file '{path.FileName}' is not exists...")
+
                 e.Node.ImageIndex = 4
                 e.Node.SelectedImageIndex = 4
                 e.Node.StateImageIndex = 4
@@ -551,6 +552,23 @@ Public Class frmFileExplorer
         Next
 
         Call FeatureSearchHandler.SearchByMz(feature, raws, False, mzdiff)
+    End Sub
+
+    ''' <summary>
+    ''' add adducts to the exact mass and then search for the generated m/z features in ms1 level
+    ''' </summary>
+    ''' <param name="mass">
+    ''' it is the exact mass value, not ion m/z value
+    ''' </param>
+    ''' <param name="mzdiff"></param>
+    Public Sub SearchExactMassFeatures(mass As Double, mzdiff As Tolerance)
+        Dim raws As New List(Of MZWork.Raw)
+
+        For Each node As TreeNode In treeView1.Nodes(0).Nodes
+            Call raws.Add(node.Tag)
+        Next
+
+        Call FeatureSearchHandler.SearchByExactMass(mass, raws, mzdiff)
     End Sub
 
     Private Sub ImportsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportsToolStripMenuItem.Click

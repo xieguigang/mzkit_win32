@@ -1,7 +1,6 @@
 ﻿Imports System.IO
 Imports System.IO.Compression
 Imports BioDeep
-Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MSP
 Imports BioNovoGene.BioDeep.Chemistry
 Imports Microsoft.VisualBasic.Language
 Imports Mzkit_win32.BasicMDIForm
@@ -56,6 +55,7 @@ Public Class Install
 
             Call libdb.AddAnnotation(anno)
             Call libdb.AddSpectrum(ion.GetSpectrumPeaks, key:=anno.name)
+            Call libdb.AddSpectrum(ion.GetSpectrumPeaks, key:=ion.ID)
 
             Call System.Windows.Forms.Application.DoEvents()
 

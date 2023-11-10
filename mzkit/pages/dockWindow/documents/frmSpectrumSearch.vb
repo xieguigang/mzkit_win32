@@ -52,6 +52,7 @@
 
 #End Region
 
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports Mzkit_win32.BasicMDIForm
 
@@ -59,8 +60,13 @@ Public Class frmSpectrumSearch : Implements SpectrumSearchPage
 
     Friend ReadOnly page As New PageSpectrumSearch With {.Text = "Spectrum Similarity Search"}
 
+    Dim loadMs2Success As Boolean = False
+
     Public Sub LoadMs2(ms2 As Object) Implements SpectrumSearchPage.LoadMs2
+        loadMs2Success = True
+
         If ms2 Is Nothing Then
+            loadMs2Success = False
             Return
         End If
 
@@ -70,13 +76,20 @@ Public Class frmSpectrumSearch : Implements SpectrumSearchPage
             Call page.loadMs2(DirectCast(ms2, LibraryMatrix).ms2, DirectCast(ms2, LibraryMatrix).name)
         ElseIf TypeOf ms2 Is ms2() Then
             Call page.loadMs2(DirectCast(ms2, ms2()))
+        ElseIf TypeOf ms2 Is ScanMS2 Then
+            Call page.loadMs2(DirectCast(ms2, ScanMS2).GetMs, name:=DirectCast(ms2, ScanMS2).scan_id)
         Else
-            Throw New NotImplementedException(ms2.GetType.FullName)
+            loadMs2Success = False
+            Call Workbench.Warning($"load spectrum matrix data from clr object '{ms2.GetType.FullName}' has not yet implemented!")
         End If
     End Sub
 
-    Public Sub RunSearch() Implements SpectrumSearchPage.RunSearch
-        Call page.runSearch()
+    Public Sub RunSearch(Optional showUi As Boolean = True) Implements SpectrumSearchPage.RunSearch
+        If loadMs2Success Then
+            Call page.runSearch(, showUI:=showUi)
+        Else
+            Call Workbench.Warning("the spectrum data apply for run query must be loaded at first!")
+        End If
     End Sub
 
     Private Sub frmSpectrumSearch_Load(sender As Object, e As EventArgs) Handles Me.Load
