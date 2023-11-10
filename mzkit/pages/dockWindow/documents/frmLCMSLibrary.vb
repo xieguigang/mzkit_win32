@@ -97,6 +97,10 @@ Public Class LibraryApp
     End Function
 
     Public Function GetPage(page As Integer, page_size As Integer) As String
+        If current Is Nothing Then
+            Return "[]"
+        End If
+
         Dim ls = current.ListMetabolites(page, page_size).ToArray
         Dim json As String = ls.GetJson
         Return json
