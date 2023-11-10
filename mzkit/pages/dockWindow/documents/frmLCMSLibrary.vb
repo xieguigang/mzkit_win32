@@ -28,7 +28,7 @@ Public Class frmLCMSLibrary
 
         Call WebKit.Init(Me.WebView21)
         Call LoadLibs()
-        Call ApplyVsTheme(ToolStrip1)
+        Call ApplyVsTheme(ToolStrip1, ContextMenuStrip1)
     End Sub
 
     Private Sub LoadLibs()
