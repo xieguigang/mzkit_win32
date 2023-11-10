@@ -87,6 +87,10 @@ Public Class frmLCMSLibrary
         Call filepath.DeleteFile
         Call LoadLibs()
     End Sub
+
+    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+        Call LoadLibs()
+    End Sub
 End Class
 
 ' 所有需要在JavaScript环境中暴露的对象
