@@ -1,6 +1,5 @@
 ﻿Imports System.IO
 Imports System.Runtime.CompilerServices
-Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
@@ -9,7 +8,6 @@ Imports Microsoft.VisualBasic.ComponentModel.Ranges
 Imports Microsoft.VisualBasic.Data.IO
 Imports Microsoft.VisualBasic.DataStorage.HDSPack
 Imports Microsoft.VisualBasic.DataStorage.HDSPack.FileSystem
-Imports Microsoft.VisualBasic.DataStorage.netCDF.Components
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports RQL
@@ -35,10 +33,15 @@ Public Class RQLib : Implements IDisposable
 
     Private disposedValue As Boolean
 
-    Sub New(file As Stream)
-        query = New Resource(New StreamPack(file))
+    Sub New(file As Stream, Optional [readonly] As Boolean = False)
+        query = New Resource(New StreamPack(file, [readonly]:=[readonly]))
         loadMap()
     End Sub
+
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Shared Function OpenReadOnly(file As String) As RQLib
+        Return New RQLib(file.Open(FileMode.Open, doClear:=False, [readOnly]:=True), [readonly]:=True)
+    End Function
 
     Private Sub loadMap()
         Dim mapList As String = query.Archive.ReadText("/spectralMap.txt")
@@ -184,7 +187,10 @@ Public Class RQLib : Implements IDisposable
         If Not disposedValue Then
             If disposing Then
                 ' TODO: 释放托管状态(托管对象)
-                Call saveMap()
+                If Not query.Archive.is_readonly Then
+                    Call saveMap()
+                End If
+
                 Call query.Dispose()
             End If
 

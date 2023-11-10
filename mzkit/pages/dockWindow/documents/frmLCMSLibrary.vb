@@ -138,7 +138,7 @@ Public Class frmLCMSLibrary
     End Sub
 
     Private Sub ExportLibPack(libfile As String, export_dir As String, proc As ITaskProgress)
-        Dim libdata As New RQLib(libfile.Open(FileMode.OpenOrCreate, doClear:=False, [readOnly]:=True))
+        Dim libdata As RQLib = RQLib.OpenReadOnly(libfile)
         Dim libpos As New SpectrumPack($"{export_dir}/lib.pos.pack".Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
         Dim libneg As New SpectrumPack($"{export_dir}/lib.neg.pack".Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
         Dim biodeepid As New Dictionary(Of String, String)
