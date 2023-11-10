@@ -180,7 +180,7 @@ Public Class PageSpectrumSearch
         Call runSearch()
     End Sub
 
-    Public Sub runSearch(Optional isotopic As IsotopeDistribution = Nothing)
+    Public Sub runSearch(Optional isotopic As IsotopeDistribution = Nothing, Optional showUI As Boolean = True)
         Dim raws As IEnumerable(Of MZWork.Raw) = Globals.workspace.GetRawDataFiles
         Dim query As [Variant](Of LibraryMatrix, IsotopeDistribution)
 
@@ -191,27 +191,40 @@ Public Class PageSpectrumSearch
         End If
 
         Call TreeListView1.Items.Clear()
-        Call TaskProgress.RunAction(
-            run:=Sub(p)
-                     Call SearchThread(query, raws, p)
-                 End Sub,
-            title:="Run spectrum similarity search...",
-            info:="Running...")
+
+        If showUI Then
+            Call TaskProgress.RunAction(
+                run:=Sub(p)
+                         Call SearchThread(query, raws, p)
+                     End Sub,
+                title:="Run spectrum similarity search...",
+                info:="Running...")
+        Else
+            Call SearchThread(query, raws, progress:=Nothing)
+        End If
 
         TabControl1.SelectedTab = TabPage2
     End Sub
 
     Dim table As New List(Of EntityObject)
 
-    Private Sub SearchThread(query As [Variant](Of LibraryMatrix, IsotopeDistribution), raws As IEnumerable(Of MZWork.Raw), progress As ITaskProgress)
+    Private Sub SearchThread(query As [Variant](Of LibraryMatrix, IsotopeDistribution),
+                             raws As IEnumerable(Of MZWork.Raw),
+                             Optional progress As ITaskProgress = Nothing)
+
         Dim runSearchResult As IEnumerable(Of NamedCollection(Of AlignmentOutput))
+        Dim echo As Action(Of String) = AddressOf Workbench.LogText
+
+        If Not progress Is Nothing Then
+            echo = AddressOf progress.SetInfo
+        End If
 
         If query Like GetType(LibraryMatrix) Then
             runSearchResult = query.TryCast(Of LibraryMatrix).SearchFiles(
                 files:=raws,
                 tolerance:=Tolerance.DeltaMass(0.3),
                 dotcutoff:=0.8,
-                progress:=AddressOf progress.SetInfo,
+                progress:=echo,
                 reload:=Sub(src, cache)
                             frmFileExplorer.getRawCache(src,, cache)
                         End Sub
@@ -221,7 +234,7 @@ Public Class PageSpectrumSearch
                 files:=raws,
                 tolerance:=Tolerance.DeltaMass(0.05),
                 dotcutoff:=0.3,
-                progress:=AddressOf progress.SetInfo,
+                progress:=echo,
                 reload:=Sub(src, cache)
                             frmFileExplorer.getRawCache(src,, cache)
                         End Sub
@@ -272,7 +285,7 @@ Public Class PageSpectrumSearch
             Me.Invoke(Sub() Call TreeListView1.Items.Add(fileRow))
         Next
 
-        Call progress.SetInfo("Search job done!")
+        Call echo("Search job done!")
     End Sub
 
     Private Sub ViewAlignmentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewAlignmentToolStripMenuItem.Click

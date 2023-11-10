@@ -52,6 +52,7 @@
 
 #End Region
 
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports Mzkit_win32.BasicMDIForm
 
@@ -70,13 +71,15 @@ Public Class frmSpectrumSearch : Implements SpectrumSearchPage
             Call page.loadMs2(DirectCast(ms2, LibraryMatrix).ms2, DirectCast(ms2, LibraryMatrix).name)
         ElseIf TypeOf ms2 Is ms2() Then
             Call page.loadMs2(DirectCast(ms2, ms2()))
+        ElseIf TypeOf ms2 Is ScanMS2 Then
+            Call page.loadMs2(DirectCast(ms2, ScanMS2).GetMs, name:=DirectCast(ms2, ScanMS2).scan_id)
         Else
             Throw New NotImplementedException(ms2.GetType.FullName)
         End If
     End Sub
 
-    Public Sub RunSearch() Implements SpectrumSearchPage.RunSearch
-        Call page.runSearch()
+    Public Sub RunSearch(Optional showUi As Boolean = True) Implements SpectrumSearchPage.RunSearch
+        Call page.runSearch(, showUI:=showUi)
     End Sub
 
     Private Sub frmSpectrumSearch_Load(sender As Object, e As EventArgs) Handles Me.Load

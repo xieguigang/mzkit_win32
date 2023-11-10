@@ -159,6 +159,31 @@ Public Class LibraryApp
         Return True
     End Function
 
+    Public Function AlignSpectral(data_id As String) As Boolean
+        Dim raw As ScanMS2 = current.GetSpectrumByKey(data_id)
+        Dim spectral As PeakMs2 = Nothing
+
+        If Not raw Is Nothing Then
+            spectral = mzPack.CastToPeakMs2(raw, file:=current_file.BaseName)
+        End If
+
+        If Not spectral Is Nothing Then
+            ' align with samples inside the sample file explorer
+            Dim doc As SpectrumSearchPage = SpectrumSearchModule.ShowDocument
+
+            Call doc.LoadMs2(spectral)
+            Call doc.RunSearch(showUI:=False)
+        Else
+            Call Workbench.Warning($"missing spectral data associated with guid key: {data_id}!")
+        End If
+
+        Return True
+    End Function
+
+    Public Async Function FindExactMass(mass As Double) As Task(Of Boolean)
+
+    End Function
+
     Public Function NewLibrary() As Boolean
         Dim libfile As String = CreateLibrary()
 

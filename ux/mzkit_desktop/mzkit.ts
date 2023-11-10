@@ -50,6 +50,8 @@ namespace app.desktop {
         GetPage(page: number, page_size: number): Promise<string>;
         Query(name: string): Promise<string>;
         ShowSpectral(data_id: string): Promise<boolean>;
+        AlignSpectral(data_id: string): Promise<boolean>;
+        FindExactMass(mass: number): Promise<boolean>;
         /**
          * actions for create new library file
         */
