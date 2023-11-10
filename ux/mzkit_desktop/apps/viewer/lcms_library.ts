@@ -1,5 +1,7 @@
 namespace apps.viewer {
 
+    const SmilesDrawer = (<any>window).SmilesDrawer;
+
     export class lcmsLibrary extends Bootstrap {
 
         public get appName(): string {
@@ -11,6 +13,10 @@ namespace apps.viewer {
         private page_size: number = 100;
 
         protected init(): void {
+            this.reloadLibs();
+        }
+
+        private reloadLibs() {
             const vm = this;
 
             app.desktop.mzkit.ScanLibraries()
@@ -54,6 +60,7 @@ namespace apps.viewer {
             }
 
             root_dir.children = libfiles;
+            div.empty();
             div.jstree({
                 'core': {
                     "animation": 0,
@@ -73,34 +80,63 @@ namespace apps.viewer {
 
             // The default set of all items
             var items = {
-                openItem: { // The "delete" menu item
-                    label: "Open",
-                    action: function (a) {
-                        let n: HTMLElement = a.reference[0];
-                        let key = Strings.Trim(n.innerText);
-                        let filepath = vm.libfiles[key];
-
-                        console.log("open a libfile:");
-                        console.log(a);
-                        console.log(key);
-                        console.log(filepath);
-
-                        app.desktop.mzkit.OpenLibrary(filepath)
-                            .then(async function (b) {
-                                let check = await b;
-
-                                if (check) {
-                                    console.log("Open library file success!");
-                                    vm.list_data();
-                                } else {
-                                    console.log("Error while trying to open the LCMS library file!");
-                                }
-                            });
-                    }
-                }
+                openItem: this.menu_open(),
+                newItem: this.menu_new()
             };
 
             return items;
+        }
+
+        private menu_new() {
+            const vm = this;
+
+            return {
+                label: "New Library",
+                action: function (a) {
+                    console.log("start to create a new library file!");
+
+                    app.desktop.mzkit.NewLibrary()
+                        .then(async function (b) {
+                            const flag = await b;
+
+                            if (flag) {
+                                // reload the library list
+                                // vm.reloadLibs();
+                                location.reload();
+                            }
+                        })
+                }
+            }
+        }
+
+        private menu_open() {
+            const vm = this;
+
+            return { // The "delete" menu item
+                label: "Open",
+                action: function (a) {
+                    let n: HTMLElement = a.reference[0];
+                    let key = Strings.Trim(n.innerText);
+                    let filepath = vm.libfiles[key];
+
+                    console.log("open a libfile:");
+                    console.log(a);
+                    console.log(key);
+                    console.log(filepath);
+
+                    app.desktop.mzkit.OpenLibrary(filepath)
+                        .then(async function (b) {
+                            let check = await b;
+
+                            if (check) {
+                                console.log("Open library file success!");
+                                vm.list_data();
+                            } else {
+                                console.log("Error while trying to open the LCMS library file!");
+                            }
+                        });
+                }
+            }
         }
 
         private list_data() {

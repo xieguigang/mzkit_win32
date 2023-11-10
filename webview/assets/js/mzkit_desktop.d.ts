@@ -12,6 +12,15 @@ declare namespace apps.viewer {
     }
 }
 declare namespace app.desktop {
+    /**
+     * main function for run start of the desktop app
+    */
+    function run(): void;
+}
+declare namespace app.desktop {
+    /**
+     * the mzkit desktop app
+    */
     const mzkit: mzkit_desktop;
     interface mzkit_desktop {
         get_3d_MALDI_url(): Promise<string>;
@@ -27,10 +36,17 @@ declare namespace app.desktop {
         Download(): Promise<string>;
         GetLCMSScatter(): Promise<string>;
         GetColors(): Promise<string>;
+        /**
+         * Scan the library list that installed in the local filesystem.
+        */
         ScanLibraries(): Promise<string>;
         OpenLibrary(path: string): Promise<boolean>;
         GetPage(page: number, page_size: number): Promise<string>;
         Query(name: string): Promise<string>;
+        /**
+         * actions for create new library file
+        */
+        NewLibrary(): Promise<boolean>;
         Save(): void;
         InstallLocal(): void;
         SetStatus(id: string, status: string): void;
@@ -41,7 +57,6 @@ declare namespace app.desktop {
         BuildPkg(folder: string): Promise<boolean>;
         GetServicesList(): Promise<string>;
     }
-    function run(): void;
 }
 /**
  * Read of 3d model file blob
@@ -194,8 +209,11 @@ declare namespace apps.viewer {
         private page;
         private page_size;
         protected init(): void;
+        private reloadLibs;
         private loadfiles;
         private customMenu;
+        private menu_new;
+        private menu_open;
         private list_data;
         private show_page;
         private get_smiles;

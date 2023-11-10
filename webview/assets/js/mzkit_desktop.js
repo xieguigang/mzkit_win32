@@ -239,15 +239,9 @@ var app;
 (function (app) {
     var desktop;
     (function (desktop) {
-        desktop.mzkit = getHostObject();
-        function getHostObject() {
-            try {
-                return window.chrome.webview.hostObjects.mzkit;
-            }
-            catch (_a) {
-                return null;
-            }
-        }
+        /**
+         * main function for run start of the desktop app
+        */
         function run() {
             // mzkit system pages
             Router.AddAppHandler(new apps.home());
@@ -268,6 +262,27 @@ var app;
 })(app || (app = {}));
 $ts.mode = Modes.development;
 $ts(app.desktop.run);
+var app;
+(function (app) {
+    var desktop;
+    (function (desktop) {
+        /**
+         * the mzkit desktop app
+        */
+        desktop.mzkit = getHostObject();
+        /**
+         * get global desktop object to the visualbasic clr runtime environment
+        */
+        function getHostObject() {
+            try {
+                return window.chrome.webview.hostObjects.mzkit;
+            }
+            catch (_a) {
+                return null;
+            }
+        }
+    })(desktop = app.desktop || (app.desktop = {}));
+})(app || (app = {}));
 /**
  * Read of 3d model file blob
 */
@@ -936,6 +951,7 @@ var apps;
 (function (apps) {
     var viewer;
     (function (viewer) {
+        var SmilesDrawer = window.SmilesDrawer;
         var lcmsLibrary = /** @class */ (function (_super) {
             __extends(lcmsLibrary, _super);
             function lcmsLibrary() {
@@ -952,6 +968,9 @@ var apps;
                 configurable: true
             });
             lcmsLibrary.prototype.init = function () {
+                this.reloadLibs();
+            };
+            lcmsLibrary.prototype.reloadLibs = function () {
                 var vm = this;
                 app.desktop.mzkit.ScanLibraries()
                     .then(function (str) {
@@ -998,6 +1017,7 @@ var apps;
                     });
                 }
                 root_dir.children = libfiles;
+                div.empty();
                 div.jstree({
                     'core': {
                         "animation": 0,
@@ -1015,41 +1035,74 @@ var apps;
                 var vm = this;
                 // The default set of all items
                 var items = {
-                    openItem: {
-                        label: "Open",
-                        action: function (a) {
-                            var n = a.reference[0];
-                            var key = Strings.Trim(n.innerText);
-                            var filepath = vm.libfiles[key];
-                            console.log("open a libfile:");
-                            console.log(a);
-                            console.log(key);
-                            console.log(filepath);
-                            app.desktop.mzkit.OpenLibrary(filepath)
-                                .then(function (b) {
-                                return __awaiter(this, void 0, void 0, function () {
-                                    var check;
-                                    return __generator(this, function (_a) {
-                                        switch (_a.label) {
-                                            case 0: return [4 /*yield*/, b];
-                                            case 1:
-                                                check = _a.sent();
-                                                if (check) {
-                                                    console.log("Open library file success!");
-                                                    vm.list_data();
-                                                }
-                                                else {
-                                                    console.log("Error while trying to open the LCMS library file!");
-                                                }
-                                                return [2 /*return*/];
-                                        }
-                                    });
-                                });
-                            });
-                        }
-                    }
+                    openItem: this.menu_open(),
+                    newItem: this.menu_new()
                 };
                 return items;
+            };
+            lcmsLibrary.prototype.menu_new = function () {
+                var vm = this;
+                return {
+                    label: "New Library",
+                    action: function (a) {
+                        console.log("start to create a new library file!");
+                        app.desktop.mzkit.NewLibrary()
+                            .then(function (b) {
+                            return __awaiter(this, void 0, void 0, function () {
+                                var flag;
+                                return __generator(this, function (_a) {
+                                    switch (_a.label) {
+                                        case 0: return [4 /*yield*/, b];
+                                        case 1:
+                                            flag = _a.sent();
+                                            if (flag) {
+                                                // reload the library list
+                                                // vm.reloadLibs();
+                                                location.reload();
+                                            }
+                                            return [2 /*return*/];
+                                    }
+                                });
+                            });
+                        });
+                    }
+                };
+            };
+            lcmsLibrary.prototype.menu_open = function () {
+                var vm = this;
+                return {
+                    label: "Open",
+                    action: function (a) {
+                        var n = a.reference[0];
+                        var key = Strings.Trim(n.innerText);
+                        var filepath = vm.libfiles[key];
+                        console.log("open a libfile:");
+                        console.log(a);
+                        console.log(key);
+                        console.log(filepath);
+                        app.desktop.mzkit.OpenLibrary(filepath)
+                            .then(function (b) {
+                            return __awaiter(this, void 0, void 0, function () {
+                                var check;
+                                return __generator(this, function (_a) {
+                                    switch (_a.label) {
+                                        case 0: return [4 /*yield*/, b];
+                                        case 1:
+                                            check = _a.sent();
+                                            if (check) {
+                                                console.log("Open library file success!");
+                                                vm.list_data();
+                                            }
+                                            else {
+                                                console.log("Error while trying to open the LCMS library file!");
+                                            }
+                                            return [2 /*return*/];
+                                    }
+                                });
+                            });
+                        });
+                    }
+                };
             };
             lcmsLibrary.prototype.list_data = function () {
                 var vm = this;
