@@ -45,6 +45,7 @@ declare namespace app.desktop {
         Query(name: string): Promise<string>;
         ShowSpectral(data_id: string): Promise<boolean>;
         AlignSpectral(data_id: string): Promise<boolean>;
+        FindExactMass(mass: number): Promise<boolean>;
         /**
          * actions for create new library file
         */
