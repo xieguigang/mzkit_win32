@@ -51,7 +51,7 @@ Public Class frmLCMSLibrary
     End Sub
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
-        Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", New LibraryApp)
+        Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", [lib])
         Call WebView21.CoreWebView2.Navigate(sourceURL)
         Call WebKit.DeveloperOptions(WebView21, enable:=True, TabText)
     End Sub
@@ -109,7 +109,7 @@ Public Class frmLCMSLibrary
             Return
         End If
 
-        If [lib].current_file.BaseName.TextEquals(filepath.BaseName) Then
+        If (Not [lib].current_file.StringEmpty) AndAlso [lib].current_file.BaseName.TextEquals(filepath.BaseName) Then
             Call [lib].Close()
         End If
 
