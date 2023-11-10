@@ -141,6 +141,7 @@ Public Class frmLCMSLibrary
         Dim libdata As New RQLib(libfile.Open(FileMode.OpenOrCreate, doClear:=False, [readOnly]:=True))
         Dim libpos As New SpectrumPack($"{export_dir}/lib.pos.pack".Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
         Dim libneg As New SpectrumPack($"{export_dir}/lib.neg.pack".Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False))
+        Dim biodeepid As New Dictionary(Of String, String)
 
         libfile = libfile.BaseName
 
@@ -153,6 +154,8 @@ Public Class frmLCMSLibrary
 
             If spectral Is Nothing Then
                 Continue For
+            Else
+                biodeepid(metabolite.ID) = metabolite.ID
             End If
 
             Dim peak As PeakMs2 = mzPack.CastToPeakMs2(spectral, file:=libfile)
@@ -167,6 +170,10 @@ Public Class frmLCMSLibrary
 
         Call libpos.Dispose()
         Call libneg.Dispose()
+
+        Call biodeepid _
+            .GetJson _
+            .SaveTo($"{export_dir}/biodeepdb.json")
     End Sub
 End Class
 
