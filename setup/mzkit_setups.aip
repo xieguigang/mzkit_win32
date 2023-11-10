@@ -39,10 +39,10 @@
     <ROW Property="CTRLS" Value="3"/>
     <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1028:{07EE6F14-8E6D-46D8-80C8-51D9544363C4} 1033:{07EE6F14-8E6D-46D8-80C8-51D9544363C4} 1036:{07EE6F14-8E6D-46D8-80C8-51D9544363C4} 1041:{07EE6F14-8E6D-46D8-80C8-51D9544363C4} 1049:{07EE6F14-8E6D-46D8-80C8-51D9544363C4} 2052:{07EE6F14-8E6D-46D8-80C8-51D9544363C4} 2057:{07EE6F14-8E6D-46D8-80C8-51D9544363C4} " Type="16"/>
+    <ROW Property="ProductCode" Value="1028:{719A223E-83F4-49B5-A1EF-B80CB46C0015} 1033:{719A223E-83F4-49B5-A1EF-B80CB46C0015} 1036:{719A223E-83F4-49B5-A1EF-B80CB46C0015} 1041:{719A223E-83F4-49B5-A1EF-B80CB46C0015} 1049:{719A223E-83F4-49B5-A1EF-B80CB46C0015} 2052:{719A223E-83F4-49B5-A1EF-B80CB46C0015} 2057:{719A223E-83F4-49B5-A1EF-B80CB46C0015} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="mzkit_win32"/>
-    <ROW Property="ProductVersion" Value="4.8.5361.8871" Options="32"/>
+    <ROW Property="ProductVersion" Value="4.8.5799.1118" Options="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{B645400B-3918-41EF-9009-7ADDD81C84B4}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -393,7 +393,7 @@
     <ROW Directory="zstdcodec_Dir" Directory_Parent="libs_Dir" DefaultDir="ZSTD-C~1|zstd-codec"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{D8014527-022E-4F98-925F-423053C597C3}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{0F1519BF-D287-4E8F-92AD-2B70DEEB0BBA}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{69AA9FFE-67B1-456B-88EB-97D3D6C92AA7}" Directory_="APPDIR" Attributes="256"/>
     <ROW Component="ARButton.js" ComponentId="{1AA55F20-6D89-44ED-8F8F-5D0585E8DD95}" Directory_="webxr_Dir" Attributes="0" KeyPath="ARButton.js" Type="0"/>
     <ROW Component="AUTHORS" ComponentId="{C38E3DC8-02B1-461C-8274-772A926C7A62}" Directory_="sql.js_Dir" Attributes="0" KeyPath="AUTHORS" Type="0"/>
@@ -1137,6 +1137,11 @@
     <ROW Component="S042_Processed.ibd" ComponentId="{CF0DE48D-4241-41F7-8C29-E4E6FD2A196C}" Directory_="S042_Processed_imzML1.1.1_Dir" Attributes="256" KeyPath="S042_Processed.ibd" Type="0"/>
     <ROW Component="S043.png" ComponentId="{5A800A56-B8EB-4C8C-92C5-CDB083ED51A9}" Directory_="NewFolder_1_Dir" Attributes="256" KeyPath="S043.png" Type="0"/>
     <ROW Component="SHORTCUTDIR" ComponentId="{EB965C6F-9D74-45CE-9B11-1E3643BB5B03}" Directory_="SHORTCUTDIR" Attributes="256"/>
+    <ROW Component="SMRUCC.DICOM.LASer.dll" ComponentId="{02162642-15F6-4983-938C-26C8270E799E}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.DICOM.LASer.dll"/>
+    <ROW Component="SMRUCC.DICOM.LASer.pdb" ComponentId="{C1D8C112-71B0-4771-966D-7BABEDEEEE87}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.DICOM.LASer.pdb" Type="4"/>
+    <ROW Component="SMRUCC.DICOM.LASer.xml" ComponentId="{8BC7F27E-D111-4E4E-AA7F-22F0AD8FBA28}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.DICOM.LASer.xml"/>
+    <ROW Component="SMRUCC.DICOM.NRRD.dll" ComponentId="{72C2228A-363A-4EC3-900D-D408176EE9EB}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.DICOM.NRRD.dll"/>
+    <ROW Component="SMRUCC.DICOM.NRRD.pdb" ComponentId="{09CD7BDF-F868-4F38-9399-0C3A6AB3BC00}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.DICOM.NRRD.pdb" Type="4"/>
     <ROW Component="SMRUCC.Language.CodeDom.dll" ComponentId="{B30DE5E1-A68C-401A-B494-FB7A6651D702}" Directory_="library_Dir" Attributes="256" KeyPath="SMRUCC.Language.CodeDom.dll"/>
     <ROW Component="SMRUCC.genomics.Analysis.HTS.DataFrame.dll" ComponentId="{3F761559-AB2C-49CB-A8DD-8E230FA32474}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.Analysis.HTS.DataFrame.dll"/>
     <ROW Component="SMRUCC.genomics.Analysis.HTS.DataFrame.dll_1" ComponentId="{664A86A2-FC90-4740-A9C2-BFE1CA9C87E2}" Directory_="host_Dir" Attributes="256" KeyPath="SMRUCC.genomics.Analysis.HTS.DataFrame.dll_1"/>
@@ -18240,6 +18245,11 @@
     <ROW File="BioDeep.pdb_1" Component_="BioDeep.dll_2" FileName="BioDeep.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioDeep.pdb" SelfReg="false"/>
     <ROW File="RQL.dll_1" Component_="RQL.dll_1" FileName="RQL.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\RQL.dll" SelfReg="false"/>
     <ROW File="RQL.pdb" Component_="RQL.dll_1" FileName="RQL.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\RQL.pdb" SelfReg="false"/>
+    <ROW File="SMRUCC.DICOM.LASer.dll" Component_="SMRUCC.DICOM.LASer.dll" FileName="SMRUC~17.DLL|SMRUCC.DICOM.LASer.dll" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.DICOM.LASer.dll" SelfReg="false"/>
+    <ROW File="SMRUCC.DICOM.LASer.pdb" Component_="SMRUCC.DICOM.LASer.pdb" FileName="SMRUC~17.PDB|SMRUCC.DICOM.LASer.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.DICOM.LASer.pdb" SelfReg="false"/>
+    <ROW File="SMRUCC.DICOM.LASer.xml" Component_="SMRUCC.DICOM.LASer.xml" FileName="SMRUC~12.XML|SMRUCC.DICOM.LASer.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.DICOM.LASer.xml" SelfReg="false"/>
+    <ROW File="SMRUCC.DICOM.NRRD.dll" Component_="SMRUCC.DICOM.NRRD.dll" FileName="SMRUC~18.DLL|SMRUCC.DICOM.NRRD.dll" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.DICOM.NRRD.dll" SelfReg="false"/>
+    <ROW File="SMRUCC.DICOM.NRRD.pdb" Component_="SMRUCC.DICOM.NRRD.pdb" FileName="SMRUC~18.PDB|SMRUCC.DICOM.NRRD.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.DICOM.NRRD.pdb" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -19731,6 +19741,11 @@
     <ROW Feature_="MainFeature" Component_="BinaryDecoderWorker.js"/>
     <ROW Feature_="MainFeature" Component_="BioDeep.dll_2"/>
     <ROW Feature_="MainFeature" Component_="RQL.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="SMRUCC.DICOM.LASer.dll"/>
+    <ROW Feature_="MainFeature" Component_="SMRUCC.DICOM.NRRD.dll"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.DICOM.LASer.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.DICOM.LASer.pdb"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.DICOM.NRRD.pdb"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
@@ -19920,7 +19935,7 @@
     <ROW XmlAttribute="xsischemaLocation" XmlElement="swidsoftware_identification_tag" Name="xsi:schemaLocation" Flags="14" Order="3" Value="http://standards.iso.org/iso/19770/-2/2008/schema.xsd software_identification_tag.xsd"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.XmlElementComponent">
-    <ROW XmlElement="swidbuild" ParentElement="swidnumeric" Name="swid:build" Condition="1" Order="2" Flags="14" Text="5361" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidbuild" ParentElement="swidnumeric" Name="swid:build" Condition="1" Order="2" Flags="14" Text="5799" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidchannel_name" ParentElement="swidlicense_linkage" Name="swid:channel_name" Condition="1" Order="1" Flags="14" Text="Standard(Community Edition)" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidchannel_type" ParentElement="swidlicense_linkage" Name="swid:channel_type" Condition="1" Order="0" Flags="14" Text="Retail" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidcustomer_type" ParentElement="swidlicense_linkage" Name="swid:customer_type" Condition="1" Order="2" Flags="14" Text="Academic" UpdateIndexInParent="0"/>
@@ -19938,7 +19953,7 @@
     <ROW XmlElement="swidregid" ParentElement="swidsoftware_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2013-01.com.panomix" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_5" ParentElement="swidsoftware_licensor" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2019-11.org.mzkit" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_6" ParentElement="swidtag_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.1995-09.me.xieguigang,gg.xie@bionovogene.com" UpdateIndexInParent="0"/>
-    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="8871" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="1118" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidserial_number" ParentElement="swidsoftware_identification_tag" Name="swid:serial_number" Condition="1" Order="7" Flags="14" Text="[PIDKEY]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_creator" ParentElement="swidsoftware_identification_tag" Name="swid:software_creator" Condition="1" Order="3" Flags="14" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_id" ParentElement="swidsoftware_identification_tag" Name="swid:software_id" Condition="1" Order="5" Flags="14" UpdateIndexInParent="0"/>
