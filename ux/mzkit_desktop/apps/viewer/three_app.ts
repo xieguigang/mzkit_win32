@@ -38,7 +38,7 @@ namespace apps.viewer {
             });
 
             // CA13
-            Potree.loadPointCloud("http://5.9.65.151/mschuetz/potree/resources/pointclouds/opentopography/CA13_1.4/cloud.js", "CA13", e => this.loadModel(e));
+            Potree.loadPointCloud("/cloud.js", "model", e => this.loadModel(e));
 
             requestAnimationFrame(t => this.loop(t));
         }

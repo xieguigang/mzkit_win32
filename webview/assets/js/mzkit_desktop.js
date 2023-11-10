@@ -62,6 +62,7 @@ var apps;
         var window = globalThis.window;
         var Potree = window.Potree;
         var proj4 = window.proj4;
+        // D:/mzkit/dist/bin/Rstudio/bin/Rserve.exe --listen /wwwroot "D:\mzkit\dist\bin/../../src/mzkit/webview/" /port 6001 --parent=8124 --attach F:/Temp/mzkit_win32/9465ce9a7904ba9fa5a354804734cbc4
         var three_app = /** @class */ (function (_super) {
             __extends(three_app, _super);
             function three_app() {
@@ -92,7 +93,7 @@ var apps;
                     _this.potreeViewer.toggleSidebar();
                 });
                 // CA13
-                Potree.loadPointCloud("http://5.9.65.151/mschuetz/potree/resources/pointclouds/opentopography/CA13_1.4/cloud.js", "CA13", function (e) { return _this.loadModel(e); });
+                Potree.loadPointCloud("/cloud.js", "model", function (e) { return _this.loadModel(e); });
                 requestAnimationFrame(function (t) { return _this.loop(t); });
             };
             three_app.prototype.loop = function (timestamp) {
