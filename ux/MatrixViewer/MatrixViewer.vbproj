@@ -17,6 +17,7 @@
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\mime\text%html\html_netcore5.vbproj" />
     <ProjectReference Include="..\..\..\visualize\plot\MsPlot.NET5.vbproj" />
+    <ProjectReference Include="..\..\mzblender\mzblender.vbproj" />
     <ProjectReference Include="..\..\services\Task\Task.vbproj" />
   </ItemGroup>
 

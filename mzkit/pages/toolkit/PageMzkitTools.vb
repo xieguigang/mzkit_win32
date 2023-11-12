@@ -96,6 +96,7 @@ Imports RibbonLib
 Imports RibbonLib.Interop
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports Task
+Imports UMapx.Colorspace
 Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class PageMzkitTools
@@ -470,24 +471,18 @@ Public Class PageMzkitTools
         If TICList.IsNullOrEmpty Then
             Workbench.Warning("no chromatogram data!")
             Return
-        ElseIf TICList.All(Function(file) file.All(Function(t) t.Intensity = 0.0)) Then
+        End If
+        If TICList.All(Function(file) file.All(Function(t) t.Intensity = 0.0)) Then
             Workbench.Warning("not able to create a TIC/BPC plot due to the reason of all of the tick intensity data is ZERO, please check your raw data file!")
             Return
         End If
 
-        Dim blender As Blender
-
-        If d3 Then
-            blender = New XIC3DBlender(TICList)
-        Else
-            blender = New ChromatogramBlender(TICList)
-        End If
-
-        Call showMatrix(TICList(Scan0).value, TICList(Scan0).name)
+        _matrix = New ChromatogramOverlapMatrix("TIC/BPC chromatogram overlaps", TICList, d3)
+        _matrix.LoadMatrix(DataGridView1, BindingSource1)
 
         MyApplication.RegisterPlot(
             plot:=Sub(args)
-                      PictureBox1.BackgroundImage = blender.Rendering(args, PictureBox1.Size)
+                      PictureBox1.BackgroundImage = _matrix.Plot(args, PictureBox1.Size).AsGDIImage
                   End Sub,
             width:=1600,
             height:=1200,
@@ -502,7 +497,25 @@ Public Class PageMzkitTools
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Sub ShowMRMTIC(name As String, ticks As ChromatogramTick())
-        Call TIC({New NamedCollection(Of ChromatogramTick)(name, ticks)})
+        Dim xlab As String = "Time (s)"
+        Dim ylab As String = "Intensity"
+
+        _matrix = New ChromatogramMatrix(name, ticks)
+        _matrix.LoadMatrix(DataGridView1, BindingSource1)
+
+        MyApplication.RegisterPlot(
+            plot:=Sub(args)
+                      PictureBox1.BackgroundImage = _matrix.Plot(args, PictureBox1.Size).AsGDIImage
+                  End Sub,
+            width:=1600,
+            height:=1200,
+            showGrid:=True,
+            padding:="padding:100px 100px 150px 200px;",
+            showLegend:=True,
+            xlab:=xlab,
+            ylab:=ylab)
+
+        MyApplication.host.ShowPage(Me)
     End Sub
 
     Public Sub TIC(isBPC As Boolean)

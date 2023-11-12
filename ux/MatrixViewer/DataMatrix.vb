@@ -1,3 +1,4 @@
+Imports System.Drawing
 Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Windows.Forms
@@ -38,7 +39,12 @@ Public MustInherit Class DataMatrix
         Return Me
     End Function
 
-    Public MustOverride Function Plot(args As PlotProperty) As GraphicsData
+    ''' <summary>
+    ''' returns nothing means method not implementted
+    ''' </summary>
+    ''' <param name="args"></param>
+    ''' <returns></returns>
+    Public MustOverride Function Plot(args As PlotProperty, picBox As Size) As GraphicsData
 
     Public Sub LoadMatrix(ByRef DataGridView1 As DataGridView, ByRef BindingSource1 As BindingSource)
         Dim memoryData As New DataSet
