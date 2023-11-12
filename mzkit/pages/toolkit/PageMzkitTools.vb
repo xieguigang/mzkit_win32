@@ -477,7 +477,13 @@ Public Class PageMzkitTools
             Return
         End If
 
-        _matrix = New ChromatogramOverlapMatrix("TIC/BPC chromatogram overlaps", TICList, d3)
+        Dim signals As ChromatogramSerial() = TICList _
+            .Select(Function(c)
+                        Return New ChromatogramSerial(c.name, c.AsEnumerable)
+                    End Function) _
+            .ToArray
+
+        _matrix = New ChromatogramOverlapMatrix("TIC/BPC chromatogram overlaps", signals, d3)
         _matrix.LoadMatrix(DataGridView1, BindingSource1)
 
         MyApplication.RegisterPlot(
