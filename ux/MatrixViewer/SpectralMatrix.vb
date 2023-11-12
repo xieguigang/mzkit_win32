@@ -1,4 +1,5 @@
-﻿Imports System.IO
+﻿Imports System.Drawing
+Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
@@ -38,7 +39,7 @@ Public Class SpectralMatrix : Inherits DataMatrix
         Next
     End Sub
 
-    Public Overrides Function Plot(args As PlotProperty) As GraphicsData
+    Public Overrides Function Plot(args As PlotProperty, picBox As Size) As GraphicsData
         Dim scanData As New LibraryMatrix With {
             .name = name,
             .ms2 = matrix,

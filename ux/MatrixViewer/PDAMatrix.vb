@@ -1,4 +1,5 @@
-﻿Imports System.IO
+﻿Imports System.Drawing
+Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.UV
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.csv
@@ -31,7 +32,7 @@ Public Class PDAMatrix : Inherits DataMatrix
         Next
     End Sub
 
-    Public Overrides Function Plot(args As PlotProperty) As GraphicsData
+    Public Overrides Function Plot(args As PlotProperty, picBox As Size) As GraphicsData
         Throw New NotImplementedException
     End Function
 

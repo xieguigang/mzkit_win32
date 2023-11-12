@@ -1,5 +1,8 @@
-﻿Imports System.IO
+﻿Imports System.Drawing
+Imports System.IO
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Imaging.Driver
+Imports Task
 
 Public Class ExpressionMatrix : Inherits DataMatrix
 
@@ -33,8 +36,8 @@ Public Class ExpressionMatrix : Inherits DataMatrix
         Next
     End Sub
 
-    Public Overrides Function Plot(args As Task.PlotProperty) As Imaging.Driver.GraphicsData
-        Throw New NotImplementedException()
+    Public Overrides Function Plot(args As PlotProperty, picBox As Size) As GraphicsData
+        Return Nothing
     End Function
 
     Protected Overrides Iterator Function GetTitles() As IEnumerable(Of NamedValue(Of Type))

@@ -1,4 +1,5 @@
 ﻿Imports System.Drawing
+Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
@@ -26,7 +27,7 @@ Public Class NMRMatrix : Inherits DataMatrix
         Next
     End Sub
 
-    Public Overrides Function Plot(args As PlotProperty) As GraphicsData
+    Public Overrides Function Plot(args As PlotProperty, picBox As Size) As GraphicsData
         Dim theme As Theme = args.GetTheme
         Dim scanData As New LibraryMatrix With {.ms2 = matrix, .name = name}
         Dim app As New NMRSpectrum(scanData, theme) With {
@@ -41,7 +42,15 @@ Public Class NMRMatrix : Inherits DataMatrix
         Yield New NamedValue(Of Type)("intensity", GetType(Double))
     End Function
 
-    Protected Overrides Function SaveTo(s As IO.Stream) As Boolean
-        Throw New NotImplementedException()
+    Protected Overrides Function SaveTo(s As Stream) As Boolean
+        Using text As New StreamWriter(s)
+            Call text.WriteLine("ppm,intensity")
+
+            For Each point As ms2 In GetMatrix(Of ms2)()
+                Call text.WriteLine($"{point.mz},{point.intensity}")
+            Next
+        End Using
+
+        Return True
     End Function
 End Class

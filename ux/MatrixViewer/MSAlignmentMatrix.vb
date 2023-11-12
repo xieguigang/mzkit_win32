@@ -1,7 +1,10 @@
-﻿Imports System.IO
+﻿Imports System.Drawing
+Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.csv
+Imports Microsoft.VisualBasic.Imaging.Driver
+Imports Task
 
 Public Class MSAlignmentMatrix : Inherits DataMatrix
 
@@ -23,7 +26,7 @@ Public Class MSAlignmentMatrix : Inherits DataMatrix
         Next
     End Sub
 
-    Public Overrides Function Plot(args As Task.PlotProperty) As Imaging.Driver.GraphicsData
+    Public Overrides Function Plot(args As PlotProperty, pixBox As Size) As GraphicsData
         Throw New NotImplementedException()
     End Function
 

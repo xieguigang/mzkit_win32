@@ -1,7 +1,10 @@
-﻿Imports System.IO
+﻿Imports System.Drawing
+Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.UV
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.csv
+Imports Microsoft.VisualBasic.Imaging.Driver
+Imports Task
 
 Public Class UVScanMatrix : Inherits DataMatrix
 
@@ -24,7 +27,7 @@ Public Class UVScanMatrix : Inherits DataMatrix
         Next
     End Sub
 
-    Public Overrides Function Plot(args As Task.PlotProperty) As Imaging.Driver.GraphicsData
+    Public Overrides Function Plot(args As PlotProperty, picBox As Size) As GraphicsData
         Throw New NotImplementedException()
     End Function
 
