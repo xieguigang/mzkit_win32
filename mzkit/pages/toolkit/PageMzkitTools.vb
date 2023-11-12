@@ -62,7 +62,6 @@
 Imports System.Runtime.CompilerServices
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
-Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
@@ -81,22 +80,18 @@ Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.RibbonLib.Controls
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
-Imports Microsoft.VisualBasic.Data.ChartPlots.Contour
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
-Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Math2D.MarchingSquares
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math.SignalProcessing
-Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.MatrixViewer
 Imports RibbonLib
 Imports RibbonLib.Interop
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports Task
-Imports UMapx.Colorspace
 Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class PageMzkitTools
