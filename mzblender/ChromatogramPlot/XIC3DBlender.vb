@@ -66,8 +66,8 @@ Public Class XIC3DBlender : Inherits Blender
 
     ReadOnly TICList As NamedCollection(Of ChromatogramTick)()
 
-    Sub New(TICList As NamedCollection(Of ChromatogramTick)())
-        Me.TICList = TICList
+    Sub New(TICList As IEnumerable(Of NamedCollection(Of ChromatogramTick)))
+        Me.TICList = TICList.ToArray
     End Sub
 
     Public Overrides Function Rendering(args As PlotProperty, target As Size) As Image
