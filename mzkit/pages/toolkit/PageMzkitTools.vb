@@ -134,57 +134,53 @@ Public Class PageMzkitTools
             Return
         ElseIf directSnapshot Then
             PictureBox1.BackgroundImage = raw.GetSnapshot
-        Else
-            Dim colorSet As String
-            Dim data As ContourLayer() = Nothing
-            Dim width As Integer = 2048
-            Dim height As Integer = 1600
-            Dim padding As String = "padding:100px 400px 100px 100px;"
-
-            If XIC Then
-                colorSet = "YlGnBu:c8"
-                width = 2400
-            ElseIf contour Then
-                colorSet = "Jet"
-
-                Call ProgressSpinner.DoLoading(
-                    Sub()
-                        data = raw.GetContourData
-                    End Sub)
-
-                width = 3600
-                height = 2700
-                padding = "padding:100px 750px 100px 100px;"
-            Else
-                colorSet = "darkblue,blue,skyblue,green,orange,red,darkred"
-            End If
-
-            Call MyApplication.RegisterPlot(
-                Sub(args)
-                    Call ProgressSpinner.DoLoading(Sub()
-                                                       Dim image As Image
-
-                                                       If contour Then
-                                                           image = data.Plot(
-                                    size:=$"{args.width},{args.height}",
-                                    padding:=args.GetPadding.ToString,
-                                    colorSet:=args.GetColorSetName,
-                                    ppi:=200,
-                                    legendTitle:=args.legend_title
-                                ).AsGDIImage
-                                                       ElseIf XIC Then
-                                                           image = raw.Draw3DPeaks(colorSet:=args.GetColorSetName, size:=$"{args.width},{args.height}", args.GetPadding.ToString)
-                                                       Else
-                                                           image = raw.DrawScatter(colorSet:=args.GetColorSetName)
-                                                       End If
-
-                                                       Me.Invoke(Sub() PictureBox1.BackgroundImage = image)
-                                                   End Sub)
-
-                End Sub, colorSet:=colorSet, width:=width, height:=height, padding:=padding, legendTitle:="Levels")
+            Return
         End If
 
-        Me.matrixName = $"{raw.source.FileName}_{If(XIC, "XICPeaks", "rawscatter_2D")}"
+        Dim colorSet As String
+        Dim data As ContourLayer() = Nothing
+        Dim width As Integer = 2048
+        Dim height As Integer = 1600
+        Dim padding As String = "padding:100px 400px 100px 100px;"
+        Dim matrixName = $"{raw.source.FileName}_{If(XIC, "XICPeaks", "rawscatter_2D")}"
+
+        If XIC Then
+            colorSet = "YlGnBu:c8"
+            width = 2400
+
+            Call ProgressSpinner.DoLoading(Sub() Me.Invoke(Sub() _matrix = New ChromatogramOverlapMatrix(matrixName, raw.Get3DPeaks.ToArray, spatial3D:=True)))
+        ElseIf contour Then
+            colorSet = "Jet"
+            width = 3600
+            height = 2700
+            padding = "padding:100px 750px 100px 100px;"
+
+            Call ProgressSpinner.DoLoading(Sub() Me.Invoke(Sub() _matrix = New CounterMatrix(matrixName, raw)))
+        Else
+            colorSet = "darkblue,blue,skyblue,green,orange,red,darkred"
+
+            Call ProgressSpinner.DoLoading(Sub() Me.Invoke(Sub() _matrix = New Ms1ScatterMatrix(matrixName, raw)))
+        End If
+
+        Call MyApplication.RegisterPlot(
+            Sub(args)
+                Call ProgressSpinner.DoLoading(Sub()
+                                                   Dim image As Image
+
+                                                   If contour Then
+                                                       image = .AsGDIImage
+                                                   ElseIf XIC Then
+                                                       image = raw.Draw3DPeaks(colorSet:=args.GetColorSetName, size:=$"{args.width},{args.height}", args.GetPadding.ToString)
+                                                   Else
+                                                       image = raw.DrawScatter(colorSet:=args.GetColorSetName)
+                                                   End If
+
+                                                   Me.Invoke(Sub() PictureBox1.BackgroundImage = image)
+                                               End Sub)
+
+            End Sub, colorSet:=colorSet, width:=width, height:=height, padding:=padding, legendTitle:="Levels")
+
+
 
         MyApplication.host.ShowPage(Me)
         MyApplication.host.Invoke(Sub() ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.NotAvailable)
@@ -332,7 +328,7 @@ Public Class PageMzkitTools
 
         Call MyApplication.RegisterPlot(
               Sub(args)
-                  PictureBox1.BackgroundImage = _matrix.SetName(args.title).Plot(args).AsGDIImage
+                  PictureBox1.BackgroundImage = _matrix.SetName(args.title).Plot(args, PictureBox1.Size).AsGDIImage
               End Sub,
           width:=2100,
           height:=1200,

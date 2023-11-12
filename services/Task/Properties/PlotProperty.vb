@@ -74,6 +74,7 @@ Public Class PlotProperty
 
     <Category("Plot")> <Description("The width of the plot image in pixels")> Public Property width As Integer = 2048
     <Category("Plot")> <Description("The height of the plot image in pixels")> Public Property height As Integer = 1600
+
     <Category("Plot")> <Description("The background color of the plot image")> Public Property background As Color = Color.White
     <Category("Plot")> <Description("Text of the plot its main title")> Public Property title As String
     <Category("Plot")> <Description("Text of the plot its legend title")> Public Property legend_title As String

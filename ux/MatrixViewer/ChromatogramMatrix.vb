@@ -1,7 +1,11 @@
-﻿Imports System.IO
+﻿Imports System.Drawing
+Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.csv
+Imports Microsoft.VisualBasic.Imaging.Driver
+Imports mzblender
+Imports Task
 
 Public Class ChromatogramMatrix : Inherits DataMatrix
 
@@ -23,8 +27,12 @@ Public Class ChromatogramMatrix : Inherits DataMatrix
         Next
     End Sub
 
-    Public Overrides Function Plot(args As Task.PlotProperty) As Imaging.Driver.GraphicsData
-        Throw New NotImplementedException()
+    Public Overrides Function Plot(args As PlotProperty, picBox As Size) As GraphicsData
+        Dim blender As New ChromatogramBlender(name, GetMatrix(Of ChromatogramTick))
+        Dim img = blender.Rendering(args, picBox)
+        Dim raster As New ImageData(img)
+
+        Return raster
     End Function
 
     Protected Overrides Iterator Function GetTitles() As IEnumerable(Of NamedValue(Of Type))
