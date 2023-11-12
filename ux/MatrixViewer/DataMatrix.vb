@@ -1,3 +1,4 @@
+Imports System.Runtime.CompilerServices
 Imports System.Windows.Forms
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Imaging.Driver
@@ -13,6 +14,16 @@ Public MustInherit Class DataMatrix
     ''' the name or display title of the current matrix
     ''' </summary>
     Protected name As String
+
+    Public ReadOnly Property size As Integer
+        Get
+            If matrix Is Nothing Then
+                Return 0
+            End If
+
+            Return matrix.Length
+        End Get
+    End Property
 
     Sub New(name As String, matrix As Array)
         Me.name = name
@@ -41,6 +52,10 @@ Public MustInherit Class DataMatrix
             Call table.Columns.Add(title.Name, title.Value)
         Next
 
+        If size > 0 Then
+            Call CreateRows(table)
+        End If
+
         BindingSource1.DataSource = memoryData
         BindingSource1.DataMember = table.TableName
         DataGridView1.DataSource = BindingSource1
@@ -55,6 +70,14 @@ Public MustInherit Class DataMatrix
     ''' add rows into target table
     ''' </summary>
     ''' <param name="table"></param>
+    ''' <remarks>
+    ''' this function ensure that the input matrix is always not empty
+    ''' </remarks>
     Protected MustOverride Sub CreateRows(table As DataTable)
+
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Function GetMatrix(Of T)() As T()
+        Return DirectCast(matrix, T())
+    End Function
 
 End Class

@@ -663,105 +663,23 @@ Public Class PageMzkitTools
     ''' <param name="matrix"></param>
     ''' <param name="name"></param>
     Sub showMatrix(matrix As ms2(), name As String, Optional nmr As Boolean = False)
-        Dim memoryData As New DataSet
-        Dim table As DataTable = memoryData.Tables.Add("memoryData")
-
-        Me.matrix = matrix
-        Me.matrixName = name
-
-        Try
-            Call DataGridView1.Columns.Clear()
-            Call DataGridView1.Rows.Clear()
-        Catch ex As Exception
-
-        End Try
-
         If nmr Then
-            table.Columns.Add("ppm", GetType(Double))
-            table.Columns.Add("intensity", GetType(Double))
-
-            For Each tick As ms2 In matrix
-                table.Rows.Add(tick.mz, tick.intensity)
-                System.Windows.Forms.Application.DoEvents()
-            Next
+            _matrix = New NMRMatrix(name, matrix)
         Else
-            Dim max As Double
-
-            If matrix.Length = 0 Then
-                max = 0
-                Call Workbench.Warning($"'{name}' didn't contains any data...")
-            Else
-                max = matrix.Select(Function(a) a.intensity).Max
-            End If
-
-            table.Columns.Add("m/z", GetType(Double))
-            table.Columns.Add("intensity", GetType(Double))
-            table.Columns.Add("relative", GetType(Double))
-            table.Columns.Add("annotation", GetType(String))
-
-            For Each tick As ms2 In matrix
-                table.Rows.Add(tick.mz, tick.intensity, CInt(tick.intensity / max * 100), tick.Annotation)
-                System.Windows.Forms.Application.DoEvents()
-            Next
+            _matrix = New SpectralMatrix(name, matrix, Nothing, "n/a")
         End If
 
-        BindingSource1.DataSource = memoryData
-        BindingSource1.DataMember = table.TableName
-        DataGridView1.DataSource = BindingSource1
+        _matrix.LoadMatrix(DataGridView1, BindingSource1)
     End Sub
 
     Sub showMatrix(matrix As SSM2MatrixFragment(), name As String)
-        Me.matrix = matrix
-        Me.matrixName = name
-
-        Dim memoryData As New DataSet
-        Dim table As DataTable = memoryData.Tables.Add("memoryData")
-
-        Try
-            Call DataGridView1.Columns.Clear()
-            Call DataGridView1.Rows.Clear()
-        Catch ex As Exception
-
-        End Try
-
-        table.Columns.Add("m/z", GetType(Double))
-        table.Columns.Add("intensity(query)", GetType(Double))
-        table.Columns.Add("intensity(target)", GetType(Double))
-        table.Columns.Add("tolerance", GetType(Double))
-
-        For Each tick In matrix
-            table.Rows.Add(tick.mz, tick.query, tick.ref, tick.da)
-        Next
-
-        BindingSource1.DataSource = memoryData
-        BindingSource1.DataMember = table.TableName
-        DataGridView1.DataSource = BindingSource1
+        _matrix = New MSAlignmentMatrix(name, matrix)
+        _matrix.LoadMatrix(DataGridView1, BindingSource1)
     End Sub
 
     Public Sub showMatrix(matrix As ChromatogramTick(), name As String)
-        Me.matrix = matrix
-        Me.matrixName = name
-
-        Dim memoryData As New DataSet
-        Dim table As DataTable = memoryData.Tables.Add("memoryData")
-
-        Try
-            Call DataGridView1.Columns.Clear()
-            Call DataGridView1.Rows.Clear()
-        Catch ex As Exception
-
-        End Try
-
-        table.Columns.Add("time", GetType(Double))
-        table.Columns.Add("intensity", GetType(Double))
-
-        For Each tick In matrix
-            table.Rows.Add(tick.Time, tick.Intensity)
-        Next
-
-        BindingSource1.DataSource = memoryData
-        BindingSource1.DataMember = table.TableName
-        DataGridView1.DataSource = BindingSource1
+        _matrix = New ChromatogramMatrix(name, matrix)
+        _matrix.LoadMatrix(DataGridView1, BindingSource1)
     End Sub
 
     Public Sub ShowXIC(ppm As Double,

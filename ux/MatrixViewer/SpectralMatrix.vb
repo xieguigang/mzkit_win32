@@ -1,5 +1,6 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Task
@@ -14,6 +15,20 @@ Public Class SpectralMatrix : Inherits DataMatrix
 
         Me.source = source
         Me.precursor = precursor
+    End Sub
+
+    Protected Overrides Sub CreateRows(table As DataTable)
+        Dim matrix As ms2() = Me.matrix
+        Dim max = matrix.Select(Function(a) a.intensity).Max
+
+        For Each tick As ms2 In matrix
+            table.Rows.Add(
+                tick.mz,
+                tick.intensity,
+                CInt(tick.intensity / max * 100),
+                tick.Annotation
+            )
+        Next
     End Sub
 
     Public Overrides Function Plot(args As PlotProperty) As GraphicsData
@@ -32,5 +47,12 @@ Public Class SpectralMatrix : Inherits DataMatrix
             gridFill:=args.gridFill.ToHtmlColor,
             barStroke:=$"stroke: steelblue; stroke-width: {args.line_width}px; stroke-dash: solid;"
         )
+    End Function
+
+    Protected Overrides Iterator Function GetTitles() As IEnumerable(Of NamedValue(Of Type))
+        Yield New NamedValue(Of Type)("m/z", GetType(Double))
+        Yield New NamedValue(Of Type)("intensity", GetType(Double))
+        Yield New NamedValue(Of Type)("relative", GetType(Double))
+        Yield New NamedValue(Of Type)("annotation", GetType(String))
     End Function
 End Class
