@@ -509,7 +509,7 @@ Public Class PageMzkitTools
         Dim rawList As MZWork.Raw() = WindowModules.fileExplorer.GetSelectedRaws.ToArray
 
         If rawList.Length = 0 Then
-            MyApplication.host.showStatusMessage("No file data selected for TIC plot...")
+            Workbench.Warning("No file data selected for TIC plot...")
         Else
             Call TIC(rawList, isBPC)
         End If
@@ -517,7 +517,7 @@ Public Class PageMzkitTools
 
     Public Sub SaveImageToolStripMenuItem_Click()
         If Not PictureBox1.BackgroundImage Is Nothing Then
-            Dim preFileName As String = matrixName.NormalizePathString(alphabetOnly:=False)
+            Dim preFileName As String = _matrix.name.NormalizePathString(alphabetOnly:=False)
 
             Using file As New SaveFileDialog With {.Filter = "image(*.png)|*.png", .FileName = preFileName & ".png"}
                 If file.ShowDialog = DialogResult.OK Then
