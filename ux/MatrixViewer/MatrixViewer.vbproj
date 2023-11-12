@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Mzkit_win32.MatrixViewer</RootNamespace>
+    <TargetFramework>net48</TargetFramework>
+    <AssemblyName>Mzkit_win32.MatrixViewer</AssemblyName>
+    <Platforms>AnyCPU;x64</Platforms>
+    <Configurations>Debug;Release;mzkit_win32</Configurations>
+  </PropertyGroup>
+
+</Project>
