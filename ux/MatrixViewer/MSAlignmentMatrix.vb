@@ -1,9 +1,11 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
+﻿Imports System.IO
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Data.csv
 
 Public Class MSAlignmentMatrix : Inherits DataMatrix
 
-    Public Sub New(name As String, matrix As Array)
+    Public Sub New(name As String, matrix As SSM2MatrixFragment())
         MyBase.New(name, matrix)
     End Sub
 
@@ -24,5 +26,13 @@ Public Class MSAlignmentMatrix : Inherits DataMatrix
         Yield New NamedValue(Of Type)("intensity(query)", GetType(Double))
         Yield New NamedValue(Of Type)("intensity(target)", GetType(Double))
         Yield New NamedValue(Of Type)("tolerance", GetType(Double))
+    End Function
+
+    Protected Overrides Function SaveTo(s As Stream) As Boolean
+        Return False
+    End Function
+
+    Public Overrides Function SaveTo(filepath As String) As Boolean
+        Return GetMatrix(Of SSM2MatrixFragment).SaveTo(filepath)
     End Function
 End Class

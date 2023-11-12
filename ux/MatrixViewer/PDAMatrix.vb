@@ -1,5 +1,7 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.UV
+﻿Imports System.IO
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.UV
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Task
 
@@ -31,5 +33,13 @@ Public Class PDAMatrix : Inherits DataMatrix
         Yield New NamedValue(Of Type)("scan_time", GetType(Double))
         Yield New NamedValue(Of Type)("total_ion", GetType(Double))
         Yield New NamedValue(Of Type)("relative", GetType(Double))
+    End Function
+
+    Protected Overrides Function SaveTo(s As Stream) As Boolean
+        Return False
+    End Function
+
+    Public Overrides Function SaveTo(filepath As String) As Boolean
+        Return GetMatrix(Of PDAPoint).SaveTo(filepath)
     End Function
 End Class

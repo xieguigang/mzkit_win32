@@ -535,26 +535,19 @@ Public Class PageMzkitTools
     End Sub
 
     Public Sub SaveMatrixToolStripMenuItem_Click()
-        If matrix Is Nothing Then
+        If _matrix Is Nothing Then
             Workbench.Warning("No matrix data for save, please select one spectrum to start!")
         Else
             Using file As New SaveFileDialog() With {
                 .Filter = "Excel Table(*.xls)|*.xls",
-                .FileName = matrixName.NormalizePathString(False)
+                .FileName = _matrix.name.NormalizePathString(False)
             }
                 If file.ShowDialog = DialogResult.OK Then
+                    Dim flag As Boolean = _matrix.SaveTo(file.FileName)
 
-                    Select Case matrix.GetType
-                        Case GetType(ms2()) : Call DirectCast(matrix, ms2()).SaveTo(file.FileName)
-                        Case GetType(ChromatogramTick()) : Call DirectCast(matrix, ChromatogramTick()).SaveTo(file.FileName)
-                        Case GetType(SSM2MatrixFragment()) : Call DirectCast(matrix, SSM2MatrixFragment()).SaveTo(file.FileName)
-                        Case GetType(PDAPoint()) : Call DirectCast(matrix, PDAPoint()).SaveTo(file.FileName)
-                        Case GetType(UVScanPoint()) : Call DirectCast(matrix, UVScanPoint()).SaveTo(file.FileName)
-
-                        Case Else
-                            Call Workbench.Warning($"the save matrix method has not yet been implemented for data type:{matrix.Length.GetType.FullName}")
-                    End Select
-
+                    If Not flag Then
+                        Call Workbench.Warning($"the save matrix not success or method has not yet been implemented for data type:{_matrix.GetType.FullName}")
+                    End If
                 End If
             End Using
         End If

@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+﻿Imports System.IO
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 
 Public Class ExpressionMatrix : Inherits DataMatrix
 
@@ -34,5 +35,9 @@ Public Class ExpressionMatrix : Inherits DataMatrix
         For Each key As String In colname
             Yield New NamedValue(Of Type)(key, GetType(Double))
         Next
+    End Function
+
+    Protected Overrides Function SaveTo(s As Stream) As Boolean
+        Return False
     End Function
 End Class

@@ -1,6 +1,8 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
+﻿Imports System.IO
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Driver
 Imports Task
@@ -10,7 +12,7 @@ Public Class SpectralMatrix : Inherits DataMatrix
     ReadOnly precursor As (mz As Double, rt As Double)
     ReadOnly source As String
 
-    Public Sub New(name As String, matrix As Array, precursor As (mz As Double, rt As Double), source As String)
+    Public Sub New(name As String, matrix As ms2(), precursor As (mz As Double, rt As Double), source As String)
         MyBase.New(name, matrix)
 
         Me.source = source
@@ -54,5 +56,13 @@ Public Class SpectralMatrix : Inherits DataMatrix
         Yield New NamedValue(Of Type)("intensity", GetType(Double))
         Yield New NamedValue(Of Type)("relative", GetType(Double))
         Yield New NamedValue(Of Type)("annotation", GetType(String))
+    End Function
+
+    Protected Overrides Function SaveTo(s As Stream) As Boolean
+        Return False
+    End Function
+
+    Public Overrides Function SaveTo(filepath As String) As Boolean
+        Return GetMatrix(Of ms2).SaveTo(filepath)
     End Function
 End Class

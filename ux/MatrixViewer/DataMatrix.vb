@@ -1,3 +1,4 @@
+Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Windows.Forms
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
@@ -13,7 +14,7 @@ Public MustInherit Class DataMatrix
     ''' <summary>
     ''' the name or display title of the current matrix
     ''' </summary>
-    Protected name As String
+    Public ReadOnly Property name As String
 
     Public ReadOnly Property size As Integer
         Get
@@ -31,7 +32,7 @@ Public MustInherit Class DataMatrix
     End Sub
 
     Public Function SetName(name As String) As DataMatrix
-        Me.name = name
+        Me._name = name
         Return Me
     End Function
 
@@ -79,5 +80,13 @@ Public MustInherit Class DataMatrix
     Public Function GetMatrix(Of T)() As T()
         Return DirectCast(matrix, T())
     End Function
+
+    Public Overridable Function SaveTo(filepath As String) As Boolean
+        Using file As Stream = filepath.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
+            Return SaveTo(s:=file)
+        End Using
+    End Function
+
+    Protected MustOverride Function SaveTo(s As Stream) As Boolean
 
 End Class

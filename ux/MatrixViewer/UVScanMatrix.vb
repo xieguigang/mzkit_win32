@@ -1,5 +1,7 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.UV
+﻿Imports System.IO
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.UV
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Data.csv
 
 Public Class UVScanMatrix : Inherits DataMatrix
 
@@ -24,5 +26,13 @@ Public Class UVScanMatrix : Inherits DataMatrix
         Yield New NamedValue(Of Type)("wavelength(nm)", GetType(Double))
         Yield New NamedValue(Of Type)("intensity", GetType(Double))
         Yield New NamedValue(Of Type)("relative", GetType(Double))
+    End Function
+
+    Protected Overrides Function SaveTo(s As Stream) As Boolean
+        Return False
+    End Function
+
+    Public Overrides Function SaveTo(filepath As String) As Boolean
+        Return GetMatrix(Of UVScanPoint).SaveTo(filepath)
     End Function
 End Class
