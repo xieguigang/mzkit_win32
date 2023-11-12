@@ -76,6 +76,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Text
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Mzkit_win32.MatrixViewer
 Imports RibbonLib
 Imports RibbonLib.Controls.Events
 Imports RibbonLib.Interop
@@ -344,15 +345,17 @@ Module RibbonEvents
 
     Friend Sub CreatePeakFinding()
         Dim mzkitTool = MyApplication.host.mzkitTool
-        Dim matrix As Array = mzkitTool.matrix
+        Dim matrix As DataMatrix = mzkitTool._matrix
 
         If matrix Is Nothing Then
-            Call MyApplication.host.warning("No chromatogram data is loaded into the MZKit data viewer!")
-        ElseIf Not TypeOf matrix Is ChromatogramTick() Then
-            Call MyApplication.host.warning("Peak finding application only works on the Chromatogram data matrix!")
+            Call Workbench.Warning("No chromatogram data is loaded into the MZKit data viewer!")
+        ElseIf Not matrix.UnderlyingType Is GetType(ChromatogramTick) Then
+            Call Workbench.Warning("Peak finding application only works on the Chromatogram data matrix!")
         Else
-            Dim app = VisualStudio.ShowDocument(Of frmPeakFinding)(DockState.Document, $"Peak Finding [{mzkitTool.matrixName}]")
-            app.LoadMatrix(mzkitTool.matrixName, DirectCast(matrix, ChromatogramTick()))
+            Dim app = VisualStudio.ShowDocument(Of frmPeakFinding)(DockState.Document, $"Peak Finding [{matrix.name}]")
+            Dim data = matrix.GetMatrix(Of ChromatogramTick)
+
+            app.LoadMatrix(matrix.name, data)
         End If
     End Sub
 
