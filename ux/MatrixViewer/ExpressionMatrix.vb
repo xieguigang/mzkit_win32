@@ -13,6 +13,12 @@ Public Class ExpressionMatrix : Inherits DataMatrix
         Me.colname = matrix.Keys.ToArray
     End Sub
 
+    Public Overrides ReadOnly Property UnderlyingType As Type
+        Get
+            Return GetType(KeyValuePair(Of String, Double()))
+        End Get
+    End Property
+
     Protected Overrides Sub CreateRows(table As DataTable)
         Dim expr = GetMatrix(Of KeyValuePair(Of String, Double()))().ToDictionary
 

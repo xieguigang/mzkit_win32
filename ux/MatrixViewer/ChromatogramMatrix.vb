@@ -5,6 +5,12 @@ Imports Microsoft.VisualBasic.Data.csv
 
 Public Class ChromatogramMatrix : Inherits DataMatrix
 
+    Public Overrides ReadOnly Property UnderlyingType As Type
+        Get
+            Return GetType(ChromatogramTick)
+        End Get
+    End Property
+
     Public Sub New(name As String, matrix As ChromatogramTick())
         MyBase.New(name, matrix)
     End Sub

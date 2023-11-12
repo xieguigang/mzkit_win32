@@ -5,6 +5,12 @@ Imports Microsoft.VisualBasic.Data.csv
 
 Public Class UVScanMatrix : Inherits DataMatrix
 
+    Public Overrides ReadOnly Property UnderlyingType As Type
+        Get
+            Return GetType(UVScanPoint)
+        End Get
+    End Property
+
     Public Sub New(name As String, matrix As Array)
         MyBase.New(name, matrix)
     End Sub

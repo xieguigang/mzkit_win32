@@ -26,6 +26,8 @@ Public MustInherit Class DataMatrix
         End Get
     End Property
 
+    Public MustOverride ReadOnly Property UnderlyingType As Type
+
     Sub New(name As String, matrix As Array)
         Me.name = name
         Me.matrix = matrix

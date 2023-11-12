@@ -537,20 +537,21 @@ Public Class PageMzkitTools
     Public Sub SaveMatrixToolStripMenuItem_Click()
         If _matrix Is Nothing Then
             Workbench.Warning("No matrix data for save, please select one spectrum to start!")
-        Else
-            Using file As New SaveFileDialog() With {
-                .Filter = "Excel Table(*.xls)|*.xls",
-                .FileName = _matrix.name.NormalizePathString(False)
-            }
-                If file.ShowDialog = DialogResult.OK Then
-                    Dim flag As Boolean = _matrix.SaveTo(file.FileName)
-
-                    If Not flag Then
-                        Call Workbench.Warning($"the save matrix not success or method has not yet been implemented for data type:{_matrix.GetType.FullName}")
-                    End If
-                End If
-            End Using
+            Return
         End If
+
+        Using file As New SaveFileDialog() With {
+            .Filter = "Excel Table(*.xls)|*.xls",
+            .FileName = _matrix.name.NormalizePathString(False)
+        }
+            If file.ShowDialog = DialogResult.OK Then
+                Dim flag As Boolean = _matrix.SaveTo(file.FileName)
+
+                If Not flag Then
+                    Call Workbench.Warning($"the save matrix not success or method has not yet been implemented for data type:{_matrix.UnderlyingType.FullName}")
+                End If
+            End If
+        End Using
     End Sub
 
     ''' <summary>

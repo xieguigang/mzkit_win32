@@ -5,6 +5,12 @@ Imports Microsoft.VisualBasic.Data.csv
 
 Public Class MSAlignmentMatrix : Inherits DataMatrix
 
+    Public Overrides ReadOnly Property UnderlyingType As Type
+        Get
+            Return GetType(SSM2MatrixFragment)
+        End Get
+    End Property
+
     Public Sub New(name As String, matrix As SSM2MatrixFragment())
         MyBase.New(name, matrix)
     End Sub

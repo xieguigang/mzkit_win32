@@ -7,6 +7,12 @@ Imports Task
 
 Public Class PDAMatrix : Inherits DataMatrix
 
+    Public Overrides ReadOnly Property UnderlyingType As Type
+        Get
+            Return GetType(PDAPoint)
+        End Get
+    End Property
+
     Public Sub New(name As String, matrix As Array)
         MyBase.New(name, matrix)
     End Sub

@@ -11,6 +11,11 @@ Public Class SpectralMatrix : Inherits DataMatrix
 
     ReadOnly precursor As (mz As Double, rt As Double)
     ReadOnly source As String
+    Public Overrides ReadOnly Property UnderlyingType As Type
+        Get
+            Return GetType(ms2)
+        End Get
+    End Property
 
     Public Sub New(name As String, matrix As ms2(), precursor As (mz As Double, rt As Double), source As String)
         MyBase.New(name, matrix)
