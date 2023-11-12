@@ -446,12 +446,18 @@ Module RibbonEvents
     End Sub
 
     Public Sub CopyPlotImage()
-        Dim img As Image = MyApplication.host.mzkitTool.PictureBox1.BackgroundImage
+        Dim toolkit = MyApplication.host.mzkitTool
+        Dim img As Image = toolkit.PictureBox1.BackgroundImage
 
         If Not img Is Nothing Then
             Call Clipboard.Clear()
             Call Clipboard.SetImage(img)
-            Call MyApplication.host.showStatusMessage($"Plot image '{MyApplication.host.mzkitTool.matrixName}' is copy to clipboard!")
+
+            If toolkit._matrix Is Nothing Then
+                Call MyApplication.host.showStatusMessage($"Plot image has been copy to clipboard!")
+            Else
+                Call MyApplication.host.showStatusMessage($"Plot image '{toolkit._matrix.name}' has been copy to clipboard!")
+            End If
         End If
     End Sub
 
