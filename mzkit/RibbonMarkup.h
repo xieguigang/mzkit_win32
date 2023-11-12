@@ -1442,5 +1442,12 @@
 #define cmdButtonViewMRI_LabelDescription_RESID 60002
 #define cmdButtonViewMRI_SmallImages_192__RESID 60003
 #define cmdButtonViewMRI_LargeImages_192__RESID 60004
-#define InternalCmd2_LabelTitle_RESID 60005
-#define InternalCmd4_LabelTitle_RESID 60006
+#define cmdButtonAddReferenceSpectral 264 
+#define cmdButtonAddReferenceSpectral_LabelTitle_RESID 60005
+#define cmdButtonAddReferenceSpectral_LabelDescription_RESID 60006
+#define cmdButtonAddReferenceSpectral_TooltipTitle_RESID 60007
+#define cmdButtonAddReferenceSpectral_TooltipDescription_RESID 60008
+#define cmdButtonAddReferenceSpectral_SmallImages_192__RESID 60009
+#define cmdButtonAddReferenceSpectral_LargeImages_192__RESID 60010
+#define InternalCmd2_LabelTitle_RESID 60011
+#define InternalCmd4_LabelTitle_RESID 60012

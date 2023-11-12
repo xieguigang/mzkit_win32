@@ -258,6 +258,7 @@ Namespace RibbonLib.Controls
             Public Const cmdGroupExport As UInteger = 2
             Public Const cmdButtonExportImage As UInteger = 1104
             Public Const cmdButtonExportMatrix As UInteger = 1105
+            Public Const cmdButtonAddReferenceSpectral As UInteger = 264
             Public Const cmdContextMap As UInteger = 1106
             Public Const cmdCustomizeQAT As UInteger = 1018
         End Class
@@ -1732,6 +1733,12 @@ Namespace RibbonLib.Controls
                 Return _ButtonExportMatrix
             End Get
         End Property
+        Private _ButtonAddReferenceSpectral As RibbonButton
+        Public ReadOnly Property ButtonAddReferenceSpectral As RibbonButton
+            Get
+                Return _ButtonAddReferenceSpectral
+            End Get
+        End Property
 
         Public Sub New(ByVal ribbon As Ribbon)
             If ribbon Is Nothing Then
@@ -1981,6 +1988,7 @@ Namespace RibbonLib.Controls
             _GroupExport = New RibbonDropDownButton(_ribbon, Cmd.cmdGroupExport)
             _ButtonExportImage = New RibbonButton(_ribbon, Cmd.cmdButtonExportImage)
             _ButtonExportMatrix = New RibbonButton(_ribbon, Cmd.cmdButtonExportMatrix)
+            _ButtonAddReferenceSpectral = New RibbonButton(_ribbon, Cmd.cmdButtonAddReferenceSpectral)
         End Sub
 
     End Class

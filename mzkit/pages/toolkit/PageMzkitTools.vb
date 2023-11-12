@@ -65,12 +65,15 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
+Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.UV
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
+Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.BioDeep.MetaDNA
 Imports BioNovoGene.BioDeep.MSEngine
 Imports BioNovoGene.mzkit_win32.MSdata
@@ -93,16 +96,15 @@ Imports RibbonLib.Interop
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
-Imports BioNovoGene.Analytical.MassSpectrometry.Math
-Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
-Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
-Imports UMapx.Decomposition
-Imports Microsoft.VisualBasic.MIME.Office.Excel.XLSX.XML.xl.worksheets
 
 Public Class PageMzkitTools
 
+    ''' <summary>
+    ''' any matrix data for display on current page
+    ''' </summary>
     Friend matrix As Array
     Friend matrixName As String
+    Friend spectral_info As (mz As Double, rt As Double, source As String)
 
     Friend _ribbonExportDataContextMenuStrip As ExportData
 
@@ -227,8 +229,6 @@ Public Class PageMzkitTools
         'AddHandler host.fileExplorer.GeneralFlavoneToolStripMenuItem.Click, AddressOf GeneralFlavoneToolStripMenuItem_Click
     End Sub
 
-    Dim currentMatrix As [Variant](Of ms2(), ChromatogramTick())
-
     Friend Sub showSpectrum(scanId As String, raw As MZWork.Raw, formula As String)
         If raw.cacheFileExists OrElse raw.isInMemory Then
             Dim prop As SpectrumProperty = Nothing
@@ -285,6 +285,10 @@ Public Class PageMzkitTools
         End If
     End Sub
 
+    ''' <summary>
+    ''' add metabolite annotation result based on ms1 peaks
+    ''' </summary>
+    ''' <param name="scanData">the ms1 scan peaksdata</param>
     Private Sub MakeAnnotations(scanData As LibraryMatrix)
         Dim mzdiff1 As Tolerance = Tolerance.DeltaMass(0.001)
         Dim mode As String = scanData.name.Match("[+-]")
@@ -485,7 +489,11 @@ Public Class PageMzkitTools
 
     Public Sub showAlignment(query As LibraryMatrix, ref As LibraryMatrix, result As AlignmentOutput, showScore As Boolean)
         Dim prop As New AlignmentProperty(result)
-        Dim alignName As String = If(showScore, $"Cos: [{result.forward.ToString("F3")}, {result.reverse.ToString("F3")}]", $"{query.name}_vs_{ref.name}")
+        Dim alignName As String = If(
+            showScore,
+            $"Cos: [{result.forward.ToString("F3")}, {result.reverse.ToString("F3")}]",
+            $"{query.name}_vs_{ref.name}"
+        )
 
         MyApplication.host.ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
 
@@ -545,12 +553,16 @@ Public Class PageMzkitTools
         Call TIC(TICList.ToArray)
     End Sub
 
-    Public Sub TIC(TICList As NamedCollection(Of ChromatogramTick)(), Optional d3 As Boolean = False, Optional xlab$ = "Time (s)", Optional ylab$ = "Intensity")
+    Public Sub TIC(TICList As NamedCollection(Of ChromatogramTick)(),
+                   Optional d3 As Boolean = False,
+                   Optional xlab$ = "Time (s)",
+                   Optional ylab$ = "Intensity")
+
         If TICList.IsNullOrEmpty Then
-            MyApplication.host.showStatusMessage("no chromatogram data!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Workbench.Warning("no chromatogram data!")
             Return
         ElseIf TICList.All(Function(file) file.All(Function(t) t.Intensity = 0.0)) Then
-            MyApplication.host.showStatusMessage("not able to create a TIC/BPC plot due to the reason of all of the tick intensity data is ZERO, please check your raw data file!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Workbench.Warning("not able to create a TIC/BPC plot due to the reason of all of the tick intensity data is ZERO, please check your raw data file!")
             Return
         End If
 
@@ -565,13 +577,21 @@ Public Class PageMzkitTools
         Call showMatrix(TICList(Scan0).value, TICList(Scan0).name)
 
         MyApplication.RegisterPlot(
-            Sub(args)
-                PictureBox1.BackgroundImage = blender.Rendering(args, PictureBox1.Size)
-            End Sub, width:=1600, height:=1200, showGrid:=True, padding:="padding:100px 100px 150px 200px;", showLegend:=Not d3, xlab:=xlab, ylab:=ylab)
+            plot:=Sub(args)
+                      PictureBox1.BackgroundImage = blender.Rendering(args, PictureBox1.Size)
+                  End Sub,
+            width:=1600,
+            height:=1200,
+            showGrid:=True,
+            padding:="padding:100px 100px 150px 200px;",
+            showLegend:=Not d3,
+            xlab:=xlab,
+            ylab:=ylab)
 
         MyApplication.host.ShowPage(Me)
     End Sub
 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Sub ShowMRMTIC(name As String, ticks As ChromatogramTick())
         Call TIC({New NamedCollection(Of ChromatogramTick)(name, ticks)})
     End Sub
@@ -597,7 +617,7 @@ Public Class PageMzkitTools
                 End If
             End Using
         Else
-            MyApplication.host.showStatusMessage("No plot image for save, please select one spectrum to start!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Workbench.Warning("No plot image for save, please select one spectrum to start!")
         End If
     End Sub
 
@@ -607,9 +627,12 @@ Public Class PageMzkitTools
 
     Public Sub SaveMatrixToolStripMenuItem_Click()
         If matrix Is Nothing Then
-            MyApplication.host.showStatusMessage("No matrix data for save, please select one spectrum to start!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Workbench.Warning("No matrix data for save, please select one spectrum to start!")
         Else
-            Using file As New SaveFileDialog() With {.Filter = "Excel Table(*.xls)|*.xls", .FileName = matrixName.NormalizePathString(False)}
+            Using file As New SaveFileDialog() With {
+                .Filter = "Excel Table(*.xls)|*.xls",
+                .FileName = matrixName.NormalizePathString(False)
+            }
                 If file.ShowDialog = DialogResult.OK Then
 
                     Select Case matrix.GetType
@@ -620,7 +643,7 @@ Public Class PageMzkitTools
                         Case GetType(UVScanPoint()) : Call DirectCast(matrix, UVScanPoint()).SaveTo(file.FileName)
 
                         Case Else
-                            Throw New NotImplementedException
+                            Call Workbench.Warning($"the save matrix method has not yet been implemented for data type:{matrix.Length.GetType.FullName}")
                     End Select
 
                 End If
@@ -642,7 +665,7 @@ Public Class PageMzkitTools
         Dim raw As PeakMs2() = getSpectrum(AddressOf progress.SetTitle).ToArray
 
         If raw.Length = 0 Then
-            MyApplication.host.showStatusMessage("No spectrum data, please select a file or some spectrum...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Workbench.Warning("No spectrum data, please select a file or some spectrum...")
         Else
             Call raw.MolecularNetworkingTool(progress, similarityCutoff)
         End If

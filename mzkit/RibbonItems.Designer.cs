@@ -261,6 +261,7 @@ namespace RibbonLib.Controls
             public const uint cmdGroupExport = 2;
             public const uint cmdButtonExportImage = 1104;
             public const uint cmdButtonExportMatrix = 1105;
+            public const uint cmdButtonAddReferenceSpectral = 264;
             public const uint cmdContextMap = 1106;
             public const uint cmdCustomizeQAT = 1018;
         }
@@ -515,6 +516,7 @@ namespace RibbonLib.Controls
         public RibbonDropDownButton GroupExport { get; private set; }
         public RibbonButton ButtonExportImage { get; private set; }
         public RibbonButton ButtonExportMatrix { get; private set; }
+        public RibbonButton ButtonAddReferenceSpectral { get; private set; }
 
         public RibbonItems(Ribbon ribbon)
         {
@@ -764,6 +766,7 @@ namespace RibbonLib.Controls
             GroupExport = new RibbonDropDownButton(ribbon, Cmd.cmdGroupExport);
             ButtonExportImage = new RibbonButton(ribbon, Cmd.cmdButtonExportImage);
             ButtonExportMatrix = new RibbonButton(ribbon, Cmd.cmdButtonExportMatrix);
+            ButtonAddReferenceSpectral = new RibbonButton(ribbon, Cmd.cmdButtonAddReferenceSpectral);
         }
 
     }
