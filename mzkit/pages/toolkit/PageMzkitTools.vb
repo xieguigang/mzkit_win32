@@ -347,45 +347,11 @@ Public Class PageMzkitTools
         End If
     End Sub
 
-    Public Sub PlotMatrix(title1$, title2$, scanData As LibraryMatrix, Optional focusOn As Boolean = True)
-        Call MyApplication.RegisterPlot(
-            Sub(args)
-                PictureBox1.BackgroundImage = scanData _
-                    .MirrorPlot(
-                        titles:={title1, title2},
-                        margin:=args.GetPadding.ToString,
-                        drawLegend:=args.show_legend,
-                        bg:=args.background.ToHtmlColor,
-                        plotTitle:=args.title,
-                        size:=$"{args.width},{args.height}"
-                    ) _
-                    .AsGDIImage
-            End Sub,
-            width:=1200,
-            height:=800,
-            padding:="padding: 100px 30px 50px 100px;",
-            bg:="white",
-            title:="BioDeep™ MS/MS alignment Viewer"
-        )
-
-        If focusOn Then
-            Call ShowTabPage(TabPage5)
-        End If
-    End Sub
-
     Friend Sub ShowMatrix(PDA As PDAPoint(), name As String)
         Me.matrix = PDA
         Me.matrixName = name
 
-        Dim memoryData As New DataSet
-        Dim table As DataTable = memoryData.Tables.Add("memoryData")
 
-        Try
-            Call DataGridView1.Columns.Clear()
-            Call DataGridView1.Rows.Clear()
-        Catch ex As Exception
-
-        End Try
 
         table.Columns.Add("scan_time", GetType(Double))
         table.Columns.Add("total_ion", GetType(Double))
@@ -397,9 +363,7 @@ Public Class PageMzkitTools
             table.Rows.Add(tick.scan_time, tick.total_ion, tick.total_ion / max * 100)
         Next
 
-        BindingSource1.DataSource = memoryData
-        BindingSource1.DataMember = table.TableName
-        DataGridView1.DataSource = BindingSource1
+
     End Sub
 
     Friend Sub ShowMatrix(UVscan As UVScanPoint(), name As String)

@@ -6,6 +6,9 @@
     <AssemblyName>Mzkit_win32.MatrixViewer</AssemblyName>
     <Platforms>AnyCPU;x64</Platforms>
     <Configurations>Debug;Release;mzkit_win32</Configurations>
+    <OutputType>Library</OutputType>
+    <UseApplicationFramework>True</UseApplicationFramework>
+    <EnableVisualStyles>True</EnableVisualStyles>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,6 +18,10 @@
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\mime\text%html\html_netcore5.vbproj" />
     <ProjectReference Include="..\..\..\visualize\plot\MsPlot.NET5.vbproj" />
     <ProjectReference Include="..\..\services\Task\Task.vbproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
 
 </Project>
