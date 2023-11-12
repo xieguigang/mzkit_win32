@@ -1,0 +1,36 @@
+﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
+Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
+Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Driver
+Imports Task
+
+Public Class SpectralMatrix : Inherits DataMatrix
+
+    ReadOnly precursor As (mz As Double, rt As Double)
+    ReadOnly source As String
+
+    Public Sub New(name As String, matrix As Array, precursor As (mz As Double, rt As Double), source As String)
+        MyBase.New(name, matrix)
+
+        Me.source = source
+        Me.precursor = precursor
+    End Sub
+
+    Public Overrides Function Plot(args As PlotProperty) As GraphicsData
+        Dim scanData As New LibraryMatrix With {
+            .name = name,
+            .ms2 = matrix,
+            .parentMz = precursor.mz
+        }
+
+        Return PeakAssign.DrawSpectrumPeaks(
+            scanData,
+            padding:=args.GetPadding.ToString,
+            bg:=args.background.ToHtmlColor,
+            size:=$"{args.width},{args.height}",
+            labelIntensity:=If(args.show_tag, 0.25, 100),
+            gridFill:=args.gridFill.ToHtmlColor,
+            barStroke:=$"stroke: steelblue; stroke-width: {args.line_width}px; stroke-dash: solid;"
+        )
+    End Function
+End Class

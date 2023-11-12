@@ -91,6 +91,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math.SignalProcessing
 Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.MatrixViewer
 Imports RibbonLib
 Imports RibbonLib.Interop
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
@@ -99,13 +100,7 @@ Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class PageMzkitTools
 
-    ''' <summary>
-    ''' any matrix data for display on current page
-    ''' </summary>
-    Friend matrix As Array
-    Friend matrixName As String
-    Friend spectral_info As (mz As Double, rt As Double, source As String)
-
+    Friend _matrix As DataMatrix
     Friend _ribbonExportDataContextMenuStrip As ExportData
 
     Public Sub Ribbon_Load(ribbon As Ribbon)
@@ -324,31 +319,19 @@ Public Class PageMzkitTools
     ''' </param>
     ''' <param name="nmr"></param>
     Public Sub PlotSpectrum(scanData As LibraryMatrix, Optional focusOn As Boolean = True, Optional nmr As Boolean = False)
+        If scanData.ms2.All(Function(i) i.mz = 0.0) Then
+            Call Workbench.Warning("Sorry, no valid m/z ion data...")
+            Return
+        End If
+        If nmr Then
+            _matrix = New NMRMatrix(scanData.name, scanData.ms2)
+        Else
+            _matrix = New SpectralMatrix(scanData.name, scanData.ms2, (scanData.parentMz, 0), "n/a")
+        End If
+
         Call MyApplication.RegisterPlot(
               Sub(args)
-                  scanData.name = args.title
-
-                  If nmr Then
-                      PictureBox1.BackgroundImage = New NMRSpectrum(scanData, args.GetTheme) With {
-                        .main = args.title
-                      } _
-                         .Plot(New Size(args.width, args.height), dpi:=150) _
-                         .AsGDIImage
-                  ElseIf scanData.ms2.All(Function(i) i.mz = 0.0) Then
-                      Call Workbench.Warning("Sorry, no valid m/z ion data...")
-                      Return
-                  Else
-                      PictureBox1.BackgroundImage = PeakAssign.DrawSpectrumPeaks(
-                        scanData,
-                        padding:=args.GetPadding.ToString,
-                        bg:=args.background.ToHtmlColor,
-                        size:=$"{args.width},{args.height}",
-                        labelIntensity:=If(args.show_tag, 0.25, 100),
-                        gridFill:=args.gridFill.ToHtmlColor,
-                        barStroke:=$"stroke: steelblue; stroke-width: {args.line_width}px; stroke-dash: solid;"
-                    ) _
-                    .AsGDIImage
-                  End If
+                  PictureBox1.BackgroundImage = _matrix.SetName(args.title).Plot(args).AsGDIImage
               End Sub,
           width:=2100,
           height:=1200,
