@@ -622,39 +622,8 @@ Public Class PageMzkitTools
     End Sub
 
     Sub ShowExpressionMatrix(expr As Dictionary(Of String, Double()), n As Integer, name As String)
-        Dim memoryData As New DataSet
-        Dim table As DataTable = memoryData.Tables.Add("memoryData")
-
-        Me.matrix = matrix
-        Me.matrixName = name
-
-        Try
-            Call DataGridView1.Columns.Clear()
-            Call DataGridView1.Rows.Clear()
-        Catch ex As Exception
-
-        End Try
-
-        Dim colname As String() = expr.Keys.ToArray
-
-        For Each key As String In colname
-            Call table.Columns.Add(key, GetType(Double))
-        Next
-
-        For i As Integer = 0 To n - 1
-            Dim v As Object() = New Object(colname.Length - 1) {}
-
-            For j As Integer = 0 To colname.Length - 1
-                v(j) = expr(colname(j))(i)
-            Next
-
-            table.Rows.Add(v)
-            System.Windows.Forms.Application.DoEvents()
-        Next
-
-        BindingSource1.DataSource = memoryData
-        BindingSource1.DataMember = table.TableName
-        DataGridView1.DataSource = BindingSource1
+        _matrix = New ExpressionMatrix(name, n, expr)
+        _matrix.LoadMatrix(DataGridView1, BindingSource1)
     End Sub
 
     ''' <summary>
