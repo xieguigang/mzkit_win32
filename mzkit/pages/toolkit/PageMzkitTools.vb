@@ -348,51 +348,13 @@ Public Class PageMzkitTools
     End Sub
 
     Friend Sub ShowMatrix(PDA As PDAPoint(), name As String)
-        Me.matrix = PDA
-        Me.matrixName = name
-
-
-
-        table.Columns.Add("scan_time", GetType(Double))
-        table.Columns.Add("total_ion", GetType(Double))
-        table.Columns.Add("relative", GetType(Double))
-
-        Dim max As Double = PDA.Select(Function(a) a.total_ion).Max
-
-        For Each tick As PDAPoint In PDA
-            table.Rows.Add(tick.scan_time, tick.total_ion, tick.total_ion / max * 100)
-        Next
-
-
+        _matrix = New PDAMatrix(name, PDA)
+        _matrix.LoadMatrix(DataGridView1, BindingSource1)
     End Sub
 
     Friend Sub ShowMatrix(UVscan As UVScanPoint(), name As String)
-        Me.matrix = UVscan
-        Me.matrixName = name
-
-        Dim memoryData As New DataSet
-        Dim table As DataTable = memoryData.Tables.Add("memoryData")
-
-        Try
-            Call DataGridView1.Columns.Clear()
-            Call DataGridView1.Rows.Clear()
-        Catch ex As Exception
-
-        End Try
-
-        table.Columns.Add("wavelength(nm)", GetType(Double))
-        table.Columns.Add("intensity", GetType(Double))
-        table.Columns.Add("relative", GetType(Double))
-
-        Dim max As Double = UVscan.Select(Function(a) a.intensity).Max
-
-        For Each tick As UVScanPoint In UVscan
-            table.Rows.Add(tick.wavelength, tick.intensity, tick.intensity / max * 100)
-        Next
-
-        BindingSource1.DataSource = memoryData
-        BindingSource1.DataMember = table.TableName
-        DataGridView1.DataSource = BindingSource1
+        _matrix = New UVScanMatrix(name, UVscan)
+        _matrix.LoadMatrix(DataGridView1, BindingSource1)
     End Sub
 
     Friend Sub showUVscans(scans As IEnumerable(Of GeneralSignal), title$, xlable$)

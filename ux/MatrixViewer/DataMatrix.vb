@@ -26,7 +26,7 @@ Public MustInherit Class DataMatrix
 
     Public MustOverride Function Plot(args As PlotProperty) As GraphicsData
 
-    Public Sub LoadMatrix(DataGridView1 As DataGridView, BindingSource1 As BindingSource)
+    Public Sub LoadMatrix(ByRef DataGridView1 As DataGridView, ByRef BindingSource1 As BindingSource)
         Dim memoryData As New DataSet
         Dim table As DataTable = memoryData.Tables.Add("memoryData")
 
