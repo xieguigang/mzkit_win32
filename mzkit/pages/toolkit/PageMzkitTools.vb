@@ -148,7 +148,10 @@ Public Class PageMzkitTools
             colorSet = "YlGnBu:c8"
             width = 2400
 
-            Call ProgressSpinner.DoLoading(Sub() Me.Invoke(Sub() _matrix = New ChromatogramOverlapMatrix(matrixName, raw.Get3DPeaks.ToArray, spatial3D:=True)))
+            Call ProgressSpinner.DoLoading(
+                Sub()
+                    Me.Invoke(Sub() _matrix = New ChromatogramOverlapMatrix(matrixName, raw.Get3DPeaks.ToArray, spatial3D:=True))
+                End Sub)
         ElseIf contour Then
             colorSet = "Jet"
             width = 3600
@@ -162,25 +165,21 @@ Public Class PageMzkitTools
             Call ProgressSpinner.DoLoading(Sub() Me.Invoke(Sub() _matrix = New Ms1ScatterMatrix(matrixName, raw)))
         End If
 
+        Call _matrix.LoadMatrix(DataGridView1, BindingSource1)
+
         Call MyApplication.RegisterPlot(
-            Sub(args)
-                Call ProgressSpinner.DoLoading(Sub()
-                                                   Dim image As Image
-
-                                                   If contour Then
-                                                       image = .AsGDIImage
-                                                   ElseIf XIC Then
-                                                       image = raw.Draw3DPeaks(colorSet:=args.GetColorSetName, size:=$"{args.width},{args.height}", args.GetPadding.ToString)
-                                                   Else
-                                                       image = raw.DrawScatter(colorSet:=args.GetColorSetName)
-                                                   End If
-
-                                                   Me.Invoke(Sub() PictureBox1.BackgroundImage = image)
-                                               End Sub)
-
-            End Sub, colorSet:=colorSet, width:=width, height:=height, padding:=padding, legendTitle:="Levels")
-
-
+            plot:=Sub(args)
+                      Call ProgressSpinner.DoLoading(
+                    Sub()
+                        Me.Invoke(Sub() PictureBox1.BackgroundImage = _matrix.Plot(args, PictureBox1.Size).AsGDIImage)
+                    End Sub)
+                  End Sub,
+            colorSet:=colorSet,
+            width:=width,
+            height:=height,
+            padding:=padding,
+            legendTitle:="Levels"
+        )
 
         MyApplication.host.ShowPage(Me)
         MyApplication.host.Invoke(Sub() ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.NotAvailable)
