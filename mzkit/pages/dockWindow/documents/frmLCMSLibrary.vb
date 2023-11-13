@@ -1,10 +1,10 @@
-﻿Imports System.IO
+﻿Imports System.ComponentModel
+Imports System.IO
 Imports System.Runtime.InteropServices
 Imports BioDeep
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
-Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.PackLib
 Imports BioNovoGene.BioDeep.Chemistry
@@ -181,6 +181,10 @@ Public Class frmLCMSLibrary
             .GetJson _
             .SaveTo($"{export_dir}/biodeepdb.json")
     End Sub
+
+    Private Sub frmLCMSLibrary_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        Call [lib].Close()
+    End Sub
 End Class
 
 ' 所有需要在JavaScript环境中暴露的对象
@@ -196,8 +200,14 @@ Public Class LibraryApp
     ''' Close current
     ''' </summary>
     Public Sub Close()
-        current.Dispose()
-        current = Nothing
+        If Not current Is Nothing Then
+            Try
+                current.Dispose()
+                current = Nothing
+            Catch ex As Exception
+
+            End Try
+        End If
     End Sub
 
     Public Function ScanLibraries() As String

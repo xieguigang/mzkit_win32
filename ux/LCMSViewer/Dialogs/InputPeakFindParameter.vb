@@ -13,6 +13,9 @@ Public Class InputPeakFindParameter : Inherits InputDialog
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents TextBox3 As TextBox
     Friend WithEvents NumericUpDown1 As NumericUpDown
+    Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents CheckBox1 As CheckBox
     Friend WithEvents GroupBox1 As GroupBox
 
     Private Sub InitializeComponent()
@@ -27,13 +30,16 @@ Public Class InputPeakFindParameter : Inherits InputDialog
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(251, 164)
+        Me.Button1.Location = New System.Drawing.Point(251, 195)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 0
@@ -42,7 +48,7 @@ Public Class InputPeakFindParameter : Inherits InputDialog
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(153, 164)
+        Me.Button2.Location = New System.Drawing.Point(153, 195)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 1
@@ -78,6 +84,9 @@ Public Class InputPeakFindParameter : Inherits InputDialog
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.TextBox4)
+        Me.GroupBox1.Controls.Add(Me.Label5)
+        Me.GroupBox1.Controls.Add(Me.CheckBox1)
         Me.GroupBox1.Controls.Add(Me.TextBox3)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.TextBox2)
@@ -88,7 +97,7 @@ Public Class InputPeakFindParameter : Inherits InputDialog
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(329, 134)
+        Me.GroupBox1.Size = New System.Drawing.Size(329, 177)
         Me.GroupBox1.TabIndex = 5
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Arguments"
@@ -135,10 +144,39 @@ Public Class InputPeakFindParameter : Inherits InputDialog
         Me.NumericUpDown1.TabIndex = 5
         Me.NumericUpDown1.Value = New Decimal(New Integer() {65, 0, 0, 0})
         '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Checked = True
+        Me.CheckBox1.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBox1.Location = New System.Drawing.Point(160, 123)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(54, 16)
+        Me.CheckBox1.TabIndex = 10
+        Me.CheckBox1.Text = "Joint"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(25, 149)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(65, 12)
+        Me.Label5.TabIndex = 11
+        Me.Label5.Text = "Min Ticks:"
+        '
+        'TextBox4
+        '
+        Me.TextBox4.Location = New System.Drawing.Point(160, 146)
+        Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.Size = New System.Drawing.Size(135, 21)
+        Me.TextBox4.TabIndex = 12
+        Me.TextBox4.Text = "6"
+        '
         'InputPeakFindParameter
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
-        Me.ClientSize = New System.Drawing.Size(352, 201)
+        Me.ClientSize = New System.Drawing.Size(352, 230)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
@@ -165,6 +203,8 @@ Public Class InputPeakFindParameter : Inherits InputDialog
             TextBox2.Text = args.peakwidth.Max
             TextBox3.Text = args.SN
             NumericUpDown1.Value = args.baseline * 100
+            TextBox4.Text = args.nticks
+            CheckBox1.Checked = args.joint
         End If
     End Sub
 
@@ -176,13 +216,16 @@ Public Class InputPeakFindParameter : Inherits InputDialog
         Dim peakMin = TextBox1.ValidateDouble
         Dim peakMax = TextBox2.ValidateDouble(pip:=peakMin)
         Dim SN = TextBox3.ValidateDouble(pip:=peakMax)
+        Dim nticks = TextBox4.ValidateInteger(pip:=SN)
 
-        If {peakMin, peakMax, SN}.Any(Function(a) a Is Nothing) Then
+        If {peakMin, peakMax, SN, nticks}.Any(Function(a) a Is Nothing) Then
             Return
         Else
             args.SN = SN
             args.peakwidth = {peakMin.Value, peakMax.Value}
             args.baseline = NumericUpDown1.Value / 100
+            args.joint = CheckBox1.Checked
+            args.nticks = nticks
 
             Me.DialogResult = DialogResult.OK
         End If

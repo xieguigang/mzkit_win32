@@ -2022,6 +2022,10 @@
       <Project>{1440c713-78b7-4d26-978c-d2789dda67ff}</Project>
       <Name>LocalLaplacianFilters</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ux\MatrixViewer\MatrixViewer.vbproj">
+      <Project>{1c685387-d678-40f1-86ef-387f2bb85cb9}</Project>
+      <Name>MatrixViewer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ux\MSImagingViewer2\MSImagingViewerV2.vbproj">
       <Project>{daf59cb6-ccd9-0fc6-1b8c-a3cdcd5ce92d}</Project>
       <Name>MSImagingViewerV2</Name>

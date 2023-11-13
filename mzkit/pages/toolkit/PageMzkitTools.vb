@@ -62,15 +62,17 @@
 Imports System.Runtime.CompilerServices
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
-Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
+Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.UV
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
+Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.BioDeep.MetaDNA
 Imports BioNovoGene.BioDeep.MSEngine
 Imports BioNovoGene.mzkit_win32.MSdata
@@ -78,32 +80,23 @@ Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.RibbonLib.Controls
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
-Imports Microsoft.VisualBasic.Data.ChartPlots.Contour
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
-Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Math2D.MarchingSquares
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math.SignalProcessing
-Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.MatrixViewer
 Imports RibbonLib
 Imports RibbonLib.Interop
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
-Imports BioNovoGene.Analytical.MassSpectrometry.Math
-Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
-Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
-Imports UMapx.Decomposition
-Imports Microsoft.VisualBasic.MIME.Office.Excel.XLSX.XML.xl.worksheets
 
 Public Class PageMzkitTools
 
-    Friend matrix As Array
-    Friend matrixName As String
-
+    Friend _matrix As DataMatrix
     Friend _ribbonExportDataContextMenuStrip As ExportData
 
     Public Sub Ribbon_Load(ribbon As Ribbon)
@@ -136,57 +129,52 @@ Public Class PageMzkitTools
             Return
         ElseIf directSnapshot Then
             PictureBox1.BackgroundImage = raw.GetSnapshot
-        Else
-            Dim colorSet As String
-            Dim data As ContourLayer() = Nothing
-            Dim width As Integer = 2048
-            Dim height As Integer = 1600
-            Dim padding As String = "padding:100px 400px 100px 100px;"
-
-            If XIC Then
-                colorSet = "YlGnBu:c8"
-                width = 2400
-            ElseIf contour Then
-                colorSet = "Jet"
-
-                Call ProgressSpinner.DoLoading(
-                    Sub()
-                        data = raw.GetContourData
-                    End Sub)
-
-                width = 3600
-                height = 2700
-                padding = "padding:100px 750px 100px 100px;"
-            Else
-                colorSet = "darkblue,blue,skyblue,green,orange,red,darkred"
-            End If
-
-            Call MyApplication.RegisterPlot(
-                Sub(args)
-                    Call ProgressSpinner.DoLoading(Sub()
-                                                       Dim image As Image
-
-                                                       If contour Then
-                                                           image = data.Plot(
-                                    size:=$"{args.width},{args.height}",
-                                    padding:=args.GetPadding.ToString,
-                                    colorSet:=args.GetColorSetName,
-                                    ppi:=200,
-                                    legendTitle:=args.legend_title
-                                ).AsGDIImage
-                                                       ElseIf XIC Then
-                                                           image = raw.Draw3DPeaks(colorSet:=args.GetColorSetName, size:=$"{args.width},{args.height}", args.GetPadding.ToString)
-                                                       Else
-                                                           image = raw.DrawScatter(colorSet:=args.GetColorSetName)
-                                                       End If
-
-                                                       Me.Invoke(Sub() PictureBox1.BackgroundImage = image)
-                                                   End Sub)
-
-                End Sub, colorSet:=colorSet, width:=width, height:=height, padding:=padding, legendTitle:="Levels")
+            Return
         End If
 
-        Me.matrixName = $"{raw.source.FileName}_{If(XIC, "XICPeaks", "rawscatter_2D")}"
+        Dim colorSet As String
+        Dim data As ContourLayer() = Nothing
+        Dim width As Integer = 2048
+        Dim height As Integer = 1600
+        Dim padding As String = "padding:100px 400px 100px 100px;"
+        Dim matrixName = $"{raw.source.FileName}_{If(XIC, "XICPeaks", "rawscatter_2D")}"
+
+        If XIC Then
+            colorSet = "YlGnBu:c8"
+            width = 2400
+
+            Call ProgressSpinner.DoLoading(
+                Sub()
+                    Me.Invoke(Sub() _matrix = New ChromatogramOverlapMatrix(matrixName, raw.Get3DPeaks.ToArray, spatial3D:=True))
+                End Sub)
+        ElseIf contour Then
+            colorSet = "Jet"
+            width = 3600
+            height = 2700
+            padding = "padding:100px 750px 100px 100px;"
+
+            Call ProgressSpinner.DoLoading(Sub() Me.Invoke(Sub() _matrix = New CounterMatrix(matrixName, raw)))
+        Else
+            colorSet = "darkblue,blue,skyblue,green,orange,red,darkred"
+
+            Call ProgressSpinner.DoLoading(Sub() Me.Invoke(Sub() _matrix = New Ms1ScatterMatrix(matrixName, raw)))
+        End If
+
+        Call _matrix.LoadMatrix(DataGridView1, BindingSource1)
+
+        Call MyApplication.RegisterPlot(
+            plot:=Sub(args)
+                      Call ProgressSpinner.DoLoading(
+                    Sub()
+                        Me.Invoke(Sub() PictureBox1.BackgroundImage = _matrix.Plot(args, PictureBox1.Size).AsGDIImage)
+                    End Sub)
+                  End Sub,
+            colorSet:=colorSet,
+            width:=width,
+            height:=height,
+            padding:=padding,
+            legendTitle:="Levels"
+        )
 
         MyApplication.host.ShowPage(Me)
         MyApplication.host.Invoke(Sub() ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.NotAvailable)
@@ -226,8 +214,6 @@ Public Class PageMzkitTools
         'AddHandler host.fileExplorer.NatureProductToolStripMenuItem.Click, AddressOf NatureProductToolStripMenuItem_Click
         'AddHandler host.fileExplorer.GeneralFlavoneToolStripMenuItem.Click, AddressOf GeneralFlavoneToolStripMenuItem_Click
     End Sub
-
-    Dim currentMatrix As [Variant](Of ms2(), ChromatogramTick())
 
     Friend Sub showSpectrum(scanId As String, raw As MZWork.Raw, formula As String)
         If raw.cacheFileExists OrElse raw.isInMemory Then
@@ -285,6 +271,10 @@ Public Class PageMzkitTools
         End If
     End Sub
 
+    ''' <summary>
+    ''' add metabolite annotation result based on ms1 peaks
+    ''' </summary>
+    ''' <param name="scanData">the ms1 scan peaksdata</param>
     Private Sub MakeAnnotations(scanData As LibraryMatrix)
         Dim mzdiff1 As Tolerance = Tolerance.DeltaMass(0.001)
         Dim mode As String = scanData.name.Match("[+-]")
@@ -320,31 +310,19 @@ Public Class PageMzkitTools
     ''' </param>
     ''' <param name="nmr"></param>
     Public Sub PlotSpectrum(scanData As LibraryMatrix, Optional focusOn As Boolean = True, Optional nmr As Boolean = False)
+        If scanData.ms2.All(Function(i) i.mz = 0.0) Then
+            Call Workbench.Warning("Sorry, no valid m/z ion data...")
+            Return
+        End If
+        If nmr Then
+            _matrix = New NMRMatrix(scanData.name, scanData.ms2)
+        Else
+            _matrix = New SpectralMatrix(scanData.name, scanData.ms2, (scanData.parentMz, 0), "n/a")
+        End If
+
         Call MyApplication.RegisterPlot(
               Sub(args)
-                  scanData.name = args.title
-
-                  If nmr Then
-                      PictureBox1.BackgroundImage = New NMRSpectrum(scanData, args.GetTheme) With {
-                        .main = args.title
-                      } _
-                         .Plot(New Size(args.width, args.height), dpi:=150) _
-                         .AsGDIImage
-                  ElseIf scanData.ms2.All(Function(i) i.mz = 0.0) Then
-                      Call Workbench.Warning("Sorry, no valid m/z ion data...")
-                      Return
-                  Else
-                      PictureBox1.BackgroundImage = PeakAssign.DrawSpectrumPeaks(
-                        scanData,
-                        padding:=args.GetPadding.ToString,
-                        bg:=args.background.ToHtmlColor,
-                        size:=$"{args.width},{args.height}",
-                        labelIntensity:=If(args.show_tag, 0.25, 100),
-                        gridFill:=args.gridFill.ToHtmlColor,
-                        barStroke:=$"stroke: steelblue; stroke-width: {args.line_width}px; stroke-dash: solid;"
-                    ) _
-                    .AsGDIImage
-                  End If
+                  PictureBox1.BackgroundImage = _matrix.SetName(args.title).Plot(args, PictureBox1.Size).AsGDIImage
               End Sub,
           width:=2100,
           height:=1200,
@@ -360,88 +338,14 @@ Public Class PageMzkitTools
         End If
     End Sub
 
-    Public Sub PlotMatrix(title1$, title2$, scanData As LibraryMatrix, Optional focusOn As Boolean = True)
-        Call MyApplication.RegisterPlot(
-            Sub(args)
-                PictureBox1.BackgroundImage = scanData _
-                    .MirrorPlot(
-                        titles:={title1, title2},
-                        margin:=args.GetPadding.ToString,
-                        drawLegend:=args.show_legend,
-                        bg:=args.background.ToHtmlColor,
-                        plotTitle:=args.title,
-                        size:=$"{args.width},{args.height}"
-                    ) _
-                    .AsGDIImage
-            End Sub,
-            width:=1200,
-            height:=800,
-            padding:="padding: 100px 30px 50px 100px;",
-            bg:="white",
-            title:="BioDeep™ MS/MS alignment Viewer"
-        )
-
-        If focusOn Then
-            Call ShowTabPage(TabPage5)
-        End If
-    End Sub
-
     Friend Sub ShowMatrix(PDA As PDAPoint(), name As String)
-        Me.matrix = PDA
-        Me.matrixName = name
-
-        Dim memoryData As New DataSet
-        Dim table As DataTable = memoryData.Tables.Add("memoryData")
-
-        Try
-            Call DataGridView1.Columns.Clear()
-            Call DataGridView1.Rows.Clear()
-        Catch ex As Exception
-
-        End Try
-
-        table.Columns.Add("scan_time", GetType(Double))
-        table.Columns.Add("total_ion", GetType(Double))
-        table.Columns.Add("relative", GetType(Double))
-
-        Dim max As Double = PDA.Select(Function(a) a.total_ion).Max
-
-        For Each tick As PDAPoint In PDA
-            table.Rows.Add(tick.scan_time, tick.total_ion, tick.total_ion / max * 100)
-        Next
-
-        BindingSource1.DataSource = memoryData
-        BindingSource1.DataMember = table.TableName
-        DataGridView1.DataSource = BindingSource1
+        _matrix = New PDAMatrix(name, PDA)
+        _matrix.LoadMatrix(DataGridView1, BindingSource1)
     End Sub
 
     Friend Sub ShowMatrix(UVscan As UVScanPoint(), name As String)
-        Me.matrix = UVscan
-        Me.matrixName = name
-
-        Dim memoryData As New DataSet
-        Dim table As DataTable = memoryData.Tables.Add("memoryData")
-
-        Try
-            Call DataGridView1.Columns.Clear()
-            Call DataGridView1.Rows.Clear()
-        Catch ex As Exception
-
-        End Try
-
-        table.Columns.Add("wavelength(nm)", GetType(Double))
-        table.Columns.Add("intensity", GetType(Double))
-        table.Columns.Add("relative", GetType(Double))
-
-        Dim max As Double = UVscan.Select(Function(a) a.intensity).Max
-
-        For Each tick As UVScanPoint In UVscan
-            table.Rows.Add(tick.wavelength, tick.intensity, tick.intensity / max * 100)
-        Next
-
-        BindingSource1.DataSource = memoryData
-        BindingSource1.DataMember = table.TableName
-        DataGridView1.DataSource = BindingSource1
+        _matrix = New UVScanMatrix(name, UVscan)
+        _matrix.LoadMatrix(DataGridView1, BindingSource1)
     End Sub
 
     Friend Sub showUVscans(scans As IEnumerable(Of GeneralSignal), title$, xlable$)
@@ -485,7 +389,11 @@ Public Class PageMzkitTools
 
     Public Sub showAlignment(query As LibraryMatrix, ref As LibraryMatrix, result As AlignmentOutput, showScore As Boolean)
         Dim prop As New AlignmentProperty(result)
-        Dim alignName As String = If(showScore, $"Cos: [{result.forward.ToString("F3")}, {result.reverse.ToString("F3")}]", $"{query.name}_vs_{ref.name}")
+        Dim alignName As String = If(
+            showScore,
+            $"Cos: [{result.forward.ToString("F3")}, {result.reverse.ToString("F3")}]",
+            $"{query.name}_vs_{ref.name}"
+        )
 
         MyApplication.host.ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
 
@@ -545,42 +453,72 @@ Public Class PageMzkitTools
         Call TIC(TICList.ToArray)
     End Sub
 
-    Public Sub TIC(TICList As NamedCollection(Of ChromatogramTick)(), Optional d3 As Boolean = False, Optional xlab$ = "Time (s)", Optional ylab$ = "Intensity")
+    Public Sub TIC(TICList As NamedCollection(Of ChromatogramTick)(),
+                   Optional d3 As Boolean = False,
+                   Optional xlab$ = "Time (s)",
+                   Optional ylab$ = "Intensity")
+
         If TICList.IsNullOrEmpty Then
-            MyApplication.host.showStatusMessage("no chromatogram data!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Workbench.Warning("no chromatogram data!")
             Return
-        ElseIf TICList.All(Function(file) file.All(Function(t) t.Intensity = 0.0)) Then
-            MyApplication.host.showStatusMessage("not able to create a TIC/BPC plot due to the reason of all of the tick intensity data is ZERO, please check your raw data file!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+        End If
+        If TICList.All(Function(file) file.All(Function(t) t.Intensity = 0.0)) Then
+            Workbench.Warning("not able to create a TIC/BPC plot due to the reason of all of the tick intensity data is ZERO, please check your raw data file!")
             Return
         End If
 
-        Dim blender As Blender
+        Dim signals As ChromatogramSerial() = TICList _
+            .Select(Function(c)
+                        Return New ChromatogramSerial(c.name, c.AsEnumerable)
+                    End Function) _
+            .ToArray
 
-        If d3 Then
-            blender = New XIC3DBlender(TICList)
-        Else
-            blender = New ChromatogramBlender(TICList)
-        End If
-
-        Call showMatrix(TICList(Scan0).value, TICList(Scan0).name)
+        _matrix = New ChromatogramOverlapMatrix("TIC/BPC chromatogram overlaps", signals, d3)
+        _matrix.LoadMatrix(DataGridView1, BindingSource1)
 
         MyApplication.RegisterPlot(
-            Sub(args)
-                PictureBox1.BackgroundImage = blender.Rendering(args, PictureBox1.Size)
-            End Sub, width:=1600, height:=1200, showGrid:=True, padding:="padding:100px 100px 150px 200px;", showLegend:=Not d3, xlab:=xlab, ylab:=ylab)
+            plot:=Sub(args)
+                      PictureBox1.BackgroundImage = _matrix.Plot(args, PictureBox1.Size).AsGDIImage
+                  End Sub,
+            width:=1600,
+            height:=1200,
+            showGrid:=True,
+            padding:="padding:100px 100px 150px 200px;",
+            showLegend:=Not d3,
+            xlab:=xlab,
+            ylab:=ylab)
 
         MyApplication.host.ShowPage(Me)
     End Sub
 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Sub ShowMRMTIC(name As String, ticks As ChromatogramTick())
-        Call TIC({New NamedCollection(Of ChromatogramTick)(name, ticks)})
+        Dim xlab As String = "Time (s)"
+        Dim ylab As String = "Intensity"
+
+        _matrix = New ChromatogramMatrix(name, ticks)
+        _matrix.LoadMatrix(DataGridView1, BindingSource1)
+
+        MyApplication.RegisterPlot(
+            plot:=Sub(args)
+                      PictureBox1.BackgroundImage = _matrix.Plot(args, PictureBox1.Size).AsGDIImage
+                  End Sub,
+            width:=1600,
+            height:=1200,
+            showGrid:=True,
+            padding:="padding:100px 100px 150px 200px;",
+            showLegend:=True,
+            xlab:=xlab,
+            ylab:=ylab)
+
+        MyApplication.host.ShowPage(Me)
     End Sub
 
     Public Sub TIC(isBPC As Boolean)
         Dim rawList As MZWork.Raw() = WindowModules.fileExplorer.GetSelectedRaws.ToArray
 
         If rawList.Length = 0 Then
-            MyApplication.host.showStatusMessage("No file data selected for TIC plot...")
+            Workbench.Warning("No file data selected for TIC plot...")
         Else
             Call TIC(rawList, isBPC)
         End If
@@ -588,7 +526,7 @@ Public Class PageMzkitTools
 
     Public Sub SaveImageToolStripMenuItem_Click()
         If Not PictureBox1.BackgroundImage Is Nothing Then
-            Dim preFileName As String = matrixName.NormalizePathString(alphabetOnly:=False)
+            Dim preFileName As String = _matrix.name.NormalizePathString(alphabetOnly:=False)
 
             Using file As New SaveFileDialog With {.Filter = "image(*.png)|*.png", .FileName = preFileName & ".png"}
                 If file.ShowDialog = DialogResult.OK Then
@@ -597,7 +535,7 @@ Public Class PageMzkitTools
                 End If
             End Using
         Else
-            MyApplication.host.showStatusMessage("No plot image for save, please select one spectrum to start!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Workbench.Warning("No plot image for save, please select one spectrum to start!")
         End If
     End Sub
 
@@ -606,26 +544,23 @@ Public Class PageMzkitTools
     End Sub
 
     Public Sub SaveMatrixToolStripMenuItem_Click()
-        If matrix Is Nothing Then
-            MyApplication.host.showStatusMessage("No matrix data for save, please select one spectrum to start!", My.Resources.StatusAnnotations_Warning_32xLG_color)
-        Else
-            Using file As New SaveFileDialog() With {.Filter = "Excel Table(*.xls)|*.xls", .FileName = matrixName.NormalizePathString(False)}
-                If file.ShowDialog = DialogResult.OK Then
-
-                    Select Case matrix.GetType
-                        Case GetType(ms2()) : Call DirectCast(matrix, ms2()).SaveTo(file.FileName)
-                        Case GetType(ChromatogramTick()) : Call DirectCast(matrix, ChromatogramTick()).SaveTo(file.FileName)
-                        Case GetType(SSM2MatrixFragment()) : Call DirectCast(matrix, SSM2MatrixFragment()).SaveTo(file.FileName)
-                        Case GetType(PDAPoint()) : Call DirectCast(matrix, PDAPoint()).SaveTo(file.FileName)
-                        Case GetType(UVScanPoint()) : Call DirectCast(matrix, UVScanPoint()).SaveTo(file.FileName)
-
-                        Case Else
-                            Throw New NotImplementedException
-                    End Select
-
-                End If
-            End Using
+        If _matrix Is Nothing Then
+            Workbench.Warning("No matrix data for save, please select one spectrum to start!")
+            Return
         End If
+
+        Using file As New SaveFileDialog() With {
+            .Filter = "Excel Table(*.xls)|*.xls",
+            .FileName = _matrix.name.NormalizePathString(False)
+        }
+            If file.ShowDialog = DialogResult.OK Then
+                Dim flag As Boolean = _matrix.SaveTo(file.FileName)
+
+                If Not flag Then
+                    Call Workbench.Warning($"the save matrix not success or method has not yet been implemented for data type:{_matrix.UnderlyingType.FullName}")
+                End If
+            End If
+        End Using
     End Sub
 
     ''' <summary>
@@ -642,7 +577,7 @@ Public Class PageMzkitTools
         Dim raw As PeakMs2() = getSpectrum(AddressOf progress.SetTitle).ToArray
 
         If raw.Length = 0 Then
-            MyApplication.host.showStatusMessage("No spectrum data, please select a file or some spectrum...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Workbench.Warning("No spectrum data, please select a file or some spectrum...")
         Else
             Call raw.MolecularNetworkingTool(progress, similarityCutoff)
         End If
@@ -690,39 +625,8 @@ Public Class PageMzkitTools
     End Sub
 
     Sub ShowExpressionMatrix(expr As Dictionary(Of String, Double()), n As Integer, name As String)
-        Dim memoryData As New DataSet
-        Dim table As DataTable = memoryData.Tables.Add("memoryData")
-
-        Me.matrix = matrix
-        Me.matrixName = name
-
-        Try
-            Call DataGridView1.Columns.Clear()
-            Call DataGridView1.Rows.Clear()
-        Catch ex As Exception
-
-        End Try
-
-        Dim colname As String() = expr.Keys.ToArray
-
-        For Each key As String In colname
-            Call table.Columns.Add(key, GetType(Double))
-        Next
-
-        For i As Integer = 0 To n - 1
-            Dim v As Object() = New Object(colname.Length - 1) {}
-
-            For j As Integer = 0 To colname.Length - 1
-                v(j) = expr(colname(j))(i)
-            Next
-
-            table.Rows.Add(v)
-            System.Windows.Forms.Application.DoEvents()
-        Next
-
-        BindingSource1.DataSource = memoryData
-        BindingSource1.DataMember = table.TableName
-        DataGridView1.DataSource = BindingSource1
+        _matrix = New ExpressionMatrix(name, n, expr)
+        _matrix.LoadMatrix(DataGridView1, BindingSource1)
     End Sub
 
     ''' <summary>
@@ -731,105 +635,23 @@ Public Class PageMzkitTools
     ''' <param name="matrix"></param>
     ''' <param name="name"></param>
     Sub showMatrix(matrix As ms2(), name As String, Optional nmr As Boolean = False)
-        Dim memoryData As New DataSet
-        Dim table As DataTable = memoryData.Tables.Add("memoryData")
-
-        Me.matrix = matrix
-        Me.matrixName = name
-
-        Try
-            Call DataGridView1.Columns.Clear()
-            Call DataGridView1.Rows.Clear()
-        Catch ex As Exception
-
-        End Try
-
         If nmr Then
-            table.Columns.Add("ppm", GetType(Double))
-            table.Columns.Add("intensity", GetType(Double))
-
-            For Each tick As ms2 In matrix
-                table.Rows.Add(tick.mz, tick.intensity)
-                System.Windows.Forms.Application.DoEvents()
-            Next
+            _matrix = New NMRMatrix(name, matrix)
         Else
-            Dim max As Double
-
-            If matrix.Length = 0 Then
-                max = 0
-                Call Workbench.Warning($"'{name}' didn't contains any data...")
-            Else
-                max = matrix.Select(Function(a) a.intensity).Max
-            End If
-
-            table.Columns.Add("m/z", GetType(Double))
-            table.Columns.Add("intensity", GetType(Double))
-            table.Columns.Add("relative", GetType(Double))
-            table.Columns.Add("annotation", GetType(String))
-
-            For Each tick As ms2 In matrix
-                table.Rows.Add(tick.mz, tick.intensity, CInt(tick.intensity / max * 100), tick.Annotation)
-                System.Windows.Forms.Application.DoEvents()
-            Next
+            _matrix = New SpectralMatrix(name, matrix, Nothing, "n/a")
         End If
 
-        BindingSource1.DataSource = memoryData
-        BindingSource1.DataMember = table.TableName
-        DataGridView1.DataSource = BindingSource1
+        _matrix.LoadMatrix(DataGridView1, BindingSource1)
     End Sub
 
     Sub showMatrix(matrix As SSM2MatrixFragment(), name As String)
-        Me.matrix = matrix
-        Me.matrixName = name
-
-        Dim memoryData As New DataSet
-        Dim table As DataTable = memoryData.Tables.Add("memoryData")
-
-        Try
-            Call DataGridView1.Columns.Clear()
-            Call DataGridView1.Rows.Clear()
-        Catch ex As Exception
-
-        End Try
-
-        table.Columns.Add("m/z", GetType(Double))
-        table.Columns.Add("intensity(query)", GetType(Double))
-        table.Columns.Add("intensity(target)", GetType(Double))
-        table.Columns.Add("tolerance", GetType(Double))
-
-        For Each tick In matrix
-            table.Rows.Add(tick.mz, tick.query, tick.ref, tick.da)
-        Next
-
-        BindingSource1.DataSource = memoryData
-        BindingSource1.DataMember = table.TableName
-        DataGridView1.DataSource = BindingSource1
+        _matrix = New MSAlignmentMatrix(name, matrix)
+        _matrix.LoadMatrix(DataGridView1, BindingSource1)
     End Sub
 
     Public Sub showMatrix(matrix As ChromatogramTick(), name As String)
-        Me.matrix = matrix
-        Me.matrixName = name
-
-        Dim memoryData As New DataSet
-        Dim table As DataTable = memoryData.Tables.Add("memoryData")
-
-        Try
-            Call DataGridView1.Columns.Clear()
-            Call DataGridView1.Rows.Clear()
-        Catch ex As Exception
-
-        End Try
-
-        table.Columns.Add("time", GetType(Double))
-        table.Columns.Add("intensity", GetType(Double))
-
-        For Each tick In matrix
-            table.Rows.Add(tick.Time, tick.Intensity)
-        Next
-
-        BindingSource1.DataSource = memoryData
-        BindingSource1.DataMember = table.TableName
-        DataGridView1.DataSource = BindingSource1
+        _matrix = New ChromatogramMatrix(name, matrix)
+        _matrix.LoadMatrix(DataGridView1, BindingSource1)
     End Sub
 
     Public Sub ShowXIC(ppm As Double,

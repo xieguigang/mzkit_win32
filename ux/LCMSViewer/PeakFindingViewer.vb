@@ -60,7 +60,9 @@ Public Class PeakFindingViewer
             .PopulateROI(
                 peakwidth:=peakwidth,
                 baselineQuantile:=args.baseline,
-                snThreshold:=args.SN
+                snThreshold:=args.SN,
+                joint:=args.joint,
+                nticks:=args.nticks
             ) _
             .ToArray
 
@@ -77,6 +79,8 @@ Public Class PeakFindingViewer
         PeakListViewer.Columns.Add("integration", "integration")
         PeakListViewer.Columns.Add("noise", "noise")
         PeakListViewer.Columns.Add("snRatio", "snRatio")
+
+        Call peakList.Clear()
 
         For Each roi As ROI In peakROIs
             peakList.Add(roi.ToString, roi)
@@ -124,7 +128,12 @@ Public Class PeakFindingViewer
 
         Dim row As DataGridViewRow = PeakListViewer.SelectedRows(0)
         Dim peakId As String = any.ToString(row.Cells.Item(0).Value)
-        Dim peakROI As ROI = peakList(peakId)
+        Dim peakROI As ROI = peakList.TryGetValue(peakId)
+
+        If peakId.StringEmpty OrElse peakROI Is Nothing Then
+            Return
+        End If
+
         Dim targetPeak As New NamedCollection(Of ChromatogramTick) With {
             .name = peakROI.ToString,
             .value = peakROI.ticks

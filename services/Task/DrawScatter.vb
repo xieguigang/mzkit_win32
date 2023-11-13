@@ -88,36 +88,28 @@ Public Module DrawScatter
     End Function
 
     <Extension>
-    Public Function Draw3DPeaks(raw As Raw, colorSet As String, size$, padding$) As Image
+    Public Iterator Function Get3DPeaks(raw As Raw, Optional minTicks As Integer = 5) As IEnumerable(Of ChromatogramSerial)
         Dim ms1 As ms1_scan() = GetMs1Points(raw)
         Dim maxinto As Double = ms1.Select(Function(x) x.intensity).Quartile.Q3
-        Dim XIC = ms1 _
-            .GroupBy(Function(m) m.mz, Tolerance.DeltaMass(0.1)) _
-            .Select(Function(mz)
-                        Return New NamedCollection(Of ChromatogramTick) With {
-                            .name = mz.name,
-                            .value = mz _
-                                .Where(Function(t) t.intensity >= maxinto) _
-                                .OrderBy(Function(t) t.scan_time) _
-                                .Select(Function(t)
-                                            Return New ChromatogramTick With {.Time = t.scan_time, .Intensity = t.intensity}
-                                        End Function) _
-                                .ToArray
-                        }
-                    End Function) _
-            .Where(Function(c) c.Length > 3) _
-            .ToArray
 
-        Return XIC.TICplot(
-            parallel:=True,
-            showLabels:=False,
-            showLegends:=False,
-            colorsSchema:=colorSet,
-            fillAlpha:=60,
-            margin:=padding,
-            gridFill:="white",
-            size:=size
-        ).AsGDIImage
+        For Each mass In ms1.GroupBy(Function(m) m.mz, Tolerance.DeltaMass(0.1))
+            Dim ticks = mass _
+                .Where(Function(t) t.intensity >= maxinto) _
+                .OrderBy(Function(t) t.scan_time) _
+                .Select(Function(t)
+                            Return New ChromatogramTick With {.Time = t.scan_time, .Intensity = t.intensity}
+                        End Function) _
+                .ToArray
+
+            If Not ticks.Length > minTicks Then
+                Continue For
+            End If
+
+            Yield New ChromatogramSerial With {
+                .Name = mass.name,
+                .Chromatogram = ticks
+            }
+        Next
     End Function
 
     Private Function GetMs1Points(raw As Raw) As ms1_scan()

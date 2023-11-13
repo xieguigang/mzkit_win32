@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Mzkit_win32.MatrixViewer</RootNamespace>
+    <TargetFramework>net48</TargetFramework>
+    <AssemblyName>Mzkit_win32.MatrixViewer</AssemblyName>
+    <Platforms>AnyCPU;x64</Platforms>
+    <Configurations>Debug;Release;mzkit_win32</Configurations>
+    <OutputType>Library</OutputType>
+    <UseApplicationFramework>True</UseApplicationFramework>
+    <EnableVisualStyles>True</EnableVisualStyles>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\Math\Math\Math.NET5.vbproj" />
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\gr\Microsoft.VisualBasic.Imaging\imaging.NET5.vbproj" />
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\mime\text%html\html_netcore5.vbproj" />
+    <ProjectReference Include="..\..\..\assembly\SignalReader\SignalReader.vbproj" />
+    <ProjectReference Include="..\..\..\visualize\plot\MsPlot.NET5.vbproj" />
+    <ProjectReference Include="..\..\mzblender\mzblender.vbproj" />
+    <ProjectReference Include="..\..\services\MZWork\MZWork.vbproj" />
+    <ProjectReference Include="..\..\services\PipelineHost\PipelineHost.vbproj" />
+    <ProjectReference Include="..\..\services\Task\Task.vbproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+
+</Project>
