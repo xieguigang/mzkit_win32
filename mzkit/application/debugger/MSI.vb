@@ -25,10 +25,14 @@ Namespace Debugger
             Dim viewer As frmMsImagingViewer = WindowModules.viewer
             Dim dockPanel = MyApplication.host.DockPanel
 
-            WindowModules.msImageParameters.Show(DockPanel)
+            WindowModules.msImageParameters.Show(dockPanel)
 
             viewer.Show(MyApplication.host.DockPanel)
-            viewer.MSIservice.CloseMSIEngine()
+
+            If Not viewer.MSIservice Is Nothing Then
+                viewer.MSIservice.CloseMSIEngine()
+            End If
+
             viewer.MSIservice = MSIDataService.ConnectCloud(viewer.MSIservice, "127.0.0.1", MSIDataService.debugPort)
 
             ' load rawdata file
