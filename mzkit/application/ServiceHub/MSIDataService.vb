@@ -224,7 +224,7 @@ Namespace ServiceHub
         End Function
 
         Public Function SetSpatial2D(angle As Double) As MsImageProperty
-            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.SetSpatial2D, BitConverter.GetBytes(angle)))
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.SetSpatial2D, BitConverter.GetBytes(angle)))
 
             If data Is Nothing Then
                 Return Nothing
@@ -237,7 +237,7 @@ Namespace ServiceHub
         End Function
 
         Public Function SetSpatialMapping(cdf As String) As MsImageProperty
-            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.SetSpatialMapping, cdf))
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.SetSpatialMapping, cdf))
 
             If data Is Nothing Then
                 Return Nothing
@@ -250,7 +250,7 @@ Namespace ServiceHub
         End Function
 
         Public Function DoIonCoLocalization(mz As Double()) As EntityClusterModel()
-            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.GetIonColocalization, mz.GetJson(indent:=False, simpleDict:=True)))
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.GetIonColocalization, mz.GetJson(indent:=False, simpleDict:=True)))
 
             If data Is Nothing Then
                 Return {}
@@ -266,7 +266,7 @@ Namespace ServiceHub
         End Function
 
         Public Function getAllLayerNames() As Dictionary(Of String, Double)
-            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.GetAnnotationNames, "ok"))
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.GetAnnotationNames, "ok"))
 
             If data Is Nothing Then
                 Return New Dictionary(Of String, Double)
@@ -279,7 +279,7 @@ Namespace ServiceHub
         End Function
 
         Public Function DoIonStats(mz As Double()) As IonStat()
-            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.GetIonStatList, mz.GetJson(indent:=False, simpleDict:=True)))
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.GetIonStatList, mz.GetJson(indent:=False, simpleDict:=True)))
 
             If data Is Nothing Then
                 Return {}
@@ -344,7 +344,7 @@ Namespace ServiceHub
             MessageCallback = message
 
             Dim config As String = $"{dimSize.Width},{dimSize.Height}={raw}"
-            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.LoadThermoRawMSI, Encoding.UTF8.GetBytes(config)))
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.LoadThermoRawMSI, Encoding.UTF8.GetBytes(config)))
 
             If data Is Nothing Then
                 checkOffline += 1
@@ -384,7 +384,7 @@ Namespace ServiceHub
 
         Public Function TurnUpsideDown() As MsImageProperty
             Dim op As Byte() = BitConverter.GetBytes(ServiceProtocol.UpsideDown)
-            Dim payload As New RequestStream(MSI.Protocol, ServiceProtocol.UpsideDown, op)
+            Dim payload As New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.UpsideDown, op)
             Dim data As RequestStream = handleServiceRequest(request:=payload)
             Dim output As MsImageProperty = data _
                 .GetString(Encoding.UTF8) _
@@ -409,7 +409,7 @@ Namespace ServiceHub
         ''' <returns></returns>
         Public Function CutBackground(reference As String) As MsImageProperty
             Dim refdata As Byte() = If(reference.StringEmpty, New Byte() {0}, Encoding.UTF8.GetBytes(reference))
-            Dim payload As New RequestStream(MSI.Protocol, ServiceProtocol.CutBackground, refdata)
+            Dim payload As New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.CutBackground, refdata)
             Dim data As RequestStream = handleServiceRequest(request:=payload)
             Dim output As MsImageProperty = data _
                 .GetString(Encoding.UTF8) _
@@ -426,7 +426,7 @@ Namespace ServiceHub
         End Function
 
         Public Function ExtractMultipleSampleRegions() As RegionLoader
-            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.ExtractMultipleSampleRegions, "get"))
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.ExtractMultipleSampleRegions, "get"))
 
             If data Is Nothing Then
                 Call Workbench.Warning($"Failure to load MS-imaging raw data sample regions...")
@@ -451,7 +451,7 @@ Namespace ServiceHub
                 .regions = regions
             }
             Dim buffer = BSON.GetBuffer(GetType(RegionLoader).GetJsonElement(payload, New JSONSerializerOptions))
-            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.DeleteRegion, buffer.ToArray))
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.DeleteRegion, buffer.ToArray))
             Dim str As String = data.GetString(Encoding.UTF8)
 
             If str.StringEmpty OrElse Not str.StartsWith("{") Then
@@ -476,7 +476,7 @@ Namespace ServiceHub
                .sample_tags = {label}
             }
             Dim buffer = BSON.GetBuffer(GetType(RegionLoader).GetJsonElement(payload, New JSONSerializerOptions))
-            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.ExtractRegionMs1Spectrum, buffer.ToArray))
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.ExtractRegionMs1Spectrum, buffer.ToArray))
 
             If data.IsHTTP_RFC Then
                 Call MyApplication.host.showStatusMessage(data.GetUTF8String, My.Resources.StatusAnnotations_Warning_32xLG_color)
@@ -494,7 +494,7 @@ Namespace ServiceHub
                 .regions = regions
             }
             Dim buffer = BSON.GetBuffer(GetType(RegionLoader).GetJsonElement(payload, New JSONSerializerOptions))
-            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.ExtractRegionSample, buffer.ToArray))
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.ExtractRegionSample, buffer.ToArray))
             Dim str As String = data.GetString(Encoding.UTF8)
 
             If str.StringEmpty OrElse Not str.StartsWith("{") Then
@@ -514,7 +514,7 @@ Namespace ServiceHub
         Public Function AutoLocation(Optional padding As Padding = Nothing) As MsImageProperty
             Dim css As String = If(padding.IsEmpty, "padding: 25px 25px 25px 25px;", padding.ToString)
             Dim data As RequestStream = handleServiceRequest(
-                request:=New RequestStream(MSI.Protocol, ServiceProtocol.AutoLocation, Encoding.UTF8.GetBytes(css)))
+                request:=New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.AutoLocation, Encoding.UTF8.GetBytes(css)))
             Return handlePropertiesReader(data, "Auto slide sample position error!")
         End Function
 
@@ -546,7 +546,7 @@ Namespace ServiceHub
         Public Function LoadMSI(raw As String, message As Action(Of String)) As MsImageProperty
             MessageCallback = message
 
-            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.LoadMSI, Encoding.UTF8.GetBytes(raw)))
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.LoadMSI, Encoding.UTF8.GetBytes(raw)))
 
             MessageCallback = Nothing
 
@@ -570,12 +570,12 @@ Namespace ServiceHub
         End Function
 
         Public Sub ExportMzpack(savefile As String)
-            Call handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.ExportMzpack, Encoding.UTF8.GetBytes(savefile)))
+            Call handleServiceRequest(New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.ExportMzpack, Encoding.UTF8.GetBytes(savefile)))
         End Sub
 
         Public Function GetPixel(x As Integer, y As Integer, w As Integer, h As Integer) As InMemoryVectorPixel()
             Dim xy As Byte() = {x, y, w, h}.Select(AddressOf BitConverter.GetBytes).IteratesALL.ToArray
-            Dim output As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.GetPixelRectangle, xy))
+            Dim output As RequestStream = handleServiceRequest(New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.GetPixelRectangle, xy))
 
             If output Is Nothing Then
                 Return Nothing
@@ -591,7 +591,7 @@ Namespace ServiceHub
 
         Public Function GetPixel(x As Integer, y As Integer) As PixelScan
             Dim xy As Byte() = BitConverter.GetBytes(x).JoinIterates(BitConverter.GetBytes(y)).ToArray
-            Dim output As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.GetPixel, xy), min:=0.01)
+            Dim output As RequestStream = handleServiceRequest(New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.GetPixel, xy), min:=0.01)
 
             If output Is Nothing Then
                 Return Nothing
@@ -614,7 +614,7 @@ Namespace ServiceHub
         End Function
 
         Public Function LoadBasePeakMzList() As Double()
-            Dim data As RequestStream = handleServiceRequest(New RequestStream(MSI.Protocol, ServiceProtocol.GetBasePeakMzList, {}))
+            Dim data As RequestStream = handleServiceRequest(New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.GetBasePeakMzList, {}))
 
             If data Is Nothing Then
                 Return {}
@@ -629,14 +629,14 @@ Namespace ServiceHub
 
         Public Function ExtractSampleRegion(ByRef panic As Boolean) As PixelScanIntensity()
             Dim getBuf As Byte() = Nothing
-            Dim pixels = handleLayer(New RequestStream(MSI.Protocol, ServiceProtocol.ExtractSamplePixels, "OK"), getBuf, panic)
+            Dim pixels = handleLayer(New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.ExtractSamplePixels, "OK"), getBuf, panic)
             Call blender.channel.WriteBuffer(getBuf)
             Return pixels
         End Function
 
         Public Function LoadSummaryLayer(summary As IntensitySummary, ByRef panic As Boolean) As PixelScanIntensity()
             Dim getBuf As Byte() = Nothing
-            Dim request As New RequestStream(MSI.Protocol, ServiceProtocol.LoadSummaryLayer, BitConverter.GetBytes(CInt(summary)))
+            Dim request As New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.LoadSummaryLayer, BitConverter.GetBytes(CInt(summary)))
             Dim pixels = handleLayer(request, getBuf, panic)
             Call blender.channel.WriteBuffer(getBuf)
             Return pixels
@@ -664,7 +664,7 @@ Namespace ServiceHub
 
         Public Sub CloseMSIEngine() Implements MSIServicePlugin.CloseEngine
             If MSI_service > 0 AndAlso Not IsCloudBackend Then
-                Dim request As New RequestStream(MSI.Protocol, ServiceProtocol.ExitApp, Encoding.UTF8.GetBytes("shut down!"))
+                Dim request As New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.ExitApp, Encoding.UTF8.GetBytes("shut down!"))
 
                 Call handleServiceRequest(request)
 

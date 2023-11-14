@@ -4046,6 +4046,22 @@
         <Image MinDPI="192">Res/applets-screenshooter.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonDeveloperTool" Id="265" LabelTitle="Developer Tools" LabelDescription="Developer Tools" TooltipTitle="Developer Tools" TooltipDescription="Developer Tools">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-registry-editor-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-registry-editor-96.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonMSIDebugger" Id="266" LabelTitle="MSI Service Debugger" LabelDescription="MSI Service Debugger" TooltipTitle="MSI Service Debugger" TooltipDescription="MSI Service Debugger">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-registry-editor-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-registry-editor-96.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4113,7 +4129,10 @@
               </MenuGroup>
               <MenuGroup CommandName="cmdMenuRTerm" Class="MajorItems">
                 <Button CommandName="cmdButtonRsharp" />
-                <Button CommandName="cmdButtonDevTools" />
+                <DropDownButton CommandName="cmdButtonDeveloperTool">
+                  <Button CommandName="cmdButtonDevTools" />
+                  <Button CommandName="cmdButtonMSIDebugger" />
+                </DropDownButton>
               </MenuGroup>
               <MenuGroup CommandName="cmdMenuTableTools" Class="MajorItems">
                 <Button CommandName="cmdButtonOpenTableTool" />

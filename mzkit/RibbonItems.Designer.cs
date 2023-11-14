@@ -38,7 +38,9 @@ namespace RibbonLib.Controls
             public const uint cmdButtonViewMRI = 263;
             public const uint cmdMenuRTerm = 233;
             public const uint cmdButtonRsharp = 1107;
+            public const uint cmdButtonDeveloperTool = 265;
             public const uint cmdButtonDevTools = 168;
+            public const uint cmdButtonMSIDebugger = 266;
             public const uint cmdMenuTableTools = 253;
             public const uint cmdButtonOpenTableTool = 252;
             public const uint cmdButtonVenn = 260;
@@ -290,7 +292,9 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonViewMRI { get; private set; }
         public RibbonMenuGroup MenuRTerm { get; private set; }
         public RibbonButton ButtonRsharp { get; private set; }
+        public RibbonDropDownButton ButtonDeveloperTool { get; private set; }
         public RibbonButton ButtonDevTools { get; private set; }
+        public RibbonButton ButtonMSIDebugger { get; private set; }
         public RibbonMenuGroup MenuTableTools { get; private set; }
         public RibbonButton ButtonOpenTableTool { get; private set; }
         public RibbonButton ButtonVenn { get; private set; }
@@ -543,7 +547,9 @@ namespace RibbonLib.Controls
             ButtonViewMRI = new RibbonButton(ribbon, Cmd.cmdButtonViewMRI);
             MenuRTerm = new RibbonMenuGroup(ribbon, Cmd.cmdMenuRTerm);
             ButtonRsharp = new RibbonButton(ribbon, Cmd.cmdButtonRsharp);
+            ButtonDeveloperTool = new RibbonDropDownButton(ribbon, Cmd.cmdButtonDeveloperTool);
             ButtonDevTools = new RibbonButton(ribbon, Cmd.cmdButtonDevTools);
+            ButtonMSIDebugger = new RibbonButton(ribbon, Cmd.cmdButtonMSIDebugger);
             MenuTableTools = new RibbonMenuGroup(ribbon, Cmd.cmdMenuTableTools);
             ButtonOpenTableTool = new RibbonButton(ribbon, Cmd.cmdButtonOpenTableTool);
             ButtonVenn = new RibbonButton(ribbon, Cmd.cmdButtonVenn);

@@ -35,7 +35,9 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonViewMRI As UInteger = 263
             Public Const cmdMenuRTerm As UInteger = 233
             Public Const cmdButtonRsharp As UInteger = 1107
+            Public Const cmdButtonDeveloperTool As UInteger = 265
             Public Const cmdButtonDevTools As UInteger = 168
+            Public Const cmdButtonMSIDebugger As UInteger = 266
             Public Const cmdMenuTableTools As UInteger = 253
             Public Const cmdButtonOpenTableTool As UInteger = 252
             Public Const cmdButtonVenn As UInteger = 260
@@ -392,10 +394,22 @@ Namespace RibbonLib.Controls
                 Return _ButtonRsharp
             End Get
         End Property
+        Private _ButtonDeveloperTool As RibbonDropDownButton
+        Public ReadOnly Property ButtonDeveloperTool As RibbonDropDownButton
+            Get
+                Return _ButtonDeveloperTool
+            End Get
+        End Property
         Private _ButtonDevTools As RibbonButton
         Public ReadOnly Property ButtonDevTools As RibbonButton
             Get
                 Return _ButtonDevTools
+            End Get
+        End Property
+        Private _ButtonMSIDebugger As RibbonButton
+        Public ReadOnly Property ButtonMSIDebugger As RibbonButton
+            Get
+                Return _ButtonMSIDebugger
             End Get
         End Property
         Private _MenuTableTools As RibbonMenuGroup
@@ -1765,7 +1779,9 @@ Namespace RibbonLib.Controls
             _ButtonViewMRI = New RibbonButton(_ribbon, Cmd.cmdButtonViewMRI)
             _MenuRTerm = New RibbonMenuGroup(_ribbon, Cmd.cmdMenuRTerm)
             _ButtonRsharp = New RibbonButton(_ribbon, Cmd.cmdButtonRsharp)
+            _ButtonDeveloperTool = New RibbonDropDownButton(_ribbon, Cmd.cmdButtonDeveloperTool)
             _ButtonDevTools = New RibbonButton(_ribbon, Cmd.cmdButtonDevTools)
+            _ButtonMSIDebugger = New RibbonButton(_ribbon, Cmd.cmdButtonMSIDebugger)
             _MenuTableTools = New RibbonMenuGroup(_ribbon, Cmd.cmdMenuTableTools)
             _ButtonOpenTableTool = New RibbonButton(_ribbon, Cmd.cmdButtonOpenTableTool)
             _ButtonVenn = New RibbonButton(_ribbon, Cmd.cmdButtonVenn)
