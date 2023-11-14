@@ -249,7 +249,7 @@ Blue: 741.5307(SM(34:1) [M+K]+)
                     MyApplication.host.showStatusMessage("the demo data file is missing!", My.Resources.StatusAnnotations_Warning_32xLG_color)
                 Else
                     Call RibbonEvents.showMsImaging()
-                    Call MyApplication.host.showMzPackMSI(demopath)
+                    Call MyApplication.host.showMzPackMSI(demopath, debug:=False)
                 End If
 
             Case 7
@@ -260,7 +260,7 @@ Blue: 741.5307(SM(34:1) [M+K]+)
                     MyApplication.host.showStatusMessage("the demo data file is missing!", My.Resources.StatusAnnotations_Warning_32xLG_color)
                 Else
                     Call RibbonEvents.showMsImaging()
-                    Call MyApplication.host.showMzPackMSI(demopath)
+                    Call MyApplication.host.showMzPackMSI(demopath, debug:=False)
                 End If
         End Select
     End Sub

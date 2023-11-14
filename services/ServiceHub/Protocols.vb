@@ -103,32 +103,48 @@ Public Module Protocols
                                 Optional heartbeats As Integer? = Nothing) As RunSlavePipeline
 
         Dim cli As String = getArgumentString(Rscript, debugPort, heartbeats)
-        Dim pipeline As New RunSlavePipeline(Protocols.Rscript, cli, workdir:=Protocols.Rscript.ParentPath)
-        Dim tcpPort As Integer = -1
+        Dim workdir As String = Protocols.Rscript.ParentPath
 
-        Call pipeline.CommandLine.__DEBUG_ECHO
+        If debugPort Is Nothing Then
+            Dim pipeline As New RunSlavePipeline(Protocols.Rscript, cli, workdir:=workdir)
+            Dim tcpPort As Integer = -1
 
-        AddHandler pipeline.SetMessage,
-            Sub(msg)
-                If msg.StartsWith("socket=") Then
-                    tcpPort = msg.Match("\d+").DoCall(AddressOf Integer.Parse)
+            Call pipeline.CommandLine.__DEBUG_ECHO
+
+            AddHandler pipeline.SetMessage,
+                Sub(msg)
+                    If msg.StartsWith("socket=") Then
+                        tcpPort = msg.Match("\d+").DoCall(AddressOf Integer.Parse)
+                    Else
+                        Call msg.__DEBUG_ECHO
+                    End If
+                End Sub
+
+            Call pipeline.Start()
+
+            For i As Integer = 0 To 1000
+                service = tcpPort
+
+                If service > 0 Then
+                    Exit For
                 Else
-                    Call msg.__DEBUG_ECHO
+                    Thread.Sleep(500)
                 End If
-            End Sub
+            Next
 
-        Call pipeline.Start()
+            Return pipeline
+        Else
+            Dim cmdl As New Process With {.StartInfo = New ProcessStartInfo With {
+                .Arguments = cli,
+                .CreateNoWindow = False,
+                .FileName = Protocols.Rscript,
+                .UseShellExecute = True,
+                .WorkingDirectory = workdir
+            }}
 
-        For i As Integer = 0 To 1000
-            service = tcpPort
+            Call cmdl.Start()
 
-            If service > 0 Then
-                Exit For
-            Else
-                Thread.Sleep(500)
-            End If
-        Next
-
-        Return pipeline
+            Return Nothing
+        End If
     End Function
 End Module

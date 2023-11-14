@@ -175,11 +175,15 @@ Namespace ServiceHub
             Return hostReference
         End Function
 
+        Public Shared Function GetRscript() As String
+            Return RscriptPipelineTask.GetRScript("../services/MSI-host.R")
+        End Function
+
         ''' <summary>
         ''' this method will close the engine at first
         ''' </summary>
         Public Shared Function StartMSIService(ByRef hostReference As MSIDataService) As MSIDataService
-            Dim Rscript As String = RscriptPipelineTask.GetRScript("../services/MSI-host.R")
+            Dim Rscript As String = GetRscript()
 
             If Not hostReference Is Nothing Then
                 Call hostReference.CloseMSIEngine()
@@ -188,12 +192,7 @@ Namespace ServiceHub
             Call MyApplication.LogText($"Start background services: {Rscript}")
 
             hostReference = New MSIDataService
-            hostReference.MSI_pipe = Global.ServiceHub.Protocols.StartServer(Rscript, hostReference.MSI_service, MSIDataService.debugPort) ', HeartBeat.Start)
-
-            If MSIDataService.debugPort IsNot Nothing Then
-                hostReference.MSI_service = MSIDataService.debugPort
-                hostReference.MSI_pipe.Process.Kill()
-            End If
+            hostReference.MSI_pipe = Global.ServiceHub.Protocols.StartServer(Rscript, hostReference.MSI_service, Nothing)
 
             ' hook message event handler
             AddHandler hostReference.MSI_pipe.SetMessage, AddressOf hostReference.MSI_pipe_SetMessage

@@ -201,6 +201,8 @@ Module RibbonEvents
 
         AddHandler ribbonItems.ButtonVenn.ExecuteEvent, Sub() Call VisualStudio.ShowDocument(Of frmVennTools)(title:="Venn Plot Tool")
         AddHandler ribbonItems.ButtonViewMRI.ExecuteEvent, Sub() Call openMRIRaster()
+
+        AddHandler ribbonItems.ButtonMSIDebugger.ExecuteEvent, Sub() Call Debugger.MSI.Run()
     End Sub
 
     Sub New()
@@ -326,7 +328,7 @@ Module RibbonEvents
                                MessageBoxButtons.OKCancel,
                                MessageBoxIcon.Information) = DialogResult.OK Then
 
-                Call MyApplication.host.showMzPackMSI(file_out)
+                Call MyApplication.host.showMzPackMSI(file_out, debug:=False)
             End If
         Else
             Workbench.Warning("10X genomics st-imaging file imports error!")
@@ -538,7 +540,7 @@ Module RibbonEvents
                                     norm:=creator.norm,
                                     loadCallback:=Sub(filepath)
                                                       Call RibbonEvents.showMsImaging()
-                                                      Call WindowModules.viewer.loadimzML(filepath)
+                                                      Call WindowModules.viewer.loadimzML(filepath, debug:=False)
                                                   End Sub
                                 )
                             End If
@@ -573,7 +575,7 @@ Module RibbonEvents
                             savefile:=savefile.FileName,
                             loadCallback:=Sub(filepath)
                                               Call RibbonEvents.showMsImaging()
-                                              Call WindowModules.viewer.loadimzML(filepath)
+                                              Call WindowModules.viewer.loadimzML(filepath, debug:=False)
                                           End Sub)
                     End If
                 End Using
@@ -581,36 +583,40 @@ Module RibbonEvents
         End Using
     End Sub
 
+    Public Function OpenMSIRawDialog() As OpenFileDialog
+        Return New OpenFileDialog() With {
+           .Filter = {
+               "All Supported Raw(*.raw;*.mzPack;*.imzML;*.cdf;*.mzML)|*.raw;*.mzPack;*.imzML;*.cdf;*.mzML",
+               "AP-SMALDI project file(*.udp)|*.udp",
+               "Thermo Raw(*.raw)|*.raw",
+               "Imaging mzML(*.imzML)|*.imzML",
+               "Mzkit Pixel Matrix(*.cdf)|*.cdf",
+               "MRM targetted MS-Imaging(*.mzML)|*.mzML",
+               "msiPL Dataset(*.h5)|*.h5"
+           }.JoinBy("|"),
+           .Title = "Open MS-imaging Raw Data File"
+        }
+    End Function
+
     ''' <summary>
     ''' open the ms-imaging raw data file
     ''' </summary>
     Public Sub OpenMSIRaw()
-        Using file As New OpenFileDialog() With {
-            .Filter = {
-                "All Supported Raw(*.raw;*.mzPack;*.imzML;*.cdf;*.mzML)|*.raw;*.mzPack;*.imzML;*.cdf;*.mzML",
-                "AP-SMALDI project file(*.udp)|*.udp",
-                "Thermo Raw(*.raw)|*.raw",
-                "Imaging mzML(*.imzML)|*.imzML",
-                "Mzkit Pixel Matrix(*.cdf)|*.cdf",
-                "MRM targetted MS-Imaging(*.mzML)|*.mzML",
-                "msiPL Dataset(*.h5)|*.h5"
-            }.JoinBy("|"),
-            .Title = "Open MS-imaging Raw Data File"
-        }
+        Using file As OpenFileDialog = OpenMSIRawDialog()
             If file.ShowDialog = DialogResult.OK Then
-                Call OpenMSIRaw(file.FileName)
+                Call OpenMSIRaw(file.FileName, debug:=False)
             End If
         End Using
     End Sub
 
-    Public Sub OpenMSIRaw(file As String)
+    Public Sub OpenMSIRaw(file As String, debug As Boolean)
         Call showMsImaging()
 
         Select Case file.ExtensionSuffix.ToLower
             Case "mzml", "raw", "udp" : Call WindowModules.viewer.loadRaw(file, Nothing)
-            Case "imzml", "mzpack" : Call WindowModules.viewer.loadimzML(file)
+            Case "imzml", "mzpack" : Call WindowModules.viewer.loadimzML(file, debug)
             Case "cdf" : Call WindowModules.msImageParameters.loadRenderFromCDF(file)
-            Case "h5" : Call WindowModules.viewer.loadimzML(file)
+            Case "h5" : Call WindowModules.viewer.loadimzML(file, debug)
             Case Else
                 Call Workbench.AppHost.Warning($"File type(*.{file.ExtensionSuffix}) is not yet supported!")
         End Select

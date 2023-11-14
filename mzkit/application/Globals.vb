@@ -621,7 +621,7 @@ Module Globals
                                MessageBoxButtons.YesNo,
                                MessageBoxIcon.Warning) = DialogResult.Yes Then
                 ' open in ms-imaging viewer
-                Call RibbonEvents.OpenMSIRaw(mzpack_file)
+                Call RibbonEvents.OpenMSIRaw(mzpack_file, debug:=False)
                 Return
             Else
                 Call MessageBox.Show("This operation may takes a very long time to load", "Load MS-imaging data as LC-MS data", MessageBoxButtons.OK, MessageBoxIcon.Warning)

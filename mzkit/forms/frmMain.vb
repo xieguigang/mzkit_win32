@@ -210,7 +210,7 @@ Public Class frmMain : Implements AppHost
         ElseIf fileName.ExtensionSuffix("txt") Then
             Call showRamanSpectrumData(fileName)
         ElseIf fileName.ExtensionSuffix("imzML") Then
-            Call showMsImaging(fileName)
+            Call showMsImaging(fileName, debug:=False)
         ElseIf fileName.ExtensionSuffix("nmrml") Then
             Call WindowModules.nmrSpectrums.LoadNmr(fileName)
         ElseIf fileName.ExtensionSuffix("mzml") AndAlso RawScanParser.IsMRMData(fileName) Then
@@ -226,7 +226,7 @@ Public Class frmMain : Implements AppHost
                 Call ShowGCMSSIM(fileName, isBackground:=False, showExplorer:=showDocument)
             End If
         ElseIf fileName.ExtensionSuffix("h5") Then
-            Call RibbonEvents.OpenMSIRaw(fileName)
+            Call RibbonEvents.OpenMSIRaw(fileName, debug:=False)
         ElseIf fileName.ExtensionSuffix("mzpack") Then
             Dim raw As New Raw With {
                 .cache = fileName,
@@ -340,12 +340,12 @@ Public Class frmMain : Implements AppHost
         _uiCollectionChangedEvent = New UICollectionChangedEvent()
     End Sub
 
-    Friend Function showMsImaging(imzML As String) As String
+    Friend Function showMsImaging(imzML As String, debug As Boolean) As String
         WindowModules.viewer.Show(m_dockPanel)
         WindowModules.msImageParameters.Show(m_dockPanel)
 
         If imzML.ExtensionSuffix("mzpack", "h5") Then
-            Call showMzPackMSI(imzML)
+            Call showMzPackMSI(imzML, debug)
         Else
             ' create mzPack cache at first for imzML file
             ' and then load the mzPack data
@@ -365,11 +365,13 @@ Public Class frmMain : Implements AppHost
         Return WindowModules.viewer.MSIViewerInit0(imzML)
     End Function
 
-    Friend Sub showMzPackMSI(mzpack As String)
+    Friend Sub showMzPackMSI(mzpack As String, debug As Boolean)
         Call TaskProgress.RunAction(
             run:=Sub(p)
-                     Call WindowModules.viewer.StartMSIService()
-                     Call Thread.Sleep(100)
+                     If Not debug Then
+                         Call WindowModules.viewer.StartMSIService()
+                         Call Thread.Sleep(100)
+                     End If
 
                      Dim dataPack = WindowModules.viewer.MSIservice.LoadMSI(mzpack, AddressOf p.SetInfo)
 

@@ -330,7 +330,7 @@ Public Class frmMsImagingViewer
                     Call MSIservice.ExportMzpack(tempfile)
                     Return True
                 End Function)
-            Call MyApplication.host.showMzPackMSI(tempfile)
+            Call MyApplication.host.showMzPackMSI(tempfile, debug:=False)
 
             If MSIrender Then
                 Call RenderSummary(IntensitySummary.BasePeak)
@@ -415,7 +415,7 @@ Public Class frmMsImagingViewer
                 Call MSIservice.ExportMzpack(tempfile)
                 Return True
             End Function)
-        Call MyApplication.host.showMzPackMSI(tempfile)
+        Call MyApplication.host.showMzPackMSI(tempfile, debug:=False)
         Call TaskProgress.RunAction(
                 Sub()
                     Call Invoke(Sub() rendering = registerSummaryRender(summary))
@@ -462,7 +462,7 @@ Public Class frmMsImagingViewer
                 Call MSIservice.ExportMzpack(tempfile)
                 Return True
             End Function)
-        Call MyApplication.host.showMzPackMSI(tempfile)
+        Call MyApplication.host.showMzPackMSI(tempfile, debug:=False)
 
         If MSIrender Then
             Call RenderSummary(IntensitySummary.BasePeak)
@@ -855,7 +855,7 @@ Public Class frmMsImagingViewer
                                MessageBoxIcon.Information) = DialogResult.Yes Then
 
                 Call RibbonEvents.showMsImaging()
-                Call WindowModules.viewer.loadimzML(savefile)
+                Call WindowModules.viewer.loadimzML(savefile, debug:=False)
             End If
         End If
     End Sub
@@ -928,7 +928,7 @@ Public Class frmMsImagingViewer
                                                MessageBoxIcon.Information) = DialogResult.Yes Then
 
                                 Call RibbonEvents.showMsImaging()
-                                Call WindowModules.viewer.loadimzML(savefile.FileName)
+                                Call WindowModules.viewer.loadimzML(savefile.FileName, debug:=False)
                             End If
                         End If
                     End Using
@@ -1844,8 +1844,8 @@ Public Class frmMsImagingViewer
     End Function
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
-    Public Sub loadimzML(file As String)
-        guid = MyApplication.host.showMsImaging(imzML:=file)
+    Public Sub loadimzML(file As String, debug As Boolean)
+        guid = MyApplication.host.showMsImaging(imzML:=file, debug)
     End Sub
 
     ''' <summary>
