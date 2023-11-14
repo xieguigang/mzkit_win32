@@ -34,6 +34,7 @@ Namespace Debugger
             End If
 
             viewer.MSIservice = MSIDataService.ConnectCloud(viewer.MSIservice, "127.0.0.1", MSIDataService.debugPort)
+            viewer.HookBlender()
 
             ' load rawdata file
             Using file As OpenFileDialog = RibbonEvents.OpenMSIRawDialog

@@ -167,9 +167,7 @@ Public Class frmMsImagingViewer
         End If
 
         If blender Is Nothing Then
-            blender = New BlenderClient(RenderService.MSIBlender, debug:=RenderService.debug)
-            MSIservice.blender = blender
-            MSIservice.blender.SetFilters(loadFilters)
+            Call HookBlender()
         End If
 
         blender.OpenSession(ss, params.GetMSIDimension, Nothing, params, args)
@@ -182,9 +180,15 @@ Public Class frmMsImagingViewer
         ServiceHub.MSIDataService.StartMSIService(hostReference:=MSIservice)
 
         If blender Is Nothing Then
-            blender = New BlenderClient(RenderService.MSIBlender, debug:=RenderService.debug)
+            Call HookBlender()
         End If
 
+        MSIservice.blender = blender
+        MSIservice.blender.SetFilters(loadFilters)
+    End Sub
+
+    Public Sub HookBlender()
+        blender = New BlenderClient(RenderService.MSIBlender, debug:=RenderService.debug)
         MSIservice.blender = blender
         MSIservice.blender.SetFilters(loadFilters)
     End Sub
