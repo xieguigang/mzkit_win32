@@ -190,6 +190,11 @@ Namespace ServiceHub
             hostReference = New MSIDataService
             hostReference.MSI_pipe = Global.ServiceHub.Protocols.StartServer(Rscript, hostReference.MSI_service, MSIDataService.debugPort) ', HeartBeat.Start)
 
+            If MSIDataService.debugPort IsNot Nothing Then
+                hostReference.MSI_service = MSIDataService.debugPort
+                hostReference.MSI_pipe.Process.Kill()
+            End If
+
             ' hook message event handler
             AddHandler hostReference.MSI_pipe.SetMessage, AddressOf hostReference.MSI_pipe_SetMessage
 
