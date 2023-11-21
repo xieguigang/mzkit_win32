@@ -1,7 +1,6 @@
-﻿Imports BioNovoGene.mzkit_win32.ServiceHub
+﻿Imports System.Threading
 Imports BioNovoGene.mzkit_win32.My
-Imports WeifenLuo.WinFormsUI.Docking
-Imports System.Threading
+Imports BioNovoGene.mzkit_win32.ServiceHub
 
 Namespace Debugger
 

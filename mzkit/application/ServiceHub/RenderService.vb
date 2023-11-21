@@ -39,10 +39,10 @@ Public NotInheritable Class RenderService
         BlenderHost = New Process With {
             .StartInfo = New ProcessStartInfo With {
                 .FileName = $"{App.HOME}/plugins\blender\BlenderHost.exe",
-                .Arguments = $"/start --port {MSIBlender.port} --master {bindChannel}",
+                .Arguments = $"/start --port {MSIBlender.port} --master {bindChannel} {If(debug, "--debug", "")}",
                 .CreateNoWindow = True,
                 .WindowStyle = ProcessWindowStyle.Hidden,
-                .UseShellExecute = True
+                .UseShellExecute = False
             }
         }
 
