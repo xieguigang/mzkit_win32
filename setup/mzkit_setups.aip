@@ -12,6 +12,7 @@
     <ROW Property="AI_BackgroundColor" Value="lightblue" MultiBuildValue="DefaultBuild:powderblue" MsiKey="AI_BackgroundColor"/>
     <ROW Property="AI_EXTERNALUIUNINSTALLERNAME" MultiBuildValue="DefaultBuild:aiui"/>
     <ROW Property="AI_PREDEF_LCONDS_PROPS" Value="AI_DETECTED_DOTNET_VERSION;AI_DETECTED_SCREEN_RESOLUTION_X;AI_DETECTED_SCREEN_RESOLUTION_Y;AI_DETECTED_COLOR_QUALITY;AI_DETECTED_PHYSICAL_MEMORY"/>
+    <ROW Property="AI_PREREQ_REPAIR_ENABLED" MultiBuildValue="DefaultBuild:1"/>
     <ROW Property="AI_PRODUCTNAME_ARP" Value="mzkit_win32"/>
     <ROW Property="AI_README_FILE" Value="[#README.txt]"/>
     <ROW Property="AI_REQUIRED_COLOR_QUALITY" MultiBuildValue="DefaultBuild:32" ValueLocId="-"/>
@@ -39,10 +40,10 @@
     <ROW Property="CTRLS" Value="3"/>
     <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1028:{719A223E-83F4-49B5-A1EF-B80CB46C0015} 1033:{719A223E-83F4-49B5-A1EF-B80CB46C0015} 1036:{719A223E-83F4-49B5-A1EF-B80CB46C0015} 1041:{719A223E-83F4-49B5-A1EF-B80CB46C0015} 1049:{719A223E-83F4-49B5-A1EF-B80CB46C0015} 2052:{719A223E-83F4-49B5-A1EF-B80CB46C0015} 2057:{719A223E-83F4-49B5-A1EF-B80CB46C0015} " Type="16"/>
+    <ROW Property="ProductCode" Value="1028:{5756FF6E-B12C-4B27-93DF-181A8C14CE75} 1033:{5756FF6E-B12C-4B27-93DF-181A8C14CE75} 1036:{5756FF6E-B12C-4B27-93DF-181A8C14CE75} 1041:{5756FF6E-B12C-4B27-93DF-181A8C14CE75} 1049:{5756FF6E-B12C-4B27-93DF-181A8C14CE75} 2052:{5756FF6E-B12C-4B27-93DF-181A8C14CE75} 2057:{5756FF6E-B12C-4B27-93DF-181A8C14CE75} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="mzkit_win32"/>
-    <ROW Property="ProductVersion" Value="4.8.5799.1118" Options="32"/>
+    <ROW Property="ProductVersion" Value="4.8.7199.6618" Options="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{B645400B-3918-41EF-9009-7ADDD81C84B4}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -393,13 +394,17 @@
     <ROW Directory="zstdcodec_Dir" Directory_Parent="libs_Dir" DefaultDir="ZSTD-C~1|zstd-codec"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{0F1519BF-D287-4E8F-92AD-2B70DEEB0BBA}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="A9B3CC_B8E4_4F03_B719_D9E76675954E" ComponentId="{D4E4A2AC-1DF3-44E1-9DE6-AA9070957EC6}" Directory_="APPDIR" Attributes="260" KeyPath="A9B3CC_B8E4_4F03_B719_D9E76675954E" Options="2"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{00B90AD7-2820-4C70-8CF9-96035F1891AD}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_ExePath" ComponentId="{2335D578-7E61-4EAB-A98E-FA436BA9E1FF}" Directory_="APPDIR" Attributes="260" KeyPath="AI_ExePath"/>
     <ROW Component="APPDIR" ComponentId="{69AA9FFE-67B1-456B-88EB-97D3D6C92AA7}" Directory_="APPDIR" Attributes="256"/>
     <ROW Component="ARButton.js" ComponentId="{1AA55F20-6D89-44ED-8F8F-5D0585E8DD95}" Directory_="webxr_Dir" Attributes="0" KeyPath="ARButton.js" Type="0"/>
     <ROW Component="AUTHORS" ComponentId="{C38E3DC8-02B1-461C-8274-772A926C7A62}" Directory_="sql.js_Dir" Attributes="0" KeyPath="AUTHORS" Type="0"/>
     <ROW Component="AUTHORS.txt" ComponentId="{C0E56ACB-C530-4E0B-B410-FF6A007FE238}" Directory_="jqueryui_Dir" Attributes="0" KeyPath="AUTHORS.txt" Type="0"/>
     <ROW Component="AUTHORS_1" ComponentId="{F6F0769A-B0A1-40A4-B99D-6CDAB8B2B25D}" Directory_="sql.js_1_Dir" Attributes="0" KeyPath="AUTHORS_1" Type="0"/>
     <ROW Component="B.png" ComponentId="{2BCBBD0D-7076-4480-879B-31A770F59C9A}" Directory_="navigation_Dir" Attributes="0" KeyPath="B.png" Type="0"/>
+    <ROW Component="B3D618FCD640C1BB6D035D907A7F98" ComponentId="{A7B6F100-C81F-4950-BD75-E98DA285949A}" Directory_="APPDIR" Attributes="260" KeyPath="B3D618FCD640C1BB6D035D907A7F98" Options="2"/>
+    <ROW Component="B63_41B8_9CB7_8C5E07C0FC18_" ComponentId="{88C68929-1E4A-492B-B245-0918631B1912}" Directory_="APPDIR" Attributes="260" KeyPath="B63_41B8_9CB7_8C5E07C0FC18_" Options="2"/>
     <ROW Component="BUILD" ComponentId="{7BE26CA3-F1DD-4A2B-A312-92F455C0EE58}" Directory_="brotli_1_Dir" Attributes="0" KeyPath="BUILD" Type="0"/>
     <ROW Component="BinaryDecoderWorker.js" ComponentId="{57FC25B0-A52B-48B1-A70C-FA57D5DB134D}" Directory_="workers_1_Dir" Attributes="0" KeyPath="BinaryDecoderWorker.js" Type="0"/>
     <ROW Component="BinaryHeap.js" ComponentId="{AF2E4190-F03E-4CD0-8CDD-3D19F28418C7}" Directory_="other_Dir" Attributes="0" KeyPath="BinaryHeap.js" Type="0"/>
@@ -569,6 +574,8 @@
     <ROW Component="BlenderHost.dll" ComponentId="{C618D493-9896-40C4-9701-C65E9DA1351E}" Directory_="blender_Dir" Attributes="256" KeyPath="BlenderHost.dll"/>
     <ROW Component="BlenderHost.exe" ComponentId="{8E4937FB-6320-4BD7-A7C3-D7671E5C36BC}" Directory_="blender_Dir" Attributes="256" KeyPath="BlenderHost.exe"/>
     <ROW Component="BlenderHost.pdb" ComponentId="{5C58882F-A798-4BF4-9397-9926D130CE5E}" Directory_="blender_Dir" Attributes="0" KeyPath="BlenderHost.pdb" Type="4"/>
+    <ROW Component="C4FE6FD5B7C4D07B3A313E754A9A6A8" ComponentId="{57E57D67-29A6-419D-8841-F00464F93691}" Directory_="APPDIR" Attributes="260" KeyPath="C4FE6FD5B7C4D07B3A313E754A9A6A8" Options="2"/>
+    <ROW Component="CA62D813A4E74FA2AAE86A7D7B7B1493" ComponentId="{02F9ECEE-468F-4773-A732-60ABB83925AA}" Directory_="APPDIR" Attributes="260" KeyPath="CA62D813A4E74FA2AAE86A7D7B7B1493" Options="2"/>
     <ROW Component="CFMID.dll" ComponentId="{CF2350BF-9E18-47D6-9618-D5D3A3AFE43F}" Directory_="host_Dir" Attributes="256" KeyPath="CFMID.dll"/>
     <ROW Component="CFMID.dll_1" ComponentId="{D4B2FDC4-F0BF-400F-A00A-A5DD67AD52EA}" Directory_="APPDIR" Attributes="256" KeyPath="CFMID.dll_1"/>
     <ROW Component="CFMID.dll_2" ComponentId="{98B6AFEE-0CC2-441B-B8F2-96E2AE327F4F}" Directory_="blender_Dir" Attributes="256" KeyPath="CFMID.dll_2"/>
@@ -619,9 +626,13 @@
     <ROW Component="Clearcore2.XmlHelpers.dll_1" ComponentId="{DDD64DB3-A155-426A-A406-B388494A1BEB}" Directory_="blender_Dir" Attributes="0" KeyPath="Clearcore2.XmlHelpers.dll_1"/>
     <ROW Component="CodeSerializer.js" ComponentId="{D6481A0B-3E5F-41E1-B550-B2A6263FFEF4}" Directory_="utils_Dir" Attributes="0" KeyPath="CodeSerializer.js" Type="0"/>
     <ROW Component="Copyright" ComponentId="{EE7B5337-EB5B-49DF-A0E8-A91FFD127069}" Directory_="libxml2_Dir" Attributes="0" KeyPath="Copyright" Type="0"/>
+    <ROW Component="D2BCE474_49DC_4169_8EFD_7CAB0921B614" ComponentId="{9AADBD1F-BE87-4BCC-9B32-518EDEBB5EFA}" Directory_="APPDIR" Attributes="260" KeyPath="D2BCE474_49DC_4169_8EFD_7CAB0921B61" Options="2"/>
     <ROW Component="DMLoader.js" ComponentId="{DC018ABE-1C71-48B3-BA55-AEDC17DBE86F}" Directory_="loaders_Dir" Attributes="0" KeyPath="DMLoader.js" Type="0"/>
     <ROW Component="DecoderWorker.js" ComponentId="{FA065625-9B2D-4FCC-B4BE-6C987833F0C7}" Directory_="__31_Dir" Attributes="0" KeyPath="DecoderWorker.js" Type="0"/>
     <ROW Component="DevTools" ComponentId="{3BCB9EDB-4D19-44D2-9583-3E021560CCBC}" Directory_="DevTools_Dir" Attributes="0"/>
+    <ROW Component="EF36CDD6CE40CFA978040EA5CBA799" ComponentId="{F60325D5-3B3D-4015-9A5F-B128531A1734}" Directory_="APPDIR" Attributes="260" KeyPath="EF36CDD6CE40CFA978040EA5CBA799" Options="2"/>
+    <ROW Component="FAC9C433D3044829E6669A2C6FF54E6" ComponentId="{30D5F004-5A2D-4437-8924-F958E8DDAE70}" Directory_="APPDIR" Attributes="260" KeyPath="FAC9C433D3044829E6669A2C6FF54E6" Options="2"/>
+    <ROW Component="FEDCDA5E724321BEC04988E1E74CE9" ComponentId="{19B05885-1676-4BE8-8D81-ECDAC450165B}" Directory_="APPDIR" Attributes="260" KeyPath="FEDCDA5E724321BEC04988E1E74CE9" Options="2"/>
     <ROW Component="FFTW3Config.cmake" ComponentId="{2CF0C7B8-FC37-437E-9921-6F06113C17A2}" Directory_="fftw3_Dir" Attributes="0" KeyPath="FFTW3Config.cmake" Type="0"/>
     <ROW Component="FULLMS_centriod_CHCA_20210819CleanSample616x404.cdf" ComponentId="{9E6541B7-77B9-404C-BC00-F40ACC3A70CF}" Directory_="PANOMIX_Dir" Attributes="0" KeyPath="FULLMS_centriod_CHCA_20210819CleanSample616x404.cdf" Type="0"/>
     <ROW Component="Flute.Http.dll" ComponentId="{1A9D1085-A042-4FB2-B9F6-267C14D598BD}" Directory_="APPDIR" Attributes="256" KeyPath="Flute.Http.dll"/>
@@ -1693,7 +1704,16 @@
     <ROW Component="zlib.dll_1" ComponentId="{E8C083E6-5F77-401A-BF60-A409A5470758}" Directory_="bin64_Dir" Attributes="256" KeyPath="zlib.dll_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
+    <ROW Feature="A9B3CC_B8E4_4F03_B719_D9E76675954E" Title="Visual C++ 2010 x64 (MFC Security Update)" Description="Visual C++ 2010 x64 (MFC Security Update)" Display="13" Level="1" Attributes="0"/>
+    <ROW Feature="B3D618FCD640C1BB6D035D907A7F98" Title="Visual C++ 2008 x64 (Package ATL Security Update)" Description="Visual C++ 2008 x64 (Package ATL Security Update)" Display="9" Level="1" Attributes="0"/>
+    <ROW Feature="B63_41B8_9CB7_8C5E07C0FC18_" Title="Visual C++ 2010 SP1 x64 (MFC Security Update)" Description="Visual C++ 2010 SP1 x64 (MFC Security Update)" Display="11" Level="1" Attributes="0"/>
+    <ROW Feature="C4FE6FD5B7C4D07B3A313E754A9A6A8" Title="Visual C++ Redistributable for Visual Studio 2015-2022 x64" Description="Visual C++ Redistributable for Visual Studio 2015-2022 x64" Display="15" Level="1" Attributes="0"/>
+    <ROW Feature="CA62D813A4E74FA2AAE86A7D7B7B1493" Title="Visual C++ Redistributable for Visual Studio 2013 Update 5 x64" Description="Visual C++ Redistributable for Visual Studio 2013 Update 5 x64" Display="17" Level="1" Attributes="0"/>
+    <ROW Feature="D2BCE474_49DC_4169_8EFD_7CAB0921B614" Title="Visual C++ 2005 SP1 x64 (MFC Security Update)" Description="Visual C++ 2005 SP1 x64 (MFC Security Update)" Display="5" Level="1" Attributes="0"/>
     <ROW Feature="DemoScript" Title="DemoScript" Description="Demo script for create R# automation pipeline" Display="3" Level="4" Directory_="APPDIR" Attributes="9"/>
+    <ROW Feature="EF36CDD6CE40CFA978040EA5CBA799" Title="Visual C++ Redistributable for Visual Studio 2012 Update 4 x64" Description="Visual C++ Redistributable for Visual Studio 2012 Update 4 x64" Display="19" Level="1" Attributes="0"/>
+    <ROW Feature="FAC9C433D3044829E6669A2C6FF54E6" Title=".NET Desktop Runtime 6.0.16 x64" Description=".NET Desktop Runtime 6.0.16 x64" Display="3" Level="1" Attributes="0"/>
+    <ROW Feature="FEDCDA5E724321BEC04988E1E74CE9" Title="Visual C++ 2008 SP1 x64 (MFC Security Update)" Description="Visual C++ 2008 SP1 x64 (MFC Security Update)" Display="7" Level="1" Attributes="0"/>
     <ROW Feature="MainFeature" Title="MainFeature" Description="The BioNovoGene MZKit program module files" Display="2" Level="1" Directory_="APPDIR" Attributes="25"/>
     <ROW Feature="TileAssets_DefaultBuild" Title="TileAssets_DefaultBuild" Description="Description" Display="0" Level="1" Directory_="APPDIR" Attributes="0" Options="271" Builds="DefaultBuild"/>
     <ROW Feature="VisualStudio_Diagnostic" Title="VisualStudio_Diagnostic" Description="Add symbol files for debug MZKit in VisualStudio" Display="5" Level="4" Directory_="APPDIR" Attributes="9"/>
@@ -18321,12 +18341,22 @@
     <ROW XmlFile="mzkit_win32.VisualElementsManifest." FileName="mzkit_win32.VisualElementsManifest.xml" RootElement="Application" Flags="89" Version="1.0" Encoding="UTF-8" IndentUnits="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiActionTextComponent">
+    <ROW Action="AI_ConfigureChainer" Description="Configuring prerequisites launcher" DescriptionLocId="ActionText.Description.AI_ConfigureChainer" Template="Configure Launcher" TemplateLocId="ActionText.Template.AI_ConfigureChainer"/>
+    <ROW Action="AI_DownloadPrereq" Description="Downloading prerequisite software" DescriptionLocId="ActionText.Description.AI_DownloadPrereq" Template="[1]" TemplateLocId="ActionText.Template.AI_DownloadPrereq"/>
+    <ROW Action="AI_ExtractPrereq" Description="Extracting prerequisite software" DescriptionLocId="ActionText.Description.AI_ExtractPrereq" Template="[1]" TemplateLocId="ActionText.Template.AI_ExtractPrereq"/>
+    <ROW Action="AI_InstallPostPrerequisite" Description="Installing prerequisite software" DescriptionLocId="ActionText.Description.AI_InstallPrerequisite" Template="[1]" TemplateLocId="ActionText.Template.AI_InstallPrerequisite"/>
+    <ROW Action="AI_InstallPrerequisite" Description="Installing prerequisite software" DescriptionLocId="ActionText.Description.AI_InstallPrerequisite" Template="[1]" TemplateLocId="ActionText.Template.AI_InstallPrerequisite"/>
+    <ROW Action="AI_VerifyPrereq" Description="Verifying prerequisites" DescriptionLocId="ActionText.Description.AI_VerifyPrereq" Template="[1] was not installed correctly." TemplateLocId="ActionText.Template.AI_VerifyPrereq"/>
     <ROW Action="AI_XmlCommit" Description="Committing XML file configurations." DescriptionLocId="ActionText.Description.AI_XmlCommit" Template="Committing XML file configurations." TemplateLocId="ActionText.Template.AI_XmlCommit"/>
     <ROW Action="AI_XmlConfig" Description="Executing XML file configurations" DescriptionLocId="ActionText.Description.AI_XmlConfig" Template="Configuring XML file: &quot;[1]&quot;" TemplateLocId="ActionText.Template.AI_XmlConfig"/>
     <ROW Action="AI_XmlInstall" Description="Generating actions to configure XML files" DescriptionLocId="ActionText.Description.AI_XmlInstall"/>
     <ROW Action="AI_XmlRemove" Description="Executing XML file configurations" DescriptionLocId="ActionText.Description.AI_XmlRemove" Template="Configuring XML file: &quot;[1]&quot;" TemplateLocId="ActionText.Template.AI_XmlRemove"/>
     <ROW Action="AI_XmlRollback" Description="Rolling back XML file configurations." DescriptionLocId="ActionText.Description.AI_XmlRollback" Template="Rolling back XML file configurations." TemplateLocId="ActionText.Template.AI_XmlRollback"/>
     <ROW Action="AI_XmlUninstall" Description="Generating actions to configure XML files" DescriptionLocId="ActionText.Description.AI_XmlUninstall"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiAppSearchComponent">
+    <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_LM" Builds="DefaultBuild"/>
+    <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_CU" Builds="DefaultBuild"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
     <ROW Name="ExternalUICleaner.dll" SourcePath="&lt;AI_CUSTACTS&gt;ExternalUICleaner.dll"/>
@@ -18335,6 +18365,8 @@
     <ROW Name="ShowBackgroundImages.dll" SourcePath="&lt;AI_CUSTACTS&gt;ShowBackgroundImages.dll"/>
     <ROW Name="SoftwareDetector.dll" SourcePath="&lt;AI_CUSTACTS&gt;SoftwareDetector.dll"/>
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
+    <ROW Name="aipackagechainer.exe" SourcePath="&lt;AI_CUSTACTS&gt;aipackagechainer.exe" DigSign="true"/>
+    <ROW Name="file_deleter.ps1" SourcePath="&lt;AI_SCRIPTS&gt;file_deleter.ps1"/>
     <ROW Name="installer.ico" SourcePath="installer.ico"/>
     <ROW Name="viewer.exe" SourcePath="&lt;AI_CUSTACTS&gt;viewer.exe" DigSign="true"/>
     <ROW Name="xmlCfg.dll" SourcePath="&lt;AI_CUSTACTS&gt;xmlCfg.dll"/>
@@ -18381,6 +18413,9 @@
     <ROW Dialog_="NewSeqDialog" Control_="Cancel" Event="SpawnDialog" Argument="CancelDlg" Condition="1" Ordering="100"/>
     <ROW Dialog_="LicenseAgreementDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="LicenseAgreementDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="ExitDialog" Control_="Finish" Event="DoAction" Argument="AI_CleanPrereq" Condition="1" Ordering="101"/>
+    <ROW Dialog_="FatalError" Control_="Finish" Event="DoAction" Argument="AI_CleanPrereq" Condition="1" Ordering="102"/>
+    <ROW Dialog_="UserExit" Control_="Finish" Event="DoAction" Argument="AI_CleanPrereq" Condition="1" Ordering="101"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
@@ -18395,16 +18430,23 @@
     <ROW Action="AI_AppSearchEx" Type="1" Source="Prereq.dll" Target="DoAppSearchEx"/>
     <ROW Action="AI_ApplyShortcutFlags" Type="3073" Source="ShortcutFlags.dll" Target="UpdateShortcutFlags" WithoutSeq="true"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_CleanPrereq" Type="65" Source="Prereq.dll" Target="CleanPrereq" WithoutSeq="true"/>
+    <ROW Action="AI_ConfigureChainer" Type="1" Source="Prereq.dll" Target="ConfigurePrereqLauncher"/>
     <ROW Action="AI_DATA_SETTER" Type="51" Source="CustomActionData" Target="[~]"/>
     <ROW Action="AI_DATA_SETTER_1" Type="51" Source="CustomActionData" Target="[~]"/>
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
     <ROW Action="AI_DetectSoftware" Type="257" Source="SoftwareDetector.dll" Target="OnDetectSoftware"/>
     <ROW Action="AI_DoRemoveExternalUIStub" Type="3585" Source="ExternalUICleaner.dll" Target="DoRemoveExternalUIStub" WithoutSeq="true"/>
+    <ROW Action="AI_DownloadPrereq" Type="1" Source="Prereq.dll" Target="DownloadPrereq"/>
     <ROW Action="AI_DpiContentScale" Type="1" Source="aicustact.dll" Target="DpiContentScale"/>
     <ROW Action="AI_EnableDebugLog" Type="321" Source="aicustact.dll" Target="EnableDebugLog"/>
+    <ROW Action="AI_ExtractPrereq" Type="65" Source="Prereq.dll" Target="ExtractPrereq"/>
     <ROW Action="AI_GetArpIconPath" Type="1" Source="aicustact.dll" Target="GetArpIconPath"/>
     <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
+    <ROW Action="AI_InstallPostPrerequisite" Type="1" Source="Prereq.dll" Target="InstallPostPrereq"/>
+    <ROW Action="AI_InstallPrerequisite" Type="1" Source="Prereq.dll" Target="InstallPrereq"/>
     <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="LaunchApp"/>
+    <ROW Action="AI_LaunchChainer" Type="3314" Source="AI_PREREQ_CHAINER"/>
     <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
     <ROW Action="AI_PRESERVE_INSTALL_TYPE" Type="65" Source="aicustact.dll" Target="PreserveInstallType"/>
     <ROW Action="AI_PinShortcuts" Type="1" Source="ShortcutFlags.dll" Target="PinShortcuts"/>
@@ -18423,6 +18465,7 @@
     <ROW Action="AI_UnpinFromStartScreen" Type="1025" Source="ShortcutFlags.dll" Target="UnpinFromStartScreen" WithoutSeq="true"/>
     <ROW Action="AI_UnpinFromTaskbar" Type="1025" Source="ShortcutFlags.dll" Target="UnpinFromTaskbar" WithoutSeq="true"/>
     <ROW Action="AI_UnpinShortcuts" Type="1" Source="ShortcutFlags.dll" Target="UnpinShortcuts"/>
+    <ROW Action="AI_VerifyPrereq" Type="1" Source="Prereq.dll" Target="VerifyPrereq"/>
     <ROW Action="AI_ViewReadme" Type="1" Source="aicustact.dll" Target="ViewReadMe"/>
     <ROW Action="AI_XmlCommit" Type="11777" Source="xmlCfg.dll" Target="OnXmlCommit" WithoutSeq="true"/>
     <ROW Action="AI_XmlConfig" Type="11265" Source="xmlCfg.dll" Target="OnXmlConfig" WithoutSeq="true"/>
@@ -19742,6 +19785,16 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="mzkit_win32.VisualElementsManifest.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Mzkit_win32.MatrixViewer.pdb"/>
+    <ROW Feature_="FAC9C433D3044829E6669A2C6FF54E6" Component_="FAC9C433D3044829E6669A2C6FF54E6"/>
+    <ROW Feature_="MainFeature" Component_="AI_ExePath"/>
+    <ROW Feature_="D2BCE474_49DC_4169_8EFD_7CAB0921B614" Component_="D2BCE474_49DC_4169_8EFD_7CAB0921B614"/>
+    <ROW Feature_="FEDCDA5E724321BEC04988E1E74CE9" Component_="FEDCDA5E724321BEC04988E1E74CE9"/>
+    <ROW Feature_="B3D618FCD640C1BB6D035D907A7F98" Component_="B3D618FCD640C1BB6D035D907A7F98"/>
+    <ROW Feature_="B63_41B8_9CB7_8C5E07C0FC18_" Component_="B63_41B8_9CB7_8C5E07C0FC18_"/>
+    <ROW Feature_="A9B3CC_B8E4_4F03_B719_D9E76675954E" Component_="A9B3CC_B8E4_4F03_B719_D9E76675954E"/>
+    <ROW Feature_="C4FE6FD5B7C4D07B3A313E754A9A6A8" Component_="C4FE6FD5B7C4D07B3A313E754A9A6A8"/>
+    <ROW Feature_="CA62D813A4E74FA2AAE86A7D7B7B1493" Component_="CA62D813A4E74FA2AAE86A7D7B7B1493"/>
+    <ROW Feature_="EF36CDD6CE40CFA978040EA5CBA799" Component_="EF36CDD6CE40CFA978040EA5CBA799"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
@@ -19782,6 +19835,9 @@
     <ROW Action="AI_XmlUninstall" Condition="(REMOVE)" Sequence="3102"/>
     <ROW Action="AI_DATA_SETTER_1" Condition="(REMOVE)" Sequence="3101"/>
     <ROW Action="AI_SetArpReadmeFile" Condition="NOT Installed" Sequence="1001"/>
+    <ROW Action="AI_ConfigureChainer" Condition="((UILevel = 2) OR (UILevel = 3)) AND (NOT UPGRADINGPRODUCTCODE)" Sequence="6598"/>
+    <ROW Action="AI_LaunchChainer" Condition="AI_PREREQ_CHAINER AND (NOT UPGRADINGPRODUCTCODE)" Sequence="6599"/>
+    <ROW Action="AI_VerifyPrereq" Sequence="1101"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
@@ -19793,6 +19849,11 @@
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="102"/>
     <ROW Action="AI_AppSearchEx" Sequence="101"/>
     <ROW Action="AI_PRESERVE_INSTALL_TYPE" Sequence="199"/>
+    <ROW Action="AI_DownloadPrereq" Sequence="1297"/>
+    <ROW Action="AI_ExtractPrereq" Sequence="1298"/>
+    <ROW Action="AI_InstallPrerequisite" Sequence="1299"/>
+    <ROW Action="AI_InstallPostPrerequisite" Sequence="1301"/>
+    <ROW Action="AI_CleanPrereq" Sequence="1302"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
     <ROW Condition="( Version9X OR ( NOT VersionNT64 ) OR ( VersionNT64 AND ((VersionNT64 &lt;&gt; 600) OR (MsiNTProductType &lt;&gt; 1)) AND ((VersionNT64 &lt;&gt; 600) OR (MsiNTProductType = 1)) AND ((VersionNT64 &lt;&gt; 601) OR (MsiNTProductType &lt;&gt; 1)) AND ((VersionNT64 &lt;&gt; 601) OR (MsiNTProductType = 1)) AND ((VersionNT64 &lt;&gt; 602) OR (MsiNTProductType &lt;&gt; 1)) AND ((VersionNT64 &lt;&gt; 602) OR (MsiNTProductType = 1)) AND ((VersionNT64 &lt;&gt; 603) OR (MsiNTProductType &lt;&gt; 1)) ) )" Description="[ProductName] cannot be installed on the following Windows versions: [WindowsTypeNT64Display]." DescriptionLocId="AI.LaunchCondition.NoSpecificNT64" IsPredefined="true" Builds="DefaultBuild"/>
@@ -19815,26 +19876,46 @@
     <ROW ProgId="MZKit Workspace" Description="BioNovoGene MZKit workspace data pack file" Icon_="ext.exe"/>
     <ROW ProgId="MZKit binary MS pack" Description="BioNovogene mzPack binary cache file" Icon_="ext.exe"/>
   </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegLocatorComponent">
+    <ROW Signature_="AI_EXE_PATH_CU" Root="1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Type="2"/>
+    <ROW Signature_="AI_EXE_PATH_LM" Root="2" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Type="2"/>
+  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
+    <ROW Registry="A9B3CC_B8E4_4F03_B719_D9E76675954E" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="A9B3CC_B8E4_4F03_B719_D9E76675954E" Value="1" Component_="A9B3CC_B8E4_4F03_B719_D9E76675954E"/>
+    <ROW Registry="AI_ExePath" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Value="[AI_SETUPEXEPATH]" Component_="AI_ExePath"/>
     <ROW Registry="AI_InstallLanguage" Root="-1" Key="Software\Caphyon\Advanced Installer\[ProductCode]" Name="AI_InstallLanguage" Value="[ProductLanguage]" Component_="ProductInformation"/>
     <ROW Registry="AdvancedInstaller" Root="-1" Key="Software\Caphyon\Advanced Installer" Name="\"/>
+    <ROW Registry="B3D618FCD640C1BB6D035D907A7F98" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="B3D618FCD640C1BB6D035D907A7F98" Value="1" Component_="B3D618FCD640C1BB6D035D907A7F98"/>
+    <ROW Registry="B63_41B8_9CB7_8C5E07C0FC18_" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="B63_41B8_9CB7_8C5E07C0FC18_" Value="1" Component_="B63_41B8_9CB7_8C5E07C0FC18_"/>
+    <ROW Registry="C4FE6FD5B7C4D07B3A313E754A9A6A8" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="C4FE6FD5B7C4D07B3A313E754A9A6A8" Value="1" Component_="C4FE6FD5B7C4D07B3A313E754A9A6A8"/>
+    <ROW Registry="CA62D813A4E74FA2AAE86A7D7B7B1493" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="CA62D813A4E74FA2AAE86A7D7B7B1493" Value="1" Component_="CA62D813A4E74FA2AAE86A7D7B7B1493"/>
     <ROW Registry="Caphyon" Root="-1" Key="Software\Caphyon" Name="\"/>
     <ROW Registry="Comments" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Comments" Value="[ARPCOMMENTS]" Component_="AI_CustomARPName"/>
     <ROW Registry="Contact" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Contact" Value="[ARPCONTACT]" Component_="AI_CustomARPName"/>
     <ROW Registry="CurrentVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion" Name="\"/>
+    <ROW Registry="D2BCE474_49DC_4169_8EFD_7CAB0921B61" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="D2BCE474_49DC_4169_8EFD_7CAB0921B614" Value="1" Component_="D2BCE474_49DC_4169_8EFD_7CAB0921B614"/>
     <ROW Registry="DisplayIcon" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayIcon" Value="[ARP_ICON_PATH]" Component_="AI_CustomARPName"/>
     <ROW Registry="DisplayName" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayName" Value="[AI_PRODUCTNAME_ARP]" Component_="AI_CustomARPName"/>
     <ROW Registry="DisplayVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayVersion" Value="[ProductVersion]" Component_="AI_CustomARPName"/>
+    <ROW Registry="EF36CDD6CE40CFA978040EA5CBA799" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="EF36CDD6CE40CFA978040EA5CBA799" Value="1" Component_="EF36CDD6CE40CFA978040EA5CBA799"/>
     <ROW Registry="EstimatedSize" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="EstimatedSize" Value="#[AI_ARP_SIZE]" Component_="AI_CustomARPName" VirtualValue="#"/>
+    <ROW Registry="FAC9C433D3044829E6669A2C6FF54E6" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="FAC9C433D3044829E6669A2C6FF54E6" Value="1" Component_="FAC9C433D3044829E6669A2C6FF54E6"/>
+    <ROW Registry="FEDCDA5E724321BEC04988E1E74CE9" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="FEDCDA5E724321BEC04988E1E74CE9" Value="1" Component_="FEDCDA5E724321BEC04988E1E74CE9"/>
     <ROW Registry="HelpLink" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpLink" Value="[ARPHELPLINK]" Component_="AI_CustomARPName"/>
     <ROW Registry="HelpTelephone" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpTelephone" Value="[ARPHELPTELEPHONE]" Component_="AI_CustomARPName"/>
     <ROW Registry="InstallLocation" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="InstallLocation" Value="[APPDIR]" Component_="AI_CustomARPName"/>
+    <ROW Registry="LZMA" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA" Name="\"/>
     <ROW Registry="Manufacturer" Root="-1" Key="Software\[Manufacturer]" Name="\"/>
     <ROW Registry="Microsoft" Root="-1" Key="Software\Microsoft" Name="\"/>
     <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
+    <ROW Registry="Prereqs" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs" Name="\"/>
     <ROW Registry="ProductCode" Root="-1" Key="Software\Caphyon\Advanced Installer\[ProductCode]" Name="\"/>
+    <ROW Registry="ProductCode_1" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]" Name="\"/>
+    <ROW Registry="ProductCode_2" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]" Name="\"/>
     <ROW Registry="ProductName" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="\"/>
     <ROW Registry="ProductNameProductVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="\"/>
+    <ROW Registry="ProductVersion" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="\"/>
+    <ROW Registry="ProductVersion_1" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="\"/>
     <ROW Registry="Publisher" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Publisher" Value="[Manufacturer]" Component_="AI_CustomARPName"/>
     <ROW Registry="Readme" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Readme" Value="[ARPREADME]" Component_="AI_CustomARPName"/>
     <ROW Registry="Software" Root="-1" Key="Software" Name="\"/>
@@ -19871,15 +19952,34 @@
     <ROW Extension_="mzWork" Component_="mzkit_win32.exe_1" Verb="open" Sequence="1" Command="&amp;Open" Argument="&quot;%1&quot;"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.PreReqComponent">
+    <ROW PrereqKey="A9B3CC_B8E4_4F03_B719_D9E76675954E" DisplayName="Visual C++ 2010 x64 (MFC Security Update)" VersionMin="10.0" SetupFileUrl="Prerequisites\Visual C++ 2010\vcredist_x64.exe" Location="0" ExactSize="0" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" Operator="1" NoUiComLine="/q /norestart" Options="f" TargetName="Visual C++ 2010\vcredist_x64.exe" Feature="A9B3CC_B8E4_4F03_B719_D9E76675954E"/>
     <ROW PrereqKey="AF4EF7137AE24E488A4E128FD1B89507" DisplayName="Microsoft Edge WebView2 Runtime (web installer)" VersionMin="106.0" SetupFileUrl="https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/ce863ccd-72e9-4860-8e42-e34355ba5c63/MicrosoftEdgeWebView2RuntimeInstallerX64.exe" Location="1" ExactSize="1781528" WinNTVersions="Windows Vista x86, Windows Server 2008 x86, Windows 8 x86" WinNT64Versions="Windows Vista x64, Windows Server 2008 x64, Windows 8 x64" Operator="1" NoUiComLine="/silent /install" Options="y" MD5="b97ff6d43d00ae1df8b45f13c3348c0e" TargetName="WebView2"/>
+    <ROW PrereqKey="B3D618FCD640C1BB6D035D907A7F98" DisplayName="Visual C++ 2008 x64 (Package ATL Security Update)" VersionMin="9.0" SetupFileUrl="Prerequisites\Visual C++ 2008\vcredist_x64.exe" Location="0" ExactSize="0" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" Operator="1" NoUiComLine="/q" Options="xf" TargetName="Visual C++ 2008\vcredist_x64.exe" Feature="B3D618FCD640C1BB6D035D907A7F98"/>
+    <ROW PrereqKey="B63_41B8_9CB7_8C5E07C0FC18_" DisplayName="Visual C++ 2010 SP1 x64 (MFC Security Update)" VersionMin="10.0" SetupFileUrl="Prerequisites\Visual C++ 2010 SP1\vcredist_x64.exe" Location="0" ExactSize="0" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" Operator="1" NoUiComLine="/q /norestart" Options="f" TargetName="Visual C++ 2010 SP1\vcredist_x64.exe" Feature="B63_41B8_9CB7_8C5E07C0FC18_"/>
     <ROW PrereqKey="B96F93FA27E74B02866727AAE83982D0" DisplayName=".NET Framework 4.8" SetupFileUrl="https://download.visualstudio.microsoft.com/download/pr/7afca223-55d2-470a-8edc-6a1739ae3252/abd170b4b0ec15ad0222a809b761a036/ndp48-x86-x64-allos-enu.exe" Location="1" ExactSize="72721568" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" WinNT64Versions="Windows Vista x64, Windows Server 2008 x64, Windows 7 RTM x64, Windows Server 2008 R2 RTM x64, Windows 8 x64" Operator="1" NoUiComLine="/q /norestart" Options="xy" MD5="4e7a8586d06ce1f8cebac0d4bc379e16" TargetName=".NET Framework 4.8"/>
+    <ROW PrereqKey="C4FE6FD5B7C4D07B3A313E754A9A6A8" DisplayName="Visual C++ Redistributable for Visual Studio 2015-2022 x64" VersionMin="14.30" SetupFileUrl="Prerequisites\Visual C++ Redistributable for Visual Studio 2015-2022\VC_redist.x64.exe" Location="0" ExactSize="0" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" WinNT64Versions="Windows Vista RTM x64, Windows Vista SP1 x64, Windows Server 2008 RTM x64, Windows 7 RTM x64, Windows Server 2008 R2 RTM x64" Operator="1" NoUiComLine="/q /norestart" Options="xf" TargetName="Visual C++ Redistributable for Visual Studio 2015-2022\VC_redist.x64.exe" Feature="C4FE6FD5B7C4D07B3A313E754A9A6A8"/>
     <ROW PrereqKey="C6F7BF650B714DC58735D62C12F214E4" DisplayName=".NET Runtime 6.0.0 x64" VersionMin="6.0" SetupFileUrl="https://download.visualstudio.microsoft.com/download/pr/b9cfdb9e-d5cd-4024-b318-00390b729d2f/65690f2440f40654898020cdfffa1050/dotnet-runtime-6.0.0-win-x64.exe" Location="1" ExactSize="28180712" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" WinNT64Versions="Windows Vista x64, Windows Server 2008 x64, Windows 7 RTM x64, Windows Server 2008 R2 x64, Windows 8 x64, Windows Server 2012 x64, Windows 10 version 1507 x64, Windows 10 version 1511 x64" Operator="1" NoUiComLine="/q /norestart" Options="y" MD5="7ec466a9808697c935bd0525a922beca" TargetName=".NET 6.0"/>
-    <ATTRIBUTE name="PrereqsOrder" value="B96F93FA27E74B02866727AAE83982D0 C6F7BF650B714DC58735D62C12F214E4 AF4EF7137AE24E488A4E128FD1B89507"/>
+    <ROW PrereqKey="CA62D813A4E74FA2AAE86A7D7B7B1493" DisplayName="Visual C++ Redistributable for Visual Studio 2013 Update 5 x64" VersionMin="12.0" SetupFileUrl="Prerequisites\Visual C++ Redistributable for Visual Studio 2013\vcredist_2013u5_x64.exe" Location="0" ExactSize="0" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" Operator="1" NoUiComLine="/q /norestart" Options="xf" TargetName="Visual C++ Redistributable for Visual Studio 2013\vcredist_2013u5_x64.exe" Feature="CA62D813A4E74FA2AAE86A7D7B7B1493"/>
+    <ROW PrereqKey="D2BCE474_49DC_4169_8EFD_7CAB0921B614" DisplayName="Visual C++ 2005 SP1 x64 (MFC Security Update)" VersionMin="8.0" SetupFileUrl="Prerequisites\Visual C++ 2005 SP1\vcredist_x64.exe" Location="0" ExactSize="0" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" Operator="0" NoUiComLine="/q" Options="xf" TargetName="Visual C++ 2005 SP1\vcredist_x64.exe" Feature="D2BCE474_49DC_4169_8EFD_7CAB0921B614"/>
+    <ROW PrereqKey="EF36CDD6CE40CFA978040EA5CBA799" DisplayName="Visual C++ Redistributable for Visual Studio 2012 Update 4 x64" VersionMin="11.0" SetupFileUrl="Prerequisites\Visual C++ Redistributable for Visual Studio 2012\vcredist_x64.exe" Location="0" ExactSize="0" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" Operator="1" NoUiComLine="/q /norestart" Options="xf" TargetName="Visual C++ Redistributable for Visual Studio 2012\vcredist_x64.exe" Feature="EF36CDD6CE40CFA978040EA5CBA799"/>
+    <ROW PrereqKey="FAC9C433D3044829E6669A2C6FF54E6" DisplayName=".NET Desktop Runtime 6.0.16 x64" VersionMin="6.0" SetupFileUrl="Prerequisites\.NET 6.0\windowsdesktop-runtime-6.0.16-win-x64.exe" Location="0" ExactSize="0" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" WinNT64Versions="Windows Vista x64, Windows Server 2008 x64, Windows 7 RTM x64, Windows Server 2008 R2 x64, Windows 8 x64, Windows Server 2012 x64, Windows 10 version 1507 x64, Windows 10 version 1511 x64" Operator="1" NoUiComLine="/q /norestart" Options="fx" TargetName=".NET 6.0\windowsdesktop-runtime-6.0.16-win-x64.exe" Feature="FAC9C433D3044829E6669A2C6FF54E6"/>
+    <ROW PrereqKey="FEDCDA5E724321BEC04988E1E74CE9" DisplayName="Visual C++ 2008 SP1 x64 (MFC Security Update)" VersionMin="9.0" SetupFileUrl="Prerequisites\Visual C++ 2008 SP1\vcredist_x64.exe" Location="0" ExactSize="0" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" Operator="1" NoUiComLine="/q" Options="xf" TargetName="Visual C++ 2008 SP1\vcredist_x64.exe" Feature="FEDCDA5E724321BEC04988E1E74CE9"/>
+    <ATTRIBUTE name="PrereqsOrder" value="B96F93FA27E74B02866727AAE83982D0 C6F7BF650B714DC58735D62C12F214E4 AF4EF7137AE24E488A4E128FD1B89507 FAC9C433D3044829E6669A2C6FF54E6 D2BCE474_49DC_4169_8EFD_7CAB0921B614 FEDCDA5E724321BEC04988E1E74CE9 B3D618FCD640C1BB6D035D907A7F98 B63_41B8_9CB7_8C5E07C0FC18_ A9B3CC_B8E4_4F03_B719_D9E76675954E C4FE6FD5B7C4D07B3A313E754A9A6A8 CA62D813A4E74FA2AAE86A7D7B7B1493 EF36CDD6CE40CFA978040EA5CBA799"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.PreReqSearchComponent">
+    <ROW SearchKey="A9B3CC_B8E4_4F03_B719_D9E76675954EV" Prereq="A9B3CC_B8E4_4F03_B719_D9E76675954E" SearchType="2" SearchString="HKLM\SOFTWARE\Microsoft\DevDiv\VC\Servicing\10.0\red\amd64\1033\Version" VerMin="30319.415" Order="1" Property="PreReqSearch_A9B3CC_B8E4_4F03_B719_"/>
     <ROW SearchKey="AF4EF7137AE24E488A4E128FD1B89507pv" Prereq="AF4EF7137AE24E488A4E128FD1B89507" SearchType="2" SearchString="HKLM\SOFTWARE\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}\pv" VerMin="96.0.1054.43" Order="1" Property="PreReqSearch_AF4EF7137AE24E488A4E12"/>
+    <ROW SearchKey="B3D618FCD640C1BB6D035D907A7F98Insta" Prereq="B3D618FCD640C1BB6D035D907A7F98" SearchType="9" SearchString="HKLM\SOFTWARE\Microsoft\DevDiv\VC\Servicing\9.0\RED\1033\Install" RefContent="M1" Order="1" Property="PreReqSearch_B3D618FCD640C1BB6D035D"/>
+    <ROW SearchKey="B63_41B8_9CB7_8C5E07C0FC18_Version" Prereq="B63_41B8_9CB7_8C5E07C0FC18_" SearchType="2" SearchString="HKLM\SOFTWARE\Microsoft\DevDiv\VC\Servicing\10.0\red\amd64\1033\Version" VerMin="40219.325" Order="1" Property="PreReqSearch_B63_41B8_9CB7_8C5E07C0"/>
     <ROW SearchKey="B96F93FA27E74B02866727AAE83982D0Release" Prereq="B96F93FA27E74B02866727AAE83982D0" SearchType="9" SearchString="HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\Release" RefContent="G528048" Order="1" Property="PreReqSearch_B96F93FA27E74B02866727"/>
+    <ROW SearchKey="C4FE6FD5B7C4D07B3A313E754A9A6A8Vers" Prereq="C4FE6FD5B7C4D07B3A313E754A9A6A8" SearchType="2" SearchString="HKLM\SOFTWARE\Microsoft\DevDiv\VC\Servicing\14.0\RuntimeMinimum\Version" VerMin="14.30.30704" Order="1" Property="PreReqSearch_C4FE6FD5B7C4D07B3A313E"/>
     <ROW SearchKey="C6F7BF650B714DC58735D62C12F214E4Mic" Prereq="C6F7BF650B714DC58735D62C12F214E4" SearchType="12" SearchString="HKLM\SOFTWARE\dotnet\Setup\InstalledVersions\x64\sharedfx\Microsoft.NETCore.App" VerMin="6.0.0" Order="1" Property="PreReqSearch_C6F7BF650B714DC58735D6"/>
+    <ROW SearchKey="CA62D813A4E74FA2AAE86A7D7B7B1493Ver" Prereq="CA62D813A4E74FA2AAE86A7D7B7B1493" SearchType="2" SearchString="HKLM\SOFTWARE\Microsoft\DevDiv\VC\Servicing\12.0\RuntimeMinimum\Version" VerMin="12.0.40649" Order="1" Property="PreReqSearch_CA62D813A4E74FA2AAE86A"/>
+    <ROW SearchKey="D2BCE474_49DC_4169_8EFD_7CAB0921B61" Prereq="D2BCE474_49DC_4169_8EFD_7CAB0921B614" SearchType="9" SearchString="HKLM\SOFTWARE\Microsoft\DevDiv\VC\Servicing\8.0\RED\1033\Install" RefContent="M1" Order="1" Property="PreReqSearch_D2BCE474_49DC_4169_8EF"/>
+    <ROW SearchKey="D2BCE474_49DC_4169_8EFD_7CAB0921B_1" Prereq="D2BCE474_49DC_4169_8EFD_7CAB0921B614" SearchType="9" SearchString="HKLM\SOFTWARE\Microsoft\DevDiv\VC\Servicing\8.0\RED\1033\SP" RefContent="M1" Order="2" Property="PreReqSearch_1_D2BCE474_49DC_4169_8"/>
+    <ROW SearchKey="EF36CDD6CE40CFA978040EA5CBA799Versi" Prereq="EF36CDD6CE40CFA978040EA5CBA799" SearchType="2" SearchString="HKLM\SOFTWARE\Microsoft\DevDiv\VC\Servicing\11.0\RuntimeMinimum\Version" VerMin="11.0.61030" Order="1" Property="PreReqSearch_EF36CDD6CE40CFA978040E"/>
+    <ROW SearchKey="FAC9C433D3044829E6669A2C6FF54E6Micr" Prereq="FAC9C433D3044829E6669A2C6FF54E6" SearchType="14" SearchString="[ProgramFiles64Folder]dotnet\shared\Microsoft.WindowsDesktop.App" VerMin="6.0.16" Order="1" Property="PreReqSearch_FAC9C433D3044829E6669A"/>
+    <ROW SearchKey="FEDCDA5E724321BEC04988E1E74CE9Versi" Prereq="FEDCDA5E724321BEC04988E1E74CE9" SearchType="2" SearchString="HKLM\SOFTWARE\Microsoft\DevDiv\VC\Servicing\9.0\RED\1033\Version" VerMin="30729.6161" Order="1" Property="PreReqSearch_FEDCDA5E724321BEC04988"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.SoftwareIdentificationComponent">
     <ATTRIBUTE name="LocalFile" value="regid.199509.com.example_ProductNam"/>
@@ -19931,7 +20031,7 @@
     <ROW XmlAttribute="xsischemaLocation" XmlElement="swidsoftware_identification_tag" Name="xsi:schemaLocation" Flags="14" Order="3" Value="http://standards.iso.org/iso/19770/-2/2008/schema.xsd software_identification_tag.xsd"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.XmlElementComponent">
-    <ROW XmlElement="swidbuild" ParentElement="swidnumeric" Name="swid:build" Condition="1" Order="2" Flags="14" Text="5799" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidbuild" ParentElement="swidnumeric" Name="swid:build" Condition="1" Order="2" Flags="14" Text="7199" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidchannel_name" ParentElement="swidlicense_linkage" Name="swid:channel_name" Condition="1" Order="1" Flags="14" Text="Standard(Community Edition)" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidchannel_type" ParentElement="swidlicense_linkage" Name="swid:channel_type" Condition="1" Order="0" Flags="14" Text="Retail" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidcustomer_type" ParentElement="swidlicense_linkage" Name="swid:customer_type" Condition="1" Order="2" Flags="14" Text="Academic" UpdateIndexInParent="0"/>
@@ -19949,7 +20049,7 @@
     <ROW XmlElement="swidregid" ParentElement="swidsoftware_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2013-01.com.panomix" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_5" ParentElement="swidsoftware_licensor" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2019-11.org.mzkit" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_6" ParentElement="swidtag_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.1995-09.me.xieguigang,gg.xie@bionovogene.com" UpdateIndexInParent="0"/>
-    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="1118" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="6618" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidserial_number" ParentElement="swidsoftware_identification_tag" Name="swid:serial_number" Condition="1" Order="7" Flags="14" Text="[PIDKEY]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_creator" ParentElement="swidsoftware_identification_tag" Name="swid:software_creator" Condition="1" Order="3" Flags="14" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_id" ParentElement="swidsoftware_identification_tag" Name="swid:software_id" Condition="1" Order="5" Flags="14" UpdateIndexInParent="0"/>

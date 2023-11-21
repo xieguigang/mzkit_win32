@@ -399,3 +399,12 @@ setup/Setup Files/MZKit-20231020-Setup Files.zip
 setup/Prerequisites/DirectX 11.1 Runtime/Windows6.1-KB2670838-x64.msu
 setup/Setup Files/DirectX 11.1 Runtime/Windows6.1-KB2670838-x64.msu
 setup/Setup Files/MZKit-20231105-Setup Files.zip
+setup/Prerequisites/.NET 6.0/windowsdesktop-runtime-6.0.16-win-x64.exe
+setup/Prerequisites/Visual C++ 2005 SP1/vcredist_x64.exe
+setup/Prerequisites/Visual C++ 2008 SP1/vcredist_x64.exe
+setup/Prerequisites/Visual C++ 2008/vcredist_x64.exe
+setup/Prerequisites/Visual C++ 2010 SP1/vcredist_x64.exe
+setup/Prerequisites/Visual C++ 2010/vcredist_x64.exe
+setup/Prerequisites/Visual C++ Redistributable for Visual Studio 2012/vcredist_x64.exe
+setup/Prerequisites/Visual C++ Redistributable for Visual Studio 2013/vcredist_2013u5_x64.exe
+setup/Prerequisites/Visual C++ Redistributable for Visual Studio 2015-2022/VC_redist.x64.exe
