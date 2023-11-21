@@ -28,6 +28,7 @@ Public Class BlenderClient : Implements IDisposable
     Public ReadOnly Property channel As MemoryPipe
 
     Dim sample_tag As String
+    Dim timeout_sec As Double = 6
 
     Private disposedValue As Boolean
 
@@ -39,7 +40,7 @@ Public Class BlenderClient : Implements IDisposable
     End Sub
 
     Private Function handleRequest(req As RequestStream) As RequestStream
-        Return New TcpRequest(host).SetTimeOut(TimeSpan.FromSeconds(60)).SendMessage(req)
+        Return New TcpRequest(host).SetTimeOut(TimeSpan.FromSeconds(timeout_sec)).SendMessage(req)
     End Function
 
     Public Function MSIRender(args As PlotProperty, params As MsImageProperty, canvas As Size) As Image

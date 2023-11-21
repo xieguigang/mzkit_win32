@@ -18,6 +18,7 @@ Public NotInheritable Class RenderService
     Public Shared Sub Start()
         Dim cli As CommandLine = App.CommandLine
         Dim bindChannel As String = App.PID
+        Dim debugBlender As Boolean = cli.HavebFlag("--blender")
 
         If cli.Name.TextEquals("--debug") Then
             MSIBlender = New IPEndPoint("127.0.0.1", cli("--blender") Or TCPExtensions.GetFirstAvailablePort(8000))
@@ -27,7 +28,7 @@ Public NotInheritable Class RenderService
             MSIBlender = New IPEndPoint("127.0.0.1", TCPExtensions.GetFirstAvailablePort(8000))
         End If
 
-        If cli.Name.TextEquals("--debug") AndAlso bindChannel = "debug-blender" Then
+        If debugBlender AndAlso cli.Name.TextEquals("--debug") AndAlso bindChannel = "debug-blender" Then
             ' just debug, do nothing
         Else
             Call Start(bindChannel)
