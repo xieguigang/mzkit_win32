@@ -88,8 +88,7 @@ namespace apps.viewer {
 
             console.log("Bisecting K-Means:");
             console.log($ts.value("#bisecting_kmeans"));
-            return;
-
+            
             vm.showSpinner();
             $goto("#spinner");
             app.desktop.mzkit

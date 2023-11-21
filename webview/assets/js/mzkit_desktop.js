@@ -1776,7 +1776,6 @@ var apps;
                 var k = parseInt($ts.value("#kmeans").toString());
                 console.log("Bisecting K-Means:");
                 console.log($ts.value("#bisecting_kmeans"));
-                return;
                 vm.showSpinner();
                 $goto("#spinner");
                 app.desktop.mzkit
