@@ -808,6 +808,10 @@
     <ROW Component="Microsoft.VisualBasic.DataMining.HiddenMarkovChain.dll" ComponentId="{0AC0701F-3125-405A-809D-859BA80394B1}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.HiddenMarkovChain.dll"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.HiddenMarkovChain.dll_5" ComponentId="{7CA916EC-0BED-4E9C-9FED-7A2763859FC5}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.HiddenMarkovChain.dll_5"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.HiddenMarkovChain.pdb" ComponentId="{E14CD35B-4247-4B96-B6CC-9C48D816D518}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.DataMining.HiddenMarkovChain.pdb" Type="4"/>
+    <ROW Component="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll" ComponentId="{2CE96BA1-3D39-4DCD-A19C-F379F0514ADD}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll"/>
+    <ROW Component="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_1" ComponentId="{A2D9523B-E660-475A-AF9A-A0E35E19645A}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_1"/>
+    <ROW Component="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_2" ComponentId="{01B8DF04-51C4-4F24-A339-9B5C43A068AD}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_2"/>
+    <ROW Component="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb" ComponentId="{754C2917-A41D-4D57-A967-19FD7604C0C8}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb_1" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.HierarchicalClustering.dll" ComponentId="{F4BF156B-5A45-4F7F-9258-B5530C36E099}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.HierarchicalClustering.dll"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.HierarchicalClustering.dll.config" ComponentId="{39E3223F-3870-4838-A19C-75DEFC3FD241}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.HierarchicalClustering.dll.config_1"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.HierarchicalClustering.dll_1" ComponentId="{DEC3167D-BC14-442A-B52B-A95076F70B87}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.HierarchicalClustering.dll_1"/>
@@ -1055,6 +1059,8 @@
     <ROW Component="Mzkit_win32.MZWork.dll_2" ComponentId="{86222F09-F5F6-4444-BC93-87AC2B601B38}" Directory_="blender_Dir" Attributes="256" KeyPath="Mzkit_win32.MZWork.dll_2"/>
     <ROW Component="Mzkit_win32.MZWork.pdb" ComponentId="{93C7FA25-DD92-40D9-8129-6970B51139BD}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.MZWork.pdb" Type="4"/>
     <ROW Component="Mzkit_win32.MZWork.pdb_1" ComponentId="{B51B9697-59D1-432E-BB8D-9ED1E53D6DD1}" Directory_="blender_Dir" Attributes="0" KeyPath="Mzkit_win32.MZWork.pdb_1" Type="4"/>
+    <ROW Component="Mzkit_win32.MatrixViewer.dll" ComponentId="{5D49B025-2464-4FF3-944B-416B9558A1E3}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.MatrixViewer.dll"/>
+    <ROW Component="Mzkit_win32.MatrixViewer.pdb" ComponentId="{61A4C5C4-C7CD-46F0-9C94-4302CB54BF82}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.MatrixViewer.pdb" Type="4"/>
     <ROW Component="Mzkit_win32.Task.dll" ComponentId="{E48415AB-DFC6-4244-8328-F0FCB60E6602}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.Task.dll"/>
     <ROW Component="Mzkit_win32.Task.dll_1" ComponentId="{22FFA14D-91C5-4FF9-A30B-EFA91ACA00B9}" Directory_="blender_Dir" Attributes="256" KeyPath="Mzkit_win32.Task.dll_1"/>
     <ROW Component="Mzkit_win32.Task.pdb" ComponentId="{D76C9A3B-C182-47C9-8DCE-769167CE3135}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.Task.pdb" Type="4"/>
@@ -18234,6 +18240,13 @@
     <ROW File="SMRUCC.DICOM.LASer.xml" Component_="SMRUCC.DICOM.LASer.xml" FileName="SMRUC~12.XML|SMRUCC.DICOM.LASer.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.DICOM.LASer.xml" SelfReg="false"/>
     <ROW File="SMRUCC.DICOM.NRRD.dll" Component_="SMRUCC.DICOM.NRRD.dll" FileName="SMRUC~18.DLL|SMRUCC.DICOM.NRRD.dll" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.DICOM.NRRD.dll" SelfReg="false"/>
     <ROW File="SMRUCC.DICOM.NRRD.pdb" Component_="SMRUCC.DICOM.NRRD.pdb" FileName="SMRUC~18.PDB|SMRUCC.DICOM.NRRD.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.DICOM.NRRD.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll" FileName="MICRO~62.DLL|Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_1" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_1" FileName="MICRO~35.DLL|Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_1" FileName="MICRO~32.PDB|Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_2" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_2" FileName="MICRO~71.DLL|Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb_1" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb" FileName="MICRO~65.PDB|Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb" SelfReg="false"/>
+    <ROW File="Mzkit_win32.MatrixViewer.dll" Component_="Mzkit_win32.MatrixViewer.dll" FileName="MZKIT_~9.DLL|Mzkit_win32.MatrixViewer.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.MatrixViewer.dll" SelfReg="false"/>
+    <ROW File="Mzkit_win32.MatrixViewer.pdb" Component_="Mzkit_win32.MatrixViewer.pdb" FileName="MZKIT~10.PDB|Mzkit_win32.MatrixViewer.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.MatrixViewer.pdb" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -19125,7 +19138,6 @@
     <ROW Feature_="MainFeature" Component_="System.Windows.Extensions.dll_2"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="BioDeep.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Mzkit_win32.LCMSViewer.dll"/>
-    <ROW Feature_="TileAssets_DefaultBuild" Component_="mzkit_win32.VisualElementsManifest.xml"/>
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.LCMSViewer.dll_1"/>
     <ROW Feature_="MainFeature" Component_="Reference.rtf"/>
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.LCMSViewer.dll.config"/>
@@ -19723,6 +19735,13 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.DICOM.LASer.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.DICOM.NRRD.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="RQL.pdb"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Mzkit_win32.MatrixViewer.dll"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="mzkit_win32.VisualElementsManifest.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Mzkit_win32.MatrixViewer.pdb"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
