@@ -437,11 +437,12 @@ Public NotInheritable Class RscriptProgressTask
         Return savefile.FileExists(ZERO_Nonexists:=True)
     End Function
 
-    Public Shared Function KMeans(rawdata As String, k As Integer, savefile As String, noUI As Boolean) As Boolean
+    Public Shared Function KMeans(rawdata As String, k As Integer, bisecting As Boolean, savefile As String, noUI As Boolean) As Boolean
         Dim Rscript As String = RscriptPipelineTask.GetRScript("clustering/kmeans.R")
         Dim cli As String = $"""{Rscript}""
 --rawdata ""{rawdata}""
---k {k}
+--k {k} 
+{If(bisecting, "--bisecting-kmeans", "")} 
 --save ""{savefile}""
 "
 

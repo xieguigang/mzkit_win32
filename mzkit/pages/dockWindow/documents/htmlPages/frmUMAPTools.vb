@@ -168,7 +168,7 @@ Public Class UMApAnalysis
         Dim savefile As String = get_clusters()
         Dim flag = Task(Of Boolean).Run(
             Function()
-                Return RscriptProgressTask.KMeans(umap_result, k, savefile, noUI:=True)
+                Return RscriptProgressTask.KMeans(umap_result, k, bisecting, savefile, noUI:=True)
             End Function)
 
         Return Await flag
