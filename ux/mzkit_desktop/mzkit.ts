@@ -32,7 +32,7 @@ namespace app.desktop {
             bandwidth: number,
             learningRate: number,
             spectral_cos: boolean): Promise<boolean>;
-        RunKmeans(k: number): Promise<boolean>;
+        RunKmeans(k: number, bisecting: boolean): Promise<boolean>;
         RunDbScan(min_pts: number, eps: number): Promise<boolean>;
         RunGraph(cutoff: number): Promise<boolean>;
         Download(): Promise<string>;

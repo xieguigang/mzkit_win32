@@ -160,7 +160,7 @@ Public Class UMApAnalysis
         Return True
     End Function
 
-    Public Async Function RunKmeans(k As Integer) As Task(Of Boolean)
+    Public Async Function RunKmeans(k As Integer, bisecting As Boolean) As Task(Of Boolean)
         If umap_result.StringEmpty Then
             Return False
         End If

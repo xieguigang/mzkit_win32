@@ -83,11 +83,17 @@ namespace apps.viewer {
 
         public run_kmeans_onclick() {
             const vm = this;
+            const bisecting_kmeans: boolean = parseBoolean($ts.value("#bisecting_kmeans"));
+            const k = parseInt($ts.value("#kmeans").toString());
+
+            console.log("Bisecting K-Means:");
+            console.log($ts.value("#bisecting_kmeans"));
+            return;
 
             vm.showSpinner();
             $goto("#spinner");
             app.desktop.mzkit
-                .RunKmeans(parseInt($ts.value("#kmeans").toString()))
+                .RunKmeans(k, bisecting_kmeans)
                 .then(async function (b) {
                     const flag = await b;
 
