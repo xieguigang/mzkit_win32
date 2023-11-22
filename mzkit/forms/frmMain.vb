@@ -227,6 +227,8 @@ Public Class frmMain : Implements AppHost
             End If
         ElseIf fileName.ExtensionSuffix("h5") Then
             Call RibbonEvents.OpenMSIRaw(fileName, debug:=False)
+        ElseIf fileName.ExtensionSuffix("h5ad") Then
+            Call VisualStudio.ShowDocument(Of frmSingleCellViewer)().LoadRawdata(fileName)
         ElseIf fileName.ExtensionSuffix("mzpack") Then
             Dim raw As New Raw With {
                 .cache = fileName,

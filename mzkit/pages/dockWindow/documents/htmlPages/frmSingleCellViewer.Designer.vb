@@ -25,7 +25,11 @@ Partial Class frmSingleCellViewer
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.WebView21 = New Microsoft.Web.WebView2.WinForms.WebView2()
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer1.Panel2.SuspendLayout()
+        Me.SplitContainer1.SuspendLayout()
         Me.SuspendLayout()
         '
         'WebView21
@@ -36,22 +40,40 @@ Partial Class frmSingleCellViewer
         Me.WebView21.Dock = System.Windows.Forms.DockStyle.Fill
         Me.WebView21.Location = New System.Drawing.Point(0, 0)
         Me.WebView21.Name = "WebView21"
-        Me.WebView21.Size = New System.Drawing.Size(800, 450)
+        Me.WebView21.Size = New System.Drawing.Size(530, 450)
         Me.WebView21.TabIndex = 0
         Me.WebView21.ZoomFactor = 1.0R
+        '
+        'SplitContainer1
+        '
+        Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer1.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer1.Name = "SplitContainer1"
+        '
+        'SplitContainer1.Panel2
+        '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.WebView21)
+        Me.SplitContainer1.Size = New System.Drawing.Size(800, 450)
+        Me.SplitContainer1.SplitterDistance = 266
+        Me.SplitContainer1.TabIndex = 1
         '
         'frmSingleCellViewer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.WebView21)
+        Me.Controls.Add(Me.SplitContainer1)
+        Me.DoubleBuffered = True
         Me.Name = "frmSingleCellViewer"
-        Me.Text = "Form1"
+        Me.TabPageContextMenuStrip = Me.DockContextMenuStrip1
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents WebView21 As Microsoft.Web.WebView2.WinForms.WebView2
+    Friend WithEvents SplitContainer1 As SplitContainer
 End Class

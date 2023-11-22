@@ -33,7 +33,27 @@ Public Class frmSingleCellViewer
         WebKit.Init(WebView21)
     End Sub
 
-    Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
+    Public Sub LoadRawdata(filepath As String)
+        Dim cache_key As String = frmMsImagingViewer.getCacheKey(filepath)
+        Dim cachefile As String = $"{App.AppSystemTemp}/.matrix_cache/{cache_key}.dat"
+
+        If Not cachefile.FileExists Then
+            ' export matrix to local cache
+            Call TaskProgress.RunAction(
+                run:=Sub(p As ITaskProgress)
+
+                     End Sub,
+                title:="Create matrix data...",
+                info:="Export and save matrix data..."
+            )
+        End If
+
+        source = New SingleCellViewer With {.matrix = cachefile}
+
+        Call WebView21_CoreWebView2InitializationCompleted()
+    End Sub
+
+    Private Sub WebView21_CoreWebView2InitializationCompleted()
         Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", Me.source)
         Call WebView21.CoreWebView2.Navigate(SourceUrl)
         Call WebKit.DeveloperOptions(WebView21, enable:=True,)
@@ -59,5 +79,10 @@ End Class
 <ClassInterface(ClassInterfaceType.AutoDual)>
 <ComVisible(True)>
 Public Class SingleCellViewer
+
+    ''' <summary>
+    ''' the source data to view
+    ''' </summary>
+    Public matrix As String
 
 End Class
