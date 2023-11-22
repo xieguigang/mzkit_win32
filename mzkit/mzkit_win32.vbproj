@@ -735,6 +735,12 @@
     <Compile Include="pages\dockWindow\documents\frmLCMSScatterViewer.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="pages\dockWindow\documents\htmlPages\frmSingleCellViewer.Designer.vb">
+      <DependentUpon>frmSingleCellViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pages\dockWindow\documents\htmlPages\frmSingleCellViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\documents\htmlPages\frmUMAPTools.Designer.vb">
       <DependentUpon>frmUMAPTools.vb</DependentUpon>
     </Compile>
@@ -1300,6 +1306,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\frmMRIViewer.resx">
       <DependentUpon>frmMRIViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\documents\htmlPages\frmSingleCellViewer.resx">
+      <DependentUpon>frmSingleCellViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\htmlPages\frmUMAPTools.resx">
       <DependentUpon>frmUMAPTools.vb</DependentUpon>
