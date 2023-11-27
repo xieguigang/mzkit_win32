@@ -492,7 +492,7 @@ Public Class frmMsImagingViewer
                                End Sub, config:=canvas)
     End Sub
 
-    Private Shared Function getCacheKey(filepath As String) As String
+    Friend Shared Function getCacheKey(filepath As String) As String
         Dim filesize As Long = filepath.FileLength
         Dim blockSize As Integer = 8192
         Dim md5 As New Md5HashProvider

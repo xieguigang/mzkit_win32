@@ -194,7 +194,8 @@ Friend MustInherit Class WindowModules
             "Excel Table(*.csv;*.xlsx)|*.csv;*.xlsx",
             "Open Source Spectrum(*.msp;*.mgf)|*.msp;*.mgf",
             "Raman spectroscopy(*.txt)|*.txt",
-            "Virtual Pathology Slide(*.tif;*.dzi;*.ndpi)|*.tif;*.dzi;*.ndpi"
+            "Virtual Pathology Slide(*.tif;*.dzi;*.ndpi)|*.tif;*.dzi;*.ndpi",
+            "10x Genomics h5ad file(*.h5ad)|*.h5ad"
         }
 
         Using file As New OpenFileDialog With {
