@@ -28,7 +28,7 @@ Public Class ChromatogramOverlapMatrix : Inherits DataMatrix
         Dim lines = GetMatrix(Of ChromatogramSerial)()
         Dim ticks As Integer = lines(0).size
         Dim data As Object()
-        Dim rt As Double() = lines(0).GetTime
+        Dim rt As Double() = lines(0).GetTime.ToArray
 
         For i As Integer = 0 To ticks - 1
             data = New Object(lines.Length) {}
@@ -68,7 +68,7 @@ Public Class ChromatogramOverlapMatrix : Inherits DataMatrix
             Dim lines = GetMatrix(Of ChromatogramSerial)()
             Dim ticks As Integer = lines(0).size
             Dim data As String()
-            Dim rt As Double() = lines(0).GetTime
+            Dim rt As Double() = lines(0).GetTime.ToArray
 
             data = {"retention time"}.JoinIterates(From line As ChromatogramSerial In lines Select line.Name).ToArray
 
