@@ -4,7 +4,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
 Imports PipelineHost
 Imports SMRUCC.genomics.Analysis.HTS.GSEA
-Imports SMRUCC.genomics.Assembly.KEGG.WebServices
+Imports SMRUCC.genomics.Assembly.KEGG.WebServices.XML
 Imports SMRUCC.genomics.GCModeller.Workbench.KEGGReport
 
 Public Class KEGGEnrichmentAction : Inherits ActionBase

@@ -56,7 +56,7 @@ Public Class KEGGStatsAction : Inherits ActionBase
         Dim pathways = maps.ToDictionary(
             Function(m) m.EntryId,
             Function(m)
-                Return m.shapes _
+                Return m.shapes.mapdata _
                     .Select(Function(a) a.IDVector) _
                     .IteratesALL _
                     .Distinct _
