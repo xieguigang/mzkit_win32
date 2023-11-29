@@ -469,7 +469,7 @@ Public Class PageMzkitTools
 
         Dim signals As ChromatogramSerial() = TICList _
             .Select(Function(c)
-                        Return New ChromatogramSerial(c.name, c.AsEnumerable)
+                        Return New ChromatogramSerial(c.name, From ti In c Order By ti.Time)
                     End Function) _
             .ToArray
 
