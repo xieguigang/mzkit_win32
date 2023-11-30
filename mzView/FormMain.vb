@@ -12,6 +12,8 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
 Imports Microsoft.VisualBasic.MIME.application.xml
+Imports Microsoft.VisualBasic.My
+Imports Microsoft.VisualBasic.My.FrameworkInternal
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Mzkit_win32.BasicMDIForm
 
@@ -23,6 +25,8 @@ Public Class FormMain
     Private Sub OpenToolStripMenuItem_Click()
         Using file As New OpenFileDialog With {.Filter = "mzPack Data File(*.mzPack)|*.mzPack|All File Formats(*.*)|*.*"}
             If file.ShowDialog = DialogResult.OK Then
+                FrameworkInternal.ConfigMemory(load:=MemoryLoads.Light)
+
                 Try
                     Dim buf As Stream = file.FileName.Open(FileMode.Open, doClear:=False, [readOnly]:=True, verbose:=True)
 
