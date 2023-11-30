@@ -25,7 +25,11 @@ Public Class FormMain
     Private Sub OpenToolStripMenuItem_Click()
         Using file As New OpenFileDialog With {.Filter = "mzPack Data File(*.mzPack)|*.mzPack|All File Formats(*.*)|*.*"}
             If file.ShowDialog = DialogResult.OK Then
+                Dim previousConfig = App.MemoryLoad
+
                 FrameworkInternal.ConfigMemory(load:=MemoryLoads.Light)
+                mzpack = Nothing
+                Win7StyleTreeView1.Nodes.Clear()
 
                 Try
                     Dim buf As Stream = file.FileName.Open(FileMode.Open, doClear:=False, [readOnly]:=True, verbose:=True)
@@ -48,13 +52,15 @@ Public Class FormMain
                     End If
 
                     mzpack = New StreamPack(buf, [readonly]:=True)
-                    Win7StyleTreeView1.Nodes.Clear()
                 Catch ex As Exception
                     MessageBox.Show(ex.ToString, "Open Database Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                    Return
+                Finally
+                    FrameworkInternal.ConfigMemory(load:=previousConfig)
                 End Try
 
-                Call loadTree()
+                If mzpack IsNot Nothing Then
+                    Call loadTree()
+                End If
             End If
         End Using
     End Sub
