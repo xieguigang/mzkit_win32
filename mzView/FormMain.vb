@@ -27,7 +27,10 @@ Public Class FormMain
             If file.ShowDialog = DialogResult.OK Then
                 Dim previousConfig = App.MemoryLoad
 
-                FrameworkInternal.ConfigMemory(load:=MemoryLoads.Light)
+                If file.FileName.FileLength > 1024 * 1024 * 1024 * 2L Then
+                    FrameworkInternal.ConfigMemory(load:=MemoryLoads.Light)
+                End If
+
                 mzpack = Nothing
                 Win7StyleTreeView1.Nodes.Clear()
 
