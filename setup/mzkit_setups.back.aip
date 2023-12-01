@@ -37,10 +37,10 @@
     <ROW Property="IAgree" Value="Yes" Type="4"/>
     <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1028:{6F02EBD1-8EBA-4B0C-AF92-A5E577053D6E} 1033:{6F02EBD1-8EBA-4B0C-AF92-A5E577053D6E} 1036:{6F02EBD1-8EBA-4B0C-AF92-A5E577053D6E} 1041:{6F02EBD1-8EBA-4B0C-AF92-A5E577053D6E} 1049:{6F02EBD1-8EBA-4B0C-AF92-A5E577053D6E} 2052:{6F02EBD1-8EBA-4B0C-AF92-A5E577053D6E} 2057:{6F02EBD1-8EBA-4B0C-AF92-A5E577053D6E} " Type="16"/>
+    <ROW Property="ProductCode" Value="1028:{416172EE-16A3-4B32-B7B2-D4FBFB589CAF} 1033:{416172EE-16A3-4B32-B7B2-D4FBFB589CAF} 1036:{416172EE-16A3-4B32-B7B2-D4FBFB589CAF} 1041:{416172EE-16A3-4B32-B7B2-D4FBFB589CAF} 1049:{416172EE-16A3-4B32-B7B2-D4FBFB589CAF} 2052:{416172EE-16A3-4B32-B7B2-D4FBFB589CAF} 2057:{416172EE-16A3-4B32-B7B2-D4FBFB589CAF} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="mzkit_win32"/>
-    <ROW Property="ProductVersion" Value="4.8.9987.12588" Type="32"/>
+    <ROW Property="ProductVersion" Value="4.9.9187.8811" Type="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{B645400B-3918-41EF-9009-7ADDD81C84B4}"/>
@@ -394,7 +394,7 @@
     <ROW Directory="zstdcodec_Dir" Directory_Parent="libs_Dir" DefaultDir="ZSTD-C~1|zstd-codec"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{719CF58F-A7CF-4D5E-B361-493D691218FA}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{DA803677-50E0-424B-BE90-A0F3C4BB2640}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{69AA9FFE-67B1-456B-88EB-97D3D6C92AA7}" Directory_="APPDIR" Attributes="256"/>
     <ROW Component="ARButton.js" ComponentId="{4E917137-D4FF-49F8-85C3-6A5835EE4133}" Directory_="webxr_Dir" Attributes="0" KeyPath="ARButton.js" Type="0"/>
     <ROW Component="AUTHORS" ComponentId="{C7BB9CCD-8E40-46A1-99A4-0164F34C94BA}" Directory_="sql.js_Dir" Attributes="0" KeyPath="AUTHORS" Type="0"/>
@@ -785,7 +785,10 @@
     <ROW Component="Microsoft.VisualBasic.DataMining.HiddenMarkovChain.dll_5" ComponentId="{7CA916EC-0BED-4E9C-9FED-7A2763859FC5}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.HiddenMarkovChain.dll_5"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.HiddenMarkovChain.pdb" ComponentId="{E14CD35B-4247-4B96-B6CC-9C48D816D518}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.DataMining.HiddenMarkovChain.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll" ComponentId="{69A40594-8CCE-4EF6-8951-629455F4BD6B}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll"/>
-    <ROW Component="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_1" ComponentId="{977A5E3A-E43D-4A4E-B48D-44B0F64C39AE}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_1"/>
+    <ROW Component="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_1" ComponentId="{977A5E3A-E43D-4A4E-B48D-44B0F64C39AE}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb"/>
+    <ROW Component="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_2" ComponentId="{4F93DE49-9DFD-48CB-B796-DDC87D6E7213}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb_1"/>
+    <ROW Component="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_3" ComponentId="{E473C335-B359-4FD7-92AA-F87E4C8F68D5}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_2"/>
+    <ROW Component="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_4" ComponentId="{A67E514F-D556-49A0-A2FC-CEA5A36207C8}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.HierarchicalClustering.dll" ComponentId="{F4BF156B-5A45-4F7F-9258-B5530C36E099}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.HierarchicalClustering.dll"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.HierarchicalClustering.dll.config" ComponentId="{39E3223F-3870-4838-A19C-75DEFC3FD241}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.HierarchicalClustering.dll.config_1"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.HierarchicalClustering.dll.config_1" ComponentId="{1DD7E0E9-5B8E-424E-9569-005FDFF4F6DB}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.DataMining.HierarchicalClustering.dll.config_2"/>
@@ -1022,6 +1025,8 @@
     <ROW Component="Mzkit_win32.MZWork.dll_2" ComponentId="{1F7506EF-FF66-4065-B5B8-BA1003FAFD9A}" Directory_="blender_Dir" Attributes="256" KeyPath="Mzkit_win32.MZWork.pdb_1" Type="4"/>
     <ROW Component="Mzkit_win32.MZWork.dll_3" ComponentId="{41099822-56D1-4736-B1DC-3732C2337FF0}" Directory_="blender_Dir" Attributes="256" KeyPath="Mzkit_win32.MZWork.dll_2"/>
     <ROW Component="Mzkit_win32.MZWork.pdb" ComponentId="{93C7FA25-DD92-40D9-8129-6970B51139BD}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.MZWork.pdb" Type="4"/>
+    <ROW Component="Mzkit_win32.MatrixViewer.dll" ComponentId="{584148C1-9381-4041-BCC2-C6DA3C054263}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.MatrixViewer.pdb"/>
+    <ROW Component="Mzkit_win32.MatrixViewer.dll_1" ComponentId="{8D4E6814-52F7-4A6F-9C02-559859C1B8F8}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.MatrixViewer.dll"/>
     <ROW Component="Mzkit_win32.Task.dll" ComponentId="{E48415AB-DFC6-4244-8328-F0FCB60E6602}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.Task.dll"/>
     <ROW Component="Mzkit_win32.Task.dll.config" ComponentId="{801DFB53-4B6F-4EC3-884D-A419A133D840}" Directory_="blender_Dir" Attributes="0" KeyPath="Mzkit_win32.Task.dll.config_1"/>
     <ROW Component="Mzkit_win32.Task.dll_1" ComponentId="{3C02FCEE-F988-4D3D-A0C7-332795D7B3D4}" Directory_="blender_Dir" Attributes="256" KeyPath="Mzkit_win32.Task.pdb_1" Type="4"/>
@@ -1097,6 +1102,10 @@
     <ROW Component="S042_Processed.ibd" ComponentId="{CF0DE48D-4241-41F7-8C29-E4E6FD2A196C}" Directory_="S042_Processed_imzML1.1.1_Dir" Attributes="256" KeyPath="S042_Processed.ibd" Type="0"/>
     <ROW Component="S043.png" ComponentId="{5A800A56-B8EB-4C8C-92C5-CDB083ED51A9}" Directory_="NewFolder_1_Dir" Attributes="256" KeyPath="S043.png" Type="0"/>
     <ROW Component="SHORTCUTDIR" ComponentId="{EB965C6F-9D74-45CE-9B11-1E3643BB5B03}" Directory_="SHORTCUTDIR" Attributes="256"/>
+    <ROW Component="SMRUCC.DICOM.LASer.dll" ComponentId="{DD5D0B2D-1943-44EC-A604-A2630602A34B}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.DICOM.LASer.pdb"/>
+    <ROW Component="SMRUCC.DICOM.LASer.dll_1" ComponentId="{FB164406-7C29-4B46-8C2B-F5DB4FE03CE4}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.DICOM.LASer.dll"/>
+    <ROW Component="SMRUCC.DICOM.NRRD.dll" ComponentId="{0E3D472E-9662-4C9E-82E9-3334369CA378}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.DICOM.NRRD.pdb"/>
+    <ROW Component="SMRUCC.DICOM.NRRD.dll_1" ComponentId="{A057BFF3-F509-4FD0-B2EB-D64E831BF6E4}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.DICOM.NRRD.dll"/>
     <ROW Component="SMRUCC.Language.CodeDom.dll" ComponentId="{B30DE5E1-A68C-401A-B494-FB7A6651D702}" Directory_="library_Dir" Attributes="256" KeyPath="SMRUCC.Language.CodeDom.dll"/>
     <ROW Component="SMRUCC.genomics.Analysis.HTS.DataFrame.dll" ComponentId="{3F761559-AB2C-49CB-A8DD-8E230FA32474}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.Analysis.HTS.DataFrame.dll"/>
     <ROW Component="SMRUCC.genomics.Analysis.HTS.DataFrame.dll_1" ComponentId="{664A86A2-FC90-4740-A9C2-BFE1CA9C87E2}" Directory_="host_Dir" Attributes="256" KeyPath="SMRUCC.genomics.Analysis.HTS.DataFrame.dll_1"/>
@@ -1243,6 +1252,7 @@
     <ROW Component="System.Memory.dll_2" ComponentId="{37EBBB97-6017-46E4-AC04-AD3FB3EB9131}" Directory_="APPDIR" Attributes="256" KeyPath="System.Memory.dll_2"/>
     <ROW Component="System.Numerics.Tensors.dll" ComponentId="{C303739F-A4A8-4A4E-B6B0-3664F41949EB}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Numerics.Tensors.dll"/>
     <ROW Component="System.Numerics.Tensors.dll_1" ComponentId="{1D3A1AFA-8665-4919-AD74-D72C8140D592}" Directory_="blender_Dir" Attributes="0" KeyPath="System.Numerics.Tensors.dll_1"/>
+    <ROW Component="System.Numerics.Tensors.dll_2" ComponentId="{1CA4B5E2-9D38-44B3-9D49-69E59F0F179A}" Directory_="APPDIR" Attributes="0" KeyPath="System.Numerics.Tensors.dll_2"/>
     <ROW Component="System.Numerics.Vectors.dll" ComponentId="{0C97B7E6-8953-48C2-90FC-6413F0DA1F27}" Directory_="dzitools_Dir" Attributes="0" KeyPath="System.Numerics.Vectors.dll"/>
     <ROW Component="System.Numerics.Vectors.dll_2" ComponentId="{3D47FC0B-6349-41D3-92EC-307A6F2D8E41}" Directory_="APPDIR" Attributes="256" KeyPath="System.Numerics.Vectors.dll_2"/>
     <ROW Component="System.Resources.Extensions.dll" ComponentId="{5F9E9865-E3D8-4C64-AFE0-E6767759C7E9}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Resources.Extensions.dll"/>
@@ -18190,8 +18200,18 @@
     <ROW File="BioDeep.pdb_2" Component_="BioDeep.dll_3" FileName="BioDeep.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\BioDeep.pdb" SelfReg="false"/>
     <ROW File="RQL.dll_3" Component_="RQL.dll_4" FileName="RQL.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\RQL.dll" SelfReg="false"/>
     <ROW File="RQL.pdb_2" Component_="RQL.dll_4" FileName="RQL.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\RQL.pdb" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_1" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_1" FileName="MICRO~35.DLL|Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_1" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_4" FileName="MICRO~35.DLL|Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_1" FileName="MICRO~32.PDB|Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_2" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_3" FileName="MICRO~71.DLL|Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb_1" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_2" FileName="MICRO~66.PDB|Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb" SelfReg="false"/>
+    <ROW File="Mzkit_win32.MatrixViewer.dll" Component_="Mzkit_win32.MatrixViewer.dll_1" FileName="MZKIT_~9.DLL|Mzkit_win32.MatrixViewer.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.MatrixViewer.dll" SelfReg="false"/>
+    <ROW File="Mzkit_win32.MatrixViewer.pdb" Component_="Mzkit_win32.MatrixViewer.dll" FileName="MZKIT~10.PDB|Mzkit_win32.MatrixViewer.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.MatrixViewer.pdb" SelfReg="false"/>
+    <ROW File="SMRUCC.DICOM.LASer.dll" Component_="SMRUCC.DICOM.LASer.dll_1" FileName="SMRUC~17.DLL|SMRUCC.DICOM.LASer.dll" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.DICOM.LASer.dll" SelfReg="false"/>
+    <ROW File="SMRUCC.DICOM.LASer.pdb" Component_="SMRUCC.DICOM.LASer.dll" FileName="SMRUC~17.PDB|SMRUCC.DICOM.LASer.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.DICOM.LASer.pdb" SelfReg="false"/>
+    <ROW File="SMRUCC.DICOM.NRRD.dll" Component_="SMRUCC.DICOM.NRRD.dll_1" FileName="SMRUC~18.DLL|SMRUCC.DICOM.NRRD.dll" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.DICOM.NRRD.dll" SelfReg="false"/>
+    <ROW File="SMRUCC.DICOM.NRRD.pdb" Component_="SMRUCC.DICOM.NRRD.dll" FileName="SMRUC~18.PDB|SMRUCC.DICOM.NRRD.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.DICOM.NRRD.pdb" SelfReg="false"/>
+    <ROW File="System.Numerics.Tensors.dll_2" Component_="System.Numerics.Tensors.dll_2" FileName="SYSTE~25.DLL|System.Numerics.Tensors.dll" Attributes="0" SourcePath="..\..\..\dist\bin\System.Numerics.Tensors.dll" SelfReg="false"/>
+    <ROW File="SMRUCC.DICOM.LASer.xml" Component_="Mzkit_win32.LCMSViewer.dll.config" FileName="SMRUCC~7.XML|SMRUCC.DICOM.LASer.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.DICOM.LASer.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -19628,6 +19648,16 @@
     <ROW Feature_="MainFeature" Component_="BioDeep.dll_3"/>
     <ROW Feature_="MainFeature" Component_="RQL.dll_4"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_1"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_2"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Mzkit_win32.MatrixViewer.dll"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.DICOM.LASer.dll"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.DICOM.NRRD.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_3"/>
+    <ROW Feature_="MainFeature" Component_="Mzkit_win32.MatrixViewer.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="SMRUCC.DICOM.LASer.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="System.Numerics.Tensors.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="SMRUCC.DICOM.NRRD.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_4"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
@@ -19815,14 +19845,14 @@
     <ROW XmlAttribute="xsischemaLocation" XmlElement="swidsoftware_identification_tag" Name="xsi:schemaLocation" Flags="14" Order="3" Value="http://standards.iso.org/iso/19770/-2/2008/schema.xsd software_identification_tag.xsd"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.XmlElementComponent">
-    <ROW XmlElement="swidbuild" ParentElement="swidnumeric" Name="swid:build" Condition="1" Order="2" Flags="14" Text="9987" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidbuild" ParentElement="swidnumeric" Name="swid:build" Condition="1" Order="2" Flags="14" Text="9187" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidchannel_name" ParentElement="swidlicense_linkage" Name="swid:channel_name" Condition="1" Order="1" Flags="14" Text="Standard(Community Edition)" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidchannel_type" ParentElement="swidlicense_linkage" Name="swid:channel_type" Condition="1" Order="0" Flags="14" Text="Retail" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidcustomer_type" ParentElement="swidlicense_linkage" Name="swid:customer_type" Condition="1" Order="2" Flags="14" Text="Academic" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidentitlement_required_indicator" ParentElement="swidsoftware_identification_tag" Name="swid:entitlement_required_indicator" Condition="1" Order="0" Flags="14" Text="true" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidlicense_linkage" ParentElement="swidsoftware_identification_tag" Name="swid:license_linkage" Condition="1" Order="8" Flags="14" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidmajor" ParentElement="swidnumeric" Name="swid:major" Condition="1" Order="0" Flags="14" Text="4" UpdateIndexInParent="0"/>
-    <ROW XmlElement="swidminor" ParentElement="swidnumeric" Name="swid:minor" Condition="1" Order="1" Flags="14" Text="8" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidminor" ParentElement="swidnumeric" Name="swid:minor" Condition="1" Order="1" Flags="14" Text="9" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidname" ParentElement="swidproduct_version" Name="swid:name" Condition="1" Order="0" Flags="14" Text="[ProductVersion]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidname_7" ParentElement="swidsoftware_creator" Name="swid:name" Condition="1" Order="0" Flags="14" Text="[Manufacturer]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidname_8" ParentElement="swidsoftware_licensor" Name="swid:name" Condition="1" Order="0" Flags="14" Text="[Manufacturer]" UpdateIndexInParent="0"/>
@@ -19833,7 +19863,7 @@
     <ROW XmlElement="swidregid" ParentElement="swidsoftware_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2013-01.com.panomix" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_5" ParentElement="swidsoftware_licensor" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2019-11.org.mzkit" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_6" ParentElement="swidtag_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.1995-09.me.xieguigang,gg.xie@bionovogene.com" UpdateIndexInParent="0"/>
-    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="12588" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="8811" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidserial_number" ParentElement="swidsoftware_identification_tag" Name="swid:serial_number" Condition="1" Order="7" Flags="14" Text="[PIDKEY]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_creator" ParentElement="swidsoftware_identification_tag" Name="swid:software_creator" Condition="1" Order="3" Flags="14" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_id" ParentElement="swidsoftware_identification_tag" Name="swid:software_id" Condition="1" Order="5" Flags="14" UpdateIndexInParent="0"/>
