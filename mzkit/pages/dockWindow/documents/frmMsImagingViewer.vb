@@ -359,10 +359,11 @@ Public Class frmMsImagingViewer
 
         Dim range As DoubleRange = summaryLayer.Select(Function(i) i.totalIon).Range
         Dim blender As Type = GetType(SummaryMSIBlender) ' (summaryLayer, params, loadFilters)
+        Dim args As New PlotProperty
 
         Me.blender.OpenSession(blender, params.GetMSIDimension, Nothing, params, "")
 
-        Return Me.blender.MSIRender(Nothing, params, params.GetMSIDimension)
+        Return Me.blender.MSIRender(args, params, params.GetMSIDimension)
     End Function
 
     Private Sub rotateSlide()
