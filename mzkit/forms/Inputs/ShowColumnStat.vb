@@ -163,7 +163,8 @@ IS_NUMERIC:    ' is numeric
                 ytickFontCSS:="font-style: normal; font-size: 20; font-family: " & FontFace.BookmanOldStyle & ";",
                 titleFontCSS:="font-style: strong; font-size: 48; font-family: " & FontFace.BookmanOldStyle & ";",
                 ppi:=300,
-                showStats:=False
+                showStats:=False,
+                removesOutliers:=False
             ).AsGDIImage
         End If
     End Sub
