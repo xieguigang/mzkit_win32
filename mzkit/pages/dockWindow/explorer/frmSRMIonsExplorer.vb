@@ -104,7 +104,7 @@ Public Class frmSRMIonsExplorer
         For Each sample In sample_files
             Dim TICRoot As TreeNode = Win7StyleTreeView1.Nodes.Add(sample.Key)
             Dim scan1 = sample.OrderBy(Function(d) d.rt).ToArray
-            Dim tic As New DataReader.Chromatogram With {
+            Dim tic As New BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Chromatogram With {
                 .scan_time = scan1.Select(Function(m) m.rt).ToArray,
                 .TIC = scan1.Select(Function(m) m.TIC).ToArray,
                 .BPC = scan1.Select(Function(m) m.BPC).ToArray
@@ -161,7 +161,7 @@ Public Class frmSRMIonsExplorer
 
     Public Sub LoadMRM(file As String)
         Dim list = file.LoadChromatogramList.ToArray
-        Dim TIC As DataReader.Chromatogram = list.GetIonsChromatogram
+        Dim TIC As BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Chromatogram = list.GetIonsChromatogram
 
         ' Call Win7StyleTreeView1.Nodes.Clear()
 
@@ -207,8 +207,8 @@ Public Class frmSRMIonsExplorer
     Private Sub Win7StyleTreeView1_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles Win7StyleTreeView1.AfterSelect
         Dim ticks As ChromatogramTick()
 
-        If TypeOf e.Node.Tag Is DataReader.Chromatogram Then
-            ticks = DirectCast(e.Node.Tag, DataReader.Chromatogram).GetTicks.ToArray
+        If TypeOf e.Node.Tag Is BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Chromatogram Then
+            ticks = DirectCast(e.Node.Tag, BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Chromatogram).GetTicks.ToArray
         ElseIf TypeOf e.Node.Tag Is MRMHolder Then
             Dim holder As MRMHolder = e.Node.Tag
             ticks = holder.TIC
@@ -270,7 +270,7 @@ Public Class frmSRMIonsExplorer
                 Continue For
             End If
 
-            With DirectCast(rawfile.Tag, DataReader.Chromatogram)
+            With DirectCast(rawfile.Tag, BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram.Chromatogram)
                 Yield New NamedCollection(Of ChromatogramTick)(fileName, .GetTicks(isbpc:=bpc))
             End With
         Next
