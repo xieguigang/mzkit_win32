@@ -1,6 +1,7 @@
 ﻿Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Text
+Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Excel = Microsoft.VisualBasic.MIME.Office.Excel.XLSX
 
@@ -42,6 +43,12 @@ Public Class SelectSheetName
     End Sub
 
     Public Shared Sub showFile(table As File, title As String)
-        Call WindowModules.ShowTable(DataFrame.CreateObject(table), title)
+        Call ProgressSpinner.DoLoading(
+            Sub()
+                Call MyApplication.host.Invoke(
+                    Sub()
+                        Call WindowModules.ShowTable(DataFrame.CreateObject(table), title)
+                    End Sub)
+            End Sub)
     End Sub
 End Class
