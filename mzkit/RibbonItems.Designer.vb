@@ -204,6 +204,8 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonResetTableFilter As UInteger = 171
             Public Const cmdButtonColumnStats As UInteger = 175
             Public Const cmdButtonSaveTableCDF As UInteger = 176
+            Public Const cmdAnalysisPanel As UInteger = 268
+            Public Const cmdButtonOpenLCMSWorkbench As UInteger = 267
             Public Const cmdMenuHeStainTools As UInteger = 237
             Public Const cmdGroupHEstainTools As UInteger = 238
             Public Const cmdPanelHEstainTools As UInteger = 243
@@ -1411,6 +1413,18 @@ Namespace RibbonLib.Controls
                 Return _ButtonSaveTableCDF
             End Get
         End Property
+        Private _AnalysisPanel As RibbonGroup
+        Public ReadOnly Property AnalysisPanel As RibbonGroup
+            Get
+                Return _AnalysisPanel
+            End Get
+        End Property
+        Private _ButtonOpenLCMSWorkbench As RibbonButton
+        Public ReadOnly Property ButtonOpenLCMSWorkbench As RibbonButton
+            Get
+                Return _ButtonOpenLCMSWorkbench
+            End Get
+        End Property
         Private _MenuHeStainTools As RibbonTabGroup
         Public ReadOnly Property MenuHeStainTools As RibbonTabGroup
             Get
@@ -1948,6 +1962,8 @@ Namespace RibbonLib.Controls
             _ButtonResetTableFilter = New RibbonButton(_ribbon, Cmd.cmdButtonResetTableFilter)
             _ButtonColumnStats = New RibbonButton(_ribbon, Cmd.cmdButtonColumnStats)
             _ButtonSaveTableCDF = New RibbonButton(_ribbon, Cmd.cmdButtonSaveTableCDF)
+            _AnalysisPanel = New RibbonGroup(_ribbon, Cmd.cmdAnalysisPanel)
+            _ButtonOpenLCMSWorkbench = New RibbonButton(_ribbon, Cmd.cmdButtonOpenLCMSWorkbench)
             _MenuHeStainTools = New RibbonTabGroup(_ribbon, Cmd.cmdMenuHeStainTools)
             _GroupHEstainTools = New RibbonTab(_ribbon, Cmd.cmdGroupHEstainTools)
             _PanelHEstainTools = New RibbonGroup(_ribbon, Cmd.cmdPanelHEstainTools)

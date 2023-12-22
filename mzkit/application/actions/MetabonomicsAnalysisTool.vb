@@ -9,6 +9,6 @@ Public Class MetabonomicsAnalysisTool : Inherits ActionBase
     End Property
 
     Public Overrides Sub RunAction(fieldName As String, data As Array, table As DataTable)
-
+        Call RibbonEvents.openLCMSWorkbench()
     End Sub
 End Class

@@ -207,6 +207,8 @@ namespace RibbonLib.Controls
             public const uint cmdButtonResetTableFilter = 171;
             public const uint cmdButtonColumnStats = 175;
             public const uint cmdButtonSaveTableCDF = 176;
+            public const uint cmdAnalysisPanel = 268;
+            public const uint cmdButtonOpenLCMSWorkbench = 267;
             public const uint cmdMenuHeStainTools = 237;
             public const uint cmdGroupHEstainTools = 238;
             public const uint cmdPanelHEstainTools = 243;
@@ -464,6 +466,8 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonResetTableFilter { get; private set; }
         public RibbonButton ButtonColumnStats { get; private set; }
         public RibbonButton ButtonSaveTableCDF { get; private set; }
+        public RibbonGroup AnalysisPanel { get; private set; }
+        public RibbonButton ButtonOpenLCMSWorkbench { get; private set; }
         public RibbonTabGroup MenuHeStainTools { get; private set; }
         public RibbonTab GroupHEstainTools { get; private set; }
         public RibbonGroup PanelHEstainTools { get; private set; }
@@ -716,6 +720,8 @@ namespace RibbonLib.Controls
             ButtonResetTableFilter = new RibbonButton(ribbon, Cmd.cmdButtonResetTableFilter);
             ButtonColumnStats = new RibbonButton(ribbon, Cmd.cmdButtonColumnStats);
             ButtonSaveTableCDF = new RibbonButton(ribbon, Cmd.cmdButtonSaveTableCDF);
+            AnalysisPanel = new RibbonGroup(ribbon, Cmd.cmdAnalysisPanel);
+            ButtonOpenLCMSWorkbench = new RibbonButton(ribbon, Cmd.cmdButtonOpenLCMSWorkbench);
             MenuHeStainTools = new RibbonTabGroup(ribbon, Cmd.cmdMenuHeStainTools);
             GroupHEstainTools = new RibbonTab(ribbon, Cmd.cmdGroupHEstainTools);
             PanelHEstainTools = new RibbonGroup(ribbon, Cmd.cmdPanelHEstainTools);

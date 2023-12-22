@@ -198,6 +198,7 @@ Module RibbonEvents
         AddHandler ribbonItems.ButtonOpenVirtualSlideFile.ExecuteEvent, Sub() Call openSlideFile()
         AddHandler ribbonItems.ButtonOpenTableTool.ExecuteEvent, Sub() Call OpenExcelTableFile2()
         AddHandler ribbonItems.OpenIonsLibrary.ExecuteEvent, Sub() Call openIonLibrary()
+        AddHandler ribbonItems.ButtonOpenLCMSWorkbench.ExecuteEvent, Sub() Call openLCMSWorkbench()
 
         AddHandler ribbonItems.ButtonVenn.ExecuteEvent, Sub() Call VisualStudio.ShowDocument(Of frmVennTools)(title:="Venn Plot Tool")
         AddHandler ribbonItems.ButtonViewMRI.ExecuteEvent, Sub() Call openMRIRaster()
@@ -209,6 +210,19 @@ Module RibbonEvents
         ExportApis._openMSImagingFile = AddressOf OpenMSIRaw
         ExportApis._openMSImagingViewer = AddressOf showMsImaging
         ExportApis._openCFMIDTool = AddressOf OpenCFMIDTool
+    End Sub
+
+    Public Sub openLCMSWorkbench()
+        Dim page = Workbench.AppHost.DockPanel.ActiveDocument
+
+        If TypeOf page Is frmTableViewer Then
+            Dim source As BindingSource = DirectCast(page, frmTableViewer).AdvancedDataGridView1.DataSource
+            Dim dataset As DataSet = source.DataSource
+            Dim table As DataTable = dataset.Tables.Item(Scan0)
+            Dim workbench As frmMetabonomicsAnalysis = VisualStudio.ShowDocument(Of frmMetabonomicsAnalysis)(DockState.Document)
+
+            Call workbench.LoadData(table)
+        End If
     End Sub
 
     Private Sub openMRIRaster()

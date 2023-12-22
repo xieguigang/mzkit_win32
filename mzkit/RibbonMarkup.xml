@@ -82,6 +82,14 @@
         <Image Id="22" MinDPI="192">../ux/PolygonEditor/AddVertexMenuItem.Image.png</Image>
       </Command.LargeHighContrastImages>
     </Command>
+    <Command Name="cmdButtonAddReferenceSpectral" Id="264" LabelTitle="Add Reference Library" LabelDescription="Add Reference Library" TooltipTitle="Add Reference Library" TooltipDescription="Add Reference Library">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/applets-screenshooter.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/applets-screenshooter.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdAdjustParameters" Id="116">
       <Command.LabelTitle>
         <String Id="23">Adjust Parameters</String>
@@ -178,26 +186,6 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image Id="50" MinDPI="192">Res/icons8-move-96.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonAutoUMAP" Id="223">
-      <Command.LabelTitle>
-        <String Id="51">UMAP and clustering</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="52">Make tissue slide segmentation via UMAP dimension reduce and clustering analysis</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="53">Make tissue slide segmentation via UMAP dimension reduce and clustering analysis</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="54">Make tissue slide segmentation via UMAP dimension reduce and clustering analysis</String>
-      </Command.TooltipDescription>
-      <Command.SmallImages>
-        <Image Id="55" MinDPI="192">Resources/umap.bmp</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image Id="56" MinDPI="192">Resources/umap.bmp</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonMSIAverageIon2" Id="259">
@@ -801,6 +789,14 @@
         <Image Id="231" MinDPI="192">Res/Terminal.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonDeveloperTool" Id="265" LabelTitle="Developer Tools" LabelDescription="Developer Tools" TooltipTitle="Developer Tools" TooltipDescription="Developer Tools">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-registry-editor-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-registry-editor-96.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdDOIReference" Id="177">
       <Command.LabelTitle>
         <String Id="232">DOI Reference</String>
@@ -1342,6 +1338,20 @@
         <Image Id="388" MinDPI="192">Res/folder-documents.bmp</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonSpatialGibbs" Id="262">
+      <Command.LabelTitle>
+        <String Id="1169">Gibbs sampling</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="1170">Create tissue segmentation via the spatial gibbs sampling method</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="1171">Create tissue segmentation via the spatial gibbs sampling method</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="1172">Create tissue segmentation via the spatial gibbs sampling method</String>
+      </Command.TooltipDescription>
+    </Command>
     <Command Name="cmdGroupHEstainTools" Id="238">
       <Command.LabelTitle>
         <String Id="389">HE stain tools</String>
@@ -1825,6 +1835,14 @@
         <Image Id="531">Res/libreoffice-math.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonViewMRI" Id="263" LabelTitle="Magnetic resonance imaging" LabelDescription="Magnetic resonance imaging viewer">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-ct-scanner-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-ct-scanner-96.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdTabMain" Id="1011">
       <Command.LabelTitle>
         <String Id="532">Main</String>
@@ -2136,6 +2154,14 @@
       <Command.TooltipDescription>
         <String Id="621">MSI Filters</String>
       </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdButtonMSIDebugger" Id="266" LabelTitle="MSI Service Debugger" LabelDescription="MSI Service Debugger" TooltipTitle="MSI Service Debugger" TooltipDescription="MSI Service Debugger">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-registry-editor-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-registry-editor-96.png</Image>
+      </Command.LargeImages>
     </Command>
     <Command Name="cmdTabMSISnapshot" Id="126">
       <Command.LabelTitle>
@@ -3833,6 +3859,26 @@
         <Image Id="1115" MinDPI="192">Res/applications-system.bmp</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonAutoUMAP" Id="223">
+      <Command.LabelTitle>
+        <String Id="51">UMAP and clustering</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String Id="52">Make tissue slide segmentation via UMAP dimension reduce and clustering analysis</String>
+      </Command.LabelDescription>
+      <Command.TooltipTitle>
+        <String Id="53">Make tissue slide segmentation via UMAP dimension reduce and clustering analysis</String>
+      </Command.TooltipTitle>
+      <Command.TooltipDescription>
+        <String Id="54">Make tissue slide segmentation via UMAP dimension reduce and clustering analysis</String>
+      </Command.TooltipDescription>
+      <Command.SmallImages>
+        <Image Id="55" MinDPI="192">Resources/umap.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image Id="56" MinDPI="192">Resources/umap.bmp</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdButtonUpsideDown" Id="202">
       <Command.LabelTitle>
         <String Id="1116">Up side down</String>
@@ -4016,52 +4062,15 @@
         <String Id="1168">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
     </Command>
-    <Command Name="cmdButtonSpatialGibbs" Id="262">
-      <Command.LabelTitle>
-        <String Id="1169">Gibbs sampling</String>
-      </Command.LabelTitle>
-      <Command.LabelDescription>
-        <String Id="1170">Create tissue segmentation via the spatial gibbs sampling method</String>
-      </Command.LabelDescription>
-      <Command.TooltipTitle>
-        <String Id="1171">Create tissue segmentation via the spatial gibbs sampling method</String>
-      </Command.TooltipTitle>
-      <Command.TooltipDescription>
-        <String Id="1172">Create tissue segmentation via the spatial gibbs sampling method</String>
-      </Command.TooltipDescription>
-    </Command>
-    <Command Name="cmdButtonViewMRI" Id="263" LabelTitle="Magnetic resonance imaging" LabelDescription="Magnetic resonance imaging viewer">
+    <Command Name="cmdButtonOpenLCMSWorkbench" Id="267" LabelTitle="Metabonomics Workbench" LabelDescription="Launch metabonomics workbench" TooltipTitle="Launch metabonomics workbench" TooltipDescription="Launch metabonomics workbench">
       <Command.SmallImages>
-        <Image MinDPI="192">Res/icons8-ct-scanner-96.png</Image>
+        <Image MinDPI="192">Res/icons8-mind-map-96.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
-        <Image MinDPI="192">Res/icons8-ct-scanner-96.png</Image>
+        <Image MinDPI="192">Res/icons8-mind-map-96.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonAddReferenceSpectral" Id="264" LabelTitle="Add Reference Library" LabelDescription="Add Reference Library" TooltipTitle="Add Reference Library" TooltipDescription="Add Reference Library">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/applets-screenshooter.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/applets-screenshooter.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonDeveloperTool" Id="265" LabelTitle="Developer Tools" LabelDescription="Developer Tools" TooltipTitle="Developer Tools" TooltipDescription="Developer Tools">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/icons8-registry-editor-96.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/icons8-registry-editor-96.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonMSIDebugger" Id="266" LabelTitle="MSI Service Debugger" LabelDescription="MSI Service Debugger" TooltipTitle="MSI Service Debugger" TooltipDescription="MSI Service Debugger">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/icons8-registry-editor-96.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/icons8-registry-editor-96.png</Image>
-      </Command.LargeImages>
-    </Command>
+    <Command Name="cmdAnalysisPanel" Id="268" LabelTitle="Analysis" LabelDescription="Analysis" TooltipTitle="Analysis" TooltipDescription="Analysis" />
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4390,6 +4399,9 @@
               <Button CommandName="cmdButtonResetTableFilter" />
               <Button CommandName="cmdButtonColumnStats" />
               <Button CommandName="cmdButtonSaveTableCDF" />
+            </Group>
+            <Group CommandName="cmdAnalysisPanel" SizeDefinition="OneButton">
+              <Button CommandName="cmdButtonOpenLCMSWorkbench" />
             </Group>
           </Tab>
         </TabGroup>

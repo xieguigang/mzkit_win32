@@ -1,6 +1,8 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports Mzkit_win32.BasicMDIForm
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmMetabonomicsAnalysis
-    Inherits System.Windows.Forms.Form
+    Inherits DocumentWindow
 
     'Form 重写 Dispose，以清理组件列表。
     <System.Diagnostics.DebuggerNonUserCode()> _
