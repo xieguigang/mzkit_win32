@@ -36,7 +36,7 @@ if (in_batch) {
 
     for(file in rawfiles) {
         BackgroundTask::cache.MSI(
-            file, `${imzML}/${basename(file)}.mzPack`, 
+            file, `${cache}/${basename(file)}.mzPack`, 
             cutoff
         );
     }
