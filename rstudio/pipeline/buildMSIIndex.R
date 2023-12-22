@@ -16,13 +16,15 @@ const cutoff as double = ?"--into_cutoff" || 0.0;
 
 [@info "the file path of the MSI indexed cache file."]
 [@type "filepath"]
-const cache as string = {
+const cache_handle as string = ?"--cache" || NULL;
+const cache = 
+{
     if (!in_batch) {
-        (?"--cache" || stop("a cache file path must be provided!"));
+        (cache_handle || stop("a cache file path must be provided!"));
     } else {
         # data file will be export to the source directory
         # if this cache output parameter has not been specificed
-        (?"--cache" || imzML);
+        (cache_handle || imzML);
     }
 };
 
