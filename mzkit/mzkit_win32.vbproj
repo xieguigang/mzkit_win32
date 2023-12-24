@@ -1829,6 +1829,10 @@
       <Project>{eca213f0-e999-478c-904a-0840fd3b645c}</Project>
       <Name>WkHtmlToPdf.NET5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\GCModeller\src\workbench\modules\ExperimentDesigner\designer-netcore5.vbproj">
+      <Project>{e9458c8e-4815-43b7-9961-9a6cd3af135c}</Project>
+      <Name>designer-netcore5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\workbench\modules\keggReport\keggReport.NET5.vbproj">
       <Project>{dceef144-03c8-482f-b668-1a8706366ea0}</Project>
       <Name>keggReport.NET5</Name>
