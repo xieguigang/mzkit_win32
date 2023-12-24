@@ -484,6 +484,12 @@
     <Compile Include="forms\Inputs\InputURL.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\Inputs\LCMS\InputImportsPeaktableDialog.Designer.vb">
+      <DependentUpon>InputImportsPeaktableDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\LCMS\InputImportsPeaktableDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\LCMS\InputCreateLCMSLibrary.Designer.vb">
       <DependentUpon>InputCreateLCMSLibrary.vb</DependentUpon>
     </Compile>
@@ -1195,6 +1201,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\LCMS\InputCreateLCMSLibrary.resx">
       <DependentUpon>InputCreateLCMSLibrary.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\LCMS\InputImportsPeaktableDialog.resx">
+      <DependentUpon>InputImportsPeaktableDialog.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\LCMS\InputMNSimilarityScore.resx">
       <DependentUpon>InputMNSimilarityScore.vb</DependentUpon>
