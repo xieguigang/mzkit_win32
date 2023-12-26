@@ -10,6 +10,20 @@ Public Class InputImportsPeaktableDialog
     Dim editMode As Boolean = False
     Dim current_group As String
 
+    Public Iterator Function GetSampleInfo() As IEnumerable(Of SampleInfo)
+        For Each group In sampleinfo
+            Dim config = sampleGroups(group.Key)
+
+            For Each sample In group.Value
+                sample.color = config.color
+                sample.shape = config.shape
+                sample.sample_info = group.Key
+
+                Yield sample
+            Next
+        Next
+    End Function
+
     ''' <summary>
     ''' cancel
     ''' </summary>

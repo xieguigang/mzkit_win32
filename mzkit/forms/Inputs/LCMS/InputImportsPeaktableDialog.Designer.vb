@@ -138,7 +138,7 @@ Partial Class InputImportsPeaktableDialog
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(453, 377)
+        Me.Button2.Location = New System.Drawing.Point(444, 377)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 4
@@ -249,7 +249,7 @@ Partial Class InputImportsPeaktableDialog
         'LinkLabel2
         '
         Me.LinkLabel2.AutoSize = True
-        Me.LinkLabel2.Location = New System.Drawing.Point(586, 297)
+        Me.LinkLabel2.Location = New System.Drawing.Point(623, 311)
         Me.LinkLabel2.Name = "LinkLabel2"
         Me.LinkLabel2.Size = New System.Drawing.Size(29, 12)
         Me.LinkLabel2.TabIndex = 14
@@ -259,7 +259,7 @@ Partial Class InputImportsPeaktableDialog
         'LinkLabel1
         '
         Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(505, 297)
+        Me.LinkLabel1.Location = New System.Drawing.Point(430, 311)
         Me.LinkLabel1.Name = "LinkLabel1"
         Me.LinkLabel1.Size = New System.Drawing.Size(29, 12)
         Me.LinkLabel1.TabIndex = 13
