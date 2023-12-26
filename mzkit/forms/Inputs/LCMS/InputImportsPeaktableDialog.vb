@@ -190,6 +190,7 @@ Public Class InputImportsPeaktableDialog
         Next
 
         Call sampleinfo(current_group).Clear()
+        Call ListBox2.Items.Clear()
     End Sub
 
     Private Sub AddToSampleGroup(sender As Object, e As EventArgs)
