@@ -98,6 +98,19 @@ Public Class InputImportsPeaktableDialog
         End If
 
         Dim old_group As SampleGroup = sampleGroups(current_group)
+        Dim update_label As Boolean = TextBox1.Text <> current_group
+
+        If update_label Then
+            For i As Integer = 0 To AddToSampleGroupToolStripMenuItem.DropDownItems.Count - 1
+                Dim menu = AddToSampleGroupToolStripMenuItem.DropDownItems.Item(i)
+
+                If menu.Tag.ToString = current_group Then
+                    menu.Tag = TextBox1.Text
+                    menu.Text = TextBox1.Text
+                End If
+            Next
+        End If
+
         old_group.sample_info = TextBox1.Text
         old_group.color = PictureBox1.BackColor.ToHtmlColor
         sampleGroups.Remove(current_group)
