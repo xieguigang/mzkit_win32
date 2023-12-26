@@ -80,6 +80,18 @@ Public Class InputImportsPeaktableDialog
         TextBox1.ReadOnly = False
     End Sub
 
+    Private Function getGroupMenu(current_group As String) As ToolStripItem
+        For i As Integer = 0 To AddToSampleGroupToolStripMenuItem.DropDownItems.Count - 1
+            Dim menu = AddToSampleGroupToolStripMenuItem.DropDownItems.Item(i)
+
+            If menu.Tag.ToString = current_group Then
+                Return menu
+            End If
+        Next
+
+        Return Nothing
+    End Function
+
     ''' <summary>
     ''' save
     ''' </summary>
@@ -97,15 +109,10 @@ Public Class InputImportsPeaktableDialog
         Dim update_label As Boolean = TextBox1.Text <> current_group
 
         If update_label Then
-            For i As Integer = 0 To AddToSampleGroupToolStripMenuItem.DropDownItems.Count - 1
-                Dim menu = AddToSampleGroupToolStripMenuItem.DropDownItems.Item(i)
+            Dim menu = getGroupMenu(current_group)
 
-                If menu.Tag.ToString = current_group Then
-                    menu.Tag = TextBox1.Text
-                    menu.Text = TextBox1.Text
-                    Exit For
-                End If
-            Next
+            menu.Tag = TextBox1.Text
+            menu.Text = TextBox1.Text
 
             Dim samples = sampleinfo(current_group)
             sampleinfo.Remove(current_group)
@@ -148,6 +155,10 @@ Public Class InputImportsPeaktableDialog
         For Each sample As SampleInfo In samples
             Call ListBox1.Items.Add(sample.ID)
         Next
+
+        Dim menu = getGroupMenu(group_label)
+
+        AddToSampleGroupToolStripMenuItem.DropDownItems.Remove(menu)
     End Sub
 
     ''' <summary>
@@ -180,6 +191,7 @@ Public Class InputImportsPeaktableDialog
         Next
 
         sampleinfo.Clear()
+        AddToSampleGroupToolStripMenuItem.DropDownItems.Clear()
     End Sub
 
     ''' <summary>
