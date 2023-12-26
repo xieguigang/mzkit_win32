@@ -156,7 +156,12 @@ Public Class InputImportsPeaktableDialog
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub RemoveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RemoveToolStripMenuItem.Click
+        Dim sample_id = any.ToString(ListBox2.SelectedItem)
+        Dim samples = sampleinfo(current_group)
 
+        ListBox2.Items.Remove(sample_id)
+        samples.Remove(samples.Where(Function(a) a.ID = sample_id).First)
+        ListBox1.Items.Add(sample_id)
     End Sub
 
     ''' <summary>
