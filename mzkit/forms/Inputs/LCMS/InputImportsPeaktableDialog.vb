@@ -102,12 +102,21 @@ Public Class InputImportsPeaktableDialog
                 If menu.Tag.ToString = current_group Then
                     menu.Tag = TextBox1.Text
                     menu.Text = TextBox1.Text
+                    Exit For
                 End If
             Next
 
             Dim samples = sampleinfo(current_group)
             sampleinfo.Remove(current_group)
             sampleinfo.Add(TextBox1.Text, samples)
+
+            For i As Integer = 0 To CheckedListBox1.Items.Count - 1
+                If CheckedListBox1.Items(i).ToString = current_group Then
+                    CheckedListBox1.Items.RemoveAt(i)
+                    CheckedListBox1.Items.Add(TextBox1.Text)
+                    Exit For
+                End If
+            Next
         End If
 
         old_group.sample_info = TextBox1.Text
@@ -154,17 +163,20 @@ Public Class InputImportsPeaktableDialog
     End Sub
 
     Private Sub AddToSampleGroup(sender As Object, e As EventArgs)
-        Dim name As String = any.ToString(ListBox1.SelectedItem)
-
-        If name.StringEmpty Then
-            Return
-        End If
-
         Dim groupName As String = DirectCast(sender, ToolStripItem).Tag
-        Dim sample As New SampleInfo With {.ID = name, .sample_name = name}
 
-        sampleinfo(groupName).Add(sample)
-        ListBox1.Items.Remove(name)
+        For Each item As Object In ListBox1.SelectedItems
+            Dim name As String = any.ToString(item)
+
+            If name.StringEmpty Then
+                Continue For
+            End If
+
+            Dim sample As New SampleInfo With {.ID = name, .sample_name = name}
+
+            sampleinfo(groupName).Add(sample)
+            ListBox1.Items.Remove(name)
+        Next
     End Sub
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
@@ -212,5 +224,9 @@ Public Class InputImportsPeaktableDialog
         For Each id As String In idset
             Call ListBox1.Items.Add(id)
         Next
+    End Sub
+
+    Private Sub AddToSampleGroupToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddToSampleGroupToolStripMenuItem.Click
+
     End Sub
 End Class

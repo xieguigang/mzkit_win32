@@ -26,35 +26,35 @@ Partial Class InputImportsPeaktableDialog
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
+        Me.ContextMenuStrip3 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.CreateNewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.RemoveToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ClearToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.AddToSampleGroupToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.AddToSampleGroupToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.ListBox2 = New System.Windows.Forms.ListBox()
+        Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.RemoveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ClearToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
-        Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.RemoveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ContextMenuStrip3 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.RemoveToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ClearToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ClearToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CreateNewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
+        Me.ContextMenuStrip3.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
+        Me.ContextMenuStrip2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
-        Me.ContextMenuStrip2.SuspendLayout()
-        Me.ContextMenuStrip3.SuspendLayout()
         Me.SuspendLayout()
         '
         'CheckedListBox1
@@ -66,6 +66,35 @@ Partial Class InputImportsPeaktableDialog
         Me.CheckedListBox1.Size = New System.Drawing.Size(175, 260)
         Me.CheckedListBox1.TabIndex = 0
         '
+        'ContextMenuStrip3
+        '
+        Me.ContextMenuStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CreateNewToolStripMenuItem, Me.ToolStripMenuItem1, Me.RemoveToolStripMenuItem1, Me.ClearToolStripMenuItem})
+        Me.ContextMenuStrip3.Name = "ContextMenuStrip3"
+        Me.ContextMenuStrip3.Size = New System.Drawing.Size(136, 76)
+        '
+        'CreateNewToolStripMenuItem
+        '
+        Me.CreateNewToolStripMenuItem.Name = "CreateNewToolStripMenuItem"
+        Me.CreateNewToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
+        Me.CreateNewToolStripMenuItem.Text = "Create New"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(132, 6)
+        '
+        'RemoveToolStripMenuItem1
+        '
+        Me.RemoveToolStripMenuItem1.Name = "RemoveToolStripMenuItem1"
+        Me.RemoveToolStripMenuItem1.Size = New System.Drawing.Size(135, 22)
+        Me.RemoveToolStripMenuItem1.Text = "Remove"
+        '
+        'ClearToolStripMenuItem
+        '
+        Me.ClearToolStripMenuItem.Name = "ClearToolStripMenuItem"
+        Me.ClearToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
+        Me.ClearToolStripMenuItem.Text = "Clear"
+        '
         'ListBox1
         '
         Me.ListBox1.ContextMenuStrip = Me.ContextMenuStrip1
@@ -73,8 +102,21 @@ Partial Class InputImportsPeaktableDialog
         Me.ListBox1.ItemHeight = 12
         Me.ListBox1.Location = New System.Drawing.Point(20, 67)
         Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended
         Me.ListBox1.Size = New System.Drawing.Size(173, 256)
         Me.ListBox1.TabIndex = 1
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddToSampleGroupToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(190, 48)
+        '
+        'AddToSampleGroupToolStripMenuItem
+        '
+        Me.AddToSampleGroupToolStripMenuItem.Name = "AddToSampleGroupToolStripMenuItem"
+        Me.AddToSampleGroupToolStripMenuItem.Size = New System.Drawing.Size(189, 22)
+        Me.AddToSampleGroupToolStripMenuItem.Text = "Add To Sample Group"
         '
         'Label1
         '
@@ -103,18 +145,6 @@ Partial Class InputImportsPeaktableDialog
         Me.Button2.Text = "Cancel"
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddToSampleGroupToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(190, 26)
-        '
-        'AddToSampleGroupToolStripMenuItem
-        '
-        Me.AddToSampleGroupToolStripMenuItem.Name = "AddToSampleGroupToolStripMenuItem"
-        Me.AddToSampleGroupToolStripMenuItem.Size = New System.Drawing.Size(189, 22)
-        Me.AddToSampleGroupToolStripMenuItem.Text = "Add To Sample Group"
-        '
         'Label2
         '
         Me.Label2.AutoSize = True
@@ -133,6 +163,24 @@ Partial Class InputImportsPeaktableDialog
         Me.ListBox2.Name = "ListBox2"
         Me.ListBox2.Size = New System.Drawing.Size(199, 148)
         Me.ListBox2.TabIndex = 7
+        '
+        'ContextMenuStrip2
+        '
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RemoveToolStripMenuItem, Me.ClearToolStripMenuItem1})
+        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(118, 48)
+        '
+        'RemoveToolStripMenuItem
+        '
+        Me.RemoveToolStripMenuItem.Name = "RemoveToolStripMenuItem"
+        Me.RemoveToolStripMenuItem.Size = New System.Drawing.Size(117, 22)
+        Me.RemoveToolStripMenuItem.Text = "Remove"
+        '
+        'ClearToolStripMenuItem1
+        '
+        Me.ClearToolStripMenuItem1.Name = "ClearToolStripMenuItem1"
+        Me.ClearToolStripMenuItem1.Size = New System.Drawing.Size(117, 22)
+        Me.ClearToolStripMenuItem1.Text = "Clear"
         '
         'Label3
         '
@@ -198,16 +246,6 @@ Partial Class InputImportsPeaktableDialog
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "GroupBox1"
         '
-        'LinkLabel1
-        '
-        Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(443, 315)
-        Me.LinkLabel1.Name = "LinkLabel1"
-        Me.LinkLabel1.Size = New System.Drawing.Size(29, 12)
-        Me.LinkLabel1.TabIndex = 13
-        Me.LinkLabel1.TabStop = True
-        Me.LinkLabel1.Text = "Edit"
-        '
         'LinkLabel2
         '
         Me.LinkLabel2.AutoSize = True
@@ -218,52 +256,15 @@ Partial Class InputImportsPeaktableDialog
         Me.LinkLabel2.TabStop = True
         Me.LinkLabel2.Text = "Save"
         '
-        'ContextMenuStrip2
+        'LinkLabel1
         '
-        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RemoveToolStripMenuItem, Me.ClearToolStripMenuItem1})
-        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(118, 48)
-        '
-        'RemoveToolStripMenuItem
-        '
-        Me.RemoveToolStripMenuItem.Name = "RemoveToolStripMenuItem"
-        Me.RemoveToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.RemoveToolStripMenuItem.Text = "Remove"
-        '
-        'ContextMenuStrip3
-        '
-        Me.ContextMenuStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CreateNewToolStripMenuItem, Me.ToolStripMenuItem1, Me.RemoveToolStripMenuItem1, Me.ClearToolStripMenuItem})
-        Me.ContextMenuStrip3.Name = "ContextMenuStrip3"
-        Me.ContextMenuStrip3.Size = New System.Drawing.Size(181, 98)
-        '
-        'RemoveToolStripMenuItem1
-        '
-        Me.RemoveToolStripMenuItem1.Name = "RemoveToolStripMenuItem1"
-        Me.RemoveToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
-        Me.RemoveToolStripMenuItem1.Text = "Remove"
-        '
-        'ClearToolStripMenuItem
-        '
-        Me.ClearToolStripMenuItem.Name = "ClearToolStripMenuItem"
-        Me.ClearToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ClearToolStripMenuItem.Text = "Clear"
-        '
-        'ClearToolStripMenuItem1
-        '
-        Me.ClearToolStripMenuItem1.Name = "ClearToolStripMenuItem1"
-        Me.ClearToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
-        Me.ClearToolStripMenuItem1.Text = "Clear"
-        '
-        'CreateNewToolStripMenuItem
-        '
-        Me.CreateNewToolStripMenuItem.Name = "CreateNewToolStripMenuItem"
-        Me.CreateNewToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.CreateNewToolStripMenuItem.Text = "Create New"
-        '
-        'ToolStripMenuItem1
-        '
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(177, 6)
+        Me.LinkLabel1.AutoSize = True
+        Me.LinkLabel1.Location = New System.Drawing.Point(443, 315)
+        Me.LinkLabel1.Name = "LinkLabel1"
+        Me.LinkLabel1.Size = New System.Drawing.Size(29, 12)
+        Me.LinkLabel1.TabIndex = 13
+        Me.LinkLabel1.TabStop = True
+        Me.LinkLabel1.Text = "Edit"
         '
         'InputImportsPeaktableDialog
         '
@@ -275,12 +276,12 @@ Partial Class InputImportsPeaktableDialog
         Me.Controls.Add(Me.Button1)
         Me.Name = "InputImportsPeaktableDialog"
         Me.Text = "Imports Wizard"
+        Me.ContextMenuStrip3.ResumeLayout(False)
         Me.ContextMenuStrip1.ResumeLayout(False)
+        Me.ContextMenuStrip2.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        Me.ContextMenuStrip2.ResumeLayout(False)
-        Me.ContextMenuStrip3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
