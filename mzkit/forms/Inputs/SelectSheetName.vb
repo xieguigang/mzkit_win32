@@ -19,7 +19,11 @@ Public Class SelectSheetName
         DialogResult = DialogResult.Cancel
     End Sub
 
-    Public Shared Sub OpenExcel(fileName As String)
+    Public Shared Sub OpenExcel(fileName As String, Optional showFile As Action(Of File, String) = Nothing)
+        If showFile Is Nothing Then
+            showFile = AddressOf SelectSheetName.showFile
+        End If
+
         If fileName.ExtensionSuffix("csv") Then
             Call showFile(File.Load(fileName), fileName.FileName)
         ElseIf fileName.ExtensionSuffix("txt", "tsv") Then

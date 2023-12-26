@@ -24,6 +24,12 @@ Public Class InputImportsPeaktableDialog
         Next
     End Function
 
+    Public Iterator Function GetMetadata() As IEnumerable(Of String)
+        For i As Integer = 0 To ListBox1.Items.Count - 1
+            Yield any.ToString(ListBox1.Items(i))
+        Next
+    End Function
+
     ''' <summary>
     ''' cancel
     ''' </summary>
@@ -265,22 +271,22 @@ Public Class InputImportsPeaktableDialog
     End Sub
 
     Private Sub InputImportsPeaktableDialog_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Call LoadSampleId("ID", "mz", "mzmin", "mzmax", "rt", "rtmin", "rtmax", "npeaks",
-                          "NP_sample_18",
-                          "Cal1", "Cal10", "Cal11", "Cal2", "Cal3", "Cal4", "Cal5", "Cal6", "Cal7", "Cal8", "Cal9",
-                          "DZ1", "DZ2", "HB1", "HB2", "KB",
-                          "NP_sample_1", "NP_sample_10", "NP_sample_11", "NP_sample_12", "NP_sample_13", "NP_sample_14", "NP_sample_15",
-                          "NP_sample_16", "NP_sample_17", "NP_sample_19", "NP_sample_2", "NP_sample_20", "NP_sample_21", "NP_sample_22",
-                          "NP_sample_23", "NP_sample_24", "NP_sample_25", "NP_sample_26", "NP_sample_27", "NP_sample_28", "NP_sample_29",
-                          "NP_sample_3", "NP_sample_30", "NP_sample_31", "NP_sample_32", "NP_sample_33", "NP_sample_34", "NP_sample_35",
-                          "NP_sample_36", "NP_sample_37", "NP_sample_38", "NP_sample_39", "NP_sample_4", "NP_sample_40", "NP_sample_41",
-                          "NP_sample_42", "NP_sample_43", "NP_sample_44", "NP_sample_45", "NP_sample_46", "NP_sample_47", "NP_sample_48",
-                          "NP_sample_49", "NP_sample_5", "NP_sample_50", "NP_sample_51", "NP_sample_52", "NP_sample_53", "NP_sample_54",
-                          "NP_sample_55", "NP_sample_56", "NP_sample_57", "NP_sample_58", "NP_sample_59", "NP_sample_6", "NP_sample_60",
-                          "NP_sample_61", "NP_sample_62", "NP_sample_63", "NP_sample_64", "NP_sample_65", "NP_sample_66", "NP_sample_7",
-                          "NP_sample_8", "NP_sample_9",
-                          "QC1", "QC10", "QC11", "QC12", "QC13", "QC14", "QC15", "QC16", "QC2", "QC3",
-                          "QC4", "QC5", "QC6", "QC7", "QC8", "QC9")
+        'Call LoadSampleId("ID", "mz", "mzmin", "mzmax", "rt", "rtmin", "rtmax", "npeaks",
+        '                  "NP_sample_18",
+        '                  "Cal1", "Cal10", "Cal11", "Cal2", "Cal3", "Cal4", "Cal5", "Cal6", "Cal7", "Cal8", "Cal9",
+        '                  "DZ1", "DZ2", "HB1", "HB2", "KB",
+        '                  "NP_sample_1", "NP_sample_10", "NP_sample_11", "NP_sample_12", "NP_sample_13", "NP_sample_14", "NP_sample_15",
+        '                  "NP_sample_16", "NP_sample_17", "NP_sample_19", "NP_sample_2", "NP_sample_20", "NP_sample_21", "NP_sample_22",
+        '                  "NP_sample_23", "NP_sample_24", "NP_sample_25", "NP_sample_26", "NP_sample_27", "NP_sample_28", "NP_sample_29",
+        '                  "NP_sample_3", "NP_sample_30", "NP_sample_31", "NP_sample_32", "NP_sample_33", "NP_sample_34", "NP_sample_35",
+        '                  "NP_sample_36", "NP_sample_37", "NP_sample_38", "NP_sample_39", "NP_sample_4", "NP_sample_40", "NP_sample_41",
+        '                  "NP_sample_42", "NP_sample_43", "NP_sample_44", "NP_sample_45", "NP_sample_46", "NP_sample_47", "NP_sample_48",
+        '                  "NP_sample_49", "NP_sample_5", "NP_sample_50", "NP_sample_51", "NP_sample_52", "NP_sample_53", "NP_sample_54",
+        '                  "NP_sample_55", "NP_sample_56", "NP_sample_57", "NP_sample_58", "NP_sample_59", "NP_sample_6", "NP_sample_60",
+        '                  "NP_sample_61", "NP_sample_62", "NP_sample_63", "NP_sample_64", "NP_sample_65", "NP_sample_66", "NP_sample_7",
+        '                  "NP_sample_8", "NP_sample_9",
+        '                  "QC1", "QC10", "QC11", "QC12", "QC13", "QC14", "QC15", "QC16", "QC2", "QC3",
+        '                  "QC4", "QC5", "QC6", "QC7", "QC8", "QC9")
     End Sub
 
     Public Sub LoadSampleId(ParamArray idset As String())

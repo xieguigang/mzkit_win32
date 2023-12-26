@@ -27,13 +27,15 @@ Partial Class frmMetabonomicsAnalysis
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMetabonomicsAnalysis))
         Me.SuspendLayout()
         '
-        'Form1
+        'frmMetabonomicsAnalysis
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(1031, 637)
+        Me.DoubleBuffered = True
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "Form1"
+        Me.Name = "frmMetabonomicsAnalysis"
+        Me.TabPageContextMenuStrip = Me.DockContextMenuStrip1
         Me.Text = "Metabonomics Workbench"
         Me.ResumeLayout(False)
 

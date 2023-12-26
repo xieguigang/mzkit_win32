@@ -258,7 +258,13 @@ Module RibbonEvents
             .Filter = filetypes.JoinBy("|")
         }
             If file.ShowDialog = DialogResult.OK Then
-                Call SelectSheetName.OpenExcel(file.FileName)
+                Call SelectSheetName.OpenExcel(
+                    fileName:=file.FileName,
+                    showFile:=
+                        Sub(table, title)
+                            Dim workshop As frmMetabonomicsAnalysis = VisualStudio.ShowDocument(Of frmMetabonomicsAnalysis)(title:=title)
+                            Call workshop.LoadData(table, title)
+                        End Sub)
             End If
         End Using
     End Sub
