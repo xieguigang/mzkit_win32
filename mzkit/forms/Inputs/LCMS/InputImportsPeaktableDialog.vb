@@ -4,7 +4,7 @@ Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class InputImportsPeaktableDialog
 
-    Dim sampleinfo As New Dictionary(Of String, SampleInfo())
+    Dim sampleinfo As New Dictionary(Of String, List(Of SampleInfo))
     Dim sampleGroups As New Dictionary(Of String, SampleGroup)
     Dim editMode As Boolean = False
     Dim current_group As String
@@ -46,12 +46,7 @@ Public Class InputImportsPeaktableDialog
         TextBox1.ReadOnly = True
         editMode = False
         current_group = group_label
-
-        If samples.Length > 0 Then
-            PictureBox1.BackColor = samples(0).color.TranslateColor
-        Else
-
-        End If
+        PictureBox1.BackColor = sampleGroups(group_label).color.TranslateColor
     End Sub
 
     Private Sub ListBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox2.SelectedIndexChanged
@@ -109,6 +104,10 @@ Public Class InputImportsPeaktableDialog
                     menu.Text = TextBox1.Text
                 End If
             Next
+
+            Dim samples = sampleinfo(current_group)
+            sampleinfo.Remove(current_group)
+            sampleinfo.Add(TextBox1.Text, samples)
         End If
 
         old_group.sample_info = TextBox1.Text
@@ -164,6 +163,8 @@ Public Class InputImportsPeaktableDialog
         Dim groupName As String = DirectCast(sender, ToolStripItem).Tag
         Dim sample As New SampleInfo With {.ID = name, .sample_name = name}
 
+        sampleinfo(groupName).Add(sample)
+        ListBox1.Items.Remove(name)
     End Sub
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
@@ -180,7 +181,7 @@ Public Class InputImportsPeaktableDialog
         Dim id As String = $"sample_group_{unix}"
 
         CheckedListBox1.Items.Add(id)
-        sampleinfo.Add(id, {})
+        sampleinfo.Add(id, New List(Of SampleInfo))
         sampleGroups.Add(id, New SampleGroup With {.sample_info = id, .color = "black"})
 
         Dim menu = AddToSampleGroupToolStripMenuItem.DropDownItems.Add(id)
