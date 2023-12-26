@@ -1,4 +1,5 @@
 ﻿Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Linq
 Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
 Imports any = Microsoft.VisualBasic.Scripting
 
@@ -132,7 +133,21 @@ Public Class InputImportsPeaktableDialog
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub RemoveToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles RemoveToolStripMenuItem1.Click
+        Dim group_label As String = any.ToString(CheckedListBox1.SelectedItem)
 
+        If group_label.StringEmpty Then
+            Return
+        End If
+
+        Dim samples = sampleinfo(group_label)
+        sampleGroups.Remove(group_label)
+        sampleinfo.Remove(group_label)
+
+        Call CheckedListBox1.Items.Remove(group_label)
+
+        For Each sample As SampleInfo In samples
+            Call ListBox1.Items.Add(sample.ID)
+        Next
     End Sub
 
     ''' <summary>
@@ -150,7 +165,16 @@ Public Class InputImportsPeaktableDialog
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub ClearToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearToolStripMenuItem.Click
+        CheckedListBox1.Items.Clear()
+        sampleGroups.Clear()
 
+        For Each group In sampleinfo.Values
+            For Each sample In group
+                Call ListBox1.Items.Add(sample.ID)
+            Next
+        Next
+
+        sampleinfo.Clear()
     End Sub
 
     ''' <summary>
@@ -159,13 +183,20 @@ Public Class InputImportsPeaktableDialog
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub ClearToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ClearToolStripMenuItem1.Click
+        Dim samples = sampleinfo(current_group)
 
+        For Each sample In samples
+            Call ListBox1.Items.Add(sample.ID)
+        Next
+
+        Call sampleinfo(current_group).Clear()
     End Sub
 
     Private Sub AddToSampleGroup(sender As Object, e As EventArgs)
         Dim groupName As String = DirectCast(sender, ToolStripItem).Tag
+        Dim objs = ListBox1.SelectedItems.ToArray(Of Object)
 
-        For Each item As Object In ListBox1.SelectedItems
+        For Each item As Object In objs
             Dim name As String = any.ToString(item)
 
             If name.StringEmpty Then
