@@ -1,14 +1,34 @@
 /// <reference path="../../../ux/mzkit_desktop/d/three/index.d.ts" />
 /// <reference path="../../../ux/mzkit_desktop/d/linq.d.ts" />
 declare namespace apps.viewer {
+    interface OrbitControls {
+    }
+    interface GUI {
+        add(volconfig: volconfig, arg1: string, arg2: any, arg3?: any, arg4?: any): any;
+    }
+    interface volconfig {
+        clim1: number;
+        clim2: number;
+        renderstyle: string;
+        isothreshold: number;
+        colormap: string;
+    }
+    interface NRRDLoader {
+    }
     class three_app extends Bootstrap {
+        renderer: THREE.WebGLRenderer;
+        scene: THREE.Scene;
+        camera: THREE.OrthographicCamera;
+        controls: OrbitControls;
+        material: THREE.ShaderMaterial;
+        volconfig: volconfig;
+        cmtextures: any;
         get appName(): string;
-        private potreeViewer;
         protected init(): void;
-        private loop;
-        private createAnnotations;
-        private createVolume;
-        private loadModel;
+        loadNrrdModel(volume: any): void;
+        updateUniforms(): void;
+        onWindowResize(): void;
+        render(): void;
     }
 }
 declare namespace app.desktop {

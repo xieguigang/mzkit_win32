@@ -64,9 +64,6 @@ var apps;
     var viewer;
     (function (viewer) {
         var window = globalThis.window;
-        var Potree = window.Potree;
-        var proj4 = window.proj4;
-        // D:/mzkit/dist/bin/Rstudio/bin/Rserve.exe --listen /wwwroot "D:\mzkit\dist\bin/../../src/mzkit/webview/" /port 6001 --parent=8124 --attach F:/Temp/mzkit_win32/9465ce9a7904ba9fa5a354804734cbc4
         var three_app = /** @class */ (function (_super) {
             __extends(three_app, _super);
             function three_app() {
@@ -81,156 +78,107 @@ var apps;
             });
             three_app.prototype.init = function () {
                 var _this = this;
-                this.potreeViewer = new Potree.Viewer(document.getElementById("potree_render_area"), {
-                    useDefaultRenderLoop: false
-                });
-                this.potreeViewer.setEDLEnabled(true);
-                this.potreeViewer.setFOV(60);
-                this.potreeViewer.setPointBudget(3000000);
-                this.potreeViewer.setBackground(null);
-                this.potreeViewer.setDescription("");
-                this.potreeViewer.loadGUI(function () {
-                    _this.potreeViewer.setLanguage('en');
-                    $("#menu_appearance").next().show();
-                    $("#menu_tools").next().show();
-                    $("#menu_scene").next().show();
-                    _this.potreeViewer.toggleSidebar();
-                });
-                // CA13
-                Potree.loadPointCloud("/cloud.js", "model", function (e) { return _this.loadModel(e); });
-                requestAnimationFrame(function (t) { return _this.loop(t); });
+                var scene = new THREE.Scene();
+                // Create renderer
+                var renderer = new THREE.WebGLRenderer();
+                renderer.setPixelRatio(window.devicePixelRatio);
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                document.body.appendChild(renderer.domElement);
+                // Create camera (The volume renderer does not work very well with perspective yet)
+                var h = 512; // frustum height
+                var aspect = window.innerWidth / window.innerHeight;
+                var camera = new THREE.OrthographicCamera(-h * aspect / 2, h * aspect / 2, h / 2, -h / 2, 1, 1000);
+                camera.position.set(-64, -64, 128);
+                camera.up.set(0, 0, 1); // In our data, z is up
+                // Create controls
+                var controls = new window.OrbitControls(camera, renderer.domElement);
+                controls.addEventListener('change', function () { return _this.render(); });
+                controls.target.set(64, 64, 128);
+                controls.minZoom = 0.5;
+                controls.maxZoom = 4;
+                controls.enablePan = false;
+                controls.update();
+                // scene.add( new AxesHelper( 128 ) );
+                // Lighting is baked into the shader a.t.m.
+                // let dirLight = new DirectionalLight( 0xffffff );
+                // The gui for interaction
+                var volconfig = { clim1: 0, clim2: 1, renderstyle: 'iso', isothreshold: 0.15, colormap: 'viridis' };
+                var gui = new window.GUI();
+                gui.add(volconfig, 'clim1', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
+                gui.add(volconfig, 'clim2', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
+                gui.add(volconfig, 'colormap', { gray: 'gray', viridis: 'viridis' }).onChange(function () { return _this.updateUniforms(); });
+                gui.add(volconfig, 'renderstyle', { mip: 'mip', iso: 'iso' }).onChange(function () { return _this.updateUniforms(); });
+                gui.add(volconfig, 'isothreshold', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
+                this.scene = scene;
+                this.renderer = renderer;
+                this.camera = camera;
+                this.controls = controls;
+                this.volconfig = volconfig;
+                // Load the data ...
+                new NRRDLoader().load('assets/stent.nrrd', function (volume) { return _this.loadNrrdModel(volume); });
+                window.addEventListener('resize', function () { return _this.onWindowResize(); });
             };
-            three_app.prototype.loop = function (timestamp) {
+            three_app.prototype.loadNrrdModel = function (volume) {
                 var _this = this;
-                requestAnimationFrame(function (t) { return _this.loop(t); });
-                this.potreeViewer.update(this.potreeViewer.clock.getDelta(), timestamp);
-                this.potreeViewer.render();
+                // Texture to hold the volume. We have scalars, so we put our data in the red channel.
+                // THREEJS will select R32F (33326) based on the THREE.RedFormat and THREE.FloatType.
+                // Also see https://www.khronos.org/registry/webgl/specs/latest/2.0/#TEXTURE_TYPES_FORMATS_FROM_DOM_ELEMENTS_TABLE
+                // TODO: look the dtype up in the volume metadata
+                var texture = new THREE.Data3DTexture(volume.data, volume.xLength, volume.yLength, volume.zLength);
+                texture.format = THREE.RedFormat;
+                texture.type = THREE.FloatType;
+                texture.minFilter = texture.magFilter = THREE.LinearFilter;
+                texture.unpackAlignment = 1;
+                texture.needsUpdate = true;
+                // Colormap textures
+                this.cmtextures = {
+                    viridis: new THREE.TextureLoader().load('/vendor/three/cm_viridis.png', function () { return _this.render(); }),
+                    gray: new THREE.TextureLoader().load('/vendor/three/cm_gray.png', function () { return _this.render(); })
+                };
+                // Material
+                var shader = VolumeRenderShader1;
+                var uniforms = THREE.UniformsUtils.clone(shader.uniforms);
+                var volconfig = this.volconfig;
+                uniforms['u_data'].value = texture;
+                uniforms['u_size'].value.set(volume.xLength, volume.yLength, volume.zLength);
+                uniforms['u_clim'].value.set(volconfig.clim1, volconfig.clim2);
+                uniforms['u_renderstyle'].value = volconfig.renderstyle == 'mip' ? 0 : 1; // 0: MIP, 1: ISO
+                uniforms['u_renderthreshold'].value = volconfig.isothreshold; // For ISO renderstyle
+                uniforms['u_cmdata'].value = this.cmtextures[volconfig.colormap];
+                this.material = new THREE.ShaderMaterial({
+                    uniforms: uniforms,
+                    vertexShader: shader.vertexShader,
+                    fragmentShader: shader.fragmentShader,
+                    side: THREE.BackSide // The volume shader uses the backface as its "reference point"
+                });
+                // THREE.Mesh
+                var geometry = new THREE.BoxGeometry(volume.xLength, volume.yLength, volume.zLength);
+                geometry.translate(volume.xLength / 2 - 0.5, volume.yLength / 2 - 0.5, volume.zLength / 2 - 0.5);
+                var mesh = new THREE.Mesh(geometry, this.material);
+                this.scene.add(mesh);
+                this.render();
             };
-            three_app.prototype.createAnnotations = function () {
-                var aRoot = this.potreeViewer.scene.annotations;
-                var aCA13 = new Potree.Annotation({
-                    title: "CA13",
-                    position: [675036.45, 3850315.78, 65076.70],
-                    cameraPosition: [675036.45, 3850315.78, 65076.70],
-                    cameraTarget: [692869.03, 3925774.14, 1581.51],
-                });
-                aRoot.add(aCA13);
-                var aSanSimeon = new Potree.Annotation({
-                    title: "San Simeon",
-                    position: [664147.50, 3946008.73, 16.30],
-                    cameraPosition: [664941.80, 3943568.06, 1925.30],
-                    cameraTarget: [664147.50, 3946008.73, 16.30],
-                });
-                aCA13.add(aSanSimeon);
-                var aHearstCastle = new Potree.Annotation({
-                    title: "Hearst Castle",
-                    position: [665744.56, 3950567.52, 500.48],
-                    cameraPosition: [665692.66, 3950521.65, 542.02],
-                    cameraTarget: [665744.56, 3950567.52, 500.48],
-                });
-                aCA13.add(aHearstCastle);
-                var aMorroBay = new Potree.Annotation({
-                    title: "Morro Bay",
-                    position: [695483.33, 3916430.09, 25.75],
-                    cameraPosition: [694114.65, 3911176.26, 3402.33],
-                    cameraTarget: [695483.33, 3916430.09, 25.75],
-                });
-                aCA13.add(aMorroBay);
-                var aMorroRock = new Potree.Annotation({
-                    title: "Morro Rock",
-                    position: [693729.66, 3916085.19, 90.35],
-                    cameraPosition: [693512.77, 3915375.61, 342.33],
-                    cameraTarget: [693729.66, 3916085.19, 90.35],
-                });
-                aMorroBay.add(aMorroRock);
-                var aMorroBayMutualWaterCo = new Potree.Annotation({
-                    title: "Morro Bay Mutual Water Co",
-                    position: [694699.45, 3916425.75, 39.78],
-                    cameraPosition: [694377.64, 3916289.32, 218.40],
-                    cameraTarget: [694699.45, 3916425.75, 39.78],
-                });
-                aMorroBay.add(aMorroBayMutualWaterCo);
-                var aLilaKeiserPark = new Potree.Annotation({
-                    title: "Lila Keiser Park",
-                    position: [694674.99, 3917070.49, 10.86],
-                    cameraPosition: [694452.59, 3916845.14, 298.64],
-                    cameraTarget: [694674.99, 3917070.49, 10.86],
-                });
-                aMorroBay.add(aLilaKeiserPark);
-                var aSanLuisObispo = new Potree.Annotation({
-                    title: "San Luis Obispo",
-                    position: [712573.39, 3907588.33, 146.44],
-                    cameraPosition: [711158.29, 3907019.82, 1335.89],
-                    cameraTarget: [712573.39, 3907588.33, 146.44],
-                });
-                aCA13.add(aSanLuisObispo);
-                var aLopezHill = new Potree.Annotation({
-                    title: "Lopez Hill",
-                    position: [728635.63, 3895761.56, 456.33],
-                    cameraPosition: [728277.24, 3895282.29, 821.51],
-                    cameraTarget: [728635.63, 3895761.56, 456.33],
-                });
-                aCA13.add(aLopezHill);
-                var aWhaleRockReservoir = new Potree.Annotation({
-                    title: "Whale Rock Reservoir",
-                    position: [692845.46, 3925528.53, 140.91],
-                    cameraPosition: [693073.32, 3922354.02, 2154.17],
-                    cameraTarget: [692845.46, 3925528.53, 140.91],
-                });
-                aCA13.add(aWhaleRockReservoir);
+            three_app.prototype.updateUniforms = function () {
+                var material = this.material;
+                var volconfig = this.volconfig;
+                material.uniforms['u_clim'].value.set(volconfig.clim1, volconfig.clim2);
+                material.uniforms['u_renderstyle'].value = volconfig.renderstyle == 'mip' ? 0 : 1; // 0: MIP, 1: ISO
+                material.uniforms['u_renderthreshold'].value = volconfig.isothreshold; // For ISO renderstyle
+                material.uniforms['u_cmdata'].value = this.cmtextures[volconfig.colormap];
+                this.render();
             };
-            three_app.prototype.createVolume = function (scene, material) {
-                var _this = this;
-                var aRoot = scene.annotations;
-                var elTitle = $("\n            <span>\n                Tree Returns:\n                <img name=\"action_return_number\" src=\"".concat(Potree.resourcePath, "/icons/return_number.svg\" class=\"annotation-action-icon\"/>\n                <img name=\"action_rgb\" src=\"").concat(Potree.resourcePath, "/icons/rgb.png\" class=\"annotation-action-icon\"/>\n            </span>"));
-                elTitle.find("img[name=action_return_number]").click(function () {
-                    event.stopPropagation();
-                    material.activeAttributeName = "return_number";
-                    material.pointSizeType = Potree.PointSizeType.FIXED;
-                    material.size = 5;
-                    _this.potreeViewer.setClipTask(Potree.ClipTask.SHOW_INSIDE);
-                });
-                elTitle.find("img[name=action_rgb]").click(function () {
-                    event.stopPropagation();
-                    material.activeAttributeName = "rgba";
-                    material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
-                    material.size = 1;
-                    _this.potreeViewer.setClipTask(Potree.ClipTask.HIGHLIGHT);
-                });
-                elTitle.toString = function () { return "Tree Returns"; };
-                var aTreeReturns = new Potree.Annotation({
-                    title: elTitle,
-                    position: [675756.75, 3937590.94, 80.21],
-                    cameraPosition: [675715.78, 3937700.36, 115.95],
-                    cameraTarget: [675756.75, 3937590.94, 80.21],
-                });
-                aRoot.add(aTreeReturns);
-                aTreeReturns.domElement.find(".annotation-action-icon:first").css("filter", "invert(1)");
-                var volume = new Potree.BoxVolume();
-                volume.position.set(675755.4039368022, 3937586.911614576, 85);
-                volume.scale.set(119.87189835418388, 68.3925257233834, 51.757483718373265);
-                volume.rotation.set(0, 0, 0.8819755090987993, "XYZ");
-                volume.clip = true;
-                volume.visible = false;
-                volume.name = "Trees";
-                scene.addVolume(volume);
+            three_app.prototype.onWindowResize = function () {
+                this.renderer.setSize(window.innerWidth, window.innerHeight);
+                var camera = this.camera;
+                var aspect = window.innerWidth / window.innerHeight;
+                var frustumHeight = camera.top - camera.bottom;
+                camera.left = -frustumHeight * aspect / 2;
+                camera.right = frustumHeight * aspect / 2;
+                camera.updateProjectionMatrix();
+                this.render();
             };
-            three_app.prototype.loadModel = function (e) {
-                var pointcloud = e.pointcloud;
-                var scene = this.potreeViewer.scene;
-                var material = pointcloud.material;
-                scene.addPointCloud(pointcloud);
-                material.size = 1;
-                material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
-                this.potreeViewer.scene.view.setView([675036.45, 3850315.78, 65076.70], [692869.03, 3925774.14, 1581.51]);
-                var pointcloudProjection = e.pointcloud.projection;
-                var mapProjection = proj4.defs("WGS84");
-                window.toMap = proj4(pointcloudProjection, mapProjection);
-                window.toScene = proj4(mapProjection, pointcloudProjection);
-                // ANNOTATIONS
-                this.createAnnotations();
-                // TREE RETURNS POI - ANNOTATION & VOLUME
-                this.createVolume(scene, material);
+            three_app.prototype.render = function () {
+                this.renderer.render(this.scene, this.camera);
             };
             return three_app;
         }(Bootstrap));
@@ -910,17 +858,17 @@ var apps;
                     zAxis3D: { type: 'value', name: 'z' },
                     series: scatter3D,
                     tooltip: {
-                        show: true,
-                        trigger: 'item',
+                        show: true, // 是否显示
+                        trigger: 'item', // 触发类型  'item'图形触发：散点图，饼图等无类目轴的图表中使用； 'axis'坐标轴触发；'none'：什么都不触发。
                         axisPointer: {
                             type: 'cross', // 'line' 直线指示器  'shadow' 阴影指示器  'none' 无指示器  'cross' 十字准星指示器。
                         },
                         // showContent: true, //是否显示提示框浮层，默认显示。
                         // triggerOn: 'mouseover', // 触发时机'click'鼠标点击时触发。 
-                        backgroundColor: 'white',
-                        borderColor: '#333',
-                        borderWidth: 0,
-                        padding: 5,
+                        backgroundColor: 'white', // 提示框浮层的背景颜色。
+                        borderColor: '#333', // 提示框浮层的边框颜色。
+                        borderWidth: 0, // 提示框浮层的边框宽。
+                        padding: 5, // 提示框浮层内边距，
                         textStyle: {
                             color: 'skyblue',
                             fontStyle: 'normal',
@@ -1419,9 +1367,9 @@ var apps;
                 // const byte_range = new globalThis.data.NumericRange(0, 255);
                 return {
                     type: 'bar3D',
-                    shading: 'color',
+                    shading: 'color', // color, lambert, realistic
                     barSize: 0.1,
-                    name: "Intensity ".concat(label),
+                    name: "Intensity ".concat(label), // format_tag(r),
                     spot_labels: $from(data).Select(function (r) { return r.id; }).ToArray(),
                     symbolSize: 1,
                     dimensions: [
@@ -1484,15 +1432,15 @@ var apps;
                         viewControl: {
                             distance: 200,
                             beta: -20,
-                            panMouseButton: 'right',
-                            rotateMouseButton: 'left',
+                            panMouseButton: 'right', //平移操作使用的鼠标按键
+                            rotateMouseButton: 'left', //旋转操作使用的鼠标按键
                             alpha: 30 // 让canvas在x轴有一定的倾斜角度
                         },
                         postEffect: {
                             enable: false,
                             SSAO: {
-                                radius: 1,
-                                intensity: 1,
+                                radius: 1, //环境光遮蔽的采样半径。半径越大效果越自然
+                                intensity: 1, //环境光遮蔽的强度
                                 enable: false
                             }
                         },
@@ -1567,17 +1515,17 @@ var apps;
                     },
                     series: scatter3D,
                     tooltip: {
-                        show: true,
-                        trigger: 'item',
+                        show: true, // 是否显示
+                        trigger: 'item', // 触发类型  'item'图形触发：散点图，饼图等无类目轴的图表中使用； 'axis'坐标轴触发；'none'：什么都不触发。
                         axisPointer: {
                             type: 'cross', // 'line' 直线指示器  'shadow' 阴影指示器  'none' 无指示器  'cross' 十字准星指示器。
                         },
                         // showContent: true, //是否显示提示框浮层，默认显示。
                         // triggerOn: 'mouseover', // 触发时机'click'鼠标点击时触发。 
-                        backgroundColor: 'white',
-                        borderColor: '#333',
-                        borderWidth: 0,
-                        padding: 5,
+                        backgroundColor: 'white', // 提示框浮层的背景颜色。
+                        borderColor: '#333', // 提示框浮层的边框颜色。
+                        borderWidth: 0, // 提示框浮层的边框宽。
+                        padding: 5, // 提示框浮层内边距，
                         textStyle: {
                             color: 'darkblue',
                             fontStyle: 'normal',
