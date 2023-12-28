@@ -91,6 +91,9 @@ var apps;
                 var camera = new THREE.OrthographicCamera(-h * aspect / 2, h * aspect / 2, h / 2, -h / 2, 1, 1000);
                 camera.position.set(-64, -64, 128);
                 camera.up.set(0, 0, 1); // In our data, z is up
+                this.scene = scene;
+                this.renderer = renderer;
+                this.camera = camera;
                 // Create controls
                 var controls = new window.OrbitControls(camera, renderer.domElement);
                 controls.addEventListener('change', function () { return _this.render(); });
@@ -110,13 +113,10 @@ var apps;
                 gui.add(volconfig, 'colormap', { gray: 'gray', viridis: 'viridis' }).onChange(function () { return _this.updateUniforms(); });
                 gui.add(volconfig, 'renderstyle', { mip: 'mip', iso: 'iso' }).onChange(function () { return _this.updateUniforms(); });
                 gui.add(volconfig, 'isothreshold', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
-                this.scene = scene;
-                this.renderer = renderer;
-                this.camera = camera;
                 this.controls = controls;
                 this.volconfig = volconfig;
                 // Load the data ...
-                new NRRDLoader().load('assets/stent.nrrd', function (volume) { return _this.loadNrrdModel(volume); });
+                new window.NRRDLoader().load('assets/stent.nrrd', function (volume) { return _this.loadNrrdModel(volume); });
                 window.addEventListener('resize', function () { return _this.onWindowResize(); });
             };
             three_app.prototype.loadNrrdModel = function (volume) {
@@ -131,13 +131,15 @@ var apps;
                 texture.minFilter = texture.magFilter = THREE.LinearFilter;
                 texture.unpackAlignment = 1;
                 texture.needsUpdate = true;
+                console.log("inspect of your 3d model data:");
+                console.log(volume);
                 // Colormap textures
                 this.cmtextures = {
                     viridis: new THREE.TextureLoader().load('/vendor/three/cm_viridis.png', function () { return _this.render(); }),
                     gray: new THREE.TextureLoader().load('/vendor/three/cm_gray.png', function () { return _this.render(); })
                 };
                 // Material
-                var shader = VolumeRenderShader1;
+                var shader = window.VolumeRenderShader1;
                 var uniforms = THREE.UniformsUtils.clone(shader.uniforms);
                 var volconfig = this.volconfig;
                 uniforms['u_data'].value = texture;

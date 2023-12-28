@@ -53,6 +53,10 @@ namespace apps.viewer {
             camera.position.set(- 64, - 64, 128);
             camera.up.set(0, 0, 1); // In our data, z is up
 
+            this.scene = scene;
+            this.renderer = renderer;
+            this.camera = camera;
+
             // Create controls
             const controls = new window.OrbitControls(camera, renderer.domElement);
             controls.addEventListener('change', () => this.render());
@@ -77,14 +81,11 @@ namespace apps.viewer {
             gui.add(volconfig, 'renderstyle', { mip: 'mip', iso: 'iso' }).onChange(() => this.updateUniforms());
             gui.add(volconfig, 'isothreshold', 0, 1, 0.01).onChange(() => this.updateUniforms());
 
-            this.scene = scene;
-            this.renderer = renderer;
-            this.camera = camera;
             this.controls = controls;
             this.volconfig = volconfig;
 
             // Load the data ...
-            new NRRDLoader().load('assets/stent.nrrd', volume => this.loadNrrdModel(volume));
+            new window.NRRDLoader().load('assets/stent.nrrd', volume => this.loadNrrdModel(volume));
 
             window.addEventListener('resize', () => this.onWindowResize());
         }
@@ -101,6 +102,9 @@ namespace apps.viewer {
             texture.unpackAlignment = 1;
             texture.needsUpdate = true;
 
+            console.log("inspect of your 3d model data:");
+            console.log(volume);
+
             // Colormap textures
             this.cmtextures = {
                 viridis: new THREE.TextureLoader().load('/vendor/three/cm_viridis.png', () => this.render()),
@@ -108,7 +112,7 @@ namespace apps.viewer {
             };
 
             // Material
-            const shader = VolumeRenderShader1;
+            const shader = window.VolumeRenderShader1;
             const uniforms = THREE.UniformsUtils.clone(shader.uniforms);
             const volconfig = this.volconfig;
 
