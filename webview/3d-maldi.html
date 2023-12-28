@@ -5,11 +5,9 @@
 	<title>three.js webgl - volume rendering example</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-	<link type="text/css" rel="stylesheet" href="css/3d-maldi.css">
-</head>
+	<meta name="app" content="three-3d">
 
-<body>
-	<div id="inset"></div>
+	<link type="text/css" rel="stylesheet" href="css/3d-maldi.css">
 
 	<script type="importmap">
 		{
@@ -31,8 +29,24 @@
 
 		if (WebGL.isWebGL2Available() === false) {
 			document.body.appendChild(WebGL.getWebGL2ErrorMessage());
-		}	
+		} else {
+			window.THREE = THREE;
+			window.OrbitControls = OrbitControls;
+			window.GUI = GUI;
+			window.NRRDLoader = NRRDLoader;
+			window.VolumeRenderShader1 = VolumeRenderShader1;
+			window.WebGL = WebGL;
+		}
+
+		console.log(window.THREE);		
 	</script>
+</head>
+
+<body>
+	<div id="inset"></div>
+
+	<script type="text/javascript" src="./assets/js/linq.js"></script>
+	<script type="text/javascript" src="./assets/js/mzkit_desktop.js"></script>
 </body>
 
 </html>

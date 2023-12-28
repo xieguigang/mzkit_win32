@@ -42,7 +42,9 @@ namespace apps.viewer {
             const renderer = new THREE.WebGLRenderer();
             renderer.setPixelRatio(window.devicePixelRatio);
             renderer.setSize(window.innerWidth, window.innerHeight);
+
             document.body.appendChild(renderer.domElement);
+            console.log(renderer);
 
             // Create camera (The volume renderer does not work very well with perspective yet)
             const h = 512; // frustum height

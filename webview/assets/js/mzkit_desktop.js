@@ -84,6 +84,7 @@ var apps;
                 renderer.setPixelRatio(window.devicePixelRatio);
                 renderer.setSize(window.innerWidth, window.innerHeight);
                 document.body.appendChild(renderer.domElement);
+                console.log(renderer);
                 // Create camera (The volume renderer does not work very well with perspective yet)
                 var h = 512; // frustum height
                 var aspect = window.innerWidth / window.innerHeight;
