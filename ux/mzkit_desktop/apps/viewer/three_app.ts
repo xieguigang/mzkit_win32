@@ -4,22 +4,17 @@ namespace apps.viewer {
 
     const window = <any>globalThis.window;
 
-    export interface OrbitControls {
-
-    }
+    export interface OrbitControls { }
 
     export interface GUI {
         add(volconfig: volconfig, arg1: string, arg2: any, arg3?: any, arg4?: any): any;
-
     }
 
     export interface volconfig {
         clim1: number; clim2: number; renderstyle: string; isothreshold: number; colormap: string;
     }
 
-    export interface NRRDLoader {
-
-    }
+    export interface NRRDLoader { }
 
     export class three_app extends Bootstrap {
 
@@ -83,14 +78,20 @@ namespace apps.viewer {
 
             this.controls = controls;
             this.volconfig = volconfig;
-
-            // Load the data ...
-            new window.NRRDLoader().load('assets/stent.nrrd', volume => this.loadNrrdModel(volume));
+            // Load the default model data ...
+            this.loadNrrdModel('assets/stent.nrrd');
 
             window.addEventListener('resize', () => this.onWindowResize());
         }
 
-        public loadNrrdModel(volume) {
+        /**
+         * Load the data ...
+        */
+        public loadNrrdModel(path: string) {
+            new window.NRRDLoader().load(path, volume => this.loadVolumeModel(volume));
+        }
+
+        public loadVolumeModel(volume) {
             // Texture to hold the volume. We have scalars, so we put our data in the red channel.
             // THREEJS will select R32F (33326) based on the THREE.RedFormat and THREE.FloatType.
             // Also see https://www.khronos.org/registry/webgl/specs/latest/2.0/#TEXTURE_TYPES_FORMATS_FROM_DOM_ELEMENTS_TABLE

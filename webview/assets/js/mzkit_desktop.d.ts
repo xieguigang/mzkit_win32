@@ -25,7 +25,11 @@ declare namespace apps.viewer {
         cmtextures: any;
         get appName(): string;
         protected init(): void;
-        loadNrrdModel(volume: any): void;
+        /**
+         * Load the data ...
+        */
+        loadNrrdModel(path: string): void;
+        loadVolumeModel(volume: any): void;
         updateUniforms(): void;
         onWindowResize(): void;
         render(): void;

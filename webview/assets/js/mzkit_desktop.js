@@ -115,11 +115,18 @@ var apps;
                 gui.add(volconfig, 'isothreshold', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
                 this.controls = controls;
                 this.volconfig = volconfig;
-                // Load the data ...
-                new window.NRRDLoader().load('assets/stent.nrrd', function (volume) { return _this.loadNrrdModel(volume); });
+                // Load the default model data ...
+                this.loadNrrdModel('assets/stent.nrrd');
                 window.addEventListener('resize', function () { return _this.onWindowResize(); });
             };
-            three_app.prototype.loadNrrdModel = function (volume) {
+            /**
+             * Load the data ...
+            */
+            three_app.prototype.loadNrrdModel = function (path) {
+                var _this = this;
+                new window.NRRDLoader().load(path, function (volume) { return _this.loadVolumeModel(volume); });
+            };
+            three_app.prototype.loadVolumeModel = function (volume) {
                 var _this = this;
                 // Texture to hold the volume. We have scalars, so we put our data in the red channel.
                 // THREEJS will select R32F (33326) based on the THREE.RedFormat and THREE.FloatType.
