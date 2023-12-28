@@ -3,210 +3,165 @@
 namespace apps.viewer {
 
     const window = <any>globalThis.window;
-    const Potree = (<any>window).Potree;
-    const proj4 = (<any>window).proj4;
 
-    // D:/mzkit/dist/bin/Rstudio/bin/Rserve.exe --listen /wwwroot "D:\mzkit\dist\bin/../../src/mzkit/webview/" /port 6001 --parent=8124 --attach F:/Temp/mzkit_win32/9465ce9a7904ba9fa5a354804734cbc4
+    export interface OrbitControls {
 
+    }
+
+    export interface GUI {
+        add(volconfig: volconfig, arg1: string, arg2: any, arg3?: any, arg4?: any): any;
+
+    }
+
+    export interface volconfig {
+        clim1: number; clim2: number; renderstyle: string; isothreshold: number; colormap: string;
+    }
+
+    export interface NRRDLoader {
+
+    }
 
     export class three_app extends Bootstrap {
+
+        public renderer: THREE.WebGLRenderer;
+        public scene: THREE.Scene;
+        public camera: THREE.OrthographicCamera;
+        public controls: OrbitControls;
+        public material: THREE.ShaderMaterial;
+        public volconfig: volconfig;
+        public cmtextures;
 
         public get appName(): string {
             return "three-3d";
         }
 
-        private potreeViewer;
-
         protected init(): void {
-            this.potreeViewer = new Potree.Viewer(document.getElementById("potree_render_area"), {
-                useDefaultRenderLoop: false
-            });
+            const scene = new THREE.Scene();
 
-            this.potreeViewer.setEDLEnabled(true);
-            this.potreeViewer.setFOV(60);
-            this.potreeViewer.setPointBudget(3_000_000);
-            this.potreeViewer.setBackground(null);
+            // Create renderer
+            const renderer = new THREE.WebGLRenderer();
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
 
-            this.potreeViewer.setDescription("");
+            // Create camera (The volume renderer does not work very well with perspective yet)
+            const h = 512; // frustum height
+            const aspect = window.innerWidth / window.innerHeight;
+            const camera = new THREE.OrthographicCamera(- h * aspect / 2, h * aspect / 2, h / 2, - h / 2, 1, 1000);
+            camera.position.set(- 64, - 64, 128);
+            camera.up.set(0, 0, 1); // In our data, z is up
 
-            this.potreeViewer.loadGUI(() => {
-                this.potreeViewer.setLanguage('en');
-                $("#menu_appearance").next().show();
-                $("#menu_tools").next().show();
-                $("#menu_scene").next().show();
-                this.potreeViewer.toggleSidebar();
-            });
+            // Create controls
+            const controls = new window.OrbitControls(camera, renderer.domElement);
+            controls.addEventListener('change', () => this.render());
+            controls.target.set(64, 64, 128);
+            controls.minZoom = 0.5;
+            controls.maxZoom = 4;
+            controls.enablePan = false;
+            controls.update();
 
-            // CA13
-            Potree.loadPointCloud("/cloud.js", "model", e => this.loadModel(e));
+            // scene.add( new AxesHelper( 128 ) );
 
-            requestAnimationFrame(t => this.loop(t));
+            // Lighting is baked into the shader a.t.m.
+            // let dirLight = new DirectionalLight( 0xffffff );
+
+            // The gui for interaction
+            const volconfig = { clim1: 0, clim2: 1, renderstyle: 'iso', isothreshold: 0.15, colormap: 'viridis' };
+            const gui: GUI = new window.GUI();
+
+            gui.add(volconfig, 'clim1', 0, 1, 0.01).onChange(() => this.updateUniforms());
+            gui.add(volconfig, 'clim2', 0, 1, 0.01).onChange(() => this.updateUniforms());
+            gui.add(volconfig, 'colormap', { gray: 'gray', viridis: 'viridis' }).onChange(() => this.updateUniforms());
+            gui.add(volconfig, 'renderstyle', { mip: 'mip', iso: 'iso' }).onChange(() => this.updateUniforms());
+            gui.add(volconfig, 'isothreshold', 0, 1, 0.01).onChange(() => this.updateUniforms());
+
+            this.scene = scene;
+            this.renderer = renderer;
+            this.camera = camera;
+            this.controls = controls;
+            this.volconfig = volconfig;
+
+            // Load the data ...
+            new NRRDLoader().load('assets/stent.nrrd', volume => this.loadNrrdModel(volume));
+
+            window.addEventListener('resize', () => this.onWindowResize());
         }
 
-        private loop(timestamp) {
-            requestAnimationFrame(t => this.loop(t));
+        public loadNrrdModel(volume) {
+            // Texture to hold the volume. We have scalars, so we put our data in the red channel.
+            // THREEJS will select R32F (33326) based on the THREE.RedFormat and THREE.FloatType.
+            // Also see https://www.khronos.org/registry/webgl/specs/latest/2.0/#TEXTURE_TYPES_FORMATS_FROM_DOM_ELEMENTS_TABLE
+            // TODO: look the dtype up in the volume metadata
+            const texture = new THREE.Data3DTexture(volume.data, volume.xLength, volume.yLength, volume.zLength);
+            texture.format = THREE.RedFormat;
+            texture.type = THREE.FloatType;
+            texture.minFilter = texture.magFilter = THREE.LinearFilter;
+            texture.unpackAlignment = 1;
+            texture.needsUpdate = true;
 
-            this.potreeViewer.update(this.potreeViewer.clock.getDelta(), timestamp);
-            this.potreeViewer.render();
+            // Colormap textures
+            this.cmtextures = {
+                viridis: new THREE.TextureLoader().load('/vendor/three/cm_viridis.png', () => this.render()),
+                gray: new THREE.TextureLoader().load('/vendor/three/cm_gray.png', () => this.render())
+            };
+
+            // Material
+            const shader = VolumeRenderShader1;
+            const uniforms = THREE.UniformsUtils.clone(shader.uniforms);
+            const volconfig = this.volconfig;
+
+            uniforms['u_data'].value = texture;
+            uniforms['u_size'].value.set(volume.xLength, volume.yLength, volume.zLength);
+            uniforms['u_clim'].value.set(volconfig.clim1, volconfig.clim2);
+            uniforms['u_renderstyle'].value = volconfig.renderstyle == 'mip' ? 0 : 1; // 0: MIP, 1: ISO
+            uniforms['u_renderthreshold'].value = volconfig.isothreshold; // For ISO renderstyle
+            uniforms['u_cmdata'].value = this.cmtextures[volconfig.colormap];
+
+            this.material = new THREE.ShaderMaterial({
+                uniforms: uniforms,
+                vertexShader: shader.vertexShader,
+                fragmentShader: shader.fragmentShader,
+                side: THREE.BackSide // The volume shader uses the backface as its "reference point"
+            });
+
+            // THREE.Mesh
+            const geometry = new THREE.BoxGeometry(volume.xLength, volume.yLength, volume.zLength);
+            geometry.translate(volume.xLength / 2 - 0.5, volume.yLength / 2 - 0.5, volume.zLength / 2 - 0.5);
+
+            const mesh = new THREE.Mesh(geometry, this.material);
+            this.scene.add(mesh);
+
+            this.render();
         }
 
-        private createAnnotations() {
-            let aRoot = this.potreeViewer.scene.annotations;
+        updateUniforms() {
+            const material = this.material;
+            const volconfig = this.volconfig;
 
-            let aCA13 = new Potree.Annotation({
-                title: "CA13",
-                position: [675036.45, 3850315.78, 65076.70],
-                cameraPosition: [675036.45, 3850315.78, 65076.70],
-                cameraTarget: [692869.03, 3925774.14, 1581.51],
-            });
-            aRoot.add(aCA13);
+            material.uniforms['u_clim'].value.set(volconfig.clim1, volconfig.clim2);
+            material.uniforms['u_renderstyle'].value = volconfig.renderstyle == 'mip' ? 0 : 1; // 0: MIP, 1: ISO
+            material.uniforms['u_renderthreshold'].value = volconfig.isothreshold; // For ISO renderstyle
+            material.uniforms['u_cmdata'].value = this.cmtextures[volconfig.colormap];
 
-            let aSanSimeon = new Potree.Annotation({
-                title: "San Simeon",
-                position: [664147.50, 3946008.73, 16.30],
-                cameraPosition: [664941.80, 3943568.06, 1925.30],
-                cameraTarget: [664147.50, 3946008.73, 16.30],
-            });
-            aCA13.add(aSanSimeon);
-
-            let aHearstCastle = new Potree.Annotation({
-                title: "Hearst Castle",
-                position: [665744.56, 3950567.52, 500.48],
-                cameraPosition: [665692.66, 3950521.65, 542.02],
-                cameraTarget: [665744.56, 3950567.52, 500.48],
-            });
-            aCA13.add(aHearstCastle);
-
-            let aMorroBay = new Potree.Annotation({
-                title: "Morro Bay",
-                position: [695483.33, 3916430.09, 25.75],
-                cameraPosition: [694114.65, 3911176.26, 3402.33],
-                cameraTarget: [695483.33, 3916430.09, 25.75],
-            });
-            aCA13.add(aMorroBay);
-
-            let aMorroRock = new Potree.Annotation({
-                title: "Morro Rock",
-                position: [693729.66, 3916085.19, 90.35],
-                cameraPosition: [693512.77, 3915375.61, 342.33],
-                cameraTarget: [693729.66, 3916085.19, 90.35],
-            });
-            aMorroBay.add(aMorroRock);
-
-            let aMorroBayMutualWaterCo = new Potree.Annotation({
-                title: "Morro Bay Mutual Water Co",
-                position: [694699.45, 3916425.75, 39.78],
-                cameraPosition: [694377.64, 3916289.32, 218.40],
-                cameraTarget: [694699.45, 3916425.75, 39.78],
-            });
-            aMorroBay.add(aMorroBayMutualWaterCo);
-
-            let aLilaKeiserPark = new Potree.Annotation({
-                title: "Lila Keiser Park",
-                position: [694674.99, 3917070.49, 10.86],
-                cameraPosition: [694452.59, 3916845.14, 298.64],
-                cameraTarget: [694674.99, 3917070.49, 10.86],
-            });
-            aMorroBay.add(aLilaKeiserPark);
-
-            let aSanLuisObispo = new Potree.Annotation({
-                title: "San Luis Obispo",
-                position: [712573.39, 3907588.33, 146.44],
-                cameraPosition: [711158.29, 3907019.82, 1335.89],
-                cameraTarget: [712573.39, 3907588.33, 146.44],
-            });
-            aCA13.add(aSanLuisObispo);
-
-            let aLopezHill = new Potree.Annotation({
-                title: "Lopez Hill",
-                position: [728635.63, 3895761.56, 456.33],
-                cameraPosition: [728277.24, 3895282.29, 821.51],
-                cameraTarget: [728635.63, 3895761.56, 456.33],
-            });
-            aCA13.add(aLopezHill);
-
-            let aWhaleRockReservoir = new Potree.Annotation({
-                title: "Whale Rock Reservoir",
-                position: [692845.46, 3925528.53, 140.91],
-                cameraPosition: [693073.32, 3922354.02, 2154.17],
-                cameraTarget: [692845.46, 3925528.53, 140.91],
-            });
-            aCA13.add(aWhaleRockReservoir);
+            this.render();
         }
 
-        private createVolume(scene, material) {
-            let aRoot = scene.annotations;
+        onWindowResize() {
+            this.renderer.setSize(window.innerWidth, window.innerHeight);
 
-            let elTitle = $(`
-            <span>
-                Tree Returns:
-                <img name="action_return_number" src="${Potree.resourcePath}/icons/return_number.svg" class="annotation-action-icon"/>
-                <img name="action_rgb" src="${Potree.resourcePath}/icons/rgb.png" class="annotation-action-icon"/>
-            </span>`);
+            const camera = this.camera;
+            const aspect = window.innerWidth / window.innerHeight;
+            const frustumHeight = camera.top - camera.bottom;
 
-            elTitle.find("img[name=action_return_number]").click(() => {
-                event.stopPropagation();
-                material.activeAttributeName = "return_number";
-                material.pointSizeType = Potree.PointSizeType.FIXED;
-                material.size = 5;
-                this.potreeViewer.setClipTask(Potree.ClipTask.SHOW_INSIDE);
-            });
+            camera.left = - frustumHeight * aspect / 2;
+            camera.right = frustumHeight * aspect / 2;
+            camera.updateProjectionMatrix();
 
-            elTitle.find("img[name=action_rgb]").click(() => {
-                event.stopPropagation();
-                material.activeAttributeName = "rgba";
-                material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
-                material.size = 1;
-                this.potreeViewer.setClipTask(Potree.ClipTask.HIGHLIGHT);
-            });
-
-            elTitle.toString = () => "Tree Returns";
-
-
-            let aTreeReturns = new Potree.Annotation({
-                title: elTitle,
-                position: [675756.75, 3937590.94, 80.21],
-                cameraPosition: [675715.78, 3937700.36, 115.95],
-                cameraTarget: [675756.75, 3937590.94, 80.21],
-            });
-            aRoot.add(aTreeReturns);
-            aTreeReturns.domElement.find(".annotation-action-icon:first").css("filter", "invert(1)");
-
-            let volume = new Potree.BoxVolume();
-            volume.position.set(675755.4039368022, 3937586.911614576, 85);
-            volume.scale.set(119.87189835418388, 68.3925257233834, 51.757483718373265);
-            volume.rotation.set(0, 0, 0.8819755090987993, "XYZ");
-            volume.clip = true;
-            volume.visible = false;
-            volume.name = "Trees";
-            scene.addVolume(volume);
+            this.render();
         }
 
-        private loadModel(e) {
-            let pointcloud = e.pointcloud;
-            let scene = this.potreeViewer.scene;
-            let material = pointcloud.material;
-
-            scene.addPointCloud(pointcloud);
-
-            material.size = 1;
-            material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
-
-            this.potreeViewer.scene.view.setView(
-                [675036.45, 3850315.78, 65076.70],
-                [692869.03, 3925774.14, 1581.51],
-            );
-
-            let pointcloudProjection = e.pointcloud.projection;
-            let mapProjection = proj4.defs("WGS84");
-
-            window.toMap = proj4(pointcloudProjection, mapProjection);
-            window.toScene = proj4(mapProjection, pointcloudProjection);
-
-            // ANNOTATIONS
-            this.createAnnotations();
-            // TREE RETURNS POI - ANNOTATION & VOLUME
-            this.createVolume(scene, material);
+        render() {
+            this.renderer.render(this.scene, this.camera);
         }
     }
 }
