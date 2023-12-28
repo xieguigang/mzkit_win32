@@ -10,28 +10,18 @@
 
 <body>
 	<div id="inset"></div>
-
-	<script type="importmap">
-		{
-			"imports": {
-				"three": "./vendor/three/three.module.min.js",
-				"three/addons/": "./vendor/three/"
-			}
-		}
-	</script>
-
+	
+	<script src="./vendor/three/three.min.js"></script>
 	<script src="./vendor/three/Volume.js"></script>
+	<script src="./vendor/three/VolumeShader.js"></script>
 	<script src="./vendor/three/VolumeSlice.js"></script>
+	<script src="./vendor/three/WebGL.js"></script>
+	<script src="./vendor/three/NRRDLoader.js"></script>
+	<script src="./vendor/three/OrbitControls.js"></script>
 
 	<script type="module">
-		import * as THREE from 'three';
-
 		import { GUI } from './vendor/three/lil-gui.module.min.js';
-		import { OrbitControls } from './vendor/three/OrbitControls.js';
-		import { NRRDLoader } from './vendor/three/NRRDLoader.js';
-		import { VolumeRenderShader1 } from './vendor/three/VolumeShader.js';
-		import WebGL from './vendor/three/WebGL.js';
-
+			
 		if (WebGL.isWebGL2Available() === false) {
 
 			document.body.appendChild(WebGL.getWebGL2ErrorMessage());

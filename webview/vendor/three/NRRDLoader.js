@@ -1,12 +1,3 @@
-import {
-	FileLoader,
-	Loader,
-	Matrix4,
-	Vector3
-} from 'three';
-import * as fflate from './fflate.module.js';
-import { Volume } from './Volume.js';
-
 class NRRDLoader extends Loader {
 
 	constructor( manager ) {
@@ -682,5 +673,3 @@ const _fieldFunctions = {
 	}
 
 };
-
-export { NRRDLoader };

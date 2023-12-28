@@ -1,8 +1,3 @@
-import {
-	Vector2,
-	Vector3
-} from 'three';
-
 /**
  * Shaders to render 3D volumes using raycasting.
  * The applied techniques are based on similar implementations in the Visvis and Vispy projects.
@@ -285,5 +280,3 @@ const VolumeRenderShader1 = {
 				}`
 
 };
-
-export { VolumeRenderShader1 };

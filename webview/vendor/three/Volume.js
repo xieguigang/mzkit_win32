@@ -463,4 +463,3 @@ class Volume {
 
 }
 
-export { Volume };

@@ -49,5 +49,3 @@ class WebGPU {
 	}
 
 }
-
-export default WebGPU;
