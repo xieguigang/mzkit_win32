@@ -288,7 +288,6 @@
     <ROW Directory="net6.0_1_Dir" Directory_Parent="lib_7_Dir" DefaultDir="net6.0"/>
     <ROW Directory="net6.0_2_Dir" Directory_Parent="lib_Dir" DefaultDir="net6.0"/>
     <ROW Directory="net6.0_3_Dir" Directory_Parent="lib_1_Dir" DefaultDir="net6.0"/>
-    <ROW Directory="net6.0_4_Dir" Directory_Parent="bin_Dir" DefaultDir="net6.0"/>
     <ROW Directory="net6.0_5_Dir" Directory_Parent="lib_2_Dir" DefaultDir="net6.0"/>
     <ROW Directory="net6.0_6_Dir" Directory_Parent="lib_3_Dir" DefaultDir="net6.0"/>
     <ROW Directory="net6.0_Dir" Directory_Parent="lib_6_Dir" DefaultDir="net6.0"/>
@@ -977,6 +976,7 @@
     <ROW Component="Microsoft.VisualBasic.Math.Statistics.pdb" ComponentId="{82D13D8E-3440-4902-951B-2AED113A3984}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Statistics.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Math.Statistics.pdb_1" ComponentId="{15206761-EFEC-4668-B958-AADE2EF609A9}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Statistics.pdb_1" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Math.Statistics.xml" ComponentId="{B18F0871-495D-4389-886C-5D1CFEAF18C7}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Statistics.xml_1"/>
+    <ROW Component="Microsoft.VisualBasic.Math.Symbolic.GeneticProgramming.dll" ComponentId="{F8E19C52-C521-4781-8090-FE0FCF415127}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Symbolic.GeneticProgramming.dll"/>
     <ROW Component="Microsoft.VisualBasic.Network.dll" ComponentId="{E7B6290F-FE7E-4D32-B00A-CFAE2FCF202B}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Network.dll"/>
     <ROW Component="Microsoft.VisualBasic.Network.dll_1" ComponentId="{2699EF41-F593-48FD-ACAD-37243E328CA6}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Network.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Network.dll_10" ComponentId="{B6C6F107-CB75-4918-9FD7-62FD4A64BE28}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Network.dll_10"/>
@@ -1438,7 +1438,7 @@
     <ROW Component="convert_h5ad_st_to_mzpack.R" ComponentId="{BED9CF16-A06E-4D7C-8CB6-63B22D3BCEA4}" Directory_="x_genomics_Dir" Attributes="0" KeyPath="convert_h5ad_st_to_mzpack.R" Type="0"/>
     <ROW Component="d3.js" ComponentId="{34BF19E9-C427-4670-8B85-78129D1437D2}" Directory_="d3_Dir" Attributes="0" KeyPath="d3.js" Type="0"/>
     <ROW Component="d_canvas.css" ComponentId="{E4FEA481-6A27-4C89-8E04-CE8A30D2C92F}" Directory_="assets_Dir" Attributes="0" KeyPath="d_canvas.css" Type="0"/>
-    <ROW Component="dat.gui.min.js" ComponentId="{670EC0D5-BB06-4530-AF70-3C54DE4B329E}" Directory_="three_Dir" Attributes="0" KeyPath="dat.gui.min.js" Type="0"/>
+    <ROW Component="dat.gui.min.js" ComponentId="{670EC0D5-BB06-4530-AF70-3C54DE4B329E}" Directory_="three_Dir" Attributes="0" KeyPath="OrbitControls.js" Type="0"/>
     <ROW Component="dbscan.R" ComponentId="{E99B079C-AC08-4265-836A-D7A813C65EA4}" Directory_="clustering_Dir" Attributes="0" KeyPath="dbscan.R" Type="0"/>
     <ROW Component="decode.h" ComponentId="{FCABAB02-80E0-4A67-87C0-DF7E72EAD657}" Directory_="brotli_Dir" Attributes="0" KeyPath="decode.h" Type="0"/>
     <ROW Component="decode.h_1" ComponentId="{FAAAB03D-43B0-4144-B01F-7044B608A64E}" Directory_="webp_Dir" Attributes="0" KeyPath="decode.h_2" Type="0"/>
@@ -1617,7 +1617,6 @@
     <ROW Component="ndpisplits.exe" ComponentId="{A750B522-44B0-4D72-905E-D212C7C68DEF}" Directory_="ndpitools_Dir" Attributes="256" KeyPath="ndpisplits.exe"/>
     <ROW Component="ndpisplitsm.exe" ComponentId="{2BF8BA74-59D1-4D3E-8FF1-1F18ABFAF40A}" Directory_="ndpitools_Dir" Attributes="256" KeyPath="ndpisplitsm.exe"/>
     <ROW Component="ndpisplitsmJ.exe" ComponentId="{95F9635F-BA5E-43FB-B40D-D2B54F58C6DC}" Directory_="ndpitools_Dir" Attributes="256" KeyPath="ndpisplitsmJ.exe"/>
-    <ROW Component="net6.0" ComponentId="{9B92A600-4176-4B29-A3BE-B0FD04BC6442}" Directory_="net6.0_4_Dir" Attributes="0"/>
     <ROW Component="nifti1.h" ComponentId="{F5D62D68-CEB2-4C24-AA0C-FB72AA333ED7}" Directory_="nifti_Dir" Attributes="0" KeyPath="nifti1.h" Type="0"/>
     <ROW Component="njl.dll" ComponentId="{EA76B011-5678-408C-A8ED-B55E34699377}" Directory_="library_Dir" Attributes="256" KeyPath="njl.dll"/>
     <ROW Component="npy.dll" ComponentId="{57A4DF98-6211-4C12-8590-541E4B27BC6C}" Directory_="library_Dir" Attributes="256" KeyPath="npy.dll"/>
@@ -3075,10 +3074,7 @@
     <ROW File="linq.js" Component_="linq.d.ts" FileName="linq.js" Attributes="0" SourcePath="..\webview\assets\js\linq.js" SelfReg="false"/>
     <ROW File="mzkit_desktop.d.ts" Component_="linq.d.ts" FileName="MZKIT_~1.TS|mzkit_desktop.d.ts" Attributes="0" SourcePath="..\webview\assets\js\mzkit_desktop.d.ts" SelfReg="false"/>
     <ROW File="mzkit_desktop.js" Component_="linq.d.ts" FileName="MZKIT_~1.JS|mzkit_desktop.js" Attributes="0" SourcePath="..\webview\assets\js\mzkit_desktop.js" SelfReg="false"/>
-    <ROW File="dat.gui.min.js" Component_="dat.gui.min.js" FileName="DATGUI~1.JS|dat.gui.min.js" Attributes="0" SourcePath="..\webview\vendor\three\dat.gui.min.js" SelfReg="false"/>
     <ROW File="OrbitControls.js" Component_="dat.gui.min.js" FileName="ORBITC~1.JS|OrbitControls.js" Attributes="0" SourcePath="..\webview\vendor\three\OrbitControls.js" SelfReg="false"/>
-    <ROW File="stats.min.js" Component_="dat.gui.min.js" FileName="STATSM~1.JS|stats.min.js" Attributes="0" SourcePath="..\webview\vendor\three\stats.min.js" SelfReg="false"/>
-    <ROW File="three.min.js" Component_="dat.gui.min.js" FileName="THREEM~1.JS|three.min.js" Attributes="0" SourcePath="..\webview\vendor\three\three.min.js" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Imaging.Landscape.dll" Component_="Microsoft.VisualBasic.Imaging.Landscape.dll" FileName="MICRO~31.DLL|Microsoft.VisualBasic.Imaging.Landscape.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Imaging.Landscape.dll" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll" Component_="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll" FileName="BIONO~15.DLL|BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll" SelfReg="false"/>
     <ROW File="Mzkit_win32.BasicMDIForm.resources.dll" Component_="Mzkit_win32.BasicMDIForm.resources.dll" FileName="MZKIT_~3.DLL|Mzkit_win32.BasicMDIForm.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\en-US\Mzkit_win32.BasicMDIForm.resources.dll" SelfReg="false"/>
@@ -3460,8 +3456,6 @@
     <ROW File="Microsoft.VisualBasic.MachineLearning.MLDataStorage.dll" Component_="Microsoft.VisualBasic.MachineLearning.MLDataStorage.dll" FileName="MICRO~58.DLL|Microsoft.VisualBasic.MachineLearning.MLDataStorage.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.MachineLearning.MLDataStorage.dll" SelfReg="false"/>
     <ROW File="canyon.hdr" Component_="d_canvas.css" FileName="canyon.hdr" Attributes="0" SourcePath="..\webview\assets\canyon.hdr" SelfReg="false"/>
     <ROW File="LCMSscatter.html" Component_="logo.png" FileName="LCMS-S~1.HTM|LCMS-scatter.html" Attributes="0" SourcePath="..\webview\LCMS-scatter.html" SelfReg="false"/>
-    <ROW File="delaunator.3.0.2.js" Component_="dat.gui.min.js" FileName="DELAUN~1.JS|delaunator.3.0.2.js" Attributes="0" SourcePath="..\webview\vendor\three\delaunator.3.0.2.js" SelfReg="false"/>
-    <ROW File="perlin.js" Component_="dat.gui.min.js" FileName="perlin.js" Attributes="0" SourcePath="..\webview\vendor\three\perlin.js" SelfReg="false"/>
     <ROW File="export_ms2.R" Component_="plot_cdf_tic.R" FileName="EXPORT~1.R|export_ms2.R" Attributes="0" SourcePath="..\rstudio\demo\export_ms2.R" SelfReg="false"/>
     <ROW File="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" Component_="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll_1" FileName="BIONO~35.DLL|BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" SelfReg="false"/>
     <ROW File="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.pdb" Component_="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" FileName="BIONO~35.PDB|BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.pdb" SelfReg="false"/>
@@ -18251,6 +18245,40 @@
     <ROW File="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb_1" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb" FileName="MICRO~65.PDB|Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb" SelfReg="false"/>
     <ROW File="Mzkit_win32.MatrixViewer.dll" Component_="Mzkit_win32.MatrixViewer.dll" FileName="MZKIT_~9.DLL|Mzkit_win32.MatrixViewer.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.MatrixViewer.dll" SelfReg="false"/>
     <ROW File="Mzkit_win32.MatrixViewer.pdb" Component_="Mzkit_win32.MatrixViewer.pdb" FileName="MZKIT~10.PDB|Mzkit_win32.MatrixViewer.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.MatrixViewer.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataStorage.HDSPack.xml" Component_="Flute.Http.xml" FileName="MICROS~7.XML|Microsoft.VisualBasic.DataStorage.HDSPack.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Microsoft.VisualBasic.DataStorage.HDSPack.xml" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.xm" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="BIONO~15.XML|BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.xml" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.SignalReader.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="BIONO~16.XML|BioNovoGene.Analytical.MassSpectrometry.SignalReader.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.SignalReader.xml" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.SingleCells.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="BIONO~17.XML|BioNovoGene.Analytical.MassSpectrometry.SingleCells.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.SingleCells.xml" SelfReg="false"/>
+    <ROW File="BioNovoGene.BioDeep.MSEngine.Mummichog.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="BIONO~18.XML|BioNovoGene.BioDeep.MSEngine.Mummichog.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.BioDeep.MSEngine.Mummichog.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Data.IO.HDF5.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~28.XML|Microsoft.VisualBasic.Data.IO.HDF5.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Data.IO.HDF5.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Data.IO.SQLite3.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~29.XML|Microsoft.VisualBasic.Data.IO.SQLite3.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Data.IO.SQLite3.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataStorage.HDSPack.xml_1" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~30.XML|Microsoft.VisualBasic.DataStorage.HDSPack.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.DataStorage.HDSPack.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataStorage.netCDF.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~31.XML|Microsoft.VisualBasic.DataStorage.netCDF.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.DataStorage.netCDF.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.MachineLearning.Data.Extensions.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~32.XML|Microsoft.VisualBasic.MachineLearning.Data.Extensions.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.MachineLearning.Data.Extensions.xml" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.Data.Rhea.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="SMRUC~10.XML|SMRUCC.genomics.Data.Rhea.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\SMRUCC.genomics.Data.Rhea.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Math.Symbolic.GeneticProgramming.dll" Component_="Microsoft.VisualBasic.Math.Symbolic.GeneticProgramming.dll" FileName="MICRO~63.DLL|Microsoft.VisualBasic.Math.Symbolic.GeneticProgramming.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Math.Symbolic.GeneticProgramming.dll" SelfReg="false"/>
+    <ROW File="dmaldi.css" Component_="bootstrapcolorpicker.min.css" FileName="3d-maldi.css" Attributes="0" SourcePath="..\webview\css\3d-maldi.css" SelfReg="false"/>
+    <ROW File="cm_gray.png" Component_="dat.gui.min.js" FileName="cm_gray.png" Attributes="0" SourcePath="..\webview\vendor\three\cm_gray.png" SelfReg="false"/>
+    <ROW File="cm_viridis.png" Component_="dat.gui.min.js" FileName="CM_VIR~1.PNG|cm_viridis.png" Attributes="0" SourcePath="..\webview\vendor\three\cm_viridis.png" SelfReg="false"/>
+    <ROW File="fflate.module.js" Component_="dat.gui.min.js" FileName="FFLATE~1.JS|fflate.module.js" Attributes="0" SourcePath="..\webview\vendor\three\fflate.module.js" SelfReg="false"/>
+    <ROW File="lilgui.module.min.js" Component_="dat.gui.min.js" FileName="LIL-GU~1.JS|lil-gui.module.min.js" Attributes="0" SourcePath="..\webview\vendor\three\lil-gui.module.min.js" SelfReg="false"/>
+    <ROW File="NRRDLoader.js_1" Component_="dat.gui.min.js" FileName="NRRDLO~1.JS|NRRDLoader.js" Attributes="0" SourcePath="..\webview\vendor\three\NRRDLoader.js" SelfReg="false"/>
+    <ROW File="three.module.js_1" Component_="dat.gui.min.js" FileName="THREEM~2.JS|three.module.js" Attributes="0" SourcePath="..\webview\vendor\three\three.module.js" SelfReg="false"/>
+    <ROW File="Volume.js" Component_="dat.gui.min.js" FileName="Volume.js" Attributes="0" SourcePath="..\webview\vendor\three\Volume.js" SelfReg="false"/>
+    <ROW File="VolumeShader.js" Component_="dat.gui.min.js" FileName="VOLUME~1.JS|VolumeShader.js" Attributes="0" SourcePath="..\webview\vendor\three\VolumeShader.js" SelfReg="false"/>
+    <ROW File="VolumeSlice.js" Component_="dat.gui.min.js" FileName="VOLUME~2.JS|VolumeSlice.js" Attributes="0" SourcePath="..\webview\vendor\three\VolumeSlice.js" SelfReg="false"/>
+    <ROW File="WebGL.js" Component_="dat.gui.min.js" FileName="WebGL.js" Attributes="0" SourcePath="..\webview\vendor\three\WebGL.js" SelfReg="false"/>
+    <ROW File="WebGPU.js" Component_="dat.gui.min.js" FileName="WebGPU.js" Attributes="0" SourcePath="..\webview\vendor\three\WebGPU.js" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology._4" Component_="BioDeep.dll.config" FileName="BIONO~19.XML|BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.xml" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.SignalReader.xml_1" Component_="BioDeep.dll.config" FileName="BIONO~20.XML|BioNovoGene.Analytical.MassSpectrometry.SignalReader.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioNovoGene.Analytical.MassSpectrometry.SignalReader.xml" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.SingleCells.xml_1" Component_="BioDeep.dll.config" FileName="BIONO~21.XML|BioNovoGene.Analytical.MassSpectrometry.SingleCells.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioNovoGene.Analytical.MassSpectrometry.SingleCells.xml" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.NMRFidTool.xml" Component_="BioDeep.dll.config" FileName="BIONO~22.XML|BioNovoGene.Analytical.NMRFidTool.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioNovoGene.Analytical.NMRFidTool.xml" SelfReg="false"/>
+    <ROW File="BioNovoGene.BioDeep.MSEngine.Mummichog.xml_1" Component_="BioDeep.dll.config" FileName="BIONO~23.XML|BioNovoGene.BioDeep.MSEngine.Mummichog.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioNovoGene.BioDeep.MSEngine.Mummichog.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Data.IO.SQLite3.xml_1" Component_="BioDeep.dll.config" FileName="MICRO~30.XML|Microsoft.VisualBasic.Data.IO.SQLite3.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Data.IO.SQLite3.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.xml" Component_="BioDeep.dll.config" FileName="MICRO~31.XML|Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataStorage.HDSPack.xml_2" Component_="BioDeep.dll.config" FileName="MICRO~32.XML|Microsoft.VisualBasic.DataStorage.HDSPack.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.DataStorage.HDSPack.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataStorage.netCDF.xml_1" Component_="BioDeep.dll.config" FileName="MICRO~33.XML|Microsoft.VisualBasic.DataStorage.netCDF.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.DataStorage.netCDF.xml" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.Data.Rhea.xml_1" Component_="BioDeep.dll.config" FileName="SMRUC~10.XML|SMRUCC.genomics.Data.Rhea.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SMRUCC.genomics.Data.Rhea.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -18398,7 +18426,6 @@
     <ROW Directory_="library_Dir" Component_="library" ManualDelete="true"/>
     <ROW Directory_="DevTools_Dir" Component_="DevTools" ManualDelete="false"/>
     <ROW Directory_="regid.201301.com.panomix_Dir" Component_="regid.201301.com.panomix" ManualDelete="false"/>
-    <ROW Directory_="net6.0_4_Dir" Component_="net6.0" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_AppSearchEx" Type="1" Source="Prereq.dll" Target="DoAppSearchEx"/>
@@ -19752,7 +19779,7 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="mzkit_win32.VisualElementsManifest.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Mzkit_win32.MatrixViewer.pdb"/>
     <ROW Feature_="MainFeature" Component_="AI_ExePath"/>
-    <ROW Feature_="MainFeature" Component_="net6.0"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Symbolic.GeneticProgramming.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
