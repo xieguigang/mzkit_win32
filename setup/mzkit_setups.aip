@@ -482,6 +482,7 @@
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.dll_2" ComponentId="{B7BDFB0C-1ECC-4112-A220-E34314008696}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology._2"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.pdb" ComponentId="{B16BC0B9-0DCA-41CA-8457-1E4C16477CE6}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.pd" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.pdb_1" ComponentId="{506EFEBC-4C01-4112-9313-BBA4804B0BF5}" Directory_="blender_Dir" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology._3" Type="4"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.xml" ComponentId="{8EF4677C-DE76-48BF-ABC6-218BE13A357F}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology._5"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.MsImaging.dll" ComponentId="{0DBC7051-6C22-436B-A5E1-554E16916C9B}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.MsImaging.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.MsImaging.dll_1" ComponentId="{05B71849-FBDA-4F34-89F3-FD93D550D64F}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.MsImaging.dll_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.MsImaging.dll_2" ComponentId="{264C52D2-F913-41FA-9628-1E82817B4958}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.MsImaging.dll_2"/>
@@ -500,17 +501,21 @@
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll_2" ComponentId="{AC399A3B-1F5D-40F2-9587-C9734C3039C2}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SignalReader.dll_2"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SignalReader.pdb" ComponentId="{C313E9F9-3887-4649-B0F4-EBDFD42C4F5B}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SignalReader.pdb" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SignalReader.pdb_1" ComponentId="{3602D32A-6E30-4382-B045-ABF929D9ED84}" Directory_="blender_Dir" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SignalReader.pdb_1" Type="4"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SignalReader.xml" ComponentId="{1877122C-880D-4F95-9A76-8349B6F1704B}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SignalReader.xml_2"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll" ComponentId="{218DE230-12BA-4FA1-A8A3-FF8587D19380}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll_1" ComponentId="{F17BBE73-D0A6-4611-90E3-8A52F4EBD373}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll_2" ComponentId="{682473DA-4F87-45E6-AF1B-B46488B050D6}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll_2"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SingleCells.pdb" ComponentId="{793948C4-38D6-490E-B754-D22C8F64B846}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SingleCells.pdb" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SingleCells.pdb_1" ComponentId="{7095A621-8F9E-47E9-BC4F-EC4E10E7CCB1}" Directory_="blender_Dir" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SingleCells.pdb_1" Type="4"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SingleCells.xml" ComponentId="{69D09D3C-51BE-44CD-8DB4-D5F5C2A0BDE8}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SingleCells.xml_2"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.dll" ComponentId="{2DC234EA-612E-4F17-A888-CFF852876ADF}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.pdb" ComponentId="{03FDD180-7D83-4782-89B6-A60C94C85011}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.pdb" Type="4"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.xml" ComponentId="{966BBF7B-60E2-4DB5-9ECF-645418E3550E}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.xml"/>
     <ROW Component="BioNovoGene.Analytical.NMRFidTool.dll" ComponentId="{3F919F39-896E-46D3-A244-EB2785562AAB}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.NMRFidTool.dll"/>
     <ROW Component="BioNovoGene.Analytical.NMRFidTool.dll_1" ComponentId="{0D9D3EA9-A86C-464A-BF1C-90F71119974B}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.NMRFidTool.dll_1"/>
     <ROW Component="BioNovoGene.Analytical.NMRFidTool.pdb" ComponentId="{D7490ECA-CBFA-49D8-B584-0ED6A0D60835}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.NMRFidTool.pdb" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.NMRFidTool.pdb_1" ComponentId="{E26EE696-9171-4B1E-A964-441BEEFA27AB}" Directory_="blender_Dir" Attributes="0" KeyPath="BioNovoGene.Analytical.NMRFidTool.pdb_1" Type="4"/>
+    <ROW Component="BioNovoGene.Analytical.NMRFidTool.xml" ComponentId="{9B236B06-1677-49E4-9850-38E35F910465}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.NMRFidTool.xml_1"/>
     <ROW Component="BioNovoGene.BioDeep.Chemistry.Massbank.MoNA.dll" ComponentId="{E5DEF814-9250-4AFC-92C0-B6DBBDA884FC}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.Chemistry.Massbank.MoNA.dll"/>
     <ROW Component="BioNovoGene.BioDeep.Chemistry.Massbank.MoNA.pdb" ComponentId="{50D3DB68-9EF6-45B1-8365-30CC0CB32107}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.BioDeep.Chemistry.Massbank.MoNA.pdb" Type="4"/>
     <ROW Component="BioNovoGene.BioDeep.Chemistry.Massbank.dll" ComponentId="{5819F861-26A4-426F-B5D9-1094B76E55FB}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.Chemistry.Massbank.dll"/>
@@ -545,6 +550,7 @@
     <ROW Component="BioNovoGene.BioDeep.MSEngine.Mummichog.dll_2" ComponentId="{8FB84A2A-7CCD-49CE-BFFA-24674FE6D6B0}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.BioDeep.MSEngine.Mummichog.dll_2"/>
     <ROW Component="BioNovoGene.BioDeep.MSEngine.Mummichog.pdb" ComponentId="{5B8C4DBC-420E-4086-9B9D-2CFFD7DA0606}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.BioDeep.MSEngine.Mummichog.pdb" Type="4"/>
     <ROW Component="BioNovoGene.BioDeep.MSEngine.Mummichog.pdb_1" ComponentId="{B5EA6EBF-1AD9-4AE5-8D55-BB624C90A1D0}" Directory_="blender_Dir" Attributes="0" KeyPath="BioNovoGene.BioDeep.MSEngine.Mummichog.pdb_1" Type="4"/>
+    <ROW Component="BioNovoGene.BioDeep.MSEngine.Mummichog.xml" ComponentId="{93FC433D-3A35-41CF-A3C9-48384502D7DC}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.BioDeep.MSEngine.Mummichog.xml_2"/>
     <ROW Component="BioNovoGene.BioDeep.MSEngine.dll" ComponentId="{34592B78-00DD-4DAB-AD16-45AC97403A40}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.MSEngine.dll"/>
     <ROW Component="BioNovoGene.BioDeep.MSEngine.dll_1" ComponentId="{16288244-C58E-4473-B241-1ADD6F638C27}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.BioDeep.MSEngine.dll_1"/>
     <ROW Component="BioNovoGene.BioDeep.MSEngine.dll_2" ComponentId="{51B6BEFE-92FE-451B-9B9B-0C0B866FD153}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.BioDeep.MSEngine.dll_2"/>
@@ -560,6 +566,7 @@
     <ROW Component="BioNovoGene.BioDeep.MSFinder.xml_1" ComponentId="{8E00AA93-1204-434E-98C3-BB659E1CD896}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.BioDeep.MSFinder.xml_1"/>
     <ROW Component="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll" ComponentId="{C41275B5-F523-47B4-A4FD-3ED088B3F0F5}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.pdb" Type="4"/>
     <ROW Component="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll_1" ComponentId="{28EAAE32-9A6A-4AF5-9395-E51392AEEEFC}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.dll"/>
+    <ROW Component="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.xml" ComponentId="{D842C746-739F-4ED0-A719-A6D7304116B5}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.xml"/>
     <ROW Component="BioNovoGene.BioDeep.MetaDNA.Visual.dll" ComponentId="{99ADFC45-FDD3-4983-BF14-8BD45E01E5C4}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.MetaDNA.Visual.dll"/>
     <ROW Component="BioNovoGene.BioDeep.MetaDNA.Visual.pdb" ComponentId="{446C3209-A8F3-46C6-8F28-16676E91C428}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.BioDeep.MetaDNA.Visual.pdb" Type="4"/>
     <ROW Component="BioNovoGene.BioDeep.MetaDNA.dll" ComponentId="{8C7B7B69-437B-4C53-977C-84FAB4A93D8C}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.BioDeep.MetaDNA.dll"/>
@@ -670,6 +677,7 @@
     <ROW Component="MZWorkRedis.dll_2" ComponentId="{8A6466D5-6DD3-49CC-9376-15398E3309A1}" Directory_="blender_Dir" Attributes="256" KeyPath="MZWorkRedis.dll_2"/>
     <ROW Component="MZWorkRedis.pdb" ComponentId="{0B0B494D-098C-496A-A08C-FFD0601BA88B}" Directory_="blender_Dir" Attributes="0" KeyPath="MZWorkRedis.pdb_1" Type="4"/>
     <ROW Component="MaterialHandler.js" ComponentId="{FA351707-ADE7-4BAE-A7D5-8FF455CACDD7}" Directory_="shared_Dir" Attributes="0" KeyPath="MaterialHandler.js" Type="0"/>
+    <ROW Component="Microsoft.Bcl.Numerics.dll" ComponentId="{6980D408-394E-47D2-B33D-A18FEAAFF136}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Bcl.Numerics.dll"/>
     <ROW Component="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.dll" ComponentId="{6D27B998-7C7B-4FDF-9B61-64583344D9EA}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.dl"/>
     <ROW Component="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.dll_5" ComponentId="{7FD551D9-5C8B-4731-B2D7-70734DE23995}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio._9"/>
     <ROW Component="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.pdb" ComponentId="{AF91201E-670E-40A1-BE6A-200CFDAF3BEB}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.pd" Type="4"/>
@@ -740,6 +748,7 @@
     <ROW Component="Microsoft.VisualBasic.Data.IO.SQLite3.dll_3" ComponentId="{4A912430-DD38-4078-B9A4-61C7A55066CE}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.IO.SQLite3.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.Data.IO.SQLite3.pdb" ComponentId="{225EB752-7753-4168-A5E6-A01D9F3B1D86}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Data.IO.SQLite3.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Data.IO.SQLite3.pdb_1" ComponentId="{14997A76-7FFA-4614-A6C2-8BADE1F37757}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Data.IO.SQLite3.pdb_1" Type="4"/>
+    <ROW Component="Microsoft.VisualBasic.Data.IO.SQLite3.xml" ComponentId="{728466BB-D6E5-4452-8EC4-0B53E15D3F58}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Data.IO.SQLite3.xml_2"/>
     <ROW Component="Microsoft.VisualBasic.Data.NLP.dll" ComponentId="{D5904542-9C07-4837-81AF-5F2324776F8C}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.NLP.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.NLP.pdb" ComponentId="{8E10DD79-B66D-48CA-962B-8DE21E25E90E}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Data.NLP.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Data.Signal.IO.dll" ComponentId="{90F1C6D0-B289-47AD-AED8-DC6DDA631833}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.Signal.IO.dll"/>
@@ -768,6 +777,7 @@
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll" ComponentId="{FBE8C7D0-BF0C-4D8D-AABE-ABA0648B474E}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll_1" ComponentId="{1C84B4CE-6AF0-4DAA-A076-AE935EC63CCE}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.Layouts.pdb" ComponentId="{27914164-A23B-48B4-9291-CB3448F7881B}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.Layouts.pdb" Type="4"/>
+    <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.Layouts.xml" ComponentId="{67274B01-AAA6-45CA-9A10-77F0737FFEC5}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.Layouts.xml"/>
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.dll" ComponentId="{5A84BB00-4530-4F45-936D-05282C6821CB}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.dll_5" ComponentId="{18A1DFC2-9327-4EC7-894D-F5888D904513}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.dll_5"/>
     <ROW Component="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.pdb" ComponentId="{ABBD0FED-443F-476D-8518-96AE986371A6}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Data.visualize.Network.Visualizer.pdb" Type="4"/>
@@ -814,6 +824,7 @@
     <ROW Component="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_1" ComponentId="{A2D9523B-E660-475A-AF9A-A0E35E19645A}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_2" ComponentId="{01B8DF04-51C4-4F24-A339-9B5C43A068AD}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb" ComponentId="{754C2917-A41D-4D57-A967-19FD7604C0C8}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb_1" Type="4"/>
+    <ROW Component="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.xml" ComponentId="{9F06C3F7-2D0D-47FB-A40B-EB13C46F600E}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.xml_1"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.HierarchicalClustering.dll" ComponentId="{F4BF156B-5A45-4F7F-9258-B5530C36E099}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.HierarchicalClustering.dll"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.HierarchicalClustering.dll.config" ComponentId="{39E3223F-3870-4838-A19C-75DEFC3FD241}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.HierarchicalClustering.dll.config_1"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.HierarchicalClustering.dll_1" ComponentId="{DEC3167D-BC14-442A-B52B-A95076F70B87}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.HierarchicalClustering.dll_1"/>
@@ -832,12 +843,14 @@
     <ROW Component="Microsoft.VisualBasic.DataStorage.HDSPack.dll_6" ComponentId="{8B320776-B585-4846-9214-D75CAFD7CAC1}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.HDSPack.dll_6"/>
     <ROW Component="Microsoft.VisualBasic.DataStorage.HDSPack.pdb" ComponentId="{9A3FD19C-F019-4DA2-9BE8-3368EAD0700E}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.DataStorage.HDSPack.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.DataStorage.HDSPack.pdb_1" ComponentId="{B803BECF-9EC4-43D4-B004-549891A8EC9C}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.DataStorage.HDSPack.pdb_1" Type="4"/>
+    <ROW Component="Microsoft.VisualBasic.DataStorage.HDSPack.xml" ComponentId="{7DB7ADDF-3A1B-4FB3-A7C1-1AD8E5F53002}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.DataStorage.HDSPack.xml_3"/>
     <ROW Component="Microsoft.VisualBasic.DataStorage.netCDF.dll" ComponentId="{3995E60E-91C2-4E74-9628-B0B51748D77F}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.netCDF.dll"/>
     <ROW Component="Microsoft.VisualBasic.DataStorage.netCDF.dll_1" ComponentId="{BDAA61CC-A959-47B9-BBC6-BA866BDADA1F}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.netCDF.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.DataStorage.netCDF.dll_5" ComponentId="{7159B4A3-7BCD-48FC-AA08-B038F0A99E3A}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.netCDF.dll_5"/>
     <ROW Component="Microsoft.VisualBasic.DataStorage.netCDF.dll_6" ComponentId="{27EACE95-983C-4F38-B938-CB940C9F2795}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.netCDF.dll_6"/>
     <ROW Component="Microsoft.VisualBasic.DataStorage.netCDF.pdb" ComponentId="{472CB377-BCC5-448B-A5E9-3E11B6C01C85}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.DataStorage.netCDF.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.DataStorage.netCDF.pdb_1" ComponentId="{0F0AFE70-33E8-46D6-9247-0C2061701C26}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.DataStorage.netCDF.pdb_1" Type="4"/>
+    <ROW Component="Microsoft.VisualBasic.DataStorage.netCDF.xml" ComponentId="{D57E0209-23E5-4644-B866-30D7C5D6C2ED}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.DataStorage.netCDF.xml_2"/>
     <ROW Component="Microsoft.VisualBasic.DeepLearning.dll" ComponentId="{29588059-A679-4BEB-AB39-1E3594F1FAF0}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DeepLearning.dll"/>
     <ROW Component="Microsoft.VisualBasic.DeepLearning.dll_1" ComponentId="{EB3AEB60-A7D1-4513-B859-8989762485D9}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DeepLearning.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.DeepLearning.dll_2" ComponentId="{520C8092-D752-4DC5-96B3-A8E01494C8A5}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.DeepLearning.dll_2"/>
@@ -906,6 +919,7 @@
     <ROW Component="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll_1" ComponentId="{BAD00D99-E1D8-449E-869B-AFAA8D2780F8}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll_2" ComponentId="{E2A396C4-A465-4EA9-8BA2-89ED572A1E6A}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.Data.Extensions.pdb" ComponentId="{D67C18B4-67CC-439F-85D5-8F5A20607D43}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.MachineLearning.Data.Extensions.pdb" Type="4"/>
+    <ROW Component="Microsoft.VisualBasic.MachineLearning.Data.Extensions.xml" ComponentId="{3F4E44D9-00B9-487C-AEFE-6C87698BC48E}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.MachineLearning.Data.Extensions.xml_1"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.Debugger.dll" ComponentId="{75429713-F3A4-45B3-8A35-63B11F3CA637}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.Debugger.dll"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.Debugger.dll_5" ComponentId="{614F640B-6711-4ECC-B3FA-6044ADB17907}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.Debugger.dll_5"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.Debugger.pdb" ComponentId="{21F91A52-ED82-4E76-B297-20CA15BFD31A}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.MachineLearning.Debugger.pdb" Type="4"/>
@@ -1188,6 +1202,7 @@
     <ROW Component="SMRUCC.genomics.Data.Rhea.dll_2" ComponentId="{6B628587-AA6D-42AD-8670-665F5445400F}" Directory_="blender_Dir" Attributes="256" KeyPath="SMRUCC.genomics.Data.Rhea.dll_2"/>
     <ROW Component="SMRUCC.genomics.Data.Rhea.pdb" ComponentId="{A02019B0-B500-45DF-A38C-84923C5F3C80}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.genomics.Data.Rhea.pdb" Type="4"/>
     <ROW Component="SMRUCC.genomics.Data.Rhea.pdb_1" ComponentId="{0C5C8ACE-ECFB-4EE1-8789-399234B796BC}" Directory_="blender_Dir" Attributes="0" KeyPath="SMRUCC.genomics.Data.Rhea.pdb_1" Type="4"/>
+    <ROW Component="SMRUCC.genomics.Data.Rhea.xml" ComponentId="{144B0CE1-75B3-4A37-B215-EADA5FEEDBA0}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.genomics.Data.Rhea.xml_2"/>
     <ROW Component="SMRUCC.genomics.Data.SABIORK.dll" ComponentId="{D7F5CB2B-74D4-4A85-8A68-FA667BD3D392}" Directory_="host_Dir" Attributes="256" KeyPath="SMRUCC.genomics.Data.SABIORK.dll"/>
     <ROW Component="SMRUCC.genomics.Data.SABIORK.dll_1" ComponentId="{BBFFB213-591B-4F64-9D76-1DDE41C78C6C}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.Data.SABIORK.dll_1"/>
     <ROW Component="SMRUCC.genomics.Data.SABIORK.dll_2" ComponentId="{C1F97EE5-6C16-4858-A671-B16DDDC27CA9}" Directory_="blender_Dir" Attributes="256" KeyPath="SMRUCC.genomics.Data.SABIORK.dll_2"/>
@@ -18279,6 +18294,21 @@
     <ROW File="Microsoft.VisualBasic.DataStorage.HDSPack.xml_2" Component_="BioDeep.dll.config" FileName="MICRO~32.XML|Microsoft.VisualBasic.DataStorage.HDSPack.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.DataStorage.HDSPack.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.DataStorage.netCDF.xml_1" Component_="BioDeep.dll.config" FileName="MICRO~33.XML|Microsoft.VisualBasic.DataStorage.netCDF.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.DataStorage.netCDF.xml" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.Data.Rhea.xml_1" Component_="BioDeep.dll.config" FileName="SMRUC~10.XML|SMRUCC.genomics.Data.Rhea.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SMRUCC.genomics.Data.Rhea.xml" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology._5" Component_="BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.xml" FileName="BIONO~28.XML|BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.xml" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.SignalReader.xml_2" Component_="BioNovoGene.Analytical.MassSpectrometry.SignalReader.xml" FileName="BIONO~29.XML|BioNovoGene.Analytical.MassSpectrometry.SignalReader.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.SignalReader.xml" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.SingleCells.xml_2" Component_="BioNovoGene.Analytical.MassSpectrometry.SingleCells.xml" FileName="BIONO~30.XML|BioNovoGene.Analytical.MassSpectrometry.SingleCells.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.SingleCells.xml" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.xml" Component_="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.xml" FileName="BIONO~31.XML|BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.xml" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.NMRFidTool.xml_1" Component_="BioNovoGene.Analytical.NMRFidTool.xml" FileName="BIONO~32.XML|BioNovoGene.Analytical.NMRFidTool.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.NMRFidTool.xml" SelfReg="false"/>
+    <ROW File="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.xml" Component_="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.xml" FileName="BIONO~33.XML|BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.xml" SelfReg="false"/>
+    <ROW File="BioNovoGene.BioDeep.MSEngine.Mummichog.xml_2" Component_="BioNovoGene.BioDeep.MSEngine.Mummichog.xml" FileName="BIONO~34.XML|BioNovoGene.BioDeep.MSEngine.Mummichog.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.MSEngine.Mummichog.xml" SelfReg="false"/>
+    <ROW File="Microsoft.Bcl.Numerics.dll" Component_="Microsoft.Bcl.Numerics.dll" FileName="MICRO~72.DLL|Microsoft.Bcl.Numerics.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.Bcl.Numerics.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Data.IO.SQLite3.xml_2" Component_="Microsoft.VisualBasic.Data.IO.SQLite3.xml" FileName="MICRO~59.XML|Microsoft.VisualBasic.Data.IO.SQLite3.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.IO.SQLite3.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Data.visualize.Network.Layouts.xml" Component_="Microsoft.VisualBasic.Data.visualize.Network.Layouts.xml" FileName="MICRO~60.XML|Microsoft.VisualBasic.Data.visualize.Network.Layouts.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.visualize.Network.Layouts.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.xml_1" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.xml" FileName="MICRO~61.XML|Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataStorage.HDSPack.xml_3" Component_="Microsoft.VisualBasic.DataStorage.HDSPack.xml" FileName="MICRO~62.XML|Microsoft.VisualBasic.DataStorage.HDSPack.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.DataStorage.HDSPack.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataStorage.netCDF.xml_2" Component_="Microsoft.VisualBasic.DataStorage.netCDF.xml" FileName="MICRO~63.XML|Microsoft.VisualBasic.DataStorage.netCDF.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.DataStorage.netCDF.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.MachineLearning.Data.Extensions.xml_1" Component_="Microsoft.VisualBasic.MachineLearning.Data.Extensions.xml" FileName="MICRO~64.XML|Microsoft.VisualBasic.MachineLearning.Data.Extensions.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MachineLearning.Data.Extensions.xml" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.Data.Rhea.xml_2" Component_="SMRUCC.genomics.Data.Rhea.xml" FileName="SMRUC~15.XML|SMRUCC.genomics.Data.Rhea.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Data.Rhea.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -19780,6 +19810,21 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Mzkit_win32.MatrixViewer.pdb"/>
     <ROW Feature_="MainFeature" Component_="AI_ExePath"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Symbolic.GeneticProgramming.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Bcl.Numerics.dll"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectrometry.SignalReader.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectrometry.SingleCells.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.NMRFidTool.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.BioDeep.MSEngine.Mummichog.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Data.IO.SQLite3.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Data.visualize.Network.Layouts.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.DataStorage.HDSPack.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.DataStorage.netCDF.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.MachineLearning.Data.Extensions.xml"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.genomics.Data.Rhea.xml"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
