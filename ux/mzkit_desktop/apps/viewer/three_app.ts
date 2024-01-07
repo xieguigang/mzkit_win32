@@ -79,7 +79,7 @@ namespace apps.viewer {
             this.controls = controls;
             this.volconfig = volconfig;
             // Load the default model data ...
-            this.loadNrrdModel('assets/stent.nrrd');
+            this.loadNrrdModel(<any>$ts("@data:default-maldi"));
 
             window.addEventListener('resize', () => this.onWindowResize());
         }
