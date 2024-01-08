@@ -71,7 +71,6 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Reader
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
-Imports BioNovoGene.Analytical.MassSpectrometry.SingleCells.Deconvolute
 Imports BioNovoGene.BioDeep.MetaDNA
 Imports BioNovoGene.BioDeep.MetaDNA.Infer
 Imports BioNovoGene.BioDeep.MSEngine
