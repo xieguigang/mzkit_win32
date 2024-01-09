@@ -64,6 +64,25 @@ var apps;
     var viewer;
     (function (viewer) {
         var window = globalThis.window;
+        var cmtextures = ["gray", "viridis"];
+        function cm_names() {
+            var names = {};
+            for (var _i = 0, cmtextures_1 = cmtextures; _i < cmtextures_1.length; _i++) {
+                var name_1 = cmtextures_1[_i];
+                names[name_1] = name_1;
+            }
+            return names;
+        }
+        viewer.cm_names = cm_names;
+        function cm_textures(callback) {
+            var textures = {};
+            for (var _i = 0, cmtextures_2 = cmtextures; _i < cmtextures_2.length; _i++) {
+                var name_2 = cmtextures_2[_i];
+                textures[name_2] = new THREE.TextureLoader().load("/vendor/three/cm_".concat(name_2, ".png"), function () { return callback(); });
+            }
+            return textures;
+        }
+        viewer.cm_textures = cm_textures;
         var three_app = /** @class */ (function (_super) {
             __extends(three_app, _super);
             function three_app() {
@@ -110,7 +129,7 @@ var apps;
                 var gui = new window.GUI();
                 gui.add(volconfig, 'clim1', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
                 gui.add(volconfig, 'clim2', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
-                gui.add(volconfig, 'colormap', { gray: 'gray', viridis: 'viridis' }).onChange(function () { return _this.updateUniforms(); });
+                gui.add(volconfig, 'colormap', cm_names()).onChange(function () { return _this.updateUniforms(); });
                 gui.add(volconfig, 'renderstyle', { mip: 'mip', iso: 'iso' }).onChange(function () { return _this.updateUniforms(); });
                 gui.add(volconfig, 'isothreshold', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
                 this.controls = controls;
@@ -141,10 +160,7 @@ var apps;
                 console.log("inspect of your 3d model data:");
                 console.log(volume);
                 // Colormap textures
-                this.cmtextures = {
-                    viridis: new THREE.TextureLoader().load('/vendor/three/cm_viridis.png', function () { return _this.render(); }),
-                    gray: new THREE.TextureLoader().load('/vendor/three/cm_gray.png', function () { return _this.render(); })
-                };
+                this.cmtextures = cm_textures(function () { return _this.render(); });
                 // Material
                 var shader = window.VolumeRenderShader1;
                 var uniforms = THREE.UniformsUtils.clone(shader.uniforms);
@@ -868,17 +884,17 @@ var apps;
                     zAxis3D: { type: 'value', name: 'z' },
                     series: scatter3D,
                     tooltip: {
-                        show: true,
-                        trigger: 'item',
+                        show: true, // 是否显示
+                        trigger: 'item', // 触发类型  'item'图形触发：散点图，饼图等无类目轴的图表中使用； 'axis'坐标轴触发；'none'：什么都不触发。
                         axisPointer: {
                             type: 'cross', // 'line' 直线指示器  'shadow' 阴影指示器  'none' 无指示器  'cross' 十字准星指示器。
                         },
                         // showContent: true, //是否显示提示框浮层，默认显示。
                         // triggerOn: 'mouseover', // 触发时机'click'鼠标点击时触发。 
-                        backgroundColor: 'white',
-                        borderColor: '#333',
-                        borderWidth: 0,
-                        padding: 5,
+                        backgroundColor: 'white', // 提示框浮层的背景颜色。
+                        borderColor: '#333', // 提示框浮层的边框颜色。
+                        borderWidth: 0, // 提示框浮层的边框宽。
+                        padding: 5, // 提示框浮层内边距，
                         textStyle: {
                             color: 'skyblue',
                             fontStyle: 'normal',
@@ -952,7 +968,7 @@ var apps;
                 app.desktop.mzkit.ScanLibraries()
                     .then(function (str) {
                     return __awaiter(this, void 0, void 0, function () {
-                        var pull_str, list, _i, list_3, file, name_1;
+                        var pull_str, list, _i, list_3, file, name_3;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0: return [4 /*yield*/, str];
@@ -962,9 +978,9 @@ var apps;
                                     vm.libfiles = {};
                                     for (_i = 0, list_3 = list; _i < list_3.length; _i++) {
                                         file = list_3[_i];
-                                        name_1 = file.split(/[\\/]/ig);
-                                        name_1 = name_1[name_1.length - 1];
-                                        vm.libfiles[$ts.baseName(name_1)] = file;
+                                        name_3 = file.split(/[\\/]/ig);
+                                        name_3 = name_3[name_3.length - 1];
+                                        vm.libfiles[$ts.baseName(name_3)] = file;
                                     }
                                     console.log("get lcms-library files:");
                                     console.table(vm.libfiles);
@@ -1377,9 +1393,9 @@ var apps;
                 // const byte_range = new globalThis.data.NumericRange(0, 255);
                 return {
                     type: 'bar3D',
-                    shading: 'color',
+                    shading: 'color', // color, lambert, realistic
                     barSize: 0.1,
-                    name: "Intensity ".concat(label),
+                    name: "Intensity ".concat(label), // format_tag(r),
                     spot_labels: $from(data).Select(function (r) { return r.id; }).ToArray(),
                     symbolSize: 1,
                     dimensions: [
@@ -1442,15 +1458,15 @@ var apps;
                         viewControl: {
                             distance: 200,
                             beta: -20,
-                            panMouseButton: 'right',
-                            rotateMouseButton: 'left',
+                            panMouseButton: 'right', //平移操作使用的鼠标按键
+                            rotateMouseButton: 'left', //旋转操作使用的鼠标按键
                             alpha: 30 // 让canvas在x轴有一定的倾斜角度
                         },
                         postEffect: {
                             enable: false,
                             SSAO: {
-                                radius: 1,
-                                intensity: 1,
+                                radius: 1, //环境光遮蔽的采样半径。半径越大效果越自然
+                                intensity: 1, //环境光遮蔽的强度
                                 enable: false
                             }
                         },
@@ -1525,17 +1541,17 @@ var apps;
                     },
                     series: scatter3D,
                     tooltip: {
-                        show: true,
-                        trigger: 'item',
+                        show: true, // 是否显示
+                        trigger: 'item', // 触发类型  'item'图形触发：散点图，饼图等无类目轴的图表中使用； 'axis'坐标轴触发；'none'：什么都不触发。
                         axisPointer: {
                             type: 'cross', // 'line' 直线指示器  'shadow' 阴影指示器  'none' 无指示器  'cross' 十字准星指示器。
                         },
                         // showContent: true, //是否显示提示框浮层，默认显示。
                         // triggerOn: 'mouseover', // 触发时机'click'鼠标点击时触发。 
-                        backgroundColor: 'white',
-                        borderColor: '#333',
-                        borderWidth: 0,
-                        padding: 5,
+                        backgroundColor: 'white', // 提示框浮层的背景颜色。
+                        borderColor: '#333', // 提示框浮层的边框颜色。
+                        borderWidth: 0, // 提示框浮层的边框宽。
+                        padding: 5, // 提示框浮层内边距，
                         textStyle: {
                             color: 'darkblue',
                             fontStyle: 'normal',
