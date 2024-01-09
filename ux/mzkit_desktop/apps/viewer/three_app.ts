@@ -16,7 +16,7 @@ namespace apps.viewer {
 
     export interface NRRDLoader { }
 
-    const cmtextures: string[] = ["gray", "viridis"];
+    const cmtextures: string[] = ["gray", "viridis", "jet", "rainbow", "typhoon", "magma", "plasma", "mako", "rocket", "turbo"];
 
     export function cm_names() {
         let names = {};
@@ -32,7 +32,7 @@ namespace apps.viewer {
         let textures = {};
 
         for (let name of cmtextures) {
-            textures[name] = new THREE.TextureLoader().load(`/vendor/three/cm_${name}.png`, () => callback());
+            textures[name] = new THREE.TextureLoader().load(`/vendor/three/textures/cm_${name}.png`, () => callback());
         }
 
         return textures;

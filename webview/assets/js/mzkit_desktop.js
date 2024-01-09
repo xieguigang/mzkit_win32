@@ -64,7 +64,7 @@ var apps;
     var viewer;
     (function (viewer) {
         var window = globalThis.window;
-        var cmtextures = ["gray", "viridis"];
+        var cmtextures = ["gray", "viridis", "jet", "rainbow", "typhoon", "magma", "plasma", "mako", "rocket", "turbo"];
         function cm_names() {
             var names = {};
             for (var _i = 0, cmtextures_1 = cmtextures; _i < cmtextures_1.length; _i++) {
@@ -78,7 +78,7 @@ var apps;
             var textures = {};
             for (var _i = 0, cmtextures_2 = cmtextures; _i < cmtextures_2.length; _i++) {
                 var name_2 = cmtextures_2[_i];
-                textures[name_2] = new THREE.TextureLoader().load("/vendor/three/cm_".concat(name_2, ".png"), function () { return callback(); });
+                textures[name_2] = new THREE.TextureLoader().load("/vendor/three/textures/cm_".concat(name_2, ".png"), function () { return callback(); });
             }
             return textures;
         }
