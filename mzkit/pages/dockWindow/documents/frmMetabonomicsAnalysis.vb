@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic.Data.csv.IO
+﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math
+Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
 
@@ -6,6 +7,7 @@ Public Class frmMetabonomicsAnalysis
 
     Dim sampleinfo As SampleInfo()
     Dim properties As String()
+    Dim peaks As PeakSet
 
     Public Sub LoadData(table As DataTable)
 
