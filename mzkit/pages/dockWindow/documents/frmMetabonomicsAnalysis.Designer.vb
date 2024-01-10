@@ -27,8 +27,8 @@ Partial Class frmMetabonomicsAnalysis
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMetabonomicsAnalysis))
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.WebView21 = New Microsoft.Web.WebView2.WinForms.WebView2()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.AdvancedDataGridView1 = New Zuby.ADGV.AdvancedDataGridView()
         Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
@@ -60,15 +60,6 @@ Partial Class frmMetabonomicsAnalysis
         Me.SplitContainer1.SplitterDistance = 343
         Me.SplitContainer1.TabIndex = 1
         '
-        'GroupBox1
-        '
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(314, 268)
-        Me.GroupBox1.TabIndex = 0
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Metabolite Metadata"
-        '
         'WebView21
         '
         Me.WebView21.AllowExternalDrop = True
@@ -80,6 +71,15 @@ Partial Class frmMetabonomicsAnalysis
         Me.WebView21.TabIndex = 1
         Me.WebView21.ZoomFactor = 1.0R
         '
+        'GroupBox1
+        '
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(314, 268)
+        Me.GroupBox1.TabIndex = 0
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Metabolite Metadata"
+        '
         'AdvancedDataGridView1
         '
         Me.AdvancedDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -88,6 +88,7 @@ Partial Class frmMetabonomicsAnalysis
         Me.AdvancedDataGridView1.FilterStringChangedInvokeBeforeDatasourceUpdate = True
         Me.AdvancedDataGridView1.Location = New System.Drawing.Point(0, 27)
         Me.AdvancedDataGridView1.Name = "AdvancedDataGridView1"
+        Me.AdvancedDataGridView1.ReadOnly = True
         Me.AdvancedDataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.AdvancedDataGridView1.RowTemplate.Height = 23
         Me.AdvancedDataGridView1.Size = New System.Drawing.Size(684, 610)
