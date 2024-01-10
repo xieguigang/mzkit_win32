@@ -16,6 +16,28 @@ namespace apps.viewer {
 
     export interface NRRDLoader { }
 
+    const cmtextures: string[] = ["gray", "viridis", "jet", "rainbow", "typhoon", "magma", "plasma", "mako", "rocket", "turbo"];
+
+    export function cm_names() {
+        let names = {};
+
+        for (let name of cmtextures) {
+            names[name] = name;
+        }
+
+        return names;
+    }
+
+    export function cm_textures(callback: Delegate.Action) {
+        let textures = {};
+
+        for (let name of cmtextures) {
+            textures[name] = new THREE.TextureLoader().load(`/vendor/three/textures/cm_${name}.png`, () => callback());
+        }
+
+        return textures;
+    }
+
     export class three_app extends Bootstrap {
 
         public renderer: THREE.WebGLRenderer;
@@ -72,7 +94,7 @@ namespace apps.viewer {
 
             gui.add(volconfig, 'clim1', 0, 1, 0.01).onChange(() => this.updateUniforms());
             gui.add(volconfig, 'clim2', 0, 1, 0.01).onChange(() => this.updateUniforms());
-            gui.add(volconfig, 'colormap', { gray: 'gray', viridis: 'viridis' }).onChange(() => this.updateUniforms());
+            gui.add(volconfig, 'colormap', cm_names()).onChange(() => this.updateUniforms());
             gui.add(volconfig, 'renderstyle', { mip: 'mip', iso: 'iso' }).onChange(() => this.updateUniforms());
             gui.add(volconfig, 'isothreshold', 0, 1, 0.01).onChange(() => this.updateUniforms());
 
@@ -107,10 +129,7 @@ namespace apps.viewer {
             console.log(volume);
 
             // Colormap textures
-            this.cmtextures = {
-                viridis: new THREE.TextureLoader().load('/vendor/three/cm_viridis.png', () => this.render()),
-                gray: new THREE.TextureLoader().load('/vendor/three/cm_gray.png', () => this.render())
-            };
+            this.cmtextures = cm_textures(() => this.render());
 
             // Material
             const shader = window.VolumeRenderShader1;

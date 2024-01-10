@@ -15,6 +15,8 @@ declare namespace apps.viewer {
     }
     interface NRRDLoader {
     }
+    function cm_names(): {};
+    function cm_textures(callback: Delegate.Action): {};
     class three_app extends Bootstrap {
         renderer: THREE.WebGLRenderer;
         scene: THREE.Scene;
