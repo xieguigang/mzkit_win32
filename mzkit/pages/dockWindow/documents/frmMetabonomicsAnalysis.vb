@@ -1,5 +1,6 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports Microsoft.VisualBasic.Data.csv.IO
+Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.My.JavaScript
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
@@ -19,7 +20,8 @@ Public Class frmMetabonomicsAnalysis
         Call table.Columns.Add("xcms_id", GetType(String))
 
         For Each group In groups
-            Call table.Columns.Add(group.Key, GetType(Double))
+            Dim col = table.Columns.Add(group.Key, GetType(Double))
+            col.ExtendedProperties.Add("color", group.list.First.color.TranslateColor)
         Next
 
         For Each peak As xcms2 In peaks.peaks
@@ -101,18 +103,19 @@ Public Class frmMetabonomicsAnalysis
         Call LoadData(table)
         Call AdvancedDataGridView1.SetDoubleBuffered()
 
-        'For Each column As DataGridViewColumn In AdvancedDataGridView1.Columns
-        '    'Select Case table.Columns.Item(column.HeaderText).DataType
-        '    '    Case GetType(String)
-        '    '        AdvancedDataGridView1.SetSortEnabled(column, True)
-        '    '    Case GetType(Double)
-        '    '    Case GetType(Integer)
-        '    '    Case Else
-        '    '        ' do nothing 
-        '    'End Select
+        For Each column As DataGridViewColumn In AdvancedDataGridView1.Columns
+            '    'Select Case table.Columns.Item(column.HeaderText).DataType
+            '    '    Case GetType(String)
+            '    '        AdvancedDataGridView1.SetSortEnabled(column, True)
+            '    '    Case GetType(Double)
+            '    '    Case GetType(Integer)
+            '    '    Case Else
+            '    '        ' do nothing 
+            '    'End Select
 
-        '    AdvancedDataGridView1.ShowMenuStrip(column)
-        'Next
+            '    AdvancedDataGridView1.ShowMenuStrip(column)
+            column.DefaultCellStyle.BackColor = table.Columns(column.HeaderText).ExtendedProperties("color")
+        Next
 
         BindingSource1.DataSource = memoryData
         BindingSource1.DataMember = table.TableName
