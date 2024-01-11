@@ -164,6 +164,12 @@
     <Compile Include="PeakScatterViewer.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="SpectrumViewer.Designer.vb">
+      <DependentUpon>SpectrumViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SpectrumViewer.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Dialogs\InputPeakFindParameter.resx">
