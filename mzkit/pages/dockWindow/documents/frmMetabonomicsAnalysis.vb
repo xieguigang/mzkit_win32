@@ -19,12 +19,11 @@ Public Class frmMetabonomicsAnalysis
     Dim sampleinfo As SampleInfo()
     Dim properties As String()
     Dim peaks As PeakSet
-    Dim metadata As New Dictionary(Of String, JavaScriptObject)
 
     ''' <summary>
     ''' could be custom in the wizard dialog
     ''' </summary>
-    Dim workdir As String = App.CurrentProcessTemp & "/" & App.CurrentUnixTimeMillis & "/"
+    Friend workdir As String = App.CurrentProcessTemp & "/" & App.CurrentUnixTimeMillis & "/"
 
     Public Shared Function CastMatrix(peaktable As PeakSet, sampleinfo As SampleInfo()) As Matrix
         Dim mols As New List(Of DataFrameRow)
@@ -111,8 +110,7 @@ Public Class frmMetabonomicsAnalysis
                 meta(item.Key) = item.Value
             Next
 
-            peaks.Add(peak)
-            metadata(peak.ID) = meta
+            Call peaks.Add(peak)
         Next
 
         Me.peaks = New PeakSet With {
@@ -121,11 +119,24 @@ Public Class frmMetabonomicsAnalysis
 
         Call loadTable()
 
+        Using f As Stream = $"{workdir}/peakset.xcms".Open(FileMode.OpenOrCreate, doClear:=True)
+            Call SaveXcms.DumpSample(Me.peaks, f)
+            Call f.Flush()
+        End Using
+
         Using f As Stream = matrixfile.Open(FileMode.OpenOrCreate, doClear:=True)
             Call sampleinfo.SaveTo(sampleinfofile)
             Call CastMatrix(Me.peaks, sampleinfo).Save(f)
             Call Workbench.LogText($"set workspace for metabonomics workbench: {workdir}")
         End Using
+    End Sub
+
+    Public Sub LoadWorkspace(dir As String)
+        Me.workdir = dir
+        Me.peaks = SaveXcms.ReadSample($"{dir}/peakset.xcms".Open(FileMode.Open, doClear:=False, [readOnly]:=True))
+        Me.sampleinfo = sampleinfofile.LoadCsv(Of SampleInfo)().ToArray
+
+        Call loadTable()
     End Sub
 
     ''' <summary>
