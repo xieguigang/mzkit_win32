@@ -1,10 +1,10 @@
-﻿Imports System.ComponentModel
-Imports BioNovoGene.Analytical.MassSpectrometry.Math
+﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.My.JavaScript
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports RibbonLib.Interop
 Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
 Imports any = Microsoft.VisualBasic.Scripting
 
@@ -155,5 +155,14 @@ Public Class frmMetabonomicsAnalysis
 
     Private Sub frmMetabonomicsAnalysis_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call WebKit.Init(Me.WebView21)
+        ribbonItems.MetaboAnalysis.ContextAvailable = ContextAvailability.Available
+    End Sub
+
+    Private Sub frmMetabonomicsAnalysis_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+        ribbonItems.MetaboAnalysis.ContextAvailable = ContextAvailability.Active
+    End Sub
+
+    Private Sub frmMetabonomicsAnalysis_LostFocus(sender As Object, e As EventArgs) Handles Me.LostFocus
+        ribbonItems.MetaboAnalysis.ContextAvailable = ContextAvailability.NotAvailable
     End Sub
 End Class

@@ -4062,8 +4062,42 @@
         <String Id="1168">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
     </Command>
-    <Command Name="cmdButtonOpenLCMSWorkbench" Id="267" LabelTitle="Metabonomics Workbench" LabelDescription="Launch metabonomics workbench" TooltipTitle="Launch metabonomics workbench" TooltipDescription="Launch metabonomics workbench" />
+    <Command Name="cmdButtonOpenLCMSWorkbench" Id="267" LabelTitle="Metabonomics Workbench" LabelDescription="Launch metabonomics workbench" TooltipTitle="Launch metabonomics workbench" TooltipDescription="Launch metabonomics workbench">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-mind-map-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-mind-map-96.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdAnalysisPanel" Id="268" LabelTitle="Analysis" LabelDescription="Analysis" TooltipTitle="Analysis" TooltipDescription="Analysis" />
+    <Command Name="cmdMetaboAnalysis" Id="269" LabelTitle="Metabonomics Workbench" LabelDescription="Metabonomics Workbench" TooltipTitle="Metabonomics Workbench" TooltipDescription="Metabonomics Workbench" />
+    <Command Name="cmdDataSummaryPanel" Id="270" LabelTitle="Metabonomics Workbench" LabelDescription="Metabonomics Workbench" TooltipTitle="Metabonomics Workbench" TooltipDescription="Metabonomics Workbench" />
+    <Command Name="cmdDataSummaryGroup" Id="271" LabelTitle="Data Summary" LabelDescription="Data Summary" TooltipTitle="Data Summary" TooltipDescription="Data Summary" />
+    <Command Name="cmdButtonPCA" Id="272" LabelTitle="PCA">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-scatter-plot-96.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-scatter-plot-96.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonPLSDA" Id="273" LabelTitle="PLS-DA">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-scatter-plot-96.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-scatter-plot-96.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonOPLSDA" Id="274" LabelTitle="OPLS-DA">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-scatter-plot-96.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-scatter-plot-96.bmp</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4423,6 +4457,15 @@
             <Group CommandName="cmdPanelSlideViewer" SizeDefinition="TwoButtons">
               <Button CommandName="cmdButtonOpenseadragonWebCapture" />
               <Button CommandName="cmdButtonViewerFullScreen" />
+            </Group>
+          </Tab>
+        </TabGroup>
+        <TabGroup CommandName="cmdMetaboAnalysis">
+          <Tab CommandName="cmdDataSummaryPanel">
+            <Group CommandName="cmdDataSummaryGroup" SizeDefinition="ThreeButtons">
+              <Button CommandName="cmdButtonPCA" />
+              <Button CommandName="cmdButtonPLSDA" />
+              <Button CommandName="cmdButtonOPLSDA" />
             </Group>
           </Tab>
         </TabGroup>

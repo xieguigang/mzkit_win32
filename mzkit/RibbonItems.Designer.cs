@@ -227,6 +227,12 @@ namespace RibbonLib.Controls
             public const uint cmdPanelSlideViewer = 256;
             public const uint cmdButtonOpenseadragonWebCapture = 251;
             public const uint cmdButtonViewerFullScreen = 255;
+            public const uint cmdMetaboAnalysis = 269;
+            public const uint cmdDataSummaryPanel = 270;
+            public const uint cmdDataSummaryGroup = 271;
+            public const uint cmdButtonPCA = 272;
+            public const uint cmdButtonPLSDA = 273;
+            public const uint cmdButtonOPLSDA = 274;
             public const uint cmdTabMain = 1011;
             public const uint cmdGroupFileActions = 1045;
             public const uint cmdTabGroupWindowTools = 1023;
@@ -486,6 +492,12 @@ namespace RibbonLib.Controls
         public RibbonGroup PanelSlideViewer { get; private set; }
         public RibbonButton ButtonOpenseadragonWebCapture { get; private set; }
         public RibbonButton ButtonViewerFullScreen { get; private set; }
+        public RibbonTabGroup MetaboAnalysis { get; private set; }
+        public RibbonTab DataSummaryPanel { get; private set; }
+        public RibbonGroup DataSummaryGroup { get; private set; }
+        public RibbonButton ButtonPCA { get; private set; }
+        public RibbonButton ButtonPLSDA { get; private set; }
+        public RibbonButton ButtonOPLSDA { get; private set; }
         public RibbonTab TabMain { get; private set; }
         public RibbonGroup GroupFileActions { get; private set; }
         public RibbonGroup TabGroupWindowTools { get; private set; }
@@ -740,6 +752,12 @@ namespace RibbonLib.Controls
             PanelSlideViewer = new RibbonGroup(ribbon, Cmd.cmdPanelSlideViewer);
             ButtonOpenseadragonWebCapture = new RibbonButton(ribbon, Cmd.cmdButtonOpenseadragonWebCapture);
             ButtonViewerFullScreen = new RibbonButton(ribbon, Cmd.cmdButtonViewerFullScreen);
+            MetaboAnalysis = new RibbonTabGroup(ribbon, Cmd.cmdMetaboAnalysis);
+            DataSummaryPanel = new RibbonTab(ribbon, Cmd.cmdDataSummaryPanel);
+            DataSummaryGroup = new RibbonGroup(ribbon, Cmd.cmdDataSummaryGroup);
+            ButtonPCA = new RibbonButton(ribbon, Cmd.cmdButtonPCA);
+            ButtonPLSDA = new RibbonButton(ribbon, Cmd.cmdButtonPLSDA);
+            ButtonOPLSDA = new RibbonButton(ribbon, Cmd.cmdButtonOPLSDA);
             TabMain = new RibbonTab(ribbon, Cmd.cmdTabMain);
             GroupFileActions = new RibbonGroup(ribbon, Cmd.cmdGroupFileActions);
             TabGroupWindowTools = new RibbonGroup(ribbon, Cmd.cmdTabGroupWindowTools);

@@ -224,6 +224,12 @@ Namespace RibbonLib.Controls
             Public Const cmdPanelSlideViewer As UInteger = 256
             Public Const cmdButtonOpenseadragonWebCapture As UInteger = 251
             Public Const cmdButtonViewerFullScreen As UInteger = 255
+            Public Const cmdMetaboAnalysis As UInteger = 269
+            Public Const cmdDataSummaryPanel As UInteger = 270
+            Public Const cmdDataSummaryGroup As UInteger = 271
+            Public Const cmdButtonPCA As UInteger = 272
+            Public Const cmdButtonPLSDA As UInteger = 273
+            Public Const cmdButtonOPLSDA As UInteger = 274
             Public Const cmdTabMain As UInteger = 1011
             Public Const cmdGroupFileActions As UInteger = 1045
             Public Const cmdTabGroupWindowTools As UInteger = 1023
@@ -1533,6 +1539,42 @@ Namespace RibbonLib.Controls
                 Return _ButtonViewerFullScreen
             End Get
         End Property
+        Private _MetaboAnalysis As RibbonTabGroup
+        Public ReadOnly Property MetaboAnalysis As RibbonTabGroup
+            Get
+                Return _MetaboAnalysis
+            End Get
+        End Property
+        Private _DataSummaryPanel As RibbonTab
+        Public ReadOnly Property DataSummaryPanel As RibbonTab
+            Get
+                Return _DataSummaryPanel
+            End Get
+        End Property
+        Private _DataSummaryGroup As RibbonGroup
+        Public ReadOnly Property DataSummaryGroup As RibbonGroup
+            Get
+                Return _DataSummaryGroup
+            End Get
+        End Property
+        Private _ButtonPCA As RibbonButton
+        Public ReadOnly Property ButtonPCA As RibbonButton
+            Get
+                Return _ButtonPCA
+            End Get
+        End Property
+        Private _ButtonPLSDA As RibbonButton
+        Public ReadOnly Property ButtonPLSDA As RibbonButton
+            Get
+                Return _ButtonPLSDA
+            End Get
+        End Property
+        Private _ButtonOPLSDA As RibbonButton
+        Public ReadOnly Property ButtonOPLSDA As RibbonButton
+            Get
+                Return _ButtonOPLSDA
+            End Get
+        End Property
         Private _TabMain As RibbonTab
         Public ReadOnly Property TabMain As RibbonTab
             Get
@@ -1982,6 +2024,12 @@ Namespace RibbonLib.Controls
             _PanelSlideViewer = New RibbonGroup(_ribbon, Cmd.cmdPanelSlideViewer)
             _ButtonOpenseadragonWebCapture = New RibbonButton(_ribbon, Cmd.cmdButtonOpenseadragonWebCapture)
             _ButtonViewerFullScreen = New RibbonButton(_ribbon, Cmd.cmdButtonViewerFullScreen)
+            _MetaboAnalysis = New RibbonTabGroup(_ribbon, Cmd.cmdMetaboAnalysis)
+            _DataSummaryPanel = New RibbonTab(_ribbon, Cmd.cmdDataSummaryPanel)
+            _DataSummaryGroup = New RibbonGroup(_ribbon, Cmd.cmdDataSummaryGroup)
+            _ButtonPCA = New RibbonButton(_ribbon, Cmd.cmdButtonPCA)
+            _ButtonPLSDA = New RibbonButton(_ribbon, Cmd.cmdButtonPLSDA)
+            _ButtonOPLSDA = New RibbonButton(_ribbon, Cmd.cmdButtonOPLSDA)
             _TabMain = New RibbonTab(_ribbon, Cmd.cmdTabMain)
             _GroupFileActions = New RibbonGroup(_ribbon, Cmd.cmdGroupFileActions)
             _TabGroupWindowTools = New RibbonGroup(_ribbon, Cmd.cmdTabGroupWindowTools)
