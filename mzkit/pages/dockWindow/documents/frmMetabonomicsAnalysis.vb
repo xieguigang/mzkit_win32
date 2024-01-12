@@ -1,10 +1,13 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math
+﻿Imports System.IO
+Imports BioNovoGene.Analytical.MassSpectrometry.Math
+Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.My.JavaScript
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Interop
+Imports SMRUCC.genomics.Analysis.HTS.DataFrame
 Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
 Imports any = Microsoft.VisualBasic.Scripting
 
@@ -14,6 +17,26 @@ Public Class frmMetabonomicsAnalysis
     Dim properties As String()
     Dim peaks As PeakSet
     Dim metadata As New Dictionary(Of String, JavaScriptObject)
+
+    ReadOnly workdir As String = App.CurrentProcessTemp & "/" & App.CurrentUnixTimeMillis & "/"
+
+    Public Shared Function CastMatrix(peaktable As PeakSet, sampleinfo As SampleInfo()) As Matrix
+        Dim mols As New List(Of DataFrameRow)
+
+        For Each mol As xcms2 In peaktable.peaks
+            Call mols.Add(New DataFrameRow With {
+                .geneID = mol.ID,
+                .experiments = mol(sampleinfo)
+            })
+        Next
+
+        Return New Matrix With {
+            .expression = mols.ToArray,
+            .sampleID = sampleinfo _
+                .Select(Function(s) s.ID) _
+                .ToArray
+        }
+    End Function
 
     Public Sub LoadData(table As DataTable)
         Dim groups = sampleinfo.GroupBy(Function(s) s.sample_info) _
@@ -87,7 +110,33 @@ Public Class frmMetabonomicsAnalysis
         }
 
         Call loadTable()
+
+        Using f As Stream = matrixfile.Open(FileMode.OpenOrCreate, doClear:=True)
+            Call sampleinfo.SaveTo(sampleinfofile)
+            Call CastMatrix(Me.peaks, sampleinfo).Save(f)
+            Call Workbench.LogText($"set workspace for metabonomics workbench: {workdir}")
+        End Using
     End Sub
+
+    ''' <summary>
+    ''' the matrix binary file
+    ''' </summary>
+    ''' <returns></returns>
+    Private ReadOnly Property matrixfile As String
+        Get
+            Return $"{workdir}/mat.dat"
+        End Get
+    End Property
+
+    ''' <summary>
+    ''' the csv file path to the sampleinfo data
+    ''' </summary>
+    ''' <returns></returns>
+    Private ReadOnly Property sampleinfofile As String
+        Get
+            Return $"{workdir}/sampleinfo.csv"
+        End Get
+    End Property
 
     Dim memoryData As System.Data.DataSet
 
@@ -179,7 +228,7 @@ Public Class frmMetabonomicsAnalysis
             Return
         End If
 
-        InputDialog.Input(Of InputPCADialog)(
+        InputDialog.Input(
             Sub(config)
 
             End Sub, config:=New InputPCADialog().SetMaxComponent(sampleinfo.Length))
