@@ -757,6 +757,8 @@ Public NotInheritable Class RscriptProgressTask
             Call cli.AppendLine($"{arg.Key} ""{arg.Value}""")
         Next
 
+        Call cli.AppendLine($"--SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}")
+
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli.ToString, workdir:=RscriptPipelineTask.Root)
 
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli.ToString, RscriptPipelineTask.Root)
