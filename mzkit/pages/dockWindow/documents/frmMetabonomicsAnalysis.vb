@@ -1,4 +1,5 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math
+﻿Imports System.ComponentModel
+Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.My.JavaScript
@@ -144,6 +145,8 @@ Public Class frmMetabonomicsAnalysis
         If peak Is Nothing Then
             Return
         Else
+            TypeDescriptor.AddAttributes(peak, New Attribute() {New ReadOnlyAttribute(True)})
+
             PropertyGrid1.SelectedObject = peak
             PropertyGrid1.Refresh()
         End If
