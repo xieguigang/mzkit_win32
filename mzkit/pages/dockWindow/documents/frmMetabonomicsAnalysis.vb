@@ -4,6 +4,7 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.My.JavaScript
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
+Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class frmMetabonomicsAnalysis
 
@@ -124,4 +125,27 @@ Public Class frmMetabonomicsAnalysis
         AdvancedDataGridViewSearchToolBar1.SetColumns(AdvancedDataGridView1.Columns)
     End Sub
 
+    Private Sub AdvancedDataGridView1_RowStateChanged(sender As Object, e As DataGridViewRowStateChangedEventArgs) Handles AdvancedDataGridView1.RowStateChanged
+        Dim rows = AdvancedDataGridView1.SelectedRows
+        Dim selected As DataGridViewRow = (From r In rows).FirstOrDefault
+
+        If selected Is Nothing Then
+            Return
+        End If
+
+        Dim xcms_id As String = any.ToString(selected.Cells(0).Value)
+
+        If xcms_id.StringEmpty Then
+            Return
+        End If
+
+        Dim peak = peaks.GetById(xcms_id)
+
+        If peak Is Nothing Then
+            Return
+        Else
+            PropertyGrid1.SelectedObject = peak
+            PropertyGrid1.Refresh()
+        End If
+    End Sub
 End Class

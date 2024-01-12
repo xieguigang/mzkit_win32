@@ -32,11 +32,13 @@ Partial Class frmMetabonomicsAnalysis
         Me.AdvancedDataGridView1 = New Zuby.ADGV.AdvancedDataGridView()
         Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.PropertyGrid1 = New System.Windows.Forms.PropertyGrid()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -73,6 +75,7 @@ Partial Class frmMetabonomicsAnalysis
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.PropertyGrid1)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(314, 268)
@@ -108,6 +111,14 @@ Partial Class frmMetabonomicsAnalysis
         Me.AdvancedDataGridViewSearchToolBar1.TabIndex = 4
         Me.AdvancedDataGridViewSearchToolBar1.Text = "AdvancedDataGridViewSearchToolBar1"
         '
+        'PropertyGrid1
+        '
+        Me.PropertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PropertyGrid1.Location = New System.Drawing.Point(3, 17)
+        Me.PropertyGrid1.Name = "PropertyGrid1"
+        Me.PropertyGrid1.Size = New System.Drawing.Size(308, 248)
+        Me.PropertyGrid1.TabIndex = 0
+        '
         'frmMetabonomicsAnalysis
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -125,6 +136,7 @@ Partial Class frmMetabonomicsAnalysis
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -137,4 +149,5 @@ Partial Class frmMetabonomicsAnalysis
     Friend WithEvents AdvancedDataGridView1 As Zuby.ADGV.AdvancedDataGridView
     Friend WithEvents AdvancedDataGridViewSearchToolBar1 As Zuby.ADGV.AdvancedDataGridViewSearchToolBar
     Friend WithEvents BindingSource1 As BindingSource
+    Friend WithEvents PropertyGrid1 As PropertyGrid
 End Class
