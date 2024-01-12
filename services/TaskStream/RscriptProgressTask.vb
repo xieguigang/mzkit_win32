@@ -62,6 +62,7 @@ Imports System.Windows.Forms
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Mzkit_win32.BasicMDIForm
 
@@ -774,4 +775,24 @@ Public NotInheritable Class RscriptProgressTask
             title:=title, info:=desc
         )
     End Sub
+
+    Public Shared Function RunComponentTask(mat As String, sampleinfo As String, n As Integer, analysis As Type) As Boolean
+        Dim args As New Dictionary(Of String, String) From {
+            {"--matrix", mat},
+            {"--ncomp", n},
+            {"--sampleinfo", sampleinfo}
+        }
+
+        Select Case analysis
+            Case GetType(PLS)
+                Call RunRScriptPipeline("workbench/PLSDA", args, "Run PLS-DA analysis", "running pls-da analysis...")
+            Case GetType(OPLS)
+                Call RunRScriptPipeline("workbench/OPLSDA", args, "Run OPLS-DA analysis", "running opls-da analysis...")
+            Case Else
+                ' pca
+                Call RunRScriptPipeline("workbench/PCA.R", args, "Run PCA analysis", "running pca analysis...")
+        End Select
+
+        Return True
+    End Function
 End Class

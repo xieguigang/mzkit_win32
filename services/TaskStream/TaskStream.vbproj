@@ -150,6 +150,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\Math\ANOVA\ANOVA.vbproj">
+      <Project>{279cca72-f7c0-4ae4-b4d4-bf8f6a5c684c}</Project>
+      <Name>ANOVA</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj">
       <Project>{dee82853-4241-4f24-a096-12923c664369}</Project>
       <Name>Core</Name>

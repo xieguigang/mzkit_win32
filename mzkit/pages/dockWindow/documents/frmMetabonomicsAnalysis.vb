@@ -3,12 +3,14 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA
 Imports Microsoft.VisualBasic.My.JavaScript
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Interop
 Imports SMRUCC.genomics.Analysis.HTS.DataFrame
 Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
+Imports TaskStream
 Imports any = Microsoft.VisualBasic.Scripting
 Imports csv = Microsoft.VisualBasic.Data.csv.IO.File
 
@@ -215,7 +217,9 @@ Public Class frmMetabonomicsAnalysis
 
         ribbonItems.MetaboAnalysis.ContextAvailable = ContextAvailability.Available
 
-        AddHandler ribbonItems.ButtonPCA.ExecuteEvent, Sub() Call RunPCA()
+        AddHandler ribbonItems.ButtonPCA.ExecuteEvent, Sub() Call RunPCA(GetType(PCA))
+        AddHandler ribbonItems.ButtonPLSDA.ExecuteEvent, Sub() Call RunPCA(GetType(PLS))
+        AddHandler ribbonItems.ButtonOPLSDA.ExecuteEvent, Sub() Call RunPCA(GetType(OPLS))
     End Sub
 
     Private Sub frmMetabonomicsAnalysis_Activated(sender As Object, e As EventArgs) Handles Me.Activated
@@ -230,7 +234,7 @@ Public Class frmMetabonomicsAnalysis
         ribbonItems.MetaboAnalysis.ContextAvailable = ContextAvailability.NotAvailable
     End Sub
 
-    Private Sub RunPCA()
+    Private Sub RunPCA(analysis As Type)
         If sampleinfo.IsNullOrEmpty Then
             Call Workbench.Warning("Please load sample peaktable data at first!")
             Return
@@ -238,7 +242,7 @@ Public Class frmMetabonomicsAnalysis
 
         InputDialog.Input(
             Sub(config)
-
+                RscriptProgressTask.RunComponentTask(matrixfile, sampleinfofile, config.ncomp, analysis)
             End Sub, config:=New InputPCADialog().SetMaxComponent(sampleinfo.Length))
     End Sub
 End Class
