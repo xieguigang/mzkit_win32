@@ -65,8 +65,8 @@ Public Class frmMetabonomicsAnalysis
                 .Properties = New Dictionary(Of String, Double)
             }
 
-            For Each id In sampleinfo
-                peak(id.ID) = row.TryPopOut(id.ID)
+            For Each id As SampleInfo In sampleinfo
+                peak(id.ID) = Val(row.TryPopOut(id.ID))
             Next
 
             Dim meta As New JavaScriptObject
