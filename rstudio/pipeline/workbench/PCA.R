@@ -20,6 +20,6 @@ let pca = prcomp(matrix, pc = ncomp);
 
 print(pca);
 
-write.csv(pca$score, file = `${outputdir}/pca_score.csv`);
-write.csv(pca$loading, file = `${outputdir}/pca_loading.csv`);
-writeLines(pca$contribution, con = `${outputdir}/pca_contrib.txt`);
+write.csv(pca$score, file = `${outputdir}/pca/pca_score.csv`);
+write.csv(pca$loading, file = `${outputdir}/pca/pca_loading.csv`);
+writeLines(pca$contribution, con = `${outputdir}/pca/pca_contrib.txt`);

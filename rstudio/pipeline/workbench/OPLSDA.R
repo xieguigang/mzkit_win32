@@ -51,6 +51,6 @@ let opls.da = opls(x = matrix, y = sampleinfo,
 
 str(opls.da);
 
-write.csv(opls.da$component, file = `${outputdir}/oplsda_component.csv`);
-write.csv(opls.da$scoreMN, file = `${outputdir}/oplsda_scoreMN.csv`);
-write.csv(opls.da$loadingMN, file = `${outputdir}/oplsda_loadingMN.csv`);
+write.csv(opls.da$component, file = `${outputdir}/opls/oplsda_component.csv`);
+write.csv(opls.da$scoreMN, file = `${outputdir}/opls/oplsda_scoreMN.csv`);
+write.csv(opls.da$loadingMN, file = `${outputdir}/opls/oplsda_loadingMN.csv`);
