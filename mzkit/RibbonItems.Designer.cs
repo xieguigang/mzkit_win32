@@ -229,6 +229,8 @@ namespace RibbonLib.Controls
             public const uint cmdButtonViewerFullScreen = 255;
             public const uint cmdMetaboAnalysis = 269;
             public const uint cmdDataSummaryPanel = 270;
+            public const uint cmdWorkbenchFile = 275;
+            public const uint cmdButtonOpenWorkspace = 276;
             public const uint cmdDataSummaryGroup = 271;
             public const uint cmdButtonPCA = 272;
             public const uint cmdButtonPLSDA = 273;
@@ -494,6 +496,8 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonViewerFullScreen { get; private set; }
         public RibbonTabGroup MetaboAnalysis { get; private set; }
         public RibbonTab DataSummaryPanel { get; private set; }
+        public RibbonGroup WorkbenchFile { get; private set; }
+        public RibbonButton ButtonOpenWorkspace { get; private set; }
         public RibbonGroup DataSummaryGroup { get; private set; }
         public RibbonButton ButtonPCA { get; private set; }
         public RibbonButton ButtonPLSDA { get; private set; }
@@ -754,6 +758,8 @@ namespace RibbonLib.Controls
             ButtonViewerFullScreen = new RibbonButton(ribbon, Cmd.cmdButtonViewerFullScreen);
             MetaboAnalysis = new RibbonTabGroup(ribbon, Cmd.cmdMetaboAnalysis);
             DataSummaryPanel = new RibbonTab(ribbon, Cmd.cmdDataSummaryPanel);
+            WorkbenchFile = new RibbonGroup(ribbon, Cmd.cmdWorkbenchFile);
+            ButtonOpenWorkspace = new RibbonButton(ribbon, Cmd.cmdButtonOpenWorkspace);
             DataSummaryGroup = new RibbonGroup(ribbon, Cmd.cmdDataSummaryGroup);
             ButtonPCA = new RibbonButton(ribbon, Cmd.cmdButtonPCA);
             ButtonPLSDA = new RibbonButton(ribbon, Cmd.cmdButtonPLSDA);

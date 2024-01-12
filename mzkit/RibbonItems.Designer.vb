@@ -226,6 +226,8 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonViewerFullScreen As UInteger = 255
             Public Const cmdMetaboAnalysis As UInteger = 269
             Public Const cmdDataSummaryPanel As UInteger = 270
+            Public Const cmdWorkbenchFile As UInteger = 275
+            Public Const cmdButtonOpenWorkspace As UInteger = 276
             Public Const cmdDataSummaryGroup As UInteger = 271
             Public Const cmdButtonPCA As UInteger = 272
             Public Const cmdButtonPLSDA As UInteger = 273
@@ -1551,6 +1553,18 @@ Namespace RibbonLib.Controls
                 Return _DataSummaryPanel
             End Get
         End Property
+        Private _WorkbenchFile As RibbonGroup
+        Public ReadOnly Property WorkbenchFile As RibbonGroup
+            Get
+                Return _WorkbenchFile
+            End Get
+        End Property
+        Private _ButtonOpenWorkspace As RibbonButton
+        Public ReadOnly Property ButtonOpenWorkspace As RibbonButton
+            Get
+                Return _ButtonOpenWorkspace
+            End Get
+        End Property
         Private _DataSummaryGroup As RibbonGroup
         Public ReadOnly Property DataSummaryGroup As RibbonGroup
             Get
@@ -2026,6 +2040,8 @@ Namespace RibbonLib.Controls
             _ButtonViewerFullScreen = New RibbonButton(_ribbon, Cmd.cmdButtonViewerFullScreen)
             _MetaboAnalysis = New RibbonTabGroup(_ribbon, Cmd.cmdMetaboAnalysis)
             _DataSummaryPanel = New RibbonTab(_ribbon, Cmd.cmdDataSummaryPanel)
+            _WorkbenchFile = New RibbonGroup(_ribbon, Cmd.cmdWorkbenchFile)
+            _ButtonOpenWorkspace = New RibbonButton(_ribbon, Cmd.cmdButtonOpenWorkspace)
             _DataSummaryGroup = New RibbonGroup(_ribbon, Cmd.cmdDataSummaryGroup)
             _ButtonPCA = New RibbonButton(_ribbon, Cmd.cmdButtonPCA)
             _ButtonPLSDA = New RibbonButton(_ribbon, Cmd.cmdButtonPLSDA)

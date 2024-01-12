@@ -222,6 +222,8 @@ Module RibbonEvents
             Dim workbench As frmMetabonomicsAnalysis = VisualStudio.ShowDocument(Of frmMetabonomicsAnalysis)(DockState.Document)
 
             Call workbench.LoadData(table)
+        Else
+            ribbonItems.MetaboAnalysis.ContextAvailable = ContextAvailability.Active
         End If
     End Sub
 

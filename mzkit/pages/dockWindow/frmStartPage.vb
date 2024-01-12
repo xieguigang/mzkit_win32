@@ -80,6 +80,10 @@ Public Class frmStartPage
             Call RibbonEvents.CreateNewScript(Nothing, Nothing)
         End Sub
 
+        Public Sub OpenLCMSWorkbench()
+            Call RibbonEvents.openLCMSWorkbench()
+        End Sub
+
     End Class
 
     Dim WithEvents BackgroundWorker As New BackgroundWorker
