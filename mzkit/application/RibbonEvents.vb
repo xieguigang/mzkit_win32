@@ -218,7 +218,7 @@ Module RibbonEvents
             If folder.ShowDialog = DialogResult.OK Then
                 Dim page = VisualStudio.ShowDocument(Of frmMetabonomicsAnalysis)()
                 page.workdir = folder.SelectedPath
-
+                page.LoadWorkspace(folder.SelectedPath)
             End If
         End Using
     End Sub

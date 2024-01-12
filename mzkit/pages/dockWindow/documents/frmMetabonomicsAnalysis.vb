@@ -136,6 +136,11 @@ Public Class frmMetabonomicsAnalysis
         Me.peaks = SaveXcms.ReadSample($"{dir}/peakset.xcms".Open(FileMode.Open, doClear:=False, [readOnly]:=True))
         Me.sampleinfo = sampleinfofile.LoadCsv(Of SampleInfo)().ToArray
 
+        Using f As Stream = matrixfile.Open(FileMode.OpenOrCreate, doClear:=True)
+            Call CastMatrix(Me.peaks, sampleinfo).Save(f)
+            Call Workbench.LogText($"set workspace for metabonomics workbench: {workdir}")
+        End Using
+
         Call loadTable()
     End Sub
 
