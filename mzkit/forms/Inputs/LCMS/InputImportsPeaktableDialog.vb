@@ -298,4 +298,16 @@ Public Class InputImportsPeaktableDialog
     Private Sub AddToSampleGroupToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddToSampleGroupToolStripMenuItem.Click
 
     End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Using folder As New FolderBrowserDialog With {.ShowNewFolderButton = True}
+            If folder.ShowDialog = DialogResult.OK Then
+                TextBox2.Text = folder.SelectedPath
+            End If
+        End Using
+    End Sub
+
+    Public Function GetWorkspace() As String
+        Return TextBox2.Text
+    End Function
 End Class

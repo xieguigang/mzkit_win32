@@ -19,7 +19,10 @@ Public Class frmMetabonomicsAnalysis
     Dim peaks As PeakSet
     Dim metadata As New Dictionary(Of String, JavaScriptObject)
 
-    ReadOnly workdir As String = App.CurrentProcessTemp & "/" & App.CurrentUnixTimeMillis & "/"
+    ''' <summary>
+    ''' could be custom in the wizard dialog
+    ''' </summary>
+    Dim workdir As String = App.CurrentProcessTemp & "/" & App.CurrentUnixTimeMillis & "/"
 
     Public Shared Function CastMatrix(peaktable As PeakSet, sampleinfo As SampleInfo()) As Matrix
         Dim mols As New List(Of DataFrameRow)
@@ -74,6 +77,10 @@ Public Class frmMetabonomicsAnalysis
             Sub(config)
                 sampleinfo = config.GetSampleInfo.ToArray
                 properties = config.GetMetadata.ToArray
+
+                If Not Strings.Trim(config.GetWorkspace).StringEmpty Then
+                    workdir = Strings.Trim(config.GetWorkspace)
+                End If
             End Sub, Nothing, wizard)
 
         ' show data
