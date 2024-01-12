@@ -10,6 +10,7 @@ Imports RibbonLib.Interop
 Imports SMRUCC.genomics.Analysis.HTS.DataFrame
 Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
 Imports any = Microsoft.VisualBasic.Scripting
+Imports csv = Microsoft.VisualBasic.Data.csv.IO.File
 
 Public Class frmMetabonomicsAnalysis
 
@@ -64,7 +65,7 @@ Public Class frmMetabonomicsAnalysis
         Next
     End Sub
 
-    Public Sub LoadData(table As File, title As String)
+    Public Sub LoadData(table As csv, title As String)
         Dim wizard As New InputImportsPeaktableDialog
         Dim df As DataFrame = DataFrame.CreateObject(table)
 
