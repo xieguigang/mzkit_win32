@@ -37,7 +37,7 @@ Public Class frmMetabonomicsAnalysis
                 row(i + 1) = data.Average
             Next
 
-            table.Rows.Add(row)
+            Call table.Rows.Add(row)
         Next
     End Sub
 
@@ -155,7 +155,10 @@ Public Class frmMetabonomicsAnalysis
 
     Private Sub frmMetabonomicsAnalysis_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call WebKit.Init(Me.WebView21)
+
         ribbonItems.MetaboAnalysis.ContextAvailable = ContextAvailability.Available
+
+        AddHandler ribbonItems.ButtonPCA.ExecuteEvent, Sub() Call RunPCA()
     End Sub
 
     Private Sub frmMetabonomicsAnalysis_Activated(sender As Object, e As EventArgs) Handles Me.Activated
@@ -163,6 +166,22 @@ Public Class frmMetabonomicsAnalysis
     End Sub
 
     Private Sub frmMetabonomicsAnalysis_LostFocus(sender As Object, e As EventArgs) Handles Me.LostFocus
+
+    End Sub
+
+    Private Sub frmMetabonomicsAnalysis_Deactivate(sender As Object, e As EventArgs) Handles Me.Deactivate
         ribbonItems.MetaboAnalysis.ContextAvailable = ContextAvailability.NotAvailable
+    End Sub
+
+    Private Sub RunPCA()
+        If sampleinfo.IsNullOrEmpty Then
+            Call Workbench.Warning("Please load sample peaktable data at first!")
+            Return
+        End If
+
+        InputDialog.Input(Of InputPCADialog)(
+            Sub(config)
+
+            End Sub, config:=New InputPCADialog().SetMaxComponent(sampleinfo.Length))
     End Sub
 End Class
