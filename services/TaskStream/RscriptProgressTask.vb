@@ -789,9 +789,9 @@ Public NotInheritable Class RscriptProgressTask
 
         Select Case analysis
             Case GetType(PLS)
-                Call RunRScriptPipeline("workbench/PLSDA", args, "Run PLS-DA analysis", "running pls-da analysis...")
+                Call RunRScriptPipeline("workbench/PLSDA.R", args, "Run PLS-DA analysis", "running pls-da analysis...")
             Case GetType(OPLS)
-                Call RunRScriptPipeline("workbench/OPLSDA", args, "Run OPLS-DA analysis", "running opls-da analysis...")
+                Call RunRScriptPipeline("workbench/OPLSDA.R", args, "Run OPLS-DA analysis", "running opls-da analysis...")
             Case Else
                 ' pca
                 Call RunRScriptPipeline("workbench/PCA.R", args, "Run PCA analysis", "running pca analysis...")
