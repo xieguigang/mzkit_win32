@@ -29,10 +29,10 @@ Partial Class frmMetabonomicsAnalysis
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.WebView21 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.PropertyGrid1 = New System.Windows.Forms.PropertyGrid()
         Me.AdvancedDataGridView1 = New Zuby.ADGV.AdvancedDataGridView()
         Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.PropertyGrid1 = New System.Windows.Forms.PropertyGrid()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -67,21 +67,31 @@ Partial Class frmMetabonomicsAnalysis
         Me.WebView21.AllowExternalDrop = True
         Me.WebView21.CreationProperties = Nothing
         Me.WebView21.DefaultBackgroundColor = System.Drawing.Color.White
-        Me.WebView21.Location = New System.Drawing.Point(12, 286)
+        Me.WebView21.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.WebView21.Location = New System.Drawing.Point(0, 385)
         Me.WebView21.Name = "WebView21"
-        Me.WebView21.Size = New System.Drawing.Size(314, 338)
+        Me.WebView21.Size = New System.Drawing.Size(343, 252)
         Me.WebView21.TabIndex = 1
         Me.WebView21.ZoomFactor = 1.0R
         '
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.PropertyGrid1)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
+        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(314, 268)
+        Me.GroupBox1.Size = New System.Drawing.Size(343, 385)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Metabolite Metadata"
+        '
+        'PropertyGrid1
+        '
+        Me.PropertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PropertyGrid1.Location = New System.Drawing.Point(3, 17)
+        Me.PropertyGrid1.Name = "PropertyGrid1"
+        Me.PropertyGrid1.Size = New System.Drawing.Size(337, 365)
+        Me.PropertyGrid1.TabIndex = 0
         '
         'AdvancedDataGridView1
         '
@@ -110,14 +120,6 @@ Partial Class frmMetabonomicsAnalysis
         Me.AdvancedDataGridViewSearchToolBar1.Size = New System.Drawing.Size(684, 27)
         Me.AdvancedDataGridViewSearchToolBar1.TabIndex = 4
         Me.AdvancedDataGridViewSearchToolBar1.Text = "AdvancedDataGridViewSearchToolBar1"
-        '
-        'PropertyGrid1
-        '
-        Me.PropertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PropertyGrid1.Location = New System.Drawing.Point(3, 17)
-        Me.PropertyGrid1.Name = "PropertyGrid1"
-        Me.PropertyGrid1.Size = New System.Drawing.Size(308, 248)
-        Me.PropertyGrid1.TabIndex = 0
         '
         'frmMetabonomicsAnalysis
         '
