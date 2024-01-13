@@ -232,6 +232,8 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonPCA As UInteger = 272
             Public Const cmdButtonPLSDA As UInteger = 273
             Public Const cmdButtonOPLSDA As UInteger = 274
+            Public Const cmdLCMSVisualPanel As UInteger = 277
+            Public Const cmdViewLCMSScatter As UInteger = 278
             Public Const cmdTabMain As UInteger = 1011
             Public Const cmdGroupFileActions As UInteger = 1045
             Public Const cmdTabGroupWindowTools As UInteger = 1023
@@ -1589,6 +1591,18 @@ Namespace RibbonLib.Controls
                 Return _ButtonOPLSDA
             End Get
         End Property
+        Private _LCMSVisualPanel As RibbonGroup
+        Public ReadOnly Property LCMSVisualPanel As RibbonGroup
+            Get
+                Return _LCMSVisualPanel
+            End Get
+        End Property
+        Private _ViewLCMSScatter As RibbonButton
+        Public ReadOnly Property ViewLCMSScatter As RibbonButton
+            Get
+                Return _ViewLCMSScatter
+            End Get
+        End Property
         Private _TabMain As RibbonTab
         Public ReadOnly Property TabMain As RibbonTab
             Get
@@ -2046,6 +2060,8 @@ Namespace RibbonLib.Controls
             _ButtonPCA = New RibbonButton(_ribbon, Cmd.cmdButtonPCA)
             _ButtonPLSDA = New RibbonButton(_ribbon, Cmd.cmdButtonPLSDA)
             _ButtonOPLSDA = New RibbonButton(_ribbon, Cmd.cmdButtonOPLSDA)
+            _LCMSVisualPanel = New RibbonGroup(_ribbon, Cmd.cmdLCMSVisualPanel)
+            _ViewLCMSScatter = New RibbonButton(_ribbon, Cmd.cmdViewLCMSScatter)
             _TabMain = New RibbonTab(_ribbon, Cmd.cmdTabMain)
             _GroupFileActions = New RibbonGroup(_ribbon, Cmd.cmdGroupFileActions)
             _TabGroupWindowTools = New RibbonGroup(_ribbon, Cmd.cmdTabGroupWindowTools)

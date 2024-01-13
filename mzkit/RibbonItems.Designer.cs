@@ -235,6 +235,8 @@ namespace RibbonLib.Controls
             public const uint cmdButtonPCA = 272;
             public const uint cmdButtonPLSDA = 273;
             public const uint cmdButtonOPLSDA = 274;
+            public const uint cmdLCMSVisualPanel = 277;
+            public const uint cmdViewLCMSScatter = 278;
             public const uint cmdTabMain = 1011;
             public const uint cmdGroupFileActions = 1045;
             public const uint cmdTabGroupWindowTools = 1023;
@@ -502,6 +504,8 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonPCA { get; private set; }
         public RibbonButton ButtonPLSDA { get; private set; }
         public RibbonButton ButtonOPLSDA { get; private set; }
+        public RibbonGroup LCMSVisualPanel { get; private set; }
+        public RibbonButton ViewLCMSScatter { get; private set; }
         public RibbonTab TabMain { get; private set; }
         public RibbonGroup GroupFileActions { get; private set; }
         public RibbonGroup TabGroupWindowTools { get; private set; }
@@ -764,6 +768,8 @@ namespace RibbonLib.Controls
             ButtonPCA = new RibbonButton(ribbon, Cmd.cmdButtonPCA);
             ButtonPLSDA = new RibbonButton(ribbon, Cmd.cmdButtonPLSDA);
             ButtonOPLSDA = new RibbonButton(ribbon, Cmd.cmdButtonOPLSDA);
+            LCMSVisualPanel = new RibbonGroup(ribbon, Cmd.cmdLCMSVisualPanel);
+            ViewLCMSScatter = new RibbonButton(ribbon, Cmd.cmdViewLCMSScatter);
             TabMain = new RibbonTab(ribbon, Cmd.cmdTabMain);
             GroupFileActions = new RibbonGroup(ribbon, Cmd.cmdGroupFileActions);
             TabGroupWindowTools = new RibbonGroup(ribbon, Cmd.cmdTabGroupWindowTools);
