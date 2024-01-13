@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
+Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Imaging
@@ -70,16 +71,12 @@ Public Class frmMetabonomicsAnalysis
     End Sub
 
     Public Sub LoadAnalysisTable(table As DataTable, data As DataSet())
-        Dim i As Integer = 0
         Dim keys As String() = data(0).Properties.Keys.ToArray
 
+        Call table.Columns.Add("id", GetType(String))
+
         For Each key As String In keys
-            If i = 0 Then
-                table.Columns.Add(key, GetType(String))
-                i += 1
-            Else
-                table.Columns.Add(key, GetType(Double))
-            End If
+            Call table.Columns.Add(key, GetType(Double))
         Next
 
         For Each row As DataSet In data
@@ -142,7 +139,7 @@ Public Class frmMetabonomicsAnalysis
             .peaks = peaks.ToArray
         }
 
-        Call loadTable()
+        Call loadTable(Sub(tbl) Call LoadSampleData(tbl))
 
         Using f As Stream = $"{workdir}/peakset.xcms".Open(FileMode.OpenOrCreate, doClear:=True)
             Call SaveXcms.DumpSample(Me.peaks, f)
@@ -166,7 +163,7 @@ Public Class frmMetabonomicsAnalysis
             Call Workbench.LogText($"set workspace for metabonomics workbench: {workdir}")
         End Using
 
-        Call loadTable()
+        Call loadTable(Sub(table) Call LoadSampleData(table))
     End Sub
 
     ''' <summary>
@@ -191,19 +188,19 @@ Public Class frmMetabonomicsAnalysis
 
     Dim memoryData As System.Data.DataSet
 
-    Private Sub loadTable()
+    Private Sub loadTable(load As Action(Of DataTable))
         memoryData = New System.Data.DataSet
 
         Dim table As DataTable = memoryData.Tables.Add("memoryData")
 
         Try
-            Call Me.AdvancedDataGridView1.Columns.Clear()
             Call Me.AdvancedDataGridView1.Rows.Clear()
+            Call Me.AdvancedDataGridView1.Columns.Clear()
         Catch ex As Exception
 
         End Try
 
-        Call LoadSampleData(table)
+        Call load(table)
         Call AdvancedDataGridView1.SetDoubleBuffered()
 
         For Each column As DataGridViewColumn In AdvancedDataGridView1.Columns
@@ -286,6 +283,10 @@ Public Class frmMetabonomicsAnalysis
                 RscriptProgressTask.RunComponentTask(matrixfile, sampleinfofile, config.ncomp, analysis)
 
                 Call ToolStripDropDownButton1.DropDownItems.Clear()
+                Call ToolStripDropDownButton1.DropDownItems.Add("view peaktable", My.Resources._42082,
+                     Sub()
+                         Call loadTable(Sub(table) Call LoadSampleData(table))
+                     End Sub)
 
                 Select Case analysis
                     Case GetType(PLS)
@@ -299,11 +300,13 @@ Public Class frmMetabonomicsAnalysis
 
                         ToolStripDropDownButton1.DropDownItems.Add("pca_score", My.Resources._1200px_Checked_svg,
                             Sub()
-
+                                Dim score_data As DataSet() = DataSet.LoadDataSet(score).ToArray
+                                Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
                             End Sub)
                         ToolStripDropDownButton1.DropDownItems.Add("pca_loading", My.Resources._1200px_Checked_svg,
                             Sub()
-
+                                Dim score_data As DataSet() = DataSet.LoadDataSet(loading).ToArray
+                                Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
                             End Sub)
                 End Select
             End Sub, config:=New InputPCADialog().SetMaxComponent(sampleinfo.Length))
