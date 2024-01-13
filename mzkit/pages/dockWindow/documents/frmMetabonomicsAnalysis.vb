@@ -195,9 +195,11 @@ Public Class frmMetabonomicsAnalysis
 
         Try
             Call Me.AdvancedDataGridView1.Rows.Clear()
+        Catch ex As Exception
+        End Try
+        Try
             Call Me.AdvancedDataGridView1.Columns.Clear()
         Catch ex As Exception
-
         End Try
 
         Call load(table)
@@ -213,8 +215,12 @@ Public Class frmMetabonomicsAnalysis
             '    '        ' do nothing 
             '    'End Select
 
-            '    AdvancedDataGridView1.ShowMenuStrip(column)
-            column.DefaultCellStyle.BackColor = table.Columns(column.HeaderText).ExtendedProperties("color")
+            Try
+                '    AdvancedDataGridView1.ShowMenuStrip(column)
+                column.DefaultCellStyle.BackColor = table.Columns(column.HeaderText).ExtendedProperties("color")
+            Catch ex As Exception
+
+            End Try
         Next
 
         BindingSource1.DataSource = memoryData
