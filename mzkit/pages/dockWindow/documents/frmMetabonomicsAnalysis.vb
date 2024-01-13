@@ -43,7 +43,7 @@ Public Class frmMetabonomicsAnalysis
         }
     End Function
 
-    Public Sub LoadData(table As DataTable)
+    Public Sub LoadSampleData(table As DataTable)
         Dim groups = sampleinfo.GroupBy(Function(s) s.sample_info) _
             .Select(Function(g) (g.Key, list:=g.ToArray)) _
             .ToArray
@@ -66,6 +66,31 @@ Public Class frmMetabonomicsAnalysis
             Next
 
             Call table.Rows.Add(row)
+        Next
+    End Sub
+
+    Public Sub LoadAnalysisTable(table As DataTable, data As DataSet())
+        Dim i As Integer = 0
+        Dim keys As String() = data(0).Properties.Keys.ToArray
+
+        For Each key As String In keys
+            If i = 0 Then
+                table.Columns.Add(key, GetType(String))
+                i += 1
+            Else
+                table.Columns.Add(key, GetType(Double))
+            End If
+        Next
+
+        For Each row As DataSet In data
+            Dim r As Object() = New Object(row.Properties.Count) {}
+            r(0) = row.ID
+
+            For j = 0 To keys.Length - 1
+                r(j + 1) = row(keys(j))
+            Next
+
+            Call table.Rows.Add(r)
         Next
     End Sub
 
@@ -178,7 +203,7 @@ Public Class frmMetabonomicsAnalysis
 
         End Try
 
-        Call LoadData(table)
+        Call LoadSampleData(table)
         Call AdvancedDataGridView1.SetDoubleBuffered()
 
         For Each column As DataGridViewColumn In AdvancedDataGridView1.Columns
@@ -259,6 +284,28 @@ Public Class frmMetabonomicsAnalysis
         InputDialog.Input(
             Sub(config)
                 RscriptProgressTask.RunComponentTask(matrixfile, sampleinfofile, config.ncomp, analysis)
+
+                Call ToolStripDropDownButton1.DropDownItems.Clear()
+
+                Select Case analysis
+                    Case GetType(PLS)
+                        Dim dir As String = $"{workdir}/plsda"
+                    Case GetType(OPLS)
+                        Dim dir As String = $"{workdir}/opls"
+                    Case Else
+                        Dim dir As String = $"{workdir}/pca"
+                        Dim score As String = $"{dir}/pca_score.csv"
+                        Dim loading As String = $"{dir}/pca_loading.csv"
+
+                        ToolStripDropDownButton1.DropDownItems.Add("pca_score", My.Resources._1200px_Checked_svg,
+                            Sub()
+
+                            End Sub)
+                        ToolStripDropDownButton1.DropDownItems.Add("pca_loading", My.Resources._1200px_Checked_svg,
+                            Sub()
+
+                            End Sub)
+                End Select
             End Sub, config:=New InputPCADialog().SetMaxComponent(sampleinfo.Length))
     End Sub
 End Class

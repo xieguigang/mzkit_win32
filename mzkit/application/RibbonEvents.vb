@@ -232,7 +232,7 @@ Module RibbonEvents
             Dim table As DataTable = dataset.Tables.Item(Scan0)
             Dim workbench As frmMetabonomicsAnalysis = VisualStudio.ShowDocument(Of frmMetabonomicsAnalysis)(DockState.Document)
 
-            Call workbench.LoadData(table)
+            Call workbench.LoadSampleData(table)
         Else
             ribbonItems.MetaboAnalysis.ContextAvailable = ContextAvailability.Active
         End If
