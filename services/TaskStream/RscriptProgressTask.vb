@@ -753,6 +753,8 @@ Public NotInheritable Class RscriptProgressTask
         Dim Rscript As String = RscriptPipelineTask.GetRScript(name)
         Dim cli As New StringBuilder(Rscript)
 
+        Call cli.AppendLine()
+
         For Each arg In args
             Call cli.AppendLine($"{arg.Key} ""{arg.Value}""")
         Next
