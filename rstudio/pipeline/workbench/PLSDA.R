@@ -1,5 +1,6 @@
 require(GCModeller);
 
+imports "stats" from "Rlapack";
 #' the gene expression matrix data toolkit
 imports "geneExpression" from "phenotype_kit";
 
