@@ -1,14 +1,17 @@
 ﻿Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
+Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA
 Imports Microsoft.VisualBasic.My.JavaScript
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Interop
 Imports SMRUCC.genomics.Analysis.HTS.DataFrame
 Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
+Imports TaskStream
 Imports any = Microsoft.VisualBasic.Scripting
 Imports csv = Microsoft.VisualBasic.Data.csv.IO.File
 
@@ -17,9 +20,11 @@ Public Class frmMetabonomicsAnalysis
     Dim sampleinfo As SampleInfo()
     Dim properties As String()
     Dim peaks As PeakSet
-    Dim metadata As New Dictionary(Of String, JavaScriptObject)
 
-    ReadOnly workdir As String = App.CurrentProcessTemp & "/" & App.CurrentUnixTimeMillis & "/"
+    ''' <summary>
+    ''' could be custom in the wizard dialog
+    ''' </summary>
+    Friend workdir As String = App.CurrentProcessTemp & "/" & App.CurrentUnixTimeMillis & "/"
 
     Public Shared Function CastMatrix(peaktable As PeakSet, sampleinfo As SampleInfo()) As Matrix
         Dim mols As New List(Of DataFrameRow)
@@ -39,7 +44,7 @@ Public Class frmMetabonomicsAnalysis
         }
     End Function
 
-    Public Sub LoadData(table As DataTable)
+    Public Sub LoadSampleData(table As DataTable)
         Dim groups = sampleinfo.GroupBy(Function(s) s.sample_info) _
             .Select(Function(g) (g.Key, list:=g.ToArray)) _
             .ToArray
@@ -65,6 +70,27 @@ Public Class frmMetabonomicsAnalysis
         Next
     End Sub
 
+    Public Sub LoadAnalysisTable(table As DataTable, data As DataSet())
+        Dim keys As String() = data(0).Properties.Keys.ToArray
+
+        Call table.Columns.Add("id", GetType(String))
+
+        For Each key As String In keys
+            Call table.Columns.Add(key, GetType(Double))
+        Next
+
+        For Each row As DataSet In data
+            Dim r As Object() = New Object(row.Properties.Count) {}
+            r(0) = row.ID
+
+            For j = 0 To keys.Length - 1
+                r(j + 1) = row(keys(j))
+            Next
+
+            Call table.Rows.Add(r)
+        Next
+    End Sub
+
     Public Sub LoadData(table As csv, title As String)
         Dim wizard As New InputImportsPeaktableDialog
         Dim df As DataFrame = DataFrame.CreateObject(table)
@@ -74,6 +100,10 @@ Public Class frmMetabonomicsAnalysis
             Sub(config)
                 sampleinfo = config.GetSampleInfo.ToArray
                 properties = config.GetMetadata.ToArray
+
+                If Not Strings.Trim(config.GetWorkspace).StringEmpty Then
+                    workdir = Strings.Trim(config.GetWorkspace)
+                End If
             End Sub, Nothing, wizard)
 
         ' show data
@@ -102,21 +132,38 @@ Public Class frmMetabonomicsAnalysis
                 meta(item.Key) = item.Value
             Next
 
-            peaks.Add(peak)
-            metadata(peak.ID) = meta
+            Call peaks.Add(peak)
         Next
 
         Me.peaks = New PeakSet With {
             .peaks = peaks.ToArray
         }
 
-        Call loadTable()
+        Call loadTable(Sub(tbl) Call LoadSampleData(tbl))
+
+        Using f As Stream = $"{workdir}/peakset.xcms".Open(FileMode.OpenOrCreate, doClear:=True)
+            Call SaveXcms.DumpSample(Me.peaks, f)
+            Call f.Flush()
+        End Using
 
         Using f As Stream = matrixfile.Open(FileMode.OpenOrCreate, doClear:=True)
             Call sampleinfo.SaveTo(sampleinfofile)
             Call CastMatrix(Me.peaks, sampleinfo).Save(f)
             Call Workbench.LogText($"set workspace for metabonomics workbench: {workdir}")
         End Using
+    End Sub
+
+    Public Sub LoadWorkspace(dir As String)
+        Me.workdir = dir
+        Me.peaks = SaveXcms.ReadSample($"{dir}/peakset.xcms".Open(FileMode.Open, doClear:=False, [readOnly]:=True))
+        Me.sampleinfo = sampleinfofile.LoadCsv(Of SampleInfo)().ToArray
+
+        Using f As Stream = matrixfile.Open(FileMode.OpenOrCreate, doClear:=True)
+            Call CastMatrix(Me.peaks, sampleinfo).Save(f)
+            Call Workbench.LogText($"set workspace for metabonomics workbench: {workdir}")
+        End Using
+
+        Call loadTable(Sub(table) Call LoadSampleData(table))
     End Sub
 
     ''' <summary>
@@ -141,19 +188,21 @@ Public Class frmMetabonomicsAnalysis
 
     Dim memoryData As System.Data.DataSet
 
-    Private Sub loadTable()
+    Private Sub loadTable(load As Action(Of DataTable))
         memoryData = New System.Data.DataSet
 
         Dim table As DataTable = memoryData.Tables.Add("memoryData")
 
         Try
-            Call Me.AdvancedDataGridView1.Columns.Clear()
             Call Me.AdvancedDataGridView1.Rows.Clear()
         Catch ex As Exception
-
+        End Try
+        Try
+            Call Me.AdvancedDataGridView1.Columns.Clear()
+        Catch ex As Exception
         End Try
 
-        Call LoadData(table)
+        Call load(table)
         Call AdvancedDataGridView1.SetDoubleBuffered()
 
         For Each column As DataGridViewColumn In AdvancedDataGridView1.Columns
@@ -166,8 +215,12 @@ Public Class frmMetabonomicsAnalysis
             '    '        ' do nothing 
             '    'End Select
 
-            '    AdvancedDataGridView1.ShowMenuStrip(column)
-            column.DefaultCellStyle.BackColor = table.Columns(column.HeaderText).ExtendedProperties("color")
+            Try
+                '    AdvancedDataGridView1.ShowMenuStrip(column)
+                column.DefaultCellStyle.BackColor = table.Columns(column.HeaderText).ExtendedProperties("color")
+            Catch ex As Exception
+
+            End Try
         Next
 
         BindingSource1.DataSource = memoryData
@@ -208,7 +261,9 @@ Public Class frmMetabonomicsAnalysis
 
         ribbonItems.MetaboAnalysis.ContextAvailable = ContextAvailability.Available
 
-        AddHandler ribbonItems.ButtonPCA.ExecuteEvent, Sub() Call RunPCA()
+        AddHandler ribbonItems.ButtonPCA.ExecuteEvent, Sub() Call RunPCA(GetType(PCA))
+        AddHandler ribbonItems.ButtonPLSDA.ExecuteEvent, Sub() Call RunPCA(GetType(PLS))
+        AddHandler ribbonItems.ButtonOPLSDA.ExecuteEvent, Sub() Call RunPCA(GetType(OPLS))
     End Sub
 
     Private Sub frmMetabonomicsAnalysis_Activated(sender As Object, e As EventArgs) Handles Me.Activated
@@ -223,7 +278,7 @@ Public Class frmMetabonomicsAnalysis
         ribbonItems.MetaboAnalysis.ContextAvailable = ContextAvailability.NotAvailable
     End Sub
 
-    Private Sub RunPCA()
+    Private Sub RunPCA(analysis As Type)
         If sampleinfo.IsNullOrEmpty Then
             Call Workbench.Warning("Please load sample peaktable data at first!")
             Return
@@ -231,7 +286,35 @@ Public Class frmMetabonomicsAnalysis
 
         InputDialog.Input(
             Sub(config)
+                RscriptProgressTask.RunComponentTask(matrixfile, sampleinfofile, config.ncomp, analysis)
 
+                Call ToolStripDropDownButton1.DropDownItems.Clear()
+                Call ToolStripDropDownButton1.DropDownItems.Add("view peaktable", My.Resources._42082,
+                     Sub()
+                         Call loadTable(Sub(table) Call LoadSampleData(table))
+                     End Sub)
+
+                Select Case analysis
+                    Case GetType(PLS)
+                        Dim dir As String = $"{workdir}/plsda"
+                    Case GetType(OPLS)
+                        Dim dir As String = $"{workdir}/opls"
+                    Case Else
+                        Dim dir As String = $"{workdir}/pca"
+                        Dim score As String = $"{dir}/pca_score.csv"
+                        Dim loading As String = $"{dir}/pca_loading.csv"
+
+                        ToolStripDropDownButton1.DropDownItems.Add("pca_score", My.Resources._1200px_Checked_svg,
+                            Sub()
+                                Dim score_data As DataSet() = DataSet.LoadDataSet(score).ToArray
+                                Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
+                            End Sub)
+                        ToolStripDropDownButton1.DropDownItems.Add("pca_loading", My.Resources._1200px_Checked_svg,
+                            Sub()
+                                Dim score_data As DataSet() = DataSet.LoadDataSet(loading).ToArray
+                                Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
+                            End Sub)
+                End Select
             End Sub, config:=New InputPCADialog().SetMaxComponent(sampleinfo.Length))
     End Sub
 End Class

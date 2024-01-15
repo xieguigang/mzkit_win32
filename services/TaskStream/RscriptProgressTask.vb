@@ -62,6 +62,7 @@ Imports System.Windows.Forms
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Mzkit_win32.BasicMDIForm
 
@@ -752,9 +753,13 @@ Public NotInheritable Class RscriptProgressTask
         Dim Rscript As String = RscriptPipelineTask.GetRScript(name)
         Dim cli As New StringBuilder(Rscript)
 
+        Call cli.AppendLine()
+
         For Each arg In args
             Call cli.AppendLine($"{arg.Key} ""{arg.Value}""")
         Next
+
+        Call cli.AppendLine($"--SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}")
 
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli.ToString, workdir:=RscriptPipelineTask.Root)
 
@@ -774,4 +779,24 @@ Public NotInheritable Class RscriptProgressTask
             title:=title, info:=desc
         )
     End Sub
+
+    Public Shared Function RunComponentTask(mat As String, sampleinfo As String, n As Integer, analysis As Type) As Boolean
+        Dim args As New Dictionary(Of String, String) From {
+            {"--matrix", mat},
+            {"--ncomp", n},
+            {"--sampleinfo", sampleinfo}
+        }
+
+        Select Case analysis
+            Case GetType(PLS)
+                Call RunRScriptPipeline("workbench/PLSDA.R", args, "Run PLS-DA analysis", "running pls-da analysis...")
+            Case GetType(OPLS)
+                Call RunRScriptPipeline("workbench/OPLSDA.R", args, "Run OPLS-DA analysis", "running opls-da analysis...")
+            Case Else
+                ' pca
+                Call RunRScriptPipeline("workbench/PCA.R", args, "Run PCA analysis", "running pca analysis...")
+        End Select
+
+        Return True
+    End Function
 End Class

@@ -4098,6 +4098,24 @@
         <Image MinDPI="192">Res/icons8-scatter-plot-96.bmp</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdWorkbenchFile" Id="275" LabelTitle="File" LabelDescription="File" TooltipTitle="File" TooltipDescription="File" />
+    <Command Name="cmdButtonOpenWorkspace" Id="276" LabelTitle="Open Workspace" LabelDescription="Open Workspace" TooltipTitle="Open Workspace" TooltipDescription="Open Workspace">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/folder-documents.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/folder-documents.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdLCMSVisualPanel" Id="277" LabelTitle="Visual" LabelDescription="Visual" TooltipTitle="Visual" TooltipDescription="Visual" />
+    <Command Name="cmdViewLCMSScatter" Id="278" LabelTitle="View Scatter" LabelDescription="View Scatter" TooltipTitle="View Scatter" TooltipDescription="View Scatter">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-particle-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-particle-96.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4462,10 +4480,17 @@
         </TabGroup>
         <TabGroup CommandName="cmdMetaboAnalysis">
           <Tab CommandName="cmdDataSummaryPanel">
+            <Group CommandName="cmdWorkbenchFile" SizeDefinition="TwoButtons">
+              <Button CommandName="cmdButtonOpenWorkspace" />
+              <Button CommandName="cmdButtonOpenTableTool" />
+            </Group>
             <Group CommandName="cmdDataSummaryGroup" SizeDefinition="ThreeButtons">
               <Button CommandName="cmdButtonPCA" />
               <Button CommandName="cmdButtonPLSDA" />
               <Button CommandName="cmdButtonOPLSDA" />
+            </Group>
+            <Group CommandName="cmdLCMSVisualPanel" SizeDefinition="OneButton">
+              <Button CommandName="cmdViewLCMSScatter" />
             </Group>
           </Tab>
         </TabGroup>

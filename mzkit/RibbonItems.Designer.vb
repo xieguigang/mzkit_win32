@@ -226,10 +226,14 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonViewerFullScreen As UInteger = 255
             Public Const cmdMetaboAnalysis As UInteger = 269
             Public Const cmdDataSummaryPanel As UInteger = 270
+            Public Const cmdWorkbenchFile As UInteger = 275
+            Public Const cmdButtonOpenWorkspace As UInteger = 276
             Public Const cmdDataSummaryGroup As UInteger = 271
             Public Const cmdButtonPCA As UInteger = 272
             Public Const cmdButtonPLSDA As UInteger = 273
             Public Const cmdButtonOPLSDA As UInteger = 274
+            Public Const cmdLCMSVisualPanel As UInteger = 277
+            Public Const cmdViewLCMSScatter As UInteger = 278
             Public Const cmdTabMain As UInteger = 1011
             Public Const cmdGroupFileActions As UInteger = 1045
             Public Const cmdTabGroupWindowTools As UInteger = 1023
@@ -1551,6 +1555,18 @@ Namespace RibbonLib.Controls
                 Return _DataSummaryPanel
             End Get
         End Property
+        Private _WorkbenchFile As RibbonGroup
+        Public ReadOnly Property WorkbenchFile As RibbonGroup
+            Get
+                Return _WorkbenchFile
+            End Get
+        End Property
+        Private _ButtonOpenWorkspace As RibbonButton
+        Public ReadOnly Property ButtonOpenWorkspace As RibbonButton
+            Get
+                Return _ButtonOpenWorkspace
+            End Get
+        End Property
         Private _DataSummaryGroup As RibbonGroup
         Public ReadOnly Property DataSummaryGroup As RibbonGroup
             Get
@@ -1573,6 +1589,18 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonOPLSDA As RibbonButton
             Get
                 Return _ButtonOPLSDA
+            End Get
+        End Property
+        Private _LCMSVisualPanel As RibbonGroup
+        Public ReadOnly Property LCMSVisualPanel As RibbonGroup
+            Get
+                Return _LCMSVisualPanel
+            End Get
+        End Property
+        Private _ViewLCMSScatter As RibbonButton
+        Public ReadOnly Property ViewLCMSScatter As RibbonButton
+            Get
+                Return _ViewLCMSScatter
             End Get
         End Property
         Private _TabMain As RibbonTab
@@ -2026,10 +2054,14 @@ Namespace RibbonLib.Controls
             _ButtonViewerFullScreen = New RibbonButton(_ribbon, Cmd.cmdButtonViewerFullScreen)
             _MetaboAnalysis = New RibbonTabGroup(_ribbon, Cmd.cmdMetaboAnalysis)
             _DataSummaryPanel = New RibbonTab(_ribbon, Cmd.cmdDataSummaryPanel)
+            _WorkbenchFile = New RibbonGroup(_ribbon, Cmd.cmdWorkbenchFile)
+            _ButtonOpenWorkspace = New RibbonButton(_ribbon, Cmd.cmdButtonOpenWorkspace)
             _DataSummaryGroup = New RibbonGroup(_ribbon, Cmd.cmdDataSummaryGroup)
             _ButtonPCA = New RibbonButton(_ribbon, Cmd.cmdButtonPCA)
             _ButtonPLSDA = New RibbonButton(_ribbon, Cmd.cmdButtonPLSDA)
             _ButtonOPLSDA = New RibbonButton(_ribbon, Cmd.cmdButtonOPLSDA)
+            _LCMSVisualPanel = New RibbonGroup(_ribbon, Cmd.cmdLCMSVisualPanel)
+            _ViewLCMSScatter = New RibbonButton(_ribbon, Cmd.cmdViewLCMSScatter)
             _TabMain = New RibbonTab(_ribbon, Cmd.cmdTabMain)
             _GroupFileActions = New RibbonGroup(_ribbon, Cmd.cmdGroupFileActions)
             _TabGroupWindowTools = New RibbonGroup(_ribbon, Cmd.cmdTabGroupWindowTools)

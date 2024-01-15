@@ -1,5 +1,6 @@
 require(GCModeller);
 
+imports "stats" from "Rlapack";
 #' the gene expression matrix data toolkit
 imports "geneExpression" from "phenotype_kit";
 
@@ -50,6 +51,6 @@ let pls.da = plsda(x = matrix, y = sampleinfo,
 
 str(pls.da);
 
-write.csv(pls.da$component, file = `${outputdir}/plsda_component.csv`);
-write.csv(pls.da$scoreMN, file = `${outputdir}/plsda_scoreMN.csv`);
-write.csv(pls.da$loadingMN, file = `${outputdir}/plsda_loadingMN.csv`);
+write.csv(pls.da$component, file = `${outputdir}/plsda/plsda_component.csv`);
+write.csv(pls.da$scoreMN, file = `${outputdir}/plsda/plsda_scoreMN.csv`);
+write.csv(pls.da$loadingMN, file = `${outputdir}/plsda/plsda_loadingMN.csv`);

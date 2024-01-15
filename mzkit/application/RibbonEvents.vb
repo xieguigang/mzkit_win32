@@ -199,6 +199,7 @@ Module RibbonEvents
         AddHandler ribbonItems.ButtonOpenTableTool.ExecuteEvent, Sub() Call OpenExcelTableFile2()
         AddHandler ribbonItems.OpenIonsLibrary.ExecuteEvent, Sub() Call openIonLibrary()
         AddHandler ribbonItems.ButtonOpenLCMSWorkbench.ExecuteEvent, Sub() Call openLCMSWorkbench()
+        AddHandler ribbonItems.ButtonOpenWorkspace.ExecuteEvent, Sub() Call openLCMSWorkspace()
 
         AddHandler ribbonItems.ButtonVenn.ExecuteEvent, Sub() Call VisualStudio.ShowDocument(Of frmVennTools)(title:="Venn Plot Tool")
         AddHandler ribbonItems.ButtonViewMRI.ExecuteEvent, Sub() Call openMRIRaster()
@@ -212,6 +213,16 @@ Module RibbonEvents
         ExportApis._openCFMIDTool = AddressOf OpenCFMIDTool
     End Sub
 
+    Public Sub openLCMSWorkspace()
+        Using folder As New FolderBrowserDialog
+            If folder.ShowDialog = DialogResult.OK Then
+                Dim page = VisualStudio.ShowDocument(Of frmMetabonomicsAnalysis)()
+                page.workdir = folder.SelectedPath
+                page.LoadWorkspace(folder.SelectedPath)
+            End If
+        End Using
+    End Sub
+
     Public Sub openLCMSWorkbench()
         Dim page = Workbench.AppHost.DockPanel.ActiveDocument
 
@@ -221,7 +232,9 @@ Module RibbonEvents
             Dim table As DataTable = dataset.Tables.Item(Scan0)
             Dim workbench As frmMetabonomicsAnalysis = VisualStudio.ShowDocument(Of frmMetabonomicsAnalysis)(DockState.Document)
 
-            Call workbench.LoadData(table)
+            Call workbench.LoadSampleData(table)
+        Else
+            ribbonItems.MetaboAnalysis.ContextAvailable = ContextAvailability.Active
         End If
     End Sub
 
