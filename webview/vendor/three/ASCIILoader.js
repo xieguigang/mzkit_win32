@@ -2,7 +2,7 @@ import { FileLoader, Loader, Matrix4, Vector3 } from "three";
 import * as fflate from "./fflate.module.js";
 import { Volume } from "./Volume.js";
 
-class ASCIILoader extends Loader {   
+class ASCIILoader extends Loader {
 
     constructor(manager) {
         super(manager);
@@ -67,12 +67,18 @@ class ASCIILoader extends Loader {
     parse(data, dims) {
         const volume = new Volume();
         const transitionMatrix = new Matrix4();
+        const spacingX = 1;
+        const spacingY = 1;
+        const spacingZ = 1;
+
+        volume.header = {};
 
         // get the image dimensions
         volume.dimensions = dims;
         volume.xLength = volume.dimensions[0];
         volume.yLength = volume.dimensions[1];
         volume.zLength = volume.dimensions[2];
+        volume.spacing = [spacingX, spacingY, spacingZ];
         volume.axisOrder = ["x", "y", "z"];
         // Create IJKtoRAS matrix
         volume.matrix = new Matrix4();
@@ -82,6 +88,20 @@ class ASCIILoader extends Loader {
 
         volume.inverseMatrix = new Matrix4();
         volume.inverseMatrix.copy(volume.matrix).invert();
+
+        // get the min and max intensities
+        const min_max = volume.computeMinMax();
+        const min = min_max[0];
+        const max = min_max[1];
+
+        // attach the scalar range to the volume
+        volume.windowLow = min;
+        volume.windowHigh = max;
+        volume.RASDimensions = [
+            Math.floor(volume.xLength * spacingX),
+            Math.floor(volume.yLength * spacingY),
+            Math.floor(volume.zLength * spacingZ),
+        ];
 
         return volume;
     }
