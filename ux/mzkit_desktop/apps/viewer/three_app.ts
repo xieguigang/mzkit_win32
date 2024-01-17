@@ -67,7 +67,7 @@ namespace apps.viewer {
             const h = 512; // frustum height
             const aspect = window.innerWidth / window.innerHeight;
             const camera = new THREE.OrthographicCamera(- h * aspect / 2, h * aspect / 2, h / 2, - h / 2, 1, 1000);
-            camera.position.set(- 64, - 64, 128);
+            camera.position.set(-64, -64, 128);
             camera.up.set(0, 0, 1); // In our data, z is up
 
             this.scene = scene;
@@ -77,10 +77,11 @@ namespace apps.viewer {
             // Create controls
             const controls = new window.OrbitControls(camera, renderer.domElement);
             controls.addEventListener('change', () => this.render());
-            controls.target.set(64, 64, 128);
+            controls.target.set(128, 128, 128);
             controls.minZoom = 0.5;
             controls.maxZoom = 4;
-            controls.enablePan = false;
+            controls.enablePan = true;
+            controls.screenSpacePanning = true;
             controls.update();
 
             // scene.add( new AxesHelper( 128 ) );

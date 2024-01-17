@@ -116,10 +116,11 @@ var apps;
                 // Create controls
                 var controls = new window.OrbitControls(camera, renderer.domElement);
                 controls.addEventListener('change', function () { return _this.render(); });
-                controls.target.set(64, 64, 128);
+                controls.target.set(128, 128, 128);
                 controls.minZoom = 0.5;
                 controls.maxZoom = 4;
-                controls.enablePan = false;
+                controls.enablePan = true;
+                controls.screenSpacePanning = true;
                 controls.update();
                 // scene.add( new AxesHelper( 128 ) );
                 // Lighting is baked into the shader a.t.m.
