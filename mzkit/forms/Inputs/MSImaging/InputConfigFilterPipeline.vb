@@ -73,9 +73,7 @@ Public Class InputConfigFilterPipeline
     End Sub
 
     Public Sub ConfigPipeline(filters As Scaler(), Optional flags As Boolean() = Nothing)
-        Dim fill_scalers As New List(Of Type) From {
-            GetType(DenoiseScaler), GetType(KNNScaler), GetType(TrIQScaler), GetType(SoftenScaler), GetType(LogScaler)
-        }
+        Dim fill_scalers As New List(Of Type)(Scaler.GetFilters)
 
         CheckedListBox1.Items.Clear()
 
