@@ -78,8 +78,8 @@ namespace apps.viewer {
             const controls = new window.OrbitControls(camera, renderer.domElement);
             controls.addEventListener('change', () => this.render());
             controls.target.set(128, 128, 128);
-            controls.minZoom = 0.5;
-            controls.maxZoom = 4;
+            controls.minZoom = 0.25;
+            controls.maxZoom = 5;
             controls.enablePan = true;
             controls.screenSpacePanning = true;
             controls.update();
@@ -90,7 +90,7 @@ namespace apps.viewer {
             // let dirLight = new DirectionalLight( 0xffffff );
 
             // The gui for interaction
-            const volconfig = { clim1: 0, clim2: 1, renderstyle: 'iso', isothreshold: 0.15, colormap: 'viridis' };
+            const volconfig = { clim1: 0, clim2: 1, renderstyle: 'iso', isothreshold: 0.15, colormap: 'jet' };
             const gui: GUI = new window.GUI();
 
             gui.add(volconfig, 'clim1', 0, 1, 0.01).onChange(() => this.updateUniforms());

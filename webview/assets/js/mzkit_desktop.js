@@ -117,8 +117,8 @@ var apps;
                 var controls = new window.OrbitControls(camera, renderer.domElement);
                 controls.addEventListener('change', function () { return _this.render(); });
                 controls.target.set(128, 128, 128);
-                controls.minZoom = 0.5;
-                controls.maxZoom = 4;
+                controls.minZoom = 0.25;
+                controls.maxZoom = 5;
                 controls.enablePan = true;
                 controls.screenSpacePanning = true;
                 controls.update();
@@ -126,7 +126,7 @@ var apps;
                 // Lighting is baked into the shader a.t.m.
                 // let dirLight = new DirectionalLight( 0xffffff );
                 // The gui for interaction
-                var volconfig = { clim1: 0, clim2: 1, renderstyle: 'iso', isothreshold: 0.15, colormap: 'viridis' };
+                var volconfig = { clim1: 0, clim2: 1, renderstyle: 'iso', isothreshold: 0.15, colormap: 'jet' };
                 var gui = new window.GUI();
                 gui.add(volconfig, 'clim1', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
                 gui.add(volconfig, 'clim2', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
