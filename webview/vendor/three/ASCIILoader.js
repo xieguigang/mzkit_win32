@@ -57,6 +57,23 @@ class ASCIILoader extends Loader {
     }
 
     /**
+     * @param {ArrayBuffer} data
+     * 
+     * @return {Float32Array}
+    */
+    toFloat32(data) {
+        const ints = new Uint8Array(data);
+        const length = ints.length;
+        const floats = new Float32Array(length);
+
+        for (var i = 0; i < length; i++) {
+            floats[i] = ints[i];
+        }
+
+        return floats;
+    }
+
+    /**
      * construct a volume object, and return it to the 3d engine
      * 
      * @param {ArrayBuffer} data the model data in bytes
@@ -72,9 +89,7 @@ class ASCIILoader extends Loader {
         const spacingZ = 1;
 
         volume.header = {};
-        volume.data = new Uint8Array(data);
-
-        console.log(data);
+        volume.data = this.toFloat32(data);
 
         // get the image dimensions
         volume.dimensions = dims;

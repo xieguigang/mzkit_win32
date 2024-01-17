@@ -428,3 +428,5 @@ setup/Setup Files/resource/Visual C++ Redistributable for Visual Studio 2013/vcr
 setup/Setup Files/resource/Visual C++ Redistributable for Visual Studio 2015-2022/VC_redist.x64.exe
 setup/Setup Files/installer.zip
 webview/assets/413.0958.nrrd
+webview/assets/demo_3dmaldi/data.dat
+webview/assets/demo_3dmaldi/dims.json
