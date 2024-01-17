@@ -161,10 +161,18 @@ Public Class InputConfigFilterPipeline
     End Sub
 
     Private Sub showTooltip(txt As String)
-        Label3.Text = txt
+        TextBox1.Text = txt
     End Sub
 
     Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
         showTooltip("The pixel intensity histogram")
+    End Sub
+
+    Private Sub CopyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyToolStripMenuItem.Click
+        If CheckedListBox1.SelectedItem Is Nothing Then
+            Return
+        End If
+
+        Call Clipboard.SetText(CheckedListBox1.SelectedItem.ToString)
     End Sub
 End Class
