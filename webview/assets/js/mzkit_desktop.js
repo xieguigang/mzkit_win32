@@ -134,8 +134,13 @@ var apps;
                 gui.add(volconfig, 'isothreshold', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
                 this.controls = controls;
                 this.volconfig = volconfig;
-                // Load the default model data ...
-                this.loadNrrdModel($ts("@data:default-maldi"));
+                if ($ts("@data:format") == "nrrd") {
+                    // Load the default model data ...
+                    this.loadNrrdModel($ts("@data:default-maldi"));
+                }
+                else {
+                    this.loadAsciiModel($ts("@data:default-maldi"));
+                }
                 window.addEventListener('resize', function () { return _this.onWindowResize(); });
             };
             /**
@@ -144,6 +149,10 @@ var apps;
             three_app.prototype.loadNrrdModel = function (path) {
                 var _this = this;
                 new window.NRRDLoader().load(path, function (volume) { return _this.loadVolumeModel(volume); });
+            };
+            three_app.prototype.loadAsciiModel = function (path) {
+                var _this = this;
+                new window.ASCIILoader().load(path, function (volume) { return _this.loadVolumeModel(volume); });
             };
             three_app.prototype.loadVolumeModel = function (volume) {
                 var _this = this;

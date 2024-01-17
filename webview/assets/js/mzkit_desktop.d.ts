@@ -31,6 +31,7 @@ declare namespace apps.viewer {
          * Load the data ...
         */
         loadNrrdModel(path: string): void;
+        loadAsciiModel(path: string): void;
         loadVolumeModel(volume: any): void;
         updateUniforms(): void;
         onWindowResize(): void;
