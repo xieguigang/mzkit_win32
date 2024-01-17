@@ -11,7 +11,7 @@ Public Class SpectrumViewer
     Dim mzscale As d3js.scale.LinearScale
     Dim intensityscale As d3js.scale.LinearScale
 
-    Dim mz_index As BlockSearchFunction(Of (mz As Double, Integer))
+    Dim mz_index As MzPool
     Dim mz_range As DoubleRange
     Dim into_range As DoubleRange
 
@@ -23,7 +23,7 @@ Public Class SpectrumViewer
         highlights = -1
         mz_range = spectrum.Select(Function(m) m.mz).Range
         into_range = spectrum.Select(Function(m) m.intensity).Range
-        mz_index = spectrum.CreateMzIndex()
+        mz_index = New MzPool(spectrum)
 
         Call Scaling()
         Call Rendering()

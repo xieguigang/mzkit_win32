@@ -559,7 +559,7 @@ Module BackgroundTask
         Dim d As Integer = rawdata.Length / 50
         Dim p As i32 = Scan0
         Dim t0 As Date = Now
-        Dim index = allMz.CreateMzIndex(win_size:=index_win)
+        Dim index As New MzPool(allMz, win_size:=index_win)
         Dim len As Integer = allMz.Length
 
         For Each pixel As T In rawdata
