@@ -72,6 +72,9 @@ class ASCIILoader extends Loader {
         const spacingZ = 1;
 
         volume.header = {};
+        volume.data = new Uint8Array(data);
+
+        console.log(data);
 
         // get the image dimensions
         volume.dimensions = dims;
@@ -102,6 +105,8 @@ class ASCIILoader extends Loader {
             Math.floor(volume.yLength * spacingY),
             Math.floor(volume.zLength * spacingZ),
         ];
+
+        console.log(volume);
 
         return volume;
     }
