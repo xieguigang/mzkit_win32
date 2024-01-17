@@ -7,6 +7,7 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<meta name="app" content="three-3d">
 	<meta name="data:default-maldi" content="assets/stent.nrrd">
+	<meta name="data:format" content="nrrd">
 
 	<link type="text/css" rel="stylesheet" href="css/3d-maldi.css">
 
@@ -25,6 +26,7 @@
 		import { GUI } from 'three/addons/lil-gui.module.min.js';
 		import { OrbitControls } from 'three/addons/OrbitControls.js';
 		import { NRRDLoader } from 'three/addons/NRRDLoader.js';
+		import { ASCIILoader } from 'three/addons/ASCIILoader.js';
 		import { VolumeRenderShader1 } from 'three/addons/VolumeShader.js';
 		import WebGL from 'three/addons/WebGL.js';
 
@@ -35,6 +37,7 @@
 			window.OrbitControls = OrbitControls;
 			window.GUI = GUI;
 			window.NRRDLoader = NRRDLoader;
+			window.ASCIILoader = ASCIILoader;
 			window.VolumeRenderShader1 = VolumeRenderShader1;
 			window.WebGL = WebGL;
 		}

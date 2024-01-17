@@ -100,8 +100,13 @@ namespace apps.viewer {
 
             this.controls = controls;
             this.volconfig = volconfig;
-            // Load the default model data ...
-            this.loadNrrdModel(<any>$ts("@data:default-maldi"));
+
+            if (<any>$ts("@data:format") == "nrrd") {
+                // Load the default model data ...
+                this.loadNrrdModel(<any>$ts("@data:default-maldi"));
+            } else {
+                this.loadAsciiModel(<any>$ts("@data:default-maldi"));
+            }
 
             window.addEventListener('resize', () => this.onWindowResize());
         }
@@ -111,6 +116,10 @@ namespace apps.viewer {
         */
         public loadNrrdModel(path: string) {
             new window.NRRDLoader().load(path, volume => this.loadVolumeModel(volume));
+        }
+
+        public loadAsciiModel(path: string) {
+            new window.ASCIILoader().load(path, volume => this.loadVolumeModel(volume));
         }
 
         public loadVolumeModel(volume) {
