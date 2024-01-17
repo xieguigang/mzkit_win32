@@ -67,7 +67,7 @@ class ASCIILoader extends Loader {
         const floats = new Float32Array(length);
 
         for (var i = 0; i < length; i++) {
-            floats[i] = ints[i];
+            floats[i] = parseInt(ints[i].toString(10)) / 255;
         }
 
         return floats;
