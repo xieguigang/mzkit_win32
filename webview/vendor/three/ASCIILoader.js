@@ -18,7 +18,7 @@ class ASCIILoader extends Loader {
         // the data header just contains the dimension size of [x,y,z]
         // the data bytes just contains the intensity value encoded in
         // bytes, each byte is a spot intensity value
-        const header_url = `${url}/header.json`;
+        const header_url = `${url}/dims.json`;
         const data_url = `${url}/data.dat`;
 
         $ts.getText(header_url, function (json) {
