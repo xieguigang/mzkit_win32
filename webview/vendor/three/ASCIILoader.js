@@ -2,7 +2,8 @@ import { FileLoader, Loader, Matrix4, Vector3 } from "three";
 import * as fflate from "./fflate.module.js";
 import { Volume } from "./Volume.js";
 
-class ASCIILoader extends Loader {
+class ASCIILoader extends Loader {   
+
     constructor(manager) {
         super(manager);
     }
@@ -30,7 +31,7 @@ class ASCIILoader extends Loader {
             loader.setWithCredentials(scope.withCredentials);
             loader.load(data_url, function (data) {
                 try {
-                    onLoad(scope.parse(data));
+                    onLoad(scope.parse(data, dims));
                 } catch (e) {
                     if (onError) {
                         onError(e);
@@ -55,8 +56,34 @@ class ASCIILoader extends Loader {
         this.segmentation = segmentation;
     }
 
-    parse(data) {
+    /**
+     * construct a volume object, and return it to the 3d engine
+     * 
+     * @param {ArrayBuffer} data the model data in bytes
+     * @param {number[]} dims the model dimension value, in axis order [x,y,z]
+     * 
+     * @returns {Volume} the 3d model data
+    */
+    parse(data, dims) {
+        const volume = new Volume();
+        const transitionMatrix = new Matrix4();
 
+        // get the image dimensions
+        volume.dimensions = dims;
+        volume.xLength = volume.dimensions[0];
+        volume.yLength = volume.dimensions[1];
+        volume.zLength = volume.dimensions[2];
+        volume.axisOrder = ["x", "y", "z"];
+        // Create IJKtoRAS matrix
+        volume.matrix = new Matrix4();
+        volume.matrix.set(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+
+        transitionMatrix.set(-1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+
+        volume.inverseMatrix = new Matrix4();
+        volume.inverseMatrix.copy(volume.matrix).invert();
+
+        return volume;
     }
 }
 
