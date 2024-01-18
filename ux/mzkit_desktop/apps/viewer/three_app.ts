@@ -7,11 +7,17 @@ namespace apps.viewer {
     export interface OrbitControls { }
 
     export interface GUI {
-        add(volconfig: volconfig, arg1: string, arg2: any, arg3?: any, arg4?: any): any;
+        add(volconfig: volconfig, name: string, arg2?: any, arg3?: any, arg4?: any): any;
     }
 
     export interface volconfig {
-        clim1: number; clim2: number; renderstyle: string; isothreshold: number; colormap: string;
+        clim1: number; clim2: number;
+        renderstyle: string;
+        isothreshold: number;
+        colormap: string;
+        clipIntersection: boolean;
+        planeConstant: number;
+        showHelpers: boolean;
     }
 
     export interface NRRDLoader { }
@@ -89,15 +95,27 @@ namespace apps.viewer {
             // Lighting is baked into the shader a.t.m.
             // let dirLight = new DirectionalLight( 0xffffff );
 
-            // The gui for interaction
-            const volconfig = { clim1: 0, clim2: 1, renderstyle: 'iso', isothreshold: 0.15, colormap: 'jet' };
             const gui: GUI = new window.GUI();
+            // The gui for interaction
+            // parameter object
+            const volconfig: volconfig = {
+                clim1: 0, clim2: 1, renderstyle: 'iso', isothreshold: 0.15,
+                colormap: 'jet',
+                clipIntersection: true,
+                planeConstant: 0,
+                showHelpers: false
+            };
 
             gui.add(volconfig, 'clim1', 0, 1, 0.01).onChange(() => this.updateUniforms());
             gui.add(volconfig, 'clim2', 0, 1, 0.01).onChange(() => this.updateUniforms());
             gui.add(volconfig, 'colormap', cm_names()).onChange(() => this.updateUniforms());
             gui.add(volconfig, 'renderstyle', { mip: 'mip', iso: 'iso' }).onChange(() => this.updateUniforms());
             gui.add(volconfig, 'isothreshold', 0, 1, 0.01).onChange(() => this.updateUniforms());
+
+            // webgl_clipping_intersection
+            gui.add(volconfig, 'clipIntersection').onChange(() => this.updateUniforms());
+            gui.add(volconfig, 'planeConstant', -1, 1, 0.01).onChange(() => this.updateUniforms());
+            gui.add(volconfig, 'showHelpers').onChange(() => this.updateUniforms());
 
             this.controls = controls;
             this.volconfig = volconfig;

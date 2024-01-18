@@ -125,14 +125,25 @@ var apps;
                 // scene.add( new AxesHelper( 128 ) );
                 // Lighting is baked into the shader a.t.m.
                 // let dirLight = new DirectionalLight( 0xffffff );
-                // The gui for interaction
-                var volconfig = { clim1: 0, clim2: 1, renderstyle: 'iso', isothreshold: 0.15, colormap: 'jet' };
                 var gui = new window.GUI();
+                // The gui for interaction
+                // parameter object
+                var volconfig = {
+                    clim1: 0, clim2: 1, renderstyle: 'iso', isothreshold: 0.15,
+                    colormap: 'jet',
+                    clipIntersection: true,
+                    planeConstant: 0,
+                    showHelpers: false
+                };
                 gui.add(volconfig, 'clim1', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
                 gui.add(volconfig, 'clim2', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
                 gui.add(volconfig, 'colormap', cm_names()).onChange(function () { return _this.updateUniforms(); });
                 gui.add(volconfig, 'renderstyle', { mip: 'mip', iso: 'iso' }).onChange(function () { return _this.updateUniforms(); });
                 gui.add(volconfig, 'isothreshold', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
+                // webgl_clipping_intersection
+                gui.add(volconfig, 'clipIntersection').onChange(function () { return _this.updateUniforms(); });
+                gui.add(volconfig, 'planeConstant', -1, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
+                gui.add(volconfig, 'showHelpers').onChange(function () { return _this.updateUniforms(); });
                 this.controls = controls;
                 this.volconfig = volconfig;
                 if ($ts("@data:format") == "nrrd") {

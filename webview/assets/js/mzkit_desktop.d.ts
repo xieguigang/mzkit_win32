@@ -4,7 +4,7 @@ declare namespace apps.viewer {
     interface OrbitControls {
     }
     interface GUI {
-        add(volconfig: volconfig, arg1: string, arg2: any, arg3?: any, arg4?: any): any;
+        add(volconfig: volconfig, name: string, arg2?: any, arg3?: any, arg4?: any): any;
     }
     interface volconfig {
         clim1: number;
@@ -12,6 +12,9 @@ declare namespace apps.viewer {
         renderstyle: string;
         isothreshold: number;
         colormap: string;
+        clipIntersection: boolean;
+        planeConstant: number;
+        showHelpers: boolean;
     }
     interface NRRDLoader {
     }
