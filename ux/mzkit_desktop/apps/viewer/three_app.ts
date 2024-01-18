@@ -12,6 +12,7 @@ namespace apps.viewer {
 
     export interface volconfig {
         clim1: number; clim2: number; renderstyle: string; isothreshold: number; colormap: string;
+        enableDamping: boolean;
     }
 
     export interface NRRDLoader { }
@@ -56,9 +57,10 @@ namespace apps.viewer {
             const scene = new THREE.Scene();
 
             // Create renderer
-            const renderer = new THREE.WebGLRenderer();
+            const renderer = new THREE.WebGLRenderer({ antialias: false });
             renderer.setPixelRatio(window.devicePixelRatio);
             renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.localClippingEnabled = false;
 
             document.body.appendChild(renderer.domElement);
             console.log(renderer);
@@ -85,6 +87,7 @@ namespace apps.viewer {
             controls.maxZoom = 5;
             controls.enablePan = true;
             controls.screenSpacePanning = true;
+            controls.enableDamping = false;
             controls.update();
 
             // scene.add( new AxesHelper( 128 ) );
@@ -95,7 +98,8 @@ namespace apps.viewer {
             // The gui for interaction
             const volconfig = {
                 clim1: 0, clim2: 1, renderstyle: 'iso', isothreshold: 0.15, colormap: 'jet',
-                left: camera.left, right: camera.right, top: camera.top, bottom: camera.bottom
+                left: camera.left, right: camera.right, top: camera.top, bottom: camera.bottom,
+                enableDamping: controls.enableDamping
             };
             const gui: GUI = new window.GUI();
 
@@ -104,6 +108,10 @@ namespace apps.viewer {
             gui.add(volconfig, 'colormap', cm_names()).onChange(() => this.updateUniforms());
             gui.add(volconfig, 'renderstyle', { mip: 'mip', iso: 'iso' }).onChange(() => this.updateUniforms());
             gui.add(volconfig, 'isothreshold', 0, 1, 0.01).onChange(() => this.updateUniforms());
+            gui.add(volconfig, 'enableDamping').onChange(function (value) {
+                controls.enableDamping = value;
+                controls.update();
+            });
 
             this.controls = controls;
             this.volconfig = volconfig;

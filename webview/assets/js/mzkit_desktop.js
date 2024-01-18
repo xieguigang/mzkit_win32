@@ -99,9 +99,10 @@ var apps;
                 var _this = this;
                 var scene = new THREE.Scene();
                 // Create renderer
-                var renderer = new THREE.WebGLRenderer();
+                var renderer = new THREE.WebGLRenderer({ antialias: false });
                 renderer.setPixelRatio(window.devicePixelRatio);
                 renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.localClippingEnabled = false;
                 document.body.appendChild(renderer.domElement);
                 console.log(renderer);
                 // Create camera (The volume renderer does not work very well with perspective yet)
@@ -123,6 +124,7 @@ var apps;
                 controls.maxZoom = 5;
                 controls.enablePan = true;
                 controls.screenSpacePanning = true;
+                controls.enableDamping = false;
                 controls.update();
                 // scene.add( new AxesHelper( 128 ) );
                 // Lighting is baked into the shader a.t.m.
@@ -130,7 +132,8 @@ var apps;
                 // The gui for interaction
                 var volconfig = {
                     clim1: 0, clim2: 1, renderstyle: 'iso', isothreshold: 0.15, colormap: 'jet',
-                    left: camera.left, right: camera.right, top: camera.top, bottom: camera.bottom
+                    left: camera.left, right: camera.right, top: camera.top, bottom: camera.bottom,
+                    enableDamping: controls.enableDamping
                 };
                 var gui = new window.GUI();
                 gui.add(volconfig, 'clim1', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
@@ -138,6 +141,10 @@ var apps;
                 gui.add(volconfig, 'colormap', cm_names()).onChange(function () { return _this.updateUniforms(); });
                 gui.add(volconfig, 'renderstyle', { mip: 'mip', iso: 'iso' }).onChange(function () { return _this.updateUniforms(); });
                 gui.add(volconfig, 'isothreshold', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
+                gui.add(volconfig, 'enableDamping').onChange(function (value) {
+                    controls.enableDamping = value;
+                    controls.update();
+                });
                 this.controls = controls;
                 this.volconfig = volconfig;
                 if ($ts("@data:format") == "nrrd") {

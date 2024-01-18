@@ -12,6 +12,7 @@ declare namespace apps.viewer {
         renderstyle: string;
         isothreshold: number;
         colormap: string;
+        enableDamping: boolean;
     }
     interface NRRDLoader {
     }
