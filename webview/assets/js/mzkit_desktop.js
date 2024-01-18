@@ -98,10 +98,16 @@ var apps;
             three_app.prototype.init = function () {
                 var _this = this;
                 var scene = new THREE.Scene();
+                var clipPlanes = [
+                    new THREE.Plane(new THREE.Vector3(1, 0, 0), 0),
+                    new THREE.Plane(new THREE.Vector3(0, -1, 0), 0),
+                    new THREE.Plane(new THREE.Vector3(0, 0, -1), 0)
+                ];
                 // Create renderer
-                var renderer = new THREE.WebGLRenderer();
+                var renderer = new THREE.WebGLRenderer({ antialias: false });
                 renderer.setPixelRatio(window.devicePixelRatio);
                 renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.localClippingEnabled = true;
                 document.body.appendChild(renderer.domElement);
                 console.log(renderer);
                 // Create camera (The volume renderer does not work very well with perspective yet)
@@ -113,18 +119,32 @@ var apps;
                 this.scene = scene;
                 this.renderer = renderer;
                 this.camera = camera;
+                this.clipPlanes = clipPlanes;
                 // Create controls
                 var controls = new window.OrbitControls(camera, renderer.domElement);
+                // use only if there is no animation loop
                 controls.addEventListener('change', function () { return _this.render(); });
                 controls.target.set(128, 128, 128);
                 controls.minZoom = 0.25;
                 controls.maxZoom = 5;
+                // controls.minDistance = 1;
+                // controls.maxDistance = 10;
                 controls.enablePan = true;
                 controls.screenSpacePanning = true;
                 controls.update();
+                // const light = new THREE.HemisphereLight(0xffffff, 0x080808, 4.5);
+                // light.position.set(- 1.25, 1, 1.25);
+                // scene.add(light);
                 // scene.add( new AxesHelper( 128 ) );
                 // Lighting is baked into the shader a.t.m.
                 // let dirLight = new DirectionalLight( 0xffffff );
+                // helpers
+                var helpers = new THREE.Group();
+                helpers.add(new THREE.PlaneHelper(clipPlanes[0], 2, 0xff0000));
+                helpers.add(new THREE.PlaneHelper(clipPlanes[1], 2, 0x00ff00));
+                helpers.add(new THREE.PlaneHelper(clipPlanes[2], 2, 0x0000ff));
+                helpers.visible = false;
+                scene.add(helpers);
                 var gui = new window.GUI();
                 // The gui for interaction
                 // parameter object
@@ -146,6 +166,7 @@ var apps;
                 gui.add(volconfig, 'showHelpers').onChange(function () { return _this.updateUniforms(); });
                 this.controls = controls;
                 this.volconfig = volconfig;
+                this.helpers = helpers;
                 if ($ts("@data:format") == "nrrd") {
                     // Load the default model data ...
                     this.loadNrrdModel($ts("@data:default-maldi"));
@@ -196,13 +217,16 @@ var apps;
                     uniforms: uniforms,
                     vertexShader: shader.vertexShader,
                     fragmentShader: shader.fragmentShader,
-                    side: THREE.BackSide // The volume shader uses the backface as its "reference point"
+                    side: THREE.BackSide, // The volume shader uses the backface as its "reference point"
+                    clippingPlanes: this.clipPlanes,
+                    clipIntersection: volconfig.clipIntersection
                 });
                 // THREE.Mesh
                 var geometry = new THREE.BoxGeometry(volume.xLength, volume.yLength, volume.zLength);
                 geometry.translate(volume.xLength / 2 - 0.5, volume.yLength / 2 - 0.5, volume.zLength / 2 - 0.5);
                 var mesh = new THREE.Mesh(geometry, this.material);
                 this.scene.add(mesh);
+                this.model = mesh;
                 this.render();
             };
             three_app.prototype.updateUniforms = function () {
@@ -212,7 +236,22 @@ var apps;
                 material.uniforms['u_renderstyle'].value = volconfig.renderstyle == 'mip' ? 0 : 1; // 0: MIP, 1: ISO
                 material.uniforms['u_renderthreshold'].value = volconfig.isothreshold; // For ISO renderstyle
                 material.uniforms['u_cmdata'].value = this.cmtextures[volconfig.colormap];
+                this.update_clipIntersection(volconfig.clipIntersection);
+                this.update_planeConstant(volconfig.planeConstant);
+                this.update_showHelpers(volconfig.showHelpers);
                 this.render();
+            };
+            three_app.prototype.update_showHelpers = function (value) {
+                this.helpers.visible = value;
+            };
+            three_app.prototype.update_planeConstant = function (value) {
+                var clipPlanes = this.clipPlanes;
+                for (var j = 0; j < clipPlanes.length; j++) {
+                    clipPlanes[j].constant = value;
+                }
+            };
+            three_app.prototype.update_clipIntersection = function (value) {
+                this.model.material.clipIntersection = value;
             };
             three_app.prototype.onWindowResize = function () {
                 this.renderer.setSize(window.innerWidth, window.innerHeight);

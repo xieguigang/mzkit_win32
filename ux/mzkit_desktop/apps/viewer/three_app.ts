@@ -53,6 +53,9 @@ namespace apps.viewer {
         public material: THREE.ShaderMaterial;
         public volconfig: volconfig;
         public cmtextures;
+        public clipPlanes: THREE.Plane[];
+        public model: THREE.Mesh;
+        public helpers: THREE.Group;
 
         public get appName(): string {
             return "three-3d";
@@ -60,11 +63,17 @@ namespace apps.viewer {
 
         protected init(): void {
             const scene = new THREE.Scene();
+            const clipPlanes: THREE.Plane[] = [
+                new THREE.Plane(new THREE.Vector3(1, 0, 0), 0),
+                new THREE.Plane(new THREE.Vector3(0, - 1, 0), 0),
+                new THREE.Plane(new THREE.Vector3(0, 0, - 1), 0)
+            ];
 
             // Create renderer
-            const renderer = new THREE.WebGLRenderer();
+            const renderer = new THREE.WebGLRenderer({ antialias: false });
             renderer.setPixelRatio(window.devicePixelRatio);
             renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.localClippingEnabled = true;
 
             document.body.appendChild(renderer.domElement);
             console.log(renderer);
@@ -79,21 +88,38 @@ namespace apps.viewer {
             this.scene = scene;
             this.renderer = renderer;
             this.camera = camera;
+            this.clipPlanes = clipPlanes;
 
             // Create controls
             const controls = new window.OrbitControls(camera, renderer.domElement);
+            // use only if there is no animation loop
             controls.addEventListener('change', () => this.render());
             controls.target.set(128, 128, 128);
             controls.minZoom = 0.25;
             controls.maxZoom = 5;
+            // controls.minDistance = 1;
+            // controls.maxDistance = 10;
             controls.enablePan = true;
             controls.screenSpacePanning = true;
             controls.update();
+
+            // const light = new THREE.HemisphereLight(0xffffff, 0x080808, 4.5);
+            // light.position.set(- 1.25, 1, 1.25);
+            // scene.add(light);
 
             // scene.add( new AxesHelper( 128 ) );
 
             // Lighting is baked into the shader a.t.m.
             // let dirLight = new DirectionalLight( 0xffffff );
+
+            // helpers
+
+            const helpers = new THREE.Group();
+            helpers.add(new THREE.PlaneHelper(clipPlanes[0], 2, 0xff0000));
+            helpers.add(new THREE.PlaneHelper(clipPlanes[1], 2, 0x00ff00));
+            helpers.add(new THREE.PlaneHelper(clipPlanes[2], 2, 0x0000ff));
+            helpers.visible = false;
+            scene.add(helpers);
 
             const gui: GUI = new window.GUI();
             // The gui for interaction
@@ -119,6 +145,7 @@ namespace apps.viewer {
 
             this.controls = controls;
             this.volconfig = volconfig;
+            this.helpers = helpers;
 
             if (<any>$ts("@data:format") == "nrrd") {
                 // Load the default model data ...
@@ -175,15 +202,23 @@ namespace apps.viewer {
                 uniforms: uniforms,
                 vertexShader: shader.vertexShader,
                 fragmentShader: shader.fragmentShader,
-                side: THREE.BackSide // The volume shader uses the backface as its "reference point"
+                side: THREE.BackSide, // The volume shader uses the backface as its "reference point"
+                clippingPlanes: this.clipPlanes,
+                clipIntersection: volconfig.clipIntersection
             });
 
             // THREE.Mesh
             const geometry = new THREE.BoxGeometry(volume.xLength, volume.yLength, volume.zLength);
-            geometry.translate(volume.xLength / 2 - 0.5, volume.yLength / 2 - 0.5, volume.zLength / 2 - 0.5);
+            geometry.translate(
+                volume.xLength / 2 - 0.5,
+                volume.yLength / 2 - 0.5,
+                volume.zLength / 2 - 0.5
+            );
 
             const mesh = new THREE.Mesh(geometry, this.material);
+
             this.scene.add(mesh);
+            this.model = mesh;
 
             this.render();
         }
@@ -197,7 +232,27 @@ namespace apps.viewer {
             material.uniforms['u_renderthreshold'].value = volconfig.isothreshold; // For ISO renderstyle
             material.uniforms['u_cmdata'].value = this.cmtextures[volconfig.colormap];
 
+            this.update_clipIntersection(volconfig.clipIntersection);
+            this.update_planeConstant(volconfig.planeConstant);
+            this.update_showHelpers(volconfig.showHelpers);
+
             this.render();
+        }
+
+        update_showHelpers(value: boolean) {
+            this.helpers.visible = value;
+        }
+
+        update_planeConstant(value: number) {
+            const clipPlanes = this.clipPlanes;
+
+            for (let j = 0; j < clipPlanes.length; j++) {
+                clipPlanes[j].constant = value;
+            }
+        }
+
+        update_clipIntersection(value: boolean) {
+            this.model.material.clipIntersection = value;
         }
 
         onWindowResize() {

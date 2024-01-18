@@ -28,6 +28,9 @@ declare namespace apps.viewer {
         material: THREE.ShaderMaterial;
         volconfig: volconfig;
         cmtextures: any;
+        clipPlanes: THREE.Plane[];
+        model: THREE.Mesh;
+        helpers: THREE.Group;
         get appName(): string;
         protected init(): void;
         /**
@@ -37,6 +40,9 @@ declare namespace apps.viewer {
         loadAsciiModel(path: string): void;
         loadVolumeModel(volume: any): void;
         updateUniforms(): void;
+        update_showHelpers(value: boolean): void;
+        update_planeConstant(value: number): void;
+        update_clipIntersection(value: boolean): void;
         onWindowResize(): void;
         render(): void;
     }
