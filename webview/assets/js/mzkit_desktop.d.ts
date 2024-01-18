@@ -26,6 +26,8 @@ declare namespace apps.viewer {
         material: THREE.ShaderMaterial;
         volconfig: volconfig;
         cmtextures: any;
+        planeA: THREE.Plane;
+        planeB: THREE.Plane;
         get appName(): string;
         protected init(): void;
         /**

@@ -98,11 +98,14 @@ var apps;
             three_app.prototype.init = function () {
                 var _this = this;
                 var scene = new THREE.Scene();
+                this.planeA = new THREE.Plane(new THREE.Vector3(1, 0, 0), -32);
+                this.planeB = new THREE.Plane(new THREE.Vector3(0, -1, 0), -32);
                 // Create renderer
                 var renderer = new THREE.WebGLRenderer({ antialias: false });
                 renderer.setPixelRatio(window.devicePixelRatio);
                 renderer.setSize(window.innerWidth, window.innerHeight);
                 renderer.localClippingEnabled = false;
+                renderer.clippingPlanes = [this.planeA, this.planeB];
                 document.body.appendChild(renderer.domElement);
                 console.log(renderer);
                 // Create camera (The volume renderer does not work very well with perspective yet)
