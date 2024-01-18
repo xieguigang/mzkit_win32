@@ -12,6 +12,10 @@ declare namespace apps.viewer {
         renderstyle: string;
         isothreshold: number;
         colormap: string;
+        left: number;
+        right: number;
+        top: number;
+        bottom: number;
     }
     interface NRRDLoader {
     }
@@ -34,6 +38,7 @@ declare namespace apps.viewer {
         loadAsciiModel(path: string): void;
         loadVolumeModel(volume: any): void;
         updateUniforms(): void;
+        updateCameraManual(): void;
         onWindowResize(): void;
         render(): void;
     }

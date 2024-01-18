@@ -107,9 +107,11 @@ var apps;
                 // Create camera (The volume renderer does not work very well with perspective yet)
                 var h = 512; // frustum height
                 var aspect = window.innerWidth / window.innerHeight;
-                var camera = new THREE.OrthographicCamera(-h * aspect / 2, h * aspect / 2, h / 2, -h / 2, 1, 1000);
+                var left_1 = h * aspect / 2;
+                var camera = new THREE.OrthographicCamera(-left_1, left_1, h / 2, -h / 2, 1, 1000);
                 camera.position.set(-64, -64, 128);
                 camera.up.set(0, 0, 1); // In our data, z is up
+                console.log(camera);
                 this.scene = scene;
                 this.renderer = renderer;
                 this.camera = camera;
@@ -126,13 +128,18 @@ var apps;
                 // Lighting is baked into the shader a.t.m.
                 // let dirLight = new DirectionalLight( 0xffffff );
                 // The gui for interaction
-                var volconfig = { clim1: 0, clim2: 1, renderstyle: 'iso', isothreshold: 0.15, colormap: 'jet' };
+                var volconfig = {
+                    clim1: 0, clim2: 1, renderstyle: 'iso', isothreshold: 0.15, colormap: 'jet',
+                    left: camera.left, right: camera.right, top: camera.top, bottom: camera.bottom
+                };
                 var gui = new window.GUI();
                 gui.add(volconfig, 'clim1', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
                 gui.add(volconfig, 'clim2', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
                 gui.add(volconfig, 'colormap', cm_names()).onChange(function () { return _this.updateUniforms(); });
                 gui.add(volconfig, 'renderstyle', { mip: 'mip', iso: 'iso' }).onChange(function () { return _this.updateUniforms(); });
                 gui.add(volconfig, 'isothreshold', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
+                gui.add(volconfig, "left", -left_1, left_1, 1).onChange(function () { return _this.updateCameraManual(); });
+                gui.add(volconfig, "bottom", -h / 2, h / 2, 1).onChange(function () { return _this.updateCameraManual(); });
                 this.controls = controls;
                 this.volconfig = volconfig;
                 if ($ts("@data:format") == "nrrd") {
@@ -201,6 +208,16 @@ var apps;
                 material.uniforms['u_renderstyle'].value = volconfig.renderstyle == 'mip' ? 0 : 1; // 0: MIP, 1: ISO
                 material.uniforms['u_renderthreshold'].value = volconfig.isothreshold; // For ISO renderstyle
                 material.uniforms['u_cmdata'].value = this.cmtextures[volconfig.colormap];
+                this.render();
+            };
+            three_app.prototype.updateCameraManual = function () {
+                var camera = this.camera;
+                var config = this.volconfig;
+                camera.left = config.left;
+                camera.right = config.right;
+                camera.top = config.top;
+                camera.bottom = config.bottom;
+                camera.updateProjectionMatrix();
                 this.render();
             };
             three_app.prototype.onWindowResize = function () {

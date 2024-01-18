@@ -12,6 +12,10 @@ namespace apps.viewer {
 
     export interface volconfig {
         clim1: number; clim2: number; renderstyle: string; isothreshold: number; colormap: string;
+        left: number;
+        right: number;
+        top: number;
+        bottom: number;
     }
 
     export interface NRRDLoader { }
@@ -66,9 +70,12 @@ namespace apps.viewer {
             // Create camera (The volume renderer does not work very well with perspective yet)
             const h = 512; // frustum height
             const aspect = window.innerWidth / window.innerHeight;
-            const camera = new THREE.OrthographicCamera(- h * aspect / 2, h * aspect / 2, h / 2, - h / 2, 1, 1000);
+            const left_1 = h * aspect / 2;
+            const camera = new THREE.OrthographicCamera(- left_1, left_1, h / 2, - h / 2, 1, 1000);
             camera.position.set(-64, -64, 128);
             camera.up.set(0, 0, 1); // In our data, z is up
+
+            console.log(camera);
 
             this.scene = scene;
             this.renderer = renderer;
@@ -90,7 +97,10 @@ namespace apps.viewer {
             // let dirLight = new DirectionalLight( 0xffffff );
 
             // The gui for interaction
-            const volconfig = { clim1: 0, clim2: 1, renderstyle: 'iso', isothreshold: 0.15, colormap: 'jet' };
+            const volconfig = {
+                clim1: 0, clim2: 1, renderstyle: 'iso', isothreshold: 0.15, colormap: 'jet',
+                left: camera.left, right: camera.right, top: camera.top, bottom: camera.bottom
+            };
             const gui: GUI = new window.GUI();
 
             gui.add(volconfig, 'clim1', 0, 1, 0.01).onChange(() => this.updateUniforms());
@@ -98,6 +108,9 @@ namespace apps.viewer {
             gui.add(volconfig, 'colormap', cm_names()).onChange(() => this.updateUniforms());
             gui.add(volconfig, 'renderstyle', { mip: 'mip', iso: 'iso' }).onChange(() => this.updateUniforms());
             gui.add(volconfig, 'isothreshold', 0, 1, 0.01).onChange(() => this.updateUniforms());
+
+            gui.add(volconfig, "left", -left_1, left_1, 1).onChange(() => this.updateCameraManual());
+            gui.add(volconfig, "bottom", -h / 2, h / 2, 1).onChange(() => this.updateCameraManual());
 
             this.controls = controls;
             this.volconfig = volconfig;
@@ -178,6 +191,19 @@ namespace apps.viewer {
             material.uniforms['u_renderstyle'].value = volconfig.renderstyle == 'mip' ? 0 : 1; // 0: MIP, 1: ISO
             material.uniforms['u_renderthreshold'].value = volconfig.isothreshold; // For ISO renderstyle
             material.uniforms['u_cmdata'].value = this.cmtextures[volconfig.colormap];
+
+            this.render();
+        }
+
+        updateCameraManual() {
+            const camera = this.camera;
+            const config = this.volconfig;
+
+            camera.left = config.left;
+            camera.right = config.right;
+            camera.top = config.top;
+            camera.bottom = config.bottom;
+            camera.updateProjectionMatrix();
 
             this.render();
         }
