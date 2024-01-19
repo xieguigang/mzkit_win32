@@ -130,4 +130,8 @@ Public Class frm3DMALDIViewer
         Call startHttp()
         Call WebKit.Init(Me.WebView21)
     End Sub
+
+    Private Sub OpenDeveloperToolToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenDeveloperToolToolStripMenuItem.Click
+        WebView21.CoreWebView2.OpenDevToolsWindow()
+    End Sub
 End Class

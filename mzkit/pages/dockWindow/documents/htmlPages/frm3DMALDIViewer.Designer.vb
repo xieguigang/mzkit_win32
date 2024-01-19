@@ -26,6 +26,7 @@ Partial Class frm3DMALDIViewer
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm3DMALDIViewer))
         Me.WebView21 = New Microsoft.Web.WebView2.WinForms.WebView2()
+        Me.OpenDeveloperToolToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -41,14 +42,22 @@ Partial Class frm3DMALDIViewer
         Me.WebView21.TabIndex = 0
         Me.WebView21.ZoomFactor = 1.0R
         '
+        'OpenDeveloperToolToolStripMenuItem
+        '
+        Me.OpenDeveloperToolToolStripMenuItem.Name = "OpenDeveloperToolToolStripMenuItem"
+        Me.OpenDeveloperToolToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.OpenDeveloperToolToolStripMenuItem.Text = "Open Developer Tool"
+        '
         'frm3DMALDIViewer
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(865, 565)
         Me.Controls.Add(Me.WebView21)
+        Me.DoubleBuffered = True
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frm3DMALDIViewer"
+        Me.TabPageContextMenuStrip = Me.DockContextMenuStrip1
         Me.Text = "3D MALDI Viewer"
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -56,4 +65,5 @@ Partial Class frm3DMALDIViewer
     End Sub
 
     Friend WithEvents WebView21 As Microsoft.Web.WebView2.WinForms.WebView2
+    Friend WithEvents OpenDeveloperToolToolStripMenuItem As ToolStripMenuItem
 End Class
