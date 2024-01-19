@@ -76,7 +76,7 @@ namespace apps.viewer {
 
         protected init(): void {
             const scene = new THREE.Scene();
-            const globalPlane = new THREE.Plane(new THREE.Vector3(- 1, 0, 0), 0.1);
+            const globalPlane = new THREE.Plane(new THREE.Vector3(- 1, 0, 0), 100);
             const globalPlanes = [globalPlane];
             const vm = this;
 
@@ -84,9 +84,9 @@ namespace apps.viewer {
             const renderer = new THREE.WebGLRenderer({ antialias: false });
             renderer.setPixelRatio(window.devicePixelRatio);
             renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.localClippingEnabled = false;
+            renderer.localClippingEnabled = true;
             // GUI sets it to globalPlanes
-            renderer.clippingPlanes = <any>Empty;
+            renderer.clippingPlanes = globalPlanes;
 
             document.body.appendChild(renderer.domElement);
             console.log(renderer);
@@ -104,6 +104,7 @@ namespace apps.viewer {
             this.scene = scene;
             this.renderer = renderer;
             this.camera = camera;
+            this.globalPlane = globalPlane;
 
             // Create controls
             const controls = new window.OrbitControls(camera, renderer.domElement);
@@ -229,11 +230,16 @@ namespace apps.viewer {
             uniforms['u_renderthreshold'].value = volconfig.isothreshold; // For ISO renderstyle
             uniforms['u_cmdata'].value = this.cmtextures[volconfig.colormap];
 
+            const localPlane = new THREE.Plane(new THREE.Vector3(0, - 1, 0), 20);
+
             this.material = new THREE.ShaderMaterial({
                 uniforms: uniforms,
                 vertexShader: shader.vertexShader,
                 fragmentShader: shader.fragmentShader,
-                side: THREE.BackSide // The volume shader uses the backface as its "reference point"
+                side: THREE.BackSide, // The volume shader uses the backface as its "reference point"
+                // ***** Clipping setup (material): *****
+                clippingPlanes: [localPlane],
+                clipShadows: true
             });
 
             // THREE.Mesh
@@ -246,6 +252,12 @@ namespace apps.viewer {
             const axesHelper = new THREE.AxesHelper(256);
             this.scene.add(axesHelper);
             this.axesHelper = axesHelper;
+
+            const helper = new THREE.PlaneHelper(this.globalPlane, 300, 0xffff00);
+            this.scene.add(helper);
+
+            const helper2 = new THREE.PlaneHelper(localPlane, 300, 0xffff00);
+            this.scene.add(helper2);
 
             this.render();
         }

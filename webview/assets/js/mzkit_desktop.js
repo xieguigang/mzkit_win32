@@ -99,16 +99,16 @@ var apps;
             three_app.prototype.init = function () {
                 var _this = this;
                 var scene = new THREE.Scene();
-                var globalPlane = new THREE.Plane(new THREE.Vector3(-1, 0, 0), 0.1);
+                var globalPlane = new THREE.Plane(new THREE.Vector3(-1, 0, 0), 100);
                 var globalPlanes = [globalPlane];
                 var vm = this;
                 // Create renderer
                 var renderer = new THREE.WebGLRenderer({ antialias: false });
                 renderer.setPixelRatio(window.devicePixelRatio);
                 renderer.setSize(window.innerWidth, window.innerHeight);
-                renderer.localClippingEnabled = false;
+                renderer.localClippingEnabled = true;
                 // GUI sets it to globalPlanes
-                renderer.clippingPlanes = viewer.Empty;
+                renderer.clippingPlanes = globalPlanes;
                 document.body.appendChild(renderer.domElement);
                 console.log(renderer);
                 // Create camera (The volume renderer does not work very well with perspective yet)
@@ -122,6 +122,7 @@ var apps;
                 this.scene = scene;
                 this.renderer = renderer;
                 this.camera = camera;
+                this.globalPlane = globalPlane;
                 // Create controls
                 var controls = new window.OrbitControls(camera, renderer.domElement);
                 controls.addEventListener('change', function () { return _this.render(); });
@@ -232,11 +233,15 @@ var apps;
                 uniforms['u_renderstyle'].value = volconfig.renderstyle == 'mip' ? 0 : 1; // 0: MIP, 1: ISO
                 uniforms['u_renderthreshold'].value = volconfig.isothreshold; // For ISO renderstyle
                 uniforms['u_cmdata'].value = this.cmtextures[volconfig.colormap];
+                var localPlane = new THREE.Plane(new THREE.Vector3(0, -1, 0), 20);
                 this.material = new THREE.ShaderMaterial({
                     uniforms: uniforms,
                     vertexShader: shader.vertexShader,
                     fragmentShader: shader.fragmentShader,
-                    side: THREE.BackSide // The volume shader uses the backface as its "reference point"
+                    side: THREE.BackSide, // The volume shader uses the backface as its "reference point"
+                    // ***** Clipping setup (material): *****
+                    clippingPlanes: [localPlane],
+                    clipShadows: true
                 });
                 // THREE.Mesh
                 var geometry = new THREE.BoxGeometry(volume.xLength, volume.yLength, volume.zLength);
@@ -246,6 +251,10 @@ var apps;
                 var axesHelper = new THREE.AxesHelper(256);
                 this.scene.add(axesHelper);
                 this.axesHelper = axesHelper;
+                var helper = new THREE.PlaneHelper(this.globalPlane, 300, 0xffff00);
+                this.scene.add(helper);
+                var helper2 = new THREE.PlaneHelper(localPlane, 300, 0xffff00);
+                this.scene.add(helper2);
                 this.render();
             };
             three_app.prototype.updateUniforms = function () {
