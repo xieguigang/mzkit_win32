@@ -139,9 +139,12 @@ var apps;
                 var volconfig = {
                     clim1: 0, clim2: 1, renderstyle: 'iso', isothreshold: 0.15, colormap: 'jet',
                     left: camera.left, right: camera.right, top: camera.top, bottom: camera.bottom,
+                    showAxis: true,
                     enableDamping: controls.enableDamping,
                     enableClipping: false,
-                    plane: globalPlane.constant
+                    clip_x: globalPlane.constant,
+                    clip_y: globalPlane.constant,
+                    clip_z: globalPlane.constant
                 };
                 var gui = new window.GUI();
                 var renderArgs = gui.addFolder("Render");
@@ -152,13 +155,27 @@ var apps;
                 renderArgs.add(volconfig, 'colormap', cm_names()).onChange(function () { return _this.updateUniforms(); });
                 renderArgs.add(volconfig, 'renderstyle', { mip: 'mip', iso: 'iso' }).onChange(function () { return _this.updateUniforms(); });
                 renderArgs.add(volconfig, 'isothreshold', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
+                renderArgs.add(volconfig, 'showAxis').onChange(function (value) {
+                    vm.axesHelper.visible = value;
+                    vm.render();
+                });
                 controlArgs.add(volconfig, 'enableDamping').onChange(function (value) {
                     controls.enableDamping = value;
                     controls.update();
                 });
                 globalClipping.add(volconfig, "enableClipping").onChange(function (value) {
                 });
-                globalClipping.add(volconfig, "plane", -512, 512, 1).onChange(function (value) {
+                globalClipping.add(volconfig, "clip_x", -512, 512, 1).onChange(function (value) {
+                    camera.position.setX(value);
+                    camera.updateProjectionMatrix();
+                    vm.render();
+                });
+                globalClipping.add(volconfig, "clip_y", -512, 512, 1).onChange(function (value) {
+                    camera.position.setY(value);
+                    camera.updateProjectionMatrix();
+                    vm.render();
+                });
+                globalClipping.add(volconfig, "clip_z", -512, 512, 1).onChange(function (value) {
                     camera.position.setZ(value);
                     camera.updateProjectionMatrix();
                     vm.render();
@@ -226,7 +243,9 @@ var apps;
                 geometry.translate(volume.xLength / 2 - 0.5, volume.yLength / 2 - 0.5, volume.zLength / 2 - 0.5);
                 var mesh = new THREE.Mesh(geometry, this.material);
                 this.scene.add(mesh);
-                this.scene.add(new window.Axes());
+                var axesHelper = new THREE.AxesHelper(256);
+                this.scene.add(axesHelper);
+                this.axesHelper = axesHelper;
                 this.render();
             };
             three_app.prototype.updateUniforms = function () {

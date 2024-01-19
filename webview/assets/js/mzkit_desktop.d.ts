@@ -19,9 +19,12 @@ declare namespace apps.viewer {
         renderstyle: string;
         isothreshold: number;
         colormap: string;
+        showAxis: boolean;
         enableDamping: boolean;
         enableClipping: boolean;
-        plane: number;
+        clip_x: number;
+        clip_y: number;
+        clip_z: number;
     }
     interface NRRDLoader {
     }
@@ -37,6 +40,7 @@ declare namespace apps.viewer {
         cmtextures: any;
         stats: Stats;
         globalPlane: THREE.Plane;
+        axesHelper: THREE.AxesHelper;
         get appName(): string;
         protected init(): void;
         /**

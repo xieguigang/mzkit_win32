@@ -23,11 +23,14 @@ namespace apps.viewer {
     export interface volconfig {
         // render
         clim1: number; clim2: number; renderstyle: string; isothreshold: number; colormap: string;
+        showAxis: boolean;
         // controls
         enableDamping: boolean;
         // cliping
         enableClipping: boolean;
-        plane: number;
+        clip_x: number;
+        clip_y: number;
+        clip_z: number;
     }
 
     export interface NRRDLoader { }
@@ -65,6 +68,7 @@ namespace apps.viewer {
         public cmtextures;
         public stats: Stats;
         public globalPlane: THREE.Plane;
+        public axesHelper: THREE.AxesHelper;
 
         public get appName(): string {
             return "three-3d";
@@ -121,9 +125,12 @@ namespace apps.viewer {
             const volconfig = {
                 clim1: 0, clim2: 1, renderstyle: 'iso', isothreshold: 0.15, colormap: 'jet',
                 left: camera.left, right: camera.right, top: camera.top, bottom: camera.bottom,
+                showAxis: true,
                 enableDamping: controls.enableDamping,
                 enableClipping: false,
-                plane: globalPlane.constant
+                clip_x: globalPlane.constant,
+                clip_y: globalPlane.constant,
+                clip_z: globalPlane.constant
             };
             const gui: GUI = new window.GUI();
             const renderArgs = gui.addFolder("Render");
@@ -135,6 +142,10 @@ namespace apps.viewer {
             renderArgs.add(volconfig, 'colormap', cm_names()).onChange(() => this.updateUniforms());
             renderArgs.add(volconfig, 'renderstyle', { mip: 'mip', iso: 'iso' }).onChange(() => this.updateUniforms());
             renderArgs.add(volconfig, 'isothreshold', 0, 1, 0.01).onChange(() => this.updateUniforms());
+            renderArgs.add(volconfig, 'showAxis').onChange(function (value) {
+                vm.axesHelper.visible = value;
+                vm.render();
+            });
 
             controlArgs.add(volconfig, 'enableDamping').onChange(function (value) {
                 controls.enableDamping = value;
@@ -143,7 +154,17 @@ namespace apps.viewer {
             globalClipping.add(volconfig, "enableClipping").onChange(function (value) {
 
             });
-            globalClipping.add(volconfig, "plane", -512, 512, 1).onChange((value) => {
+            globalClipping.add(volconfig, "clip_x", -512, 512, 1).onChange((value) => {
+                camera.position.setX(value);
+                camera.updateProjectionMatrix();
+                vm.render();
+            });
+            globalClipping.add(volconfig, "clip_y", -512, 512, 1).onChange((value) => {
+                camera.position.setY(value);
+                camera.updateProjectionMatrix();
+                vm.render();
+            });
+            globalClipping.add(volconfig, "clip_z", -512, 512, 1).onChange((value) => {
                 camera.position.setZ(value);
                 camera.updateProjectionMatrix();
                 vm.render();
@@ -221,7 +242,10 @@ namespace apps.viewer {
 
             const mesh = new THREE.Mesh(geometry, this.material);
             this.scene.add(mesh);
-            this.scene.add(new window.Axes());
+
+            const axesHelper = new THREE.AxesHelper(256);
+            this.scene.add(axesHelper);
+            this.axesHelper = axesHelper;
 
             this.render();
         }
