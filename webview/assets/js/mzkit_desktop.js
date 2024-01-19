@@ -152,6 +152,9 @@ var apps;
                 });
                 this.controls = controls;
                 this.volconfig = volconfig;
+                // Stats
+                var stats = new window.Stats();
+                document.body.appendChild(stats.dom);
                 if ($ts("@data:format") == "nrrd") {
                     // Load the default model data ...
                     this.loadNrrdModel($ts("@data:default-maldi"));
@@ -231,7 +234,9 @@ var apps;
                 this.render();
             };
             three_app.prototype.render = function () {
+                this.stats.begin();
                 this.renderer.render(this.scene, this.camera);
+                this.stats.end();
             };
             return three_app;
         }(Bootstrap));

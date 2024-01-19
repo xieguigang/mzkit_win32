@@ -3,6 +3,11 @@
 declare namespace apps.viewer {
     interface OrbitControls {
     }
+    interface Stats {
+        get dom(): HTMLElement;
+        begin(): void;
+        end(): void;
+    }
     interface GUI {
         add(volconfig: volconfig, name: string, arg2?: any, arg3?: any, arg4?: any): any;
         addFolder(name: string): GUI;
@@ -29,6 +34,7 @@ declare namespace apps.viewer {
         cmtextures: any;
         planeA: THREE.Plane;
         planeB: THREE.Plane;
+        stats: Stats;
         get appName(): string;
         protected init(): void;
         /**

@@ -6,6 +6,13 @@ namespace apps.viewer {
 
     export interface OrbitControls { }
 
+    export interface Stats {
+        get dom(): HTMLElement;
+
+        begin(): void;
+        end(): void;
+    }
+
     export interface GUI {
         add(volconfig: volconfig, name: string, arg2?: any, arg3?: any, arg4?: any): any;
         addFolder(name: string): GUI;
@@ -51,6 +58,7 @@ namespace apps.viewer {
         public cmtextures;
         public planeA: THREE.Plane;
         public planeB: THREE.Plane;
+        public stats: Stats;
 
         public get appName(): string {
             return "three-3d";
@@ -124,6 +132,10 @@ namespace apps.viewer {
 
             this.controls = controls;
             this.volconfig = volconfig;
+
+            // Stats
+            const stats: Stats = new window.Stats();
+            document.body.appendChild(stats.dom);
 
             if (<any>$ts("@data:format") == "nrrd") {
                 // Load the default model data ...
@@ -220,7 +232,9 @@ namespace apps.viewer {
         }
 
         render() {
+            this.stats.begin();
             this.renderer.render(this.scene, this.camera);
+            this.stats.end();
         }
     }
 }

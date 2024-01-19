@@ -35,6 +35,7 @@
 		import { ASCIILoader } from 'three/addons/ASCIILoader.js';
 		import { VolumeRenderShader1 } from 'three/addons/VolumeShader.js';
 		import WebGL from 'three/addons/WebGL.js';
+		import Stats from 'three/addons/stats.module.js';
 
 		if (WebGL.isWebGL2Available() === false) {
 			document.body.appendChild(WebGL.getWebGL2ErrorMessage());
@@ -46,6 +47,7 @@
 			window.ASCIILoader = ASCIILoader;
 			window.VolumeRenderShader1 = VolumeRenderShader1;
 			window.WebGL = WebGL;
+			window.Stats = Stats;
 		}
 
 		console.log(window.THREE);		
