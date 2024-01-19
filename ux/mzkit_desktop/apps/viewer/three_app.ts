@@ -56,9 +56,8 @@ namespace apps.viewer {
         public material: THREE.ShaderMaterial;
         public volconfig: volconfig;
         public cmtextures;
-        public planeA: THREE.Plane;
-        public planeB: THREE.Plane;
         public stats: Stats;
+        public globalPlane: THREE.Plane;
 
         public get appName(): string {
             return "three-3d";
@@ -66,16 +65,14 @@ namespace apps.viewer {
 
         protected init(): void {
             const scene = new THREE.Scene();
-
-            this.planeA = new THREE.Plane(new THREE.Vector3(1, 0, 0), -32);
-            this.planeB = new THREE.Plane(new THREE.Vector3(0, - 1, 0), -32);
+            const globalPlane = new THREE.Plane(new THREE.Vector3(- 1, 0, 0), 0.1);
 
             // Create renderer
             const renderer = new THREE.WebGLRenderer({ antialias: false });
             renderer.setPixelRatio(window.devicePixelRatio);
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.localClippingEnabled = false;
-            renderer.clippingPlanes = [this.planeA, this.planeB];
+            renderer.clippingPlanes = [globalPlane];
 
             document.body.appendChild(renderer.domElement);
             console.log(renderer);
