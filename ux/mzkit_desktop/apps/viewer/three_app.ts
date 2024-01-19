@@ -4,6 +4,8 @@ namespace apps.viewer {
 
     const window = <any>globalThis.window;
 
+    export const Empty: readonly any[] = Object.freeze([]);
+
     export interface OrbitControls { }
 
     export interface Stats {
@@ -19,8 +21,13 @@ namespace apps.viewer {
     }
 
     export interface volconfig {
+        // render
         clim1: number; clim2: number; renderstyle: string; isothreshold: number; colormap: string;
+        // controls
         enableDamping: boolean;
+        // cliping
+        enableClipping: boolean;
+        plane: number;
     }
 
     export interface NRRDLoader { }
@@ -66,13 +73,16 @@ namespace apps.viewer {
         protected init(): void {
             const scene = new THREE.Scene();
             const globalPlane = new THREE.Plane(new THREE.Vector3(- 1, 0, 0), 0.1);
+            const globalPlanes = [globalPlane];
+            const vm = this;
 
             // Create renderer
             const renderer = new THREE.WebGLRenderer({ antialias: false });
             renderer.setPixelRatio(window.devicePixelRatio);
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.localClippingEnabled = false;
-            renderer.clippingPlanes = [globalPlane];
+            // GUI sets it to globalPlanes
+            renderer.clippingPlanes = <any>Empty;
 
             document.body.appendChild(renderer.domElement);
             console.log(renderer);
@@ -111,20 +121,32 @@ namespace apps.viewer {
             const volconfig = {
                 clim1: 0, clim2: 1, renderstyle: 'iso', isothreshold: 0.15, colormap: 'jet',
                 left: camera.left, right: camera.right, top: camera.top, bottom: camera.bottom,
-                enableDamping: controls.enableDamping
+                enableDamping: controls.enableDamping,
+                enableClipping: false,
+                plane: globalPlane.constant
             };
             const gui: GUI = new window.GUI();
             const renderArgs = gui.addFolder("Render");
             const controlArgs = gui.addFolder("Controls");
+            const globalClipping = gui.addFolder("Volume Clipping");
 
             renderArgs.add(volconfig, 'clim1', 0, 1, 0.01).onChange(() => this.updateUniforms());
             renderArgs.add(volconfig, 'clim2', 0, 1, 0.01).onChange(() => this.updateUniforms());
             renderArgs.add(volconfig, 'colormap', cm_names()).onChange(() => this.updateUniforms());
             renderArgs.add(volconfig, 'renderstyle', { mip: 'mip', iso: 'iso' }).onChange(() => this.updateUniforms());
             renderArgs.add(volconfig, 'isothreshold', 0, 1, 0.01).onChange(() => this.updateUniforms());
+
             controlArgs.add(volconfig, 'enableDamping').onChange(function (value) {
                 controls.enableDamping = value;
                 controls.update();
+            });
+            globalClipping.add(volconfig, "enableClipping").onChange(function (value) {
+                renderer.clippingPlanes = value ? globalPlanes : <any>Empty;
+                vm.updateUniforms();
+            });
+            globalClipping.add(volconfig, "plane", -512, 512, 1).onChange((value) => {
+                globalPlane.constant = value
+                vm.updateUniforms();
             });
 
             // Stats

@@ -64,6 +64,7 @@ var apps;
     var viewer;
     (function (viewer) {
         var window = globalThis.window;
+        viewer.Empty = Object.freeze([]);
         var cmtextures = ["gray", "viridis", "jet", "rainbow", "typhoon", "magma", "plasma", "mako", "rocket", "turbo"];
         function cm_names() {
             var names = {};
@@ -98,14 +99,16 @@ var apps;
             three_app.prototype.init = function () {
                 var _this = this;
                 var scene = new THREE.Scene();
-                this.planeA = new THREE.Plane(new THREE.Vector3(1, 0, 0), -32);
-                this.planeB = new THREE.Plane(new THREE.Vector3(0, -1, 0), -32);
+                var globalPlane = new THREE.Plane(new THREE.Vector3(-1, 0, 0), 0.1);
+                var globalPlanes = [globalPlane];
+                var vm = this;
                 // Create renderer
                 var renderer = new THREE.WebGLRenderer({ antialias: false });
                 renderer.setPixelRatio(window.devicePixelRatio);
                 renderer.setSize(window.innerWidth, window.innerHeight);
                 renderer.localClippingEnabled = false;
-                renderer.clippingPlanes = [this.planeA, this.planeB];
+                // GUI sets it to globalPlanes
+                renderer.clippingPlanes = viewer.Empty;
                 document.body.appendChild(renderer.domElement);
                 console.log(renderer);
                 // Create camera (The volume renderer does not work very well with perspective yet)
@@ -136,11 +139,14 @@ var apps;
                 var volconfig = {
                     clim1: 0, clim2: 1, renderstyle: 'iso', isothreshold: 0.15, colormap: 'jet',
                     left: camera.left, right: camera.right, top: camera.top, bottom: camera.bottom,
-                    enableDamping: controls.enableDamping
+                    enableDamping: controls.enableDamping,
+                    enableClipping: false,
+                    plane: globalPlane.constant
                 };
                 var gui = new window.GUI();
                 var renderArgs = gui.addFolder("Render");
                 var controlArgs = gui.addFolder("Controls");
+                var globalClipping = gui.addFolder("Volume Clipping");
                 renderArgs.add(volconfig, 'clim1', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
                 renderArgs.add(volconfig, 'clim2', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
                 renderArgs.add(volconfig, 'colormap', cm_names()).onChange(function () { return _this.updateUniforms(); });
@@ -149,6 +155,14 @@ var apps;
                 controlArgs.add(volconfig, 'enableDamping').onChange(function (value) {
                     controls.enableDamping = value;
                     controls.update();
+                });
+                globalClipping.add(volconfig, "enableClipping").onChange(function (value) {
+                    renderer.clippingPlanes = value ? globalPlanes : viewer.Empty;
+                    vm.updateUniforms();
+                });
+                globalClipping.add(volconfig, "plane", -512, 512, 1).onChange(function (value) {
+                    globalPlane.constant = value;
+                    vm.updateUniforms();
                 });
                 // Stats
                 var stats = new window.Stats();

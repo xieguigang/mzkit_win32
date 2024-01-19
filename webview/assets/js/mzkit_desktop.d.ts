@@ -1,6 +1,7 @@
 /// <reference path="../../../ux/mzkit_desktop/d/three/index.d.ts" />
 /// <reference path="../../../ux/mzkit_desktop/d/linq.d.ts" />
 declare namespace apps.viewer {
+    const Empty: readonly any[];
     interface OrbitControls {
     }
     interface Stats {
@@ -19,6 +20,8 @@ declare namespace apps.viewer {
         isothreshold: number;
         colormap: string;
         enableDamping: boolean;
+        enableClipping: boolean;
+        plane: number;
     }
     interface NRRDLoader {
     }
@@ -32,9 +35,8 @@ declare namespace apps.viewer {
         material: THREE.ShaderMaterial;
         volconfig: volconfig;
         cmtextures: any;
-        planeA: THREE.Plane;
-        planeB: THREE.Plane;
         stats: Stats;
+        globalPlane: THREE.Plane;
         get appName(): string;
         protected init(): void;
         /**
