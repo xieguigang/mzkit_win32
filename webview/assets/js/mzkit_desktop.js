@@ -139,12 +139,14 @@ var apps;
                     enableDamping: controls.enableDamping
                 };
                 var gui = new window.GUI();
-                gui.add(volconfig, 'clim1', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
-                gui.add(volconfig, 'clim2', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
-                gui.add(volconfig, 'colormap', cm_names()).onChange(function () { return _this.updateUniforms(); });
-                gui.add(volconfig, 'renderstyle', { mip: 'mip', iso: 'iso' }).onChange(function () { return _this.updateUniforms(); });
-                gui.add(volconfig, 'isothreshold', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
-                gui.add(volconfig, 'enableDamping').onChange(function (value) {
+                var renderArgs = gui.addFolder("Render");
+                var controlArgs = gui.addFolder("Controls");
+                renderArgs.add(volconfig, 'clim1', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
+                renderArgs.add(volconfig, 'clim2', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
+                renderArgs.add(volconfig, 'colormap', cm_names()).onChange(function () { return _this.updateUniforms(); });
+                renderArgs.add(volconfig, 'renderstyle', { mip: 'mip', iso: 'iso' }).onChange(function () { return _this.updateUniforms(); });
+                renderArgs.add(volconfig, 'isothreshold', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
+                controlArgs.add(volconfig, 'enableDamping').onChange(function (value) {
                     controls.enableDamping = value;
                     controls.update();
                 });

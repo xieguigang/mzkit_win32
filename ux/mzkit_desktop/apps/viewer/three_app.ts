@@ -8,6 +8,7 @@ namespace apps.viewer {
 
     export interface GUI {
         add(volconfig: volconfig, name: string, arg2?: any, arg3?: any, arg4?: any): any;
+        addFolder(name: string): GUI;
     }
 
     export interface volconfig {
@@ -108,13 +109,15 @@ namespace apps.viewer {
                 enableDamping: controls.enableDamping
             };
             const gui: GUI = new window.GUI();
+            const renderArgs = gui.addFolder("Render");
+            const controlArgs = gui.addFolder("Controls");
 
-            gui.add(volconfig, 'clim1', 0, 1, 0.01).onChange(() => this.updateUniforms());
-            gui.add(volconfig, 'clim2', 0, 1, 0.01).onChange(() => this.updateUniforms());
-            gui.add(volconfig, 'colormap', cm_names()).onChange(() => this.updateUniforms());
-            gui.add(volconfig, 'renderstyle', { mip: 'mip', iso: 'iso' }).onChange(() => this.updateUniforms());
-            gui.add(volconfig, 'isothreshold', 0, 1, 0.01).onChange(() => this.updateUniforms());
-            gui.add(volconfig, 'enableDamping').onChange(function (value) {
+            renderArgs.add(volconfig, 'clim1', 0, 1, 0.01).onChange(() => this.updateUniforms());
+            renderArgs.add(volconfig, 'clim2', 0, 1, 0.01).onChange(() => this.updateUniforms());
+            renderArgs.add(volconfig, 'colormap', cm_names()).onChange(() => this.updateUniforms());
+            renderArgs.add(volconfig, 'renderstyle', { mip: 'mip', iso: 'iso' }).onChange(() => this.updateUniforms());
+            renderArgs.add(volconfig, 'isothreshold', 0, 1, 0.01).onChange(() => this.updateUniforms());
+            controlArgs.add(volconfig, 'enableDamping').onChange(function (value) {
                 controls.enableDamping = value;
                 controls.update();
             });

@@ -5,6 +5,7 @@ declare namespace apps.viewer {
     }
     interface GUI {
         add(volconfig: volconfig, name: string, arg2?: any, arg3?: any, arg4?: any): any;
+        addFolder(name: string): GUI;
     }
     interface volconfig {
         clim1: number;
