@@ -150,11 +150,12 @@ var apps;
                     controls.enableDamping = value;
                     controls.update();
                 });
-                this.controls = controls;
-                this.volconfig = volconfig;
                 // Stats
                 var stats = new window.Stats();
                 document.body.appendChild(stats.dom);
+                this.controls = controls;
+                this.stats = stats;
+                this.volconfig = volconfig;
                 if ($ts("@data:format") == "nrrd") {
                     // Load the default model data ...
                     this.loadNrrdModel($ts("@data:default-maldi"));
@@ -234,9 +235,15 @@ var apps;
                 this.render();
             };
             three_app.prototype.render = function () {
-                this.stats.begin();
-                this.renderer.render(this.scene, this.camera);
-                this.stats.end();
+                var stats = this.stats;
+                if (!isNullOrUndefined(stats)) {
+                    this.stats.begin();
+                    this.renderer.render(this.scene, this.camera);
+                    this.stats.end();
+                }
+                else {
+                    this.renderer.render(this.scene, this.camera);
+                }
             };
             return three_app;
         }(Bootstrap));

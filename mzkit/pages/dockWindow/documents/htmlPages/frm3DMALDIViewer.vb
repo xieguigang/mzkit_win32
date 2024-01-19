@@ -1,7 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.Runtime.InteropServices
 Imports System.Threading
-Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.ServiceHub.Manager
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.Web.WebView2.Core
@@ -56,6 +55,8 @@ Public Class frm3DMALDIViewer
 
         ' Add any initialization after the InitializeComponent() call.
         AutoScaleMode = AutoScaleMode.Dpi
+        DockContextMenuStrip1.Items.Add(OpenDeveloperToolToolStripMenuItem)
+        DockContextMenuStrip1.Items.Add(RefreshToolStripMenuItem)
     End Sub
 
     Public Sub LoadModel(maldi As String)
@@ -133,5 +134,9 @@ Public Class frm3DMALDIViewer
 
     Private Sub OpenDeveloperToolToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenDeveloperToolToolStripMenuItem.Click
         WebView21.CoreWebView2.OpenDevToolsWindow()
+    End Sub
+
+    Private Sub RefreshToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RefreshToolStripMenuItem.Click
+        WebView21.Reload()
     End Sub
 End Class

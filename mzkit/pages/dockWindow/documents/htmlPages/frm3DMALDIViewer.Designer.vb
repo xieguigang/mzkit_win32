@@ -27,6 +27,7 @@ Partial Class frm3DMALDIViewer
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm3DMALDIViewer))
         Me.WebView21 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Me.OpenDeveloperToolToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RefreshToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -48,6 +49,12 @@ Partial Class frm3DMALDIViewer
         Me.OpenDeveloperToolToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
         Me.OpenDeveloperToolToolStripMenuItem.Text = "Open Developer Tool"
         '
+        'RefreshToolStripMenuItem
+        '
+        Me.RefreshToolStripMenuItem.Name = "RefreshToolStripMenuItem"
+        Me.RefreshToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.RefreshToolStripMenuItem.Text = "Refresh"
+        '
         'frm3DMALDIViewer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -66,4 +73,5 @@ Partial Class frm3DMALDIViewer
 
     Friend WithEvents WebView21 As Microsoft.Web.WebView2.WinForms.WebView2
     Friend WithEvents OpenDeveloperToolToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents RefreshToolStripMenuItem As ToolStripMenuItem
 End Class

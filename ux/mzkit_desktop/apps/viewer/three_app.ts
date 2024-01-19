@@ -130,12 +130,13 @@ namespace apps.viewer {
                 controls.update();
             });
 
-            this.controls = controls;
-            this.volconfig = volconfig;
-
             // Stats
             const stats: Stats = new window.Stats();
             document.body.appendChild(stats.dom);
+
+            this.controls = controls;
+            this.stats = stats;
+            this.volconfig = volconfig;
 
             if (<any>$ts("@data:format") == "nrrd") {
                 // Load the default model data ...
@@ -232,9 +233,15 @@ namespace apps.viewer {
         }
 
         render() {
-            this.stats.begin();
-            this.renderer.render(this.scene, this.camera);
-            this.stats.end();
+            var stats = this.stats;
+
+            if (!isNullOrUndefined(stats)) {
+                this.stats.begin();
+                this.renderer.render(this.scene, this.camera);
+                this.stats.end();
+            } else {
+                this.renderer.render(this.scene, this.camera);
+            }
         }
     }
 }
