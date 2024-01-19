@@ -116,7 +116,7 @@ var apps;
                 var aspect = window.innerWidth / window.innerHeight;
                 var left_1 = h * aspect / 2;
                 var camera = new THREE.OrthographicCamera(-left_1, left_1, h / 2, -h / 2, 1, 1000);
-                camera.position.set(-64, -64, 128);
+                camera.position.set(-128, -128, 0);
                 camera.up.set(0, 0, 1); // In our data, z is up
                 console.log(camera);
                 this.scene = scene;
@@ -157,12 +157,11 @@ var apps;
                     controls.update();
                 });
                 globalClipping.add(volconfig, "enableClipping").onChange(function (value) {
-                    renderer.clippingPlanes = value ? globalPlanes : viewer.Empty;
-                    vm.updateUniforms();
                 });
                 globalClipping.add(volconfig, "plane", -512, 512, 1).onChange(function (value) {
-                    globalPlane.constant = value;
-                    vm.updateUniforms();
+                    camera.position.setZ(value);
+                    camera.updateProjectionMatrix();
+                    vm.render();
                 });
                 // Stats
                 var stats = new window.Stats();
@@ -227,6 +226,7 @@ var apps;
                 geometry.translate(volume.xLength / 2 - 0.5, volume.yLength / 2 - 0.5, volume.zLength / 2 - 0.5);
                 var mesh = new THREE.Mesh(geometry, this.material);
                 this.scene.add(mesh);
+                this.scene.add(new window.Axes());
                 this.render();
             };
             three_app.prototype.updateUniforms = function () {

@@ -10,10 +10,10 @@
 	<meta name="data:default-maldi" content="assets/stent.nrrd">
 	<meta name="data:format" content="nrrd">
 
-	<!-- 
-	<meta name="data:default-maldi" content="assets/demo_3dmaldi">
-	<meta name="data:format" content="ascii"> 
-	-->
+
+	<!-- <meta name="data:default-maldi" content="assets/demo_3dmaldi">
+	<meta name="data:format" content="ascii"> -->
+
 
 	<link type="text/css" rel="stylesheet" href="css/3d-maldi.css">
 
@@ -36,6 +36,7 @@
 		import { VolumeRenderShader1 } from 'three/addons/VolumeShader.js';
 		import WebGL from 'three/addons/WebGL.js';
 		import Stats from 'three/addons/stats.module.js';
+		import { Axes } from 'three/addons/Axes.js';
 
 		if (WebGL.isWebGL2Available() === false) {
 			document.body.appendChild(WebGL.getWebGL2ErrorMessage());
@@ -48,6 +49,7 @@
 			window.VolumeRenderShader1 = VolumeRenderShader1;
 			window.WebGL = WebGL;
 			window.Stats = Stats;
+			window.Axes = Axes;
 		}
 
 		console.log(window.THREE);		

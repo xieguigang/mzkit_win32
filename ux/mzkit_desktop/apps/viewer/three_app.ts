@@ -92,7 +92,7 @@ namespace apps.viewer {
             const aspect = window.innerWidth / window.innerHeight;
             const left_1 = h * aspect / 2;
             const camera = new THREE.OrthographicCamera(- left_1, left_1, h / 2, - h / 2, 1, 1000);
-            camera.position.set(-64, -64, 128);
+            camera.position.set(-128, -128, 0);
             camera.up.set(0, 0, 1); // In our data, z is up
 
             console.log(camera);
@@ -141,12 +141,12 @@ namespace apps.viewer {
                 controls.update();
             });
             globalClipping.add(volconfig, "enableClipping").onChange(function (value) {
-                renderer.clippingPlanes = value ? globalPlanes : <any>Empty;
-                vm.updateUniforms();
+
             });
             globalClipping.add(volconfig, "plane", -512, 512, 1).onChange((value) => {
-                globalPlane.constant = value
-                vm.updateUniforms();
+                camera.position.setZ(value);
+                camera.updateProjectionMatrix();
+                vm.render();
             });
 
             // Stats
@@ -221,6 +221,7 @@ namespace apps.viewer {
 
             const mesh = new THREE.Mesh(geometry, this.material);
             this.scene.add(mesh);
+            this.scene.add(new window.Axes());
 
             this.render();
         }
