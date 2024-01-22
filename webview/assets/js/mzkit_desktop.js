@@ -238,7 +238,7 @@ var apps;
                     uniforms: uniforms,
                     vertexShader: shader.vertexShader,
                     fragmentShader: shader.fragmentShader,
-                    side: THREE.BackSide, // The volume shader uses the backface as its "reference point"
+                    side: THREE.DoubleSide, // The volume shader uses the backface as its "reference point"
                     // ***** Clipping setup (material): *****
                     clippingPlanes: [localPlane],
                     clipShadows: true
