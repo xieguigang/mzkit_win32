@@ -1590,13 +1590,9 @@
       <Project>{b63f0c8e-d97b-432a-9cac-8dd7dd5da2c6}</Project>
       <Name>repository.NET5</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\Darwinism\src\LINQ\RQL\RQL.vbproj">
-      <Project>{30f146d6-4bdc-46b7-a92b-4d778062fd80}</Project>
+    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\Darwinism\src\data\LINQ\RQL\RQL.vbproj">
+      <Project>{ea7a584c-67f0-4d85-9031-c16887771b1b}</Project>
       <Name>RQL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\Darwinism\src\Parallel\parallel-netcore5.vbproj">
-      <Project>{d438b6dc-ea9f-4b35-9749-6f905f49be0e}</Project>
-      <Name>parallel-netcore5</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\httpd\Flute\Flute.NET5.vbproj">
       <Project>{1fd40f6e-6a78-4c61-9f86-682560337028}</Project>
