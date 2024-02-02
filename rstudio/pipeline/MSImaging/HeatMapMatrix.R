@@ -52,6 +52,13 @@ bitmap(
     fill    = "black"
 );
 
+#' images    
+#' 
+#' 1. type  precursor type information string
+#' 2. title   the ion metabolite name
+#' 3. layer   the MSI ion layer data
+#' 4. mz      the target ion m/z value
+#' 
 images |> PlotMSIMatrixHeatmap(
     layout        = layout,
     colorSet      = colorPalette,
