@@ -49,6 +49,7 @@ const totalIonLayer = {
 print(`load ${length(pixelsData)} pixels data from given m/z:`);
 print(mzlist);
 
+let filetype = file.ext(savefile);
 let msi_filters = {
     if (file.exists(filter_file)) {
         geom_MSIfilters(file = filter_file);
@@ -58,9 +59,7 @@ let msi_filters = {
         );
     }
 }
-
-bitmap(file = savefile, size = as.integer(unlist(strsplit(plot_size, ","))), dpi = plot_dpi) {
-    
+let make_plot = function() {
     # load mzpack/imzML raw data file
     # and config ggplot data source driver 
     # as MSImaging data reader
@@ -87,4 +86,14 @@ bitmap(file = savefile, size = as.integer(unlist(strsplit(plot_size, ","))), dpi
        + scale_y_continuous(labels = "F0")
        + theme(panel.grid = element_blank())
     ;
+}
+
+if (filetype == "svg") {
+    svg(file = savefile, size = as.integer(unlist(strsplit(plot_size, ","))), dpi = plot_dpi) {
+        make_plot();
+    }
+} else {
+    bitmap(file = savefile, size = as.integer(unlist(strsplit(plot_size, ","))), dpi = plot_dpi) {
+        make_plot();
+    }
 }

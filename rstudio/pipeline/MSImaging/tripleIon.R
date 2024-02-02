@@ -48,6 +48,7 @@ names(images) = mz_keys;
 print("view of the images data:");
 str(images);
 
+let filetype = file.ext(savefile);
 let msi_filters = {
     if (file.exists(filter_file)) {
         geom_MSIfilters(file = filter_file);
@@ -58,14 +59,10 @@ let msi_filters = {
     }
 }
 
-print(msi_filters);
-
-bitmap(file = savefile, size = as.integer(unlist(strsplit(plot_size, ","))), dpi = plot_dpi) {
-    
-    # load mzpack/imzML raw data file
-    # and config ggplot data source driver 
-    # as MSImaging data reader
-
+#' load mzpack/imzML raw data file
+#' and config ggplot data source driver 
+#' as MSImaging data reader
+let make_plot = function() {
     # rendering of rgb channels ion m/z
     ggplot(MSIheatmap(
         R = images[[kr]], 
@@ -87,4 +84,16 @@ bitmap(file = savefile, size = as.integer(unlist(strsplit(plot_size, ","))), dpi
        + scale_y_continuous(labels = "F0")
        + theme(panel.grid = element_blank())
     ;
+}
+
+print(msi_filters);
+
+if (filetype == "svg") {
+    svg(file = savefile, size = as.integer(unlist(strsplit(plot_size, ","))), dpi = plot_dpi) {
+        make_plot();
+    }
+} else {
+    bitmap(file = savefile, size = as.integer(unlist(strsplit(plot_size, ","))), dpi = plot_dpi) {
+        make_plot();
+    }
 }
