@@ -25,7 +25,25 @@ Public Module GCMSReader
         Dim mass_values As shorts = nc.GetData("mass_values")
         Dim intensity_values As floats = nc.GetData("intensity_values")
 
-
-        Return New GCMSnetCDF
+        Return New GCMSnetCDF With {
+            .actual_scan_number = actual_scan_number,
+            .a_d_coaddition_factor = a_d_coaddition_factor,
+            .a_d_sampling_rate = a_d_sampling_rate,
+            .error_log = error_log,
+            .flag_count = flag_count,
+            .intensity_values = intensity_values,
+            .inter_scan_time = inter_scan_time,
+            .mass_range_max = mass_range_max,
+            .mass_range_min = mass_range_min,
+            .mass_values = mass_values,
+            .point_count = point_count,
+            .resolution = resolution,
+            .scan_acquisition_time = scan_acquisition_time,
+            .scan_duration = scan_duration,
+            .scan_index = scan_index,
+            .time_range_max = time_range_max,
+            .time_range_min = time_range_min,
+            .total_intensity = total_intensity
+        }
     End Function
 End Module
