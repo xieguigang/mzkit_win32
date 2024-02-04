@@ -3,6 +3,7 @@ Imports System.Drawing
 Imports System.IO
 Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging.MALDI_3D
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData
@@ -139,13 +140,15 @@ Imports MZWorkPack
         Dim modtime As Double = args("/modtime") Or 4.0
         Dim is_gcxgc As Boolean = False ' args("/gcxgc")
         Dim rawdata As GCMSnetCDF = GCMSReader.LoadAllMemory(file:=raw)
-        Dim pack As mzPack
+        Dim pack As mzPack = GCMSConvertor.ConvertGCMS(rawdata)
 
         If is_gcxgc Then
-
-        Else
-            pack = GCMSConvertor.ConvertGCMS(rawdata)
+            pack = pack.Demodulate2D(modtime)
         End If
+
+        Using s As Stream = cache.Open(FileMode.OpenOrCreate, doClear:=True)
+            Call pack.Write(s, version:=ver)
+        End Using
 
         Return 0
     End Function
