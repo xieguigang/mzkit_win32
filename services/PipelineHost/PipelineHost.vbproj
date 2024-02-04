@@ -255,7 +255,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Erica\src\HDF.PInvoke\HDF.PInvoke.Core.csproj" />
     <ProjectReference Include="..\..\..\..\..\Erica\src\STImaging\STImaging.vbproj" />
     <ProjectReference Include="..\..\..\..\..\Erica\src\STRaid\STRaid.vbproj" />
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\GCModeller\core\Bio.Assembly\biocore-netcore5.vbproj" />
