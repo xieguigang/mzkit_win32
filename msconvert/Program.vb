@@ -19,6 +19,7 @@ Imports Microsoft.VisualBasic.Language.[Default]
 Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.My.FrameworkInternal
 Imports Microsoft.VisualBasic.Scripting.Runtime
+Imports MZWorkPack
 
 ''' <summary>
 ''' 主要是为了兼容第三方厂家的原始数据文件模块的引用而构建的.NET4.8兼容模块
@@ -127,14 +128,22 @@ Imports Microsoft.VisualBasic.Scripting.Runtime
     End Function
 
     <ExportAPI("/cdf_to_mzpack")>
-    <Description("Convert GCMS un-targetted CDF raw data file to mzPack.")>
-    <Usage("/cdf_to_mzpack --raw <filepath.cdf> [--cache <result.mzPack> /ver 2 /mute /no-thumbnail]")>
+    <Description("Convert GCMS un-targetted CDF or GCxGC raw data file to mzPack.")>
+    <Usage("/cdf_to_mzpack --raw <filepath.cdf> [--cache <result.mzPack> /gcxgc /modtime <default=4> /ver 2 /mute /no-thumbnail]")>
     Public Function convertGCMSCDF(args As CommandLine) As Integer
         Dim raw As String = args("--raw")
         Dim cache As String = args("--cache") Or raw.ChangeSuffix("mzPack")
         Dim ver As Integer = args("/ver") Or 2
         Dim mute As Boolean = args("/mute")
         Dim noSnapshot As Boolean = args("/no-thumbnail")
+        Dim modtime As Double = args("/modtime") Or 4.0
+        Dim is_gcxgc As Boolean = args("/gcxgc")
+        Dim rawdata As GCMSnetCDF = GCMSReader.LoadAllMemory(file:=raw)
+
+        If is_gcxgc Then
+        Else
+
+        End If
 
         Call ConvertToMzPack.ConvertCDF(raw, cache, saveVer:=ver, mute:=mute, skipThumbnail:=noSnapshot)
 
