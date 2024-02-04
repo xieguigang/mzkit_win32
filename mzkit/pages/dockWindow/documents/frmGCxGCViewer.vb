@@ -52,9 +52,37 @@
 
 #End Region
 
+Imports System.IO
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+Imports Mzkit_win32.BasicMDIForm
+
 Public Class frmGCxGCViewer
+
+    Dim rawdata As mzPack
 
     Private Sub frmGCxGCViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.TabText = "GCxGC 2D Imaging Viewer"
+
+    End Sub
+
+    Private Sub openRawdata()
+        Using file As New OpenFileDialog With {.Filter = "GCxGC mzPack(*.mzpack)|*.mzpack"}
+            If file.ShowDialog = DialogResult.OK Then
+                Call ProgressSpinner.DoLoading(
+                    Sub()
+                        Using s As Stream = file.FileName.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
+                            Call Me.Invoke(Sub() rawdata = mzPack.ReadAll(s))
+                        End Using
+                    End Sub)
+            End If
+        End Using
+    End Sub
+
+    Private Sub frmGCxGCViewer_GotFocus(sender As Object, e As EventArgs) Handles Me.GotFocus
+        HookOpen = AddressOf openRawdata
+    End Sub
+
+    Private Sub frmGCxGCViewer_LostFocus(sender As Object, e As EventArgs) Handles Me.LostFocus
+        HookOpen = Nothing
     End Sub
 End Class
