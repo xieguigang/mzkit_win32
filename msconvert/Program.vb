@@ -138,7 +138,7 @@ Imports MZWorkPack
         Dim mute As Boolean = args("/mute")
         Dim noSnapshot As Boolean = args("/no-thumbnail")
         Dim modtime As Double = args("/modtime") Or 4.0
-        Dim is_gcxgc As Boolean = False ' args("/gcxgc")
+        Dim is_gcxgc As Boolean = args("/gcxgc")
         Dim rawdata As GCMSnetCDF = GCMSReader.LoadAllMemory(file:=raw)
         Dim pack As mzPack = GCMSConvertor.ConvertGCMS(rawdata)
 
