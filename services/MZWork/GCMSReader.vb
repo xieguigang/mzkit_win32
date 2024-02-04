@@ -43,7 +43,8 @@ Public Module GCMSReader
             .scan_index = scan_index,
             .time_range_max = time_range_max,
             .time_range_min = time_range_min,
-            .total_intensity = total_intensity
+            .total_intensity = total_intensity,
+            .metadata = nc.attributes
         }
     End Function
 End Module
