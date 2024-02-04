@@ -137,15 +137,15 @@ Imports MZWorkPack
         Dim mute As Boolean = args("/mute")
         Dim noSnapshot As Boolean = args("/no-thumbnail")
         Dim modtime As Double = args("/modtime") Or 4.0
-        Dim is_gcxgc As Boolean = args("/gcxgc")
+        Dim is_gcxgc As Boolean = False ' args("/gcxgc")
         Dim rawdata As GCMSnetCDF = GCMSReader.LoadAllMemory(file:=raw)
+        Dim pack As mzPack
 
         If is_gcxgc Then
+
         Else
-
+            pack = GCMSConvertor.ConvertGCMS(rawdata)
         End If
-
-        Call ConvertToMzPack.ConvertCDF(raw, cache, saveVer:=ver, mute:=mute, skipThumbnail:=noSnapshot)
 
         Return 0
     End Function
