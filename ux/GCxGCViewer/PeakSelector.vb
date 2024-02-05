@@ -99,7 +99,7 @@ Public Class PeakSelector
         t1 = New DoubleRange(0, Aggregate s As D2Chromatogram In scans Into Max(s.scan_time))
         t2 = New DoubleRange(0, modtime)
         t1Bins = New BlockSearchFunction(Of D2Chromatogram)(scans, Function(i) i.scan_time, 60, fuzzy:=True)
-        GCxGC.SetMetadata(scans)
+        GCxGC.SetMetadata(scans, 0.01)
 
         Call rescale()
         Call rendering()
