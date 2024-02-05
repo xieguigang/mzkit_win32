@@ -40,6 +40,59 @@ namespace apps.viewer {
 
         protected init(): void {
             const vm = this.create_viewer();
+
+            app.desktop.mzkit.GetLCMSScatter().then(async function (data) {
+                const json_str: string = await data;
+                const scatter: gcxgc_peak[] = JSON.parse(json_str);
+
+                app.desktop.mzkit.GetColors().then(async function (ls) {
+                    const str: string = await ls;
+                    const colors: string[] = JSON.parse(str);
+
+                    vm.peaks3D.colors = colors;
+
+                    for (let code of vm.peaks3D.colors) {
+                        TypeScript.logging.log(code, code);
+                    }
+
+                    if (isNullOrEmpty(scatter)) {
+                        vm.render3DScatter([]);
+                    } else {
+                        vm.render3DScatter(scatter);
+                    }
+                });
+            });
+        }
+
+        public render3DScatter(dataset: gcxgc_peak[]) {
+            const render = new gl_plot.scatter3d<gcxgc_peak[]>(
+                (ls: any) => this.peaks3D.load_cluster(ls),
+                "viewer"
+            );
+            const div = $ts("#viewer");
+            const vm = this;
+
+            // render.chartObj.showLoading();
+            render.plot(dataset);
+            render.chartObj.on("click", function (par: any) {
+                // console.log(par);
+                const i = par.dataIndex;
+                const category = par.seriesName;
+                const labels = vm.peaks3D.layers.Item(category);
+                // const spot_id: string = labels[i].id;
+                // console.log(spot_id);
+                // alert(spot_id);
+
+                // app.desktop.mzkit.Click(spot_id);
+            });
+            const resize_canvas = function () {
+                const padding = 18;
+                div.style.width = (window.innerWidth - padding) + "px";
+                div.style.height = (window.innerHeight - padding) + "px";
+                render.chartObj.resize();
+            };
+            window.onresize = () => resize_canvas();
+            resize_canvas();
         }
     }
 }

@@ -301,6 +301,7 @@ declare namespace apps.viewer {
         private create_viewer;
         private label;
         protected init(): void;
+        render3DScatter(dataset: gcxgc_peak[]): void;
     }
 }
 declare namespace apps.viewer {

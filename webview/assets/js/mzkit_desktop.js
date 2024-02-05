@@ -1257,6 +1257,71 @@ var apps;
             };
             GCxGCPeaksViewer.prototype.init = function () {
                 var vm = this.create_viewer();
+                app.desktop.mzkit.GetLCMSScatter().then(function (data) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var json_str, scatter;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, data];
+                                case 1:
+                                    json_str = _a.sent();
+                                    scatter = JSON.parse(json_str);
+                                    app.desktop.mzkit.GetColors().then(function (ls) {
+                                        return __awaiter(this, void 0, void 0, function () {
+                                            var str, colors, _i, _a, code;
+                                            return __generator(this, function (_b) {
+                                                switch (_b.label) {
+                                                    case 0: return [4 /*yield*/, ls];
+                                                    case 1:
+                                                        str = _b.sent();
+                                                        colors = JSON.parse(str);
+                                                        vm.peaks3D.colors = colors;
+                                                        for (_i = 0, _a = vm.peaks3D.colors; _i < _a.length; _i++) {
+                                                            code = _a[_i];
+                                                            TypeScript.logging.log(code, code);
+                                                        }
+                                                        if (isNullOrEmpty(scatter)) {
+                                                            vm.render3DScatter([]);
+                                                        }
+                                                        else {
+                                                            vm.render3DScatter(scatter);
+                                                        }
+                                                        return [2 /*return*/];
+                                                }
+                                            });
+                                        });
+                                    });
+                                    return [2 /*return*/];
+                            }
+                        });
+                    });
+                });
+            };
+            GCxGCPeaksViewer.prototype.render3DScatter = function (dataset) {
+                var _this = this;
+                var render = new gl_plot.scatter3d(function (ls) { return _this.peaks3D.load_cluster(ls); }, "viewer");
+                var div = $ts("#viewer");
+                var vm = this;
+                // render.chartObj.showLoading();
+                render.plot(dataset);
+                render.chartObj.on("click", function (par) {
+                    // console.log(par);
+                    var i = par.dataIndex;
+                    var category = par.seriesName;
+                    var labels = vm.peaks3D.layers.Item(category);
+                    // const spot_id: string = labels[i].id;
+                    // console.log(spot_id);
+                    // alert(spot_id);
+                    // app.desktop.mzkit.Click(spot_id);
+                });
+                var resize_canvas = function () {
+                    var padding = 18;
+                    div.style.width = (window.innerWidth - padding) + "px";
+                    div.style.height = (window.innerHeight - padding) + "px";
+                    render.chartObj.resize();
+                };
+                window.onresize = function () { return resize_canvas(); };
+                resize_canvas();
             };
             return GCxGCPeaksViewer;
         }(Bootstrap));
