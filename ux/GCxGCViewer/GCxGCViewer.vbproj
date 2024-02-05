@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>GCxGCViewer</RootNamespace>
+    <RootNamespace>Mzkit_win32.GCxGCViewer</RootNamespace>
     <TargetFramework>net48</TargetFramework>
     <UseApplicationFramework>True</UseApplicationFramework>
     <EnableVisualStyles>True</EnableVisualStyles>
@@ -15,6 +15,7 @@
     <MyType>WindowsForms</MyType>
     <Platforms>AnyCPU;x64</Platforms>
     <Configurations>Debug;Release;mzkit_win32</Configurations>
+    <AssemblyName>Mzkit_win32.GCxGCViewer</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

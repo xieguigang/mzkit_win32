@@ -52,6 +52,7 @@
 
 #End Region
 
+Imports GCxGCViewer
 Imports Mzkit_win32.BasicMDIForm
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
@@ -78,7 +79,7 @@ Partial Class frmGCxGCViewer : Inherits DocumentWindow
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.PeakSelector1 = New ControlLibrary.PeakSelector()
+        Me.PeakSelector1 = New PeakSelector()
         Me.SuspendLayout()
         '
         'PeakSelector1
@@ -101,5 +102,5 @@ Partial Class frmGCxGCViewer : Inherits DocumentWindow
 
     End Sub
 
-    Friend WithEvents PeakSelector1 As ControlLibrary.PeakSelector
+    Friend WithEvents PeakSelector1 As PeakSelector
 End Class

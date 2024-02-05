@@ -64,9 +64,9 @@ Namespace My
     Friend Module MySettingsProperty
         
         <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
-        Friend ReadOnly Property Settings() As Global.GCxGCViewer.My.MySettings
+        Friend ReadOnly Property Settings() As Global.Mzkit_win32.GCxGCViewer.My.MySettings
             Get
-                Return Global.GCxGCViewer.My.MySettings.Default
+                Return Global.Mzkit_win32.GCxGCViewer.My.MySettings.Default
             End Get
         End Property
     End Module
