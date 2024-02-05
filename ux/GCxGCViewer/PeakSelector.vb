@@ -3,6 +3,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports CommonDialogs
 Imports ControlLibrary
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
@@ -18,6 +19,15 @@ Public Class PeakSelector
 
     Dim scaleX As d3js.scale.LinearScale
     Dim scaleY As d3js.scale.LinearScale
+
+    ''' <summary>
+    ''' scan time 1
+    ''' </summary>
+    Dim t1 As DoubleRange
+    ''' <summary>
+    ''' scan time 2
+    ''' </summary>
+    Dim t2 As DoubleRange
 
     Dim WithEvents colors As New ColorScaler
 
@@ -43,8 +53,10 @@ Public Class PeakSelector
         scaleY = d3js.scale.linear.domain(yTicks).range(0, PictureBox1.Height)
     End Sub
 
-    Public Sub SetScans(scans As D2Chromatogram())
+    Public Sub SetScans(scans As D2Chromatogram(), modtime As Double)
         _TIC2D = scans
+        t1 = New DoubleRange(0, Aggregate s As D2Chromatogram In scans Into Max(s.scan_time))
+        t2 = New DoubleRange(0, modtime)
 
         Call rescale()
         Call rendering()
@@ -54,7 +66,7 @@ Public Class PeakSelector
         Dim scaler As New DataScaler(scaleX, scaleY) With {
             .region = New Rectangle(New Point, PictureBox1.Size)
         }
-        Dim scaled = GCxGCTIC2DPlot.CutSignal(TIC2D, qh:=0.85).ToArray
+        Dim scaled = GCxGCTIC2DPlot.CutSignal(TIC2D, qh:=0.99).ToArray
 
         colors.ScalerPalette = ColorSet
         colors.SetIntensityMax(scaled.Select(Function(d) d.intensity).Max)
@@ -86,5 +98,46 @@ Public Class PeakSelector
                     Call rendering()
                 End Sub)
         End If
+    End Sub
+
+    Dim p As Point
+
+    Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
+        Dim id As String = Nothing
+        Dim t1, t2 As Double
+
+        p = Cursor.Position
+        PictureBox1.Refresh()
+        GetPeak(id, t1, t2, loc:=p)
+
+        ToolStripStatusLabel1.Text = $"GCxGC scan time1: {StringFormats.ReadableElapsedTime(TimeSpan.FromSeconds(t1))}, scan time2: {t2}s"
+    End Sub
+
+    Private Sub GetPeak(ByRef peakId As String, ByRef rt1 As Double, ByRef rt2 As Double, loc As Point)
+        Dim pt As Point = PictureBox1.PointToClient(loc)
+        Dim size As Size = PictureBox1.Size
+        Dim y As New DoubleRange(0, size.Height)
+        Dim x As New DoubleRange(0, size.Width)
+
+        If t1 IsNot Nothing AndAlso t2 IsNot Nothing Then
+            rt1 = x.ScaleMapping(pt.X, t1)
+            rt2 = y.ScaleMapping(pt.Y, t2)
+        End If
+    End Sub
+
+    Private Sub PictureBox1_MouseDown(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseDown
+
+    End Sub
+
+    Private Sub PictureBox1_MouseUp(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseUp
+
+    End Sub
+
+    Private Sub PictureBox1_MouseClick(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseClick
+
+    End Sub
+
+    Private Sub PictureBox1_Paint(sender As Object, e As PaintEventArgs) Handles PictureBox1.Paint
+
     End Sub
 End Class
