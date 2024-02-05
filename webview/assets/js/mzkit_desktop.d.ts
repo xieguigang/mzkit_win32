@@ -104,6 +104,47 @@ declare namespace app.desktop {
         GetServicesList(): Promise<string>;
     }
 }
+declare namespace gl_plot {
+    /**
+     * get id
+    */
+    interface IdReader<T> {
+        (x: T): string;
+    }
+    /**
+     * get scatter point:
+     *
+     * lcms scatter: mz, rt, intensity
+     * gcxgc peaks: rt1, rt2, intensity
+    */
+    interface PointReader<T> {
+        (x: T): number[];
+    }
+    interface IntensityReader<T> {
+        (x: T): number;
+    }
+    interface LabelReader<T> {
+        (args: {
+            dataIndex: number;
+            data: number[];
+        }, data: T[]): string;
+    }
+    class echart_peak3D<T> {
+        private read_id;
+        private read_point;
+        private read_intensity;
+        private read_label;
+        private xlab;
+        private ylab;
+        private zlab;
+        colors: string[];
+        layers: Dictionary<T[]>;
+        constructor(read_id: IdReader<T>, read_point: PointReader<T>, read_intensity: IntensityReader<T>, read_label: LabelReader<T>, xlab: string, ylab: string, zlab?: string);
+        private scatter_group;
+        load_cluster(data: T[]): gl_plot.scatter3d_options;
+        private format_axisLabel;
+    }
+}
 /**
  * Read of 3d model file blob
 */
@@ -249,6 +290,20 @@ declare namespace apps.viewer {
     }
 }
 declare namespace apps.viewer {
+    interface gcxgc_peak {
+        t1: number;
+        t2: number;
+        into: number;
+    }
+    class GCxGCPeaksViewer extends Bootstrap {
+        get appName(): string;
+        private peaks3D;
+        private create_viewer;
+        private label;
+        protected init(): void;
+    }
+}
+declare namespace apps.viewer {
     class lcmsLibrary extends Bootstrap {
         get appName(): string;
         private libfiles;
@@ -311,12 +366,11 @@ declare namespace apps.viewer {
     }
     class LCMSScatterViewer extends Bootstrap {
         get appName(): string;
-        private colors;
-        private layers;
+        private peaks3D;
+        private create_viewer;
+        private label;
         protected init(): void;
         render3DScatter(dataset: ms1_scatter[]): void;
-        private static scatter_group;
-        load_cluster(data: ms1_scatter[]): gl_plot.scatter3d_options;
     }
 }
 declare namespace apps.viewer {

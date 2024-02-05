@@ -311,6 +311,7 @@ var app;
             Router.AddAppHandler(new apps.viewer.three_app());
             Router.AddAppHandler(new apps.viewer.clusterViewer());
             Router.AddAppHandler(new apps.viewer.LCMSScatterViewer());
+            Router.AddAppHandler(new apps.viewer.GCxGCPeaksViewer());
             Router.AddAppHandler(new apps.viewer.OpenseadragonSlideViewer());
             Router.AddAppHandler(new apps.viewer.umap());
             Router.AddAppHandler(new apps.viewer.lcmsLibrary());
@@ -342,6 +343,222 @@ var app;
         }
     })(desktop = app.desktop || (app.desktop = {}));
 })(app || (app = {}));
+var gl_plot;
+(function (gl_plot) {
+    var echart_peak3D = /** @class */ (function () {
+        function echart_peak3D(read_id, read_point, read_intensity, read_label, xlab, ylab, zlab) {
+            if (zlab === void 0) { zlab = "Intensity"; }
+            this.read_id = read_id;
+            this.read_point = read_point;
+            this.read_intensity = read_intensity;
+            this.read_label = read_label;
+            this.xlab = xlab;
+            this.ylab = ylab;
+            this.zlab = zlab;
+            this.layers = new Dictionary();
+        }
+        echart_peak3D.prototype.scatter_group = function (data, color, label) {
+            // const seq = $from(data);
+            // const r_range = globalThis.data.NumericRange.Create(seq.Select(a => a.mz));
+            // const g_range = globalThis.data.NumericRange.Create(seq.Select(a => a.scan_time));
+            // const b_range = globalThis.data.NumericRange.Create(seq.Select(a => a.intensity));
+            // const byte_range = new globalThis.data.NumericRange(0, 255);
+            var _this = this;
+            return {
+                type: 'bar3D',
+                shading: 'color', // color, lambert, realistic
+                barSize: 0.1,
+                name: "Intensity ".concat(label), // format_tag(r),
+                spot_labels: $from(data).Select(function (r) { return _this.read_id(r); }).ToArray(),
+                symbolSize: 1,
+                dimensions: [
+                    this.xlab,
+                    this.ylab,
+                    this.zlab
+                ],
+                data: $from(data).Select(function (r) { return _this.read_point(r); }).ToArray(),
+                symbol: 'circle',
+                itemStyle: {
+                    // borderWidth: 0.5,
+                    // color: <any>function (params) {
+                    //     var i: number = params.dataIndex;
+                    //     var p = data[i];
+                    //     var r = r_range.ScaleMapping(p.mz, byte_range);
+                    //     var g = g_range.ScaleMapping(p.scan_time, byte_range);
+                    //     var b = b_range.ScaleMapping(p.intensity, byte_range);
+                    //     return 'rgb(' + [r, g, b].join(',') + ')';
+                    // }
+                    color: color
+                },
+                wireframe: {
+                    show: false
+                }
+            };
+        };
+        echart_peak3D.prototype.load_cluster = function (data) {
+            var _this = this;
+            var seq = $from(data);
+            var max = seq.Select(function (a) { return _this.read_intensity(a); }).Max();
+            var d = max / this.colors.length;
+            // // const class_labels = $from(data).Select(r => r.cluster).Distinct().ToArray();
+            // // const numeric_cluster = $from(class_labels).All(si => Strings.isIntegerPattern(si.toString()));
+            // // const format_tag = clusterViewer.format_cluster_tag(data);
+            // // const scatter3D = $from(data)
+            // //     .Select(function (r) {
+            // //     })
+            // //     .ToArray();
+            // // const spot_labels = $from(data).ToDictionary(d => format_tag(d), d => d.labels);
+            var scatter3D = [];
+            var i = 0;
+            var _loop_1 = function (min) {
+                var l0 = min + d;
+                var subset = seq.Where(function (a) {
+                    var into = _this.read_intensity(a);
+                    return into > min && into < l0;
+                }).ToArray();
+                var color = this_1.colors[i++];
+                var label = "".concat(min.toExponential(1), " ~ ").concat(l0.toExponential(1));
+                this_1.layers.Add("Intensity ".concat(label), subset);
+                scatter3D.push(this_1.scatter_group(subset, color, label));
+            };
+            var this_1 = this;
+            for (var min = 0; min < max; min = min + d) {
+                _loop_1(min);
+            }
+            // const scatter3D = [LCMSScatterViewer.scatter_group(data)];
+            return {
+                grid3D: {
+                    color: "white",
+                    axisPointer: {
+                        show: false
+                    },
+                    viewControl: {
+                        distance: 200,
+                        beta: -20,
+                        panMouseButton: 'right', //平移操作使用的鼠标按键
+                        rotateMouseButton: 'left', //旋转操作使用的鼠标按键
+                        alpha: 30 // 让canvas在x轴有一定的倾斜角度
+                    },
+                    postEffect: {
+                        enable: false,
+                        SSAO: {
+                            radius: 1, //环境光遮蔽的采样半径。半径越大效果越自然
+                            intensity: 1, //环境光遮蔽的强度
+                            enable: false
+                        }
+                    },
+                    temporalSuperSampling: {
+                        enable: false
+                    },
+                    boxDepth: 100
+                    // light: {
+                    //     main: {
+                    //         shadow: false,
+                    //         intensity: 10
+                    //     },
+                    //     ambientCubemap: {
+                    //         texture: "/assets/canyon.hdr",
+                    //         exposure: 2,
+                    //         diffuseIntensity: 0.2,
+                    //         specularIntensity: 1
+                    //     },
+                    //     enable: false
+                    // }
+                },
+                backgroundColor: '#e7e7e7',
+                xAxis3D: { type: 'value', name: this.xlab, color: "white" },
+                yAxis3D: { type: 'value', name: this.ylab, color: "white" },
+                zAxis3D: {
+                    type: 'value', name: this.zlab, color: "white",
+                    axisLabel: {
+                        formatter: function (value) { return _this.format_axisLabel(value); }
+                    }
+                },
+                series: scatter3D,
+                tooltip: {
+                    show: true, // 是否显示
+                    trigger: 'item', // 触发类型  'item'图形触发：散点图，饼图等无类目轴的图表中使用； 'axis'坐标轴触发；'none'：什么都不触发。
+                    axisPointer: {
+                        type: 'cross', // 'line' 直线指示器  'shadow' 阴影指示器  'none' 无指示器  'cross' 十字准星指示器。
+                    },
+                    // showContent: true, //是否显示提示框浮层，默认显示。
+                    // triggerOn: 'mouseover', // 触发时机'click'鼠标点击时触发。 
+                    backgroundColor: 'white', // 提示框浮层的背景颜色。
+                    borderColor: '#333', // 提示框浮层的边框颜色。
+                    borderWidth: 0, // 提示框浮层的边框宽。
+                    padding: 5, // 提示框浮层内边距，
+                    textStyle: {
+                        color: 'darkblue',
+                        fontStyle: 'normal',
+                        fontWeight: 'normal',
+                        fontFamily: 'sans-serif',
+                        fontSize: 12,
+                    },
+                    // 提示框浮层内容格式器，支持字符串模板和回调函数两种形式。
+                    // 模板变量有 {a}, {b}，{c}，分别表示系列名，数据名，数据值等
+                    // formatter: '{a}--{b} 的成绩是 {c}'
+                    formatter: function (arg) { return _this.read_label(arg, data); }
+                },
+                // visualMap: {
+                //     max: max,
+                //     inRange: {
+                //         color: this.colors
+                //     }
+                // }
+                // legend: {
+                //     orient: 'vertical',
+                //     x: 'right',
+                //     y: 'center'
+                // }
+            };
+        };
+        echart_peak3D.prototype.format_axisLabel = function (value) {
+            var res = value.toString();
+            var numN1 = 0;
+            var numN2 = 1;
+            var num1 = 0;
+            var num2 = 0;
+            var t1 = 1;
+            for (var k = 0; k < res.length; k++) {
+                if (res[k] == ".")
+                    t1 = 0;
+                if (t1)
+                    num1++;
+                else
+                    num2++;
+            }
+            if (Math.abs(parseFloat(res)) < 1 && res.length > 4) {
+                for (var i = 2; i < res.length; i++) {
+                    if (res[i] == "0") {
+                        numN2++;
+                    }
+                    else if (res[i] == ".")
+                        continue;
+                    else
+                        break;
+                }
+                var v = parseFloat(res);
+                v = v * Math.pow(10, numN2);
+                return v.toString() + "e-" + numN2;
+            }
+            else if (num1 > 4) {
+                if (res[0] == "-")
+                    numN1 = num1 - 2;
+                else
+                    numN1 = num1 - 1;
+                var v = parseFloat(res);
+                v = v / Math.pow(10, numN1);
+                if (num2 > 4)
+                    v = v.toFixed(4);
+                return v.toString() + "e" + numN1;
+            }
+            else
+                return parseFloat(res);
+        };
+        return echart_peak3D;
+    }());
+    gl_plot.echart_peak3D = echart_peak3D;
+})(gl_plot || (gl_plot = {}));
 /**
  * Read of 3d model file blob
 */
@@ -1011,6 +1228,45 @@ var apps;
 (function (apps) {
     var viewer;
     (function (viewer) {
+        var GCxGCPeaksViewer = /** @class */ (function (_super) {
+            __extends(GCxGCPeaksViewer, _super);
+            function GCxGCPeaksViewer() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            Object.defineProperty(GCxGCPeaksViewer.prototype, "appName", {
+                get: function () {
+                    return "gcxgc-peaks";
+                },
+                enumerable: false,
+                configurable: true
+            });
+            GCxGCPeaksViewer.prototype.create_viewer = function () {
+                var _this = this;
+                this.peaks3D = new gl_plot.echart_peak3D(function (x) { return null; }, function (x) { return [x.t1, x.t2, x.into]; }, function (x) { return x.into; }, function (arg, x) { return _this.label(arg, x); }, 'Time Dimension1(min)', "Time Dimension2(s)");
+                return this;
+            };
+            GCxGCPeaksViewer.prototype.label = function (arg, data) {
+                // console.log(arg);
+                var i = arg.dataIndex;
+                var labels = data; // spot_labels.Item(arg.seriesName);
+                var ms1 = arg.data;
+                var rt = Math.round(ms1[0]);
+                var mz = Strings.round(ms1[1]);
+                var into = ms1[2].toExponential(2); // Math.pow(1.125, ms1[2]).toExponential(2);
+                return "GCxGC: ".concat(mz, "@").concat(rt, "s intensity=").concat(into);
+            };
+            GCxGCPeaksViewer.prototype.init = function () {
+                var vm = this.create_viewer();
+            };
+            return GCxGCPeaksViewer;
+        }(Bootstrap));
+        viewer.GCxGCPeaksViewer = GCxGCPeaksViewer;
+    })(viewer = apps.viewer || (apps.viewer = {}));
+})(apps || (apps = {}));
+var apps;
+(function (apps) {
+    var viewer;
+    (function (viewer) {
         var SmilesDrawer = window.SmilesDrawer;
         var lcmsLibrary = /** @class */ (function (_super) {
             __extends(lcmsLibrary, _super);
@@ -1397,8 +1653,23 @@ var apps;
                 enumerable: false,
                 configurable: true
             });
+            LCMSScatterViewer.prototype.create_viewer = function () {
+                var _this = this;
+                this.peaks3D = new gl_plot.echart_peak3D(function (x) { return x.id; }, function (x) { return [x.mz, x.scan_time, x.intensity]; }, function (x) { return x.intensity; }, function (arg, x) { return _this.label(arg, x); }, 'Scan Time(s)', "MZ");
+                return this;
+            };
+            LCMSScatterViewer.prototype.label = function (arg, data) {
+                // console.log(arg);
+                var i = arg.dataIndex;
+                var labels = data; // spot_labels.Item(arg.seriesName);
+                var ms1 = arg.data;
+                var rt = Math.round(ms1[0]);
+                var mz = Strings.round(ms1[1]);
+                var into = ms1[2].toExponential(2); // Math.pow(1.125, ms1[2]).toExponential(2);
+                return "<".concat(labels[i].id, "> m/z: ").concat(mz, "@").concat(rt, "s intensity=").concat(into);
+            };
             LCMSScatterViewer.prototype.init = function () {
-                var vm = this;
+                var vm = this.create_viewer();
                 app.desktop.mzkit.GetLCMSScatter().then(function (data) {
                     return __awaiter(this, void 0, void 0, function () {
                         var json_str, scatter;
@@ -1417,9 +1688,8 @@ var apps;
                                                     case 1:
                                                         str = _b.sent();
                                                         colors = JSON.parse(str);
-                                                        vm.colors = colors;
-                                                        vm.layers = new Dictionary();
-                                                        for (_i = 0, _a = vm.colors; _i < _a.length; _i++) {
+                                                        vm.peaks3D.colors = colors;
+                                                        for (_i = 0, _a = vm.peaks3D.colors; _i < _a.length; _i++) {
                                                             code = _a[_i];
                                                             TypeScript.logging.log(code, code);
                                                         }
@@ -1442,7 +1712,7 @@ var apps;
             };
             LCMSScatterViewer.prototype.render3DScatter = function (dataset) {
                 var _this = this;
-                var render = new gl_plot.scatter3d(function (ls) { return _this.load_cluster(ls); }, "viewer");
+                var render = new gl_plot.scatter3d(function (ls) { return _this.peaks3D.load_cluster(ls); }, "viewer");
                 var div = $ts("#viewer");
                 var vm = this;
                 // render.chartObj.showLoading();
@@ -1451,7 +1721,7 @@ var apps;
                     // console.log(par);
                     var i = par.dataIndex;
                     var category = par.seriesName;
-                    var labels = vm.layers.Item(category);
+                    var labels = vm.peaks3D.layers.Item(category);
                     var spot_id = labels[i].id;
                     // console.log(spot_id);
                     // alert(spot_id);
@@ -1465,207 +1735,6 @@ var apps;
                 };
                 window.onresize = function () { return resize_canvas(); };
                 resize_canvas();
-            };
-            LCMSScatterViewer.scatter_group = function (data, color, label) {
-                // const seq = $from(data);
-                // const r_range = globalThis.data.NumericRange.Create(seq.Select(a => a.mz));
-                // const g_range = globalThis.data.NumericRange.Create(seq.Select(a => a.scan_time));
-                // const b_range = globalThis.data.NumericRange.Create(seq.Select(a => a.intensity));
-                // const byte_range = new globalThis.data.NumericRange(0, 255);
-                return {
-                    type: 'bar3D',
-                    shading: 'color', // color, lambert, realistic
-                    barSize: 0.1,
-                    name: "Intensity ".concat(label), // format_tag(r),
-                    spot_labels: $from(data).Select(function (r) { return r.id; }).ToArray(),
-                    symbolSize: 1,
-                    dimensions: [
-                        'Scan Time(s)',
-                        'M/Z',
-                        'Intensity'
-                    ],
-                    data: $from(data).Select(function (r) { return [r.scan_time, r.mz, r.intensity]; }).ToArray(),
-                    symbol: 'circle',
-                    itemStyle: {
-                        // borderWidth: 0.5,
-                        // color: <any>function (params) {
-                        //     var i: number = params.dataIndex;
-                        //     var p = data[i];
-                        //     var r = r_range.ScaleMapping(p.mz, byte_range);
-                        //     var g = g_range.ScaleMapping(p.scan_time, byte_range);
-                        //     var b = b_range.ScaleMapping(p.intensity, byte_range);
-                        //     return 'rgb(' + [r, g, b].join(',') + ')';
-                        // }
-                        color: color
-                    },
-                    wireframe: {
-                        show: false
-                    }
-                };
-            };
-            LCMSScatterViewer.prototype.load_cluster = function (data) {
-                var seq = $from(data);
-                var max = seq.Select(function (a) { return a.intensity; }).Max();
-                var d = max / this.colors.length;
-                // // const class_labels = $from(data).Select(r => r.cluster).Distinct().ToArray();
-                // // const numeric_cluster = $from(class_labels).All(si => Strings.isIntegerPattern(si.toString()));
-                // // const format_tag = clusterViewer.format_cluster_tag(data);
-                // // const scatter3D = $from(data)
-                // //     .Select(function (r) {
-                // //     })
-                // //     .ToArray();
-                // // const spot_labels = $from(data).ToDictionary(d => format_tag(d), d => d.labels);
-                var scatter3D = [];
-                var i = 0;
-                var _loop_1 = function (min) {
-                    var l0 = min + d;
-                    var subset = seq.Where(function (a) { return a.intensity > min && a.intensity < l0; }).ToArray();
-                    var color = this_1.colors[i++];
-                    var label = "".concat(min.toExponential(1), " ~ ").concat(l0.toExponential(1));
-                    this_1.layers.Add("Intensity ".concat(label), subset);
-                    scatter3D.push(LCMSScatterViewer.scatter_group(subset, color, label));
-                };
-                var this_1 = this;
-                for (var min = 0; min < max; min = min + d) {
-                    _loop_1(min);
-                }
-                // const scatter3D = [LCMSScatterViewer.scatter_group(data)];
-                return {
-                    grid3D: {
-                        color: "white",
-                        axisPointer: {
-                            show: false
-                        },
-                        viewControl: {
-                            distance: 200,
-                            beta: -20,
-                            panMouseButton: 'right', //平移操作使用的鼠标按键
-                            rotateMouseButton: 'left', //旋转操作使用的鼠标按键
-                            alpha: 30 // 让canvas在x轴有一定的倾斜角度
-                        },
-                        postEffect: {
-                            enable: false,
-                            SSAO: {
-                                radius: 1, //环境光遮蔽的采样半径。半径越大效果越自然
-                                intensity: 1, //环境光遮蔽的强度
-                                enable: false
-                            }
-                        },
-                        temporalSuperSampling: {
-                            enable: false
-                        },
-                        boxDepth: 100
-                        // light: {
-                        //     main: {
-                        //         shadow: false,
-                        //         intensity: 10
-                        //     },
-                        //     ambientCubemap: {
-                        //         texture: "/assets/canyon.hdr",
-                        //         exposure: 2,
-                        //         diffuseIntensity: 0.2,
-                        //         specularIntensity: 1
-                        //     },
-                        //     enable: false
-                        // }
-                    },
-                    backgroundColor: '#e7e7e7',
-                    xAxis3D: { type: 'value', name: 'Scan Time(s)', color: "white" },
-                    yAxis3D: { type: 'value', name: 'M/Z', color: "white" },
-                    zAxis3D: {
-                        type: 'value', name: 'Intensity', color: "white",
-                        axisLabel: {
-                            formatter: function (value) {
-                                var res = value.toString();
-                                var numN1 = 0;
-                                var numN2 = 1;
-                                var num1 = 0;
-                                var num2 = 0;
-                                var t1 = 1;
-                                for (var k = 0; k < res.length; k++) {
-                                    if (res[k] == ".")
-                                        t1 = 0;
-                                    if (t1)
-                                        num1++;
-                                    else
-                                        num2++;
-                                }
-                                if (Math.abs(parseFloat(res)) < 1 && res.length > 4) {
-                                    for (var i = 2; i < res.length; i++) {
-                                        if (res[i] == "0") {
-                                            numN2++;
-                                        }
-                                        else if (res[i] == ".")
-                                            continue;
-                                        else
-                                            break;
-                                    }
-                                    var v = parseFloat(res);
-                                    v = v * Math.pow(10, numN2);
-                                    return v.toString() + "e-" + numN2;
-                                }
-                                else if (num1 > 4) {
-                                    if (res[0] == "-")
-                                        numN1 = num1 - 2;
-                                    else
-                                        numN1 = num1 - 1;
-                                    var v = parseFloat(res);
-                                    v = v / Math.pow(10, numN1);
-                                    if (num2 > 4)
-                                        v = v.toFixed(4);
-                                    return v.toString() + "e" + numN1;
-                                }
-                                else
-                                    return parseFloat(res);
-                            }
-                        }
-                    },
-                    series: scatter3D,
-                    tooltip: {
-                        show: true, // 是否显示
-                        trigger: 'item', // 触发类型  'item'图形触发：散点图，饼图等无类目轴的图表中使用； 'axis'坐标轴触发；'none'：什么都不触发。
-                        axisPointer: {
-                            type: 'cross', // 'line' 直线指示器  'shadow' 阴影指示器  'none' 无指示器  'cross' 十字准星指示器。
-                        },
-                        // showContent: true, //是否显示提示框浮层，默认显示。
-                        // triggerOn: 'mouseover', // 触发时机'click'鼠标点击时触发。 
-                        backgroundColor: 'white', // 提示框浮层的背景颜色。
-                        borderColor: '#333', // 提示框浮层的边框颜色。
-                        borderWidth: 0, // 提示框浮层的边框宽。
-                        padding: 5, // 提示框浮层内边距，
-                        textStyle: {
-                            color: 'darkblue',
-                            fontStyle: 'normal',
-                            fontWeight: 'normal',
-                            fontFamily: 'sans-serif',
-                            fontSize: 12,
-                        },
-                        // 提示框浮层内容格式器，支持字符串模板和回调函数两种形式。
-                        // 模板变量有 {a}, {b}，{c}，分别表示系列名，数据名，数据值等
-                        // formatter: '{a}--{b} 的成绩是 {c}'
-                        formatter: function (arg) {
-                            // console.log(arg);
-                            var i = arg.dataIndex;
-                            var labels = data; // spot_labels.Item(arg.seriesName);
-                            var ms1 = arg.data;
-                            var rt = Math.round(ms1[0]);
-                            var mz = Strings.round(ms1[1]);
-                            var into = ms1[2].toExponential(2); // Math.pow(1.125, ms1[2]).toExponential(2);
-                            return "<".concat(labels[i].id, "> m/z: ").concat(mz, "@").concat(rt, "s intensity=").concat(into);
-                        }
-                    },
-                    // visualMap: {
-                    //     max: max,
-                    //     inRange: {
-                    //         color: this.colors
-                    //     }
-                    // }
-                    // legend: {
-                    //     orient: 'vertical',
-                    //     x: 'right',
-                    //     y: 'center'
-                    // }
-                };
             };
             return LCMSScatterViewer;
         }(Bootstrap));
