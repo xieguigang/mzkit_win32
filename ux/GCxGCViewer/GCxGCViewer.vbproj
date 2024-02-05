@@ -13,6 +13,8 @@
     <ShutdownMode>AfterMainFormCloses</ShutdownMode>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
+    <Platforms>AnyCPU;x64</Platforms>
+    <Configurations>Debug;Release;mzkit_win32</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
@@ -31,9 +33,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Update="PeakSelector.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Update="PeakSelector.vb" />
   </ItemGroup>
 
   <ItemGroup>
