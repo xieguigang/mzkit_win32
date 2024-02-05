@@ -62,7 +62,6 @@ Public Class frmGCxGCViewer
 
     Private Sub frmGCxGCViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.TabText = "GCxGC 2D Imaging Viewer"
-
     End Sub
 
     Private Sub openRawdata()
@@ -78,11 +77,11 @@ Public Class frmGCxGCViewer
         End Using
     End Sub
 
-    Private Sub frmGCxGCViewer_GotFocus(sender As Object, e As EventArgs) Handles Me.GotFocus
+    Private Sub frmGCxGCViewer_Activated(sender As Object, e As EventArgs) Handles Me.Activated
         HookOpen = AddressOf openRawdata
     End Sub
 
-    Private Sub frmGCxGCViewer_LostFocus(sender As Object, e As EventArgs) Handles Me.LostFocus
+    Private Sub frmGCxGCViewer_Deactivate(sender As Object, e As EventArgs) Handles Me.Deactivate
         HookOpen = Nothing
     End Sub
 End Class
