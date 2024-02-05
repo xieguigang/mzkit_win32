@@ -6,6 +6,9 @@ Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 
+''' <summary>
+''' the common heatmap color scaler control
+''' </summary>
 Public Class ColorScaler
 
     Dim colorSet As ScalerPalette = ScalerPalette.FlexImaging

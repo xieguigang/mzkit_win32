@@ -195,12 +195,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ViewerCtrl\ColorScaler.Designer.vb">
-      <DependentUpon>ColorScaler.vb</DependentUpon>
-    </Compile>
-    <Compile Include="ViewerCtrl\ColorScaler.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
@@ -245,9 +239,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MSI\SpatialTile.zh-CN.resx">
       <DependentUpon>SpatialTile.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ViewerCtrl\ColorScaler.resx">
-      <DependentUpon>ColorScaler.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewerCtrl\KP-ImageViewerV2.resx">
       <DependentUpon>KP-ImageViewerV2.vb</DependentUpon>
@@ -365,6 +356,10 @@
     <ProjectReference Include="..\CommonDialogs\CommonDialogs.vbproj">
       <Project>{13685719-56a6-44f9-99a2-47cb79d29a57}</Project>
       <Name>CommonDialogs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ControlLibrary\ControlLibrary.vbproj">
+      <Project>{df66aa70-9ab9-48d0-b492-9d0e0482a651}</Project>
+      <Name>ControlLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

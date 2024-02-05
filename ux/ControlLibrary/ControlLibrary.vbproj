@@ -197,6 +197,12 @@
     <Compile Include="ColorComboBox.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ColorScaler.Designer.vb">
+      <DependentUpon>ColorScaler.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ColorScaler.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ToolStripTraceBarItem.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -254,6 +260,9 @@
     <Compile Include="WinForms\NativeToolStripRenderer.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ColorScaler.resx">
+      <DependentUpon>ColorScaler.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MSSelector.en-US.resx">
       <DependentUpon>MSSelector.vb</DependentUpon>
     </EmbeddedResource>
@@ -302,6 +311,10 @@
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Mathematica\Math\Math\Math.NET5.vbproj">
       <Project>{eb3dd1ee-71a4-4d85-b494-ef075ad99098}</Project>
       <Name>Math.NET5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Visualization\Plots\plots-netcore5.vbproj">
+      <Project>{5886614d-8d70-41e7-9795-afd0effb4e38}</Project>
+      <Name>plots-netcore5</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\gr\Microsoft.VisualBasic.Imaging\imaging.NET5.vbproj">
       <Project>{e2caa18e-9705-462a-844d-c809a45d4197}</Project>

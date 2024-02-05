@@ -26,6 +26,7 @@
     <ProjectReference Include="..\..\..\assembly\Comprehensive\Comprehensive.NET5.vbproj" />
     <ProjectReference Include="..\..\..\mzmath\ms2_math-core\mzmath-netcore5.vbproj" />
     <ProjectReference Include="..\..\..\visualize\plot\MsPlot.NET5.vbproj" />
+    <ProjectReference Include="..\ControlLibrary\ControlLibrary.vbproj" />
   </ItemGroup>
 
   <ItemGroup>
