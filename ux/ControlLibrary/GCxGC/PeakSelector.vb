@@ -36,7 +36,9 @@ Public Class PeakSelector
     End Sub
 
     Private Sub PictureBox1_Resize(sender As Object, e As EventArgs) Handles PictureBox1.Resize
-        Call rescale()
-        Call rendering()
+        If Not TIC2D.IsNullOrEmpty Then
+            Call rescale()
+            Call rendering()
+        End If
     End Sub
 End Class
