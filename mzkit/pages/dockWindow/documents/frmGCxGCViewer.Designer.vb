@@ -52,7 +52,7 @@
 
 #End Region
 
-Imports GCxGCViewer
+Imports Mzkit_win32.GCxGCViewer
 Imports Mzkit_win32.BasicMDIForm
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
