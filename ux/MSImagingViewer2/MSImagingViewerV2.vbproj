@@ -273,6 +273,7 @@
     <EmbeddedResource Include="Resources\Grab.cur" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Resources\btnZoomIn.png" />
   </ItemGroup>
   <ItemGroup>
