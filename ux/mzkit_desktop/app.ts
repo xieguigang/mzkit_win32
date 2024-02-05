@@ -17,6 +17,7 @@ namespace app.desktop {
         Router.AddAppHandler(new apps.viewer.three_app());
         Router.AddAppHandler(new apps.viewer.clusterViewer());
         Router.AddAppHandler(new apps.viewer.LCMSScatterViewer());
+        Router.AddAppHandler(new apps.viewer.GCxGCPeaksViewer());
         Router.AddAppHandler(new apps.viewer.OpenseadragonSlideViewer());
         Router.AddAppHandler(new apps.viewer.umap());
         Router.AddAppHandler(new apps.viewer.lcmsLibrary());
