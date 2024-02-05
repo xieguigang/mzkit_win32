@@ -57,17 +57,23 @@ Public Class GCxGCPeaks
         ' Call callback(id, meta.mz, meta.scan_time)
     End Sub
 
-    Public Sub SetMetadata(rawdata As D2Chromatogram())
+    Public Sub SetMetadata(rawdata As D2Chromatogram(), q As Double)
         Me.rawdata = rawdata _
             .Select(Function(d)
-                        Return d.chromatogram.Select(Function(ti) New GCxGCPeak(d.scan_time, ti.Time, ti.Intensity))
+                        Return d.chromatogram.Select(Function(ti) New GCxGCPeak(d.scan_time / 60, ti.Time, ti.Intensity))
                     End Function) _
             .IteratesALL _
             .ToArray
+
+        q = q * (Aggregate ti As GCxGCPeak In Me.rawdata Into Max(ti.into))
+
+        Me.rawdata = Me.rawdata _
+            .Where(Function(ti) ti.into > q) _
+            .ToArray
     End Sub
 
-    Public Sub LoadMesh(rawdata As D2Chromatogram(), Optional n As Integer = 500)
-        Me.SetMetadata(rawdata)
+    Public Sub LoadMesh(rawdata As D2Chromatogram(), Optional n As Integer = 500, Optional q As Double = 0.01)
+        Me.SetMetadata(rawdata, q)
         Me.rawdata = MeshGrid(Me.rawdata, n).ToArray
     End Sub
 
