@@ -17,17 +17,30 @@ namespace apps.viewer {
 
         private create_viewer() {
             this.peaks3D = new gl_plot.echart_peak3D<ms1_scatter>(
-                x => x.id,
-                x => [x.mz, x.scan_time, x.intensity],
-                x => x.intensity,
+                (x) => x.id,
+                (x) => [x.mz, x.scan_time, x.intensity],
+                (x) => x.intensity,
+                (arg, x) => this.label(arg, x),
                 'Scan Time(s)', "MZ"
             );
+
+            return this;
+        }
+
+        private label(arg: { dataIndex: number, data: number[] }, data: ms1_scatter[]) {
+            // console.log(arg);
+            const i = arg.dataIndex;
+            const labels = data;// spot_labels.Item(arg.seriesName);
+            const ms1: number[] = arg.data;
+            const rt = Math.round(ms1[0]);
+            const mz = Strings.round(ms1[1]);
+            const into = ms1[2].toExponential(2); // Math.pow(1.125, ms1[2]).toExponential(2);
+
+            return `<${labels[i].id}> m/z: ${mz}@${rt}s intensity=${into}`;
         }
 
         protected init(): void {
-            const vm = this;
-
-            vm.create_viewer();
+            const vm = this.create_viewer();
 
             app.desktop.mzkit.GetLCMSScatter().then(async function (data) {
                 const json_str: string = await data;

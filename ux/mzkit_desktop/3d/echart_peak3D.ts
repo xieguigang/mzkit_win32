@@ -1,26 +1,18 @@
 namespace gl_plot {
 
-    export interface IdReader<T> {
-        /**
-         * get id
-        */
-        (x: T): string;
-    }
-
-    export interface PointReader<T> {
-
-        /**
-         * get scatter point:
-         * 
-         * lcms scatter: mz, rt, intensity
-         * gcxgc peaks: rt1, rt2, intensity
-        */
-        (x: T): number[];
-    }
-
-    export interface IntensityReader<T> {
-        (x: T): number;
-    }
+    /**
+     * get id
+    */
+    export interface IdReader<T> { (x: T): string; }
+    /**
+     * get scatter point:
+     * 
+     * lcms scatter: mz, rt, intensity
+     * gcxgc peaks: rt1, rt2, intensity
+    */
+    export interface PointReader<T> { (x: T): number[]; }
+    export interface IntensityReader<T> { (x: T): number; }
+    export interface LabelReader<T> { (args: { dataIndex: number, data: number[] }, data: T[]): string; }
 
     export class echart_peak3D<T> {
 
@@ -31,6 +23,7 @@ namespace gl_plot {
             private read_id: IdReader<T>,
             private read_point: PointReader<T>,
             private read_intensity: IntensityReader<T>,
+            private read_label: LabelReader<T>,
             private xlab: string,
             private ylab: string,
             private zlab: string = "Intensity") {
@@ -178,17 +171,7 @@ namespace gl_plot {
                     // 提示框浮层内容格式器，支持字符串模板和回调函数两种形式。
                     // 模板变量有 {a}, {b}，{c}，分别表示系列名，数据名，数据值等
                     // formatter: '{a}--{b} 的成绩是 {c}'
-                    formatter: (arg) => {
-                        // console.log(arg);
-                        const i = arg.dataIndex;
-                        const labels = data;// spot_labels.Item(arg.seriesName);
-                        const ms1: number[] = arg.data;
-                        const rt = Math.round(ms1[0]);
-                        const mz = Strings.round(ms1[1]);
-                        const into = ms1[2].toExponential(2); // Math.pow(1.125, ms1[2]).toExponential(2);
-
-                        return `<${this.read_id(labels[i])}> m/z: ${mz}@${rt}s intensity=${into}`;
-                    }
+                    formatter: (arg) => this.read_label(arg, data)
                 },
                 // visualMap: {
                 //     max: max,
