@@ -63,7 +63,10 @@ Public Class frmGCxGCViewer
     Dim rawdata As mzPack
 
     Private Sub frmGCxGCViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Me.TabText = "GCxGC 2D Imaging Viewer"
+        TabText = "GCxGC 2D Imaging Viewer"
+        ribbonItems.MenuGroupGCxGC.ContextAvailable = ContextAvailability.Available
+
+        AddHandler ribbonItems.ButtonOpenGCxGCFile.ExecuteEvent, Sub() Call openRawdata()
     End Sub
 
     Private Sub openRawdata()
@@ -80,12 +83,12 @@ Public Class frmGCxGCViewer
         End Using
     End Sub
 
-    Private Sub frmGCxGCViewer_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+    Private Sub frmGCxGCViewer_Activated() Handles Me.Activated, Me.GotFocus
         HookOpen = AddressOf openRawdata
         ribbonItems.MenuGroupGCxGC.ContextAvailable = ContextAvailability.Active
     End Sub
 
-    Private Sub frmGCxGCViewer_Deactivate(sender As Object, e As EventArgs) Handles Me.Deactivate
+    Private Sub frmGCxGCViewer_Deactivate(sender As Object, e As EventArgs) Handles Me.Deactivate, Me.LostFocus
         HookOpen = Nothing
         ribbonItems.MenuGroupGCxGC.ContextAvailable = ContextAvailability.NotAvailable
     End Sub
