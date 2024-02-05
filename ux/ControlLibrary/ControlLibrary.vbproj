@@ -197,12 +197,6 @@
     <Compile Include="ColorComboBox.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GCxGC\PeakSelector.Designer.vb">
-      <DependentUpon>PeakSelector.vb</DependentUpon>
-    </Compile>
-    <Compile Include="GCxGC\PeakSelector.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="ToolStripTraceBarItem.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -260,9 +254,6 @@
     <Compile Include="WinForms\NativeToolStripRenderer.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="GCxGC\PeakSelector.resx">
-      <DependentUpon>PeakSelector.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MSSelector.en-US.resx">
       <DependentUpon>MSSelector.vb</DependentUpon>
     </EmbeddedResource>
