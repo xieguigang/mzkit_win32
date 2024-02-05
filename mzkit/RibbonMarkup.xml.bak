@@ -130,6 +130,7 @@
         <Image Id="34" MinDPI="192">Res/TextEditor.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdAnalysisPanel" Id="268" LabelTitle="Analysis" LabelDescription="Analysis" TooltipTitle="Analysis" TooltipDescription="Analysis" />
     <Command Name="cmdTabAppStore" Id="216">
       <Command.LabelTitle>
         <String Id="35">App Store</String>
@@ -699,6 +700,7 @@
         <String Id="205">Data Analysis</String>
       </Command.LabelTitle>
     </Command>
+    <Command Name="cmdDataSummaryGroup" Id="271" LabelTitle="Data Summary" LabelDescription="Data Summary" TooltipTitle="Data Summary" TooltipDescription="Data Summary" />
     <Command Name="cmdTabLayout" Id="1035">
       <Command.LabelTitle>
         <String Id="206">Data Viewer</String>
@@ -1222,6 +1224,7 @@
         <Image Id="356">Res/folder-pictures.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdWorkbenchFile" Id="275" LabelTitle="File" LabelDescription="File" TooltipTitle="File" TooltipDescription="File" />
     <Command Name="cmdMenuGroupFile" Id="1005">
       <Command.LabelTitle>
         <String Id="357">File Menu</String>
@@ -1318,6 +1321,9 @@
         <Image Id="382" MinDPI="192">Res/folder-documents.bmp</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdMenuGroupGCxGC" Id="6" LabelTitle="GCxGC" LabelDescription="GCxGC" TooltipTitle="GCxGC" TooltipDescription="GCxGC" />
+    <Command Name="cmdPanelGCxGC" Id="7" LabelTitle="GCxGC" LabelDescription="GCxGC" TooltipTitle="GCxGC" TooltipDescription="GCxGC" />
+    <Command Name="cmdGroupGCxGC" Id="282" LabelTitle="GCxGC" LabelDescription="GCxGC" TooltipTitle="GCxGC" TooltipDescription="GCxGC" />
     <Command Name="cmdGCxGCViewer" Id="179">
       <Command.LabelTitle>
         <String Id="383">GCxGC Viewer</String>
@@ -1949,6 +1955,16 @@
         <Image Id="561" MinDPI="192">Res/icons8-merge-documents-96.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonOpenLCMSWorkbench" Id="267" LabelTitle="Metabonomics Workbench" LabelDescription="Launch metabonomics workbench" TooltipTitle="Launch metabonomics workbench" TooltipDescription="Launch metabonomics workbench">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-mind-map-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-mind-map-96.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdDataSummaryPanel" Id="270" LabelTitle="Metabonomics Workbench" LabelDescription="Metabonomics Workbench" TooltipTitle="Metabonomics Workbench" TooltipDescription="Metabonomics Workbench" />
+    <Command Name="cmdMetaboAnalysis" Id="269" LabelTitle="Metabonomics Workbench" LabelDescription="Metabonomics Workbench" TooltipTitle="Metabonomics Workbench" TooltipDescription="Metabonomics Workbench" />
     <Command Name="cmdButtonDropD" Id="5010">
       <Command.LabelTitle>
         <String Id="562">Molecule Networking</String>
@@ -2298,6 +2314,14 @@
         <Image Id="658" MinDPI="192">Res/folder-pictures.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonOpenGCxGCFile" Id="8" LabelTitle="Open" LabelDescription="Open GCxGC rawdata file" TooltipTitle="Open GCxGC rawdata file" TooltipDescription="Open GCxGC rawdata file">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/folder-documents.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/folder-documents.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdButtonOpenVirtualSlideFile" Id="234">
       <Command.LabelTitle>
         <String Id="659">Open Slide</String>
@@ -2336,6 +2360,14 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image Id="670" MinDPI="192">Res/excel-icon.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonOpenWorkspace" Id="276" LabelTitle="Open Workspace" LabelDescription="Open Workspace" TooltipTitle="Open Workspace" TooltipDescription="Open Workspace">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/folder-documents.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/folder-documents.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdImportsMzwork" Id="157">
@@ -2414,6 +2446,14 @@
         <String Id="692">Operations</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdButtonOPLSDA" Id="274" LabelTitle="OPLS-DA">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-scatter-plot-96.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-scatter-plot-96.bmp</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdMenuOpticalMicroscopyTools" Id="235">
       <Command.LabelTitle>
         <String Id="693">Optical Microscopy Tools</String>
@@ -2441,6 +2481,14 @@
       <Command.TooltipDescription>
         <String Id="700">Options</String>
       </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdButtonPCA" Id="272" LabelTitle="PCA">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-scatter-plot-96.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-scatter-plot-96.bmp</Image>
+      </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonPeakFinding" Id="5">
       <Command.LabelTitle>
@@ -2515,6 +2563,14 @@
       <Command.TooltipDescription>
         <String Id="722">Plot Options</String>
       </Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdButtonPLSDA" Id="273" LabelTitle="PLS-DA">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-scatter-plot-96.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-scatter-plot-96.bmp</Image>
+      </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonPluginManager" Id="214">
       <Command.LabelTitle>
@@ -3999,6 +4055,14 @@
         <Image Id="1151" MinDPI="192">Res/gparted.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdViewLCMSScatter" Id="278" LabelTitle="View Scatter" LabelDescription="View Scatter" TooltipTitle="View Scatter" TooltipDescription="View Scatter">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-particle-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-particle-96.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdButtonViewSMILES" Id="178">
       <Command.LabelTitle>
         <String Id="1152">View SMILES</String>
@@ -4034,6 +4098,7 @@
         <String Id="1160">Viewers</String>
       </Command.LabelTitle>
     </Command>
+    <Command Name="cmdLCMSVisualPanel" Id="277" LabelTitle="Visual" LabelDescription="Visual" TooltipTitle="Visual" TooltipDescription="Visual" />
     <Command Name="cmdButtonXIC" Id="1145">
       <Command.LabelTitle>
         <String Id="1161">XIC</String>
@@ -4061,60 +4126,6 @@
       <Command.TooltipDescription>
         <String Id="1168">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
-    </Command>
-    <Command Name="cmdButtonOpenLCMSWorkbench" Id="267" LabelTitle="Metabonomics Workbench" LabelDescription="Launch metabonomics workbench" TooltipTitle="Launch metabonomics workbench" TooltipDescription="Launch metabonomics workbench">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/icons8-mind-map-96.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/icons8-mind-map-96.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdAnalysisPanel" Id="268" LabelTitle="Analysis" LabelDescription="Analysis" TooltipTitle="Analysis" TooltipDescription="Analysis" />
-    <Command Name="cmdMetaboAnalysis" Id="269" LabelTitle="Metabonomics Workbench" LabelDescription="Metabonomics Workbench" TooltipTitle="Metabonomics Workbench" TooltipDescription="Metabonomics Workbench" />
-    <Command Name="cmdDataSummaryPanel" Id="270" LabelTitle="Metabonomics Workbench" LabelDescription="Metabonomics Workbench" TooltipTitle="Metabonomics Workbench" TooltipDescription="Metabonomics Workbench" />
-    <Command Name="cmdDataSummaryGroup" Id="271" LabelTitle="Data Summary" LabelDescription="Data Summary" TooltipTitle="Data Summary" TooltipDescription="Data Summary" />
-    <Command Name="cmdButtonPCA" Id="272" LabelTitle="PCA">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/icons8-scatter-plot-96.bmp</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/icons8-scatter-plot-96.bmp</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonPLSDA" Id="273" LabelTitle="PLS-DA">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/icons8-scatter-plot-96.bmp</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/icons8-scatter-plot-96.bmp</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonOPLSDA" Id="274" LabelTitle="OPLS-DA">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/icons8-scatter-plot-96.bmp</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/icons8-scatter-plot-96.bmp</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdWorkbenchFile" Id="275" LabelTitle="File" LabelDescription="File" TooltipTitle="File" TooltipDescription="File" />
-    <Command Name="cmdButtonOpenWorkspace" Id="276" LabelTitle="Open Workspace" LabelDescription="Open Workspace" TooltipTitle="Open Workspace" TooltipDescription="Open Workspace">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/folder-documents.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/folder-documents.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdLCMSVisualPanel" Id="277" LabelTitle="Visual" LabelDescription="Visual" TooltipTitle="Visual" TooltipDescription="Visual" />
-    <Command Name="cmdViewLCMSScatter" Id="278" LabelTitle="View Scatter" LabelDescription="View Scatter" TooltipTitle="View Scatter" TooltipDescription="View Scatter">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/icons8-particle-96.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/icons8-particle-96.png</Image>
-      </Command.LargeImages>
     </Command>
   </Application.Commands>
   <Application.Views>
@@ -4491,6 +4502,13 @@
             </Group>
             <Group CommandName="cmdLCMSVisualPanel" SizeDefinition="OneButton">
               <Button CommandName="cmdViewLCMSScatter" />
+            </Group>
+          </Tab>
+        </TabGroup>
+        <TabGroup CommandName="cmdMenuGroupGCxGC">
+          <Tab CommandName="cmdPanelGCxGC">
+            <Group CommandName="cmdGroupGCxGC" SizeDefinition="OneButton">
+              <Button CommandName="cmdButtonOpenGCxGCFile" />
             </Group>
           </Tab>
         </TabGroup>

@@ -234,6 +234,10 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonOPLSDA As UInteger = 274
             Public Const cmdLCMSVisualPanel As UInteger = 277
             Public Const cmdViewLCMSScatter As UInteger = 278
+            Public Const cmdMenuGroupGCxGC As UInteger = 6
+            Public Const cmdPanelGCxGC As UInteger = 7
+            Public Const cmdGroupGCxGC As UInteger = 282
+            Public Const cmdButtonOpenGCxGCFile As UInteger = 8
             Public Const cmdTabMain As UInteger = 1011
             Public Const cmdGroupFileActions As UInteger = 1045
             Public Const cmdTabGroupWindowTools As UInteger = 1023
@@ -1603,6 +1607,30 @@ Namespace RibbonLib.Controls
                 Return _ViewLCMSScatter
             End Get
         End Property
+        Private _MenuGroupGCxGC As RibbonTabGroup
+        Public ReadOnly Property MenuGroupGCxGC As RibbonTabGroup
+            Get
+                Return _MenuGroupGCxGC
+            End Get
+        End Property
+        Private _PanelGCxGC As RibbonTab
+        Public ReadOnly Property PanelGCxGC As RibbonTab
+            Get
+                Return _PanelGCxGC
+            End Get
+        End Property
+        Private _GroupGCxGC As RibbonGroup
+        Public ReadOnly Property GroupGCxGC As RibbonGroup
+            Get
+                Return _GroupGCxGC
+            End Get
+        End Property
+        Private _ButtonOpenGCxGCFile As RibbonButton
+        Public ReadOnly Property ButtonOpenGCxGCFile As RibbonButton
+            Get
+                Return _ButtonOpenGCxGCFile
+            End Get
+        End Property
         Private _TabMain As RibbonTab
         Public ReadOnly Property TabMain As RibbonTab
             Get
@@ -2062,6 +2090,10 @@ Namespace RibbonLib.Controls
             _ButtonOPLSDA = New RibbonButton(_ribbon, Cmd.cmdButtonOPLSDA)
             _LCMSVisualPanel = New RibbonGroup(_ribbon, Cmd.cmdLCMSVisualPanel)
             _ViewLCMSScatter = New RibbonButton(_ribbon, Cmd.cmdViewLCMSScatter)
+            _MenuGroupGCxGC = New RibbonTabGroup(_ribbon, Cmd.cmdMenuGroupGCxGC)
+            _PanelGCxGC = New RibbonTab(_ribbon, Cmd.cmdPanelGCxGC)
+            _GroupGCxGC = New RibbonGroup(_ribbon, Cmd.cmdGroupGCxGC)
+            _ButtonOpenGCxGCFile = New RibbonButton(_ribbon, Cmd.cmdButtonOpenGCxGCFile)
             _TabMain = New RibbonTab(_ribbon, Cmd.cmdTabMain)
             _GroupFileActions = New RibbonGroup(_ribbon, Cmd.cmdGroupFileActions)
             _TabGroupWindowTools = New RibbonGroup(_ribbon, Cmd.cmdTabGroupWindowTools)

@@ -237,6 +237,10 @@ namespace RibbonLib.Controls
             public const uint cmdButtonOPLSDA = 274;
             public const uint cmdLCMSVisualPanel = 277;
             public const uint cmdViewLCMSScatter = 278;
+            public const uint cmdMenuGroupGCxGC = 6;
+            public const uint cmdPanelGCxGC = 7;
+            public const uint cmdGroupGCxGC = 282;
+            public const uint cmdButtonOpenGCxGCFile = 8;
             public const uint cmdTabMain = 1011;
             public const uint cmdGroupFileActions = 1045;
             public const uint cmdTabGroupWindowTools = 1023;
@@ -506,6 +510,10 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonOPLSDA { get; private set; }
         public RibbonGroup LCMSVisualPanel { get; private set; }
         public RibbonButton ViewLCMSScatter { get; private set; }
+        public RibbonTabGroup MenuGroupGCxGC { get; private set; }
+        public RibbonTab PanelGCxGC { get; private set; }
+        public RibbonGroup GroupGCxGC { get; private set; }
+        public RibbonButton ButtonOpenGCxGCFile { get; private set; }
         public RibbonTab TabMain { get; private set; }
         public RibbonGroup GroupFileActions { get; private set; }
         public RibbonGroup TabGroupWindowTools { get; private set; }
@@ -770,6 +778,10 @@ namespace RibbonLib.Controls
             ButtonOPLSDA = new RibbonButton(ribbon, Cmd.cmdButtonOPLSDA);
             LCMSVisualPanel = new RibbonGroup(ribbon, Cmd.cmdLCMSVisualPanel);
             ViewLCMSScatter = new RibbonButton(ribbon, Cmd.cmdViewLCMSScatter);
+            MenuGroupGCxGC = new RibbonTabGroup(ribbon, Cmd.cmdMenuGroupGCxGC);
+            PanelGCxGC = new RibbonTab(ribbon, Cmd.cmdPanelGCxGC);
+            GroupGCxGC = new RibbonGroup(ribbon, Cmd.cmdGroupGCxGC);
+            ButtonOpenGCxGCFile = new RibbonButton(ribbon, Cmd.cmdButtonOpenGCxGCFile);
             TabMain = new RibbonTab(ribbon, Cmd.cmdTabMain);
             GroupFileActions = new RibbonGroup(ribbon, Cmd.cmdGroupFileActions);
             TabGroupWindowTools = new RibbonGroup(ribbon, Cmd.cmdTabGroupWindowTools);
