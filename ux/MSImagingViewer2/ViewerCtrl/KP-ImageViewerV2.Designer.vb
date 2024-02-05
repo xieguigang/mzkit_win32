@@ -43,7 +43,7 @@
         Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.MSICanvas = New Mzkit_win32.MSImagingViewerV2.PixelSelector()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
-        Me.ColorScaler1 = New Mzkit_win32.MSImagingViewerV2.ColorScaler()
+        Me.ColorScaler1 = New ControlLibrary.ColorScaler()
         CType(Me.pbPanelAirscape, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbFull, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pbFull.SuspendLayout()
@@ -288,5 +288,5 @@
     Friend WithEvents ToolStripStatusLabel2 As ToolStripStatusLabel
     Friend WithEvents MSICanvas As PixelSelector
     Friend WithEvents SplitContainer1 As SplitContainer
-    Friend WithEvents ColorScaler1 As ColorScaler
+    Friend WithEvents ColorScaler1 As ControlLibrary.ColorScaler
 End Class
