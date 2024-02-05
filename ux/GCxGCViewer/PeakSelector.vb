@@ -55,6 +55,9 @@ Public Class PeakSelector
             .region = New Rectangle(New Point, PictureBox1.Size)
         }
 
+        colors.ScalerPalette = ColorSet
+        colors.SetIntensityMax(TIC2D.Select(Function(d) d.intensity).Max)
+        colors.ResetScaleRange()
         PictureBox1.BackgroundImage = GCxGCTIC2DPlot.FillHeatMap(TIC2D, PictureBox1.Size, scaler, ColorSet.Description, 255, 1, 1)
     End Sub
 
