@@ -100,7 +100,7 @@ Public Class PeakSelector
                 _ColorSet = colors.GetColorMap
             End Sub)
 
-        If old <> ColorSet Then
+        If old <> ColorSet AndAlso Not TIC2D.IsNullOrEmpty Then
             Call ProgressSpinner.DoLoading(
                 Sub()
                     Call rendering()
