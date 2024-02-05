@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <RootNamespace>GCxGCViewer</RootNamespace>
@@ -8,6 +8,11 @@
     <OutputType>Library</OutputType>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <ImportedNamespaces>System.Drawing=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Data=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,GCxGCViewer=True</ImportedNamespaces>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+    <VBAuthenticationMode>Windows</VBAuthenticationMode>
+    <ShutdownMode>AfterMainFormCloses</ShutdownMode>
+    <UseWindowsForms>true</UseWindowsForms>
+    <MyType>WindowsForms</MyType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,6 +26,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="My Project\Settings.Designer.vb">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Update="PeakSelector.vb">
       <SubType>UserControl</SubType>
     </Compile>
@@ -28,6 +38,14 @@
 
   <ItemGroup>
     <Import Include="System.Drawing" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="My Project\Settings.settings">
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>
