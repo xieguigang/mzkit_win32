@@ -113,12 +113,19 @@ Public Class PeakSelector
     Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
         Dim peak As D2Chromatogram = Nothing
         Dim t1, t2 As Double
+        Dim text As String
 
         p = Cursor.Position
         PictureBox1.Refresh()
         GetPeak(peak, t1, t2, loc:=p)
 
-        ToolStripStatusLabel2.Text = $"GCxGC scan time1: {StringFormats.ReadableElapsedTime(TimeSpan.FromSeconds(t1))}, scan time2: {t2.ToString("F2")}s; {peak.scan_id}"
+        text = $"scan time1: {StringFormats.ReadableElapsedTime(TimeSpan.FromSeconds(t1))}, scan time2: {t2.ToString("F2")}s"
+
+        If Not peak Is Nothing Then
+            text = text & "; " & peak.scan_id
+        End If
+
+        ToolStripStatusLabel2.Text = text
     End Sub
 
     Private Sub GetPeak(ByRef peak As D2Chromatogram, ByRef rt1 As Double, ByRef rt2 As Double, loc As Point)
