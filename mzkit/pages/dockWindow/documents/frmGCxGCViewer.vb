@@ -88,8 +88,8 @@ Public Class frmGCxGCViewer
         ribbonItems.MenuGroupGCxGC.ContextAvailable = ContextAvailability.Active
     End Sub
 
-    Private Sub frmGCxGCViewer_Deactivate(sender As Object, e As EventArgs) Handles Me.Deactivate, Me.LostFocus
-        HookOpen = Nothing
-        ribbonItems.MenuGroupGCxGC.ContextAvailable = ContextAvailability.NotAvailable
-    End Sub
+    'Private Sub frmGCxGCViewer_Deactivate(sender As Object, e As EventArgs) Handles Me.Deactivate, Me.LostFocus
+    '    HookOpen = Nothing
+    '    ribbonItems.MenuGroupGCxGC.ContextAvailable = ContextAvailability.NotAvailable
+    'End Sub
 End Class
