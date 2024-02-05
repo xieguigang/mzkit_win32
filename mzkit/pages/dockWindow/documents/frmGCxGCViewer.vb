@@ -76,12 +76,16 @@ Public Class frmGCxGCViewer
                     Sub()
                         Using s As Stream = file.FileName.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
                             Call Me.Invoke(Sub() rawdata = mzPack.ReadAll(s))
-                            Call Me.Invoke(Sub() PeakSelector1.SetScans(rawdata.ExtractTIC.ToArray, 4))
+                            Call Me.Invoke(Sub() PeakSelector1.SetScans(rawdata.ExtractTIC.ToArray, getModtime))
                         End Using
                     End Sub)
             End If
         End Using
     End Sub
+
+    Private Function getModtime() As Double
+        Return Val(rawdata.metadata.TryGetValue("modtime", [default]:="4.0"))
+    End Function
 
     Private Sub frmGCxGCViewer_Activated() Handles Me.Activated, Me.GotFocus
         HookOpen = AddressOf openRawdata

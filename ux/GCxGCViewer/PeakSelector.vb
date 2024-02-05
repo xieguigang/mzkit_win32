@@ -1,4 +1,5 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.Drawing.Drawing2D
+Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports CommonDialogs
@@ -138,6 +139,13 @@ Public Class PeakSelector
     End Sub
 
     Private Sub PictureBox1_Paint(sender As Object, e As PaintEventArgs) Handles PictureBox1.Paint
+        Dim pt As Point = PictureBox1.PointToClient(p)
+        Dim pen As New Pen(Color.Red, 2) With {
+            .DashStyle = DashStyle.Dot
+        }
+        Dim size = PictureBox1.Size
 
+        Call e.Graphics.DrawLine(pen, pt.X, 0, pt.X, size.Height)
+        Call e.Graphics.DrawLine(pen, 0, pt.Y, size.Width, pt.Y)
     End Sub
 End Class
