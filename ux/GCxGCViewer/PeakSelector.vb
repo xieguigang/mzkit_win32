@@ -13,6 +13,7 @@ Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.Math.LinearAlgebra
+Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports std = System.Math
@@ -37,6 +38,38 @@ Public Class PeakSelector
     Dim t1Bins As BlockSearchFunction(Of D2Chromatogram)
 
     Dim WithEvents colors As New ColorScaler
+
+    Public Property HtmlView As Boolean
+        Get
+            Try
+                Return WebView21.Visible
+            Catch ex As Exception
+                Return False
+            End Try
+        End Get
+        Set(value As Boolean)
+            If Not value Then
+                WebView21.Hide()
+                WebView21.Visible = False
+                WebView21.Dock = DockStyle.None
+                PictureBox1.Visible = True
+                PictureBox1.Show()
+                PictureBox1.Dock = DockStyle.Fill
+
+                Call PictureBox1_Resize()
+            Else
+                PictureBox1.Visible = False
+                PictureBox1.Hide()
+                PictureBox1.Dock = DockStyle.None
+                WebView21.Show()
+                WebView21.Visible = True
+                WebView21.Dock = DockStyle.Fill
+
+                ToolStripStatusLabel2.Text = "Use mouse left button to rotate, and mouse right button to pan the canvas"
+            End If
+        End Set
+    End Property
+
 
     Sub New()
 
@@ -80,9 +113,20 @@ Public Class PeakSelector
         colors.SetIntensityMax(scaled.Select(Function(d) d.intensity).Max)
         colors.ResetScaleRange()
         PictureBox1.BackgroundImage = GCxGCTIC2DPlot.FillHeatMap(scaled, PictureBox1.Size, scaler, ColorSet.Description, 255, 2, 2)
+
+        If HtmlView Then
+            Try
+                ' ignores of the intiialize error
+                If Not WebView21.CoreWebView2 Is Nothing Then
+                    Call WebView21.CoreWebView2.Reload()
+                End If
+            Catch ex As Exception
+
+            End Try
+        End If
     End Sub
 
-    Private Sub PictureBox1_Resize(sender As Object, e As EventArgs) Handles PictureBox1.Resize
+    Private Sub PictureBox1_Resize() Handles PictureBox1.SizeChanged
         If Not TIC2D.IsNullOrEmpty Then
             Call rescale()
 
@@ -168,5 +212,21 @@ Public Class PeakSelector
 
         Call e.Graphics.DrawLine(pen, pt.X, 0, pt.X, size.Height)
         Call e.Graphics.DrawLine(pen, 0, pt.Y, size.Width, pt.Y)
+    End Sub
+
+    Private Sub PeakSelector_Load(sender As Object, e As EventArgs) Handles Me.Load
+        WebKit.Init(WebView21)
+        HtmlView = False
+    End Sub
+
+    Private Sub DViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DViewerToolStripMenuItem.Click
+        HtmlView = DViewerToolStripMenuItem.Checked
+    End Sub
+
+    Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
+        ' WebView21.CoreWebView2.OpenDevToolsWindow()
+        Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", lcms_scatter)
+        Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Workbench.WebPort}/LCMS-scatter.html")
+        Call WebKit.DeveloperOptions(WebView21, enable:=True,)
     End Sub
 End Class

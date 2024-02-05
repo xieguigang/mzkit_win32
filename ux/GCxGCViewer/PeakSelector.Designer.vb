@@ -31,14 +31,16 @@ Partial Class PeakSelector
         Me.ToolStripDropDownButton1 = New System.Windows.Forms.ToolStripDropDownButton()
         Me.DViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ChangeColorsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
-        Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.WebView21 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
+        CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'StatusStrip1
@@ -68,24 +70,30 @@ Partial Class PeakSelector
         '
         'DViewerToolStripMenuItem
         '
+        Me.DViewerToolStripMenuItem.CheckOnClick = True
         Me.DViewerToolStripMenuItem.Name = "DViewerToolStripMenuItem"
-        Me.DViewerToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DViewerToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.DViewerToolStripMenuItem.Text = "3D Viewer"
         '
         'ChangeColorsToolStripMenuItem
         '
         Me.ChangeColorsToolStripMenuItem.Name = "ChangeColorsToolStripMenuItem"
-        Me.ChangeColorsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ChangeColorsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ChangeColorsToolStripMenuItem.Text = "Change Colors"
+        '
+        'ToolStripStatusLabel2
+        '
+        Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
+        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(42, 17)
+        Me.ToolStripStatusLabel2.Text = "Ready!"
         '
         'PictureBox1
         '
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.PictureBox1.Cursor = System.Windows.Forms.Cursors.Cross
-        Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox1.Location = New System.Drawing.Point(67, 75)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(550, 368)
+        Me.PictureBox1.Size = New System.Drawing.Size(293, 218)
         Me.PictureBox1.TabIndex = 1
         Me.PictureBox1.TabStop = False
         '
@@ -98,16 +106,22 @@ Partial Class PeakSelector
         '
         'SplitContainer1.Panel1
         '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.WebView21)
         Me.SplitContainer1.Panel1.Controls.Add(Me.PictureBox1)
         Me.SplitContainer1.Size = New System.Drawing.Size(651, 368)
         Me.SplitContainer1.SplitterDistance = 550
         Me.SplitContainer1.TabIndex = 2
         '
-        'ToolStripStatusLabel2
+        'WebView21
         '
-        Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
-        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(42, 17)
-        Me.ToolStripStatusLabel2.Text = "Ready!"
+        Me.WebView21.AllowExternalDrop = True
+        Me.WebView21.CreationProperties = Nothing
+        Me.WebView21.DefaultBackgroundColor = System.Drawing.Color.White
+        Me.WebView21.Location = New System.Drawing.Point(403, 142)
+        Me.WebView21.Name = "WebView21"
+        Me.WebView21.Size = New System.Drawing.Size(119, 137)
+        Me.WebView21.TabIndex = 2
+        Me.WebView21.ZoomFactor = 1.0R
         '
         'PeakSelector
         '
@@ -123,6 +137,7 @@ Partial Class PeakSelector
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
+        CType(Me.WebView21, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -136,4 +151,5 @@ Partial Class PeakSelector
     Friend WithEvents DViewerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ChangeColorsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripStatusLabel2 As ToolStripStatusLabel
+    Friend WithEvents WebView21 As Microsoft.Web.WebView2.WinForms.WebView2
 End Class
