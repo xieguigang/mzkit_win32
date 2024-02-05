@@ -4,14 +4,18 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports CommonDialogs
 Imports ControlLibrary
+Imports Microsoft.VisualBasic.ComponentModel.Algorithm
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
+Imports Microsoft.VisualBasic.Data.ChartPlots
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.Math.LinearAlgebra
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports std = System.Math
 
 Public Class PeakSelector
 
@@ -29,6 +33,8 @@ Public Class PeakSelector
     ''' scan time 2
     ''' </summary>
     Dim t2 As DoubleRange
+
+    Dim t1Bins As BlockSearchFunction(Of D2Chromatogram)
 
     Dim WithEvents colors As New ColorScaler
 
@@ -58,6 +64,7 @@ Public Class PeakSelector
         _TIC2D = scans
         t1 = New DoubleRange(0, Aggregate s As D2Chromatogram In scans Into Max(s.scan_time))
         t2 = New DoubleRange(0, modtime)
+        t1Bins = New BlockSearchFunction(Of D2Chromatogram)(scans, Function(i) i.scan_time, 60, fuzzy:=True)
 
         Call rescale()
         Call rendering()
@@ -67,7 +74,7 @@ Public Class PeakSelector
         Dim scaler As New DataScaler(scaleX, scaleY) With {
             .region = New Rectangle(New Point, PictureBox1.Size)
         }
-        Dim scaled = GCxGCTIC2DPlot.CutSignal(TIC2D, qh:=0.99).ToArray
+        Dim scaled = GCxGCTIC2DPlot.CutSignal(TIC2D, qh:=0.995).ToArray
 
         colors.ScalerPalette = ColorSet
         colors.SetIntensityMax(scaled.Select(Function(d) d.intensity).Max)
@@ -104,17 +111,17 @@ Public Class PeakSelector
     Dim p As Point
 
     Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
-        Dim id As String = Nothing
+        Dim peak As D2Chromatogram = Nothing
         Dim t1, t2 As Double
 
         p = Cursor.Position
         PictureBox1.Refresh()
-        GetPeak(id, t1, t2, loc:=p)
+        GetPeak(peak, t1, t2, loc:=p)
 
-        ToolStripStatusLabel1.Text = $"GCxGC scan time1: {StringFormats.ReadableElapsedTime(TimeSpan.FromSeconds(t1))}, scan time2: {t2.ToString("F2")}s"
+        ToolStripStatusLabel2.Text = $"GCxGC scan time1: {StringFormats.ReadableElapsedTime(TimeSpan.FromSeconds(t1))}, scan time2: {t2.ToString("F2")}s; {peak.scan_id}"
     End Sub
 
-    Private Sub GetPeak(ByRef peakId As String, ByRef rt1 As Double, ByRef rt2 As Double, loc As Point)
+    Private Sub GetPeak(ByRef peak As D2Chromatogram, ByRef rt1 As Double, ByRef rt2 As Double, loc As Point)
         Dim pt As Point = PictureBox1.PointToClient(loc)
         Dim size As Size = PictureBox1.Size
         Dim y As New DoubleRange(0, size.Height)
@@ -123,6 +130,13 @@ Public Class PeakSelector
         If t1 IsNot Nothing AndAlso t2 IsNot Nothing Then
             rt1 = x.ScaleMapping(pt.X, t1)
             rt2 = t2.Max - y.ScaleMapping(pt.Y, t2)
+
+            Dim scantime1 As Double = rt1
+            Dim t1scans = t1Bins.Search(New D2Chromatogram(rt1)) _
+                .OrderBy(Function(s) std.Abs(s.scan_time - scantime1)) _
+                .FirstOrDefault
+
+            peak = t1scans
         End If
     End Sub
 

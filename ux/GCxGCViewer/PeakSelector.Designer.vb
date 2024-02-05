@@ -28,11 +28,12 @@ Partial Class PeakSelector
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PeakSelector))
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripDropDownButton1 = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.DViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ChangeColorsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
-        Me.ToolStripDropDownButton1 = New System.Windows.Forms.ToolStripDropDownButton()
-        Me.ChangeColorsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -42,7 +43,7 @@ Partial Class PeakSelector
         '
         'StatusStrip1
         '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripDropDownButton1})
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripDropDownButton1, Me.ToolStripStatusLabel2})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 368)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(651, 22)
@@ -52,8 +53,30 @@ Partial Class PeakSelector
         'ToolStripStatusLabel1
         '
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(42, 17)
-        Me.ToolStripStatusLabel1.Text = "Ready!"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(83, 17)
+        Me.ToolStripStatusLabel1.Text = "GCxGC Viewer"
+        '
+        'ToolStripDropDownButton1
+        '
+        Me.ToolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripDropDownButton1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DViewerToolStripMenuItem, Me.ChangeColorsToolStripMenuItem})
+        Me.ToolStripDropDownButton1.Image = CType(resources.GetObject("ToolStripDropDownButton1.Image"), System.Drawing.Image)
+        Me.ToolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripDropDownButton1.Name = "ToolStripDropDownButton1"
+        Me.ToolStripDropDownButton1.Size = New System.Drawing.Size(29, 20)
+        Me.ToolStripDropDownButton1.Text = "ToolStripDropDownButton1"
+        '
+        'DViewerToolStripMenuItem
+        '
+        Me.DViewerToolStripMenuItem.Name = "DViewerToolStripMenuItem"
+        Me.DViewerToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DViewerToolStripMenuItem.Text = "3D Viewer"
+        '
+        'ChangeColorsToolStripMenuItem
+        '
+        Me.ChangeColorsToolStripMenuItem.Name = "ChangeColorsToolStripMenuItem"
+        Me.ChangeColorsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ChangeColorsToolStripMenuItem.Text = "Change Colors"
         '
         'PictureBox1
         '
@@ -80,27 +103,11 @@ Partial Class PeakSelector
         Me.SplitContainer1.SplitterDistance = 550
         Me.SplitContainer1.TabIndex = 2
         '
-        'ToolStripDropDownButton1
+        'ToolStripStatusLabel2
         '
-        Me.ToolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripDropDownButton1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DViewerToolStripMenuItem, Me.ChangeColorsToolStripMenuItem})
-        Me.ToolStripDropDownButton1.Image = CType(resources.GetObject("ToolStripDropDownButton1.Image"), System.Drawing.Image)
-        Me.ToolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripDropDownButton1.Name = "ToolStripDropDownButton1"
-        Me.ToolStripDropDownButton1.Size = New System.Drawing.Size(29, 20)
-        Me.ToolStripDropDownButton1.Text = "ToolStripDropDownButton1"
-        '
-        'ChangeColorsToolStripMenuItem
-        '
-        Me.ChangeColorsToolStripMenuItem.Name = "ChangeColorsToolStripMenuItem"
-        Me.ChangeColorsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ChangeColorsToolStripMenuItem.Text = "Change Colors"
-        '
-        'DViewerToolStripMenuItem
-        '
-        Me.DViewerToolStripMenuItem.Name = "DViewerToolStripMenuItem"
-        Me.DViewerToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.DViewerToolStripMenuItem.Text = "3D Viewer"
+        Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
+        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(42, 17)
+        Me.ToolStripStatusLabel2.Text = "Ready!"
         '
         'PeakSelector
         '
@@ -128,4 +135,5 @@ Partial Class PeakSelector
     Friend WithEvents ToolStripDropDownButton1 As ToolStripDropDownButton
     Friend WithEvents DViewerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ChangeColorsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripStatusLabel2 As ToolStripStatusLabel
 End Class
