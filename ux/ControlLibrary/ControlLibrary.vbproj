@@ -303,10 +303,6 @@
       <Project>{eb3dd1ee-71a4-4d85-b494-ef075ad99098}</Project>
       <Name>Math.NET5</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data_science\Visualization\Plots\plots-netcore5.vbproj">
-      <Project>{5886614d-8d70-41e7-9795-afd0effb4e38}</Project>
-      <Name>plots-netcore5</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\gr\Microsoft.VisualBasic.Imaging\imaging.NET5.vbproj">
       <Project>{e2caa18e-9705-462a-844d-c809a45d4197}</Project>
       <Name>imaging.NET5</Name>
@@ -315,21 +311,9 @@
       <Project>{dee82853-4241-4f24-a096-12923c664369}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\assembly\Comprehensive\Comprehensive.NET5.vbproj">
-      <Project>{5f23ce55-e4b2-4931-94db-1085ee7175c1}</Project>
-      <Name>Comprehensive.NET5</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\mzmath\ms2_math-core\mzmath-netcore5.vbproj">
       <Project>{ab5fd86e-6da9-4f7c-8dce-17da85bc895d}</Project>
       <Name>mzmath-netcore5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\mzmath\mz_deco\deconv.NET5.vbproj">
-      <Project>{fd924bdc-104f-4210-ab34-38ddeaf081ad}</Project>
-      <Name>deconv.NET5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\visualize\plot\MsPlot.NET5.vbproj">
-      <Project>{a27dc075-07ac-4d90-b1d5-0966925b5309}</Project>
-      <Name>MsPlot.NET5</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
