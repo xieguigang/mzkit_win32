@@ -32,7 +32,11 @@ Public Class PeakSelector
     End Sub
 
     Private Sub rendering()
-        PictureBox1.BackgroundImage = GCxGCTIC2DPlot.FillHeatMap(TIC2D, PictureBox1.Size, New DataScaler(scaleX, scaleY), "jet", 255, 1, 1, Color.Blue)
+        Dim scaler As New DataScaler(scaleX, scaleY) With {
+            .region = New Rectangle(New Point, PictureBox1.Size)
+        }
+
+        PictureBox1.BackgroundImage = GCxGCTIC2DPlot.FillHeatMap(TIC2D, PictureBox1.Size, scaler, "jet", 255, 1, 1, Color.Blue)
     End Sub
 
     Private Sub PictureBox1_Resize(sender As Object, e As EventArgs) Handles PictureBox1.Resize
