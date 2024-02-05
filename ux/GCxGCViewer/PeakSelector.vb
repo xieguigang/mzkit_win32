@@ -111,7 +111,7 @@ Public Class PeakSelector
         PictureBox1.Refresh()
         GetPeak(id, t1, t2, loc:=p)
 
-        ToolStripStatusLabel1.Text = $"GCxGC scan time1: {StringFormats.ReadableElapsedTime(TimeSpan.FromSeconds(t1))}, scan time2: {t2}s"
+        ToolStripStatusLabel1.Text = $"GCxGC scan time1: {StringFormats.ReadableElapsedTime(TimeSpan.FromSeconds(t1))}, scan time2: {t2.ToString("F2")}s"
     End Sub
 
     Private Sub GetPeak(ByRef peakId As String, ByRef rt1 As Double, ByRef rt2 As Double, loc As Point)
@@ -122,7 +122,7 @@ Public Class PeakSelector
 
         If t1 IsNot Nothing AndAlso t2 IsNot Nothing Then
             rt1 = x.ScaleMapping(pt.X, t1)
-            rt2 = y.ScaleMapping(pt.Y, t2)
+            rt2 = t2.Max - y.ScaleMapping(pt.Y, t2)
         End If
     End Sub
 
