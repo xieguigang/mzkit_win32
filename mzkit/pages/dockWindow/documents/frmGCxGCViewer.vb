@@ -76,7 +76,7 @@ Public Class frmGCxGCViewer
                     Sub()
                         Using s As Stream = file.FileName.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
                             Call Me.Invoke(Sub() rawdata = mzPack.ReadAll(s))
-                            Call Me.Invoke(Sub() PeakSelector1.SetScans(rawdata.ExtractTIC.ToArray))
+                            Call Me.Invoke(Sub() PeakSelector1.SetScans(rawdata.ExtractTIC.ToArray, 4))
                         End Using
                     End Sub)
             End If
