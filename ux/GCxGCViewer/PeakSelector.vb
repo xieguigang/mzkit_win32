@@ -1,16 +1,34 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive
+﻿Imports System.Windows.Forms
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
+Imports CommonDialogs
+Imports ControlLibrary
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Axis
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math.LinearAlgebra
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 
 Public Class PeakSelector
 
     Public ReadOnly Property TIC2D As D2Chromatogram()
+    Public ReadOnly Property ColorSet As ScalerPalette
 
     Dim scaleX As d3js.scale.LinearScale
     Dim scaleY As d3js.scale.LinearScale
+
+    Dim WithEvents colors As New ColorScaler
+
+    Sub New()
+
+        ' 此调用是设计器所必需的。
+        InitializeComponent()
+
+        ' 在 InitializeComponent() 调用之后添加任何初始化。
+        SplitContainer1.Panel2.Controls.Add(colors)
+        colors.Dock = DockStyle.Fill
+    End Sub
 
     Private Sub rescale()
         Dim xTicks As Vector = TIC2D.Select(Function(t) t.scan_time).CreateAxisTicks.AsVector
@@ -36,7 +54,7 @@ Public Class PeakSelector
             .region = New Rectangle(New Point, PictureBox1.Size)
         }
 
-        PictureBox1.BackgroundImage = GCxGCTIC2DPlot.FillHeatMap(TIC2D, PictureBox1.Size, scaler, "jet", 255, 1, 1)
+        PictureBox1.BackgroundImage = GCxGCTIC2DPlot.FillHeatMap(TIC2D, PictureBox1.Size, scaler, ColorSet.Description, 255, 1, 1)
     End Sub
 
     Private Sub PictureBox1_Resize(sender As Object, e As EventArgs) Handles PictureBox1.Resize
@@ -44,5 +62,12 @@ Public Class PeakSelector
             Call rescale()
             Call rendering()
         End If
+    End Sub
+
+    Private Sub ChangeColorsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeColorsToolStripMenuItem.Click
+        InputDialog.Input(Of InputSelectColorMap)(
+            Sub(colors)
+                _ColorSet = colors.GetColorMap
+            End Sub)
     End Sub
 End Class

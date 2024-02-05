@@ -113,6 +113,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InputDialogs\InputSelectColorMap.Designer.vb">
+      <DependentUpon>InputSelectColorMap.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InputDialogs\InputSelectColorMap.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="InputDialogs\InputSingleIonMSIExport.Designer.vb">
       <DependentUpon>InputSingleIonMSIExport.vb</DependentUpon>
     </Compile>
@@ -167,6 +173,9 @@
     <EmbeddedResource Include="InputDialogs\InputMSISlideLayout.resx">
       <DependentUpon>InputMSISlideLayout.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InputDialogs\InputSelectColorMap.resx">
+      <DependentUpon>InputSelectColorMap.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InputDialogs\InputSingleIonMSIExport.resx">
       <DependentUpon>InputSingleIonMSIExport.vb</DependentUpon>
     </EmbeddedResource>
@@ -202,6 +211,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\gr\Microsoft.VisualBasic.Imaging\imaging.NET5.vbproj">
+      <Project>{e2caa18e-9705-462a-844d-c809a45d4197}</Project>
+      <Name>imaging.NET5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj">
       <Project>{dee82853-4241-4f24-a096-12923c664369}</Project>
       <Name>Core</Name>
