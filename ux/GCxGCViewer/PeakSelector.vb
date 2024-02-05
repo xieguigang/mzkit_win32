@@ -8,6 +8,7 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math.LinearAlgebra
+Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 
 Public Class PeakSelector
@@ -60,14 +61,26 @@ Public Class PeakSelector
     Private Sub PictureBox1_Resize(sender As Object, e As EventArgs) Handles PictureBox1.Resize
         If Not TIC2D.IsNullOrEmpty Then
             Call rescale()
-            Call rendering()
+
+            If PictureBox1.BackgroundImage Is Nothing Then
+                Call rendering()
+            End If
         End If
     End Sub
 
     Private Sub ChangeColorsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeColorsToolStripMenuItem.Click
+        Dim old = ColorSet
+
         InputDialog.Input(Of InputSelectColorMap)(
             Sub(colors)
                 _ColorSet = colors.GetColorMap
             End Sub)
+
+        If old <> ColorSet Then
+            Call ProgressSpinner.DoLoading(
+                Sub()
+                    Call rendering()
+                End Sub)
+        End If
     End Sub
 End Class
