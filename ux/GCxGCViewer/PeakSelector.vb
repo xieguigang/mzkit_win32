@@ -54,11 +54,12 @@ Public Class PeakSelector
         Dim scaler As New DataScaler(scaleX, scaleY) With {
             .region = New Rectangle(New Point, PictureBox1.Size)
         }
+        Dim scaled = GCxGCTIC2DPlot.CutSignal(TIC2D, qh:=0.85).ToArray
 
         colors.ScalerPalette = ColorSet
-        colors.SetIntensityMax(TIC2D.Select(Function(d) d.intensity).Max)
+        colors.SetIntensityMax(scaled.Select(Function(d) d.intensity).Max)
         colors.ResetScaleRange()
-        PictureBox1.BackgroundImage = GCxGCTIC2DPlot.FillHeatMap(TIC2D, PictureBox1.Size, scaler, ColorSet.Description, 255, 1, 1)
+        PictureBox1.BackgroundImage = GCxGCTIC2DPlot.FillHeatMap(scaled, PictureBox1.Size, scaler, ColorSet.Description, 255, 2, 2)
     End Sub
 
     Private Sub PictureBox1_Resize(sender As Object, e As EventArgs) Handles PictureBox1.Resize
