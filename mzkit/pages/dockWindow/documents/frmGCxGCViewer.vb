@@ -56,6 +56,7 @@ Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive
 Imports Mzkit_win32.BasicMDIForm
+Imports RibbonLib.Interop
 
 Public Class frmGCxGCViewer
 
@@ -81,9 +82,11 @@ Public Class frmGCxGCViewer
 
     Private Sub frmGCxGCViewer_Activated(sender As Object, e As EventArgs) Handles Me.Activated
         HookOpen = AddressOf openRawdata
+        ribbonItems.MenuGroupGCxGC.ContextAvailable = ContextAvailability.Active
     End Sub
 
     Private Sub frmGCxGCViewer_Deactivate(sender As Object, e As EventArgs) Handles Me.Deactivate
         HookOpen = Nothing
+        ribbonItems.MenuGroupGCxGC.ContextAvailable = ContextAvailability.NotAvailable
     End Sub
 End Class
