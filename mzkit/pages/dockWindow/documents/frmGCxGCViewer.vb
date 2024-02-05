@@ -54,6 +54,7 @@
 
 Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive
 Imports Mzkit_win32.BasicMDIForm
 
 Public Class frmGCxGCViewer
@@ -71,6 +72,7 @@ Public Class frmGCxGCViewer
                     Sub()
                         Using s As Stream = file.FileName.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
                             Call Me.Invoke(Sub() rawdata = mzPack.ReadAll(s))
+                            Call Me.Invoke(Sub() PeakSelector1.SetScans(rawdata.ExtractTIC))
                         End Using
                     End Sub)
             End If

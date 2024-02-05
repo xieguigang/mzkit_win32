@@ -32,7 +32,7 @@ Partial Class PeakSelector
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 401)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 368)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(651, 22)
         Me.StatusStrip1.TabIndex = 0
@@ -46,22 +46,23 @@ Partial Class PeakSelector
         '
         'PictureBox1
         '
+        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.PictureBox1.Cursor = System.Windows.Forms.Cursors.Cross
         Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(651, 401)
+        Me.PictureBox1.Size = New System.Drawing.Size(651, 368)
         Me.PictureBox1.TabIndex = 1
         Me.PictureBox1.TabStop = False
         '
         'PeakSelector
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Name = "PeakSelector"
-        Me.Size = New System.Drawing.Size(651, 423)
+        Me.Size = New System.Drawing.Size(651, 390)
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
