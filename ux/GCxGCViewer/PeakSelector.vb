@@ -36,6 +36,7 @@ Public Class PeakSelector
     Dim t2 As DoubleRange
 
     Dim t1Bins As BlockSearchFunction(Of D2Chromatogram)
+    Dim GCxGC As New GCxGCPeaks
 
     Dim WithEvents colors As New ColorScaler
 
@@ -98,6 +99,7 @@ Public Class PeakSelector
         t1 = New DoubleRange(0, Aggregate s As D2Chromatogram In scans Into Max(s.scan_time))
         t2 = New DoubleRange(0, modtime)
         t1Bins = New BlockSearchFunction(Of D2Chromatogram)(scans, Function(i) i.scan_time, 60, fuzzy:=True)
+        GCxGC.SetMetadata(scans)
 
         Call rescale()
         Call rendering()
@@ -113,6 +115,7 @@ Public Class PeakSelector
         colors.SetIntensityMax(scaled.Select(Function(d) d.intensity).Max)
         colors.ResetScaleRange()
         PictureBox1.BackgroundImage = GCxGCTIC2DPlot.FillHeatMap(scaled, PictureBox1.Size, scaler, ColorSet.Description, 255, 2, 2)
+        GCxGC.colorScaler = ColorSet
 
         If HtmlView Then
             Try
@@ -225,8 +228,8 @@ Public Class PeakSelector
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
         ' WebView21.CoreWebView2.OpenDevToolsWindow()
-        'Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", lcms_scatter)
-        'Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Workbench.WebPort}/LCMS-scatter.html")
-        'Call WebKit.DeveloperOptions(WebView21, enable:=True,)
+        Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", GCxGC)
+        Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Workbench.WebPort}/GCxGC-peaks.html")
+        Call WebKit.DeveloperOptions(WebView21, enable:=True,)
     End Sub
 End Class
