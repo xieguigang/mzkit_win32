@@ -2,6 +2,7 @@
 Imports System.IO
 Imports System.Runtime.InteropServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
 Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Microsoft.VisualBasic.Data.csv
@@ -438,13 +439,15 @@ Public Class frmMetabonomicsAnalysis
     End Class
 
     Dim url As New ImageUrl
+    Dim source As New frm3DScatterPlotView.DataSource
 
-    Private Sub SetSvg(svgfile As String)
+    Private Sub SetSvg(svgfile As String, scatter As UMAPPoint())
         Dim fileName As String = svgfile.FileName
         Dim dirname As String = svgfile.ParentDirName
         Dim url As String = $"http://127.0.0.1:{webPort}/{dirname}/{fileName}"
         Dim js As String = $"apps.viewer.svgViewer.setSvgUrl(""{url}"");"
 
+        Me.source.points = scatter
         Me.url.url = url
         Me.WebView21.ExecuteScriptAsync(js)
     End Sub
@@ -499,6 +502,7 @@ Public Class frmMetabonomicsAnalysis
         Dim dir As String = $"{workdir}/pca"
         Dim score As String = $"{dir}/pca_score.csv"
         Dim loading As String = $"{dir}/pca_loading.csv"
+        Dim sampleIndex = sampleinfo.ToDictionary(Function(a) a.ID)
 
         Call loadPeakTableCommon()
 
@@ -508,16 +512,28 @@ Public Class frmMetabonomicsAnalysis
         ToolStripDropDownButton1.DropDownItems.Add("pca_score", My.Resources._1200px_Checked_svg,
             Sub()
                 Dim score_data As DataSet() = DataSet.LoadDataSet(score).ToArray
+                Dim scatter As UMAPPoint() = score_data _
+                    .Select(Function(d)
+                                Return New UMAPPoint(d.ID, d!PC1, d!PC2, d!PC3) With {
+                                    .[class] = sampleIndex(d.ID).sample_info
+                                }
+                            End Function) _
+                    .ToArray
 
                 Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
-                Call SetSvg($"{dir}/pca_score.svg")
+                Call SetSvg($"{dir}/pca_score.svg", scatter)
             End Sub).PerformClick()
         ToolStripDropDownButton1.DropDownItems.Add("pca_loading", My.Resources._1200px_Checked_svg,
             Sub()
                 Dim score_data As DataSet() = DataSet.LoadDataSet(loading).ToArray
+                Dim scatter = score_data _
+                    .Select(Function(d)
+                                Return New UMAPPoint(d.ID, d!PC1, d!PC2, d!PC3) With {.[class] = "metabolite"}
+                            End Function) _
+                    .ToArray
 
                 Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
-                Call SetSvg($"{dir}/pca_loading.svg")
+                Call SetSvg($"{dir}/pca_loading.svg", scatter)
             End Sub)
     End Sub
 
@@ -534,16 +550,18 @@ Public Class frmMetabonomicsAnalysis
         ToolStripDropDownButton1.DropDownItems.Add("plsda_score", My.Resources._1200px_Checked_svg,
             Sub()
                 Dim score_data As DataSet() = DataSet.LoadDataSet(score).ToArray
+                Dim scatter = score_data.Select(Function(d) New UMAPPoint(d.ID, d!T1, d!T2, d!T3) With {.[class] = d.ID}).ToArray
 
                 Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
-                Call SetSvg($"{dir}/plsda_scoreMN.svg")
+                Call SetSvg($"{dir}/plsda_scoreMN.svg", scatter)
             End Sub).PerformClick()
         ToolStripDropDownButton1.DropDownItems.Add("plsda_loading", My.Resources._1200px_Checked_svg,
             Sub()
                 Dim score_data As DataSet() = DataSet.LoadDataSet(loading).ToArray
+                Dim scatter = score_data.Select(Function(d) New UMAPPoint(d.ID, d!P1, d!P2, d!P3) With {.[class] = "metabolite"}).ToArray
 
                 Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
-                Call SetSvg($"{dir}/plsda_loadingMN.svg")
+                Call SetSvg($"{dir}/plsda_loadingMN.svg", scatter)
             End Sub)
     End Sub
 
@@ -560,16 +578,18 @@ Public Class frmMetabonomicsAnalysis
         ToolStripDropDownButton1.DropDownItems.Add("oplsda_score", My.Resources._1200px_Checked_svg,
             Sub()
                 Dim score_data As DataSet() = DataSet.LoadDataSet(score).ToArray
+                Dim scatter = score_data.Select(Function(d) New UMAPPoint(d.ID, d!T1, d!T2, d!T3) With {.[class] = d.ID}).ToArray
 
                 Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
-                Call SetSvg($"{dir}/oplsda_scoreMN.svg")
+                Call SetSvg($"{dir}/oplsda_scoreMN.svg", scatter)
             End Sub).PerformClick()
         ToolStripDropDownButton1.DropDownItems.Add("oplsda_loading", My.Resources._1200px_Checked_svg,
             Sub()
                 Dim score_data As DataSet() = DataSet.LoadDataSet(loading).ToArray
+                Dim scatter = score_data.Select(Function(d) New UMAPPoint(d.ID, d!P1, d!P2, d!P3) With {.[class] = "metabolite"}).ToArray
 
                 Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
-                Call SetSvg($"{dir}/oplsda_loadingMN.svg")
+                Call SetSvg($"{dir}/oplsda_loadingMN.svg", scatter)
             End Sub)
     End Sub
 
