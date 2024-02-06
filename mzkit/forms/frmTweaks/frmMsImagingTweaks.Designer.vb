@@ -107,7 +107,7 @@ Partial Class frmMsImagingTweaks
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
-        Me.ToolStripSpringTextBox1 = New mzkit_win32.BasicMDIForm.ToolStripSpringTextBox()
+        Me.ToolStripSpringTextBox1 = New Global.Mzkit_win32.BasicMDIForm.ToolStripSpringTextBox()
         Me.ViewLayerButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()

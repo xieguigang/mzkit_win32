@@ -809,9 +809,12 @@ UseCheckedList:
         If regions.IsNullOrEmpty Then
             Call Workbench.Warning("no tissue regions was found! Add some interested regions on your sample at first!")
             Return
+        Else
+            Call createPeaktable(regions, ions:=GetSelectedIons.ToArray)
         End If
+    End Sub
 
-        Dim ions As Double() = GetSelectedIons.ToArray
+    Private Sub createPeaktable(regions As TissueRegion(), ions As Double())
         Dim pars = Globals.MSIBootstrapping
         Dim nsamples As Integer = pars.nsamples
         Dim cov As Double = pars.coverage
