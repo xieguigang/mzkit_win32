@@ -39,6 +39,9 @@ Partial Class frmMetabonomicsAnalysis
         Me.ToolStripDropDownButton1 = New System.Windows.Forms.ToolStripDropDownButton()
         Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
+        Me.SplitContainer3 = New System.Windows.Forms.SplitContainer()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -48,6 +51,15 @@ Partial Class frmMetabonomicsAnalysis
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer2.Panel1.SuspendLayout()
+        Me.SplitContainer2.Panel2.SuspendLayout()
+        Me.SplitContainer2.SuspendLayout()
+        CType(Me.SplitContainer3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer3.Panel1.SuspendLayout()
+        Me.SplitContainer3.Panel2.SuspendLayout()
+        Me.SplitContainer3.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SplitContainer1
@@ -59,15 +71,12 @@ Partial Class frmMetabonomicsAnalysis
         'SplitContainer1.Panel1
         '
         Me.SplitContainer1.Panel1.Controls.Add(Me.WebView21)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.GroupBox1)
         '
         'SplitContainer1.Panel2
         '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.AdvancedDataGridView1)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.StatusStrip1)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.AdvancedDataGridViewSearchToolBar1)
-        Me.SplitContainer1.Size = New System.Drawing.Size(1031, 637)
-        Me.SplitContainer1.SplitterDistance = 343
+        Me.SplitContainer1.Panel2.Controls.Add(Me.PictureBox1)
+        Me.SplitContainer1.Size = New System.Drawing.Size(1031, 294)
+        Me.SplitContainer1.SplitterDistance = 337
         Me.SplitContainer1.TabIndex = 1
         '
         'WebView21
@@ -76,19 +85,19 @@ Partial Class frmMetabonomicsAnalysis
         Me.WebView21.CreationProperties = Nothing
         Me.WebView21.DefaultBackgroundColor = System.Drawing.Color.White
         Me.WebView21.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.WebView21.Location = New System.Drawing.Point(0, 385)
+        Me.WebView21.Location = New System.Drawing.Point(0, 0)
         Me.WebView21.Name = "WebView21"
-        Me.WebView21.Size = New System.Drawing.Size(343, 252)
+        Me.WebView21.Size = New System.Drawing.Size(337, 294)
         Me.WebView21.TabIndex = 1
         Me.WebView21.ZoomFactor = 1.0R
         '
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.PropertyGrid1)
-        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(343, 385)
+        Me.GroupBox1.Size = New System.Drawing.Size(343, 339)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Metabolite Metadata"
@@ -98,7 +107,7 @@ Partial Class frmMetabonomicsAnalysis
         Me.PropertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PropertyGrid1.Location = New System.Drawing.Point(3, 17)
         Me.PropertyGrid1.Name = "PropertyGrid1"
-        Me.PropertyGrid1.Size = New System.Drawing.Size(337, 365)
+        Me.PropertyGrid1.Size = New System.Drawing.Size(337, 319)
         Me.PropertyGrid1.TabIndex = 0
         '
         'AdvancedDataGridView1
@@ -112,14 +121,14 @@ Partial Class frmMetabonomicsAnalysis
         Me.AdvancedDataGridView1.ReadOnly = True
         Me.AdvancedDataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.AdvancedDataGridView1.RowTemplate.Height = 23
-        Me.AdvancedDataGridView1.Size = New System.Drawing.Size(684, 588)
+        Me.AdvancedDataGridView1.Size = New System.Drawing.Size(684, 290)
         Me.AdvancedDataGridView1.SortStringChangedInvokeBeforeDatasourceUpdate = True
         Me.AdvancedDataGridView1.TabIndex = 3
         '
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripDropDownButton2, Me.ToolStripDropDownButton1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 615)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 317)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(684, 22)
         Me.StatusStrip1.TabIndex = 5
@@ -138,21 +147,21 @@ Partial Class frmMetabonomicsAnalysis
         '
         Me.OPLSDAToolStripMenuItem.CheckOnClick = True
         Me.OPLSDAToolStripMenuItem.Name = "OPLSDAToolStripMenuItem"
-        Me.OPLSDAToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.OPLSDAToolStripMenuItem.Size = New System.Drawing.Size(118, 22)
         Me.OPLSDAToolStripMenuItem.Text = "OPLSDA"
         '
         'PLSDAToolStripMenuItem
         '
         Me.PLSDAToolStripMenuItem.CheckOnClick = True
         Me.PLSDAToolStripMenuItem.Name = "PLSDAToolStripMenuItem"
-        Me.PLSDAToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.PLSDAToolStripMenuItem.Size = New System.Drawing.Size(118, 22)
         Me.PLSDAToolStripMenuItem.Text = "PLSDA"
         '
         'PCAToolStripMenuItem
         '
         Me.PCAToolStripMenuItem.CheckOnClick = True
         Me.PCAToolStripMenuItem.Name = "PCAToolStripMenuItem"
-        Me.PCAToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.PCAToolStripMenuItem.Size = New System.Drawing.Size(118, 22)
         Me.PCAToolStripMenuItem.Text = "PCA"
         '
         'ToolStripDropDownButton1
@@ -176,12 +185,59 @@ Partial Class frmMetabonomicsAnalysis
         Me.AdvancedDataGridViewSearchToolBar1.TabIndex = 4
         Me.AdvancedDataGridViewSearchToolBar1.Text = "AdvancedDataGridViewSearchToolBar1"
         '
+        'SplitContainer2
+        '
+        Me.SplitContainer2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer2.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer2.Name = "SplitContainer2"
+        '
+        'SplitContainer2.Panel1
+        '
+        Me.SplitContainer2.Panel1.Controls.Add(Me.GroupBox1)
+        '
+        'SplitContainer2.Panel2
+        '
+        Me.SplitContainer2.Panel2.Controls.Add(Me.AdvancedDataGridView1)
+        Me.SplitContainer2.Panel2.Controls.Add(Me.AdvancedDataGridViewSearchToolBar1)
+        Me.SplitContainer2.Panel2.Controls.Add(Me.StatusStrip1)
+        Me.SplitContainer2.Size = New System.Drawing.Size(1031, 339)
+        Me.SplitContainer2.SplitterDistance = 343
+        Me.SplitContainer2.TabIndex = 6
+        '
+        'SplitContainer3
+        '
+        Me.SplitContainer3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer3.FixedPanel = System.Windows.Forms.FixedPanel.Panel2
+        Me.SplitContainer3.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer3.Name = "SplitContainer3"
+        Me.SplitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal
+        '
+        'SplitContainer3.Panel1
+        '
+        Me.SplitContainer3.Panel1.Controls.Add(Me.SplitContainer2)
+        '
+        'SplitContainer3.Panel2
+        '
+        Me.SplitContainer3.Panel2.Controls.Add(Me.SplitContainer1)
+        Me.SplitContainer3.Size = New System.Drawing.Size(1031, 637)
+        Me.SplitContainer3.SplitterDistance = 339
+        Me.SplitContainer3.TabIndex = 7
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(690, 294)
+        Me.PictureBox1.TabIndex = 0
+        Me.PictureBox1.TabStop = False
+        '
         'frmMetabonomicsAnalysis
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1031, 637)
-        Me.Controls.Add(Me.SplitContainer1)
+        Me.Controls.Add(Me.SplitContainer3)
         Me.DoubleBuffered = True
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmMetabonomicsAnalysis"
@@ -189,7 +245,6 @@ Partial Class frmMetabonomicsAnalysis
         Me.Text = "Metabonomics Workbench"
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
-        Me.SplitContainer1.Panel2.PerformLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).EndInit()
@@ -198,6 +253,16 @@ Partial Class frmMetabonomicsAnalysis
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer2.Panel1.ResumeLayout(False)
+        Me.SplitContainer2.Panel2.ResumeLayout(False)
+        Me.SplitContainer2.Panel2.PerformLayout()
+        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer2.ResumeLayout(False)
+        Me.SplitContainer3.Panel1.ResumeLayout(False)
+        Me.SplitContainer3.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer3.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -215,4 +280,7 @@ Partial Class frmMetabonomicsAnalysis
     Friend WithEvents OPLSDAToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PLSDAToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PCAToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SplitContainer2 As SplitContainer
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents SplitContainer3 As SplitContainer
 End Class
