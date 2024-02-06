@@ -1,4 +1,5 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
+Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
@@ -22,6 +23,21 @@ Public Class frmLCMSScatterViewer
         Call Workbench.AppHost.SetTitle($"LCMS Scatter '{raw.source.FileName}'")
     End Sub
 
+    Public Sub LoadRaw(points As IEnumerable(Of xcms2), samples As String())
+        Dim rawdata As New List(Of Meta)
+        Dim v As Double
+
+        For Each roi As xcms2 In points.SafeQuery
+            v = roi(samples).Sum
+
+            If v > 0 Then
+                rawdata.Add(New Meta With {.id = roi.ID, .mz = roi.mz, .scan_time = roi.rt, .intensity = v})
+            End If
+        Next
+
+        Call Me.ScatterViewer.LoadPeaks(rawdata)
+    End Sub
+
     Private Sub loadRaw()
         Dim meta As List(Of Meta) = raw.GetMs2Scans _
             .Where(Function(a) Not a.mz.IsNullOrEmpty) _
@@ -39,7 +55,7 @@ Public Class frmLCMSScatterViewer
     End Sub
 
     Private Sub frmLCMSScatterViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
-        ScatterViewer = New PeakScatterViewer With {
+        Me.ScatterViewer = New PeakScatterViewer With {
             .ColorScale = ScalerPalette.turbo,
             .Dock = DockStyle.Fill
         }
@@ -59,6 +75,8 @@ Public Class frmLCMSScatterViewer
     ''' <param name="mz"></param>
     ''' <param name="rt"></param>
     Private Sub ScatterViewer_ClickOnPeak(scanId As String, mz As Double, rt As Double, progress As Boolean) Handles ScatterViewer.ClickOnPeak
-        Call MyApplication.host.mzkitTool.showSpectrum(scanId, raw, Nothing)
+        If Not raw Is Nothing Then
+            Call MyApplication.host.mzkitTool.showSpectrum(scanId, raw, Nothing)
+        End If
     End Sub
 End Class

@@ -375,6 +375,34 @@ Public Class frmMetabonomicsAnalysis
         AddHandler ribbonItems.ButtonPCA.ExecuteEvent, Sub() Call RunPCA(GetType(PCA))
         AddHandler ribbonItems.ButtonPLSDA.ExecuteEvent, Sub() Call RunPCA(GetType(PLS))
         AddHandler ribbonItems.ButtonOPLSDA.ExecuteEvent, Sub() Call RunPCA(GetType(OPLS))
+
+        AddHandler ribbonItems.ViewLCMSScatter.ExecuteEvent,
+            Sub()
+                Call showScatter()
+            End Sub
+    End Sub
+
+    Private Sub showScatter()
+        Dim ls As New InputLCMSScatter
+
+        Call ls.SetSamples(sampleinfo)
+        Call InputDialog.Input(Of InputLCMSScatter)(
+            Sub(config)
+                Dim samples As String()
+                Dim label As String
+
+                If config.PlotSampleGroup Then
+                    samples = config.GetCurrentSamples.ToArray
+                    label = "sample group: " & config.PlotSource
+                Else
+                    samples = {config.PlotSource}
+                    label = "sample: " & config.PlotSource
+                End If
+
+                Call VisualStudio _
+                    .ShowDocument(Of frmLCMSScatterViewer)(title:=label) _
+                    .LoadRaw(peaks.peaks, samples)
+            End Sub)
     End Sub
 
     <ClassInterface(ClassInterfaceType.AutoDual)>
@@ -533,6 +561,8 @@ Public Class frmMetabonomicsAnalysis
 
             End Try
         End If
+
+        ribbonItems.MetaboAnalysis.ContextAvailable = ContextAvailability.NotAvailable
     End Sub
 
     Private Sub BoxPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BoxPlotToolStripMenuItem.Click

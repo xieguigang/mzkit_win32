@@ -43,6 +43,12 @@ Public Class InputLCMSScatter
         End Get
     End Property
 
+    Public Iterator Function GetCurrentSamples() As IEnumerable(Of String)
+        For Each sample In samplegroups(ComboBox1.SelectedItem.ToString)
+            Yield sample.ID
+        Next
+    End Function
+
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Me.DialogResult = DialogResult.Cancel
     End Sub
