@@ -589,9 +589,11 @@ UseCheckedList:
                                                 .Select(Function(si) Val(si)) _
                                                 .ToArray
                                          End Function)
+            Dim pars = Globals.MSIBootstrapping
+            Dim nsamples As Integer = pars.nsamples
 
             MyApplication.host.mzkitTool.ShowPlotImage(image, ImageLayout.Zoom)
-            MyApplication.host.mzkitTool.ShowExpressionMatrix(expr, 64, "Expression of m/z " & mz.ToString("F4"))
+            MyApplication.host.mzkitTool.ShowExpressionMatrix(expr, nsamples, "spatial expression of m/z " & mz.ToString("F4"))
             MyApplication.host.ShowMzkitToolkit()
         End If
     End Sub
