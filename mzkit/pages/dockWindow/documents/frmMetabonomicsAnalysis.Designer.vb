@@ -41,6 +41,10 @@ Partial Class frmMetabonomicsAnalysis
         Me.PCAToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripDropDownButton1 = New System.Windows.Forms.ToolStripDropDownButton()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.BoxPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BarPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViolinPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -166,7 +170,7 @@ Partial Class frmMetabonomicsAnalysis
         '
         'StatusStrip1
         '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripDropDownButton2, Me.ToolStripDropDownButton1})
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripDropDownButton2, Me.ToolStripDropDownButton1, Me.ToolStripStatusLabel1})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 615)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(684, 22)
@@ -210,6 +214,36 @@ Partial Class frmMetabonomicsAnalysis
         Me.ToolStripDropDownButton1.Name = "ToolStripDropDownButton1"
         Me.ToolStripDropDownButton1.Size = New System.Drawing.Size(126, 20)
         Me.ToolStripDropDownButton1.Text = "View Result Table"
+        '
+        'ToolStripStatusLabel1
+        '
+        Me.ToolStripStatusLabel1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViolinPlotToolStripMenuItem, Me.BarPlotToolStripMenuItem, Me.BoxPlotToolStripMenuItem})
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(134, 20)
+        Me.ToolStripStatusLabel1.Text = "Select Expression Plot"
+        '
+        'BoxPlotToolStripMenuItem
+        '
+        Me.BoxPlotToolStripMenuItem.CheckOnClick = True
+        Me.BoxPlotToolStripMenuItem.Name = "BoxPlotToolStripMenuItem"
+        Me.BoxPlotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BoxPlotToolStripMenuItem.Text = "Box Plot"
+        '
+        'BarPlotToolStripMenuItem
+        '
+        Me.BarPlotToolStripMenuItem.Checked = True
+        Me.BarPlotToolStripMenuItem.CheckOnClick = True
+        Me.BarPlotToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.BarPlotToolStripMenuItem.Name = "BarPlotToolStripMenuItem"
+        Me.BarPlotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BarPlotToolStripMenuItem.Text = "Bar Plot"
+        '
+        'ViolinPlotToolStripMenuItem
+        '
+        Me.ViolinPlotToolStripMenuItem.CheckOnClick = True
+        Me.ViolinPlotToolStripMenuItem.Name = "ViolinPlotToolStripMenuItem"
+        Me.ViolinPlotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ViolinPlotToolStripMenuItem.Text = "Violin Plot"
         '
         'frmMetabonomicsAnalysis
         '
@@ -257,4 +291,8 @@ Partial Class frmMetabonomicsAnalysis
     Friend WithEvents PCAToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SplitContainer2 As SplitContainer
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents ToolStripStatusLabel1 As ToolStripDropDownButton
+    Friend WithEvents ViolinPlotToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BarPlotToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BoxPlotToolStripMenuItem As ToolStripMenuItem
 End Class

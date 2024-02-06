@@ -7,6 +7,7 @@ Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports ggplot
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
+Imports Microsoft.VisualBasic.DataStorage.netCDF.DataVector
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA
 Imports Microsoft.VisualBasic.My.JavaScript
@@ -307,7 +308,17 @@ Public Class frmMetabonomicsAnalysis
 
     Private Function plotExpression(name As String, exp As Dictionary(Of String, (color As String, Double()))) As Image
         Dim json As String = ggplotVisual.encodeJSON(exp)
-        Dim plot As Image = ggplotVisual.ggplot(json, title:=name, type:="box")
+        Dim plotType As String
+
+        If BarPlotToolStripMenuItem.Checked Then
+            plotType = "bar"
+        ElseIf BoxPlotToolStripMenuItem.Checked Then
+            plotType = "box"
+        Else
+            plotType = "violin"
+        End If
+
+        Dim plot As Image = ggplotVisual.ggplot(json, title:=name, type:=plotType)
 
         Return plot
     End Function
@@ -332,13 +343,17 @@ Public Class frmMetabonomicsAnalysis
             Return
         Else
             ' TypeDescriptor.AddAttributes(peak, New Attribute() {New ReadOnlyAttribute(True)})
-            Dim exp = getExpression(xcms_id)
+            expression = getExpression(xcms_id)
+            expression_name = xcms_id
 
-            PictureBox1.BackgroundImage = plotExpression(xcms_id, exp)
+            PictureBox1.BackgroundImage = plotExpression(xcms_id, expression)
             PropertyGrid1.SelectedObject = peak
             PropertyGrid1.Refresh()
         End If
     End Sub
+
+    Dim expression_name As String
+    Dim expression As Dictionary(Of String, (color As String, Double()))
 
     Private Sub frmMetabonomicsAnalysis_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call WebKit.Init(Me.WebView21)
@@ -505,6 +520,33 @@ Public Class frmMetabonomicsAnalysis
             Catch ex As Exception
 
             End Try
+        End If
+    End Sub
+
+    Private Sub BoxPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BoxPlotToolStripMenuItem.Click
+        BarPlotToolStripMenuItem.Checked = False
+        ViolinPlotToolStripMenuItem.Checked = False
+
+        If Not expression Is Nothing Then
+            PictureBox1.BackgroundImage = plotExpression(expression_name, expression)
+        End If
+    End Sub
+
+    Private Sub BarPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BarPlotToolStripMenuItem.Click
+        BoxPlotToolStripMenuItem.Checked = False
+        ViolinPlotToolStripMenuItem.Checked = False
+
+        If Not expression Is Nothing Then
+            PictureBox1.BackgroundImage = plotExpression(expression_name, expression)
+        End If
+    End Sub
+
+    Private Sub ViolinPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViolinPlotToolStripMenuItem.Click
+        BoxPlotToolStripMenuItem.Checked = False
+        BarPlotToolStripMenuItem.Checked = False
+
+        If Not expression Is Nothing Then
+            PictureBox1.BackgroundImage = plotExpression(expression_name, expression)
         End If
     End Sub
 End Class
