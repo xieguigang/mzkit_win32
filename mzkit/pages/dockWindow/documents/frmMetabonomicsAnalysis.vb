@@ -348,7 +348,12 @@ Public Class frmMetabonomicsAnalysis
         Else
             ' TypeDescriptor.AddAttributes(peak, New Attribute() {New ReadOnlyAttribute(True)})
             expression = getExpression(xcms_id)
-            expression_name = xcms_id
+
+            If peak.mzmin = peak.mzmax Then
+                expression_name = $"[{xcms_id}] {peak.mz.ToString("F4")}@{(peak.rt / 60).ToString("F2")}min"
+            Else
+                expression_name = $"[{xcms_id}] {peak.mzmin.ToString("F4")}~{peak.mzmax.ToString("F4")}@{(peak.rt / 60).ToString("F2")}min"
+            End If
 
             If AutoPlotToolStripMenuItem.Checked Then
                 PictureBox1.BackgroundImage = plotExpression(xcms_id, expression)
