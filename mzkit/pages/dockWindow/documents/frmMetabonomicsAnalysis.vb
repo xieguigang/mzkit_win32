@@ -370,6 +370,7 @@ Public Class frmMetabonomicsAnalysis
 
     Private Sub frmMetabonomicsAnalysis_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call WebKit.Init(Me.WebView21)
+        Call ApplyVsTheme(ContextMenuStrip1)
 
         ribbonItems.MetaboAnalysis.ContextAvailable = ContextAvailability.Available
 
