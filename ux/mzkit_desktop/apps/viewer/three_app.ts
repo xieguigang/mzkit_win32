@@ -136,7 +136,7 @@ namespace apps.viewer {
             const gui: GUI = new window.GUI();
             const renderArgs = gui.addFolder("Render");
             const controlArgs = gui.addFolder("Controls");
-            const globalClipping = gui.addFolder("Volume Clipping");
+            // const globalClipping = gui.addFolder("Volume Clipping");
 
             renderArgs.add(volconfig, 'clim1', 0, 1, 0.01).onChange(() => this.updateUniforms());
             renderArgs.add(volconfig, 'clim2', 0, 1, 0.01).onChange(() => this.updateUniforms());
@@ -152,24 +152,23 @@ namespace apps.viewer {
                 controls.enableDamping = value;
                 controls.update();
             });
-            globalClipping.add(volconfig, "enableClipping").onChange(function (value) {
-
-            });
-            globalClipping.add(volconfig, "clip_x", -512, 512, 1).onChange((value) => {
-                camera.position.setX(value);
-                camera.updateProjectionMatrix();
-                vm.render();
-            });
-            globalClipping.add(volconfig, "clip_y", -512, 512, 1).onChange((value) => {
-                camera.position.setY(value);
-                camera.updateProjectionMatrix();
-                vm.render();
-            });
-            globalClipping.add(volconfig, "clip_z", -512, 512, 1).onChange((value) => {
-                camera.position.setZ(value);
-                camera.updateProjectionMatrix();
-                vm.render();
-            });
+            // globalClipping.add(volconfig, "enableClipping").onChange(function (value) {
+            // });
+            // globalClipping.add(volconfig, "clip_x", -512, 512, 1).onChange((value) => {
+            //     camera.position.setX(value);
+            //     camera.updateProjectionMatrix();
+            //     vm.render();
+            // });
+            // globalClipping.add(volconfig, "clip_y", -512, 512, 1).onChange((value) => {
+            //     camera.position.setY(value);
+            //     camera.updateProjectionMatrix();
+            //     vm.render();
+            // });
+            // globalClipping.add(volconfig, "clip_z", -512, 512, 1).onChange((value) => {
+            //     camera.position.setZ(value);
+            //     camera.updateProjectionMatrix();
+            //     vm.render();
+            // });
 
             // Stats
             const stats: Stats = new window.Stats();
@@ -230,7 +229,7 @@ namespace apps.viewer {
             uniforms['u_renderthreshold'].value = volconfig.isothreshold; // For ISO renderstyle
             uniforms['u_cmdata'].value = this.cmtextures[volconfig.colormap];
 
-            const localPlane = new THREE.Plane(new THREE.Vector3(0, - 1, 0), 20);
+            // const localPlane = new THREE.Plane(new THREE.Vector3(0, - 1, 0), 20);
 
             this.material = new THREE.ShaderMaterial({
                 uniforms: uniforms,
@@ -238,8 +237,8 @@ namespace apps.viewer {
                 fragmentShader: shader.fragmentShader,
                 side: THREE.DoubleSide, // The volume shader uses the backface as its "reference point"
                 // ***** Clipping setup (material): *****
-                clippingPlanes: [localPlane],
-                clipShadows: true
+                // clippingPlanes: [localPlane],
+                // clipShadows: true
             });
 
             // THREE.Mesh
@@ -253,11 +252,11 @@ namespace apps.viewer {
             this.scene.add(axesHelper);
             this.axesHelper = axesHelper;
 
-            const helper = new THREE.PlaneHelper(this.globalPlane, 300, 0xffff00);
-            this.scene.add(helper);
+            // const helper = new THREE.PlaneHelper(this.globalPlane, 300, 0xffff00);
+            // this.scene.add(helper);
 
-            const helper2 = new THREE.PlaneHelper(localPlane, 300, 0xffff00);
-            this.scene.add(helper2);
+            // const helper2 = new THREE.PlaneHelper(localPlane, 300, 0xffff00);
+            // this.scene.add(helper2);
 
             this.render();
         }

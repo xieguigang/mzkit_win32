@@ -150,7 +150,7 @@ var apps;
                 var gui = new window.GUI();
                 var renderArgs = gui.addFolder("Render");
                 var controlArgs = gui.addFolder("Controls");
-                var globalClipping = gui.addFolder("Volume Clipping");
+                // const globalClipping = gui.addFolder("Volume Clipping");
                 renderArgs.add(volconfig, 'clim1', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
                 renderArgs.add(volconfig, 'clim2', 0, 1, 0.01).onChange(function () { return _this.updateUniforms(); });
                 renderArgs.add(volconfig, 'colormap', cm_names()).onChange(function () { return _this.updateUniforms(); });
@@ -164,23 +164,23 @@ var apps;
                     controls.enableDamping = value;
                     controls.update();
                 });
-                globalClipping.add(volconfig, "enableClipping").onChange(function (value) {
-                });
-                globalClipping.add(volconfig, "clip_x", -512, 512, 1).onChange(function (value) {
-                    camera.position.setX(value);
-                    camera.updateProjectionMatrix();
-                    vm.render();
-                });
-                globalClipping.add(volconfig, "clip_y", -512, 512, 1).onChange(function (value) {
-                    camera.position.setY(value);
-                    camera.updateProjectionMatrix();
-                    vm.render();
-                });
-                globalClipping.add(volconfig, "clip_z", -512, 512, 1).onChange(function (value) {
-                    camera.position.setZ(value);
-                    camera.updateProjectionMatrix();
-                    vm.render();
-                });
+                // globalClipping.add(volconfig, "enableClipping").onChange(function (value) {
+                // });
+                // globalClipping.add(volconfig, "clip_x", -512, 512, 1).onChange((value) => {
+                //     camera.position.setX(value);
+                //     camera.updateProjectionMatrix();
+                //     vm.render();
+                // });
+                // globalClipping.add(volconfig, "clip_y", -512, 512, 1).onChange((value) => {
+                //     camera.position.setY(value);
+                //     camera.updateProjectionMatrix();
+                //     vm.render();
+                // });
+                // globalClipping.add(volconfig, "clip_z", -512, 512, 1).onChange((value) => {
+                //     camera.position.setZ(value);
+                //     camera.updateProjectionMatrix();
+                //     vm.render();
+                // });
                 // Stats
                 var stats = new window.Stats();
                 document.body.appendChild(stats.dom);
@@ -233,15 +233,15 @@ var apps;
                 uniforms['u_renderstyle'].value = volconfig.renderstyle == 'mip' ? 0 : 1; // 0: MIP, 1: ISO
                 uniforms['u_renderthreshold'].value = volconfig.isothreshold; // For ISO renderstyle
                 uniforms['u_cmdata'].value = this.cmtextures[volconfig.colormap];
-                var localPlane = new THREE.Plane(new THREE.Vector3(0, -1, 0), 20);
+                // const localPlane = new THREE.Plane(new THREE.Vector3(0, - 1, 0), 20);
                 this.material = new THREE.ShaderMaterial({
                     uniforms: uniforms,
                     vertexShader: shader.vertexShader,
                     fragmentShader: shader.fragmentShader,
                     side: THREE.DoubleSide, // The volume shader uses the backface as its "reference point"
                     // ***** Clipping setup (material): *****
-                    clippingPlanes: [localPlane],
-                    clipShadows: true
+                    // clippingPlanes: [localPlane],
+                    // clipShadows: true
                 });
                 // THREE.Mesh
                 var geometry = new THREE.BoxGeometry(volume.xLength, volume.yLength, volume.zLength);
@@ -251,10 +251,10 @@ var apps;
                 var axesHelper = new THREE.AxesHelper(256);
                 this.scene.add(axesHelper);
                 this.axesHelper = axesHelper;
-                var helper = new THREE.PlaneHelper(this.globalPlane, 300, 0xffff00);
-                this.scene.add(helper);
-                var helper2 = new THREE.PlaneHelper(localPlane, 300, 0xffff00);
-                this.scene.add(helper2);
+                // const helper = new THREE.PlaneHelper(this.globalPlane, 300, 0xffff00);
+                // this.scene.add(helper);
+                // const helper2 = new THREE.PlaneHelper(localPlane, 300, 0xffff00);
+                // this.scene.add(helper2);
                 this.render();
             };
             three_app.prototype.updateUniforms = function () {
