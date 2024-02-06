@@ -18422,6 +18422,8 @@
     <ROW File="Mzkit_win32.GCxGCViewer.xml" Component_="Mzkit_win32.GCxGCViewer.xml" FileName="MZKIT~10.XML|Mzkit_win32.GCxGCViewer.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.GCxGCViewer.xml" SelfReg="false"/>
     <ROW File="Mzkit_win32.MSImagingViewerV2.dll.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="MZKIT_~7.CON|Mzkit_win32.MSImagingViewerV2.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.MSImagingViewerV2.dll.config" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.Data.SABIORK.xml_2" Component_="SMRUCC.genomics.Data.SABIORK.xml" FileName="SMRUC~16.XML|SMRUCC.genomics.Data.SABIO-RK.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Data.SABIO-RK.xml" SelfReg="false"/>
+    <ROW File="icons8dashboardlayout96.png" Component_="dobject.png" FileName="ICONS8~1.PNG|icons8-dashboard-layout-96.png" Attributes="0" SourcePath="..\webview\assets\images\icons8-dashboard-layout-96.png" SelfReg="false"/>
+    <ROW File="svgViewer.html" Component_="logo.png" FileName="SVGVIE~1.HTM|svgViewer.html" Attributes="0" SourcePath="..\webview\svgViewer.html" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
