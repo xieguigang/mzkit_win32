@@ -4127,6 +4127,22 @@
         <String Id="1168">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdButtonOpenLCMSWorkspaceFolder" Id="283" LabelTitle="Open Workspace" LabelDescription="Open Workspace Folder" TooltipTitle="Open Workspace Folder" TooltipDescription="Open Workspace Folder">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/folder-documents.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/folder-documents.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonViewSampleInfo" Id="284" LabelTitle="View SampleInfo" LabelDescription="View SampleInfo" TooltipTitle="View SampleInfo" TooltipDescription="View SampleInfo">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/excel-icon.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/excel-icon.bmp</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4491,17 +4507,19 @@
         </TabGroup>
         <TabGroup CommandName="cmdMetaboAnalysis">
           <Tab CommandName="cmdDataSummaryPanel">
-            <Group CommandName="cmdWorkbenchFile" SizeDefinition="TwoButtons">
+            <Group CommandName="cmdWorkbenchFile" SizeDefinition="ThreeButtons">
               <Button CommandName="cmdButtonOpenWorkspace" />
               <Button CommandName="cmdButtonOpenTableTool" />
+              <Button CommandName="cmdButtonOpenLCMSWorkspaceFolder" />
             </Group>
             <Group CommandName="cmdDataSummaryGroup" SizeDefinition="ThreeButtons">
               <Button CommandName="cmdButtonPCA" />
               <Button CommandName="cmdButtonPLSDA" />
               <Button CommandName="cmdButtonOPLSDA" />
             </Group>
-            <Group CommandName="cmdLCMSVisualPanel" SizeDefinition="OneButton">
+            <Group CommandName="cmdLCMSVisualPanel" SizeDefinition="TwoButtons">
               <Button CommandName="cmdViewLCMSScatter" />
+              <Button CommandName="cmdButtonViewSampleInfo" />
             </Group>
           </Tab>
         </TabGroup>

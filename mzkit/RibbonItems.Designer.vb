@@ -228,12 +228,14 @@ Namespace RibbonLib.Controls
             Public Const cmdDataSummaryPanel As UInteger = 270
             Public Const cmdWorkbenchFile As UInteger = 275
             Public Const cmdButtonOpenWorkspace As UInteger = 276
+            Public Const cmdButtonOpenLCMSWorkspaceFolder As UInteger = 283
             Public Const cmdDataSummaryGroup As UInteger = 271
             Public Const cmdButtonPCA As UInteger = 272
             Public Const cmdButtonPLSDA As UInteger = 273
             Public Const cmdButtonOPLSDA As UInteger = 274
             Public Const cmdLCMSVisualPanel As UInteger = 277
             Public Const cmdViewLCMSScatter As UInteger = 278
+            Public Const cmdButtonViewSampleInfo As UInteger = 284
             Public Const cmdMenuGroupGCxGC As UInteger = 6
             Public Const cmdPanelGCxGC As UInteger = 7
             Public Const cmdGroupGCxGC As UInteger = 282
@@ -1571,6 +1573,12 @@ Namespace RibbonLib.Controls
                 Return _ButtonOpenWorkspace
             End Get
         End Property
+        Private _ButtonOpenLCMSWorkspaceFolder As RibbonButton
+        Public ReadOnly Property ButtonOpenLCMSWorkspaceFolder As RibbonButton
+            Get
+                Return _ButtonOpenLCMSWorkspaceFolder
+            End Get
+        End Property
         Private _DataSummaryGroup As RibbonGroup
         Public ReadOnly Property DataSummaryGroup As RibbonGroup
             Get
@@ -1605,6 +1613,12 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ViewLCMSScatter As RibbonButton
             Get
                 Return _ViewLCMSScatter
+            End Get
+        End Property
+        Private _ButtonViewSampleInfo As RibbonButton
+        Public ReadOnly Property ButtonViewSampleInfo As RibbonButton
+            Get
+                Return _ButtonViewSampleInfo
             End Get
         End Property
         Private _MenuGroupGCxGC As RibbonTabGroup
@@ -2084,12 +2098,14 @@ Namespace RibbonLib.Controls
             _DataSummaryPanel = New RibbonTab(_ribbon, Cmd.cmdDataSummaryPanel)
             _WorkbenchFile = New RibbonGroup(_ribbon, Cmd.cmdWorkbenchFile)
             _ButtonOpenWorkspace = New RibbonButton(_ribbon, Cmd.cmdButtonOpenWorkspace)
+            _ButtonOpenLCMSWorkspaceFolder = New RibbonButton(_ribbon, Cmd.cmdButtonOpenLCMSWorkspaceFolder)
             _DataSummaryGroup = New RibbonGroup(_ribbon, Cmd.cmdDataSummaryGroup)
             _ButtonPCA = New RibbonButton(_ribbon, Cmd.cmdButtonPCA)
             _ButtonPLSDA = New RibbonButton(_ribbon, Cmd.cmdButtonPLSDA)
             _ButtonOPLSDA = New RibbonButton(_ribbon, Cmd.cmdButtonOPLSDA)
             _LCMSVisualPanel = New RibbonGroup(_ribbon, Cmd.cmdLCMSVisualPanel)
             _ViewLCMSScatter = New RibbonButton(_ribbon, Cmd.cmdViewLCMSScatter)
+            _ButtonViewSampleInfo = New RibbonButton(_ribbon, Cmd.cmdButtonViewSampleInfo)
             _MenuGroupGCxGC = New RibbonTabGroup(_ribbon, Cmd.cmdMenuGroupGCxGC)
             _PanelGCxGC = New RibbonTab(_ribbon, Cmd.cmdPanelGCxGC)
             _GroupGCxGC = New RibbonGroup(_ribbon, Cmd.cmdGroupGCxGC)

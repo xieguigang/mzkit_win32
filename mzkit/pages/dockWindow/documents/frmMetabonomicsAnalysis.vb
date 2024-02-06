@@ -376,10 +376,30 @@ Public Class frmMetabonomicsAnalysis
         AddHandler ribbonItems.ButtonPLSDA.ExecuteEvent, Sub() Call RunPCA(GetType(PLS))
         AddHandler ribbonItems.ButtonOPLSDA.ExecuteEvent, Sub() Call RunPCA(GetType(OPLS))
 
-        AddHandler ribbonItems.ViewLCMSScatter.ExecuteEvent,
-            Sub()
-                Call showScatter()
-            End Sub
+        AddHandler ribbonItems.ViewLCMSScatter.ExecuteEvent, Sub() Call showScatter()
+        AddHandler ribbonItems.ButtonOpenLCMSWorkspaceFolder.ExecuteEvent, Sub() Call openFolder()
+        AddHandler ribbonItems.ButtonViewSampleInfo.ExecuteEvent, Sub() Call viewSampleinfo()
+    End Sub
+
+    Private Sub viewSampleinfo()
+        Call loadTable(
+            Sub(table)
+                Call table.Columns.Add("ID", GetType(String))
+                Call table.Columns.Add("injectionOrder", GetType(String))
+                Call table.Columns.Add("batch", GetType(String))
+                Call table.Columns.Add("sample_name", GetType(String))
+                Call table.Columns.Add("sample_info", GetType(String))
+                Call table.Columns.Add("color", GetType(String))
+                Call table.Columns.Add("shape", GetType(String))
+
+                For Each sample As SampleInfo In sampleinfo
+                    Call table.Rows.Add(sample.ID, sample.injectionOrder, sample.batch, sample.sample_name, sample.sample_info, sample.color, sample.shape)
+                Next
+            End Sub)
+    End Sub
+
+    Private Sub openFolder()
+        Call Process.Start("explorer.exe", String.Format("/n, /e, {0}", workdir))
     End Sub
 
     Private Sub showScatter()

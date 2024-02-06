@@ -231,12 +231,14 @@ namespace RibbonLib.Controls
             public const uint cmdDataSummaryPanel = 270;
             public const uint cmdWorkbenchFile = 275;
             public const uint cmdButtonOpenWorkspace = 276;
+            public const uint cmdButtonOpenLCMSWorkspaceFolder = 283;
             public const uint cmdDataSummaryGroup = 271;
             public const uint cmdButtonPCA = 272;
             public const uint cmdButtonPLSDA = 273;
             public const uint cmdButtonOPLSDA = 274;
             public const uint cmdLCMSVisualPanel = 277;
             public const uint cmdViewLCMSScatter = 278;
+            public const uint cmdButtonViewSampleInfo = 284;
             public const uint cmdMenuGroupGCxGC = 6;
             public const uint cmdPanelGCxGC = 7;
             public const uint cmdGroupGCxGC = 282;
@@ -504,12 +506,14 @@ namespace RibbonLib.Controls
         public RibbonTab DataSummaryPanel { get; private set; }
         public RibbonGroup WorkbenchFile { get; private set; }
         public RibbonButton ButtonOpenWorkspace { get; private set; }
+        public RibbonButton ButtonOpenLCMSWorkspaceFolder { get; private set; }
         public RibbonGroup DataSummaryGroup { get; private set; }
         public RibbonButton ButtonPCA { get; private set; }
         public RibbonButton ButtonPLSDA { get; private set; }
         public RibbonButton ButtonOPLSDA { get; private set; }
         public RibbonGroup LCMSVisualPanel { get; private set; }
         public RibbonButton ViewLCMSScatter { get; private set; }
+        public RibbonButton ButtonViewSampleInfo { get; private set; }
         public RibbonTabGroup MenuGroupGCxGC { get; private set; }
         public RibbonTab PanelGCxGC { get; private set; }
         public RibbonGroup GroupGCxGC { get; private set; }
@@ -772,12 +776,14 @@ namespace RibbonLib.Controls
             DataSummaryPanel = new RibbonTab(ribbon, Cmd.cmdDataSummaryPanel);
             WorkbenchFile = new RibbonGroup(ribbon, Cmd.cmdWorkbenchFile);
             ButtonOpenWorkspace = new RibbonButton(ribbon, Cmd.cmdButtonOpenWorkspace);
+            ButtonOpenLCMSWorkspaceFolder = new RibbonButton(ribbon, Cmd.cmdButtonOpenLCMSWorkspaceFolder);
             DataSummaryGroup = new RibbonGroup(ribbon, Cmd.cmdDataSummaryGroup);
             ButtonPCA = new RibbonButton(ribbon, Cmd.cmdButtonPCA);
             ButtonPLSDA = new RibbonButton(ribbon, Cmd.cmdButtonPLSDA);
             ButtonOPLSDA = new RibbonButton(ribbon, Cmd.cmdButtonOPLSDA);
             LCMSVisualPanel = new RibbonGroup(ribbon, Cmd.cmdLCMSVisualPanel);
             ViewLCMSScatter = new RibbonButton(ribbon, Cmd.cmdViewLCMSScatter);
+            ButtonViewSampleInfo = new RibbonButton(ribbon, Cmd.cmdButtonViewSampleInfo);
             MenuGroupGCxGC = new RibbonTabGroup(ribbon, Cmd.cmdMenuGroupGCxGC);
             PanelGCxGC = new RibbonTab(ribbon, Cmd.cmdPanelGCxGC);
             GroupGCxGC = new RibbonGroup(ribbon, Cmd.cmdGroupGCxGC);
