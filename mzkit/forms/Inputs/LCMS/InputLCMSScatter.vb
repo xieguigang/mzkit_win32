@@ -5,7 +5,7 @@ Public Class InputLCMSScatter
     Dim samplegroups As Dictionary(Of String, SampleInfo())
 
     Public Sub SetSamples(samples As IEnumerable(Of SampleInfo))
-        samplegroups = samples.GroupBy(Function(s) s.ID).ToDictionary(Function(s) s.Key, Function(s) s.ToArray)
+        samplegroups = samples.GroupBy(Function(s) s.sample_info).ToDictionary(Function(s) s.Key, Function(s) s.ToArray)
         ComboBox1.Items.Clear()
         ComboBox2.Items.Clear()
 
