@@ -514,7 +514,7 @@ UseCheckedList:
             Return Nothing
         End If
 
-        mz = GetSelectedIons().FirstOrDefault
+        mz = DirectCast(Me.Invoke(Function() GetSelectedIons()), IEnumerable(Of Double)).FirstOrDefault
 
         If mz <= 0 Then
             msg = "No ions m/z Is selected!"
