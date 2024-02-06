@@ -853,47 +853,27 @@ UseCheckedList:
                     End Function) _
             .IteratesALL _
             .ToArray
-        Dim peaks As New List(Of xcms2)
-        Dim getPeaks As Action(Of ITaskProgress) =
-            Sub(p)
-                Dim errMsg As String = Nothing
+        Dim peaks As PeakSet
+        Dim task As New peakTask With {
+            .ions = ions.ToArray,
+            .cov = cov,
+            .host = Me,
+            .nsamples = nsamples,
+            .regions = regions.ToArray
+        }
 
-                For Each ion As Double In ions
-                    Call p.SetInfo($"processing ion feature: {ion.ToString("F4")}")
-
-                    Dim layer As PixelData() = getLayer(ion, needsRegions:=True, msg:=errMsg)
-
-                    If layer Is Nothing Then
-                        Call Workbench.Warning($"No ion layer data for ${ion.ToString("F4")}, this ion feature will be omit: {errMsg}")
-                        Continue For
-                    End If
-
-                    Dim data = SampleData.ExtractSample(layer, regions, n:=nsamples, coverage:=cov)
-                    Dim peak As New xcms2(ion, 0) With {
-                        .ID = $"MSI{ion.ToString("F4")}",
-                        .Properties = New Dictionary(Of String, Double)
-                    }
-
-                    For Each region As KeyValuePair(Of String, Double()) In data
-                        For i As Integer = 0 To region.Value.Length - 1
-                            Call peak.Add($"{region.Key}.{i + 1}", region.Value(i))
-                        Next
-                    Next
-
-                    Call peaks.Add(peak)
-                Next
-            End Sub
-
-        Call TaskProgress.RunAction(getPeaks, host:=Me)
+        Call TaskProgress.RunAction(AddressOf task.getPeaks, host:=Me)
         Call sampleinfo.SaveTo($"{workdir}/sampleinfo.csv")
 
+        peaks = New PeakSet With {.peaks = task.peaks.ToArray}
+
         Using f As Stream = $"{workdir}/peakset.xcms".Open(FileMode.OpenOrCreate, doClear:=True)
-            Call SaveXcms.DumpSample(New PeakSet With {.peaks = peaks.ToArray}, f)
+            Call SaveXcms.DumpSample(peaks, f)
             Call f.Flush()
         End Using
 
         Using f As Stream = $"{workdir}/mat.dat".Open(FileMode.OpenOrCreate, doClear:=True)
-            Call frmMetabonomicsAnalysis.CastMatrix(New PeakSet With {.peaks = peaks.ToArray}, sampleinfo).Save(f)
+            Call frmMetabonomicsAnalysis.CastMatrix(peaks, sampleinfo).Save(f)
         End Using
 
         Call Workbench.LogText($"set workspace for metabonomics workbench: {workdir}")
@@ -902,4 +882,43 @@ UseCheckedList:
         page.workdir = workdir
         page.LoadWorkspace(workdir)
     End Sub
+
+    Private Class peakTask
+
+        Public ions As Double()
+        Public host As frmMsImagingTweaks
+        Public nsamples As Integer
+        Public cov As Double
+        Public regions As TissueRegion()
+        Public peaks As New List(Of xcms2)
+
+        Public Sub getPeaks(p As ITaskProgress)
+            Dim errMsg As String = Nothing
+
+            For Each ion As Double In ions
+                Call p.SetInfo($"processing ion feature: {ion.ToString("F4")}")
+
+                Dim layer As PixelData() = host.getLayer(ion, needsRegions:=True, msg:=errMsg)
+
+                If layer Is Nothing Then
+                    Call Workbench.Warning($"No ion layer data for ${ion.ToString("F4")}, this ion feature will be omit: {errMsg}")
+                    Continue For
+                End If
+
+                Dim data = SampleData.ExtractSample(layer, regions, n:=nsamples, coverage:=cov)
+                Dim peak As New xcms2(ion, 0) With {
+                    .ID = $"MSI{ion.ToString("F4")}",
+                    .Properties = New Dictionary(Of String, Double)
+                }
+
+                For Each region As KeyValuePair(Of String, Double()) In data
+                    For i As Integer = 0 To region.Value.Length - 1
+                        Call peak.Add($"{region.Key}.{i + 1}", region.Value(i))
+                    Next
+                Next
+
+                Call peaks.Add(peak)
+            Next
+        End Sub
+    End Class
 End Class
