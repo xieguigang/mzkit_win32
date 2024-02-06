@@ -98,10 +98,6 @@ Public Class frmMsImagingTweaks
     Friend checkedMz As New List(Of TreeNode)
     Friend viewer As frmMsImagingViewer
 
-    Private Function hasSelectedIonNode() As Boolean
-
-    End Function
-
     Public Iterator Function GetSelectedIons() As IEnumerable(Of Double)
         If Not Win7StyleTreeView1.SelectedNode Is Nothing Then
             If Win7StyleTreeView1.SelectedNode.Checked Then
@@ -118,14 +114,20 @@ Public Class frmMsImagingTweaks
             End If
         Else
 UseCheckedList:
-            If checkedMz.Count > 0 Then
-                For Each node In checkedMz
-                    Call viewer.SetTitle({node.Tag}, node.Text)
-                    Yield DirectCast(node.Tag, Double)
-                Next
-            Else
+            For Each ion As Double In getCheckedIons()
+                Yield ion
+            Next
+        End If
+    End Function
 
-            End If
+    Private Iterator Function getCheckedIons() As IEnumerable(Of Double)
+        If checkedMz.Count > 0 Then
+            For Each node In checkedMz
+                Call viewer.SetTitle({node.Tag}, node.Text)
+                Yield DirectCast(node.Tag, Double)
+            Next
+        Else
+
         End If
     End Function
 
@@ -809,7 +811,7 @@ UseCheckedList:
     End Sub
 
     Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
-        Dim ions = GetSelectedIons.ToArray
+        Dim ions As Double() = getCheckedIons.ToArray
         Dim regions As TissueRegion() = viewer.sampleRegions _
             .GetRegions(viewer.PixelSelector1.MSICanvas.dimension_size) _
             .ToArray
