@@ -290,20 +290,26 @@ Public Class frmMetabonomicsAnalysis
         AdvancedDataGridViewSearchToolBar1.SetColumns(AdvancedDataGridView1.Columns)
     End Sub
 
-    Private Function getExpression(xcms_id As String) As Dictionary(Of String, Double())
+    Private Function getExpression(xcms_id As String) As Dictionary(Of String, (color As String, Double()))
         Dim peak = peaks.GetById(xcms_id)
         Dim groups = sampleinfo.GroupBy(Function(s) s.sample_info).ToArray
         Dim exp = groups _
             .ToDictionary(Function(s) s.Key,
                           Function(s)
-                              Return s.Select(Function(sample) peak(sample.ID)).ToArray
+                              Dim color = s.First.color
+                              Dim v = s.Select(Function(sample) peak(sample.ID)).ToArray
+
+                              Return (color, v)
                           End Function)
 
         Return exp
     End Function
 
-    Private Function plotExpression(exp As Dictionary(Of String, Double())) As Image
+    Private Function plotExpression(name As String, exp As Dictionary(Of String, (color As String, Double()))) As Image
+        Dim json As String = ggplotVisual.encodeJSON(exp)
+        Dim plot As Image = ggplotVisual.ggplot(json, title:=name, type:="box")
 
+        Return plot
     End Function
 
     Private Sub AdvancedDataGridView1_RowStateChanged(sender As Object, e As DataGridViewRowStateChangedEventArgs) Handles AdvancedDataGridView1.RowStateChanged
@@ -328,7 +334,7 @@ Public Class frmMetabonomicsAnalysis
             ' TypeDescriptor.AddAttributes(peak, New Attribute() {New ReadOnlyAttribute(True)})
             Dim exp = getExpression(xcms_id)
 
-            PictureBox1.BackgroundImage = plotExpression(exp)
+            PictureBox1.BackgroundImage = plotExpression(xcms_id, exp)
             PropertyGrid1.SelectedObject = peak
             PropertyGrid1.Refresh()
         End If

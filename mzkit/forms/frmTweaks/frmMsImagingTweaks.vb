@@ -68,7 +68,6 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.mzkit_win32.My
-Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots.BarPlot.Histogram
 Imports Microsoft.VisualBasic.DataStorage.netCDF
@@ -78,7 +77,6 @@ Imports Microsoft.VisualBasic.Imaging.Drawing2D.HeatMap.hqx
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.MIME.application.json
-Imports Microsoft.VisualBasic.MIME.application.json.Javascript
 Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
@@ -469,22 +467,6 @@ UseCheckedList:
             Call showPlot(data, "box", mz)
         End If
     End Sub
-
-    Private Function encodeJSON(data As TissueRegion()) As String
-        Dim json As New JsonObject
-        Dim sample As JsonObject
-
-        For Each tissue_group As TissueRegion In data
-            sample = New JsonObject
-            sample.Add("color", New JsonValue(tissue_group.color.ToHtmlColor))
-            sample.Add("data", New JsonArray(tissue_group.tags))
-            sample.Add("x", New JsonArray(tissue_group.points.Select(Function(t) t.X)))
-            sample.Add("y", New JsonArray(tissue_group.points.Select(Function(t) t.Y)))
-            json.Add(tissue_group.label, sample)
-        Next
-
-        Return json.BuildJsonString
-    End Function
 
     ''' <summary>
     ''' 
