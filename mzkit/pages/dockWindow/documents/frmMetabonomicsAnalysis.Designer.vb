@@ -31,10 +31,14 @@ Partial Class frmMetabonomicsAnalysis
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.PropertyGrid1 = New System.Windows.Forms.PropertyGrid()
         Me.AdvancedDataGridView1 = New Zuby.ADGV.AdvancedDataGridView()
-        Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
-        Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripDropDownButton1 = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
+        Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ToolStripDropDownButton2 = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.PCAToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PLSDAToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OPLSDAToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -42,8 +46,8 @@ Partial Class frmMetabonomicsAnalysis
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
+        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SplitContainer1
@@ -112,6 +116,23 @@ Partial Class frmMetabonomicsAnalysis
         Me.AdvancedDataGridView1.SortStringChangedInvokeBeforeDatasourceUpdate = True
         Me.AdvancedDataGridView1.TabIndex = 3
         '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripDropDownButton2, Me.ToolStripDropDownButton1})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 615)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(684, 22)
+        Me.StatusStrip1.TabIndex = 5
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'ToolStripDropDownButton1
+        '
+        Me.ToolStripDropDownButton1.Image = CType(resources.GetObject("ToolStripDropDownButton1.Image"), System.Drawing.Image)
+        Me.ToolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripDropDownButton1.Name = "ToolStripDropDownButton1"
+        Me.ToolStripDropDownButton1.Size = New System.Drawing.Size(126, 20)
+        Me.ToolStripDropDownButton1.Text = "View Result Table"
+        '
         'AdvancedDataGridViewSearchToolBar1
         '
         Me.AdvancedDataGridViewSearchToolBar1.AllowMerge = False
@@ -125,23 +146,32 @@ Partial Class frmMetabonomicsAnalysis
         Me.AdvancedDataGridViewSearchToolBar1.TabIndex = 4
         Me.AdvancedDataGridViewSearchToolBar1.Text = "AdvancedDataGridViewSearchToolBar1"
         '
-        'StatusStrip1
+        'ToolStripDropDownButton2
         '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripDropDownButton1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 615)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(684, 22)
-        Me.StatusStrip1.TabIndex = 5
-        Me.StatusStrip1.Text = "StatusStrip1"
+        Me.ToolStripDropDownButton2.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OPLSDAToolStripMenuItem, Me.PLSDAToolStripMenuItem, Me.PCAToolStripMenuItem})
+        Me.ToolStripDropDownButton2.Image = CType(resources.GetObject("ToolStripDropDownButton2.Image"), System.Drawing.Image)
+        Me.ToolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripDropDownButton2.Name = "ToolStripDropDownButton2"
+        Me.ToolStripDropDownButton2.Size = New System.Drawing.Size(113, 20)
+        Me.ToolStripDropDownButton2.Text = "Select Analysis"
         '
-        'ToolStripDropDownButton1
+        'PCAToolStripMenuItem
         '
-        Me.ToolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripDropDownButton1.Image = CType(resources.GetObject("ToolStripDropDownButton1.Image"), System.Drawing.Image)
-        Me.ToolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripDropDownButton1.Name = "ToolStripDropDownButton1"
-        Me.ToolStripDropDownButton1.Size = New System.Drawing.Size(29, 20)
-        Me.ToolStripDropDownButton1.Text = "View Result Table"
+        Me.PCAToolStripMenuItem.Name = "PCAToolStripMenuItem"
+        Me.PCAToolStripMenuItem.Size = New System.Drawing.Size(118, 22)
+        Me.PCAToolStripMenuItem.Text = "PCA"
+        '
+        'PLSDAToolStripMenuItem
+        '
+        Me.PLSDAToolStripMenuItem.Name = "PLSDAToolStripMenuItem"
+        Me.PLSDAToolStripMenuItem.Size = New System.Drawing.Size(118, 22)
+        Me.PLSDAToolStripMenuItem.Text = "PLSDA"
+        '
+        'OPLSDAToolStripMenuItem
+        '
+        Me.OPLSDAToolStripMenuItem.Name = "OPLSDAToolStripMenuItem"
+        Me.OPLSDAToolStripMenuItem.Size = New System.Drawing.Size(118, 22)
+        Me.OPLSDAToolStripMenuItem.Text = "OPLSDA"
         '
         'frmMetabonomicsAnalysis
         '
@@ -162,9 +192,9 @@ Partial Class frmMetabonomicsAnalysis
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -178,4 +208,8 @@ Partial Class frmMetabonomicsAnalysis
     Friend WithEvents PropertyGrid1 As PropertyGrid
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents ToolStripDropDownButton1 As ToolStripDropDownButton
+    Friend WithEvents ToolStripDropDownButton2 As ToolStripDropDownButton
+    Friend WithEvents OPLSDAToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PLSDAToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PCAToolStripMenuItem As ToolStripMenuItem
 End Class

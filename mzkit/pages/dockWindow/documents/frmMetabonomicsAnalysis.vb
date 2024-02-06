@@ -328,26 +328,62 @@ Public Class frmMetabonomicsAnalysis
                      End Sub)
 
                 Select Case analysis
-                    Case GetType(PLS)
-                        Dim dir As String = $"{workdir}/plsda"
-                    Case GetType(OPLS)
-                        Dim dir As String = $"{workdir}/opls"
+                    Case GetType(PLS) : Call PLSDAToolStripMenuItem_Click()
+                    Case GetType(OPLS) : Call OPLSDAToolStripMenuItem_Click()
                     Case Else
-                        Dim dir As String = $"{workdir}/pca"
-                        Dim score As String = $"{dir}/pca_score.csv"
-                        Dim loading As String = $"{dir}/pca_loading.csv"
-
-                        ToolStripDropDownButton1.DropDownItems.Add("pca_score", My.Resources._1200px_Checked_svg,
-                            Sub()
-                                Dim score_data As DataSet() = DataSet.LoadDataSet(score).ToArray
-                                Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
-                            End Sub)
-                        ToolStripDropDownButton1.DropDownItems.Add("pca_loading", My.Resources._1200px_Checked_svg,
-                            Sub()
-                                Dim score_data As DataSet() = DataSet.LoadDataSet(loading).ToArray
-                                Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
-                            End Sub)
+                        Call PCAToolStripMenuItem_Click()
                 End Select
             End Sub, config:=New InputPCADialog().SetMaxComponent(sampleinfo.Length))
+    End Sub
+
+    Private Sub PCAToolStripMenuItem_Click() Handles PCAToolStripMenuItem.Click
+        Dim dir As String = $"{workdir}/pca"
+        Dim score As String = $"{dir}/pca_score.csv"
+        Dim loading As String = $"{dir}/pca_loading.csv"
+
+        ToolStripDropDownButton1.DropDownItems.Add("pca_score", My.Resources._1200px_Checked_svg,
+            Sub()
+                Dim score_data As DataSet() = DataSet.LoadDataSet(score).ToArray
+                Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
+            End Sub)
+        ToolStripDropDownButton1.DropDownItems.Add("pca_loading", My.Resources._1200px_Checked_svg,
+            Sub()
+                Dim score_data As DataSet() = DataSet.LoadDataSet(loading).ToArray
+                Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
+            End Sub)
+    End Sub
+
+    Private Sub PLSDAToolStripMenuItem_Click() Handles PLSDAToolStripMenuItem.Click
+        Dim dir As String = $"{workdir}/plsda"
+        Dim score As String = $"{dir}/plsda_scoreMN.csv"
+        Dim loading As String = $"{dir}/plsda_loadingMN.csv"
+
+        ToolStripDropDownButton1.DropDownItems.Add("plsda_score", My.Resources._1200px_Checked_svg,
+            Sub()
+                Dim score_data As DataSet() = DataSet.LoadDataSet(score).ToArray
+                Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
+            End Sub)
+        ToolStripDropDownButton1.DropDownItems.Add("plsda_loading", My.Resources._1200px_Checked_svg,
+            Sub()
+                Dim score_data As DataSet() = DataSet.LoadDataSet(loading).ToArray
+                Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
+            End Sub)
+    End Sub
+
+    Private Sub OPLSDAToolStripMenuItem_Click() Handles OPLSDAToolStripMenuItem.Click
+        Dim dir As String = $"{workdir}/opls"
+        Dim score As String = $"{dir}/oplsda_scoreMN.csv"
+        Dim loading As String = $"{dir}/oplsda_loadingMN.csv"
+
+        ToolStripDropDownButton1.DropDownItems.Add("oplsda_score", My.Resources._1200px_Checked_svg,
+            Sub()
+                Dim score_data As DataSet() = DataSet.LoadDataSet(score).ToArray
+                Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
+            End Sub)
+        ToolStripDropDownButton1.DropDownItems.Add("oplsda_loading", My.Resources._1200px_Checked_svg,
+            Sub()
+                Dim score_data As DataSet() = DataSet.LoadDataSet(loading).ToArray
+                Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
+            End Sub)
     End Sub
 End Class
