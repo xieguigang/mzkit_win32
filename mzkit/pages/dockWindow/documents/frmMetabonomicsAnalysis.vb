@@ -4,12 +4,12 @@ Imports System.Runtime.InteropServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
 Imports BioNovoGene.mzkit_win32.ServiceHub
+Imports ggplot
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA
 Imports Microsoft.VisualBasic.My.JavaScript
-Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
@@ -19,6 +19,7 @@ Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
 Imports TaskStream
 Imports any = Microsoft.VisualBasic.Scripting
 Imports csv = Microsoft.VisualBasic.Data.csv.IO.File
+Imports MathFrame = Microsoft.VisualBasic.Math.DataFrame.DataFrame
 
 Public Class frmMetabonomicsAnalysis
 
@@ -301,6 +302,10 @@ Public Class frmMetabonomicsAnalysis
         Return exp
     End Function
 
+    Private Function plotExpression(exp As Dictionary(Of String, Double())) As Image
+
+    End Function
+
     Private Sub AdvancedDataGridView1_RowStateChanged(sender As Object, e As DataGridViewRowStateChangedEventArgs) Handles AdvancedDataGridView1.RowStateChanged
         Dim rows = AdvancedDataGridView1.SelectedRows
         Dim selected As DataGridViewRow = (From r In rows).FirstOrDefault
@@ -323,6 +328,7 @@ Public Class frmMetabonomicsAnalysis
             ' TypeDescriptor.AddAttributes(peak, New Attribute() {New ReadOnlyAttribute(True)})
             Dim exp = getExpression(xcms_id)
 
+            PictureBox1.BackgroundImage = plotExpression(exp)
             PropertyGrid1.SelectedObject = peak
             PropertyGrid1.Refresh()
         End If

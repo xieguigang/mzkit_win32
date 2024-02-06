@@ -1594,10 +1594,6 @@
       <Project>{ea7a584c-67f0-4d85-9031-c16887771b1b}</Project>
       <Name>RQL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\ggplot\src\ggplot\ggplot.NET5.vbproj">
-      <Project>{5e839c95-dcd5-4d27-a6c8-e11dcf6ddd91}</Project>
-      <Name>ggplot.NET5</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\httpd\Flute\Flute.NET5.vbproj">
       <Project>{1fd40f6e-6a78-4c61-9f86-682560337028}</Project>
       <Name>Flute.NET5</Name>
