@@ -384,6 +384,13 @@ declare namespace apps.viewer {
     }
 }
 declare namespace apps.viewer {
+    class svgViewer extends Bootstrap {
+        get appName(): string;
+        protected init(): void;
+        static setSvgUrl(url: string): void;
+    }
+}
+declare namespace apps.viewer {
     class umap extends Bootstrap {
         get appName(): string;
         protected init(): void;

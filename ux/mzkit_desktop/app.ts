@@ -21,6 +21,7 @@ namespace app.desktop {
         Router.AddAppHandler(new apps.viewer.OpenseadragonSlideViewer());
         Router.AddAppHandler(new apps.viewer.umap());
         Router.AddAppHandler(new apps.viewer.lcmsLibrary());
+        Router.AddAppHandler(new apps.viewer.svgViewer());
 
         Router.RunApp();
     }

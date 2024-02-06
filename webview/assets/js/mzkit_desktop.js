@@ -315,6 +315,7 @@ var app;
             Router.AddAppHandler(new apps.viewer.OpenseadragonSlideViewer());
             Router.AddAppHandler(new apps.viewer.umap());
             Router.AddAppHandler(new apps.viewer.lcmsLibrary());
+            Router.AddAppHandler(new apps.viewer.svgViewer());
             Router.RunApp();
         }
         desktop.run = run;
@@ -1869,6 +1870,32 @@ var apps;
             return OpenseadragonSlideViewer;
         }(Bootstrap));
         viewer_1.OpenseadragonSlideViewer = OpenseadragonSlideViewer;
+    })(viewer = apps.viewer || (apps.viewer = {}));
+})(apps || (apps = {}));
+var apps;
+(function (apps) {
+    var viewer;
+    (function (viewer) {
+        var svgViewer = /** @class */ (function (_super) {
+            __extends(svgViewer, _super);
+            function svgViewer() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            Object.defineProperty(svgViewer.prototype, "appName", {
+                get: function () {
+                    return "svg-viewer";
+                },
+                enumerable: false,
+                configurable: true
+            });
+            svgViewer.prototype.init = function () {
+            };
+            svgViewer.setSvgUrl = function (url) {
+                $ts("#viewer").src = url;
+            };
+            return svgViewer;
+        }(Bootstrap));
+        viewer.svgViewer = svgViewer;
     })(viewer = apps.viewer || (apps.viewer = {}));
 })(apps || (apps = {}));
 var apps;
