@@ -61,6 +61,7 @@
 
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
+Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
@@ -82,6 +83,8 @@ Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Interop
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.DataFiles
+Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
 Imports Task
 Imports TaskStream
 Imports any = Microsoft.VisualBasic.Scripting
@@ -796,5 +799,63 @@ UseCheckedList:
                 End If
             End Sub)
         Call Workbench.SuccessMessage($"fetch {list.Nodes.Count} annotation layers!")
+    End Sub
+
+    Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
+        Dim regions As TissueRegion() = viewer.sampleRegions _
+            .GetRegions(viewer.PixelSelector1.MSICanvas.dimension_size) _
+            .ToArray
+
+        If regions.IsNullOrEmpty Then
+            Call Workbench.Warning("no tissue regions was found! Add some interested regions on your sample at first!")
+            Return
+        End If
+
+        Dim ions As Double() = GetSelectedIons.ToArray
+        Dim pars = Globals.MSIBootstrapping
+        Dim nsamples As Integer = pars.nsamples
+        Dim cov As Double = pars.coverage
+        Dim sampleinfo As SampleInfo() = regions _
+            .Select(Iterator Function(t, batch) As IEnumerable(Of SampleInfo)
+                        Dim color_str As String = t.color.ToHtmlColor
+
+                        For i As Integer = 1 To nsamples
+                            Yield New SampleInfo With {
+                                .ID = $"{t.label}.{i}",
+                                .color = color_str,
+                                .batch = batch + 1,
+                                .injectionOrder = i,
+                                .sample_info = t.label,
+                                .sample_name = .ID,
+                                .shape = "circle"
+                            }
+                        Next
+                    End Function) _
+            .IteratesALL _
+            .ToArray
+        Dim peaks As New List(Of xcms2)
+        Dim getPeaks As Action(Of ITaskProgress) =
+            Sub(p)
+                Dim errMsg As String = Nothing
+
+                For Each ion As Double In ions
+                    Call p.SetInfo($"processing ion feature: {ion.ToString("F4")}")
+
+                    Dim layer As PixelData() = getLayer(ion, needsRegions:=True, msg:=errMsg)
+
+                    If layer Is Nothing Then
+                        Call Workbench.Warning($"No ion layer data for ${ion.ToString("F4")}, this ion feature will be omit: {errMsg}")
+                        Continue For
+                    End If
+
+                    Dim data = SampleData.ExtractSample(layer, regions, n:=nsamples, coverage:=cov)
+
+                    For Each region As KeyValuePair(Of String, Double()) In data
+
+                    Next
+                Next
+            End Sub
+
+        Call TaskProgress.RunAction(getPeaks, host:=Me)
     End Sub
 End Class
