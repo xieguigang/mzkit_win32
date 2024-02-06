@@ -372,12 +372,16 @@ Public Class frmMetabonomicsAnalysis
         ToolStripDropDownButton1.DropDownItems.Add("pca_score", My.Resources._1200px_Checked_svg,
             Sub()
                 Dim score_data As DataSet() = DataSet.LoadDataSet(score).ToArray
+
                 Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
+                Call SetSvg($"{dir}/pca_score.svg")
             End Sub).PerformClick()
         ToolStripDropDownButton1.DropDownItems.Add("pca_loading", My.Resources._1200px_Checked_svg,
             Sub()
                 Dim score_data As DataSet() = DataSet.LoadDataSet(loading).ToArray
+
                 Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
+                Call SetSvg($"{dir}/pca_loading.svg")
             End Sub)
     End Sub
 
@@ -394,12 +398,16 @@ Public Class frmMetabonomicsAnalysis
         ToolStripDropDownButton1.DropDownItems.Add("plsda_score", My.Resources._1200px_Checked_svg,
             Sub()
                 Dim score_data As DataSet() = DataSet.LoadDataSet(score).ToArray
+
                 Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
+                Call SetSvg($"{dir}/plsda_scoreMN.svg")
             End Sub).PerformClick()
         ToolStripDropDownButton1.DropDownItems.Add("plsda_loading", My.Resources._1200px_Checked_svg,
             Sub()
                 Dim score_data As DataSet() = DataSet.LoadDataSet(loading).ToArray
+
                 Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
+                Call SetSvg($"{dir}/plsda_loadingMN.svg")
             End Sub)
     End Sub
 
@@ -416,12 +424,16 @@ Public Class frmMetabonomicsAnalysis
         ToolStripDropDownButton1.DropDownItems.Add("oplsda_score", My.Resources._1200px_Checked_svg,
             Sub()
                 Dim score_data As DataSet() = DataSet.LoadDataSet(score).ToArray
+
                 Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
+                Call SetSvg($"{dir}/oplsda_scoreMN.svg")
             End Sub).PerformClick()
         ToolStripDropDownButton1.DropDownItems.Add("oplsda_loading", My.Resources._1200px_Checked_svg,
             Sub()
                 Dim score_data As DataSet() = DataSet.LoadDataSet(loading).ToArray
+
                 Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
+                Call SetSvg($"{dir}/oplsda_loadingMN.svg")
             End Sub)
     End Sub
 End Class
