@@ -49,7 +49,7 @@ svg(file = `${outputdir}/pca/pca_score.svg`) {
 svg(file = `${outputdir}/pca/pca_loading.svg`) {
     ggplot(pca$loading, aes(x="PC1", y = "PC2", label = rownames(pca$loading)))
     + geom_point(
-        size = 9, color = "blue"
+        size = 3, color = "blue"
     )
     # + geom_text(size = 6)
     # + stat_ellipse()

@@ -1,4 +1,5 @@
 require(GCModeller);
+require(ggplot);
 
 imports "stats" from "Rlapack";
 #' the gene expression matrix data toolkit
@@ -54,3 +55,28 @@ str(pls.da);
 write.csv(pls.da$component, file = `${outputdir}/plsda/plsda_component.csv`);
 write.csv(pls.da$scoreMN, file = `${outputdir}/plsda/plsda_scoreMN.csv`);
 write.csv(pls.da$loadingMN, file = `${outputdir}/plsda/plsda_loadingMN.csv`);
+
+let pls_score = pls.da$scoreMN;
+let pls_loading = pls.da$loadingMN;
+
+svg(file = `${outputdir}/plsda/plsda_loadingMN.svg`) {
+    ggplot(pls_loading, aes(x="P1", y = "P2"))
+    + geom_point(
+        size = 3, color = "VIP"
+    )
+    # + geom_text(size = 6)
+    # + stat_ellipse()
+    ;
+}
+
+pls_score[, "class_id"] = rownames(pls_score);
+
+svg(file = `${outputdir}/plsda/plsda_scoreMN.svg`) {
+    ggplot(pls_score, aes(x="T1", y = "T2", color = "class_id", label = rownames(matrix)))
+    + geom_point(
+        size = 16
+    )
+    + geom_text(size = 6)
+    # + stat_ellipse()
+    ;
+}
