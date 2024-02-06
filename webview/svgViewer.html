@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="app" content="svg-viewer">
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.png" />
+    <title>BioNovoGene MZKit</title>
+    <script type="text/javascript" src="./vendor/echarts.min.js"></script>
+    <script type="text/javascript" src="./vendor/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="./assets/js/linq.js"></script>
+    <script type="text/javascript" src="./assets/js/echarts@types.js"></script>
+    <script type="text/javascript" src="./assets/js/mzkit_desktop.js"></script>
+    <script type="text/javascript">
+        function drop(event) {
+            event.preventDefault()
+            event.stopPropagation()
+            // just a name, not a physical local file path
+            // alert(event.dataTransfer.files[0].name)  // ...files[0].name
+        }
+        function dragover(event) {
+            event.preventDefault()
+        }
+    </script>
+</head>
+
+<body ondragover="dragover(event)" ondrop="drop(event)" style=" background: white; height: 100%;">
+    <div class="main" id="viewer" style="background: white; width: 100%; height: 600px;">
+    </div>
+</body>
+
+</html>
