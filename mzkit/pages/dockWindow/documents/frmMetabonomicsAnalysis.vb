@@ -380,6 +380,7 @@ Public Class frmMetabonomicsAnalysis
         AddHandler ribbonItems.ViewLCMSScatter.ExecuteEvent, Sub() Call showScatter()
         AddHandler ribbonItems.ButtonOpenLCMSWorkspaceFolder.ExecuteEvent, Sub() Call openFolder()
         AddHandler ribbonItems.ButtonViewSampleInfo.ExecuteEvent, Sub() Call viewSampleinfo()
+        AddHandler ribbonItems.ButtonViewAnalysis3DScatter.ExecuteEvent, Sub() Call view3DScatter()
     End Sub
 
     Private Sub viewSampleinfo()
@@ -450,9 +451,17 @@ Public Class frmMetabonomicsAnalysis
         Me.source.points = scatter
         Me.url.url = url
         Me.WebView21.ExecuteScriptAsync(js)
+
+        Call viewScatterSVG()
     End Sub
 
-    Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
+    Private Sub view3DScatter()
+        Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", source)
+        Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Workbench.WebPort}/3d-scatter.html")
+        Call WebKit.DeveloperOptions(WebView21, enable:=True,)
+    End Sub
+
+    Private Sub viewScatterSVG() Handles WebView21.CoreWebView2InitializationCompleted
         ' WebView21.CoreWebView2.OpenDevToolsWindow()
         Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", url)
         Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Workbench.WebPort}/svgViewer.html")

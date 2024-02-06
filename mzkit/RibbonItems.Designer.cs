@@ -238,6 +238,7 @@ namespace RibbonLib.Controls
             public const uint cmdButtonOPLSDA = 274;
             public const uint cmdLCMSVisualPanel = 277;
             public const uint cmdViewLCMSScatter = 278;
+            public const uint cmdButtonViewAnalysis3DScatter = 285;
             public const uint cmdButtonViewSampleInfo = 284;
             public const uint cmdMenuGroupGCxGC = 6;
             public const uint cmdPanelGCxGC = 7;
@@ -513,6 +514,7 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonOPLSDA { get; private set; }
         public RibbonGroup LCMSVisualPanel { get; private set; }
         public RibbonButton ViewLCMSScatter { get; private set; }
+        public RibbonButton ButtonViewAnalysis3DScatter { get; private set; }
         public RibbonButton ButtonViewSampleInfo { get; private set; }
         public RibbonTabGroup MenuGroupGCxGC { get; private set; }
         public RibbonTab PanelGCxGC { get; private set; }
@@ -783,6 +785,7 @@ namespace RibbonLib.Controls
             ButtonOPLSDA = new RibbonButton(ribbon, Cmd.cmdButtonOPLSDA);
             LCMSVisualPanel = new RibbonGroup(ribbon, Cmd.cmdLCMSVisualPanel);
             ViewLCMSScatter = new RibbonButton(ribbon, Cmd.cmdViewLCMSScatter);
+            ButtonViewAnalysis3DScatter = new RibbonButton(ribbon, Cmd.cmdButtonViewAnalysis3DScatter);
             ButtonViewSampleInfo = new RibbonButton(ribbon, Cmd.cmdButtonViewSampleInfo);
             MenuGroupGCxGC = new RibbonTabGroup(ribbon, Cmd.cmdMenuGroupGCxGC);
             PanelGCxGC = new RibbonTab(ribbon, Cmd.cmdPanelGCxGC);

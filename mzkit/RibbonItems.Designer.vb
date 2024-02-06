@@ -235,6 +235,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonOPLSDA As UInteger = 274
             Public Const cmdLCMSVisualPanel As UInteger = 277
             Public Const cmdViewLCMSScatter As UInteger = 278
+            Public Const cmdButtonViewAnalysis3DScatter As UInteger = 285
             Public Const cmdButtonViewSampleInfo As UInteger = 284
             Public Const cmdMenuGroupGCxGC As UInteger = 6
             Public Const cmdPanelGCxGC As UInteger = 7
@@ -1615,6 +1616,12 @@ Namespace RibbonLib.Controls
                 Return _ViewLCMSScatter
             End Get
         End Property
+        Private _ButtonViewAnalysis3DScatter As RibbonButton
+        Public ReadOnly Property ButtonViewAnalysis3DScatter As RibbonButton
+            Get
+                Return _ButtonViewAnalysis3DScatter
+            End Get
+        End Property
         Private _ButtonViewSampleInfo As RibbonButton
         Public ReadOnly Property ButtonViewSampleInfo As RibbonButton
             Get
@@ -2105,6 +2112,7 @@ Namespace RibbonLib.Controls
             _ButtonOPLSDA = New RibbonButton(_ribbon, Cmd.cmdButtonOPLSDA)
             _LCMSVisualPanel = New RibbonGroup(_ribbon, Cmd.cmdLCMSVisualPanel)
             _ViewLCMSScatter = New RibbonButton(_ribbon, Cmd.cmdViewLCMSScatter)
+            _ButtonViewAnalysis3DScatter = New RibbonButton(_ribbon, Cmd.cmdButtonViewAnalysis3DScatter)
             _ButtonViewSampleInfo = New RibbonButton(_ribbon, Cmd.cmdButtonViewSampleInfo)
             _MenuGroupGCxGC = New RibbonTabGroup(_ribbon, Cmd.cmdMenuGroupGCxGC)
             _PanelGCxGC = New RibbonTab(_ribbon, Cmd.cmdPanelGCxGC)

@@ -4143,6 +4143,14 @@
         <Image MinDPI="192">Res/excel-icon.bmp</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonViewAnalysis3DScatter" Id="285" LabelTitle="View 3D Scatter" LabelDescription="View 3D Scatter" TooltipTitle="View 3D Scatter" TooltipDescription="View 3D Scatter">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-particle-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-particle-96.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4517,8 +4525,9 @@
               <Button CommandName="cmdButtonPLSDA" />
               <Button CommandName="cmdButtonOPLSDA" />
             </Group>
-            <Group CommandName="cmdLCMSVisualPanel" SizeDefinition="TwoButtons">
+            <Group CommandName="cmdLCMSVisualPanel" SizeDefinition="ThreeButtons">
               <Button CommandName="cmdViewLCMSScatter" />
+              <Button CommandName="cmdButtonViewAnalysis3DScatter" />
               <Button CommandName="cmdButtonViewSampleInfo" />
             </Group>
           </Tab>
