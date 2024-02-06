@@ -1,4 +1,5 @@
 require(GCModeller);
+require(ggplot);
 
 imports "stats" from "Rlapack";
 #' the gene expression matrix data toolkit
@@ -55,3 +56,30 @@ str(opls.da);
 write.csv(opls.da$component, file = `${outputdir}/opls/oplsda_component.csv`);
 write.csv(opls.da$scoreMN, file = `${outputdir}/opls/oplsda_scoreMN.csv`);
 write.csv(opls.da$loadingMN, file = `${outputdir}/opls/oplsda_loadingMN.csv`);
+
+
+let opls_score = opls.da$scoreMN;
+let opls_loading = opls.da$loadingMN;
+
+svg(file = `${outputdir}/opls/oplsda_loadingMN.svg`, width = 1920, height = 1600) {
+    ggplot(opls_loading, aes(x="P1", y = "P2", color = "VIP"), padding = [200 400 200 200])
+    + geom_point(
+        size = 3, color = "jet"
+    )
+    # + geom_text(size = 6)
+    # + stat_ellipse()
+    ;
+}
+
+opls_score[, "class_id"] = rownames(opls_score);
+
+svg(file = `${outputdir}/opls/oplsda_scoreMN.svg`, width = 1920, height = 1600) {
+    ggplot(opls_score, aes(x="T1", y = "T2", color = "class_id", label = rownames(matrix)), 
+        padding = [200 400 200 200])
+    + geom_point(
+        size = 16
+    )
+    + geom_text(size = 6)
+    # + stat_ellipse()
+    ;
+}
