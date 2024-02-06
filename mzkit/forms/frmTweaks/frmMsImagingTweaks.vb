@@ -59,6 +59,7 @@
 
 #End Region
 
+Imports System.IO
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
@@ -84,6 +85,7 @@ Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Interop
+Imports SMRUCC.genomics.Analysis.HTS.DataFrame
 Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
 Imports Task
 Imports TaskStream
@@ -249,7 +251,7 @@ UseCheckedList:
         Else
             ' formula
             Dim formula As String = ToolStripSpringTextBox1.Text
-            Dim exactMass As Double = Math.EvaluateFormula(formula)
+            Dim exactMass As Double = Task.Math.EvaluateFormula(formula)
 
             Call Win7StyleTreeView1.Nodes.Item(0).Nodes.Clear()
 
@@ -874,5 +876,19 @@ UseCheckedList:
         Call TaskProgress.RunAction(getPeaks, host:=Me)
         Call sampleinfo.SaveTo($"{workdir}/sampleinfo.csv")
 
+        Using f As Stream = $"{workdir}/peakset.xcms".Open(FileMode.OpenOrCreate, doClear:=True)
+            Call SaveXcms.DumpSample(New PeakSet With {.peaks = peaks.ToArray}, f)
+            Call f.Flush()
+        End Using
+
+        Using f As Stream = $"{workdir}/mat.dat".Open(FileMode.OpenOrCreate, doClear:=True)
+            Call frmMetabonomicsAnalysis.CastMatrix(New PeakSet With {.peaks = peaks.ToArray}, sampleinfo).Save(f)
+        End Using
+
+        Call Workbench.LogText($"set workspace for metabonomics workbench: {workdir}")
+
+        Dim page = VisualStudio.ShowDocument(Of frmMetabonomicsAnalysis)()
+        page.workdir = workdir
+        page.LoadWorkspace(workdir)
     End Sub
 End Class
