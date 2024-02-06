@@ -98,9 +98,14 @@ Public Class frmMsImagingTweaks
     Friend checkedMz As New List(Of TreeNode)
     Friend viewer As frmMsImagingViewer
 
+    Private Function hasSelectedIonNode() As Boolean
+
+    End Function
+
     Public Iterator Function GetSelectedIons() As IEnumerable(Of Double)
         If Not Win7StyleTreeView1.SelectedNode Is Nothing Then
-            If Not Win7StyleTreeView1.SelectedNode.Checked Then
+            If Win7StyleTreeView1.SelectedNode.Checked Then
+                ' is root node
                 If Win7StyleTreeView1.SelectedNode.Tag Is Nothing Then
                     For Each node As TreeNode In Win7StyleTreeView1.SelectedNode.Nodes
                         Yield DirectCast(node.Tag, Double)
@@ -804,6 +809,7 @@ UseCheckedList:
     End Sub
 
     Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
+        Dim ions = GetSelectedIons.ToArray
         Dim regions As TissueRegion() = viewer.sampleRegions _
             .GetRegions(viewer.PixelSelector1.MSICanvas.dimension_size) _
             .ToArray
@@ -811,10 +817,13 @@ UseCheckedList:
         If regions.IsNullOrEmpty Then
             Call Workbench.Warning("no tissue regions was found! Add some interested regions on your sample at first!")
             Return
+        ElseIf ions.IsNullOrEmpty Then
+            Call Workbench.Warning("no feature ions was selected, add some interested ions at first!")
+            Return
         Else
             Using folder As New FolderBrowserDialog
                 If folder.ShowDialog = DialogResult.OK Then
-                    Call createPeaktable(regions, ions:=GetSelectedIons.ToArray, workdir:=folder.SelectedPath)
+                    Call createPeaktable(regions, ions, workdir:=folder.SelectedPath)
                 End If
             End Using
         End If
