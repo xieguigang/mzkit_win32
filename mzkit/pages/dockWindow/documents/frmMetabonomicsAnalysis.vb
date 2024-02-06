@@ -366,6 +366,9 @@ Public Class frmMetabonomicsAnalysis
 
         Call loadPeakTableCommon()
 
+        PLSDAToolStripMenuItem.Checked = False
+        OPLSDAToolStripMenuItem.Checked = False
+
         ToolStripDropDownButton1.DropDownItems.Add("pca_score", My.Resources._1200px_Checked_svg,
             Sub()
                 Dim score_data As DataSet() = DataSet.LoadDataSet(score).ToArray
@@ -385,6 +388,9 @@ Public Class frmMetabonomicsAnalysis
 
         Call loadPeakTableCommon()
 
+        PCAToolStripMenuItem.Checked = False
+        OPLSDAToolStripMenuItem.Checked = False
+
         ToolStripDropDownButton1.DropDownItems.Add("plsda_score", My.Resources._1200px_Checked_svg,
             Sub()
                 Dim score_data As DataSet() = DataSet.LoadDataSet(score).ToArray
@@ -403,6 +409,9 @@ Public Class frmMetabonomicsAnalysis
         Dim loading As String = $"{dir}/oplsda_loadingMN.csv"
 
         Call loadPeakTableCommon()
+
+        PCAToolStripMenuItem.Checked = False
+        PLSDAToolStripMenuItem.Checked = False
 
         ToolStripDropDownButton1.DropDownItems.Add("oplsda_score", My.Resources._1200px_Checked_svg,
             Sub()
