@@ -342,12 +342,6 @@ Public Class frmMetabonomicsAnalysis
             Sub(config)
                 RscriptProgressTask.RunComponentTask(matrixfile, sampleinfofile, config.ncomp, analysis)
 
-                Call ToolStripDropDownButton1.DropDownItems.Clear()
-                Call ToolStripDropDownButton1.DropDownItems.Add("view peaktable", My.Resources._42082,
-                     Sub()
-                         Call loadTable(Sub(table) Call LoadSampleData(table))
-                     End Sub)
-
                 Select Case analysis
                     Case GetType(PLS) : Call PLSDAToolStripMenuItem_Click()
                     Case GetType(OPLS) : Call OPLSDAToolStripMenuItem_Click()
@@ -357,10 +351,20 @@ Public Class frmMetabonomicsAnalysis
             End Sub, config:=New InputPCADialog().SetMaxComponent(sampleinfo.Length))
     End Sub
 
+    Private Sub loadPeakTableCommon()
+        Call ToolStripDropDownButton1.DropDownItems.Clear()
+        Call ToolStripDropDownButton1.DropDownItems.Add("view peaktable", My.Resources._42082,
+             Sub()
+                 Call loadTable(Sub(table) Call LoadSampleData(table))
+             End Sub)
+    End Sub
+
     Private Sub PCAToolStripMenuItem_Click() Handles PCAToolStripMenuItem.Click
         Dim dir As String = $"{workdir}/pca"
         Dim score As String = $"{dir}/pca_score.csv"
         Dim loading As String = $"{dir}/pca_loading.csv"
+
+        Call loadPeakTableCommon()
 
         ToolStripDropDownButton1.DropDownItems.Add("pca_score", My.Resources._1200px_Checked_svg,
             Sub()
@@ -379,6 +383,8 @@ Public Class frmMetabonomicsAnalysis
         Dim score As String = $"{dir}/plsda_scoreMN.csv"
         Dim loading As String = $"{dir}/plsda_loadingMN.csv"
 
+        Call loadPeakTableCommon()
+
         ToolStripDropDownButton1.DropDownItems.Add("plsda_score", My.Resources._1200px_Checked_svg,
             Sub()
                 Dim score_data As DataSet() = DataSet.LoadDataSet(score).ToArray
@@ -395,6 +401,8 @@ Public Class frmMetabonomicsAnalysis
         Dim dir As String = $"{workdir}/opls"
         Dim score As String = $"{dir}/oplsda_scoreMN.csv"
         Dim loading As String = $"{dir}/oplsda_loadingMN.csv"
+
+        Call loadPeakTableCommon()
 
         ToolStripDropDownButton1.DropDownItems.Add("oplsda_score", My.Resources._1200px_Checked_svg,
             Sub()
