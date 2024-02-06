@@ -402,7 +402,7 @@ Public Class frmMetabonomicsAnalysis
                 Call VisualStudio _
                     .ShowDocument(Of frmLCMSScatterViewer)(title:=label) _
                     .LoadRaw(peaks.peaks, samples)
-            End Sub)
+            End Sub, config:=ls)
     End Sub
 
     <ClassInterface(ClassInterfaceType.AutoDual)>
