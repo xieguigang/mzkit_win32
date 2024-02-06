@@ -387,6 +387,9 @@ declare namespace apps.viewer {
     class svgViewer extends Bootstrap {
         get appName(): string;
         protected init(): void;
+        /**
+         * @param url the base64 encoded svg image data
+        */
         static setSvgUrl(url: string): void;
     }
 }

@@ -6,6 +6,8 @@ Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA
 Imports Microsoft.VisualBasic.My.JavaScript
+Imports Microsoft.VisualBasic.Net.Http
+Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Interop
@@ -264,6 +266,34 @@ Public Class frmMetabonomicsAnalysis
         AddHandler ribbonItems.ButtonPCA.ExecuteEvent, Sub() Call RunPCA(GetType(PCA))
         AddHandler ribbonItems.ButtonPLSDA.ExecuteEvent, Sub() Call RunPCA(GetType(PLS))
         AddHandler ribbonItems.ButtonOPLSDA.ExecuteEvent, Sub() Call RunPCA(GetType(OPLS))
+    End Sub
+
+    Public Class ImageUrl
+
+        Public url As String
+
+        Public Function Download() As String
+            Return url
+        End Function
+
+    End Class
+
+    Dim url As New ImageUrl
+
+    Private Sub SetSvg(svgfile As String)
+        Dim url As DataURI = DataURI.SVGImage(Strings.Trim(svgfile.ReadAllText))
+        Dim uri As String = url.ToString
+        Dim js As String = $"apps.viewer.svgViewer.setSvgUrl(""{uri}"")"
+
+        Me.url.url = svgfile
+        WebView21.ExecuteScriptAsync(js).Wait()
+    End Sub
+
+    Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
+        ' WebView21.CoreWebView2.OpenDevToolsWindow()
+        Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", url)
+        Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Workbench.WebPort}/svgViewer.html")
+        Call WebKit.DeveloperOptions(WebView21, enable:=True,)
     End Sub
 
     Private Sub frmMetabonomicsAnalysis_Activated(sender As Object, e As EventArgs) Handles Me.Activated

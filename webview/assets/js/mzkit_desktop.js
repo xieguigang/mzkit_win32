@@ -1889,7 +1889,25 @@ var apps;
                 configurable: true
             });
             svgViewer.prototype.init = function () {
+                app.desktop.mzkit.Download().then(function (uri) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var url;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, uri];
+                                case 1:
+                                    url = _a.sent();
+                                    console.log(url);
+                                    svgViewer.setSvgUrl(url);
+                                    return [2 /*return*/];
+                            }
+                        });
+                    });
+                });
             };
+            /**
+             * @param url the base64 encoded svg image data
+            */
             svgViewer.setSvgUrl = function (url) {
                 $ts("#viewer").src = url;
             };
