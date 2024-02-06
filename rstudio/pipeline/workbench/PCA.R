@@ -36,7 +36,7 @@ let pca_score = pca$score;
 
 pca_score[, "class_id"] = sapply(rownames(pca_score), x -> class_id[[x]]);
 
-svg(file = `${outputdir}/pca/pca_score.svg`) {
+svg(file = `${outputdir}/pca/pca_score.svg`, width = 1920, height = 1600) {
     ggplot(pca_score, aes(x="PC1", y = "PC2", color = "class_id", label = rownames(pca_score)))
     + geom_point(
         size = 16
@@ -46,10 +46,10 @@ svg(file = `${outputdir}/pca/pca_score.svg`) {
     ;
 }
 
-svg(file = `${outputdir}/pca/pca_loading.svg`) {
+svg(file = `${outputdir}/pca/pca_loading.svg`, width = 1920, height = 1600) {
     ggplot(pca$loading, aes(x="PC1", y = "PC2", label = rownames(pca$loading)))
     + geom_point(
-        size = 3, color = "blue"
+        size = 3, color = "skyblue"
     )
     # + geom_text(size = 6)
     # + stat_ellipse()

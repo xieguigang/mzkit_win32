@@ -59,10 +59,10 @@ write.csv(pls.da$loadingMN, file = `${outputdir}/plsda/plsda_loadingMN.csv`);
 let pls_score = pls.da$scoreMN;
 let pls_loading = pls.da$loadingMN;
 
-svg(file = `${outputdir}/plsda/plsda_loadingMN.svg`) {
-    ggplot(pls_loading, aes(x="P1", y = "P2"))
+svg(file = `${outputdir}/plsda/plsda_loadingMN.svg`, width = 1920, height = 1600) {
+    ggplot(pls_loading, aes(x="P1", y = "P2", color = "VIP"), padding = [200 400 200 250])
     + geom_point(
-        size = 3, color = "VIP"
+        size = 3, color = "viridis:turbo"
     )
     # + geom_text(size = 6)
     # + stat_ellipse()
@@ -71,8 +71,9 @@ svg(file = `${outputdir}/plsda/plsda_loadingMN.svg`) {
 
 pls_score[, "class_id"] = rownames(pls_score);
 
-svg(file = `${outputdir}/plsda/plsda_scoreMN.svg`) {
-    ggplot(pls_score, aes(x="T1", y = "T2", color = "class_id", label = rownames(matrix)))
+svg(file = `${outputdir}/plsda/plsda_scoreMN.svg`, width = 1920, height = 1600) {
+    ggplot(pls_score, aes(x="T1", y = "T2", color = "class_id", label = rownames(matrix)), 
+        padding = [200 400 200 250])
     + geom_point(
         size = 16
     )

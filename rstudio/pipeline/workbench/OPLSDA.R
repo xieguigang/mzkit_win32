@@ -62,9 +62,9 @@ let opls_score = opls.da$scoreMN;
 let opls_loading = opls.da$loadingMN;
 
 svg(file = `${outputdir}/opls/oplsda_loadingMN.svg`, width = 1920, height = 1600) {
-    ggplot(opls_loading, aes(x="P1", y = "P2", color = "VIP"), padding = [200 400 200 200])
+    ggplot(opls_loading, aes(x="P1", y = "P2", color = "VIP"), padding = [200 400 200 250])
     + geom_point(
-        size = 3, color = "jet"
+        size = 3, color = "viridis:turbo"
     )
     # + geom_text(size = 6)
     # + stat_ellipse()
@@ -75,7 +75,7 @@ opls_score[, "class_id"] = rownames(opls_score);
 
 svg(file = `${outputdir}/opls/oplsda_scoreMN.svg`, width = 1920, height = 1600) {
     ggplot(opls_score, aes(x="T1", y = "T2", color = "class_id", label = rownames(matrix)), 
-        padding = [200 400 200 200])
+        padding = [200 400 200 250])
     + geom_point(
         size = 16
     )
