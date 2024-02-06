@@ -19,7 +19,16 @@ namespace apps {
         }
 
         protected init(): void {
-            $ts.getText(biodeep_classroom, text => this.showClassRoom(JSON.parse(text)));
+            $ts.getText(biodeep_classroom, text => this.loadList(text));
+        }
+
+        private loadList(json_str: string) {
+            try {
+                this.showClassRoom(JSON.parse(json_str));
+            } catch {
+                console.error("invalid json response text:");
+                console.error(json_str);
+            }
         }
 
         private showClassRoom(res) {

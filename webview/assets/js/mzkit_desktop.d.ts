@@ -180,6 +180,7 @@ declare namespace apps {
     class home extends Bootstrap {
         get appName(): string;
         protected init(): void;
+        private loadList;
         private showClassRoom;
     }
 }

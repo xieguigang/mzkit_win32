@@ -704,7 +704,16 @@ var apps;
         });
         home.prototype.init = function () {
             var _this = this;
-            $ts.getText(apps.biodeep_classroom, function (text) { return _this.showClassRoom(JSON.parse(text)); });
+            $ts.getText(apps.biodeep_classroom, function (text) { return _this.loadList(text); });
+        };
+        home.prototype.loadList = function (json_str) {
+            try {
+                this.showClassRoom(JSON.parse(json_str));
+            }
+            catch (_a) {
+                console.error("invalid json response text:");
+                console.error(json_str);
+            }
         };
         home.prototype.showClassRoom = function (res) {
             var success = res.success, result = res.result;
