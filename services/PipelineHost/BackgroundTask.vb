@@ -578,7 +578,7 @@ Module BackgroundTask
                 .value = vec
             }
 
-            If (++p) Mod d = 0 Then
+            If d > 0 AndAlso (++p) Mod d = 0 Then
                 Call RunSlavePipeline.SendProgress(p / rawdata.Length * 100, $"[{(100 * p / rawdata.Length).ToString("F1")}%] {p / CInt((Now - t0).TotalSeconds)} pixel/s; {pixelKey}")
             End If
         Next
