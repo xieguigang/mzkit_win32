@@ -373,7 +373,7 @@ Public Class frmMetabonomicsAnalysis
             Sub()
                 Dim score_data As DataSet() = DataSet.LoadDataSet(score).ToArray
                 Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
-            End Sub)
+            End Sub).PerformClick()
         ToolStripDropDownButton1.DropDownItems.Add("pca_loading", My.Resources._1200px_Checked_svg,
             Sub()
                 Dim score_data As DataSet() = DataSet.LoadDataSet(loading).ToArray
@@ -395,7 +395,7 @@ Public Class frmMetabonomicsAnalysis
             Sub()
                 Dim score_data As DataSet() = DataSet.LoadDataSet(score).ToArray
                 Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
-            End Sub)
+            End Sub).PerformClick()
         ToolStripDropDownButton1.DropDownItems.Add("plsda_loading", My.Resources._1200px_Checked_svg,
             Sub()
                 Dim score_data As DataSet() = DataSet.LoadDataSet(loading).ToArray
@@ -417,7 +417,7 @@ Public Class frmMetabonomicsAnalysis
             Sub()
                 Dim score_data As DataSet() = DataSet.LoadDataSet(score).ToArray
                 Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
-            End Sub)
+            End Sub).PerformClick()
         ToolStripDropDownButton1.DropDownItems.Add("oplsda_loading", My.Resources._1200px_Checked_svg,
             Sub()
                 Dim score_data As DataSet() = DataSet.LoadDataSet(loading).ToArray
