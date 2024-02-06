@@ -1,4 +1,5 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
+﻿Imports System.Runtime.CompilerServices
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.application.json
@@ -43,7 +44,11 @@ Module ggplotVisual
         Return json.BuildJsonString
     End Function
 
-    Public Function ggplot(pack As String, title As String, Optional type As String = "violin|box|bar") As Image
-        Return RscriptProgressTask.PlotStats(pack, type.Split("|"c).First, title:=title)
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Function ggplot(pack As String, title As String, size As Integer(), Optional type As String = "violin|box|bar") As Image
+        Return RscriptProgressTask.PlotStats(pack,
+             type:=type.Split("|"c).First,
+             title:=title,
+             size:=size.JoinBy(","))
     End Function
 End Module

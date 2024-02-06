@@ -5,6 +5,7 @@ const rawdata as string   = ?"--data"  || stop("no raw data provided!");
 const savefile as string  = ?"--save"  || stop("no output file!");
 const title_str as string = ?"--title" || stop("no title!");
 const plot_type as string = ?"--plot"  || stop("should be one of the 'box', 'bar', 'violin'");
+const size = ?"--size" || "1900,1200";
 
 let myeloma = rawdata
 |> readText()
@@ -59,6 +60,6 @@ const plotGgplot = function() {
 	;
 }
 
-bitmap(file = savefile, size = [1900, 1200]) {
+bitmap(file = savefile, size = as.integer(unlist(strsplit(size, ",")))) {
 	plotGgplot();
 }

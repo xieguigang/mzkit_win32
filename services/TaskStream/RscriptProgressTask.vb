@@ -677,7 +677,7 @@ Public NotInheritable Class RscriptProgressTask
         End If
     End Function
 
-    Public Shared Function PlotStats(data As String, type As String, title As String) As Image
+    Public Shared Function PlotStats(data As String, type As String, title As String, Optional size As String = "1920,1200") As Image
         Dim tempfile As String = TempFileSystem.GetAppSysTempFile(".json", App.PID.ToHexString, prefix:="MSI_regions__")
         Dim imageOut As String = $"{tempfile.ParentPath}/Rplot.png"
         Dim Rscript As String = RscriptPipelineTask.GetRScript("ggplot/ggplot2.R")
@@ -686,6 +686,7 @@ Public NotInheritable Class RscriptProgressTask
 --save ""{imageOut}"" 
 --title ""{title}"" 
 --plot ""{type}"" 
+--size ""{size}""
 --SetDllDirectory {TaskEngine.hostDll.ParentPath.CLIPath}
 "
         Dim pipeline As New RunSlavePipeline(RscriptPipelineTask.Host, cli, workdir:=RscriptPipelineTask.Root)
