@@ -484,6 +484,12 @@
     <Compile Include="forms\Inputs\InputURL.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\Inputs\LCMS\InputLCMSScatter.Designer.vb">
+      <DependentUpon>InputLCMSScatter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\LCMS\InputLCMSScatter.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\LCMS\InputImportsPeaktableDialog.Designer.vb">
       <DependentUpon>InputImportsPeaktableDialog.vb</DependentUpon>
     </Compile>
@@ -1205,6 +1211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\InputURL.resx">
       <DependentUpon>InputURL.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\LCMS\InputLCMSScatter.resx">
+      <DependentUpon>InputLCMSScatter.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\LCMS\InputCreateLCMSLibrary.resx">
       <DependentUpon>InputCreateLCMSLibrary.vb</DependentUpon>
