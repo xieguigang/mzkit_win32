@@ -39,6 +39,8 @@ Partial Class frmMetabonomicsAnalysis
         Me.ToolStripDropDownButton1 = New System.Windows.Forms.ToolStripDropDownButton()
         Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -48,6 +50,11 @@ Partial Class frmMetabonomicsAnalysis
         CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer2.Panel1.SuspendLayout()
+        Me.SplitContainer2.Panel2.SuspendLayout()
+        Me.SplitContainer2.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SplitContainer1
@@ -63,9 +70,9 @@ Partial Class frmMetabonomicsAnalysis
         '
         'SplitContainer1.Panel2
         '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.AdvancedDataGridView1)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.StatusStrip1)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.SplitContainer2)
         Me.SplitContainer1.Panel2.Controls.Add(Me.AdvancedDataGridViewSearchToolBar1)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.StatusStrip1)
         Me.SplitContainer1.Size = New System.Drawing.Size(1031, 637)
         Me.SplitContainer1.SplitterDistance = 343
         Me.SplitContainer1.TabIndex = 1
@@ -107,12 +114,12 @@ Partial Class frmMetabonomicsAnalysis
         Me.AdvancedDataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.AdvancedDataGridView1.FilterAndSortEnabled = True
         Me.AdvancedDataGridView1.FilterStringChangedInvokeBeforeDatasourceUpdate = True
-        Me.AdvancedDataGridView1.Location = New System.Drawing.Point(0, 27)
+        Me.AdvancedDataGridView1.Location = New System.Drawing.Point(0, 0)
         Me.AdvancedDataGridView1.Name = "AdvancedDataGridView1"
         Me.AdvancedDataGridView1.ReadOnly = True
         Me.AdvancedDataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.AdvancedDataGridView1.RowTemplate.Height = 23
-        Me.AdvancedDataGridView1.Size = New System.Drawing.Size(684, 588)
+        Me.AdvancedDataGridView1.Size = New System.Drawing.Size(684, 294)
         Me.AdvancedDataGridView1.SortStringChangedInvokeBeforeDatasourceUpdate = True
         Me.AdvancedDataGridView1.TabIndex = 3
         '
@@ -138,21 +145,21 @@ Partial Class frmMetabonomicsAnalysis
         '
         Me.OPLSDAToolStripMenuItem.CheckOnClick = True
         Me.OPLSDAToolStripMenuItem.Name = "OPLSDAToolStripMenuItem"
-        Me.OPLSDAToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.OPLSDAToolStripMenuItem.Size = New System.Drawing.Size(118, 22)
         Me.OPLSDAToolStripMenuItem.Text = "OPLSDA"
         '
         'PLSDAToolStripMenuItem
         '
         Me.PLSDAToolStripMenuItem.CheckOnClick = True
         Me.PLSDAToolStripMenuItem.Name = "PLSDAToolStripMenuItem"
-        Me.PLSDAToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.PLSDAToolStripMenuItem.Size = New System.Drawing.Size(118, 22)
         Me.PLSDAToolStripMenuItem.Text = "PLSDA"
         '
         'PCAToolStripMenuItem
         '
         Me.PCAToolStripMenuItem.CheckOnClick = True
         Me.PCAToolStripMenuItem.Name = "PCAToolStripMenuItem"
-        Me.PCAToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.PCAToolStripMenuItem.Size = New System.Drawing.Size(118, 22)
         Me.PCAToolStripMenuItem.Text = "PCA"
         '
         'ToolStripDropDownButton1
@@ -176,6 +183,33 @@ Partial Class frmMetabonomicsAnalysis
         Me.AdvancedDataGridViewSearchToolBar1.TabIndex = 4
         Me.AdvancedDataGridViewSearchToolBar1.Text = "AdvancedDataGridViewSearchToolBar1"
         '
+        'SplitContainer2
+        '
+        Me.SplitContainer2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer2.Location = New System.Drawing.Point(0, 27)
+        Me.SplitContainer2.Name = "SplitContainer2"
+        Me.SplitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal
+        '
+        'SplitContainer2.Panel1
+        '
+        Me.SplitContainer2.Panel1.Controls.Add(Me.AdvancedDataGridView1)
+        '
+        'SplitContainer2.Panel2
+        '
+        Me.SplitContainer2.Panel2.Controls.Add(Me.PictureBox1)
+        Me.SplitContainer2.Size = New System.Drawing.Size(684, 588)
+        Me.SplitContainer2.SplitterDistance = 294
+        Me.SplitContainer2.TabIndex = 6
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(684, 290)
+        Me.PictureBox1.TabIndex = 0
+        Me.PictureBox1.TabStop = False
+        '
         'frmMetabonomicsAnalysis
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -198,6 +232,11 @@ Partial Class frmMetabonomicsAnalysis
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer2.Panel1.ResumeLayout(False)
+        Me.SplitContainer2.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer2.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -215,4 +254,6 @@ Partial Class frmMetabonomicsAnalysis
     Friend WithEvents OPLSDAToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PLSDAToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PCAToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SplitContainer2 As SplitContainer
+    Friend WithEvents PictureBox1 As PictureBox
 End Class
