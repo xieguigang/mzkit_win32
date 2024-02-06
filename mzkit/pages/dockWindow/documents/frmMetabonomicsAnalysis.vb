@@ -318,7 +318,14 @@ Public Class frmMetabonomicsAnalysis
             plotType = "violin"
         End If
 
-        Dim plot As Image = ggplotVisual.ggplot(json, title:=name, type:=plotType, size:={PictureBox1.Width * 5, PictureBox1.Height * 5})
+        Dim factor As Double = 3
+        Dim plot As Image = ggplotVisual.ggplot(json,
+               title:=name,
+               type:=plotType,
+               size:={
+                  PictureBox1.Width * factor,
+                  PictureBox1.Height * factor
+        })
 
         Return plot
     End Function
