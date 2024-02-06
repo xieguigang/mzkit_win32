@@ -106,22 +106,26 @@ Public Class ProgressSpinner
     ''' <remarks>
     ''' 这个函数会阻塞线程
     ''' </remarks>
-    Public Shared Sub DoLoading(loading As Action)
+    Public Shared Sub DoLoading(loading As Action, Optional host As Form = Nothing)
         Dim spinner As New ProgressSpinner
         Dim mask As MaskForm = MaskForm.CreateMask(Workbench.AppHost)
-        Dim task = getLoadingTask(loading, spinner)
+        Dim task = getLoadingTask(loading, host, spinner)
 
         Call task.Start()
         Call mask.ShowDialogForm(spinner)
     End Sub
 
-    Private Shared Function getLoadingTask(loading As Action, spinner As ProgressSpinner) As Tasks.Task
+    Private Shared Function getLoadingTask(loading As Action, host As Form, spinner As ProgressSpinner) As Tasks.Task
         Dim run As Action =
             Sub()
                 Call Thread.Sleep(500)
 
                 Try
-                    Call loading()
+                    If host Is Nothing Then
+                        Call loading()
+                    Else
+                        Call host.Invoke(loading)
+                    End If
                 Catch ex As Exception
                     Call App.LogException(ex)
                     Call Workbench.Warning(ex.ToString)

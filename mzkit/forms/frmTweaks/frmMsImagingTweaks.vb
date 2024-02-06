@@ -498,7 +498,7 @@ UseCheckedList:
                 For Each r As TissueRegion In regions
                     r.tags = data(r.label).Select(Function(d) d.ToString).ToArray
                 Next
-            End Sub)
+            End Sub, host:=Me)
 
         mz = mzi
 
@@ -514,7 +514,7 @@ UseCheckedList:
             Return Nothing
         End If
 
-        mz = DirectCast(Me.Invoke(Function() GetSelectedIons()), IEnumerable(Of Double)).FirstOrDefault
+        mz = GetSelectedIons().FirstOrDefault
 
         If mz <= 0 Then
             msg = "No ions m/z Is selected!"
