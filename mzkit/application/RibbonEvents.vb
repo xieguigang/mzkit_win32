@@ -70,6 +70,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.RibbonLib.Controls
 Imports Microsoft.VisualBasic.ApplicationServices
+Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Emit.Delegates
 Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
@@ -78,6 +79,7 @@ Imports Mzkit_win32.MatrixViewer
 Imports RibbonLib
 Imports RibbonLib.Controls.Events
 Imports RibbonLib.Interop
+Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
 Imports Task
 Imports Task.Container
 Imports TaskStream
@@ -275,12 +277,23 @@ Module RibbonEvents
                     fileName:=file.FileName,
                     showFile:=
                         Sub(table, title)
-                            Dim workshop As frmMetabonomicsAnalysis = VisualStudio.ShowDocument(Of frmMetabonomicsAnalysis)(title:=title)
-                            Call workshop.LoadData(table, title)
+                            Call frmMetabonomicsAnalysis.LoadData(table, AddressOf New LoadMetabolismData With {.title = title}.load)
                         End Sub)
             End If
         End Using
     End Sub
+
+
+
+    Private Class LoadMetabolismData
+
+        Public title As String
+
+        Friend Sub load(sampleinfo As SampleInfo(), properties As String(), df As DataFrame, workdir As String)
+            VisualStudio.ShowDocument(Of frmMetabonomicsAnalysis)(title:=title).LoadData(sampleinfo, properties, df, workdir, title)
+        End Sub
+
+    End Class
 
     Private Sub openSlideFile()
         Dim filetypes As String() = {

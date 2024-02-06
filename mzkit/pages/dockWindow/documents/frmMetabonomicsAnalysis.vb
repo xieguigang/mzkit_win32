@@ -27,7 +27,15 @@ Public Class frmMetabonomicsAnalysis
     ''' <summary>
     ''' could be custom in the wizard dialog
     ''' </summary>
-    Friend workdir As String = App.CurrentProcessTemp & "/" & App.CurrentUnixTimeMillis & "/"
+    Friend workdir As String = getTemp()
+
+    ''' <summary>
+    ''' get temp workspace directory path
+    ''' </summary>
+    ''' <returns></returns>
+    Private Shared Function getTemp() As String
+        Return App.CurrentProcessTemp & "/" & App.CurrentUnixTimeMillis & "/"
+    End Function
 
     Public Shared Function CastMatrix(peaktable As PeakSet, sampleinfo As SampleInfo()) As Matrix
         Dim mols As New List(Of DataFrameRow)
@@ -94,24 +102,37 @@ Public Class frmMetabonomicsAnalysis
         Next
     End Sub
 
-    Public Sub LoadData(table As csv, title As String)
+    Public Delegate Sub LoadDataCallback(sampleinfo As SampleInfo(), properties As String(), df As DataFrame, workdir As String)
+
+    Public Shared Sub LoadData(table As csv, callback As LoadDataCallback)
         Dim wizard As New InputImportsPeaktableDialog
         Dim df As DataFrame = DataFrame.CreateObject(table)
 
         Call wizard.LoadSampleId(df.HeadTitles)
         Call InputDialog.Input(
             Sub(config)
-                sampleinfo = config.GetSampleInfo.ToArray
-                properties = config.GetMetadata.ToArray
+                Dim sampleinfo = config.GetSampleInfo.ToArray
+                Dim properties = config.GetMetadata.ToArray
+                Dim workdir As String
 
                 If Not Strings.Trim(config.GetWorkspace).StringEmpty Then
                     workdir = Strings.Trim(config.GetWorkspace)
+                Else
+                    workdir = getTemp()
                 End If
-            End Sub, Nothing, wizard)
 
+                Call callback(sampleinfo, properties, df, workdir)
+            End Sub, Nothing, wizard)
+    End Sub
+
+    Public Sub LoadData(sampleinfo As SampleInfo(), properties As String(), df As DataFrame, workdir As String, title As String)
         ' show data
         Dim peaks As New List(Of xcms2)
         Dim peak As xcms2
+
+        Me.workdir = workdir
+        Me.sampleinfo = sampleinfo
+        Me.properties = properties
 
         For Each row In df.EnumerateData
             peak = New xcms2 With {
