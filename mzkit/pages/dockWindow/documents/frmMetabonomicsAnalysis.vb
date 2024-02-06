@@ -1,7 +1,9 @@
-﻿Imports System.IO
+﻿Imports System.ComponentModel
+Imports System.IO
 Imports System.Runtime.InteropServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
+Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Imaging
@@ -28,6 +30,37 @@ Public Class frmMetabonomicsAnalysis
     ''' could be custom in the wizard dialog
     ''' </summary>
     Friend workdir As String = getTemp()
+
+    Friend imageWeb As Process
+    Friend webPort As Integer
+
+    Private Sub startfs()
+        webPort = Net.Tcp.GetFirstAvailablePort(6001)
+        imageWeb = New Process With {
+            .StartInfo = New ProcessStartInfo With {
+                .FileName = $"{App.HOME}/Rstudio/bin/Rserve.exe",
+                .Arguments = $"--listen /wwwroot ""{workdir}"" /port {webPort} --parent={App.PID}",
+                .CreateNoWindow = True,
+                .WindowStyle = ProcessWindowStyle.Hidden,
+                .UseShellExecute = True
+            }
+        }
+
+        Call imageWeb.Start()
+        Call App.AddExitCleanHook(Sub() Call imageWeb.Kill())
+        Call ServiceHub.Manager.Hub.Register(New Manager.Service With {
+            .Name = "Metabonomics Workbench",
+            .Description = "host image files and analysis result files for viewer",
+            .isAlive = True,
+            .PID = imageWeb.Id,
+            .Port = webPort,
+            .CPU = 0,
+            .Memory = 0,
+            .Protocol = "HTTP 1.0",
+            .StartTime = Now.ToString,
+            .CommandLine = Manager.Service.GetCommandLine(imageWeb)
+        })
+    End Sub
 
     ''' <summary>
     ''' get temp workspace directory path
@@ -164,6 +197,7 @@ Public Class frmMetabonomicsAnalysis
         }
 
         Call loadTable(Sub(tbl) Call LoadSampleData(tbl))
+        Call startfs()
 
         Using f As Stream = $"{workdir}/peakset.xcms".Open(FileMode.OpenOrCreate, doClear:=True)
             Call SaveXcms.DumpSample(Me.peaks, f)
@@ -188,6 +222,7 @@ Public Class frmMetabonomicsAnalysis
         End Using
 
         Call loadTable(Sub(table) Call LoadSampleData(table))
+        Call startfs()
     End Sub
 
     ''' <summary>
@@ -305,12 +340,13 @@ Public Class frmMetabonomicsAnalysis
     Dim url As New ImageUrl
 
     Private Sub SetSvg(svgfile As String)
-        Dim url As DataURI = DataURI.SVGImage(Strings.Trim(svgfile.ReadAllText))
-        Dim uri As String = url.ToString
-        Dim js As String = $"apps.viewer.svgViewer.setSvgUrl(""{uri}"")"
+        Dim fileName As String = svgfile.FileName
+        Dim dirname As String = svgfile.ParentDirName
+        Dim url As String = $"http://127.0.0.1:{webPort}/{dirname}/{fileName}"
+        Dim js As String = $"apps.viewer.svgViewer.setSvgUrl(""{url}"");"
 
-        Me.url.url = svgfile
-        WebView21.ExecuteScriptAsync(js).Wait()
+        Me.url.url = url
+        WebView21.ExecuteScriptAsync(js)
     End Sub
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
@@ -435,5 +471,15 @@ Public Class frmMetabonomicsAnalysis
                 Call loadTable(Sub(table) Call LoadAnalysisTable(table, score_data))
                 Call SetSvg($"{dir}/oplsda_loadingMN.svg")
             End Sub)
+    End Sub
+
+    Private Sub frmMetabonomicsAnalysis_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        If Not imageWeb Is Nothing Then
+            Try
+                Call imageWeb.Kill()
+            Catch ex As Exception
+
+            End Try
+        End If
     End Sub
 End Class
