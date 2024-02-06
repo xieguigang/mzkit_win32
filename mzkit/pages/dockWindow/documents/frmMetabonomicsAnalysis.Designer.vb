@@ -30,31 +30,31 @@ Partial Class frmMetabonomicsAnalysis
         Me.WebView21 = New Microsoft.Web.WebView2.WinForms.WebView2()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.PropertyGrid1 = New System.Windows.Forms.PropertyGrid()
+        Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.AdvancedDataGridView1 = New Zuby.ADGV.AdvancedDataGridView()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripDropDownButton2 = New System.Windows.Forms.ToolStripDropDownButton()
         Me.OPLSDAToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PLSDAToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PCAToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripDropDownButton1 = New System.Windows.Forms.ToolStripDropDownButton()
-        Me.AdvancedDataGridViewSearchToolBar1 = New Zuby.ADGV.AdvancedDataGridViewSearchToolBar()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
-        CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.StatusStrip1.SuspendLayout()
-        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer2.Panel1.SuspendLayout()
         Me.SplitContainer2.Panel2.SuspendLayout()
         Me.SplitContainer2.SuspendLayout()
+        CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.StatusStrip1.SuspendLayout()
+        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SplitContainer1
@@ -108,6 +108,24 @@ Partial Class frmMetabonomicsAnalysis
         Me.PropertyGrid1.Size = New System.Drawing.Size(337, 365)
         Me.PropertyGrid1.TabIndex = 0
         '
+        'SplitContainer2
+        '
+        Me.SplitContainer2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer2.Location = New System.Drawing.Point(0, 27)
+        Me.SplitContainer2.Name = "SplitContainer2"
+        Me.SplitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal
+        '
+        'SplitContainer2.Panel1
+        '
+        Me.SplitContainer2.Panel1.Controls.Add(Me.AdvancedDataGridView1)
+        '
+        'SplitContainer2.Panel2
+        '
+        Me.SplitContainer2.Panel2.Controls.Add(Me.PictureBox1)
+        Me.SplitContainer2.Size = New System.Drawing.Size(684, 588)
+        Me.SplitContainer2.SplitterDistance = 294
+        Me.SplitContainer2.TabIndex = 6
+        '
         'AdvancedDataGridView1
         '
         Me.AdvancedDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -122,6 +140,29 @@ Partial Class frmMetabonomicsAnalysis
         Me.AdvancedDataGridView1.Size = New System.Drawing.Size(684, 294)
         Me.AdvancedDataGridView1.SortStringChangedInvokeBeforeDatasourceUpdate = True
         Me.AdvancedDataGridView1.TabIndex = 3
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(684, 290)
+        Me.PictureBox1.TabIndex = 0
+        Me.PictureBox1.TabStop = False
+        '
+        'AdvancedDataGridViewSearchToolBar1
+        '
+        Me.AdvancedDataGridViewSearchToolBar1.AllowMerge = False
+        Me.AdvancedDataGridViewSearchToolBar1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.AdvancedDataGridViewSearchToolBar1.Location = New System.Drawing.Point(0, 0)
+        Me.AdvancedDataGridViewSearchToolBar1.MaximumSize = New System.Drawing.Size(0, 27)
+        Me.AdvancedDataGridViewSearchToolBar1.MinimumSize = New System.Drawing.Size(0, 27)
+        Me.AdvancedDataGridViewSearchToolBar1.Name = "AdvancedDataGridViewSearchToolBar1"
+        Me.AdvancedDataGridViewSearchToolBar1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
+        Me.AdvancedDataGridViewSearchToolBar1.Size = New System.Drawing.Size(684, 27)
+        Me.AdvancedDataGridViewSearchToolBar1.TabIndex = 4
+        Me.AdvancedDataGridViewSearchToolBar1.Text = "AdvancedDataGridViewSearchToolBar1"
         '
         'StatusStrip1
         '
@@ -170,46 +211,6 @@ Partial Class frmMetabonomicsAnalysis
         Me.ToolStripDropDownButton1.Size = New System.Drawing.Size(126, 20)
         Me.ToolStripDropDownButton1.Text = "View Result Table"
         '
-        'AdvancedDataGridViewSearchToolBar1
-        '
-        Me.AdvancedDataGridViewSearchToolBar1.AllowMerge = False
-        Me.AdvancedDataGridViewSearchToolBar1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.AdvancedDataGridViewSearchToolBar1.Location = New System.Drawing.Point(0, 0)
-        Me.AdvancedDataGridViewSearchToolBar1.MaximumSize = New System.Drawing.Size(0, 27)
-        Me.AdvancedDataGridViewSearchToolBar1.MinimumSize = New System.Drawing.Size(0, 27)
-        Me.AdvancedDataGridViewSearchToolBar1.Name = "AdvancedDataGridViewSearchToolBar1"
-        Me.AdvancedDataGridViewSearchToolBar1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
-        Me.AdvancedDataGridViewSearchToolBar1.Size = New System.Drawing.Size(684, 27)
-        Me.AdvancedDataGridViewSearchToolBar1.TabIndex = 4
-        Me.AdvancedDataGridViewSearchToolBar1.Text = "AdvancedDataGridViewSearchToolBar1"
-        '
-        'SplitContainer2
-        '
-        Me.SplitContainer2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainer2.Location = New System.Drawing.Point(0, 27)
-        Me.SplitContainer2.Name = "SplitContainer2"
-        Me.SplitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal
-        '
-        'SplitContainer2.Panel1
-        '
-        Me.SplitContainer2.Panel1.Controls.Add(Me.AdvancedDataGridView1)
-        '
-        'SplitContainer2.Panel2
-        '
-        Me.SplitContainer2.Panel2.Controls.Add(Me.PictureBox1)
-        Me.SplitContainer2.Size = New System.Drawing.Size(684, 588)
-        Me.SplitContainer2.SplitterDistance = 294
-        Me.SplitContainer2.TabIndex = 6
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(684, 290)
-        Me.PictureBox1.TabIndex = 0
-        Me.PictureBox1.TabStop = False
-        '
         'frmMetabonomicsAnalysis
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -228,15 +229,15 @@ Partial Class frmMetabonomicsAnalysis
         Me.SplitContainer1.ResumeLayout(False)
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
-        CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.StatusStrip1.ResumeLayout(False)
-        Me.StatusStrip1.PerformLayout()
-        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer2.Panel1.ResumeLayout(False)
         Me.SplitContainer2.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer2.ResumeLayout(False)
+        CType(Me.AdvancedDataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
+        CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
