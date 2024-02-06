@@ -71,6 +71,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots.BarPlot.Histogram
+Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.DataStorage.netCDF
 Imports Microsoft.VisualBasic.DataStorage.netCDF.DataVector
 Imports Microsoft.VisualBasic.Imaging
@@ -809,11 +810,15 @@ UseCheckedList:
             Call Workbench.Warning("no tissue regions was found! Add some interested regions on your sample at first!")
             Return
         Else
-            Call createPeaktable(regions, ions:=GetSelectedIons.ToArray)
+            Using folder As New FolderBrowserDialog
+                If folder.ShowDialog = DialogResult.OK Then
+                    Call createPeaktable(regions, ions:=GetSelectedIons.ToArray, workdir:=folder.SelectedPath)
+                End If
+            End Using
         End If
     End Sub
 
-    Private Sub createPeaktable(regions As TissueRegion(), ions As Double())
+    Private Sub createPeaktable(regions As TissueRegion(), ions As Double(), workdir As String)
         Dim pars = Globals.MSIBootstrapping
         Dim nsamples As Integer = pars.nsamples
         Dim cov As Double = pars.coverage
@@ -851,13 +856,23 @@ UseCheckedList:
                     End If
 
                     Dim data = SampleData.ExtractSample(layer, regions, n:=nsamples, coverage:=cov)
+                    Dim peak As New xcms2(ion, 0) With {
+                        .ID = $"MSI{ion.ToString("F4")}",
+                        .Properties = New Dictionary(Of String, Double)
+                    }
 
                     For Each region As KeyValuePair(Of String, Double()) In data
-
+                        For i As Integer = 0 To region.Value.Length - 1
+                            Call peak.Add($"{region.Key}.{i + 1}", region.Value(i))
+                        Next
                     Next
+
+                    Call peaks.Add(peak)
                 Next
             End Sub
 
         Call TaskProgress.RunAction(getPeaks, host:=Me)
+        Call sampleinfo.SaveTo($"{workdir}/sampleinfo.csv")
+
     End Sub
 End Class
