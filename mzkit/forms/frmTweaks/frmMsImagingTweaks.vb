@@ -894,11 +894,12 @@ UseCheckedList:
 
         Public Sub getPeaks(p As ITaskProgress)
             Dim errMsg As String = Nothing
+            Dim mzdiff = Tolerance.DeltaMass(0.01)
 
             For Each ion As Double In ions
                 Call p.SetInfo($"processing ion feature: {ion.ToString("F4")}")
 
-                Dim layer As PixelData() = host.getLayer(ion, needsRegions:=True, msg:=errMsg)
+                Dim layer As PixelData() = host.viewer.MSIservice.LoadPixels({ion}, mzdiff)
 
                 If layer Is Nothing Then
                     Call Workbench.Warning($"No ion layer data for ${ion.ToString("F4")}, this ion feature will be omit: {errMsg}")
