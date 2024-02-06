@@ -4,10 +4,8 @@ Imports System.Runtime.InteropServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
 Imports BioNovoGene.mzkit_win32.ServiceHub
-Imports ggplot
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
-Imports Microsoft.VisualBasic.DataStorage.netCDF.DataVector
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Math.Statistics.Hypothesis.ANOVA
 Imports Microsoft.VisualBasic.My.JavaScript
@@ -20,7 +18,6 @@ Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
 Imports TaskStream
 Imports any = Microsoft.VisualBasic.Scripting
 Imports csv = Microsoft.VisualBasic.Data.csv.IO.File
-Imports MathFrame = Microsoft.VisualBasic.Math.DataFrame.DataFrame
 
 Public Class frmMetabonomicsAnalysis
 
@@ -353,7 +350,10 @@ Public Class frmMetabonomicsAnalysis
             expression = getExpression(xcms_id)
             expression_name = xcms_id
 
-            PictureBox1.BackgroundImage = plotExpression(xcms_id, expression)
+            If AutoPlotToolStripMenuItem.Checked Then
+                PictureBox1.BackgroundImage = plotExpression(xcms_id, expression)
+            End If
+
             PropertyGrid1.SelectedObject = peak
             PropertyGrid1.Refresh()
         End If
@@ -393,7 +393,7 @@ Public Class frmMetabonomicsAnalysis
         Dim js As String = $"apps.viewer.svgViewer.setSvgUrl(""{url}"");"
 
         Me.url.url = url
-        WebView21.ExecuteScriptAsync(js)
+        Me.WebView21.ExecuteScriptAsync(js)
     End Sub
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
@@ -554,6 +554,22 @@ Public Class frmMetabonomicsAnalysis
 
         If Not expression Is Nothing Then
             PictureBox1.BackgroundImage = plotExpression(expression_name, expression)
+        End If
+    End Sub
+
+    Private Sub ViewExpressionPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewExpressionPlotToolStripMenuItem.Click
+        If Not expression Is Nothing Then
+            PictureBox1.BackgroundImage = plotExpression(expression_name, expression)
+        End If
+    End Sub
+
+    Private Sub AutoPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AutoPlotToolStripMenuItem.Click
+        If AutoPlotToolStripMenuItem.Checked Then
+            If Not expression Is Nothing Then
+                PictureBox1.BackgroundImage = plotExpression(expression_name, expression)
+            Else
+
+            End If
         End If
     End Sub
 End Class

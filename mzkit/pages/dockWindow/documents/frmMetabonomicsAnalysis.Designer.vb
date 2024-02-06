@@ -40,11 +40,14 @@ Partial Class frmMetabonomicsAnalysis
         Me.PLSDAToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PCAToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripDropDownButton1 = New System.Windows.Forms.ToolStripDropDownButton()
-        Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripDropDownButton()
-        Me.BoxPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BarPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViolinPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BarPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BoxPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewExpressionPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AutoPlotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -59,6 +62,7 @@ Partial Class frmMetabonomicsAnalysis
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'SplitContainer1
@@ -133,6 +137,7 @@ Partial Class frmMetabonomicsAnalysis
         'AdvancedDataGridView1
         '
         Me.AdvancedDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.AdvancedDataGridView1.ContextMenuStrip = Me.ContextMenuStrip1
         Me.AdvancedDataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.AdvancedDataGridView1.FilterAndSortEnabled = True
         Me.AdvancedDataGridView1.FilterStringChangedInvokeBeforeDatasourceUpdate = True
@@ -222,12 +227,12 @@ Partial Class frmMetabonomicsAnalysis
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(134, 20)
         Me.ToolStripStatusLabel1.Text = "Select Expression Plot"
         '
-        'BoxPlotToolStripMenuItem
+        'ViolinPlotToolStripMenuItem
         '
-        Me.BoxPlotToolStripMenuItem.CheckOnClick = True
-        Me.BoxPlotToolStripMenuItem.Name = "BoxPlotToolStripMenuItem"
-        Me.BoxPlotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.BoxPlotToolStripMenuItem.Text = "Box Plot"
+        Me.ViolinPlotToolStripMenuItem.CheckOnClick = True
+        Me.ViolinPlotToolStripMenuItem.Name = "ViolinPlotToolStripMenuItem"
+        Me.ViolinPlotToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
+        Me.ViolinPlotToolStripMenuItem.Text = "Violin Plot"
         '
         'BarPlotToolStripMenuItem
         '
@@ -235,15 +240,34 @@ Partial Class frmMetabonomicsAnalysis
         Me.BarPlotToolStripMenuItem.CheckOnClick = True
         Me.BarPlotToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
         Me.BarPlotToolStripMenuItem.Name = "BarPlotToolStripMenuItem"
-        Me.BarPlotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BarPlotToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
         Me.BarPlotToolStripMenuItem.Text = "Bar Plot"
         '
-        'ViolinPlotToolStripMenuItem
+        'BoxPlotToolStripMenuItem
         '
-        Me.ViolinPlotToolStripMenuItem.CheckOnClick = True
-        Me.ViolinPlotToolStripMenuItem.Name = "ViolinPlotToolStripMenuItem"
-        Me.ViolinPlotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ViolinPlotToolStripMenuItem.Text = "Violin Plot"
+        Me.BoxPlotToolStripMenuItem.CheckOnClick = True
+        Me.BoxPlotToolStripMenuItem.Name = "BoxPlotToolStripMenuItem"
+        Me.BoxPlotToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
+        Me.BoxPlotToolStripMenuItem.Text = "Box Plot"
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewExpressionPlotToolStripMenuItem, Me.AutoPlotToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(183, 70)
+        '
+        'ViewExpressionPlotToolStripMenuItem
+        '
+        Me.ViewExpressionPlotToolStripMenuItem.Name = "ViewExpressionPlotToolStripMenuItem"
+        Me.ViewExpressionPlotToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.ViewExpressionPlotToolStripMenuItem.Text = "View Expression Plot"
+        '
+        'AutoPlotToolStripMenuItem
+        '
+        Me.AutoPlotToolStripMenuItem.CheckOnClick = True
+        Me.AutoPlotToolStripMenuItem.Name = "AutoPlotToolStripMenuItem"
+        Me.AutoPlotToolStripMenuItem.Size = New System.Drawing.Size(182, 22)
+        Me.AutoPlotToolStripMenuItem.Text = "Auto Plot"
         '
         'frmMetabonomicsAnalysis
         '
@@ -272,6 +296,7 @@ Partial Class frmMetabonomicsAnalysis
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -295,4 +320,7 @@ Partial Class frmMetabonomicsAnalysis
     Friend WithEvents ViolinPlotToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BarPlotToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BoxPlotToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ViewExpressionPlotToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AutoPlotToolStripMenuItem As ToolStripMenuItem
 End Class
