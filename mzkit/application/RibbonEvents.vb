@@ -230,7 +230,7 @@ Module RibbonEvents
 
         If TypeOf page Is frmTableViewer Then
             Dim source As BindingSource = DirectCast(page, frmTableViewer).AdvancedDataGridView1.DataSource
-            Dim dataset As DataSet = source.DataSource
+            Dim dataset As System.Data.DataSet = source.DataSource
             Dim table As DataTable = dataset.Tables.Item(Scan0)
             Dim workbench As frmMetabonomicsAnalysis = VisualStudio.ShowDocument(Of frmMetabonomicsAnalysis)(DockState.Document)
 
