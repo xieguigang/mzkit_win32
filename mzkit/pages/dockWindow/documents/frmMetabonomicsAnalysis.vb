@@ -289,6 +289,18 @@ Public Class frmMetabonomicsAnalysis
         AdvancedDataGridViewSearchToolBar1.SetColumns(AdvancedDataGridView1.Columns)
     End Sub
 
+    Private Function getExpression(xcms_id As String) As Dictionary(Of String, Double())
+        Dim peak = peaks.GetById(xcms_id)
+        Dim groups = sampleinfo.GroupBy(Function(s) s.sample_info).ToArray
+        Dim exp = groups _
+            .ToDictionary(Function(s) s.Key,
+                          Function(s)
+                              Return s.Select(Function(sample) peak(sample.ID)).ToArray
+                          End Function)
+
+        Return exp
+    End Function
+
     Private Sub AdvancedDataGridView1_RowStateChanged(sender As Object, e As DataGridViewRowStateChangedEventArgs) Handles AdvancedDataGridView1.RowStateChanged
         Dim rows = AdvancedDataGridView1.SelectedRows
         Dim selected As DataGridViewRow = (From r In rows).FirstOrDefault
@@ -309,6 +321,7 @@ Public Class frmMetabonomicsAnalysis
             Return
         Else
             ' TypeDescriptor.AddAttributes(peak, New Attribute() {New ReadOnlyAttribute(True)})
+            Dim exp = getExpression(xcms_id)
 
             PropertyGrid1.SelectedObject = peak
             PropertyGrid1.Refresh()
