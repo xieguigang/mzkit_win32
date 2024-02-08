@@ -8,15 +8,22 @@ If you have already installed the mzkit application,
 please uninstall the previous version before you 
 install the new version of the mzkit application.
 
-mzkit_win32 application required of .NET Framework 4.8 runtime:
-https://dotnet.microsoft.com/download/dotnet-framework/net48
-Rstudio application required of .NET Core 6.0(windows-x64) runtime:
-https://dotnet.microsoft.com/en-us/download/dotnet/6.0
-
 mzkit home: https://mzkit.org/
 mzkit on ELIXIR bio tools: https://bio.tools/mzkit
 mzkit source code: https://github.com/xieguigang/mzkit
 mzkit downloads: http://www.biodeep.cn/downloads?lang=en-US
+mzkit on SciCrunch: RRID:SCR_023936
+
+------====== Runtime & System Requirements ======--------
+
+mzkit_win32 application required of .NET Framework 4.8 runtime:
+https://dotnet.microsoft.com/download/dotnet-framework/net48
+Rstudio application required of .NET Core 6.0(windows-x64) runtime:
+https://dotnet.microsoft.com/en-us/download/dotnet/6.0
+Microsoft WebView2 runtime(windows-x64) is required for some interactive data visualization and analysis report generation:
+https://developer.microsoft.com/en-us/microsoft-edge/webview2/#download-section
+Read GCxGC or GCMS netCDF rawdata file required of unidata netCDF-C library:
+https://downloads.unidata.ucar.edu/netcdf-c/4.9.2/netCDF4.9.2-NC4-64.exe
 
 ---==== Copyright & LICENSE ====---
 
