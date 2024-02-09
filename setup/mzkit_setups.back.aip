@@ -413,12 +413,9 @@
     <ROW Component="BinaryDecoderWorker.js" ComponentId="{E1396F16-69F2-427E-9E20-D4F769637090}" Directory_="workers_1_Dir" Attributes="0" KeyPath="BinaryDecoderWorker.js" Type="0"/>
     <ROW Component="BinaryHeap.js" ComponentId="{EC03028C-A448-48FF-973A-1732A11C99DA}" Directory_="other_Dir" Attributes="0" KeyPath="BinaryHeap.js" Type="0"/>
     <ROW Component="BioDeep.dll" ComponentId="{2FECE77D-517F-47B1-97BA-15B1100BE489}" Directory_="APPDIR" Attributes="256" KeyPath="BioDeep.dll"/>
-    <ROW Component="BioDeep.dll.config" ComponentId="{C0CE488A-4270-4CBF-8A17-B07A8182BEA2}" Directory_="blender_Dir" Attributes="0" KeyPath="BioDeep.dll.config_2" Type="0"/>
+    <ROW Component="BioDeep.dll.config" ComponentId="{C0CE488A-4270-4CBF-8A17-B07A8182BEA2}" Directory_="blender_Dir" Attributes="0" KeyPath="BlenderHost.deps.json" Type="0"/>
     <ROW Component="BioDeep.dll_1" ComponentId="{8274C55C-D52A-4F5B-A268-505929309095}" Directory_="host_Dir" Attributes="256" KeyPath="BioDeep.dll_1"/>
-    <ROW Component="BioDeep.dll_2" ComponentId="{4AB74950-EFA2-41B7-8DE5-1EAA5F7E2E2D}" Directory_="blender_Dir" Attributes="256" KeyPath="BioDeep.dll_2"/>
-    <ROW Component="BioDeep.dll_3" ComponentId="{7326F3A6-766C-4BB3-88BD-A615CCA84D3E}" Directory_="plugins_Dir" Attributes="256" KeyPath="BioDeep.dll_3"/>
     <ROW Component="BioDeep.pdb" ComponentId="{A43A4C99-E463-4917-B458-0C0240FFCE18}" Directory_="APPDIR" Attributes="0" KeyPath="BioDeep.pdb" Type="4"/>
-    <ROW Component="BioDeep.pdb_1" ComponentId="{DC2D3818-E623-4C3E-A93C-2600E30C2CCB}" Directory_="blender_Dir" Attributes="0" KeyPath="BioDeep.pdb_1" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.dll" ComponentId="{7703A1F3-D323-4C49-B302-B4C97B203A97}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.dll_1" ComponentId="{92FB8640-32ED-41B1-9936-572F0A52E59B}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.d_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.dll_2" ComponentId="{F0A0741C-E8B4-4954-B134-4AB3978AC22C}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.p_1" Type="4"/>
@@ -1119,11 +1116,8 @@
     <ROW Component="REnv.dll_6" ComponentId="{0A6B97C1-64A8-4591-BBC7-A9C5D61245A7}" Directory_="bin_Dir" Attributes="256" KeyPath="REnv.dll_6"/>
     <ROW Component="REnv.pdb" ComponentId="{A59E7642-17E3-4CBE-9A22-6A018C296FF6}" Directory_="APPDIR" Attributes="0" KeyPath="REnv.pdb" Type="4"/>
     <ROW Component="RQL.dll" ComponentId="{3E78E127-84CE-42E0-843C-A90C50CCD64C}" Directory_="host_Dir" Attributes="256" KeyPath="RQL.dll"/>
-    <ROW Component="RQL.dll_1" ComponentId="{C86B604A-67F8-4385-BA49-BD6D7611B428}" Directory_="blender_Dir" Attributes="256" KeyPath="RQL.dll_1"/>
     <ROW Component="RQL.dll_2" ComponentId="{43574292-3DCC-4FAF-9DB9-5731A0AE7B8E}" Directory_="APPDIR" Attributes="256" KeyPath="RQL.pdb_1" Type="4"/>
     <ROW Component="RQL.dll_3" ComponentId="{567526E2-F494-475E-94A6-7A3F8B63D45B}" Directory_="APPDIR" Attributes="256" KeyPath="RQL.dll_2"/>
-    <ROW Component="RQL.dll_4" ComponentId="{55523348-4A08-48A0-92B2-95BC9170D8D5}" Directory_="plugins_Dir" Attributes="256" KeyPath="RQL.dll_3"/>
-    <ROW Component="RQL.pdb" ComponentId="{4180D016-C3DD-4480-B3E7-B8DB4489A7BF}" Directory_="blender_Dir" Attributes="0" KeyPath="RQL.pdb" Type="4"/>
     <ROW Component="ReleaseNotes.docx" ComponentId="{C89F9217-25CE-46C6-92A0-E41CA58D8AEA}" Directory_="NewFolder_2_Dir" Attributes="0" KeyPath="ReleaseNotes.docx" Type="0"/>
     <ROW Component="Rlapack.dll" ComponentId="{C08012A2-5A0F-4DE5-A380-A4C8C87EA7FD}" Directory_="library_Dir" Attributes="256" KeyPath="Rlapack.dll"/>
     <ROW Component="Rscript.dll_3" ComponentId="{D0CCC07B-2407-4099-B543-F74EA74FFDEE}" Directory_="bin_Dir" Attributes="256" KeyPath="Rscript.dll_3"/>
@@ -13720,9 +13714,6 @@
     <ROW File="Microsoft.VisualBasic.MachineLearning.TensorFlow.dll" Component_="Microsoft.VisualBasic.MachineLearning.TensorFlow.dll" FileName="MICRO~60.DLL|Microsoft.VisualBasic.MachineLearning.TensorFlow.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.MachineLearning.TensorFlow.dll" SelfReg="false"/>
     <ROW File="BioNovoGene.BioDeep.MSFinder.dll" Component_="BioNovoGene.BioDeep.MSFinder.dll" FileName="BIONO~18.DLL|BioNovoGene.BioDeep.MSFinder.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.BioDeep.MSFinder.dll" SelfReg="false"/>
     <ROW File="mzkit_win32.resources.dll_4" Component_="mzkit_win32.resources.dll_4" FileName="MZKIT_~2.DLL|mzkit_win32.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\ja-JP\mzkit_win32.resources.dll" SelfReg="false"/>
-    <ROW File="BioDeep.dll_2" Component_="BioDeep.dll_2" FileName="BioDeep.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioDeep.dll" SelfReg="false"/>
-    <ROW File="BioDeep.dll.config_2" Component_="BioDeep.dll.config" FileName="BIODEE~1.CON|BioDeep.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioDeep.dll.config" SelfReg="false"/>
-    <ROW File="BioDeep.pdb_1" Component_="BioDeep.pdb_1" FileName="BioDeep.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioDeep.pdb" SelfReg="false"/>
     <ROW File="BlenderHost.deps.json" Component_="BioDeep.dll.config" FileName="BLENDE~1.JSO|BlenderHost.deps.json" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BlenderHost.deps.json" SelfReg="false"/>
     <ROW File="BlenderHost.dll" Component_="BlenderHost.dll" FileName="BLENDE~1.DLL|BlenderHost.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BlenderHost.dll" SelfReg="false"/>
     <ROW File="BlenderHost.exe" Component_="BlenderHost.exe" FileName="BLENDE~1.EXE|BlenderHost.exe" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BlenderHost.exe" SelfReg="false" DigSign="true"/>
@@ -15512,8 +15503,6 @@
     <ROW File="Microsoft.VisualBasic.DataStorage.HDSPack.dll_2" Component_="Microsoft.VisualBasic.DataStorage.HDSPack.dll_3" FileName="MICROS~8.DLL|Microsoft.VisualBasic.DataStorage.HDSPack.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Microsoft.VisualBasic.DataStorage.HDSPack.dll" SelfReg="false"/>
     <ROW File="RQL.dll" Component_="RQL.dll" FileName="RQL.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\RQL.dll" SelfReg="false"/>
     <ROW File="LCMSrql.html" Component_="logo.png" FileName="LCMS-R~1.HTM|LCMS-rql.html" Attributes="0" SourcePath="..\webview\LCMS-rql.html" SelfReg="false"/>
-    <ROW File="RQL.dll_1" Component_="RQL.dll_1" FileName="RQL.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\RQL.dll" SelfReg="false"/>
-    <ROW File="RQL.pdb" Component_="RQL.pdb" FileName="RQL.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\RQL.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Data.BinaryData.dll_4" Component_="Microsoft.VisualBasic.Data.BinaryData.dll_5" FileName="MICROS~2.DLL|Microsoft.VisualBasic.Data.BinaryData.dll" Attributes="0" SourcePath="..\..\..\dist\bin\tools\dzitools\Microsoft.VisualBasic.Data.BinaryData.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Data.BinaryData.pdb_2" Component_="Microsoft.VisualBasic.Data.BinaryData.dll_5" FileName="MICROS~2.PDB|Microsoft.VisualBasic.Data.BinaryData.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\tools\dzitools\Microsoft.VisualBasic.Data.BinaryData.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Data.BinaryData.xml_2" Component_="Microsoft.VisualBasic.Data.BinaryData.xml" FileName="MICROS~2.XML|Microsoft.VisualBasic.Data.BinaryData.xml" Attributes="0" SourcePath="..\..\..\dist\bin\tools\dzitools\Microsoft.VisualBasic.Data.BinaryData.xml" SelfReg="false"/>
@@ -18228,11 +18217,6 @@
     <ROW File="kmeans.R" Component_="dbscan.R" FileName="kmeans.R" Attributes="0" SourcePath="..\rstudio\pipeline\clustering\kmeans.R" SelfReg="false"/>
     <ROW File="umap.R_1" Component_="dbscan.R" FileName="umap.R" Attributes="0" SourcePath="..\rstudio\pipeline\clustering\umap.R" SelfReg="false"/>
     <ROW File="MSI_bootstrapping.R" Component_="buildMSIIndex.R" FileName="MSI_BO~1.R|MSI_bootstrapping.R" Attributes="0" SourcePath="..\rstudio\pipeline\MSI_bootstrapping.R" SelfReg="false"/>
-    <ROW File="BioDeep.dll_3" Component_="BioDeep.dll_3" FileName="BioDeep.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\BioDeep.dll" SelfReg="false"/>
-    <ROW File="BioDeep.dll.config_3" Component_="Microsoft.VisualBasic.Runtime.dll.config" FileName="BIODEE~1.CON|BioDeep.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\BioDeep.dll.config" SelfReg="false"/>
-    <ROW File="BioDeep.pdb_2" Component_="BioDeep.dll_3" FileName="BioDeep.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\BioDeep.pdb" SelfReg="false"/>
-    <ROW File="RQL.dll_3" Component_="RQL.dll_4" FileName="RQL.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\RQL.dll" SelfReg="false"/>
-    <ROW File="RQL.pdb_2" Component_="RQL.dll_4" FileName="RQL.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\RQL.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_1" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_4" FileName="MICRO~35.DLL|Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_1" FileName="MICRO~32.PDB|Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_2" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_3" FileName="MICRO~71.DLL|Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll" SelfReg="false"/>
@@ -19349,7 +19333,6 @@
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MachineLearning.TensorFlow.dll"/>
     <ROW Feature_="MainFeature" Component_="BioNovoGene.BioDeep.MSFinder.dll"/>
     <ROW Feature_="MainFeature" Component_="mzkit_win32.resources.dll_4"/>
-    <ROW Feature_="MainFeature" Component_="BioDeep.dll_2"/>
     <ROW Feature_="MainFeature" Component_="BioDeep.dll.config"/>
     <ROW Feature_="MainFeature" Component_="BlenderHost.dll"/>
     <ROW Feature_="MainFeature" Component_="BlenderHost.exe"/>
@@ -19563,7 +19546,6 @@
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.BasicMDIForm.dll.config"/>
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.Interaction.dll.config"/>
     <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.Data.GO_OWL.dll.config"/>
-    <ROW Feature_="VisualStudio_Diagnostic" Component_="BioDeep.pdb_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="BlenderHost.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="CFMID.pdb_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="HDF.PInvoke.Core.pdb_1"/>
@@ -19705,14 +19687,12 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="modules"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataStorage.HDSPack.dll_3"/>
     <ROW Feature_="MainFeature" Component_="RQL.dll"/>
-    <ROW Feature_="MainFeature" Component_="RQL.dll_1"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.BinaryData.dll_5"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.BinaryData.xml"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.IO.MessagePack.dll_5"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataStorage.HDSPack.dll_4"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="RQL.dll_2"/>
     <ROW Feature_="MainFeature" Component_="RQL.dll_3"/>
-    <ROW Feature_="VisualStudio_Diagnostic" Component_="RQL.pdb"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll"/>
     <ROW Feature_="MainFeature" Component_="alphahorizontal.png"/>
     <ROW Feature_="MainFeature" Component_="bullet.png"/>
@@ -19810,8 +19790,6 @@
     <ROW Feature_="MainFeature" Component_="px.png_1"/>
     <ROW Feature_="MainFeature" Component_="px.png_2"/>
     <ROW Feature_="MainFeature" Component_="dbscan.R"/>
-    <ROW Feature_="MainFeature" Component_="BioDeep.dll_3"/>
-    <ROW Feature_="MainFeature" Component_="RQL.dll_4"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_2"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Mzkit_win32.MatrixViewer.dll"/>
@@ -20034,7 +20012,7 @@
     <ROW Directory_="data_Dir" SourcePath="..\rstudio\data" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="jaJP_Dir" SourcePath="..\..\..\dist\bin\ja-JP" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="ndpitools_Dir" SourcePath="..\dist\ndpitools" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
-    <ROW Directory_="plugins_Dir" SourcePath="..\..\..\dist\bin\plugins" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|\en-US|\zh-Hans|runtimes|*.xml|Microsoft.VisualBasic.Runtime.*|/ThemeVS2015.*|System.Numerics.Vectors.*|Mzkit_win32.BasicMDIForm.*|Microsoft.*|\zh-CN|/BioNovoGene.*|/ThermoFisher.*|/System.*|/REnv.*|Mzkit_.*|Mzkit_win32.Interaction.dll|Sciex.*|Clearcore2.*|Mzkit_win32.*|/WkHtmlToPdf.*|SMRUCC.*" ExcludeFlags="6" FileAddOptions="4"/>
+    <ROW Directory_="plugins_Dir" SourcePath="..\..\..\dist\bin\plugins" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|\en-US|\zh-Hans|runtimes|*.xml|Microsoft.VisualBasic.Runtime.*|/ThemeVS2015.*|System.Numerics.Vectors.*|Mzkit_win32.BasicMDIForm.*|Microsoft.*|\zh-CN|/BioNovoGene.*|/ThermoFisher.*|/System.*|/REnv.*|Mzkit_.*|Mzkit_win32.Interaction.dll|Sciex.*|Clearcore2.*|Mzkit_win32.*|/WkHtmlToPdf.*|SMRUCC.*|/BioDeep.*|/RQL.*" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="zhHans_Dir" SourcePath="..\..\..\dist\bin\zh-Hans" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="js_1_Dir" SourcePath="..\webview\assets\js" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|/*.map" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="fr_Dir" SourcePath="..\..\..\dist\bin\fr" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
