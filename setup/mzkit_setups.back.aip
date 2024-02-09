@@ -564,7 +564,7 @@
     <ROW Component="C4FE6FD5B7C4D07B3A313E754A9A6A8" ComponentId="{A3ECE4B9-6C77-42A8-B445-85CACD08E969}" Directory_="APPDIR" Attributes="260" KeyPath="C4FE6FD5B7C4D07B3A313E754A9A6A8" Options="2"/>
     <ROW Component="CDF.PInvoke.dll" ComponentId="{4F7E1D5B-2237-41C8-A295-FA438A8A9BA3}" Directory_="host_Dir" Attributes="256" KeyPath="CDF.PInvoke.dll"/>
     <ROW Component="CDF.PInvoke.dll_1" ComponentId="{D089302D-53E9-4F25-A113-6DFA83D921BF}" Directory_="blender_Dir" Attributes="256" KeyPath="CDF.PInvoke.dll_1"/>
-    <ROW Component="CDF.PInvoke.dll_2" ComponentId="{40380937-C1BF-4D5C-81E3-6AA1BFA36740}" Directory_="APPDIR" Attributes="256" KeyPath="CDF.PInvoke.pdb_1"/>
+    <ROW Component="CDF.PInvoke.dll_2" ComponentId="{40380937-C1BF-4D5C-81E3-6AA1BFA36740}" Directory_="APPDIR" Attributes="256" KeyPath="CDF.PInvoke.pdb_1" Type="4"/>
     <ROW Component="CDF.PInvoke.dll_3" ComponentId="{2884F00F-FA80-4386-B17F-38B35107A613}" Directory_="APPDIR" Attributes="256" KeyPath="CDF.PInvoke.dll_2"/>
     <ROW Component="CDF.PInvoke.pdb" ComponentId="{3D7067CC-1E85-4F3D-AAE8-325109FFB499}" Directory_="blender_Dir" Attributes="0" KeyPath="CDF.PInvoke.pdb" Type="4"/>
     <ROW Component="CFMID.dll" ComponentId="{CF2350BF-9E18-47D6-9618-D5D3A3AFE43F}" Directory_="host_Dir" Attributes="256" KeyPath="CFMID.dll"/>
@@ -629,7 +629,7 @@
     <ROW Component="Flute.Http.pdb" ComponentId="{BFE97953-F38D-4536-9EEC-FB524EC6A5B8}" Directory_="APPDIR" Attributes="0" KeyPath="Flute.Http.pdb" Type="4"/>
     <ROW Component="Flute.Http.xml" ComponentId="{4035364A-48E6-4100-B4AD-C6C9D7D8BEA4}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll.config_4" Type="0"/>
     <ROW Component="GCModeller.zip" ComponentId="{2A77A528-0E55-492F-B17F-9FDB92BFDFE2}" Directory_="packages_Dir" Attributes="256" KeyPath="GCModeller.zip" Type="0"/>
-    <ROW Component="GCxGCViewer.dll" ComponentId="{1CFB1213-7ED2-496E-A38F-6D2C38EFBF03}" Directory_="APPDIR" Attributes="256" KeyPath="GCxGCViewer.pdb"/>
+    <ROW Component="GCxGCViewer.dll" ComponentId="{1CFB1213-7ED2-496E-A38F-6D2C38EFBF03}" Directory_="APPDIR" Attributes="256" KeyPath="GCxGCViewer.pdb" Type="4"/>
     <ROW Component="GCxGCViewer.dll_1" ComponentId="{10515D1C-4884-4DB6-AB05-922FF3FA18FB}" Directory_="APPDIR" Attributes="256" KeyPath="GCxGCViewer.dll"/>
     <ROW Component="GCxGChost.R" ComponentId="{BECA8D4F-1D92-41E8-B1BF-2F5D52635DBA}" Directory_="services_Dir" Attributes="256" KeyPath="GCxGChost.R" Type="0"/>
     <ROW Component="GLTFLoader.js" ComponentId="{360A65D4-DF92-464E-9771-0B85CF7913C6}" Directory_="extra_Dir" Attributes="0" KeyPath="GLTFLoader.js" Type="0"/>
@@ -736,7 +736,7 @@
     <ROW Component="Microsoft.VisualBasic.Data.IO.SQLite3.dll_4" ComponentId="{DA81946A-05AE-4588-B475-08EC8D730811}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.IO.SQLite3.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.Data.IO.SQLite3.pdb" ComponentId="{225EB752-7753-4168-A5E6-A01D9F3B1D86}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Data.IO.SQLite3.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Data.NLP.Word2Vec.dll" ComponentId="{39E035F9-AF1B-4A48-BCD9-15C798C426DD}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.NLP.Word2Vec.dll"/>
-    <ROW Component="Microsoft.VisualBasic.Data.NLP.Word2Vec.dll_1" ComponentId="{AE3FAA2A-4BAB-44FF-83D0-7235C4C66C7B}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.NLP.Word2Vec.pdb"/>
+    <ROW Component="Microsoft.VisualBasic.Data.NLP.Word2Vec.dll_1" ComponentId="{AE3FAA2A-4BAB-44FF-83D0-7235C4C66C7B}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.NLP.Word2Vec.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Data.NLP.Word2Vec.dll_2" ComponentId="{5C0760AF-27BF-409A-A7EB-EAB23CA1AC33}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.NLP.Word2Vec.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Data.NLP.dll" ComponentId="{D5904542-9C07-4837-81AF-5F2324776F8C}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.NLP.dll"/>
     <ROW Component="Microsoft.VisualBasic.Data.NLP.dll_1" ComponentId="{40049C5A-2F2B-48EB-B705-6805E57F213B}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Data.NLP.dll_1"/>
@@ -966,7 +966,7 @@
     <ROW Component="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll" ComponentId="{613B2EB6-1806-4E2B-95B8-08FDDB30986A}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll"/>
     <ROW Component="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll.config" ComponentId="{349DE33E-D34C-422A-9A2D-4FFC0377F3DE}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll.config_2"/>
     <ROW Component="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll.config_1" ComponentId="{53E90392-5448-4DA2-AA40-36C50C21AE06}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll.config_1"/>
-    <ROW Component="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll_1" ComponentId="{E3A0F0DB-9329-4D3A-B514-500889F3833A}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Statistics.ANOVA.pdb_1"/>
+    <ROW Component="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll_1" ComponentId="{E3A0F0DB-9329-4D3A-B514-500889F3833A}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Statistics.ANOVA.pdb_1" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll_2" ComponentId="{ABB83AB2-91B8-466B-A331-297D1F3B8ABF}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll_4" ComponentId="{C43E0ECC-167E-43A5-9680-AF5D174F80F2}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Statistics.ANOVA.dll_4"/>
     <ROW Component="Microsoft.VisualBasic.Math.Statistics.ANOVA.pdb" ComponentId="{91926030-5B6D-4CC8-B87C-0E88A9AD05D1}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Statistics.ANOVA.pdb" Type="4"/>
@@ -1040,7 +1040,7 @@
     <ROW Component="Mzkit_win32.CommonDialogs.dll" ComponentId="{CBA97253-FD26-4BEF-A1C1-A4A9B24FCBB3}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.CommonDialogs.dll"/>
     <ROW Component="Mzkit_win32.CommonDialogs.pdb" ComponentId="{DFF1C16A-B9A0-4D77-A66E-AF1DC9BAD3D3}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.CommonDialogs.pdb" Type="4"/>
     <ROW Component="Mzkit_win32.CommonDialogs.resources.dll" ComponentId="{3E516B1D-6AEE-4740-8AB4-721591425407}" Directory_="zhCN_Dir" Attributes="256" KeyPath="Mzkit_win32.CommonDialogs.resources.dll"/>
-    <ROW Component="Mzkit_win32.GCxGCViewer.dll" ComponentId="{7FD5954C-ED09-4BDA-8EBC-2E098DF6D5AD}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.GCxGCViewer.pdb"/>
+    <ROW Component="Mzkit_win32.GCxGCViewer.dll" ComponentId="{7FD5954C-ED09-4BDA-8EBC-2E098DF6D5AD}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.GCxGCViewer.pdb" Type="4"/>
     <ROW Component="Mzkit_win32.GCxGCViewer.dll_1" ComponentId="{D90F8B11-0E4C-4148-8C96-39508734EAFD}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.GCxGCViewer.dll"/>
     <ROW Component="Mzkit_win32.Interaction.dll" ComponentId="{303DC4C7-EFA1-45CA-BEC6-28E8565DC608}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.Interaction.dll"/>
     <ROW Component="Mzkit_win32.Interaction.dll.config" ComponentId="{E6843018-39C2-490B-88E4-67C70F05E7C6}" Directory_="blender_Dir" Attributes="0" KeyPath="Mzkit_win32.Interaction.dll.config_1"/>
