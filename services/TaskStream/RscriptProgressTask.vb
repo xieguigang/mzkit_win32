@@ -752,7 +752,7 @@ Public NotInheritable Class RscriptProgressTask
 
     Public Shared Sub RunRScriptPipeline(name As String, args As Dictionary(Of String, String), title As String, desc As String)
         Dim Rscript As String = RscriptPipelineTask.GetRScript(name)
-        Dim cli As New StringBuilder(Rscript)
+        Dim cli As New StringBuilder(Rscript.CLIPath)
 
         Call cli.AppendLine()
 
