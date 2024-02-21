@@ -124,10 +124,11 @@ Partial Class frmRawFeaturesList
         Me.ClearToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExportMzPackToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewRawFileInformationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
-        Me.ToolStripSpringTextBox1 = New ToolStripSpringTextBox()
+        Me.ToolStripSpringTextBox1 = New mzkit_win32.BasicMDIForm.ToolStripSpringTextBox()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
@@ -135,7 +136,7 @@ Partial Class frmRawFeaturesList
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.treeView1 = New ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView(Me.components)
-        Me.ViewRawFileInformationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripButton6 = New System.Windows.Forms.ToolStripButton()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -151,7 +152,7 @@ Partial Class frmRawFeaturesList
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ChromatogramPlotToolStripMenuItem, Me.ShowXICToolStripMenuItem, Me.ShowPropertiesToolStripMenuItem, Me.OpenViewerToolStripMenuItem, Me.ToolStripMenuItem1, Me.DIAAnnotationToolStripMenuItem, Me.CopyIonsToolStripMenuItem, Me.SpectrumSearchToolStripMenuItem, Me.IonSearchToolStripMenuItem, Me.SearchFormulaToolStripMenuItem, Me.ToolStripMenuItem2, Me.FileToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 258)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 236)
         '
         'ChromatogramPlotToolStripMenuItem
         '
@@ -405,6 +406,12 @@ Partial Class frmRawFeaturesList
         Me.ExportMzPackToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
         Me.ExportMzPackToolStripMenuItem.Text = "Export mzPack"
         '
+        'ViewRawFileInformationToolStripMenuItem
+        '
+        Me.ViewRawFileInformationToolStripMenuItem.Name = "ViewRawFileInformationToolStripMenuItem"
+        Me.ViewRawFileInformationToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
+        Me.ViewRawFileInformationToolStripMenuItem.Text = "View Raw File Information"
+        '
         'DeleteFileToolStripMenuItem
         '
         Me.DeleteFileToolStripMenuItem.Image = CType(resources.GetObject("DeleteFileToolStripMenuItem.Image"), System.Drawing.Image)
@@ -414,7 +421,7 @@ Partial Class frmRawFeaturesList
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.ToolStripSpringTextBox1, Me.ToolStripButton1, Me.ToolStripButton5, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripSeparator1, Me.ToolStripButton2})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.ToolStripSpringTextBox1, Me.ToolStripButton1, Me.ToolStripButton5, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripButton6, Me.ToolStripSeparator1, Me.ToolStripButton2})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(445, 25)
@@ -431,7 +438,7 @@ Partial Class frmRawFeaturesList
         '
         Me.ToolStripSpringTextBox1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.ToolStripSpringTextBox1.Name = "ToolStripSpringTextBox1"
-        Me.ToolStripSpringTextBox1.Size = New System.Drawing.Size(236, 25)
+        Me.ToolStripSpringTextBox1.Size = New System.Drawing.Size(213, 25)
         '
         'ToolStripButton1
         '
@@ -499,11 +506,14 @@ Partial Class frmRawFeaturesList
         Me.treeView1.Size = New System.Drawing.Size(445, 425)
         Me.treeView1.TabIndex = 2
         '
-        'ViewRawFileInformationToolStripMenuItem
+        'ToolStripButton6
         '
-        Me.ViewRawFileInformationToolStripMenuItem.Name = "ViewRawFileInformationToolStripMenuItem"
-        Me.ViewRawFileInformationToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
-        Me.ViewRawFileInformationToolStripMenuItem.Text = "View Raw File Information"
+        Me.ToolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton6.Image = CType(resources.GetObject("ToolStripButton6.Image"), System.Drawing.Image)
+        Me.ToolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton6.Name = "ToolStripButton6"
+        Me.ToolStripButton6.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton6.Text = "View File Metadata"
         '
         'frmRawFeaturesList
         '
@@ -574,4 +584,5 @@ Partial Class frmRawFeaturesList
     Friend WithEvents OrderByMs2CountsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents OrderByPrecursorMZToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ViewRawFileInformationToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripButton6 As ToolStripButton
 End Class

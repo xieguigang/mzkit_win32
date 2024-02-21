@@ -978,6 +978,24 @@ Public Class frmRawFeaturesList
         End If
     End Sub
 
+    Private Sub ToolStripButton6_Click(sender As Object, e As EventArgs) Handles ToolStripButton6.Click
+        Dim rawdata As mzPack = GetInMemoryRawdata()
+
+        If rawdata Is Nothing Then
+            Return
+        End If
+
+        Dim obj = DynamicType.Create(
+           metadata:=rawdata.metadata _
+               .SafeQuery _
+               .ToDictionary(Function(a) a.Key,
+                             Function(a)
+                                 Return CObj(a.Value)
+                             End Function))
+
+        Call VisualStudio.ShowProperties(obj)
+    End Sub
+
     Private Sub treeView1_DragEnter(sender As Object, e As DragEventArgs) Handles treeView1.DragEnter
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             e.Effect = DragDropEffects.Copy
