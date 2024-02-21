@@ -71,6 +71,7 @@ Imports Microsoft.VisualBasic.Text
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
+Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports Zuby.ADGV
 
 Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTraceback, IDataTableViewer
@@ -384,11 +385,19 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
         Dim nsize = AdvancedDataGridView1.Rows.Count - 1
 
         If opt = DialogResult.Yes Then
-            newCols = AdvancedDataGridView1.getFieldVector(oldCols(Scan0))
-            oldColList = oldCols.Skip(1).Select(Function(name) New NamedValue(Of Array)(name, AdvancedDataGridView1.getFieldVector(name))).ToArray
+            newCols = CLRVector.asCharacter(AdvancedDataGridView1.getFieldVector(oldCols(Scan0)))
+            oldColList = oldCols.Skip(1) _
+                .Select(Function(name)
+                            Return New NamedValue(Of Array)(name, AdvancedDataGridView1.getFieldVector(name))
+                        End Function) _
+                .ToArray
         ElseIf opt = DialogResult.No Then
             newCols = AdvancedDataGridView1.Rows.Count.Sequence.Select(Function(i) $"v{i}").ToArray
-            oldColList = oldCols.Select(Function(name) New NamedValue(Of Array)(name, AdvancedDataGridView1.getFieldVector(name))).ToArray
+            oldColList = oldCols _
+                .Select(Function(name)
+                            Return New NamedValue(Of Array)(name, AdvancedDataGridView1.getFieldVector(name))
+                        End Function) _
+                .ToArray
         Else
             ' do nothing
             Return
