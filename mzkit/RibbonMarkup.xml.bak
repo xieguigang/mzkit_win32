@@ -2390,6 +2390,14 @@
         <Image Id="676" MinDPI="192">Res/folder-pictures.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonOpenLCMSWorkspaceFolder" Id="283" LabelTitle="Open Workspace" LabelDescription="Open Workspace Folder" TooltipTitle="Open Workspace Folder" TooltipDescription="Open Workspace Folder">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/folder-documents.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/folder-documents.bmp</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdGroupOpenseadragon" Id="249">
       <Command.LabelTitle>
         <String Id="677">Openseadragon</String>
@@ -3995,6 +4003,14 @@
         <Image Id="1133" MinDPI="192">Res/3d scanning.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonViewAnalysis3DScatter" Id="285" LabelTitle="View 3D Scatter" LabelDescription="View 3D Scatter" TooltipTitle="View 3D Scatter" TooltipDescription="View 3D Scatter">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-particle-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-particle-96.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdViewMNClusterLCMSScatter" Id="261">
       <Command.LabelTitle>
         <String Id="1134">View Cluster Peaks</String>
@@ -4055,7 +4071,15 @@
         <Image Id="1151" MinDPI="192">Res/gparted.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdViewLCMSScatter" Id="278" LabelTitle="View Scatter" LabelDescription="View Scatter" TooltipTitle="View Scatter" TooltipDescription="View Scatter">
+    <Command Name="cmdButtonViewSampleInfo" Id="284" LabelTitle="View SampleInfo" LabelDescription="View SampleInfo" TooltipTitle="View SampleInfo" TooltipDescription="View SampleInfo">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/excel-icon.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/excel-icon.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdViewLCMSScatter" Id="278" LabelTitle="View Scatter" LabelDescription="View un-targeted scatters" TooltipTitle="View Scatter" TooltipDescription="View Scatter">
       <Command.SmallImages>
         <Image MinDPI="192">Res/icons8-particle-96.png</Image>
       </Command.SmallImages>
@@ -4127,23 +4151,7 @@
         <String Id="1168">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
     </Command>
-    <Command Name="cmdButtonOpenLCMSWorkspaceFolder" Id="283" LabelTitle="Open Workspace" LabelDescription="Open Workspace Folder" TooltipTitle="Open Workspace Folder" TooltipDescription="Open Workspace Folder">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/folder-documents.bmp</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/folder-documents.bmp</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonViewSampleInfo" Id="284" LabelTitle="View SampleInfo" LabelDescription="View SampleInfo" TooltipTitle="View SampleInfo" TooltipDescription="View SampleInfo">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/excel-icon.bmp</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/excel-icon.bmp</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonViewAnalysis3DScatter" Id="285" LabelTitle="View 3D Scatter" LabelDescription="View 3D Scatter" TooltipTitle="View 3D Scatter" TooltipDescription="View 3D Scatter">
+    <Command Name="cmdButtonViewUntargetedScatter" Id="286" LabelTitle="Untargeted Scatter" LabelDescription="Untargeted Scatter" TooltipTitle="Untargeted Scatter" TooltipDescription="Untargeted Scatter">
       <Command.SmallImages>
         <Image MinDPI="192">Res/icons8-particle-96.png</Image>
       </Command.SmallImages>
@@ -4294,10 +4302,11 @@
             </Group>
           </Tab>
           <Tab CommandName="cmdTabLayout" ApplicationModes="0,1">
-            <Group CommandName="cmdGroupLayout" ApplicationModes="0,1" SizeDefinition="ThreeButtons">
-              <Button CommandName="cmdButtonLayout1" />
+            <Group CommandName="cmdGroupLayout" ApplicationModes="0,1" SizeDefinition="FourButtons">
               <Button CommandName="cmdButtonLayout2" />
+              <Button CommandName="cmdButtonLayout1" />
               <Button CommandName="cmdButtonPeakFinding" />
+              <Button CommandName="cmdButtonViewUntargetedScatter" />
             </Group>
             <Group CommandName="cmdGroupChromatography" ApplicationModes="0,1" SizeDefinition="ThreeButtons">
               <Button CommandName="cmdButtonBPC" />

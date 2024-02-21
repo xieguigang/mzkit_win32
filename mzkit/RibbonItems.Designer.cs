@@ -79,9 +79,10 @@ namespace RibbonLib.Controls
             public const uint cmdGCxGCViewer = 179;
             public const uint cmdTabLayout = 1035;
             public const uint cmdGroupLayout = 1037;
-            public const uint cmdButtonLayout1 = 1043;
             public const uint cmdButtonLayout2 = 1044;
+            public const uint cmdButtonLayout1 = 1043;
             public const uint cmdButtonPeakFinding = 5;
+            public const uint cmdButtonViewUntargetedScatter = 286;
             public const uint cmdGroupChromatography = 1141;
             public const uint cmdButtonBPC = 1143;
             public const uint cmdButtonTIC = 1144;
@@ -355,9 +356,10 @@ namespace RibbonLib.Controls
         public RibbonButton GCxGCViewer { get; private set; }
         public RibbonTab TabLayout { get; private set; }
         public RibbonGroup GroupLayout { get; private set; }
-        public RibbonButton ButtonLayout1 { get; private set; }
         public RibbonButton ButtonLayout2 { get; private set; }
+        public RibbonButton ButtonLayout1 { get; private set; }
         public RibbonButton ButtonPeakFinding { get; private set; }
+        public RibbonButton ButtonViewUntargetedScatter { get; private set; }
         public RibbonGroup GroupChromatography { get; private set; }
         public RibbonButton ButtonBPC { get; private set; }
         public RibbonButton ButtonTIC { get; private set; }
@@ -626,9 +628,10 @@ namespace RibbonLib.Controls
             GCxGCViewer = new RibbonButton(ribbon, Cmd.cmdGCxGCViewer);
             TabLayout = new RibbonTab(ribbon, Cmd.cmdTabLayout);
             GroupLayout = new RibbonGroup(ribbon, Cmd.cmdGroupLayout);
-            ButtonLayout1 = new RibbonButton(ribbon, Cmd.cmdButtonLayout1);
             ButtonLayout2 = new RibbonButton(ribbon, Cmd.cmdButtonLayout2);
+            ButtonLayout1 = new RibbonButton(ribbon, Cmd.cmdButtonLayout1);
             ButtonPeakFinding = new RibbonButton(ribbon, Cmd.cmdButtonPeakFinding);
+            ButtonViewUntargetedScatter = new RibbonButton(ribbon, Cmd.cmdButtonViewUntargetedScatter);
             GroupChromatography = new RibbonGroup(ribbon, Cmd.cmdGroupChromatography);
             ButtonBPC = new RibbonButton(ribbon, Cmd.cmdButtonBPC);
             ButtonTIC = new RibbonButton(ribbon, Cmd.cmdButtonTIC);

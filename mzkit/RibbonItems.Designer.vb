@@ -76,9 +76,10 @@ Namespace RibbonLib.Controls
             Public Const cmdGCxGCViewer As UInteger = 179
             Public Const cmdTabLayout As UInteger = 1035
             Public Const cmdGroupLayout As UInteger = 1037
-            Public Const cmdButtonLayout1 As UInteger = 1043
             Public Const cmdButtonLayout2 As UInteger = 1044
+            Public Const cmdButtonLayout1 As UInteger = 1043
             Public Const cmdButtonPeakFinding As UInteger = 5
+            Public Const cmdButtonViewUntargetedScatter As UInteger = 286
             Public Const cmdGroupChromatography As UInteger = 1141
             Public Const cmdButtonBPC As UInteger = 1143
             Public Const cmdButtonTIC As UInteger = 1144
@@ -662,22 +663,28 @@ Namespace RibbonLib.Controls
                 Return _GroupLayout
             End Get
         End Property
-        Private _ButtonLayout1 As RibbonButton
-        Public ReadOnly Property ButtonLayout1 As RibbonButton
-            Get
-                Return _ButtonLayout1
-            End Get
-        End Property
         Private _ButtonLayout2 As RibbonButton
         Public ReadOnly Property ButtonLayout2 As RibbonButton
             Get
                 Return _ButtonLayout2
             End Get
         End Property
+        Private _ButtonLayout1 As RibbonButton
+        Public ReadOnly Property ButtonLayout1 As RibbonButton
+            Get
+                Return _ButtonLayout1
+            End Get
+        End Property
         Private _ButtonPeakFinding As RibbonButton
         Public ReadOnly Property ButtonPeakFinding As RibbonButton
             Get
                 Return _ButtonPeakFinding
+            End Get
+        End Property
+        Private _ButtonViewUntargetedScatter As RibbonButton
+        Public ReadOnly Property ButtonViewUntargetedScatter As RibbonButton
+            Get
+                Return _ButtonViewUntargetedScatter
             End Get
         End Property
         Private _GroupChromatography As RibbonGroup
@@ -1953,9 +1960,10 @@ Namespace RibbonLib.Controls
             _GCxGCViewer = New RibbonButton(_ribbon, Cmd.cmdGCxGCViewer)
             _TabLayout = New RibbonTab(_ribbon, Cmd.cmdTabLayout)
             _GroupLayout = New RibbonGroup(_ribbon, Cmd.cmdGroupLayout)
-            _ButtonLayout1 = New RibbonButton(_ribbon, Cmd.cmdButtonLayout1)
             _ButtonLayout2 = New RibbonButton(_ribbon, Cmd.cmdButtonLayout2)
+            _ButtonLayout1 = New RibbonButton(_ribbon, Cmd.cmdButtonLayout1)
             _ButtonPeakFinding = New RibbonButton(_ribbon, Cmd.cmdButtonPeakFinding)
+            _ButtonViewUntargetedScatter = New RibbonButton(_ribbon, Cmd.cmdButtonViewUntargetedScatter)
             _GroupChromatography = New RibbonGroup(_ribbon, Cmd.cmdGroupChromatography)
             _ButtonBPC = New RibbonButton(_ribbon, Cmd.cmdButtonBPC)
             _ButtonTIC = New RibbonButton(_ribbon, Cmd.cmdButtonTIC)

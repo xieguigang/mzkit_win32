@@ -63,6 +63,7 @@
 Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Text
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MSP
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
@@ -202,6 +203,7 @@ Module RibbonEvents
         AddHandler ribbonItems.OpenIonsLibrary.ExecuteEvent, Sub() Call openIonLibrary()
         AddHandler ribbonItems.ButtonOpenLCMSWorkbench.ExecuteEvent, Sub() Call openLCMSWorkbench()
         AddHandler ribbonItems.ButtonOpenWorkspace.ExecuteEvent, Sub() Call openLCMSWorkspace()
+        AddHandler ribbonItems.ButtonViewUntargetedScatter.ExecuteEvent, Sub() Call viewUntargettedScatter()
 
         AddHandler ribbonItems.ButtonVenn.ExecuteEvent, Sub() Call VisualStudio.ShowDocument(Of frmVennTools)(title:="Venn Plot Tool")
         AddHandler ribbonItems.ButtonViewMRI.ExecuteEvent, Sub() Call openMRIRaster()
@@ -213,6 +215,18 @@ Module RibbonEvents
         ExportApis._openMSImagingFile = AddressOf OpenMSIRaw
         ExportApis._openMSImagingViewer = AddressOf showMsImaging
         ExportApis._openCFMIDTool = AddressOf OpenCFMIDTool
+    End Sub
+
+    Public Sub viewUntargettedScatter()
+        Dim raw As Raw = WindowModules.rawFeaturesList.CurrentOpenedFile
+
+        If raw Is Nothing Then
+            Call Workbench.Warning("Open a raw data file at first!")
+            Return
+        End If
+
+        Dim page As frmLCMSScatterViewer = VisualStudio.ShowDocument(Of frmLCMSScatterViewer)(title:=raw.source.FileName)
+        Call page.loadRaw(raw)
     End Sub
 
     Public Sub openLCMSWorkspace()
