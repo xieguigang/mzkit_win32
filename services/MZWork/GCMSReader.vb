@@ -1,6 +1,8 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports CDF.PInvoke
+Imports Microsoft.VisualBasic.DataStorage.netCDF.Components
 Imports Microsoft.VisualBasic.DataStorage.netCDF.DataVector
+Imports Microsoft.VisualBasic.Scripting.Runtime
 
 Public Module GCMSReader
 
@@ -22,8 +24,9 @@ Public Module GCMSReader
         Dim scan_index As integers = nc.GetData("scan_index")
         Dim point_count As integers = nc.GetData("point_count")
         Dim flag_count As integers = nc.GetData("flag_count")
-        Dim mass_values As shorts = nc.GetData("mass_values")
+        Dim mass_values As ICDFDataVector = nc.GetData("mass_values")
         Dim intensity_values As floats = nc.GetData("intensity_values")
+        Dim mz As Single() = DirectCast(CObj(mass_values), ICTypeVector).ToFloat
 
         Return New GCMSnetCDF With {
             .actual_scan_number = actual_scan_number,
@@ -35,7 +38,7 @@ Public Module GCMSReader
             .inter_scan_time = inter_scan_time,
             .mass_range_max = mass_range_max,
             .mass_range_min = mass_range_min,
-            .mass_values = mass_values,
+            .mass_values = mz,
             .point_count = point_count,
             .resolution = resolution,
             .scan_acquisition_time = scan_acquisition_time,
