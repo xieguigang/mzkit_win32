@@ -6,6 +6,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
 Imports BioNovoGene.mzkit_win32.ServiceHub
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Imaging
@@ -139,6 +140,17 @@ Public Class frmMetabonomicsAnalysis
 
     Public Shared Sub LoadData(df As DataFrame, callback As LoadDataCallback)
         Dim wizard As New InputImportsPeaktableDialog
+        Dim checkTitles As Index(Of String) = df.HeadTitles.Indexing
+        Dim checks As String()() = {
+            New String() {"id", "ID", "xcms_id"},
+            New String() {"mz", "m/z", "MZ"},
+            New String() {"rt", "RT", "retention_time"}
+        }
+
+        If Not checks.All(Function(l) l.Any(Function(si) si Like checkTitles)) Then
+            Call Workbench.Warning("In-correct table format: missing one of the data fields for the ion data(xcms_id, mz, rt?).")
+            Return
+        End If
 
         Call wizard.LoadSampleId(df.HeadTitles)
         Call InputDialog.Input(
@@ -175,11 +187,11 @@ Public Class frmMetabonomicsAnalysis
             peak = New xcms2 With {
                 .ID = row.TryPopOut({"id", "ID", "xcms_id"}),
                 .mz = row.TryPopOut({"mz", "m/z", "MZ"}),
-                .mzmax = row.TryPopOut({"mzmax", "mz.max"}),
-                .mzmin = row.TryPopOut({"mzmin", "mz.min"}),
+                .mzmax = row.TryPopOut({"mzmax", "mz.max"}, [default]:= .mz),
+                .mzmin = row.TryPopOut({"mzmin", "mz.min"}, [default]:= .mz),
                 .rt = row.TryPopOut({"rt", "RT", "retention_time"}),
-                .rtmax = row.TryPopOut({"rtmax", "rt.max"}),
-                .rtmin = row.TryPopOut({"rtmin", "rt.min"}),
+                .rtmax = row.TryPopOut({"rtmax", "rt.max"}, [default]:= .rt),
+                .rtmin = row.TryPopOut({"rtmin", "rt.min"}, [default]:= .rt),
                 .Properties = New Dictionary(Of String, Double)
             }
 
