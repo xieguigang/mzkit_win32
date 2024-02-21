@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.IO
+Imports System.Runtime.CompilerServices
 Imports System.Runtime.InteropServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
@@ -136,9 +137,8 @@ Public Class frmMetabonomicsAnalysis
 
     Public Delegate Sub LoadDataCallback(sampleinfo As SampleInfo(), properties As String(), df As DataFrame, workdir As String)
 
-    Public Shared Sub LoadData(table As csv, callback As LoadDataCallback)
+    Public Shared Sub LoadData(df As DataFrame, callback As LoadDataCallback)
         Dim wizard As New InputImportsPeaktableDialog
-        Dim df As DataFrame = DataFrame.CreateObject(table)
 
         Call wizard.LoadSampleId(df.HeadTitles)
         Call InputDialog.Input(
@@ -155,6 +155,11 @@ Public Class frmMetabonomicsAnalysis
 
                 Call callback(sampleinfo, properties, df, workdir)
             End Sub, Nothing, wizard)
+    End Sub
+
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    Public Shared Sub LoadData(table As csv, callback As LoadDataCallback)
+        Call LoadData(df:=DataFrame.CreateObject(table), callback)
     End Sub
 
     Public Sub LoadData(sampleinfo As SampleInfo(), properties As String(), df As DataFrame, workdir As String, title As String)

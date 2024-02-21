@@ -63,7 +63,6 @@
 Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Text
-Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MSP
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
@@ -71,6 +70,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.RibbonLib.Controls
 Imports Microsoft.VisualBasic.ApplicationServices
+Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Emit.Delegates
 Imports Microsoft.VisualBasic.Linq
@@ -243,12 +243,13 @@ Module RibbonEvents
         Dim page = Workbench.AppHost.DockPanel.ActiveDocument
 
         If TypeOf page Is frmTableViewer Then
-            Dim source As BindingSource = DirectCast(page, frmTableViewer).AdvancedDataGridView1.DataSource
+            Dim tablePage As frmTableViewer = page
+            Dim source As BindingSource = tablePage.AdvancedDataGridView1.DataSource
             Dim dataset As System.Data.DataSet = source.DataSource
             Dim table As DataTable = dataset.Tables.Item(Scan0)
-            Dim workbench As frmMetabonomicsAnalysis = VisualStudio.ShowDocument(Of frmMetabonomicsAnalysis)(DockState.Document)
+            Dim df As DataFrame = table.DataFrame
 
-            Call workbench.LoadSampleData(table)
+            Call frmMetabonomicsAnalysis.LoadData(df, AddressOf New LoadMetabolismData With {.title = tablePage.TabText}.load)
         Else
             ribbonItems.MetaboAnalysis.ContextAvailable = ContextAvailability.Active
         End If
