@@ -73,6 +73,7 @@ Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports Zuby.ADGV
+Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTraceback, IDataTableViewer
 
@@ -411,7 +412,7 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
                 grid.Columns.Add("Features", GetType(String))
 
                 For Each name As String In newCols
-                    grid.Columns.Add(name, GetType(Double))
+                    grid.Columns.Add(name, GetType(String))
                 Next
 
                 For i As Integer = 0 To oldColList.Length - 1
@@ -420,7 +421,7 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
                     r(0) = oldCols(i)
 
                     For j As Integer = 0 To nsize - 1
-                        r(j + 1) = oldColList(i).Value(j)
+                        r(j + 1) = any.ToString(oldColList(i).Value(j))
                     Next
                 Next
             End Sub)
