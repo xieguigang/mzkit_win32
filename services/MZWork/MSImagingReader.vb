@@ -65,9 +65,10 @@ Public Module MSImagingReader
         For i As Integer = 0 To xLocation.Length - 1
             Dim x As Integer = xLocation(i)
             Dim y As Integer = yLocation(i)
+            Dim offset As Integer = i
             Dim ms As ms2() = intos _
                 .Select(Function(vi, j)
-                            Return New ms2 With {.mz = mzArray(j), .intensity = vi(i)}
+                            Return New ms2 With {.mz = mzArray(j), .intensity = vi(offset)}
                         End Function) _
                 .Where(Function(j) j.intensity > 0) _
                 .ToArray
