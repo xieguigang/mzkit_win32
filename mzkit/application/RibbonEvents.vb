@@ -70,6 +70,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.RibbonLib.Controls
 Imports Microsoft.VisualBasic.ApplicationServices
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Emit.Delegates
@@ -417,9 +418,21 @@ Module RibbonEvents
             app.LoadMatrix(matrix.name, data)
         ElseIf matrix.UnderlyingType Is GetType(ChromatogramSerial) Then
             Dim app = VisualStudio.ShowDocument(Of frmPeakFinding)(DockState.Document, $"Peak Finding [{matrix.name}]")
-            Dim data = matrix.GetMatrix(Of ChromatogramSerial)
+            Dim data = matrix.GetMatrix(Of ChromatogramSerial).ToArray
 
-            app.LoadMatrix(matrix.name, data)
+            If data.Length = 1 Then
+                Call app.LoadMatrix(matrix.name, data.First)
+            Else
+                Call SelectSheetName.SelectName(
+                    names:=data.Keys,
+                    show:=Sub(name)
+                              Dim which As ChromatogramSerial = data _
+                                  .Where(Function(c) Strings.Trim(c.Name) = name) _
+                                  .First
+
+                              Call app.LoadMatrix(which.Name, which)
+                          End Sub)
+            End If
         Else
             Call Workbench.Warning("Peak finding application only works on the Chromatogram data matrix!")
         End If

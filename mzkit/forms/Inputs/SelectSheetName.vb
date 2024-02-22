@@ -7,8 +7,12 @@ Imports Excel = Microsoft.VisualBasic.MIME.Office.Excel.XLSX
 
 Public Class SelectSheetName
 
+    Public Function GetTableName() As String
+        Return Strings.Trim(ComboBox1.Text)
+    End Function
+
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If Strings.Trim(ComboBox1.Text).StringEmpty Then
+        If GetTableName.StringEmpty Then
             MessageBox.Show("A table sheet name is required!", "No table sheet is selected", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
             DialogResult = DialogResult.OK
@@ -17,6 +21,20 @@ Public Class SelectSheetName
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         DialogResult = DialogResult.Cancel
+    End Sub
+
+    Public Shared Sub SelectName(names As IEnumerable(Of String), show As Action(Of String))
+        Dim getter As New SelectSheetName
+
+        For Each name As String In names
+            Call getter.ComboBox1.Items.Add(name)
+        Next
+
+        Call InputDialog.Input(
+            setConfig:=Sub(name)
+                           Call show(name.ComboBox1.Text)
+                       End Sub,
+            config:=getter)
     End Sub
 
     Public Shared Sub OpenExcel(fileName As String, Optional showFile As Action(Of File, String) = Nothing)
@@ -38,7 +56,7 @@ Public Class SelectSheetName
             Next
 
             If mask.ShowDialogForm(getSheetName) = DialogResult.OK Then
-                Dim sheetName As String = getSheetName.ComboBox1.Text
+                Dim sheetName As String = getSheetName.GetTableName
                 Dim table = Excel.ReadTableAuto(fileName, sheetName:=sheetName)
 
                 Call showFile(table, $"{fileName.FileName}[{sheetName}]")
