@@ -410,13 +410,18 @@ Module RibbonEvents
 
         If matrix Is Nothing Then
             Call Workbench.Warning("No chromatogram data is loaded into the MZKit data viewer!")
-        ElseIf Not matrix.UnderlyingType Is GetType(ChromatogramTick) Then
-            Call Workbench.Warning("Peak finding application only works on the Chromatogram data matrix!")
-        Else
+        ElseIf matrix.UnderlyingType Is GetType(ChromatogramTick) Then
             Dim app = VisualStudio.ShowDocument(Of frmPeakFinding)(DockState.Document, $"Peak Finding [{matrix.name}]")
             Dim data = matrix.GetMatrix(Of ChromatogramTick)
 
             app.LoadMatrix(matrix.name, data)
+        ElseIf matrix.UnderlyingType Is GetType(ChromatogramSerial) Then
+            Dim app = VisualStudio.ShowDocument(Of frmPeakFinding)(DockState.Document, $"Peak Finding [{matrix.name}]")
+            Dim data = matrix.GetMatrix(Of ChromatogramSerial)
+
+            app.LoadMatrix(matrix.name, data)
+        Else
+            Call Workbench.Warning("Peak finding application only works on the Chromatogram data matrix!")
         End If
     End Sub
 
