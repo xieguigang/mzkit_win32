@@ -431,6 +431,7 @@
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.xml" ComponentId="{A8290123-4769-441A-8583-0D090466C49A}" Directory_="blender_Dir" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.xml_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll" ComponentId="{48C0319C-3FD8-45F3-812F-9E25E8305B82}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll_1" ComponentId="{F7F4DC1C-3554-4E65-B797-AAA68E0497BB}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll_1"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll_2" ComponentId="{EAB5CAA5-F401-4C3D-A6D5-4EC19B84111C}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll_2"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.pdb" ComponentId="{5110DD5C-C5F8-4A51-9CF9-815997A86FC8}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.pdb" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.pdb_1" ComponentId="{17AF8A83-D57F-41B7-AA17-F373B98F3113}" Directory_="blender_Dir" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.pdb_1" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.xml" ComponentId="{844F289F-2420-47A7-AEB0-1ADF504D8A40}" Directory_="blender_Dir" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.xml_1"/>
@@ -1386,15 +1387,19 @@
     <ROW Component="ThemeVS2015.dll_1" ComponentId="{B990114E-A1AB-4A2B-B368-7FD72AA9C7F3}" Directory_="blender_Dir" Attributes="0" KeyPath="ThemeVS2015.dll_1"/>
     <ROW Component="ThermoFisher.CommonCore.BackgroundSubtraction.dll" ComponentId="{0545E2A9-3F9A-4F86-BCE8-C0F0692B1A18}" Directory_="APPDIR" Attributes="256" KeyPath="ThermoFisher.CommonCore.BackgroundSubtraction.dll"/>
     <ROW Component="ThermoFisher.CommonCore.BackgroundSubtraction.dll_1" ComponentId="{30D5017A-D628-4094-B62B-BD1D44F93B6A}" Directory_="blender_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.BackgroundSubtraction.dll_1"/>
+    <ROW Component="ThermoFisher.CommonCore.BackgroundSubtraction.dll_2" ComponentId="{C42DB644-798B-4463-B8A8-A563DAC7CD26}" Directory_="host_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.BackgroundSubtraction.dll_2"/>
     <ROW Component="ThermoFisher.CommonCore.BackgroundSubtraction.xml" ComponentId="{9ECED0FC-402D-405F-A81E-3798C3991B18}" Directory_="blender_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.BackgroundSubtraction.xml_1"/>
     <ROW Component="ThermoFisher.CommonCore.Data.dll" ComponentId="{B89DA7CA-9FA6-4347-9A68-6F2B66770A59}" Directory_="APPDIR" Attributes="256" KeyPath="ThermoFisher.CommonCore.Data.dll"/>
     <ROW Component="ThermoFisher.CommonCore.Data.dll_1" ComponentId="{3889FEFF-5599-4074-B589-CBD22D95EC09}" Directory_="blender_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.Data.dll_1"/>
+    <ROW Component="ThermoFisher.CommonCore.Data.dll_2" ComponentId="{9F5E38C4-4D6A-4AEB-8B6E-063B21CB88D0}" Directory_="host_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.Data.dll_2"/>
     <ROW Component="ThermoFisher.CommonCore.Data.xml" ComponentId="{64CFF681-EC03-480E-A43E-3720FF2DA064}" Directory_="blender_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.Data.xml_1"/>
     <ROW Component="ThermoFisher.CommonCore.MassPrecisionEstimator.dll" ComponentId="{5B78C406-C53A-41D1-8FCE-DE4F59A415A1}" Directory_="APPDIR" Attributes="256" KeyPath="ThermoFisher.CommonCore.MassPrecisionEstimator.dll"/>
     <ROW Component="ThermoFisher.CommonCore.MassPrecisionEstimator.dll_1" ComponentId="{AB4B15F1-19C9-4BB9-8BF3-E9937F88FD71}" Directory_="blender_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.MassPrecisionEstimator.dll_1"/>
+    <ROW Component="ThermoFisher.CommonCore.MassPrecisionEstimator.dll_2" ComponentId="{9154EC33-16EF-4BF6-8119-9B8CE374E32E}" Directory_="host_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.MassPrecisionEstimator.dll_2"/>
     <ROW Component="ThermoFisher.CommonCore.MassPrecisionEstimator.xml" ComponentId="{24F114B1-1EC7-43F3-83CD-C52F0C280FD6}" Directory_="blender_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.MassPrecisionEstimator.xml_1"/>
     <ROW Component="ThermoFisher.CommonCore.RawFileReader.dll" ComponentId="{DB525469-6BD4-417A-A685-E627F559FAD3}" Directory_="APPDIR" Attributes="256" KeyPath="ThermoFisher.CommonCore.RawFileReader.dll"/>
     <ROW Component="ThermoFisher.CommonCore.RawFileReader.dll_1" ComponentId="{379CCA1A-130F-4E12-A089-0DB04A163BF0}" Directory_="blender_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.RawFileReader.dll_1"/>
+    <ROW Component="ThermoFisher.CommonCore.RawFileReader.dll_2" ComponentId="{2D328BED-4409-4E08-9088-2CB81B2169C0}" Directory_="host_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.RawFileReader.dll_2"/>
     <ROW Component="ThermoFisher.CommonCore.RawFileReader.xml" ComponentId="{1C465DAB-506D-47B0-9CAD-FDB33A23C916}" Directory_="blender_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.RawFileReader.xml_1"/>
     <ROW Component="UMapx.dll" ComponentId="{6FAE705B-544D-4A20-8A28-5FA099627E37}" Directory_="APPDIR" Attributes="0" KeyPath="UMapx.dll"/>
     <ROW Component="WebView2Loader.dll" ComponentId="{26054BE2-7F65-4DA9-BC3D-2D2A106BF06C}" Directory_="native_Dir" Attributes="256" KeyPath="WebView2Loader.dll"/>
@@ -18424,6 +18429,16 @@
     <ROW File="SMRUCC.genomics.Data.SABIORK.xml_2" Component_="SMRUCC.genomics.Data.SABIORK.xml" FileName="SMRUC~16.XML|SMRUCC.genomics.Data.SABIO-RK.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Data.SABIO-RK.xml" SelfReg="false"/>
     <ROW File="icons8dashboardlayout96.png" Component_="dobject.png" FileName="ICONS8~1.PNG|icons8-dashboard-layout-96.png" Attributes="0" SourcePath="..\webview\assets\images\icons8-dashboard-layout-96.png" SelfReg="false"/>
     <ROW File="svgViewer.html" Component_="logo.png" FileName="SVGVIE~1.HTM|svgViewer.html" Attributes="0" SourcePath="..\webview\svgViewer.html" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll_2" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll_2" FileName="BIONO~19.DLL|BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.xml_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="BIONO~19.XML|BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.xml" SelfReg="false"/>
+    <ROW File="ThermoFisher.CommonCore.BackgroundSubtraction.dll_2" Component_="ThermoFisher.CommonCore.BackgroundSubtraction.dll_2" FileName="THERMO~1.DLL|ThermoFisher.CommonCore.BackgroundSubtraction.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.BackgroundSubtraction.dll" SelfReg="false"/>
+    <ROW File="ThermoFisher.CommonCore.BackgroundSubtraction.xml_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="THERMO~1.XML|ThermoFisher.CommonCore.BackgroundSubtraction.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.BackgroundSubtraction.xml" SelfReg="false"/>
+    <ROW File="ThermoFisher.CommonCore.Data.dll_2" Component_="ThermoFisher.CommonCore.Data.dll_2" FileName="THERMO~2.DLL|ThermoFisher.CommonCore.Data.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.Data.dll" SelfReg="false"/>
+    <ROW File="ThermoFisher.CommonCore.Data.xml_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="THERMO~2.XML|ThermoFisher.CommonCore.Data.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.Data.xml" SelfReg="false"/>
+    <ROW File="ThermoFisher.CommonCore.MassPrecisionEstimator.dll_2" Component_="ThermoFisher.CommonCore.MassPrecisionEstimator.dll_2" FileName="THERMO~3.DLL|ThermoFisher.CommonCore.MassPrecisionEstimator.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.MassPrecisionEstimator.dll" SelfReg="false"/>
+    <ROW File="ThermoFisher.CommonCore.MassPrecisionEstimator.xml_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="THERMO~3.XML|ThermoFisher.CommonCore.MassPrecisionEstimator.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.MassPrecisionEstimator.xml" SelfReg="false"/>
+    <ROW File="ThermoFisher.CommonCore.RawFileReader.dll_2" Component_="ThermoFisher.CommonCore.RawFileReader.dll_2" FileName="THERMO~4.DLL|ThermoFisher.CommonCore.RawFileReader.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.RawFileReader.dll" SelfReg="false"/>
+    <ROW File="ThermoFisher.CommonCore.RawFileReader.xml_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="THERMO~4.XML|ThermoFisher.CommonCore.RawFileReader.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.RawFileReader.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -19975,6 +19990,11 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="CDF.PInvoke.pdb_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Math.Statistics.ANOVA.pdb_1"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="ThermoFisher.CommonCore.BackgroundSubtraction.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="ThermoFisher.CommonCore.Data.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="ThermoFisher.CommonCore.MassPrecisionEstimator.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="ThermoFisher.CommonCore.RawFileReader.dll_2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
