@@ -114,7 +114,7 @@ Public Class FormVault
             .ms2 = spectrum.mzInto,
             .name = $"{node.Text} {spectrum.lib_guid} {spectrum.mz}@{spectrum.rt}"
         }
-        Dim img As Image = PeakAssign.DrawSpectrumPeaks(mat, size:="1920,1080").AsGDIImage
+        Dim img As Image = PeakAssign.DrawSpectrumPeaks(mat, size:="1920,1080", dpi:=200).AsGDIImage
         Dim props As New Dictionary(Of String, Object)
         Dim into As Vector = New Vector(spectrum.mzInto.Select(Function(m) m.intensity))
 

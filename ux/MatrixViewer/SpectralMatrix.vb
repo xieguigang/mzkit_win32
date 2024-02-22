@@ -53,7 +53,8 @@ Public Class SpectralMatrix : Inherits DataMatrix
             size:=$"{args.width},{args.height}",
             labelIntensity:=If(args.show_tag, 0.25, 100),
             gridFill:=args.gridFill.ToHtmlColor,
-            barStroke:=$"stroke: steelblue; stroke-width: {args.line_width}px; stroke-dash: solid;"
+            barStroke:=$"stroke: steelblue; stroke-width: {args.line_width}px; stroke-dash: solid;",
+            dpi:=200
         )
     End Function
 

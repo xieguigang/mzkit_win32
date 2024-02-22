@@ -322,7 +322,7 @@ Public Class PageMzSearch
             End If
         Next
 
-        Dim peakPlot As Image = PeakAssign.DrawSpectrumPeaks(GetIsotopeMS1, labelIntensity:=0.01).AsGDIImage
+        Dim peakPlot As Image = PeakAssign.DrawSpectrumPeaks(GetIsotopeMS1, labelIntensity:=0.01, dpi:=200).AsGDIImage
 
         MS1PlotToolStripMenuItem.Checked = True
         GaussianPlotToolStripMenuItem.Checked = False
@@ -366,7 +366,7 @@ Public Class PageMzSearch
         End If
 
         If Not isotope Is Nothing Then
-            PictureBox1.BackgroundImage = PeakAssign.DrawSpectrumPeaks(GetIsotopeMS1, labelIntensity:=0.01).AsGDIImage
+            PictureBox1.BackgroundImage = PeakAssign.DrawSpectrumPeaks(GetIsotopeMS1, labelIntensity:=0.01, dpi:=200).AsGDIImage
         End If
 
         GaussianPlotToolStripMenuItem.Checked = MS1PlotToolStripMenuItem.Checked

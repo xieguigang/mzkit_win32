@@ -332,7 +332,7 @@ Public Class FormScatterViewer
         Call table.Add(New RowObject({"ID", "name", "reference_names", "mz", "rt", "rt(minute)", "rtmin", "rtmax", "spectra", "spectra_text", "nsamples", "sample files"}))
 
         For Each ion As MetaIon In metaIonsDesc
-            Dim img = PeakAssign.DrawSpectrumPeaks(ion.consensus, size:="1920,1200").AsGDIImage
+            Dim img = PeakAssign.DrawSpectrumPeaks(ion.consensus, size:="1920,1200", dpi:=200).AsGDIImage
             Dim uri As New DataURI(img)
             Dim annos = ion.metaList _
                 .Where(Function(p1) p1.project = DIAInfer.ReferenceProjectId) _
@@ -384,8 +384,8 @@ Public Class FormScatterViewer
 
             Call file.WriteLine("<style></style>")
 
-            For Each ion In metaIonsDesc
-                Dim img = PeakAssign.DrawSpectrumPeaks(ion.consensus, size:="1920,900").AsGDIImage
+            For Each ion As MetaIon In metaIonsDesc
+                Dim img = PeakAssign.DrawSpectrumPeaks(ion.consensus, size:="1920,900", dpi:=200).AsGDIImage
                 Dim uri As New DataURI(img)
 
                 Call file.WriteLine($"<h2>{ion.id}</h2>")
