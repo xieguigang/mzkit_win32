@@ -18439,6 +18439,7 @@
     <ROW File="ThermoFisher.CommonCore.MassPrecisionEstimator.xml_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="THERMO~3.XML|ThermoFisher.CommonCore.MassPrecisionEstimator.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.MassPrecisionEstimator.xml" SelfReg="false"/>
     <ROW File="ThermoFisher.CommonCore.RawFileReader.dll_2" Component_="ThermoFisher.CommonCore.RawFileReader.dll_2" FileName="THERMO~4.DLL|ThermoFisher.CommonCore.RawFileReader.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.RawFileReader.dll" SelfReg="false"/>
     <ROW File="ThermoFisher.CommonCore.RawFileReader.xml_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="THERMO~4.XML|ThermoFisher.CommonCore.RawFileReader.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.RawFileReader.xml" SelfReg="false"/>
+    <ROW File="kegg_compounds.msgpack" Component_="chebi_lite.obo" FileName="KEGG_C~1.MSG|kegg_compounds.msgpack" Attributes="0" SourcePath="..\rstudio\data\kegg_compounds.msgpack" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
