@@ -173,6 +173,13 @@ UseCheckedList:
     ''' 2 - current spot
     ''' </param>
     Public Sub LoadSpotIons(ions As IEnumerable(Of ms2), Optional offset As Integer = 1)
+        Dim tops = ions _
+            .ToArray _
+            .Centroid(Tolerance.DeltaMass(0.0001), New RelativeIntensityCutoff(0.001)) _
+            .OrderByDescending(Function(m) m.intensity) _
+            .ToArray
+        Dim maxo As Double = If(tops.Length > 0, tops.Max(Function(a) a.intensity), 0)
+
         If Win7StyleTreeView1.Nodes.Count = 0 Then
             Win7StyleTreeView1.Nodes.Add(Ion_Layers)
             Win7StyleTreeView1.Nodes.Add(Pinned_Pixels)
@@ -181,12 +188,12 @@ UseCheckedList:
 
         Win7StyleTreeView1.Nodes.Item(offset).Nodes.Clear()
 
-        For Each i As ms2 In ions _
-            .ToArray _
-            .Centroid(Tolerance.DeltaMass(0.0001), New RelativeIntensityCutoff(0.001)) _
-            .OrderByDescending(Function(m) m.intensity)
-
-            Call AddIonMzLayer(i.mz, index:=offset)
+        For Each i As ms2 In tops
+            If offset = 2 Then
+                Call AddIonMzLayer(i.mz, index:=offset, label:=$"{i.mz.ToString("F3")} ({(100 * i.intensity / maxo).ToString("F2")}%)")
+            Else
+                Call AddIonMzLayer(i.mz, index:=offset)
+            End If
         Next
     End Sub
 
@@ -291,8 +298,8 @@ UseCheckedList:
         ToolStripSpringTextBox1.Text = ""
     End Sub
 
-    Private Sub AddIonMzLayer(mz As Double, Optional index As Integer = 0)
-        Dim node As TreeNode = Win7StyleTreeView1.Nodes.Item(index).Nodes.Add(mz.ToString("F4"))
+    Private Sub AddIonMzLayer(mz As Double, Optional index As Integer = 0, Optional label As String = Nothing)
+        Dim node As TreeNode = Win7StyleTreeView1.Nodes.Item(index).Nodes.Add(If(label, mz.ToString("F4")))
         node.Tag = mz
     End Sub
 
