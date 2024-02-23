@@ -95,11 +95,20 @@ Public Class FormMain
     End Sub
 
     Private Sub loadTree(tree As TreeNode, dir As StreamGroup, echo As Action(Of String), depth As Integer)
+        Dim d As Integer = dir.files.Length / 50
+        Dim i As Integer = 0
+
+        If d = 0 Then
+            d = 1
+        End If
+
         For Each item As StreamObject In dir.files
             Dim current_dir = tree.Nodes.Add(item.fileName)
             current_dir.Tag = item
             current_dir.ImageIndex = 1
             current_dir.SelectedImageIndex = 1
+
+            i += 1
 
             If TypeOf item Is StreamGroup Then
                 Call System.Windows.Forms.Application.DoEvents()
@@ -107,7 +116,7 @@ Public Class FormMain
                 current_dir.ImageIndex = 0
                 current_dir.SelectedImageIndex = 0
 
-                If depth < 2 Then
+                If depth < 2 AndAlso i Mod d = 0 Then
                     Call echo(item.ToString)
                 End If
 
