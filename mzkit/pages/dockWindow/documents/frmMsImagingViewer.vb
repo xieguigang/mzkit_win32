@@ -1218,18 +1218,18 @@ Public Class frmMsImagingViewer
         End Using
     End Sub
 
-    Private Sub putSampleTissueCdf(samples As RegionLoader, tissues As TissueRegion())
+    Private Sub putSampleTissueCdf(samples As RegionLoader, cdf_dims As Size, tissues As TissueRegion())
         Call SelectSheetName.SelectName(
             samples.sample_tags,
             show:=Sub(tag)
                       Dim polygon As Polygon2D = samples(tag)
                       Dim offset As PointF = polygon.GetRectangle.Location
-                      Dim t0 = New Polygon2D(tissues.Select(Function(t) t.points).IteratesALL).GetRectangle.Location
+                      ' Dim t0 = New Polygon2D(tissues.Select(Function(t) t.points).IteratesALL).GetRectangle.Location
 
-                      t0 = New PointF(-t0.X, -t0.Y)
+                      ' t0 = New PointF(-t0.X, -t0.Y)
 
                       For Each region As TissueRegion In tissues
-                          region.points = region.points.Offsets(t0).Offsets(offset)
+                          region.points = region.points.Offsets(offset) ' .Offsets(t0)
                       Next
 
                       Call sampleRegions.ShowMessage($"Tissue map of '{tag}' has been imported.")
@@ -1267,7 +1267,7 @@ Public Class frmMsImagingViewer
             Dim data As RegionLoader = ExtractMultipleSampleRegions()
 
             If Not data Is Nothing AndAlso data.sample_tags.TryCount > 1 Then
-                Call putSampleTissueCdf(data, tissues)
+                Call putSampleTissueCdf(data, dimension, tissues)
                 Return
             End If
 
