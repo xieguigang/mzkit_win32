@@ -2390,7 +2390,7 @@
         <Image Id="676" MinDPI="192">Res/folder-pictures.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonOpenLCMSWorkspaceFolder" Id="283" LabelTitle="Open Workspace" LabelDescription="Open Workspace Folder" TooltipTitle="Open Workspace Folder" TooltipDescription="Open Workspace Folder">
+    <Command Name="cmdButtonOpenLCMSWorkspaceFolder" Id="283" LabelTitle="Show Current Workspace" LabelDescription="Open Workspace Folder" TooltipTitle="Open Workspace Folder" TooltipDescription="Open Workspace Folder">
       <Command.SmallImages>
         <Image MinDPI="192">Res/folder-documents.bmp</Image>
       </Command.SmallImages>
@@ -4524,10 +4524,14 @@
         </TabGroup>
         <TabGroup CommandName="cmdMetaboAnalysis">
           <Tab CommandName="cmdDataSummaryPanel">
-            <Group CommandName="cmdWorkbenchFile" SizeDefinition="ThreeButtons">
-              <Button CommandName="cmdButtonOpenWorkspace" />
+            <Group CommandName="cmdWorkbenchFile" SizeDefinition="TwoButtons">
+              <SplitButton>
+                <SplitButton.ButtonItem>
+                  <Button CommandName="cmdButtonOpenWorkspace" />
+                </SplitButton.ButtonItem>
+                <Button CommandName="cmdButtonOpenLCMSWorkspaceFolder" />
+              </SplitButton>
               <Button CommandName="cmdButtonOpenTableTool" />
-              <Button CommandName="cmdButtonOpenLCMSWorkspaceFolder" />
             </Group>
             <Group CommandName="cmdDataSummaryGroup" SizeDefinition="ThreeButtons">
               <Button CommandName="cmdButtonPCA" />

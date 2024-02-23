@@ -1578,3 +1578,4 @@
 #define cmdButtonViewUntargetedScatter_LargeImages_192__RESID 60115
 #define InternalCmd2_LabelTitle_RESID 60116
 #define InternalCmd4_LabelTitle_RESID 60117
+#define InternalCmd6_LabelTitle_RESID 60118
