@@ -98,10 +98,40 @@ Public Class MSIRegionSampleWindow
             AddHandler card.RemoveSampleGroup, AddressOf removeSampleGroup
             AddHandler card.ViewRegionMs1Spectrum, AddressOf ViewMs1Spectrum
             AddHandler card.SetHtmlColorCode, AddressOf SetHtmlColorCode
-            AddHandler card.StartMoveRegion, Sub(ctl)
-                                                 Call canvas.AddSpatialRegion(ctl.ExportTissueRegion(dimension))
-                                             End Sub
+            AddHandler card.StartMoveRegion,
+                Sub(ctl)
+                    Dim region_tile = canvas.AddSpatialRegion(ctl.ExportTissueRegion(dimension))
+
+                    AddHandler region_tile.ApplySave,
+                        Sub(tile)
+                            Call saveManualMoveRegionLocation(tile, region, ctl)
+                            Call canvas.Controls.Remove(tile)
+                        End Sub
+                End Sub
         Next
+    End Sub
+
+    ''' <summary>
+    ''' just get the offset and make new region offsets
+    ''' </summary>
+    ''' <param name="tile"></param>
+    Private Sub saveManualMoveRegionLocation(tile As SpatialTile, region As TissueRegion, card As RegionSampleCard)
+        Dim new_points As Point() = TaskProgress.LoadData(
+            Function(p As ITaskProgress)
+                Call p.SetProgressMode()
+                Call p.SetProgress(0)
+
+                Dim move As SpotMap() = Me.Invoke(Function() tile.GetMapping(p, True).ToArray)
+
+                Return move _
+                    .Select(Function(s) New Point(s.SMX.Average, s.SMY.Average)) _
+                    .ToArray
+            End Function, title:="Save offset", info:="Save and move the tissue region to new location...")
+
+        region.points = new_points
+
+        Call card.SetPolygons(region, callback:=AddressOf updateLayerRendering)
+        Call updateLayerRendering()
     End Sub
 
     Private Sub removeSampleGroup(polygon As RegionSampleCard)

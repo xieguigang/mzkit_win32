@@ -82,6 +82,15 @@ Public Class SpatialTile
         End Set
     End Property
 
+    Public Property Editable As Boolean
+        Get
+            Return enableEditLabel
+        End Get
+        Set(value As Boolean)
+            enableEditLabel = value
+        End Set
+    End Property
+
     ''' <summary>
     ''' spot opacity value when has no image loaded
     ''' </summary>
@@ -489,13 +498,19 @@ Public Class SpatialTile
         End Using
     End Sub
 
-    Public Sub EditLabelToolStripMenuItem_Click() Handles EditLabelToolStripMenuItem.Click, Label1.Click
-        Dim input As New InputLabelText With {.Label = Label1.Text}
+    Dim enableEditLabel As Boolean = True
 
-        Call InputDialog.Input(
-            Sub(config)
-                Label1.Text = config.Label
-            End Sub,, config:=input)
+    Public Sub EditLabelToolStripMenuItem_Click() Handles EditLabelToolStripMenuItem.Click, Label1.Click
+        If enableEditLabel Then
+            Dim input As New InputLabelText With {
+                .Label = Label1.Text
+            }
+
+            Call InputDialog.Input(
+                Sub(config)
+                    Label1.Text = config.Label
+                End Sub,, config:=input)
+        End If
     End Sub
 
     Public Property SpotColor As Color = Color.Red
@@ -729,5 +744,16 @@ Public Class SpatialTile
 
     Private Sub KeepAspectRatioToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles KeepAspectRatioToolStripMenuItem.Click
 
+    End Sub
+
+    Public Event ApplySave(tile As SpatialTile)
+
+    ''' <summary>
+    ''' apply and save the spatial region new location
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ApplyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ApplyToolStripMenuItem.Click
+        RaiseEvent ApplySave(Me)
     End Sub
 End Class

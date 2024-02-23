@@ -125,14 +125,15 @@ Public Class PixelSelector
         Next
     End Sub
 
-    Public Sub AddSpatialRegion(region As TissueRegion)
+    Public Function AddSpatialRegion(region As TissueRegion) As SpatialTile
         Dim tile As New SpatialTile
         Dim rect = region.GetRectangle
         Dim offset As Point = rect.Location
         Dim x, y As Integer
 
         tile.Sizable = False
-        tile.ContextMenuStrip1 = Nothing
+        tile.ContextMenuStrip = tile.ContextMenuStrip2
+        tile.Editable = False
 
         Call tile.ShowMatrix(region)
         Call Me.Controls.Add(tile)
@@ -147,7 +148,9 @@ Public Class PixelSelector
 
         AddHandler tile.GetSpatialMetabolismPoint, AddressOf getPoint
         AddHandler tile.ClickSpatialMetabolismPixel, Sub(e, ByRef px, ByRef py) Call clickGetPoint(e)
-    End Sub
+
+        Return tile
+    End Function
 
     ''' <summary>
     ''' adjust the location and size automatically
