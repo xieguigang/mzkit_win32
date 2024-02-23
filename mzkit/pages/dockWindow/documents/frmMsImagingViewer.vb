@@ -1218,11 +1218,20 @@ Public Class frmMsImagingViewer
         End Using
     End Sub
 
-    Private Sub putSampleTissueCdf(samples As RegionLoader, tissue As netCDFReader)
-        Dim regions = tissue.ReadTissueMorphology.ToArray
-        Dim tag As String
-        Dim polygon As Polygon2D = samples(tag)
+    Private Sub putSampleTissueCdf(samples As RegionLoader, tissues As TissueRegion())
+        Call SelectSheetName.SelectName(
+            samples.sample_tags,
+            show:=Sub(tag)
+                      Dim polygon As Polygon2D = samples(tag)
+                      Dim offset As PointF = polygon.GetRectangle.Location
 
+                      For Each region As TissueRegion In tissues
+                          region.points = region.points.Offsets(offset)
+                      Next
+
+                      Call sampleRegions.ShowMessage($"Tissue map of '{tag}' has been imported.")
+                      Call ImportsTissueMorphology(tissues)
+                  End Sub)
     End Sub
 
     ''' <summary>
@@ -1255,10 +1264,7 @@ Public Class frmMsImagingViewer
             Dim data As RegionLoader = ExtractMultipleSampleRegions()
 
             If Not data Is Nothing AndAlso data.sample_tags.TryCount > 1 Then
-                Using cdffile As New netCDFReader(filepath)
-                    Call putSampleTissueCdf(data, cdffile)
-                End Using
-
+                Call putSampleTissueCdf(data, tissues)
                 Return
             End If
 
