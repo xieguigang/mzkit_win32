@@ -25,47 +25,51 @@ Public Class FormMain
     Private Sub OpenToolStripMenuItem_Click()
         Using file As New OpenFileDialog With {.Filter = "mzPack Data File(*.mzPack)|*.mzPack|All File Formats(*.*)|*.*"}
             If file.ShowDialog = DialogResult.OK Then
-                Dim previousConfig = App.MemoryLoad
-
-                If file.FileName.FileLength > 1024 * 1024 * 1024 * 2L Then
-                    FrameworkInternal.ConfigMemory(load:=MemoryLoads.Light)
-                End If
-
-                mzpack = Nothing
-                Win7StyleTreeView1.Nodes.Clear()
-
-                Try
-                    Dim buf As Stream = file.FileName.Open(FileMode.Open, doClear:=False, [readOnly]:=True, verbose:=True)
-
-                    If file.FileName.ExtensionSuffix("zip") Then
-                        ' read the first file stream
-                        Dim zip As New ZipArchive(buf, ZipArchiveMode.Read)
-                        Dim nfiles As Integer = zip.Entries.Count
-
-                        If nfiles = 0 Then
-                            MessageBox.Show("There is no data file inside the opened zip archive!", "Empty Archive", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                            Return
-                        ElseIf nfiles > 1 Then
-                            MessageBox.Show("There are multiple data files inside the opened zip archive," & vbCrLf &
-                                            "Only the first archive stream will be used for open as the mzpack archive data!",
-                                            "Multiple Archive", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                        End If
-
-                        buf = zip.Entries.First.Open
-                    End If
-
-                    mzpack = New StreamPack(buf, [readonly]:=True)
-                Catch ex As Exception
-                    MessageBox.Show(ex.ToString, "Open Database Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                Finally
-                    FrameworkInternal.ConfigMemory(load:=previousConfig)
-                End Try
-
-                If mzpack IsNot Nothing Then
-                    Call loadTree()
-                End If
+                Call loadHdsPack(file.FileName)
             End If
         End Using
+    End Sub
+
+    Private Sub loadHdsPack(filename As String)
+        Dim previousConfig = App.MemoryLoad
+
+        If filename.FileLength > 1024 * 1024 * 1024 * 2L Then
+            Call FrameworkInternal.ConfigMemory(load:=MemoryLoads.Light)
+        End If
+
+        mzpack = Nothing
+        Win7StyleTreeView1.Nodes.Clear()
+
+        Try
+            Dim buf As Stream = filename.Open(FileMode.Open, doClear:=False, [readOnly]:=True, verbose:=True)
+
+            If filename.ExtensionSuffix("zip") Then
+                ' read the first file stream
+                Dim zip As New ZipArchive(buf, ZipArchiveMode.Read)
+                Dim nfiles As Integer = zip.Entries.Count
+
+                If nfiles = 0 Then
+                    MessageBox.Show("There is no data file inside the opened zip archive!", "Empty Archive", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Return
+                ElseIf nfiles > 1 Then
+                    MessageBox.Show("There are multiple data files inside the opened zip archive," & vbCrLf &
+                                    "Only the first archive stream will be used for open as the mzpack archive data!",
+                                    "Multiple Archive", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
+
+                buf = zip.Entries.First.Open
+            End If
+
+            Call ProgressSpinner.DoLoading(Sub() mzpack = New StreamPack(buf, [readonly]:=True), host:=Me)
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString, "Open Database Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        Finally
+            FrameworkInternal.ConfigMemory(load:=previousConfig)
+        End Try
+
+        If mzpack IsNot Nothing Then
+            Call loadTree()
+        End If
     End Sub
 
     Private Sub loadTree()
