@@ -1218,7 +1218,10 @@ Public Class frmMsImagingViewer
         End Using
     End Sub
 
-    Private Sub putSampleTissueCdf(samples As RegionLoader, tissue As TissueRegion())
+    Private Sub putSampleTissueCdf(samples As RegionLoader, tissue As netCDFReader)
+        Dim regions = tissue.ReadTissueMorphology.ToArray
+        Dim tag As String
+        Dim polygon As Polygon2D = samples(tag)
 
     End Sub
 
@@ -1252,7 +1255,10 @@ Public Class frmMsImagingViewer
             Dim data As RegionLoader = ExtractMultipleSampleRegions()
 
             If Not data Is Nothing AndAlso data.sample_tags.TryCount > 1 Then
-                Call putSampleTissueCdf(data, tissues)
+                Using cdffile As New netCDFReader(filepath)
+                    Call putSampleTissueCdf(data, cdffile)
+                End Using
+
                 Return
             End If
 

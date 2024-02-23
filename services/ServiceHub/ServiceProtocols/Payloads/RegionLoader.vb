@@ -96,6 +96,18 @@ Public Class RegionLoader
         End Get
     End Property
 
+    Default Public ReadOnly Property Item(tag As String) As Polygon2D
+        Get
+            Dim i As Integer = sample_tags.IndexOf(tag)
+
+            If i < 0 Then
+                Return Nothing
+            Else
+                Return _regions(i)
+            End If
+        End Get
+    End Property
+
     Public Function Reload() As RegionLoader
         Return New RegionLoader With {
             .height = height,
