@@ -21,6 +21,8 @@ Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports TaskStream
 Imports any = Microsoft.VisualBasic.Scripting
 Imports csv = Microsoft.VisualBasic.Data.csv.IO.File
+Imports DataFrame = Microsoft.VisualBasic.Data.csv.IO.DataFrame
+Imports Matrix = SMRUCC.genomics.Analysis.HTS.DataFrame.Matrix
 
 Public Class frmMetabonomicsAnalysis
 
