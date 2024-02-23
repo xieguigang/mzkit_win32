@@ -70,7 +70,7 @@ Public Class MSIRegionSampleWindow
         Call updateLayerRendering()
     End Sub
 
-    Public Overloads Sub LoadTissueMaps(tissues As TissueRegion(), canvas As PixelSelector)
+    Public Overloads Sub LoadTissueMaps(tissues As TissueRegion(), canvas As PixelSelector, Optional append As Boolean = False)
         If canvas Is Nothing Then
             canvas = WindowModules.viewer.PixelSelector1.MSICanvas
         End If
@@ -79,7 +79,9 @@ Public Class MSIRegionSampleWindow
         Me.dimension = canvas.dimension_size
         Me.importsFile = $"Load {tissues.Length} tissue region maps!"
 
-        Call Clear()
+        If Not append Then
+            Call Clear()
+        End If
 
         For Each region As TissueRegion In tissues
             Dim card As New RegionSampleCard

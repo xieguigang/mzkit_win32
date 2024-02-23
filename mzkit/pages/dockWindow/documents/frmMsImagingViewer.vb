@@ -1230,7 +1230,7 @@ Public Class frmMsImagingViewer
                       Next
 
                       Call sampleRegions.ShowMessage($"Tissue map of '{tag}' has been imported.")
-                      Call ImportsTissueMorphology(tissues)
+                      Call ImportsTissueMorphology(tissues, append:=True)
                   End Sub)
     End Sub
 
@@ -1290,9 +1290,8 @@ Public Class frmMsImagingViewer
         Call ImportsTissueMorphology(tissues)
     End Sub
 
-    Private Sub ImportsTissueMorphology(tissues As TissueRegion())
-        sampleRegions.Clear()
-        sampleRegions.LoadTissueMaps(tissues, PixelSelector1.MSICanvas)
+    Private Sub ImportsTissueMorphology(tissues As TissueRegion(), Optional append As Boolean = False)
+        sampleRegions.LoadTissueMaps(tissues, PixelSelector1.MSICanvas, append)
         sampleRegions.RenderLayer(PixelSelector1.MSICanvas)
 
         RibbonEvents.ribbonItems.CheckShowMapLayer.BooleanValue = True
