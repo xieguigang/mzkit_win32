@@ -137,7 +137,7 @@ Public Class ConnectToBioDeep
                 Call task.Finish()
 
                 Call MessageBox.Show(
-                    $"Mummichog search done!" & vbCrLf & $"Found {result.Length} network enrichment annotation hits.",
+                    $"Mummichog search done!" & vbCrLf & $"Found {result.TryCount} network enrichment annotation hits.",
                     "Mummichog Search",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
