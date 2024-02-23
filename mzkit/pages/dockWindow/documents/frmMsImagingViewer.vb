@@ -1224,15 +1224,16 @@ Public Class frmMsImagingViewer
             show:=Sub(tag)
                       Dim polygon As Polygon2D = samples(tag)
                       Dim offset As PointF = polygon.GetRectangle.Location
-                      ' Dim t0 = New Polygon2D(tissues.Select(Function(t) t.points).IteratesALL).GetRectangle.Location
+                      Dim t0 = New Polygon2D(tissues.Select(Function(t) t.points).IteratesALL).GetRectangle.Location
 
-                      ' t0 = New PointF(-t0.X, -t0.Y)
+                      t0 = New PointF(-t0.X, -t0.Y)
 
                       For Each region As TissueRegion In tissues
-                          region.points = region.points.Offsets(offset) ' .Offsets(t0)
+                          region.label = $"{region.label}@{tag}"
+                          region.points = region.points.Offsets(offset).Offsets(t0)
                       Next
 
-                      Call sampleRegions.ShowMessage($"Tissue map of '{tag}' has been imported.")
+                      Call sampleRegions.ShowMessage($"Tissue map of {tissues.Select(Function(a) a.label).GetJson} has been imported.")
                       Call ImportsTissueMorphology(tissues, append:=True)
                   End Sub)
     End Sub
