@@ -298,6 +298,12 @@ Public Class frmMetabonomicsAnalysis
             End Try
         Next
 
+        Call setBinding(table)
+    End Sub
+
+    Private Sub setBinding(table As DataTable)
+        On Error Resume Next
+
         BindingSource1.Clear()
         BindingSource1.RemoveSort()
 
