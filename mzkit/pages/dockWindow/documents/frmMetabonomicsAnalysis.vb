@@ -298,6 +298,9 @@ Public Class frmMetabonomicsAnalysis
             End Try
         Next
 
+        BindingSource1.Clear()
+        BindingSource1.RemoveSort()
+
         BindingSource1.DataSource = memoryData
         BindingSource1.DataMember = table.TableName
 
