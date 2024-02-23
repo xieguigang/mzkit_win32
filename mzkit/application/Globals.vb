@@ -737,7 +737,7 @@ Module Globals
     <Extension>
     Public Function GetXICMaxYAxis(raw As Raw) As Double
         Dim XIC As Double() = raw _
-.GetMs2Scans _
+            .GetMs2Scans _
             .Select(Function(a) a.intensity) _
             .ToArray
 
