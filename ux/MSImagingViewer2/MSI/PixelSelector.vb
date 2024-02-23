@@ -131,6 +131,9 @@ Public Class PixelSelector
         Dim offset As Point = rect.Location
         Dim x, y As Integer
 
+        tile.Sizable = False
+        tile.ContextMenuStrip1 = Nothing
+
         Call tile.ShowMatrix(region)
         Call Me.Controls.Add(tile)
         ' reverse scaler mapping

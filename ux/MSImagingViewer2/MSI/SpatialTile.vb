@@ -73,6 +73,15 @@ Public Class SpatialTile
         End Set
     End Property
 
+    Public Property Sizable As Boolean
+        Get
+            Return AnchorResize.Visible
+        End Get
+        Set(value As Boolean)
+            AnchorResize.Visible = value
+        End Set
+    End Property
+
     ''' <summary>
     ''' spot opacity value when has no image loaded
     ''' </summary>
