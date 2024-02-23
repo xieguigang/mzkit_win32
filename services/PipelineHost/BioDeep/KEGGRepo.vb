@@ -140,6 +140,7 @@ Public Module KEGGRepo
     Public Function loadBackground(Optional ByRef maps As Map() = Nothing) As Background
         Dim background As Background
         maps = KEGGRepo.RequestKEGGMaps
+        maps = maps.Where(Function(m) Not m Is Nothing).ToArray
         background = MSJointConnection.ImportsBackground(maps)
         Return background
     End Function
