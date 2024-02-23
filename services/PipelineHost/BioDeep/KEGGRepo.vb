@@ -112,11 +112,29 @@ Public Module KEGGRepo
     End Function
 
     Public Function RequestKEGGCompounds() As Compound()
-        Using zip As New ZipArchive(getMZKitPackage("GCModeller").Open(FileMode.Open, doClear:=False))
-            Using pack As New ZipArchive(If(zip.GetEntry("data\kegg\compounds.zip"), zip.GetEntry("data/kegg/compounds.zip")).Open)
-                Return KEGGCompoundPack.ReadKeggDb(pack.GetEntry("compounds.msgpack").Open)
+        Dim filepath As String = ""
+
+        For Each dirLevel As String In {"", "../", "../../", "../../../", "../../../../"}
+            filepath = $"{App.HOME}/{dirLevel}Rstudio/data/kegg_compounds.msgpack"
+
+            If filepath.FileExists Then
+                Exit For
+            End If
+
+            filepath = $"{App.HOME}/{dirLevel}src/mzkit/rstudio/data/kegg_compounds.msgpack"
+
+            If filepath.FileExists Then
+                Exit For
+            End If
+        Next
+
+        If filepath.FileExists Then
+            Using s As Stream = filepath.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
+                Return KEGGCompoundPack.ReadKeggDb(s)
             End Using
-        End Using
+        End If
+
+        Return {}
     End Function
 
     Public Function loadBackground(Optional ByRef maps As Map() = Nothing) As Background
