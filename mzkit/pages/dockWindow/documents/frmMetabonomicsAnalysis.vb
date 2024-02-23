@@ -17,6 +17,7 @@ Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Interop
 Imports SMRUCC.genomics.Analysis.HTS.DataFrame
 Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
+Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports TaskStream
 Imports any = Microsoft.VisualBasic.Scripting
 Imports csv = Microsoft.VisualBasic.Data.csv.IO.File
@@ -209,7 +210,7 @@ Public Class frmMetabonomicsAnalysis
         Next
 
         Me.peaks = New PeakSet With {
-            .peaks = peaks.ToArray
+            .peaks = peaks.uniqueNames.ToArray
         }
 
         Call loadTable(Sub(tbl) Call LoadSampleData(tbl))

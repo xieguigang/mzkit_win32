@@ -87,6 +87,7 @@ Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Interop
 Imports SMRUCC.genomics.Analysis.HTS.DataFrame
 Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
+Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports Task
 Imports TaskStream
 Imports any = Microsoft.VisualBasic.Scripting
@@ -872,7 +873,7 @@ UseCheckedList:
         Call TaskProgress.RunAction(AddressOf task.getPeaks, host:=Me)
         Call sampleinfo.SaveTo($"{workdir}/sampleinfo.csv")
 
-        peaks = New PeakSet With {.peaks = task.peaks.ToArray}
+        peaks = New PeakSet With {.peaks = task.peaks.uniqueNames.ToArray}
 
         Using f As Stream = $"{workdir}/peakset.xcms".Open(FileMode.OpenOrCreate, doClear:=True)
             Call SaveXcms.DumpSample(peaks, f)
