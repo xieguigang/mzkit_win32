@@ -63,6 +63,7 @@ Imports BioNovoGene.BioDeep.MSEngine.Mummichog
 Imports BioNovoGene.mzkit_win32.DockSample
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.My
 Imports Mzkit_win32.BasicMDIForm
 Imports Task
@@ -242,7 +243,7 @@ Public Class ConnectToBioDeep
                 Call grid.Columns.Add("p-value", GetType(Double))
                 Call grid.Columns.Add("hits", GetType(String))
 
-                For Each line In result
+                For Each line As ActivityEnrichment In result.SafeQuery
                     Call grid.Rows.Add(
                         line.Name,
                         line.Description,
@@ -287,7 +288,7 @@ Public Class ConnectToBioDeep
                 grid.Columns.Add(NameOf(MetaDNAResult.reaction), GetType(String))
                 grid.Columns.Add(NameOf(MetaDNAResult.fileName), GetType(String))
 
-                For Each line As MetaDNAResult In result
+                For Each line As MetaDNAResult In result.SafeQuery
                     Call grid.Rows.Add(line.ROI_id,
                                        line.query_id,
                                        line.mz,
