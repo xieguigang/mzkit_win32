@@ -115,6 +115,7 @@ Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Mzkit_win32.MSImagingViewerV2
+Imports RibbonLib.Interop
 Imports ServiceHub
 Imports SMRUCC.genomics.Analysis.HTS.DataFrame
 Imports STImaging
@@ -1160,7 +1161,7 @@ Public Class frmMsImagingViewer
         If Not checkService() Then
             Return
         ElseIf PixelSelector1.MSICanvas.dimension_size.IsEmpty Then
-            Call MyApplication.host.showStatusMessage("No ms-imaging rendering output!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning("No ms-imaging rendering output!")
             Return
         End If
 
@@ -1217,6 +1218,10 @@ Public Class frmMsImagingViewer
         End Using
     End Sub
 
+    Private Sub putSampleTissueCdf(samples As RegionLoader, tissue As TissueRegion())
+
+    End Sub
+
     ''' <summary>
     ''' load pipeline cdf file output
     ''' </summary>
@@ -1242,8 +1247,15 @@ Public Class frmMsImagingViewer
         ElseIf stdNum.Abs(PixelSelector1.MSICanvas.dimension_size.Height - dimension.Height) > 5 Then
             checkSize = False
         End If
-
         If Not checkSize Then
+            ' check for multiple sample data imports?
+            Dim data As RegionLoader = ExtractMultipleSampleRegions()
+
+            If Not data Is Nothing AndAlso data.sample_tags.TryCount > 1 Then
+                Call putSampleTissueCdf(data, tissues)
+                Return
+            End If
+
             If MessageBox.Show(text:=$"The dimension size of the tissue morphology map is very different {vbCrLf}with the MS-imaging dimension size, auto scale of your tissue morphology map raster data?",
                                caption:="Import Tissue Morphology",
                                buttons:=MessageBoxButtons.YesNo,

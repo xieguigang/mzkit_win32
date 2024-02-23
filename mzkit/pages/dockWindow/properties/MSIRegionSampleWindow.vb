@@ -273,6 +273,9 @@ Public Class MSIRegionSampleWindow
         End If
     End Sub
 
+    ''' <summary>
+    ''' works wel the msi sample is combine from multiple sample files
+    ''' </summary>
     Private Sub AutoExtractSampleTags()
         Dim data As RegionLoader = viewer.ExtractMultipleSampleRegions
         Dim colors As Color()

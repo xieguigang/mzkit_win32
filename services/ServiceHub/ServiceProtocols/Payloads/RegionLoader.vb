@@ -62,6 +62,10 @@ Imports Microsoft.VisualBasic.Imaging.Math2D
 
 Public Class RegionLoader
 
+    ''' <summary>
+    ''' the polygon regions for each samples
+    ''' </summary>
+    ''' <returns></returns>
     Public Property regions As Polygon2D()
     Public Property width As Integer
     Public Property height As Integer
@@ -73,6 +77,10 @@ Public Class RegionLoader
     ''' <returns></returns>
     Public Property sample_tags As String()
 
+    ''' <summary>
+    ''' get number of the samples
+    ''' </summary>
+    ''' <returns></returns>
     Public ReadOnly Property size As Integer
         Get
             Return regions.TryCount
