@@ -127,6 +127,27 @@ Public Class SpatialTile
 
     '    MyBase.OnPaintBackground(e)
     'End Sub
+    Public Sub ShowMatrix(matrix As TissueRegion)
+        Dim spots = matrix.points _
+            .Select(Function(p)
+                        Return New SpatialSpot With {
+                            .barcode = $"[{p.X},{p.Y}]",
+                            .flag = 1,
+                            .px = p.X,
+                            .py = p.Y,
+                            .x = p.X,
+                            .y = p.Y
+                        }
+                    End Function) _
+            .ToArray
+
+        Me.Label1.Text = matrix.label
+        Me.SpotColor = matrix.color
+
+        heatmap = Nothing
+
+        Call ShowMatrix(spots, flip:=False)
+    End Sub
 
     Public Sub ShowMatrix(matrix As SpatialMapping)
         Dim spots = matrix.spots _

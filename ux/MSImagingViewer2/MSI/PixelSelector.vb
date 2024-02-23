@@ -125,6 +125,27 @@ Public Class PixelSelector
         Next
     End Sub
 
+    Public Sub AddSpatialRegion(region As TissueRegion)
+        Dim tile As New SpatialTile
+        Dim rect = region.GetRectangle
+        Dim offset As Point = rect.Location
+        Dim x, y As Integer
+
+        Call tile.ShowMatrix(region)
+        Call Me.Controls.Add(tile)
+        ' reverse scaler mapping
+        Call getPoint(offset, Me.Size, dimension_size, x, y)
+
+        tile.Location = New Point(x, y)
+        offset = New Point(rect.Right, rect.Bottom)
+
+        Call getPoint(offset, Me.Size, dimension_size, x, y)
+        tile.Size = New Size(std.Abs(x - tile.Location.X), std.Abs(y - tile.Location.Y))
+
+        AddHandler tile.GetSpatialMetabolismPoint, AddressOf getPoint
+        AddHandler tile.ClickSpatialMetabolismPixel, Sub(e, ByRef px, ByRef py) Call clickGetPoint(e)
+    End Sub
+
     ''' <summary>
     ''' adjust the location and size automatically
     ''' </summary>

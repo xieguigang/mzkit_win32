@@ -98,6 +98,9 @@ Public Class MSIRegionSampleWindow
             AddHandler card.RemoveSampleGroup, AddressOf removeSampleGroup
             AddHandler card.ViewRegionMs1Spectrum, AddressOf ViewMs1Spectrum
             AddHandler card.SetHtmlColorCode, AddressOf SetHtmlColorCode
+            AddHandler card.StartMoveRegion, Sub(ctl)
+                                                 Call canvas.AddSpatialRegion(ctl.ExportTissueRegion(dimension))
+                                             End Sub
         Next
     End Sub
 
