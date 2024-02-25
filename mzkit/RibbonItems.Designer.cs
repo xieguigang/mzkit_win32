@@ -243,6 +243,9 @@ namespace RibbonLib.Controls
             public const uint cmdTableSampleData = 288;
             public const uint cmdButtonViewSampleInfo = 284;
             public const uint cmdButtonImportsLCMSAnnotations = 287;
+            public const uint cmdButtonImportsLCAnnotation2 = 291;
+            public const uint cmdButtonImportsLCAnnotationFromFile = 290;
+            public const uint cmdButtonImportsLCAnnotationFromTable = 289;
             public const uint cmdMenuGroupGCxGC = 6;
             public const uint cmdPanelGCxGC = 7;
             public const uint cmdGroupGCxGC = 282;
@@ -521,7 +524,10 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonViewAnalysis3DScatter { get; private set; }
         public RibbonGroup TableSampleData { get; private set; }
         public RibbonButton ButtonViewSampleInfo { get; private set; }
-        public RibbonButton ButtonImportsLCMSAnnotations { get; private set; }
+        public RibbonSplitButton ButtonImportsLCMSAnnotations { get; private set; }
+        public RibbonButton ButtonImportsLCAnnotation2 { get; private set; }
+        public RibbonButton ButtonImportsLCAnnotationFromFile { get; private set; }
+        public RibbonButton ButtonImportsLCAnnotationFromTable { get; private set; }
         public RibbonTabGroup MenuGroupGCxGC { get; private set; }
         public RibbonTab PanelGCxGC { get; private set; }
         public RibbonGroup GroupGCxGC { get; private set; }
@@ -795,7 +801,10 @@ namespace RibbonLib.Controls
             ButtonViewAnalysis3DScatter = new RibbonButton(ribbon, Cmd.cmdButtonViewAnalysis3DScatter);
             TableSampleData = new RibbonGroup(ribbon, Cmd.cmdTableSampleData);
             ButtonViewSampleInfo = new RibbonButton(ribbon, Cmd.cmdButtonViewSampleInfo);
-            ButtonImportsLCMSAnnotations = new RibbonButton(ribbon, Cmd.cmdButtonImportsLCMSAnnotations);
+            ButtonImportsLCMSAnnotations = new RibbonSplitButton(ribbon, Cmd.cmdButtonImportsLCMSAnnotations);
+            ButtonImportsLCAnnotation2 = new RibbonButton(ribbon, Cmd.cmdButtonImportsLCAnnotation2);
+            ButtonImportsLCAnnotationFromFile = new RibbonButton(ribbon, Cmd.cmdButtonImportsLCAnnotationFromFile);
+            ButtonImportsLCAnnotationFromTable = new RibbonButton(ribbon, Cmd.cmdButtonImportsLCAnnotationFromTable);
             MenuGroupGCxGC = new RibbonTabGroup(ribbon, Cmd.cmdMenuGroupGCxGC);
             PanelGCxGC = new RibbonTab(ribbon, Cmd.cmdPanelGCxGC);
             GroupGCxGC = new RibbonGroup(ribbon, Cmd.cmdGroupGCxGC);

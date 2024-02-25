@@ -4168,6 +4168,30 @@
       </Command.LargeImages>
     </Command>
     <Command Name="cmdTableSampleData" Id="288" LabelTitle="Sample Data" LabelDescription="Sample Data" TooltipTitle="Sample Data" TooltipDescription="Sample Data" />
+    <Command Name="cmdButtonImportsLCAnnotationFromTable" Id="289" LabelTitle="Imports Table Tab" LabelDescription="Imports Table Tab" TooltipTitle="Imports Table Tab" TooltipDescription="Imports Table Tab">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/excel-icon.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/excel-icon.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonImportsLCAnnotationFromFile" Id="290" LabelTitle="Imports File" LabelDescription="Imports File" TooltipTitle="Imports File" TooltipDescription="Imports File">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/excel-icon.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/excel-icon.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonImportsLCAnnotation2" Id="291" LabelTitle="Imports Annotations" LabelDescription="Imports Annotations" TooltipTitle="Imports Annotations" TooltipDescription="Imports Annotations">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/excel-icon.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/excel-icon.bmp</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4553,7 +4577,13 @@
             </Group>
             <Group CommandName="cmdTableSampleData">
               <Button CommandName="cmdButtonViewSampleInfo" />
-              <Button CommandName="cmdButtonImportsLCMSAnnotations" />
+              <SplitButton CommandName="cmdButtonImportsLCMSAnnotations">
+                <SplitButton.ButtonItem>
+                  <Button CommandName="cmdButtonImportsLCAnnotation2" />
+                </SplitButton.ButtonItem>
+                <Button CommandName="cmdButtonImportsLCAnnotationFromFile" />
+                <Button CommandName="cmdButtonImportsLCAnnotationFromTable" />
+              </SplitButton>
             </Group>
           </Tab>
         </TabGroup>

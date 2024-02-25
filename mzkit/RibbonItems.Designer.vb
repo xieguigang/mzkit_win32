@@ -240,6 +240,9 @@ Namespace RibbonLib.Controls
             Public Const cmdTableSampleData As UInteger = 288
             Public Const cmdButtonViewSampleInfo As UInteger = 284
             Public Const cmdButtonImportsLCMSAnnotations As UInteger = 287
+            Public Const cmdButtonImportsLCAnnotation2 As UInteger = 291
+            Public Const cmdButtonImportsLCAnnotationFromFile As UInteger = 290
+            Public Const cmdButtonImportsLCAnnotationFromTable As UInteger = 289
             Public Const cmdMenuGroupGCxGC As UInteger = 6
             Public Const cmdPanelGCxGC As UInteger = 7
             Public Const cmdGroupGCxGC As UInteger = 282
@@ -1643,10 +1646,28 @@ Namespace RibbonLib.Controls
                 Return _ButtonViewSampleInfo
             End Get
         End Property
-        Private _ButtonImportsLCMSAnnotations As RibbonButton
-        Public ReadOnly Property ButtonImportsLCMSAnnotations As RibbonButton
+        Private _ButtonImportsLCMSAnnotations As RibbonSplitButton
+        Public ReadOnly Property ButtonImportsLCMSAnnotations As RibbonSplitButton
             Get
                 Return _ButtonImportsLCMSAnnotations
+            End Get
+        End Property
+        Private _ButtonImportsLCAnnotation2 As RibbonButton
+        Public ReadOnly Property ButtonImportsLCAnnotation2 As RibbonButton
+            Get
+                Return _ButtonImportsLCAnnotation2
+            End Get
+        End Property
+        Private _ButtonImportsLCAnnotationFromFile As RibbonButton
+        Public ReadOnly Property ButtonImportsLCAnnotationFromFile As RibbonButton
+            Get
+                Return _ButtonImportsLCAnnotationFromFile
+            End Get
+        End Property
+        Private _ButtonImportsLCAnnotationFromTable As RibbonButton
+        Public ReadOnly Property ButtonImportsLCAnnotationFromTable As RibbonButton
+            Get
+                Return _ButtonImportsLCAnnotationFromTable
             End Get
         End Property
         Private _MenuGroupGCxGC As RibbonTabGroup
@@ -2137,7 +2158,10 @@ Namespace RibbonLib.Controls
             _ButtonViewAnalysis3DScatter = New RibbonButton(_ribbon, Cmd.cmdButtonViewAnalysis3DScatter)
             _TableSampleData = New RibbonGroup(_ribbon, Cmd.cmdTableSampleData)
             _ButtonViewSampleInfo = New RibbonButton(_ribbon, Cmd.cmdButtonViewSampleInfo)
-            _ButtonImportsLCMSAnnotations = New RibbonButton(_ribbon, Cmd.cmdButtonImportsLCMSAnnotations)
+            _ButtonImportsLCMSAnnotations = New RibbonSplitButton(_ribbon, Cmd.cmdButtonImportsLCMSAnnotations)
+            _ButtonImportsLCAnnotation2 = New RibbonButton(_ribbon, Cmd.cmdButtonImportsLCAnnotation2)
+            _ButtonImportsLCAnnotationFromFile = New RibbonButton(_ribbon, Cmd.cmdButtonImportsLCAnnotationFromFile)
+            _ButtonImportsLCAnnotationFromTable = New RibbonButton(_ribbon, Cmd.cmdButtonImportsLCAnnotationFromTable)
             _MenuGroupGCxGC = New RibbonTabGroup(_ribbon, Cmd.cmdMenuGroupGCxGC)
             _PanelGCxGC = New RibbonTab(_ribbon, Cmd.cmdPanelGCxGC)
             _GroupGCxGC = New RibbonGroup(_ribbon, Cmd.cmdGroupGCxGC)
