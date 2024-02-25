@@ -4159,7 +4159,7 @@
         <Image MinDPI="192">Res/icons8-particle-96.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonImportsLCMSAnnotations" Id="287" LabelTitle="Imports Annotations" LabelDescription="Imports Annotations" TooltipTitle="Imports Annotations" TooltipDescription="Imports Annotations">
+    <Command Name="cmdButtonImportsLCMSAnnotations" Id="287" LabelTitle="Imports Annotations" LabelDescription="Imports metabolite annotation for ions" TooltipTitle="Imports metabolite annotation for ions" TooltipDescription="Imports metabolite annotation for ions">
       <Command.SmallImages>
         <Image MinDPI="192">Res/excel-icon.bmp</Image>
       </Command.SmallImages>
@@ -4167,6 +4167,7 @@
         <Image MinDPI="192">Res/excel-icon.bmp</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdTableSampleData" Id="288" LabelTitle="Sample Data" LabelDescription="Sample Data" TooltipTitle="Sample Data" TooltipDescription="Sample Data" />
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4546,10 +4547,13 @@
               <Button CommandName="cmdButtonPLSDA" />
               <Button CommandName="cmdButtonOPLSDA" />
             </Group>
-            <Group CommandName="cmdLCMSVisualPanel" SizeDefinition="ThreeButtons">
+            <Group CommandName="cmdLCMSVisualPanel" SizeDefinition="TwoButtons">
               <Button CommandName="cmdViewLCMSScatter" />
               <Button CommandName="cmdButtonViewAnalysis3DScatter" />
+            </Group>
+            <Group CommandName="cmdTableSampleData">
               <Button CommandName="cmdButtonViewSampleInfo" />
+              <Button CommandName="cmdButtonImportsLCMSAnnotations" />
             </Group>
           </Tab>
         </TabGroup>

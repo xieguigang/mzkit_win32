@@ -1583,6 +1583,11 @@
 #define cmdButtonImportsLCMSAnnotations_TooltipDescription_RESID 60119
 #define cmdButtonImportsLCMSAnnotations_SmallImages_192__RESID 60120
 #define cmdButtonImportsLCMSAnnotations_LargeImages_192__RESID 60121
-#define InternalCmd2_LabelTitle_RESID 60122
-#define InternalCmd4_LabelTitle_RESID 60123
-#define InternalCmd6_LabelTitle_RESID 60124
+#define cmdTableSampleData 288 
+#define cmdTableSampleData_LabelTitle_RESID 60122
+#define cmdTableSampleData_LabelDescription_RESID 60123
+#define cmdTableSampleData_TooltipTitle_RESID 60124
+#define cmdTableSampleData_TooltipDescription_RESID 60125
+#define InternalCmd2_LabelTitle_RESID 60126
+#define InternalCmd4_LabelTitle_RESID 60127
+#define InternalCmd6_LabelTitle_RESID 60128

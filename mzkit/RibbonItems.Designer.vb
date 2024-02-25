@@ -237,7 +237,9 @@ Namespace RibbonLib.Controls
             Public Const cmdLCMSVisualPanel As UInteger = 277
             Public Const cmdViewLCMSScatter As UInteger = 278
             Public Const cmdButtonViewAnalysis3DScatter As UInteger = 285
+            Public Const cmdTableSampleData As UInteger = 288
             Public Const cmdButtonViewSampleInfo As UInteger = 284
+            Public Const cmdButtonImportsLCMSAnnotations As UInteger = 287
             Public Const cmdMenuGroupGCxGC As UInteger = 6
             Public Const cmdPanelGCxGC As UInteger = 7
             Public Const cmdGroupGCxGC As UInteger = 282
@@ -1629,10 +1631,22 @@ Namespace RibbonLib.Controls
                 Return _ButtonViewAnalysis3DScatter
             End Get
         End Property
+        Private _TableSampleData As RibbonGroup
+        Public ReadOnly Property TableSampleData As RibbonGroup
+            Get
+                Return _TableSampleData
+            End Get
+        End Property
         Private _ButtonViewSampleInfo As RibbonButton
         Public ReadOnly Property ButtonViewSampleInfo As RibbonButton
             Get
                 Return _ButtonViewSampleInfo
+            End Get
+        End Property
+        Private _ButtonImportsLCMSAnnotations As RibbonButton
+        Public ReadOnly Property ButtonImportsLCMSAnnotations As RibbonButton
+            Get
+                Return _ButtonImportsLCMSAnnotations
             End Get
         End Property
         Private _MenuGroupGCxGC As RibbonTabGroup
@@ -2121,7 +2135,9 @@ Namespace RibbonLib.Controls
             _LCMSVisualPanel = New RibbonGroup(_ribbon, Cmd.cmdLCMSVisualPanel)
             _ViewLCMSScatter = New RibbonButton(_ribbon, Cmd.cmdViewLCMSScatter)
             _ButtonViewAnalysis3DScatter = New RibbonButton(_ribbon, Cmd.cmdButtonViewAnalysis3DScatter)
+            _TableSampleData = New RibbonGroup(_ribbon, Cmd.cmdTableSampleData)
             _ButtonViewSampleInfo = New RibbonButton(_ribbon, Cmd.cmdButtonViewSampleInfo)
+            _ButtonImportsLCMSAnnotations = New RibbonButton(_ribbon, Cmd.cmdButtonImportsLCMSAnnotations)
             _MenuGroupGCxGC = New RibbonTabGroup(_ribbon, Cmd.cmdMenuGroupGCxGC)
             _PanelGCxGC = New RibbonTab(_ribbon, Cmd.cmdPanelGCxGC)
             _GroupGCxGC = New RibbonGroup(_ribbon, Cmd.cmdGroupGCxGC)

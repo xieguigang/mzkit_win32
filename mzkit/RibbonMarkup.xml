@@ -4167,6 +4167,7 @@
         <Image MinDPI="192">Res/excel-icon.bmp</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdTableSampleData" Id="288" LabelTitle="Sample Data" LabelDescription="Sample Data" TooltipTitle="Sample Data" TooltipDescription="Sample Data" />
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4546,10 +4547,13 @@
               <Button CommandName="cmdButtonPLSDA" />
               <Button CommandName="cmdButtonOPLSDA" />
             </Group>
-            <Group CommandName="cmdLCMSVisualPanel" SizeDefinition="ThreeButtons">
+            <Group CommandName="cmdLCMSVisualPanel" SizeDefinition="TwoButtons">
               <Button CommandName="cmdViewLCMSScatter" />
               <Button CommandName="cmdButtonViewAnalysis3DScatter" />
+            </Group>
+            <Group CommandName="cmdTableSampleData">
               <Button CommandName="cmdButtonViewSampleInfo" />
+              <Button CommandName="cmdButtonImportsLCMSAnnotations" />
             </Group>
           </Tab>
         </TabGroup>
