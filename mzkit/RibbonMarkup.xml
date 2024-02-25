@@ -4079,7 +4079,7 @@
         <Image MinDPI="192">Res/excel-icon.bmp</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdViewLCMSScatter" Id="278" LabelTitle="View Scatter" LabelDescription="View un-targeted scatters" TooltipTitle="View Scatter" TooltipDescription="View Scatter">
+    <Command Name="cmdViewLCMSScatter" Id="278" LabelTitle="View Scatter" LabelDescription="View LCMS/GCMS un-targeted scatters plot" TooltipTitle="View LCMS/GCMS un-targeted scatters plot" TooltipDescription="View LCMS/GCMS un-targeted scatters plot">
       <Command.SmallImages>
         <Image MinDPI="192">Res/icons8-particle-96.png</Image>
       </Command.SmallImages>
@@ -4157,6 +4157,14 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image MinDPI="192">Res/icons8-particle-96.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonImportsLCMSAnnotations" Id="287" LabelTitle="Imports Annotations" LabelDescription="Imports metabolite annotation for ions" TooltipTitle="Imports metabolite annotation for ions" TooltipDescription="Imports metabolite annotation for ions">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/excel-icon.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/excel-icon.bmp</Image>
       </Command.LargeImages>
     </Command>
   </Application.Commands>
