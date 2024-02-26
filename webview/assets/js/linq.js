@@ -5708,7 +5708,8 @@ var DOM;
             }
         }
         function setChecks(inputs, value) {
-            var _loop_1 = function (input) {
+            for (var _i = 0, _a = inputs.Select(function (i) { return i; }).ToArray(); _i < _a.length; _i++) {
+                var input = _a[_i];
                 input.value = value.toString();
                 if (value) {
                     input.checked = true;
@@ -5716,10 +5717,6 @@ var DOM;
                 else {
                     input.checked = false;
                 }
-            };
-            for (var _i = 0, _a = inputs.Select(function (i) { return input; }).ToArray(); _i < _a.length; _i++) {
-                var input = _a[_i];
-                _loop_1(input);
             }
         }
         /**
@@ -8839,7 +8836,7 @@ var Internal;
         // }
         function hookOnChange(app, elements, type) {
             elements = $from(elements).Select(function (id) { return "".concat(id).concat(onchangeToken); }).ToArray();
-            var _loop_2 = function (publicMethodName) {
+            var _loop_1 = function (publicMethodName) {
                 if (elements.indexOf(publicMethodName) == -1) {
                     return "continue";
                 }
@@ -8885,7 +8882,7 @@ var Internal;
             };
             for (var _i = 0, _a = type.methods; _i < _a.length; _i++) {
                 var publicMethodName = _a[_i];
-                _loop_2(publicMethodName);
+                _loop_1(publicMethodName);
             }
         }
         function hookEventHandles(app) {
