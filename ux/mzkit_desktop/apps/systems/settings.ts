@@ -1,8 +1,9 @@
 namespace apps.systems {
 
-    const pages: string[] = [
-        "mzkit_page", "msraw_page"
-    ];
+    const pages: {} = {
+        "mzkit_page": "MZKit Settings",
+        "msraw_page": "Raw File Viewer"
+    };
 
     export class settings extends Bootstrap {
 
@@ -14,20 +15,25 @@ namespace apps.systems {
             this.mzkit_page_btn_onclick();
         }
 
-        private static closeAll() {
-            for (let page of pages) {
+        private static closeAll(): typeof settings {
+            for (let page of Object.keys(pages)) {
                 $ts(`#${page}`).hide();
             }
+
+            return this;
+        }
+
+        private static show(page_id: string) {
+            $ts(`#${page_id}`).show();
+            $ts("#title").display(pages[page_id]);
         }
 
         public mzkit_page_btn_onclick() {
-            settings.closeAll();
-            $ts("#mzkit_page").show();
+            settings.closeAll().show("mzkit_page");
         }
 
         public msraw_btn_onclick() {
-            settings.closeAll();
-            $ts("#msraw_page").show();
+            settings.closeAll().show("msraw_page");
         }
     }
 }

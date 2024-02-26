@@ -1068,9 +1068,10 @@ var apps;
 (function (apps) {
     var systems;
     (function (systems) {
-        var pages = [
-            "mzkit_page", "msraw_page"
-        ];
+        var pages = {
+            "mzkit_page": "MZKit Settings",
+            "msraw_page": "Raw File Viewer"
+        };
         var settings = /** @class */ (function (_super) {
             __extends(settings, _super);
             function settings() {
@@ -1087,18 +1088,21 @@ var apps;
                 this.mzkit_page_btn_onclick();
             };
             settings.closeAll = function () {
-                for (var _i = 0, pages_1 = pages; _i < pages_1.length; _i++) {
-                    var page = pages_1[_i];
+                for (var _i = 0, _a = Object.keys(pages); _i < _a.length; _i++) {
+                    var page = _a[_i];
                     $ts("#".concat(page)).hide();
                 }
+                return this;
+            };
+            settings.show = function (page_id) {
+                $ts("#".concat(page_id)).show();
+                $ts("#title").display(pages[page_id]);
             };
             settings.prototype.mzkit_page_btn_onclick = function () {
-                settings.closeAll();
-                $ts("#mzkit_page").show();
+                settings.closeAll().show("mzkit_page");
             };
             settings.prototype.msraw_btn_onclick = function () {
-                settings.closeAll();
-                $ts("#msraw_page").show();
+                settings.closeAll().show("msraw_page");
             };
             return settings;
         }(Bootstrap));

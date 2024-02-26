@@ -262,6 +262,7 @@ declare namespace apps.systems {
         get appName(): string;
         protected init(): void;
         private static closeAll;
+        private static show;
         mzkit_page_btn_onclick(): void;
         msraw_btn_onclick(): void;
     }
