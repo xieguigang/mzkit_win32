@@ -105,61 +105,64 @@
         </symbol>
     </svg>
 
-    <aside class="d-flex flex-column flex-shrink-0 p-3 bg-white align-self-start" style="width: 280px;">
-        <a href="#" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-            <img src="./assets/images/Home_Logo.png" style="width: 60%;" />
-            &nbsp;&nbsp;
-            <span class="fs-5 fw-semibold">Settings</span>
-        </a>
-        <ul class="list-unstyled ps-0">
-            <li class="mb-1">
-                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                    data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true" id="mzkit">
-                    MZKit App
-                </button>
-            </li>
-            <li class="mb-1">
-                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                    data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-                    Raw File Viewer
-                </button>
-                <div class="collapse" id="dashboard-collapse">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">XIC/TIC Viewer</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="mb-1">
-                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                    data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-                    Formula Search
-                </button>
-                <div class="collapse" id="orders-collapse">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Element Profile</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="mb-1">
-                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                    data-bs-toggle="collapse" data-bs-target="#home-collapse">
-                    Molecular Networking
-                </button>
-            </li>
-            <li class="border-top my-3"></li>
-        </ul>
-    </aside>
-
-    <div class="bd-cheatsheet container-fluid bg-body">
-
-        <div>
+    <div class="row">
+        <div class="col">
             <h1 id="title">MZKit Settings</h1>
         </div>
+    </div>
 
-        <div id="mzkit_page">
-
+    <div class="row">
+        <aside class="col-3 d-flex flex-column flex-shrink-0 p-3 bg-white align-self-start" style="width: 280px;">
+            <a href="#" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+                <img src="./assets/images/Home_Logo.png" style="width: 60%;" />
+                &nbsp;&nbsp;
+                <span class="fs-5 fw-semibold">Settings</span>
+            </a>
+            <ul class="list-unstyled ps-0">
+                <li class="mb-1">
+                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                        data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true" id="mzkit">
+                        MZKit App
+                    </button>
+                </li>
+                <li class="mb-1">
+                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                        data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                        Raw File Viewer
+                    </button>
+                    <div class="collapse" id="dashboard-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">XIC/TIC Viewer</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                        data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+                        Formula Search
+                    </button>
+                    <div class="collapse" id="orders-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Element Profile</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="mb-1">
+                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                        data-bs-toggle="collapse" data-bs-target="#home-collapse">
+                        Molecular Networking
+                    </button>
+                </li>
+                <li class="border-top my-3"></li>
+            </ul>
+        </aside>
+    
+        <div class="col-9 bd-cheatsheet container-fluid bg-body">
+            <div id="mzkit_page">
+                
+            </div>
         </div>
     </div>
 </body>
