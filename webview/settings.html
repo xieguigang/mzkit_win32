@@ -121,20 +121,20 @@
             <ul class="list-unstyled ps-0">
                 <li class="mb-1">
                     <button id="mzkit_page_btn"
-                        class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                        data-bs-toggle="collapse" aria-expanded="true">
+                        class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">
                         MZKit App
                     </button>
                 </li>
                 <li class="mb-1">
                     <button id="msraw_btn"
                         class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                        data-bs-toggle="collapse" aria-expanded="false">
+                        data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
                         Raw File Viewer
                     </button>
                     <div class="collapse" id="dashboard-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">XIC/TIC
+                            <li><a id="chromagram_btn" href="#"
+                                    class="link-dark d-inline-flex text-decoration-none rounded">XIC/TIC
                                     Viewer</a>
                             </li>
                         </ul>
@@ -214,6 +214,11 @@
                         <label for="fragment_cutoff_value" class="form-label">Cutoff Threshold:</label>
                         <input type="range" class="form-range" min="0" max="1" step="0.05" id="fragment_cutoff_value">
                     </div>
+                </div>
+            </div>
+            <div id="chromagram_page" class="row">
+                <div class="col">
+
                 </div>
             </div>
         </div>

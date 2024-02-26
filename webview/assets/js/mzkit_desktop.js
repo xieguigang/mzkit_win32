@@ -1070,7 +1070,8 @@ var apps;
     (function (systems) {
         var pages = {
             "mzkit_page": "MZKit Settings",
-            "msraw_page": "Raw File Viewer"
+            "msraw_page": "Raw File Viewer",
+            "chromagram_page": "Chromagram Plot Styles"
         };
         var settings = /** @class */ (function (_super) {
             __extends(settings, _super);
@@ -1103,6 +1104,9 @@ var apps;
             };
             settings.prototype.msraw_btn_onclick = function () {
                 settings.closeAll().show("msraw_page");
+            };
+            settings.prototype.chromagram_btn_onclick = function () {
+                settings.closeAll().show("chromagram_page");
             };
             return settings;
         }(Bootstrap));

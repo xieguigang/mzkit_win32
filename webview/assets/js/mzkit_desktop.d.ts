@@ -265,6 +265,7 @@ declare namespace apps.systems {
         private static show;
         mzkit_page_btn_onclick(): void;
         msraw_btn_onclick(): void;
+        chromagram_btn_onclick(): void;
     }
 }
 declare namespace apps.viewer {
