@@ -1091,9 +1091,49 @@ var apps;
             settings.prototype.init = function () {
                 this.mzkit_page_btn_onclick();
                 this.load_profileTable();
-                settings.bindRangeDisplayValue();
+                settings.bindRangeDisplayValue(settings.defaultSettings());
             };
-            settings.bindRangeDisplayValue = function () {
+            settings.defaultSettings = function () {
+                return {
+                    // mzkit app
+                    "remember-location": true,
+                    "remember-layout": true,
+                    "language": 2,
+                    // raw file viewer
+                    "xic_ppm": 10,
+                    "fragment_cutoff": "relative",
+                    "fragment_cutoff_value": 0.05,
+                    // chromagram plot
+                    "colorset": [],
+                    "fill-plot-area": true,
+                    // preset element profiles
+                    "small_molecule_profile": { profile: "wiley", is_common: true },
+                    "np_profile": { profile: "wiley", is_common: true },
+                    "formula_ppm": 20,
+                    "formula_adducts": [],
+                    "custom_element_profile": [
+                        { atom: "C", min: 1, max: 100 },
+                        { atom: "H", min: 1, max: 1000 },
+                        { atom: "O", min: 0, max: 100 }
+                    ],
+                    // molecular networking
+                    "layout_iterations": 100,
+                    // graph layouts
+                    "stiffness": 41.76,
+                    "repulsion": 10000,
+                    "damping": 0.41,
+                    // spectrum tree
+                    "node_identical": 0.85,
+                    "node_similar": 0.8,
+                    "edge_filter": 0.8,
+                    // network styling
+                    "node_radius_min": 1,
+                    "node_radius_max": 30,
+                    "link_width_min": 1,
+                    "link_width_max": 12
+                };
+            };
+            settings.bindRangeDisplayValue = function (configs) {
                 var inputs = $ts.select(".form-range");
                 var labels = $ts.select(".form-label").ToDictionary(function (l) { return l.getAttribute("for"); }, function (lb) { return lb; });
                 var label_text0 = $ts.select(".form-label").ToDictionary(function (l) { return l.getAttribute("for"); }, function (lb) { return lb.innerText; });
@@ -1101,9 +1141,14 @@ var apps;
                     var id = range.id;
                     var label_text_raw = label_text0.Item(id);
                     var label_ctl = labels.Item(id);
-                    range.onchange = function () {
+                    var label_update = function () {
                         label_ctl.innerText = "".concat(label_text_raw, " (").concat(range.value, ")");
                     };
+                    range.onchange = label_update;
+                    if (!isNullOrUndefined(configs[id])) {
+                        range.value = configs[id];
+                        label_update();
+                    }
                 };
                 for (var _i = 0, _a = inputs.Select(function (i) { return i; }).ToArray(); _i < _a.length; _i++) {
                     var range = _a[_i];
@@ -1111,7 +1156,7 @@ var apps;
                 }
             };
             settings.getElementProfileTable = function () {
-                return $("#tableDiv");
+                return $("#custom_element_profile");
             };
             settings.prototype.load_profileTable = function () {
                 var bootstrap = settings.getElementProfileTable();

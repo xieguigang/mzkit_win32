@@ -261,9 +261,45 @@ declare namespace apps.systems {
     interface BootstrapTable {
         bootstrapTable(arg1: any, arg2?: any): any;
     }
+    interface mzkit_configs {
+        "remember-location": boolean;
+        "remember-layout": boolean;
+        "language": 0 | 1 | 2;
+        "xic_ppm": number;
+        "fragment_cutoff": "relative" | "quantile";
+        "fragment_cutoff_value": number;
+        "colorset": string[];
+        "fill-plot-area": boolean;
+        "small_molecule_profile": element_profile;
+        "np_profile": element_profile;
+        "formula_ppm": number;
+        "formula_adducts": string[];
+        "custom_element_profile": element_count[];
+        "layout_iterations": number;
+        "stiffness": number;
+        "repulsion": number;
+        "damping": number;
+        "node_identical": number;
+        "node_similar": number;
+        "edge_filter": number;
+        "node_radius_min": number;
+        "node_radius_max": number;
+        "link_width_min": number;
+        "link_width_max": number;
+    }
+    interface element_count {
+        atom: string;
+        min: number;
+        max: number;
+    }
+    interface element_profile {
+        "profile": "wiley" | "dnp";
+        "is_common": boolean;
+    }
     class settings extends Bootstrap {
         get appName(): string;
         protected init(): void;
+        private static defaultSettings;
         private static bindRangeDisplayValue;
         private static getElementProfileTable;
         private load_profileTable;

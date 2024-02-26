@@ -13,6 +13,60 @@ namespace apps.systems {
         bootstrapTable(arg1: any, arg2?: any);
     }
 
+    export interface mzkit_configs {
+        // mzkit app
+        "remember-location": boolean;
+        "remember-layout": boolean;
+        "language": 0 | 1 | 2;
+
+        // raw file viewer
+        "xic_ppm": number;
+        "fragment_cutoff": "relative" | "quantile";
+        "fragment_cutoff_value": number;
+
+        // chromagram plot
+        "colorset": string[];
+        "fill-plot-area": boolean;
+
+        // preset element profiles
+        "small_molecule_profile": element_profile;
+        "np_profile": element_profile;
+        "formula_ppm": number;
+        "formula_adducts": string[];
+        "custom_element_profile": element_count[];
+
+        // molecular networking
+        "layout_iterations": number;
+
+        // graph layouts
+        "stiffness": number;
+        "repulsion": number;
+        "damping": number;
+
+        // spectrum tree
+        "node_identical": number;
+        "node_similar": number;
+        "edge_filter": number;
+
+        // network styling
+        "node_radius_min": number;
+        "node_radius_max": number;
+
+        "link_width_min": number;
+        "link_width_max": number;
+    }
+
+    export interface element_count {
+        atom: string;
+        min: number;
+        max: number;
+    }
+
+    export interface element_profile {
+        "profile": "wiley" | "dnp";
+        "is_common": boolean;
+    }
+
     export class settings extends Bootstrap {
 
         get appName(): string {
@@ -23,10 +77,59 @@ namespace apps.systems {
             this.mzkit_page_btn_onclick();
             this.load_profileTable();
 
-            settings.bindRangeDisplayValue();
+            settings.bindRangeDisplayValue(settings.defaultSettings());
         }
 
-        private static bindRangeDisplayValue() {
+        private static defaultSettings(): mzkit_configs {
+            return <mzkit_configs>{
+                // mzkit app
+                "remember-location": true,
+                "remember-layout": true,
+                "language": 2,
+
+                // raw file viewer
+                "xic_ppm": 10,
+                "fragment_cutoff": "relative",
+                "fragment_cutoff_value": 0.05,
+
+                // chromagram plot
+                "colorset": [],
+                "fill-plot-area": true,
+
+                // preset element profiles
+                "small_molecule_profile": <element_profile>{ profile: "wiley", is_common: true },
+                "np_profile": <element_profile>{ profile: "wiley", is_common: true },
+                "formula_ppm": 20,
+                "formula_adducts": [],
+                "custom_element_profile": [
+                    <element_count>{ atom: "C", min: 1, max: 100 },
+                    <element_count>{ atom: "H", min: 1, max: 1000 },
+                    <element_count>{ atom: "O", min: 0, max: 100 }
+                ],
+
+                // molecular networking
+                "layout_iterations": 100,
+
+                // graph layouts
+                "stiffness": 41.76,
+                "repulsion": 10000,
+                "damping": 0.41,
+
+                // spectrum tree
+                "node_identical": 0.85,
+                "node_similar": 0.8,
+                "edge_filter": 0.8,
+
+                // network styling
+                "node_radius_min": 1,
+                "node_radius_max": 30,
+
+                "link_width_min": 1,
+                "link_width_max": 12
+            }
+        }
+
+        private static bindRangeDisplayValue(configs: mzkit_configs) {
             const inputs = $ts.select(".form-range");
             const labels = $ts.select(".form-label").ToDictionary(l => l.getAttribute("for"), lb => lb);
             const label_text0 = $ts.select(".form-label").ToDictionary(l => l.getAttribute("for"), lb => lb.innerText);
@@ -35,15 +138,21 @@ namespace apps.systems {
                 const id = range.id;
                 const label_text_raw = label_text0.Item(id);
                 const label_ctl = labels.Item(id);
-
-                range.onchange = function () {
+                const label_update = function () {
                     label_ctl.innerText = `${label_text_raw} (${range.value})`;
+                };
+
+                range.onchange = label_update;
+
+                if (!isNullOrUndefined(configs[id])) {
+                    range.value = configs[id];
+                    label_update();
                 }
             }
         }
 
         private static getElementProfileTable(): BootstrapTable {
-            return <any>$("#tableDiv");
+            return <any>$("#custom_element_profile");
         }
 
         private load_profileTable() {
