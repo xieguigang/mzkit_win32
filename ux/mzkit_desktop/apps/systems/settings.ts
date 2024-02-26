@@ -118,6 +118,12 @@ namespace apps.systems {
 
             $ts.value("#fragment_cutoff", configs["fragment_cutoff"]);
             $ts.value("#fill-plot-area", configs["fill-plot-area"]);
+
+            $ts.value("#small_molecule_profile", configs.small_molecule_profile.profile);
+            $ts.value("#sm_common", configs.small_molecule_profile.is_common);
+
+            $ts.value("#np_profile", configs.np_profile.profile);
+            $ts.value("#np_common", configs.np_profile.is_common);
         }
 
         private static defaultSettings(): mzkit_configs {
