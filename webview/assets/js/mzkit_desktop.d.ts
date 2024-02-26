@@ -314,10 +314,11 @@ declare namespace apps.systems {
     class settings extends Bootstrap {
         get appName(): string;
         protected init(): void;
+        private loadConfigs;
         private static defaultSettings;
         private static bindRangeDisplayValue;
         private static getElementProfileTable;
-        private load_profileTable;
+        private static load_profileTable;
         private static closeAll;
         private static show;
         mzkit_page_btn_onclick(): void;

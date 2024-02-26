@@ -98,11 +98,12 @@ namespace apps.systems {
         }
 
         protected init(): void {
-            const configs: mzkit_configs = settings.defaultSettings();
-
             this.mzkit_page_btn_onclick();
-            this.load_profileTable(configs);
+            this.loadConfigs(settings.defaultSettings());
+        }
 
+        private loadConfigs(configs: mzkit_configs) {
+            settings.load_profileTable(configs);
             settings.bindRangeDisplayValue(configs);
         }
 
@@ -181,7 +182,7 @@ namespace apps.systems {
             return <any>$("#custom_element_profile");
         }
 
-        private load_profileTable(configs: mzkit_configs) {
+        private static load_profileTable(configs: mzkit_configs) {
             const bootstrap: BootstrapTable = settings.getElementProfileTable();
             const tableOptions = {
                 columns: element_columns,

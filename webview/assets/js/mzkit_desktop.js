@@ -1112,9 +1112,11 @@ var apps;
                 configurable: true
             });
             settings.prototype.init = function () {
-                var configs = settings.defaultSettings();
                 this.mzkit_page_btn_onclick();
-                this.load_profileTable(configs);
+                this.loadConfigs(settings.defaultSettings());
+            };
+            settings.prototype.loadConfigs = function (configs) {
+                settings.load_profileTable(configs);
                 settings.bindRangeDisplayValue(configs);
             };
             settings.defaultSettings = function () {
@@ -1182,7 +1184,7 @@ var apps;
             settings.getElementProfileTable = function () {
                 return $("#custom_element_profile");
             };
-            settings.prototype.load_profileTable = function (configs) {
+            settings.load_profileTable = function (configs) {
                 var bootstrap = settings.getElementProfileTable();
                 var tableOptions = {
                     columns: systems.element_columns,
