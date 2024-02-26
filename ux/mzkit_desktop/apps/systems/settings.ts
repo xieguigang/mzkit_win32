@@ -5,7 +5,8 @@ namespace apps.systems {
         "msraw_page": "Raw File Viewer",
         "chromagram_page": "Chromagram Plot Styles",
         "formula_page": "Formula Search",
-        "element_profile_page": "Formula Search Profile"
+        "element_profile_page": "Formula Search Profile",
+        "molecule_networking_page": "Molecular Networking"
     };
 
     export interface BootstrapTable {
@@ -44,7 +45,7 @@ namespace apps.systems {
                 width: 200,
                 editable: {
                     type: "number",
-                    
+
                 }
             }, {
                 title: "Max",
@@ -101,6 +102,10 @@ namespace apps.systems {
 
         public add_element_onclick() {
             settings.getElementProfileTable().bootstrapTable('append', [{ "atom": "", "min": 0, "max": 0 }]);
+        }
+
+        public molecule_networking_btn_onclick() {
+            settings.closeAll().show("molecule_networking_page");
         }
     }
 }

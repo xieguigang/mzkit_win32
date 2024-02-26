@@ -274,6 +274,7 @@ declare namespace apps.systems {
         formula_btn_onclick(): void;
         profile_btn_onclick(): void;
         add_element_onclick(): void;
+        molecule_networking_btn_onclick(): void;
     }
 }
 declare namespace apps.viewer {

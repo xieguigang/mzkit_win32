@@ -1073,7 +1073,8 @@ var apps;
             "msraw_page": "Raw File Viewer",
             "chromagram_page": "Chromagram Plot Styles",
             "formula_page": "Formula Search",
-            "element_profile_page": "Formula Search Profile"
+            "element_profile_page": "Formula Search Profile",
+            "molecule_networking_page": "Molecular Networking"
         };
         var settings = /** @class */ (function (_super) {
             __extends(settings, _super);
@@ -1109,7 +1110,7 @@ var apps;
                         sortable: true,
                         width: 200,
                         editable: {
-                            type: "number"
+                            type: "number",
                         }
                     }, {
                         title: "Max",
@@ -1157,6 +1158,9 @@ var apps;
             };
             settings.prototype.add_element_onclick = function () {
                 settings.getElementProfileTable().bootstrapTable('append', [{ "atom": "", "min": 0, "max": 0 }]);
+            };
+            settings.prototype.molecule_networking_btn_onclick = function () {
+                settings.closeAll().show("molecule_networking_page");
             };
             return settings;
         }(Bootstrap));
