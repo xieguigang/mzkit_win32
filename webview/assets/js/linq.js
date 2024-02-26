@@ -5678,7 +5678,7 @@ var DOM;
             else {
                 switch (input.tagName.toLowerCase()) {
                     case "input":
-                        input.asInput.value = value;
+                        setValues(new DOMEnumerator([input]), value, strict);
                         break;
                     case "select":
                         setSelection(input, value);
@@ -6239,6 +6239,9 @@ var TypeExtensions;
         obj.removeClass = function (name) {
             extendsNode.removeClass(name);
             return node;
+        };
+        obj.hasClass = function (name) {
+            return node.classList.contains(name);
         };
         obj.onClassChanged = function (className, action, includesRemoves) {
             var predicate = new DOM.Events.StatusChanged(function () {
