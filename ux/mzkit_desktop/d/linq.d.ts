@@ -121,10 +121,6 @@ declare class LINQIterator<T> {
     protected sequence: T[];
     private i;
     /**
-     * 实现迭代器的关键元素之1
-    */
-    [Symbol.iterator](): this;
-    /**
      * The number of elements in the data sequence.
     */
     get Count(): number;
@@ -157,8 +153,8 @@ declare module Enumerable {
      * 进行数据序列的排序操作
      *
     */
-    function OrderBy<T>(source: T[], key: (e: T) => number): IEnumerator<T>;
-    function OrderByDescending<T>(source: T[], key: (e: T) => number): IEnumerator<T>;
+    function OrderBy<T>(source: T[], key: (e: T) => number | string): IEnumerator<T>;
+    function OrderByDescending<T>(source: T[], key: (e: T) => number | string): IEnumerator<T>;
     function Take<T>(source: T[], n: number): IEnumerator<T>;
     function Skip<T>(source: T[], n: number): IEnumerator<T>;
     function TakeWhile<T>(source: T[], predicate: (e: T) => boolean): IEnumerator<T>;
@@ -283,7 +279,7 @@ declare class IEnumerator<T> extends LINQIterator<T> {
      * @returns An ``System.Linq.IOrderedEnumerable<T>`` whose elements are
      *          sorted according to a key.
     */
-    OrderBy(key: (e: T) => number): IEnumerator<T>;
+    OrderBy(key: (e: T) => number | string): IEnumerator<T>;
     /**
      * Sorts the elements of a sequence in descending order according to a key.
      *
@@ -292,7 +288,7 @@ declare class IEnumerator<T> extends LINQIterator<T> {
      * @returns An ``System.Linq.IOrderedEnumerable<T>`` whose elements are
      *          sorted in descending order according to a key.
     */
-    OrderByDescending(key: (e: T) => number): IEnumerator<T>;
+    OrderByDescending(key: (e: T) => number | string): IEnumerator<T>;
     /**
      * Split a sequence by elements count
     */
@@ -765,6 +761,13 @@ declare module Strings {
      * @param charsPerLine 每一行文本之中的字符数量的最大值
     */
     function WrappingLines(text: string, charsPerLine?: number, lineTrim?: boolean): string;
+    /**
+     * get hashcode of a given string
+     *
+     * @param str
+     * @returns
+     */
+    function hashCode(str: string): number;
 }
 declare namespace TypeScript.Reflection {
     /**
@@ -994,7 +997,7 @@ declare namespace Internal {
          *
          * @returns 对于checkbox类型的input而言，逻辑值是以字符串的形式返回
         */
-        value(id: string, set_value?: string, strict?: boolean): any;
+        value(id: string, set_value?: string | number | boolean, strict?: boolean): any;
         typeof<T extends object>(any: T): TypeScript.Reflection.TypeInfo;
         clone<T>(obj: T): T;
         /**
@@ -2004,7 +2007,7 @@ declare namespace DOM {
          *   如果目标id标记的控件不是输入类型的，则如果处于非严格模式下，
          *   即这个参数为``false``的时候会直接强制读取value属性值
         */
-        function setValue(resource: string, value: string, strict?: boolean): void;
+        function setValue(resource: string, value: string | number | boolean, strict?: boolean): void;
     }
 }
 declare namespace DOM {
@@ -2128,6 +2131,7 @@ interface HTMLExtensions {
     hide(): IHTMLElement;
     addClass(name: string): IHTMLElement;
     removeClass(name: string): IHTMLElement;
+    hasClass(name: string): boolean;
     /**
      * 当class列表中指定的class名称出现或者消失的时候将会触发给定的action调用
     */
@@ -2319,6 +2323,21 @@ declare namespace TypeScript.Data {
         sorted: boolean;
         method: string;
     }): number;
+}
+declare namespace OADate {
+    function DateToOADate(value: any, offset?: number): number;
+    function OADateToDate(value: number, offset?: number): Date;
+    class TDateTime extends Date {
+        constructor(...args: any[]);
+        toJSON(): number;
+        prepareOADate(value: number): number;
+    }
+    class TDate extends TDateTime {
+        prepareOADate(value: number): any;
+    }
+    class TTime extends TDateTime {
+        prepareOADate(value: number): number;
+    }
 }
 declare namespace TypeScript.Data {
     class PriorityQueue<T> extends IEnumerator<QueueItem<T>> {
