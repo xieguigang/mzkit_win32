@@ -402,9 +402,12 @@
             </div>
             <div id="molecule_networking_page" class="row">
                 <div class="col">
-                    <div>
-                        <label for="layout_iterations" class="form-label">Layout Iterations:</label>
-                        <input type="range" class="form-range" min="100" max="999999" step="100" id="layout_iterations">
+                    <div class="row">
+                        <div class="col-auto">
+                            <label for="layout_iterations" class="form-label">Layout Iterations:</label>
+                            <input type="range" class="form-range" min="100" max="999999" step="100"
+                                id="layout_iterations">
+                        </div>
                     </div>
 
                     <br />
@@ -415,30 +418,18 @@
 
                             <div class="row">
                                 <div class="col-auto">
-                                    <label for="formula_ppm" class="form-label">Default Formula PPM:</label>
+                                    <label for="formula_ppm" class="form-label">Stiffness:</label>
                                     <input type="range" class="form-range" min="0" max="30" step="1" id="formula_ppm">
                                 </div>
 
                                 <div class="col-auto">
-                                    <p>Precursor Adducts:</p>
+                                    <label for="formula_ppm" class="form-label">Repulsion:</label>
+                                    <input type="range" class="form-range" min="0" max="30" step="1" id="formula_ppm">
+                                </div>
 
-                                    <ul class="list-group" id="formula_adducts">
-                                        <li class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value=""
-                                                id="firstCheckbox">
-                                            <label class="form-check-label" for="firstCheckbox">First checkbox</label>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value=""
-                                                id="secondCheckbox">
-                                            <label class="form-check-label" for="secondCheckbox">Second checkbox</label>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value=""
-                                                id="thirdCheckbox">
-                                            <label class="form-check-label" for="thirdCheckbox">Third checkbox</label>
-                                        </li>
-                                    </ul>
+                                <div class="col-auto">
+                                    <label for="formula_ppm" class="form-label">Damping:</label>
+                                    <input type="range" class="form-range" min="0" max="30" step="1" id="formula_ppm">
                                 </div>
                             </div>
                             </p>
@@ -453,30 +444,18 @@
 
                             <div class="row">
                                 <div class="col-auto">
-                                    <label for="formula_ppm" class="form-label">Default Formula PPM:</label>
+                                    <label for="formula_ppm" class="form-label">Node Identical:</label>
                                     <input type="range" class="form-range" min="0" max="30" step="1" id="formula_ppm">
                                 </div>
 
                                 <div class="col-auto">
-                                    <p>Precursor Adducts:</p>
+                                    <label for="formula_ppm" class="form-label">Node Similarity:</label>
+                                    <input type="range" class="form-range" min="0" max="30" step="1" id="formula_ppm">
+                                </div>
 
-                                    <ul class="list-group" id="formula_adducts">
-                                        <li class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value=""
-                                                id="firstCheckbox">
-                                            <label class="form-check-label" for="firstCheckbox">First checkbox</label>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value=""
-                                                id="secondCheckbox">
-                                            <label class="form-check-label" for="secondCheckbox">Second checkbox</label>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value=""
-                                                id="thirdCheckbox">
-                                            <label class="form-check-label" for="thirdCheckbox">Third checkbox</label>
-                                        </li>
-                                    </ul>
+                                <div class="col-auto">
+                                    <label for="formula_ppm" class="form-label">Default Edge Filter:</label>
+                                    <input type="range" class="form-range" min="0" max="30" step="1" id="formula_ppm">
                                 </div>
                             </div>
                             </p>
@@ -490,31 +469,36 @@
                             <p class="card-text">
 
                             <div class="row">
-                                <div class="col-auto">
-                                    <label for="formula_ppm" class="form-label">Default Formula PPM:</label>
-                                    <input type="range" class="form-range" min="0" max="30" step="1" id="formula_ppm">
+                                <div clas="col-auto">
+                                    <div class="row">
+                                        <p>Node radius range:</p>
+                                        <div class="col-auto">
+                                            <label for="formula_ppm" class="form-label">from:</label>
+                                            <input type="range" class="form-range" min="0" max="30" step="1"
+                                                id="formula_ppm">
+                                        </div>
+                                        <div class="col-auto">
+                                            <label for="formula_ppm" class="form-label">to:</label>
+                                            <input type="range" class="form-range" min="0" max="30" step="1"
+                                                id="formula_ppm">
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="col-auto">
-                                    <p>Precursor Adducts:</p>
-
-                                    <ul class="list-group" id="formula_adducts">
-                                        <li class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value=""
-                                                id="firstCheckbox">
-                                            <label class="form-check-label" for="firstCheckbox">First checkbox</label>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value=""
-                                                id="secondCheckbox">
-                                            <label class="form-check-label" for="secondCheckbox">Second checkbox</label>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value=""
-                                                id="thirdCheckbox">
-                                            <label class="form-check-label" for="thirdCheckbox">Third checkbox</label>
-                                        </li>
-                                    </ul>
+                                <div clas="col-auto">
+                                    <div class="row">
+                                        <p>Link width range:</p>
+                                        <div class="col-auto">
+                                            <label for="formula_ppm" class="form-label">from:</label>
+                                            <input type="range" class="form-range" min="0" max="30" step="1"
+                                                id="formula_ppm">
+                                        </div>
+                                        <div class="col-auto">
+                                            <label for="formula_ppm" class="form-label">to:</label>
+                                            <input type="range" class="form-range" min="0" max="30" step="1"
+                                                id="formula_ppm">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             </p>
