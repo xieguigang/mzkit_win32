@@ -378,16 +378,16 @@
                     </label>
 
                     <select id="copy_profile" class="form-select" aria-label="Copy From Preset Element Profile">
-                        <option selected>Default</option>
-                        <option value="1">Small Molecule</option>
-                        <option value="1">Natural Product</option>
-                        <option value="1">General Flavone</option>
+                        <option value="default" selected>Default</option>
+                        <option value="small_molecule">Small Molecule</option>
+                        <option value="natural_product">Natural Product</option>
+                        <option value="general_falvone">General Flavone</option>
                     </select>
 
                 </div>
 
                 <div class="col-auto">
-                    <button type="button" class="btn btn-primary mb-3">Reset</button>
+                    <button id="reset_profile" type="button" class="btn btn-primary mb-3">Reset</button>
                 </div>
 
                 <div class="col-auto" id="tableDiv">
@@ -418,18 +418,18 @@
 
                             <div class="row">
                                 <div class="col-auto">
-                                    <label for="formula_ppm" class="form-label">Stiffness:</label>
-                                    <input type="range" class="form-range" min="0" max="30" step="1" id="formula_ppm">
+                                    <label for="stiffness" class="form-label">Stiffness:</label>
+                                    <input type="range" class="form-range" min="0" max="30" step="1" id="stiffness">
                                 </div>
 
                                 <div class="col-auto">
-                                    <label for="formula_ppm" class="form-label">Repulsion:</label>
-                                    <input type="range" class="form-range" min="0" max="30" step="1" id="formula_ppm">
+                                    <label for="repulsion" class="form-label">Repulsion:</label>
+                                    <input type="range" class="form-range" min="0" max="30" step="1" id="repulsion">
                                 </div>
 
                                 <div class="col-auto">
-                                    <label for="formula_ppm" class="form-label">Damping:</label>
-                                    <input type="range" class="form-range" min="0" max="30" step="1" id="formula_ppm">
+                                    <label for="damping" class="form-label">Damping:</label>
+                                    <input type="range" class="form-range" min="0" max="30" step="1" id="damping">
                                 </div>
                             </div>
                             </p>
@@ -444,18 +444,19 @@
 
                             <div class="row">
                                 <div class="col-auto">
-                                    <label for="formula_ppm" class="form-label">Node Identical:</label>
-                                    <input type="range" class="form-range" min="0" max="30" step="1" id="formula_ppm">
+                                    <label for="node_identical" class="form-label">Node Identical:</label>
+                                    <input type="range" class="form-range" min="0" max="30" step="1"
+                                        id="node_identical">
                                 </div>
 
                                 <div class="col-auto">
-                                    <label for="formula_ppm" class="form-label">Node Similarity:</label>
-                                    <input type="range" class="form-range" min="0" max="30" step="1" id="formula_ppm">
+                                    <label for="node_similar" class="form-label">Node Similarity:</label>
+                                    <input type="range" class="form-range" min="0" max="30" step="1" id="node_similar">
                                 </div>
 
                                 <div class="col-auto">
-                                    <label for="formula_ppm" class="form-label">Default Edge Filter:</label>
-                                    <input type="range" class="form-range" min="0" max="30" step="1" id="formula_ppm">
+                                    <label for="edge_filter" class="form-label">Default Edge Filter:</label>
+                                    <input type="range" class="form-range" min="0" max="30" step="1" id="edge_filter">
                                 </div>
                             </div>
                             </p>
@@ -473,14 +474,14 @@
                                     <div class="row">
                                         <p>Node radius range:</p>
                                         <div class="col-auto">
-                                            <label for="formula_ppm" class="form-label">from:</label>
+                                            <label for="node_radius_min" class="form-label">from:</label>
                                             <input type="range" class="form-range" min="0" max="30" step="1"
-                                                id="formula_ppm">
+                                                id="node_radius_min">
                                         </div>
                                         <div class="col-auto">
-                                            <label for="formula_ppm" class="form-label">to:</label>
+                                            <label for="node_radius_max" class="form-label">to:</label>
                                             <input type="range" class="form-range" min="0" max="30" step="1"
-                                                id="formula_ppm">
+                                                id="node_radius_max">
                                         </div>
                                     </div>
                                 </div>
@@ -489,14 +490,14 @@
                                     <div class="row">
                                         <p>Link width range:</p>
                                         <div class="col-auto">
-                                            <label for="formula_ppm" class="form-label">from:</label>
+                                            <label for="link_width_min" class="form-label">from:</label>
                                             <input type="range" class="form-range" min="0" max="30" step="1"
-                                                id="formula_ppm">
+                                                id="link_width_min">
                                         </div>
                                         <div class="col-auto">
-                                            <label for="formula_ppm" class="form-label">to:</label>
+                                            <label for="link_width_max" class="form-label">to:</label>
                                             <input type="range" class="form-range" min="0" max="30" step="1"
-                                                id="formula_ppm">
+                                                id="link_width_max">
                                         </div>
                                     </div>
                                 </div>
