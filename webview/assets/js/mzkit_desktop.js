@@ -1123,6 +1123,9 @@ var apps;
                 settings.bindRangeDisplayValue(configs, function (config) {
                     // save
                 });
+                $ts.value("#language", configs.language);
+                $ts.value("#remember-location", configs["remember-location"]);
+                $ts.value("#remember-layout", configs["remember-layout"]);
             };
             settings.defaultSettings = function () {
                 return {

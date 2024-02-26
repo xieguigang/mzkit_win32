@@ -111,6 +111,10 @@ namespace apps.systems {
             settings.bindRangeDisplayValue(configs, function (config) {
                 // save
             });
+
+            $ts.value("#language", <any>configs.language);
+            $ts.value("#remember-location", <any>configs["remember-location"]);
+            $ts.value("#remember-layout", <any>configs["remember-layout"]);
         }
 
         private static defaultSettings(): mzkit_configs {
