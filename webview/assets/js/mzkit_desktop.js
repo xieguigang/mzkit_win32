@@ -368,9 +368,9 @@ var gl_plot;
             var _this = this;
             return {
                 type: 'bar3D',
-                shading: 'color', // color, lambert, realistic
+                shading: 'color',
                 barSize: 0.1,
-                name: "Intensity ".concat(label), // format_tag(r),
+                name: "Intensity ".concat(label),
                 spot_labels: $from(data).Select(function (r) { return _this.read_id(r); }).ToArray(),
                 symbolSize: 1,
                 dimensions: [
@@ -437,15 +437,15 @@ var gl_plot;
                     viewControl: {
                         distance: 200,
                         beta: -20,
-                        panMouseButton: 'right', //平移操作使用的鼠标按键
-                        rotateMouseButton: 'left', //旋转操作使用的鼠标按键
+                        panMouseButton: 'right',
+                        rotateMouseButton: 'left',
                         alpha: 30 // 让canvas在x轴有一定的倾斜角度
                     },
                     postEffect: {
                         enable: false,
                         SSAO: {
-                            radius: 1, //环境光遮蔽的采样半径。半径越大效果越自然
-                            intensity: 1, //环境光遮蔽的强度
+                            radius: 1,
+                            intensity: 1,
                             enable: false
                         }
                     },
@@ -478,17 +478,17 @@ var gl_plot;
                 },
                 series: scatter3D,
                 tooltip: {
-                    show: true, // 是否显示
-                    trigger: 'item', // 触发类型  'item'图形触发：散点图，饼图等无类目轴的图表中使用； 'axis'坐标轴触发；'none'：什么都不触发。
+                    show: true,
+                    trigger: 'item',
                     axisPointer: {
                         type: 'cross', // 'line' 直线指示器  'shadow' 阴影指示器  'none' 无指示器  'cross' 十字准星指示器。
                     },
                     // showContent: true, //是否显示提示框浮层，默认显示。
                     // triggerOn: 'mouseover', // 触发时机'click'鼠标点击时触发。 
-                    backgroundColor: 'white', // 提示框浮层的背景颜色。
-                    borderColor: '#333', // 提示框浮层的边框颜色。
-                    borderWidth: 0, // 提示框浮层的边框宽。
-                    padding: 5, // 提示框浮层内边距，
+                    backgroundColor: 'white',
+                    borderColor: '#333',
+                    borderWidth: 0,
+                    padding: 5,
                     textStyle: {
                         color: 'darkblue',
                         fontStyle: 'normal',
@@ -1126,6 +1126,8 @@ var apps;
                 $ts.value("#language", configs.language);
                 $ts.value("#remember-location", configs["remember-location"]);
                 $ts.value("#remember-layout", configs["remember-layout"]);
+                $ts.value("#fragment_cutoff", configs["fragment_cutoff"]);
+                $ts.value("#fill-plot-area", configs["fill-plot-area"]);
             };
             settings.defaultSettings = function () {
                 return {
@@ -1198,7 +1200,7 @@ var apps;
                 var bootstrap = settings.getElementProfileTable();
                 var tableOptions = {
                     columns: systems.element_columns,
-                    editable: true, //editable需要设置为 true
+                    editable: true,
                     striped: true,
                     clickToSelect: true
                 };
@@ -1371,17 +1373,17 @@ var apps;
                     zAxis3D: { type: 'value', name: 'z' },
                     series: scatter3D,
                     tooltip: {
-                        show: true, // 是否显示
-                        trigger: 'item', // 触发类型  'item'图形触发：散点图，饼图等无类目轴的图表中使用； 'axis'坐标轴触发；'none'：什么都不触发。
+                        show: true,
+                        trigger: 'item',
                         axisPointer: {
                             type: 'cross', // 'line' 直线指示器  'shadow' 阴影指示器  'none' 无指示器  'cross' 十字准星指示器。
                         },
                         // showContent: true, //是否显示提示框浮层，默认显示。
                         // triggerOn: 'mouseover', // 触发时机'click'鼠标点击时触发。 
-                        backgroundColor: 'white', // 提示框浮层的背景颜色。
-                        borderColor: '#333', // 提示框浮层的边框颜色。
-                        borderWidth: 0, // 提示框浮层的边框宽。
-                        padding: 5, // 提示框浮层内边距，
+                        backgroundColor: 'white',
+                        borderColor: '#333',
+                        borderWidth: 0,
+                        padding: 5,
                         textStyle: {
                             color: 'skyblue',
                             fontStyle: 'normal',
