@@ -5707,6 +5707,21 @@ var DOM;
                 }
             }
         }
+        function setChecks(inputs, value) {
+            var _loop_1 = function (input) {
+                input.value = value.toString();
+                if (value) {
+                    input.checked = true;
+                }
+                else {
+                    input.checked = false;
+                }
+            };
+            for (var _i = 0, _a = inputs.Select(function (i) { return input; }).ToArray(); _i < _a.length; _i++) {
+                var input = _a[_i];
+                _loop_1(input);
+            }
+        }
         /**
          * Set option value for checkbox or radio button
         */
@@ -5730,7 +5745,7 @@ var DOM;
                     var type = first.asInput.type;
                     switch (type.toLowerCase()) {
                         case "checkbox":
-                            setOption(inputs, value);
+                            setChecks(inputs, typeof value === "string" ? parseBoolean(value) : value);
                             break;
                         case "radio":
                             setOption(inputs, value);
@@ -8824,7 +8839,7 @@ var Internal;
         // }
         function hookOnChange(app, elements, type) {
             elements = $from(elements).Select(function (id) { return "".concat(id).concat(onchangeToken); }).ToArray();
-            var _loop_1 = function (publicMethodName) {
+            var _loop_2 = function (publicMethodName) {
                 if (elements.indexOf(publicMethodName) == -1) {
                     return "continue";
                 }
@@ -8870,7 +8885,7 @@ var Internal;
             };
             for (var _i = 0, _a = type.methods; _i < _a.length; _i++) {
                 var publicMethodName = _a[_i];
-                _loop_1(publicMethodName);
+                _loop_2(publicMethodName);
             }
         }
         function hookEventHandles(app) {
