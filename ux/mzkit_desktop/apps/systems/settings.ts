@@ -11,7 +11,7 @@ namespace apps.systems {
         }
 
         protected init(): void {
-
+            this.mzkit_page_btn_onclick();
         }
 
         private static closeAll() {

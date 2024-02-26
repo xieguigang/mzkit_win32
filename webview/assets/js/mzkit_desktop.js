@@ -1084,6 +1084,7 @@ var apps;
                 configurable: true
             });
             settings.prototype.init = function () {
+                this.mzkit_page_btn_onclick();
             };
             settings.closeAll = function () {
                 for (var _i = 0, pages_1 = pages; _i < pages_1.length; _i++) {
