@@ -82,7 +82,7 @@ Public Class frmSettings
         pages = {elementProfile, appConfig, viewer, plotConfig, presetProfile, mnSettings}
 
         For Each page In pages
-            Panel1.Controls.Add(page)
+            ' Panel1.Controls.Add(page)
             page.Dock = DockStyle.Fill
             Call DirectCast(CObj(page), ISaveSettings).LoadSettings()
         Next
@@ -115,12 +115,12 @@ Public Class frmSettings
             page2.Hide()
         Next
 
-        LinkLabel1.Text = page.Text
+        ' LinkLabel1.Text = page.Text
         page.Show()
         showPageLink = DirectCast(CObj(page), IPageSettings)
     End Sub
 
-    Private Sub TreeView1_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles TreeView1.AfterSelect
+    Private Sub TreeView1_AfterSelect(sender As Object, e As TreeViewEventArgs)
         Select Case e.Node.Text
             Case "Element Profile" : showPage(elementProfile)
             Case "Mzkit App" : showPage(appConfig)
@@ -131,7 +131,7 @@ Public Class frmSettings
         End Select
     End Sub
 
-    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
         Call showPageLink.ShowPage()
     End Sub
 End Class
