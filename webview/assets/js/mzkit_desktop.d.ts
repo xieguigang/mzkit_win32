@@ -258,6 +258,21 @@ declare namespace apps.systems {
     }
 }
 declare namespace apps.systems {
+    const element_columns: ({
+        title: string;
+        field: string;
+        sortable: boolean;
+        width: number;
+        editable: boolean;
+    } | {
+        title: string;
+        field: string;
+        sortable: boolean;
+        width: number;
+        editable: {
+            type: string;
+        };
+    })[];
     interface BootstrapTable {
         bootstrapTable(arg1: any, arg2?: any): any;
     }

@@ -1076,6 +1076,29 @@ var apps;
             "element_profile_page": "Formula Search Profile",
             "molecule_networking_page": "Molecular Networking"
         };
+        systems.element_columns = [{
+                title: "Atom Element",
+                field: "atom",
+                sortable: true,
+                width: 200,
+                editable: true,
+            }, {
+                title: "Min",
+                field: "min",
+                sortable: true,
+                width: 200,
+                editable: {
+                    type: "number"
+                }
+            }, {
+                title: "Max",
+                field: "max",
+                sortable: true,
+                width: 200,
+                editable: {
+                    type: "number"
+                }
+            }];
         var settings = /** @class */ (function (_super) {
             __extends(settings, _super);
             function settings() {
@@ -1089,9 +1112,10 @@ var apps;
                 configurable: true
             });
             settings.prototype.init = function () {
+                var configs = settings.defaultSettings();
                 this.mzkit_page_btn_onclick();
-                this.load_profileTable();
-                settings.bindRangeDisplayValue(settings.defaultSettings());
+                this.load_profileTable(configs);
+                settings.bindRangeDisplayValue(configs);
             };
             settings.defaultSettings = function () {
                 return {
@@ -1158,40 +1182,16 @@ var apps;
             settings.getElementProfileTable = function () {
                 return $("#custom_element_profile");
             };
-            settings.prototype.load_profileTable = function () {
+            settings.prototype.load_profileTable = function (configs) {
                 var bootstrap = settings.getElementProfileTable();
-                var data = [];
-                var columns = [{
-                        title: "Atom Element",
-                        field: "atom",
-                        sortable: true,
-                        width: 200,
-                        editable: true,
-                    }, {
-                        title: "Min",
-                        field: "min",
-                        sortable: true,
-                        width: 200,
-                        editable: {
-                            type: "number"
-                        }
-                    }, {
-                        title: "Max",
-                        field: "max",
-                        sortable: true,
-                        width: 200,
-                        editable: {
-                            type: "number"
-                        }
-                    }];
                 var tableOptions = {
-                    columns: columns,
+                    columns: systems.element_columns,
                     editable: true, //editable需要设置为 true
                     striped: true,
                     clickToSelect: true
                 };
                 bootstrap.bootstrapTable(tableOptions);
-                bootstrap.bootstrapTable("load", data);
+                bootstrap.bootstrapTable("load", configs.custom_element_profile || []);
             };
             settings.closeAll = function () {
                 for (var _i = 0, _a = Object.keys(pages); _i < _a.length; _i++) {

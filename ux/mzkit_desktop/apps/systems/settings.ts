@@ -9,6 +9,30 @@ namespace apps.systems {
         "molecule_networking_page": "Molecular Networking"
     };
 
+    export const element_columns = [{
+        title: "Atom Element",
+        field: "atom",
+        sortable: true,
+        width: 200,
+        editable: true,
+    }, {
+        title: "Min",
+        field: "min",
+        sortable: true,
+        width: 200,
+        editable: {
+            type: "number"
+        }
+    }, {
+        title: "Max",
+        field: "max",
+        sortable: true,
+        width: 200,
+        editable: {
+            type: "number"
+        }
+    }];
+
     export interface BootstrapTable {
         bootstrapTable(arg1: any, arg2?: any);
     }
@@ -74,10 +98,12 @@ namespace apps.systems {
         }
 
         protected init(): void {
-            this.mzkit_page_btn_onclick();
-            this.load_profileTable();
+            const configs: mzkit_configs = settings.defaultSettings();
 
-            settings.bindRangeDisplayValue(settings.defaultSettings());
+            this.mzkit_page_btn_onclick();
+            this.load_profileTable(configs);
+
+            settings.bindRangeDisplayValue(configs);
         }
 
         private static defaultSettings(): mzkit_configs {
@@ -155,42 +181,16 @@ namespace apps.systems {
             return <any>$("#custom_element_profile");
         }
 
-        private load_profileTable() {
+        private load_profileTable(configs: mzkit_configs) {
             const bootstrap: BootstrapTable = settings.getElementProfileTable();
-
-            let data = [];
-            let columns = [{
-                title: "Atom Element",
-                field: "atom",
-                sortable: true,
-                width: 200,
-                editable: true,
-            }, {
-                title: "Min",
-                field: "min",
-                sortable: true,
-                width: 200,
-                editable: {
-                    type: "number"
-                }
-            }, {
-                title: "Max",
-                field: "max",
-                sortable: true,
-                width: 200,
-                editable: {
-                    type: "number"
-                }
-            }];
-
-            let tableOptions = {
-                columns: columns,
+            const tableOptions = {
+                columns: element_columns,
                 editable: true, //editable需要设置为 true
                 striped: true,
                 clickToSelect: true
             }
             bootstrap.bootstrapTable(tableOptions);
-            bootstrap.bootstrapTable("load", data);
+            bootstrap.bootstrapTable("load", configs.custom_element_profile || []);
         }
 
         private static closeAll(): typeof settings {
