@@ -1072,7 +1072,8 @@ var apps;
             "mzkit_page": "MZKit Settings",
             "msraw_page": "Raw File Viewer",
             "chromagram_page": "Chromagram Plot Styles",
-            "formula_page": "Formula Search"
+            "formula_page": "Formula Search",
+            "element_profile_page": "Formula Search Profile"
         };
         var settings = /** @class */ (function (_super) {
             __extends(settings, _super);
@@ -1111,6 +1112,9 @@ var apps;
             };
             settings.prototype.formula_btn_onclick = function () {
                 settings.closeAll().show("formula_page");
+            };
+            settings.prototype.profile_btn_onclick = function () {
+                settings.closeAll().show("element_profile_page");
             };
             return settings;
         }(Bootstrap));

@@ -153,7 +153,8 @@
                     </button>
                     <div class="collapse" id="orders-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Element
+                            <li><a id="profile_btn" href="#"
+                                    class="link-dark d-inline-flex text-decoration-none rounded">Element
                                     Profile</a>
                             </li>
                         </ul>
@@ -359,6 +360,26 @@
                             </p>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div id="element_profile_page" class="row">
+                <div class="col-auto">
+
+                    <label class="form-check-label" for="copy_profile">
+                        Copy From Preset Element Profile:
+                    </label>
+
+                    <select id="copy_profile" class="form-select" aria-label="Copy From Preset Element Profile">
+                        <option selected>Default</option>
+                        <option value="1">Small Molecule</option>
+                        <option value="1">Natural Product</option>
+                        <option value="1">General Flavone</option>
+                    </select>
+
+                </div>
+
+                <div class="col-auto">
+                    <button type="button" class="btn btn-primary mb-3">Reset</button>
                 </div>
             </div>
         </div>

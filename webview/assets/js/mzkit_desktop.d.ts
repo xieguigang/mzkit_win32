@@ -267,6 +267,7 @@ declare namespace apps.systems {
         msraw_btn_onclick(): void;
         chromagram_btn_onclick(): void;
         formula_btn_onclick(): void;
+        profile_btn_onclick(): void;
     }
 }
 declare namespace apps.viewer {

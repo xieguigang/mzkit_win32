@@ -4,7 +4,8 @@ namespace apps.systems {
         "mzkit_page": "MZKit Settings",
         "msraw_page": "Raw File Viewer",
         "chromagram_page": "Chromagram Plot Styles",
-        "formula_page": "Formula Search"
+        "formula_page": "Formula Search",
+        "element_profile_page": "Formula Search Profile"
     };
 
     export class settings extends Bootstrap {
@@ -44,6 +45,10 @@ namespace apps.systems {
 
         public formula_btn_onclick() {
             settings.closeAll().show("formula_page");
+        }
+
+        public profile_btn_onclick() {
+            settings.closeAll().show("element_profile_page");
         }
     }
 }
