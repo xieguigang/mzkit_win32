@@ -1089,6 +1089,95 @@ var apps;
             });
             settings.prototype.init = function () {
                 this.mzkit_page_btn_onclick();
+                this.load_profileTable();
+            };
+            settings.prototype.load_profileTable = function () {
+                var bootstrap = $("#tableDiv");
+                var data = [{
+                        id: 1,
+                        month: 1,
+                        department: "技术部",
+                        fee: 10090,
+                        comment: "comment"
+                    }, {
+                        id: 1,
+                        month: 2,
+                        department: "管理中心",
+                        fee: 19000,
+                        comment: "备注"
+                    }];
+                var columns = [{
+                        title: "编号",
+                        field: "id",
+                        sortable: true,
+                        width: 200,
+                        editable: false,
+                    }, {
+                        title: "月份",
+                        field: "month",
+                        sortable: true,
+                        width: 200,
+                        formatter: function (v) {
+                            return v + "月";
+                        },
+                        editable: {
+                            type: "select",
+                            options: {
+                                items: [{
+                                        value: 1,
+                                        label: "1月",
+                                    }, {
+                                        value: 2,
+                                        label: "2月",
+                                    }, {
+                                        value: 3,
+                                        label: "3月",
+                                    }, {
+                                        value: 4,
+                                        label: "4月",
+                                    }, {
+                                        value: 5,
+                                        label: "5月",
+                                    }]
+                            }
+                        }
+                    }, {
+                        title: "部门",
+                        field: "department",
+                        sortable: true,
+                        width: 200,
+                        editable: {
+                            type: "select",
+                            options: {
+                                items: [
+                                    "技术部", "生产部", "管理中心"
+                                ]
+                            }
+                        }
+                    }, {
+                        title: "管理费用",
+                        field: "fee",
+                        sortable: true,
+                        width: 200,
+                        editable: {
+                            type: "number"
+                        }
+                    }, {
+                        title: "备注",
+                        field: "comment",
+                        sortable: true,
+                        width: 200,
+                        editable: true,
+                        // editable:{
+                        //   type:"text"
+                        // }
+                    },];
+                var tableOptions = {
+                    columns: columns,
+                    editable: true, //editable需要设置为 true
+                };
+                bootstrap.bootstrapTable(tableOptions);
+                bootstrap.bootstrapTable("load", data);
             };
             settings.closeAll = function () {
                 for (var _i = 0, _a = Object.keys(pages); _i < _a.length; _i++) {

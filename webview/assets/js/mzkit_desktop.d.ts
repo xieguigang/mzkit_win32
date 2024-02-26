@@ -258,9 +258,13 @@ declare namespace apps.systems {
     }
 }
 declare namespace apps.systems {
+    interface BootstrapTable {
+        bootstrapTable(arg1: any, arg2?: any): any;
+    }
     class settings extends Bootstrap {
         get appName(): string;
         protected init(): void;
+        private load_profileTable;
         private static closeAll;
         private static show;
         mzkit_page_btn_onclick(): void;
