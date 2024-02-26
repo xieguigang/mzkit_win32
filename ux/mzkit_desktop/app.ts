@@ -12,6 +12,7 @@ namespace app.desktop {
         Router.AddAppHandler(new apps.systems.pluginMgr());
         Router.AddAppHandler(new apps.systems.pluginPkg());
         Router.AddAppHandler(new apps.systems.servicesManager());
+        Router.AddAppHandler(new apps.systems.settings());
 
         // data analysis & data visualization
         Router.AddAppHandler(new apps.viewer.three_app());

@@ -307,6 +307,7 @@ var app;
             Router.AddAppHandler(new apps.systems.pluginMgr());
             Router.AddAppHandler(new apps.systems.pluginPkg());
             Router.AddAppHandler(new apps.systems.servicesManager());
+            Router.AddAppHandler(new apps.systems.settings());
             // data analysis & data visualization
             Router.AddAppHandler(new apps.viewer.three_app());
             Router.AddAppHandler(new apps.viewer.clusterViewer());
@@ -1061,6 +1062,184 @@ var apps;
             return servicesManager;
         }(Bootstrap));
         systems.servicesManager = servicesManager;
+    })(systems = apps.systems || (apps.systems = {}));
+})(apps || (apps = {}));
+var apps;
+(function (apps) {
+    var systems;
+    (function (systems) {
+        var pages = {
+            "mzkit_page": "MZKit Settings",
+            "msraw_page": "Raw File Viewer",
+            "chromagram_page": "Chromagram Plot Styles",
+            "formula_page": "Formula Search",
+            "element_profile_page": "Formula Search Profile",
+            "molecule_networking_page": "Molecular Networking"
+        };
+        systems.element_columns = [{
+                title: "Atom Element",
+                field: "atom",
+                sortable: true,
+                width: 200,
+                editable: true,
+            }, {
+                title: "Min",
+                field: "min",
+                sortable: true,
+                width: 200,
+                editable: {
+                    type: "number"
+                }
+            }, {
+                title: "Max",
+                field: "max",
+                sortable: true,
+                width: 200,
+                editable: {
+                    type: "number"
+                }
+            }];
+        var settings = /** @class */ (function (_super) {
+            __extends(settings, _super);
+            function settings() {
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.mzkit_configs = null;
+                return _this;
+            }
+            Object.defineProperty(settings.prototype, "appName", {
+                get: function () {
+                    return "mzkit/settings";
+                },
+                enumerable: false,
+                configurable: true
+            });
+            settings.prototype.init = function () {
+                this.mzkit_page_btn_onclick();
+                this.loadConfigs(settings.defaultSettings());
+            };
+            settings.prototype.loadConfigs = function (configs) {
+                this.mzkit_configs = configs;
+                settings.load_profileTable(configs);
+                settings.bindRangeDisplayValue(configs, function (config) {
+                    // save
+                });
+                $ts.value("#language", configs.language);
+                $ts.value("#remember-location", configs["remember-location"]);
+                $ts.value("#remember-layout", configs["remember-layout"]);
+            };
+            settings.defaultSettings = function () {
+                return {
+                    // mzkit app
+                    "remember-location": true,
+                    "remember-layout": true,
+                    "language": 2,
+                    // raw file viewer
+                    "xic_ppm": 10,
+                    "fragment_cutoff": "relative",
+                    "fragment_cutoff_value": 0.05,
+                    // chromagram plot
+                    "colorset": [],
+                    "fill-plot-area": true,
+                    // preset element profiles
+                    "small_molecule_profile": { profile: "wiley", is_common: true },
+                    "np_profile": { profile: "wiley", is_common: true },
+                    "formula_ppm": 20,
+                    "formula_adducts": [],
+                    "custom_element_profile": [
+                        { atom: "C", min: 1, max: 100 },
+                        { atom: "H", min: 1, max: 1000 },
+                        { atom: "O", min: 0, max: 100 }
+                    ],
+                    // molecular networking
+                    "layout_iterations": 100,
+                    // graph layouts
+                    "stiffness": 41.76,
+                    "repulsion": 10000,
+                    "damping": 0.41,
+                    // spectrum tree
+                    "node_identical": 0.85,
+                    "node_similar": 0.8,
+                    "edge_filter": 0.8,
+                    // network styling
+                    "node_radius_min": 1,
+                    "node_radius_max": 30,
+                    "link_width_min": 1,
+                    "link_width_max": 12
+                };
+            };
+            settings.bindRangeDisplayValue = function (configs, callback) {
+                var inputs = $ts.select(".form-range");
+                var labels = $ts.select(".form-label").ToDictionary(function (l) { return l.getAttribute("for"); }, function (lb) { return lb; });
+                var label_text0 = $ts.select(".form-label").ToDictionary(function (l) { return l.getAttribute("for"); }, function (lb) { return lb.innerText; });
+                var _loop_2 = function (range) {
+                    var id = range.id;
+                    var label_text_raw = label_text0.Item(id);
+                    var label_ctl = labels.Item(id);
+                    var label_update = function () {
+                        label_ctl.innerText = "".concat(label_text_raw, " (").concat(range.value, ")");
+                        configs[id] = range.value;
+                        callback(configs);
+                    };
+                    range.onchange = label_update;
+                    if (!isNullOrUndefined(configs[id])) {
+                        range.value = configs[id];
+                        label_update();
+                    }
+                };
+                for (var _i = 0, _a = inputs.Select(function (i) { return i; }).ToArray(); _i < _a.length; _i++) {
+                    var range = _a[_i];
+                    _loop_2(range);
+                }
+            };
+            settings.getElementProfileTable = function () {
+                return $("#custom_element_profile");
+            };
+            settings.load_profileTable = function (configs) {
+                var bootstrap = settings.getElementProfileTable();
+                var tableOptions = {
+                    columns: systems.element_columns,
+                    editable: true, //editable需要设置为 true
+                    striped: true,
+                    clickToSelect: true
+                };
+                bootstrap.bootstrapTable(tableOptions);
+                bootstrap.bootstrapTable("load", configs.custom_element_profile || []);
+            };
+            settings.closeAll = function () {
+                for (var _i = 0, _a = Object.keys(pages); _i < _a.length; _i++) {
+                    var page = _a[_i];
+                    $ts("#".concat(page)).hide();
+                }
+                return this;
+            };
+            settings.show = function (page_id) {
+                $ts("#".concat(page_id)).show();
+                $ts("#title").display(pages[page_id]);
+            };
+            settings.prototype.mzkit_page_btn_onclick = function () {
+                settings.closeAll().show("mzkit_page");
+            };
+            settings.prototype.msraw_btn_onclick = function () {
+                settings.closeAll().show("msraw_page");
+            };
+            settings.prototype.chromagram_btn_onclick = function () {
+                settings.closeAll().show("chromagram_page");
+            };
+            settings.prototype.formula_btn_onclick = function () {
+                settings.closeAll().show("formula_page");
+            };
+            settings.prototype.profile_btn_onclick = function () {
+                settings.closeAll().show("element_profile_page");
+            };
+            settings.prototype.add_element_onclick = function () {
+                settings.getElementProfileTable().bootstrapTable('append', [{ "atom": "", "min": 0, "max": 0 }]);
+            };
+            settings.prototype.molecule_networking_btn_onclick = function () {
+                settings.closeAll().show("molecule_networking_page");
+            };
+            return settings;
+        }(Bootstrap));
+        systems.settings = settings;
     })(systems = apps.systems || (apps.systems = {}));
 })(apps || (apps = {}));
 var apps;

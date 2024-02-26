@@ -257,6 +257,80 @@ declare namespace apps.systems {
         CommandLine: string;
     }
 }
+declare namespace apps.systems {
+    const element_columns: ({
+        title: string;
+        field: string;
+        sortable: boolean;
+        width: number;
+        editable: boolean;
+    } | {
+        title: string;
+        field: string;
+        sortable: boolean;
+        width: number;
+        editable: {
+            type: string;
+        };
+    })[];
+    interface BootstrapTable {
+        bootstrapTable(arg1: any, arg2?: any): any;
+    }
+    interface mzkit_configs {
+        "remember-location": boolean;
+        "remember-layout": boolean;
+        "language": 0 | 1 | 2;
+        "xic_ppm": number;
+        "fragment_cutoff": "relative" | "quantile";
+        "fragment_cutoff_value": number;
+        "colorset": string[];
+        "fill-plot-area": boolean;
+        "small_molecule_profile": element_profile;
+        "np_profile": element_profile;
+        "formula_ppm": number;
+        "formula_adducts": string[];
+        "custom_element_profile": element_count[];
+        "layout_iterations": number;
+        "stiffness": number;
+        "repulsion": number;
+        "damping": number;
+        "node_identical": number;
+        "node_similar": number;
+        "edge_filter": number;
+        "node_radius_min": number;
+        "node_radius_max": number;
+        "link_width_min": number;
+        "link_width_max": number;
+    }
+    interface element_count {
+        atom: string;
+        min: number;
+        max: number;
+    }
+    interface element_profile {
+        "profile": "wiley" | "dnp";
+        "is_common": boolean;
+    }
+    class settings extends Bootstrap {
+        get appName(): string;
+        private mzkit_configs;
+        protected init(): void;
+        private loadConfigs;
+        private static defaultSettings;
+        private static bindRangeDisplayValue;
+        private static getElementProfileTable;
+        private static load_profileTable;
+        private static closeAll;
+        private static show;
+        mzkit_page_btn_onclick(): void;
+        msraw_btn_onclick(): void;
+        chromagram_btn_onclick(): void;
+        formula_btn_onclick(): void;
+        profile_btn_onclick(): void;
+        add_element_onclick(): void;
+        molecule_networking_btn_onclick(): void;
+    }
+}
 declare namespace apps.viewer {
     /**
      * UMAPPoint
