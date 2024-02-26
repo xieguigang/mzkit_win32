@@ -22,6 +22,24 @@ namespace apps.systems {
         protected init(): void {
             this.mzkit_page_btn_onclick();
             this.load_profileTable();
+
+            settings.bindRangeDisplayValue();
+        }
+
+        private static bindRangeDisplayValue() {
+            const inputs = $ts.select(".form-range");
+            const labels = $ts.select(".form-label").ToDictionary(l => l.getAttribute("for"), lb => lb);
+            const label_text0 = $ts.select(".form-label").ToDictionary(l => l.getAttribute("for"), lb => lb.innerText);
+
+            for (let range of inputs.Select(i => <HTMLInputElement>i).ToArray()) {
+                const id = range.id;
+                const label_text_raw = label_text0.Item(id);
+                const label_ctl = labels.Item(id);
+
+                range.onchange = function () {
+                    label_ctl.innerText = `${label_text_raw} (${range.value})`;
+                }
+            }
         }
 
         private static getElementProfileTable(): BootstrapTable {

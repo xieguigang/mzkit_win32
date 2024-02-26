@@ -1091,6 +1091,24 @@ var apps;
             settings.prototype.init = function () {
                 this.mzkit_page_btn_onclick();
                 this.load_profileTable();
+                settings.bindRangeDisplayValue();
+            };
+            settings.bindRangeDisplayValue = function () {
+                var inputs = $ts.select(".form-range");
+                var labels = $ts.select(".form-label").ToDictionary(function (l) { return l.getAttribute("for"); }, function (lb) { return lb; });
+                var label_text0 = $ts.select(".form-label").ToDictionary(function (l) { return l.getAttribute("for"); }, function (lb) { return lb.innerText; });
+                var _loop_2 = function (range) {
+                    var id = range.id;
+                    var label_text_raw = label_text0.Item(id);
+                    var label_ctl = labels.Item(id);
+                    range.onchange = function () {
+                        label_ctl.innerText = "".concat(label_text_raw, " (").concat(range.value, ")");
+                    };
+                };
+                for (var _i = 0, _a = inputs.Select(function (i) { return i; }).ToArray(); _i < _a.length; _i++) {
+                    var range = _a[_i];
+                    _loop_2(range);
+                }
             };
             settings.getElementProfileTable = function () {
                 return $("#tableDiv");

@@ -264,6 +264,7 @@ declare namespace apps.systems {
     class settings extends Bootstrap {
         get appName(): string;
         protected init(): void;
+        private static bindRangeDisplayValue;
         private static getElementProfileTable;
         private load_profileTable;
         private static closeAll;
