@@ -264,6 +264,7 @@ declare namespace apps.systems {
     class settings extends Bootstrap {
         get appName(): string;
         protected init(): void;
+        private static getElementProfileTable;
         private load_profileTable;
         private static closeAll;
         private static show;
@@ -272,6 +273,7 @@ declare namespace apps.systems {
         chromagram_btn_onclick(): void;
         formula_btn_onclick(): void;
         profile_btn_onclick(): void;
+        add_element_onclick(): void;
     }
 }
 declare namespace apps.viewer {

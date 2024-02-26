@@ -23,92 +23,44 @@ namespace apps.systems {
             this.load_profileTable();
         }
 
-        private load_profileTable() {
-            const bootstrap: BootstrapTable = <any>$("#tableDiv");
+        private static getElementProfileTable(): BootstrapTable {
+            return <any>$("#tableDiv");
+        }
 
-            let data = [{
-                id: 1,
-                month: 1,
-                department: "技术部",
-                fee: 10090,
-                comment: "comment"
-            }, {
-                id: 1,
-                month: 2,
-                department: "管理中心",
-                fee: 19000,
-                comment: "备注"
-            }]
+        private load_profileTable() {
+            const bootstrap: BootstrapTable = settings.getElementProfileTable();
+
+            let data = [];
             let columns = [{
-                title: "编号",
-                field: "id",
+                title: "Atom Element",
+                field: "atom",
                 sortable: true,
                 width: 200,
-                editable: false,
+                editable: true,
             }, {
-                title: "月份",
-                field: "month",
-                sortable: true,
-                width: 200,
-                formatter: function (v) {
-                    return v + "月"
-                },
-                editable: {
-                    type: "select",
-                    options: {
-                        items: [{
-                            value: 1,
-                            label: "1月",
-                        }, {
-                            value: 2,
-                            label: "2月",
-                        }, {
-                            value: 3,
-                            label: "3月",
-                        }, {
-                            value: 4,
-                            label: "4月",
-                        }, {
-                            value: 5,
-                            label: "5月",
-                        }]
-                    }
-                }
-            }, {
-                title: "部门",
-                field: "department",
+                title: "Min",
+                field: "min",
                 sortable: true,
                 width: 200,
                 editable: {
-                    type: "select",
-                    options: {
-                        items: [
-                            "技术部", "生产部", "管理中心"
-                        ]
-                    }
+                    type: "number",
+                    
                 }
             }, {
-                title: "管理费用",
-                field: "fee",
+                title: "Max",
+                field: "max",
                 sortable: true,
                 width: 200,
                 editable: {
                     type: "number"
                 }
-            }, {
-                title: "备注",
-                field: "comment",
-                sortable: true,
-                width: 200,
-                editable: true,
-                // editable:{
-                //   type:"text"
-                // }
-            },];
+            }];
 
             let tableOptions = {
                 columns: columns,
                 editable: true, //editable需要设置为 true
+                striped: true,
+                clickToSelect: true
             }
             bootstrap.bootstrapTable(tableOptions);
             bootstrap.bootstrapTable("load", data);
@@ -145,6 +97,10 @@ namespace apps.systems {
 
         public profile_btn_onclick() {
             settings.closeAll().show("element_profile_page");
+        }
+
+        public add_element_onclick() {
+            settings.getElementProfileTable().bootstrapTable('append', [{ "atom": "", "min": 0, "max": 0 }]);
         }
     }
 }
