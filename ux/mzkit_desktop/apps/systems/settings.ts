@@ -44,8 +44,7 @@ namespace apps.systems {
                 sortable: true,
                 width: 200,
                 editable: {
-                    type: "number",
-
+                    type: "number"
                 }
             }, {
                 title: "Max",
