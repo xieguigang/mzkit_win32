@@ -313,6 +313,7 @@ declare namespace apps.systems {
     }
     class settings extends Bootstrap {
         get appName(): string;
+        private mzkit_configs;
         protected init(): void;
         private loadConfigs;
         private static defaultSettings;

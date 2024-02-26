@@ -1102,7 +1102,9 @@ var apps;
         var settings = /** @class */ (function (_super) {
             __extends(settings, _super);
             function settings() {
-                return _super !== null && _super.apply(this, arguments) || this;
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.mzkit_configs = null;
+                return _this;
             }
             Object.defineProperty(settings.prototype, "appName", {
                 get: function () {
@@ -1116,8 +1118,11 @@ var apps;
                 this.loadConfigs(settings.defaultSettings());
             };
             settings.prototype.loadConfigs = function (configs) {
+                this.mzkit_configs = configs;
                 settings.load_profileTable(configs);
-                settings.bindRangeDisplayValue(configs);
+                settings.bindRangeDisplayValue(configs, function (config) {
+                    // save
+                });
             };
             settings.defaultSettings = function () {
                 return {
@@ -1159,7 +1164,7 @@ var apps;
                     "link_width_max": 12
                 };
             };
-            settings.bindRangeDisplayValue = function (configs) {
+            settings.bindRangeDisplayValue = function (configs, callback) {
                 var inputs = $ts.select(".form-range");
                 var labels = $ts.select(".form-label").ToDictionary(function (l) { return l.getAttribute("for"); }, function (lb) { return lb; });
                 var label_text0 = $ts.select(".form-label").ToDictionary(function (l) { return l.getAttribute("for"); }, function (lb) { return lb.innerText; });
@@ -1169,6 +1174,8 @@ var apps;
                     var label_ctl = labels.Item(id);
                     var label_update = function () {
                         label_ctl.innerText = "".concat(label_text_raw, " (").concat(range.value, ")");
+                        configs[id] = range.value;
+                        callback(configs);
                     };
                     range.onchange = label_update;
                     if (!isNullOrUndefined(configs[id])) {

@@ -97,14 +97,20 @@ namespace apps.systems {
             return "mzkit/settings";
         }
 
+        private mzkit_configs: mzkit_configs = null;
+
         protected init(): void {
             this.mzkit_page_btn_onclick();
             this.loadConfigs(settings.defaultSettings());
         }
 
         private loadConfigs(configs: mzkit_configs) {
+            this.mzkit_configs = configs;
+
             settings.load_profileTable(configs);
-            settings.bindRangeDisplayValue(configs);
+            settings.bindRangeDisplayValue(configs, function (config) {
+                // save
+            });
         }
 
         private static defaultSettings(): mzkit_configs {
@@ -156,7 +162,7 @@ namespace apps.systems {
             }
         }
 
-        private static bindRangeDisplayValue(configs: mzkit_configs) {
+        private static bindRangeDisplayValue(configs: mzkit_configs, callback: (c: mzkit_configs) => void) {
             const inputs = $ts.select(".form-range");
             const labels = $ts.select(".form-label").ToDictionary(l => l.getAttribute("for"), lb => lb);
             const label_text0 = $ts.select(".form-label").ToDictionary(l => l.getAttribute("for"), lb => lb.innerText);
@@ -167,6 +173,8 @@ namespace apps.systems {
                 const label_ctl = labels.Item(id);
                 const label_update = function () {
                     label_ctl.innerText = `${label_text_raw} (${range.value})`;
+                    configs[id] = range.value;
+                    callback(configs);
                 };
 
                 range.onchange = label_update;
