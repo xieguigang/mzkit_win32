@@ -146,7 +146,8 @@
                     </div>
                 </li>
                 <li class="mb-1">
-                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                    <button id="formula_btn"
+                        class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
                         data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
                         Formula Search
                     </button>
@@ -270,6 +271,93 @@
                         <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
                             The current link item
                         </a>
+                    </div>
+                </div>
+            </div>
+            <div id="formula_page" class="row">
+                <div class="col">
+
+                    <div class="card">
+                        <h5 class="card-header">Preset Element Profile</h5>
+                        <div class="card-body">
+                            <p class="card-text">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <label class="form-check-label" for="small_molecule_profile">
+                                        Small Molecule:
+                                    </label>
+
+                                    <select id="small_molecule_profile" class="form-select"
+                                        aria-label="Default select example">
+                                        <option selected>Wiley</option>
+                                        <option value="1">DNP</option>
+                                    </select>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="sm_common">
+                                        <label class="form-check-label" for="sm_common">
+                                            Is Common Profile?
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-auto">
+                                    <label class="form-check-label" for="np_profile">
+                                        Natural Product:
+                                    </label>
+
+                                    <select id="np_profile" class="form-select" aria-label="Default select example">
+                                        <option selected>Wiley</option>
+                                        <option value="1">DNP</option>
+                                    </select>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="np_common">
+                                        <label class="form-check-label" for="np_common">
+                                            Is Common Profile?
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            </p>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="card">
+                        <h5 class="card-header">Ion Match Options</h5>
+                        <div class="card-body">
+                            <p class="card-text">
+
+                            <div class="row">
+                                <div class="col-auto">
+                                    <label for="formula_ppm" class="form-label">Default Formula PPM:</label>
+                                    <input type="range" class="form-range" min="0" max="30" step="1" id="formula_ppm">
+                                </div>
+
+                                <div class="col-auto">
+                                    <p>Precursor Adducts:</p>
+
+                                    <ul class="list-group" id="formula_adducts">
+                                        <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value=""
+                                                id="firstCheckbox">
+                                            <label class="form-check-label" for="firstCheckbox">First checkbox</label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value=""
+                                                id="secondCheckbox">
+                                            <label class="form-check-label" for="secondCheckbox">Second checkbox</label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value=""
+                                                id="thirdCheckbox">
+                                            <label class="form-check-label" for="thirdCheckbox">Third checkbox</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

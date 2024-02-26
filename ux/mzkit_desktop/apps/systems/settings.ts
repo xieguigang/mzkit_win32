@@ -3,7 +3,8 @@ namespace apps.systems {
     const pages: {} = {
         "mzkit_page": "MZKit Settings",
         "msraw_page": "Raw File Viewer",
-        "chromagram_page": "Chromagram Plot Styles"
+        "chromagram_page": "Chromagram Plot Styles",
+        "formula_page": "Formula Search"
     };
 
     export class settings extends Bootstrap {
@@ -39,6 +40,10 @@ namespace apps.systems {
 
         public chromagram_btn_onclick() {
             settings.closeAll().show("chromagram_page");
+        }
+
+        public formula_btn_onclick() {
+            settings.closeAll().show("formula_page");
         }
     }
 }

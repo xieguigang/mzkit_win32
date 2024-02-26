@@ -1071,7 +1071,8 @@ var apps;
         var pages = {
             "mzkit_page": "MZKit Settings",
             "msraw_page": "Raw File Viewer",
-            "chromagram_page": "Chromagram Plot Styles"
+            "chromagram_page": "Chromagram Plot Styles",
+            "formula_page": "Formula Search"
         };
         var settings = /** @class */ (function (_super) {
             __extends(settings, _super);
@@ -1107,6 +1108,9 @@ var apps;
             };
             settings.prototype.chromagram_btn_onclick = function () {
                 settings.closeAll().show("chromagram_page");
+            };
+            settings.prototype.formula_btn_onclick = function () {
+                settings.closeAll().show("formula_page");
             };
             return settings;
         }(Bootstrap));
