@@ -13,14 +13,19 @@
     <script type="text/javascript" src="./assets/js/linq.js"></script>
     <script type="text/javascript" src="./assets/js/mzkit_desktop.js"></script>
     <script type="text/javascript" src="./vendor/jquery.min.js"></script>
+    <script type="text/javascript" src="./vendor/libs/jquery-ui/jquery-ui.min.js"></script>
     <script type="text/javascript" src="./vendor/vakata-jstree-b3135cf/jstree.min.js"></script>
-    <script type="text/javascript" src="./vendor/bootstrap-5.3.2-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./vendor/bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="./vendor/colorpicker-3.4.3/js/evol-colorpicker.min.js"></script>
 
     <link href="./vendor/vakata-jstree-b3135cf/themes/default/style.css" rel="stylesheet" media="screen">
     <link href="./vendor/bootstrap-5.3.2-dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet" />
     <link href="./vendor/fontawesome-6/css/all.min.css" rel="stylesheet">
     <link href="./assets/settings.css" rel="stylesheet">
+
+    <link href="./vendor/libs/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+    <link href="./vendor/colorpicker-3.4.3/css/evol-colorpicker.min.css" rel="stylesheet">
 
     <script src="./vendor/smiles-drawer.min.js"></script>
 </head>
@@ -217,12 +222,65 @@
                 </div>
             </div>
             <div id="chromagram_page" class="row">
-                <div class="col">
+                <div class="col-auto">
+                    <div id="mycolor" style="width: 214px !important;"></div>
+                </div>
 
+                <div class="col-auto">
+                    <button type="button" class="btn btn-primary mb-3">Add Color</button>
+                </div>
+
+                <div class="col-auto btn-group">
+                    <button type="button" class="btn btn-danger">Delete Color</button>
+                    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Clear Color Palette</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <label class="form-check-label" for="preset_colorset">
+                        Preset Color Palettes:
+                    </label>
+
+                    <select id="preset_colorset" class="form-select" aria-label="Preset Color Palettes">
+                        <option value="set1" selected>ColorBrewer Set1</option>
+                        <option value="paired1">ColorBrewer Paired1</option>
+                        <option value="accent">ColorBrewer Accent</option>
+                        <option value="cluster">Cluster Colour</option>
+                        <option value="material">Material Palette</option>
+                        <option value="scibasic">sciBASIC Category31</option>
+                        <option value="paper">Paper</option>
+                    </select>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="fill-plot-area">
+                    <label class="form-check-label" for="fill-plot-area">
+                        Fill Plot Area
+                    </label>
+                </div>
+
+                <div class="col-auto">
+                    <p>Color Palette:</p>
+                    <div class="list-group" id="colorset">
+                        <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                            The current link item
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#mycolor").colorpicker();
+    });
+</script>
 
 </html>
