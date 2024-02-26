@@ -201,8 +201,8 @@
                             Languages:
                         </label>
 
-                        <select id="language" class="form-select" aria-label="Default select example">
-                            <option selected>Follow System</option>
+                        <select id="language" class="form-select" aria-label="Select Languages">
+                            <option value="0" selected>Follow System</option>
                             <option value="1">中文（简体）</option>
                             <option value="2">English</option>
                         </select>
@@ -220,9 +220,9 @@
                             Fragment Cleanup Method:
                         </label>
 
-                        <select id="fragment_cutoff" class="form-select" aria-label="Default select example">
-                            <option selected>Relative Intensity Cutoff</option>
-                            <option value="1">Quantile Intensity Cutoff</option>
+                        <select id="fragment_cutoff" class="form-select" aria-label="Fragment Cleanup Methods">
+                            <option value="relative" selected>Relative Intensity Cutoff</option>
+                            <option value="quantile">Quantile Intensity Cutoff</option>
                         </select>
                     </div>
                     <div>
@@ -237,17 +237,17 @@
                 </div>
 
                 <div class="col-auto">
-                    <button type="button" class="btn btn-primary mb-3">Add Color</button>
+                    <button id="add_color" type="button" class="btn btn-primary mb-3">Add Color</button>
                 </div>
 
                 <div class="col-auto btn-group">
-                    <button type="button" class="btn btn-danger">Delete Color</button>
+                    <button id="delete_color" type="button" class="btn btn-danger">Delete Color</button>
                     <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="visually-hidden">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Clear Color Palette</a></li>
+                        <li><a id="clear_colors" class="dropdown-item" href="#">Clear Color Palette</a></li>
                     </ul>
                 </div>
 
@@ -296,10 +296,9 @@
                                         Small Molecule:
                                     </label>
 
-                                    <select id="small_molecule_profile" class="form-select"
-                                        aria-label="Default select example">
-                                        <option selected>Wiley</option>
-                                        <option value="1">DNP</option>
+                                    <select id="small_molecule_profile" class="form-select" aria-label="Small Molecule">
+                                        <option value="wiley" selected>Wiley</option>
+                                        <option value="dnp">DNP</option>
                                     </select>
 
                                     <div class="form-check">
@@ -315,9 +314,9 @@
                                         Natural Product:
                                     </label>
 
-                                    <select id="np_profile" class="form-select" aria-label="Default select example">
-                                        <option selected>Wiley</option>
-                                        <option value="1">DNP</option>
+                                    <select id="np_profile" class="form-select" aria-label="Natural Product">
+                                        <option value="wiley" selected>Wiley</option>
+                                        <option value="dnp">DNP</option>
                                     </select>
 
                                     <div class="form-check">
