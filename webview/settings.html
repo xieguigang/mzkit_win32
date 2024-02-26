@@ -404,7 +404,7 @@
                     <div class="row">
                         <div class="col-auto">
                             <label for="layout_iterations" class="form-label">Layout Iterations:</label>
-                            <input type="range" class="form-range" min="100" max="999999" step="100"
+                            <input type="range" class="form-range" min="100" max="9999" step="100"
                                 id="layout_iterations">
                         </div>
                     </div>
@@ -418,17 +418,18 @@
                             <div class="row">
                                 <div class="col-auto">
                                     <label for="stiffness" class="form-label">Stiffness:</label>
-                                    <input type="range" class="form-range" min="0" max="30" step="1" id="stiffness">
+                                    <input type="range" class="form-range" min="1" max="1000" step="1" id="stiffness">
                                 </div>
 
                                 <div class="col-auto">
                                     <label for="repulsion" class="form-label">Repulsion:</label>
-                                    <input type="range" class="form-range" min="0" max="30" step="1" id="repulsion">
+                                    <input type="range" class="form-range" min="1" max="100000" step="10"
+                                        id="repulsion">
                                 </div>
 
                                 <div class="col-auto">
                                     <label for="damping" class="form-label">Damping:</label>
-                                    <input type="range" class="form-range" min="0" max="30" step="1" id="damping">
+                                    <input type="range" class="form-range" min="0.1" max="1" step="0.01" id="damping">
                                 </div>
                             </div>
                             </p>
@@ -444,18 +445,19 @@
                             <div class="row">
                                 <div class="col-auto">
                                     <label for="node_identical" class="form-label">Node Identical:</label>
-                                    <input type="range" class="form-range" min="0" max="30" step="1"
+                                    <input type="range" class="form-range" min="0" max="1" step="0.01"
                                         id="node_identical">
                                 </div>
 
                                 <div class="col-auto">
                                     <label for="node_similar" class="form-label">Node Similarity:</label>
-                                    <input type="range" class="form-range" min="0" max="30" step="1" id="node_similar">
+                                    <input type="range" class="form-range" min="0" max="1" step="0.01"
+                                        id="node_similar">
                                 </div>
 
                                 <div class="col-auto">
                                     <label for="edge_filter" class="form-label">Default Edge Filter:</label>
-                                    <input type="range" class="form-range" min="0" max="30" step="1" id="edge_filter">
+                                    <input type="range" class="form-range" min="0" max="1" step="0.01" id="edge_filter">
                                 </div>
                             </div>
                             </p>
@@ -474,12 +476,12 @@
                                         <p>Node radius range:</p>
                                         <div class="col-auto">
                                             <label for="node_radius_min" class="form-label">from:</label>
-                                            <input type="range" class="form-range" min="0" max="30" step="1"
+                                            <input type="range" class="form-range" min="1" max="100" step="1"
                                                 id="node_radius_min">
                                         </div>
                                         <div class="col-auto">
                                             <label for="node_radius_max" class="form-label">to:</label>
-                                            <input type="range" class="form-range" min="0" max="30" step="1"
+                                            <input type="range" class="form-range" min="10" max="200" step="1"
                                                 id="node_radius_max">
                                         </div>
                                     </div>
@@ -490,12 +492,12 @@
                                         <p>Link width range:</p>
                                         <div class="col-auto">
                                             <label for="link_width_min" class="form-label">from:</label>
-                                            <input type="range" class="form-range" min="0" max="30" step="1"
+                                            <input type="range" class="form-range" min="1" max="20" step="1"
                                                 id="link_width_min">
                                         </div>
                                         <div class="col-auto">
                                             <label for="link_width_max" class="form-label">to:</label>
-                                            <input type="range" class="form-range" min="0" max="30" step="1"
+                                            <input type="range" class="form-range" min="10" max="50" step="1"
                                                 id="link_width_max">
                                         </div>
                                     </div>
