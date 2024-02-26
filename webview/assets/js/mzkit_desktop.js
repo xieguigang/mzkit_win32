@@ -307,6 +307,7 @@ var app;
             Router.AddAppHandler(new apps.systems.pluginMgr());
             Router.AddAppHandler(new apps.systems.pluginPkg());
             Router.AddAppHandler(new apps.systems.servicesManager());
+            Router.AddAppHandler(new apps.systems.settings());
             // data analysis & data visualization
             Router.AddAppHandler(new apps.viewer.three_app());
             Router.AddAppHandler(new apps.viewer.clusterViewer());
@@ -1061,6 +1062,46 @@ var apps;
             return servicesManager;
         }(Bootstrap));
         systems.servicesManager = servicesManager;
+    })(systems = apps.systems || (apps.systems = {}));
+})(apps || (apps = {}));
+var apps;
+(function (apps) {
+    var systems;
+    (function (systems) {
+        var pages = [
+            "mzkit_page", "msraw_page"
+        ];
+        var settings = /** @class */ (function (_super) {
+            __extends(settings, _super);
+            function settings() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            Object.defineProperty(settings.prototype, "appName", {
+                get: function () {
+                    return "mzkit/settings";
+                },
+                enumerable: false,
+                configurable: true
+            });
+            settings.prototype.init = function () {
+            };
+            settings.closeAll = function () {
+                for (var _i = 0, pages_1 = pages; _i < pages_1.length; _i++) {
+                    var page = pages_1[_i];
+                    $ts("#".concat(page)).hide();
+                }
+            };
+            settings.prototype.mzkit_page_btn_onclick = function () {
+                settings.closeAll();
+                $ts("#mzkit_page").show();
+            };
+            settings.prototype.msraw_btn_onclick = function () {
+                settings.closeAll();
+                $ts("#msraw_page").show();
+            };
+            return settings;
+        }(Bootstrap));
+        systems.settings = settings;
     })(systems = apps.systems || (apps.systems = {}));
 })(apps || (apps = {}));
 var apps;

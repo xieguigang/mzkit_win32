@@ -120,14 +120,16 @@
             </a>
             <ul class="list-unstyled ps-0">
                 <li class="mb-1">
-                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                        data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true" id="mzkit">
+                    <button id="mzkit_page_btn"
+                        class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                        data-bs-toggle="collapse" aria-expanded="true">
                         MZKit App
                     </button>
                 </li>
                 <li class="mb-1">
-                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                        data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                    <button id="msraw_btn"
+                        class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                        data-bs-toggle="collapse" aria-expanded="false">
                         Raw File Viewer
                     </button>
                     <div class="collapse" id="dashboard-collapse">
@@ -162,12 +164,48 @@
         </aside>
 
         <div class="col-9 bd-cheatsheet container-fluid bg-body">
-            <div id="mzkit_page">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="remember-location">
-                    <label class="form-check-label" for="remember-location">
-                        Remember Window Location
-                    </label>
+            <div id="mzkit_page" class="row">
+                <div class="col">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="remember-location">
+                        <label class="form-check-label" for="remember-location">
+                            Remember Window Location
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="remember-layout">
+                        <label class="form-check-label" for="remember-layout">
+                            Remember Window Layout
+                        </label>
+                    </div>
+
+                    <br />
+
+                    <div>
+                        <label class="form-check-label" for="language">
+                            Languages:
+                        </label>
+
+                        <select id="language" class="form-select" aria-label="Default select example">
+                            <option selected>Follow System</option>
+                            <option value="1">中文（简体）</option>
+                            <option value="2">English</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div id="msraw_page" class="row">
+                <div class="col">
+                    <div>
+                        <label class="form-check-label" for="language">
+                            Fragment Cleanup Method:
+                        </label>
+
+                        <select id="language" class="form-select" aria-label="Default select example">
+                            <option selected>Relative Intensity Cutoff</option>
+                            <option value="1">Quantile Intensity Cutoff</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>

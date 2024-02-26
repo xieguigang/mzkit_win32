@@ -257,6 +257,15 @@ declare namespace apps.systems {
         CommandLine: string;
     }
 }
+declare namespace apps.systems {
+    class settings extends Bootstrap {
+        get appName(): string;
+        protected init(): void;
+        private static closeAll;
+        mzkit_page_btn_onclick(): void;
+        msraw_btn_onclick(): void;
+    }
+}
 declare namespace apps.viewer {
     /**
      * UMAPPoint
