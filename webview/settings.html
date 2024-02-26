@@ -197,14 +197,22 @@
             <div id="msraw_page" class="row">
                 <div class="col">
                     <div>
-                        <label class="form-check-label" for="language">
+                        <label for="xic_ppm" class="form-label">Default XIC PPM:</label>
+                        <input type="range" class="form-range" min="0" max="30" step="1" id="xic_ppm">
+                    </div>
+                    <div>
+                        <label class="form-check-label" for="fragment_cutoff">
                             Fragment Cleanup Method:
                         </label>
 
-                        <select id="language" class="form-select" aria-label="Default select example">
+                        <select id="fragment_cutoff" class="form-select" aria-label="Default select example">
                             <option selected>Relative Intensity Cutoff</option>
                             <option value="1">Quantile Intensity Cutoff</option>
                         </select>
+                    </div>
+                    <div>
+                        <label for="fragment_cutoff_value" class="form-label">Cutoff Threshold:</label>
+                        <input type="range" class="form-range" min="0" max="1" step="0.05" id="fragment_cutoff_value">
                     </div>
                 </div>
             </div>
