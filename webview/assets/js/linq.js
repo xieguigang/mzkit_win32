@@ -5672,6 +5672,12 @@ var DOM;
             if (strict === void 0) { strict = true; }
             var input = $ts(resource);
             var type = $ts.typeof(input);
+            if (isNullOrUndefined(value)) {
+                value = "0";
+            }
+            if (!(typeof value === "string")) {
+                value = value.toString();
+            }
             if (type.isEnumerator) {
                 setValues(new DOMEnumerator(input), value, strict);
             }

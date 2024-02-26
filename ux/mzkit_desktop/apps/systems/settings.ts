@@ -112,9 +112,12 @@ namespace apps.systems {
                 // save
             });
 
-            $ts.value("#language", <any>configs.language);
-            $ts.value("#remember-location", <any>configs["remember-location"]);
-            $ts.value("#remember-layout", <any>configs["remember-layout"]);
+            $ts.value("#language", configs.language);
+            $ts.value("#remember-location", configs["remember-location"]);
+            $ts.value("#remember-layout", configs["remember-layout"]);
+
+            $ts.value("#fragment_cutoff", configs["fragment_cutoff"]);
+            $ts.value("#fill-plot-area", configs["fill-plot-area"]);
         }
 
         private static defaultSettings(): mzkit_configs {
