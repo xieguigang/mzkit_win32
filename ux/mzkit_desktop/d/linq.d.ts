@@ -2619,7 +2619,10 @@ declare namespace TypeScript.ColorManager {
         desaturate(n: any): void;
         lighter(n: any): void;
         darker(n: any): void;
-        private attachValues;
+        /**
+         * copy values from another color object to current object
+        */
+        attachValues(color: IW3color): void;
     }
 }
 /**

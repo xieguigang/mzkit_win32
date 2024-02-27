@@ -7719,16 +7719,29 @@ var TypeScript;
             function w3color(color, elmnt) {
                 if (color === void 0) { color = null; }
                 if (elmnt === void 0) { elmnt = null; }
+                this.red = 0;
+                this.blue = 0;
+                this.green = 0;
+                this.hue = 0;
+                this.sat = 0;
+                this.opacity = 1;
+                this.whiteness = 0;
+                this.lightness = 0;
+                this.blackness = 0;
+                this.cyan = 0;
+                this.magenta = 0;
+                this.yellow = 0;
+                this.black = 0;
+                this.ncol = "R";
+                this.valid = false;
                 if (!isNullOrUndefined(color)) {
+                    // make value copy to current color object
                     if (typeof color == "string") {
                         this.attachValues(ColorManager.toColorObject(color));
                     }
                     else {
                         this.attachValues(color);
                     }
-                }
-                else {
-                    this.attachValues(w3color.emptyObject);
                 }
                 if (!isNullOrUndefined(elmnt)) {
                     elmnt.style.backgroundColor = this.toRgbString();
@@ -7864,6 +7877,9 @@ var TypeScript;
                 color = ColorManager.colorObject(rgb, this.opacity, this.hue, this.sat);
                 this.attachValues(color);
             };
+            /**
+             * copy values from another color object to current object
+            */
             w3color.prototype.attachValues = function (color) {
                 this.red = color.red;
                 this.green = color.green;
