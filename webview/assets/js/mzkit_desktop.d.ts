@@ -93,12 +93,16 @@ declare namespace app.desktop {
          * actions for create new library file
         */
         NewLibrary(): Promise<boolean>;
+        /**
+         * a general method(across multiple host pages) for save general page data
+        */
         Save(): void;
         InstallLocal(): void;
         SetStatus(id: string, status: string): void;
         GetPlugins(): Promise<string>;
         Exec(id: string): void;
         loadSettings(): Promise<string>;
+        getProfile(name: string): Promise<string>;
         SelectFolder(): Promise<string>;
         GetFiles(dir: string): Promise<string>;
         BuildPkg(folder: string): Promise<boolean>;

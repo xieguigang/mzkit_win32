@@ -1255,6 +1255,23 @@ var apps;
                     value = value[0];
                 }
                 console.log("get profile name: ".concat(value, "!"));
+                // load from mzkit host
+                app.desktop.mzkit.getProfile(value)
+                    .then(function (json) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var json_str, preset;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, json];
+                                case 1:
+                                    json_str = _a.sent();
+                                    preset = JSON.parse(json_str);
+                                    console.log(preset);
+                                    return [2 /*return*/];
+                            }
+                        });
+                    });
+                });
             };
             settings.show = function (page_id) {
                 $ts("#".concat(page_id)).show();

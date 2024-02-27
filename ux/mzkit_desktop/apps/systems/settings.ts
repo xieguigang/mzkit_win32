@@ -260,7 +260,14 @@ namespace apps.systems {
             }
 
             console.log(`get profile name: ${value}!`);
+            // load from mzkit host
+            app.desktop.mzkit.getProfile(value)
+                .then(async function (json) {
+                    const json_str: string = await json;
+                    const preset = JSON.parse(json_str);
 
+                    console.log(preset);
+                });
         }
 
         private static show(page_id: string) {
