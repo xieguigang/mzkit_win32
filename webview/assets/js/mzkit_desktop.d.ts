@@ -345,6 +345,10 @@ declare namespace apps.systems {
         copy_profile_onchange(value: string | string[]): void;
         reset_profile_onclick(): void;
         preset_colorset_onchange(value: string | string[]): void;
+        private static loadColorList;
+        private static getColorList;
+        add_color_onclick(): void;
+        clear_colors_onclick(): void;
         private static show;
         mzkit_page_btn_onclick(): void;
         msraw_btn_onclick(): void;

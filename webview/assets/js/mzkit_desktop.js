@@ -1154,6 +1154,7 @@ var apps;
                                     configs.remember_layout = logicalDefault(settings.ui.rememberLayouts, true);
                                     configs.remember_location = logicalDefault(settings.ui.rememberWindowsLocation, true);
                                     configs.language = settings.ui.language || 2;
+                                    configs.colorset = settings.viewer.colorSet || [];
                                     configs.fill_plot_area = logicalDefault(settings.viewer.fill, true);
                                     vm.loadConfigs(configs);
                                     return [2 /*return*/];
@@ -1177,6 +1178,7 @@ var apps;
             settings.prototype.loadConfigs = function (configs) {
                 var formula_profiles = configs.formula_search;
                 settings.mzkit_configs = configs;
+                settings.loadColorList(configs.colorset);
                 settings.load_profileTable(configs);
                 settings.bindRangeDisplayValue(configs, function (config) {
                     // save
@@ -1363,26 +1365,50 @@ var apps;
                 app.desktop.mzkit.GetColors((Array.isArray(value) ? value[0] : value))
                     .then(function (json) {
                     return __awaiter(this, void 0, void 0, function () {
-                        var json_str, colors, list, _i, colors_1, color;
+                        var json_str, colors;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0: return [4 /*yield*/, json];
                                 case 1:
                                     json_str = _a.sent();
                                     colors = JSON.parse(json_str);
-                                    list = $ts("#colorset").clear();
-                                    for (_i = 0, colors_1 = colors; _i < colors_1.length; _i++) {
-                                        color = colors_1[_i];
-                                        list.appendElement($ts("<a>", {
-                                            href: "#",
-                                            class: ["list-group-item", "list-group-item-action"]
-                                        }).display("<span style=\"background-color:".concat(color, "\">&nbsp;&nbsp;</span> ").concat(color)));
-                                    }
+                                    settings.loadColorList(colors);
                                     return [2 /*return*/];
                             }
                         });
                     });
                 });
+            };
+            settings.loadColorList = function (colors) {
+                var list = $ts("#colorset").clear();
+                if (typeof colors === "string") {
+                    colors = [colors];
+                }
+                if (!isNullOrUndefined(colors)) {
+                    for (var _i = 0, colors_1 = colors; _i < colors_1.length; _i++) {
+                        var color = colors_1[_i];
+                        list.appendElement($ts("<a>", {
+                            href: "javascript:void(0);",
+                            class: ["list-group-item", "list-group-item-action"]
+                        }).display("<span style=\"background-color:".concat(color, "\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> ").concat(color)));
+                    }
+                }
+            };
+            settings.getColorList = function () {
+                var list = $ts("#colorset");
+                var links = list.getElementsByTagName("span");
+                var colors = [];
+                for (var i = 0; i < links.length; i++) {
+                    colors.push(links.item(i).style.backgroundColor);
+                }
+                console.log("get color list for run plot:");
+                console.log(colors);
+                return colors;
+            };
+            settings.prototype.add_color_onclick = function () {
+            };
+            settings.prototype.clear_colors_onclick = function () {
+                $ts("#colorset").clear();
             };
             settings.show = function (page_id) {
                 $ts("#".concat(page_id)).show();

@@ -143,6 +143,7 @@ namespace apps.systems {
                     configs.remember_location = logicalDefault(settings.ui.rememberWindowsLocation, true);
                     configs.language = settings.ui.language || 2;
 
+                    configs.colorset = settings.viewer.colorSet || [];
                     configs.fill_plot_area = logicalDefault(settings.viewer.fill, true);
 
                     vm.loadConfigs(configs);
@@ -169,6 +170,7 @@ namespace apps.systems {
             const formula_profiles = configs.formula_search;
 
             settings.mzkit_configs = configs;
+            settings.loadColorList(configs.colorset);
             settings.load_profileTable(configs);
             settings.bindRangeDisplayValue(configs, function (config) {
                 // save
@@ -366,16 +368,50 @@ namespace apps.systems {
                 .then(async function (json) {
                     const json_str: string = await json;
                     const colors: string[] = JSON.parse(json_str);
-                    const list = $ts("#colorset").clear();
 
-                    for (let color of colors) {
-                        list.appendElement($ts("<a>", {
-                            href: "#",
-                            class: ["list-group-item", "list-group-item-action"]
-                        }).display(`<span style="background-color:${color}">&nbsp;&nbsp;</span> ${color}`)
-                        );
-                    }
+                    settings.loadColorList(colors);
                 });
+        }
+
+        private static loadColorList(colors: string | string[]) {
+            const list = $ts("#colorset").clear();
+
+            if (typeof colors === "string") {
+                colors = [colors];
+            }
+
+            if (!isNullOrUndefined(colors)) {
+                for (let color of colors) {
+                    list.appendElement($ts("<a>", {
+                        href: "javascript:void(0);",
+                        class: ["list-group-item", "list-group-item-action"]
+                    }).display(`<span style="background-color:${color}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> ${color}`)
+                    );
+                }
+            }
+        }
+
+        private static getColorList(): string[] {
+            const list = $ts("#colorset");
+            const links = list.getElementsByTagName("span");
+            const colors: string[] = [];
+
+            for (let i: number = 0; i < links.length; i++) {
+                colors.push(links.item(i).style.backgroundColor);
+            }
+
+            console.log("get color list for run plot:");
+            console.log(colors);
+
+            return colors;
+        }
+
+        public add_color_onclick() {
+
+        }
+
+        public clear_colors_onclick() {
+            $ts("#colorset").clear();
         }
 
         private static show(page_id: string) {
