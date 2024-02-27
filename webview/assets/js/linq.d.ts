@@ -2444,8 +2444,19 @@ declare namespace algorithm.BTree {
     }
 }
 declare namespace TypeScript.ColorManager {
-    function toColorObject(c: string): IW3color;
-    function colorObject(rgb: any, a: any, h: any, s: any): any;
+    /**
+     * parse the string as a color data object
+     *
+     * @param c any valid color string
+    */
+    function toColorObject(c: string): w3color;
+    function colorObject(rgb: {
+        r: number;
+        g: number;
+        b: number;
+    }, a: number, h: number, s: number): w3color;
+    const known_names: string[];
+    const name_colors: string[];
     function getColorArr(x: "names" | "hexs"): string[];
     function w3SetColorsByAttribute(): void;
 }
@@ -2485,44 +2496,52 @@ declare namespace TypeScript.ColorManager {
     }
 }
 declare namespace TypeScript.ColorManager {
-    function hslToRgb(hue: any, sat: any, light: any): {
-        r: any;
-        g: any;
-        b: any;
+    function hslToRgb(hue: number, sat: number, light: number): {
+        r: number;
+        g: number;
+        b: number;
     };
-    function hueToRgb(t1: any, t2: any, hue: any): any;
-    function hwbToRgb(hue: any, white: any, black: any): {
-        r: any;
-        g: any;
-        b: any;
+    function hueToRgb(t1: number, t2: number, hue: number): number;
+    function hwbToRgb(hue: number, white: number, black: number): {
+        r: number;
+        g: number;
+        b: number;
     };
-    function cmykToRgb(c: any, m: any, y: any, k: any): {
-        r: any;
-        g: any;
-        b: any;
+    function cmykToRgb(c: number, m: number, y: number, k: number): {
+        r: number;
+        g: number;
+        b: number;
     };
-    function rgbToHsl(r: any, g: any, b: any): {
-        h: any;
-        s: any;
-        l: any;
+    function rgbToHsl(r: number, g: number, b: number): {
+        h: number;
+        s: number;
+        l: number;
     };
     function rgbToHwb(r: number, g: number, b: number): {
-        h: any;
-        w: any;
-        b: any;
+        h: number;
+        w: number;
+        b: number;
     };
     function rgbToCmyk(r: number, g: number, b: number): {
-        c: any;
-        m: any;
-        y: any;
-        k: any;
+        c: number;
+        m: number;
+        y: number;
+        k: number;
     };
 }
 declare namespace TypeScript.ColorManager {
-    function toHex(n: any): any;
+    /**
+     * convert an integer number to hex string
+     *
+    */
+    function toHex(n: number): string;
     function cl(x: any): void;
-    function w3trim(x: any): any;
-    function isHex(x: any): boolean;
+    function w3trim(x: string): string;
+    /**
+     * check of the given char is one of the possible hex char?
+    */
+    function isHex(x: string): boolean;
+    function color(red?: number, blue?: number, green?: number, hue?: number, sat?: number, opacity?: number, whiteness?: number, lightness?: number, blackness?: number, cyan?: number, magenta?: number, yellow?: number, black?: number, ncol?: string): w3color;
 }
 declare namespace TypeScript.ColorManager {
     /**
@@ -2544,7 +2563,7 @@ declare namespace TypeScript.ColorManager {
         black: number;
         ncol: string;
         valid: boolean;
-        static get emptyObject(): IW3color;
+        static get emptyObject(): w3color;
         constructor(color?: string | IW3color, elmnt?: HTMLElement);
         toRgbString(): string;
         toRgbaString(): string;
@@ -2560,6 +2579,9 @@ declare namespace TypeScript.ColorManager {
         toNcolStringDecimal(): string;
         toNcolaString(): string;
         toName(): string;
+        /**
+         * to html hex color value: #XXXXXX
+        */
         toHexString(): string;
         toRgb(): {
             r: number;

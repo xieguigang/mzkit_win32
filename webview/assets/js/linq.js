@@ -6971,6 +6971,11 @@ var TypeScript;
 (function (TypeScript) {
     var ColorManager;
     (function (ColorManager) {
+        /**
+         * parse the string as a color data object
+         *
+         * @param c any valid color string
+        */
         function toColorObject(c) {
             var x, y, typ, arr = [], arrlength, i, opacity, match, a, hue, sat, rgb, colornames = [], colorhexs = [];
             c = ColorManager.w3trim(c.toLowerCase());
@@ -7188,33 +7193,35 @@ var TypeScript;
             hue = (h || hsl.h);
             sat = (s || hsl.s);
             ncol = hueToNcol(hue);
-            color = {
-                red: rgb.r,
-                green: rgb.g,
-                blue: rgb.b,
-                hue: hue,
-                sat: sat,
-                lightness: hsl.l,
-                whiteness: hwb.w,
-                blackness: hwb.b,
-                cyan: cmyk.c,
-                magenta: cmyk.m,
-                yellow: cmyk.y,
-                black: cmyk.k,
-                ncol: ncol,
-                opacity: a,
-                valid: true
-            };
-            color = roundDecimals(color);
-            return color;
+            color = ColorManager.color(rgb.r, // red
+            rgb.b, //blue
+            rgb.g, // green
+            hue, // hue
+            sat, // sat
+            a, // opacity
+            hwb.w, // whiteness
+            hsl.l, // lightness
+            hwb.b, // blackness
+            cmyk.c, // cyan
+            cmyk.m, // magenta
+            cmyk.y, // yellow
+            cmyk.k, // black
+            ncol // ncol
+            );
+            return roundDecimals(color);
         }
         ColorManager.colorObject = colorObject;
+        ColorManager.known_names = ['AliceBlue', 'AntiqueWhite', 'Aqua', 'Aquamarine', 'Azure', 'Beige', 'Bisque', 'Black', 'BlanchedAlmond', 'Blue', 'BlueViolet', 'Brown', 'BurlyWood', 'CadetBlue', 'Chartreuse', 'Chocolate', 'Coral', 'CornflowerBlue', 'Cornsilk', 'Crimson', 'Cyan', 'DarkBlue', 'DarkCyan', 'DarkGoldenRod', 'DarkGray', 'DarkGrey', 'DarkGreen', 'DarkKhaki', 'DarkMagenta', 'DarkOliveGreen', 'DarkOrange', 'DarkOrchid', 'DarkRed', 'DarkSalmon', 'DarkSeaGreen', 'DarkSlateBlue', 'DarkSlateGray', 'DarkSlateGrey', 'DarkTurquoise', 'DarkViolet', 'DeepPink', 'DeepSkyBlue', 'DimGray', 'DimGrey', 'DodgerBlue', 'FireBrick', 'FloralWhite', 'ForestGreen', 'Fuchsia', 'Gainsboro', 'GhostWhite', 'Gold', 'GoldenRod', 'Gray', 'Grey', 'Green', 'GreenYellow', 'HoneyDew', 'HotPink', 'IndianRed', 'Indigo', 'Ivory', 'Khaki', 'Lavender', 'LavenderBlush', 'LawnGreen', 'LemonChiffon', 'LightBlue', 'LightCoral', 'LightCyan', 'LightGoldenRodYellow', 'LightGray', 'LightGrey', 'LightGreen', 'LightPink', 'LightSalmon', 'LightSeaGreen', 'LightSkyBlue', 'LightSlateGray', 'LightSlateGrey', 'LightSteelBlue', 'LightYellow', 'Lime', 'LimeGreen', 'Linen', 'Magenta', 'Maroon', 'MediumAquaMarine', 'MediumBlue', 'MediumOrchid', 'MediumPurple', 'MediumSeaGreen', 'MediumSlateBlue', 'MediumSpringGreen', 'MediumTurquoise', 'MediumVioletRed', 'MidnightBlue', 'MintCream', 'MistyRose', 'Moccasin', 'NavajoWhite', 'Navy', 'OldLace', 'Olive', 'OliveDrab', 'Orange', 'OrangeRed', 'Orchid', 'PaleGoldenRod', 'PaleGreen', 'PaleTurquoise', 'PaleVioletRed', 'PapayaWhip', 'PeachPuff', 'Peru', 'Pink', 'Plum', 'PowderBlue', 'Purple', 'RebeccaPurple', 'Red', 'RosyBrown', 'RoyalBlue', 'SaddleBrown', 'Salmon', 'SandyBrown', 'SeaGreen', 'SeaShell', 'Sienna', 'Silver', 'SkyBlue', 'SlateBlue', 'SlateGray', 'SlateGrey', 'Snow', 'SpringGreen', 'SteelBlue', 'Tan', 'Teal', 'Thistle', 'Tomato', 'Turquoise', 'Violet', 'Wheat', 'White', 'WhiteSmoke', 'Yellow', 'YellowGreen'];
+        ColorManager.name_colors = ['f0f8ff', 'faebd7', '00ffff', '7fffd4', 'f0ffff', 'f5f5dc', 'ffe4c4', '000000', 'ffebcd', '0000ff', '8a2be2', 'a52a2a', 'deb887', '5f9ea0', '7fff00', 'd2691e', 'ff7f50', '6495ed', 'fff8dc', 'dc143c', '00ffff', '00008b', '008b8b', 'b8860b', 'a9a9a9', 'a9a9a9', '006400', 'bdb76b', '8b008b', '556b2f', 'ff8c00', '9932cc', '8b0000', 'e9967a', '8fbc8f', '483d8b', '2f4f4f', '2f4f4f', '00ced1', '9400d3', 'ff1493', '00bfff', '696969', '696969', '1e90ff', 'b22222', 'fffaf0', '228b22', 'ff00ff', 'dcdcdc', 'f8f8ff', 'ffd700', 'daa520', '808080', '808080', '008000', 'adff2f', 'f0fff0', 'ff69b4', 'cd5c5c', '4b0082', 'fffff0', 'f0e68c', 'e6e6fa', 'fff0f5', '7cfc00', 'fffacd', 'add8e6', 'f08080', 'e0ffff', 'fafad2', 'd3d3d3', 'd3d3d3', '90ee90', 'ffb6c1', 'ffa07a', '20b2aa', '87cefa', '778899', '778899', 'b0c4de', 'ffffe0', '00ff00', '32cd32', 'faf0e6', 'ff00ff', '800000', '66cdaa', '0000cd', 'ba55d3', '9370db', '3cb371', '7b68ee', '00fa9a', '48d1cc', 'c71585', '191970', 'f5fffa', 'ffe4e1', 'ffe4b5', 'ffdead', '000080', 'fdf5e6', '808000', '6b8e23', 'ffa500', 'ff4500', 'da70d6', 'eee8aa', '98fb98', 'afeeee', 'db7093', 'ffefd5', 'ffdab9', 'cd853f', 'ffc0cb', 'dda0dd', 'b0e0e6', '800080', '663399', 'ff0000', 'bc8f8f', '4169e1', '8b4513', 'fa8072', 'f4a460', '2e8b57', 'fff5ee', 'a0522d', 'c0c0c0', '87ceeb', '6a5acd', '708090', '708090', 'fffafa', '00ff7f', '4682b4', 'd2b48c', '008080', 'd8bfd8', 'ff6347', '40e0d0', 'ee82ee', 'f5deb3', 'ffffff', 'f5f5f5', 'ffff00', '9acd32'];
         function getColorArr(x) {
             if (x == "names") {
-                return ['AliceBlue', 'AntiqueWhite', 'Aqua', 'Aquamarine', 'Azure', 'Beige', 'Bisque', 'Black', 'BlanchedAlmond', 'Blue', 'BlueViolet', 'Brown', 'BurlyWood', 'CadetBlue', 'Chartreuse', 'Chocolate', 'Coral', 'CornflowerBlue', 'Cornsilk', 'Crimson', 'Cyan', 'DarkBlue', 'DarkCyan', 'DarkGoldenRod', 'DarkGray', 'DarkGrey', 'DarkGreen', 'DarkKhaki', 'DarkMagenta', 'DarkOliveGreen', 'DarkOrange', 'DarkOrchid', 'DarkRed', 'DarkSalmon', 'DarkSeaGreen', 'DarkSlateBlue', 'DarkSlateGray', 'DarkSlateGrey', 'DarkTurquoise', 'DarkViolet', 'DeepPink', 'DeepSkyBlue', 'DimGray', 'DimGrey', 'DodgerBlue', 'FireBrick', 'FloralWhite', 'ForestGreen', 'Fuchsia', 'Gainsboro', 'GhostWhite', 'Gold', 'GoldenRod', 'Gray', 'Grey', 'Green', 'GreenYellow', 'HoneyDew', 'HotPink', 'IndianRed', 'Indigo', 'Ivory', 'Khaki', 'Lavender', 'LavenderBlush', 'LawnGreen', 'LemonChiffon', 'LightBlue', 'LightCoral', 'LightCyan', 'LightGoldenRodYellow', 'LightGray', 'LightGrey', 'LightGreen', 'LightPink', 'LightSalmon', 'LightSeaGreen', 'LightSkyBlue', 'LightSlateGray', 'LightSlateGrey', 'LightSteelBlue', 'LightYellow', 'Lime', 'LimeGreen', 'Linen', 'Magenta', 'Maroon', 'MediumAquaMarine', 'MediumBlue', 'MediumOrchid', 'MediumPurple', 'MediumSeaGreen', 'MediumSlateBlue', 'MediumSpringGreen', 'MediumTurquoise', 'MediumVioletRed', 'MidnightBlue', 'MintCream', 'MistyRose', 'Moccasin', 'NavajoWhite', 'Navy', 'OldLace', 'Olive', 'OliveDrab', 'Orange', 'OrangeRed', 'Orchid', 'PaleGoldenRod', 'PaleGreen', 'PaleTurquoise', 'PaleVioletRed', 'PapayaWhip', 'PeachPuff', 'Peru', 'Pink', 'Plum', 'PowderBlue', 'Purple', 'RebeccaPurple', 'Red', 'RosyBrown', 'RoyalBlue', 'SaddleBrown', 'Salmon', 'SandyBrown', 'SeaGreen', 'SeaShell', 'Sienna', 'Silver', 'SkyBlue', 'SlateBlue', 'SlateGray', 'SlateGrey', 'Snow', 'SpringGreen', 'SteelBlue', 'Tan', 'Teal', 'Thistle', 'Tomato', 'Turquoise', 'Violet', 'Wheat', 'White', 'WhiteSmoke', 'Yellow', 'YellowGreen'];
+                return ColorManager.known_names;
             }
-            if (x == "hexs") {
-                return ['f0f8ff', 'faebd7', '00ffff', '7fffd4', 'f0ffff', 'f5f5dc', 'ffe4c4', '000000', 'ffebcd', '0000ff', '8a2be2', 'a52a2a', 'deb887', '5f9ea0', '7fff00', 'd2691e', 'ff7f50', '6495ed', 'fff8dc', 'dc143c', '00ffff', '00008b', '008b8b', 'b8860b', 'a9a9a9', 'a9a9a9', '006400', 'bdb76b', '8b008b', '556b2f', 'ff8c00', '9932cc', '8b0000', 'e9967a', '8fbc8f', '483d8b', '2f4f4f', '2f4f4f', '00ced1', '9400d3', 'ff1493', '00bfff', '696969', '696969', '1e90ff', 'b22222', 'fffaf0', '228b22', 'ff00ff', 'dcdcdc', 'f8f8ff', 'ffd700', 'daa520', '808080', '808080', '008000', 'adff2f', 'f0fff0', 'ff69b4', 'cd5c5c', '4b0082', 'fffff0', 'f0e68c', 'e6e6fa', 'fff0f5', '7cfc00', 'fffacd', 'add8e6', 'f08080', 'e0ffff', 'fafad2', 'd3d3d3', 'd3d3d3', '90ee90', 'ffb6c1', 'ffa07a', '20b2aa', '87cefa', '778899', '778899', 'b0c4de', 'ffffe0', '00ff00', '32cd32', 'faf0e6', 'ff00ff', '800000', '66cdaa', '0000cd', 'ba55d3', '9370db', '3cb371', '7b68ee', '00fa9a', '48d1cc', 'c71585', '191970', 'f5fffa', 'ffe4e1', 'ffe4b5', 'ffdead', '000080', 'fdf5e6', '808000', '6b8e23', 'ffa500', 'ff4500', 'da70d6', 'eee8aa', '98fb98', 'afeeee', 'db7093', 'ffefd5', 'ffdab9', 'cd853f', 'ffc0cb', 'dda0dd', 'b0e0e6', '800080', '663399', 'ff0000', 'bc8f8f', '4169e1', '8b4513', 'fa8072', 'f4a460', '2e8b57', 'fff5ee', 'a0522d', 'c0c0c0', '87ceeb', '6a5acd', '708090', '708090', 'fffafa', '00ff7f', '4682b4', 'd2b48c', '008080', 'd8bfd8', 'ff6347', '40e0d0', 'ee82ee', 'f5deb3', 'ffffff', 'f5f5f5', 'ffff00', '9acd32'];
+            else if (x == "hexs") {
+                return ColorManager.name_colors;
+            }
+            else {
+                throw "invalid source value!";
             }
         }
         ColorManager.getColorArr = getColorArr;
@@ -7298,7 +7305,8 @@ var TypeScript;
             }
         }
         function ncsToRgb(ncs) {
-            var black, chroma, bc, percent, black1, chroma1, red1, factor1, blue1, red1, red2, green1, green2, blue2, max, factor2, grey, r, g, b;
+            var black, chroma, bc, percent, black1, chroma1, red1, factor1, blue1, red2, green1, green2, blue2, max, factor2, grey;
+            var r, g, b;
             ncs = ColorManager.w3trim(ncs).toUpperCase();
             ncs = ncs.replace("(", "");
             ncs = ncs.replace(")", "");
@@ -7637,6 +7645,10 @@ var TypeScript;
 (function (TypeScript) {
     var ColorManager;
     (function (ColorManager) {
+        /**
+         * convert an integer number to hex string
+         *
+        */
         function toHex(n) {
             var hex = n.toString(16);
             while (hex.length < 2) {
@@ -7653,10 +7665,47 @@ var TypeScript;
             return x.replace(/^\s+|\s+$/g, '');
         }
         ColorManager.w3trim = w3trim;
+        /**
+         * check of the given char is one of the possible hex char?
+        */
         function isHex(x) {
             return ('0123456789ABCDEFabcdef'.indexOf(x) > -1);
         }
         ColorManager.isHex = isHex;
+        function color(red, blue, green, hue, sat, opacity, whiteness, lightness, blackness, cyan, magenta, yellow, black, ncol) {
+            if (red === void 0) { red = 0; }
+            if (blue === void 0) { blue = 0; }
+            if (green === void 0) { green = 0; }
+            if (hue === void 0) { hue = 0; }
+            if (sat === void 0) { sat = 0; }
+            if (opacity === void 0) { opacity = 1; }
+            if (whiteness === void 0) { whiteness = 0; }
+            if (lightness === void 0) { lightness = 0; }
+            if (blackness === void 0) { blackness = 0; }
+            if (cyan === void 0) { cyan = 0; }
+            if (magenta === void 0) { magenta = 0; }
+            if (yellow === void 0) { yellow = 0; }
+            if (black === void 0) { black = 0; }
+            if (ncol === void 0) { ncol = "R"; }
+            var color = new ColorManager.w3color();
+            color.red = red;
+            color.green = green;
+            color.blue = blue;
+            color.hue = hue;
+            color.sat = sat;
+            color.lightness = lightness;
+            color.whiteness = whiteness;
+            color.blackness = blackness;
+            color.cyan = cyan;
+            color.magenta = magenta;
+            color.yellow = yellow;
+            color.black = black;
+            color.ncol = ncol;
+            color.opacity = opacity;
+            color.valid = true;
+            return color;
+        }
+        ColorManager.color = color;
     })(ColorManager = TypeScript.ColorManager || (TypeScript.ColorManager = {}));
 })(TypeScript || (TypeScript = {}));
 var TypeScript;
@@ -7687,23 +7736,7 @@ var TypeScript;
             }
             Object.defineProperty(w3color, "emptyObject", {
                 get: function () {
-                    return {
-                        red: 0,
-                        green: 0,
-                        blue: 0,
-                        hue: 0,
-                        sat: 0,
-                        lightness: 0,
-                        whiteness: 0,
-                        blackness: 0,
-                        cyan: 0,
-                        magenta: 0,
-                        yellow: 0,
-                        black: 0,
-                        ncol: "R",
-                        opacity: 1,
-                        valid: false
-                    };
+                    return ColorManager.color();
                 },
                 enumerable: false,
                 configurable: true
@@ -7759,6 +7792,9 @@ var TypeScript;
                 }
                 return "";
             };
+            /**
+             * to html hex color value: #XXXXXX
+            */
             w3color.prototype.toHexString = function () {
                 var r = ColorManager.toHex(this.red);
                 var g = ColorManager.toHex(this.green);
