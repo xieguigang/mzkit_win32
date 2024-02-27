@@ -123,16 +123,16 @@ namespace apps.systems {
                 });
         }
 
-        public remember_location_onchange() {
-            settings.mzkit_configs.remember_location = $ts.value("#remember_location");
+        public remember_location_onchange(value: string | string[]) {
+            settings.mzkit_configs.remember_location = <any>(Array.isArray(value) ? value[0] : value);
         }
 
-        public remember_layout_onchange() {
-            settings.mzkit_configs.remember_layout = $ts.value("#remember_layout");
+        public remember_layout_onchange(value: string | string[]) {
+            settings.mzkit_configs.remember_layout = <any>(Array.isArray(value) ? value[0] : value);
         }
 
-        public language_onchange() {
-            settings.mzkit_configs.language = $ts.value("#language");
+        public language_onchange(value: string | string[]) {
+            settings.mzkit_configs.language = <any>(Array.isArray(value) ? value[0] : value);
         }
 
         private loadConfigs(configs: mzkit_configs) {

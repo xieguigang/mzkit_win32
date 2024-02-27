@@ -1136,14 +1136,14 @@ var apps;
                     });
                 });
             };
-            settings.prototype.remember_location_onchange = function () {
-                settings.mzkit_configs.remember_location = $ts.value("#remember_location");
+            settings.prototype.remember_location_onchange = function (value) {
+                settings.mzkit_configs.remember_location = (Array.isArray(value) ? value[0] : value);
             };
-            settings.prototype.remember_layout_onchange = function () {
-                settings.mzkit_configs.remember_layout = $ts.value("#remember_layout");
+            settings.prototype.remember_layout_onchange = function (value) {
+                settings.mzkit_configs.remember_layout = (Array.isArray(value) ? value[0] : value);
             };
-            settings.prototype.language_onchange = function () {
-                settings.mzkit_configs.language = $ts.value("#language");
+            settings.prototype.language_onchange = function (value) {
+                settings.mzkit_configs.language = (Array.isArray(value) ? value[0] : value);
             };
             settings.prototype.loadConfigs = function (configs) {
                 var formula_profiles = configs.formula_search;

@@ -116,8 +116,8 @@ Public Class SettingsProxy
             settings.ui = New UISettings
         End If
 
-        settings.ui.rememberLayouts = DirectCast(json("remember-layout"), JsonValue)
-        settings.ui.rememberWindowsLocation = DirectCast(json("remember-location"), JsonValue)
+        settings.ui.rememberLayouts = DirectCast(json("remember_layout"), JsonValue)
+        settings.ui.rememberWindowsLocation = DirectCast(json("remember_location"), JsonValue)
         settings.ui.language = CInt(DirectCast(json!language, JsonValue))
 
         Call settings.Save()
