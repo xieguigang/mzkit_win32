@@ -70,7 +70,7 @@ Public Class frmSettings
 
     Private Sub frmSettings_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         e.Cancel = True
-        Me.DockState = WeifenLuo.WinFormsUI.Docking.DockState.Hidden
+        Me.DockState = DockState.Hidden
     End Sub
 
     'Dim elementProfile As New ElementProfile With {.Text = "Formula Search"}
@@ -111,7 +111,7 @@ Public Class frmSettings
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
         ' WebView21.CoreWebView2.OpenDevToolsWindow()
-        Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", New SettingsProxy)
+        Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", New SettingsProxy With {.host = Me})
         Call WebView21.CoreWebView2.Navigate(sourceURL)
         Call WebKit.DeveloperOptions(WebView21, enable:=True,)
     End Sub
