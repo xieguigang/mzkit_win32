@@ -62,7 +62,6 @@ Imports Mzkit_win32.BasicMDIForm
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 
-
 Public Class frmStartPage
 
     ' 所有需要在JavaScript环境中暴露的对象

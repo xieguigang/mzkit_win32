@@ -997,7 +997,7 @@ declare namespace Internal {
          *
          * @returns 对于checkbox类型的input而言，逻辑值是以字符串的形式返回
         */
-        value(id: string, set_value?: string, strict?: boolean): any;
+        value(id: string, set_value?: string | number | boolean, strict?: boolean): any;
         typeof<T extends object>(any: T): TypeScript.Reflection.TypeInfo;
         clone<T>(obj: T): T;
         /**
@@ -2007,7 +2007,7 @@ declare namespace DOM {
          *   如果目标id标记的控件不是输入类型的，则如果处于非严格模式下，
          *   即这个参数为``false``的时候会直接强制读取value属性值
         */
-        function setValue(resource: string, value: string, strict?: boolean): void;
+        function setValue(resource: string, value: string | number | boolean, strict?: boolean): void;
     }
 }
 declare namespace DOM {
@@ -2131,6 +2131,7 @@ interface HTMLExtensions {
     hide(): IHTMLElement;
     addClass(name: string): IHTMLElement;
     removeClass(name: string): IHTMLElement;
+    hasClass(name: string): boolean;
     /**
      * 当class列表中指定的class名称出现或者消失的时候将会触发给定的action调用
     */

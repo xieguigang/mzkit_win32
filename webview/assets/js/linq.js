@@ -5672,13 +5672,19 @@ var DOM;
             if (strict === void 0) { strict = true; }
             var input = $ts(resource);
             var type = $ts.typeof(input);
+            if (isNullOrUndefined(value)) {
+                value = "0";
+            }
+            if (!(typeof value === "string")) {
+                value = value.toString();
+            }
             if (type.isEnumerator) {
                 setValues(new DOMEnumerator(input), value, strict);
             }
             else {
                 switch (input.tagName.toLowerCase()) {
                     case "input":
-                        input.asInput.value = value;
+                        setValues(new DOMEnumerator([input]), value, strict);
                         break;
                     case "select":
                         setSelection(input, value);
@@ -5707,6 +5713,18 @@ var DOM;
                 }
             }
         }
+        function setChecks(inputs, value) {
+            for (var _i = 0, _a = inputs.Select(function (i) { return i; }).ToArray(); _i < _a.length; _i++) {
+                var input = _a[_i];
+                input.value = value.toString();
+                if (value) {
+                    input.checked = true;
+                }
+                else {
+                    input.checked = false;
+                }
+            }
+        }
         /**
          * Set option value for checkbox or radio button
         */
@@ -5730,7 +5748,7 @@ var DOM;
                     var type = first.asInput.type;
                     switch (type.toLowerCase()) {
                         case "checkbox":
-                            setOption(inputs, value);
+                            setChecks(inputs, typeof value === "string" ? parseBoolean(value) : value);
                             break;
                         case "radio":
                             setOption(inputs, value);
@@ -6239,6 +6257,9 @@ var TypeExtensions;
         obj.removeClass = function (name) {
             extendsNode.removeClass(name);
             return node;
+        };
+        obj.hasClass = function (name) {
+            return node.classList.contains(name);
         };
         obj.onClassChanged = function (className, action, includesRemoves) {
             var predicate = new DOM.Events.StatusChanged(function () {
