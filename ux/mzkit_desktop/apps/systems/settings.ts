@@ -365,5 +365,9 @@ namespace apps.systems {
 
             app.desktop.mzkit.SetStatus("save_elements", JSON.stringify(data));
         }
+
+        public static invoke_save() {
+
+        }
     }
 }

@@ -56,6 +56,7 @@
 
 #End Region
 
+Imports System.Runtime.CompilerServices
 Imports System.Runtime.InteropServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.mzkit_win32.Configuration
@@ -89,10 +90,12 @@ Public Class SettingsProxy
         Return json_str
     End Function
 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Function getProfile(name As String) As String
         Return ElementProfile.loadPresetProfile(FormulaSearchProfile.GetProfile(name)).GetJson
     End Function
 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Function getAllAdducts() As String
         Return Provider.Positives _
             .JoinIterates(Provider.Negatives) _

@@ -135,10 +135,9 @@ Public Class frmSettings
     End Sub
 
     Public Sub SaveSettings()
-        'For Each page In pages
-        '    Call DirectCast(CObj(page), ISaveSettings).SaveSettings()
-        'Next
+        Dim check = WebView21.ExecuteScriptAsync("apps.systems.settings.invoke_save()")
 
+        Call check.Wait()
         Call Workbench.SuccessMessage("New settings value applied and saved!")
     End Sub
 
