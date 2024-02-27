@@ -158,12 +158,12 @@ namespace apps.systems {
                         const value: boolean = selected.indexOf(adduct) > -1;
 
                         adducts.appendElement($ts("<li>", { class: "list-group-item" }).display(`
-                        <input class="form-check-input me-1" 
-                               type="checkbox" 
-                               value="${value.toString()}"
-                               id="${key_id}" 
-                               checked=${value.toString()}>
-                        <label class="form-check-label" for="${key_id}">${adduct}</label>`));
+                            <input class="form-check-input me-1" 
+                                type="checkbox" 
+                                value="${value.toString()}"
+                                id="${key_id}" 
+                                checked=${value.toString()}>
+                            <label class="form-check-label" for="${key_id}">${adduct}</label>`));
                     }
                 });
         }

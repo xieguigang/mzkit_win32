@@ -1170,7 +1170,7 @@ var apps;
                                         adduct = list_3[_i];
                                         key_id = adduct;
                                         value = selected.indexOf(adduct) > -1;
-                                        adducts.appendElement($ts("<li>", { class: "list-group-item" }).display("\n                        <input class=\"form-check-input me-1\" \n                               type=\"checkbox\" \n                               value=\"".concat(value.toString(), "\"\n                               id=\"").concat(key_id, "\" \n                               checked=").concat(value.toString(), ">\n                        <label class=\"form-check-label\" for=\"").concat(key_id, "\">").concat(adduct, "</label>")));
+                                        adducts.appendElement($ts("<li>", { class: "list-group-item" }).display("\n                            <input class=\"form-check-input me-1\" \n                                type=\"checkbox\" \n                                value=\"".concat(value.toString(), "\"\n                                id=\"").concat(key_id, "\" \n                                checked=").concat(value.toString(), ">\n                            <label class=\"form-check-label\" for=\"").concat(key_id, "\">").concat(adduct, "</label>")));
                                     }
                                     return [2 /*return*/];
                             }
