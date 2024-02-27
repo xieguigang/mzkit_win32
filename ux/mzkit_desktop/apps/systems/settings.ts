@@ -259,14 +259,20 @@ namespace apps.systems {
             return this;
         }
 
+        private profile_name: string;
+
         public copy_profile_onchange(value: string | string[]) {
             if (Array.isArray(value)) {
                 value = value[0];
             }
 
             console.log(`get profile name: ${value}!`);
+            this.profile_name = value;
+        }
+
+        public reset_profile_onclick() {
             // load from mzkit host
-            app.desktop.mzkit.getProfile(value)
+            app.desktop.mzkit.getProfile(this.profile_name || "Custom_Profile")
                 .then(async function (json) {
                     const json_str: string = await json;
                     const preset = JSON.parse(json_str);

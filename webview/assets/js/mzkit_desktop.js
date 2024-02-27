@@ -1260,8 +1260,11 @@ var apps;
                     value = value[0];
                 }
                 console.log("get profile name: ".concat(value, "!"));
+                this.profile_name = value;
+            };
+            settings.prototype.reset_profile_onclick = function () {
                 // load from mzkit host
-                app.desktop.mzkit.getProfile(value)
+                app.desktop.mzkit.getProfile(this.profile_name || "Custom_Profile")
                     .then(function (json) {
                     return __awaiter(this, void 0, void 0, function () {
                         var json_str, preset;

@@ -335,7 +335,9 @@ declare namespace apps.systems {
         private static load_profileTable;
         private static loadProfileTable;
         private static closeAll;
+        private profile_name;
         copy_profile_onchange(value: string | string[]): void;
+        reset_profile_onclick(): void;
         private static show;
         mzkit_page_btn_onclick(): void;
         msraw_btn_onclick(): void;
