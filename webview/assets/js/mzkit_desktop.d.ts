@@ -320,6 +320,9 @@ declare namespace apps.systems {
         protected init(): void;
         private loadConfigs;
         private static defaultSettings;
+        /**
+         * auto binding of the [min,max] value range form control
+        */
         private static bindRangeDisplayValue;
         /**
          * get table html UI for create custom element profiles
@@ -327,6 +330,7 @@ declare namespace apps.systems {
         private static getElementProfileTable;
         private static load_profileTable;
         private static closeAll;
+        copy_profile_onchange(value: string | string[]): void;
         private static show;
         mzkit_page_btn_onclick(): void;
         msraw_btn_onclick(): void;

@@ -190,6 +190,9 @@ namespace apps.systems {
             }
         }
 
+        /**
+         * auto binding of the [min,max] value range form control
+        */
         private static bindRangeDisplayValue(configs: mzkit_configs, callback: (c: mzkit_configs) => void) {
             const inputs = $ts.select(".form-range");
             const labels = $ts.select(".form-label").ToDictionary(l => l.getAttribute("for"), lb => lb);
@@ -249,6 +252,15 @@ namespace apps.systems {
             }
 
             return this;
+        }
+
+        public copy_profile_onchange(value: string | string[]) {
+            if (Array.isArray(value)) {
+                value = value[0];
+            }
+
+            console.log(`get profile name: ${value}!`);
+
         }
 
         private static show(page_id: string) {

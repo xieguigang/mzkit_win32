@@ -1190,6 +1190,9 @@ var apps;
                     "link_width_max": 12
                 };
             };
+            /**
+             * auto binding of the [min,max] value range form control
+            */
             settings.bindRangeDisplayValue = function (configs, callback) {
                 var inputs = $ts.select(".form-range");
                 var labels = $ts.select(".form-label").ToDictionary(function (l) { return l.getAttribute("for"); }, function (lb) { return lb; });
@@ -1246,6 +1249,12 @@ var apps;
                     $ts("#".concat(page)).hide();
                 }
                 return this;
+            };
+            settings.prototype.copy_profile_onchange = function (value) {
+                if (Array.isArray(value)) {
+                    value = value[0];
+                }
+                console.log("get profile name: ".concat(value, "!"));
             };
             settings.show = function (page_id) {
                 $ts("#".concat(page_id)).show();
