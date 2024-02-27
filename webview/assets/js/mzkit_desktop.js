@@ -1402,7 +1402,10 @@ var apps;
                 var links = list.getElementsByTagName("span");
                 var colors = [];
                 for (var i = 0; i < links.length; i++) {
-                    colors.push(links.item(i).style.backgroundColor);
+                    var rgb_color = links.item(i).style.backgroundColor;
+                    var colorVal = TypeScript.ColorManager.toColorObject(rgb_color);
+                    var html_color = colorVal.toHexString();
+                    colors.push(html_color);
                 }
                 console.log("get color list for run plot:");
                 console.log(colors);
