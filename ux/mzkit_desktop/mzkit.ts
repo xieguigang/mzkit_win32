@@ -58,6 +58,10 @@ namespace app.desktop {
         NewLibrary(): Promise<boolean>;
 
         // plugin manager
+
+        /**
+         * a general method(across multiple host pages) for save general page data
+        */
         Save(): void;
         InstallLocal(): void;
         SetStatus(id: string, status: string): void;
@@ -66,6 +70,7 @@ namespace app.desktop {
 
         // settings & configuration
         loadSettings(): Promise<string>;
+        getProfile(name: string): Promise<string>;
 
         // plugin creator
         SelectFolder(): Promise<string>;

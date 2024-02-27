@@ -57,6 +57,7 @@
 #End Region
 
 Imports System.Runtime.InteropServices
+Imports BioNovoGene.mzkit_win32.Configuration
 Imports Microsoft.VisualBasic.MIME.application.json
 
 Public Interface ISaveSettings
@@ -86,4 +87,11 @@ Public Class SettingsProxy
         Return json_str
     End Function
 
+    Public Function getProfile(name As String) As String
+        Return ElementProfile.loadPresetProfile(FormulaSearchProfile.GetProfile(name)).GetJson
+    End Function
+
+    Public Sub Save()
+
+    End Sub
 End Class

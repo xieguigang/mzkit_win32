@@ -80,6 +80,7 @@
 Imports System.ComponentModel
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
+Imports Microsoft.VisualBasic.Linq
 
 Namespace Configuration
 
@@ -102,7 +103,7 @@ Namespace Configuration
         <Description("Default_Profile")> [Default]
         <Description("Small_Molecule")> SmallMolecule
         <Description("Natural_Product")> NaturalProduct
-        GeneralFlavone
+        <Description("General_Falvone")> GeneralFlavone
     End Enum
 
     Public Class FormulaSearchProfile
@@ -110,6 +111,25 @@ Namespace Configuration
         Public Property elements As Dictionary(Of String, ElementRange)
         Public Property smallMoleculeProfile As PresetProfileSettings
         Public Property naturalProductProfile As PresetProfileSettings
+
+        Private Shared ReadOnly profileNames As Dictionary(Of String, FormulaSearchProfiles)
+
+        Shared Sub New()
+            profileNames = Enums(Of FormulaSearchProfiles) _
+                .Select(Iterator Function(e) As IEnumerable(Of (String, FormulaSearchProfiles))
+                            Yield (e.ToString, e)
+                            Yield (e.Description, e)
+                        End Function) _
+                .IteratesALL _
+                .ToDictionary(Function(e) e.Item1.ToLower,
+                              Function(e)
+                                  Return e.Item2
+                              End Function)
+        End Sub
+
+        Public Shared Function GetProfile(key As String) As FormulaSearchProfiles
+            Return profileNames.TryGetValue(Strings.Trim(key).ToLower, [default]:=FormulaSearchProfiles.Default)
+        End Function
 
         Public Function CreateOptions() As SearchOption
             Dim opts = New SearchOption(-99999, 99999, 5)
