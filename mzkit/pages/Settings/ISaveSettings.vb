@@ -139,6 +139,7 @@ Public Class SettingsProxy
         settings.viewer.colorSet = DirectCast(json!colorset, JsonArray)
 
         Call settings.Save()
+        Call Workbench.SuccessMessage("New settings value applied and saved!")
     End Sub
 
     ''' <summary>
