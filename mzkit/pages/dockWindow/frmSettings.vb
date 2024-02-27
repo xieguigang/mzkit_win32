@@ -130,16 +130,16 @@ Public Class frmSettings
         End If
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Call SaveSettings()
+    Private Async Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Await SaveSettings()
     End Sub
 
-    Public Sub SaveSettings()
+    Public Async Function SaveSettings() As Threading.Tasks.Task
         Dim check = WebView21.ExecuteScriptAsync("apps.systems.settings.invoke_save()")
 
-        Call check.Wait()
+        Await check
         Call Workbench.SuccessMessage("New settings value applied and saved!")
-    End Sub
+    End Function
 
     'Sub showPage(page As Control)
     '    For Each page2 In From ctl In pages Where Not ctl Is page

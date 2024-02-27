@@ -366,7 +366,12 @@ namespace apps.systems {
         }
 
         public static invoke_save() {
-            app.desktop.mzkit.Save(JSON.stringify(settings.mzkit_configs));
+            console.log("invoke settings save action!");
+            app.desktop.mzkit
+                .Save(JSON.stringify(settings.mzkit_configs))
+                .then(async function () {
+                    console.log("done!");
+                });
         }
     }
 }

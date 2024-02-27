@@ -1357,7 +1357,17 @@ var apps;
                 app.desktop.mzkit.SetStatus("save_elements", JSON.stringify(data));
             };
             settings.invoke_save = function () {
-                app.desktop.mzkit.Save(JSON.stringify(settings.mzkit_configs));
+                console.log("invoke settings save action!");
+                app.desktop.mzkit
+                    .Save(JSON.stringify(settings.mzkit_configs))
+                    .then(function () {
+                    return __awaiter(this, void 0, void 0, function () {
+                        return __generator(this, function (_a) {
+                            console.log("done!");
+                            return [2 /*return*/];
+                        });
+                    });
+                });
             };
             settings.mzkit_configs = null;
             return settings;
