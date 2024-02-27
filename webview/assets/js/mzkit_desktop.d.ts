@@ -346,6 +346,7 @@ declare namespace apps.systems {
         reset_profile_onclick(): void;
         preset_colorset_onchange(value: string | string[]): void;
         private static loadColorList;
+        private static appendColor;
         private static getColorList;
         add_color_onclick(): void;
         clear_colors_onclick(): void;

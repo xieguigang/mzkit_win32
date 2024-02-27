@@ -1387,12 +1387,15 @@ var apps;
                 if (!isNullOrUndefined(colors)) {
                     for (var _i = 0, colors_1 = colors; _i < colors_1.length; _i++) {
                         var color = colors_1[_i];
-                        list.appendElement($ts("<a>", {
-                            href: "javascript:void(0);",
-                            class: ["list-group-item", "list-group-item-action"]
-                        }).display("<span style=\"background-color:".concat(color, "\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> ").concat(color)));
+                        settings.appendColor(list, color);
                     }
                 }
+            };
+            settings.appendColor = function (list, color) {
+                list.appendElement($ts("<a>", {
+                    href: "javascript:void(0);",
+                    class: ["list-group-item", "list-group-item-action"]
+                }).display("<span style=\"background-color:".concat(color, "\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> ").concat(color)));
             };
             settings.getColorList = function () {
                 var list = $ts("#colorset");
@@ -1406,6 +1409,9 @@ var apps;
                 return colors;
             };
             settings.prototype.add_color_onclick = function () {
+                var link = $('#mycolor');
+                var color = link.colorpicker("val");
+                settings.appendColor($ts("#colorset"), color);
             };
             settings.prototype.clear_colors_onclick = function () {
                 $ts("#colorset").clear();
@@ -1447,6 +1453,7 @@ var apps;
             };
             settings.invoke_save = function () {
                 console.log("invoke settings save action!");
+                settings.mzkit_configs.colorset = settings.getColorList();
                 // do save configuration
                 app.desktop.mzkit
                     .Save(JSON.stringify(settings.mzkit_configs))

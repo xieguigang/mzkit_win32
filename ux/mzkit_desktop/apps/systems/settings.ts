@@ -382,13 +382,17 @@ namespace apps.systems {
 
             if (!isNullOrUndefined(colors)) {
                 for (let color of colors) {
-                    list.appendElement($ts("<a>", {
-                        href: "javascript:void(0);",
-                        class: ["list-group-item", "list-group-item-action"]
-                    }).display(`<span style="background-color:${color}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> ${color}`)
-                    );
+                    settings.appendColor(list, color);
                 }
             }
+        }
+
+        private static appendColor(list: IHTMLElement, color: string) {
+            list.appendElement($ts("<a>", {
+                href: "javascript:void(0);",
+                class: ["list-group-item", "list-group-item-action"]
+            }).display(`<span style="background-color:${color}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> ${color}`)
+            );
         }
 
         private static getColorList(): string[] {
@@ -407,7 +411,10 @@ namespace apps.systems {
         }
 
         public add_color_onclick() {
+            const link: any = $('#mycolor')
+            const color: string = link.colorpicker("val");
 
+            settings.appendColor($ts("#colorset"), color);
         }
 
         public clear_colors_onclick() {
