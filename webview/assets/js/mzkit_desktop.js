@@ -1169,11 +1169,7 @@ var apps;
                     "formula_search": {
                         "smallMoleculeProfile": { type: "Wiley", isCommon: true },
                         "naturalProductProfile": { type: "Wiley", isCommon: true },
-                        "elements": [
-                            { atom: "C", min: 1, max: 100 },
-                            { atom: "H", min: 1, max: 1000 },
-                            { atom: "O", min: 0, max: 100 }
-                        ],
+                        "elements": {},
                     },
                     "formula_ppm": 20,
                     "formula_adducts": [],
@@ -1218,6 +1214,9 @@ var apps;
                     _loop_2(range);
                 }
             };
+            /**
+             * get table html UI for create custom element profiles
+            */
             settings.getElementProfileTable = function () {
                 return $("#custom_element_profile");
             };
@@ -1229,8 +1228,17 @@ var apps;
                     striped: true,
                     clickToSelect: true
                 };
+                var profiles = configs.formula_search.elements || {};
+                var elements = $from(Object.keys(profiles))
+                    .Select(function (atom) {
+                    return {
+                        atom: atom,
+                        min: profiles[atom].min,
+                        max: profiles[atom].max
+                    };
+                }).ToArray();
                 bootstrap.bootstrapTable(tableOptions);
-                bootstrap.bootstrapTable("load", configs.custom_element_profile || []);
+                bootstrap.bootstrapTable("load", elements);
             };
             settings.closeAll = function () {
                 for (var _i = 0, _a = Object.keys(pages); _i < _a.length; _i++) {

@@ -56,7 +56,7 @@ namespace apps.systems {
         "formula_search": {
             "naturalProductProfile": element_profile,
             "smallMoleculeProfile": element_profile,
-            "elements": element_count[]
+            "elements": {}
         };
 
         "formula_ppm": number;
@@ -163,11 +163,7 @@ namespace apps.systems {
                 "formula_search": {
                     "smallMoleculeProfile": <element_profile>{ type: "Wiley", isCommon: true },
                     "naturalProductProfile": <element_profile>{ type: "Wiley", isCommon: true },
-                    "elements": [
-                        <element_count>{ atom: "C", min: 1, max: 100 },
-                        <element_count>{ atom: "H", min: 1, max: 1000 },
-                        <element_count>{ atom: "O", min: 0, max: 100 }
-                    ],
+                    "elements": {},
                 },
                 "formula_ppm": 20,
                 "formula_adducts": [],
@@ -218,6 +214,9 @@ namespace apps.systems {
             }
         }
 
+        /**
+         * get table html UI for create custom element profiles
+        */
         private static getElementProfileTable(): BootstrapTable {
             return <any>$("#custom_element_profile");
         }
@@ -230,8 +229,18 @@ namespace apps.systems {
                 striped: true,
                 clickToSelect: true
             }
+            const profiles = configs.formula_search.elements || {};
+            const elements: element_count[] = $from(Object.keys(profiles))
+                .Select(function (atom) {
+                    return <element_count>{
+                        atom: atom,
+                        min: profiles[atom].min,
+                        max: profiles[atom].max
+                    }
+                }).ToArray();
+
             bootstrap.bootstrapTable(tableOptions);
-            bootstrap.bootstrapTable("load", configs.custom_element_profile || []);
+            bootstrap.bootstrapTable("load", elements);
         }
 
         private static closeAll(): typeof settings {

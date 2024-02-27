@@ -289,7 +289,7 @@ declare namespace apps.systems {
         "formula_search": {
             "naturalProductProfile": element_profile;
             "smallMoleculeProfile": element_profile;
-            "elements": element_count[];
+            "elements": {};
         };
         "formula_ppm": number;
         "formula_adducts": string[];
@@ -321,6 +321,9 @@ declare namespace apps.systems {
         private loadConfigs;
         private static defaultSettings;
         private static bindRangeDisplayValue;
+        /**
+         * get table html UI for create custom element profiles
+        */
         private static getElementProfileTable;
         private static load_profileTable;
         private static closeAll;
