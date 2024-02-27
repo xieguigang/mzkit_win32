@@ -1318,6 +1318,16 @@ var apps;
             settings.prototype.molecule_networking_btn_onclick = function () {
                 settings.closeAll().show("molecule_networking_page");
             };
+            /**
+             * save profile table as custom profiles
+            */
+            settings.prototype.save_elements_onclick = function () {
+                var table = settings.getElementProfileTable();
+                var data = table.bootstrapTable("getData");
+                console.log("get element profiles:");
+                console.table(data);
+                app.desktop.mzkit.SetStatus("save_elements", JSON.stringify(data));
+            };
             return settings;
         }(Bootstrap));
         systems.settings = settings;

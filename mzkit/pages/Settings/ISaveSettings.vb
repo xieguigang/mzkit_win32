@@ -58,7 +58,7 @@
 
 Imports System.Runtime.InteropServices
 Imports BioNovoGene.mzkit_win32.Configuration
-Imports Microsoft.VisualBasic.MIME.application.json
+Imports Microsoft.VisualBasic.Serialization.JSON
 
 Public Interface ISaveSettings
 
@@ -91,7 +91,21 @@ Public Class SettingsProxy
         Return ElementProfile.loadPresetProfile(FormulaSearchProfile.GetProfile(name)).GetJson
     End Function
 
+    ''' <summary>
+    ''' save all settings
+    ''' </summary>
     Public Sub Save()
+    End Sub
 
+    ''' <summary>
+    ''' save a specific settings data
+    ''' </summary>
+    ''' <param name="id"></param>
+    ''' <param name="Status"></param>
+    Public Sub SetStatus(id As String, Status As String)
+        Select Case Strings.Trim(id).ToLower
+            Case "save_elements"
+                Call ElementProfile.SaveSettings(Status.LoadJSON(Of ElementProfile()))
+        End Select
     End Sub
 End Class

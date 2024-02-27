@@ -344,6 +344,10 @@ declare namespace apps.systems {
         profile_btn_onclick(): void;
         add_element_onclick(): void;
         molecule_networking_btn_onclick(): void;
+        /**
+         * save profile table as custom profiles
+        */
+        save_elements_onclick(): void;
     }
 }
 declare namespace apps.viewer {

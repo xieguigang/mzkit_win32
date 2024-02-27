@@ -321,5 +321,18 @@ namespace apps.systems {
         public molecule_networking_btn_onclick() {
             settings.closeAll().show("molecule_networking_page");
         }
+
+        /**
+         * save profile table as custom profiles
+        */
+        public save_elements_onclick() {
+            const table = settings.getElementProfileTable();
+            const data: element_count[] = table.bootstrapTable("getData");
+
+            console.log("get element profiles:");
+            console.table(data);
+
+            app.desktop.mzkit.SetStatus("save_elements", JSON.stringify(data));
+        }
     }
 }
