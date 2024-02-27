@@ -108,6 +108,10 @@ Namespace Configuration
 
     Public Class FormulaSearchProfile
 
+        ''' <summary>
+        ''' the element profiles for custom set
+        ''' </summary>
+        ''' <returns></returns>
         Public Property elements As Dictionary(Of String, ElementRange)
         Public Property smallMoleculeProfile As PresetProfileSettings
         Public Property naturalProductProfile As PresetProfileSettings
@@ -131,11 +135,15 @@ Namespace Configuration
             Return profileNames.TryGetValue(Strings.Trim(key).ToLower, [default]:=FormulaSearchProfiles.Default)
         End Function
 
+        ''' <summary>
+        ''' load the custom set for the formula search
+        ''' </summary>
+        ''' <returns></returns>
         Public Function CreateOptions() As SearchOption
-            Dim opts = New SearchOption(-99999, 99999, 5)
+            Dim opts As New SearchOption(-99999, 99999, 5)
 
             For Each element In elements
-                opts.AddElement(element.Key, element.Value.min, element.Value.max)
+                Call opts.AddElement(element.Key, element.Value.min, element.Value.max)
             Next
 
             Return opts

@@ -104,7 +104,8 @@ Public Class ElementProfile
             Case FormulaSearchProfiles.SmallMolecule
                 Return SearchOption.SmallMolecule(DNPOrWileyType.DNP, True)
             Case Else
-                Return Nothing
+                ' returns the custom dataset
+                Return Globals.Settings.formula_search.CreateOptions
         End Select
     End Function
 End Class
