@@ -136,6 +136,7 @@ Public Class SettingsProxy
         settings.ui.language = CInt(DirectCast(json!language, JsonValue))
 
         settings.viewer.fill = DirectCast(json("fill_plot_area"), JsonValue)
+        settings.viewer.colorSet = DirectCast(json!colorset, JsonArray)
 
         Call settings.Save()
     End Sub

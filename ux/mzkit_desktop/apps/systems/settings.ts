@@ -463,6 +463,8 @@ namespace apps.systems {
         public static invoke_save() {
             console.log("invoke settings save action!");
 
+            settings.mzkit_configs.colorset = settings.getColorList();
+
             // do save configuration
             app.desktop.mzkit
                 .Save(JSON.stringify(settings.mzkit_configs))
