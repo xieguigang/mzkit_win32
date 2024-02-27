@@ -64,6 +64,9 @@ namespace app.desktop {
         GetPlugins(): Promise<string>;
         Exec(id: string): void;
 
+        // settings & configuration
+        loadSettings(): Promise<string>;
+
         // plugin creator
         SelectFolder(): Promise<string>;
         GetFiles(dir: string): Promise<string>;

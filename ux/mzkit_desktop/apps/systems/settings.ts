@@ -101,7 +101,17 @@ namespace apps.systems {
 
         protected init(): void {
             this.mzkit_page_btn_onclick();
-            this.loadConfigs(settings.defaultSettings());
+
+            app.desktop.mzkit.loadSettings()
+                .then(async function (json) {
+                    const json_str: string = await json;
+                    const settings = JSON.parse(json_str);
+
+                    console.log("get mzkit configurations:");
+                    console.log(settings);
+
+                    this.loadConfigs(settings.defaultSettings());
+                });
         }
 
         private loadConfigs(configs: mzkit_configs) {

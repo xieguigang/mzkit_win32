@@ -98,6 +98,7 @@ declare namespace app.desktop {
         SetStatus(id: string, status: string): void;
         GetPlugins(): Promise<string>;
         Exec(id: string): void;
+        loadSettings(): Promise<string>;
         SelectFolder(): Promise<string>;
         GetFiles(dir: string): Promise<string>;
         BuildPkg(folder: string): Promise<boolean>;
