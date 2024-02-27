@@ -361,6 +361,23 @@ namespace apps.systems {
                 });
         }
 
+        public preset_colorset_onchange(value: string | string[]) {
+            app.desktop.mzkit.GetColors((Array.isArray(value) ? value[0] : value))
+                .then(async function (json) {
+                    const json_str: string = await json;
+                    const colors: string[] = JSON.parse(json_str);
+                    const list = $ts("#colorset").clear();
+
+                    for (let color of colors) {
+                        list.appendElement($ts("<a>", {
+                            href: "#",
+                            class: ["list-group-item", "list-group-item-action"]
+                        }).display(`<span style="background-color:${color}">&nbsp;&nbsp;</span> ${color}`)
+                        );
+                    }
+                });
+        }
+
         private static show(page_id: string) {
             $ts(`#${page_id}`).show();
             $ts("#title").display(pages[page_id]);

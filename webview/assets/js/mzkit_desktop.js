@@ -1359,6 +1359,31 @@ var apps;
                     });
                 });
             };
+            settings.prototype.preset_colorset_onchange = function (value) {
+                app.desktop.mzkit.GetColors((Array.isArray(value) ? value[0] : value))
+                    .then(function (json) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var json_str, colors, list, _i, colors_1, color;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, json];
+                                case 1:
+                                    json_str = _a.sent();
+                                    colors = JSON.parse(json_str);
+                                    list = $ts("#colorset").clear();
+                                    for (_i = 0, colors_1 = colors; _i < colors_1.length; _i++) {
+                                        color = colors_1[_i];
+                                        list.appendElement($ts("<a>", {
+                                            href: "#",
+                                            class: ["list-group-item", "list-group-item-action"]
+                                        }).display("<span style=\"background-color:".concat(color, "\">&nbsp;&nbsp;</span> ").concat(color)));
+                                    }
+                                    return [2 /*return*/];
+                            }
+                        });
+                    });
+                });
+            };
             settings.show = function (page_id) {
                 $ts("#".concat(page_id)).show();
                 $ts("#title").display(pages[page_id]);

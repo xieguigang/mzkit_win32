@@ -38,7 +38,7 @@ namespace app.desktop {
         Download(): Promise<string>;
 
         GetLCMSScatter(): Promise<string>;
-        GetColors(): Promise<string>;
+        GetColors(name?: string): Promise<string>;
 
         // LCMS library
 

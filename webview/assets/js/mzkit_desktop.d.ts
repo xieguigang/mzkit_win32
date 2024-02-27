@@ -78,7 +78,7 @@ declare namespace app.desktop {
         RunGraph(cutoff: number): Promise<boolean>;
         Download(): Promise<string>;
         GetLCMSScatter(): Promise<string>;
-        GetColors(): Promise<string>;
+        GetColors(name?: string): Promise<string>;
         /**
          * Scan the library list that installed in the local filesystem.
         */
@@ -344,6 +344,7 @@ declare namespace apps.systems {
         private profile_name;
         copy_profile_onchange(value: string | string[]): void;
         reset_profile_onclick(): void;
+        preset_colorset_onchange(value: string | string[]): void;
         private static show;
         mzkit_page_btn_onclick(): void;
         msraw_btn_onclick(): void;

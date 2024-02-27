@@ -108,6 +108,12 @@ Public Class SettingsProxy
             .GetJson
     End Function
 
+    Public Async Function GetColors(name As String) As Task(Of String)
+        Dim colors As String() = Await Task(Of String()).Run(Function() PlotConfig.GetColors(name))
+        Dim json As String = colors.GetJson
+        Return json
+    End Function
+
     ''' <summary>
     ''' save all settings
     ''' </summary>
