@@ -401,7 +401,11 @@ namespace apps.systems {
             const colors: string[] = [];
 
             for (let i: number = 0; i < links.length; i++) {
-                colors.push(links.item(i).style.backgroundColor);
+                let rgb_color =  links.item(i).style.backgroundColor;
+                let colorVal =TypeScript.ColorManager.toColorObject( rgb_color);
+                let html_color : string = colorVal. ;
+
+                colors.push(  html_color );
             }
 
             console.log("get color list for run plot:");
