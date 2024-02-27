@@ -61,6 +61,7 @@ Imports System.Runtime.InteropServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.mzkit_win32.Configuration
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.MIME.application.json.Javascript
 Imports Microsoft.VisualBasic.Serialization.JSON
 
 Public Interface ISaveSettings
@@ -108,6 +109,7 @@ Public Class SettingsProxy
     ''' save all settings
     ''' </summary>
     Public Async Sub Save(value As String)
+        Dim json As JsonObject = Await JsonObject.Parse(value)
 
     End Sub
 
