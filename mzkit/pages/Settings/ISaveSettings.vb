@@ -63,6 +63,7 @@ Imports BioNovoGene.mzkit_win32.Configuration
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports Mzkit_win32.BasicMDIForm
 
 Public Interface ISaveSettings
 
@@ -112,13 +113,21 @@ Public Class SettingsProxy
         Dim json As JsonObject = Await JsonObject.Parse(value)
         Dim settings = Globals.Settings
 
+        Call Workbench.LogText($"get configuration value from webview UI:")
+        Call Workbench.LogText(value)
+
         If settings.ui Is Nothing Then
             settings.ui = New UISettings
+        End If
+        If settings.viewer Is Nothing Then
+            settings.viewer = New RawFileViewerSettings
         End If
 
         settings.ui.rememberLayouts = DirectCast(json("remember_layout"), JsonValue)
         settings.ui.rememberWindowsLocation = DirectCast(json("remember_location"), JsonValue)
         settings.ui.language = CInt(DirectCast(json!language, JsonValue))
+
+        settings.viewer.fill = DirectCast(json("fill_plot_area"), JsonValue)
 
         Call settings.Save()
     End Sub

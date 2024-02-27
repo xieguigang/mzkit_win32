@@ -50,7 +50,7 @@ namespace apps.systems {
 
         // chromagram plot
         "colorset": string[];
-        "fill-plot-area": boolean;
+        "fill_plot_area": boolean;
 
         // preset element profiles
         "formula_search": {
@@ -133,6 +133,7 @@ namespace apps.systems {
                     // deal with the possible null reference value
                     settings.precursor_search = settings.precursor_search || {};
                     settings.ui = settings.ui || {};
+                    settings.viewer = settings.viewer || {};
 
                     // make data object conversion
                     configs.formula_ppm = settings.precursor_search.ppm || 5;
@@ -141,6 +142,8 @@ namespace apps.systems {
                     configs.remember_layout = logicalDefault(settings.ui.rememberLayouts, true);
                     configs.remember_location = logicalDefault(settings.ui.rememberWindowsLocation, true);
                     configs.language = settings.ui.language || 2;
+
+                    configs.fill_plot_area = logicalDefault(settings.viewer.fill, true);
 
                     vm.loadConfigs(configs);
                 });
@@ -158,6 +161,10 @@ namespace apps.systems {
             settings.mzkit_configs.language = <any>(Array.isArray(value) ? value[0] : value);
         }
 
+        public fill_plot_area_onchange(value: string | string[]) {
+            settings.mzkit_configs.fill_plot_area = <any>(Array.isArray(value) ? value[0] : value);
+        }
+
         private loadConfigs(configs: mzkit_configs) {
             const formula_profiles = configs.formula_search;
 
@@ -172,7 +179,7 @@ namespace apps.systems {
             $ts.value("#remember_layout", configs["remember_layout"]);
 
             $ts.value("#fragment_cutoff", configs["fragment_cutoff"]);
-            $ts.value("#fill-plot-area", configs["fill-plot-area"]);
+            $ts.value("#fill_plot_area", configs["fill_plot_area"]);
 
             $ts.value("#small_molecule_profile", formula_profiles.smallMoleculeProfile.type);
             $ts.value("#sm_common", formula_profiles.smallMoleculeProfile.isCommon);
@@ -216,7 +223,7 @@ namespace apps.systems {
 
                 // chromagram plot
                 "colorset": [],
-                "fill-plot-area": true,
+                "fill_plot_area": true,
 
                 // preset element profiles
                 "formula_search": {

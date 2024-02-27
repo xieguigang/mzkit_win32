@@ -290,7 +290,7 @@ declare namespace apps.systems {
         "fragment_cutoff": "relative" | "quantile";
         "fragment_cutoff_value": number;
         "colorset": string[];
-        "fill-plot-area": boolean;
+        "fill_plot_area": boolean;
         "formula_search": {
             "naturalProductProfile": element_profile;
             "smallMoleculeProfile": element_profile;
@@ -326,6 +326,7 @@ declare namespace apps.systems {
         remember_location_onchange(value: string | string[]): void;
         remember_layout_onchange(value: string | string[]): void;
         language_onchange(value: string | string[]): void;
+        fill_plot_area_onchange(value: string | string[]): void;
         private loadConfigs;
         private static defaultSettings;
         /**

@@ -85,6 +85,10 @@ Namespace Configuration
         Public Property method As TrimmingMethods = TrimmingMethods.RelativeIntensity
         Public Property intoCutoff As Double = 0.05
         Public Property quantile As Double = 0.65
+        ''' <summary>
+        ''' fill_plot_area
+        ''' </summary>
+        ''' <returns></returns>
         Public Property fill As Boolean = True
 
         Public Function GetMethod() As LowAbundanceTrimming
