@@ -96,7 +96,7 @@ declare namespace app.desktop {
         /**
          * a general method(across multiple host pages) for save general page data
         */
-        Save(): void;
+        Save(value?: string): void;
         InstallLocal(): void;
         SetStatus(id: string, status: string): void;
         GetPlugins(): Promise<string>;
@@ -321,7 +321,7 @@ declare namespace apps.systems {
     }
     class settings extends Bootstrap {
         get appName(): string;
-        mzkit_configs: mzkit_configs;
+        static mzkit_configs: mzkit_configs;
         protected init(): void;
         private loadConfigs;
         private static defaultSettings;
@@ -351,6 +351,7 @@ declare namespace apps.systems {
          * save profile table as custom profiles
         */
         save_elements_onclick(): void;
+        static invoke_save(): void;
     }
 }
 declare namespace apps.viewer {

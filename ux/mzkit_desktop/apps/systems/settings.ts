@@ -100,7 +100,7 @@ namespace apps.systems {
             return "mzkit/settings";
         }
 
-        public mzkit_configs: mzkit_configs = null;
+        public static mzkit_configs: mzkit_configs = null;
 
         protected init(): void {
             const vm = this;
@@ -126,8 +126,7 @@ namespace apps.systems {
         private loadConfigs(configs: mzkit_configs) {
             const formula_profiles = configs.formula_search;
 
-            this.mzkit_configs = configs;
-
+            settings.mzkit_configs = configs;
             settings.load_profileTable(configs);
             settings.bindRangeDisplayValue(configs, function (config) {
                 // save
@@ -367,7 +366,7 @@ namespace apps.systems {
         }
 
         public static invoke_save() {
-
+            app.desktop.mzkit.Save(JSON.stringify(settings.mzkit_configs));
         }
     }
 }

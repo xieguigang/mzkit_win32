@@ -107,7 +107,8 @@ Public Class SettingsProxy
     ''' <summary>
     ''' save all settings
     ''' </summary>
-    Public Sub Save()
+    Public Sub Save(value As String)
+
     End Sub
 
     ''' <summary>

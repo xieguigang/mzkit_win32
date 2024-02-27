@@ -1102,9 +1102,7 @@ var apps;
         var settings = /** @class */ (function (_super) {
             __extends(settings, _super);
             function settings() {
-                var _this = _super !== null && _super.apply(this, arguments) || this;
-                _this.mzkit_configs = null;
-                return _this;
+                return _super !== null && _super.apply(this, arguments) || this;
             }
             Object.defineProperty(settings.prototype, "appName", {
                 get: function () {
@@ -1140,7 +1138,7 @@ var apps;
             };
             settings.prototype.loadConfigs = function (configs) {
                 var formula_profiles = configs.formula_search;
-                this.mzkit_configs = configs;
+                settings.mzkit_configs = configs;
                 settings.load_profileTable(configs);
                 settings.bindRangeDisplayValue(configs, function (config) {
                     // save
@@ -1358,6 +1356,10 @@ var apps;
                 console.table(data);
                 app.desktop.mzkit.SetStatus("save_elements", JSON.stringify(data));
             };
+            settings.invoke_save = function () {
+                app.desktop.mzkit.Save(JSON.stringify(settings.mzkit_configs));
+            };
+            settings.mzkit_configs = null;
             return settings;
         }(Bootstrap));
         systems.settings = settings;
