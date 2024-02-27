@@ -1157,9 +1157,7 @@
     <Compile Include="pages\Settings\ElementProfile.Designer.vb">
       <DependentUpon>ElementProfile.vb</DependentUpon>
     </Compile>
-    <Compile Include="pages\Settings\ElementProfile.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="pages\Settings\ElementProfile.vb" />
     <Compile Include="RibbonItems.Designer.vb" />
     <Compile Include="Win32API.vb" />
   </ItemGroup>
