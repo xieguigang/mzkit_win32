@@ -1,7 +1,7 @@
 /**
  * object creator helper module
 */
-declare module Activator {
+declare namespace Activator {
     /**
      * MetaReader对象和字典相似，只不过是没有类型约束，并且为只读集合
     */
@@ -121,6 +121,10 @@ declare class LINQIterator<T> {
     protected sequence: T[];
     private i;
     /**
+     * 实现迭代器的关键元素之1
+    */
+    [Symbol.iterator](): this;
+    /**
      * The number of elements in the data sequence.
     */
     get Count(): number;
@@ -141,7 +145,7 @@ interface IPopulated<T> {
 /**
  * The linq pipline implements at here. (在这个模块之中实现具体的数据序列算法)
 */
-declare module Enumerable {
+declare namespace Enumerable {
     function Range(from: number, to: number, steps?: number): number[];
     function Min(...v: number[]): number;
     /**
@@ -523,7 +527,7 @@ declare namespace Internal.Handlers {
 /**
  * 通用数据拓展函数集合
 */
-declare module DataExtensions {
+declare namespace DataExtensions {
     function merge(obj: {}, ...args: {}[]): {};
     function arrayBufferToBase64(buffer: Array<number> | ArrayBuffer): string;
     function toUri(data: DataURI): string;
@@ -581,7 +585,7 @@ declare class NamedValue<T> {
  * TypeScript string helpers.
  * (这个模块之中的大部分的字符串处理函数的行为是和VisualBasic之中的字符串函数的行为是相似的)
 */
-declare module Strings {
+declare namespace Strings {
     const x0: number;
     const x9: number;
     const asterisk: number;
@@ -832,7 +836,7 @@ declare namespace TypeScript.Reflection {
  * Distributed under the BSD License
  * See http://pajhome.org.uk/crypt/md5 for more info.
 */
-declare module MD5 {
+declare namespace MD5 {
     /**
      * Add integers, wrapping at 2^32. This uses 16-bit operations internally
      * to work around bugs in some JS interpreters.
@@ -1299,7 +1303,7 @@ declare namespace TypeScript {
     /**
      * String helpers for the file path string.
     */
-    module PathHelper {
+    namespace PathHelper {
         /**
          * 只保留文件名（已经去除了文件夹路径以及文件名最后的拓展名部分）
         */
@@ -1478,7 +1482,7 @@ declare namespace TypeScript {
     }
 }
 declare namespace DOM {
-    module InputValueGetter {
+    namespace InputValueGetter {
         /**
          * Query meta tag content value by name
          *
@@ -1997,7 +2001,7 @@ declare namespace DOM.Excel {
     function ToHtml(table: HTMLTableElement, filters?: string[]): string;
 }
 declare namespace DOM {
-    module InputValueSetter {
+    namespace InputValueSetter {
         /**
          * 设置控件的输入值
          *
@@ -2333,7 +2337,7 @@ declare namespace OADate {
         prepareOADate(value: number): number;
     }
     class TDate extends TDateTime {
-        prepareOADate(value: number): any;
+        prepareOADate(value: number): number;
     }
     class TTime extends TDateTime {
         prepareOADate(value: number): number;
@@ -2419,7 +2423,7 @@ declare namespace algorithm.BTree {
     /**
      * data extension module for binary tree nodes data sequence
     */
-    module binaryTreeExtensions {
+    namespace binaryTreeExtensions {
         /**
          * Convert a binary tree object as a node array.
         */
@@ -2607,7 +2611,7 @@ declare namespace TypeScript.ColorManager {
  *
  * (符号``=``只是用来进行字符串的长度填充使用的，因为base64字符串的长度应该总是4的倍数)
 */
-declare module Base64 {
+declare namespace Base64 {
     /**
      * 简单的检测一下所给定的字符串是否是有效的base64字符串
     */
@@ -2634,14 +2638,14 @@ declare module Base64 {
     */
     function utf8_decode(text: string): string;
 }
-declare module Bencode {
+declare namespace Bencode {
     function decode(str: string): any;
     function encode(object: any): string;
 }
 /**
  * 可能对unicode的支持不是很好，推荐只用来压缩ASCII字符串
 */
-declare module LZW {
+declare namespace LZW {
     /**
      * LZW-compress a string
     */
@@ -2714,7 +2718,7 @@ declare namespace Internal {
  *
  * 通过这个路由器模块管理制定的Web应用程序模块的运行或者休眠
 */
-declare module Router {
+declare namespace Router {
     /**
      * meta标签中的app值
     */
@@ -2916,7 +2920,7 @@ declare namespace TypeScript {
     /**
      * https://github.com/natewatson999/js-gc
     */
-    module garbageCollect {
+    namespace garbageCollect {
         /**
          * try to do garbageCollect by invoke this function
         */
@@ -3195,7 +3199,7 @@ declare namespace TypeScript {
         get elapsedMilisecond(): number;
     }
 }
-declare module Cookies {
+declare namespace Cookies {
     function setCookie(name: string, value: string, exdays?: number): void;
     /**
      * Cookie 不存在，函数会返回空字符串

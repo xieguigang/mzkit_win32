@@ -3872,7 +3872,12 @@ var DOM;
                 inputs = input;
             }
             else {
-                inputs = new DOMEnumerator(document.getElementsByName(input.name));
+                var list = document.getElementsByName(input.name);
+                if (isNullOrUndefined(list) || list.length == 0) {
+                    console.warn("no checkbox input with name('".concat(input.name, "') could be found, you should check the input tag name attribute value is valid or not?"));
+                    console.warn(input);
+                }
+                inputs = new DOMEnumerator(list);
             }
             if (inputs.Count == 1) {
                 var single = inputs.ElementAt(0);
@@ -9026,16 +9031,16 @@ var TypeScript;
         garbageCollect.handler = getHandler();
         function getHandler() {
             if (typeof window.require === "function") {
-                var require = window.require;
+                var require_1 = window.require;
                 try {
-                    require("v8").setFlagsFromString('--expose_gc');
+                    require_1("v8").setFlagsFromString('--expose_gc');
                     if (window.global != null) {
-                        var global = window.global;
-                        if (typeof global.gc == "function") {
-                            return global.gc;
+                        var global_1 = window.global;
+                        if (typeof global_1.gc == "function") {
+                            return global_1.gc;
                         }
                     }
-                    var vm = require("vm");
+                    var vm = require_1("vm");
                     if (vm != null) {
                         if (typeof vm.runInNewContext == "function") {
                             var k = vm.runInNewContext("gc");
@@ -9070,9 +9075,9 @@ var TypeScript;
             //    }
             //}
             if (typeof window.global !== 'undefined') {
-                var global = window.global;
-                if (global.gc) {
-                    return global.gc;
+                var global_2 = window.global;
+                if (global_2.gc) {
+                    return global_2.gc;
                 }
             }
             //if (typeof Duktape == 'object') {
