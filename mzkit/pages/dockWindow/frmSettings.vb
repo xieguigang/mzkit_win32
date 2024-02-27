@@ -54,7 +54,6 @@
 #End Region
 
 Imports System.ComponentModel
-Imports BioNovoGene.mzkit_win32.frmStartPage
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core

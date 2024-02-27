@@ -1167,8 +1167,8 @@ var apps;
                     "fill-plot-area": true,
                     // preset element profiles
                     "formula_search": {
-                        "smallMoleculeProfile": { type: "wiley", isCommon: true },
-                        "naturalProductProfile": { type: "wiley", isCommon: true },
+                        "smallMoleculeProfile": { type: "Wiley", isCommon: true },
+                        "naturalProductProfile": { type: "Wiley", isCommon: true },
                         "elements": [
                             { atom: "C", min: 1, max: 100 },
                             { atom: "H", min: 1, max: 1000 },

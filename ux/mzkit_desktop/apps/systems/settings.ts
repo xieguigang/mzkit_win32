@@ -90,7 +90,7 @@ namespace apps.systems {
     }
 
     export interface element_profile {
-        "type": "wiley" | "dnp";
+        "type": "Wiley" | "DNP";
         "isCommon": boolean;
     }
 
@@ -161,8 +161,8 @@ namespace apps.systems {
 
                 // preset element profiles
                 "formula_search": {
-                    "smallMoleculeProfile": <element_profile>{ type: "wiley", isCommon: true },
-                    "naturalProductProfile": <element_profile>{ type: "wiley", isCommon: true },
+                    "smallMoleculeProfile": <element_profile>{ type: "Wiley", isCommon: true },
+                    "naturalProductProfile": <element_profile>{ type: "Wiley", isCommon: true },
                     "elements": [
                         <element_count>{ atom: "C", min: 1, max: 100 },
                         <element_count>{ atom: "H", min: 1, max: 1000 },

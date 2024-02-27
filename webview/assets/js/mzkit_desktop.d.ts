@@ -311,7 +311,7 @@ declare namespace apps.systems {
         max: number;
     }
     interface element_profile {
-        "type": "wiley" | "dnp";
+        "type": "Wiley" | "DNP";
         "isCommon": boolean;
     }
     class settings extends Bootstrap {

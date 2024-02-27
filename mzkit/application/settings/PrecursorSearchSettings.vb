@@ -129,6 +129,9 @@ Namespace Configuration
 
     End Class
 
+    ''' <summary>
+    ''' [min, max]
+    ''' </summary>
     Public Class ElementRange
 
         Public Property min As Integer
