@@ -103,6 +103,7 @@ declare namespace app.desktop {
         Exec(id: string): void;
         loadSettings(): Promise<string>;
         getProfile(name: string): Promise<string>;
+        getAllAdducts(): Promise<string>;
         SelectFolder(): Promise<string>;
         GetFiles(dir: string): Promise<string>;
         BuildPkg(folder: string): Promise<boolean>;
@@ -320,7 +321,7 @@ declare namespace apps.systems {
     }
     class settings extends Bootstrap {
         get appName(): string;
-        private mzkit_configs;
+        mzkit_configs: mzkit_configs;
         protected init(): void;
         private loadConfigs;
         private static defaultSettings;

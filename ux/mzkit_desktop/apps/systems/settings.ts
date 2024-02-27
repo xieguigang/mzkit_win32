@@ -100,7 +100,7 @@ namespace apps.systems {
             return "mzkit/settings";
         }
 
-        private mzkit_configs: mzkit_configs = null;
+        public mzkit_configs: mzkit_configs = null;
 
         protected init(): void {
             const vm = this;
@@ -111,11 +111,15 @@ namespace apps.systems {
                 .then(async function (json) {
                     const json_str: string = await json;
                     const settings = JSON.parse(json_str);
+                    const configs = apps.systems.settings.defaultSettings();
 
                     console.log("get mzkit configurations:");
                     console.log(settings);
 
-                    vm.loadConfigs(apps.systems.settings.defaultSettings());
+                    configs.formula_ppm = settings.precursor_search.ppm;
+                    configs.formula_adducts = settings.precursor_search.precursor_types;
+
+                    vm.loadConfigs(configs);
                 });
         }
 
@@ -141,6 +145,27 @@ namespace apps.systems {
 
             $ts.value("#np_profile", formula_profiles.naturalProductProfile.type);
             $ts.value("#np_common", formula_profiles.naturalProductProfile.isCommon);
+
+            app.desktop.mzkit.getAllAdducts()
+                .then(async function (json) {
+                    const json_str: string = await json;
+                    const list: string[] = JSON.parse(json_str);
+                    const adducts = $ts("#formula_adducts").clear();
+                    const selected = configs.formula_adducts || [];
+
+                    for (let adduct of list) {
+                        const key_id: string = adduct;
+                        const value: boolean = selected.indexOf(adduct) > -1;
+
+                        adducts.appendElement($ts("<li>", { class: "list-group-item" }).display(`
+                        <input class="form-check-input me-1" 
+                               type="checkbox" 
+                               value="${value.toString()}"
+                               id="${key_id}" 
+                               checked=${value.toString()}>
+                        <label class="form-check-label" for="${key_id}">${adduct}</label>`));
+                    }
+                });
         }
 
         private static defaultSettings(): mzkit_configs {

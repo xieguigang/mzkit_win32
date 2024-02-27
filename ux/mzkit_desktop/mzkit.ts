@@ -71,6 +71,7 @@ namespace app.desktop {
         // settings & configuration
         loadSettings(): Promise<string>;
         getProfile(name: string): Promise<string>;
+        getAllAdducts(): Promise<string>;
 
         // plugin creator
         SelectFolder(): Promise<string>;

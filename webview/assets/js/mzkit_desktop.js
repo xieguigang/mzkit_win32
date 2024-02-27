@@ -1119,16 +1119,19 @@ var apps;
                 app.desktop.mzkit.loadSettings()
                     .then(function (json) {
                     return __awaiter(this, void 0, void 0, function () {
-                        var json_str, settings;
+                        var json_str, settings, configs;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0: return [4 /*yield*/, json];
                                 case 1:
                                     json_str = _a.sent();
                                     settings = JSON.parse(json_str);
+                                    configs = apps.systems.settings.defaultSettings();
                                     console.log("get mzkit configurations:");
                                     console.log(settings);
-                                    vm.loadConfigs(apps.systems.settings.defaultSettings());
+                                    configs.formula_ppm = settings.precursor_search.ppm;
+                                    configs.formula_adducts = settings.precursor_search.precursor_types;
+                                    vm.loadConfigs(configs);
                                     return [2 /*return*/];
                             }
                         });
@@ -1151,6 +1154,29 @@ var apps;
                 $ts.value("#sm_common", formula_profiles.smallMoleculeProfile.isCommon);
                 $ts.value("#np_profile", formula_profiles.naturalProductProfile.type);
                 $ts.value("#np_common", formula_profiles.naturalProductProfile.isCommon);
+                app.desktop.mzkit.getAllAdducts()
+                    .then(function (json) {
+                    return __awaiter(this, void 0, void 0, function () {
+                        var json_str, list, adducts, selected, _i, list_3, adduct, key_id, value;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, json];
+                                case 1:
+                                    json_str = _a.sent();
+                                    list = JSON.parse(json_str);
+                                    adducts = $ts("#formula_adducts").clear();
+                                    selected = configs.formula_adducts || [];
+                                    for (_i = 0, list_3 = list; _i < list_3.length; _i++) {
+                                        adduct = list_3[_i];
+                                        key_id = adduct;
+                                        value = selected.indexOf(adduct) > -1;
+                                        adducts.appendElement($ts("<li>", { class: "list-group-item" }).display("\n                        <input class=\"form-check-input me-1\" \n                               type=\"checkbox\" \n                               value=\"".concat(value.toString(), "\"\n                               id=\"").concat(key_id, "\" \n                               checked=").concat(value.toString(), ">\n                        <label class=\"form-check-label\" for=\"").concat(key_id, "\">").concat(adduct, "</label>")));
+                                    }
+                                    return [2 /*return*/];
+                            }
+                        });
+                    });
+                });
             };
             settings.defaultSettings = function () {
                 return {
@@ -1653,7 +1679,7 @@ var apps;
                 app.desktop.mzkit.ScanLibraries()
                     .then(function (str) {
                     return __awaiter(this, void 0, void 0, function () {
-                        var pull_str, list, _i, list_3, file, name_3;
+                        var pull_str, list, _i, list_4, file, name_3;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0: return [4 /*yield*/, str];
@@ -1661,8 +1687,8 @@ var apps;
                                     pull_str = _a.sent();
                                     list = JSON.parse(pull_str);
                                     vm.libfiles = {};
-                                    for (_i = 0, list_3 = list; _i < list_3.length; _i++) {
-                                        file = list_3[_i];
+                                    for (_i = 0, list_4 = list; _i < list_4.length; _i++) {
+                                        file = list_4[_i];
                                         name_3 = file.split(/[\\/]/ig);
                                         name_3 = name_3[name_3.length - 1];
                                         vm.libfiles[$ts.baseName(name_3)] = file;
@@ -1892,8 +1918,8 @@ var apps;
                 var libmassSearchClass = "lib-mass-query";
                 console.log("get page data:");
                 console.log(list);
-                for (var _i = 0, list_4 = list; _i < list_4.length; _i++) {
-                    var meta = list_4[_i];
+                for (var _i = 0, list_5 = list; _i < list_5.length; _i++) {
+                    var meta = list_5[_i];
                     var xrefs = "";
                     var xref_data = meta.xref || {};
                     for (var _a = 0, xref_keys_1 = xref_keys; _a < xref_keys_1.length; _a++) {
