@@ -110,7 +110,13 @@ Public Class SettingsProxy
     ''' </summary>
     Public Async Sub Save(value As String)
         Dim json As JsonObject = Await JsonObject.Parse(value)
+        Dim settings = Globals.Settings
 
+        If settings.ui Is Nothing Then
+            settings.ui = New UISettings
+        End If
+
+        settings.ui.rememberLayouts = DirectCast(json("remember-layout"), JsonValue)
     End Sub
 
     ''' <summary>
