@@ -333,6 +333,7 @@ declare namespace apps.systems {
         */
         private static getElementProfileTable;
         private static load_profileTable;
+        private static loadProfileTable;
         private static closeAll;
         copy_profile_onchange(value: string | string[]): void;
         private static show;

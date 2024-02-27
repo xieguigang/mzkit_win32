@@ -243,6 +243,11 @@ namespace apps.systems {
                 }).ToArray();
 
             bootstrap.bootstrapTable(tableOptions);
+            settings.loadProfileTable(elements, bootstrap);
+        }
+
+        private static loadProfileTable(elements: element_count[], bootstrap: BootstrapTable = settings.getElementProfileTable()) {
+            bootstrap.bootstrapTable("removeAll");
             bootstrap.bootstrapTable("load", elements);
         }
 
@@ -267,6 +272,20 @@ namespace apps.systems {
                     const preset = JSON.parse(json_str);
 
                     console.log(preset);
+
+                    if (isNullOrUndefined(preset)) {
+                        settings.loadProfileTable([]);
+                    } else if (isNullOrEmpty(preset.candidateElements)) {
+                        settings.loadProfileTable([]);
+                    } else {
+                        settings.loadProfileTable($from(preset.candidateElements).Select(function (c: any) {
+                            return <element_count>{
+                                "atom": c.Element,
+                                "min": c.MinCount,
+                                "max": c.MaxCount
+                            };
+                        }).ToArray());
+                    }
                 });
         }
 

@@ -1241,6 +1241,11 @@ var apps;
                     };
                 }).ToArray();
                 bootstrap.bootstrapTable(tableOptions);
+                settings.loadProfileTable(elements, bootstrap);
+            };
+            settings.loadProfileTable = function (elements, bootstrap) {
+                if (bootstrap === void 0) { bootstrap = settings.getElementProfileTable(); }
+                bootstrap.bootstrapTable("removeAll");
                 bootstrap.bootstrapTable("load", elements);
             };
             settings.closeAll = function () {
@@ -1267,6 +1272,21 @@ var apps;
                                     json_str = _a.sent();
                                     preset = JSON.parse(json_str);
                                     console.log(preset);
+                                    if (isNullOrUndefined(preset)) {
+                                        settings.loadProfileTable([]);
+                                    }
+                                    else if (isNullOrEmpty(preset.candidateElements)) {
+                                        settings.loadProfileTable([]);
+                                    }
+                                    else {
+                                        settings.loadProfileTable($from(preset.candidateElements).Select(function (c) {
+                                            return {
+                                                "atom": c.Element,
+                                                "min": c.MinCount,
+                                                "max": c.MaxCount
+                                            };
+                                        }).ToArray());
+                                    }
                                     return [2 /*return*/];
                             }
                         });
