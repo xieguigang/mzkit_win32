@@ -61,8 +61,8 @@ Imports System.ComponentModel
 
 Namespace Configuration
 
-    Public Enum Languages
-        System
+    Public Enum Languages As Integer
+        System = 0
         <Description("zh-CN")> Chinese
         <Description("en-US")> English
     End Enum
