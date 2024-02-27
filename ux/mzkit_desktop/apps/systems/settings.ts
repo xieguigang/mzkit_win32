@@ -94,6 +94,20 @@ namespace apps.systems {
         "isCommon": boolean;
     }
 
+    function logicalDefault(logic: any, _default: boolean): boolean {
+        if (isNullOrUndefined(logic) || isNullOrEmpty(logic)) {
+            return _default;
+        } else if (typeof logic == "number") {
+            return logic != 0.0;
+        } else if (typeof logic == "string") {
+            return parseBoolean(logic);
+        } else if (typeof logic == "boolean") {
+            return logic;
+        } else {
+            return logic;
+        }
+    }
+
     export class settings extends Bootstrap {
 
         get appName(): string {
@@ -124,8 +138,8 @@ namespace apps.systems {
                     configs.formula_ppm = settings.precursor_search.ppm || 5;
                     configs.formula_adducts = settings.precursor_search.precursor_types || [];
 
-                    configs.remember_layout = settings.ui.rememberLayouts || "true";
-                    configs.remember_location = settings.ui.rememberWindowsLocation || "true";
+                    configs.remember_layout = logicalDefault(settings.ui.rememberLayouts, true);
+                    configs.remember_location = logicalDefault(settings.ui.rememberWindowsLocation, true);
                     configs.language = settings.ui.language || 2;
 
                     vm.loadConfigs(configs);
