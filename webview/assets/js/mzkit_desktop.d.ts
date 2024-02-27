@@ -283,8 +283,8 @@ declare namespace apps.systems {
         bootstrapTable(arg1: any, arg2?: any): any;
     }
     interface mzkit_configs {
-        "remember-location": boolean;
-        "remember-layout": boolean;
+        "remember_location": boolean;
+        "remember_layout": boolean;
         "language": 0 | 1 | 2;
         "xic_ppm": number;
         "fragment_cutoff": "relative" | "quantile";
@@ -323,6 +323,9 @@ declare namespace apps.systems {
         get appName(): string;
         static mzkit_configs: mzkit_configs;
         protected init(): void;
+        remember_location_onchange(): void;
+        remember_layout_onchange(): void;
+        language_onchange(): void;
         private loadConfigs;
         private static defaultSettings;
         /**

@@ -39,8 +39,8 @@ namespace apps.systems {
 
     export interface mzkit_configs {
         // mzkit app
-        "remember-location": boolean;
-        "remember-layout": boolean;
+        "remember_location": boolean;
+        "remember_layout": boolean;
         "language": 0 | 1 | 2;
 
         // raw file viewer
@@ -123,6 +123,18 @@ namespace apps.systems {
                 });
         }
 
+        public remember_location_onchange() {
+            settings.mzkit_configs.remember_location = $ts.value("#remember_location");
+        }
+
+        public remember_layout_onchange() {
+            settings.mzkit_configs.remember_layout = $ts.value("#remember_layout");
+        }
+
+        public language_onchange() {
+            settings.mzkit_configs.language = $ts.value("#language");
+        }
+
         private loadConfigs(configs: mzkit_configs) {
             const formula_profiles = configs.formula_search;
 
@@ -133,8 +145,8 @@ namespace apps.systems {
             });
 
             $ts.value("#language", configs.language);
-            $ts.value("#remember-location", configs["remember-location"]);
-            $ts.value("#remember-layout", configs["remember-layout"]);
+            $ts.value("#remember_location", configs["remember_location"]);
+            $ts.value("#remember_layout", configs["remember_layout"]);
 
             $ts.value("#fragment_cutoff", configs["fragment_cutoff"]);
             $ts.value("#fill-plot-area", configs["fill-plot-area"]);
@@ -170,8 +182,8 @@ namespace apps.systems {
         private static defaultSettings(): mzkit_configs {
             return <mzkit_configs>{
                 // mzkit app
-                "remember-location": true,
-                "remember-layout": true,
+                "remember_location": true,
+                "remember_layout": true,
                 "language": 2,
 
                 // raw file viewer

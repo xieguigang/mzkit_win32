@@ -1136,6 +1136,15 @@ var apps;
                     });
                 });
             };
+            settings.prototype.remember_location_onchange = function () {
+                settings.mzkit_configs.remember_location = $ts.value("#remember_location");
+            };
+            settings.prototype.remember_layout_onchange = function () {
+                settings.mzkit_configs.remember_layout = $ts.value("#remember_layout");
+            };
+            settings.prototype.language_onchange = function () {
+                settings.mzkit_configs.language = $ts.value("#language");
+            };
             settings.prototype.loadConfigs = function (configs) {
                 var formula_profiles = configs.formula_search;
                 settings.mzkit_configs = configs;
@@ -1144,8 +1153,8 @@ var apps;
                     // save
                 });
                 $ts.value("#language", configs.language);
-                $ts.value("#remember-location", configs["remember-location"]);
-                $ts.value("#remember-layout", configs["remember-layout"]);
+                $ts.value("#remember_location", configs["remember_location"]);
+                $ts.value("#remember_layout", configs["remember_layout"]);
                 $ts.value("#fragment_cutoff", configs["fragment_cutoff"]);
                 $ts.value("#fill-plot-area", configs["fill-plot-area"]);
                 $ts.value("#small_molecule_profile", formula_profiles.smallMoleculeProfile.type);
@@ -1180,8 +1189,8 @@ var apps;
             settings.defaultSettings = function () {
                 return {
                     // mzkit app
-                    "remember-location": true,
-                    "remember-layout": true,
+                    "remember_location": true,
+                    "remember_layout": true,
                     "language": 2,
                     // raw file viewer
                     "xic_ppm": 10,
