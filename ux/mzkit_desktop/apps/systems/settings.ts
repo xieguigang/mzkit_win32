@@ -110,14 +110,23 @@ namespace apps.systems {
             app.desktop.mzkit.loadSettings()
                 .then(async function (json) {
                     const json_str: string = await json;
-                    const settings = JSON.parse(json_str);
+                    const settings = JSON.parse(json_str) || {};
                     const configs = apps.systems.settings.defaultSettings();
 
                     console.log("get mzkit configurations:");
                     console.log(settings);
 
-                    configs.formula_ppm = settings.precursor_search.ppm;
-                    configs.formula_adducts = settings.precursor_search.precursor_types;
+                    // deal with the possible null reference value
+                    settings.precursor_search = settings.precursor_search || {};
+                    settings.ui = settings.ui || {};
+
+                    // make data object conversion
+                    configs.formula_ppm = settings.precursor_search.ppm || 5;
+                    configs.formula_adducts = settings.precursor_search.precursor_types || [];
+
+                    configs.remember_layout = settings.ui.rememberLayouts || "true";
+                    configs.remember_location = settings.ui.rememberWindowsLocation || "true";
+                    configs.language = settings.ui.language || 2;
 
                     vm.loadConfigs(configs);
                 });
