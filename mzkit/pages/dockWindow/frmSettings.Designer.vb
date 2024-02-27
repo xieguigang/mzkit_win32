@@ -79,33 +79,9 @@ Partial Class frmSettings
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.WebView21 = New Microsoft.Web.WebView2.WinForms.WebView2()
-        Me.Panel1 = New System.Windows.Forms.Panel()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'Button2
-        '
-        Me.Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button2.Location = New System.Drawing.Point(822, 14)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 21)
-        Me.Button2.TabIndex = 6
-        Me.Button2.Text = "Close"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button1.Location = New System.Drawing.Point(721, 14)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 21)
-        Me.Button1.TabIndex = 5
-        Me.Button1.Text = "Apply"
-        Me.Button1.UseVisualStyleBackColor = True
         '
         'WebView21
         '
@@ -115,19 +91,9 @@ Partial Class frmSettings
         Me.WebView21.Dock = System.Windows.Forms.DockStyle.Fill
         Me.WebView21.Location = New System.Drawing.Point(0, 0)
         Me.WebView21.Name = "WebView21"
-        Me.WebView21.Size = New System.Drawing.Size(922, 443)
+        Me.WebView21.Size = New System.Drawing.Size(922, 490)
         Me.WebView21.TabIndex = 7
         Me.WebView21.ZoomFactor = 1.0R
-        '
-        'Panel1
-        '
-        Me.Panel1.Controls.Add(Me.Button2)
-        Me.Panel1.Controls.Add(Me.Button1)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel1.Location = New System.Drawing.Point(0, 443)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(922, 47)
-        Me.Panel1.TabIndex = 8
         '
         'frmSettings
         '
@@ -135,17 +101,12 @@ Partial Class frmSettings
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(922, 490)
         Me.Controls.Add(Me.WebView21)
-        Me.Controls.Add(Me.Panel1)
         Me.DoubleBuffered = True
         Me.Name = "frmSettings"
         Me.TabPageContextMenuStrip = Me.DockContextMenuStrip1
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button1 As Button
     Friend WithEvents WebView21 As Microsoft.Web.WebView2.WinForms.WebView2
-    Friend WithEvents Panel1 As Panel
 End Class

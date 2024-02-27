@@ -347,7 +347,8 @@
                                 <div class="col-auto">
                                     <p>Precursor Adducts:</p>
 
-                                    <ul class="list-group" id="formula_adducts">
+                                    <ul class="list-group" id="formula_adducts"
+                                        style=" max-height: 450px; overflow-y: scroll;">
                                         <!-- <li class="list-group-item">
                                             <input class="form-check-input me-1" type="checkbox" value=""
                                                 id="firstCheckbox">
@@ -512,11 +513,22 @@
                     </div>
                 </div>
             </div>
+
+            <hr />
         </div>
     </div>
 
     <br />
-    <br />
+
+    <div class="row">
+        <div class="col-10"></div>
+        <div class="col-auto">
+            <button id="apply_settings" type="button" class="btn btn-primary mb-3">Apply</button>
+        </div>
+        <div class="col-auto">
+            <button id="close_page" type="button" class="btn btn-primary mb-3">Close</button>
+        </div>
+    </div>
 </body>
 
 <script type="text/javascript">

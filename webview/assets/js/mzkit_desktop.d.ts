@@ -104,6 +104,7 @@ declare namespace app.desktop {
         loadSettings(): Promise<string>;
         getProfile(name: string): Promise<string>;
         getAllAdducts(): Promise<string>;
+        close(): void;
         SelectFolder(): Promise<string>;
         GetFiles(dir: string): Promise<string>;
         BuildPkg(folder: string): Promise<boolean>;
@@ -356,6 +357,8 @@ declare namespace apps.systems {
         */
         save_elements_onclick(): void;
         static invoke_save(): void;
+        apply_settings_onclick(): void;
+        close_page(): void;
     }
 }
 declare namespace apps.viewer {

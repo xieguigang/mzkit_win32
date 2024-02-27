@@ -85,6 +85,8 @@ End Interface
 <ComVisible(True)>
 Public Class SettingsProxy
 
+    Public host As frmSettings
+
     Public Function loadSettings() As String
         Dim settings = Globals.Settings
         Dim json_str As String = settings.GetJson
@@ -142,5 +144,9 @@ Public Class SettingsProxy
             Case "save_elements"
                 Call ElementProfile.SaveSettings(Status.LoadJSON(Of ElementProfile()))
         End Select
+    End Sub
+
+    Public Async Sub close()
+        Await Threading.Tasks.Task.Run(Sub() host.Invoke(Sub() host.closePage()))
     End Sub
 End Class

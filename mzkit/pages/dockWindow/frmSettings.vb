@@ -82,7 +82,7 @@ Public Class frmSettings
     'Dim pages As Control()
     'Dim showPageLink As IPageSettings
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Public Sub closePage()
         DockState = DockState.Hidden
         MyApplication.host.ShowPage(MyApplication.host.mzkitTool)
     End Sub
@@ -130,7 +130,7 @@ Public Class frmSettings
         End If
     End Sub
 
-    Private Async Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Async Sub Button1_Click(sender As Object, e As EventArgs)
         Await SaveSettings()
     End Sub
 

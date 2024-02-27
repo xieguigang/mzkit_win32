@@ -1396,6 +1396,7 @@ var apps;
             };
             settings.invoke_save = function () {
                 console.log("invoke settings save action!");
+                // do save configuration
                 app.desktop.mzkit
                     .Save(JSON.stringify(settings.mzkit_configs))
                     .then(function () {
@@ -1406,6 +1407,12 @@ var apps;
                         });
                     });
                 });
+            };
+            settings.prototype.apply_settings_onclick = function () {
+                settings.invoke_save();
+            };
+            settings.prototype.close_page = function () {
+                app.desktop.mzkit.close();
             };
             settings.mzkit_configs = null;
             return settings;
