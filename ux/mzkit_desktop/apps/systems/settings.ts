@@ -53,11 +53,14 @@ namespace apps.systems {
         "fill-plot-area": boolean;
 
         // preset element profiles
-        "small_molecule_profile": element_profile;
-        "np_profile": element_profile;
+        "formula_search": {
+            "naturalProductProfile": element_profile,
+            "smallMoleculeProfile": element_profile,
+            "elements": element_count[]
+        };
+
         "formula_ppm": number;
         "formula_adducts": string[];
-        "custom_element_profile": element_count[];
 
         // molecular networking
         "layout_iterations": number;
@@ -87,8 +90,8 @@ namespace apps.systems {
     }
 
     export interface element_profile {
-        "profile": "wiley" | "dnp";
-        "is_common": boolean;
+        "type": "wiley" | "dnp";
+        "isCommon": boolean;
     }
 
     export class settings extends Bootstrap {
@@ -117,6 +120,8 @@ namespace apps.systems {
         }
 
         private loadConfigs(configs: mzkit_configs) {
+            const formula_profiles = configs.formula_search;
+
             this.mzkit_configs = configs;
 
             settings.load_profileTable(configs);
@@ -131,11 +136,11 @@ namespace apps.systems {
             $ts.value("#fragment_cutoff", configs["fragment_cutoff"]);
             $ts.value("#fill-plot-area", configs["fill-plot-area"]);
 
-            $ts.value("#small_molecule_profile", configs.small_molecule_profile.profile);
-            $ts.value("#sm_common", configs.small_molecule_profile.is_common);
+            $ts.value("#small_molecule_profile", formula_profiles.smallMoleculeProfile.type);
+            $ts.value("#sm_common", formula_profiles.smallMoleculeProfile.isCommon);
 
-            $ts.value("#np_profile", configs.np_profile.profile);
-            $ts.value("#np_common", configs.np_profile.is_common);
+            $ts.value("#np_profile", formula_profiles.naturalProductProfile.type);
+            $ts.value("#np_common", formula_profiles.naturalProductProfile.isCommon);
         }
 
         private static defaultSettings(): mzkit_configs {
@@ -155,15 +160,17 @@ namespace apps.systems {
                 "fill-plot-area": true,
 
                 // preset element profiles
-                "small_molecule_profile": <element_profile>{ profile: "wiley", is_common: true },
-                "np_profile": <element_profile>{ profile: "wiley", is_common: true },
+                "formula_search": {
+                    "smallMoleculeProfile": <element_profile>{ type: "wiley", isCommon: true },
+                    "naturalProductProfile": <element_profile>{ type: "wiley", isCommon: true },
+                    "elements": [
+                        <element_count>{ atom: "C", min: 1, max: 100 },
+                        <element_count>{ atom: "H", min: 1, max: 1000 },
+                        <element_count>{ atom: "O", min: 0, max: 100 }
+                    ],
+                },
                 "formula_ppm": 20,
                 "formula_adducts": [],
-                "custom_element_profile": [
-                    <element_count>{ atom: "C", min: 1, max: 100 },
-                    <element_count>{ atom: "H", min: 1, max: 1000 },
-                    <element_count>{ atom: "O", min: 0, max: 100 }
-                ],
 
                 // molecular networking
                 "layout_iterations": 100,

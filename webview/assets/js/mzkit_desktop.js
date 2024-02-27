@@ -1136,6 +1136,7 @@ var apps;
                 });
             };
             settings.prototype.loadConfigs = function (configs) {
+                var formula_profiles = configs.formula_search;
                 this.mzkit_configs = configs;
                 settings.load_profileTable(configs);
                 settings.bindRangeDisplayValue(configs, function (config) {
@@ -1146,10 +1147,10 @@ var apps;
                 $ts.value("#remember-layout", configs["remember-layout"]);
                 $ts.value("#fragment_cutoff", configs["fragment_cutoff"]);
                 $ts.value("#fill-plot-area", configs["fill-plot-area"]);
-                $ts.value("#small_molecule_profile", configs.small_molecule_profile.profile);
-                $ts.value("#sm_common", configs.small_molecule_profile.is_common);
-                $ts.value("#np_profile", configs.np_profile.profile);
-                $ts.value("#np_common", configs.np_profile.is_common);
+                $ts.value("#small_molecule_profile", formula_profiles.smallMoleculeProfile.type);
+                $ts.value("#sm_common", formula_profiles.smallMoleculeProfile.isCommon);
+                $ts.value("#np_profile", formula_profiles.naturalProductProfile.type);
+                $ts.value("#np_common", formula_profiles.naturalProductProfile.isCommon);
             };
             settings.defaultSettings = function () {
                 return {
@@ -1165,15 +1166,17 @@ var apps;
                     "colorset": [],
                     "fill-plot-area": true,
                     // preset element profiles
-                    "small_molecule_profile": { profile: "wiley", is_common: true },
-                    "np_profile": { profile: "wiley", is_common: true },
+                    "formula_search": {
+                        "smallMoleculeProfile": { type: "wiley", isCommon: true },
+                        "naturalProductProfile": { type: "wiley", isCommon: true },
+                        "elements": [
+                            { atom: "C", min: 1, max: 100 },
+                            { atom: "H", min: 1, max: 1000 },
+                            { atom: "O", min: 0, max: 100 }
+                        ],
+                    },
                     "formula_ppm": 20,
                     "formula_adducts": [],
-                    "custom_element_profile": [
-                        { atom: "C", min: 1, max: 100 },
-                        { atom: "H", min: 1, max: 1000 },
-                        { atom: "O", min: 0, max: 100 }
-                    ],
                     // molecular networking
                     "layout_iterations": 100,
                     // graph layouts

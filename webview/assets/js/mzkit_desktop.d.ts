@@ -286,11 +286,13 @@ declare namespace apps.systems {
         "fragment_cutoff_value": number;
         "colorset": string[];
         "fill-plot-area": boolean;
-        "small_molecule_profile": element_profile;
-        "np_profile": element_profile;
+        "formula_search": {
+            "naturalProductProfile": element_profile;
+            "smallMoleculeProfile": element_profile;
+            "elements": element_count[];
+        };
         "formula_ppm": number;
         "formula_adducts": string[];
-        "custom_element_profile": element_count[];
         "layout_iterations": number;
         "stiffness": number;
         "repulsion": number;
@@ -309,8 +311,8 @@ declare namespace apps.systems {
         max: number;
     }
     interface element_profile {
-        "profile": "wiley" | "dnp";
-        "is_common": boolean;
+        "type": "wiley" | "dnp";
+        "isCommon": boolean;
     }
     class settings extends Bootstrap {
         get appName(): string;
