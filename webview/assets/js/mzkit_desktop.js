@@ -1157,7 +1157,7 @@ var apps;
                 app.desktop.mzkit.getAllAdducts()
                     .then(function (json) {
                     return __awaiter(this, void 0, void 0, function () {
-                        var json_str, list, adducts, selected, _i, list_3, adduct, key_id, value;
+                        var json_str, list, adducts, selected, _i, list_3, adduct, key_id, value, checked;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0: return [4 /*yield*/, json];
@@ -1170,7 +1170,8 @@ var apps;
                                         adduct = list_3[_i];
                                         key_id = adduct;
                                         value = selected.indexOf(adduct) > -1;
-                                        adducts.appendElement($ts("<li>", { class: "list-group-item" }).display("\n                            <input class=\"form-check-input me-1\" \n                                type=\"checkbox\" \n                                value=\"".concat(value.toString(), "\"\n                                id=\"").concat(key_id, "\" \n                                checked=").concat(value.toString(), ">\n                            <label class=\"form-check-label\" for=\"").concat(key_id, "\">").concat(adduct, "</label>")));
+                                        checked = value ? "checked" : "";
+                                        adducts.appendElement($ts("<li>", { class: "list-group-item" }).display("\n                            <input class=\"form-check-input me-1\" \n                                type=\"checkbox\" \n                                value=\"\"\n                                id=\"".concat(key_id, "\" ").concat(checked, ">\n                            <label class=\"form-check-label\" for=\"").concat(key_id, "\">").concat(adduct, "</label>")));
                                     }
                                     return [2 /*return*/];
                             }
