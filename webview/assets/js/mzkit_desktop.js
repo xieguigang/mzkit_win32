@@ -1114,7 +1114,8 @@ var apps;
                 configurable: true
             });
             settings.prototype.init = function () {
-                this.mzkit_page_btn_onclick();
+                var vm = this;
+                vm.mzkit_page_btn_onclick();
                 app.desktop.mzkit.loadSettings()
                     .then(function (json) {
                     return __awaiter(this, void 0, void 0, function () {
@@ -1127,7 +1128,7 @@ var apps;
                                     settings = JSON.parse(json_str);
                                     console.log("get mzkit configurations:");
                                     console.log(settings);
-                                    this.loadConfigs(settings.defaultSettings());
+                                    vm.loadConfigs(apps.systems.settings.defaultSettings());
                                     return [2 /*return*/];
                             }
                         });

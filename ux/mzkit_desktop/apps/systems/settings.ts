@@ -100,7 +100,9 @@ namespace apps.systems {
         private mzkit_configs: mzkit_configs = null;
 
         protected init(): void {
-            this.mzkit_page_btn_onclick();
+            const vm = this;
+
+            vm.mzkit_page_btn_onclick();
 
             app.desktop.mzkit.loadSettings()
                 .then(async function (json) {
@@ -110,7 +112,7 @@ namespace apps.systems {
                     console.log("get mzkit configurations:");
                     console.log(settings);
 
-                    this.loadConfigs(settings.defaultSettings());
+                    vm.loadConfigs(apps.systems.settings.defaultSettings());
                 });
         }
 
