@@ -1258,34 +1258,40 @@ Public Class frmMsImagingViewer
             dimension = cdffile.GetDimension
         End Using
 
-        If stdNum.Abs(PixelSelector1.MSICanvas.dimension_size.Width - dimension.Width) > 5 Then
+        Dim MSIDims = PixelSelector1.MSICanvas.dimension_size
+
+        If stdNum.Abs(MSIDims.Width - dimension.Width) > 5 Then
             checkSize = False
-        ElseIf stdNum.Abs(PixelSelector1.MSICanvas.dimension_size.Height - dimension.Height) > 5 Then
+        ElseIf stdNum.Abs(MSIDims.Height - dimension.Height) > 5 Then
             checkSize = False
         End If
+
         If Not checkSize Then
             ' check for multiple sample data imports?
             Dim data As RegionLoader = ExtractMultipleSampleRegions()
+            Dim isSmaller = dimension.Width <= MSIDims.Width OrElse dimension.Height <= MSIDims.Height
 
             If Not data Is Nothing AndAlso data.sample_tags.TryCount > 1 Then
                 Call putSampleTissueCdf(data, dimension, tissues)
                 Return
             End If
 
-            If MessageBox.Show(text:=$"The dimension size of the tissue morphology map is very different {vbCrLf}with the MS-imaging dimension size, auto scale of your tissue morphology map raster data?",
+            If (Not isSmaller) AndAlso MessageBox.Show(text:=$"The dimension size of the tissue morphology map({dimension.Width},{dimension.Height}) is very different {vbCrLf}with the MS-imaging dimension size({MSIDims.Width},{MSIDims.Height }), auto scale of your tissue morphology map raster data?",
                                caption:="Import Tissue Morphology",
                                buttons:=MessageBoxButtons.YesNo,
                                icon:=MessageBoxIcon.Warning) = DialogResult.No Then
                 umap3D = Nothing
                 Return
+            Else
+                dimension = MSIDims
             End If
 
-            tissues = tissues _
-                .ScalePixels(
-                    newDims:=PixelSelector1.MSICanvas.dimension_size,
-                    currentDims:=dimension
-                ) _
-                .ToArray
+            'tissues = tissues _
+            '    .ScalePixels(
+            '        newDims:=PixelSelector1.MSICanvas.dimension_size,
+            '        currentDims:=dimension
+            '    ) _
+            '    .ToArray
         End If
 
         sampleRegions.ShowMessage($"Tissue map {filepath.FileName} has been imported.")
