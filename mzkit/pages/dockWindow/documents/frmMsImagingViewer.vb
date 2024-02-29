@@ -608,25 +608,29 @@ Public Class frmMsImagingViewer
             Return
         End If
 
-        Dim annotations As DataFrame
+        Dim annotations As AnnotationTableReader
 
         If file.FileName.ExtensionSuffix("csv") Then
-            annotations = DataFrame.Load(file.FileName)
+            annotations = AnnotationTableReader.Load(DataFrame.Load(file.FileName))
         Else
-            annotations = DataFrame.CreateObject(xlsxFile.Open(file.FileName).GetTable(0))
+            annotations = AnnotationTableReader.Load(DataFrame.CreateObject(xlsxFile.Open(file.FileName).GetTable(0)))
         End If
 
-        Dim name As String() = annotations.GetColumnValues("name").ToArray
-        Dim formula As String() = annotations.GetColumnValues("formula").ToArray
+        If annotations.hasMissing Then
+            Return
+        End If
+
+        Dim name As String() = annotations.name
+        Dim formula As String() = annotations.formula
         Dim mass As Double() = formula.Select(Function(fstr) FormulaScanner.ScanFormula(fstr).ExactMass).ToArray
         ' evaluate m/z
-        Dim adducts = annotations.GetColumnValues("precursor_type").ToArray  ' If(params.polarity = IonModes.Negative, Provider.Negatives, Provider.Positives)
+        Dim adducts As String() = annotations.adducts   ' If(params.polarity = IonModes.Negative, Provider.Negatives, Provider.Positives)
         'Dim mz As Double() = adducts _
         '    .Select(Function(t) mass.Select(Function(em) t.CalcMZ(em))) _
         '    .IteratesALL _
         '    .Distinct _
         '    .ToArray
-        Dim mz As Double() = annotations.GetColumnValues("m/z").Select(AddressOf Val).ToArray
+        Dim mz As Double() = annotations.mz
         Dim labels As String() = name.Select(Function(namei, i) $"{namei} {adducts(i)}").ToArray
 
         Call WindowModules.msImageParameters.ImportsIons(labels, mz)
@@ -636,6 +640,57 @@ Public Class frmMsImagingViewer
                 Return True
             End Function, title:="Do metabolite annotation imports", info:="Running ms-imaging raw data file scanning!")
     End Sub
+
+    Private Class AnnotationTableReader
+
+        Public name As String()
+        Public formula As String()
+        Public adducts As String()
+        Public mz As Double()
+
+        Public ReadOnly Property hasMissing As Boolean
+            Get
+                Return name Is Nothing OrElse
+                    formula Is Nothing OrElse
+                    adducts Is Nothing OrElse
+                    mz Is Nothing
+            End Get
+        End Property
+
+        Private Shared Function missingField(field As String) As AnnotationTableReader
+            Call MessageBox.Show(
+                $"Missing required data field: {field}" & vbCrLf &
+                 "Check of the following data fields is exists in your annotation table or not?" & vbCrLf &
+                 "m/z, name, formula, precursor_type", "Invalid Annotation Table", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+
+            Return New AnnotationTableReader
+        End Function
+
+        Public Shared Function Load(df As DataFrame) As AnnotationTableReader
+            Dim name = df.GetColumnValues({"name", "Name"})
+            Dim formula = df.GetColumnValues({"formula", "Formula"})
+            Dim adducts = df.GetColumnValues({"precursor_type", "precursor", "adducts"})
+            Dim mz = df.GetColumnValues({"m/z", "mz", "mass to charge"})
+
+            If name Is Nothing Then
+                Return missingField("name")
+            ElseIf formula Is Nothing Then
+                Return missingField("formula")
+            ElseIf adducts Is Nothing Then
+                Return missingField("precursor_type")
+            ElseIf mz Is Nothing Then
+                Return missingField("m/z")
+            Else
+                Return New AnnotationTableReader With {
+                    .name = name.ToArray,
+                    .adducts = adducts.ToArray,
+                    .formula = formula.ToArray,
+                    .mz = mz.Select(AddressOf Val).ToArray
+                }
+            End If
+        End Function
+
+    End Class
 
     ''' <summary>
     ''' name/formula/exactMass是一一对应的
