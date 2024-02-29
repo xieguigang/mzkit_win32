@@ -1,30 +1,30 @@
 ﻿Public Class InputIonRGB
 
-    Public ReadOnly Property R As Double
+    Public ReadOnly Property R As String
         Get
             Return getIon(cR)
         End Get
     End Property
 
-    Public ReadOnly Property G As Double
+    Public ReadOnly Property G As String
         Get
             Return getIon(cG)
         End Get
     End Property
 
-    Public ReadOnly Property B As Double
+    Public ReadOnly Property B As String
         Get
             Return getIon(cB)
         End Get
     End Property
 
-    Private Shared Function getIon(list As ComboBox) As Double
+    Private Shared Function getIon(list As ComboBox) As String
         If list.SelectedIndex = -1 Then
-            Return -1
+            Return ""
         ElseIf list.SelectedIndex = 0 Then
-            Return -1
+            Return ""
         Else
-            Return Val(list.SelectedItem.ToString)
+            Return list.SelectedItem.ToString
         End If
     End Function
 

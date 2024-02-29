@@ -87,6 +87,7 @@ Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Interop
 Imports SMRUCC.genomics.Analysis.HTS.DataFrame
 Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
+Imports SMRUCC.Rsharp.Runtime.Internal.Invokes
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports Task
 Imports TaskStream
@@ -318,7 +319,7 @@ UseCheckedList:
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub RGBLayers(sender As Object, e As EventArgs) Handles RenderLayerCompositionModeToolStripMenuItem.Click
-        Dim mz3 As Double() = GetSelectedIons.ToArray
+        Dim mz3() = getCheckedIons.ToArray
 
         If mz3.Length = 0 Then
             Call MyApplication.host.showStatusMessage("no ions data...", My.Resources.StatusAnnotations_Warning_32xLG_color)
@@ -327,24 +328,24 @@ UseCheckedList:
             Return
         End If
 
-        Dim getFormula As New InputIonRGB
         Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
+        Dim ionMaps = mz3.GroupBy(Function(i) i.title).ToDictionary(Function(i) i.Key, Function(i) i.First.mz)
+        Dim getFormula As New InputIonRGB
 
-        For Each ion As Double In mz3
-            Dim ionStr As String = ion.ToString("F4")
-
+        For Each ionStr As String In ionMaps.Keys
             Call getFormula.cR.Items.Add(ionStr)
             Call getFormula.cG.Items.Add(ionStr)
             Call getFormula.cB.Items.Add(ionStr)
         Next
 
         If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
-            Dim r As Double = getFormula.R
-            Dim g As Double = getFormula.G
-            Dim b As Double = getFormula.B
+            Dim r As String = getFormula.R
+            Dim g As String = getFormula.G
+            Dim b As String = getFormula.B
             Dim viewer = WindowModules.viewer
+            Dim getMz = Function(key As String) (key, ionMaps.TryGetValue(key))
 
-            Call viewer.renderRGB(r, g, b)
+            Call viewer.renderRGB(getMz(r), getMz(g), getMz(b))
             Call viewer.Show(MyApplication.host.m_dockPanel)
         End If
     End Sub

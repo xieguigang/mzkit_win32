@@ -2312,8 +2312,8 @@ Public Class frmMsImagingViewer
         Call ExtractSampleRegion()
     End Sub
 
-    Friend Sub renderRGB(r As Double, g As Double, b As Double)
-        Dim selectedMz As Double() = {r, g, b}.Where(Function(mz) mz > 0).ToArray
+    Friend Sub renderRGB(r As (title$, mz#), g As (title$, mz#), b As (title$, mz#))
+        Dim selectedMz() = {r, g, b}.Where(Function(mz) mz.mz > 0).ToArray
 
         If params Is Nothing Then
             Call Workbench.Warning("No MS-imaging data is loaded yet!")
@@ -2321,24 +2321,24 @@ Public Class frmMsImagingViewer
         End If
 
         If selectedMz.Count = 1 Then
-            MyApplication.host.showStatusMessage($"Run MS-Image rendering for selected ion m/z {selectedMz(Scan0)}...")
+            Workbench.StatusMessage($"Run MS-Image rendering for selected ion m/z {selectedMz(Scan0)}...")
         ElseIf selectedMz.Count > 1 Then
-            MyApplication.host.showStatusMessage($"Run MS-Image rendering for {selectedMz.Count} selected ions...")
+            Workbench.StatusMessage($"Run MS-Image rendering for {selectedMz.Count} selected ions...")
         Else
-            MyApplication.host.showStatusMessage("No RGB channels was selected!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Workbench.Warning("No RGB channels was selected!")
             Return
         End If
 
         mzdiff = params.GetTolerance
-        targetMz = selectedMz
+        targetMz = selectedMz.Select(Function(a) a.mz).ToArray
         rgb_configs = New RGBConfigs With {
-            .R = New NamedValue(Of Double)(r.ToString("F4"), r),
-            .G = New NamedValue(Of Double)(g.ToString("F4"), g),
-            .B = New NamedValue(Of Double)(b.ToString("F4"), b)
+            .R = New NamedValue(Of Double)(r.title, r.mz),
+            .G = New NamedValue(Of Double)(g.title, g.mz),
+            .B = New NamedValue(Of Double)(b.title, b.mz)
         }
 
-        Call ProgressSpinner.DoLoading(Sub() Call createRGB(MSIservice.LoadPixels(selectedMz, mzdiff), r, g, b))
-        Call PixelSelector1.ShowMessage($"Render in RGB Channel Composition Mode: {selectedMz.Select(Function(d) stdNum.Round(d, 4)).JoinBy(", ")}")
+        Call ProgressSpinner.DoLoading(Sub() Call createRGB(MSIservice.LoadPixels(targetMz, mzdiff), r.mz, g.mz, b.mz))
+        Call PixelSelector1.ShowMessage($"Render in RGB Channel Composition Mode: {selectedMz.Select(Function(d) d.title).JoinBy(", ")}")
     End Sub
 
     Private Sub createRGB(pixels As PixelData(), r#, g#, b#)
