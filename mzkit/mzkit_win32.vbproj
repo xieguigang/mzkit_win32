@@ -459,6 +459,7 @@
     <Compile Include="application\actions\KEGGEnrichmentAction.vb" />
     <Compile Include="application\actions\ViewScatter3DAction.vb" />
     <Compile Include="application\ApplicationEvents.vb" />
+    <Compile Include="application\RibbonEventBinding.vb" />
     <Compile Include="application\CLI.vb" />
     <Compile Include="application\debugger\MSI.vb" />
     <Compile Include="application\ServiceHub\RenderService.vb" />
