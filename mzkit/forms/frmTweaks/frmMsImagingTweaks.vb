@@ -87,7 +87,6 @@ Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Interop
 Imports SMRUCC.genomics.Analysis.HTS.DataFrame
 Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
-Imports SMRUCC.Rsharp.Runtime.Internal.Invokes
 Imports SMRUCC.Rsharp.Runtime.Internal.[Object]
 Imports Task
 Imports TaskStream
@@ -109,16 +108,22 @@ Public Class frmMsImagingTweaks
                 If target.Tag Is Nothing Then
                     ' use all ions below this root node
                     For Each node As TreeNode In target.Nodes
-                        Yield DirectCast(node.Tag, Double)
+                        Dim ion_mz As Double = Val(node.Tag)
+                        Call viewer.SetTitle({ion_mz}, node.Text)
+                        Yield ion_mz
                     Next
                 Else
                     ' is a selected single ion
-                    Yield DirectCast(target.Tag, Double)
+                    Dim ion_mz As Double = Val(target.Tag)
+                    Call viewer.SetTitle({ion_mz}, target.Text)
+                    Yield ion_mz
                 End If
             ElseIf Not target.Tag Is Nothing Then
                 ' is a selected single ion
                 ' use current ion
-                Yield DirectCast(target.Tag, Double)
+                Dim ion_mz As Double = Val(target.Tag)
+                Call viewer.SetTitle({ion_mz}, target.Text)
+                Yield ion_mz
             Else
                 GoTo UseCheckedList
             End If
