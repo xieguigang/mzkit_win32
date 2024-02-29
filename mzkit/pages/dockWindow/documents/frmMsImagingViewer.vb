@@ -124,7 +124,7 @@ Imports TaskStream
 Imports WeifenLuo.WinFormsUI.Docking
 Imports Bitmap = System.Drawing.Bitmap
 Imports File = Microsoft.VisualBasic.Data.csv.IO.File
-Imports stdNum = System.Math
+Imports std = System.Math
 
 Public Class frmMsImagingViewer
     Implements IFileReference
@@ -763,12 +763,12 @@ Public Class frmMsImagingViewer
 
                     Dim ion = ionList _
                         .Search(New IonStat With {.mz = mzi}, tolerance:=0.05) _
-                        .OrderBy(Function(ion2) stdNum.Abs(ion2.mz - mzi)) _
+                        .OrderBy(Function(ion2) std.Abs(ion2.mz - mzi)) _
                         .FirstOrDefault
 
                     If ion Is Nothing Then
                         Continue For
-                    ElseIf stdNum.Abs(ion.mz - mzi) > 0.05 Then
+                    ElseIf std.Abs(ion.mz - mzi) > 0.05 Then
                         Continue For
                     End If
 
@@ -779,13 +779,13 @@ Public Class frmMsImagingViewer
                        mzi.ToString("F4"),
                        ion.pixels,
                        ion.density.ToString("F2"),
-                       (stdNum.Log(ion.pixels + 1) * ion.density).ToString("F2"),
-                       stdNum.Round(ion.maxIntensity),
+                       (std.Log(ion.pixels + 1) * ion.density).ToString("F2"),
+                       std.Round(ion.maxIntensity),
                        ion.basePixelX,
                        ion.basePixelY,
-                       stdNum.Round(ion.Q1Intensity),
-                       stdNum.Round(ion.Q2Intensity),
-                       stdNum.Round(ion.Q3Intensity),
+                       std.Round(ion.Q1Intensity),
+                       std.Round(ion.Q2Intensity),
+                       std.Round(ion.Q3Intensity),
                        ion.moran,
                        ion.pvalue
                     )
@@ -1245,7 +1245,7 @@ Public Class frmMsImagingViewer
             width:=(Aggregate p In spot_pixels Into Max(p.X)),
             height:=(Aggregate p In spot_pixels Into Max(p.Y))
         )
-        Dim dot_size As Double = stdNum.Min(canvas.Width / spot_dims.Width, canvas.Height / spot_dims.Height)
+        Dim dot_size As Double = std.Min(canvas.Width / spot_dims.Width, canvas.Height / spot_dims.Height)
         Dim colors = PhenographSpot _
             .GetSpotColorIndex(spots) _
             .ToDictionary(Function(a) a.Key,
@@ -1310,9 +1310,9 @@ Public Class frmMsImagingViewer
 
         Dim MSIDims = PixelSelector1.MSICanvas.dimension_size
 
-        If stdNum.Abs(MSIDims.Width - dimension.Width) > 5 Then
+        If std.Abs(MSIDims.Width - dimension.Width) > 5 Then
             checkSize = False
-        ElseIf stdNum.Abs(MSIDims.Height - dimension.Height) > 5 Then
+        ElseIf std.Abs(MSIDims.Height - dimension.Height) > 5 Then
             checkSize = False
         End If
 
@@ -1635,7 +1635,7 @@ Public Class frmMsImagingViewer
                         Dim typeName As String = "n/a"
 
                         For Each type In types
-                            If stdNum.Abs(ion.mz - type.CalcMZ(exactMass)) <= 0.1 Then
+                            If std.Abs(ion.mz - type.CalcMZ(exactMass)) <= 0.1 Then
                                 typeName = type.ToString
                                 Exit For
                             End If
@@ -1646,13 +1646,13 @@ Public Class frmMsImagingViewer
                             typeName,
                             ion.pixels,
                             ion.density.ToString("F2"),
-                            (stdNum.Log(ion.pixels + 1) * ion.density).ToString("F2"),
-                            stdNum.Round(ion.maxIntensity),
+                            (std.Log(ion.pixels + 1) * ion.density).ToString("F2"),
+                            std.Round(ion.maxIntensity),
                             ion.basePixelX,
                             ion.basePixelY,
-                            stdNum.Round(ion.Q1Intensity),
-                            stdNum.Round(ion.Q2Intensity),
-                            stdNum.Round(ion.Q3Intensity),
+                            std.Round(ion.Q1Intensity),
+                            std.Round(ion.Q2Intensity),
+                            std.Round(ion.Q3Intensity),
                             ion.moran,
                             ion.pvalue
                         )
@@ -1661,13 +1661,13 @@ Public Class frmMsImagingViewer
                             ion.mz.ToString("F4"),
                             ion.pixels,
                             ion.density.ToString("F2"),
-                            (stdNum.Log(ion.pixels + 1) * ion.density).ToString("F2"),
-                            stdNum.Round(ion.maxIntensity),
+                            (std.Log(ion.pixels + 1) * ion.density).ToString("F2"),
+                            std.Round(ion.maxIntensity),
                             ion.basePixelX,
                             ion.basePixelY,
-                            stdNum.Round(ion.Q1Intensity),
-                            stdNum.Round(ion.Q2Intensity),
-                            stdNum.Round(ion.Q3Intensity),
+                            std.Round(ion.Q1Intensity),
+                            std.Round(ion.Q2Intensity),
+                            std.Round(ion.Q3Intensity),
                             ion.moran,
                             ion.pvalue
                         )
@@ -2452,7 +2452,7 @@ Public Class frmMsImagingViewer
                 Call RenderPixelsLayer(pixels)
             End Sub)
 
-        Call PixelSelector1.ShowMessage($"Render in Layer Pixels Composition Mode: {selectedMz.Select(Function(d) stdNum.Round(d, 4)).JoinBy(", ")}")
+        Call PixelSelector1.ShowMessage($"Render in Layer Pixels Composition Mode: {selectedMz.Select(Function(d) std.Round(d, 4)).JoinBy(", ")}")
     End Sub
 
     ''' <summary>
