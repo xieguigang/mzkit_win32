@@ -99,6 +99,10 @@ Public Class frmMsImagingTweaks
     Friend checkedMz As New List(Of TreeNode)
     Friend viewer As frmMsImagingViewer
 
+    ''' <summary>
+    ''' title of viewer current ion will be updates
+    ''' </summary>
+    ''' <returns></returns>
     Public Iterator Function GetSelectedIons() As IEnumerable(Of Double)
         Dim target = Win7StyleTreeView1.SelectedNode
 

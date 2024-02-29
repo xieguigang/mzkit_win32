@@ -2097,7 +2097,9 @@ Public Class frmMsImagingViewer
         If mz.Length = 0 Then
             Call Workbench.Warning("No ions selected for rendering!")
         Else
-            Call renderByMzList(mz, Nothing)
+            ' 20240229
+            ' title has been updated, used the title value
+            Call renderByMzList(mz, title)
         End If
     End Sub
 
