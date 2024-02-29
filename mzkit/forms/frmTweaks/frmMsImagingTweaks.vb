@@ -123,17 +123,17 @@ Public Class frmMsImagingTweaks
             End If
         Else
 UseCheckedList:
-            For Each ion As Double In getCheckedIons()
+            For Each ion As Double In getCheckedIons().Select(Function(i) i.mz)
                 Yield ion
             Next
         End If
     End Function
 
-    Private Iterator Function getCheckedIons() As IEnumerable(Of Double)
+    Private Iterator Function getCheckedIons() As IEnumerable(Of (title As String, mz As Double))
         If checkedMz.Count > 0 Then
             For Each node In checkedMz
                 Call viewer.SetTitle({node.Tag}, node.Text)
-                Yield DirectCast(node.Tag, Double)
+                Yield (node.Text, DirectCast(node.Tag, Double))
             Next
         Else
 
@@ -827,7 +827,7 @@ UseCheckedList:
     End Sub
 
     Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
-        Dim ions As Double() = getCheckedIons.ToArray
+        Dim ions = getCheckedIons.ToArray
         Dim regions As TissueRegion() = viewer.sampleRegions _
             .GetRegions(viewer.PixelSelector1.MSICanvas.dimension_size) _
             .ToArray
@@ -847,7 +847,7 @@ UseCheckedList:
         End If
     End Sub
 
-    Private Sub createPeaktable(regions As TissueRegion(), ions As Double(), workdir As String)
+    Private Sub createPeaktable(regions As TissueRegion(), ions As (title As String, mz As Double)(), workdir As String)
         Dim pars = Globals.MSIBootstrapping
         Dim nsamples As Integer = pars.nsamples
         Dim cov As Double = pars.coverage
@@ -901,7 +901,7 @@ UseCheckedList:
 
     Private Class peakTask
 
-        Public ions As Double()
+        Public ions As (title As String, mz As Double)()
         Public host As frmMsImagingTweaks
         Public nsamples As Integer
         Public cov As Double
@@ -912,19 +912,25 @@ UseCheckedList:
             Dim errMsg As String = Nothing
             Dim mzdiff = Tolerance.DeltaMass(0.01)
 
-            For Each ion As Double In ions
-                Call p.SetInfo($"processing ion feature: {ion.ToString("F4")}")
+            For Each ion As (title As String, mz As Double) In ions
+                Call p.SetInfo($"processing ion feature: {ion.title}")
 
-                Dim layer As PixelData() = host.viewer.MSIservice.LoadPixels({ion}, mzdiff)
+                Dim layer As PixelData() = host.viewer.MSIservice.LoadPixels({ion.mz}, mzdiff)
 
                 If layer Is Nothing Then
-                    Call Workbench.Warning($"No ion layer data for ${ion.ToString("F4")}, this ion feature will be omit: {errMsg}")
+                    Call Workbench.Warning($"No ion layer data for ${ion.title}, this ion feature will be omit: {errMsg}")
                     Continue For
                 End If
 
                 Dim data = SampleData.ExtractSample(layer, regions, n:=nsamples, coverage:=cov)
-                Dim peak As New xcms2(ion, 0) With {
-                    .ID = $"MSI{ion.ToString("F4")}",
+                Dim id As String = ion.title
+
+                If id.IsNumeric Then
+                    id = $"MSI{ion.mz.ToString("F4")}"
+                End If
+
+                Dim peak As New xcms2(ion.mz, 0) With {
+                    .ID = id,
                     .Properties = New Dictionary(Of String, Double)
                 }
 
