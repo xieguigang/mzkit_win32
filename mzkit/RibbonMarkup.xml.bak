@@ -4192,6 +4192,22 @@
         <Image MinDPI="192">Res/excel-icon.bmp</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonViewScatter3dInSinglePage" Id="292" LabelTitle="View In Single Page" LabelDescription="View In Single Page" TooltipTitle="View In Single Page" TooltipDescription="View In Single Page">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/view-fullscreen.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="144">Res/view-fullscreen.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdDropDownViewInSinglePage" Id="293" LabelTitle="View 3D Scatter" LabelDescription="View 3D Scatter" TooltipTitle="View 3D Scatter" TooltipDescription="View 3D Scatter">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-particle-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-particle-96.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4573,7 +4589,12 @@
             </Group>
             <Group CommandName="cmdLCMSVisualPanel" SizeDefinition="TwoButtons">
               <Button CommandName="cmdViewLCMSScatter" />
-              <Button CommandName="cmdButtonViewAnalysis3DScatter" />
+              <SplitButton CommandName="cmdDropDownViewInSinglePage">
+                <SplitButton.ButtonItem>
+                  <Button CommandName="cmdButtonViewAnalysis3DScatter" />
+                </SplitButton.ButtonItem>
+                <Button CommandName="cmdButtonViewScatter3dInSinglePage" />
+              </SplitButton>
             </Group>
             <Group CommandName="cmdTableSampleData">
               <Button CommandName="cmdButtonViewSampleInfo" />

@@ -236,7 +236,9 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonOPLSDA As UInteger = 274
             Public Const cmdLCMSVisualPanel As UInteger = 277
             Public Const cmdViewLCMSScatter As UInteger = 278
+            Public Const cmdDropDownViewInSinglePage As UInteger = 293
             Public Const cmdButtonViewAnalysis3DScatter As UInteger = 285
+            Public Const cmdButtonViewScatter3dInSinglePage As UInteger = 292
             Public Const cmdTableSampleData As UInteger = 288
             Public Const cmdButtonViewSampleInfo As UInteger = 284
             Public Const cmdButtonImportsLCMSAnnotations As UInteger = 287
@@ -1628,10 +1630,22 @@ Namespace RibbonLib.Controls
                 Return _ViewLCMSScatter
             End Get
         End Property
+        Private _DropDownViewInSinglePage As RibbonSplitButton
+        Public ReadOnly Property DropDownViewInSinglePage As RibbonSplitButton
+            Get
+                Return _DropDownViewInSinglePage
+            End Get
+        End Property
         Private _ButtonViewAnalysis3DScatter As RibbonButton
         Public ReadOnly Property ButtonViewAnalysis3DScatter As RibbonButton
             Get
                 Return _ButtonViewAnalysis3DScatter
+            End Get
+        End Property
+        Private _ButtonViewScatter3dInSinglePage As RibbonButton
+        Public ReadOnly Property ButtonViewScatter3dInSinglePage As RibbonButton
+            Get
+                Return _ButtonViewScatter3dInSinglePage
             End Get
         End Property
         Private _TableSampleData As RibbonGroup
@@ -2155,7 +2169,9 @@ Namespace RibbonLib.Controls
             _ButtonOPLSDA = New RibbonButton(_ribbon, Cmd.cmdButtonOPLSDA)
             _LCMSVisualPanel = New RibbonGroup(_ribbon, Cmd.cmdLCMSVisualPanel)
             _ViewLCMSScatter = New RibbonButton(_ribbon, Cmd.cmdViewLCMSScatter)
+            _DropDownViewInSinglePage = New RibbonSplitButton(_ribbon, Cmd.cmdDropDownViewInSinglePage)
             _ButtonViewAnalysis3DScatter = New RibbonButton(_ribbon, Cmd.cmdButtonViewAnalysis3DScatter)
+            _ButtonViewScatter3dInSinglePage = New RibbonButton(_ribbon, Cmd.cmdButtonViewScatter3dInSinglePage)
             _TableSampleData = New RibbonGroup(_ribbon, Cmd.cmdTableSampleData)
             _ButtonViewSampleInfo = New RibbonButton(_ribbon, Cmd.cmdButtonViewSampleInfo)
             _ButtonImportsLCMSAnnotations = New RibbonSplitButton(_ribbon, Cmd.cmdButtonImportsLCMSAnnotations)

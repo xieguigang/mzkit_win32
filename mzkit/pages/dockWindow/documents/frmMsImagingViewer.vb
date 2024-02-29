@@ -115,7 +115,6 @@ Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Mzkit_win32.MSImagingViewerV2
-Imports RibbonLib.Interop
 Imports ServiceHub
 Imports SMRUCC.genomics.Analysis.HTS.DataFrame
 Imports STImaging
@@ -123,9 +122,9 @@ Imports STRaid
 Imports Task
 Imports TaskStream
 Imports WeifenLuo.WinFormsUI.Docking
+Imports Bitmap = System.Drawing.Bitmap
 Imports File = Microsoft.VisualBasic.Data.csv.IO.File
 Imports stdNum = System.Math
-Imports xlsxFile = Microsoft.VisualBasic.MIME.Office.Excel.XLSX.File
 
 Public Class frmMsImagingViewer
     Implements IFileReference
