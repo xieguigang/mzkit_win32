@@ -115,7 +115,6 @@ Imports mzblender
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Mzkit_win32.MSImagingViewerV2
-Imports RibbonLib.Interop
 Imports ServiceHub
 Imports SMRUCC.genomics.Analysis.HTS.DataFrame
 Imports STImaging
@@ -123,9 +122,9 @@ Imports STRaid
 Imports Task
 Imports TaskStream
 Imports WeifenLuo.WinFormsUI.Docking
+Imports Bitmap = System.Drawing.Bitmap
 Imports File = Microsoft.VisualBasic.Data.csv.IO.File
-Imports stdNum = System.Math
-Imports xlsxFile = Microsoft.VisualBasic.MIME.Office.Excel.XLSX.File
+Imports std = System.Math
 
 Public Class frmMsImagingViewer
     Implements IFileReference
@@ -602,31 +601,31 @@ Public Class frmMsImagingViewer
             Return
         End If
 
-        Dim file As New OpenFileDialog With {.Filter = "Excel Table(*.csv;*.xlsx)|*.csv;*.xlsx"}
+        Using file As New OpenFileDialog With {.Filter = "Excel Table(*.csv;*.xlsx)|*.csv;*.xlsx"}
+            If file.ShowDialog = DialogResult.OK Then
+                Call SelectSheetName.OpenExcel(file.FileName, AddressOf LoadImportAnnotationTable)
+            End If
+        End Using
+    End Sub
 
-        If file.ShowDialog <> DialogResult.OK Then
+    Private Sub LoadImportAnnotationTable(table As File, fileName As String)
+        Dim annotations As AnnotationTableReader = AnnotationTableReader.Load(DataFrame.CreateObject(table))
+
+        If annotations.hasMissing Then
             Return
         End If
 
-        Dim annotations As DataFrame
-
-        If file.FileName.ExtensionSuffix("csv") Then
-            annotations = DataFrame.Load(file.FileName)
-        Else
-            annotations = DataFrame.CreateObject(xlsxFile.Open(file.FileName).GetTable(0))
-        End If
-
-        Dim name As String() = annotations.GetColumnValues("name").ToArray
-        Dim formula As String() = annotations.GetColumnValues("formula").ToArray
+        Dim name As String() = annotations.name
+        Dim formula As String() = annotations.formula
         Dim mass As Double() = formula.Select(Function(fstr) FormulaScanner.ScanFormula(fstr).ExactMass).ToArray
         ' evaluate m/z
-        Dim adducts = annotations.GetColumnValues("precursor_type").ToArray  ' If(params.polarity = IonModes.Negative, Provider.Negatives, Provider.Positives)
+        Dim adducts As String() = annotations.adducts   ' If(params.polarity = IonModes.Negative, Provider.Negatives, Provider.Positives)
         'Dim mz As Double() = adducts _
         '    .Select(Function(t) mass.Select(Function(em) t.CalcMZ(em))) _
         '    .IteratesALL _
         '    .Distinct _
         '    .ToArray
-        Dim mz As Double() = annotations.GetColumnValues("m/z").Select(AddressOf Val).ToArray
+        Dim mz As Double() = annotations.mz
         Dim labels As String() = name.Select(Function(namei, i) $"{namei} {adducts(i)}").ToArray
 
         Call WindowModules.msImageParameters.ImportsIons(labels, mz)
@@ -636,6 +635,57 @@ Public Class frmMsImagingViewer
                 Return True
             End Function, title:="Do metabolite annotation imports", info:="Running ms-imaging raw data file scanning!")
     End Sub
+
+    Private Class AnnotationTableReader
+
+        Public name As String()
+        Public formula As String()
+        Public adducts As String()
+        Public mz As Double()
+
+        Public ReadOnly Property hasMissing As Boolean
+            Get
+                Return name Is Nothing OrElse
+                    formula Is Nothing OrElse
+                    adducts Is Nothing OrElse
+                    mz Is Nothing
+            End Get
+        End Property
+
+        Private Shared Function missingField(field As String) As AnnotationTableReader
+            Call MessageBox.Show(
+                $"Missing required data field: {field}" & vbCrLf &
+                 "Check of the following data fields is exists in your annotation table or not?" & vbCrLf &
+                 "m/z, name, formula, precursor_type", "Invalid Annotation Table", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+
+            Return New AnnotationTableReader
+        End Function
+
+        Public Shared Function Load(df As DataFrame) As AnnotationTableReader
+            Dim name = df.GetColumnValues({"name", "Name"})
+            Dim formula = df.GetColumnValues({"formula", "Formula"})
+            Dim adducts = df.GetColumnValues({"precursor_type", "precursor", "adducts"})
+            Dim mz = df.GetColumnValues({"m/z", "mz", "mass to charge"})
+
+            If name Is Nothing Then
+                Return missingField("name")
+            ElseIf formula Is Nothing Then
+                Return missingField("formula")
+            ElseIf adducts Is Nothing Then
+                Return missingField("precursor_type")
+            ElseIf mz Is Nothing Then
+                Return missingField("m/z")
+            Else
+                Return New AnnotationTableReader With {
+                    .name = name.ToArray,
+                    .adducts = adducts.ToArray,
+                    .formula = formula.ToArray,
+                    .mz = mz.Select(AddressOf Val).ToArray
+                }
+            End If
+        End Function
+
+    End Class
 
     ''' <summary>
     ''' name/formula/exactMass是一一对应的
@@ -713,12 +763,12 @@ Public Class frmMsImagingViewer
 
                     Dim ion = ionList _
                         .Search(New IonStat With {.mz = mzi}, tolerance:=0.05) _
-                        .OrderBy(Function(ion2) stdNum.Abs(ion2.mz - mzi)) _
+                        .OrderBy(Function(ion2) std.Abs(ion2.mz - mzi)) _
                         .FirstOrDefault
 
                     If ion Is Nothing Then
                         Continue For
-                    ElseIf stdNum.Abs(ion.mz - mzi) > 0.05 Then
+                    ElseIf std.Abs(ion.mz - mzi) > 0.05 Then
                         Continue For
                     End If
 
@@ -729,13 +779,13 @@ Public Class frmMsImagingViewer
                        mzi.ToString("F4"),
                        ion.pixels,
                        ion.density.ToString("F2"),
-                       (stdNum.Log(ion.pixels + 1) * ion.density).ToString("F2"),
-                       stdNum.Round(ion.maxIntensity),
+                       (std.Log(ion.pixels + 1) * ion.density).ToString("F2"),
+                       std.Round(ion.maxIntensity),
                        ion.basePixelX,
                        ion.basePixelY,
-                       stdNum.Round(ion.Q1Intensity),
-                       stdNum.Round(ion.Q2Intensity),
-                       stdNum.Round(ion.Q3Intensity),
+                       std.Round(ion.Q1Intensity),
+                       std.Round(ion.Q2Intensity),
+                       std.Round(ion.Q3Intensity),
                        ion.moran,
                        ion.pvalue
                     )
@@ -1195,7 +1245,7 @@ Public Class frmMsImagingViewer
             width:=(Aggregate p In spot_pixels Into Max(p.X)),
             height:=(Aggregate p In spot_pixels Into Max(p.Y))
         )
-        Dim dot_size As Double = stdNum.Min(canvas.Width / spot_dims.Width, canvas.Height / spot_dims.Height)
+        Dim dot_size As Double = std.Min(canvas.Width / spot_dims.Width, canvas.Height / spot_dims.Height)
         Dim colors = PhenographSpot _
             .GetSpotColorIndex(spots) _
             .ToDictionary(Function(a) a.Key,
@@ -1258,34 +1308,40 @@ Public Class frmMsImagingViewer
             dimension = cdffile.GetDimension
         End Using
 
-        If stdNum.Abs(PixelSelector1.MSICanvas.dimension_size.Width - dimension.Width) > 5 Then
+        Dim MSIDims = PixelSelector1.MSICanvas.dimension_size
+
+        If std.Abs(MSIDims.Width - dimension.Width) > 5 Then
             checkSize = False
-        ElseIf stdNum.Abs(PixelSelector1.MSICanvas.dimension_size.Height - dimension.Height) > 5 Then
+        ElseIf std.Abs(MSIDims.Height - dimension.Height) > 5 Then
             checkSize = False
         End If
+
         If Not checkSize Then
             ' check for multiple sample data imports?
             Dim data As RegionLoader = ExtractMultipleSampleRegions()
+            Dim isSmaller = dimension.Width <= MSIDims.Width OrElse dimension.Height <= MSIDims.Height
 
             If Not data Is Nothing AndAlso data.sample_tags.TryCount > 1 Then
                 Call putSampleTissueCdf(data, dimension, tissues)
                 Return
             End If
 
-            If MessageBox.Show(text:=$"The dimension size of the tissue morphology map is very different {vbCrLf}with the MS-imaging dimension size, auto scale of your tissue morphology map raster data?",
+            If (Not isSmaller) AndAlso MessageBox.Show(text:=$"The dimension size of the tissue morphology map({dimension.Width},{dimension.Height}) is very different {vbCrLf}with the MS-imaging dimension size({MSIDims.Width},{MSIDims.Height }), auto scale of your tissue morphology map raster data?",
                                caption:="Import Tissue Morphology",
                                buttons:=MessageBoxButtons.YesNo,
                                icon:=MessageBoxIcon.Warning) = DialogResult.No Then
                 umap3D = Nothing
                 Return
+            Else
+                dimension = MSIDims
             End If
 
-            tissues = tissues _
-                .ScalePixels(
-                    newDims:=PixelSelector1.MSICanvas.dimension_size,
-                    currentDims:=dimension
-                ) _
-                .ToArray
+            'tissues = tissues _
+            '    .ScalePixels(
+            '        newDims:=PixelSelector1.MSICanvas.dimension_size,
+            '        currentDims:=dimension
+            '    ) _
+            '    .ToArray
         End If
 
         sampleRegions.ShowMessage($"Tissue map {filepath.FileName} has been imported.")
@@ -1579,7 +1635,7 @@ Public Class frmMsImagingViewer
                         Dim typeName As String = "n/a"
 
                         For Each type In types
-                            If stdNum.Abs(ion.mz - type.CalcMZ(exactMass)) <= 0.1 Then
+                            If std.Abs(ion.mz - type.CalcMZ(exactMass)) <= 0.1 Then
                                 typeName = type.ToString
                                 Exit For
                             End If
@@ -1590,13 +1646,13 @@ Public Class frmMsImagingViewer
                             typeName,
                             ion.pixels,
                             ion.density.ToString("F2"),
-                            (stdNum.Log(ion.pixels + 1) * ion.density).ToString("F2"),
-                            stdNum.Round(ion.maxIntensity),
+                            (std.Log(ion.pixels + 1) * ion.density).ToString("F2"),
+                            std.Round(ion.maxIntensity),
                             ion.basePixelX,
                             ion.basePixelY,
-                            stdNum.Round(ion.Q1Intensity),
-                            stdNum.Round(ion.Q2Intensity),
-                            stdNum.Round(ion.Q3Intensity),
+                            std.Round(ion.Q1Intensity),
+                            std.Round(ion.Q2Intensity),
+                            std.Round(ion.Q3Intensity),
                             ion.moran,
                             ion.pvalue
                         )
@@ -1605,13 +1661,13 @@ Public Class frmMsImagingViewer
                             ion.mz.ToString("F4"),
                             ion.pixels,
                             ion.density.ToString("F2"),
-                            (stdNum.Log(ion.pixels + 1) * ion.density).ToString("F2"),
-                            stdNum.Round(ion.maxIntensity),
+                            (std.Log(ion.pixels + 1) * ion.density).ToString("F2"),
+                            std.Round(ion.maxIntensity),
                             ion.basePixelX,
                             ion.basePixelY,
-                            stdNum.Round(ion.Q1Intensity),
-                            stdNum.Round(ion.Q2Intensity),
-                            stdNum.Round(ion.Q3Intensity),
+                            std.Round(ion.Q1Intensity),
+                            std.Round(ion.Q2Intensity),
+                            std.Round(ion.Q3Intensity),
                             ion.moran,
                             ion.pvalue
                         )
@@ -2040,7 +2096,9 @@ Public Class frmMsImagingViewer
         If mz.Length = 0 Then
             Call Workbench.Warning("No ions selected for rendering!")
         Else
-            Call renderByMzList(mz, Nothing)
+            ' 20240229
+            ' title has been updated, used the title value
+            Call renderByMzList(mz, title)
         End If
     End Sub
 
@@ -2255,8 +2313,8 @@ Public Class frmMsImagingViewer
         Call ExtractSampleRegion()
     End Sub
 
-    Friend Sub renderRGB(r As Double, g As Double, b As Double)
-        Dim selectedMz As Double() = {r, g, b}.Where(Function(mz) mz > 0).ToArray
+    Friend Sub renderRGB(r As (title$, mz#), g As (title$, mz#), b As (title$, mz#))
+        Dim selectedMz() = {r, g, b}.Where(Function(mz) mz.mz > 0).ToArray
 
         If params Is Nothing Then
             Call Workbench.Warning("No MS-imaging data is loaded yet!")
@@ -2264,24 +2322,24 @@ Public Class frmMsImagingViewer
         End If
 
         If selectedMz.Count = 1 Then
-            MyApplication.host.showStatusMessage($"Run MS-Image rendering for selected ion m/z {selectedMz(Scan0)}...")
+            Workbench.StatusMessage($"Run MS-Image rendering for selected ion m/z {selectedMz(Scan0)}...")
         ElseIf selectedMz.Count > 1 Then
-            MyApplication.host.showStatusMessage($"Run MS-Image rendering for {selectedMz.Count} selected ions...")
+            Workbench.StatusMessage($"Run MS-Image rendering for {selectedMz.Count} selected ions...")
         Else
-            MyApplication.host.showStatusMessage("No RGB channels was selected!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Workbench.Warning("No RGB channels was selected!")
             Return
         End If
 
         mzdiff = params.GetTolerance
-        targetMz = selectedMz
+        targetMz = selectedMz.Select(Function(a) a.mz).ToArray
         rgb_configs = New RGBConfigs With {
-            .R = New NamedValue(Of Double)(r.ToString("F4"), r),
-            .G = New NamedValue(Of Double)(g.ToString("F4"), g),
-            .B = New NamedValue(Of Double)(b.ToString("F4"), b)
+            .R = New NamedValue(Of Double)(r.title, r.mz),
+            .G = New NamedValue(Of Double)(g.title, g.mz),
+            .B = New NamedValue(Of Double)(b.title, b.mz)
         }
 
-        Call ProgressSpinner.DoLoading(Sub() Call createRGB(MSIservice.LoadPixels(selectedMz, mzdiff), r, g, b))
-        Call PixelSelector1.ShowMessage($"Render in RGB Channel Composition Mode: {selectedMz.Select(Function(d) stdNum.Round(d, 4)).JoinBy(", ")}")
+        Call ProgressSpinner.DoLoading(Sub() Call createRGB(MSIservice.LoadPixels(targetMz, mzdiff), r.mz, g.mz, b.mz))
+        Call PixelSelector1.ShowMessage($"Render in RGB Channel Composition Mode: {selectedMz.Select(Function(d) d.title).JoinBy(", ")}")
     End Sub
 
     Private Sub createRGB(pixels As PixelData(), r#, g#, b#)
@@ -2394,7 +2452,7 @@ Public Class frmMsImagingViewer
                 Call RenderPixelsLayer(pixels)
             End Sub)
 
-        Call PixelSelector1.ShowMessage($"Render in Layer Pixels Composition Mode: {selectedMz.Select(Function(d) stdNum.Round(d, 4)).JoinBy(", ")}")
+        Call PixelSelector1.ShowMessage($"Render in Layer Pixels Composition Mode: {selectedMz.Select(Function(d) std.Round(d, 4)).JoinBy(", ")}")
     End Sub
 
     ''' <summary>

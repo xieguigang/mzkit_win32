@@ -239,7 +239,9 @@ namespace RibbonLib.Controls
             public const uint cmdButtonOPLSDA = 274;
             public const uint cmdLCMSVisualPanel = 277;
             public const uint cmdViewLCMSScatter = 278;
+            public const uint cmdDropDownViewInSinglePage = 293;
             public const uint cmdButtonViewAnalysis3DScatter = 285;
+            public const uint cmdButtonViewScatter3dInSinglePage = 292;
             public const uint cmdTableSampleData = 288;
             public const uint cmdButtonViewSampleInfo = 284;
             public const uint cmdButtonImportsLCMSAnnotations = 287;
@@ -521,7 +523,9 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonOPLSDA { get; private set; }
         public RibbonGroup LCMSVisualPanel { get; private set; }
         public RibbonButton ViewLCMSScatter { get; private set; }
+        public RibbonSplitButton DropDownViewInSinglePage { get; private set; }
         public RibbonButton ButtonViewAnalysis3DScatter { get; private set; }
+        public RibbonButton ButtonViewScatter3dInSinglePage { get; private set; }
         public RibbonGroup TableSampleData { get; private set; }
         public RibbonButton ButtonViewSampleInfo { get; private set; }
         public RibbonSplitButton ButtonImportsLCMSAnnotations { get; private set; }
@@ -798,7 +802,9 @@ namespace RibbonLib.Controls
             ButtonOPLSDA = new RibbonButton(ribbon, Cmd.cmdButtonOPLSDA);
             LCMSVisualPanel = new RibbonGroup(ribbon, Cmd.cmdLCMSVisualPanel);
             ViewLCMSScatter = new RibbonButton(ribbon, Cmd.cmdViewLCMSScatter);
+            DropDownViewInSinglePage = new RibbonSplitButton(ribbon, Cmd.cmdDropDownViewInSinglePage);
             ButtonViewAnalysis3DScatter = new RibbonButton(ribbon, Cmd.cmdButtonViewAnalysis3DScatter);
+            ButtonViewScatter3dInSinglePage = new RibbonButton(ribbon, Cmd.cmdButtonViewScatter3dInSinglePage);
             TableSampleData = new RibbonGroup(ribbon, Cmd.cmdTableSampleData);
             ButtonViewSampleInfo = new RibbonButton(ribbon, Cmd.cmdButtonViewSampleInfo);
             ButtonImportsLCMSAnnotations = new RibbonSplitButton(ribbon, Cmd.cmdButtonImportsLCMSAnnotations);

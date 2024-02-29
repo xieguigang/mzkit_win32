@@ -396,20 +396,20 @@ Public Class frmMetabonomicsAnalysis
     Dim expression_name As String
     Dim expression As Dictionary(Of String, (color As String, Double()))
 
+    Shared ReadOnly runPCA_evt As New RibbonEventBinding(ribbonItems.ButtonPCA)
+    Shared ReadOnly runPLS_evt As New RibbonEventBinding(ribbonItems.ButtonPLSDA)
+    Shared ReadOnly runOPLS_evt As New RibbonEventBinding(ribbonItems.ButtonOPLSDA)
+
+    Shared ReadOnly viewLC_evt As New RibbonEventBinding(ribbonItems.ViewLCMSScatter)
+    Shared ReadOnly openFolder_evt As New RibbonEventBinding(ribbonItems.ButtonOpenLCMSWorkspaceFolder)
+    Shared ReadOnly viewSampleinfo_evt As New RibbonEventBinding(ribbonItems.ButtonViewSampleInfo)
+    Shared ReadOnly view3D_evt As New RibbonEventBinding(ribbonItems.ButtonViewAnalysis3DScatter)
+    Shared ReadOnly view3DPage_evt As New RibbonEventBinding(ribbonItems.ButtonViewScatter3dInSinglePage)
+
     Private Sub frmMetabonomicsAnalysis_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call WebKit.Init(Me.WebView21)
         Call ApplyVsTheme(ContextMenuStrip1)
-
-        ribbonItems.MetaboAnalysis.ContextAvailable = ContextAvailability.Available
-
-        AddHandler ribbonItems.ButtonPCA.ExecuteEvent, Sub() Call RunPCA(GetType(PCA))
-        AddHandler ribbonItems.ButtonPLSDA.ExecuteEvent, Sub() Call RunPCA(GetType(PLS))
-        AddHandler ribbonItems.ButtonOPLSDA.ExecuteEvent, Sub() Call RunPCA(GetType(OPLS))
-
-        AddHandler ribbonItems.ViewLCMSScatter.ExecuteEvent, Sub() Call showScatter()
-        AddHandler ribbonItems.ButtonOpenLCMSWorkspaceFolder.ExecuteEvent, Sub() Call openFolder()
-        AddHandler ribbonItems.ButtonViewSampleInfo.ExecuteEvent, Sub() Call viewSampleinfo()
-        AddHandler ribbonItems.ButtonViewAnalysis3DScatter.ExecuteEvent, Sub() Call view3DScatter()
+        Call EventActivated()
     End Sub
 
     Private Sub viewSampleinfo()
@@ -484,6 +484,17 @@ Public Class frmMetabonomicsAnalysis
         Call viewScatterSVG()
     End Sub
 
+    Private Sub view3DScatterInSinglePage()
+        If Not source.points Is Nothing Then
+            Call VisualStudio.ShowDocument(Of frm3DScatterPlotView)() _
+                .LoadScatter(
+                    data:=source.points,
+                    onclick:=Sub(id)
+                                 ' do nothing
+                             End Sub)
+        End If
+    End Sub
+
     Private Sub view3DScatter()
         Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", source)
         Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Workbench.WebPort}/3d-scatter.html")
@@ -497,16 +508,32 @@ Public Class frmMetabonomicsAnalysis
         Call WebKit.DeveloperOptions(WebView21, enable:=True,)
     End Sub
 
-    Private Sub frmMetabonomicsAnalysis_Activated(sender As Object, e As EventArgs) Handles Me.Activated
-        ribbonItems.MetaboAnalysis.ContextAvailable = ContextAvailability.Active
+    Private Sub EventActivated() Handles Me.Activated
+        ribbonItems.MetaboAnalysis.ContextAvailable = ContextAvailability.Available
+
+        runPCA_evt.evt = Sub() Call RunPCA(GetType(PCA))
+        runPLS_evt.evt = Sub() Call RunPCA(GetType(PLS))
+        runOPLS_evt.evt = Sub() Call RunPCA(GetType(OPLS))
+
+        viewLC_evt.evt = Sub() Call showScatter()
+        openFolder_evt.evt = Sub() Call openFolder()
+        viewSampleinfo_evt.evt = Sub() Call viewSampleinfo()
+        view3D_evt.evt = Sub() Call view3DScatter()
+        view3DPage_evt.evt = Sub() Call view3DScatterInSinglePage()
     End Sub
 
-    Private Sub frmMetabonomicsAnalysis_LostFocus(sender As Object, e As EventArgs) Handles Me.LostFocus
-
-    End Sub
-
-    Private Sub frmMetabonomicsAnalysis_Deactivate(sender As Object, e As EventArgs) Handles Me.Deactivate
+    Private Sub EventDeactivate() Handles Me.Deactivate
         ribbonItems.MetaboAnalysis.ContextAvailable = ContextAvailability.NotAvailable
+
+        runPCA_evt.evt = Nothing
+        runPLS_evt.evt = Nothing
+        runOPLS_evt.evt = Nothing
+
+        viewLC_evt.evt = Nothing
+        openFolder_evt.evt = Nothing
+        viewSampleinfo_evt.evt = Nothing
+        view3D_evt.evt = Nothing
+        view3DPage_evt.evt = Nothing
     End Sub
 
     Private Sub RunPCA(analysis As Type)
@@ -632,6 +659,8 @@ Public Class frmMetabonomicsAnalysis
     End Sub
 
     Private Sub frmMetabonomicsAnalysis_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        Call EventDeactivate()
+
         If Not imageWeb Is Nothing Then
             Try
                 Call imageWeb.Kill()
@@ -639,8 +668,6 @@ Public Class frmMetabonomicsAnalysis
 
             End Try
         End If
-
-        ribbonItems.MetaboAnalysis.ContextAvailable = ContextAvailability.NotAvailable
     End Sub
 
     Private Sub BoxPlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BoxPlotToolStripMenuItem.Click

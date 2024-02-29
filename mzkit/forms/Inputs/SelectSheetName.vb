@@ -64,6 +64,11 @@ Public Class SelectSheetName
         End If
     End Sub
 
+    ''' <summary>
+    ''' open in system table viewer page
+    ''' </summary>
+    ''' <param name="table"></param>
+    ''' <param name="title"></param>
     Public Shared Sub showFile(table As File, title As String)
         Call ProgressSpinner.DoLoading(
             Sub()

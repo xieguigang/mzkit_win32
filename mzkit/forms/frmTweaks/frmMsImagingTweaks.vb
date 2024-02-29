@@ -99,33 +99,51 @@ Public Class frmMsImagingTweaks
     Friend checkedMz As New List(Of TreeNode)
     Friend viewer As frmMsImagingViewer
 
+    ''' <summary>
+    ''' title of viewer current ion will be updates
+    ''' </summary>
+    ''' <returns></returns>
     Public Iterator Function GetSelectedIons() As IEnumerable(Of Double)
-        If Not Win7StyleTreeView1.SelectedNode Is Nothing Then
-            If Win7StyleTreeView1.SelectedNode.Checked Then
+        Dim target = Win7StyleTreeView1.SelectedNode
+
+        If Not target Is Nothing Then
+            If target.Checked Then
                 ' is root node
-                If Win7StyleTreeView1.SelectedNode.Tag Is Nothing Then
-                    For Each node As TreeNode In Win7StyleTreeView1.SelectedNode.Nodes
-                        Yield DirectCast(node.Tag, Double)
+                If target.Tag Is Nothing Then
+                    ' use all ions below this root node
+                    For Each node As TreeNode In target.Nodes
+                        Dim ion_mz As Double = Val(node.Tag)
+                        Call viewer.SetTitle({ion_mz}, node.Text)
+                        Yield ion_mz
                     Next
                 Else
-                    Yield DirectCast(Win7StyleTreeView1.SelectedNode.Tag, Double)
+                    ' is a selected single ion
+                    Dim ion_mz As Double = Val(target.Tag)
+                    Call viewer.SetTitle({ion_mz}, target.Text)
+                    Yield ion_mz
                 End If
+            ElseIf Not target.Tag Is Nothing Then
+                ' is a selected single ion
+                ' use current ion
+                Dim ion_mz As Double = Val(target.Tag)
+                Call viewer.SetTitle({ion_mz}, target.Text)
+                Yield ion_mz
             Else
                 GoTo UseCheckedList
             End If
         Else
 UseCheckedList:
-            For Each ion As Double In getCheckedIons()
+            For Each ion As Double In getCheckedIons().Select(Function(i) i.mz)
                 Yield ion
             Next
         End If
     End Function
 
-    Private Iterator Function getCheckedIons() As IEnumerable(Of Double)
+    Private Iterator Function getCheckedIons() As IEnumerable(Of (title As String, mz As Double))
         If checkedMz.Count > 0 Then
             For Each node In checkedMz
                 Call viewer.SetTitle({node.Tag}, node.Text)
-                Yield DirectCast(node.Tag, Double)
+                Yield (node.Text, DirectCast(node.Tag, Double))
             Next
         Else
 
@@ -310,7 +328,7 @@ UseCheckedList:
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub RGBLayers(sender As Object, e As EventArgs) Handles RenderLayerCompositionModeToolStripMenuItem.Click
-        Dim mz3 As Double() = GetSelectedIons.ToArray
+        Dim mz3() = getCheckedIons.ToArray
 
         If mz3.Length = 0 Then
             Call MyApplication.host.showStatusMessage("no ions data...", My.Resources.StatusAnnotations_Warning_32xLG_color)
@@ -319,24 +337,24 @@ UseCheckedList:
             Return
         End If
 
-        Dim getFormula As New InputIonRGB
         Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
+        Dim ionMaps = mz3.GroupBy(Function(i) i.title).ToDictionary(Function(i) i.Key, Function(i) i.First.mz)
+        Dim getFormula As New InputIonRGB
 
-        For Each ion As Double In mz3
-            Dim ionStr As String = ion.ToString("F4")
-
+        For Each ionStr As String In ionMaps.Keys
             Call getFormula.cR.Items.Add(ionStr)
             Call getFormula.cG.Items.Add(ionStr)
             Call getFormula.cB.Items.Add(ionStr)
         Next
 
         If mask.ShowDialogForm(getFormula) = DialogResult.OK Then
-            Dim r As Double = getFormula.R
-            Dim g As Double = getFormula.G
-            Dim b As Double = getFormula.B
+            Dim r As String = getFormula.R
+            Dim g As String = getFormula.G
+            Dim b As String = getFormula.B
             Dim viewer = WindowModules.viewer
+            Dim getMz = Function(key As String) (key, ionMaps.TryGetValue(key))
 
-            Call viewer.renderRGB(r, g, b)
+            Call viewer.renderRGB(getMz(r), getMz(g), getMz(b))
             Call viewer.Show(MyApplication.host.m_dockPanel)
         End If
     End Sub
@@ -819,7 +837,7 @@ UseCheckedList:
     End Sub
 
     Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
-        Dim ions As Double() = getCheckedIons.ToArray
+        Dim ions = getCheckedIons.ToArray
         Dim regions As TissueRegion() = viewer.sampleRegions _
             .GetRegions(viewer.PixelSelector1.MSICanvas.dimension_size) _
             .ToArray
@@ -839,7 +857,7 @@ UseCheckedList:
         End If
     End Sub
 
-    Private Sub createPeaktable(regions As TissueRegion(), ions As Double(), workdir As String)
+    Private Sub createPeaktable(regions As TissueRegion(), ions As (title As String, mz As Double)(), workdir As String)
         Dim pars = Globals.MSIBootstrapping
         Dim nsamples As Integer = pars.nsamples
         Dim cov As Double = pars.coverage
@@ -893,7 +911,7 @@ UseCheckedList:
 
     Private Class peakTask
 
-        Public ions As Double()
+        Public ions As (title As String, mz As Double)()
         Public host As frmMsImagingTweaks
         Public nsamples As Integer
         Public cov As Double
@@ -904,19 +922,25 @@ UseCheckedList:
             Dim errMsg As String = Nothing
             Dim mzdiff = Tolerance.DeltaMass(0.01)
 
-            For Each ion As Double In ions
-                Call p.SetInfo($"processing ion feature: {ion.ToString("F4")}")
+            For Each ion As (title As String, mz As Double) In ions
+                Call p.SetInfo($"processing ion feature: {ion.title}")
 
-                Dim layer As PixelData() = host.viewer.MSIservice.LoadPixels({ion}, mzdiff)
+                Dim layer As PixelData() = host.viewer.MSIservice.LoadPixels({ion.mz}, mzdiff)
 
                 If layer Is Nothing Then
-                    Call Workbench.Warning($"No ion layer data for ${ion.ToString("F4")}, this ion feature will be omit: {errMsg}")
+                    Call Workbench.Warning($"No ion layer data for ${ion.title}, this ion feature will be omit: {errMsg}")
                     Continue For
                 End If
 
                 Dim data = SampleData.ExtractSample(layer, regions, n:=nsamples, coverage:=cov)
-                Dim peak As New xcms2(ion, 0) With {
-                    .ID = $"MSI{ion.ToString("F4")}",
+                Dim id As String = ion.title
+
+                If id.IsNumeric Then
+                    id = $"MSI{ion.mz.ToString("F4")}"
+                End If
+
+                Dim peak As New xcms2(ion.mz, 0) With {
+                    .ID = id,
                     .Properties = New Dictionary(Of String, Double)
                 }
 
