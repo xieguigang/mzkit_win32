@@ -100,16 +100,24 @@ Public Class frmMsImagingTweaks
     Friend viewer As frmMsImagingViewer
 
     Public Iterator Function GetSelectedIons() As IEnumerable(Of Double)
-        If Not Win7StyleTreeView1.SelectedNode Is Nothing Then
-            If Win7StyleTreeView1.SelectedNode.Checked Then
+        Dim target = Win7StyleTreeView1.SelectedNode
+
+        If Not target Is Nothing Then
+            If target.Checked Then
                 ' is root node
-                If Win7StyleTreeView1.SelectedNode.Tag Is Nothing Then
-                    For Each node As TreeNode In Win7StyleTreeView1.SelectedNode.Nodes
+                If target.Tag Is Nothing Then
+                    ' use all ions below this root node
+                    For Each node As TreeNode In target.Nodes
                         Yield DirectCast(node.Tag, Double)
                     Next
                 Else
-                    Yield DirectCast(Win7StyleTreeView1.SelectedNode.Tag, Double)
+                    ' is a selected single ion
+                    Yield DirectCast(target.Tag, Double)
                 End If
+            ElseIf Not target.Tag Is Nothing Then
+                ' is a selected single ion
+                ' use current ion
+                Yield DirectCast(target.Tag, Double)
             Else
                 GoTo UseCheckedList
             End If
