@@ -59,7 +59,11 @@ Public Class frm3DScatterPlotView
         Friend onclick As Action(Of String)
 
         Public Function GetScatter() As String
-            Return points.GetJson
+            If points.IsNullOrEmpty Then
+                Return "[]"
+            Else
+                Return points.GetJson
+            End If
         End Function
 
         Public Sub Click(tag As String)

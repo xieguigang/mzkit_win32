@@ -404,6 +404,7 @@ Public Class frmMetabonomicsAnalysis
     Shared ReadOnly openFolder_evt As New RibbonEventBinding(ribbonItems.ButtonOpenLCMSWorkspaceFolder)
     Shared ReadOnly viewSampleinfo_evt As New RibbonEventBinding(ribbonItems.ButtonViewSampleInfo)
     Shared ReadOnly view3D_evt As New RibbonEventBinding(ribbonItems.ButtonViewAnalysis3DScatter)
+    Shared ReadOnly view3DPage_evt As New RibbonEventBinding(ribbonItems.ButtonViewScatter3dInSinglePage)
 
     Private Sub frmMetabonomicsAnalysis_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call WebKit.Init(Me.WebView21)
@@ -483,6 +484,17 @@ Public Class frmMetabonomicsAnalysis
         Call viewScatterSVG()
     End Sub
 
+    Private Sub view3DScatterInSinglePage()
+        If Not source.points Is Nothing Then
+            Call VisualStudio.ShowDocument(Of frm3DScatterPlotView)() _
+                .LoadScatter(
+                    data:=source.points,
+                    onclick:=Sub(id)
+                                 ' do nothing
+                             End Sub)
+        End If
+    End Sub
+
     Private Sub view3DScatter()
         Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", source)
         Call WebView21.CoreWebView2.Navigate($"http://127.0.0.1:{Workbench.WebPort}/3d-scatter.html")
@@ -507,6 +519,7 @@ Public Class frmMetabonomicsAnalysis
         openFolder_evt.evt = Sub() Call openFolder()
         viewSampleinfo_evt.evt = Sub() Call viewSampleinfo()
         view3D_evt.evt = Sub() Call view3DScatter()
+        view3DPage_evt.evt = Sub() Call view3DScatterInSinglePage()
     End Sub
 
     Private Sub EventDeactivate() Handles Me.Deactivate
@@ -520,6 +533,7 @@ Public Class frmMetabonomicsAnalysis
         openFolder_evt.evt = Nothing
         viewSampleinfo_evt.evt = Nothing
         view3D_evt.evt = Nothing
+        view3DPage_evt.evt = Nothing
     End Sub
 
     Private Sub RunPCA(analysis As Type)
