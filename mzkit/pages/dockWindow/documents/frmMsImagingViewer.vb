@@ -602,19 +602,15 @@ Public Class frmMsImagingViewer
             Return
         End If
 
-        Dim file As New OpenFileDialog With {.Filter = "Excel Table(*.csv;*.xlsx)|*.csv;*.xlsx"}
+        Using file As New OpenFileDialog With {.Filter = "Excel Table(*.csv;*.xlsx)|*.csv;*.xlsx"}
+            If file.ShowDialog = DialogResult.OK Then
+                Call SelectSheetName.OpenExcel(file.FileName, AddressOf LoadImportAnnotationTable)
+            End If
+        End Using
+    End Sub
 
-        If file.ShowDialog <> DialogResult.OK Then
-            Return
-        End If
-
-        Dim annotations As AnnotationTableReader
-
-        If file.FileName.ExtensionSuffix("csv") Then
-            annotations = AnnotationTableReader.Load(DataFrame.Load(file.FileName))
-        Else
-            annotations = AnnotationTableReader.Load(DataFrame.CreateObject(xlsxFile.Open(file.FileName).GetTable(0)))
-        End If
+    Private Sub LoadImportAnnotationTable(table As File, fileName As String)
+        Dim annotations As AnnotationTableReader = AnnotationTableReader.Load(DataFrame.CreateObject(table))
 
         If annotations.hasMissing Then
             Return
