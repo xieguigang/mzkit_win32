@@ -87,7 +87,8 @@ Imports MZWorkPack
         Dim noSnapshot As Boolean = args("/no-thumbnail")
 
         If raw.DirectoryExists Then
-            cache = args("--cache") Or raw.ParentPath
+            ' save to the same directory by default
+            cache = args("--cache") Or raw
 
             For Each file As String In raw.EnumerateFiles("*.raw")
                 Dim cachefile As String = $"{cache}/{file.BaseName}.mzPack"
