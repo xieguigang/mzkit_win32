@@ -216,6 +216,7 @@
     </Compile>
     <Compile Include="DataGrid\GridLoaderHandler.vb" />
     <Compile Include="plugin\modules\DataTableViewer.vb" />
+    <Compile Include="plugin\modules\LCMSViewerModule.vb" />
     <Compile Include="plugin\modules\SpectrumLibraryModule.vb" />
     <Compile Include="TableHelper.vb" />
     <Compile Include="plugin\base\MSIServicePlugin.vb" />

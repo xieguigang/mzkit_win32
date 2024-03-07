@@ -23,6 +23,10 @@ Public Class frmLCMSScatterViewer
         Call Workbench.AppHost.SetTitle($"LCMS Scatter '{raw.source.FileName}'")
     End Sub
 
+    Public Sub loadRaw(data As Meta())
+        Call Me.ScatterViewer.LoadPeaks(data)
+    End Sub
+
     Public Sub LoadRaw(points As IEnumerable(Of xcms2), samples As String())
         Dim rawdata As New List(Of Meta)
         Dim v As Double

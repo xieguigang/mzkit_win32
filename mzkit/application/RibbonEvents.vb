@@ -67,6 +67,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MSP
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.RibbonLib.Controls
 Imports Microsoft.VisualBasic.ApplicationServices
@@ -210,12 +211,26 @@ Module RibbonEvents
         AddHandler ribbonItems.ButtonViewMRI.ExecuteEvent, Sub() Call openMRIRaster()
 
         AddHandler ribbonItems.ButtonMSIDebugger.ExecuteEvent, Sub() Call Debugger.MSI.Run()
+
+        LCMSViewerModule.lcmsViewerhHandle = AddressOf openLcmsScatter
     End Sub
 
     Sub New()
         ExportApis._openMSImagingFile = AddressOf OpenMSIRaw
         ExportApis._openMSImagingViewer = AddressOf showMsImaging
         ExportApis._openCFMIDTool = AddressOf OpenCFMIDTool
+    End Sub
+
+    Private Sub openLcmsScatter(data As Object, click As Action(Of String))
+        If data Is Nothing Then
+            Call Workbench.Warning("no data could be loaded!")
+        ElseIf TypeOf data Is Meta() Then
+            Call VisualStudio.ShowDocument(Of frmLCMSScatterViewer)().loadRaw(DirectCast(data, Meta()))
+        ElseIf TypeOf data Is Raw Then
+            Call VisualStudio.ShowDocument(Of frmLCMSScatterViewer)().loadRaw(DirectCast(data, Raw))
+        Else
+            Call Workbench.Warning($"invalid data type({data.GetType.FullName}) for the lcms scatter data viewer!")
+        End If
     End Sub
 
     Public Sub viewUntargettedScatter()
