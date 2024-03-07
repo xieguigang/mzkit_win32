@@ -225,9 +225,9 @@ Module RibbonEvents
         If data Is Nothing Then
             Call Workbench.Warning("no data could be loaded!")
         ElseIf TypeOf data Is Meta() Then
-            Call VisualStudio.ShowDocument(Of frmLCMSScatterViewer)().loadRaw(DirectCast(data, Meta())).Hook(click)
+            Call VisualStudio.ShowDocument(Of frmLCMSScatterViewer)(title:=title).loadRaw(DirectCast(data, Meta())).Hook(click)
         ElseIf TypeOf data Is Raw Then
-            Call VisualStudio.ShowDocument(Of frmLCMSScatterViewer)().loadRaw(DirectCast(data, Raw)).Hook(click)
+            Call VisualStudio.ShowDocument(Of frmLCMSScatterViewer)(title:=title).loadRaw(DirectCast(data, Raw)).Hook(click)
         Else
             Call Workbench.Warning($"invalid data type({data.GetType.FullName}) for the lcms scatter data viewer!")
         End If
