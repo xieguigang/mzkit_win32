@@ -13,19 +13,27 @@ Public Class frmLCMSScatterViewer
     ''' 已经加载的Raw文件
     ''' </summary>
     Dim raw As Raw
+    Dim clickPoint As Action(Of String, Double, Double, Boolean)
 
-    Public Sub loadRaw(raw As Raw)
+    Public Sub Hook(click As Action(Of String, Double, Double, Boolean))
+        clickPoint = click
+    End Sub
+
+    Public Function loadRaw(raw As Raw) As frmLCMSScatterViewer
         Me.raw = raw
         Me.raw.LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache))
         Me.TabText = raw.source.FileName
 
         Call ProgressSpinner.DoLoading(Sub() Call Invoke(Sub() Call loadRaw()))
         Call Workbench.AppHost.SetTitle($"LCMS Scatter '{raw.source.FileName}'")
-    End Sub
 
-    Public Sub loadRaw(data As Meta())
+        Return Me
+    End Function
+
+    Public Function loadRaw(data As Meta()) As frmLCMSScatterViewer
         Call Me.ScatterViewer.LoadPeaks(data)
-    End Sub
+        Return Me
+    End Function
 
     Public Sub LoadRaw(points As IEnumerable(Of xcms2), samples As String())
         Dim rawdata As New List(Of Meta)
@@ -81,6 +89,8 @@ Public Class frmLCMSScatterViewer
     Private Sub ScatterViewer_ClickOnPeak(scanId As String, mz As Double, rt As Double, progress As Boolean) Handles ScatterViewer.ClickOnPeak
         If Not raw Is Nothing Then
             Call MyApplication.host.mzkitTool.showSpectrum(scanId, raw, Nothing)
+        ElseIf Not clickPoint Is Nothing Then
+            Call clickPoint(scanId, mz, rt, progress)
         End If
     End Sub
 End Class

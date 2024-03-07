@@ -221,13 +221,13 @@ Module RibbonEvents
         ExportApis._openCFMIDTool = AddressOf OpenCFMIDTool
     End Sub
 
-    Private Sub openLcmsScatter(data As Object, click As Action(Of String))
+    Private Sub openLcmsScatter(data As Object, title As String, click As Action(Of String, Double, Double, Boolean))
         If data Is Nothing Then
             Call Workbench.Warning("no data could be loaded!")
         ElseIf TypeOf data Is Meta() Then
-            Call VisualStudio.ShowDocument(Of frmLCMSScatterViewer)().loadRaw(DirectCast(data, Meta()))
+            Call VisualStudio.ShowDocument(Of frmLCMSScatterViewer)().loadRaw(DirectCast(data, Meta())).Hook(click)
         ElseIf TypeOf data Is Raw Then
-            Call VisualStudio.ShowDocument(Of frmLCMSScatterViewer)().loadRaw(DirectCast(data, Raw))
+            Call VisualStudio.ShowDocument(Of frmLCMSScatterViewer)().loadRaw(DirectCast(data, Raw)).Hook(click)
         Else
             Call Workbench.Warning($"invalid data type({data.GetType.FullName}) for the lcms scatter data viewer!")
         End If
