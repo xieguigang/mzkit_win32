@@ -66,6 +66,7 @@ Imports System.Text
 Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID
 Imports Microsoft.VisualBasic.Math.Information
@@ -117,7 +118,7 @@ Public Class SpectrumProperty : Implements ICopyProperties
     Public ReadOnly Property splashId As String
 
     Sub New(spec As PeakMs2)
-        Call Me.New(spec.mzInto)
+        Call Me.New(spec.mzInto, msLevel:=2)
 
         rawfile = spec.file
         scanId = spec.scan
@@ -126,9 +127,18 @@ Public Class SpectrumProperty : Implements ICopyProperties
         precursorMz = spec.mz
         retentionTime = spec.rt
         rtmin = retentionTime / 60
+        activationMethod = spec.activation
+        collisionEnergy = spec.collisionEnergy
+
+        With Provider.ParseAdductModel(spec.precursor_type)
+            polarity = .GetIonMode.Description
+            precursorCharge = .charge
+        End With
     End Sub
 
-    Sub New(ms2 As ms2())
+    Sub New(ms2 As ms2(), msLevel As Integer)
+        Me.msLevel = msLevel
+
         If ms2.Length > 0 Then
             With ms2.OrderByDescending(Function(i) i.intensity).First
                 basePeakMz = std.Round(.mz, 4)
@@ -155,10 +165,9 @@ Public Class SpectrumProperty : Implements ICopyProperties
     End Sub
 
     Sub New(scanId As String, rawfile As String, msLevel As Integer, attrs As ScanMS2)
-        Call Me.New(ms2:=attrs.GetMs.ToArray)
+        Call Me.New(ms2:=attrs.GetMs.ToArray, msLevel)
 
         With attrs
-            Me.msLevel = msLevel
             collisionEnergy = .collisionEnergy
             centroided = .centroided
             precursorMz = .parentMz.ToString("F4")
