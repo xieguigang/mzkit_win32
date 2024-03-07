@@ -114,42 +114,11 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
         End Get
     End Property
 
-    Dim memoryData As New DataSet
+    Dim loader As GridLoaderHandler
     Dim search As GridSearchHandler
 
     Public Sub LoadTable(apply As Action(Of DataTable)) Implements IDataTableViewer.LoadTable
-        memoryData = New DataSet
-
-        Dim table As DataTable = memoryData.Tables.Add("memoryData")
-
-        Try
-            Call Me.AdvancedDataGridView1.Columns.Clear()
-            Call Me.AdvancedDataGridView1.Rows.Clear()
-        Catch ex As Exception
-
-        End Try
-
-        Call apply(table)
-        Call AdvancedDataGridView1.SetDoubleBuffered()
-
-        For Each column As DataGridViewColumn In AdvancedDataGridView1.Columns
-            'Select Case table.Columns.Item(column.HeaderText).DataType
-            '    Case GetType(String)
-            '        AdvancedDataGridView1.SetSortEnabled(column, True)
-            '    Case GetType(Double)
-            '    Case GetType(Integer)
-            '    Case Else
-            '        ' do nothing 
-            'End Select
-
-            AdvancedDataGridView1.ShowMenuStrip(column)
-        Next
-
-        BindingSource1.DataSource = memoryData
-        BindingSource1.DataMember = table.TableName
-
-        AdvancedDataGridView1.DataSource = BindingSource1
-        AdvancedDataGridViewSearchToolBar1.SetColumns(AdvancedDataGridView1.Columns)
+        Call loader.LoadTable(apply)
     End Sub
 
     Protected Overrides Sub SaveDocument()
@@ -161,6 +130,7 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
         OpenContainingFolderToolStripMenuItem.Enabled = False
 
         search = New GridSearchHandler(AdvancedDataGridView1)
+        loader = New GridLoaderHandler(AdvancedDataGridView1, AdvancedDataGridViewSearchToolBar1, BindingSource1)
         TabText = "Table View"
 
         AddHandler AdvancedDataGridViewSearchToolBar1.Search, AddressOf search.AdvancedDataGridViewSearchToolBar1_Search

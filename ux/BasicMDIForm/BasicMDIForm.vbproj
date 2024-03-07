@@ -214,6 +214,7 @@
     <Compile Include="buzyIndicator\TaskProgress.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="DataGrid\GridLoaderHandler.vb" />
     <Compile Include="plugin\modules\DataTableViewer.vb" />
     <Compile Include="plugin\modules\SpectrumLibraryModule.vb" />
     <Compile Include="TableHelper.vb" />
@@ -230,7 +231,7 @@
     <Compile Include="dialogs\MaskForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GridSearchHandler.vb" />
+    <Compile Include="DataGrid\GridSearchHandler.vb" />
     <Compile Include="plugin\modules\Actions\ActionBase.vb" />
     <Compile Include="plugin\modules\Actions\Actions.vb" />
     <Compile Include="plugin\modules\Pages.vb" />
