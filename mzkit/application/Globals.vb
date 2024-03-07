@@ -276,16 +276,16 @@ Module Globals
 
     Public Function LoadKEGG(println As Action(Of String), mode As Integer, mzdiff As Tolerance) As MSJointConnection
         Static background As Background = loadBackground()
-        Static compounds As KEGGCompound() = KEGGHandler.Wraps(KEGGRepo.RequestKEGGCompounds).ToArray
-        Static cache As New Dictionary(Of String, KEGGHandler)
+        Static compounds As KEGGCompound() = CompoundSolver.Wraps(KEGGRepo.RequestKEGGCompounds).ToArray
+        Static cache As New Dictionary(Of String, CompoundSolver)
 
         Dim key As String = $"[{mzdiff.ToString}]{mode}"
-        Dim handler As KEGGHandler = cache.ComputeIfAbsent(key,
+        Dim handler As CompoundSolver = cache.ComputeIfAbsent(key,
             lazyValue:=Function()
                            If mode = 1 Then
-                               Return KEGGHandler.CreateIndex(compounds, Provider.Positives.Where(Function(t) std.Abs(t.charge) = 1).ToArray, mzdiff)
+                               Return CompoundSolver.CreateIndex(compounds, Provider.Positives.Where(Function(t) std.Abs(t.charge) = 1).ToArray, mzdiff)
                            Else
-                               Return KEGGHandler.CreateIndex(compounds, Provider.Negatives.Where(Function(t) std.Abs(t.charge) = 1).ToArray, mzdiff)
+                               Return CompoundSolver.CreateIndex(compounds, Provider.Negatives.Where(Function(t) std.Abs(t.charge) = 1).ToArray, mzdiff)
                            End If
                        End Function)
 

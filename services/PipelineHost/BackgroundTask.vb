@@ -230,7 +230,7 @@ Module BackgroundTask
         Dim range As MzCalculator() = If(args.Adducts, getIonRange(args.IonMode)) _
             .Select(Function(adducts) Parser.ParseMzCalculator(adducts)) _
             .ToArray
-        Dim pool As IMzQuery = KEGGHandler.CreateIndex(keggCompounds, range, PPMmethod.PPM(args.PPM))
+        Dim pool As IMzQuery = CompoundSolver.CreateIndex(keggCompounds, range, PPMmethod.PPM(args.PPM))
         Dim init0 = pool.GetCandidateSet(peaks:=mzInputs).ToArray
         Dim models = KEGGRepo.RequestKEGGMaps.CreateBackground(KEGGRepo.RequestKeggReactionNetwork).ToArray
         Dim result = init0.PeakListAnnotation(models, permutation:=Integer.Parse(args.Optionals("permutation")))
