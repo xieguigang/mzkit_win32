@@ -71,7 +71,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID
 Imports Microsoft.VisualBasic.Math.Information
 Imports Microsoft.VisualBasic.Math.LinearAlgebra
 Imports Microsoft.VisualBasic.Serialization.JSON
-Imports stdNum = System.Math
+Imports std = System.Math
 
 Public Class SpectrumProperty : Implements ICopyProperties
 
@@ -116,24 +116,22 @@ Public Class SpectrumProperty : Implements ICopyProperties
     Public ReadOnly Property scanId As String
     Public ReadOnly Property splashId As String
 
-    Sub New(scanId As String, rawfile As String, msLevel As Integer, attrs As ScanMS2)
-        With attrs
-            Me.msLevel = msLevel
-            collisionEnergy = .collisionEnergy
-            centroided = .centroided
-            precursorMz = .parentMz.ToString("F4")
-            retentionTime = .rt.ToString("F2")
-            precursorCharge = .charge
-            polarity = .polarity
-            activationMethod = .activationMethod.Description
-            rtmin = stdNum.Round(retentionTime / 60, 2)
-        End With
+    Sub New(spec As PeakMs2)
+        Call Me.New(spec.mzInto)
 
-        Dim ms2 As ms2() = attrs.GetMs.ToArray
+        rawfile = spec.file
+        scanId = spec.scan
+        splashId = Splash.MSSplash.CalcSplashID(spec)
+        centroided = True
+        precursorMz = spec.mz
+        retentionTime = spec.rt
+        rtmin = retentionTime / 60
+    End Sub
 
+    Sub New(ms2 As ms2())
         If ms2.Length > 0 Then
             With ms2.OrderByDescending(Function(i) i.intensity).First
-                basePeakMz = stdNum.Round(.mz, 4)
+                basePeakMz = std.Round(.mz, 4)
                 maxIntensity = .intensity.ToString("G4")
             End With
 
@@ -142,8 +140,8 @@ Public Class SpectrumProperty : Implements ICopyProperties
             spectrum_entropy = 0
 
             With ms2.Select(Function(i) i.mz).ToArray
-                lowMass = stdNum.Round(.Min, 4)
-                highMass = stdNum.Round(.Max, 4)
+                lowMass = std.Round(.Min, 4)
+                highMass = std.Round(.Max, 4)
             End With
         End If
 
@@ -154,6 +152,22 @@ Public Class SpectrumProperty : Implements ICopyProperties
 
             spectrum_entropy = (v / v.Sum).ShannonEntropy
         End If
+    End Sub
+
+    Sub New(scanId As String, rawfile As String, msLevel As Integer, attrs As ScanMS2)
+        Call Me.New(ms2:=attrs.GetMs.ToArray)
+
+        With attrs
+            Me.msLevel = msLevel
+            collisionEnergy = .collisionEnergy
+            centroided = .centroided
+            precursorMz = .parentMz.ToString("F4")
+            retentionTime = .rt.ToString("F2")
+            precursorCharge = .charge
+            polarity = .polarity
+            activationMethod = .activationMethod.Description
+            rtmin = std.Round(retentionTime / 60, 2)
+        End With
 
         Me.rawfile = rawfile
         Me.scanId = scanId

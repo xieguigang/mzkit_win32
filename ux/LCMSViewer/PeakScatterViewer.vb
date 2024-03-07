@@ -186,7 +186,12 @@ Public Class PeakScatterViewer
 
         LoadPeaks2(m_rawdata.ToArray)
         lcms_scatter.SetMetadata(m_rawdata)
-        WebView21.CoreWebView2.Reload()
+
+        Try
+            WebView21.CoreWebView2.Reload()
+        Catch ex As Exception
+
+        End Try
 
         Return Me
     End Function

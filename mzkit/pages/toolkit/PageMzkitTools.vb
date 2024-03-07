@@ -613,6 +613,8 @@ Public Class PageMzkitTools
             With DirectCast(data, PeakMs2)
                 matrix = .mzInto
                 name = .lib_guid
+
+                Call VisualStudio.ShowProperties(New SpectrumProperty(.ByRef))
             End With
         Else
             Call Workbench.Warning($"the spectral view for {data.GetType.FullName} is not implements yet...")
