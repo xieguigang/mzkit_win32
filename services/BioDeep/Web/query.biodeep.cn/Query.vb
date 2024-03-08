@@ -55,64 +55,67 @@
 Imports Flute.Http.AppEngine
 Imports Microsoft.VisualBasic.Serialization.JSON
 
-''' <summary>
-''' api handler for ``query.biodeep.cn``
-''' </summary>
-Public Class Query
-
-    Public Property q As String
-    Public Property page As Integer
-    Public Property page_size As Integer
-    Public Property count As Integer
-    Public Property data As MetaboliteSearchHit()
+Namespace query.biodeep.cn
 
     ''' <summary>
-    ''' the host name for the website, config this property for run debug
+    ''' api handler for ``query.biodeep.cn``
     ''' </summary>
-    ''' <returns></returns>
-    Public Shared Property host As String = "https://query.biodeep.cn"
+    Public Class Query
 
-    Public Shared Function search(q As String, Optional page As Integer = 1, Optional page_size As Integer = 100) As Query
-        Dim url As String = $"{host}/search/?q={q.UrlEncode}&page={page}&page_size={page_size}"
-        Dim json_str As String = url.GET
-        Dim result = json_str.LoadJSON(Of JsonResponse(Of Query))(throwEx:=False)
+        Public Property q As String
+        Public Property page As Integer
+        Public Property page_size As Integer
+        Public Property count As Integer
+        Public Property data As MetaboliteSearchHit()
 
-        If result IsNot Nothing AndAlso result.code = 0 Then
-            Return result.info
-        Else
-            Return Nothing
-        End If
-    End Function
+        ''' <summary>
+        ''' the host name for the website, config this property for run debug
+        ''' </summary>
+        ''' <returns></returns>
+        Public Shared Property host As String = "https://query.biodeep.cn"
 
-    ''' <summary>
-    ''' get metabolite information by given biodeep id
-    ''' </summary>
-    ''' <param name="biodeep_id"></param>
-    ''' <returns></returns>
-    Public Shared Function metabolite(biodeep_id As String) As metabolite
-        Dim url As String = $"{host}/metabolite/{biodeep_id}"
-        Dim json_str As String = url.GET
-        Dim result = json_str.LoadJSON(Of JsonResponse(Of metabolite_result))(throwEx:=False)
+        Public Shared Function search(q As String, Optional page As Integer = 1, Optional page_size As Integer = 100) As Query
+            Dim url As String = $"{host}/search/?q={q.UrlEncode}&page={page}&page_size={page_size}"
+            Dim json_str As String = url.GET
+            Dim result = json_str.LoadJSON(Of JsonResponse(Of Query))(throwEx:=False)
 
-        If result IsNot Nothing AndAlso result.code = 0 Then
-            Return result.info.metabolite
-        Else
-            Return Nothing
-        End If
-    End Function
+            If result IsNot Nothing AndAlso result.code = 0 Then
+                Return result.info
+            Else
+                Return Nothing
+            End If
+        End Function
 
-End Class
+        ''' <summary>
+        ''' get metabolite information by given biodeep id
+        ''' </summary>
+        ''' <param name="biodeep_id"></param>
+        ''' <returns></returns>
+        Public Shared Function metabolite(biodeep_id As String) As metabolite
+            Dim url As String = $"{host}/metabolite/{biodeep_id}"
+            Dim json_str As String = url.GET
+            Dim result = json_str.LoadJSON(Of JsonResponse(Of metabolite_result))(throwEx:=False)
 
-Public Class MetaboliteSearchHit
+            If result IsNot Nothing AndAlso result.code = 0 Then
+                Return result.info.metabolite
+            Else
+                Return Nothing
+            End If
+        End Function
 
-    Public Property biodeep_id As String
-    Public Property name As String
-    Public Property formula As String
-    Public Property exact_mass As Double
-    Public Property iupac_name As String
-    Public Property score As Double
-    Public Property matches As String
-    Public Property hits As String
-    Public Property SMILES As String
+    End Class
 
-End Class
+    Public Class MetaboliteSearchHit
+
+        Public Property biodeep_id As String
+        Public Property name As String
+        Public Property formula As String
+        Public Property exact_mass As Double
+        Public Property iupac_name As String
+        Public Property score As Double
+        Public Property matches As String
+        Public Property hits As String
+        Public Property SMILES As String
+
+    End Class
+End Namespace
