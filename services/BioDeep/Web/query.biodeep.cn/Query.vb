@@ -84,6 +84,23 @@ Public Class Query
         End If
     End Function
 
+    ''' <summary>
+    ''' get metabolite information by given biodeep id
+    ''' </summary>
+    ''' <param name="biodeep_id"></param>
+    ''' <returns></returns>
+    Public Shared Function metabolite(biodeep_id As String) As metabolite
+        Dim url As String = $"{host}/metabolite/{biodeep_id}"
+        Dim json_str As String = url.GET
+        Dim result = json_str.LoadJSON(Of JsonResponse(Of metabolite_result))(throwEx:=False)
+
+        If result IsNot Nothing AndAlso result.code = 0 Then
+            Return result.info.metabolite
+        Else
+            Return Nothing
+        End If
+    End Function
+
 End Class
 
 Public Class MetaboliteSearchHit
