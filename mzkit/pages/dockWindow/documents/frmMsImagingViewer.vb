@@ -142,6 +142,9 @@ Public Class frmMsImagingViewer
                 If offset_json.FileLength > 1 Then
                     Try
                         union_offsets = offset_json.LoadJsonFile(Of Dictionary(Of String, Integer()))
+
+                        Call Workbench.LogText("load multiple sample union merge layout offset data:")
+                        Call Workbench.LogText(offset_json.ReadAllText)
                     Catch ex As Exception
                         union_offsets = Nothing
                     End Try
