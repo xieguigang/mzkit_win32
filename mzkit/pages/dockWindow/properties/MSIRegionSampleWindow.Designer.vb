@@ -28,6 +28,8 @@ Partial Class MSIRegionSampleWindow
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MSIRegionSampleWindow))
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripSplitButton()
+        Me.ResetColorsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripButton6 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton5 = New System.Windows.Forms.ToolStripSplitButton()
         Me.GroupUntaggedSpotToNearestRegonToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -38,8 +40,6 @@ Partial Class MSIRegionSampleWindow
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripDropDownButton()
-        Me.ResetColorsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -64,6 +64,23 @@ Partial Class MSIRegionSampleWindow
         Me.ToolStrip1.Size = New System.Drawing.Size(443, 27)
         Me.ToolStrip1.TabIndex = 1
         Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'ToolStripButton2
+        '
+        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton2.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ResetColorsToolStripMenuItem})
+        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
+        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton2.Name = "ToolStripButton2"
+        Me.ToolStripButton2.Size = New System.Drawing.Size(36, 24)
+        Me.ToolStripButton2.Text = "Auto SampleInfo"
+        '
+        'ResetColorsToolStripMenuItem
+        '
+        Me.ResetColorsToolStripMenuItem.Image = CType(resources.GetObject("ResetColorsToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.ResetColorsToolStripMenuItem.Name = "ResetColorsToolStripMenuItem"
+        Me.ResetColorsToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
+        Me.ResetColorsToolStripMenuItem.Text = "Reset Colors"
         '
         'ToolStripButton6
         '
@@ -116,11 +133,10 @@ Partial Class MSIRegionSampleWindow
         '
         'ToolStripButton1
         '
-        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
         Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(24, 24)
+        Me.ToolStripButton1.Size = New System.Drawing.Size(117, 24)
         Me.ToolStripButton1.Text = "Save Tissue Map"
         '
         'ToolStripButton3
@@ -147,22 +163,6 @@ Partial Class MSIRegionSampleWindow
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(42, 17)
         Me.ToolStripStatusLabel1.Text = "Ready!"
-        '
-        'ToolStripButton2
-        '
-        Me.ToolStripButton2.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ResetColorsToolStripMenuItem})
-        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
-        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton2.Name = "ToolStripButton2"
-        Me.ToolStripButton2.Size = New System.Drawing.Size(129, 24)
-        Me.ToolStripButton2.Text = "Auto SampleInfo"
-        '
-        'ResetColorsToolStripMenuItem
-        '
-        Me.ResetColorsToolStripMenuItem.Image = CType(resources.GetObject("ResetColorsToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.ResetColorsToolStripMenuItem.Name = "ResetColorsToolStripMenuItem"
-        Me.ResetColorsToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
-        Me.ResetColorsToolStripMenuItem.Text = "Reset Colors"
         '
         'MSIRegionSampleWindow
         '
@@ -196,6 +196,6 @@ Partial Class MSIRegionSampleWindow
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
     Friend WithEvents ToolStripButton5 As ToolStripSplitButton
     Friend WithEvents GroupUntaggedSpotToNearestRegonToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ToolStripButton2 As ToolStripDropDownButton
+    Friend WithEvents ToolStripButton2 As ToolStripSplitButton
     Friend WithEvents ResetColorsToolStripMenuItem As ToolStripMenuItem
 End Class

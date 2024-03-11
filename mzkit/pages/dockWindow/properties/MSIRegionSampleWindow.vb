@@ -341,6 +341,10 @@ Public Class MSIRegionSampleWindow
     Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
         Dim nsize As Integer = FlowLayoutPanel1.Controls.Count
 
+        If ToolStripButton2.DropDownButtonPressed OrElse ToolStripButton2.DropDownButtonSelected Then
+            Return
+        End If
+
         If nsize > 0 Then
             Call AutoFillSampleInfo(nsize)
         Else
