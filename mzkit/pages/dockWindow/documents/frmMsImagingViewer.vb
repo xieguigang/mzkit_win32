@@ -1303,10 +1303,18 @@ Public Class frmMsImagingViewer
             samples.sample_tags,
             show:=Sub(tag)
                       Dim polygon As Polygon2D = samples(tag)
-                      Dim offset As PointF = polygon.GetRectangle.Location
-                      Dim t0 = New Polygon2D(tissues.Select(Function(t) t.points).IteratesALL).GetRectangle.Location
+                      Dim offset As PointF
+                      Dim t0 As PointF = New Polygon2D(tissues.Select(Function(t) t.points).IteratesALL).GetRectangle.Location
 
                       t0 = New PointF(-t0.X, -t0.Y)
+
+                      If Not union_offsets.IsNullOrEmpty AndAlso union_offsets.ContainsKey(tag) Then
+                          offset = New PointF(union_offsets(tag)(0), union_offsets(tag)(1))
+                          Workbench.LogText($"get tissue cdf offset from union merge layout data: {union_offsets(tag).GetJson}")
+                      Else
+                          offset = polygon.GetRectangle.Location
+                          Workbench.LogText($"get tissue cdf offset from sample polygon rectangle: ({offset.X},{offset.Y})")
+                      End If
 
                       For Each region As TissueRegion In tissues
                           region.label = $"{region.label}@{tag}"
