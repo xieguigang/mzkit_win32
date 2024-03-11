@@ -130,11 +130,35 @@ Public Class frmMsImagingViewer
     Implements IFileReference
 
     Public Property FilePath As String Implements IFileReference.FilePath
+        Get
+            Return _filePath
+        End Get
+        Set(value As String)
+            _filePath = value
+
+            If _filePath.ExtensionSuffix("mzpack") Then
+                Dim offset_json As String = _filePath.ChangeSuffix("json")
+
+                If offset_json.FileLength > 1 Then
+                    Try
+                        union_offsets = offset_json.LoadJsonFile(Of Dictionary(Of String, Integer()))
+                    Catch ex As Exception
+                        union_offsets = Nothing
+                    End Try
+                Else
+                    union_offsets = Nothing
+                End If
+            Else
+                union_offsets = Nothing
+            End If
+        End Set
+    End Property
 
     Dim WithEvents checks As ToolStripMenuItem
     Dim WithEvents tweaks As PropertyGrid
     Dim rendering As Action
     Dim guid As String
+    Dim _filePath As String
 
     Friend TIC As PixelScanIntensity()
 
@@ -142,6 +166,12 @@ Public Class frmMsImagingViewer
     Friend params As MsImageProperty
     Friend HEMap As HEMapTools
     Friend DrawHeMapRegion As Boolean = False
+
+    ''' <summary>
+    ''' union offsets for each sample slides, apply for imports
+    ''' single sample tissue cdf file.
+    ''' </summary>
+    Friend union_offsets As Dictionary(Of String, Integer())
 
     ''' <summary>
     ''' the ms-imaging rendering service
