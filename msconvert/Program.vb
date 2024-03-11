@@ -20,6 +20,7 @@ Imports Microsoft.VisualBasic.Language.[Default]
 Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.My.FrameworkInternal
 Imports Microsoft.VisualBasic.Scripting.Runtime
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports MZWorkPack
 
 ''' <summary>
@@ -164,10 +165,15 @@ Imports MZWorkPack
         Dim layout As String = args <= "--layout"
         Dim save As String = args("--save") Or files.ChangeSuffix(".mzPack")
         Dim tagfileName As Boolean = args("--filename-as-source-tag")
-        Dim union As mzPack = MergeSlides.JoinDataSet(files.IterateAllLines, layout.ReadAllText, tagfileName)
+        Dim offset_json As String = save.ChangeSuffix("json")
+        Dim offsets As Dictionary(Of String, Integer()) = Nothing
+        Dim union As mzPack = MergeSlides.JoinDataSet(files.IterateAllLines, layout.ReadAllText,
+            fileNameAsSourceTag:=tagfileName,
+            offsets:=offsets)
 
         Using buf As Stream = save.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
             Call union.Write(buf, progress:=AddressOf RunSlavePipeline.SendMessage)
+            Call offsets.GetJson.SaveTo(offset_json)
         End Using
 
         Return True

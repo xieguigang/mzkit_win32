@@ -3,9 +3,24 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Linq
 
 Public Module MergeSlides
+
+    Private Function LoadRaw(path As String, fileNameAsSourceTag As Boolean) As NamedValue(Of mzPack)
+        Call RunSlavePipeline.SendMessage($"read {path}...")
+
+        Using buf As Stream = path.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
+            Dim data = mzPack.ReadAll(buf, ignoreThumbnail:=True, skipMsn:=True)
+
+            If fileNameAsSourceTag Then
+                data.source = path.BaseName
+            End If
+
+            Return New NamedValue(Of mzPack)(path.BaseName, data)
+        End Using
+    End Function
 
     ''' <summary>
     ''' merge multiple ms-imaging slide
@@ -14,19 +29,14 @@ Public Module MergeSlides
     ''' <param name="layout"></param>
     ''' <param name="fileNameAsSourceTag"></param>
     ''' <returns></returns>
-    Public Function JoinDataSet(file As IEnumerable(Of String), layout As String, fileNameAsSourceTag As Boolean) As mzPack
-        Dim rawfiles As Dictionary(Of String, mzPack) = file _
-            .ToDictionary(Function(path) path.BaseName,
-                          Function(path)
-                              Call RunSlavePipeline.SendMessage($"read {path}...")
+    Public Function JoinDataSet(file As IEnumerable(Of String), layout As String, fileNameAsSourceTag As Boolean,
+                                Optional ByRef offsets As Dictionary(Of String, Integer()) = Nothing) As mzPack
 
-                              Using buf As Stream = path.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
-                                  Dim data = mzPack.ReadAll(buf, ignoreThumbnail:=True, skipMsn:=True)
-                                  If fileNameAsSourceTag Then
-                                      data.source = path.BaseName
-                                  End If
-                                  Return data
-                              End Using
+        Dim rawfiles As Dictionary(Of String, mzPack) = file _
+            .Select(Function(path) LoadRaw(path, fileNameAsSourceTag)) _
+            .ToDictionary(Function(path) path.Name,
+                          Function(path)
+                              Return path.Value
                           End Function)
 
         If layout.StringEmpty Then
@@ -46,7 +56,7 @@ Public Module MergeSlides
             If rawfiles.Values.Any(Function(m) m.Application = FileApplicationClass.STImaging) Then
                 Return MergeFakeSTImagingSliders.MergeDataWithLayout(rawfiles, layoutData)
             Else
-                Return rawfiles.MergeDataWithLayout(layoutData)
+                Return rawfiles.MergeDataWithLayout(layoutData, offsets:=offsets)
             End If
         End If
     End Function
