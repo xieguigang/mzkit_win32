@@ -544,7 +544,7 @@ Public Class frmMetabonomicsAnalysis
 
         InputDialog.Input(
             Sub(config)
-                RscriptProgressTask.RunComponentTask(matrixfile, sampleinfofile, config.ncomp, analysis)
+                RscriptProgressTask.RunComponentTask(matrixfile, sampleinfofile, config.ncomp, config.showSampleLable, analysis)
 
                 Select Case analysis
                     Case GetType(PLS) : Call PLSDAToolStripMenuItem_Click()

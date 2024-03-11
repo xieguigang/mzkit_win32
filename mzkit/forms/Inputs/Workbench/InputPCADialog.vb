@@ -6,6 +6,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property showSampleLable As Boolean
+        Get
+            Return CheckBox1.Checked
+        End Get
+    End Property
+
     Public Function SetMaxComponent(n As Integer) As InputPCADialog
         TrackBar1.Maximum = n
         Return Me

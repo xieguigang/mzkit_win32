@@ -781,11 +781,12 @@ Public NotInheritable Class RscriptProgressTask
         )
     End Sub
 
-    Public Shared Function RunComponentTask(mat As String, sampleinfo As String, n As Integer, analysis As Type) As Boolean
+    Public Shared Function RunComponentTask(mat As String, sampleinfo As String, n As Integer, showLabels As Boolean, analysis As Type) As Boolean
         Dim args As New Dictionary(Of String, String) From {
             {"--matrix", mat},
             {"--ncomp", n},
-            {"--sampleinfo", sampleinfo}
+            {"--sampleinfo", sampleinfo},
+            {"--show_labels", showLabels.ToString.ToUpper}
         }
 
         Select Case analysis

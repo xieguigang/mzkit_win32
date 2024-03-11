@@ -9,6 +9,7 @@ let mat = ?"--matrix" || stop("a data matrix file must be provided!");
 let sampleinfo = ?"--sampleinfo" || stop("the sample class label file must be provided!");
 let ncomp as integer = ?"--ncomp" || 3;
 let outputdir = ?"--outputdir" || dirname(mat);
+let show_labels as boolean = ?"--show_labels" || TRUE;
 
 let matrix = mat 
 |> load.expr0(
@@ -72,12 +73,18 @@ svg(file = `${outputdir}/plsda/plsda_loadingMN.svg`, width = 1920, height = 1600
 pls_score[, "class_id"] = rownames(pls_score);
 
 svg(file = `${outputdir}/plsda/plsda_scoreMN.svg`, width = 1920, height = 1600) {
-    ggplot(pls_score, aes(x="T1", y = "T2", color = "class_id", label = rownames(matrix)), 
+    
+    let score_figure = ggplot(pls_score, aes(x="T1", y = "T2", color = "class_id", label = rownames(matrix)), 
         padding = [200 400 200 250])
     + geom_point(
         size = 16
     )
-    + geom_text(size = 6)
     # + stat_ellipse()
     ;
+
+    if (show_labels) {
+        score_figure <- score_figure + geom_text(size = 6);
+    }
+    
+    score_figure;
 }
