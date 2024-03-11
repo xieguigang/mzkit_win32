@@ -40,10 +40,10 @@
     <ROW Property="CTRLS" Value="3"/>
     <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1028:{9A9FA349-25B5-4C8C-B3C9-DB86F55E4EAF} 1033:{9A9FA349-25B5-4C8C-B3C9-DB86F55E4EAF} 1036:{9A9FA349-25B5-4C8C-B3C9-DB86F55E4EAF} 1041:{9A9FA349-25B5-4C8C-B3C9-DB86F55E4EAF} 1049:{9A9FA349-25B5-4C8C-B3C9-DB86F55E4EAF} 2052:{9A9FA349-25B5-4C8C-B3C9-DB86F55E4EAF} 2057:{9A9FA349-25B5-4C8C-B3C9-DB86F55E4EAF} " Type="16"/>
+    <ROW Property="ProductCode" Value="1028:{A4E1FB1D-6C2D-4174-88E4-BE65E5A6A04D} 1033:{A4E1FB1D-6C2D-4174-88E4-BE65E5A6A04D} 1036:{A4E1FB1D-6C2D-4174-88E4-BE65E5A6A04D} 1041:{A4E1FB1D-6C2D-4174-88E4-BE65E5A6A04D} 1049:{A4E1FB1D-6C2D-4174-88E4-BE65E5A6A04D} 2052:{A4E1FB1D-6C2D-4174-88E4-BE65E5A6A04D} 2057:{A4E1FB1D-6C2D-4174-88E4-BE65E5A6A04D} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="mzkit_win32"/>
-    <ROW Property="ProductVersion" Value="5.2.8732.39882" Options="32"/>
+    <ROW Property="ProductVersion" Value="5.2.9332.8102" Options="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{B645400B-3918-41EF-9009-7ADDD81C84B4}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -413,7 +413,7 @@
     <ROW Directory="zstdcodec_Dir" Directory_Parent="libs_Dir" DefaultDir="ZSTD-C~1|zstd-codec"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{661FC85C-A421-4163-9E8E-74B869BBDF8E}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{88DC73B4-93FD-4465-B69C-76F294E16F6C}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{2335D578-7E61-4EAB-A98E-FA436BA9E1FF}" Directory_="APPDIR" Attributes="260" KeyPath="AI_ExePath"/>
     <ROW Component="APPDIR" ComponentId="{69AA9FFE-67B1-456B-88EB-97D3D6C92AA7}" Directory_="APPDIR" Attributes="256"/>
     <ROW Component="ARButton.js" ComponentId="{1AA55F20-6D89-44ED-8F8F-5D0585E8DD95}" Directory_="webxr_Dir" Attributes="0" KeyPath="ARButton.js" Type="0"/>
@@ -667,11 +667,8 @@
     <ROW Component="Flute.Http.dll" ComponentId="{1A9D1085-A042-4FB2-B9F6-267C14D598BD}" Directory_="APPDIR" Attributes="256" KeyPath="Flute.Http.dll"/>
     <ROW Component="Flute.Http.dll_1" ComponentId="{7126992B-A818-47AB-A05F-ECAF115FD030}" Directory_="bin_Dir" Attributes="256" KeyPath="Flute.Http.dll_1"/>
     <ROW Component="Flute.Http.dll_2" ComponentId="{DA183475-598E-4525-89EA-9C3A14EFE3FF}" Directory_="host_Dir" Attributes="256" KeyPath="Flute.Http.dll_2"/>
-    <ROW Component="Flute.Http.dll_3" ComponentId="{89B3B208-B129-48BA-9338-DBC740B60CB3}" Directory_="blender_Dir" Attributes="256" KeyPath="Flute.Http.dll_3"/>
-    <ROW Component="Flute.Http.dll_4" ComponentId="{F872EBA8-7AEC-44C9-BEE0-92EE1F7D1CEE}" Directory_="plugins_Dir" Attributes="256" KeyPath="Flute.Http.dll_4"/>
     <ROW Component="Flute.Http.dll_9" ComponentId="{AC04B39C-8C05-407B-8AE4-0780C87805B9}" Directory_="library_Dir" Attributes="256" KeyPath="Flute.Http.dll_9"/>
     <ROW Component="Flute.Http.pdb" ComponentId="{BFE97953-F38D-4536-9EEC-FB524EC6A5B8}" Directory_="APPDIR" Attributes="0" KeyPath="Flute.Http.pdb" Type="4"/>
-    <ROW Component="Flute.Http.pdb_1" ComponentId="{C609A22C-2C20-4CB3-92BD-CE54CE4431EF}" Directory_="blender_Dir" Attributes="0" KeyPath="Flute.Http.pdb_1" Type="4"/>
     <ROW Component="Flute.Http.xml" ComponentId="{4035364A-48E6-4100-B4AD-C6C9D7D8BEA4}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll.config_4" Type="0"/>
     <ROW Component="Flute.Http.xml_1" ComponentId="{7E544B9E-5CE2-4EC1-ABF6-2B80F6575289}" Directory_="blender_Dir" Attributes="0" KeyPath="Flute.Http.xml_3"/>
     <ROW Component="GCModeller.zip" ComponentId="{2A77A528-0E55-492F-B17F-9FDB92BFDFE2}" Directory_="packages_Dir" Attributes="256" KeyPath="GCModeller.zip" Type="0"/>
@@ -18587,10 +18584,6 @@
     <ROW File="screenshot2.png" Component_="gitignore" FileName="SCREEN~2.PNG|screenshot2.png" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\screenshot2.png" SelfReg="false"/>
     <ROW File="screenshot3.png" Component_="gitignore" FileName="SCREEN~3.PNG|screenshot3.png" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\screenshot3.png" SelfReg="false"/>
     <ROW File="themes.gif" Component_="themes.gif" FileName="themes.gif" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\screenshots\themes.gif" SelfReg="false"/>
-    <ROW File="Flute.Http.dll_3" Component_="Flute.Http.dll_3" FileName="FLUTEH~1.DLL|Flute.Http.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Flute.Http.dll" SelfReg="false"/>
-    <ROW File="Flute.Http.pdb_1" Component_="Flute.Http.pdb_1" FileName="FLUTEH~1.PDB|Flute.Http.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Flute.Http.pdb" SelfReg="false"/>
-    <ROW File="Flute.Http.dll_4" Component_="Flute.Http.dll_4" FileName="FLUTEH~1.DLL|Flute.Http.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\Flute.Http.dll" SelfReg="false"/>
-    <ROW File="Flute.Http.pdb_2" Component_="Flute.Http.dll_4" FileName="FLUTEH~1.PDB|Flute.Http.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\Flute.Http.pdb" SelfReg="false"/>
     <ROW File="Flute.Http.xml_3" Component_="Flute.Http.xml_1" FileName="FLUTEH~1.XML|Flute.Http.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Flute.Http.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
@@ -20164,10 +20157,7 @@
     <ROW Feature_="MainFeature" Component_="evolcolorpicker.js"/>
     <ROW Feature_="MainFeature" Component_="demo.less"/>
     <ROW Feature_="MainFeature" Component_="themes.gif"/>
-    <ROW Feature_="MainFeature" Component_="Flute.Http.dll_3"/>
-    <ROW Feature_="MainFeature" Component_="Flute.Http.dll_4"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Flute.Http.xml_1"/>
-    <ROW Feature_="VisualStudio_Diagnostic" Component_="Flute.Http.pdb_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
@@ -20344,7 +20334,7 @@
     <ROW Directory_="data_Dir" SourcePath="..\rstudio\data" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="jaJP_Dir" SourcePath="..\..\..\dist\bin\ja-JP" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="ndpitools_Dir" SourcePath="..\dist\ndpitools" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
-    <ROW Directory_="plugins_Dir" SourcePath="..\..\..\dist\bin\plugins" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|\en-US|\zh-Hans|runtimes|*.xml|Microsoft.VisualBasic.Runtime.*|/ThemeVS2015.*|System.Numerics.Vectors.*|Mzkit_win32.BasicMDIForm.*|Microsoft.*|\zh-CN|/BioNovoGene.*|/ThermoFisher.*|/System.*|/REnv.*|Mzkit_.*|Mzkit_win32.Interaction.dll|Sciex.*|Clearcore2.*|Mzkit_win32.*|WkHtmlToPdf.*|SMRUCC.*|/RQL.*|BioDeep.*" ExcludeFlags="6" FileAddOptions="4"/>
+    <ROW Directory_="plugins_Dir" SourcePath="..\..\..\dist\bin\plugins" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|\en-US|\zh-Hans|runtimes|*.xml|Microsoft.VisualBasic.Runtime.*|/ThemeVS2015.*|System.Numerics.Vectors.*|Mzkit_win32.BasicMDIForm.*|Microsoft.*|\zh-CN|/BioNovoGene.*|/ThermoFisher.*|/System.*|/REnv.*|Mzkit_.*|Mzkit_win32.Interaction.dll|Sciex.*|Clearcore2.*|Mzkit_win32.*|WkHtmlToPdf.*|SMRUCC.*|/RQL.*|BioDeep.*|Flute.*" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="zhHans_Dir" SourcePath="..\..\..\dist\bin\zh-Hans" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="js_1_Dir" SourcePath="..\webview\assets\js" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|/*.map" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="fr_Dir" SourcePath="..\..\..\dist\bin\fr" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
@@ -20371,7 +20361,7 @@
     <ROW XmlAttribute="xsischemaLocation" XmlElement="swidsoftware_identification_tag" Name="xsi:schemaLocation" Flags="14" Order="3" Value="http://standards.iso.org/iso/19770/-2/2008/schema.xsd software_identification_tag.xsd"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.XmlElementComponent">
-    <ROW XmlElement="swidbuild" ParentElement="swidnumeric" Name="swid:build" Condition="1" Order="2" Flags="14" Text="8732" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidbuild" ParentElement="swidnumeric" Name="swid:build" Condition="1" Order="2" Flags="14" Text="9332" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidchannel_name" ParentElement="swidlicense_linkage" Name="swid:channel_name" Condition="1" Order="1" Flags="14" Text="Standard(Community Edition)" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidchannel_type" ParentElement="swidlicense_linkage" Name="swid:channel_type" Condition="1" Order="0" Flags="14" Text="Retail" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidcustomer_type" ParentElement="swidlicense_linkage" Name="swid:customer_type" Condition="1" Order="2" Flags="14" Text="Academic" UpdateIndexInParent="0"/>
@@ -20389,7 +20379,7 @@
     <ROW XmlElement="swidregid" ParentElement="swidsoftware_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2013-01.com.panomix" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_5" ParentElement="swidsoftware_licensor" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2019-11.org.mzkit" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_6" ParentElement="swidtag_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.1995-09.me.xieguigang,gg.xie@bionovogene.com" UpdateIndexInParent="0"/>
-    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="39882" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="8102" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidserial_number" ParentElement="swidsoftware_identification_tag" Name="swid:serial_number" Condition="1" Order="7" Flags="14" Text="[PIDKEY]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_creator" ParentElement="swidsoftware_identification_tag" Name="swid:software_creator" Condition="1" Order="3" Flags="14" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_id" ParentElement="swidsoftware_identification_tag" Name="swid:software_id" Condition="1" Order="5" Flags="14" UpdateIndexInParent="0"/>
