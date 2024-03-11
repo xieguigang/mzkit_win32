@@ -1310,19 +1310,36 @@ Public Class frmMsImagingViewer
                       Dim t0 As New PointF
 
                       If Not union_offsets.IsNullOrEmpty AndAlso union_offsets.ContainsKey(tag) Then
-                          offset = New PointF(union_offsets(tag)(0), union_offsets(tag)(1))
-                          Workbench.LogText($"get tissue cdf offset from union merge layout data: {union_offsets(tag).GetJson}")
+                          Dim layout As Integer() = union_offsets(tag)
+                          Dim left As Integer = layout(0)
+                          Dim top As Integer = layout(1)
+                          Dim minX As Integer = layout(2)
+                          Dim deltaY As Integer = layout(3)
+
+                          For Each region As TissueRegion In tissues
+                              region.label = $"{region.label}@{tag}"
+                              region.points = region.points _
+                                  .Select(Function(i)
+                                              Dim x = i.X, y = i.Y
+                                              Call MergeSliders.MoveLayout(x, y, minX, left, deltaY)
+                                              Return New Point(x, y)
+                                          End Function) _
+                                  .ToArray
+                          Next
+
+                          Workbench.LogText($"get tissue cdf offset from union merge layout data: {layout.GetJson}")
                       Else
                           offset = polygon.GetRectangle.Location
                           t0 = New Polygon2D(tissues.Select(Function(t) t.points).IteratesALL).GetRectangle.Location
                           t0 = New PointF(-t0.X, -t0.Y)
+
+                          For Each region As TissueRegion In tissues
+                              region.label = $"{region.label}@{tag}"
+                              region.points = region.points.Offsets(offset).Offsets(t0)
+                          Next
+
                           Workbench.LogText($"get tissue cdf offset from sample polygon rectangle: ({offset.X},{offset.Y})")
                       End If
-
-                      For Each region As TissueRegion In tissues
-                          region.label = $"{region.label}@{tag}"
-                          region.points = region.points.Offsets(offset).Offsets(t0)
-                      Next
 
                       Call sampleRegions.ShowMessage($"Tissue map of {tissues.Select(Function(a) a.label).GetJson} has been imported.")
                       Call ImportsTissueMorphology(tissues, append:=True)
