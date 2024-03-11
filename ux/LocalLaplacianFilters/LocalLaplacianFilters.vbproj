@@ -150,9 +150,7 @@
     <Compile Include="forms\FormEditMain.Designer.vb">
       <DependentUpon>FormEditMain.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\FormEditMain.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="forms\FormEditMain.vb" />
     <Compile Include="forms\FormEnhancement.Designer.vb">
       <DependentUpon>FormEnhancement.vb</DependentUpon>
     </Compile>
