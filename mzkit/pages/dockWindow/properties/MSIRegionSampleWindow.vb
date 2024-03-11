@@ -588,4 +588,22 @@ Public Class MSIRegionSampleWindow
             Call Workbench.StatusMessage("no spots needs to assign group label.")
         End If
     End Sub
+
+    Private Sub ResetColorsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ResetColorsToolStripMenuItem.Click
+        Dim nsize As Integer = FlowLayoutPanel1.Controls.Count
+
+        If nsize > 0 Then
+            Dim i As i32 = 1
+            Dim configs = InputConfigTissueMap.GetTissueMapViewerConfig
+            Dim colors As LoopArray(Of Color) = Designer.GetColors(configs.color_scaler, nsize)
+
+            For Each item As Control In FlowLayoutPanel1.Controls
+                DirectCast(item, RegionSampleCard).SampleColor = ++colors
+            Next
+
+            Call updateLayerRendering()
+        Else
+            Call AutoExtractSampleTags()
+        End If
+    End Sub
 End Class
