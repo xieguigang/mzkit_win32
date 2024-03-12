@@ -178,6 +178,10 @@ Public Class frmRawFeaturesList
         End If
     End Sub
 
+    Public Sub LoadRaw(raw As mzPack)
+        Call LoadRaw(New Raw(inMemory:=raw))
+    End Sub
+
     Public Sub LoadRaw(raw As Raw, Optional rtmin As Double = Double.MinValue, Optional rtmax As Double = Double.MaxValue)
         ' skip of reload identical files
         If raw Is CurrentOpenedFile AndAlso rtmin = Me.rtmin AndAlso rtmax = Me.rtmax Then

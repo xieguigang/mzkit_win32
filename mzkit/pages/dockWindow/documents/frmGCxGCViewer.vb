@@ -77,6 +77,7 @@ Public Class frmGCxGCViewer
                         Using s As Stream = file.FileName.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
                             Call Me.Invoke(Sub() rawdata = mzPack.ReadAll(s))
                             Call Me.Invoke(Sub() PeakSelector1.SetScans(rawdata.ExtractTIC.ToArray, getModtime))
+                            Call Me.Invoke(Sub() WindowModules.rawFeaturesList.LoadRaw(rawdata))
                         End Using
                     End Sub)
             End If

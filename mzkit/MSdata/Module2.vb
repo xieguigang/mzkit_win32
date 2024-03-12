@@ -2,12 +2,9 @@
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
-Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.MoleculeNetworking
-Imports BioNovoGene.BioDeep.Chemoinformatics.Formula.MS
-Imports BioNovoGene.BioDeep.MSFinder
 Imports BioNovoGene.mzkit_win32.MSdata
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.Collection
@@ -21,7 +18,7 @@ Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports Mzkit_win32.BasicMDIForm
 Imports WeifenLuo.WinFormsUI.Docking
-Imports stdNum = System.Math
+Imports std = System.Math
 
 Namespace MSdata
 
@@ -101,7 +98,7 @@ Namespace MSdata
 
             Dim links = protocol.RunProtocol(raw, progressMsg).ProduceNodes.Networking.ToArray
             Dim net As IO.DataSet() = ProtocolPipeline _
-                .Networking(Of IO.DataSet)(links, Function(a, b) stdNum.Min(a, b)) _
+                .Networking(Of IO.DataSet)(links, Function(a, b) std.Min(a, b)) _
                 .ToArray
 
             progress.SetTitle("run family clustering....")

@@ -89,6 +89,7 @@ Partial Class frmGCxGCViewer : Inherits DocumentWindow
         Me.PeakSelector1.Name = "PeakSelector1"
         Me.PeakSelector1.Size = New System.Drawing.Size(945, 587)
         Me.PeakSelector1.TabIndex = 0
+        Me.PeakSelector1.BackColor = Color.Black
         '
         'frmGCxGCViewer
         '
