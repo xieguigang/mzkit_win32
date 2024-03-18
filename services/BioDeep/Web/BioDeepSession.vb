@@ -149,7 +149,7 @@ Public Class BioDeepSession
         Call post.Add("password", passwordMd5)
 
         Dim result As WebResponseResult = $"http://passport.biodeep.cn/passport/verify.vbs".POST(params:=post)
-        Dim json As JsonObject = New JsonParser().OpenJSON(result.html)
+        Dim json As JsonObject = New JsonParser(result.html).OpenJSON()
 
         If json!code.AsString(decodeMetachar:=True) <> 0 Then
             Call MessageBox.Show("Account not found or incorrect password...", "BioDeep Login", MessageBoxButtons.OK, MessageBoxIcon.Error)

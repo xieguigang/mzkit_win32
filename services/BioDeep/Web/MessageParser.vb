@@ -59,7 +59,7 @@ Imports Microsoft.VisualBasic.MIME.application.json.Javascript
 Public Module MessageParser
 
     Public Function ParseMessage(returns As String) As JsonObject
-        Return New JsonParser().OpenJSON(returns)
+        Return New JsonParser(returns).OpenJSON()
     End Function
 
     <Extension>
