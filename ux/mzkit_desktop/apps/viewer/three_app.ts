@@ -67,7 +67,7 @@ namespace apps.viewer {
         public volconfig: volconfig;
         public cmtextures;
         public stats: Stats;
-        public globalPlane: THREE.Plane;
+        public planes: THREE.Plane[];
         public axesHelper: THREE.AxesHelper;
 
         public get appName(): string {
@@ -76,9 +76,13 @@ namespace apps.viewer {
 
         protected init(): void {
             const scene = new THREE.Scene();
-            const globalPlane = new THREE.Plane(new THREE.Vector3(- 1, 0, 0), 100);
-            const globalPlanes = [globalPlane];
             const vm = this;
+
+            this.planes = [
+                new THREE.Plane(new THREE.Vector3(- 1, 0, 0), 0),
+                new THREE.Plane(new THREE.Vector3(0, - 1, 0), 0),
+                new THREE.Plane(new THREE.Vector3(0, 0, - 1), 0)
+            ];
 
             // Create renderer
             const renderer = new THREE.WebGLRenderer({ antialias: false });
@@ -86,7 +90,7 @@ namespace apps.viewer {
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.localClippingEnabled = true;
             // GUI sets it to globalPlanes
-            renderer.clippingPlanes = globalPlanes;
+            renderer.clippingPlanes = this.planes;
 
             document.body.appendChild(renderer.domElement);
             console.log(renderer);
@@ -104,7 +108,6 @@ namespace apps.viewer {
             this.scene = scene;
             this.renderer = renderer;
             this.camera = camera;
-            this.globalPlane = globalPlane;
 
             // Create controls
             const controls = new window.OrbitControls(camera, renderer.domElement);
@@ -129,9 +132,9 @@ namespace apps.viewer {
                 showAxis: true,
                 enableDamping: controls.enableDamping,
                 enableClipping: false,
-                clip_x: globalPlane.constant,
-                clip_y: globalPlane.constant,
-                clip_z: globalPlane.constant
+                clip_x: this.planes[0].constant,
+                clip_y: this.planes[1].constant,
+                clip_z: this.planes[2].constant
             };
             const gui: GUI = new window.GUI();
             const renderArgs = gui.addFolder("Render");
@@ -164,6 +167,13 @@ namespace apps.viewer {
             //     camera.updateProjectionMatrix();
             //     vm.render();
             // });
+            controlArgs.add(volconfig, "clip_z", -10, 10, 1).onChange((value) => {
+                //  camera.position.setZ(value);
+                //  camera.updateProjectionMatrix();
+                vm.planes[2].constant = value;
+                vm.render();
+            });
+
             // globalClipping.add(volconfig, "clip_z", -512, 512, 1).onChange((value) => {
             //     camera.position.setZ(value);
             //     camera.updateProjectionMatrix();
@@ -237,8 +247,12 @@ namespace apps.viewer {
                 fragmentShader: shader.fragmentShader,
                 side: THREE.DoubleSide, // The volume shader uses the backface as its "reference point"
                 // ***** Clipping setup (material): *****
-                // clippingPlanes: [localPlane],
-                // clipShadows: true
+                clippingPlanes: this.planes,
+                clipShadows: true,
+                blending: THREE.AdditiveBlending,
+                transparent: true,
+                depthWrite: false,
+                clipping: true
             });
 
             // THREE.Mesh

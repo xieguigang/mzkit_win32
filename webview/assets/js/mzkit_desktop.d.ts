@@ -39,7 +39,7 @@ declare namespace apps.viewer {
         volconfig: volconfig;
         cmtextures: any;
         stats: Stats;
-        globalPlane: THREE.Plane;
+        planes: THREE.Plane[];
         axesHelper: THREE.AxesHelper;
         get appName(): string;
         protected init(): void;
