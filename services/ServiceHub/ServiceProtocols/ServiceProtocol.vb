@@ -148,7 +148,7 @@ Public Module MSIProtocols
     End Function
 
     Public Function GetTotalIons(handleServiceRequest As Func(Of RequestStream, RequestStream)) As PixelScanIntensity()
-        Dim request As New RequestStream(MSI.Protocol, ServiceProtocol.LoadSummaryLayer, BitConverter.GetBytes(CInt(IntensitySummary.Total)))
+        Dim request As RequestStream = MSIRequest.LoadSummaryLayer(IntensitySummary.Total)
         Dim data As RequestStream = handleServiceRequest(request)
 
         If data Is Nothing Then

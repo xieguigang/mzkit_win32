@@ -781,7 +781,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             .ToArray
         Dim byts As Byte() = PixelScanIntensity.GetBuffer(summary)
 
-        Return New DataPipe(byts)
+        Return New ZipDataPipe(byts)
     End Function
 
     ''' <summary>
