@@ -545,7 +545,7 @@ Namespace ServiceHub
         Public Function LoadMSI(raw As String, message As Action(Of String)) As MsImageProperty
             MessageCallback = message
 
-            Dim data As RequestStream = handleServiceRequest(New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.LoadMSI, Encoding.UTF8.GetBytes(raw)))
+            Dim data As RequestStream = handleServiceRequest(MSIRequest.LoadMSIRawdata(raw))
 
             MessageCallback = Nothing
 
