@@ -1,5 +1,7 @@
 ﻿Imports Microsoft.VisualBasic.CommandLine.InteropService.SharedORM
+Imports Microsoft.VisualBasic.CommandLine.Reflection
 
+<RunDllEntryPoint>
 <CLI>
 Module CLI
 
