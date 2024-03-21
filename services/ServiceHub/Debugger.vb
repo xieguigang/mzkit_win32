@@ -1,8 +1,10 @@
 ﻿Imports System.Net
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.Net.Protocols.Reflection
 Imports Microsoft.VisualBasic.Scripting.MetaData
-Imports Microsoft.VisualBasic.My
+Imports SMRUCC.Rsharp.Runtime.Internal.Object
 
 <Package("debugger")>
 Module Debugger
@@ -21,6 +23,16 @@ Module Debugger
         Call caller.HandleRequest(MSIRequest.LoadMSIRawdata(raw), debug_local)
 
         Return caller
+    End Function
+
+    <ExportAPI("load_summary_layer")>
+    Public Function loadSummaryLayer(app As ProtocolHandler) As Object
+        Dim layer1 = app.HandleRequest(MSIRequest.LoadSummaryLayer(IntensitySummary.BasePeak), debug_local)
+        Dim layer2 = app.HandleRequest(MSIRequest.LoadSummaryLayer(IntensitySummary.Average), debug_local)
+        Dim layer3 = app.HandleRequest(MSIRequest.LoadSummaryLayer(IntensitySummary.Total), debug_local)
+        Dim layer4 = app.HandleRequest(MSIRequest.LoadSummaryLayer(IntensitySummary.Median), debug_local)
+
+        Return New list
     End Function
 
 End Module

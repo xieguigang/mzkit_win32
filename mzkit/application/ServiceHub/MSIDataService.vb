@@ -635,7 +635,7 @@ Namespace ServiceHub
 
         Public Function LoadSummaryLayer(summary As IntensitySummary, ByRef panic As Boolean) As PixelScanIntensity()
             Dim getBuf As Byte() = Nothing
-            Dim request As New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.LoadSummaryLayer, BitConverter.GetBytes(CInt(summary)))
+            Dim request As RequestStream = MSIRequest.LoadSummaryLayer(summary)
             Dim pixels = handleLayer(request, getBuf, panic)
             Call blender.channel.WriteBuffer(getBuf)
             Return pixels
