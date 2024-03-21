@@ -658,7 +658,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             End If
         End If
 
-        Return New DataPipe(New InMemoryVectorPixel(pixel, annotations).GetBuffer)
+        Return New ZipDataPipe(New InMemoryVectorPixel(pixel, annotations).GetBuffer)
     End Function
 
     ''' <summary>
@@ -727,10 +727,10 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Dim mz As Double = map_to_ion.TryGetValue(id, [default]:=-1)
 
         If mz <= 0 Then
-            Return New DataPipe(PixelData.GetBuffer({}))
+            Return New ZipDataPipe(PixelData.GetBuffer({}))
         Else
             Dim layers = MSI.LoadPixels({mz}, Tolerance.DeltaMass(0.3)).ToArray
-            Return New DataPipe(PixelData.GetBuffer(layers))
+            Return New ZipDataPipe(PixelData.GetBuffer(layers))
         End If
     End Function
 
@@ -756,7 +756,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         ' layers = KnnInterpolation.KnnFill(layers, MSI.dimension, dx:=3, dy:=3)
         Call RunSlavePipeline.SendMessage($"get {layers.Length} pixels from the m/z matches!")
 
-        Return New DataPipe(PixelData.GetBuffer(layers))
+        Return New ZipDataPipe(PixelData.GetBuffer(layers))
     End Function
 
     <Protocol(ServiceProtocol.GetAnnotationNames)>
@@ -798,7 +798,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             .ToArray
         Dim byts As Byte() = PixelScanIntensity.GetBuffer(spots)
 
-        Return New DataPipe(byts)
+        Return New ZipDataPipe(byts)
     End Function
 
     ''' <summary>
