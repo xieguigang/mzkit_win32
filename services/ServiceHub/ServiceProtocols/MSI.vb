@@ -94,7 +94,7 @@ Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports MZWorkPack
 Imports Parallel
-Imports stdNum = System.Math
+Imports std = System.Math
 
 <Protocol(GetType(ServiceProtocol))>
 Public Class MSI : Implements ITaskDriver, IDisposable
@@ -567,7 +567,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
                                .OrderByDescending(Function(mi) mi.intensity) _
                                .First
 
-                           Return stdNum.Abs(m.mz - mz) > 0.3
+                           Return std.Abs(m.mz - mz) > 0.3
                        End Function) _
                 .ToArray
 
