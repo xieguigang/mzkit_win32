@@ -3,6 +3,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.Net.Protocols.Reflection
+Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
 
@@ -27,10 +28,10 @@ Module Debugger
 
     <ExportAPI("load_summary_layer")>
     Public Function loadSummaryLayer(app As ProtocolHandler) As Object
-        Dim layer1 = app.HandleRequest(MSIRequest.LoadSummaryLayer(IntensitySummary.BasePeak), debug_local)
-        Dim layer2 = app.HandleRequest(MSIRequest.LoadSummaryLayer(IntensitySummary.Average), debug_local)
-        Dim layer3 = app.HandleRequest(MSIRequest.LoadSummaryLayer(IntensitySummary.Total), debug_local)
-        Dim layer4 = app.HandleRequest(MSIRequest.LoadSummaryLayer(IntensitySummary.Median), debug_local)
+        Dim layer1 As BufferPipe = app.HandleRequest(MSIRequest.LoadSummaryLayer(IntensitySummary.BasePeak), debug_local)
+        Dim layer2 As BufferPipe = app.HandleRequest(MSIRequest.LoadSummaryLayer(IntensitySummary.Average), debug_local)
+        Dim layer3 As BufferPipe = app.HandleRequest(MSIRequest.LoadSummaryLayer(IntensitySummary.Total), debug_local)
+        Dim layer4 As BufferPipe = app.HandleRequest(MSIRequest.LoadSummaryLayer(IntensitySummary.Median), debug_local)
 
         Return New list
     End Function
