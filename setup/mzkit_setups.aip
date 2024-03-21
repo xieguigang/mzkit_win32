@@ -40,10 +40,10 @@
     <ROW Property="CTRLS" Value="3"/>
     <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1028:{A4E1FB1D-6C2D-4174-88E4-BE65E5A6A04D} 1033:{A4E1FB1D-6C2D-4174-88E4-BE65E5A6A04D} 1036:{A4E1FB1D-6C2D-4174-88E4-BE65E5A6A04D} 1041:{A4E1FB1D-6C2D-4174-88E4-BE65E5A6A04D} 1049:{A4E1FB1D-6C2D-4174-88E4-BE65E5A6A04D} 2052:{A4E1FB1D-6C2D-4174-88E4-BE65E5A6A04D} 2057:{A4E1FB1D-6C2D-4174-88E4-BE65E5A6A04D} " Type="16"/>
+    <ROW Property="ProductCode" Value="1028:{D9180F2B-B3EB-4265-B9ED-9B972195D207} 1033:{D9180F2B-B3EB-4265-B9ED-9B972195D207} 1036:{D9180F2B-B3EB-4265-B9ED-9B972195D207} 1041:{D9180F2B-B3EB-4265-B9ED-9B972195D207} 1049:{D9180F2B-B3EB-4265-B9ED-9B972195D207} 2052:{D9180F2B-B3EB-4265-B9ED-9B972195D207} 2057:{D9180F2B-B3EB-4265-B9ED-9B972195D207} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="mzkit_win32"/>
-    <ROW Property="ProductVersion" Value="5.2.9332.8102" Options="32"/>
+    <ROW Property="ProductVersion" Value="5.3.2118.7102" Options="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{B645400B-3918-41EF-9009-7ADDD81C84B4}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -165,6 +165,7 @@
     <ROW Directory="default_Dir" Directory_Parent="themes_Dir" DefaultDir="default"/>
     <ROW Directory="defaultdark_Dir" Directory_Parent="themes_Dir" DefaultDir="DEFAUL~1|default-dark"/>
     <ROW Directory="demo_1_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="demo"/>
+    <ROW Directory="demo_3dmaldi_Dir" Directory_Parent="assets_Dir" DefaultDir="DEMO_3~1|demo_3dmaldi"/>
     <ROW Directory="demo_Dir" Directory_Parent="APPDIR" DefaultDir="demo"/>
     <ROW Directory="deprecated_Dir" Directory_Parent="glib_1_Dir" DefaultDir="DEPREC~1|deprecated"/>
     <ROW Directory="dev_Dir" Directory_Parent="lang_Dir" DefaultDir="dev"/>
@@ -413,7 +414,7 @@
     <ROW Directory="zstdcodec_Dir" Directory_Parent="libs_Dir" DefaultDir="ZSTD-C~1|zstd-codec"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{88DC73B4-93FD-4465-B69C-76F294E16F6C}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{9D66793D-58B2-4C89-AC0F-B0D752499A9C}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{2335D578-7E61-4EAB-A98E-FA436BA9E1FF}" Directory_="APPDIR" Attributes="260" KeyPath="AI_ExePath"/>
     <ROW Component="APPDIR" ComponentId="{69AA9FFE-67B1-456B-88EB-97D3D6C92AA7}" Directory_="APPDIR" Attributes="256"/>
     <ROW Component="ARButton.js" ComponentId="{1AA55F20-6D89-44ED-8F8F-5D0585E8DD95}" Directory_="webxr_Dir" Attributes="0" KeyPath="ARButton.js" Type="0"/>
@@ -446,7 +447,6 @@
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.xml" ComponentId="{A8290123-4769-441A-8583-0D090466C49A}" Directory_="blender_Dir" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.xml_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll" ComponentId="{48C0319C-3FD8-45F3-812F-9E25E8305B82}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll_1" ComponentId="{F7F4DC1C-3554-4E65-B797-AAA68E0497BB}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll_1"/>
-    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll_2" ComponentId="{EAB5CAA5-F401-4C3D-A6D5-4EC19B84111C}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll_2"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.pdb" ComponentId="{5110DD5C-C5F8-4A51-9CF9-815997A86FC8}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.pdb" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.pdb_1" ComponentId="{17AF8A83-D57F-41B7-AA17-F373B98F3113}" Directory_="blender_Dir" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.pdb_1" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.xml" ComponentId="{844F289F-2420-47A7-AEB0-1ADF504D8A40}" Directory_="blender_Dir" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.xml_1"/>
@@ -667,6 +667,7 @@
     <ROW Component="Flute.Http.dll" ComponentId="{1A9D1085-A042-4FB2-B9F6-267C14D598BD}" Directory_="APPDIR" Attributes="256" KeyPath="Flute.Http.dll"/>
     <ROW Component="Flute.Http.dll_1" ComponentId="{7126992B-A818-47AB-A05F-ECAF115FD030}" Directory_="bin_Dir" Attributes="256" KeyPath="Flute.Http.dll_1"/>
     <ROW Component="Flute.Http.dll_2" ComponentId="{DA183475-598E-4525-89EA-9C3A14EFE3FF}" Directory_="host_Dir" Attributes="256" KeyPath="Flute.Http.dll_2"/>
+    <ROW Component="Flute.Http.dll_3" ComponentId="{4047392A-D537-4340-9CF2-52BE1D4E6B84}" Directory_="blender_Dir" Attributes="256" KeyPath="Flute.Http.dll_3"/>
     <ROW Component="Flute.Http.dll_9" ComponentId="{AC04B39C-8C05-407B-8AE4-0780C87805B9}" Directory_="library_Dir" Attributes="256" KeyPath="Flute.Http.dll_9"/>
     <ROW Component="Flute.Http.pdb" ComponentId="{BFE97953-F38D-4536-9EEC-FB524EC6A5B8}" Directory_="APPDIR" Attributes="0" KeyPath="Flute.Http.pdb" Type="4"/>
     <ROW Component="Flute.Http.xml" ComponentId="{4035364A-48E6-4100-B4AD-C6C9D7D8BEA4}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll.config_4" Type="0"/>
@@ -910,7 +911,6 @@
     <ROW Component="Microsoft.VisualBasic.Imaging.PDF.dll_3" ComponentId="{07FB4A5F-B81B-4E49-BDB9-0E5B3E60D1DF}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.PDF.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.PDF.pdb" ComponentId="{8BD94C82-A0B8-4070-8750-259902C7987B}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Imaging.PDF.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.Physics.dll" ComponentId="{CD885ACD-1834-4CD8-B88E-D8EA98CD767C}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.Physics.dll"/>
-    <ROW Component="Microsoft.VisualBasic.Imaging.Physics.dll_2" ComponentId="{AC6F58F8-E7F5-464B-8C53-E6B960F9683F}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.Physics.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.Physics.dll_6" ComponentId="{3D6DD94F-4E79-46D7-AC5F-AC5FC79E9F17}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.Physics.dll_6"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.Physics.pdb" ComponentId="{6BE30C23-C965-4F7A-B407-65B27DD4427D}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Imaging.Physics.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.dll" ComponentId="{C4C77E41-682E-40B2-83FD-FEAF77AE0818}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.dll"/>
@@ -1324,7 +1324,6 @@
     <ROW Component="System.Buffers.dll_2" ComponentId="{7DB96DCA-7F1F-429B-B422-3FE24EAF0BE1}" Directory_="APPDIR" Attributes="256" KeyPath="System.Buffers.dll_2"/>
     <ROW Component="System.CodeDom.dll" ComponentId="{8F8842EC-C783-4F87-9D8B-6E2156FECA3A}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.CodeDom.dll"/>
     <ROW Component="System.ComponentModel.Annotations.dll" ComponentId="{29BC3C3F-E1BC-465E-A099-EACF51FE9AB6}" Directory_="APPDIR" Attributes="256" KeyPath="System.ComponentModel.Annotations.dll"/>
-    <ROW Component="System.ComponentModel.Annotations.dll_2" ComponentId="{81899720-0BA5-4F2B-A9A1-08BA5552BD7D}" Directory_="dzitools_Dir" Attributes="0" KeyPath="System.ComponentModel.Annotations.dll_2"/>
     <ROW Component="System.Composition.AttributedModel.dll" ComponentId="{8519BE25-4B79-40E9-97C8-44ED75DFCAC0}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Composition.AttributedModel.dll"/>
     <ROW Component="System.Composition.AttributedModel.dll_1" ComponentId="{1E84195A-F72C-4836-ABE0-57D55C761727}" Directory_="blender_Dir" Attributes="0" KeyPath="System.Composition.AttributedModel.dll_1"/>
     <ROW Component="System.Composition.AttributedModel.dll_3" ComponentId="{59421EA6-2966-48D1-B1D6-5D7AD212B35A}" Directory_="dzitools_Dir" Attributes="0" KeyPath="System.Composition.AttributedModel.dll_3"/>
@@ -1405,19 +1404,15 @@
     <ROW Component="ThemeVS2015.dll_1" ComponentId="{B990114E-A1AB-4A2B-B368-7FD72AA9C7F3}" Directory_="blender_Dir" Attributes="0" KeyPath="ThemeVS2015.dll_1"/>
     <ROW Component="ThermoFisher.CommonCore.BackgroundSubtraction.dll" ComponentId="{0545E2A9-3F9A-4F86-BCE8-C0F0692B1A18}" Directory_="APPDIR" Attributes="256" KeyPath="ThermoFisher.CommonCore.BackgroundSubtraction.dll"/>
     <ROW Component="ThermoFisher.CommonCore.BackgroundSubtraction.dll_1" ComponentId="{30D5017A-D628-4094-B62B-BD1D44F93B6A}" Directory_="blender_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.BackgroundSubtraction.dll_1"/>
-    <ROW Component="ThermoFisher.CommonCore.BackgroundSubtraction.dll_2" ComponentId="{C42DB644-798B-4463-B8A8-A563DAC7CD26}" Directory_="host_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.BackgroundSubtraction.dll_2"/>
     <ROW Component="ThermoFisher.CommonCore.BackgroundSubtraction.xml" ComponentId="{9ECED0FC-402D-405F-A81E-3798C3991B18}" Directory_="blender_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.BackgroundSubtraction.xml_1"/>
     <ROW Component="ThermoFisher.CommonCore.Data.dll" ComponentId="{B89DA7CA-9FA6-4347-9A68-6F2B66770A59}" Directory_="APPDIR" Attributes="256" KeyPath="ThermoFisher.CommonCore.Data.dll"/>
     <ROW Component="ThermoFisher.CommonCore.Data.dll_1" ComponentId="{3889FEFF-5599-4074-B589-CBD22D95EC09}" Directory_="blender_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.Data.dll_1"/>
-    <ROW Component="ThermoFisher.CommonCore.Data.dll_2" ComponentId="{9F5E38C4-4D6A-4AEB-8B6E-063B21CB88D0}" Directory_="host_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.Data.dll_2"/>
     <ROW Component="ThermoFisher.CommonCore.Data.xml" ComponentId="{64CFF681-EC03-480E-A43E-3720FF2DA064}" Directory_="blender_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.Data.xml_1"/>
     <ROW Component="ThermoFisher.CommonCore.MassPrecisionEstimator.dll" ComponentId="{5B78C406-C53A-41D1-8FCE-DE4F59A415A1}" Directory_="APPDIR" Attributes="256" KeyPath="ThermoFisher.CommonCore.MassPrecisionEstimator.dll"/>
     <ROW Component="ThermoFisher.CommonCore.MassPrecisionEstimator.dll_1" ComponentId="{AB4B15F1-19C9-4BB9-8BF3-E9937F88FD71}" Directory_="blender_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.MassPrecisionEstimator.dll_1"/>
-    <ROW Component="ThermoFisher.CommonCore.MassPrecisionEstimator.dll_2" ComponentId="{9154EC33-16EF-4BF6-8119-9B8CE374E32E}" Directory_="host_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.MassPrecisionEstimator.dll_2"/>
     <ROW Component="ThermoFisher.CommonCore.MassPrecisionEstimator.xml" ComponentId="{24F114B1-1EC7-43F3-83CD-C52F0C280FD6}" Directory_="blender_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.MassPrecisionEstimator.xml_1"/>
     <ROW Component="ThermoFisher.CommonCore.RawFileReader.dll" ComponentId="{DB525469-6BD4-417A-A685-E627F559FAD3}" Directory_="APPDIR" Attributes="256" KeyPath="ThermoFisher.CommonCore.RawFileReader.dll"/>
     <ROW Component="ThermoFisher.CommonCore.RawFileReader.dll_1" ComponentId="{379CCA1A-130F-4E12-A089-0DB04A163BF0}" Directory_="blender_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.RawFileReader.dll_1"/>
-    <ROW Component="ThermoFisher.CommonCore.RawFileReader.dll_2" ComponentId="{2D328BED-4409-4E08-9088-2CB81B2169C0}" Directory_="host_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.RawFileReader.dll_2"/>
     <ROW Component="ThermoFisher.CommonCore.RawFileReader.xml" ComponentId="{1C465DAB-506D-47B0-9CAD-FDB33A23C916}" Directory_="blender_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.RawFileReader.xml_1"/>
     <ROW Component="UMapx.dll" ComponentId="{6FAE705B-544D-4A20-8A28-5FA099627E37}" Directory_="APPDIR" Attributes="0" KeyPath="UMapx.dll"/>
     <ROW Component="WebView2Loader.dll" ComponentId="{26054BE2-7F65-4DA9-BC3D-2D2A106BF06C}" Directory_="native_Dir" Attributes="256" KeyPath="WebView2Loader.dll"/>
@@ -1519,6 +1514,7 @@
     <ROW Component="d3.js" ComponentId="{34BF19E9-C427-4670-8B85-78129D1437D2}" Directory_="d3_Dir" Attributes="0" KeyPath="d3.js" Type="0"/>
     <ROW Component="d_canvas.css" ComponentId="{E4FEA481-6A27-4C89-8E04-CE8A30D2C92F}" Directory_="assets_Dir" Attributes="0" KeyPath="d_canvas.css" Type="0"/>
     <ROW Component="dat.gui.min.js" ComponentId="{670EC0D5-BB06-4530-AF70-3C54DE4B329E}" Directory_="three_Dir" Attributes="0" KeyPath="OrbitControls.js" Type="0"/>
+    <ROW Component="data.dat" ComponentId="{1BDEA068-F60B-46D9-9874-27328B6BC3E4}" Directory_="demo_3dmaldi_Dir" Attributes="0" KeyPath="data.dat" Type="0"/>
     <ROW Component="dbscan.R" ComponentId="{E99B079C-AC08-4265-836A-D7A813C65EA4}" Directory_="clustering_Dir" Attributes="0" KeyPath="dbscan.R" Type="0"/>
     <ROW Component="decode.h" ComponentId="{FCABAB02-80E0-4A67-87C0-DF7E72EAD657}" Directory_="brotli_Dir" Attributes="0" KeyPath="decode.h" Type="0"/>
     <ROW Component="decode.h_1" ComponentId="{FAAAB03D-43B0-4144-B01F-7044B608A64E}" Directory_="webp_Dir" Attributes="0" KeyPath="decode.h_2" Type="0"/>
@@ -1710,7 +1706,6 @@
     <ROW Component="ns.common.json" ComponentId="{87F310A3-C817-44DB-99DC-8EA268FA0F0B}" Directory_="dev_Dir" Attributes="0" KeyPath="ns.common.json" Type="0"/>
     <ROW Component="ns.common.json_1" ComponentId="{D9B46775-9037-4F1F-BF11-62DE2A09B9B2}" Directory_="en_Dir" Attributes="0" KeyPath="ns.common.json_1" Type="0"/>
     <ROW Component="ns.common.json_2" ComponentId="{03E57C2A-D4F8-4920-A451-D33B850AF2D1}" Directory_="enUS_1_Dir" Attributes="0" KeyPath="ns.common.json_2" Type="0"/>
-    <ROW Component="nts.dll" ComponentId="{C3430FDE-A92A-4B60-AC18-9F8A223BF24A}" Directory_="library_Dir" Attributes="256" KeyPath="nts.dll"/>
     <ROW Component="nvidiaanselAI.deps.json" ComponentId="{9E535CAA-63D6-47FA-A0B9-A460C348560E}" Directory_="nvidia_Dir" Attributes="0" KeyPath="nvidiaanselAI.deps.json" Type="0"/>
     <ROW Component="nvidiaanselAI.dll" ComponentId="{1187477B-A39C-447F-A55E-F3CA798450FD}" Directory_="nvidia_Dir" Attributes="256" KeyPath="nvidiaanselAI.dll"/>
     <ROW Component="nvidiaanselAI.exe" ComponentId="{C5394016-5B26-40A3-A6BD-78E03DCAF4A6}" Directory_="nvidia_Dir" Attributes="256" KeyPath="nvidiaanselAI.exe"/>
@@ -2072,7 +2067,6 @@
     <ROW File="BioNovoGene.BioDeep.MSEngine.dll_1" Component_="BioNovoGene.BioDeep.MSEngine.dll_1" FileName="BIONO~11.DLL|BioNovoGene.BioDeep.MSEngine.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.BioDeep.MSEngine.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Data.visualize.Network.dll_2" Component_="Microsoft.VisualBasic.Data.visualize.Network.dll_2" FileName="MICRO~16.DLL|Microsoft.VisualBasic.Data.visualize.Network.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Data.visualize.Network.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.dll_2" Component_="Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.dll_2" FileName="MICRO~17.DLL|Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.dll" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Imaging.Physics.dll_2" Component_="Microsoft.VisualBasic.Imaging.Physics.dll_2" FileName="MICRO~18.DLL|Microsoft.VisualBasic.Imaging.Physics.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Imaging.Physics.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Statistics.dll_2" Component_="Microsoft.VisualBasic.Math.Statistics.dll_2" FileName="MICRO~19.DLL|Microsoft.VisualBasic.Math.Statistics.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Math.Statistics.dll" SelfReg="false"/>
     <ROW File="PipelineHost.deps.json" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="PIPELI~1.JSO|PipelineHost.deps.json" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\PipelineHost.deps.json" SelfReg="false"/>
     <ROW File="PipelineHost.dll_1" Component_="PipelineHost.dll_1" FileName="PIPELI~1.DLL|PipelineHost.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\PipelineHost.dll" SelfReg="false"/>
@@ -2200,8 +2194,6 @@
     <ROW File="njl.dll" Component_="njl.dll" FileName="njl.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\njl.dll" SelfReg="false"/>
     <ROW File="npy.deps.json" Component_="base.deps.json" FileName="NPYDEP~1.JSO|npy.deps.json" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\npy.deps.json" SelfReg="false"/>
     <ROW File="npy.dll" Component_="npy.dll" FileName="npy.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\npy.dll" SelfReg="false"/>
-    <ROW File="nts.deps.json" Component_="base.deps.json" FileName="NTSDEP~1.JSO|nts.deps.json" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\nts.deps.json" SelfReg="false"/>
-    <ROW File="nts.dll" Component_="nts.dll" FileName="nts.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\nts.dll" SelfReg="false"/>
     <ROW File="Parallel.dll_5" Component_="Parallel.dll_5" FileName="Parallel.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Parallel.dll" SelfReg="false"/>
     <ROW File="RData.dll_5" Component_="RData.dll_5" FileName="RData.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\RData.dll" SelfReg="false"/>
     <ROW File="REnv.dll_12" Component_="REnv.dll_12" FileName="REnv.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\REnv.dll" SelfReg="false"/>
@@ -14048,7 +14040,6 @@
     <ROW File="SkiaSharp.dll" Component_="SkiaSharp.dll" FileName="SKIASH~1.DLL|SkiaSharp.dll" Attributes="0" SourcePath="..\..\..\dist\bin\tools\dzitools\SkiaSharp.dll" SelfReg="false"/>
     <ROW File="SkiaSharp.dll.config" Component_="SkiaSharp.dll.config" FileName="SKIASH~1.CON|SkiaSharp.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\tools\dzitools\SkiaSharp.dll.config" SelfReg="false"/>
     <ROW File="System.Buffers.dll" Component_="System.Buffers.dll" FileName="SYSTEM~1.DLL|System.Buffers.dll" Attributes="0" SourcePath="..\..\..\dist\bin\tools\dzitools\System.Buffers.dll" SelfReg="false"/>
-    <ROW File="System.ComponentModel.Annotations.dll_2" Component_="System.ComponentModel.Annotations.dll_2" FileName="SYSTEM~2.DLL|System.ComponentModel.Annotations.dll" Attributes="0" SourcePath="..\..\..\dist\bin\tools\dzitools\System.ComponentModel.Annotations.dll" SelfReg="false"/>
     <ROW File="System.Composition.AttributedModel.dll_3" Component_="System.Composition.AttributedModel.dll_3" FileName="SYSTEM~3.DLL|System.Composition.AttributedModel.dll" Attributes="0" SourcePath="..\..\..\dist\bin\tools\dzitools\System.Composition.AttributedModel.dll" SelfReg="false"/>
     <ROW File="System.Composition.Convention.dll_4" Component_="System.Composition.Convention.dll_4" FileName="SYSTEM~4.DLL|System.Composition.Convention.dll" Attributes="0" SourcePath="..\..\..\dist\bin\tools\dzitools\System.Composition.Convention.dll" SelfReg="false"/>
     <ROW File="System.Composition.Hosting.dll_4" Component_="System.Composition.Hosting.dll_4" FileName="SYSTEM~5.DLL|System.Composition.Hosting.dll" Attributes="0" SourcePath="..\..\..\dist\bin\tools\dzitools\System.Composition.Hosting.dll" SelfReg="false"/>
@@ -15658,7 +15649,6 @@
     <ROW File="Microsoft.VisualBasic.DataMining.DensityQuery.xml_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~11.XML|Microsoft.VisualBasic.DataMining.DensityQuery.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.DataMining.DensityQuery.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.DataMining.Framework.xml_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~12.XML|Microsoft.VisualBasic.DataMining.Framework.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.DataMining.Framework.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.DeepLearning.xml_1" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~13.XML|Microsoft.VisualBasic.DeepLearning.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.DeepLearning.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Imaging.Physics.xml_1" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~14.XML|Microsoft.VisualBasic.Imaging.Physics.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Imaging.Physics.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Imaging.xml_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~15.XML|Microsoft.VisualBasic.Imaging.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Imaging.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MachineLearning.xml_1" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~16.XML|Microsoft.VisualBasic.MachineLearning.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.MachineLearning.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.Core.xml_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~17.XML|Microsoft.VisualBasic.Math.Core.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Math.Core.xml" SelfReg="false"/>
@@ -18461,16 +18451,6 @@
     <ROW File="SMRUCC.genomics.Data.SABIORK.xml_2" Component_="SMRUCC.genomics.Data.SABIORK.xml" FileName="SMRUC~16.XML|SMRUCC.genomics.Data.SABIO-RK.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Data.SABIO-RK.xml" SelfReg="false"/>
     <ROW File="icons8dashboardlayout96.png" Component_="dobject.png" FileName="ICONS8~1.PNG|icons8-dashboard-layout-96.png" Attributes="0" SourcePath="..\webview\assets\images\icons8-dashboard-layout-96.png" SelfReg="false"/>
     <ROW File="svgViewer.html" Component_="logo.png" FileName="SVGVIE~1.HTM|svgViewer.html" Attributes="0" SourcePath="..\webview\svgViewer.html" SelfReg="false"/>
-    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll_2" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll_2" FileName="BIONO~19.DLL|BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll" SelfReg="false"/>
-    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.xml_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="BIONO~19.XML|BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.xml" SelfReg="false"/>
-    <ROW File="ThermoFisher.CommonCore.BackgroundSubtraction.dll_2" Component_="ThermoFisher.CommonCore.BackgroundSubtraction.dll_2" FileName="THERMO~1.DLL|ThermoFisher.CommonCore.BackgroundSubtraction.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.BackgroundSubtraction.dll" SelfReg="false"/>
-    <ROW File="ThermoFisher.CommonCore.BackgroundSubtraction.xml_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="THERMO~1.XML|ThermoFisher.CommonCore.BackgroundSubtraction.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.BackgroundSubtraction.xml" SelfReg="false"/>
-    <ROW File="ThermoFisher.CommonCore.Data.dll_2" Component_="ThermoFisher.CommonCore.Data.dll_2" FileName="THERMO~2.DLL|ThermoFisher.CommonCore.Data.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.Data.dll" SelfReg="false"/>
-    <ROW File="ThermoFisher.CommonCore.Data.xml_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="THERMO~2.XML|ThermoFisher.CommonCore.Data.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.Data.xml" SelfReg="false"/>
-    <ROW File="ThermoFisher.CommonCore.MassPrecisionEstimator.dll_2" Component_="ThermoFisher.CommonCore.MassPrecisionEstimator.dll_2" FileName="THERMO~3.DLL|ThermoFisher.CommonCore.MassPrecisionEstimator.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.MassPrecisionEstimator.dll" SelfReg="false"/>
-    <ROW File="ThermoFisher.CommonCore.MassPrecisionEstimator.xml_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="THERMO~3.XML|ThermoFisher.CommonCore.MassPrecisionEstimator.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.MassPrecisionEstimator.xml" SelfReg="false"/>
-    <ROW File="ThermoFisher.CommonCore.RawFileReader.dll_2" Component_="ThermoFisher.CommonCore.RawFileReader.dll_2" FileName="THERMO~4.DLL|ThermoFisher.CommonCore.RawFileReader.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.RawFileReader.dll" SelfReg="false"/>
-    <ROW File="ThermoFisher.CommonCore.RawFileReader.xml_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="THERMO~4.XML|ThermoFisher.CommonCore.RawFileReader.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.RawFileReader.xml" SelfReg="false"/>
     <ROW File="kegg_compounds.msgpack" Component_="chebi_lite.obo" FileName="KEGG_C~1.MSG|kegg_compounds.msgpack" Attributes="0" SourcePath="..\rstudio\data\kegg_compounds.msgpack" SelfReg="false"/>
     <ROW File="System.Diagnostics.DiagnosticSource.dll" Component_="System.Diagnostics.DiagnosticSource.dll" FileName="SYSTE~13.DLL|System.Diagnostics.DiagnosticSource.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\System.Diagnostics.DiagnosticSource.dll" SelfReg="false"/>
     <ROW File="Flute.Http.dll_2" Component_="Flute.Http.dll_2" FileName="FLUTEH~1.DLL|Flute.Http.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Flute.Http.dll" SelfReg="false"/>
@@ -18585,6 +18565,10 @@
     <ROW File="screenshot3.png" Component_="gitignore" FileName="SCREEN~3.PNG|screenshot3.png" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\screenshot3.png" SelfReg="false"/>
     <ROW File="themes.gif" Component_="themes.gif" FileName="themes.gif" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\screenshots\themes.gif" SelfReg="false"/>
     <ROW File="Flute.Http.xml_3" Component_="Flute.Http.xml_1" FileName="FLUTEH~1.XML|Flute.Http.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Flute.Http.xml" SelfReg="false"/>
+    <ROW File="data.dat" Component_="data.dat" FileName="data.dat" Attributes="0" SourcePath="..\webview\assets\demo_3dmaldi\data.dat" SelfReg="false"/>
+    <ROW File="dims.json" Component_="data.dat" FileName="DIMS~1.JSO|dims.json" Attributes="0" SourcePath="..\webview\assets\demo_3dmaldi\dims.json" SelfReg="false"/>
+    <ROW File="Flute.Http.dll_3" Component_="Flute.Http.dll_3" FileName="FLUTEH~1.DLL|Flute.Http.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Flute.Http.dll" SelfReg="false"/>
+    <ROW File="Flute.Http.pdb_1" Component_="Flute.Http.dll_3" FileName="FLUTEH~1.PDB|Flute.Http.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Flute.Http.pdb" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -19021,7 +19005,6 @@
     <ROW Feature_="MainFeature" Component_="BioNovoGene.BioDeep.MSEngine.dll_1"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.visualize.Network.dll_2"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.visualize.Network.IO.Extensions.dll_2"/>
-    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Imaging.Physics.dll_2"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Statistics.dll_2"/>
     <ROW Feature_="MainFeature" Component_="PipelineHost.dll_1"/>
     <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.Analysis.HTS.GSEA.Fisher.Core.dll_1"/>
@@ -19107,7 +19090,6 @@
     <ROW Feature_="MainFeature" Component_="MLkit.dll"/>
     <ROW Feature_="MainFeature" Component_="njl.dll"/>
     <ROW Feature_="MainFeature" Component_="npy.dll"/>
-    <ROW Feature_="MainFeature" Component_="nts.dll"/>
     <ROW Feature_="MainFeature" Component_="Parallel.dll_5"/>
     <ROW Feature_="MainFeature" Component_="RData.dll_5"/>
     <ROW Feature_="MainFeature" Component_="REnv.dll_12"/>
@@ -19765,7 +19747,6 @@
     <ROW Feature_="MainFeature" Component_="OpenSlide.CLR.Interop.dll_1"/>
     <ROW Feature_="MainFeature" Component_="System.Buffers.dll"/>
     <ROW Feature_="MainFeature" Component_="System.Memory.dll"/>
-    <ROW Feature_="MainFeature" Component_="System.ComponentModel.Annotations.dll_2"/>
     <ROW Feature_="MainFeature" Component_="System.Composition.AttributedModel.dll_3"/>
     <ROW Feature_="MainFeature" Component_="System.Composition.Convention.dll_4"/>
     <ROW Feature_="MainFeature" Component_="System.Composition.Hosting.dll_4"/>
@@ -20136,11 +20117,6 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="CDF.PInvoke.pdb_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Math.Statistics.ANOVA.pdb_1"/>
-    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll_2"/>
-    <ROW Feature_="MainFeature" Component_="ThermoFisher.CommonCore.BackgroundSubtraction.dll_2"/>
-    <ROW Feature_="MainFeature" Component_="ThermoFisher.CommonCore.Data.dll_2"/>
-    <ROW Feature_="MainFeature" Component_="ThermoFisher.CommonCore.MassPrecisionEstimator.dll_2"/>
-    <ROW Feature_="MainFeature" Component_="ThermoFisher.CommonCore.RawFileReader.dll_2"/>
     <ROW Feature_="MainFeature" Component_="System.Diagnostics.DiagnosticSource.dll"/>
     <ROW Feature_="MainFeature" Component_="Flute.Http.dll_2"/>
     <ROW Feature_="MainFeature" Component_="bootstraptableeditor.js"/>
@@ -20158,6 +20134,8 @@
     <ROW Feature_="MainFeature" Component_="demo.less"/>
     <ROW Feature_="MainFeature" Component_="themes.gif"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Flute.Http.xml_1"/>
+    <ROW Feature_="MainFeature" Component_="data.dat"/>
+    <ROW Feature_="MainFeature" Component_="Flute.Http.dll_3"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
@@ -20361,14 +20339,14 @@
     <ROW XmlAttribute="xsischemaLocation" XmlElement="swidsoftware_identification_tag" Name="xsi:schemaLocation" Flags="14" Order="3" Value="http://standards.iso.org/iso/19770/-2/2008/schema.xsd software_identification_tag.xsd"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.XmlElementComponent">
-    <ROW XmlElement="swidbuild" ParentElement="swidnumeric" Name="swid:build" Condition="1" Order="2" Flags="14" Text="9332" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidbuild" ParentElement="swidnumeric" Name="swid:build" Condition="1" Order="2" Flags="14" Text="2118" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidchannel_name" ParentElement="swidlicense_linkage" Name="swid:channel_name" Condition="1" Order="1" Flags="14" Text="Standard(Community Edition)" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidchannel_type" ParentElement="swidlicense_linkage" Name="swid:channel_type" Condition="1" Order="0" Flags="14" Text="Retail" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidcustomer_type" ParentElement="swidlicense_linkage" Name="swid:customer_type" Condition="1" Order="2" Flags="14" Text="Academic" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidentitlement_required_indicator" ParentElement="swidsoftware_identification_tag" Name="swid:entitlement_required_indicator" Condition="1" Order="0" Flags="14" Text="true" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidlicense_linkage" ParentElement="swidsoftware_identification_tag" Name="swid:license_linkage" Condition="1" Order="8" Flags="14" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidmajor" ParentElement="swidnumeric" Name="swid:major" Condition="1" Order="0" Flags="14" Text="5" UpdateIndexInParent="0"/>
-    <ROW XmlElement="swidminor" ParentElement="swidnumeric" Name="swid:minor" Condition="1" Order="1" Flags="14" Text="2" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidminor" ParentElement="swidnumeric" Name="swid:minor" Condition="1" Order="1" Flags="14" Text="3" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidname" ParentElement="swidproduct_version" Name="swid:name" Condition="1" Order="0" Flags="14" Text="[ProductVersion]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidname_7" ParentElement="swidsoftware_creator" Name="swid:name" Condition="1" Order="0" Flags="14" Text="[Manufacturer]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidname_8" ParentElement="swidsoftware_licensor" Name="swid:name" Condition="1" Order="0" Flags="14" Text="[Manufacturer]" UpdateIndexInParent="0"/>
@@ -20379,7 +20357,7 @@
     <ROW XmlElement="swidregid" ParentElement="swidsoftware_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2013-01.com.panomix" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_5" ParentElement="swidsoftware_licensor" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2019-11.org.mzkit" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_6" ParentElement="swidtag_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.1995-09.me.xieguigang,gg.xie@bionovogene.com" UpdateIndexInParent="0"/>
-    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="8102" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="7102" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidserial_number" ParentElement="swidsoftware_identification_tag" Name="swid:serial_number" Condition="1" Order="7" Flags="14" Text="[PIDKEY]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_creator" ParentElement="swidsoftware_identification_tag" Name="swid:software_creator" Condition="1" Order="3" Flags="14" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_id" ParentElement="swidsoftware_identification_tag" Name="swid:software_id" Condition="1" Order="5" Flags="14" UpdateIndexInParent="0"/>
