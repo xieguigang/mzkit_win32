@@ -559,7 +559,7 @@ Namespace ServiceHub
         ''' <returns></returns>
         Private Function handleServiceRequest(request As RequestStream, Optional min As Double = 30) As RequestStream
             If MSI_service <= 0 Then
-                Call Workbench.StatusMessage("MS-imaging services is not started yet!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Call Workbench.Warning("MS-imaging services is not started yet!")
                 Return Nothing
             Else
                 Return New TcpRequest(endPoint) _
