@@ -670,6 +670,7 @@
     <ROW Component="Flute.Http.dll_3" ComponentId="{4047392A-D537-4340-9CF2-52BE1D4E6B84}" Directory_="blender_Dir" Attributes="256" KeyPath="Flute.Http.dll_3"/>
     <ROW Component="Flute.Http.dll_9" ComponentId="{AC04B39C-8C05-407B-8AE4-0780C87805B9}" Directory_="library_Dir" Attributes="256" KeyPath="Flute.Http.dll_9"/>
     <ROW Component="Flute.Http.pdb" ComponentId="{BFE97953-F38D-4536-9EEC-FB524EC6A5B8}" Directory_="APPDIR" Attributes="0" KeyPath="Flute.Http.pdb" Type="4"/>
+    <ROW Component="Flute.Http.pdb_1" ComponentId="{8A3EFACE-C3C0-4128-BF7E-5A7180D8E31C}" Directory_="blender_Dir" Attributes="0" KeyPath="Flute.Http.pdb_1" Type="4"/>
     <ROW Component="Flute.Http.xml" ComponentId="{4035364A-48E6-4100-B4AD-C6C9D7D8BEA4}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll.config_4" Type="0"/>
     <ROW Component="Flute.Http.xml_1" ComponentId="{7E544B9E-5CE2-4EC1-ABF6-2B80F6575289}" Directory_="blender_Dir" Attributes="0" KeyPath="Flute.Http.xml_3"/>
     <ROW Component="GCModeller.zip" ComponentId="{2A77A528-0E55-492F-B17F-9FDB92BFDFE2}" Directory_="packages_Dir" Attributes="256" KeyPath="GCModeller.zip" Type="0"/>
@@ -711,7 +712,6 @@
     <ROW Component="MZWorkRedis.dll_2" ComponentId="{8A6466D5-6DD3-49CC-9376-15398E3309A1}" Directory_="blender_Dir" Attributes="256" KeyPath="MZWorkRedis.dll_2"/>
     <ROW Component="MZWorkRedis.pdb" ComponentId="{0B0B494D-098C-496A-A08C-FFD0601BA88B}" Directory_="blender_Dir" Attributes="0" KeyPath="MZWorkRedis.pdb_1" Type="4"/>
     <ROW Component="MaterialHandler.js" ComponentId="{FA351707-ADE7-4BAE-A7D5-8FF455CACDD7}" Directory_="shared_Dir" Attributes="0" KeyPath="MaterialHandler.js" Type="0"/>
-    <ROW Component="Microsoft.Bcl.Numerics.dll" ComponentId="{6980D408-394E-47D2-B33D-A18FEAAFF136}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Bcl.Numerics.dll"/>
     <ROW Component="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.dll" ComponentId="{6D27B998-7C7B-4FDF-9B61-64583344D9EA}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.dl"/>
     <ROW Component="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.dll_5" ComponentId="{7FD551D9-5C8B-4731-B2D7-70734DE23995}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio._9"/>
     <ROW Component="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.pdb" ComponentId="{AF91201E-670E-40A1-BE6A-200CFDAF3BEB}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.pd" Type="4"/>
@@ -1138,8 +1138,6 @@
     <ROW Component="Mzkit_win32.TaskStream.pdb" ComponentId="{5732428B-216F-4419-A4B1-4C4AA03A5A6B}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.TaskStream.pdb" Type="4"/>
     <ROW Component="Mzkit_win32.TaskStream.pdb_1" ComponentId="{62D246FD-6DF3-48BF-B9B1-EAE9EC9FA596}" Directory_="blender_Dir" Attributes="0" KeyPath="Mzkit_win32.TaskStream.pdb_1" Type="4"/>
     <ROW Component="Mzkit_win32.TaskStream.xml" ComponentId="{5BDD585E-8EBB-4820-B4F2-424DF8674A0C}" Directory_="blender_Dir" Attributes="0" KeyPath="Mzkit_win32.TaskStream.xml_1"/>
-    <ROW Component="NRRD.dll" ComponentId="{0DED4BD9-E59C-46A5-88AA-9EA4BAAFB627}" Directory_="APPDIR" Attributes="256" KeyPath="NRRD.dll"/>
-    <ROW Component="NRRD.pdb" ComponentId="{5001A4E6-015D-4F22-A8AF-1E7D7D7A2A64}" Directory_="APPDIR" Attributes="0" KeyPath="NRRD.pdb" Type="4"/>
     <ROW Component="Newtonsoft.Json.dll" ComponentId="{5DA776EE-760B-4639-8989-BD5C4883EF80}" Directory_="bin_Dir" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
     <ROW Component="Newtonsoft.Json.dll_1" ComponentId="{55136570-6B18-4201-95B7-1B84E6D2BE56}" Directory_="host_Dir" Attributes="0" KeyPath="Newtonsoft.Json.dll_1"/>
     <ROW Component="Newtonsoft.Json.dll_2" ComponentId="{97985656-7E59-4697-8E10-C19FC10F0FBE}" Directory_="library_Dir" Attributes="0" KeyPath="Newtonsoft.Json.dll_2"/>
@@ -1323,7 +1321,6 @@
     <ROW Component="System.Buffers.dll" ComponentId="{D094FCC6-7A30-4809-8276-61D7526F5ACB}" Directory_="dzitools_Dir" Attributes="0" KeyPath="System.Buffers.dll"/>
     <ROW Component="System.Buffers.dll_2" ComponentId="{7DB96DCA-7F1F-429B-B422-3FE24EAF0BE1}" Directory_="APPDIR" Attributes="256" KeyPath="System.Buffers.dll_2"/>
     <ROW Component="System.CodeDom.dll" ComponentId="{8F8842EC-C783-4F87-9D8B-6E2156FECA3A}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.CodeDom.dll"/>
-    <ROW Component="System.ComponentModel.Annotations.dll" ComponentId="{29BC3C3F-E1BC-465E-A099-EACF51FE9AB6}" Directory_="APPDIR" Attributes="256" KeyPath="System.ComponentModel.Annotations.dll"/>
     <ROW Component="System.Composition.AttributedModel.dll" ComponentId="{8519BE25-4B79-40E9-97C8-44ED75DFCAC0}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Composition.AttributedModel.dll"/>
     <ROW Component="System.Composition.AttributedModel.dll_1" ComponentId="{1E84195A-F72C-4836-ABE0-57D55C761727}" Directory_="blender_Dir" Attributes="0" KeyPath="System.Composition.AttributedModel.dll_1"/>
     <ROW Component="System.Composition.AttributedModel.dll_3" ComponentId="{59421EA6-2966-48D1-B1D6-5D7AD212B35A}" Directory_="dzitools_Dir" Attributes="0" KeyPath="System.Composition.AttributedModel.dll_3"/>
@@ -1369,7 +1366,6 @@
     <ROW Component="System.Memory.dll_2" ComponentId="{37EBBB97-6017-46E4-AC04-AD3FB3EB9131}" Directory_="APPDIR" Attributes="256" KeyPath="System.Memory.dll_2"/>
     <ROW Component="System.Numerics.Tensors.dll" ComponentId="{C303739F-A4A8-4A4E-B6B0-3664F41949EB}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Numerics.Tensors.dll"/>
     <ROW Component="System.Numerics.Tensors.dll_1" ComponentId="{9AF9A248-A0EE-45AC-9ACC-083847A01205}" Directory_="blender_Dir" Attributes="0" KeyPath="System.Numerics.Tensors.dll_1"/>
-    <ROW Component="System.Numerics.Tensors.dll_2" ComponentId="{BE64778F-F879-4E16-8AAB-B81748F7FF7C}" Directory_="APPDIR" Attributes="0" KeyPath="System.Numerics.Tensors.dll_2"/>
     <ROW Component="System.Numerics.Vectors.dll" ComponentId="{F5A71B49-FFB3-4AA2-893B-FDC947FF8F38}" Directory_="dzitools_Dir" Attributes="0" KeyPath="System.Numerics.Vectors.dll"/>
     <ROW Component="System.Numerics.Vectors.dll_2" ComponentId="{3D47FC0B-6349-41D3-92EC-307A6F2D8E41}" Directory_="APPDIR" Attributes="256" KeyPath="System.Numerics.Vectors.dll_2"/>
     <ROW Component="System.Resources.Extensions.dll" ComponentId="{5F9E9865-E3D8-4C64-AFE0-E6767759C7E9}" Directory_="nvidia_Dir" Attributes="0" KeyPath="System.Resources.Extensions.dll"/>
@@ -2074,7 +2070,6 @@
     <ROW File="SMRUCC.genomics.Annotation.dll_1" Component_="SMRUCC.genomics.Annotation.dll_1" FileName="SMRUCC~2.DLL|SMRUCC.genomics.Annotation.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\SMRUCC.genomics.Annotation.dll" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.Core.dll_1" Component_="SMRUCC.genomics.Core.dll_1" FileName="SMRUCC~3.DLL|SMRUCC.genomics.Core.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\SMRUCC.genomics.Core.dll" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.Data.Repository.dll_1" Component_="SMRUCC.genomics.Data.Repository.dll_1" FileName="SMRUCC~4.DLL|SMRUCC.genomics.Data.Repository.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\SMRUCC.genomics.Data.Repository.dll" SelfReg="false"/>
-    <ROW File="System.ComponentModel.Annotations.dll" Component_="System.ComponentModel.Annotations.dll" FileName="SYSTE~14.DLL|System.ComponentModel.Annotations.dll" Attributes="0" SourcePath="..\..\..\dist\bin\System.ComponentModel.Annotations.dll" SelfReg="false"/>
     <ROW File="System.Composition.Convention.dll_1" Component_="System.Composition.Convention.dll_1" FileName="SYSTE~15.DLL|System.Composition.Convention.dll" Attributes="0" SourcePath="..\..\..\dist\bin\System.Composition.Convention.dll" SelfReg="false"/>
     <ROW File="System.Composition.Hosting.dll_1" Component_="System.Composition.Hosting.dll_1" FileName="SYSTE~16.DLL|System.Composition.Hosting.dll" Attributes="0" SourcePath="..\..\..\dist\bin\System.Composition.Hosting.dll" SelfReg="false"/>
     <ROW File="System.Composition.Runtime.dll_1" Component_="System.Composition.Runtime.dll_1" FileName="SYSTE~17.DLL|System.Composition.Runtime.dll" Attributes="0" SourcePath="..\..\..\dist\bin\System.Composition.Runtime.dll" SelfReg="false"/>
@@ -3225,7 +3220,6 @@
     <ROW File="nvidiaanselAI.exe" Component_="nvidiaanselAI.exe" FileName="NVIDIA~1.EXE|nvidia-anselAI.exe" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\nvidia-anselAI.exe" SelfReg="false" DigSign="true"/>
     <ROW File="nvidiaanselAI.runtimeconfig.json" Component_="nvidiaanselAI.deps.json" FileName="NVIDIA~2.JSO|nvidia-anselAI.runtimeconfig.json" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\nvidia-anselAI.runtimeconfig.json" SelfReg="false"/>
     <ROW File="WinRT.Runtime.dll" Component_="WinRT.Runtime.dll" FileName="WINRTR~1.DLL|WinRT.Runtime.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\WinRT.Runtime.dll" SelfReg="false"/>
-    <ROW File="NRRD.dll" Component_="NRRD.dll" FileName="NRRD.dll" Attributes="0" SourcePath="..\..\..\dist\bin\NRRD.dll" SelfReg="false"/>
     <ROW File="demomsimaging.png" Component_="S043.png" FileName="DEMO-M~1.PNG|demo-ms-imaging.png" Attributes="0" SourcePath="..\extdata\demo-ms-imaging.png" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Runtime.dll_2" Component_="Microsoft.VisualBasic.Runtime.dll_2" FileName="MICROS~1.DLL|Microsoft.VisualBasic.Runtime.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\Microsoft.VisualBasic.Runtime.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Runtime.dll.config_2" Component_="nvidiaanselAI.deps.json" FileName="MICROS~1.CON|Microsoft.VisualBasic.Runtime.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\nvidia\Microsoft.VisualBasic.Runtime.dll.config" SelfReg="false"/>
@@ -3357,7 +3351,6 @@
     <ROW File="mzkit_win32.pdb" Component_="mzkit_win32.pdb" FileName="MZKIT_~6.PDB|mzkit_win32.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\mzkit_win32.pdb" SelfReg="false"/>
     <ROW File="Mzkit_win32.Task.pdb" Component_="Mzkit_win32.Task.pdb" FileName="MZKIT_~7.PDB|Mzkit_win32.Task.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.Task.pdb" SelfReg="false"/>
     <ROW File="Mzkit_win32.TaskStream.pdb" Component_="Mzkit_win32.TaskStream.pdb" FileName="MZKIT_~8.PDB|Mzkit_win32.TaskStream.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.TaskStream.pdb" SelfReg="false"/>
-    <ROW File="NRRD.pdb" Component_="NRRD.pdb" FileName="NRRD.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\NRRD.pdb" SelfReg="false"/>
     <ROW File="Parallel.pdb" Component_="Parallel.pdb" FileName="Parallel.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Parallel.pdb" SelfReg="false"/>
     <ROW File="PipelineHost.pdb" Component_="PipelineHost.pdb" FileName="PIPELI~1.PDB|PipelineHost.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\PipelineHost.pdb" SelfReg="false"/>
     <ROW File="RData.pdb" Component_="RData.pdb" FileName="RData.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\RData.pdb" SelfReg="false"/>
@@ -3494,7 +3487,6 @@
     <ROW File="Mzkit_win32.Task.xml" Component_="BioDeep.xml" FileName="MZKIT_~7.XML|Mzkit_win32.Task.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.Task.xml" SelfReg="false"/>
     <ROW File="Mzkit_win32.TaskStream.xml" Component_="BioDeep.xml" FileName="MZKIT_~8.XML|Mzkit_win32.TaskStream.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.TaskStream.xml" SelfReg="false"/>
     <ROW File="mzkit_win32.xml" Component_="BioDeep.xml" FileName="MZKIT_~9.XML|mzkit_win32.xml" Attributes="0" SourcePath="..\..\..\dist\bin\mzkit_win32.xml" SelfReg="false"/>
-    <ROW File="NRRD.xml" Component_="BioDeep.xml" FileName="NRRD.xml" Attributes="0" SourcePath="..\..\..\dist\bin\NRRD.xml" SelfReg="false"/>
     <ROW File="Parallel.xml" Component_="BioDeep.xml" FileName="Parallel.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Parallel.xml" SelfReg="false"/>
     <ROW File="RData.xml" Component_="BioDeep.xml" FileName="RData.xml" Attributes="0" SourcePath="..\..\..\dist\bin\RData.xml" SelfReg="false"/>
     <ROW File="RDev.xml" Component_="BioDeep.xml" FileName="RDev.xml" Attributes="0" SourcePath="..\..\..\dist\bin\RDev.xml" SelfReg="false"/>
@@ -15781,7 +15773,6 @@
     <ROW File="umap.R_1" Component_="dbscan.R" FileName="umap.R" Attributes="0" SourcePath="..\rstudio\pipeline\clustering\umap.R" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll_1" Component_="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll_1" FileName="MICRO~70.DLL|Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Data.visualize.Network.Layouts.pdb" Component_="Microsoft.VisualBasic.Data.visualize.Network.Layouts.pdb" FileName="MICRO~64.PDB|Microsoft.VisualBasic.Data.visualize.Network.Layouts.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.visualize.Network.Layouts.pdb" SelfReg="false"/>
-    <ROW File="System.Numerics.Tensors.dll_2" Component_="System.Numerics.Tensors.dll_2" FileName="SYSTE~25.DLL|System.Numerics.Tensors.dll" Attributes="0" SourcePath="..\..\..\dist\bin\System.Numerics.Tensors.dll" SelfReg="false"/>
     <ROW File="all.css" Component_="all.css" FileName="all.css" Attributes="0" SourcePath="..\webview\vendor\fontawesome-6\css\all.css" SelfReg="false"/>
     <ROW File="all.min.css" Component_="all.css" FileName="ALLMIN~1.CSS|all.min.css" Attributes="0" SourcePath="..\webview\vendor\fontawesome-6\css\all.min.css" SelfReg="false"/>
     <ROW File="brands.css" Component_="all.css" FileName="brands.css" Attributes="0" SourcePath="..\webview\vendor\fontawesome-6\css\brands.css" SelfReg="false"/>
@@ -18364,7 +18355,6 @@
     <ROW File="BioNovoGene.Analytical.NMRFidTool.xml_1" Component_="BioNovoGene.Analytical.NMRFidTool.xml" FileName="BIONO~32.XML|BioNovoGene.Analytical.NMRFidTool.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.NMRFidTool.xml" SelfReg="false"/>
     <ROW File="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.xml" Component_="BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.xml" FileName="BIONO~33.XML|BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.MassSpectrometry.MoleculeNetworking.xml" SelfReg="false"/>
     <ROW File="BioNovoGene.BioDeep.MSEngine.Mummichog.xml_2" Component_="BioNovoGene.BioDeep.MSEngine.Mummichog.xml" FileName="BIONO~34.XML|BioNovoGene.BioDeep.MSEngine.Mummichog.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.BioDeep.MSEngine.Mummichog.xml" SelfReg="false"/>
-    <ROW File="Microsoft.Bcl.Numerics.dll" Component_="Microsoft.Bcl.Numerics.dll" FileName="MICRO~72.DLL|Microsoft.Bcl.Numerics.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.Bcl.Numerics.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Data.IO.SQLite3.xml_2" Component_="Microsoft.VisualBasic.Data.IO.SQLite3.xml" FileName="MICRO~59.XML|Microsoft.VisualBasic.Data.IO.SQLite3.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.IO.SQLite3.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Data.visualize.Network.Layouts.xml" Component_="Microsoft.VisualBasic.Data.visualize.Network.Layouts.xml" FileName="MICRO~60.XML|Microsoft.VisualBasic.Data.visualize.Network.Layouts.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.Data.visualize.Network.Layouts.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.xml_1" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.xml" FileName="MICRO~61.XML|Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.xml" SelfReg="false"/>
@@ -18568,7 +18558,7 @@
     <ROW File="data.dat" Component_="data.dat" FileName="data.dat" Attributes="0" SourcePath="..\webview\assets\demo_3dmaldi\data.dat" SelfReg="false"/>
     <ROW File="dims.json" Component_="data.dat" FileName="DIMS~1.JSO|dims.json" Attributes="0" SourcePath="..\webview\assets\demo_3dmaldi\dims.json" SelfReg="false"/>
     <ROW File="Flute.Http.dll_3" Component_="Flute.Http.dll_3" FileName="FLUTEH~1.DLL|Flute.Http.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Flute.Http.dll" SelfReg="false"/>
-    <ROW File="Flute.Http.pdb_1" Component_="Flute.Http.dll_3" FileName="FLUTEH~1.PDB|Flute.Http.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Flute.Http.pdb" SelfReg="false"/>
+    <ROW File="Flute.Http.pdb_1" Component_="Flute.Http.pdb_1" FileName="FLUTEH~1.PDB|Flute.Http.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Flute.Http.pdb" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -19012,7 +19002,6 @@
     <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.Core.dll_1"/>
     <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.Data.Repository.dll_1"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.Framework.dll_6"/>
-    <ROW Feature_="MainFeature" Component_="System.ComponentModel.Annotations.dll"/>
     <ROW Feature_="MainFeature" Component_="System.Composition.Convention.dll_1"/>
     <ROW Feature_="MainFeature" Component_="System.Composition.Hosting.dll_1"/>
     <ROW Feature_="MainFeature" Component_="System.Composition.Runtime.dll_1"/>
@@ -19292,7 +19281,6 @@
     <ROW Feature_="MainFeature" Component_="nvidiaanselAI.dll"/>
     <ROW Feature_="MainFeature" Component_="nvidiaanselAI.exe"/>
     <ROW Feature_="MainFeature" Component_="WinRT.Runtime.dll"/>
-    <ROW Feature_="MainFeature" Component_="NRRD.dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Runtime.dll_2"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.Win32.SystemEvents.dll_2"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.Windows.SDK.NET.dll"/>
@@ -19422,7 +19410,6 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="mzkit_win32.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Mzkit_win32.Task.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Mzkit_win32.TaskStream.pdb"/>
-    <ROW Feature_="VisualStudio_Diagnostic" Component_="NRRD.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Parallel.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="PipelineHost.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="RData.pdb"/>
@@ -19968,7 +19955,6 @@
     <ROW Feature_="MainFeature" Component_="px.png_1"/>
     <ROW Feature_="MainFeature" Component_="dbscan.R"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.visualize.Network.Layouts.dll_1"/>
-    <ROW Feature_="MainFeature" Component_="System.Numerics.Tensors.dll_2"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Data.visualize.Network.Layouts.pdb"/>
     <ROW Feature_="MainFeature" Component_="all.css"/>
     <ROW Feature_="MainFeature" Component_="all.js"/>
@@ -20067,7 +20053,6 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Mzkit_win32.MatrixViewer.pdb"/>
     <ROW Feature_="MainFeature" Component_="AI_ExePath"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Symbolic.GeneticProgramming.dll"/>
-    <ROW Feature_="MainFeature" Component_="Microsoft.Bcl.Numerics.dll"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectrometry.SignalReader.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectrometry.SingleCells.xml"/>
@@ -20136,6 +20121,7 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Flute.Http.xml_1"/>
     <ROW Feature_="MainFeature" Component_="data.dat"/>
     <ROW Feature_="MainFeature" Component_="Flute.Http.dll_3"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Flute.Http.pdb_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
