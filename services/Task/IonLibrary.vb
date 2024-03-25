@@ -128,8 +128,4 @@ Public Class IonLibrary : Implements Enumeration(Of IonPair)
             Yield ion
         Next
     End Function
-
-    Public Iterator Function GetEnumerator() As IEnumerator Implements Enumeration(Of IonPair).GetEnumerator
-        Yield GenericEnumerator()
-    End Function
 End Class
