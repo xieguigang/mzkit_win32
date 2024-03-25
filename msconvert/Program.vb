@@ -87,13 +87,20 @@ Imports MZWorkPack
         Dim ver As Integer = args("/ver") Or 2
         Dim mute As Boolean = args("/mute")
         Dim noSnapshot As Boolean = args("/no-thumbnail")
+        Dim prefix As String = args("/prefix")
 
         If raw.DirectoryExists Then
+            Dim cachefile As String
+
             ' save to the same directory by default
             cache = args("--cache") Or raw
 
             For Each file As String In raw.EnumerateFiles("*.raw")
-                Dim cachefile As String = $"{cache}/{file.BaseName}.mzPack"
+                If prefix.StringEmpty Then
+                    cachefile = $"{cache}/{file.BaseName}.mzPack"
+                Else
+                    cachefile = $"{cache}/{prefix}-{file.BaseName}.mzPack"
+                End If
 
                 Call Console.WriteLine(file.BaseName)
                 Call ConvertToMzPack.CreateMzpack(file, cachefile, saveVer:=ver, mute:=mute, skipThumbnail:=noSnapshot, sleepTime:=0)
