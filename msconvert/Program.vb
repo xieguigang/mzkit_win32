@@ -79,7 +79,8 @@ Imports MZWorkPack
     <Argument("/ver", True, CLITypes.Boolean, PipelineTypes.undefined,
               AcceptTypes:={GetType(Boolean)},
               Description:="the file format version of the generated mzpack data file")>
-    <Usage("/mzPack --raw <filepath.mzXML> [--cache <result.mzPack> /ver 2 /mute /no-thumbnail]")>
+    <Argument("/prefix", True, Description:="the result mzpack file its filename prefix, default is empty string. this argument only works when the input rawdata source is a directory.")>
+    <Usage("/mzPack --raw <filepath.mzXML> [--cache <result.mzPack> /ver 2 /mute /no-thumbnail /prefix <prefix-string>]")>
     Public Function convertAnyRaw(args As CommandLine) As Integer
         Dim raw As String = args("--raw")
         Dim cache As String = args("--cache") Or raw.ChangeSuffix("mzPack")
