@@ -277,8 +277,8 @@ Namespace ServiceHub
             End If
         End Function
 
-        Public Function DoIonStats(mz As Double()) As IonStat()
-            Dim data As RequestStream = handleServiceRequest(New RequestStream(Global.ServiceHub.MSI.Protocol, ServiceProtocol.GetIonStatList, mz.GetJson(indent:=False, simpleDict:=True)))
+        Public Function DoIonStats(mz As Double(), mzdiff As String) As IonStat()
+            Dim data As RequestStream = handleServiceRequest(MSIRequest.IonStats(mz, mzdiff))
 
             If data Is Nothing Then
                 Return {}
