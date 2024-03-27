@@ -1224,7 +1224,7 @@ Public Class frmMsImagingViewer
                             Call Workbench.Warning("No ions result...")
                         Else
                             Call Me.Invoke(Sub()
-                                               Call DoIonStats(ions, getFormula.GetAnnotation.name, formula, Provider.Positives)
+                                               Call ShowIonStatsTable(ions, getFormula.GetAnnotation.name, formula, Provider.Positives)
                                                Call Workbench.SuccessMessage($"Load {ions.Length} ms-imaging ion targets!")
                                            End Sub)
                         End If
@@ -1643,11 +1643,18 @@ Public Class frmMsImagingViewer
         If ions.IsNullOrEmpty Then
             Call Workbench.Warning("No ions result...")
         Else
-            Call Me.Invoke(Sub() Call DoIonStats(ions, Nothing, Nothing, Nothing))
+            Call Me.Invoke(Sub() Call ShowIonStatsTable(ions, Nothing, Nothing, Nothing))
         End If
     End Sub
 
-    Private Sub DoIonStats(ions As IonStat(), name As String, formula As String, types As MzCalculator())
+    ''' <summary>
+    ''' show the ions table
+    ''' </summary>
+    ''' <param name="ions"></param>
+    ''' <param name="name"></param>
+    ''' <param name="formula"></param>
+    ''' <param name="types"></param>
+    Private Sub ShowIonStatsTable(ions As IonStat(), name As String, formula As String, types As MzCalculator())
         Dim title As String = If(FilePath.StringEmpty, "MS-Imaging Ion Stats", $"[{If(name, FilePath.FileName)}]Ion Stats")
         Dim table As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(title:=title)
         Dim exactMass As Double
