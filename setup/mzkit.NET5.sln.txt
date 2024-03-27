@@ -1,0 +1,1 @@
+MSBuild version 17.9.6+a4ecab324 for .NET
