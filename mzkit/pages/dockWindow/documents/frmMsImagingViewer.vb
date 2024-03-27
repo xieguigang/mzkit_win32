@@ -736,7 +736,7 @@ Public Class frmMsImagingViewer
 
         Call println($"Measuring for {mz.Length} ions data...")
 
-        Dim ions As IonStat() = MSIservice.DoIonStats(mz)
+        Dim ions As IonStat() = MSIservice.DoIonStats(mz, mzdiff:=params.GetTolerance.ToScript)
 
         If ions.IsNullOrEmpty Then
             Call Workbench.Warning("No ions result...")
@@ -1215,10 +1215,11 @@ Public Class frmMsImagingViewer
                 ' evaluate m/z
                 Dim adducts As MzCalculator() = If(params.polarity = IonModes.Negative, Provider.Negatives, Provider.Positives)
                 Dim mz As Double() = adducts.Select(Function(t) t.CalcMZ(mass)).ToArray
+                Dim mzdiff As String = params.GetTolerance.ToScript
 
                 ProgressSpinner.DoLoading(
                     Sub()
-                        Dim ions As IonStat() = MSIservice.DoIonStats(mz)
+                        Dim ions As IonStat() = MSIservice.DoIonStats(mz, mzdiff)
 
                         If ions.IsNullOrEmpty Then
                             Call Workbench.Warning("No ions result...")
@@ -1638,7 +1639,7 @@ Public Class frmMsImagingViewer
     End Sub
 
     Private Sub DoIonStatsInternal()
-        Dim ions As IonStat() = MSIservice.DoIonStats({})
+        Dim ions As IonStat() = MSIservice.DoIonStats({}, mzdiff:=params.GetTolerance.ToScript)
 
         If ions.IsNullOrEmpty Then
             Call Workbench.Warning("No ions result...")
