@@ -27,13 +27,11 @@ Partial Class InputConfigFilterPipeline
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(InputConfigFilterPipeline))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.PropertyGrid1 = New System.Windows.Forms.PropertyGrid()
         Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CopyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
         Me.MoveUpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoveDownToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -43,17 +41,22 @@ Partial Class InputConfigFilterPipeline
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.CopyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.txtPipelineText = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip2.SuspendLayout()
+        Me.TabControl1.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
+        Me.TabPage2.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.GroupBox2)
+        Me.GroupBox1.Controls.Add(Me.TabControl1)
         Me.GroupBox1.Controls.Add(Me.PictureBox1)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox1.Name = "GroupBox1"
@@ -62,59 +65,27 @@ Partial Class InputConfigFilterPipeline
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "MS-Imaging Filter Parameters"
         '
-        'GroupBox2
-        '
-        Me.GroupBox2.Controls.Add(Me.Label2)
-        Me.GroupBox2.Controls.Add(Me.Label1)
-        Me.GroupBox2.Controls.Add(Me.PropertyGrid1)
-        Me.GroupBox2.Controls.Add(Me.CheckedListBox1)
-        Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox2.Location = New System.Drawing.Point(3, 252)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(664, 192)
-        Me.GroupBox2.TabIndex = 4
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Config Pipeline"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(326, 26)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(149, 12)
-        Me.Label2.TabIndex = 4
-        Me.Label2.Text = "Config Filter Parameters"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(17, 26)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(143, 12)
-        Me.Label1.TabIndex = 3
-        Me.Label1.Text = "Raster Filters Pipeline"
-        '
         'PropertyGrid1
         '
-        Me.PropertyGrid1.Location = New System.Drawing.Point(328, 51)
+        Me.PropertyGrid1.Location = New System.Drawing.Point(323, 9)
         Me.PropertyGrid1.Name = "PropertyGrid1"
-        Me.PropertyGrid1.Size = New System.Drawing.Size(321, 132)
+        Me.PropertyGrid1.Size = New System.Drawing.Size(321, 148)
         Me.PropertyGrid1.TabIndex = 2
         '
         'CheckedListBox1
         '
         Me.CheckedListBox1.ContextMenuStrip = Me.ContextMenuStrip1
         Me.CheckedListBox1.FormattingEnabled = True
-        Me.CheckedListBox1.Location = New System.Drawing.Point(19, 51)
+        Me.CheckedListBox1.Location = New System.Drawing.Point(8, 10)
         Me.CheckedListBox1.Name = "CheckedListBox1"
-        Me.CheckedListBox1.Size = New System.Drawing.Size(292, 132)
+        Me.CheckedListBox1.Size = New System.Drawing.Size(292, 148)
         Me.CheckedListBox1.TabIndex = 1
         '
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.CopyToolStripMenuItem, Me.ToolStripMenuItem2, Me.MoveUpToolStripMenuItem, Me.MoveDownToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 120)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(140, 98)
         '
         'ToolStripMenuItem1
         '
@@ -122,6 +93,12 @@ Partial Class InputConfigFilterPipeline
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         Me.ToolStripMenuItem1.Size = New System.Drawing.Size(139, 22)
         Me.ToolStripMenuItem1.Text = "Turn On/Off"
+        '
+        'CopyToolStripMenuItem
+        '
+        Me.CopyToolStripMenuItem.Name = "CopyToolStripMenuItem"
+        Me.CopyToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
+        Me.CopyToolStripMenuItem.Text = "Copy"
         '
         'ToolStripMenuItem2
         '
@@ -193,11 +170,51 @@ Partial Class InputConfigFilterPipeline
         Me.TextBox1.Size = New System.Drawing.Size(457, 27)
         Me.TextBox1.TabIndex = 3
         '
-        'CopyToolStripMenuItem
+        'TabControl1
         '
-        Me.CopyToolStripMenuItem.Name = "CopyToolStripMenuItem"
-        Me.CopyToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.CopyToolStripMenuItem.Text = "Copy"
+        Me.TabControl1.Controls.Add(Me.TabPage1)
+        Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TabControl1.Location = New System.Drawing.Point(3, 252)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(664, 192)
+        Me.TabControl1.TabIndex = 5
+        '
+        'TabPage1
+        '
+        Me.TabPage1.Controls.Add(Me.PropertyGrid1)
+        Me.TabPage1.Controls.Add(Me.CheckedListBox1)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(656, 166)
+        Me.TabPage1.TabIndex = 0
+        Me.TabPage1.Text = "Config Raster Filters Pipeline"
+        Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'TabPage2
+        '
+        Me.TabPage2.Controls.Add(Me.txtPipelineText)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(656, 166)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "Copy Pipeline"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'txtPipelineText
+        '
+        Me.txtPipelineText.BackColor = System.Drawing.Color.White
+        Me.txtPipelineText.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtPipelineText.Location = New System.Drawing.Point(3, 3)
+        Me.txtPipelineText.Multiline = True
+        Me.txtPipelineText.Name = "txtPipelineText"
+        Me.txtPipelineText.ReadOnly = True
+        Me.txtPipelineText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtPipelineText.Size = New System.Drawing.Size(650, 160)
+        Me.txtPipelineText.TabIndex = 0
         '
         'InputConfigFilterPipeline
         '
@@ -211,11 +228,13 @@ Partial Class InputConfigFilterPipeline
         Me.Name = "InputConfigFilterPipeline"
         Me.Text = "Config MSI Filter Pipeline"
         Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
         Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip2.ResumeLayout(False)
+        Me.TabControl1.ResumeLayout(False)
+        Me.TabPage1.ResumeLayout(False)
+        Me.TabPage2.ResumeLayout(False)
+        Me.TabPage2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -234,9 +253,10 @@ Partial Class InputConfigFilterPipeline
     Friend WithEvents MoveDownToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ContextMenuStrip2 As ContextMenuStrip
     Friend WithEvents RefreshToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label1 As Label
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents CopyToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TabControl1 As TabControl
+    Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents txtPipelineText As TextBox
 End Class

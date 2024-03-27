@@ -68,6 +68,7 @@ Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
+Imports Microsoft.VisualBasic.Windows.Forms.DataValidation
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
@@ -132,6 +133,8 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
         search = New GridSearchHandler(AdvancedDataGridView1)
         loader = New GridLoaderHandler(AdvancedDataGridView1, AdvancedDataGridViewSearchToolBar1, BindingSource1)
         TabText = "Table View"
+
+        Call AdvancedDataGridView1.SetAutoSelectRow
 
         AddHandler AdvancedDataGridViewSearchToolBar1.Search, AddressOf search.AdvancedDataGridViewSearchToolBar1_Search
         AddHandler ribbonItems.ButtonColumnStats.ExecuteEvent,

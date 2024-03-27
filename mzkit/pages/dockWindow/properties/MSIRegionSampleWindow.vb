@@ -338,10 +338,10 @@ Public Class MSIRegionSampleWindow
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.ButtonClick
         Dim nsize As Integer = FlowLayoutPanel1.Controls.Count
 
-        If ToolStripButton2.DropDownButtonPressed OrElse ToolStripButton2.DropDownButtonSelected Then
+        If ToolStripButton2.DropDownButtonPressed Then 'OrElse ToolStripButton2.DropDownButtonSelected Then
             Return
         End If
 
@@ -610,4 +610,5 @@ Public Class MSIRegionSampleWindow
             Call AutoExtractSampleTags()
         End If
     End Sub
+
 End Class

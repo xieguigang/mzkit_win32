@@ -41,10 +41,10 @@
     <ROW Property="IAgree" Value="Yes" Type="4"/>
     <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1028:{C0E67672-6A5A-4B04-89DE-6B55B2DD33AA} 1033:{C0E67672-6A5A-4B04-89DE-6B55B2DD33AA} 1036:{C0E67672-6A5A-4B04-89DE-6B55B2DD33AA} 1041:{C0E67672-6A5A-4B04-89DE-6B55B2DD33AA} 1049:{C0E67672-6A5A-4B04-89DE-6B55B2DD33AA} 2052:{C0E67672-6A5A-4B04-89DE-6B55B2DD33AA} 2057:{C0E67672-6A5A-4B04-89DE-6B55B2DD33AA} " Type="16"/>
+    <ROW Property="ProductCode" Value="1028:{4D08D867-7A5E-48A8-BA38-401AEA8350F3} 1033:{4D08D867-7A5E-48A8-BA38-401AEA8350F3} 1036:{4D08D867-7A5E-48A8-BA38-401AEA8350F3} 1041:{4D08D867-7A5E-48A8-BA38-401AEA8350F3} 1049:{4D08D867-7A5E-48A8-BA38-401AEA8350F3} 2052:{4D08D867-7A5E-48A8-BA38-401AEA8350F3} 2057:{4D08D867-7A5E-48A8-BA38-401AEA8350F3} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="mzkit_win32"/>
-    <ROW Property="ProductVersion" Value="5.2.7336.3219"/>
+    <ROW Property="ProductVersion" Value="5.5.9136.9369"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{B645400B-3918-41EF-9009-7ADDD81C84B4}"/>
@@ -136,6 +136,7 @@
     <ROW Directory="blender_Dir" Directory_Parent="plugins_Dir" DefaultDir="blender"/>
     <ROW Directory="bootstrap5.3.2dist_Dir" Directory_Parent="vendor_Dir" DefaultDir="BOOTST~1.2-D|bootstrap-5.3.2-dist"/>
     <ROW Directory="bootstrapcolorpicker_Dir" Directory_Parent="img_Dir" DefaultDir="BOOTST~1|bootstrap-colorpicker"/>
+    <ROW Directory="bootstraptableeditor_Dir" Directory_Parent="vendor_Dir" DefaultDir="BOOTST~1|bootstrap-table-editor"/>
     <ROW Directory="brands_Dir" Directory_Parent="svgs_Dir" DefaultDir="brands"/>
     <ROW Directory="bridge_Dir" Directory_Parent="obj2_Dir" DefaultDir="bridge"/>
     <ROW Directory="brotli_1_Dir" Directory_Parent="libs_Dir" DefaultDir="brotli"/>
@@ -147,6 +148,7 @@
     <ROW Directory="cfmid2_Dir" Directory_Parent="NewFolder_Dir" DefaultDir="cfm-id2"/>
     <ROW Directory="clustering_Dir" Directory_Parent="pipeline_Dir" DefaultDir="CLUSTE~1|clustering"/>
     <ROW Directory="cmake_Dir" Directory_Parent="lib_5_Dir" DefaultDir="cmake"/>
+    <ROW Directory="colorpicker3.4.3_Dir" Directory_Parent="vendor_Dir" DefaultDir="COLORP~1.3|colorpicker-3.4.3"/>
     <ROW Directory="conf.avail_Dir" Directory_Parent="fontconfig_1_Dir" DefaultDir="CONF~1.AVA|conf.avail"/>
     <ROW Directory="conf.d_Dir" Directory_Parent="fonts_Dir" DefaultDir="conf.d"/>
     <ROW Directory="configQ16_Dir" Directory_Parent="ImageMagick6.9.12_Dir" DefaultDir="CONFIG~1|config-Q16"/>
@@ -154,6 +156,9 @@
     <ROW Directory="css_1_Dir" Directory_Parent="webview_Dir" DefaultDir="css"/>
     <ROW Directory="css_2_Dir" Directory_Parent="bootstrap5.3.2dist_Dir" DefaultDir="css"/>
     <ROW Directory="css_3_Dir" Directory_Parent="fontawesome6_Dir" DefaultDir="css"/>
+    <ROW Directory="css_4_Dir" Directory_Parent="examples_Dir" DefaultDir="css"/>
+    <ROW Directory="css_5_Dir" Directory_Parent="fontawesome_Dir" DefaultDir="css"/>
+    <ROW Directory="css_6_Dir" Directory_Parent="colorpicker3.4.3_Dir" DefaultDir="css"/>
     <ROW Directory="css_Dir" Directory_Parent="static_Dir" DefaultDir="css"/>
     <ROW Directory="d3_Dir" Directory_Parent="libs_Dir" DefaultDir="d3"/>
     <ROW Directory="data_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="data"/>
@@ -178,11 +183,15 @@
     <ROW Directory="es_Dir" Directory_Parent="lang_Dir" DefaultDir="es"/>
     <ROW Directory="esi_msms_models_Dir" Directory_Parent="models_Dir" DefaultDir="ESI_MS~1|esi_msms_models"/>
     <ROW Directory="etc_Dir" Directory_Parent="vips_Dir" DefaultDir="etc"/>
+    <ROW Directory="examples_Dir" Directory_Parent="bootstraptableeditor_Dir" DefaultDir="examples"/>
     <ROW Directory="extra_Dir" Directory_Parent="three.js_Dir" DefaultDir="extra"/>
     <ROW Directory="fftw3_Dir" Directory_Parent="cmake_Dir" DefaultDir="fftw3"/>
     <ROW Directory="fontawesome6_Dir" Directory_Parent="vendor_Dir" DefaultDir="FONTAW~1|fontawesome-6"/>
+    <ROW Directory="fontawesome_Dir" Directory_Parent="css_4_Dir" DefaultDir="FONT-A~1|font-awesome"/>
     <ROW Directory="fontconfig_1_Dir" Directory_Parent="share_Dir" DefaultDir="FONTCO~1|fontconfig"/>
     <ROW Directory="fontconfig_Dir" Directory_Parent="include_1_Dir" DefaultDir="FONTCO~1|fontconfig"/>
+    <ROW Directory="fonts_1_Dir" Directory_Parent="fontawesome_Dir" DefaultDir="fonts"/>
+    <ROW Directory="fonts_2_Dir" Directory_Parent="css_4_Dir" DefaultDir="fonts"/>
     <ROW Directory="fonts_Dir" Directory_Parent="etc_Dir" DefaultDir="fonts"/>
     <ROW Directory="fr_1_Dir" Directory_Parent="lang_Dir" DefaultDir="fr"/>
     <ROW Directory="fr_Dir" Directory_Parent="APPDIR" DefaultDir="fr"/>
@@ -213,10 +222,12 @@
     <ROW Directory="hwy_1_Dir" Directory_Parent="cmake_Dir" DefaultDir="hwy"/>
     <ROW Directory="hwy_Dir" Directory_Parent="include_1_Dir" DefaultDir="hwy"/>
     <ROW Directory="i18next_Dir" Directory_Parent="libs_Dir" DefaultDir="i18next"/>
+    <ROW Directory="icons_1_Dir" Directory_Parent="css_4_Dir" DefaultDir="icons"/>
     <ROW Directory="icons_Dir" Directory_Parent="resources_Dir" DefaultDir="icons"/>
     <ROW Directory="images_1_Dir" Directory_Parent="openseadragon_Dir" DefaultDir="images"/>
     <ROW Directory="images_2_Dir" Directory_Parent="assets_Dir" DefaultDir="images"/>
     <ROW Directory="images_3_Dir" Directory_Parent="resources_Dir" DefaultDir="images"/>
+    <ROW Directory="images_4_Dir" Directory_Parent="css_4_Dir" DefaultDir="images"/>
     <ROW Directory="images_Dir" Directory_Parent="jqueryui_Dir" DefaultDir="images"/>
     <ROW Directory="img_Dir" Directory_Parent="assets_Dir" DefaultDir="img"/>
     <ROW Directory="include_1_Dir" Directory_Parent="vips_Dir" DefaultDir="include"/>
@@ -232,6 +243,7 @@
     <ROW Directory="js_2_Dir" Directory_Parent="bootstrap5.3.2dist_Dir" DefaultDir="js"/>
     <ROW Directory="js_3_Dir" Directory_Parent="fontawesome6_Dir" DefaultDir="js"/>
     <ROW Directory="js_4_Dir" Directory_Parent="plasio_Dir" DefaultDir="js"/>
+    <ROW Directory="js_5_Dir" Directory_Parent="colorpicker3.4.3_Dir" DefaultDir="js"/>
     <ROW Directory="js_Dir" Directory_Parent="static_Dir" DefaultDir="js"/>
     <ROW Directory="json52.1.3_Dir" Directory_Parent="libs_Dir" DefaultDir="JSON5-~1.3|json5-2.1.3"/>
     <ROW Directory="jstree_Dir" Directory_Parent="libs_Dir" DefaultDir="jstree"/>
@@ -240,6 +252,7 @@
     <ROW Directory="ketcher_Dir" Directory_Parent="webview_Dir" DefaultDir="ketcher"/>
     <ROW Directory="lang_Dir" Directory_Parent="resources_Dir" DefaultDir="lang"/>
     <ROW Directory="lazylibs_Dir" Directory_Parent="potree_Dir" DefaultDir="lazylibs"/>
+    <ROW Directory="less_1_Dir" Directory_Parent="colorpicker3.4.3_Dir" DefaultDir="less"/>
     <ROW Directory="less_Dir" Directory_Parent="fontawesome6_Dir" DefaultDir="less"/>
     <ROW Directory="lib_1_Dir" Directory_Parent="win_Dir" DefaultDir="lib"/>
     <ROW Directory="lib_2_Dir" Directory_Parent="unix_1_Dir" DefaultDir="lib"/>
@@ -260,6 +273,7 @@
     <ROW Directory="librsvg2.0_Dir" Directory_Parent="include_1_Dir" DefaultDir="LIBRSV~1.0|librsvg-2.0"/>
     <ROW Directory="librsvg_Dir" Directory_Parent="librsvg2.0_Dir" DefaultDir="librsvg"/>
     <ROW Directory="libs_1_Dir" Directory_Parent="three.js_Dir" DefaultDir="libs"/>
+    <ROW Directory="libs_2_Dir" Directory_Parent="examples_Dir" DefaultDir="libs"/>
     <ROW Directory="libs_Dir" Directory_Parent="vendor_Dir" DefaultDir="libs"/>
     <ROW Directory="libssp_Dir" Directory_Parent="licenses_Dir" DefaultDir="libssp"/>
     <ROW Directory="libtiff_Dir" Directory_Parent="licenses_Dir" DefaultDir="libtiff"/>
@@ -335,6 +349,7 @@
     <ROW Directory="runtimes_3_Dir" Directory_Parent="bin_Dir" DefaultDir="runtimes"/>
     <ROW Directory="runtimes_4_Dir" Directory_Parent="blender_Dir" DefaultDir="runtimes"/>
     <ROW Directory="runtimes_Dir" Directory_Parent="APPDIR" DefaultDir="runtimes"/>
+    <ROW Directory="screenshots_Dir" Directory_Parent="colorpicker3.4.3_Dir" DefaultDir="SCREEN~1|screenshots"/>
     <ROW Directory="scss_Dir" Directory_Parent="fontawesome6_Dir" DefaultDir="scss"/>
     <ROW Directory="se_Dir" Directory_Parent="lang_Dir" DefaultDir="se"/>
     <ROW Directory="services_Dir" Directory_Parent="Rstudio_Dir" DefaultDir="services"/>
@@ -402,7 +417,7 @@
     <ROW Directory="zstdcodec_Dir" Directory_Parent="libs_Dir" DefaultDir="ZSTD-C~1|zstd-codec"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{1B59A78E-02B1-4035-96D8-5BE9F85908E5}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{8022F77E-244B-4068-AB3E-DB5B3D4A8085}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{69AA9FFE-67B1-456B-88EB-97D3D6C92AA7}" Directory_="APPDIR" Attributes="256"/>
     <ROW Component="ARButton.js" ComponentId="{4E917137-D4FF-49F8-85C3-6A5835EE4133}" Directory_="webxr_Dir" Attributes="0" KeyPath="ARButton.js" Type="0"/>
     <ROW Component="AUTHORS" ComponentId="{C7BB9CCD-8E40-46A1-99A4-0164F34C94BA}" Directory_="sql.js_Dir" Attributes="0" KeyPath="AUTHORS" Type="0"/>
@@ -414,8 +429,10 @@
     <ROW Component="BinaryHeap.js" ComponentId="{EC03028C-A448-48FF-973A-1732A11C99DA}" Directory_="other_Dir" Attributes="0" KeyPath="BinaryHeap.js" Type="0"/>
     <ROW Component="BioDeep.dll" ComponentId="{2FECE77D-517F-47B1-97BA-15B1100BE489}" Directory_="APPDIR" Attributes="256" KeyPath="BioDeep.dll"/>
     <ROW Component="BioDeep.dll.config" ComponentId="{C0CE488A-4270-4CBF-8A17-B07A8182BEA2}" Directory_="blender_Dir" Attributes="0" KeyPath="BlenderHost.deps.json" Type="0"/>
+    <ROW Component="BioDeep.dll.config_1" ComponentId="{9808D34F-4185-4FC5-86B0-8464CE7DA289}" Directory_="blender_Dir" Attributes="0" KeyPath="BioDeep.dll.config_2"/>
     <ROW Component="BioDeep.dll_1" ComponentId="{8274C55C-D52A-4F5B-A268-505929309095}" Directory_="host_Dir" Attributes="256" KeyPath="BioDeep.dll_1"/>
-    <ROW Component="BioDeep.dll_2" ComponentId="{74747C54-9C3E-4DF3-A6D8-70DB44B177B5}" Directory_="blender_Dir" Attributes="256" KeyPath="BioDeep.dll_2"/>
+    <ROW Component="BioDeep.dll_2" ComponentId="{74747C54-9C3E-4DF3-A6D8-70DB44B177B5}" Directory_="blender_Dir" Attributes="256" KeyPath="BioDeep.pdb_1" Type="4"/>
+    <ROW Component="BioDeep.dll_3" ComponentId="{326E9FE5-D52B-4FBF-AC81-22BECAEA4685}" Directory_="blender_Dir" Attributes="256" KeyPath="BioDeep.dll_2"/>
     <ROW Component="BioDeep.pdb" ComponentId="{A43A4C99-E463-4917-B458-0C0240FFCE18}" Directory_="APPDIR" Attributes="0" KeyPath="BioDeep.pdb" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.dll" ComponentId="{7703A1F3-D323-4C49-B302-B4C97B203A97}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.dll_1" ComponentId="{92FB8640-32ED-41B1-9936-572F0A52E59B}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.d_1"/>
@@ -432,6 +449,7 @@
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll" ComponentId="{48C0319C-3FD8-45F3-812F-9E25E8305B82}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll_1" ComponentId="{39D4A5F5-6659-4613-BB45-2CC41BD0823C}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.pdb_1" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll_2" ComponentId="{A7ABE0E8-72DF-4092-BBA5-5EAD5FB2BDE7}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll_1"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll_3" ComponentId="{5F18C885-E46E-4EF9-8744-F45847547789}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll_2"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.pdb" ComponentId="{5110DD5C-C5F8-4A51-9CF9-815997A86FC8}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.pdb" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.dll" ComponentId="{1DBB01B2-92A0-4EDB-B2B5-2CB7D778F01B}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.dll_1" ComponentId="{66CE1E38-FE39-473C-AD21-28467D8BA2B3}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.dll_1"/>
@@ -625,6 +643,8 @@
     <ROW Component="FULLMS_centriod_CHCA_20210819CleanSample616x404.cdf" ComponentId="{9E6541B7-77B9-404C-BC00-F40ACC3A70CF}" Directory_="PANOMIX_Dir" Attributes="0" KeyPath="FULLMS_centriod_CHCA_20210819CleanSample616x404.cdf" Type="0"/>
     <ROW Component="Flute.Http.dll" ComponentId="{1A9D1085-A042-4FB2-B9F6-267C14D598BD}" Directory_="APPDIR" Attributes="256" KeyPath="Flute.Http.dll"/>
     <ROW Component="Flute.Http.dll_1" ComponentId="{7126992B-A818-47AB-A05F-ECAF115FD030}" Directory_="bin_Dir" Attributes="256" KeyPath="Flute.Http.dll_1"/>
+    <ROW Component="Flute.Http.dll_2" ComponentId="{E864A31A-24B9-4B09-9D10-097012043776}" Directory_="host_Dir" Attributes="256" KeyPath="Flute.Http.dll_2"/>
+    <ROW Component="Flute.Http.dll_5" ComponentId="{10EA9E47-C22B-4BBD-927D-A5B91C71C60D}" Directory_="blender_Dir" Attributes="256" KeyPath="Flute.Http.dll_5"/>
     <ROW Component="Flute.Http.dll_9" ComponentId="{AC04B39C-8C05-407B-8AE4-0780C87805B9}" Directory_="library_Dir" Attributes="256" KeyPath="Flute.Http.dll_9"/>
     <ROW Component="Flute.Http.pdb" ComponentId="{BFE97953-F38D-4536-9EEC-FB524EC6A5B8}" Directory_="APPDIR" Attributes="0" KeyPath="Flute.Http.pdb" Type="4"/>
     <ROW Component="Flute.Http.xml" ComponentId="{4035364A-48E6-4100-B4AD-C6C9D7D8BEA4}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll.config_4" Type="0"/>
@@ -1126,9 +1146,10 @@
     <ROW Component="REnv.dll_6" ComponentId="{0A6B97C1-64A8-4591-BBC7-A9C5D61245A7}" Directory_="bin_Dir" Attributes="256" KeyPath="REnv.dll_6"/>
     <ROW Component="REnv.pdb" ComponentId="{A59E7642-17E3-4CBE-9A22-6A018C296FF6}" Directory_="APPDIR" Attributes="0" KeyPath="REnv.pdb" Type="4"/>
     <ROW Component="RQL.dll" ComponentId="{3E78E127-84CE-42E0-843C-A90C50CCD64C}" Directory_="host_Dir" Attributes="256" KeyPath="RQL.dll"/>
-    <ROW Component="RQL.dll_1" ComponentId="{E9806627-45B7-4A93-AA03-9A428A3DDD73}" Directory_="blender_Dir" Attributes="256" KeyPath="RQL.dll_1"/>
+    <ROW Component="RQL.dll_1" ComponentId="{E9806627-45B7-4A93-AA03-9A428A3DDD73}" Directory_="blender_Dir" Attributes="256" KeyPath="RQL.pdb" Type="4"/>
     <ROW Component="RQL.dll_2" ComponentId="{43574292-3DCC-4FAF-9DB9-5731A0AE7B8E}" Directory_="APPDIR" Attributes="256" KeyPath="RQL.pdb_1" Type="4"/>
     <ROW Component="RQL.dll_3" ComponentId="{567526E2-F494-475E-94A6-7A3F8B63D45B}" Directory_="APPDIR" Attributes="256" KeyPath="RQL.dll_2"/>
+    <ROW Component="RQL.dll_4" ComponentId="{14CADB99-0EAD-4210-88A9-4BA3DD6D3075}" Directory_="blender_Dir" Attributes="256" KeyPath="RQL.dll_1"/>
     <ROW Component="ReleaseNotes.docx" ComponentId="{C89F9217-25CE-46C6-92A0-E41CA58D8AEA}" Directory_="NewFolder_2_Dir" Attributes="0" KeyPath="ReleaseNotes.docx" Type="0"/>
     <ROW Component="Rlapack.dll" ComponentId="{C08012A2-5A0F-4DE5-A380-A4C8C87EA7FD}" Directory_="library_Dir" Attributes="256" KeyPath="Rlapack.dll"/>
     <ROW Component="Rscript.dll_3" ComponentId="{D0CCC07B-2407-4099-B543-F74EA74FFDEE}" Directory_="bin_Dir" Attributes="256" KeyPath="Rscript.dll_3"/>
@@ -1193,6 +1214,11 @@
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.dll_3" ComponentId="{0EFB116A-B7A9-4822-B36C-2EC9CEB71CB9}" Directory_="blender_Dir" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.pdb_2" Type="4"/>
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.dll_4" ComponentId="{D4778108-8A27-45BA-8F5D-3E56444AC409}" Directory_="blender_Dir" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.dll_3"/>
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.pdb" ComponentId="{0B42920F-1FC7-4D6C-9FEE-AAA45959A118}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.pdb" Type="4"/>
+    <ROW Component="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" ComponentId="{8FF369AE-3D26-4967-9F3E-CAE5EE71B3B7}" Directory_="host_Dir" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll"/>
+    <ROW Component="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_1" ComponentId="{FBC9AFBB-734A-4B1F-87C2-63A37A826007}" Directory_="blender_Dir" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" Type="4"/>
+    <ROW Component="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_2" ComponentId="{BF18B6BF-F496-40E7-84A0-B9FDD062434F}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb_1" Type="4"/>
+    <ROW Component="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_3" ComponentId="{1CA70276-95F5-45C7-8330-6F0ED3B3A275}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_2"/>
+    <ROW Component="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_4" ComponentId="{BFC27A10-1A78-4141-8CE1-B02D0EAFE842}" Directory_="blender_Dir" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_1"/>
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.keggReport.dll" ComponentId="{FB6C7D69-45ED-429E-AE90-6A99C2F08469}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.keggReport.dll"/>
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.keggReport.pdb" ComponentId="{33AA2425-67AE-4E5F-9173-831E8C47199C}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.genomics.GCModeller.Workbench.keggReport.pdb" Type="4"/>
     <ROW Component="SMRUCC.genomics.InteractionModel.dll" ComponentId="{22934577-ADC6-43CA-9B10-30FD9C67643A}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.InteractionModel.dll"/>
@@ -1276,6 +1302,7 @@
     <ROW Component="System.Configuration.ConfigurationManager.dll" ComponentId="{D7AD2012-9C45-44E4-B2AD-16867A8B2B70}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Configuration.ConfigurationManager.dll"/>
     <ROW Component="System.Configuration.ConfigurationManager.dll_1" ComponentId="{072CFF97-E245-4BE1-99F5-931B5FDAB1C1}" Directory_="APPDIR" Attributes="0" KeyPath="System.Configuration.ConfigurationManager.dll_1"/>
     <ROW Component="System.Configuration.ConfigurationManager.dll_2" ComponentId="{8594C113-1563-4852-A8D1-E72C9D2943AF}" Directory_="blender_Dir" Attributes="0" KeyPath="System.Configuration.ConfigurationManager.dll_2"/>
+    <ROW Component="System.Diagnostics.DiagnosticSource.dll" ComponentId="{827D5BD3-ABAE-4718-96C1-886C3C24AD28}" Directory_="bin_Dir" Attributes="0" KeyPath="System.Diagnostics.DiagnosticSource.dll"/>
     <ROW Component="System.Drawing.Common.dll" ComponentId="{FB8E0761-69C1-409A-88A5-A093F773D038}" Directory_="net6.0_Dir" Attributes="256" KeyPath="System.Drawing.Common.dll"/>
     <ROW Component="System.Drawing.Common.dll_1" ComponentId="{2FF8DA4A-840A-467F-A12A-2EA4332D2A6F}" Directory_="net6.0_1_Dir" Attributes="256" KeyPath="System.Drawing.Common.dll_1"/>
     <ROW Component="System.Drawing.Common.dll_13" ComponentId="{A0B052BB-0F1A-49F7-92B3-0AEEA2266322}" Directory_="bin_Dir" Attributes="256" KeyPath="System.Drawing.Common.dll_13"/>
@@ -1327,12 +1354,16 @@
     <ROW Component="ThemeVS2015.dll_1" ComponentId="{B832CC37-9842-4C7B-8DAD-F6B94347AF3A}" Directory_="blender_Dir" Attributes="0" KeyPath="ThemeVS2015.dll_1"/>
     <ROW Component="ThermoFisher.CommonCore.BackgroundSubtraction.dll" ComponentId="{0545E2A9-3F9A-4F86-BCE8-C0F0692B1A18}" Directory_="APPDIR" Attributes="256" KeyPath="ThermoFisher.CommonCore.BackgroundSubtraction.dll"/>
     <ROW Component="ThermoFisher.CommonCore.BackgroundSubtraction.dll_1" ComponentId="{455D9147-2299-43CF-AD80-51BBF5019EA1}" Directory_="blender_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.BackgroundSubtraction.dll_1"/>
+    <ROW Component="ThermoFisher.CommonCore.BackgroundSubtraction.dll_2" ComponentId="{AC5AE30D-B02D-4B5B-918F-B093F06230B3}" Directory_="host_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.BackgroundSubtraction.dll_2"/>
     <ROW Component="ThermoFisher.CommonCore.Data.dll" ComponentId="{B89DA7CA-9FA6-4347-9A68-6F2B66770A59}" Directory_="APPDIR" Attributes="256" KeyPath="ThermoFisher.CommonCore.Data.dll"/>
     <ROW Component="ThermoFisher.CommonCore.Data.dll_1" ComponentId="{F0E5BC2A-D40D-4113-B9C9-CE8B7EEB6C8E}" Directory_="blender_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.Data.dll_1"/>
+    <ROW Component="ThermoFisher.CommonCore.Data.dll_2" ComponentId="{02E06C6A-C5D4-4668-B290-6283A9E644D3}" Directory_="host_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.Data.dll_2"/>
     <ROW Component="ThermoFisher.CommonCore.MassPrecisionEstimator.dll" ComponentId="{5B78C406-C53A-41D1-8FCE-DE4F59A415A1}" Directory_="APPDIR" Attributes="256" KeyPath="ThermoFisher.CommonCore.MassPrecisionEstimator.dll"/>
     <ROW Component="ThermoFisher.CommonCore.MassPrecisionEstimator.dll_1" ComponentId="{2FD09DEA-1645-4890-8756-FC69349B0649}" Directory_="blender_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.MassPrecisionEstimator.dll_1"/>
+    <ROW Component="ThermoFisher.CommonCore.MassPrecisionEstimator.dll_2" ComponentId="{A5C88972-5854-4E69-AA5B-F5ABDC10EB54}" Directory_="host_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.MassPrecisionEstimator.dll_2"/>
     <ROW Component="ThermoFisher.CommonCore.RawFileReader.dll" ComponentId="{DB525469-6BD4-417A-A685-E627F559FAD3}" Directory_="APPDIR" Attributes="256" KeyPath="ThermoFisher.CommonCore.RawFileReader.dll"/>
     <ROW Component="ThermoFisher.CommonCore.RawFileReader.dll_1" ComponentId="{3A531EDB-4E31-4AFF-87BF-F4651625F9C7}" Directory_="blender_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.RawFileReader.dll_1"/>
+    <ROW Component="ThermoFisher.CommonCore.RawFileReader.dll_2" ComponentId="{667566FF-B43A-4F18-8530-EDDD6EFD08EF}" Directory_="host_Dir" Attributes="0" KeyPath="ThermoFisher.CommonCore.RawFileReader.dll_2"/>
     <ROW Component="UMapx.dll" ComponentId="{6FAE705B-544D-4A20-8A28-5FA099627E37}" Directory_="APPDIR" Attributes="0" KeyPath="UMapx.dll"/>
     <ROW Component="WebView2Loader.dll" ComponentId="{26054BE2-7F65-4DA9-BC3D-2D2A106BF06C}" Directory_="native_Dir" Attributes="256" KeyPath="WebView2Loader.dll"/>
     <ROW Component="WebView2Loader.dll_1" ComponentId="{3835E238-1DD5-4D67-8914-38221B237612}" Directory_="native_1_Dir" Attributes="256" KeyPath="WebView2Loader.dll_1"/>
@@ -1388,16 +1419,21 @@
     <ROW Component="arithmetic.h" ComponentId="{9C2C11AE-5360-497E-A90C-0388D2625EB7}" Directory_="vips_1_Dir" Attributes="0" KeyPath="arithmetic.h" Type="0"/>
     <ROW Component="arm_neoninl.h" ComponentId="{81A1BC70-FFFC-436A-A507-A675980E106E}" Directory_="ops_Dir" Attributes="0" KeyPath="arm_neoninl.h" Type="0"/>
     <ROW Component="article_diagnostic_pathology.pdf" ComponentId="{A62F48F3-C8F4-412B-BD5F-EB6F8727F9A2}" Directory_="ndpitools_Dir" Attributes="0" KeyPath="article_diagnostic_pathology.pdf" Type="0"/>
+    <ROW Component="back.png" ComponentId="{7F5EDEE2-0F1E-4C1F-96EE-652C35CD2080}" Directory_="icons_1_Dir" Attributes="0" KeyPath="back.png" Type="0"/>
     <ROW Component="background.jpg" ComponentId="{3046100F-9869-4BE6-9BED-496CD22816ED}" Directory_="images_3_Dir" Attributes="0" KeyPath="background.jpg" Type="0"/>
     <ROW Component="base.deps.json" ComponentId="{954CDACD-2410-4584-BB91-98C0782548B3}" Directory_="library_Dir" Attributes="0" KeyPath="base.deps.json" Type="0"/>
     <ROW Component="base.dll" ComponentId="{CE725451-82E3-43CF-9CED-9EA3FC09BB45}" Directory_="library_Dir" Attributes="256" KeyPath="base.dll"/>
     <ROW Component="basic_1.jpg" ComponentId="{4AC3C2F0-7E7F-4374-91DA-7E2D08CEC799}" Directory_="matcap_Dir" Attributes="0" KeyPath="basic_1.jpg" Type="0"/>
     <ROW Component="basic_1.jpg_1" ComponentId="{B31D3856-342C-4EE7-B2A9-EBB4BF857DC4}" Directory_="matcap_1_Dir" Attributes="0" KeyPath="basic_1.jpg_1" Type="0"/>
+    <ROW Component="bg0.png" ComponentId="{D3DE8CC9-4780-48D6-A10D-2C1D6B554B04}" Directory_="css_6_Dir" Attributes="0" KeyPath="bg0.png" Type="0"/>
     <ROW Component="biosample_quantification.nmrML" ComponentId="{6797762F-26CA-4D41-A12D-70B4679D666D}" Directory_="NMR_Dir" Attributes="256" KeyPath="biosample_quantification.nmrML" Type="0"/>
     <ROW Component="bluebird.js" ComponentId="{72E18DC4-E74F-4D15-B4E0-C0419E5DDBBA}" Directory_="vendor_1_Dir" Attributes="0" KeyPath="bluebird.js" Type="0"/>
     <ROW Component="bootstrap.bundle.js" ComponentId="{C12F2B50-122D-4437-B4AF-2552C6976F66}" Directory_="js_2_Dir" Attributes="0" KeyPath="bootstrap.bundle.js" Type="0"/>
     <ROW Component="bootstrapcolorpicker.min.css" ComponentId="{A174D41F-3BA8-4102-9BF3-21BBC5FF847D}" Directory_="css_1_Dir" Attributes="0" KeyPath="bootstrapcolorpicker.min.css" Type="0"/>
     <ROW Component="bootstrapgrid.css" ComponentId="{7ABAF2EE-0B59-4C5C-B04B-0B8065CC24D7}" Directory_="css_2_Dir" Attributes="0" KeyPath="bootstrapgrid.css" Type="0"/>
+    <ROW Component="bootstraptable.css" ComponentId="{5A99777F-EF5B-44B7-BA2A-2414795CAC35}" Directory_="css_4_Dir" Attributes="0" KeyPath="bootstraptable.css" Type="0"/>
+    <ROW Component="bootstraptableeditor.js" ComponentId="{16CE7C9C-4414-42A4-8711-D7649EAB4854}" Directory_="bootstraptableeditor_Dir" Attributes="0" KeyPath="bootstraptableeditor.js" Type="0"/>
+    <ROW Component="bootstraptableeditor.js_1" ComponentId="{1CC0396F-E3FF-422C-97BD-8013271DC1EC}" Directory_="libs_2_Dir" Attributes="0" KeyPath="bootstraptableeditor.js_1" Type="0"/>
     <ROW Component="brands.less" ComponentId="{86B135F4-BA6D-4B2E-A015-72C75F283531}" Directory_="less_Dir" Attributes="0" KeyPath="brands.less" Type="0"/>
     <ROW Component="brands.scss" ComponentId="{CEDB5390-9CBC-4D1D-93B5-0E558D5B27EF}" Directory_="scss_Dir" Attributes="0" KeyPath="brands.scss" Type="0"/>
     <ROW Component="brands.svg" ComponentId="{14E0E091-93C3-480B-A160-A685CAA3C940}" Directory_="sprites_Dir" Attributes="0" KeyPath="brands.svg" Type="0"/>
@@ -1433,17 +1469,22 @@
     <ROW Component="decode.h" ComponentId="{0B2FA210-7A50-417F-92E4-59FE442A6F24}" Directory_="brotli_Dir" Attributes="0" KeyPath="decode.h" Type="0"/>
     <ROW Component="decode.h_1" ComponentId="{195E59C8-5A5B-477E-8E7E-5177E32216F2}" Directory_="webp_Dir" Attributes="0" KeyPath="decode.h_2" Type="0"/>
     <ROW Component="demo" ComponentId="{3814EF2E-1AF4-4908-916A-83B955835615}" Directory_="demo_Dir" Attributes="256"/>
+    <ROW Component="demo.less" ComponentId="{C3426037-D05B-42FE-A153-66E120315940}" Directory_="less_1_Dir" Attributes="0" KeyPath="demo.less" Type="0"/>
     <ROW Component="devkit.dll" ComponentId="{80218546-A076-4BAB-8073-8B2AA5A22589}" Directory_="library_Dir" Attributes="256" KeyPath="devkit.dll"/>
     <ROW Component="dobject.png" ComponentId="{862F9866-255E-491A-A672-52C864F669DB}" Directory_="images_2_Dir" Attributes="0" KeyPath="dobject.png" Type="0"/>
     <ROW Component="dzitool.exe" ComponentId="{2D51BA13-3F05-4F1C-BCAD-5BC54044CB78}" Directory_="dzitools_Dir" Attributes="256" KeyPath="dzitool.pdb" Type="4"/>
     <ROW Component="dzitool.exe.config" ComponentId="{ED48E102-3E05-498F-92C7-9A37E0E9CCDF}" Directory_="dzitools_Dir" Attributes="0" KeyPath="dzitool.exe.config"/>
     <ROW Component="dzitool.exe_1" ComponentId="{6A69C47B-A847-45BC-BA16-E19129CF362B}" Directory_="dzitools_Dir" Attributes="256" KeyPath="dzitool.exe"/>
     <ROW Component="english.xml" ComponentId="{43776451-014F-469C-A6AD-F9D86F11AB44}" Directory_="ImageMagick6_2_Dir" Attributes="0" KeyPath="english.xml" Type="0"/>
+    <ROW Component="evolcolorpicker.js" ComponentId="{38B1CA16-2F89-4EBD-BC75-E0DE6EC1271A}" Directory_="js_5_Dir" Attributes="0" KeyPath="evolcolorpicker.js" Type="0"/>
     <ROW Component="exact_mass.R" ComponentId="{3370F742-B0E3-4161-97F8-9E840396C109}" Directory_="small_demos_Dir" Attributes="0" KeyPath="exact_mass.R" Type="0"/>
     <ROW Component="exifbyteorder.h" ComponentId="{7AE063D2-78FE-4877-8E57-A452EC487FA7}" Directory_="libexif_Dir" Attributes="0" KeyPath="exifbyteorder.h" Type="0"/>
     <ROW Component="fabrands400.ttf" ComponentId="{6774C2C3-B52B-487A-8058-46337FFEA266}" Directory_="webfonts_Dir" Attributes="0" Type="0"/>
     <ROW Component="fcfreetype.h" ComponentId="{2842C0BD-5B2B-492D-A099-90038301DF1B}" Directory_="fontconfig_Dir" Attributes="0" KeyPath="fcfreetype.h" Type="0"/>
     <ROW Component="fg.sdf" ComponentId="{B49B414E-0355-487C-9F47-4EF018D7C3A8}" Directory_="templates_Dir" Attributes="0" KeyPath="fg.sdf" Type="0"/>
+    <ROW Component="fontawesome.css" ComponentId="{0E21AC7E-C0AD-4305-A5DD-B7E6EBF23AD1}" Directory_="css_5_Dir" Attributes="0" KeyPath="fontawesome.css_1" Type="0"/>
+    <ROW Component="fontawesomewebfont.eot" ComponentId="{1D0EDFBD-30B8-44E0-AD22-4E5566850B90}" Directory_="fonts_1_Dir" Attributes="0" KeyPath="fontawesomewebfont.eot" Type="0"/>
+    <ROW Component="fontawesomewebfont.eot_1" ComponentId="{BE267367-11D3-46B1-BE18-8926BD721AEB}" Directory_="fonts_2_Dir" Attributes="0" KeyPath="fontawesomewebfont.eot_1" Type="0"/>
     <ROW Component="fontconfig.its" ComponentId="{A134DB3A-6125-4729-A0E5-79AB0B85D6DF}" Directory_="its_Dir" Attributes="0" KeyPath="fontconfig.its" Type="0"/>
     <ROW Component="fonts.conf" ComponentId="{D768B977-0E6F-420F-9853-4D08EA9386F6}" Directory_="fonts_Dir" Attributes="0" KeyPath="fonts.conf" Type="0"/>
     <ROW Component="fraggraphgen.exe" ComponentId="{F8375977-6A1E-4A75-B017-7F23BEF9BF89}" Directory_="cfmid2_Dir" Attributes="0" KeyPath="fraggraphgen.exe"/>
@@ -1459,6 +1500,7 @@
     <ROW Component="geopackage.js" ComponentId="{986417CA-3F79-4A62-BC88-2F76EB03468B}" Directory_="geopackage_Dir" Attributes="0" KeyPath="geopackage.js" Type="0"/>
     <ROW Component="geopackage.js_1" ComponentId="{491D6D38-CF0B-4D67-B4F5-5CB7FACE3E9A}" Directory_="geopackage_1_Dir" Attributes="0" KeyPath="geopackage.js_1" Type="0"/>
     <ROW Component="ggplot2.R" ComponentId="{023AC957-2102-4B0E-BC0F-DB37073393BD}" Directory_="ggplot_Dir" Attributes="0" KeyPath="ggplot2.R" Type="0"/>
+    <ROW Component="gitignore" ComponentId="{E6E0F870-C04E-47FE-A106-28AB195B44B3}" Directory_="colorpicker3.4.3_Dir" Attributes="0" KeyPath="gitignore" Type="0"/>
     <ROW Component="glibconfig.h" ComponentId="{51AE333C-8B29-4972-8D15-E204214397E9}" Directory_="include_2_Dir" Attributes="0" KeyPath="glibconfig.h" Type="0"/>
     <ROW Component="glibobject.h" ComponentId="{39A44013-C49D-4B51-AFB5-9E4AFC4AF3BC}" Directory_="glib2.0_Dir" Attributes="0" KeyPath="glibobject.h" Type="0"/>
     <ROW Component="gmodulevisibility.h" ComponentId="{4C7A8536-E62A-42D1-8A36-9118325C614A}" Directory_="gmodule_Dir" Attributes="0" KeyPath="gmodulevisibility.h" Type="0"/>
@@ -1478,6 +1520,7 @@
     <ROW Component="hwyconfigrelease.cmake" ComponentId="{F9BC4D81-0859-4706-880A-435D27500945}" Directory_="hwy_1_Dir" Attributes="0" KeyPath="hwyconfigrelease.cmake" Type="0"/>
     <ROW Component="i18next.js" ComponentId="{ED25CF98-6174-46EE-BBC5-B198AC78E779}" Directory_="i18next_Dir" Attributes="0" KeyPath="i18next.js" Type="0"/>
     <ROW Component="igraph.dll" ComponentId="{0F05D7C2-03D4-4C28-B43F-470D8F511F82}" Directory_="library_Dir" Attributes="256" KeyPath="igraph.dll"/>
+    <ROW Component="index.html" ComponentId="{668B20FB-5D88-4ED8-825C-5435643A8178}" Directory_="examples_Dir" Attributes="0" KeyPath="index.html_4" Type="0"/>
     <ROW Component="install_locals.cmd" ComponentId="{7A6DCF88-DE75-4942-A2E1-16C51C260C94}" Directory_="packages_Dir" Attributes="0" KeyPath="install_locals.cmd"/>
     <ROW Component="jquery3.1.1.js" ComponentId="{6B65C727-C16E-4BD1-9BFA-6DD40990A9ED}" Directory_="jquery_Dir" Attributes="0" KeyPath="jquery3.1.1.js" Type="0"/>
     <ROW Component="jsimdext.inc" ComponentId="{205735E0-3073-431E-84A8-DA5BE6C754D4}" Directory_="libjpegturbo_Dir" Attributes="0" KeyPath="jsimdext.inc" Type="0"/>
@@ -1638,6 +1681,7 @@
     <ROW Component="px.png" ComponentId="{3B0A6919-B068-4203-AA54-77D087272A65}" Directory_="mixed_Dir" Attributes="0" KeyPath="px.png" Type="0"/>
     <ROW Component="px.png_1" ComponentId="{E6019BA5-5E5D-4765-9115-C0CCDC53A8F8}" Directory_="default_Dir" Attributes="0" KeyPath="px.png_2" Type="0"/>
     <ROW Component="px.png_2" ComponentId="{4AE1C5CC-69EF-4AC4-B0B8-358CF563D336}" Directory_="defaultdark_Dir" Attributes="0" KeyPath="px.png_4" Type="0"/>
+    <ROW Component="px.png_3" ComponentId="{A1A8F365-C56A-4637-859C-1FEB60830610}" Directory_="images_4_Dir" Attributes="0" KeyPath="px.png_6" Type="0"/>
     <ROW Component="regid.201301.com.panomix" ComponentId="{63A0ED36-59FE-437D-ABA9-2A17B9A3A3F0}" Directory_="regid.201301.com.panomix_Dir" Attributes="0"/>
     <ROW Component="resetdirssample.conf" ComponentId="{EEF16D0F-BC4A-4D2F-947A-549C14847F6D}" Directory_="conf.avail_Dir" Attributes="0" KeyPath="resetdirssample.conf" Type="0"/>
     <ROW Component="roxygenNet.dll" ComponentId="{E0E9A75E-58C3-4143-B990-88737EBD1D95}" Directory_="library_Dir" Attributes="256" KeyPath="roxygenNet.dll"/>
@@ -1658,6 +1702,7 @@
     <ROW Component="svg" ComponentId="{3D7C84B6-BF9A-43BF-ADF9-449E1432C4F1}" Directory_="solid_Dir" Attributes="0" KeyPath="svg" Type="0"/>
     <ROW Component="szip.dll" ComponentId="{6A467A4D-BC2F-45F2-A345-1475CE25BFC4}" Directory_="bin32_Dir" Attributes="0" KeyPath="szip.dll"/>
     <ROW Component="szip.dll_1" ComponentId="{86AE3686-8051-4C9E-BF00-07DB1CAA42F4}" Directory_="bin64_Dir" Attributes="256" KeyPath="szip.dll_1"/>
+    <ROW Component="themes.gif" ComponentId="{F20B9892-24DB-41B5-817B-F70504218975}" Directory_="screenshots_Dir" Attributes="0" KeyPath="themes.gif" Type="0"/>
     <ROW Component="three.js" ComponentId="{46E5E993-3674-41D8-B35D-FE004B482B3A}" Directory_="build_Dir" Attributes="0" KeyPath="three.js" Type="0"/>
     <ROW Component="translation.json" ComponentId="{E8E81BCB-38A9-4DF2-8EA2-6DED5795DFB2}" Directory_="de_Dir" Attributes="0" KeyPath="translation.json" Type="0"/>
     <ROW Component="translation.json_1" ComponentId="{A7F44A2D-7A35-47D7-B38B-6C07A52E77D6}" Directory_="es_Dir" Attributes="0" KeyPath="translation.json_4" Type="0"/>
@@ -18371,11 +18416,141 @@
     <ROW File="Mzkit_win32.MSImagingViewerV2.dll.config" Component_="Mzkit_win32.MSImagingViewerV2.dll.config" FileName="MZKIT_~7.CON|Mzkit_win32.MSImagingViewerV2.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.MSImagingViewerV2.dll.config" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.Data.Rhea.xml_2" Component_="Mzkit_win32.LCMSViewer.dll.config" FileName="SMRUC~16.XML|SMRUCC.genomics.Data.Rhea.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Data.Rhea.xml" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.Data.SABIORK.xml_2" Component_="Mzkit_win32.LCMSViewer.dll.config" FileName="SMRUC~17.XML|SMRUCC.genomics.Data.SABIO-RK.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Data.SABIO-RK.xml" SelfReg="false"/>
-    <ROW File="BioDeep.dll_2" Component_="BioDeep.dll_2" FileName="BioDeep.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioDeep.dll" SelfReg="false"/>
-    <ROW File="BioDeep.dll.config_2" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="BIODEE~1.CON|BioDeep.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioDeep.dll.config" SelfReg="false"/>
+    <ROW File="BioDeep.dll_2" Component_="BioDeep.dll_3" FileName="BioDeep.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioDeep.dll" SelfReg="false"/>
+    <ROW File="BioDeep.dll.config_2" Component_="BioDeep.dll.config_1" FileName="BIODEE~1.CON|BioDeep.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioDeep.dll.config" SelfReg="false"/>
     <ROW File="BioDeep.pdb_1" Component_="BioDeep.dll_2" FileName="BioDeep.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioDeep.pdb" SelfReg="false"/>
-    <ROW File="RQL.dll_1" Component_="RQL.dll_1" FileName="RQL.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\RQL.dll" SelfReg="false"/>
+    <ROW File="RQL.dll_1" Component_="RQL.dll_4" FileName="RQL.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\RQL.dll" SelfReg="false"/>
     <ROW File="RQL.pdb" Component_="RQL.dll_1" FileName="RQL.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\RQL.pdb" SelfReg="false"/>
+    <ROW File="System.Diagnostics.DiagnosticSource.dll" Component_="System.Diagnostics.DiagnosticSource.dll" FileName="SYSTE~13.DLL|System.Diagnostics.DiagnosticSource.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\System.Diagnostics.DiagnosticSource.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll_2" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll_3" FileName="BIONO~19.DLL|BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.xml_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="BIONO~19.XML|BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.xml" SelfReg="false"/>
+    <ROW File="Flute.Http.dll_2" Component_="Flute.Http.dll_2" FileName="FLUTEH~1.DLL|Flute.Http.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Flute.Http.dll" SelfReg="false"/>
+    <ROW File="Flute.Http.xml_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="FLUTEH~1.XML|Flute.Http.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Flute.Http.xml" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" FileName="SMRUC~13.DLL|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" SelfReg="false"/>
+    <ROW File="ThermoFisher.CommonCore.BackgroundSubtraction.dll_2" Component_="ThermoFisher.CommonCore.BackgroundSubtraction.dll_2" FileName="THERMO~1.DLL|ThermoFisher.CommonCore.BackgroundSubtraction.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.BackgroundSubtraction.dll" SelfReg="false"/>
+    <ROW File="ThermoFisher.CommonCore.BackgroundSubtraction.xml_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="THERMO~1.XML|ThermoFisher.CommonCore.BackgroundSubtraction.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.BackgroundSubtraction.xml" SelfReg="false"/>
+    <ROW File="ThermoFisher.CommonCore.Data.dll_2" Component_="ThermoFisher.CommonCore.Data.dll_2" FileName="THERMO~2.DLL|ThermoFisher.CommonCore.Data.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.Data.dll" SelfReg="false"/>
+    <ROW File="ThermoFisher.CommonCore.Data.xml_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="THERMO~2.XML|ThermoFisher.CommonCore.Data.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.Data.xml" SelfReg="false"/>
+    <ROW File="ThermoFisher.CommonCore.MassPrecisionEstimator.dll_2" Component_="ThermoFisher.CommonCore.MassPrecisionEstimator.dll_2" FileName="THERMO~3.DLL|ThermoFisher.CommonCore.MassPrecisionEstimator.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.MassPrecisionEstimator.dll" SelfReg="false"/>
+    <ROW File="ThermoFisher.CommonCore.MassPrecisionEstimator.xml_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="THERMO~3.XML|ThermoFisher.CommonCore.MassPrecisionEstimator.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.MassPrecisionEstimator.xml" SelfReg="false"/>
+    <ROW File="ThermoFisher.CommonCore.RawFileReader.dll_2" Component_="ThermoFisher.CommonCore.RawFileReader.dll_2" FileName="THERMO~4.DLL|ThermoFisher.CommonCore.RawFileReader.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.RawFileReader.dll" SelfReg="false"/>
+    <ROW File="ThermoFisher.CommonCore.RawFileReader.xml_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="THERMO~4.XML|ThermoFisher.CommonCore.RawFileReader.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ThermoFisher.CommonCore.RawFileReader.xml" SelfReg="false"/>
+    <ROW File="settings.css" Component_="d_canvas.css" FileName="settings.css" Attributes="0" SourcePath="..\webview\assets\settings.css" SelfReg="false"/>
+    <ROW File="settings.html" Component_="logo.png" FileName="SETTIN~1.HTM|settings.html" Attributes="0" SourcePath="..\webview\settings.html" SelfReg="false"/>
+    <ROW File="bootstraptableeditor.js" Component_="bootstraptableeditor.js" FileName="BOOTST~1.JS|bootstrap-table-editor.js" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\bootstrap-table-editor.js" SelfReg="false"/>
+    <ROW File="bootstraptable.css" Component_="bootstraptable.css" FileName="BOOTST~1.CSS|bootstrap-table.css" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\bootstrap-table.css" SelfReg="false"/>
+    <ROW File="bootstrap.min.css_1" Component_="bootstraptable.css" FileName="BOOTST~2.CSS|bootstrap.min.css" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\bootstrap.min.css" SelfReg="false"/>
+    <ROW File="fontawesome.css_1" Component_="fontawesome.css" FileName="FONT-A~1.CSS|font-awesome.css" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\font-awesome\css\font-awesome.css" SelfReg="false"/>
+    <ROW File="fontawesomewebfont.eot" Component_="fontawesomewebfont.eot" FileName="FONTAW~1.EOT|fontawesome-webfont.eot" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\font-awesome\fonts\fontawesome-webfont.eot" SelfReg="false"/>
+    <ROW File="fontawesomewebfont.svg" Component_="fontawesomewebfont.eot" FileName="FONTAW~1.SVG|fontawesome-webfont.svg" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\font-awesome\fonts\fontawesome-webfont.svg" SelfReg="false"/>
+    <ROW File="fontawesomewebfont.ttf" Component_="fontawesomewebfont.eot" FileName="FONTAW~1.TTF|fontawesome-webfont.ttf" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\font-awesome\fonts\fontawesome-webfont.ttf" SelfReg="false"/>
+    <ROW File="fontawesomewebfont.woff" Component_="fontawesomewebfont.eot" FileName="FONTAW~1.WOF|fontawesome-webfont.woff" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\font-awesome\fonts\fontawesome-webfont.woff" SelfReg="false"/>
+    <ROW File="fontawesomewebfont.woff2" Component_="fontawesomewebfont.eot" FileName="FONTAW~2.WOF|fontawesome-webfont.woff2" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\font-awesome\fonts\fontawesome-webfont.woff2" SelfReg="false"/>
+    <ROW File="FontAwesome.otf" Component_="fontawesomewebfont.eot" FileName="FONTAW~1.OTF|FontAwesome.otf" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\font-awesome\fonts\FontAwesome.otf" SelfReg="false"/>
+    <ROW File="fontawesome.css_2" Component_="bootstraptable.css" FileName="FONT-A~1.CSS|font-awesome.css" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\font-awesome.css" SelfReg="false"/>
+    <ROW File="fontawesome.min.css_1" Component_="bootstraptable.css" FileName="FONT-A~2.CSS|font-awesome.min.css" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\font-awesome.min.css" SelfReg="false"/>
+    <ROW File="fontawesomewebfont.eot_1" Component_="fontawesomewebfont.eot_1" FileName="FONTAW~1.EOT|fontawesome-webfont.eot" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\fonts\fontawesome-webfont.eot" SelfReg="false"/>
+    <ROW File="fontawesomewebfont.svg_1" Component_="fontawesomewebfont.eot_1" FileName="FONTAW~1.SVG|fontawesome-webfont.svg" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\fonts\fontawesome-webfont.svg" SelfReg="false"/>
+    <ROW File="fontawesomewebfont.ttf_1" Component_="fontawesomewebfont.eot_1" FileName="FONTAW~1.TTF|fontawesome-webfont.ttf" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\fonts\fontawesome-webfont.ttf" SelfReg="false"/>
+    <ROW File="fontawesomewebfont.woff_1" Component_="fontawesomewebfont.eot_1" FileName="FONTAW~1.WOF|fontawesome-webfont.woff" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\fonts\fontawesome-webfont.woff" SelfReg="false"/>
+    <ROW File="fontawesomewebfont.woff2_1" Component_="fontawesomewebfont.eot_1" FileName="FONTAW~2.WOF|fontawesome-webfont.woff2" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\fonts\fontawesome-webfont.woff2" SelfReg="false"/>
+    <ROW File="FontAwesome.otf_1" Component_="fontawesomewebfont.eot_1" FileName="FONTAW~1.OTF|FontAwesome.otf" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\fonts\FontAwesome.otf" SelfReg="false"/>
+    <ROW File="glyphiconshalflingsregular.eot" Component_="fontawesomewebfont.eot_1" FileName="GLYPHI~1.EOT|glyphicons-halflings-regular.eot" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\fonts\glyphicons-halflings-regular.eot" SelfReg="false"/>
+    <ROW File="glyphiconshalflingsregular.svg" Component_="fontawesomewebfont.eot_1" FileName="GLYPHI~1.SVG|glyphicons-halflings-regular.svg" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\fonts\glyphicons-halflings-regular.svg" SelfReg="false"/>
+    <ROW File="glyphiconshalflingsregular.ttf" Component_="fontawesomewebfont.eot_1" FileName="GLYPHI~1.TTF|glyphicons-halflings-regular.ttf" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\fonts\glyphicons-halflings-regular.ttf" SelfReg="false"/>
+    <ROW File="glyphiconshalflingsregular.woff" Component_="fontawesomewebfont.eot_1" FileName="GLYPHI~1.WOF|glyphicons-halflings-regular.woff" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\fonts\glyphicons-halflings-regular.woff" SelfReg="false"/>
+    <ROW File="glyphiconshalflingsregular.woff2" Component_="fontawesomewebfont.eot_1" FileName="GLYPHI~2.WOF|glyphicons-halflings-regular.woff2" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\fonts\glyphicons-halflings-regular.woff2" SelfReg="false"/>
+    <ROW File="back.png" Component_="back.png" FileName="back.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\back.png" SelfReg="false"/>
+    <ROW File="blank.gif" Component_="back.png" FileName="blank.gif" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\blank.gif" SelfReg="false"/>
+    <ROW File="cancel.png" Component_="back.png" FileName="cancel.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\cancel.png" SelfReg="false"/>
+    <ROW File="clear.png" Component_="back.png" FileName="clear.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\clear.png" SelfReg="false"/>
+    <ROW File="cut.png" Component_="back.png" FileName="cut.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\cut.png" SelfReg="false"/>
+    <ROW File="edit_add.png" Component_="back.png" FileName="edit_add.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\edit_add.png" SelfReg="false"/>
+    <ROW File="edit_remove.png" Component_="back.png" FileName="EDIT_R~1.PNG|edit_remove.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\edit_remove.png" SelfReg="false"/>
+    <ROW File="filesave.png" Component_="back.png" FileName="filesave.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\filesave.png" SelfReg="false"/>
+    <ROW File="filter.png" Component_="back.png" FileName="filter.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\filter.png" SelfReg="false"/>
+    <ROW File="help.png" Component_="back.png" FileName="help.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\help.png" SelfReg="false"/>
+    <ROW File="large_chart.png" Component_="back.png" FileName="LARGE_~1.PNG|large_chart.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\large_chart.png" SelfReg="false"/>
+    <ROW File="large_clipart.png" Component_="back.png" FileName="LARGE_~2.PNG|large_clipart.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\large_clipart.png" SelfReg="false"/>
+    <ROW File="large_picture.png" Component_="back.png" FileName="LARGE_~3.PNG|large_picture.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\large_picture.png" SelfReg="false"/>
+    <ROW File="large_shapes.png" Component_="back.png" FileName="LARGE_~4.PNG|large_shapes.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\large_shapes.png" SelfReg="false"/>
+    <ROW File="large_smartart.png" Component_="back.png" FileName="LARGE_~5.PNG|large_smartart.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\large_smartart.png" SelfReg="false"/>
+    <ROW File="lock.png" Component_="back.png" FileName="lock.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\lock.png" SelfReg="false"/>
+    <ROW File="man.png" Component_="back.png" FileName="man.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\man.png" SelfReg="false"/>
+    <ROW File="mini_add.png" Component_="back.png" FileName="mini_add.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\mini_add.png" SelfReg="false"/>
+    <ROW File="mini_edit.png" Component_="back.png" FileName="MINI_E~1.PNG|mini_edit.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\mini_edit.png" SelfReg="false"/>
+    <ROW File="mini_refresh.png" Component_="back.png" FileName="MINI_R~1.PNG|mini_refresh.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\mini_refresh.png" SelfReg="false"/>
+    <ROW File="more.png" Component_="back.png" FileName="more.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\more.png" SelfReg="false"/>
+    <ROW File="no.png" Component_="back.png" FileName="no.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\no.png" SelfReg="false"/>
+    <ROW File="ok.png" Component_="back.png" FileName="ok.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\ok.png" SelfReg="false"/>
+    <ROW File="pencil.png" Component_="back.png" FileName="pencil.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\pencil.png" SelfReg="false"/>
+    <ROW File="print.png" Component_="back.png" FileName="print.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\print.png" SelfReg="false"/>
+    <ROW File="redo.png" Component_="back.png" FileName="redo.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\redo.png" SelfReg="false"/>
+    <ROW File="reload.png" Component_="back.png" FileName="reload.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\reload.png" SelfReg="false"/>
+    <ROW File="search.png" Component_="back.png" FileName="search.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\search.png" SelfReg="false"/>
+    <ROW File="sum.png" Component_="back.png" FileName="sum.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\sum.png" SelfReg="false"/>
+    <ROW File="tip.png" Component_="back.png" FileName="tip.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\tip.png" SelfReg="false"/>
+    <ROW File="undo.png" Component_="back.png" FileName="undo.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\icons\undo.png" SelfReg="false"/>
+    <ROW File="px.png_6" Component_="px.png_3" FileName="32px.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\images\32px.png" SelfReg="false"/>
+    <ROW File="accordion_arrows.png" Component_="px.png_3" FileName="ACCORD~1.PNG|accordion_arrows.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\images\accordion_arrows.png" SelfReg="false"/>
+    <ROW File="blank.gif_1" Component_="px.png_3" FileName="blank.gif" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\images\blank.gif" SelfReg="false"/>
+    <ROW File="calendar_arrows.png" Component_="px.png_3" FileName="CALEND~1.PNG|calendar_arrows.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\images\calendar_arrows.png" SelfReg="false"/>
+    <ROW File="combo_arrow.png" Component_="px.png_3" FileName="COMBO_~1.PNG|combo_arrow.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\images\combo_arrow.png" SelfReg="false"/>
+    <ROW File="datagrid_icons.png" Component_="px.png_3" FileName="DATAGR~1.PNG|datagrid_icons.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\images\datagrid_icons.png" SelfReg="false"/>
+    <ROW File="datebox_arrow.png" Component_="px.png_3" FileName="DATEBO~1.PNG|datebox_arrow.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\images\datebox_arrow.png" SelfReg="false"/>
+    <ROW File="layout_arrows.png" Component_="px.png_3" FileName="LAYOUT~1.PNG|layout_arrows.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\images\layout_arrows.png" SelfReg="false"/>
+    <ROW File="linkbutton_bg.png" Component_="px.png_3" FileName="LINKBU~1.PNG|linkbutton_bg.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\images\linkbutton_bg.png" SelfReg="false"/>
+    <ROW File="loading.gif" Component_="px.png_3" FileName="loading.gif" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\images\loading.gif" SelfReg="false"/>
+    <ROW File="menu_arrows.png" Component_="px.png_3" FileName="MENU_A~1.PNG|menu_arrows.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\images\menu_arrows.png" SelfReg="false"/>
+    <ROW File="messager_icons.png" Component_="px.png_3" FileName="MESSAG~1.PNG|messager_icons.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\images\messager_icons.png" SelfReg="false"/>
+    <ROW File="pagination_icons.png" Component_="px.png_3" FileName="PAGINA~1.PNG|pagination_icons.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\images\pagination_icons.png" SelfReg="false"/>
+    <ROW File="panel_tools.png" Component_="px.png_3" FileName="PANEL_~1.PNG|panel_tools.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\images\panel_tools.png" SelfReg="false"/>
+    <ROW File="searchbox_button.png" Component_="px.png_3" FileName="SEARCH~1.PNG|searchbox_button.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\images\searchbox_button.png" SelfReg="false"/>
+    <ROW File="slider_handle.png" Component_="px.png_3" FileName="SLIDER~1.PNG|slider_handle.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\images\slider_handle.png" SelfReg="false"/>
+    <ROW File="spinner_arrows.png" Component_="px.png_3" FileName="SPINNE~1.PNG|spinner_arrows.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\images\spinner_arrows.png" SelfReg="false"/>
+    <ROW File="tabs_icons.png" Component_="px.png_3" FileName="TABS_I~1.PNG|tabs_icons.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\images\tabs_icons.png" SelfReg="false"/>
+    <ROW File="throbber.gif_3" Component_="px.png_3" FileName="throbber.gif" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\images\throbber.gif" SelfReg="false"/>
+    <ROW File="tree_icons.png" Component_="px.png_3" FileName="TREE_I~1.PNG|tree_icons.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\images\tree_icons.png" SelfReg="false"/>
+    <ROW File="validatebox_warning.png" Component_="px.png_3" FileName="VALIDA~1.PNG|validatebox_warning.png" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\css\images\validatebox_warning.png" SelfReg="false"/>
+    <ROW File="index.html_4" Component_="index.html" FileName="INDEX~1.HTM|index.html" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\index.html" SelfReg="false"/>
+    <ROW File="bootstraptableeditor.js_1" Component_="bootstraptableeditor.js_1" FileName="BOOTST~1.JS|bootstrap-table-editor.js" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\libs\bootstrap-table-editor.js" SelfReg="false"/>
+    <ROW File="bootstraptablezhCN.js" Component_="bootstraptableeditor.js_1" FileName="BOOTST~2.JS|bootstrap-table-zh-CN.js" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\libs\bootstrap-table-zh-CN.js" SelfReg="false"/>
+    <ROW File="bootstraptable.js" Component_="bootstraptableeditor.js_1" FileName="BOOTST~3.JS|bootstrap-table.js" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\libs\bootstrap-table.js" SelfReg="false"/>
+    <ROW File="bootstrap.min.js_2" Component_="bootstraptableeditor.js_1" FileName="BOOTST~4.JS|bootstrap.min.js" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\libs\bootstrap.min.js" SelfReg="false"/>
+    <ROW File="jquery.js" Component_="bootstraptableeditor.js_1" FileName="jquery.js" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\examples\libs\jquery.js" SelfReg="false"/>
+    <ROW File="LICENSE_20" Component_="bootstraptableeditor.js" FileName="LICENSE" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\LICENSE" SelfReg="false"/>
+    <ROW File="README.en.md" Component_="bootstraptableeditor.js" FileName="README~1.MD|README.en.md" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\README.en.md" SelfReg="false"/>
+    <ROW File="README.md_13" Component_="bootstraptableeditor.js" FileName="README.md" Attributes="0" SourcePath="..\webview\vendor\bootstrap-table-editor\README.md" SelfReg="false"/>
+    <ROW File="gitignore" Component_="gitignore" FileName="GITIGN~1|.gitignore" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\.gitignore" SelfReg="false"/>
+    <ROW File="bower.json" Component_="gitignore" FileName="BOWER~1.JSO|bower.json" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\bower.json" SelfReg="false"/>
+    <ROW File="composer.json" Component_="gitignore" FileName="COMPOS~1.JSO|composer.json" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\composer.json" SelfReg="false"/>
+    <ROW File="bg0.png" Component_="bg0.png" FileName="bg0.png" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\css\bg0.png" SelfReg="false"/>
+    <ROW File="demo.css" Component_="bg0.png" FileName="demo.css" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\css\demo.css" SelfReg="false"/>
+    <ROW File="evolcolorpicker.css" Component_="bg0.png" FileName="EVOL-C~1.CSS|evol-colorpicker.css" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\css\evol-colorpicker.css" SelfReg="false"/>
+    <ROW File="evolcolorpicker.min.css" Component_="bg0.png" FileName="EVOL-C~2.CSS|evol-colorpicker.min.css" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\css\evol-colorpicker.min.css" SelfReg="false"/>
+    <ROW File="favicon.gif" Component_="gitignore" FileName="favicon.gif" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\favicon.gif" SelfReg="false"/>
+    <ROW File="Gruntfile.js" Component_="gitignore" FileName="GRUNTF~1.JS|Gruntfile.js" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\Gruntfile.js" SelfReg="false"/>
+    <ROW File="index.html_5" Component_="gitignore" FileName="INDEX~1.HTM|index.html" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\index.html" SelfReg="false"/>
+    <ROW File="evolcolorpicker.js" Component_="evolcolorpicker.js" FileName="EVOL-C~1.JS|evol-colorpicker.js" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\js\evol-colorpicker.js" SelfReg="false"/>
+    <ROW File="evolcolorpicker.min.js" Component_="evolcolorpicker.js" FileName="EVOL-C~2.JS|evol-colorpicker.min.js" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\js\evol-colorpicker.min.js" SelfReg="false"/>
+    <ROW File="demo.less" Component_="demo.less" FileName="DEMO~1.LES|demo.less" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\less\demo.less" SelfReg="false"/>
+    <ROW File="evolcolorpicker.less" Component_="demo.less" FileName="EVOL-C~1.LES|evol-colorpicker.less" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\less\evol-colorpicker.less" SelfReg="false"/>
+    <ROW File="LICENSE.md_4" Component_="gitignore" FileName="LICENSE.md" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\LICENSE.md" SelfReg="false"/>
+    <ROW File="package.json_1" Component_="gitignore" FileName="PACKAG~1.JSO|package.json" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\package.json" SelfReg="false"/>
+    <ROW File="README.md_14" Component_="gitignore" FileName="README.md" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\README.md" SelfReg="false"/>
+    <ROW File="renovate.json" Component_="gitignore" FileName="RENOVA~1.JSO|renovate.json" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\renovate.json" SelfReg="false"/>
+    <ROW File="screenshot1.png" Component_="gitignore" FileName="SCREEN~1.PNG|screenshot1.png" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\screenshot1.png" SelfReg="false"/>
+    <ROW File="screenshot2.png" Component_="gitignore" FileName="SCREEN~2.PNG|screenshot2.png" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\screenshot2.png" SelfReg="false"/>
+    <ROW File="screenshot3.png" Component_="gitignore" FileName="SCREEN~3.PNG|screenshot3.png" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\screenshot3.png" SelfReg="false"/>
+    <ROW File="themes.gif" Component_="themes.gif" FileName="themes.gif" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\screenshots\themes.gif" SelfReg="false"/>
+    <ROW File="kegg_compounds.msgpack" Component_="chebi_lite.obo" FileName="KEGG_C~1.MSG|kegg_compounds.msgpack" Attributes="0" SourcePath="..\rstudio\data\kegg_compounds.msgpack" SelfReg="false"/>
+    <ROW File="Flute.Http.xml_3" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="FLUTEH~1.XML|Flute.Http.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Flute.Http.xml" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_1" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_4" FileName="SMRUC~13.DLL|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_1" FileName="SMRUC~13.PDB|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_2" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_3" FileName="SMRUC~19.DLL|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb_1" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_2" FileName="SMRUC~19.PDB|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" SelfReg="false"/>
+    <ROW File="Flute.Http.dll_5" Component_="Flute.Http.dll_5" FileName="FLUTEH~1.DLL|Flute.Http.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Flute.Http.dll" SelfReg="false"/>
+    <ROW File="Flute.Http.pdb_3" Component_="Flute.Http.dll_5" FileName="FLUTEH~1.PDB|Flute.Http.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Flute.Http.pdb" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -19858,6 +20033,36 @@
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.ODEsSolver.dll.config_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="CDF.PInvoke.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="RQL.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="System.Diagnostics.DiagnosticSource.dll"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll_3"/>
+    <ROW Feature_="MainFeature" Component_="Flute.Http.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll"/>
+    <ROW Feature_="MainFeature" Component_="ThermoFisher.CommonCore.BackgroundSubtraction.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="ThermoFisher.CommonCore.Data.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="ThermoFisher.CommonCore.MassPrecisionEstimator.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="ThermoFisher.CommonCore.RawFileReader.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="bootstraptableeditor.js"/>
+    <ROW Feature_="MainFeature" Component_="bootstraptable.css"/>
+    <ROW Feature_="MainFeature" Component_="fontawesome.css"/>
+    <ROW Feature_="MainFeature" Component_="fontawesomewebfont.eot"/>
+    <ROW Feature_="MainFeature" Component_="fontawesomewebfont.eot_1"/>
+    <ROW Feature_="MainFeature" Component_="back.png"/>
+    <ROW Feature_="MainFeature" Component_="px.png_3"/>
+    <ROW Feature_="MainFeature" Component_="index.html"/>
+    <ROW Feature_="MainFeature" Component_="bootstraptableeditor.js_1"/>
+    <ROW Feature_="MainFeature" Component_="gitignore"/>
+    <ROW Feature_="MainFeature" Component_="bg0.png"/>
+    <ROW Feature_="MainFeature" Component_="evolcolorpicker.js"/>
+    <ROW Feature_="MainFeature" Component_="demo.less"/>
+    <ROW Feature_="MainFeature" Component_="themes.gif"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_1"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_3"/>
+    <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_4"/>
+    <ROW Feature_="MainFeature" Component_="BioDeep.dll_3"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Flute.Http.dll_5"/>
+    <ROW Feature_="MainFeature" Component_="RQL.dll_4"/>
+    <ROW Feature_="MainFeature" Component_="BioDeep.dll.config_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
@@ -19991,7 +20196,7 @@
     <ATTRIBUTE name="UsedTheme" value="azure"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiUpgradeComponent">
-    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="0.0.1" VersionMax="[|ProductVersion]" Attributes="257" ActionProperty="OLDPRODUCTS"/>
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="0.0.1" VersionMax="[|ProductVersion]" Attributes="769" ActionProperty="OLDPRODUCTS"/>
     <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiVerbComponent">
@@ -20039,7 +20244,7 @@
     <ROW Directory_="data_Dir" SourcePath="..\rstudio\data" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="jaJP_Dir" SourcePath="..\..\..\dist\bin\ja-JP" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="ndpitools_Dir" SourcePath="..\dist\ndpitools" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
-    <ROW Directory_="plugins_Dir" SourcePath="..\..\..\dist\bin\plugins" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|\en-US|\zh-Hans|runtimes|*.xml|Microsoft.VisualBasic.Runtime.*|/ThemeVS2015.*|System.Numerics.Vectors.*|Mzkit_win32.BasicMDIForm.*|Microsoft.*|\zh-CN|/BioNovoGene.*|/ThermoFisher.*|/System.*|/REnv.*|Mzkit_.*|Mzkit_win32.Interaction.dll|Sciex.*|Clearcore2.*|Mzkit_win32.*|/WkHtmlToPdf.*|SMRUCC.*|/BioDeep.*|/RQL.*" ExcludeFlags="6" FileAddOptions="4"/>
+    <ROW Directory_="plugins_Dir" SourcePath="..\..\..\dist\bin\plugins" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|\en-US|\zh-Hans|runtimes|*.xml|Microsoft.VisualBasic.Runtime.*|/ThemeVS2015.*|System.Numerics.Vectors.*|Mzkit_win32.BasicMDIForm.*|Microsoft.*|\zh-CN|/BioNovoGene.*|/ThermoFisher.*|/System.*|/REnv.*|Mzkit_.*|Mzkit_win32.Interaction.dll|Sciex.*|Clearcore2.*|Mzkit_win32.*|/WkHtmlToPdf.*|SMRUCC.*|/BioDeep.*|/RQL.*|Flute.*" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="zhHans_Dir" SourcePath="..\..\..\dist\bin\zh-Hans" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="js_1_Dir" SourcePath="..\webview\assets\js" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|/*.map" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="fr_Dir" SourcePath="..\..\..\dist\bin\fr" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
@@ -20059,14 +20264,14 @@
     <ROW XmlAttribute="xsischemaLocation" XmlElement="swidsoftware_identification_tag" Name="xsi:schemaLocation" Flags="14" Order="3" Value="http://standards.iso.org/iso/19770/-2/2008/schema.xsd software_identification_tag.xsd"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.XmlElementComponent">
-    <ROW XmlElement="swidbuild" ParentElement="swidnumeric" Name="swid:build" Condition="1" Order="2" Flags="14" Text="7336" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidbuild" ParentElement="swidnumeric" Name="swid:build" Condition="1" Order="2" Flags="14" Text="9136" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidchannel_name" ParentElement="swidlicense_linkage" Name="swid:channel_name" Condition="1" Order="1" Flags="14" Text="Standard(Community Edition)" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidchannel_type" ParentElement="swidlicense_linkage" Name="swid:channel_type" Condition="1" Order="0" Flags="14" Text="Retail" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidcustomer_type" ParentElement="swidlicense_linkage" Name="swid:customer_type" Condition="1" Order="2" Flags="14" Text="Academic" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidentitlement_required_indicator" ParentElement="swidsoftware_identification_tag" Name="swid:entitlement_required_indicator" Condition="1" Order="0" Flags="14" Text="true" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidlicense_linkage" ParentElement="swidsoftware_identification_tag" Name="swid:license_linkage" Condition="1" Order="8" Flags="14" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidmajor" ParentElement="swidnumeric" Name="swid:major" Condition="1" Order="0" Flags="14" Text="5" UpdateIndexInParent="0"/>
-    <ROW XmlElement="swidminor" ParentElement="swidnumeric" Name="swid:minor" Condition="1" Order="1" Flags="14" Text="2" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidminor" ParentElement="swidnumeric" Name="swid:minor" Condition="1" Order="1" Flags="14" Text="5" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidname" ParentElement="swidproduct_version" Name="swid:name" Condition="1" Order="0" Flags="14" Text="[ProductVersion]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidname_7" ParentElement="swidsoftware_creator" Name="swid:name" Condition="1" Order="0" Flags="14" Text="[Manufacturer]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidname_8" ParentElement="swidsoftware_licensor" Name="swid:name" Condition="1" Order="0" Flags="14" Text="[Manufacturer]" UpdateIndexInParent="0"/>
@@ -20077,7 +20282,7 @@
     <ROW XmlElement="swidregid" ParentElement="swidsoftware_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2013-01.com.panomix" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_5" ParentElement="swidsoftware_licensor" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2019-11.org.mzkit" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_6" ParentElement="swidtag_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.1995-09.me.xieguigang,gg.xie@bionovogene.com" UpdateIndexInParent="0"/>
-    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="3219" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="9369" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidserial_number" ParentElement="swidsoftware_identification_tag" Name="swid:serial_number" Condition="1" Order="7" Flags="14" Text="[PIDKEY]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_creator" ParentElement="swidsoftware_identification_tag" Name="swid:software_creator" Condition="1" Order="3" Flags="14" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_id" ParentElement="swidsoftware_identification_tag" Name="swid:software_id" Condition="1" Order="5" Flags="14" UpdateIndexInParent="0"/>

@@ -176,7 +176,7 @@ Public Class MsImageProperty
     <Category("Render")> Public Property showTotalIonOverlap As Boolean = True
 
     <Description("The mass tolerance error threshold in delta dalton or ppm.")>
-    <Category("Pixel M/z Data")> Public Property tolerance As Double = 0.1
+    <Category("Pixel M/z Data")> Public Property tolerance As Double = 0.01
     <Description("The ion m/z mass tolerance algorithm for measure two ion m/z value is equals to each other.")>
     <Category("Pixel M/z Data")> Public Property method As MassToleranceType = MassToleranceType.Da
     <Description("The x coordinate of the pixel which has the max intensity value.")>

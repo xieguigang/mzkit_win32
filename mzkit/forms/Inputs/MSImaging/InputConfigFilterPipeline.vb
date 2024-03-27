@@ -85,6 +85,8 @@ Public Class InputConfigFilterPipeline
         For Each type As Type In fill_scalers
             CheckedListBox1.Items.Add(Activator.CreateInstance(type), False)
         Next
+
+        Call SetPipelineText()
     End Sub
 
     Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
@@ -93,6 +95,8 @@ Public Class InputConfigFilterPipeline
         If i > -1 Then
             CheckedListBox1.SetItemChecked(i, Not CheckedListBox1.GetItemChecked(i))
         End If
+
+        Call SetPipelineText()
     End Sub
 
     Private Sub CheckedListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CheckedListBox1.SelectedIndexChanged
@@ -104,6 +108,8 @@ Public Class InputConfigFilterPipeline
         If Not into.IsNullOrEmpty Then
             Call PlotHist()
         End If
+
+        Call SetPipelineText()
     End Sub
 
     Private Sub MoveUpToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MoveUpToolStripMenuItem.Click
@@ -114,6 +120,11 @@ Public Class InputConfigFilterPipeline
         End If
 
         Call Swap(i, j:=i - 1)
+        Call SetPipelineText()
+    End Sub
+
+    Private Sub SetPipelineText()
+        txtPipelineText.Text = GetFilter.Select(Function(i) i.ToScript).JoinBy(vbCrLf)
     End Sub
 
     Private Sub Swap(i As Integer, j As Integer)
@@ -138,6 +149,7 @@ Public Class InputConfigFilterPipeline
         End If
 
         Call Swap(i, j:=i + 1)
+        Call SetPipelineText()
     End Sub
 
     Private Sub RefreshToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RefreshToolStripMenuItem.Click
