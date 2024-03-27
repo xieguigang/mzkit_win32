@@ -41,10 +41,10 @@
     <ROW Property="IAgree" Value="Yes" Type="4"/>
     <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1028:{C0E67672-6A5A-4B04-89DE-6B55B2DD33AA} 1033:{C0E67672-6A5A-4B04-89DE-6B55B2DD33AA} 1036:{C0E67672-6A5A-4B04-89DE-6B55B2DD33AA} 1041:{C0E67672-6A5A-4B04-89DE-6B55B2DD33AA} 1049:{C0E67672-6A5A-4B04-89DE-6B55B2DD33AA} 2052:{C0E67672-6A5A-4B04-89DE-6B55B2DD33AA} 2057:{C0E67672-6A5A-4B04-89DE-6B55B2DD33AA} " Type="16"/>
+    <ROW Property="ProductCode" Value="1028:{18BB1A13-EEA9-4EFB-985B-D373451B4CD0} 1033:{18BB1A13-EEA9-4EFB-985B-D373451B4CD0} 1036:{18BB1A13-EEA9-4EFB-985B-D373451B4CD0} 1041:{18BB1A13-EEA9-4EFB-985B-D373451B4CD0} 1049:{18BB1A13-EEA9-4EFB-985B-D373451B4CD0} 2052:{18BB1A13-EEA9-4EFB-985B-D373451B4CD0} 2057:{18BB1A13-EEA9-4EFB-985B-D373451B4CD0} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="mzkit_win32"/>
-    <ROW Property="ProductVersion" Value="5.2.7336.3219"/>
+    <ROW Property="ProductVersion" Value="5.5.9136.9339"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{B645400B-3918-41EF-9009-7ADDD81C84B4}"/>
@@ -417,7 +417,7 @@
     <ROW Directory="zstdcodec_Dir" Directory_Parent="libs_Dir" DefaultDir="ZSTD-C~1|zstd-codec"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{1B59A78E-02B1-4035-96D8-5BE9F85908E5}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{27D7173B-EE60-4F99-A183-050D1427FD5A}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{69AA9FFE-67B1-456B-88EB-97D3D6C92AA7}" Directory_="APPDIR" Attributes="256"/>
     <ROW Component="ARButton.js" ComponentId="{4E917137-D4FF-49F8-85C3-6A5835EE4133}" Directory_="webxr_Dir" Attributes="0" KeyPath="ARButton.js" Type="0"/>
     <ROW Component="AUTHORS" ComponentId="{C7BB9CCD-8E40-46A1-99A4-0164F34C94BA}" Directory_="sql.js_Dir" Attributes="0" KeyPath="AUTHORS" Type="0"/>
@@ -429,8 +429,10 @@
     <ROW Component="BinaryHeap.js" ComponentId="{EC03028C-A448-48FF-973A-1732A11C99DA}" Directory_="other_Dir" Attributes="0" KeyPath="BinaryHeap.js" Type="0"/>
     <ROW Component="BioDeep.dll" ComponentId="{2FECE77D-517F-47B1-97BA-15B1100BE489}" Directory_="APPDIR" Attributes="256" KeyPath="BioDeep.dll"/>
     <ROW Component="BioDeep.dll.config" ComponentId="{C0CE488A-4270-4CBF-8A17-B07A8182BEA2}" Directory_="blender_Dir" Attributes="0" KeyPath="BlenderHost.deps.json" Type="0"/>
+    <ROW Component="BioDeep.dll.config_1" ComponentId="{9808D34F-4185-4FC5-86B0-8464CE7DA289}" Directory_="blender_Dir" Attributes="0" KeyPath="BioDeep.dll.config_2"/>
     <ROW Component="BioDeep.dll_1" ComponentId="{8274C55C-D52A-4F5B-A268-505929309095}" Directory_="host_Dir" Attributes="256" KeyPath="BioDeep.dll_1"/>
-    <ROW Component="BioDeep.dll_2" ComponentId="{74747C54-9C3E-4DF3-A6D8-70DB44B177B5}" Directory_="blender_Dir" Attributes="256" KeyPath="BioDeep.dll_2"/>
+    <ROW Component="BioDeep.dll_2" ComponentId="{74747C54-9C3E-4DF3-A6D8-70DB44B177B5}" Directory_="blender_Dir" Attributes="256" KeyPath="BioDeep.pdb_1"/>
+    <ROW Component="BioDeep.dll_3" ComponentId="{326E9FE5-D52B-4FBF-AC81-22BECAEA4685}" Directory_="blender_Dir" Attributes="256" KeyPath="BioDeep.dll_2"/>
     <ROW Component="BioDeep.pdb" ComponentId="{A43A4C99-E463-4917-B458-0C0240FFCE18}" Directory_="APPDIR" Attributes="0" KeyPath="BioDeep.pdb" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.dll" ComponentId="{7703A1F3-D323-4C49-B302-B4C97B203A97}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.dll_1" ComponentId="{92FB8640-32ED-41B1-9936-572F0A52E59B}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.d_1"/>
@@ -642,8 +644,7 @@
     <ROW Component="Flute.Http.dll" ComponentId="{1A9D1085-A042-4FB2-B9F6-267C14D598BD}" Directory_="APPDIR" Attributes="256" KeyPath="Flute.Http.dll"/>
     <ROW Component="Flute.Http.dll_1" ComponentId="{7126992B-A818-47AB-A05F-ECAF115FD030}" Directory_="bin_Dir" Attributes="256" KeyPath="Flute.Http.dll_1"/>
     <ROW Component="Flute.Http.dll_2" ComponentId="{E864A31A-24B9-4B09-9D10-097012043776}" Directory_="host_Dir" Attributes="256" KeyPath="Flute.Http.dll_2"/>
-    <ROW Component="Flute.Http.dll_3" ComponentId="{684D5E9B-9FB8-408A-97E2-1480DC7551DE}" Directory_="blender_Dir" Attributes="256" KeyPath="Flute.Http.dll_3"/>
-    <ROW Component="Flute.Http.dll_4" ComponentId="{B351E798-2757-4A33-923B-573E8212035E}" Directory_="plugins_Dir" Attributes="256" KeyPath="Flute.Http.dll_4"/>
+    <ROW Component="Flute.Http.dll_5" ComponentId="{10EA9E47-C22B-4BBD-927D-A5B91C71C60D}" Directory_="blender_Dir" Attributes="256" KeyPath="Flute.Http.dll_5"/>
     <ROW Component="Flute.Http.dll_9" ComponentId="{AC04B39C-8C05-407B-8AE4-0780C87805B9}" Directory_="library_Dir" Attributes="256" KeyPath="Flute.Http.dll_9"/>
     <ROW Component="Flute.Http.pdb" ComponentId="{BFE97953-F38D-4536-9EEC-FB524EC6A5B8}" Directory_="APPDIR" Attributes="0" KeyPath="Flute.Http.pdb" Type="4"/>
     <ROW Component="Flute.Http.xml" ComponentId="{4035364A-48E6-4100-B4AD-C6C9D7D8BEA4}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll.config_4" Type="0"/>
@@ -1145,9 +1146,10 @@
     <ROW Component="REnv.dll_6" ComponentId="{0A6B97C1-64A8-4591-BBC7-A9C5D61245A7}" Directory_="bin_Dir" Attributes="256" KeyPath="REnv.dll_6"/>
     <ROW Component="REnv.pdb" ComponentId="{A59E7642-17E3-4CBE-9A22-6A018C296FF6}" Directory_="APPDIR" Attributes="0" KeyPath="REnv.pdb" Type="4"/>
     <ROW Component="RQL.dll" ComponentId="{3E78E127-84CE-42E0-843C-A90C50CCD64C}" Directory_="host_Dir" Attributes="256" KeyPath="RQL.dll"/>
-    <ROW Component="RQL.dll_1" ComponentId="{E9806627-45B7-4A93-AA03-9A428A3DDD73}" Directory_="blender_Dir" Attributes="256" KeyPath="RQL.dll_1"/>
+    <ROW Component="RQL.dll_1" ComponentId="{E9806627-45B7-4A93-AA03-9A428A3DDD73}" Directory_="blender_Dir" Attributes="256" KeyPath="RQL.pdb"/>
     <ROW Component="RQL.dll_2" ComponentId="{43574292-3DCC-4FAF-9DB9-5731A0AE7B8E}" Directory_="APPDIR" Attributes="256" KeyPath="RQL.pdb_1" Type="4"/>
     <ROW Component="RQL.dll_3" ComponentId="{567526E2-F494-475E-94A6-7A3F8B63D45B}" Directory_="APPDIR" Attributes="256" KeyPath="RQL.dll_2"/>
+    <ROW Component="RQL.dll_4" ComponentId="{14CADB99-0EAD-4210-88A9-4BA3DD6D3075}" Directory_="blender_Dir" Attributes="256" KeyPath="RQL.dll_1"/>
     <ROW Component="ReleaseNotes.docx" ComponentId="{C89F9217-25CE-46C6-92A0-E41CA58D8AEA}" Directory_="NewFolder_2_Dir" Attributes="0" KeyPath="ReleaseNotes.docx" Type="0"/>
     <ROW Component="Rlapack.dll" ComponentId="{C08012A2-5A0F-4DE5-A380-A4C8C87EA7FD}" Directory_="library_Dir" Attributes="256" KeyPath="Rlapack.dll"/>
     <ROW Component="Rscript.dll_3" ComponentId="{D0CCC07B-2407-4099-B543-F74EA74FFDEE}" Directory_="bin_Dir" Attributes="256" KeyPath="Rscript.dll_3"/>
@@ -1213,7 +1215,10 @@
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.dll_4" ComponentId="{D4778108-8A27-45BA-8F5D-3E56444AC409}" Directory_="blender_Dir" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.dll_3"/>
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.pdb" ComponentId="{0B42920F-1FC7-4D6C-9FEE-AAA45959A118}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.pdb" Type="4"/>
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" ComponentId="{8FF369AE-3D26-4967-9F3E-CAE5EE71B3B7}" Directory_="host_Dir" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll"/>
-    <ROW Component="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_1" ComponentId="{FBC9AFBB-734A-4B1F-87C2-63A37A826007}" Directory_="blender_Dir" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_1"/>
+    <ROW Component="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_1" ComponentId="{FBC9AFBB-734A-4B1F-87C2-63A37A826007}" Directory_="blender_Dir" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb"/>
+    <ROW Component="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_2" ComponentId="{BF18B6BF-F496-40E7-84A0-B9FDD062434F}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb_1"/>
+    <ROW Component="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_3" ComponentId="{1CA70276-95F5-45C7-8330-6F0ED3B3A275}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_2"/>
+    <ROW Component="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_4" ComponentId="{BFC27A10-1A78-4141-8CE1-B02D0EAFE842}" Directory_="blender_Dir" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_1"/>
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.keggReport.dll" ComponentId="{FB6C7D69-45ED-429E-AE90-6A99C2F08469}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.keggReport.dll"/>
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.keggReport.pdb" ComponentId="{33AA2425-67AE-4E5F-9173-831E8C47199C}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.genomics.GCModeller.Workbench.keggReport.pdb" Type="4"/>
     <ROW Component="SMRUCC.genomics.InteractionModel.dll" ComponentId="{22934577-ADC6-43CA-9B10-30FD9C67643A}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.InteractionModel.dll"/>
@@ -18411,10 +18416,10 @@
     <ROW File="Mzkit_win32.MSImagingViewerV2.dll.config" Component_="Mzkit_win32.MSImagingViewerV2.dll.config" FileName="MZKIT_~7.CON|Mzkit_win32.MSImagingViewerV2.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.MSImagingViewerV2.dll.config" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.Data.Rhea.xml_2" Component_="Mzkit_win32.LCMSViewer.dll.config" FileName="SMRUC~16.XML|SMRUCC.genomics.Data.Rhea.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Data.Rhea.xml" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.Data.SABIORK.xml_2" Component_="Mzkit_win32.LCMSViewer.dll.config" FileName="SMRUC~17.XML|SMRUCC.genomics.Data.SABIO-RK.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.Data.SABIO-RK.xml" SelfReg="false"/>
-    <ROW File="BioDeep.dll_2" Component_="BioDeep.dll_2" FileName="BioDeep.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioDeep.dll" SelfReg="false"/>
-    <ROW File="BioDeep.dll.config_2" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="BIODEE~1.CON|BioDeep.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioDeep.dll.config" SelfReg="false"/>
+    <ROW File="BioDeep.dll_2" Component_="BioDeep.dll_3" FileName="BioDeep.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioDeep.dll" SelfReg="false"/>
+    <ROW File="BioDeep.dll.config_2" Component_="BioDeep.dll.config_1" FileName="BIODEE~1.CON|BioDeep.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioDeep.dll.config" SelfReg="false"/>
     <ROW File="BioDeep.pdb_1" Component_="BioDeep.dll_2" FileName="BioDeep.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioDeep.pdb" SelfReg="false"/>
-    <ROW File="RQL.dll_1" Component_="RQL.dll_1" FileName="RQL.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\RQL.dll" SelfReg="false"/>
+    <ROW File="RQL.dll_1" Component_="RQL.dll_4" FileName="RQL.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\RQL.dll" SelfReg="false"/>
     <ROW File="RQL.pdb" Component_="RQL.dll_1" FileName="RQL.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\RQL.pdb" SelfReg="false"/>
     <ROW File="System.Diagnostics.DiagnosticSource.dll" Component_="System.Diagnostics.DiagnosticSource.dll" FileName="SYSTE~13.DLL|System.Diagnostics.DiagnosticSource.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\System.Diagnostics.DiagnosticSource.dll" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll_2" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll_3" FileName="BIONO~19.DLL|BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.Assembly.XcaliburRaw.dll" SelfReg="false"/>
@@ -18539,13 +18544,13 @@
     <ROW File="screenshot3.png" Component_="gitignore" FileName="SCREEN~3.PNG|screenshot3.png" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\screenshot3.png" SelfReg="false"/>
     <ROW File="themes.gif" Component_="themes.gif" FileName="themes.gif" Attributes="0" SourcePath="..\webview\vendor\colorpicker-3.4.3\screenshots\themes.gif" SelfReg="false"/>
     <ROW File="kegg_compounds.msgpack" Component_="chebi_lite.obo" FileName="KEGG_C~1.MSG|kegg_compounds.msgpack" Attributes="0" SourcePath="..\rstudio\data\kegg_compounds.msgpack" SelfReg="false"/>
-    <ROW File="Flute.Http.dll_3" Component_="Flute.Http.dll_3" FileName="FLUTEH~1.DLL|Flute.Http.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Flute.Http.dll" SelfReg="false"/>
-    <ROW File="Flute.Http.pdb_1" Component_="Flute.Http.dll_3" FileName="FLUTEH~1.PDB|Flute.Http.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Flute.Http.pdb" SelfReg="false"/>
-    <ROW File="Flute.Http.dll_4" Component_="Flute.Http.dll_4" FileName="FLUTEH~1.DLL|Flute.Http.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\Flute.Http.dll" SelfReg="false"/>
-    <ROW File="Flute.Http.pdb_2" Component_="Flute.Http.dll_4" FileName="FLUTEH~1.PDB|Flute.Http.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\Flute.Http.pdb" SelfReg="false"/>
     <ROW File="Flute.Http.xml_3" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="FLUTEH~1.XML|Flute.Http.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Flute.Http.xml" SelfReg="false"/>
-    <ROW File="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_1" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_1" FileName="SMRUC~13.DLL|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_1" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_4" FileName="SMRUC~13.DLL|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_1" FileName="SMRUC~13.PDB|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_2" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_3" FileName="SMRUC~19.DLL|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb_1" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_2" FileName="SMRUC~19.PDB|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" SelfReg="false"/>
+    <ROW File="Flute.Http.dll_5" Component_="Flute.Http.dll_5" FileName="FLUTEH~1.DLL|Flute.Http.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Flute.Http.dll" SelfReg="false"/>
+    <ROW File="Flute.Http.pdb_3" Component_="Flute.Http.dll_5" FileName="FLUTEH~1.PDB|Flute.Http.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Flute.Http.pdb" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -20050,9 +20055,14 @@
     <ROW Feature_="MainFeature" Component_="evolcolorpicker.js"/>
     <ROW Feature_="MainFeature" Component_="demo.less"/>
     <ROW Feature_="MainFeature" Component_="themes.gif"/>
-    <ROW Feature_="MainFeature" Component_="Flute.Http.dll_3"/>
-    <ROW Feature_="MainFeature" Component_="Flute.Http.dll_4"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_1"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_3"/>
+    <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_4"/>
+    <ROW Feature_="MainFeature" Component_="BioDeep.dll_3"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Flute.Http.dll_5"/>
+    <ROW Feature_="MainFeature" Component_="RQL.dll_4"/>
+    <ROW Feature_="MainFeature" Component_="BioDeep.dll.config_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
@@ -20234,7 +20244,7 @@
     <ROW Directory_="data_Dir" SourcePath="..\rstudio\data" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="jaJP_Dir" SourcePath="..\..\..\dist\bin\ja-JP" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="ndpitools_Dir" SourcePath="..\dist\ndpitools" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
-    <ROW Directory_="plugins_Dir" SourcePath="..\..\..\dist\bin\plugins" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|\en-US|\zh-Hans|runtimes|*.xml|Microsoft.VisualBasic.Runtime.*|/ThemeVS2015.*|System.Numerics.Vectors.*|Mzkit_win32.BasicMDIForm.*|Microsoft.*|\zh-CN|/BioNovoGene.*|/ThermoFisher.*|/System.*|/REnv.*|Mzkit_.*|Mzkit_win32.Interaction.dll|Sciex.*|Clearcore2.*|Mzkit_win32.*|/WkHtmlToPdf.*|SMRUCC.*|/BioDeep.*|/RQL.*" ExcludeFlags="6" FileAddOptions="4"/>
+    <ROW Directory_="plugins_Dir" SourcePath="..\..\..\dist\bin\plugins" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|\en-US|\zh-Hans|runtimes|*.xml|Microsoft.VisualBasic.Runtime.*|/ThemeVS2015.*|System.Numerics.Vectors.*|Mzkit_win32.BasicMDIForm.*|Microsoft.*|\zh-CN|/BioNovoGene.*|/ThermoFisher.*|/System.*|/REnv.*|Mzkit_.*|Mzkit_win32.Interaction.dll|Sciex.*|Clearcore2.*|Mzkit_win32.*|/WkHtmlToPdf.*|SMRUCC.*|/BioDeep.*|/RQL.*|Flute.*" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="zhHans_Dir" SourcePath="..\..\..\dist\bin\zh-Hans" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="js_1_Dir" SourcePath="..\webview\assets\js" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store|/*.map" ExcludeFlags="6" FileAddOptions="4"/>
     <ROW Directory_="fr_Dir" SourcePath="..\..\..\dist\bin\fr" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
@@ -20254,14 +20264,14 @@
     <ROW XmlAttribute="xsischemaLocation" XmlElement="swidsoftware_identification_tag" Name="xsi:schemaLocation" Flags="14" Order="3" Value="http://standards.iso.org/iso/19770/-2/2008/schema.xsd software_identification_tag.xsd"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.XmlElementComponent">
-    <ROW XmlElement="swidbuild" ParentElement="swidnumeric" Name="swid:build" Condition="1" Order="2" Flags="14" Text="7336" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidbuild" ParentElement="swidnumeric" Name="swid:build" Condition="1" Order="2" Flags="14" Text="9136" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidchannel_name" ParentElement="swidlicense_linkage" Name="swid:channel_name" Condition="1" Order="1" Flags="14" Text="Standard(Community Edition)" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidchannel_type" ParentElement="swidlicense_linkage" Name="swid:channel_type" Condition="1" Order="0" Flags="14" Text="Retail" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidcustomer_type" ParentElement="swidlicense_linkage" Name="swid:customer_type" Condition="1" Order="2" Flags="14" Text="Academic" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidentitlement_required_indicator" ParentElement="swidsoftware_identification_tag" Name="swid:entitlement_required_indicator" Condition="1" Order="0" Flags="14" Text="true" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidlicense_linkage" ParentElement="swidsoftware_identification_tag" Name="swid:license_linkage" Condition="1" Order="8" Flags="14" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidmajor" ParentElement="swidnumeric" Name="swid:major" Condition="1" Order="0" Flags="14" Text="5" UpdateIndexInParent="0"/>
-    <ROW XmlElement="swidminor" ParentElement="swidnumeric" Name="swid:minor" Condition="1" Order="1" Flags="14" Text="2" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidminor" ParentElement="swidnumeric" Name="swid:minor" Condition="1" Order="1" Flags="14" Text="5" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidname" ParentElement="swidproduct_version" Name="swid:name" Condition="1" Order="0" Flags="14" Text="[ProductVersion]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidname_7" ParentElement="swidsoftware_creator" Name="swid:name" Condition="1" Order="0" Flags="14" Text="[Manufacturer]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidname_8" ParentElement="swidsoftware_licensor" Name="swid:name" Condition="1" Order="0" Flags="14" Text="[Manufacturer]" UpdateIndexInParent="0"/>
@@ -20272,7 +20282,7 @@
     <ROW XmlElement="swidregid" ParentElement="swidsoftware_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2013-01.com.panomix" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_5" ParentElement="swidsoftware_licensor" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2019-11.org.mzkit" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_6" ParentElement="swidtag_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.1995-09.me.xieguigang,gg.xie@bionovogene.com" UpdateIndexInParent="0"/>
-    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="3219" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="9339" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidserial_number" ParentElement="swidsoftware_identification_tag" Name="swid:serial_number" Condition="1" Order="7" Flags="14" Text="[PIDKEY]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_creator" ParentElement="swidsoftware_identification_tag" Name="swid:software_creator" Condition="1" Order="3" Flags="14" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_id" ParentElement="swidsoftware_identification_tag" Name="swid:software_id" Condition="1" Order="5" Flags="14" UpdateIndexInParent="0"/>
