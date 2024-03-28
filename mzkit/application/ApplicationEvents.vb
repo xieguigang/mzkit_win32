@@ -363,22 +363,23 @@ Type 'q()' to quit R.
         End Sub
 
         Private Sub MyApplication_UnhandledException(sender As Object, e As UnhandledExceptionEventArgs) Handles Me.UnhandledException
-            Call App.LogException(e.Exception)
-            Call MessageBox.Show(e.Exception.ToString, "Unknown Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Call CloseMSIEngine()
-            Call ServiceHub.Manager.Shutdown()
+            If Not AppEnvironment.IsDevelopmentMode Then
+                Call App.LogException(e.Exception)
+                Call MessageBox.Show(e.Exception.ToString, "Unknown Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Call CloseMSIEngine()
+                Call ServiceHub.Manager.Shutdown()
 
-            Try
-                Call host.SaveSettings()
-                Call WindowModules.fileExplorer.SaveFileCache(
-                    Sub()
-                        ' do nothing
-                    End Sub)
-            Catch ex As Exception
+                Try
+                    Call host.SaveSettings()
+                    Call WindowModules.fileExplorer.SaveFileCache(
+                        Sub()
+                            ' do nothing
+                        End Sub)
+                Catch ex As Exception
 
-            End Try
-
-            End
+                End Try
+                End
+            End If
         End Sub
 
         Friend Shared ReadOnly pkgs As String() = {"mzkit.zip", "REnv.zip", "ggplot.zip"}
