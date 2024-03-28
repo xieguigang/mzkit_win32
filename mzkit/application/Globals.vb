@@ -633,7 +633,7 @@ Module Globals
         If Not raw.isLoaded Then
             Call RunSlavePipeline.HookProgress(
                 Sub(pct, msg)
-                    ' Call Application.DoEvents()
+                    Call Application.DoEvents()
                     Call Workbench.StatusMessage($"{pct}/{msg}...")
                 End Sub)
             Call raw.LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache))
