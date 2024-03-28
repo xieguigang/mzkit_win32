@@ -76,6 +76,8 @@ Namespace RibbonLib.Controls
             Public Const cmdGCxGCViewer As UInteger = 179
             Public Const cmdTabLayout As UInteger = 1035
             Public Const cmdGroupLayout As UInteger = 1037
+            Public Const cmdButtonMatrixFile As UInteger = 294
+            Public Const cmdButtonOpenPeakFeatures As UInteger = 295
             Public Const cmdButtonLayout2 As UInteger = 1044
             Public Const cmdButtonLayout1 As UInteger = 1043
             Public Const cmdButtonPeakFinding As UInteger = 5
@@ -668,6 +670,18 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property GroupLayout As RibbonGroup
             Get
                 Return _GroupLayout
+            End Get
+        End Property
+        Private _ButtonMatrixFile As RibbonDropDownButton
+        Public ReadOnly Property ButtonMatrixFile As RibbonDropDownButton
+            Get
+                Return _ButtonMatrixFile
+            End Get
+        End Property
+        Private _ButtonOpenPeakFeatures As RibbonButton
+        Public ReadOnly Property ButtonOpenPeakFeatures As RibbonButton
+            Get
+                Return _ButtonOpenPeakFeatures
             End Get
         End Property
         Private _ButtonLayout2 As RibbonButton
@@ -2009,6 +2023,8 @@ Namespace RibbonLib.Controls
             _GCxGCViewer = New RibbonButton(_ribbon, Cmd.cmdGCxGCViewer)
             _TabLayout = New RibbonTab(_ribbon, Cmd.cmdTabLayout)
             _GroupLayout = New RibbonGroup(_ribbon, Cmd.cmdGroupLayout)
+            _ButtonMatrixFile = New RibbonDropDownButton(_ribbon, Cmd.cmdButtonMatrixFile)
+            _ButtonOpenPeakFeatures = New RibbonButton(_ribbon, Cmd.cmdButtonOpenPeakFeatures)
             _ButtonLayout2 = New RibbonButton(_ribbon, Cmd.cmdButtonLayout2)
             _ButtonLayout1 = New RibbonButton(_ribbon, Cmd.cmdButtonLayout1)
             _ButtonPeakFinding = New RibbonButton(_ribbon, Cmd.cmdButtonPeakFinding)

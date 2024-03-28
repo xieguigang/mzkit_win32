@@ -66,6 +66,7 @@ Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MSP
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
+Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.Xml
 Imports BioNovoGene.mzkit_win32.My
@@ -211,6 +212,7 @@ Module RibbonEvents
         AddHandler ribbonItems.ButtonViewMRI.ExecuteEvent, Sub() Call openMRIRaster()
 
         AddHandler ribbonItems.ButtonMSIDebugger.ExecuteEvent, Sub() Call Debugger.MSI.Run()
+        AddHandler ribbonItems.ButtonOpenPeakFeatures.ExecuteEvent, Sub() Call loadPeakFeatures()
 
         LCMSViewerModule.lcmsViewerhHandle = AddressOf openLcmsScatter
     End Sub
@@ -219,6 +221,17 @@ Module RibbonEvents
         ExportApis._openMSImagingFile = AddressOf OpenMSIRaw
         ExportApis._openMSImagingViewer = AddressOf showMsImaging
         ExportApis._openCFMIDTool = AddressOf OpenCFMIDTool
+    End Sub
+
+    Private Sub loadPeakFeatures()
+        Using file As New OpenFileDialog With {.Filter = "Peak feature data(*.*)|*.*"}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim peaks As PeakFeature() = SaveSample.ReadSample(file.FileName.Open(FileMode.Open, doClear:=False, [readOnly]:=True)).ToArray
+                Dim tableViewer As frmTableViewer = VisualStudio.ShowDocument(Of frmTableViewer)(DockState.Document, $"View Peak Features [{file.FileName}]")
+
+                Call tableViewer.LoadTable(Sub(tb) Call peaks.StreamTo(tb))
+            End If
+        End Using
     End Sub
 
     Private Sub openLcmsScatter(data As Object, title As String, click As Action(Of String, Double, Double, Boolean))
