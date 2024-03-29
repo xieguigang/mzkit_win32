@@ -128,7 +128,12 @@ Module Program
         Call RunSlavePipeline.SendMessage("The input tiff image needs to be convert to tiled image...")
 
         If input_tiled.FileLength < 64 * 1024& * 1024& Then
-            Call PipelineProcess.ExecSub(vips, cli)
+            Try
+                Call PipelineProcess.ExecSub(vips, cli)
+            Catch ex As Exception
+                Call App.LogException(ex)
+                Call RunSlavePipeline.SendMessage($"error while convert tiff file: {ex.Message}!")
+            End Try
         End If
 
         Call input_tiled.Swap(inputfile)
