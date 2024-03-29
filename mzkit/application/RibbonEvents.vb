@@ -93,13 +93,37 @@ Module RibbonEvents
 
     Public ReadOnly Property ribbonItems As RibbonItems
 
+    ''' <summary>
+    ''' winform application framework could not handling the the ribbon native code error,
+    ''' use this function for handling the native to clr interop error
+    ''' </summary>
+    ''' <param name="btn">interop to ribbon native code</param>
+    ''' <param name="handler">clr event code</param>
+    Private Sub HookRibbon(ByRef btn As Controls.RibbonButton, handler As EventHandler(Of ExecuteEventArgs))
+        Dim native = btn
+        Dim clr_exec_hook As EventHandler(Of ExecuteEventArgs) =
+            Sub(sender, evt)
+                Try
+                    Call handler(sender, evt)
+                Catch ex As Exception
+                    Call App.LogException(New Exception($"ribbon tracer: {native.Name} ({native.Label})", ex))
+                    Call MessageBox.Show($"Error while execute ribbon event caller: {native.Label} ({ex.Message})", "Function Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Call Workbench.Warning($"Error while execute ribbon event caller: {native.Label} ({ex.Message})")
+                End Try
+            End Sub
+
+        ' hook the ribbon native code with
+        ' clr event code
+        AddHandler btn.ExecuteEvent, clr_exec_hook
+    End Sub
+
     <Extension>
     Public Sub AddHandlers(ribbonItems As RibbonItems)
         _ribbonItems = ribbonItems
 
-        AddHandler ribbonItems.ButtonExit.ExecuteEvent, AddressOf ExitToolsStripMenuItem_Click
-        AddHandler ribbonItems.ButtonOpenRaw.ExecuteEvent, AddressOf WindowModules.OpenFile
-        AddHandler ribbonItems.ButtonImportsRawFiles.ExecuteEvent, AddressOf MyApplication.host.ImportsFiles
+        Call HookRibbon(ribbonItems.ButtonExit, AddressOf ExitToolsStripMenuItem_Click)
+        Call HookRibbon(ribbonItems.ButtonOpenRaw, AddressOf WindowModules.OpenFile)
+        Call HookRibbon(ribbonItems.ButtonImportsRawFiles, AddressOf MyApplication.host.ImportsFiles)
         AddHandler ribbonItems.ButtonAbout.ExecuteEvent, AddressOf About_Click
         AddHandler ribbonItems.ButtonPageNavBack.ExecuteEvent, AddressOf NavBack_Click
         AddHandler ribbonItems.ButtonNew.ExecuteEvent, AddressOf CreateNewScript
