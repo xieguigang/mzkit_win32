@@ -63,6 +63,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
+Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports WeifenLuo.WinFormsUI.Docking
 
@@ -230,16 +231,14 @@ Public Class frmUntargettedViewer
             Dim mz As Double = getConfig.XICTarget
 
             If mz <= 0.0 Then
-                Call MyApplication.host.showStatusMessage($"No target ion m/z was selected or invalid numeric text format!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+                Call Workbench.Warning($"No target ion m/z was selected or invalid numeric text format!")
                 Return
             Else
-                Call MyApplication.host.showStatusMessage($"View xic data for target ion mz=${mz}!")
+                Call Workbench.StatusMessage($"View xic data for target ion mz=${mz}!")
             End If
 
             If Not raw.isLoaded Then
-                Call raw.LoadMzpack(Sub(title, msg)
-                                        Call MyApplication.host.showStatusMessage($"[{title}] {msg}")
-                                    End Sub)
+                Call raw.LoadMzpack(Sub(title, msg) Call Workbench.SuccessMessage($"[{title}] {msg}"))
             End If
 
             Call raw _
