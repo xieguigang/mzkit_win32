@@ -452,7 +452,7 @@ Type 'q()' to quit R.
                 End If
             End If
 
-            Call AppEnvironment.SetDllDirectory($"{App.HOME}/tools/cpp/")
+            Call AppEnvironment.SetExternalCDllDirectory($"{App.HOME}/tools/cpp/")
         End Sub
 
         Private Sub MyApplication_Shutdown(sender As Object, e As EventArgs) Handles Me.Shutdown
