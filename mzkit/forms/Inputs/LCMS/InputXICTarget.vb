@@ -54,6 +54,9 @@
 
 #End Region
 
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports any = Microsoft.VisualBasic.Scripting
+
 Public Class InputXICTarget
 
     ''' <summary>
@@ -77,6 +80,27 @@ Public Class InputXICTarget
             End If
         End Get
     End Property
+
+    Public ReadOnly Property InputOverlaps As Boolean
+        Get
+            Return TabControl1.SelectedTab Is TabPage2
+        End Get
+    End Property
+
+    Public Iterator Function GetInputOverlaps() As IEnumerable(Of NamedValue(Of Double))
+        Dim rows = DataGridView1.Rows
+
+        For i As Integer = 0 To rows.Count - 1
+            If rows(i).Cells(1).Value Is Nothing Then
+                Continue For
+            End If
+
+            Dim mz As Double = Val(rows(i).Cells(1).Value)
+            Dim name As String = any.ToString(rows(i).Cells(0).Value, $"m/z {mz.ToString("F4")}")
+
+            Yield New NamedValue(Of Double)(name, mz)
+        Next
+    End Function
 
     Public Sub SetIons(mz As IEnumerable(Of Double))
         ComboBox1.Items.Clear()
