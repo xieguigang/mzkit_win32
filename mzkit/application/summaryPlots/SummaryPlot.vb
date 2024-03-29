@@ -13,6 +13,7 @@ Public MustInherit Class SummaryPlot
             Yield New KEGGEnrichmentBarSummary2
             Yield New PCA3d
             Yield New KEGGEnrichmentGraph
+            Yield New LCMSScatterPlot
         End Get
     End Property
 
