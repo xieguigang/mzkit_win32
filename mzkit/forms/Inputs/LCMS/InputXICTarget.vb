@@ -55,6 +55,8 @@
 #End Region
 
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Language
+Imports Mzkit_win32.BasicMDIForm
 Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class InputXICTarget
@@ -101,6 +103,12 @@ Public Class InputXICTarget
             Yield New NamedValue(Of Double)(name, mz)
         Next
     End Function
+
+    Private Sub DataGridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles DataGridView1.KeyDown, Me.KeyDown
+        If e.KeyCode = Keys.V AndAlso e.Control AndAlso Clipboard.ContainsText Then
+            Call DataGridView1.PasteTextData()
+        End If
+    End Sub
 
     Public Sub SetIons(mz As IEnumerable(Of Double))
         ComboBox1.Items.Clear()

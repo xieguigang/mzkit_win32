@@ -99,7 +99,10 @@ Public Class frmQuantifyIons
             Try
                 Using file As Stream = FilePath.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
                     For Each ion As QuantifyIon In MsgPackSerializer.Deserialize(Of QuantifyIon())(file)
-                        DataGridView1.Rows.Add(ion.id, ion.name, ion.rt.Min, ion.rt.Max, ion.ms(Scan0).mz, ion.ms.ElementAtOrDefault(1)?.mz)
+                        DataGridView1.Rows.Add(
+                            ion.id, ion.name, ion.rt.Min, ion.rt.Max,
+                            ion.ms(Scan0).mz,
+                            ion.ms.ElementAtOrDefault(1)?.mz)
                     Next
                 End Using
             Catch ex As Exception
