@@ -8,8 +8,13 @@ Namespace Container
     ''' </summary>
     Public Module AppEnvironment
 
+        Public Function SetExternalCDllDirectory(dir As String) As Boolean
+            Call VBDebugger.EchoLine($"set external_c_dll directory to: {dir}")
+            Return SetDllDirectory(dir)
+        End Function
+
         <DllImport("kernel32.dll", CharSet:=CharSet.Unicode, SetLastError:=True)>
-        Public Function SetDllDirectory(lpPathName As String) As Boolean
+        Private Function SetDllDirectory(lpPathName As String) As Boolean
         End Function
 
         <DllImport("kernel32", SetLastError:=True)>
