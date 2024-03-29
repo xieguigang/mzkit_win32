@@ -254,6 +254,11 @@ namespace RibbonLib.Controls
             public const uint cmdPanelGCxGC = 7;
             public const uint cmdGroupGCxGC = 282;
             public const uint cmdButtonOpenGCxGCFile = 8;
+            public const uint cmdGroupMzVault = 298;
+            public const uint cmdMenuMzVault = 296;
+            public const uint cmdPanelMzVault = 297;
+            public const uint cmdButtonOpenMzVault = 299;
+            public const uint cmdButtonMzVaultSearch = 300;
             public const uint cmdTabMain = 1011;
             public const uint cmdGroupFileActions = 1045;
             public const uint cmdTabGroupWindowTools = 1023;
@@ -540,6 +545,11 @@ namespace RibbonLib.Controls
         public RibbonTab PanelGCxGC { get; private set; }
         public RibbonGroup GroupGCxGC { get; private set; }
         public RibbonButton ButtonOpenGCxGCFile { get; private set; }
+        public RibbonTabGroup GroupMzVault { get; private set; }
+        public RibbonTab MenuMzVault { get; private set; }
+        public RibbonGroup PanelMzVault { get; private set; }
+        public RibbonButton ButtonOpenMzVault { get; private set; }
+        public RibbonButton ButtonMzVaultSearch { get; private set; }
         public RibbonTab TabMain { get; private set; }
         public RibbonGroup GroupFileActions { get; private set; }
         public RibbonGroup TabGroupWindowTools { get; private set; }
@@ -821,6 +831,11 @@ namespace RibbonLib.Controls
             PanelGCxGC = new RibbonTab(ribbon, Cmd.cmdPanelGCxGC);
             GroupGCxGC = new RibbonGroup(ribbon, Cmd.cmdGroupGCxGC);
             ButtonOpenGCxGCFile = new RibbonButton(ribbon, Cmd.cmdButtonOpenGCxGCFile);
+            GroupMzVault = new RibbonTabGroup(ribbon, Cmd.cmdGroupMzVault);
+            MenuMzVault = new RibbonTab(ribbon, Cmd.cmdMenuMzVault);
+            PanelMzVault = new RibbonGroup(ribbon, Cmd.cmdPanelMzVault);
+            ButtonOpenMzVault = new RibbonButton(ribbon, Cmd.cmdButtonOpenMzVault);
+            ButtonMzVaultSearch = new RibbonButton(ribbon, Cmd.cmdButtonMzVaultSearch);
             TabMain = new RibbonTab(ribbon, Cmd.cmdTabMain);
             GroupFileActions = new RibbonGroup(ribbon, Cmd.cmdGroupFileActions);
             TabGroupWindowTools = new RibbonGroup(ribbon, Cmd.cmdTabGroupWindowTools);
