@@ -54,6 +54,7 @@
 
 #End Region
 
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
@@ -61,6 +62,8 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports BioNovoGene.mzkit_win32.My
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.ComponentModel.Ranges
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
@@ -206,17 +209,21 @@ Public Class frmUntargettedViewer
             .Where(Function(m1) m1.rt >= rtmin AndAlso m1.rt <= rtmax) _
             .Select(Function(t) t.GetMs) _
             .IteratesALL
+        Dim showXic As ShowXICPlot =
+            Sub(xic_list)
+                Dim scalar = xic_list.First
 
-        Call SelectXICIon(raw, MS1, 0.01, apply:=Sub(mz1, xic)
-                                                     Call MsSelector1.SetTIC(xic)
-                                                     Call MsSelector1.RefreshRtRangeSelector()
-                                                 End Sub)
+                Call MsSelector1.SetTIC(scalar.value)
+                Call MsSelector1.RefreshRtRangeSelector()
+            End Sub
+
+        Call SelectXICIon(raw, MS1, 0.01, apply:=showXic)
     End Sub
 
     Public Shared Sub SelectXICIon(raw As Raw,
                                    ms1 As IEnumerable(Of ms2),
                                    da As Double,
-                                   apply As Action(Of Double, ChromatogramTick()),
+                                   apply As ShowXICPlot,
                                    Optional cancel As Action = Nothing)
 
         Dim mask As MaskForm = MaskForm.CreateMask(frm:=MyApplication.host)
@@ -227,28 +234,53 @@ Public Class frmUntargettedViewer
 
         Call getConfig.SetIons(candidateSet.Select(Function(i) i.mz).OrderBy(Function(i) i))
 
+        Dim showSingle =
+            Sub(mz As Double)
+                If mz <= 0.0 Then
+                    Call Workbench.Warning($"No target ion m/z was selected or invalid numeric text format!")
+                    Return
+                Else
+                    Call Workbench.StatusMessage($"View xic data for target ion mz=${mz}!")
+                End If
+
+                If Not raw.isLoaded Then
+                    Call raw.LoadMzpack(Sub(title, msg) Call Workbench.SuccessMessage($"[{title}] {msg}"))
+                End If
+
+                Call raw _
+                    .GetLoadedMzpack _
+                    .GetXIC(mz, Tolerance.DeltaMass(da)) _
+                    .DoCall(Sub(xic)
+                                Call apply({New NamedCollection(Of ChromatogramTick)(mz.ToString, xic)})
+                            End Sub)
+            End Sub
+
         If mask.ShowDialogForm(getConfig) = DialogResult.OK Then
-            Dim mz As Double = getConfig.XICTarget
+            If getConfig.InputOverlaps Then
+                ' multiple overlaps
+                If Not raw.isLoaded Then
+                    Call raw.LoadMzpack(Sub(title, msg) Call Workbench.SuccessMessage($"[{title}] {msg}"))
+                End If
 
-            If mz <= 0.0 Then
-                Call Workbench.Warning($"No target ion m/z was selected or invalid numeric text format!")
-                Return
+                Dim rawpack As mzPack = raw.GetLoadedMzpack
+                Dim list As New List(Of NamedCollection(Of ChromatogramTick))
+
+                For Each serial As NamedValue(Of Double) In getConfig.GetInputOverlaps
+                    Call list.Add(New NamedCollection(Of ChromatogramTick)(
+                                  name:=serial.Value.ToString,
+                                  value:=rawpack.GetXIC(serial.Value, Tolerance.DeltaMass(da)),
+                                  description:=serial.Name))
+                Next
+
+                Call apply(list)
             Else
-                Call Workbench.StatusMessage($"View xic data for target ion mz=${mz}!")
+                ' single xic
+                Call showSingle(getConfig.XICTarget)
             End If
-
-            If Not raw.isLoaded Then
-                Call raw.LoadMzpack(Sub(title, msg) Call Workbench.SuccessMessage($"[{title}] {msg}"))
-            End If
-
-            Call raw _
-                .GetLoadedMzpack _
-                .GetXIC(mz, Tolerance.DeltaMass(da)) _
-                .DoCall(Sub(xic)
-                            Call apply(mz, xic)
-                        End Sub)
         ElseIf Not cancel Is Nothing Then
             Call cancel()
         End If
     End Sub
 End Class
+
+Public Delegate Sub ShowXICPlot(xic As IEnumerable(Of NamedCollection(Of ChromatogramTick)))
