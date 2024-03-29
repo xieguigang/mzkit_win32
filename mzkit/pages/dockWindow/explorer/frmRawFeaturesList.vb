@@ -384,37 +384,7 @@ Public Class frmRawFeaturesList
             Workbench.Warning("No raw data file is selected!")
             Return
         ElseIf treeView1.SelectedNode Is Nothing OrElse treeView1.SelectedNode.Text Is Nothing Then
-            Call frmUntargettedViewer.SelectXICIon(
-                raw:=CurrentOpenedFile,
-                ms1:=CurrentOpenedFile _
-                    .GetLoadedMzpack _
-                    .MS _
-                    .Select(Function(s1)
-                                Return s1.GetMs _
-                                    .OrderByDescending(Function(m1) m1.intensity) _
-                                    .Take(10)
-                            End Function) _
-                    .IteratesALL,
-                da:=0.01,
-                apply:=Sub(xic_list)
-                           Dim all = xic_list.ToArray
-                           Dim first = all.First
-                           Dim populateOthers As PopulateXic =
-                               Iterator Function(ppmVal) As IEnumerable(Of NamedCollection(Of ChromatogramTick))
-                                   For Each item In all.Skip(1)
-                                       Yield item
-                                   Next
-                                   For Each selected In GetXICCollection(ppmVal)
-                                       Yield selected
-                                   Next
-                               End Function
-
-                           Call MyApplication.mzkitRawViewer.showMatrix(first.value, first.description)
-                           Call MyApplication.mzkitRawViewer.ShowXIC(15, first, populateOthers, CurrentOpenedFile.GetXICMaxYAxis)
-                       End Sub,
-                cancel:=Sub()
-                            Workbench.Warning("No ion data selected for create XIC plot!")
-                        End Sub)
+            Call SelectedNotarget()
             Return
         End If
 
@@ -427,7 +397,7 @@ Public Class frmRawFeaturesList
             ' 当前没有选中MS2，但是可以显示选中的XIC
             If ions.Length > 0 Then
             Else
-                Workbench.Warning("No ion was selected for XIC plot...")
+                Call SelectedNotarget()
                 Return
             End If
         Else
@@ -435,6 +405,40 @@ Public Class frmRawFeaturesList
         End If
 
         Call MyApplication.mzkitRawViewer.ShowXIC(ppm, plotTIC, AddressOf GetXICCollection, raw.GetXICMaxYAxis)
+    End Sub
+
+    Private Sub SelectedNotarget()
+        Call frmUntargettedViewer.SelectXICIon(
+            raw:=CurrentOpenedFile,
+            ms1:=CurrentOpenedFile _
+                .GetLoadedMzpack _
+                .MS _
+                .Select(Function(s1)
+                            Return s1.GetMs _
+                                .OrderByDescending(Function(m1) m1.intensity) _
+                                .Take(10)
+                        End Function) _
+                .IteratesALL,
+            da:=0.01,
+            apply:=Sub(xic_list)
+                       Dim all = xic_list.ToArray
+                       Dim first = all.First
+                       Dim populateOthers As PopulateXic =
+                            Iterator Function(ppmVal) As IEnumerable(Of NamedCollection(Of ChromatogramTick))
+                                For Each item In all.Skip(1)
+                                    Yield item
+                                Next
+                                For Each selected In GetXICCollection(ppmVal)
+                                    Yield selected
+                                Next
+                            End Function
+
+                       Call MyApplication.mzkitRawViewer.showMatrix(first.value, first.description)
+                       Call MyApplication.mzkitRawViewer.ShowXIC(15, first, populateOthers, CurrentOpenedFile.GetXICMaxYAxis)
+                   End Sub,
+            cancel:=Sub()
+                        Workbench.Warning("No ion data selected for create XIC plot!")
+                    End Sub)
     End Sub
 
     Private Sub MolecularNetworkingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MolecularNetworkingToolStripMenuItem.Click
