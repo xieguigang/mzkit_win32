@@ -251,7 +251,7 @@ Public Class frmUntargettedViewer
                     .GetLoadedMzpack _
                     .GetXIC(mz, Tolerance.DeltaMass(da)) _
                     .DoCall(Sub(xic)
-                                Call apply({New NamedCollection(Of ChromatogramTick)(mz.ToString, xic)})
+                                Call apply({New NamedCollection(Of ChromatogramTick)(mz.ToString, xic, mz.ToString)})
                             End Sub)
             End Sub
 
@@ -267,9 +267,9 @@ Public Class frmUntargettedViewer
 
                 For Each serial As NamedValue(Of Double) In getConfig.GetInputOverlaps
                     Call list.Add(New NamedCollection(Of ChromatogramTick)(
-                                  name:=serial.Value.ToString,
+                                  name:=serial.Name,
                                   value:=rawpack.GetXIC(serial.Value, Tolerance.DeltaMass(da)),
-                                  description:=serial.Name))
+                                  description:=serial.Value.ToString))
                 Next
 
                 Call apply(list)
