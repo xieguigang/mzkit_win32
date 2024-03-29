@@ -396,9 +396,21 @@ Public Class frmRawFeaturesList
                             End Function) _
                     .IteratesALL,
                 da:=0.01,
-                apply:=Sub(mz, xic)
-                           Call MyApplication.mzkitRawViewer.showMatrix(xic, $"XIC, m/z={mz.ToString("F4")}")
-                           Call MyApplication.mzkitRawViewer.ShowXIC(15, New NamedCollection(Of ChromatogramTick)($"XIC, m/z={mz.ToString("F4")}", xic), AddressOf GetXICCollection, CurrentOpenedFile.GetXICMaxYAxis)
+                apply:=Sub(xic_list)
+                           Dim all = xic_list.ToArray
+                           Dim first = all.First
+                           Dim populateOthers As PopulateXic =
+                               Iterator Function(ppmVal) As IEnumerable(Of NamedCollection(Of ChromatogramTick))
+                                   For Each item In all.Skip(1)
+                                       Yield item
+                                   Next
+                                   For Each selected In GetXICCollection(ppmVal)
+                                       Yield selected
+                                   Next
+                               End Function
+
+                           Call MyApplication.mzkitRawViewer.showMatrix(first.value, first.description)
+                           Call MyApplication.mzkitRawViewer.ShowXIC(15, first, populateOthers, CurrentOpenedFile.GetXICMaxYAxis)
                        End Sub,
                 cancel:=Sub()
                             Workbench.Warning("No ion data selected for create XIC plot!")

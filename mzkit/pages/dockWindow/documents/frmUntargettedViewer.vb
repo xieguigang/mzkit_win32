@@ -284,3 +284,4 @@ Public Class frmUntargettedViewer
 End Class
 
 Public Delegate Sub ShowXICPlot(xic As IEnumerable(Of NamedCollection(Of ChromatogramTick)))
+Public Delegate Function PopulateXic(ppm As Double) As IEnumerable(Of NamedCollection(Of ChromatogramTick))
