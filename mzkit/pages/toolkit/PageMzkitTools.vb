@@ -658,7 +658,7 @@ Public Class PageMzkitTools
 
     Public Sub ShowXIC(ppm As Double,
                        plotTIC As NamedCollection(Of ChromatogramTick),
-                       getXICCollection As Func(Of Double, IEnumerable(Of NamedCollection(Of ChromatogramTick))),
+                       getXICCollection As PopulateXic,
                        maxY As Double)
 
         Dim plotImage As Image = Nothing

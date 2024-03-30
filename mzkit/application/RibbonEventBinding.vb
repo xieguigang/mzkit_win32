@@ -22,6 +22,7 @@ Public Class RibbonEventBinding
             Catch ex As Exception
                 Call Workbench.LogText($"[ribbon menu] error during exec for: {ribbon.Label}")
                 Call Workbench.LogText(ex.ToString)
+                Call App.LogException(ex)
             End Try
         Else
             Call Workbench.LogText($"[ribbon menu] no event handler was attached: {ribbon.Label}")

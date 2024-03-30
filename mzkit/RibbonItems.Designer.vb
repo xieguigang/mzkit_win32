@@ -76,6 +76,8 @@ Namespace RibbonLib.Controls
             Public Const cmdGCxGCViewer As UInteger = 179
             Public Const cmdTabLayout As UInteger = 1035
             Public Const cmdGroupLayout As UInteger = 1037
+            Public Const cmdButtonMatrixFile As UInteger = 294
+            Public Const cmdButtonOpenPeakFeatures As UInteger = 295
             Public Const cmdButtonLayout2 As UInteger = 1044
             Public Const cmdButtonLayout1 As UInteger = 1043
             Public Const cmdButtonPeakFinding As UInteger = 5
@@ -249,6 +251,11 @@ Namespace RibbonLib.Controls
             Public Const cmdPanelGCxGC As UInteger = 7
             Public Const cmdGroupGCxGC As UInteger = 282
             Public Const cmdButtonOpenGCxGCFile As UInteger = 8
+            Public Const cmdGroupMzVault As UInteger = 298
+            Public Const cmdMenuMzVault As UInteger = 296
+            Public Const cmdPanelMzVault As UInteger = 297
+            Public Const cmdButtonOpenMzVault As UInteger = 299
+            Public Const cmdButtonMzVaultSearch As UInteger = 300
             Public Const cmdTabMain As UInteger = 1011
             Public Const cmdGroupFileActions As UInteger = 1045
             Public Const cmdTabGroupWindowTools As UInteger = 1023
@@ -668,6 +675,18 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property GroupLayout As RibbonGroup
             Get
                 Return _GroupLayout
+            End Get
+        End Property
+        Private _ButtonMatrixFile As RibbonDropDownButton
+        Public ReadOnly Property ButtonMatrixFile As RibbonDropDownButton
+            Get
+                Return _ButtonMatrixFile
+            End Get
+        End Property
+        Private _ButtonOpenPeakFeatures As RibbonButton
+        Public ReadOnly Property ButtonOpenPeakFeatures As RibbonButton
+            Get
+                Return _ButtonOpenPeakFeatures
             End Get
         End Property
         Private _ButtonLayout2 As RibbonButton
@@ -1708,6 +1727,36 @@ Namespace RibbonLib.Controls
                 Return _ButtonOpenGCxGCFile
             End Get
         End Property
+        Private _GroupMzVault As RibbonTabGroup
+        Public ReadOnly Property GroupMzVault As RibbonTabGroup
+            Get
+                Return _GroupMzVault
+            End Get
+        End Property
+        Private _MenuMzVault As RibbonTab
+        Public ReadOnly Property MenuMzVault As RibbonTab
+            Get
+                Return _MenuMzVault
+            End Get
+        End Property
+        Private _PanelMzVault As RibbonGroup
+        Public ReadOnly Property PanelMzVault As RibbonGroup
+            Get
+                Return _PanelMzVault
+            End Get
+        End Property
+        Private _ButtonOpenMzVault As RibbonButton
+        Public ReadOnly Property ButtonOpenMzVault As RibbonButton
+            Get
+                Return _ButtonOpenMzVault
+            End Get
+        End Property
+        Private _ButtonMzVaultSearch As RibbonButton
+        Public ReadOnly Property ButtonMzVaultSearch As RibbonButton
+            Get
+                Return _ButtonMzVaultSearch
+            End Get
+        End Property
         Private _TabMain As RibbonTab
         Public ReadOnly Property TabMain As RibbonTab
             Get
@@ -2009,6 +2058,8 @@ Namespace RibbonLib.Controls
             _GCxGCViewer = New RibbonButton(_ribbon, Cmd.cmdGCxGCViewer)
             _TabLayout = New RibbonTab(_ribbon, Cmd.cmdTabLayout)
             _GroupLayout = New RibbonGroup(_ribbon, Cmd.cmdGroupLayout)
+            _ButtonMatrixFile = New RibbonDropDownButton(_ribbon, Cmd.cmdButtonMatrixFile)
+            _ButtonOpenPeakFeatures = New RibbonButton(_ribbon, Cmd.cmdButtonOpenPeakFeatures)
             _ButtonLayout2 = New RibbonButton(_ribbon, Cmd.cmdButtonLayout2)
             _ButtonLayout1 = New RibbonButton(_ribbon, Cmd.cmdButtonLayout1)
             _ButtonPeakFinding = New RibbonButton(_ribbon, Cmd.cmdButtonPeakFinding)
@@ -2182,6 +2233,11 @@ Namespace RibbonLib.Controls
             _PanelGCxGC = New RibbonTab(_ribbon, Cmd.cmdPanelGCxGC)
             _GroupGCxGC = New RibbonGroup(_ribbon, Cmd.cmdGroupGCxGC)
             _ButtonOpenGCxGCFile = New RibbonButton(_ribbon, Cmd.cmdButtonOpenGCxGCFile)
+            _GroupMzVault = New RibbonTabGroup(_ribbon, Cmd.cmdGroupMzVault)
+            _MenuMzVault = New RibbonTab(_ribbon, Cmd.cmdMenuMzVault)
+            _PanelMzVault = New RibbonGroup(_ribbon, Cmd.cmdPanelMzVault)
+            _ButtonOpenMzVault = New RibbonButton(_ribbon, Cmd.cmdButtonOpenMzVault)
+            _ButtonMzVaultSearch = New RibbonButton(_ribbon, Cmd.cmdButtonMzVaultSearch)
             _TabMain = New RibbonTab(_ribbon, Cmd.cmdTabMain)
             _GroupFileActions = New RibbonGroup(_ribbon, Cmd.cmdGroupFileActions)
             _TabGroupWindowTools = New RibbonGroup(_ribbon, Cmd.cmdTabGroupWindowTools)

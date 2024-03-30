@@ -5,6 +5,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Imaging.Driver
+Imports Microsoft.VisualBasic.Linq
 Imports PipelineHost
 Imports Task
 
@@ -12,6 +13,10 @@ Public Class Ms1ScatterMatrix : Inherits DataMatrix
 
     Public Sub New(name As String, raw As Raw)
         MyBase.New(name, matrix:=raw.GetMs1Scans.GetMs1Points)
+    End Sub
+
+    Sub New(name As String, scatter As IEnumerable(Of ms1_scan))
+        MyBase.New(name, scatter.SafeQuery.ToArray)
     End Sub
 
     Public Overrides ReadOnly Property UnderlyingType As Type

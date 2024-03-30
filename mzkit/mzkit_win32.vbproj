@@ -471,6 +471,7 @@
     <Compile Include="application\settings\TissueMap.vb" />
     <Compile Include="application\settings\Filters.vb" />
     <Compile Include="application\settings\Languages.vb" />
+    <Compile Include="application\summaryPlots\LCMSScatterPlot.vb" />
     <Compile Include="application\summaryPlots\KEGGEnrichmentGraph.vb" />
     <Compile Include="application\summaryPlots\PCA3d.vb" />
     <Compile Include="application\summaryPlots\KEGGEnrichmentBarSummary.vb" />

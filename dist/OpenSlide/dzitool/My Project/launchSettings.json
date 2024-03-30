@@ -2,8 +2,8 @@
   "profiles": {
     "dzitool": {
       "commandName": "Project",
-      "commandLineArgs": "/parse --file F:\\Downloads/E16.5_E1S3.tif --export F:/aaaa.hds --verbose",
-      "workingDirectory": "D:\\mzkit\\dist\\bin\\tools\\dzitools"
+      "commandLineArgs": "/parse --file \"F:\\H&E 40X E7471-S2301 Pancreas_Wholeslide_Default_Extended.tif\" --export F:/aaaa.hds --verbose",
+      "workingDirectory": "\\mzkit\\dist\\bin\\tools\\dzitools"
     }
   }
 }

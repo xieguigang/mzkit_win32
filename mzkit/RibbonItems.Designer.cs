@@ -79,6 +79,8 @@ namespace RibbonLib.Controls
             public const uint cmdGCxGCViewer = 179;
             public const uint cmdTabLayout = 1035;
             public const uint cmdGroupLayout = 1037;
+            public const uint cmdButtonMatrixFile = 294;
+            public const uint cmdButtonOpenPeakFeatures = 295;
             public const uint cmdButtonLayout2 = 1044;
             public const uint cmdButtonLayout1 = 1043;
             public const uint cmdButtonPeakFinding = 5;
@@ -252,6 +254,11 @@ namespace RibbonLib.Controls
             public const uint cmdPanelGCxGC = 7;
             public const uint cmdGroupGCxGC = 282;
             public const uint cmdButtonOpenGCxGCFile = 8;
+            public const uint cmdGroupMzVault = 298;
+            public const uint cmdMenuMzVault = 296;
+            public const uint cmdPanelMzVault = 297;
+            public const uint cmdButtonOpenMzVault = 299;
+            public const uint cmdButtonMzVaultSearch = 300;
             public const uint cmdTabMain = 1011;
             public const uint cmdGroupFileActions = 1045;
             public const uint cmdTabGroupWindowTools = 1023;
@@ -363,6 +370,8 @@ namespace RibbonLib.Controls
         public RibbonButton GCxGCViewer { get; private set; }
         public RibbonTab TabLayout { get; private set; }
         public RibbonGroup GroupLayout { get; private set; }
+        public RibbonDropDownButton ButtonMatrixFile { get; private set; }
+        public RibbonButton ButtonOpenPeakFeatures { get; private set; }
         public RibbonButton ButtonLayout2 { get; private set; }
         public RibbonButton ButtonLayout1 { get; private set; }
         public RibbonButton ButtonPeakFinding { get; private set; }
@@ -536,6 +545,11 @@ namespace RibbonLib.Controls
         public RibbonTab PanelGCxGC { get; private set; }
         public RibbonGroup GroupGCxGC { get; private set; }
         public RibbonButton ButtonOpenGCxGCFile { get; private set; }
+        public RibbonTabGroup GroupMzVault { get; private set; }
+        public RibbonTab MenuMzVault { get; private set; }
+        public RibbonGroup PanelMzVault { get; private set; }
+        public RibbonButton ButtonOpenMzVault { get; private set; }
+        public RibbonButton ButtonMzVaultSearch { get; private set; }
         public RibbonTab TabMain { get; private set; }
         public RibbonGroup GroupFileActions { get; private set; }
         public RibbonGroup TabGroupWindowTools { get; private set; }
@@ -642,6 +656,8 @@ namespace RibbonLib.Controls
             GCxGCViewer = new RibbonButton(ribbon, Cmd.cmdGCxGCViewer);
             TabLayout = new RibbonTab(ribbon, Cmd.cmdTabLayout);
             GroupLayout = new RibbonGroup(ribbon, Cmd.cmdGroupLayout);
+            ButtonMatrixFile = new RibbonDropDownButton(ribbon, Cmd.cmdButtonMatrixFile);
+            ButtonOpenPeakFeatures = new RibbonButton(ribbon, Cmd.cmdButtonOpenPeakFeatures);
             ButtonLayout2 = new RibbonButton(ribbon, Cmd.cmdButtonLayout2);
             ButtonLayout1 = new RibbonButton(ribbon, Cmd.cmdButtonLayout1);
             ButtonPeakFinding = new RibbonButton(ribbon, Cmd.cmdButtonPeakFinding);
@@ -815,6 +831,11 @@ namespace RibbonLib.Controls
             PanelGCxGC = new RibbonTab(ribbon, Cmd.cmdPanelGCxGC);
             GroupGCxGC = new RibbonGroup(ribbon, Cmd.cmdGroupGCxGC);
             ButtonOpenGCxGCFile = new RibbonButton(ribbon, Cmd.cmdButtonOpenGCxGCFile);
+            GroupMzVault = new RibbonTabGroup(ribbon, Cmd.cmdGroupMzVault);
+            MenuMzVault = new RibbonTab(ribbon, Cmd.cmdMenuMzVault);
+            PanelMzVault = new RibbonGroup(ribbon, Cmd.cmdPanelMzVault);
+            ButtonOpenMzVault = new RibbonButton(ribbon, Cmd.cmdButtonOpenMzVault);
+            ButtonMzVaultSearch = new RibbonButton(ribbon, Cmd.cmdButtonMzVaultSearch);
             TabMain = new RibbonTab(ribbon, Cmd.cmdTabMain);
             GroupFileActions = new RibbonGroup(ribbon, Cmd.cmdGroupFileActions);
             TabGroupWindowTools = new RibbonGroup(ribbon, Cmd.cmdTabGroupWindowTools);

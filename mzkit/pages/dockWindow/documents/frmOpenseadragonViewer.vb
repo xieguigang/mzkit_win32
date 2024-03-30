@@ -122,10 +122,16 @@ Public Class frmOpenseadragonViewer
             res = dzi
 
             Using pack As StreamPack = StreamPack.OpenReadOnly(dzi)
-                dziIndex = DirectCast(pack, IFileSystemEnvironment) _
-                    .ReadAllText("/index.txt") _
-                    .DoCall(AddressOf Strings.Trim) _
-                    .BaseName
+                Try
+                    dziIndex = DirectCast(pack, IFileSystemEnvironment) _
+                        .ReadAllText("/index.txt") _
+                        .DoCall(AddressOf Strings.Trim) _
+                        .BaseName
+                Catch ex As Exception
+                    Call App.LogException(ex)
+                    Call Workbench.Warning("error while open the slide image file!")
+                    Return
+                End Try
             End Using
         Else
             res = dzi.ParentPath

@@ -4208,6 +4208,41 @@
         <Image MinDPI="192">Res/icons8-particle-96.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonMatrixFile" Id="294" LabelTitle="Matrix File" LabelDescription="Matrix File" TooltipTitle="Matrix File" TooltipDescription="Matrix File">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-rgb-histogram-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-rgb-histogram-96.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonOpenPeakFeatures" Id="295" LabelTitle="Open Peak Features">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-rgb-histogram-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-rgb-histogram-96.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdMenuMzVault" Id="296" LabelTitle="mzVault" LabelDescription="mzVault" TooltipTitle="mzVault" TooltipDescription="mzVault" />
+    <Command Name="cmdPanelMzVault" Id="297" LabelTitle="mzVault" LabelDescription="mzVault" TooltipTitle="mzVault" TooltipDescription="mzVault" />
+    <Command Name="cmdGroupMzVault" Id="298" LabelTitle="mzVault" LabelDescription="mzVault" TooltipTitle="mzVault" TooltipDescription="mzVault" />
+    <Command Name="cmdButtonOpenMzVault" Id="299" LabelTitle="Open" LabelDescription="Open" TooltipTitle="Open" TooltipDescription="Open">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/folder-pictures.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/folder-pictures.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonMzVaultSearch" Id="300" LabelTitle="Search" LabelDescription="Search" TooltipTitle="Search" TooltipDescription="Search">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/edit-find.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/edit-find.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4352,7 +4387,10 @@
           </Tab>
           <Tab CommandName="cmdTabLayout" ApplicationModes="0,1">
             <Group CommandName="cmdGroupLayout" ApplicationModes="0,1" SizeDefinition="FourButtons">
-              <Button CommandName="cmdButtonLayout2" />
+              <DropDownButton CommandName="cmdButtonMatrixFile">
+                <Button CommandName="cmdButtonOpenPeakFeatures" />
+                <Button CommandName="cmdButtonLayout2" />
+              </DropDownButton>
               <Button CommandName="cmdButtonLayout1" />
               <Button CommandName="cmdButtonPeakFinding" />
               <Button CommandName="cmdButtonViewUntargetedScatter" />
@@ -4612,6 +4650,14 @@
           <Tab CommandName="cmdPanelGCxGC">
             <Group CommandName="cmdGroupGCxGC" SizeDefinition="OneButton">
               <Button CommandName="cmdButtonOpenGCxGCFile" />
+            </Group>
+          </Tab>
+        </TabGroup>
+        <TabGroup CommandName="cmdGroupMzVault">
+          <Tab CommandName="cmdMenuMzVault">
+            <Group CommandName="cmdPanelMzVault">
+              <Button CommandName="cmdButtonOpenMzVault" />
+              <Button CommandName="cmdButtonMzVaultSearch" />
             </Group>
           </Tab>
         </TabGroup>
