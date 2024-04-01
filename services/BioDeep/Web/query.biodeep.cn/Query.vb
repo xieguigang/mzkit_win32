@@ -103,6 +103,15 @@ Namespace query.biodeep.cn
             End If
         End Function
 
+        ''' <summary>
+        ''' get the url of page for display the metabolite information.
+        ''' </summary>
+        ''' <param name="biodeep_id"></param>
+        ''' <returns></returns>
+        Public Shared Function metabolite_page(biodeep_id As String) As String
+            Return $"{host}/metabolite/{biodeep_id}"
+        End Function
+
     End Class
 
     Public Class MetaboliteSearchHit
