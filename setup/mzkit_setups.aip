@@ -1085,6 +1085,7 @@
     <ROW Component="Microsoft.Windows.FeatureAPI.pdb_1" ComponentId="{82B3EA88-1924-43B1-A79A-ABF1890EC2DB}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.Windows.FeatureAPI.pdb_1" Type="4"/>
     <ROW Component="Microsoft.Windows.FeatureAPI.xml" ComponentId="{F7A9C407-4443-431C-A3A4-D2BEC4006E2D}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.Windows.FeatureAPI.xml_1"/>
     <ROW Component="Microsoft.Windows.Ribbon.dll" ComponentId="{ACD1A2A4-798D-41B7-802A-0A07A618CCBB}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.Windows.Ribbon.dll"/>
+    <ROW Component="Microsoft.Windows.Ribbon.dll_1" ComponentId="{50FA227C-EB9A-48DA-9E82-45361FC14451}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.Windows.Ribbon.dll_1"/>
     <ROW Component="Microsoft.Windows.SDK.NET.dll" ComponentId="{5BAAC770-8FBE-4777-984E-B5A3C2A0403B}" Directory_="nvidia_Dir" Attributes="0" KeyPath="Microsoft.Windows.SDK.NET.dll"/>
     <ROW Component="MoNA.dll" ComponentId="{A9ABEBFD-6384-4DC0-8553-6D35B60BB0ED}" Directory_="plugins_Dir" Attributes="256" KeyPath="MoNA.dll"/>
     <ROW Component="MoNA.pdb" ComponentId="{21B83CE7-6D64-4640-A0C0-5BA3879B1518}" Directory_="plugins_Dir" Attributes="0" KeyPath="MoNA.pdb" Type="4"/>
@@ -1266,6 +1267,8 @@
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.pdb" ComponentId="{0B42920F-1FC7-4D6C-9FEE-AAA45959A118}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.pdb" Type="4"/>
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.pdb_1" ComponentId="{8D97CF13-752D-4C63-AC17-D7BCD9B6F0B4}" Directory_="blender_Dir" Attributes="0" KeyPath="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.pdb_1" Type="4"/>
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.xml" ComponentId="{92265F8A-0B0B-4AAA-B5F2-C8A0E46C8C6D}" Directory_="blender_Dir" Attributes="0" KeyPath="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.xml_1"/>
+    <ROW Component="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" ComponentId="{2C670CB1-3F64-43BE-BB86-8A99B9D4E2A3}" Directory_="host_Dir" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll"/>
+    <ROW Component="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_1" ComponentId="{875B804A-5262-40FA-8730-B4EF0B8DB05B}" Directory_="blender_Dir" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_1"/>
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.keggReport.dll" ComponentId="{FB6C7D69-45ED-429E-AE90-6A99C2F08469}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.GCModeller.Workbench.keggReport.dll"/>
     <ROW Component="SMRUCC.genomics.GCModeller.Workbench.keggReport.pdb" ComponentId="{33AA2425-67AE-4E5F-9173-831E8C47199C}" Directory_="APPDIR" Attributes="0" KeyPath="SMRUCC.genomics.GCModeller.Workbench.keggReport.pdb" Type="4"/>
     <ROW Component="SMRUCC.genomics.InteractionModel.dll" ComponentId="{22934577-ADC6-43CA-9B10-30FD9C67643A}" Directory_="APPDIR" Attributes="256" KeyPath="SMRUCC.genomics.InteractionModel.dll"/>
@@ -18559,6 +18562,11 @@
     <ROW File="dims.json" Component_="data.dat" FileName="DIMS~1.JSO|dims.json" Attributes="0" SourcePath="..\webview\assets\demo_3dmaldi\dims.json" SelfReg="false"/>
     <ROW File="Flute.Http.dll_3" Component_="Flute.Http.dll_3" FileName="FLUTEH~1.DLL|Flute.Http.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Flute.Http.dll" SelfReg="false"/>
     <ROW File="Flute.Http.pdb_1" Component_="Flute.Http.pdb_1" FileName="FLUTEH~1.PDB|Flute.Http.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Flute.Http.pdb" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" FileName="SMRUC~13.DLL|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Windows.Ribbon.dll_1" Component_="Microsoft.Windows.Ribbon.dll_1" FileName="MICRO~37.DLL|Microsoft.Windows.Ribbon.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.Windows.Ribbon.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Windows.Ribbon.xml_1" Component_="BioDeep.dll.config" FileName="MICRO~35.XML|Microsoft.Windows.Ribbon.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.Windows.Ribbon.xml" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_1" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_1" FileName="SMRUC~13.DLL|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" SelfReg="false"/>
+    <ROW File="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_1" FileName="SMRUC~13.PDB|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -20122,6 +20130,9 @@
     <ROW Feature_="MainFeature" Component_="data.dat"/>
     <ROW Feature_="MainFeature" Component_="Flute.Http.dll_3"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Flute.Http.pdb_1"/>
+    <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Windows.Ribbon.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
