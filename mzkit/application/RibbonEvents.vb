@@ -124,119 +124,119 @@ Module RibbonEvents
         Call HookRibbon(ribbonItems.ButtonExit, AddressOf ExitToolsStripMenuItem_Click)
         Call HookRibbon(ribbonItems.ButtonOpenRaw, AddressOf WindowModules.OpenFile)
         Call HookRibbon(ribbonItems.ButtonImportsRawFiles, AddressOf MyApplication.host.ImportsFiles)
-        AddHandler ribbonItems.ButtonAbout.ExecuteEvent, AddressOf About_Click
-        AddHandler ribbonItems.ButtonPageNavBack.ExecuteEvent, AddressOf NavBack_Click
-        AddHandler ribbonItems.ButtonNew.ExecuteEvent, AddressOf CreateNewScript
+        Call HookRibbon(ribbonItems.ButtonAbout, AddressOf About_Click)
+        Call HookRibbon(ribbonItems.ButtonPageNavBack, AddressOf NavBack_Click)
+        Call HookRibbon(ribbonItems.ButtonNew, AddressOf CreateNewScript)
 
-        AddHandler ribbonItems.TweaksImage.ExecuteEvent, AddressOf MyApplication.host.mzkitTool.ShowPlotTweaks
-        AddHandler ribbonItems.ShowProperty.ExecuteEvent, AddressOf ShowProperties
-        AddHandler ribbonItems.ButtonCopyProperties.ExecuteEvent, AddressOf CopyProperties
-        AddHandler ribbonItems.ButtonCopyMatrix.ExecuteEvent, AddressOf CopyMatrix
-        AddHandler ribbonItems.ButtonCopyPlot.ExecuteEvent, AddressOf CopyPlotImage
+        Call HookRibbon(ribbonItems.TweaksImage, AddressOf MyApplication.host.mzkitTool.ShowPlotTweaks)
+        Call HookRibbon(ribbonItems.ShowProperty, AddressOf ShowProperties)
+        Call HookRibbon(ribbonItems.ButtonCopyProperties, AddressOf CopyProperties)
+        Call HookRibbon(ribbonItems.ButtonCopyMatrix, AddressOf CopyMatrix)
+        Call HookRibbon(ribbonItems.ButtonCopyPlot, AddressOf CopyPlotImage)
 
-        AddHandler ribbonItems.ButtonPeakFinding.ExecuteEvent, Sub(sender, e) Call CreatePeakFinding()
-        AddHandler ribbonItems.ButtonMzCalculator.ExecuteEvent, Sub(sender, e) Call MyApplication.host.ShowPage(MyApplication.host.mzkitCalculator)
-        AddHandler ribbonItems.ButtonSettings.ExecuteEvent, AddressOf ShowSettings
-        AddHandler ribbonItems.ButtonMzSearch.ExecuteEvent, Sub(sender, e) Call MyApplication.host.ShowPage(MyApplication.host.mzkitSearch)
-        AddHandler ribbonItems.ButtonRsharp.ExecuteEvent, AddressOf showRTerm
+        Call HookRibbon(ribbonItems.ButtonPeakFinding, Sub(sender, e) Call CreatePeakFinding())
+        Call HookRibbon(ribbonItems.ButtonMzCalculator, Sub(sender, e) Call MyApplication.host.ShowPage(MyApplication.host.mzkitCalculator))
+        Call HookRibbon(ribbonItems.ButtonSettings, AddressOf ShowSettings)
+        Call HookRibbon(ribbonItems.ButtonMzSearch, Sub(sender, e) Call MyApplication.host.ShowPage(MyApplication.host.mzkitSearch))
+        Call HookRibbon(ribbonItems.ButtonRsharp, AddressOf showRTerm)
 
-        AddHandler ribbonItems.ButtonDropA.ExecuteEvent, Sub(sender, e) MyApplication.host.ShowPage(MyApplication.host.mzkitTool)
-        AddHandler ribbonItems.ButtonDropB.ExecuteEvent, Sub(sender, e) MyApplication.host.ShowPage(MyApplication.host.mzkitCalculator)
-        AddHandler ribbonItems.ButtonFormulaSearch.ExecuteEvent, Sub(sender, e) MyApplication.host.ShowPage(MyApplication.host.mzkitSearch)
-        AddHandler ribbonItems.ButtonDropD.ExecuteEvent, Sub(sender, e) MyApplication.host.ShowPage(MyApplication.host.mzkitMNtools)
-        AddHandler ribbonItems.ButtonShowSpectrumSearchPage.ExecuteEvent, Sub(sender, e) Call New frmSpectrumSearch().Show(MyApplication.host.DockPanel)
+        Call HookRibbon(ribbonItems.ButtonDropA, Sub(sender, e) MyApplication.host.ShowPage(MyApplication.host.mzkitTool))
+        Call HookRibbon(ribbonItems.ButtonDropB, Sub(sender, e) MyApplication.host.ShowPage(MyApplication.host.mzkitCalculator))
+        Call HookRibbon(ribbonItems.ButtonFormulaSearch, Sub(sender, e) MyApplication.host.ShowPage(MyApplication.host.mzkitSearch))
+        Call HookRibbon(ribbonItems.ButtonDropD, Sub(sender, e) MyApplication.host.ShowPage(MyApplication.host.mzkitMNtools))
+        Call HookRibbon(ribbonItems.ButtonShowSpectrumSearchPage, Sub(sender, e) Call New frmSpectrumSearch().Show(MyApplication.host.DockPanel))
 
-        AddHandler ribbonItems.ButtonCalculatorExport.ExecuteEvent, Sub(sender, e) Call MyApplication.host.mzkitCalculator.ExportToolStripMenuItem_Click()
-        AddHandler ribbonItems.ButtonExactMassSearchExport.ExecuteEvent, Sub(sender, e) Call MyApplication.host.mzkitTool.ExportExactMassSearchTable()
-        AddHandler ribbonItems.ButtonSave.ExecuteEvent, Sub(sender, e) Call MyApplication.host.saveCurrentFile()
-        AddHandler ribbonItems.ButtonNetworkExport.ExecuteEvent, Sub(sender, e) Call MyApplication.host.mzkitMNtools.saveNetwork()
-        AddHandler ribbonItems.ButtonFormulaSearchExport.ExecuteEvent, Sub(sender, e) Call MyApplication.host.mzkitSearch.SaveSearchResultTable()
+        Call HookRibbon(ribbonItems.ButtonCalculatorExport, Sub(sender, e) Call MyApplication.host.mzkitCalculator.ExportToolStripMenuItem_Click())
+        Call HookRibbon(ribbonItems.ButtonExactMassSearchExport, Sub(sender, e) Call MyApplication.host.mzkitTool.ExportExactMassSearchTable())
+        Call HookRibbon(ribbonItems.ButtonSave, Sub(sender, e) Call MyApplication.host.saveCurrentFile())
+        Call HookRibbon(ribbonItems.ButtonNetworkExport, Sub(sender, e) Call MyApplication.host.mzkitMNtools.saveNetwork())
+        Call HookRibbon(ribbonItems.ButtonFormulaSearchExport, Sub(sender, e) Call MyApplication.host.mzkitSearch.SaveSearchResultTable())
 
-        AddHandler ribbonItems.ButtonBioDeep.ExecuteEvent, Sub(sender, e) Call Process.Start("http://www.biodeep.cn/")
-        AddHandler ribbonItems.ButtonLicense.ExecuteEvent, Sub(sender, e) Call New frmLicense().ShowDialog()
+        Call HookRibbon(ribbonItems.ButtonBioDeep, Sub(sender, e) Call Process.Start("http://www.biodeep.cn/"))
+        Call HookRibbon(ribbonItems.ButtonLicense, Sub(sender, e) Call New frmLicense().ShowDialog())
 
-        AddHandler ribbonItems.ButtonExportImage.ExecuteEvent, Sub(sender, e) Call MyApplication.host.mzkitTool.SaveImageToolStripMenuItem_Click()
-        AddHandler ribbonItems.ButtonExportMatrix.ExecuteEvent, Sub(sender, e) Call MyApplication.host.mzkitTool.SaveMatrixToolStripMenuItem_Click()
+        Call HookRibbon(ribbonItems.ButtonExportImage, Sub(sender, e) Call MyApplication.host.mzkitTool.SaveImageToolStripMenuItem_Click())
+        Call HookRibbon(ribbonItems.ButtonExportMatrix, Sub(sender, e) Call MyApplication.host.mzkitTool.SaveMatrixToolStripMenuItem_Click())
 
-        AddHandler ribbonItems.ButtonLayout1.ExecuteEvent, Sub(sender, e) Call MyApplication.host.mzkitTool.SaveImageToolStripMenuItem_Click()
-        AddHandler ribbonItems.ButtonLayout2.ExecuteEvent, Sub(sender, e) Call MyApplication.host.mzkitTool.SaveMatrixToolStripMenuItem_Click()
+        Call HookRibbon(ribbonItems.ButtonLayout1, Sub(sender, e) Call MyApplication.host.mzkitTool.SaveImageToolStripMenuItem_Click())
+        Call HookRibbon(ribbonItems.ButtonLayout2, Sub(sender, e) Call MyApplication.host.mzkitTool.SaveMatrixToolStripMenuItem_Click())
 
-        AddHandler ribbonItems.ButtonShowStartPage.ExecuteEvent, AddressOf showStartPage
-        AddHandler ribbonItems.ButtonShowLogWindow.ExecuteEvent, AddressOf showLoggingWindow
+        Call HookRibbon(ribbonItems.ButtonShowStartPage, AddressOf showStartPage)
+        Call HookRibbon(ribbonItems.ButtonShowLogWindow, AddressOf showLoggingWindow)
 
-        AddHandler ribbonItems.ButtonShowExplorer.ExecuteEvent, AddressOf ShowExplorer
-        AddHandler ribbonItems.ButtonShowSearchList.ExecuteEvent, AddressOf ShowSearchList
-        AddHandler ribbonItems.ButtonShowProperties.ExecuteEvent, AddressOf ShowProperties
+        Call HookRibbon(ribbonItems.ButtonShowExplorer, AddressOf ShowExplorer)
+        Call HookRibbon(ribbonItems.ButtonShowSearchList, AddressOf ShowSearchList)
+        Call HookRibbon(ribbonItems.ButtonShowProperties, AddressOf ShowProperties)
 
-        AddHandler ribbonItems.ButtonShowPlotViewer.ExecuteEvent, Sub(sender, e) Call MyApplication.host.mzkitTool.ShowTabPage(MyApplication.host.mzkitTool.TabPage5)
-        AddHandler ribbonItems.ButtonShowMatrixViewer.ExecuteEvent, Sub(sender, e) Call MyApplication.host.mzkitTool.ShowTabPage(MyApplication.host.mzkitTool.TabPage6)
-        AddHandler ribbonItems.ButtonNetworkRender.ExecuteEvent, Sub(sender, e) Call MyApplication.host.mzkitMNtools.RenderNetwork()
-        AddHandler ribbonItems.ButtonRefreshNetwork.ExecuteEvent, Sub(sender, e) Call MyApplication.host.mzkitMNtools.RefreshNetwork()
+        Call HookRibbon(ribbonItems.ButtonShowPlotViewer, Sub(sender, e) Call MyApplication.host.mzkitTool.ShowTabPage(MyApplication.host.mzkitTool.TabPage5))
+        Call HookRibbon(ribbonItems.ButtonShowMatrixViewer, Sub(sender, e) Call MyApplication.host.mzkitTool.ShowTabPage(MyApplication.host.mzkitTool.TabPage6))
+        Call HookRibbon(ribbonItems.ButtonNetworkRender, Sub(sender, e) Call MyApplication.host.mzkitMNtools.RenderNetwork())
+        Call HookRibbon(ribbonItems.ButtonRefreshNetwork, Sub(sender, e) Call MyApplication.host.mzkitMNtools.RefreshNetwork())
 
-        AddHandler ribbonItems.ButtonRunScript.ExecuteEvent, AddressOf RunCurrentScript
-        AddHandler ribbonItems.ButtonSaveScript.ExecuteEvent, AddressOf MyApplication.host.saveCurrentScript
+        Call HookRibbon(ribbonItems.ButtonRunScript, AddressOf RunCurrentScript)
+        Call HookRibbon(ribbonItems.ButtonSaveScript, AddressOf MyApplication.host.saveCurrentScript)
 
         AddHandler ribbonItems.HelpButton.ExecuteEvent, AddressOf showHelp
-
-        AddHandler ribbonItems.ButtonTIC.ExecuteEvent, Sub(sender, e) Call MyApplication.host.mzkitTool.TIC(isBPC:=False)
-        AddHandler ribbonItems.ButtonBPC.ExecuteEvent, Sub(sender, e) Call MyApplication.host.mzkitTool.TIC(isBPC:=True)
-        AddHandler ribbonItems.ButtonXIC.ExecuteEvent, AddressOf WindowModules.rawFeaturesList.ShowXICToolStripMenuItem_Click
-
-        AddHandler ribbonItems.ButtonResetLayout.ExecuteEvent, AddressOf resetLayout
-
         AddHandler ribbonItems.RecentItems.ExecuteEvent, AddressOf _recentItems_ExecuteEvent
-        AddHandler ribbonItems.ButtonMsImaging.ExecuteEvent, AddressOf showMsImaging
-        AddHandler ribbonItems.ButtonOpenMSIRaw.ExecuteEvent, AddressOf OpenMSIRaw
-        AddHandler ribbonItems.ButtonMSIRowScans.ExecuteEvent, AddressOf CombineRowScanTask
-        AddHandler ribbonItems.ButtonImportsSCiLSLab.ExecuteEvent, AddressOf ImportsSCiLSLab
-        AddHandler ribbonItems.ButtonMsDemo.ExecuteEvent, Sub() WindowModules.msDemo.ShowPage()
-        ' AddHandler ribbonItems.Targeted.ExecuteEvent, Sub() Call ConnectToBioDeep.OpenAdvancedFunction(AddressOf VisualStudio.ShowSingleDocument(Of frmTargetedQuantification))
-        AddHandler ribbonItems.Targeted.ExecuteEvent, Sub() Call VisualStudio.ShowSingleDocument(Of frmTargetedQuantification)()
 
-        AddHandler ribbonItems.MRMLibrary.ExecuteEvent, Sub() Call VisualStudio.ShowSingleDocument(Of frmMRMLibrary)(Nothing)
-        AddHandler ribbonItems.QuantifyIons.ExecuteEvent, Sub() Call VisualStudio.ShowSingleDocument(Of frmQuantifyIons)(Nothing)
-        AddHandler ribbonItems.GCxGCViewer.ExecuteEvent, Sub() Call VisualStudio.ShowSingleDocument(Of frmGCxGCViewer)(Nothing)
+        Call HookRibbon(ribbonItems.ButtonTIC, Sub(sender, e) Call MyApplication.host.mzkitTool.TIC(isBPC:=False))
+        Call HookRibbon(ribbonItems.ButtonBPC, Sub(sender, e) Call MyApplication.host.mzkitTool.TIC(isBPC:=True))
+        Call HookRibbon(ribbonItems.ButtonXIC, AddressOf WindowModules.rawFeaturesList.ShowXICToolStripMenuItem_Click)
 
-        AddHandler ribbonItems.LogInBioDeep.ExecuteEvent, Sub() Call New frmLogin().ShowDialog()
+        Call HookRibbon(ribbonItems.ButtonResetLayout, AddressOf resetLayout)
 
-        AddHandler ribbonItems.ButtonInstallMzkitPackage.ExecuteEvent, AddressOf VisualStudio.InstallInternalRPackages
-        AddHandler ribbonItems.ShowGCMSExplorer.ExecuteEvent, Sub() Call VisualStudio.Dock(WindowModules.GCMSPeaks, DockState.DockLeft)
-        AddHandler ribbonItems.ShowMRMExplorer.ExecuteEvent, Sub() Call VisualStudio.Dock(WindowModules.MRMIons, DockState.DockLeft)
+        Call HookRibbon(ribbonItems.ButtonMsImaging, AddressOf showMsImaging)
+        Call HookRibbon(ribbonItems.ButtonOpenMSIRaw, AddressOf OpenMSIRaw)
+        Call HookRibbon(ribbonItems.ButtonMSIRowScans, AddressOf CombineRowScanTask)
+        Call HookRibbon(ribbonItems.ButtonImportsSCiLSLab, AddressOf ImportsSCiLSLab)
+        Call HookRibbon(ribbonItems.ButtonMsDemo, Sub() WindowModules.msDemo.ShowPage())
+        ' Call HookRibbon(ribbonItems.Targeted, Sub() Call ConnectToBioDeep.OpenAdvancedFunction(AddressOf VisualStudio.ShowSingleDocument(Of frmTargetedQuantification))
+        Call HookRibbon(ribbonItems.Targeted, Sub() Call VisualStudio.ShowSingleDocument(Of frmTargetedQuantification)())
 
-        AddHandler ribbonItems.Tutorials.ExecuteEvent, Sub() Call openVideoList()
-        AddHandler ribbonItems.ButtonViewSMILES.ExecuteEvent, Sub() Call VisualStudio.ShowSingleDocument(Of frmSMILESViewer)()
-        AddHandler ribbonItems.ButtonPluginManager.ExecuteEvent, Sub() Call VisualStudio.ShowSingleDocument(Of frmPluginMgr)()
+        Call HookRibbon(ribbonItems.MRMLibrary, Sub() Call VisualStudio.ShowSingleDocument(Of frmMRMLibrary)(Nothing))
+        Call HookRibbon(ribbonItems.QuantifyIons, Sub() Call VisualStudio.ShowSingleDocument(Of frmQuantifyIons)(Nothing))
+        Call HookRibbon(ribbonItems.GCxGCViewer, Sub() Call VisualStudio.ShowSingleDocument(Of frmGCxGCViewer)(Nothing))
 
-        AddHandler ribbonItems.AdjustParameters.ExecuteEvent, Sub() Call VisualStudio.Dock(WindowModules.parametersTool, DockState.DockRight)
-        AddHandler ribbonItems.ImportsMzwork.ExecuteEvent, Sub() Call OpenWorkspace()
+        Call HookRibbon(ribbonItems.LogInBioDeep, Sub() Call New frmLogin().ShowDialog())
 
-        AddHandler ribbonItems.ButtonDevTools.ExecuteEvent, Sub() Call openCmd()
-        AddHandler ribbonItems.DOIReference.ExecuteEvent, Sub() Call New frmDOI().ShowDialog()
-        AddHandler ribbonItems.ButtonSystemDiagnosis.ExecuteEvent, Sub() Call CollectSystemInformation()
+        Call HookRibbon(ribbonItems.ButtonInstallMzkitPackage, AddressOf VisualStudio.InstallInternalRPackages)
+        Call HookRibbon(ribbonItems.ShowGCMSExplorer, Sub() Call VisualStudio.Dock(WindowModules.GCMSPeaks, DockState.DockLeft))
+        Call HookRibbon(ribbonItems.ShowMRMExplorer, Sub() Call VisualStudio.Dock(WindowModules.MRMIons, DockState.DockLeft))
 
-        AddHandler ribbonItems.ButtonCFMIDTool.ExecuteEvent, Sub() Call OpenCFMIDTool(Nothing)
-        AddHandler ribbonItems.MsconvertGUI.ExecuteEvent, Sub() Call openMsconvertTool()
-        AddHandler ribbonItems.View3DMALDI.ExecuteEvent, Sub() Call open3dMALDIViewer()
+        Call HookRibbon(ribbonItems.Tutorials, Sub() Call openVideoList())
+        Call HookRibbon(ribbonItems.ButtonViewSMILES, Sub() Call VisualStudio.ShowSingleDocument(Of frmSMILESViewer)())
+        Call HookRibbon(ribbonItems.ButtonPluginManager, Sub() Call VisualStudio.ShowSingleDocument(Of frmPluginMgr)())
 
-        AddHandler ribbonItems.ButtonOpenServicesMgr.ExecuteEvent, Sub() Call VisualStudio.ShowSingleDocument(Of frmServicesManager)()
+        Call HookRibbon(ribbonItems.AdjustParameters, Sub() Call VisualStudio.Dock(WindowModules.parametersTool, DockState.DockRight))
+        Call HookRibbon(ribbonItems.ImportsMzwork, Sub() Call OpenWorkspace())
 
-        AddHandler ribbonItems.ButtonImport10x_genomics.ExecuteEvent, Sub() Call ConvertH5ad()
-        AddHandler ribbonItems.ButtonRenderUMAPScatter.ExecuteEvent, Sub() Call PageMoleculeNetworking.RunUMAP()
+        Call HookRibbon(ribbonItems.ButtonDevTools, Sub() Call openCmd())
+        Call HookRibbon(ribbonItems.DOIReference, Sub() Call New frmDOI().ShowDialog())
+        Call HookRibbon(ribbonItems.ButtonSystemDiagnosis, Sub() Call CollectSystemInformation())
 
-        AddHandler ribbonItems.ButtonSearchPubChem.ExecuteEvent, Sub() Call openShowSearchPubChemLCMS()
+        Call HookRibbon(ribbonItems.ButtonCFMIDTool, Sub() Call OpenCFMIDTool(Nothing))
+        Call HookRibbon(ribbonItems.MsconvertGUI, Sub() Call openMsconvertTool())
+        Call HookRibbon(ribbonItems.View3DMALDI, Sub() Call open3dMALDIViewer())
 
-        AddHandler ribbonItems.ButtonOpenVirtualSlideFile.ExecuteEvent, Sub() Call openSlideFile()
-        AddHandler ribbonItems.ButtonOpenTableTool.ExecuteEvent, Sub() Call OpenExcelTableFile2()
-        AddHandler ribbonItems.OpenIonsLibrary.ExecuteEvent, Sub() Call openIonLibrary()
-        AddHandler ribbonItems.ButtonOpenLCMSWorkbench.ExecuteEvent, Sub() Call openLCMSWorkbench()
-        AddHandler ribbonItems.ButtonOpenWorkspace.ExecuteEvent, Sub() Call openLCMSWorkspace()
-        AddHandler ribbonItems.ButtonViewUntargetedScatter.ExecuteEvent, Sub() Call viewUntargettedScatter()
+        Call HookRibbon(ribbonItems.ButtonOpenServicesMgr, Sub() Call VisualStudio.ShowSingleDocument(Of frmServicesManager)())
 
-        AddHandler ribbonItems.ButtonVenn.ExecuteEvent, Sub() Call VisualStudio.ShowDocument(Of frmVennTools)(title:="Venn Plot Tool")
-        AddHandler ribbonItems.ButtonViewMRI.ExecuteEvent, Sub() Call openMRIRaster()
+        Call HookRibbon(ribbonItems.ButtonImport10x_genomics, Sub() Call ConvertH5ad())
+        Call HookRibbon(ribbonItems.ButtonRenderUMAPScatter, Sub() Call PageMoleculeNetworking.RunUMAP())
 
-        AddHandler ribbonItems.ButtonMSIDebugger.ExecuteEvent, Sub() Call Debugger.MSI.Run()
-        AddHandler ribbonItems.ButtonOpenPeakFeatures.ExecuteEvent, Sub() Call loadPeakFeatures()
+        Call HookRibbon(ribbonItems.ButtonSearchPubChem, Sub() Call openShowSearchPubChemLCMS())
+
+        Call HookRibbon(ribbonItems.ButtonOpenVirtualSlideFile, Sub() Call openSlideFile())
+        Call HookRibbon(ribbonItems.ButtonOpenTableTool, Sub() Call OpenExcelTableFile2())
+        Call HookRibbon(ribbonItems.OpenIonsLibrary, Sub() Call openIonLibrary())
+        Call HookRibbon(ribbonItems.ButtonOpenLCMSWorkbench, Sub() Call openLCMSWorkbench())
+        Call HookRibbon(ribbonItems.ButtonOpenWorkspace, Sub() Call openLCMSWorkspace())
+        Call HookRibbon(ribbonItems.ButtonViewUntargetedScatter, Sub() Call viewUntargettedScatter())
+
+        Call HookRibbon(ribbonItems.ButtonVenn, Sub() Call VisualStudio.ShowDocument(Of frmVennTools)(title:="Venn Plot Tool"))
+        Call HookRibbon(ribbonItems.ButtonViewMRI, Sub() Call openMRIRaster())
+
+        Call HookRibbon(ribbonItems.ButtonMSIDebugger, Sub() Call Debugger.MSI.Run())
+        Call HookRibbon(ribbonItems.ButtonOpenPeakFeatures, Sub() Call loadPeakFeatures())
 
         LCMSViewerModule.lcmsViewerhHandle = AddressOf openLcmsScatter
     End Sub

@@ -60,13 +60,13 @@
 Imports System.Runtime.CompilerServices
 Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM.Models
-Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
+Imports Microsoft.VisualBasic.Windows.Forms.DataValidation.UIInteractive
 Imports Mzkit_win32.BasicMDIForm
 Imports any = Microsoft.VisualBasic.Scripting
 

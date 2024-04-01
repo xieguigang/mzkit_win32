@@ -92,6 +92,7 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
+Imports Microsoft.VisualBasic.Windows.Forms.DataValidation.UIInteractive
 Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Controls.Events
 Imports RibbonLib.Interop
@@ -99,7 +100,7 @@ Imports Task
 Imports TaskStream
 Imports WeifenLuo.WinFormsUI.Docking
 Imports any = Microsoft.VisualBasic.Scripting
-Imports stdNum = System.Math
+Imports std = System.Math
 
 Public Class frmTargetedQuantification : Implements QuantificationLinearPage
 
@@ -368,7 +369,7 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
         Dim allFeatures = files _
             .Select(Function(file) GetGCMSFeatures(file, extract)) _
             .IteratesALL _
-            .GroupBy(Function(p) p.rt, Function(x, y) stdNum.Abs(x - y) <= 15) _
+            .GroupBy(Function(p) p.rt, Function(x, y) std.Abs(x - y) <= 15) _
             .ToArray
         Dim contentLevels = linearPack.reference("n/a")
 
@@ -979,14 +980,14 @@ Public Class frmTargetedQuantification : Implements QuantificationLinearPage
                 .Select(Function(p)
                             Dim t = p.Name.Split("/"c).Select(AddressOf Val).ToArray
 
-                            If stdNum.Abs(t(0) - quantifyIon.rt.Min) <= 10 AndAlso stdNum.Abs(t(1) - quantifyIon.rt.Max) <= 10 Then
+                            If std.Abs(t(0) - quantifyIon.rt.Min) <= 10 AndAlso std.Abs(t(1) - quantifyIon.rt.Max) <= 10 Then
                                 Return New TargetPeakPoint With {
                                     .Name = quantifyIon.name,
                                     .ChromatogramSummary = p.ChromatogramSummary,
                                     .Peak = p.Peak,
                                     .SampleName = p.SampleName
                                 }
-                            ElseIf stdNum.Abs(t(0) - quantifyIS.rt.Min) <= 10 AndAlso stdNum.Abs(t(1) - quantifyIS.rt.Max) <= 10 Then
+                            ElseIf std.Abs(t(0) - quantifyIS.rt.Min) <= 10 AndAlso std.Abs(t(1) - quantifyIS.rt.Max) <= 10 Then
                                 Return New TargetPeakPoint With {
                                     .Name = quantifyIS.name,
                                     .ChromatogramSummary = p.ChromatogramSummary,

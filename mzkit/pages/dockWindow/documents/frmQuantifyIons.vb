@@ -65,7 +65,7 @@ Imports Microsoft.VisualBasic.Data.IO.MessagePack
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
-Imports Mzkit_win32.BasicMDIForm
+Imports Microsoft.VisualBasic.Windows.Forms.DataValidation.UIInteractive
 Imports any = Microsoft.VisualBasic.Scripting
 
 ''' <summary>

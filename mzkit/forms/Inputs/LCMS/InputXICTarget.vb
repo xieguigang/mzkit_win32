@@ -56,7 +56,7 @@
 
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Language
-Imports Mzkit_win32.BasicMDIForm
+Imports Microsoft.VisualBasic.Windows.Forms.DataValidation.UIInteractive
 Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class InputXICTarget
