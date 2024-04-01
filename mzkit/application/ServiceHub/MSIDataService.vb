@@ -558,11 +558,20 @@ Namespace ServiceHub
         ''' <param name="request"></param>
         ''' <returns></returns>
         Private Function handleServiceRequest(request As RequestStream, Optional min As Double = 30) As RequestStream
+            Call Workbench.LogText($"start to handling tcp request: {request.ToString}")
+            Call Workbench.LogText($"set tcp request timeout: {min} minutes.")
+
             If MSI_service <= 0 Then
                 Call Workbench.Warning("MS-imaging services is not started yet!")
                 Return Nothing
             Else
-                Return New TcpRequest(endPoint) _
+                Return New TcpRequest(endPoint,
+                    exceptionHandler:=
+                        Sub(ex)
+                            Call App.LogException(ex)
+                            Call Workbench.LogText("error while processing the tcp request:")
+                            Call Workbench.LogText(ex.ToString)
+                        End Sub) _
                     .SetTimeOut(TimeSpan.FromMinutes(min)) _
                     .SendMessage(request)
             End If
