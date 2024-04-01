@@ -1043,6 +1043,7 @@
     <ROW Component="Microsoft.Windows.FeatureAPI.dll_2" ComponentId="{53E5883A-C8CF-4128-91B9-75FACA360F68}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.Windows.FeatureAPI.dll_1"/>
     <ROW Component="Microsoft.Windows.FeatureAPI.pdb" ComponentId="{E1986F8C-2EA6-41F0-95F4-12CA6983E2F0}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Windows.FeatureAPI.pdb" Type="4"/>
     <ROW Component="Microsoft.Windows.Ribbon.dll" ComponentId="{ACD1A2A4-798D-41B7-802A-0A07A618CCBB}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.Windows.Ribbon.dll"/>
+    <ROW Component="Microsoft.Windows.Ribbon.dll_1" ComponentId="{02DD3D41-5997-4C39-B642-93870864A360}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.Windows.Ribbon.dll_1"/>
     <ROW Component="Microsoft.Windows.Ribbon.pdb" ComponentId="{4F0C0C40-F86C-4745-A92C-3E88A7EBEA45}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Windows.Ribbon.pdb" Type="4"/>
     <ROW Component="Microsoft.Windows.SDK.NET.dll" ComponentId="{5BAAC770-8FBE-4777-984E-B5A3C2A0403B}" Directory_="nvidia_Dir" Attributes="0" KeyPath="Microsoft.Windows.SDK.NET.dll"/>
     <ROW Component="MoNA.dll" ComponentId="{A9ABEBFD-6384-4DC0-8553-6D35B60BB0ED}" Directory_="plugins_Dir" Attributes="256" KeyPath="MoNA.dll"/>
@@ -18286,7 +18287,6 @@
     <ROW File="System.Numerics.Tensors.dll_2" Component_="System.Numerics.Tensors.dll_2" FileName="SYSTE~25.DLL|System.Numerics.Tensors.dll" Attributes="0" SourcePath="..\..\..\dist\bin\System.Numerics.Tensors.dll" SelfReg="false"/>
     <ROW File="SMRUCC.DICOM.LASer.xml" Component_="Mzkit_win32.LCMSViewer.dll.config" FileName="SMRUCC~7.XML|SMRUCC.DICOM.LASer.xml" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.DICOM.LASer.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.DataStorage.HDSPack.xml" Component_="Flute.Http.xml" FileName="MICROS~7.XML|Microsoft.VisualBasic.DataStorage.HDSPack.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Microsoft.VisualBasic.DataStorage.HDSPack.xml" SelfReg="false"/>
-    <ROW File="txt" Component_="Flute.Http.xml" FileName="新建文本文档.txt" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\新建文本文档.txt" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.xm" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="BIONO~15.XML|BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology.xml" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.SignalReader.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="BIONO~16.XML|BioNovoGene.Analytical.MassSpectrometry.SignalReader.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.SignalReader.xml" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.SingleCells.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="BIONO~17.XML|BioNovoGene.Analytical.MassSpectrometry.SingleCells.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.SingleCells.xml" SelfReg="false"/>
@@ -18551,6 +18551,9 @@
     <ROW File="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb_1" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_2" FileName="SMRUC~19.PDB|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" SelfReg="false"/>
     <ROW File="Flute.Http.dll_5" Component_="Flute.Http.dll_5" FileName="FLUTEH~1.DLL|Flute.Http.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Flute.Http.dll" SelfReg="false"/>
     <ROW File="Flute.Http.pdb_3" Component_="Flute.Http.dll_5" FileName="FLUTEH~1.PDB|Flute.Http.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Flute.Http.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.Windows.Ribbon.dll_1" Component_="Microsoft.Windows.Ribbon.dll_1" FileName="MICRO~37.DLL|Microsoft.Windows.Ribbon.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.Windows.Ribbon.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Windows.Ribbon.pdb_1" Component_="Microsoft.Windows.Ribbon.dll_1" FileName="MICRO~34.PDB|Microsoft.Windows.Ribbon.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.Windows.Ribbon.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.Windows.Ribbon.xml_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="MICRO~35.XML|Microsoft.Windows.Ribbon.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.Windows.Ribbon.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -20063,6 +20066,7 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Flute.Http.dll_5"/>
     <ROW Feature_="MainFeature" Component_="RQL.dll_4"/>
     <ROW Feature_="MainFeature" Component_="BioDeep.dll.config_1"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.Windows.Ribbon.dll_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>

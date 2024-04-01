@@ -372,7 +372,8 @@ Module RibbonEvents
             "MIRAX format(*.mrxs)|*.mrxs",
             "Leica format(*.scn)|*.scn",
             "DICOM format(*.dcm)|*.dcm",
-            "MZKit Slide Pack File(*.hds;*.mzPack)|*.hds;*.mzPack"
+            "MZKit Slide Pack File(*.hds;*.mzPack)|*.hds;*.mzPack",
+            "General image file(*.bitmap;*.png;*.jpg)|*.bitmap;*.png;*.jpg"
         }
 
         Using file As New OpenFileDialog With {
