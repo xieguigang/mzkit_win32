@@ -92,7 +92,7 @@ Namespace query.biodeep.cn
         ''' <param name="biodeep_id"></param>
         ''' <returns></returns>
         Public Shared Function metabolite(biodeep_id As String) As metabolite
-            Dim url As String = $"{host}/metabolite/{biodeep_id}"
+            Dim url As String = $"{host}/query/metabolite/?id={biodeep_id}"
             Dim json_str As String = url.GET
             Dim result = json_str.LoadJSON(Of JsonResponse(Of metabolite_result))(throwEx:=False)
 
