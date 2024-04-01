@@ -1,5 +1,7 @@
 Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.Net.Tcp
+Imports Mzkit_win32.BasicMDIForm.RibbonLib.Controls
+Imports RibbonLib
 Imports WeifenLuo.WinFormsUI.Docking
 
 Public NotInheritable Class Workbench
@@ -13,6 +15,7 @@ Public NotInheritable Class Workbench
     ''' <returns></returns>
     Public Shared ReadOnly Property WebPort As Integer = TCPExtensions.GetFirstAvailablePort(-1)
     Public Shared ReadOnly Property MSIServiceAppPort As Integer
+    Public Shared ReadOnly Property RibbonItems As RibbonItems
 
     Private Sub New()
     End Sub
@@ -21,6 +24,11 @@ Public NotInheritable Class Workbench
     Public Shared Sub SetMSIServicesAppPort(appPort As Integer)
         _MSIServiceAppPort = appPort
     End Sub
+
+    Public Shared Function SetRibbonMenu(ribbon As Ribbon) As RibbonItems
+        _RibbonItems = New RibbonItems(ribbon)
+        Return RibbonItems
+    End Function
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Sub Hook(host As AppHost)

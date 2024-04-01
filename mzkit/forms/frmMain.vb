@@ -322,7 +322,6 @@ Public Class frmMain : Implements AppHost
         End Using
     End Sub
 
-    Friend ribbonItems As RibbonItems
     Friend recentItems As List(Of RecentItemsPropertySet)
 
     Dim _uiCollectionChangedEvent As UICollectionChangedEvent
@@ -336,8 +335,7 @@ Public Class frmMain : Implements AppHost
         Call Workbench.Hook(Me)
 
         ' 在 InitializeComponent() 调用之后添加任何初始化。
-        ribbonItems = New RibbonItems(Ribbon1)
-        ribbonItems.AddHandlers
+        Call Workbench.SetRibbonMenu(Ribbon1).AddHandlers
 
         _uiCollectionChangedEvent = New UICollectionChangedEvent()
     End Sub
