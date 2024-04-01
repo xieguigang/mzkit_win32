@@ -754,10 +754,14 @@ Public Class MSI : Implements ITaskDriver, IDisposable
         Next
 
         layers = MSI.LoadPixels(config.mz, mzdiff).ToArray
+
+        Dim byts As Byte() = PixelData.GetBuffer(layers)
+
         ' layers = KnnInterpolation.KnnFill(layers, MSI.dimension, dx:=3, dy:=3)
         Call RunSlavePipeline.SendMessage($"get {layers.Length} pixels from the m/z matches!")
+        Call RunSlavePipeline.SendMessage($"sizeof pixels data payload: {StringFormats.Lanudry(bytes:=byts.Length)}")
 
-        Return New ZipDataPipe(PixelData.GetBuffer(layers))
+        Return New ZipDataPipe(byts)
     End Function
 
     <Protocol(ServiceProtocol.GetAnnotationNames)>
@@ -781,6 +785,8 @@ Public Class MSI : Implements ITaskDriver, IDisposable
             .GetLayer(summaryType) _
             .ToArray
         Dim byts As Byte() = PixelScanIntensity.GetBuffer(summary)
+
+        Call RunSlavePipeline.SendMessage($"sizeof pixels data payload: {StringFormats.Lanudry(bytes:=byts.Length)}")
 
         Return New ZipDataPipe(byts)
     End Function
