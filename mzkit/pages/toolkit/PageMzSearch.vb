@@ -287,9 +287,9 @@ Public Class PageMzSearch
 
     Private Sub PageMzSearch_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
         If Visible Then
-            MyApplication.host.ribbonItems.TabGroupFormulaSearchTools.ContextAvailable = ContextAvailability.Active
+            ribbonItems.TabGroupFormulaSearchTools.ContextAvailable = ContextAvailability.Active
         Else
-            MyApplication.host.ribbonItems.TabGroupFormulaSearchTools.ContextAvailable = ContextAvailability.NotAvailable
+            ribbonItems.TabGroupFormulaSearchTools.ContextAvailable = ContextAvailability.NotAvailable
         End If
     End Sub
 

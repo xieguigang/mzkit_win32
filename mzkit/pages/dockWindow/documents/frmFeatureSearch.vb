@@ -239,7 +239,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             Dim parentFile = cluster.Parent.ToolTipText
             Dim scan_id As String = cluster.Text
 
-            MyApplication.host.ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
+            ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
 
             ' scan节点
             Dim raw As Raw
@@ -342,7 +342,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             Dim parentFile = cluster.Parent.ToolTipText
             Dim scan_id As String = cluster.Text
 
-            MyApplication.host.ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
+            ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
 
             ' scan节点
             Dim raw As Raw

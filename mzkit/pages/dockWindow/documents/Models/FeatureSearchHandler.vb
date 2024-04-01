@@ -82,7 +82,7 @@ Module FeatureSearchHandler
             Call Workbench.StatusMessage($"Do search features for formula: {text}...")
             Call runFormulaMatch(text, raw, directRaw, ppm:=mzdiff)
 
-            MyApplication.host.ribbonItems.TabGroupExactMassSearchTools.ContextAvailable = ContextAvailability.Active
+            ribbonItems.TabGroupExactMassSearchTools.ContextAvailable = ContextAvailability.Active
         End If
     End Sub
 
@@ -98,7 +98,7 @@ Module FeatureSearchHandler
             )
         Next
 
-        MyApplication.host.ribbonItems.TabGroupExactMassSearchTools.ContextAvailable = ContextAvailability.Active
+        ribbonItems.TabGroupExactMassSearchTools.ContextAvailable = ContextAvailability.Active
     End Sub
 
     Private Sub runFormulaMatch(formula As String,

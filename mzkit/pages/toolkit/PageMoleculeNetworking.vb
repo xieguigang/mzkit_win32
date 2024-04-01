@@ -219,7 +219,7 @@ Public Class PageMoleculeNetworking
             Return
         End If
 
-        Dim similarityCutoff As Double = MyApplication.host.ribbonItems.SpinnerSimilarity.DecimalValue
+        Dim similarityCutoff As Double = ribbonItems.SpinnerSimilarity.DecimalValue
 
         Call ProgressSpinner.DoLoading(
             Sub()
@@ -239,7 +239,7 @@ Public Class PageMoleculeNetworking
         Me.nodeInfo = nodes
         Me.rawLinks = rawLinks
 
-        MyApplication.host.ribbonItems.SpinnerSimilarity.DecimalValue = 0.98
+        ribbonItems.SpinnerSimilarity.DecimalValue = 0.98
     End Sub
 
     Private Sub loadNetwork(MN As IEnumerable(Of EntityClusterModel),
@@ -323,7 +323,7 @@ Public Class PageMoleculeNetworking
                                                               MessageBoxButtons.YesNo,
                                                               MessageBoxIcon.Question) = DialogResult.Yes Then
 
-            MyApplication.host.ribbonItems.SpinnerSimilarity.DecimalValue = 0.98
+            ribbonItems.SpinnerSimilarity.DecimalValue = 0.98
             Call RefreshNetwork()
             Return
         End If
@@ -545,7 +545,7 @@ Public Class PageMoleculeNetworking
     End Sub
 
     Private Sub PageMoleculeNetworking_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
-        Dim mnTools = MyApplication.host.ribbonItems.TabGroupNetworkTools
+        Dim mnTools = ribbonItems.TabGroupNetworkTools
 
         If Visible Then
             mnTools.ContextAvailable = ContextAvailability.Active

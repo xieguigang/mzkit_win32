@@ -94,7 +94,7 @@ Friend MustInherit Class WindowModules
 
     Public Shared ReadOnly Property ribbon As RibbonItems
         Get
-            Return MyApplication.host.ribbonItems
+            Return RibbonEvents.ribbonItems
         End Get
     End Property
 

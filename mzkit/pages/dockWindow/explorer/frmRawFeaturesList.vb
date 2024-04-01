@@ -116,7 +116,7 @@ Public Class frmRawFeaturesList
     End Sub
 
     Private Sub frmFileExplorer_Activated(sender As Object, e As EventArgs) Handles Me.Activated
-        MyApplication.host.ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
+        ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
     End Sub
 
     Private Sub frmFileExplorer_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
@@ -322,7 +322,7 @@ Public Class frmRawFeaturesList
     End Sub
 
     Private Sub treeView1_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles treeView1.AfterSelect
-        MyApplication.host.ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
+        ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
 
         If TypeOf e.Node.Tag Is UVScan Then
 
@@ -442,7 +442,7 @@ Public Class frmRawFeaturesList
     End Sub
 
     Private Sub MolecularNetworkingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MolecularNetworkingToolStripMenuItem.Click
-        Dim similarityCutoff As Double = MyApplication.host.ribbonItems.SpinnerSimilarity.DecimalValue
+        Dim similarityCutoff As Double = ribbonItems.SpinnerSimilarity.DecimalValue
         Dim page As PageMzkitTools = MyApplication.mzkitRawViewer
 
         Call TaskProgress.RunAction(
@@ -660,7 +660,7 @@ Public Class frmRawFeaturesList
     End Sub
 
     Private Sub ShowPropertiesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowPropertiesToolStripMenuItem.Click
-        MyApplication.host.ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
+        ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
 
         If treeView1.SelectedNode Is Nothing Then
             Call Workbench.Warning("No ion feature was selected...")

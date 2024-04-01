@@ -395,7 +395,7 @@ Public Class PageMzkitTools
             $"{query.name}_vs_{ref.name}"
         )
 
-        MyApplication.host.ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
+        ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
 
         Call showMatrix(result.alignments, alignName)
         Call MyApplication.RegisterPlot(
@@ -722,7 +722,7 @@ Public Class PageMzkitTools
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Private Function relativeInto() As Boolean
-        Return MyApplication.host.ribbonItems.CheckBoxXICRelative.BooleanValue
+        Return ribbonItems.CheckBoxXICRelative.BooleanValue
     End Function
 
     'Private Sub AddToolStripMenuItem_Click(sender As Object, e As EventArgs)

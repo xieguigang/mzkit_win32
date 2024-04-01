@@ -107,7 +107,7 @@ Public Class frmRScriptEdit
             RibbonEvents.scriptFiles.Remove(Me)
 
             If Not MyApplication.host.m_dockPanel.Documents.Where(Function(d) TypeOf d Is frmRScriptEdit).Any Then
-                MyApplication.host.ribbonItems.TabGroupRscriptTools.ContextAvailable = ContextAvailability.NotAvailable
+                ribbonItems.TabGroupRscriptTools.ContextAvailable = ContextAvailability.NotAvailable
             End If
         End If
     End Sub
@@ -118,7 +118,7 @@ Public Class frmRScriptEdit
     End Sub
 
     Private Sub Editor1_OnFocus() Handles Editor1.OnFocus
-        MyApplication.host.ribbonItems.TabGroupRscriptTools.ContextAvailable = ContextAvailability.Active
+        ribbonItems.TabGroupRscriptTools.ContextAvailable = ContextAvailability.Active
     End Sub
 
     Private Sub Editor1_EditCode() Handles Editor1.EditCode

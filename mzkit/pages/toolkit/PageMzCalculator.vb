@@ -154,11 +154,11 @@ Public Class PageMzCalculator
         Dim host As frmMain = MyApplication.host
 
         If Me.Visible Then
-            host.ribbonItems.TabGroupCalculatorTools.ContextAvailable = ContextAvailability.Active
-            host.ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.NotAvailable
+            ribbonItems.TabGroupCalculatorTools.ContextAvailable = ContextAvailability.Active
+            ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.NotAvailable
         Else
-            host.ribbonItems.TabGroupCalculatorTools.ContextAvailable = ContextAvailability.NotAvailable
-            host.ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
+            ribbonItems.TabGroupCalculatorTools.ContextAvailable = ContextAvailability.NotAvailable
+            ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
         End If
     End Sub
 

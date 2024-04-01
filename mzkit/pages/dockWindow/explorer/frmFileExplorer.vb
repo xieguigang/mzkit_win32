@@ -101,7 +101,7 @@ Public Class frmFileExplorer
     End Sub
 
     Private Sub frmFileExplorer_Activated(sender As Object, e As EventArgs) Handles Me.Activated
-        MyApplication.host.ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
+        ribbonItems.TabGroupTableTools.ContextAvailable = ContextAvailability.Active
         Call treeView1_AfterSelect(Nothing, Nothing)
     End Sub
 
@@ -776,7 +776,7 @@ Public Class frmFileExplorer
         Else
             Dim raw = DirectCast(node.Tag, MZWork.Raw)
             Dim mzpackfile As String = raw.cache
-            Dim similarityCutoff As Double = MyApplication.host.ribbonItems.SpinnerSimilarity.DecimalValue
+            Dim similarityCutoff As Double = ribbonItems.SpinnerSimilarity.DecimalValue
             Dim page As PageMzkitTools = MyApplication.mzkitRawViewer
             Dim getRaw As Func(Of Action(Of String), IEnumerable(Of PeakMs2)) =
                 Iterator Function(println)
