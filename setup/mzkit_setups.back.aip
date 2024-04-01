@@ -650,7 +650,8 @@
     <ROW Component="Flute.Http.dll" ComponentId="{1A9D1085-A042-4FB2-B9F6-267C14D598BD}" Directory_="APPDIR" Attributes="256" KeyPath="Flute.Http.dll"/>
     <ROW Component="Flute.Http.dll_1" ComponentId="{7126992B-A818-47AB-A05F-ECAF115FD030}" Directory_="bin_Dir" Attributes="256" KeyPath="Flute.Http.dll_1"/>
     <ROW Component="Flute.Http.dll_2" ComponentId="{E864A31A-24B9-4B09-9D10-097012043776}" Directory_="host_Dir" Attributes="256" KeyPath="Flute.Http.dll_2"/>
-    <ROW Component="Flute.Http.dll_5" ComponentId="{10EA9E47-C22B-4BBD-927D-A5B91C71C60D}" Directory_="blender_Dir" Attributes="256" KeyPath="Flute.Http.dll_5"/>
+    <ROW Component="Flute.Http.dll_3" ComponentId="{473CD8D2-E536-4309-8BD3-C11F977581F2}" Directory_="blender_Dir" Attributes="256" KeyPath="Flute.Http.dll_5"/>
+    <ROW Component="Flute.Http.dll_5" ComponentId="{10EA9E47-C22B-4BBD-927D-A5B91C71C60D}" Directory_="blender_Dir" Attributes="256" KeyPath="Flute.Http.pdb_3"/>
     <ROW Component="Flute.Http.dll_9" ComponentId="{AC04B39C-8C05-407B-8AE4-0780C87805B9}" Directory_="library_Dir" Attributes="256" KeyPath="Flute.Http.dll_9"/>
     <ROW Component="Flute.Http.pdb" ComponentId="{BFE97953-F38D-4536-9EEC-FB524EC6A5B8}" Directory_="APPDIR" Attributes="0" KeyPath="Flute.Http.pdb" Type="4"/>
     <ROW Component="Flute.Http.xml" ComponentId="{4035364A-48E6-4100-B4AD-C6C9D7D8BEA4}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll.config_4" Type="0"/>
@@ -1226,7 +1227,8 @@
     <ROW Component="Microsoft.Windows.FeatureAPI.dll_2" ComponentId="{53E5883A-C8CF-4128-91B9-75FACA360F68}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.Windows.FeatureAPI.dll_1"/>
     <ROW Component="Microsoft.Windows.FeatureAPI.pdb" ComponentId="{E1986F8C-2EA6-41F0-95F4-12CA6983E2F0}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Windows.FeatureAPI.pdb" Type="4"/>
     <ROW Component="Microsoft.Windows.Ribbon.dll" ComponentId="{ACD1A2A4-798D-41B7-802A-0A07A618CCBB}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.Windows.Ribbon.dll"/>
-    <ROW Component="Microsoft.Windows.Ribbon.dll_1" ComponentId="{02DD3D41-5997-4C39-B642-93870864A360}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.Windows.Ribbon.dll_1"/>
+    <ROW Component="Microsoft.Windows.Ribbon.dll_1" ComponentId="{02DD3D41-5997-4C39-B642-93870864A360}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.Windows.Ribbon.pdb_1"/>
+    <ROW Component="Microsoft.Windows.Ribbon.dll_2" ComponentId="{1FF89681-4616-4EA6-8DD4-00114DF70842}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.Windows.Ribbon.dll_1"/>
     <ROW Component="Microsoft.Windows.Ribbon.pdb" ComponentId="{4F0C0C40-F86C-4745-A92C-3E88A7EBEA45}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Windows.Ribbon.pdb" Type="4"/>
     <ROW Component="Microsoft.Windows.SDK.NET.dll" ComponentId="{5BAAC770-8FBE-4777-984E-B5A3C2A0403B}" Directory_="nvidia_Dir" Attributes="0" KeyPath="Microsoft.Windows.SDK.NET.dll"/>
     <ROW Component="MoNA.dll" ComponentId="{A9ABEBFD-6384-4DC0-8553-6D35B60BB0ED}" Directory_="plugins_Dir" Attributes="256" KeyPath="MoNA.dll"/>
@@ -19919,9 +19921,9 @@
     <ROW File="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_1" FileName="SMRUC~13.PDB|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_2" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_3" FileName="SMRUC~19.DLL|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb_1" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_2" FileName="SMRUC~19.PDB|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" SelfReg="false"/>
-    <ROW File="Flute.Http.dll_5" Component_="Flute.Http.dll_5" FileName="FLUTEH~1.DLL|Flute.Http.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Flute.Http.dll" SelfReg="false"/>
+    <ROW File="Flute.Http.dll_5" Component_="Flute.Http.dll_3" FileName="FLUTEH~1.DLL|Flute.Http.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Flute.Http.dll" SelfReg="false"/>
     <ROW File="Flute.Http.pdb_3" Component_="Flute.Http.dll_5" FileName="FLUTEH~1.PDB|Flute.Http.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Flute.Http.pdb" SelfReg="false"/>
-    <ROW File="Microsoft.Windows.Ribbon.dll_1" Component_="Microsoft.Windows.Ribbon.dll_1" FileName="MICRO~37.DLL|Microsoft.Windows.Ribbon.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.Windows.Ribbon.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Windows.Ribbon.dll_1" Component_="Microsoft.Windows.Ribbon.dll_2" FileName="MICRO~37.DLL|Microsoft.Windows.Ribbon.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.Windows.Ribbon.dll" SelfReg="false"/>
     <ROW File="Microsoft.Windows.Ribbon.pdb_1" Component_="Microsoft.Windows.Ribbon.dll_1" FileName="MICRO~34.PDB|Microsoft.Windows.Ribbon.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.Windows.Ribbon.pdb" SelfReg="false"/>
     <ROW File="Microsoft.Windows.Ribbon.xml_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="MICRO~35.XML|Microsoft.Windows.Ribbon.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.Windows.Ribbon.xml" SelfReg="false"/>
   </COMPONENT>
@@ -22807,6 +22809,8 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Data.BinaryData.xml_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.DataStorage.HDSPack.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="libSkiaSharp.dylib"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Windows.Ribbon.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Flute.Http.dll_3"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
