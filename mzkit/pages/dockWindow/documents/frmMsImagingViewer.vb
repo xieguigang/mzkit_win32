@@ -2654,7 +2654,7 @@ Public Class frmMsImagingViewer
 
     Protected Overrides Sub SaveDocument()
         If PixelSelector1.MSImage Is Nothing Then
-            Call MyApplication.host.showStatusMessage("No MSI plot image for output!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning("No MSI plot image for output!")
             Return
         End If
 
@@ -2682,7 +2682,7 @@ Public Class frmMsImagingViewer
                 Call MessageBox.Show(reason, "MS-Imaging Viewer", MessageBoxButtons.OK, MessageBoxIcon.Stop)
             End If
         Else
-            Call MyApplication.host.showStatusMessage("No image for render...", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Call Workbench.Warning("No image for render...")
         End If
     End Sub
 

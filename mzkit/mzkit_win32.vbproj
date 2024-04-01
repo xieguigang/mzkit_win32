@@ -1154,7 +1154,6 @@
       <DependentUpon>ElementProfile.vb</DependentUpon>
     </Compile>
     <Compile Include="pages\Settings\ElementProfile.vb" />
-    <Compile Include="RibbonItems.Designer.vb" />
     <Compile Include="Win32API.vb" />
   </ItemGroup>
   <ItemGroup>
@@ -2080,7 +2079,6 @@
     <None Include="Resources\RE4As8m.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="RibbonItems.Designer.cs" />
     <None Include="Resources\StatusAnnotations_Warning_32xLG_color.png" />
     <None Include="Resources\spinner.gif" />
     <None Include="Resources\42082.png" />
