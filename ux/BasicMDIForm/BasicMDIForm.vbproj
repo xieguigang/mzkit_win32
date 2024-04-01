@@ -197,9 +197,7 @@
     <Compile Include="base\ToolWindow.vb">
       <SubType>Form</SubType>
     </Compile>
-
-
-<Compile Include="..\..\mzkit\RibbonItems.Designer.vb" />
+    <Compile Include="..\..\mzkit\RibbonItems.Designer.vb" />
     <Compile Include="AppHost.vb" />
     <Compile Include="buzyIndicator\ActionRunner.vb" />
     <Compile Include="buzyIndicator\LoadDataTask.vb" />
@@ -221,6 +219,7 @@
     <Compile Include="plugin\modules\DataTableViewer.vb" />
     <Compile Include="plugin\modules\LCMSViewerModule.vb" />
     <Compile Include="plugin\modules\SpectrumLibraryModule.vb" />
+    <Compile Include="RibbonEventBinding.vb" />
     <Compile Include="TableHelper.vb" />
     <Compile Include="plugin\base\MSIServicePlugin.vb" />
     <Compile Include="dialogs\InputDialog.Designer.vb">

@@ -77,7 +77,6 @@ Imports BioNovoGene.BioDeep.MetaDNA
 Imports BioNovoGene.BioDeep.MSEngine
 Imports BioNovoGene.mzkit_win32.MSdata
 Imports BioNovoGene.mzkit_win32.My
-Imports BioNovoGene.mzkit_win32.RibbonLib.Controls
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Canvas
@@ -100,7 +99,7 @@ Public Class PageMzkitTools
     Friend _ribbonExportDataContextMenuStrip As ExportData
 
     Public Sub Ribbon_Load(ribbon As Ribbon)
-        _ribbonExportDataContextMenuStrip = New ExportData(ribbon, RibbonItems.cmdContextMap)
+        _ribbonExportDataContextMenuStrip = New ExportData(ribbon, Global.Mzkit_win32.BasicMDIForm.RibbonLib.Controls.RibbonItems.cmdContextMap)
     End Sub
 
     Private Function missingCacheFile(raw As MZWork.Raw) As DialogResult
@@ -751,7 +750,7 @@ Public Class PageMzkitTools
     Private Sub PictureBox1_MouseClick(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseClick
         If e.Button = MouseButtons.Right Then
             Dim p As Point = PictureBox1.PointToScreen(e.Location)
-            MyApplication.host.Ribbon1.ShowContextPopup(CUInt(RibbonItems.cmdContextMap), p.X, p.Y)
+            MyApplication.host.Ribbon1.ShowContextPopup(CUInt(Global.Mzkit_win32.BasicMDIForm.RibbonLib.Controls.RibbonItems.cmdContextMap), p.X, p.Y)
         End If
     End Sub
 
