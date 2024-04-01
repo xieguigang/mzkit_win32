@@ -103,6 +103,14 @@ Namespace query.biodeep.cn
             End If
         End Function
 
+        Public Shared Function mapping_terms(mapping As IEnumerable(Of String)) As UInteger()
+            Dim mapping_term As String = mapping.Select(Function(s) s.UrlEncode).JoinBy("+")
+            Dim url As String = $"{host}/query/mapping?fetch_id=true&list={mapping_term}"
+            Dim json As String = url.GET
+            Dim biodeep_id = json.LoadJSON(Of JsonResponse(Of page_data(Of UInteger)))
+            Return biodeep_id.info.data
+        End Function
+
         ''' <summary>
         ''' get the url of page for display the metabolite information.
         ''' </summary>

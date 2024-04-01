@@ -54,7 +54,11 @@
 
 Namespace query.biodeep.cn
 
-    Public Module KEGG
+    Public Class page_data(Of T)
 
-    End Module
+        Public Property page As Integer
+        Public Property page_size As Integer
+        Public Property data As T()
+
+    End Class
 End Namespace
