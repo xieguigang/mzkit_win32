@@ -1,6 +1,4 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math
-Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
-Imports Microsoft.VisualBasic.ComponentModel.Algorithm
+﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
 
@@ -35,8 +33,8 @@ Public Class SpectrumViewer
     End Sub
 
     Private Sub Scaling()
-        mzscale = d3js.scale.linear().domain(mz_range).range(New Double() {0, PictureBox1.Width})
-        intensityscale = d3js.scale.linear().domain(into_range).range(New Double() {0, PictureBox1.Height})
+        mzscale = d3js.scale.linear().domain(mz_range).range(values:=New Double() {0, PictureBox1.Width})
+        intensityscale = d3js.scale.linear().domain(into_range).range(values:=New Double() {0, PictureBox1.Height})
     End Sub
 
     Private Sub Rendering()

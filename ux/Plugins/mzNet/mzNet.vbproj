@@ -137,25 +137,37 @@
     <Compile Include="InputSetScatterFilterNumber.Designer.vb">
       <DependentUpon>InputSetScatterFilterNumber.vb</DependentUpon>
     </Compile>
-    <Compile Include="InputSetScatterFilterNumber.vb" />
+    <Compile Include="InputSetScatterFilterNumber.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmSetClusterNumbers.Designer.vb">
       <DependentUpon>frmSetClusterNumbers.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmSetClusterNumbers.vb" />
+    <Compile Include="frmSetClusterNumbers.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormScatterViewer.Designer.vb">
       <DependentUpon>FormScatterViewer.vb</DependentUpon>
     </Compile>
-    <Compile Include="FormScatterViewer.vb" />
+    <Compile Include="FormScatterViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="InputSelectGraphModel.Designer.vb">
       <DependentUpon>InputSelectGraphModel.vb</DependentUpon>
     </Compile>
-    <Compile Include="InputSelectGraphModel.vb" />
+    <Compile Include="InputSelectGraphModel.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmCloudExplorer.Designer.vb">
       <DependentUpon>frmCloudExplorer.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmCloudExplorer.vb" />
+    <Compile Include="frmCloudExplorer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Plugin.vb" />
-    <Compile Include="FormViewer.vb" />
+    <Compile Include="FormViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormViewer.Designer.vb">
       <DependentUpon>FormViewer.vb</DependentUpon>
       <SubType>Form</SubType>
