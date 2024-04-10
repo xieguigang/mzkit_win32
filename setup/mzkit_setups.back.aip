@@ -1099,6 +1099,8 @@
     <ROW Component="Microsoft.VisualBasic.MIME.text.markdown.dll" ComponentId="{BC0C9E16-1AC3-4DC1-8626-3ACBFC59E719}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.text.markdown.dll"/>
     <ROW Component="Microsoft.VisualBasic.MIME.text.markdown.dll_6" ComponentId="{8FC36F65-FB03-4888-A427-B32DA3D3E872}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.text.markdown.dll_6"/>
     <ROW Component="Microsoft.VisualBasic.MIME.text.markdown.pdb" ComponentId="{E21EDAA2-9CB8-40B0-BAAD-5429890D64E4}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.MIME.text.markdown.pdb" Type="4"/>
+    <ROW Component="Microsoft.VisualBasic.MachineLearning.Bootstrapping.dll" ComponentId="{6936A942-796C-43AD-B529-5F3556C2D76E}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.Bootstrapping.pdb"/>
+    <ROW Component="Microsoft.VisualBasic.MachineLearning.Bootstrapping.dll_1" ComponentId="{57DB1CFB-E8C5-4EDD-A782-6190BCEFEEAF}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.Bootstrapping.dll"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll" ComponentId="{2EF87FB8-D3D9-46CD-B66E-20E8C12F4477}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll_1" ComponentId="{BAD00D99-E1D8-449E-869B-AFAA8D2780F8}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll_2" ComponentId="{E2A396C4-A465-4EA9-8BA2-89ED572A1E6A}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll_2"/>
@@ -19926,6 +19928,9 @@
     <ROW File="Microsoft.Windows.Ribbon.dll_1" Component_="Microsoft.Windows.Ribbon.dll_2" FileName="MICRO~37.DLL|Microsoft.Windows.Ribbon.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.Windows.Ribbon.dll" SelfReg="false"/>
     <ROW File="Microsoft.Windows.Ribbon.pdb_1" Component_="Microsoft.Windows.Ribbon.dll_1" FileName="MICRO~34.PDB|Microsoft.Windows.Ribbon.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.Windows.Ribbon.pdb" SelfReg="false"/>
     <ROW File="Microsoft.Windows.Ribbon.xml_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="MICRO~35.XML|Microsoft.Windows.Ribbon.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.Windows.Ribbon.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.MachineLearning.Bootstrapping.dll" Component_="Microsoft.VisualBasic.MachineLearning.Bootstrapping.dll_1" FileName="MICRO~74.DLL|Microsoft.VisualBasic.MachineLearning.Bootstrapping.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MachineLearning.Bootstrapping.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.MachineLearning.Bootstrapping.pdb" Component_="Microsoft.VisualBasic.MachineLearning.Bootstrapping.dll" FileName="MICRO~68.PDB|Microsoft.VisualBasic.MachineLearning.Bootstrapping.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MachineLearning.Bootstrapping.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.MachineLearning.Bootstrapping.xml" Component_="Mzkit_win32.LCMSViewer.dll.config" FileName="MICRO~67.XML|Microsoft.VisualBasic.MachineLearning.Bootstrapping.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MachineLearning.Bootstrapping.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -22811,6 +22816,8 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="libSkiaSharp.dylib"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.Windows.Ribbon.dll_2"/>
     <ROW Feature_="MainFeature" Component_="Flute.Http.dll_3"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.MachineLearning.Bootstrapping.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MachineLearning.Bootstrapping.dll_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
