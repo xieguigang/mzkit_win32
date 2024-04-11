@@ -225,18 +225,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="RtRangeSelector.Designer.vb">
-      <DependentUpon>RtRangeSelector.vb</DependentUpon>
-    </Compile>
-    <Compile Include="RtRangeSelector.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MSSelector.Designer.vb">
-      <DependentUpon>MSSelector.vb</DependentUpon>
-    </Compile>
-    <Compile Include="MSSelector.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="ToggleSlider.Designer.vb">
       <DependentUpon>ToggleSlider.vb</DependentUpon>
     </Compile>
@@ -267,29 +255,11 @@
     <EmbeddedResource Include="ColorScaler.resx">
       <DependentUpon>ColorScaler.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MSSelector.en-US.resx">
-      <DependentUpon>MSSelector.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MSSelector.zh-CN.resx">
-      <DependentUpon>MSSelector.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RtRangeSelector.en-US.resx">
-      <DependentUpon>RtRangeSelector.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RtRangeSelector.resx">
-      <DependentUpon>RtRangeSelector.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MSSelector.resx">
-      <DependentUpon>MSSelector.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RtRangeSelector.zh-CN.resx">
-      <DependentUpon>RtRangeSelector.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToggleSlider.resx">
       <DependentUpon>ToggleSlider.vb</DependentUpon>
