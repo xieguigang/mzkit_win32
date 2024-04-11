@@ -16,13 +16,16 @@ Public Class XICFeatureViewer
 
     Public Property FillColor As Color = Color.SkyBlue
 
-    Public Sub SetFeatures(xic As IEnumerable(Of ChromatogramTick), features As IEnumerable(Of PeakMs2))
+    Public Sub SetFeatures(xic As IEnumerable(Of ChromatogramTick), features As IEnumerable(Of PeakMs2), rt_range As DoubleRange)
         Me.XIC = xic.ToArray
         Me.features = features.ToArray
 
         If Not Me.XIC.IsNullOrEmpty Then
             Me.time_range = Me.XIC.TimeRange
             Me.intomax = Me.XIC.IntensityArray.Max
+        End If
+        If Not rt_range Is Nothing Then
+            Me.time_range = New DoubleRange(rt_range)
         End If
 
         Call RenderViewer()
@@ -76,7 +79,7 @@ Public Class XICFeatureViewer
             .FirstOrDefault
 
         If Not peak Is Nothing Then
-            Dim scale As Double = 4
+            Dim scale As Double = 6
             Dim msLib As New LibraryMatrix(peak.lib_guid, peak.mzInto)
             Dim size As New Size(PictureBox2.Width * scale, PictureBox2.Height * scale)
             Dim plot As Image = PeakAssign _

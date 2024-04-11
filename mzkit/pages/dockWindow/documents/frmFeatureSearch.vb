@@ -70,6 +70,7 @@ Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
@@ -162,12 +163,14 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             Dim raw As Raw = directRaw.Where(Function(r) r.source = file).FirstOrDefault
 
             If Not raw Is Nothing Then
+                Dim rt_range As New DoubleRange(raw.GetMs1Scans.Select(Function(s1) s1.rt))
+
                 For Each ion_group In matches.GroupBy(Function(m) m.precursor_type)
                     Dim mz As Double = Aggregate ion In ion_group Into Average(ion.parentMz) '
                     Dim xic = GetXIC(mz, raw, Tolerance.PPM(30))
                     Dim viewer As New XICFeatureViewer
 
-                    viewer.SetFeatures(xic.value, ion_group.Select(Function(ion) ion.ToMs2))
+                    viewer.SetFeatures(xic.value, ion_group.Select(Function(ion) ion.ToMs2), rt_range)
                     viewer.Width = FlowLayoutPanel1.Width
                     FlowLayoutPanel1.Controls.Add(viewer)
 
