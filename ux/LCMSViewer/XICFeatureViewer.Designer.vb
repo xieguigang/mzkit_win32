@@ -42,6 +42,7 @@ Partial Class XICFeatureViewer
         'PictureBox2
         '
         Me.PictureBox2.BackColor = System.Drawing.Color.Silver
+        Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.PictureBox2.Dock = System.Windows.Forms.DockStyle.Right
         Me.PictureBox2.Location = New System.Drawing.Point(395, 0)
         Me.PictureBox2.Name = "PictureBox2"

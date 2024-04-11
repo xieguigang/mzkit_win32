@@ -168,6 +168,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
                     Dim viewer As New XICFeatureViewer
 
                     viewer.SetFeatures(xic.value, ion_group.Select(Function(ion) ion.ToMs2))
+                    viewer.Width = FlowLayoutPanel1.Width
                     FlowLayoutPanel1.Controls.Add(viewer)
                 Next
             End If
@@ -598,5 +599,11 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
                 Dim name As String = q.MoNA_id
 
             End Sub)
+    End Sub
+
+    Private Sub FlowLayoutPanel1_SizeChanged(sender As Object, e As EventArgs) Handles FlowLayoutPanel1.SizeChanged
+        For Each viewer As Control In FlowLayoutPanel1.Controls
+            viewer.Width = FlowLayoutPanel1.Width
+        Next
     End Sub
 End Class
