@@ -83,6 +83,8 @@ Public Class MSIRegionSampleWindow
             Call Clear()
         End If
 
+        Dim newW As Integer = FlowLayoutPanel1.Width * 0.95
+
         For Each region As TissueRegion In tissues
             Dim card As New RegionSampleCard
 
@@ -94,6 +96,7 @@ Public Class MSIRegionSampleWindow
             ' card.Anchor = AnchorStyles.Left Or AnchorStyles.Right
             card.SampleColor = region.color
             card.SampleInfo = region.label
+            card.Width = newW
 
             AddHandler card.RemoveSampleGroup, AddressOf removeSampleGroup
             AddHandler card.ViewRegionMs1Spectrum, AddressOf ViewMs1Spectrum

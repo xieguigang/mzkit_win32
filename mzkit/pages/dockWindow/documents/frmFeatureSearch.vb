@@ -171,7 +171,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
                     Dim viewer As New XICFeatureViewer
 
                     viewer.SetFeatures(xic.value, ion_group.Select(Function(ion) ion.ToMs2), rt_range)
-                    viewer.Width = FlowLayoutPanel1.Width
+                    viewer.Width = FlowLayoutPanel1.Width * 0.95
                     FlowLayoutPanel1.Controls.Add(viewer)
 
                     AddHandler viewer.ViewSpectrum,
@@ -612,7 +612,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
 
     Private Sub FlowLayoutPanel1_SizeChanged(sender As Object, e As EventArgs) Handles FlowLayoutPanel1.SizeChanged
         For Each viewer As Control In FlowLayoutPanel1.Controls
-            viewer.Width = FlowLayoutPanel1.Width
+            viewer.Width = FlowLayoutPanel1.Width * 0.95
         Next
     End Sub
 End Class
