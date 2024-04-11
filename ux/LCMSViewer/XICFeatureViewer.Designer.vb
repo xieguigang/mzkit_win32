@@ -35,18 +35,22 @@ Partial Class XICFeatureViewer
         Me.canvasXIC.Dock = System.Windows.Forms.DockStyle.Fill
         Me.canvasXIC.Location = New System.Drawing.Point(0, 0)
         Me.canvasXIC.Name = "canvasXIC"
-        Me.canvasXIC.Size = New System.Drawing.Size(389, 202)
+        Me.canvasXIC.Size = New System.Drawing.Size(395, 90)
         Me.canvasXIC.TabIndex = 0
         Me.canvasXIC.TabStop = False
         '
         'PictureBox2
         '
+        Me.PictureBox2.BackColor = System.Drawing.Color.Silver
         Me.PictureBox2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PictureBox2.Location = New System.Drawing.Point(389, 0)
+        Me.PictureBox2.Location = New System.Drawing.Point(395, 0)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(404, 202)
+        Me.PictureBox2.Size = New System.Drawing.Size(398, 90)
         Me.PictureBox2.TabIndex = 1
         Me.PictureBox2.TabStop = False
+        '
+        'Timer1
+        '
         '
         'XICFeatureViewer
         '
@@ -55,7 +59,7 @@ Partial Class XICFeatureViewer
         Me.Controls.Add(Me.canvasXIC)
         Me.Controls.Add(Me.PictureBox2)
         Me.Name = "XICFeatureViewer"
-        Me.Size = New System.Drawing.Size(793, 202)
+        Me.Size = New System.Drawing.Size(793, 90)
         CType(Me.canvasXIC, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
