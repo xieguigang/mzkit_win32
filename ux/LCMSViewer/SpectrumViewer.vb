@@ -33,8 +33,12 @@ Public Class SpectrumViewer
     End Sub
 
     Private Sub Scaling()
-        mzscale = d3js.scale.linear().domain(mz_range).range(values:=New Double() {0, PictureBox1.Width})
-        intensityscale = d3js.scale.linear().domain(into_range).range(values:=New Double() {0, PictureBox1.Height})
+        Try
+            mzscale = d3js.scale.linear().domain(mz_range).range(values:=New Double() {0, PictureBox1.Width})
+            intensityscale = d3js.scale.linear().domain(into_range).range(values:=New Double() {0, PictureBox1.Height})
+        Catch ex As Exception
+            Call App.LogException(ex)
+        End Try
     End Sub
 
     Private Sub Rendering()

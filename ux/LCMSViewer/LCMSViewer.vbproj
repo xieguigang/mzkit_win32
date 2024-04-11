@@ -164,6 +164,12 @@
     <Compile Include="SpectrumViewer.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="XICFeatureViewer.Designer.vb">
+      <DependentUpon>XICFeatureViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="XICFeatureViewer.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Dialogs\InputPeakFindParameter.resx">
@@ -183,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SpectrumViewer.resx">
       <DependentUpon>SpectrumViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XICFeatureViewer.resx">
+      <DependentUpon>XICFeatureViewer.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
