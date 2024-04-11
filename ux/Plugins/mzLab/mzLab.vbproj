@@ -138,9 +138,13 @@
     <Compile Include="InputDataSetSize.Designer.vb">
       <DependentUpon>InputDataSetSize.vb</DependentUpon>
     </Compile>
-    <Compile Include="InputDataSetSize.vb" />
+    <Compile Include="InputDataSetSize.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Plugin.vb" />
-    <Compile Include="FormVault.vb" />
+    <Compile Include="FormVault.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormVault.Designer.vb">
       <DependentUpon>FormVault.vb</DependentUpon>
       <SubType>Form</SubType>

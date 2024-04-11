@@ -138,7 +138,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Plugin.vb" />
-    <Compile Include="FormMain.vb" />
+    <Compile Include="FormMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMain.Designer.vb">
       <DependentUpon>FormMain.vb</DependentUpon>
       <SubType>Form</SubType>
@@ -146,7 +148,9 @@
     <Compile Include="frmTextDialog.Designer.vb">
       <DependentUpon>frmTextDialog.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmTextDialog.vb" />
+    <Compile Include="frmTextDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Viewers\HtmlViewer.Designer.vb">
       <DependentUpon>HtmlViewer.vb</DependentUpon>
     </Compile>
