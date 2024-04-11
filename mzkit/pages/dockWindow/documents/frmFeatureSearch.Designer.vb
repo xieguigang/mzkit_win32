@@ -87,6 +87,7 @@ Partial Class frmFeatureSearch
         Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader10 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader11 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader7 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -101,7 +102,6 @@ Partial Class frmFeatureSearch
         Me.RunMs2ClusteringToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SearchMoNAToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
-        Me.ColumnHeader11 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -118,7 +118,7 @@ Partial Class frmFeatureSearch
         Me.TreeListView1.HideSelection = False
         Me.TreeListView1.Location = New System.Drawing.Point(0, 0)
         Me.TreeListView1.Name = "TreeListView1"
-        Me.TreeListView1.Size = New System.Drawing.Size(800, 274)
+        Me.TreeListView1.Size = New System.Drawing.Size(829, 415)
         Me.TreeListView1.SmallImageList = Me.ImageList1
         Me.TreeListView1.TabIndex = 0
         Me.TreeListView1.UseCompatibleStateImageBehavior = False
@@ -144,6 +144,10 @@ Partial Class frmFeatureSearch
         'ColumnHeader10
         '
         Me.ColumnHeader10.Text = "rt(minutes)"
+        '
+        'ColumnHeader11
+        '
+        Me.ColumnHeader11.Text = "Da"
         '
         'ColumnHeader5
         '
@@ -222,15 +226,11 @@ Partial Class frmFeatureSearch
         Me.ImageList1.Images.SetKeyName(0, "application-x-object.png")
         Me.ImageList1.Images.SetKeyName(1, "application-vnd.oasis.opendocument.database.png")
         '
-        'ColumnHeader11
-        '
-        Me.ColumnHeader11.Text = "Da"
-        '
         'frmFeatureSearch
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 274)
+        Me.ClientSize = New System.Drawing.Size(829, 415)
         Me.Controls.Add(Me.TreeListView1)
         Me.DoubleBuffered = True
         Me.Name = "frmFeatureSearch"

@@ -80,7 +80,7 @@ Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Controls.Events
 Imports RibbonLib.Interop
 Imports Task
-Imports stdNum = System.Math
+Imports std = System.Math
 
 Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
 
@@ -168,7 +168,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             ion.SubItems.Add(New ListViewSubItem With {.Text = member.parentMz.ToString("F4")})
             ion.SubItems.Add(New ListViewSubItem With {.Text = CInt(member.rt)})
             ion.SubItems.Add(New ListViewSubItem With {.Text = (member.rt / 60).ToString("F1")})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = stdNum.Round(stdNum.Abs(member.parentMz - targetMz), 3)})
+            ion.SubItems.Add(New ListViewSubItem With {.Text = std.Round(std.Abs(member.parentMz - targetMz), 3)})
             ion.SubItems.Add(New ListViewSubItem With {.Text = CInt(PPMmethod.PPM(member.parentMz, targetMz))})
             ion.SubItems.Add(New ListViewSubItem With {.Text = member.polarity})
             ion.SubItems.Add(New ListViewSubItem With {.Text = member.charge})
