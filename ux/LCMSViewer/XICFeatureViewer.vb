@@ -29,15 +29,22 @@ Public Class XICFeatureViewer
     End Sub
 
     Private Sub RenderViewer()
-        Using g = canvasXIC.Size.CreateGDIDevice
-            Call g.FillRectangle(New SolidBrush(BackColor), New RectangleF(0, 0, Width, Height))
+        Dim size = canvasXIC.Size
+        Dim width As New DoubleRange(0, size.Width)
+
+        Using g = size.CreateGDIDevice
+            Call g.FillRectangle(New SolidBrush(BackColor), New RectangleF(0, 0, size.Width, size.Height))
 
             If Not XIC.IsNullOrEmpty Then
                 Call RtRangeSelector.DrawTIC(g.Graphics, XIC, time_range, intomax, FillColor, canvasXIC)
             End If
 
-            If mouse_cur.X > 0 AndAlso mouse_cur.X < canvasXIC.Width Then
-                Call g.FillRectangle(Brushes.Red, New RectangleF(mouse_cur.X, 0, 3, canvasXIC.Height))
+            For Each peak As PeakMs2 In features
+                Call g.FillRectangle(Brushes.Black, New RectangleF(time_range.ScaleMapping(peak.rt, width), size.Height - 5, 2, 5))
+            Next
+
+            If mouse_cur.X > 0 AndAlso mouse_cur.X < size.Width Then
+                Call g.FillRectangle(Brushes.Red, New RectangleF(mouse_cur.X, 0, 2, size.Height))
             End If
 
             canvasXIC.BackgroundImage = g.ImageResource
@@ -61,7 +68,7 @@ Public Class XICFeatureViewer
         mouse_cur = e.Location
     End Sub
 
-    Private Sub canvasXIC_MouseHover(sender As Object, e As EventArgs) Handles canvasXIC.MouseHover
+    Private Sub canvasXIC_MouseHover() Handles canvasXIC.MouseClick
         Dim rt As Double = New DoubleRange(0, Width).ScaleMapping(mouse_cur.X, time_range)
         Dim peak As PeakMs2 = features _
             .Where(Function(i) std.Abs(i.rt - rt) < 15) _
@@ -69,7 +76,7 @@ Public Class XICFeatureViewer
             .FirstOrDefault
 
         If Not peak Is Nothing Then
-            Dim scale As Double = 8
+            Dim scale As Double = 4
             Dim msLib As New LibraryMatrix(peak.lib_guid, peak.mzInto)
             Dim size As New Size(PictureBox2.Width * scale, PictureBox2.Height * scale)
             Dim plot As Image = PeakAssign _
@@ -78,6 +85,18 @@ Public Class XICFeatureViewer
 
             selected_peak = peak
             PictureBox2.BackgroundImage = plot
+        End If
+    End Sub
+
+    Private Sub PictureBox2_DoubleClick(sender As Object, e As EventArgs) Handles PictureBox2.DoubleClick
+
+    End Sub
+
+    Public Event ViewSpectrum(spec As PeakMs2)
+
+    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
+        If Not selected_peak Is Nothing Then
+            RaiseEvent ViewSpectrum(selected_peak)
         End If
     End Sub
 End Class

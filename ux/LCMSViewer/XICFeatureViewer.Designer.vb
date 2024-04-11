@@ -35,7 +35,7 @@ Partial Class XICFeatureViewer
         Me.canvasXIC.Dock = System.Windows.Forms.DockStyle.Fill
         Me.canvasXIC.Location = New System.Drawing.Point(0, 0)
         Me.canvasXIC.Name = "canvasXIC"
-        Me.canvasXIC.Size = New System.Drawing.Size(395, 90)
+        Me.canvasXIC.Size = New System.Drawing.Size(278, 90)
         Me.canvasXIC.TabIndex = 0
         Me.canvasXIC.TabStop = False
         '
@@ -44,9 +44,9 @@ Partial Class XICFeatureViewer
         Me.PictureBox2.BackColor = System.Drawing.Color.Silver
         Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.PictureBox2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PictureBox2.Location = New System.Drawing.Point(395, 0)
+        Me.PictureBox2.Location = New System.Drawing.Point(278, 0)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(398, 90)
+        Me.PictureBox2.Size = New System.Drawing.Size(515, 90)
         Me.PictureBox2.TabIndex = 1
         Me.PictureBox2.TabStop = False
         '

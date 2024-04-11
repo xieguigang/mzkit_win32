@@ -170,6 +170,12 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
                     viewer.SetFeatures(xic.value, ion_group.Select(Function(ion) ion.ToMs2))
                     viewer.Width = FlowLayoutPanel1.Width
                     FlowLayoutPanel1.Controls.Add(viewer)
+
+                    AddHandler viewer.ViewSpectrum,
+                        Sub(spec)
+                            Call MyApplication.host.mzkitTool.PlotSpectrum(New LibraryMatrix(spec.lib_guid, spec.mzInto))
+                            Call MyApplication.host.mzkitTool.ShowPage()
+                        End Sub
                 Next
             End If
         End If
