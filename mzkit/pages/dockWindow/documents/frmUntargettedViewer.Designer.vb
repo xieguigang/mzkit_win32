@@ -54,6 +54,7 @@
 
 Imports ControlLibrary
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.LCMSViewer
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmUntargettedViewer
@@ -87,7 +88,7 @@ Partial Class frmUntargettedViewer
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.MS1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MS2ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MsSelector1 = New ControlLibrary.MSSelector()
+        Me.MsSelector1 = New MSSelector()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()

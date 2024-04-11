@@ -75,7 +75,7 @@ Partial Class MSSelector
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MSSelector))
-        Me.RtRangeSelector1 = New ControlLibrary.RtRangeSelector()
+        Me.RtRangeSelector1 = New RtRangeSelector()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
         Me.TICToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
