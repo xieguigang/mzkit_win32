@@ -180,13 +180,20 @@ Public Class RtRangeSelector
     End Sub
 
     Private Sub DrawTIC(g As Graphics)
-        If TIC.IsNullOrEmpty Then
-            Return
+        If Not TIC.IsNullOrEmpty Then
+            Call DrawTIC(g, TIC, TIC_time, TIC_max, FillColor, Me)
         End If
+    End Sub
+
+    Public Shared Sub DrawTIC(g As Graphics, TIC As ChromatogramTick(),
+                              TIC_time As DoubleRange,
+                              TIC_max As Double,
+                              fillColor As Color,
+                              myself As Control)
 
         Using TICcurve As New GraphicsPath
-            Dim height As Double = Me.Height
-            Dim width As Double = Me.Width
+            Dim height As Double = myself.Height
+            Dim width As Double = myself.Width
             Dim scaleX = d3js.scale.linear.domain(values:={TIC_time.Min, TIC_time.Max}).range(values:=New Double() {0, width})
             Dim scaleY = d3js.scale.linear.domain(values:={0.0, TIC_max}).range(values:=New Double() {0, height})
             Dim i As i32 = Scan0
@@ -205,10 +212,8 @@ Public Class RtRangeSelector
             Next
 
             Call TICcurve.AddLine(x2, y2, x2, CSng(height))
-
             Call TICcurve.CloseAllFigures()
-
-            g.FillPath(New SolidBrush(FillColor), TICcurve)
+            Call g.FillPath(New SolidBrush(fillColor), TICcurve)
         End Using
     End Sub
 

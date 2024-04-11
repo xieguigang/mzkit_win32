@@ -22,8 +22,10 @@ Partial Class XICFeatureViewer
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.canvasXIC = New System.Windows.Forms.PictureBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         CType(Me.canvasXIC, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -62,4 +64,5 @@ Partial Class XICFeatureViewer
 
     Friend WithEvents canvasXIC As PictureBox
     Friend WithEvents PictureBox2 As PictureBox
+    Friend WithEvents Timer1 As Timer
 End Class
