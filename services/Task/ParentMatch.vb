@@ -58,6 +58,9 @@
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 
+''' <summary>
+''' a precursor matched ms2 spectrum data
+''' </summary>
 Public Class ParentMatch : Inherits ScanMS2
 
     Public Property precursor_type As String

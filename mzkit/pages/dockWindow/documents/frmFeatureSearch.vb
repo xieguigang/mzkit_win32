@@ -77,11 +77,15 @@ Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
 Imports Microsoft.VisualBasic.Text
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Mzkit_win32.LCMSViewer
 Imports RibbonLib.Controls.Events
 Imports RibbonLib.Interop
 Imports Task
 Imports std = System.Math
 
+''' <summary>
+''' view feature search result
+''' </summary>
 Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
 
     Dim appendHeader As Boolean = False
@@ -153,6 +157,21 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
         row.SubItems.Add(New ListViewSubItem With {.Text = matches.Length})
 
         TreeListView1.Items.Add(row)
+
+        If Not directRaw.IsNullOrEmpty Then
+            Dim raw As Raw = directRaw.Where(Function(r) r.source = file).FirstOrDefault
+
+            If Not raw Is Nothing Then
+                For Each ion_group In matches.GroupBy(Function(m) m.precursor_type)
+                    Dim mz As Double = Aggregate ion In ion_group Into Average(ion.parentMz) '
+                    Dim xic = GetXIC(mz, raw, Tolerance.PPM(30))
+                    Dim viewer As New XICFeatureViewer
+
+                    viewer.SetFeatures(xic.value, ion_group.Select(Function(ion) ion.ToMs2))
+                    FlowLayoutPanel1.Controls.Add(viewer)
+                Next
+            End If
+        End If
     End Sub
 
     Public Sub AddFileMatch(file As String, targetMz As Double, matches As ScanMS2())
@@ -360,23 +379,9 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             Else
                 Dim mz As Double = scan.parentMz
                 Dim ppm As New PPMmethod(30)
-                Dim GetXICCollection =
-                    Iterator Function() As IEnumerable(Of NamedCollection(Of ChromatogramTick))
-                        Dim ticks As ChromatogramTick() = raw _
-                            .GetMs1Scans _
-                            .Select(Function(s)
-                                        Return New ChromatogramTick With {
-                                            .Intensity = s.GetIntensity(mz, ppm),
-                                            .Time = s.rt
-                                        }
-                                    End Function) _
-                            .ToArray
-
-                        Yield New NamedCollection(Of ChromatogramTick) With {
-                            .name = $"{mz.ToString("F4")} @ {raw.source.FileName}",
-                            .value = ticks
-                        }
-                    End Function
+                Dim GetXICCollection = Iterator Function() As IEnumerable(Of NamedCollection(Of ChromatogramTick))
+                                           Yield GetXIC(mz, raw, ppm)
+                                       End Function
 
                 ' Call MyApplication.host.mzkitTool.showSpectrum(scan_id, raw)
                 Call MyApplication.mzkitRawViewer.ShowXIC(ppm.DeltaTolerance, Nothing, GetXICCollection, 0)
@@ -384,6 +389,23 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             End If
         End If
     End Sub
+
+    Public Shared Function GetXIC(mz As Double, raw As Raw, ppm As Tolerance) As NamedCollection(Of ChromatogramTick)
+        Dim ticks As ChromatogramTick() = raw _
+            .GetMs1Scans _
+            .Select(Function(s)
+                        Return New ChromatogramTick With {
+                            .Intensity = s.GetIntensity(mz, ppm),
+                            .Time = s.rt
+                        }
+                    End Function) _
+            .ToArray
+
+        Return New NamedCollection(Of ChromatogramTick) With {
+            .name = $"{mz.ToString("F4")} @ {raw.source.FileName}",
+            .value = ticks
+        }
+    End Function
 
     Public Function Save(path As String, encoding As Encoding) As Boolean Implements ISaveHandle.Save
         Dim file As New File

@@ -110,9 +110,9 @@ Module FeatureSearchHandler
 
         display.TabText = $"Search [{formula}]"
         display.formula = formula
+        display.directRaw = files.ToArray
 
         If directRaw Then
-            display.directRaw = files.ToArray
             display.AddEachFileMatch(
                 Sub(raw)
                     Call display.AddFileMatch(

@@ -105,9 +105,11 @@ Partial Class frmFeatureSearch
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
+        Me.TabPage2.SuspendLayout()
         Me.SuspendLayout()
         '
         'TreeListView1
@@ -123,7 +125,7 @@ Partial Class frmFeatureSearch
         Me.TreeListView1.HideSelection = False
         Me.TreeListView1.Location = New System.Drawing.Point(3, 3)
         Me.TreeListView1.Name = "TreeListView1"
-        Me.TreeListView1.Size = New System.Drawing.Size(815, 383)
+        Me.TreeListView1.Size = New System.Drawing.Size(985, 530)
         Me.TreeListView1.SmallImageList = Me.ImageList1
         Me.TreeListView1.TabIndex = 0
         Me.TreeListView1.UseCompatibleStateImageBehavior = False
@@ -248,13 +250,14 @@ Partial Class frmFeatureSearch
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(821, 389)
+        Me.TabPage1.Size = New System.Drawing.Size(991, 536)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Raw Data Features"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.FlowLayoutPanel1)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
@@ -262,6 +265,16 @@ Partial Class frmFeatureSearch
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Feature XIC"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'FlowLayoutPanel1
+        '
+        Me.FlowLayoutPanel1.AutoScroll = True
+        Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.FlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(3, 3)
+        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(985, 530)
+        Me.FlowLayoutPanel1.TabIndex = 0
         '
         'frmFeatureSearch
         '
@@ -275,6 +288,7 @@ Partial Class frmFeatureSearch
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
+        Me.TabPage2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -303,4 +317,5 @@ Partial Class frmFeatureSearch
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
 End Class
