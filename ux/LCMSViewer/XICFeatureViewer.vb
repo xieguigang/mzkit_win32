@@ -13,6 +13,7 @@ Public Class XICFeatureViewer
     Dim intomax As Double
     Dim mouse_cur As Point
     Dim selected_peak As PeakMs2
+    Dim highlight As Boolean
 
     Public Property FillColor As Color = Color.SkyBlue
 
@@ -64,11 +65,24 @@ Public Class XICFeatureViewer
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        Dim cur = PointToClient(Cursor.Position)
+
+        If cur.X < 0 OrElse cur.X > Width OrElse cur.Y < 0 OrElse cur.Y > Height Then
+            highlight = False
+        End If
+
         Call RenderViewer()
+
+        If highlight Then
+            Me.BorderStyle = BorderStyle.FixedSingle
+        Else
+            Me.BorderStyle = BorderStyle.None
+        End If
     End Sub
 
     Private Sub canvasXIC_MouseMove(sender As Object, e As MouseEventArgs) Handles canvasXIC.MouseMove
         mouse_cur = e.Location
+        highlight = True
     End Sub
 
     Private Sub canvasXIC_MouseHover() Handles canvasXIC.MouseClick
@@ -77,6 +91,8 @@ Public Class XICFeatureViewer
             .Where(Function(i) std.Abs(i.rt - rt) < 15) _
             .OrderBy(Function(i) std.Abs(i.rt - rt)) _
             .FirstOrDefault
+
+        highlight = True
 
         If Not peak Is Nothing Then
             Dim scale As Double = 6
@@ -101,5 +117,9 @@ Public Class XICFeatureViewer
         If Not selected_peak Is Nothing Then
             RaiseEvent ViewSpectrum(selected_peak)
         End If
+    End Sub
+
+    Private Sub PictureBox2_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox2.MouseMove
+        highlight = True
     End Sub
 End Class
