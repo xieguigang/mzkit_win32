@@ -169,7 +169,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
                     Dim mz As Double = Aggregate ion In ion_group Into Average(ion.parentMz) '
                     Dim xic = GetXIC(mz, raw, Tolerance.PPM(30))
                     Dim viewer As New XICFeatureViewer
-                    Dim source As String() = {file, ion_group.Key}
+                    Dim source As String() = {file.FileName, ion_group.Key}
 
                     viewer.SetFeatures(source, xic.value, ion_group.Select(Function(ion) ion.ToMs2), rt_range)
                     viewer.Width = FlowLayoutPanel1.Width * 0.95

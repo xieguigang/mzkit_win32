@@ -35,7 +35,7 @@ Public Class XICFeatureViewer
             If Not hipeak Is Nothing Then
                 source = source _
                     .JoinIterates({
-                                  "RT: " & hipeak.rt & "sec",
+                                  "RT: " & hipeak.rt.ToString("F0") & "sec",
                                  $"RT(min): {(hipeak.rt / 60).ToString("F1")}min"}) _
                     .ToArray
             End If

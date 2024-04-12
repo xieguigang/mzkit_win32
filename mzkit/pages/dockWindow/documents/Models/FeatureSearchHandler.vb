@@ -112,7 +112,7 @@ Module FeatureSearchHandler
         display.formula = formula
         display.directRaw = files.ToArray
 
-        If directRaw Then
+        If Not directRaw Then
             display.AddEachFileMatch(
                 Sub(raw)
                     Call display.AddFileMatch(
