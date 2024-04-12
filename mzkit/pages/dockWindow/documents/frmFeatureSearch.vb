@@ -403,14 +403,9 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
 
     Public Shared Function GetXIC(mz As Double, raw As Raw, ppm As Tolerance) As NamedCollection(Of ChromatogramTick)
         Dim ticks As ChromatogramTick() = raw _
-            .GetMs1Scans _
-            .Select(Function(s)
-                        Return New ChromatogramTick With {
-                            .Intensity = s.GetIntensity(mz, ppm),
-                            .Time = s.rt
-                        }
-                    End Function) _
-            .ToArray
+            .LoadMzpack(Sub(s1, s2) Workbench.LogText(s1 & " " & s2)) _
+            .GetLoadedMzpack _
+            .GetXIC(mz, ppm)
 
         Return New NamedCollection(Of ChromatogramTick) With {
             .name = $"{mz.ToString("F4")} @ {raw.source.FileName}",
