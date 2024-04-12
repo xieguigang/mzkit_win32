@@ -3,6 +3,8 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Imaging
+Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Math
 Imports std = System.Math
 
 Public Class XICFeatureViewer
@@ -17,19 +19,38 @@ Public Class XICFeatureViewer
 
     Public Property FillColor As Color = Color.SkyBlue
 
-    Public Sub SetFeatures(xic As IEnumerable(Of ChromatogramTick), features As IEnumerable(Of PeakMs2), rt_range As DoubleRange)
+    Public Sub SetFeatures(source As String(), xic As IEnumerable(Of ChromatogramTick), features As IEnumerable(Of PeakMs2), rt_range As DoubleRange)
         Me.XIC = xic.ToArray
         Me.features = features.ToArray
 
         If Not Me.XIC.IsNullOrEmpty Then
             Me.time_range = Me.XIC.TimeRange
             Me.intomax = Me.XIC.IntensityArray.Max
+
+            Dim hipeak = Me.XIC.Shadows _
+                .PopulateROI(peakwidth:=New DoubleRange(3, 20)) _
+                .OrderByDescending(Function(r) r.maxInto) _
+                .FirstOrDefault
+
+            If Not hipeak Is Nothing Then
+                source = source _
+                    .JoinIterates({
+                                  "RT: " & hipeak.rt & "sec",
+                                 $"RT(min): {(hipeak.rt / 60).ToString("F1")}min"}) _
+                    .ToArray
+            End If
         End If
         If Not rt_range Is Nothing Then
             Me.time_range = New DoubleRange(rt_range)
         End If
 
+        TextBox1.Text = source.JoinBy(vbCrLf)
+
         Call RenderViewer()
+
+        If Not Me.features.IsNullOrEmpty Then
+            Call RenderSpectrum(Me.features(0))
+        End If
     End Sub
 
     Private Sub RenderViewer()
@@ -88,14 +109,17 @@ Public Class XICFeatureViewer
     Private Sub canvasXIC_MouseHover() Handles canvasXIC.MouseClick
         Dim rt As Double = New DoubleRange(0, Width).ScaleMapping(mouse_cur.X, time_range)
         Dim peak As PeakMs2 = features _
-            .Where(Function(i) std.Abs(i.rt - rt) < 15) _
+            .Where(Function(i) std.Abs(i.rt - rt) < 60) _
             .OrderBy(Function(i) std.Abs(i.rt - rt)) _
             .FirstOrDefault
 
         highlight = True
+        RenderSpectrum(peak)
+    End Sub
 
+    Private Sub RenderSpectrum(peak As PeakMs2)
         If Not peak Is Nothing Then
-            Dim scale As Double = 6
+            Dim scale As Double = 8.5
             Dim msLib As New LibraryMatrix(peak.lib_guid, peak.mzInto)
             Dim size As New Size(PictureBox2.Width * scale, PictureBox2.Height * scale)
             Dim plot As Image = PeakAssign _
