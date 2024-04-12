@@ -56,6 +56,7 @@ Public Class XICFeatureViewer
     Private Sub RenderViewer()
         Dim size = canvasXIC.Size
         Dim width As New DoubleRange(0, size.Width)
+        Dim h As Integer = 10
 
         Using g = size.CreateGDIDevice
             Call g.FillRectangle(New SolidBrush(BackColor), New RectangleF(0, 0, size.Width, size.Height))
@@ -65,11 +66,23 @@ Public Class XICFeatureViewer
             End If
 
             For Each peak As PeakMs2 In features
-                Call g.FillRectangle(Brushes.Black, New RectangleF(time_range.ScaleMapping(peak.rt, width), size.Height - 5, 2, 5))
+                Dim color As Color = Color.Black
+
+                If peak Is selected_peak Then
+                    color = Color.Green
+                End If
+
+                Call g.FillRectangle(New SolidBrush(color), New RectangleF(time_range.ScaleMapping(peak.rt, width), size.Height - h, 2, h))
             Next
 
             If mouse_cur.X > 0 AndAlso mouse_cur.X < size.Width Then
-                Call g.FillRectangle(Brushes.Red, New RectangleF(mouse_cur.X, 0, 2, size.Height))
+                Dim rt As Double = width.ScaleMapping(mouse_cur.X, time_range)
+                Dim font As Font = Me.Font
+                Dim label As String = $"{CInt(rt)} sec [{(rt / 60).ToString("F2")}min]"
+                Dim font_size As SizeF = g.MeasureString(label)
+
+                Call g.FillRectangle(Brushes.Red, New RectangleF(mouse_cur.X, font_size.Height + 5, 2, size.Height))
+                Call g.DrawString(label, font, Brushes.Red, New PointF(mouse_cur.X - font_size.Width / 2, 1))
             End If
 
             canvasXIC.BackgroundImage = g.ImageResource
