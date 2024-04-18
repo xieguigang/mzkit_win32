@@ -164,7 +164,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
 
             If Not raw Is Nothing Then
                 Dim rt_range As New DoubleRange(raw.GetMs1Scans.Select(Function(s1) s1.rt))
-                Dim da As Tolerance = Tolerance.DeltaMass(0.01)
+                Dim da As Tolerance = Tolerance.DeltaMass(0.05)
 
                 For Each ion_group In matches.GroupBy(Function(m) m.precursor_type)
                     Dim mz As Double = Aggregate ion In ion_group Into Average(ion.parentMz) '

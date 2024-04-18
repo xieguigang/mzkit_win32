@@ -56,7 +56,7 @@ Public Class XICFeatureViewer
     Private Sub RenderViewer()
         Dim size = canvasXIC.Size
         Dim width As New DoubleRange(0, size.Width)
-        Dim h As Integer = 10
+        Dim h As Integer = 3
 
         Using g = size.CreateGDIDevice
             Call g.FillRectangle(New SolidBrush(BackColor), New RectangleF(0, 0, size.Width, size.Height))
