@@ -88,11 +88,7 @@ Public Class frmStartPage
         Public Async Function GetNewsFeedJSON() As Task(Of String)
             Dim wait_http_get As Task(Of String) = Task(Of String) _
                 .Run(Function() As String
-                         Do While host.Invoke(Function() host.news_json.StringEmpty) AndAlso App.Running
-                             Thread.Sleep(10)
-                         Loop
-
-                         Return host.Invoke(Function() host.news_json)
+                         Return "https://v2.biodeep.cn/api/nmdx-cloud-basic/km-curriculum-info/cloud/list?pageNo=1&pageSize=12&sort=new".GET
                      End Function)
 
             Return Await wait_http_get
@@ -107,8 +103,6 @@ Public Class frmStartPage
             Return $"http://127.0.0.1:{Workbench.WebPort}/"
         End Get
     End Property
-
-    Public news_json As String = Nothing
 
     Sub New()
 
@@ -129,7 +123,7 @@ Public Class frmStartPage
         OpenContainingFolderToolStripMenuItem.Enabled = False
 
         hideNewsFeeds()
-        BackgroundWorker.RunWorkerAsync()
+        ' BackgroundWorker.RunWorkerAsync()
         WebKit.Init(WebView21)
     End Sub
 
@@ -186,32 +180,6 @@ Public Class frmStartPage
     Private Sub showNewsFeeds()
         'LinkLabel2.Visible = True
         'FlowLayoutPanel1.Visible = True
-    End Sub
-
-    Private Sub BackgroundWorker_DoWork(sender As Object, e As DoWorkEventArgs) Handles BackgroundWorker.DoWork
-        ' Dim news As NewsFeed() = NewsFeed.ParseLatest().ToArray
-
-        'If news.IsNullOrEmpty Then
-        '    Call MyApplication.LogText(NewsFeed.html)
-        'End If
-
-        Dim news_json As String = "https://v2.biodeep.cn/api/nmdx-cloud-basic/km-curriculum-info/cloud/list?pageNo=1&pageSize=12&sort=new".GET
-
-        Invoke(Sub()
-                   'If news.Length = 0 Then
-                   '    hideNewsFeeds()
-                   'Else
-                   '    showNewsFeeds()
-                   'End If
-
-                   'For Each newsItem As NewsFeed In news
-                   '    Dim display As New NewsFeedDisplay
-                   '    FlowLayoutPanel1.Controls.Add(display)
-                   '    display.ShowNews(newsItem)
-                   'Next
-
-                   Me.news_json = news_json
-               End Sub)
     End Sub
 
     Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
