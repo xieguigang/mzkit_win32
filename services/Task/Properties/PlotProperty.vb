@@ -86,14 +86,15 @@ Public Class PlotProperty
     <Category("Padding")> <DisplayName("right")> Public Property padding_right As Integer = 100
     <Category("Padding")> <DisplayName("bottom")> Public Property padding_bottom As Integer = 100
 
-    <Category("Styles")> <Description("Show data legend on the plot image?")> Public Property show_legend As Boolean = True
+    <Category("Styles: legends")> <Description("Show data legend on the plot image?")> Public Property show_legend As Boolean = True
+    <Category("Styles: legends")> <Description("divide the legends element into multiple block group by this number.")> Public Property legend_block_size As Integer = 16
     <Category("Styles")> <Description("Show data grid of the data plot in the background?")> Public Property show_grid As Boolean = True
     <Category("Styles")> <Description("Show data tag label for the interested object of the data plot?")> Public Property show_tag As Boolean = True
     <Category("Styles")> <Description("Fill the curve plot?")> Public Property fill_curve As Boolean = True
     <Category("Styles")> <Description("Tweaks of the line width of the data line plot.")> Public Property line_width As Single = 5
     <Category("Styles")> <Description("Tweaks of the point size of the data scatter plot.")> Public Property point_size As Single = 10
     <Category("Styles")> Public Property label_font As Font = CSSFont.TryParse(CSSFont.Win10NormalLarger).GDIObject(100)
-    <Category("Styles")> Public Property legend_font As Font = CSSFont.TryParse(CSSFont.Win10NormalLarge).GDIObject(100)
+    <Category("Styles: legends")> Public Property legend_font As Font = CSSFont.TryParse(CSSFont.Win10NormalLarge).GDIObject(100)
     <Category("Styles")> Public Property axis_label_font As Font = CSSFont.TryParse(CSSFont.Win10NormalLarge).GDIObject(100)
     <Category("Styles")> <Description("Tweaks of the fill color of the grid background.")> Public Property gridFill As Color = "rgb(245,245,245)".TranslateColor
     <Category("Styles")> Public Property colors As CategoryPalettes = CategoryPalettes.ColorBrewerSet1
@@ -115,7 +116,8 @@ Public Class PlotProperty
             .tagCSS = New CSSFont(label_font).ToString,
             .legendLabelCSS = New CSSFont(legend_font).ToString,
             .axisLabelCSS = New CSSFont(axis_label_font).ToString,
-            .gridFill = gridFill.ToHtmlColor
+            .gridFill = gridFill.ToHtmlColor,
+            .legendSplitSize = legend_block_size
         }
     End Function
 
