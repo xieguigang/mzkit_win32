@@ -54,12 +54,12 @@
 
 Imports System.ComponentModel
 Imports System.Runtime.InteropServices
+Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.mzkit_win32.My
-Imports Microsoft.VisualBasic.Net.HTTP
+Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
-Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmStartPage
@@ -69,6 +69,8 @@ Public Class frmStartPage
     <ClassInterface(ClassInterfaceType.AutoDual)>
     <ComVisible(True)>
     Public Class LinkActions
+
+        Public host As frmStartPage
 
         Public Sub ViewRawDataFile()
             Call frmStartPage.ViewRawDataFile()
@@ -83,6 +85,19 @@ Public Class frmStartPage
             Call RibbonEvents.openLCMSWorkbench()
         End Sub
 
+        Public Async Function GetNewsFeedJSON() As Task(Of String)
+            Dim wait_http_get As Task(Of String) = Task(Of String) _
+                .Run(Function() As String
+                         Do While host.Invoke(Function() host.news_json.StringEmpty) AndAlso App.Running
+                             Thread.Sleep(10)
+                         Loop
+
+                         Return host.Invoke(Function() host.news_json)
+                     End Function)
+
+            Return Await wait_http_get
+        End Function
+
     End Class
 
     Dim WithEvents BackgroundWorker As New BackgroundWorker
@@ -92,6 +107,8 @@ Public Class frmStartPage
             Return $"http://127.0.0.1:{Workbench.WebPort}/"
         End Get
     End Property
+
+    Public news_json As String = Nothing
 
     Sub New()
 
@@ -112,13 +129,13 @@ Public Class frmStartPage
         OpenContainingFolderToolStripMenuItem.Enabled = False
 
         hideNewsFeeds()
+        BackgroundWorker.RunWorkerAsync()
         WebKit.Init(WebView21)
-        ' BackgroundWorker.RunWorkerAsync()
     End Sub
 
     Private Sub WebView21_CoreWebView2InitializationCompleted(sender As Object, e As CoreWebView2InitializationCompletedEventArgs) Handles WebView21.CoreWebView2InitializationCompleted
         ' WebView21.CoreWebView2.OpenDevToolsWindow()
-        Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", New LinkActions)
+        Call WebView21.CoreWebView2.AddHostObjectToScript("mzkit", New LinkActions With {.host = Me})
         Call WebView21.CoreWebView2.Navigate(sourceURL)
         Call WebKit.DeveloperOptions(WebView21, enable:=True,)
     End Sub
@@ -172,11 +189,13 @@ Public Class frmStartPage
     End Sub
 
     Private Sub BackgroundWorker_DoWork(sender As Object, e As DoWorkEventArgs) Handles BackgroundWorker.DoWork
-        Dim news As NewsFeed() = NewsFeed.ParseLatest().ToArray
+        ' Dim news As NewsFeed() = NewsFeed.ParseLatest().ToArray
 
-        If news.IsNullOrEmpty Then
-            Call MyApplication.LogText(NewsFeed.html)
-        End If
+        'If news.IsNullOrEmpty Then
+        '    Call MyApplication.LogText(NewsFeed.html)
+        'End If
+
+        Dim news_json As String = "https://v2.biodeep.cn/api/nmdx-cloud-basic/km-curriculum-info/cloud/list?pageNo=1&pageSize=12&sort=new".GET
 
         Invoke(Sub()
                    'If news.Length = 0 Then
@@ -190,6 +209,8 @@ Public Class frmStartPage
                    '    FlowLayoutPanel1.Controls.Add(display)
                    '    display.ShowNews(newsItem)
                    'Next
+
+                   Me.news_json = news_json
                End Sub)
     End Sub
 

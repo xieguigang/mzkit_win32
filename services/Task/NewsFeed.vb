@@ -55,7 +55,6 @@
 #End Region
 
 Imports System.Text
-Imports Microsoft.VisualBasic.Text
 Imports Microsoft.VisualBasic.Text.Parser.HtmlParser
 
 Public Class NewsFeed
