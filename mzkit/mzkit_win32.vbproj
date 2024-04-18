@@ -1596,8 +1596,8 @@
       <Project>{ea7a584c-67f0-4d85-9031-c16887771b1b}</Project>
       <Name>RQL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\httpd\Flute\Flute.NET5.vbproj">
-      <Project>{1fd40f6e-6a78-4c61-9f86-682560337028}</Project>
+    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\httpd\src\Flute\Flute.NET5.vbproj">
+      <Project>{11e35b0b-e524-4aff-929e-3a7a24926e3d}</Project>
       <Name>Flute.NET5</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data\BinaryData\BinaryData\binarydata-netcore5.vbproj">
