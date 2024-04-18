@@ -19,7 +19,14 @@ namespace apps {
         }
 
         protected init(): void {
-            $ts.getText(biodeep_classroom, text => this.loadList(text));
+            let vm = this;
+
+            app.desktop.mzkit
+                .GetNewsFeedJSON()
+                .then(async function (json) {
+                    let text: string = await json;
+                    vm.loadList(text);
+                });
         }
 
         private loadList(json_str: string) {

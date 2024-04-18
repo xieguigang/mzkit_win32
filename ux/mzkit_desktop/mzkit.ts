@@ -21,6 +21,9 @@ namespace app.desktop {
         get_3d_MALDI_url(): Promise<string>;
         open_MALDI_model();
 
+        // index page for get news feeds from biodeep
+        GetNewsFeedJSON(): Promise<string>;
+
         // 3d scatter model viewer
         GetScatter(): Promise<string>;
         Click(tag: string);

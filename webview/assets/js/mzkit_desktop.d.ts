@@ -68,6 +68,7 @@ declare namespace app.desktop {
     interface mzkit_desktop {
         get_3d_MALDI_url(): Promise<string>;
         open_MALDI_model(): any;
+        GetNewsFeedJSON(): Promise<string>;
         GetScatter(): Promise<string>;
         Click(tag: string): any;
         GetUMAPFile(): Promise<string>;
