@@ -77,6 +77,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Deconvolution
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
@@ -95,7 +96,7 @@ Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports RibbonLib.Interop
 Imports WeifenLuo.WinFormsUI.Docking
-Imports stdNum = System.Math
+Imports std = System.Math
 Imports Table = Microsoft.VisualBasic.Data.csv.IO.File
 
 Public Class frmRawFeaturesList
@@ -597,7 +598,7 @@ Public Class frmRawFeaturesList
                 .OrderByDescending(Function(m) m.intensity) _
                 .Take(5) _
                 .Select(Function(m)
-                            Return $"{m.mz.ToString("F4")}:{stdNum.Round(100 * m.intensity / maxInto)}"
+                            Return $"{m.mz.ToString("F4")}:{std.Round(100 * m.intensity / maxInto)}"
                         End Function) _
                 .ToArray
 
@@ -761,6 +762,11 @@ Public Class frmRawFeaturesList
         Next
     End Sub
 
+    ''' <summary>
+    ''' check and get the target ion m/z mass value for extract the XIC data
+    ''' </summary>
+    ''' <param name="mz"></param>
+    ''' <returns></returns>
     Private Function checkIon(ByRef mz As Double) As Boolean
         mz = Val(Strings.Trim(ToolStripSpringTextBox1.Text))
 
@@ -834,7 +840,7 @@ Public Class frmRawFeaturesList
     ''' <param name="e"></param>
     Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
         Dim mz As Double
-        Dim ppm As Tolerance = Tolerance.DeltaMass(0.05)
+        Dim ppm As Tolerance = Tolerance.DeltaMass(0.1)
 
         If Not checkIon(mz) Then
             Return
@@ -846,14 +852,24 @@ Public Class frmRawFeaturesList
             Return
         End If
 
-        Dim XIC = rawdata.MS _
-            .Select(Function(scan) (scan.rt, scan.GetIntensity(mz, ppm))) _
-            .Where(Function(p) p.Item2 > 0) _
-            .OrderBy(Function(p) p.rt) _
-            .Select(Function(p) New ChromatogramTick With {.Time = p.rt, .Intensity = p.Item2}) _
+        Dim mass_points = rawdata.MS _
+            .Select(Function(scan) scan.GetMs(mz, ppm)) _
+            .IteratesALL _
+            .Where(Function(p) p.intensity > 0) _
             .ToArray
 
-        Call MyApplication.mzkitRawViewer.TIC({New NamedCollection(Of ChromatogramTick)($"XIC m/z: {mz.ToString("F4")}", XIC)})
+        Call InputSelectMassWindow.GetMassWindows(
+            mz:=mass_points.Select(Function(m) m.mz),
+            apply:=Sub(mass)
+                       Dim xicdata = mass_points _
+                           .Where(Function(i) i.mz >= mass.mzmin AndAlso i.mz <= mass.mzmax) _
+                           .OrderBy(Function(p) p.scan_time) _
+                           .ToChromatogram _
+                           .ToArray
+                       Dim xicSet As New NamedCollection(Of ChromatogramTick)($"XIC m/z: {mz.ToString("F4")}", xicdata)
+
+                       Call MyApplication.mzkitRawViewer.TIC({xicSet})
+                   End Sub)
     End Sub
 
     Private Sub CopyIonsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyIonsToolStripMenuItem.Click
