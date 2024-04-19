@@ -6,7 +6,7 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.Math.Quantile
-Imports stdNum = System.Math
+Imports std = System.Math
 
 Public Class ShowMzBins
 
@@ -81,7 +81,7 @@ Public Class ShowMzBins
     ''' <param name="err"></param>
     ''' <returns></returns>
     Private Shared Function DrawHistogramLine(layer As PixelData(), err As Double) As Image
-        Dim mzbins = layer.GroupBy(Function(p) p.mz, Function(x, y) stdNum.Abs(x - y) < err).ToArray
+        Dim mzbins = layer.GroupBy(Function(p) p.mz, Function(x, y) std.Abs(x - y) < err).ToArray
         Dim hist = mzbins.OrderBy(Function(a) Val(a.name)).Select(Function(mzi) (mz:=Val(mzi.name), binbox:=mzi.ToArray)).ToArray
         Dim mzgroups = hist.GroupBy(Function(i) i.mz, offsets:=0.1).OrderBy(Function(a) Val(a.name)).ToArray
         Dim colors As Color() = Designer.GetColors("paper", n:=mzgroups.Length)
