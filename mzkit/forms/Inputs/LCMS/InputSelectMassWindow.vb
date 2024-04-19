@@ -35,4 +35,17 @@ Public Class InputSelectMassWindow
             config:=selector)
     End Sub
 
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Me.DialogResult = DialogResult.Cancel
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Me.DialogResult = DialogResult.OK
+    End Sub
+
+    Private Sub InputSelectMassWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If ListBox1.Items.Count > 0 Then
+            ListBox1.SelectedIndex = 0
+        End If
+    End Sub
 End Class
