@@ -63,6 +63,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Interop
 Imports Task
+Imports WeifenLuo.WinFormsUI.Docking
 Imports std = System.Math
 
 Module FeatureSearchHandler
@@ -192,10 +193,8 @@ Module FeatureSearchHandler
     ''' <param name="raw"></param>
     ''' <param name="tolerance"></param>
     Private Sub searchInFileByMz(mz As Double, raw As IEnumerable(Of MZWork.Raw), tolerance As Tolerance)
-        Dim ppm As Double = MyApplication.host.GetPPMError()
-        Dim display As New frmFeatureSearch
+        Dim display As frmFeatureSearch = VisualStudio.ShowDocument(Of frmFeatureSearch)(DockState.Document, title:=$"Feature Search Of Precursor {mz.ToString("F4")}")
 
-        display.Show(MyApplication.host.m_dockPanel)
         display.directRaw = raw.ToArray
 
         For Each file As MZWork.Raw In display.directRaw
