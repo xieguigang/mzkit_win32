@@ -12,7 +12,7 @@ Public Class InputSelectMassWindow
         Dim histogram = MzBins.GetScatter(mz, 0.005)
         Dim windows = MzBins.GetMzBins(histogram.x, histogram.y).ToArray
         Dim selector As New InputSelectMassWindow
-        Dim theme As New Theme
+        Dim theme As New Theme With {.drawLegend = False, .padding = "padding: 100px 100px 150px 200px;"}
         Dim plot As New PlotMassWindow(histogram.x, histogram.y, windows, theme)
         Dim size As Size = (selector.PictureBox1.Size)
 
