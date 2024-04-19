@@ -41,7 +41,7 @@ Partial Class InputSelectMassWindow
         Me.GroupBox1.Controls.Add(Me.PictureBox1)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(493, 438)
+        Me.GroupBox1.Size = New System.Drawing.Size(493, 418)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Mass Windows"
@@ -50,15 +50,15 @@ Partial Class InputSelectMassWindow
         '
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.ItemHeight = 12
-        Me.ListBox1.Location = New System.Drawing.Point(8, 281)
+        Me.ListBox1.Location = New System.Drawing.Point(8, 297)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(316, 148)
+        Me.ListBox1.Size = New System.Drawing.Size(316, 112)
         Me.ListBox1.TabIndex = 2
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(13, 256)
+        Me.Label1.Location = New System.Drawing.Point(15, 277)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(59, 12)
         Me.Label1.TabIndex = 1
@@ -69,13 +69,13 @@ Partial Class InputSelectMassWindow
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.PictureBox1.Location = New System.Drawing.Point(8, 20)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(477, 222)
+        Me.PictureBox1.Size = New System.Drawing.Size(477, 247)
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(422, 461)
+        Me.Button1.Location = New System.Drawing.Point(422, 441)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 1
@@ -84,18 +84,18 @@ Partial Class InputSelectMassWindow
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(327, 461)
+        Me.Button2.Location = New System.Drawing.Point(282, 441)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.Size = New System.Drawing.Size(122, 23)
         Me.Button2.TabIndex = 2
-        Me.Button2.Text = "Cancel"
+        Me.Button2.Text = "Cancel, Show All"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'InputSelectMassWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(517, 494)
+        Me.ClientSize = New System.Drawing.Size(517, 473)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.GroupBox1)

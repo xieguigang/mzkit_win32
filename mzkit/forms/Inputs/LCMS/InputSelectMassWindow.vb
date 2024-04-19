@@ -8,7 +8,7 @@ Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 
 Public Class InputSelectMassWindow
 
-    Public Shared Sub GetMassWindows(mz As IEnumerable(Of Double), apply As Action(Of MassWindow))
+    Public Shared Sub GetMassWindows(mz As IEnumerable(Of Double), apply As Action(Of MassWindow), cancel As Action)
         Dim histogram = MzBins.GetScatter(mz, 0.005)
         Dim windows = MzBins.GetMzBins(histogram.x, histogram.y).ToArray
         Dim selector As New InputSelectMassWindow
@@ -32,7 +32,8 @@ Public Class InputSelectMassWindow
 
                            Call apply(mass)
                        End Sub,
-            config:=selector)
+            config:=selector,
+            cancel:=cancel)
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click

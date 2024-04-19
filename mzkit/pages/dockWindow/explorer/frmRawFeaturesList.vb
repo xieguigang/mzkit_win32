@@ -840,7 +840,7 @@ Public Class frmRawFeaturesList
     ''' <param name="e"></param>
     Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
         Dim mz As Double
-        Dim ppm As Tolerance = Tolerance.DeltaMass(0.1)
+        Dim ppm As Tolerance = Tolerance.DeltaMass(0.05)
 
         If Not checkIon(mz) Then
             Return
@@ -857,6 +857,16 @@ Public Class frmRawFeaturesList
             .IteratesALL _
             .Where(Function(p) p.intensity > 0) _
             .ToArray
+        Dim showAll As Action =
+            Sub()
+                Dim xicdata = mass_points _
+                    .OrderBy(Function(a) a.scan_time) _
+                    .ToChromatogram _
+                    .ToArray
+                Dim xicSet As New NamedCollection(Of ChromatogramTick)($"XIC m/z: {mz.ToString("F3")}", xicdata)
+
+                Call MyApplication.mzkitRawViewer.TIC({xicSet})
+            End Sub
 
         Call InputSelectMassWindow.GetMassWindows(
             mz:=mass_points.Select(Function(m) m.mz),
@@ -866,10 +876,11 @@ Public Class frmRawFeaturesList
                            .OrderBy(Function(p) p.scan_time) _
                            .ToChromatogram _
                            .ToArray
-                       Dim xicSet As New NamedCollection(Of ChromatogramTick)($"XIC m/z: {mz.ToString("F4")}", xicdata)
+                       Dim xicSet As New NamedCollection(Of ChromatogramTick)($"XIC m/z: {mass.ToString}", xicdata)
 
                        Call MyApplication.mzkitRawViewer.TIC({xicSet})
-                   End Sub)
+                   End Sub,
+            cancel:=showAll)
     End Sub
 
     Private Sub CopyIonsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyIonsToolStripMenuItem.Click
