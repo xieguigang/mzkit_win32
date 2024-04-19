@@ -90,6 +90,7 @@ Partial Class PageMzkitTools
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.CopyValueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
@@ -129,9 +130,9 @@ Partial Class PageMzkitTools
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenInTableViewerToolStripMenuItem, Me.ToolStripMenuItem1, Me.SaveToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyValueToolStripMenuItem, Me.OpenInTableViewerToolStripMenuItem, Me.ToolStripMenuItem1, Me.SaveToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(185, 54)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(185, 98)
         '
         'OpenInTableViewerToolStripMenuItem
         '
@@ -203,6 +204,14 @@ Partial Class PageMzkitTools
         Me.TabPage6.Text = "Matrix Viewer"
         Me.TabPage6.UseVisualStyleBackColor = True
         '
+        'CopyValueToolStripMenuItem
+        '
+        Me.CopyValueToolStripMenuItem.Image = CType(resources.GetObject("CopyValueToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.CopyValueToolStripMenuItem.Name = "CopyValueToolStripMenuItem"
+        Me.CopyValueToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
+        Me.CopyValueToolStripMenuItem.Text = "Copy Value"
+        Me.CopyValueToolStripMenuItem.ToolTipText = "Copy the string value of current selected cell"
+        '
         'PageMzkitTools
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -235,4 +244,5 @@ Partial Class PageMzkitTools
     Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
     Friend WithEvents SaveToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BindingSource1 As BindingSource
+    Friend WithEvents CopyValueToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -92,6 +92,7 @@ Imports RibbonLib.Interop
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
+Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class PageMzkitTools
 
@@ -799,5 +800,21 @@ Public Class PageMzkitTools
 
     Private Sub OpenInTableViewerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenInTableViewerToolStripMenuItem.Click
         Call DataGridView1.OpenInTableViewer
+    End Sub
+
+    ''' <summary>
+    ''' copy value of current selected cell
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub CopyValueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyValueToolStripMenuItem.Click
+        Dim cells = DataGridView1.SelectedCells.ToArray(Of DataGridViewCell)
+
+        If cells.Length > 0 Then
+            Dim firstCell = cells(Scan0)
+
+            Call Clipboard.Clear()
+            Call Clipboard.SetText(any.ToString(firstCell.Value))
+        End If
     End Sub
 End Class
