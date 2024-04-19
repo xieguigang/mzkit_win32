@@ -485,6 +485,12 @@
     <Compile Include="forms\Inputs\InputURL.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\Inputs\LCMS\InputSelectMassWindow.Designer.vb">
+      <DependentUpon>InputSelectMassWindow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Inputs\LCMS\InputSelectMassWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\LCMS\InputLCMSScatter.Designer.vb">
       <DependentUpon>InputLCMSScatter.vb</DependentUpon>
     </Compile>
@@ -1215,6 +1221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\LCMS\InputMNSimilarityScore.resx">
       <DependentUpon>InputMNSimilarityScore.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Inputs\LCMS\InputSelectMassWindow.resx">
+      <DependentUpon>InputSelectMassWindow.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Inputs\MSImaging\InputConfigFilterPipeline.resx">
       <DependentUpon>InputConfigFilterPipeline.vb</DependentUpon>
