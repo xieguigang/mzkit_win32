@@ -442,7 +442,7 @@ Type 'q()' to quit R.
                 If cli.Name.FileExists Then
                     Call BioNovoGene.mzkit_win32.CLI.openRawFile(cli.Name, cli)
                 ElseIf cli.Name.TextEquals("--debug") Then
-                    ServiceHub.MSIDataService.debugPort = cli.GetInt32("--port")
+                    ServiceHub.MSIDataService.debugPort = cli.GetDataReader.GetInt32("--port")
                 ElseIf cli.Name.TextEquals("--devtools") Then
                     Call BioNovoGene.mzkit_win32.CLI.openDevTools()
                 ElseIf cli.Name.TextEquals("--debug-plugin") Then
