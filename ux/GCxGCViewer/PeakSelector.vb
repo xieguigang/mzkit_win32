@@ -1,4 +1,63 @@
-﻿Imports System.Drawing.Drawing2D
+﻿#Region "Microsoft.VisualBasic::42520fa1095f77d8146749312272e7de, G:/mzkit/src/mzkit/ux/GCxGCViewer//PeakSelector.vb"
+
+    ' Author:
+    ' 
+    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+    ' 
+    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+    ' 
+    ' 
+    ' MIT License
+    ' 
+    ' 
+    ' Permission is hereby granted, free of charge, to any person obtaining a copy
+    ' of this software and associated documentation files (the "Software"), to deal
+    ' in the Software without restriction, including without limitation the rights
+    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    ' copies of the Software, and to permit persons to whom the Software is
+    ' furnished to do so, subject to the following conditions:
+    ' 
+    ' The above copyright notice and this permission notice shall be included in all
+    ' copies or substantial portions of the Software.
+    ' 
+    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    ' SOFTWARE.
+
+
+
+    ' /********************************************************************************/
+
+    ' Summaries:
+
+
+    ' Code Statistics:
+
+    '   Total Lines: 235
+    '    Code Lines: 178
+    ' Comment Lines: 10
+    '   Blank Lines: 47
+    '     File Size: 8.41 KB
+
+
+    ' Class PeakSelector
+    ' 
+    '     Properties: ColorSet, HtmlView, TIC2D
+    ' 
+    '     Constructor: (+1 Overloads) Sub New
+    '     Sub: ChangeColorsToolStripMenuItem_Click, DViewerToolStripMenuItem_Click, GetPeak, PeakSelector_Load, PictureBox1_MouseClick
+    '          PictureBox1_MouseDown, PictureBox1_MouseMove, PictureBox1_MouseUp, PictureBox1_Paint, PictureBox1_Resize
+    '          rendering, rescale, SetScans, WebView21_CoreWebView2InitializationCompleted
+    ' 
+    ' /********************************************************************************/
+
+#End Region
+
+Imports System.Drawing.Drawing2D
 Imports System.Windows.Forms
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
@@ -233,3 +292,4 @@ Public Class PeakSelector
         Call WebKit.DeveloperOptions(WebView21, enable:=True,)
     End Sub
 End Class
+

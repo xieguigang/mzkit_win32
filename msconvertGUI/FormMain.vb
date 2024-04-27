@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::24ff52798900922cfc0be134101b248d, mzkit\src\mzkit\msconvertGUI\FormMain.vb"
+﻿#Region "Microsoft.VisualBasic::b8cf18aee2a2c67bc8411d276205d073, G:/mzkit/src/mzkit/msconvertGUI//FormMain.vb"
 
     ' Author:
     ' 
@@ -37,11 +37,11 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 161
-    '    Code Lines: 113
-    ' Comment Lines: 15
-    '   Blank Lines: 33
-    '     File Size: 5.89 KB
+    '   Total Lines: 169
+    '    Code Lines: 118
+    ' Comment Lines: 16
+    '   Blank Lines: 35
+    '     File Size: 6.16 KB
 
 
     ' Class FormMain
@@ -52,7 +52,7 @@
     ' 
     '     Sub: AddTask, Button1_Click, Button2_Click, Button3_Click, ExitToolStripMenuItem_Click
     '          ExportMSImagingFileToolStripMenuItem_Click, FormMain_Load, FormMain_Resize, ListBox1_SelectedIndexChanged, LogText
-    '          SetWindowState, StatusMessage, Warning
+    '          SetTitle, SetWindowState, ShowProperties, StatusMessage, Warning
     ' 
     ' /********************************************************************************/
 

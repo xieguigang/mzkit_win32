@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::185bf79aa62226115454fe1e470f73be, mzkit\src\mzkit\services\CFM-ID\Prediction.vb"
+﻿#Region "Microsoft.VisualBasic::bdbce91fad92776ba56786fd77843dbb, G:/mzkit/src/mzkit/services/CFM-ID//Prediction.vb"
 
     ' Author:
     ' 
@@ -41,7 +41,7 @@
     '    Code Lines: 48
     ' Comment Lines: 53
     '   Blank Lines: 24
-    '     File Size: 6.01 KB
+    '     File Size: 6.14 KB
 
 
     ' Class Prediction

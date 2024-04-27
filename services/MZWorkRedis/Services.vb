@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::9da321b9095319678f2c231b2feb409e, mzkit\src\mzkit\services\MZWorkRedis\Services.vb"
+﻿#Region "Microsoft.VisualBasic::247e27ea16a69e0383fe041e86ce573f, G:/mzkit/src/mzkit/services/MZWorkRedis//Services.vb"
 
     ' Author:
     ' 
@@ -37,11 +37,11 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 138
-    '    Code Lines: 96
+    '   Total Lines: 140
+    '    Code Lines: 98
     ' Comment Lines: 13
     '   Blank Lines: 29
-    '     File Size: 5.02 KB
+    '     File Size: 5.13 KB
 
 
     ' Class Service

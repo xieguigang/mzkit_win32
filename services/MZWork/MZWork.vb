@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::5808e97c67240320f4634e36fbbcc3bf, mzkit\src\mzkit\services\MZWork\MZWork.vb"
+﻿#Region "Microsoft.VisualBasic::b32004ae44eff56dc158f1c187bc6bce, G:/mzkit/src/mzkit/services/MZWork//MZWork.vb"
 
     ' Author:
     ' 
@@ -41,7 +41,7 @@
     '    Code Lines: 49
     ' Comment Lines: 8
     '   Blank Lines: 14
-    '     File Size: 2.58 KB
+    '     File Size: 2.65 KB
 
 
     ' Module MZWork

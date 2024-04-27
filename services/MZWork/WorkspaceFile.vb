@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::0800367f4606c2e4887f263351b8bca2, mzkit\src\mzkit\services\MZWork\WorkspaceFile.vb"
+﻿#Region "Microsoft.VisualBasic::81acf754eaf0d6da11d124a87926634a, G:/mzkit/src/mzkit/services/MZWork//WorkspaceFile.vb"
 
     ' Author:
     ' 
@@ -41,7 +41,7 @@
     '    Code Lines: 15
     ' Comment Lines: 14
     '   Blank Lines: 6
-    '     File Size: 1.09 KB
+    '     File Size: 1.12 KB
 
 
     ' Class WorkspaceFile

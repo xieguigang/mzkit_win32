@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::1a601b59c24b9c61fa31563b83dca299, mzkit\src\mzkit\mzblender\ChromatogramPlot\XIC3DBlender.vb"
+﻿#Region "Microsoft.VisualBasic::4086d4f6d66f6f6efb414289897dad18, G:/mzkit/src/mzkit/mzblender//ChromatogramPlot/XIC3DBlender.vb"
 
     ' Author:
     ' 
@@ -41,7 +41,7 @@
     '    Code Lines: 29
     ' Comment Lines: 0
     '   Blank Lines: 5
-    '     File Size: 1.38 KB
+    '     File Size: 1.40 KB
 
 
     ' Class XIC3DBlender

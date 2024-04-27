@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::c3b308fe066672061a5d64bc4713d281, mzkit\src\mzkit\services\ServiceHub\ServiceProtocols\Payloads\RegionLoader.vb"
+﻿#Region "Microsoft.VisualBasic::79762f7a54e6c5d0b045e5f4c3c399a8, G:/mzkit/src/mzkit/services/ServiceHub//ServiceProtocols/Payloads/RegionLoader.vb"
 
     ' Author:
     ' 
@@ -37,11 +37,11 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 54
-    '    Code Lines: 41
-    ' Comment Lines: 5
-    '   Blank Lines: 8
-    '     File Size: 1.79 KB
+    '   Total Lines: 74
+    '    Code Lines: 51
+    ' Comment Lines: 13
+    '   Blank Lines: 10
+    '     File Size: 2.32 KB
 
 
     ' Class RegionLoader

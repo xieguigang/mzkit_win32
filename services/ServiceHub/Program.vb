@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::a7e8f809d933e4335e89eb010fbd28fb, mzkit\src\mzkit\services\ServiceHub\Program.vb"
+﻿#Region "Microsoft.VisualBasic::7e67eedac19be8885ca407542eab3883, G:/mzkit/src/mzkit/services/ServiceHub//Program.vb"
 
     ' Author:
     ' 
@@ -37,16 +37,18 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 69
-    '    Code Lines: 38
+    '   Total Lines: 98
+    '    Code Lines: 60
     ' Comment Lines: 21
-    '   Blank Lines: 10
-    '     File Size: 2.31 KB
+    '   Blank Lines: 17
+    '     File Size: 3.40 KB
 
 
     ' Module Program
     ' 
-    '     Function: getData
+    '     Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Function: getData, getMSIDimensions, getTotalIons, tcpGet
     ' 
     '     Sub: Main
     ' 

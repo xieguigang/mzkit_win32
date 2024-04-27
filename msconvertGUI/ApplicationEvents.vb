@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::0f305755a76e7b59afb456ce471d4d48, mzkit\src\mzkit\msconvertGUI\ApplicationEvents.vb"
+﻿#Region "Microsoft.VisualBasic::0f305755a76e7b59afb456ce471d4d48, G:/mzkit/src/mzkit/msconvertGUI//ApplicationEvents.vb"
 
     ' Author:
     ' 

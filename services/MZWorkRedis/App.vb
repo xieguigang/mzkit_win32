@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::2a0590810a4991c205aa04bb0bff7ef9, mzkit\src\mzkit\services\MZWorkRedis\App.vb"
+﻿#Region "Microsoft.VisualBasic::35d2da831b9106f43d3cccfb122f2eed, G:/mzkit/src/mzkit/services/MZWorkRedis//App.vb"
 
     ' Author:
     ' 
@@ -41,7 +41,7 @@
     '    Code Lines: 57
     ' Comment Lines: 8
     '   Blank Lines: 10
-    '     File Size: 2.50 KB
+    '     File Size: 2.54 KB
 
 
     ' Module App

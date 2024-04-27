@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::45baabe9109d2ac92a2616cef1a0de8f, mzkit\src\mzkit\mzblender\MSImaging\RGBIonMSIBlender.vb"
+﻿#Region "Microsoft.VisualBasic::1b4c47ad6e67b09b4a1185f5430b2c0f, G:/mzkit/src/mzkit/mzblender//MSImaging/RGBIonMSIBlender.vb"
 
     ' Author:
     ' 
@@ -37,11 +37,11 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 80
-    '    Code Lines: 54
-    ' Comment Lines: 12
-    '   Blank Lines: 14
-    '     File Size: 3.44 KB
+    '   Total Lines: 85
+    '    Code Lines: 57
+    ' Comment Lines: 11
+    '   Blank Lines: 17
+    '     File Size: 3.50 KB
 
 
     ' Class RGBIonMSIBlender
@@ -49,7 +49,10 @@
     '     Properties: dimensions
     ' 
     '     Constructor: (+1 Overloads) Sub New
-    '     Function: Rendering
+    ' 
+    '     Function: GetTrIQIntensity, Rendering
+    ' 
+    '     Sub: SetIntensityRange
     ' 
     ' /********************************************************************************/
 
