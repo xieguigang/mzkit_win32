@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::65e0645a08e5eeb24379dc641db55f3e, G:/mzkit/src/mzkit/ux/MatrixViewer//UVScanMatrix.vb"
+﻿#Region "Microsoft.VisualBasic::92e476e69d7befaef8903c63d7797e28, G:/mzkit/src/mzkit/ux/MatrixViewer//UVScanMatrix.vb"
 
     ' Author:
     ' 
@@ -105,4 +105,3 @@ Public Class UVScanMatrix : Inherits DataMatrix
         Return GetMatrix(Of UVScanPoint).SaveTo(filepath)
     End Function
 End Class
-

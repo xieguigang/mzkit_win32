@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::649f9a8ea73b7a9e10edc87e37cb2a88, G:/mzkit/src/mzkit/ux/MatrixViewer//DataMatrix.vb"
+﻿#Region "Microsoft.VisualBasic::f0a27ac3fcc339585583a3a4e7cc104d, G:/mzkit/src/mzkit/ux/MatrixViewer//DataMatrix.vb"
 
     ' Author:
     ' 
@@ -158,4 +158,3 @@ Public MustInherit Class DataMatrix
     Protected MustOverride Function SaveTo(s As Stream) As Boolean
 
 End Class
-

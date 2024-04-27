@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::63294b667c14bf0e54858dbb10bfd8d1, G:/mzkit/src/mzkit/ux/MatrixViewer//ExpressionMatrix.vb"
+﻿#Region "Microsoft.VisualBasic::c6e8955a151bcc99c9b8555ffea3954b, G:/mzkit/src/mzkit/ux/MatrixViewer//ExpressionMatrix.vb"
 
     ' Author:
     ' 
@@ -41,7 +41,7 @@
     '    Code Lines: 40
     ' Comment Lines: 0
     '   Blank Lines: 12
-    '     File Size: 1.60 KB
+    '     File Size: 1.59 KB
 
 
     ' Class ExpressionMatrix
@@ -110,4 +110,3 @@ Public Class ExpressionMatrix : Inherits DataMatrix
         Return False
     End Function
 End Class
-

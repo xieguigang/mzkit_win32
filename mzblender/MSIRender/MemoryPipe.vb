@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::f9c3e3c117c6afab5954fd431d688ccd, G:/mzkit/src/mzkit/mzblender//MSIRender/MemoryPipe.vb"
+﻿#Region "Microsoft.VisualBasic::70fb010cc99a24b6d632b1b4ac537898, G:/mzkit/src/mzkit/mzblender//MSIRender/MemoryPipe.vb"
 
     ' Author:
     ' 
@@ -122,4 +122,3 @@ Public Class MemoryPipe
         Return channel.ToString
     End Function
 End Class
-

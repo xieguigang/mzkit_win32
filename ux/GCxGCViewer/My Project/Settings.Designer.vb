@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::2a7ebbf4e5a1963f359f88de84d62d89, G:/mzkit/src/mzkit/ux/GCxGCViewer//My Project/Settings.Designer.vb"
+﻿#Region "Microsoft.VisualBasic::3e3f7c7db5aebfd25d31373f9f13b06e, G:/mzkit/src/mzkit/ux/GCxGCViewer//My Project/Settings.Designer.vb"
 
     ' Author:
     ' 
@@ -41,7 +41,7 @@
     '    Code Lines: 51
     ' Comment Lines: 9
     '   Blank Lines: 13
-    '     File Size: 3.01 KB
+    '     File Size: 3.00 KB
 
 
     '     Class MySettings
@@ -132,4 +132,3 @@ Namespace My
         End Property
     End Module
 End Namespace
-

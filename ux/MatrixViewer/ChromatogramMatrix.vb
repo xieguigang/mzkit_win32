@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::99aa99a75895d0244e8737d721e7908f, G:/mzkit/src/mzkit/ux/MatrixViewer//ChromatogramMatrix.vb"
+﻿#Region "Microsoft.VisualBasic::9dc3626df9074540a7916fda1792bc0a, G:/mzkit/src/mzkit/ux/MatrixViewer//ChromatogramMatrix.vb"
 
     ' Author:
     ' 
@@ -108,4 +108,3 @@ Public Class ChromatogramMatrix : Inherits DataMatrix
         Return GetMatrix(Of ChromatogramTick).SaveTo(filepath)
     End Function
 End Class
-

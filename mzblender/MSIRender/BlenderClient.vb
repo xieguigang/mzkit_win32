@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::b5e7645d634b3c6d2bb528bda139b643, G:/mzkit/src/mzkit/mzblender//MSIRender/BlenderClient.vb"
+﻿#Region "Microsoft.VisualBasic::84d628534b4fedbb6c063a9103c31d25, G:/mzkit/src/mzkit/mzblender//MSIRender/BlenderClient.vb"
 
     ' Author:
     ' 
@@ -196,4 +196,3 @@ Public Class BlenderClient : Implements IDisposable
         GC.SuppressFinalize(Me)
     End Sub
 End Class
-

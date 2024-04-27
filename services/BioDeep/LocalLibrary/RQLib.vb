@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::b2320802c18604fd94c0b456f5de3941, G:/mzkit/src/mzkit/services/BioDeep//LocalLibrary/RQLib.vb"
+﻿#Region "Microsoft.VisualBasic::ea22bc3361e3a7fe6eeaaf5fbbc971c1, G:/mzkit/src/mzkit/services/BioDeep//LocalLibrary/RQLib.vb"
 
     ' Author:
     ' 
@@ -272,4 +272,3 @@ Public Class RQLib : Implements IDisposable
         GC.SuppressFinalize(Me)
     End Sub
 End Class
-

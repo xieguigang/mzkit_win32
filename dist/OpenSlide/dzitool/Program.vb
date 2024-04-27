@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::9e0189ed0188599d95d146b9692f3429, G:/mzkit/src/mzkit/dist/OpenSlide/dzitool//Program.vb"
+﻿#Region "Microsoft.VisualBasic::0062a7e92cc1bc6271909ef2b93288ad, G:/mzkit/src/mzkit/dist/OpenSlide/dzitool//Program.vb"
 
     ' Author:
     ' 
@@ -202,4 +202,3 @@ Module Program
         Return GetType(Program).RunCLI(App.CommandLine)
     End Function
 End Module
-

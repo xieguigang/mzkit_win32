@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::dcfa7732b45ee26c6d79d851bc16ad90, G:/mzkit/src/mzkit/services/PipelineHost//STImaging.vb"
+﻿#Region "Microsoft.VisualBasic::d4763a6ce614ae469c3983103e763232, G:/mzkit/src/mzkit/services/PipelineHost//STImaging.vb"
 
     ' Author:
     ' 
@@ -176,4 +176,3 @@ Module STImagingTools
         Return map
     End Function
 End Module
-

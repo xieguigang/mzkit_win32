@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::d73a2b8e17b47ca0ee5e0cea878d4594, G:/mzkit/src/mzkit/ux/MatrixViewer//MSAlignmentMatrix.vb"
+﻿#Region "Microsoft.VisualBasic::9b6d7f379e36f9789b9af48092e70ad2, G:/mzkit/src/mzkit/ux/MatrixViewer//MSAlignmentMatrix.vb"
 
     ' Author:
     ' 
@@ -105,4 +105,3 @@ Public Class MSAlignmentMatrix : Inherits DataMatrix
         Return GetMatrix(Of SSM2MatrixFragment).SaveTo(filepath)
     End Function
 End Class
-

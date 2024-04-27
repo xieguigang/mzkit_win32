@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::a5872d17dbc596e132125d97c665ac53, G:/mzkit/src/mzkit/ux/MatrixViewer//NMRMatrix.vb"
+﻿#Region "Microsoft.VisualBasic::177792652cd26014e3bffa398695eca4, G:/mzkit/src/mzkit/ux/MatrixViewer//NMRMatrix.vb"
 
     ' Author:
     ' 
@@ -114,4 +114,3 @@ Public Class NMRMatrix : Inherits DataMatrix
         Return True
     End Function
 End Class
-

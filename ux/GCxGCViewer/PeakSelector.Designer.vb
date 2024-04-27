@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::35293552acaeff110bac784ffccd7ba6, G:/mzkit/src/mzkit/ux/GCxGCViewer//PeakSelector.Designer.vb"
+﻿#Region "Microsoft.VisualBasic::6883b99ab34de3bafacb419799ce7675, G:/mzkit/src/mzkit/ux/GCxGCViewer//PeakSelector.Designer.vb"
 
     ' Author:
     ' 
@@ -207,4 +207,3 @@ Partial Class PeakSelector
     Friend WithEvents ToolStripStatusLabel2 As ToolStripStatusLabel
     Friend WithEvents WebView21 As Microsoft.Web.WebView2.WinForms.WebView2
 End Class
-

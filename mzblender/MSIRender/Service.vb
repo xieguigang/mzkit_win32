@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::a7a1ec0ec487af7dbe8155096fd29d89, G:/mzkit/src/mzkit/mzblender//MSIRender/Service.vb"
+﻿#Region "Microsoft.VisualBasic::08663f77570af4b5ac4719bc2771da41, G:/mzkit/src/mzkit/mzblender//MSIRender/Service.vb"
 
     ' Author:
     ' 
@@ -270,4 +270,3 @@ Public Class Service : Implements IDisposable
         GC.SuppressFinalize(Me)
     End Sub
 End Class
-

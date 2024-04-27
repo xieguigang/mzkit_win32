@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::05d6b5a006eeb1dfed511190b0978e90, G:/mzkit/src/mzkit/mzblender//MSIRender/Protocol.vb"
+﻿#Region "Microsoft.VisualBasic::fe7c5e018c3e286a551d23d37e6ca473, G:/mzkit/src/mzkit/mzblender//MSIRender/Protocol.vb"
 
     ' Author:
     ' 
@@ -41,7 +41,7 @@
     '    Code Lines: 11
     ' Comment Lines: 12
     '   Blank Lines: 0
-    '     File Size: 554 B
+    '     File Size: 552 B
 
 
     ' Enum Protocol
@@ -80,4 +80,3 @@ Public Enum Protocol
     ''' </summary>
     Shutdown
 End Enum
-

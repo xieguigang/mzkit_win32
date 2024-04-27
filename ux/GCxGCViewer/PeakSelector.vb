@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::42520fa1095f77d8146749312272e7de, G:/mzkit/src/mzkit/ux/GCxGCViewer//PeakSelector.vb"
+﻿#Region "Microsoft.VisualBasic::8a5d449e11531a2dc6187b2ac254335d, G:/mzkit/src/mzkit/ux/GCxGCViewer//PeakSelector.vb"
 
     ' Author:
     ' 
@@ -292,4 +292,3 @@ Public Class PeakSelector
         Call WebKit.DeveloperOptions(WebView21, enable:=True,)
     End Sub
 End Class
-

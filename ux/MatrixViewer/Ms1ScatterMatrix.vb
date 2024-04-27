@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::984b83cd4ee653ec0733f6b3811d1639, G:/mzkit/src/mzkit/ux/MatrixViewer//Ms1ScatterMatrix.vb"
+﻿#Region "Microsoft.VisualBasic::a276d8310e1e499994d6d85263004d48, G:/mzkit/src/mzkit/ux/MatrixViewer//Ms1ScatterMatrix.vb"
 
     ' Author:
     ' 
@@ -41,7 +41,7 @@
     '    Code Lines: 37
     ' Comment Lines: 0
     '   Blank Lines: 10
-    '     File Size: 1.46 KB
+    '     File Size: 1.45 KB
 
 
     ' Class Ms1ScatterMatrix
@@ -105,4 +105,3 @@ Public Class Ms1ScatterMatrix : Inherits DataMatrix
         Return False
     End Function
 End Class
-

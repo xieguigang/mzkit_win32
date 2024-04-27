@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::232b043ffe66edbe5b56dea02c6c0cfe, G:/mzkit/src/mzkit/dist/OpenSlide/dzitool//My Project/Resources.Designer.vb"
+﻿#Region "Microsoft.VisualBasic::80183433d511b84ec28909f3fb207b96, G:/mzkit/src/mzkit/dist/OpenSlide/dzitool//My Project/Resources.Designer.vb"
 
     ' Author:
     ' 
@@ -116,4 +116,3 @@ Namespace My.Resources
         End Property
     End Module
 End Namespace
-

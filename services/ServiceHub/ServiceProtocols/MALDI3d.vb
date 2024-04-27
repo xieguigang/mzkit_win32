@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::89f36965a2a75f9aca2b76c85f136547, G:/mzkit/src/mzkit/services/ServiceHub//ServiceProtocols/MALDI3d.vb"
+﻿#Region "Microsoft.VisualBasic::61df71809a1ed3afa11fdb056a1010ac, G:/mzkit/src/mzkit/services/ServiceHub//ServiceProtocols/MALDI3d.vb"
 
     ' Author:
     ' 
@@ -37,11 +37,11 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 7
+    '   Total Lines: 6
     '    Code Lines: 2
     ' Comment Lines: 3
-    '   Blank Lines: 2
-    '     File Size: 124 B
+    '   Blank Lines: 1
+    '     File Size: 120 B
 
 
     ' Class MALDI3d
@@ -52,11 +52,9 @@
 
 #End Region
 
-
 ''' <summary>
 ''' the data services host for the 3d-maldi model data
 ''' </summary>
 Public Class MALDI3d
 
 End Class
-

@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::5d9966e257695aa526a725cf7389724a, G:/mzkit/src/mzkit/ux/MatrixViewer//ChromatogramOverlapMatrix.vb"
+﻿#Region "Microsoft.VisualBasic::253907d9e9d7625bd10286bdec9b27cb, G:/mzkit/src/mzkit/ux/MatrixViewer//ChromatogramOverlapMatrix.vb"
 
     ' Author:
     ' 
@@ -41,7 +41,7 @@
     '    Code Lines: 70
     ' Comment Lines: 0
     '   Blank Lines: 21
-    '     File Size: 3.15 KB
+    '     File Size: 3.14 KB
 
 
     ' Class ChromatogramOverlapMatrix
@@ -149,4 +149,3 @@ Public Class ChromatogramOverlapMatrix : Inherits DataMatrix
         Return True
     End Function
 End Class
-

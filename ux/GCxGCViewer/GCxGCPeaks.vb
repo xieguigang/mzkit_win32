@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::8b1276c3468fcb757011afe0389ab5da, G:/mzkit/src/mzkit/ux/GCxGCViewer//GCxGCPeaks.vb"
+﻿#Region "Microsoft.VisualBasic::f3b948ea2e51427bdcbc58af619bf5f1, G:/mzkit/src/mzkit/ux/GCxGCViewer//GCxGCPeaks.vb"
 
     ' Author:
     ' 
@@ -37,10 +37,10 @@
 
     ' Code Statistics:
 
-    '   Total Lines: 129
+    '   Total Lines: 128
     '    Code Lines: 102
     ' Comment Lines: 2
-    '   Blank Lines: 25
+    '   Blank Lines: 24
     '     File Size: 4.29 KB
 
 
@@ -60,7 +60,6 @@
     ' /********************************************************************************/
 
 #End Region
-
 
 Imports System.Runtime.InteropServices
 Imports System.Windows.Forms
@@ -190,4 +189,3 @@ Public Class GCxGCPeaks
     End Function
 
 End Class
-

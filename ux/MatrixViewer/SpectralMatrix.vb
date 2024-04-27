@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::2d499982e79f5fd6254ed39b213922e6, G:/mzkit/src/mzkit/ux/MatrixViewer//SpectralMatrix.vb"
+﻿#Region "Microsoft.VisualBasic::f8ea61b8cab47ac751884f35befa480d, G:/mzkit/src/mzkit/ux/MatrixViewer//SpectralMatrix.vb"
 
     ' Author:
     ' 
@@ -133,4 +133,3 @@ Public Class SpectralMatrix : Inherits DataMatrix
         Return GetMatrix(Of ms2).SaveTo(filepath)
     End Function
 End Class
-

@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::5b71fd4dd180c0f7abbb15a2972b0d24, G:/mzkit/src/mzkit/services/MZWork//MSImagingReader.vb"
+﻿#Region "Microsoft.VisualBasic::f6ae3e1d629da403d00757ba3c2b3840, G:/mzkit/src/mzkit/services/MZWork//MSImagingReader.vb"
 
     ' Author:
     ' 
@@ -154,4 +154,3 @@ Public Module MSImagingReader
         }
     End Function
 End Module
-
