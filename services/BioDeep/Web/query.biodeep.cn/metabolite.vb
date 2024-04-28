@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::5f8e36af08462d2aee4ad8acf4533308, G:/mzkit/src/mzkit/services/BioDeep//Web/query.biodeep.cn/metabolite.vb"
+﻿#Region "Microsoft.VisualBasic::5f8e36af08462d2aee4ad8acf4533308, E:/mzkit/src/mzkit/services/BioDeep//Web/query.biodeep.cn/metabolite.vb"
 
     ' Author:
     ' 

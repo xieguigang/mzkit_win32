@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::81acf754eaf0d6da11d124a87926634a, G:/mzkit/src/mzkit/services/MZWork//WorkspaceFile.vb"
+﻿#Region "Microsoft.VisualBasic::81acf754eaf0d6da11d124a87926634a, E:/mzkit/src/mzkit/services/MZWork//WorkspaceFile.vb"
 
     ' Author:
     ' 

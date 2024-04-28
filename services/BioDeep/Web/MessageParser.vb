@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::07af384959239a63c7ca2c292ed398f0, G:/mzkit/src/mzkit/services/BioDeep//Web/MessageParser.vb"
+﻿#Region "Microsoft.VisualBasic::07af384959239a63c7ca2c292ed398f0, E:/mzkit/src/mzkit/services/BioDeep//Web/MessageParser.vb"
 
     ' Author:
     ' 

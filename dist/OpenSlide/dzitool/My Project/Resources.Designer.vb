@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::80183433d511b84ec28909f3fb207b96, G:/mzkit/src/mzkit/dist/OpenSlide/dzitool//My Project/Resources.Designer.vb"
+﻿#Region "Microsoft.VisualBasic::80183433d511b84ec28909f3fb207b96, E:/mzkit/src/mzkit/dist/OpenSlide/dzitool//My Project/Resources.Designer.vb"
 
     ' Author:
     ' 

@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::b32004ae44eff56dc158f1c187bc6bce, G:/mzkit/src/mzkit/services/MZWork//MZWork.vb"
+﻿#Region "Microsoft.VisualBasic::b32004ae44eff56dc158f1c187bc6bce, E:/mzkit/src/mzkit/services/MZWork//MZWork.vb"
 
     ' Author:
     ' 

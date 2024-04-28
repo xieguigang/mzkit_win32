@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::1a67310301880bf364850d7927198634, G:/mzkit/src/mzkit/services/ServiceHub//ServiceProtocols/ServiceProtocol.vb"
+﻿#Region "Microsoft.VisualBasic::1a67310301880bf364850d7927198634, E:/mzkit/src/mzkit/services/ServiceHub//ServiceProtocols/ServiceProtocol.vb"
 
     ' Author:
     ' 

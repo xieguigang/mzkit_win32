@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::98047fa3ef4f4007147a2a3a62ea856b, G:/mzkit/src/mzkit/services/ServiceHub//ServiceProtocols/MSIRequest.vb"
+﻿#Region "Microsoft.VisualBasic::98047fa3ef4f4007147a2a3a62ea856b, E:/mzkit/src/mzkit/services/ServiceHub//ServiceProtocols/MSIRequest.vb"
 
     ' Author:
     ' 
