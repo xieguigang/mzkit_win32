@@ -229,6 +229,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\GCModeller\src\runtime\markdown2pdf\src\PdfConvert\WkHtmlToPdf.NET5.vbproj">
+      <Project>{5b55ea8f-18af-4cf5-9a46-a2473dfe1b17}</Project>
+      <Name>WkHtmlToPdf.NET5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\Data\BinaryData\BinaryData\binarydata-netcore5.vbproj">
       <Project>{9efd79a7-b385-4d67-9d23-8940453e5d03}</Project>
       <Name>binarydata-netcore5</Name>
@@ -292,10 +296,6 @@
     <ProjectReference Include="..\..\..\..\..\..\GCModeller\src\runtime\sciBASIC#\mime\text%25html\html_netcore5.vbproj">
       <Project>{0b752d71-2852-4071-ac44-db37195cf8c3}</Project>
       <Name>html_netcore5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\..\..\GCModeller\src\workbench\markdown2pdf\src\PdfConvert\WkHtmlToPdf.NET5.vbproj">
-      <Project>{eca213f0-e999-478c-904a-0840fd3b645c}</Project>
-      <Name>WkHtmlToPdf.NET5</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\assembly\assembly\assembly-netcore5.vbproj">
       <Project>{5dce233f-c0e1-41b8-827a-872b0c8cc3bc}</Project>
