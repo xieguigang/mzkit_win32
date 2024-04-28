@@ -778,6 +778,7 @@ Public Class frmMsImagingViewer
                 Call grid.Columns.Add("density", GetType(Double))
                 Call grid.Columns.Add("imaging_score", GetType(Double))
                 Call grid.Columns.Add("maxIntensity", GetType(Double))
+                Call grid.Columns.Add("averageIntensity", GetType(Double))
                 Call grid.Columns.Add("basePixel.X", GetType(Integer))
                 Call grid.Columns.Add("basePixel.Y", GetType(Integer))
                 Call grid.Columns.Add("Q1_intensity", GetType(Double))
@@ -814,6 +815,7 @@ Public Class frmMsImagingViewer
                        ion.density.ToString("F2"),
                        (std.Log(ion.pixels + 1) * ion.density).ToString("F2"),
                        std.Round(ion.maxIntensity),
+                       std.Round(ion.averageIntensity),
                        ion.basePixelX,
                        ion.basePixelY,
                        std.Round(ion.Q1Intensity),
@@ -1688,6 +1690,7 @@ Public Class frmMsImagingViewer
                 Call grid.Columns.Add("density", GetType(Double))
                 Call grid.Columns.Add("imaging_score", GetType(Double))
                 Call grid.Columns.Add("maxIntensity", GetType(Double))
+                Call grid.Columns.Add("averageIntensity", GetType(Double))
                 Call grid.Columns.Add("basePixel.X", GetType(Integer))
                 Call grid.Columns.Add("basePixel.Y", GetType(Integer))
                 Call grid.Columns.Add("Q1_intensity", GetType(Double))
@@ -1714,6 +1717,7 @@ Public Class frmMsImagingViewer
                             ion.density.ToString("F2"),
                             (std.Log(ion.pixels + 1) * ion.density).ToString("F2"),
                             std.Round(ion.maxIntensity),
+                            std.Round(ion.averageIntensity),
                             ion.basePixelX,
                             ion.basePixelY,
                             std.Round(ion.Q1Intensity),
@@ -1729,6 +1733,7 @@ Public Class frmMsImagingViewer
                             ion.density.ToString("F2"),
                             (std.Log(ion.pixels + 1) * ion.density).ToString("F2"),
                             std.Round(ion.maxIntensity),
+                            std.Round(ion.averageIntensity),
                             ion.basePixelX,
                             ion.basePixelY,
                             std.Round(ion.Q1Intensity),
