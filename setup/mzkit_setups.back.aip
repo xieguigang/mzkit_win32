@@ -1099,7 +1099,7 @@
     <ROW Component="Microsoft.VisualBasic.MIME.text.markdown.dll" ComponentId="{BC0C9E16-1AC3-4DC1-8626-3ACBFC59E719}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.text.markdown.dll"/>
     <ROW Component="Microsoft.VisualBasic.MIME.text.markdown.dll_6" ComponentId="{8FC36F65-FB03-4888-A427-B32DA3D3E872}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MIME.text.markdown.dll_6"/>
     <ROW Component="Microsoft.VisualBasic.MIME.text.markdown.pdb" ComponentId="{E21EDAA2-9CB8-40B0-BAAD-5429890D64E4}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.MIME.text.markdown.pdb" Type="4"/>
-    <ROW Component="Microsoft.VisualBasic.MachineLearning.Bootstrapping.dll" ComponentId="{6936A942-796C-43AD-B529-5F3556C2D76E}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.Bootstrapping.pdb"/>
+    <ROW Component="Microsoft.VisualBasic.MachineLearning.Bootstrapping.dll" ComponentId="{6936A942-796C-43AD-B529-5F3556C2D76E}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.Bootstrapping.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.Bootstrapping.dll_1" ComponentId="{57DB1CFB-E8C5-4EDD-A782-6190BCEFEEAF}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.Bootstrapping.dll"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll" ComponentId="{2EF87FB8-D3D9-46CD-B66E-20E8C12F4477}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll"/>
     <ROW Component="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll_1" ComponentId="{BAD00D99-E1D8-449E-869B-AFAA8D2780F8}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.MachineLearning.Data.Extensions.dll_1"/>
@@ -1255,12 +1255,12 @@
     <ROW Component="Mzkit_win32.Interaction.dll_1" ComponentId="{BBC92577-957C-4941-B135-D78423867EDE}" Directory_="blender_Dir" Attributes="256" KeyPath="Mzkit_win32.Interaction.pdb_1" Type="4"/>
     <ROW Component="Mzkit_win32.Interaction.dll_2" ComponentId="{5DACBC14-7519-4A4C-A79C-9FD9465DDD37}" Directory_="blender_Dir" Attributes="256" KeyPath="Mzkit_win32.Interaction.dll_1"/>
     <ROW Component="Mzkit_win32.Interaction.pdb" ComponentId="{E64F4EF7-1789-4EAC-8827-3C0B780C5288}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.Interaction.pdb" Type="4"/>
-    <ROW Component="Mzkit_win32.Interaction.resources.dll" ComponentId="{3035B09F-2371-402C-9D04-D341E03835AB}" Directory_="enUS_Dir" Attributes="256" KeyPath="Mzkit_win32.Interaction.resources.dll"/>
-    <ROW Component="Mzkit_win32.Interaction.resources.dll_1" ComponentId="{7FF290C8-A166-47BC-B831-B31802DC747D}" Directory_="zhCN_Dir" Attributes="256" KeyPath="Mzkit_win32.Interaction.resources.dll_1"/>
     <ROW Component="Mzkit_win32.LCMSViewer.dll" ComponentId="{7E8E3E4B-2DA4-4ABF-8B19-530B9A1E6B54}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.LCMSViewer.pdb" Type="4"/>
     <ROW Component="Mzkit_win32.LCMSViewer.dll.config" ComponentId="{77D59A0E-38BD-496D-9104-93D168C1AF78}" Directory_="APPDIR" Attributes="0" KeyPath="BioDeep.xml" Type="0"/>
     <ROW Component="Mzkit_win32.LCMSViewer.dll.config_1" ComponentId="{AF7A8FAE-2A63-40E8-93E1-32823CC6011C}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.LCMSViewer.dll.config"/>
     <ROW Component="Mzkit_win32.LCMSViewer.dll_1" ComponentId="{DFD98E25-5B5E-4552-A512-1A3AEC5670A7}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.LCMSViewer.dll"/>
+    <ROW Component="Mzkit_win32.LCMSViewer.resources.dll" ComponentId="{A9F7CC06-1DE6-4537-A822-4F4E1D89C919}" Directory_="zhCN_Dir" Attributes="256" KeyPath="Mzkit_win32.LCMSViewer.resources.dll"/>
+    <ROW Component="Mzkit_win32.LCMSViewer.resources.dll_1" ComponentId="{F7D33BCA-D554-4FD4-941A-BE1CB6AA52B0}" Directory_="enUS_Dir" Attributes="256" KeyPath="Mzkit_win32.LCMSViewer.resources.dll_1"/>
     <ROW Component="Mzkit_win32.MSImagingViewerV2.dll" ComponentId="{97B8F2A2-5753-454D-B986-A059D567878D}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.MSImagingViewerV2.dll"/>
     <ROW Component="Mzkit_win32.MSImagingViewerV2.dll.config" ComponentId="{91C132A8-6C60-445B-9909-7930930EA135}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.MSImagingViewerV2.dll.config"/>
     <ROW Component="Mzkit_win32.MSImagingViewerV2.pdb" ComponentId="{C522C59A-AE85-4113-AE5B-BEA7C0D72739}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.MSImagingViewerV2.pdb" Type="4"/>
@@ -3154,7 +3154,6 @@
     <ROW File="Clearcore2.StructuredStorage.dll" Component_="Clearcore2.StructuredStorage.dll" FileName="CLEAR~13.DLL|Clearcore2.StructuredStorage.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Clearcore2.StructuredStorage.dll" SelfReg="false"/>
     <ROW File="Clearcore2.Utility.dll" Component_="Clearcore2.Utility.dll" FileName="CLEAR~14.DLL|Clearcore2.Utility.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Clearcore2.Utility.dll" SelfReg="false"/>
     <ROW File="Clearcore2.XmlHelpers.dll" Component_="Clearcore2.XmlHelpers.dll" FileName="CLEAR~15.DLL|Clearcore2.XmlHelpers.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Clearcore2.XmlHelpers.dll" SelfReg="false"/>
-    <ROW File="Mzkit_win32.Interaction.resources.dll" Component_="Mzkit_win32.Interaction.resources.dll" FileName="MZKIT_~1.DLL|Mzkit_win32.Interaction.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\en-US\Mzkit_win32.Interaction.resources.dll" SelfReg="false"/>
     <ROW File="mzkit_win32.resources.dll" Component_="mzkit_win32.resources.dll" FileName="MZKIT_~2.DLL|mzkit_win32.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\en-US\mzkit_win32.resources.dll" SelfReg="false"/>
     <ROW File="Flute.Http.dll" Component_="Flute.Http.dll" FileName="FLUTEH~1.DLL|Flute.Http.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Flute.Http.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.dl" Component_="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.dll" FileName="MICROS~1.DLL|Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.dll" SelfReg="false"/>
@@ -3298,7 +3297,6 @@
     <ROW File="ThermoFisher.CommonCore.RawFileReader.dll" Component_="ThermoFisher.CommonCore.RawFileReader.dll" FileName="THERMO~4.DLL|ThermoFisher.CommonCore.RawFileReader.dll" Attributes="0" SourcePath="..\..\..\dist\bin\ThermoFisher.CommonCore.RawFileReader.dll" SelfReg="false"/>
     <ROW File="WkHtmlToPdf.CLI.InteropService.dll" Component_="WkHtmlToPdf.CLI.InteropService.dll" FileName="WKHTML~1.DLL|WkHtmlToPdf.CLI.InteropService.dll" Attributes="0" SourcePath="..\..\..\dist\bin\WkHtmlToPdf.CLI.InteropService.dll" SelfReg="false"/>
     <ROW File="WkHtmlToPdf.CLI.InteropService.dll.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="WKHTML~1.CON|WkHtmlToPdf.CLI.InteropService.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\WkHtmlToPdf.CLI.InteropService.dll.config" SelfReg="false"/>
-    <ROW File="Mzkit_win32.Interaction.resources.dll_1" Component_="Mzkit_win32.Interaction.resources.dll_1" FileName="MZKIT_~1.DLL|Mzkit_win32.Interaction.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\zh-CN\Mzkit_win32.Interaction.resources.dll" SelfReg="false"/>
     <ROW File="mzkit_win32.resources.dll_1" Component_="mzkit_win32.resources.dll_1" FileName="MZKIT_~2.DLL|mzkit_win32.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\zh-CN\mzkit_win32.resources.dll" SelfReg="false"/>
     <ROW File="README.txt" Component_="README.txt" FileName="README.txt" Attributes="0" SourcePath="README.txt" SelfReg="false"/>
     <ROW File="wkhtmltopdf.exe" Component_="wkhtmltopdf.exe" FileName="WKHTML~1.EXE|wkhtmltopdf.exe" Attributes="0" SourcePath="..\dist\wkhtmltopdf.exe" SelfReg="false" DigSign="true"/>
@@ -19931,6 +19929,8 @@
     <ROW File="Microsoft.VisualBasic.MachineLearning.Bootstrapping.dll" Component_="Microsoft.VisualBasic.MachineLearning.Bootstrapping.dll_1" FileName="MICRO~74.DLL|Microsoft.VisualBasic.MachineLearning.Bootstrapping.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MachineLearning.Bootstrapping.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MachineLearning.Bootstrapping.pdb" Component_="Microsoft.VisualBasic.MachineLearning.Bootstrapping.dll" FileName="MICRO~68.PDB|Microsoft.VisualBasic.MachineLearning.Bootstrapping.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MachineLearning.Bootstrapping.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MachineLearning.Bootstrapping.xml" Component_="Mzkit_win32.LCMSViewer.dll.config" FileName="MICRO~67.XML|Microsoft.VisualBasic.MachineLearning.Bootstrapping.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MachineLearning.Bootstrapping.xml" SelfReg="false"/>
+    <ROW File="Mzkit_win32.LCMSViewer.resources.dll" Component_="Mzkit_win32.LCMSViewer.resources.dll" FileName="MZKIT_~5.DLL|Mzkit_win32.LCMSViewer.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\zh-CN\Mzkit_win32.LCMSViewer.resources.dll" SelfReg="false"/>
+    <ROW File="Mzkit_win32.LCMSViewer.resources.dll_1" Component_="Mzkit_win32.LCMSViewer.resources.dll_1" FileName="MZKIT_~4.DLL|Mzkit_win32.LCMSViewer.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\en-US\Mzkit_win32.LCMSViewer.resources.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -20183,7 +20183,6 @@
     <ROW Feature_="MainFeature" Component_="Clearcore2.StructuredStorage.dll"/>
     <ROW Feature_="MainFeature" Component_="Clearcore2.Utility.dll"/>
     <ROW Feature_="MainFeature" Component_="Clearcore2.XmlHelpers.dll"/>
-    <ROW Feature_="MainFeature" Component_="Mzkit_win32.Interaction.resources.dll"/>
     <ROW Feature_="MainFeature" Component_="mzkit_win32.resources.dll"/>
     <ROW Feature_="MainFeature" Component_="Flute.Http.dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.dll"/>
@@ -20307,7 +20306,6 @@
     <ROW Feature_="MainFeature" Component_="ThermoFisher.CommonCore.MassPrecisionEstimator.dll"/>
     <ROW Feature_="MainFeature" Component_="ThermoFisher.CommonCore.RawFileReader.dll"/>
     <ROW Feature_="MainFeature" Component_="WkHtmlToPdf.CLI.InteropService.dll"/>
-    <ROW Feature_="MainFeature" Component_="Mzkit_win32.Interaction.resources.dll_1"/>
     <ROW Feature_="MainFeature" Component_="mzkit_win32.resources.dll_1"/>
     <ROW Feature_="MainFeature" Component_="SHORTCUTDIR"/>
     <ROW Feature_="MainFeature" Component_="wkhtmltopdf.exe"/>
@@ -22818,6 +22816,8 @@
     <ROW Feature_="MainFeature" Component_="Flute.Http.dll_3"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.MachineLearning.Bootstrapping.dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MachineLearning.Bootstrapping.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Mzkit_win32.LCMSViewer.resources.dll"/>
+    <ROW Feature_="MainFeature" Component_="Mzkit_win32.LCMSViewer.resources.dll_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
