@@ -66,7 +66,7 @@ CALL :exec_msbuild "%erica_src%/src" "./Erica.sln"
 :erica
 
 SET jump=reportKit
-CALL :exec_msbuild "%GCModeller_src%/workbench/markdown2pdf/src" "./reportKit.NET5.sln"
+CALL :exec_msbuild "%GCModeller_src%/runtime/markdown2pdf/src" "./reportKit.NET5.sln"
 :reportKit
 
 SET jump=gcmodeller
@@ -118,7 +118,7 @@ SET pkg=%pkg_repo%/GCModeller.zip
 
 SET pkg=%pkg_repo%/markdown2pdf.zip
 
-%Rscript% --build /src %drive%\GCModeller\src\workbench\markdown2pdf /save %pkg% --skip-src-build
+%Rscript% --build /src %drive%\GCModeller\src\runtime\markdown2pdf /save %pkg% --skip-src-build
 %REnv% --install.packages %pkg%
 
 SET pkg=%pkg_repo%/ggplot.zip
