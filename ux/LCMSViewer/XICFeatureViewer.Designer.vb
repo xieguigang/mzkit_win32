@@ -38,6 +38,7 @@ Partial Class XICFeatureViewer
         '
         'canvasXIC
         '
+        Me.canvasXIC.ContextMenuStrip = Me.ContextMenuStrip1
         Me.canvasXIC.Dock = System.Windows.Forms.DockStyle.Fill
         Me.canvasXIC.Location = New System.Drawing.Point(98, 0)
         Me.canvasXIC.Name = "canvasXIC"
@@ -49,6 +50,7 @@ Partial Class XICFeatureViewer
         '
         Me.PictureBox2.BackColor = System.Drawing.Color.Silver
         Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox2.ContextMenuStrip = Me.ContextMenuStrip1
         Me.PictureBox2.Dock = System.Windows.Forms.DockStyle.Right
         Me.PictureBox2.Location = New System.Drawing.Point(299, 0)
         Me.PictureBox2.Name = "PictureBox2"
@@ -85,12 +87,12 @@ Partial Class XICFeatureViewer
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 48)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(109, 26)
         '
         'ExportToolStripMenuItem
         '
         Me.ExportToolStripMenuItem.Name = "ExportToolStripMenuItem"
-        Me.ExportToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExportToolStripMenuItem.Size = New System.Drawing.Size(108, 22)
         Me.ExportToolStripMenuItem.Text = "Export"
         '
         'XICFeatureViewer
