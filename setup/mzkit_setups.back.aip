@@ -1024,6 +1024,9 @@
     <ROW Component="Microsoft.VisualBasic.DataMining.UMAP.dll.config" ComponentId="{CDB59533-5CF2-4B88-ABF5-62361DE38AFA}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.DataMining.UMAP.dll.config_1"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.UMAP.dll_5" ComponentId="{1D5933B5-9480-41C7-8B4A-2914699A4A34}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.UMAP.dll_5"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.UMAP.pdb" ComponentId="{2953902A-CC90-4E93-8016-A1DCDD9E597D}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.DataMining.UMAP.pdb" Type="4"/>
+    <ROW Component="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll" ComponentId="{5279A8AE-3CF7-4C9E-A85F-183FE98B1BA3}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll"/>
+    <ROW Component="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_1" ComponentId="{346BBA98-8970-44F4-815D-7D1A16F4A1C7}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_1"/>
+    <ROW Component="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_2" ComponentId="{B0475F0E-F695-42C0-BF38-42F40CA6556C}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.DataStorage.HDSPack.dll" ComponentId="{08D083EC-713B-4B5C-AA86-232096F5DDB7}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.HDSPack.dll"/>
     <ROW Component="Microsoft.VisualBasic.DataStorage.HDSPack.dll_1" ComponentId="{96EB194E-24B0-4AEF-9266-FB302123EFA6}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.HDSPack.pdb_1" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.DataStorage.HDSPack.dll_2" ComponentId="{23E6FB8A-B5FA-4D9A-AD0D-2CA4C4E8430D}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.HDSPack.dll_1"/>
@@ -19931,6 +19934,13 @@
     <ROW File="Microsoft.VisualBasic.MachineLearning.Bootstrapping.xml" Component_="Mzkit_win32.LCMSViewer.dll.config" FileName="MICRO~67.XML|Microsoft.VisualBasic.MachineLearning.Bootstrapping.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.MachineLearning.Bootstrapping.xml" SelfReg="false"/>
     <ROW File="Mzkit_win32.LCMSViewer.resources.dll" Component_="Mzkit_win32.LCMSViewer.resources.dll" FileName="MZKIT_~5.DLL|Mzkit_win32.LCMSViewer.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\zh-CN\Mzkit_win32.LCMSViewer.resources.dll" SelfReg="false"/>
     <ROW File="Mzkit_win32.LCMSViewer.resources.dll_1" Component_="Mzkit_win32.LCMSViewer.resources.dll_1" FileName="MZKIT_~4.DLL|Mzkit_win32.LCMSViewer.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\en-US\Mzkit_win32.LCMSViewer.resources.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll" Component_="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll" FileName="MICRO~34.DLL|Microsoft.VisualBasic.DataStorage.FeatherFormat.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.DataStorage.FeatherFormat.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataStorage.FeatherFormat.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~33.XML|Microsoft.VisualBasic.DataStorage.FeatherFormat.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.DataStorage.FeatherFormat.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_1" Component_="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_1" FileName="MICRO~66.DLL|Microsoft.VisualBasic.DataStorage.FeatherFormat.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.DataStorage.FeatherFormat.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions.xml" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="BIONO~24.XML|BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_2" Component_="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_2" FileName="MICRO~38.DLL|Microsoft.VisualBasic.DataStorage.FeatherFormat.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.DataStorage.FeatherFormat.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataStorage.FeatherFormat.pdb" Component_="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_2" FileName="MICRO~35.PDB|Microsoft.VisualBasic.DataStorage.FeatherFormat.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.DataStorage.FeatherFormat.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataStorage.FeatherFormat.xml_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="MICRO~36.XML|Microsoft.VisualBasic.DataStorage.FeatherFormat.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.DataStorage.FeatherFormat.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -22818,6 +22828,9 @@
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MachineLearning.Bootstrapping.dll_1"/>
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.LCMSViewer.resources.dll"/>
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.LCMSViewer.resources.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_1"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
