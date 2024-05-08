@@ -174,14 +174,22 @@ Public Class XICFeatureViewer
                 Call TaskProgress.RunAction(
                     run:=Sub(t)
 
+                             Call t.SetInfo("export xic data table...")
                              Call XIC.SaveTo($"{dir}/XIC.csv", silent:=True)
+
+                             Call t.SetInfo("save metadata...")
                              Call TextBox1.Text.SaveTo($"{dir}/metadata.txt")
+
+                             Call t.SetInfo("export spectrum dataset as mgf ion file...")
                              Call features.SaveAsMgfIons(file:=$"{dir}/spectrum.mgf")
+
+                             Call t.SetInfo("export xic plot...")
                              Call New NamedCollection(Of ChromatogramTick)(dir.BaseName, XIC) _
                                 .TICplot(colorsSchema:="paper") _
                                 .AsGDIImage _
                                 .SaveAs($"{dir}/XIC.png")
 
+                             Call t.SetInfo("done!")
                          End Sub,
                     title:="Export data...",
                     info:="Export spectrum data set...")
