@@ -269,6 +269,10 @@
       <Project>{0b752d71-2852-4071-ac44-db37195cf8c3}</Project>
       <Name>html_netcore5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\assembly\assembly\assembly-netcore5.vbproj">
+      <Project>{5dce233f-c0e1-41b8-827a-872b0c8cc3bc}</Project>
+      <Name>assembly-netcore5</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\assembly\SignalReader\SignalReader.vbproj">
       <Project>{4491210e-d07d-409b-8028-43e8256c93e0}</Project>
       <Name>SignalReader</Name>

@@ -1,10 +1,14 @@
-﻿Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
+﻿Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
+Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
+Imports Mzkit_win32.BasicMDIForm
 Imports std = System.Math
 
 Public Class XICFeatureViewer
@@ -158,5 +162,30 @@ Public Class XICFeatureViewer
 
     Private Sub PictureBox2_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox2.MouseMove
         highlight = True
+    End Sub
+
+    Private Sub ExportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportToolStripMenuItem.Click
+        Using folder As New FolderBrowserDialog With {
+            .Description = "Select a folder for export the spectrum data"
+        }
+            If folder.ShowDialog = DialogResult.OK Then
+                Dim dir As String = folder.SelectedPath
+
+                Call TaskProgress.RunAction(
+                    run:=Sub(t)
+
+                             Call XIC.SaveTo($"{dir}/XIC.csv", silent:=True)
+                             Call TextBox1.Text.SaveTo($"{dir}/metadata.txt")
+                             Call features.SaveAsMgfIons(file:=$"{dir}/spectrum.mgf")
+                             Call New NamedCollection(Of ChromatogramTick)(dir.BaseName, XIC) _
+                                .TICplot(colorsSchema:="paper") _
+                                .AsGDIImage _
+                                .SaveAs($"{dir}/XIC.png")
+
+                         End Sub,
+                    title:="Export data...",
+                    info:="Export spectrum data set...")
+            End If
+        End Using
     End Sub
 End Class
