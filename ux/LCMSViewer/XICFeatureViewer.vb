@@ -173,6 +173,10 @@ Public Class XICFeatureViewer
 
                 Call TaskProgress.RunAction(
                     run:=Sub(t)
+                             Dim lines As String() = TextBox1.Text.LineTokens
+                             Dim name As String = lines.First.BaseName
+
+                             name = $"{name} [{lines(1)}] [{lines(2)}]"
 
                              Call t.SetInfo("export xic data table...")
                              Call XIC.SaveTo($"{dir}/XIC.csv", silent:=True)
@@ -184,7 +188,7 @@ Public Class XICFeatureViewer
                              Call features.SaveAsMgfIons(file:=$"{dir}/spectrum.mgf")
 
                              Call t.SetInfo("export xic plot...")
-                             Call New NamedCollection(Of ChromatogramTick)(dir.BaseName, XIC) _
+                             Call New NamedCollection(Of ChromatogramTick)(name, XIC) _
                                 .TICplot(colorsSchema:="paper", gridFill:="white") _
                                 .AsGDIImage _
                                 .SaveAs($"{dir}/XIC.png")
