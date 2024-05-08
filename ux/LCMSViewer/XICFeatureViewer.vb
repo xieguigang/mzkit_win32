@@ -185,7 +185,7 @@ Public Class XICFeatureViewer
 
                              Call t.SetInfo("export xic plot...")
                              Call New NamedCollection(Of ChromatogramTick)(dir.BaseName, XIC) _
-                                .TICplot(colorsSchema:="paper") _
+                                .TICplot(colorsSchema:="paper", gridFill:="white") _
                                 .AsGDIImage _
                                 .SaveAs($"{dir}/XIC.png")
 
