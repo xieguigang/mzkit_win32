@@ -205,7 +205,7 @@ Public Class frmFileExplorer
     ''' extension suffix name.
     ''' </summary>
     ''' <param name="fileName"></param>
-    Public Sub ImportsRaw(fileName As String)
+    Public Sub ImportsRaw(fileName As String, snapshot As Boolean)
         If treeView1.Nodes.Count = 0 Then
             Call Globals.InitExplorerUI(
                 explorer:=treeView1,
@@ -233,6 +233,7 @@ Public Class frmFileExplorer
 
                     Dim importsTask As New Task.ImportsRawData(
                         file:=fileName,
+                        create_snapshot:=snapshot,
                         progress:=Sub(msg)
                                       ' do nothing
                                       Call task.ProgressMessage(msg)
@@ -242,7 +243,8 @@ Public Class frmFileExplorer
                                       Call task.Finish()
                                   End Sub)
 
-                    importsTask.RunImports()
+                    Call importsTask.RunImports()
+
                     addFileNode(importsTask.raw)
                 End Sub)
         End If

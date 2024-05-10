@@ -314,8 +314,10 @@ Public Class frmMain : Implements AppHost
             .Multiselect = True
         }
             If file.ShowDialog = DialogResult.OK Then
+                Dim snapshot As Boolean = file.FileNames.Length = 1
+
                 For Each path As String In file.FileNames
-                    Call WindowModules.fileExplorer.ImportsRaw(path)
+                    Call WindowModules.fileExplorer.ImportsRaw(path, snapshot)
                 Next
             End If
         End Using

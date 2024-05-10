@@ -71,13 +71,17 @@ Public Class ImportsRawData
     ReadOnly cache As String
     ReadOnly showProgress As Action(Of String)
     ReadOnly success As Action
+    ReadOnly snapshot As Boolean
 
     Public ReadOnly Property raw As MZWork.Raw
 
     Public Property arguments As Dictionary(Of String, String)
     Public Property protocol As FileApplicationClass = FileApplicationClass.LCMS
 
-    Sub New(file As String, progress As Action(Of String), finished As Action, Optional cachePath As String = Nothing)
+    Sub New(file As String, progress As Action(Of String), finished As Action,
+            Optional cachePath As String = Nothing,
+            Optional create_snapshot As Boolean = True)
+
         source = file
         cache = If(cachePath, GetCachePath(file))
         showProgress = progress
@@ -86,6 +90,7 @@ Public Class ImportsRawData
             .cache = cache.GetFullPath,
             .source = source.GetFullPath
         }
+        snapshot = create_snapshot
     End Sub
 
     Public Shared Function GetCachePath(file As String) As String
@@ -108,9 +113,9 @@ Public Class ImportsRawData
         Select Case protocol
             Case FileApplicationClass.LCMS, FileApplicationClass.GCMS, FileApplicationClass.GCxGC
                 If raw.source.ExtensionSuffix("cdf", "netcdf") Then
-                    Return PipelineTask.Task.GetconvertGCMSCDFCommandLine(raw.source, raw.cache)
+                    Return PipelineTask.Task.GetconvertGCMSCDFCommandLine(raw.source, raw.cache, no_thumbnail:=Not snapshot)
                 Else
-                    Return PipelineTask.Task.GetconvertAnyRawCommandLine(raw.source, raw.cache)
+                    Return PipelineTask.Task.GetconvertAnyRawCommandLine(raw.source, raw.cache, no_thumbnail:=Not snapshot)
                 End If
             Case FileApplicationClass.MSImaging
                 Dim rawfiles As String() = EnumerateRawtDataFiles(raw.source).ToArray
