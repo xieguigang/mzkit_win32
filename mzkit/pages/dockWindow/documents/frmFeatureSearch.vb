@@ -114,7 +114,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
         Next
     End Sub
 
-    Public Sub AddFileMatch(file As String, matches As ParentMatch())
+    Public Sub AddFileMatch(file As String, matches As ParentMatch(), Optional all_adducts As Dictionary(Of String, Double) = Nothing)
         list1.Add((file, matches))
 
         If Not appendHeader Then
@@ -170,14 +170,37 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             If Not raw Is Nothing Then
                 Dim rt_range As New DoubleRange(raw.GetMs1Scans.Select(Function(s1) s1.rt))
                 Dim da As Tolerance = Tolerance.DeltaMass(0.05)
+                Dim current_matches = matches _
+                    .GroupBy(Function(m) m.precursor_type) _
+                    .ToDictionary(Function(a) a.Key,
+                                  Function(a)
+                                      Return a.ToArray
+                                  End Function)
 
-                For Each ion_group In matches.GroupBy(Function(m) m.precursor_type)
-                    Dim mz As Double = Aggregate ion In ion_group Into Average(ion.parentMz) '
+                If all_adducts.IsNullOrEmpty Then
+                    all_adducts = current_matches _
+                        .ToDictionary(Function(a) a.Key,
+                                      Function(a)
+                                          Return Aggregate ion As ParentMatch
+                                                 In a.Value
+                                                 Into Average(ion.parentMz)
+                                      End Function)
+                End If
+
+                For Each ion_group As KeyValuePair(Of String, Double) In all_adducts
+                    Dim mz As Double = ion_group.Value   '
                     Dim xic = GetXIC(mz, raw, da)
                     Dim viewer As New XICFeatureViewer
                     Dim source As String() = {file.FileName, ion_group.Key, $"m/z: {mz.ToString("F4")}"}
+                    Dim spectrum As PeakMs2() = Nothing
 
-                    viewer.SetFeatures(source, xic.value, ion_group.Select(Function(ion) ion.ToMs2), rt_range)
+                    If current_matches.ContainsKey(ion_group.Key) Then
+                        spectrum = current_matches(ion_group.Key) _
+                            .Select(Function(ion) ion.ToMs2) _
+                            .ToArray
+                    End If
+
+                    viewer.SetFeatures(source, xic.value, spectrum, rt_range)
                     viewer.Width = FlowLayoutPanel1.Width * 0.95
 
                     Call FlowLayoutPanel1.Controls.Add(viewer)

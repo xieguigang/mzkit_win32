@@ -119,24 +119,55 @@ Module FeatureSearchHandler
                 display.multipleMode = multipleMode
             End Sub)
 
+        Dim all_matches = display.directRaw _
+            .GroupBy(Function(a) a.source) _
+            .AsParallel _
+            .Select(Function(a) (a.Key, MatchByFormula(formula, a.First, ppm).ToArray)) _
+            .ToArray
+        Dim all_adducts As Dictionary(Of String, Double) = all_matches _
+            .Select(Function(a) a.ToArray) _
+            .IteratesALL _
+            .GroupBy(Function(a) a.precursor_type) _
+            .ToDictionary(Function(a) a.Key,
+                          Function(a)
+                              Return Aggregate xi In a Into Average(xi.parentMz)
+                          End Function)
+
         If Not directRaw Then
-            display.AddEachFileMatch(
-                Sub(raw)
-                    Call display.AddFileMatch(
-                        file:=raw.source,
-                        matches:=MatchByFormula(formula, raw, ppm).ToArray
-                    )
-                End Sub)
+            'display.AddEachFileMatch(
+            '    Sub(raw)
+            '        Call display.AddFileMatch(
+            '            file:=raw.source,
+            '            matches:=MatchByFormula(formula, raw, ppm).ToArray
+            '        )
+            '    End Sub)
+
+            For Each raw In all_matches
+                Call System.Windows.Forms.Application.DoEvents()
+                Call display.AddFileMatch(
+                    file:=raw.Key,
+                    matches:=raw.ToArray,
+                    all_adducts)
+            Next
         Else
             Call ProgressSpinner.DoLoading(
                 Sub()
-                    For Each file As MZWork.Raw In files
-                        Dim result = MatchByFormula(formula, file, ppm).ToArray
+                    'For Each file As MZWork.Raw In files
+                    '    Dim result = MatchByFormula(formula, file, ppm).ToArray
 
-                        System.Windows.Forms.Application.DoEvents()
-                        display.Invoke(
+                    '    System.Windows.Forms.Application.DoEvents()
+                    '    display.Invoke(
+                    '        Sub()
+                    '            display.AddFileMatch(file.source, result)
+                    '        End Sub)
+                    'Next
+                    For Each file In all_matches
+                        Dim result = file.ToArray
+
+                        Call System.Windows.Forms.Application.DoEvents()
+                        Call display.Invoke(
                             Sub()
-                                display.AddFileMatch(file.source, result)
+                                Call display.AddFileMatch(file.Key, result, all_adducts)
                             End Sub)
                     Next
                 End Sub)
