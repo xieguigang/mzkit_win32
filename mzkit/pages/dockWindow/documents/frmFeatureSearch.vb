@@ -65,6 +65,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
+Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports BioNovoGene.mzkit_win32.MSdata
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel
@@ -72,6 +73,7 @@ Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.csv.IO
+Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Protocols.ContentTypes
@@ -657,5 +659,27 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
                 FlowLayoutPanel1.Controls.Add(viewer)
             Next
         End If
+    End Sub
+
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        Using file As New SaveFileDialog With {.Filter = "Image File(*.png)|*.png"}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim xicSet As New List(Of NamedCollection(Of ChromatogramTick))
+
+                For Each viewer_ctl As Control In FlowLayoutPanel1.Controls
+                    Dim viewer As XICFeatureViewer = viewer_ctl
+                    Dim xic_data As NamedCollection(Of ChromatogramTick) = viewer.GetXICData
+
+                    Call xicSet.Add(xic_data)
+                Next
+
+                Call ChromatogramPlot _
+                    .TICplot(xicSet, colorsSchema:="paper", gridFill:="white") _
+                    .AsGDIImage _
+                    .SaveAs(file.FileName)
+
+                Call Process.Start(file.FileName)
+            End If
+        End Using
     End Sub
 End Class

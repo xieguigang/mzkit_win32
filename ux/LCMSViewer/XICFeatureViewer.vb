@@ -21,7 +21,7 @@ Public Class XICFeatureViewer
     Dim selected_peak As PeakMs2
     Dim highlight As Boolean
 
-    Public Property FillColor As Color = Color.SkyBlue
+    Public Property FillColor As Color = Color.Red
 
     Public Sub SetFeatures(source As String(), xic As IEnumerable(Of ChromatogramTick), features As IEnumerable(Of PeakMs2), rt_range As DoubleRange)
         Me.XIC = xic.ToArray
@@ -205,4 +205,13 @@ Public Class XICFeatureViewer
             End If
         End Using
     End Sub
+
+    Public Function GetXICData() As NamedCollection(Of ChromatogramTick)
+        Dim lines As String() = TextBox1.Text.LineTokens
+        Dim name As String = lines.First.BaseName
+
+        name = $"{name} [{lines(1)}] [{lines(2)}]"
+
+        Return New NamedCollection(Of ChromatogramTick)(name, XIC.ToArray)
+    End Function
 End Class
