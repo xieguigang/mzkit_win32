@@ -1,6 +1,6 @@
 ﻿Imports System.Runtime.InteropServices
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
-Imports Microsoft.VisualBasic.MIME.application.json
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
 
@@ -62,7 +62,7 @@ Public Class frm3DScatterPlotView
             If points.IsNullOrEmpty Then
                 Return "[]"
             Else
-                Return points.GetJson
+                Return JsonContract.GetJson(points)
             End If
         End Function
 
