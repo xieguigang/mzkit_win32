@@ -25,7 +25,7 @@ Public Class XICFeatureViewer
 
     Public Sub SetFeatures(source As String(), xic As IEnumerable(Of ChromatogramTick), features As IEnumerable(Of PeakMs2), rt_range As DoubleRange)
         Me.XIC = xic.ToArray
-        Me.features = features.ToArray
+        Me.features = features.SafeQuery.ToArray
 
         If Not Me.XIC.IsNullOrEmpty Then
             Me.time_range = Me.XIC.TimeRange
