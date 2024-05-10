@@ -108,15 +108,18 @@ Module FeatureSearchHandler
 
         Dim display As frmFeatureSearch = VisualStudio.ShowDocument(Of frmFeatureSearch)
 
-        display.TabText = $"Search [{formula}]"
-        display.formula = formula
-        display.directRaw = files.ToArray
+        Call display.Invoke(
+            Sub()
+                display.TabText = $"Search [{formula}]"
+                display.formula = formula
+                display.directRaw = files.ToArray
 
-        If display.directRaw.Length > 1 Then
-            display.SetMultipleFileMode(True)
-        Else
-            display.SetMultipleFileMode(False)
-        End If
+                If display.directRaw.Length > 1 Then
+                    display.SetMultipleFileMode(True)
+                Else
+                    display.SetMultipleFileMode(False)
+                End If
+            End Sub)
 
         If Not directRaw Then
             display.AddEachFileMatch(
@@ -141,9 +144,12 @@ Module FeatureSearchHandler
                 End Sub)
         End If
 
-        If display.directRaw.Length > 1 Then
-            Call display.LoadAdducts()
-        End If
+        Call display.Invoke(
+            Sub()
+                If display.directRaw.Length > 1 Then
+                    Call display.LoadAdducts()
+                End If
+            End Sub)
     End Sub
 
     Public Iterator Function MatchByExactMass(exact_mass As Double, raw As MZWork.Raw, ppm As Tolerance) As IEnumerable(Of ParentMatch)
