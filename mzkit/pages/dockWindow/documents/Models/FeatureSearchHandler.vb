@@ -217,7 +217,7 @@ Module FeatureSearchHandler
                 End If
             Next
 
-            Call System.Windows.Forms.Application.DoEvents()
+            ' Call System.Windows.Forms.Application.DoEvents()
         Next
     End Function
 

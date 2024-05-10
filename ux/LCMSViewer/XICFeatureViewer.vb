@@ -110,6 +110,7 @@ Public Class XICFeatureViewer
         End If
 
         Call RenderViewer()
+        Call System.Windows.Forms.Application.DoEvents()
 
         If highlight Then
             Me.BorderStyle = BorderStyle.FixedSingle
