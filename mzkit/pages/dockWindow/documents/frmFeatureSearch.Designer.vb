@@ -79,7 +79,7 @@ Partial Class frmFeatureSearch
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim TreeListViewItemCollectionComparer1 As System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer = New System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer()
+        Dim TreeListViewItemCollectionComparer2 As System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer = New System.Windows.Forms.TreeListViewItemCollection.TreeListViewItemCollectionComparer()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmFeatureSearch))
         Me.TreeListView1 = New System.Windows.Forms.TreeListView()
         Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -119,9 +119,9 @@ Partial Class frmFeatureSearch
         'TreeListView1
         '
         Me.TreeListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader10, Me.ColumnHeader11, Me.ColumnHeader5, Me.ColumnHeader6, Me.ColumnHeader7, Me.ColumnHeader8, Me.ColumnHeader9})
-        TreeListViewItemCollectionComparer1.Column = 0
-        TreeListViewItemCollectionComparer1.SortOrder = System.Windows.Forms.SortOrder.Ascending
-        Me.TreeListView1.Comparer = TreeListViewItemCollectionComparer1
+        TreeListViewItemCollectionComparer2.Column = 0
+        TreeListViewItemCollectionComparer2.SortOrder = System.Windows.Forms.SortOrder.Ascending
+        Me.TreeListView1.Comparer = TreeListViewItemCollectionComparer2
         Me.TreeListView1.ContextMenuStrip = Me.ContextMenuStrip1
         Me.TreeListView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TreeListView1.Font = New System.Drawing.Font("微软雅黑", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -290,7 +290,6 @@ Partial Class frmFeatureSearch
         Me.ToolStrip1.Size = New System.Drawing.Size(985, 25)
         Me.ToolStrip1.TabIndex = 1
         Me.ToolStrip1.Text = "ToolStrip1"
-        Me.ToolStrip1.Visible = False
         '
         'ToolStripLabel1
         '

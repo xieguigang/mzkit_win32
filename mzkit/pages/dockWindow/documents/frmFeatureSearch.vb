@@ -82,6 +82,7 @@ Imports Mzkit_win32.LCMSViewer
 Imports RibbonLib.Controls.Events
 Imports RibbonLib.Interop
 Imports Task
+Imports any = Microsoft.VisualBasic.Scripting
 Imports std = System.Math
 
 ''' <summary>
@@ -640,16 +641,13 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             Return _multipleMode
         End Get
         Set(flag As Boolean)
-            ToolStrip1.Visible = flag
-
-            If Not ToolStrip1.Visible Then
-                Controls.Remove(ToolStrip1)
-            End If
+            ToolStrip1.Enabled = flag
+            _multipleMode = flag
         End Set
     End Property
 
     Private Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
-        Dim precursor_type As String = ToolStripComboBox1.SelectedText
+        Dim precursor_type As String = any.ToString(ToolStripComboBox1.SelectedItem)
 
         If adducts.ContainsKey(precursor_type) Then
             Call FlowLayoutPanel1.Controls.Clear()
