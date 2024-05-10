@@ -115,7 +115,7 @@ Partial Class XICFeatureViewer
 
     Friend WithEvents canvasXIC As PictureBox
     Friend WithEvents PictureBox2 As PictureBox
-    Friend WithEvents Timer1 As Timer
+    ' Friend WithEvents Timer1 As Timer
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip

@@ -94,16 +94,23 @@ Public Class XICFeatureViewer
     End Sub
 
     Private Sub XICFeatureViewer_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Timer1.Interval = 100
-        Timer1.Enabled = True
-        Timer1.Start()
+        'Timer1.Interval = 100
+        'Timer1.Enabled = True
+        'Timer1.Start()
 
         ResizeRedraw = True
         DoubleBuffered = False
     End Sub
 
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+    'Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+
+    'End Sub
+
+    Private Sub canvasXIC_MouseMove(sender As Object, e As MouseEventArgs) Handles canvasXIC.MouseMove
         Dim cur = PointToClient(Cursor.Position)
+
+        mouse_cur = e.Location
+        highlight = True
 
         If cur.X < 0 OrElse cur.X > Width OrElse cur.Y < 0 OrElse cur.Y > Height Then
             highlight = False
@@ -118,15 +125,10 @@ Public Class XICFeatureViewer
             Me.BorderStyle = BorderStyle.None
         End If
 
-        If Not Workbench.AppRunning Then
-            Timer1.Stop()
-            Timer1.Enabled = False
-        End If
-    End Sub
-
-    Private Sub canvasXIC_MouseMove(sender As Object, e As MouseEventArgs) Handles canvasXIC.MouseMove
-        mouse_cur = e.Location
-        highlight = True
+        'If Not Workbench.AppRunning Then
+        '    Timer1.Stop()
+        '    Timer1.Enabled = False
+        'End If
     End Sub
 
     Private Sub canvasXIC_MouseHover() Handles canvasXIC.MouseClick
@@ -215,4 +217,18 @@ Public Class XICFeatureViewer
 
         Return New NamedCollection(Of ChromatogramTick)(name, XIC.ToArray)
     End Function
+
+    Private Sub XICFeatureViewer_MouseLeave(sender As Object, e As EventArgs) Handles Me.MouseLeave
+        highlight = False
+
+        If highlight Then
+            Me.BorderStyle = BorderStyle.FixedSingle
+        Else
+            Me.BorderStyle = BorderStyle.None
+        End If
+    End Sub
+
+    Private Sub XICFeatureViewer_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+        Call RenderViewer()
+    End Sub
 End Class
