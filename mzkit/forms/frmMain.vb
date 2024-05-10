@@ -220,7 +220,7 @@ Public Class frmMain : Implements AppHost
             If fileName.FileLength > 4 * 1024 * 1024 Then
                 ' gcms un-targetted
                 ' needs to convert to mzPack and then do file open
-                Call WindowModules.fileExplorer.ImportsRaw(fileName)
+                Call WindowModules.fileExplorer.ImportsRaw(fileName, snapshot:=True)
             Else
                 Call ShowGCMSSIM(fileName, isBackground:=False, showExplorer:=showDocument)
             End If
@@ -289,7 +289,7 @@ Public Class frmMain : Implements AppHost
             Call VisualStudio.Dock(WindowModules.rawFeaturesList, DockState.DockLeft)
             Call Workbench.SuccessMessage($"Load {fileName} success!")
         Else
-            Call WindowModules.fileExplorer.ImportsRaw(fileName)
+            Call WindowModules.fileExplorer.ImportsRaw(fileName, snapshot:=True)
         End If
 
         Globals.AddRecentFileHistory(fileName)
