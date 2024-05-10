@@ -69,15 +69,17 @@ Public Class XICFeatureViewer
                 Call RtRangeSelector.DrawTIC(g.Graphics, XIC, time_range, intomax, FillColor, canvasXIC)
             End If
 
-            For Each peak As PeakMs2 In features
-                Dim color As Color = Color.Black
+            If Not features Is Nothing Then
+                For Each peak As PeakMs2 In features
+                    Dim color As Color = Color.Black
 
-                If peak Is selected_peak Then
-                    color = Color.Green
-                End If
+                    If peak Is selected_peak Then
+                        color = Color.Green
+                    End If
 
-                Call g.FillRectangle(New SolidBrush(color), New RectangleF(time_range.ScaleMapping(peak.rt, width), size.Height - h, 2, h))
-            Next
+                    Call g.FillRectangle(New SolidBrush(color), New RectangleF(time_range.ScaleMapping(peak.rt, width), size.Height - h, 2, h))
+                Next
+            End If
 
             If mouse_cur.X > 0 AndAlso mouse_cur.X < size.Width Then
                 Dim rt As Double = width.ScaleMapping(mouse_cur.X, time_range)
