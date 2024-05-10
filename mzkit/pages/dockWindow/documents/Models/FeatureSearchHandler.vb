@@ -107,6 +107,7 @@ Module FeatureSearchHandler
                                 ppm As Tolerance)
 
         Dim display As frmFeatureSearch = VisualStudio.ShowDocument(Of frmFeatureSearch)
+        Dim multipleMode As Boolean = False
 
         Call display.Invoke(
             Sub()
@@ -114,11 +115,8 @@ Module FeatureSearchHandler
                 display.formula = formula
                 display.directRaw = files.ToArray
 
-                If display.directRaw.Length > 1 Then
-                    display.SetMultipleFileMode(True)
-                Else
-                    display.SetMultipleFileMode(False)
-                End If
+                multipleMode = display.directRaw.Length > 1
+                display.multipleMode = multipleMode
             End Sub)
 
         If Not directRaw Then
@@ -146,7 +144,7 @@ Module FeatureSearchHandler
 
         Call display.Invoke(
             Sub()
-                If display.directRaw.Length > 1 Then
+                If multipleMode Then
                     Call display.LoadAdducts()
                 End If
             End Sub)

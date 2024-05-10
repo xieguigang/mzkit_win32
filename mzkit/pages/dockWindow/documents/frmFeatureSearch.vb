@@ -167,7 +167,6 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             If Not raw Is Nothing Then
                 Dim rt_range As New DoubleRange(raw.GetMs1Scans.Select(Function(s1) s1.rt))
                 Dim da As Tolerance = Tolerance.DeltaMass(0.05)
-                Dim multipleMode As Boolean = GetMultipleFileMode()
 
                 For Each ion_group In matches.GroupBy(Function(m) m.precursor_type)
                     Dim mz As Double = Aggregate ion In ion_group Into Average(ion.parentMz) '
@@ -634,17 +633,20 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
         Next
     End Sub
 
-    Private Function GetMultipleFileMode() As Boolean
-        Return ToolStrip1.Visible
-    End Function
+    Dim _multipleMode As Boolean
 
-    Public Sub SetMultipleFileMode(flag As Boolean)
-        ToolStrip1.Visible = flag
+    Public Property multipleMode As Boolean
+        Get
+            Return _multipleMode
+        End Get
+        Set(flag As Boolean)
+            ToolStrip1.Visible = flag
 
-        If Not ToolStrip1.Visible Then
-            Controls.Remove(ToolStrip1)
-        End If
-    End Sub
+            If Not ToolStrip1.Visible Then
+                Controls.Remove(ToolStrip1)
+            End If
+        End Set
+    End Property
 
     Private Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
         Dim precursor_type As String = ToolStripComboBox1.SelectedText
