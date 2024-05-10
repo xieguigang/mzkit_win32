@@ -41,10 +41,10 @@
     <ROW Property="IAgree" Value="Yes" Type="4"/>
     <ROW Property="Manufacturer" Value="BioNovoGene"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="ProductCode" Value="1028:{BBE79D5F-7921-49AC-94A0-A2A2A8914F89} 1033:{BBE79D5F-7921-49AC-94A0-A2A2A8914F89} 1036:{BBE79D5F-7921-49AC-94A0-A2A2A8914F89} 1041:{BBE79D5F-7921-49AC-94A0-A2A2A8914F89} 1049:{BBE79D5F-7921-49AC-94A0-A2A2A8914F89} 2052:{BBE79D5F-7921-49AC-94A0-A2A2A8914F89} 2057:{BBE79D5F-7921-49AC-94A0-A2A2A8914F89} " Type="16"/>
+    <ROW Property="ProductCode" Value="1028:{65510041-5926-43B6-8320-3E8D2E7CF595} 1033:{65510041-5926-43B6-8320-3E8D2E7CF595} 1036:{65510041-5926-43B6-8320-3E8D2E7CF595} 1041:{65510041-5926-43B6-8320-3E8D2E7CF595} 1049:{65510041-5926-43B6-8320-3E8D2E7CF595} 2052:{65510041-5926-43B6-8320-3E8D2E7CF595} 2057:{65510041-5926-43B6-8320-3E8D2E7CF595} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="mzkit_win32"/>
-    <ROW Property="ProductVersion" Value="5.5.9633.1138"/>
+    <ROW Property="ProductVersion" Value="5.5.9633.1499"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{B645400B-3918-41EF-9009-7ADDD81C84B4}"/>
@@ -417,7 +417,7 @@
     <ROW Directory="zstdcodec_Dir" Directory_Parent="libs_Dir" DefaultDir="ZSTD-C~1|zstd-codec"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{05E7A5B3-F693-445C-B657-55A756081C5A}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{7BE2E3D1-19D2-4411-96A1-F5113C102E69}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{69AA9FFE-67B1-456B-88EB-97D3D6C92AA7}" Directory_="APPDIR" Attributes="256"/>
     <ROW Component="ARButton.js" ComponentId="{4E917137-D4FF-49F8-85C3-6A5835EE4133}" Directory_="webxr_Dir" Attributes="0" KeyPath="ARButton.js" Type="0"/>
     <ROW Component="AUTHORS" ComponentId="{C7BB9CCD-8E40-46A1-99A4-0164F34C94BA}" Directory_="sql.js_Dir" Attributes="0" KeyPath="AUTHORS" Type="0"/>
@@ -1026,8 +1026,11 @@
     <ROW Component="Microsoft.VisualBasic.DataMining.UMAP.pdb" ComponentId="{2953902A-CC90-4E93-8016-A1DCDD9E597D}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.DataMining.UMAP.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll" ComponentId="{5279A8AE-3CF7-4C9E-A85F-183FE98B1BA3}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll"/>
     <ROW Component="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_1" ComponentId="{346BBA98-8970-44F4-815D-7D1A16F4A1C7}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_1"/>
-    <ROW Component="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_2" ComponentId="{B0475F0E-F695-42C0-BF38-42F40CA6556C}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.FeatherFormat.pdb"/>
+    <ROW Component="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_2" ComponentId="{B0475F0E-F695-42C0-BF38-42F40CA6556C}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.FeatherFormat.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_3" ComponentId="{145A25B1-DC99-4F31-A91F-0E251D55C032}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_2"/>
+    <ROW Component="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_4" ComponentId="{70BD45CD-6617-497F-A5CC-034B26599636}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_3"/>
+    <ROW Component="Microsoft.VisualBasic.DataStorage.FeatherFormat.pdb" ComponentId="{5916B907-DEF8-4D43-80F9-11F600062B93}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.DataStorage.FeatherFormat.pdb_1" Type="4"/>
+    <ROW Component="Microsoft.VisualBasic.DataStorage.FeatherFormat.xml" ComponentId="{93E2D53B-F148-4C15-8386-C9C8668E331F}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.DataStorage.FeatherFormat.xml_2"/>
     <ROW Component="Microsoft.VisualBasic.DataStorage.HDSPack.dll" ComponentId="{08D083EC-713B-4B5C-AA86-232096F5DDB7}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.HDSPack.dll"/>
     <ROW Component="Microsoft.VisualBasic.DataStorage.HDSPack.dll_1" ComponentId="{96EB194E-24B0-4AEF-9266-FB302123EFA6}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.HDSPack.pdb_1" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.DataStorage.HDSPack.dll_2" ComponentId="{23E6FB8A-B5FA-4D9A-AD0D-2CA4C4E8430D}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.HDSPack.dll_1"/>
@@ -19943,6 +19946,9 @@
     <ROW File="Microsoft.VisualBasic.DataStorage.FeatherFormat.pdb" Component_="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_2" FileName="MICRO~35.PDB|Microsoft.VisualBasic.DataStorage.FeatherFormat.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.DataStorage.FeatherFormat.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.DataStorage.FeatherFormat.xml_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="MICRO~36.XML|Microsoft.VisualBasic.DataStorage.FeatherFormat.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.DataStorage.FeatherFormat.xml" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions.xml_1" Component_="Mzkit_win32.LCMSViewer.dll.config" FileName="BIONO~35.XML|BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions.xml" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_3" Component_="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_4" FileName="MICRO~75.DLL|Microsoft.VisualBasic.DataStorage.FeatherFormat.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.DataStorage.FeatherFormat.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataStorage.FeatherFormat.pdb_1" Component_="Microsoft.VisualBasic.DataStorage.FeatherFormat.pdb" FileName="MICRO~69.PDB|Microsoft.VisualBasic.DataStorage.FeatherFormat.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.DataStorage.FeatherFormat.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataStorage.FeatherFormat.xml_2" Component_="Microsoft.VisualBasic.DataStorage.FeatherFormat.xml" FileName="MICRO~68.XML|Microsoft.VisualBasic.DataStorage.FeatherFormat.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.DataStorage.FeatherFormat.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -22834,6 +22840,9 @@
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_2"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_3"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_4"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.DataStorage.FeatherFormat.pdb"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.DataStorage.FeatherFormat.xml"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
@@ -23053,7 +23062,7 @@
     <ROW XmlElement="swidregid" ParentElement="swidsoftware_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2013-01.com.panomix" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_5" ParentElement="swidsoftware_licensor" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.2019-11.org.mzkit" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidregid_6" ParentElement="swidtag_creator" Name="swid:regid" Condition="1" Order="1" Flags="14" Text="regid.1995-09.me.xieguigang,gg.xie@bionovogene.com" UpdateIndexInParent="0"/>
-    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="1138" UpdateIndexInParent="0"/>
+    <ROW XmlElement="swidreview" ParentElement="swidnumeric" Name="swid:review" Condition="1" Order="3" Flags="14" Text="1499" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidserial_number" ParentElement="swidsoftware_identification_tag" Name="swid:serial_number" Condition="1" Order="7" Flags="14" Text="[PIDKEY]" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_creator" ParentElement="swidsoftware_identification_tag" Name="swid:software_creator" Condition="1" Order="3" Flags="14" UpdateIndexInParent="0"/>
     <ROW XmlElement="swidsoftware_id" ParentElement="swidsoftware_identification_tag" Name="swid:software_id" Condition="1" Order="5" Flags="14" UpdateIndexInParent="0"/>
