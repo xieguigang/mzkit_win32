@@ -88,7 +88,7 @@ Public Class ImportsRawData
         success = finished
         raw = New MZWork.Raw With {
             .cache = cache.GetFullPath,
-            .source = source.GetFullPath
+            .source = source.GetFullPath.Replace("\", "/")
         }
         snapshot = create_snapshot
     End Sub
