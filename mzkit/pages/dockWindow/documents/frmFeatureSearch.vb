@@ -153,7 +153,8 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
                 rangeMax = member.rt
             End If
 
-            row.Items.Add(ion)
+            Call row.Items.Add(ion)
+            Call System.Windows.Forms.Application.DoEvents()
         Next
 
         row.SubItems.Add(New ListViewSubItem With {.Text = matches.Length})
@@ -178,6 +179,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
                     viewer.Width = FlowLayoutPanel1.Width * 0.95
 
                     Call FlowLayoutPanel1.Controls.Add(viewer)
+                    Call System.Windows.Forms.Application.DoEvents()
 
                     If multipleMode Then
                         If Not adducts.ContainsKey(ion_group.Key) Then
@@ -195,6 +197,14 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
                 Next
             End If
         End If
+    End Sub
+
+    Public Sub LoadAdducts()
+        Call ToolStripComboBox1.Items.Clear()
+
+        For Each name As String In adducts.Keys
+            Call ToolStripComboBox1.Items.Add(name)
+        Next
     End Sub
 
     Public Sub AddFileMatch(file As String, targetMz As Double, matches As ScanMS2())

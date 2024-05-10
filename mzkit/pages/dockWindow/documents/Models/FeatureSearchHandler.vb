@@ -58,7 +58,6 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
-Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Interop
@@ -133,12 +132,17 @@ Module FeatureSearchHandler
                     For Each file As MZWork.Raw In files
                         Dim result = MatchByFormula(formula, file, ppm).ToArray
 
+                        System.Windows.Forms.Application.DoEvents()
                         display.Invoke(
                             Sub()
                                 display.AddFileMatch(file.source, result)
                             End Sub)
                     Next
                 End Sub)
+        End If
+
+        If display.directRaw.Length > 1 Then
+            Call display.LoadAdducts()
         End If
     End Sub
 
