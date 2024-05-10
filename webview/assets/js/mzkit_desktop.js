@@ -1631,6 +1631,17 @@ var apps;
                     .ToArray();
                 var spot_labels = $from(data).ToDictionary(function (d) { return format_tag(d); }, function (d) { return d.labels; });
                 return {
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            saveAsImage: {
+                                show: true,
+                                excludeComponents: ['toolbox'],
+                                pixelRatio: 5
+                            },
+                            dataView: { show: false }
+                        }
+                    },
                     grid3D: {},
                     xAxis3D: { type: 'value', name: 'x' },
                     yAxis3D: { type: 'value', name: 'y' },

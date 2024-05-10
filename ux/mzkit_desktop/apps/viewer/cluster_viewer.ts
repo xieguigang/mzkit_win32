@@ -143,6 +143,17 @@ namespace apps.viewer {
             const spot_labels = $from(data).ToDictionary(d => format_tag(d), d => d.labels);
 
             return <any>{
+                toolbox: {
+                    show: true,
+                    feature: {
+                        saveAsImage: {
+                            show: true,
+                            excludeComponents: ['toolbox'],
+                            pixelRatio: 5
+                        },
+                        dataView: { show: false }
+                    }
+                },
                 grid3D: {},
                 xAxis3D: { type: 'value', name: 'x' },
                 yAxis3D: { type: 'value', name: 'y' },
