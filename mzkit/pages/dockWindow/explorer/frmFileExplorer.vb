@@ -538,7 +538,7 @@ Public Class frmFileExplorer
         If str.IsSimpleNumber Then
             mzdiff = Tolerance.PPM(20)
         Else
-            mzdiff = Tolerance.DeltaMass(0.1)
+            mzdiff = Tolerance.DeltaMass(0.05)
         End If
 
         Call SearchFeatures(str, mzdiff)
