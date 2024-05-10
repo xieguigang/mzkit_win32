@@ -551,7 +551,10 @@ Public Class frmFileExplorer
             Call raws.Add(node.Tag)
         Next
 
-        Call FeatureSearchHandler.SearchByMz(feature, raws, False, mzdiff)
+        Call ProgressSpinner.DoLoading(
+            Sub()
+                Call FeatureSearchHandler.SearchByMz(feature, raws, False, mzdiff)
+            End Sub, host:=MyApplication.host)
     End Sub
 
     ''' <summary>
