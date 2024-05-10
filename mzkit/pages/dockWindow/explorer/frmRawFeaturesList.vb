@@ -619,11 +619,12 @@ Public Class frmRawFeaturesList
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        ' input formula for m/z
         Call DoFeatureSearch(ToolStripSpringTextBox1.Text)
     End Sub
 
     ''' <summary>
-    ''' 
+    ''' Do search based on the given formula or m/z value
     ''' </summary>
     ''' <param name="feature">
     ''' m/z numeric value or formula exact mass

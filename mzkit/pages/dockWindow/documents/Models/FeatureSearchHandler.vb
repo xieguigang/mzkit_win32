@@ -113,6 +113,12 @@ Module FeatureSearchHandler
         display.formula = formula
         display.directRaw = files.ToArray
 
+        If display.directRaw.Length > 1 Then
+            display.SetMultipleFileMode(True)
+        Else
+            display.SetMultipleFileMode(False)
+        End If
+
         If Not directRaw Then
             display.AddEachFileMatch(
                 Sub(raw)

@@ -101,6 +101,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
     Dim list2 As New List(Of (file As String, targetMz As Double, matches As ScanMS2()))
     Dim rangeMin As Double = 999999999
     Dim rangeMax As Double = -99999999999999
+    Dim adducts As New Dictionary(Of String, List(Of XICFeatureViewer))
 
     Friend formula As String = Nothing
 
@@ -165,6 +166,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             If Not raw Is Nothing Then
                 Dim rt_range As New DoubleRange(raw.GetMs1Scans.Select(Function(s1) s1.rt))
                 Dim da As Tolerance = Tolerance.DeltaMass(0.05)
+                Dim multipleMode As Boolean = GetMultipleFileMode()
 
                 For Each ion_group In matches.GroupBy(Function(m) m.precursor_type)
                     Dim mz As Double = Aggregate ion In ion_group Into Average(ion.parentMz) '
@@ -174,7 +176,16 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
 
                     viewer.SetFeatures(source, xic.value, ion_group.Select(Function(ion) ion.ToMs2), rt_range)
                     viewer.Width = FlowLayoutPanel1.Width * 0.95
-                    FlowLayoutPanel1.Controls.Add(viewer)
+
+                    Call FlowLayoutPanel1.Controls.Add(viewer)
+
+                    If multipleMode Then
+                        If Not adducts.ContainsKey(ion_group.Key) Then
+                            Call adducts.Add(ion_group.Key, New List(Of XICFeatureViewer))
+                        End If
+
+                        Call adducts(ion_group.Key).Add(viewer)
+                    End If
 
                     AddHandler viewer.ViewSpectrum,
                         Sub(spec)
@@ -611,5 +622,30 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
         For Each viewer As Control In FlowLayoutPanel1.Controls
             viewer.Width = FlowLayoutPanel1.Width * 0.95
         Next
+    End Sub
+
+    Private Function GetMultipleFileMode() As Boolean
+        Return ToolStrip1.Visible
+    End Function
+
+    Public Sub SetMultipleFileMode(flag As Boolean)
+        ToolStrip1.Visible = flag
+
+        If Not ToolStrip1.Visible Then
+            Controls.Remove(ToolStrip1)
+        End If
+    End Sub
+
+    Private Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged
+        Dim precursor_type As String = ToolStripComboBox1.SelectedText
+
+        If adducts.ContainsKey(precursor_type) Then
+            Call FlowLayoutPanel1.Controls.Clear()
+
+            For Each viewer In adducts(precursor_type)
+                viewer.Width = FlowLayoutPanel1.Width * 0.95
+                FlowLayoutPanel1.Controls.Add(viewer)
+            Next
+        End If
     End Sub
 End Class
