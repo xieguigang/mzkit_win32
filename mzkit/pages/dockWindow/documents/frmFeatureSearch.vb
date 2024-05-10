@@ -674,7 +674,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
                 Next
 
                 Call ChromatogramPlot _
-                    .TICplot(xicSet, colorsSchema:="paper", gridFill:="white") _
+                    .TICplot(xicSet, size:="2200,1600", colorsSchema:="paper", gridFill:="white", fillCurve:=False) _
                     .AsGDIImage _
                     .SaveAs(file.FileName)
 
