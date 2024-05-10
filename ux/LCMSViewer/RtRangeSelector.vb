@@ -209,6 +209,7 @@ Public Class RtRangeSelector
                 y2 = CSng(height - scaleY(TIC(j).Intensity))
 
                 Call TICcurve.AddLine(x1, y1, x2, y2)
+                Call System.Windows.Forms.Application.DoEvents()
             Next
 
             Call TICcurve.AddLine(x2, y2, x2, CSng(height))

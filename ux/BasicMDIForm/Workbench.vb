@@ -16,6 +16,7 @@ Public NotInheritable Class Workbench
     Public Shared ReadOnly Property WebPort As Integer = TCPExtensions.GetFirstAvailablePort(-1)
     Public Shared ReadOnly Property MSIServiceAppPort As Integer
     Public Shared ReadOnly Property RibbonItems As RibbonItems
+    Public Shared Property AppRunning As Boolean = True
 
     Private Sub New()
     End Sub

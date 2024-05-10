@@ -116,6 +116,11 @@ Public Class XICFeatureViewer
         Else
             Me.BorderStyle = BorderStyle.None
         End If
+
+        If Not Workbench.AppRunning Then
+            Timer1.Stop()
+            Timer1.Enabled = False
+        End If
     End Sub
 
     Private Sub canvasXIC_MouseMove(sender As Object, e As MouseEventArgs) Handles canvasXIC.MouseMove

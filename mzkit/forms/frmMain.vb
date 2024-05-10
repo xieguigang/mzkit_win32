@@ -694,6 +694,8 @@ Public Class frmMain : Implements AppHost
                 ' do nothing
             End Sub
 
+        Workbench.AppRunning = False
+
         Call MyApplication.CloseMSIEngine()
         Call TaskProgress.RunAction(
             run:=Sub(p)
