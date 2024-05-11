@@ -12,7 +12,7 @@
         ''' </summary>
         ''' <returns></returns>
         Public Iterator Function ServicesList() As IEnumerable(Of Service)
-            For Each item In list
+            For Each item As Service In list
                 Dim p As Process = Nothing
 
                 Try
@@ -32,7 +32,7 @@
                         .CPU = 0,
                         .Memory = 0,
                         .HouseKeeping = item.HouseKeeping,
-                        .CommandLine = item.CommandLine
+                        .CommandLine = Strings.Trim(item.CommandLine).Replace("\", "/")
                     }
                 Else
                     Yield New Service With {
@@ -46,7 +46,7 @@
                         .Protocol = item.Protocol,
                         .StartTime = item.StartTime,
                         .HouseKeeping = item.HouseKeeping,
-                        .CommandLine = item.CommandLine
+                        .CommandLine = Strings.Trim(item.CommandLine).Replace("\", "/")
                     }
 
                     item.CPU = p.TotalProcessorTime.TotalMilliseconds
