@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::6883b99ab34de3bafacb419799ce7675, E:/mzkit/src/mzkit/ux/GCxGCViewer//PeakSelector.Designer.vb"
+﻿#Region "Microsoft.VisualBasic::6883b99ab34de3bafacb419799ce7675, mzkit\ux\GCxGCViewer\PeakSelector.Designer.vb"
 
     ' Author:
     ' 

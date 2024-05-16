@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::61df71809a1ed3afa11fdb056a1010ac, E:/mzkit/src/mzkit/services/ServiceHub//ServiceProtocols/MALDI3d.vb"
+﻿#Region "Microsoft.VisualBasic::61df71809a1ed3afa11fdb056a1010ac, mzkit\services\ServiceHub\ServiceProtocols\MALDI3d.vb"
 
     ' Author:
     ' 

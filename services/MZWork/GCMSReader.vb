@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::60a55bde7d54e3a4946f408bca5cc4fa, E:/mzkit/src/mzkit/services/MZWork//GCMSReader.vb"
+﻿#Region "Microsoft.VisualBasic::60a55bde7d54e3a4946f408bca5cc4fa, mzkit\services\MZWork\GCMSReader.vb"
 
     ' Author:
     ' 

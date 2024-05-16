@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::9dc3626df9074540a7916fda1792bc0a, E:/mzkit/src/mzkit/ux/MatrixViewer//ChromatogramMatrix.vb"
+﻿#Region "Microsoft.VisualBasic::9dc3626df9074540a7916fda1792bc0a, mzkit\ux\MatrixViewer\ChromatogramMatrix.vb"
 
     ' Author:
     ' 

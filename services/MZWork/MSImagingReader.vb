@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::f6ae3e1d629da403d00757ba3c2b3840, E:/mzkit/src/mzkit/services/MZWork//MSImagingReader.vb"
+﻿#Region "Microsoft.VisualBasic::f6ae3e1d629da403d00757ba3c2b3840, mzkit\services\MZWork\MSImagingReader.vb"
 
     ' Author:
     ' 

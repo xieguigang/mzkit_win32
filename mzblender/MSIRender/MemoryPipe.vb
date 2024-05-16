@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::70fb010cc99a24b6d632b1b4ac537898, E:/mzkit/src/mzkit/mzblender//MSIRender/MemoryPipe.vb"
+﻿#Region "Microsoft.VisualBasic::70fb010cc99a24b6d632b1b4ac537898, mzkit\mzblender\MSIRender\MemoryPipe.vb"
 
     ' Author:
     ' 

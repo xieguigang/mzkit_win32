@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::655a48c48fb432fdbbac17f8693617f1, E:/mzkit/src/mzkit/services/PipelineHost//BioDeep/KEGGRepo.vb"
+﻿#Region "Microsoft.VisualBasic::655a48c48fb432fdbbac17f8693617f1, mzkit\services\PipelineHost\BioDeep\KEGGRepo.vb"
 
     ' Author:
     ' 

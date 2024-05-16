@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::f9d6bbd9862febf58db0ae990ca11243, E:/mzkit/src/mzkit/services/ServiceHub//Debugger.vb"
+﻿#Region "Microsoft.VisualBasic::f9d6bbd9862febf58db0ae990ca11243, mzkit\services\ServiceHub\Debugger.vb"
 
     ' Author:
     ' 

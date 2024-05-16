@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::d4763a6ce614ae469c3983103e763232, E:/mzkit/src/mzkit/services/PipelineHost//STImaging.vb"
+﻿#Region "Microsoft.VisualBasic::d4763a6ce614ae469c3983103e763232, mzkit\services\PipelineHost\STImaging.vb"
 
     ' Author:
     ' 

@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::84d628534b4fedbb6c063a9103c31d25, E:/mzkit/src/mzkit/mzblender//MSIRender/BlenderClient.vb"
+﻿#Region "Microsoft.VisualBasic::84d628534b4fedbb6c063a9103c31d25, mzkit\mzblender\MSIRender\BlenderClient.vb"
 
     ' Author:
     ' 

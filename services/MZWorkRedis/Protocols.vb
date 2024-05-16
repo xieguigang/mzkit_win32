@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::feb30412011e430d44309390b6e1ff80, E:/mzkit/src/mzkit/services/MZWorkRedis//Protocols.vb"
+﻿#Region "Microsoft.VisualBasic::feb30412011e430d44309390b6e1ff80, mzkit\services\MZWorkRedis\Protocols.vb"
 
     ' Author:
     ' 

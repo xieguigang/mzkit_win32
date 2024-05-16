@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::92e476e69d7befaef8903c63d7797e28, E:/mzkit/src/mzkit/ux/MatrixViewer//UVScanMatrix.vb"
+﻿#Region "Microsoft.VisualBasic::92e476e69d7befaef8903c63d7797e28, mzkit\ux\MatrixViewer\UVScanMatrix.vb"
 
     ' Author:
     ' 

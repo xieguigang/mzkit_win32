@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::f3b948ea2e51427bdcbc58af619bf5f1, E:/mzkit/src/mzkit/ux/GCxGCViewer//GCxGCPeaks.vb"
+﻿#Region "Microsoft.VisualBasic::f3b948ea2e51427bdcbc58af619bf5f1, mzkit\ux\GCxGCViewer\GCxGCPeaks.vb"
 
     ' Author:
     ' 

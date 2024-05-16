@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::247e27ea16a69e0383fe041e86ce573f, E:/mzkit/src/mzkit/services/MZWorkRedis//Services.vb"
+﻿#Region "Microsoft.VisualBasic::247e27ea16a69e0383fe041e86ce573f, mzkit\services\MZWorkRedis\Services.vb"
 
     ' Author:
     ' 

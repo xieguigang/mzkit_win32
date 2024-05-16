@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::9f4f5badd763bd808c3aedf16c43f052, E:/mzkit/src/mzkit/services/BioDeep//Web/query.biodeep.cn/page_data.vb"
+﻿#Region "Microsoft.VisualBasic::9f4f5badd763bd808c3aedf16c43f052, mzkit\services\BioDeep\Web\query.biodeep.cn\page_data.vb"
 
     ' Author:
     ' 

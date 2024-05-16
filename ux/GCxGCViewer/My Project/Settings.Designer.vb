@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::3e3f7c7db5aebfd25d31373f9f13b06e, E:/mzkit/src/mzkit/ux/GCxGCViewer//My Project/Settings.Designer.vb"
+﻿#Region "Microsoft.VisualBasic::3e3f7c7db5aebfd25d31373f9f13b06e, mzkit\ux\GCxGCViewer\My Project\Settings.Designer.vb"
 
     ' Author:
     ' 

@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::bf6b4c32eee820a4423f40d9af088ff6, E:/mzkit/src/mzkit/services/BioDeep//Web/BioDeepSession.vb"
+﻿#Region "Microsoft.VisualBasic::bf6b4c32eee820a4423f40d9af088ff6, mzkit\services\BioDeep\Web\BioDeepSession.vb"
 
     ' Author:
     ' 

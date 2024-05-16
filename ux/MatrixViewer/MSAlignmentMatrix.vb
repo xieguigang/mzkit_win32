@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::9b6d7f379e36f9789b9af48092e70ad2, E:/mzkit/src/mzkit/ux/MatrixViewer//MSAlignmentMatrix.vb"
+﻿#Region "Microsoft.VisualBasic::9b6d7f379e36f9789b9af48092e70ad2, mzkit\ux\MatrixViewer\MSAlignmentMatrix.vb"
 
     ' Author:
     ' 

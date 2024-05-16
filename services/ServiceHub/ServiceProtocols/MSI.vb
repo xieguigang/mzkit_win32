@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::0fbf712566a9cd24a1292d33557a7319, E:/mzkit/src/mzkit/services/ServiceHub//ServiceProtocols/MSI.vb"
+﻿#Region "Microsoft.VisualBasic::0fbf712566a9cd24a1292d33557a7319, mzkit\services\ServiceHub\ServiceProtocols\MSI.vb"
 
     ' Author:
     ' 
