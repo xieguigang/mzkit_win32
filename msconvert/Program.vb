@@ -17,6 +17,7 @@ Imports Microsoft.VisualBasic.CommandLine.InteropService.SharedORM
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Language.[Default]
+Imports Microsoft.VisualBasic.Language.UnixBash
 Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.My.FrameworkInternal
 Imports Microsoft.VisualBasic.Scripting.Runtime
@@ -79,8 +80,14 @@ Imports MZWorkPack
     <Argument("/ver", True, CLITypes.Boolean, PipelineTypes.undefined,
               AcceptTypes:={GetType(Boolean)},
               Description:="the file format version of the generated mzpack data file")>
-    <Argument("/prefix", True, Description:="the result mzpack file its filename prefix, default is empty string. this argument only works when the input rawdata source is a directory.")>
-    <Usage("/mzPack --raw <filepath.mzXML> [--cache <result.mzPack> /ver 2 /mute /no-thumbnail /prefix <prefix-string>]")>
+    <Argument("/prefix", True, Description:="the result mzpack file its filename prefix, default is empty string.
+              this argument only works when the input rawdata source is a directory.")>
+    <Argument("/tree", True, CLITypes.Boolean,
+              Description:="this argument only works when the given raw data source is a directory for 
+              convert data file in batch mode. set this argument means search the rawdata file in all 
+              sub-directory and put the result mzpack file to output folder also keeps the directory 
+              tree structure.")>
+    <Usage("/mzPack --raw <filepath.mzXML> [--cache <result.mzPack> /ver 2 /mute /no-thumbnail /tree /prefix <prefix-string>]")>
     Public Function convertAnyRaw(args As CommandLine) As Integer
         Dim raw As String = args("--raw")
         Dim cache As String = args("--cache") Or raw.ChangeSuffix("mzPack")
@@ -91,22 +98,43 @@ Imports MZWorkPack
 
         If raw.DirectoryExists Then
             Dim cachefile As String
+            Dim keepsTree As Boolean = args.IsTrue("/tree")
+            Dim export_dir As String
 
             ' save to the same directory by default
             cache = args("--cache") Or raw
+            raw = raw.GetDirectoryFullPath
 
-            For Each file As String In raw.EnumerateFiles("*.raw")
+            For Each file As String In If(keepsTree,
+                raw.ListFiles("*.raw"),
+                raw.EnumerateFiles("*.raw"))
+
+                export_dir = cache
+
+                If keepsTree Then
+                    export_dir = export_dir & "/" & file _
+                        .ParentPath _
+                        .GetDirectoryFullPath _
+                        .Replace(raw, "")
+                End If
+
                 If prefix.StringEmpty Then
-                    cachefile = $"{cache}/{file.BaseName}.mzPack"
+                    cachefile = $"{export_dir}/{file.BaseName}.mzPack"
                 Else
-                    cachefile = $"{cache}/{prefix}-{file.BaseName}.mzPack"
+                    cachefile = $"{export_dir}/{prefix}-{file.BaseName}.mzPack"
                 End If
 
                 Call Console.WriteLine(file.BaseName)
-                Call ConvertToMzPack.CreateMzpack(file, cachefile, saveVer:=ver, mute:=mute, skipThumbnail:=noSnapshot, sleepTime:=0)
+                Call ConvertToMzPack.CreateMzpack(file, cachefile,
+                    saveVer:=ver, mute:=mute,
+                    skipThumbnail:=noSnapshot,
+                    sleepTime:=0)
             Next
         Else
-            Call ConvertToMzPack.CreateMzpack(raw, cache, saveVer:=ver, mute:=mute, skipThumbnail:=noSnapshot)
+            Call ConvertToMzPack.CreateMzpack(raw, cache,
+                    saveVer:=ver,
+                    mute:=mute,
+                    skipThumbnail:=noSnapshot)
         End If
 
         Return 0
