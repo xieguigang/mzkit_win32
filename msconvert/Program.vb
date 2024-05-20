@@ -73,7 +73,7 @@ Imports MZWorkPack
     End Function
 
     <ExportAPI("/mzPack")>
-    <Description("Build mzPack cache")>
+    <Description("Build mzPack cache from vendor file format, example like Thermo raw data file convert to bionovogene mzpack.")>
     <Argument("--raw", False, CLITypes.File, PipelineTypes.std_in, Description:="the file path of the mzML/mzXML/raw raw data file to create mzPack cache file.")>
     <Argument("--cache", False, CLITypes.File, PipelineTypes.std_out, Description:="the file path of the mzPack cache file.")>
     <Argument("/ver", True, CLITypes.Boolean, PipelineTypes.undefined,
