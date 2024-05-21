@@ -417,7 +417,11 @@ Imports MZWorkPack
                 scan.meta!umap2 = embedding.y
                 scan.meta!umap3 = embedding.z
                 scan.meta!color = rgb
+
+                Call single_cells.Add(scan)
             Next
+
+            Call println($"processed cluster: {region.ToString}")
         Next
 
         sourceData = New mzPack With {
