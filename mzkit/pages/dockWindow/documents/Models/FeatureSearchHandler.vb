@@ -57,13 +57,12 @@
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
-Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
+Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
+Imports BioNovoGene.BioDeep.MSFinder
 Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Interop
-Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
-Imports std = System.Math
 
 Module FeatureSearchHandler
 
@@ -94,7 +93,7 @@ Module FeatureSearchHandler
         For Each file As MZWork.Raw In files
             Call display.AddFileMatch(
                 file:=file.source,
-                matches:=MatchByExactMass(mass, file, ppm:=mzdiff).ToArray
+                matches:=file.GetMs2Scans.MatchByExactMass(mass, file.source, ppm:=mzdiff).ToArray
             )
         Next
 
@@ -130,7 +129,7 @@ Module FeatureSearchHandler
             .GroupBy(Function(a) a.precursor_type) _
             .ToDictionary(Function(a) a.Key,
                           Function(a)
-                              Return Aggregate xi In a Into Average(xi.parentMz)
+                              Return Aggregate xi In a Into Average(xi.scan.mz)
                           End Function)
 
         If Not directRaw Then
@@ -181,50 +180,10 @@ Module FeatureSearchHandler
             End Sub)
     End Sub
 
-    Public Iterator Function MatchByExactMass(exact_mass As Double, raw As MZWork.Raw, ppm As Tolerance) As IEnumerable(Of ParentMatch)
-        ' C25H40N4O5
-        Dim pos = MzCalculator.EvaluateAll(exact_mass, "+", False).ToArray
-        Dim neg = MzCalculator.EvaluateAll(exact_mass, "-", False).ToArray
-        Dim info As PrecursorInfo()
-
-        For Each scan As ScanMS2 In raw.GetMs2Scans
-            If scan.polarity > 0 Then
-                info = pos
-            Else
-                info = neg
-            End If
-
-            For Each mode As PrecursorInfo In info
-                If ppm(scan.parentMz, Val(mode.mz)) Then
-                    Yield New ParentMatch With {
-                        .scan_id = scan.scan_id,
-                        .mz = scan.mz,
-                        .rt = CInt(scan.rt),
-                        .BPC = scan.into.Max,
-                        .TIC = scan.into.Sum,
-                        .M = mode.M,
-                        .adducts = mode.adduct,
-                        .charge = mode.charge,
-                        .precursor_type = mode.precursor_type,
-                        .ppm = PPMmethod.PPM(scan.parentMz, Val(mode.mz)).ToString("F0"),
-                        .polarity = scan.polarity,
-                        .XIC = scan.intensity,
-                        .into = scan.into,
-                        .parentMz = scan.parentMz,
-                        .rawfile = raw.source,
-                        .da = std.Round(std.Abs(scan.parentMz - Val(mode.mz)), 3)
-                    }
-                End If
-            Next
-
-            ' Call System.Windows.Forms.Application.DoEvents()
-        Next
-    End Function
-
     Public Function MatchByFormula(formula As String, raw As MZWork.Raw, ppm As Tolerance) As IEnumerable(Of ParentMatch)
         ' formula
-        Dim exact_mass As Double = Math.EvaluateFormula(formula)
-        Dim q = MatchByExactMass(exact_mass, raw, ppm)
+        Dim exact_mass As Double = FormulaScanner.EvaluateExactMass(formula)
+        Dim q = raw.GetMs2Scans.MatchByExactMass(exact_mass, raw.source, ppm)
 
         Call Workbench.StatusMessage($"Search MS ions for [{formula}] exact_mass={exact_mass} with tolerance error {ppm}...")
 
