@@ -200,7 +200,6 @@
     <Compile Include="MetaDNASearch.vb" />
     <Compile Include="Properties\ICopyProperties.vb" />
     <Compile Include="Properties\PixelProperty.vb" />
-    <Compile Include="ParentMatch.vb" />
     <Compile Include="Properties\AlignmentProperty.vb" />
     <Compile Include="Properties\MRMROIProperty.vb" />
     <Compile Include="Properties\ROIProperty.vb" />
@@ -211,7 +210,6 @@
     <Compile Include="Workspace\ViewerProject.vb" />
     <Compile Include="DrawScatter.vb" />
     <Compile Include="NewsFeed.vb" />
-    <Compile Include="Math.vb" />
     <Compile Include="MoleculeNetworking.vb" />
     <Compile Include="Properties\SpectrumProperty.vb" />
     <Compile Include="Workspace\ImportsRawData.vb" />
