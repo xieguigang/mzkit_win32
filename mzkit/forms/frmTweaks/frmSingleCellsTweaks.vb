@@ -11,6 +11,6 @@ Public Class frmSingleCellsTweaks
     End Sub
 
     Private Sub PropertyGrid1_PropertyValueChanged(s As Object, e As PropertyValueChangedEventArgs) Handles PropertyGrid1.PropertyValueChanged
-
+        WindowModules.singleCellViewer.DoRender()
     End Sub
 End Class
