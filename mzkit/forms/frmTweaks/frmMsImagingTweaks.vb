@@ -69,6 +69,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Blender
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
+Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots.BarPlot.Histogram
@@ -284,7 +285,7 @@ UseCheckedList:
         Else
             ' formula
             Dim formula As String = ToolStripSpringTextBox1.Text
-            Dim exactMass As Double = Task.Math.EvaluateFormula(formula)
+            Dim exactMass As Double = FormulaScanner.EvaluateExactMass(formula)
 
             Call Win7StyleTreeView1.Nodes.Item(0).Nodes.Clear()
 

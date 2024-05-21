@@ -60,6 +60,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports BioNovoGene.mzkit_win32.My
 Imports RibbonLib.Interop
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
+Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 
 Public Class PageMzCalculator
 
@@ -71,7 +72,7 @@ Public Class PageMzCalculator
         ElseIf TextBox1.Text.IsNumeric Then
             exact_mass = Val(TextBox1.Text)
         Else
-            exact_mass = Task.Math.EvaluateFormula(TextBox1.Text)
+            exact_mass = FormulaScanner.EvaluateExactMass(TextBox1.Text)
         End If
 
         Call Update(exact_mass, Provider.GetCalculator("+").Values, DataGridView1)

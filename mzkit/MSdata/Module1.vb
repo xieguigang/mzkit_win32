@@ -3,6 +3,7 @@ Imports System.Runtime.CompilerServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
+Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
@@ -30,10 +31,10 @@ Namespace MSdata
                 .meta = New Dictionary(Of String, String),
                 .products = raw _
                     .Select(Function(r)
-                                Dim active As mzData.ActivationMethods = mzData.ActivationMethods.AnyType
+                                Dim active As ActivationMethods = ActivationMethods.AnyType
 
                                 If Not r.activation.StringEmpty Then
-                                    active = [Enum].Parse(GetType(mzData.ActivationMethods), r.activation)
+                                    active = [Enum].Parse(GetType(ActivationMethods), r.activation)
                                 End If
 
                                 Return New ScanMS2 With {

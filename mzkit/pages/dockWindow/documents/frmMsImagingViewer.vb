@@ -74,6 +74,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.MsImaging
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.mzML
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
+Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
@@ -2208,7 +2209,7 @@ Public Class frmMsImagingViewer
             .name = pixel.scanId
         }
         Dim attrs As New ScanMS2 With {
-            .activationMethod = mzData.ActivationMethods.Unknown,
+            .activationMethod = ActivationMethods.Unknown,
             .centroided = True,
             .charge = 0,
             .collisionEnergy = 30,
