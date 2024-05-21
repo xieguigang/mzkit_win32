@@ -47,6 +47,7 @@ Public Class SingleCellScatter
             Return
         End If
 
+        BackColor = args.background
         clusters_plot = umap_scatter _
             .GroupBy(Function(c) c.class) _
             .Select(Function(s)

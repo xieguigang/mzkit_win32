@@ -8,6 +8,7 @@ Public Class SingleCellViewerArguments
     Public ReadOnly Property clusters As Integer
     Public Property colorSet As CategoryPalettes = CategoryPalettes.Paper
     Public Property pointSize As Single = 10
+    Public Property background As Color = Color.White
 
     Sub New(cells As IEnumerable(Of UMAPPoint))
         Dim groups = cells.GroupBy(Function(c) c.class).Select(Function(a) a.ToArray).ToArray
