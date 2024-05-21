@@ -774,6 +774,9 @@ Module RibbonEvents
 
         WindowModules.singleCellsParameters.DockState = DockState.DockLeft
         WindowModules.singleCellViewer.DockState = DockState.Document
+
+        Workbench.RibbonItems.MenuSingleCells.ContextAvailable = ContextAvailability.Available
+        Workbench.RibbonItems.MenuSingleCells.ContextAvailable = ContextAvailability.Active
     End Sub
 
     Public Sub showMsImaging()
