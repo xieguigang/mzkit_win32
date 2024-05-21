@@ -16,6 +16,8 @@ Imports Microsoft.VisualBasic.CommandLine
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.CommandLine.InteropService.SharedORM
 Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.Data.GraphTheory.GridGraph
+Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Language.[Default]
 Imports Microsoft.VisualBasic.Language.UnixBash
@@ -399,6 +401,38 @@ Imports MZWorkPack
             clusters = file.ReadTissueMorphology
         End Using
 
+        Dim single_cells As New List(Of ScanMS1)
+        Dim spatial As Grid(Of ScanMS1) = Grid(Of ScanMS1).CreateReadOnly(sourceData.MS, Function(i) i.GetMSIPixel)
+        Dim umap3 As Grid(Of UMAPPoint) = Grid(Of UMAPPoint).CreateReadOnly(umap, Function(i) i.Pixel)
 
+        For Each region As TissueRegion In clusters
+            Dim rgb As String = region.color.ToHtmlColor
+
+            For Each spot As Point In region.points
+                Dim scan As ScanMS1 = spatial(spot.X, spot.Y)
+                Dim embedding As UMAPPoint = umap3(spot.X, spot.Y)
+
+                scan.meta!cluster = region.label
+                scan.meta!umap1 = embedding.x
+                scan.meta!umap2 = embedding.y
+                scan.meta!umap3 = embedding.z
+                scan.meta!color = rgb
+            Next
+        Next
+
+        sourceData = New mzPack With {
+            .Annotations = sourceData.Annotations,
+            .Application = FileApplicationClass.SingleCellsMetabolomics,
+            .Chromatogram = sourceData.Chromatogram,
+            .metadata = sourceData.metadata,
+            .Scanners = sourceData.Scanners,
+            .source = sourceData.source,
+            .Thumbnail = sourceData.Thumbnail,
+            .MS = single_cells.ToArray
+        }
+
+        Using file As Stream = save.Open(FileMode.OpenOrCreate, doClear:=True)
+            Return sourceData.Write(file, version:=2, ).CLICode
+        End Using
     End Function
 End Module
