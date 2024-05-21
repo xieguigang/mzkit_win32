@@ -1,5 +1,6 @@
 ﻿Imports System.Drawing.Drawing2D
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
+Imports Microsoft.VisualBasic.ComponentModel.Algorithm
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.ChartPlots
@@ -9,8 +10,10 @@ Imports Microsoft.VisualBasic.Data.ChartPlots.Plots
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
+Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.Math.LinearAlgebra
+Imports std = System.Math
 
 Public Class SingleCellScatter
 
@@ -20,6 +23,9 @@ Public Class SingleCellScatter
     Dim umap_x, umap_y As Vector
     Dim umap_width As DoubleRange
     Dim umap_height As DoubleRange
+
+    Dim x_axis As BlockSearchFunction(Of UMAPPoint)
+    Dim y_axis As BlockSearchFunction(Of UMAPPoint)
 
     ''' <summary>
     ''' does the data has been initialized?
@@ -34,6 +40,14 @@ Public Class SingleCellScatter
         Me.umap_y = umap_height.CreateAxisTicks.AsVector
         Me.hasData = Not umap_scatter.IsNullOrEmpty
         Me.clusters_plot = Nothing
+
+        If hasData Then
+            Dim dx As Double = umap_width.Length / 5
+            Dim dy As Double = umap_height.Length / 5
+
+            x_axis = New BlockSearchFunction(Of UMAPPoint)(umap_scatter, Function(i) i.x, dx, fuzzy:=True)
+            y_axis = New BlockSearchFunction(Of UMAPPoint)(umap_scatter, Function(i) i.y, dy, fuzzy:=True)
+        End If
     End Sub
 
     ''' <summary>
@@ -89,6 +103,8 @@ Public Class SingleCellScatter
 
     Dim client_region As GraphicsRegion
 
+    Public Event SelectCell(cell_id As String, umap As UMAPPoint)
+
     Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
         Dim xy As Point = PictureBox1.PointToClient(Cursor.Position)
 
@@ -103,8 +119,23 @@ Public Class SingleCellScatter
         Dim height As New DoubleRange(0, canvas.Height)
         Dim umap_x As Double = width.ScaleMapping(xy.X, umap_width)
         Dim umap_y As Double = height.ScaleMapping(xy.Y, umap_height)
+        Dim filter1 = x_axis.Search(New UMAPPoint("", umap_x, 0, 0))
+        Dim filter2 = y_axis.Search(New UMAPPoint("", 0, umap_y, 0))
+        Dim union = filter1 _
+            .Select(Function(i) (i, std.Abs(i.x - umap_x))) _
+            .JoinIterates(filter2.Select(Function(i) (i, std.Abs(i.y - umap_y)))) _
+            .GroupBy(Function(a) a.i.label) _
+            .Where(Function(i) i.Count > 1) _
+            .OrderBy(Function(i) i.Average(Function(c) c.Item2)) _
+            .FirstOrDefault
 
-        ToolStripStatusLabel1.Text = $"[{xy.X}, {xy.Y}] -> {umap_x},{umap_y}"
+        If Not union.Key Is Nothing Then
+            RaiseEvent SelectCell(union.Key, union.First.i)
+
+            ToolStripStatusLabel1.Text = $"[{xy.X}, {xy.Y}] -> {umap_x.ToString("F3")},{umap_y.ToString("F3")} {union.Key}"
+        Else
+            ToolStripStatusLabel1.Text = $"[{xy.X}, {xy.Y}] -> {umap_x},{umap_y}"
+        End If
     End Sub
 
     Private Function GetCanvas() As GraphicsRegion
