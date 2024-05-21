@@ -2073,6 +2073,10 @@
       <Project>{daf59cb6-ccd9-0fc6-1b8c-a3cdcd5ce92d}</Project>
       <Name>MSImagingViewerV2</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ux\SingleCellViewer\SingleCellsViewer.vbproj">
+      <Project>{895414ec-81ea-4d47-aca4-4e960e403583}</Project>
+      <Name>SingleCellsViewer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ux\winux\DataValidation\DataValidation.vbproj">
       <Project>{be119982-49e0-45e8-b26a-3efc1bd32610}</Project>
       <Name>DataValidation</Name>
