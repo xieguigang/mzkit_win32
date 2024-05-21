@@ -25,7 +25,7 @@ Partial Class frmSingleCellViewer
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.WebView21 = New Microsoft.Web.WebView2.WinForms.WebView2()
-        Me.SingleCellScatter1 = New mzkit_win32.SinglesCellViewer.SingleCellScatter()
+        Me.SingleCellScatter1 = New Global.Mzkit_win32.SinglesCellViewer.SingleCellScatter()
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -64,5 +64,5 @@ Partial Class frmSingleCellViewer
     End Sub
 
     Friend WithEvents WebView21 As Microsoft.Web.WebView2.WinForms.WebView2
-    Friend WithEvents SingleCellScatter1 As mzkit_win32.SinglesCellViewer.SingleCellScatter
+    Friend WithEvents SingleCellScatter1 As Global.Mzkit_win32.SinglesCellViewer.SingleCellScatter
 End Class
