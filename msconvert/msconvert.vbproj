@@ -218,6 +218,10 @@
       <Project>{a27dc075-07ac-4d90-b1d5-0966925b5309}</Project>
       <Name>MsPlot.NET5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\visualize\TissueMorphology\TissueMorphology.vbproj">
+      <Project>{560a9982-7d34-44c8-a0de-6b86e119247e}</Project>
+      <Name>TissueMorphology</Name>
+    </ProjectReference>
     <ProjectReference Include="..\services\MZWork\MZWork.vbproj">
       <Project>{0a48789b-a35c-49ba-8224-c604ad14f044}</Project>
       <Name>MZWork</Name>

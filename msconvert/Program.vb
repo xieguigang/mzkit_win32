@@ -11,6 +11,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ThermoRawFileReader.DataObjects
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.CommandLine
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.CommandLine.InteropService.SharedORM
@@ -374,5 +375,30 @@ Imports MZWorkPack
         End Using
 
         Return 0
+    End Function
+
+    <ExportAPI("/pack.single_cells")>
+    <Description("Pack the spatial metabolism rawdata as the single cells dataset.")>
+    <Usage("/pack.single_cells /rawdata <file.mzPack> /tissue <tissue_cluster.cdf> [/save <output.mzPack>]")>
+    Public Function PackSingleCells(rawdata As String, tissue As String, args As CommandLine) As Integer
+        Dim save As String = args("/save") Or $"{rawdata.TrimSuffix}.single_cells.mzPack"
+        Dim println As Action(Of String) = Nothing
+
+        If Not Mute Then
+            println = AddressOf RunSlavePipeline.SendMessage
+        End If
+
+        Dim sourceData As mzPack = ConvertToMzPack.LoadMzPackAuto(rawdata, skipThumbnail:=True, println:=println)
+        Dim clusters As TissueRegion()
+        Dim umap As UMAPPoint()
+
+        Using file As Stream = tissue.OpenReadonly
+            umap = file.ReadUMAP
+        End Using
+        Using file As Stream = tissue.OpenReadonly
+            clusters = file.ReadTissueMorphology
+        End Using
+
+
     End Function
 End Module

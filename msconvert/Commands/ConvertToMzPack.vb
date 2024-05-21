@@ -43,24 +43,8 @@ Module ConvertToMzPack
         End If
     End Sub
 
-    ''' <summary>
-    ''' convert any kind of raw data file as mzPack
-    ''' </summary>
-    ''' <param name="raw"></param>
-    ''' <param name="cacheFile"></param>
-    Public Sub CreateMzpack(raw As String,
-                            cacheFile As String,
-                            saveVer As Integer,
-                            mute As Boolean,
-                            skipThumbnail As Boolean,
-                            Optional sleepTime As Double = 1500)
-
+    Public Function LoadMzPackAuto(raw As String, skipThumbnail As Boolean, println As Action(Of String)) As mzPack
         Dim mzpack As mzPack
-        Dim println As Action(Of String) = Nothing
-
-        If Not mute Then
-            println = AddressOf RunSlavePipeline.SendMessage
-        End If
 
         If raw.ExtensionSuffix("raw") Then
             Using msraw As New MSFileReader(raw)
@@ -82,7 +66,29 @@ Module ConvertToMzPack
             mzpack.Thumbnail = mzpack.DrawScatter
         End If
 
-        ' mzpack = mzpack.MassCalibration(da:=0.1)
+        Return mzpack
+    End Function
+
+    ''' <summary>
+    ''' convert any kind of raw data file as mzPack
+    ''' </summary>
+    ''' <param name="raw"></param>
+    ''' <param name="cacheFile"></param>
+    Public Sub CreateMzpack(raw As String,
+                            cacheFile As String,
+                            saveVer As Integer,
+                            mute As Boolean,
+                            skipThumbnail As Boolean,
+                            Optional sleepTime As Double = 1500)
+
+        Dim mzpack As mzPack
+        Dim println As Action(Of String) = Nothing
+
+        If Not mute Then
+            println = AddressOf RunSlavePipeline.SendMessage
+        End If
+
+        mzpack = LoadMzPackAuto(raw, skipThumbnail, println)
 
         Using file As Stream = cacheFile.Open(FileMode.OpenOrCreate, doClear:=True, [readOnly]:=False)
             If Not println Is Nothing Then
