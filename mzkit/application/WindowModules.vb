@@ -70,6 +70,7 @@ Imports WeifenLuo.WinFormsUI.Docking
 Friend MustInherit Class WindowModules
 
     Friend Shared ReadOnly viewer As New frmMsImagingViewer
+    Friend Shared ReadOnly singleCellViewer As New frmSingleCellViewer
 
     Friend Shared ReadOnly fileExplorer As New frmFileExplorer
     Friend Shared ReadOnly rawFeaturesList As New frmRawFeaturesList

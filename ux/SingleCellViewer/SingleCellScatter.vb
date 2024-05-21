@@ -17,6 +17,7 @@ Public Class SingleCellScatter
     Dim umap_scatter As UMAPPoint()
     Dim clusters_plot As SerialData()
 
+    Dim umap_x, umap_y As Vector
     Dim umap_width As DoubleRange
     Dim umap_height As DoubleRange
 
@@ -24,6 +25,8 @@ Public Class SingleCellScatter
         Me.umap_scatter = umap.ToArray
         Me.umap_width = New DoubleRange(umap.Select(Function(c) c.x))
         Me.umap_height = New DoubleRange(umap.Select(Function(c) c.y))
+        Me.umap_x = umap_width.CreateAxisTicks.AsVector
+        Me.umap_y = umap_height.CreateAxisTicks.AsVector
     End Sub
 
     Public Sub SetRender(args As SingleCellViewerArguments)
@@ -50,18 +53,38 @@ Public Class SingleCellScatter
     Private Sub RenderScatter()
         Dim size As Size = PictureBox1.Size
 
-        PictureBox1.BackgroundImage = RenderScatter(size, New GraphicsRegion(size, {10, 10, 10, 10}))
+        PictureBox1.BackgroundImage = RenderScatter(size, GetCanvas)
     End Sub
 
+    Private Sub PictureBox1_SizeChanged(sender As Object, e As EventArgs) Handles PictureBox1.SizeChanged
+        RenderScatter()
+        client_region = GetCanvas()
+    End Sub
+
+    Dim client_region As GraphicsRegion
+
+    Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
+        Dim xy As Point = PictureBox1.PointToClient(Cursor.Position)
+        Dim canvas As Size = PictureBox1.Size
+        Dim width As New DoubleRange(0, canvas.Width)
+        Dim height As New DoubleRange(0, canvas.Height)
+        Dim umap_x As Double = width.ScaleMapping(xy.X, umap_width)
+        Dim umap_y As Double = height.ScaleMapping(xy.Y, umap_height)
+
+        ToolStripStatusLabel1.Text = $"[{xy.X}, {xy.Y}] -> {umap_x},{umap_y}"
+    End Sub
+
+    Private Function GetCanvas() As GraphicsRegion
+        Return New GraphicsRegion(PictureBox1.Size, {10, 10, 10, 10})
+    End Function
+
     Private Function RenderScatter(size As Size, canvas As GraphicsRegion) As Image
-        Dim x As Vector = umap_width.CreateAxisTicks.AsVector
-        Dim y As Vector = umap_height.CreateAxisTicks.AsVector
         Dim rect = canvas.PlotRegion
         Dim scale As New DataScaler With {
-            .AxisTicks = (x, y),
+            .AxisTicks = (umap_x, umap_y),
             .region = rect,
-            .X = d3js.scale.linear.domain(x).range(values:=New Double() {rect.Left, rect.Right}),
-            .Y = d3js.scale.linear.domain(y).range(values:=New Double() {rect.Top, rect.Bottom})
+            .X = d3js.scale.linear.domain(umap_x).range(values:=New Double() {rect.Left, rect.Right}),
+            .Y = d3js.scale.linear.domain(umap_y).range(values:=New Double() {rect.Top, rect.Bottom})
         }
 
         Using g As Graphics2D = size.CreateGDIDevice(filled:=BackColor)

@@ -1,5 +1,6 @@
-﻿Imports System.Runtime.InteropServices
-Imports Microsoft.VisualBasic.Net.Http
+﻿Imports System.ComponentModel
+Imports System.Runtime.InteropServices
+Imports Microsoft.VisualBasic.Net.HTTP
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
 Imports WeifenLuo.WinFormsUI.Docking
@@ -72,6 +73,11 @@ Public Class frmSingleCellViewer
             e.Cancel = True
             Process.Start(e.Uri)
         End If
+    End Sub
+
+    Private Sub frmSingleCellViewer_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        e.Cancel = True
+        Me.DockState = DockState.Hidden
     End Sub
 End Class
 

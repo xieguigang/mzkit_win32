@@ -185,6 +185,8 @@ Module RibbonEvents
 
         Call HookRibbon(ribbonItems.ButtonResetLayout, AddressOf resetLayout)
 
+        Call HookRibbon(ribbonItems.ButtonSingleCellsViewer, AddressOf showSingleCells)
+
         Call HookRibbon(ribbonItems.ButtonMsImaging, AddressOf showMsImaging)
         Call HookRibbon(ribbonItems.ButtonOpenMSIRaw, AddressOf OpenMSIRaw)
         Call HookRibbon(ribbonItems.ButtonMSIRowScans, AddressOf CombineRowScanTask)
@@ -752,6 +754,13 @@ Module RibbonEvents
             Case Else
                 Call Workbench.AppHost.Warning($"File type(*.{file.ExtensionSuffix}) is not yet supported!")
         End Select
+    End Sub
+
+    Public Sub showSingleCells()
+        Dim dockPanel = VisualStudio.DockPanel
+
+        WindowModules.singleCellViewer.Show(dockPanel)
+        WindowModules.singleCellViewer.DockState = DockState.Document
     End Sub
 
     Public Sub showMsImaging()
