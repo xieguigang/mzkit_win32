@@ -59,6 +59,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
 Imports BioNovoGene.BioDeep.MSFinder
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Interop
@@ -107,7 +108,10 @@ Module FeatureSearchHandler
 
         Dim display As frmFeatureSearch = VisualStudio.ShowDocument(Of frmFeatureSearch)
         Dim multipleMode As Boolean = False
+        ' formula
+        Dim exact_mass As Double = FormulaScanner.EvaluateExactMass(formula)
 
+        Call Workbench.StatusMessage($"Search MS ions for [{formula}] exact_mass={exact_mass} with tolerance error {ppm}...")
         Call display.Invoke(
             Sub()
                 display.TabText = $"Search [{formula}]"
@@ -120,8 +124,8 @@ Module FeatureSearchHandler
 
         Dim all_matches = display.directRaw _
             .GroupBy(Function(a) a.source) _
-            .AsParallel _
-            .Select(Function(a) (a.Key, MatchByFormula(formula, a.First, ppm).ToArray)) _
+            .Select(Function(file) New NamedValue(Of ScanMS2())(file.Key, file.First.GetMs2Scans.ToArray)) _
+            .MatchByExactMass(exact_mass, ppm) _
             .ToArray
         Dim all_adducts As Dictionary(Of String, Double) = all_matches _
             .Select(Function(a) a.ToArray) _
@@ -144,7 +148,7 @@ Module FeatureSearchHandler
             For Each raw In all_matches
                 Call System.Windows.Forms.Application.DoEvents()
                 Call display.AddFileMatch(
-                    file:=raw.Key,
+                    file:=raw.name,
                     matches:=raw.ToArray,
                     all_adducts)
             Next
@@ -166,7 +170,7 @@ Module FeatureSearchHandler
                         Call System.Windows.Forms.Application.DoEvents()
                         Call display.Invoke(
                             Sub()
-                                Call display.AddFileMatch(file.Key, result, all_adducts)
+                                Call display.AddFileMatch(file.name, result, all_adducts)
                             End Sub)
                     Next
                 End Sub)
@@ -179,16 +183,6 @@ Module FeatureSearchHandler
                 End If
             End Sub)
     End Sub
-
-    Public Function MatchByFormula(formula As String, raw As MZWork.Raw, ppm As Tolerance) As IEnumerable(Of ParentMatch)
-        ' formula
-        Dim exact_mass As Double = FormulaScanner.EvaluateExactMass(formula)
-        Dim q = raw.GetMs2Scans.MatchByExactMass(exact_mass, raw.source, ppm)
-
-        Call Workbench.StatusMessage($"Search MS ions for [{formula}] exact_mass={exact_mass} with tolerance error {ppm}...")
-
-        Return q
-    End Function
 
     ''' <summary>
     ''' 
