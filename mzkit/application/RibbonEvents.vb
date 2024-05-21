@@ -63,8 +63,10 @@
 Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Text
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MSP
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Chromatogram
@@ -762,6 +764,20 @@ Module RibbonEvents
             If file.ShowDialog = DialogResult.OK Then
                 Call showSingleCells()
 
+                Using buf As Stream = file.FileName.OpenReadonly
+                    Dim raw As mzPack = mzPack.ReadAll(buf)
+
+                    If raw.Application <> FileApplicationClass.SingleCellsMetabolomics Then
+                        Dim err As String = "the given input data file is not a valid single cell metabolomics raw data file!"
+
+                        Call Workbench.Warning(err)
+                        Call MessageBox.Show(err, "File Read Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+
+                        Return
+                    Else
+                        Call WindowModules.singleCellViewer.LoadMzkitRawdata(raw)
+                    End If
+                End Using
             End If
         End Using
     End Sub
