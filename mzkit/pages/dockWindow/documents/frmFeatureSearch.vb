@@ -133,28 +133,28 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
         Dim i As i32 = 1
 
         For Each member As ParentMatch In matches
-            Dim ion As New TreeListViewItem(member.scan_id) With {.ImageIndex = 1, .ToolTipText = member.scan_id, .Tag = member}
+            Dim ion As New TreeListViewItem(member.scan.Identity) With {.ImageIndex = 1, .ToolTipText = member.scan.intensity, .Tag = member}
 
             ion.SubItems.Add(New ListViewSubItem With {.Text = $"#{++i}"})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = member.parentMz.ToString("F4")})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = CInt(member.rt)})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = (member.rt / 60).ToString("F1")})
+            ion.SubItems.Add(New ListViewSubItem With {.Text = member.scan.mz.ToString("F4")})
+            ion.SubItems.Add(New ListViewSubItem With {.Text = CInt(member.scan.rt)})
+            ion.SubItems.Add(New ListViewSubItem With {.Text = (member.scan.rt / 60).ToString("F1")})
             ion.SubItems.Add(New ListViewSubItem With {.Text = member.da})
             ion.SubItems.Add(New ListViewSubItem With {.Text = CInt(member.ppm)})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = member.polarity})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = member.charge})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = member.into.Max.ToString("G3")})
-            ion.SubItems.Add(New ListViewSubItem With {.Text = member.into.Sum.ToString("G3")})
+            ion.SubItems.Add(New ListViewSubItem With {.Text = member.scan.Polarity})
+            ion.SubItems.Add(New ListViewSubItem With {.Text = member.scan.Charge})
+            ion.SubItems.Add(New ListViewSubItem With {.Text = member.BPC.ToString("G3")})
+            ion.SubItems.Add(New ListViewSubItem With {.Text = member.TIC.ToString("G3")})
 
             ion.SubItems.Add(New ListViewSubItem With {.Text = member.precursor_type})
             ion.SubItems.Add(New ListViewSubItem With {.Text = member.adducts})
             ion.SubItems.Add(New ListViewSubItem With {.Text = member.M})
 
-            If rangeMin > member.rt Then
-                rangeMin = member.rt
+            If rangeMin > member.scan.rt Then
+                rangeMin = member.scan.rt
             End If
-            If rangeMax < member.rt Then
-                rangeMax = member.rt
+            If rangeMax < member.scan.rt Then
+                rangeMax = member.scan.rt
             End If
 
             Call row.Items.Add(ion)
@@ -184,7 +184,7 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
                                       Function(a)
                                           Return Aggregate ion As ParentMatch
                                                  In a.Value
-                                                 Into Average(ion.parentMz)
+                                                 Into Average(ion.scan.mz)
                                       End Function)
                 End If
 
@@ -565,8 +565,8 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
                                                    filterMass = p.ppm <= ppm
                                                End If
 
-                                               Return p.rt >= rtmin AndAlso
-                                                      p.rt <= rtmax AndAlso
+                                               Return p.scan.rt >= rtmin AndAlso
+                                                      p.scan.rt <= rtmax AndAlso
                                                       filterMass AndAlso
                                                       p.precursor_type Like requiredTypes
                                            End Function)
