@@ -70,7 +70,7 @@ Public Class SingleCellScatter
     Private Sub RenderScatter()
         Dim size As Size = PictureBox1.Size
 
-        If clusters_plot.IsNullOrEmpty Then
+        If clusters_plot.IsNullOrEmpty OrElse size.Width = 0 OrElse size.Height = 0 Then
             Return
         End If
 
