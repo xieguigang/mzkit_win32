@@ -479,6 +479,12 @@
     <Compile Include="application\settings\RawFileViewerSettings.vb" />
     <Compile Include="application\VisualStudio.vb" />
     <Compile Include="application\RPackage.vb" />
+    <Compile Include="forms\frmTweaks\frmSingleCellsTweaks.Designer.vb">
+      <DependentUpon>frmSingleCellsTweaks.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmTweaks\frmSingleCellsTweaks.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\Inputs\InputURL.Designer.vb">
       <DependentUpon>InputURL.vb</DependentUpon>
     </Compile>
@@ -1200,6 +1206,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmSplashScreen.zh-CN.resx">
       <DependentUpon>frmSplashScreen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmTweaks\frmSingleCellsTweaks.resx">
+      <DependentUpon>frmSingleCellsTweaks.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmUserAgreement.resx">
       <DependentUpon>frmUserAgreement.vb</DependentUpon>
