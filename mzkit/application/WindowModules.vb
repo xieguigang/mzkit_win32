@@ -85,7 +85,10 @@ Friend MustInherit Class WindowModules
     Friend Shared ReadOnly propertyWin As New PropertyWindow
     Friend Shared ReadOnly taskWin As New TaskListWindow
     Friend Shared ReadOnly plotParams As New frmTweaks
+
     Friend Shared ReadOnly msImageParameters As New frmMsImagingTweaks
+    Friend Shared ReadOnly singleCellsParameters As New frmSingleCellsTweaks
+
     Friend Shared ReadOnly msDemo As New frmDemo
     Friend Shared ReadOnly MRMIons As New frmSRMIonsExplorer
     Friend Shared ReadOnly GCMSPeaks As New frmGCMSPeaks

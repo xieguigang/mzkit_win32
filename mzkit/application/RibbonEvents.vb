@@ -760,6 +760,9 @@ Module RibbonEvents
         Dim dockPanel = VisualStudio.DockPanel
 
         WindowModules.singleCellViewer.Show(dockPanel)
+        WindowModules.singleCellsParameters.Show(dockPanel)
+
+        WindowModules.singleCellsParameters.DockState = DockState.DockLeft
         WindowModules.singleCellViewer.DockState = DockState.Document
     End Sub
 
