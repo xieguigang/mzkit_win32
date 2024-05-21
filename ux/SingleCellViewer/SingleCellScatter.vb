@@ -117,6 +117,10 @@ Public Class SingleCellScatter
             .OrderBy(Function(i) (std.Abs(i.x - umap_x) + std.Abs(i.y - umap_y)) / 2) _
             .FirstOrDefault
 
+        If union Is Nothing Then
+            Return Nothing
+        End If
+
         If std.Abs(union.y - umap_y) < 0.1 Then
             Return union
         Else
