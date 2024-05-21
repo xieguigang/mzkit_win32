@@ -106,15 +106,19 @@ Public Class SingleCellScatter
 
     Public Event SelectCell(cell_id As String, umap As UMAPPoint)
 
-    Private Function GetCell(xy As Point) As UMAPPoint
+    Private Function GetCell(xy As Point, Optional ByRef umap_x As Double = 0, Optional ByRef umap_y As Double = 0) As UMAPPoint
         Dim canvas As Size = PictureBox1.Size
         Dim width As New DoubleRange(0, canvas.Width)
         Dim height As New DoubleRange(0, canvas.Height)
-        Dim umap_x As Double = width.ScaleMapping(xy.X, umap_width)
-        Dim umap_y As Double = height.ScaleMapping(xy.Y, umap_height)
+
+        umap_x = width.ScaleMapping(xy.X, umap_width)
+        umap_y = height.ScaleMapping(xy.Y, umap_height)
+
         Dim filter1 = x_axis.Search(New UMAPPoint("", umap_x, 0, 0))
+        Dim sx = umap_x
+        Dim sy = umap_y
         Dim union = filter1 _
-            .OrderBy(Function(i) (std.Abs(i.x - umap_x) + std.Abs(i.y - umap_y)) / 2) _
+            .OrderBy(Function(i) (std.Abs(i.x - sx) + std.Abs(i.y - sy)) / 2) _
             .FirstOrDefault
 
         If union Is Nothing Then
@@ -137,12 +141,13 @@ Public Class SingleCellScatter
             Return
         End If
 
-        Dim cell = GetCell(xy)
+        Dim umap_x, umap_y As Double
+        Dim cell = GetCell(xy, umap_x, umap_y)
 
         If Not cell Is Nothing Then
             ' RaiseEvent SelectCell(union.label, union)
 
-            ToolStripStatusLabel1.Text = $"[{xy.X}, {xy.Y}] -> {umap_x.ToString("F3")},{umap_y.ToString("F3")} {cell.label}"
+            ToolStripStatusLabel1.Text = $"[{xy.X}, {xy.Y}] -> {cell.x.ToString("F3")},{cell.y.ToString("F3")} {cell.label}"
         Else
             ToolStripStatusLabel1.Text = $"[{xy.X}, {xy.Y}] -> {umap_x},{umap_y}"
         End If
