@@ -5,6 +5,7 @@ Imports Mzkit_win32.BasicMDIForm
 Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmSingleCellViewer
+
     Public ReadOnly Property SourceUrl As String
         Get
             Return $"http://127.0.0.1:{Workbench.WebPort}/single_cells.html"
