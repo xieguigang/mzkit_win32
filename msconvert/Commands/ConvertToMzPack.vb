@@ -54,6 +54,8 @@ Module ConvertToMzPack
             mzpack = Converter.LoadMsp(raw)
         ElseIf raw.ExtensionSuffix("mgf") Then
             mzpack = Converter.LoadMgf(raw)
+        ElseIf raw.ExtensionSuffix("mzpack") Then
+            mzpack = mzPack.Read(raw)
         Else
             mzpack = Converter.LoadRawFileAuto(raw, "ppm:20", , println)
         End If
