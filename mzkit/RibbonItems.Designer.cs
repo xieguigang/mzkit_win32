@@ -76,6 +76,7 @@ namespace RibbonLib.Controls
             public const uint cmdGroupShowComprehensive = 191;
             public const uint cmdMALDIViewer = 215;
             public const uint cmdView3DMALDI = 213;
+            public const uint cmdButtonSingleCellsViewer = 301;
             public const uint cmdGCxGCViewer = 179;
             public const uint cmdTabLayout = 1035;
             public const uint cmdGroupLayout = 1037;
@@ -367,6 +368,7 @@ namespace RibbonLib.Controls
         public RibbonGroup GroupShowComprehensive { get; private set; }
         public RibbonDropDownButton MALDIViewer { get; private set; }
         public RibbonButton View3DMALDI { get; private set; }
+        public RibbonButton ButtonSingleCellsViewer { get; private set; }
         public RibbonButton GCxGCViewer { get; private set; }
         public RibbonTab TabLayout { get; private set; }
         public RibbonGroup GroupLayout { get; private set; }
@@ -653,6 +655,7 @@ namespace RibbonLib.Controls
             GroupShowComprehensive = new RibbonGroup(ribbon, Cmd.cmdGroupShowComprehensive);
             MALDIViewer = new RibbonDropDownButton(ribbon, Cmd.cmdMALDIViewer);
             View3DMALDI = new RibbonButton(ribbon, Cmd.cmdView3DMALDI);
+            ButtonSingleCellsViewer = new RibbonButton(ribbon, Cmd.cmdButtonSingleCellsViewer);
             GCxGCViewer = new RibbonButton(ribbon, Cmd.cmdGCxGCViewer);
             TabLayout = new RibbonTab(ribbon, Cmd.cmdTabLayout);
             GroupLayout = new RibbonGroup(ribbon, Cmd.cmdGroupLayout);

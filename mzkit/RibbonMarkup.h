@@ -1663,6 +1663,13 @@
 #define cmdButtonMzVaultSearch_TooltipDescription_RESID 60186
 #define cmdButtonMzVaultSearch_SmallImages_192__RESID 60187
 #define cmdButtonMzVaultSearch_LargeImages_192__RESID 60188
-#define InternalCmd2_LabelTitle_RESID 60189
-#define InternalCmd4_LabelTitle_RESID 60190
-#define InternalCmd6_LabelTitle_RESID 60191
+#define cmdButtonSingleCellsViewer 301 
+#define cmdButtonSingleCellsViewer_LabelTitle_RESID 60189
+#define cmdButtonSingleCellsViewer_LabelDescription_RESID 60190
+#define cmdButtonSingleCellsViewer_TooltipTitle_RESID 60191
+#define cmdButtonSingleCellsViewer_TooltipDescription_RESID 60192
+#define cmdButtonSingleCellsViewer_SmallImages_192__RESID 60193
+#define cmdButtonSingleCellsViewer_LargeImages_192__RESID 60194
+#define InternalCmd2_LabelTitle_RESID 60195
+#define InternalCmd4_LabelTitle_RESID 60196
+#define InternalCmd6_LabelTitle_RESID 60197
