@@ -85,11 +85,14 @@ Public Class SingleCellScatter
     Dim client_region As GraphicsRegion
 
     Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
+        Dim xy As Point = PictureBox1.PointToClient(Cursor.Position)
+
         If Not hasData Then
+            ToolStripStatusLabel1.Text = $"[{xy.X}, {xy.Y}] -> {0},{0}"
+
             Return
         End If
 
-        Dim xy As Point = PictureBox1.PointToClient(Cursor.Position)
         Dim canvas As Size = PictureBox1.Size
         Dim width As New DoubleRange(0, canvas.Width)
         Dim height As New DoubleRange(0, canvas.Height)
