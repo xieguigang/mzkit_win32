@@ -105,6 +105,24 @@ Public Class SingleCellScatter
 
     Public Event SelectCell(cell_id As String, umap As UMAPPoint)
 
+    Private Function GetCell() As UMAPPoint
+        Dim canvas As Size = PictureBox1.Size
+        Dim width As New DoubleRange(0, canvas.Width)
+        Dim height As New DoubleRange(0, canvas.Height)
+        Dim umap_x As Double = width.ScaleMapping(xy.X, umap_width)
+        Dim umap_y As Double = height.ScaleMapping(xy.Y, umap_height)
+        Dim filter1 = x_axis.Search(New UMAPPoint("", umap_x, 0, 0))
+        Dim union = filter1 _
+            .OrderBy(Function(i) (std.Abs(i.x - umap_x) + std.Abs(i.y - umap_y)) / 2) _
+            .FirstOrDefault
+
+        If std.Abs(union.y - umap_y) < 0.1 Then
+            Return union
+        Else
+            Return Nothing
+        End If
+    End Function
+
     Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
         Dim xy As Point = PictureBox1.PointToClient(Cursor.Position)
 
@@ -114,27 +132,28 @@ Public Class SingleCellScatter
             Return
         End If
 
-        Dim canvas As Size = PictureBox1.Size
-        Dim width As New DoubleRange(0, canvas.Width)
-        Dim height As New DoubleRange(0, canvas.Height)
-        Dim umap_x As Double = width.ScaleMapping(xy.X, umap_width)
-        Dim umap_y As Double = height.ScaleMapping(xy.Y, umap_height)
-        Dim filter1 = x_axis.Search(New UMAPPoint("", umap_x, 0, 0))
-        Dim filter2 = y_axis.Search(New UMAPPoint("", 0, umap_y, 0))
-        Dim union = filter1 _
-            .Select(Function(i) (i, std.Abs(i.x - umap_x))) _
-            .JoinIterates(filter2.Select(Function(i) (i, std.Abs(i.y - umap_y)))) _
-            .GroupBy(Function(a) a.i.label) _
-            .Where(Function(i) i.Count > 1) _
-            .OrderBy(Function(i) i.Average(Function(c) c.Item2)) _
-            .FirstOrDefault
+        Dim cell = GetCell()
 
-        If Not union.Key Is Nothing Then
-            RaiseEvent SelectCell(union.Key, union.First.i)
+        If Not cell Is Nothing Then
+            ' RaiseEvent SelectCell(union.label, union)
 
-            ToolStripStatusLabel1.Text = $"[{xy.X}, {xy.Y}] -> {umap_x.ToString("F3")},{umap_y.ToString("F3")} {union.Key}"
+            ToolStripStatusLabel1.Text = $"[{xy.X}, {xy.Y}] -> {umap_x.ToString("F3")},{umap_y.ToString("F3")} {cell.label}"
         Else
             ToolStripStatusLabel1.Text = $"[{xy.X}, {xy.Y}] -> {umap_x},{umap_y}"
+        End If
+    End Sub
+
+    Private Sub PictureBox1_MouseClick(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseClick
+        Dim xy As Point = PictureBox1.PointToClient(Cursor.Position)
+
+        If Not hasData Then
+            Return
+        End If
+
+        Dim cell = GetCell()
+
+        If Not cell Is Nothing Then
+            RaiseEvent SelectCell(cell.label, cell)
         End If
     End Sub
 
@@ -159,5 +178,4 @@ Public Class SingleCellScatter
             Return g.ImageResource
         End Using
     End Function
-
 End Class
