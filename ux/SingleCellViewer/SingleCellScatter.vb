@@ -42,8 +42,9 @@ Public Class SingleCellScatter
         Me.clusters_plot = Nothing
 
         If hasData Then
-            Dim dx As Double = umap_width.Length / 5
-            Dim dy As Double = umap_height.Length / 5
+            Dim blocks As Integer = 20
+            Dim dx As Double = umap_width.Length / blocks
+            Dim dy As Double = umap_height.Length / blocks
 
             x_axis = New BlockSearchFunction(Of UMAPPoint)(umap_scatter, Function(i) i.x, dx, fuzzy:=True)
             y_axis = New BlockSearchFunction(Of UMAPPoint)(umap_scatter, Function(i) i.y, dy, fuzzy:=True)
@@ -105,7 +106,7 @@ Public Class SingleCellScatter
 
     Public Event SelectCell(cell_id As String, umap As UMAPPoint)
 
-    Private Function GetCell() As UMAPPoint
+    Private Function GetCell(xy As Point) As UMAPPoint
         Dim canvas As Size = PictureBox1.Size
         Dim width As New DoubleRange(0, canvas.Width)
         Dim height As New DoubleRange(0, canvas.Height)
@@ -132,7 +133,7 @@ Public Class SingleCellScatter
             Return
         End If
 
-        Dim cell = GetCell()
+        Dim cell = GetCell(xy)
 
         If Not cell Is Nothing Then
             ' RaiseEvent SelectCell(union.label, union)
@@ -150,7 +151,7 @@ Public Class SingleCellScatter
             Return
         End If
 
-        Dim cell = GetCell()
+        Dim cell = GetCell(xy)
 
         If Not cell Is Nothing Then
             RaiseEvent SelectCell(cell.label, cell)
