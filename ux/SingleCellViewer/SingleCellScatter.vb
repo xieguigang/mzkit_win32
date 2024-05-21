@@ -21,16 +21,27 @@ Public Class SingleCellScatter
     Dim umap_width As DoubleRange
     Dim umap_height As DoubleRange
 
+    ''' <summary>
+    ''' does the data has been initialized?
+    ''' </summary>
+    Dim hasData As Boolean = False
+
     Public Sub LoadCells(umap As IEnumerable(Of UMAPPoint))
         Me.umap_scatter = umap.ToArray
         Me.umap_width = New DoubleRange(umap.Select(Function(c) c.x))
         Me.umap_height = New DoubleRange(umap.Select(Function(c) c.y))
         Me.umap_x = umap_width.CreateAxisTicks.AsVector
         Me.umap_y = umap_height.CreateAxisTicks.AsVector
+        Me.hasData = Not umap_scatter.IsNullOrEmpty
+        Me.clusters_plot = Nothing
     End Sub
 
     Public Sub SetRender(args As SingleCellViewerArguments)
         Dim colors As LoopArray(Of Color) = Designer.GetColors(args.colorSet.Description)
+
+        If Not hasData Then
+            Return
+        End If
 
         clusters_plot = umap_scatter _
             .GroupBy(Function(c) c.class) _
@@ -48,15 +59,25 @@ Public Class SingleCellScatter
                         }
                     End Function) _
             .ToArray
+
+        Call RenderScatter()
     End Sub
 
     Private Sub RenderScatter()
         Dim size As Size = PictureBox1.Size
 
+        If clusters_plot.IsNullOrEmpty Then
+            Return
+        End If
+
         PictureBox1.BackgroundImage = RenderScatter(size, GetCanvas)
     End Sub
 
     Private Sub PictureBox1_SizeChanged(sender As Object, e As EventArgs) Handles PictureBox1.SizeChanged
+        If Not hasData Then
+            Return
+        End If
+
         RenderScatter()
         client_region = GetCanvas()
     End Sub
@@ -64,6 +85,10 @@ Public Class SingleCellScatter
     Dim client_region As GraphicsRegion
 
     Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
+        If Not hasData Then
+            Return
+        End If
+
         Dim xy As Point = PictureBox1.PointToClient(Cursor.Position)
         Dim canvas As Size = PictureBox1.Size
         Dim width As New DoubleRange(0, canvas.Width)
