@@ -1,5 +1,8 @@
 ﻿Imports System.ComponentModel
 Imports System.Runtime.InteropServices
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.SingleCells
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.Net.HTTP
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
@@ -35,7 +38,23 @@ Public Class frmSingleCellViewer
         WebKit.Init(WebView21)
     End Sub
 
-    Public Sub LoadRawdata(filepath As String)
+    Public Sub DoRender()
+        Call SingleCellScatter1.SetRender(WindowModules.singleCellsParameters.args)
+    End Sub
+
+    Public Sub LoadMzkitRawdata(file As mzPack)
+        Dim singleCells As UMAPPoint() = file.ResolveSingleCells.ToArray
+
+        WindowModules.singleCellsParameters.SetSingleCells(singleCells)
+        SingleCellScatter1.LoadCells(singleCells)
+        SingleCellScatter1.SetRender(WindowModules.singleCellsParameters.args)
+    End Sub
+
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="filepath"></param>
+    Public Sub LoadH5adRawdata(filepath As String)
         Dim cache_key As String = frmMsImagingViewer.getCacheKey(filepath)
         Dim cachefile As String = $"{App.AppSystemTemp}/.matrix_cache/{cache_key}.dat"
 

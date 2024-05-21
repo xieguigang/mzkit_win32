@@ -260,6 +260,10 @@ namespace RibbonLib.Controls
             public const uint cmdPanelMzVault = 297;
             public const uint cmdButtonOpenMzVault = 299;
             public const uint cmdButtonMzVaultSearch = 300;
+            public const uint cmdMenuSingleCells = 302;
+            public const uint cmdPanelSingleCellsRawData = 303;
+            public const uint cmdGroupSingleCellsFile = 304;
+            public const uint cmdButtonOpenSingleCellsRawDataFile = 305;
             public const uint cmdTabMain = 1011;
             public const uint cmdGroupFileActions = 1045;
             public const uint cmdTabGroupWindowTools = 1023;
@@ -552,6 +556,10 @@ namespace RibbonLib.Controls
         public RibbonGroup PanelMzVault { get; private set; }
         public RibbonButton ButtonOpenMzVault { get; private set; }
         public RibbonButton ButtonMzVaultSearch { get; private set; }
+        public RibbonTabGroup MenuSingleCells { get; private set; }
+        public RibbonTab PanelSingleCellsRawData { get; private set; }
+        public RibbonGroup GroupSingleCellsFile { get; private set; }
+        public RibbonButton ButtonOpenSingleCellsRawDataFile { get; private set; }
         public RibbonTab TabMain { get; private set; }
         public RibbonGroup GroupFileActions { get; private set; }
         public RibbonGroup TabGroupWindowTools { get; private set; }
@@ -839,6 +847,10 @@ namespace RibbonLib.Controls
             PanelMzVault = new RibbonGroup(ribbon, Cmd.cmdPanelMzVault);
             ButtonOpenMzVault = new RibbonButton(ribbon, Cmd.cmdButtonOpenMzVault);
             ButtonMzVaultSearch = new RibbonButton(ribbon, Cmd.cmdButtonMzVaultSearch);
+            MenuSingleCells = new RibbonTabGroup(ribbon, Cmd.cmdMenuSingleCells);
+            PanelSingleCellsRawData = new RibbonTab(ribbon, Cmd.cmdPanelSingleCellsRawData);
+            GroupSingleCellsFile = new RibbonGroup(ribbon, Cmd.cmdGroupSingleCellsFile);
+            ButtonOpenSingleCellsRawDataFile = new RibbonButton(ribbon, Cmd.cmdButtonOpenSingleCellsRawDataFile);
             TabMain = new RibbonTab(ribbon, Cmd.cmdTabMain);
             GroupFileActions = new RibbonGroup(ribbon, Cmd.cmdGroupFileActions);
             TabGroupWindowTools = new RibbonGroup(ribbon, Cmd.cmdTabGroupWindowTools);

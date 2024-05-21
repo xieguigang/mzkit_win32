@@ -186,6 +186,7 @@ Module RibbonEvents
         Call HookRibbon(ribbonItems.ButtonResetLayout, AddressOf resetLayout)
 
         Call HookRibbon(ribbonItems.ButtonSingleCellsViewer, AddressOf showSingleCells)
+        Call HookRibbon(ribbonItems.ButtonOpenSingleCellsRawDataFile, AddressOf OpenSingleCellsRaw)
 
         Call HookRibbon(ribbonItems.ButtonMsImaging, AddressOf showMsImaging)
         Call HookRibbon(ribbonItems.ButtonOpenMSIRaw, AddressOf OpenMSIRaw)
@@ -754,6 +755,15 @@ Module RibbonEvents
             Case Else
                 Call Workbench.AppHost.Warning($"File type(*.{file.ExtensionSuffix}) is not yet supported!")
         End Select
+    End Sub
+
+    Public Sub OpenSingleCellsRaw()
+        Using file As New OpenFileDialog With {.Filter = "BioNovogene mzPack(*.mzPack)|*.mzPack"}
+            If file.ShowDialog = DialogResult.OK Then
+                Call showSingleCells()
+
+            End If
+        End Using
     End Sub
 
     Public Sub showSingleCells()

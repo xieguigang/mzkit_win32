@@ -13,7 +13,7 @@ Imports RibbonLib
 Imports RibbonLib.Controls
 
 Namespace RibbonLib.Controls
-    Public Class RibbonItems
+    Partial Class RibbonItems
         Private Class Cmd
             Public Const cmdRecentItems As UInteger = 1014
             Public Const cmdMenuGroupFile As UInteger = 1005
@@ -257,6 +257,10 @@ Namespace RibbonLib.Controls
             Public Const cmdPanelMzVault As UInteger = 297
             Public Const cmdButtonOpenMzVault As UInteger = 299
             Public Const cmdButtonMzVaultSearch As UInteger = 300
+            Public Const cmdMenuSingleCells As UInteger = 302
+            Public Const cmdPanelSingleCellsRawData As UInteger = 303
+            Public Const cmdGroupSingleCellsFile As UInteger = 304
+            Public Const cmdButtonOpenSingleCellsRawDataFile As UInteger = 305
             Public Const cmdTabMain As UInteger = 1011
             Public Const cmdGroupFileActions As UInteger = 1045
             Public Const cmdTabGroupWindowTools As UInteger = 1023
@@ -1764,6 +1768,30 @@ Namespace RibbonLib.Controls
                 Return _ButtonMzVaultSearch
             End Get
         End Property
+        Private _MenuSingleCells As RibbonTabGroup
+        Public ReadOnly Property MenuSingleCells As RibbonTabGroup
+            Get
+                Return _MenuSingleCells
+            End Get
+        End Property
+        Private _PanelSingleCellsRawData As RibbonTab
+        Public ReadOnly Property PanelSingleCellsRawData As RibbonTab
+            Get
+                Return _PanelSingleCellsRawData
+            End Get
+        End Property
+        Private _GroupSingleCellsFile As RibbonGroup
+        Public ReadOnly Property GroupSingleCellsFile As RibbonGroup
+            Get
+                Return _GroupSingleCellsFile
+            End Get
+        End Property
+        Private _ButtonOpenSingleCellsRawDataFile As RibbonButton
+        Public ReadOnly Property ButtonOpenSingleCellsRawDataFile As RibbonButton
+            Get
+                Return _ButtonOpenSingleCellsRawDataFile
+            End Get
+        End Property
         Private _TabMain As RibbonTab
         Public ReadOnly Property TabMain As RibbonTab
             Get
@@ -2246,6 +2274,10 @@ Namespace RibbonLib.Controls
             _PanelMzVault = New RibbonGroup(_ribbon, Cmd.cmdPanelMzVault)
             _ButtonOpenMzVault = New RibbonButton(_ribbon, Cmd.cmdButtonOpenMzVault)
             _ButtonMzVaultSearch = New RibbonButton(_ribbon, Cmd.cmdButtonMzVaultSearch)
+            _MenuSingleCells = New RibbonTabGroup(_ribbon, Cmd.cmdMenuSingleCells)
+            _PanelSingleCellsRawData = New RibbonTab(_ribbon, Cmd.cmdPanelSingleCellsRawData)
+            _GroupSingleCellsFile = New RibbonGroup(_ribbon, Cmd.cmdGroupSingleCellsFile)
+            _ButtonOpenSingleCellsRawDataFile = New RibbonButton(_ribbon, Cmd.cmdButtonOpenSingleCellsRawDataFile)
             _TabMain = New RibbonTab(_ribbon, Cmd.cmdTabMain)
             _GroupFileActions = New RibbonGroup(_ribbon, Cmd.cmdGroupFileActions)
             _TabGroupWindowTools = New RibbonGroup(_ribbon, Cmd.cmdTabGroupWindowTools)

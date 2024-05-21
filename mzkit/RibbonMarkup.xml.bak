@@ -1224,6 +1224,7 @@
         <Image Id="356">Res/folder-pictures.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdGroupSingleCellsFile" Id="304" LabelTitle="File" LabelDescription="File" TooltipTitle="File" TooltipDescription="File" />
     <Command Name="cmdWorkbenchFile" Id="275" LabelTitle="File" LabelDescription="File" TooltipTitle="File" TooltipDescription="File" />
     <Command Name="cmdMenuGroupFile" Id="1005">
       <Command.LabelTitle>
@@ -1321,9 +1322,9 @@
         <Image Id="382" MinDPI="192">Res/folder-documents.bmp</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdGroupGCxGC" Id="282" LabelTitle="GCxGC" LabelDescription="GCxGC" TooltipTitle="GCxGC" TooltipDescription="GCxGC" />
     <Command Name="cmdMenuGroupGCxGC" Id="6" LabelTitle="GCxGC" LabelDescription="GCxGC" TooltipTitle="GCxGC" TooltipDescription="GCxGC" />
     <Command Name="cmdPanelGCxGC" Id="7" LabelTitle="GCxGC" LabelDescription="GCxGC" TooltipTitle="GCxGC" TooltipDescription="GCxGC" />
-    <Command Name="cmdGroupGCxGC" Id="282" LabelTitle="GCxGC" LabelDescription="GCxGC" TooltipTitle="GCxGC" TooltipDescription="GCxGC" />
     <Command Name="cmdGCxGCViewer" Id="179">
       <Command.LabelTitle>
         <String Id="383">GCxGC Viewer</String>
@@ -1480,6 +1481,22 @@
         <Image Id="424" MinDPI="192">Res/excel-icon.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonImportsLCAnnotation2" Id="291" LabelTitle="Imports Annotations" LabelDescription="Imports Annotations" TooltipTitle="Imports Annotations" TooltipDescription="Imports Annotations">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/excel-icon.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/excel-icon.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonImportsLCMSAnnotations" Id="287" LabelTitle="Imports Annotations" LabelDescription="Imports metabolite annotation for ions" TooltipTitle="Imports metabolite annotation for ions" TooltipDescription="Imports metabolite annotation for ions">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/excel-icon.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/excel-icon.bmp</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdMenuImports" Id="158">
       <Command.LabelTitle>
         <String Id="425">Imports Data</String>
@@ -1498,6 +1515,14 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image Id="430" MinDPI="192">Res/folder-documents.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonImportsLCAnnotationFromFile" Id="290" LabelTitle="Imports File" LabelDescription="Imports File" TooltipTitle="Imports File" TooltipDescription="Imports File">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/excel-icon.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/excel-icon.bmp</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdImportsLinear" Id="100">
@@ -1578,6 +1603,14 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image Id="454" MinDPI="192">Res/excel-icon.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonImportsLCAnnotationFromTable" Id="289" LabelTitle="Imports Table Tab" LabelDescription="Imports Table Tab" TooltipTitle="Imports Table Tab" TooltipDescription="Imports Table Tab">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/excel-icon.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/excel-icon.bmp</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonImportsTissueMorphology" Id="188">
@@ -1913,6 +1946,14 @@
       </Command.TooltipDescription>
       <Command.LargeImages>
         <Image Id="549">Res/application-x-object.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonMatrixFile" Id="294" LabelTitle="Matrix File" LabelDescription="Matrix File" TooltipTitle="Matrix File" TooltipDescription="Matrix File">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-rgb-histogram-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-rgb-histogram-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonMSIMedian" Id="258">
@@ -2259,6 +2300,9 @@
         <String Id="643">Mzkit Toolkit</String>
       </Command.LabelTitle>
     </Command>
+    <Command Name="cmdGroupMzVault" Id="298" LabelTitle="mzVault" LabelDescription="mzVault" TooltipTitle="mzVault" TooltipDescription="mzVault" />
+    <Command Name="cmdMenuMzVault" Id="296" LabelTitle="mzVault" LabelDescription="mzVault" TooltipTitle="mzVault" TooltipDescription="mzVault" />
+    <Command Name="cmdPanelMzVault" Id="297" LabelTitle="mzVault" LabelDescription="mzVault" TooltipTitle="mzVault" TooltipDescription="mzVault" />
     <Command Name="cmdTabNetwork" Id="1082">
       <Command.LabelTitle>
         <String Id="644">Network</String>
@@ -2273,6 +2317,14 @@
       <Command.LabelTitle>
         <String Id="646">Network Result</String>
       </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdButtonOpenGCxGCFile" Id="8" LabelTitle="Open" LabelDescription="Open GCxGC rawdata file" TooltipTitle="Open GCxGC rawdata file" TooltipDescription="Open GCxGC rawdata file">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/folder-documents.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/folder-documents.png</Image>
+      </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonOpenMSIRaw" Id="119">
       <Command.LabelTitle>
@@ -2292,6 +2344,14 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image Id="652" MinDPI="192">Res/folder-documents.bmp</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonOpenMzVault" Id="299" LabelTitle="Open" LabelDescription="Open" TooltipTitle="Open" TooltipDescription="Open">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/folder-pictures.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/folder-pictures.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonOpenRaw" Id="1002">
@@ -2314,12 +2374,20 @@
         <Image Id="658" MinDPI="192">Res/folder-pictures.png</Image>
       </Command.LargeImages>
     </Command>
-    <Command Name="cmdButtonOpenGCxGCFile" Id="8" LabelTitle="Open" LabelDescription="Open GCxGC rawdata file" TooltipTitle="Open GCxGC rawdata file" TooltipDescription="Open GCxGC rawdata file">
+    <Command Name="cmdButtonOpenSingleCellsRawDataFile" Id="305" LabelTitle="Open" LabelDescription="Open" TooltipTitle="Open" TooltipDescription="Open">
       <Command.SmallImages>
         <Image MinDPI="192">Res/folder-documents.png</Image>
       </Command.SmallImages>
       <Command.LargeImages>
         <Image MinDPI="192">Res/folder-documents.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonOpenPeakFeatures" Id="295" LabelTitle="Open Peak Features">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-rgb-histogram-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-rgb-histogram-96.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonOpenVirtualSlideFile" Id="234">
@@ -2388,14 +2456,6 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image Id="676" MinDPI="192">Res/folder-pictures.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonOpenLCMSWorkspaceFolder" Id="283" LabelTitle="Show Current Workspace" LabelDescription="Open Workspace Folder" TooltipTitle="Open Workspace Folder" TooltipDescription="Open Workspace Folder">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/folder-documents.bmp</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/folder-documents.bmp</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdGroupOpenseadragon" Id="249">
@@ -2749,6 +2809,7 @@
         <Image Id="771">Res/Terminal.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdPanelSingleCellsRawData" Id="303" LabelTitle="Raw Data File" LabelDescription="Raw Data File" TooltipTitle="Raw Data File" TooltipDescription="Raw Data File" />
     <Command Name="cmdRecentItems" Id="1014">
       <Command.LabelTitle>
         <String Id="772">Recent Items</String>
@@ -3086,6 +3147,7 @@
         <Image Id="870">Res/gparted.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdTableSampleData" Id="288" LabelTitle="Sample Data" LabelDescription="Sample Data" TooltipTitle="Sample Data" TooltipDescription="Sample Data" />
     <Command Name="cmdButtonSave" Id="1003">
       <Command.LabelTitle>
         <String Id="871">Save</String>
@@ -3180,6 +3242,14 @@
       </Command.TooltipTitle>
       <Command.LargeImages>
         <Image Id="898">Res/tracker.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonMzVaultSearch" Id="300" LabelTitle="Search" LabelDescription="Search" TooltipTitle="Search" TooltipDescription="Search">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/edit-find.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/edit-find.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdPPMSpinner" Id="1050">
@@ -3302,6 +3372,14 @@
       </Command.TooltipDescription>
       <Command.LargeImages>
         <Image Id="934">Res/applications-system.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonOpenLCMSWorkspaceFolder" Id="283" LabelTitle="Show Current Workspace" LabelDescription="Open Workspace Folder" TooltipTitle="Open Workspace Folder" TooltipDescription="Open Workspace Folder">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/folder-documents.bmp</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/folder-documents.bmp</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdCheckBoxShowMs2Fragment" Id="4">
@@ -3468,6 +3546,15 @@
       <Command.LargeHighContrastImages>
         <Image Id="983" MinDPI="144">Res/view-dual.png</Image>
       </Command.LargeHighContrastImages>
+    </Command>
+    <Command Name="cmdMenuSingleCells" Id="302" LabelTitle="Single Cells" LabelDescription="Single Cells" TooltipTitle="Single Cells" TooltipDescription="Single Cells" />
+    <Command Name="cmdButtonSingleCellsViewer" Id="301" LabelTitle="Single Cells Viewer" LabelDescription="Single Cells Viewer" TooltipTitle="Single Cells Viewer" TooltipDescription="Single Cells Viewer">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-cell-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-cell-96.png</Image>
+      </Command.LargeImages>
     </Command>
     <Command Name="cmdPanelOpenseadragon" Id="250">
       <Command.LabelTitle>
@@ -3943,6 +4030,14 @@
         <Image Id="56" MinDPI="192">Resources/umap.bmp</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonViewUntargetedScatter" Id="286" LabelTitle="Untargeted Scatter" LabelDescription="View un-targeted scatter of current opened rawdata file" TooltipTitle="Untargeted Scatter" TooltipDescription="Untargeted Scatter">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-particle-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-particle-96.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdButtonUpsideDown" Id="202">
       <Command.LabelTitle>
         <String Id="1116">Up side down</String>
@@ -4011,6 +4106,14 @@
         <Image MinDPI="192">Res/icons8-particle-96.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdDropDownViewInSinglePage" Id="293" LabelTitle="View 3D Scatter" LabelDescription="View 3D Scatter" TooltipTitle="View 3D Scatter" TooltipDescription="View 3D Scatter">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-particle-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-particle-96.png</Image>
+      </Command.LargeImages>
+    </Command>
     <Command Name="cmdViewMNClusterLCMSScatter" Id="261">
       <Command.LabelTitle>
         <String Id="1134">View Cluster Peaks</String>
@@ -4029,6 +4132,14 @@
       </Command.SmallImages>
       <Command.LargeImages>
         <Image Id="1139" MinDPI="192">Res/icons8-particle-96.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonViewScatter3dInSinglePage" Id="292" LabelTitle="View In Single Page" LabelDescription="View In Single Page" TooltipTitle="View In Single Page" TooltipDescription="View In Single Page">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/view-fullscreen.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="144">Res/view-fullscreen.png</Image>
       </Command.LargeImages>
     </Command>
     <Command Name="cmdButtonLicense" Id="1101">
@@ -4150,106 +4261,6 @@
       <Command.TooltipDescription>
         <String Id="1168">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
-    </Command>
-    <Command Name="cmdButtonViewUntargetedScatter" Id="286" LabelTitle="Untargeted Scatter" LabelDescription="View un-targeted scatter of current opened rawdata file" TooltipTitle="Untargeted Scatter" TooltipDescription="Untargeted Scatter">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/icons8-particle-96.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/icons8-particle-96.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonImportsLCMSAnnotations" Id="287" LabelTitle="Imports Annotations" LabelDescription="Imports metabolite annotation for ions" TooltipTitle="Imports metabolite annotation for ions" TooltipDescription="Imports metabolite annotation for ions">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/excel-icon.bmp</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/excel-icon.bmp</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdTableSampleData" Id="288" LabelTitle="Sample Data" LabelDescription="Sample Data" TooltipTitle="Sample Data" TooltipDescription="Sample Data" />
-    <Command Name="cmdButtonImportsLCAnnotationFromTable" Id="289" LabelTitle="Imports Table Tab" LabelDescription="Imports Table Tab" TooltipTitle="Imports Table Tab" TooltipDescription="Imports Table Tab">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/excel-icon.bmp</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/excel-icon.bmp</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonImportsLCAnnotationFromFile" Id="290" LabelTitle="Imports File" LabelDescription="Imports File" TooltipTitle="Imports File" TooltipDescription="Imports File">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/excel-icon.bmp</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/excel-icon.bmp</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonImportsLCAnnotation2" Id="291" LabelTitle="Imports Annotations" LabelDescription="Imports Annotations" TooltipTitle="Imports Annotations" TooltipDescription="Imports Annotations">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/excel-icon.bmp</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/excel-icon.bmp</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonViewScatter3dInSinglePage" Id="292" LabelTitle="View In Single Page" LabelDescription="View In Single Page" TooltipTitle="View In Single Page" TooltipDescription="View In Single Page">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/view-fullscreen.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="144">Res/view-fullscreen.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdDropDownViewInSinglePage" Id="293" LabelTitle="View 3D Scatter" LabelDescription="View 3D Scatter" TooltipTitle="View 3D Scatter" TooltipDescription="View 3D Scatter">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/icons8-particle-96.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/icons8-particle-96.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonMatrixFile" Id="294" LabelTitle="Matrix File" LabelDescription="Matrix File" TooltipTitle="Matrix File" TooltipDescription="Matrix File">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/icons8-rgb-histogram-96.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/icons8-rgb-histogram-96.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonOpenPeakFeatures" Id="295" LabelTitle="Open Peak Features">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/icons8-rgb-histogram-96.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/icons8-rgb-histogram-96.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdMenuMzVault" Id="296" LabelTitle="mzVault" LabelDescription="mzVault" TooltipTitle="mzVault" TooltipDescription="mzVault" />
-    <Command Name="cmdPanelMzVault" Id="297" LabelTitle="mzVault" LabelDescription="mzVault" TooltipTitle="mzVault" TooltipDescription="mzVault" />
-    <Command Name="cmdGroupMzVault" Id="298" LabelTitle="mzVault" LabelDescription="mzVault" TooltipTitle="mzVault" TooltipDescription="mzVault" />
-    <Command Name="cmdButtonOpenMzVault" Id="299" LabelTitle="Open" LabelDescription="Open" TooltipTitle="Open" TooltipDescription="Open">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/folder-pictures.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/folder-pictures.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonMzVaultSearch" Id="300" LabelTitle="Search" LabelDescription="Search" TooltipTitle="Search" TooltipDescription="Search">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/edit-find.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/edit-find.png</Image>
-      </Command.LargeImages>
-    </Command>
-    <Command Name="cmdButtonSingleCellsViewer" Id="301" LabelTitle="Single Cells Viewer" LabelDescription="Single Cells Viewer" TooltipTitle="Single Cells Viewer" TooltipDescription="Single Cells Viewer">
-      <Command.SmallImages>
-        <Image MinDPI="192">Res/icons8-cell-96.png</Image>
-      </Command.SmallImages>
-      <Command.LargeImages>
-        <Image MinDPI="192">Res/icons8-cell-96.png</Image>
-      </Command.LargeImages>
     </Command>
   </Application.Commands>
   <Application.Views>
@@ -4667,6 +4678,13 @@
             <Group CommandName="cmdPanelMzVault">
               <Button CommandName="cmdButtonOpenMzVault" />
               <Button CommandName="cmdButtonMzVaultSearch" />
+            </Group>
+          </Tab>
+        </TabGroup>
+        <TabGroup CommandName="cmdMenuSingleCells">
+          <Tab CommandName="cmdPanelSingleCellsRawData">
+            <Group CommandName="cmdGroupSingleCellsFile">
+              <Button CommandName="cmdButtonOpenSingleCellsRawDataFile" />
             </Group>
           </Tab>
         </TabGroup>

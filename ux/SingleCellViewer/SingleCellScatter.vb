@@ -36,6 +36,10 @@ Public Class SingleCellScatter
         Me.clusters_plot = Nothing
     End Sub
 
+    ''' <summary>
+    ''' set render arguments and rendering of the data view
+    ''' </summary>
+    ''' <param name="args"></param>
     Public Sub SetRender(args As SingleCellViewerArguments)
         Dim colors As LoopArray(Of Color) = Designer.GetColors(args.colorSet.Description)
 
