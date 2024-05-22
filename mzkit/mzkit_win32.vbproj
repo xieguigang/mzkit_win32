@@ -797,6 +797,12 @@
     <Compile Include="pages\dockWindow\documents\htmlPages\frmVennTools.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="pages\dockWindow\properties\SingleCellsClusterToolWindow.Designer.vb">
+      <DependentUpon>SingleCellsClusterToolWindow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pages\dockWindow\properties\SingleCellsClusterToolWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\systems\frmPluginMgr.Designer.vb">
       <DependentUpon>frmPluginMgr.vb</DependentUpon>
     </Compile>
@@ -1374,6 +1380,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\documents\htmlPages\frmVennTools.resx">
       <DependentUpon>frmVennTools.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\properties\SingleCellsClusterToolWindow.resx">
+      <DependentUpon>SingleCellsClusterToolWindow.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\systems\frmHtmlViewer.resx">
       <DependentUpon>frmHtmlViewer.vb</DependentUpon>
