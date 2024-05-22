@@ -53,6 +53,8 @@
 #End Region
 
 Imports System.Drawing.Drawing2D
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports Microsoft.VisualBasic.Data.ChartPlots
 Imports Microsoft.VisualBasic.Data.ChartPlots.Graphic.Legend
@@ -76,7 +78,25 @@ Public Class MSIPixelPropertyWindow
         PropertyGrid1.SelectedObject = New PixelProperty(pixel)
         props = PropertyGrid1.SelectedObject
 
-        Dim q As QuantileEstimationGK = pixel.GetMs.Select(Function(i) i.intensity).GKQuantile
+        Call plotIntensityQuantile(pixel.GetMs)
+    End Sub
+
+    Public Sub SetSingleCell(cell As ScanMS1, ByRef props As PixelProperty)
+        Select Case Me.DockState
+            Case DockState.DockBottomAutoHide, DockState.DockLeftAutoHide, DockState.DockRightAutoHide, DockState.DockTopAutoHide, DockState.Hidden, DockState.Unknown
+                props = New PixelProperty(cell)
+                Return
+            Case Else
+        End Select
+
+        PropertyGrid1.SelectedObject = New PixelProperty(cell)
+        props = PropertyGrid1.SelectedObject
+
+        Call plotIntensityQuantile(cell.GetMs)
+    End Sub
+
+    Private Sub plotIntensityQuantile(spectrum As IEnumerable(Of ms2))
+        Dim q As QuantileEstimationGK = spectrum.Select(Function(i) i.intensity).GKQuantile
         Dim serial As New SerialData With {
             .color = Color.SteelBlue,
             .lineType = DashStyle.Dash,

@@ -107,6 +107,10 @@ Public Class SingleCellScatter
 
     Public Event SelectCell(cell_id As String, umap As UMAPPoint)
 
+    Public Sub ShowMessage(msg As String)
+        ToolStripStatusLabel1.Text = msg
+    End Sub
+
     Private Function GetCell(xy As Point, Optional ByRef umap_x As Double = 0, Optional ByRef umap_y As Double = 0) As UMAPPoint
         Dim canvas As Size = PictureBox1.Size
         Dim width As New DoubleRange(0, canvas.Width)

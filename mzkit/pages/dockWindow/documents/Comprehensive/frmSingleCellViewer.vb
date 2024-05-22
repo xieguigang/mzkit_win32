@@ -2,10 +2,13 @@
 Imports System.Runtime.InteropServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.SingleCells
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
+Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports Microsoft.VisualBasic.Net.HTTP
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
+Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmSingleCellViewer
@@ -97,6 +100,22 @@ Public Class frmSingleCellViewer
     Private Sub frmSingleCellViewer_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         e.Cancel = True
         Me.DockState = DockState.Hidden
+    End Sub
+
+    Private Sub SingleCellScatter1_SelectCell(cell_id As String, umap As UMAPPoint) Handles SingleCellScatter1.SelectCell
+        Dim pixel As ScanMS1 = Nothing
+        Dim info As PixelProperty = Nothing
+
+        If pixel Is Nothing Then
+            Call Workbench.Warning($"UMAP space location [{umap.x}, {umap.y}] not contains any data.")
+            Call WindowModules.MSIPixelProperty.SetPixel(New InMemoryPixel(0, 0, {}), info)
+            Call SingleCellScatter1.ShowMessage($"UMAP space location [{umap.x}, {umap.y}] not contains any data.")
+
+            Return
+        Else
+            Call WindowModules.MSIPixelProperty.SetSingleCell(pixel, info)
+            Call Workbench.StatusMessage($"Select {pixel.scan_id}, totalIons: {info.TotalIon.ToString("G3")}, basePeak m/z: {info.TopIonMz.ToString("F4")}")
+        End If
     End Sub
 End Class
 
