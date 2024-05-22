@@ -20,6 +20,7 @@ Public Class frmSingleCellViewer
     End Property
 
     Public source As SingleCellViewer
+    Public dataIndex As Dictionary(Of String, ScanMS1)
 
     Sub New()
 
@@ -47,6 +48,13 @@ Public Class frmSingleCellViewer
 
     Public Sub LoadMzkitRawdata(file As mzPack)
         Dim singleCells As UMAPPoint() = file.ResolveSingleCells.ToArray
+
+        dataIndex = file.MS _
+            .GroupBy(Function(c) c.scan_id) _
+            .ToDictionary(Function(c) c.Key,
+                          Function(c)
+                              Return c.First
+                          End Function)
 
         WindowModules.singleCellsParameters.SetSingleCells(singleCells)
         SingleCellScatter1.LoadCells(singleCells)
