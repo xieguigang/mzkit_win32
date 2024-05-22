@@ -17,6 +17,15 @@ Imports std = System.Math
 
 Public Class SingleCellScatter
 
+    ''' <summary>
+    ''' the raw input data list
+    ''' </summary>
+    Dim rawDataList As UMAPPoint()
+    Dim rawClusters As Dictionary(Of String, UMAPPoint())
+
+    ''' <summary>
+    ''' the data view list of current scatter data selection
+    ''' </summary>
     Dim umap_scatter As UMAPPoint()
     Dim clusters_plot As SerialData()
 
@@ -33,6 +42,30 @@ Public Class SingleCellScatter
     Dim hasData As Boolean = False
 
     Public Sub LoadCells(umap As IEnumerable(Of UMAPPoint))
+        rawDataList = umap.ToArray
+        rawClusters = rawDataList _
+            .GroupBy(Function(c) c.class) _
+            .ToDictionary(Function(c) c.Key,
+                          Function(c)
+                              Return c.ToArray
+                          End Function)
+
+        LoadCellViews(rawDataList)
+    End Sub
+
+    Public Sub ResetDataView()
+        Call LoadCellViews(rawDataList)
+    End Sub
+
+    Public Sub FilterByUMAPSpace(space As RectangleF)
+        Call LoadCellViews(rawDataList.AsParallel.Where(Function(c) space.Contains(c.x, c.y)))
+    End Sub
+
+    Public Sub FilterByCluster(clusters As IEnumerable(Of String))
+        Call LoadCellViews(clusters.Select(Function(key) rawClusters(key)).IteratesALL)
+    End Sub
+
+    Private Sub LoadCellViews(umap As IEnumerable(Of UMAPPoint))
         Me.umap_scatter = umap.ToArray
         Me.umap_width = New DoubleRange(umap.Select(Function(c) c.x))
         Me.umap_height = New DoubleRange(umap.Select(Function(c) c.y))
