@@ -58,13 +58,15 @@
 #End Region
 
 Imports System.ComponentModel
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.Comprehensive.SingleCells
+Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.mzData.mzWebCache
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Spectra.SplashID
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.Pixel
 Imports Microsoft.VisualBasic.Math.Distributions.BinBox
 Imports Microsoft.VisualBasic.Math.Information
 Imports Microsoft.VisualBasic.Math.Quantile
-Imports stdNum = System.Math
+Imports std = System.Math
 
 Public Class PixelProperty
 
@@ -95,9 +97,12 @@ Public Class PixelProperty
     Public ReadOnly Property TotalIon As Double
 
     <Description("the pixel coordinate X of current selected pixel spot.")>
-    <Category("Pixel")> Public ReadOnly Property X As Integer
+    <Category("Pixel")> Public ReadOnly Property X As Double
     <Description("the pixel coordinate Y of current selected pixel spot.")>
-    <Category("Pixel")> Public ReadOnly Property Y As Integer
+    <Category("Pixel")> Public ReadOnly Property Y As Double
+    <Description("the pixel coordinate Z of current selected pixel spot.")>
+    <Category("Pixel")> Public ReadOnly Property Z As Double
+
     <Description("the MS1 scan id of current selected pixel spot, which generated from the MS scan instrument experiment.")>
     <Category("Pixel")> Public ReadOnly Property ScanId As String
 
@@ -109,39 +114,58 @@ Public Class PixelProperty
     Public ReadOnly Property Gini As Double
     Public ReadOnly Property SplashId As String
 
-    Sub New(pixel As PixelScan)
-        Dim ms As ms2() = pixel.GetMs
-        Dim into As Double() = ms.Select(Function(mz) mz.intensity).ToArray
-        Dim spectrum As New LibraryMatrix With {.ms2 = ms}
+    ''' <summary>
+    ''' show data for single cells
+    ''' </summary>
+    ''' <param name="cell"></param>
+    Sub New(cell As ScanMS1)
+        Dim cell_data = cell.LoadScanMeta
 
+        X = cell_data.x
+        Y = cell_data.y
+        Z = cell_data.z
+        ScanId = cell.scan_id
+
+        Call loadData(cell.GetPeaks.ToArray)
+    End Sub
+
+    Sub New(pixel As PixelScan)
         X = pixel.X
         Y = pixel.Y
         ScanId = pixel.scanId
-        SplashId = Splash.MSSplash.CalcSplashID(spectrum)
+
+        Call loadData(pixel.GetMs)
+    End Sub
+
+    Private Sub loadData(ms As ms2())
+        Dim into As Double() = ms.Select(Function(mz) mz.intensity).ToArray
+        Dim spectrum As New LibraryMatrix With {.ms2 = ms}
+
+        _SplashId = Splash.MSSplash.CalcSplashID(spectrum)
 
         If into.Length = 0 Then
         Else
-            NumOfIons = ms.Length
-            TopIonMz = stdNum.Round(ms.OrderByDescending(Function(i) i.intensity).First.mz, 4)
-            MaxIntensity = stdNum.Round(into.Max)
-            MinIntensity = stdNum.Round(into.Min)
-            TotalIon = stdNum.Round(into.Sum)
-            AverageIons = stdNum.Round(into.Average)
+            _NumOfIons = ms.Length
+            _TopIonMz = std.Round(ms.OrderByDescending(Function(i) i.intensity).First.mz, 4)
+            _MaxIntensity = std.Round(into.Max)
+            _MinIntensity = std.Round(into.Min)
+            _TotalIon = std.Round(into.Sum)
+            _AverageIons = std.Round(into.Average)
 
             Dim quartile = into.Quartile
 
-            Q1 = stdNum.Round(quartile.Q1)
-            Q2 = stdNum.Round(quartile.Q2)
-            Q3 = stdNum.Round(quartile.Q3)
-            Q1Count = into.Where(Function(i) i <= quartile.Q1).Count
-            Q2Count = into.Where(Function(i) i <= quartile.Q2).Count
-            Q3Count = into.Where(Function(i) i <= quartile.Q3).Count
+            _Q1 = std.Round(quartile.Q1)
+            _Q2 = std.Round(quartile.Q2)
+            _Q3 = std.Round(quartile.Q3)
+            _Q1Count = into.Where(Function(i) i <= quartile.Q1).Count
+            _Q2Count = into.Where(Function(i) i <= quartile.Q2).Count
+            _Q3Count = into.Where(Function(i) i <= quartile.Q3).Count
 
             Dim bin = CutBins.FixedWidthBins(into, 10, Function(x) x).ToArray
             Dim probs As Double() = bin.Select(Function(n) n.Count / into.Length).ToArray
 
-            ShannonEntropy = stdNum.Round(probs.ShannonEntropy, 4)
-            Gini = stdNum.Round(probs.Gini, 4)
+            _ShannonEntropy = std.Round(probs.ShannonEntropy, 4)
+            _Gini = std.Round(probs.Gini, 4)
         End If
     End Sub
 
