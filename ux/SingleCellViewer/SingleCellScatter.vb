@@ -36,6 +36,7 @@ Public Class SingleCellScatter
         Me.umap_scatter = umap.ToArray
         Me.umap_width = New DoubleRange(umap.Select(Function(c) c.x))
         Me.umap_height = New DoubleRange(umap.Select(Function(c) c.y))
+        Me.umap_height = New DoubleRange(umap_height.Min * 1.5, umap_height.Max)
         Me.umap_x = umap_width.CreateAxisTicks.AsVector
         Me.umap_y = umap_height.CreateAxisTicks.AsVector
         Me.hasData = Not umap_scatter.IsNullOrEmpty
