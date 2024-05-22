@@ -764,20 +764,29 @@ Module RibbonEvents
             If file.ShowDialog = DialogResult.OK Then
                 Call showSingleCells()
 
-                Using buf As Stream = file.FileName.OpenReadonly
-                    Dim raw As mzPack = mzPack.ReadAll(buf)
+                Dim rawdata As mzPack =
+                    TaskProgress.LoadData(Function(p As Action(Of String))
+                                              Using buf As Stream = file.FileName.OpenReadonly
+                                                  Return mzPack.ReadAll(buf)
+                                              End Using
+                                          End Function, info:="loading the raw data file into memory...")
 
-                    If raw.Application <> FileApplicationClass.SingleCellsMetabolomics Then
-                        Dim err As String = "the given input data file is not a valid single cell metabolomics raw data file!"
+                If rawdata.Application <> FileApplicationClass.SingleCellsMetabolomics Then
+                    Dim err As String = "the given input data file is not a valid single cell metabolomics raw data file!"
 
-                        Call Workbench.Warning(err)
-                        Call MessageBox.Show(err, "File Read Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Call Workbench.Warning(err)
+                    Call MessageBox.Show(err, "File Read Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
 
-                        Return
-                    Else
-                        Call WindowModules.singleCellViewer.LoadMzkitRawdata(raw)
-                    End If
-                End Using
+                    Return
+                Else
+                    Call ProgressSpinner.DoLoading(
+                        Sub()
+                            Call WindowModules.singleCellViewer.Invoke(
+                                Sub()
+                                    Call WindowModules.singleCellViewer.LoadMzkitRawdata(rawdata)
+                                End Sub)
+                        End Sub)
+                End If
             End If
         End Using
     End Sub
