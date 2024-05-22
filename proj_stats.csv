@@ -79,4 +79,8 @@ E:\mzkit\src\mzkit\ux\MatrixViewer\MatrixViewer.vbproj,MatrixViewer\PDAMatrix.vb
 E:\mzkit\src\mzkit\ux\MatrixViewer\MatrixViewer.vbproj,MatrixViewer\SpectralMatrix.vb,75,0,11,64,1,1,2,4,0,2666,2.67 KB
 E:\mzkit\src\mzkit\ux\MatrixViewer\MatrixViewer.vbproj,MatrixViewer\UVScanMatrix.vb,47,0,9,38,1,1,2,4,0,1659,1.66 KB
 E:\mzkit\src\mzkit\ux\MatrixViewer\MatrixViewer.vbproj,<project>,662,22,131,509,11,12,23,38,0,22107,22.11 KB
-../src/mzkit,<root>,13682,1590,2206,9886,158,226,248,424,0,531038,531.04 KB
+E:\mzkit\src\mzkit\ux\SingleCellViewer\SingleCellsViewer.vbproj,SingleCellViewer\SingleCellScatter.Designer.vb,78,17,5,56,1,0,2,0,0,3311,3.31 KB
+E:\mzkit\src\mzkit\ux\SingleCellViewer\SingleCellsViewer.vbproj,SingleCellViewer\SingleCellScatter.vb,229,14,45,170,1,0,11,3,0,8226,8.23 KB
+E:\mzkit\src\mzkit\ux\SingleCellViewer\SingleCellsViewer.vbproj,SingleCellViewer\SingleCellViewerArguments.vb,20,0,5,15,1,5,1,0,0,740,740 B
+E:\mzkit\src\mzkit\ux\SingleCellViewer\SingleCellsViewer.vbproj,<project>,327,31,55,241,3,5,14,3,0,12277,12.28 KB
+../src/mzkit,<root>,14336,1652,2316,10368,164,236,276,430,0,555592,555.59 KB
