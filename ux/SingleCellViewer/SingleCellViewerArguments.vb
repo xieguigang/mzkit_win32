@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::32d58ec43a8b072e26013e94113f08d6, mzkit\ux\SingleCellViewer\SingleCellViewerArguments.vb"
+﻿#Region "Microsoft.VisualBasic::25d9f8c16643fac1631810844db7f23d, mzkit\ux\SingleCellViewer\SingleCellViewerArguments.vb"
 
     ' Author:
     ' 
@@ -43,7 +43,7 @@
     '    - Xml Docs: 0.00%
     ' 
     '   Blank Lines: 5 (25.00%)
-    '     File Size: 740 B
+    '     File Size: 738 B
 
 
     ' Class SingleCellViewerArguments
@@ -76,4 +76,3 @@ Public Class SingleCellViewerArguments
     End Sub
 
 End Class
-

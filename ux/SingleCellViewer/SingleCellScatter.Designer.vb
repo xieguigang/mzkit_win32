@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::8085d7e7eabdfdab78304bc176acf56a, mzkit\ux\SingleCellViewer\SingleCellScatter.Designer.vb"
+﻿#Region "Microsoft.VisualBasic::a732ffdefc267963cd61eba988597080, mzkit\ux\SingleCellViewer\SingleCellScatter.Designer.vb"
 
     ' Author:
     ' 
@@ -132,4 +132,3 @@ Partial Class SingleCellScatter
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
     Friend WithEvents PictureBox1 As PictureBox
 End Class
-

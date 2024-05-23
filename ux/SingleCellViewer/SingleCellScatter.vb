@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::96f732971e5bf62db4a620af60491372, mzkit\ux\SingleCellViewer\SingleCellScatter.vb"
+﻿#Region "Microsoft.VisualBasic::b4e9f5e9a99ebc59608d48cb571ba93b, mzkit\ux\SingleCellViewer\SingleCellScatter.vb"
 
     ' Author:
     ' 
@@ -43,7 +43,7 @@
     '    - Xml Docs: 92.86%
     ' 
     '   Blank Lines: 45 (19.65%)
-    '     File Size: 8.23 KB
+    '     File Size: 8.22 KB
 
 
     ' Class SingleCellScatter
@@ -287,4 +287,3 @@ Public Class SingleCellScatter
         End Using
     End Function
 End Class
-
