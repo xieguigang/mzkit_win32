@@ -57,6 +57,7 @@
 
 #End Region
 
+Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.MRM.Models
@@ -150,6 +151,10 @@ Public Class frmMRMLibrary
         Globals.Settings.MRMLibfile = path.GetFullPath
 
         Return ions.SaveTo(path)
+    End Function
+
+    Public Function Save(s As Stream, encoding As Encoding) As Boolean Implements ISaveHandle.Save
+        Throw New NotImplementedException
     End Function
 
     Public Function Save(path As String, Optional encoding As Encodings = Encodings.UTF8) As Boolean Implements ISaveHandle.Save

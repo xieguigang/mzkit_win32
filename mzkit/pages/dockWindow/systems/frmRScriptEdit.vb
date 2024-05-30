@@ -137,6 +137,10 @@ Public Class frmRScriptEdit
         End If
     End Sub
 
+    Public Function Save(s As IO.Stream, encoding As Encoding) As Boolean Implements ISaveHandle.Save
+        Throw New NotImplementedException
+    End Function
+
     Protected Overrides Sub CopyFullPath()
         If Not scriptFile.StringEmpty Then
             Call Clipboard.SetText(scriptFile)

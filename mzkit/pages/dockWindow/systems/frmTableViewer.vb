@@ -170,6 +170,14 @@ Public Class frmTableViewer : Implements ISaveHandle, IFileReference, IDataTrace
         Return True
     End Function
 
+    Public Function Save(s As IO.Stream, encoding As Encoding) As Boolean Implements ISaveHandle.Save
+        Using writeTsv As New StreamWriter(s, encoding)
+            Call AdvancedDataGridView1.WriteTableToFile(writeTsv)
+        End Using
+
+        Return True
+    End Function
+
     Public Function Save(path As String, Optional encoding As Encodings = Encodings.UTF8) As Boolean Implements ISaveHandle.Save
         Return Save(path, encoding.CodePage)
     End Function

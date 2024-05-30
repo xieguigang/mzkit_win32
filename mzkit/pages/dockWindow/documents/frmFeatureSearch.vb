@@ -84,7 +84,6 @@ Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Mzkit_win32.LCMSViewer
 Imports RibbonLib.Controls.Events
 Imports RibbonLib.Interop
-Imports Task
 Imports any = Microsoft.VisualBasic.Scripting
 Imports std = System.Math
 
@@ -459,6 +458,10 @@ Public Class frmFeatureSearch : Implements ISaveHandle, IFileReference
             .name = $"{mz.ToString("F4")} @ {raw.source.FileName}",
             .value = ticks
         }
+    End Function
+
+    Public Function Save(s As IO.Stream, encoding As Encoding) As Boolean Implements ISaveHandle.Save
+        Throw New NotImplementedException
     End Function
 
     Public Function Save(path As String, encoding As Encoding) As Boolean Implements ISaveHandle.Save
