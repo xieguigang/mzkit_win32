@@ -205,14 +205,19 @@ Public Class ViewerProject : Implements ISaveHandle, IFileReference
         Return viewer
     End Function
 
-    Public Function Save(path As String, encoding As Encoding) As Boolean Implements ISaveHandle.Save
+    Public Function Save(file As Stream, encoding As Encoding) As Boolean Implements ISaveHandle.Save
         Dim model As JsonElement = GetType(WorkspaceFile).GetJsonElement(work, New JSONSerializerOptions)
 
-        Using buffer As FileStream = path.Open(doClear:=True)
+        Using buffer As FileStream = file
             Call DirectCast(model, JsonObject).WriteBuffer(buffer)
         End Using
 
+        Return True
+    End Function
+
+    Public Function Save(path As String, encoding As Encoding) As Boolean Implements ISaveHandle.Save
         FilePath = path
+        Save(path.Open(doClear:=True), encoding)
 
         Return True
     End Function

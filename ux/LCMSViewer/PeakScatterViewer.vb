@@ -11,10 +11,11 @@ Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Math
 Imports Microsoft.VisualBasic.MIME.Html.CSS
+Imports Microsoft.VisualBasic.MIME.Html.Render
 Imports Microsoft.Web.WebView2.Core
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
-Imports stdNum = System.Math
+Imports std = System.Math
 
 ''' <summary>
 ''' mz@rt 2d scatter viewer
@@ -238,14 +239,14 @@ Public Class PeakScatterViewer
         Dim v As Double
 
         If LogScale Then
-            int_range = New DoubleRange(0, stdNum.Log(int_range.Max))
+            int_range = New DoubleRange(0, std.Log(int_range.Max))
         End If
 
         For Each m As Meta In rawdata
             v = m.intensity
 
             If LogScale Then
-                v = stdNum.Log(v + 1)
+                v = std.Log(v + 1)
             End If
 
             Yield New PointData With {
@@ -295,6 +296,7 @@ Public Class PeakScatterViewer
             Dim labelFont As New CSSFont(New Font(FontFace.MicrosoftYaHei, 14))
             Dim labelColor As Brush = Brushes.Black
             Dim tickFont As New Font(FontFace.MicrosoftYaHei, 10)
+            Dim css As CSSEnvirnment = g.LoadEnvironment
 
             ' draw axis
             ' x
@@ -325,7 +327,7 @@ Public Class PeakScatterViewer
                 .tickFont = tickFont,
                 .ticks = int_range.CreateAxisTicks,
                 .title = "intensity",
-                .titleFont = labelFont.GDIObject(100),
+                .titleFont = css.GetFont(labelFont),
                 .legendOffsetLeft = 1,
                 .ruleOffset = 1,
                 .unmapColor = Nothing
@@ -390,7 +392,7 @@ Public Class PeakScatterViewer
             Dim find = qmz.Values.Select(Function(a) a.id) _
                 .Intersect(qrt.Values.Select(Function(a) a.id)) _
                 .OrderBy(Function(id)
-                             Return stdNum.Abs(qmz(id).mz - mzi) + stdNum.Abs(qrt(id).scan_time - rti)
+                             Return std.Abs(qmz(id).mz - mzi) + std.Abs(qrt(id).scan_time - rti)
                          End Function) _
                 .FirstOrDefault
 

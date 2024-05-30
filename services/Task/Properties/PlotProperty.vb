@@ -93,9 +93,9 @@ Public Class PlotProperty
     <Category("Styles")> <Description("Fill the curve plot?")> Public Property fill_curve As Boolean = True
     <Category("Styles")> <Description("Tweaks of the line width of the data line plot.")> Public Property line_width As Single = 5
     <Category("Styles")> <Description("Tweaks of the point size of the data scatter plot.")> Public Property point_size As Single = 10
-    <Category("Styles")> Public Property label_font As Font = CSSFont.TryParse(CSSFont.Win10NormalLarger).GDIObject(100)
-    <Category("Styles: legends")> Public Property legend_font As Font = CSSFont.TryParse(CSSFont.Win10NormalLarge).GDIObject(100)
-    <Category("Styles")> Public Property axis_label_font As Font = CSSFont.TryParse(CSSFont.Win10NormalLarge).GDIObject(100)
+    <Category("Styles")> Public Property label_font As Font = defaultCss.GetFont(CSSFont.Win10NormalLarger)
+    <Category("Styles: legends")> Public Property legend_font As Font = defaultCss.GetFont(CSSFont.Win10NormalLarge)
+    <Category("Styles")> Public Property axis_label_font As Font = defaultCss.GetFont(CSSFont.Win10NormalLarge)
     <Category("Styles")> <Description("Tweaks of the fill color of the grid background.")> Public Property gridFill As Color = "rgb(245,245,245)".TranslateColor
     <Category("Styles")> Public Property colors As CategoryPalettes = CategoryPalettes.ColorBrewerSet1
 
@@ -104,6 +104,8 @@ Public Class PlotProperty
     ''' </summary>
     ''' <returns></returns>
     <Browsable(False)> Public Property colorSet As String
+
+    Shared ReadOnly defaultCss As CSSEnvirnment = CSSEnvirnment.Empty
 
     Public Function GetTheme() As Theme
         Return New Theme With {
@@ -181,7 +183,7 @@ Public Class PlotProperty
             If (Not str.StringEmpty) AndAlso Not str.TextEquals("null") Then
                 Select Case p.PropertyType
                     Case GetType(Color) : val = str.TranslateColor
-                    Case GetType(Font) : val = CSSFont.TryParse(str).GDIObject(100)
+                    Case GetType(Font) : val = defaultCss.GetFont(CSSFont.TryParse(str))
                     Case Else
                         If DataFramework.IsPrimitive(p.PropertyType) Then
                             val = any.CTypeDynamic(str, p.PropertyType)
