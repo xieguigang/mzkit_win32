@@ -75,7 +75,7 @@ Public Class BioDeepSession
     Public Property ssid As String
 
     Private Function headerProvider() As Dictionary(Of String, String)
-        Return New Dictionary(Of String, String) From {{"Cookie", $"BIODEEP_USER_SESSION={ssid};"}}
+        Return New Dictionary(Of String, String) From {{"Cookie", $"PHPSESSID={ssid};"}}
     End Function
 
     ''' <summary>
@@ -83,7 +83,7 @@ Public Class BioDeepSession
     ''' </summary>
     ''' <returns></returns>
     Public Function CheckSession() As Boolean
-        Dim url$ = "http://my.biodeep.cn/services/ping.vbs"
+        Dim url$ = "https://query.biodeep.cn/ping.vbs"
         Dim text As String = url.GET(headers:=headerProvider)
         Dim json As JsonObject = MessageParser.ParseMessage(text)
         Dim result As Boolean = json.success
