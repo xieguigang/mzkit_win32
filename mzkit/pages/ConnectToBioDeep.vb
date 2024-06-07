@@ -66,6 +66,7 @@ Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.My
 Imports Mzkit_win32.BasicMDIForm
+Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports Task
 Imports WeifenLuo.WinFormsUI.Docking
 Imports any = Microsoft.VisualBasic.Scripting
@@ -77,7 +78,10 @@ Public Class ConnectToBioDeep
 
     Public Shared Sub OpenAdvancedFunction(action As Action)
         If Not SingletonHolder(Of BioDeepSession).Instance.CheckSession Then
-            Call New frmBioDeepAuth().ShowDialog()
+            Call InputDialog.Input(Of frmBioDeepAuth)(
+                Sub(login)
+                    SingletonHolder(Of BioDeepSession).Instance.ssid = Workbench.BioDeepSession
+                End Sub)
         End If
 
         If SingletonHolder(Of BioDeepSession).Instance.CheckSession Then

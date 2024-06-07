@@ -20,17 +20,17 @@ Public Class frmBioDeepAuth
         '    e.Cancel = True
         '    Process.Start(e.Uri)
         'End If
-        If url.hostName = "query.biodeep.cn" AndAlso (url.path.StringEmpty OrElse url.path = "/") Then
+        If Strings.LCase(url.hostName) = "query.biodeep.cn" AndAlso (url.path.StringEmpty OrElse url.path = "/") Then
             ' login success
             ' get session id from cookies
             Dim cookies = Await WebView21.CoreWebView2.CookieManager.GetCookiesAsync("https://query.biodeep.cn")
 
             For Each cookie In cookies
                 If cookie.Name = "PHPSESSID" Then
-                    e.Cancel = True
-
                     Call Workbench.SetSessionId(cookie.Value)
-                    Call Close()
+
+                    e.Cancel = True
+                    DialogResult = DialogResult.OK
                 End If
             Next
         End If

@@ -1,6 +1,8 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmBioDeepAuth
-    Inherits System.Windows.Forms.Form
+    Inherits InputDialog
 
     'Form 重写 Dispose，以清理组件列表。
     <System.Diagnostics.DebuggerNonUserCode()> _
@@ -34,7 +36,7 @@ Partial Class frmBioDeepAuth
         Me.WebView21.Dock = System.Windows.Forms.DockStyle.Fill
         Me.WebView21.Location = New System.Drawing.Point(0, 0)
         Me.WebView21.Name = "WebView21"
-        Me.WebView21.Size = New System.Drawing.Size(1003, 610)
+        Me.WebView21.Size = New System.Drawing.Size(392, 554)
         Me.WebView21.TabIndex = 0
         Me.WebView21.ZoomFactor = 1.0R
         '
@@ -42,8 +44,9 @@ Partial Class frmBioDeepAuth
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1003, 610)
+        Me.ClientSize = New System.Drawing.Size(392, 554)
         Me.Controls.Add(Me.WebView21)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Name = "frmBioDeepAuth"
         Me.Text = "BioDeep Authorization"
         CType(Me.WebView21, System.ComponentModel.ISupportInitialize).EndInit()
