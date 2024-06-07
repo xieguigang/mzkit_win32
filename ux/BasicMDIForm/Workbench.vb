@@ -17,6 +17,11 @@ Public NotInheritable Class Workbench
     Public Shared ReadOnly Property MSIServiceAppPort As Integer
     Public Shared ReadOnly Property RibbonItems As RibbonItems
     Public Shared Property AppRunning As Boolean = True
+    ''' <summary>
+    ''' the user login status session id for use biodeep services
+    ''' </summary>
+    ''' <returns></returns>
+    Public Shared ReadOnly Property BioDeepSession As String
 
     Private Sub New()
     End Sub
@@ -24,6 +29,10 @@ Public NotInheritable Class Workbench
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     Public Shared Sub SetMSIServicesAppPort(appPort As Integer)
         _MSIServiceAppPort = appPort
+    End Sub
+
+    Public Shared Sub SetSessionId(ssid As String)
+        _BioDeepSession = ssid
     End Sub
 
     Public Shared Function SetRibbonMenu(ribbon As Ribbon) As RibbonItems

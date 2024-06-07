@@ -54,7 +54,6 @@
 
 Imports System.ComponentModel
 Imports System.Runtime.InteropServices
-Imports System.Threading
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MZWork
 Imports BioNovoGene.mzkit_win32.My
 Imports Microsoft.VisualBasic.Net.Http
