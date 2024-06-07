@@ -76,8 +76,8 @@ Public Class ConnectToBioDeep
     Private Sub New()
     End Sub
 
-    Public Shared Sub OpenAdvancedFunction(action As Action)
-        If Not SingletonHolder(Of BioDeepSession).Instance.CheckSession Then
+    Public Shared Sub OpenAdvancedFunction(action As Action, Optional loginClick As Boolean = False)
+        If loginClick OrElse Not SingletonHolder(Of BioDeepSession).Instance.CheckSession Then
             Call InputDialog.Input(Of frmBioDeepAuth)(
                 Sub(login)
                     SingletonHolder(Of BioDeepSession).Instance.ssid = Workbench.BioDeepSession

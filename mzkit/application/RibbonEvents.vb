@@ -202,7 +202,7 @@ Module RibbonEvents
         Call HookRibbon(ribbonItems.QuantifyIons, Sub() Call VisualStudio.ShowSingleDocument(Of frmQuantifyIons)(Nothing))
         Call HookRibbon(ribbonItems.GCxGCViewer, Sub() Call VisualStudio.ShowSingleDocument(Of frmGCxGCViewer)(Nothing))
 
-        Call HookRibbon(ribbonItems.LogInBioDeep, Sub() Call ConnectToBioDeep.OpenAdvancedFunction(Sub() Workbench.SuccessMessage("Login to biodeep success!")))
+        Call HookRibbon(ribbonItems.LogInBioDeep, Sub() Call ConnectToBioDeep.OpenAdvancedFunction(Sub() Workbench.SuccessMessage($"Login to biodeep success({Workbench.BioDeepSession})!"), loginClick:=True))
 
         Call HookRibbon(ribbonItems.ButtonInstallMzkitPackage, AddressOf VisualStudio.InstallInternalRPackages)
         Call HookRibbon(ribbonItems.ShowGCMSExplorer, Sub() Call VisualStudio.Dock(WindowModules.GCMSPeaks, DockState.DockLeft))
