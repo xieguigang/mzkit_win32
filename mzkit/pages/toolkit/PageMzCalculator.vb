@@ -1,56 +1,56 @@
 ﻿#Region "Microsoft.VisualBasic::08deb42de052cd7627d7667d25555d94, mzkit\src\mzkit\mzkit\pages\toolkit\PageMzCalculator.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 168
-    '    Code Lines: 124
-    ' Comment Lines: 10
-    '   Blank Lines: 34
-    '     File Size: 7.05 KB
+' Summaries:
 
 
-    ' Class PageMzCalculator
-    ' 
-    '     Sub: Button1_Click, Button2_Click, DataGridView1_CellClick, DataGridView1_CellContentClick, DataGridView2_CellClick
-    '          DataGridView2_CellContentClick, ExportToolStripMenuItem_Click, PageMzCalculator_VisibleChanged, RunFeatureSearch, ToggleSlider1_CheckChanged
-    '          ToggleSlider1_Load, Update
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 168
+'    Code Lines: 124
+' Comment Lines: 10
+'   Blank Lines: 34
+'     File Size: 7.05 KB
+
+
+' Class PageMzCalculator
+' 
+'     Sub: Button1_Click, Button2_Click, DataGridView1_CellClick, DataGridView1_CellContentClick, DataGridView2_CellClick
+'          DataGridView2_CellContentClick, ExportToolStripMenuItem_Click, PageMzCalculator_VisibleChanged, RunFeatureSearch, ToggleSlider1_CheckChanged
+'          ToggleSlider1_Load, Update
+' 
+' /********************************************************************************/
 
 #End Region
 
@@ -61,6 +61,7 @@ Imports BioNovoGene.mzkit_win32.My
 Imports RibbonLib.Interop
 Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
+Imports BioDeep
 
 Public Class PageMzCalculator
 
@@ -145,9 +146,9 @@ Public Class PageMzCalculator
         If TextBox1.Text.StringEmpty Then
             Return
         ElseIf TextBox1.Text.IsNumeric Then
-            Call Process.Start($"http://query.biodeep.cn/search?expression=[mass]~0.3&category=metabolite&mass={TextBox1.Text}")
+            Call Browser.SearchMass(TextBox1.Text)
         Else
-            Call Process.Start($"http://query.biodeep.cn/search?expression=[formula]&category=metabolite&formula={TextBox1.Text}")
+            Call Browser.SearchFormula(TextBox1.Text)
         End If
     End Sub
 

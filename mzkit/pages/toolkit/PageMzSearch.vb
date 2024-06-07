@@ -60,6 +60,7 @@
 
 Imports System.Drawing.Drawing2D
 Imports System.Runtime.CompilerServices
+Imports BioDeep
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MGF
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
@@ -266,7 +267,7 @@ Public Class PageMzSearch
             Dim formula As String = DataGridView1.Rows(e.RowIndex).Cells(0).Value?.ToString
 
             If Not formula.StringEmpty Then
-                Call Process.Start($"http://query.biodeep.cn/search?expression=[formula]&category=metabolite&formula={formula}")
+                Call Browser.SearchFormula(formula)
             End If
         End If
     End Sub
