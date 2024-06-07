@@ -175,6 +175,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="auth2.0\frmBioDeepAuth.Designer.vb">
+      <DependentUpon>frmBioDeepAuth.vb</DependentUpon>
+    </Compile>
+    <Compile Include="auth2.0\frmBioDeepAuth.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="base\DocumentWindow.Designer.vb">
       <DependentUpon>DocumentWindow.vb</DependentUpon>
     </Compile>
@@ -271,6 +277,9 @@
     <Compile Include="TaskbarWindow.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="auth2.0\frmBioDeepAuth.resx">
+      <DependentUpon>frmBioDeepAuth.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="base\DocumentWindow.resx">
       <DependentUpon>DocumentWindow.vb</DependentUpon>
     </EmbeddedResource>

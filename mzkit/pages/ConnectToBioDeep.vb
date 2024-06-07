@@ -77,7 +77,7 @@ Public Class ConnectToBioDeep
 
     Public Shared Sub OpenAdvancedFunction(action As Action)
         If Not SingletonHolder(Of BioDeepSession).Instance.CheckSession Then
-            Call New frmLogin().ShowDialog()
+            Call New frmBioDeepAuth().ShowDialog()
         End If
 
         If SingletonHolder(Of BioDeepSession).Instance.CheckSession Then

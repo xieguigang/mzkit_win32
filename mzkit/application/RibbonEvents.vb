@@ -202,7 +202,7 @@ Module RibbonEvents
         Call HookRibbon(ribbonItems.QuantifyIons, Sub() Call VisualStudio.ShowSingleDocument(Of frmQuantifyIons)(Nothing))
         Call HookRibbon(ribbonItems.GCxGCViewer, Sub() Call VisualStudio.ShowSingleDocument(Of frmGCxGCViewer)(Nothing))
 
-        Call HookRibbon(ribbonItems.LogInBioDeep, Sub() Call New frmLogin().ShowDialog())
+        Call HookRibbon(ribbonItems.LogInBioDeep, Sub() Call ConnectToBioDeep.OpenAdvancedFunction(DoNothing))
 
         Call HookRibbon(ribbonItems.ButtonInstallMzkitPackage, AddressOf VisualStudio.InstallInternalRPackages)
         Call HookRibbon(ribbonItems.ShowGCMSExplorer, Sub() Call VisualStudio.Dock(WindowModules.GCMSPeaks, DockState.DockLeft))
