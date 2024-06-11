@@ -101,28 +101,28 @@ Public Module KEGGRepo
     '        .DoCall(AddressOf KEGGCompoundPack.ReadKeggDb)
     'End Function
 
-    Public Function RequestKEGGReactions(println As Action(Of String)) As ReactionClass()
-        Const url As String = "http://query.biodeep.cn/kegg/repository/reactions"
+    'Public Function RequestKEGGReactions(println As Action(Of String)) As ReactionClass()
+    '    Const url As String = "http://query.biodeep.cn/kegg/repository/reactions"
 
-        Call println("request KEGG reaction network from BioDeep...")
+    '    Call println("request KEGG reaction network from BioDeep...")
 
-        Return SingletonHolder(Of BioDeepSession).Instance _
-            .RequestStream(url) _
-            .unzip _
-            .DoCall(AddressOf ReactionClassPack.ReadKeggDb)
-    End Function
+    '    Return SingletonHolder(Of BioDeepSession).Instance _
+    '        .RequestStream(url) _
+    '        .unzip _
+    '        .DoCall(AddressOf ReactionClassPack.ReadKeggDb)
+    'End Function
 
     Public Function RequestKEGGCompounds() As Compound()
         Dim filepath As String = ""
 
         For Each dirLevel As String In {"", "../", "../../", "../../../", "../../../../"}
-            filepath = $"{App.HOME}/{dirLevel}Rstudio/data/kegg_compounds.msgpack"
+            filepath = $"{App.HOME}/{dirLevel}Rstudio/data/KEGG_compounds.msgpack"
 
             If filepath.FileExists Then
                 Exit For
             End If
 
-            filepath = $"{App.HOME}/{dirLevel}src/mzkit/rstudio/data/kegg_compounds.msgpack"
+            filepath = $"{App.HOME}/{dirLevel}src/mzkit/rstudio/data/KEGG_compounds.msgpack"
 
             If filepath.FileExists Then
                 Exit For

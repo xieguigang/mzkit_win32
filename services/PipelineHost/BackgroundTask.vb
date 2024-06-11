@@ -1,63 +1,63 @@
 ﻿#Region "Microsoft.VisualBasic::bf216c6179148624ccb55be0061d552a, mzkit\services\PipelineHost\BackgroundTask.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 630
-    '    Code Lines: 479 (76.03%)
-    ' Comment Lines: 53 (8.41%)
-    '    - Xml Docs: 73.58%
-    ' 
-    '   Blank Lines: 98 (15.56%)
-    '     File Size: 25.95 KB
+' Summaries:
 
 
-    ' Module BackgroundTask
-    ' 
-    '     Constructor: (+1 Overloads) Sub New
-    ' 
-    '     Function: alignMz, cfmidPredict, Deconv, eval_winsize, exportMatrixRows
-    '               exportMSIRawPeakTable, ExportMSISampleTable, exportRegionDataset, ExportSpotVectors, getIonRange
-    '               getPolarity, linear_ionsRaw, linear_setErrorPoints, Mummichog, readTissues
-    '               RunFeatureDetections, uniqueMz
-    ' 
-    '     Sub: CreateMSIIndex, DrawMs1Contour, formulaSearch, MetaDNASearch, SetBioDeepSession
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 630
+'    Code Lines: 479 (76.03%)
+' Comment Lines: 53 (8.41%)
+'    - Xml Docs: 73.58%
+' 
+'   Blank Lines: 98 (15.56%)
+'     File Size: 25.95 KB
+
+
+' Module BackgroundTask
+' 
+'     Constructor: (+1 Overloads) Sub New
+' 
+'     Function: alignMz, cfmidPredict, Deconv, eval_winsize, exportMatrixRows
+'               exportMSIRawPeakTable, ExportMSISampleTable, exportRegionDataset, ExportSpotVectors, getIonRange
+'               getPolarity, linear_ionsRaw, linear_setErrorPoints, Mummichog, readTissues
+'               RunFeatureDetections, uniqueMz
+' 
+'     Sub: CreateMSIIndex, DrawMs1Contour, formulaSearch, MetaDNASearch, SetBioDeepSession
+' 
+' /********************************************************************************/
 
 #End Region
 
@@ -99,6 +99,8 @@ Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports MZWorkPack
 Imports SMRUCC.genomics.Analysis.HTS.DataFrame
+Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
+Imports SMRUCC.Rsharp
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Components
 Imports SMRUCC.Rsharp.Runtime.Interop
@@ -255,22 +257,16 @@ Module BackgroundTask
     ''' <summary>
     ''' 
     ''' </summary>
-    ''' <param name="raw">the file path of *.mzpack</param>
-    ''' <param name="outputdir"></param>
+    ''' <param name="mzpack">the file path of *.mzpack</param>
     <ExportAPI("metaDNA")>
-    Public Sub MetaDNASearch(raw As String, outputdir As String)
-        Dim metaDNA As New Algorithm(Tolerance.PPM(20), 0.4, Tolerance.DeltaMass(0.3))
-        Dim mzpack As mzPack
-
-        Using file As Stream = raw.Open(FileMode.Open, doClear:=False, [readOnly]:=True)
-            mzpack = mzPack.ReadAll(file)
-        End Using
-
+    <RApiReturn("output", "infer")>
+    Public Function MetaDNASearch(mzpack As mzPack, reactions As Reaction(), Optional ppm As Double = 20, Optional dotcutoff As Double = 0.5)
+        Dim metaDNA As New Algorithm(Tolerance.PPM(ppm), dotcutoff, Tolerance.DeltaMass(0.3))
         Dim range As String() = getIonRange(getPolarity(mzpack))
         Dim println As Action(Of String) = AddressOf RunSlavePipeline.SendMessage
         Dim infer As CandidateInfer() = metaDNA _
             .SetSearchRange(range) _
-            .SetNetwork(KEGGRepo.RequestKEGGReactions(println)) _
+            .SetNetwork(reactions) _
             .SetKeggLibrary(KEGGRepo.RequestKEGGCompounds()) _
             .SetSamples(mzpack.GetMs2Peaks, autoROIid:=True) _
             .SetReportHandler(println) _
@@ -281,9 +277,11 @@ Module BackgroundTask
             .ExportTable(infer, unique:=True) _
             .ToArray
 
-        Call output.SaveTo($"{outputdir}/metaDNA_annotation.csv")
-        Call infer.GetJson.SaveTo($"{outputdir}/infer_network.json")
-    End Sub
+        Return New list(
+            slot("output") = output,
+            slot("infer") = infer
+        )
+    End Function
 
     ''' <summary>
     ''' convert imzML to mzpack
