@@ -215,7 +215,7 @@ Public Class PageMoleculeNetworking
 
     Public Sub RefreshNetwork()
         If rawMatrix.IsNullOrEmpty Then
-            MyApplication.host.showStatusMessage("no network graph data!", My.Resources.StatusAnnotations_Warning_32xLG_color)
+            Workbench.Warning("No network graph data! Probably you should select some interested mass spectrum in ms2 level by check the checkbox in feature explorer at first.")
             Return
         End If
 
