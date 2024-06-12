@@ -62,6 +62,7 @@ Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1
 Imports BioNovoGene.Analytical.MassSpectrometry.Visualization
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Math2D.MarchingSquares
 Imports Microsoft.VisualBasic.Linq
@@ -91,7 +92,7 @@ Public Module DrawScatter
         Dim ms1 As ms1_scan() = GetMs1Points(raw)
         Dim maxinto As Double = ms1.Select(Function(x) x.intensity).Quartile.Q3
 
-        For Each mass In ms1.GroupBy(Function(m) m.mz, Tolerance.DeltaMass(0.1))
+        For Each mass As NamedCollection(Of ms1_scan) In ms1.GroupBy(Function(m) m.mz, Tolerance.DeltaMass(0.1))
             Dim ticks = mass _
                 .Where(Function(t) t.intensity >= maxinto) _
                 .OrderBy(Function(t) t.scan_time) _
