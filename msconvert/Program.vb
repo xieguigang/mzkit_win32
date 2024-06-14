@@ -109,8 +109,8 @@ Imports MZWorkPack
             raw = raw.GetDirectoryFullPath
 
             For Each file As String In If(keepsTree,
-                raw.ListFiles("*.raw"),
-                raw.EnumerateFiles("*.raw"))
+                raw.ListFiles("*.raw", "*.mzML", "*.mzXML"),
+                raw.EnumerateFiles("*.raw", "*.mzXML", "*.mzML"))
 
                 export_dir = cache
 
