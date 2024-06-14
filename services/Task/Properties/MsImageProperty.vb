@@ -104,6 +104,14 @@ Public Enum SmoothFilters
     GaussMax
 End Enum
 
+''' <summary>
+''' for avoid set unknown 
+''' </summary>
+Public Enum Polarity As Integer
+    Positive = IonModes.Positive
+    Negative = IonModes.Negative
+End Enum
+
 Public Class MsImageProperty
 
     <Description("The raw data file size.")>
@@ -150,7 +158,7 @@ Public Class MsImageProperty
     <Description("MS instrument tag of current raw data")>
     Public ReadOnly Property instrument As String
     <Description("The m/z ion data polarity mode, this property value will affects the ion metabolite annotation function in MZKit!")>
-    Public Property polarity As IonModes = IonModes.Positive
+    Public Property polarity As Polarity = Polarity.Positive
 
     <Description("Set the background color of the ms-imaging output from this option.")>
     <Category("Render")> Public Property background As Color
@@ -174,6 +182,8 @@ Public Class MsImageProperty
     <Category("Render")> Public Property showPhysicalRuler As Boolean = True
     <Description("Show the overlap of total ion imaging plot in grayscale when do single ion/rgb ion imaging?")>
     <Category("Render")> Public Property showTotalIonOverlap As Boolean = True
+    <Description("Show the overlap of the sample outline plot when do single ion/rgb ion imaging?")>
+    <Category("Render")> Public Property showOutline As Boolean = False
 
     <Description("The mass tolerance error threshold in delta dalton or ppm.")>
     <Category("Pixel M/z Data")> Public Property tolerance As Double = 0.01
