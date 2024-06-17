@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::bf6b4c32eee820a4423f40d9af088ff6, mzkit\services\BioDeep\Web\BioDeepSession.vb"
+﻿#Region "Microsoft.VisualBasic::87d78491616f955614fd1fd155404642, mzkit\services\BioDeep\Web\BioDeepSession.vb"
 
     ' Author:
     ' 
@@ -43,7 +43,7 @@
     '    - Xml Docs: 77.78%
     ' 
     '   Blank Lines: 23 (20.72%)
-    '     File Size: 4.15 KB
+    '     File Size: 4.13 KB
 
 
     ' Class BioDeepSession

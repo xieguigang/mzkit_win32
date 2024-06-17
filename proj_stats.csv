@@ -24,13 +24,14 @@ E:\mzkit\src\mzkit\mzblender\mzblender.vbproj,mzblender\MSIRender\Service.vb,213
 E:\mzkit\src\mzkit\mzblender\mzblender.vbproj,mzblender\My Project\Application.Designer.vb,12,9,1,2,0,0,0,0,0,451,451 B
 E:\mzkit\src\mzkit\mzblender\mzblender.vbproj,<project>,989,110,171,708,12,10,22,34,0,38144,38.14 KB
 E:\mzkit\src\mzkit\services\BioDeep\BioDeep.vbproj,BioDeep\LocalLibrary\RQLib.vb,215,47,36,132,1,0,5,7,0,7582,7.58 KB
-E:\mzkit\src\mzkit\services\BioDeep\BioDeep.vbproj,BioDeep\Web\BioDeepSession.vb,111,9,23,79,1,2,0,6,0,4146,4.15 KB
+E:\mzkit\src\mzkit\services\BioDeep\BioDeep.vbproj,BioDeep\Web\BioDeepSession.vb,111,9,23,79,1,2,0,6,0,4130,4.13 KB
 E:\mzkit\src\mzkit\services\BioDeep\BioDeep.vbproj,BioDeep\Web\MessageParser.vb,28,0,4,24,1,0,0,3,0,880,880 B
 E:\mzkit\src\mzkit\services\BioDeep\BioDeep.vbproj,BioDeep\Web\SessionInfo.vb,15,0,5,10,2,6,0,0,0,325,325 B
+E:\mzkit\src\mzkit\services\BioDeep\BioDeep.vbproj,BioDeep\Web\query.biodeep.cn\Browser.vb,10,0,2,8,1,0,2,0,0,317,317 B
 E:\mzkit\src\mzkit\services\BioDeep\BioDeep.vbproj,BioDeep\Web\query.biodeep.cn\metabolite.vb,47,0,7,40,6,26,0,0,0,1480,1.48 KB
 E:\mzkit\src\mzkit\services\BioDeep\BioDeep.vbproj,BioDeep\Web\query.biodeep.cn\page_data.vb,10,0,3,7,1,3,0,0,0,220,220 B
 E:\mzkit\src\mzkit\services\BioDeep\BioDeep.vbproj,BioDeep\Web\query.biodeep.cn\Query.vb,84,17,14,53,2,15,0,4,0,3247,3.25 KB
-E:\mzkit\src\mzkit\services\BioDeep\BioDeep.vbproj,<project>,510,73,92,345,14,52,5,20,0,17880,17.88 KB
+E:\mzkit\src\mzkit\services\BioDeep\BioDeep.vbproj,<project>,520,73,94,353,15,52,7,20,0,18181,18.18 KB
 E:\mzkit\src\mzkit\services\BlenderHost\BlenderHost.vbproj,BlenderHost\Program.vb,109,1,17,91,1,0,0,3,0,4561,4.56 KB
 E:\mzkit\src\mzkit\services\BlenderHost\BlenderHost.vbproj,<project>,109,1,17,91,1,0,0,3,0,4561,4.56 KB
 E:\mzkit\src\mzkit\services\CFM-ID\CFM-ID.vbproj,CFM-ID\Prediction.vb,125,53,24,48,1,0,1,3,0,6137,6.14 KB
@@ -46,11 +47,11 @@ E:\mzkit\src\mzkit\services\MZWorkRedis\MZWorkRedis.vbproj,MZWorkRedis\RedisScan
 E:\mzkit\src\mzkit\services\MZWorkRedis\MZWorkRedis.vbproj,MZWorkRedis\Services.vb,140,13,29,98,1,2,3,4,0,5130,5.13 KB
 E:\mzkit\src\mzkit\services\MZWorkRedis\MZWorkRedis.vbproj,MZWorkRedis\zzz.vb,3,0,1,2,0,0,0,0,0,67,67 B
 E:\mzkit\src\mzkit\services\MZWorkRedis\MZWorkRedis.vbproj,<project>,262,30,45,187,4,7,3,10,0,9133,9.13 KB
-E:\mzkit\src\mzkit\services\PipelineHost\PipelineHost.vbproj,PipelineHost\BackgroundTask.vb,630,53,98,479,1,0,6,17,0,25946,25.95 KB
+E:\mzkit\src\mzkit\services\PipelineHost\PipelineHost.vbproj,PipelineHost\BackgroundTask.vb,628,52,96,480,1,0,5,18,0,25870,25.87 KB
 E:\mzkit\src\mzkit\services\PipelineHost\PipelineHost.vbproj,PipelineHost\STImaging.vb,123,0,15,108,1,0,1,3,0,4871,4.87 KB
 E:\mzkit\src\mzkit\services\PipelineHost\PipelineHost.vbproj,PipelineHost\Utils.vb,120,13,15,92,1,0,0,3,0,4690,4.69 KB
-E:\mzkit\src\mzkit\services\PipelineHost\PipelineHost.vbproj,PipelineHost\BioDeep\KEGGRepo.vb,217,8,39,170,1,0,0,10,0,8637,8.64 KB
-E:\mzkit\src\mzkit\services\PipelineHost\PipelineHost.vbproj,<project>,1090,74,167,849,4,0,7,33,0,44144,44.14 KB
+E:\mzkit\src\mzkit\services\PipelineHost\PipelineHost.vbproj,PipelineHost\BioDeep\KEGGRepo.vb,217,16,39,162,1,0,0,9,0,8645,8.64 KB
+E:\mzkit\src\mzkit\services\PipelineHost\PipelineHost.vbproj,<project>,1088,81,165,842,4,0,6,33,0,44076,44.08 KB
 E:\mzkit\src\mzkit\services\ServiceHub\ServiceHub.vbproj,ServiceHub\Debugger.vb,39,0,9,30,1,0,1,2,0,1603,1.60 KB
 E:\mzkit\src\mzkit\services\ServiceHub\ServiceHub.vbproj,ServiceHub\HeartBeat.vb,37,0,9,28,1,0,3,0,0,936,936 B
 E:\mzkit\src\mzkit\services\ServiceHub\ServiceHub.vbproj,ServiceHub\Program.vb,98,21,17,60,1,0,2,4,0,3401,3.40 KB
@@ -83,4 +84,4 @@ E:\mzkit\src\mzkit\ux\SingleCellViewer\SingleCellsViewer.vbproj,SingleCellViewer
 E:\mzkit\src\mzkit\ux\SingleCellViewer\SingleCellsViewer.vbproj,SingleCellViewer\SingleCellScatter.vb,229,14,45,170,1,0,11,3,0,8224,8.22 KB
 E:\mzkit\src\mzkit\ux\SingleCellViewer\SingleCellsViewer.vbproj,SingleCellViewer\SingleCellViewerArguments.vb,20,0,5,15,1,5,1,0,0,738,738 B
 E:\mzkit\src\mzkit\ux\SingleCellViewer\SingleCellsViewer.vbproj,<project>,327,31,55,241,3,5,14,3,0,12271,12.27 KB
-../src/mzkit,<root>,14336,1652,2316,10368,164,236,276,430,0,555580,555.58 KB
+../src/mzkit,<root>,14352,1666,2316,10370,166,236,278,430,0,556046,556.05 KB
