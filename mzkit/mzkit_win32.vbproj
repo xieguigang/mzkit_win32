@@ -1623,6 +1623,10 @@
       <Project>{ea7a584c-67f0-4d85-9031-c16887771b1b}</Project>
       <Name>RQL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\Darwinism\src\networking\networking.vbproj">
+      <Project>{1afb24d2-41dd-4a5a-9ac6-dde4c83adc31}</Project>
+      <Name>networking</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\httpd\src\Flute\Flute.NET5.vbproj">
       <Project>{11e35b0b-e524-4aff-929e-3a7a24926e3d}</Project>
       <Name>Flute.NET5</Name>
@@ -1858,10 +1862,6 @@
     <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\vs_solutions\dev\VisualStudio\VisualStudio.NET5.vbproj">
       <Project>{b373a999-9786-42d1-8265-47c2c9d2b2a3}</Project>
       <Name>VisualStudio.NET5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\GCModeller\src\runtime\sciBASIC#\www\Microsoft.VisualBasic.NETProtocol\network-netcore5.vbproj">
-      <Project>{7c84664a-190e-4e09-b33d-59733dbec141}</Project>
-      <Name>network-netcore5</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\GCModeller\src\workbench\modules\ExperimentDesigner\designer-netcore5.vbproj">
       <Project>{e9458c8e-4815-43b7-9961-9a6cd3af135c}</Project>
@@ -2158,7 +2158,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup />
-  <Import Project="..\..\..\..\GCModeller\src\runtime\sciBASIC#\www\Microsoft.VisualBasic.NETProtocol\TcpRequest\TcpRequest.projitems" Label="Shared" />
   <Import Project="..\services\PDF\PDF.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="..\packages\Microsoft.Web.WebView2.1.0.2210.55\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.2210.55\build\Microsoft.Web.WebView2.targets')" />
