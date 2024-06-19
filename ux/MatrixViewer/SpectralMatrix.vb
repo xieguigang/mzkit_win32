@@ -107,12 +107,13 @@ Public Class SpectralMatrix : Inherits DataMatrix
             .ms2 = matrix,
             .parentMz = precursor.mz
         }
+        Dim scale As Double = 1.5
 
         Return PeakAssign.DrawSpectrumPeaks(
             scanData,
             padding:=args.GetPadding.ToString,
             bg:=args.background.ToHtmlColor,
-            size:=$"{args.width},{args.height}",
+            size:=$"{args.width * scale},{args.height * scale}",
             labelIntensity:=If(args.show_tag, 0.25, 100),
             gridFill:=args.gridFill.ToHtmlColor,
             barStroke:=$"stroke: steelblue; stroke-width: {args.line_width}px; stroke-dash: solid;",
