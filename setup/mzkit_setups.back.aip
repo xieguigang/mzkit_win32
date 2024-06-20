@@ -643,12 +643,14 @@
     <ROW Component="Darwinism.HPC.Parallel.dll_3" ComponentId="{62D4F43B-CB98-4F12-85DB-F687A03857A7}" Directory_="blender_Dir" Attributes="256" KeyPath="Darwinism.HPC.Parallel.dll_3"/>
     <ROW Component="Darwinism.HPC.Parallel.dll_4" ComponentId="{1E3DC62D-4E08-4E34-8B19-A4D55982B651}" Directory_="APPDIR" Attributes="256" KeyPath="Darwinism.HPC.Parallel.dll_4"/>
     <ROW Component="Darwinism.HPC.Parallel.pdb" ComponentId="{537D9E8A-494B-4B19-865E-BD9DE0F5D67B}" Directory_="APPDIR" Attributes="0" KeyPath="Darwinism.HPC.Parallel.pdb_1" Type="4"/>
+    <ROW Component="Darwinism.HPC.Parallel.pdb_1" ComponentId="{6B53D661-8936-48F3-AB13-A85F66500079}" Directory_="blender_Dir" Attributes="0" KeyPath="Darwinism.HPC.Parallel.pdb" Type="4"/>
     <ROW Component="Darwinism.IPC.Networking.dll" ComponentId="{073F09A8-E84F-4F07-87C5-F63D3B88BEF9}" Directory_="bin_Dir" Attributes="256" KeyPath="Darwinism.IPC.Networking.dll"/>
     <ROW Component="Darwinism.IPC.Networking.dll_1" ComponentId="{84ABE1A7-9196-4CE6-8299-FBE69E032417}" Directory_="host_Dir" Attributes="256" KeyPath="Darwinism.IPC.Networking.dll_1"/>
     <ROW Component="Darwinism.IPC.Networking.dll_2" ComponentId="{E6A0E8A3-E6BE-46E5-A761-7CC47D51B002}" Directory_="library_Dir" Attributes="256" KeyPath="Darwinism.IPC.Networking.dll_2"/>
     <ROW Component="Darwinism.IPC.Networking.dll_3" ComponentId="{BD7E2BF6-3D97-4D53-89E5-C0E6588ACD7D}" Directory_="blender_Dir" Attributes="256" KeyPath="Darwinism.IPC.Networking.dll_3"/>
     <ROW Component="Darwinism.IPC.Networking.dll_4" ComponentId="{C5ED0BB2-EB9E-4B41-B449-C8B5966C11B3}" Directory_="APPDIR" Attributes="256" KeyPath="Darwinism.IPC.Networking.dll_4"/>
     <ROW Component="Darwinism.IPC.Networking.pdb" ComponentId="{3F1B680C-24DD-4B8A-BC29-D237B81C4E1D}" Directory_="APPDIR" Attributes="0" KeyPath="Darwinism.IPC.Networking.pdb_1" Type="4"/>
+    <ROW Component="Darwinism.IPC.Networking.pdb_1" ComponentId="{0966F80D-1C8E-49FC-9F41-09499332F131}" Directory_="blender_Dir" Attributes="0" KeyPath="Darwinism.IPC.Networking.pdb" Type="4"/>
     <ROW Component="DecoderWorker.js" ComponentId="{5C0036BA-6BBD-4689-ACB6-24BB046E3982}" Directory_="__31_Dir" Attributes="0" KeyPath="DecoderWorker.js" Type="0"/>
     <ROW Component="DevTools" ComponentId="{3BCB9EDB-4D19-44D2-9583-3E021560CCBC}" Directory_="DevTools_Dir" Attributes="0"/>
     <ROW Component="FFTW3Config.cmake" ComponentId="{94DD92B2-FF67-4A88-8FC9-610082F69BE0}" Directory_="fftw3_Dir" Attributes="0" KeyPath="FFTW3lConfigVersion.cmake" Type="0"/>
@@ -1078,6 +1080,7 @@
     <ROW Component="Microsoft.VisualBasic.Imaging.Physics.dll_6" ComponentId="{3D6DD94F-4E79-46D7-AC5F-AC5FC79E9F17}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.Physics.dll_6"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.Physics.pdb" ComponentId="{6BE30C23-C965-4F7A-B407-65B27DD4427D}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Imaging.Physics.pdb" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.dll" ComponentId="{C4C77E41-682E-40B2-83FD-FEAF77AE0818}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.dll"/>
+    <ROW Component="Microsoft.VisualBasic.Imaging.dll.config" ComponentId="{A5BB8A6A-08B0-4C59-BE3F-2237CD70D69B}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Imaging.dll.config_2"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.dll_1" ComponentId="{495B5CF2-E123-4F73-BA62-B73F934866F7}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.dll_2" ComponentId="{3F8042BB-A163-4247-A3B4-FD21128FA591}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.pdb_1" Type="4"/>
     <ROW Component="Microsoft.VisualBasic.Imaging.dll_3" ComponentId="{A243232C-0519-4049-82F1-583E5542E48B}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Imaging.dll_2"/>
@@ -19905,10 +19908,10 @@
     <ROW File="System.Security.Cryptography.ProtectedData.dll_2" Component_="System.Security.Cryptography.ProtectedData.dll_2" FileName="SYSTEM~2.DLL|System.Security.Cryptography.ProtectedData.dll" Attributes="0" SourcePath="..\dist\hdf5\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll" SelfReg="false"/>
     <ROW File="System.Windows.Extensions.dll_2" Component_="System.Windows.Extensions.dll_2" FileName="SYSTEM~3.DLL|System.Windows.Extensions.dll" Attributes="0" SourcePath="..\dist\hdf5\runtimes\win\lib\net6.0\System.Windows.Extensions.dll" SelfReg="false"/>
     <ROW File="Darwinism.HPC.Parallel.dll_3" Component_="Darwinism.HPC.Parallel.dll_3" FileName="DARWIN~1.DLL|Darwinism.HPC.Parallel.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Darwinism.HPC.Parallel.dll" SelfReg="false"/>
-    <ROW File="Darwinism.HPC.Parallel.pdb" Component_="Darwinism.HPC.Parallel.dll_3" FileName="DARWIN~1.PDB|Darwinism.HPC.Parallel.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Darwinism.HPC.Parallel.pdb" SelfReg="false"/>
+    <ROW File="Darwinism.HPC.Parallel.pdb" Component_="Darwinism.HPC.Parallel.pdb_1" FileName="DARWIN~1.PDB|Darwinism.HPC.Parallel.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Darwinism.HPC.Parallel.pdb" SelfReg="false"/>
     <ROW File="Darwinism.IPC.Networking.dll_3" Component_="Darwinism.IPC.Networking.dll_3" FileName="DARWIN~2.DLL|Darwinism.IPC.Networking.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Darwinism.IPC.Networking.dll" SelfReg="false"/>
-    <ROW File="Darwinism.IPC.Networking.pdb" Component_="Darwinism.IPC.Networking.dll_3" FileName="DARWIN~2.PDB|Darwinism.IPC.Networking.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Darwinism.IPC.Networking.pdb" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Imaging.dll.config_2" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="MICRO~12.CON|Microsoft.VisualBasic.Imaging.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Imaging.dll.config" SelfReg="false"/>
+    <ROW File="Darwinism.IPC.Networking.pdb" Component_="Darwinism.IPC.Networking.pdb_1" FileName="DARWIN~2.PDB|Darwinism.IPC.Networking.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Darwinism.IPC.Networking.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Imaging.dll.config_2" Component_="Microsoft.VisualBasic.Imaging.dll.config" FileName="MICRO~12.CON|Microsoft.VisualBasic.Imaging.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Imaging.dll.config" SelfReg="false"/>
     <ROW File="Darwinism.HPC.Parallel.dll_4" Component_="Darwinism.HPC.Parallel.dll_4" FileName="DARWIN~1.DLL|Darwinism.HPC.Parallel.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Darwinism.HPC.Parallel.dll" SelfReg="false"/>
     <ROW File="Darwinism.HPC.Parallel.pdb_1" Component_="Darwinism.HPC.Parallel.pdb" FileName="DARWIN~1.PDB|Darwinism.HPC.Parallel.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Darwinism.HPC.Parallel.pdb" SelfReg="false"/>
     <ROW File="Darwinism.IPC.Networking.dll_4" Component_="Darwinism.IPC.Networking.dll_4" FileName="DARWIN~2.DLL|Darwinism.IPC.Networking.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Darwinism.IPC.Networking.dll" SelfReg="false"/>
@@ -22799,15 +22802,18 @@
     <ROW Feature_="MainFeature" Component_="System.Windows.Extensions.dll_2"/>
     <ROW Feature_="MainFeature" Component_="Darwinism.HPC.Parallel.dll_3"/>
     <ROW Feature_="MainFeature" Component_="Darwinism.IPC.Networking.dll_3"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Imaging.dll.config"/>
     <ROW Feature_="MainFeature" Component_="Darwinism.HPC.Parallel.dll_4"/>
     <ROW Feature_="MainFeature" Component_="Darwinism.IPC.Networking.dll_4"/>
     <ROW Feature_="MainFeature" Component_="LINQ.dll_3"/>
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.SinglesCellViewer.dll"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Darwinism.HPC.Parallel.pdb_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Mzkit_win32.SinglesCellViewer.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Mzkit_win32.SinglesCellViewer.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Darwinism.HPC.Parallel.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Darwinism.IPC.Networking.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="LINQ.pdb"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="Darwinism.IPC.Networking.pdb_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
