@@ -867,7 +867,8 @@
     <ROW Component="LICENSE_9" ComponentId="{8C771712-FE4B-4DA2-9BE4-4B109E5FB977}" Directory_="three.js_Dir" Attributes="0" KeyPath="LICENSE_14" Type="0"/>
     <ROW Component="LINQ.dll" ComponentId="{D8A533E7-FB46-4504-A727-6093965AA16E}" Directory_="host_Dir" Attributes="256" KeyPath="LINQ.dll"/>
     <ROW Component="LINQ.dll_3" ComponentId="{17DB69CE-8E3A-4210-9E5D-147A3867BF51}" Directory_="APPDIR" Attributes="256" KeyPath="LINQ.dll_3"/>
-    <ROW Component="LINQ.dll_4" ComponentId="{C9829E81-30FA-405D-9387-57879D24BDDE}" Directory_="blender_Dir" Attributes="256" KeyPath="LINQ.dll_4"/>
+    <ROW Component="LINQ.dll_4" ComponentId="{C9829E81-30FA-405D-9387-57879D24BDDE}" Directory_="blender_Dir" Attributes="256" KeyPath="LINQ.pdb"/>
+    <ROW Component="LINQ.dll_5" ComponentId="{1239883E-061F-4719-8734-7AB2DDDADA7E}" Directory_="blender_Dir" Attributes="256" KeyPath="LINQ.dll_4"/>
     <ROW Component="LINQ.pdb" ComponentId="{EA13D83E-FD94-4B04-9695-BDF991410F91}" Directory_="APPDIR" Attributes="0" KeyPath="LINQ.pdb_2" Type="4"/>
     <ROW Component="Line2.js" ComponentId="{C6DA877C-2EDF-4251-8EE8-0FDF0A629095}" Directory_="lines_Dir" Attributes="0" KeyPath="Line2.js" Type="0"/>
     <ROW Component="Line2.js_1" ComponentId="{6DDEFF36-7377-4995-8D34-BE9A34880867}" Directory_="lines_1_Dir" Attributes="0" KeyPath="Line2.js_1" Type="0"/>
@@ -19921,7 +19922,7 @@
     <ROW File="Mzkit_win32.SinglesCellViewer.dll" Component_="Mzkit_win32.SinglesCellViewer.dll" FileName="MZKIT~11.DLL|Mzkit_win32.SinglesCellViewer.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.SinglesCellViewer.dll" SelfReg="false"/>
     <ROW File="Mzkit_win32.SinglesCellViewer.pdb" Component_="Mzkit_win32.SinglesCellViewer.pdb" FileName="MZKIT~12.PDB|Mzkit_win32.SinglesCellViewer.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.SinglesCellViewer.pdb" SelfReg="false"/>
     <ROW File="Mzkit_win32.SinglesCellViewer.xml" Component_="Mzkit_win32.SinglesCellViewer.xml" FileName="MZKIT~11.XML|Mzkit_win32.SinglesCellViewer.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.SinglesCellViewer.xml" SelfReg="false"/>
-    <ROW File="LINQ.dll_4" Component_="LINQ.dll_4" FileName="LINQ.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\LINQ.dll" SelfReg="false"/>
+    <ROW File="LINQ.dll_4" Component_="LINQ.dll_5" FileName="LINQ.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\LINQ.dll" SelfReg="false"/>
     <ROW File="LINQ.pdb" Component_="LINQ.dll_4" FileName="LINQ.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\LINQ.pdb" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
@@ -22800,6 +22801,7 @@
     <ROW Feature_="MainFeature" Component_="System.Windows.Extensions.dll_2"/>
     <ROW Feature_="MainFeature" Component_="Darwinism.HPC.Parallel.dll_3"/>
     <ROW Feature_="MainFeature" Component_="Darwinism.IPC.Networking.dll_3"/>
+    <ROW Feature_="MainFeature" Component_="LINQ.dll_5"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Imaging.dll.config"/>
     <ROW Feature_="MainFeature" Component_="Darwinism.HPC.Parallel.dll_4"/>
     <ROW Feature_="MainFeature" Component_="Darwinism.IPC.Networking.dll_4"/>
