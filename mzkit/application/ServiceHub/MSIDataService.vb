@@ -136,6 +136,10 @@ Namespace ServiceHub
         ''' </summary>
         Public Shared debugPort As Integer?
 
+        Public Sub New()
+
+        End Sub
+
         ''' <summary>
         ''' is the data services running on a cloud server?
         ''' </summary>
@@ -193,7 +197,7 @@ Namespace ServiceHub
             Call MyApplication.LogText($"Start background services: {Rscript}")
 
             hostReference = New MSIDataService
-            hostReference.MSI_pipe = Global.ServiceHub.Protocols.StartServer(Rscript, hostReference.MSI_service, Nothing)
+            hostReference.MSI_pipe = Global.ServiceHub.Protocols.StartServer(Rscript, hostReference.MSI_service, debugPort)
 
             ' hook message event handler
             AddHandler hostReference.MSI_pipe.SetMessage, AddressOf hostReference.MSI_pipe_SetMessage

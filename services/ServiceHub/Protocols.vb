@@ -141,12 +141,13 @@ Public Module Protocols
                 .CreateNoWindow = False,
                 .FileName = Protocols.Rscript,
                 .UseShellExecute = True,
-                .WorkingDirectory = workdir
+                .WorkingDirectory = workdir,
+                .RedirectStandardOutput = True
             }}
 
             Call cmdl.Start()
 
-            Return Nothing
+            Return RunSlavePipeline.Bind(cmdl)
         End If
     End Function
 End Module
