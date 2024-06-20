@@ -145,7 +145,8 @@ Public Module Protocols
                 .RedirectStandardOutput = False
             }}
 
-            Call cmdl.Start()
+            service = debugPort
+            cmdl.Start()
 
             Return RunSlavePipeline.Bind(cmdl)
         End If
