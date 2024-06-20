@@ -142,7 +142,7 @@ Public Module Protocols
                 .FileName = Protocols.Rscript,
                 .UseShellExecute = True,
                 .WorkingDirectory = workdir,
-                .RedirectStandardOutput = True
+                .RedirectStandardOutput = False
             }}
 
             Call cmdl.Start()
