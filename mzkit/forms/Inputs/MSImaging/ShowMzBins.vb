@@ -35,7 +35,7 @@ Public Class ShowMzBins
                  Into Average(spot.mz)
         End If
 
-        stat = IonStat.DoStat(New SingleIonLayer With {.IonMz = mz, .MSILayer = layer})
+        stat = SpatialIonStats.DoStat(New SingleIonLayer With {.IonMz = mz, .MSILayer = layer})
     End Sub
 
     Private Shared Function DrawIntensityQuantile(layer As PixelData()) As Image

@@ -1995,6 +1995,10 @@
       <Project>{4c675f81-51c0-4164-8dad-e38b953990a8}</Project>
       <Name>SingleCells</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\mzmath\SpatialMath\SpatialMath.vbproj">
+      <Project>{f9668b6b-e9cf-4ae0-8086-1f360a72b89b}</Project>
+      <Name>SpatialMath</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\mzmath\TargetedMetabolomics\Targetted.NET5.vbproj">
       <Project>{373f637b-cf9f-4179-a4b4-a8a76c3454b3}</Project>
       <Name>Targetted.NET5</Name>
