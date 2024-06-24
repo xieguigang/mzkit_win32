@@ -127,11 +127,16 @@ Imports MZWorkPack
                     cachefile = $"{export_dir}/{prefix}-{file.BaseName}.mzPack"
                 End If
 
-                Call Console.WriteLine(file.BaseName)
-                Call ConvertToMzPack.CreateMzpack(file, cachefile,
-                    saveVer:=ver, mute:=mute,
-                    skipThumbnail:=noSnapshot,
-                    sleepTime:=0)
+                Try
+                    Call Console.WriteLine(file.BaseName)
+                    Call ConvertToMzPack.CreateMzpack(file, cachefile,
+                        saveVer:=ver, mute:=mute,
+                        skipThumbnail:=noSnapshot,
+                        sleepTime:=0)
+                Catch ex As Exception
+                    Call App.LogException(ex)
+                    Call Console.WriteLine($"error while process: {file}")
+                End Try
             Next
         Else
             Call ConvertToMzPack.CreateMzpack(raw, cache,
