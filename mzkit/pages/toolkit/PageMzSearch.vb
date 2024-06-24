@@ -84,7 +84,7 @@ Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports Mzkit_win32.BasicMDIForm
 Imports RibbonLib.Interop
 Imports WeifenLuo.WinFormsUI.Docking
-Imports stdNum = System.Math
+Imports std = System.Math
 
 Public Class PageMzSearch
 
@@ -258,16 +258,26 @@ Public Class PageMzSearch
         DataGridView1.Columns.Add(New DataGridViewTextBoxColumn With {.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells, .ValueType = GetType(String), .HeaderText = "m/z"})
 
         For Each result As FormulaComposition In lstResults
-            DataGridView1.Rows.Add(result.EmpiricalFormula, result.ExactMass, result.ppm, result.charge, stdNum.Abs(result.ExactMass / result.charge))
+            DataGridView1.Rows.Add(result.EmpiricalFormula, result.ExactMass, result.ppm, result.charge, std.Abs(result.ExactMass / result.charge))
         Next
     End Sub
 
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
-        If e.ColumnIndex = Scan0 AndAlso e.RowIndex >= 0 Then
-            Dim formula As String = DataGridView1.Rows(e.RowIndex).Cells(0).Value?.ToString
+        If e.RowIndex >= 0 Then
+            ' 0 - formula column
+            If e.ColumnIndex = Scan0 Then
+                Dim formula As String = DataGridView1.Rows(e.RowIndex).Cells(0).Value?.ToString
 
-            If Not formula.StringEmpty Then
-                Call Browser.SearchFormula(formula)
+                If Not formula.StringEmpty Then
+                    Call Browser.SearchFormula(formula)
+                End If
+            ElseIf e.ColumnIndex = 1 Then
+                ' 1 - exact mass column
+                Dim exact_mass As String = DataGridView1.Rows(e.RowIndex).Cells(1).Value?.ToString
+
+                If (Not exact_mass.StringEmpty) AndAlso Val(exact_mass) > 0 Then
+                    Call Browser.SearchMass(Val(exact_mass))
+                End If
             End If
         End If
     End Sub
