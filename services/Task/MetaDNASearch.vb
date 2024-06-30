@@ -68,6 +68,13 @@ Imports TaskStream
 
 Public Module MetaDNASearch
 
+    ''' <summary>
+    ''' run metadna annotation search
+    ''' </summary>
+    ''' <param name="raw"></param>
+    ''' <param name="println"></param>
+    ''' <param name="output"></param>
+    ''' <param name="infer"></param>
     <Extension>
     Public Sub RunDIA(raw As Raw, println As Action(Of String), ByRef output As MetaDNAResult(), ByRef infer As CandidateInfer())
         Dim cacheRaw As String = raw.cache
@@ -87,7 +94,7 @@ Public Module MetaDNASearch
         Call cli.__DEBUG_ECHO
         Call pipeline.Run()
 
-        output = $"{outputdir}/metaDNA_annotation.csv".LoadCsv(Of MetaDNAResult)
+        output = $"{outputdir}/metaDNA_annotation.csv".LoadCsv(Of MetaDNAResult)(mute:=True)
         infer = $"{outputdir}/infer_network.json".LoadJsonFile(Of CandidateInfer())
     End Sub
 
