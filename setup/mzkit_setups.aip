@@ -531,6 +531,8 @@
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SingleCells.pdb_1" ComponentId="{7095A621-8F9E-47E9-BC4F-EC4E10E7CCB1}" Directory_="blender_Dir" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SingleCells.pdb_1" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SingleCells.xml" ComponentId="{69D09D3C-51BE-44CD-8DB4-D5F5C2A0BDE8}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SingleCells.xml_2"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SingleCells.xml_1" ComponentId="{0590F501-EC8D-4B31-A311-F2AA4920E2C9}" Directory_="blender_Dir" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SingleCells.xml_1"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll" ComponentId="{F77309B8-392B-4CF8-B341-0807D84DB9A7}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll_1" ComponentId="{7C51B667-9A6E-4677-B088-F990560E5C04}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.dll" ComponentId="{2DC234EA-612E-4F17-A888-CFF852876ADF}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.pdb" ComponentId="{03FDD180-7D83-4782-89B6-A60C94C85011}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.pdb" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.xml" ComponentId="{966BBF7B-60E2-4DB5-9ECF-645418E3550E}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.xml"/>
@@ -660,6 +662,14 @@
     <ROW Component="CodeSerializer.js" ComponentId="{D6481A0B-3E5F-41E1-B550-B2A6263FFEF4}" Directory_="utils_Dir" Attributes="0" KeyPath="CodeSerializer.js" Type="0"/>
     <ROW Component="Copyright" ComponentId="{EE7B5337-EB5B-49DF-A0E8-A91FFD127069}" Directory_="libxml2_Dir" Attributes="0" KeyPath="Copyright" Type="0"/>
     <ROW Component="DMLoader.js" ComponentId="{DC018ABE-1C71-48B3-BA55-AEDC17DBE86F}" Directory_="loaders_Dir" Attributes="0" KeyPath="DMLoader.js" Type="0"/>
+    <ROW Component="Darwinism.HPC.Parallel.dll" ComponentId="{246072D9-91C9-4128-A016-70B9CF084335}" Directory_="bin_Dir" Attributes="256" KeyPath="Darwinism.HPC.Parallel.dll"/>
+    <ROW Component="Darwinism.HPC.Parallel.dll_1" ComponentId="{604D2357-9171-4352-B186-DCC5851C2676}" Directory_="host_Dir" Attributes="256" KeyPath="Darwinism.HPC.Parallel.dll_1"/>
+    <ROW Component="Darwinism.HPC.Parallel.dll_2" ComponentId="{2F76576A-E5A9-4D3B-AE77-F760353EAC24}" Directory_="library_Dir" Attributes="256" KeyPath="Darwinism.HPC.Parallel.dll_2"/>
+    <ROW Component="Darwinism.HPC.Parallel.dll_3" ComponentId="{B2764E97-41B2-4B8B-9509-A3411B9B9F79}" Directory_="blender_Dir" Attributes="256" KeyPath="Darwinism.HPC.Parallel.dll_3"/>
+    <ROW Component="Darwinism.IPC.Networking.dll" ComponentId="{C70ABB31-CC6D-4337-A139-AAD026657A56}" Directory_="bin_Dir" Attributes="256" KeyPath="Darwinism.IPC.Networking.dll"/>
+    <ROW Component="Darwinism.IPC.Networking.dll_1" ComponentId="{5348E0CC-2851-4AF2-86E2-8724CB21E40C}" Directory_="host_Dir" Attributes="256" KeyPath="Darwinism.IPC.Networking.dll_1"/>
+    <ROW Component="Darwinism.IPC.Networking.dll_2" ComponentId="{7BF3BB4C-85D8-4723-B024-C06AD4781DD9}" Directory_="library_Dir" Attributes="256" KeyPath="Darwinism.IPC.Networking.dll_2"/>
+    <ROW Component="Darwinism.IPC.Networking.dll_3" ComponentId="{89035865-3867-48CB-815C-056B19F84B48}" Directory_="blender_Dir" Attributes="256" KeyPath="Darwinism.IPC.Networking.dll_3"/>
     <ROW Component="DecoderWorker.js" ComponentId="{FA065625-9B2D-4FCC-B4BE-6C987833F0C7}" Directory_="__31_Dir" Attributes="0" KeyPath="DecoderWorker.js" Type="0"/>
     <ROW Component="DevTools" ComponentId="{3BCB9EDB-4D19-44D2-9583-3E021560CCBC}" Directory_="DevTools_Dir" Attributes="0"/>
     <ROW Component="FFTW3Config.cmake" ComponentId="{2CF0C7B8-FC37-437E-9921-6F06113C17A2}" Directory_="fftw3_Dir" Attributes="0" KeyPath="FFTW3Config.cmake" Type="0"/>
@@ -673,6 +683,8 @@
     <ROW Component="Flute.Http.pdb_1" ComponentId="{8A3EFACE-C3C0-4128-BF7E-5A7180D8E31C}" Directory_="blender_Dir" Attributes="0" KeyPath="Flute.Http.pdb_1" Type="4"/>
     <ROW Component="Flute.Http.xml" ComponentId="{4035364A-48E6-4100-B4AD-C6C9D7D8BEA4}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll.config_4" Type="0"/>
     <ROW Component="Flute.Http.xml_1" ComponentId="{7E544B9E-5CE2-4EC1-ABF6-2B80F6575289}" Directory_="blender_Dir" Attributes="0" KeyPath="Flute.Http.xml_3"/>
+    <ROW Component="Flute.SessionManager.dll" ComponentId="{A9C46DF4-BD60-4E85-A5AA-D864519C0EF7}" Directory_="bin_Dir" Attributes="256" KeyPath="Flute.SessionManager.dll"/>
+    <ROW Component="Flute.SessionManager.dll_1" ComponentId="{43BFD807-8064-41DB-85EC-448CF84009A7}" Directory_="library_Dir" Attributes="256" KeyPath="Flute.SessionManager.dll_1"/>
     <ROW Component="GCModeller.zip" ComponentId="{2A77A528-0E55-492F-B17F-9FDB92BFDFE2}" Directory_="packages_Dir" Attributes="256" KeyPath="GCModeller.zip" Type="0"/>
     <ROW Component="GCxGChost.R" ComponentId="{BECA8D4F-1D92-41E8-B1BF-2F5D52635DBA}" Directory_="services_Dir" Attributes="256" KeyPath="GCxGChost.R" Type="0"/>
     <ROW Component="GLTFLoader.js" ComponentId="{7A088CF8-550B-4750-BA45-3B4817A4BE0F}" Directory_="extra_Dir" Attributes="0" KeyPath="GLTFLoader.js" Type="0"/>
@@ -703,6 +715,9 @@
     <ROW Component="LICENSE_7" ComponentId="{5681C447-3D79-452B-BF6C-7FC733545FFA}" Directory_="spectrum_Dir" Attributes="0" KeyPath="LICENSE_11" Type="0"/>
     <ROW Component="LICENSE_8" ComponentId="{613596D4-2AE9-4893-A00C-564D7CF577A8}" Directory_="stats.js_Dir" Attributes="0" KeyPath="LICENSE_13" Type="0"/>
     <ROW Component="LICENSE_9" ComponentId="{659935A7-CB8C-4E3A-B695-1B7C608D3308}" Directory_="three.js_Dir" Attributes="0" KeyPath="LICENSE_14" Type="0"/>
+    <ROW Component="LINQ.dll" ComponentId="{9AC6C0D8-518F-43CD-A380-AAB5F4883A37}" Directory_="host_Dir" Attributes="256" KeyPath="LINQ.dll"/>
+    <ROW Component="LINQ.dll_1" ComponentId="{70831AC6-B76F-4F52-88D6-BCC0B8903088}" Directory_="blender_Dir" Attributes="256" KeyPath="LINQ.dll_1"/>
+    <ROW Component="LINQ.dll_2" ComponentId="{E34EAAE1-3F5E-453A-96D5-7178A52D4179}" Directory_="plugins_Dir" Attributes="256" KeyPath="LINQ.dll_2"/>
     <ROW Component="Line2.js" ComponentId="{D979049B-5C28-4F16-A6FA-80A88C045895}" Directory_="lines_Dir" Attributes="0" KeyPath="Line2.js" Type="0"/>
     <ROW Component="Line2.js_1" ComponentId="{A1963E66-3A59-479C-ADAC-70A4A9F29C36}" Directory_="lines_1_Dir" Attributes="0" KeyPath="Line2.js_1" Type="0"/>
     <ROW Component="LocalLaplacianFilters.dll" ComponentId="{8AFD3854-6449-4D0F-B43F-69854C9FB745}" Directory_="APPDIR" Attributes="256" KeyPath="LocalLaplacianFilters.dll"/>
@@ -877,6 +892,9 @@
     <ROW Component="Microsoft.VisualBasic.DataMining.UMAP.dll" ComponentId="{FF64D72C-D57C-4D3E-8E00-7A8480C6E177}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.UMAP.dll"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.UMAP.dll_5" ComponentId="{1D5933B5-9480-41C7-8B4A-2914699A4A34}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataMining.UMAP.dll_5"/>
     <ROW Component="Microsoft.VisualBasic.DataMining.UMAP.pdb" ComponentId="{2953902A-CC90-4E93-8016-A1DCDD9E597D}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.DataMining.UMAP.pdb" Type="4"/>
+    <ROW Component="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll" ComponentId="{2FA77D3E-DB75-4701-9EA8-989029FEC6DD}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll"/>
+    <ROW Component="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_1" ComponentId="{99321E7D-0B0F-462F-B5C3-F2D2D330750F}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_1"/>
+    <ROW Component="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_2" ComponentId="{12413DAB-18CB-4AA3-B154-02DF6ACAE532}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_2"/>
     <ROW Component="Microsoft.VisualBasic.DataStorage.HDSPack.dll" ComponentId="{08D083EC-713B-4B5C-AA86-232096F5DDB7}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.HDSPack.dll"/>
     <ROW Component="Microsoft.VisualBasic.DataStorage.HDSPack.dll_1" ComponentId="{9512D2DF-12D4-4C9B-A1EC-A3AB75DC6AA7}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.HDSPack.dll_1"/>
     <ROW Component="Microsoft.VisualBasic.DataStorage.HDSPack.dll_3" ComponentId="{6B74136A-7B33-4EB6-9D96-FD46C96ACF5D}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.DataStorage.HDSPack.dll_3"/>
@@ -1039,13 +1057,7 @@
     <ROW Component="Microsoft.VisualBasic.Math.Statistics.xml" ComponentId="{B18F0871-495D-4389-886C-5D1CFEAF18C7}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Math.Statistics.xml_1"/>
     <ROW Component="Microsoft.VisualBasic.Math.Symbolic.GeneticProgramming.dll" ComponentId="{F8E19C52-C521-4781-8090-FE0FCF415127}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Math.Symbolic.GeneticProgramming.dll"/>
     <ROW Component="Microsoft.VisualBasic.Network.dll" ComponentId="{E7B6290F-FE7E-4D32-B00A-CFAE2FCF202B}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Network.dll"/>
-    <ROW Component="Microsoft.VisualBasic.Network.dll_1" ComponentId="{2699EF41-F593-48FD-ACAD-37243E328CA6}" Directory_="bin_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Network.dll_1"/>
-    <ROW Component="Microsoft.VisualBasic.Network.dll_10" ComponentId="{B6C6F107-CB75-4918-9FD7-62FD4A64BE28}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Network.dll_10"/>
-    <ROW Component="Microsoft.VisualBasic.Network.dll_2" ComponentId="{67890462-C0B3-4A1E-98B7-2C86E3FDD5DB}" Directory_="blender_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Network.dll_2"/>
-    <ROW Component="Microsoft.VisualBasic.Network.dll_3" ComponentId="{5FF5726C-B283-4264-B5C4-03C0BC3708A1}" Directory_="host_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Network.dll_3"/>
     <ROW Component="Microsoft.VisualBasic.Network.pdb" ComponentId="{A9FCD9D5-16E1-4C62-B8C3-A851A6D67BC8}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualBasic.Network.pdb" Type="4"/>
-    <ROW Component="Microsoft.VisualBasic.Network.pdb_1" ComponentId="{6C1735C4-C11A-46D0-9ED1-858BE010DCD2}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Network.pdb_1" Type="4"/>
-    <ROW Component="Microsoft.VisualBasic.Network.xml" ComponentId="{536E3F05-1F45-42E6-AA71-264D6986D71C}" Directory_="blender_Dir" Attributes="0" KeyPath="Microsoft.VisualBasic.Network.xml_1"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.dll" ComponentId="{967988B9-4DBB-4B4D-8AA8-A207F7C4D216}" Directory_="APPDIR" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.dll.config" ComponentId="{A133ABA4-F1D6-4C15-BBC8-8A7139145C07}" Directory_="plugins_Dir" Attributes="0" KeyPath="PkgTool.dll.config" Type="0"/>
     <ROW Component="Microsoft.VisualBasic.Runtime.dll.config_1" ComponentId="{E6326481-61D2-434A-A01C-C36FB3DC6AAF}" Directory_="library_Dir" Attributes="256" KeyPath="Microsoft.VisualBasic.Runtime.dll.config_3"/>
@@ -1110,12 +1122,12 @@
     <ROW Component="Mzkit_win32.Interaction.dll_1" ComponentId="{EBB125FA-49CC-464A-BE4A-B3DEA91F84FF}" Directory_="blender_Dir" Attributes="256" KeyPath="Mzkit_win32.Interaction.dll_1"/>
     <ROW Component="Mzkit_win32.Interaction.pdb" ComponentId="{E64F4EF7-1789-4EAC-8827-3C0B780C5288}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.Interaction.pdb" Type="4"/>
     <ROW Component="Mzkit_win32.Interaction.pdb_1" ComponentId="{C25208E8-CE90-4ECC-A25C-8B94F6502CBD}" Directory_="blender_Dir" Attributes="0" KeyPath="Mzkit_win32.Interaction.pdb_1" Type="4"/>
-    <ROW Component="Mzkit_win32.Interaction.resources.dll" ComponentId="{3035B09F-2371-402C-9D04-D341E03835AB}" Directory_="enUS_Dir" Attributes="256" KeyPath="Mzkit_win32.Interaction.resources.dll"/>
-    <ROW Component="Mzkit_win32.Interaction.resources.dll_1" ComponentId="{7FF290C8-A166-47BC-B831-B31802DC747D}" Directory_="zhCN_Dir" Attributes="256" KeyPath="Mzkit_win32.Interaction.resources.dll_1"/>
     <ROW Component="Mzkit_win32.Interaction.xml" ComponentId="{E063B483-CB19-4D55-B5BD-BD666DAF6311}" Directory_="blender_Dir" Attributes="0" KeyPath="Mzkit_win32.Interaction.xml_1"/>
     <ROW Component="Mzkit_win32.LCMSViewer.dll" ComponentId="{A4C3B514-7823-419B-A68C-0B933FBC41EA}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.LCMSViewer.pdb" Type="4"/>
     <ROW Component="Mzkit_win32.LCMSViewer.dll.config" ComponentId="{D717C4D2-7733-43D3-ACD2-2FE5B88E4AED}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.LCMSViewer.dll.config"/>
     <ROW Component="Mzkit_win32.LCMSViewer.dll_1" ComponentId="{8F3BE771-5359-457E-B5AD-B1F64DA80AB6}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.LCMSViewer.dll"/>
+    <ROW Component="Mzkit_win32.LCMSViewer.resources.dll" ComponentId="{8A620244-B25B-4510-AE35-4326DA5B8200}" Directory_="zhCN_Dir" Attributes="256" KeyPath="Mzkit_win32.LCMSViewer.resources.dll"/>
+    <ROW Component="Mzkit_win32.LCMSViewer.resources.dll_1" ComponentId="{EE887733-832F-4A9A-A73B-4FB12317CD01}" Directory_="enUS_Dir" Attributes="256" KeyPath="Mzkit_win32.LCMSViewer.resources.dll_1"/>
     <ROW Component="Mzkit_win32.MSImagingViewerV2.dll" ComponentId="{97B8F2A2-5753-454D-B986-A059D567878D}" Directory_="APPDIR" Attributes="256" KeyPath="Mzkit_win32.MSImagingViewerV2.dll"/>
     <ROW Component="Mzkit_win32.MSImagingViewerV2.pdb" ComponentId="{C522C59A-AE85-4113-AE5B-BEA7C0D72739}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.MSImagingViewerV2.pdb" Type="4"/>
     <ROW Component="Mzkit_win32.MSImagingViewerV2.resources.dll" ComponentId="{CEE28641-2E31-43F7-8D23-780412E79094}" Directory_="zhCN_Dir" Attributes="256" KeyPath="Mzkit_win32.MSImagingViewerV2.resources.dll"/>
@@ -1140,9 +1152,6 @@
     <ROW Component="Mzkit_win32.TaskStream.pdb" ComponentId="{5732428B-216F-4419-A4B1-4C4AA03A5A6B}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.TaskStream.pdb" Type="4"/>
     <ROW Component="Mzkit_win32.TaskStream.pdb_1" ComponentId="{62D246FD-6DF3-48BF-B9B1-EAE9EC9FA596}" Directory_="blender_Dir" Attributes="0" KeyPath="Mzkit_win32.TaskStream.pdb_1" Type="4"/>
     <ROW Component="Mzkit_win32.TaskStream.xml" ComponentId="{5BDD585E-8EBB-4820-B4F2-424DF8674A0C}" Directory_="blender_Dir" Attributes="0" KeyPath="Mzkit_win32.TaskStream.xml_1"/>
-    <ROW Component="Newtonsoft.Json.dll" ComponentId="{5DA776EE-760B-4639-8989-BD5C4883EF80}" Directory_="bin_Dir" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
-    <ROW Component="Newtonsoft.Json.dll_1" ComponentId="{55136570-6B18-4201-95B7-1B84E6D2BE56}" Directory_="host_Dir" Attributes="0" KeyPath="Newtonsoft.Json.dll_1"/>
-    <ROW Component="Newtonsoft.Json.dll_2" ComponentId="{97985656-7E59-4697-8E10-C19FC10F0FBE}" Directory_="library_Dir" Attributes="0" KeyPath="Newtonsoft.Json.dll_2"/>
     <ROW Component="OBJLoader2JsmWorker.js" ComponentId="{C1103420-EAC2-484A-A5DD-5C976CC2BEBB}" Directory_="parallel_Dir" Attributes="0" KeyPath="OBJLoader2JsmWorker.js" Type="0"/>
     <ROW Component="OBJLoader2Parser.js" ComponentId="{41612D7A-70F4-481D-9F99-2F1285CFA788}" Directory_="obj2_Dir" Attributes="0" KeyPath="OBJLoader2Parser.js" Type="0"/>
     <ROW Component="OPLSDA.R" ComponentId="{FAD560FF-1144-4C6F-AC51-18FFFBA8E792}" Directory_="workbench_Dir" Attributes="0" KeyPath="OPLSDA.R" Type="0"/>
@@ -1151,13 +1160,7 @@
     <ROW Component="OpenSlide.CLR.Interop.dll_1" ComponentId="{F9432FFB-D01D-415D-ADB2-393EAB8074AA}" Directory_="dzitools_Dir" Attributes="256" KeyPath="OpenSlide.CLR.Interop.dll"/>
     <ROW Component="PUBLICDOMAIN.txt" ComponentId="{E9558156-10C7-4966-9224-251841E50095}" Directory_="SQLite_Dir" Attributes="0" KeyPath="PUBLICDOMAIN.txt" Type="0"/>
     <ROW Component="Parallel.dll" ComponentId="{825C390A-5E2B-4B80-987C-C6A8D79EA9BF}" Directory_="APPDIR" Attributes="256" KeyPath="Parallel.dll"/>
-    <ROW Component="Parallel.dll_1" ComponentId="{3FE33655-CC52-499A-A95C-5E214C9F788C}" Directory_="bin_Dir" Attributes="256" KeyPath="Parallel.dll_1"/>
-    <ROW Component="Parallel.dll_2" ComponentId="{ACE6ED6E-E9AD-46A0-B09A-169C1D31AC8D}" Directory_="host_Dir" Attributes="256" KeyPath="Parallel.dll_2"/>
-    <ROW Component="Parallel.dll_3" ComponentId="{CC445B71-86FC-4DE5-A3B3-3409C88E508F}" Directory_="blender_Dir" Attributes="256" KeyPath="Parallel.dll_3"/>
-    <ROW Component="Parallel.dll_5" ComponentId="{3916ADE2-2A32-4BAE-B730-84EBCAB773EA}" Directory_="library_Dir" Attributes="256" KeyPath="Parallel.dll_5"/>
     <ROW Component="Parallel.pdb" ComponentId="{AD95993A-6EB8-4AE6-A811-EAE6489E9EA8}" Directory_="APPDIR" Attributes="0" KeyPath="Parallel.pdb" Type="4"/>
-    <ROW Component="Parallel.pdb_1" ComponentId="{85258A85-5686-4494-A5ED-E2889FDBFFFB}" Directory_="blender_Dir" Attributes="0" KeyPath="Parallel.pdb_1" Type="4"/>
-    <ROW Component="Parallel.xml" ComponentId="{C0CAE5E0-E85E-44B0-A962-20A33A17B0A6}" Directory_="blender_Dir" Attributes="0" KeyPath="Parallel.xml_1"/>
     <ROW Component="ParseBuffer.js" ComponentId="{10F47073-DC37-4CF8-9EF1-30F9092E2DAD}" Directory_="ept_Dir" Attributes="0" KeyPath="ParseBuffer.js" Type="0"/>
     <ROW Component="PipelineHost.dll" ComponentId="{C6AEE233-38F4-4AC3-8F59-25714596C997}" Directory_="APPDIR" Attributes="256" KeyPath="PipelineHost.dll"/>
     <ROW Component="PipelineHost.dll_1" ComponentId="{785A238A-FB35-4A1E-B8FE-0A6DF30F6C52}" Directory_="host_Dir" Attributes="256" KeyPath="PipelineHost.dll_1"/>
@@ -1837,7 +1840,6 @@
     <ROW File="Clearcore2.StructuredStorage.dll" Component_="Clearcore2.StructuredStorage.dll" FileName="CLEAR~13.DLL|Clearcore2.StructuredStorage.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Clearcore2.StructuredStorage.dll" SelfReg="false"/>
     <ROW File="Clearcore2.Utility.dll" Component_="Clearcore2.Utility.dll" FileName="CLEAR~14.DLL|Clearcore2.Utility.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Clearcore2.Utility.dll" SelfReg="false"/>
     <ROW File="Clearcore2.XmlHelpers.dll" Component_="Clearcore2.XmlHelpers.dll" FileName="CLEAR~15.DLL|Clearcore2.XmlHelpers.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Clearcore2.XmlHelpers.dll" SelfReg="false"/>
-    <ROW File="Mzkit_win32.Interaction.resources.dll" Component_="Mzkit_win32.Interaction.resources.dll" FileName="MZKIT_~1.DLL|Mzkit_win32.Interaction.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\en-US\Mzkit_win32.Interaction.resources.dll" SelfReg="false"/>
     <ROW File="mzkit_win32.resources.dll" Component_="mzkit_win32.resources.dll" FileName="MZKIT_~2.DLL|mzkit_win32.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\en-US\mzkit_win32.resources.dll" SelfReg="false"/>
     <ROW File="Flute.Http.dll" Component_="Flute.Http.dll" FileName="FLUTEH~1.DLL|Flute.Http.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Flute.Http.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.dl" Component_="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.dll" FileName="MICROS~1.DLL|Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.dll" SelfReg="false"/>
@@ -1919,7 +1921,6 @@
     <ROW File="REnv.dll.config_3" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="RENVDL~1.CON|REnv.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\REnv.dll.config" SelfReg="false"/>
     <ROW File="Flute.Http.dll_1" Component_="Flute.Http.dll_1" FileName="FLUTEH~1.DLL|Flute.Http.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Flute.Http.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MIME.application.json.dll_1" Component_="Microsoft.VisualBasic.MIME.application.json.dll_1" FileName="MICROS~1.DLL|Microsoft.VisualBasic.MIME.application.json.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Microsoft.VisualBasic.MIME.application.json.dll" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Network.dll_1" Component_="Microsoft.VisualBasic.Network.dll_1" FileName="MICROS~2.DLL|Microsoft.VisualBasic.Network.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Microsoft.VisualBasic.Network.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Runtime.dll_4" Component_="Microsoft.VisualBasic.Runtime.dll_4" FileName="MICROS~3.DLL|Microsoft.VisualBasic.Runtime.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Microsoft.VisualBasic.Runtime.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Runtime.dll.config_4" Component_="Flute.Http.xml" FileName="MICROS~1.CON|Microsoft.VisualBasic.Runtime.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Microsoft.VisualBasic.Runtime.dll.config" SelfReg="false"/>
     <ROW File="Microsoft.Win32.SystemEvents.dll_4" Component_="Microsoft.Win32.SystemEvents.dll_4" FileName="MICROS~4.DLL|Microsoft.Win32.SystemEvents.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Microsoft.Win32.SystemEvents.dll" SelfReg="false"/>
@@ -1981,7 +1982,6 @@
     <ROW File="ThermoFisher.CommonCore.RawFileReader.dll" Component_="ThermoFisher.CommonCore.RawFileReader.dll" FileName="THERMO~4.DLL|ThermoFisher.CommonCore.RawFileReader.dll" Attributes="0" SourcePath="..\..\..\dist\bin\ThermoFisher.CommonCore.RawFileReader.dll" SelfReg="false"/>
     <ROW File="WkHtmlToPdf.CLI.InteropService.dll" Component_="WkHtmlToPdf.CLI.InteropService.dll" FileName="WKHTML~1.DLL|WkHtmlToPdf.CLI.InteropService.dll" Attributes="0" SourcePath="..\..\..\dist\bin\WkHtmlToPdf.CLI.InteropService.dll" SelfReg="false"/>
     <ROW File="WkHtmlToPdf.CLI.InteropService.dll.config" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml" FileName="WKHTML~1.CON|WkHtmlToPdf.CLI.InteropService.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\WkHtmlToPdf.CLI.InteropService.dll.config" SelfReg="false"/>
-    <ROW File="Mzkit_win32.Interaction.resources.dll_1" Component_="Mzkit_win32.Interaction.resources.dll_1" FileName="MZKIT_~1.DLL|Mzkit_win32.Interaction.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\zh-CN\Mzkit_win32.Interaction.resources.dll" SelfReg="false"/>
     <ROW File="mzkit_win32.resources.dll_1" Component_="mzkit_win32.resources.dll_1" FileName="MZKIT_~2.DLL|mzkit_win32.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\zh-CN\mzkit_win32.resources.dll" SelfReg="false"/>
     <ROW File="README.txt" Component_="README.txt" FileName="README.txt" Attributes="0" SourcePath="README.txt" SelfReg="false"/>
     <ROW File="wkhtmltopdf.exe" Component_="wkhtmltopdf.exe" FileName="WKHTML~1.EXE|wkhtmltopdf.exe" Attributes="0" SourcePath="..\dist\wkhtmltopdf.exe" SelfReg="false" DigSign="true"/>
@@ -2044,7 +2044,6 @@
     <ROW File="Microsoft.VisualBasic.Math.SignalProcessing.dll_2" Component_="Microsoft.VisualBasic.Math.SignalProcessing.dll_2" FileName="MICRO~11.DLL|Microsoft.VisualBasic.Math.SignalProcessing.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Math.SignalProcessing.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MIME.application.json.dll_2" Component_="Microsoft.VisualBasic.MIME.application.json.dll_2" FileName="MICRO~12.DLL|Microsoft.VisualBasic.MIME.application.json.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.MIME.application.json.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MIME.Html.dll_1" Component_="Microsoft.VisualBasic.MIME.Html.dll_1" FileName="MICRO~13.DLL|Microsoft.VisualBasic.MIME.Html.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.MIME.Html.dll" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Network.dll_3" Component_="Microsoft.VisualBasic.Network.dll_3" FileName="MICRO~14.DLL|Microsoft.VisualBasic.Network.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Network.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Runtime.dll_1" Component_="Microsoft.VisualBasic.Runtime.dll_1" FileName="MICRO~15.DLL|Microsoft.VisualBasic.Runtime.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Runtime.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Runtime.dll.config_1" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICROS~2.CON|Microsoft.VisualBasic.Runtime.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Runtime.dll.config" SelfReg="false"/>
     <ROW File="REnv.dll" Component_="REnv.dll" FileName="REnv.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\REnv.dll" SelfReg="false"/>
@@ -2188,7 +2187,6 @@
     <ROW File="Microsoft.VisualBasic.MIME.Html.dll_7" Component_="Microsoft.VisualBasic.MIME.Html.dll_7" FileName="MICRO~46.DLL|Microsoft.VisualBasic.MIME.Html.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.MIME.Html.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MIME.Office.Excel.dll_5" Component_="Microsoft.VisualBasic.MIME.Office.Excel.dll_5" FileName="MICRO~47.DLL|Microsoft.VisualBasic.MIME.Office.Excel.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.MIME.Office.Excel.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MIME.text.markdown.dll_6" Component_="Microsoft.VisualBasic.MIME.text.markdown.dll_6" FileName="MICRO~48.DLL|Microsoft.VisualBasic.MIME.text.markdown.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.MIME.text.markdown.dll" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Network.dll_10" Component_="Microsoft.VisualBasic.Network.dll_10" FileName="MICRO~49.DLL|Microsoft.VisualBasic.Network.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Network.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Runtime.dll_12" Component_="Microsoft.VisualBasic.Runtime.dll_12" FileName="MICRO~50.DLL|Microsoft.VisualBasic.Runtime.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Runtime.dll" SelfReg="false"/>
     <ROW File="MLkit.deps.json" Component_="base.deps.json" FileName="MLKITD~1.JSO|MLkit.deps.json" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\MLkit.deps.json" SelfReg="false"/>
     <ROW File="MLkit.dll" Component_="MLkit.dll" FileName="MLkit.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\MLkit.dll" SelfReg="false"/>
@@ -2196,7 +2194,6 @@
     <ROW File="njl.dll" Component_="njl.dll" FileName="njl.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\njl.dll" SelfReg="false"/>
     <ROW File="npy.deps.json" Component_="base.deps.json" FileName="NPYDEP~1.JSO|npy.deps.json" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\npy.deps.json" SelfReg="false"/>
     <ROW File="npy.dll" Component_="npy.dll" FileName="npy.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\npy.dll" SelfReg="false"/>
-    <ROW File="Parallel.dll_5" Component_="Parallel.dll_5" FileName="Parallel.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Parallel.dll" SelfReg="false"/>
     <ROW File="RData.dll_5" Component_="RData.dll_5" FileName="RData.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\RData.dll" SelfReg="false"/>
     <ROW File="REnv.dll_12" Component_="REnv.dll_12" FileName="REnv.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\REnv.dll" SelfReg="false"/>
     <ROW File="Rlapack.deps.json" Component_="base.deps.json" FileName="RLAPAC~1.JSO|Rlapack.deps.json" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Rlapack.deps.json" SelfReg="false"/>
@@ -3140,9 +3137,7 @@
     <ROW File="_1.jpg_142" Component_="_0.jpg_28" FileName="1_1.jpg" Attributes="0" SourcePath="..\extdata\deep_zoom_image\Ultivue-IA-Main_waifu2x_art_scale_files\9\1_1.jpg" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Data.BinaryData.dll_1" Component_="Microsoft.VisualBasic.Data.BinaryData.dll_1" FileName="MICROS~6.DLL|Microsoft.VisualBasic.Data.BinaryData.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Microsoft.VisualBasic.Data.BinaryData.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Data.IO.MessagePack.dll_1" Component_="Microsoft.VisualBasic.Data.IO.MessagePack.dll_1" FileName="MICROS~7.DLL|Microsoft.VisualBasic.Data.IO.MessagePack.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Microsoft.VisualBasic.Data.IO.MessagePack.dll" SelfReg="false"/>
-    <ROW File="Parallel.dll_1" Component_="Parallel.dll_1" FileName="Parallel.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Parallel.dll" SelfReg="false"/>
     <ROW File="System.Numerics.Tensors.dll" Component_="System.Numerics.Tensors.dll" FileName="SYSTE~12.DLL|System.Numerics.Tensors.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\System.Numerics.Tensors.dll" SelfReg="false"/>
-    <ROW File="Parallel.dll_2" Component_="Parallel.dll_2" FileName="Parallel.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Parallel.dll" SelfReg="false"/>
     <ROW File="Mzkit_win32.MSImagingViewerV2.resources.dll" Component_="Mzkit_win32.MSImagingViewerV2.resources.dll" FileName="MZKIT_~4.DLL|Mzkit_win32.MSImagingViewerV2.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\zh-CN\Mzkit_win32.MSImagingViewerV2.resources.dll" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.NMRFidTool.dll" Component_="BioNovoGene.Analytical.NMRFidTool.dll" FileName="BIONO~31.DLL|BioNovoGene.Analytical.NMRFidTool.dll" Attributes="0" SourcePath="..\..\..\dist\bin\BioNovoGene.Analytical.NMRFidTool.dll" SelfReg="false"/>
     <ROW File="dmaldi.html" Component_="logo.png" FileName="3D-MAL~1.HTM|3d-maldi.html" Attributes="0" SourcePath="..\webview\3d-maldi.html" SelfReg="false"/>
@@ -3205,12 +3200,9 @@
     <ROW File="Mzkit_win32.MSImagingViewerV2.resources.dll_2" Component_="Mzkit_win32.MSImagingViewerV2.resources.dll_2" FileName="MZKIT_~3.DLL|Mzkit_win32.MSImagingViewerV2.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\zh-Hans\Mzkit_win32.MSImagingViewerV2.resources.dll" SelfReg="false"/>
     <ROW File="Mzkit_win32.MSImagingViewerV2.resources.dll_3" Component_="Mzkit_win32.MSImagingViewerV2.resources.dll_3" FileName="MZKIT_~1.DLL|Mzkit_win32.MSImagingViewerV2.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\fr\Mzkit_win32.MSImagingViewerV2.resources.dll" SelfReg="false"/>
     <ROW File="Mzkit_win32.MSImagingViewerV2.resources.dll_4" Component_="Mzkit_win32.MSImagingViewerV2.resources.dll_4" FileName="MZKIT_~1.DLL|Mzkit_win32.MSImagingViewerV2.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\ru-RU\Mzkit_win32.MSImagingViewerV2.resources.dll" SelfReg="false"/>
-    <ROW File="Newtonsoft.Json.dll" Component_="Newtonsoft.Json.dll" FileName="NEWTON~1.DLL|Newtonsoft.Json.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Newtonsoft.Json.dll" SelfReg="false"/>
     <ROW File="BioNovoGene.Analytical.MassSpectrometry.Math.TargetedMetabolomics.d_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Math.TargetedMetabolomics.dll_1" FileName="BIONO~17.DLL|BioNovoGene.Analytical.MassSpectrometry.Math.TargetedMetabolomics.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.Math.TargetedMetabolomics.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Data.Bootstrapping.Fittings.dll_1" Component_="Microsoft.VisualBasic.Data.Bootstrapping.Fittings.dll_1" FileName="MICRO~32.DLL|Microsoft.VisualBasic.Data.Bootstrapping.Fittings.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Data.Bootstrapping.Fittings.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Math.ODEsSolver.dll_1" Component_="Microsoft.VisualBasic.Math.ODEsSolver.dll_1" FileName="MICRO~33.DLL|Microsoft.VisualBasic.Math.ODEsSolver.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Math.ODEsSolver.dll" SelfReg="false"/>
-    <ROW File="Newtonsoft.Json.dll_1" Component_="Newtonsoft.Json.dll_1" FileName="NEWTON~1.DLL|Newtonsoft.Json.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Newtonsoft.Json.dll" SelfReg="false"/>
-    <ROW File="Newtonsoft.Json.dll_2" Component_="Newtonsoft.Json.dll_2" FileName="NEWTON~1.DLL|Newtonsoft.Json.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Newtonsoft.Json.dll" SelfReg="false"/>
     <ROW File="convert_h5ad_st_to_mzpack.R" Component_="convert_h5ad_st_to_mzpack.R" FileName="CONVER~1.R|convert_h5ad_st_to_mzpack.R" Attributes="0" SourcePath="..\rstudio\pipeline\10x_genomics\convert_h5ad_st_to_mzpack.R" SelfReg="false"/>
     <ROW File="linearReport.R" Component_="buildMSIIndex.R" FileName="LINEAR~1.R|linearReport.R" Attributes="0" SourcePath="..\rstudio\pipeline\linearReport.R" SelfReg="false"/>
     <ROW File="System.Configuration.ConfigurationManager.dll_1" Component_="System.Configuration.ConfigurationManager.dll_1" FileName="SYSTE~21.DLL|System.Configuration.ConfigurationManager.dll" Attributes="0" SourcePath="..\..\..\dist\bin\System.Configuration.ConfigurationManager.dll" SelfReg="false"/>
@@ -3559,8 +3551,6 @@
     <ROW File="mzblender.pdb_1" Component_="mzblender.pdb_1" FileName="MZBLEN~1.PDB|mzblender.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\mzblender.pdb" SelfReg="false"/>
     <ROW File="MZWorkRedis.dll_2" Component_="MZWorkRedis.dll_2" FileName="MZWORK~1.DLL|MZWorkRedis.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\MZWorkRedis.dll" SelfReg="false"/>
     <ROW File="MZWorkRedis.pdb_1" Component_="MZWorkRedis.pdb" FileName="MZWORK~1.PDB|MZWorkRedis.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\MZWorkRedis.pdb" SelfReg="false"/>
-    <ROW File="Parallel.dll_3" Component_="Parallel.dll_3" FileName="Parallel.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Parallel.dll" SelfReg="false"/>
-    <ROW File="Parallel.pdb_1" Component_="Parallel.pdb_1" FileName="Parallel.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Parallel.pdb" SelfReg="false"/>
     <ROW File="PipelineHost.dll_2" Component_="PipelineHost.dll_2" FileName="PIPELI~1.DLL|PipelineHost.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\PipelineHost.dll" SelfReg="false"/>
     <ROW File="PipelineHost.pdb_1" Component_="PipelineHost.pdb_1" FileName="PIPELI~1.PDB|PipelineHost.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\PipelineHost.pdb" SelfReg="false"/>
     <ROW File="STImaging.dll_2" Component_="STImaging.dll_2" FileName="STIMAG~1.DLL|STImaging.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\STImaging.dll" SelfReg="false"/>
@@ -13930,9 +13920,6 @@
     <ROW File="Microsoft.VisualBasic.MIME.Html.dll_2" Component_="Microsoft.VisualBasic.MIME.Html.dll_2" FileName="MICRO~27.DLL|Microsoft.VisualBasic.MIME.Html.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.MIME.Html.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MIME.Html.pdb_1" Component_="Microsoft.VisualBasic.MIME.Html.pdb_1" FileName="MICRO~27.PDB|Microsoft.VisualBasic.MIME.Html.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.MIME.Html.pdb" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MIME.Html.xml_1" Component_="Microsoft.VisualBasic.MIME.Html.xml" FileName="MICRO~23.XML|Microsoft.VisualBasic.MIME.Html.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.MIME.Html.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Network.dll_2" Component_="Microsoft.VisualBasic.Network.dll_2" FileName="MICRO~28.DLL|Microsoft.VisualBasic.Network.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Network.dll" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Network.pdb_1" Component_="Microsoft.VisualBasic.Network.pdb_1" FileName="MICRO~28.PDB|Microsoft.VisualBasic.Network.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Network.pdb" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Network.xml_1" Component_="Microsoft.VisualBasic.Network.xml" FileName="MICRO~24.XML|Microsoft.VisualBasic.Network.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Network.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Runtime.dll_3" Component_="Microsoft.VisualBasic.Runtime.dll_3" FileName="MICRO~29.DLL|Microsoft.VisualBasic.Runtime.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Runtime.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Runtime.dll.config_5" Component_="BioDeep.dll.config" FileName="MICROS~4.CON|Microsoft.VisualBasic.Runtime.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Runtime.dll.config" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Runtime.pdb_2" Component_="Microsoft.VisualBasic.Runtime.pdb_2" FileName="MICRO~29.PDB|Microsoft.VisualBasic.Runtime.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Runtime.pdb" SelfReg="false"/>
@@ -13963,7 +13950,6 @@
     <ROW File="Mzkit_win32.TaskStream.dll_1" Component_="Mzkit_win32.TaskStream.dll_1" FileName="MZKIT_~5.DLL|Mzkit_win32.TaskStream.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Mzkit_win32.TaskStream.dll" SelfReg="false"/>
     <ROW File="Mzkit_win32.TaskStream.pdb_1" Component_="Mzkit_win32.TaskStream.pdb_1" FileName="MZKIT_~5.PDB|Mzkit_win32.TaskStream.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Mzkit_win32.TaskStream.pdb" SelfReg="false"/>
     <ROW File="Mzkit_win32.TaskStream.xml_1" Component_="Mzkit_win32.TaskStream.xml" FileName="MZKIT_~4.XML|Mzkit_win32.TaskStream.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Mzkit_win32.TaskStream.xml" SelfReg="false"/>
-    <ROW File="Parallel.xml_1" Component_="Parallel.xml" FileName="Parallel.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Parallel.xml" SelfReg="false"/>
     <ROW File="REnv.dll_1" Component_="REnv.dll_1" FileName="REnv.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\REnv.dll" SelfReg="false"/>
     <ROW File="REnv.dll.config_1" Component_="BioDeep.dll.config" FileName="RENVDL~1.CON|REnv.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\REnv.dll.config" SelfReg="false"/>
     <ROW File="REnv.pdb_1" Component_="REnv.pdb_1" FileName="REnv.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\REnv.pdb" SelfReg="false"/>
@@ -15612,9 +15598,7 @@
     <ROW File="Microsoft.VisualBasic.Data.Framework.xml_2" Component_="Flute.Http.xml" FileName="MICROS~2.XML|Microsoft.VisualBasic.Data.Framework.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Microsoft.VisualBasic.Data.Framework.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Data.IO.MessagePack.xml_3" Component_="Flute.Http.xml" FileName="MICROS~3.XML|Microsoft.VisualBasic.Data.IO.MessagePack.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Microsoft.VisualBasic.Data.IO.MessagePack.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MIME.application.json.xml_2" Component_="Flute.Http.xml" FileName="MICROS~4.XML|Microsoft.VisualBasic.MIME.application.json.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Microsoft.VisualBasic.MIME.application.json.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Network.xml_2" Component_="Flute.Http.xml" FileName="MICROS~5.XML|Microsoft.VisualBasic.Network.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Microsoft.VisualBasic.Network.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Runtime.xml_2" Component_="Flute.Http.xml" FileName="MICROS~6.XML|Microsoft.VisualBasic.Runtime.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Microsoft.VisualBasic.Runtime.xml" SelfReg="false"/>
-    <ROW File="Parallel.xml_2" Component_="Flute.Http.xml" FileName="Parallel.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Parallel.xml" SelfReg="false"/>
     <ROW File="R.xml" Component_="Flute.Http.xml" FileName="R#.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\R#.xml" SelfReg="false"/>
     <ROW File="REnv.xml_2" Component_="Flute.Http.xml" FileName="REnv.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\REnv.xml" SelfReg="false"/>
     <ROW File="Rscript.xml" Component_="Flute.Http.xml" FileName="Rscript.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Rscript.xml" SelfReg="false"/>
@@ -15659,10 +15643,8 @@
     <ROW File="Microsoft.VisualBasic.MIME.application.rdf_xml.xml_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~23.XML|Microsoft.VisualBasic.MIME.application.rdf_xml.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.MIME.application.rdf_xml.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MIME.application.xml.xml_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~24.XML|Microsoft.VisualBasic.MIME.application.xml.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.MIME.application.xml.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.MIME.Html.xml_2" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~25.XML|Microsoft.VisualBasic.MIME.Html.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.MIME.Html.xml" SelfReg="false"/>
-    <ROW File="Microsoft.VisualBasic.Network.xml_3" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~26.XML|Microsoft.VisualBasic.Network.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Network.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Runtime.xml_4" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~27.XML|Microsoft.VisualBasic.Runtime.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Runtime.xml" SelfReg="false"/>
     <ROW File="Mzkit_win32.MZWork.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MZKIT_~1.XML|Mzkit_win32.MZWork.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Mzkit_win32.MZWork.xml" SelfReg="false"/>
-    <ROW File="Parallel.xml_3" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="Parallel.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Parallel.xml" SelfReg="false"/>
     <ROW File="PipelineHost.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="PIPELI~1.XML|PipelineHost.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\PipelineHost.xml" SelfReg="false"/>
     <ROW File="REnv.xml_3" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="REnv.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\REnv.xml" SelfReg="false"/>
     <ROW File="ServiceHub.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="SERVIC~1.XML|ServiceHub.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\ServiceHub.xml" SelfReg="false"/>
@@ -18573,6 +18555,44 @@
     <ROW File="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb_1" FileName="SMRUC~13.PDB|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_2" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll_2" FileName="SMRUC~19.DLL|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.dll" SelfReg="false"/>
     <ROW File="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb_1" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" FileName="SMRUC~19.PDB|SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb" SelfReg="false"/>
+    <ROW File="Darwinism.HPC.Parallel.dll" Component_="Darwinism.HPC.Parallel.dll" FileName="DARWIN~1.DLL|Darwinism.HPC.Parallel.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Darwinism.HPC.Parallel.dll" SelfReg="false"/>
+    <ROW File="Darwinism.IPC.Networking.dll" Component_="Darwinism.IPC.Networking.dll" FileName="DARWIN~2.DLL|Darwinism.IPC.Networking.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Darwinism.IPC.Networking.dll" SelfReg="false"/>
+    <ROW File="Flute.SessionManager.dll" Component_="Flute.SessionManager.dll" FileName="FLUTES~1.DLL|Flute.SessionManager.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Flute.SessionManager.dll" SelfReg="false"/>
+    <ROW File="Flute.SessionManager.xml" Component_="Flute.Http.xml" FileName="FLUTES~1.XML|Flute.SessionManager.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Flute.SessionManager.xml" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll" Component_="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll" FileName="BIONO~19.DLL|BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="BIONO~19.XML|BioNovoGene.Analytical.MassSpectrometry.SpatialMath.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.SpatialMath.xml" SelfReg="false"/>
+    <ROW File="Darwinism.HPC.Parallel.dll_1" Component_="Darwinism.HPC.Parallel.dll_1" FileName="DARWIN~1.DLL|Darwinism.HPC.Parallel.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Darwinism.HPC.Parallel.dll" SelfReg="false"/>
+    <ROW File="Darwinism.IPC.Networking.dll_1" Component_="Darwinism.IPC.Networking.dll_1" FileName="DARWIN~2.DLL|Darwinism.IPC.Networking.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Darwinism.IPC.Networking.dll" SelfReg="false"/>
+    <ROW File="LINQ.dll" Component_="LINQ.dll" FileName="LINQ.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\LINQ.dll" SelfReg="false"/>
+    <ROW File="LINQ.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="LINQ.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\LINQ.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll" Component_="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll" FileName="MICRO~18.DLL|Microsoft.VisualBasic.DataStorage.FeatherFormat.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.DataStorage.FeatherFormat.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataStorage.FeatherFormat.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~14.XML|Microsoft.VisualBasic.DataStorage.FeatherFormat.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.DataStorage.FeatherFormat.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Imaging.dll.config" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~10.CON|Microsoft.VisualBasic.Imaging.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Imaging.dll.config" SelfReg="false"/>
+    <ROW File="Darwinism.HPC.Parallel.dll_2" Component_="Darwinism.HPC.Parallel.dll_2" FileName="DARWIN~1.DLL|Darwinism.HPC.Parallel.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Darwinism.HPC.Parallel.dll" SelfReg="false"/>
+    <ROW File="Darwinism.IPC.Networking.dll_2" Component_="Darwinism.IPC.Networking.dll_2" FileName="DARWIN~2.DLL|Darwinism.IPC.Networking.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Darwinism.IPC.Networking.dll" SelfReg="false"/>
+    <ROW File="Flute.SessionManager.dll_1" Component_="Flute.SessionManager.dll_1" FileName="FLUTES~1.DLL|Flute.SessionManager.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Flute.SessionManager.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_1" Component_="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_1" FileName="MICRO~66.DLL|Microsoft.VisualBasic.DataStorage.FeatherFormat.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.DataStorage.FeatherFormat.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Imaging.dll.config_1" Component_="base.deps.json" FileName="MICRO~18.CON|Microsoft.VisualBasic.Imaging.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Imaging.dll.config" SelfReg="false"/>
+    <ROW File="Mzkit_win32.LCMSViewer.resources.dll" Component_="Mzkit_win32.LCMSViewer.resources.dll" FileName="MZKIT_~5.DLL|Mzkit_win32.LCMSViewer.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\zh-CN\Mzkit_win32.LCMSViewer.resources.dll" SelfReg="false"/>
+    <ROW File="Mzkit_win32.LCMSViewer.resources.dll_1" Component_="Mzkit_win32.LCMSViewer.resources.dll_1" FileName="MZKIT_~4.DLL|Mzkit_win32.LCMSViewer.resources.dll" Attributes="0" SourcePath="..\..\..\dist\bin\en-US\Mzkit_win32.LCMSViewer.resources.dll" SelfReg="false"/>
+    <ROW File="Darwinism.HPC.Parallel.dll_3" Component_="Darwinism.HPC.Parallel.dll_3" FileName="DARWIN~1.DLL|Darwinism.HPC.Parallel.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Darwinism.HPC.Parallel.dll" SelfReg="false"/>
+    <ROW File="Darwinism.HPC.Parallel.pdb" Component_="Darwinism.HPC.Parallel.dll_3" FileName="DARWIN~1.PDB|Darwinism.HPC.Parallel.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Darwinism.HPC.Parallel.pdb" SelfReg="false"/>
+    <ROW File="Darwinism.IPC.Networking.dll_3" Component_="Darwinism.IPC.Networking.dll_3" FileName="DARWIN~2.DLL|Darwinism.IPC.Networking.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Darwinism.IPC.Networking.dll" SelfReg="false"/>
+    <ROW File="Darwinism.IPC.Networking.pdb" Component_="Darwinism.IPC.Networking.dll_3" FileName="DARWIN~2.PDB|Darwinism.IPC.Networking.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Darwinism.IPC.Networking.pdb" SelfReg="false"/>
+    <ROW File="LINQ.dll_1" Component_="LINQ.dll_1" FileName="LINQ.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\LINQ.dll" SelfReg="false"/>
+    <ROW File="LINQ.pdb" Component_="LINQ.dll_1" FileName="LINQ.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\LINQ.pdb" SelfReg="false"/>
+    <ROW File="LINQ.dll_2" Component_="LINQ.dll_2" FileName="LINQ.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\LINQ.dll" SelfReg="false"/>
+    <ROW File="LINQ.pdb_1" Component_="LINQ.dll_2" FileName="LINQ.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\LINQ.pdb" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions.xml" Component_="BioDeep.dll.config" FileName="BIONO~24.XML|BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioNovoGene.Analytical.MassSpectrometry.Math.Formula.Extensions.xml" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll_1" Component_="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll_1" FileName="BIONO~25.DLL|BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.pdb" Component_="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll_1" FileName="BIONO~25.PDB|BioNovoGene.Analytical.MassSpectrometry.SpatialMath.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioNovoGene.Analytical.MassSpectrometry.SpatialMath.pdb" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.xml_1" Component_="BioDeep.dll.config" FileName="BIONO~25.XML|BioNovoGene.Analytical.MassSpectrometry.SpatialMath.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioNovoGene.Analytical.MassSpectrometry.SpatialMath.xml" SelfReg="false"/>
+    <ROW File="BlenderHost.xml" Component_="BioDeep.dll.config" FileName="BLENDE~1.XML|BlenderHost.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BlenderHost.xml" SelfReg="false"/>
+    <ROW File="LINQ.xml_1" Component_="BioDeep.dll.config" FileName="LINQ.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\LINQ.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_2" Component_="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_2" FileName="MICRO~38.DLL|Microsoft.VisualBasic.DataStorage.FeatherFormat.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.DataStorage.FeatherFormat.dll" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataStorage.FeatherFormat.pdb" Component_="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_2" FileName="MICRO~34.PDB|Microsoft.VisualBasic.DataStorage.FeatherFormat.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.DataStorage.FeatherFormat.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.DataStorage.FeatherFormat.xml_1" Component_="BioDeep.dll.config" FileName="MICRO~36.XML|Microsoft.VisualBasic.DataStorage.FeatherFormat.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.DataStorage.FeatherFormat.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Imaging.dll.config_2" Component_="BioDeep.dll.config" FileName="MICRO~12.CON|Microsoft.VisualBasic.Imaging.dll.config" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\Microsoft.VisualBasic.Imaging.dll.config" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -18821,7 +18841,6 @@
     <ROW Feature_="MainFeature" Component_="Clearcore2.StructuredStorage.dll"/>
     <ROW Feature_="MainFeature" Component_="Clearcore2.Utility.dll"/>
     <ROW Feature_="MainFeature" Component_="Clearcore2.XmlHelpers.dll"/>
-    <ROW Feature_="MainFeature" Component_="Mzkit_win32.Interaction.resources.dll"/>
     <ROW Feature_="MainFeature" Component_="mzkit_win32.resources.dll"/>
     <ROW Feature_="MainFeature" Component_="Flute.Http.dll"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.ApplicationServices.Development.VisualStudio.dll"/>
@@ -18893,7 +18912,6 @@
     <ROW Feature_="MainFeature" Component_="Flute.Http.dll_1"/>
     <ROW Feature_="MainFeature" Component_="Flute.Http.xml"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MIME.application.json.dll_1"/>
-    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Network.dll_1"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Runtime.dll_4"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.Win32.SystemEvents.dll_4"/>
     <ROW Feature_="MainFeature" Component_="R.dll_3"/>
@@ -18945,7 +18963,6 @@
     <ROW Feature_="MainFeature" Component_="ThermoFisher.CommonCore.MassPrecisionEstimator.dll"/>
     <ROW Feature_="MainFeature" Component_="ThermoFisher.CommonCore.RawFileReader.dll"/>
     <ROW Feature_="MainFeature" Component_="WkHtmlToPdf.CLI.InteropService.dll"/>
-    <ROW Feature_="MainFeature" Component_="Mzkit_win32.Interaction.resources.dll_1"/>
     <ROW Feature_="MainFeature" Component_="mzkit_win32.resources.dll_1"/>
     <ROW Feature_="MainFeature" Component_="SHORTCUTDIR"/>
     <ROW Feature_="MainFeature" Component_="wkhtmltopdf.exe"/>
@@ -18979,7 +18996,6 @@
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.SignalProcessing.dll_2"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MIME.application.json.dll_2"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MIME.Html.dll_1"/>
-    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Network.dll_3"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Runtime.dll_1"/>
     <ROW Feature_="MainFeature" Component_="REnv.dll"/>
     <ROW Feature_="MainFeature" Component_="ServiceHub.dll_1"/>
@@ -19088,12 +19104,10 @@
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MIME.Html.dll_7"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MIME.Office.Excel.dll_5"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MIME.text.markdown.dll_6"/>
-    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Network.dll_10"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Runtime.dll_12"/>
     <ROW Feature_="MainFeature" Component_="MLkit.dll"/>
     <ROW Feature_="MainFeature" Component_="njl.dll"/>
     <ROW Feature_="MainFeature" Component_="npy.dll"/>
-    <ROW Feature_="MainFeature" Component_="Parallel.dll_5"/>
     <ROW Feature_="MainFeature" Component_="RData.dll_5"/>
     <ROW Feature_="MainFeature" Component_="REnv.dll_12"/>
     <ROW Feature_="MainFeature" Component_="Rlapack.dll"/>
@@ -19243,9 +19257,7 @@
     <ROW Feature_="MainFeature" Component_="_0.jpg_28"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.BinaryData.dll_1"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.IO.MessagePack.dll_1"/>
-    <ROW Feature_="MainFeature" Component_="Parallel.dll_1"/>
     <ROW Feature_="MainFeature" Component_="System.Numerics.Tensors.dll"/>
-    <ROW Feature_="MainFeature" Component_="Parallel.dll_2"/>
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.MSImagingViewerV2.resources.dll"/>
     <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.NMRFidTool.dll"/>
     <ROW Feature_="MainFeature" Component_="d_canvas.css"/>
@@ -19278,12 +19290,9 @@
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataMining.DynamicProgramming.dll_1"/>
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.MSImagingViewerV2.resources.dll_1"/>
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.MSImagingViewerV2.resources.dll_2"/>
-    <ROW Feature_="MainFeature" Component_="Newtonsoft.Json.dll"/>
     <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.Math.TargetedMetabolomics.dll_1"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Data.Bootstrapping.Fittings.dll_1"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.ODEsSolver.dll_1"/>
-    <ROW Feature_="MainFeature" Component_="Newtonsoft.Json.dll_1"/>
-    <ROW Feature_="MainFeature" Component_="Newtonsoft.Json.dll_2"/>
     <ROW Feature_="MainFeature" Component_="convert_h5ad_st_to_mzpack.R"/>
     <ROW Feature_="MainFeature" Component_="System.Configuration.ConfigurationManager.dll_1"/>
     <ROW Feature_="MainFeature" Component_="System.Security.AccessControl.dll"/>
@@ -19479,7 +19488,6 @@
     <ROW Feature_="MainFeature" Component_="HDF.PInvoke.Core.dll_2"/>
     <ROW Feature_="MainFeature" Component_="mzblender.dll"/>
     <ROW Feature_="MainFeature" Component_="MZWorkRedis.dll_2"/>
-    <ROW Feature_="MainFeature" Component_="Parallel.dll_3"/>
     <ROW Feature_="MainFeature" Component_="PipelineHost.dll_2"/>
     <ROW Feature_="MainFeature" Component_="STImaging.dll_2"/>
     <ROW Feature_="MainFeature" Component_="STRaid.dll_2"/>
@@ -19552,7 +19560,6 @@
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MIME.application.rdf_xml.dll_3"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MIME.application.xml.dll_2"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.MIME.Html.dll_2"/>
-    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Network.dll_2"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Runtime.dll_3"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualStudio.Windows.Form.dll_1"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.Web.WebView2.Core.dll_1"/>
@@ -19636,7 +19643,6 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.MIME.application.rdf_xml.pdb_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.MIME.application.xml.pdb_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.MIME.Html.pdb_1"/>
-    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Network.pdb_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Runtime.pdb_2"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.Windows.FeatureAPI.pdb_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="mzblender.pdb_1"/>
@@ -19646,7 +19652,6 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Mzkit_win32.Task.pdb_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Mzkit_win32.TaskStream.pdb_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="MZWorkRedis.pdb"/>
-    <ROW Feature_="VisualStudio_Diagnostic" Component_="Parallel.pdb_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="PipelineHost.pdb_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="REnv.pdb_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="STImaging.pdb_1"/>
@@ -19658,7 +19663,6 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.DataMining.BinaryTreeClustering.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Data.IO.MessagePack.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.DataMining.Framework.xml"/>
-    <ROW Feature_="VisualStudio_Diagnostic" Component_="Parallel.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.Extensions.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.mzPack.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.sciexWiffReader.xml"/>
@@ -19675,7 +19679,6 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.BioDeep.Chemoinformatics.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.BioDeep.MetaDNA.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.BioDeep.MSEngine.xml"/>
-    <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Network.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.Math.ODEsSolver.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="HDF.PInvoke.Core.xml"/>
@@ -20143,6 +20146,26 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.Windows.Ribbon.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="SMRUCC.genomics.GCModeller.Workbench.Knowledge_base.NCBI.pdb_1"/>
+    <ROW Feature_="MainFeature" Component_="Darwinism.HPC.Parallel.dll"/>
+    <ROW Feature_="MainFeature" Component_="Darwinism.IPC.Networking.dll"/>
+    <ROW Feature_="MainFeature" Component_="Flute.SessionManager.dll"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll"/>
+    <ROW Feature_="MainFeature" Component_="Darwinism.HPC.Parallel.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Darwinism.IPC.Networking.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="LINQ.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll"/>
+    <ROW Feature_="MainFeature" Component_="Darwinism.HPC.Parallel.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Darwinism.IPC.Networking.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Flute.SessionManager.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Mzkit_win32.LCMSViewer.resources.dll"/>
+    <ROW Feature_="MainFeature" Component_="Mzkit_win32.LCMSViewer.resources.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Darwinism.HPC.Parallel.dll_3"/>
+    <ROW Feature_="MainFeature" Component_="Darwinism.IPC.Networking.dll_3"/>
+    <ROW Feature_="MainFeature" Component_="LINQ.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="LINQ.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataStorage.FeatherFormat.dll_2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
