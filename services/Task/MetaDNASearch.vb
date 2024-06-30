@@ -95,9 +95,7 @@ Public Module MetaDNASearch
         Call pipeline.Run()
 
         output = $"{outputdir}/metaDNA_annotation.csv".LoadCsv(Of MetaDNAResult)(mute:=True)
-        infer = $"{outputdir}/infer_network.json".LoadJsonFile(Of Dictionary(Of String, CandidateInfer)) _
-            .Values _
-            .ToArray
+        infer = $"{outputdir}/infer_network.json".LoadJsonFile(Of CandidateInfer())
     End Sub
 
     Public Sub RunMummichogDIA(raw As Raw, args As MassSearchArguments, println As Action(Of String), ByRef output As ActivityEnrichment())

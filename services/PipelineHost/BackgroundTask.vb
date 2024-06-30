@@ -278,16 +278,16 @@ Module BackgroundTask
         Dim output As MetaDNAResult() = metaDNA _
             .ExportTable(infer, unique:=True) _
             .ToArray
-        Dim keys As String() = infer.Keys.UniqueNames
-        Dim inferSet As New Dictionary(Of String, CandidateInfer)
+        'Dim keys As String() = infer.Keys.UniqueNames
+        'Dim inferSet As New Dictionary(Of String, CandidateInfer)
 
-        For i As Integer = 0 To keys.Length - 1
-            inferSet(keys(i)) = infer(i)
-        Next
+        'For i As Integer = 0 To keys.Length - 1
+        '    inferSet(keys(i)) = infer(i)
+        'Next
 
         Return New list(
             slot("output") = output,
-            slot("infer") = inferSet
+            slot("infer") = infer
         )
     End Function
 
