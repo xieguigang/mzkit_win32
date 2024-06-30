@@ -85,6 +85,8 @@ Public Class HeatMapBlender : Inherits MSImagingBlender
         Dim blender As New HeatMap.PixelRender(params.colors.Description, params.mapLevels, defaultColor:=params.background)
         Dim img As Image = blender.RenderRasterImage(layer, dimension, fillRect:=True)
 
+        img = DrawOutlines(img)
+
         If params.showPhysicalRuler Then
             Call New Ruler(args.GetTheme).DrawOnImage(img, dimension, Color.White, params.resolution)
         End If
