@@ -30,7 +30,7 @@ let [output, infer] = rawdata |> BackgroundTask::metaDNA(
 write.csv(output, file = file.path(outputdir, "metaDNA_annotation.csv"));  
 
 infer 
-|> JSON::json_encode()
+|> json()
 |> writeLines(
     con = file.path(outputdir, "infer_network.json")
 );

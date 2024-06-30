@@ -81,7 +81,9 @@ Imports BioNovoGene.BioDeep.MSEngine.Mummichog
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.ComponentModel.Algorithm
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
 Imports Microsoft.VisualBasic.Data.Bootstrapping
 Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Data.csv.IO
@@ -276,10 +278,16 @@ Module BackgroundTask
         Dim output As MetaDNAResult() = metaDNA _
             .ExportTable(infer, unique:=True) _
             .ToArray
+        Dim keys As String() = infer.Keys.UniqueNames
+        Dim inferSet As New Dictionary(Of String, CandidateInfer)
+
+        For i As Integer = 0 To keys.Length - 1
+            inferSet(keys(i)) = infer(i)
+        Next
 
         Return New list(
             slot("output") = output,
-            slot("infer") = infer
+            slot("infer") = inferSet
         )
     End Function
 
