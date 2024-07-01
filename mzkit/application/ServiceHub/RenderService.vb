@@ -1,8 +1,12 @@
-﻿Imports BioNovoGene.mzkit_win32.ServiceHub
+﻿Imports System.IO
+Imports System.Threading
+Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Darwinism.IPC.Networking.Tcp
 Imports Microsoft.VisualBasic.CommandLine
+Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.Net.Tcp
 Imports Microsoft.VisualBasic.Parallel
+Imports Mzkit_win32.BasicMDIForm
 Imports TaskStream
 Imports IPEndPoint = Microsoft.VisualBasic.Net.IPEndPoint
 
@@ -43,11 +47,13 @@ Public NotInheritable Class RenderService
                 .Arguments = $"/start --port {MSIBlender.port} --master {bindChannel} {If(debug, "--debug", "")} /@set buffer_size=64MB",
                 .CreateNoWindow = True,
                 .WindowStyle = ProcessWindowStyle.Hidden,
-                .UseShellExecute = False
+                .UseShellExecute = False,
+                .RedirectStandardOutput = True
             }
         }
 
         Call BlenderHost.Start()
+        Call New Thread(Sub() readLines(BlenderHost)).Start()
         Call ServiceHub.Manager.Hub.RegisterSingle(New Manager.Service With {
             .Name = "MSI Blender",
             .Description = "MS-Imaging blendering backend for mzkit workbench",
@@ -61,6 +67,14 @@ Public NotInheritable Class RenderService
         })
 
         Call WorkStudio.LogCommandLine(BlenderHost.StartInfo.FileName, BlenderHost.StartInfo.Arguments, App.HOME)
+    End Sub
+
+    Private Shared Sub readLines(host As Process)
+        Dim reader As StreamReader = host.StandardOutput
+
+        Do While App.Running AndAlso Not host.HasExited
+            Call RunSlavePipeline.ProcessMessage(reader.ReadLine, AddressOf Workbench.LogText, Sub(p, msg) Workbench.LogText($"{msg} ... {p}%"))
+        Loop
     End Sub
 
     Private Shared Sub Shutdown(port As Integer)
