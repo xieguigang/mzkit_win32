@@ -18701,6 +18701,13 @@
     <ROW File="webKit.xml" Component_="base.deps.json" FileName="webKit.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\webKit.xml" SelfReg="false"/>
     <ROW File="LINQ.dll_1" Component_="LINQ.dll_1" FileName="LINQ.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\LINQ.dll" SelfReg="false"/>
     <ROW File="LINQ.pdb" Component_="LINQ.dll_1" FileName="LINQ.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\LINQ.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Network.xml" Component_="Flute.Http.xml" FileName="MICROS~5.XML|Microsoft.VisualBasic.Network.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Microsoft.VisualBasic.Network.xml" SelfReg="false"/>
+    <ROW File="Parallel.xml" Component_="Flute.Http.xml" FileName="Parallel.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Parallel.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Network.xml_1" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~26.XML|Microsoft.VisualBasic.Network.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Network.xml" SelfReg="false"/>
+    <ROW File="Parallel.xml_1" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="Parallel.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Parallel.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Data.Csv.Extensions.xml" Component_="base.deps.json" FileName="MICRO~62.XML|Microsoft.VisualBasic.Data.Csv.Extensions.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Data.Csv.Extensions.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Network.xml_2" Component_="base.deps.json" FileName="MICRO~63.XML|Microsoft.VisualBasic.Network.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Network.xml" SelfReg="false"/>
+    <ROW File="Parallel.xml_2" Component_="base.deps.json" FileName="Parallel.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Parallel.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
