@@ -73,6 +73,7 @@ Imports Darwinism.IPC.Networking.Tcp
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports Microsoft.VisualBasic.Data.IO
+Imports Microsoft.VisualBasic.Imaging.Drawing2D.Math2D.MarchingSquares
 Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports Microsoft.VisualBasic.Serialization.JSON
@@ -90,6 +91,7 @@ Public Class Service : Implements IDisposable
     Dim filters As RasterPipeline
     Dim TIC As PixelScanIntensity()
     Dim TICImage As Image
+    Dim sample_outlines As GeneralPath
 
     Public Shared ReadOnly protocolHandle As Long = ProtocolAttribute.GetProtocolCategory(GetType(Service)).EntryPoint
 
@@ -151,7 +153,10 @@ Public Class Service : Implements IDisposable
                 Dim pixels = HeatMap.PixelData.ParseStream(channel.LoadStream)
                 Dim dims As Size = data!dims.SizeParser
 
-                blender = New HeatMapBlender(pixels, dims, filters) With {.filters = filters}
+                blender = New HeatMapBlender(pixels, dims, filters) With {
+                    .filters = filters,
+                    .sample_outline = sample_outlines
+                }
             Case NameOf(RGBIonMSIBlender)
                 Dim pixels = PixelData.Parse(channel.LoadStream)
                 data = data!configs.LoadJSON(Of Dictionary(Of String, String))
@@ -161,7 +166,10 @@ Public Class Service : Implements IDisposable
                 Dim Gpixels = pixels.Where(Function(p) mzdiff(p.mz, rgb.G)).ToArray
                 Dim Bpixels = pixels.Where(Function(p) mzdiff(p.mz, rgb.B)).ToArray
 
-                blender = New RGBIonMSIBlender(Rpixels, Gpixels, Bpixels, TICImage, filters) With {.filters = filters}
+                blender = New RGBIonMSIBlender(Rpixels, Gpixels, Bpixels, TICImage, filters) With {
+                    .filters = filters,
+                    .sample_outline = sample_outlines
+                }
             Case NameOf(SingleIonMSIBlender)
                 Dim dims As Size = data!dims.SizeParser
                 Dim pixels As PixelData() = PixelData.Parse(channel.LoadStream)
@@ -171,14 +179,26 @@ Public Class Service : Implements IDisposable
                     .IonMz = ""
                 }
 
-                blender = New SingleIonMSIBlender(pixels, filters, params, TICImage) With {.filters = filters}
+                blender = New SingleIonMSIBlender(pixels, filters, params, TICImage) With {
+                    .filters = filters,
+                    .sample_outline = sample_outlines
+                }
             Case NameOf(SummaryMSIBlender)
                 Dim pixels As PixelScanIntensity() = PixelScanIntensity.Parse(channel.LoadStream)
                 Dim dims As Size = data!dims.SizeParser
+                Dim xi = pixels.Select(Function(a) a.x).ToArray
+                Dim yi = pixels.Select(Function(a) a.y).ToArray
+                Dim shapes = ContourLayer.GetOutline(xi, yi, 5)
 
+                shapes = shapes.Bspline(degree:=5, 100).FilterSmallPolygon(0.1)
+
+                sample_outlines = shapes
                 TIC = pixels
                 TICImage = SummaryMSIBlender.Rendering(TIC, dims, "gray", 250, "transparent")
-                blender = New SummaryMSIBlender(pixels, filters) With {.filters = filters}
+                blender = New SummaryMSIBlender(pixels, filters) With {
+                    .filters = filters,
+                    .sample_outline = sample_outlines
+                }
             Case Else
                 Throw New InvalidDataException("invalid session open parameter!")
         End Select
