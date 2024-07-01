@@ -119,15 +119,7 @@ Public Class RGBIonMSIBlender : Inherits MSImagingBlender
             background:="transparent"
         ).AsGDIImage
 
-        'If params.overlap_TIC AndAlso Not TIC Is Nothing Then
-        '    Using canvas As IGraphics = New Size(image.Width, image.Height).CreateGDIDevice
-        '        Call canvas.DrawImage(TIC, New Rectangle(New Point(0, 0), canvas.Size))
-        '        Call canvas.DrawImageUnscaled(image, 0, 0)
-
-        '        image = DirectCast(canvas, Graphics2D).ImageResource
-        '    End Using
-        'End If
-
+        image = DrawOutlines(image)
         image = New HeatMap.RasterScaler(image).Scale(hqx:=params.Hqx)
 
         If params.showPhysicalRuler Then

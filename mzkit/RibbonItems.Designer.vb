@@ -13,7 +13,7 @@ Imports RibbonLib
 Imports RibbonLib.Controls
 
 Namespace RibbonLib.Controls
-    Partial Public Class RibbonItems
+    Public Class RibbonItems
         Private Class Cmd
             Public Const cmdRecentItems As UInteger = 1014
             Public Const cmdMenuGroupFile As UInteger = 1005
@@ -71,9 +71,9 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonShowSearchList As UInteger = 1122
             Public Const cmdButtonShowProperties As UInteger = 1123
             Public Const cmdGroupShowComprehensive As UInteger = 191
+            Public Const cmdButtonSingleCellsViewer As UInteger = 301
             Public Const cmdMALDIViewer As UInteger = 215
             Public Const cmdView3DMALDI As UInteger = 213
-            Public Const cmdButtonSingleCellsViewer As UInteger = 301
             Public Const cmdGCxGCViewer As UInteger = 179
             Public Const cmdTabLayout As UInteger = 1035
             Public Const cmdGroupLayout As UInteger = 1037
@@ -652,6 +652,12 @@ Namespace RibbonLib.Controls
                 Return _GroupShowComprehensive
             End Get
         End Property
+        Private _ButtonSingleCellsViewer As RibbonButton
+        Public ReadOnly Property ButtonSingleCellsViewer As RibbonButton
+            Get
+                Return _ButtonSingleCellsViewer
+            End Get
+        End Property
         Private _MALDIViewer As RibbonDropDownButton
         Public ReadOnly Property MALDIViewer As RibbonDropDownButton
             Get
@@ -662,12 +668,6 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property View3DMALDI As RibbonButton
             Get
                 Return _View3DMALDI
-            End Get
-        End Property
-        Private _ButtonSingleCellsViewer As RibbonButton
-        Public ReadOnly Property ButtonSingleCellsViewer As RibbonButton
-            Get
-                Return _ButtonSingleCellsViewer
             End Get
         End Property
         Private _GCxGCViewer As RibbonButton
@@ -2088,9 +2088,9 @@ Namespace RibbonLib.Controls
             _ButtonShowSearchList = New RibbonButton(_ribbon, Cmd.cmdButtonShowSearchList)
             _ButtonShowProperties = New RibbonButton(_ribbon, Cmd.cmdButtonShowProperties)
             _GroupShowComprehensive = New RibbonGroup(_ribbon, Cmd.cmdGroupShowComprehensive)
+            _ButtonSingleCellsViewer = New RibbonButton(_ribbon, Cmd.cmdButtonSingleCellsViewer)
             _MALDIViewer = New RibbonDropDownButton(_ribbon, Cmd.cmdMALDIViewer)
             _View3DMALDI = New RibbonButton(_ribbon, Cmd.cmdView3DMALDI)
-            _ButtonSingleCellsViewer = New RibbonButton(_ribbon, Cmd.cmdButtonSingleCellsViewer)
             _GCxGCViewer = New RibbonButton(_ribbon, Cmd.cmdGCxGCViewer)
             _TabLayout = New RibbonTab(_ribbon, Cmd.cmdTabLayout)
             _GroupLayout = New RibbonGroup(_ribbon, Cmd.cmdGroupLayout)

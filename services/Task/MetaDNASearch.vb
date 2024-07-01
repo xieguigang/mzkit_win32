@@ -62,12 +62,20 @@ Imports BioNovoGene.BioDeep.MSEngine.Mummichog
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.Data.csv
+Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports TaskStream
 
 Public Module MetaDNASearch
 
+    ''' <summary>
+    ''' run metadna annotation search
+    ''' </summary>
+    ''' <param name="raw"></param>
+    ''' <param name="println"></param>
+    ''' <param name="output"></param>
+    ''' <param name="infer"></param>
     <Extension>
     Public Sub RunDIA(raw As Raw, println As Action(Of String), ByRef output As MetaDNAResult(), ByRef infer As CandidateInfer())
         Dim cacheRaw As String = raw.cache
@@ -87,8 +95,10 @@ Public Module MetaDNASearch
         Call cli.__DEBUG_ECHO
         Call pipeline.Run()
 
-        output = $"{outputdir}/metaDNA_annotation.csv".LoadCsv(Of MetaDNAResult)
-        infer = $"{outputdir}/infer_network.json".LoadJsonFile(Of CandidateInfer())
+        Dim infer_json As String = $"{outputdir}/infer_network.json".ReadAllText
+
+        output = $"{outputdir}/metaDNA_annotation.csv".LoadCsv(Of MetaDNAResult)(mute:=True)
+        infer = JSONTextParser.ParseJson(infer_json).CreateObject(GetType(CandidateInfer()), False)
     End Sub
 
     Public Sub RunMummichogDIA(raw As Raw, args As MassSearchArguments, println As Action(Of String), ByRef output As ActivityEnrichment())
@@ -107,7 +117,7 @@ Public Module MetaDNASearch
 
         AddHandler pipeline.SetMessage, AddressOf println.Invoke
 
-        Call args.GetJson.SaveTo(argv)
+        Call JsonContract.GetJson(args).SaveTo(argv)
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call cli.__DEBUG_ECHO
         Call pipeline.Run()
@@ -132,12 +142,12 @@ Public Module MetaDNASearch
 
         AddHandler pipeline.SetMessage, AddressOf println.Invoke
 
-        Call args.GetJson.SaveTo(argv)
+        Call JsonContract.GetJson(args).SaveTo(argv)
         Call WorkStudio.LogCommandLine(RscriptPipelineTask.Host, cli, RscriptPipelineTask.Root)
         Call mz.FlushAllLines(cacheRaw)
         Call println("Run mummichog DIA:")
-        Call println(mz.GetJson)
-        Call println(args.GetJson)
+        Call println(JsonContract.GetJson(mz))
+        Call println(JsonContract.GetJson(args))
         Call cli.__DEBUG_ECHO
         Call pipeline.Run()
 
