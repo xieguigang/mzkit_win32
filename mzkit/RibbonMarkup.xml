@@ -4397,12 +4397,12 @@
               <Button CommandName="cmdButtonShowProperties" />
             </Group>
             <Group CommandName="cmdGroupShowComprehensive" SizeDefinition="ThreeButtons-OneBigAndTwoSmall">
-              <Button CommandName="cmdButtonSingleCellsViewer" />
+              <Button CommandName="cmdGCxGCViewer" />
               <DropDownButton CommandName="cmdMALDIViewer">
                 <Button CommandName="cmdButtonMsImaging" />
                 <Button CommandName="cmdView3DMALDI" />
               </DropDownButton>
-              <Button CommandName="cmdGCxGCViewer" />
+              <Button CommandName="cmdButtonSingleCellsViewer" />
             </Group>
           </Tab>
           <Tab CommandName="cmdTabLayout" ApplicationModes="0,1">

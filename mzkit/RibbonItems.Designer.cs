@@ -74,10 +74,10 @@ namespace RibbonLib.Controls
             public const uint cmdButtonShowSearchList = 1122;
             public const uint cmdButtonShowProperties = 1123;
             public const uint cmdGroupShowComprehensive = 191;
-            public const uint cmdButtonSingleCellsViewer = 301;
+            public const uint cmdGCxGCViewer = 179;
             public const uint cmdMALDIViewer = 215;
             public const uint cmdView3DMALDI = 213;
-            public const uint cmdGCxGCViewer = 179;
+            public const uint cmdButtonSingleCellsViewer = 301;
             public const uint cmdTabLayout = 1035;
             public const uint cmdGroupLayout = 1037;
             public const uint cmdButtonMatrixFile = 294;
@@ -370,10 +370,10 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonShowSearchList { get; private set; }
         public RibbonButton ButtonShowProperties { get; private set; }
         public RibbonGroup GroupShowComprehensive { get; private set; }
-        public RibbonButton ButtonSingleCellsViewer { get; private set; }
+        public RibbonButton GCxGCViewer { get; private set; }
         public RibbonDropDownButton MALDIViewer { get; private set; }
         public RibbonButton View3DMALDI { get; private set; }
-        public RibbonButton GCxGCViewer { get; private set; }
+        public RibbonButton ButtonSingleCellsViewer { get; private set; }
         public RibbonTab TabLayout { get; private set; }
         public RibbonGroup GroupLayout { get; private set; }
         public RibbonDropDownButton ButtonMatrixFile { get; private set; }
@@ -661,10 +661,10 @@ namespace RibbonLib.Controls
             ButtonShowSearchList = new RibbonButton(ribbon, Cmd.cmdButtonShowSearchList);
             ButtonShowProperties = new RibbonButton(ribbon, Cmd.cmdButtonShowProperties);
             GroupShowComprehensive = new RibbonGroup(ribbon, Cmd.cmdGroupShowComprehensive);
-            ButtonSingleCellsViewer = new RibbonButton(ribbon, Cmd.cmdButtonSingleCellsViewer);
+            GCxGCViewer = new RibbonButton(ribbon, Cmd.cmdGCxGCViewer);
             MALDIViewer = new RibbonDropDownButton(ribbon, Cmd.cmdMALDIViewer);
             View3DMALDI = new RibbonButton(ribbon, Cmd.cmdView3DMALDI);
-            GCxGCViewer = new RibbonButton(ribbon, Cmd.cmdGCxGCViewer);
+            ButtonSingleCellsViewer = new RibbonButton(ribbon, Cmd.cmdButtonSingleCellsViewer);
             TabLayout = new RibbonTab(ribbon, Cmd.cmdTabLayout);
             GroupLayout = new RibbonGroup(ribbon, Cmd.cmdGroupLayout);
             ButtonMatrixFile = new RibbonDropDownButton(ribbon, Cmd.cmdButtonMatrixFile);
