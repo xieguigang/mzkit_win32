@@ -1179,6 +1179,9 @@
     <ROW Component="Mzkit_win32.TaskStream.pdb" ComponentId="{5732428B-216F-4419-A4B1-4C4AA03A5A6B}" Directory_="APPDIR" Attributes="0" KeyPath="Mzkit_win32.TaskStream.pdb" Type="4"/>
     <ROW Component="Mzkit_win32.TaskStream.pdb_1" ComponentId="{62D246FD-6DF3-48BF-B9B1-EAE9EC9FA596}" Directory_="blender_Dir" Attributes="0" KeyPath="Mzkit_win32.TaskStream.pdb_1" Type="4"/>
     <ROW Component="Mzkit_win32.TaskStream.xml" ComponentId="{5BDD585E-8EBB-4820-B4F2-424DF8674A0C}" Directory_="blender_Dir" Attributes="0" KeyPath="Mzkit_win32.TaskStream.xml_1"/>
+    <ROW Component="Newtonsoft.Json.dll" ComponentId="{A207E405-6C6A-43C0-A041-ED85E902985D}" Directory_="bin_Dir" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
+    <ROW Component="Newtonsoft.Json.dll_1" ComponentId="{3E4AA6A4-325C-41B2-9C93-1D3387C782F2}" Directory_="host_Dir" Attributes="0" KeyPath="Newtonsoft.Json.dll_1"/>
+    <ROW Component="Newtonsoft.Json.dll_2" ComponentId="{392BF032-8CF5-43F6-AF81-10F6DC421C18}" Directory_="library_Dir" Attributes="0" KeyPath="Newtonsoft.Json.dll_2"/>
     <ROW Component="OBJLoader2JsmWorker.js" ComponentId="{C1103420-EAC2-484A-A5DD-5C976CC2BEBB}" Directory_="parallel_Dir" Attributes="0" KeyPath="OBJLoader2JsmWorker.js" Type="0"/>
     <ROW Component="OBJLoader2Parser.js" ComponentId="{41612D7A-70F4-481D-9F99-2F1285CFA788}" Directory_="obj2_Dir" Attributes="0" KeyPath="OBJLoader2Parser.js" Type="0"/>
     <ROW Component="OPLSDA.R" ComponentId="{FAD560FF-1144-4C6F-AC51-18FFFBA8E792}" Directory_="workbench_Dir" Attributes="0" KeyPath="OPLSDA.R" Type="0"/>
@@ -18718,6 +18721,9 @@
     <ROW File="Microsoft.VisualBasic.Data.Csv.Extensions.xml" Component_="base.deps.json" FileName="MICRO~62.XML|Microsoft.VisualBasic.Data.Csv.Extensions.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Data.Csv.Extensions.xml" SelfReg="false"/>
     <ROW File="Microsoft.VisualBasic.Network.xml_2" Component_="base.deps.json" FileName="MICRO~63.XML|Microsoft.VisualBasic.Network.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Microsoft.VisualBasic.Network.xml" SelfReg="false"/>
     <ROW File="Parallel.xml_2" Component_="base.deps.json" FileName="Parallel.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Parallel.xml" SelfReg="false"/>
+    <ROW File="Newtonsoft.Json.dll" Component_="Newtonsoft.Json.dll" FileName="NEWTON~1.DLL|Newtonsoft.Json.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Newtonsoft.Json.dll" SelfReg="false"/>
+    <ROW File="Newtonsoft.Json.dll_1" Component_="Newtonsoft.Json.dll_1" FileName="NEWTON~1.DLL|Newtonsoft.Json.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Newtonsoft.Json.dll" SelfReg="false"/>
+    <ROW File="Newtonsoft.Json.dll_2" Component_="Newtonsoft.Json.dll_2" FileName="NEWTON~1.DLL|Newtonsoft.Json.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\library\Newtonsoft.Json.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -20316,6 +20322,9 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Darwinism.IPC.Networking.pdb_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="LINQ.pdb_1"/>
     <ROW Feature_="MainFeature" Component_="mzkit_win32.VisualElementsManifest.xml"/>
+    <ROW Feature_="MainFeature" Component_="Newtonsoft.Json.dll"/>
+    <ROW Feature_="MainFeature" Component_="Newtonsoft.Json.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Newtonsoft.Json.dll_2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
