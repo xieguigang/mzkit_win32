@@ -93,7 +93,7 @@ Public MustInherit Class MSImagingBlender : Inherits Blender
         ' draw outline before upscale
         If params.showOutline AndAlso Not sample_outline Is Nothing Then
             Using g As Graphics2D = New Graphics2D(image)
-                Dim pen As Pen = New Pen(Color.White, line_width) With {.DashStyle = DashStyle.Dot}
+                Dim pen As Pen = New Pen(Color.White, line_width) With {.DashStyle = DashStyle.Solid}
 
                 For Each path As PointF() In sample_outline.GetPolygons
                     Call g.DrawPolygon(pen, path)
