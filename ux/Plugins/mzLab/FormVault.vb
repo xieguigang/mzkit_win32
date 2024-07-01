@@ -15,6 +15,7 @@ Imports Microsoft.VisualBasic.Math.LinearAlgebra
 Imports Mzkit_win32.BasicMDIForm
 Imports Microsoft.VisualBasic.Serialization.Bencoding
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
+Imports Microsoft.VisualBasic.Data.csv.IO
 
 Public Class FormVault
 
@@ -183,6 +184,30 @@ Public Class FormVault
         End Using
     End Sub
 
+    Private Iterator Function SaveRows(mass As MassIndex) As IEnumerable(Of RowObject)
+        Dim spectrum_data As PeakMs2() = mass.spectrum _
+            .Select(Function(i)
+                        Return SpectrumReader.GetSpectrum(stdlib.GetSpectrum(i))
+                    End Function) _
+            .ToArray
+
+        For Each ion As PeakMs2 In spectrum_data
+            Dim row As New List(Of String) From {
+                mass.name, mass.formula, mass.exactMass
+            }
+
+            Call row.Add(ion.lib_guid)
+            Call row.Add(ion.precursor_type)
+            Call row.Add(ion.mz)
+            Call row.Add(ion.rt)
+            Call row.Add(ion.scan)
+            Call row.Add(ion.file)
+            Call row.Add(ion.mzInto.OrderByDescending(Function(a) a.intensity).Select(Function(m) $"{m.mz}_{m.intensity}").JoinBy(" "))
+
+            Yield New RowObject(row)
+        Next
+    End Function
+
     ''' <summary>
     ''' export for a specific metabolite
     ''' </summary>
@@ -343,5 +368,52 @@ Public Class FormVault
         If spectrum IsNot Nothing Then
             Call SpectralViewerModule.ViewSpectral(spectrum)
         End If
+    End Sub
+
+    Private Sub ExportExcelTableToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportExcelTableToolStripMenuItem.Click
+        Using file As New SaveFileDialog With {.Filter = "Excel csv table(*.csv)|*.csv"}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim node = Win7StyleTreeView1.SelectedNode
+                Dim table As New IO.File
+
+                Using txt As Stream = file.FileName.Open(FileMode.OpenOrCreate, doClear:=True)
+                    If TypeOf node.Tag Is MassIndex Then
+                        For Each row In SaveRows(node.Tag)
+                            Call table.Add(row)
+                        Next
+                    Else
+                        Call TaskProgress.RunAction(
+                            run:=Sub(proc As ITaskProgress)
+                                     Call proc.SetProgressMode()
+                                     Call proc.SetProgress(0)
+
+                                     ' export for all metabolites
+                                     For i As Integer = 0 To node.Nodes.Count - 1
+                                         Dim metabo = node.Nodes.Item(i)
+                                         Dim mass As MassIndex = metabo.Tag
+
+                                         For Each row In SaveRows(mass)
+                                             Call table.Add(row)
+                                         Next
+
+                                         Call proc.SetProgress(i / node.Nodes.Count * 100)
+                                         Call proc.SetInfo(mass.name)
+                                     Next
+                                 End Sub,
+                            title:="Export excel table",
+                            info:="Export spectrum to excel table file..."
+                        )
+                    End If
+
+                    Call StreamIO.SaveDataFrame(table, txt, autoCloseFile:=False)
+                    Call txt.Flush()
+                End Using
+
+                Call MessageBox.Show($"Spectrum data has been export to excel table file: {file.FileName}!",
+                                     "Export Spectrum",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Information)
+            End If
+        End Using
     End Sub
 End Class

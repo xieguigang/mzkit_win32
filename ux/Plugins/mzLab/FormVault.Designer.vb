@@ -28,6 +28,7 @@ Partial Class FormVault : Inherits DocumentWindow
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormVault))
         Me.Win7StyleTreeView1 = New ControlLibrary.Kesoft.Windows.Forms.Win7StyleTreeView.Win7StyleTreeView(Me.components)
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.CopyNodeLabelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportMGFIonsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportValidationDataSetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
@@ -42,10 +43,11 @@ Partial Class FormVault : Inherits DocumentWindow
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SearchInSampleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CopyNodeLabelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CopyImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.CopyImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ShowInSpectrumViewerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ExportExcelTableToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip2.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -74,29 +76,27 @@ Partial Class FormVault : Inherits DocumentWindow
         '
         'ContextMenuStrip2
         '
-        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyNodeLabelToolStripMenuItem, Me.ExportMGFIonsToolStripMenuItem, Me.ExportValidationDataSetToolStripMenuItem})
+        Me.ContextMenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyNodeLabelToolStripMenuItem, Me.ToolStripMenuItem2, Me.ExportMGFIonsToolStripMenuItem, Me.ExportValidationDataSetToolStripMenuItem, Me.ExportExcelTableToolStripMenuItem})
         Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(181, 70)
-
-
-        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
-        Me.ContextMenuStrip2.Size = New System.Drawing.Size(226, 48)
-
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(207, 120)
+        '
+        'CopyNodeLabelToolStripMenuItem
+        '
+        Me.CopyNodeLabelToolStripMenuItem.Name = "CopyNodeLabelToolStripMenuItem"
+        Me.CopyNodeLabelToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
+        Me.CopyNodeLabelToolStripMenuItem.Text = "Copy Node Label"
         '
         'ExportMGFIonsToolStripMenuItem
         '
+        Me.ExportMGFIonsToolStripMenuItem.Image = CType(resources.GetObject("ExportMGFIonsToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ExportMGFIonsToolStripMenuItem.Name = "ExportMGFIonsToolStripMenuItem"
-
-        Me.ExportMGFIonsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-
-        Me.ExportMGFIonsToolStripMenuItem.Size = New System.Drawing.Size(225, 22)
-
+        Me.ExportMGFIonsToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
         Me.ExportMGFIonsToolStripMenuItem.Text = "Export MGF Ions"
         '
         'ExportValidationDataSetToolStripMenuItem
         '
         Me.ExportValidationDataSetToolStripMenuItem.Name = "ExportValidationDataSetToolStripMenuItem"
-        Me.ExportValidationDataSetToolStripMenuItem.Size = New System.Drawing.Size(225, 22)
+        Me.ExportValidationDataSetToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
         Me.ExportValidationDataSetToolStripMenuItem.Text = "Export Validation DataSet"
         '
         'ImageList1
@@ -158,14 +158,14 @@ Partial Class FormVault : Inherits DocumentWindow
         'ToolStripLabel1
         '
         Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(50, 22)
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(45, 22)
         Me.ToolStripLabel1.Text = "Search:"
         '
         'ToolStripSpringTextBox1
         '
         Me.ToolStripSpringTextBox1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.ToolStripSpringTextBox1.Name = "ToolStripSpringTextBox1"
-        Me.ToolStripSpringTextBox1.Size = New System.Drawing.Size(176, 25)
+        Me.ToolStripSpringTextBox1.Size = New System.Drawing.Size(181, 25)
         '
         'ToolStripButton1
         '
@@ -202,39 +202,43 @@ Partial Class FormVault : Inherits DocumentWindow
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SearchInSampleToolStripMenuItem, Me.ToolStripMenuItem1, Me.CopyImageToolStripMenuItem, Me.ShowInSpectrumViewerToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(225, 98)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(209, 76)
         '
         'SearchInSampleToolStripMenuItem
         '
         Me.SearchInSampleToolStripMenuItem.Image = CType(resources.GetObject("SearchInSampleToolStripMenuItem.Image"), System.Drawing.Image)
         Me.SearchInSampleToolStripMenuItem.Name = "SearchInSampleToolStripMenuItem"
-        Me.SearchInSampleToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
+        Me.SearchInSampleToolStripMenuItem.Size = New System.Drawing.Size(208, 22)
         Me.SearchInSampleToolStripMenuItem.Text = "Search In Samples"
-        '
-
-        'CopyNodeLabelToolStripMenuItem
-        '
-        Me.CopyNodeLabelToolStripMenuItem.Name = "CopyNodeLabelToolStripMenuItem"
-        Me.CopyNodeLabelToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.CopyNodeLabelToolStripMenuItem.Text = "Copy Node Label"
-
-        'CopyImageToolStripMenuItem
-        '
-        Me.CopyImageToolStripMenuItem.Name = "CopyImageToolStripMenuItem"
-        Me.CopyImageToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
-        Me.CopyImageToolStripMenuItem.Text = "Copy Image"
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(180, 6)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(205, 6)
+        '
+        'CopyImageToolStripMenuItem
+        '
+        Me.CopyImageToolStripMenuItem.Name = "CopyImageToolStripMenuItem"
+        Me.CopyImageToolStripMenuItem.Size = New System.Drawing.Size(208, 22)
+        Me.CopyImageToolStripMenuItem.Text = "Copy Image"
         '
         'ShowInSpectrumViewerToolStripMenuItem
         '
         Me.ShowInSpectrumViewerToolStripMenuItem.Name = "ShowInSpectrumViewerToolStripMenuItem"
-        Me.ShowInSpectrumViewerToolStripMenuItem.Size = New System.Drawing.Size(224, 22)
+        Me.ShowInSpectrumViewerToolStripMenuItem.Size = New System.Drawing.Size(208, 22)
         Me.ShowInSpectrumViewerToolStripMenuItem.Text = "Show In Spectrum Viewer"
-
+        '
+        'ToolStripMenuItem2
+        '
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(203, 6)
+        '
+        'ExportExcelTableToolStripMenuItem
+        '
+        Me.ExportExcelTableToolStripMenuItem.Image = CType(resources.GetObject("ExportExcelTableToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.ExportExcelTableToolStripMenuItem.Name = "ExportExcelTableToolStripMenuItem"
+        Me.ExportExcelTableToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
+        Me.ExportExcelTableToolStripMenuItem.Text = "Export Excel Table"
         '
         'FormVault
         '
@@ -281,5 +285,6 @@ Partial Class FormVault : Inherits DocumentWindow
     Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
     Friend WithEvents CopyImageToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ShowInSpectrumViewerToolStripMenuItem As ToolStripMenuItem
-
+    Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
+    Friend WithEvents ExportExcelTableToolStripMenuItem As ToolStripMenuItem
 End Class
