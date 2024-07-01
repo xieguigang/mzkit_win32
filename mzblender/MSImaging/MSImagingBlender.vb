@@ -88,10 +88,12 @@ Public MustInherit Class MSImagingBlender : Inherits Blender
     End Sub
 
     Protected Function DrawOutlines(image As Image) As Image
+        Dim line_width As Single = 1
+
         ' draw outline before upscale
         If params.showOutline AndAlso Not sample_outline Is Nothing Then
             Using g As Graphics2D = New Graphics2D(image)
-                Dim pen As Pen = New Pen(Color.White, 3) With {.DashStyle = DashStyle.Dash}
+                Dim pen As Pen = New Pen(Color.White, line_width) With {.DashStyle = DashStyle.Dash}
 
                 For Each path As PointF() In sample_outline.GetPolygons
                     Call g.DrawPolygon(pen, path)
@@ -104,7 +106,7 @@ Public MustInherit Class MSImagingBlender : Inherits Blender
         If params.showOutline AndAlso Not region_outlines.IsNullOrEmpty Then
             Using g As New Graphics2D(image)
                 For Each region In region_outlines
-                    Dim pen As New Pen(region.Item2, 3) With {.DashStyle = DashStyle.Solid}
+                    Dim pen As New Pen(region.Item2, line_width) With {.DashStyle = DashStyle.Solid}
 
                     For Each path As PointF() In region.Item1.GetPolygons
                         Call g.DrawPolygon(pen, path)
