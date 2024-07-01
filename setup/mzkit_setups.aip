@@ -20187,7 +20187,6 @@
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.dll_2"/>
     <ROW Feature_="MainFeature" Component_="Mzkit_win32.MatrixViewer.dll"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Microsoft.VisualBasic.DataMining.HierarchicalClustering.Plot.pdb"/>
-    <ROW Feature_="VisualStudio_Diagnostic" Component_="mzkit_win32.VisualElementsManifest.xml"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Mzkit_win32.MatrixViewer.pdb"/>
     <ROW Feature_="MainFeature" Component_="AI_ExePath"/>
     <ROW Feature_="MainFeature" Component_="Microsoft.VisualBasic.Math.Symbolic.GeneticProgramming.dll"/>
@@ -20316,6 +20315,7 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Darwinism.HPC.Parallel.pdb_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Darwinism.IPC.Networking.pdb_1"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="LINQ.pdb_1"/>
+    <ROW Feature_="MainFeature" Component_="mzkit_win32.VisualElementsManifest.xml"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
