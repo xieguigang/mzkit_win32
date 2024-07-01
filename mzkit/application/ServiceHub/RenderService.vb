@@ -69,7 +69,7 @@ Public NotInheritable Class RenderService
         Call WorkStudio.LogCommandLine(BlenderHost.StartInfo.FileName, BlenderHost.StartInfo.Arguments, App.HOME)
     End Sub
 
-    Private Shared Sub readLines(host As Process)
+    Public Shared Sub readLines(host As Process)
         Dim reader As StreamReader = host.StandardOutput
 
         Do While App.Running AndAlso Not host.HasExited
