@@ -226,6 +226,7 @@ Public Class MsImageProperty
         enableFilter = info.TryGetValue(NameOf(enableFilter), [default]:="true").ParseBoolean
         showPhysicalRuler = info.TryGetValue(NameOf(showPhysicalRuler), [default]:="true").ParseBoolean
         showTotalIonOverlap = info.TryGetValue(NameOf(showTotalIonOverlap), [default]:="true").ParseBoolean
+        showOutline = info.TryGetValue(NameOf(showOutline), [default]:="true").ParseBoolean
     End Sub
 
     Sub New(render As Drawer)
