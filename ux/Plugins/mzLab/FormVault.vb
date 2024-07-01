@@ -376,6 +376,17 @@ Public Class FormVault
                 Dim node = Win7StyleTreeView1.SelectedNode
                 Dim table As New IO.File
 
+                Call table.Add(New RowObject From {
+                    "name", "formula", "exactMass",
+                    "lib_guid",
+                    "precursor_type",
+                    "mz",
+                    "rt",
+                    "scan",
+                    "file",
+                    "mzInto"
+                })
+
                 Using txt As Stream = file.FileName.Open(FileMode.OpenOrCreate, doClear:=True)
                     If TypeOf node.Tag Is MassIndex Then
                         For Each row In SaveRows(node.Tag)
