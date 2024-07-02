@@ -519,6 +519,8 @@
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll_2" ComponentId="{BE093988-EFF7-4A16-B959-07215FA639F0}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SingleCells.pdb_1" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll_3" ComponentId="{91F66980-2D54-445C-B19F-F00A8E951E76}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SingleCells.dll_2"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SingleCells.pdb" ComponentId="{793948C4-38D6-490E-B754-D22C8F64B846}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SingleCells.pdb" Type="4"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll" ComponentId="{99D5B626-BDA4-4965-B9E2-37BAF38B4A6E}" Directory_="host_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll"/>
+    <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll_1" ComponentId="{1EC96217-30A6-4EE7-B748-93DD47BFEE44}" Directory_="blender_Dir" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll_1"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.dll" ComponentId="{2DC234EA-612E-4F17-A888-CFF852876ADF}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.dll"/>
     <ROW Component="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.pdb" ComponentId="{03FDD180-7D83-4782-89B6-A60C94C85011}" Directory_="APPDIR" Attributes="0" KeyPath="BioNovoGene.Analytical.MassSpectrometry.SpectrumTree.pdb" Type="4"/>
     <ROW Component="BioNovoGene.Analytical.NMRFidTool.dll" ComponentId="{3F919F39-896E-46D3-A244-EB2785562AAB}" Directory_="APPDIR" Attributes="256" KeyPath="BioNovoGene.Analytical.NMRFidTool.dll"/>
@@ -867,7 +869,7 @@
     <ROW Component="LICENSE_9" ComponentId="{8C771712-FE4B-4DA2-9BE4-4B109E5FB977}" Directory_="three.js_Dir" Attributes="0" KeyPath="LICENSE_14" Type="0"/>
     <ROW Component="LINQ.dll" ComponentId="{D8A533E7-FB46-4504-A727-6093965AA16E}" Directory_="host_Dir" Attributes="256" KeyPath="LINQ.dll"/>
     <ROW Component="LINQ.dll_3" ComponentId="{17DB69CE-8E3A-4210-9E5D-147A3867BF51}" Directory_="APPDIR" Attributes="256" KeyPath="LINQ.dll_3"/>
-    <ROW Component="LINQ.dll_4" ComponentId="{C9829E81-30FA-405D-9387-57879D24BDDE}" Directory_="blender_Dir" Attributes="256" KeyPath="LINQ.pdb"/>
+    <ROW Component="LINQ.dll_4" ComponentId="{C9829E81-30FA-405D-9387-57879D24BDDE}" Directory_="blender_Dir" Attributes="256" KeyPath="LINQ.pdb" Type="4"/>
     <ROW Component="LINQ.dll_5" ComponentId="{1239883E-061F-4719-8734-7AB2DDDADA7E}" Directory_="blender_Dir" Attributes="256" KeyPath="LINQ.dll_4"/>
     <ROW Component="LINQ.pdb" ComponentId="{EA13D83E-FD94-4B04-9695-BDF991410F91}" Directory_="APPDIR" Attributes="0" KeyPath="LINQ.pdb_2" Type="4"/>
     <ROW Component="Line2.js" ComponentId="{C6DA877C-2EDF-4251-8EE8-0FDF0A629095}" Directory_="lines_Dir" Attributes="0" KeyPath="Line2.js" Type="0"/>
@@ -19924,6 +19926,18 @@
     <ROW File="Mzkit_win32.SinglesCellViewer.xml" Component_="Mzkit_win32.SinglesCellViewer.xml" FileName="MZKIT~11.XML|Mzkit_win32.SinglesCellViewer.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Mzkit_win32.SinglesCellViewer.xml" SelfReg="false"/>
     <ROW File="LINQ.dll_4" Component_="LINQ.dll_5" FileName="LINQ.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\LINQ.dll" SelfReg="false"/>
     <ROW File="LINQ.pdb" Component_="LINQ.dll_4" FileName="LINQ.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\LINQ.pdb" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Network.xml" Component_="Flute.Http.xml" FileName="MICROS~5.XML|Microsoft.VisualBasic.Network.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Microsoft.VisualBasic.Network.xml" SelfReg="false"/>
+    <ROW File="Parallel.xml" Component_="Flute.Http.xml" FileName="Parallel.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\bin\Parallel.xml" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll" Component_="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll" FileName="BIONO~19.DLL|BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="BIONO~19.XML|BioNovoGene.Analytical.MassSpectrometry.SpatialMath.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\BioNovoGene.Analytical.MassSpectrometry.SpatialMath.xml" SelfReg="false"/>
+    <ROW File="LINQ.xml" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="LINQ.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\LINQ.xml" SelfReg="false"/>
+    <ROW File="Microsoft.VisualBasic.Network.xml_1" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="MICRO~14.XML|Microsoft.VisualBasic.Network.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Microsoft.VisualBasic.Network.xml" SelfReg="false"/>
+    <ROW File="Parallel.xml_1" Component_="Microsoft.VisualBasic.Math.Core.dll.config" FileName="Parallel.xml" Attributes="0" SourcePath="..\..\..\dist\bin\Rstudio\host\Parallel.xml" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll_1" Component_="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll_1" FileName="BIONO~25.DLL|BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.pdb" Component_="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll_1" FileName="BIONO~25.PDB|BioNovoGene.Analytical.MassSpectrometry.SpatialMath.pdb" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioNovoGene.Analytical.MassSpectrometry.SpatialMath.pdb" SelfReg="false"/>
+    <ROW File="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.xml_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="BIONO~25.XML|BioNovoGene.Analytical.MassSpectrometry.SpatialMath.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BioNovoGene.Analytical.MassSpectrometry.SpatialMath.xml" SelfReg="false"/>
+    <ROW File="BlenderHost.xml" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="BLENDE~1.XML|BlenderHost.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\BlenderHost.xml" SelfReg="false"/>
+    <ROW File="LINQ.xml_1" Component_="BioNovoGene.Analytical.MassSpectrometry.Assembly.BrukerDataReader.xml_1" FileName="LINQ.xml" Attributes="0" SourcePath="..\..\..\dist\bin\plugins\blender\LINQ.xml" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="README0" Shortcut_="README" PropertyKey="System.AppUserModel.PreventPinning" PropVariantValue="1"/>
@@ -22814,6 +22828,8 @@
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Darwinism.IPC.Networking.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="LINQ.pdb"/>
     <ROW Feature_="VisualStudio_Diagnostic" Component_="Darwinism.IPC.Networking.pdb_1"/>
+    <ROW Feature_="MainFeature" Component_="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll"/>
+    <ROW Feature_="VisualStudio_Diagnostic" Component_="BioNovoGene.Analytical.MassSpectrometry.SpatialMath.dll_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFileHashComponent">
     <ATTRIBUTE name="HashFiles" value="1"/>
