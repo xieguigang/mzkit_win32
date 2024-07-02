@@ -641,7 +641,7 @@ Public Class MSI : Implements ITaskDriver, IDisposable
 
         If pixel Is Nothing Then
             Call RunSlavePipeline.SendMessage($"Missing pixel data at [{xy(0)},{xy(1)}]!")
-            Return New DataPipe(New Byte() {})
+            Return DataPipe.empty
         End If
 
         Dim annotations As String() = Nothing
