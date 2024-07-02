@@ -132,9 +132,12 @@ Public Class MSI : Implements ITaskDriver, IDisposable
 
     Sub New(Optional debugPort As Integer? = Nothing, Optional masterPid As String = Nothing)
         Dim port As Integer = If(debugPort Is Nothing, GetFirstAvailablePort(), debugPort)
+        Dim callback As DataRequestHandler = AddressOf New ProtocolHandler(Me, debug:=Not debugPort Is Nothing).HandleRequest
 
-        Me.socket = New TcpServicesSocket(port, debug:=Not debugPort Is Nothing)
-        Me.socket.ResponseHandler = AddressOf New ProtocolHandler(Me, debug:=Not debugPort Is Nothing).HandleRequest
+        Me.socket = New TcpServicesSocket(port, debug:=Not debugPort Is Nothing) With {
+            .KeepsAlive = False,
+            .ResponseHandler = callback
+        }
 
         Call RunSlavePipeline.SendMessage($"socket={TcpPort}")
         Call BackgroundTaskUtils.BindToMaster(masterPid, Me)

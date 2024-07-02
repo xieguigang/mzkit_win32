@@ -97,7 +97,7 @@ Public Class Service : Implements IDisposable
     End Property
 
     Private Sub New(port As Integer)
-        host = New TcpServicesSocket(port)
+        host = New TcpServicesSocket(port) With {.KeepsAlive = False}
         host.ResponseHandler = AddressOf New ProtocolHandler(Me, debug:=False).HandleRequest
 
         Call RunSlavePipeline.SendMessage($"socket={TcpPort}")
