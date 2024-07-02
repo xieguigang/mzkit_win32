@@ -1692,6 +1692,11 @@
 #define cmdXIC_PPMSpinner_LabelTitle_RESID 1166
 #define cmdXIC_PPMSpinner_LabelDescription_RESID 1167
 #define cmdXIC_PPMSpinner_TooltipDescription_RESID 1168
-#define InternalCmd2_LabelTitle_RESID 60213
-#define InternalCmd4_LabelTitle_RESID 60214
-#define InternalCmd6_LabelTitle_RESID 60215
+#define cmdButtonLogFile 306 
+#define cmdButtonLogFile_LabelTitle_RESID 60213
+#define cmdButtonLogFile_LabelDescription_RESID 60214
+#define cmdButtonLogFile_SmallImages_192__RESID 60215
+#define cmdButtonLogFile_LargeImages_192__RESID 60216
+#define InternalCmd2_LabelTitle_RESID 60217
+#define InternalCmd4_LabelTitle_RESID 60218
+#define InternalCmd6_LabelTitle_RESID 60219

@@ -37,6 +37,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonRsharp As UInteger = 1107
             Public Const cmdButtonDeveloperTool As UInteger = 265
             Public Const cmdButtonDevTools As UInteger = 168
+            Public Const cmdButtonLogFile As UInteger = 306
             Public Const cmdButtonMSIDebugger As UInteger = 266
             Public Const cmdMenuTableTools As UInteger = 253
             Public Const cmdButtonOpenTableTool As UInteger = 252
@@ -443,6 +444,12 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonDevTools As RibbonButton
             Get
                 Return _ButtonDevTools
+            End Get
+        End Property
+        Private _ButtonLogFile As RibbonButton
+        Public ReadOnly Property ButtonLogFile As RibbonButton
+            Get
+                Return _ButtonLogFile
             End Get
         End Property
         Private _ButtonMSIDebugger As RibbonButton
@@ -2054,6 +2061,7 @@ Namespace RibbonLib.Controls
             _ButtonRsharp = New RibbonButton(_ribbon, Cmd.cmdButtonRsharp)
             _ButtonDeveloperTool = New RibbonDropDownButton(_ribbon, Cmd.cmdButtonDeveloperTool)
             _ButtonDevTools = New RibbonButton(_ribbon, Cmd.cmdButtonDevTools)
+            _ButtonLogFile = New RibbonButton(_ribbon, Cmd.cmdButtonLogFile)
             _ButtonMSIDebugger = New RibbonButton(_ribbon, Cmd.cmdButtonMSIDebugger)
             _MenuTableTools = New RibbonMenuGroup(_ribbon, Cmd.cmdMenuTableTools)
             _ButtonOpenTableTool = New RibbonButton(_ribbon, Cmd.cmdButtonOpenTableTool)

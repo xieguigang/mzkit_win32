@@ -4262,6 +4262,14 @@
         <String Id="1168">ppm tolerance for extract XIC data</String>
       </Command.TooltipDescription>
     </Command>
+    <Command Name="cmdButtonLogFile" Id="306" LabelTitle="Log File" LabelDescription="Load background task log file for rstudio pipeline script debug">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-product-documents-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-product-documents-96.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4331,6 +4339,7 @@
                 <Button CommandName="cmdButtonRsharp" />
                 <DropDownButton CommandName="cmdButtonDeveloperTool">
                   <Button CommandName="cmdButtonDevTools" />
+                  <Button CommandName="cmdButtonLogFile" />
                   <Button CommandName="cmdButtonMSIDebugger" />
                 </DropDownButton>
               </MenuGroup>
@@ -4397,12 +4406,12 @@
               <Button CommandName="cmdButtonShowProperties" />
             </Group>
             <Group CommandName="cmdGroupShowComprehensive" SizeDefinition="ThreeButtons-OneBigAndTwoSmall">
-              <Button CommandName="cmdButtonSingleCellsViewer" />
+              <Button CommandName="cmdGCxGCViewer" />
               <DropDownButton CommandName="cmdMALDIViewer">
                 <Button CommandName="cmdButtonMsImaging" />
                 <Button CommandName="cmdView3DMALDI" />
               </DropDownButton>
-              <Button CommandName="cmdGCxGCViewer" />
+              <Button CommandName="cmdButtonSingleCellsViewer" />
             </Group>
           </Tab>
           <Tab CommandName="cmdTabLayout" ApplicationModes="0,1">
