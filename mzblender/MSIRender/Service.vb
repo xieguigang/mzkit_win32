@@ -186,13 +186,13 @@ Public Class Service : Implements IDisposable
             Case NameOf(SummaryMSIBlender)
                 Dim pixels As PixelScanIntensity() = PixelScanIntensity.Parse(channel.LoadStream)
                 Dim dims As Size = data!dims.SizeParser
-                Dim xi = pixels.Select(Function(a) a.x).ToArray
-                Dim yi = pixels.Select(Function(a) a.y).ToArray
-                Dim shapes = ContourLayer.GetOutline(xi, yi, 5)
+                ' Dim xi = pixels.Select(Function(a) a.x).ToArray
+                ' Dim yi = pixels.Select(Function(a) a.y).ToArray
+                ' Dim shapes = ContourLayer.GetOutline(xi, yi, 5)
 
-                shapes = shapes.Bspline(degree:=5, 100).FilterSmallPolygon(0.1)
+                ' shapes = shapes.Bspline(degree:=5, 100).FilterSmallPolygon(0.1)
 
-                sample_outlines = shapes
+                ' sample_outlines = shapes
                 TIC = pixels
                 TICImage = SummaryMSIBlender.Rendering(TIC, dims, "gray", 250, "transparent")
                 blender = New SummaryMSIBlender(pixels, filters) With {

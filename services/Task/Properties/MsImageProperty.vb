@@ -182,8 +182,10 @@ Public Class MsImageProperty
     <Category("Render")> Public Property showPhysicalRuler As Boolean = True
     <Description("Show the overlap of total ion imaging plot in grayscale when do single ion/rgb ion imaging?")>
     <Category("Render")> Public Property showTotalIonOverlap As Boolean = True
-    <Description("Show the overlap of the sample outline plot when do single ion/rgb ion imaging?")>
-    <Category("Render")> Public Property showOutline As Boolean = False
+
+    ' too much cpu load for calculate the path
+    '<Description("Show the overlap of the sample outline plot when do single ion/rgb ion imaging?")>
+    '<Category("Render")> Public Property showOutline As Boolean = False
 
     <Description("The mass tolerance error threshold in delta dalton or ppm.")>
     <Category("Pixel M/z Data")> Public Property tolerance As Double = 0.01
@@ -226,7 +228,7 @@ Public Class MsImageProperty
         enableFilter = info.TryGetValue(NameOf(enableFilter), [default]:="true").ParseBoolean
         showPhysicalRuler = info.TryGetValue(NameOf(showPhysicalRuler), [default]:="true").ParseBoolean
         showTotalIonOverlap = info.TryGetValue(NameOf(showTotalIonOverlap), [default]:="true").ParseBoolean
-        showOutline = info.TryGetValue(NameOf(showOutline), [default]:="false").ParseBoolean
+        ' showOutline = info.TryGetValue(NameOf(showOutline), [default]:="false").ParseBoolean
     End Sub
 
     Sub New(render As Drawer)

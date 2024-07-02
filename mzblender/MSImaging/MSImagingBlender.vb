@@ -89,9 +89,10 @@ Public MustInherit Class MSImagingBlender : Inherits Blender
 
     Protected Function DrawOutlines(image As Image) As Image
         Dim line_width As Single = 1
+        Dim showOutline As Boolean = False
 
         ' draw outline before upscale
-        If params.showOutline AndAlso Not sample_outline Is Nothing Then
+        If showOutline AndAlso Not sample_outline Is Nothing Then
             Using g As Graphics2D = New Graphics2D(image)
                 Dim pen As Pen = New Pen(Color.White, line_width) With {.DashStyle = DashStyle.Solid}
 
@@ -103,7 +104,7 @@ Public MustInherit Class MSImagingBlender : Inherits Blender
             End Using
         End If
 
-        If params.showOutline AndAlso Not region_outlines.IsNullOrEmpty Then
+        If showOutline AndAlso Not region_outlines.IsNullOrEmpty Then
             Using g As New Graphics2D(image)
                 For Each region In region_outlines
                     Dim pen As New Pen(region.Item2, line_width) With {.DashStyle = DashStyle.Solid}
