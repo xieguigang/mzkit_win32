@@ -186,6 +186,8 @@ Public Class Service : Implements IDisposable
             Case NameOf(SummaryMSIBlender)
                 Dim pixels As PixelScanIntensity() = PixelScanIntensity.Parse(channel.LoadStream)
                 Dim dims As Size = data!dims.SizeParser
+                ' 20240702 too much cpu load for calculate the outline path
+                '
                 ' Dim xi = pixels.Select(Function(a) a.x).ToArray
                 ' Dim yi = pixels.Select(Function(a) a.y).ToArray
                 ' Dim shapes = ContourLayer.GetOutline(xi, yi, 5)
