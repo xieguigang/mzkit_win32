@@ -1,11 +1,18 @@
-﻿Imports Microsoft.VisualBasic.Imaging
+﻿Imports Microsoft.VisualBasic.Data.csv
+Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 Imports SMRUCC.genomics.GCModeller.Workbench.ExperimentDesigner
 Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class InputImportsPeaktableDialog
 
+    ''' <summary>
+    ''' group_label => sampleSet
+    ''' </summary>
     Dim sampleinfo As New Dictionary(Of String, List(Of SampleInfo))
+    ''' <summary>
+    ''' group_label => group_info(color,shape,...)
+    ''' </summary>
     Dim sampleGroups As New Dictionary(Of String, SampleGroup)
     Dim editMode As Boolean = False
     Dim current_group As String
@@ -198,9 +205,7 @@ Public Class InputImportsPeaktableDialog
     ''' <summary>
     ''' clear all sample group
     ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    Private Sub ClearToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearToolStripMenuItem.Click
+    Private Sub clearAllSampleGroups() Handles ClearToolStripMenuItem.Click
         CheckedListBox1.Items.Clear()
         sampleGroups.Clear()
 
@@ -261,9 +266,14 @@ Public Class InputImportsPeaktableDialog
         Dim unix As String = App.UnixTimeStamp.ToString.Replace(".", "")
         Dim id As String = $"sample_group_{unix}"
 
-        CheckedListBox1.Items.Add(id)
         sampleinfo.Add(id, New List(Of SampleInfo))
         sampleGroups.Add(id, New SampleGroup With {.sample_info = id, .color = "black"})
+
+        createNewSampleGroupUI(id)
+    End Sub
+
+    Private Sub createNewSampleGroupUI(id As String)
+        CheckedListBox1.Items.Add(id)
 
         Dim menu = AddToSampleGroupToolStripMenuItem.DropDownItems.Add(id)
         menu.Tag = id
@@ -289,11 +299,15 @@ Public Class InputImportsPeaktableDialog
         '                  "QC4", "QC5", "QC6", "QC7", "QC8", "QC9")
     End Sub
 
+    Dim source_tags As String()
+
     ''' <summary>
     ''' set sample id collection for make groups
     ''' </summary>
     ''' <param name="idset"></param>
     Public Sub LoadSampleId(ParamArray idset As String())
+        source_tags = idset
+
         For Each id As String In idset
             Call ListBox1.Items.Add(id)
         Next
@@ -320,6 +334,22 @@ Public Class InputImportsPeaktableDialog
     End Function
 
     Private Sub LoadSampleInfoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoadSampleInfoToolStripMenuItem.Click
+        Using file As New OpenFileDialog With {.Filter = "Excel table(*.csv)|*.csv"}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim sampleinfo As SampleInfo() = file.FileName.LoadCsv(Of SampleInfo)
 
+                ' load external sampleinfo data will clear current information
+                Me.sampleGroups.Clear()
+                Me.sampleinfo.Clear()
+                Me.clearAllSampleGroups()
+
+                For Each group In sampleinfo.GroupBy(Function(a) a.sample_info)
+                    Me.sampleinfo.Add(group.Key, group.ToList)
+                    Me.sampleGroups.Add(group.Key, New SampleGroup(group.First))
+
+                    Me.createNewSampleGroupUI(group.Key)
+                Next
+            End If
+        End Using
     End Sub
 End Class
