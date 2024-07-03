@@ -289,10 +289,18 @@ Public Class InputImportsPeaktableDialog
         '                  "QC4", "QC5", "QC6", "QC7", "QC8", "QC9")
     End Sub
 
+    ''' <summary>
+    ''' set sample id collection for make groups
+    ''' </summary>
+    ''' <param name="idset"></param>
     Public Sub LoadSampleId(ParamArray idset As String())
         For Each id As String In idset
             Call ListBox1.Items.Add(id)
         Next
+    End Sub
+
+    Public Sub SetDefaultWorkdir(dir As String)
+        TextBox2.Text = dir
     End Sub
 
     Private Sub AddToSampleGroupToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddToSampleGroupToolStripMenuItem.Click
@@ -310,4 +318,8 @@ Public Class InputImportsPeaktableDialog
     Public Function GetWorkspace() As String
         Return TextBox2.Text
     End Function
+
+    Private Sub LoadSampleInfoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoadSampleInfoToolStripMenuItem.Click
+
+    End Sub
 End Class

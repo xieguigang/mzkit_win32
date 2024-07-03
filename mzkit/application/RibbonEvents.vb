@@ -307,7 +307,7 @@ Module RibbonEvents
             Dim table As DataTable = dataset.Tables.Item(Scan0)
             Dim df As DataFrame = table.DataFrame
 
-            Call frmMetabonomicsAnalysis.LoadData(df, AddressOf New LoadMetabolismData With {.title = tablePage.TabText}.load)
+            Call frmMetabonomicsAnalysis.LoadData(df, Nothing, AddressOf New LoadMetabolismData With {.title = tablePage.TabText}.load)
         Else
             ribbonItems.MetaboAnalysis.ContextAvailable = ContextAvailability.Active
         End If
@@ -350,7 +350,7 @@ Module RibbonEvents
                     fileName:=file.FileName,
                     showFile:=
                         Sub(table, title)
-                            Call frmMetabonomicsAnalysis.LoadData(table, AddressOf New LoadMetabolismData With {.title = title}.load)
+                            Call frmMetabonomicsAnalysis.LoadData(table, file.FileName, AddressOf New LoadMetabolismData With {.title = title}.load)
                         End Sub)
             End If
         End Using

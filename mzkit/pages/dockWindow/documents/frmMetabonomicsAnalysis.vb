@@ -141,7 +141,7 @@ Public Class frmMetabonomicsAnalysis
 
     Public Delegate Sub LoadDataCallback(sampleinfo As SampleInfo(), properties As String(), df As DataFrame, workdir As String)
 
-    Public Shared Sub LoadData(df As DataFrame, callback As LoadDataCallback)
+    Public Shared Sub LoadData(df As DataFrame, sourcefile As String, callback As LoadDataCallback)
         Dim wizard As New InputImportsPeaktableDialog
         Dim checkTitles As Index(Of String) = df.HeadTitles.Indexing
         Dim checks As String()() = {
@@ -156,6 +156,13 @@ Public Class frmMetabonomicsAnalysis
         End If
 
         Call wizard.LoadSampleId(df.HeadTitles)
+
+        If Not sourcefile Is Nothing Then
+            ' for in-memory generated table data
+            ' source file is nothing
+            Call wizard.SetDefaultWorkdir(sourcefile.ParentPath)
+        End If
+
         Call InputDialog.Input(
             Sub(config)
                 Dim sampleinfo = config.GetSampleInfo.ToArray
@@ -173,8 +180,8 @@ Public Class frmMetabonomicsAnalysis
     End Sub
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
-    Public Shared Sub LoadData(table As csv, callback As LoadDataCallback)
-        Call LoadData(df:=DataFrame.CreateObject(table), callback)
+    Public Shared Sub LoadData(table As csv, sourcefile As String, callback As LoadDataCallback)
+        Call LoadData(df:=DataFrame.CreateObject(table), sourcefile, callback)
     End Sub
 
     Public Sub LoadData(sampleinfo As SampleInfo(), properties As String(), df As DataFrame, workdir As String, title As String)
