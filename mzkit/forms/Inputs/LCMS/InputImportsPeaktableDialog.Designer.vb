@@ -53,20 +53,24 @@ Partial Class InputImportsPeaktableDialog
         Me.Label6 = New System.Windows.Forms.Label()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LoadSampleInfoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip3.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.ContextMenuStrip2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'CheckedListBox1
         '
         Me.CheckedListBox1.ContextMenuStrip = Me.ContextMenuStrip3
         Me.CheckedListBox1.FormattingEnabled = True
-        Me.CheckedListBox1.Location = New System.Drawing.Point(216, 53)
+        Me.CheckedListBox1.Location = New System.Drawing.Point(206, 57)
         Me.CheckedListBox1.Name = "CheckedListBox1"
-        Me.CheckedListBox1.Size = New System.Drawing.Size(202, 260)
+        Me.CheckedListBox1.Size = New System.Drawing.Size(202, 228)
         Me.CheckedListBox1.TabIndex = 0
         '
         'ContextMenuStrip3
@@ -103,10 +107,10 @@ Partial Class InputImportsPeaktableDialog
         Me.ListBox1.ContextMenuStrip = Me.ContextMenuStrip1
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.ItemHeight = 12
-        Me.ListBox1.Location = New System.Drawing.Point(20, 53)
+        Me.ListBox1.Location = New System.Drawing.Point(14, 56)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended
-        Me.ListBox1.Size = New System.Drawing.Size(173, 256)
+        Me.ListBox1.Size = New System.Drawing.Size(173, 232)
         Me.ListBox1.TabIndex = 1
         '
         'ContextMenuStrip1
@@ -124,7 +128,7 @@ Partial Class InputImportsPeaktableDialog
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(18, 26)
+        Me.Label1.Location = New System.Drawing.Point(12, 32)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(131, 12)
         Me.Label1.TabIndex = 2
@@ -151,7 +155,7 @@ Partial Class InputImportsPeaktableDialog
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(214, 26)
+        Me.Label2.Location = New System.Drawing.Point(207, 33)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(83, 12)
         Me.Label2.TabIndex = 6
@@ -162,7 +166,7 @@ Partial Class InputImportsPeaktableDialog
         Me.ListBox2.ContextMenuStrip = Me.ContextMenuStrip2
         Me.ListBox2.FormattingEnabled = True
         Me.ListBox2.ItemHeight = 12
-        Me.ListBox2.Location = New System.Drawing.Point(432, 53)
+        Me.ListBox2.Location = New System.Drawing.Point(428, 57)
         Me.ListBox2.Name = "ListBox2"
         Me.ListBox2.Size = New System.Drawing.Size(220, 148)
         Me.ListBox2.TabIndex = 7
@@ -188,7 +192,7 @@ Partial Class InputImportsPeaktableDialog
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(430, 26)
+        Me.Label3.Location = New System.Drawing.Point(426, 32)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(83, 12)
         Me.Label3.TabIndex = 8
@@ -197,7 +201,7 @@ Partial Class InputImportsPeaktableDialog
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(430, 218)
+        Me.Label4.Location = New System.Drawing.Point(426, 225)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(71, 12)
         Me.Label4.TabIndex = 9
@@ -205,7 +209,7 @@ Partial Class InputImportsPeaktableDialog
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(507, 215)
+        Me.TextBox1.Location = New System.Drawing.Point(503, 222)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(145, 21)
         Me.TextBox1.TabIndex = 10
@@ -213,7 +217,7 @@ Partial Class InputImportsPeaktableDialog
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(430, 249)
+        Me.Label5.Location = New System.Drawing.Point(426, 256)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(77, 12)
         Me.Label5.TabIndex = 11
@@ -222,7 +226,7 @@ Partial Class InputImportsPeaktableDialog
         'PictureBox1
         '
         Me.PictureBox1.BackColor = System.Drawing.Color.Red
-        Me.PictureBox1.Location = New System.Drawing.Point(507, 242)
+        Me.PictureBox1.Location = New System.Drawing.Point(503, 249)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(72, 19)
         Me.PictureBox1.TabIndex = 12
@@ -242,9 +246,9 @@ Partial Class InputImportsPeaktableDialog
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.ListBox2)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 37)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(671, 327)
+        Me.GroupBox1.Size = New System.Drawing.Size(671, 300)
         Me.GroupBox1.TabIndex = 13
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Edit SampleInfo"
@@ -252,7 +256,7 @@ Partial Class InputImportsPeaktableDialog
         'LinkLabel2
         '
         Me.LinkLabel2.AutoSize = True
-        Me.LinkLabel2.Location = New System.Drawing.Point(623, 301)
+        Me.LinkLabel2.Location = New System.Drawing.Point(619, 280)
         Me.LinkLabel2.Name = "LinkLabel2"
         Me.LinkLabel2.Size = New System.Drawing.Size(29, 12)
         Me.LinkLabel2.TabIndex = 14
@@ -262,7 +266,7 @@ Partial Class InputImportsPeaktableDialog
         'LinkLabel1
         '
         Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(451, 301)
+        Me.LinkLabel1.Location = New System.Drawing.Point(560, 280)
         Me.LinkLabel1.Name = "LinkLabel1"
         Me.LinkLabel1.Size = New System.Drawing.Size(29, 12)
         Me.LinkLabel1.TabIndex = 13
@@ -294,17 +298,41 @@ Partial Class InputImportsPeaktableDialog
         Me.Button3.Text = "..."
         Me.Button3.UseVisualStyleBackColor = True
         '
+        'MenuStrip1
+        '
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(693, 24)
+        Me.MenuStrip1.TabIndex = 17
+        Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'FileToolStripMenuItem
+        '
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadSampleInfoToolStripMenuItem})
+        Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
+        Me.FileToolStripMenuItem.Text = "File"
+        '
+        'LoadSampleInfoToolStripMenuItem
+        '
+        Me.LoadSampleInfoToolStripMenuItem.Name = "LoadSampleInfoToolStripMenuItem"
+        Me.LoadSampleInfoToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.LoadSampleInfoToolStripMenuItem.Text = "Load SampleInfo"
+        '
         'InputImportsPeaktableDialog
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(693, 417)
+        Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
+        Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "InputImportsPeaktableDialog"
         Me.Text = "Imports Wizard"
         Me.ContextMenuStrip3.ResumeLayout(False)
@@ -313,6 +341,8 @@ Partial Class InputImportsPeaktableDialog
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -346,4 +376,7 @@ Partial Class InputImportsPeaktableDialog
     Friend WithEvents Label6 As Label
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents Button3 As Button
+    Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LoadSampleInfoToolStripMenuItem As ToolStripMenuItem
 End Class
