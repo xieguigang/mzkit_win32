@@ -348,6 +348,10 @@ Public Class InputImportsPeaktableDialog
                     Me.sampleGroups.Add(group.Key, New SampleGroup(group.First))
 
                     Me.createNewSampleGroupUI(group.Key)
+
+                    For Each sampl In group
+                        Call ListBox1.Items.Remove(sampl.ID)
+                    Next
                 Next
             End If
         End Using
