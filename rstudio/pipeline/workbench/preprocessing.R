@@ -7,6 +7,7 @@ let peaktable  = ?"--peaktable"  || stop("the raw matrix data file is missing!")
 let norm_scale = ?"--scale_factor" || 1e8;
 let impute_cutoff = ?"--missing" || 0.5;
 let export_file = ?"--output" || file.path(dirname(peaktable), `${basename(peaktable)}_processed.csv`);
+let input_file = peaktable;
 
 sampleinfo <- read.csv(sampleinfo, row.names = NULL, check.names = FALSE);
 # binary/csv/txt
@@ -16,7 +17,7 @@ peaktable  <- mzkit::preprocessing_expression(peaktable,
     factor = as.numeric(norm_scale), missing = impute_cutoff
 );
 
-if (file.ext(peaktable) == "xcms") {
+if (file.ext(input_file) == "xcms") {
     # export binary peaktable 
     writeBin(peaktable, con = export_file);   
 } else {
