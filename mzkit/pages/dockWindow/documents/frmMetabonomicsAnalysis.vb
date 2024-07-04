@@ -413,6 +413,8 @@ Public Class frmMetabonomicsAnalysis
     Shared ReadOnly view3D_evt As New RibbonEventBinding(ribbonItems.ButtonViewAnalysis3DScatter)
     Shared ReadOnly view3DPage_evt As New RibbonEventBinding(ribbonItems.ButtonViewScatter3dInSinglePage)
 
+    Shared ReadOnly runNorm_evt As New RibbonEventBinding(ribbonItems.ButtonPreProcessing)
+
     Private Sub frmMetabonomicsAnalysis_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call WebKit.Init(Me.WebView21)
         Call ApplyVsTheme(ContextMenuStrip1)
@@ -522,11 +524,25 @@ Public Class frmMetabonomicsAnalysis
         runPLS_evt.evt = Sub() Call RunPCA(GetType(PLS))
         runOPLS_evt.evt = Sub() Call RunPCA(GetType(OPLS))
 
+        runNorm_evt.evt = Sub() Call RunNormaliza()
+
         viewLC_evt.evt = Sub() Call showScatter()
         openFolder_evt.evt = Sub() Call openFolder()
         viewSampleinfo_evt.evt = Sub() Call viewSampleinfo()
         view3D_evt.evt = Sub() Call view3DScatter()
         view3DPage_evt.evt = Sub() Call view3DScatterInSinglePage()
+    End Sub
+
+    Private Sub RunNormaliza()
+        InputDialog.Input(Of InputSampleProcessing)(
+            Sub(cfg)
+                If RscriptProgressTask.RunPreprocessing($"{workdir}/peakset.xcms", sampleinfofile, cfg.MissingPercentage, cfg.NormScale, $"{workdir}/norm.xcms") Then
+                    ' reload
+
+                Else
+                    Call Workbench.Warning("run data pre-processing error.")
+                End If
+            End Sub)
     End Sub
 
     Private Sub EventDeactivate() Handles Me.Deactivate
@@ -535,6 +551,8 @@ Public Class frmMetabonomicsAnalysis
         runPCA_evt.evt = Nothing
         runPLS_evt.evt = Nothing
         runOPLS_evt.evt = Nothing
+
+        runNorm_evt.evt = Nothing
 
         viewLC_evt.evt = Nothing
         openFolder_evt.evt = Nothing

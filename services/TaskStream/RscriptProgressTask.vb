@@ -801,4 +801,18 @@ Public NotInheritable Class RscriptProgressTask
 
         Return True
     End Function
+
+    Public Shared Function RunPreprocessing(mat As String, sampleinfo As String, missing As Double, scale As Double, export_csv As String) As Boolean
+        Dim args As New Dictionary(Of String, String) From {
+            {"--sampleinfo", sampleinfo},
+            {"--peaktable", mat},
+            {"--scale_factor", scale},
+            {"--missing", missing},
+            {"--output", export_csv}
+        }
+
+        Call RunRScriptPipeline("workbench/preprocessing.R", args, "Do data pre-processing", "Removes/impute missing values, and run total peaksum normalization...")
+
+        Return export_csv.FileExists
+    End Function
 End Class
