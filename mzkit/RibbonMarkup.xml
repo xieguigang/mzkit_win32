@@ -4270,6 +4270,22 @@
         <Image MinDPI="192">Res/icons8-product-documents-96.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonPreProcessing" Id="307" LabelTitle="Pre-Processing" LabelDescription="Pre-Processing" TooltipTitle="Pre-Processing" TooltipDescription="Pre-Processing">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-project-setup-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-project-setup-96.png</Image>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdButtonViewPeakTable" Id="308" LabelTitle="View Peaktable" LabelDescription="View Peaktable" TooltipTitle="View Peaktable" TooltipDescription="View Peaktable">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/excel-icon.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/excel-icon.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4640,7 +4656,7 @@
         </TabGroup>
         <TabGroup CommandName="cmdMetaboAnalysis">
           <Tab CommandName="cmdDataSummaryPanel">
-            <Group CommandName="cmdWorkbenchFile" SizeDefinition="TwoButtons">
+            <Group CommandName="cmdWorkbenchFile" SizeDefinition="ThreeButtons">
               <SplitButton>
                 <SplitButton.ButtonItem>
                   <Button CommandName="cmdButtonOpenWorkspace" />
@@ -4648,6 +4664,7 @@
                 <Button CommandName="cmdButtonOpenLCMSWorkspaceFolder" />
               </SplitButton>
               <Button CommandName="cmdButtonOpenTableTool" />
+              <Button CommandName="cmdButtonPreProcessing" />
             </Group>
             <Group CommandName="cmdDataSummaryGroup" SizeDefinition="ThreeButtons">
               <Button CommandName="cmdButtonPCA" />
@@ -4665,6 +4682,7 @@
             </Group>
             <Group CommandName="cmdTableSampleData">
               <Button CommandName="cmdButtonViewSampleInfo" />
+              <Button CommandName="cmdButtonViewPeakTable" />
               <SplitButton CommandName="cmdButtonImportsLCMSAnnotations">
                 <SplitButton.ButtonItem>
                   <Button CommandName="cmdButtonImportsLCAnnotation2" />

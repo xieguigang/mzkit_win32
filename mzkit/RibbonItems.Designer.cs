@@ -237,6 +237,7 @@ namespace RibbonLib.Controls
             public const uint cmdWorkbenchFile = 275;
             public const uint cmdButtonOpenWorkspace = 276;
             public const uint cmdButtonOpenLCMSWorkspaceFolder = 283;
+            public const uint cmdButtonPreProcessing = 307;
             public const uint cmdDataSummaryGroup = 271;
             public const uint cmdButtonPCA = 272;
             public const uint cmdButtonPLSDA = 273;
@@ -248,6 +249,7 @@ namespace RibbonLib.Controls
             public const uint cmdButtonViewScatter3dInSinglePage = 292;
             public const uint cmdTableSampleData = 288;
             public const uint cmdButtonViewSampleInfo = 284;
+            public const uint cmdButtonViewPeakTable = 308;
             public const uint cmdButtonImportsLCMSAnnotations = 287;
             public const uint cmdButtonImportsLCAnnotation2 = 291;
             public const uint cmdButtonImportsLCAnnotationFromFile = 290;
@@ -534,6 +536,7 @@ namespace RibbonLib.Controls
         public RibbonGroup WorkbenchFile { get; private set; }
         public RibbonButton ButtonOpenWorkspace { get; private set; }
         public RibbonButton ButtonOpenLCMSWorkspaceFolder { get; private set; }
+        public RibbonButton ButtonPreProcessing { get; private set; }
         public RibbonGroup DataSummaryGroup { get; private set; }
         public RibbonButton ButtonPCA { get; private set; }
         public RibbonButton ButtonPLSDA { get; private set; }
@@ -545,6 +548,7 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonViewScatter3dInSinglePage { get; private set; }
         public RibbonGroup TableSampleData { get; private set; }
         public RibbonButton ButtonViewSampleInfo { get; private set; }
+        public RibbonButton ButtonViewPeakTable { get; private set; }
         public RibbonSplitButton ButtonImportsLCMSAnnotations { get; private set; }
         public RibbonButton ButtonImportsLCAnnotation2 { get; private set; }
         public RibbonButton ButtonImportsLCAnnotationFromFile { get; private set; }
@@ -826,6 +830,7 @@ namespace RibbonLib.Controls
             WorkbenchFile = new RibbonGroup(ribbon, Cmd.cmdWorkbenchFile);
             ButtonOpenWorkspace = new RibbonButton(ribbon, Cmd.cmdButtonOpenWorkspace);
             ButtonOpenLCMSWorkspaceFolder = new RibbonButton(ribbon, Cmd.cmdButtonOpenLCMSWorkspaceFolder);
+            ButtonPreProcessing = new RibbonButton(ribbon, Cmd.cmdButtonPreProcessing);
             DataSummaryGroup = new RibbonGroup(ribbon, Cmd.cmdDataSummaryGroup);
             ButtonPCA = new RibbonButton(ribbon, Cmd.cmdButtonPCA);
             ButtonPLSDA = new RibbonButton(ribbon, Cmd.cmdButtonPLSDA);
@@ -837,6 +842,7 @@ namespace RibbonLib.Controls
             ButtonViewScatter3dInSinglePage = new RibbonButton(ribbon, Cmd.cmdButtonViewScatter3dInSinglePage);
             TableSampleData = new RibbonGroup(ribbon, Cmd.cmdTableSampleData);
             ButtonViewSampleInfo = new RibbonButton(ribbon, Cmd.cmdButtonViewSampleInfo);
+            ButtonViewPeakTable = new RibbonButton(ribbon, Cmd.cmdButtonViewPeakTable);
             ButtonImportsLCMSAnnotations = new RibbonSplitButton(ribbon, Cmd.cmdButtonImportsLCMSAnnotations);
             ButtonImportsLCAnnotation2 = new RibbonButton(ribbon, Cmd.cmdButtonImportsLCAnnotation2);
             ButtonImportsLCAnnotationFromFile = new RibbonButton(ribbon, Cmd.cmdButtonImportsLCAnnotationFromFile);

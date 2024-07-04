@@ -234,6 +234,7 @@ Namespace RibbonLib.Controls
             Public Const cmdWorkbenchFile As UInteger = 275
             Public Const cmdButtonOpenWorkspace As UInteger = 276
             Public Const cmdButtonOpenLCMSWorkspaceFolder As UInteger = 283
+            Public Const cmdButtonPreProcessing As UInteger = 307
             Public Const cmdDataSummaryGroup As UInteger = 271
             Public Const cmdButtonPCA As UInteger = 272
             Public Const cmdButtonPLSDA As UInteger = 273
@@ -245,6 +246,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonViewScatter3dInSinglePage As UInteger = 292
             Public Const cmdTableSampleData As UInteger = 288
             Public Const cmdButtonViewSampleInfo As UInteger = 284
+            Public Const cmdButtonViewPeakTable As UInteger = 308
             Public Const cmdButtonImportsLCMSAnnotations As UInteger = 287
             Public Const cmdButtonImportsLCAnnotation2 As UInteger = 291
             Public Const cmdButtonImportsLCAnnotationFromFile As UInteger = 290
@@ -1631,6 +1633,12 @@ Namespace RibbonLib.Controls
                 Return _ButtonOpenLCMSWorkspaceFolder
             End Get
         End Property
+        Private _ButtonPreProcessing As RibbonButton
+        Public ReadOnly Property ButtonPreProcessing As RibbonButton
+            Get
+                Return _ButtonPreProcessing
+            End Get
+        End Property
         Private _DataSummaryGroup As RibbonGroup
         Public ReadOnly Property DataSummaryGroup As RibbonGroup
             Get
@@ -1695,6 +1703,12 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonViewSampleInfo As RibbonButton
             Get
                 Return _ButtonViewSampleInfo
+            End Get
+        End Property
+        Private _ButtonViewPeakTable As RibbonButton
+        Public ReadOnly Property ButtonViewPeakTable As RibbonButton
+            Get
+                Return _ButtonViewPeakTable
             End Get
         End Property
         Private _ButtonImportsLCMSAnnotations As RibbonSplitButton
@@ -2258,6 +2272,7 @@ Namespace RibbonLib.Controls
             _WorkbenchFile = New RibbonGroup(_ribbon, Cmd.cmdWorkbenchFile)
             _ButtonOpenWorkspace = New RibbonButton(_ribbon, Cmd.cmdButtonOpenWorkspace)
             _ButtonOpenLCMSWorkspaceFolder = New RibbonButton(_ribbon, Cmd.cmdButtonOpenLCMSWorkspaceFolder)
+            _ButtonPreProcessing = New RibbonButton(_ribbon, Cmd.cmdButtonPreProcessing)
             _DataSummaryGroup = New RibbonGroup(_ribbon, Cmd.cmdDataSummaryGroup)
             _ButtonPCA = New RibbonButton(_ribbon, Cmd.cmdButtonPCA)
             _ButtonPLSDA = New RibbonButton(_ribbon, Cmd.cmdButtonPLSDA)
@@ -2269,6 +2284,7 @@ Namespace RibbonLib.Controls
             _ButtonViewScatter3dInSinglePage = New RibbonButton(_ribbon, Cmd.cmdButtonViewScatter3dInSinglePage)
             _TableSampleData = New RibbonGroup(_ribbon, Cmd.cmdTableSampleData)
             _ButtonViewSampleInfo = New RibbonButton(_ribbon, Cmd.cmdButtonViewSampleInfo)
+            _ButtonViewPeakTable = New RibbonButton(_ribbon, Cmd.cmdButtonViewPeakTable)
             _ButtonImportsLCMSAnnotations = New RibbonSplitButton(_ribbon, Cmd.cmdButtonImportsLCMSAnnotations)
             _ButtonImportsLCAnnotation2 = New RibbonButton(_ribbon, Cmd.cmdButtonImportsLCAnnotation2)
             _ButtonImportsLCAnnotationFromFile = New RibbonButton(_ribbon, Cmd.cmdButtonImportsLCAnnotationFromFile)
