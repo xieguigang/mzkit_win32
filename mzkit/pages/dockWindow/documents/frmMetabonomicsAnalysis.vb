@@ -184,6 +184,14 @@ Public Class frmMetabonomicsAnalysis
         Call LoadData(df:=DataFrame.CreateObject(table), sourcefile, callback)
     End Sub
 
+    ''' <summary>
+    ''' imports from csv table
+    ''' </summary>
+    ''' <param name="sampleinfo"></param>
+    ''' <param name="properties"></param>
+    ''' <param name="df"></param>
+    ''' <param name="workdir"></param>
+    ''' <param name="title"></param>
     Public Sub LoadData(sampleinfo As SampleInfo(), properties As String(), df As DataFrame, workdir As String, title As String)
         ' show data
         Dim peaks As New List(Of xcms2)
@@ -238,10 +246,16 @@ Public Class frmMetabonomicsAnalysis
     End Sub
 
     Public Sub LoadWorkspace(dir As String)
+        Dim rawdata As String = $"{dir}/peakset.xcms"
+        Dim normdata As String = $"{dir}/norm.xcms"
+        Dim sourcefile As String = If(normdata.FileLength > 0, normdata, rawdata)
+
         Me.workdir = dir
-        Me.peaks = SaveXcms.ReadSample($"{dir}/peakset.xcms".Open(FileMode.Open, doClear:=False, [readOnly]:=True))
+        Me.peaks = SaveXcms.ReadSample(sourcefile.Open(FileMode.Open, doClear:=False, [readOnly]:=True))
         Me.sampleinfo = sampleinfofile.LoadCsv(Of SampleInfo)().ToArray
 
+        ' export expression matrix for
+        ' run data visualization and data nslsysis
         Using f As Stream = matrixfile.Open(FileMode.OpenOrCreate, doClear:=True)
             Call CastMatrix(Me.peaks, sampleinfo).Save(f)
             Call Workbench.LogText($"set workspace for metabonomics workbench: {workdir}")
@@ -536,9 +550,10 @@ Public Class frmMetabonomicsAnalysis
     Private Sub RunNormaliza()
         InputDialog.Input(Of InputSampleProcessing)(
             Sub(cfg)
-                If RscriptProgressTask.RunPreprocessing($"{workdir}/peakset.xcms", sampleinfofile, cfg.MissingPercentage, cfg.NormScale, $"{workdir}/norm.xcms") Then
+                If RscriptProgressTask.RunPreprocessing($"{workdir}/peakset.xcms", sampleinfofile, cfg.MissingPercentage, cfg.NormScale,
+                                                        $"{workdir}/norm.xcms") Then
                     ' reload
-
+                    Call LoadWorkspace(workdir)
                 Else
                     Call Workbench.Warning("run data pre-processing error.")
                 End If

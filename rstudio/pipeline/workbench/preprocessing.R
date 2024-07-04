@@ -18,9 +18,7 @@ peaktable  <- mzkit::preprocessing_expression(peaktable,
 
 if (file.ext(peaktable) == "xcms") {
     # export binary peaktable 
-    writeBin(peaktable, con = export_file);
-    # and binary expression matrix for workbench
-    
+    writeBin(peaktable, con = export_file);   
 } else {
     # just export the normalized peaktable in csv file
     write.xcms_peaks(peaktable, file = export_file);
