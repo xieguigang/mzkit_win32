@@ -809,6 +809,12 @@
     <Compile Include="pages\dockWindow\properties\SingleCellsClusterToolWindow.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="pages\dockWindow\systems\frmLogFile.Designer.vb">
+      <DependentUpon>frmLogFile.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pages\dockWindow\systems\frmLogFile.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pages\dockWindow\systems\frmPluginMgr.Designer.vb">
       <DependentUpon>frmPluginMgr.vb</DependentUpon>
     </Compile>
