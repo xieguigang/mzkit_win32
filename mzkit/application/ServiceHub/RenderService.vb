@@ -9,6 +9,8 @@ Imports Microsoft.VisualBasic.Parallel
 Imports Mzkit_win32.BasicMDIForm
 Imports TaskStream
 Imports IPEndPoint = Microsoft.VisualBasic.Net.IPEndPoint
+Imports BioNovoGene.mzkit_win32.My
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Unit
 
 Public NotInheritable Class RenderService
 
@@ -41,10 +43,12 @@ Public NotInheritable Class RenderService
     End Sub
 
     Private Shared Sub Start(bindChannel As String)
+        Dim mb As Double = MyApplication.buffer_size / ByteSize.MB
+
         BlenderHost = New Process With {
             .StartInfo = New ProcessStartInfo With {
                 .FileName = $"{App.HOME}/plugins\blender\BlenderHost.exe",
-                .Arguments = $"/start --port {MSIBlender.port} --master {bindChannel} {If(debug, "--debug", "")} /@set buffer_size=128MB",
+                .Arguments = $"/start --port {MSIBlender.port} --master {bindChannel} {If(debug, "--debug", "")} /@set buffer_size={mb}MB",
                 .CreateNoWindow = True,
                 .WindowStyle = ProcessWindowStyle.Hidden,
                 .UseShellExecute = False,

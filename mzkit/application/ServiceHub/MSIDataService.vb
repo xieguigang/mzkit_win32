@@ -85,6 +85,7 @@ Imports Mzkit_win32.BasicMDIForm
 Imports ServiceHub
 Imports Task
 Imports TaskStream
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Unit
 
 Namespace ServiceHub
 
@@ -189,6 +190,7 @@ Namespace ServiceHub
         ''' </summary>
         Public Shared Function StartMSIService(ByRef hostReference As MSIDataService) As MSIDataService
             Dim Rscript As String = GetRscript()
+            Dim mb As Double = MyApplication.buffer_size / ByteSize.MB
 
             If Not hostReference Is Nothing Then
                 Call hostReference.CloseMSIEngine()
@@ -197,7 +199,7 @@ Namespace ServiceHub
             Call MyApplication.LogText($"Start background services: {Rscript}")
 
             hostReference = New MSIDataService
-            hostReference.MSI_pipe = Global.ServiceHub.Protocols.StartServer(Rscript, hostReference.MSI_service, debugPort)
+            hostReference.MSI_pipe = Global.ServiceHub.Protocols.StartServer(Rscript, hostReference.MSI_service, debugPort, buf_size:=mb)
 
             ' hook message event handler
             AddHandler hostReference.MSI_pipe.SetMessage, AddressOf hostReference.MSI_pipe_SetMessage

@@ -1,6 +1,7 @@
 ﻿Imports System.Threading
 Imports BioNovoGene.mzkit_win32.My
 Imports BioNovoGene.mzkit_win32.ServiceHub
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Unit
 
 Namespace Debugger
 
@@ -12,8 +13,9 @@ Namespace Debugger
                 Return
             Else
                 Dim Rscript As String = MSIDataService.GetRscript
+                Dim mb As Double = MyApplication.buffer_size / ByteSize.MB
 
-                Global.ServiceHub.Protocols.StartServer(Rscript, 0, debugPort:=MSIDataService.debugPort)
+                Global.ServiceHub.Protocols.StartServer(Rscript, 0, debugPort:=MSIDataService.debugPort, buf_size:=mb)
 
                 Call Thread.Sleep(1000)
                 Call Run2()

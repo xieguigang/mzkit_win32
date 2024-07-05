@@ -73,13 +73,13 @@ Public Module Protocols
         hostDll = $"{App.HOME}/Rstudio/host/ServiceHub.dll".GetFullPath
     End Sub
 
-    Private Function getArgumentString(Rscript As String, debugPort As Integer?, heartbeats As Integer?) As String
+    Private Function getArgumentString(Rscript As String, debugPort As Integer?, heartbeats As Integer?, buf_size As Single) As String
         Dim args As New List(Of String)
 
         Call args.Add(Rscript.CLIPath)
         Call args.Add($"--master {App.PID}")
         Call args.Add($"--SetDllDirectory {hostDll.ParentPath.CLIPath}")
-        Call args.Add($"/@set buffer_size=128MB")
+        Call args.Add($"/@set buffer_size={buf_size}MB")
 
         If Not debugPort Is Nothing AndAlso debugPort > 0 Then
             Call args.Add($"--debug={debugPort}")
@@ -103,9 +103,10 @@ Public Module Protocols
     Public Function StartServer(Rscript As String,
                                 ByRef service As Integer,
                                 debugPort As Integer?,
+                                buf_size As Single,
                                 Optional heartbeats As Integer? = Nothing) As RunSlavePipeline
 
-        Dim cli As String = getArgumentString(Rscript, debugPort, heartbeats)
+        Dim cli As String = getArgumentString(Rscript, debugPort, heartbeats, buf_size)
         Dim workdir As String = Protocols.Rscript.ParentPath
 
         If debugPort Is Nothing Then

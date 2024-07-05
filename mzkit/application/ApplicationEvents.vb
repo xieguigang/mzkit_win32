@@ -72,9 +72,14 @@ Imports Microsoft.VisualBasic.ApplicationServices.Debugging.Logging
 Imports Microsoft.VisualBasic.ApplicationServices.Development
 Imports Microsoft.VisualBasic.ApplicationServices.Terminal
 Imports Microsoft.VisualBasic.CommandLine
+Imports Microsoft.VisualBasic.ComponentModel.Collection
+Imports Microsoft.VisualBasic.ComponentModel.Ranges
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Unit
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Drawing2D
 Imports Microsoft.VisualBasic.Imaging.Drawing2D.Colors
+Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Language.Default
 Imports Microsoft.VisualBasic.Language.UnixBash
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.Html.CSS
@@ -418,6 +423,12 @@ Type 'q()' to quit R.
             End Select
         End Function
 
+        ''' <summary>
+        ''' should be less than 2GB
+        ''' </summary>
+        ''' <returns></returns>
+        Public Shared ReadOnly Property buffer_size As Integer = 64 * ByteSize.MB
+
         Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles Me.Startup
             Dim cli = App.CommandLine
             Dim config = Globals.Settings
@@ -449,6 +460,12 @@ Type 'q()' to quit R.
                     Call BioNovoGene.mzkit_win32.CLI.debugPluginPage(cli.GetString("--plugin"))
                 ElseIf cli.Name.TextEquals("--deep_zoom") Then
                     Call BioNovoGene.mzkit_win32.CLI.createDeepzoomImage(img:=cli.GetString("--image"))
+                End If
+
+                If cli.ContainsParameter("--buffer_size") Then
+                    _buffer_size = Unit.ParseByteSize(cli("--buffer_size") Or "64MB")
+                ElseIf cli.Name.TextEquals("--buffer_size") Then
+                    _buffer_size = Unit.ParseByteSize(cli.Parameters.ElementAtOrDefault(0, "64MB"))
                 End If
             End If
 
