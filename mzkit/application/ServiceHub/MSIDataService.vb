@@ -440,6 +440,8 @@ Namespace ServiceHub
                 Return Nothing
             End If
 
+            Call data.ChunkBuffer.FlushStream(App.CurrentProcessTemp & "/debug.bson")
+
             Dim regions As RegionLoader = BSON _
                .Load(data.ChunkBuffer) _
                .CreateObject(Of RegionLoader)(decodeMetachar:=False) _
