@@ -94,7 +94,7 @@ Module Debugger
         Return New list
     End Function
 
-    <ExportAPI("")>
+    <ExportAPI("test_load_regions")>
     Public Function TestLoadRegions(dumpfile As String) As Object
         Dim regions As RegionLoader = BSON _
            .Load(dumpfile.ReadBinary) _
