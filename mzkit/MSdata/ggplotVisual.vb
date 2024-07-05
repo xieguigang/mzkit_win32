@@ -48,7 +48,7 @@ Module ggplotVisual
     Public Function ggplot(pack As String, title As String, size As Integer(), Optional type As String = "violin|box|bar") As Image
         Return RscriptProgressTask.PlotStats(pack,
              type:=type.Split("|"c).First,
-             title:=title.NormalizePathString(False,),
+             title:=title.Replace(""""c, "'"),
              size:=size.JoinBy(","))
     End Function
 End Module
