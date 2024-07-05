@@ -79,7 +79,7 @@ Public Module Protocols
         Call args.Add(Rscript.CLIPath)
         Call args.Add($"--master {App.PID}")
         Call args.Add($"--SetDllDirectory {hostDll.ParentPath.CLIPath}")
-        Call args.Add($"/@set buffer_size=64MB")
+        Call args.Add($"/@set buffer_size=128MB")
 
         If Not debugPort Is Nothing AndAlso debugPort > 0 Then
             Call args.Add($"--debug={debugPort}")
