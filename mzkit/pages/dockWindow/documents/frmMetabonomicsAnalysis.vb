@@ -4,7 +4,9 @@ Imports System.Runtime.CompilerServices
 Imports System.Runtime.InteropServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
+Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
+Imports BioNovoGene.BioDeep.MSFinder
 Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Data.csv
@@ -92,21 +94,38 @@ Public Class frmMetabonomicsAnalysis
         }
     End Function
 
+    Dim xcms_id As String()
+    Dim annotation As New Dictionary(Of String, AnnotatedIon)
+    Dim meta As New Dictionary(Of String, MetaLib)
+
     Public Sub LoadSampleData(table As DataTable)
         Dim groups = sampleinfo.GroupBy(Function(s) s.sample_info) _
             .Select(Function(g) (g.Key, list:=g.ToArray)) _
             .ToArray
 
-        Call table.Columns.Add("xcms_id", GetType(String))
+        Call table.Columns.Add("id", GetType(String))
 
         For Each group In groups
             Dim col = table.Columns.Add(group.Key, GetType(Double))
             col.ExtendedProperties.Add("color", group.list.First.color.TranslateColor)
         Next
 
+        Dim offset As Integer = 0
+
+        xcms_id = New String(peaks.ROIs - 1) {}
+
         For Each peak As xcms2 In peaks.peaks
             Dim row As Object() = New Object(groups.Length) {}
-            row(0) = peak.ID
+            Dim display As AnnotatedIon = annotation.TryGetValue(peak.ID)
+
+            If display Is Nothing Then
+                row(0) = peak.ID
+            Else
+                row(0) = $"{display.metadata.CommonName}_{display.AdductIon.ToString}"
+            End If
+
+            offset += 1
+            xcms_id(offset) = peak.ID
 
             For i As Integer = 0 To groups.Length - 1
                 Dim group = groups(i).list
@@ -429,6 +448,8 @@ Public Class frmMetabonomicsAnalysis
 
     Shared ReadOnly runNorm_evt As New RibbonEventBinding(ribbonItems.ButtonPreProcessing)
 
+    Shared ReadOnly openMetabolitesFile As New RibbonEventBinding(ribbonItems.ButtonImportsLCAnnotationFromFile)
+
     Private Sub frmMetabonomicsAnalysis_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call WebKit.Init(Me.WebView21)
         Call ApplyVsTheme(ContextMenuStrip1)
@@ -540,11 +561,17 @@ Public Class frmMetabonomicsAnalysis
 
         runNorm_evt.evt = Sub() Call RunNormaliza()
 
+        openMetabolitesFile.evt = Sub() Call importsMetaboliteFile()
+
         viewLC_evt.evt = Sub() Call showScatter()
         openFolder_evt.evt = Sub() Call openFolder()
         viewSampleinfo_evt.evt = Sub() Call viewSampleinfo()
         view3D_evt.evt = Sub() Call view3DScatter()
         view3DPage_evt.evt = Sub() Call view3DScatterInSinglePage()
+    End Sub
+
+    Private Sub importsMetaboliteFile()
+
     End Sub
 
     Private Sub RunNormaliza()
