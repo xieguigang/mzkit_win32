@@ -412,6 +412,7 @@ Public Class frmMetabonomicsAnalysis
         End If
 
         Dim xcms_id As String = any.ToString(selected.Cells(0).Value)
+        Dim raw_id As String = xcms_id
 
         If xcms_id.StringEmpty Then
             Return
@@ -430,13 +431,13 @@ Public Class frmMetabonomicsAnalysis
             expression = getExpression(xcms_id)
 
             If peak.mzmin = peak.mzmax Then
-                expression_name = $"[{xcms_id}] {peak.mz.ToString("F4")}@{(peak.rt / 60).ToString("F2")}min"
+                expression_name = $"[{raw_id}] {peak.mz.ToString("F4")}@{(peak.rt / 60).ToString("F2")}min"
             Else
-                expression_name = $"[{xcms_id}] {peak.mzmin.ToString("F4")}~{peak.mzmax.ToString("F4")}@{(peak.rt / 60).ToString("F2")}min"
+                expression_name = $"[{raw_id}] {peak.mzmin.ToString("F4")}~{peak.mzmax.ToString("F4")}@{(peak.rt / 60).ToString("F2")}min"
             End If
 
             If AutoPlotToolStripMenuItem.Checked Then
-                PictureBox1.BackgroundImage = plotExpression(xcms_id, expression)
+                PictureBox1.BackgroundImage = plotExpression(raw_id, expression)
             End If
 
             PropertyGrid1.SelectedObject = peak
