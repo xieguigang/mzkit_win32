@@ -444,6 +444,7 @@ Public Class frmMetabonomicsAnalysis
     Shared ReadOnly viewLC_evt As New RibbonEventBinding(ribbonItems.ViewLCMSScatter)
     Shared ReadOnly openFolder_evt As New RibbonEventBinding(ribbonItems.ButtonOpenLCMSWorkspaceFolder)
     Shared ReadOnly viewSampleinfo_evt As New RibbonEventBinding(ribbonItems.ButtonViewSampleInfo)
+    Shared ReadOnly viewPeaktable_evt As New RibbonEventBinding(ribbonItems.ButtonViewPeakTable)
     Shared ReadOnly view3D_evt As New RibbonEventBinding(ribbonItems.ButtonViewAnalysis3DScatter)
     Shared ReadOnly view3DPage_evt As New RibbonEventBinding(ribbonItems.ButtonViewScatter3dInSinglePage)
 
@@ -567,6 +568,7 @@ Public Class frmMetabonomicsAnalysis
         viewLC_evt.evt = Sub() Call showScatter()
         openFolder_evt.evt = Sub() Call openFolder()
         viewSampleinfo_evt.evt = Sub() Call viewSampleinfo()
+        viewPeaktable_evt.evt = AddressOf loadPeaktable
         view3D_evt.evt = Sub() Call view3DScatter()
         view3DPage_evt.evt = Sub() Call view3DScatterInSinglePage()
     End Sub
@@ -602,6 +604,8 @@ Public Class frmMetabonomicsAnalysis
         viewSampleinfo_evt.evt = Nothing
         view3D_evt.evt = Nothing
         view3DPage_evt.evt = Nothing
+
+        viewPeaktable_evt.evt = Nothing
     End Sub
 
     Private Sub RunPCA(analysis As Type)
@@ -625,10 +629,11 @@ Public Class frmMetabonomicsAnalysis
 
     Private Sub loadPeakTableCommon()
         Call ToolStripDropDownButton1.DropDownItems.Clear()
-        Call ToolStripDropDownButton1.DropDownItems.Add("view peaktable", My.Resources._42082,
-             Sub()
-                 Call loadTable(Sub(table) Call LoadSampleData(table))
-             End Sub)
+        Call ToolStripDropDownButton1.DropDownItems.Add("view peaktable", My.Resources._42082, Sub() Call loadPeaktable())
+    End Sub
+
+    Private Sub loadPeaktable()
+        Call loadTable(Sub(table) Call LoadSampleData(table))
     End Sub
 
     Private Sub PCAToolStripMenuItem_Click() Handles PCAToolStripMenuItem.Click
