@@ -124,12 +124,13 @@ Public Class frmMetabonomicsAnalysis
                 row(0) = $"{display.metadata.CommonName}_{display.AdductIon.ToString}"
             End If
 
-            offset += 1
             xcms_id(offset) = peak.ID
+            offset += 1
 
             For i As Integer = 0 To groups.Length - 1
                 Dim group = groups(i).list
                 Dim data As Double() = peak(group.Select(Function(s) s.ID))
+
                 row(i + 1) = data.Average
             Next
 
