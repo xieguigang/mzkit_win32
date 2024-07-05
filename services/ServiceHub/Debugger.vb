@@ -59,6 +59,7 @@ Imports System.Net
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.MarkupData.imzML
 Imports Darwinism.IPC.Networking.Protocols.Reflection
 Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.MIME.application.json
 Imports Microsoft.VisualBasic.My
 Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic.Scripting.MetaData
@@ -91,6 +92,16 @@ Module Debugger
         Dim layer4 As BufferPipe = app.HandleRequest(MSIRequest.LoadSummaryLayer(IntensitySummary.Median), debug_local)
 
         Return New list
+    End Function
+
+    <ExportAPI("")>
+    Public Function TestLoadRegions(dumpfile As String) As Object
+        Dim regions As RegionLoader = BSON _
+           .Load(dumpfile.ReadBinary) _
+           .CreateObject(Of RegionLoader)(decodeMetachar:=False) _
+           .Reload
+
+        Return regions
     End Function
 
 End Module
