@@ -70,6 +70,7 @@ Imports BioNovoGene.mzkit_win32.My
 Imports Darwinism.IPC.Networking.HTTP
 Imports Darwinism.IPC.Networking.Tcp
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
+Imports Microsoft.VisualBasic.ComponentModel.Ranges.Unit
 Imports Microsoft.VisualBasic.DataMining.KMeans
 Imports Microsoft.VisualBasic.Imaging.Math2D
 Imports Microsoft.VisualBasic.Linq
@@ -85,7 +86,6 @@ Imports Mzkit_win32.BasicMDIForm
 Imports ServiceHub
 Imports Task
 Imports TaskStream
-Imports Microsoft.VisualBasic.ComponentModel.Ranges.Unit
 
 Namespace ServiceHub
 
