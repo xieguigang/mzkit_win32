@@ -101,7 +101,7 @@ Public Class frmMetabonomicsAnalysis
     Dim xcms_id As String()
     Dim annotation As New Dictionary(Of String, AnnotatedIon)
     Dim meta As New Dictionary(Of String, MetaLib)
-    Dim mapping As Dictionary(Of String, String)
+    Dim mapping As New Dictionary(Of String, String)
 
     Public Sub LoadSampleData(table As DataTable)
         Dim groups = sampleinfo.GroupBy(Function(s) s.sample_info) _
