@@ -3,9 +3,13 @@ Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Runtime.InteropServices
 Imports BioNovoGene.Analytical.MassSpectrometry.Math
+Imports BioNovoGene.Analytical.MassSpectrometry.Math.Ms1.PrecursorType
 Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
 Imports BioNovoGene.BioDeep.Chemistry.MetaLib.Models
 Imports BioNovoGene.BioDeep.Chemistry.NCBI.PubChem
+Imports BioNovoGene.BioDeep.Chemoinformatics
+Imports BioNovoGene.BioDeep.Chemoinformatics.Formula
+Imports BioNovoGene.BioDeep.Chemoinformatics.Formula.MS
 Imports BioNovoGene.BioDeep.MSFinder
 Imports BioNovoGene.mzkit_win32.ServiceHub
 Imports Microsoft.VisualBasic.ComponentModel.Collection
@@ -97,6 +101,7 @@ Public Class frmMetabonomicsAnalysis
     Dim xcms_id As String()
     Dim annotation As New Dictionary(Of String, AnnotatedIon)
     Dim meta As New Dictionary(Of String, MetaLib)
+    Dim mapping As Dictionary(Of String, String)
 
     Public Sub LoadSampleData(table As DataTable)
         Dim groups = sampleinfo.GroupBy(Function(s) s.sample_info) _
@@ -124,6 +129,7 @@ Public Class frmMetabonomicsAnalysis
                 row(0) = $"{display.metadata.CommonName}_{display.AdductIon.ToString}"
             End If
 
+            mapping(row(0)) = peak.ID
             xcms_id(offset) = peak.ID
             offset += 1
 
@@ -134,7 +140,7 @@ Public Class frmMetabonomicsAnalysis
                 row(i + 1) = data.Average
             Next
 
-            Call table.Rows.Add(row)
+            table.Rows.Add(row)
         Next
     End Sub
 
@@ -409,9 +415,13 @@ Public Class frmMetabonomicsAnalysis
 
         If xcms_id.StringEmpty Then
             Return
+        Else
+            If mapping.ContainsKey(xcms_id) Then
+                xcms_id = mapping(xcms_id)
+            End If
         End If
 
-        Dim peak = peaks.GetById(xcms_id)
+        Dim peak As xcms2 = peaks.GetById(xcms_id)
 
         If peak Is Nothing Then
             Return
@@ -574,7 +584,29 @@ Public Class frmMetabonomicsAnalysis
     End Sub
 
     Private Sub importsMetaboliteFile()
+        Using file As New OpenFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
+            If file.ShowDialog = DialogResult.OK Then
+                Dim df As DataFrame = DataFrame.Load(file.FileName)
+                Dim xcms_id As Integer = df.GetOrdinal("xcms_id")
+                Dim name As Integer = df.GetOrdinal("name")
+                Dim formula As Integer = df.GetOrdinal("formula")
+                Dim adducts As Integer = df.GetOrdinal("precursor_type")
 
+                Do While df.Read
+                    annotation(df.GetString(xcms_id)) = New AnnotatedIon With {
+                        .AdductIon = New AdductIon(Provider.ParseAdductModel(df.GetString(adducts))),
+                        .metadata = New MetaboliteAnnotation With {
+                            .CommonName = df.GetString(name),
+                            .Formula = df.GetString(formula),
+                            .ExactMass = FormulaScanner.EvaluateExactMass(.Formula),
+                            .Id = df.GetString(xcms_id)
+                        }
+                    }
+                Loop
+
+                Call loadPeaktable()
+            End If
+        End Using
     End Sub
 
     Private Sub RunNormaliza()
