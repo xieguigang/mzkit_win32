@@ -145,7 +145,14 @@ Public Class frmMetabonomicsAnalysis
     End Sub
 
     Public Sub LoadAnalysisTable(table As DataTable, data As DataSet())
-        Dim keys As String() = data(0).Properties.Keys.ToArray
+        Dim keys As String()
+
+        If data.IsNullOrEmpty Then
+            Call MessageBox.Show("No analysis data table contents, please try to run data analysis first.", "Missing data", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        Else
+            keys = data(0).Properties.Keys.ToArray
+        End If
 
         Call table.Columns.Add("id", GetType(String))
 
