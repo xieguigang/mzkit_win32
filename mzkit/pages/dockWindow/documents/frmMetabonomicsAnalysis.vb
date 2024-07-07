@@ -303,6 +303,11 @@ Public Class frmMetabonomicsAnalysis
         Dim normdata As String = $"{workdir}/norm.xcms"
         Dim sourcefile As String = If(normdata.FileLength > 0, normdata, rawdata)
 
+        If peaks Is Nothing OrElse sampleinfo.IsNullOrEmpty Then
+            Workbench.Warning("please load analysis peaktable data at first!")
+            Return
+        End If
+
         Using file As New SaveFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
             If file.ShowDialog = DialogResult.OK Then
                 If CastMatrix(Me.peaks, sampleinfo).SaveMatrix(file.FileName, "xcms_id") Then
