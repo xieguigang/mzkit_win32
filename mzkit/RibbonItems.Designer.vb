@@ -13,7 +13,7 @@ Imports RibbonLib
 Imports RibbonLib.Controls
 
 Namespace RibbonLib.Controls
-    Public Class RibbonItems
+    Partial Class RibbonItems
         Private Class Cmd
             Public Const cmdRecentItems As UInteger = 1014
             Public Const cmdMenuGroupFile As UInteger = 1005
@@ -234,6 +234,7 @@ Namespace RibbonLib.Controls
             Public Const cmdWorkbenchFile As UInteger = 275
             Public Const cmdButtonOpenWorkspace As UInteger = 276
             Public Const cmdButtonOpenLCMSWorkspaceFolder As UInteger = 283
+            Public Const cmdButtonExportMatrix2 As UInteger = 309
             Public Const cmdButtonPreProcessing As UInteger = 307
             Public Const cmdDataSummaryGroup As UInteger = 271
             Public Const cmdButtonPCA As UInteger = 272
@@ -1633,6 +1634,12 @@ Namespace RibbonLib.Controls
                 Return _ButtonOpenLCMSWorkspaceFolder
             End Get
         End Property
+        Private _ButtonExportMatrix2 As RibbonButton
+        Public ReadOnly Property ButtonExportMatrix2 As RibbonButton
+            Get
+                Return _ButtonExportMatrix2
+            End Get
+        End Property
         Private _ButtonPreProcessing As RibbonButton
         Public ReadOnly Property ButtonPreProcessing As RibbonButton
             Get
@@ -2272,6 +2279,7 @@ Namespace RibbonLib.Controls
             _WorkbenchFile = New RibbonGroup(_ribbon, Cmd.cmdWorkbenchFile)
             _ButtonOpenWorkspace = New RibbonButton(_ribbon, Cmd.cmdButtonOpenWorkspace)
             _ButtonOpenLCMSWorkspaceFolder = New RibbonButton(_ribbon, Cmd.cmdButtonOpenLCMSWorkspaceFolder)
+            _ButtonExportMatrix2 = New RibbonButton(_ribbon, Cmd.cmdButtonExportMatrix2)
             _ButtonPreProcessing = New RibbonButton(_ribbon, Cmd.cmdButtonPreProcessing)
             _DataSummaryGroup = New RibbonGroup(_ribbon, Cmd.cmdDataSummaryGroup)
             _ButtonPCA = New RibbonButton(_ribbon, Cmd.cmdButtonPCA)

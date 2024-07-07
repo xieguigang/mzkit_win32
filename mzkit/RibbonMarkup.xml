@@ -4286,6 +4286,14 @@
         <Image MinDPI="192">Res/excel-icon.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdButtonExportMatrix2" Id="309" LabelTitle="Export Matrix Data" LabelDescription="Export Matrix Data" TooltipTitle="Export Matrix Data" TooltipDescription="Export Matrix Data">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/document-save.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/document-save.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4662,6 +4670,7 @@
                   <Button CommandName="cmdButtonOpenWorkspace" />
                 </SplitButton.ButtonItem>
                 <Button CommandName="cmdButtonOpenLCMSWorkspaceFolder" />
+                <Button CommandName="cmdButtonExportMatrix2" />
               </SplitButton>
               <Button CommandName="cmdButtonOpenTableTool" />
               <Button CommandName="cmdButtonPreProcessing" />

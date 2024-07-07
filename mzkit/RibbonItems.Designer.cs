@@ -237,6 +237,7 @@ namespace RibbonLib.Controls
             public const uint cmdWorkbenchFile = 275;
             public const uint cmdButtonOpenWorkspace = 276;
             public const uint cmdButtonOpenLCMSWorkspaceFolder = 283;
+            public const uint cmdButtonExportMatrix2 = 309;
             public const uint cmdButtonPreProcessing = 307;
             public const uint cmdDataSummaryGroup = 271;
             public const uint cmdButtonPCA = 272;
@@ -536,6 +537,7 @@ namespace RibbonLib.Controls
         public RibbonGroup WorkbenchFile { get; private set; }
         public RibbonButton ButtonOpenWorkspace { get; private set; }
         public RibbonButton ButtonOpenLCMSWorkspaceFolder { get; private set; }
+        public RibbonButton ButtonExportMatrix2 { get; private set; }
         public RibbonButton ButtonPreProcessing { get; private set; }
         public RibbonGroup DataSummaryGroup { get; private set; }
         public RibbonButton ButtonPCA { get; private set; }
@@ -830,6 +832,7 @@ namespace RibbonLib.Controls
             WorkbenchFile = new RibbonGroup(ribbon, Cmd.cmdWorkbenchFile);
             ButtonOpenWorkspace = new RibbonButton(ribbon, Cmd.cmdButtonOpenWorkspace);
             ButtonOpenLCMSWorkspaceFolder = new RibbonButton(ribbon, Cmd.cmdButtonOpenLCMSWorkspaceFolder);
+            ButtonExportMatrix2 = new RibbonButton(ribbon, Cmd.cmdButtonExportMatrix2);
             ButtonPreProcessing = new RibbonButton(ribbon, Cmd.cmdButtonPreProcessing);
             DataSummaryGroup = new RibbonGroup(ribbon, Cmd.cmdDataSummaryGroup);
             ButtonPCA = new RibbonButton(ribbon, Cmd.cmdButtonPCA);

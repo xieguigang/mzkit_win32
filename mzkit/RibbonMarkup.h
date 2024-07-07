@@ -1711,6 +1711,13 @@
 #define cmdButtonViewPeakTable_TooltipDescription_RESID 60226
 #define cmdButtonViewPeakTable_SmallImages_192__RESID 60227
 #define cmdButtonViewPeakTable_LargeImages_192__RESID 60228
-#define InternalCmd2_LabelTitle_RESID 60229
-#define InternalCmd4_LabelTitle_RESID 60230
-#define InternalCmd6_LabelTitle_RESID 60231
+#define cmdButtonExportMatrix2 309 
+#define cmdButtonExportMatrix2_LabelTitle_RESID 60229
+#define cmdButtonExportMatrix2_LabelDescription_RESID 60230
+#define cmdButtonExportMatrix2_TooltipTitle_RESID 60231
+#define cmdButtonExportMatrix2_TooltipDescription_RESID 60232
+#define cmdButtonExportMatrix2_SmallImages_192__RESID 60233
+#define cmdButtonExportMatrix2_LargeImages_192__RESID 60234
+#define InternalCmd2_LabelTitle_RESID 60235
+#define InternalCmd4_LabelTitle_RESID 60236
+#define InternalCmd6_LabelTitle_RESID 60237

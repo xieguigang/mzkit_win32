@@ -298,6 +298,22 @@ Public Class frmMetabonomicsAnalysis
         Call startfs()
     End Sub
 
+    Public Sub exportMatrixExcelFile()
+        Dim rawdata As String = $"{workdir}/peakset.xcms"
+        Dim normdata As String = $"{workdir}/norm.xcms"
+        Dim sourcefile As String = If(normdata.FileLength > 0, normdata, rawdata)
+
+        Using file As New SaveFileDialog With {.Filter = "Excel Table(*.csv)|*.csv"}
+            If file.ShowDialog = DialogResult.OK Then
+                If CastMatrix(Me.peaks, sampleinfo).SaveMatrix(file.FileName, "xcms_id") Then
+                    MessageBox.Show("Matrix export success!" & vbCrLf & file.FileName, "Data export", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Else
+                    Workbench.Warning("matrix export error.")
+                End If
+            End If
+        End Using
+    End Sub
+
     ''' <summary>
     ''' the matrix binary file
     ''' </summary>
@@ -469,6 +485,7 @@ Public Class frmMetabonomicsAnalysis
     Shared ReadOnly runNorm_evt As New RibbonEventBinding(ribbonItems.ButtonPreProcessing)
 
     Shared ReadOnly openMetabolitesFile As New RibbonEventBinding(ribbonItems.ButtonImportsLCAnnotationFromFile)
+    Shared ReadOnly export_matrix_evt As New RibbonEventBinding(ribbonItems.ButtonExportMatrix2)
 
     Private Sub frmMetabonomicsAnalysis_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call WebKit.Init(Me.WebView21)
@@ -589,6 +606,8 @@ Public Class frmMetabonomicsAnalysis
         viewPeaktable_evt.evt = AddressOf loadPeaktable
         view3D_evt.evt = Sub() Call view3DScatter()
         view3DPage_evt.evt = Sub() Call view3DScatterInSinglePage()
+
+        export_matrix_evt.evt = Sub() Call exportMatrixExcelFile()
     End Sub
 
     Private Sub importsMetaboliteFile()
@@ -646,6 +665,7 @@ Public Class frmMetabonomicsAnalysis
         view3DPage_evt.evt = Nothing
 
         viewPeaktable_evt.evt = Nothing
+        export_matrix_evt.evt = Nothing
     End Sub
 
     Private Sub RunPCA(analysis As Type)
