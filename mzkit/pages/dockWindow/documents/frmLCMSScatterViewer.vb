@@ -19,13 +19,34 @@ Public Class frmLCMSScatterViewer
         clickPoint = click
     End Sub
 
+    ''' <summary>
+    ''' ms1 peaks
+    ''' </summary>
+    ''' <param name="raw"></param>
+    ''' <returns></returns>
     Public Function loadRaw(raw As Raw) As frmLCMSScatterViewer
         Me.raw = raw
         Me.raw.LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache))
         Me.TabText = raw.source.FileName
 
-        Call ProgressSpinner.DoLoading(Sub() Call Invoke(Sub() Call loadRaw()))
+        Call ProgressSpinner.DoLoading(Sub() Call Invoke(Sub() Call loadRaw(msn:=False)))
         Call Workbench.AppHost.SetTitle($"LCMS Scatter '{raw.source.FileName}'")
+
+        Return Me
+    End Function
+
+    ''' <summary>
+    ''' msn precursors
+    ''' </summary>
+    ''' <param name="raw"></param>
+    ''' <returns></returns>
+    Public Function LoadRawMSn(raw As Raw) As frmLCMSScatterViewer
+        Me.raw = raw
+        Me.raw.LoadMzpack(Sub(src, cache) frmFileExplorer.getRawCache(src,, cache))
+        Me.TabText = raw.source.FileName
+
+        Call ProgressSpinner.DoLoading(Sub() Call Invoke(Sub() Call loadRaw(msn:=True)))
+        Call Workbench.AppHost.SetTitle($"LCMS MSn Scatter '{raw.source.FileName}'")
 
         Return Me
     End Function
@@ -50,19 +71,25 @@ Public Class frmLCMSScatterViewer
         Call Me.ScatterViewer.LoadPeaks(rawdata)
     End Sub
 
-    Private Sub loadRaw()
+    Private Sub loadRaw(msn As Boolean)
+        ' MSn
         Dim meta As List(Of Meta) = raw.GetMs2Scans _
             .Where(Function(a) Not a.mz.IsNullOrEmpty) _
             .Select(Function(a) a.GetScanMeta) _
             .AsList
-        Dim ms1 = raw.GetMs1Scans _
-            .Select(Function(s) s.GetMs1Scans(Of Meta)) _
-            .IteratesALL _
-            .ToArray
-        Dim maxinto As Double = ms1.Select(Function(a) a.intensity).Max
-        Dim cutoff As Double = maxinto * 0.001
 
-        Call meta.AddRange(ms1.Where(Function(a) a.intensity > cutoff))
+        If Not msn Then
+            Dim ms1 = raw.GetMs1Scans _
+               .Select(Function(s) s.GetMs1Scans(Of Meta)) _
+               .IteratesALL _
+               .ToArray
+            Dim maxinto As Double = ms1.Select(Function(a) a.intensity).Max
+            Dim cutoff As Double = maxinto * 0.001
+
+            ' and also add ms1 peaks if not msn
+            Call meta.AddRange(ms1.Where(Function(a) a.intensity > cutoff))
+        End If
+
         Call Me.ScatterViewer.LoadPeaks(meta)
     End Sub
 

@@ -235,7 +235,8 @@ Module RibbonEvents
         Call HookRibbon(ribbonItems.OpenIonsLibrary, Sub() Call openIonLibrary())
         Call HookRibbon(ribbonItems.ButtonOpenLCMSWorkbench, Sub() Call openLCMSWorkbench())
         Call HookRibbon(ribbonItems.ButtonOpenWorkspace, Sub() Call openLCMSWorkspace())
-        Call HookRibbon(ribbonItems.ButtonViewUntargetedScatter, Sub() Call viewUntargettedScatter())
+        Call HookRibbon(ribbonItems.ButtonViewUntargetedScatter, Sub() Call viewUntargettedScatter(MSn:=False))
+        Call HookRibbon(ribbonItems.ViewMsnPrecursorScatter, Sub() Call viewUntargettedScatter(MSn:=True))
 
         Call HookRibbon(ribbonItems.ButtonVenn, Sub() Call VisualStudio.ShowDocument(Of frmVennTools)(title:="Venn Plot Tool"))
         Call HookRibbon(ribbonItems.ButtonViewMRI, Sub() Call openMRIRaster())
@@ -275,7 +276,7 @@ Module RibbonEvents
         End If
     End Sub
 
-    Public Sub viewUntargettedScatter()
+    Public Sub viewUntargettedScatter(MSn As Boolean)
         Dim raw As Raw = WindowModules.rawFeaturesList.CurrentOpenedFile
 
         If raw Is Nothing Then
@@ -284,7 +285,12 @@ Module RibbonEvents
         End If
 
         Dim page As frmLCMSScatterViewer = VisualStudio.ShowDocument(Of frmLCMSScatterViewer)(title:=raw.source.FileName)
-        Call page.loadRaw(raw)
+
+        If MSn Then
+            Call page.LoadRawMSn(raw)
+        Else
+            Call page.loadRaw(raw)
+        End If
     End Sub
 
     Public Sub openLCMSWorkspace()
