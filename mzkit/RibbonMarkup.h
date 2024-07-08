@@ -1718,6 +1718,14 @@
 #define cmdButtonExportMatrix2_TooltipDescription_RESID 60232
 #define cmdButtonExportMatrix2_SmallImages_192__RESID 60233
 #define cmdButtonExportMatrix2_LargeImages_192__RESID 60234
-#define InternalCmd2_LabelTitle_RESID 60235
-#define InternalCmd4_LabelTitle_RESID 60236
-#define InternalCmd6_LabelTitle_RESID 60237
+#define cmdViewMsnPrecursorScatter 310 
+#define cmdViewMsnPrecursorScatter_LabelTitle_RESID 60235
+#define cmdViewMsnPrecursorScatter_LabelDescription_RESID 60236
+#define cmdViewMsnPrecursorScatter_TooltipTitle_RESID 60237
+#define cmdViewMsnPrecursorScatter_TooltipDescription_RESID 60238
+#define cmdViewMsnPrecursorScatter_SmallImages_192__RESID 60239
+#define cmdViewMsnPrecursorScatter_LargeImages_192__RESID 60240
+#define InternalCmd2_LabelTitle_RESID 60241
+#define InternalCmd4_LabelTitle_RESID 60242
+#define InternalCmd6_LabelTitle_RESID 60243
+#define InternalCmd8_LabelTitle_RESID 60244

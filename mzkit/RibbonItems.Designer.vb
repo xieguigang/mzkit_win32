@@ -13,7 +13,7 @@ Imports RibbonLib
 Imports RibbonLib.Controls
 
 Namespace RibbonLib.Controls
-    Public Class RibbonItems
+    Partial Class RibbonItems
         Private Class Cmd
             Public Const cmdRecentItems As UInteger = 1014
             Public Const cmdMenuGroupFile As UInteger = 1005
@@ -84,6 +84,7 @@ Namespace RibbonLib.Controls
             Public Const cmdButtonLayout1 As UInteger = 1043
             Public Const cmdButtonPeakFinding As UInteger = 5
             Public Const cmdButtonViewUntargetedScatter As UInteger = 286
+            Public Const cmdViewMsnPrecursorScatter As UInteger = 310
             Public Const cmdGroupChromatography As UInteger = 1141
             Public Const cmdButtonBPC As UInteger = 1143
             Public Const cmdButtonTIC As UInteger = 1144
@@ -732,6 +733,12 @@ Namespace RibbonLib.Controls
         Public ReadOnly Property ButtonViewUntargetedScatter As RibbonButton
             Get
                 Return _ButtonViewUntargetedScatter
+            End Get
+        End Property
+        Private _ViewMsnPrecursorScatter As RibbonButton
+        Public ReadOnly Property ViewMsnPrecursorScatter As RibbonButton
+            Get
+                Return _ViewMsnPrecursorScatter
             End Get
         End Property
         Private _GroupChromatography As RibbonGroup
@@ -2129,6 +2136,7 @@ Namespace RibbonLib.Controls
             _ButtonLayout1 = New RibbonButton(_ribbon, Cmd.cmdButtonLayout1)
             _ButtonPeakFinding = New RibbonButton(_ribbon, Cmd.cmdButtonPeakFinding)
             _ButtonViewUntargetedScatter = New RibbonButton(_ribbon, Cmd.cmdButtonViewUntargetedScatter)
+            _ViewMsnPrecursorScatter = New RibbonButton(_ribbon, Cmd.cmdViewMsnPrecursorScatter)
             _GroupChromatography = New RibbonGroup(_ribbon, Cmd.cmdGroupChromatography)
             _ButtonBPC = New RibbonButton(_ribbon, Cmd.cmdButtonBPC)
             _ButtonTIC = New RibbonButton(_ribbon, Cmd.cmdButtonTIC)

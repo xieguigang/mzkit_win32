@@ -4294,6 +4294,14 @@
         <Image MinDPI="192">Res/document-save.png</Image>
       </Command.LargeImages>
     </Command>
+    <Command Name="cmdViewMsnPrecursorScatter" Id="310" LabelTitle="MSn Precursor Scatter" LabelDescription="View MSn Precursor Scatter" TooltipTitle="View MSn Precursor Scatter" TooltipDescription="View MSn Precursor Scatter">
+      <Command.SmallImages>
+        <Image MinDPI="192">Res/icons8-scatter-plot-96.png</Image>
+      </Command.SmallImages>
+      <Command.LargeImages>
+        <Image MinDPI="192">Res/icons8-scatter-plot-96.png</Image>
+      </Command.LargeImages>
+    </Command>
   </Application.Commands>
   <Application.Views>
     <ContextPopup>
@@ -4446,7 +4454,12 @@
               </DropDownButton>
               <Button CommandName="cmdButtonLayout1" />
               <Button CommandName="cmdButtonPeakFinding" />
-              <Button CommandName="cmdButtonViewUntargetedScatter" />
+              <SplitButton>
+                <SplitButton.ButtonItem>
+                  <Button CommandName="cmdButtonViewUntargetedScatter" />
+                </SplitButton.ButtonItem>
+                <Button CommandName="cmdViewMsnPrecursorScatter" />
+              </SplitButton>
             </Group>
             <Group CommandName="cmdGroupChromatography" ApplicationModes="0,1" SizeDefinition="ThreeButtons">
               <Button CommandName="cmdButtonBPC" />

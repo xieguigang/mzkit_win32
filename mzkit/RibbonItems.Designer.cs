@@ -87,6 +87,7 @@ namespace RibbonLib.Controls
             public const uint cmdButtonLayout1 = 1043;
             public const uint cmdButtonPeakFinding = 5;
             public const uint cmdButtonViewUntargetedScatter = 286;
+            public const uint cmdViewMsnPrecursorScatter = 310;
             public const uint cmdGroupChromatography = 1141;
             public const uint cmdButtonBPC = 1143;
             public const uint cmdButtonTIC = 1144;
@@ -387,6 +388,7 @@ namespace RibbonLib.Controls
         public RibbonButton ButtonLayout1 { get; private set; }
         public RibbonButton ButtonPeakFinding { get; private set; }
         public RibbonButton ButtonViewUntargetedScatter { get; private set; }
+        public RibbonButton ViewMsnPrecursorScatter { get; private set; }
         public RibbonGroup GroupChromatography { get; private set; }
         public RibbonButton ButtonBPC { get; private set; }
         public RibbonButton ButtonTIC { get; private set; }
@@ -682,6 +684,7 @@ namespace RibbonLib.Controls
             ButtonLayout1 = new RibbonButton(ribbon, Cmd.cmdButtonLayout1);
             ButtonPeakFinding = new RibbonButton(ribbon, Cmd.cmdButtonPeakFinding);
             ButtonViewUntargetedScatter = new RibbonButton(ribbon, Cmd.cmdButtonViewUntargetedScatter);
+            ViewMsnPrecursorScatter = new RibbonButton(ribbon, Cmd.cmdViewMsnPrecursorScatter);
             GroupChromatography = new RibbonGroup(ribbon, Cmd.cmdGroupChromatography);
             ButtonBPC = new RibbonButton(ribbon, Cmd.cmdButtonBPC);
             ButtonTIC = new RibbonButton(ribbon, Cmd.cmdButtonTIC);
