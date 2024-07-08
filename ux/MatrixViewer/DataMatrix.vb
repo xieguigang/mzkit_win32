@@ -89,6 +89,8 @@ Public MustInherit Class DataMatrix
         End Get
     End Property
 
+    Public Property ResizeByCanvas As Boolean = True
+
     Public MustOverride ReadOnly Property UnderlyingType As Type
 
     Sub New(name As String, matrix As Array)
