@@ -1,62 +1,62 @@
 ﻿#Region "Microsoft.VisualBasic::f8ea61b8cab47ac751884f35befa480d, mzkit\ux\MatrixViewer\SpectralMatrix.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
-    ' 
-    ' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (gg.xie@bionovogene.com, BioNovoGene Co., LTD.)
+' 
+' Copyright (c) 2018 gg.xie@bionovogene.com, BioNovoGene Co., LTD.
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 75
-    '    Code Lines: 64 (85.33%)
-    ' Comment Lines: 0 (0.00%)
-    '    - Xml Docs: 0.00%
-    ' 
-    '   Blank Lines: 11 (14.67%)
-    '     File Size: 2.67 KB
+' Summaries:
 
 
-    ' Class SpectralMatrix
-    ' 
-    '     Properties: UnderlyingType
-    ' 
-    '     Constructor: (+1 Overloads) Sub New
-    ' 
-    '     Function: GetTitles, Plot, (+2 Overloads) SaveTo
-    ' 
-    '     Sub: CreateRows
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 75
+'    Code Lines: 64 (85.33%)
+' Comment Lines: 0 (0.00%)
+'    - Xml Docs: 0.00%
+' 
+'   Blank Lines: 11 (14.67%)
+'     File Size: 2.67 KB
+
+
+' Class SpectralMatrix
+' 
+'     Properties: UnderlyingType
+' 
+'     Constructor: (+1 Overloads) Sub New
+' 
+'     Function: GetTitles, Plot, (+2 Overloads) SaveTo
+' 
+'     Sub: CreateRows
+' 
+' /********************************************************************************/
 
 #End Region
 
@@ -74,6 +74,7 @@ Public Class SpectralMatrix : Inherits DataMatrix
 
     ReadOnly precursor As (mz As Double, rt As Double)
     ReadOnly source As String
+
     Public Overrides ReadOnly Property UnderlyingType As Type
         Get
             Return GetType(ms2)
@@ -108,12 +109,19 @@ Public Class SpectralMatrix : Inherits DataMatrix
             .parentMz = precursor.mz
         }
         Dim scale As Double = 1.5
+        Dim size As String
+
+        If ResizeByCanvas Then
+            size = $"{picBox.Width},{picBox.Height}"
+        Else
+            size = $"{args.width * scale},{args.height * scale}"
+        End If
 
         Return PeakAssign.DrawSpectrumPeaks(
             scanData,
             padding:=args.GetPadding.ToString,
             bg:=args.background.ToHtmlColor,
-            size:=$"{args.width * scale},{args.height * scale}",
+            size:=size,
             labelIntensity:=If(args.show_tag, 0.25, 100),
             gridFill:=args.gridFill.ToHtmlColor,
             barStroke:=$"stroke: steelblue; stroke-width: {args.line_width}px; stroke-dash: solid;",
