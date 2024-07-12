@@ -66,7 +66,7 @@ Public Class frmLogFile
         Dim batch_file As String = App.GetTempFile & ".cmd"
         Dim cmd As New Process
         cmd.StartInfo.FileName = "cmd.exe"
-        cmd.StartInfo.Arguments = batch_file.CLIPath
+        cmd.StartInfo.Arguments = "/k " & batch_file.CLIPath
         cmd.StartInfo.CreateNoWindow = False
 
         Call batch.ToString.SaveTo(batch_file, Encodings.UTF8.CodePage)
