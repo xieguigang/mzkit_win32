@@ -95,7 +95,7 @@ Public Class Ms1ScatterMatrix : Inherits DataMatrix
         Return RawScatterPlot.Plot(
             samples:=GetMatrix(Of ms1_scan),
             rawfile:=name,
-            sampleColors:=args.colorSet
+            sampleColors:=If(args.colorSet, args.colors.Description)
         )
     End Function
 
