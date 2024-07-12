@@ -52,7 +52,7 @@ Public Class frmLogFile
         Dim cd As String = lines(lines.Length - 2)
         Dim cmd As String = lines(lines.Length - 1)
 
-        cd = cd.GetTagValue(" ").Value
+        cd = cd.GetTagValue(" ").Value.Trim(""""c)
 
         Return (cd, cmd)
     End Function
