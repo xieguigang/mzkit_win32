@@ -1,6 +1,7 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmLogFile
-    Inherits System.Windows.Forms.Form
+﻿Imports Mzkit_win32.BasicMDIForm
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+Partial Class frmLogFile : Inherits DocumentWindow
 
     'Form 重写 Dispose，以清理组件列表。
     <System.Diagnostics.DebuggerNonUserCode()> _
@@ -22,9 +23,17 @@ Partial Class frmLogFile
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        components = New System.ComponentModel.Container
+        Me.SuspendLayout()
+        '
+        'frmLogFile
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Text = "Form1"
+        Me.ClientSize = New System.Drawing.Size(1181, 634)
+        Me.DoubleBuffered = True
+        Me.Name = "frmLogFile"
+        Me.TabPageContextMenuStrip = Me.DockContextMenuStrip1
+        Me.ResumeLayout(False)
+
     End Sub
 End Class

@@ -120,10 +120,10 @@ Public Class SpectralMatrix : Inherits DataMatrix
             h = args.height * scale
         End If
 
-        If h < 1200 Then
+        If h < 800 Then
             w = w * (1200 / h)
             h = 1200
-            ppi = 400
+            ppi = 300
         End If
 
         Return PeakAssign.DrawSpectrumPeaks(

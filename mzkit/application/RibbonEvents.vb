@@ -62,6 +62,7 @@
 
 Imports System.IO
 Imports System.Runtime.CompilerServices
+Imports System.Runtime.InteropServices
 Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MSP
@@ -243,6 +244,7 @@ Module RibbonEvents
 
         Call HookRibbon(ribbonItems.ButtonMSIDebugger, Sub() Call Debugger.MSI.Run())
         Call HookRibbon(ribbonItems.ButtonOpenPeakFeatures, Sub() Call loadPeakFeatures())
+        Call HookRibbon(ribbonItems.ButtonLogFile, Sub() Call openLogTable())
 
         LCMSViewerModule.lcmsViewerhHandle = AddressOf openLcmsScatter
     End Sub
@@ -251,6 +253,10 @@ Module RibbonEvents
         ExportApis._openMSImagingFile = AddressOf OpenMSIRaw
         ExportApis._openMSImagingViewer = AddressOf showMsImaging
         ExportApis._openCFMIDTool = AddressOf OpenCFMIDTool
+    End Sub
+
+    Private Sub openLogTable()
+        Call VisualStudio.ShowDocument(Of frmLogFile)(DockState.Document, "View Application Log File")
     End Sub
 
     Private Sub loadPeakFeatures()

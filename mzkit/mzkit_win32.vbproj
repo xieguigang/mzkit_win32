@@ -1423,6 +1423,9 @@
     <EmbeddedResource Include="pages\dockWindow\documents\frmPeakFinding.resx">
       <DependentUpon>frmPeakFinding.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="pages\dockWindow\systems\frmLogFile.resx">
+      <DependentUpon>frmLogFile.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="pages\dockWindow\systems\frmPluginMgr.resx">
       <DependentUpon>frmPluginMgr.vb</DependentUpon>
     </EmbeddedResource>
