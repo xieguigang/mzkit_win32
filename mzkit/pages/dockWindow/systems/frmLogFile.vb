@@ -40,7 +40,11 @@ Public Class frmLogFile
     End Sub
 
     Private Shared Function TryParse(log As String) As (String, String)
-        Dim lines As String() = Strings.Trim(log).LineTokens
+        Dim lines As String() = Strings.Trim(log) _
+            .LineTokens _
+            .Where(Function(si) Not si.StartsWith("//")) _
+            .Where(Function(si) Not Strings.Trim(si).StringEmpty(, True)) _
+            .ToArray
         Dim cd As String = lines(lines.Length - 2)
         Dim cmd As String = lines(lines.Length - 1)
 
