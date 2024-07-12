@@ -96,6 +96,7 @@ Imports PipelineHost
 Imports SMRUCC.genomics.Analysis.HTS.GSEA
 Imports Task
 Imports Task.Container
+Imports TaskStream
 Imports WeifenLuo.WinFormsUI.Docking
 Imports std = System.Math
 
@@ -175,8 +176,7 @@ Module Globals
 
         Call FrameworkInternal.ConfigMemory(MemoryLoads.Max)
         Call LicenseFile.ApplyLicense()
-        Call RedisService.Start()
-        Call RenderService.Start()
+        Call WorkStudio.LogCommandLine(localfs)
 
         ' initialize for external plugin module
         MSImagingServiceModule.m_StartEngine = Sub() Call MSIDataService.StartMSIService(Nothing)

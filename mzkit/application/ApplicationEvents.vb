@@ -428,6 +428,13 @@ Type 'q()' to quit R.
         ''' </summary>
         ''' <returns></returns>
         Public Shared ReadOnly Property buffer_size As Integer = 64 * ByteSize.MB
+        Public Shared ReadOnly Property debugMode As Boolean
+            Get
+                Dim cli = App.CommandLine
+
+                Return cli.Name.TextEquals("--debug") OrElse cli.ContainsParameter("--debug")
+            End Get
+        End Property
 
         Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles Me.Startup
             Dim cli = App.CommandLine
@@ -470,6 +477,10 @@ Type 'q()' to quit R.
             End If
 
             Call AppEnvironment.SetExternalCDllDirectory($"{App.HOME}/tools/cpp/")
+
+            ' start background services
+            Call RedisService.Start()
+            Call RenderService.Start()
         End Sub
 
         Private Sub MyApplication_Shutdown(sender As Object, e As EventArgs) Handles Me.Shutdown

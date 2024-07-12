@@ -68,6 +68,10 @@ Public Class WorkStudio
         Call CommandLine.Call($"{App.HOME}/Rstudio/bin/R#.exe", args)
     End Sub
 
+    Public Shared Sub LogCommandLine(cmd As Process)
+        Call LogCommandLine(cmd.StartInfo.FileName, cmd.StartInfo.Arguments, cmd.StartInfo.WorkingDirectory)
+    End Sub
+
     Public Shared Sub LogCommandLine(host As String, commandline As String, workdir As String)
         Dim logText As New StringBuilder
 

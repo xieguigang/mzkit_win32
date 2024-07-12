@@ -108,24 +108,33 @@ Public Class SpectralMatrix : Inherits DataMatrix
             .ms2 = matrix,
             .parentMz = precursor.mz
         }
-        Dim scale As Double = 1.5
-        Dim size As String
+        Dim scale As Double = 2.5
+        Dim w, h As Double
+        Dim ppi As Double = 200
 
         If ResizeByCanvas Then
-            size = $"{picBox.Width},{picBox.Height}"
+            w = picBox.Width
+            h = picBox.Height
         Else
-            size = $"{args.width * scale},{args.height * scale}"
+            w = args.width * scale
+            h = args.height * scale
+        End If
+
+        If h < 800 Then
+            w = w * (1200 / h)
+            h = 1200
+            ppi = 300
         End If
 
         Return PeakAssign.DrawSpectrumPeaks(
             scanData,
             padding:=args.GetPadding.ToString,
             bg:=args.background.ToHtmlColor,
-            size:=size,
+            size:=$"{w},{h}",
             labelIntensity:=If(args.show_tag, 0.25, 100),
             gridFill:=args.gridFill.ToHtmlColor,
             barStroke:=$"stroke: steelblue; stroke-width: {args.line_width}px; stroke-dash: solid;",
-            dpi:=200
+            dpi:=ppi
         )
     End Function
 

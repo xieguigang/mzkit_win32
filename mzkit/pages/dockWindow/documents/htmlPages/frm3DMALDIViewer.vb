@@ -9,6 +9,7 @@ Imports SMRUCC.DICOM.LASer
 Imports SMRUCC.DICOM.LASer.Model
 Imports SMRUCC.DICOM.NRRD
 Imports Task.Container
+Imports TaskStream
 
 Public Class frm3DMALDIViewer
 
@@ -108,6 +109,8 @@ Public Class frm3DMALDIViewer
             .StartTime = Now.ToString,
             .CommandLine = Service.GetCommandLine(localfs)
         })
+
+        Call WorkStudio.LogCommandLine(localfs)
     End Sub
 
     Private Sub frm3DMALDIViewer_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing

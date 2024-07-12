@@ -549,5 +549,18 @@ Public Class PeakScatterViewer
                 Call Me.Invoke(Sub() ColorScale = cfg.GetColorMap)
             End Sub)
     End Sub
+
+    Private Sub SavePlotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SavePlotToolStripMenuItem.Click
+        If PictureBox1.BackgroundImage Is Nothing Then
+            Call Workbench.Warning("no plot image!")
+            Return
+        End If
+
+        Using file As New SaveFileDialog With {.Filter = "Image File(*.png)|*.png"}
+            If file.ShowDialog = DialogResult.OK Then
+                Call PictureBox1.BackgroundImage.SaveAs(file.FileName, autoDispose:=True)
+            End If
+        End Using
+    End Sub
 End Class
 

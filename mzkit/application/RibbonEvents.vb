@@ -62,6 +62,7 @@
 
 Imports System.IO
 Imports System.Runtime.CompilerServices
+Imports System.Runtime.InteropServices
 Imports System.Text
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly
 Imports BioNovoGene.Analytical.MassSpectrometry.Assembly.ASCII.MSP
@@ -235,13 +236,15 @@ Module RibbonEvents
         Call HookRibbon(ribbonItems.OpenIonsLibrary, Sub() Call openIonLibrary())
         Call HookRibbon(ribbonItems.ButtonOpenLCMSWorkbench, Sub() Call openLCMSWorkbench())
         Call HookRibbon(ribbonItems.ButtonOpenWorkspace, Sub() Call openLCMSWorkspace())
-        Call HookRibbon(ribbonItems.ButtonViewUntargetedScatter, Sub() Call viewUntargettedScatter())
+        Call HookRibbon(ribbonItems.ButtonViewUntargetedScatter, Sub() Call viewUntargettedScatter(MSn:=False))
+        Call HookRibbon(ribbonItems.ViewMsnPrecursorScatter, Sub() Call viewUntargettedScatter(MSn:=True))
 
         Call HookRibbon(ribbonItems.ButtonVenn, Sub() Call VisualStudio.ShowDocument(Of frmVennTools)(title:="Venn Plot Tool"))
         Call HookRibbon(ribbonItems.ButtonViewMRI, Sub() Call openMRIRaster())
 
         Call HookRibbon(ribbonItems.ButtonMSIDebugger, Sub() Call Debugger.MSI.Run())
         Call HookRibbon(ribbonItems.ButtonOpenPeakFeatures, Sub() Call loadPeakFeatures())
+        Call HookRibbon(ribbonItems.ButtonLogFile, Sub() Call openLogTable())
 
         LCMSViewerModule.lcmsViewerhHandle = AddressOf openLcmsScatter
     End Sub
@@ -250,6 +253,10 @@ Module RibbonEvents
         ExportApis._openMSImagingFile = AddressOf OpenMSIRaw
         ExportApis._openMSImagingViewer = AddressOf showMsImaging
         ExportApis._openCFMIDTool = AddressOf OpenCFMIDTool
+    End Sub
+
+    Private Sub openLogTable()
+        Call VisualStudio.ShowDocument(Of frmLogFile)(DockState.Document, "View Application Log File")
     End Sub
 
     Private Sub loadPeakFeatures()
@@ -275,7 +282,7 @@ Module RibbonEvents
         End If
     End Sub
 
-    Public Sub viewUntargettedScatter()
+    Public Sub viewUntargettedScatter(MSn As Boolean)
         Dim raw As Raw = WindowModules.rawFeaturesList.CurrentOpenedFile
 
         If raw Is Nothing Then
@@ -284,7 +291,12 @@ Module RibbonEvents
         End If
 
         Dim page As frmLCMSScatterViewer = VisualStudio.ShowDocument(Of frmLCMSScatterViewer)(title:=raw.source.FileName)
-        Call page.loadRaw(raw)
+
+        If MSn Then
+            Call page.LoadRawMSn(raw)
+        Else
+            Call page.loadRaw(raw)
+        End If
     End Sub
 
     Public Sub openLCMSWorkspace()
