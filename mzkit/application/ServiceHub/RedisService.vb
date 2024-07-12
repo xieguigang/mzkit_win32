@@ -39,5 +39,7 @@ Public NotInheritable Class RedisService
             .HouseKeeping = True,
             .CommandLine = Service.GetCommandLine(localRedis)
         })
+
+        Call WorkStudio.LogCommandLine(localRedis)
     End Sub
 End Class

@@ -10,6 +10,7 @@ Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.MSImagingViewerV2.DeepZoomBuilder
 Imports RibbonLib.Interop
 Imports Task.Container
+Imports TaskStream
 Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmOpenseadragonViewer
@@ -163,6 +164,8 @@ Public Class frmOpenseadragonViewer
             .StartTime = Now.ToString,
             .CommandLine = Manager.Service.GetCommandLine(localfs)
         })
+
+        Call WorkStudio.LogCommandLine(localfs)
     End Sub
 
     Private Sub frmOpenseadragonViewer_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing

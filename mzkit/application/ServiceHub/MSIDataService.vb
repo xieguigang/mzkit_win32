@@ -226,6 +226,8 @@ Namespace ServiceHub
                  .CommandLine = Manager.Service.GetCommandLine(hostReference.MSI_pipe.Process)
             })
 
+            Call WorkStudio.LogCommandLine(hostReference.MSI_pipe.Process)
+
             Return hostReference
         End Function
 

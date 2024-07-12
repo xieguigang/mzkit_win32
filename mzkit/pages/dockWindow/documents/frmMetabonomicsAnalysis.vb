@@ -70,6 +70,8 @@ Public Class frmMetabonomicsAnalysis
             .StartTime = Now.ToString,
             .CommandLine = Manager.Service.GetCommandLine(imageWeb)
         })
+
+        Call WorkStudio.LogCommandLine(imageWeb)
     End Sub
 
     ''' <summary>
