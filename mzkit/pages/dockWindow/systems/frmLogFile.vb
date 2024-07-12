@@ -69,7 +69,7 @@ Public Class frmLogFile
         cmd.StartInfo.Arguments = "/k " & batch_file.CLIPath
         cmd.StartInfo.CreateNoWindow = False
 
-        Call batch.ToString.SaveTo(batch_file, Encodings.UTF8.CodePage)
+        Call batch.ToString.SaveTo(batch_file, Encodings.UTF8WithoutBOM.CodePage)
         Call cmd.Start()
     End Sub
 
