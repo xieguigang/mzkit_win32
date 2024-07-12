@@ -21,7 +21,7 @@ Public Class frmLogFile
 
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
         If ComboBox1.SelectedIndex > -1 Then
-            Dim file As String = $"{App.ProductProgramData}/{ComboBox1.SelectedValue}.txt"
+            Dim file As String = $"{App.ProductProgramData}/{ComboBox1.SelectedItem}.txt"
             Dim logs As LogEntry() = LogReader.Parse(file).ToArray
 
             DataGridView1.Rows.Clear()
