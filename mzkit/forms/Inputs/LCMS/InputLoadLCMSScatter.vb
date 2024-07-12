@@ -18,11 +18,22 @@
         End Get
     End Property
 
+    Public ReadOnly Property LabelField As String
+        Get
+            If ComboBox4.SelectedIndex < 0 Then
+                Return Nothing
+            Else
+                Return ComboBox4.SelectedItem.ToString
+            End If
+        End Get
+    End Property
+
     Public Sub SetDataFeilds(fields As IEnumerable(Of String))
         For Each name As String In fields
             ComboBox1.Items.Add(name)
             ComboBox2.Items.Add(name)
             ComboBox3.Items.Add(name)
+            ComboBox4.Items.Add(name)
         Next
 
         ComboBox1.SelectedIndex = 0

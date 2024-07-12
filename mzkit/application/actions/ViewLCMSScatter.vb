@@ -21,9 +21,17 @@ Public Class ViewLCMSScatter : Inherits ActionBase
                            Dim rt = CLRVector.asNumeric(table.getFieldVector(fields.RtField))
                            Dim mz = CLRVector.asNumeric(table.getFieldVector(fields.MzField))
                            Dim into = CLRVector.asNumeric(table.getFieldVector(fields.DataField))
-                           Dim viewer = VisualStudio.ShowDocument(Of frmLCMSScatterViewer)()
+                           Dim label As String() = Nothing
+
+                           If Not fields.LabelField Is Nothing Then
+                               label = CLRVector.asCharacter(table.getFieldVector(fields.LabelField))
+                           End If
+
+                           Dim viewer = VisualStudio.ShowDocument(Of frmLCMSScatterViewer)(title:="LCMS Scatter")
                            Dim scatter As Meta() = mz _
-                               .Select(Function(mzi, i) New Meta(mzi, rt(i), into(i))) _
+                               .Select(Function(mzi, i)
+                                           Return New Meta(mzi, rt(i), into(i), label.ElementAtOrNull(i))
+                                       End Function) _
                                .ToArray
 
                            Call viewer.loadRaw(scatter)
