@@ -59,7 +59,7 @@ Public Class frmLogFile
 
     Private Sub launch_cmd(cmdlog As LogEntry)
         Dim run = TryParse(cmdlog.message)
-        Dim batch As New StringBuilder($"{run.Item1.Split(":"c).First}:")
+        Dim batch As New StringBuilder($"{run.Item1.Split(":"c).First}:" & vbCrLf & vbCrLf)
         batch.AppendLine("CD " & run.Item1.CLIPath)
         batch.AppendLine(run.Item2)
 
