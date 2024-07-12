@@ -470,6 +470,10 @@ Type 'q()' to quit R.
             End If
 
             Call AppEnvironment.SetExternalCDllDirectory($"{App.HOME}/tools/cpp/")
+
+            ' start background services
+            Call RedisService.Start()
+            Call RenderService.Start()
         End Sub
 
         Private Sub MyApplication_Shutdown(sender As Object, e As EventArgs) Handles Me.Shutdown
