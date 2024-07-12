@@ -201,6 +201,7 @@ Module Globals
         Call Actions.Register("Peak List Annotation", New PeakAnnotationAction, println)
         Call Actions.Register("KEGG Stats", New KEGGStatsAction, println)
         Call Actions.Register("View 3D Scatter", New ViewScatter3DAction, println)
+        Call Actions.Register("LCMS Scatter", New ViewLCMSScatter, println)
         Call Actions.Register("Metabonomics Analysis", New MetabonomicsAnalysisTool, println)
     End Sub
 
