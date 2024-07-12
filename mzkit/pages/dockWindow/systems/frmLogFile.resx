@@ -120,4 +120,10 @@
   <metadata name="VS2015LightTheme1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>201, 17</value>
   </metadata>
+  <data name="Label2.Text" xml:space="preserve">
+    <value>The historical command-line logs of background task invocations for the mzkit desktop workstation software. Should you encounter any 
+abnormality in the operation of a background task, you may reproduce the corresponding issue message by re-executing the pertinent 
+task program in the CMD using the command-line logs recorded here. Subsequently, you may capture a screenshot of the issue message 
+and send it via email to the developer for the purpose of pinpointing the cause of the problem.</value>
+  </data>
 </root>
