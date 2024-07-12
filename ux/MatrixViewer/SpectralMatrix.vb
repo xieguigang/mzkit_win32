@@ -110,6 +110,7 @@ Public Class SpectralMatrix : Inherits DataMatrix
         }
         Dim scale As Double = 2.5
         Dim w, h As Double
+        Dim ppi As Double = 200
 
         If ResizeByCanvas Then
             w = picBox.Width
@@ -122,6 +123,7 @@ Public Class SpectralMatrix : Inherits DataMatrix
         If h < 1200 Then
             w = w * (1200 / h)
             h = 1200
+            ppi = 400
         End If
 
         Return PeakAssign.DrawSpectrumPeaks(
@@ -132,7 +134,7 @@ Public Class SpectralMatrix : Inherits DataMatrix
             labelIntensity:=If(args.show_tag, 0.25, 100),
             gridFill:=args.gridFill.ToHtmlColor,
             barStroke:=$"stroke: steelblue; stroke-width: {args.line_width}px; stroke-dash: solid;",
-            dpi:=200
+            dpi:=ppi
         )
     End Function
 
