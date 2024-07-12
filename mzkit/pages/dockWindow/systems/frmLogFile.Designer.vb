@@ -4,7 +4,7 @@
 Partial Class frmLogFile : Inherits DocumentWindow
 
     'Form 重写 Dispose，以清理组件列表。
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -21,15 +21,19 @@ Partial Class frmLogFile : Inherits DocumentWindow
     '注意: 以下过程是 Windows 窗体设计器所必需的
     '可以使用 Windows 窗体设计器修改它。  
     '不要使用代码编辑器修改它。
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmLogFile))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -55,7 +59,7 @@ Partial Class frmLogFile : Inherits DocumentWindow
         Me.GroupBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox1.Controls.Add(Me.ListBox1)
+        Me.GroupBox1.Controls.Add(Me.DataGridView1)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 135)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(1157, 464)
@@ -73,15 +77,36 @@ Partial Class frmLogFile : Inherits DocumentWindow
         Me.Label2.TabIndex = 4
         Me.Label2.Text = resources.GetString("Label2.Text")
         '
-        'ListBox1
+        'DataGridView1
         '
-        Me.ListBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.ItemHeight = 12
-        Me.ListBox1.Location = New System.Drawing.Point(3, 17)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(1151, 444)
-        Me.ListBox1.TabIndex = 0
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3})
+        Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridView1.Location = New System.Drawing.Point(3, 17)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.RowTemplate.Height = 23
+        Me.DataGridView1.Size = New System.Drawing.Size(1151, 444)
+        Me.DataGridView1.TabIndex = 0
+        '
+        'Column1
+        '
+        Me.Column1.HeaderText = "Time"
+        Me.Column1.Name = "Column1"
+        Me.Column1.ReadOnly = True
+        '
+        'Column2
+        '
+        Me.Column2.HeaderText = "Workdir"
+        Me.Column2.Name = "Column2"
+        Me.Column2.ReadOnly = True
+        Me.Column2.Width = 300
+        '
+        'Column3
+        '
+        Me.Column3.HeaderText = "CommandLine"
+        Me.Column3.Name = "Column3"
+        Me.Column3.ReadOnly = True
+        Me.Column3.Width = 600
         '
         'frmLogFile
         '
@@ -96,6 +121,7 @@ Partial Class frmLogFile : Inherits DocumentWindow
         Me.Name = "frmLogFile"
         Me.TabPageContextMenuStrip = Me.DockContextMenuStrip1
         Me.GroupBox1.ResumeLayout(False)
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -105,5 +131,8 @@ Partial Class frmLogFile : Inherits DocumentWindow
     Friend WithEvents ComboBox1 As ComboBox
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label2 As Label
-    Friend WithEvents ListBox1 As ListBox
+    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents Column2 As DataGridViewTextBoxColumn
+    Friend WithEvents Column3 As DataGridViewTextBoxColumn
 End Class
