@@ -1,5 +1,4 @@
 ﻿Imports BioNovoGene.Analytical.MassSpectrometry.MsImaging.TissueMorphology
-Imports Microsoft.VisualBasic.Linq
 Imports Mzkit_win32.BasicMDIForm
 Imports Mzkit_win32.BasicMDIForm.CommonDialogs
 Imports SMRUCC.Rsharp.Runtime.Vectorization

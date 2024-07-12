@@ -451,6 +451,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="application\actions\ViewLCMSScatter.vb" />
     <Compile Include="application\actions\MetabonomicsAnalysisTool.vb" />
     <Compile Include="application\actions\KEGGStatsAction.vb" />
     <Compile Include="application\actions\PeakFindingAction.vb" />
